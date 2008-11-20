@@ -684,6 +684,26 @@ $config_data = array(
                            $lang_common['yes'].': '.$lang_admin_php['guests_only'],
                          ),
     ),
+    'comment_akismet_enable' => array(
+      'type'          => 'radio',
+      'default_value' => '0',
+      'help_link'     => 'f=configuration.htm&amp;as=admin_comment_captcha_akismet_enable&amp;ae=admin_comment_captcha_akismet_enable_end',
+      'end_description' => '('.$lang_admin_php['comment_akismet_enable_end_description'].')',
+      'options'       => array(
+                           $lang_common['no'],
+                           $lang_admin_php['comment_akismet_enable_delete'],
+                           $lang_admin_php['comment_akismet_enable_disapprove'],
+                         ),
+      'linebreak'     => '<br />',
+    ),
+    'comment_akismet_api_key' => array(
+      'type'          => 'textfield',
+      'default_value' => '',
+      'regex'         => '^[0-9A-Za-z]{0,12}$',
+      'regex_not'     => '^[0-9A-Za-z]{1,11}$',
+      'help_link'     => 'f=configuration.htm&amp;as=admin_comment_captcha_akismet_api_key&amp;ae=admin_comment_captcha_akismet_api_key_end',
+      'end_description' => '('.$lang_admin_php['comment_akismet_api_key_end_description'].')',
+    ),
     'comment_promote_registration' => array(
       'type'          => 'checkbox',
       'default_value' => '0',

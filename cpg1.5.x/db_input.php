@@ -138,6 +138,13 @@ switch ($event) {
         if (!(USER_CAN_POST_COMMENTS)) {
             cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
         }
+        if ($CONFIG['comment_akismet_api_key'] != '') {
+        	if (version_compare(PHP_VERSION, '5.0.0', '>')) {
+        		include_once('include/akismet.class.php5.php');
+        	} else {
+        		include_once('include/akismet.class.php4.php');
+        	}
+        }
         if (($CONFIG['comment_captcha'] > 0 && !USER_ID) || ($CONFIG['comment_captcha'] == 2 && USER_ID)) {
             require("include/captcha.inc.php");
             $matches = $superCage->post->getMatched('confirmCode', '/^[a-zA-Z0-9]+$/');
@@ -189,6 +196,10 @@ switch ($event) {
             // If username for comment is same as default username then display error message
             if ($msg_author == $lang_display_comments['your_name']) {
                 cpg_die(ERROR, $lang_display_comments['default_username_message'], __FILE__, __LINE__);
+            }
+            
+            // Perform Akismet check if applicable
+            if ($CONFIG['comment_akismet_api_key'] != '') {
             }
 
             if ($CONFIG['comment_approval'] != 0) { // comments need approval, set approval status to "no"
@@ -313,7 +324,7 @@ switch ($event) {
         $delete_comments = $superCage->post->getInt('delete_comments');
         $delete_files = $superCage->post->getInt('delete_files');
 
-        if ($reset_views || $reset_rating) {
+        if ($reset_views || $reset_rating || $delete_comments) {
             // Get all pids for this album to reset their detail hits/vote stats
             $query = "SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$aid'";
             $result = cpg_db_query($query);

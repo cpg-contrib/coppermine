@@ -631,15 +631,25 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 
 <a name="admin_comment_user_edit_end"></a>
 <hr />
+
 <a name="admin_comment_captcha_start"></a><h3>Display Captcha (Visual Confirmation) for adding comments<a href="#admin_comment_captcha_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>To prevent spam comments being posted by bots (automated scripts), this toggle will display an image next to the comment field with some random letters on it. The visitor is required to enter those letters into a textfield to prove that he's actually a human and not just some dumb bot that drops spam. It's recommended to enable Captchas for anonymous comments (guests who are not logged in).</p>
 <p>Note: this setting doesn't determine if guests can actually post comments at all (this is instead being determined on the groups page).</p>
 <p class="important">Captchas will only work if GD2 is available on your server with FreeType support enabled.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Display Captcha (Visual Confirmation) for adding comments</p>
-
 <a name="admin_comment_captcha_end"></a>
-
 <hr />
+
+<a name="admin_comment_captcha_akismet_api_key"></a><h3>Akismet API key<a href="#admin_comment_captcha_akismet_api_key" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Another method to fight comment spam is the option to filter all comments posted using Akismet. To use this feature, you need a valid Akismet API key. To get such a key, you need to sign up (for free) for small/non-profit pages on the <a href="http://wordpress.com/api-keys/" rel="external" class="external">Wordpress page</a> to obtain an API key. If you plan to use Akismet on a commercial page, you need to purchase a professional API key on <a href="http://akismet.com/commercial/" rel="external" class="external">akismet.com/commercial/</a><br />
+After you got your API key by email you can paste it into this config field. You can not make up the API key, nor can you use someone else's API key, is it is bound to be used only for the particular domain it has been registered for in the first place.</p>
+<p>Leaving this field empty will disable the usage of Akismet.</p>
+<p>Please understand that the Coppermine group is not affiliated in any way to Akismet.com nor Wordpress: the Akismet service is provided by a third party. Terms and conditions of Akismet usage may change at a later stage - the Coppermine dev team doesn't have control over this service and can not be held liable in case something goes wrong in relation to Akismet. The Coppermine dev team just provides an interface within the application's code to allow you to process comments through Akismet.<br />
+Please do not ask questions how to get an API key on the Coppermine support board: both the Wordpress pages as well as Akismet.com provide documentation how to obtain an API key. Go to those pages to get your API key.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Akismet API key</p>
+<a name="admin_comment_captcha_akismet_api_key_end"></a>
+<hr />
+
 <a name="admin_comment_promote_registration_start"></a><h3>Ask guests to log in to post comments<a href="#admin_comment_promote_registration_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When enabled, an explanation will appear at the bottom of the comment section for anonymous users (guests) that explains that they need to log in if they want to post comments. This is meant to promote registration, to explain to your site's visitors that they could interact even more if they registered.<br />
 Of course this message will only be displayed if you have disallowed guests to post comments in the first place (you do so on the <a href="#group_cp">group control panel</a>). However, this switch does not take into account if there actually <strong>is</strong> a user group that is actually allowed to post comments at all, i.e. wether you have configured registered users to post comments. If you don't allow registered users to post comments, then don't enable this option.</p>

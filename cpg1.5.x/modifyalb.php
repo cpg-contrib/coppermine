@@ -713,17 +713,41 @@ if (GALLERY_ADMIN_MODE) {
     $result = cpg_db_query("SELECT SUM(hits) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='{$CLEAN['album']}'");
     $nbEnr = mysql_fetch_array($result);
     $hits = $nbEnr[0];
-    if (!$hits) { $hits = 0; }
+    if (!$hits) { 
+    	$hits = 0; 
+    }
     mysql_free_result($result);
     $result = cpg_db_query("SELECT SUM(votes) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='{$CLEAN['album']}' AND votes > 0");
     $nbEnr = mysql_fetch_array($result);
     $votes = $nbEnr[0];
-    if (!$votes) { $votes = 0; }
+    if (!$votes) { 
+    	$votes = 0; 
+    }
     mysql_free_result($result);
     $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='{$CLEAN['album']}'");
     $nbEnr = mysql_fetch_array($result);
     $files = $nbEnr[0];
-    if (!$files) { $files = 0; }
+    if (!$files) { 
+    	$files = 0; 
+    }
+    mysql_free_result($result);
+    
+    $comment_pid_array = array();
+    $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='{$CLEAN['album']}'");
+    while ($row = mysql_fetch_array($result)) {
+    	$comment_pid_array[] = $row['pid'];
+    }
+    mysql_free_result($result);
+    foreach ($comment_pid_array as $comment_pid){
+    	print $comment_pid;
+    	print '<br />';
+    }
+    die;
+    $nbEnr = mysql_fetch_array($result);
+    $files = $nbEnr[0];
+    if (!$files) { 
+    	$files = 0; 
+    }
     mysql_free_result($result);
 
     // missing $comments
@@ -747,7 +771,7 @@ $translation_delete_files = sprintf($lang_modifyalb_php['delete_files'], '<span 
                 <strong>$hits</strong> {$lang_modifyalb_php['views']}
             </td>
             <td align="left" class="tableb">
-                <input type="Checkbox" name="reset_views" id="reset_views" value="1" class="checkbox" /><label for="reset_views" class="clickable_option">$translation_reset_views</label>
+                <input type="checkbox" name="reset_views" id="reset_views" value="1" class="checkbox" /><label for="reset_views" class="clickable_option">$translation_reset_views</label>
             </td>
     </tr>
     <tr>
@@ -755,25 +779,23 @@ $translation_delete_files = sprintf($lang_modifyalb_php['delete_files'], '<span 
                 <strong>$votes</strong> {$lang_modifyalb_php['votes']}
             </td>
             <td align="left" class="tableb">
-                <input type="Checkbox" name="reset_rating" id="reset_rating" value="1" class="checkbox" /><label for="reset_rating" class="clickable_option">$translation_reset_rating</label>
+                <input type="checkbox" name="reset_rating" id="reset_rating" value="1" class="checkbox" /><label for="reset_rating" class="clickable_option">$translation_reset_rating</label>
             </td>
     </tr>
-    <!--not implemented yet
     <tr>
             <td align="left" class="tableb">
                 <strong>$comments</strong> {$lang_modifyalb_php['comments']}
             </td>
             <td align="left" class="tableb">
-                <input type="Checkbox" name="delete_comments" id="delete_comments" value="1" class="checkbox" /><label for="delete_comments" class="clickable_option">$translation_delete_comments</label>
+                <input type="checkbox" name="delete_comments" id="delete_comments" value="1" class="checkbox" /><label for="delete_comments" class="clickable_option">$translation_delete_comments</label>
             </td>
     </tr>
-    -->
     <tr>
             <td align="left" class="tableb">
                 <strong>$files</strong> {$lang_modifyalb_php['files']}
             </td>
             <td align="left" class="tableb">
-                <input type="Checkbox" name="delete_files" id="delete_files" value="1" class="checkbox" /><label for="delete_files" class="clickable_option">$translation_delete_files</label>
+                <input type="checkbox" name="delete_files" id="delete_files" value="1" class="checkbox" /><label for="delete_files" class="clickable_option">$translation_delete_files</label>
             </td>
     </tr>
     <tr>

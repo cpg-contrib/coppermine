@@ -332,3 +332,7 @@ ALTER TABLE `CPG_banned` ADD user_name varchar(255) NOT NULL default '' AFTER `u
 
 # Add auto-purging of expired bans
 INSERT INTO CPG_config VALUES ('purge_expired_bans', '1');
+
+# Add Akismet support
+INSERT INTO CPG_config VALUES ('comment_akismet_enable', '0');
+INSERT INTO CPG_config VALUES ('comment_akismet_api_key', '');
