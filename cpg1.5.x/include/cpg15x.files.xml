@@ -794,33 +794,10 @@
     <status>remove</status>
   </element>
   <element>
-    <fullpath>docs/print.css</fullpath>
-    <version>1.5.0</version>
-    <revision>5129</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>841e760cfd1632696e30c7abcffe5236</hash>
-  </element>
-  <element>
     <fullpath>docs/README.html</fullpath>
     <status>remove</status>
   </element>
   <element>
-    <fullpath>docs/screen.css</fullpath>
-    <version>1.5.0</version>
-    <revision>5129</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>580c9b7a68145b1181b4e2222def7d03</hash>
-  </element>
-  <element>
-    <fullpath>docs/style.css</fullpath>
-    <version>1.5.0</version>
-    <revision>5129</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>99cc2e66714b6e4269160e479aa6c24c</hash>
-  </element>
   <element>
     <fullpath>docs/showdoc.php</fullpath>
     <status>remove</status>
@@ -3736,6 +3713,108 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>227da2fc2a6bfef0f8b45476060bc9cf</hash>
+  </element>
+  <element>
+    <fullpath>docs/images/tree/</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+  </element>
+  <element>
+    <fullpath>docs/images/tree/file.gif</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>841e760cfd1632696e30c7abcffe5236</hash>
+  </element>
+  <element>
+    <fullpath>docs/images/tree/minus.gif</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>841e760cfd1632696e30c7abcffe5236</hash>
+  </element>
+  <element>
+    <fullpath>docs/images/tree/plus.gif</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>841e760cfd1632696e30c7abcffe5236</hash>
+  </element>
+  <element>
+    <fullpath>docs/images/tree/toggle.gif</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>841e760cfd1632696e30c7abcffe5236</hash>
+  </element>
+  <element>
+    <fullpath>docs/images/tree/treeview-default.gif</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>841e760cfd1632696e30c7abcffe5236</hash>
+  </element>
+  <element>
+    <fullpath>docs/images/tree/treeview-default-line.gif</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>841e760cfd1632696e30c7abcffe5236</hash>
+  </element>
+  <element>
+    <fullpath>docs/js/</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+  </element>
+  <element>
+    <fullpath>docs/js/jquery.js</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>841e760cfd1632696e30c7abcffe5236</hash>
+  </element>
+  <element>
+    <fullpath>docs/js/jquery.treeview.js</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>841e760cfd1632696e30c7abcffe5236</hash>
+  </element>
+  <element>
+    <fullpath>docs/style/</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+  </element>
+  <element>
+    <fullpath>docs/style/print.css</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>841e760cfd1632696e30c7abcffe5236</hash>
+  </element>  
+    <fullpath>docs/style/screen.css</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>580c9b7a68145b1181b4e2222def7d03</hash>
+  </element>
+  <element>
+    <fullpath>docs/style/style.css</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>99cc2e66714b6e4269160e479aa6c24c</hash>
   </element>
   <element>
     <fullpath>docs/pics/</fullpath>
