@@ -819,12 +819,13 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'comment_placeholder' => 'Display placeholder text to end users for comments waiting for admin approval', // cpg1.5
   'comment_user_edit' => 'Allow users to edit their comments', // cpg1.5
   'comment_captcha' => 'Display Captcha (Visual Confirmation) for adding comments', // cpg1.5
-  'comment_akismet_enable' => 'Enable Akismet', // cpg1.5
-  'comment_akismet_enable_delete' => 'Disallow comments that fail to pass Akismet validation', // cpg1.5
-  'comment_akismet_enable_disapprove' => 'Allow comments that fail to pass Akismet, but set to disapproved', // cpg1.5
-  'comment_akismet_enable_end_description' => 'Valid Akismet API key mandatory when enabled', // cpg1.5
+  'comment_akismet_enable' => 'Akismet Options', // cpg1.5
+  'comment_akismet_enable_description' => 'What should be done if Akismet rejects a comment as spam? Options only apply if Akismet has been enabled by entering a valid API key', // cpg1.5
+  'comment_akismet_enable_disapproved' => 'Allow comments that fail to pass Akismet, but set to disapproved', // cpg1.5
+  'comment_akismet_drop_tell' => 'Drop comment that fails to validate and tell author that it was rejected', // cpg1.5
+  'comment_akismet_drop_lie' => 'Drop comment that fails to validate, but tell end user (spammer) it has been added', // cpg1.5
   'comment_akismet_api_key' => 'Akismet API key', // cpg1.5
-  'comment_akismet_api_key_end_description' => 'Leave empty to disable', // cpg1.5
+  'comment_akismet_api_key_description' => 'Leave empty to disable Akismet', // cpg1.5
   'comment_promote_registration' => 'Ask guests to log in to post comments', // cpg1.5
   'thumb_width' => 'Max dimension (width) of a thumbnail', // cpg1.5
   'thumb_use' => 'Use dimension', // cpg1.5
@@ -1220,6 +1221,7 @@ $lang_display_comments = array(
   'disapprove' => 'Disapprove comment', // cpg1.5
   'log_in_to_comment' => 'Anonymous comments are not allowed here. %sLog in%s to post your comment', // cpg1.5 // do not translate the %s placeholders - they will be used as wrappers for the link (<a>)
   'default_username_message' => 'Please provide your name for comment', // cpg1.5
+  'comment_rejected' => 'Your comment has been rejected', // cpg1.5
 );
 
 $lang_fullsize_popup = array(

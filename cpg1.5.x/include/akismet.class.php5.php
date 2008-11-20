@@ -81,6 +81,25 @@
  *  @author		Alex Potsides
  *  @link		http://www.achingbrain.net/
  */
+ 
+ // Re-populate the "missing" superglobals that have been stripped using Inspekt
+$server_variable = array();
+if ($superCage->server->keyExists('REMOTE_ADDR')) {
+    $server_variable['REMOTE_ADDR'] = $superCage->server->getEscaped('REMOTE_ADDR');
+}
+if ($superCage->server->keyExists('HTTP_USER_AGENT')) {
+    $server_variable['HTTP_USER_AGENT'] = $superCage->server->getEscaped('HTTP_USER_AGENT');
+}
+if ($superCage->server->keyExists('HTTP_REFERER')) {
+    $server_variable['HTTP_REFERER'] = $superCage->server->getEscaped('HTTP_REFERER');
+}
+if ($superCage->server->keyExists('REMOTE_PORT')) {
+    $server_variable['REMOTE_PORT'] = $superCage->server->getEscaped('REMOTE_PORT');
+}
+if ($superCage->server->keyExists('REQUEST_METHOD')) {
+    $server_variable['REQUEST_METHOD'] = $superCage->server->getEscaped('REQUEST_METHOD');
+} 
+ 
 class Akismet
 	{
 	private $version = '0.4';
@@ -120,10 +139,10 @@ class Akismet
 		
 		// Start to populate the comment data
 		$this->comment['blog'] = $blogURL;
-		$this->comment['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+		$this->comment['user_agent'] = $server_variable['HTTP_USER_AGENT'];
 		
-		if(isset($_SERVER['HTTP_REFERER'])) {
-			$this->comment['referrer'] = $_SERVER['HTTP_REFERER'];
+		if(isset($server_variable['HTTP_REFERER'])) {
+			$this->comment['referrer'] = $server_variable['HTTP_REFERER'];
 		}
 		
 		/* 
@@ -134,7 +153,7 @@ class Akismet
 		 * Otherwise the user_ip appears as the IP address of the PHP4 server passing the requests to the 
 		 * PHP5 one...
 		 */
-		$this->comment['user_ip'] = $_SERVER['REMOTE_ADDR'] != getenv('SERVER_ADDR') ? $_SERVER['REMOTE_ADDR'] : getenv('HTTP_X_FORWARDED_FOR');
+		$this->comment['user_ip'] = $server_variable['REMOTE_ADDR'] != getenv('SERVER_ADDR') ? $server_variable['REMOTE_ADDR'] : getenv('HTTP_X_FORWARDED_FOR');
 	}
 	
 	/**
@@ -168,7 +187,8 @@ class Akismet
 	
 	// Formats the data for transmission
 	private function getQueryString() {
-		foreach($_SERVER as $key => $value) {
+		global $server_variable;
+        foreach($server_variable as $key => $value) {
 			if(!in_array($key, $this->ignore)) {
 				if($key == 'REMOTE_ADDR') {
 					$this->comment[$key] = $this->comment['user_ip'];

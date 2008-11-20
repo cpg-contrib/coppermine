@@ -642,14 +642,31 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <a name="admin_comment_captcha_end"></a>
 <hr />
 
-<a name="admin_comment_captcha_akismet_api_key"></a><h3>Akismet API key<a href="#admin_comment_captcha_akismet_api_key" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="admin_comment_akismet_api_key"></a><h3>Akismet API key<a href="#admin_comment_akismet_api_key" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Another method to fight comment spam is the option to filter all comments posted using Akismet. To use this feature, you need a valid Akismet API key. To get such a key, you need to sign up (for free) for small/non-profit pages on the <a href="http://wordpress.com/api-keys/" rel="external" class="external">Wordpress page</a> to obtain an API key. If you plan to use Akismet on a commercial page, you need to purchase a professional API key on <a href="http://akismet.com/commercial/" rel="external" class="external">akismet.com/commercial/</a><br />
 After you got your API key by email you can paste it into this config field. You can not make up the API key, nor can you use someone else's API key, is it is bound to be used only for the particular domain it has been registered for in the first place.</p>
 <p>Leaving this field empty will disable the usage of Akismet.</p>
 <p>Please understand that the Coppermine group is not affiliated in any way to Akismet.com nor Wordpress: the Akismet service is provided by a third party. Terms and conditions of Akismet usage may change at a later stage - the Coppermine dev team doesn't have control over this service and can not be held liable in case something goes wrong in relation to Akismet. The Coppermine dev team just provides an interface within the application's code to allow you to process comments through Akismet.<br />
 Please do not ask questions how to get an API key on the Coppermine support board: both the Wordpress pages as well as Akismet.com provide documentation how to obtain an API key. Go to those pages to get your API key.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Akismet API key</p>
-<a name="admin_comment_captcha_akismet_api_key_end"></a>
+<a name="admin_comment_akismet_api_key_end"></a>
+<hr />
+
+<a name="admin_comment_akismet_enable"></a><h3>Akismet Options<a href="#admin_comment_akismet_enable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>These options will only be taken into account if you have entered a valid <a href="#admin_comment_akismet_api_key">Akismet API key</a> into the corresponding config field. It determines what should be done if Akismet rejects a comment as spam? Here's what the options do:</p>
+<ul>
+    <li><strong>Allow comments that fail to pass Akismet, but set to disapproved</strong>
+    This is the mildest form of reacting on a spam comment using Akismet. The potential spam comment will be allowed to be added to the database (and the comment author will be told that it has been added successfully), but the status within the database will be "comment needs approval", no matter if you have enabled <a href="configuration#admin_comment_approval">comment approval</a> or not. This way, the comment will not be visible to your gallery's visitors, but to you as admin. You can review the comments using the <a href="comments.htm#comments_review">review comments</a> page from the <a href="admin_menu.htm#admin_menu">admin menu</a>. This can become annoying if a large number of comments is being submit.<br />
+    It is recommended to use this option first and go to stricter settings if everything works as expected</li>
+    <li><strong>Drop comment that fails to validate and tell author that it was rejected</strong><br />
+    This is the intermediate setting. Comments that fail to validate will be rejected (no record in the database will be added). The user will be told that his comment was rejected because of spam suspicion. This way, legitimate visitors will have the chance to re-phrase their comment. Spammers will hardly notice the difference, as they usually drop their spam using bots.<br />
+    It is recommended to use this setting if you have tested Aksimet throughly using the mild option and you are convinced that it is working as expected.</li>
+    <li><strong>Drop comment that fails to validate, but tell end user (spammer) it has been added</strong><br />
+    This is the most rigid setting - the comment will be dropped (i.e. it will not be recorded in the database), but the visitor will be told that the comment has been added just fine. This is meant to take care of spammers who don't use bots to post their spam, but visit your site as actual humans.<br />
+    Use this option carefully - there will be no difference for the end user - the end user will not know if his comment was accepted or not, and you as admin don't have the opportunity to find out if the comment has been added as false positive.</li>
+</ul>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Akismet Options</p>
+<a name="admin_comment_akismet_enable_end"></a>
 <hr />
 
 <a name="admin_comment_promote_registration_start"></a><h3>Ask guests to log in to post comments<a href="#admin_comment_promote_registration_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>

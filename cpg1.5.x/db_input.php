@@ -200,6 +200,25 @@ switch ($event) {
             
             // Perform Akismet check if applicable
             if ($CONFIG['comment_akismet_api_key'] != '') {
+                $comment_evaluation_array = array();
+                $comment_evaluation_array['author'] = $msg_author;
+                $comment_evaluation_array['body'] = $msg_body;
+                $comment_evaluation_array['permalink'] = $CONFIG['site_url'] . 'displayimage.php?pid='.$pid;
+                $akismet = new Akismet($CONFIG['site_url'],$CONFIG['comment_akismet_api_key'],$comment_evaluation_array);
+                if ($akismet->isSpam()) { // returns true if Akismet thinks the comment is spam
+                    if ($CONFIG['comment_akismet_enable'] == 0 ) {
+                        $CONFIG['comment_approval'] = 1; // Temporarily just set comment approval to "on"
+                    } elseif ($CONFIG['comment_akismet_enable'] == 1 ) {
+                        cpg_die(ERROR, $lang_display_comments['comment_rejected'], __FILE__, __LINE__);
+                    } else {
+                        $redirect = "displayimage.php?pid=$pid";
+                        pageheader($lang_db_input_php['com_added'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
+                        msg_box($lang_db_input_php['info'], $lang_db_input_php['com_added'], $lang_common['continue'], $redirect);
+                        pagefooter();
+                        ob_end_flush();
+                        exit;
+                    }
+                }
             }
 
             if ($CONFIG['comment_approval'] != 0) { // comments need approval, set approval status to "no"
