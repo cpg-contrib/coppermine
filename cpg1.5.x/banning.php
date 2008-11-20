@@ -180,43 +180,43 @@ function create_banlist()
 
     $result = cpg_db_query ("SELECT *, UNIX_TIMESTAMP(expiry) AS expiry FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force=0 ORDER BY $sort $limit");
     $count = mysql_num_rows($result);
-    if ($count > 0) {
-        echo <<< EOT
-                <tr>
-	                <th align="center" class="tableh2">
-	                	{$lang_banning_php['ban_id']}
-	                	{$header_output['ban_a']}
-	                	{$header_output['ban_d']}
-	                </th>
-	                <th align="center" class="tableh2">
-	                	{$lang_common['delete']}
-	                </th>
-	                <th align="center" class="tableh2">
-	                	{$lang_banning_php['user_name']}
-	                	{$help_array['user_name']}
-	                	{$header_output['user_name_a']}
-	                	{$header_output['user_name_d']}
-	                </th>
-	                <th align="center" class="tableh2">
-	                	{$lang_banning_php['email_address']}
-	                	{$help_array['email_address']}
-	                	{$header_output['email_a']}
-	                	{$header_output['email_d']}
-	                </th>
-	                <th align="center" class="tableh2">
-	                	{$lang_banning_php['ip_address']}
-	                	{$help_array['ip_address']}
-	                	{$header_output['ip_a']}
-	                	{$header_output['ip_d']}
-	                </th>
-	                <th align="center" class="tableh2">
-	                	{$lang_banning_php['expires']}
-	                	{$help_array['expiration']}
-	                	{$header_output['expiry_a']}
-	                	{$header_output['expiry_d']}
-	                </th>
-                </tr>
+    echo <<< EOT
+        <tr>
+            <th align="center" class="tableh2">
+            	{$lang_banning_php['ban_id']}
+            	{$header_output['ban_a']}
+            	{$header_output['ban_d']}
+            </th>
+            <th align="center" class="tableh2">
+            	{$lang_common['delete']}
+            </th>
+            <th align="center" class="tableh2">
+            	{$lang_banning_php['user_name']}
+            	{$help_array['user_name']}
+            	{$header_output['user_name_a']}
+            	{$header_output['user_name_d']}
+            </th>
+            <th align="center" class="tableh2">
+            	{$lang_banning_php['email_address']}
+            	{$help_array['email_address']}
+            	{$header_output['email_a']}
+            	{$header_output['email_d']}
+            </th>
+            <th align="center" class="tableh2">
+            	{$lang_banning_php['ip_address']}
+            	{$help_array['ip_address']}
+            	{$header_output['ip_a']}
+            	{$header_output['ip_d']}
+            </th>
+            <th align="center" class="tableh2">
+            	{$lang_banning_php['expires']}
+            	{$help_array['expiration']}
+            	{$header_output['expiry_a']}
+            	{$header_output['expiry_d']}
+            </th>
+        </tr>
 EOT;
+    if ($count > 0) {
 
         $row_counter = 0;
         $loop_counter = 0;
