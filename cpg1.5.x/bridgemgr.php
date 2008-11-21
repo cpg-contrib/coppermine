@@ -748,7 +748,7 @@ case "finalize":
 
                 // sync groups here now :)
                 if ($CONFIG['bridge_enable']){
-                       include_once 'bridge/' . $BRIDGE['short_name'] . '.inc.php';
+                       include 'bridge/' . $BRIDGE['short_name'] . '.inc.php';
                         $cpg_udb->synchronize_groups();
                 } else {
                         // ok, then restore group table
