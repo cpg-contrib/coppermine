@@ -156,7 +156,7 @@ class core_udb {
                         if ($this->use_post_based_groups){
                                 $USER_DATA['groups'] = array(0 => $row['group_id']);
                         } else {
-                                $USER_DATA['groups'] = array(0 => (in_array($row['group_id'] - 100, $this->admingroups)) ? 1 : 2);
+                                $USER_DATA['groups'] = array(0 => (in_array($row['group_id'], $this->admingroups)) ? 1 : 2);
                         }
                 }
         }

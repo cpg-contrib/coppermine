@@ -193,7 +193,7 @@ if (isset($bridge_lookup)) {
             // Get groups of which user is member
             function get_groups( $user )
             {
-    			$groups = array($user['group_id'] - 100);
+    			$groups = array($user['group_id']);
 
     			$sql = "SELECT user_group_list FROM {$this->usertable} AS u WHERE {$this->field['user_id']}='{$user['id']}' and user_group_list <> '';";
 
