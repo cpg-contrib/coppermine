@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-11-23 [B] Fixed langfallback.inc.php and added French language by Frantz {SaWey}
 2008-11-20 [O] Replaced dtree with treeview plugin for documentation {GauGau}
 2008-11-19 [B] Fixed admin not being able to change an album's category in modifyalb.php {Paver}
 2008-11-18 [A] Added status display (active/inactive/banned) to profile.php and usermgr.php {GauGau}
