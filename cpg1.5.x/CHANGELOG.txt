@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-11-24 [A] Added akismet check and stats on review comments page {GauGau}
 2008-11-24 [A] Added Akismet option for comment filtering {GauGau}
 2008-11-23 [B] Fixed langfallback.inc.php and added French language by Frantz {SaWey}
 2008-11-20 [O] Replaced dtree with treeview plugin for documentation {GauGau}

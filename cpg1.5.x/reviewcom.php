@@ -24,6 +24,9 @@ define('REVIEWCOM_PHP', true);
 
 require('include/init.inc.php');
 include("include/smilies.inc.php");
+if ($CONFIG['comment_akismet_api_key'] != '') {
+	require_once('include/akismet.inc.php');
+}
 
 if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
@@ -43,6 +46,12 @@ $nb_com_no = '';
 $flag_conf_change = '';
 $akismet_ham_array = array();
 $default_action_with_selected = array('do_nothing' => '', 'delete' => '', 'approve' => 'checked="checked"', 'disapprove' => '');
+$icon_array = array();
+$icon_array['ok'] = cpg_fetch_icon('ok',2);
+$icon_array['help'] = cpg_fetch_icon('help',2);
+$icon_array['info'] = cpg_fetch_icon('info',2);
+$icon_array['stop'] = cpg_fetch_icon('stop',2);
+$icon_array['cancel'] = cpg_fetch_icon('cancel',2);
 
 // Change config options if applicable
 if ($superCage->post->keyExists('is_submit')) {
@@ -237,7 +246,6 @@ if ($superCage->post->keyExists('cid_array')) {
 
 // Submit ham samples back to akismet
 if ($CONFIG['comment_akismet_api_key'] != '' && $CONFIG['comment_akismet_enable'] == 0) {
-	require_once('include/akismet.inc.php');
 	foreach ($akismet_ham_array as $key) {
 		$result = cpg_db_query("SELECT pid, msg_author,	msg_body, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$key' LIMIT 1");
 		$comment_data = mysql_fetch_array($result);
@@ -288,7 +296,6 @@ if ($start > 0) {
 }
 
 pageheader($lang_reviewcom_php['title']);
-
 echo <<<EOT
 <script type="text/javascript" language="javascript">
 <!--
@@ -312,8 +319,10 @@ function checkBeforeSubmit() {
 
 -->
 </script>
+EOT;
+echo <<<EOT
 
-    <form action="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=$sort&amp;pid=$single_picture" method="post" name="editForm" id="cpgform2">
+    <form action="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=$sort&amp;pid=$single_picture" method="post" name="editForm" id="cpgform2" onsubmit="return checkBeforeSubmit();">
     <input type="hidden" name="is_submit" value="1" />
 EOT;
 
@@ -587,13 +596,54 @@ echo <<<EOT
             </td>
             <td colspan="2" align="center" class="tablef">
                 <input type="hidden" name="total_message_id_collector" value="{$totalMessageIdCollector}" />
-                <input type="submit" value="{$lang_reviewcom_php['save_changes']}" class="button" onclick="return checkBeforeSubmit();" />
+                <button type="submit" class="button" name="save_changes" id="save_changes" value="{$lang_reviewcom_php['save_changes']}">{$icon_array['ok']}{$lang_reviewcom_php['save_changes']}</button>
                 </td>
         </tr>
 
 EOT;
 endtable();
 echo '</form>';
+
+if ($CONFIG['comment_akismet_api_key'] != '') {
+	print '<br /><a name="akismet"></a>';
+	starttable('-2', $icon_array['info'] . $lang_reviewcom_php['akismet'], 2);
+	print <<< EOT
+	<tr>
+		<td class="tableb" colspan="2">
+EOT;
+	print sprintf($lang_reviewcom_php['akismet_count'].'.', '<strong>' . cpg_float2decimal($CONFIG['comment_akismet_counter']) . '</strong>');
+	print <<< EOT
+		</td>
+	</tr>
+EOT;
+	$test_text = sprintf($lang_reviewcom_php['akismet_test_result'], '<strong>' . $CONFIG['comment_akismet_api_key'] . '</strong>');
+	$result = cpg_akismet_verify_key();
+	if (strpos($result[0], '404 Not Found') != FALSE) {
+		$test_result = $icon_array['cancel'] . $lang_reviewcom_php['not_found'];
+	} elseif ($result == TRUE) {
+		$test_result = $icon_array['ok'] . $lang_common['ok'];
+	} elseif (strpos($result[0], 'Empty "blog" value') != FALSE) {
+		$test_result = $icon_array['stop'] . $lang_reviewcom_php['missing_gallery_url'];
+	} elseif ($result[1] == 'invalid') {
+		$test_result = $icon_array['stop'] . $lang_reviewcom_php['invalid'];
+	} elseif (isset($result) == FALSE) {
+		$test_result = $icon_array['cancel'] . $lang_reviewcom_php['unable_to_connect'];
+	} else {
+		$test_result = $icon_array['stop'] . $lang_reviewcom_php['unknown_error'];
+	}
+	print <<< EOT
+	<tr>
+		<td class="tableb tableb_alternate">
+			{$test_text}
+		</td>
+		<td class="tableb tableb_alternate">
+			{$test_result}
+		</td>
+	</tr>
+EOT;
+	endtable();
+}
+
 pagefooter();
 ob_end_flush();
 } // mass approval end

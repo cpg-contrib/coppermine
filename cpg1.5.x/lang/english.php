@@ -2029,6 +2029,14 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'akismet_status' => 'Akismet said', // cpg1.5
   'is_spam' => 'is spam', // cpg1.5
   'is_not_spam' => 'is not spam', // cpg1.5
+  'akismet' => 'Akismet', // cpg1.5
+  'akismet_count' => 'Akismet has found %s spam messages for you untill now', // cpg1.5
+  'akismet_test_result' => 'Test result for your Akismet API key %s', // cpg1.5
+  'invalid' => 'invalid', // cpg1.5
+  'missing_gallery_url' => 'You need to specify a gallery URL in Coppermine\'s config', // cpg1.5
+  'unable_to_connect' => 'Unable to connect to akismet.com', // cpg1.5
+  'not_found' => 'The target URL was not found. Maybe the site structure of akismet.com has changed.', // cpg1.5
+  'unknown_error' => 'Unknown error', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

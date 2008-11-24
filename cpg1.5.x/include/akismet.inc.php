@@ -31,23 +31,18 @@ function cpg_akismet_send($argument_array = '', $host = '', $url = '') {
 	if (!(is_array($argument_array)) || $host == '' || $url == '') { 
 		return FALSE; 
 	}
-	
 	$content = '';
 	foreach ($argument_array as $key => $val) {
 		$content .= $key . '=' . rawurlencode(stripslashes($val)) . '&';
 	}
-
 	$request = 'POST ' . $url .' HTTP/1.0' . $akismet_config['linebreak']
 		     . 'Host: ' . $host . $akismet_config['linebreak']
 		     . 'Content-Type: application/x-www-form-urlencoded' . $akismet_config['linebreak']
 		     . 'User-Agent: ' . $akismet_config['akismet_user_agent'] . $akismet_config['linebreak']
 		     . 'Content-Length: ' . strlen($content) . $akismet_config['linebreak'].$akismet_config['linebreak']
 		     . $content . $akismet_config['linebreak'];
-
-		
 	$port = 80;
 	unset($response);
-
 	$fh = fsockopen($host, $port, $errno, $errstr, 3);
 	if ($fh != FALSE) {
 		@fwrite($fh, $request);
@@ -69,14 +64,14 @@ function cpg_akismet_verify_key() {
 	if ($valid[1] == 'valid') { 
 		return TRUE;  
 	} else {
-		return FALSE; 
+		return $valid; 
 	}
 }
 
 function cpg_akismet_submit_data($variable_array, $type = '') {
 	global $akismet_config;
 	$result = cpg_akismet_verify_key();
-	if ($result == FALSE) { 
+	if ($result != TRUE) { 
 		return FALSE; 
 	}
 	if ($type == 'ham') {
