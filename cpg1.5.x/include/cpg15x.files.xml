@@ -7977,6 +7977,14 @@
     <hash>f6f9a2257b56a431bb79fa1210d45db5</hash>
   </element>
   <element>
+    <fullpath>include/akismet.inc.php</fullpath>
+    <version>1.5.0</version>
+    <revision>5271</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>f6f9a2257b56a431bb79fa1210d45db5</hash>
+  </element>
+  <element>
     <fullpath>include/archive.php</fullpath>
     <version>1.5.0</version>
     <revision>5129</revision>
@@ -8469,6 +8477,14 @@
   </element>
   <element>
     <fullpath>js/register.js</fullpath>
+    <version>1.5.0</version>
+    <revision>5255</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>e20241567af498f577b0535c208525ad</hash>
+  </element>
+  <element>
+    <fullpath>js/reviewcom.js</fullpath>
     <version>1.5.0</version>
     <revision>5255</revision>
     <status>mandatory</status>

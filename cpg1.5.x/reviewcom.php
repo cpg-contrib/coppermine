@@ -29,6 +29,10 @@ if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
+//set_js_var('lang_confirm_delete', $lang_reviewcom_php['n_confirm_delete']);
+
+js_include('js/reviewcom.js');
+
 // initialize some variables
 $start = '';
 $count = '';
@@ -37,6 +41,8 @@ $single_picture = '';
 $nb_com_yes = '';
 $nb_com_no = '';
 $flag_conf_change = '';
+$akismet_ham_array = array();
+$default_action_with_selected = array('do_nothing' => '', 'delete' => '', 'approve' => 'checked="checked"', 'disapprove' => '');
 
 // Change config options if applicable
 if ($superCage->post->keyExists('is_submit')) {
@@ -89,7 +95,7 @@ if ($get_data_rejected==0) { // individual approval start
 
     $result = cpg_db_query("
                         SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date)
-                        AS msg_date, approval, author_id, {$CONFIG['TABLE_COMMENTS']}.pid
+                        AS msg_date, approval, spam, author_id, {$CONFIG['TABLE_COMMENTS']}.pid
                         AS pid, aid, filepath, filename, url_prefix, pwidth, pheight
                         FROM {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}
                         WHERE {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid
@@ -102,9 +108,9 @@ if ($get_data_rejected==0) { // individual approval start
         }
         $thumb_url =  get_pic_url($row, 'thumb');
         if (!is_image($row['filename'])) {
-        $image_info = cpg_getimagesize($thumb_url);
-        $row['pwidth'] = $image_info[0];
-        $row['pheight'] = $image_info[1];
+	        $image_info = cpg_getimagesize($thumb_url);
+	        $row['pwidth'] = $image_info[0];
+	        $row['pheight'] = $image_info[1];
         }
         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
         $thumb_link = 'displayimage.php?pos=' . - $row['pid'];
@@ -112,11 +118,11 @@ if ($get_data_rejected==0) { // individual approval start
         $msg_body = bb_decode(process_smilies($row['msg_body']));
         // build a link to the author's profile if applicable
         if ($row['author_id'] != 0) {
-                $profile_link_start = '<a href="profile.php?uid='.$row['author_id'].'">';
-                $profile_link_end = '</a>';
+	        $profile_link_start = '<a href="profile.php?uid='.$row['author_id'].'">';
+	        $profile_link_end = '</a>';
         } else {
-                $profile_link_start = '';
-                $profile_link_end = '';
+            $profile_link_start = '';
+            $profile_link_end = '';
         }
         $msg_author = $row['msg_author'];
     }
@@ -180,6 +186,10 @@ if ($superCage->post->keyExists('total_message_id_collector')) {
 	foreach ($total_message_id_array as $message_id_check) {
 		if ($superCage->post->getInt('status_approved_yes'.$message_id_check) != '') {
 			$approved_yes_set .= $superCage->post->getInt('status_approved_yes'.$message_id_check) . ',';
+			if ($superCage->post->getInt('spam'.$message_id_check) == 'YES') {
+				// A comment that Akismet has detected as SPAM has been approved by the admin. Let's put the ID into the ham array
+				$akismet_ham_array[] = $message_id_check;
+			}
 		}
 		if ($superCage->post->getInt('status_approved_no'.$message_id_check) != '') {
 			$approved_no_set .= $superCage->post->getInt('status_approved_no'.$message_id_check) . ',';
@@ -205,21 +215,34 @@ if ($superCage->post->keyExists('cid_array')) {
     $cid_array = $superCage->post->getEscaped('cid_array');
     $cid_set = '';
     foreach ($cid_array as $cid) {
-            $cid_set .= ($cid_set == '') ? '(' . $cid : ', ' . $cid;
+        $cid_set .= ($cid_set == '') ? '(' . $cid : ', ' . $cid;
+        if ($superCage->post->getAlpha('with_selected') == 'approve' && $superCage->post->getInt('spam'.$cid) == 'YES') {
+        	$akismet_ham_array[] = $cid;
+        }
     }
     $cid_set .= ')';
-    if($superCage->post->getAlpha('with_selected') == 'delete') {
     
-            // Delete selected comments if form is posted
-            cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id IN $cid_set");
-            $nb_com_del = mysql_affected_rows();
-    } elseif($superCage->post->getAlpha('with_selected') == 'approve') {
+    if($superCage->post->getAlpha('with_selected') == 'delete') {
+		// Delete selected comments if form is posted
+        cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id IN $cid_set");
+        $nb_com_del = mysql_affected_rows();
+    } elseif ($superCage->post->getAlpha('with_selected') == 'approve') {
         cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'YES' WHERE msg_id IN $cid_set");
         $nb_com_yes = mysql_affected_rows();
-    } elseif($superCage->post->getAlpha('with_selected') == 'disapprove') {
+    } elseif ($superCage->post->getAlpha('with_selected') == 'disapprove') {
         cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'NO' WHERE msg_id IN $cid_set");
         $nb_com_no = mysql_affected_rows();
     }
+}
+
+// Submit ham samples back to akismet
+if ($CONFIG['comment_akismet_api_key'] != '' && $CONFIG['comment_akismet_enable'] == 0) {
+	require_once('include/akismet.inc.php');
+	foreach ($akismet_ham_array as $key) {
+		$result = cpg_db_query("SELECT pid, msg_author,	msg_body, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$key' LIMIT 1");
+		$comment_data = mysql_fetch_array($result);
+		$akismet_result = cpg_akismet_submit_data($comment_evaluation_array, 'ham');
+	}
 }
 
 $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE 1");
@@ -266,46 +289,9 @@ if ($start > 0) {
 
 pageheader($lang_reviewcom_php['title']);
 
-
-
 echo <<<EOT
 <script type="text/javascript" language="javascript">
 <!--
-function textCounter(field, maxlimit) {
-        if (field.value.length > maxlimit) // if too long...trim it!
-        field.value = field.value.substring(0, maxlimit);
-}
-
-function selectAll(d,box) {
-  var f = document.editForm;
-  for (i = 0; i < f.length; i++) {
-    //alert (f[i].name.indexOf(box));
-    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
-      if (d.checked) {
-        f[i].checked = true;
-      } else {
-        f[i].checked = false;
-      }
-    }
-  }
-  if (d.name == "checkAll") {
-      document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
-  } else {
-      document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
-  }
-}
-
-function approveCommentEnable(id) {
-    if (document.getElementById('approved'+id+'yes').checked == true) {
-        document.getElementById('status_approved_yes'+id).value = id;
-        document.getElementById('status_approved_no'+id).value = '';
-    }
-    if (document.getElementById('approved'+id+'no').checked == true) {
-        document.getElementById('status_approved_yes'+id).value = '';
-        document.getElementById('status_approved_no'+id).value = id;
-    }
-}
-
 function checkBeforeSubmit() {
     // Are there any comments scheduled for deletion?
     var f = document.editForm;
@@ -331,11 +317,6 @@ function checkBeforeSubmit() {
     <input type="hidden" name="is_submit" value="1" />
 EOT;
 
-// make up the table header
-
-
-starttable('100%');
-
 $msg_txt = '';
 if ($nb_com_del > 0) {
     $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_reviewcom_php['n_comm_del'], $nb_com_del).'</li>'."\n\r";
@@ -352,6 +333,8 @@ if ($flag_conf_change != '') {
 
 
 if ($msg_txt != '') {
+// make up the table header
+starttable('100%', $lang_common['status'], 7);
     echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="7" align="left">
@@ -362,6 +345,8 @@ $msg_txt
         </tr>
 
 EOT;
+} else {
+starttable('100%');
 }
 
 $help_approval_only = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_comment_display_comment_approval_only_start&amp;ae=admin_comment_display_comment_approval_only_end&amp;top=1', '600', '400');
@@ -469,7 +454,7 @@ if ($CONFIG['display_comment_approval_only'] == 1) {
 
 $result = cpg_db_query("
                         SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date)
-                        AS msg_date, approval, author_id, {$CONFIG['TABLE_COMMENTS']}.pid
+                        AS msg_date, approval, spam, author_id, {$CONFIG['TABLE_COMMENTS']}.pid
                         AS pid, aid, filepath, filename, url_prefix, pwidth, pheight
                         FROM {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}
                         WHERE {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid {$only_comments_needing_approval}
@@ -497,12 +482,33 @@ while ($row = mysql_fetch_array($result)) {
     if ($row['approval'] == 'YES') {
         $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' . $lang_common['yes']."</label>&nbsp;\n\r";
         $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">' .$lang_common['no'].'</label>';
+        $checkbox_status = '';
     } else {
         $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' .$lang_common['yes']."</label>&nbsp;\n\r                        ";
         $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">' .$lang_common['no'].'</label>';
+        if ($row['spam'] == 'YES') {
+        	$checkbox_status = 'checked="checked"';
+        	$default_action_with_selected['do_nothing'] = 'checked="checked"';
+        	$default_action_with_selected['delete'] = '';
+        	$default_action_with_selected['approve'] = '';
+        	$default_action_with_selected['disapprove'] = '';
+        } else {
+        	$checkbox_status = '';
+        }
     }
     $comment_approval_status .= '<input type="hidden" name="status_approved_yes'.$row['msg_id'].'" id="status_approved_yes'.$row['msg_id'].'" value="" />';
     $comment_approval_status .= '<input type="hidden" name="status_approved_no'.$row['msg_id'].'" id="status_approved_no'.$row['msg_id'].'" value="" />';
+    if ($CONFIG['comment_akismet_api_key'] != '') {
+    	$akismet_status = '<br />' . $lang_reviewcom_php['akismet_status'] . ': ';
+    	if ($row['spam'] == 'YES') {
+    		$akismet_status .= cpg_fetch_icon('ignore', 0, $lang_reviewcom_php['is_spam']);
+    	} else {
+    		$akismet_status .= cpg_fetch_icon('ok', 0, $lang_reviewcom_php['is_not_spam']);
+    	}
+    } else {
+    	$akismet_status = '';
+    }
+    $spam_field = '<input type="hidden" name="spam'.$row['msg_id'].'" id="spam'.$row['msg_id'].'" value="' . $row['spam'] . '" />';
 	//get link to ban and delete
 	if ($row['author_id'] == 0) {
 		//$ban_and_delete = '<a href="banning.php?delete_comment_id=' . $row['msg_id'] . '">' . $lang_reviewcom_php['ban_and_delete'] . '</a>';
@@ -532,10 +538,12 @@ while ($row = mysql_fetch_array($result)) {
                 {$loopCounter}
             </td>
             <td class="$tableclass" valign="top" align="center">
-                <input name="cid_array[]" id="check{$row['msg_id']}" type="checkbox" value="{$row['msg_id']}" />
+                <input name="cid_array[]" id="check{$row['msg_id']}" type="checkbox" value="{$row['msg_id']}" {$checkbox_status} />
             </td>
             <td class="$tableclass" valign="top" align="left">
                 {$comment_approval_status}
+                {$akismet_status}
+                {$spam_field}
             </td>
             <td class="$tableclass" valign="top">$profile_link_start{$row['msg_author']}$profile_link_end $ban_and_delete</td>
             <td class="$tableclass" valign="top">{$msg_date}</td>
@@ -565,13 +573,16 @@ echo <<<EOT
             </td>
             <td colspan="3" class="tablef" valign="middle" align="left">
                 {$lang_reviewcom_php['with_selected']}: 
-                <input name="with_selected" id="delete_selected" type="radio" value="delete" />
+                <input name="with_selected" id="do_nothing" type="radio" value="do_nothing" {$default_action_with_selected['do_nothing']} />
+                <label for="do_nothing">{$lang_reviewcom_php['do_nothing']}</label>
+                &nbsp;
+                <input name="with_selected" id="delete_selected" type="radio" value="delete" {$default_action_with_selected['delete']} />
                 <label for="delete_selected">{$lang_reviewcom_php['delete']}</label>
                 &nbsp;
-                <input name="with_selected" id="approve_selected" type="radio" value="approve" checked="checked" />
+                <input name="with_selected" id="approve_selected" type="radio" value="approve" {$default_action_with_selected['approve']} />
                 <label for="approve_selected">{$lang_reviewcom_php['approve']}</label>
                 &nbsp;
-                <input name="with_selected" id="disapprove_selected" type="radio" value="disapprove" />
+                <input name="with_selected" id="disapprove_selected" type="radio" value="disapprove" {$default_action_with_selected['disapprove']} />
                 <label for="disapprove_selected">{$lang_reviewcom_php['disapprove']}</label>
             </td>
             <td colspan="2" align="center" class="tablef">

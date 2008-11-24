@@ -108,6 +108,7 @@ INSERT INTO CPG_config VALUES ('comment_user_edit', '1');
 INSERT INTO CPG_config VALUES ('comment_captcha', '1');
 INSERT INTO CPG_config VALUES ('comment_akismet_enable', '0');
 INSERT INTO CPG_config VALUES ('comment_akismet_api_key', '');
+INSERT INTO CPG_config VALUES ('comment_akismet_counter', '0');
 INSERT INTO CPG_config VALUES ('comment_promote_registration', '0');
 INSERT INTO CPG_config VALUES ('contact_form_guest_enable', '0');
 INSERT INTO CPG_config VALUES ('contact_form_guest_name_field', '2');

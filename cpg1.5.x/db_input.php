@@ -138,13 +138,7 @@ switch ($event) {
         if (!(USER_CAN_POST_COMMENTS)) {
             cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
         }
-        if ($CONFIG['comment_akismet_api_key'] != '') {
-        	if (version_compare(PHP_VERSION, '5.0.0', '>')) {
-        		include_once('include/akismet.class.php5.php');
-        	} else {
-        		include_once('include/akismet.class.php4.php');
-        	}
-        }
+
         if (($CONFIG['comment_captcha'] > 0 && !USER_ID) || ($CONFIG['comment_captcha'] == 2 && USER_ID)) {
             require("include/captcha.inc.php");
             $matches = $superCage->post->getMatched('confirmCode', '/^[a-zA-Z0-9]+$/');
@@ -154,7 +148,7 @@ switch ($event) {
             }
         }
 
-        
+        $spam = 'NO';
         $msg_author = $superCage->post->getEscaped('msg_author');
         $msg_body = $superCage->post->getEscaped('msg_body');
         $pid = $superCage->post->getInt('pid');
@@ -186,6 +180,43 @@ switch ($event) {
               }
           }
         }
+        
+        $akismet_approval_needed = 0;
+        if ($CONFIG['comment_akismet_api_key'] != '') {
+    		require_once('include/akismet.inc.php');
+            $comment_evaluation_array = array();
+            if ($superCage->server->keyExists('REMOTE_ADDR')) {
+            	$comment_evaluation_array['user_ip'] = $superCage->server->getEscaped('REMOTE_ADDR');
+            } else {
+            	$comment_evaluation_array['user_ip'] = '';
+            }
+            if ($superCage->server->keyExists('HTTP_USER_AGENT')) {
+            	$comment_evaluation_array['user_agent'] = $superCage->server->getEscaped('HTTP_USER_AGENT');
+            } else {
+            	$comment_evaluation_array['user_agent'] = '';
+            }
+            if ($superCage->server->keyExists('HTTP_REFERER')) {
+            	$comment_evaluation_array['referrer'] = $superCage->server->getEscaped('HTTP_REFERER');;
+            } else {
+            	$comment_evaluation_array['referrer'] = '';
+            }
+            if ($superCage->server->keyExists('REMOTE_PORT')) {
+            	$comment_evaluation_array['REMOTE_PORT'] = $superCage->server->getEscaped('REMOTE_PORT');
+            } else {
+            	$comment_evaluation_array['REMOTE_PORT'] = '';
+            }
+            if ($superCage->server->keyExists('REQUEST_METHOD')) {
+            	$comment_evaluation_array['REQUEST_METHOD'] = $superCage->server->getEscaped('REQUEST_METHOD');
+            } else {
+            	$comment_evaluation_array['REQUEST_METHOD'] = '';
+            }
+            $comment_evaluation_array['permalink'] = $CONFIG['site_url'] . 'displayimage.php?pid='.$pid;
+            $comment_evaluation_array['comment_type'] = 'comment';
+            $comment_evaluation_array['comment_author'] = $msg_author;
+            $comment_evaluation_array['comment_author_email'] = '';
+            $comment_evaluation_array['comment_author_url'] = '';
+            $comment_evaluation_array['comment_content'] = $msg_body;
+        }
 
         if (!USER_ID) { // Anonymous users, we need to use META refresh to save the cookie
             if (mysql_result(cpg_db_query("select count(user_id) from {$CONFIG['TABLE_USERS']} where UPPER(user_name) = UPPER('$msg_author')"),0,0))
@@ -198,18 +229,23 @@ switch ($event) {
                 cpg_die(ERROR, $lang_display_comments['default_username_message'], __FILE__, __LINE__);
             }
             
-            // Perform Akismet check if applicable
+            // Perform Akismet check if applicable for guests
             if ($CONFIG['comment_akismet_api_key'] != '') {
-                $comment_evaluation_array = array();
-                $comment_evaluation_array['author'] = $msg_author;
-                $comment_evaluation_array['body'] = $msg_body;
-                $comment_evaluation_array['permalink'] = $CONFIG['site_url'] . 'displayimage.php?pid='.$pid;
-                $akismet = new Akismet($CONFIG['site_url'],$CONFIG['comment_akismet_api_key'],$comment_evaluation_array);
-                if ($akismet->isSpam()) { // returns true if Akismet thinks the comment is spam
+                $akismet_result = cpg_akismet_submit_data($comment_evaluation_array);
+                if ($akismet_result == TRUE) { // returns true if Akismet thinks the comment is spam
+                    // Increase the spam counter by one
+                    $spam_count = $CONFIG['comment_akismet_counter'] + 1;
+                    $update = cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value='$spam_count' WHERE name='comment_akismet_counter'");
                     if ($CONFIG['comment_akismet_enable'] == 0 ) {
-                        $CONFIG['comment_approval'] = 1; // Temporarily just set comment approval to "on"
+                        $akismet_approval_needed = 1; // Temporarily just set comment approval to "on"
+                        $spam = 'YES';
                     } elseif ($CONFIG['comment_akismet_enable'] == 1 ) {
-                        cpg_die(ERROR, $lang_display_comments['comment_rejected'], __FILE__, __LINE__);
+                        $redirect = "displayimage.php?pid=$pid";
+                        pageheader($lang_display_comments['comment_rejected'], "<meta http-equiv=\"refresh\" content=\"5;url=$redirect\" />");
+                        msg_box($lang_db_input_php['info'], $lang_display_comments['comment_rejected'], $lang_common['continue'], $redirect);
+                        pagefooter();
+                        ob_end_flush();
+                        exit;
                     } else {
                         $redirect = "displayimage.php?pid=$pid";
                         pageheader($lang_db_input_php['com_added'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
@@ -221,10 +257,10 @@ switch ($event) {
                 }
             }
 
-            if ($CONFIG['comment_approval'] != 0) { // comments need approval, set approval status to "no"
-                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '{$CONFIG['comments_anon_pfx']}$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip', 'NO')");
+            if ($CONFIG['comment_approval'] != 0 || $akismet_approval_needed == 1) { // comments need approval, set approval status to "no"
+                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval, spam) VALUES ('$pid', '{$CONFIG['comments_anon_pfx']}$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip', 'NO', '$spam')");
             } else { //comments do not need approval, we can set approval status to "yes"
-                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '{$CONFIG['comments_anon_pfx']}$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip', 'YES')");
+                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval, spam) VALUES ('$pid', '{$CONFIG['comments_anon_pfx']}$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip', 'YES', '$spam')");
             }
 
             $USER['name'] = $msg_author;
@@ -239,10 +275,32 @@ switch ($event) {
             ob_end_flush();
             exit;
         } else { // Registered users, we can use Location to redirect
-            if ($CONFIG['comment_approval'] == 2 && !USER_IS_ADMIN) { // comments need approval, set approval status to "no"
-                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip', 'NO')");
+       
+            // Perform Akismet check if applicable for registered users
+            if ($CONFIG['comment_akismet_api_key'] != '') {
+                //$comment_evaluation_array['comment_author_email'] = '';// to do: populate the email address from the user's profile
+                $akismet_result = cpg_akismet_submit_data($comment_evaluation_array);
+                if ($akismet_result == TRUE) { // returns true if Akismet thinks the comment is spam
+                    // Increase the spam counter by one
+                    $spam_count = $CONFIG['comment_akismet_counter'] + 1;
+                    $update = cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value='$spam_count' WHERE name='comment_akismet_counter'");
+                    if ($CONFIG['comment_akismet_enable'] == 0) {
+                        $akismet_approval_needed = 1; // Temporarily just set comment approval to "on"
+                        $spam = 'YES';
+                    } elseif ($CONFIG['comment_akismet_enable'] == 1 ) {
+                        $redirect = "displayimage.php?pid=$pid";
+                        cpgRedirectPage($redirect, $lang_db_input_php['info'], $lang_display_comments['comment_rejected'], 5);
+                    } else {
+                        $redirect = "displayimage.php?pid=$pid";
+                        cpgRedirectPage($redirect, $lang_db_input_php['info'], $lang_db_input_php['com_added'], 1);
+                    }
+                }
+            }        
+        
+            if (($CONFIG['comment_approval'] == 1 && !USER_IS_ADMIN) || $akismet_approval_needed == 1) { // comments need approval, set approval status to "no"
+                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval, spam) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip', 'NO', '$spam')");
             } else { //comments do not need approval, we can set approval status to "yes"
-                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip', 'YES')");
+                $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval, spam) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip', 'YES', '$spam')");
             }
             $redirect = "displayimage.php?pid=$pid";
             if ($CONFIG['email_comment_notification'] && !USER_IS_ADMIN ) {

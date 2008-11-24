@@ -154,6 +154,7 @@ $lang_common = array(
   'personal_albums' => '* Personal albums', // cpg1.5
   'select_album' => 'Select Album', // cpg1.5
   'ok' => 'OK', // cpg1.5
+  'status' => 'Status', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2021,9 +2022,13 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'delete' => 'delete', // cpg1.5
   'approve' => 'approve', // cpg1.5
   'disapprove' => 'disapprove', // cpg1.5
+  'do_nothing' => 'do nothing', // cpg1.5
   'comment_approved' => 'Comment approved', // cpg1.5
   'comment_disapproved' => 'Comment disapproved', // cpg1.5
   'ban_and_delete' => 'Ban user and delete comment(s)', // cpg1.5
+  'akismet_status' => 'Akismet said', // cpg1.5
+  'is_spam' => 'is spam', // cpg1.5
+  'is_not_spam' => 'is not spam', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

@@ -179,6 +179,7 @@ INSERT INTO CPG_config VALUES ('fullsize_padding_y', '3');
 
 # Config approval
 ALTER TABLE CPG_comments add approval enum('YES','NO') NOT NULL default 'YES';
+ALTER TABLE CPG_comments add spam enum('YES','NO') NOT NULL default 'NO';
 INSERT INTO CPG_config VALUES ('comment_approval', '0');
 INSERT INTO CPG_config VALUES ('display_comment_approval_only', '0');
 INSERT INTO CPG_config VALUES ('comment_placeholder', '1');
@@ -336,3 +337,4 @@ INSERT INTO CPG_config VALUES ('purge_expired_bans', '1');
 # Add Akismet support
 INSERT INTO CPG_config VALUES ('comment_akismet_enable', '0');
 INSERT INTO CPG_config VALUES ('comment_akismet_api_key', '');
+INSERT INTO CPG_config VALUES ('comment_akismet_counter', '0');
