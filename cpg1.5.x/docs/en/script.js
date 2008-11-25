@@ -57,7 +57,8 @@ document.write('          <li><a href="credits.htm#translators">Translators</a><
 document.write('          <li><a href="credits.htm#codebase">Free code used</a></li>');
 document.write('        </ul>');
 document.write('      </li>');
-document.write('      <li><a href="copyrights.htm">License &amp; Copyright</a></li>');
+document.write('      <li><a href="copyrights.htm">License &amp; Copyright</a>');
+document.write('      </li>');
 document.write('      <li><a href="known_issues.htm">Known issues</a></li>');
 document.write('    </ul>');
 document.write('  </li>');
