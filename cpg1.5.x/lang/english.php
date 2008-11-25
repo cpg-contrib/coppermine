@@ -2011,6 +2011,10 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'file_d' => 'File descending',
   'approval_a' => 'Approval ascending', // cpg1.5
   'approval_d' => 'Approval descending', // cpg1.5
+  'ip_a' => 'IP address ascending', // cpg1.5
+  'ip_d' => 'IP address descending', // cpg1.5
+  'akismet_a' => 'Akismet rating (valid comments at the bottom)', // cpg1.5
+  'akismet_d' => 'Akismet rating (valid comments at the top)', // cpg1.5
   'n_comm_appr' => '%s comment(s) approved', // cpg1.5
   'n_comm_disappr' => '%s comment(s) disapproved', // cpg1.5
   'configuration_changed' => 'Approval config changed', // cpg1.5
@@ -2037,6 +2041,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'unable_to_connect' => 'Unable to connect to akismet.com', // cpg1.5
   'not_found' => 'The target URL was not found. Maybe the site structure of akismet.com has changed.', // cpg1.5
   'unknown_error' => 'Unknown error', // cpg1.5
+  'ip_address' => 'IP address', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //

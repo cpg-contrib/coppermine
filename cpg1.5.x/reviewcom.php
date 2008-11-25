@@ -343,10 +343,10 @@ if ($flag_conf_change != '') {
 
 if ($msg_txt != '') {
 // make up the table header
-starttable('100%', $lang_common['status'], 7);
+starttable('100%', $lang_common['status'], 9);
     echo <<<EOT
         <tr>
-                <td class="tableh2" colspan="7" align="left">
+                <td class="tableh2" colspan="9" align="left">
                         <ul>
 $msg_txt
                         </ul>
@@ -363,7 +363,7 @@ $help = '&nbsp;'.cpg_display_help('f=comments.htm&amp;as=comments_review&amp;ae=
 $icon = cpg_fetch_icon('comment_approval',2);
 echo <<<EOT
         <tr>
-                <td class="tableh1" colspan="7">
+                <td class="tableh1" colspan="9">
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                         <tr>
                             <td class="tableh1">
@@ -394,13 +394,22 @@ echo <<<EOT
         </tr>
         <noscript>
         <tr>
-                <td class="tableh2" colspan="6">
+                <td class="tableh2" colspan="8">
                   {$lang_common['javascript_needed']}
                 </td>
         </tr>
         </noscript>
 
 EOT;
+	if ($CONFIG['comment_akismet_api_key'] != '') {
+		$akismet_row_heading = <<< EOT
+			{$lang_reviewcom_php['akismet']}
+			<a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=akismet_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['akismet_a']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=akismet_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['akismet_d']}" /></a>
+EOT;
+	} else {
+		$akismet_row_heading = '';
+	}
 
     echo <<<EOT
         <tr>
@@ -414,9 +423,16 @@ EOT;
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=approval_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_a']}" /></a>
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=approval_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_d']}" /></a>
           </td>
+          <td class="tableh2" valign="top">
+            {$akismet_row_heading}
+          </td>
           <td class="tableh2" valign="top">{$lang_reviewcom_php['user_name']}
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_a']}" /></a>
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_d']}" /></a>
+          </td>
+          <td class="tableh2" valign="top">{$lang_reviewcom_php['ip_address']}
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=ip_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['ip_a']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=ip_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['ip_d']}" /></a>
           </td>
           <td class="tableh2" valign="top">{$lang_reviewcom_php['date']}
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=date_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_a']}" /></a>
@@ -444,6 +460,10 @@ $sort_codes = array('name_a' => 'msg_author ASC',
     'file_d' => 'pid DESC',
     'approval_a' => 'approval ASC',
     'approval_d' => 'approval DESC',
+    'ip_a' => 'msg_raw_ip ASC',
+    'ip_d' => 'msg_raw_ip DESC',
+    'akismet_a' => 'spam ASC',
+    'akismet_d' => 'spam DESC',
 );
 // sort by date descending if no other sorting order is given
 //$sort = (!isset($_GET['sort']) || !isset($sort_codes[$_GET['sort']])) ? 'date_d' : $_GET['sort'];
@@ -463,7 +483,7 @@ if ($CONFIG['display_comment_approval_only'] == 1) {
 
 $result = cpg_db_query("
                         SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date)
-                        AS msg_date, approval, spam, author_id, {$CONFIG['TABLE_COMMENTS']}.pid
+                        AS msg_date, approval, spam, msg_raw_ip, msg_hdr_ip, author_id, {$CONFIG['TABLE_COMMENTS']}.pid
                         AS pid, aid, filepath, filename, url_prefix, pwidth, pheight
                         FROM {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}
                         WHERE {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid {$only_comments_needing_approval}
@@ -489,11 +509,11 @@ while ($row = mysql_fetch_array($result)) {
     $msg_date = localised_date($row['msg_date'], $scientific_date_fmt);
     $msg_body = bb_decode(process_smilies($row['msg_body']));
     if ($row['approval'] == 'YES') {
-        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' . $lang_common['yes']."</label>&nbsp;\n\r";
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' . $lang_common['yes']."</label><br />\n\r";
         $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">' .$lang_common['no'].'</label>';
         $checkbox_status = '';
     } else {
-        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' .$lang_common['yes']."</label>&nbsp;\n\r                        ";
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' .$lang_common['yes']."</label><br />\n\r                        ";
         $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">' .$lang_common['no'].'</label>';
         if ($row['spam'] == 'YES') {
         	$checkbox_status = 'checked="checked"';
@@ -508,11 +528,10 @@ while ($row = mysql_fetch_array($result)) {
     $comment_approval_status .= '<input type="hidden" name="status_approved_yes'.$row['msg_id'].'" id="status_approved_yes'.$row['msg_id'].'" value="" />';
     $comment_approval_status .= '<input type="hidden" name="status_approved_no'.$row['msg_id'].'" id="status_approved_no'.$row['msg_id'].'" value="" />';
     if ($CONFIG['comment_akismet_api_key'] != '') {
-    	$akismet_status = '<br />' . $lang_reviewcom_php['akismet_status'] . ': ';
     	if ($row['spam'] == 'YES') {
-    		$akismet_status .= cpg_fetch_icon('ignore', 0, $lang_reviewcom_php['is_spam']);
+    		$akismet_status = cpg_fetch_icon('ignore', 0, $lang_reviewcom_php['is_spam']);
     	} else {
-    		$akismet_status .= cpg_fetch_icon('ok', 0, $lang_reviewcom_php['is_not_spam']);
+    		$akismet_status = cpg_fetch_icon('ok', 0, $lang_reviewcom_php['is_not_spam']);
     	}
     } else {
     	$akismet_status = '';
@@ -540,6 +559,12 @@ while ($row = mysql_fetch_array($result)) {
         $profile_link_start = '';
         $profile_link_end = '';
     }
+    // Create the output of the IP address
+    if ($row['msg_raw_ip'] == $row['msg_hdr_ip']) {
+    	$ip_address_output = $row['msg_raw_ip'];
+    } else {
+    	$ip_address_output = $row['msg_raw_ip'] . '<br />' . $row['msg_hdr_ip'];
+    }
     // output the table rows
     echo <<<EOT
         <tr>
@@ -551,10 +576,13 @@ while ($row = mysql_fetch_array($result)) {
             </td>
             <td class="$tableclass" valign="top" align="left">
                 {$comment_approval_status}
+            </td>
+            <td class="$tableclass" valign="top" align="center">
                 {$akismet_status}
                 {$spam_field}
             </td>
             <td class="$tableclass" valign="top">$profile_link_start{$row['msg_author']}$profile_link_end $ban_and_delete</td>
+            <td class="$tableclass" valign="top">{$ip_address_output}</td>
             <td class="$tableclass" valign="top">{$msg_date}</td>
             <td class="$tableclass" valign="top">
                 {$msg_body}
@@ -580,7 +608,7 @@ echo <<<EOT
             <td class="tablef" valign="middle" align="center">
                 <input type="checkbox" name="checkAll2" onClick="selectAll(this,'cid_array');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
             </td>
-            <td colspan="3" class="tablef" valign="middle" align="left">
+            <td colspan="5" class="tablef" valign="middle" align="left">
                 {$lang_reviewcom_php['with_selected']}: 
                 <input name="with_selected" id="do_nothing" type="radio" value="do_nothing" {$default_action_with_selected['do_nothing']} />
                 <label for="do_nothing">{$lang_reviewcom_php['do_nothing']}</label>

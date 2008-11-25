@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-11-25 [A] Added Akismet and IP address columns to review comments page {GauGau}
 2008-11-24 [A] Added akismet check and stats on review comments page {GauGau}
 2008-11-24 [A] Added Akismet option for comment filtering {GauGau}
 2008-11-23 [B] Fixed langfallback.inc.php and added French language by Frantz {SaWey}
