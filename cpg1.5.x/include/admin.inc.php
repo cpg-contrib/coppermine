@@ -696,13 +696,23 @@ $config_data = array(
       'type'          => 'radio',
       'default_value' => '0',
       'help_link'     => 'f=configuration.htm&amp;as=admin_comment_akismet_enable&amp;ae=admin_comment_akismet_enable_end',
-      'additional_description' => '<br />('.$lang_admin_php['comment_akismet_enable_description'].')',
+      'additional_description' => ': ' . $lang_admin_php['comment_akismet_enable_description'] . '<br />('.$lang_admin_php['comment_akismet_applicable_only'].')',
       'options'       => array(
                            $lang_admin_php['comment_akismet_enable_disapproved'],
                            $lang_admin_php['comment_akismet_drop_tell'],
                            $lang_admin_php['comment_akismet_drop_lie'],
                          ),
       'linebreak'     => '<br />',
+    ),
+    'comment_akismet_group' => array(
+      'type'          => 'radio',
+      'default_value' => '0',
+      'help_link'     => 'f=configuration.htm&amp;as=admin_comment_akismet_group&amp;ae=admin_comment_akismet_group_end',
+      'additional_description' => '<br />('.$lang_admin_php['comment_akismet_applicable_only'].')',
+      'options'       => array(
+                           $lang_admin_php['debug_everyone'],
+                           $lang_admin_php['guests_only'],
+                         ),
     ),
     'comment_promote_registration' => array(
       'type'          => 'checkbox',

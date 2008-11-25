@@ -277,7 +277,7 @@ switch ($event) {
         } else { // Registered users, we can use Location to redirect
        
             // Perform Akismet check if applicable for registered users
-            if ($CONFIG['comment_akismet_api_key'] != '') {
+            if ($CONFIG['comment_akismet_api_key'] != '' && $CONFIG['comment_akismet_group'] != 1) {
                 //$comment_evaluation_array['comment_author_email'] = '';// to do: populate the email address from the user's profile
                 $akismet_result = cpg_akismet_submit_data($comment_evaluation_array);
                 if ($akismet_result == TRUE) { // returns true if Akismet thinks the comment is spam

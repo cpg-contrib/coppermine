@@ -646,30 +646,51 @@ EOT;
 EOT;
 	$test_text = sprintf($lang_reviewcom_php['akismet_test_result'], '<strong>' . $CONFIG['comment_akismet_api_key'] . '</strong>');
 	$result = cpg_akismet_verify_key();
-	if (strpos($result[0], '404 Not Found') != FALSE) {
+	if (stripos($result[0], '404 Not Found') != FALSE) {
 		$test_result = $icon_array['cancel'] . $lang_reviewcom_php['not_found'];
+        $test_error = $result[0];
+    } elseif (stripos($result[1], 'Error') != FALSE) {
+		$test_result = $icon_array['stop'] . $lang_reviewcom_php['unknown_error'];
+        $test_error = $result[1];
 	} elseif ($result == TRUE) {
 		$test_result = $icon_array['ok'] . $lang_common['ok'];
-	} elseif (strpos($result[0], 'Empty "blog" value') != FALSE) {
+        $test_error = '';
+	} elseif (stripos($result[0], 'Empty "blog" value') != FALSE) {
 		$test_result = $icon_array['stop'] . $lang_reviewcom_php['missing_gallery_url'];
+        $test_error = '';
 	} elseif ($result[1] == 'invalid') {
 		$test_result = $icon_array['stop'] . $lang_reviewcom_php['invalid'];
+        $test_error = '';
 	} elseif (isset($result) == FALSE) {
 		$test_result = $icon_array['cancel'] . $lang_reviewcom_php['unable_to_connect'];
+        $test_error = $result[0]."\r\n".$result[1];
 	} else {
 		$test_result = $icon_array['stop'] . $lang_reviewcom_php['unknown_error'];
+        $test_error = $result[0]."\r\n".$result[1];
 	}
 	print <<< EOT
 	<tr>
-		<td class="tableb tableb_alternate">
+		<td class="tableb tableb_alternate" valign="top">
 			{$test_text}
 		</td>
-		<td class="tableb tableb_alternate">
+		<td class="tableb tableb_alternate" valign="top">
 			{$test_result}
 		</td>
 	</tr>
 EOT;
-	endtable();
+	if ($test_error != '') {
+        $test_error = strip_tags($test_error);
+        print <<< EOT
+	<tr>
+		<td class="tableb tableb_alternate" valign="top" colspan="2">
+            {$lang_reviewcom_php['error_message']}<br />
+			<textarea cols="100" rows="5" class="textinput">{$test_error}</textarea>
+		</td>
+		</td>
+	</tr>
+EOT;
+    }
+    endtable();
 }
 
 pagefooter();

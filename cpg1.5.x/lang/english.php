@@ -821,12 +821,14 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'comment_user_edit' => 'Allow users to edit their comments', // cpg1.5
   'comment_captcha' => 'Display Captcha (Visual Confirmation) for adding comments', // cpg1.5
   'comment_akismet_enable' => 'Akismet Options', // cpg1.5
-  'comment_akismet_enable_description' => 'What should be done if Akismet rejects a comment as spam? Options only apply if Akismet has been enabled by entering a valid API key', // cpg1.5
+  'comment_akismet_enable_description' => 'What should be done if Akismet rejects a comment as spam?', // cpg1.5
+  'comment_akismet_applicable_only' => 'Options only apply if Akismet has been enabled by entering a valid API key', // cpg1.5
   'comment_akismet_enable_disapproved' => 'Allow comments that fail to pass Akismet, but set to disapproved', // cpg1.5
   'comment_akismet_drop_tell' => 'Drop comment that fails to validate and tell author that it was rejected', // cpg1.5
   'comment_akismet_drop_lie' => 'Drop comment that fails to validate, but tell end user (spammer) it has been added', // cpg1.5
   'comment_akismet_api_key' => 'Akismet API key', // cpg1.5
   'comment_akismet_api_key_description' => 'Leave empty to disable Akismet', // cpg1.5
+  'comment_akismet_group' => 'Apply Akismet for comments made by', // cpg1.5
   'comment_promote_registration' => 'Ask guests to log in to post comments', // cpg1.5
   'thumb_width' => 'Max dimension (width) of a thumbnail', // cpg1.5
   'thumb_use' => 'Use dimension', // cpg1.5
@@ -2041,6 +2043,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'unable_to_connect' => 'Unable to connect to akismet.com', // cpg1.5
   'not_found' => 'The target URL was not found. Maybe the site structure of akismet.com has changed.', // cpg1.5
   'unknown_error' => 'Unknown error', // cpg1.5
+  'error_message' => 'The error message returned was', // cpg1.5
   'ip_address' => 'IP address', // cpg1.5
 );
 

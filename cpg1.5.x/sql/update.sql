@@ -338,3 +338,4 @@ INSERT INTO CPG_config VALUES ('purge_expired_bans', '1');
 INSERT INTO CPG_config VALUES ('comment_akismet_enable', '0');
 INSERT INTO CPG_config VALUES ('comment_akismet_api_key', '');
 INSERT INTO CPG_config VALUES ('comment_akismet_counter', '0');
+INSERT INTO CPG_config VALUES ('comment_akismet_group', '0');
