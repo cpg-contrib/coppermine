@@ -28,6 +28,10 @@ include("include/smilies.inc.php");
   $cpg_udb->view_profile($superCage->get->getInt('uid'));
 //}
 
+$icon_array = array();
+$icon_array['ok'] = cpg_fetch_icon('ok', 0);
+$icon_array['password'] = cpg_fetch_icon('key_enter', 0);
+
 function cpgUserPicCount($username) {
         global $CONFIG;
         $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_name = '".addslashes($username)."'");
@@ -513,9 +517,9 @@ EOT;
     </tr>
     <tr>
         <td colspan="2" align="center" class="tablef">
-            <input type="submit" name="change_profile" value="{$lang_register_php['apply_modif']}" class="button" />
-            <img src="images/spacer.gif" width="20" height="1" border="0" alt="" />
-            <input type="submit" name="change_pass" value="{$lang_register_php['change_pass']}" class="button" />
+            <button type="submit" class="button" name="change_profile" id="change_profile" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
+            &nbsp;
+            <button type="submit" class="button" name="change_pass" id="change_pass" value="{$lang_register_php['change_pass']}">{$icon_array['password']}{$lang_register_php['change_pass']}</button>
         </td>
     </tr>
 EOT;

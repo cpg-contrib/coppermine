@@ -386,7 +386,7 @@ if (UDB_INTEGRATION != 'coppermine') {
     echo <<<EOT
         <tr>
             <td colspan="14" align="center" class="tablef">
-                        <button type="submit" class="button" name="apply_modifs" id="apply_modifs" value="{$lang_common['apply_modifications']}">{$icon_array['ok']}{$lang_common['apply_modifications']}</button>
+                        <button type="submit" class="button" name="apply_modifs" id="apply_modifs" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
                         &nbsp;&nbsp;&nbsp;
                 </td>
         </tr>
@@ -397,7 +397,7 @@ EOT;
         <tr>
             <td class="tablef"><input type="checkbox" name="checkAll2" id="checkAll2" onClick="selectAll(this,'delete_group');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
             <td colspan="13" align="center" class="tablef">
-                        <button type="submit" class="button" name="apply_modifs" id="apply_modifs" value="{$lang_common['apply_modifications']}">{$icon_array['ok']}{$lang_common['apply_modifications']}</button>&nbsp;&nbsp;&nbsp;
+                        <button type="submit" class="button" name="apply_modifs" id="apply_modifs" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>&nbsp;&nbsp;&nbsp;
                         <button type="submit" class="button" name="new_group" id="new_group" value="{$lang_groupmgr_php['create_new_group']}">{$icon_array['add']}{$lang_groupmgr_php['create_new_group']}</button>
                         &nbsp;&nbsp;&nbsp;
 EOT;

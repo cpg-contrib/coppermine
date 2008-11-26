@@ -468,8 +468,7 @@ print <<<EOT
         </tr>
         <tr>
                         <td colspan="3" align="center" class="tablef">
-                                <!--<input type="submit" value="{$lang_editpics_php['apply']}" name="submitDescription" class="button" />-->
-                                <button type="submit" class="button" name="submitDescription" value="{$lang_editpics_php['apply']}">{$icon_array['ok']}{$lang_editpics_php['apply']}</button>
+                                <button type="submit" class="button" name="submitDescription" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
                         </td>
         </tr>
 EOT;

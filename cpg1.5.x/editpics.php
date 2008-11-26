@@ -910,7 +910,7 @@ $submit_icon = cpg_fetch_icon('ok', 0);
 echo <<<EOT
         <tr>
                 <td colspan="3" align="center" class="tablef">
-                        <button type="submit" class="button" name="go" value="{$lang_editpics_php['apply']}">{$submit_icon}{$lang_editpics_php['apply']}</button>
+                        <button type="submit" class="button" name="go" value="{$lang_common['apply_changes']}">{$submit_icon}{$lang_common['apply_changes']}</button>
                 </td>
         </tr>
 

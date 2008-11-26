@@ -155,7 +155,7 @@ $lang_common = array(
   'select_album' => 'Select Album', // cpg1.5
   'ok' => 'OK', // cpg1.5
   'status' => 'Status', // cpg1.5
-  'apply_modifications' => 'Apply modifications', // cpg1.5
+  'apply_changes' => 'Apply changes', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -473,7 +473,6 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
   'select_first' => 'Select an album first', // js-alert
   'my_gallery' => '* My gallery *',
   'no_category' => '* No category *',
-  'apply_modifs' => 'Apply modifications',
   'select_category' => 'Select category',
 );
 
@@ -1336,7 +1335,6 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'see_prev' => 'See previous files',
   'n_pic' => '%s files',
   'n_of_pic_to_disp' => 'Number of files to display',
-  'apply' => 'Apply modifications',
   'crop_title' => 'Coppermine Picture Editor',
   'preview' => 'Preview',
   'save' => 'Save picture',
@@ -1804,7 +1802,6 @@ if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'pic_mgr' => 'Picture Manager',
   'confirm_delete1' => 'Are you sure you want to delete this picture ?',
   'confirm_delete2' => '\nPicture will be permanently deleted.',
-  'apply_modifs' => 'Apply modifications',
   'confirm_modifs' => 'Confirm modifications',
   'pic_need_name' => 'Picture needs to have a name !',
   'no_change' => 'You did not make any change !',
@@ -1916,7 +1913,6 @@ $lang_register_php = array(
   'new_pass' => 'New password',
   'new_pass_again' => 'New password again',
   'err_curr_pass' => 'Current password is incorrect',
-  'apply_modif' => 'Apply modifications',
   'change_pass' => 'Change my password',
   'update_success' => 'Your profile was updated',
   'pass_chg_success' => 'Your password was changed',

@@ -26,6 +26,9 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
+$icon_array = array();
+$icon_array['ok'] = cpg_fetch_icon('ok', 0);
+
 function get_album_data()
 {
     global $CONFIG, $ALBUM_LIST;
@@ -494,7 +497,7 @@ EOT;
      echo <<<EOT
 <tr>
    <td colspan="2" align="center" class="tablef">
-   <input type="submit" class="button" value="{$lang_picmgr_php['apply_modifs']}" />
+   <button type="submit" class="button" name="apply" id="apply" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
    </td>
 </tr>
 EOT;
