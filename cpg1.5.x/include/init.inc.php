@@ -389,7 +389,19 @@ if ($CONFIG['purge_expired_bans'] == 1) {
 }
 // Check if the user is banned
 $user_id = USER_ID;
-$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE (ip_addr='$raw_ip' OR ip_addr='$hdr_ip' OR user_id=$user_id) AND brute_force=0");
+// Compose the query
+$query_string = "SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE (";
+if (USER_ID) {
+    $query_string .= "user_id=$user_id OR ";
+}
+if ($raw_ip != $hdr_ip) {
+    $query_string .= "'$raw_ip' LIKE ip_addr OR '$hdr_ip' LIKE ip_addr ";
+} elseif($raw_ip != '') {
+    $query_string .= "'$raw_ip' LIKE ip_addr ";
+}
+$query_string .= ") AND brute_force=0 LIMIT 1";
+$result = cpg_db_query($query_string);
+unset($query_string);
 if (mysql_num_rows($result)) {
 	pageheader($lang_common['error']);
 	msg_box($lang_common['information'], $lang_errors['banned']);
