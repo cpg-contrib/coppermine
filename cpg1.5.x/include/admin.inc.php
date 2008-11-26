@@ -1302,11 +1302,6 @@ $config_data = array(
       'maxlength'       => '7',
       'end_description' => $lang_admin_php['minutes'],
     ),
-    'ban_private_ip' => array(
-      'type'          => 'checkbox',
-      'default_value' => '0',
-      'help_link'     => ' f=configuration.htm&amp;as=admin_general_private-ip&amp;ae=admin_general_private-ip_end',
-    ),
     'purge_expired_bans' => array(
       'type'          => 'checkbox',
       'default_value' => '0',

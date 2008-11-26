@@ -141,35 +141,6 @@ $tabs .= <<< EOT
 EOT;
 
 /**
-* cpg_illegal_ip_address()
-*
-* Performs a check if a given IP address belongs to a private IP address range.
-* Return TRUE if the IP address is private and FALSE if not
-*
-* @param string $ip IP-address
-* @return
-**/
-function cpg_illegal_ip_address($ip) {
-	$illegal_ip = array('192.168.','10.','172.16.','172.17.','172.18.','172.19.','172.20.','172.21.','172.22.','172.23.','172.24.','172.25.','172.26.','172.27.','172.28.','172.29.','172.30.','172.31.','169.254.','127.', '192.0.','1.0.0.0','204.152.64.','204.152.65.');
-	$ip_to_check = 'ip'.$ip;
-	$ip_is_illegal = 0;
-	foreach ($illegal_ip as $not_allowed_ip) {
-	  if (strpos($ip_to_check,$not_allowed_ip) == 2){$ip_is_illegal++;}
-	}
-	//higher than 224 in first byte
-	for ($i = 224; $i <= 255; $i++) {
-		if (strpos($ip_to_check,$i.'.') == 2) {
-			$ip_is_illegal++;
-		}
-	}
-	if ($ip_is_illegal != 0) {
-		return TRUE;
-	} else {
-	return FALSE;
-	}
-}
-
-/**
  * create_banlist()
  *
  * @return
@@ -335,12 +306,6 @@ if ($superCage->post->keyExists('submit')) {
 	        	$action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_server_ban'] . '. ' . $lang_banning_php['skipping'] . '</li>';
 	        	$post_ip = ''; // Clear the record
 	        }
-	        if ($CONFIG['ban_private_ip'] == 0) { //Perform the plausibility check only if the admin hasn't deliberately chosen to allow banning of private IP addresses
-	        	if (cpg_illegal_ip_address($post_ip) == TRUE) {
-	        		$action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . sprintf($lang_banning_php['error_ip_forbidden'], '<a href="admin.php">', '</a>') . '. ' . $lang_banning_php['skipping'] . '</li>';
-	        		$post_ip = ''; // Clear the record
-	        	}
-	        }
         } // Only perform the IP address check if an IP address has been submit --- end
         // Plausibility control - make sure that some fool doesn't ban himself --- end
         if ($superCage->post->getInt('select_'.$posted_ban_id) == 1 || ($post_user_name == '' && $post_email == '' && $post_ip == '')) { // Delete the record --- start
@@ -438,12 +403,6 @@ if ($superCage->post->keyExists('submit')) {
         	// Someone tried to ban the server's IP address.
         	$action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_server_ban'] . '. ' . $lang_banning_php['skipping'] . '</li>';
         	$post_ip = ''; // Clear the record
-        }
-        if ($CONFIG['ban_private_ip'] == 0) { //Perform the plausibility check only if the admin hasn't deliberately chosen to allow banning of private IP addresses
-        	if (cpg_illegal_ip_address($post_ip) == TRUE) {
-        		$action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . sprintf($lang_banning_php['error_ip_forbidden'], '<a href="admin.php">', '</a>') . '. ' . $lang_banning_php['skipping'] . '</li>';
-        		$post_ip = ''; // Clear the record
-        	}
         }
     } // Only perform the IP address check if an IP address has been submit --- end
     // Plausibility control - make sure that some fool doesn't ban himself --- end

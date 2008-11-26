@@ -158,8 +158,10 @@ ALTER TABLE `CPG_hit_stats` ADD `uid` INT(11) NOT NULL default '0' ;
 
 INSERT INTO CPG_config VALUES ('allow_unlogged_access', '3');
 
+# Remove features that are no longer supported
 DELETE FROM CPG_config WHERE `name` = 'vanity_block';
 DELETE FROM CPG_config WHERE `name` = 'display_faq';
+DELETE FROM CPG_config WHERE `name` = 'ban_private_ip';
 
 
 

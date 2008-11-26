@@ -181,7 +181,6 @@ INSERT INTO CPG_config VALUES ('users_can_edit_pics', '0');
 INSERT INTO CPG_config VALUES ('login_method', 'username');
 INSERT INTO CPG_config VALUES ('login_threshold', '5');
 INSERT INTO CPG_config VALUES ('login_expiry', '10');
-INSERT INTO CPG_config VALUES ('ban_private_ip', '0');
 INSERT INTO CPG_config VALUES ('purge_expired_bans', '1');
 INSERT INTO CPG_config VALUES ('report_post', '0');
 INSERT INTO CPG_config VALUES ('user_profile1_name', 'Location');
