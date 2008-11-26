@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-11-26 [O] Removed banned group, since it never has been taken into account anyway {GauGau}
 2008-11-25 [A] Implemented option to use Akismet for guests only or for everyone {GauGau}
 2008-11-25 [A] Added Akismet and IP address columns to review comments page {GauGau}
 2008-11-24 [A] Added akismet check and stats on review comments page {GauGau}

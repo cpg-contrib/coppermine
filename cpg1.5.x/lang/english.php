@@ -155,6 +155,7 @@ $lang_common = array(
   'select_album' => 'Select Album', // cpg1.5
   'ok' => 'OK', // cpg1.5
   'status' => 'Status', // cpg1.5
+  'apply_modifications' => 'Apply modifications', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -1449,7 +1450,6 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'boxes_number' => 'No. of boxes',
   'variable' => 'variable',
   'fixed' => 'fixed',
-  'apply' => 'Apply modifications',
   'create_new_group' => 'Create new group',
   'del_groups' => 'Delete selected group(s)',
   'confirm_del' => 'Warning, when you delete a group, users that belong to this group will be transferred to the \'Registered\' group !\n\nDo you want to proceed ?', // js-alert
@@ -1460,7 +1460,6 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'error_group_empty' => 'Group table was empty !<br /><br />Default groups created, please reload this page',
   'explain_greyed_out_title' => 'Why is this row grayed out?',
   'explain_guests_greyed_out_text' => 'You can not change the properties of this group because you set the option &quot; Allow unlogged users (guest or anonymous) access&quot; to &quot;No&quot; on the config page. All guest (members of the group %s) can\'t do anything but login; therefor group settings don\'t apply for them.',
-  'explain_banned_greyed_out_text' => 'You can not change the properties of the group %s because its members can\'t do anything anyway.',
   'group_assigned_album' => 'assigned album(s)',
 );
 

@@ -339,3 +339,6 @@ INSERT INTO CPG_config VALUES ('comment_akismet_enable', '0');
 INSERT INTO CPG_config VALUES ('comment_akismet_api_key', '');
 INSERT INTO CPG_config VALUES ('comment_akismet_counter', '0');
 INSERT INTO CPG_config VALUES ('comment_akismet_group', '0');
+
+# Remove the group "Banned", as it never was used anyway
+DELETE FROM CPG_usergroups WHERE `group_name` = 'Banned';

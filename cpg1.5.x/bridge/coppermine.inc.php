@@ -437,7 +437,7 @@ if (isset($bridge_lookup)) {
         				}
         			}
         		} else {
-        			$udb_groups = array(1 =>'Administrators', 2=> 'Registered', 3=>'Guests', 4=> 'Banned');
+        			$udb_groups = array(1 =>'Administrators', 2=> 'Registered', 3=>'Guests');
         		}
 
         		$result = cpg_db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");

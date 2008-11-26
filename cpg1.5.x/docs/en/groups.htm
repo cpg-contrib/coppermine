@@ -51,7 +51,7 @@
 <a name="group_cp_names_end"></a>
 
 <a name="group_cp_types"></a><h3>Group types<a href="#group_cp_types" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>There are two types of groups in Coppermine: those that come with it out of the box (default groups) and custom user groups. The ones that come with Coppermine by default (&quot;Administrators&quot;, &quot;Registered&quot;, &quot;Guests&quot;, &quot;Banned&quot;) can not be deleted.<br />
+<p>There are two types of groups in Coppermine: those that come with it out of the box (default groups) and custom user groups. The ones that come with Coppermine by default (&quot;Administrators&quot;, &quot;Registered&quot;, &quot;Guests&quot;) can not be deleted.<br />
 Users can be member of several groups - privileges inherited from the group accumulate. This means that the least restrictive permission/setting is being taken into account.</p>
 <p>Example: user "Linus" is member of the "registered" group as primary group and additionally member of the custom user groups "Cartoonists" and "Photographers". Members of the group "registered" are allowed to send ecards, but are not allowed to rate nor to post comments. They are not allowed to have a personal gallery neither. Members of the "Cartoonists" group are allowed to comment, send ecards and rate. Members of the group "Photographers" are not allowed to comment, to send ecards nor to rate, but they are allowed to have personal galleries. Subsequently, the user "Linus" would have the privilege to send ecards (inherited from membership in the group "registered"); he would be allowed to post comments and rate files (inherited from membership in the group "Cartoonists"). Additionally, "Linus" would have the privilege to have a personal gallery (inherited from membership int the group "Photographers"). The fact that members of the group "Photographers" are not allowed to rate, send ecards or post comments would not be taken into account, since membership inside the other two groups that grant those privileges would override the more restrictive settings for the group "Photographers".</p>
 
@@ -67,10 +67,6 @@ Users can be member of several groups - privileges inherited from the group accu
 <a name="group_cp_anonymous"></a><h4>Anonymous/Guests<a href="#group_cp_anonymous" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>Use the <strong>anonymous</strong> group to define what non-registered users can and can't do. Quota and &quot;<em>Personal gallery</em>&quot; are meaningless for anonymous users. You can not (and mustn't try) to assign existing users to the &quot;anonymous&quot; group - being a registered user automatically keeps them from being a member of the "Anonymous" group.</p>
 <a name="group_cp_anonymous_end"></a>
-
-<a name="group_cp_banned"></a><h4>Banned<a href="#group_cp_banned" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-<p>On unbridged installs (or standard, stand-alone coppermine installs), the group "banned" feature really doesn't accomplish much. A user who is member of this group is still able to log in and view pics, he's just not able to upload, rate, send ecards or post comments. If you truly want to place a full ban on someone you should use the "banning" feature (which isn't group-based but individually user-based), instead.</p>
-<a name="group_cp_banned_end"></a>
 
 <a name="group_cp_custom"></a><h4>Custom groups<a href="#group_cp_custom" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>You can <a href="#group_cp_create">create groups</a> as you see fit. Make sure to come up with a naming scheme that makes sense in the first place. It's advisable to start with a minimum set of custom groups and only add them later if you must.</p>
@@ -121,7 +117,7 @@ Users can be member of several groups - privileges inherited from the group accu
 <a name="group_cp_create_end"></a>
 
 <a name="group_cp_delete"></a><h3>Deleting custom groups<a href="#group_cp_delete" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>You can not delete the four pre-defined groups (&quot;Administrators&quot;, &quot;Registered&quot;, &quot;Guests&quot;, &quot;Banned&quot;). All other (custom) groups can be deleted by going to Coppermine's groups control panel, checking the tickbox in front of the group you want to delete and finally clicking on the &quot;Delete selected groups&quot; button at the bottom of the screen. Deleting groups can not be undone. Deleting a group does not delete the members within that particular group.<br />
+<p>You can not delete the four pre-defined groups (&quot;Administrators&quot;, &quot;Registered&quot;, &quot;Guests&quot;). All other (custom) groups can be deleted by going to Coppermine's groups control panel, checking the tickbox in front of the group you want to delete and finally clicking on the &quot;Delete selected groups&quot; button at the bottom of the screen. Deleting groups can not be undone. Deleting a group does not delete the members within that particular group.<br />
 When <a href="bridging.htm#integrating">bridged</a>, a similar thing that applies for the creation of groups applies to deleting them as well: Coppermine doesn't control groups any longer when being bridged, so you have to delete user groups in the app that you have bridged Coppermine with.</p>
 <a name="group_cp_delete_end"></a>
 

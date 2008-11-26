@@ -22,7 +22,14 @@ define('GROUPMGR_PHP', true);
 
 require('include/init.inc.php');
 
-if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!GALLERY_ADMIN_MODE) {
+	cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
+
+$icon_array = array();
+$icon_array['ok'] = cpg_fetch_icon('ok', 0);
+$icon_array['add'] = cpg_fetch_icon('add', 0);
+$icon_array['delete'] = cpg_fetch_icon('delete', 0);
 
 $cpg_udb->synchronize_groups();
 
@@ -43,7 +50,6 @@ function display_group_list()
         '1' => 'Administrators',
         '2' => 'Registered',
         '3' => 'Anonymous',
-        '4' => 'Banned',
     );
 
     $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1 ORDER BY group_id");
@@ -54,8 +60,6 @@ function display_group_list()
         VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
         cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
         VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
-        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-        VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
         cpg_die(CRITICAL_ERROR, $lang_groupmgr_php['error_group_empty'], __FILE__, __LINE__);
     }
 
@@ -68,7 +72,7 @@ function display_group_list()
         if ($row_counter == 1 ) {$table_background = 'tableb';}else{$table_background = 'tableb tableb_alternate';$row_counter = 0;}
 
 
-        if ($group['group_id'] > 4 && UDB_INTEGRATION == 'coppermine') {
+        if ($group['group_id'] > 3 && UDB_INTEGRATION == 'coppermine') {
             $custom_group_counter++;
             echo <<< EOT
         <tr>
@@ -89,10 +93,7 @@ EOT;
         // disable row if applicable
         if ($group['group_id'] == 3 && $CONFIG['allow_unlogged_access'] == 0) {
             $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
-            $explain_greyedout = '&nbsp;'.cpg_display_help('f=index.htm&amp;base=64&h='.urlencode(base64_encode(serialize($lang_groupmgr_php['explain_greyed_out_title']))).'&amp;t='.urlencode(base64_encode(serialize(sprintf($lang_groupmgr_php['explain_guests_greyed_out_text'],'<i>'.$group['group_name'].'</i>')))), '450', '300');
-        } elseif ($group['group_id'] == 4) {
-            $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
-            $explain_greyedout = '&nbsp;'.cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_groupmgr_php['explain_greyed_out_title']))).'&amp;t='.urlencode(base64_encode(serialize(sprintf($lang_groupmgr_php['explain_banned_greyed_out_text'],'<i>'.$group['group_name'].'</i>')))), '450', '300');
+            $explain_greyedout = '&nbsp;'.cpg_display_help('f=index.htm&amp;base=64&h='.urlencode(base64_encode(serialize($lang_groupmgr_php['explain_greyed_out_title']))).'&amp;t='.urlencode(base64_encode(serialize(sprintf($lang_groupmgr_php['explain_guests_greyed_out_text'],'<em>'.$group['group_name'].'</em>')))), '450', '300');
         } else {
             $disabled = '';
             $explain_greyedout = '';
@@ -149,9 +150,6 @@ EOT;
             if ($group['group_id'] == 3 && $CONFIG['allow_unlogged_access'] == 0) {
                 $disabled_yes = 'disabled="disabled"';
                 $disabled_no = 'disabled="disabled"';
-            } elseif ($group['group_id'] == 4) {
-                $disabled_yes = 'disabled="disabled"';
-                $disabled_no = 'disabled="disabled"';
             } else {
                 $disabled_yes = '';
                 $disabled_no = '';
@@ -177,8 +175,6 @@ EOT;
 
      // Create select list.
     if ($group['group_id'] == 3 && $CONFIG['allow_unlogged_access'] == 0) {
-        $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
-    } elseif ($group['group_id'] == 4) {
         $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
     } else {
         $disabled = '';
@@ -390,7 +386,8 @@ if (UDB_INTEGRATION != 'coppermine') {
     echo <<<EOT
         <tr>
             <td colspan="14" align="center" class="tablef">
-                        <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php['apply']}" class="button" />&nbsp;&nbsp;&nbsp;
+                        <button type="submit" class="button" name="apply_modifs" id="apply_modifs" value="{$lang_common['apply_modifications']}">{$icon_array['ok']}{$lang_common['apply_modifications']}</button>
+                        &nbsp;&nbsp;&nbsp;
                 </td>
         </tr>
 
@@ -400,11 +397,12 @@ EOT;
         <tr>
             <td class="tablef"><input type="checkbox" name="checkAll2" id="checkAll2" onClick="selectAll(this,'delete_group');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
             <td colspan="13" align="center" class="tablef">
-                        <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php['apply']}" class="button" />&nbsp;&nbsp;&nbsp;
-                        <input type="submit" name="new_group" value="{$lang_groupmgr_php['create_new_group']}" class="button" />&nbsp;&nbsp;&nbsp;
+                        <button type="submit" class="button" name="apply_modifs" id="apply_modifs" value="{$lang_common['apply_modifications']}">{$icon_array['ok']}{$lang_common['apply_modifications']}</button>&nbsp;&nbsp;&nbsp;
+                        <button type="submit" class="button" name="new_group" id="new_group" value="{$lang_groupmgr_php['create_new_group']}">{$icon_array['add']}{$lang_groupmgr_php['create_new_group']}</button>
+                        &nbsp;&nbsp;&nbsp;
 EOT;
     if($custom_group_counter > 0) {
-        print '                        <input type="submit" name="del_sel" value="'.$lang_groupmgr_php['del_groups'].'" onClick="return confirmDel()" class="button" />';
+        print '                        <button type="submit" class="button" name="del_sel" id="del_sel" value="'.$lang_groupmgr_php['del_groups'].'" onClick="return confirmDel()">'.$icon_array['delete'].$lang_groupmgr_php['del_groups'].'</button>';
     }
     echo <<<EOT
                 </td>

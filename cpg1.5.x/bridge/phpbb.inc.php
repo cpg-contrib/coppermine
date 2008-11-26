@@ -124,7 +124,7 @@ if (isset($bridge_lookup)) {
     	
     		$result = cpg_db_query($sql, $this->link_id);
     		
-    		$udb_groups = array(102 =>'Administrators', 2=> 'Registered', 3=>'Guests', 4=> 'Banned');
+    		$udb_groups = array(102 =>'Administrators', 2=> 'Registered', 3=>'Guests');
     			
     		while ($row = mysql_fetch_assoc($result))
     		{

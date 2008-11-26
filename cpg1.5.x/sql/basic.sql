@@ -336,7 +336,6 @@ INSERT INTO CPG_filetypes VALUES ('onepkg', 'application/onenote', 'document', '
 INSERT INTO CPG_usergroups VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3);
 INSERT INTO CPG_usergroups VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3);
 INSERT INTO CPG_usergroups VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3);
-INSERT INTO CPG_usergroups VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3);
 
 #
 # Dumping data for table `CPG_categories`
@@ -373,7 +372,6 @@ INSERT INTO CPG_bridge VALUES ('validating_group', '');
 INSERT INTO CPG_bridge VALUES ('guest_group', '');
 INSERT INTO CPG_bridge VALUES ('member_group', '');
 INSERT INTO CPG_bridge VALUES ('admin_group', '');
-INSERT INTO CPG_bridge VALUES ('banned_group', '');
 INSERT INTO CPG_bridge VALUES ('global_moderators_group', '');
 INSERT INTO CPG_bridge VALUES ('recovery_logon_failures', '0');
 INSERT INTO CPG_bridge VALUES ('recovery_logon_timestamp', '');
