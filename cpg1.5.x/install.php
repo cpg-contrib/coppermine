@@ -63,6 +63,7 @@ $superCage = Inspekt::makeSuperCage();
 
 //load language
 $config = array(); // (array) temp config
+$temporary_config_file = 'include/config.tmp.php';
 $error = ''; // (string) holds errors
 $temp_data; // holds various data
 $page_title = ''; // (string) holds the title of the current installation step
@@ -562,23 +563,23 @@ function html_stepper()
             $stepper .= sprintf($tpl_step_notyet, $i, $i);
         }
     }
-?>
+print <<< EOT
     <table class="stepper_table">
-    <tr height="20">
-    <td>&nbsp;</td><?php echo $stepper; ?>
-    </tr>
+	    <tr>
+		    <td>{$stepper}</td>
+	    </tr>
     </table>
     <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
       <tr>
-       <td class="tableh1" colspan="2"><h2><?php echo $page_title; ?></h2>
+       <td class="tableh1" colspan="2"><h2>{$page_title}</h2>
        </td>
       </tr>
        <tr>
-      <td valign="top" style="background-color:#FF0000; color:#FFFFFF;"><h5>Warning, this installer is still in alpha, you can use the old one by going <a href="install_old.php">here</a></h5><br />
+      <td class="tableb" valign="top">Warning, this installer is still in alpha, you can use the old one by going <a href="install_old.php">here</a>
       </td>
     </tr>
     </table>
-<?php
+EOT;
 }
 
 /* html_installer_locked()
@@ -589,29 +590,29 @@ function html_installer_locked()
 {
     global $language, $error;
 	
-?>
+print <<< EOT
       <form action="index.php" style="margin:0px;padding:0px" name="cpgform" id="cpgform">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
-          <td class="tableh1" colspan="2"><h2><?php echo $language['installer_locked']; ?></h2>
+          <td class="tableh1" colspan="2"><h2>{$language['installer_locked']}</h2>
           </td>
          </tr>
          <tr>
-          <td class="tableh2" colspan="2" align="center"><span class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;<?php echo $language['error']; ?>&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</span>
+          <td class="tableh2" colspan="2"><h3 class="error">{$language['error']}</h3>
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2"><?php echo $error; ?>
+          <td class="tableb" colspan="2">{$error}
           </td>
          </tr>
          <tr>
-          <td colspan="2" align="center" class="tableb"><br />
-            <input type="submit" value="<?php echo $language['go_to_main']; ?>" /><br /><br />
+          <td colspan="2" align="center" class="tableb">
+            <input type="submit" class="button" value="{$language['go_to_main']}" />
           </td>
          </tr>
         </table>
       </form>
-<?php
+EOT;
 }
 
 /* html_welcome()
@@ -963,14 +964,15 @@ function html_finish()
 */
 function loadTempConfig($rp=0) 
 {
-	if (file_exists('include/config.inc.php')) {
+	global $config, $temporary_config_file;
+	if (file_exists($temporary_config_file)) {
 		$GLOBALS['language'] = getLanguage();
 		$GLOBALS['error'] = '<h3>'.$GLOBALS['language']['already_succ'].'</h3>'.$GLOBALS['language']['already_succ_explain'];
 		return false;
 	} else {
 		// read the temporary file
-		if (file_exists('include/config.tmp.php')) {
-			include('include/config.tmp.php');
+		if (file_exists($temporary_config_file)) {
+			include($temporary_config_file);
 			$GLOBALS['config'] = $install_config;
 		} else {
 			$GLOBALS['config'] = array();
@@ -1014,8 +1016,8 @@ function setTmpConfig($key, $value, $isarray = false)
 */
 function createTempConfig() 
 {
-	global $language, $config;
-	if ($handle = @fopen('include/config.tmp.php', 'w')) {
+	global $language, $config, $temporary_config_file;
+	if ($handle = @fopen($temporary_config_file, 'w')) {
 		//$config = serialize($config);
 		//create php array in config
 		$fconfig = '<?php' . "\n" . arrayToString($config, '$install_config') . "\n" . '?>';
@@ -1024,7 +1026,7 @@ function createTempConfig()
 		return true;
 	} else {
 		// could not write tmp config, add error
-		$GLOBALS['error'] = sprintf($language['cant_write_tmp_conf'], 'include/config.tmp.php');
+		$GLOBALS['error'] = sprintf($language['cant_write_tmp_conf'], $temporary_config_file) . ' ' . $language['review_permissions'];
 		return false;
 	}
 }
