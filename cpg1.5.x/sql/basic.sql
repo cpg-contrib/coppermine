@@ -64,7 +64,7 @@ INSERT INTO CPG_config VALUES ('alb_list_thumb_size', '50');
 INSERT INTO CPG_config VALUES ('main_page_layout', 'breadcrumb/catlist/alblist/random,2/lastup,2');
 INSERT INTO CPG_config VALUES ('first_level', '1');
 INSERT INTO CPG_config VALUES ('categories_alpha_sort', '0');
-INSERT INTO CPG_config VALUES ('link_pic_count', '0');#
+INSERT INTO CPG_config VALUES ('link_pic_count', '1');
 INSERT INTO CPG_config VALUES ('thumbcols', '4');
 INSERT INTO CPG_config VALUES ('thumbrows', '3');
 INSERT INTO CPG_config VALUES ('max_tabs', '12');
