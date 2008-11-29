@@ -2866,8 +2866,8 @@ EOT;
         echo "VERSION INFO :";
         echo $debug_underline;
         $version_comment = ' - OK';
-        if (strcmp('4.2.0', phpversion()) == 1) {
-            $version_comment = ' - your PHP version isn\'t good enough! Minimum requirements: 4.2.0';
+        if (strcmp('4.3.0', phpversion()) == 1) {
+            $version_comment = ' - your PHP version isn\'t good enough! Minimum requirements: 4.3.0';
         }
         echo 'PHP version: ' . phpversion().$version_comment;
         echo "\n";

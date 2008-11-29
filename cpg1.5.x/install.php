@@ -145,7 +145,7 @@ switch($step) {
         
         //PHP VERSION CHECK
         $php_version = phpversion();
-        $required_php_version = '4.1.0';
+        $required_php_version = '4.3.0';
         if (version_compare($required_php_version, $php_version, '>=')) {
             //check if php_version is actualy a version number
             if ($php_version == '') {
