@@ -264,7 +264,12 @@ function exportThumbnailPage($album, $page, $path)
 
     recursive_copy("themes/{$theme['value']}","$path/themes/{$theme['value']}");
 
-    file_put_contents("$path/thumbnails_$page.html",$contents);
+    //file_put_contents("$path/thumbnails_$page.html",$contents);
+    
+    $fp = fopen("$path/thumbnails_$page.html","w");
+    fwrite($fp, $contents);
+    fclose($fp);
+    
     chmod("$path/thumbnails_$page.html", octdec($CONFIG['default_file_mode']));
     
     if($page==1){
