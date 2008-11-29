@@ -105,53 +105,6 @@ function write_to_db($step) {
 
        break;
 
-    case "db_connect":
-        if ($default_bridge_data[$BRIDGE['short_name']]['db_hostname_used'] != '') { // check the db connection --- start
-            @mysql_close(); //temporarily disconnect from the coppermine database
-            ob_start();
-            $link = mysql_connect($posted_var['db_hostname'], $posted_var['db_username'], $posted_var['db_password']);
-            $mysql_error_output = ob_get_contents();
-            ob_end_clean();
-            if (!$link) {
-                $return[$step] = $lang_bridgemgr_php['error_db_connect'].'<tt>'.$mysql_error_output.'</tt>';
-            } elseif ($default_bridge_data[$BRIDGE['short_name']]['db_database_name_used'] != '') { // check the database
-                ob_start();
-                $db_selected = mysql_select_db($posted_var['db_database_name'], $link);
-                print mysql_error();
-                $mysql_error_output = ob_get_contents();
-                ob_end_clean();
-                if (!$db_selected) {
-                   $return['db_database_name'] = sprintf($lang_bridgemgr_php['error_db_name'], '<i>'.$posted_var['db_database_name'].'</i>', '<i>'.$lang_bridgemgr_php['db_database_name'].'</i>'). ' <tt>'.$mysql_error_output.'</tt>';
-                }
-            }
-            @mysql_close($link);
-            cpg_db_connect(); // connect back to coppermine db
-        } // check the db connection --- end
-       break;
-
-    case "db_tables":
-        if ($default_bridge_data[$BRIDGE['short_name']]['table_prefix_used'] != '') {
-            $prefix_and_table = sprintf($lang_bridgemgr_php['error_prefix_and_table'], '<i>'.$lang_bridgemgr_php['table_prefix'].'</i>');
-        }
-        @mysql_close(); //temporarily disconnect from the coppermine database
-        $link = @mysql_connect($BRIDGE['db_hostname'], $BRIDGE['db_username'], $BRIDGE['db_password']);
-        $db_selected = @mysql_select_db($BRIDGE['db_database_name'], $link);
-        $loop_table_names = array ('user_table', 'session_table', 'group_table', 'group_table', 'group_relation_table', 'group_mapping_table');
-        foreach ($loop_table_names as $key) { // loop through the possible tables --- start
-            if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] != '') { // check if table exists --- start
-                $temp_tablename = $posted_var['table_prefix'].$posted_var[$key];
-                $result = mysql_query('SELECT * FROM '.$temp_tablename);
-                if (!$result) {
-                    $return['db_'.$key] = sprintf($lang_bridgemgr_php['error_db_table'], '<i>'.$temp_tablename.'</i>', $prefix_and_table.'<i>'.$lang_bridgemgr_php[$key].'</i>'). ' <tt>'.$mysql_error_output.'</tt>';
-                }
-                @mysql_free_result($result);
-            } // check if table exists --- end
-        } // loop through the possible tables --- end
-        @mysql_close($link);
-        cpg_db_connect(); // connect back to coppermine db
-       break;
-
-
     } // end switch
 
     // write the post data to the database
@@ -379,50 +332,11 @@ if ($superCage->post->keyExists('custom_filename')) {
     $matches = $superCage->post->getMatched('custom_filename', '/^[a-zA-Z0-9_\-]*$/');
     $posted_var['custom_filename'] = $matches[0];
 }
-if ($superCage->post->keyExists('use_standard_groups')) {
-    $posted_var['use_standard_groups'] = $superCage->post->getAlnum('use_standard_groups');
-}
-if ($superCage->post->keyExists('dummy_use_standard_groups')) {
-    $posted_var['dummy_use_standard_groups'] = $superCage->post->getAlnum('dummy_use_standard_groups');
-}
-if ($superCage->post->keyExists('create_redir_file')) {
-    $posted_var['create_redir_file'] = $superCage->post->getDigits('create_redir_file');
-}
 if ($superCage->post->keyExists('bridge_enable')) {
     $posted_var['bridge_enable'] = $superCage->post->getDigits('bridge_enable');
 }
-if ($superCage->post->keyExists('db_database_name')) {
-    // Let's assume that the database name is sane 
-    $matches = $superCage->post->getMatched('db_database_name', '/^[a-zA-Z0-9_\-]*$/');
-    $posted_var['db_database_name'] = $matches[0];
-}
-if ($superCage->post->keyExists('table_prefix')) {
-    // Let's assume that the table_prefix is sane 
-    $matches = $superCage->post->getMatched('table_prefix', '/^[a-zA-Z0-9_\-]*$/');
-    $posted_var['table_prefix'] = $matches[0];
-}
 if ($superCage->post->keyExists('clear_unused_db_fields')) {
     $posted_var['clear_unused_db_fields'] = $superCage->post->getDigits('clear_unused_db_fields');
-}
-if ($superCage->post->keyExists('user_table')) {
-    $matches = $superCage->post->getMatched('user_table', '/^[a-zA-Z0-9_\-]*$/');
-    $posted_var['user_table'] = $matches[0];
-}
-if ($superCage->post->keyExists('session_table')) {
-    $matches = $superCage->post->getMatched('session_table', '/^[a-zA-Z0-9_\-]*$/');
-    $posted_var['session_table'] = $matches[0];
-}
-if ($superCage->post->keyExists('group_table')) {
-    $matches = $superCage->post->getMatched('group_table', '/^[a-zA-Z0-9_\-]*$/');
-    $posted_var['group_table'] = $matches[0];
-}
-if ($superCage->post->keyExists('group_relation_table')) {
-    $matches = $superCage->post->getMatched('group_relation_table', '/^[a-zA-Z0-9_\-]*$/');
-    $posted_var['group_relation_table'] = $matches[0];
-}
-if ($superCage->post->keyExists('group_mapping_table')) {
-    $matches = $superCage->post->getMatched('group_mapping_table', '/^[a-zA-Z0-9_\-]*$/');
-    $posted_var['group_mapping_table'] = $matches[0];
 }
 if ($superCage->post->keyExists('username')) {
     $posted_var['username'] = $superCage->post->getEscaped('username');
@@ -432,9 +346,6 @@ if ($superCage->post->keyExists('password')) {
 }
 if ($superCage->post->keyExists('full_forum_url')) {
     $posted_var['full_forum_url'] = $superCage->post->getEscaped('full_forum_url');
-}
-if ($superCage->post->keyExists('relative_path_of_forum_from_webroot')) {
-    $posted_var['relative_path_of_forum_from_webroot'] = $superCage->post->getEscaped('relative_path_of_forum_from_webroot');
 }
 if ($superCage->post->keyExists('relative_path_to_config_file')) {
     $posted_var['relative_path_to_config_file'] = $superCage->post->getEscaped('relative_path_to_config_file');
@@ -454,17 +365,6 @@ if (!$step) {
     $step = 'finalize';
 }
 $new_line = "\n";
-/*
-$next_step = array( // this defines the order of steps
-  'choose_bbs' => 'settings_path',
-  'settings_path' => 'db_connect',
-  'db_connect' => 'db_tables',
-  'db_tables' => 'db_groups',
-  'db_groups' => 'special_settings',
-  'special_settings' => 'finalize',
-  'finalize' => 'finalize',
-);
-*/
 
 $next_step = array( // this defines the order of steps
   'choose_bbs' => 'settings_path',
@@ -620,7 +520,7 @@ case "special_settings":
         $BRIDGE = cpg_get_bridge_db_values();
         print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
         starttable(-1, cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['special_settings'].'&nbsp;'.cpg_display_help('f=bridging.htm&amp;as=bridge_manager_specific_start&amp;ae=bridge_manager_specific_end', '800', '450'), 3);
-        $loop_array = array('logout_flag', 'use_post_based_groups','license_number');
+        $loop_array = array('use_post_based_groups');
         $rows_displayed = 0;
         foreach($loop_array as $key) { // foreach loop_array --- start
             if ($BRIDGE[$key]) {
@@ -700,41 +600,6 @@ case "special_settings":
             } // actually display the row? --- end
         } // foreach loop_array --- end
 
-        if ($default_bridge_data[$BRIDGE['short_name']]['create_redir_file_content'] != '') { // create redirection file question --- start
-            // sub-step1: make up the content of the redir file
-            $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_content'] = str_replace('{COPPERMINE_URL}', rtrim($CONFIG['ecards_more_pic_target'], '/').'/', $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_content']);
-            // sub-step2: can we read the folder it's suppossed to go into?
-            // sub-step3: is the redir file already in place and if yes: does it match the content we have come up with?
-            // sub-step4: is the folder writable?
-            // if we can't write (for whatever reason), just output the contents for copy and paste
-            // what do we need: write the file, display it only or do both?
-            $redir_action = explode(',', $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action']);
-            if (in_array('write',$redir_action)) { // the file should be created --- start
-                // come up with the folder the bbs resides in
-                if ($BRIDGE['relative_path_of_forum_from_webroot'] != '' && $default_bridge_data[$BRIDGE['short_name']]['relative_path_of_forum_from_webroot_used'] != '') {
-                    // we have a db entry and the user appears to have it configured
-                    $redir_folder = $BRIDGE['relative_path_of_forum_from_webroot'];
-                } elseif ($BRIDGE['relative_path_to_config_file'] != '' && $default_bridge_data[$BRIDGE['short_name']]['relative_path_to_config_file_used'] != '') {
-                    // we have a relative path. We'll use it if we don't have a folder already
-                    $redir_folder = $BRIDGE['relative_path_to_config_file'];
-                } else {
-                    // something strange happened: there is no path set at all. We won't be able to write the file. Change the option to "display_only"
-                    $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action'] = @str_replace(',write', '', $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action']);
-                    $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action'] = @str_replace('write,', '', $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action']);
-                    $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action'] = @str_replace('write', '', $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action']);
-                    $redir_action = explode(',', $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action']);
-                }
-                // check if the redir file already exists
-                print $redir_folder;
-                $redir_folder_writable = cpg_is_writable($redir_folder);
-                if ($redir_folder_writable == '-1') {
-                    // the redir folder is not writable
-                    print 'Not writable';
-                }
-            } // the file should be created --- end
-            // display the option
-        } // create redirection file question --- end
-
         if ($rows_displayed == 0) {
             print '<tr>';
             print '    <td class="tableh2" colspan="3" align="center">';
@@ -769,8 +634,6 @@ case "finalize":
                         VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
                         cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
                         VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
-                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-                        VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
                 }
         print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
         echo <<<EOT
@@ -977,8 +840,6 @@ else { // not in gallery admin mode --- start
                         VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
                         cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
                         VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
-                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-                        VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
 
             if (USER_ID) { //user already logged in
                 msg_box($lang_bridgemgr_php['recovery_success_title'], $lang_bridgemgr_php['recovery_success_content'], $lang_bridgemgr_php['goto_bridgemgr'], $CPG_PHP_SELF, "-1");
