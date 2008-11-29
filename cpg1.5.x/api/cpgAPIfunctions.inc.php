@@ -167,11 +167,12 @@ function localised_date($timestamp = -1, $datefmt)
 
     $timestamp = localised_timestamp($timestamp);
 
-    $date = ereg_replace('%[aA]', $lang_day_of_week[(int)strftime('%w', $timestamp)], $datefmt);
-    $date = ereg_replace('%[bB]', $lang_month[(int)strftime('%m', $timestamp)-1], $date);
+    $date = str_replace(array('%a', '%A'), $lang_day_of_week[(int)strftime('%w', $timestamp)], $datefmt);
+    $date = str_replace(array('%b', '%B'), $lang_month[(int)strftime('%m', $timestamp)-1], $date);
 
     return strftime($date, $timestamp);
 }
+
 
 /**
  * localised_timestamp()

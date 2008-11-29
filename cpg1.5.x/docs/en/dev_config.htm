@@ -130,14 +130,14 @@ If you want your new config option to be displayed beneath the &quot;Enable plug
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">regex</td>
-    <td valign="top" class="tableb tableb_alternate">Regular expression that the value entered will be checked against (using PHP's ereg-command) when the form is being submit. If the regular expression returns false, the config field change will be rejected</td>
+    <td valign="top" class="tableb tableb_alternate">Regular expression that the value entered will be checked against (using PHP's preg_match) when the form is being submit. If the regular expression returns false, the config field change will be rejected</td>
     <td valign="top" class="tableb tableb_alternate">optional</td>
     <td valign="top" class="tableb tableb_alternate"></td>
     <td valign="top" class="tableb tableb_alternate">maxlength-field</td>
   </tr>
   <tr>
     <td valign="top" class="tableb">regex_not</td>
-    <td valign="top" class="tableb">Regular expression that the value entered will be checked against (using PHP's ereg-command) when the form is being submit (similar to the field &quot;regex&quot;) with the difference/exception that the config value the user has entered will be rejected if the regular expression entered into &quot;regex_not&quot; <strong>does</strong> match the field.<br />
+    <td valign="top" class="tableb">Regular expression that the value entered will be checked against (using PHP's preg_match) when the form is being submit (similar to the field &quot;regex&quot;) with the difference/exception that the config value the user has entered will be rejected if the regular expression entered into &quot;regex_not&quot; <strong>does</strong> match the field.<br />
     Use it to make sure the end user changes the content of a field once registered to something that makes sense (instead of keeping the default value).</td>
     <td valign="top" class="tableb">optional</td>
     <td valign="top" class="tableb"></td>

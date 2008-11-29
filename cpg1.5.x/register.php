@@ -423,7 +423,7 @@ function check_user_info(&$error) { // function check_user_info - start
     if (utf_strlen($password) < 2) $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['password_warning1'] . '</li>';
     if ($password == $user_name) $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['password_warning2'] . '</li>';
     if ($password != $password_again) $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['password_verification_warning1'] . '</li>';
-    if (!eregi("^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$", $email)) $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['email_warning2'] . '</li>';
+    if (!Inspekt::isEmail($email)) $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['email_warning2'] . '</li>';
     if ($CONFIG['user_registration_disclaimer'] == 2 && $agree_disclaimer != 1) {
         $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_register_php['err_disclaimer'] . '</li>';
     }

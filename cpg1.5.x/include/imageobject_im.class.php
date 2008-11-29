@@ -81,7 +81,7 @@ class imageObject{
                                 * Also the options for -crop should not have space in between them.
                                 * By Aditya Mooley <aditya@sanisoft.com>
                                 */
-                                if (eregi("win",getenv('OS'))) {
+                                if ($superCage->env->getMatched('OS', '/win/i')) {
                                     $imgFile = str_replace("'","\"" ,$imgFile );
                                          $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$this->quality} {$CONFIG['im_options']} -crop {$new_w}x{$new_h}+{$clip_left}+{$clip_top} ".str_replace("\\","/" ,$imgFile )." ".str_replace("\\","/" ,$imgFile );
                                          exec ("\"$cmd\"", $output, $retval);
@@ -113,7 +113,7 @@ class imageObject{
                                 * By Aditya Mooley <aditya@sanisoft.com>
                                 */
 
-                                if (eregi("win",getenv('OS'))) {
+                                if ($superCage->env->getMatched('OS', '/win/i')) {
                                     $imgFile = str_replace("'","\"" ,$imgFile );
                                          $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$this->quality} {$CONFIG['im_options']} -rotate $angle ".str_replace("\\","/" ,$imgFile )." ".str_replace("\\","/" ,$imgFile );
                                          exec ("\"$cmd\"", $output, $retval);
@@ -144,7 +144,7 @@ class imageObject{
                                 * Hack for working with ImageMagick on WIndows even if IM is installed in C:\Program Files.
                                 * By Aditya Mooley <aditya@sanisoft.com>
                                 */
-                                if (eregi("win",getenv('OS'))) {
+                                if ($superCage->env->getMatched('OS', '/win/i')) {
                                     $imgFile = str_replace("'","\"" ,$imgFile );
                                          $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$this->quality} {$CONFIG['im_options']} -geometry {$new_w}x{$new_h} ".str_replace("\\","/" ,$imgFile )." ".str_replace("\\","/" ,$imgFile );
                                          exec ("\"$cmd\"", $output, $retval);

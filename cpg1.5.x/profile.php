@@ -314,7 +314,7 @@ if ($superCage->post->keyExists('change_profile') && USER_ID && UDB_INTEGRATION 
 
                 $email = $superCage->post->getEscaped('email');
 
-                if (!eregi("^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$", $email)){
+                if (!Inspekt::isEmail($email)) {
                         $error = $lang_register_php['err_invalid_email'];
 
                 } elseif (!$CONFIG['allow_duplicate_emails_addr']) {

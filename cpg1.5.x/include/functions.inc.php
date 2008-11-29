@@ -376,8 +376,8 @@ function localised_date($timestamp = -1, $datefmt)
 
     $timestamp = localised_timestamp($timestamp);
 
-    $date = ereg_replace('%[aA]', $lang_day_of_week[(int)strftime('%w', $timestamp)], $datefmt);
-    $date = ereg_replace('%[bB]', $lang_month[(int)strftime('%m', $timestamp)-1], $date);
+    $date = str_replace(array('%a', '%A'), $lang_day_of_week[(int)strftime('%w', $timestamp)], $datefmt);
+    $date = str_replace(array('%b', '%B'), $lang_month[(int)strftime('%m', $timestamp)-1], $date);
 
     return strftime($date, $timestamp);
 }
@@ -813,7 +813,7 @@ function load_template()
         $template_footer = CPGPluginAPI::filter('gallery_footer','').substr($template, $gallery_pos);
 
         $add_version_info = "<!--Coppermine Photo Gallery ".COPPERMINE_VERSION." (".COPPERMINE_VERSION_STATUS.")-->\n</body>";
-        $template_footer = ereg_replace("</body[^>]*>",$add_version_info,$template_footer);
+        $template_footer = preg_replace("#</body[^>]*>#",$add_version_info,$template_footer);
 }
 
 // Eval a template (substitute vars with values)
@@ -1937,138 +1937,138 @@ function cpg_determine_client($pid)
         // Get the details of user browser, IP, OS, etc
         $os = 'Unknown';
         $server_agent = $superCage->server->getRaw('HTTP_USER_AGENT');
-        if (eregi('Ubuntu',$server_agent)) {
+        if (preg_match('#Ubuntu#i',$server_agent)) {
             $os = 'Linux Ubuntu';
-        } elseif (eregi('Debian',$server_agent)) {
+        } elseif (preg_match('#Debian#i',$server_agent)) {
             $os = 'Linux Debian';
-        } elseif (eregi('CentOS',$server_agent)) {
+        } elseif (preg_match('#CentOS#i',$server_agent)) {
             $os = 'Linux CentOS';
-        } elseif (eregi('Fedora',$server_agent)) {
+        } elseif (preg_match('#Fedora#i',$server_agent)) {
             $os = 'Linux Fedora';
-        } elseif (eregi('Mandrake',$server_agent)) {
+        } elseif (preg_match('#Mandrake#i',$server_agent)) {
             $os = 'Linux Mandrake';
-        } elseif (eregi('RedHat',$server_agent)) {
+        } elseif (preg_match('#RedHat#i',$server_agent)) {
             $os = 'Linux RedHat';
-        } elseif (eregi('Suse',$server_agent)) {
+        } elseif (preg_match('#Suse#i',$server_agent)) {
             $os = 'Linux Suse';
-        } elseif (eregi('Linux',$server_agent)) {
+        } elseif (preg_match('#Linux#i',$server_agent)) {
             $os = 'Linux';
-        } elseif (eregi('Windows NT 5.0',$server_agent)) {
+        } elseif (preg_match('#Windows NT 5.0#i',$server_agent)) {
             $os = 'Windows 2000';
-        } elseif (eregi('win98|Windows 98',$server_agent)) {
+        } elseif (preg_match('#win98|Windows 98#i',$server_agent)) {
             $os = 'Windows 98';
-        } elseif (eregi('Windows NT 5.1',$server_agent)) {
+        } elseif (preg_match('#Windows NT 5.1#i',$server_agent)) {
             $os = 'Windows XP';
-        } elseif (eregi('Windows NT 5.2',$server_agent)) {
+        } elseif (preg_match('#Windows NT 5.2#i',$server_agent)) {
             $os = 'Windows 2003 Server';
-        } elseif (eregi('Windows NT 6.0',$server_agent)) {
+        } elseif (preg_match('#Windows NT 6.0#i',$server_agent)) {
             $os = 'Windows Vista';
-        } elseif (eregi('Windows CE',$server_agent)) {
+        } elseif (preg_match('#Windows CE#i',$server_agent)) {
             $os = 'Windows CE';
-        } elseif (eregi('Windows',$server_agent)) {
+        } elseif (preg_match('#Windows#i',$server_agent)) {
             $os = 'Windows';
-        } elseif (eregi('SunOS',$server_agent)) {
+        } elseif (preg_match('#SunOS#i',$server_agent)) {
             $os = 'Sun OS';
-        } elseif (eregi('Macintosh',$server_agent)) {
+        } elseif (preg_match('#Macintosh#i',$server_agent)) {
             $os = 'Macintosh';
-        } elseif (eregi('Mac_PowerPC',$server_agent)) {
+        } elseif (preg_match('#Mac_PowerPC#i',$server_agent)) {
             $os = 'Mac OS';
-        } elseif (eregi('Mac_PPC',$server_agent)) {
+        } elseif (preg_match('#Mac_PPC#i',$server_agent)) {
             $os = 'Macintosh';
-        } elseif (eregi('OS/2',$server_agent)) {
+        } elseif (preg_match('#OS/2#i',$server_agent)) {
             $os = 'OS/2';
-		} elseif (eregi('aix',$server_agent)) {
+		} elseif (preg_match('#aix#i',$server_agent)) {
             $os = 'aix';
-		} elseif (eregi('FreeBSD',$server_agent)) {
+		} elseif (preg_match('#FreeBSD#i',$server_agent)) {
             $os = 'BSD FreeBSD';
-		} elseif (eregi('Unix',$server_agent)) {
+		} elseif (preg_match('#Unix#i',$server_agent)) {
             $os = 'Unix';
-		} elseif (eregi('iphone',$server_agent)) {
+		} elseif (preg_match('#iphone#i',$server_agent)) {
             $os = 'iPhone';
         }
 
         $browser = 'Unknown';
-        if (eregi('MSIE',$server_agent)) {
-            if (eregi('MSIE 5.5',$server_agent)) {
+        if (preg_match('#MSIE#i',$server_agent)) {
+            if (preg_match('#MSIE 5.5#i',$server_agent)) {
                 $browser = 'IE5.5';
-            } elseif (eregi('MSIE 6.0',$server_agent)) {
+            } elseif (preg_match('#MSIE 6.0#i',$server_agent)) {
                 $browser = 'IE6';
-            } elseif (eregi('MSIE 7.0',$server_agent)) {
+            } elseif (preg_match('#MSIE 7.0#i',$server_agent)) {
                 $browser = 'IE7';
-            } elseif (eregi('MSIE 8.0',$server_agent)) {
+            } elseif (preg_match('#MSIE 8.0#i',$server_agent)) {
                 $browser = 'IE8';
-            } elseif (eregi('MSIE 3.0',$server_agent)) {
+            } elseif (preg_match('#MSIE 3.0#i',$server_agent)) {
                 $browser = 'IE3';
-            } elseif (eregi('MSIE 4.0',$server_agent)) {
+            } elseif (preg_match('#MSIE 4.0#i',$server_agent)) {
                 $browser = 'IE4';
-            } elseif (eregi('MSIE 5.0',$server_agent)) {
+            } elseif (preg_match('#MSIE 5.0#i',$server_agent)) {
                 $browser = 'IE5.0';
             }
-        } elseif (eregi('Epiphany',$server_agent)) {
+        } elseif (preg_match('#Epiphany#i',$server_agent)) {
             $browser = 'Epiphany';
-        } elseif (eregi('Phoenix',$server_agent)) {
+        } elseif (preg_match('#Phoenix#i',$server_agent)) {
             $browser = 'Phoenix';        
-        } elseif (eregi('Firebird',$server_agent)) {
+        } elseif (preg_match('#Firebird#i',$server_agent)) {
             $browser = 'Mozilla Firebird';
-        } elseif (eregi('NetSurf',$server_agent)) {
+        } elseif (preg_match('#NetSurf#i',$server_agent)) {
             $browser = 'NetSurf';
-        } elseif (eregi('netscape',$server_agent)) {
+        } elseif (preg_match('#netscape#i',$server_agent)) {
             $browser = 'Netscape';
-        } elseif (eregi('Chrome',$server_agent)) {
+        } elseif (preg_match('#Chrome#i',$server_agent)) {
             $browser = 'Chrome';
-        } elseif (eregi('Firefox',$server_agent)) {
+        } elseif (preg_match('#Firefox#i',$server_agent)) {
             $browser = 'Firefox';
-        } elseif (eregi('Galeon',$server_agent)) {
+        } elseif (preg_match('#Galeon#i',$server_agent)) {
             $browser = 'Galeon';
-        } elseif (eregi('Camino',$server_agent)) {
+        } elseif (preg_match('#Camino#i',$server_agent)) {
             $browser = 'Camino';
-        } elseif (eregi('Konqueror',$server_agent)) {
+        } elseif (preg_match('#Konqueror#i',$server_agent)) {
             $browser = 'Konqueror';
-        } elseif (eregi('Safari',$server_agent)) {
+        } elseif (preg_match('#Safari#i',$server_agent)) {
             $browser = 'Safari';
-        } elseif (eregi('OmniWeb',$server_agent)) {
+        } elseif (preg_match('#OmniWeb#i',$server_agent)) {
             $browser = 'OmniWeb';
-        } elseif (eregi('Opera',$server_agent)) {
+        } elseif (preg_match('#Opera#i',$server_agent)) {
             $browser = 'Opera';
-        } elseif (eregi('HTTrack',$server_agent)) {
+        } elseif (preg_match('#HTTrack#i',$server_agent)) {
         	$browser = 'HTTrack';
-        } elseif (eregi('OffByOne',$server_agent)) {
+        } elseif (preg_match('#OffByOne#i',$server_agent)) {
             $browser = 'Off By One';
-        } elseif (eregi('amaya',$server_agent)) {
+        } elseif (preg_match('#amaya#i',$server_agent)) {
             $browser = 'Amaya';
-        } elseif (eregi('iCab',$server_agent)) {
+        } elseif (preg_match('#iCab#i',$server_agent)) {
             $browser = 'iCab';
-        } elseif (eregi('Lynx',$server_agent)) {
+        } elseif (preg_match('#Lynx#i',$server_agent)) {
             $browser = 'Lynx';
-        } elseif (eregi('Googlebot',$server_agent)) {
+        } elseif (preg_match('#Googlebot#i',$server_agent)) {
             $browser = 'Googlebot';
-        } elseif (eregi('Lycos_Spider',$server_agent)) {
+        } elseif (preg_match('#Lycos_Spider#i',$server_agent)) {
             $browser = 'Lycos Spider';
-        } elseif (eregi('Firefly',$server_agent)) {
+        } elseif (preg_match('#Firefly#i',$server_agent)) {
             $browser = 'Fireball Spider';
-        } elseif (eregi('Advanced Browser',$server_agent)) {
+        } elseif (preg_match('#Advanced Browser#i',$server_agent)) {
             $browser = 'Avant';
-        } elseif (eregi('Amiga-AWeb',$server_agent)) {
+        } elseif (preg_match('#Amiga-AWeb#i',$server_agent)) {
             $browser = 'AWeb';
-        } elseif (eregi('Cyberdog',$server_agent)) {
+        } elseif (preg_match('#Cyberdog#i',$server_agent)) {
             $browser = 'Cyberdog';
-        } elseif (eregi('Dillo',$server_agent)) {
+        } elseif (preg_match('#Dillo#i',$server_agent)) {
             $browser = 'Dillo';
-        } elseif (eregi('DreamPassport',$server_agent)) {
+        } elseif (preg_match('#DreamPassport#i',$server_agent)) {
             $browser = 'DreamCast';
-        } elseif (eregi('eCatch',$server_agent)) {
+        } elseif (preg_match('#eCatch#i',$server_agent)) {
             $browser = 'eCatch';
-        } elseif (eregi('ANTFresco',$server_agent)) {
+        } elseif (preg_match('#ANTFresco#i',$server_agent)) {
             $browser = 'Fresco';
-        } elseif (eregi('RSS',$server_agent)) {
+        } elseif (preg_match('#RSS#i',$server_agent)) {
             $browser = 'RSS';
-        } elseif (eregi('Avant',$server_agent)) {
+        } elseif (preg_match('#Avant#i',$server_agent)) {
             $browser = 'Avant';
-        } elseif (eregi('HotJava',$server_agent)) {
+        } elseif (preg_match('#HotJava#i',$server_agent)) {
             $browser = 'HotJava';
-        } elseif (eregi('W3C-checklink|W3C_Validator|Jigsaw',$server_agent)) {
+        } elseif (preg_match('#W3C-checklink|W3C_Validator|Jigsaw#i',$server_agent)) {
             $browser = 'W3C';
-        } elseif (eregi('K-Meleon',$server_agent)) {
+        } elseif (preg_match('#K-Meleon#i',$server_agent)) {
             $browser = 'K-Meleon';
         }
         
@@ -3022,7 +3022,7 @@ function cpg_phpinfo_mod($search)
     ob_end_clean();
     // find out the first occurence of "<h2" and throw the superfluos stuff away
     $string = stristr($string, 'module_' . $search);
-    $string = eregi_replace('</table>(.*)', '', $string);
+    $string = preg_replace('#</table>(.*)#s', '', $string);
     $string = stristr($string, '<tr');
     $string = str_replace('</td>', '|', $string);
     $string = str_replace('</tr>', $delimiter, $string);
@@ -3899,8 +3899,7 @@ function cpgStoreTempMessage($message)
     global $CONFIG;
     $message = urlencode($message);
     // come up with a unique message id
-    $message_id = ereg_replace("[^A-Za-z0-9]", "",
-        base64_encode(rand(10000,30000).time().USER_ID.md5($message)));
+    $message_id = md5(uniqid());
     // write the message to the database
     $user_id = USER_ID;
     $time = time();
@@ -4071,13 +4070,11 @@ function cpgGetScriptNameParams($exception = '')
 **/
 function cpgValidateDate($date) 
 {
-    $pattern = '^(19|20)([0-9]{2}-((0[13-9]|1[0-2])-(0[1-9]|[12][0-9]|30)|(0[13578]|1[02])-31|02-(0[1-9]|1[0-9]|2[0-8]))|([2468]0|[02468][48]|[13579][26])-02-29)$';
-    if (ereg($pattern, $date) == TRUE) {
-        $return = $date;
+	if (Inspekt::isDate($date)) {
+		return $date;
     } else {
-        $return = '';
+    	return '';
     }
-    return $return;
 } // function cpgValidateDate
 
 

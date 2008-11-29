@@ -334,8 +334,7 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
                          }
                         else $unsharp_mask = "";
 
-            //getRaw() used for comparison only
-            if (eregi("win", $superCage->env->getRaw('OS'))) {
+            if ($superCage->env->getMatched('OS', '/win/i')) {
                 $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$CONFIG['jpeg_qual']} {$CONFIG['im_options']} ".$resize_commands." ".$unsharp_mask." ".str_replace("\\","/" ,$src_file )." ".str_replace("\\","/" ,$im_dest_file );
                 exec ("\"$cmd\"", $output, $retval);
             } else {
@@ -360,8 +359,7 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
                     //temp path for small wm
                     $path_to_tmp_wm = './'.$CONFIG['fullpath'].'edit/temp_wm.png';
 
-                    //getRaw() used for comparison only
-                    if (eregi("win",$superCage->env->getRaw('OS'))) {
+                    if ($superCage->env->getMatched('OS', '/win/i')) {
                         $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -resize ".$wm_resize."% ".str_replace("\\","/" ,$CONFIG['watermark_file'] )." ".str_replace("\\","/" ,$path_to_tmp_wm );
                         exec ("\"$cmd\"", $output, $retval);
                     } else {
@@ -374,8 +372,7 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
                 }
 
                 // now we apply the watermark
-                //getRaw() used for comparison only
-                if (eregi("win",$superCage->env->getRaw('OS'))) {
+                if ($superCage->env->getMatched('OS', '/win/i')) {
                     $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."composite\" -dissolve {$CONFIG['watermark_transparency']} -gravity {$CONFIG['where_put_watermark']} \"$wm_file\" ".str_replace("\\","/" ,$im_dest_file )." ".str_replace("\\","/" ,$im_dest_file );
                     exec ("\"$cmd\"", $output, $retval);
                 } else {

@@ -108,9 +108,8 @@ EOT;
 }
 
 // Check supplied email address
-$valid_email_pattern = "^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]*\.)+[a-z]{2,6}$";
-$valid_sender_email = eregi($valid_email_pattern, $sender_email);
-$valid_recipient_email = eregi($valid_email_pattern, $recipient_email);
+$valid_sender_email = Inspekt::isEmail($sender_email);
+$valid_recipient_email = Inspekt::isEmail($recipient_email);
 
 if (!$valid_sender_email && $superCage->post->keyExists('sender_name')) {
     $sender_email_warning = '<font size="1" color="red">' . $lang_ecard_php['invalid_email'] . ' (' . $sender_email . ')</font>';

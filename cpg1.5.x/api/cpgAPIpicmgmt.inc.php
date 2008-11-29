@@ -179,7 +179,7 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
              * Hack for working with ImageMagick on WIndows even if IM is installed in C:\Program Files.
              * By Aditya Mooley <aditya@sanisoft.com>
              */
-            if (eregi("win",$_ENV['OS'])) {
+            if ($superCage->env->getMatched('OS', '/win/i')) {
                 $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$CONFIG['jpeg_qual']} {$CONFIG['im_options']} -geometry {$destWidth}x{$destHeight} ".str_replace("\\","/" ,$src_file )." ".str_replace("\\","/" ,$im_dest_file );
                 exec ("\"$cmd\"", $output, $retval);
             } else {

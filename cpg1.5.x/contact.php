@@ -68,7 +68,7 @@ if ($superCage->post->keyExists('submit')) {
   }
   // check email address
   if (!USER_ID && $CONFIG['contact_form_guest_email_field'] == 2) {
-    if (eregi('^([a-zA-Z0-9]((\.|\-|\_){0,1}[a-zA-Z0-9]){0,})@([a-zA-Z]((\.|\-){0,1}[a-zA-Z0-9]){0,})\.([a-zA-Z]{2,4})$', $email_address) == FALSE) {
+    if (!Inspekt::isEmail($email_address)) {
       $expand_array[] = 'email_remark';
       $error++;
     }

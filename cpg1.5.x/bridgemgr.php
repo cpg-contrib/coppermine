@@ -88,7 +88,7 @@ function write_to_db($step) {
         if ($posted_var['short_name'] == '') {
             $return['short_name'] = $lang_bridgemgr_php['error_no_blank_name'];
         }
-        if (ereg('[^A-Za-z0-9_-]',$posted_var['short_name'])) {
+        if (preg_match('/[^a-z0-9_-]/i',$posted_var['short_name'])) {
             $return['short_name'] = $lang_bridgemgr_php['error_no_special_chars'];
         }
     }

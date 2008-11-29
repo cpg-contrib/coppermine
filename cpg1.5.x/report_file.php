@@ -102,8 +102,7 @@ if ($what == 'comment') {
 }
 
 // Check supplied email address
-$valid_email_pattern = "^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$";
-$valid_sender_email = eregi($valid_email_pattern, $sender_email);
+$valid_sender_email = Inspekt::isEmail($sender_email);
 $invalid_email = '<font size="1">' . $lang_report_php['invalid_email'] . '</font>';
 
 if (!$valid_sender_email && $superCage->post->keyExists('subject')) {

@@ -121,7 +121,7 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
         }
         // regex check
         if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '') || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '')) {
-            if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '' && eregi($adminDataValue['regex'],$evaluate_value) == FALSE) || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '' && eregi($adminDataValue['regex_not'],$evaluate_value) == TRUE)) {
+            if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '' && preg_match('/' . $adminDataValue['regex'] . '/i', $evaluate_value) == FALSE) || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '' && preg_match('/' . $adminDataValue['regex_not'] . '/i', $evaluate_value) == TRUE)) {
                 $userMessage .= '<li style="list-style-image:url(images/icons/stop.png)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
                 $regexValidation = '0';
                 //$admin_data_array[$adminDataKey] = $evaluation_array[$adminDataKey]; // replace the stuff in the form field with the improper input, so the user can see and correct his error
@@ -200,7 +200,7 @@ $regex = '^'
                   .'([0-9a-zA-Z_!~.()-])+/{1}'
                   .'){0,}'
                   .'$';
-print eregi($regex,$string);
+print preg_match('/' . $regex . '/i', $string);
 print '<br />';
 print $string;
 die;

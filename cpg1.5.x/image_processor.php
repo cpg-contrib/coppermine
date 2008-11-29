@@ -93,7 +93,7 @@ switch ($method) {
 				$im_path = $CONFIG['impath'];
 
 				//Check the IM path for the final slash.
-				if (eregi('/$',$im_path) or empty($im_path)) {
+				if ((substr($im_path, -1) == '/') or empty($im_path)) {
 						$trailing_slash = "";
 					} else {
 						$trailing_slash = "/";
@@ -524,7 +524,7 @@ imagedestroy($destination_image_handle); */
 		$im_path = $CONFIG['impath'];
 
 		//Check the IM path for the final slash.
-		if (eregi('/$',$im_path) or empty($im_path)) {
+		if ((substr($im_path, -1) == '/') or empty($im_path)) {
 				$trailing_slash = "";
 			} else {
 				$trailing_slash = "/";
@@ -857,12 +857,12 @@ function make_form($next_form_action, $path_to_preview_image, $path_to_primary_i
 	
 			//Create the search strings.
 	
-			$preview_search_string = "^".$preview_image_directory."";
-			$primary_search_string = "^".$transitory_file_directory."";
+			$preview_search_string = "/^".$preview_image_directory."/";
+			$primary_search_string = "/^".$transitory_file_directory."/";
 	
 			//Check the preview image path and delete if it passes the test.
 	
-			if ((ereg($preview_search_string, $path_to_preview_image)) and (file_exists($path_to_preview_image))) {
+			if ((preg_match($preview_search_string, $path_to_preview_image)) and (file_exists($path_to_preview_image))) {
 	
 					// It is safe to delete the preview image.
 					unlink($path_to_preview_image);
@@ -876,7 +876,7 @@ function make_form($next_form_action, $path_to_preview_image, $path_to_primary_i
 	
 			//Check the primary image path.
 	
-			if ((!(ereg($primary_search_string, $path_to_primary_image))) or (!(file_exists($path_to_primary_image)))) {
+			if ((!(preg_match($primary_search_string, $path_to_primary_image))) or (!(file_exists($path_to_primary_image)))) {
 	
 					// The primary image path is not valid, or the file does not exist.
 					cpg_die(ERROR, $lang_image_processor_php['primary_tampering'], __FILE__, __LINE__);

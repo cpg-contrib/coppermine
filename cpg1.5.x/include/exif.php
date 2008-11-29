@@ -632,27 +632,27 @@ function read_entry(&$result,$in,$seek,$intel,$ifd_name,$globalOffset) {
 		if ($result['VerboseOutput'] == 1) {
 			$result[$ifd_name]['MakerNote']['RawData'] = $data;
 		}
-		if (eregi('NIKON',$make)) {
+		if (stripos($make, 'NIKON') !== FALSE) {
 			require_once('makers/nikon.php');
 			parseNikon($data,$result);
 			$result[$ifd_name]['KnownMaker'] = 1;
-		} else if (eregi('OLYMPUS',$make)) {
+		} else if (stripos($make, 'OLYMPUS') !== FALSE) {
 			require_once('makers/olympus.php');
 			parseOlympus($data,$result,$seek,$globalOffset);
 			$result[$ifd_name]['KnownMaker'] = 1;
-		} else if (eregi('Canon',$make)) {
+		} else if (stripos($make, 'CANON') !== FALSE) {
 			require_once('makers/canon.php');
 			parseCanon($data,$result,$seek,$globalOffset);
 			$result[$ifd_name]['KnownMaker'] = 1;
-		} else if (eregi('FUJIFILM',$make)) {
+		} else if (stripos($make, 'FUJIFILM') !== FALSE) {
 			require_once('makers/fujifilm.php');
 			parseFujifilm($data,$result);
 			$result[$ifd_name]['KnownMaker'] = 1;
-		} else if (eregi('SANYO',$make)) {
+		} else if (stripos($make, 'SANYO') !== FALSE) {
 			require_once('makers/sanyo.php');
 			parseSanyo($data,$result,$seek,$globalOffset);
 			$result[$ifd_name]['KnownMaker'] = 1;
-	} else if (eregi('Panasonic',$make)) { 
+	} else if (stripos($make, 'PANASONIC') !== FALSE) {
 		require_once('makers/panasonic.php'); 
 		parsePanasonic($data,$result,$seek,$globalOffset); 
 		$result[$ifd_name]['KnownMaker'] = 1; 

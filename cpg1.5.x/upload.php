@@ -450,7 +450,7 @@ function get_and_convert_to_bytes ($ini_variable_name)
     $parsed_ini_size = array();
 
     // Make sure the returned value is a string, then split the number and the unit in two.
-    if ((is_string($ini_string)) and (eregi('^([[:digit:]])+([[:alpha:]])*$', $ini_string, $parsed_ini_size))) {
+    if ((is_string($ini_string)) and (preg_match('#^([[:digit:]])+([[:alpha:]])*$#i', $ini_string, $parsed_ini_size))) {
 
         // Store the numerical component in $ini_limit cast as an integer
         $ini_limit = (int) $parsed_ini_size[1];
@@ -1403,7 +1403,7 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
             $URI_name = strtr($URI_name, array(" "=>"%20"));
 
             // We do some validation for the URI. First we check for http:// or ftp:// at the start of the URI.
-            if(!ereg('^http://|^ftp://',$URI_name)) {
+            if (!preg_match('#^http://|^ftp://#', $URI_name)) {
 
                 // The URL is malformed or not allowed in Coppermine. Note an error.
                 $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['incorrect_prefix']);
@@ -1603,7 +1603,7 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
                             if (strstr(strtolower($header['wrapper_data'][$i]), 'content-type')) {
 
                                 // If we find it, we have found the MIME type.  Use regular expressions to extract it.
-                                if(!(eregi('^content-type: ([[:graph:]]+)', $header['wrapper_data'][$i], $MIME_extraction_array))) {
+                                if(!(preg_match('#^content-type: ([[:graph:]]+)#i', $header['wrapper_data'][$i], $MIME_extraction_array))) {
 
                                     // We could not find a MIME type. Note an error and reject the URI as unsafe.
                                     $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $URI_name, 'error_code'=>$lang_upload_php['MIME_extraction_failure']);
@@ -1621,7 +1621,7 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
                             } elseif (strstr(strtolower($header['wrapper_data'][$i]), 'content-length')) {
 
                                 // We have found the Content-Length header.  Use regular expressions to extract it.
-                                if(eregi('^content-length: ([[:digit:]]+)', $header['wrapper_data'][$i], $length_extraction_array)) {
+                                if(preg_match('#^content-length: ([[:digit:]]+)#i', $header['wrapper_data'][$i], $length_extraction_array)) {
 
                                     // The content length should be available in bytes.  Cross compare with the maximum file size allowed in an upload.
                                     // Reject the file with an error if it is too large.
@@ -1856,7 +1856,7 @@ if ($superCage->post->keyExists('control') && $superCage->post->getRaw('control'
                                 if (strstr(strtolower($header['wrapper_data'][$i]), 'content-length')) {
 
                                     // We have found the Content-Length header.  Use regular expressions to extract it.
-                                    if(eregi('^content-length: ([[:digit:]]+)', $header['wrapper_data'][$i], $length_extraction_array)) {
+                                    if(preg_match('#^content-length: ([[:digit:]]+)#i', $header['wrapper_data'][$i], $length_extraction_array)) {
 
                                         // The content length should be available in bytes.  Cross compare with the maximum file size allowed in an upload.
                                         // Reject the file with an error if it is too large.

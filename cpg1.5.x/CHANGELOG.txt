@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-11-30 [O] Converted ereg*() functions to use preg_match, simple string functions or existing Inspekt validation code for performance and compatibility with future versions of PHP. (Code contributed by ripat) {Nibbler}
 2008-11-29 [D] Changed minimum requirements section in docs from PHP4.2.0 to PHP4.3.0 {Nibbler}
 2008-11-26 [O] Removed toggle for private IP address banning, as it never really has been used {GauGau}
 2008-11-26 [O] Replaced identical translations for "apply modifications" by one string in language file {GauGau}
