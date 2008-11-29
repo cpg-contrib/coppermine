@@ -4758,4 +4758,11 @@ function cpg_format_bytes($bytes) {
 	return number_format($bytes, 2, $lang_decimal_separator[1], $lang_decimal_separator[0]) . ' ' . $unit;
 }
 
+if (!function_exists('stripos')) {
+  function stripos($str,$needle,$offset=0)
+  {
+      return strpos(strtolower($str),strtolower($needle),$offset);
+  }
+}
+
 ?>
