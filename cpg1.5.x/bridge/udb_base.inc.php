@@ -631,102 +631,108 @@ class core_udb {
 
         function util_filloptions()
         {
-                global $lang_util_php, $CONFIG;
+				global $lang_util_php, $CONFIG;
 
-                
-                echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
+				echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
 
-                // Padding to indicate level
-		$padding = 8;
+				// Padding to indicate level
+				$padding = 8;
 		
-	  	$albums = array();
+				$albums = array();
 	
-	        // load all albums
-		$result = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY pos");
+				// load all albums
+				$result = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY pos");
 		
-		while ($row = mysql_fetch_assoc($result)) {
-			$albums[$row['category']][$row['aid']] = $row['title'];
-		}
-	        
-	        // Load all categories
-		$result = cpg_db_query("SELECT cid, rgt, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft");
+				while ($row = mysql_fetch_assoc($result)) {
+					$albums[$row['category']][$row['aid']] = $row['title'];
+				}
+
+				if (!empty($albums[0])) {
+		
+					// Albums in no category
+					echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">No category</option>';
+
+					foreach ($albums[0] as $aid => $title) {
+						echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>'."\n", $padding, $aid, $title);
+					}
+				}
+			        
+				// Load all categories
+				$result = cpg_db_query("SELECT cid, rgt, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft");
 		   
-		$cats = array();
-
-                // Albums in no category
-		echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">No category</option>';
+				$cats = array();
 			
-		if (!empty($albums[0])) {
-			foreach ($albums[0] as $aid => $title) {
-				echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>'."\n", $padding, $aid, $title);
-			}
-		}
-		
-		// Loop through all categories					
-		while ($row = mysql_fetch_assoc($result)) {
+				// Loop through all categories					
+				while ($row = mysql_fetch_assoc($result)) {
 			
-			// Determine category heirarchy
-		        if (count($cats)) {
-				while ($cats && $cats[count($cats)-1]['rgt'] < $row['rgt']) {
-					array_pop($cats);
-				}
-			}
+					// Determine category heirarchy
+					if (count($cats)) {
+						while ($cats && $cats[count($cats)-1]['rgt'] < $row['rgt']) {
+							array_pop($cats);
+						}
+					}
 		        
-		        // Add this category to the heirarchy	
-			$cats[] = $row;
+		        	$cats[] = $row;
+		        	
+					// Add this category to the heirarchy
+					if ($row['cid'] == USER_GAL_CAT) {
+					
+						// User galleries
+						echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">User galleries</option>' . "\n";
 		
-		        // construct a category heirarchy string breadcrumb style
-			$elements = array();
-			
-			foreach ($cats as $cat) {
-                                $elements[] = $cat['name'];
-			}
-			
-			$heirarchy = implode(' - ', $elements);
+						$result2 = cpg_db_query("SELECT {$this->field['user_id']} AS user_id, {$this->field['username']} AS user_name FROM {$this->usertable} ORDER BY {$this->field['username']}");
+		
+						$users = cpg_db_fetch_rowset($result2);
+		                
+						mysql_free_result($result2);
+		                
+						foreach ($users as $user) {
+					
+							if (!empty($albums[$user['user_id'] + FIRST_USER_CAT])) {
+				
+								echo '<option style="padding-left: ' . $padding . 'px; color: black; font-weight: bold" disabled="disabled">' . $user['user_name'] . '</option>' . "\n";
+		
+								foreach ($albums[$user['user_id'] + FIRST_USER_CAT] as $aid => $title) {
+									echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . "\n", $padding * 2, $aid, $title);
+								}
+							}
+						}
+				
+						unset($users);
+						
+						continue;
+					}
 
-                        // calculate padding for this level
-                        $p = (count($elements) - 1) * $padding;
-		
-			// category header
-			echo '<option style="padding-left: '.$p.'px; color: black; font-weight: bold" disabled="disabled">' ."\n". $heirarchy . '</option>' . "\n";
+					// construct a category heirarchy string breadcrumb style
+					$elements = array();
+				
+					foreach ($cats as $cat) {
+						$elements[] = $cat['name'];
+					}
+				
+					$heirarchy = implode(' - ', $elements);
+	
+					// calculate padding for this level
+					$p = (count($elements) - 1) * $padding;
 			
-			// albums in the category
-			if (!empty($albums[$row['cid']])) {
-				foreach ($albums[$row['cid']] as $aid => $title) {
-					echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . "\n", $p+$padding, $aid, $title);
+					// category header
+					echo '<option style="padding-left: '.$p.'px; color: black; font-weight: bold" disabled="disabled">' ."\n". $heirarchy . '</option>' . "\n";
+				
+					// albums in the category
+					if (!empty($albums[$row['cid']])) {
+						foreach ($albums[$row['cid']] as $aid => $title) {
+							echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . "\n", $p+$padding, $aid, $title);
+						}
+					}
 				}
-			}
-                }
 
-                // User galleries
-		echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">User galleries</option>' . "\n";
-
-                $result = cpg_db_query("SELECT {$this->field['user_id']} AS user_id, {$this->field['username']} AS user_name FROM {$this->usertable} ORDER BY {$this->field['username']}");
-
-                $users = cpg_db_fetch_rowset($result);
-                
-                mysql_free_result($result);
-                
- 		foreach ($users as $user) {
-			
-		        if (!empty($albums[$user['user_id'] + FIRST_USER_CAT])) {
-		
-			        echo '<option style="padding-left: ' . $padding . 'px; color: black; font-weight: bold" disabled="disabled">' . $user['user_name'] . '</option>' . "\n";
-
-			        foreach ($albums[$user['user_id'] + FIRST_USER_CAT] as $aid => $title) {
-				        echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . "\n", $padding * 2, $aid, $title);
-			        }
-		        }
-		}
-		
-		unset($users);
-		unset($albums);
+				unset($albums);
 	   
-                print '</select> (3)';
-                print '&nbsp;&nbsp;&nbsp;&nbsp;';
-                print '<button type="submit" class="button" name="submit" id="submit" value="'.$lang_util_php['submit_form'].'">'.$lang_util_php['submit_form'].' '.cpg_fetch_icon('ok', 2).'</button> (4)';
-                print '</form>';
-        }
+				print '</select> (3)';
+				print '&nbsp;&nbsp;&nbsp;&nbsp;';
+				print '<button type="submit" class="button" name="submit" id="submit" value="'.$lang_util_php['submit_form'].'">'.$lang_util_php['submit_form'].' '.cpg_fetch_icon('ok', 2).'</button> (4)';
+ 				print '</form>';
+			}
 
         // Taken from Mambo (com_registration.php)
         function make_password(){
