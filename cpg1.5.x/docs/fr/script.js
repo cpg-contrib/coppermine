@@ -34,6 +34,9 @@ $(function() {
 
 
 function cpgDocToc() {
+if (getUrlParameters('hide_nav') == 1) {
+	return;
+}
 document.write('<h6>Table of contents (<a href="../index.htm">documentation language selection</a>)</h6>');
 document.write('<ul id="tree">');
 document.write('  <li><a href="index.htm">Coppermine documentation</a>');
@@ -478,20 +481,19 @@ document.write('  </li>');
 document.write('  </li>');
 document.write('</ul>');
 
-  document.write('<br />&nbsp;<br />');
-  document.write('  <form action="http://www.google.com/cse" id="cse-search-box">');
-  document.write('    <div>');
-  document.write('      <input type="hidden" name="cx" value="009353514429642786404:1fg_c1k1td8" />');
-  document.write('      <input type="text" name="q" size="25" />');
-  document.write('      <input type="submit" name="sa" value="Chercher dans la Doc" style="font-size:9px;" />');
-  document.write('    </div>');
-  document.write('  </form>');
-  document.write('  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=fr"></script>');
+document.write('<br />&nbsp;<br />');
+document.write('  <form action="http://www.google.com/cse" id="cse-search-box">');
+document.write('    <div>');
+document.write('      <input type="hidden" name="cx" value="009353514429642786404:1fg_c1k1td8" />');
+document.write('      <input type="text" name="q" size="25" />');
+document.write('      <input type="submit" name="sa" value="Chercher dans la Doc" style="font-size:9px;" />');
+document.write('    </div>');
+document.write('  </form>');
+document.write('  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=fr"></script>');
 }
 
 function cpgDocBreadcrumb() {
-  var hideNav = getUrlParameters('hide_nav');
-  if (hideNav == 1) {
+  if (getUrlParameters('hide_nav') == 1) {
   	return;
   }
   var cpgDocLoopCounter = 0;

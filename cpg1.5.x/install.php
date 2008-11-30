@@ -63,7 +63,8 @@ $superCage = Inspekt::makeSuperCage();
 
 //load language
 $config = array(); // (array) temp config
-$temporary_config_file = 'include/config.tmp.php';
+$config_file['temporary'] = 'include/config.tmp.php';
+$config_file['permanent'] = 'include/config.inc.php';
 $error = ''; // (string) holds errors
 $temp_data; // holds various data
 $page_title = ''; // (string) holds the title of the current installation step
@@ -628,56 +629,56 @@ function html_welcome()
     } else {
         $next_step = STEP_VERSIONCHECK;
     }
-?>
+    print <<< EOT
       &nbsp;<br />
-      <form action="install.php?step=<?php echo $next_step; ?>" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
+      <form action="install.php?step={$next_step}" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableh1" colspan="2">
-          	<h2><?php echo $language['license']; ?></h2>
+          	<h2>{$language['license']}</h2>
           </td>
          </tr>
          <tr>
           <td class="tableb" colspan="2">
-          	<?php echo $language['license_info']; ?>
+          	{$language['license_info']}
           </td>
          </tr>
          <tr>
           <td class="tableb" colspan="2">
           	<iframe src="docs/en/copyrights.htm?hide_nav=1" width="100%" height="300" name="license">
-  			<?php echo $language['cpg_info_frames']; ?></a>.
+  			{$language['cpg_info_frames']}</a>.
 			</iframe>
           </td>
          </tr>
        </table>
        &nbsp;<br />
        <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
-        
-<?php
-    if ($error != '') {    
-?>
+EOT;
+    if ($error != '') {
+    	print <<< EOT
          <tr>
-          <td class="tableh2" colspan="2" align="center"><span class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;<?php echo $language['error']; ?>&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</span>
+          <td class="tableh2" colspan="2" align="left"><span class="error">{$language['error']}</span>
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2"><?php echo $language['error_need_corr']; ?><br /><br /><strong><?php echo $error; ?></strong>
+          <td class="tableb" colspan="2">{$language['error_need_corr']}<br /><br /><strong>{$error}</strong>
           </td>
          </tr>
-<?php
+EOT;
     }
-    ?>
+    $getLangSelect = getLangSelect();
+    print <<< EOT
          <tr>
-          <td class="tableh1" colspan="2"><strong><?php echo $language['select_lang']; ?></strong>
+          <td class="tableh1" colspan="2"><strong>{$language['select_lang']}</strong>
           </td>
          </tr>
          <tr>
-          <td class="tableb" align="center" colspan="2"><?php echo getLangSelect(); ?><input type="submit" name="update_lang" value="<?php echo $language['change_lang']; ?>" />
+          <td class="tableb" align="center" colspan="2">{$getLangSelect}<input type="submit" name="update_lang" value="{$language['change_lang']}" />
           </td>
          </tr>
         <tr>
           <td colspan="2" align="center" class="tableh2"><br />
-            <input type="submit" value="<?php echo $language['lets_go']; ?>" /><br /><br />
+            <input type="submit" value="{$language['lets_go']}" />
           </td>
          </tr>
     </table>
@@ -689,7 +690,7 @@ function html_welcome()
         document.forms[0][3].value = "passed";
 	  -->
       </script>
-    <?php
+EOT;
 }
 
 /* html_content()
@@ -731,31 +732,31 @@ function html_error($button = true)
 {
     global $language, $step, $error;
 	
-?>
-      <form action="install.php?step=<?php echo $step; ?>" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
+	print <<< EOT
+      <form action="install.php?step={$step}" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
-          <td class="tableh2" colspan="2" align="center"><span class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;<?php echo $language['error']; ?>&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</span>
+          <td class="tableh2" colspan="2" align="left"><span class="error">{$language['error']}</span>
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2"><?php echo $language['error_need_corr']; ?><br /><br /><strong><?php echo $error; ?></strong>
+          <td class="tableb" colspan="2">{$language['error_need_corr']}<br /><br /><strong>{$error}</strong>
           </td>
          </tr>
-          <?php
+EOT;
           if ($button) {
-            ?>
+            print <<< EOT
             <tr>
               <td colspan="2" align="center" class="tableh2"><br />
-              <input type="submit" value="<?php echo $language['try_again']; ?>" /><br /><br />
+              <input type="submit" value="{$language['try_again']}" />
               </td>
             </tr>
-            <?php
+EOT;
           }  
-          ?>
+          print <<< EOT
         </table>
      </form>    
-<?php
+EOT;
 }
 
 /* html_mysql_start()
@@ -964,15 +965,15 @@ function html_finish()
 */
 function loadTempConfig($rp=0) 
 {
-	global $config, $temporary_config_file;
-	if (file_exists($temporary_config_file)) {
+	global $config, $config_file;
+	if (file_exists($config_file['permanent'])) {
 		$GLOBALS['language'] = getLanguage();
 		$GLOBALS['error'] = '<h3>'.$GLOBALS['language']['already_succ'].'</h3>'.$GLOBALS['language']['already_succ_explain'];
 		return false;
 	} else {
 		// read the temporary file
-		if (file_exists($temporary_config_file)) {
-			include($temporary_config_file);
+		if (file_exists($config_file['temporary'])) {
+			include($config_file['temporary']);
 			$GLOBALS['config'] = $install_config;
 		} else {
 			$GLOBALS['config'] = array();
@@ -1016,8 +1017,8 @@ function setTmpConfig($key, $value, $isarray = false)
 */
 function createTempConfig() 
 {
-	global $language, $config, $temporary_config_file;
-	if ($handle = @fopen($temporary_config_file, 'w')) {
+	global $language, $config, $config_file;
+	if ($handle = @fopen($config_file['temporary'], 'w')) {
 		//$config = serialize($config);
 		//create php array in config
 		$fconfig = '<?php' . "\n" . arrayToString($config, '$install_config') . "\n" . '?>';
@@ -1026,7 +1027,7 @@ function createTempConfig()
 		return true;
 	} else {
 		// could not write tmp config, add error
-		$GLOBALS['error'] = sprintf($language['cant_write_tmp_conf'], $temporary_config_file) . ' ' . $language['review_permissions'];
+		$GLOBALS['error'] = sprintf($language['cant_write_tmp_conf'], $config_file['temporary']) . ' ' . $language['review_permissions'];
 		return false;
 	}
 }
@@ -1812,19 +1813,12 @@ function createImageTestResult($results)
 			$result_error_tpl = <<<EOT
 	<table>
 		<tr>
-			<th colspan="2" align="left">{$language[$test_title]}</th>
+			<th colspan="3" align="left">{$language[$test_title]}</th>
 		</tr>
 		<tr>
-			<td width="200px">{$language[$test_result['error']]}</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
+			<td>{$language[$test_result['error']]}</td>
 			<td>{$language['generated_image']}</td>
 			<td>{$language['reference_image']}</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
 		</tr>
 	</table>
 	<br /><br />

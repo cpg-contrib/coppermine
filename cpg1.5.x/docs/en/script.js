@@ -33,6 +33,9 @@ $(function() {
 })
 
 function cpgDocToc() {
+  if (getUrlParameters('hide_nav') == 1) {
+  	return;
+  }
 document.write('<h6>Table of contents (<a href="../index.htm">documentation language selection</a>)</h6>');
 document.write('<ul id="tree">');
 document.write('  <li><a href="index.htm">Coppermine documentation</a>');
@@ -479,15 +482,15 @@ document.write('    </ul>');
 document.write('  </li>');
 document.write('</ul>');
 
-  document.write('<br />&nbsp;<br />');
-  document.write('  <form action="http://www.google.com/cse" id="cse-search-box">');
-  document.write('    <div>');
-  document.write('      <input type="hidden" name="cx" value="009353514429642786404:1fg_c1k1td8" />');
-  document.write('      <input type="text" name="q" size="25" />');
-  document.write('      <input type="submit" name="sa" value="search docs" style="font-size:9px;" />');
-  document.write('    </div>');
-  document.write('  </form>');
-  document.write('  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=en"></script>');
+document.write('<br />&nbsp;<br />');
+document.write('  <form action="http://www.google.com/cse" id="cse-search-box">');
+document.write('    <div>');
+document.write('      <input type="hidden" name="cx" value="009353514429642786404:1fg_c1k1td8" />');
+document.write('      <input type="text" name="q" size="25" />');
+document.write('      <input type="submit" name="sa" value="search docs" style="font-size:9px;" />');
+document.write('    </div>');
+document.write('  </form>');
+document.write('  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=en"></script>');
 }
 
 function cpgDocBreadcrumb() {
@@ -512,12 +515,15 @@ function cpgDocBreadcrumb() {
 
 
 function cpgDocHeader() {
-  document.write('<img src="images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />');
-  document.write('<h1>Coppermine Photo Gallery v1.5.0: Documentation and Manual</h1>');
-  document.write('<br clear="all" />');
-  //cpgDocPrevNext();
-  //cpgDocBreadcrumb();
-  document.write('<a name="top"></a>');
+	if (getUrlParameters('hide_nav') == 1) {
+		return;
+	}
+	document.write('<img src="images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />');
+	document.write('<h1>Coppermine Photo Gallery v1.5.0: Documentation and Manual</h1>');
+	document.write('<br clear="all" />');
+	//cpgDocPrevNext();
+	//cpgDocBreadcrumb();
+	document.write('<a name="top"></a>');
 }
 
 function cpgDocFooter() {
@@ -572,4 +578,18 @@ function dateRevision(lastChangeDate, revisionNumber) {
   document.write(',&nbsp;Revision ');
   document.write(revisionNumber);
   document.write('</div>');
+}
+
+function getUrlParameters(name)
+{
+  // Taken from http://www.netlobo.com/url_query_string_javascript.html
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp(regexS);
+  var results = regex.exec(window.location.href);
+  if(results == null) {
+    return '';
+  } else {
+    return results[1];
+  }
 }
