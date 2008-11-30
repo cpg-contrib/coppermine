@@ -2729,6 +2729,7 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
     endtable();
     echo "</div>\n";
 
+	echo '<a name="comments_top"></a>';
     echo "<div id=\"comments\">\n";
         echo $comments;
         echo "</div>\n";
@@ -3181,6 +3182,8 @@ function theme_html_comments($pid)
     global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
     global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER, $lang_bbcode_help_title, $lang_bbcode_help;
 
+    $superCage = Inspekt::makeSuperCage();
+
     $html = '';
 
 //report to moderator buttons
@@ -3207,9 +3210,50 @@ function theme_html_comments($pid)
     } else {
         $comment_sort_order = 'ASC';
     }
-    $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, pid, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order");
 
-    while ($row = mysql_fetch_array($result)) { // while-loop start
+    $result = cpg_db_query("SELECT COUNT(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'");
+    list($num) = mysql_fetch_row($result);
+	
+    if ($num) {
+	
+        $limit = 20;
+        $max = ceil($num/$limit);
+
+        if ($superCage->get->keyExists('page')) {
+            $page = $superCage->get->getInt('page');
+            $page = min($page, $max);
+            $page = max(0, $page);
+        } else {
+   	      $page = $max;
+        }
+
+        $start = max(0, $num - (($max-($page-1))*$limit));
+
+		ob_start();
+		echo '<br />';
+		starttable();
+		
+		echo '<tr><td class="tableh2_compact"><div style="float: left">'.($start+1).' to '.min($num, $start+$limit).' of '.$num.'</div>';
+		echo '<div style="float: right">Page: ';
+		$links = array();
+			
+		for ($i = 1; $i <= $max; $i++){
+			if ($i < 5 || ($i > $max - 5) || (($i > $page -5) && ($i < $page + 5))){
+				$links[$i]= '<a href="displayimage.php?pid=' . $pid . '&amp;page='.$i.'#comments_top">'.$i.'</a>';
+			}
+		}
+
+		$links[$page] = "<b>$page</b>";
+		echo implode(' - ', $links);
+		echo '</div></td></tr>';
+		
+		endtable();
+		echo '<br />';
+		$html .= ($tabs = ob_get_clean());
+	
+    $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, pid, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order LIMIT $start, $limit");
+
+    while ($row = mysql_fetch_assoc($result)) { // while-loop start
         $user_can_edit = (GALLERY_ADMIN_MODE) || (USER_ID && USER_ID == $row['author_id'] && USER_CAN_POST_COMMENTS) || (!USER_ID && USER_CAN_POST_COMMENTS && ($USER['ID'] == $row['author_md5_id']));
         if (($user_can_edit != '' && $CONFIG['comment_user_edit'] != 0) || (GALLERY_ADMIN_MODE)) {
             $comment_buttons = $tmpl_comments_buttons;
@@ -3303,6 +3347,10 @@ function theme_html_comments($pid)
             $html .= template_eval($template, $params);
         }
     } // while-loop end
+
+
+		$html .= $tabs;
+	}
 
     if (USER_CAN_POST_COMMENTS && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
         if (USER_ID) {
