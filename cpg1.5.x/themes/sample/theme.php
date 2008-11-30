@@ -157,7 +157,7 @@ EOT;
     addbutton($sys_menu_buttons,'{CONTACT_LNK}','{CONTACT_TITLE}','{CONTACT_TGT}','contact',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{MY_GAL_LNK}','{MY_GAL_TITLE}','{MY_GAL_TGT}','my_gallery',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{MEMBERLIST_LNK}','{MEMBERLIST_TITLE}','{MEMBERLIST_TGT}','allow_memberlist',$template_sys_menu_spacer);
-    if (is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums'])) {
+    if (array_key_exists('allowed_albums', $USER_DATA) && is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums'])) {
       addbutton($sys_menu_buttons,'{UPL_APP_LNK}','{UPL_APP_TITLE}','{UPL_APP_TGT}','upload_approval',$template_sys_menu_spacer);
     }
     addbutton($sys_menu_buttons,'{MY_PROF_LNK}','{MY_PROF_TITLE}','{MY_PROF_TGT}','my_profile',$template_sys_menu_spacer);
@@ -1572,9 +1572,10 @@ function theme_social_bookmark()
     if ($CONFIG['display_social_bookmarks'] != '') {
 
         $return = '';
-        $socialBookmarks_array = array('aol', 'ask', 'blinklist', 'blogmarks', 'care2', 'delicious', 'digg', 'diigo', 'dzone', 'facebook', 'fark', 'faves', 'feedmelinks', 'furl', 'google', 'hugg', 'kool', 'linkagogo', 'livejournal', 'magnolia', 'mindbody', 'misterwong', 'mixx', 'multiply', 'myspace', 'netscape', 'netvouz', 'newsvine', 'nowpublic', 'reddit', 'segnalo', 'simpy', 'slashdot', 'smarking', 'spurl', 'squidoo', 'stumbleupon', 'tailrank', 'technorati', 'thisnext', 'windows', 'yahoo', 'alltagz', 'linksilo', 'maodi', 'newstube', 'oneview', 'readster', 'tausendreporter', 'webbrille', 'webnews');
+        $socialBookmarks_array = array('aol', 'ask', 'blinklist', 'blogmarks', 'care2', 'delicious', 'digg', 'diigo', 'dzone', 'facebook', 'fark', 'faves', 'feedmelinks', 'furl', 'google', 'hugg', 'kool', 'linkagogo', 'livejournal', 'magnolia', 'mindbody', 'misterwong', 'mixx', 'multiply', 'myspace', 'netscape', 'netvouz', 'newsvine', 'nowpublic', 'reddit', 'segnalo', 'simpy', 'slashdot', 'smarking', 'spurl', 'squidoo', 'stumbleupon', 'tailrank', 'technorati', 'thisnext', 'windows', 'yahoo', 'alltagz', 'linksilo', 'iciode', 'maodi', 'misterwongde', 'newstube', 'oneview', 'readster', 'tausendreporter', 'webbrille', 'webnews');
         $social_bookmarks_config_array = explode ("|",$CONFIG['display_social_bookmarks']);
         $countLoop = 0;
+        $bookmark_list = '';
         foreach ($socialBookmarks_array as $key) {
             if (array_key_exists($countLoop, $social_bookmarks_config_array) && ($social_bookmarks_config_array[$countLoop] == 1)) {
                 $bookmark_list .= "'" . $socialBookmarks_array[$countLoop] . "', ";
@@ -1603,12 +1604,7 @@ function theme_social_bookmark()
                     iconSize: 16,
                     target: '_blank',
                     favoriteText: '{$lang_social_bookmarks['favorite']}',
-                    favoriteIcon: 0,
-                    emailText: '{$lang_social_bookmarks['send_email']}',
-                    emailIcon: 1,
-                    emailSubject: '{$lang_social_bookmarks['email_subject']}',
-                    emailBody: '{$lang_social_bookmarks['email_body']}:\\n{t} ({u})'
-                    
+	            favoriteIcon: 0
                 }
             );
         </script>
@@ -2544,7 +2540,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         if ((($i % $thumbcols) == 0) && ($i < count($thumb_list))) {
             echo $row_separator;
         }
-    }
+    } // foreach $thumb
     for (;($i % $thumbcols); $i++) {
         echo $empty_cell;
     }
@@ -2568,9 +2564,10 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 ** Section <<<theme_display_film_strip>>> - START
 ******************************************************************************/
 // Function to display the film strip
-function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='', $filmstrip_prev_pos, $filmstrip_next_pos) {
+function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='', $filmstrip_prev_pos, $filmstrip_next_pos) 
+{
     global $CONFIG, $THEME_DIR;
-    global $template_film_strip, $lang_film_strip, $pic_count;
+    global $template_film_strip, $lang_film_strip, $lang_common, $pic_count;
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -2776,6 +2773,8 @@ function theme_html_picture()
     global $album, $comment_date_fmt, $template_display_media;
     global $lang_display_image_php, $lang_picinfo, $lang_common, $lang_errors;
 
+    $superCage = Inspekt::makeSuperCage();
+
     $pid = $CURRENT_PIC_DATA['pid'];
     $pic_title = '';
 
@@ -2860,7 +2859,7 @@ function theme_html_picture()
 
     if ($mime_content['content']=='image') {
         if (isset($image_size['reduced'])) {
-            $imginfo=getimagesize($picture_url);
+            $imginfo = getimagesize(rawurldecode($picture_url));
             $winsizeX = $CURRENT_PIC_DATA['pwidth']+$CONFIG['fullsize_padding_x'];  //the +'s are the mysterious FF and IE paddings
             $winsizeY = $CURRENT_PIC_DATA['pheight']+$CONFIG['fullsize_padding_y']; //the +'s are the mysterious FF and IE paddings
             if ($CONFIG['transparent_overlay'] == 1) {
@@ -2871,7 +2870,7 @@ function theme_html_picture()
                   $pic_html .= "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
                 }
                 $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
-                $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width={$imginfo[0]} height={$imginfo[1]}  border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
+                $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width=\"{$imginfo[0]}\" height=\"{$imginfo[1]}\"  border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
                 $pic_html .= "</a>\n </td></tr></table>";
             } else {
                 if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
@@ -2982,7 +2981,7 @@ function theme_html_img_nav_menu() {
     //$date_link = $_GET['date']=='' ? '' : '&date=' . cpgValidateDate($_GET['date']);
 
     if ($superCage->get->keyExists('date')) {
-    	//raw is used as it will be validated
+      //date will be validated
     	$date_link = '&date=' . cpgValidateDate($superCage->get->getRaw('date'));
     } else {
     	$date_link = '';
@@ -3335,7 +3334,7 @@ function theme_html_comments($pid)
             '{MSG_DATE}' => localised_date($row['msg_date'], $comment_date_fmt),
             '{MSG_BODY}' => bb_decode($comment_body),
             '{MSG_BODY_RAW}' => $row['msg_body'],
-            '{OK}' => &$lang_common['OK'],
+            '{OK}' => &$lang_common['ok'],
             '{SMILIES}' => $smilies,
             '{IP}' => $ip,
             '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
@@ -3381,7 +3380,7 @@ function theme_html_comments($pid)
             '{PIC_ID}' => $pid,
             '{USER_NAME}' => $user_name,
             '{MAX_COM_LENGTH}' => $CONFIG['max_com_size'],
-            '{OK}' => $lang_common['OK'],
+            '{OK}' => $lang_common['ok'],
             '{DEFAULT_USERNAME}' => $lang_display_comments['your_name'],
             '{DEFAULT_USERNAME_MESSAGE}' => $lang_display_comments['default_username_message'],
             '{SMILIES}' => '',
@@ -3424,7 +3423,8 @@ function theme_html_comments($pid)
 ******************************************************************************/
 function theme_slideshow()
 {
-    global $CONFIG, $lang_display_image_php, $template_display_media, $lang_common;
+    global $CONFIG, $lang_display_image_php, $template_display_media, $lang_common, $album, $pid, $slideshow;
+    global $cat, $date;
 
     pageheader($lang_display_image_php['slideshow']);
 
