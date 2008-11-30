@@ -1812,6 +1812,22 @@
     <permission>read</permission>
   </element>
   <element>
+    <fullpath>docs/fr/auto-installers.htm</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>04a86164ab3406c3b287e3b65fea3bc0</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/credits.htm</fullpath>
+    <version>1.5.0</version>
+    <revision>5129</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>04a86164ab3406c3b287e3b65fea3bc0</hash>
+  </element>
+  <element>
     <fullpath>docs/fr/faq.htm</fullpath>
     <version>1.5.0</version>
     <revision>5129</revision>
