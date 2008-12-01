@@ -783,7 +783,7 @@ if (UPLOAD_APPROVAL_MODE) {
             " INNER JOIN {$CONFIG['TABLE_ALBUMS']} as a " .
             " ON a.aid=p.aid " .
             " WHERE p.aid = '$album_id' " .
-            " ORDER BY p.filename LIMIT $start, $count";
+            " ORDER BY p.pid DESC LIMIT $start, $count";
     $result = cpg_db_query($sql);
     $form_target = $CPG_PHP_SELF.'?album='.$album_id.'&amp;start='.$start.'&amp;count='.$count;
     $title = $lang_editpics_php['edit_pics'];

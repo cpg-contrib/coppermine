@@ -50,7 +50,7 @@ class core_udb {
         {
                 global $USER_DATA;
 
-                if (!($auth = $this->session_extraction()) && !($auth = $this->cookie_extraction())) {
+                if (!($auth = $this->session_extraction()) && !($auth = $this->cookie_extraction()) && !($auth = $this->post_extraction())) {
                         $this->load_guest_data();
                 } else {
                         list ($id, $cookie_pass) = $auth;
@@ -756,6 +756,25 @@ class core_udb {
         function cookie_extraction() {
            return false;
         }
+        
+        /**
+         * Function to extract auth info from POST
+         * This is a special case used only on upload page (swfupload)
+         * @return mixed Array with id and pass hash or false
+         */
+        function post_extraction() {
+            // Get the super cage instance
+            $superCage = Inspekt::makeSuperCage();
+            // We will extract the auth info from post only on upload page.
+            if (defined('UPLOAD_PHP') && $superCage->post->keyExists('process')) {
+                // Get the user id and password hash from post
+                $user = unserialize(base64_decode($superCage->post->getRaw('user')));
+                if (is_array($user)) {
+                    return array((int)$user['user_id'], $user['pass_hash']);
+                }
+            }
+            return false;
+        }
 
         // Simple login by specified username and pass.
         // Used for xp publisher login
@@ -785,6 +804,20 @@ class core_udb {
                  } else {
                         return strcmp($b[$this->sortfield], $a[$this->sortfield]);
                 }
+        }
+        
+        function get_user_pass($user_id) {
+            $sql =  "SELECT {$this->field['user_id']} AS user_id, {$this->field['password']} AS pass_hash FROM {$this->usertable} WHERE ";
+            $sql .= "{$this->field['user_id']} = '$user_id'";
+            
+            $result = cpg_db_query($sql);
+            
+            if (mysql_num_rows($result)) {
+                $row = cpg_db_fetch_row($result);
+                return array('user_id' => $row['user_id'], 'pass_hash' => $row['pass_hash']);
+            } else {
+                return array();
+            }
         }
 }
 ?>

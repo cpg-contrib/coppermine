@@ -2216,7 +2216,9 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
 // File upload.php
 // ------------------------------------------------------------------------- //
 
-if (defined('UPLOAD_PHP')) $lang_upload_php = array(
+if (defined('UPLOAD_PHP')) {
+    
+ $lang_upload_php = array(
   'title' => 'Upload file',
   'custom_title' => 'Customized Request Form',
   'cust_instr_1' => 'You may select a customized number of upload boxes. However, you may not select more than the limits listed below.',
@@ -2226,6 +2228,8 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'cust_instr_5' => 'URI/URL upload boxes:',
   'cust_instr_6' => 'File upload boxes:',
   'cust_instr_7' => 'Please enter the number of each type of upload box you desire at this time.  Then click \'Continue\'. ',
+  'up_instr_1' => 'Now you may upload your files using the "Browse" button below. The size of files uploaded from your client to the server should not exceed %s KB each. ZIP files uploaded will remain compressed.',
+  'up_instr_2' => 'When you have uploaded the files click the "Continue" button. (Note: The button will appear after you have uploaded at least one file).',
   'reg_instr_1' => 'Invalid action for form creation.',
   'reg_instr_2' => 'Now you may upload your files using the upload boxes below. The size of files uploaded from your client to the server should not exceed %s KB each. ZIP files uploaded in the \'File Upload\' and \'URI/URL Upload\' sections will remain compressed.',
   'reg_instr_3' => 'If you want the zipped file or archive to be decompressed, you must use the file upload box provided in the \'Decompressive ZIP Upload\' area.',
@@ -2298,8 +2302,30 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'alternative_upload' => 'Alternative upload method', // cpg1.5
   'xp_publish_promote' => 'If you are running Windows XP/Vista, you can use the Windows XP Uploading Wizard as well to upload files, providing an easier user interface directly on the client.', // cpg1.5
   'more' => 'more', // cpg1.5
-);
-
+ );
+ 
+ $lang_upload_swf_php = array(
+  'all_files' => 'All Files', //cpg1.5
+  'status_pending' => 'Pending...', //cpg1.5
+  'status_uploading' => 'Uploading...', //cpg1.5
+  'status_complete' => 'Complete.', //cpg1.5
+  'status_cancelled' => 'Cancelled.', //cpg1.5
+  'status_stopped' => 'Stopped.', //cpg1.5
+  'status_failed' => 'Upload Failed.', //cpg1.5
+  'status_too_big' => 'File is too big.', //cpg1.5
+  'status_zero_byte' => 'Cannot upload Zero Byte files.', //cpg1.5
+  'status_invalid_type' => 'Invalid File Type.', //cpg1.5
+  'status_unhandled' => 'Unhandled Error', //cpg1.5
+  'status_upload_error' => 'Upload Error: ', //cpg1.5
+  'status_server_error' => 'Server (IO) Error', //cpg1.5
+  'status_security_error' => 'Security Error', //cpg1.5
+  'status_upload_limit' => 'Upload limit exceeded.', //cpg1.5
+  'status_validation_failed' => 'Failed Validation.  Upload skipped.', //cpg1.5
+  'queue_limit' => 'You have attempted to queue too many files.', //cpg1.5
+  'upload_limit_1' => 'You have reached the upload limit.', //cpg1.5
+  'upload_limit_2' => 'You may select up to %s file(s)', //cpg1.5
+ );
+}
 // ------------------------------------------------------------------------- //
 // File usermgr.php
 // ------------------------------------------------------------------------- //
