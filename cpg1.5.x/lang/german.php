@@ -154,6 +154,8 @@ $lang_common = array(
   'personal_albums' => '* Persönliche Alben', // cpg1.5
   'select_album' => 'Wähle Album', // cpg1.5
   'ok' => 'OK', // cpg1.5
+  'status' => 'Status', // cpg1.5
+  'apply_changes' => 'Änderungen speichern', // cpg1.5  
 );
 
 
@@ -472,7 +474,6 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
   'alb_mrg' => 'Alben-Manager',
   'my_gallery' => '* meine Galerie *',
   'no_category' => '* keine Kategorie *',
-  'apply_modifs' => 'Änderungen übernehmen',
   'select_category' => 'wähle Kategorie',
 );
 
@@ -483,8 +484,12 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 if (defined('BANNING_PHP')) $lang_banning_php = array(
   'title' => 'Benutzer verbannen',
   'user_name' => 'Benutzername',
+  'user_account' => 'Benutzerkonto',
+  'email_address' => 'Email Address', // cpg1.5
   'ip_address' => 'IP-Adresse',
-  'expiry' => 'läuft ab am (leer bedeutet permanent)',
+  'expiry' => 'läuft ab am',
+  'expiry_date' => 'Ablaufdatum', // cpg1.5
+  'expired' => 'Abgelaufen', // cpg1.5
   'edit_ban' => 'Änderungen speichern',
   'add_new' => 'Neuen Bann hinzufügen',
   'add_ban' => 'Hinzufügen',
@@ -493,7 +498,7 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'error_ban_id' => 'Ungültige Verbannungs-ID!',
   'error_admin_ban' => 'Du kannst DIch nicht selbst verbannen!',
   'error_server_ban' => 'Du wolltest Deinen eigenen Server verbannen? Ts ts, das kann ich nicht zulassen...',
-  'error_ip_forbidden' => 'Du kannst diese IP-Adresse nicht verbannen - sie ist sowieso nicht route-bar (private)!<br />Wenn Du Verbannungen für private IP-Adressen erlauben möchtest, dann erlaube das in Deinen <a href="admin.php">Einstellungen</a> (macht nur Sinn, wenn Coppermine in einem LAN läuft).',
+  'skipping' => 'Skipping that command', // cpg1.5
   'lookup_ip' => 'IP-Adresse nachschlagen',
   'submit' => 'los!',
   'select_date' => 'Wähle Datum',
@@ -502,7 +507,25 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'all' => 'alle', // cpg1.5
   'none' => 'keine', // cpg1.5
   'view' => 'anzeigen', // cpg1.5
-  'calender_already_open' => 'Kalender-Fenster ist schon offen. Versuche zu fokusieren...', // cpg1.5 // js-alert
+  'ban_id' => 'Ban ID', // cpg1.5
+  'existing_bans' => 'Existierende Verbannungen', // cpg1.5
+  'no_banning_when_bridged' => 'Deine Galerie ist zur Zeit mit einer anderen Applikation gebridged. Benutze die Verbannungsmechanismen der bridge-Applikation anstelle der in Coppermine integrierten Verbannung, da diese bei aktiviertem Bridging kaum greifen.', // cpg1.5
+  'records_on_page' => '%d Einträge auf %d Seite(n)', // cpg1.5
+  'ascending' => 'ansteigend', // cpg1.5
+  'descending' => 'absteigend', // cpg1.5
+  'sort_by' => 'Sortieren nach', // cpg1.5
+  'sorted_by' => 'sortiert nach', // cpg1.5
+  'ban_record_x_updated' => 'Verbannungs-Eintrag %s wurde aktualisiert', // cpg1.5
+  'ban_record_x_deleted' => 'Verbannungs-Eintrag %s wurde gelöscht', // cpg1.5
+  'new_ban_record_created' => 'Neuer Verbannungs-Eintrag wurde angelegt', // cpg1.5
+  'ban_record_x_already_exists' => 'Verbannungseintrag für %s existiert schon', // cpg1.5
+  'comment_deleted' => '%s Kommentar, der durch %s abgegeben wurde wurde gelöscht', // cpg1.5
+  'comments_deleted' => '%s Kommentare, die durch %s abgegeben wurden wurden gelöscht', // cpg1.5
+  'email_field_invalid' => 'Gib eine gültige eMail-Adresse ein', // cpg1.5
+  'ip_address_field_invalid' => 'Gib eine gültige IP-Adresse an (x.x.x.x)', // cpg1.5
+  'expiry_field_invalid' => 'Gib ein Gültiges Ablaufdatum ein (JJJJ-MM-TT)', // cpg1.5
+  'form_not_submit' => 'Das Formular wurde nicht abgesendet - es müssen erst Fehler beseitigt werden!', // cpg1.5
+
 );
 
 // ------------------------------------------------------------------------- //
@@ -715,7 +738,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'enable_help_description' => 'Hilfe zum Teil nur in Englisch verfügbar', // cpg1.5
   'clickable_keyword_search' => 'Anklickbare Stichwörter in Suche aktivieren', // cpg1.5
   'enable_plugins' => 'Plugins aktivieren', // cpg1.5
-  'ban_private_ip' => 'Verbannung von nicht-routebaren IP-Adressen aktivieren', // cpg1.5
+  'purge_expired_bans' => 'Automatisch abgelaufene Verbannungs-Einträge löschen', // cpg1.5
   'browse_batch_add' => 'Baumstruktur für Batch-hinzufügen aktivieren', // cpg1.5
   'display_thumbs_batch_add' => 'Vorschau-Thumbnails beim Batch-hinzufügen anzeigen', // cpg1.5
   'lang' => 'Standard-Sprache', // cpg1.5
@@ -798,6 +821,15 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'comment_placeholder' => 'Benutzern Platzhalter-Text für Kommentare anzeigen, die noch genehmigt werden müssen', // cpg1.5
   'comment_user_edit' => 'Benutzer dürfen ihre Kommentare bearbeiten', // cpg1.5
   'comment_captcha' => 'Captcha (Visuelle Bestätigung) für Kommentar-Abgabe notwendig', // cpg1.5
+  'comment_akismet_enable' => 'Akismet-Optionen', // cpg1.5
+  'comment_akismet_enable_description' => 'Was soll geschehen, wenn Akismet einen Kommentar als Spam ablehnt?', // cpg1.5
+  'comment_akismet_applicable_only' => 'Option nur anwendbar, wenn Akismet aktiviert wurde, in dem ein gültiger Aksimet API-Schlüssel eingegeben wurde', // cpg1.5
+  'comment_akismet_enable_disapproved' => 'Kommentare, die durch Akismet abgewiesen wurden trotzdem annehmen, Status aber auf "nicht bestätigt" setzen', // cpg1.5
+  'comment_akismet_drop_tell' => 'Abgewiesene Kommentare ablehnen und Benutzer darüber informieren', // cpg1.5
+  'comment_akismet_drop_lie' => 'Abgewiesene Kommentare ablehnen, dem Benutzer (Spammer) aber vorgaukeln, er sei angenommen worden', // cpg1.5
+  'comment_akismet_api_key' => 'Akismet API Schlüssel', // cpg1.5
+  'comment_akismet_api_key_description' => 'Leer lassen, um Akismet zu deaktivieren', // cpg1.5
+  'comment_akismet_group' => 'Akismet anwenden auf Kommentare, die abgegeben wurden von', // cpg1.5
   'comment_promote_registration' => 'Benutzer um Anmeldung bitten, um Kommentare abgeben zu können', // cpg1.5
   'thumb_width' => 'Maximalgröße Thumbnail', // cpg1.5
   'thumb_use' => 'Welche Dimension soll genutzt werden für Thumbnails', // cpg1.5
@@ -1193,6 +1225,7 @@ $lang_display_comments = array(
   'disapprove' => 'Kommentar-Bestätigung aufheben', // cpg1.5
   'log_in_to_comment' => 'Anonyme Kommentare sind hier nicht erlaubt. %sMelde Dich an%s, um einen Kommentar abzugeben', // cpg1.5 // do not translate the %s placeholders - they will be used as wrappers for the link (<a>)
   'default_username_message' => 'Bitte gib Deinen Namen an, um einen Kommentar abzugeben', // cpg1.5
+  'comment_rejected' => 'Dein Kommentar wurde abgelehnt', // cpg1.5
 );
 
 $lang_fullsize_popup = array(
@@ -1303,7 +1336,6 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'see_prev' => 'vorherige Dateien ansehen',
   'n_pic' => '%s Dateien',
   'n_of_pic_to_disp' => 'Dateien pro Seite',
-  'apply' => 'Änderungen ausführen',
   'crop_title' => 'Coppermine Bild-Editor',
   'preview' => 'Vorschau',
   'save' => 'Bild speichern',
@@ -1417,7 +1449,6 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'boxes_number' => 'Anzahl Felder',
   'variable' => 'variabel',
   'fixed' => 'fest',
-  'apply' => 'Änderungen übernehmen',
   'create_new_group' => 'Neue Gruppe erstellen',
   'del_groups' => 'ausgewählte Gruppe(n) löschen',
   'confirm_del' => 'Achtung: wenn Du eine Gruppe löschst werden die dazu gehörenden Benutzer in die Gruppe \'Registrierte Benutzer\' verschoben!\n\nWillst Du das ?', //js-alert
@@ -1428,7 +1459,6 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'error_group_empty' => 'Gruppen-Tabelle war leer!<br /><br />Standard-Gruppen wurden erstellt, bitte diese Seite erneut laden',
   'explain_greyed_out_title' => 'Warum ist diese Zeile ausgegraut?',
   'explain_guests_greyed_out_text' => 'Die Eigenschaften dieser Gruppe können nicht verändert werden, weil die Option &quot;Nicht-angemeldeten Besuchern (Gäste) Zugriff erlauben&quot; in der Coppermine-Knofiguration auf &quot;Nein&quot; gesetzt wurde. Alle Gäste (Mitglieder der Gruppe %s) können nichts tun außer sich anzumelden; daher sind keine der Gruppen-Verrechtungen für sie zutreffend.',
-  'explain_banned_greyed_out_text' => 'Die Eigenschaften der Gruppe %s können nicht verändert werden, da deren Mitglieder sowieso nichts tun dürfen.',
   'group_assigned_album' => 'zugewiesene Alben',
 );
 
@@ -1483,8 +1513,9 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'already_succ' => 'The installer has already been run successfully once and is now locked.',
   'already_succ_explain' => 'If you want to run the installer again, you first need to delete the \'include/config.inc.php\' file that was created in the directory where you put Coppermine. You can do this with any FTP program',
   'c_mode' => 'Current mode',
-  'cant_read_tmp_conf' => 'The installer can\'t read the temporary config file %s, please check your directory permissions',
-  'cant_write_tmp_conf' => 'The installer can\'t write the temporary config file %s, please check your directory permissions',
+  'cant_read_tmp_conf' => 'The installer can\'t read the temporary config file %s.',
+  'cant_write_tmp_conf' => 'The installer can\'t write the temporary config file %s.',
+  'review_permissions' => 'Please review directory permissions.',
   'change_lang' => 'Change Language',
   'check_path' => 'Check path',
   'continue' => 'Next step',
@@ -1569,7 +1600,7 @@ if (defined('INSTALL_PHP')) $lang_install = array(
   'title_mysql_pop' => 'Creating Database Structure',
   'title_mysql_user' => 'MySql User Authentication',
   'title_welcome' => 'Welcome to Coppermine installation',
-  'tmp_conf_error' => 'Unable to write the temporary config file, <br />make sure the \'include\' folder has write permissions set (777)',
+  'tmp_conf_error' => 'Unable to write the temporary config file - make sure the \'include\' folder is writable for the script.',
   'tmp_conf_ser_err' => 'A serious error occurred in the installer, try reloading your page or start over by removing the \'include/config.tmp\' file.',
   'try_again' => 'Try again !',
   'unable_write_config' => 'Unable to write config file',
@@ -1774,7 +1805,6 @@ if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'pic_mgr' => 'Bilder verwalten',
   'confirm_delete1' => 'Dieses Bild wirklich löschen?',
   'confirm_delete2' => '\nLöschen ist dauerhaft und endgültig.',
-  'apply_modifs' => 'Änderungen übernehmen',
   'confirm_modifs' => 'Änderungen bestätigen',
   'pic_need_name' => 'Bild muss einen Namen haben',
   'no_change' => 'Es wurden keine Änderungen vorgenommen',
@@ -1853,11 +1883,6 @@ $lang_register_php = array(
   'err_user_exists' => 'Der Benutzername, den Du eingegeben hast, existiert schon, bitte wähle einen anderen',
   'err_global_pw' => 'Ungültiges globales Registrierungs-Passwort', // cpg1.5
   'err_global_pass_same' => 'Dein Passwort muss sich vom globalen Passwort unterscheiden', // cpg1.5
-  'err_password_mismatch' => 'Die Passwörter stimmen nicht überein, bitte nochmals eingeben',
-  'err_uname_short' => 'Der Benutzername muss mindestens 2 Zeichen lang sein',
-  'err_password_short' => 'Das Passwort muss mindestens 2 Zeichen lang sein',
-  'err_uname_pass_diff' => 'Benutzername und Passwort müssen unterschiedlich sein',
-  'err_invalid_email' => 'eMail-Adresse ist ungültig',
   'err_duplicate_email' => 'Es hat sich schon ein anderer Benutzer mit der angegebenen eMail-Adresse registriert',
   'err_disclaimer' => 'Du musst dem Disclaimer zustimmen', // cpg1.5
   'enter_info' => 'Gib Registrierungs-Informationen ein',
@@ -1891,7 +1916,6 @@ $lang_register_php = array(
   'new_pass' => 'neues Passwort',
   'new_pass_again' => 'neues Passwort bestätigen',
   'err_curr_pass' => 'Derzeitiges Passwort ist verkehrt',
-  'apply_modif' => 'Änderungen speichern',
   'change_pass' => 'Mein Passwort ändern',
   'update_success' => 'Dein Benutzerprofil wurde aktualisiert',
   'pass_chg_success' => 'Dein Passwort wurde geändert',
@@ -1915,6 +1939,17 @@ $lang_register_php = array(
   'edit_xs_profile' => 'Das Profil von %s bearbeiten', // cpg1.5
   'edit_my_profile' => 'Mein Profil bearbeiten', // cpg1.5
   'none' => 'keine', // cpg1.5
+  'user_name_banned' => 'Der gewählte Benutzername ist nicht erlaubt. Wähle einen anderen.', // cpg1.5
+  'email_address_banned' => 'Du bist verbannt von dieser Seite. Du darfst Dich nicht registrieren. Geh weg!!', // cpg1.5
+  'email_warning1' => 'Das eMail-Adressfeld darf nicht leer sein!', // cpg1.5
+  'email_warning2' => 'Die eingegebene eMail-Adresse ist nicht gültig. Bitte überprüfen!', // cpg1.5
+  'username_warning1' => 'Das Feld "Benutzername" darf nicht leer sein!', // cpg1.5
+  'username_warning2' => 'Der Benutzername muss mindestens zwei Zeichen lang sein', // cpg1.5
+  'password_warning1' => 'Das Passwort muss mindestens 2 Zeichen beinhalten!', // cpg1.5
+  'password_warning2' => 'Benutzername und Passwort müssen sich unterscheiden', // cpg1.5
+  'password_verification_warning1' => 'Die beiden Passwortfelder unterscheiden sich - bitte nochmals eingeben', // cpg1.5
+  'form_not_submit' => 'Das Formular wurde noch nicht versendet - es sind Fehler aufgetreten, die zuerst bereinigt werden müssen!', // cpg1.5
+  'banned' => 'Verbannt', // cpg1.5
 );
 
 $lang_register_confirm_email = <<<EOT
@@ -1976,6 +2011,10 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'file_d' => 'Datei absteigend',
   'approval_a' => 'Bestätigungs-Status aufsteigend', // cpg1.5
   'approval_d' => 'Bestätigungs-Status absteigend', // cpg1.5
+  'ip_a' => 'IP-Adresse aufsteigend', // cpg1.5
+  'ip_d' => 'IP-Adresse absteigend', // cpg1.5
+  'akismet_a' => 'Akismet-Bewertung (gültige Kommentare ganz unten)', // cpg1.5
+  'akismet_d' => 'Akismet-Bewertung (gültige Kommentare ganz oben)', // cpg1.5
   'n_comm_appr' => '%s Kommentar(e) bestätigt', // cpg1.5
   'n_comm_disappr' => 'Bestätigung für %s Kommentar(e) deaktiviert', // cpg1.5
   'configuration_changed' => 'Bestätigungs-Einstellungen geändert', // cpg1.5
@@ -1987,9 +2026,23 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'delete' => 'löschen', // cpg1.5
   'approve' => 'bestätigen', // cpg1.5
   'disapprove' => 'Bestätigung aufheben', // cpg1.5
+  'do_nothing' => 'keine Aktion', // cpg1.5
   'comment_approved' => 'Kommentar bestätigt', // cpg1.5
   'comment_disapproved' => 'Bestätigung für Kommentar aufgehoben', // cpg1.5
   'ban_and_delete' => 'Benutzer verbannen und Kommentar(e) löschen', //cpg1.5
+  'akismet_status' => 'Akismet-Status', // cpg1.5
+  'is_spam' => 'ist Spam', // cpg1.5
+  'is_not_spam' => 'ist kein Spam', // cpg1.5
+  'akismet' => 'Akismet', // cpg1.5
+  'akismet_count' => 'Akismet bisher %s Spam-Kommentare für Dich gefunden', // cpg1.5
+  'akismet_test_result' => 'Testergebnisse für den Akismet API Schüssel %s', // cpg1.5
+  'invalid' => 'ungültig', // cpg1.5
+  'missing_gallery_url' => 'Du musst eine gültige URL Deines Coppermine-Galerie Verzeichnisses in den Einstellungen angeben', // cpg1.5
+  'unable_to_connect' => 'Konnte mit akismet.com keine Verbindung aufbauen', // cpg1.5
+  'not_found' => 'Die Ziel-URL wurde nicht gefunden. Möglicherweise hat sich die Struktur der Akismet-Seite geändert.', // cpg1.5
+  'unknown_error' => 'Unbekannter Fehler', // cpg1.5
+  'error_message' => 'Die zurückgegebene Fehlermeldung war', // cpg1.5
+  'ip_address' => 'IP-Adresse', // cpg1.5
 );
 
 // ------------------------------------------------------------------------- //
@@ -2166,7 +2219,8 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
 // File upload.php
 // ------------------------------------------------------------------------- //
 
-if (defined('UPLOAD_PHP')) $lang_upload_php = array(
+if (defined('UPLOAD_PHP')) {
+$lang_upload_php = array(
   'title' => 'Datei hochladen',
   'custom_title' => 'Benutzer-definiertes Formular',
   'cust_instr_1' => 'Die Anzahl der Upload-Felder kann angepasst werden, darf jedoch die untenstehenden Maximalwerte nicht überschreiten.',
@@ -2176,6 +2230,8 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'cust_instr_5' => 'URI/URL Upload Felder:',
   'cust_instr_6' => 'Datei-Upload Felder:',
   'cust_instr_7' => 'Gib die Anzahl der gewünschten Felder ein und klicke auf \'weiter\'.',
+  'up_instr_1' => 'Now you may upload your files using the "Browse" button below. The size of files uploaded from your client to the server should not exceed %s KB each. ZIP files uploaded will remain compressed.',
+  'up_instr_2' => 'When you have uploaded the files click the "Continue" button. (Note: The button will appear after you have uploaded at least one file).',
   'reg_instr_1' => 'Unzulässige Aktion bei der Formular-Erzeugung.',
   'reg_instr_2' => 'Du kannst jetzt Dateien mit den untenstehenden Feldern hochladen. Keine Datei darf größer als %s kB sein. ZIP-Dateien, die mit Datei-Upload oder URI/URL-Upload hochgeladen werden, bleiben komprimiert.',
   'reg_instr_3' => 'Um ZIP-Dateien auf dem Server automatisch zu entpacken, verwende die ZIP-Upload Felder.',
@@ -2249,6 +2305,29 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'xp_publish_promote' => 'Wenn Du Windows XP/Vista benutzt kannst Du auch den Windows XP Uploading Wizard benutzen um Dateien hochzuladen, der eine einfachere Benutzerschnittstelle bietet.', // cpg1.5
   'more' => 'mehr', // cpg1.5
 );
+
+$lang_upload_swf_php = array(
+  'all_files' => 'Alle Dateien', //cpg1.5
+  'status_pending' => 'Ausstehend...', //cpg1.5
+  'status_uploading' => 'Lade hoch...', //cpg1.5
+  'status_complete' => 'Fertig.', //cpg1.5
+  'status_cancelled' => 'Abgebrochen.', //cpg1.5
+  'status_stopped' => 'Angehalten.', //cpg1.5
+  'status_failed' => 'Hochladen fehlgeschlagen.', //cpg1.5
+  'status_too_big' => 'Datei ist zu groß.', //cpg1.5
+  'status_zero_byte' => 'Dateien mit 0 Byte Größe können nicht hochgeladen werden.', //cpg1.5
+  'status_invalid_type' => 'Ungültiger Datei-Typ.', //cpg1.5
+  'status_unhandled' => 'Unbekannter Fehler', //cpg1.5
+  'status_upload_error' => 'Fehler beim Hochladen: ', //cpg1.5
+  'status_server_error' => 'Server (IO) Fehler', //cpg1.5
+  'status_security_error' => 'Sicherheits-Fehler', //cpg1.5
+  'status_upload_limit' => 'Maximale Uploadgröße überschritten.', //cpg1.5
+  'status_validation_failed' => 'Überprüfung fehlgeschlagen. Hochlade-Vorgang übersprungen.', //cpg1.5
+  'queue_limit' => 'Du hast zu viele Dateien in die Warteschlange gestellt.', //cpg1.5
+  'upload_limit_1' => 'Du hast die Begrenzung zum Hochladen erreicht.', //cpg1.5
+  'upload_limit_2' => 'Du kannst bis zu %s Datei(en) auswählen', //cpg1.5
+ );
+}
 
 // ------------------------------------------------------------------------- //
 // File usermgr.php
@@ -2339,6 +2418,7 @@ if (defined('USERMGR_PHP')) {
   'view_profile' => 'Profil anzeigen', // cpg1.5
   'edit_profile' => 'Profil bearbeiten', // cpg1.5
   'ban_user' => 'Benutzer verbannen', // cpg1.5
+  'user_is_banned' => 'Benutzer ist verbannt', // cpg1.5
   'status' => 'Status', // cpg1.5
   'status_active' => 'aktive', // cpg1.5
   'status_inactive' => 'inaktiv', // cpg1.5
