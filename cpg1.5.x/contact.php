@@ -87,7 +87,7 @@ if ($superCage->post->keyExists('submit')) {
   if ($error == 0) {
     // compose the email
     $subject = $CONFIG['contact_form_subject_content'] . ': '. $subject;
-    $message_header = sprintf($lang_contact_php['email_headline'], localised_date(time(),$scientific_date_fmt), $CONFIG['ecards_more_pic_target'].$CPG_PHP_SELF, $raw_ip);
+    $message_header = sprintf($lang_contact_php['email_headline'], localised_date(time(),$lang_date['scientific']), $CONFIG['ecards_more_pic_target'].$CPG_PHP_SELF, $raw_ip);
     if ($CONFIG['contact_form_sender_email'] == 0) {
       $sender_email = $CONFIG['gallery_admin_email'];
       $sender_name = $CONFIG['gallery_admin_email'];

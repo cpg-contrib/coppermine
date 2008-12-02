@@ -133,7 +133,7 @@ function list_groups_alb_access() //shows a list of albums each group can see. C
 function list_users($search = '')
 {
     global $CONFIG, $cpg_udb, $CPG_PHP_SELF; //, $PHP_SELF;
-    global $lang_usermgr_php, $lang_byte_units, $register_date_fmt, $lang_common;
+    global $lang_usermgr_php, $lang_byte_units, $lang_date, $lang_common;
     global $lim_user, $number_of_columns;
     global $USER_DATA;
 
@@ -485,9 +485,9 @@ EOT;
         if (!$lim_user) {
         	$user['status'] = '<a href="delete.php?id=u'.$user['user_id'].'&amp;album_listbox='.$sort.'&amp;action='.$action.'&amp;what=user" title="">' . $user['status'] . '</a>';
         }
-        $user['user_regdate'] = localised_date($user['user_regdate'], $register_date_fmt);
+        $user['user_regdate'] = localised_date($user['user_regdate'], $lang_date['register']);
         if ($user['user_lastvisit']) {
-            $user['user_lastvisit'] = localised_date($user['user_lastvisit'], $register_date_fmt);
+            $user['user_lastvisit'] = localised_date($user['user_lastvisit'], $lang_date['register']);
         }
         else {
             $user['user_lastvisit'] = $lang_usermgr_php['never'];

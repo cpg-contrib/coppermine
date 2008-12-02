@@ -25,8 +25,8 @@ include ( 'include/archive.php');
 
 if ($CONFIG['enable_zipdownload'] < 1) {
 	//someone has entered the url manually, while the admin has disabled zipdownload
-	pageheader($lang_error);
-	starttable('-2', $lang_error);
+	pageheader($lang_errors['error']);
+	starttable('-2', cpg_fetch_icon('stop', 2) . $lang_errors['error']);
 	print <<<EOT
 	<tr>
 	        <td align="center" class="tableb">
@@ -47,7 +47,7 @@ EOT;
 				    '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
 				    '{GAL_URL}' => $CONFIG['ecards_more_pic_target'].'thumbnails.php?album=favpics',
 				    '{USERNAME}' => sprintf($lang_thumb_view['zipdownload_username'], USER_NAME),
-				    '{DATE}' => localised_date(-1,$comment_date_fmt),
+				    '{DATE}' => localised_date(-1,$lang_date['comment']),
 				    '{COPYRIGHTS}' => $lang_thumb_view['zipdownload_copyright'],
 				    );
 				$plaintext_message = template_eval($template_zipfile_plaintext, $params);

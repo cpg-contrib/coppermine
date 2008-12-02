@@ -179,7 +179,7 @@ if ($superCage->post->keyExists('subject') && $valid_sender_email) {
     $plaintext_message = template_eval($template_report_plaintext, $params);
 
     $tempTime = time();
-    $message .= sprintf($lang_report_php['report_footer'], $sender_name, $raw_ip, localised_date(-1,$comment_date_fmt));
+    $message .= sprintf($lang_report_php['report_footer'], $sender_name, $raw_ip, localised_date(-1,$lang_date['comment']));
     $subject = sprintf($lang_report_php['report_subject'], $sender_name, $type);
 
     $result = cpg_mail('admin', $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);

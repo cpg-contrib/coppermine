@@ -93,7 +93,7 @@ EOT;
 function html_picinfo()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $FAVPICS, $REFERER, $CPG_PHP_SELF;
-    global $album, $lang_picinfo, $lang_display_image_php, $lang_byte_units, $lang_common, $lastup_date_fmt;
+    global $album, $lang_picinfo, $lang_display_image_php, $lang_byte_units, $lang_common, $lang_date;
 
     if ($CURRENT_PIC_DATA['owner_id'] && $CURRENT_PIC_DATA['owner_name']) {
         $owner_link = '<a href ="profile.php?uid=' . $CURRENT_PIC_DATA['owner_id'] . '">' . $CURRENT_PIC_DATA['owner_name'] . '</a> ';
@@ -167,7 +167,7 @@ function html_picinfo()
 
     $info[$lang_common['filesize']] = ($CURRENT_PIC_DATA['filesize'] > 10240 ? ($CURRENT_PIC_DATA['filesize'] >> 10) . '&nbsp;' . $lang_byte_units[1] : $CURRENT_PIC_DATA['filesize'] . '&nbsp;' . $lang_byte_units[0]);
     $info[$lang_common['filesize']] = '<span dir="ltr">' . $info[$lang_common['filesize']] . '</span>';
-    $info[$lang_picinfo['Date Added']] = localised_date($CURRENT_PIC_DATA['ctime'],$lastup_date_fmt);
+    $info[$lang_picinfo['Date Added']] = localised_date($CURRENT_PIC_DATA['ctime'],$lang_date['lastup']);
     $info[$lang_picinfo['Dimensions']] = sprintf($lang_display_image_php['size'], $CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']);
     if ($CURRENT_PIC_DATA['hits'] && $CONFIG['hit_details'] && GALLERY_ADMIN_MODE) {
 			$stat_link = "stat_details.php?type=hits&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&search_phrase=0&referer=0&browser=1&os=1";

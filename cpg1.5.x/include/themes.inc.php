@@ -2165,7 +2165,7 @@ It's advisable not to change it unless you really know what you're doing.
 This function composes the individual sections of the block.
 ******************************************************************************/
 function theme_display_message_block() {
-    global $lang_gallery_admin_menu, $lang_info, $CONFIG, $message_id;
+    global $lang_gallery_admin_menu, $lang_common, $CONFIG, $message_id;
 
     $superCage = Inspekt::makeSuperCage();
     $return = '';
@@ -2179,7 +2179,7 @@ function theme_display_message_block() {
         if ($tempMessage != '') {
             $return .= '<a name="cpgMessageBlock"></a>';
             ob_start();
-            starttable(-1, $lang_info);
+            starttable(-1, cpg_fetch_icon('info', 2) . $lang_common['information']);
             $return .= ob_get_contents();
             ob_end_clean();
             $return .= <<< EOT
@@ -2894,7 +2894,7 @@ if (!function_exists('theme_html_picture')) {  //{THEMES}
 function theme_html_picture()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $USER;
-    global $album, $comment_date_fmt, $template_display_media;
+    global $album, $lang_date, $template_display_media;
     global $lang_display_image_php, $lang_picinfo, $lang_common, $lang_errors;
 
     $superCage = Inspekt::makeSuperCage();
@@ -3308,7 +3308,7 @@ if (!function_exists('theme_html_comments')) {  //{THEMES}
 // Displays comments for a specific picture
 function theme_html_comments($pid)
 {
-    global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
+    global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $lang_date, $HTML_SUBST;
     global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER, $lang_bbcode_help_title, $lang_bbcode_help;
 
     $superCage = Inspekt::makeSuperCage();
@@ -3461,7 +3461,7 @@ function theme_html_comments($pid)
             '{DELETE_ICON}' => cpg_fetch_icon('delete', 0),
             '{EDIT_ICON}' => cpg_fetch_icon('edit', 0),
             '{CONFIRM_DELETE}' => &$lang_display_comments['confirm_delete'],
-            '{MSG_DATE}' => localised_date($row['msg_date'], $comment_date_fmt),
+            '{MSG_DATE}' => localised_date($row['msg_date'], $lang_date['comment']),
             '{MSG_BODY}' => bb_decode($comment_body),
             '{MSG_BODY_RAW}' => $row['msg_body'],
             '{OK}' => &$lang_common['ok'],

@@ -973,7 +973,7 @@ function get_private_album_set($aid_str="")
 function build_caption(&$rowset,$must_have=array())
 {
     global $CONFIG, $THEME_DIR;
-    global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
+    global $lang_date, $cat;
     global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
 
     foreach ($rowset as $key => $row) {
@@ -1001,7 +1001,7 @@ function build_caption(&$rowset,$must_have=array())
         }
 
         if (in_array('msg_date',$must_have)) {
-            $caption .= '<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>';
+            $caption .= '<span class="thumb_caption">'.localised_date($row['msg_date'], $lang_date['lastcom']).'</span>';
         }
         if (in_array('msg_body',$must_have)) {
             $msg_body = strip_tags(bb_decode($row['msg_body'])); // I didn't want to fully bb_decode the message where report to admin isn't available. -donnoman
@@ -1014,7 +1014,7 @@ function build_caption(&$rowset,$must_have=array())
             }
         }
         if (in_array('ctime',$must_have)) {
-            $caption .= '<span class="thumb_caption">'.localised_date($row['ctime'], $lastup_date_fmt).'</span>';
+            $caption .= '<span class="thumb_caption">'.localised_date($row['ctime'], $lang_date['lastup']).'</span>';
         }
         if (in_array('pic_rating',$must_have)) {
             if (defined('THEME_HAS_RATING_GRAPHICS')) {
@@ -1037,7 +1037,7 @@ function build_caption(&$rowset,$must_have=array())
             $caption .= "<span class=\"thumb_caption\">". $rating_images .'<br />'.sprintf($lang_get_pic_data['n_votes'], $row['votes']).'</span>';
         }
         if (in_array('mtime',$must_have)) {
-                $caption .= "<span class=\"thumb_caption\">".localised_date($row['mtime'], $lasthit_date_fmt);
+                $caption .= "<span class=\"thumb_caption\">".localised_date($row['mtime'], $lang_date['lasthit']);
                 if (GALLERY_ADMIN_MODE) {
                   $caption .="<br/>".$row['lasthit_ip'];
                 }
@@ -1066,7 +1066,7 @@ function build_caption(&$rowset,$must_have=array())
 function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true) 
 {
     global $USER, $CONFIG, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA;
-    global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
+    global $lang_date, $cat;
     global $lang_common, $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
     global $lft, $rgt, $RESTRICTEDWHERE, $FORBIDDEN_SET;
 
@@ -1699,7 +1699,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 function get_pic_pos($album, $pid) 
 {
     global $USER, $CONFIG, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA;
-    global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
+    global $lang_date, $cat;
     global $lang_common, $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
     global $lft, $rgt, $RESTRICTEDWHERE, $FORBIDDEN_SET;
 
@@ -2327,7 +2327,7 @@ function compute_img_size($width, $height, $max, $system_icon=false, $normal=fal
 function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $display_tabs)
 {
         global $CONFIG, $AUTHORIZED, $USER;
-        global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common;
+        global $lang_date, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common;
 
         $superCage = Inspekt::makeSuperCage();
 
@@ -2345,7 +2345,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                         $pic_title = $lang_common['filename'].'='.$row['filename']."\n".
                                 $lang_common['filesize'].'='.($row['filesize'] >> 10).$lang_byte_units[1]."\n".
                                 $lang_display_thumbnails['dimensions'].$row['pwidth']."x".$row['pheight']."\n".
-                                $lang_display_thumbnails['date_added'].localised_date($row['ctime'], $album_date_fmt);
+                                $lang_display_thumbnails['date_added'].localised_date($row['ctime'], $lang_date['album']);
 
                         $pic_url = get_pic_url($row, 'thumb');
                         if (!is_image($row['filename'])) {
@@ -2488,7 +2488,7 @@ function& cpg_get_system_thumb($filename,$user=10001)
 function display_film_strip($album, $cat, $pos)
 {
     global $CONFIG, $AUTHORIZED;
-    global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common, $pic_count;
+    global $lang_date, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common, $pic_count;
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -2531,7 +2531,7 @@ function display_film_strip($album, $cat, $pos)
             $pic_title = $lang_common['filename'].'='.$row['filename']."\n".
                     $lang_common['filesize'].'='.($row['filesize'] >> 10).$lang_byte_units[1]."\n".
                     $lang_display_thumbnails['dimensions'].$row['pwidth']."x".$row['pheight']."\n".
-                    $lang_display_thumbnails['date_added'].localised_date($row['ctime'], $album_date_fmt);
+                    $lang_display_thumbnails['date_added'].localised_date($row['ctime'], $lang_date['album']);
 
             $pic_url =  get_pic_url($row, 'thumb');
             if (!is_image($row['filename'])) {

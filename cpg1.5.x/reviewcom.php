@@ -123,7 +123,7 @@ if ($get_data_rejected==0) { // individual approval start
         }
         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
         $thumb_link = 'displayimage.php?pos=' . - $row['pid'];
-        $msg_date = localised_date($row['msg_date'], $scientific_date_fmt);
+        $msg_date = localised_date($row['msg_date'], $lang_date['scientific']);
         $msg_body = bb_decode(process_smilies($row['msg_body']));
         // build a link to the author's profile if applicable
         if ($row['author_id'] != 0) {
@@ -506,7 +506,7 @@ while ($row = mysql_fetch_array($result)) {
     $totalMessageIdCollector .= $row['msg_id'].'|';
     $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
     $thumb_link = 'displayimage.php?pos=' . - $row['pid'];
-    $msg_date = localised_date($row['msg_date'], $scientific_date_fmt);
+    $msg_date = localised_date($row['msg_date'], $lang_date['scientific']);
     $msg_body = bb_decode(process_smilies($row['msg_body']));
     if ($row['approval'] == 'YES') {
         $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' . $lang_common['yes']."</label><br />\n\r";

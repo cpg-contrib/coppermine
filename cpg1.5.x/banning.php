@@ -147,7 +147,7 @@ EOT;
  **/
 function create_banlist()
 {
-    global $CONFIG, $lang_banning_php, $lang_usermgr_php, $lang_common, $album_date_fmt, $CPG_PHP_SELF, $icon_array, $sort, $limit, $header_output, $help_array; //$PHP_SELF,
+    global $CONFIG, $lang_banning_php, $lang_usermgr_php, $lang_common, $lang_date, $CPG_PHP_SELF, $icon_array, $sort, $limit, $header_output, $help_array; //$PHP_SELF,
 
     $result = cpg_db_query ("SELECT *, UNIX_TIMESTAMP(expiry) AS expiry FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force=0 ORDER BY $sort $limit");
     $count = mysql_num_rows($result);
@@ -512,7 +512,7 @@ if($superCage->get->keyExists('delete_comment_id') && $superCage->get->getInt('d
 
 pageheader($lang_banning_php['title'], '<link rel="stylesheet" href="js/datePicker.css" type="text/css" />');
 if ($CONFIG['bridge_enable'] != 0) {
-    starttable('100%', cpg_fetch_icon('warning', 2) . $lang_info . $help_array['bridge'], 1);
+    starttable('100%', cpg_fetch_icon('warning', 2) . $lang_common['information'] . $help_array['bridge'], 1);
     print <<< EOT
     <tr>
     	<td class="tableb">

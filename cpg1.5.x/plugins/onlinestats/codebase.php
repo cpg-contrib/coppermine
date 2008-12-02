@@ -109,7 +109,7 @@ function online_page_start()
 
 function online_mainpage()
 {
-        global $CONFIG, $cpg_udb, $matches, $lang_plugin_php, $lastcom_date_fmt;
+        global $CONFIG, $cpg_udb, $matches, $lang_plugin_php, $lang_date;
 	
         if($matches[1] != 'onlinestats') {
           return $matches;
@@ -176,7 +176,7 @@ function online_mainpage()
 	        printf($lang_plugin_php['onlinestats_guests'], '<strong>'.$num_guests.'</strong>');
         }
         print ".&nbsp;\r\n";
-        printf($lang_plugin_php['onlinestats_record'], '<strong>'.$CONFIG['record_online_users'].'</strong>', localised_date($CONFIG['record_online_date'], $lastcom_date_fmt));
+        printf($lang_plugin_php['onlinestats_record'], '<strong>'.$CONFIG['record_online_users'].'</strong>', localised_date($CONFIG['record_online_date'], $lang_date['lastcom']));
         print ".&nbsp;\r\n";
         printf($lang_plugin_php['onlinestats_since'], $CONFIG['mod_updates_duration'], $logged_in_names);
         print '.</td></tr>';

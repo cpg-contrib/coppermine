@@ -294,7 +294,7 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
     print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"http://ws.arin.net/cgi-bin/whois.pl?queryinput=".$line['sender_ip']."\">".$line['sender_ip']."</a></span></td>\n";
     print "<td".$tempClass."><strong class=\"thumb_caption\">".$line['recipient_name']."</strong></td>\n";
     print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"mailto:".$line['recipient_email']."\">".$line['recipient_email']."</a></span></td>\n";
-    print "<td".$tempClass."><span class=\"thumb_caption\">".strftime($lastcom_date_fmt,$line['date'])."</span></td>\n";
+    print "<td".$tempClass."><span class=\"thumb_caption\">".strftime($lang_date['lastcom'],$line['date'])."</span></td>\n";
     print "<td align=\"center\"".$tempClass."><span class=\"thumb_caption\"><a href=\"displayecard.php?data=".$line['link']."\">" . cpg_fetch_icon('ecard_review', 0, $lang_db_ecard_php['ecard_display']) . "</a></span></td>\n";
     print "\t</tr>\n";
     if ($tempClass == ' class="tableb"') {

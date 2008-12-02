@@ -693,7 +693,7 @@ function list_users()
 */
 function list_albums()
 {
-    global $CONFIG, $USER, $USER_DATA, $PAGE, $lastup_date_fmt, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA;
+    global $CONFIG, $USER, $USER_DATA, $PAGE, $lang_date, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA;
     global $cat;
     global $lang_list_albums, $lang_errors, $cpg_show_private_album;
 
@@ -854,7 +854,7 @@ function list_albums()
         }
         // Prepare everything
         if (!in_array($aid,$FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) {
-            $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
+            $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lang_date['lastup']) : '';
             $link_pic_count = !empty($alb_stat['link_pic_count']) ? $alb_stat['link_pic_count'] : 0;
             $alb_list[$alb_idx]['aid'] = $alb_thumb['aid'];
             $alb_list[$alb_idx]['album_title'] = $alb_thumb['title'];
@@ -866,7 +866,7 @@ function list_albums()
             $alb_list[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0 ) ? sprintf(", {$lang_list_albums['n_link_pictures']},  {$lang_list_albums['total_pictures']}", $link_pic_count, $count + $link_pic_count) : "");
             $alb_list[$alb_idx]['album_adm_menu'] = album_adm_menu($alb_thumb['aid'], $cat);
         } elseif ($CONFIG['show_private']) { // uncomment this else block to show private album description
-            $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
+            $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lang_date['lastup']) : '';
             $link_pic_count = !empty($alb_stat['link_pic_count']) ? $alb_stat['link_pic_count'] : 0;
             $alb_list[$alb_idx]['aid'] = $alb_thumb['aid'];
             $alb_list[$alb_idx]['album_title'] = $alb_thumb['title'];
@@ -949,7 +949,7 @@ function album_adm_menu($aid, $cat)
 */
 function list_cat_albums($cat, $catdata)
 {
-    global $CONFIG, $USER, $lastup_date_fmt, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA, $cpg_show_private_album;
+    global $CONFIG, $USER, $lang_date, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA, $cpg_show_private_album;
     global $lang_list_albums, $lang_errors;
 
     $PAGE = 1;
@@ -1047,7 +1047,7 @@ function list_cat_albums($cat, $catdata)
         }
         // Prepare everything
         if (!in_array($aid,$FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) {
-            $last_upload_date = $album['pic_count'] ? localised_date($album['last_upload'], $lastup_date_fmt) : '';
+            $last_upload_date = $album['pic_count'] ? localised_date($album['last_upload'], $lang_date['lastup']) : '';
             $link_pic_count = !empty($album['link_pic_count']) ? $album['link_pic_count'] : 0;
             $alb_list[$aid]['aid'] = $aid;
             $alb_list[$aid]['album_title'] = $album['title'];
@@ -1058,7 +1058,7 @@ function list_cat_albums($cat, $catdata)
             $alb_list[$aid]['album_info'] = sprintf($lang_list_albums['n_pictures'], $album['pic_count']) . ($album['pic_count'] ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0)  ? sprintf(", {$lang_list_albums['n_link_pictures']}, {$lang_list_albums['total_pictures']}", $link_pic_count, $album['pic_count'] + $link_pic_count) : "");
             $alb_list[$aid]['album_adm_menu'] = album_adm_menu($aid, $cat);
         } elseif ($CONFIG['show_private']) { // show private album description
-            $last_upload_date = $album['pic_count'] ? localised_date($album['last_upload'], $lastup_date_fmt) : '';
+            $last_upload_date = $album['pic_count'] ? localised_date($album['last_upload'], $lang_date['lastup']) : '';
             $link_pic_count = !empty($album['link_pic_count']) ? $album['link_pic_count'] : 0;
             $alb_list[$aid]['aid'] = $aid;
             $alb_list[$aid]['album_title'] = $album['title'];

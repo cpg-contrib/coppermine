@@ -109,13 +109,13 @@ require_once('include/init.inc.php');
     		$get_date_display = $superCage->get->getInt('date_display');
         if ($get_date_display == 0) {
             $date_display = 0;
-            $date_display_fmt = $album_date_fmt;
+            $date_display_fmt = $lang_date['album'];
         } elseif($get_date_display == 1) {
             $date_display = 1;
-            $date_display_fmt = $lastcom_date_fmt;
+            $date_display_fmt = $lang_date['lastcom'];
         } elseif($get_date_display == 2) {
             $date_display = 2;
-            $date_display_fmt = $log_date_fmt;
+            $date_display_fmt = $lang_date['log'];
         } elseif($get_date_display == 3) {
             $date_display = 3;
             $date_display_fmt = '%Y-%m-%d %H:%M:%S';
@@ -551,9 +551,9 @@ EOT;
   $date_display_2_selected = ($date_display == '2') ? 'selected="selected"' : '';
   $date_display_3_selected = ($date_display == '3') ? 'selected="selected"' : '';
   $date_display_4_selected = ($date_display == '4') ? 'selected="selected"' : '';
-  $localized_time[0] = strftime($album_date_fmt,localised_timestamp(time()));
-  $localized_time[1] = strftime($lastcom_date_fmt,localised_timestamp(time()));
-  $localized_time[2] = strftime($log_date_fmt,localised_timestamp(time()));
+  $localized_time[0] = strftime($lang_date['album'],localised_timestamp(time()));
+  $localized_time[1] = strftime($lang_date['lastcom'],localised_timestamp(time()));
+  $localized_time[2] = strftime($lang_date['log'],localised_timestamp(time()));
   $localized_time[3] = strftime('%Y-%m-%d %H:%M:%S',localised_timestamp(time()));
   $localized_time[4] = strftime('%Y-%m-%d',localised_timestamp(time()));
   foreach ($amount_allowed as $key) {

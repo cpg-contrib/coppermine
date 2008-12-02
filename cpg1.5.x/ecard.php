@@ -176,7 +176,7 @@ if ($superCage->post->keyExists('sender_name') && $valid_sender_email && $valid_
                                 $plaintext_message = template_eval($template_ecard_plaintext, $params);
 
         $tempTime = time();
-        $message .= sprintf($lang_ecard_php['ecards_footer'], $sender_name, $raw_ip, localised_date(-1,$comment_date_fmt));
+        $message .= sprintf($lang_ecard_php['ecards_footer'], $sender_name, $raw_ip, localised_date(-1,$lang_date['comment']));
                                 $subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
 
                                 $result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);

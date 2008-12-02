@@ -434,7 +434,7 @@ switch ($op) {
             $disk_usage_output = cpg_format_bytes($disk_usage);
         }
         $form_data = array('username' => $user_data['user_name'],
-            'reg_date' => localised_date($user_data['user_regdate'], $register_date_fmt),
+            'reg_date' => localised_date($user_data['user_regdate'], $lang_date['register']),
             'status' => $user_status,
             'group' => $user_data['group_name'] . $group_list,
             'email' => $user_data['user_email'],
@@ -466,7 +466,7 @@ EOT;
                            '</a>';
           $lastComDate = '<br />'.
                          '<span class="thumb_caption">'.
-                         localised_date($lastComArray['msg_date'], $lastcom_date_fmt).
+                         localised_date($lastComArray['msg_date'], $lang_date['lastcom']).
                          '</span>';
           $lastComText = '<br />'.
                          '<span class="thumb_caption">'.
@@ -650,7 +650,7 @@ EOT;
                     . '<span class="thumb_title">' . $lang_register_php['last_comments'] . '<br />' . sprintf($lang_register_php['last_comments_detail'], $user_data['user_name']) . '<br /></span>'
                     . $lastComArray['thumb']
                     . '</a><br />';
-                $lastcom .= "<span class=\"thumb_caption\">" . localised_date($lastComArray['msg_date'], $lastcom_date_fmt) . '</span>' . "<span class=\"thumb_caption\">" . bb_decode(process_smilies($lastComArray['comment'])) . '</span></td>';
+                $lastcom .= "<span class=\"thumb_caption\">" . localised_date($lastComArray['msg_date'], $lang_date['lastcom']) . '</span>' . "<span class=\"thumb_caption\">" . bb_decode(process_smilies($lastComArray['comment'])) . '</span></td>';
         }
 
 
@@ -666,7 +666,7 @@ EOT;
 
         $form_data = array('username' => $user_data['user_name'],
             'status' => $user_status,
-            'reg_date' => localised_date($user_data['user_regdate'], $register_date_fmt),
+            'reg_date' => localised_date($user_data['user_regdate'], $lang_date['register']),
             'group' => $user_data['group_name'],
             'user_profile1' => $user_data['user_profile1'],
             'user_profile2' => $user_data['user_profile2'],
