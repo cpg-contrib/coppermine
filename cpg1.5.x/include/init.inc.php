@@ -273,31 +273,33 @@ require "themes/{$CONFIG['theme']}/theme.php";
 
 require "include/themes.inc.php";  //All Fallback Theme Templates and Functions
 
+// Language processing --- start
+// We load the default language file
+require_once('lang/english.php');
+
+$CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
+/* Temporarily disabled all language processing untill new fallback is implemented
+$results = cpg_db_query("SELECT lang_id FROM {$CONFIG['TABLE_LANGUAGE']} WHERE enabled='YES' ");
+while ($enabled_languages_array = mysql_fetch_array($results)) {
+}
+print_r($enabled_languages_array);
+mysql_free_result($results);
+die;
+
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8
-$CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
 if ($superCage->get->getRaw('lang') && $matches = $superCage->get->getMatched('lang', '/^[a-z0-9_-]+$/')) {
     $USER['lang'] = $CONFIG['lang'] = $matches[0];
-}/* else {
-	unset($USER['lang']);
-}*/
-
-if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php'))
-{
-    $CONFIG['default_lang'] = $CONFIG['lang'];          // Save default language
-    $CONFIG['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
 }
-elseif ($CONFIG['charset'] == 'utf-8')
-{
+
+if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php')) {
+    $CONFIG['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
+} elseif ($CONFIG['charset'] == 'utf-8') {
     include('include/select_lang.inc.php');
-    if (file_exists('lang/' . $USER['lang'] . '.php'))
-    {
-        $CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
+    if (file_exists('lang/' . $USER['lang'] . '.php')) {
         $CONFIG['lang'] = $USER['lang'];
     }
-}
-else
-{
+} else {
     unset($USER['lang']);
 }
 
@@ -315,8 +317,10 @@ require "lang/{$CONFIG['lang']}.php";
 
 // Include and process fallback here if lang <> english
 if($CONFIG['lang'] != 'english' && $CONFIG['language_fallback']==1 ){
-    require "include/langfallback.inc.php";
+    //require "include/langfallback.inc.php";
 }
+*/
+// Language processing --- end
 
 // See if the fav cookie is set else set it
 if ($superCage->cookie->keyExists($CONFIG['cookie_name'] . '_fav')) {

@@ -152,10 +152,10 @@ $config_data = array(
       'options'       => cpg_get_available_languages(),
       'end_description' => '&nbsp;&nbsp;(<a href="langmgr.php">'.$lang_admin_php['manage_languages'].'</a>)',
     ),
-    'language_fallback' => array(
+    'language_autodetect' => array(
       'type'          => 'checkbox',
       'default_value' => '0',
-      'help_link'     => 'f=configuration.htm&amp;as=admin_language_fallback&amp;ae=admin_language_fallback_end',
+      'help_link'     => 'f=configuration.htm&amp;as=admin_language_autodetect&amp;ae=admin_language_autodetect_end',
     ),
     'charset' => array(
       'type'          => 'select',

@@ -125,7 +125,7 @@ INSERT INTO CPG_config VALUES ('impath', '');
 INSERT INTO CPG_config VALUES ('jpeg_qual', '80');
 INSERT INTO CPG_config VALUES ('keep_votes_time', '30');
 INSERT INTO CPG_config VALUES ('lang', 'english');
-INSERT INTO CPG_config VALUES ('language_fallback', '1');
+INSERT INTO CPG_config VALUES ('language_autodetect', '1');
 INSERT INTO CPG_config VALUES ('language_flags', '0');
 INSERT INTO CPG_config VALUES ('language_list', '0');
 INSERT INTO CPG_config VALUES ('language_reset', '1');

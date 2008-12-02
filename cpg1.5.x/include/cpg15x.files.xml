@@ -8132,14 +8132,6 @@
     <hash>f74075b82c1f45528cfbccb4ab5b46f5</hash>
   </element>
   <element>
-    <fullpath>include/langfallback.inc.php</fullpath>
-    <version>1.5.0</version>
-    <revision>5153</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>4408bed4eefe3b7e3dc1899c4bea1903</hash>
-  </element>
-  <element>
     <fullpath>include/lib.xml.php</fullpath>
     <version>1.5.0</version>
     <revision>5129</revision>

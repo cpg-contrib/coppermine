@@ -135,17 +135,18 @@ Diese Option kann auch ein- und augeschaltet werden auf den <a href="uploading.h
   <li>Schritt 2: welche Sprache hat der Besucher als Standard-Sprache in seinem Browser eingestellt? Falls diese Sprache als Coppermine-Übersetzung vorliegt wird diese benutzt - weitere Schritte werden übersprungen.</li>
   <li>Schritt 3 (letzter Schritt): nur wenn beide vorhergehenden Schritte nicht zutreffen wird die Standard-Sprache, die der Coppermine-Admin in den Einstellungen definiert hat in Betracht gezogen.</li>
 </ul>
-
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; Sprache</p>
 <a name="admin_language_language_end"></a>
 <hr />
-<a name="admin_language_fallback"></a><h3>Auf Englisch zurückgreifen, wenn Deutsche Übersetzung nicht verfügbar?<a href="#admin_language_fallback" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Aktiviere diese Option, wennn Du Sprachdateien benutzt, die nicht für die Coppermine-Version erzeugt wurden, die Du benutzt, sondern für eine ältere Version. Wenn ein bestimmes Wort oder ein Satz nicht in Deiner Sprachdatei vorhanden ist wird Coppermine dann das entsprechende Englische Wort benutzen.</p>
-<p>Dieses Feature wurde eingeführt, um die Verwendung älterer Sprachdateien zu ermöglichen - Sprachdateien, für die noch keine vollständige Übersetzung für die aktuelle Version vorliegt. Bis zu dem Zeitpunkt einer Aktualisierung von Coppermine mit einer Sprachdatei in der entsprechenden version kannst Du dieses Feature als "Workaround" nutzen. Die meisten Unterschiede und Neuerungen bei den Sprachdateien betreffen den administrativen Teil von Coppermine - daher wird der vor allem der Admin auf eine Menge unübersetzter Worte treffen, die er dann statt in seiner Muttersprache in Englisch sehen wird. Merke: diese Option funktioniert nur für 95% aller Sätze - es kann trotz aktivierter Option vorkommen, dass einige Bereiche garnicht angezeigt werden.</p>
-<p class="important">Die Aktivierung dieser Option hat eine große Auswirkung auf den Leistungshunger Deiner Galerie, vor allem der Bedarf an Arbeitsspeicher (RAM) steigt dadurch dramatisch an. Es ist daher empfehlenswert, diese Option nur zu aktivieren, wenn es unbedingt sein muss und nicht nur aus Neugier oder um möglichst viele Optionen anbieten zu können.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; Auf Englisch zurückgreifen, wenn Deutsche Übersetzung nicht verfügbar?</p>
-<a name="admin_language_fallback_end"></a>
+
+<a name="admin_language_autodetect"></a><h3>Automatische Sprachbestimmung<a href="#admin_language_autodetect" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>If enabled, Coppermine will try to determine the language of the site visitor based on the language preference settings in the visitor's browser. If the detected language exists as language file for coppermine, that language will be used for the particular visitor. If the language detection doesn't yield a result, the <a href="#admin_language_language">default language</a> set up in Config will be used instead.</p>
+<p>Recommended setting is "Yes".</p>
+<p>Details on how Coppermine handles languages can be found in the section <a href="languages.htm#translating">Languages</a> of the docs</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; Automatische Sprachbestimmung</p>
+<a name="admin_language_autodetect_end"></a>
 <hr />
+
 <a name="admin_language_charset"></a><h3>Zeichensatz<a href="#admin_language_charset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Dies sollte normalerweise auf "Unicode (utf-8)" eingestellt sein, vgl. die Erklärungen im Bereich &quot;<strong><a href="languages.htm#translating">Sprache</a></strong>&quot; der Doku.</p>
 <p>Ändere diese Einstellung nicht von Unicode auf irgend etwas anderes, wenn Du Dir nicht vollständig über die Tragweite dieser Änderung bewusst bist!</p>

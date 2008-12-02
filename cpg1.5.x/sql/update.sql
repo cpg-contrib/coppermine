@@ -162,6 +162,7 @@ INSERT INTO CPG_config VALUES ('allow_unlogged_access', '3');
 DELETE FROM CPG_config WHERE `name` = 'vanity_block';
 DELETE FROM CPG_config WHERE `name` = 'display_faq';
 DELETE FROM CPG_config WHERE `name` = 'ban_private_ip';
+DELETE FROM CPG_config WHERE `name` = 'language_fallback';
 
 
 
@@ -344,3 +345,5 @@ INSERT INTO CPG_config VALUES ('comment_akismet_group', '0');
 
 # Remove the group "Banned", as it never was used anyway
 DELETE FROM CPG_usergroups WHERE `group_name` = 'Banned';
+
+INSERT INTO CPG_config VALUES ('language_autodetect', '1');
