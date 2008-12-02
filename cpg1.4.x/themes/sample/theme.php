@@ -2050,8 +2050,8 @@ function theme_html_picture()
         $autostart = ($CONFIG['media_autostart']) ? ('true'):('false');
 
         $players['WMP'] = array('id' => 'MediaPlayer',
-                                'clsid' => 'classid="clsid:6BF52A52-394A-11d3-B153-00C04F79FAA6" ',
-                                'codebase' => 'codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" ',
+                                'clsid' => 'classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" ',
+                                'codebase' => 'codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,4,7,1112" ',
                                 'mime' => 'type="application/x-mplayer2" ',
                                );
         $players['RMP'] = array('id' => 'RealPlayer',
