@@ -312,8 +312,8 @@ $lang_rate_pic['rollover_to_rate'] = 'Rollover to rate this picture'; // cpg1.5
 // File include/functions.inc.php
 // ------------------------------------------------------------------------- //
 
-$lang_cpg_die['INFORMATION'] = $lang_info;
-$lang_cpg_die['ERROR'] = $lang_error;
+$lang_cpg_die['INFORMATION'] = $lang_common['information'];
+$lang_cpg_die['ERROR'] = $lang_errors['error'];
 $lang_cpg_die['CRITICAL_ERROR'] = 'Critical error';
 $lang_cpg_die['file'] = 'File: ';
 $lang_cpg_die['line'] = 'Line: ';
@@ -359,13 +359,13 @@ $lang_version_alert['hide'] = 'hide'; // cpg1.5
 $lang_create_tabs['previous'] = 'previous';
 $lang_create_tabs['next'] = 'next';
 
-$lang_get_remote_File_by_url['no_data_returned'] = 'No data returned using %s'; // cpg1.5
-$lang_get_remote_File_by_url['curl'] = 'CURL'; // cpg1.5
-$lang_get_remote_File_by_url['fsockopen'] = 'Socket connection (FSOCKOPEN)'; // cpg1.5
-$lang_get_remote_File_by_url['fopen'] = 'fopen'; // cpg1.5
-$lang_get_remote_File_by_url['curl_not_available'] = 'Curl is not available on your server'; // cpg1.5
-$lang_get_remote_File_by_url['error_number'] = 'Error number: %s'; // cpg1.5
-$lang_get_remote_File_by_url['error_message'] = 'Error message: %s'; // cpg1.5
+$lang_get_remote_file_by_url['no_data_returned'] = 'No data returned using %s'; // cpg1.5
+$lang_get_remote_file_by_url['curl'] = 'CURL'; // cpg1.5
+$lang_get_remote_file_by_url['fsockopen'] = 'Socket connection (FSOCKOPEN)'; // cpg1.5
+$lang_get_remote_file_by_url['fopen'] = 'fopen'; // cpg1.5
+$lang_get_remote_file_by_url['curl_not_available'] = 'Curl is not available on your server'; // cpg1.5
+$lang_get_remote_file_by_url['error_number'] = 'Error number: %s'; // cpg1.5
+$lang_get_remote_file_by_url['error_message'] = 'Error message: %s'; // cpg1.5
 
 // ------------------------------------------------------------------------- //
 // File include/plugin_api.inc.php
@@ -442,7 +442,6 @@ $lang_banning_php['error_specify'] = 'You need to specify either a user name or 
 $lang_banning_php['error_ban_id'] = 'Invalid ban ID!';
 $lang_banning_php['error_admin_ban'] = 'You cannot ban yourself!';
 $lang_banning_php['error_server_ban'] = 'You were going to ban your own server? Tsk tsk, cannot do that...';
-$lang_banning_php['error_ip_forbidden'] = 'You cannot ban this IP - it is non-routable (private) anyway!<br />If you want to allow banning for private IPs, change this in your %sConfig%s (only makes sense when Coppermine runs on a LAN)'; // cpg1.5
 $lang_banning_php['skipping'] = 'Skipping that command'; // cpg1.5
 $lang_banning_php['lookup_ip'] = 'IP Address Lookup';
 $lang_banning_php['select_date'] = 'select date';
@@ -946,6 +945,7 @@ $lang_db_ecard_php['uncheck_all'] = 'Uncheck All';
 $lang_db_ecard_php['ecards_delete_selected'] = 'Delete selected ecards';
 $lang_db_ecard_php['ecards_delete_confirm'] = 'Are you sure you want to delete the records? Tick the checkbox!';
 $lang_db_ecard_php['ecards_delete_sure'] = 'I\'m sure';
+$lang_db_ecard_php['invalid_data'] = 'The data for the ecard you are trying to access has been corrupted by your mail client. Check the link is complete.';
 }
 
 // ------------------------------------------------------------------------- //
@@ -962,8 +962,8 @@ $lang_db_input_php['no_pic_uploaded'] = 'No file was uploaded !<br /><br />If yo
 $lang_db_input_php['err_mkdir'] = 'Failed to create directory %s !';
 $lang_db_input_php['dest_dir_ro'] = 'Destination directory %s is not writable by the script !';
 $lang_db_input_php['err_move'] = 'Impossible to move %s to %s !';
-$lang_db_input_php['err_fsize_too_large'] = 'The size of file you have uploaded is too large (maximum allowed is %s x %s) !'; //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
-$lang_db_input_php['err_imgsize_too_large'] = 'The size of the file you have uploaded is too large (maximum allowed is %s KB) !'; //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
+$lang_db_input_php['err_fsize_too_large'] = 'The size of file you have uploaded is too large (maximum allowed is %s x %s) !';
+$lang_db_input_php['err_imgsize_too_large'] = 'The size of the file you have uploaded is too large (maximum allowed is %s KB) !';
 $lang_db_input_php['err_invalid_img'] = 'The file you have uploaded is not a valid image !';
 $lang_db_input_php['allowed_img_types'] = 'You can only upload %s images.';
 $lang_db_input_php['err_insert_pic'] = 'The file \'%s\' can\'t be inserted in the album ';
@@ -1030,13 +1030,6 @@ $lang_delete_php['change_group_to_group'] = 'Changing from %s to %s';
 $lang_delete_php['add_group'] = 'Add secondary group';
 $lang_delete_php['add_group_to_group'] = 'Adding user %s to group %s. He\'s now member of %s as primary and of %s as secondary membergroup(s).';
 $lang_delete_php['status'] = 'Status';
-}
-
-// ------------------------------------------------------------------------- //
-// File displayecard.php
-// ------------------------------------------------------------------------- //
-if (defined('DISPLAYECARD_PHP')) {
-$lang_displayecard_php['invalid_data'] = 'The data for the ecard you are trying to access has been corrupted by your mail client. Check the link is complete.';
 }
 
 // ------------------------------------------------------------------------- //
@@ -1159,7 +1152,7 @@ $lang_fullsize_popup['close_window'] = 'close window'; // cpg1.5
 // File ecard.php
 // ------------------------------------------------------------------------- //
 
-if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) {
+if (defined('ECARDS_PHP')) {
 $lang_ecard_php['title'] = 'Send an e-card';
 $lang_ecard_php['invalid_email'] = 'Warning: invalid email address:'; // cpg1.5
 $lang_ecard_php['ecard_title'] = 'An e-card from %s for you';
@@ -1189,7 +1182,7 @@ $lang_ecard_php['preview_view_ecard'] = 'This will be the alternate link to the 
 // File report_file.php
 // ------------------------------------------------------------------------- //
 
-if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) {
+if (defined('REPORT_FILE_PHP')) {
 $lang_report_php['title'] = 'Report to administrator';
 $lang_report_php['invalid_email'] = '<strong>Warning</strong> : invalid email address !';
 $lang_report_php['report_subject'] = 'A report from %s on a gallery %s';
@@ -1317,7 +1310,7 @@ $lang_forgot_passwd_php['verify_email_sent'] = 'An email has been sent to %s. Pl
 $lang_forgot_passwd_php['err_unk_user'] = 'Selected user does not exist!';
 $lang_forgot_passwd_php['account_verify_subject'] = '%s - New password request';
 $lang_forgot_passwd_php['passwd_reset_subject'] = '%s - Your New Password';
-$lang_forgot_passwd_account_verify_email = <<<EOT
+$lang_forgot_passwd_php['account_verify_email'] = <<<EOT
 You have requested a new password. If you would like to proceed with having a new password sent to you, click on the following link:
 
 <a href="{VERIFY_LINK}">{VERIFY_LINK}</a>
@@ -1329,7 +1322,7 @@ The management of {SITE_NAME}
 
 EOT;
 
-$lang_forgot_passwd_reset_email = <<<EOT
+$lang_forgot_passwd_php['reset_email'] = <<<EOT
 Here is the new password you requested:
 
 Username:{USER_NAME}
@@ -1753,7 +1746,7 @@ $lang_rate_pic_php['forbidden'] = 'You can not rate your own files.';
 // File register.php & profile.php
 // ------------------------------------------------------------------------- //
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
-$lang_register_disclamer = <<<EOT
+$lang_register_php['disclamer'] = <<<EOT
 While the administrators of {SITE_NAME} will attempt to remove or edit any generally objectionable material as quickly as possible, it is impossible to review every post. Therefore you acknowledge that all posts made to this site express the views and opinions of the author and not the administrators or webmaster (except for posts by these people) and hence will not be held liable.<br />
 <br />
 You agree not to post any abusive, obscene, vulgar, slanderous, hateful, threatening, sexually-oriented or any other material that may violate any applicable laws. You agree that the webmaster, administrator and moderators of {SITE_NAME} have the right to remove or edit any content at any time should they see fit. As a user you agree to any information you have entered above being stored in a database. While this information will not be disclosed to any third party without your consent the webmaster and administrator cannot be held responsible for any hacking attempt that may lead to the data being compromised.<br />
@@ -1837,7 +1830,7 @@ $lang_register_php['password_verification_warning1'] = 'The two passwords do not
 $lang_register_php['form_not_submit'] = 'The form hasn\'t been submit - there are errors that you need to correct first!'; // cpg1.5
 $lang_register_php['banned'] = 'Banned'; // cpg1.5
 
-$lang_register_confirm_email = <<<EOT
+$lang_register_php['confirm_email'] = <<<EOT
 Thank you for registering at {SITE_NAME}
 
 In order to activate your account with username "{USER_NAME}", you need to click on the link below or copy and paste it in your web browser.
@@ -1857,7 +1850,7 @@ In order to activate the account, you need to click on the link below or copy an
 
 EOT;
 
-$lang_register_activated_email = <<<EOT
+$lang_register_php['activated_email'] = <<<EOT
 Your account has been approved and activated.
 
 You can now log in at <a href="{SITE_LINK}">{SITE_LINK}</a> using the username "{USER_NAME}"
@@ -2004,14 +1997,16 @@ $lang_search_new_php['no_pic_found'] = 'No new file was found';
 $lang_search_new_php['be_patient'] = 'Please be patient, the script needs time to add the files';
 $lang_search_new_php['no_album'] = 'no album selected';
 $lang_search_new_php['result_icon'] = 'click for details or to reload';
-$lang_search_new_php['notes'] = '<ul>'.
-                '<li><strong>OK</strong>: means that the file was successfully added'.
-                '<li><strong>DP</strong>: means that the file is a duplicate and is already in the database'.
-                '<li><strong>PB</strong>: means that the file could not be added, check your configuration and the permission of directories where the files are located'.
-                '<li><strong>NA</strong>: means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
-                '<li>If the OK, DP, PB \'signs\' does not appear click on the broken file to see any error message produced by PHP'.
-                '<li>If your browser timeouts, hit the reload button'.
-            '</ul>';
+$lang_search_new_php['notes'] = <<< EOT
+	<ul>
+        <li><strong>OK</strong>: means that the file was successfully added</li>
+        <li><strong>DP</strong>: means that the file is a duplicate and is already in the database</li>
+        <li><strong>PB</strong>: means that the file could not be added, check your configuration and the permission of directories where the files are located</li>
+        <li><strong>NA</strong>: means that you haven't selected an album the files should go to, hit '<a href="javascript:history.back(1)">back</a>' and select an album. If you don't have an album <a href="albmgr.php">create one first</a></li>
+        <li>If the OK, DP, PB 'signs' does not appear click on the broken file to see any error message produced by PHP</li>
+        <li>If your browser timeouts, hit the reload button</li>
+    </ul>
+EOT;
 $lang_search_new_php['check_all'] = 'Check All';
 $lang_search_new_php['uncheck_all'] = 'Uncheck All';
 $lang_search_new_php['no_folders'] = 'There are no folders inside the "albums" folder yet. Make sure to create at least one custom folder within "albums" folder and ftp-upload your files there. You mustn\'t upload to the "userpics" nor "edit" folders, they are reserved for http uploads and internal purposes.';
@@ -2291,9 +2286,7 @@ $lang_usermgr_php['status'] = 'Status'; // cpg1.5
 $lang_usermgr_php['status_active'] = 'active'; // cpg1.5
 $lang_usermgr_php['status_inactive'] = 'not active'; // cpg1.5
 $lang_usermgr_php['total'] = 'Total'; // cpg1.5
-
-
-$lang_send_login_data_email = <<<EOT
+$lang_usermgr_php['send_login_data_email'] = <<<EOT
 A new account has been created for you at {SITE_NAME}.
 
 You can now log in at <a href="{SITE_LINK}">{SITE_LINK}</a> using the username "{USER_NAME}" and password "{USER_PASS}"

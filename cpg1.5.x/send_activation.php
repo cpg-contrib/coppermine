@@ -50,7 +50,7 @@ if ($superCage->post->KeyExists('email') && $superCage->post->testEmail('email')
                                 '{USER_NAME}' => $USER_DATA['user_name'],
                                 '{ACT_LINK}' => $act_link
                               );
-        if (!cpg_mail($USER_DATA['user_email'], sprintf($lang_register_php['confirm_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_confirm_email, $template_vars)))) {
+        if (!cpg_mail($USER_DATA['user_email'], sprintf($lang_register_php['confirm_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_php['confirm_email'], $template_vars)))) {
           cpg_die(CRITICAL_ERROR, $lang_register_php['failed_sending_email'], __FILE__, __LINE__);
         }
 

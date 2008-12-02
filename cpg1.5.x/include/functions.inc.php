@@ -4091,7 +4091,7 @@ function cpgValidateDate($date)
  **/
 function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $minLength = '0') 
 {
-    global $lang_get_remote_File_by_url;
+    global $lang_get_remote_file_by_url;
     // FSOCK code snippets taken from http://jeenaparadies.net/weblog/2007/jan/get_remote_file
     $url = parse_url($remoteURL); // chop the URL into protocol, domain, port, folder, file, parameter
     if (!isset($url['host'])) {
@@ -4121,14 +4121,14 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
         curl_close($curl);
         if (strlen($body) < $minLength ) {
             // Fetching the data by CURL obviously failed
-            $error .= sprintf($lang_get_remote_File_by_url['no_data_returned'], $lang_get_remote_File_by_url['curl']) . $lineBreak;
+            $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['curl']) . $lineBreak;
         } else {
             // Fetching the data by CURL was successfull. Let's return the data
             return array("headers" => $headers, "body" => $body);
         }
     } else {
         // Curl is not available
-        $error .= $lang_get_remote_File_by_url['curl_not_available'] . $lineBreak;
+        $error .= $lang_get_remote_file_by_url['curl_not_available'] . $lineBreak;
     }
     // Now let's try FSOCKOPEN
     if ($url['host'] != '') {
@@ -4164,18 +4164,18 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
             fclose($fp);
             if (strlen($body) < $minLength) {
                 // Fetching the data by FSOCKOPEN obviously failed
-                $error .= sprintf($lang_get_remote_File_by_url['no_data_returned'], $lang_get_remote_File_by_url['fsockopen']) . $lineBreak;
+                $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['fsockopen']) . $lineBreak;
             } elseif (in_array('404', $headers) == TRUE) {
                 // We got a 404 error
-                $error .= sprintf($lang_get_remote_File_by_url['error_number'], '404') . $lineBreak;
+                $error .= sprintf($lang_get_remote_file_by_url['error_number'], '404') . $lineBreak;
             } else {
                 // Fetching the data by FSOCKOPEN was successfull. Let's return the data
                 return array("headers" => $headers, "body" => $body, "error" => $error);
             }
         } else {  // fsockopen file handle failure - start
-            $error .= $lang_get_remote_File_by_url['fsockopen'] . ': ';
-            $error .= sprintf($lang_get_remote_File_by_url['error_number'], $errno);
-            $error .= sprintf($lang_get_remote_File_by_url['error_message'], $errstr);
+            $error .= $lang_get_remote_file_by_url['fsockopen'] . ': ';
+            $error .= sprintf($lang_get_remote_file_by_url['error_number'], $errno);
+            $error .= sprintf($lang_get_remote_file_by_url['error_message'], $errstr);
         }
     } else {
         //$error .= 'No Hostname set. In other words: we\'re trying to retrieve a local file';
@@ -4201,7 +4201,7 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
         }
         fclose($handle);
         if (strlen($body) < $minLength) {
-            $error .= sprintf($lang_get_remote_File_by_url['no_data_returned'], $lang_get_remote_File_by_url['fopen']) . $lineBreak;
+            $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['fopen']) . $lineBreak;
         } else {
             // Fetching the data by FOPEN was successfull. Let's return the data
             return array("headers" => $headers, "body" => $body, "error" => $error);

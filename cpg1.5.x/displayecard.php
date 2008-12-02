@@ -18,7 +18,8 @@
 **********************************************/
 
 define('IN_COPPERMINE', true);
-define('DISPLAYECARD_PHP', true);
+define('DB_ECARD_PHP', true);
+define('ECARDS_PHP', true);
 
 require('include/init.inc.php');
 require('include/smilies.inc.php');
@@ -102,6 +103,6 @@ $params = array('{LANG_DIR}' => $lang_text_dir,
 echo template_eval($template_ecard, $params);
 
 } else {
-    cpg_die(CRITICAL_ERROR, $lang_displayecard_php['invalid_data'], __FILE__, __LINE__);
+    cpg_die(CRITICAL_ERROR, $lang_db_ecard_php['invalid_data'], __FILE__, __LINE__);
 }
 ?>

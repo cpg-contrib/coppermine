@@ -310,8 +310,8 @@ $lang_rate_pic['rollover_to_rate'] = 'Halte die Maus über die die Bewertung, um
 // ------------------------------------------------------------------------- //
 // File include/functions.inc.php
 // ------------------------------------------------------------------------- //
-$lang_cpg_die['INFORMATION'] = $lang_info;
-$lang_cpg_die['ERROR'] = $lang_error;
+$lang_cpg_die['INFORMATION'] = $lang_common['information'];
+$lang_cpg_die['ERROR'] = $lang_errors['error'];
 $lang_cpg_die['CRITICAL_ERROR'] = 'Kritischer Fehler';
 $lang_cpg_die['file'] = 'Datei: ';
 $lang_cpg_die['line'] = 'Zeile: ';
@@ -357,13 +357,13 @@ $lang_version_alert['hide'] = 'verbergen'; //cpg1.5
 $lang_create_tabs['previous'] = 'vorherige';
 $lang_create_tabs['next'] = 'nächste';
 
-$lang_get_remote_File_by_url['no_data_returned'] = 'Es wurden keine Daten zurückgeliefert mit %s'; //cpg1.5
-$lang_get_remote_File_by_url['curl'] = 'CURL'; //cpg1.5
-$lang_get_remote_File_by_url['fsockopen'] = 'Socket-Verbindung (FSOCKOPEN)'; //cpg1.5
-$lang_get_remote_File_by_url['fopen'] = 'fopen'; //cpg1.5
-$lang_get_remote_File_by_url['curl_not_available'] = 'Curl ist auf Deinem Server nicht verfügbar'; //cpg1.5
-$lang_get_remote_File_by_url['error_number'] = 'Fehler Nummer: %s'; //cpg1.5
-$lang_get_remote_File_by_url['error_message'] = 'Fehler: %s'; //cpg1.5
+$lang_get_remote_file_by_url['no_data_returned'] = 'Es wurden keine Daten zurückgeliefert mit %s'; //cpg1.5
+$lang_get_remote_file_by_url['curl'] = 'CURL'; //cpg1.5
+$lang_get_remote_file_by_url['fsockopen'] = 'Socket-Verbindung (FSOCKOPEN)'; //cpg1.5
+$lang_get_remote_file_by_url['fopen'] = 'fopen'; //cpg1.5
+$lang_get_remote_file_by_url['curl_not_available'] = 'Curl ist auf Deinem Server nicht verfügbar'; //cpg1.5
+$lang_get_remote_file_by_url['error_number'] = 'Fehler Nummer: %s'; //cpg1.5
+$lang_get_remote_file_by_url['error_message'] = 'Fehler: %s'; //cpg1.5
 
 // ------------------------------------------------------------------------- //
 // File include/plugin_api.inc.php
@@ -944,6 +944,7 @@ $lang_db_ecard_php['uncheck_all'] = 'alle Markierungen entfernen';
 $lang_db_ecard_php['ecards_delete_selected'] = 'Gewählte eCard-Einträge löschen';
 $lang_db_ecard_php['ecards_delete_confirm'] = 'Alle Einträge löschen? Entsprechendes Feld ankreuzen!';
 $lang_db_ecard_php['ecards_delete_sure'] = 'wirklich löschen';
+$lang_db_ecard_php['invalid_data'] = 'Die Daten für die gewünschte eCard wurden von Deinem eMail-Client korrumpiert. Überprüfe den Link auf Vollständigkeit.';
 }
 
 // ------------------------------------------------------------------------- //
@@ -960,8 +961,8 @@ $lang_db_input_php['no_pic_uploaded'] = 'Es wurde keine Datei hochgeladen!<br />
 $lang_db_input_php['err_mkdir'] = 'Verzeichnis %s konnte nicht angelegt werden!';
 $lang_db_input_php['dest_dir_ro'] = 'In das Zielverzeichnis %s kann vom Skript nicht geschrieben werden!';
 $lang_db_input_php['err_move'] = '%s kann nicht nach %s verschoben werden!';
-$lang_db_input_php['err_fsize_too_large'] = 'Die Datei, die Du hochgeladen hast, ist zu groß (maximal zulässig ist %s x %s) !'; //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
-$lang_db_input_php['err_imgsize_too_large'] = 'Die Datei, die Du hochgeladen hast, ist zu groß (maximal zulässig ist %s kB) !'; //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
+$lang_db_input_php['err_fsize_too_large'] = 'Die Datei, die Du hochgeladen hast, ist zu groß (maximal zulässig ist %s x %s) !';
+$lang_db_input_php['err_imgsize_too_large'] = 'Die Datei, die Du hochgeladen hast, ist zu groß (maximal zulässig ist %s kB) !';
 $lang_db_input_php['err_invalid_img'] = 'Die Datei, die Du hochgeladen hast, ist kein gültiger Bildtyp!';
 $lang_db_input_php['allowed_img_types'] = 'Du kannst nur %s Bilder hochladen.';
 $lang_db_input_php['err_insert_pic'] = 'Das Bild \'%s\' kann nicht in das Album eingefügt werden ';
@@ -1028,13 +1029,6 @@ $lang_delete_php['change_group_to_group'] = 'Ändere von %s zu %s';
 $lang_delete_php['add_group'] = 'Sekundäre Gruppe hinzufügen';
 $lang_delete_php['add_group_to_group'] = 'Füge Benutzer %s zu Gruppe %s hinzu. Er ist nun Mitglied von %s als primäre Gruppe und von %s als sekundäre Mitgliedergruppe(n).';
 $lang_delete_php['status'] = 'Status';
-}
-
-// ------------------------------------------------------------------------- //
-// File displayecard.php
-// ------------------------------------------------------------------------- //
-if (defined('DISPLAYECARD_PHP')) {
-$lang_displayecard_php['invalid_data'] = 'Die Daten für die gewünschte eCard wurden von Deinem eMail-Client korrumpiert. Überprüfe den Link auf Vollständigkeit.';
 }
 
 // ------------------------------------------------------------------------- //
@@ -1158,7 +1152,7 @@ $lang_fullsize_popup['close_window'] = 'Fenster schliessen'; // cpg1.5
 // ------------------------------------------------------------------------- //
 // File ecard.php
 // ------------------------------------------------------------------------- //
-if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) {
+if (defined('ECARDS_PHP')) {
 $lang_ecard_php['title'] = 'eCard senden';
 $lang_ecard_php['invalid_email'] = 'Achtung: ungültige eMail-Adresse !';
 $lang_ecard_php['ecard_title'] = 'Eine eCard von %s für Dich';
@@ -1187,7 +1181,7 @@ $lang_ecard_php['preview_view_ecard'] = 'Dies wird der Alternativ-Link zur eCard
 // ------------------------------------------------------------------------- //
 // File report_file.php
 // ------------------------------------------------------------------------- //
-if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) {
+if (defined('REPORT_FILE_PHP')) {
 $lang_report_php['title'] = 'Beim Administrator melden';
 $lang_report_php['invalid_email'] = 'Achtung: ungültige eMail-Adresse!';
 $lang_report_php['report_subject'] = 'Eine Meldung von %s über die Galerie %s';
@@ -1315,7 +1309,7 @@ $lang_forgot_passwd_php['err_unk_user'] = 'Der gewählte Benutzer existiert nich
 $lang_forgot_passwd_php['account_verify_subject'] = '%s - Anforderung neues Passwort';
 $lang_forgot_passwd_php['passwd_reset_subject'] = '%s - Dein neues Passwort';
 
-$lang_forgot_passwd_account_verify_email = <<<EOT
+$lang_forgot_passwd_php['account_verify_email'] = <<<EOT
 Du hast ein neues Passwort beantragt - um dieses neue Passwort tatsächlich zu erhalten, klicke auf nachstehenden Link:
 
 <a href="{VERIFY_LINK}">{VERIFY_LINK}</a>
@@ -1327,7 +1321,7 @@ Das Team von {SITE_NAME}
 
 EOT;
 
-$lang_forgot_passwd_reset_email = <<<EOT
+$lang_forgot_passwd_php['reset_email'] = <<<EOT
 Hier ist das neue Passwort, dass Du beantragt hast:
 
 Benutzername:{USER_NAME}
@@ -1753,7 +1747,7 @@ $lang_rate_pic_php['forbidden'] = 'Du kannst Deine eigenen Dateien nicht bewerte
 // File register.php & profile.php
 // ------------------------------------------------------------------------- //
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
-$lang_register_disclamer = <<<EOT
+$lang_register_php['disclamer'] = <<<EOT
 Obwohl die Administratoren von {SITE_NAME} versuchen werden, generell alle anstössigen Inhalte so schnell wie möglich zu löschen oder zu bearbeiten, ist es unmöglich, jeden Beitrag zu überprüfen. Daher bestätigst Du, dass alle Beiträge auf dieser Seite die Ansichten und Meinungen des Authors widerspiegeln und nicht die des Administrators oder Webmasters (außer den Beiträgen, die durch sie verfasst wurden) und sie daher dafür nicht verantwortlich gemacht werden können.<br />
 <br />
 Du stimmst zu, keine beleidigende, obszöne, vulgäre, verleumderische, verhetzende, drohende, sexuell-orientierte oder sonstwie illegalen Beiträge zu verfassen. Du stimmst zu, dass der/die Webmaster, Administrator(en) oder Moderator(en) von {SITE_NAME} das Recht haben, jeden Inhalt zu löschen oder zu ändern, bei dem sie es für richtig halten. Als Benutzer stimmst Du zu, dass alle Informationen, die Du oben eingetragen hast, in einer Datenbank gespeichert werden. Obwohl diese Daten ohne Deine ausdrückliche Zustimmung nicht an Dritte weitergegeben werden, können der Webmaster oder Administrator nicht dafür zur Verantwortung gezogen werden, wenn durch einen Angriff (Hacking) die gespeicherten Daten kompromitiert werden.<br />
@@ -1838,7 +1832,7 @@ $lang_register_php['password_verification_warning1'] = 'Die beiden Passwortfelde
 $lang_register_php['form_not_submit'] = 'Das Formular wurde noch nicht versendet - es sind Fehler aufgetreten, die zuerst bereinigt werden müssen!'; // cpg1.5
 $lang_register_php['banned'] = 'Verbannt'; // cpg1.5
 
-$lang_register_confirm_email = <<<EOT
+$lang_register_php['confirm_email'] = <<<EOT
 Danke für Deine Registrierung bei {SITE_NAME}
 
 Um Dein Benutzerkonto zu aktivieren, musst Du auf den untenstehenden Link klicken oder ihn kopieren und in der Adresszeile Deines Browsers einfügen.
@@ -1858,7 +1852,7 @@ Um das Benutzerkonto zu aktivieren, klicke auf den untenstehenden Link oder kopi
 
 EOT;
 
-$lang_register_activated_email = <<<EOT
+$lang_register_php['activated_email'] = <<<EOT
 Dein Benutzerkonto wurden genehmigt und aktiviert.
 
 Du kannst Dich jetzt auf der Seite <a href="{SITE_LINK}">{SITE_LINK}</a> mit dem Benutzernamen "{USER_NAME}" anmelden.
@@ -2006,14 +2000,15 @@ $lang_search_new_php['no_pic_found'] = 'Keine neuen Dateien gefunden';
 $lang_search_new_php['be_patient'] = 'Bitte Geduld, das Skript brauchst Zeit, um die Bilder hinzuzufügen';
 $lang_search_new_php['no_album'] = 'Kein Album gewählt';
 $lang_search_new_php['result_icon'] = 'Klicken für Details oder zum erneut laden';
-$lang_search_new_php['notes'] = '<ul>'.
-    '<li><strong>OK</strong> : bedeuted, dass die Datei erfolgreich hinzugefügt wurde'.
-    '<li><strong>DP</strong> : bedeutet, dass die Datei ein Duplikat ist und schon in der Datenbank vorhanden ist'.
-    '<li><strong>PB</strong> : bedeutet, dass die Datei nicht hinzugefügt werden konnte; überprüfe Deine Einstellungen und die Berechtigungen der Verzeichnisse, in dem die Dateien liegen'.
-    '<li><strong>NA</strong> : bedeutet, dass Du kein Album gewählt hast, in das die Dateien eingefügt werden sollen, klicke \'<a href="javascript:history.back(1)">zurück</a>\' und wähle ein Album aus. Wenn kein Album ausgewählt werden kann, dann musst Du erst <a href="albmgr.php">ein Album erzeugen</a>.</li>'.
-    '<li>Falls die OK, DP, PB \'Zeichen\' nicht erscheinen, klicke auf die nicht-funktionierenden Bilder, um die Fehlermeldungen von PHP zu sehen'.
-    '<li>Wenn Dein Browser in ein Timeout läuft, klicke auf die Aktualisieren-Schaltfläche'.
-   '</ul>';
+$lang_search_new_php['notes'] = <<< EOT
+	<ul>
+	    <li><strong>OK</strong> : bedeuted, dass die Datei erfolgreich hinzugefügt wurde</li>
+	    <li><strong>DP</strong> : bedeutet, dass die Datei ein Duplikat ist und schon in der Datenbank vorhanden ist</li>
+	    <li><strong>PB</strong> : bedeutet, dass die Datei nicht hinzugefügt werden konnte; überprüfe Deine Einstellungen und die Berechtigungen der Verzeichnisse, in dem die Dateien liegen</li>
+	    <li><strong>NA</strong> : bedeutet, dass Du kein Album gewählt hast, in das die Dateien eingefügt werden sollen, klicke '<a href="javascript:history.back(1)">zurück</a>' und wähle ein Album aus. Wenn kein Album ausgewählt werden kann, dann musst Du erst <a href="albmgr.php">ein Album erzeugen</a>.</li>
+	    <li>Falls die OK, DP, PB 'Zeichen' nicht erscheinen, klicke auf die nicht-funktionierenden Bilder, um die Fehlermeldungen von PHP zu sehen</li>
+	    <li>Wenn Dein Browser in ein Timeout läuft, klicke auf die Aktualisieren-Schaltfläche</li>
+   </ul>
 $lang_search_new_php['check_all'] = 'alle auswählen';
 $lang_search_new_php['uncheck_all'] = 'Auswahl aufheben';
 $lang_search_new_php['no_folders'] = 'Im Verzeichnis "albums" wurden noch keine Unterverzeichnisse angelegt. Du musst mindestens ein benutzerdefiniertes Unterverzeichnis innerhalb des Ordners "albums" anlegen und Deine Dateien per FTP dorthin hochladen. Du darfst per FTP keine Dateien in die Unterverzeichnisse "userpics" oder "edit" hochladen, da diese für http-uploads und interne Zwecke reserviert sind.';
@@ -2293,7 +2288,7 @@ $lang_usermgr_php['status_active'] = 'aktive'; // cpg1.5
 $lang_usermgr_php['status_inactive'] = 'inaktiv'; // cpg1.5
 $lang_usermgr_php['total'] = 'Summe'; // cpg1.5
 
-$lang_send_login_data_email = <<<EOT
+$lang_usermgr_php['send_login_data_email'] = <<<EOT
 Ein neues Benutzerkonto wurde für Dich erzeugt für die Seite {SITE_NAME}.
 
 Du kannst Dich jetzt anmelden unter <a href="{SITE_LINK}">{SITE_LINK}</a> mit dem Benutzernamen "{USER_NAME}" und dem Passwort "{USER_PASS}"

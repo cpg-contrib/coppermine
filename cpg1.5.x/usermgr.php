@@ -935,7 +935,7 @@ EOT;
 function update_user($user_id)
 {
     global $CONFIG; //, $PHP_SELF;
-    global $lang_usermgr_php, $lang_register_php, $lang_send_login_data_email;
+    global $lang_usermgr_php, $lang_register_php;
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -1000,7 +1000,7 @@ function update_user($user_id)
                               '{USER_PASS}' => trim($user_password),
                               );
 
-        if (!cpg_mail(trim($user_email), $lang_usermgr_php['send_login_email_subject'], nl2br(strtr($lang_send_login_data_email, $template_vars)))) {
+        if (!cpg_mail(trim($user_email), $lang_usermgr_php['send_login_email_subject'], nl2br(strtr($lang_usermgr_php['send_login_data_email'], $template_vars)))) {
             cpg_die(CRITICAL_ERROR, $lang_usermgr_php['failed_sending_email'], __FILE__, __LINE__);
         }
     }

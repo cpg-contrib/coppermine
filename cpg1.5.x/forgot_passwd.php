@@ -83,7 +83,7 @@ if (isset($CLEAN['email'])) {
 		);
 
         // send the email
-        if (!cpg_mail($USER_DATA['user_email'], sprintf($lang_forgot_passwd_php['account_verify_subject'], $CONFIG['gallery_name']),nl2br(strtr($lang_forgot_passwd_account_verify_email, $template_vars)))) {
+        if (!cpg_mail($USER_DATA['user_email'], sprintf($lang_forgot_passwd_php['account_verify_subject'], $CONFIG['gallery_name']),nl2br(strtr($lang_forgot_passwd_php['account_verify_email'], $template_vars)))) {
 
             cpg_die(CRITICAL_ERROR, $lang_forgot_passwd_php['failed_sending_email'], __FILE__, __LINE__);
         }
@@ -149,7 +149,7 @@ EOT;
 	);
     // send the password
     if (!cpg_mail($row['user_email'],
-        sprintf($lang_forgot_passwd_php['passwd_reset_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_forgot_passwd_reset_email, $template_vars)))) {
+        sprintf($lang_forgot_passwd_php['passwd_reset_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_forgot_passwd_php['reset_email'], $template_vars)))) {
 
         cpg_die(CRITICAL_ERROR, $lang_forgot_passwd_php['failed_sending_email'], __FILE__, __LINE__);
     }

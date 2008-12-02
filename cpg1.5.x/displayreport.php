@@ -18,7 +18,7 @@
 **********************************************/
 
 define('IN_COPPERMINE', true);
-define('DISPLAYREPORT_PHP', true);
+define('REPORT_FILE_PHP', true);
 
 require('include/init.inc.php');
 require('include/smilies.inc.php');

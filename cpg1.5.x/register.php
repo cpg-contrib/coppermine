@@ -54,7 +54,7 @@ $icon_array['blank'] = cpg_fetch_icon('blank', 2);
 **/
 function display_disclaimer() { // Display the disclaimer - start
     global $CONFIG, $CPG_PHP_SELF; //, $PHP_SELF;
-    global $lang_register_disclamer, $lang_register_php, $icon_array;
+    global $lang_register_php, $icon_array;
 
     echo <<<EOT
         <form name="cpgform" id="cpgform" method="post" action="$CPG_PHP_SELF">
@@ -65,7 +65,7 @@ EOT;
                 <td class="tableb" style="padding: 10px;">
 
 EOT;
-    echo str_replace('{SITE_NAME}', $CONFIG['gallery_name'], $lang_register_disclamer);
+    echo str_replace('{SITE_NAME}', $CONFIG['gallery_name'], $lang_register_php['disclamer']);
 
     echo <<<EOT
                 </td>
@@ -91,7 +91,7 @@ EOT;
 **/
 function input_user_info($errors = '') { // function input_user_info - start
     global $CONFIG, $CPG_PHP_SELF; //, $PHP_SELF;
-    global $lang_register_php, $lang_register_disclamer, $lang_common, $icon_array;
+    global $lang_register_php, $lang_common, $icon_array;
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -111,7 +111,7 @@ EOT;
     </tr>
 EOT;
 
-    $inline_disclaimer = str_replace('{SITE_NAME}', $CONFIG['gallery_name'], $lang_register_disclamer);
+    $inline_disclaimer = str_replace('{SITE_NAME}', $CONFIG['gallery_name'], $lang_register_php['disclamer']);
 
     $form_data = array(
         array('label', $lang_register_php['required_info']),
@@ -381,8 +381,8 @@ function get_post_var($var) { // function get_post_var - start
 
 function check_user_info(&$error) { // function check_user_info - start
     global $CONFIG; //, $PHP_SELF;
-    global $lang_register_php, $lang_register_confirm_email, $lang_common, $lang_register_approve_email;
-    global $lang_register_activated_email, $lang_register_user_login, $lang_errors;
+    global $lang_register_php, $lang_common, $lang_register_approve_email;
+    global $lang_register_user_login, $lang_errors;
 
     $superCage = Inspekt::makeSuperCage();
     //$CONFIG['admin_activation'] = FALSE;
@@ -497,7 +497,7 @@ function check_user_info(&$error) { // function check_user_info - start
                                                         '{USER_NAME}' => $user_name,
                                                         '{ACT_LINK}' => $act_link
             );
-                                        if (!cpg_mail($email, sprintf($lang_register_php['confirm_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_confirm_email, $template_vars)))) {
+                                        if (!cpg_mail($email, sprintf($lang_register_php['confirm_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_php['confirm_email'], $template_vars)))) {
                                                         cpg_die(CRITICAL_ERROR, $lang_register_php['failed_sending_email'], __FILE__, __LINE__);
                                         }
                                 }
@@ -578,7 +578,7 @@ if ($superCage->get->keyExists('activate')) {
                          '{PASSWORD}' => $password,
                          '{SITE_NAME}' => $CONFIG['gallery_name'],
                                 );
-                        cpg_mail($email, sprintf($lang_register_php['notify_user_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_activated_email, $template_vars)));
+                        cpg_mail($email, sprintf($lang_register_php['notify_user_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_php['activated_email'], $template_vars)));
                 } else { //user self-activated, gets message box that account was activated
                         msg_box($lang_register_php['information'], $lang_register_php['acct_active'], $lang_common['continue'], 'index.php');
                 }
