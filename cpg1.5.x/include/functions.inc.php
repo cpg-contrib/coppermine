@@ -828,7 +828,7 @@ function load_template()
 
 function template_eval(&$template, &$vars)
 {
-        return strtr($template, $vars);
+        return str_replace(array_keys($vars), array_values($vars), $template);
 }
 
 
