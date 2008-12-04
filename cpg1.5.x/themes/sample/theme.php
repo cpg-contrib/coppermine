@@ -2034,7 +2034,8 @@ function theme_admin_mode_menu()
                 '{MY_PROF_ICO}' => cpg_fetch_icon('my_profile', 1),
                 '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
                 '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
-                '{PICTURES_ICO}'
+                '{PICTURES_ICO}' => cpg_fetch_icon('picture_sort', 1),
+                );
 
             $html = template_eval($template_user_admin_menu, $param);
         } else {
