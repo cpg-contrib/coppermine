@@ -1157,8 +1157,20 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         return $rowset;
     }
 
-
-    // Meta albums
+	$meta_album_passto = array (
+			'album' => $album,
+			'limit' => $limit,
+			'set_caption' => $set_caption,
+	);
+	$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);
+	if ($meta_album_params['album_name']) {
+			$album_name = $meta_album_params['album_name'];
+			$count = $meta_album_params['count'];
+			$rowset = $meta_album_params['rowset'];
+			return $rowset;
+	}
+    
+	// Meta albums
     switch($album) {
         case 'lastcom': // Last comments
             if ($cat && $CURRENT_CAT_NAME) {

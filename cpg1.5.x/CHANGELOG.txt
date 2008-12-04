@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-12-04 [A] Added 10 new plugin hooks {SaWey}
 2008-12-01 [A] Added the new upload page which uses swfupload (http://swfupload.org) - Work in progress {Abbas}
 2008-11-30 [A] Added pagination of comments {Nibbler}
 2008-11-30 [O] Converted ereg*() functions to use preg_match, simple string functions or existing Inspekt validation code for performance and compatibility with future versions of PHP. (Code contributed by ripat) {Nibbler}

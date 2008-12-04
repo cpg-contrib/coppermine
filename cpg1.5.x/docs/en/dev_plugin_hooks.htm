@@ -276,12 +276,84 @@
     <td valign="top" class="tableb"><pre class="smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_favpics',$rowset);</pre></td>
   </tr>  
   <tr>
-    <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
-    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_file_data"></a><strong>file_data</strong><a href="#plugin_hooks_filename_file_data" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">include/functions.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_meta_album"></a><strong>meta_album</strong><a href="#plugin_hooks_meta_album" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
-    <td valign="top" class="tableb tableb_alternate">filters $pic_row when get_pic_url is called... usually this is called before any html is created so you can use this to change a lot of data</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$CURRENT_PIC_DATA = CPGPluginAPI::filter('file_data',$CURRENT_PIC_DATA);</pre></td>
+    <td valign="top" class="tableb tableb_alternate">executed before meta albums are retrieved, giving the possibility to add or filter meta albums.<br />See below for more info.</td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);</pre></td>
   </tr>
+  <tr>
+    <td valign="top" class="tableb">include/themes.inc.php</td>
+    <td valign="top" class="tableb"><a name="plugin_hooks_filename_file_data"></a><strong>file_data</strong><a href="#plugin_hooks_filename_file_data" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">Filter</td>
+    <td valign="top" class="tableb">filters $pic_row when get_pic_url is called... usually this is called before any html is created so you can use this to change a lot of data</td>
+    <td valign="top" class="tableb"><pre class="smallcode">$CURRENT_PIC_DATA = CPGPluginAPI::filter('file_data',$CURRENT_PIC_DATA);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_html_image_reduced_overlay"></a><strong>html_image_reduced_overlay</strong><a href="#plugin_hooks_filename_html_image_reduced_overlay" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Filter</td>
+    <td valign="top" class="tableb tableb_alternate">filters $pic_html when the html to display a reduced image with transparant overlay is created. </td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_image_reduced_overlay',$pic_html);</pre></td>
+  </tr>
+	<tr>
+    <td valign="top" class="tableb">include/themes.inc.php</td>
+    <td valign="top" class="tableb"><a name="plugin_hooks_filename_html_image_reduced"></a><strong>html_image_reduced</strong><a href="#plugin_hooks_filename_html_image_reduced" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">Filter</td>
+    <td valign="top" class="tableb">filters $pic_html when the html to display a reduced image is created.</td>
+    <td valign="top" class="tableb"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_image_reduced',$pic_html);</pre></td>
+  </tr>
+	<tr>
+    <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_html_image_overlay"></a><strong>html_image_overlay</strong><a href="#plugin_hooks_filename_html_image_overlay" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Filter</td>
+    <td valign="top" class="tableb tableb_alternate">filters $pic_html when the html to display an image with transparant overlay is created.</td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_image_overlay',$pic_html);</pre></td>
+  </tr>
+	<tr>
+    <td valign="top" class="tableb">include/themes.inc.php</td>
+    <td valign="top" class="tableb"><a name="plugin_hooks_filename_html_image"></a><strong>html_image</strong><a href="#plugin_hooks_filename_html_image" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">Filter</td>
+    <td valign="top" class="tableb">filters $pic_html when the html to display an image is created.</td>
+    <td valign="top" class="tableb"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_image',$pic_html);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_html_document"></a><strong>html_document</strong><a href="#plugin_hooks_filename_html_document" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Filter</td>
+    <td valign="top" class="tableb tableb_alternate">filters $pic_html when the html to display a document is created.</td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_document',$pic_html);</pre></td>
+  </tr>
+	<tr>
+    <td valign="top" class="tableb">include/themes.inc.php</td>
+    <td valign="top" class="tableb"><a name="plugin_hooks_filename_html_other_media"></a><strong>html_other_media</strong><a href="#plugin_hooks_filename_html_other_media" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">Filter</td>
+    <td valign="top" class="tableb">filters $pic_html when the html to display other media (video, flash, ...) is created.</td>
+    <td valign="top" class="tableb"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_other_media',$pic_html);</pre></td>
+  </tr>
+  
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_admin_menu"></a><strong>admin_menu</strong><a href="#plugin_hooks_filename_admin_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Filter</td>
+    <td valign="top" class="tableb tableb_alternate">filters $admin_menu which allows to add a button to it. <br />(See below how to do that)</td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$admin_menu = CPGPluginAPI::filter('admin_menu',$html);</pre></td>
+  </tr>
+	<tr>
+    <td valign="top" class="tableb">include/themes.inc.php</td>
+    <td valign="top" class="tableb"><a name="plugin_hooks_filename_sys_menu"></a><strong>sys_menu</strong><a href="#plugin_hooks_filename_sys_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">Filter</td>
+    <td valign="top" class="tableb">filters $sys_menu_buttons which allows to add a button to it. <br />(See below how to do that)</td>
+    <td valign="top" class="tableb"><pre class="smallcode">$sys_menu_buttons = CPGPluginAPI::filter('sys_menu',$sys_menu_buttons);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_sub_menu"></a><strong>sub_menu</strong><a href="#plugin_hooks_filename_sub_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Filter</td>
+    <td valign="top" class="tableb tableb_alternate">filters $sub_menu_buttons which allows to add a button to it. <br />(See below how to do that)</td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);</pre></td>
+  </tr>
+  
   <tr>
     <td valign="top" class="tableb">usermgr.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_usermgr_header"></a><strong>usermgr_header</strong><a href="#plugin_hooks_filename_usermgr_header" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
@@ -416,6 +488,13 @@ $pic_row = CPGPluginAPI::filter('thumb_data',$pic_row);</div>
 <p>These two filters are used specifically to manipulate the data of a picture.</p>
 <div class="quote">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data',$CURRENT_PIC_DATA);<br />
 $CURRENT_PIC_DATA = CPGPluginAPI::filter('file_data',$CURRENT_PIC_DATA);</div>
+<p>These six filters allow you to modify the output html to display media.</p>
+<div class="quote">$pic_html = CPGPluginAPI::filter('html_picture_image_reduced_overlay',$pic_html);<br />
+$pic_html = CPGPluginAPI::filter('html_picture_image_reduced',$pic_html);<br />
+$pic_html = CPGPluginAPI::filter('html_picture_image_overlay',$pic_html);<br />
+$pic_html = CPGPluginAPI::filter('html_picture_image',$pic_html);<br />
+$pic_html = CPGPluginAPI::filter('html_picture_document',$pic_html);<br />
+$pic_html = CPGPluginAPI::filter('html_picture_other_media',$pic_html);</div>
 <p>If you want to do something (like converting the video to flv, taking a backup of file to remote server etc..) after a file is uploaded then this hook can be used.</p>
 <div class="quote">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data_success',$CURRENT_PIC_DATA);</div>
 <p>The breadcrumb plugin:</p>
@@ -431,6 +510,61 @@ $template_footer = CPGPluginAPI::filter('gallery_footer','').substr($template, $
 <p>These two filters are meant for cleanup purposes. If there is any additional data related to a file and you want that data to be removed when a file is deleted then use these hooks.</p>
 <div class="quote">CPGPluginAPI::filter('before_delete_file', $pic);<br />
 CPGPluginAPI::filter('after_delete_file', $pic);</div>
+<p>This filter is a special one to add or modify meta albums</p>
+<div class="quote">$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);<br /><br />
+It works like this:<br />
+<pre class="bigcode">
+$meta_album_passto = array (
+        'album' => $album,
+        'limit' => $limit,
+        'set_caption' => $set_caption,
+);
+$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);
+if ($meta_album_params['album_name']) {
+        $album_name = $meta_album_params['album_name'];
+        $count = $meta_album_params['count'];
+        $rowset = $meta_album_params['rowset'];
+        return $rowset;
+}
+</pre><br />
+A plugin needs three input variables to do its thing: <br />
+$album, $limit, $set_caption <br />
+and it needs to modify three variables: <br />
+$album_name, $count, and $rowset (and remember that $rowset is a multi-dimensional array itself)
+</div>
+<p>These filters allow you to add buttons to the different menus.</p>
+<div class="quote">
+$admin_menu = CPGPluginAPI::filter('admin_menu',$html);<br />
+$sys_menu_buttons = CPGPluginAPI::filter('sys_menu',$sys_menu_buttons);<br />
+$sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);<br /><br />
+To add a button to the admin menu you can do the following:<br />
+<pre class="bigcode">
+$thisplugin->add_filter('admin_menu','add_admin_button');<br />
+function add_admin_button($admin_menu){
+	$new_button = '&lt;div class="admin_menu admin_float"&gt;&lt;a href="./menu_link.php" title="menu link"&gt;MENU LINK&lt;/a&gt;&lt;/div&gt;';
+	$look_for = '&lt;!-- END export --&gt;';
+	$admin_menu = str_replace($look_for, $look_for . $new_button, $admin_menu); 
+	
+	return $admin_menu;
+}</pre><br />
+For the sys & sub menus you have to take another approach:<br />
+<pre class="bigcode">
+$thisplugin->add_filter('sub_menu','add_sub_button');<br />
+function add_sub_button($menu) {
+	$new_button = array();
+	$new_button[0][0] = 'MENU LINK';
+	$new_button[0][1] = 'menu link';
+	$new_button[0][2] = './menu_link.php';
+	$new_button[0][3] = 'class_name';
+	$new_button[0][4] = '::';
+	$new_button[0][5] = 'rel="nofolow"';
+
+	array_splice($menu, count($menu)-1, 0, $new_button);
+
+	return $menu;
+}
+</pre>
+</div>
 
 
 

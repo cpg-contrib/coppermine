@@ -170,6 +170,7 @@ EOT;
     addbutton($sys_menu_buttons,'{LOGOUT_LNK}','{LOGOUT_TITLE}','{LOGOUT_TGT}','logout','');
     // Login and Logout don't have a spacer as only one is shown, and either would be the last option.
 
+  $sys_menu_buttons = CPGPluginAPI::filter('sys_menu',$sys_menu_buttons);
   $params = array('{BUTTONS}' => assemble_template_buttons($template_sys_menu_button,$sys_menu_buttons));
   $template_sys_menu = template_eval($template_sys_menu,$params);
 }
@@ -202,6 +203,7 @@ if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
     }
     addbutton($sub_menu_buttons,'{SEARCH_LNK}','{SEARCH_TITLE}','{SEARCH_TGT}','search','');
 
+  $sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);
   $params = array('{BUTTONS}' => assemble_template_buttons($template_sub_menu_button,$sub_menu_buttons));
   $template_sub_menu = template_eval($template_sub_menu,$params);
 }
@@ -1890,7 +1892,6 @@ function theme_admin_mode_menu()
     global $template_gallery_admin_menu, $template_user_admin_menu;
     global $CONFIG;
     global $THEME_DIR;
-    
 
     $cat_l = isset($cat) ? "?cat=$cat" : '';
 
@@ -2033,15 +2034,14 @@ function theme_admin_mode_menu()
                 '{MY_PROF_ICO}' => cpg_fetch_icon('my_profile', 1),
                 '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
                 '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
-                '{PICTURES_ICO}' => cpg_fetch_icon('picture_sort', 1),
-                );
+                '{PICTURES_ICO}'
 
             $html = template_eval($template_user_admin_menu, $param);
         } else {
             $html = '';
         }
 
-        $admin_menu = $html;
+        $admin_menu = CPGPluginAPI::filter('admin_menu',$html);
     }
 
     return $admin_menu;
@@ -2872,6 +2872,8 @@ function theme_html_picture()
                 $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
                 $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width=\"{$imginfo[0]}\" height=\"{$imginfo[1]}\"  border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
                 $pic_html .= "</a>\n </td></tr></table>";
+                //PLUGIN FILTER
+				$pic_html = CPGPluginAPI::filter('html_image_reduced_overlay', $pic_html);
             } else {
                 if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
                    $pic_html = '<a href="javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');">';
@@ -2881,19 +2883,27 @@ function theme_html_picture()
                 $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
                 $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
                 $pic_html .= "</a>\n";
+                //PLUGIN FILTER
+				$pic_html = CPGPluginAPI::filter('html_image_reduced', $pic_html);
             }
         } else {
             if ($CONFIG['transparent_overlay'] == 1) {
                 $pic_html = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td background=\"" . $picture_url . "\" width=\"{$CURRENT_PIC_DATA['pwidth']}\" height=\"{$CURRENT_PIC_DATA['pheight']}\" class=\"image\">";
                 $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width={$CURRENT_PIC_DATA['pwidth']} height={$CURRENT_PIC_DATA['pheight']} border=\"0\" alt=\"\" /><br />\n";
                 $pic_html .= "</td></tr></table>";
+                //PLUGIN FILTER
+				$pic_html = CPGPluginAPI::filter('html_image_overlay', $pic_html);
             } else {
                 $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" alt=\"\" /><br />\n";
+                //PLUGIN FILTER
+				$pic_html = CPGPluginAPI::filter('html_image', $pic_html);
             }
         }
     } elseif ($mime_content['content']=='document') {
         $pic_thumb_url = get_pic_url($CURRENT_PIC_DATA,'thumb');
         $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"".$pic_thumb_url."\" border=\"0\" class=\"image\" /></a>\n<br />";
+        //PLUGIN FILTER
+		$pic_html = CPGPluginAPI::filter('html_document', $pic_html);
     } else {
         $autostart = ($CONFIG['media_autostart']) ? ('true'):('false');
 
@@ -2947,6 +2957,9 @@ function theme_html_picture()
         $pic_html .= "<param name=\"autostart\" value=\"$autostart\" /><param name=\"src\" value=\"". $picture_url . "\" />";
         $pic_html .= '<embed '.$image_size['whole'].' src="'. $picture_url . '" autostart="'.$autostart.'" '.$player['mime'].'></embed>';
         $pic_html .= "</object><br />\n";
+        
+        //PLUGIN FILTER
+		$pic_html = CPGPluginAPI::filter('html_other_media', $pic_html);
     }
 
     $CURRENT_PIC_DATA['html'] = $pic_html;
