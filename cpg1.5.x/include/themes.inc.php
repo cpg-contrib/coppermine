@@ -908,22 +908,22 @@ $template_display_media = <<<EOT
                 <td align="center" class="display_media" nowrap="nowrap">
                         <table cellspacing="2" cellpadding="0" class="imageborder">
                                 <tr>
-                                        <td align="center">
-                                                {IMAGE}
-
-                                        </td>
+                                        <td div="gallery" align="center">
+											<div id="slideShow" style="position:relative;">
+                                               {IMAGE}
+											</div>
+										</td>
                                 </tr>
                         </table>
                 </td></tr>
                 <tr><td>
-                                                <table width="100%" cellspacing="2" cellpadding="0" class="tableb tableb_alternate tableb tableb_alternate_alternate">
+                <table width="100%" cellspacing="2" cellpadding="0" class="tableb tableb_alternate tableb tableb_alternate_alternate">
                                 <tr>
                                         <td align="center">
-
                                                 {ADMIN_MENU}
                                         </td>
                                 </tr>
-                        </table>
+                </table>
 
 
 
@@ -3568,20 +3568,16 @@ if (!function_exists('theme_slideshow')) {  //{THEMES}
 /******************************************************************************
 ** Section <<<theme_slideshow>>> - START
 ******************************************************************************/
-function theme_slideshow()
+function theme_slideshow($start_img,$title)
 {
     global $CONFIG, $lang_display_image_php, $template_display_media, $lang_common, $album, $pid, $slideshow;
     global $cat, $date;
 
     pageheader($lang_display_image_php['slideshow']);
-
-    include "include/slideshow.inc.php";
-
-    $start_slideshow = '<script language="JavaScript" type="text/JavaScript">runSlideShow()</script>';
     template_extract_block($template_display_media, 'img_desc', $start_slideshow);
 
     $params = array('{CELL_HEIGHT}' => $CONFIG['picture_width'] + 100,
-        '{IMAGE}' => '<img src="' . $start_img . '" name="SlideShow" class="image" /><br />',
+        '{IMAGE}' => '<img id="showImage" src="' . $start_img . '" name="SlideShow" class="image" /><br />',
         '{ADMIN_MENU}' => '',
         );
 
@@ -3596,7 +3592,7 @@ function theme_slideshow()
         </noscript>
         <tr>
             <td align="center" class="navmenu" style="white-space: nowrap;">
-                <div id="Title"></div>
+                <div id="Title">{$title}</div>
             </td>
         </tr>
 EOT;
@@ -3609,7 +3605,7 @@ EOT;
     echo <<<EOT
         <tr>
                 <td align="center" class="navmenu" style="white-space: nowrap;">
-                        <a href="javascript:endSlideShow()" class="navmenu">{$lang_display_image_php['stop_slideshow']}</a>
+ 						<a class="navmenu" style="cursor:pointer">{$lang_display_image_php['stop_slideshow']}</a>
                 </td>
         </tr>
 

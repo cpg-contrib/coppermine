@@ -2592,6 +2592,94 @@ function display_film_strip($album, $cat, $pos)
 } // function display_film_strip
 
 
+/**
+ * display_slideshow()
+ *
+ * gets data for thumbnails in an album for the film stript using Ajax call
+ *
+ * this added by Nuwan Sameera Hettiarachchi
+ *
+ * @param integer $album
+ * @param integer $cat
+ * @param integer $pos
+ **/
+function& display_slideshow($pos,$ajax_show=0)
+{
+   global $CONFIG, $lang_display_image_php, $template_display_media, $lang_common, $album, $pid, $slideshow;
+   global $cat, $date;
+
+	$Pic 	= array();
+	$Pid 	= array();
+	$Title 	= array();
+	
+	$i = 0;
+	$j = 0;
+	$a = 0;
+	//$pid = (int)$_GET['pid'];
+	$start_img = '';
+ 
+	$pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
+
+	foreach ($pic_data as $picture) {
+	    if($CONFIG['thumb_use']=='ht' && $picture['pheight'] > $CONFIG['picture_width'] ){ // The wierd comparision is because only picture_width is stored
+	      $condition = true;
+	    }elseif($CONFIG['thumb_use']=='wd' && $picture['pwidth'] > $CONFIG['picture_width']){
+	      $condition = true;
+	    }elseif($CONFIG['thumb_use']=='any' && max($picture['pwidth'], $picture['pheight']) > $CONFIG['picture_width']){
+	      $condition = true;
+	        //thumb cropping
+	    }elseif($CONFIG['thumb_use']=='ex' && max($picture['pwidth'], $picture['pheight']) > $CONFIG['picture_width']){
+	      $condition = true;
+	    }else{
+	     $condition = false;
+    	}
+			
+    if (is_image($picture['filename'])) {
+        if ($CONFIG['make_intermediate'] && $condition ) {
+            $picture_url = get_pic_url($picture, 'normal');
+        } else {
+            $picture_url = get_pic_url($picture, 'fullsize');
+        }
+
+		if ( $picture['title'] ) {
+            $Title_get = $picture['title'];
+        } else {
+            $Title_get = $picture['filename'];
+        }
+		
+        $Pic[$i] =  htmlspecialchars($picture_url, ENT_QUOTES) ;
+        $Pid[$i] =  $picture['pid'] ;		
+        $Title[$i] = $Title_get;
+			
+        if ($picture['pid'] == $pid) {
+            $j = $i;
+            $start_img = $picture_url;
+        }
+        $i++; 
+    }
+}
+
+	$Pic_length = count($Pic);
+	/** set variables to jquery.slideshow.js */
+	set_js_var('Time',$slideshow);
+	set_js_var('Pic_count',$Pic_length);
+	set_js_var('Pid',$pid);
+	
+	if (!$i) {
+	    echo "Pic[0] = 'images/thumb_document.jpg'\n";
+	}
+	if($ajax_show==0){
+		theme_slideshow($Pic[$pos],$Title[$pos]);
+	}
+	$dataArray 	= array ('url'=>$Pic[$pos],'title'=>$Title[$pos],'pid'=>$pid);
+	$dataJons = json_encode($dataArray);
+	
+	if($ajax_show==1){
+		echo $dataJons;
+	}
+	
+}
+
 // Return the url for a picture, allows to have pictures spreaded over multiple servers
 /**
  * get_pic_url()

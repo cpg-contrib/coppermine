@@ -219,40 +219,35 @@ function html_picinfo()
     return theme_html_picinfo($info);
 }
 
-/**
- * Main code
- */
+	/** Main code  */
+	$pos = $superCage->get->getInt('pos');
+	
+	/** Hack added by tarique to prevent incorrect picture being seen on last view or last uploaded */
+	
+	$pid = $superCage->get->getInt('pid');
+	$cat = $superCage->get->getInt('cat');
+	
+	/** TODO: Add the code to handle date parameter  */
+	//$date = $superCage->get->getInt('cat');
+	if ($superCage->get->testAlpha('album')) {
+	    $album = $superCage->get->getAlpha('album');
+	} else {
+	    $album = $superCage->get->getInt('album');
+	}
 
-$pos = $superCage->get->getInt('pos');
+	/** get ajax call to thubm photo added by Nuwan Sameera Hettiarachchi. */
+	$ajax_show = $superCage->get->getInt('ajax_show');
 
-/**
- * Hack added by tarique to prevent incorrect picture being seen on last view or last uploaded
- */
-
-$pid = $superCage->get->getInt('pid');
-
-$cat = $superCage->get->getInt('cat');
-/**
- * TODO: Add the code to handle date parameter
- */
-//$date = $superCage->get->getInt('cat');
-
-if ($superCage->get->testAlpha('album')) {
-    $album = $superCage->get->getAlpha('album');
-} else {
-        $album = $superCage->get->getInt('album');
-}
-
-get_meta_album_set($cat);
-
-//attempt to fix topn images for keyworded albums
-if ($cat < 0) {
-    $result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
-    if (mysql_num_rows($result) > 0) {
-        $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
-        $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
-    }
-}
+	get_meta_album_set($cat);
+	
+	//attempt to fix topn images for keyworded albums
+	if ($cat < 0) {
+	    $result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
+	    if (mysql_num_rows($result) > 0) {
+	        $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
+	        $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
+	    }
+	}
 
 if (!$superCage->get->keyExists('fullsize') && ($pos < 0 || $pid > 0)) {
     ########## Modified by Abbas for new URL feature #########
@@ -317,15 +312,31 @@ if (!$superCage->get->keyExists('fullsize') && ($pos < 0 || $pid > 0)) {
 if (!$superCage->get->keyExists('fullsize') && !count($CURRENT_PIC_DATA)) {
   cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 }
-######################################
 
-// If we have film_strip key in GET then it means this is an ajax call for filmstrip
-if ($superCage->get->keyExists('film_strip')) {
-	// Get the filmstrip, display it and exit.
-	$film_strip = display_film_strip($album, (isset($cat) ? $cat : 0), $pos, true);
-	echo $film_strip;
-	exit;
-}
+####################################################
+	/** add the assign variable work with jSlidshow */
+	set_js_var('position', $pos) ;
+	set_js_var('album',$album);
+	
+	/** if slideshow is has a key or ajax_show has a key then run jquery.slideshow.js */
+	if($superCage->get->keyExists('slideshow') || $superCage->get->keyExists('ajax_show')){
+		js_include('js/jquery.slideshow.js');
+	}
+	
+	/** If we have film_strip key in GET then it means this is an ajax call for filmstrip */
+	if ($superCage->get->keyExists('film_strip')) {
+		// Get the filmstrip, display it and exit.
+		$film_strip = display_film_strip($album, (isset($cat) ? $cat : 0), $pos, true);
+		echo $film_strip;
+		exit;
+	}
+	
+	/** if there is value for ajax_show key in GET then it means this is an ajax call to display sideshow. */
+	if ($superCage->get->keyExists('ajax_show')) {	
+	    display_slideshow($pos,$ajax_show);
+	    ob_end_flush();
+		exit;
+	}
 
 // Retrieve data for the current album
 if (isset($CURRENT_PIC_DATA)) {
@@ -344,13 +355,15 @@ if (isset($CURRENT_PIC_DATA)) {
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
     }
 }
+	
 
 if ($superCage->get->keyExists('fullsize')) {
     theme_display_fullsize_pic();
     ob_end_flush();
 } elseif ($superCage->get->keyExists('slideshow')) {
     $slideshow = $superCage->get->getInt('slideshow');
-    theme_slideshow();
+	set_js_var('run_slideshow','true'); 
+    display_slideshow($pos);
     ob_end_flush();
 } else {
     if (!$pos && !$pid) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
