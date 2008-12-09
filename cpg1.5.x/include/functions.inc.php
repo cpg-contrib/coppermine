@@ -2671,7 +2671,7 @@ function& display_slideshow($pos,$ajax_show=0)
 	if($ajax_show==0){
 		theme_slideshow($Pic[$pos],$Title[$pos]);
 	}
-	$dataArray 	= array ('url'=>$Pic[$pos],'title'=>$Title[$pos],'pid'=>$pid);
+	$dataArray 	= array ('url'=>$Pic[$pos],'title'=>$Title[$pos],'pid'=>$Pid[$pos]);
 	$dataJons = json_encode($dataArray);
 	
 	if($ajax_show==1){

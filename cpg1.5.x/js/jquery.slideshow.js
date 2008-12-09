@@ -36,14 +36,15 @@ $(document).ready(function(){
 	 	var i = new Image();
 		/** check whether first loading image. */
 		if(run_slideshow){
-			if([pos+1]==PiCount) {loadImage(0)}
+			pos	= parseInt(pos) + 1;
+			if(pos==PiCount) {loadImage(0)}
 			else
-			loadImage(pos+1);
+			loadImage(pos);
 		}
 		 
 		/** implement ajax call to get pic url and title */
 	 	function loadImage (j){ 	 
-	  	$.getJSON("displayimage.php?ajax_show=1&pos="+j+"&album="+$album,function(data){
+	  	$.getJSON("displayimage.php?ajax_show=1&pos="+j+"&album="+$album, function(data){
 				i.src 	= data['url'];
 				Title 	= data['title'];
 				Pid		= data['pid'];
