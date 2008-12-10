@@ -147,14 +147,14 @@ if ($sortDirection == 'ASC') {
 // determine the total number of entries
 $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_ECARDS']}");
 if (!mysql_num_rows($result)) {
-    cpg_die(ERROR, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
+    cpg_die(INFORMATION, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
 }
 
 $totalEcards = mysql_fetch_array($result);
 $totalEcards = $totalEcards[0];
 $result = cpg_db_query("SELECT eid, sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip FROM {$CONFIG['TABLE_ECARDS']} ORDER BY $sortBy $sortDirection LIMIT $startFrom,$countTo");
 if (!mysql_num_rows($result)) {
-    cpg_die(ERROR, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
+    cpg_die(INFORMATION, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
 }
 
 pageheader($lang_db_ecard_php['title']);
