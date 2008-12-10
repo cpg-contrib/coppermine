@@ -2009,6 +2009,7 @@ $lang_search_new_php['notes'] = <<< EOT
 	    <li>Falls die OK, DP, PB 'Zeichen' nicht erscheinen, klicke auf die nicht-funktionierenden Bilder, um die Fehlermeldungen von PHP zu sehen</li>
 	    <li>Wenn Dein Browser in ein Timeout läuft, klicke auf die Aktualisieren-Schaltfläche</li>
    </ul>
+EOT;
 $lang_search_new_php['check_all'] = 'alle auswählen';
 $lang_search_new_php['uncheck_all'] = 'Auswahl aufheben';
 $lang_search_new_php['no_folders'] = 'Im Verzeichnis "albums" wurden noch keine Unterverzeichnisse angelegt. Du musst mindestens ein benutzerdefiniertes Unterverzeichnis innerhalb des Ordners "albums" anlegen und Deine Dateien per FTP dorthin hochladen. Du darfst per FTP keine Dateien in die Unterverzeichnisse "userpics" oder "edit" hochladen, da diese für http-uploads und interne Zwecke reserviert sind.';
