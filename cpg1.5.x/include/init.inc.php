@@ -24,7 +24,7 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 set_include_path(get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'Inspekt');
 
-require_once "Inspekt.php";
+require_once('Inspekt.php');
 
 // Set $strict to false to make the superglobals available
 $strict = TRUE;
@@ -33,7 +33,7 @@ $superCage = Inspekt::makeSuperCage($strict);
 
 function cpgGetMicroTime()
 {
-	list($usec, $sec) = explode(" ", microtime());
+	list($usec, $sec) = explode(' ', microtime());
 	return ((float)$usec + (float)$sec);
 }
 $cpg_time_start = cpgGetMicroTime();
@@ -92,7 +92,7 @@ if(file_exists('include/config.inc.php')){
   die('<html>
 	<head>
 	  <title>Coppermine not installed yet</title>
-	  <meta http-equiv="refresh" content="10;url=install.php">
+	  <meta http-equiv="refresh" content="10;url=install.php" />
 	  <style type="text/css">
 	  <!--
 	  body { font-size: 12px; background: #FFFFFF; margin: 20%; color: black; font-family: verdana, arial, helvetica, sans-serif;}
@@ -263,28 +263,28 @@ if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . 
     unset($USER['theme']);
 }
 
-if (!file_exists("themes/{$CONFIG['theme']}/theme.php")) {
+if (!file_exists('themes/'.$CONFIG['theme'].'/theme.php')) {
     $CONFIG['theme'] = 'classic';
 }
 
-$THEME_DIR = "themes/{$CONFIG['theme']}/";
+$THEME_DIR = 'themes/'.$CONFIG['theme'].'/';
 
-require "themes/{$CONFIG['theme']}/theme.php";
+require('themes/'.$CONFIG['theme'].'/theme.php');
 
-require "include/themes.inc.php";  //All Fallback Theme Templates and Functions
+require('include/themes.inc.php');  //All Fallback Theme Templates and Functions
 
 // Language processing --- start
 // We load the default language file
 require_once('lang/english.php');
 
 $CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
-/* Temporarily disabled all language processing untill new fallback is implemented
+$enabled_languages_array = array();
 $results = cpg_db_query("SELECT lang_id FROM {$CONFIG['TABLE_LANGUAGE']} WHERE enabled='YES' ");
-while ($enabled_languages_array = mysql_fetch_array($results)) {
+while ($row = mysql_fetch_array($results)) {
+	$enabled_languages_array[] = $row['lang_id'];
 }
-print_r($enabled_languages_array);
 mysql_free_result($results);
-die;
+unset($row);
 
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8
@@ -292,34 +292,34 @@ if ($superCage->get->getRaw('lang') && $matches = $superCage->get->getMatched('l
     $USER['lang'] = $CONFIG['lang'] = $matches[0];
 }
 
+// Set the user preference to the language submit by URL parameter or by auto-detection
+// Only set the preference if a corresponding file language file exists.
 if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php')) {
     $CONFIG['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
-} elseif ($CONFIG['charset'] == 'utf-8') {
+} elseif ($CONFIG['charset'] == 'utf-8' && $CONFIG['language_autodetect'] != 0) {
     include('include/select_lang.inc.php');
-    if (file_exists('lang/' . $USER['lang'] . '.php')) {
-        $CONFIG['lang'] = $USER['lang'];
+    if (file_exists('lang/' . $USER['lang'] . '.php') == TRUE) {
+        if (in_array($USER['lang'], $enabled_languages_array)){
+        	$CONFIG['lang'] = $USER['lang'];
+        }
     }
 } else {
     unset($USER['lang']);
 }
 
-if (isset($CONFIG['default_lang']) && ($CONFIG['default_lang']==$CONFIG['lang']))
-{
-    unset($CONFIG['default_lang']);
+if (isset($CONFIG['default_lang']) && ($CONFIG['default_lang']==$CONFIG['lang'])) {
+    //unset($CONFIG['default_lang']);
 }
 
 if (!file_exists("lang/{$CONFIG['lang']}.php")) {
     $CONFIG['lang'] = 'english';
 }
 
-// We load the chosen language file
-require "lang/{$CONFIG['lang']}.php";
-
-// Include and process fallback here if lang <> english
-if($CONFIG['lang'] != 'english' && $CONFIG['language_fallback']==1 ){
-    //require "include/langfallback.inc.php";
+// We finally load the chosen language file if it differs from English
+if ($CONFIG['lang'] != 'english') {
+	require('lang/' . $CONFIG['lang'] . '.php');
 }
-*/
+
 // Language processing --- end
 
 // See if the fav cookie is set else set it
@@ -426,7 +426,7 @@ if (!USER_IS_ADMIN && $CONFIG['offline'] && !strstr($CPG_PHP_SELF,'login')) {
 // kick user into user_admin_mode (needed to fix "removed user mode for users" when upgrading)
 if (USER_ID && !USER_IS_ADMIN && !$USER['am']) { // user is logged in, but is not gallery admin and not in admin mode
 	$USER['am'] = 1;
-	pageheader($lang_common['information'], "<META http-equiv=\"refresh\" content=\"1;url=$referer\">");
+	pageheader($lang_common['information'], "<META http-equiv=\"refresh\" content=\"1;url=$referer\" />");
 	msg_box($lang_common['information'], 'Sending you to admin mode', $lang_common['continue'], $referer);
 	pagefooter();
 	ob_end_flush();
