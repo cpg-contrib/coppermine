@@ -99,6 +99,7 @@ $lang_errors['no_data'] = 'No data returned'; // cpg1.5
 $lang_errors['no_connection'] = 'No connection to %s established.'; // cpg1.5
 $lang_errors['login_needed'] = 'You need to %sregister%s/%slogin%s to access this page'; // cpg1.5
 $lang_errors['error'] = 'Error'; // cpg1.5
+$lang_errors['critical_error'] = 'Critical error'; // cpg1.5
 
 $lang_bbcode_help_title = 'bbcode help';
 $lang_bbcode_help = 'You can add clickable links and some formatting to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <strong>Bold</strong></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://documentation.coppermine-gallery.net/en/images/base.gif[/img] =&gt; <img src="docs/en/images/base.gif" border="0" alt="" /></li>';
@@ -312,9 +313,6 @@ $lang_rate_pic['rollover_to_rate'] = 'Rollover to rate this picture'; // cpg1.5
 // File include/functions.inc.php
 // ------------------------------------------------------------------------- //
 
-$lang_cpg_die['INFORMATION'] = $lang_common['information'];
-$lang_cpg_die['ERROR'] = $lang_errors['error'];
-$lang_cpg_die['CRITICAL_ERROR'] = 'Critical error';
 $lang_cpg_die['file'] = 'File: ';
 $lang_cpg_die['line'] = 'Line: ';
 
@@ -1120,7 +1118,6 @@ $lang_picinfo['GainControl'] = 'Gain Control';
 $lang_picinfo['Contrast'] = 'Contrast';
 $lang_picinfo['Sharpness'] = 'Sharpness';
 $lang_picinfo['ManageExifDisplay'] = 'Manage EXIF Display';
-$lang_picinfo['submit'] = 'Submit';
 $lang_picinfo['success'] = 'Information updated successfully.';
 $lang_picinfo['show_details'] = 'Show details'; // cpg1.5
 $lang_picinfo['hide_details'] = 'Hide details'; // cpg1.5
