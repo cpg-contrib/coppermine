@@ -320,7 +320,36 @@ function cpgSanitizeUserTextInput($string)
 
 function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer = false)
 {
-        global $CONFIG, $lang_cpg_die, $template_cpg_die, $lang_common;
+        global $CONFIG, $lang_cpg_die, $template_cpg_die, $lang_common, $lang_errors;
+        // Three types of error levels: INFORMATION, ERROR, CRITICAL_ERROR.
+        // There used to be a clumsy method for error mesages that didn't work well with i18n.
+        // Let's add some more logic to this: try to get the translation 
+        // for the error type from the language file. If that fails, use the hard-coded 
+        // English string.
+        $msg_icon = 'warning'; // Default icon
+        if ($msg_code == 1) {
+        	$msg_icon = 'info';
+        	if ($lang_common['information'] != '') {
+        		$msg_string = $lang_common['information'];
+        	} else {
+        		$msg_string = 'Information';
+        	}
+        } elseif ($msg_code == 2) {
+        	$msg_icon = 'warning';
+        	if ($lang_errors['error'] != '') {
+        		$msg_string = $lang_errors['error'];
+        	} else {
+        		$msg_string = 'Error';
+        	}
+        } elseif ($msg_code == 3) {
+        	$msg_icon = 'stop';
+        	if ($lang_errors['critical_error'] != '') {
+        		$msg_string = $lang_errors['critical_error'];
+        	} else {
+        		$msg_string = 'Critical error';
+        	}
+        }
+        
 
         // Simple output if theme file is not loaded
         if (!function_exists('pageheader')) {
@@ -329,7 +358,9 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
         }
 
         $ob = ob_get_contents();
-        if ($ob) ob_end_clean();
+        if ($ob) {
+        	ob_end_clean();
+        }
 
         if (function_exists('theme_cpg_die')) {
             theme_cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer);
@@ -348,9 +379,13 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
         if (!($CONFIG['debug_mode'] == 1 || ($CONFIG['debug_mode'] == 2 && GALLERY_ADMIN_MODE))) template_extract_block($template_cpg_die, 'file_line');
         //if (!$output_buffer && !$CONFIG['debug_mode'])
         template_extract_block($template_cpg_die, 'output_buffer');
+        
+        if (function_exists('cpg_fetch_icon')) {
+        	$icon_output = cpg_fetch_icon($msg_icon, 2);
+        }
 
-        pageheader($lang_cpg_die[$msg_code]);
-        starttable(-1, cpg_fetch_icon('warning', 2) . $lang_cpg_die[$msg_code]);
+        pageheader($msg_string);
+        starttable(-1, $icon_output . $msg_string);
         echo "<!-- cpg_die -->";
         echo template_eval($template_cpg_die, $params);
         endtable();
