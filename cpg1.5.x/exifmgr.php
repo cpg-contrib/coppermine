@@ -22,7 +22,15 @@ define('DISPLAYIMAGE_PHP', true);
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
 
-if (!GALLERY_ADMIN_MODE) die('Access denied');
+if (!GALLERY_ADMIN_MODE) {
+	die('Access denied');
+}
+
+// Initialize some variables
+$icon_array = array();
+$icon_array['ok'] = cpg_fetch_icon('ok', 0);
+$output_message = '';
+
 pageheader($lang_picinfo['ManageExifDisplay']);
 
 //String containing all the available exif tags.
@@ -31,8 +39,7 @@ $exif_info = "AFFocusPosition|Adapter|ColorMode|ColorSpace|ComponentsConfigurati
 $exifRawData = explode ("|",$exif_info);
 $exifCurrentData = explode ("|",$CONFIG['show_which_exif']);
 
-//If the form is submitted to save the data
-//if (isset($_POST['save'])) {
+// The form has been submit --- start
 if ($superCage->post->keyExists('save')){
   $str = "";
   foreach ($exifRawData as $val) {
@@ -50,8 +57,12 @@ if ($superCage->post->keyExists('save')){
   $selectedExifTags = $str;
   $sql = "UPDATE ".$CONFIG['TABLE_CONFIG']." SET value = '".$selectedExifTags."' WHERE name = 'show_which_exif'";
   cpg_db_query($sql);
-  msg_box($lang_picinfo['ManageExifDisplay'], $lang_picinfo['success'], $lang_common['continue'], "admin.php");
-} else {
+  $output_message = $lang_picinfo['success'];
+}  
+// The form has been submit --- end
+
+
+// Main code starts here
   echo <<< EOT
     <form method="POST" action="" name="editForm" id="cpgform">
     <input type="hidden" name="save" value="save" />
@@ -80,10 +91,18 @@ if ($superCage->post->keyExists('save')){
     -->
     </script>
 EOT;
-  starttable('100%', cpg_fetch_icon('exif_mgr', 2) . $lang_picinfo['ManageExifDisplay'], 2);
-  echo '<tr><td class="tableh2">&nbsp;</td><td class="tableh2" align="center">';
-  echo '<input type="checkbox" name="checkAll" onClick="selectAll(this,\'exif_tags\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />';
-  echo '</td></tr>';
+	$exif_help = '&nbsp;' . cpg_display_help('f=exif.htm&amp;as=exif&amp;ae=exif_end', '640', '450');
+	starttable('100%', cpg_fetch_icon('exif_mgr', 2) . $lang_picinfo['ManageExifDisplay'] . $exif_help, 2);
+	echo <<< EOT
+	<tr>
+		<td class="tableh2">
+			<span class="cpg_user_message">{$output_message}</span>
+		</td>
+		<td class="tableh2" align="center">
+			<input type="checkbox" name="checkAll" onClick="selectAll(this,'exif_tags');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
+		</td>
+	</tr>
+EOT;
   $loopCounter = 0;
   foreach ($exifRawData as $key => $val) {
     $checked = $exifCurrentData[$key] == 1 ? 'checked' : '';
@@ -95,16 +114,21 @@ EOT;
     $loopCounter++;
     echo '<tr><td class="'.$style.'">'.$lang_picinfo[$val].'</td><td class="'.$style.'" align="center"><input type="checkbox" name="exif_tags[]" value="'.$val.'" ' . $checked . ' class="checkbox" /></td></tr>'."\r\n";
   }
-  echo '<tr>
-  <td class="tablef" align="center"><input type="submit" class="button" name="submit" value="'.$lang_picinfo['submit'].'" />';
-  echo '<td class="tablef" align="center">';
-  echo '<input type="checkbox" name="checkAll2" onClick="selectAll(this,\'exif_tags\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />';
-  echo '  </td></tr>';
+  echo <<< EOT
+  <tr>
+	  <td class="tablef" align="center">
+		  <button type="submit" class="button" name="submit" id="submit" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
+	  </td>
+	  <td class="tablef" align="center">
+		  <input type="checkbox" name="checkAll2" onClick="selectAll(this,'exif_tags');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
+	  </td>
+  </tr>
+EOT;
   endtable();
   echo <<< EOT
     </form>
 EOT;
-}
+
 ob_end_flush();
 pagefooter();
 ?>
