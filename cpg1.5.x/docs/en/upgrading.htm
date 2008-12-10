@@ -81,12 +81,12 @@
     <span class="small">(Recommended tools for creating a database dump are <a href="http://mysqldumper.de/en/" rel="external" class="external">mySqlDumper</a> or <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a> - refer to the section <a href="dev_tools.htm#dev_tools_database">Tools recommended by the devs: Database manipulation</a> for details).<br />
     Creating a backup is not mandatory in terms of functionality, but just a precaution in case anything should go wrong. It's advisable to make frequent backups anyway.</span></li>
     <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy as a safety precaution if anything should go wrong.<br />
-    <span class="small">(Usually, you just download your entire coppermine folder to your local hard drive using your FTP app)</span></li>
+    <span class="small">(Usually, you just download your entire coppermine folder to your local hard drive or any other safe backup location using your <a href="dev_tools.htm#dev_tools_ftp_client"><abbr title="File Transfer Protocol">FTP</abbr> app</a>)</span></li>
     <li>Unpack the coppermine package you downloaded into a temporary folder on your local hard drive (preserving the folder structure within the package)</li>
-    <li><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories, making sure not to overwrite your anycontent.php file or the albums directory.</li>
+    <li><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories, making sure not to overwrite your anycontent.php file or the albums directory.<br />
+    <span class="small">In fact, you could upload the albums folder as well - the one that is contained in the package is empty anyway. The recommendation not to upload this folder is only meant as a pre-caution for some users who have "funny" settings for their FTP apps: some exotic FTP applications delete folders existing om the server and then re-create an empty folder on the server-side. This would of course be a disaster, as you would lose all your uploaded files in your gallery. However, the number of FTP apps that is set up in that strange way is small and therefor, it won't hurt for most to upload the albums folder as well. If you're not sure, use one of the <a href="dev_tools.htm#dev_tools_ftp_client">FTP clients recommended by the devs</a>.</span></li>
     <li>Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. <tt class="code">http://yourdomain.tld/your_coppermine_folder/update.php</tt>). This will update your coppermine install by making all necessary changes in the database.</li>
     <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme_upgrade_14x-15x.htm">theme-upgrade guide</a>.</li>
-    <li>If your webserver is running in safe_mode and you have enabled "SILLY_SAFE_MODE" in include/config.inc.php, you will have to go to coppermine's config after performing above mentioned steps and enable "<a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">silly safe mode</a>" there, as the setting in include/config.inc.php is no longer being taken into account in cpg1.5.x. The silly_safe_mode setting has been made into a <a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">config setting</a> instead.</li>
 </ul>
 <p>To make this absolutely clear: <span class="important">there is no such thing as a separate upgrade package - coppermine always comes as a complete package that can be used both for a fresh install as well as an upgrade</span>.</p>
 
@@ -120,6 +120,7 @@
   </li>
   <li>Delete the outdated files that came with older versions of coppermine that no longer exist in cpg1.5.x.<br />
   Again, this is just a precaution to make sure that your new gallery doesn't contain flaws from outdated versions that would allow malevolent attackers to exploit weaknesses in older versions. To find out what files need to be removed manually, take a look at the output at the bottom of the update screen (<tt class="code">http://yourdomain.tld/your_coppermine_folder/update.php</tt>) - the updater will attempt to delete the files for you, but in most server setups it won't have the permission to do so, so you will have to manually delete the files using your FTP app. Another way to find out about the files that need to be deleted is the <a href="#versioncheck">versioncheck</a> page - the files that are scheduled for removal will be displayed there as well - the versioncheck page won't attempt to delete those files though.</li>
+  <li>If your webserver is running in safe_mode and you have enabled "SILLY_SAFE_MODE" in include/config.inc.php, you will have to go to coppermine's config after performing above mentioned steps and enable "<a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">silly safe mode</a>" there, as the setting in <tt class="code">include/config.inc.php</tt> is no longer being taken into account in cpg1.5.x. The silly_safe_mode setting has been turned into a <a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">config setting</a> instead.</li>
 </ul>
 
 
@@ -137,14 +138,16 @@
 </ul>
 <p>This script goes through the files on your webserver and tries to determine if the local file versions on your webserver are the identical to the ones at the repository of http://coppermine-gallery.net. Files that do not match are displayed and are the files you should update as well.</p>
 <p>Compared to previous versions, the versioncheck page has been re-designed for cpg1.5.x both in terms of visuals as well as functionality.</p>
-
-<h3>First run</h3>
-<p>When run for the first time, you will see the <a href"versioncheck_options_start">option</a> screen first. For a start, default options should be OK, so just submit the form. The script will then determine the coppermine version you're currently running, an try to look up the XML file on the coppermine repository that corresponds to your version. If successfull, it will compare all files that exist on your server against the most recent files that are recommended to use (trying to obtain that data from the repository). Subsequently, you should see a list of folders and files that are suppossed to exist on your server and an explanation if the file versions you have are the most recent. For details how to interpret the output, read on.</p>
 <a name="versioncheck_description_end"></a>
+
+<a name="versioncheck_first_run"></a><h3>First run<a href="#versioncheck_first_run" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>When run for the first time, you will see the <a href"versioncheck_options_start">option</a> screen first. For a start, default options should be OK, so just submit the form. The script will then determine the coppermine version you're currently running, an try to look up the XML file on the coppermine repository that corresponds to your version. If successfull, it will compare all files that exist on your server against the most recent files that are recommended to use (trying to obtain that data from the repository). Subsequently, you should see a list of folders and files that are suppossed to exist on your server and an explanation if the file versions you have are the most recent. For details how to interpret the output, read on.</p>
+
 
 
 
 <a name="versioncheck_options_start"></a><h3>Options<a href="#versioncheck_options_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<img src="images/versioncheck_options.png" alt="" border="0" width="386" height="120" title="Options for the version check screen" align="right" />
 <p>There is a small number of options available on the versioncheck page that should be pretty self-explanatory:</p>
 <ul>
     <li><a name="versioncheck_options_display_output"></a><h4>Display output<a href="#versioncheck_options_display_output" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
@@ -180,6 +183,7 @@
 
  
 <a name="versioncheck_comparison_start"></a><h3>Version comparison<a href="#versioncheck_comparison_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<img src="images/versioncheck_output.png" border="0" width="400" height="191" alt="" title="Output generated by version check" align="right" />
 <p>There is a lot of information packed into a small space. Here's an example of a possible output and what the output means:</p>
 <ul>
     <li><a name="versioncheck_comparison_path"></a><h4>Path<a href="#versioncheck_comparison_path" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
@@ -230,6 +234,10 @@
 </ul>
 <p>Versioncheck is being provided as a courtesy to end users. As there are several factors that have an impact on it, it may or may not work on your server setup. If the versioncheck tool does nothing at all, this is probably the case for you - you don't have to be alarmed in this case: just make sure to keep your coppermine install up-to-date, preferably by enabling the config option "<a href="configuration.htm#admin_general_coppermine_news">Display news from coppermine-gallery.net</a>". Only if individual issues are being reported by the version check tool (i.e. only if <em>some</em> lines contain a remark in the comments column), you should be alarmed and take a closer look.</p>
 <a name="versioncheck_problems_end"></a>
+
+<a name="versioncheck_expect"></a><h3>Wrong expectations<a href="#versioncheck_expect" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>To some this may sound trivial, for others it might be an important piece of information: naturally, files that you have not replaced during the upgrading process (e.g. <tt class="code">anycontent.php</tt>) will show as outdated in versioncheck's output. This is of course to be expected. It doesn't hurt if you performed the upgrade exactly as suggested, as the files you're suppossed to keep during that process don't actually contain code that needs updating. As an example, <tt class="code">anycontent.php</tt> doesn't actually contain code at all (at least the file that comes with coppermine out of the box). It <em>can</em> contain custom code if you decide to use it. For details on the usage of <tt class="code">anycontent.php</tt>, refer to the section &quot;<a href="php-content.htm#php-content_anycontent">Using anycontent.php</a>&quot;.</p>
+
 <a name="versioncheck_end"></a>
 
 <a name="upgrade_faq"></a><h2>Upgrading FAQ<a href="#upgrade_faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>

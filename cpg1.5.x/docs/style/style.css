@@ -40,6 +40,8 @@ p {
 
 .smallcode {
     font-size: 0.9em;
+    font-style: normal;
+	font-family: "Courier New", Courier, monospace;
 }
 
 .maintable {

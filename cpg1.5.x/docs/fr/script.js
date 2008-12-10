@@ -47,7 +47,7 @@ document.write('      <li><a href="index.htm#about_documentation">A propos de ce
 //document.write('      <li><a href="quickstart.htm#about">Quick-Start guide</a></li>');
 document.write('      <li><a href="toc.htm">Table des Matières</a></li>');
 document.write('      <li><a href="requirements.htm">Minimum requis</a></li>');
-document.write('      <li><a href="testing.htm">Version Beta (Test)!</a></li>');
+document.write('      <li><a href="testing.htm">Version Alpha/Beta (Test)!</a></li>');
 document.write('      <li><a href="languages.htm">Langues</a>');
 document.write('        <ul class="level3" id="languages">');
 document.write('          <li><a href="translation.htm">Guide de Traduction</a></li>');

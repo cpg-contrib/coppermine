@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="language" content="en" />
 <meta name="copyright" content="Coppermine dev team" />
-<meta name="description" content="The gallery configuration page is where you will configure the most important parts of your coppermine gallery.">
+<meta name="description" content="The gallery configuration page is where you will configure the most important parts of your Coppermine-driven gallery.">
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -127,19 +127,13 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
 
 <a name="admin_language"></a><h2>Language &amp; Charset settings<a href="#admin_language" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p><img src="images/config_language.gif" width="600" height="170" border="0" alt="" align="right" />This the the config section where you can set up the language settings. Make sure to read this section carefully before changing anything here.</p>
+<p>All language files are stored in the <strong>lang</strong> directory on your server.</p>
+<p>Languages and internationalization (often refered to as i18n) is a complicated and complex thing. You (as Coppermine admin) probably don't want to go into details, so this documentation skips the in-depth issues existing with i18n and just gives you an overview how Coppermine handles languages.</p>
 
-<a name="admin_language_language"></a><h3>Language<a href="#admin_language_language" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This sets the default language for your gallery. All language files are stored in the <strong>lang</strong> directory on your server.</p>
-<p>Languages and internationalization (often refered to as i18n) is a complicated and complex thing. You (as Coppermine admin) probably don't want to go into details, so this documentation skips the in-depth issues existing with i18n and just gives you an overview how Coppermine handles languages:</p>
-<p>By default, language files are unicode encoded files. If you set "Character encoding" to "Unicode (utf-8)" then the script will auto detect the preferred language of your visitors based on what default language is configured in their browsers. If the corresponding language is available in your language directory, it will be used. Otherwise, the default language file will be used.</p>
-<p>When the script auto detects the preferred language, it stores the result in a cookie on the visitor's computer. To reset this cookie (and thus force the script to do another auto detection) the user must call this autodetect function with something like: <a href="#">http://yoursite.com/coppermine_dir/index.php?lang=xxx</a></p>
-<p>These steps are performed by the script:</p>
-<ul>
-  <li>Step one: Check "has a specific language been set by cookie or URL parameter?". If yes, the gallery will be displayed in that language, all subsequent steps are being skipped</li>
-  <li>Step two: which language has the user set as default language in his browser? If that language exists as Coppermine language file, it will be used - the subsequent step will be skipped.</li>
-  <li>Last step: only if the previous steps both don't apply, the default language that the admin has set up on the config page will be taken into account</li>
-</ul>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Language</p>
+<a name="admin_language_language"></a><h3>Default Language<a href="#admin_language_language" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>This sets the default language for your gallery.</p>
+<p>Next to this selector, you will find a link to the language manager that allows a more granular control over the language files available and how the gallery should use them.</p> 
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Default Language</p>
 <a name="admin_language_language_end"></a>
 <hr />
 
@@ -237,7 +231,15 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
 <a name="admin_language_custom_lnk_url_end"></a>
 <hr />
 <a name="admin_enable_menu_icons"></a><h3>Enable menu icons<a href="#admin_enable_menu_icons" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, this option will display icons next to some menu items to allow an easier navigation. The performance penalty should be neglectible. Default (and recommended) option is "on".</p>
+<p>When enabled, this option will display icons next to some menu items to allow an easier navigation. The performance penalty should be neglectible. Default (and recommended) option is "on". Available options are:</p>
+<ul>
+	<li>No</li>
+	<li>Yes: menu only<br />
+	This will mean that only icons in the admin menu will be displayed. The icons are meant to allow the admin to easier find his way around in the admin menu that is getting more and more populated with all the new features in coppermine.</li>
+	<li>Yes: everywhere<br />
+	This is the recommended option that will make the output of coppermine more colorful, with icons all over the place (visible both for the admin as well as the visitor of the site).</li>
+</ul>
+<p>The menu icons are themeable, so there can be different icon sets with different themes.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Enable menu icons</p>
 <a name="admin_enable_menu_icons_end"></a>
 <hr />
@@ -251,7 +253,7 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
 <p>Consider carefully what social bookmark services you will display on your page - it's advisable not to display all that are available: this would only clutter the look of your page and disctract users too much. It would be confusing for users to actually find the icon of their favorite social bookmark site. There are many localized social bookmark services, so they are only usefull if your site visitors actually speak the language the bookmark service is providing.</p>
 <p>To avoid spamming, most social bookmark services only allow bookmarks from registered users, so you can't expect that your site visitors will go through the registration process on all those services - they will probably only use the service they have already signed up for. That's why it's probably a good idea to only present a small number of those icons that are well-known in the community you catter for.</p>
 <p>The social bookmark selector on the config page is using a select field where you can highlight multiple entries by holding down the [CTRL]-key on your keyboard (on PC clients). Use that key as well to unselect entries - if you just click on an entry without holding down the [Ctrl]-key, the item will be selected; re-clicking will not un-select it, so you will have to use the [Ctrl]-key if you want to disable the display of social bookmarks after having enabled it once.</p>
-<p>This feature will only work if your theme contains the <a href="theme_create.htm#social_bookmarks_token">social bookmarks placeholder</a>.</p>
+<p>This feature will only work if your theme contains the <a href="theme_template.htm#social_bookmarks_token">social bookmarks placeholder</a>.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display social bookmarks icons</p>
 <a name="admin_social_bookmarks_end"></a>
 <hr />

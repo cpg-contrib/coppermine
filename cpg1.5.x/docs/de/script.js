@@ -46,7 +46,7 @@ document.write('      <li><a href="index.htm#about">Über Coppermine</a></li>');
 //document.write('      <li><a href="quickstart.htm#about">Quick-Start guide</a></li>');
 document.write('      <li><a href="toc.htm">Inhaltsverzeichnis</a></li>');
 document.write('      <li><a href="requirements.htm">Mindestvoraussetzung</a></li>');
-//document.write('      <li><a href="testing.htm">Testing (beta version!)</a></li>');
+//document.write('      <li><a href="testing.htm">Testing (alpha/beta versions!)</a></li>');
 document.write('      <li><a href="languages.htm">Sprachen</a>');
 //document.write('        <ul class="level3" id="languages">');
 //document.write('          <li><a href="translation.htm">Translation guide</a></li>');

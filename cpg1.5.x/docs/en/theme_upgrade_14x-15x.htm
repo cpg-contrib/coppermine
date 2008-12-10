@@ -40,43 +40,43 @@
 </noscript>
 </div>
 
-<h1>Converting cpg1.4.x themes to cpg1.5.x</h1>
+<a name="theme_convert"></a><h1>Converting cpg1.4.x themes to cpg1.5.x</h1>
 <p>To make your custom made theme from cpg1.4.x work with cpg1.5.x, you will need to make some changes. Remember to back up your original files, so you can go back to a working version in case something goes wrong with the modifications.</p>
 <p>The files to be edited would be in the particular folder of the theme in the themes folder. For example, the files for the "classic" theme could be found in themes/classic</p>
 <ul>
-  <li><a href="#style">Edit style.css</a></li>
-  <li><a href="#template">Edit template.html</a></li>
-  <li><a href="#theme">Edit theme.php</a></li>
-  <li><a href="#validation">Validation</a></li>
+  <li><a href="#theme_convert_style">Edit style.css</a></li>
+  <li><a href="#theme_convert_template">Edit template.html</a></li>
+  <li><a href="#theme_convert_theme">Edit theme.php</a></li>
+  <li><a href="#theme_convert_validation">Validation</a></li>
 </ul>
 
-<a name="style"></a><h2>Edit style.css<a href="#style" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="theme_convert_style"></a><h2>Edit style.css<a href="#theme_convert_style" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>For all changes below, edit themes/your_custom_theme/style.css</p>
-<h3>Form-padding</h3>
+<a name="theme_convert_style_form-padding"></a><h3>Form-padding<a href="#theme_convert_style_form-padding" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>By default, &lt;form&gt;-tags have a padding in most browsers that differs and is hard to control. This is of course silly, as it adds unnecessary whitespace, so let's fix it:</p>
 <div class="important">Find:</div>
-<pre>.textinput {</pre>
+<pre class="smallcode">.textinput {</pre>
 <div class="important">Add before it (in a new line):</div>
-<pre>form {
+<pre class="smallcode">form {
         margin-top:0px;
         margin-bottom:0px;
 }
 </pre>
 
-<h3>New class &laquo;inline&raquo;</h3>
+<a name="theme_convert_style_inline"></a><h3>New class &laquo;inline&raquo;<a href="#theme_convert_style_inline" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="important">Find:</div>
-<pre>.textinput {</pre>
+<pre class="smallcode">.textinput {</pre>
 <div class="important">Add before it (in a new line):</div>
-<pre>.inline {
+<pre class="smallcode">.inline {
         display:inline;
 }</pre>
 
-<h3>Define pseudo-classes :link, :visited, :focus, :active</h3>
+<a name="theme_convert_style_pseudo"></a><h3>Define pseudo-classes :link, :visited, :focus, :active<a href="#theme_convert_style_pseudo" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Before applying this fix, make sure that your stylesheet doesn't contain definitions for the pseudo-classes already. If it doesn't contain those classes</p>
 <div class="important">Find:</div>
-<pre>a:hover {</pre>
+<pre class="smallcode">a:hover {</pre>
 <div class="important">Add before it (in a new line):</div>
-<pre>a:link {
+<pre class="smallcode">a:link {
         color: #0033CC;
         text-decoration: none;
 }
@@ -97,52 +97,52 @@ a:active {
 }</pre>
 and edit the colors and format as you see fit.
 
-<h3>Bold table headers</h3>
+<a name="theme_convert_style_bold_table_headers"></a><h3>Bold table headers<a href="#theme_convert_style_bold_table_headers" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="important">Find:</div>
-<pre>.tableh1 {</pre>
+<pre class="smallcode">.tableh1 {</pre>
 <div class="important">and add after it:</div>
-<pre>        font-weight:bold;</pre>
+<pre class="smallcode">        font-weight:bold;</pre>
 <hr />
 <div class="important">Find:</div>
-<pre>.tableh1_compact {</pre>
+<pre class="smallcode">.tableh1_compact {</pre>
 <div class="important">and add after it:</div>
-<pre>        font-weight:bold;</pre>
+<pre class="smallcode">        font-weight:bold;</pre>
 <hr />
 <div class="important">Find:</div>
-<pre>.tableh2_compact {</pre>
+<pre class="smallcode">.tableh2_compact {</pre>
 <div class="important">and add after it:</div>
-<pre>        font-weight:bold;</pre>
+<pre class="smallcode">        font-weight:bold;</pre>
 <hr />
 <div class="important">Find:</div>
-<pre>.alblink a {</pre>
+<pre class="smallcode">.alblink a {</pre>
 <div class="important">and add before it (into a new line):</div>
-<pre>.alblink {
+<pre class="smallcode">.alblink {
         font-weight:bold;
 }</pre>
 <hr />
 <div class="important">Find:</div>
-<pre>.catlink {</pre>
+<pre class="smallcode">.catlink {</pre>
 <div class="important">and add after it:</div>
-<pre>        font-weight:bold;</pre>
+<pre class="smallcode">        font-weight:bold;</pre>
 
-<h3>Edit class &laquo;navmenu&raquo;</h3>
+<a name="theme_convert_style_navmenu"></a><h3>Edit class &laquo;navmenu&raquo;<a href="#theme_convert_style_navmenu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="important">Find:</div>
-<pre>.navmenu a {
+<pre class="smallcode">.navmenu a {
         position: relative;</pre>
 <div class="important">and replace with:</div>
-<pre>.navmenu a {</pre>
+<pre class="smallcode">.navmenu a {</pre>
 
-<h3>Fix background repetition for &laquo;admin_menu&raquo;</h3>
+<a name="theme_convert_style_admin_menu"></a><h3>Fix background repetition for &laquo;admin_menu&raquo;<a href="#theme_convert_style_admin_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="important">Find:</div>
-<pre>.admin_menu {</pre>
+<pre class="smallcode">.admin_menu {</pre>
 <div class="important">and add after it:</div>
-<pre>background-repeat:repeat-x;</pre>
+<pre class="smallcode">background-repeat:repeat-x;</pre>
 
-<h3>Add classes &laquo;admin_float&raquo; &amp; &laquo;admin_menu_wrapper&raquo;</h3>
+<a name="theme_convert_style_admin_float_wrapper"></a><h3>Add classes &laquo;admin_float&raquo; &amp; &laquo;admin_menu_wrapper&raquo;<a href="#theme_convert_style_admin_float_wrapper" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="important">Find:</div>
-<pre>#admin_menu_anim {</pre>
+<pre class="smallcode">#admin_menu_anim {</pre>
 <div class="important">and add before it (into a new line):</div>
-<pre>.admin_float {
+<pre class="smallcode">.admin_float {
         float:left;
         margin-left: 1px;
         margin-right: 1px;
@@ -154,11 +154,11 @@ and edit the colors and format as you see fit.
         width:100%;
 }</pre>
 
-<h3>Add pseudo-classes for image links</h3>
+<a name="theme_convert_style_image_links"></a><h3>Add pseudo-classes for image links<a href="#theme_convert_style_image_links" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="important">Find:</div>
-<pre>.image {</pre>
+<pre class="smallcode">.image {</pre>
 <div class="important">and add before it (into a new line):</div>
-<pre>/* pseudo-classes for image links */
+<pre class="smallcode">/* pseudo-classes for image links */
 a:link .image{
         border-style:solid;
         border-width:1px;
@@ -194,11 +194,11 @@ a:active .image{
         margin:2px;
 }</pre>Edit the colors and attributes as you see fit. This is suppossed to show which thumbnails have already been clicked. The important bit being the attributes of the pseudo-class :visited; they have to differ from the other pseudo-classes.
 
-<h3>Add the classes &laquo;pic_title&raquo;, &laquo;pic_caption&raquo;, &laquo;cpg_user_message&raquo;</h3>
+<a name="theme_convert_style_pic_title_caption_user_message"></a><h3>Add the classes &laquo;pic_title&raquo;, &laquo;pic_caption&raquo;, &laquo;cpg_user_message&raquo;<a href="#theme_convert_style_pic_title_caption_user_message" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="important">Find:</div>
-<pre>#vanity a {</pre>
+<pre class="smallcode">#vanity a {</pre>
 <div class="important">and add before it (into a new line):</div>
-<pre>.pic_title {
+<pre class="smallcode">.pic_title {
         color: #000000;
         font-size: 120%;
         font-family: Arial, Helvetica, sans-serif;
@@ -228,103 +228,76 @@ a:active .image{
         font-size:1.4em;
         font-weight:bold;
 }</pre>
+<a name="theme_convert_style_end"></a>
 
-<a name="style_end"></a>
+<a name="theme_convert_template"></a><h2>Edit template.html<a href="#theme_convert_template" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>There have been only minor changes to this file. Open <tt class="code">themes/your_theme/template.html</tt> with a plain text editor and edit as suggested below:</p>
 
-<a name="template"></a><h2>Edit template.html<a href="#template" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>There have been only minor changes to this file. Open themes/your_theme/template.html with a plain text editor and edit as suggested below:</p>
-
-<h3>Replace the call for script.js</h3>
+<a name="theme_convert_template_javascript"></a><h3>Replace the call for script.js<a href="#theme_convert_template_javascript" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="important">Find:</div>
-<pre>&lt;script type="text/javascript" src="scripts.js"&gt;&lt;/script&gt;</pre>
+<pre class="smallcode">&lt;script type="text/javascript" src="scripts.js"&gt;&lt;/script&gt;</pre>
 <div class="important">and replace with:</div>
-<pre>{JAVASCRIPT}</pre>
+<pre class="smallcode">{JAVASCRIPT}</pre>
+<p>Failing to apply this change to your custom theme will make your theme work no longer (see <a href="theme_template.htm#theme_template_javascript">details</a> on the <tt class="code">{JAVASCRIPT}</tt>-placeholder-token).</p>
 
-<h3>Add {MESSAGE_BLOCK} token</h3>
+<a name="theme_convert_template_message_block"></a><h3>Add {MESSAGE_BLOCK} token<a href="#theme_convert_template_message_block" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="important">Insert</div>
-<pre>{MESSAGE_BLOCK}</pre>anywhere before the <tt class="code">{GALLERY}</tt>-token, preferably right after the menu section. This new placeholder will display messages both to the admin as well as the end user. It should be visible in the upper part of the screen without the need to scroll down.
+<pre class="smallcode">{MESSAGE_BLOCK}</pre>anywhere before the <tt class="code">{GALLERY}</tt>-token, preferably right after the menu section. This new placeholder will display messages both to the admin as well as the end user. It should be visible in the upper part of the screen without the need to scroll down, see <a href="theme_template.htm#theme_template_message_block">details</a> on the <tt class="code">{MESSAGE_BLOCK}</tt>-placeholder-token.
 
-<h3>Add {CREDITS} token</h3>
+<a name="theme_convert_template_credits"></a><h3>Add {CREDITS} token<a href="#theme_convert_template_credits" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="important">Insert</div>
-<pre>{CREDITS}</pre>anywhere after the <tt class="code">{GALLERY}</tt>-token, preferably at the very end of the file, above the <tt class="code">&lt;/body&gt;</tt>-tag. This new placeholder can display the copyright notice of your gallery and (ideally) the <a href="theme_copyright.htm#theme_copyright">Coppermine disclaimer</a>.
+<pre class="smallcode">{CREDITS}</pre>anywhere after the <tt class="code">{GALLERY}</tt>-token, preferably at the very end of the file, above the <tt class="code">&lt;/body&gt;</tt>-tag. This new placeholder can display the copyright notice of your gallery and (ideally) the <a href="theme_copyright.htm#theme_copyright">Coppermine disclaimer</a>.<br />
+If you don't insert that token, there will be no error message and the default Credits will be displayed, see <a href="theme_template.htm#theme_template_credits">details</a> on the <tt class="code">{CREDITS}</tt>-placeholder-token. 
 
-<a name="template_end"></a>
+<a name="theme_convert_template_social_bookmarks"></a><h3>Add {SOCIAL_BOOKMARKS} token<a href="#theme_convert_template_social_bookmarks" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Insert the placeholder tag <tt class="code">{SOCIAL_BOOKMARKS}</tt> anywhere you want the social bookmarks see displayed (they will only display if you enable the corresponding config option). For theme designers who plan to publish their theme it's recommended to add that token no matter what. If you design your custom theme only for your personal use and don't plan to publish your custom theme to others, you're free to ommit this token if you don't need to display social bookmarks. For details, see <a href="theme_template.htm#theme_template_social_bookmarks">List of tokens in template.html &rarr; {SOCIAL_BOOKMARKS}</a>.</p>
 
-<a name="theme"></a><h2>Edit theme.php<a href="#theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="theme_convert_template_vanity"></a><h3>Remove {VANITY} token<a href="#theme_convert_template_vanity" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>In older versions of Coppermine, all themes used to contain the placeholder token <tt class="code">{VANITY}</tt>. This token used to be replaced with a reference to the w3c validation pages and php.net and mysql.com only if the theme was defined as standards compliant and only if the corresponding option in coppermine's config used to be checked (by default, the option used to be unchecked). This has changed in cpg1.5.x: if your custom theme's template.html contains the token <tt class="code">{VANITY}</tt>, the corresponding output will be displayed no matter what, as the option in coppermine's config has been dropped as well as the definition inside the theme.</p>
+<p>Therefor, if you use a theme that was designed for cpg1.4.x, the vanity display will show after the upgrade to cpg1.5.x even if you had the display turned off before. If this bothers you, just remove the template placeholder token <tt class="code">{VANITY}</tt> (&rarr; <a href="theme_template.htm#theme_template_vanity">details</a>).</p>
+<img src="images/vanity.png" width="351" height="26" border="0" alt="" title="vanity block" />
+
+<a name="theme_convert_template_end"></a>
+
+<a name="theme_convert_theme"></a><h2>Edit theme.php<a href="#theme_convert_theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 
 <p>Many notable things have happened that will influence your modifications to your theme.php.</p>
-<p>As this section is in progress most, we'll have to finish it later - TBC</p>
-<!--
-  <ol>
+<p>As this section is in progress most, we'll have to finish it later - <abbr title="to be continued">TBC</abbr></p>
+  <ul>
+  	<li>...</li>
+  </ul>
+<a name="theme_convert_theme_end"></a>
 
-  </ol>
-<a name="theme_end"></a>
-
-<a name="validation"></a><h2>Validation Methodology<a href="#validation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-
-  <p>Now that you have a functioning "style.css", "template.html" and  "theme.php" you should verify that it is generating valid output.</p>
-
-  <ol>
-    <li>
-      Suggestions to help you bring the theme you are editing up to XHTML 1.0 Transitional HTML
-
+<a name="theme_convert_validation"></a><h2>Validation Methodology<a href="#theme_convert_validation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Now that you have a functioning "style.css", "template.html" and  "theme.php" you should verify that it is generating valid output.</p>
+<ul>
+    <li>Suggestions to help you bring the theme you are editing up to XHTML 1.0 Transitional HTML
       <ul>
-        <li>All ampersands that form part of a <u><strong>URL</strong></u> are to be coded '&amp;amp;'. There are quite a few of these in the functions of theme.php.</li>
-
-        <li>All images to have the 'alt' attribute, and be closed ' /&gt;'.</li>
-
-        <li>All meta tags should be closed ' /&gt;'</li>
-
-        <li>All &lt;hr&gt; and &lt;br&gt; tags should be closed &lt;hr /&gt;&lt;br /&gt;</li>
-
+        <li>All ampersands (&amp;) that form part of a <strong>URL</strong> are to be coded '<tt class="code">&amp;amp;</tt>'. There are quite a few of these in the functions of theme.php.</li>
+        <li>All images to have the 'alt' attribute, and be closed '<tt class="code"> /&gt;</tt>'.</li>
+        <li>All meta tags should be closed '<tt class="code"> /&gt;</tt>'</li>
+        <li>All <tt class="code">&lt;hr&gt;</tt> and <tt class="code">&lt;br&gt;</tt> tags should be closed <tt class="code">&lt;hr /&gt;</tt><tt class="code">&lt;br /&gt;</tt></li>
         <li>All background images/colors to be changed to CSS or style attributes. This depends on the layout.</li>
-
         <li>Any existing tags or attributes in uppercase (such as onClick) to be changed to lowercase.</li>
       </ul>
     </li>
-
     <li>Save all your open files and upload them to your webserver; test-drive both as admin and as "regular" user.</li>
-
-    <li>
-      Use the following methodology to confirm that your theme generates valid XHTML 1.0 Transitional HTML.
-
-      <p>Each of the following pages needs to be <a href="http://validator.w3.org/">validated</a> as an anonymous user, registered user, and in admin mode:</p>
-
+    <li>Use the following methodology to confirm that your theme generates valid XHTML 1.0 Transitional HTML.<br />
+    Each of the following pages needs to be <a href="http://validator.w3.org/">validated</a> as an anonymous user, registered user, and in admin mode:
       <ul>
         <li>index.php</li>
-
         <li>thumbnails.php</li>
-
         <li>displayimage.php</li>
-
         <li>search.php</li>
-
         <li>emailed HTML E-card.</li>
       </ul>
-
-      <p>The following toolbars can assist you in validating the resulting output of your theme:</p>
-
-      <p>Internet Explorer:</p>
-
-      <ul>
-        <li><a href="http://www.nils.org.au/ais/web/resources/toolbar/index.html">Web Accessibility Toolbar</a> (Creative Commons License)</li>
-      </ul>
-
-      <p>Mozilla Firefox:</p>
-
-      <ul>
-        <li><a href="http://www.chrispederick.com/work/firefox/webdeveloper/">Web Developer Extension</a> (GPL)</li>
-      </ul>
+      &nbsp;<br />
+      To find help to validate your custom theme, review the section <a href="dev.htm#dev">Developer documentation</a> &rarr; <a href="dev_tools.htm#dev_tools">Tools recommended by the devs</a> &rarr; <a href="dev_tools.htm#dev_tools_web_development">Web development</a>
     </li>
-  </ol>
-
-  <h2>Congratulations</h2>
-
-  <p>Your theme should now be ready to use with Coppermine 1.5.x</p>
-
+</ul>
 <a name="validation_end"></a>
 
--->
+
 <script type="text/javascript">
   cpgDocFooter();
   dateRevision(' $LastChangedDate$ ', ' $Revision$ ');
