@@ -257,7 +257,9 @@ $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE 1
 $nbEnr = mysql_fetch_array($result);
 $comment_count = $nbEnr[0];
 
-if (!$comment_count) cpg_die(INFORMATION , $lang_reviewcom_php['no_comment'], __FILE__, __LINE__);
+if (!$comment_count) {
+	cpg_die(INFORMATION , $lang_reviewcom_php['no_comment'], __FILE__, __LINE__);
+}
 
 //$start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
 if ($superCage->get->keyExists('start')) {
