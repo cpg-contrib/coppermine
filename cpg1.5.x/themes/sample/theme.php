@@ -50,14 +50,12 @@
 // ('THEME_HAS_FILM_STRIP_GRAPHIC', 1) : The location for the film strip graphics will
 //    be directed to the themes images folder.
 //    tile                 : images/tile.gif
-// ('THEME_HAS_FILM_STRIP_GRAPHICS', 1) : The location for the film strip graphics will
-//    be directed to the themes images folder.
 //    tile on the top      : images/tile1.gif
 //    tile on the bottom   : images/tile2.gif
 //  ('THEME_HAS_NO_SYS_MENU_BUTTONS', 1) : When present the system won't attempt to replace {BUTTONS} in the SYS_MENU template
-//    The entire block needs to be present like in Coppermine 1.3 themes
+//    The entire block needs to be present
 //  ('THEME_HAS_NO_SUB_MENU_BUTTONS', 1) When present the system won't attempt to replace {BUTTONS} in the SUB_MENU template
-//    The entire block needs to be present like in Coppermine 1.3 themes
+//    The entire block needs to be present
 // ('THEME_HAS_SIDEBAR_GRAPHICS', 1) : The location for the sidebar graphics that compose the tree menu will
 //    be directed to the themes images folder, subfolder 'sidebar', i.e. themes/yourtheme/images/sidebar/.
 //    Gallery root                                                             : images/sidebar/base.gif
