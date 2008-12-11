@@ -3037,7 +3037,6 @@ EOT;
         echo cpg_config_output('ecards_more_pic_target');
         echo cpg_config_output('impath');
         echo cpg_config_output('lang');
-        echo cpg_config_output('language_fallback');
         echo cpg_config_output('main_page_layout');
         echo cpg_config_output('silly_safe_mode');
         echo cpg_config_output('smtp_host');
