@@ -173,12 +173,12 @@ function html_picinfo()
     $info[$lang_common['filesize']] = '<span dir="ltr">' . $info[$lang_common['filesize']] . '</span>';
     $info[$lang_picinfo['Date Added']] = localised_date($CURRENT_PIC_DATA['ctime'],$lang_date['lastup']);
     $info[$lang_picinfo['Dimensions']] = sprintf($lang_display_image_php['size'], $CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']);
-    if ($CURRENT_PIC_DATA['hits'] && $CONFIG['hit_details'] && GALLERY_ADMIN_MODE) {
-			$stat_link = "stat_details.php?type=hits&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&search_phrase=0&referer=0&browser=1&os=1";
-            $detailsLink_hits = '<div>(<a href="javascript:;" onclick="MM_openBrWindow(\'' . $stat_link . '\', \'stat_detail\', \'width=650,height=800,scrollbars=yes,resizable=yes\');">' . $lang_picinfo['show_details'] . '</a>)</div>';
-    }
     $info[$lang_picinfo['Displayed']] = sprintf($lang_display_image_php['views'], $CURRENT_PIC_DATA['hits']);
-    $info[$lang_picinfo['Displayed']] .= $detailsLink_hits;
+
+    if ($CURRENT_PIC_DATA['hits'] && $CONFIG['hit_details'] && GALLERY_ADMIN_MODE) {
+        $stat_link = "stat_details.php?type=hits&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&search_phrase=0&referer=0&browser=1&os=1";
+        $info[$lang_picinfo['Displayed']] = '<div>(<a href="javascript:;" onclick="MM_openBrWindow(\'' . $stat_link . '\', \'stat_detail\', \'width=650,height=800,scrollbars=yes,resizable=yes\');">' . $lang_picinfo['show_details'] . '</a>)</div>';
+    }
 
     $path_to_pic = $CONFIG['fullpath'] . $CURRENT_PIC_DATA['filepath'] . $CURRENT_PIC_DATA['filename'];
     $path_to_orig_pic = $CONFIG['fullpath'] . $CURRENT_PIC_DATA['filepath'] . $CONFIG['orig_pfx'] . $CURRENT_PIC_DATA['filename'];
@@ -379,13 +379,14 @@ if ($superCage->get->keyExists('fullsize')) {
     $votes = theme_html_rating_box();
     $pic_info = html_picinfo();
     $comments = theme_html_comments($CURRENT_PIC_DATA['pid']);
+    
+    $meta_keywords = '';
+    
     if ($CURRENT_PIC_DATA['keywords']) {
-        $meta_keywords = "<meta name=\"keywords\" content=\"".$CURRENT_PIC_DATA['keywords']."\"/>";
+        $meta_keywords .= "<meta name=\"keywords\" content=\"".$CURRENT_PIC_DATA['keywords']."\"/>";
     }
-    //$meta_nav .= "<link rel=\"alternate\" type=\"text/xml\" title=\"RSS feed\" href=\"rss.php\" />
-    // ";
-    $meta_keywords .= $meta_nav;
-    if($album == 'lastup' || $album == 'lastcom' || $album == 'topn' || $album == 'toprated' || $album == 'favpics' || $album == 'random' || $album == 'datebrowse') {
+
+    if ($album == 'lastup' || $album == 'lastcom' || $album == 'topn' || $album == 'toprated' || $album == 'favpics' || $album == 'random' || $album == 'datebrowse') {
         $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />';
     }
 
