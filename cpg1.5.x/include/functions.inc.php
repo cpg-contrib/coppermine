@@ -200,7 +200,7 @@ function cpg_db_query($query, $link_id = 0)
                 $query_stats[] = $duration;
                 $queries[] = "$query ({$duration}s)";
         }
-        if (!$result) cpg_db_error("While executing query \"$query\" on $link_id");
+        if (!$result && !defined('UPDATE_PHP')) cpg_db_error("While executing query \"$query\" on $link_id");
 
         return $result;
 }
