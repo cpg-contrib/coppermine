@@ -3147,21 +3147,28 @@ EOT;
 
 function cpg_phpinfo_mod($search)
 {
-    // this could be done much better with regexpr - anyone who wants to change it: go ahead
-    ob_start();
-    phpinfo(INFO_MODULES);
-    $string = ob_get_contents();
-    $module = $string;
-    $delimiter = '#cpgdelimiter#';
-    ob_end_clean();
-    // find out the first occurence of "<h2" and throw the superfluos stuff away
-    $string = stristr($string, 'module_' . $search);
-    $string = preg_replace('#</table>(.*)#s', '', $string);
-    $string = stristr($string, '<tr');
-    $string = str_replace('</td>', '|', $string);
-    $string = str_replace('</tr>', $delimiter, $string);
-    $string = chop(strip_tags($string));
-    $pieces = explode($delimiter, $string);
+	static $pieces = array();
+	
+	if (!$pieces) {
+	
+	    // this could be done much better with regexpr - anyone who wants to change it: go ahead
+	    ob_start();
+	    phpinfo(INFO_MODULES);
+	    $string = ob_get_contents();
+	    $module = $string;
+	    $delimiter = '#cpgdelimiter#';
+	    ob_end_clean();
+	    // find out the first occurence of "<h2" and throw the superfluos stuff away
+	    $string = stristr($string, 'module_' . $search);
+	    $string = preg_replace('#</table>(.*)#s', '', $string);
+	    $string = stristr($string, '<tr');
+	    $string = str_replace('</td>', '|', $string);
+	    $string = str_replace('</tr>', $delimiter, $string);
+	    $string = chop(strip_tags($string));
+	    $pieces = explode($delimiter, $string);
+	    
+	 }
+	 
     foreach($pieces as $key => $val) {
         $bits[$key] = explode("|", $val);
     }
@@ -3255,22 +3262,28 @@ function cpg_phpinfo_mysql_version()
 
 function cpg_phpinfo_conf($search)
 {
-    // this could be done much better with regexpr - anyone who wants to change it: go ahead
-    $string ='';
-    $pieces = '';
-    $delimiter = '#cpgdelimiter#';
-    $bits = '';
-
-    ob_start();
-    phpinfo(INFO_CONFIGURATION);
-    $string = ob_get_contents();
-    ob_end_clean();
-    // find out the first occurence of "</tr" and throw the superfluos stuff in front of it away
-    $string = strchr($string, '</tr>');
-    $string = str_replace('</td>', '|', $string);
-    $string = str_replace('</tr>', $delimiter, $string);
-    $string = chop(strip_tags($string));
-    $pieces = explode($delimiter, $string);
+	static $pieces = array();
+	
+	if (!$pieces) {
+	
+	    // this could be done much better with regexpr - anyone who wants to change it: go ahead
+	    $string ='';
+	    $pieces = '';
+	    $delimiter = '#cpgdelimiter#';
+	    $bits = '';
+	
+	    ob_start();
+	    phpinfo(INFO_CONFIGURATION);
+	    $string = ob_get_contents();
+	    ob_end_clean();
+	    // find out the first occurence of "</tr" and throw the superfluos stuff in front of it away
+	    $string = strchr($string, '</tr>');
+	    $string = str_replace('</td>', '|', $string);
+	    $string = str_replace('</tr>', $delimiter, $string);
+	    $string = chop(strip_tags($string));
+	    $pieces = explode($delimiter, $string);
+    }
+    
     foreach($pieces as $val) {
         $bits = explode("|", $val);
         if (strchr($bits[0], $search)) {
