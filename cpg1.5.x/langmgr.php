@@ -403,9 +403,9 @@ foreach ($lang_language_data as $language) {
         }
         // Flag icon population --- start
         if ($language['flag'] != '') {
-        	$flag_path = 'images/flags/'.$language['flag'] . '.gif';
+        	$flag_path = 'images/flags/'.$language['flag'] . '.png';
         } elseif (in_array($language['file_flag'], $flag_array) == TRUE) {
-        	$flag_path = 'images/flags/'.$language['file_flag'] . '.gif';
+        	$flag_path = 'images/flags/'.$language['file_flag'] . '.png';
         	$language['flag'] = $language['file_flag'];
         } else {
         	$flag_path = 'images/spacer.gif';
@@ -441,7 +441,7 @@ EOT;
         
         <td class="{$cellstyle}">
             <img src="{$flag_path}" width="16" height="11" border="0" alt="" name="image_{$loopCounter}" style="float:left" />
-            <select id="flag_{$language['lang_id']}" name="flag_{$language['lang_id']}" size="1" onchange="if(document.images) document.images['image_{$loopCounter}'].src='images/flags/'+this.options[this.selectedIndex].value+'.gif';" class="listbox_lang" style="width:60px">
+            <select id="flag_{$language['lang_id']}" name="flag_{$language['lang_id']}" size="1" onchange="if(document.images) document.images['image_{$loopCounter}'].src='images/flags/'+this.options[this.selectedIndex].value+'.png';" class="listbox_lang" style="width:60px">
 >
 EOT;
         if ($language['flag'] == '') {
@@ -453,7 +453,7 @@ EOT;
             } else {
                 $flag_selected = '';
             }
-            print '            <option style="background-image:url(images/flags/' . $flags . '.gif);background-repeat:no-repeat;text-indent:16px;width:20px;" value="' . $flags . '" '.$flag_selected.'>' . $flags . '</option>'.$lineBreak;
+            print '            <option style="background-image:url(images/flags/' . $flags . '.png);background-repeat:no-repeat;text-indent:16px;width:20px;" value="' . $flags . '" '.$flag_selected.'>' . $flags . '</option>'.$lineBreak;
         }
         print <<< EOT
             </ul>    
