@@ -1196,7 +1196,7 @@ This setting only applies if coppermine is not bridged.</p>
 <a name="admin_user"></a><h2>User settings<a href="#admin_user" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_allow_unlogged_access"></a><h3>Allow unlogged users (guest or anonymous) access<a href="#admin_allow_unlogged_access" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When set to &quot;No&quot;, unlogged users (i.e. guests or anonymous users) can not access anything in your gallery except the login screen (and the registration screen, if you allow registrations). Completely disabling anonymous access will probably decrease your site's popularity. Use this option only if you need your gallery to be absolutely private. The recommended setting is to leave anonymous access enabled and use the more specific permissions by groups and albums settings instead.</p>
-<p>This option actually can be set to 4 different levels of access for anonymous users:</p>
+<p>This option can be set to 4 different levels of access for anonymous users:</p>
 <ul>
   <li><strong>No</strong><br />
   Non-registered users can not access at all - they will be sent to the login screen</li>
@@ -1211,6 +1211,19 @@ This setting only applies if coppermine is not bridged.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow unlogged users (guest or anonymous) access</p>
 
 <a name="admin_allow_unlogged_access_end"></a>
+<hr />
+<a name="admin_upload_mechanism"></a><h3>Default upload mechanism<a href="#admin_upload_mechanism" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Select which type of form users will use to upload files:</p>
+<ul>
+  <li><strong>Advanced - multiple files, Flash-driven (recommended)</strong><br />
+  Users can queue multiple files and a Flash-driven form will upload all the files automatically.</li>
+  <li><strong>Simple - one file at a time</strong><br />
+  Users can only select one file at a time to upload to an album.</li>
+</ul>
+<p>You are encouraged to use the advanced upload form unless you have problems with it.  This form uses <a href="http://www.swfupload.org/" class="external" rel="external">SWFUpload</a>, which has some <a href="http://demo.swfupload.org/Documentation/#knownissues" class="external" rel="external">known issues</a>.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Default upload mechanism</p>
+
+<a name="admin_upload_mechanism_end"></a>
 <hr />
 <a name="admin_allow_duplicate_emails_addr"></a><h3>Allow two users to have the same email address<a href="#admin_allow_duplicate_emails_addr" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Allow or prevent two users from registering with the same email

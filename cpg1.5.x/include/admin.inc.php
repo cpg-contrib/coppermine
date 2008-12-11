@@ -1219,6 +1219,15 @@ $config_data = array(
                          ),
       'linebreak'     => '<br />',
     ),
+    'upload_mechanism' => array(
+      'type'          => 'select',
+      'default_value' => 'upload_swf',
+      'help_link'     => 'f=configuration.htm&amp;as=admin_upload_mechanism&amp;ae=admin_upload_mechanism_end',
+      'options'       => array(
+                           'swfupload' => $lang_admin_php['upload_swf'],
+                           'html_single' => $lang_admin_php['upload_single'],
+                         ),
+    ),
     'allow_duplicate_emails_addr' => array(
       'type'            => 'checkbox',
       'default_value'   => '0',

@@ -111,33 +111,41 @@ class core_udb {
         define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
         define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
+        /*
+        // Remove old upload options from 1.4: file & URI settings per group
         define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
         define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
         define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
         define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
+        */
+        define('USER_ACCESS_LEVEL', (int)$USER_DATA['access_level']);
 
                 $this->session_update();
         }
 
         function load_guest_data()
         {
-                global $USER_DATA;
+                global $USER_DATA, $CONFIG;
 
                 $USER_DATA['user_id'] = 0;
-        $USER_DATA['user_name'] = 'Guest';
-        $USER_DATA['groups'][0] = $this->use_post_based_groups ? ($this->guestgroup) : 3;
-        $USER_DATA['group_quota'] = 1;
-        $USER_DATA['can_rate_pictures'] = 0;
+                $USER_DATA['user_name'] = 'Guest';
+                $USER_DATA['groups'][0] = $this->use_post_based_groups ? ($this->guestgroup) : 3;
+                $USER_DATA['group_quota'] = 1;
+                $USER_DATA['can_rate_pictures'] = 0;
                 $USER_DATA['can_send_ecards'] = 0;
                 $USER_DATA['can_post_comments'] = 0;
                 $USER_DATA['can_upload_pictures'] = 0;
                 $USER_DATA['can_create_albums'] = 0;
                 $USER_DATA['pub_upl_need_approval'] = 1;
                 $USER_DATA['priv_upl_need_approval'] = 1;
+                /*
+                // Remove old upload options from 1.4: file & URI settings per group
                 $USER_DATA['upload_form_config'] = 0;
                 $USER_DATA['num_file_upload'] = 0;
                 $USER_DATA['num_URI_upload'] = 0;
                 $USER_DATA['custom_user_upload'] = 0;
+                */
+                $USER_DATA['access_level'] = $CONFIG['allow_unlogged_access'];
         }
 
         function load_user_data($row)
@@ -146,7 +154,7 @@ class core_udb {
                 global $USER_DATA;
 
                 $USER_DATA['user_id'] = $row['id'];
-        $USER_DATA['user_name'] = $row['username'];
+                $USER_DATA['user_name'] = $row['username'];
 
                 //changed to "row['group_id']" $group_id = $row[($this->usergroupstable)?$this->field['usertbl_group_id']:$this->field['grouptbl_group_id']];
 
@@ -173,13 +181,13 @@ class core_udb {
                 static $user_count = 0;
 
                 if (!$user_count) {
-            $result = cpg_db_query("SELECT count(*) FROM {$this->usertable} WHERE 1", $this->link_id);
-            $nbEnr = mysql_fetch_array($result);
-            $user_count = $nbEnr[0];
-            mysql_free_result($result);
-        }
+                    $result = cpg_db_query("SELECT count(*) FROM {$this->usertable} WHERE 1", $this->link_id);
+                    $nbEnr = mysql_fetch_array($result);
+                    $user_count = $nbEnr[0];
+                    mysql_free_result($result);
+                }
 
-        return $user_count;
+                return $user_count;
         }
 
     function get_users($options = array())
@@ -301,14 +309,19 @@ class core_udb {
                             unset ($groups[$key]);
             if (!in_array($pri_group, $groups)) array_push($groups, $pri_group);
 
-            $result = cpg_db_query("SELECT MAX(group_quota) as disk_max, MIN(group_quota) as disk_min, " .
-                            "MAX(can_rate_pictures) as can_rate_pictures, MAX(can_send_ecards) as can_send_ecards, " .
+            /*
+            // Remove old upload options from 1.4: file & URI settings per group
                             "MAX(upload_form_config) as ufc_max, MIN(upload_form_config) as ufc_min, " .
                             "MAX(custom_user_upload) as custom_user_upload, MAX(num_file_upload) as num_file_upload, " .
                             "MAX(num_URI_upload) as num_URI_upload, " .
+            */
+
+            $result = cpg_db_query("SELECT MAX(group_quota) as disk_max, MIN(group_quota) as disk_min, " .
+                            "MAX(can_rate_pictures) as can_rate_pictures, MAX(can_send_ecards) as can_send_ecards, " .
                             "MAX(can_post_comments) as can_post_comments, MAX(can_upload_pictures) as can_upload_pictures, " .
                             "MAX(can_create_albums) as can_create_albums, " .
                             "MAX(has_admin_access) as has_admin_access, " .
+                            "MAX(access_level) as access_level, " .
                             "MIN(pub_upl_need_approval) as pub_upl_need_approval, MIN( priv_upl_need_approval) as  priv_upl_need_approval ".
                             "FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id in (" .  implode(",", $groups). ")");
 
@@ -324,6 +337,8 @@ class core_udb {
                     }
             mysql_free_result($result);
 
+            /*
+            // Remove old upload options from 1.4: file & URI settings per group
             if ( $USER_DATA['ufc_max'] == $USER_DATA['ufc_min'] ) {
                     $USER_DATA["upload_form_config"] = $USER_DATA['ufc_min'];
             } elseif ($USER_DATA['ufc_min'] == 0) {
@@ -335,6 +350,7 @@ class core_udb {
             } else {
                     $USER_DATA["upload_form_config"] = 0;
             }
+            */
             $USER_DATA["group_quota"] = ($USER_DATA["disk_min"])?$USER_DATA["disk_max"]:0;
 
             $USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
@@ -631,108 +647,108 @@ class core_udb {
 
         function util_filloptions()
         {
-				global $lang_util_php, $CONFIG;
+                global $lang_util_php, $CONFIG;
 
-				echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
+                echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
 
-				// Padding to indicate level
-				$padding = 8;
-		
-				$albums = array();
-	
-				// load all albums
-				$result = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY pos");
-		
-				while ($row = mysql_fetch_assoc($result)) {
-					$albums[$row['category']][$row['aid']] = $row['title'];
-				}
+                // Padding to indicate level
+                $padding = 8;
+        
+                $albums = array();
+    
+                // load all albums
+                $result = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY pos");
+        
+                while ($row = mysql_fetch_assoc($result)) {
+                    $albums[$row['category']][$row['aid']] = $row['title'];
+                }
 
-				if (!empty($albums[0])) {
-		
-					// Albums in no category
-					echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">No category</option>';
+                if (!empty($albums[0])) {
+        
+                    // Albums in no category
+                    echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">No category</option>';
 
-					foreach ($albums[0] as $aid => $title) {
-						echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>'."\n", $padding, $aid, $title);
-					}
-				}
-			        
-				// Load all categories
-				$result = cpg_db_query("SELECT cid, rgt, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft");
-		   
-				$cats = array();
-			
-				// Loop through all categories					
-				while ($row = mysql_fetch_assoc($result)) {
-			
-					// Determine category heirarchy
-					if (count($cats)) {
-						while ($cats && $cats[count($cats)-1]['rgt'] < $row['rgt']) {
-							array_pop($cats);
-						}
-					}
-		        
-		        	$cats[] = $row;
-		        	
-					// Add this category to the heirarchy
-					if ($row['cid'] == USER_GAL_CAT) {
-					
-						// User galleries
-						echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">User galleries</option>' . "\n";
-		
-						$result2 = cpg_db_query("SELECT {$this->field['user_id']} AS user_id, {$this->field['username']} AS user_name FROM {$this->usertable} ORDER BY {$this->field['username']}");
-		
-						$users = cpg_db_fetch_rowset($result2);
-		                
-						mysql_free_result($result2);
-		                
-						foreach ($users as $user) {
-					
-							if (!empty($albums[$user['user_id'] + FIRST_USER_CAT])) {
-				
-								echo '<option style="padding-left: ' . $padding . 'px; color: black; font-weight: bold" disabled="disabled">' . $user['user_name'] . '</option>' . "\n";
-		
-								foreach ($albums[$user['user_id'] + FIRST_USER_CAT] as $aid => $title) {
-									echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . "\n", $padding * 2, $aid, $title);
-								}
-							}
-						}
-				
-						unset($users);
-						
-						continue;
-					}
+                    foreach ($albums[0] as $aid => $title) {
+                        echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>'."\n", $padding, $aid, $title);
+                    }
+                }
+                    
+                // Load all categories
+                $result = cpg_db_query("SELECT cid, rgt, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft");
+           
+                $cats = array();
+            
+                // Loop through all categories                  
+                while ($row = mysql_fetch_assoc($result)) {
+            
+                    // Determine category heirarchy
+                    if (count($cats)) {
+                        while ($cats && $cats[count($cats)-1]['rgt'] < $row['rgt']) {
+                            array_pop($cats);
+                        }
+                    }
+                
+                    $cats[] = $row;
+                    
+                    // Add this category to the heirarchy
+                    if ($row['cid'] == USER_GAL_CAT) {
+                    
+                        // User galleries
+                        echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">User galleries</option>' . "\n";
+        
+                        $result2 = cpg_db_query("SELECT {$this->field['user_id']} AS user_id, {$this->field['username']} AS user_name FROM {$this->usertable} ORDER BY {$this->field['username']}");
+        
+                        $users = cpg_db_fetch_rowset($result2);
+                        
+                        mysql_free_result($result2);
+                        
+                        foreach ($users as $user) {
+                    
+                            if (!empty($albums[$user['user_id'] + FIRST_USER_CAT])) {
+                
+                                echo '<option style="padding-left: ' . $padding . 'px; color: black; font-weight: bold" disabled="disabled">' . $user['user_name'] . '</option>' . "\n";
+        
+                                foreach ($albums[$user['user_id'] + FIRST_USER_CAT] as $aid => $title) {
+                                    echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . "\n", $padding * 2, $aid, $title);
+                                }
+                            }
+                        }
+                
+                        unset($users);
+                        
+                        continue;
+                    }
 
-					// construct a category heirarchy string breadcrumb style
-					$elements = array();
-				
-					foreach ($cats as $cat) {
-						$elements[] = $cat['name'];
-					}
-				
-					$heirarchy = implode(' - ', $elements);
-	
-					// calculate padding for this level
-					$p = (count($elements) - 1) * $padding;
-			
-					// category header
-					echo '<option style="padding-left: '.$p.'px; color: black; font-weight: bold" disabled="disabled">' ."\n". $heirarchy . '</option>' . "\n";
-				
-					// albums in the category
-					if (!empty($albums[$row['cid']])) {
-						foreach ($albums[$row['cid']] as $aid => $title) {
-							echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . "\n", $p+$padding, $aid, $title);
-						}
-					}
-				}
+                    // construct a category heirarchy string breadcrumb style
+                    $elements = array();
+                
+                    foreach ($cats as $cat) {
+                        $elements[] = $cat['name'];
+                    }
+                
+                    $heirarchy = implode(' - ', $elements);
+    
+                    // calculate padding for this level
+                    $p = (count($elements) - 1) * $padding;
+            
+                    // category header
+                    echo '<option style="padding-left: '.$p.'px; color: black; font-weight: bold" disabled="disabled">' ."\n". $heirarchy . '</option>' . "\n";
+                
+                    // albums in the category
+                    if (!empty($albums[$row['cid']])) {
+                        foreach ($albums[$row['cid']] as $aid => $title) {
+                            echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . "\n", $p+$padding, $aid, $title);
+                        }
+                    }
+                }
 
-				unset($albums);
-	   
-				print '</select> (3)';
-				print '&nbsp;&nbsp;&nbsp;&nbsp;';
-				print '<button type="submit" class="button" name="submit" id="submit" value="'.$lang_util_php['submit_form'].'">'.$lang_util_php['submit_form'].' '.cpg_fetch_icon('ok', 2).'</button> (4)';
- 				print '</form>';
-			}
+                unset($albums);
+       
+                print '</select> (3)';
+                print '&nbsp;&nbsp;&nbsp;&nbsp;';
+                print '<button type="submit" class="button" name="submit" id="submit" value="'.$lang_util_php['submit_form'].'">'.$lang_util_php['submit_form'].' '.cpg_fetch_icon('ok', 2).'</button> (4)';
+                print '</form>';
+            }
 
         // Taken from Mambo (com_registration.php)
         function make_password(){

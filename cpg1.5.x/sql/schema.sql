@@ -194,6 +194,7 @@ CREATE TABLE CPG_usergroups (
   custom_user_upload tinyint(4) NOT NULL default '0',
   num_file_upload tinyint(4) NOT NULL default '1',
   num_URI_upload tinyint(4) NOT NULL default '0',
+  access_level tinyint(4) NOT NULL default '0'
   PRIMARY KEY  (group_id)
 ) TYPE=MyISAM;
 # --------------------------------------------------------

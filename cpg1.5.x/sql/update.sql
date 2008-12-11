@@ -347,3 +347,7 @@ INSERT INTO CPG_config VALUES ('comment_akismet_group', '0');
 DELETE FROM CPG_usergroups WHERE `group_name` = 'Banned';
 
 INSERT INTO CPG_config VALUES ('language_autodetect', '1');
+
+INSERT INTO CPG_config VALUES ('upload_mechanism', 'swfupload');
+
+ALTER TABLE CPG_usergroups ADD access_level tinyint(4) NOT NULL default '0';

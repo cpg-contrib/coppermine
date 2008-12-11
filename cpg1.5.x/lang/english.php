@@ -100,6 +100,8 @@ $lang_errors['no_connection'] = 'No connection to %s established.'; // cpg1.5
 $lang_errors['login_needed'] = 'You need to %sregister%s/%slogin%s to access this page'; // cpg1.5
 $lang_errors['error'] = 'Error'; // cpg1.5
 $lang_errors['critical_error'] = 'Critical error'; // cpg1.5
+$lang_errors['access_thumbnail_only'] = 'You are only allowed to view thumbnail images.'; // cpg1.5
+$lang_errors['access_intermediate_only'] = 'You are not allowed to view full-size images.'; // cpg1.5
 
 $lang_bbcode_help_title = 'bbcode help';
 $lang_bbcode_help = 'You can add clickable links and some formatting to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <strong>Bold</strong></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://documentation.coppermine-gallery.net/en/images/base.gif[/img] =&gt; <img src="docs/en/images/base.gif" border="0" alt="" /></li>';
@@ -834,6 +836,9 @@ $lang_admin_php['allow_unlogged_access'] = 'Allow unlogged users (guest or anony
 $lang_admin_php['thumbnail_intermediate_full'] = 'thumbnail, intermediate and full-size image'; // cpg1.5
 $lang_admin_php['thumbnail_intermediate'] = 'thumbnail and intermediate image'; // cpg1.5
 $lang_admin_php['thumbnail_only'] = 'thumbnail only'; // cpg1.5
+$lang_admin_php['upload_mechanism'] = 'Upload method'; // cpg1.5
+$lang_admin_php['upload_swf'] = 'advanced - multiple files, Flash-driven (recommended)'; // cpg1.5
+$lang_admin_php['upload_single'] = 'simple - one file at a time'; // cpg1.5
 $lang_admin_php['allow_duplicate_emails_addr'] = 'Allow two users to have the same email address'; // cpg1.5
 $lang_admin_php['upl_notify_admin_email'] = 'Notify admin of user upload awaiting approval'; // cpg1.5
 $lang_admin_php['allow_memberlist'] = 'Allow logged in users to view memberlist'; // cpg1.5
@@ -1344,27 +1349,41 @@ $lang_groupmgr_php['group_name'] = 'Group';
 $lang_groupmgr_php['permissions'] = 'Permissions';
 $lang_groupmgr_php['public_albums'] = 'Public albums upload';
 $lang_groupmgr_php['personal_gallery'] = 'Personal gallery';
+/*
+// Remove old upload options from 1.4
 $lang_groupmgr_php['upload_method'] = 'Upload method';
+*/
 $lang_groupmgr_php['disk_quota'] = 'Quota';
 $lang_groupmgr_php['rating'] = 'Rating';
 $lang_groupmgr_php['ecards'] = 'Ecards';
 $lang_groupmgr_php['comments'] = 'Comments';
 $lang_groupmgr_php['allowed'] = 'Allowed';
 $lang_groupmgr_php['approval'] = 'Approval';
+/*
+// Remove old upload options from 1.4
 $lang_groupmgr_php['boxes_number'] = 'No. of boxes';
 $lang_groupmgr_php['variable'] = 'variable';
 $lang_groupmgr_php['fixed'] = 'fixed';
+*/
 $lang_groupmgr_php['create_new_group'] = 'Create new group';
 $lang_groupmgr_php['del_groups'] = 'Delete selected group(s)';
 $lang_groupmgr_php['confirm_del'] = 'Warning, when you delete a group, users that belong to this group will be transferred to the \'Registered\' group !\n\nDo you want to proceed ?'; // js-alert
 $lang_groupmgr_php['title'] = 'Manage user groups';
+/*
+// Remove old upload options from 1.4
 $lang_groupmgr_php['num_file_upload'] = 'File upload boxes';
 $lang_groupmgr_php['num_URI_upload'] = 'URI upload boxes';
+*/
 $lang_groupmgr_php['reset_to_default'] = 'Reset to default name (%s) - recommended!';
 $lang_groupmgr_php['error_group_empty'] = 'Group table was empty !<br /><br />Default groups created, please reload this page';
 $lang_groupmgr_php['explain_greyed_out_title'] = 'Why is this row grayed out?';
 $lang_groupmgr_php['explain_guests_greyed_out_text'] = 'You can not change the properties of this group because you set the option &quot; Allow unlogged users (guest or anonymous) access&quot; to &quot;No&quot; on the config page. All guest (members of the group %s) can\'t do anything but login; therefor group settings don\'t apply for them.';
 $lang_groupmgr_php['group_assigned_album'] = 'assigned album(s)';
+$lang_groupmgr_php['access_level'] = 'Access level'; // cpg1.5
+$lang_groupmgr_php['thumbnail_intermediate_full'] = 'thumbnail, intermediate and full-size image'; // cpg1.5
+$lang_groupmgr_php['thumbnail_intermediate'] = 'thumbnail and intermediate image'; // cpg1.5
+$lang_groupmgr_php['thumbnail_only'] = 'thumbnail only'; // cpg1.5
+$lang_groupmgr_php['none'] = 'none'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //

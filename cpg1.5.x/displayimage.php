@@ -33,6 +33,10 @@ if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 1) {
     exit();
 }
 
+if (USER_ID && USER_ACCESS_LEVEL <= 1) {
+    cpg_die(ERROR, $lang_errors['access_thumbnail_only']);
+}
+
 js_include('js/displayimage.js');
 
 if ($CONFIG['enable_smilies']) {

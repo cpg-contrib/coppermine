@@ -23,7 +23,7 @@ define('GROUPMGR_PHP', true);
 require('include/init.inc.php');
 
 if (!GALLERY_ADMIN_MODE) {
-	cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
 $icon_array = array();
@@ -65,6 +65,11 @@ function display_group_list()
 
     $field_list = array('can_rate_pictures', 'can_send_ecards', 'can_post_comments', 'can_upload_pictures', 'pub_upl_need_approval', 'can_create_albums', 'priv_upl_need_approval');
     $custom_group_counter = 0;
+    $access_levels = array(
+        1 => $lang_groupmgr_php['thumbnail_only'],
+        2 => $lang_groupmgr_php['thumbnail_intermediate'],
+        3 => $lang_groupmgr_php['thumbnail_intermediate_full']
+    );
 
     while ($group = mysql_fetch_array($result)) {
         $group['group_name'] = $group['group_name'];
@@ -167,13 +172,17 @@ EOT;
     if ($field_name== 'can_post_comments' || $field_name== 'pub_upl_need_approval'){ echo $table_end . "</td><td class=\"$table_background\" align=\"left\" valign=\"top\">";}else{echo "<!--<br />-->";}
         }
 
-     echo $table_end . "</td><td class=\"$table_background\" align=\"left\" valign=\"top\">";
+    echo $table_end . "</td><td class=\"$table_background\" align=\"left\" valign=\"top\">";
 
-     // Determine if yes or no should be the selected option in the form.
-     $custom_upload_yes = ($group['custom_user_upload'] == 1) ? 'checked="checked"' : '';
-     $custom_upload_no = ($group['custom_user_upload'] == 0) ? 'checked="checked"' : '';
+/*
+    // Remove old upload options from 1.4: file & URI settings per group
+    // New upload setting is on the admin panel
 
-     // Create select list.
+    // Determine if yes or no should be the selected option in the form.
+    $custom_upload_yes = ($group['custom_user_upload'] == 1) ? 'checked="checked"' : '';
+    $custom_upload_no = ($group['custom_user_upload'] == 0) ? 'checked="checked"' : '';
+
+    // Create select list.
     if ($group['group_id'] == 3 && $CONFIG['allow_unlogged_access'] == 0) {
         $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
     } else {
@@ -221,10 +230,40 @@ EOT;
      echo "</select>";
      echo $td_end.$td_start.$td_end.$tr_end;
      echo $table_end;
+*/
+
+    // Option for access level for group
+    echo $table_start;
+    echo $tr_start.'<td style="white-space:nowrap">';
+    echo $td_end.$td_start;
+    $disabled = '';
+    /*
+    if ($group['group_id'] == 3 && $CONFIG['allow_unlogged_access'] == 0) {
+        $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
+    } else {
+        $disabled = '';
+    }
+    */
+    echo "<select name=\"access_level_{$group['group_id']}\" class=\"listbox_lang\" $disabled>";
+    if ($group['group_id'] == 3) {
+        $group['access_level'] = $CONFIG['allow_unlogged_access'];
+        echo '<option value="0"' 
+            . (($group['access_level']==0) ? 'selected="selected"' : '')
+            . " >{$lang_groupmgr_php['none']}</option>";
+    }
+    foreach ($access_levels as $al_value => $al_label) {
+        echo "<option value=\"$al_value\"" 
+            . (($group['access_level']==$al_value) ? 'selected="selected"' : '')
+            . " >$al_label</option>";
+    }
+    echo "</select>";
+    echo $td_end.$td_start.$td_end.$tr_end;
+    echo $table_end;
+
      echo "</td>";
 
 
-        echo <<< EOT
+     echo <<< EOT
         </tr>
 
 EOT;
@@ -248,14 +287,29 @@ function process_post_data()
     global $CONFIG;
     $superCage = Inspekt::makeSuperCage();
 
-    $field_list = array('group_name', 'group_quota', 'can_rate_pictures', 'can_send_ecards', 'can_post_comments', 'can_upload_pictures', 'pub_upl_need_approval', 'can_create_albums', 'priv_upl_need_approval', 'upload_form_config', 'custom_user_upload', 'num_file_upload', 'num_URI_upload');
+    // $field_list = array('group_name', 'group_quota', 'can_rate_pictures', 'can_send_ecards', 'can_post_comments', 'can_upload_pictures', 'pub_upl_need_approval', 'can_create_albums', 'priv_upl_need_approval', 'upload_form_config', 'custom_user_upload', 'num_file_upload', 'num_URI_upload');
+    $field_list = array('group_name', 'group_quota', 'can_rate_pictures', 'can_send_ecards', 'can_post_comments', 'can_upload_pictures', 'pub_upl_need_approval', 'can_create_albums', 'priv_upl_need_approval', 'access_level');
+
+    // $upload_form_config = 0;
 
     $group_id_array = get_post_var('group_id');
-    $upload_form_config = 0;
+    $guests_disabled = ($CONFIG['allow_unlogged_access'] == 0);
     foreach ($group_id_array as $key => $group_id) {
-        $set_statment = '';
+
+        // For guest/anonymous group, update the configuration setting 'allow_unlogged_access'
+        if ($group_id == 3) {
+            cpg_config_set('allow_unlogged_access', $superCage->post->getInt('access_level_' . $group_id));
+        }
+        // For the guest/anonymous group, don't update the database if the settings were disabled
+        if (($group_id == 3) && $guests_disabled) {
+            continue;
+        }
+        $set_statement = '';
         foreach ($field_list as $field) {
             //if (!isset($_POST[$field . '_' . $group_id])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ({$field}_{$group_id})", __FILE__, __LINE__);
+
+            // Remove old upload options from 1.4: file & URI settings per group
+            /*
             //set the 'upload_form_config' entry
             $numFile = $superCage->post->getInt('num_file_upload_' . $group_id);
             $numURI  = $superCage->post->getInt('num_URI_upload_' . $group_id);
@@ -279,18 +333,21 @@ function process_post_data()
             if ($numFile == 0 && $numURI == 0) {
                 $upload_form_config = 0;
             }
+            */
             if ($field == 'group_name') {
-                $set_statment .= $field . "='" . $superCage->post->getEscaped($field . '_' . $group_id) . "',";
+                $set_statement .= $field . "='" . $superCage->post->getEscaped($field . '_' . $group_id) . "',";
             } else {
+                /*
                 if ($field == 'upload_form_config') {
-                    $set_statment .= $field . "='" . $upload_form_config . "',";
+                    $set_statement .= $field . "='" . $upload_form_config . "',";
                 } else {
-                    $set_statment .= $field . "='" . $superCage->post->getInt($field . '_' . $group_id) . "',";
-                }
+                */
+                    $set_statement .= $field . "='" . $superCage->post->getInt($field . '_' . $group_id) . "',";
+                // }
             }
         }
-        $set_statment = substr($set_statment, 0, -1);
-        cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET $set_statment WHERE group_id = '$group_id' LIMIT 1");
+        $set_statement = substr($set_statement, 0, -1);
+        cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET $set_statement WHERE group_id = '$group_id' LIMIT 1");
     }
 }
 
@@ -365,7 +422,11 @@ $help_group = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_names&amp;
 $help_permissions = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_permissions&amp;ae=group_cp_permissions_end&amp;top=1', '500', '200');
 $help_public = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_public&amp;ae=group_cp_public_end&amp;top=1', '500', '200');
 $help_personal = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_personal&amp;ae=group_cp_personal_end&amp;top=1', '500', '200');
+/*
+// Remove old upload options from 1.4
 $help_upload_method = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_upload_method&amp;ae=group_cp_upload_method_end&amp;top=1', '700', '400');
+*/
+$help_access_level = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_access_level&amp;ae=group_cp_access_level_end&amp;top=1', '700', '400');
 starttable('100%', cpg_fetch_icon('groups_mgr', 2).$lang_groupmgr_php['group_manager']. '&nbsp;' . cpg_display_help('f=groups.htm&amp;as=group_cp&amp;ae=group_cp_end&amp;top=1', '700', '500'), 6);
 echo <<<EOT
 
@@ -375,7 +436,7 @@ echo <<<EOT
                 <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['permissions']}</span>$help_permissions</td>
                 <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['public_albums']}</span> $help_public</td>
                 <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['personal_gallery']}</span>$help_personal</td>
-                <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['upload_method']}</span>$help_upload_method</td>
+                <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['access_level']}</span>$help_access_level</td>
         </tr>
 
 EOT;

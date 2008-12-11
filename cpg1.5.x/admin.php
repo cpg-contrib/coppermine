@@ -70,21 +70,21 @@ $problemFields_array = array(); // we'll add field-wrapper-IDs to this array to 
 //if (isset($_POST['restore_config'])) {
 if ($superCage->post->keyExists('restore_config')) { // user has chosen to factory-reset the config --- start
 
-	foreach ($config_data as $section => $values){
-	
-		foreach ($values as $name => $value) {
+    foreach ($config_data as $section => $values){
+    
+        foreach ($values as $name => $value) {
 
-			if (!empty($value['preserve_when_resetting'])) {
-				continue;
-			}
-			
-			if (isset($value['default_value'])) {				
-				cpg_config_set($name, $value['default_value']);
-			}
-		}
-	}
-	
-	cpgRedirectPage($CPG_PHP_SELF, cpg_fetch_icon('warning', 2) . $lang_common['information'], $lang_admin_php['restore_success']);
+            if (!empty($value['preserve_when_resetting'])) {
+                continue;
+            }
+            
+            if (isset($value['default_value'])) {               
+                cpg_config_set($name, $value['default_value']);
+            }
+        }
+    }
+    
+    cpgRedirectPage($CPG_PHP_SELF, cpg_fetch_icon('warning', 2) . $lang_common['information'], $lang_admin_php['restore_success']);
 }  // user has chosen to factory-reset the config --- end
 
 

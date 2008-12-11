@@ -909,10 +909,10 @@ $template_display_media = <<<EOT
                         <table cellspacing="2" cellpadding="0" class="imageborder">
                                 <tr>
                                         <td div="gallery" align="center">
-											<div id="slideShow" style="position:relative;">
+                                            <div id="slideShow" style="position:relative;">
                                                {IMAGE}
-											</div>
-										</td>
+                                            </div>
+                                        </td>
                                 </tr>
                         </table>
                 </td></tr>
@@ -1679,27 +1679,27 @@ function theme_social_bookmark()
         $bookmark_list = rtrim(rtrim ($bookmark_list, ' '), ',');
         $close_icon = cpg_fetch_icon('close', 0, $lang_common['close']);
         $return .= <<< EOT
-		<div id="bookmarkIt">{$lang_social_bookmarks['bookmark_this_page']}<span id="popupClose">{$close_icon}</span><div id="popupBookmark"></div></div>
+        <div id="bookmarkIt">{$lang_social_bookmarks['bookmark_this_page']}<span id="popupClose">{$close_icon}</span><div id="popupBookmark"></div></div>
         <script type="text/javascript">
         $('#bookmarkIt').click(function() { 
-		    var offset = $('#bookmarkIt').offset(); 
-		    $('#popupBookmark').css('left', offset.left). 
-		        css('top', offset.top + $('#bookmarkIt').height() + 2); 
-		    $('#popupBookmark,#popupClose').toggle(); 
-		}); 
-		$('#popupBookmark').bookmark( 
-	        {
-	            compact: true, 
-	            addEmail: false, 
-	            addFavorite: true,
-	            manualBookmark: '{$lang_social_bookmarks['favorite_close']}',
-	            sites: [{$bookmark_list}],
-	            icons: 'images/bookmarks.png',
-	            iconSize: 16,
-	            target: '_blank',
-	            favoriteText: '{$lang_social_bookmarks['favorite']}',
-	            favoriteIcon: 0
-	        }
+            var offset = $('#bookmarkIt').offset(); 
+            $('#popupBookmark').css('left', offset.left). 
+                css('top', offset.top + $('#bookmarkIt').height() + 2); 
+            $('#popupBookmark,#popupClose').toggle(); 
+        }); 
+        $('#popupBookmark').bookmark( 
+            {
+                compact: true, 
+                addEmail: false, 
+                addFavorite: true,
+                manualBookmark: '{$lang_social_bookmarks['favorite_close']}',
+                sites: [{$bookmark_list}],
+                icons: 'images/bookmarks.png',
+                iconSize: 16,
+                target: '_blank',
+                favoriteText: '{$lang_social_bookmarks['favorite']}',
+                favoriteIcon: 0
+            }
         );
         </script>
 EOT;
@@ -2123,7 +2123,7 @@ function theme_admin_mode_menu()
                 '{EXPORT_ICO}' => cpg_fetch_icon('export', 1),
                 '{TIME_STAMP}' => date('His').trim(floor(rand(0, 1000))),
                 );
-			
+            
             $html = template_eval($template_gallery_admin_menu, $param);
             // $html.= cpg_alert_dev_version();
         } elseif (USER_ADMIN_MODE) {
@@ -2140,7 +2140,7 @@ function theme_admin_mode_menu()
                 '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
                 '{PICTURES_ICO}' => cpg_fetch_icon('picture_sort', 1),
                 );
-			
+            
             $html = template_eval($template_user_admin_menu, $param);
         } else {
             $html = '';
@@ -2611,6 +2611,8 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
                     if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
                        $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
+                    } elseif (USER_ID && USER_ACCESS_LEVEL <= 2) {
+                        $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['access_intermediate_only'],'','','','').'\');';
                     } else {
                       $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                     }
@@ -2629,6 +2631,8 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
                     if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
                        $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
+                    } elseif (USER_ID && USER_ACCESS_LEVEL <= 2) {
+                        $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['access_intermediate_only'],'','','','').'\');';
                     } else {
                        $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                     }
@@ -2724,6 +2728,8 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
                 if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
                     $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
+                } elseif (USER_ID && USER_ACCESS_LEVEL <= 2) {
+                    $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['access_intermediate_only'],'','','','').'\');';
                 } else {
                     $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                 }
@@ -2848,7 +2854,7 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
     endtable();
     echo "</div>\n";
 
-	echo '<a name="comments_top"></a>';
+    echo '<a name="comments_top"></a>';
     echo "<div id=\"comments\">\n";
         echo $comments;
         echo "</div>\n";
@@ -2992,44 +2998,48 @@ function theme_html_picture()
                 $pic_html = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td background=\"" . $picture_url . "\" width=\"{$imginfo[0]}\" height=\"{$imginfo[1]}\" class=\"image\">";
                 if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
                    $pic_html .= '<a href="javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');">';
+                } elseif (USER_ID && USER_ACCESS_LEVEL <= 2) {
+                   $pic_html .= '<a href="javascript:;" onClick="alert(\''.sprintf($lang_errors['access_intermediate_only'],'','','','').'\');">';
                 } else {
                   $pic_html .= "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
                 }
                 $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
                 $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width=\"{$imginfo[0]}\" height=\"{$imginfo[1]}\"  border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
                 $pic_html .= "</a>\n </td></tr></table>";
-				//PLUGIN FILTER
-				$pic_html = CPGPluginAPI::filter('html_image_reduced_overlay', $pic_html);
+                //PLUGIN FILTER
+                $pic_html = CPGPluginAPI::filter('html_image_reduced_overlay', $pic_html);
             } else {
                 if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
                    $pic_html = '<a href="javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');">';
+                } elseif (USER_ID && USER_ACCESS_LEVEL <= 2) {
+                   $pic_html = '<a href="javascript:;" onClick="alert(\''.sprintf($lang_errors['access_intermediate_only'],'','','','').'\');">';
                 } else {
                   $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
                 }
                 $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
                 $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
                 $pic_html .= "</a>\n";
-				//PLUGIN FILTER
-				$pic_html = CPGPluginAPI::filter('html_image_reduced', $pic_html);
+                //PLUGIN FILTER
+                $pic_html = CPGPluginAPI::filter('html_image_reduced', $pic_html);
             }
         } else {
             if ($CONFIG['transparent_overlay'] == 1) {
                 $pic_html = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td background=\"" . $picture_url . "\" width=\"{$CURRENT_PIC_DATA['pwidth']}\" height=\"{$CURRENT_PIC_DATA['pheight']}\" class=\"image\">";
                 $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width={$CURRENT_PIC_DATA['pwidth']} height={$CURRENT_PIC_DATA['pheight']} border=\"0\" alt=\"\" /><br />\n";
                 $pic_html .= "</td></tr></table>";
-				//PLUGIN FILTER
-				$pic_html = CPGPluginAPI::filter('html_image_overlay', $pic_html);
+                //PLUGIN FILTER
+                $pic_html = CPGPluginAPI::filter('html_image_overlay', $pic_html);
             } else {
                 $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" alt=\"\" /><br />\n";
-				//PLUGIN FILTER
-				$pic_html = CPGPluginAPI::filter('html_image', $pic_html);
+                //PLUGIN FILTER
+                $pic_html = CPGPluginAPI::filter('html_image', $pic_html);
             }
         }
     } elseif ($mime_content['content']=='document') {
         $pic_thumb_url = get_pic_url($CURRENT_PIC_DATA,'thumb');
         $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"".$pic_thumb_url."\" border=\"0\" class=\"image\" /></a>\n<br />";
-		//PLUGIN FILTER
-		$pic_html = CPGPluginAPI::filter('html_document', $pic_html);
+        //PLUGIN FILTER
+        $pic_html = CPGPluginAPI::filter('html_document', $pic_html);
     } else {
         $autostart = ($CONFIG['media_autostart']) ? ('true'):('false');
 
@@ -3083,9 +3093,9 @@ function theme_html_picture()
         $pic_html .= "<param name=\"autostart\" value=\"$autostart\" /><param name=\"src\" value=\"". $picture_url . "\" />";
         $pic_html .= '<embed '.$image_size['whole'].' src="'. $picture_url . '" autostart="'.$autostart.'" '.$player['mime'].'></embed>';
         $pic_html .= "</object><br />\n";
-		
-		//PLUGIN FILTER
-		$pic_html = CPGPluginAPI::filter('html_other_media', $pic_html);
+        
+        //PLUGIN FILTER
+        $pic_html = CPGPluginAPI::filter('html_other_media', $pic_html);
     }
 
     $CURRENT_PIC_DATA['html'] = $pic_html;
@@ -3357,9 +3367,9 @@ function theme_html_comments($pid)
     
     $result = cpg_db_query("SELECT COUNT(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'");
     list($num) = mysql_fetch_row($result);
-	
+    
     if ($num) {
-	
+    
         $limit = 20;
         $max = ceil($num/$limit);
 
@@ -3368,33 +3378,33 @@ function theme_html_comments($pid)
             $page = min($page, $max);
             $page = max(0, $page);
         } else {
-   	      $page = $max;
+          $page = $max;
         }
 
         $start = max(0, $num - (($max-($page-1))*$limit));
 
-		ob_start();
-		echo '<br />';
-		starttable();
-		
-		echo '<tr><td class="tableh2_compact"><div style="float: left">'.($start+1).' to '.min($num, $start+$limit).' of '.$num.'</div>';
-		echo '<div style="float: right">Page: ';
-		$links = array();
-			
-		for ($i = 1; $i <= $max; $i++){
-			if ($i < 5 || ($i > $max - 5) || (($i > $page -5) && ($i < $page + 5))){
-				$links[$i]= '<a href="displayimage.php?pid=' . $pid . '&amp;page='.$i.'#comments_top">'.$i.'</a>';
-			}
-		}
+        ob_start();
+        echo '<br />';
+        starttable();
+        
+        echo '<tr><td class="tableh2_compact"><div style="float: left">'.($start+1).' to '.min($num, $start+$limit).' of '.$num.'</div>';
+        echo '<div style="float: right">Page: ';
+        $links = array();
+            
+        for ($i = 1; $i <= $max; $i++){
+            if ($i < 5 || ($i > $max - 5) || (($i > $page -5) && ($i < $page + 5))){
+                $links[$i]= '<a href="displayimage.php?pid=' . $pid . '&amp;page='.$i.'#comments_top">'.$i.'</a>';
+            }
+        }
 
-		$links[$page] = "<b>$page</b>";
-		echo implode(' - ', $links);
-		echo '</div></td></tr>';
-		
-		endtable();
-		echo '<br />';
-		$html .= ($tabs = ob_get_clean());
-	
+        $links[$page] = "<b>$page</b>";
+        echo implode(' - ', $links);
+        echo '</div></td></tr>';
+        
+        endtable();
+        echo '<br />';
+        $html .= ($tabs = ob_get_clean());
+    
     $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, pid, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order LIMIT $start, $limit");
 
     while ($row = mysql_fetch_assoc($result)) { // while-loop start
@@ -3493,9 +3503,9 @@ function theme_html_comments($pid)
     } // while-loop end
 
 
-		$html .= $tabs;
-	}
-	
+        $html .= $tabs;
+    }
+    
     if (USER_CAN_POST_COMMENTS && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
         if (USER_ID) {
             $user_name_input = '<tr><td><input type="hidden" name="msg_author" value="' . stripslashes(USER_NAME) . '" /></td>';
@@ -3514,7 +3524,7 @@ function theme_html_comments($pid)
         }
 
     if ($CONFIG['show_bbcode_help']) {
-    	$captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);
+        $captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);
     }
 
         $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
@@ -3530,7 +3540,7 @@ function theme_html_comments($pid)
             '{DEFAULT_USERNAME_MESSAGE}' => $lang_display_comments['default_username_message'],
             '{SMILIES}' => '',
             '{WIDTH}' => $CONFIG['picture_table_width'],
-      		'{HELP_ICON}' => $captionLabel,
+            '{HELP_ICON}' => $captionLabel,
             );
 
         if ($CONFIG['enable_smilies']) {
@@ -3605,7 +3615,7 @@ EOT;
     echo <<<EOT
         <tr>
                 <td align="center" class="navmenu" style="white-space: nowrap;">
- 						<a class="navmenu" style="cursor:pointer">{$lang_display_image_php['stop_slideshow']}</a>
+                        <a class="navmenu" style="cursor:pointer">{$lang_display_image_php['stop_slideshow']}</a>
                 </td>
         </tr>
 
@@ -3633,6 +3643,9 @@ function theme_display_fullsize_pic()
     if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
       printf($lang_errors['login_needed'],'','','','');
       die();
+    } elseif (USER_ID && USER_ACCESS_LEVEL <= 2) {
+      printf($lang_errors['access_intermediate_only'],'','','','');
+      die();
     }
     //if (isset($_GET['picfile'])) {
     if ($superCage->get->keyExists('picfile')) {
@@ -3658,7 +3671,8 @@ function theme_display_fullsize_pic()
         $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
         $imagedata = array('name' => $row['filename'], 'path' => $pic_url, 'geometry' => $geom);
     }
-    if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) { // adjust the size of the window if we don't have to catter for a full-size pop-up, but only a text message
+    if ((!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) || (USER_ID && USER_ACCESS_LEVEL <= 2)) { 
+        // adjust the size of the window if we don't have to catter for a full-size pop-up, but only a text message
         $row['pwidth'] = 200;
         $row['pheight'] = 100;
     }
