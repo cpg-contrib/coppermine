@@ -3379,7 +3379,7 @@ function languageSelect($parameter)
                 $return.= $lang_language_selection['choose_language'].': ';
             }
             foreach ($lang_language_data as $language) {
-                $return.= $lineBreak .  '<a href="' .$cpgChangeUrl. $language['lang_id'] . '" rel="nofollow"><img src="images/flags/' . $language['flag'] . '.gif" border="0" width="16" height="11" alt="" title="';
+                $return.= $lineBreak .  '<a href="' .$cpgChangeUrl. $language['lang_id'] . '" rel="nofollow"><img src="images/flags/' . $language['flag'] . '.png" border="0" width="16" height="11" alt="" title="';
                 $return.= $language['english_name'];
                 if ($language['english_name'] != $language['native_name'] && $language['native_name'] != '') {
                     $return.= ' / ' . $language['native_name'] ;
@@ -3387,7 +3387,7 @@ function languageSelect($parameter)
                 $return.= '" /></a>' . $lineBreak;
             }
             if ($CONFIG['language_reset'] == 1) {
-                $return.=  '<a href="' .$cpgChangeUrl. 'xxx" rel="nofollow"><img src="images/flags/reset.gif" border="0" width="16" height="11" alt="" title="';
+                $return.=  '<a href="' .$cpgChangeUrl. 'xxx" rel="nofollow"><img src="images/flags/reset.png" border="0" width="16" height="11" alt="" title="';
                 $return.=  $lang_language_selection['reset_language'] . '" /></a>' . $lineBreak;
             }
             $return.= '</div>';
