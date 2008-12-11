@@ -815,11 +815,11 @@ function load_template()
 {
         global $THEME_DIR, $CONFIG, $template_header, $template_footer;
 
-        if (file_exists($THEME_DIR . TEMPLATE_FILE)) {
-            $template_file = $THEME_DIR . TEMPLATE_FILE;
-        } else die("Coppermine critical error:<br />Unable to load template file ".TEMPLATE_FILE."!");
+        $template = file_get_contents($THEME_DIR . TEMPLATE_FILE);
 
-        $template = fread(fopen($template_file, 'r'), filesize($template_file));
+        if ($template === FALSE) {
+                die("Coppermine critical error:<br />Unable to load template file " . $THEME_DIR . TEMPLATE_FILE . "!");
+        }
 
         $template = CPGPluginAPI::filter('template_html',$template);
 
