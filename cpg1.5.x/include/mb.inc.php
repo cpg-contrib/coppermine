@@ -45,14 +45,18 @@ if (!function_exists('mb_strlen')) {
 }
 
 # PHP 4 >= 4.3.0, PHP 5
-function mb_strtolower($str) {
-	global $mb_uppercase, $mb_lowercase;
-	return str_replace($mb_uppercase, $mb_lowercase, $str);
+if (!function_exists('mb_strtolower')) {
+	function mb_strtolower($str) {
+		global $mb_uppercase, $mb_lowercase;
+		return str_replace($mb_uppercase, $mb_lowercase, $str);
+	}
 }
 
-function mb_strtoupper($str) {
-	global $mb_uppercase, $mb_lowercase;
-	return str_replace($mb_lowercase, $mb_uppercase, $str);
+if (!function_exists('mb_strtoupper')) {
+	function mb_strtoupper($str) {
+		global $mb_uppercase, $mb_lowercase;
+		return str_replace($mb_lowercase, $mb_uppercase, $str);
+	}
 }
 
 $mb_uppercase = array(

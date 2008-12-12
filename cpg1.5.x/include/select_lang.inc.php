@@ -17,6 +17,10 @@
   $Date$
 **********************************************/
 
+if (!defined('IN_COPPERMINE')) {
+	die('Not in Coppermine...');
+}
+
 // Format: array(regex to find in lang or user agent header, lang filename minus .php)
 
 $available_languages = array(

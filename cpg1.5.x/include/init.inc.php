@@ -20,7 +20,9 @@
 define('COPPERMINE_VERSION', '1.5.0');
 define('COPPERMINE_VERSION_STATUS', 'alpha');
 
-if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
+if (!defined('IN_COPPERMINE')) {
+	die('Not in Coppermine...');
+}
 
 set_include_path(get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'Inspekt');
 
