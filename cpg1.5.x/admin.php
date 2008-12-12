@@ -22,7 +22,6 @@ define('ADMIN_PHP', true);
 define('CONFIG_PHP', true); // added for backwards compatibility (language fallback)
 
 require_once('include/init.inc.php');
-require_once('include/sql_parse.php');
 
 // define some vars that need to exist in JS
 set_js_var('lang_warning_dont_submit', $lang_admin_php['warning_dont_submit']);
