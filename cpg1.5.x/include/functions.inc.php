@@ -2545,7 +2545,7 @@ function display_film_strip($album, $cat, $pos)
     $l_limit = max(0, $pos - $CONFIG['max_film_strip_items']);
     $new_pos = max(0, $pos - $l_limit);
 
-    $pic_data = get_pic_data($album, $thumb_count, $album_name, $l_limit, $thumb_per_page);
+    $pic_data = get_pic_data($album, $thumb_count, $album_name, $l_limit, $thumb_per_page, false);
 
     if (count($pic_data) < $max_item ) {
         $max_item = count($pic_data);
