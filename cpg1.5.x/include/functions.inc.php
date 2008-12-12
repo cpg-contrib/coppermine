@@ -1110,8 +1110,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
     $sort_array = array(
         'na' => 'filename ASC',
         'nd' => 'filename DESC',
-        'ta'=>'title ASC',
-        'td'=>'title DESC',
+        'ta' => 'title ASC',
+        'td' => 'title DESC',
         'da' => 'pid ASC',
         'dd' => 'pid DESC',
         'pa' => 'position ASC',
@@ -1123,11 +1123,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
     $limit = ($limit1 != -1) ? ' LIMIT '. $limit1 : '';
     $limit .= ($limit2 != -1) ? ' ,'. $limit2 : '';
 
-    if ($limit2 == 1) {
-        $select_columns = '*';
-    } else {
-        $select_columns = 'pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid, keywords, title';
-    }
+    $select_column_list = array();
 
     if (count($FORBIDDEN_SET_DATA) > 0 ) {
         $forbidden_set_string =" AND aid NOT IN (".implode(",", $FORBIDDEN_SET_DATA).")";
@@ -1170,10 +1166,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         $count = $nbEnr[0];
         mysql_free_result($result);
 
-        if ($select_columns != '*') {
-            $select_columns .= ', title, caption, hits, owner_id, owner_name, pic_rating, votes, approved';
-        }
-
+        $select_columns = implode(', ', $select_column_list);
+        
         $query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']}
                     WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved
                     ORDER BY $sort_order $limit";
@@ -1226,13 +1220,10 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $nbEnr = mysql_fetch_array($result);
             $count = $nbEnr[0];
             mysql_free_result($result);
-            $select_columns = '*'; //allows building any data into any thumbnail caption
-            if ($select_columns == '*') {
-                $select_columns = 'r.*, msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, r.aid';
-            } else {
-                $select_columns = str_replace('pid', 'c.pid', $select_columns).', msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, aid';
-            }
 
+            $select_column_list += array();
+            $select_columns = implode(', ', $select_column_list);
+               
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_COMMENTS']} AS c
                     INNER JOIN {$CONFIG['TABLE_PICTURES']} AS r ON r.pid = c.pid
@@ -1284,7 +1275,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $count = $nbEnr[0];
             mysql_free_result($result);
 
-            $select_columns = 'r.*, c.*, UNIX_TIMESTAMP(msg_date) AS msg_date'; //allows building any data into any thumbnail caption
+            $select_column_list += array();
+            $select_columns = implode(', ', $select_column_list);
+            
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_COMMENTS']} AS c
                     INNER JOIN {$CONFIG['TABLE_PICTURES']} AS r ON r.pid = c.pid
@@ -1328,16 +1321,15 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $count = $nbEnr[0];
             mysql_free_result($result);
 
-            //if ($select_columns != '*' ) $select_columns .= ',title, caption, owner_id, owner_name, aid';
-            $select_columns = '*'; //allows building any data into any thumbnail caption
+            $select_column_list += array();
+            $select_columns = implode(', ', $select_column_list);
+            
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_PICTURES']} AS p
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
                     $RESTRICTEDWHERE
                     AND approved = 'YES'
                     ORDER BY p.pid DESC $limit";
-
-            // $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET ORDER BY pid DESC $limit";
 
             $result = cpg_db_query($query);
             $rowset = cpg_db_fetch_rowset($result);
@@ -1378,8 +1370,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $count = $nbEnr[0];
             mysql_free_result($result);
 
-            //if ($select_columns != '*' ) $select_columns .= ', owner_id, owner_name, aid';
-            $select_columns = 'p.*'; //allows building any data into any thumbnail caption
+            $select_column_list += array();
+            $select_columns = implode(', ', $select_column_list);
+            
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_PICTURES']} AS p
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
@@ -1421,9 +1414,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $count = $nbEnr[0];
             mysql_free_result($result);
 
-            //if ($select_columns != '*') $select_columns .= ', hits, aid, filename, owner_id, owner_name';
-            $select_columns = 'p.*'; //allows building any data into any thumbnail caption
-
+            $select_column_list += array();
+            $select_columns = implode(', ', $select_column_list);
+            
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_PICTURES']} AS p
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
@@ -1465,9 +1458,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $count = $nbEnr[0];
             mysql_free_result($result);
 
-            //if ($select_columns != '*') $select_columns .= ', pic_rating, votes, aid, owner_id, owner_name';
-            $select_columns = 'p.*'; //allows building any data into any thumbnail caption
-
+            $select_column_list += array();
+            $select_columns = implode(', ', $select_column_list);
+            
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_PICTURES']} AS p
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
@@ -1509,9 +1502,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $count = $nbEnr[0];
             mysql_free_result($result);
 
-            //if ($select_columns != '*') $select_columns .= ', UNIX_TIMESTAMP(mtime) as mtime, aid, hits, lasthit_ip, owner_id, owner_name';
-            $select_columns = 'p.*, UNIX_TIMESTAMP(mtime) as mtime'; //allows building any data into any thumbnail caption
-
+            $select_column_list += array();
+            $select_columns = implode(', ', $select_column_list);
+            
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_PICTURES']} AS p
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
@@ -1560,8 +1553,6 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                     ORDER BY RAND()
                     $limit";
 
-            //$query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET ORDER BY RAND() LIMIT $limit2";
-
             $result = cpg_db_query($query);
             $pidlist = array();
             while ($row = mysql_fetch_assoc($result)) {
@@ -1571,9 +1562,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             
             sort($pidlist);
             
-            //if ($select_columns != '*') $select_columns .= ', aid, owner_id, owner_name';
-            $select_columns = '*'; //allows building any data into any thumbnail caption
-
+            $select_column_list += array();
+            $select_columns = implode(', ', $select_column_list);
+            
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_PICTURES']} AS p
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
@@ -1637,7 +1628,10 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $count = mysql_num_rows($result);
             mysql_free_result($result);
 
-            $query = "SELECT *, r.title AS title, r.aid AS aid 
+            $select_column_list += array();
+            $select_columns = implode(', ', $select_column_list);
+            
+            $query = "SELECT $select_columns 
                     FROM {$CONFIG['TABLE_PICTURES']} AS p
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
                     $RESTRICTEDWHERE
@@ -1677,7 +1671,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
-                $select_columns = '*';
+                $select_column_list += array();
+                $select_columns = implode(', ', $select_column_list);
 
                 $query = "SELECT $select_columns
                                 FROM {$CONFIG['TABLE_PICTURES']} AS p
@@ -1719,8 +1714,10 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $nbEnr = mysql_fetch_array($result);
             $count = $nbEnr[0];
             mysql_free_result($result);
-            $select_columns = '*';
 
+            $select_column_list += array();
+            $select_columns = implode(', ', $select_column_list);
+            
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_PICTURES']} AS p
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
