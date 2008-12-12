@@ -2991,11 +2991,10 @@ function theme_html_picture()
 
     if ($mime_content['content']=='image') {
         if (isset($image_size['reduced'])) {
-            $imginfo = getimagesize(rawurldecode($picture_url));
             $winsizeX = $CURRENT_PIC_DATA['pwidth'] + $CONFIG['fullsize_padding_x'];  //the +'s are the mysterious FF and IE paddings
             $winsizeY = $CURRENT_PIC_DATA['pheight'] + $CONFIG['fullsize_padding_y']; //the +'s are the mysterious FF and IE paddings
             if ($CONFIG['transparent_overlay'] == 1) {
-                $pic_html = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td background=\"" . $picture_url . "\" width=\"{$imginfo[0]}\" height=\"{$imginfo[1]}\" class=\"image\">";
+                $pic_html = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td background=\"" . $picture_url . "\" width=\"{$image_size['width']}\" height=\"{$image_size['height']}\" class=\"image\">";
                 if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
                    $pic_html .= '<a href="javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');">';
                 } elseif (USER_ID && USER_ACCESS_LEVEL <= 2) {
@@ -3004,7 +3003,7 @@ function theme_html_picture()
                   $pic_html .= "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
                 }
                 $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
-                $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width=\"{$imginfo[0]}\" height=\"{$imginfo[1]}\"  border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
+                $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width=\"{$image_size['width']}\" height=\"{$image_size['height']}\"  border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
                 $pic_html .= "</a>\n </td></tr></table>";
                 //PLUGIN FILTER
                 $pic_html = CPGPluginAPI::filter('html_image_reduced_overlay', $pic_html);
