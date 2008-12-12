@@ -19,9 +19,12 @@
  
 define('IN_COPPERMINE', true);
 define('ADMIN_PHP', true);
-define('CONFIG_PHP', true); // added for backwards compatibility (language fallback)
 
 require_once('include/init.inc.php');
+
+if (!GALLERY_ADMIN_MODE) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
 
 // define some vars that need to exist in JS
 set_js_var('lang_warning_dont_submit', $lang_admin_php['warning_dont_submit']);
@@ -38,9 +41,7 @@ $optionLoopCounter = 0;
 
 $lineBreak = "\r\n";
 
-if (!GALLERY_ADMIN_MODE) {
-    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-}
+
 
 require_once('include/admin.inc.php'); // populate the array for the admin data (could later be done using an XML file)
 
