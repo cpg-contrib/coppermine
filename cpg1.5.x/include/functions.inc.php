@@ -1125,18 +1125,18 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
     $select_column_list = array('r.pid', 'r.aid', 'filepath', 'filename', 'url_prefix', 'pwidth', 'pheight', 'filesize', 'ctime', 'r.title', 'r.keywords', 'r.votes', 'pic_rating');
 
-    if ($CONFIG['views_in_thumbview']) {
+    //if ($CONFIG['views_in_thumbview']) {
         $select_column_list[] = 'hits';
-    }
+    //}
 
-    if ($CONFIG['caption_in_thumbview']) {
+    //if ($CONFIG['caption_in_thumbview']) {
         $select_column_list[] = 'caption';
-    }
+    //}
 
-    if ($CONFIG['display_uploader']) {
+    //if ($CONFIG['display_uploader']) {
         $select_column_list[] = 'owner_id';
         $select_column_list[] = 'owner_name';
-    }
+    //}
 
     if (GALLERY_ADMIN_MODE) {
         $select_column_list[] = 'pic_raw_ip';
