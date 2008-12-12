@@ -162,13 +162,6 @@ if (isset($bridge_lookup)) {
             define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
             define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
             define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
-            /*
-            // Remove old upload options from 1.4: file & URI settings per group
-            define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
-            define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
-            define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
-            define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
-            */
             define('USER_ACCESS_LEVEL', (int)$USER_DATA['access_level']);
 
             

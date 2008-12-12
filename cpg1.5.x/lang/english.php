@@ -1349,35 +1349,20 @@ $lang_groupmgr_php['group_name'] = 'Group';
 $lang_groupmgr_php['permissions'] = 'Permissions';
 $lang_groupmgr_php['public_albums'] = 'Public albums upload';
 $lang_groupmgr_php['personal_gallery'] = 'Personal gallery';
-/*
-// Remove old upload options from 1.4
-$lang_groupmgr_php['upload_method'] = 'Upload method';
-*/
 $lang_groupmgr_php['disk_quota'] = 'Quota';
 $lang_groupmgr_php['rating'] = 'Rating';
 $lang_groupmgr_php['ecards'] = 'Ecards';
 $lang_groupmgr_php['comments'] = 'Comments';
 $lang_groupmgr_php['allowed'] = 'Allowed';
 $lang_groupmgr_php['approval'] = 'Approval';
-/*
-// Remove old upload options from 1.4
-$lang_groupmgr_php['boxes_number'] = 'No. of boxes';
-$lang_groupmgr_php['variable'] = 'variable';
-$lang_groupmgr_php['fixed'] = 'fixed';
-*/
 $lang_groupmgr_php['create_new_group'] = 'Create new group';
 $lang_groupmgr_php['del_groups'] = 'Delete selected group(s)';
 $lang_groupmgr_php['confirm_del'] = 'Warning, when you delete a group, users that belong to this group will be transferred to the \'Registered\' group !\n\nDo you want to proceed ?'; // js-alert
 $lang_groupmgr_php['title'] = 'Manage user groups';
-/*
-// Remove old upload options from 1.4
-$lang_groupmgr_php['num_file_upload'] = 'File upload boxes';
-$lang_groupmgr_php['num_URI_upload'] = 'URI upload boxes';
-*/
 $lang_groupmgr_php['reset_to_default'] = 'Reset to default name (%s) - recommended!';
 $lang_groupmgr_php['error_group_empty'] = 'Group table was empty !<br /><br />Default groups created, please reload this page';
 $lang_groupmgr_php['explain_greyed_out_title'] = 'Why is this row grayed out?';
-$lang_groupmgr_php['explain_guests_greyed_out_text'] = 'You can not change the properties of this group because you set the option &quot; Allow unlogged users (guest or anonymous) access&quot; to &quot;No&quot; on the config page. All guest (members of the group %s) can\'t do anything but login; therefor group settings don\'t apply for them.';
+$lang_groupmgr_php['explain_guests_greyed_out_text'] = 'You can not change the properties of this group because the access level of this group is NONE.  All unlogged users (members of the group %s) can\'t do anything but login; therefore group settings don\'t apply for them.  Change the access level here or on the Gallery Configuration page under "User Settings", "Allow unlogged users access".';
 $lang_groupmgr_php['group_assigned_album'] = 'assigned album(s)';
 $lang_groupmgr_php['access_level'] = 'Access level'; // cpg1.5
 $lang_groupmgr_php['thumbnail_intermediate_full'] = 'thumbnail, intermediate and full-size image'; // cpg1.5

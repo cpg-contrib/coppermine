@@ -135,7 +135,7 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
             } else { // regex validation succesfull -- start
                 $regexValidation = '1';
             } // regex validation succesfull -- end
-        } else { // no regex settings available - set validation var to successfull anyway
+        } else { // no regex settings available - set validation var to successful anyway
             $regexValidation = '1';
         }
         if ($superCage->post->keyExists('update_config') && $regexValidation == '1' && $evaluate_value != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes($evaluate_value) ) {

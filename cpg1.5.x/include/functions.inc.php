@@ -4156,7 +4156,7 @@ function cpgRedirectPage($targetAddress = '', $caption = '', $message = '', $cou
 * cpgGetScriptNameParams()
 *
 * Returns the script name and all vars except the ones defined in exception (which could be an array or a var).
-* Particularly helpfull to create links
+* Particularly helpful to create links
 *
 * @param mixed $exception
 * @return $return

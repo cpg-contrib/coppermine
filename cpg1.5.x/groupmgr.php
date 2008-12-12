@@ -174,76 +174,11 @@ EOT;
 
     echo $table_end . "</td><td class=\"$table_background\" align=\"left\" valign=\"top\">";
 
-/*
-    // Remove old upload options from 1.4: file & URI settings per group
-    // New upload setting is on the admin panel
-
-    // Determine if yes or no should be the selected option in the form.
-    $custom_upload_yes = ($group['custom_user_upload'] == 1) ? 'checked="checked"' : '';
-    $custom_upload_no = ($group['custom_user_upload'] == 0) ? 'checked="checked"' : '';
-
-    // Create select list.
-    if ($group['group_id'] == 3 && $CONFIG['allow_unlogged_access'] == 0) {
-        $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
-    } else {
-        $disabled = '';
-    }
-     echo $table_start;
-     echo $tr_start.$td_start;
-     echo <<< EOT
-     {$lang_groupmgr_php['boxes_number']}
-     $td_end
-     $td_start
-     <input type="radio" id="custom_user_upload_{$group['group_id']}1" name="custom_user_upload_{$group['group_id']}" value="1" $custom_upload_yes $disabled /><label for="custom_user_upload_{$group['group_id']}1" class="clickable_option">{$lang_groupmgr_php['variable']}</label>
-     $td_end
-     $td_start
-     <input type="radio" id="custom_user_upload_{$group['group_id']}0" name="custom_user_upload_{$group['group_id']}" value="0" $custom_upload_no $disabled /><label for="custom_user_upload_{$group['group_id']}0" class="clickable_option">{$lang_groupmgr_php['fixed']}</label>
-     $td_end
-     $tr_end
-EOT;
-     //echo "<br />";
-
-     // Create permissible number of file upload boxes box.
-     echo $tr_start.'<td style="white-space:nowrap">';
-     echo $lang_groupmgr_php['num_file_upload'].":";
-     echo $td_end.$td_start;
-     echo "<select name=\"num_file_upload_{$group['group_id']}\" class=\"listbox_lang\" $disabled>";
-     for ($i = 0; $i <= 10; $i++) {
-     echo "<option value=\"$i\"";
-     if($group['num_file_upload']==$i){echo "selected=\"selected\"";}
-     echo " >$i</option>";
-     }
-     echo "</select>";
-     echo $td_end.$td_start.$td_end.$tr_end;
-     //echo "<br />";
-
-     // Create permissible number of URI upload boxes box.
-     echo $tr_start.'<td style="white-space:nowrap">';
-     echo $lang_groupmgr_php['num_URI_upload'].":";
-     echo $td_end.$td_start;
-     echo "<select name=\"num_URI_upload_{$group['group_id']}\" class=\"listbox_lang\" $disabled>";
-     for ($i = 0; $i <= 10; $i++) {
-     echo "<option value=\"$i\"";
-     if($group['num_URI_upload']==$i){echo "selected=\"selected\"";}
-     echo " >$i</option>";
-     }
-     echo "</select>";
-     echo $td_end.$td_start.$td_end.$tr_end;
-     echo $table_end;
-*/
-
     // Option for access level for group
     echo $table_start;
     echo $tr_start.'<td style="white-space:nowrap">';
     echo $td_end.$td_start;
     $disabled = '';
-    /*
-    if ($group['group_id'] == 3 && $CONFIG['allow_unlogged_access'] == 0) {
-        $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
-    } else {
-        $disabled = '';
-    }
-    */
     echo "<select name=\"access_level_{$group['group_id']}\" class=\"listbox_lang\" $disabled>";
     if ($group['group_id'] == 3) {
         $group['access_level'] = $CONFIG['allow_unlogged_access'];
@@ -261,7 +196,6 @@ EOT;
     echo $table_end;
 
      echo "</td>";
-
 
      echo <<< EOT
         </tr>
@@ -287,10 +221,7 @@ function process_post_data()
     global $CONFIG;
     $superCage = Inspekt::makeSuperCage();
 
-    // $field_list = array('group_name', 'group_quota', 'can_rate_pictures', 'can_send_ecards', 'can_post_comments', 'can_upload_pictures', 'pub_upl_need_approval', 'can_create_albums', 'priv_upl_need_approval', 'upload_form_config', 'custom_user_upload', 'num_file_upload', 'num_URI_upload');
     $field_list = array('group_name', 'group_quota', 'can_rate_pictures', 'can_send_ecards', 'can_post_comments', 'can_upload_pictures', 'pub_upl_need_approval', 'can_create_albums', 'priv_upl_need_approval', 'access_level');
-
-    // $upload_form_config = 0;
 
     $group_id_array = get_post_var('group_id');
     $guests_disabled = ($CONFIG['allow_unlogged_access'] == 0);
@@ -306,44 +237,10 @@ function process_post_data()
         }
         $set_statement = '';
         foreach ($field_list as $field) {
-            //if (!isset($_POST[$field . '_' . $group_id])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ({$field}_{$group_id})", __FILE__, __LINE__);
-
-            // Remove old upload options from 1.4: file & URI settings per group
-            /*
-            //set the 'upload_form_config' entry
-            $numFile = $superCage->post->getInt('num_file_upload_' . $group_id);
-            $numURI  = $superCage->post->getInt('num_URI_upload_' . $group_id);
-            // case File upload boxes=1 and URI upload boxes=0 => single uploads (0)
-            if ($numFile == 1 && $numURI == 0) {
-                $upload_form_config = 0;
-            }
-            // case File upload boxes>1 and URI upload boxes=0 => multi file uploads (1)
-            if ($numFile > 1 && $numURI == 0) {
-                $upload_form_config = 1;
-            }
-            // case File upload boxes=0 and URI upload boxes>0 => multi uri uploads (2)
-            if ($numFile == 0 && $numURI > 0) {
-                $upload_form_config = 2;
-            }
-            // case File upload boxes>0 and URI upload boxes>0 => File and URI uploads (3)
-            if ($numFile > 0 && $numURI > 0) {
-                $upload_form_config = 3;
-            }
-            // case File upload boxes=0 and URI upload boxes=0 => input error, default to single uploads (0)
-            if ($numFile == 0 && $numURI == 0) {
-                $upload_form_config = 0;
-            }
-            */
             if ($field == 'group_name') {
                 $set_statement .= $field . "='" . $superCage->post->getEscaped($field . '_' . $group_id) . "',";
             } else {
-                /*
-                if ($field == 'upload_form_config') {
-                    $set_statement .= $field . "='" . $upload_form_config . "',";
-                } else {
-                */
-                    $set_statement .= $field . "='" . $superCage->post->getInt($field . '_' . $group_id) . "',";
-                // }
+                $set_statement .= $field . "='" . $superCage->post->getInt($field . '_' . $group_id) . "',";
             }
         }
         $set_statement = substr($set_statement, 0, -1);
@@ -422,10 +319,6 @@ $help_group = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_names&amp;
 $help_permissions = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_permissions&amp;ae=group_cp_permissions_end&amp;top=1', '500', '200');
 $help_public = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_public&amp;ae=group_cp_public_end&amp;top=1', '500', '200');
 $help_personal = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_personal&amp;ae=group_cp_personal_end&amp;top=1', '500', '200');
-/*
-// Remove old upload options from 1.4
-$help_upload_method = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_upload_method&amp;ae=group_cp_upload_method_end&amp;top=1', '700', '400');
-*/
 $help_access_level = '&nbsp;'.cpg_display_help('f=groups.htm&amp;as=group_cp_access_level&amp;ae=group_cp_access_level_end&amp;top=1', '700', '400');
 starttable('100%', cpg_fetch_icon('groups_mgr', 2).$lang_groupmgr_php['group_manager']. '&nbsp;' . cpg_display_help('f=groups.htm&amp;as=group_cp&amp;ae=group_cp_end&amp;top=1', '700', '500'), 6);
 echo <<<EOT

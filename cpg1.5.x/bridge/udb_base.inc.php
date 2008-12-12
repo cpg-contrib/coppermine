@@ -111,13 +111,6 @@ class core_udb {
         define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
         define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
-        /*
-        // Remove old upload options from 1.4: file & URI settings per group
-        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
-        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
-        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
-        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
-        */
         define('USER_ACCESS_LEVEL', (int)$USER_DATA['access_level']);
 
                 $this->session_update();
@@ -138,13 +131,6 @@ class core_udb {
                 $USER_DATA['can_create_albums'] = 0;
                 $USER_DATA['pub_upl_need_approval'] = 1;
                 $USER_DATA['priv_upl_need_approval'] = 1;
-                /*
-                // Remove old upload options from 1.4: file & URI settings per group
-                $USER_DATA['upload_form_config'] = 0;
-                $USER_DATA['num_file_upload'] = 0;
-                $USER_DATA['num_URI_upload'] = 0;
-                $USER_DATA['custom_user_upload'] = 0;
-                */
                 $USER_DATA['access_level'] = $CONFIG['allow_unlogged_access'];
         }
 
@@ -309,13 +295,6 @@ class core_udb {
                             unset ($groups[$key]);
             if (!in_array($pri_group, $groups)) array_push($groups, $pri_group);
 
-            /*
-            // Remove old upload options from 1.4: file & URI settings per group
-                            "MAX(upload_form_config) as ufc_max, MIN(upload_form_config) as ufc_min, " .
-                            "MAX(custom_user_upload) as custom_user_upload, MAX(num_file_upload) as num_file_upload, " .
-                            "MAX(num_URI_upload) as num_URI_upload, " .
-            */
-
             $result = cpg_db_query("SELECT MAX(group_quota) as disk_max, MIN(group_quota) as disk_min, " .
                             "MAX(can_rate_pictures) as can_rate_pictures, MAX(can_send_ecards) as can_send_ecards, " .
                             "MAX(can_post_comments) as can_post_comments, MAX(can_upload_pictures) as can_upload_pictures, " .
@@ -337,20 +316,6 @@ class core_udb {
                     }
             mysql_free_result($result);
 
-            /*
-            // Remove old upload options from 1.4: file & URI settings per group
-            if ( $USER_DATA['ufc_max'] == $USER_DATA['ufc_min'] ) {
-                    $USER_DATA["upload_form_config"] = $USER_DATA['ufc_min'];
-            } elseif ($USER_DATA['ufc_min'] == 0) {
-                    $USER_DATA["upload_form_config"] = $USER_DATA['ufc_max'];
-            } elseif ((($USER_DATA['ufc_max'] == 2) or ($USER_DATA['ufc_max'] == 3)) and ($USER_DATA['ufc_min'] == 1)) {
-                    $USER_DATA["upload_form_config"] = 3;
-            } elseif (($USER_DATA['ufc_max'] == 3) and ($USER_DATA['ufc_min'] == 2)) {
-                    $USER_DATA["upload_form_config"] = 3;
-            } else {
-                    $USER_DATA["upload_form_config"] = 0;
-            }
-            */
             $USER_DATA["group_quota"] = ($USER_DATA["disk_min"])?$USER_DATA["disk_max"]:0;
 
             $USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
