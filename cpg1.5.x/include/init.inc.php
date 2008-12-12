@@ -347,7 +347,7 @@ if (USER_ID > 0){
 js_include('js/jquery.js');
 
 // Include the bookmark JavaScript if at least one bookmarking service is selected
-if (isset($CONFIG['display_social_bookmarks']) && $CONFIG['display_social_bookmarks'] != '') {
+if (!empty($CONFIG['display_social_bookmarks'])) {
     js_include('js/jquery.bookmark.js');
 }
 
