@@ -4909,4 +4909,76 @@ if (!function_exists('stripos')) {
   }
 }
 
+function cpg_get_type($filename,$filter=null) 
+{
+	global $CONFIG;
+	static $FILE_TYPES = array();
+    
+	if (!$FILE_TYPES) {
+
+		// Map content types to corresponding user parameters
+		$content_types_to_vars = array('image'=>'allowed_img_types','audio'=>'allowed_snd_types','movie'=>'allowed_mov_types','document'=>'allowed_doc_types');
+
+		$result = cpg_db_query('SELECT extension, mime, content, player FROM '.$CONFIG['TABLE_FILETYPES']);
+    
+    	$CONFIG['allowed_file_extensions'] = '';
+    	
+    	while ($row = mysql_fetch_assoc($result)) {
+			// Only add types that are in both the database and user defined parameter
+			if ($CONFIG[$content_types_to_vars[$row['content']]]=='ALL' || is_int(strpos('/'.$CONFIG[$content_types_to_vars[$row['content']]].'/','/'.$row['extension'].'/'))) {
+				$FILE_TYPES[$row['extension']] = $row;
+				$CONFIG['allowed_file_extensions'].= '/'.$row['extension'];
+        }
+		}
+		
+		$CONFIG['allowed_file_extensions'] = substr($CONFIG['allowed_file_extensions'],1);
+		
+		mysql_free_result($result);
+    }
+    
+    if (!is_array($filename)) {
+        $filename = explode('.',$filename);
+    }
+    $EOA = count($filename)-1;
+    $filename[$EOA] = strtolower($filename[$EOA]);
+
+    if (!is_null($filter) && array_key_exists($filename[$EOA],$FILE_TYPES) && ($FILE_TYPES[$filename[$EOA]]['content'] == $filter)) {
+        return $FILE_TYPES[$filename[$EOA]];
+    } elseif (is_null($filter) && array_key_exists($filename[$EOA],$FILE_TYPES)) {
+        return $FILE_TYPES[$filename[$EOA]];
+    } else {
+        return null;
+    }
+}
+
+function is_image(&$file) 
+{
+    return cpg_get_type($file,'image');
+}
+
+function is_movie(&$file) 
+{
+    return cpg_get_type($file,'movie');
+}
+
+function is_audio(&$file) 
+{
+    return cpg_get_type($file,'audio');
+}
+
+function is_document(&$file) 
+{
+    return cpg_get_type($file,'document');
+}
+
+function is_flash(&$file) 
+{
+    return strrpos($file, '.swf' );
+}
+
+function is_known_filetype($file) 
+{
+    return is_image($file) || is_movie($file) || is_audio($file) || is_document($file);
+}
+
 ?>

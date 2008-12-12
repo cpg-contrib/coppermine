@@ -167,9 +167,6 @@ define('DEFAULT_LANGUAGE', $CONFIG['lang']);
 // Include logger functions
 include_once('include/logger.inc.php');
 
-// Include media functions
-require 'include/media.functions.inc.php';
-
 // Check for GD GIF Create support
 if ($CONFIG['thumb_method'] == 'im' || function_exists('imagecreatefromgif')) {
   $CONFIG['GIF_support'] = 1;
