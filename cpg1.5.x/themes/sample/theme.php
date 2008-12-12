@@ -1706,12 +1706,12 @@ function theme_main_menu($which)
 
     //Check whether user has permission to upload file to the current album if any
     $upload_allowed = false;
-    if (isset($album)) {
+    if (isset($album) && is_numeric($album)) {
         if (GALLERY_ADMIN_MODE) {
             $upload_allowed = true;
         } else {
             if (USER_ID) {
-                $query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' AND aid = '$album' ORDER BY title";
+                $query = "SELECT null FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' AND aid = '$album'";
                 $user_albums = cpg_db_query($query);
                 if (mysql_num_rows($user_albums)) {
                     $upload_allowed = true;
@@ -1721,7 +1721,7 @@ function theme_main_menu($which)
             }
 
             if (!$upload_allowed) {
-                $query = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") AND aid = '$album' ORDER BY title";
+                $query = "SELECT null FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") AND aid = '$album'";
                 $public_albums = cpg_db_query($query);
 
                 if (mysql_num_rows($public_albums)) {
