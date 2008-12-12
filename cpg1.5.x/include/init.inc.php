@@ -133,8 +133,8 @@ $CONFIG['TABLE_LANGUAGE']        = $CONFIG['TABLE_PREFIX'].'languages';
 // Connect to database
 ($CONFIG['LINK_ID'] = cpg_db_connect()) || die('<strong>Coppermine critical error</strong>:<br />Unable to connect to database !<br /><br />MySQL said: <strong>' . mysql_error() . '</strong>');
 // Retrieve DB stored configuration
-$results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']}");
-while ($row = mysql_fetch_array($results)) {
+$results = cpg_db_query("SELECT name, value FROM {$CONFIG['TABLE_CONFIG']}");
+while ($row = mysql_fetch_assoc($results)) {
 	$CONFIG[$row['name']] = $row['value'];
 } // while
 mysql_free_result($results);
@@ -238,10 +238,12 @@ if (!USER_IS_ADMIN) {
 	error_reporting(0); // hide all errors for visitors
 }
 
+$USER_DATA['allowed_albums'] = array();
+
 if (!GALLERY_ADMIN_MODE) {
-  $result = cpg_db_query("SELECT DISTINCT(aid) FROM {$CONFIG['TABLE_ALBUMS']} WHERE moderator_group IN ".USER_GROUP_SET);
+  $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE moderator_group IN ".USER_GROUP_SET);
   if (mysql_num_rows($result)) {
-	while ($row = mysql_fetch_array($result)) {
+	while ($row = mysql_fetch_assoc($result)) {
 	  $USER_DATA['allowed_albums'][] = $row['aid'];
 	}
   }
@@ -277,7 +279,7 @@ require_once('lang/english.php');
 $CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
 $enabled_languages_array = array();
 $results = cpg_db_query("SELECT lang_id FROM {$CONFIG['TABLE_LANGUAGE']} WHERE enabled='YES' ");
-while ($row = mysql_fetch_array($results)) {
+while ($row = mysql_fetch_assoc($results)) {
 	$enabled_languages_array[] = $row['lang_id'];
 }
 mysql_free_result($results);
@@ -333,7 +335,7 @@ if ($superCage->cookie->keyExists($CONFIG['cookie_name'] . '_fav')) {
 if (USER_ID > 0){
 		$sql = "SELECT user_favpics FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = ".USER_ID;
 		$results = cpg_db_query($sql);
-		$row = mysql_fetch_array($results);
+		$row = mysql_fetch_assoc($results);
 		if (!empty($row['user_favpics'])){
 				$FAVPICS = @unserialize(@base64_decode($row['user_favpics']));
 		}else{
