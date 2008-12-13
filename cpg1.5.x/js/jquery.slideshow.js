@@ -13,7 +13,7 @@
   $HeadURL$
   $Revision: 4220 $
   $LastChangedBy: Nuwan Sameera $
-  $Date: 2008-06-13 23:08:30  $
+  $Date: 2008-12-13 23:08:30  $
 **********************************************/
 
 /**
@@ -26,7 +26,7 @@ $(document).ready(function(){
 		/** set variable from php  */
 		var Time 	= 	js_vars.Time;
 		var pos 	= 	js_vars.position;
-		var $album 	= 	js_vars.album;
+		var album 	= 	js_vars.album;
 		var PiCount = 	js_vars.Pic_count;
 		var Pid		=   js_vars.Pid;
 		var run_slideshow = js_vars.run_slideshow;
@@ -34,32 +34,25 @@ $(document).ready(function(){
 
 		/** create a Image object */
 	 	var i = new Image();
-		/** check whether first loading image. */
-		if(run_slideshow){
-			pos	= parseInt(pos) + 1;
-			if(pos==PiCount) {loadImage(0)}
-			else
-			loadImage(pos);
-		}
-		 
+	 
 		/** implement ajax call to get pic url and title */
-	 	function loadImage (j){ 	 
-	  	$.getJSON("displayimage.php?ajax_show=1&pos="+j+"&album="+$album, function(data){
+	 	function loadImage (j){	 
+	  	$.getJSON("displayimage.php?ajax_show=1&pos="+j+"&album="+album, function(data){
 				i.src 	= data['url'];
 				Title 	= data['title'];
 				Pid		= data['pid'];
               }); 
 			}
 		/** start the slideshow */
-		if(PiCount>1) runSlideShow(i);
+		if(PiCount>1) runSlideShow();
  		/**  next pic view and keeping hold the previous pitcure ID */
  		var PidTemp = '';
  		function showNextSlide(i){
-			pos = pos + 1;
-        	if (pos > (PiCount-1)) pos=0;
+				pos = parseInt(pos) + 1;
+        	if (pos  == (PiCount)){ pos=0; }
 			var temp = i.src;
 			
-			if (temp) {
+			if (temp.length>0) {
 				$("#showImage").attr({
 					src: i.src,
 					title: Title,
@@ -73,6 +66,9 @@ $(document).ready(function(){
 				PidTemp = Pid; 
 				loadImage(pos);
 			}	
+			else{
+				loadImage(pos);
+			}
 	}
 	
 	/** set time to run slideshow */
@@ -83,8 +79,9 @@ $(document).ready(function(){
 	
 	/** close the slide show and will load the current show imags details*/
 	$(".navmenu").click(function () { 
-     self.document.location = 'displayimage.php?album='+$album+'&pid='+PidTemp ;
+     self.document.location = 'displayimage.php?album='+album+'&pid='+PidTemp ;
     });
 		
 });
+
 

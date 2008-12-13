@@ -887,3 +887,97 @@ html:first-child .bookmark_list img { /* Opera */
     border: 1px solid #666666; 
     background-color: #FAFAFA; 
 }
+
+/**This styles for dialog box styles  */
+/*******************************************/
+#cluetip-close img 	{
+	border: 0; 
+}
+
+#cluetip-waitimage {
+   width: 16px;
+   height: 16px;
+   position: absolute;
+   background-image: url(images/ajax-loader.gif);
+ }
+
+#cluetip-title 	{ 
+	overflow: hidden;
+}
+#cluetip-title #cluetip-close {   
+	float: right;   
+	position: relative; 
+}
+.cluetip-arrows { 
+	display: none;  
+	position: absolute;  
+	top: 0; left: -15px; 
+	height: 22px; 
+	width: 15px; 
+	background-repeat: no-repeat; 
+	background-position: 0 0; 
+}
+#cluetip-extra  { 
+	display: none; 
+}
+.cluetip-jtip   {
+	background-color: transparent; 
+}
+.cluetip-jtip #cluetip-outer { 
+	position: relative; 
+	background-color: #fff; 
+	color: #000;
+}
+.cluetip-jtip h3#cluetip-title { 
+	margin: 0; 
+	padding: 5px; 
+	font-size: 13px; 
+	font-weight: bold; 
+	background-color: #D1D7DC; 
+	color: #333; 
+}
+.cluetip-jtip #cluetip-inner  { 
+	padding: 0 5px 5px; 
+	display: inline-block; 
+}
+
+.cluetip-jtip #cluetip-inner  img { 
+	max-width: 513px;
+}
+.cluetip-jtip div#cluetip-close	{ 
+	text-align: right; 
+	color: #900; 
+}
+
+.clue-right-jtip .cluetip-arrows { 
+	background-image: url(images/cluetip_topright.png); 
+}
+.clue-left-jtip .cluetip-arrows { 
+	background-image: url(images/cluetip_arrowright.png); 
+	left: 100%; 
+	margin-right: -11px; 
+}
+.clue-top-jtip .cluetip-arrows 	{ 
+	background-image: url(images/cluetip_arrowdown.gif); 
+	top: 100%; 
+	left: 50%; 
+	margin-left: -11px; 
+	height: 11px; 
+	width: 22px; 
+}  
+.clue-bottom-jtip .cluetip-arrows 	{ 
+	background-image: url(images/cluetip_arrowup.png); 
+	top: -11px; 
+	left: 50%;  
+	margin-left: -11px;  
+	height: 11px;  
+	width: 22px; 
+}
+
+#cluetip {  
+	border: 5px solid #ccc ; 
+}
+/* stupid IE6 HasLayout hack */
+.cluetip-rounded #cluetip-title, .cluetip-rounded #cluetip-inner { 
+	zoom: 1; 
+}

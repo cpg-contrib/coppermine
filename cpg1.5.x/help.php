@@ -105,7 +105,7 @@ $text = @unserialize(@base64_decode($text));
 }
 
 if ($close != 1) {
-$close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_menu" onclick="window.close();">'.$lang_common['close'].'</a><br />&nbsp;</div>';
+//$close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_menu" onclick="window.close();">'.$lang_common['close'].'</a><br />&nbsp;</div>';
 }
 
 // Determine the language of the user and display the help file in his language if available. 

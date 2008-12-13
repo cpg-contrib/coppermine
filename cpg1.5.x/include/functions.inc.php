@@ -1189,9 +1189,11 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         $query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} AS r
                     WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved
                     ORDER BY $sort_order $limit";
-        $result = cpg_db_query($query);
+
+		$result = cpg_db_query($query);
         $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
+
         // Set picture caption
         if ($set_caption) {
             if ($CONFIG['display_thumbnail_rating'] == 1) {
@@ -1216,7 +1218,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $rowset = $meta_album_params['rowset'];
             return $rowset;
     }
-    
+		
     // Meta albums
     switch($album) {
         case 'lastcom': // Last comments
@@ -2671,8 +2673,16 @@ function& display_slideshow($pos,$ajax_show=0)
     $a = 0;
     //$pid = (int)$_GET['pid'];
     $start_img = '';
- 
-    $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
+	
+ 	/** calculate total amount of pic a perticular album */
+ 	if($ajax_show==0){
+		$pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
+		$Pic_length = count($pic_data);
+		set_js_var('Pic_count',$Pic_length);
+	}
+	/** get the pic details by querying database*/
+	$pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
+
 
     foreach ($pic_data as $picture) {
         if($CONFIG['thumb_use']=='ht' && $picture['pheight'] > $CONFIG['picture_width'] ){ // The wierd comparision is because only picture_width is stored
@@ -2713,25 +2723,22 @@ function& display_slideshow($pos,$ajax_show=0)
     }
 }
 
-    $Pic_length = count($Pic);
-    /** set variables to jquery.slideshow.js */
-    set_js_var('Time',$slideshow);
-    set_js_var('Pic_count',$Pic_length);
-    set_js_var('Pid',$pid);
-    
-    if (!$i) {
-        echo "Pic[0] = 'images/thumb_document.jpg'\n";
-    }
-    if($ajax_show==0){
-        theme_slideshow($Pic[$pos],$Title[$pos]);
-    }
-    $dataArray  = array ('url'=>$Pic[$pos],'title'=>$Title[$pos],'pid'=>$Pid[$pos]);
-    $dataJons = json_encode($dataArray);
-    
-    if($ajax_show==1){
-        echo $dataJons;
-    }
-    
+	/** set variables to jquery.slideshow.js */
+	set_js_var('Time',$slideshow);
+	set_js_var('Pid',$pid);
+	
+	if (!$i) { echo "Pic[0] = 'images/thumb_document.jpg'\n"; }
+	
+	/** show slide show on first time*/
+	if($ajax_show==0){ theme_slideshow($Pic['0'],$Title['0']); }
+	
+	/** now we make a array to encode*/
+	$dataArray 	= array ('url'=>$Pic['0'],'title'=>$Title['0'],'pid'=>$Pid['0']);
+	$dataJons = json_encode($dataArray);
+	
+	/** send variable to javascript script*/
+	if($ajax_show==1){ 	echo $dataJons; }
+
 }
 
 // Return the url for a picture, allows to have pictures spreaded over multiple servers
@@ -3605,7 +3612,7 @@ EOT;
 
 function cpg_display_help($reference = 'f=index.htm', $width = '600', $height = '350', $icon = 'help') 
 {
-    global $CONFIG, $USER;
+    global $CONFIG, $USER, $lang_common ;
     if ($reference == '' || $CONFIG['enable_help'] == '0') {
         return; 
     }
@@ -3624,7 +3631,11 @@ function cpg_display_help($reference = 'f=index.htm', $width = '600', $height = 
         $icon = '<img src="images/help.gif" width="13" height="11" border="0" alt="" title="" />';
     }
 
-    $help_html = "<a href=\"javascript:;\" onclick=\"coppermine_help_window=window.open('help.php?css=" . $help_theme . "&amp;" . $reference . "','coppermine_help','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "'); coppermine_help_window.focus()\" style=\"cursor:help\">" . $icon . "</a>";
+	$title_help = 	$lang_common['help'];
+	
+   // $help_html = "<a href=\"javascript:;\" onclick=\"coppermine_help_window=window.open('help.php?css=" . $help_theme . "&amp;" . $reference . "','coppermine_help','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "'); coppermine_help_window.focus()\" style=\"cursor:help\">" . $icon . "</a>";
+    
+    $help_html = "<a class=\"jt\" href='help.php?". $reference."'  rel='help.php?css=" . $help_theme . "&amp;" . $reference . "' title=".$title_help." >".$icon."</a>";
     return $help_html;
 } // function cpg_display_help
 
