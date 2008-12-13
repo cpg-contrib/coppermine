@@ -3,7 +3,7 @@ var swfu;
 $(document).ready(function() {
 	var settings = {
 		flash_url : "js/swfupload/swfupload.swf",
-		upload_url: js_vars.site_url + "/upload_swf.php",	// Relative to the SWF file
+		upload_url: js_vars.site_url + "/upload.php",	// Relative to the SWF file
 		post_params: {"process" : "1", "user" : js_vars.user},
 		file_size_limit : "100 MB",
 		file_types : "*.*", //js_vars.allowed_file_types,
