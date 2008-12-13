@@ -283,6 +283,20 @@
     <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);</pre></td>
   </tr>
   <tr>
+    <td valign="top" class="tableb">include/functions.inc.php</td>
+    <td valign="top" class="tableb"><a name="plugin_hooks_bbcode"></a><strong>bbcode</strong><a href="#plugin_hooks_bbcode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">Filter</td>
+    <td valign="top" class="tableb">with this hook, you can modify the comment that has been submitted and add your custom bbcodes. (Only available when a '[' has been found in the comment)</td>
+    <td valign="top" class="tableb"><pre class="smallcode">$text = CPGPluginAPI::filter('bbcode', $text);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_theme_add_comment"></a><strong>theme_add_comment</strong><a href="#plugin_hooks_theme_add_comment" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Filter</td>
+    <td valign="top" class="tableb tableb_alternate">filters $template_add_your_comment, can be used to display extra data when comments are displayed (like bbcode buttons).</td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$template_add_your_comment = CPGPluginAPI::filter('theme_add_comment', $template_add_your_comment);</pre></td>
+  </tr>
+  <tr>
     <td valign="top" class="tableb">include/themes.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_file_data"></a><strong>file_data</strong><a href="#plugin_hooks_filename_file_data" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>

@@ -64,7 +64,8 @@
 js_include('js/displayimage.js');
 </pre>
 </p>
-However there is a catch in using this function. This function should be called before the <tt class="code">pageheader()</tt> function is called. The actual inclusion of javascript files is done in <tt class="code">pageheader()</tt> function and that is the reason all js inclusion should be done before that.
+However there is a catch in using this function. This function should be called before the <tt class="code">pageheader()</tt> function is called. The actual inclusion of javascript files is done in <tt class="code">pageheader()</tt> function and that is the reason all js inclusion should be done before that.<br /><br />
+If you need to add a javascript file for a plugin, the 'page_start' plugin action might be used.
 </p>
 
 <a name="dev_javascript_php_vars"></a><h2>How to pass PHP variables to included javascript<a href="#dev_javascript_php_vars" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>

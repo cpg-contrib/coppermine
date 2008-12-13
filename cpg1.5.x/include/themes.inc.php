@@ -3336,6 +3336,7 @@ function theme_html_comments($pid)
     global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER, $lang_bbcode_help_title, $lang_bbcode_help;
 
     $superCage = Inspekt::makeSuperCage();
+	$template_add_your_comment = CPGPluginAPI::filter('theme_add_comment', $template_add_your_comment);
 
     $html = '';
 
