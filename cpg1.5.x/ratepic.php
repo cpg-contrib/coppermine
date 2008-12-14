@@ -63,13 +63,13 @@ $sql = "DELETE " . "FROM {$CONFIG['TABLE_VOTES']} " . "WHERE vote_time < $clean_
 $result = cpg_db_query($sql);
 
 // Check if user already rated this picture
-$user_md5_id = USER_ID ? md5(USER_ID) : md5($user_id);
+$user_md5_id = USER_ID ? md5(USER_ID) : $USER['ID'];
 $sql = "SELECT * " . "FROM {$CONFIG['TABLE_VOTES']} " . "WHERE pic_id = '$pic' AND user_md5_id = '$user_md5_id'";
 $result = cpg_db_query($sql);
 
 if (mysql_num_rows($result)) { 
 	// user has already rated this file
-	$send_back = array('status' => 'error', 'msg' => $lang_rate_pic_php['already_rated']);
+	$send_back = array('status' => 'error', 'msg' => $lang_rate_pic_php['already_rated'], 'a' => $USER);
 	echo json_encode($send_back);
 	exit;
 }
@@ -120,7 +120,7 @@ if ($CONFIG['vote_details']) {
     cpg_db_query($query);
 }
 $new_rating = round(($new_rating / 2000) / (5/$rating_stars_amount), 1);
-$new_rating_text = $lang_rate_pic['already_voted'] . ' ' . sprintf($lang_rate_pic['rating'], $new_rating, $rating_stars_amount, $row['votes'] + 1);
+$new_rating_text = $lang_rate_pic_php['rate_ok'] . ' ' . sprintf($lang_rate_pic['rating'], $new_rating, $rating_stars_amount, $row['votes'] + 1);
 $send_back = array('status' => 'success', 'msg' => $lang_rate_pic_php['rate_ok'], 'new_rating_text' => $new_rating_text, 'new_rating' => round($new_rating, 0));
 echo json_encode($send_back);
 exit;

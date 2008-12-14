@@ -200,6 +200,7 @@ $(document).ready(function() {
 		}
 		
 		})
+        displayStars();
 	
 });
 
@@ -207,115 +208,78 @@ $(document).ready(function() {
 /**
 * This part is the rating part of displayimage.php
 */
-var displayRating = '';
-var currentId = '';
-var root = '';
-
-function rate(obj, rating, theme_dir){
-	var id = obj.title;
-	var fullId = obj.id;
-	var idName = fullId.substr(0, fullId.indexOf('_'));
-	$.get('ratepic.php?rate=' + id + '&pic=' + idName, function(data){
+function rate(obj){
+	$.get('ratepic.php?rate=' + obj.title + '&pic=' + js_vars.picture_id, function(data){
 		//create a JSON object of the returned data
 		var json_data = eval('(' + data + ')');
 		//check the data and respond upon it
-		if(json_data.status == 'error'){
-			//something went wrong, tell the user what it was
-			$('#rating_stars').next().html( json_data.msg ); 
-		}else if(json_data.status == 'success'){
+		js_vars.lang_rate_pic = json_data.msg;
+		if(json_data.status == 'success'){
 			//vote casted, update rating and show user
-			$('#rating_stars').html( '<center>' + json_data.msg + '<br />' + buildRating(json_data.new_rating, 'null', theme_dir, false) + '</center>');
+			js_vars.rating = json_data.new_rating;
+			js_vars.can_vote = "false";
 			$('#voting_title').html( json_data.new_rating_text );	
 		}
+		displayStars();
 	});
 
 }
 
-function changeover(obj, rating, theme_dir){
-	var imageName = obj.src;
+function changeover(obj){
 	var id = obj.title;
-	var index = imageName.lastIndexOf('/');
-	var filename = imageName.substring(index+1);
-	var fullId = obj.id;
-	var idName = fullId.substr(0, fullId.indexOf('_'));
-	var totalRating = rating;
-
 	for(i=0; i<id; i++) {
-		var num = i+1;
-		document.getElementById(idName+'_'+num).src = theme_dir + 'images/rate_new.gif';			
+		document.getElementById(js_vars.picture_id + '_' + (i+1)).src = js_vars.theme_dir + 'images/rate_new.gif';			
 	}
-
 }
 
-function changeout(obj, rating, theme_dir){
-	var imageName = obj.src;
-	var id = obj.title;
-	var index = imageName.lastIndexOf('/');
-	var filename = imageName.substring(index+2);
-	var fullId = obj.id;
-	var idName = fullId.substr(0, fullId.indexOf('_'));
-	var totalRating = rating;
-	
+function changeout(obj){
+	var id = obj.title;	
 	for(i=0; i<id; i++) {
-		var num = i+1;
-		if(i < totalRating) {
-			document.getElementById(idName+'_'+num).src = theme_dir + 'images/rate_full.gif';			
+		if(i < js_vars.rating) {
+			document.getElementById(js_vars.picture_id + '_' + (i+1)).src = js_vars.theme_dir + 'images/rate_full.gif';			
 		}
 		else {
-			document.getElementById(idName+'_'+num).src = theme_dir + 'images/rate_empty.gif';			
+			document.getElementById(js_vars.picture_id + '_' + (i+1)).src = js_vars.theme_dir + 'images/rate_empty.gif';			
 		}
 	}
 }
 
-function displayStars(rating, idName, theme_dir, allow_vote, help_line){
-	var fallback = document.getElementById("stars_amount").innerHTML;
-	if(fallback != 'fallback'){
-		document.write('<center>');
-		if(allow_vote){
-			document.write(help_line + '<br />');
+function displayStars(){
+	if(js_vars.stars_amount != 'fallback'){
+		$('#star_rating').empty();
+		var center = document.createElement('center');
+		center.id = 'rs_center';
+		if(js_vars.can_vote){
+			center.innerHTML = js_vars.lang_rate_pic + '<br />';
 		}
-		document.write(buildRating(rating, idName, theme_dir, allow_vote));
-		document.write('</center>');
+		center.innerHTML += buildRating();
+		$('#star_rating').append(center);
 	}
 }
 
-function buildRating(rating, idName, theme_dir, allow_vote){
-	var stars_amount = document.getElementById("stars_amount").innerHTML;
+function buildRating(){
 	var rating_stars = '';
 	
-	if(!isNumber(stars_amount)){
+	if(!isNumber(js_vars.stars_amount)){
 		//default to 5 stars
-		stars_amount = 5;
+		js_vars.stars_amount = 5;
 	}
-	
-	for(i=0; i < stars_amount; i++ ){
-		if(i < rating) {
-			if(allow_vote){
-				rating_stars += '<img style="cursor:pointer" src="'+theme_dir+'images/rate_full.gif" id="'+idName+'_'+(i+1)+'" title="'+(i+1)+'" onmouseout="changeout(this, '+rating+', \''+theme_dir+'\')" onmouseover="changeover(this, '+rating+', \''+theme_dir+'\')" onclick="rate(this, '+rating+', \''+theme_dir+'\')" />';
-			}else{
-				rating_stars += '<img src="'+theme_dir+'images/rate_new.gif" alt="' + rating + '"/>';
-			}
+	for(i=0; i < js_vars.stars_amount; i++ ){
+		var star11 = 'rate_full';
+		var star12 = 'rate_new';
+		if(i > js_vars.rating - 1) {
+			star11 = star12 = 'rate_empty';
 		}
-		else {
-			if(allow_vote){
-				rating_stars += '<img style="cursor:pointer" src="'+theme_dir+'images/rate_empty.gif" id="'+idName+'_'+(i+1)+'" title="'+(i+1)+'" onmouseout="changeout(this, '+rating+', \''+theme_dir+'\')" onmouseover="changeover(this, '+rating+', \''+theme_dir+'\')" onclick="rate(this, '+rating+', \''+theme_dir+'\')" />';
-			}else{
-				rating_stars += '<img src="'+theme_dir+'images/rate_empty.gif" alt="' + rating + '"/>';
-			}
-		}		
+		if(js_vars.can_vote == 'true'){
+			rating_stars += '<img style="cursor:pointer" src="' + js_vars.theme_dir + 'images/' + star11 + '.gif" id="' + js_vars.picture_id + '_'+(i+1)+'"'
+			rating_stars += ' title="' + (i+1) + '" onmouseout="changeout(this)" onmouseover="changeover(this)" onclick="rate(this)" />';
+		}else{
+			rating_stars += '<img src="' + js_vars.theme_dir + 'images/' + star11 + '.gif" alt="' + js_vars.rating + '" title="' + js_vars.rating + '"/>';
+		}				
 	}
 	return rating_stars;
 }
 
-function isNumber(test_input){
-	var possible_numbers = "1234567890";
-	var n;
-
-	for (i = 0; i < test_input.length; i++){ 
-    	n = test_input.charAt(i); 
-    	if(possible_numbers.indexOf(n) == -1){
-        	return false;
-		}
-	}
-	return true;
+function isNumber(val){
+	return /^-?((\d+\.?\d?)|(\.\d+))$/.test(val);
 }
