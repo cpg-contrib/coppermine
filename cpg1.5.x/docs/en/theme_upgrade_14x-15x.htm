@@ -228,6 +228,28 @@ a:active .image{
         font-size:1.4em;
         font-weight:bold;
 }</pre>
+
+<a name="theme_convert_style_vanity"></a><h3>Adopt the changed path for the vanity icons<a href="#theme_convert_style_vanity" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>The path for the <a href="theme_template.htm#theme_template_vanity">vanity icons</a> has changed from the images folder to a sub-folder named &quot;<tt class="code">vanity</tt>&quot;.</p>
+<p>Find</p>
+<pre class="smallcode">#v_php {float:left;background-image:url(../../images/powered-php.gif);}
+#v_php:hover {background-image:url(../../images/h_powered-php.gif);}
+#v_mysql {float:left;background-image:url(../../images/powered-mysql.gif);}
+#v_mysql:hover  {background-image:url(../../images/h_powered-mysql.gif);}
+#v_xhtml {float:right;background-image:url(../../images/valid-xhtml10.gif);}
+#v_xhtml:hover {background-image:url(../../images/h_valid-xhtml10.gif);}
+#v_css {float:right;background-image:url(../../images/valid-css.gif);}
+#v_css:hover{background-image:url(../../images/h_valid-css.gif);}</pre>
+<p>and replace with</p>
+<pre class="smallcode">#v_php {float:left;background-image:url(../../images/vanity/powered-php.gif);}
+#v_php:hover {background-image:url(../../images/vanity/h_powered-php.gif);}
+#v_mysql {float:left;background-image:url(../../images/vanity/powered-mysql.gif);}
+#v_mysql:hover  {background-image:url(../../images/vanity/h_powered-mysql.gif);}
+#v_xhtml {float:right;background-image:url(../../images/vanity/valid-xhtml10.gif);}
+#v_xhtml:hover {background-image:url(../../images/vanity/h_valid-xhtml10.gif);}
+#v_css {float:right;background-image:url(../../images/vanity/valid-css.gif);}
+#v_css:hover{background-image:url(../../images/vanity/h_valid-css.gif);}</pre>
+<p>If you don't use the vanity icons at all, you can savely ignore the changes.</p>
 <a name="theme_convert_style_end"></a>
 
 <a name="theme_convert_template"></a><h2>Edit template.html<a href="#theme_convert_template" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>

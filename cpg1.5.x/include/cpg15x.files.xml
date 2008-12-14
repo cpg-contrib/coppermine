@@ -3862,30 +3862,6 @@
     <hash>c87df0131ef04e69a9057b4015f981f0</hash>
   </element>
   <element>
-    <fullpath>images/h_powered-mysql.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>8595107f50a95a73b43abc4ea9cdd84e</hash>
-  </element>
-  <element>
-    <fullpath>images/h_powered-php.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>fa72f2b4c8ab0efc242a8a80a5d820a0</hash>
-  </element>
-  <element>
-    <fullpath>images/h_valid-css.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>4ad9c86b09a0c28c01206e9e2ac484ab</hash>
-  </element>
-  <element>
-    <fullpath>images/h_valid-xhtml10.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>5a01f08eea83dfff0c2fcd49e23f4a60</hash>
-  </element>
-  <element>
     <fullpath>images/help.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -3902,18 +3878,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>bf7f61c7648395c85315559be8f7144d</hash>
-  </element>
-  <element>
-    <fullpath>images/powered-mysql.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>a7e651420d0b7544256d64a34a12b977</hash>
-  </element>
-  <element>
-    <fullpath>images/powered-php.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>065384f4f6c7fe18123b70775a2af5a0</hash>
   </element>
   <element>
     <fullpath>images/rate_empty.gif</fullpath>
@@ -3950,18 +3914,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>ad7e20118cbd3c0ed4bcdcf8001d3fc8</hash>
-  </element>
-  <element>
-    <fullpath>images/valid-css.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>7115db30f927abef35fddc9b376e09fa</hash>
-  </element>
-  <element>
-    <fullpath>images/valid-xhtml10.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>5d3e384fe0103e5988bd1e4653f3b9bb</hash>
   </element>
   <element>
     <fullpath>images/watermark.png</fullpath>
@@ -8013,6 +7965,59 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>8d03506438329e63580f5ce9e78d16ef</hash>
+  </element>
+  <element>
+    <fullpath>images/vanity/</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+  </element>
+  <element>
+    <fullpath>images/vanity/h_powered-mysql.gif</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>8595107f50a95a73b43abc4ea9cdd84e</hash>
+  </element>
+  <element>
+    <fullpath>images/vanity/h_powered-php.gif</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>fa72f2b4c8ab0efc242a8a80a5d820a0</hash>
+  </element>
+  <element>
+    <fullpath>images/vanity/h_valid-css.gif</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>4ad9c86b09a0c28c01206e9e2ac484ab</hash>
+  </element>
+  <element>
+    <fullpath>images/vanity/h_valid-xhtml10.gif</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>5a01f08eea83dfff0c2fcd49e23f4a60</hash>
+  </element>
+  <element>
+    <fullpath>images/vanity/powered-mysql.gif</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>a7e651420d0b7544256d64a34a12b977</hash>
+  </element>
+  <element>
+    <fullpath>images/vanity/powered-php.gif</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>065384f4f6c7fe18123b70775a2af5a0</hash>
+  </element>
+  <element>
+    <fullpath>images/vanity/valid-css.gif</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>7115db30f927abef35fddc9b376e09fa</hash>
+  </element>
+  <element>
+    <fullpath>images/vanity/valid-xhtml10.gif</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>5d3e384fe0103e5988bd1e4653f3b9bb</hash>
   </element>
   <element>
     <fullpath>include/</fullpath>

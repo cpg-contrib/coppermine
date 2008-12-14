@@ -870,37 +870,30 @@ a:hover {
 
 #v_php {
 	float:left;
-	background-image:url(../../images/powered-php.gif);
+	background-image:url(../../images/vanity/powered-php.gif);
 }
-
 #v_php:hover {
-	background-image:url(../../images/h_powered-php.gif);
+	background-image:url(../../images/vanity/h_powered-php.gif);
 }
-
 #v_mysql {
-	float:left;background-image:url(../../images/powered-mysql.gif);
+	float:left;
+	background-image:url(../../images/vanity/powered-mysql.gif);
 }
-
-#v_mysql:hover {
-	background-image:url(../../images/h_powered-mysql.gif);
+#v_mysql:hover  {
+	background-image:url(../../images/vanity/h_powered-mysql.gif);
 }
-
 #v_xhtml {
-	float:right;
-	background-image:url(../../images/valid-xhtml10.gif);
+	float:right;background-image:url(../../images/vanity/valid-xhtml10.gif);
 }
-
 #v_xhtml:hover {
-	background-image:url(../../images/h_valid-xhtml10.gif);
+	background-image:url(../../images/vanity/h_valid-xhtml10.gif);
 }
-
 #v_css {
 	float:right;
-	background-image:url(../../images/valid-css.gif);
+	background-image:url(../../images/vanity/valid-css.gif);
 }
-
-#v_css:hover{
-	background-image:url(../../images/h_valid-css.gif);
+#v_css:hover {
+	background-image:url(../../images/vanity/h_valid-css.gif);
 }
 
 .important {
