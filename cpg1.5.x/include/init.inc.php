@@ -274,6 +274,12 @@ require('themes/'.$CONFIG['theme'].'/theme.php');
 
 require('include/themes.inc.php');  //All Fallback Theme Templates and Functions
 
+if (defined('THEME_HAS_MENU_ICONS')) {
+  $ICON_DIR = $THEME_DIR . 'images/icons/';
+} else {
+  $ICON_DIR = 'images/icons/';
+}
+
 // Language processing --- start
 // We load the default language file
 require_once('lang/english.php');

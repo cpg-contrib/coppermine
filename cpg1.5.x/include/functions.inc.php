@@ -4720,21 +4720,16 @@ function rebuild_tree($parent, $left, $depth, $pos)
  */
 function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '', $extension = 'png')
 {
-    global $CONFIG, $THEME_DIR;
+    global $CONFIG, $ICON_DIR;
     if ($CONFIG['enable_menu_icons'] < $config_level) {
       return;
     }
     $return = '';
-    if (defined('THEME_HAS_MENU_ICONS')) {
-      $folder = $THEME_DIR . 'images/icons/';
-    } else {
-      $folder = 'images/icons/';
-    }
     // sanitize extension
     if ($extension != 'jpg' && $extension != 'gif') {
       $extension = 'png';
     }
-    $relative_path = $folder . $icon_name . '.' . $extension;
+    $relative_path = $ICON_DIR . $icon_name . '.' . $extension;
     // check if file exists
     if ($check != '') {
       if (file_exists($relative_path) != TRUE) {
