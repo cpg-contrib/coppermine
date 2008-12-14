@@ -2001,14 +2001,18 @@ $lang_search_new_php['no_album'] = 'no album selected';
 $lang_search_new_php['result_icon'] = 'click for details or to reload';
 $lang_search_new_php['notes'] = <<< EOT
 	<ul>
-        <li><strong>OK</strong>: means that the file was successfully added</li>
-        <li><strong>DP</strong>: means that the file is a duplicate and is already in the database</li>
-        <li><strong>PB</strong>: means that the file could not be added, check your configuration and the permission of directories where the files are located</li>
-        <li><strong>NA</strong>: means that you haven't selected an album the files should go to, hit '<a href="javascript:history.back(1)">back</a>' and select an album. If you don't have an album <a href="albmgr.php">create one first</a></li>
-        <li>If the OK, DP, PB 'signs' does not appear click on the broken file to see any error message produced by PHP</li>
+        <li>%s: the file was successfully added</li>
+        <li>%s: the file is a duplicate and is already in the database</li>
+        <li>%s: the file could not be added, check your configuration and the permission of directories where the files are located</li>
+        <li>%s: you need to select an album first</li>
+        <li>%s: the file is broken or inacessible</li>
+        <li>%s: unknown file type</li>
+        <li>%s: the file is actually a GIF image</li>
+        <li>If the icons do not appear click on the broken file to see any error message produced by PHP</li>
         <li>If your browser timeouts, hit the reload button</li>
     </ul>
 EOT;
+// Translator note: Do not translate the %s placeholders - they are being replaced with icons 
 $lang_search_new_php['check_all'] = 'Check All';
 $lang_search_new_php['uncheck_all'] = 'Uncheck All';
 $lang_search_new_php['no_folders'] = 'There are no folders inside the "albums" folder yet. Make sure to create at least one custom folder within "albums" folder and ftp-upload your files there. You mustn\'t upload to the "userpics" nor "edit" folders, they are reserved for http uploads and internal purposes.';
