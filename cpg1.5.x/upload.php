@@ -47,7 +47,121 @@ if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
 
 //___________________________________Function Block_______________________________________
 
-// The function to create the album list drop down.
+// The text box form input function. Takes the text label for the box, the input name, the maximum length for text boxes,
+// and the number of iterations.
+function text_box_input($text, $name, $max_length, $iterations, $default='') 
+{
+
+    global $CONFIG;
+
+    $ordinal = '';
+
+    if (($text == '') and ($iterations == '')) {
+        echo "        <input type=\"hidden\" name=\"$name\" value=\"$default\" />\n";
+        return;
+    }
+
+    // Begin loop
+    for ($counter=0; $counter<$iterations; $counter++) {
+
+    // Create a numbering system when necessary.
+    if ($text == '') {
+        $cardinal = $counter + 1;
+        $ordinal = "".$cardinal.". ";
+    }
+
+    // Create a text box.
+    echo <<<EOT
+        <tr>
+            <td width="40%" class="tableb">
+                        $text  $ordinal
+        </td>
+        <td width="60%" class="tableb" valign="top">
+                <input type="text" style="width: 100%" name="$name" maxlength="$max_length" value="$default" class="textinput" id="$name" />
+                </td>
+        </tr>
+
+EOT;
+    }
+}
+
+// The file input function. Takes the label, field name, and number of iterations as arguments.
+function file_input($text, $name, $iterations) 
+{
+
+    $ordinal = '';
+
+    // Begin loop
+    for ($counter=0; $counter<$iterations; $counter++) {
+
+    // Create a numbering system when necessary.
+    if ($text == '') {
+        $cardinal = $counter + 1;
+        $ordinal = "".$cardinal.". ";
+    }
+
+    // Create the file input box.
+    echo <<<EOT
+        <tr>
+            <td class="tableb">
+                        $text  $ordinal
+        </td>
+        <td class="tableb" valign="top">
+                        <input type="file" name="$name" size="40" class="listbox" />
+                </td>
+        </tr>
+
+EOT;
+    }
+}
+
+// The function for text areas on forms. Takes the label, field name, and maximum length as arguments.
+function text_area_input($text, $name, $max_length,$default='') 
+{
+
+    // Create the text area.
+    echo <<<EOT
+        <tr>
+                <td class="tableb" valign="top">
+                        $text
+                </td>
+                <td class="tableb" valign="top">
+                        <textarea name="$name" rows="5" cols="40" class="textinput" style="width: 100%;" onKeyDown="textCounter(this, $max_length);" onKeyUp="textCounter(this, $max_length);">$default</textarea>
+                </td>
+        </tr>
+EOT;
+}
+
+
+// The hidden form input function. Takes the hidden input field name and value.
+function hidden_input($name, $value) 
+{
+        echo <<<EOT
+        <tr>
+            <td colspan="2">
+                   <input type="hidden" name="$name" value="$value" />
+            </td>
+        </tr>
+
+EOT;
+}
+
+
+// The form label creation function. Takes a non-array element form $data as its argument.
+function form_label($text) 
+{
+    echo <<<EOT
+        <tr>
+                <td class="tableh2" colspan="2">
+                        <strong>$text</strong>
+                </td>
+        </tr>
+
+EOT;
+}
+
+
+// Creates the album list drop down
 function form_alb_list_box($text, $name) 
 {
     $superCage = Inspekt::makeSuperCage();
@@ -162,6 +276,7 @@ EOT;
 EOT;
 }
 
+
 function form_instructions() 
 {
     global $CONFIG, $lang_upload_php, $upload_form, $max_file_size;
@@ -186,8 +301,82 @@ function form_instructions()
 
 }
 
+
+// The create form function. Takes the $data array as its object.
+// Type:
+// 0 => text box input
+// 1 => file input
+// 2 => album list
+// 3 => text area input
+// 4 => hidden input
+function create_form(&$data) 
+{
+
+    global $CONFIG, $lang_upload_php;
+
+    // Cycle through the elements in the data array.
+    foreach($data as $element) {
+
+        // If the element is another array, parse the definition contained within the array.
+        if ((is_array($element))) {
+            $element[2] = (isset($element[2])) ? $element[2] : '';
+            $element[3] = (isset($element[3])) ? $element[3] : '';
+            $element[4] = (isset($element[4])) ? $element[4] : '';
+
+            // Based on the type declared in the data array's third position, create a different form input.
+            switch ($element[2]) {
+
+                // If the type is a text box input
+                case 0 :
+
+                    //Call the form input function.
+                    text_box_input($element[0], $element[1], $element[3], $element[4], (isset($element[5])) ? $element[5] : '');
+                    break;
+
+                // If the type is a file input.
+                case 1 :
+
+                    // Call the file input function.
+                    file_input($element[0], $element[1], $element[3]);
+                    break;
+
+                // If the type is an album list dropdown.
+                case 2 :
+
+                    // Call the album list function.
+                    form_alb_list_box($element[0], $element[1]);
+                    break;
+
+                // If the type is a text area
+                case 3 :
+
+                    // Call the text area function.
+                    text_area_input($element[0], $element[1], $element[3], (isset($element[4])) ? $element[4] : '');
+                    break;
+
+                // If the type is a hidden form
+                case 4 :
+
+                    // Call the hidden input funtion.
+                    hidden_input($element[0], $element[1]);
+                    break;
+
+                // If the type is not present, kill the script.
+                default:
+                    cpg_die(ERROR, $lang_upload_php['reg_instr_1'], __FILE__, __LINE__);
+            } // switch
+        } else {
+
+            // If the element is not an array, it is a label, so call the label function.
+            form_label($element);
+        }
+    }
+}
+
+
 // Function to create the swfupload form
-function create_form() {
+function create_form_swfupload() 
+{
     global $lang_common;
     form_alb_list_box($lang_common['album'], 'album');
     
@@ -198,17 +387,17 @@ function create_form() {
     <tr>
         <td colspan="2">
             <div id="upload_form" style="display: none;">
-			<div>
-				<span id="browse_button_place_holder"></span>
-				<button id="button_cancel" onclick="swfu.cancelQueue();" disabled="disabled" class="button">
+            <div>
+                <span id="browse_button_place_holder"></span>
+                <button id="button_cancel" onclick="swfu.cancelQueue();" disabled="disabled" class="button">
                     {$cancel_icon}
                     Cancel All Uploads
                 </button>
-			</div>
+            </div>
             <br />
-			<div class="fieldset flash" id="upload_progress">
-    			<span class="legend">Upload Queue</span>
-			</div>
+            <div class="fieldset flash" id="upload_progress">
+                <span class="legend">Upload Queue</span>
+            </div>
             <div id="upload_status"><span id="upload_count">0</span> Files Uploaded</div>
             </div>
         </td>
@@ -229,9 +418,60 @@ function create_form() {
 EOT;
 }
 
+
+// Creates Javascript verification code and opening form tags
+// $path --> path to the form action script
+function open_form($path) 
+{
+    echo <<<EOT
+    <script language="javascript" type="text/javascript">
+    function textCounter(field, maxlimit) {
+            if (field.value.length > maxlimit) // if too long...trim it!
+            field.value = field.value.substring(0, maxlimit);
+    }
+    </script>
+    <form name="cpgform" id="cpgform" method="post" action="$path" enctype="multipart/form-data" onsubmit="cpgUploadToggleProgressBar();">
+EOT;
+}
+
+
+// The close form function creates the submit button and the closing tags.
+function close_form($button_value,$progress=0) 
+{
+    // Pull the language array into the function.
+    global $lang_upload_php, $THEME_DIR;
+
+    // Create the submit button and close the form.
+    print <<<EOT
+        <tr>
+                <td colspan="2" align="center" class="tablef">
+                    <span id="cpg_progress_bar" style="display:none">
+EOT;
+    if ($progress == 1) {
+        if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
+            $prefix = $THEME_DIR;
+        } else {
+            $prefix = '';
+        }
+        print '                         <img src="' . $prefix . 'images/loader.gif" border="0" alt="" title="' . $lang_upload_php['please_wait'] . '" />';
+    }
+    print '                        </span>';
+    print '                        <span id="cpg_upload_button" style="display:block">'; 
+    print '                            <input type="submit" value="'.$button_value.'" class="button" />';
+    print '                        </span>';
+    print <<<EOT
+                </td>
+
+        </tr>
+
+EOT;
+}
+
+
 // Function to set the allowed file extensions string as required by swfupload
 // This function is currently not being used.
-function set_allowed_file_extensions_swf() {
+function set_allowed_file_extensions_swf() 
+{
     global $CONFIG;
     $allowed_types = '';
     $allowed_img_types = explode('/', $CONFIG['allowed_img_types']);
@@ -256,6 +496,8 @@ function set_allowed_file_extensions_swf() {
 
     set_js_var('allowed_file_types', $allowed_types);
 }
+
+
 //################################# MAIN CODE BLOCK ##################################################
 
 // Check whether we are getting album id through _GET or _POST
@@ -274,9 +516,9 @@ if (GALLERY_ADMIN_MODE) {
     //select albums that don't belong to a category
     $public_albums_no_cat = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
 } else {
-        $public_albums = cpg_db_query("SELECT aid, title, cid, name FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID."))");
-        //select albums that don't belong to a category
-        $public_albums_no_cat = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0 AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID."))");   
+    $public_albums = cpg_db_query("SELECT aid, title, cid, name FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID."))");
+    //select albums that don't belong to a category
+    $public_albums_no_cat = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0 AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID."))");   
 }
 
 
@@ -286,7 +528,7 @@ if (mysql_num_rows($public_albums)) {
     $public_albums_list = array();
 }
 
-//do the same for non categorized albums
+//do the same for non-categorized albums
 if (mysql_num_rows($public_albums_no_cat)) {
     $public_albums_list_no_cat = cpg_db_fetch_rowset($public_albums_no_cat);
 } else {
@@ -308,7 +550,8 @@ if (USER_ID) {
     $user_albums_list = array();
 }
 
-if (!count($public_albums_list) && !count($user_albums_list)) {  // there's no album where the user is allowed to upload to
+if (!count($public_albums_list) && !count($user_albums_list)) {  
+    // there's no album where the user is allowed to upload to
     if (USER_CAN_CREATE_ALBUMS) {
         cpg_die (ERROR, $lang_upload_php['err_no_alb_uploadables'].'<br />&nbsp;<br /><a href="albmgr.php" title="'.$lang_user_admin_menu['albmgr_title'].'" class="admin_menu">'.$lang_user_admin_menu['albmgr_lnk'].'</a>', __FILE__, __LINE__);
     } else {
@@ -320,44 +563,88 @@ if (!count($public_albums_list) && !count($user_albums_list)) {  // there's no a
 $max_file_size = $CONFIG['max_upl_size'] << 10;
 
 // Create the upload forms using the upload congfiguration.
-
 if (!$superCage->post->keyExists('process')) {
-    // Get the user password hash
-    $user_pass = $cpg_udb->get_user_pass(USER_ID);
-    // Serialize and base64 encode the password
-    set_js_var('user', base64_encode(serialize($user_pass)));
+
+    if ($upload_form == 'swfupload') {
+        // Get the user password hash
+        $user_pass = $cpg_udb->get_user_pass(USER_ID);
+        // Serialize and base64 encode the password
+        set_js_var('user', base64_encode(serialize($user_pass)));
+    }
     // Do some cleanup in the edit directory.
     spring_cleaning('./'.$CONFIG['fullpath'].'edit',CPG_HOUR);
 
     // Create upload form headers.
     pageheader($lang_upload_php['title']);
-    
+
+    if ($upload_form == 'html_single') {
+        // For single upload form, send the request to db_input.php
+        open_form('db_input.php');
+    }
+
     // Open the form table.
     starttable("100%", cpg_fetch_icon('upload',2).$lang_upload_php['title'], 2);
-    form_instructions();
-    // Create the form.
-    create_form();
-    // Close the table, create footers, and flush the output buffer.
-    endtable();
+
+    if ($upload_form == 'html_single') {
+        // Declare an array containing the various upload form box definitions.
+        $captionLabel = $lang_upload_php['description'];
+        $keywordLabel = $lang_common['keywords_insert1']. '<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">' . $lang_common['keywords_insert2'] .'</a>';
+        if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+        $form_array = array(
+            sprintf($lang_upload_php['max_fsize'], $CONFIG['max_upl_size']),
+            array($lang_common['album'], 'album', 2),
+            array('MAX_FILE_SIZE', $max_file_size, 4),
+            array($lang_upload_php['picture'], 'userpicture', 1, 1),
+            array($lang_upload_php['pic_title'], 'title', 0, 255, 1),
+            array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length']),
+            array($keywordLabel, 'keywords', 0, 255, 1),
+            array('event', 'picture', 4)
+        );
+        if(!empty($CONFIG['user_field1_name'])) {
+            $form_array[] = array($CONFIG['user_field1_name'], 'user1', 0, 255, 1);
+        }
+        if(!empty($CONFIG['user_field2_name'])) {
+            $form_array[] = array($CONFIG['user_field2_name'], 'user2', 0, 255, 1);
+        }
+        if(!empty($CONFIG['user_field3_name'])) {
+            $form_array[] = array($CONFIG['user_field3_name'], 'user3', 0, 255, 1);
+        }
+        if(!empty($CONFIG['user_field4_name'])) {
+            $form_array[] = array($CONFIG['user_field4_name'], 'user4', 0, 255, 1);
+        }
+        // Create the upload form
+        create_form($form_array);
+        // Close the form with an submit button
+        close_form($lang_upload_php['title'],1);
+        // Close the table, create footers, and flush the output buffer.
+        endtable();
+        echo "</form>";
+    } elseif ($upload_form == 'swfupload') {
+        // Show form instructions
+        form_instructions();
+        // Create the upload form
+        create_form_swfupload();
+        // Close the table, create footers, and flush the output buffer.
+        endtable();
+    }
     
     if ($CONFIG['display_xp_publish_link'] == 1) {
-    	print '<br />';
-    	starttable('100%', cpg_fetch_icon('info', 2) . $lang_upload_php['alternative_upload'],1);
-    	print <<< EOT
-    	<tr>
-    		<td class="tableb">
-    			{$lang_upload_php['xp_publish_promote']}<br />
-    			[<a href="xp_publish.php">{$lang_upload_php['more']}</a>]
-    		</td>
-    	</tr>
+        print '<br />';
+        starttable('100%', cpg_fetch_icon('info', 2) . $lang_upload_php['alternative_upload'],1);
+        print <<< EOT
+        <tr>
+            <td class="tableb">
+                {$lang_upload_php['xp_publish_promote']}<br />
+                [<a href="xp_publish.php">{$lang_upload_php['more']}</a>]
+            </td>
+        </tr>
 EOT;
-    	endtable();
+        endtable();
     }
     pagefooter();
     ob_end_flush();
 
     // Exit the script.
-
     exit;
 
 } elseif ($superCage->post->keyExists('process')) {
@@ -373,8 +660,7 @@ EOT;
     
     // Check to make sure the file was uploaded via POST.
     if (!is_uploaded_file($superCage->files->getRaw("/Filedata/tmp_name"))) {
-
-        // We reject the file, and make return the error.
+        // We reject the file, and return the error.
         echo $lang_upload_php['no_post'];
         exit;
     }
