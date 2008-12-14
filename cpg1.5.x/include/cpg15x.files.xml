@@ -3862,12 +3862,6 @@
     <hash>c87df0131ef04e69a9057b4015f981f0</hash>
   </element>
   <element>
-    <fullpath>images/gif48x48.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>97e022cc17a90e5398ef3393e11362ee</hash>
-  </element>
-  <element>
     <fullpath>images/h_powered-mysql.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -3940,12 +3934,6 @@
     <hash>9258302ef58455d3f8979e514fc08c69</hash>
   </element>
   <element>
-    <fullpath>images/read_error48x48.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>b66fabdeba38a99ff555fa365edd8245</hash>
-  </element>
-  <element>
     <fullpath>images/spacer.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -3964,36 +3952,6 @@
     <hash>ad7e20118cbd3c0ed4bcdcf8001d3fc8</hash>
   </element>
   <element>
-    <fullpath>images/unk48x48.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>d88403f309361bd9387b912d98b481fe</hash>
-  </element>
-  <element>
-    <fullpath>images/up_dup.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>1dba5d928359c059db85beb8ad1a0ee0</hash>
-  </element>
-  <element>
-    <fullpath>images/up_na.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>19ff902afe969331aaae2f7b276f4ac1</hash>
-  </element>
-  <element>
-    <fullpath>images/up_ok.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>10c0a6e40aaae3ac5b96ee48f07599b2</hash>
-  </element>
-  <element>
-    <fullpath>images/up_pb.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>f43a4453d3df1481f678d37f19d87125</hash>
-  </element>
-  <element>
     <fullpath>images/valid-css.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -4010,6 +3968,83 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>8dbc8ee040ba9132d2f35373a1d85c70</hash>
+  </element>
+  <element>
+    <fullpath>images/batch/</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+  </element>
+  <element>
+    <fullpath>images/batch/back.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>ab77c97cb2bc1b0385f96ca483f60578</hash>
+  </element>
+  <element>
+    <fullpath>images/batch/back_small.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>ab77c97cb2bc1b0385f96ca483f60578</hash>
+  </element>
+  <element>
+    <fullpath>images/batch/duplicate.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>ab77c97cb2bc1b0385f96ca483f60578</hash>
+  </element>
+  <element>
+    <fullpath>images/batch/duplicate_small.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>ab77c97cb2bc1b0385f96ca483f60578</hash>
+  </element>
+  <element>
+    <fullpath>images/batch/file_broken.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>ab77c97cb2bc1b0385f96ca483f60578</hash>
+  </element>
+  <element>
+    <fullpath>images/batch/folder_locked.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>ab77c97cb2bc1b0385f96ca483f60578</hash>
+  </element>
+  <element>
+    <fullpath>images/batch/gif.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>ab77c97cb2bc1b0385f96ca483f60578</hash>
+  </element>
+  <element>
+    <fullpath>images/batch/gif_small.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>ab77c97cb2bc1b0385f96ca483f60578</hash>
+  </element>
+  <element>
+    <fullpath>images/batch/ok.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>ab77c97cb2bc1b0385f96ca483f60578</hash>
+  </element>
+  <element>
+    <fullpath>images/batch/ok_small.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>ab77c97cb2bc1b0385f96ca483f60578</hash>
+  </element>
+  <element>
+    <fullpath>images/batch/unknown.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>ab77c97cb2bc1b0385f96ca483f60578</hash>
+  </element>
+  <element>
+    <fullpath>images/batch/unknown_small.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>ab77c97cb2bc1b0385f96ca483f60578</hash>
   </element>
   <element>
     <fullpath>images/browser/</fullpath>
