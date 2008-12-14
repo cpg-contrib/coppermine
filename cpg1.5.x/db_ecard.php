@@ -302,7 +302,7 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
     }
 }
 
-print '<tr><td class="tableh1_compact" align="center"><img src="images/arrow_upleft.gif" width="31" height="22" border="0" alt="" /></td>';
+print '<tr><td class="tableh1_compact" align="center"></td>';
 print '<td colspan="3" class="tableh1_compact">';
 print '<input type="button" name="CheckAll" class="button" value="'.$lang_db_ecard_php['check_all'].'" onClick="checkAll(document.ecardselect.eidselector)" />&nbsp;';
 print '<input type="button" name="UnCheckAll" class="button" value="'.$lang_db_ecard_php['uncheck_all'].'" onClick="uncheckAll(document.ecardselect.eidselector)" />';

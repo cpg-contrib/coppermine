@@ -3832,12 +3832,6 @@
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/arrow_upleft.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>6e2d86946f5d4be0934e1723fac56e0f</hash>
-  </element>
-  <element>
     <fullpath>images/ascending.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
