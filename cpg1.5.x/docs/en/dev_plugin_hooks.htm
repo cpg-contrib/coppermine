@@ -291,10 +291,11 @@
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
-    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_theme_add_comment"></a><strong>theme_add_comment</strong><a href="#plugin_hooks_theme_add_comment" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_theme_add_comment"></a><strong>theme_add_comment<br />theme_edit_comment</strong><a href="#plugin_hooks_theme_add_comment" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
-    <td valign="top" class="tableb tableb_alternate">filters $template_add_your_comment, can be used to display extra data when comments are displayed (like bbcode buttons).</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$template_add_your_comment = CPGPluginAPI::filter('theme_add_comment', $template_add_your_comment);</pre></td>
+    <td valign="top" class="tableb tableb_alternate">filters $template_add_your_comment &amp; $template_image_comments, can be used to display extra data when comments are displayed (like bbcode buttons).</td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$template_add_your_comment = CPGPluginAPI::filter('theme_add_comment', $template_add_your_comment);<br />
+$template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_image_comments);</pre></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">include/themes.inc.php</td>
