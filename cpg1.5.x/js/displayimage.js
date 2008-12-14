@@ -20,59 +20,189 @@
  * This file contains displayimage.php specific javascript
  */
 // When the document is ready
+		
 $(document).ready(function() {
-	/**
-	 * Function to bind behaviors on elements
-	 */
-	var bind_behaviors = function(scope) {
-		// Bind a onclick event on element with id filmstrip_next
-		$('#filmstrip_next', scope).click(function() {
-			// Get the url for next set of thumbnails. This will be the href of 'next' link
-			var next_url = $('#filmstrip_next', scope).attr('href');
-			// We will fade the thumbnails to a value of 0.1.
-			// We are not fading it out completely as we need to preserve the height of filmstrip div
-			$('td.thumbnails').fadeTo(2000, 0.1);
-			// Send the ajax request for getting next set of filmstrip thumbnails
-			$.get(next_url, {}, function(data) {
-				// Fill the filmstrip div with the html we got as a response of ajax request
-				$('div#filmstrip').html(data);
-				// The td will be hidden in above html. Slowly fade it in.
-				$('td.thumbnails').fadeIn(1500);
-				show_next_prev_links();
-				// Re-bind the behaviors on the new dom content
-				bind_behaviors($('div#filmstrip'));
+	
+			var nextPosition 	= js_vars.position; 
+			var NumberOfPics 	= js_vars.count;
+			var album 			= js_vars.album; 
+			var maxItems   		= parseInt(js_vars.max_item);
+			var width			= js_vars.thumb_width;
+				
+			if(maxItems%2==0){
+				maxItems 	= maxItems +1;
+			}
+			/**stop, if we don't have enugh images than maxItem*/
+			if(NumberOfPics <= maxItems){				
 				return false;
-			})
-			return false;
+			}
+			
+			//variables to handle the next - prev button
+			var picQeueu		=  (maxItems+1)/2;
+			var $go_next 		= parseInt(maxItems/2);
+			//cache the images RULs 
+			//create a objects to keep an array
+			var url_cache 		= new Array(NumberOfPics);
+			var link_cache		= new Array(NumberOfPics);
+			var img 	  		= new Image();
+			//checking position is zero and assign $go_next to zero
+			if(nextPosition < picQeueu){
+				var	cacheIndex		= 0;
+					
+			} else if(nextPosition > (NumberOfPics-picQeueu)){
+				var cacheIndex		= NumberOfPics - maxItems;
+					url_cache[0]="";
+			}else{
+				var	cacheIndex		= (nextPosition-$go_next);
+					url_cache[0]="";
+			}
+			//checking position is last thumb image..
+				
+			for(var i=0; i<maxItems; i++){ 
+				url_cache[cacheIndex+i] = $("img.strip_image").eq(i).attr("src");
+				link_cache[cacheIndex+i]= $("a.thumbLink").eq(i).attr("href");
+			}
+
+			var prev_link = nextPosition > (picQeueu-1) ? "<a id=\"filmstrip_prev\" rel=\"nofollow\" style=\"cursor: pointer;\"><img src=\"./images/icons/left.png\" border=\"0\" /></a>" : "<a id=\"filmstrip_prev\" rel=\"nofollow\" style=\"cursor: pointer;display:none\"><img src=\"./images/icons/left.png\" border=\"0\" /></a>";			
+			var next_link = nextPosition < (NumberOfPics - picQeueu) ? "<a id=\"filmstrip_next\" rel=\"nofollow\" style=\"cursor: pointer;\"><img src=\"./images/icons/right.png\" border=\"0\" /></a>" : "<a id=\"filmstrip_next\" rel=\"nofollow\" style=\"cursor: pointer;display:none\"><img src=\"./images/icons/right.png\" border=\"0\" /></a>";
+
+			$('td.prve_strip').html(prev_link);
+			$('td.next_strip').html(next_link);
+			
+				//set position if it is not zero 
+				if(nextPosition < $go_next){
+					nextPosition 	= $go_next;
+				}
+				//set postion if it is at end 
+				if(nextPosition > (NumberOfPics-picQeueu)){
+					nextPosition	= (NumberOfPics-picQeueu);
+				}		
+			// Bind a onclick event on element with id filmstrip_next
+		$('#filmstrip_next').click(function() {
+			// Get the url for next set of thumbnails. This will be the href of 'next' link; 
+			nextPosition = nextPosition +1;
+			
+			if(((NumberOfPics-1)-(picQeueu-1)) <= nextPosition ){
+				$('#filmstrip_next').hide();
+			}
+			//assign a variable to check initial position to next 
+			if(nextPosition < (picQeueu-1)){
+			// nextPosition = picQeueu-1;
+			}
+
+			if(nextPosition > (picQeueu-1)){
+				$('#filmstrip_prev').show();			
+			}
+				
+			if (!url_cache[nextPosition + $go_next]) {
+				var next_url = "displayimage.php?film_strip=1&album=" + album + "&ajax_call=2&pos=" + nextPosition;
+				// Send the ajax request for getting next set of filmstrip thumbnails
+				$.getJSON(next_url, function(data){
+
+					url_cache[nextPosition+$go_next] = data['url'];
+					link_cache[nextPosition+$go_next] = data['target'];
+					
+					var itemLength = $(".tape tr > .thumb").length;
+					var itemsToRemove = maxItems+1;
+					if (itemLength == itemsToRemove) {
+						$('.remove').remove();
+					}
+					$('.tape').css("marginLeft", '0px');
+					var thumb = '<td align="center" class="thumb" ><a style="width: '+width+'px; float: left" href="' + data['target'] + '"><img border="0"  class="strip_image" src="' + data['url'] + '"/></a></td>';
+					$('.tape tr').append(thumb);
+						tempWidth = parseInt(width) +3;
+					$('.tape').animate({
+						marginLeft: "-"+tempWidth+"px"
+					});
+					
+					$('.thumb').eq(0).addClass("remove");
+					
+					
+				});
+			}
+			else {
+				var itemLength = $(".tape tr > .thumb").length;
+				if (itemLength == (maxItems+1)) {
+					$('.remove').remove();
+				}
+				$('.tape').css("marginLeft", '0px');
+				var thumb = '<td align="center"  class="thumb" ><a style="width: '+width+'px; float: left" href="' + link_cache[nextPosition + $go_next] + '"><img border="0"  class="strip_image" src="' + url_cache[nextPosition + $go_next] + '"/></a></td>';
+				$('.tape tr').append(thumb);
+					tempWidth = parseInt(width) +3;
+				$('.tape').animate({
+					marginLeft: "-"+tempWidth+"px"
+				});
+				
+				$('.thumb').eq(0).addClass("remove");
+			}
 		});
 
+
 		// Bind a onclick event on element with id filmstrip_prev
-		$('#filmstrip_prev', scope).click(function() {
+		$('#filmstrip_prev').click(function() {
 			// Get the url for previous set of thumbnails. This will be the href of 'previous' link
-			var prev_url = $('#filmstrip_prev', scope).attr('href');
-			$('td.thumbnails').fadeTo(2000, 0.1);
-			$.get(prev_url, {}, function(data) {
-				$('div#filmstrip').html(data);
-				$('td.thumbnails').fadeIn(1500);
-				show_next_prev_links();
-				bind_behaviors($('div#filmstrip'));
-				return false;
-			})
-			return false;
+		
+			nextPosition = nextPosition -1;
+		
+			if(nextPosition >= ((NumberOfPics-1)-(picQeueu-1))){
+			var	nextPosition_to = (NumberOfPics-1)-(picQeueu-1);
+			}
+			else{
+			var	nextPosition_to = nextPosition;	
+			}
+			if(nextPosition_to <= (NumberOfPics-(picQeueu))){
+				$('#filmstrip_next').show();	
+			}
+			if(nextPosition_to < (picQeueu)){
+				$('#filmstrip_prev').hide();			
+			}
+						
+		if(!url_cache[nextPosition-$go_next]) {
+			var prev_url = "displayimage.php?film_strip=1&album="+album+"&ajax_call=1&pos="+nextPosition;  
+			$.getJSON(prev_url, function(data){
+			
+				url_cache[nextPosition-$go_next]	 	= data['url'];
+				link_cache[nextPosition-$go_next] 	= data['target'];
+			
+				var itemLength = $(".tape tr> .thumb").length;
+				if (itemLength == (maxItems+1)) {
+					$('.remove').remove();
+				}
+				
+				$('.tape').css("marginLeft", '-'+width+'px');
+				var thumb_prev = '<td align="center" class="thumb" ><a style="width: '+width+'px; float: left" href="'+data['target']+'"><img border="0" class="strip_image" src="'+data['url']+'"/></a></td>';
+				$('.tape tr').prepend(thumb_prev);
+
+ 				$('.tape').animate({
+ 					marginLeft: "0px"
+  				});
+ 
+
+				$('.thumb').eq((maxItems)).addClass("remove");
+				
+			});
+		}
+		else{
+				var itemLength = $(".tape tr > .thumb").length;
+				if (itemLength == (maxItems+1)) {
+					$('.remove').remove();
+				}
+		
+				$('.tape').css("marginLeft", '-'+width+'px');
+				var thumb_prev = '<td align="center" class="thumb" ><a style="width: '+width+'px; float: left" href="'+link_cache[nextPosition-$go_next]+'"><img border="0"  class="strip_image" src="'+url_cache[nextPosition-$go_next]+'"/></a></td>';
+				$('.tape tr').prepend(thumb_prev);
+				
+  				$('.tape').animate({
+  					marginLeft: "0px"
+  				});
+
+				$('.thumb').eq(maxItems).addClass("remove");
+		}
+		
 		})
-    }
+	
+});
 
-    // Show the previous and next links for filmstrip. The links are by default hidden and are shown using javascript
-    // This is done so that if javascript is off then the links won't be shown.
-    var show_next_prev_links = function() {
-    	$('span#filmstrip_prev_link').show();
-    	$('span#filmstrip_next_link').show();
-    }
-
-    // Show the filmstrip navigation links
-    show_next_prev_links();
-	bind_behaviors(this);
-})
 
 /**
 * This part is the rating part of displayimage.php

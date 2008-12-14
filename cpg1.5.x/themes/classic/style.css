@@ -1086,3 +1086,9 @@ a.progressCancel:hover {
 .cluetip-rounded #cluetip-title, .cluetip-rounded #cluetip-inner { 
 	zoom: 1; 
 }
+
+/** Filmstrip styles */
+div#film { 
+	padding: 5px 0 5px 0; 
+	overflow:hidden; 
+}

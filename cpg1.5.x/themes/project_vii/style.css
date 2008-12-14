@@ -998,3 +998,8 @@ html:first-child .bookmark_list img { /* Opera */
 	zoom: 1; 
 }
 
+/** Filmstrip styles */
+div#film { 
+	padding: 5px 0 5px 0; 
+	overflow:hidden; 
+}

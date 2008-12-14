@@ -238,8 +238,10 @@ function html_picinfo()
 	    $album = $superCage->get->getInt('album');
 	}
 
-	/** get ajax call to thubm photo added by Nuwan Sameera Hettiarachchi. */
+	/** get ajax call to thubm photo slideshow*/
 	$ajax_show = $superCage->get->getInt('ajax_show');
+	/** get AJAX call to run filmstripe */
+	$ajax_call = $superCage->get->getInt('ajax_call');
 
 	get_meta_album_set($cat);
 	
@@ -328,7 +330,6 @@ if (!$superCage->get->keyExists('fullsize') && !count($CURRENT_PIC_DATA)) {
 	
 	/** If we have film_strip key in GET then it means this is an ajax call for filmstrip */
 	if ($superCage->get->keyExists('film_strip')) {
-		// Get the filmstrip, display it and exit.
 		$film_strip = display_film_strip($album, (isset($cat) ? $cat : 0), $pos, true);
 		echo $film_strip;
 		exit;
