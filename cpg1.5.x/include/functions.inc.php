@@ -1139,7 +1139,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
     //}
 
     //if ($CONFIG['display_uploader']) {
-        $select_column_list[] = 'owner_id';
+        $select_column_list[] = 'r.owner_id';
         $select_column_list[] = 'owner_name';
     //}
 
