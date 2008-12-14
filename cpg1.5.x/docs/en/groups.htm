@@ -95,6 +95,8 @@ Users can be member of several groups - privileges inherited from the group accu
 <a name="group_cp_access_level"></a><h3>Access Level<a href="#group_cp_access_level" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>For each group, you can set the group's access level to:</p>
 <ul>
+  <li><strong>None</strong><br />
+  Users cannot view any images at all, except for the one thumbnail shown for an album or category.  This option is only recommended for the guest/anonymous group if you want to force people to log in to view thumbnails and the rest.  For other groups, this option usually doesn't make sense since your logged-in users will wonder why they logged in if they cannot see anything; the option is provided here in case some administrators find it useful.  If you are going to set a group's access to 'none', make sure the guest/anonymous group is also set to 'none'.  Otherwise, logged-in users will find that logging out gives them <em>more</em> access!</li>
   <li><strong>Thumbnail only</strong><br />
   Users can view the thumbnails only. If they click on them, they will be shown a little dialog box that they are not allowed to view larger images.</li>
   <li><strong>Thumbnail and intermediate image</strong><br />
@@ -102,7 +104,7 @@ Users can be member of several groups - privileges inherited from the group accu
   <li><strong>Thumbnail, intermediate and full-size image</strong><br />
   Users can access all sizes of images.</li>
 </ul>
-<p>The setting here for the guest/anonymous group will reflect and update the setting "Allow unlogged users access" on the Gallery Configuration page under "User Settings".
+<p>The setting here for the guest/anonymous group is the same as the setting "Allow unlogged users access" on the Gallery Configuration page under "User Settings".  If you update the option here, it will update the configuration setting and vice versa.</p>
 <a name="group_cp_access_level_end"></a>
 
 <a name="group_cp_assigned"></a><h3>Assigned albums<a href="#group_cp_assigned" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
