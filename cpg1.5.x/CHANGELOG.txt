@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-12-14 [C] Re-did batch-add graphics for fresher look {GauGau}
 2008-12-14 [A] Added missing hook to add custom bbcode {SaWey}
 2008-12-14 [A] Reworked upload form to show flash-based form or single file form - all other options removed {Paver}
 2008-12-13 [A] Added 2 plugin hooks to add custom bbcode {SaWey}

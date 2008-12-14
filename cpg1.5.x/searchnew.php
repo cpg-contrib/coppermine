@@ -519,12 +519,12 @@ EOT;
         if ($album_id) {
             // To avoid problems with PHP scripts max execution time limit, each picture is
             // added individually using a separate script that returns an image
-            $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($picfile) . "&amp;reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&amp;pic_file=" . ($picfile) . "&amp;reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" alt=\"{$lang_search_new_php['result_icon']}\" /><br /></a>";
+            $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($picfile) . "&amp;reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&amp;pic_file=" . ($picfile) . "&amp;reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"48\" height=\"48\" alt=\"{$lang_search_new_php['result_icon']}\" /><br /></a>";
             $album_name = $album_array[$album_id];
             //$edit_pics_content .= '<a href="editpics.php?album='.$album_id. '">' . $lang_search_new_php['edit_pics'] . ' : ' . $album_name . '</a><br />';
         } else {
             $album_name = $lang_search_new_php['no_album'];
-            $status = "<img src=\"images/up_na.gif\" alt=\"" . $lang_search_new_php['no_album'] . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" /><br />";
+            $status = "<img src=\"images/batch/back.png\" alt=\"" . $lang_search_new_php['no_album'] . "\" class=\"thumbnail\" border=\"0\" width=\"48\" height=\"48\" /><br />";
         }
         if ( ($count/2) == floor($count/2) ) {
           $rowStyle = 'tableb';
@@ -553,6 +553,15 @@ EOT;
       $edit_pics_content .= '<br />';
     }
     $add_more_folder = '<a href="'.$CPG_PHP_SELF.'?startdir='.rtrim($dir_name, '/').'" class="admin_menu">'.sprintf($lang_search_new_php['add_more_folder'], '&laquo;'.rtrim($dir_name, '/').'&raquo;').'</a>';
+    $notes = sprintf($lang_search_new_php['notes'], 
+    				'<img src="images/batch/ok_small.png" border="0" width="16" height="16" alt="" />',
+    				'<img src="images/batch/duplicate_small.png" border="0" width="16" height="16" alt="" />',
+    				'<img src="images/batch/folder_locked_small.png" border="0" width="16" height="16" alt="" />',
+    				'<img src="images/batch/back_small.png" border="0" width="16" height="16" alt="" />',
+    				'<img src="images/batch/file_broken_small.png" border="0" width="16" height="16" alt="" />',
+    				'<img src="images/batch/unknown_small.png" border="0" width="16" height="16" alt="" />',
+    				'<img src="images/batch/gif_small.png" border="0" width="16" height="16" alt="" />'
+    				);
 
     echo <<<EOT
         <tr>
@@ -562,7 +571,7 @@ EOT;
         </tr>
         <tr>
                 <td class="tableb" colspan="4">
-                        {$lang_search_new_php['notes']}
+                        {$notes}
                 </td>
         </tr>
         <tr>
@@ -720,21 +729,20 @@ function job_start(){
 
 // Job is completed
 function job_done(response){
-    
     var src;
     
     switch (response) {
     
         case 'OK':
-            src = 'images/up_ok.gif';
+            src = 'images/batch/ok.png';
         break;
 
         case 'DUPE':
-            src = 'images/up_dup.gif';
+            src = 'images/batch/duplicate.png';
         break;
         
         case 'PB':
-            src = 'images/up_pb.gif';
+            src = 'images/batch/folder_locked.png';
         break;      
     }
 
