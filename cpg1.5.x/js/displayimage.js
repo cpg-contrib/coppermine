@@ -23,9 +23,9 @@
 		
 $(document).ready(function() {
 	
-			var nextPosition 	= js_vars.position; 
-			var NumberOfPics 	= js_vars.count;
-			var album 			= js_vars.album; 
+			var nextPosition 	= parseInt(js_vars.position); 
+			var NumberOfPics 	= parseInt(js_vars.count);
+			var album 			= parseInt(js_vars.album); 
 			var maxItems   		= parseInt(js_vars.max_item);
 			var width			= js_vars.thumb_width;
 				
