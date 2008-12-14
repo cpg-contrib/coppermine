@@ -24,7 +24,7 @@ define('INDEX_PHP', true);
 
 require('include/init.inc.php');
 
-if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 1) {
+if (!USER_ID && ($CONFIG['allow_unlogged_access'] <= 1)) {
     $redirect = $redirect . "login.php";
     if ($matches = $superCage->server->getMatched('QUERY_STRING', '/^[a-zA-Z0-9&=_\/.-]+$/')) {
     	$redirect .= '?force_login=1&referer='.urlencode('displayimage.php?'.$matches[0]);
@@ -32,9 +32,8 @@ if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 1) {
     header("Location: $redirect");
     exit();
 }
-
-if (USER_ID && USER_ACCESS_LEVEL <= 1) {
-    cpg_die(ERROR, $lang_errors['access_thumbnail_only']);
+if (USER_ID && (USER_ACCESS_LEVEL <= 1)) {
+    cpg_die(ERROR, ((USER_ACCESS_LEVEL == 1) ? $lang_errors['access_thumbnail_only'] : $lang_errors['access_none']));
 }
 
 js_include('js/displayimage.js');

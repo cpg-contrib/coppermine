@@ -66,6 +66,7 @@ function display_group_list()
     $field_list = array('can_rate_pictures', 'can_send_ecards', 'can_post_comments', 'can_upload_pictures', 'pub_upl_need_approval', 'can_create_albums', 'priv_upl_need_approval');
     $custom_group_counter = 0;
     $access_levels = array(
+        0 => $lang_groupmgr_php['none'],
         1 => $lang_groupmgr_php['thumbnail_only'],
         2 => $lang_groupmgr_php['thumbnail_intermediate'],
         3 => $lang_groupmgr_php['thumbnail_intermediate_full']
@@ -169,35 +170,33 @@ EOT;
                         $tr_end
 
 EOT;
-    if ($field_name== 'can_post_comments' || $field_name== 'pub_upl_need_approval'){ echo $table_end . "</td><td class=\"$table_background\" align=\"left\" valign=\"top\">";}else{echo "<!--<br />-->";}
+            if ($field_name== 'can_post_comments' || $field_name== 'pub_upl_need_approval') { 
+                echo $table_end . "</td><td class=\"$table_background\" align=\"left\" valign=\"top\">";
+            } else {
+                echo "<!--<br />-->";
+            }
+        }  // foreach ($field_list as $field_name)
+
+        echo $table_end . "</td><td class=\"$table_background\" align=\"left\" valign=\"top\">";
+
+        // Option for access level for group
+        echo $table_start;
+        if ($group['group_id'] == 3) {
+            $group['access_level'] = $CONFIG['allow_unlogged_access'];
         }
+        foreach ($access_levels as $al_value => $al_label) {
+            $selected = (($group['access_level'] == $al_value) ? 'checked="checked"' : '');
+            echo $tr_start . $td_start;
+            echo <<<EOT
+            <input type="radio" id="access_level_{$group['group_id']}{$al_value}" name="access_level_{$group['group_id']}" value="{$al_value}" $selected /><label for="access_level_{$group['group_id']}{$al_value}" class="clickable_option">{$al_label}</label>
+EOT;
+            echo $td_end . $tr_end;
+        }
+        echo $table_end;
 
-    echo $table_end . "</td><td class=\"$table_background\" align=\"left\" valign=\"top\">";
+         echo "</td>";
 
-    // Option for access level for group
-    echo $table_start;
-    echo $tr_start.'<td style="white-space:nowrap">';
-    echo $td_end.$td_start;
-    $disabled = '';
-    echo "<select name=\"access_level_{$group['group_id']}\" class=\"listbox_lang\" $disabled>";
-    if ($group['group_id'] == 3) {
-        $group['access_level'] = $CONFIG['allow_unlogged_access'];
-        echo '<option value="0"' 
-            . (($group['access_level']==0) ? 'selected="selected"' : '')
-            . " >{$lang_groupmgr_php['none']}</option>";
-    }
-    foreach ($access_levels as $al_value => $al_label) {
-        echo "<option value=\"$al_value\"" 
-            . (($group['access_level']==$al_value) ? 'selected="selected"' : '')
-            . " >$al_label</option>";
-    }
-    echo "</select>";
-    echo $td_end.$td_start.$td_end.$tr_end;
-    echo $table_end;
-
-     echo "</td>";
-
-     echo <<< EOT
+         echo <<< EOT
         </tr>
 
 EOT;

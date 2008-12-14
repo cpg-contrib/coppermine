@@ -102,6 +102,7 @@ $lang_errors['error'] = 'Error'; // cpg1.5
 $lang_errors['critical_error'] = 'Critical error'; // cpg1.5
 $lang_errors['access_thumbnail_only'] = 'You are only allowed to view thumbnail images.'; // cpg1.5
 $lang_errors['access_intermediate_only'] = 'You are not allowed to view full-size images.'; // cpg1.5
+$lang_errors['access_none'] = 'You are not allowed to view any images.'; // cpg1.5
 
 $lang_bbcode_help_title = 'bbcode help';
 $lang_bbcode_help = 'You can add clickable links and some formatting to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <strong>Bold</strong></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://documentation.coppermine-gallery.net/en/images/base.gif[/img] =&gt; <img src="docs/en/images/base.gif" border="0" alt="" /></li>';
@@ -833,7 +834,7 @@ $lang_admin_php['reg_notify_admin_email'] = 'Notify admin of user registration b
 $lang_admin_php['admin_activation'] = 'Admin activation of registrations'; // cpg1.5
 $lang_admin_php['personal_album_on_registration'] = 'Create user album in personal gallery on registration'; // cpg1.5
 $lang_admin_php['allow_unlogged_access'] = 'Allow unlogged users (guest or anonymous) access'; // cpg1.5
-$lang_admin_php['thumbnail_intermediate_full'] = 'thumbnail, intermediate and full-size image'; // cpg1.5
+$lang_admin_php['thumbnail_intermediate_full'] = 'thumbnail, intermediate, and full-size image'; // cpg1.5
 $lang_admin_php['thumbnail_intermediate'] = 'thumbnail and intermediate image'; // cpg1.5
 $lang_admin_php['thumbnail_only'] = 'thumbnail only'; // cpg1.5
 $lang_admin_php['upload_mechanism'] = 'Upload method'; // cpg1.5
@@ -1365,7 +1366,7 @@ $lang_groupmgr_php['explain_greyed_out_title'] = 'Why is this row grayed out?';
 $lang_groupmgr_php['explain_guests_greyed_out_text'] = 'You can not change the properties of this group because the access level of this group is NONE.  All unlogged users (members of the group %s) can\'t do anything but login; therefore group settings don\'t apply for them.  Change the access level here or on the Gallery Configuration page under "User Settings", "Allow unlogged users access".';
 $lang_groupmgr_php['group_assigned_album'] = 'assigned album(s)';
 $lang_groupmgr_php['access_level'] = 'Access level'; // cpg1.5
-$lang_groupmgr_php['thumbnail_intermediate_full'] = 'thumbnail, intermediate and full-size image'; // cpg1.5
+$lang_groupmgr_php['thumbnail_intermediate_full'] = 'thumbnail, intermediate, and full-size image'; // cpg1.5
 $lang_groupmgr_php['thumbnail_intermediate'] = 'thumbnail and intermediate image'; // cpg1.5
 $lang_groupmgr_php['thumbnail_only'] = 'thumbnail only'; // cpg1.5
 $lang_groupmgr_php['none'] = 'none'; // cpg1.5

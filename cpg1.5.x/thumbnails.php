@@ -33,10 +33,13 @@ define('INDEX_PHP', true);
 
 require_once ('include/init.inc.php');
 
-if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
+if (!USER_ID && ($CONFIG['allow_unlogged_access'] == 0)) {
     $redirect = $redirect . "login.php";
     header("Location: $redirect");
     exit();
+}
+if (USER_ID && (USER_ACCESS_LEVEL == 0)) {
+    cpg_die(ERROR, $lang_errors['access_none']);
 }
 
 if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
