@@ -1,6 +1,6 @@
 var swfu;
 
-$(document).ready(function() {
+SWFUpload.onload = function () {
 	var settings = {
 		flash_url : "js/swfupload/swfupload.swf",
 		upload_url: js_vars.site_url + "/upload.php",	// Relative to the SWF file
@@ -32,7 +32,12 @@ $(document).ready(function() {
 		upload_error_handler : uploadError,
 		upload_success_handler : uploadSuccess,
 		upload_complete_handler : uploadComplete,
-		queue_complete_handler : queueComplete	// Queue plugin event
+		queue_complete_handler : queueComplete,	// Queue plugin event
+		swfupload_loaded_handler : swfUploadLoaded,
+		// SWFObject settings
+		minimum_flash_version : "9.0.28",
+		swfupload_pre_load_handler : swfUploadPreLoad,
+		swfupload_load_failed_handler : swfUploadLoadFailed
 	};
 
 	swfu = new SWFUpload(settings);
@@ -47,6 +52,11 @@ $(document).ready(function() {
            $('#upload_form').slideUp();
        }
     });
+ }
+ 
+ $(document).ready(function() {
+    // Fire the album select box change event
+    $('#upload_form').slideUp();
  });
  
  function continue_upload() {

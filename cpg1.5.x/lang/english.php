@@ -2119,8 +2119,8 @@ $lang_upload_php['reg_instr_1'] = 'Invalid action for form creation.';
 // $lang_upload_php['error_instr'] = 'The following uploads encountered errors:';
 // $lang_upload_php['file_name_url'] = 'File Name/URL';
 // $lang_upload_php['error_message'] = 'Error Message';
-$lang_upload_php['no_name'] = 'Filename unavailable';
-$lang_upload_php['no_tmp_name'] = 'Unable to upload';
+$lang_upload_php['no_name'] = 'Filename unavailable'; // cpg 1.5
+$lang_upload_php['no_tmp_name'] = 'Unable to upload'; // cpg 1.5
 $lang_upload_php['no_post'] = 'File not uploaded by POST.';
 $lang_upload_php['forb_ext'] = 'Forbidden file extension.';
 $lang_upload_php['exc_php_ini'] = 'Exceeded filesize allowed in php.ini.';
@@ -2181,6 +2181,11 @@ $lang_upload_php['please_wait'] = 'Please wait while the script is uploading - t
 $lang_upload_php['alternative_upload'] = 'Alternative upload method'; // cpg1.5
 $lang_upload_php['xp_publish_promote'] = 'If you are running Windows XP/Vista, you can use the Windows XP Uploading Wizard as well to upload files, providing an easier user interface directly on the client.'; // cpg1.5
 $lang_upload_php['more'] = 'more'; // cpg1.5
+$lang_upload_php['err_js_disabled'] = 'Flash upload interface could not load.  You must have JavaScript enabled to enjoy flash upload interface.'; // cpg1.5
+$lang_upload_php['err_flash_disabled'] = 'Upload interface is taking a long time to load or the load has failed.  Please make sure that the Flash Plugin is enabled and that a working version of the Adobe Flash Player is installed.'; // cpg1.5
+$lang_upload_php['err_alternate_method'] = 'Alternately you can use the <a href="upload.php?single=1">single</a> file upload interface.'; // cpg1.5
+$lang_upload_php['err_flash_version'] = 'Upload interface could not load.  You may need to install or upgrade Flash Player. Visit the <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> to get the Flash Player.'; // cpg1.5
+$lang_upload_php['flash_loading'] = 'Upload interface is loading. Please wait a moment...'; // cpg1.5
 
 $lang_upload_swf_php['all_files'] = 'All Files'; //cpg1.5
 $lang_upload_swf_php['status_pending'] = 'Pending...'; //cpg1.5

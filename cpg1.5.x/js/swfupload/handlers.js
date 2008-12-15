@@ -201,3 +201,42 @@ function addImage(src) {
 	};
 	newImg.src = src;
 }
+
+function swfUploadPreLoad() {
+	var self = this;
+	var loading = function () {
+		$("#divLoadingContent").show();
+
+		var longLoad = function () {
+			$("#divLoadingContent").hide();
+			$("#divLongLoading").show();
+		};
+		this.customSettings.loadingTimeout = setTimeout(function () {
+				longLoad.call(self)
+			},
+			15 * 1000
+		);
+	};
+	
+	this.customSettings.loadingTimeout = setTimeout(function () {
+			loading.call(self);
+		},
+		1*1000
+	);
+}
+function swfUploadLoaded() {
+	var self = this;
+	clearTimeout(this.customSettings.loadingTimeout);
+	$("divLoadingContent").hide();
+	$("divLongLoading").hide();
+	$("divAlternateContent").hide();
+	
+	$("button_cancel").click(function () { self.cancelQueue(); });
+}
+   
+function swfUploadLoadFailed() {
+	clearTimeout(this.customSettings.loadingTimeout);
+	$("divLoadingContent").hide();
+	$("divLongLoading").hide();
+	$("divAlternateContent").show();
+}

@@ -27,6 +27,7 @@ define('ADMIN_PHP', true);
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
 js_include('js/swfupload/swfupload.js');
+js_include('js/swfupload/swfupload.swfobject.js');
 js_include('js/swfupload/swfupload.queue.js');
 js_include('js/swfupload/fileprogress.js');
 js_include('js/swfupload/handlers.js');
@@ -39,6 +40,12 @@ global $CONFIG, $lang_upload_php, $upload_form, $max_file_size;
 
 // Config choice of upload form
 $upload_form = $CONFIG['upload_mechanism'];
+
+// If we have "single" key in GET then we will force the upload form mechanism to single file upload
+// This acts as a fallback if js or flash is disabled
+if ($superCage->get->keyExists('single')) {
+    $upload_form = 'html_single';
+}
 
 // Check to see if user can upload pictures.  Quit with an error if he cannot.
 if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
@@ -296,7 +303,23 @@ function form_instructions()
     printf ($lang_upload_php['allowed_doc_types'], $CONFIG['allowed_doc_types']);
 
     echo "<br /><br />{$lang_upload_php['up_instr_2']}";
-
+    echo '<noscript>
+            <div class="red">
+			    ' . $lang_upload_php['err_js_disabled'] . '
+                <br />' . $lang_upload_php['err_alternate_method'] . '
+            </div>
+	     </noscript>';
+	echo '<div id="divLoadingContent" class="red" style="display: none;">
+			' . $lang_upload_php['flash_loading'] . '
+		</div>
+		<div id="divLongLoading" class="red" style="display: none;">
+			' . $lang_upload_php['err_flash_disabled'] . '
+            <br />' . $lang_upload_php['err_alternate_method'] . '
+		</div>
+		<div id="divAlternateContent" class="red" style="display: none;">
+			' . $lang_upload_php['err_flash_version'] . '
+            <br />' . $lang_upload_php['err_alternate_method'] . '
+		</div>';
     echo "</td></tr>";
 
 }
@@ -386,7 +409,7 @@ function create_form_swfupload()
     echo <<<EOT
     <tr>
         <td colspan="2">
-            <div id="upload_form" style="display: none;">
+            <div id="upload_form">
             <div>
                 <span id="browse_button_place_holder"></span>
                 <button id="button_cancel" onclick="swfu.cancelQueue();" disabled="disabled" class="button">
