@@ -18,41 +18,29 @@
 
 function resetToDefault(theFieldId, fieldType, numberOfItems) 
 {
-    //var foo = theFieldId + fieldType + numberOfItems;
-    //alert(numberOfItems);
-    //alert(fieldType);
+	var user_input = $('#' + theFieldId);
+	var default_input = $('#reset_default_' + theFieldId);
+
     if(fieldType == 'textfield' || fieldType == 'password') {
-        $('#' + theFieldId).attr('value', $('#reset_default_' + theFieldId).attr('value'));
-        $('#reset_default_' + theFieldId).css('display', 'none');
-        $('#reset_default_' + theFieldId).attr('checked', true);
+        $('#' + theFieldId).attr('value', default_input.attr('value'));
+        default_input.css('display', 'none');
+        default_input.attr('checked', true);
         return;
     }
     if(fieldType == 'checkbox') {
-        if ($('#reset_default_' + theFieldId).value == 1) {
-            $('#' + theFieldId).attr('checked', true);
-        } else {
-            $('#' + theFieldId).attr('checked', false);
-        }
-        $('#reset_default_' + theFieldId).css('display', 'none');
-        $('#reset_default_' + theFieldId).attr('checked', true);
+        user_input.attr('checked', (default_input.attr('value') == 1) ? true : false);
+        default_input.css('display', 'none');
+        default_input.attr('checked', true);
         return;
     }
     if(fieldType == 'radio') {
-        $('#' + theFieldId + $('#reset_default_' + theFieldId).attr('value')).attr('checked', true);
-        $('#reset_default_' + theFieldId).css('display', 'none');
-        $('#reset_default_' + theFieldId).attr('checked', true);
+        $('#' + theFieldId + default_input.attr('value')).attr('checked', true);
+        default_input.css('display', 'none');
+        default_input.attr('checked', true);
         return;
     }
     if(fieldType == 'select') {
-        for (var i = 0; i < numberOfItems; i++) {
-            //alert($('#' + theFieldId).options[i].value);
-            if ($('#' + theFieldId).options[i].value == $('#reset_default_' + theFieldId).value) {
-                $('#' + theFieldId).options[i].selected = true;
-                $('#reset_default_' + theFieldId).css('display', 'none');
-                $('#reset_default_' + theFieldId).attr('checked', true);
-                return; 
-            }
-        }
+		user_input.attr('value', default_input.attr('value'));
     }
 }
 
@@ -60,71 +48,34 @@ function checkDefaultBox(theFieldId, fieldType, numberOfItems, warning)
 {
     // Each time a config field is being changed (onblur/onchange), this JS is being run to enable/disable the default checkbox
     if(warning != '') {
-        alert(warning + ' ' + lang_warning_dont_submit);
+        alert(warning + ' ' + js_vars.lang_warning_dont_submit);
     }
-    if(fieldType == 'textfield' || fieldType == 'password') {
-        if ($('#' + theFieldId).attr('value') != $('#reset_default_' + theFieldId).attr('value')) {
-            $('#reset_default_' + theFieldId).css('display', 'inline');
-            $('#reset_default_' + theFieldId).attr('checked', false);
-            $('#reset_default_' + theFieldId).title = lang_reset_to_default;
-        } else {
-            $('#reset_default_' + theFieldId).css('display', 'none');
-            $('#reset_default_' + theFieldId).attr('checked', true);
-            $('#reset_default_' + theFieldId).attr('title', lang_reset_to_default + ': '+  lang_no_change_needed + ' (' + $('#' + 'reset_default_' + theFieldId).attr('value') + ')');
-        }
-        return;
+	var user_input = $('#' + theFieldId);
+	var default_input = $('#reset_default_' + theFieldId);
+	var show = false;
+    
+	if((fieldType == 'textfield' || fieldType == 'password' || fieldType == 'select') && (user_input.attr('value') != default_input.attr('value'))) {
+		show = true;
     }
-    if(fieldType == 'checkbox') {
-        var checkboxNeedsChangeToChecked = 0;
-        if ($('#' + theFieldId).checked == true && $('#reset_default_' + theFieldId).attr('value') == 1) {
-            checkboxNeedsChangeToChecked = 1;
-        }
-        if ($('#' + theFieldId).checked == false && $('#reset_default_' + theFieldId).attr('value') == 0) {
-            checkboxNeedsChangeToChecked = 1;
-        }
-        if (checkboxNeedsChangeToChecked == 0) {
-            $('#reset_default_' + theFieldId).css('display', 'inline');
-            $('#reset_default_' + theFieldId).attr('checked', false);
-            $('#reset_default_' + theFieldId).attr('title', lang_reset_to_default);
-        } else {
-            $('#reset_default_' + theFieldId).css('display', 'none');
-            $('#reset_default_' + theFieldId).attr('checked', true);
-            $('#reset_default_' + theFieldId).attr('title', lang_reset_to_default + ': ' + lang_no_change_needed + ' (' + $('#reset_default_' + theFieldId).value + ')');
-        }
-        return;
+    if(fieldType == 'checkbox' && (user_input.attr('checked') != default_input.attr('value'))) {
+        show = true;
     }
     if(fieldType == 'radio') {
-        // theFieldId has got a number appended to it - let's strip it
-        theLoopCounterIndex = theFieldId.slice((theFieldId.length - 1),theFieldId.length); 
-        theFieldId = theFieldId.slice(0,(theFieldId.length - 1));
-        if (theLoopCounterIndex != $('#reset_default_' + theFieldId).attr('value')) {
-            $('#reset_default_' + theFieldId).css('display', 'inline');
-            $('#reset_default_' + theFieldId).attr('checked', false);
-            $('#reset_default_' + theFieldId).attr('title', lang_reset_to_default);
-        } else {
-            $('#reset_default_' + theFieldId).css('display', 'none');
-            $('#reset_default_' + theFieldId).attr('checked', true);
-            $('#reset_default_' + theFieldId).attr('title', lang_reset_to_default + ': ' + lang_no_change_needed + ' (' + $('#reset_default_' + theFieldId).attr('value') + ')');
-        }
-        return;
-    }
-    if(fieldType == 'select') {
-        for (var i = 0; i < numberOfItems; i++) {
-            if ($('#' + theFieldId).options[i].selected == true) {
-                if ($('#' + theFieldId).options[i].attr('value') == $('#reset_default_' + theFieldId).attr('value')) {
-                    $('#reset_default_' + theFieldId).css('display', 'none');
-                    $('#reset_default_' + theFieldId).attr('checked', true);
-                    $('#reset_default_' + theFieldId).attr('title', lang_reset_to_default + ': ' + lang_no_change_needed + ' (' + $('#reset_default_' + theFieldId).attr('value') + ')');
-                    return;
-                } else {
-                    $('#reset_default_' + theFieldId).css('display', 'inline');
-                    $('#reset_default_' + theFieldId).attr('checked', false);
-                    $('#reset_default_' + theFieldId).attr('title', lang_reset_to_default);
-                    return;
-                }
-            }
+		//for radio buttons we have to create a new default as it is a special one
+		default_input = $('#reset_default_' + theFieldId.substring(0, (theFieldId.length - 1)));
+        if (user_input.attr('value') != default_input.attr('value')) {
+			show = true;
         }
     }
+	
+	if(show){
+		default_input.css('display', 'inline');
+        default_input.attr({checked: false, title: js_vars.lang_reset_to_default});
+	}else{
+		default_input.css('display', 'none');
+        default_input.attr({checked: true, title: js_vars.lang_reset_to_default + ': ' + js_vars.lang_no_change_needed + ' (' + default_input.attr('value') + ')'});
+	}
+	return;
 }
 
 function deleteUnneededFields() 
