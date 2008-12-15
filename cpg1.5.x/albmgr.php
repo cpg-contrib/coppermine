@@ -79,20 +79,20 @@ function alb_get_subcat_data($parent, $ident = '')
         }
     }
 }
-		
+        
 
-	/**set the message varialble to javascript file*/
-	$confirm_modifs =  $lang_albmgr_php['confirm_modifs'];
-	set_js_var('confirm_modifs', $confirm_modifs) ;
-	/**Albums delete confirem message*/
-	$confirm_delete	 = $lang_albmgr_php['confirm_delete1'] . $lang_albmgr_php['confirm_delete2'];
-	set_js_var("confirm_delete", $confirm_delete);
-	/**When user try to delete albums without any selections*/
-	$delete_not_selected = $lang_albmgr_php['select_first'];
-	set_js_var('dontDelete', $delete_not_selected);
-	/**when user change the category*/
-	$category_change = $lang_albmgr_php['category_change'];
-	set_js_var('category_change', $category_change);
+    /**set the message varialble to javascript file*/
+    $confirm_modifs =  $lang_albmgr_php['confirm_modifs'];
+    set_js_var('confirm_modifs', $confirm_modifs) ;
+    /**Albums delete confirem message*/
+    $confirm_delete  = $lang_albmgr_php['confirm_delete1'] . $lang_albmgr_php['confirm_delete2'];
+    set_js_var("confirm_delete", $confirm_delete);
+    /**When user try to delete albums without any selections*/
+    $delete_not_selected = $lang_albmgr_php['select_first'];
+    set_js_var('dontDelete', $delete_not_selected);
+    /**when user change the category*/
+    $category_change = $lang_albmgr_php['category_change'];
+    set_js_var('category_change', $category_change);
 
 pageheader($lang_albmgr_php['alb_mrg']);
 ?>
@@ -139,11 +139,11 @@ if (count ($rowset) > 0) foreach ($rowset as $album) {
 
 ?>
 
-		<input type="hidden" name="delete_album" value="" />
+        <input type="hidden" name="delete_album" value="" />
         <input id="sort_order" type="hidden" name="sort_order_album" value="" />
         <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />
     
-	<td class="tableb" valign="top" align="center">
+    <td class="tableb" valign="top" align="center">
                                 <br />
                                 <table width="300" border="0" cellspacing="0" cellpadding="0">
 <?php
@@ -177,44 +177,52 @@ EOT;
 
 ?>
 </table>
-	  <div id="sort">
-		  <table id="album_sort">
+      <div id="sort">
+          <table id="album_sort">
 <?php
-	$i = 100;
-	$lb = '';
-	$j=1;
+    $i = 100;
+    $lb = '';
+    $j=1;
 
-	if (count ($rowset) > 0) 
-	foreach ($rowset as $album) {
+    if (count ($rowset) > 0) 
+    foreach ($rowset as $album) {
        //$lb .= '<option value="album_no=' . $album['aid'] . ',album_nm=' . $album['title'] . ',album_sort=' . ($i++) . ',action=0">' . stripslashes($album['title']) . "</option>\n";
         $lb .='<tr id="'.$j.'"  title="'.$album['aid'].'@'.stripslashes($album['title']).'@0'.'"><td width="10%" style="padding-left:20px" >'.$j.'</td><td><img src="images/bullet.png"  /></td><td class="album_text" style="width:400px;">'.stripslashes($album['title']).'</td></tr>';
-		$j++;
-	}		
-	echo $lb;
+        $j++;
+    }       
+    echo $lb;
 ?>
 </table>
-	</div>
+    </div>
     <table>
-	    <tr>
-        	<td>
-    	    	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-        		<tr>
+        <tr>
+            <td>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
 <?php
 // Only show move-buttons when admin or in user's private category.
 // Sorting is also prevented in delete.php when user doesn't have the rights.
   if(GALLERY_ADMIN_MODE||($cat == USER_ID + FIRST_USER_CAT)){
-  	echo '<td><a id="up_click" class="click"><img src="images/move_up.gif" width="26" height="21" border="0" alt="" /></a><a id="down_click" class="click"><img src="images/move_down.gif" width="26" height="21" border="0" alt="" /></a></td>';
+    $up_arrow = cpg_fetch_icon('up', 0, $lang_common['move_up']);
+    $down_arrow = cpg_fetch_icon('down', 0, $lang_common['move_down']);
+    echo <<< EOT
+<td><a id="up_click" class="click">{$up_arrow}</a>
+<a id="down_click" class="click">{$down_arrow}</a></td>
+EOT;
   }else{
-  	echo '<td></td>';
+    echo '<td></td>';
   }
- 
-?> 
-		<td align="center" class="new_album_bk click"><a id="add_new_album" title="New" ><?php echo $lang_albmgr_php['new'] ?></a></td>
-		<td align="center" style="width: 10px;"><img src="images/spacer.gif" width="1" alt=""><br /></td>
+$icon_new = cpg_fetch_icon('add', 0, $lang_albmgr_php['new']);
+$icon_delete = cpg_fetch_icon('delete', 0, $lang_albmgr_php['delete']);
+echo <<< EOT
+        <td align="center" style="width: 10px;"><img src="images/spacer.gif" width="1" alt=""><br /></td>
+        <td align="center" ><a id="deleteEvent" title="addAlbumButton">$icon_delete</a></td>
+        <td align="center" style="width: 10px;"><img src="images/spacer.gif" width="1" alt=""><br /></td>
+        <td align="center" class="click"><a id="add_new_album" title="New" >$icon_new</a></td>
+        <td align="center" style="width: 10px;"><img src="images/spacer.gif" width="1" alt=""><br /></td>
         <td><input type="text" id="album_nm" name="album_nm" id="album_nm" size="27" maxlength="80" class="textinput" value="" disabled="disabled" /></td>
-		<td align="center" style="width: 10px;"><img src="images/spacer.gif" width="1" alt=""><br /></td>
-		<td align="center" ><button id="saveEvent" title="Save" style="color: Black; font-weight: bold;cursor:pointer;" disabled="disabled" >Ok</button></td>
-		<td align="center" ><a id="deleteEvent" title="addAlbumButton" style="color: red; font-weight: bold;cursor:pointer;margin-left:10px;text-decoration:underline;" ><?php echo $lang_albmgr_php['delete'] ?></a></td>
+        <td align="center" style="width: 10px;"><img src="images/spacer.gif" width="1" alt=""><br /></td>
+        <td align="center" ><button id="saveEvent" title="Save" style="color: Black; font-weight: bold;cursor:pointer;" disabled="disabled" >{$lang_common['ok']}</button></td>
     </tr>
 </table>
         </td>
@@ -224,10 +232,11 @@ EOT;
 </tr>
 <tr>
                 <td colspan="2" align="center" class="tablef">
-                <input type="submit" class="button" value="<?php echo $lang_albmgr_php['apply_modifs'] ?>" />
+                <input type="submit" class="button" value="{$lang_albmgr_php['apply_modifs']}" />
                 </td>
 </tr>
-<?php
+
+EOT;
 endtable();
 print '                </form>';
 pagefooter();

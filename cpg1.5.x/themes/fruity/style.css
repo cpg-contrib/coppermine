@@ -991,13 +991,6 @@ a.photoDown {
 	cursor: pointer; 
 }
 
-td.new_album_bk {
-	background-color: #D4D0C8; 
-	width: 80px; 
-	height: 21px; 
-	border: 1px solid #808080;
-}
-
 .click {
 	cursor:pointer;
 }
