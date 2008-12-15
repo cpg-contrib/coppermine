@@ -48,7 +48,7 @@ if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
  * Main code
  */
 if ($superCage->get->keyExists('sort')) {
-	$USER['sort'] = $superCage->get->getAlpha('sort');
+    $USER['sort'] = $superCage->get->getAlpha('sort');
 }
 if ($superCage->get->keyExists('cat')) {
     $cat = $superCage->get->getInt('cat');
@@ -72,17 +72,17 @@ if ($superCage->get->keyExists('search')) {
     foreach ($allowed as $key) {
         //if (isset($_GET[$key]) == TRUE) {
         if ($superCage->get->keyExists($key)) {
-			//can't work like this, have to remove the $_GET
+            //can't work like this, have to remove the $_GET
             //$_GET['params'][$key] = $_GET[$key];
-			#####################################################################
-			##We use the raw again, have to look into this a little more later.##
-			#####################################################################
-			$temp_GET['params'][$key] = $superCage->get->getRaw($key);
+            #####################################################################
+            ##We use the raw again, have to look into this a little more later.##
+            #####################################################################
+            $temp_GET['params'][$key] = $superCage->get->getRaw($key);
         }
     }
         //$USER['search'] = $_GET;
-		$USER['search'] = $temp_GET;
-		//here again the use of getRaw, but it will be sanitized in search.inc.php
+        $USER['search'] = $temp_GET;
+        //here again the use of getRaw, but it will be sanitized in search.inc.php
         $USER['search']['search'] = utf_replace($superCage->get->getRaw('search'));
         $USER['search']['search'] = str_replace('&quot;','\'',$USER['search']['search']);
         $album = 'search';
@@ -114,7 +114,10 @@ if (isset($album) && is_numeric($album)) {
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
         $cat = - $album;
     }
-} elseif (isset($cat)) { // Meta albums, we need to restrict the albums to the current category
+
+// Meta albums, we need to restrict the albums to the current category
+// except lastupby and lastcomby as CPG currently restricts these to the user's albums
+} elseif (isset($cat) && $album !="lastupby" && $album != "lastcomby") { 
     if ($cat < 0) {
         $result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
         if (mysql_num_rows($result) > 0) {
@@ -130,7 +133,7 @@ if (isset($album) && is_numeric($album)) {
         $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
         
     } elseif ($cat == 0) {
-    	get_meta_album_set(0);
+        get_meta_album_set(0);
     } else {
 
         if ($cat >= FIRST_USER_CAT) {
@@ -148,7 +151,7 @@ if (isset($album) && is_numeric($album)) {
         breadcrumb($cat, $breadcrumb, $breadcrumb_text);
     }
 } else {
-	get_meta_album_set(0);
+    get_meta_album_set(0);
 }
 
 if (isset($CURRENT_ALBUM_DATA)) {

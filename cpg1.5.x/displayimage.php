@@ -238,6 +238,9 @@ function html_picinfo()
         $album = $superCage->get->getInt('album');
     }
 
+    // Lastupby and lastcomby meta albums need category restriction removed as CPG currently restricts to the user's albums
+    $cat = (($superCage->get->keyExists('uid') && (($album == "lastupby") || ($album == "lastcomby"))) ? 0 : $cat);
+
     /** get ajax call to thumb photo slideshow*/
     $ajax_show = $superCage->get->getInt('ajax_show');
     /** get AJAX call to run filmstrip */
@@ -356,10 +359,16 @@ if (isset($CURRENT_PIC_DATA)) {
         $cat = - $album;
     } else {
         $actual_cat = $CURRENT_ALBUM_DATA['category'];
-        breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
+        if ($cat < 0) {
+            // breadcrumbs for meta albums in categories
+            breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
+        } else {
+            // breadcrumbs for meta albums in albums
+            breadcrumb($cat, $breadcrumb, $breadcrumb_text);
+        }
     }
 }
-    
+
 
 if ($superCage->get->keyExists('fullsize')) {
     theme_display_fullsize_pic();
