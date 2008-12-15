@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-12-15 [B] Added missing javascripts {SaWey}
+2008-12-15 [O] Replaced inline javascript of admin and albmgr section + optimised for jQuery (admin.js, albmgr.js) {SaWey}
 2008-12-15 [A] Added previous and next tabs, plus dropdown list of tabs (with configuration option) {Paver}
 2008-12-15 [O] Moved code to themes to create theme_msg_box, _cpg_die, _create_tabs, _breadcrumb {Paver}
 2008-12-15 [O] Replaced inline javascript of slideshow btn & pic_info btn (displayimage.js) {SaWey}

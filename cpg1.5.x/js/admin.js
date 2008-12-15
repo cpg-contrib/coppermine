@@ -22,34 +22,34 @@ function resetToDefault(theFieldId, fieldType, numberOfItems)
     //alert(numberOfItems);
     //alert(fieldType);
     if(fieldType == 'textfield' || fieldType == 'password') {
-        document.getElementById(theFieldId).value = document.getElementById('reset_default_' + theFieldId).value;
-        document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-        document.getElementById('reset_default_' + theFieldId).checked = true;
+        $('#' + theFieldId).attr('value', $('#reset_default_' + theFieldId).attr('value'));
+        $('#reset_default_' + theFieldId).css('display', 'none');
+        $('#reset_default_' + theFieldId).attr('checked', true);
         return;
     }
     if(fieldType == 'checkbox') {
-        if (document.getElementById('reset_default_' + theFieldId).value == 1) {
-            document.getElementById(theFieldId).checked = true;
+        if ($('#reset_default_' + theFieldId).value == 1) {
+            $('#' + theFieldId).attr('checked', true);
         } else {
-            document.getElementById(theFieldId).checked = false;
+            $('#' + theFieldId).attr('checked', false);
         }
-        document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-        document.getElementById('reset_default_' + theFieldId).checked = true;
+        $('#reset_default_' + theFieldId).css('display', 'none');
+        $('#reset_default_' + theFieldId).attr('checked', true);
         return;
     }
     if(fieldType == 'radio') {
-        document.getElementById(theFieldId + document.getElementById('reset_default_' + theFieldId).value).checked = true;
-        document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-        document.getElementById('reset_default_' + theFieldId).checked = true;
+        $('#' + theFieldId + $('#reset_default_' + theFieldId).attr('value')).attr('checked', true);
+        $('#reset_default_' + theFieldId).css('display', 'none');
+        $('#reset_default_' + theFieldId).attr('checked', true);
         return;
     }
     if(fieldType == 'select') {
         for (var i = 0; i < numberOfItems; i++) {
-            //alert(document.getElementById(theFieldId).options[i].value);
-            if (document.getElementById(theFieldId).options[i].value == document.getElementById('reset_default_' + theFieldId).value) {
-                document.getElementById(theFieldId).options[i].selected = true;
-                document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-                document.getElementById('reset_default_' + theFieldId).checked = true;
+            //alert($('#' + theFieldId).options[i].value);
+            if ($('#' + theFieldId).options[i].value == $('#reset_default_' + theFieldId).value) {
+                $('#' + theFieldId).options[i].selected = true;
+                $('#reset_default_' + theFieldId).css('display', 'none');
+                $('#reset_default_' + theFieldId).attr('checked', true);
                 return; 
             }
         }
@@ -63,33 +63,33 @@ function checkDefaultBox(theFieldId, fieldType, numberOfItems, warning)
         alert(warning + ' ' + lang_warning_dont_submit);
     }
     if(fieldType == 'textfield' || fieldType == 'password') {
-        if (document.getElementById(theFieldId).value != document.getElementById('reset_default_' + theFieldId).value) {
-            document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
-            document.getElementById('reset_default_' + theFieldId).checked = false;
-            document.getElementById('reset_default_' + theFieldId).title = lang_reset_to_default;
+        if ($('#' + theFieldId).attr('value') != $('#reset_default_' + theFieldId).attr('value')) {
+            $('#reset_default_' + theFieldId).css('display', 'inline');
+            $('#reset_default_' + theFieldId).attr('checked', false);
+            $('#reset_default_' + theFieldId).title = lang_reset_to_default;
         } else {
-            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-            document.getElementById('reset_default_' + theFieldId).checked = true;
-            document.getElementById('reset_default_' + theFieldId).title = lang_reset_to_default + ': '+  lang_no_change_needed + ' (' + document.getElementById('reset_default_' + theFieldId).value + ')';
+            $('#reset_default_' + theFieldId).css('display', 'none');
+            $('#reset_default_' + theFieldId).attr('checked', true);
+            $('#reset_default_' + theFieldId).attr('title', lang_reset_to_default + ': '+  lang_no_change_needed + ' (' + $('#' + 'reset_default_' + theFieldId).attr('value') + ')');
         }
         return;
     }
     if(fieldType == 'checkbox') {
         var checkboxNeedsChangeToChecked = 0;
-        if (document.getElementById(theFieldId).checked == true && document.getElementById('reset_default_' + theFieldId).value == 1) {
+        if ($('#' + theFieldId).checked == true && $('#reset_default_' + theFieldId).attr('value') == 1) {
             checkboxNeedsChangeToChecked = 1;
         }
-        if (document.getElementById(theFieldId).checked == false && document.getElementById('reset_default_' + theFieldId).value == 0) {
+        if ($('#' + theFieldId).checked == false && $('#reset_default_' + theFieldId).attr('value') == 0) {
             checkboxNeedsChangeToChecked = 1;
         }
         if (checkboxNeedsChangeToChecked == 0) {
-            document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
-            document.getElementById('reset_default_' + theFieldId).checked = false;
-            document.getElementById('reset_default_' + theFieldId).title = lang_reset_to_default;
+            $('#reset_default_' + theFieldId).css('display', 'inline');
+            $('#reset_default_' + theFieldId).attr('checked', false);
+            $('#reset_default_' + theFieldId).attr('title', lang_reset_to_default);
         } else {
-            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-            document.getElementById('reset_default_' + theFieldId).checked = true;
-            document.getElementById('reset_default_' + theFieldId).title = lang_reset_to_default + ': ' + lang_no_change_needed + ' (' + document.getElementById('reset_default_' + theFieldId).value + ')';
+            $('#reset_default_' + theFieldId).css('display', 'none');
+            $('#reset_default_' + theFieldId).attr('checked', true);
+            $('#reset_default_' + theFieldId).attr('title', lang_reset_to_default + ': ' + lang_no_change_needed + ' (' + $('#reset_default_' + theFieldId).value + ')');
         }
         return;
     }
@@ -97,29 +97,29 @@ function checkDefaultBox(theFieldId, fieldType, numberOfItems, warning)
         // theFieldId has got a number appended to it - let's strip it
         theLoopCounterIndex = theFieldId.slice((theFieldId.length - 1),theFieldId.length); 
         theFieldId = theFieldId.slice(0,(theFieldId.length - 1));
-        if (theLoopCounterIndex != document.getElementById('reset_default_' + theFieldId).value) {
-            document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
-            document.getElementById('reset_default_' + theFieldId).checked = false;
-            document.getElementById('reset_default_' + theFieldId).title = lang_reset_to_default;
+        if (theLoopCounterIndex != $('#reset_default_' + theFieldId).attr('value')) {
+            $('#reset_default_' + theFieldId).css('display', 'inline');
+            $('#reset_default_' + theFieldId).attr('checked', false);
+            $('#reset_default_' + theFieldId).attr('title', lang_reset_to_default);
         } else {
-            document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-            document.getElementById('reset_default_' + theFieldId).checked = true;
-            document.getElementById('reset_default_' + theFieldId).title = lang_reset_to_default + ': ' + lang_no_change_needed + ' (' + document.getElementById('reset_default_' + theFieldId).value + ')';
+            $('#reset_default_' + theFieldId).css('display', 'none');
+            $('#reset_default_' + theFieldId).attr('checked', true);
+            $('#reset_default_' + theFieldId).attr('title', lang_reset_to_default + ': ' + lang_no_change_needed + ' (' + $('#reset_default_' + theFieldId).attr('value') + ')');
         }
         return;
     }
     if(fieldType == 'select') {
         for (var i = 0; i < numberOfItems; i++) {
-            if (document.getElementById(theFieldId).options[i].selected == true) {
-                if (document.getElementById(theFieldId).options[i].value == document.getElementById('reset_default_' + theFieldId).value) {
-                    document.getElementById('reset_default_' + theFieldId).style.display = 'none';
-                    document.getElementById('reset_default_' + theFieldId).checked = true;
-                    document.getElementById('reset_default_' + theFieldId).title = lang_reset_to_default + ': ' + lang_no_change_needed + ' (' + document.getElementById('reset_default_' + theFieldId).value + ')';
+            if ($('#' + theFieldId).options[i].selected == true) {
+                if ($('#' + theFieldId).options[i].attr('value') == $('#reset_default_' + theFieldId).attr('value')) {
+                    $('#reset_default_' + theFieldId).css('display', 'none');
+                    $('#reset_default_' + theFieldId).attr('checked', true);
+                    $('#reset_default_' + theFieldId).attr('title', lang_reset_to_default + ': ' + lang_no_change_needed + ' (' + $('#reset_default_' + theFieldId).attr('value') + ')');
                     return;
                 } else {
-                    document.getElementById('reset_default_' + theFieldId).style.display = 'inline';
-                    document.getElementById('reset_default_' + theFieldId).checked = false;
-                    document.getElementById('reset_default_' + theFieldId).title = lang_reset_to_default;
+                    $('#reset_default_' + theFieldId).css('display', 'inline');
+                    $('#reset_default_' + theFieldId).attr('checked', false);
+                    $('#reset_default_' + theFieldId).attr('title', lang_reset_to_default);
                     return;
                 }
             }
@@ -132,3 +132,41 @@ function deleteUnneededFields()
     $('.deleteOnSubmit').remove();
     return true;
 }
+
+function toggleExpandCollpaseButtons(action) 
+{
+	jQuery.each($("img[id^='expand']"), function(){
+		$(this).css('display', (action == 'collapse') ? 'block' : 'none');							  
+	});
+	jQuery.each($("img[id^='collapse']"), function(){
+		$(this).css('display', (action == 'collapse') ? 'none' : 'block');							  
+	});
+}
+
+function adminPageLoaded(){
+	$('span[id^=expand_all]').click(function(){
+			expand();
+			show_section('expand_all_top');
+			show_section('collapse_all_top');
+			show_section('expand_all_bottom');
+			show_section('collapse_all_bottom');
+			toggleExpandCollpaseButtons('expand');							   
+		});
+	
+	$('span[id^=collapse_all]').click(function(){
+			hideall();
+			show_section('expand_all_top');
+			show_section('collapse_all_top');
+			show_section('expand_all_bottom');
+			show_section('collapse_all_bottom');
+			toggleExpandCollpaseButtons('collapse');					   
+		});
+	show_section('expand_all_top');
+	show_section('expand_all_bottom');
+	
+	jQuery.each($("table[id^='section']"), function(){
+		$(this).css('display', 'none');
+	});
+	
+}
+addonload('adminPageLoaded()');

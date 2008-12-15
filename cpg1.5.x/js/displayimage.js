@@ -243,19 +243,18 @@ function rate(obj){
 function changeover(obj){
     var id = obj.title;
     for(i=0; i<id; i++) {
-        document.getElementById(js_vars.picture_id + '_' + (i+1)).src = js_vars.theme_dir + 'images/rate_new.gif';          
+        $('#' + js_vars.picture_id + '_' + (i+1)).attr('src', js_vars.theme_dir + 'images/rate_new.gif');          
     }
 }
 
 function changeout(obj){
     var id = obj.title; 
     for(i=0; i<id; i++) {
-        if(i < js_vars.rating) {
-            document.getElementById(js_vars.picture_id + '_' + (i+1)).src = js_vars.theme_dir + 'images/rate_full.gif';         
-        }
-        else {
-            document.getElementById(js_vars.picture_id + '_' + (i+1)).src = js_vars.theme_dir + 'images/rate_empty.gif';            
-        }
+		var img = js_vars.theme_dir + 'images/rate_full.gif';
+        if(js_vars.rating <= i) {
+			img = js_vars.theme_dir + 'images/rate_empty.gif';
+		}
+		$('#' + js_vars.picture_id + '_' + (i+1)).attr('src', img);     
     }
 }
 

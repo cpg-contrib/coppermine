@@ -229,8 +229,8 @@ starttable('100%', cpg_fetch_icon('config', 2) . $lang_admin_php['title'] . ' - 
 print <<< EOT
     <tr>
         <td class="tableh2" colspan="2">
-            <span id="expand_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="expand();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');toggleExpandCollpaseButtons('expand');">{$lang_admin_php['expand_all']}&nbsp;&nbsp;<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a></span>
-            <span id="collapse_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="hideall();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');toggleExpandCollpaseButtons('collapse')">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a></span>
+            <span id="expand_all_top" style="display:none"><a href="javascript:void(0);" class="admin_menu" >{$lang_admin_php['expand_all']}&nbsp;&nbsp;<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a></span>
+            <span id="collapse_all_top" style="display:none"><a href="javascript:void(0);" class="admin_menu" >{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a></span>
         </td>
     </tr>
 EOT;
@@ -472,8 +472,8 @@ print <<<EOT
                 <table border="0" cellspacing="0" cellpadding="0" width="100%">
                     <tr>
                         <td width="33%">
-                            <span id="expand_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="expand();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');toggleExpandCollpaseButtons('expand');">{$lang_admin_php['expand_all']}<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a></span>
-                            <span id="collapse_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="hideall();show_section('expand_all_top');show_section('collapse_all_top');show_section('expand_all_bottom');show_section('collapse_all_bottom');toggleExpandCollpaseButtons('collapse')">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a></span>
+                            <span id="expand_all_bottom" style="display:none"><a href="javascript:void(0);" class="admin_menu" >{$lang_admin_php['expand_all']}<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a></span>
+                            <span id="collapse_all_bottom" style="display:none"><a href="javascript:void(0);" class="admin_menu">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a></span>
                         </td>
                         <td width="67%" align="center">
                             <!--<input type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}" />-->
@@ -496,29 +496,6 @@ print '<br />';
 
 echo <<< EOT
 </form>
-<script type="text/javascript">
-    //addonload('hideall()'); // commented out: instead of hiding all, we loop through all sections below
-    addonload("show_section('expand_all_top')");
-    addonload("show_section('expand_all_bottom')");
-
-EOT;
-foreach ($collapseSections_array as $key => $value) {
-    print '    addonload("show_section(\'section'.$key.'\')");'.$lineBreak;
-}
-echo <<< EOT
-    function toggleExpandCollpaseButtons(action) 
-    {
-        for (var i = 0; i < {$sectionLoopCounter}; i++) {
-            if (action == 'collapse') {
-                document.getElementById('expand' + i).style.display = 'block';
-                document.getElementById('collapse' + i).style.display = 'none';
-            } else {
-                document.getElementById('expand' + i).style.display = 'none';
-                document.getElementById('collapse' + i).style.display = 'block';
-            }
-        }
-    }
-</script>
 EOT;
 pagefooter();
 ob_end_flush();
