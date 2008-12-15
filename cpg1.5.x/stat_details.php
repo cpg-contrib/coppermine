@@ -35,13 +35,13 @@ require_once('include/init.inc.php');
 // sanitize the GET parameters - start
     //$pid = $_GET['pid'] ? (int)$_GET['pid'] : 0;
     if ($superCage->get->keyExists('pid')){
-    	$pid = $superCage->get->getInt('pid');
+        $pid = $superCage->get->getInt('pid');
     } else {
-    	$pid = 0;
+        $pid = 0;
     }
     $type_allowed = array('vote','hits','total','blank','users');
     $amount_allowed = array(20,50,100,200);
-		$get_type = $superCage->get->getAlpha('type');
+        $get_type = $superCage->get->getAlpha('type');
     //if (in_array($_GET['type'],$type_allowed) == TRUE) {
     if (in_array($get_type,$type_allowed) == TRUE) {
       //$type = $_GET['type'];
@@ -62,9 +62,9 @@ require_once('include/init.inc.php');
     foreach($db_fields as $value) {
         //$$value = $_GET[$value] ? (int)$_GET[$value] : 0;
         if ($superCage->get->keyExists($value)){
-        	$$value = $superCage->get->getInt($value);
+            $$value = $superCage->get->getInt($value);
         } else {
-        	$$value = 0;
+            $$value = 0;
         }
     }
 
@@ -72,9 +72,9 @@ require_once('include/init.inc.php');
         if (in_array($_GET['sort'],$db_fields) == TRUE || $_GET['sort'] == 'file') {
             $sort = $_GET['sort'];*/
     if ($superCage->get->keyExists('sort')){
-    		$get_sort = $superCage->get->getAlpha('sort');
-    		if (in_array($get_sort,$db_fields) == TRUE || $get_sort == 'file') {
-    				$sort = $get_sort;
+            $get_sort = $superCage->get->getAlpha('sort');
+            if (in_array($get_sort,$db_fields) == TRUE || $get_sort == 'file') {
+                    $sort = $get_sort;
         } else {
             $sort = 'sdate';
         }
@@ -85,7 +85,7 @@ require_once('include/init.inc.php');
     /*if (isset($_GET['dir'])) {
         if ($_GET['dir'] == 'asc') {*/
     if ($superCage->get->keyExists('dir')){
-    		if ($superCage->get->getAlpha('dir') == 'asc') {
+            if ($superCage->get->getAlpha('dir') == 'asc') {
             $dir = 'asc';
         } else {
             $dir = 'desc';
@@ -95,7 +95,7 @@ require_once('include/init.inc.php');
     /*if (isset($_GET['hide_internal'])) {
         if ($_GET['hide_internal'] == '0') {*/
     if ($superCage->get->keyExists('hide_internal')) {
-    		if ($superCage->get->getInt('hide_internal') == 0) {
+            if ($superCage->get->getInt('hide_internal') == 0) {
             $hide_internal = 0;
         } else {
             $hide_internal = 1;
@@ -106,7 +106,7 @@ require_once('include/init.inc.php');
 
     //if (isset($_GET['date_display'])) {
     if ($superCage->get->keyExists('date_display')) {
-    		$get_date_display = $superCage->get->getInt('date_display');
+            $get_date_display = $superCage->get->getInt('date_display');
         if ($get_date_display == 0) {
             $date_display = 0;
             $date_display_fmt = $lang_date['album'];
@@ -146,7 +146,7 @@ require_once('include/init.inc.php');
         $amount = $_GET['amount'];*/
     $get_amount = $superCage->get->getInt('amount');
     if (in_array($get_amount,$amount_allowed)) {
-    		$amount = $get_amount;
+            $amount = $get_amount;
     } else {
         $amount = 50; // default value for amount of records
     }
@@ -172,7 +172,7 @@ require_once('include/init.inc.php');
       $configChangesApplied = '';
       $get_hit_details = $superCage->get->getInt('hit_details');
       if ($get_hit_details != $CONFIG['hit_details'] && $superCage->get->getEscaped('go') != '') {
-      	 cpg_config_set('hit_details', $get_hit_details);
+         cpg_config_set('hit_details', $get_hit_details);
           $configChangesApplied = $lang_stat_details_php['upd_success'];
       }
       $get_vote_details = $superCage->get->getInt('vote_details');
@@ -238,7 +238,7 @@ EOT;
 </div>
 EOT;
         if ($pid != '') { // individual stat - start
-			print <<<EOT
+            print <<<EOT
             <div class="admin_menu admin_float"><a href="javascript:;" onClick="window.close()">{$lang_stat_details_php['close']}</a></div>
 EOT;
         } // individual stat - end
@@ -268,12 +268,12 @@ if ($type == 'vote' && $pid != '') { // type == vote start
           $totalVotesSum = $totalVotesSum + $row['totalVotes'];
           $loopCounter = 0;
     }
-	
-	if (defined('THEME_HAS_RATING_GRAPHICS')) {
-		$prefix = $THEME_DIR;
-	} else {
-		$prefix = '';
-	}
+    
+    if (defined('THEME_HAS_RATING_GRAPHICS')) {
+        $prefix = $THEME_DIR;
+    } else {
+        $prefix = '';
+    }
 
     for ($i = 1; $i <= $CONFIG['rating_stars_amount']; $i++){
         $voteArr[$i] = isset($voteArr[$i]) ? $voteArr[$i] : 0;
@@ -286,15 +286,15 @@ if ($type == 'vote' && $pid != '') { // type == vote start
         if ($loop_counter > 1) {
             $loop_counter = 0;
         }
-		//build the rating stars
-		$rating_images = '';
-		for($i2 = 1; $i2 <= $CONFIG['rating_stars_amount']; $i2++){
-			if($i2 <= $i){
-				$rating_images .= '<img src="' . $prefix . 'images/rate_full.gif" align="left" alt=""/>';
-			}else{
-				$rating_images .= '<img src="' . $prefix . 'images/rate_empty.gif" align="left" alt=""/>';
-			}
-		}
+        //build the rating stars
+        $rating_images = '';
+        for($i2 = 1; $i2 <= $CONFIG['rating_stars_amount']; $i2++){
+            if($i2 <= $i){
+                $rating_images .= '<img src="' . $prefix . 'images/rate_full.gif" align="left" alt=""/>';
+            }else{
+                $rating_images .= '<img src="' . $prefix . 'images/rate_empty.gif" align="left" alt=""/>';
+            }
+        }
         echo <<<EOT
         <tr>
             <td class="{$row_style_class}">
@@ -528,9 +528,7 @@ EOT;
 
   $stats_tmpl = $template_tab_display;
   $stats_tmpl['left_text'] = strtr($stats_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_stat_details_php['records_on_page'] . $record_selector));
-  $stats_tmpl['inactive_tab'] = strtr($stats_tmpl['inactive_tab'], array('{LINK}' => cpgGetScriptNameParams('page').'page=%d#details'));
-  $stats_tmpl['inactive_next_tab'] = strtr($stats_tmpl['inactive_next_tab'], array('{LINK}' => cpgGetScriptNameParams('page').'page=%d#details'));
-  $stats_tmpl['inactive_prev_tab'] = strtr($stats_tmpl['inactive_prev_tab'], array('{LINK}' => cpgGetScriptNameParams('page').'page=%d#details'));
+  $stats_tmpl['page_link'] = strtr($stats_tmpl['page_link'], array('{LINK}' => cpgGetScriptNameParams('page').'page=%d#details'));
   $tabs = create_tabs($count, $page, $numPages, $stats_tmpl);
   $tableColumnsPlus = $tableColumns +1;
   print <<< EOT
@@ -650,7 +648,7 @@ EOT;
       $yes_selected_vote = $CONFIG['vote_details'] ? 'checked="checked"' : '';
       $no_selected_vote = !$CONFIG['vote_details'] ? 'checked="checked"' : '';
       if (!isset($rating)) {
-      	$rating = '';
+        $rating = '';
       }
       $help_hit = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end&amp;top=1', '600', '400');
       $help_vote = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end&amp;top=1', '600', '400');

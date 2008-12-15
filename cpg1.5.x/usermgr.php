@@ -159,9 +159,9 @@ function list_users($search = '')
 
     $sort = 'reg_d';
     if ($superCage->get->keyExists('sort') && ($matches = $superCage->get->getMatched('sort', '/^[a-z_]+$/'))) {
-    	if ($sort_codes[$matches[0]]) {
-    		$sort = $matches[0];
-    	}
+        if ($sort_codes[$matches[0]]) {
+            $sort = $matches[0];
+        }
     }
 
     $tab_tmpl = array('left_text' => '<td width="100%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap">' . $lang_usermgr_php['u_user_on_p_pages'] . '</td>' . "\n",
@@ -179,9 +179,9 @@ function list_users($search = '')
 
     $user_per_page = 25;
     if ($superCage->get->keyExists('page')) {
-    	$page = $superCage->get->getInt('page');
+        $page = $superCage->get->getInt('page');
     } else {
-    	$page = 1;
+        $page = 1;
     }
     $lower_limit = ($page-1) * $user_per_page;
     $total_pages = ceil($user_count / $user_per_page);
@@ -313,7 +313,7 @@ EOT;
     echo <<<EOT
         <tr>
             <td colspan="$number_of_columns" class="tableh1">
-            	<form method="get" action="delete.php" name="editForm" id="cpgform">
+                <form method="get" action="delete.php" name="editForm" id="cpgform">
                 <input type="hidden" name="id" value="" />
                 <table border="0" cellspacing="0" cellpadding="0" width="100%">
                     <tr>
@@ -470,20 +470,20 @@ EOT;
         }
         $group_quota_separator = '/';
         if ($user['group_quota']) {
-        	$disk_usage_output = theme_display_bar($user['disk_usage'],$user['group_quota'],150,'', '', $group_quota_separator.$user['group_quota'].'&nbsp;'.$lang_byte_units[1],'red','green');
+            $disk_usage_output = theme_display_bar($user['disk_usage'],$user['group_quota'],150,'', '', $group_quota_separator.$user['group_quota'].'&nbsp;'.$lang_byte_units[1],'red','green');
         } else {
-        	$disk_usage_output = theme_display_bar($user['disk_usage'],$user['group_quota'],150,'', '', '&nbsp;'.$lang_byte_units[1],'green','green');
+            $disk_usage_output = theme_display_bar($user['disk_usage'],$user['group_quota'],150,'', '', '&nbsp;'.$lang_byte_units[1],'green','green');
         }
         if ($user['user_active'] == 'NO') {
             //$user['group_name'] = '<i>' . $lang_usermgr_php['inactive'] . '</i>';
             $user['status'] = cpg_fetch_icon('offline', 0, $lang_usermgr_php['status_inactive']);
             $action = 'activate';
         } else {
-        	$user['status'] = cpg_fetch_icon('online', 0, $lang_usermgr_php['status_active']);
-        	$action = 'deactivate';
+            $user['status'] = cpg_fetch_icon('online', 0, $lang_usermgr_php['status_active']);
+            $action = 'deactivate';
         }
         if (!$lim_user) {
-        	$user['status'] = '<a href="delete.php?id=u'.$user['user_id'].'&amp;album_listbox='.$sort.'&amp;action='.$action.'&amp;what=user" title="">' . $user['status'] . '</a>';
+            $user['status'] = '<a href="delete.php?id=u'.$user['user_id'].'&amp;album_listbox='.$sort.'&amp;action='.$action.'&amp;what=user" title="">' . $user['status'] . '</a>';
         }
         $user['user_regdate'] = localised_date($user['user_regdate'], $lang_date['register']);
         if ($user['user_lastvisit']) {
@@ -497,7 +497,7 @@ EOT;
         if ($user['pic_count']) {
             $last_uploads = '<a href="thumbnails.php?album=lastupby&uid=' . $user['user_id'] . '">' . cpg_fetch_icon('last_uploads', 0, $lang_usermgr_php['latest_upload']) . '</a>';
         } else {
-        	if ($lim_user == 0) {
+            if ($lim_user == 0) {
                 $last_uploads = cpg_fetch_icon('last_uploads_disabled', 0, $lang_usermgr_php['no_latest_upload']);
             } else {
                 $last_uploads = cpg_fetch_icon('blank', 0);
@@ -513,21 +513,21 @@ EOT;
         $user['comment_num'] = $commentCount[0];
         mysql_free_result($result);
         if ($user['comment_num'] > 0) {
-        	$user_comment_link = '<a href="thumbnails.php?album=lastcomby&uid=' . $user['user_id'] . '">' . cpg_fetch_icon('comment', 0, $lang_usermgr_php['last_comments'] . '('.$user['comment_num'].')') . '</a>';
+            $user_comment_link = '<a href="thumbnails.php?album=lastcomby&uid=' . $user['user_id'] . '">' . cpg_fetch_icon('comment', 0, $lang_usermgr_php['last_comments'] . '('.$user['comment_num'].')') . '</a>';
         } else {
-        	$user_comment_link = cpg_fetch_icon('blank', 0, $lang_usermgr_php['no_last_comments']);
+            $user_comment_link = cpg_fetch_icon('blank', 0, $lang_usermgr_php['no_last_comments']);
         }
         // create comments bar
         $comment_quota_output = theme_display_bar($user['comment_num'],$totalCommentCount,60,'', '', '','red','');
         // create files bar
         $file_quota_output = theme_display_bar($user['pic_count'],$totalPictureCount,60,'', '', '','red','');
         // Look up banned table
-		if (mysql_num_rows(cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_BANNED']} WHERE user_name = '{$user['user_name']}' AND brute_force=0 LIMIT 1"))){
-			$ban_user_link = '<a href="banning.php">' . cpg_fetch_icon('ban_user_disabled', 0, $lang_usermgr_php['user_is_banned']) . '</a>';
-			$ban_memberlist = cpg_fetch_icon('ban_user_disabled', 0, $lang_usermgr_php['user_is_banned']);
-		} else {
-        	$ban_user_link = '<a href="banning.php?ban_user=' . $user['user_id'] . '">' . cpg_fetch_icon('ban_user', 0, $lang_usermgr_php['ban_user']) . '</a>';
-        	$ban_memberlist = '';
+        if (mysql_num_rows(cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_BANNED']} WHERE user_name = '{$user['user_name']}' AND brute_force=0 LIMIT 1"))){
+            $ban_user_link = '<a href="banning.php">' . cpg_fetch_icon('ban_user_disabled', 0, $lang_usermgr_php['user_is_banned']) . '</a>';
+            $ban_memberlist = cpg_fetch_icon('ban_user_disabled', 0, $lang_usermgr_php['user_is_banned']);
+        } else {
+            $ban_user_link = '<a href="banning.php?ban_user=' . $user['user_id'] . '">' . cpg_fetch_icon('ban_user', 0, $lang_usermgr_php['ban_user']) . '</a>';
+            $ban_memberlist = '';
         }
 
         if (!$lim_user) {
@@ -545,11 +545,11 @@ EOT;
                 <td class="{$row_style_class}" align="center">{$checkbox_html}</td>
                 <td class="{$row_style_class}">{$user['user_name']}</td>
                 <td class="{$row_style_class}" align="left">
-                	{$view_profile}
-                	{$profile_link}
-                	{$last_uploads}
-                	{$ban_user_link}
-                	{$user_comment_link}
+                    {$view_profile}
+                    {$profile_link}
+                    {$last_uploads}
+                    {$ban_user_link}
+                    {$user_comment_link}
                 </td>
                 <td class="{$row_style_class}">{$user['status']}</td>
                 <td class="{$row_style_class}">{$user['group_name']}</td>
@@ -738,12 +738,12 @@ function edit_user($user_id)
     if ($user_data['user_name'] == '') {
         $form_data[] = array('checkbox', 'send_login_data', $lang_usermgr_php['send_login_data']);
     }
-	if (mysql_num_rows(cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_BANNED']} WHERE user_name = '" . $user_data['user_name'] . "' AND brute_force=0 LIMIT 1"))){
-    	$user_status = $lang_usermgr_php['user_is_banned'];
+    if (mysql_num_rows(cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_BANNED']} WHERE user_name = '" . $user_data['user_name'] . "' AND brute_force=0 LIMIT 1"))){
+        $user_status = $lang_usermgr_php['user_is_banned'];
     } elseif ($user_data['user_active'] == 'YES') {
-    	$user_status = $lang_usermgr_php['status_active'];
+        $user_status = $lang_usermgr_php['status_active'];
     } else {
-    	$user_status = $lang_usermgr_php['status_inactive'];
+        $user_status = $lang_usermgr_php['status_inactive'];
     }
     $status_icon = cpg_fetch_icon('online', 2);
 
@@ -766,146 +766,146 @@ EOT;
 
     $loopCounter = 0;
     foreach ($form_data as $element) {
-		if ($loopCounter/2 == floor($loopCounter/2)) {
-        	$row_style_class = 'tableb tableb_alternate';
+        if ($loopCounter/2 == floor($loopCounter/2)) {
+            $row_style_class = 'tableb tableb_alternate';
         } else {
-        	$row_style_class = 'tableb';
+            $row_style_class = 'tableb';
         }
         $loopCounter++;
-	    switch ($element[0]) {
-	        case 'input' :
-	            $user_data[$element[1]] = $user_data[$element[1]];
-	            if ($element[2]) echo <<<EOT
-	        <tr>
-	            <td width="40%" class="{$row_style_class}">
-	                        {$element[2]}
-	        </td>
-	        <td width="60%" class="{$row_style_class}" valign="top">
-	                <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="{$user_data[$element[1]]}" class="textinput" />
-	                </td>
-	        </tr>
-	
-	
+        switch ($element[0]) {
+            case 'input' :
+                $user_data[$element[1]] = $user_data[$element[1]];
+                if ($element[2]) echo <<<EOT
+            <tr>
+                <td width="40%" class="{$row_style_class}">
+                            {$element[2]}
+            </td>
+            <td width="60%" class="{$row_style_class}" valign="top">
+                    <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="{$user_data[$element[1]]}" class="textinput" />
+                    </td>
+            </tr>
+    
+    
 EOT;
-	            break;
-	
-	        case 'textarea' :
-	
-	           $value = $user_data[$element[1]];
-	
-	           if ($element[2]) echo <<<EOT
-	        <tr>
-	            <td width="40%" class="{$row_style_class}"  height="25">
-	                        {$element[2]}
-	        </td>
-	        <td width="60%" class="{$row_style_class}" valign="top">
-	                <textarea name="{$element[1]}" rows="7" class="textinput" style="width: 100%">$value</textarea>
-	                </td>
-	        </tr>
-	
-	
+                break;
+    
+            case 'textarea' :
+    
+               $value = $user_data[$element[1]];
+    
+               if ($element[2]) echo <<<EOT
+            <tr>
+                <td width="40%" class="{$row_style_class}"  height="25">
+                            {$element[2]}
+            </td>
+            <td width="60%" class="{$row_style_class}" valign="top">
+                    <textarea name="{$element[1]}" rows="7" class="textinput" style="width: 100%">$value</textarea>
+                    </td>
+            </tr>
+    
+    
 EOT;
-	            break;
-	
-	        case 'password' :
-	            echo <<<EOT
-	        <tr>
-	            <td width="40%" class="{$row_style_class}">
-	                        {$element[2]}
-	        </td>
-	        <td width="60%" class="{$row_style_class}" valign="top">
-	                <input type="input" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
-	                </td>
-	        </tr>
-	
+                break;
+    
+            case 'password' :
+                echo <<<EOT
+            <tr>
+                <td width="40%" class="{$row_style_class}">
+                            {$element[2]}
+            </td>
+            <td width="60%" class="{$row_style_class}" valign="top">
+                    <input type="input" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
+                    </td>
+            </tr>
+    
 EOT;
-	            break;
-	
-	        case 'yesno' :
-	            $value = $user_data[$element[1]];
-	            $yes_selected = ($value == 'YES') ? 'checked="checked"' : '';
-	            $no_selected = ($value == 'NO') ? 'checked="checked"' : '';
-	            //$yes_selected = ($value == 'YES') ? 'selected' : '';
-	            //$no_selected = ($value == 'NO') ? 'selected' : '';
-	            echo <<< EOT
-	        <tr>
-	            <td class="{$row_style_class}">
-	                        {$element[2]}
-	        </td>
-	                <td class="{$row_style_class}">
-	                    <input type="radio" id="yes" name="{$element[1]}" value="YES" $yes_selected /><label for="yes" class="clickable_option">{$lang_common['yes']}</label>
-	                    &nbsp;&nbsp;
-	                    <input type="radio" id="no" name="{$element[1]}" value="NO" $no_selected /><label for="no" class="clickable_option">{$lang_common['no']}</label>
-	                </td>
-	        </tr>
-	
+                break;
+    
+            case 'yesno' :
+                $value = $user_data[$element[1]];
+                $yes_selected = ($value == 'YES') ? 'checked="checked"' : '';
+                $no_selected = ($value == 'NO') ? 'checked="checked"' : '';
+                //$yes_selected = ($value == 'YES') ? 'selected' : '';
+                //$no_selected = ($value == 'NO') ? 'selected' : '';
+                echo <<< EOT
+            <tr>
+                <td class="{$row_style_class}">
+                            {$element[2]}
+            </td>
+                    <td class="{$row_style_class}">
+                        <input type="radio" id="yes" name="{$element[1]}" value="YES" $yes_selected /><label for="yes" class="clickable_option">{$lang_common['yes']}</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="no" name="{$element[1]}" value="NO" $no_selected /><label for="no" class="clickable_option">{$lang_common['no']}</label>
+                    </td>
+            </tr>
+    
 EOT;
-	            break;
-	
-	        case 'group_list' :
-	            $sql = "SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} ORDER BY group_name";
-	            $result = cpg_db_query($sql);
-	            $group_list = cpg_db_fetch_rowset($result);
-	            mysql_free_result($result);
-	
-	            $sel_group = $user_data[$element[1]];
-	            $user_group_list = ($user_data['user_group_list'] == '') ? ',' . $sel_group . ',' : ',' . $user_data['user_group_list'] . ',' . $sel_group . ',';
-	
-	            echo <<<EOT
-	        <tr>
-	            <td class="{$row_style_class}">
-	                        {$element[2]}
-	        </td>
-	        <td class="{$row_style_class}" valign="top">
-	                <select name="{$element[1]}" class="listbox">
-	
+                break;
+    
+            case 'group_list' :
+                $sql = "SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} ORDER BY group_name";
+                $result = cpg_db_query($sql);
+                $group_list = cpg_db_fetch_rowset($result);
+                mysql_free_result($result);
+    
+                $sel_group = $user_data[$element[1]];
+                $user_group_list = ($user_data['user_group_list'] == '') ? ',' . $sel_group . ',' : ',' . $user_data['user_group_list'] . ',' . $sel_group . ',';
+    
+                echo <<<EOT
+            <tr>
+                <td class="{$row_style_class}">
+                            {$element[2]}
+            </td>
+            <td class="{$row_style_class}" valign="top">
+                    <select name="{$element[1]}" class="listbox">
+    
 EOT;
-	            $group_cb = '';
-	            foreach($group_list as $group) {
-	                echo '                        <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . "</option>\n";
-	
-	                /**
-	                 * If the group is registered, don't show it here as all the users must be a member of this group
-	                 * Also there is no point in displaying the 'Banned' group as checking banned here does not ban the user.
-	                 * Also remove Administrators group from secondary list as it won't give a user admin access.
-	                 */
-	                if ($group['group_id'] != 1 && $group['group_id'] != 2 && $group['group_id'] != 4) {
-	                  $checked = strpos(' ' . $user_group_list, ',' . $group['group_id'] . ',') ? 'checked' : '';
-	                  $group_cb .= '<input name="group_list[]" type="checkbox" value="' . $group['group_id'] . '" ' . $checked . ' />' . $group['group_name'] . "<br />\n";
-	                }
-	            }
-	            $assignedGroupsHelp = cpg_display_help('f=users.htm&amp;as=user_cp_edit_permission_by_group&amp;ae=user_cp_edit_permission_by_group_end', '450', '300');
-	            echo <<<EOT
-	                        </select><br />
-	                        $group_cb
-	                        <br />
-	                        <a href="usermgr.php?op=groups_alb_access" class="admin_menu">{$lang_usermgr_php['groups_alb_access']}</a>
-	                        {$assignedGroupsHelp}
-	
-	          </td>
-	        </tr>
-	
+                $group_cb = '';
+                foreach($group_list as $group) {
+                    echo '                        <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . "</option>\n";
+    
+                    /**
+                     * If the group is registered, don't show it here as all the users must be a member of this group
+                     * Also there is no point in displaying the 'Banned' group as checking banned here does not ban the user.
+                     * Also remove Administrators group from secondary list as it won't give a user admin access.
+                     */
+                    if ($group['group_id'] != 1 && $group['group_id'] != 2 && $group['group_id'] != 4) {
+                      $checked = strpos(' ' . $user_group_list, ',' . $group['group_id'] . ',') ? 'checked' : '';
+                      $group_cb .= '<input name="group_list[]" type="checkbox" value="' . $group['group_id'] . '" ' . $checked . ' />' . $group['group_name'] . "<br />\n";
+                    }
+                }
+                $assignedGroupsHelp = cpg_display_help('f=users.htm&amp;as=user_cp_edit_permission_by_group&amp;ae=user_cp_edit_permission_by_group_end', '450', '300');
+                echo <<<EOT
+                            </select><br />
+                            $group_cb
+                            <br />
+                            <a href="usermgr.php?op=groups_alb_access" class="admin_menu">{$lang_usermgr_php['groups_alb_access']}</a>
+                            {$assignedGroupsHelp}
+    
+              </td>
+            </tr>
+    
 EOT;
-	            break;
-	
-	        case 'checkbox':
-	            echo <<< EOT
-	        <tr>
-	            <td class="{$row_style_class}">
-	                        <label for="send_login_data">{$element[2]}</label>
-	        </td>
-	                <td class="{$row_style_class}">
-	                    <input type="checkbox" id="send_login_data" name="{$element[1]}" value="YES" />
-	                </td>
-	        </tr>
-	
+                break;
+    
+            case 'checkbox':
+                echo <<< EOT
+            <tr>
+                <td class="{$row_style_class}">
+                            <label for="send_login_data">{$element[2]}</label>
+            </td>
+                    <td class="{$row_style_class}">
+                        <input type="checkbox" id="send_login_data" name="{$element[1]}" value="YES" />
+                    </td>
+            </tr>
+    
 EOT;
-	            break;
-	
-	        default:
-	            cpg_die(CRITICAL_ERROR, 'Invalid action for form creation ' . $element[0], __FILE__, __LINE__);
-	    }
-	}
+                break;
+    
+            default:
+                cpg_die(CRITICAL_ERROR, 'Invalid action for form creation ' . $element[0], __FILE__, __LINE__);
+        }
+    }
 
     echo <<<EOT
         <tr>

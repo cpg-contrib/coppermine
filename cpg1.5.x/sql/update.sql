@@ -352,3 +352,5 @@ INSERT INTO CPG_config VALUES ('upload_mechanism', 'swfupload');
 
 ALTER TABLE CPG_usergroups ADD access_level tinyint(4) NOT NULL default '3';
 ALTER TABLE CPG_usergroups ALTER access_level SET DEFAULT '3';
+
+INSERT INTO CPG_config VALUES ('tabs_dropdown', '1');

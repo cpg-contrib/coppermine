@@ -357,8 +357,9 @@ $lang_version_alert['coppermine_news'] = 'News from coppermine-gallery.net'; // 
 $lang_version_alert['no_iframe'] = 'Your browser can not display inline frames'; // cpg1.5
 $lang_version_alert['hide'] = 'hide'; // cpg1.5
 
-$lang_create_tabs['previous'] = 'previous';
-$lang_create_tabs['next'] = 'next';
+$lang_create_tabs['previous'] = 'Previous'; // cpg1.5
+$lang_create_tabs['next'] = 'Next'; // cpg1.5
+$lang_create_tabs['jump_to_page'] = 'Jump to page'; // cpg1.5
 
 $lang_get_remote_file_by_url['no_data_returned'] = 'No data returned using %s'; // cpg1.5
 $lang_get_remote_file_by_url['curl'] = 'CURL'; // cpg1.5
@@ -715,6 +716,7 @@ $lang_admin_php['link_pic_count'] = 'Show number of linked files'; // cpg1.5
 $lang_admin_php['thumbcols'] = 'Number of columns on thumbnail page'; // cpg1.5
 $lang_admin_php['thumbrows'] = 'Number of rows on thumbnail page'; // cpg1.5
 $lang_admin_php['max_tabs'] = 'Maximum number of tabs to display'; // cpg1.5
+$lang_admin_php['tabs_dropdown'] = 'Show dropdown list of all pages next to tabs'; // cpg1.5
 $lang_admin_php['caption_in_thumbview'] = 'Display file caption (in addition to title) below the thumbnail'; // cpg1.5
 $lang_admin_php['views_in_thumbview'] = 'Display number of views below the thumbnail'; // cpg1.5
 $lang_admin_php['display_comment_count'] = 'Display number of comments below the thumbnail'; // cpg1.5

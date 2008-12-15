@@ -362,36 +362,10 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
             ob_end_clean();
         }
 
-        if (function_exists('theme_cpg_die')) {
-            theme_cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer);
-            return;
-        }
-
-        $params = array(
-                '{MESSAGE}' => $msg_text,
-                '{FILE_TXT}' => $lang_cpg_die['file'],
-                '{FILE}' => $error_file,
-                '{LINE_TXT}' => $lang_cpg_die['line'],
-                '{LINE}' => $error_line,
-                '{OUTPUT_BUFFER}' => $ob,
-        );
-
-        if (!($CONFIG['debug_mode'] == 1 || ($CONFIG['debug_mode'] == 2 && GALLERY_ADMIN_MODE))) template_extract_block($template_cpg_die, 'file_line');
-        //if (!$output_buffer && !$CONFIG['debug_mode'])
-        template_extract_block($template_cpg_die, 'output_buffer');
-        
-        if (function_exists('cpg_fetch_icon')) {
-            $icon_output = cpg_fetch_icon($msg_icon, 2);
-        }
-
-        pageheader($msg_string);
-        starttable(-1, $icon_output . $msg_string);
-        echo "<!-- cpg_die -->";
-        echo template_eval($template_cpg_die, $params);
-        endtable();
-        pagefooter();
+        theme_cpg_die($msg_code, $msg_text, $msg_string, $msg_icon, $error_file, $error_line, $output_buffer, $ob);
         exit;
 }
+
 
 // Display a localised date
 
@@ -472,26 +446,11 @@ function path2url($path)
 
 function msg_box($title, $msg_text, $button_text="", $button_link="", $width="-1")
 {
-    if (function_exists('theme_msg_box'))
-    {
-        theme_msg_box($title, $msg_text, $button_text, $button_link, $width);
-        return;
-    }
-        global $template_msg_box;
-
-        if (!$button_text) {
-            template_extract_block($template_msg_box, 'button');
-        }
-
-        $params = array(
-                '{MESSAGE}' => $msg_text,
-                '{LINK}' => $button_link,
-                '{TEXT}' => $button_text
-        );
-
-        starttable($width, $title);
-        echo template_eval($template_msg_box, $params);
-        endtable();
+    // Could add $msg_icon to parameter list above, then modify all calls to msg_box
+    // For now, use a standard 'info' icon
+    $msg_icon = 'info';
+    // Call theme function to display message box
+    theme_msg_box($title, $msg_text, $msg_icon, $button_text, $button_link, $width);
 }
 
 
@@ -507,57 +466,8 @@ function msg_box($title, $msg_text, $button_text="", $button_link="", $width="-1
 
 function create_tabs($items, $curr_page, $total_pages, $template)
 {
-        global $CONFIG, $lang_create_tabs;
-
-        // TO-DO: Need to add theme_create_tabs() to sample/theme.php
-        // Maybe this function create_tabs() should be moved to themes.inc.php and renamed theme_create_tabs()?
-        if (function_exists('theme_create_tabs')) {
-            return theme_create_tabs($items, $curr_page, $total_pages, $template);
-        }
-
-        // Code for future: to implement 'previous' and 'next' tabs
-        // Everything is set - just need to put in correct place and use correct prev & next page numbers
-        // $tabs .= strtr( sprintf($template['inactive_prev_tab'],#PREV_PAGE_NUMBER#) , array('{PREV}' => $lang_create_tabs['previous']) );
-        // $tabs .= strtr( sprintf($template['inactive_next_tab'],#NEXT_PAGE_NUMBER#) , array('{NEXT}' => $lang_create_tabs['next']) );
-
-        $maxTab = $CONFIG['max_tabs'];
-        
-        if ($total_pages == '') {
-            $total_pages = $curr_page;
-        }
-
-        $tabs = sprintf($template['left_text'], $items, $total_pages);
-        if (($total_pages == 1)) return $tabs;
-
-        $tabs .= $template['tab_header'];
-        if ($curr_page == 1) {
-                $tabs .= sprintf($template['active_tab'], 1);
-        } else {
-                $tabs .= sprintf($template['inactive_tab'], 1, 1);
-        }
-        if ($total_pages > $maxTab) {
-                $start = max(2, $curr_page - floor(($maxTab -2)/2));
-                $start = min($start, $total_pages - $maxTab +2);
-                $end = $start + $maxTab -3;
-        } else {
-                $start = 2;
-                $end = $total_pages-1;
-        }
-        for ($page = $start ; $page <= $end; $page++) {
-                if ($page == $curr_page) {
-                        $tabs .= sprintf($template['active_tab'], $page);
-                } else {
-                        $tabs .= sprintf($template['inactive_tab'], $page, $page);
-                }
-        }
-        if ($total_pages > 1) {
-                if ($curr_page == $total_pages) {
-                        $tabs .= sprintf($template['active_tab'], $total_pages);
-                } else {
-                        $tabs .= sprintf($template['inactive_tab'], $total_pages, $total_pages);
-                }
-        }
-        return $tabs.$template['tab_trailer'];
+    $tabs = theme_create_tabs($items, $curr_page, $total_pages, $template);
+    return $tabs;
 }
 
 /**
@@ -625,9 +535,9 @@ function bb_decode($text)
         // [i] and [/i] for italicizing text.
         $text = str_replace("[i]", '<i>', $text);
         $text = str_replace("[/i]", '</i>', $text);
-		
-		// [s] and [/s] for striking through
-		$text = str_replace("[s]", '<del>', $text);
+        
+        // [s] and [/s] for striking through
+        $text = str_replace("[s]", '<del>', $text);
         $text = str_replace("[/s]", '</del>', $text);
 
         // colours
@@ -692,7 +602,7 @@ function bb_decode($text)
         }
 
         $text = preg_replace($patterns['other'], $replacements['other'], $text);
-		$text = CPGPluginAPI::filter('bbcode', $text);
+        $text = CPGPluginAPI::filter('bbcode', $text);
 
         return $text;
 }
@@ -1147,7 +1057,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         $select_column_list[] = 'pic_raw_ip';
         $select_column_list[] = 'pic_hdr_ip';
     }
-                	
+                    
     if (count($FORBIDDEN_SET_DATA) > 0 ) {
         $forbidden_set_string =" AND aid NOT IN (".implode(",", $FORBIDDEN_SET_DATA).")";
     } else {
@@ -1195,7 +1105,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                     WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved
                     ORDER BY $sort_order $limit";
 
-		$result = cpg_db_query($query);
+        $result = cpg_db_query($query);
         $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
 
@@ -1218,12 +1128,12 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
     );
     $meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);
     if ($meta_album_params['album_name']) {
-            $album_name = $meta_album_params['album_name'];
-            $count = $meta_album_params['count'];
-            $rowset = $meta_album_params['rowset'];
-            return $rowset;
+        $album_name = $meta_album_params['album_name'];
+        $count = $meta_album_params['count'];
+        $rowset = $meta_album_params['rowset'];
+        return $rowset;
     }
-		
+        
     // Meta albums
     switch($album) {
         case 'lastcom': // Last comments
@@ -2301,24 +2211,8 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
         $BREADCRUMB_TEXTS[$cat_order] = $CURRENT_ALBUM_DATA['title'];
     }
 
-    // we check if the theme_breadcrumb exists...
-    if (function_exists('theme_breadcrumb')) {
-        theme_breadcrumb($breadcrumb_links, $BREADCRUMB_TEXTS, $breadcrumb, $BREADCRUMB_TEXT);
-        return;
-    }
-
-    // otherwise we have a default breadcrumb builder:
-    $breadcrumb = '';
-    $BREADCRUMB_TEXT = '';
-    foreach ($breadcrumb_links as $breadcrumb_link) {
-        $breadcrumb .= ' > ' . $breadcrumb_link;
-    }
-    foreach ($BREADCRUMB_TEXTS as $BREADCRUMB_TEXT_elt) {
-        $BREADCRUMB_TEXT .= ' > ' . $BREADCRUMB_TEXT_elt;
-    }
-    // We remove the first ' > '
-    $breadcrumb = substr_replace($breadcrumb,'', 0, 3);
-    $BREADCRUMB_TEXT = substr_replace($BREADCRUMB_TEXT,'', 0, 3);
+    // Build $breadcrumb,$BREADCRUMB_TEXT from _links and _TEXTS
+    theme_breadcrumb($breadcrumb_links, $BREADCRUMB_TEXTS, $breadcrumb, $BREADCRUMB_TEXT);
 }  // function breadcrumb
 
 
@@ -2558,74 +2452,74 @@ function& cpg_get_system_thumb($filename,$user=10001)
  * @param integer $pos
  **/
 
-function display_film_strip($album, $cat, $pos, $ajax_call)
+function display_film_strip($album, $cat, $pos,$ajax_call)
 {
         global $CONFIG, $AUTHORIZED;
         global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common, $pic_count,$ajax_call,$pos; 
 
-        $superCage 		= Inspekt::makeSuperCage();
-        $max_item		= $CONFIG['max_film_strip_items'];
-        $thumb_width 	= $CONFIG['thumb_width'];
+        $superCage      = Inspekt::makeSuperCage();
+        $max_item       = $CONFIG['max_film_strip_items'];
+        $thumb_width    = $CONFIG['thumb_width'];
         /** set to variable with to javascript*/
-		set_js_var('thumb_width',$thumb_width);    
-		    
-		if(($CONFIG['max_film_strip_items']%2)==0){
-			$max_item	= $CONFIG['max_film_strip_items']+1;
-		}
+        set_js_var('thumb_width',$thumb_width);    
+            
+        if(($CONFIG['max_film_strip_items']%2)==0){
+            $max_item   = $CONFIG['max_film_strip_items']+1;
+        }
 
-       	 $max_item_real = $max_item;
-       	 /** check the thumb_per_page variable valid to query database*/
-       	if($pic_count < $max_item_real){
-			$max_item_real = $pic_count;
-		}
-		 /** pass the max_items to the dispalyimage.js file */
-		 set_js_var('max_item',$max_item_real);
-       	
-		$max_block_items = $CONFIG['max_film_strip_items'];
+         $max_item_real = $max_item;
+         /** check the thumb_per_page variable valid to query database*/
+        if($pic_count < $max_item_real){
+            $max_item_real = $pic_count;
+        }
+         /** pass the max_items to the dispalyimage.js file */
+         set_js_var('max_item',$max_item_real);
+        
+        $max_block_items = $CONFIG['max_film_strip_items'];
 
         $thumb_per_page = $max_item_real;
         /** assign the varible $l_limit diffen */
-		$l_limit = (int)($max_item_real/2); 
+        $l_limit = (int)($max_item_real/2); 
         $l_limit = max(0,$pos-$l_limit);
         
-		/** set $l_limit to last images */
-		if($l_limit >($pic_count-$max_item_real)){
-			$l_limit = $pic_count-$max_item_real;
-		}
+        /** set $l_limit to last images */
+        if($l_limit >($pic_count-$max_item_real)){
+            $l_limit = $pic_count-$max_item_real;
+        }
 
         $pic_data = get_pic_data($album, $thumb_count, $album_name, $l_limit, $thumb_per_page);
 
         if (count($pic_data) < $max_item ){
-			$max_item = count($pic_data);
+            $max_item = count($pic_data);
         }
         
-		$lower_limit = 0;	
-		
-		if($ajax_call==2){
-			$lower_limit = $max_item_real -1; 
-			$max_item =1;
-		}
-		if($ajax_call ==1){
-			$lower_limit = 0; 
-			$max_item =1; 
-		}
-		
-		$pic_data=array_slice($pic_data,$lower_limit,$max_item);
-		$i=$l_limit;
-		
-		set_js_var('count', $pic_count);
-		
-		$cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
-	    $date_link = $date=='' ? '' : '&amp;date=' . $date;
-	
-	    if ($superCage->get->getInt('uid')) {
-	        $uid_link = '&amp;uid=' . $superCage->get->getInt('uid');
-	    } else {
-	        $uid_link = '';
-	    }
-	    
-		if (count($pic_data) > 0){
-			
+        $lower_limit = 0;   
+        
+        if($ajax_call==2){
+            $lower_limit = $max_item_real -1; 
+            $max_item =1;
+        }
+        if($ajax_call ==1){
+            $lower_limit = 0; 
+            $max_item =1; 
+        }
+        
+        $pic_data=array_slice($pic_data,$lower_limit,$max_item);
+        $i=$l_limit;
+        
+        set_js_var('count', $pic_count);
+        
+        $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
+        $date_link = $date=='' ? '' : '&amp;date=' . $date;
+    
+        if ($superCage->get->getInt('uid')) {
+            $uid_link = '&amp;uid=' . $superCage->get->getInt('uid');
+        } else {
+            $uid_link = '';
+        }
+        
+        if (count($pic_data) > 0){
+            
                 foreach ($pic_data as $key => $row) {
                         $hi =(($pos==($i + $lower_limit))  ? '1': '');
                         $i++;
@@ -2636,7 +2530,7 @@ function display_film_strip($album, $cat, $pos, $ajax_call)
                                 $lang_display_thumbnails['date_added'].localised_date($row['ctime'], $album_date_fmt);
 
                         $pic_url =  get_pic_url($row, 'thumb');
-						//print $pic_url; 
+                        //print $pic_url; 
                         if (!is_image($row['filename'])) {
                                 $image_info = cpg_getimagesize(urldecode($pic_url));
                                 $row['pwidth'] = $image_info[0];
@@ -2659,8 +2553,8 @@ function display_film_strip($album, $cat, $pos, $ajax_call)
                         ######### Added by Abbas #############
                         $thumb_list[$i]['pid'] = $row['pid'];
                         ######################################
-						$target = "displayimage.php?album=$album$cat_link$date_link&amp;pid={$row['pid']}$uid_link";
-					
+                        $target = "displayimage.php?album=$album$cat_link$date_link&amp;pid={$row['pid']}$uid_link";
+                    
                 }
 
                             // Get the pos for next and prev links in filmstrip navigation
@@ -2673,18 +2567,18 @@ function display_film_strip($album, $cat, $pos, $ajax_call)
 
                 //Using getRaw(). The date is sanitized in the called function.
                 $date = $superCage->get->keyExists('date') ? cpgValidateDate($superCage->get->getRaw('date')) : null;
-				
-			if($ajax_call==2 || $ajax_call==1){
-				$setArray  = array ('url'=>$pic_url,'target'=>$target);
-				$jonsArray = json_encode($setArray);
-				echo $jonsArray;
-			}
-		else{
-				return theme_display_film_strip($thumb_list, $thumb_count, $album_name, $album, $cat, $pos, is_numeric($album), 'thumb', $date, $filmstrip_prev_pos, $filmstrip_next_pos,$max_block_items,$thumb_width);
-		}
+                
+            if($ajax_call==2 || $ajax_call==1){
+                $setArray  = array ('url'=>$pic_url,'target'=>$target);
+                $jonsArray = json_encode($setArray);
+                echo $jonsArray;
+            }
+        else{
+                return theme_display_film_strip($thumb_list, $thumb_count, $album_name, $album, $cat, $pos, is_numeric($album), 'thumb', $date, $filmstrip_prev_pos, $filmstrip_next_pos,$max_block_items,$thumb_width);
+        }
     }
-	else{
-    	theme_no_img_to_display($album_name);
+    else{
+        theme_no_img_to_display($album_name);
     }
 }
 
@@ -2714,15 +2608,15 @@ function& display_slideshow($pos,$ajax_show=0)
     $a = 0;
     //$pid = (int)$_GET['pid'];
     $start_img = '';
-	
- 	/** calculate total amount of pic a perticular album */
- 	if($ajax_show==0){
-		$pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
-		$Pic_length = count($pic_data);
-		set_js_var('Pic_count',$Pic_length);
-	}
-	/** get the pic details by querying database*/
-	$pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
+    
+    /** calculate total amount of pic a perticular album */
+    if($ajax_show==0){
+        $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
+        $Pic_length = count($pic_data);
+        set_js_var('Pic_count',$Pic_length);
+    }
+    /** get the pic details by querying database*/
+    $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
 
 
     foreach ($pic_data as $picture) {
@@ -2764,21 +2658,21 @@ function& display_slideshow($pos,$ajax_show=0)
     }
 }
 
-	/** set variables to jquery.slideshow.js */
-	set_js_var('Time',$slideshow);
-	set_js_var('Pid',$pid);
-	
-	if (!$i) { echo "Pic[0] = 'images/thumb_document.jpg'\n"; }
-	
-	/** show slide show on first time*/
-	if($ajax_show==0){ theme_slideshow($Pic['0'],$Title['0']); }
-	
-	/** now we make a array to encode*/
-	$dataArray 	= array ('url'=>$Pic['0'],'title'=>$Title['0'],'pid'=>$Pid['0']);
-	$dataJons = json_encode($dataArray);
-	
-	/** send variable to javascript script*/
-	if($ajax_show==1){ 	echo $dataJons; }
+    /** set variables to jquery.slideshow.js */
+    set_js_var('Time',$slideshow);
+    set_js_var('Pid',$pid);
+    
+    if (!$i) { echo "Pic[0] = 'images/thumb_document.jpg'\n"; }
+    
+    /** show slide show on first time*/
+    if($ajax_show==0){ theme_slideshow($Pic['0'],$Title['0']); }
+    
+    /** now we make a array to encode*/
+    $dataArray  = array ('url'=>$Pic['0'],'title'=>$Title['0'],'pid'=>$Pid['0']);
+    $dataJons = json_encode($dataArray);
+    
+    /** send variable to javascript script*/
+    if($ajax_show==1){  echo $dataJons; }
 
 }
 
@@ -3214,28 +3108,28 @@ EOT;
 
 function cpg_phpinfo_mod($search)
 {
-	static $pieces = array();
-	
-	if (!$pieces) {
-	
-	    // this could be done much better with regexpr - anyone who wants to change it: go ahead
-	    ob_start();
-	    phpinfo(INFO_MODULES);
-	    $string = ob_get_contents();
-	    $module = $string;
-	    $delimiter = '#cpgdelimiter#';
-	    ob_end_clean();
-	    // find out the first occurence of "<h2" and throw the superfluos stuff away
-	    $string = stristr($string, 'module_' . $search);
-	    $string = preg_replace('#</table>(.*)#s', '', $string);
-	    $string = stristr($string, '<tr');
-	    $string = str_replace('</td>', '|', $string);
-	    $string = str_replace('</tr>', $delimiter, $string);
-	    $string = chop(strip_tags($string));
-	    $pieces = explode($delimiter, $string);
-	    
-	 }
-	 
+    static $pieces = array();
+    
+    if (!$pieces) {
+    
+        // this could be done much better with regexpr - anyone who wants to change it: go ahead
+        ob_start();
+        phpinfo(INFO_MODULES);
+        $string = ob_get_contents();
+        $module = $string;
+        $delimiter = '#cpgdelimiter#';
+        ob_end_clean();
+        // find out the first occurence of "<h2" and throw the superfluos stuff away
+        $string = stristr($string, 'module_' . $search);
+        $string = preg_replace('#</table>(.*)#s', '', $string);
+        $string = stristr($string, '<tr');
+        $string = str_replace('</td>', '|', $string);
+        $string = str_replace('</tr>', $delimiter, $string);
+        $string = chop(strip_tags($string));
+        $pieces = explode($delimiter, $string);
+        
+     }
+     
     foreach($pieces as $key => $val) {
         $bits[$key] = explode("|", $val);
     }
@@ -3329,26 +3223,26 @@ function cpg_phpinfo_mysql_version()
 
 function cpg_phpinfo_conf($search)
 {
-	static $pieces = array();
-	
-	if (!$pieces) {
-	
-	    // this could be done much better with regexpr - anyone who wants to change it: go ahead
-	    $string ='';
-	    $pieces = '';
-	    $delimiter = '#cpgdelimiter#';
-	    $bits = '';
-	
-	    ob_start();
-	    phpinfo(INFO_CONFIGURATION);
-	    $string = ob_get_contents();
-	    ob_end_clean();
-	    // find out the first occurence of "</tr" and throw the superfluos stuff in front of it away
-	    $string = strchr($string, '</tr>');
-	    $string = str_replace('</td>', '|', $string);
-	    $string = str_replace('</tr>', $delimiter, $string);
-	    $string = chop(strip_tags($string));
-	    $pieces = explode($delimiter, $string);
+    static $pieces = array();
+    
+    if (!$pieces) {
+    
+        // this could be done much better with regexpr - anyone who wants to change it: go ahead
+        $string ='';
+        $pieces = '';
+        $delimiter = '#cpgdelimiter#';
+        $bits = '';
+    
+        ob_start();
+        phpinfo(INFO_CONFIGURATION);
+        $string = ob_get_contents();
+        ob_end_clean();
+        // find out the first occurence of "</tr" and throw the superfluos stuff in front of it away
+        $string = strchr($string, '</tr>');
+        $string = str_replace('</td>', '|', $string);
+        $string = str_replace('</tr>', $delimiter, $string);
+        $string = chop(strip_tags($string));
+        $pieces = explode($delimiter, $string);
     }
     
     foreach($pieces as $val) {
@@ -3672,8 +3566,8 @@ function cpg_display_help($reference = 'f=index.htm', $width = '600', $height = 
         $icon = '<img src="images/help.gif" width="13" height="11" border="0" alt="" title="" />';
     }
 
-	$title_help = 	$lang_common['help'];
-	
+    $title_help =   $lang_common['help'];
+    
    // $help_html = "<a href=\"javascript:;\" onclick=\"coppermine_help_window=window.open('help.php?css=" . $help_theme . "&amp;" . $reference . "','coppermine_help','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "'); coppermine_help_window.focus()\" style=\"cursor:help\">" . $icon . "</a>";
     
     $help_html = "<a class=\"jt\" href='help.php?". $reference."'  rel='help.php?css=" . $help_theme . "&amp;" . $reference . "' title=".$title_help." >".$icon."</a>";
@@ -4977,29 +4871,29 @@ if (!function_exists('stripos')) {
 
 function cpg_get_type($filename,$filter=null) 
 {
-	global $CONFIG;
-	static $FILE_TYPES = array();
+    global $CONFIG;
+    static $FILE_TYPES = array();
     
-	if (!$FILE_TYPES) {
+    if (!$FILE_TYPES) {
 
-		// Map content types to corresponding user parameters
-		$content_types_to_vars = array('image'=>'allowed_img_types','audio'=>'allowed_snd_types','movie'=>'allowed_mov_types','document'=>'allowed_doc_types');
+        // Map content types to corresponding user parameters
+        $content_types_to_vars = array('image'=>'allowed_img_types','audio'=>'allowed_snd_types','movie'=>'allowed_mov_types','document'=>'allowed_doc_types');
 
-		$result = cpg_db_query('SELECT extension, mime, content, player FROM '.$CONFIG['TABLE_FILETYPES']);
+        $result = cpg_db_query('SELECT extension, mime, content, player FROM '.$CONFIG['TABLE_FILETYPES']);
     
-    	$CONFIG['allowed_file_extensions'] = '';
-    	
-    	while ($row = mysql_fetch_assoc($result)) {
-			// Only add types that are in both the database and user defined parameter
-			if ($CONFIG[$content_types_to_vars[$row['content']]]=='ALL' || is_int(strpos('/'.$CONFIG[$content_types_to_vars[$row['content']]].'/','/'.$row['extension'].'/'))) {
-				$FILE_TYPES[$row['extension']] = $row;
-				$CONFIG['allowed_file_extensions'].= '/'.$row['extension'];
+        $CONFIG['allowed_file_extensions'] = '';
+        
+        while ($row = mysql_fetch_assoc($result)) {
+            // Only add types that are in both the database and user defined parameter
+            if ($CONFIG[$content_types_to_vars[$row['content']]]=='ALL' || is_int(strpos('/'.$CONFIG[$content_types_to_vars[$row['content']]].'/','/'.$row['extension'].'/'))) {
+                $FILE_TYPES[$row['extension']] = $row;
+                $CONFIG['allowed_file_extensions'].= '/'.$row['extension'];
         }
-		}
-		
-		$CONFIG['allowed_file_extensions'] = substr($CONFIG['allowed_file_extensions'],1);
-		
-		mysql_free_result($result);
+        }
+        
+        $CONFIG['allowed_file_extensions'] = substr($CONFIG['allowed_file_extensions'],1);
+        
+        mysql_free_result($result);
     }
     
     if (!is_array($filename)) {

@@ -1491,13 +1491,18 @@ if (!isset($template_tab_display)) { //{THEMES}
 ** Section <<<$template_tab_display>>> - START
 ******************************************************************************/
 // Template used for tabbed display
-$template_tab_display = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap">{LEFT_TEXT}</td>' . "\n",
-    'tab_header' => '',
-    'tab_trailer' => '',
-    'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">%d</td>',
-    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">%d</a></td>' . "\n",
-    'inactive_prev_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">{PREV}</a></td>' . "\n",
-    'inactive_next_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">{NEXT}</a></td>' . "\n",
+$template_tab_display = array(
+    'left_text'         => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap">{LEFT_TEXT}</td>' . "\n",
+    'tab_header'        => '',
+    'tab_trailer'       => '',
+    'active_tab'        => '<td align="center" valign="middle" class="tableb tableb_alternate tableb tableb_alternate_alternate_compact">%d</td>',
+    'inactive_tab'      => '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">%d</a></td>' . "\n",
+    'nav_tab'           => '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">%s</a></td>' . "\n",
+    'nav_tab_nolink'    => '<td align="center" valign="middle" class="navmenu">%s</td>' . "\n",
+    'allpages_dropdown' => '<td align="center" valign="middle" style="white-space: nowrap; padding-right: 10px;" class="navmenu">%s</td>' . "\n",
+    'page_gap'          => '<td align="center" valign="middle" class="navmenu">-</td>' . "\n",
+    'tab_spacer'        => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n",
+    'page_link'         => '{LINK}',
 );
 /******************************************************************************
 ** Section <<<$template_tab_display>>> - END
@@ -1627,6 +1632,231 @@ function theme_javascript_head() {
 ** Section <<<theme_javascript_head>>> - END
 ******************************************************************************/
 }  //{THEMES}
+
+
+if (!function_exists('theme_cpg_die')) {  //{THEMES}
+/******************************************************************************
+** Section <<<theme_cpg_die>>> - START
+******************************************************************************/
+// Function for showing error messages
+function theme_cpg_die($msg_code, $msg_text, $msg_string, $msg_icon, $error_file, $error_line, $output_buffer, $ob) 
+{
+    global $CONFIG, $lang_cpg_die, $template_cpg_die;
+
+    $params = array(
+            '{MESSAGE}' => $msg_text,
+            '{FILE_TXT}' => $lang_cpg_die['file'],
+            '{FILE}' => $error_file,
+            '{LINE_TXT}' => $lang_cpg_die['line'],
+            '{LINE}' => $error_line,
+            '{OUTPUT_BUFFER}' => $ob,
+    );
+
+    if (!($CONFIG['debug_mode'] == 1 || ($CONFIG['debug_mode'] == 2 && GALLERY_ADMIN_MODE))) {
+        template_extract_block($template_cpg_die, 'file_line');
+    }
+    //if (!$output_buffer && !$CONFIG['debug_mode'])
+    template_extract_block($template_cpg_die, 'output_buffer');
+
+    $icon_output = (function_exists('cpg_fetch_icon') ? cpg_fetch_icon($msg_icon, 2) : '');
+
+    pageheader($msg_string);
+    starttable(-1, $icon_output . $msg_string);
+    echo "<!-- cpg_die -->";
+    echo template_eval($template_cpg_die, $params);
+    endtable();
+    pagefooter();
+}
+/******************************************************************************
+** Section <<<theme_cpg_die>>> - END
+******************************************************************************/
+}  //{THEMES}
+
+
+if (!function_exists('theme_breadcrumb')) {  //{THEMES}
+/******************************************************************************
+** Section <<<theme_breadcrumb>>> - START
+******************************************************************************/
+// Function for building the breadcrumb
+// Inputs:  $breadcrumb_links, $BREADCRUMB_TEXTS
+// Outputs: $breadcrumb, $BREADCRUMB_TEXT
+function theme_breadcrumb($breadcrumb_links, $BREADCRUMB_TEXTS, &$breadcrumb, &$BREADCRUMB_TEXT) 
+{
+    $breadcrumb = '';
+    $BREADCRUMB_TEXT = '';
+    foreach ($breadcrumb_links as $breadcrumb_link) {
+        $breadcrumb .= ' > ' . $breadcrumb_link;
+    }
+    foreach ($BREADCRUMB_TEXTS as $BREADCRUMB_TEXT_elt) {
+        $BREADCRUMB_TEXT .= ' > ' . $BREADCRUMB_TEXT_elt;
+    }
+    // We remove the first ' > '
+    $breadcrumb = substr_replace($breadcrumb,'', 0, 3);
+    $BREADCRUMB_TEXT = substr_replace($BREADCRUMB_TEXT,'', 0, 3);
+}
+/******************************************************************************
+** Section <<<theme_breadcrumb>>> - END
+******************************************************************************/
+}  //{THEMES}
+
+
+if (!function_exists('theme_msg_box')) {  //{THEMES}
+/******************************************************************************
+** Section <<<theme_msg_box>>> - START
+******************************************************************************/
+// Function for displaying a message-box-like table
+function theme_msg_box($title, $msg_text, $msg_icon = 'info', $button_text, $button_link, $width) 
+{
+    global $template_msg_box;
+
+    if (!$button_text) {
+        template_extract_block($template_msg_box, 'button');
+    }
+    $params = array(
+            '{MESSAGE}' => $msg_text,
+            '{LINK}' => $button_link,
+            '{TEXT}' => $button_text
+    );
+    $icon_output = (function_exists('cpg_fetch_icon') ? cpg_fetch_icon($msg_icon, 2) : '');
+
+    starttable($width, $icon_output.$title);
+    echo template_eval($template_msg_box, $params);
+    endtable();
+}
+/******************************************************************************
+** Section <<<theme_msg_box>>> - END
+******************************************************************************/
+}  //{THEMES}
+
+
+if (!function_exists('theme_create_tabs')) {  //{THEMES}
+/******************************************************************************
+** Section <<<theme_create_tabs>>> - START
+******************************************************************************/
+// Function for creating tabs showing multiple pages
+function theme_create_tabs($items, $curr_page, $total_pages, $template)
+{
+    // Tabs do not take into account $lang_text_dir for RTL languages
+    global $CONFIG, $lang_create_tabs;
+
+    // Gallery Configuration setting for maximum number of tabs to display
+    $maxTab = $CONFIG['max_tabs'];
+
+    if ($total_pages == '') {
+        $total_pages = $curr_page;
+    }
+
+    if (array_key_exists('page_link',$template)) {
+        // Pass through links to tabs with links
+        $template['nav_tab']      = strtr($template['nav_tab'], array('{LINK}' => $template['page_link']));
+        $template['inactive_tab'] = strtr($template['inactive_tab'], array('{LINK}' => $template['page_link']));
+    }
+
+    // Left text, usually shows statistics
+    $tabs = sprintf($template['left_text'], $items, $total_pages);
+    if (($total_pages == 1)) {
+        return $tabs;
+    }
+
+    // Header for tabs
+    $tabs .= $template['tab_header'];
+
+    if ($CONFIG['tabs_dropdown']) {
+        // Dropdown list for all pages
+        $tabs_dropdown = $lang_create_tabs['jump_to_page'] . ' '
+                . '<select onChange="if (this.options[this.selectedIndex].value != -1) { window.location.href = this.options[this.selectedIndex].value; }">';
+        for ($page = 1; $page <= $total_pages; $page++) {
+            $tabs_dropdown .= '<option value="' . sprintf($template['page_link'], $page) . '"' 
+                    . ($page == $curr_page ? ' selected="selected"' : '') . '>' . $page .'</option>';
+        }
+        $tabs_dropdown .= '</select>';
+        $tabs .= sprintf($template['allpages_dropdown'], $tabs_dropdown);
+    }
+
+    // Calculate which pages to show on tabs, limited by the maximum number of tabs (set on Gallery Configuration panel)
+    if ($total_pages > $maxTab) {
+        $start = max(2, $curr_page - floor(($maxTab - 2) / 2));
+        $start = min($start, $total_pages - $maxTab + 2);
+        $end = $start + $maxTab - 3;
+    } else {
+        $start = 2;
+        $end = $total_pages - 1;
+    }
+
+    // Previous page tab
+    if ($curr_page != ($start - 1)) {
+        $tabs .= sprintf($template['nav_tab'], $curr_page-1, cpg_fetch_icon('left',0,$lang_create_tabs['previous']));
+    } else {
+        // A previous tab with link is not needed.
+        // If you want to show a disabled previous tab, 
+        //   create an image 'left_inactive.png', put it into themes/YOUR_THEME/images/icons/,
+        //   then uncomment the line below.
+        // $tabs .= sprintf($template['nav_tab_nolink'], cpg_fetch_icon('left_inactive',0,$lang_create_tabs['previous']));
+    }
+
+    // Page 1 tab
+    if ($curr_page == 1) {
+        $tabs .= sprintf($template['active_tab'], 1);
+    } else {
+        $tabs .= sprintf($template['inactive_tab'], 1, 1);
+    }
+
+    // Gap between page 1 and middle block of tabs
+    if ($start > 2) {
+        $tabs .= $template['page_gap'];
+    }
+    $page_gap = ($template['page_gap'] != '');
+
+    // Middle block of tabs
+    for ($page = $start ; $page <= $end; $page++) {
+        if (!$page_gap || ($page_gap && ($page != $start))) {
+            $tabs .= $template['tab_spacer'];
+        }
+        if ($page == $curr_page) {
+            $tabs .= sprintf($template['active_tab'], $page);
+        } else {
+            $tabs .= sprintf($template['inactive_tab'], $page, $page);
+        }
+    }
+
+    // Gap between middle block of tabs and last page
+    if ($end < $total_pages - 1) {
+        $tabs .= $template['page_gap'];
+    }
+
+    // Last page tab
+    if (!$page_gap) {
+        $tabs .= $template['tab_spacer'];
+    }
+    if ($total_pages > 1) {
+        if ($curr_page == $total_pages) {
+            $tabs .= sprintf($template['active_tab'], $total_pages);
+        } else {
+            $tabs .= sprintf($template['inactive_tab'], $total_pages, $total_pages);
+        }
+    }
+
+    // Next page tab
+    if ($curr_page != $total_pages) {
+        $tabs .= sprintf($template['nav_tab'], $curr_page + 1, cpg_fetch_icon('right',0,$lang_create_tabs['next']));
+    } else {
+        // A next tab with link is not needed.
+        // If you want to show a disabled next tab, 
+        //   create an image 'right_inactive.png', put it into themes/YOUR_THEME/images/icons/,
+        //   then uncomment the line below.
+        // $tabs .= sprintf($template['nav_tab_nolink'], cpg_fetch_icon('right_inactive',0,$lang_create_tabs['next']));
+    }
+
+    // Trailer for tabs
+    $tabs .= $template['tab_trailer'];
+
+    return $tabs;
+}
+/******************************************************************************
+** Section <<<theme_create_tabs>>> - END
+******************************************************************************/
+}  //{THEMES}
+
 
 if (!function_exists('theme_social_bookmark')) {  //{THEMES}
 /******************************************************************************
@@ -2279,9 +2509,7 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
     $theme_alb_list_tab_tmpl = $template_tab_display;
 
     $theme_alb_list_tab_tmpl['left_text'] = strtr($theme_alb_list_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_album_list['album_on_page']));
-    $theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
-    $theme_alb_list_tab_tmpl['inactive_next_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
-    $theme_alb_list_tab_tmpl['inactive_prev_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
+    $theme_alb_list_tab_tmpl['page_link'] = strtr($theme_alb_list_tab_tmpl['page_link'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
 
     $tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl);
 
@@ -2374,7 +2602,7 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
     $theme_alb_list_tab_tmpl = $template_tab_display;
 
     $theme_alb_list_tab_tmpl['left_text'] = strtr($theme_alb_list_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_album_list['album_on_page']));
-    $theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
+    $theme_alb_list_tab_tmpl['page_link'] = strtr($theme_alb_list_tab_tmpl['page_link'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
 
     $tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl);
     // echo $template_album_list_cat;
@@ -2494,14 +2722,10 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 
     if ($mode == 'thumb') {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $aid == 'lastalb' ? $lang_album_list['album_on_page'] : $lang_thumb_view['pic_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $date_link . $uid_link . '&amp;page=%d'));
-        $theme_thumb_tab_tmpl['inactive_next_tab'] = strtr($theme_thumb_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $date_link . $uid_link . '&amp;page=%d'));
-        $theme_thumb_tab_tmpl['inactive_prev_tab'] = strtr($theme_thumb_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $date_link . $uid_link . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['page_link'] = strtr($theme_thumb_tab_tmpl['page_link'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $date_link . $uid_link . '&amp;page=%d'));
     } else {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
-        $theme_thumb_tab_tmpl['inactive_next_tab'] = strtr($theme_thumb_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
-        $theme_thumb_tab_tmpl['inactive_prev_tab'] = strtr($theme_thumb_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
+        $theme_thumb_tab_tmpl['page_link'] = strtr($theme_thumb_tab_tmpl['page_link'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
     }
 
     $thumbcols = $CONFIG['thumbcols'];
@@ -3780,7 +4004,7 @@ function theme_display_bar(
   }
   // Initialize some vars:
   $return = '';
-  $cell1Width = floor(100 * $actualValue/$maxValue);
+  $cell1Width = (($maxValue != 0) ? floor(100 * $actualValue/$maxValue): 0);
   $cell2Width = 100 - $cell1Width;
   // compose the output string
   //$return .= $cell1Width . '/' . $cell2Width;

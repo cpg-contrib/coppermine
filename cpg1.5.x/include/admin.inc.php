@@ -434,6 +434,11 @@ $config_data = array(
       'help_link'     => 'f=configuration.htm&amp;as=admin_thumbnail_tabs&amp;ae=admin_thumbnail_tabs_end',
       'options'       => array(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25),
     ),
+    'tabs_dropdown' => array(
+      'type'          => 'checkbox',
+      'default_value' => '1',
+      'help_link'     => 'f=configuration.htm&amp;as=admin_thumbnail_tabs_dropdown&amp;ae=admin_thumbnail_tabs_dropdown_end',
+    ),
     'caption_in_thumbview' => array(
       'type'          => 'checkbox',
       'default_value' => '1',
