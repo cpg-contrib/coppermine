@@ -36,7 +36,10 @@ if (USER_ID && (USER_ACCESS_LEVEL <= 1)) {
     cpg_die(ERROR, ((USER_ACCESS_LEVEL == 1) ? $lang_errors['access_thumbnail_only'] : $lang_errors['access_none']));
 }
 
-js_include('js/displayimage.js');
+if(!$superCage->get->keyExists('slideshow')){
+	js_include('js/displayimage.js');	
+}
+
 
 if ($CONFIG['enable_smilies']) {
     include("include/smilies.inc.php");

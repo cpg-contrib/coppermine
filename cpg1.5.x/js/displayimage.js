@@ -28,7 +28,7 @@ $(document).ready(function() {
             var album           = parseInt(js_vars.album); 
             var maxItems        = parseInt(js_vars.max_item);
             var width           = js_vars.thumb_width;
-
+            
             if(maxItems%2==0){
                 maxItems    = maxItems +1;
             }
