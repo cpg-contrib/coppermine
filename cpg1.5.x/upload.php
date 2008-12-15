@@ -649,12 +649,12 @@ EOT;
 
 } elseif ($superCage->post->keyExists('process')) {
     if (!$superCage->files->getRaw('/Filedata/name')) {
-        echo "Filename unavailable";
+        echo $lang_upload_php['no_name'];
         exit;
     }
 
     if (!$superCage->files->getRaw('/Filedata/tmp_name')) {
-        echo "Unable to upload";
+        echo $lang_upload_php['no_tmp_name'];
         exit;
     }
     
