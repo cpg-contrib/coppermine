@@ -212,11 +212,11 @@ EOT;
   }else{
     echo '<td></td>';
   }
-$icon_new = cpg_fetch_icon('add', 0, $lang_albmgr_php['new']);
-$icon_delete = cpg_fetch_icon('delete', 0, $lang_albmgr_php['delete']);
+$icon_new = cpg_fetch_icon('add', 0, $lang_albmgr_php['new_album']);
+$icon_delete = cpg_fetch_icon('delete', 0, $lang_albmgr_php['delete_album']);
 echo <<< EOT
         <td align="center" style="width: 10px;"><img src="images/spacer.gif" width="1" alt=""><br /></td>
-        <td align="center" ><a id="deleteEvent" title="addAlbumButton">$icon_delete</a></td>
+        <td align="center" class="click"><a id="deleteEvent" title="addAlbumButton">$icon_delete</a></td>
         <td align="center" style="width: 10px;"><img src="images/spacer.gif" width="1" alt=""><br /></td>
         <td align="center" class="click"><a id="add_new_album" title="New" >$icon_new</a></td>
         <td align="center" style="width: 10px;"><img src="images/spacer.gif" width="1" alt=""><br /></td>
