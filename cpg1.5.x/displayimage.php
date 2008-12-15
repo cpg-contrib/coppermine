@@ -232,7 +232,7 @@ function html_picinfo()
     
     $pid = $superCage->get->getInt('pid');
     $cat = $superCage->get->getInt('cat');
-    
+
     /** TODO: Add the code to handle date parameter  */
     //$date = $superCage->get->getInt('cat');
     if ($superCage->get->testAlpha('album')) {
@@ -240,9 +240,6 @@ function html_picinfo()
     } else {
         $album = $superCage->get->getInt('album');
     }
-
-    // Lastupby and lastcomby meta albums need category restriction removed as CPG currently restricts to the user's albums
-    $cat = (($superCage->get->keyExists('uid') && (($album == "lastupby") || ($album == "lastcomby"))) ? 0 : $cat);
 
     /** get ajax call to thumb photo slideshow*/
     $ajax_show = $superCage->get->getInt('ajax_show');
@@ -328,6 +325,7 @@ if (!$superCage->get->keyExists('fullsize') && !count($CURRENT_PIC_DATA)) {
     /** add the assign variable work with jSlideshow */
     set_js_var('position', $pos) ;
     set_js_var('album',$album);
+    set_js_var('cat',$cat);
     
     /** if slideshow is has a key or ajax_show has a key then run jquery.slideshow.js */
     if($superCage->get->keyExists('slideshow') || $superCage->get->keyExists('ajax_show')){
@@ -362,16 +360,10 @@ if (isset($CURRENT_PIC_DATA)) {
         $cat = - $album;
     } else {
         $actual_cat = $CURRENT_ALBUM_DATA['category'];
-        if ($cat < 0) {
-            // breadcrumbs for meta albums in categories
-            breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
-        } else {
-            // breadcrumbs for meta albums in albums
-            breadcrumb($cat, $breadcrumb, $breadcrumb_text);
-        }
+        breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
     }
 }
-
+    
 
 if ($superCage->get->keyExists('fullsize')) {
     theme_display_fullsize_pic();

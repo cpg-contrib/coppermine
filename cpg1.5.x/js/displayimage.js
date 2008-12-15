@@ -25,9 +25,10 @@ $(document).ready(function() {
 
             var nextPosition    = parseInt(js_vars.position); 
             var NumberOfPics    = parseInt(js_vars.count);
-            var album           = parseInt(js_vars.album); 
+            var album           = js_vars.album; 
             var maxItems        = parseInt(js_vars.max_item);
             var width           = js_vars.thumb_width;
+            var cat				= parseInt(js_vars.cat);
             
             if(maxItems%2==0){
                 maxItems    = maxItems +1;
@@ -95,7 +96,13 @@ $(document).ready(function() {
             }
                 
             if (!url_cache[nextPosition + $go_next]) {
-                var next_url = "displayimage.php?film_strip=1&album=" + album + "&ajax_call=2&pos=" + nextPosition;
+            	
+            	if(!isNaN(cat)){
+            		 addCat	= '&cat='+cat;
+ 				}
+ 				else addCat ="";
+                
+				var next_url = "displayimage.php?film_strip=1&album=" + album + "&ajax_call=2&pos=" + nextPosition+addCat;
                 // Send the ajax request for getting next set of filmstrip thumbnails
                 $.getJSON(next_url, function(data){
 
@@ -158,7 +165,13 @@ $(document).ready(function() {
             }
                         
         if(!url_cache[nextPosition-$go_next]) {
-            var prev_url = "displayimage.php?film_strip=1&album="+album+"&ajax_call=1&pos="+nextPosition;  
+    	
+    	    if(!isNaN(cat)){
+        		 addCat	= '&cat='+cat;
+			}
+			else addCat ="";
+ 				
+            var prev_url = "displayimage.php?film_strip=1&album="+album+"&ajax_call=1&pos="+nextPosition+addCat;  
             $.getJSON(prev_url, function(data){
             
                 url_cache[nextPosition-$go_next]  = data['url'];
