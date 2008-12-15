@@ -227,16 +227,16 @@ function swfUploadPreLoad() {
 function swfUploadLoaded() {
 	var self = this;
 	clearTimeout(this.customSettings.loadingTimeout);
-	$("divLoadingContent").hide();
-	$("divLongLoading").hide();
-	$("divAlternateContent").hide();
+	$("#divLoadingContent").hide();
+	$("#divLongLoading").hide();
+	$("#divAlternateContent").hide();
 	
-	$("button_cancel").click(function () { self.cancelQueue(); });
+	$("#button_cancel").click(function () { self.cancelQueue(); });
 }
    
 function swfUploadLoadFailed() {
 	clearTimeout(this.customSettings.loadingTimeout);
-	$("divLoadingContent").hide();
-	$("divLongLoading").hide();
-	$("divAlternateContent").show();
+	$("#divLoadingContent").hide();
+	$("#divLongLoading").hide();
+	$("#divAlternateContent").show();
 }
