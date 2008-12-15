@@ -27,7 +27,7 @@ require('include/init.inc.php');
 if (!USER_ID && ($CONFIG['allow_unlogged_access'] <= 1)) {
     $redirect = $redirect . "login.php";
     if ($matches = $superCage->server->getMatched('QUERY_STRING', '/^[a-zA-Z0-9&=_\/.-]+$/')) {
-    	$redirect .= '?force_login=1&referer='.urlencode('displayimage.php?'.$matches[0]);
+        $redirect .= '?force_login=1&referer='.urlencode('displayimage.php?'.$matches[0]);
     }
     header("Location: $redirect");
     exit();
@@ -39,7 +39,7 @@ if (USER_ID && (USER_ACCESS_LEVEL <= 1)) {
 js_include('js/displayimage.js');
 
 if ($CONFIG['enable_smilies']) {
-	include("include/smilies.inc.php");
+    include("include/smilies.inc.php");
 }
 
 $breadcrumb = '';
@@ -120,8 +120,8 @@ function html_picinfo()
 
     $info[$lang_common['filename']] = htmlspecialchars($CURRENT_PIC_DATA['filename']);
     $info[$lang_picinfo['Album name']] = '<span class="alblink">' . $owner_link . $ipinfo . '<a href="thumbnails.php?album=' . $CURRENT_PIC_DATA['aid'] . '">' . $CURRENT_ALBUM_DATA['title'] . '</a></span>';
-	
-	$votedetailsunhidetoggle_onload_added = false;
+    
+    $votedetailsunhidetoggle_onload_added = false;
     if ($CURRENT_PIC_DATA['votes'] > 0) {
         if (defined('THEME_HAS_RATING_GRAPHICS')) {
             $prefix = $THEME_DIR;
@@ -135,24 +135,24 @@ function html_picinfo()
           $width = 400;
           $height = 250;
         }
-		
-		if ($CONFIG['vote_details'] == 1) {
-			$stat_link = "stat_details.php?type=vote&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&rating=1&referer=0&browser=0&os=0&uid=1";
+        
+        if ($CONFIG['vote_details'] == 1) {
+            $stat_link = "stat_details.php?type=vote&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&rating=1&referer=0&browser=0&os=0&uid=1";
             $detailsLink_votes = '<div>(<a href="javascript:;" onclick="MM_openBrWindow(\'' . $stat_link . '\', \'stat_detail\', \'width=650,height=800,scrollbars=yes,resizable=yes\');">' . $lang_picinfo['show_details'] . '</a>)</div>';
         }
-		
-		//calculate required amount of stars in picinfo
-		$i = 1;
-		$rating = round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$CONFIG['rating_stars_amount']));
-		$rating_images = '';
-		while($i <= $CONFIG['rating_stars_amount']){
-			if($i <= $rating){
-				$rating_images .= '<img src="' . $prefix . 'images/rate_full.gif" align="left" alt="' . $rating . '"/>';
-			}else{
-				$rating_images .= '<img src="' . $prefix . 'images/rate_empty.gif" align="left" alt="' . $rating . '"/>';
-			}
-			$i++;
-		}
+        
+        //calculate required amount of stars in picinfo
+        $i = 1;
+        $rating = round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$CONFIG['rating_stars_amount']));
+        $rating_images = '';
+        while($i <= $CONFIG['rating_stars_amount']){
+            if($i <= $rating){
+                $rating_images .= '<img src="' . $prefix . 'images/rate_full.gif" align="left" alt="' . $rating . '"/>';
+            }else{
+                $rating_images .= '<img src="' . $prefix . 'images/rate_empty.gif" align="left" alt="' . $rating . '"/>';
+            }
+            $i++;
+        }
         $info[sprintf($lang_picinfo['Rating'], $CURRENT_PIC_DATA['votes'])] = $rating_images . $detailsLink_votes;
     }
 
@@ -222,37 +222,37 @@ function html_picinfo()
     return theme_html_picinfo($info);
 }
 
-	/** Main code  */
-	$pos = $superCage->get->getInt('pos');
-	
-	/** Hack added by tarique to prevent incorrect picture being seen on last view or last uploaded */
-	
-	$pid = $superCage->get->getInt('pid');
-	$cat = $superCage->get->getInt('cat');
-	
-	/** TODO: Add the code to handle date parameter  */
-	//$date = $superCage->get->getInt('cat');
-	if ($superCage->get->testAlpha('album')) {
-	    $album = $superCage->get->getAlpha('album');
-	} else {
-	    $album = $superCage->get->getInt('album');
-	}
+    /** Main code  */
+    $pos = $superCage->get->getInt('pos');
+    
+    /** Hack added by tarique to prevent incorrect picture being seen on last view or last uploaded */
+    
+    $pid = $superCage->get->getInt('pid');
+    $cat = $superCage->get->getInt('cat');
+    
+    /** TODO: Add the code to handle date parameter  */
+    //$date = $superCage->get->getInt('cat');
+    if ($superCage->get->testAlpha('album')) {
+        $album = $superCage->get->getAlpha('album');
+    } else {
+        $album = $superCage->get->getInt('album');
+    }
 
-	/** get ajax call to thubm photo slideshow*/
-	$ajax_show = $superCage->get->getInt('ajax_show');
-	/** get AJAX call to run filmstripe */
-	$ajax_call = $superCage->get->getInt('ajax_call');
+    /** get ajax call to thumb photo slideshow*/
+    $ajax_show = $superCage->get->getInt('ajax_show');
+    /** get AJAX call to run filmstrip */
+    $ajax_call = $superCage->get->getInt('ajax_call');
 
-	get_meta_album_set($cat);
-	
-	//attempt to fix topn images for keyworded albums
-	if ($cat < 0) {
-	    $result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
-	    if (mysql_num_rows($result) > 0) {
-	        $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
-	        $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
-	    }
-	}
+    get_meta_album_set($cat);
+    
+    // attempt to fix topn images for keyworded albums
+    if ($cat < 0) {
+        $result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
+        if (mysql_num_rows($result) > 0) {
+            $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
+            $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
+        }
+    }
 
 if (!$superCage->get->keyExists('fullsize') && ($pos < 0 || $pid > 0)) {
     ########## Modified by Abbas for new URL feature #########
@@ -269,35 +269,35 @@ if (!$superCage->get->keyExists('fullsize') && ($pos < 0 || $pid > 0)) {
     
     if ($pos === FALSE) {
     
-		$pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
-		for($pos = 0; $pic_data[$pos]['pid'] != $pid && $pos < $pic_count; $pos++);
-		reset($pic_data);
-		$CURRENT_PIC_DATA = $pic_data[$pos];
-		reset($pic_data);
+        $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
+        for($pos = 0; $pic_data[$pos]['pid'] != $pid && $pos < $pic_count; $pos++);
+        reset($pic_data);
+        $CURRENT_PIC_DATA = $pic_data[$pos];
+        reset($pic_data);
     
     } else {
     
-		// load current pic details
-		$pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
-		$CURRENT_PIC_DATA = $pic_data[0];
+        // load current pic details
+        $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
+        $CURRENT_PIC_DATA = $pic_data[0];
   
-		// load prev, next, start and end for the navbar
-		if ($pos > 0) {
-			$prev = get_pic_data($album, $pic_count, $album_name, $pos-1, 1, false);
-			$pic_data[$pos-1] = $prev[0];
-		}
+        // load prev, next, start and end for the navbar
+        if ($pos > 0) {
+            $prev = get_pic_data($album, $pic_count, $album_name, $pos-1, 1, false);
+            $pic_data[$pos-1] = $prev[0];
+        }
   
-		if ($pos < ($pic_count -1)) {
-			$next = get_pic_data($album, $pic_count, $album_name, $pos+1, 1, false);
-			$pic_data[$pos+1] = $next[0];
-		}
+        if ($pos < ($pic_count -1)) {
+            $next = get_pic_data($album, $pic_count, $album_name, $pos+1, 1, false);
+            $pic_data[$pos+1] = $next[0];
+        }
 
-		$start = get_pic_data($album, $pic_count, $album_name, 0, 1, false);
-		$pic_data[0] = $start[0];
+        $start = get_pic_data($album, $pic_count, $album_name, 0, 1, false);
+        $pic_data[0] = $start[0];
      
-		$end = get_pic_data($album, $pic_count, $album_name, $pic_count -1, 1, false);
-		$pic_data[$pic_count -1] = $end[0];
-	}
+        $end = get_pic_data($album, $pic_count, $album_name, $pic_count -1, 1, false);
+        $pic_data[$pic_count -1] = $end[0];
+    }
     
     ########################################################
 } elseif (isset($pos) && is_numeric($pos)) {
@@ -319,28 +319,28 @@ if (!$superCage->get->keyExists('fullsize') && !count($CURRENT_PIC_DATA)) {
 }
 
 ####################################################
-	/** add the assign variable work with jSlidshow */
-	set_js_var('position', $pos) ;
-	set_js_var('album',$album);
-	
-	/** if slideshow is has a key or ajax_show has a key then run jquery.slideshow.js */
-	if($superCage->get->keyExists('slideshow') || $superCage->get->keyExists('ajax_show')){
-		js_include('js/jquery.slideshow.js');
-	}
-	
-	/** If we have film_strip key in GET then it means this is an ajax call for filmstrip */
-	if ($superCage->get->keyExists('film_strip')) {
-		$film_strip = display_film_strip($album, (isset($cat) ? $cat : 0), $pos, true);
-		echo $film_strip;
-		exit;
-	}
-	
-	/** if there is value for ajax_show key in GET then it means this is an ajax call to display sideshow. */
-	if ($superCage->get->keyExists('ajax_show')) {	
-	    display_slideshow($pos,$ajax_show);
-	    ob_end_flush();
-		exit;
-	}
+    /** add the assign variable work with jSlideshow */
+    set_js_var('position', $pos) ;
+    set_js_var('album',$album);
+    
+    /** if slideshow is has a key or ajax_show has a key then run jquery.slideshow.js */
+    if($superCage->get->keyExists('slideshow') || $superCage->get->keyExists('ajax_show')){
+        js_include('js/jquery.slideshow.js');
+    }
+    
+    /** If we have film_strip key in GET then it means this is an ajax call for filmstrip */
+    if ($superCage->get->keyExists('film_strip')) {
+        $film_strip = display_film_strip($album, (isset($cat) ? $cat : 0), $pos, true);
+        echo $film_strip;
+        exit;
+    }
+    
+    /** if there is value for ajax_show key in GET then it means this is an ajax call to display sideshow. */
+    if ($superCage->get->keyExists('ajax_show')) {  
+        display_slideshow($pos,$ajax_show);
+        ob_end_flush();
+        exit;
+    }
 
 // Retrieve data for the current album
 if (isset($CURRENT_PIC_DATA)) {
@@ -359,14 +359,14 @@ if (isset($CURRENT_PIC_DATA)) {
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
     }
 }
-	
+    
 
 if ($superCage->get->keyExists('fullsize')) {
     theme_display_fullsize_pic();
     ob_end_flush();
 } elseif ($superCage->get->keyExists('slideshow')) {
     $slideshow = $superCage->get->getInt('slideshow');
-	set_js_var('run_slideshow','true'); 
+    set_js_var('run_slideshow','true'); 
     display_slideshow($pos);
     ob_end_flush();
 } else {

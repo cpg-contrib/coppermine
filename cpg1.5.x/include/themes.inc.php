@@ -528,17 +528,17 @@ if (!isset($template_film_strip)) { //{THEMES}
 $template_film_strip = <<<EOT
 
         <tr>
-         <td valign="top" class="filmstrip_background" style="background-image: url({TILE1});"><img src="{TILE1}" alt="" border="0" /></td>
+          <td valign="top" class="filmstrip_background" style="background-image: url({TILE1});"><img src="{TILE1}" alt="" border="0" /></td>
         </tr>
         <tr>
           <td valign="bottom" class="thumbnails filmstrip_background" align="center" style="{THUMB_TD_STYLE}">
             <table width="100%" cellspacing="0" cellpadding="3" border="0">
                 <tr>
-                   <td width="50%" class="prve_strip"></td>
-                   			<td valign="bottom"  style="{THUMB_TD_STYLE}">
-								<div id="film" style="{SET_WIDTH}"><table class="tape" ><tr>{THUMB_STRIP}</tr></table></div>
-							</td>	
-				<td width="50%" align="right" class="next_strip"></td>
+                   <td width="50%" class="prev_strip"></td>
+                     <td valign="bottom"  style="{THUMB_TD_STYLE}">
+                       <div id="film" style="{SET_WIDTH}"><table class="tape" ><tr>{THUMB_STRIP}</tr></table></div>
+                     </td>
+                   <td width="50%" align="right" class="next_strip"></td>
                 </tr>
             </table>
           </td>
@@ -890,8 +890,12 @@ $template_img_navbar = <<<EOT
 <!-- BEGIN ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48"><a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/ecard.png"  border="0" align="middle" alt="{ECARD_TITLE}" /></a></td>
 <!-- END ecard_button -->
-                <td align="center" valign="middle" class="navmenu" width="48"><a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/navbar/prev.png" border="0" align="middle" alt="{PREV_TITLE}" /></a></td>
-                <td align="center" valign="middle" class="navmenu" width="48"><a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/navbar/next.png" border="0" align="middle" alt="{NEXT_TITLE}" /></a></td>
+<!-- BEGIN nav_prev -->
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/navbar/{PREV_IMAGE}" border="0" align="middle" alt="{PREV_TITLE}" /></a></td>
+<!-- END nav_prev -->
+<!-- BEGIN nav_next -->
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/navbar/{NEXT_IMAGE}" border="0" align="middle" alt="{NEXT_TITLE}" /></a></td>
+<!-- END nav_next -->
         </tr>
 
 EOT;
@@ -969,7 +973,7 @@ $template_image_rating = <<<EOT
                 <td colspan="6" class="tableh2_compact" id="voting_title"><strong>{TITLE}</strong> {VOTES}</td>
         </tr>
         <tr  id="rating_stars">
-        	<td class="tableb_compact" id="star_rating" ></td>
+            <td class="tableb_compact" id="star_rating" ></td>
         </tr>
     <noscript>
         <tr>
@@ -2225,40 +2229,44 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
     if (count($cat_data) > 0) {
         starttable('100%');
         $template = template_extract_block($template_cat_list, 'header');
-        $params = array('{CATEGORY}' => $lang_cat_list['category'],
-            '{ALBUMS}' => $lang_cat_list['albums'],
-            '{PICTURES}' => $lang_cat_list['pictures'],
-            );
+        $params = array(
+                '{CATEGORY}' => $lang_cat_list['category'],
+                '{ALBUMS}' => $lang_cat_list['albums'],
+                '{PICTURES}' => $lang_cat_list['pictures'],
+        );
         echo template_eval($template, $params);
     }
 
-    $template_noabl = template_extract_block($template_cat_list, 'catrow_noalb');
+    $template_noalb = template_extract_block($template_cat_list, 'catrow_noalb');
     $template = template_extract_block($template_cat_list, 'catrow');
     foreach($cat_data as $category) {
         if (!isset($category['cat_thumb'])) { $category['cat_thumb'] = ''; }
         if (count($category) == 3) {
-            $params = array('{CAT_TITLE}' => $category[0],
+            $params = array(
+                    '{CAT_TITLE}' => $category[0],
                     '{CAT_THUMB}' => $category['cat_thumb'],
-                '{CAT_DESC}' => $category[1]
-                );
-            echo template_eval($template_noabl, $params);
+                    '{CAT_DESC}' => $category[1],
+            );
+            echo template_eval($template_noalb, $params);
         } elseif (isset($category['cat_albums']) && ($category['cat_albums'] != '')) {
-            $params = array('{CAT_TITLE}' => $category[0],
-                '{CAT_THUMB}' => $category['cat_thumb'],
-                '{CAT_DESC}' => $category[1],
-                '{CAT_ALBUMS}' => $category['cat_albums'],
-                '{ALB_COUNT}' => $category[2],
-                '{PIC_COUNT}' => $category[3],
-                );
+            $params = array(
+                    '{CAT_TITLE}' => $category[0],
+                    '{CAT_THUMB}' => $category['cat_thumb'],
+                    '{CAT_DESC}' => $category[1],
+                    '{CAT_ALBUMS}' => $category['cat_albums'],
+                    '{ALB_COUNT}' => $category[2],
+                    '{PIC_COUNT}' => $category[3],
+            );
             echo template_eval($template, $params);
         } else {
-            $params = array('{CAT_TITLE}' => $category[0],
-                '{CAT_THUMB}' => $category['cat_thumb'],
-                '{CAT_DESC}' => $category[1],
-                '{CAT_ALBUMS}' => '',
-                '{ALB_COUNT}' => $category[2],
-                '{PIC_COUNT}' => $category[3],
-                );
+            $params = array(
+                    '{CAT_TITLE}' => $category[0],
+                    '{CAT_THUMB}' => $category['cat_thumb'],
+                    '{CAT_DESC}' => $category[1],
+                    '{CAT_ALBUMS}' => '',
+                    '{ALB_COUNT}' => $category[2],
+                    '{PIC_COUNT}' => $category[3],
+            );
             echo template_eval($template, $params);
         }
     }
@@ -2293,8 +2301,9 @@ function theme_display_breadcrumb($breadcrumb, &$cat_data)
     starttable('100%');
     if ($breadcrumb) {
         $template = template_extract_block($template_breadcrumb, 'breadcrumb');
-        $params = array('{BREADCRUMB}' => $breadcrumb
-            );
+        $params = array(
+                '{BREADCRUMB}' => $breadcrumb,
+        );
         echo template_eval($template, $params);
     }
         endtable();
@@ -2736,7 +2745,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                 }
             } else {
-                $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
+                $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link#top_display_media";
             }
             $params = array('{CELL_WIDTH}' => $cell_width,
                 '{LINK_TGT}' => $target,
@@ -2771,17 +2780,17 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     } else {
         $location= '';
     }
-	$max_itme_width_ul = $max_block_items;
-	if(($max_block_items%2)==0){
-		$max_itme_width_ul = $max_block_items +1;
-	}
-	$set_width_to_film = "width:".($max_block_items*($thumb_width+4))."px; position:relative;";
-	
+    $max_itme_width_ul = $max_block_items;
+    if(($max_block_items%2)==0){
+        $max_itme_width_ul = $max_block_items +1;
+    }
+    $set_width_to_film = "width:".($max_block_items*($thumb_width+4))."px; position:relative;";
+    
     $params = array('{THUMB_STRIP}' => $thumb_strip,
         '{COLS}' => $i,
         '{TILE1}' => $tile1,
         '{TILE2}' => $tile2,
-		'{SET_WIDTH}'  => $set_width_to_film,	
+        '{SET_WIDTH}'  => $set_width_to_film,   
         );
 
     ob_start();
@@ -3172,9 +3181,12 @@ function theme_html_img_nav_menu() {
         $prev_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link#top_display_media";
         $prev_title = $lang_img_nav_bar['prev_title'];
         $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />\n";
+        $prev_image = (($lang_text_dir == 'ltr') ? 'prev.png' : 'next.png');
     } else {
+        // on first image, so no previous button/link
         $prev_tgt = "javascript:;";
         $prev_title = "";
+        $prev_image = (($lang_text_dir == 'ltr') ? 'prev_inactive.png' : 'next_inactive.png');
     }
 
     if ($pos < ($pic_count -1)) {
@@ -3183,9 +3195,12 @@ function theme_html_img_nav_menu() {
         $next_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link#top_display_media";
         $next_title = $lang_img_nav_bar['next_title'];
         $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>\n";
+        $next_image = (($lang_text_dir == 'ltr') ? 'next.png' : 'prev.png');
     } else {
+        // on last image, so no next button/link
         $next_tgt = "javascript:;";
         $next_title = "";
+        $next_image = (($lang_text_dir == 'ltr') ? 'next_inactive.png' : 'prev_inactive.png');
     }
 
     if (USER_CAN_SEND_ECARDS) {
@@ -3229,10 +3244,10 @@ function theme_html_img_nav_menu() {
         '{ECARD_TITLE}' => $ecard_title,
         '{PREV_TGT}' => $prev_tgt,
         '{PREV_TITLE}' => $prev_title,
+        '{PREV_IMAGE}' => $prev_image,
         '{NEXT_TGT}' => $next_tgt,
         '{NEXT_TITLE}' => $next_title,
-        '{PREV_IMAGE}' => ($lang_text_dir=='ltr') ? 'prev' : 'next',
-        '{NEXT_IMAGE}' => ($lang_text_dir=='ltr') ? 'next' : 'prev',
+        '{NEXT_IMAGE}' => $next_image,
         '{REPORT_TGT}' => $report_tgt,
         '{REPORT_TITLE}' => $lang_img_nav_bar['report_title'],
         '{LOCATION}' => $location,
@@ -3286,38 +3301,38 @@ function theme_html_rating_box()
     $superCage = Inspekt::makeSuperCage();
     
     if($CONFIG['old_style_rating']){
-		//use old style rating
-		$start_td = '<td class="tableb_compact" width="17%" align="center">';
-		$end_td = '</td>';
-		$empty_star = '<img style="cursor:pointer" id="' . $pid . '_0" title="0" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['rubbish'] . '" onclick="rate(this)" />';
-		$rating_images = $start_td . $empty_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
-		
-		$empty_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
-		$full_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
-		$rating_images .= $start_td . $full_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
-		
-		$empty_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
-		$full_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
-		$rating_images .= $start_td . $full_star . $full_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
-		
-		$empty_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
-		$full_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
-		$rating_images .= $start_td . $full_star . $full_star . $full_star . $empty_star . $empty_star . $end_td . "\n";
-		
-		$empty_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
-		$full_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
-		$rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $empty_star . $end_td . "\n";
-		
-		$full_star = '<img style="cursor:pointer" id="' . $pid . '_5" title="5" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['great'] . '" onclick="rate(this)" />';
-		$rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . "\n";
-	}else{
+        //use old style rating
+        $start_td = '<td class="tableb_compact" width="17%" align="center">';
+        $end_td = '</td>';
+        $empty_star = '<img style="cursor:pointer" id="' . $pid . '_0" title="0" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['rubbish'] . '" onclick="rate(this)" />';
+        $rating_images = $start_td . $empty_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
+        
+        $empty_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
+        $full_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
+        $rating_images .= $start_td . $full_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
+        
+        $empty_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
+        $full_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
+        $rating_images .= $start_td . $full_star . $full_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
+        
+        $empty_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
+        $full_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
+        $rating_images .= $start_td . $full_star . $full_star . $full_star . $empty_star . $empty_star . $end_td . "\n";
+        
+        $empty_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
+        $full_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
+        $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $empty_star . $end_td . "\n";
+        
+        $full_star = '<img style="cursor:pointer" id="' . $pid . '_5" title="5" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['great'] . '" onclick="rate(this)" />';
+        $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . "\n";
+    }else{
       //use new rating
-	  set_js_var('rating', round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 0));
-	  set_js_var('picture_id', $pid);
-	  set_js_var('theme_dir', $location);
-	  set_js_var('can_vote', $user_can_vote);
-	  set_js_var('lang_rate_pic', $rate_title);
-	  set_js_var('stars_amount', $rating_stars_amount);
+      set_js_var('rating', round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 0));
+      set_js_var('picture_id', $pid);
+      set_js_var('theme_dir', $location);
+      set_js_var('can_vote', $user_can_vote);
+      set_js_var('lang_rate_pic', $rate_title);
+      set_js_var('stars_amount', $rating_stars_amount);
     }
 
     $params = array(
@@ -3346,7 +3361,7 @@ function theme_html_comments($pid)
     global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER, $lang_bbcode_help_title, $lang_bbcode_help;
 
     $superCage = Inspekt::makeSuperCage();
-	$template_add_your_comment = CPGPluginAPI::filter('theme_add_comment', $template_add_your_comment);
+    $template_add_your_comment = CPGPluginAPI::filter('theme_add_comment', $template_add_your_comment);
     $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_image_comments);
 
     $html = '';

@@ -830,8 +830,12 @@ $template_img_navbar = <<<EOT
 <!-- BEGIN ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48"><a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/ecard.png"  border="0" align="middle" alt="{ECARD_TITLE}" /></a></td>
 <!-- END ecard_button -->
-                <td align="center" valign="middle" class="navmenu" width="48"><a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/navbar/prev.png" border="0" align="middle" alt="{PREV_TITLE}" /></a></td>
-                <td align="center" valign="middle" class="navmenu" width="48"><a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/navbar/next.png" border="0" align="middle" alt="{NEXT_TITLE}" /></a></td>
+<!-- BEGIN nav_prev -->
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/navbar/{PREV_IMAGE}" border="0" align="middle" alt="{PREV_TITLE}" /></a></td>
+<!-- END nav_prev -->
+<!-- BEGIN nav_next -->
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/navbar/{NEXT_IMAGE}" border="0" align="middle" alt="{NEXT_TITLE}" /></a></td>
+<!-- END nav_next -->
         </tr>
 
 EOT;
@@ -3037,9 +3041,12 @@ function theme_html_img_nav_menu() {
         $prev_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link#top_display_media";
         $prev_title = $lang_img_nav_bar['prev_title'];
         $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />\n";
+        $prev_image = (($lang_text_dir == 'ltr') ? 'prev.png' : 'next.png');
     } else {
+        // on first image, so no previous button/link
         $prev_tgt = "javascript:;";
         $prev_title = "";
+        $prev_image = (($lang_text_dir == 'ltr') ? 'prev_inactive.png' : 'next_inactive.png');
     }
 
     if ($pos < ($pic_count -1)) {
@@ -3048,9 +3055,12 @@ function theme_html_img_nav_menu() {
         $next_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link#top_display_media";
         $next_title = $lang_img_nav_bar['next_title'];
         $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>\n";
+        $next_image = (($lang_text_dir == 'ltr') ? 'next.png' : 'prev.png');
     } else {
+        // on last image, so no next button/link
         $next_tgt = "javascript:;";
         $next_title = "";
+        $next_image = (($lang_text_dir == 'ltr') ? 'next_inactive.png' : 'prev_inactive.png');
     }
 
     if (USER_CAN_SEND_ECARDS) {
@@ -3094,10 +3104,10 @@ function theme_html_img_nav_menu() {
         '{ECARD_TITLE}' => $ecard_title,
         '{PREV_TGT}' => $prev_tgt,
         '{PREV_TITLE}' => $prev_title,
+        '{PREV_IMAGE}' => $prev_image,
         '{NEXT_TGT}' => $next_tgt,
         '{NEXT_TITLE}' => $next_title,
-        '{PREV_IMAGE}' => ($lang_text_dir=='ltr') ? 'prev' : 'next',
-        '{NEXT_IMAGE}' => ($lang_text_dir=='ltr') ? 'next' : 'prev',
+        '{NEXT_IMAGE}' => $next_image,
         '{REPORT_TGT}' => $report_tgt,
         '{REPORT_TITLE}' => $lang_img_nav_bar['report_title'],
         '{LOCATION}' => $location,

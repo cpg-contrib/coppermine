@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-12-14 [A] Added navbar buttons for inactive previous and next {Paver}
 2008-12-14 [B] Fixed some bugs in voting and changed it to make better use of jQuery {SaWey}
 2008-12-14 [C] Moved vanity icons into separate folder {GauGau}
 2008-12-14 [C] Re-did batch-add graphics for fresher look {GauGau}
