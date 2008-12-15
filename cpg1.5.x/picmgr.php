@@ -144,36 +144,36 @@ function albumselect($id = "album")
 
     return "\n<select name=\"$id\" class=\"listbox\">\n$select</select>\n";
 }
-	 	/**set js variable to changes albums*/
- 	 set_js_var('change_album', $lang_picmgr_php['change_album']);
- 	 
-	 pageheader($lang_picmgr_php['pic_mgr']);
+        /**set js variable to changes albums*/
+     set_js_var('change_album', $lang_picmgr_php['change_album']);
+     
+     pageheader($lang_picmgr_php['pic_mgr']);
 
 
 ?>
 
 <form name="picture_menu" id="cpgformPic" method="post" action="delete.php?what=picmgr" >
 <?php starttable("100%", cpg_fetch_icon('picture_sort', 2) . $lang_picmgr_php['pic_mgr'], 1); ?>
-	<noscript>
-		<tr>
+    <noscript>
+        <tr>
             <td colspan="2" class="tableh2">
             <?php echo $lang_common['javascript_needed'] ?>
             </td>
-		</tr>
-	</noscript>
+        </tr>
+    </noscript>
 <tr>
 
 <?php
-	$aid = ($superCage->get->keyExists('aid')) ? $superCage->get->getInt('aid') : 0;
-	
-   	if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
-      	$result = cpg_db_query("SELECT aid, pid, filename, title FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY position ASC, pid");
-   	}
-	else cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+    $aid = ($superCage->get->keyExists('aid')) ? $superCage->get->getInt('aid') : 0;
+    
+    if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
+        $result = cpg_db_query("SELECT aid, pid, filename, title FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY position ASC, pid");
+    }
+    else cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
-  	$rowset = cpg_db_fetch_rowset($result);
-   	$i=100;
-   	$sort_order = '';
+    $rowset = cpg_db_fetch_rowset($result);
+    $i=100;
+    $sort_order = '';
 
    if (count ($rowset) > 0) foreach ($rowset as $picture){
       $sort_order .= $picture['pid'].'@'.($i++).',';
@@ -181,15 +181,15 @@ function albumselect($id = "album")
 ?>
 
    <td class="tableb" valign="top" align="center">
-	   <input type="hidden" name="albunm_id" value="<?php echo $aid; ?>" />
- 	   <input type="hidden" name="delete_picture" value="" />
-	   <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />
-	   <input type="hidden" id="pictur_order" name="pictur_order" value="" />  
-      	<br />
-      	<table width="300" border="0" cellspacing="0" cellpadding="0">
+       <input type="hidden" name="albunm_id" value="<?php echo $aid; ?>" />
+       <input type="hidden" name="delete_picture" value="" />
+       <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />
+       <input type="hidden" id="pictur_order" name="pictur_order" value="" />  
+        <br />
+        <table width="300" border="0" cellspacing="0" cellpadding="0">
 <?php
-	//Joe Ernst - Added USER_ADMIN_MODE
-	if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
+    //Joe Ernst - Added USER_ADMIN_MODE
+    if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
         $ALBUM_LIST = array();
         $ALBUM_LIST[] = array(0, $lang_picmgr_php['no_album']);
         get_album_data(FIRST_USER_CAT + USER_ID,'');
@@ -207,35 +207,37 @@ echo <<<EOT
 EOT;
 }
 ?>
-	<tr>
-		<td>
-		<div id="sort">
-			<table id="pic_sort">
+    <tr>
+        <td>
+        <div id="sort">
+            <table id="pic_sort">
 <?php
-	   $i	=	100;
-	   $lb 	= 	'';
-	   $j	=	1;
-		/** create a table to sort the picture*/  
-   	if (count ($rowset) > 0) 
-		foreach ($rowset as $picture){
-	 		$lb .='<tr id='.$picture["pid"].' title='.$picture["pid"].'><td width="10%" style="padding-left:20px" >'.$j.'</td><td><img src="images/bullet.png"  /><td style="width:335px;padding-left:10px;">'.$picture["title"].'</td><td style="width:300px;padding-left:10px;">'.$picture["filename"].'</td></tr>';
-			$j++;
-   		}
-   		
-   echo $lb;
-   
-   echo <<<EOT
+       $i   =   100;
+       $lb  =   '';
+       $j   =   1;
+        /** create a table to sort the picture*/  
+    if (count ($rowset) > 0) 
+        foreach ($rowset as $picture){
+            $lb .='<tr id='.$picture["pid"].' title='.$picture["pid"].'><td width="10%" style="padding-left:20px" >'.$j.'</td><td><img src="images/bullet.png"  /><td style="width:335px;padding-left:10px;">'.$picture["title"].'</td><td style="width:300px;padding-left:10px;">'.$picture["filename"].'</td></tr>';
+            $j++;
+        }
+        
+    echo $lb;
+
+    $up_arrow = cpg_fetch_icon('up', 0, $lang_common['move_up']);
+    $down_arrow = cpg_fetch_icon('down', 0, $lang_common['move_down']);
+    echo <<<EOT
       </table>
-	  </div>
-	</td>
+      </div>
+    </td>
      </tr>
      
       <tr>
          <td>
-		 	<table>
+            <table>
                <tr>
-               <td style="float:left; margin-left:50px;"><a class="photoUp"><img  src="images/move_up.gif" width="26" height="21" border="0" alt="" /></a>
-			   <a class="photoDown"><img src="images/move_down.gif" width="26" height="21" border="0" alt="" /></a>
+               <td style="float:left; margin-left:50px;"><a class="photoUp">$up_arrow</a>
+               <a class="photoDown">$down_arrow</a>
                </td>
 <!-- Joe Ernst: I commented this out because I can't get it to work. -->
                <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br />
