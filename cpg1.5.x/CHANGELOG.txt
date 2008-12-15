@@ -25,6 +25,11 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+
+2008-12-15 [O] Replaced inline javascript of slideshow btn & pic_info btn (displayimage.js) {SaWey}
+2008-12-15 [O] Replaced inline javascript of sidebar (dTree.js) {SaWey}
+2008-12-15 [O] Replaced inline javascript of bookmark function (scripts.js) {SaWey}
+2008-12-15 [O] Replaced sort table in thumbnails by external javascript (thumbnails.js) {SaWey}
 2008-12-15 [A] Added the fallback mechanism for flash upload interface {Abbas}
 2008-12-14 [A] Modified breadcrumb for meta-albums to show more intuitive breadcrumb {Paver}
 2008-12-14 [A] Added navbar buttons for inactive previous and next {Paver}

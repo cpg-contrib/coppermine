@@ -4577,7 +4577,7 @@ function json_encode($arr)
         } else {
             // If the value is not numeric and boolean then escape and quote it
             if ((!is_numeric($val) && !is_bool($val))) {
-                $escape = array("\r\n" => '\n', "\r" => '\n', "\n" => '\n', '"' => '\"', "'" => "\\'");
+                $escape = array("\r\n" => '\n', "\r" => '\n', "\n" => '\n', '"' => '\"', "'" => "\'");
                 $val = str_replace(array_keys($escape), array_values($escape), $val);
                 $val = '"' . $val . '"';
             }

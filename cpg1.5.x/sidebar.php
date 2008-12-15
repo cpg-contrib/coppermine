@@ -368,7 +368,9 @@ $params = array(
     '{LOCATION}' => $location,
     );
 // Parse template
-echo template_eval($template_sidebar, $params);
+print('<pre>');
+print_r(template_eval($template_sidebar, $params));
+print('</pre>');
 
 }
 ?>

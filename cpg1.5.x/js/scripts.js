@@ -185,4 +185,29 @@ function sprintf () {
   return o.join('');
 }
 
+function bookmarks(){
+	if(js_vars.bookmark.display_social_bookmarks){
+		$('#bookmarkIt').click(function() { 
+			var offset = $('#bookmarkIt').offset(); 
+			$('#popupBookmark').css('left', offset.left).css('top', offset.top + $('#bookmarkIt').height() + 2); 
+			$('#popupBookmark,#popupClose').toggle(); 
+		}); 
+		$('#popupBookmark').bookmark( 
+			{
+				compact: true, 
+				addEmail: false, 
+				addFavorite: true,
+				manualBookmark: js_vars.bookmark.favorite_close,
+				sites: js_vars.bookmark.bookmark_list,
+				icons: 'images/bookmarks.png',
+				iconSize: 16,
+				target: '_blank',
+				favoriteText: js_vars.bookmark.favorite,
+				favoriteIcon: 0
+			}
+		);
+	}
+}
+addonload('bookmarks()');
+
 window.onload = runonloads;
