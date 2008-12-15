@@ -22,6 +22,9 @@ define('PICMGR_PHP', true);
 
 require('include/init.inc.php');
 
+/** sort the piture manager**/
+js_include('js/jquery.sort.js');
+
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
@@ -139,281 +142,38 @@ function albumselect($id = "album")
         }
     }
 
-    return "\n<select name=\"$id\" class=\"listbox\"  onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?aid='+this.options[this.selectedIndex].value;\" >\n$select</select>\n";
+    return "\n<select name=\"$id\" class=\"listbox\">\n$select</select>\n";
 }
+	 	/**set js variable to changes albums*/
+ 	 set_js_var('change_album', $lang_picmgr_php['change_album']);
+ 	 
+	 pageheader($lang_picmgr_php['pic_mgr']);
 
-pageheader($lang_picmgr_php['pic_mgr']);
+
 ?>
 
-<script language="javascript" type="text/javascript">
-<!--
-    function CheckPictureForm(frm)
-    {
-        var select_len = frm.to.length;
-        var picture = new Object();
-        var changed = false;
-
-        for (i=0; i<select_len; i++) {
-            picture = new parseSelectValue(frm.to, i);
-
-            if (picture.action != '0') {
-                if (picture.picture_nm == '') {
-                    alert("<?php echo $lang_picmgr_php['pic_need_name'] ?>");
-                    frm.to.options[i].selected = true;
-                    return false;
-                }
-                changed = true;
-            }
-        }
-
-        if (frm.delete_picture.value.len !=0)
-            changed = true;
-
-        if (changed) {
-            if (confirm("<?php echo $lang_picmgr_php['confirm_modifs'] ?>")) {
-                for (i=0; i<select_len; i++) {
-                    picture = new parseSelectValue(frm.to, i);
-                    if (picture.action != '0') {
-                        frm.to.options[i].selected = true;
-                    }
-                }
-                return true;
-            }
-            else
-                return false;
-        }
-        else {
-            alert("<?php echo $lang_picmgr_php['no_change'] ?>");
-            return false;
-        }
-    }
-
-    function page_init()
-    {
-        document.picture_menu.delete_picture.value = "";
-    }
--->
-</script>
-
-<script language="javascript" type="text/javascript">
-<!--
-    var selectedOptIndex;
-
-    function Picture_Select(selectedIndex)
-    {
-        selectedOptIndex = selectedIndex;
-
-        for (i=0; i<document.picture_menu.to.length; i++) {
-            document.picture_menu.to.options[i].selected = false;
-        }
-        document.picture_menu.to.options[selectedIndex].selected = true;
-
-        var picture = new Object();
-        picture = new parseSelectValue(document.picture_menu.to, selectedIndex);
-
-        picture.deleteFrm();
-        picture.changeFrm();
-    }
-
-    function Movetop_Option()
-    {
-        var to = document.picture_menu.to;
-        var pos = selectedOptIndex;
-        if (pos == 0) {
-            return;
-        }
-
-        for (var i=pos; i>0; i--) {
-            swap_option(to, i, i-1);
-        }
-        selected_option(to, 0);
-    }
-
-    function Movebottom_Option()
-    {
-        var to = document.picture_menu.to;
-        var pos = selectedOptIndex;
-        if (pos == to.length-1) {
-            return;
-        }
-
-        for (var i=pos; i<to.length-1; i++) {
-            swap_option(to, i, i+1);
-        }
-        selected_option(to, to.length-1);
-    }
-
-    function Moveup_Option()
-    {
-        var to = document.picture_menu.to;
-        var pos = selectedOptIndex;
-        if (pos == 0) {
-            return;
-        }
-
-        swap_option(to, pos, pos-1);
-        selected_option(to, pos-1);
-    }
-
-    function Movedown_Option()
-    {
-        var to = document.picture_menu.to;
-        var pos = selectedOptIndex;
-        if (pos == to.length-1) {
-            return;
-        }
-
-        swap_option(to, pos, pos+1);
-        selected_option(to, pos+1);
-    }
-
-
-    function Picture_Delete()
-    {
-        var picture = new Object();
-        var to = document.picture_menu.to;
-        picture = new parseSelectValue(to, selectedOptIndex);
-
-        var msg = "<?php echo $lang_picmgr_php['confirm_delete1'] ?>";
-
-        if (picture.action == '1') {
-            if (confirm(msg)) {
-                to.options[selectedOptIndex] = null;
-                document.picture_menu.picture_nm.value='';
-            }
-            else {
-                return;
-            }
-        }
-        else {
-            msg = msg + "<?php echo $lang_picmgr_php['confirm_delete2'] ?>";
-
-            if (confirm(msg)) {
-                var picture = new Object();
-                picture =  new parseSelectValue(to, selectedOptIndex);
-                to.options[selectedOptIndex] = null;
-                document.picture_menu.picture_nm.value='';
-
-                document.picture_menu.delete_picture.value = document.picture_menu.delete_picture.value + picture.picture_no + ',';
-            }
-            else {
-                return;
-            }
-        }
-    }
-
-    function make_option(text, value, target, index)
-    {
-        target[index] = new Option(text, value);
-    }
-
-    function move_list(target, pos)
-    {
-        var picture = new Object();
-        var listlen = target.length;
-
-        for (j=listlen-1; j>pos-1; j--) {
-            picture = new parseSelectValue(target, j)
-            if (picture.action == '1') {
-                value = make_value(picture.picture_no, picture.picture_nm, Number(picture.picture_sort)+1, '1');
-            }
-            else {
-                value = make_value(picture.picture_no, picture.picture_nm, Number(picture.picture_sort)+1, '2');
-            }
-            text  = target.options[j].text;
-
-            make_option(text, value, target, j+1);
-        }
-    }
-
-    function _private_update_frm_element(name)
-    {
-        var frm = document.picture_menu;
-        frm.picture_nm.value = name;
-    }
-
-    function _private_change()
-    {
-        _private_update_frm_element(this.picture_nm);
-    }
-
-    function _private_delete()
-    {
-        _private_update_frm_element('');
-    }
-
-    function parseSelectValue(select, selectedIndex)
-    {
-        var temp_nm
-        var option_value = select.options[selectedIndex].value;
-
-        this.picture_no = option_value.substring(option_value.indexOf('picture_no=') + 11, option_value.indexOf(','));
-        option_value = option_value.substring(option_value.indexOf(',') + 1);
-
-        temp_nm = option_value.substring(option_value.indexOf('picture_nm=') + 11, option_value.indexOf('picture_sort=')-1);
-        this.picture_nm = temp_nm.substring(1, temp_nm.length-1);
-        option_value = option_value.substring(option_value.indexOf('picture_sort='));
-
-        this.picture_sort = option_value.substring(option_value.indexOf('picture_sort=') + 13 ,option_value.indexOf(','));
-        option_value = option_value.substring(option_value.indexOf(',') + 1);
-
-        this.action = option_value.substring(option_value.indexOf('action=') + 7);
-
-        this.changeFrm = _private_change;
-        this.deleteFrm = _private_delete;
-
-        return this;
-    }
-
-    function selected_option(target, pos)
-    {
-        target.options[pos].selected = true;
-        Picture_Select(pos);
-    }
-
-    function swap_option(target, swap_a, swap_b)
-    {
-        var picture_a = new Object();
-        var picture_b = new Object();
-
-        picture_a = new parseSelectValue(target, swap_a);
-        picture_b = new parseSelectValue(target, swap_b);
-
-        if (picture_a.action == '0') picture_a.action = '2';
-        if (picture_b.action == '0') picture_b.action = '2';
-
-        var temp_option = new Option(target.options[swap_a].text, make_value(picture_a.picture_no, picture_a.picture_nm,picture_b.picture_sort,picture_a.action));
-        target[swap_a] = new Option(target.options[swap_b].text, make_value(picture_b.picture_no, picture_b.picture_nm,picture_a.picture_sort,picture_b.action));
-        target[swap_b] = temp_option;
-    }
-
-    function make_value(picture_no, picture_nm, picture_sort, action)
-    {
-        return "picture_no=" + picture_no + ",picture_nm='" + picture_nm + "',picture_sort=" + picture_sort + ",action=" + action;
-    }
--->
-</script>
-<form name="picture_menu" id="cpgform" method="post" action="delete.php?what=picmgr" onSubmit="return CheckPictureForm(this);">
+<form name="picture_menu" id="cpgformPic" method="post" action="delete.php?what=picmgr" >
 <?php starttable("100%", cpg_fetch_icon('picture_sort', 2) . $lang_picmgr_php['pic_mgr'], 1); ?>
-<noscript>
+	<noscript>
+		<tr>
+            <td colspan="2" class="tableh2">
+            <?php echo $lang_common['javascript_needed'] ?>
+            </td>
+		</tr>
+	</noscript>
 <tr>
-                <td colspan="2" class="tableh2">
-                <?php echo $lang_common['javascript_needed'] ?>
-                </td>
-</tr>
-</noscript>
-<tr>
-<?php
-   //$aid = isset($_GET['aid']) ? (int) $_GET['aid'] : 0;
-  $aid = ($superCage->get->keyExists('aid')) ? $superCage->get->getInt('aid') : 0;
-   if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
-      $result = cpg_db_query("SELECT aid, pid, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY position ASC, pid");
-//BM in case I have to fix an album      $result = cpg_db_query("SELECT aid, pid, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY filename");
-   } else cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
-   $rowset = cpg_db_fetch_rowset($result);
-   $i=100;
-   $sort_order = '';
+<?php
+	$aid = ($superCage->get->keyExists('aid')) ? $superCage->get->getInt('aid') : 0;
+	
+   	if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
+      	$result = cpg_db_query("SELECT aid, pid, filename, title FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY position ASC, pid");
+   	}
+	else cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+
+  	$rowset = cpg_db_fetch_rowset($result);
+   	$i=100;
+   	$sort_order = '';
 
    if (count ($rowset) > 0) foreach ($rowset as $picture){
       $sort_order .= $picture['pid'].'@'.($i++).',';
@@ -421,13 +181,15 @@ pageheader($lang_picmgr_php['pic_mgr']);
 ?>
 
    <td class="tableb" valign="top" align="center">
-     <input type="hidden" name="delete_picture" value="" />
-     <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />   
-      <br />
-      <table width="300" border="0" cellspacing="0" cellpadding="0">
+	   <input type="hidden" name="albunm_id" value="<?php echo $aid; ?>" />
+ 	   <input type="hidden" name="delete_picture" value="" />
+	   <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />
+	   <input type="hidden" id="pictur_order" name="pictur_order" value="" />  
+      	<br />
+      	<table width="300" border="0" cellspacing="0" cellpadding="0">
 <?php
-//Joe Ernst - Added USER_ADMIN_MODE
-if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
+	//Joe Ernst - Added USER_ADMIN_MODE
+	if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
         $ALBUM_LIST = array();
         $ALBUM_LIST[] = array(0, $lang_picmgr_php['no_album']);
         get_album_data(FIRST_USER_CAT + USER_ID,'');
@@ -445,31 +207,41 @@ echo <<<EOT
 EOT;
 }
 ?>
-      <tr>
-         <td>
-            <select id="to" name="to[]" size="<?php echo min(max(count ($rowset)+3,15), 40) ?>" multiple onChange="Picture_Select(this.selectedIndex);" class="listbox" style="width: 300px">
+	<tr>
+		<td>
+		<div id="sort">
+			<table id="pic_sort">
 <?php
-   $i=100;
-   $lb = '';
-   if (count ($rowset) > 0) foreach ($rowset as $picture){
-         $lb .= '               <option value="picture_no=' . $picture['pid'] .',picture_nm=\'' . $picture['filename'] .'\',picture_sort=' .($i++). ',action=0">' . stripslashes($picture['filename']) . "</option>\n";
-   }
+	   $i	=	100;
+	   $lb 	= 	'';
+	   $j	=	1;
+		/** create a table to sort the picture*/  
+   	if (count ($rowset) > 0) 
+		foreach ($rowset as $picture){
+	 		$lb .='<tr id='.$picture["pid"].' title='.$picture["pid"].'><td width="10%" style="padding-left:20px" >'.$j.'</td><td><img src="images/bullet.png"  /><td style="width:335px;padding-left:10px;">'.$picture["title"].'</td><td style="width:300px;padding-left:10px;">'.$picture["filename"].'</td></tr>';
+			$j++;
+   		}
+   		
    echo $lb;
-   $move_up = cpg_fetch_icon('up', 0, $lang_common['move_up']);
-   $move_down = cpg_fetch_icon('down', 0, $lang_common['move_down']);
-   $move_top = cpg_fetch_icon('upup', 0, $lang_common['move_top']);
-   $move_bottom = cpg_fetch_icon('downdown', 0, $lang_common['move_bottom']);
+   
    echo <<<EOT
-   </select>
-         </td>
-      </tr>
+      </table>
+	  </div>
+	</td>
+     </tr>
+     
       <tr>
          <td>
-               <a href="javascript:Moveup_Option();">{$move_up}</a>
-               <a href="javascript:Movedown_Option();">{$move_down}</a>
-               &nbsp; 
-               <a href="javascript:Movetop_Option();">{$move_top}</a>
-               <a href="javascript:Movebottom_Option();">{$move_bottom}</a>
+		 	<table>
+               <tr>
+               <td style="float:left; margin-left:50px;"><a class="photoUp"><img  src="images/move_up.gif" width="26" height="21" border="0" alt="" /></a>
+			   <a class="photoDown"><img src="images/move_down.gif" width="26" height="21" border="0" alt="" /></a>
+               </td>
+<!-- Joe Ernst: I commented this out because I can't get it to work. -->
+               <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br />
+               </td>
+            </tr>
+            </table>
          </td>
       </tr>
       <tr>
@@ -481,6 +253,7 @@ EOT;
    </td>
 </tr>
 EOT;
+
     if($CONFIG['default_sort_order'] != 'pa' && $CONFIG['default_sort_order'] != 'pd') {
     echo <<<EOT
 <tr>

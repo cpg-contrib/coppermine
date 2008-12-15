@@ -1092,3 +1092,38 @@ div#film {
 	padding: 5px 0 5px 0; 
 	overflow:hidden; 
 }
+
+/**styles for photo manager*/
+div#sort {  
+	margin: 10px; 
+	padding: 5px 25px; 
+	height: 240px; 
+	overflow: auto; 
+	background: #FFF; 
+	width: 700px; 
+	border:5px solid #0E72A4; 
+}
+table#pic_sort tr td { 
+	padding: 2px;
+}
+a.photoUp 	{ 
+	cursor: pointer; 
+}
+a.photoDown { 
+	cursor: pointer; 
+}
+
+td.new_album_bk {
+	background-color: #D4D0C8; 
+	width: 80px; 
+	height: 21px; 
+	border: 1px solid #808080;
+}
+
+.click {
+	cursor:pointer;
+}
+
+table#album_sort tr td {
+	padding: 2px;
+}
