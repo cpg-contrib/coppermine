@@ -75,7 +75,7 @@ if (GALLERY_ADMIN_MODE) {
 function get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST, $USER_DATA;
-        
+
     //select cats where the users can change the albums
     $group_id = $USER_DATA['group_id'];
     $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
@@ -83,9 +83,13 @@ function get_subcat_data($parent, $ident = '')
     if (mysql_num_rows($result) > 0) {
         $rowset = cpg_db_fetch_rowset($result);
         foreach ($rowset as $subcat) {
-            $check_group = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_CATMAP']} WHERE group_id = '$group_id' AND cid=".$subcat['cid']);
-            $check_group_rowset = cpg_db_fetch_rowset($check_group);
-            if($check_group_rowset){
+            if (!GALLERY_ADMIN_MODE) {
+                $check_group = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_CATMAP']} WHERE group_id = '$group_id' AND cid=".$subcat['cid']);
+                $check_group_rowset = cpg_db_fetch_rowset($check_group);
+                if ($check_group_rowset) {
+                    $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
+                }
+            } else {
                 $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
             }
             get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');

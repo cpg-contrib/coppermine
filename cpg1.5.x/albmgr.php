@@ -20,7 +20,7 @@
 /**
 * Coppermine Photo Gallery albmgr.php
 *
-* This file is the which allows creation of new Albumbs and editing the names of albums,
+* This file is the which allows creation of new Albums and editing the names of albums,
 * this is not the file which allows you to set album properties,
 * also see documentation for this file's {@relativelink ../_albmgr.php.php Free Standing Code}
 *
@@ -58,7 +58,7 @@ $icon_array['ok'] = cpg_fetch_icon('ok', 0);
 function alb_get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST, $USER_DATA;
-    
+
     //select cats where the users can change the albums
     $group_id = $USER_DATA['group_id'];
     $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
@@ -79,7 +79,7 @@ function alb_get_subcat_data($parent, $ident = '')
         }
     }
 }
-        
+
 
     /**set the message varialble to javascript file*/
     $confirm_modifs =  $lang_albmgr_php['confirm_modifs'];
