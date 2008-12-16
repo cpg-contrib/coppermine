@@ -348,6 +348,7 @@ form_alb_list_box();
 
 if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 
+$keywords_insert1 = sprintf($lang_common['keywords_insert1'],$lang_common['keyword_separators'][$CONFIG['keyword_separator']]);
 print <<<EOT
         <tr>
                 <td class="tableb" style="white-space: nowrap;">
@@ -377,7 +378,7 @@ print <<<EOT
         </tr>
         <tr>
                         <td class="tableb" style="white-space: nowrap;">
-                                {$icon_array['keyword']}{$lang_common['keywords_insert1']}<br /><a href="#" onClick="return MM_openBrWindow('keyword_select.php','selectKey','width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes')">{$lang_common['keywords_insert2']}</a>
+                                {$icon_array['keyword']}{$keywords_insert1}<br /><a href="#" onClick="return MM_openBrWindow('keyword_select.php','selectKey','width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes')">{$lang_common['keywords_insert2']}</a>
                 </td>
                 <td width="100%" class="tableb" valign="top">
                                 <input type="text" style="width: 100%" name="keywords" maxlength="255" value="{$CURRENT_PIC['keywords']}" id="keywords" class="textinput" />

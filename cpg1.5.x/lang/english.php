@@ -120,8 +120,9 @@ $lang_common['captcha_help'] = 'To avoid spam, you have to confirm that you are 
 $lang_common['title'] = 'Title'; // cpg1.5
 $lang_common['caption'] = 'Caption'; // cpg1.5
 $lang_common['keywords'] = 'Keywords'; // cpg1.5
-$lang_common['keywords_insert1'] = 'Keywords (separate with spaces)'; // cpg1.5
+$lang_common['keywords_insert1'] = 'Keywords (separate with %s)'; // cpg1.5
 $lang_common['keywords_insert2'] = 'Insert from list'; // cpg1.5
+$lang_common['keyword_separators'] = array(' '=>'space', ','=>'comma', ';'=>'semicolon'); // cpg1.5
 $lang_common['owner_name'] = 'Owner name'; // cpg1.5
 $lang_common['filename'] = 'Filename'; // cpg1.5
 $lang_common['filesize'] = 'Filesize'; // cpg1.5
@@ -360,6 +361,8 @@ $lang_version_alert['hide'] = 'hide'; // cpg1.5
 $lang_create_tabs['previous'] = 'Previous'; // cpg1.5
 $lang_create_tabs['next'] = 'Next'; // cpg1.5
 $lang_create_tabs['jump_to_page'] = 'Jump to page'; // cpg1.5
+$lang_create_tabs['first'] = 'First'; // cpg1.5
+$lang_create_tabs['last'] = 'Last'; // cpg1.5
 
 $lang_get_remote_file_by_url['no_data_returned'] = 'No data returned using %s'; // cpg1.5
 $lang_get_remote_file_by_url['curl'] = 'CURL'; // cpg1.5
@@ -677,6 +680,7 @@ $lang_admin_php['time_offset_detail'] = '(current time: ' . localised_date(-1, $
 $lang_admin_php['enable_help'] = 'Enable help-icons'; // cpg1.5
 $lang_admin_php['enable_help_description'] = 'help partially available in English only'; // cpg1.5
 $lang_admin_php['clickable_keyword_search'] = 'Enable clickable keywords in search'; // cpg1.5
+$lang_admin_php['keyword_separator'] = 'Keyword separator'; // cpg1.5
 $lang_admin_php['enable_plugins'] = 'Enable plugins'; // cpg1.5
 $lang_admin_php['purge_expired_bans'] = 'Automatically purge expired bans'; // cpg1.5
 $lang_admin_php['browse_batch_add'] = 'Browsable batch-add interface'; // cpg1.5

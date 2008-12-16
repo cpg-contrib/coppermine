@@ -34,7 +34,7 @@ if (mysql_num_rows($result)) {
   $keyword_count = array();
 
   while (list($keywords) = mysql_fetch_row($result)) {
-      $array = explode(" ",$keywords);
+      $array = explode($CONFIG['keyword_separator'],$keywords);
 
       foreach($array as $word)
       {
@@ -68,12 +68,12 @@ if (mysql_num_rows($result)) {
   for ($i = 0; $i < $count; $i++) {
     if ($keywords_array[$i]) {     // Eliminates Null Keywords
 
-      $fontSize = (10 + ($keyword_count[$keywords_array[$i]] - $minQuantity) * $step);
-
-      echo "<a href=\"thumbnails.php?album=search&amp;search=".$keywords_array[$i]."\" style=\"font-size: {$fontSize}px;\">$keywords_array[$i]</a>";
-      if ($i<$count-1) {                     // Don't keep space after last keyword
-        echo " ";
-      }
+        $fontSize = (10 + ($keyword_count[$keywords_array[$i]] - $minQuantity) * $step);
+        $keyword_param = str_replace(' ','+',$keywords_array[$i]);
+        echo "<a href=\"thumbnails.php?album=search&amp;search=".$keyword_param."\" style=\"font-size: {$fontSize}px;\">$keywords_array[$i]</a>";
+        if ($i<$count-1) {                     // Don't keep space after last keyword
+            echo " ";
+        }
     }
   }
   echo "</td></tr>" ;

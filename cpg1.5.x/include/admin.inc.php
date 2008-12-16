@@ -127,6 +127,12 @@ $config_data = array(
       'help_link'       => 'f=configuration.htm&amp;as=admin_general_keywords_start&amp;ae=admin_general_keywords_end',
       'end_description' => '&nbsp;&nbsp;(<a href="keywordmgr.php">'.$lang_admin_php['manage_keyword'].'</a>)',
     ),
+    'keyword_separator' => array(
+      'type'                  => 'select',
+      'default_value'         => ';',
+      'help_link'             => 'f=configuration.htm&amp;as=admin_general_keyword_separator_start&amp;ae=admin_general_keyword_separator_end',
+      'options'               => $lang_common['keyword_separators'],
+    ),
     'enable_plugins' => array(
       'type'            => 'checkbox',
       'default_value'   => '1',

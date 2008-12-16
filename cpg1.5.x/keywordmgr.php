@@ -44,6 +44,7 @@ if ($superCage->get->keyExists('page')) {
     $page = $superCage->post->getAlpha('page');
 }
 
+$keysep = $CONFIG['keyword_separator'];
 switch ($page) {
 
 default :
@@ -55,35 +56,36 @@ if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap']);
    $total_array = array();
 
    while (list($keywords) = mysql_fetch_row($result)) {
-       $array = explode(' ',$keywords);
+       $array = explode($keysep,$keywords);
 
        foreach($array as $word)
        {
-         if ($word == '.' || $word == '' || $word == ' ' ) {
+         if ($word == '.' || $word == '' || $word == ' ' || $word == $keysep ) {
             continue;
-         }
-         $orig_word = $word;
-         $single_word = addslashes($word);
-         $lowercase_word = utf_strtolower($single_word);
+        }
+        $orig_word = $word;
+        $orig_word_param = addslashes(str_replace(' ','+',$orig_word));
+        $orig_word_label = addslashes($orig_word);
+         $lowercase_word = utf_strtolower($orig_word);
          $lowercase_word = addslashes($lowercase_word);
          $edit = cpg_fetch_icon('edit', 2);
 
          $word = <<<EOT
          <td class="tableb">
-         <input type="radio" class="radio" name="keywordEdit" value="$lowercase_word" onClick="document.keywordForm.newword.value='$single_word'" id="$lowercase_word" />
+         <input type="radio" class="radio" name="keywordEdit" value="$lowercase_word" onClick="document.keywordForm.newword.value='$orig_word_label'" id="$lowercase_word" />
          <label for="$lowercase_word" class="clickable_option" title="{$lang_common['edit']} &quot;{$orig_word}&quot;">
          {$edit} &quot;$orig_word&quot;
          </label>
          </td>
 EOT;
 
-         $word .= '<td class="tableb"><a href="keywordmgr.php?page=delete&amp;remov='.$single_word.'" onclick="return confirm(\''.sprintf($lang_keywordmgr_php['confirm_delete'], '&quot;'.$single_word.'&quot;').'\')" title="'.sprintf($lang_keywordmgr_php['keyword_del'],'&quot;'.$orig_word.'&quot;').'">';
+         $word .= '<td class="tableb"><a href="keywordmgr.php?page=delete&amp;remove='.$orig_word_param.'" onclick="return confirm(\''.sprintf($lang_keywordmgr_php['confirm_delete'], '&quot;'.$orig_word_label.'&quot;').'\')" title="'.sprintf($lang_keywordmgr_php['keyword_del'],'&quot;'.$orig_word.'&quot;').'">';
          $word .= cpg_fetch_icon('delete', 2);
          $word .= $orig_word;
 
          $word .= <<<EOT
          </a></td>
-         <td class="tableb"><a href="thumbnails.php?album=search&amp;search=$orig_word" target="_blank">
+         <td class="tableb"><a href="thumbnails.php?album=search&amp;search=$orig_word_param" target="_blank">
 EOT;
 
          $word .= cpg_fetch_icon('search', 2);
@@ -129,28 +131,35 @@ case 'changeword':
    if ($request_keywordEdit && $request_newword) {
        $keywordEdit = addslashes($request_keywordEdit);
 
-       $query = "SELECT `pid`,`keywords` FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT(' ',`keywords`,' ') LIKE '% {$keywordEdit} %'";
+        $query = <<< EOT
+            SELECT `pid`,`keywords` 
+                FROM {$CONFIG['TABLE_PICTURES']} 
+            WHERE CONCAT('$keysep',`keywords`,'$keysep') LIKE '%{$keysep}{$keywordEdit}{$keysep}%'
+EOT;
        $result = cpg_db_query($query) or die(mysql_error());
 
        while (list($id,$keywords) = mysql_fetch_row($result))
        {
            $array_new = array();
-           $array_old = explode(" ", addslashes(trim($keywords)));
+           $array_old = explode($keysep, addslashes(trim($keywords)));
 
            foreach($array_old as $word)
            {
-               // convert old to new if its the same word
+               // convert old to new if it's the same word
                if (utf_strtolower($word) == $keywordEdit) $word = addslashes($request_newword);
 
                // rebuild array to reprocess it
                $array_new[] = $word;
            }
 
-           $keywords = implode(" ", $array_new);
+           $keywords = implode($keysep, $array_new);
            $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = '$keywords' WHERE `pid` = '$id'";
        }
    }
-   $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = TRIM(REPLACE(`keywords`,'  ',' '))";
+   $newquerys[] = <<< EOT
+        UPDATE {$CONFIG['TABLE_PICTURES']} 
+        SET `keywords` = TRIM(REPLACE(`keywords`,'{$keysep}{$keysep}','{$keysep}'))
+EOT;
 
     foreach ($newquerys as $query) {
         $result = cpg_db_query($query) or die($query."<br />".mysql_error());
@@ -161,34 +170,41 @@ case 'changeword':
 break;
 
 case 'delete':
-        if ($superCage->get->keyExists('remov')) {
-            $remov = $superCage->get->getEscaped('remov');
-        } elseif ($superCage->post->keyExists('remov')) {
-            $remov = $superCage->post->getEscaped('remov');
+        if ($superCage->get->keyExists('remove')) {
+            $remove = $superCage->get->getEscaped('remove');
+        } elseif ($superCage->post->keyExists('remove')) {
+            $remove = $superCage->post->getEscaped('remove');
         }
 
-       $query = "SELECT `pid`,`keywords` FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT(' ',`keywords`,' ') LIKE '% {$remov} %'";
+        $query = <<< EOT
+            SELECT `pid`,`keywords` 
+                FROM {$CONFIG['TABLE_PICTURES']} 
+            WHERE CONCAT('$keysep',`keywords`,'$keysep') LIKE '%{$keysep}{$remove}{$keysep}%'
+EOT;
        $result = cpg_db_query($query) or die(mysql_error());
 
        while (list($id,$keywords) = mysql_fetch_row($result))
        {
            $array_new = array();
-           $array_old = explode(" ", addslashes(trim($keywords)));
+           $array_old = explode($keysep, addslashes(trim($keywords)));
 
            foreach($array_old as $word)
            {
-               // convert old to new if its the same word
-               if (utf_strtolower($word) == $remov) $word = '';
+               // convert old to new if it's the same word
+               if (utf_strtolower($word) == $remove) $word = '';
 
                // rebuild array to reprocess it
                $array_new[] = $word;
            }
 
-           $keywords = implode(" ", $array_new);
+           $keywords = implode($keysep, $array_new);
            $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = '$keywords' WHERE `pid` = '$id'";
        }
 
-    $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = TRIM(REPLACE(`keywords`,'  ',' '))";
+    $newquerys[] = <<< EOT
+        UPDATE {$CONFIG['TABLE_PICTURES']} 
+        SET `keywords` = TRIM(REPLACE(`keywords`,'{$keysep}{$keysep}','{$keysep}'))
+EOT;
 
     foreach ($newquerys as $query) {
         $result = cpg_db_query($query) or die($query."<br />".mysql_error());

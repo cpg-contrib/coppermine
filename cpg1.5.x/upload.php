@@ -611,7 +611,8 @@ if (!$superCage->post->keyExists('process')) {
     if ($upload_form == 'html_single') {
         // Declare an array containing the various upload form box definitions.
         $captionLabel = $lang_upload_php['description'];
-        $keywordLabel = $lang_common['keywords_insert1']. '<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">' . $lang_common['keywords_insert2'] .'</a>';
+        $keywordLabel = sprintf($lang_common['keywords_insert1'],$lang_common['keyword_separators'][$CONFIG['keyword_separator']])
+            . '<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">' . $lang_common['keywords_insert2'] .'</a>';
         if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
         $form_array = array(
             sprintf($lang_upload_php['max_fsize'], $CONFIG['max_upl_size']),

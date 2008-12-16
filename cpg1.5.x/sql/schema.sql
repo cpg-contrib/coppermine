@@ -338,8 +338,9 @@ PRIMARY KEY ( `user_id` )
 #
 CREATE TABLE CPG_dict (
   keyId bigint(20) NOT NULL auto_increment,
-  keyword varchar(60) NOT NULL default '',
-  PRIMARY KEY  (keyId)
+  keyword varchar(60) NOT NULL,
+  PRIMARY KEY  (keyId),
+  UNIQUE KEY (keyword),
 ) TYPE=MyISAM COMMENT = 'Holds the keyword dictionary';
 # --------------------------------------------------------
 
