@@ -22,26 +22,16 @@ function resetToDefault(theFieldId, fieldType, numberOfItems)
 	var default_input = $('#reset_default_' + theFieldId);
 
     if(fieldType == 'textfield' || fieldType == 'password') {
-        $('#' + theFieldId).attr('value', default_input.attr('value'));
-        default_input.css('display', 'none');
-        default_input.attr('checked', true);
-        return;
-    }
-    if(fieldType == 'checkbox') {
+        user_input.attr('value', default_input.attr('value'));
+    }else if(fieldType == 'checkbox') {
         user_input.attr('checked', (default_input.attr('value') == 1) ? true : false);
-        default_input.css('display', 'none');
-        default_input.attr('checked', true);
-        return;
-    }
-    if(fieldType == 'radio') {
+    }else if(fieldType == 'radio') {
         $('#' + theFieldId + default_input.attr('value')).attr('checked', true);
-        default_input.css('display', 'none');
-        default_input.attr('checked', true);
-        return;
-    }
-    if(fieldType == 'select') {
+    }else if(fieldType == 'select') {
 		user_input.attr('value', default_input.attr('value'));
     }
+	default_input.attr('checked', true);
+	default_input.css('display', 'none');
 }
 
 function checkDefaultBox(theFieldId, fieldType, numberOfItems, warning) 
@@ -56,11 +46,9 @@ function checkDefaultBox(theFieldId, fieldType, numberOfItems, warning)
     
 	if((fieldType == 'textfield' || fieldType == 'password' || fieldType == 'select') && (user_input.attr('value') != default_input.attr('value'))) {
 		show = true;
-    }
-    if(fieldType == 'checkbox' && (user_input.attr('checked') != default_input.attr('value'))) {
+    }else if(fieldType == 'checkbox' && (user_input.attr('checked') != default_input.attr('value'))) {
         show = true;
-    }
-    if(fieldType == 'radio') {
+    }else if(fieldType == 'radio') {
 		//for radio buttons we have to create a new default as it is a special one
 		default_input = $('#reset_default_' + theFieldId.substring(0, (theFieldId.length - 1)));
         if (user_input.attr('value') != default_input.attr('value')) {
@@ -75,7 +63,6 @@ function checkDefaultBox(theFieldId, fieldType, numberOfItems, warning)
 		default_input.css('display', 'none');
         default_input.attr({checked: true, title: js_vars.lang_reset_to_default + ': ' + js_vars.lang_no_change_needed + ' (' + default_input.attr('value') + ')'});
 	}
-	return;
 }
 
 function deleteUnneededFields() 
@@ -119,5 +106,11 @@ function adminPageLoaded(){
 		$(this).css('display', 'none');
 	});
 	
+	//TODO
+	//due to a bug in webkit based browsers, the onfocus event isn't fired
+	//affects Safari and Chrome but not sure what versions
+	/*jQuery.each($('input[type=radio]'), function(){
+		$(this).blur($(this).focus());		
+	});*/
 }
 addonload('adminPageLoaded()');
