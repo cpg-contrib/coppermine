@@ -1,3 +1,21 @@
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2008 Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+
+  ********************************************
+  Coppermine version: 1.5.0
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/displayimage.js $
+  $Revision: 5405 $
+  $LastChangedBy: saweyyy $
+  $Date: 2008-12-15 22:23:58 +0100 (Mo, 15 Dez 2008) $
+**********************************************/
+
 /**
  * Copyright (c) 2007 Kelvin Luck (http://www.kelvinluck.com/)
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) 
