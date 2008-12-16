@@ -441,8 +441,8 @@ a:active {
 }
 
 .icon {
-	vertical-align:middle;
-	margin-right:1px;
+    vertical-align:middle;
+    margin-right:1px;
 }
 
 .comment_date{
@@ -496,7 +496,7 @@ a:active .image{
 
 /* pseudo-classes for middlethumb links */
 a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlethumb,a:active .middlethumb{
-	border: 2px solid blue;
+    border: 2px solid blue;
 }
 
 .imageborder {
@@ -681,34 +681,34 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 }
 
 #vanity img {
-	border:0
+    border:0
 }
 #v_php {
-	float:left;
-	background-image:url(../../images/vanity/powered-php.gif);
+    float:left;
+    background-image:url(../../images/vanity/powered-php.gif);
 }
 #v_php:hover {
-	background-image:url(../../images/vanity/h_powered-php.gif);
+    background-image:url(../../images/vanity/h_powered-php.gif);
 }
 #v_mysql {
-	float:left;
-	background-image:url(../../images/vanity/powered-mysql.gif);
+    float:left;
+    background-image:url(../../images/vanity/powered-mysql.gif);
 }
 #v_mysql:hover  {
-	background-image:url(../../images/vanity/h_powered-mysql.gif);
+    background-image:url(../../images/vanity/h_powered-mysql.gif);
 }
 #v_xhtml {
-	float:right;background-image:url(../../images/vanity/valid-xhtml10.gif);
+    float:right;background-image:url(../../images/vanity/valid-xhtml10.gif);
 }
 #v_xhtml:hover {
-	background-image:url(../../images/vanity/h_valid-xhtml10.gif);
+    background-image:url(../../images/vanity/h_valid-xhtml10.gif);
 }
 #v_css {
-	float:right;
-	background-image:url(../../images/vanity/valid-css.gif);
+    float:right;
+    background-image:url(../../images/vanity/valid-css.gif);
 }
 #v_css:hover {
-	background-image:url(../../images/vanity/h_valid-css.gif);
+    background-image:url(../../images/vanity/h_valid-css.gif);
 }
 
 #cpg_main_block {
@@ -743,7 +743,7 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 }
 
 .filmstrip_background {
-	background-color:#000000;
+    background-color:#000000;
 }
 
 .dtree {
@@ -776,66 +776,66 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 
 /* jQuery Bookmark styles */
 .bookmark_list {
-	display: block;
-	list-style-type: none;
-	margin: 0px;
-	padding: 0px;
+    display: block;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {  /* Safari3/Opera9 */
-	.bookmark_list {
-		font-size: 100%;
-	}
+    .bookmark_list {
+        font-size: 100%;
+    }
 }
 html:first-child .bookmark_list {  /* Opera */
-	/*font-size: 80%;*/
+    /*font-size: 80%;*/
 }
 .bookmark_list li {
-	float: left;
-	width: 23%;
-	margin: 0% 0.5%;
-	padding: 2px;
-	background-color: #eee;
-	border: 1px outset;
-	list-style-type: none;
+    float: left;
+    width: 23%;
+    margin: 0% 0.5%;
+    padding: 2px;
+    background-color: #eee;
+    border: 1px outset;
+    list-style-type: none;
 }
 .bookmark_compact {
-	background-color: #eee;
-	border: 1px outset;
+    background-color: #eee;
+    border: 1px outset;
 }
 .bookmark_compact li {
-	width: 16px;
-	height: 16px;
-	margin: 0%;
-	background-color: transparent;
-	border: none;
+    width: 16px;
+    height: 16px;
+    margin: 0%;
+    background-color: transparent;
+    border: none;
 }
 .bookmark_list a {
-	width: 100%;
+    width: 100%;
 }
 .bookmark_list span {
-	display: inline-block;
-	width: 16px;
-	height: 16px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
 }
 .bookmark_list img {
-	border: none;
-	vertical-align: bottom;
+    border: none;
+    vertical-align: bottom;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {  /* Safari3/Opera9 */
-	.bookmark_list img {
-		margin-bottom: 3px;
-		vertical-align: middle;
-	}
+    .bookmark_list img {
+        margin-bottom: 3px;
+        vertical-align: middle;
+    }
 }
 html:first-child .bookmark_list img { /* Opera */
-	margin-bottom: 3px;
-	vertical-align: middle;
+    margin-bottom: 3px;
+    vertical-align: middle;
 }
 
 #bookmarkIt { /* This is the container that wraps the entire social bookmarks button */
-	float: left; 
-	border: 1px solid #0E72A4; 
-	padding: 0px 3px; 
+    float: left; 
+    border: 1px solid #0E72A4; 
+    padding: 0px 3px; 
     font-size: 80%; 
     cursor: pointer;
     background-color: #D1D7DC;
@@ -844,19 +844,279 @@ html:first-child .bookmark_list img { /* Opera */
     margin-top:0px;
     margin-bottom:0px; 
 } 
-
 #popupClose { 
-	display: none; 
-	vertical-align: top; 
+    display: none; 
+    vertical-align: top; 
 } 
 #popupBookmark { 
-	display: none; 
-	position: absolute; 
-	z-index: 100; 
+    display: none; 
+    position: absolute; 
+    z-index: 100; 
 } 
 #popupBookmark ul { 
-	float: left; 
-	width: 180px; 
+    float: left; 
+    width: 180px; 
     border: 1px solid #aaa; 
     background-color: #fff; 
+}
+
+/** Swfupload css **/
+div.fieldset {
+    border:  2px solid #0E72A4;
+    margin: 10px 0;
+    padding: 20px 10px;
+}
+
+div.fieldset span.legend {
+    position: relative;
+    padding: 3px;
+    top: -30px;
+    background-color: #0E72A4;
+    color: #fff;
+}
+
+div.flash {
+    width: 375px;
+    margin: 10px 5px;
+    border-color: #D9E4FF;
+
+    -moz-border-radius-topleft : 5px;
+    -webkit-border-top-left-radius : 5px;
+    -moz-border-radius-topright : 5px;
+    -webkit-border-top-right-radius : 5px;
+    -moz-border-radius-bottomleft : 5px;
+    -webkit-border-bottom-left-radius : 5px;
+    -moz-border-radius-bottomright : 5px;
+    -webkit-border-bottom-right-radius : 5px;
+
+}
+
+input[disabled]{ border: 1px solid #ccc } /* FF 2 Fix */
+
+
+.progressWrapper {
+    width: 357px;
+    overflow: hidden;
+}
+
+.progressContainer {
+    margin: 5px;
+    padding: 4px;
+    border: solid 1px #E8E8E8;
+    background-color: #F7F7F7;
+    overflow: hidden;
+}
+/* Message */
+.message {
+    margin: 1em 0;
+    padding: 10px 20px;
+    border: solid 1px #FFDD99;
+    background-color: #FFFFCC;
+    overflow: hidden;
+}
+/* Error */
+.red {
+    border: solid 1px #B50000;
+    background-color: #FFEBEB;
+}
+
+/* Current */
+.green {
+    border: solid 1px #DDF0DD;
+    background-color: #EBFFEB;
+}
+
+/* Complete */
+.blue {
+    border: solid 1px #CEE2F2;
+    background-color: #F0F5FF;
+}
+
+.progressName {
+    font-size: 8pt;
+    font-weight: 700;
+    color: #555;
+    width: 323px;
+    height: 14px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.progressBarInProgress,
+.progressBarComplete,
+.progressBarError {
+    font-size: 0;
+    width: 0%;
+    height: 2px;
+    background-color: blue;
+    margin-top: 2px;
+}
+
+.progressBarComplete {
+    width: 100%;
+    background-color: green;
+    visibility: hidden;
+}
+
+.progressBarError {
+    width: 100%;
+    background-color: red;
+    visibility: hidden;
+}
+
+.progressBarStatus {
+    margin-top: 2px;
+    width: 337px;
+    font-size: 7pt;
+    font-family: Arial;
+    text-align: left;
+    white-space: nowrap;
+}
+
+a.progressCancel {
+    font-size: 0;
+    display: block;
+    height: 14px;
+    width: 14px;
+    background-image: url(../../images/cancelbutton.gif);
+    background-repeat: no-repeat;
+    background-position: -14px 0px;
+    float: right;
+}
+
+a.progressCancel:hover {
+    background-position: 0px 0px;
+}
+
+.swfupload {
+    vertical-align: top;
+}
+
+
+/**This styles for dialog box styles  */
+/****************************************/
+#cluetip-close img  {
+    border: 0; 
+}
+
+#cluetip-waitimage {
+   width: 16px;
+   height: 16px;
+   position: absolute;
+   background-image: url(images/ajax-loader.gif);
+ }
+
+#cluetip-title  { 
+    overflow: hidden;
+}
+#cluetip-title #cluetip-close {   
+    float: right;   
+    position: relative; 
+}
+.cluetip-arrows { 
+    display: none;  
+    position: absolute;  
+    top: 0; left: -15px; 
+    height: 22px; 
+    width: 15px; 
+    background-repeat: no-repeat; 
+    background-position: 0 0; 
+}
+#cluetip-extra  { 
+    display: none; 
+}
+.cluetip-jtip   {
+    background-color: transparent; 
+}
+.cluetip-jtip #cluetip-outer { 
+    position: relative; 
+    background-color: #fff; 
+}
+.cluetip-jtip h3#cluetip-title { 
+    margin: 0; 
+    padding: 5px; 
+    font-size: 13px; 
+    font-weight: bold; 
+    background-color: #D1D7DC; 
+    color: #333; 
+}
+.cluetip-jtip #cluetip-inner  { 
+    padding: 0 5px 5px; 
+    display: inline-block; 
+}
+
+.cluetip-jtip #cluetip-inner  img { 
+    max-width: 513px;
+}
+.cluetip-jtip div#cluetip-close { 
+    text-align: right; 
+    color: #900; 
+}
+
+.clue-right-jtip .cluetip-arrows { 
+    background-image: url(images/cluetip_topright.png); 
+}
+.clue-left-jtip .cluetip-arrows { 
+    background-image: url(images/cluetip_arrowright.png); 
+    left: 100%; 
+    margin-right: -11px; 
+}
+.clue-top-jtip .cluetip-arrows  { 
+    background-image: url(images/cluetip_arrowdown.gif); 
+    top: 100%; 
+    left: 50%; 
+    margin-left: -11px; 
+    height: 11px; 
+    width: 22px; 
+}  
+.clue-bottom-jtip .cluetip-arrows   { 
+    background-image: url(images/cluetip_arrowup.png); 
+    top: -11px; 
+    left: 50%;  
+    margin-left: -11px;  
+    height: 11px;  
+    width: 22px; 
+}
+
+#cluetip {  
+    border: 5px solid #0E72A4; 
+}
+/* stupid IE6 HasLayout hack */
+.cluetip-rounded #cluetip-title, .cluetip-rounded #cluetip-inner { 
+    zoom: 1; 
+}
+
+/** Filmstrip styles */
+div#film { 
+    padding: 5px 0 5px 0; 
+    overflow:hidden; 
+}
+
+/**styles for photo manager*/
+div#sort {  
+    margin: 10px; 
+    padding: 5px 25px; 
+    height: 240px; 
+    overflow: auto; 
+    background: #FFF; 
+    width: 700px; 
+    border:5px solid #0E72A4; 
+}
+table#pic_sort tr td { 
+    padding: 2px;
+}
+a.photoUp   { 
+    cursor: pointer; 
+}
+a.photoDown { 
+    cursor: pointer; 
+}
+
+.click {
+    cursor:pointer;
+}
+
+table#album_sort tr td {
+    padding: 2px;
 }
