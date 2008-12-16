@@ -94,7 +94,7 @@ function alb_get_subcat_data($parent, $ident = '')
     $category_change = $lang_albmgr_php['category_change'];
     set_js_var('category_change', $category_change);
 
-pageheader($lang_albmgr_php['alb_mrg']);
+pageheader($lang_albmgr_php['title']);
 ?>
 
 <form name="album_menu" id="cpgformAlbum" method="post" action="delete.php?what=albmgr" >
