@@ -232,7 +232,7 @@ echo <<< EOT
 </tr>
 <tr>
                 <td colspan="2" align="center" class="tablef">
-                <input type="submit" class="button" value="{$lang_albmgr_php['apply_modifs']}" />
+                <input type="submit" class="button" value="{$lang_common['apply_changes']}" />
                 </td>
 </tr>
 

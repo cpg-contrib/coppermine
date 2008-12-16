@@ -421,9 +421,7 @@ $lang_albmgr_php['select_first'] = 'Select an album first'; // js-alert
 $lang_albmgr_php['my_gallery'] = '* My gallery *';
 $lang_albmgr_php['no_category'] = '* No category *';
 $lang_albmgr_php['select_category'] = 'Select category';
-$lang_albmgr_php['new'] = 'New';
-$lang_albmgr_php['category_change'] = 'If you change the category, your changes will be lost!';
-$lang_albmgr_php['apply_modifs'] = 'Apply modifications';
+$lang_albmgr_php['category_change'] = 'If you change the category, your changes will be lost!'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
@@ -1707,7 +1705,7 @@ $lang_picmgr_php['no_album'] = '* No album *';
 $lang_picmgr_php['explanation_header'] = 'The custom sort order you can specify on this page will only be taken into account if';
 $lang_picmgr_php['explanation1'] = 'the admin has set the "Default sort order for files" in the config to "Position descending" or "Position ascending" (global setting for all users who haven\'t chosen another sort option individually)';
 $lang_picmgr_php['explanation2'] = 'the user has chosen "Position descending" or "Position ascending" on the thumbnail page (per user setting)';
-$lang_picmgr_php['change_album']	= 'If you will change the album , your changes will be lost!';
+$lang_picmgr_php['change_album'] = 'If you will change the album, your changes will be lost!'; // cpg1.5
 }
 
 
