@@ -523,8 +523,9 @@ function bb_decode($text)
         {
             return $text;
         }
-
-        // [b] and [/b] for bolding text.
+		$text = CPGPluginAPI::filter('bbcode', $text);
+        
+		// [b] and [/b] for bolding text.
         $text = str_replace("[b]", '<strong>', $text);
         $text = str_replace("[/b]", '</strong>', $text);
 
@@ -602,8 +603,6 @@ function bb_decode($text)
         }
 
         $text = preg_replace($patterns['other'], $replacements['other'], $text);
-        $text = CPGPluginAPI::filter('bbcode', $text);
-
         return $text;
 }
 
