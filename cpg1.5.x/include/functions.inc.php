@@ -3544,7 +3544,7 @@ EOT;
  * @return
  **/
 
-function cpg_display_help($reference = 'f=index.htm', $width = '600', $height = '350', $icon = 'help') 
+function cpg_display_help($reference = 'f=empty.htm', $width = '600', $height = '350', $icon = 'help') 
 {
     global $CONFIG, $USER, $lang_common ;
     if ($reference == '' || $CONFIG['enable_help'] == '0') {

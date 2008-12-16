@@ -280,6 +280,8 @@ if (defined('THEME_HAS_MENU_ICONS')) {
   $ICON_DIR = 'images/icons/';
 }
 
+set_js_var('icon_dir', $ICON_DIR);
+
 // Language processing --- start
 // We load the default language file
 require_once('lang/english.php');
@@ -326,7 +328,7 @@ if (!file_exists("lang/{$CONFIG['lang']}.php")) {
 if ($CONFIG['lang'] != 'english') {
 	require('lang/' . $CONFIG['lang'] . '.php');
 }
-
+set_js_var('lang_close', $lang_common['close']);
 // Language processing --- end
 
 // See if the fav cookie is set else set it
