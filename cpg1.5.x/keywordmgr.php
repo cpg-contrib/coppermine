@@ -175,7 +175,6 @@ case 'delete':
         } elseif ($superCage->post->keyExists('remove')) {
             $remove = $superCage->post->getEscaped('remove');
         }
-
         $query = <<< EOT
             SELECT `pid`,`keywords` 
                 FROM {$CONFIG['TABLE_PICTURES']} 
@@ -191,7 +190,7 @@ EOT;
            foreach($array_old as $word)
            {
                // convert old to new if it's the same word
-               if (utf_strtolower($word) == $remove) $word = '';
+               if (utf_strtolower($word) == utf_strtolower($remove)) $word = '';
 
                // rebuild array to reprocess it
                $array_new[] = $word;
@@ -210,7 +209,7 @@ EOT;
         $result = cpg_db_query($query) or die($query."<br />".mysql_error());
     }
 
-   header("Location: ?page=display");
+   header("Location: keywordmgr.php?page=display");
 
 break;
 

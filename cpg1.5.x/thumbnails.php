@@ -69,6 +69,7 @@ if ($superCage->get->keyExists('album')) {
 if ($superCage->get->keyExists('search')) {
     // find out if a parameter has been submitted at all
     $allowed = array('title', 'caption', 'keywords', 'owner_name', 'filename', 'pic_raw_ip', 'pic_hdr_ip', 'user1', 'user2', 'user3', 'user4');
+    $temp_GET = array();
     foreach ($allowed as $key) {
         //if (isset($_GET[$key]) == TRUE) {
         if ($superCage->get->keyExists($key)) {

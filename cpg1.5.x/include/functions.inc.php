@@ -1126,7 +1126,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             'set_caption' => $set_caption,
     );
     $meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);
-    if ($meta_album_params['album_name']) {
+    if (array_key_exists('album_name',$meta_album_params) && $meta_album_params['album_name']) {
         $album_name = $meta_album_params['album_name'];
         $count = $meta_album_params['count'];
         $rowset = $meta_album_params['rowset'];
