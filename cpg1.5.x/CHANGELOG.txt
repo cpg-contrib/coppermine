@@ -25,9 +25,11 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-12-17 [O] Added code to disable the browse button if no album is selected on upload page {Abbas}
+2008-12-17 [O] Added the disabled button to the swfupload button sprite image {Abbas}
 2008-12-17 [B] Fixed implementation of upload choices including alternate ones from plugins {Paver}
 2008-12-17 [O] Changed 3 themes to use thumbnails.js instead of inline js. {SaWey}
-2008-12-16 [B] Added swfupload style to eyeball css - work in progress for other themes {Abbas}
+2008-12-16 [B] Added swfupload style to all themes {Abbas}
 2008-12-16 [B] Fixed category list in modifyalb.php {Paver}
 2008-12-15 [A] Added keyword separator {Paver}
 2008-12-15 [B] Added missing javascripts {SaWey}

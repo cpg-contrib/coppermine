@@ -457,7 +457,7 @@ function create_form_swfupload()
     </tr>
     <tr>
         <td colspan="2">
-            <button id="button_continue" type="button" onclick="return continue_upload();" style="display: none; margin-top: 5px;">
+            <button id="button_continue" class="button" onclick="return continue_upload();" style="display: none; margin-top: 5px;">
                 {$ok_icon}
                 Continue
             </button>

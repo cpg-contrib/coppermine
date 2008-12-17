@@ -39,6 +39,8 @@ SWFUpload.onload = function () {
 		button_height: "24",
         button_image_url: "images/browse_swf.png",
 		button_placeholder_id: "browse_button_place_holder",
+        // By default browse button will be disabled. It will get enabled when some album is chosen
+        button_disabled : true,
 		
 		// The event handler functions are defined in handlers.js
 		file_queued_handler : fileQueued,
@@ -62,20 +64,15 @@ SWFUpload.onload = function () {
     
     // Bind a change event on album drop down
     $("select[name='album']").change(function() {
-        // Show the upload form only if some album is selected
+        // Enable the browse button only if some album is selected
        if ($(this).val()) {
-           $('#upload_form').slideDown();
+           swfu.setButtonDisabled(false);
        } else {
-           // If no album is selected then hide the form
-           $('#upload_form').slideUp();
+           // If no album is selected then disable the browse button
+           swfu.setButtonDisabled(true);
        }
     });
  }
- 
- $(document).ready(function() {
-    // Fire the album select box change event
-    $('#upload_form').slideUp();
- });
  
  function continue_upload() {
      window.location = js_vars.site_url + '/editpics.php?album=' + $("select[name='album']").val();
