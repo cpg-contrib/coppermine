@@ -21,6 +21,10 @@ if (!defined('E_STRICT')) {
     define('E_STRICT', 2048); // PHP 5
 }
 
+if (!defined('E_DEPRECATED')) {
+    define('E_DEPRECATED', 8129); // PHP 5.3
+}
+
 class cpg_debugger {
     // Define variables that store the old error reporting and logging states
     var $old_handler;
@@ -94,7 +98,8 @@ class cpg_debugger {
             E_USER_ERROR      => 'CPG Error',
             E_USER_WARNING    => 'CPG Warning',
             E_USER_NOTICE     => 'CPG Notice',
-            E_STRICT          => 'Runtime Notice'
+            E_STRICT          => 'Runtime Notice',
+            E_DEPRECATED      => 'Deprecated',
         );
         // NOTE: E_ERROR, E_PARSE, E_CORE_ERROR, E_CORE_WARNING, E_COMPILE_ERROR and E_COMPILE_WARNING
         // error levels will be handled as per the error_reporting settings.
@@ -126,5 +131,5 @@ function cpg_error_handler($errno, $errmsg, $filename, $linenum, $vars='') {
 define('CAN_MOD_INI', strpos(ini_get('disable_functions'), 'ini_set') === FALSE);
 
 error_reporting(E_ALL);
-$cpgdebugger =& new cpg_debugger();
+$cpgdebugger = new cpg_debugger();
 $cpgdebugger->start();
