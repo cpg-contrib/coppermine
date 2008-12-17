@@ -742,11 +742,14 @@ if (GALLERY_ADMIN_MODE) {
     	$comment_pid_array[] = $row['pid'];
     }
     mysql_free_result($result);
+    /*
+     * Commented out by Abbas - Don't know why this was here
     foreach ($comment_pid_array as $comment_pid){
     	print $comment_pid;
     	print '<br />';
     }
     die;
+    */
     $nbEnr = mysql_fetch_array($result);
     $files = $nbEnr[0];
     if (!$files) { 
