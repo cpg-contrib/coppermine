@@ -72,27 +72,38 @@ if (GALLERY_ADMIN_MODE) {
  * @param integer $parent
  * @param string $ident
  **/
+
 function get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST, $USER_DATA;
 
-    //select cats where the users can change the albums
-    $group_id = $USER_DATA['group_id'];
-    $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
+    if (GALLERY_ADMIN_MODE) {
+        $sql = "SELECT rgt, cid, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft ASC"; 
+    } else {
+        $sql = "SELECT rgt, cid, name FROM {$CONFIG['TABLE_CATEGORIES']} NATURAL JOIN {$CONFIG['TABLE_CATMAP']} WHERE group_id IN (" . implode(', ', $USER_DATA['groups']) . ") ORDER BY lft ASC";             
+    }
 
+    $result = cpg_db_query($sql);
+    
     if (mysql_num_rows($result) > 0) {
+
         $rowset = cpg_db_fetch_rowset($result);
+        
+        $right = array(); 
+        
         foreach ($rowset as $subcat) {
-            if (!GALLERY_ADMIN_MODE) {
-                $check_group = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_CATMAP']} WHERE group_id = '$group_id' AND cid=".$subcat['cid']);
-                $check_group_rowset = cpg_db_fetch_rowset($check_group);
-                if ($check_group_rowset) {
-                    $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
-                }
-            } else {
-                $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
-            }
-            get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
+        
+            if (count($right) > 0) {
+                // check if we should remove a node from the stack
+                while ($right && $right[count($right) - 1] < $subcat['rgt']) {
+                    array_pop($right);
+           		}
+       		}
+       		 
+       		$ident = str_repeat('&nbsp;&nbsp;&nbsp;', count($right));
+       		$right[] = $subcat['rgt']; 
+
+            $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
         }
     }
 }
