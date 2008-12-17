@@ -355,6 +355,6 @@ ALTER TABLE CPG_usergroups ALTER access_level SET DEFAULT '3';
 
 INSERT INTO CPG_config VALUES ('tabs_dropdown', '1');
 
-ALTER TABLE CPG_dict ADD UNIQUE KEY (keyword);
+ALTER TABLE CPG_dict ADD UNIQUE KEY `keyword` (keyword);
 
 INSERT INTO CPG_config VALUES('keyword_separator', ' ');
