@@ -59,12 +59,16 @@ if ($superCage->post->keyExists('submit')) {
   $expand_array = array();
   // check captcha
   if ((!USER_ID && $CONFIG['contact_form_guest_enable'] == 1) || (USER_ID && $CONFIG['contact_form_registered_enable'] == 1)) {
-      require_once("include/captcha.inc.php");
-      if (!PhpCaptcha::Validate($captcha)) {
-        $captcha_remark = $lang_errors['captcha_error'];
-        $expand_array[] = 'captcha_remark';
-        $error++;
-      }
+  	  if(!captcha_plugin_enabled()){
+		  require_once("include/captcha.inc.php");
+		  if (!PhpCaptcha::Validate($captcha)) {
+			$captcha_remark = $lang_errors['captcha_error'];
+			$expand_array[] = 'captcha_remark';
+			$error++;
+		  }
+	  }else{
+	  	  CPGPluginAPI::action('captcha_contact_validate', null);
+	  }
   }
   // check email address
   if (!USER_ID && $CONFIG['contact_form_guest_email_field'] == 2) {
@@ -258,7 +262,7 @@ EOT;
     $captcha_remark_visibility = 'none';
     $highlightFieldCSS = '';
   }
-  print <<< EOT
+  $captcha_print = <<< EOT
     <tr>
       <td class="tableb" valign="top" align="right">
         {$lang_contact_php['confirmation']}&nbsp;{$captcha_help}
@@ -272,6 +276,9 @@ EOT;
       </td>
     </tr>
 EOT;
+  
+  $captcha_print = CPGPluginAPI::filter('captcha_contact_print',$captcha_print);
+  print $captcha_print;
   }
   // submit button
   print <<< EOT

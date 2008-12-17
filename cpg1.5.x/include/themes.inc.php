@@ -3699,7 +3699,6 @@ function theme_html_comments($pid)
 
         $html .= $tabs;
     }
-    
     if (USER_CAN_POST_COMMENTS && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
         if (USER_ID) {
             $user_name_input = '<tr><td><input type="hidden" name="msg_author" value="' . stripslashes(USER_NAME) . '" /></td>';
@@ -3715,7 +3714,9 @@ function theme_html_comments($pid)
 
         if (($CONFIG['comment_captcha'] == 0) || ($CONFIG['comment_captcha'] == 1 && USER_ID)) {
             template_extract_block($template_add_your_comment, 'comment_captcha');
-        }
+        }else{
+			$template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);
+		}
 
     if ($CONFIG['show_bbcode_help']) {
         $captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);

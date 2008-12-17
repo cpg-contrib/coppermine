@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-12-18 [A] Added 6 new plugin hooks to be able to add custom CAPTCHA {SaWey}
 2008-12-17 [O] Added code to disable the browse button if no album is selected on upload page {Abbas}
 2008-12-17 [O] Added the disabled button to the swfupload button sprite image {Abbas}
 2008-12-17 [B] Fixed implementation of upload choices including alternate ones from plugins {Paver}

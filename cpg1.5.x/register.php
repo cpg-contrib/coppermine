@@ -328,7 +328,7 @@ EOT;
     // captcha code
     if ($CONFIG['registration_captcha'] != 0) {
     $help = cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_common['captcha_help_title']))).'&amp;t='.urlencode(base64_encode(serialize($lang_common['captcha_help']))),470,245);
-    echo <<<EOT
+    $captcha_print = <<<EOT
         <tr>
                 <td align="right" class="tablef">
                     {$lang_common['confirm']}&nbsp;{$help}
@@ -339,6 +339,8 @@ EOT;
                 </td>
         </tr>
 EOT;
+	$captcha_print = CPGPluginAPI::filter('captcha_register_print',$captcha_print);
+	echo $captcha_print;
     }
 
     echo <<<EOT
@@ -437,10 +439,14 @@ function check_user_info(&$error) { // function check_user_info - start
 
     // check captcha
     if ($CONFIG['registration_captcha'] != 0) {
-        require("include/captcha.inc.php");
-        if (!PhpCaptcha::Validate($captcha_confirmation)) {
-          $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_errors['captcha_error'] . '</li>';
-        }
+		if(!captcha_plugin_enabled()){
+			require("include/captcha.inc.php");
+			if (!PhpCaptcha::Validate($captcha_confirmation)) {
+			  $error .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_errors['captcha_error'] . '</li>';
+			}
+		}else{
+			$error = CPGPluginAPI::filter('captcha_register_validate', $error);
+		}
     }
 
     if ($error != '') return false;

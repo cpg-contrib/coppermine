@@ -4940,4 +4940,20 @@ function is_known_filetype($file)
     return is_image($file) || is_movie($file) || is_audio($file) || is_document($file);
 }
 
+/**
+* Check if a plugin is used to diplay captcha
+**/
+function captcha_plugin_enabled(){
+	global $CPG_PLUGINS;
+	
+	if(!empty($CPG_PLUGINS)){
+		foreach($CPG_PLUGINS as $plugin){
+			if(isset($plugin->filters['captcha_contact_print'])){
+				return true;	
+			}
+		}
+	}
+	return false;
+}
+
 ?>

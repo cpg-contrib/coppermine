@@ -140,12 +140,16 @@ switch ($event) {
         }
 
         if (($CONFIG['comment_captcha'] > 0 && !USER_ID) || ($CONFIG['comment_captcha'] == 2 && USER_ID)) {
-            require("include/captcha.inc.php");
-            $matches = $superCage->post->getMatched('confirmCode', '/^[a-zA-Z0-9]+$/');
-            if ($matches[0] && !PhpCaptcha::Validate($matches[0])) {
-              //msg_box($lang_common['error'], $lang_errors['captcha_error'], $lang_common['back'], 'javascript:history.back()');
-              cpg_die(ERROR, $lang_errors['captcha_error'], __FILE__, __LINE__);
-            }
+			if(!captcha_plugin_enabled()){
+				require("include/captcha.inc.php");
+				$matches = $superCage->post->getMatched('confirmCode', '/^[a-zA-Z0-9]+$/');
+				if ($matches[0] && !PhpCaptcha::Validate($matches[0])) {
+				  //msg_box($lang_common['error'], $lang_errors['captcha_error'], $lang_common['back'], 'javascript:history.back()');
+				  cpg_die(ERROR, $lang_errors['captcha_error'], __FILE__, __LINE__);
+				}
+			}else{
+				CPGPluginAPI::action('captcha_comment_validate', null);
+			}
         }
 
         $spam = 'NO';

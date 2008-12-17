@@ -369,6 +369,58 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);</pre></td>
   </tr>
   
+  
+   <tr>
+    <td valign="top" class="tableb">include/themes.inc.php</td>
+    <td valign="top" class="tableb"><a name="plugin_hooks_captcha_comment_print"></a><strong>captcha_comment_print</strong><a href="#plugin_hooks_captcha_comment_print" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">Filter</td>
+    <td valign="top" class="tableb">filters $template_add_your_comment when CAPTCHA is enabled and allows you to override the standard CAPTCHA for comments</td>
+    <td valign="top" class="tableb"><pre class="smallcode">$template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);</pre></td>
+  </tr>
+  </tr>
+   <tr>
+    <td valign="top" class="tableb tableb_alternate">db_input.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_captcha_comment_validate"></a><strong>captcha_comment_validate</strong><a href="#plugin_hooks_captcha_comment_validate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Action</td>
+    <td valign="top" class="tableb tableb_alternate">action when CAPTCHA is enabled and allows you to override the standard CAPTCHA validation for comments</td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::action('captcha_comment_validate', null);</pre></td>
+  </tr>
+  </tr>
+   <tr>
+    <td valign="top" class="tableb">contact.php</td>
+    <td valign="top" class="tableb"><a name="plugin_hooks_captcha_contact_print"></a><strong>captcha_contact_print</strong><a href="#plugin_hooks_captcha_contact_print" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">Filter</td>
+    <td valign="top" class="tableb">filters $captcha_print when CAPTCHA is enabled and allows you to override the standard CAPTCHA for the contact form.</td>
+    <td valign="top" class="tableb"><pre class="smallcode">$captcha_print = CPGPluginAPI::filter('captcha_contact_print',$captcha_print);</pre></td>
+  </tr>
+  </tr>
+   <tr>
+    <td valign="top" class="tableb tableb_alternate">contact.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_captcha_contact_validate"></a><strong>captcha_contact_validate</strong><a href="#plugin_hooks_captcha_contact_validate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Action</td>
+    <td valign="top" class="tableb tableb_alternate">action when CAPTCHA is enabled and allows you to override the standard CAPTCHA validation for the contact form.</td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::action('captcha_contact_validate', null);</pre></td>
+  </tr>
+  </tr>
+   <tr>
+    <td valign="top" class="tableb">register.php</td>
+    <td valign="top" class="tableb"><a name="plugin_hooks_captcha_register_print"></a><strong>captcha_register_print</strong><a href="#plugin_hooks_captcha_register_print" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb">Filter</td>
+    <td valign="top" class="tableb">filters $captcha_print when CAPTCHA is enabled and allows you to override the standard CAPTCHA for registrations</td>
+    <td valign="top" class="tableb"><pre class="smallcode">$captcha_print = CPGPluginAPI::filter('captcha_register_print',$captcha_print);</pre></td>
+  </tr>
+  </tr>
+   <tr>
+    <td valign="top" class="tableb tableb_alternate">register.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_captcha_register_validate"></a><strong>captcha_register_validate</strong><a href="#plugin_hooks_captcha_register_validate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Filter</td>
+    <td valign="top" class="tableb tableb_alternate">filters $error when CAPTCHA is enabled and allows you to override the standard CAPTCHA validation for registrations</td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$error = CPGPluginAPI::filter('captcha_register_validate', $error);</pre></td>
+  </tr>
+  
+  
+  
+  
   <tr>
     <td valign="top" class="tableb">usermgr.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_usermgr_header"></a><strong>usermgr_header</strong><a href="#plugin_hooks_filename_usermgr_header" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
@@ -471,8 +523,15 @@ ob_start('cpg_filter_page_html');</pre></td>
 <div class="quote">CPGPluginAPI::action('plugin_configure',$installed,CPG_EXEC_NEW);<br />
 CPGPluginAPI::action('plugin_cleanup',$uninstalled,$plugin_id);</div>
 <p>These next two hooks are useful for running code that does not require anything to be exported.  These hooks have access to the global variables and functions inside of Coppermine.  These hooks will most likely be used to execute code that does not require an output.</p>
-<div class="quote">CPGPluginAPI::action('page_start',null)<br />
-CPGPluginAPI::action('page_end',null);</div>
+<div class="quote">
+	<p>CPGPluginAPI::action('page_start',null)<br />
+		CPGPluginAPI::action('page_end',null);</p>
+</div>
+<p>These two hooks provide the ability to add a custom CAPTCHA validation. The third validation function is a filter, so don't forget to provide that one as well.</p>
+<div class="quote">
+<p>CPGPluginAPI::action('captcha_comment_validate', null);<br />
+	CPGPluginAPI::action('captcha_contact_validate', null);</p>
+</div>
 
 
 
@@ -580,7 +639,13 @@ function add_sub_button($menu) {
 }
 </pre>
 </div>
-
+<p>These four hooks can be used to add a custom CAPTCHA validation that overrides the one built into Coppermine.
+</p><div class="quote">
+$template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);<br />
+$captcha_print = CPGPluginAPI::filter('captcha_register_print',$captcha_print);<br />
+$captcha_print = CPGPluginAPI::filter('captcha_contact_print',$captcha_print);<br />
+$error = CPGPluginAPI::filter('captcha_register_validate', $error);
+</div>
 
 
 <script type="text/javascript">
