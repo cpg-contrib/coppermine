@@ -532,10 +532,10 @@ function form_alb_list_box($text, $name)
 
 EOT;
     foreach ($public_albums_list as $album) {
-        echo '              <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected' : '') . '>' . $album['cat_title'] . "</option>\n";
+        echo '              <option value="' , $album['aid'] , '"' , ($album['aid'] == $sel_album ? ' selected' : '') , '>' , $album['cat_title'] , "</option>\n";
     }
     foreach ($user_albums_list as $album) {
-        echo '                        <option value="'.$album['aid'].'"'.($album['aid'] == $sel_album ? ' selected' : '').'>* '.$album['title'] . "</option>\n";
+        echo '                        <option value="' , $album['aid'] , '"' , ($album['aid'] == $sel_album ? ' selected' : '') , '>* ' , $album['title'] , "</option>\n";
     }
     echo <<<EOT
                         </select>
