@@ -225,8 +225,7 @@ UPDATE CPG_vote_stats SET `browser` = 'IE7' WHERE `browser` ='MSIE 7.0';
 
 # Add album moderator entry
 ALTER TABLE `CPG_albums` ADD `moderator_group` INT NOT NULL default 0;
-ALTER TABLE `CPG_albums` DROP INDEX ( `moderator_group` );
-ALTER TABLE `CPG_albums` ADD INDEX ( `moderator_group` );
+ALTER TABLE `CPG_albums` ADD INDEX `moderator_group` ( `moderator_group` );
 
 # Add album hits field
 ALTER TABLE `CPG_albums` ADD `alb_hits` INT( 10 ) NOT NULL default 0;
