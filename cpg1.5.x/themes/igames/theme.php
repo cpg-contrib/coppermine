@@ -133,40 +133,13 @@ $template_sub_menu = <<<EOT
                         </table>
 EOT;
 }
-// HTML template for title row of the thumbnail view (album title + sort options)
-$template_thumb_view_title_row = <<<EOT
-
-                    <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing -->
-                    <script type="text/javascript">
-                        document.write('<table width="100%" cellpadding="0" cellspacing="0">');
-	                    document.write('    <tr>');
-	                    document.write('            <td width="100%" class="statlink">{ALBUM_NAME}</td>');
-	                    document.write('            <td class="sortorder_options" style="font-size: 100%;">{TITLE}</td>');
-	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=ta" title="{SORT_TA}">+</a>&nbsp;</span></td>');
-	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=td" title="{SORT_TD}">-</a>&nbsp;</span></td>');
-	                    document.write('            <td></td>');
-	                    document.write('            <td class="sortorder_options" style="font-size: 100%;">{NAME}</td>');
-	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=na" title="{SORT_NA}">+</a>&nbsp;</span></td>');
-	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=nd" title="{SORT_ND}">-</a>&nbsp;</span></td>');
-	                    document.write('            <td></td>');
-	                    document.write('            <td class="sortorder_options" style="font-size: 100%;">{DATE}</td>');
-	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=da" title="{SORT_DA}">+</a>&nbsp;</span></td>');
-	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=dd" title="{SORT_DD}">-</a>&nbsp;</span></td>');
-	                    document.write('            <td></td>');
-	                    document.write('            <td class="sortorder_options" style="font-size: 100%;">{POSITION}</td>');
-	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pa" title="{SORT_PA}">+</a>&nbsp;</span></td>');
-	                    document.write('            <td class="sortorder_options" style="font-size: 100%;"><span class="statlink">&nbsp;<a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pd" title="{SORT_PD}">-</a>&nbsp;</span></td>');
-	                    document.write('    </tr>');
-                        document.write('</table>');
-                    </script>
-
-EOT;
 
 // Function for the JavaScript inside the <head>-section
 function theme_javascript_head() {
 	global $CONFIG, $JS;
 	$return = '';
 	// Check if we have any variables being set using set_js_vars function
+	$JS['vars']['not_default_theme'] = true;
 	if (isset($JS['vars']) && count($JS['vars'])) {
 		// Convert the $JS['vars'] array to json object string
 		$json_vars = json_encode($JS['vars']);

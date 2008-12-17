@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-12-17 [O] Changed 3 themes to use thumbnails.js instead of inline js. {SaWey}
 2008-12-16 [B] Added swfupload style to eyeball css - work in progress for other themes {Abbas}
 2008-12-16 [B] Fixed category list in modifyalb.php {Paver}
 2008-12-15 [A] Added keyword separator {Paver}

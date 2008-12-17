@@ -293,7 +293,7 @@ EOT;
   print <<< EOT
         if(document.contactForm.sender_name.value == '') {
          //alert('{$lang_contact_php['name_field_mandatory']}');
-         document.getElementById('name_remark').style.display = 'block';
+         $('#name_remark').css('display', 'block');
          document.contactForm.sender_name.focus();
          return false;
         }
@@ -305,7 +305,7 @@ EOT;
         if(document.contactForm.sender_name.value == '{$lang_contact_php['your_name']}') {
          alert('{$lang_contact_php['name_field_invalid']}');
          document.contactForm.sender_name.value = '';
-         document.getElementById('name_remark').style.display = 'block';
+         $('#name_remark').css('display', 'block');
          document.contactForm.sender_name.focus();
          return false;
         }
@@ -316,14 +316,14 @@ EOT;
   print <<< EOT
         if(document.contactForm.sender_email.value == '') {
          //alert('{$lang_contact_php['email_field_mandatory']}');
-         document.getElementById('email_remark').style.display = 'block';
+         $('#email_remark').css('display', 'block');
          document.contactForm.sender_email.focus();
          return false;
         }
 
         string=document.contactForm.sender_email.value;
         if (string.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) == -1) {
-        document.getElementById('email_remark').style.display = 'block';
+        $('#email_remark').css('display', 'block');
         alert('{$lang_contact_php['email_field_invalid']}');
         document.contactForm.sender_email.focus();
         return false;
@@ -335,7 +335,7 @@ EOT;
   print <<< EOT
         if(document.contactForm.subject.value == '') {
          //alert('{$lang_contact_php['subject_field_mandatory']}');
-         document.getElementById('subject_remark').style.display = 'block';
+         $('#subject_remark').css('display', 'block');
          document.contactForm.subject.focus();
          return false;
         }
@@ -344,7 +344,7 @@ EOT;
   print <<< EOT
         if(document.contactForm.message.value == '') {
          //alert('{$lang_contact_php['message_field_mandatory']}');
-         document.getElementById('message_remark').style.display = 'block';
+         $('#message_remark').css('display', 'block');
          document.contactForm.message.focus();
          return false;
         }
