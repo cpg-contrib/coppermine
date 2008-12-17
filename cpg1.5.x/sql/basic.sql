@@ -39,6 +39,7 @@ INSERT INTO CPG_config VALUES ('allow_user_album_keyword', '0');
 INSERT INTO CPG_config VALUES ('allow_user_edit_after_cat_close', '0');
 INSERT INTO CPG_config VALUES ('allow_user_move_album', '0');
 INSERT INTO CPG_config VALUES ('allow_user_registration', '0');
+INSERT INTO CPG_config VALUES ('allow_user_upload_choice', '1');
 INSERT INTO CPG_config VALUES ('auto_resize', '1');
 INSERT INTO CPG_config VALUES ('bridge_enable', '0');
 INSERT INTO CPG_config VALUES ('browse_batch_add', '1');

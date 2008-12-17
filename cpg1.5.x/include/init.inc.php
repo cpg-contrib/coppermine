@@ -21,7 +21,7 @@ define('COPPERMINE_VERSION', '1.5.0');
 define('COPPERMINE_VERSION_STATUS', 'alpha');
 
 if (!defined('IN_COPPERMINE')) {
-	die('Not in Coppermine...');
+    die('Not in Coppermine...');
 }
 
 set_include_path(get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'Inspekt');
@@ -35,8 +35,8 @@ $superCage = Inspekt::makeSuperCage($strict);
 
 function cpgGetMicroTime()
 {
-	list($usec, $sec) = explode(' ', microtime());
-	return ((float)$usec + (float)$sec);
+    list($usec, $sec) = explode(' ', microtime());
+    return ((float)$usec + (float)$sec);
 }
 $cpg_time_start = cpgGetMicroTime();
 
@@ -86,25 +86,25 @@ define('CRITICAL_ERROR', 3);
 
 // Include config and functions files
 if(file_exists('include/config.inc.php')){
-		ob_start();
-		require_once 'include/config.inc.php';
-		ob_clean();
+        ob_start();
+        require_once 'include/config.inc.php';
+        ob_clean();
 } else {
   // error handling: if the config file doesn't exist go to install
   die('<html>
-	<head>
-	  <title>Coppermine not installed yet</title>
-	  <meta http-equiv="refresh" content="10;url=install.php" />
-	  <style type="text/css">
-	  <!--
-	  body { font-size: 12px; background: #FFFFFF; margin: 20%; color: black; font-family: verdana, arial, helvetica, sans-serif;}
-	  -->
-	  </style>
-	</head>
-	<body>
-	  <img src="images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" /><br />
-	  Coppermine Photo Gallery seems not to be installed correctly, or you are running coppermine for the first time. You\'ll be redirected to the installer. If your browser doesn\'t support redirect, click <a href="install.php">here</a>.
-	</body>
+    <head>
+      <title>Coppermine not installed yet</title>
+      <meta http-equiv="refresh" content="10;url=install.php" />
+      <style type="text/css">
+      <!--
+      body { font-size: 12px; background: #FFFFFF; margin: 20%; color: black; font-family: verdana, arial, helvetica, sans-serif;}
+      -->
+      </style>
+    </head>
+    <body>
+      <img src="images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" /><br />
+      Coppermine Photo Gallery seems not to be installed correctly, or you are running coppermine for the first time. You\'ll be redirected to the installer. If your browser doesn\'t support redirect, click <a href="install.php">here</a>.
+    </body>
 </html>');
 }
 $mb_utf8_regex = '[\xE1-\xEF][\x80-\xBF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xC2-\xDF][\x80-\xBF]';
@@ -137,7 +137,7 @@ $CONFIG['TABLE_LANGUAGE']        = $CONFIG['TABLE_PREFIX'].'languages';
 // Retrieve DB stored configuration
 $results = cpg_db_query("SELECT name, value FROM {$CONFIG['TABLE_CONFIG']}");
 while ($row = mysql_fetch_assoc($results)) {
-	$CONFIG[$row['name']] = $row['value'];
+    $CONFIG[$row['name']] = $row['value'];
 } // while
 mysql_free_result($results);
 
@@ -145,13 +145,13 @@ mysql_free_result($results);
 $raw_ip = $superCage->server->testIp('REMOTE_ADDR') ? $superCage->server->getEscaped('REMOTE_ADDR') : '0.0.0.0';
 
 if ($superCage->server->testIp('HTTP_CLIENT_IP')) {
-	$hdr_ip = $superCage->server->getEscaped('HTTP_CLIENT_IP');
+    $hdr_ip = $superCage->server->getEscaped('HTTP_CLIENT_IP');
 } else {
-	if ($superCage->server->testIp('HTTP_X_FORWARDED_FOR')) {
-		$hdr_ip = $superCage->server->getEscaped('X_FORWARDED_FOR');
-	} else {
-		$hdr_ip = $raw_ip;
-	}
+    if ($superCage->server->testIp('HTTP_X_FORWARDED_FOR')) {
+        $hdr_ip = $superCage->server->getEscaped('X_FORWARDED_FOR');
+    } else {
+        $hdr_ip = $raw_ip;
+    }
 }
 
 /*if (!preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $raw_ip)) $raw_ip = '0.0.0.0';
@@ -179,12 +179,12 @@ if ($CONFIG['thumb_method'] == 'im' || function_exists('imagecreatefromgif')) {
 // Include plugin API
 require('include/plugin_api.inc.php');
 if ($CONFIG['enable_plugins'] == 1) {
-	CPGPluginAPI::load();
+    CPGPluginAPI::load();
 }
 
 // Set UDB_INTEGRATION if enabled in admin
 if ($CONFIG['bridge_enable'] == 1 && !defined('BRIDGEMGR_PHP')) {
-	$BRIDGE = cpg_get_bridge_db_values();
+    $BRIDGE = cpg_get_bridge_db_values();
 } else {
   $BRIDGE['short_name'] = 'coppermine';
   $BRIDGE['use_standard_groups'] = 1;
@@ -204,7 +204,7 @@ Removed temporarily due to non-compliance with bridging system - Nibbler
 $results = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_USERGROUPS']} WHERE has_admin_access ");
 $CONFIG['ADMIN_GROUPS']=array();
 while ($row = mysql_fetch_array($results)) {
-	$CONFIG['ADMIN_GROUPS'][]= $row['group_id'];
+    $CONFIG['ADMIN_GROUPS'][]= $row['group_id'];
 } // while
 mysql_free_result($results);
 
@@ -212,7 +212,7 @@ mysql_free_result($results);
 $results = cpg_db_query("SELECT {$cpg_udb->field['user_id']} as user_id FROM $cpg_udb->usertable WHERE {$cpg_udb->field['usertbl_group_id']} in (" . implode(',',$CONFIG['ADMIN_GROUPS']).')');
 $CONFIG['ADMIN_USERS']=array();
 while ($row = mysql_fetch_array($results)) {
-	$CONFIG['ADMIN_USERS'][] = $row['user_id'];
+    $CONFIG['ADMIN_USERS'][] = $row['user_id'];
 } // while
 mysql_free_result($results);
 
@@ -236,8 +236,8 @@ define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !G
 // Set error logging level
 // Maze's new error report system
 if (!USER_IS_ADMIN) {
-	if (!$CONFIG['debug_mode']) $cpgdebugger->stop(); // useless to run debugger cos there's no output
-	error_reporting(0); // hide all errors for visitors
+    if (!$CONFIG['debug_mode']) $cpgdebugger->stop(); // useless to run debugger cos there's no output
+    error_reporting(0); // hide all errors for visitors
 }
 
 $USER_DATA['allowed_albums'] = array();
@@ -245,9 +245,9 @@ $USER_DATA['allowed_albums'] = array();
 if (!GALLERY_ADMIN_MODE) {
   $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE moderator_group IN ".USER_GROUP_SET);
   if (mysql_num_rows($result)) {
-	while ($row = mysql_fetch_assoc($result)) {
-	  $USER_DATA['allowed_albums'][] = $row['aid'];
-	}
+    while ($row = mysql_fetch_assoc($result)) {
+      $USER_DATA['allowed_albums'][] = $row['aid'];
+    }
   }
 }
 
@@ -255,7 +255,7 @@ if (!GALLERY_ADMIN_MODE) {
 if ($matches = $superCage->get->getMatched('theme', '/^[A-Za-z0-9_]+$/')) {
     $USER['theme'] = $CONFIG['theme'] = $matches[0];
 }/* else {
-	unset($USER['theme']);
+    unset($USER['theme']);
 }*/
 
 if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . $USER['theme'])) {
@@ -290,7 +290,7 @@ $CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
 $enabled_languages_array = array();
 $results = cpg_db_query("SELECT lang_id FROM {$CONFIG['TABLE_LANGUAGE']} WHERE enabled='YES' ");
 while ($row = mysql_fetch_assoc($results)) {
-	$enabled_languages_array[] = $row['lang_id'];
+    $enabled_languages_array[] = $row['lang_id'];
 }
 mysql_free_result($results);
 unset($row);
@@ -309,7 +309,7 @@ if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' .
     include('include/select_lang.inc.php');
     if (file_exists('lang/' . $USER['lang'] . '.php') == TRUE) {
         if (in_array($USER['lang'], $enabled_languages_array)){
-        	$CONFIG['lang'] = $USER['lang'];
+            $CONFIG['lang'] = $USER['lang'];
         }
     }
 } else {
@@ -326,31 +326,31 @@ if (!file_exists("lang/{$CONFIG['lang']}.php")) {
 
 // We finally load the chosen language file if it differs from English
 if ($CONFIG['lang'] != 'english') {
-	require('lang/' . $CONFIG['lang'] . '.php');
+    require('lang/' . $CONFIG['lang'] . '.php');
 }
 set_js_var('lang_close', $lang_common['close']);
 // Language processing --- end
 
 // See if the fav cookie is set else set it
 if ($superCage->cookie->keyExists($CONFIG['cookie_name'] . '_fav')) {
-	$FAVPICS = @unserialize(@base64_decode($superCage->cookie->getRaw($CONFIG['cookie_name'] . '_fav')));
-	foreach ($FAVPICS as $key => $id ){
-		$FAVPICS[$key] = (int)$id; //protect against sql injection attacks
-	}
+    $FAVPICS = @unserialize(@base64_decode($superCage->cookie->getRaw($CONFIG['cookie_name'] . '_fav')));
+    foreach ($FAVPICS as $key => $id ){
+        $FAVPICS[$key] = (int)$id; //protect against sql injection attacks
+    }
 } else {
-	$FAVPICS = array();
+    $FAVPICS = array();
 }
 
 // If the person is logged in get favs from DB those in the DB have precedence
 if (USER_ID > 0){
-		$sql = "SELECT user_favpics FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = ".USER_ID;
-		$results = cpg_db_query($sql);
-		$row = mysql_fetch_assoc($results);
-		if (!empty($row['user_favpics'])){
-				$FAVPICS = @unserialize(@base64_decode($row['user_favpics']));
-		}else{
-				$FAVPICS = array();
-		}
+    $sql = "SELECT user_favpics FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = ".USER_ID;
+    $results = cpg_db_query($sql);
+    $row = mysql_fetch_assoc($results);
+    if (!empty($row['user_favpics'])){
+        $FAVPICS = @unserialize(@base64_decode($row['user_favpics']));
+    }else{
+        $FAVPICS = array();
+    }
 }
 
 // Include the jquery javascript library. Jquery will be included on all pages.
@@ -416,30 +416,30 @@ $query_string .= ") AND brute_force=0 LIMIT 1";
 $result = cpg_db_query($query_string);
 unset($query_string);
 if (mysql_num_rows($result)) {
-	pageheader($lang_common['error']);
-	msg_box($lang_common['information'], $lang_errors['banned']);
-	pagefooter();
-	exit;
+    pageheader($lang_common['error']);
+    msg_box($lang_common['information'], $lang_errors['banned']);
+    pagefooter();
+    exit;
 }
 mysql_free_result($result);
 // Retrieve the "private" album set
 if (!GALLERY_ADMIN_MODE && $CONFIG['allow_private_albums']) get_private_album_set();
 
 if (!USER_IS_ADMIN && $CONFIG['offline'] && !strstr($CPG_PHP_SELF,'login')) {
-	pageheader($lang_errors['offline_title']);
-	msg_box($lang_errors['offline_title'], $lang_errors['offline_text']);
-	pagefooter();
-	exit;
+    pageheader($lang_errors['offline_title']);
+    msg_box($lang_errors['offline_title'], $lang_errors['offline_text']);
+    pagefooter();
+    exit;
 }
 
 // kick user into user_admin_mode (needed to fix "removed user mode for users" when upgrading)
 if (USER_ID && !USER_IS_ADMIN && !$USER['am']) { // user is logged in, but is not gallery admin and not in admin mode
-	$USER['am'] = 1;
-	pageheader($lang_common['information'], "<META http-equiv=\"refresh\" content=\"1;url=$referer\" />");
-	msg_box($lang_common['information'], 'Sending you to admin mode', $lang_common['continue'], $referer);
-	pagefooter();
-	ob_end_flush();
-	die();
+    $USER['am'] = 1;
+    pageheader($lang_common['information'], "<META http-equiv=\"refresh\" content=\"1;url=$referer\" />");
+    msg_box($lang_common['information'], 'Sending you to admin mode', $lang_common['continue'], $referer);
+    pagefooter();
+    ob_end_flush();
+    die();
 }
 
 ?>

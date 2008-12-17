@@ -844,9 +844,10 @@ $lang_admin_php['allow_unlogged_access'] = 'Allow unlogged users (guest or anony
 $lang_admin_php['thumbnail_intermediate_full'] = 'thumbnail, intermediate, and full-size image'; // cpg1.5
 $lang_admin_php['thumbnail_intermediate'] = 'thumbnail and intermediate image'; // cpg1.5
 $lang_admin_php['thumbnail_only'] = 'thumbnail only'; // cpg1.5
-$lang_admin_php['upload_mechanism'] = 'Upload method'; // cpg1.5
+$lang_admin_php['upload_mechanism'] = 'Default upload method'; // cpg1.5
 $lang_admin_php['upload_swf'] = 'advanced - multiple files, Flash-driven (recommended)'; // cpg1.5
 $lang_admin_php['upload_single'] = 'simple - one file at a time'; // cpg1.5
+$lang_admin_php['allow_user_upload_choice'] = 'Allow users to choose the upload method'; // cpg1.5
 $lang_admin_php['allow_duplicate_emails_addr'] = 'Allow two users to have the same email address'; // cpg1.5
 $lang_admin_php['upl_notify_admin_email'] = 'Notify admin of user upload awaiting approval'; // cpg1.5
 $lang_admin_php['allow_memberlist'] = 'Allow logged in users to view memberlist'; // cpg1.5
@@ -2105,6 +2106,9 @@ $lang_stat_details_php['not_implemented'] = 'not implemented yet'; // cpg1.5
 
 if (defined('UPLOAD_PHP')) {
 $lang_upload_php['title'] = 'Upload file';
+$lang_upload_php['choose_method'] = 'Choose upload method'; // cpg1.5
+$lang_upload_php['upload_swf']    = 'default - Flash-driven'; // cpg1.5
+$lang_upload_php['upload_single'] = 'simple - one file at a time'; // cpg1.5
 // $lang_upload_php['custom_title'] = 'Customized Request Form';
 // $lang_upload_php['cust_instr_1'] = 'You may select a customized number of upload boxes. However, you may not select more than the limits listed below.';
 // $lang_upload_php['cust_instr_2'] = 'Box Number Requests';

@@ -1232,12 +1232,17 @@ $config_data = array(
     ),
     'upload_mechanism' => array(
       'type'          => 'select',
-      'default_value' => 'upload_swf',
+      'default_value' => 'swfupload',
       'help_link'     => 'f=configuration.htm&amp;as=admin_upload_mechanism&amp;ae=admin_upload_mechanism_end',
       'options'       => array(
                            'swfupload' => $lang_admin_php['upload_swf'],
                            'html_single' => $lang_admin_php['upload_single'],
                          ),
+    ),
+    'allow_user_upload_choice' => array(
+      'type'          => 'checkbox',
+      'default_value' => '1',
+      'help_link'     => 'f=configuration.htm&amp;as=admin_allow_user_upload_choice_start&amp;ae=admin_allow_user_upload_choice_end',
     ),
     'allow_duplicate_emails_addr' => array(
       'type'            => 'checkbox',

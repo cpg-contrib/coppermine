@@ -221,7 +221,7 @@ if ($superCage-&gt;get-&gt;testInt('year')) {
     <th valign="top" align="left" class="tableh1">Example</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><tt class="code">/^[0-9A-Za-z\/_]+$/</tt></td>
+    <td valign="top" class="tableb"><tt class="code">/^[0-9A-Za-z_]+$/</tt></td>
     <td valign="top" class="tableb">Alphanumerals (numbers and latin characters) both in lower as well as upper case and the special char &quot;underscore&quot; (<tt class="code">_</tt>) will match (i.e. return TRUE)</td>
     <td valign="top" class="tableb">'<tt class="code">foobar</tt>', '<tt class="code">fooBar</tt>', '<tt class="code">foo_bar</tt>', '<tt class="code">foobar_</tt>', '<tt class="code">2foo3bar</tt>' will match (true).<br />'<tt class="code">f&uuml;bar</tt>', '<tt class="code">foo-bar</tt>', '<tt class="code">foo bar</tt>' will not match (false)</td>
   </tr>
