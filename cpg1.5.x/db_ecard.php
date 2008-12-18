@@ -157,53 +157,13 @@ if (!mysql_num_rows($result)) {
     cpg_die(INFORMATION, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
 }
 
+set_js_var('ecards_delete_confirm', $lang_db_ecard_php['ecards_delete_confirm']);
+js_include('js/db_ecard.js');
 pageheader($lang_db_ecard_php['title']);
 
 $formTarget = cpgGetUrlVars('count');
-print '<form method="post" name="ecardselect" id="cpgform" action="'.$formTarget.'" onSubmit="return defaultagree(this)">';
-?>
+print '<form method="post" name="ecardselect" id="cpgform" action="'.$formTarget.'" onsubmit="return defaultagree(this)">';
 
-<script language="javascript" type="text/javascript">
-<!--
-function checkAll(field)
-{
-for (i = 0; i < field.length; i++)
-  field[i].checked = true ;
-}
-
-function uncheckAll(field)
-{
-for (i = 0; i < field.length; i++)
-  field[i].checked = false ;
-}
-
-var checkobj
-
-function agreesubmit(el){
-checkobj=el
-if (document.all||document.getElementById){
-for (i=0;i<checkobj.form.length;i++){  //hunt down submit button
-var tempobj=checkobj.form.elements[i]
-if(tempobj.type.toLowerCase()=="submit")
-tempobj.disabled=!checkobj.checked
-}
-}
-}
-
-function defaultagree(el){
-if (!document.all&&!document.getElementById){
-if (window.checkobj&&checkobj.checked)
-return true
-else{
-alert("<?php print $lang_db_ecard_php['ecards_delete_confirm']; ?>")
-return false
-}
-}
-}
-
--->
-</script>
-<?php
 // create tabbed display (non-coppermine standard); maybe this could be changed later using the coppermine standard method
 // step 1: calculate the number of pages
 $pageTotal = ceil($totalEcards/$countTo);
@@ -304,12 +264,12 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
 print '<tr><td class="tableh1_compact" align="center"></td>';
 print '<td colspan="3" class="tableh1_compact">';
-print '<input type="button" name="CheckAll" class="button" value="'.$lang_db_ecard_php['check_all'].'" onClick="checkAll(document.ecardselect.eidselector)" />&nbsp;';
-print '<input type="button" name="UnCheckAll" class="button" value="'.$lang_db_ecard_php['uncheck_all'].'" onClick="uncheckAll(document.ecardselect.eidselector)" />';
+print '<input type="button" name="CheckAll" class="button" value="'.$lang_db_ecard_php['check_all'].'" onclick="check(true)" />&nbsp;';
+print '<input type="button" name="UnCheckAll" class="button" value="'.$lang_db_ecard_php['uncheck_all'].'" onclick="check(false)" />';
 print '</td>';
 print '<td colspan="4" class="tableh1_compact" align="left">';
 print '<input type="submit" class="button" name="delete" value="'.$lang_db_ecard_php['ecards_delete_selected'].'" disabled="disabled" />&nbsp;';
-print '<input name="agreecheck" id="agreecheck" type="checkbox" onClick="agreesubmit(this)" /><label for="agreecheck" class="clickable_option">'.$lang_db_ecard_php['ecards_delete_sure'].'</label>';
+print '<input name="agreecheck" id="agreecheck" type="checkbox" onClick="agreesubmit()" /><label for="agreecheck" class="clickable_option">'.$lang_db_ecard_php['ecards_delete_sure'].'</label>';
 print '</td>';
 print '</tr>';
 endtable();

@@ -34,6 +34,7 @@ $icon_array['delete_all'] = cpg_fetch_icon('delete', 2);
 $icon_array['ok'] = cpg_fetch_icon('ok', 2);
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
+js_include('js/util.js');
 pageheader($lang_util_php['title']);
 
 // 'action name (for the $_REQUEST)' => array('function name','title for main page','description/options for main page')
@@ -128,7 +129,7 @@ if (array_key_exists($action, $tasks)){
                 print '  <tr>'.$lineBreak;
                 print '    <td class="tableh2">'.$lineBreak;
                 if ($name){
-                    print '      <input type="radio" name="action" value="'.$name.'" id="'.$name.'" class="nobg" onchange="cpgAdminToolsToggleRadioButton(\''.$name.'\');" /><label for="'.$name.'" class="clickable_option">'.$title.'</label>'.$lineBreak;
+                    print '      <input type="radio" name="action" value="'.$name.'" id="'.$name.'" class="nobg" /><label for="'.$name.'" class="clickable_option">'.$title.'</label>'.$lineBreak;
                 } else {
                     print '      '.$title;
                 }
@@ -149,23 +150,10 @@ if (array_key_exists($action, $tasks)){
                 print '        '.$lineBreak;
                 endtable();
                 print '      </span>'.$lineBreak;
-                print '                      <script type="text/javascript">'.$lineBreak;
-                print '        addonload("show_section(\''.$name.'_wrapper\')");'.$lineBreak;
-                print '      </script>'.$lineBreak;
                 print '    </td>'.$lineBreak;
                 print '  </tr>'.$lineBreak;
                 $loopCounter++;
         }
-        print <<< EOT
-    <script type="text/javascript">
-        function cpgAdminToolsToggleRadioButton(wrapper_name) {
-            if (document.getElementById(wrapper_name).checked == true) {
-                document.getElementById(wrapper_name + '_wrapper').style.display = 'block';
-            }
-            return;
-        }
-    </script>
-EOT;
         endtable();
         
         $help_select = '&nbsp;'.cpg_display_help('f=admin-tools.htm&amp;as=admin_tools_usage&amp;ae=admin_tools_usage_end&amp;top=1', '600', '400');
