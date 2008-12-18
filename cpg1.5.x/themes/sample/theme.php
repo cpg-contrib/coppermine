@@ -489,15 +489,17 @@ EOT;
 $template_film_strip = <<<EOT
 
         <tr>
-         <td valign="top" class="filmstrip_background" style="background-image: url({TILE1});"><img src="{TILE1}" alt="" border="0" /></td>
+          <td valign="top" class="filmstrip_background" style="background-image: url({TILE1});"><img src="{TILE1}" alt="" border="0" /></td>
         </tr>
         <tr>
           <td valign="bottom" class="thumbnails filmstrip_background" align="center" style="{THUMB_TD_STYLE}">
             <table width="100%" cellspacing="0" cellpadding="3" border="0">
                 <tr>
-                   <td width="50%"><span id="filmstrip_prev_link" style="display: none;">{PREV_LINK}</span></td>
-                   {THUMB_STRIP}
-                   <td width="50%" align="right"><span id="filmstrip_next_link" style="display: none;">{NEXT_LINK}</a></span></td>
+                   <td width="50%" class="prev_strip"></td>
+                     <td valign="bottom"  style="{THUMB_TD_STYLE}">
+                       <div id="film" style="{SET_WIDTH}"><table class="tape" ><tr>{THUMB_STRIP}</tr></table></div>
+                     </td>
+                   <td width="50%" align="right" class="next_strip"></td>
                 </tr>
             </table>
           </td>
@@ -506,10 +508,10 @@ $template_film_strip = <<<EOT
          <td valign="top" class="filmstrip_background" style="background-image: url({TILE2});"><img src="{TILE2}" alt="" border="0" /></td>
         </tr>
 <!-- BEGIN thumb_cell -->
-                <td valign="top" align="center" style="vertical-align:middle;">
-                    <a href="{LINK_TGT}">{THUMB}</a>
-                    {CAPTION}
-                    {ADMIN_MENU}
+                <td class="thumb" >
+                        <a href="{LINK_TGT}" class="thumbLink" style="{ONE_WIDTH}" >{THUMB}</a>
+                        {CAPTION}
+                        {ADMIN_MENU}
                 </td>
 <!-- END thumb_cell -->
 <!-- BEGIN empty_cell -->
@@ -2725,10 +2727,10 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 ** Section <<<theme_display_film_strip>>> - START
 ******************************************************************************/
 // Function to display the film strip
-function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='', $filmstrip_prev_pos, $filmstrip_next_pos) 
+function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='', $filmstrip_prev_pos, $filmstrip_next_pos,$max_block_items,$thumb_width) 
 {
     global $CONFIG, $THEME_DIR;
-    global $template_film_strip, $lang_film_strip, $lang_common, $pic_count;
+    global $template_film_strip, $lang_film_strip, $lang_common, $pic_count,$mar_pic;
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -2766,27 +2768,29 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             // determine if thumbnail link targets should open in a pop-up
             if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
                 if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
-                       $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
+                    $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
                 } elseif (USER_ID && USER_ACCESS_LEVEL <= 2) {
                     $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['access_intermediate_only'],'','','','').'\');';
                 } else {
                     $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                 }
             } else {
-                $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
+                $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link#top_display_media";
             }
             $params = array('{CELL_WIDTH}' => $cell_width,
                 '{LINK_TGT}' => $target,
                 '{THUMB}' => $thumb['image'],
                 '{CAPTION}' => $thumb['caption'],
-                '{ADMIN_MENU}' => ''
+                '{ADMIN_MENU}' => '',
+                '{ONE_WIDTH}'  => "width:".$thumb_width."px; float: left" ,
                 );
         } else {
             $params = array('{CELL_WIDTH}' => $cell_width,
                 '{LINK_TGT}' => "index.php?cat={$thumb['cat']}",
                 '{THUMB}' => $thumb['image'],
                 '{CAPTION}' => '',
-                '{ADMIN_MENU}' => ''
+                '{ADMIN_MENU}' => '',
+                '{ONE_WIDTH}'  => "width:".$thumb_width."px; float: left" ,
                 );
         }
         $thumb_strip .= template_eval($thumb_cell, $params);
@@ -2806,15 +2810,17 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     } else {
         $location= '';
     }
-    $prev_tgt = "displayimage.php?film_strip=1&amp;pos=$filmstrip_prev_pos&amp;album=$aid&amp;cat=$cat";
-    $next_tgt = "displayimage.php?film_strip=1&amp;pos=$filmstrip_next_pos&amp;album=$aid&amp;cat=$cat";
+    $max_itme_width_ul = $max_block_items;
+    if(($max_block_items%2)==0){
+        $max_itme_width_ul = $max_block_items +1;
+    }
+    $set_width_to_film = "width:".($max_block_items*($thumb_width+4))."px; position:relative;";
+    
     $params = array('{THUMB_STRIP}' => $thumb_strip,
         '{COLS}' => $i,
         '{TILE1}' => $tile1,
         '{TILE2}' => $tile2,
-        '{PREV_LINK}' => $pos > 0 ? "<a href=\"$prev_tgt\" id=\"filmstrip_prev\" rel=\"nofollow\"><img src=\"{$location}images/icons/left.png\" border=\"0\" /></a>" : ' ',
-        '{NEXT_LINK}' => $pos < $pic_count - 1 ? "<a href=\"$next_tgt\" id=\"filmstrip_next\" rel=\"nofollow\"><img src=\"{$location}images/icons/right.png\" border=\"0\" /></a>" : ' ',
-        '{THUMB_TD_STYLE}' => $superCage->get->keyExists('film_strip') ? 'display: none;' : '',
+        '{SET_WIDTH}'  => $set_width_to_film,   
         );
 
     ob_start();

@@ -2459,13 +2459,15 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
         $superCage      = Inspekt::makeSuperCage();
         $max_item       = $CONFIG['max_film_strip_items'];
         $thumb_width    = $CONFIG['thumb_width'];
+
         /** set to variable with to javascript*/
         set_js_var('thumb_width',$thumb_width);    
             
         if(($CONFIG['max_film_strip_items']%2)==0){
             $max_item   = $CONFIG['max_film_strip_items']+1;
+            $pic_count = $pic_count + 1;
         }
-
+        
          $max_item_real = $max_item;
          /** check the thumb_per_page variable valid to query database*/
         if($pic_count < $max_item_real){
@@ -2505,7 +2507,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
         
         $pic_data=array_slice($pic_data,$lower_limit,$max_item);
         $i=$l_limit;
-        
+
         set_js_var('count', $pic_count);
         
         $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
@@ -2577,7 +2579,12 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
         }
     }
     else{
-        theme_no_img_to_display($album_name);
+    	    if($ajax_call==2 || $ajax_call==1){
+                $setArray  = array ('url'=>'images/stamp.png','target'=>'images/stamp.png');
+                $jonsArray = json_encode($setArray);
+                echo $jonsArray;
+            }
+            else theme_no_img_to_display($album_name);
     }
 }
 
