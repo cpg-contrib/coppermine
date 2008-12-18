@@ -44,7 +44,13 @@ $upload_choices = array(
     'html_single' => $lang_upload_php['upload_single'],
 );
 // Pull in alternate upload methods from active plugins
-$upload_choices = array_merge($upload_choices, CPGPluginAPI::filter('upload_option',null));
+$alternate_choices = CPGPluginAPI::filter('upload_option',null);
+// If there are no alternate choices then intialize an empty array so that array_merge works correctly
+if (!is_array($alternate_choices)) {
+    $alternate_choices = array();
+}
+// Merge all the choices
+$upload_choices = array_merge($upload_choices, $alternate_choices);
 
 // Default upload method set by the gallery administrator
 $upload_form = $CONFIG['upload_mechanism'];

@@ -46,8 +46,14 @@ $lineBreak = "\r\n";
 require_once('include/admin.inc.php'); // populate the array for the admin data (could later be done using an XML file)
 
 // Pull in plugins that provide alternate upload mechanisms
+$alternate_choices = CPGPluginAPI::filter('upload_option',null);
+// If there are no alternate choices then intialize an empty array so that array_merge works correctly
+if (!is_array($alternate_choices)) {
+    $alternate_choices = array();
+}
+// Merge all the choices
 $config_data['user_settings']['upload_mechanism']['options'] = array_merge(
-    $config_data['user_settings']['upload_mechanism']['options'], CPGPluginAPI::filter('upload_option',null)
+    $config_data['user_settings']['upload_mechanism']['options'], $alternate_choices
 );
 
 // loop through the config sections and populate the array that determines what sections to expand/collapse

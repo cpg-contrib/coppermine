@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-12-18 [B] Fixed the merging of upload mechanisms array {Abbas}
 2008-12-18 [M] Removed api folder {GauGau}
 2008-12-18 [B] Fixed filmstrip work for odd number of thumbnail in filmstrip 
 2008-12-18 [A] Added 6 new plugin hooks to be able to add custom CAPTCHA {SaWey}
