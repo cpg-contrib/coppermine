@@ -33,10 +33,11 @@ Changelog
 2008-12-18 [A] Added 6 new plugin hooks to be able to add custom CAPTCHA {SaWey}
 2008-12-17 [O] Added code to disable the browse button if no album is selected on upload page {Abbas}
 2008-12-17 [O] Added the disabled button to the swfupload button sprite image {Abbas}
-2008-12-17 [B] Fixed implementation of upload choices including alternate ones from plugins {Paver}
+2008-12-17 [A] Fleshed out implementation of upload choices including alternate ones from plugins {Paver}
 2008-12-17 [O] Changed 3 themes to use thumbnails.js instead of inline js. {SaWey}
 2008-12-16 [B] Added swfupload style to all themes {Abbas}
 2008-12-16 [B] Fixed category list in modifyalb.php {Paver}
+2008-12-15 [A] Added AJAX picture and album managers {Sameera}
 2008-12-15 [A] Added keyword separator {Paver}
 2008-12-15 [B] Added missing javascripts {SaWey}
 2008-12-15 [O] Replaced inline javascript of admin and albmgr section + optimised for jQuery (admin.js, albmgr.js) {SaWey}
@@ -47,6 +48,7 @@ Changelog
 2008-12-15 [O] Replaced inline javascript of bookmark function (scripts.js) {SaWey}
 2008-12-15 [O] Replaced sort table in thumbnails by external javascript (thumbnails.js) {SaWey}
 2008-12-15 [A] Added the fallback mechanism for flash upload interface {Abbas}
+2008-12-14 [A] Added AJAX filmstrip {Sameera}
 2008-12-14 [A] Modified breadcrumb for meta-albums to show more intuitive breadcrumb {Paver}
 2008-12-14 [A] Added navbar buttons for inactive previous and next {Paver}
 2008-12-14 [B] Fixed some bugs in voting and changed it to make better use of jQuery {SaWey}
@@ -54,6 +56,8 @@ Changelog
 2008-12-14 [C] Re-did batch-add graphics for fresher look {GauGau}
 2008-12-14 [A] Added missing hook to add custom bbcode {SaWey}
 2008-12-14 [A] Reworked upload form to show flash-based form or single file form - all other options removed {Paver}
+2008-12-13 [B] Update slideshow fixing a bug {Sameera}
+2008-12-13 [A] Added AJAX help dialog box {Sameera}
 2008-12-13 [A] Added 2 plugin hooks to add custom bbcode {SaWey}
 2008-12-11 [O] Replaced flag icons (from gif to png) {GauGau}
 2008-12-11 [A] Added group-based access levels (thumbs,intermediate,full-size) {Paver}

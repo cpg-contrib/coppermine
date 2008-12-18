@@ -45,12 +45,10 @@ $upload_choices = array(
 );
 // Pull in alternate upload methods from active plugins
 $alternate_choices = CPGPluginAPI::filter('upload_option',null);
-// If there are no alternate choices then intialize an empty array so that array_merge works correctly
-if (!is_array($alternate_choices)) {
-    $alternate_choices = array();
+if (is_array($alternate_choices)) {
+    // If plugins add upload choices, merge them with the default ones
+    $upload_choices = array_merge($upload_choices, $alternate_choices);
 }
-// Merge all the choices
-$upload_choices = array_merge($upload_choices, $alternate_choices);
 
 // Default upload method set by the gallery administrator
 $upload_form = $CONFIG['upload_mechanism'];
