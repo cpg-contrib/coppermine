@@ -57,29 +57,23 @@ $sortBy = 'date';
 $sortDirection = 'DESC';
 $sortText = $lang_db_ecard_php['ecard_by_date'];
 $sortDirectionText = $lang_db_ecard_php['ecard_descending'];
-if (!$start) {
-    $startFrom = '0';}else{$startFrom=$start;
-}
 
-if (!$count) {
-    $countTo = $selectOptions[0];}else{$countTo=$count;
-}
+$startFrom = ($start) ? $start : '0';
+$countTo = ($count) ? $count : $selectOptions[0];
+
 $tabOutput = '';
 
 //delete selected ecards
-if ($superCage->get->keyExists($eid)) {
-	$eid = $superCage->get->getInt($eid);
-} elseif ($superCage->post->keyExists($eid)) {
-	$eid = $superCage->post->getInt($eid);
+if ($superCage->get->keyExists('eid')) {
+	$eid = $superCage->get->getInt('eid');
+} elseif ($superCage->post->keyExists('eid')) {
+	$eid = $superCage->post->getInt('eid');
 }
 
-
 if (isset ($eid)) {
-  foreach ($eid as $key) {
-    //print $key;
-    //print "<br>";
-    $query = "DELETE FROM {$CONFIG['TABLE_ECARDS']} WHERE eid='$key'";
-    $result = cpg_db_query($query);
+	foreach ($eid as $key) {
+    	$query = "DELETE FROM {$CONFIG['TABLE_ECARDS']} WHERE eid='$key'";
+    	$result = cpg_db_query($query);
     }
 }
 

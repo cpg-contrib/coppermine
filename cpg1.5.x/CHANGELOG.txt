@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-12-18 [B] Fixed db_ecard.php not deleting ecards {SaWey}
 2008-12-18 [O] Replace inline js of util.php & db_ecard.php with external jQuery code {SaWey}
 2008-12-18 [B] Fixed the merging of upload mechanisms array {Abbas}
 2008-12-18 [M] Removed api folder {GauGau}
