@@ -87,7 +87,6 @@ INSERT INTO CPG_config VALUES ('display_comment_count', '0');
 INSERT INTO CPG_config VALUES ('display_coppermine_news', '1');
 INSERT INTO CPG_config VALUES ('display_filename','0');
 INSERT INTO CPG_config VALUES ('display_film_strip', '1');
-INSERT INTO CPG_config VALUES ('display_film_strip_filename', '0');
 INSERT INTO CPG_config VALUES ('display_pic_info', '0');
 INSERT INTO CPG_config VALUES ('display_redirection_page', '0');
 INSERT INTO CPG_config VALUES ('display_sidebar_guest', '1');

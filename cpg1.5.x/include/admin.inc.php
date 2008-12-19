@@ -543,11 +543,6 @@ $config_data = array(
       'default_value' => '1',
       'help_link'     => 'f=configuration.htm&amp;as=admin_image_comment_filmstrip_toggle&amp;ae=admin_image_comment_filmstrip_toggle_end',
     ),
-    'display_film_strip_filename' => array(
-      'type'          => 'checkbox',
-      'default_value' => '0',
-      'help_link'     => 'f=configuration.htm&amp;as=admin_image_comment_display_film_strip_filename&amp;ae=admin_image_comment_display_film_strip_filename_end',
-    ),
     'max_film_strip_items' => array(
       'type'          => 'textfield',
       'default_value' => '5',

@@ -358,3 +358,5 @@ INSERT INTO CPG_config VALUES ('tabs_dropdown', '1');
 ALTER TABLE CPG_dict ADD UNIQUE KEY `keyword` (keyword);
 
 INSERT INTO CPG_config VALUES('keyword_separator', ' ');
+# Remove the display filename in film strip config value
+DELETE FROM CPG_config WHERE `name` = 'display_film_strip_filename';

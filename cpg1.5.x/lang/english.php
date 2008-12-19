@@ -739,7 +739,6 @@ $lang_admin_php['picinfo_movie_download_link'] = 'Display movie download link in
 $lang_admin_php['max_img_desc_length'] = 'Max length for an image description'; // cpg1.5
 $lang_admin_php['max_com_wlength'] = 'Max number of characters in a word'; // cpg1.5
 $lang_admin_php['display_film_strip'] = 'Show film strip'; // cpg1.5
-$lang_admin_php['display_film_strip_filename'] = 'Display file name under film strip thumbnail'; // cpg1.5
 $lang_admin_php['max_film_strip_items'] = 'Number of items in film strip'; // cpg1.5
 $lang_admin_php['slideshow_interval'] = 'Slideshow interval'; // cpg1.5
 $lang_admin_php['milliseconds'] = 'milliseconds'; // cpg1.5

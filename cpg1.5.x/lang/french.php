@@ -742,7 +742,6 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'max_img_desc_length' =>   'Nombre maximun de caractères pour la description des fichiers', // cpg1.5
   'max_com_wlength' =>   'Nombre maximun de caractères dans un mot', // cpg1.5
   'display_film_strip' =>   'Afficher le Négatif', // cpg1.5
-  'display_film_strip_filename' =>   'Afficher le nom du fichier en dessous du Négatif', // cpg1.5
   'max_film_strip_items' =>   'Nombre de Vignettes dans le Négatif', // cpg1.5
   'slideshow_interval' =>   'Intervale du Diaporama en millisecondes', // cpg1.5
   'milliseconds' => 'millisecondes', // cpg1.5

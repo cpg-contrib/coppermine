@@ -2549,7 +2549,6 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
                         $p=($p < 0 ? 0 : $p);
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $p;
                         $thumb_list[$i]['image'] = "<img src=\"" . $pic_url . "\" class=\"strip_image\"   border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\" />";
-                       // $thumb_list[$i]['caption'] = $CONFIG['display_film_strip_filename'] ? '<span class="thumb_filename">'.$row['filename'].'</span>' : '';
                         $thumb_list[$i]['admin_menu'] = '';
                         ######### Added by Abbas #############
                         $thumb_list[$i]['pid'] = $row['pid'];
