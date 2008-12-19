@@ -884,7 +884,7 @@ $template_display_media = <<<EOT
                 <td align="center" class="display_media" nowrap="nowrap">
                         <table cellspacing="2" cellpadding="0" class="imageborder">
                                 <tr>
-                                        <td div="gallery" align="center">
+                                        <td align="center">
                                             <div id="slideShow" style="position:relative;">
                                                {IMAGE}
                                             </div>
