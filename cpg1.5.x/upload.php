@@ -337,19 +337,19 @@ function form_instructions()
 
     echo "<br /><br />{$lang_upload_php['up_instr_2']}";
     echo '<noscript>
-            <div class="red">
+            <div class="important">
                 ' . $lang_upload_php['err_js_disabled'] . '
                 <br />' . $lang_upload_php['err_alternate_method'] . '
             </div>
          </noscript>';
-    echo '<div id="divLoadingContent" class="red" style="display: none;">
+    echo '<div id="divLoadingContent" class="important" style="display: none;">
             ' . $lang_upload_php['flash_loading'] . '
         </div>
-        <div id="divLongLoading" class="red" style="display: none;">
+        <div id="divLongLoading" class="important" style="display: none;">
             ' . $lang_upload_php['err_flash_disabled'] . '
             <br />' . $lang_upload_php['err_alternate_method'] . '
         </div>
-        <div id="divAlternateContent" class="red" style="display: none;">
+        <div id="divAlternateContent" class="important" style="display: none;">
             ' . $lang_upload_php['err_flash_version'] . '
             <br />' . $lang_upload_php['err_alternate_method'] . '
         </div>';
