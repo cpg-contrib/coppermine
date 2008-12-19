@@ -559,15 +559,13 @@ function bb_decode($text)
                 // [url]xxxx://www.phpbb.com[/url] code..
                 $patterns['link'][1] = "#\[url\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
                 $replacements['link'][1] = $bbcode_tpl['url1'];
-                $text = check_link_type_and_replace($patterns['link'][1], $replacements['link'][1], $text, 1);
-
+				
                 $bbcode_tpl['url2'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['url']);
                 $bbcode_tpl['url2'] = str_replace('{DESCRIPTION}', '\\1', $bbcode_tpl['url2']);
 
                 // [url]www.phpbb.com[/url] code.. (no xxxx:// prefix).
                 $patterns['link'][2] = "#\[url\]([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
                 $replacements['link'][2] = $bbcode_tpl['url2'];
-                $text = check_link_type_and_replace($patterns['link'][2], $replacements['link'][2], $text, 2);
 
                 $bbcode_tpl['url3'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['url']);
                 $bbcode_tpl['url3'] = str_replace('{DESCRIPTION}', '\\3', $bbcode_tpl['url3']);
@@ -575,7 +573,6 @@ function bb_decode($text)
                 // [url=xxxx://www.phpbb.com]phpBB[/url] code..
                 $patterns['link'][3] = "#\[url=([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si";
                 $replacements['link'][3] = $bbcode_tpl['url3'];
-                $text = check_link_type_and_replace($patterns['link'][3], $replacements['link'][3], $text, 3);
 
                 $bbcode_tpl['url4'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['url']);
                 $bbcode_tpl['url4'] = str_replace('{DESCRIPTION}', '\\2', $bbcode_tpl['url4']);
@@ -583,8 +580,6 @@ function bb_decode($text)
                 // [url=www.phpbb.com]phpBB[/url] code.. (no xxxx:// prefix).
                 $patterns['link'][4] = "#\[url=([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si";
                 $replacements['link'][4] = $bbcode_tpl['url4'];
-                $text = check_link_type_and_replace($patterns['link'][4], $replacements['link'][4], $text, 4);
-
 
                 $bbcode_tpl['email']= '<span class="bblink"><a href="mailto:{EMAIL}">{EMAIL}</a></span>';
                 $bbcode_tpl['email'] = str_replace('{EMAIL}', '\\1', $bbcode_tpl['email']);
@@ -601,7 +596,11 @@ function bb_decode($text)
                 $replacements['other'][2] = $bbcode_tpl['img'];
 
         }
-
+		$text = check_link_type_and_replace($patterns['link'][1], $replacements['link'][1], $text, 1);
+		$text = check_link_type_and_replace($patterns['link'][2], $replacements['link'][2], $text, 2);
+		$text = check_link_type_and_replace($patterns['link'][3], $replacements['link'][3], $text, 3);
+		$text = check_link_type_and_replace($patterns['link'][4], $replacements['link'][4], $text, 4);
+		
         $text = preg_replace($patterns['other'], $replacements['other'], $text);
         return $text;
 }
@@ -619,7 +618,7 @@ function bb_decode($text)
 * @return string $text
 */
 function check_link_type_and_replace ($pattern, $replacement, $text, $stage) {
-        $ext_rel = 'rel="external nofollow" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;"';
+        $ext_rel = 'rel="external nofollow" ';
         $int_rel = '';
 
         if (preg_match($pattern, $text, $url) != 0) {
@@ -667,7 +666,7 @@ function is_link_local($url, $cpg_url = false)
         }
         $subdomain_remove_regex = '#^(http|https)://[^/]+?\.((?:[a-z0-9-]+\.[a-z]+)|localhost/)#i';
         $cpg_url = preg_replace($subdomain_remove_regex, '$1://$2', $cpg_url);
-        $url          = preg_replace($subdomain_remove_regex, '$1://$2', $url);
+        $url     = preg_replace($subdomain_remove_regex, '$1://$2', $url);
 
         $is_local = (strpos($url, $cpg_url) === 0);
         if (!$is_local)
@@ -688,9 +687,9 @@ function is_link_local($url, $cpg_url = false)
 */
 function generate_cpg_url()
 {
-                $superCage = Inspekt::makeSuperCage();
-                $server_name = $superCage->server->keyExists('server_name') ? $superCage->server->getRaw('server_name') : getenv('SERVER_NAME');
-                $server_port = $superCage->server->keyExists('server_port') ? $superCage->server->getRaw('server_port') : getenv('SERVER_PORT');
+		$superCage = Inspekt::makeSuperCage();
+		$server_name = $superCage->server->keyExists('server_name') ? $superCage->server->getRaw('server_name') : getenv('SERVER_NAME');
+		$server_port = $superCage->server->keyExists('server_port') ? $superCage->server->getRaw('server_port') : getenv('SERVER_PORT');
 
         // Do not rely on cookie_secure, users seem to think that it means a secured cookie instead of an encrypted connection
         $cookie_secure = ($superCage->server->keyExists('HTTPS') && $superCage->server->getAlpha('HTTPS') == 'on') ? 1 : 0;

@@ -459,3 +459,31 @@ function dateRevision(lastChangeDate, revisionNumber) {
   document.write(revisionNumber);
   document.write('</div>');
 }
+
+function getUrlParameters(name)
+{
+  // Taken from http://www.netlobo.com/url_query_string_javascript.html
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp(regexS);
+  var results = regex.exec(window.location.href);
+  if(results == null) {
+    return '';
+  } else {
+    return results[1];
+  }
+}
+
+$(document).ready(function() {
+	//convert external links to open in new window (in comments);
+	jQuery.each($("a[rel*='external']"), function(){
+		$(this).click(function(){
+			window.open(this.href);
+			return false;
+		});
+		$(this).keypress(function(){
+			window.open(this.href);
+			return false;
+		});
+	});
+});

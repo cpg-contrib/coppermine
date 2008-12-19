@@ -570,7 +570,7 @@ function displayNavigation() {
   var idName = '';
   for (var i = 0; i < docSections.length; i++) {
     idName = 'menu_' + docSections[i];
-    document.getElementById(idName).style.display = 'none';
+    $('#' + idName).css('display', 'none');
   }
   // unhide the menu item we're in
   var fileName = returnFileName();
@@ -612,3 +612,16 @@ function getUrlParameters(name)
     return results[1];
   }
 }
+$(document).ready(function() {
+	//convert external links to open in new window (in comments);
+	jQuery.each($("a[rel*='external']"), function(){
+		$(this).click(function(){
+			window.open(this.href);
+			return false;
+		});
+		$(this).keypress(function(){
+			window.open(this.href);
+			return false;
+		});
+	});
+});

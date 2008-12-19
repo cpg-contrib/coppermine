@@ -100,10 +100,6 @@ function addonload(func){
 	onloads.push(func);
 }
 
-function runonloads(){
-	for (func in onloads) eval(onloads[func]);
-}
-
 /**
  * sprintf() for JavaScript v.0.4
  *
@@ -152,6 +148,13 @@ function sprintf () {
 }
 
 function bookmarks(){
+	
+}
+
+$(document).ready(function() {
+	for (func in onloads) eval(onloads[func]);
+	
+	//Add bookmarks if available
 	if(js_vars.bookmark != undefined){
 		$('#bookmarkIt').click(function() { 
 			var offset = $('#bookmarkIt').offset(); 
@@ -173,8 +176,16 @@ function bookmarks(){
 			}
 		);
 	}
-}
-addonload('bookmarks()');
-$(document).ready(function() {
-	runonloads();
+	
+	//convert external links to open in new window (in comments);
+	jQuery.each($("a[rel*='external']"), function(){
+		$(this).click(function(){
+			window.open(this.href);
+			return false;
+		});
+		$(this).keypress(function(){
+			window.open(this.href);
+			return false;
+		});
+	});
 });
