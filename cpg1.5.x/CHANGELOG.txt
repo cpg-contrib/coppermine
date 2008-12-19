@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-12-19 [O] Moved contact.php js to external file {SaWey}
 2008-12-19 [B] Fixed [url] bbcodes not properly rendering {SaWey}
 2008-12-19 [A] Added opening of rel="external" links in new window (core & documentation) {SaWey}
 2008-12-19 [B] Fixed the bug http://forum.coppermine-gallery.net/index.php/topic,57065.msg279324.html#msg279324 {Abbas}
