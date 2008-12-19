@@ -767,7 +767,9 @@ a:hover {
 #v_css:hover{background-image:url(../../images/vanity/h_valid-css.gif);}
 
 .important {
-    background-image : url(images/important.gif);
+    /* background-image : url(images/important.gif); */
+    color: red;
+    font-weight: bold;
     padding-left:1px;
     padding-right:1px;
     padding-top:3px;

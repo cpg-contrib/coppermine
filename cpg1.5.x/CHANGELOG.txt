@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-12-19 [C] In all style.css, commented out blinking important.gif, replaced with red bold {Paver}
 2008-12-19 [O] Moved contact.php js to external file {SaWey}
 2008-12-19 [B] Fixed [url] bbcodes not properly rendering {SaWey}
 2008-12-19 [A] Added opening of rel="external" links in new window (core & documentation) {SaWey}
