@@ -1626,7 +1626,7 @@ function populateMysqlDb()
 	$possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
 	foreach ($possibilities as $test) {
 		if ($matches = $superCage->server->getMatched($test, '/([^\/]+\.php)$/')) {
-			$CPG_PHP_SELF = $matches[1];
+			$CPG_PHP_SELF = $superCage->server->getEscaped($test);
 			break;
 		}
 	}
