@@ -19,7 +19,7 @@
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 if (!defined('CORE_PLUGIN')) {
-	define('CORE_PLUGIN', true);
+    define('CORE_PLUGIN', true);
 }
 
 // Add plugin_install action
@@ -48,20 +48,20 @@ function online_configure() {
         print <<< EOT
     
     <form action="{$action}" method="post">
-	    <table border="0" cellspacing="0" cellpadding="0" width="100%">
-	        <tr>
-		        <td class="tableb">
-			        {$lang_plugin_php['onlinestats_config_text']}
-		        </td>
-		        <td class="tableb">
-			        <input size="2" type="text" name="duration" value="10" class="textinput" />
-			        {$lang_plugin_php['onlinestats_minute']}
-		        </td>
-		        <td class="tableb">
-			        <input type="submit" name="submit" value="{$lang_common['go']}" class="button" />
-		        </td>
-	        </tr>
-	    </table>
+        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+                <td class="tableb">
+                    {$lang_plugin_php['onlinestats_config_text']}
+                </td>
+                <td class="tableb">
+                    <input size="2" type="text" name="duration" value="10" class="textinput" />
+                    {$lang_plugin_php['onlinestats_minute']}
+                </td>
+                <td class="tableb">
+                    <input type="submit" name="submit" value="{$lang_common['go']}" class="button" />
+                </td>
+            </tr>
+        </table>
     </form>
 EOT;
 }
@@ -110,7 +110,7 @@ function online_page_start()
 function online_mainpage()
 {
         global $CONFIG, $cpg_udb, $matches, $lang_plugin_php, $lang_date;
-	
+    
         if($matches[1] != 'onlinestats') {
           return $matches;
         }
@@ -151,29 +151,29 @@ function online_mainpage()
        starttable("100%", cpg_fetch_icon('online', 2) . $lang_plugin_php['onlinestats_name']);
         print '<tr><td class="tableb">';
         if ($num_users == 1) {
-	        printf($lang_plugin_php['onlinestats_we_have_reg_member'], '<strong>'.$num_users.'</strong>');
+            printf($lang_plugin_php['onlinestats_we_have_reg_member'], '<strong>'.$num_users.'</strong>');
         } else {
-	        printf($lang_plugin_php['onlinestats_we_have_reg_members'], '<strong>'.$num_users.'</strong>');
+            printf($lang_plugin_php['onlinestats_we_have_reg_members'], '<strong>'.$num_users.'</strong>');
         }
         print ".&nbsp;\r\n";
         printf($lang_plugin_php['onlinestats_most_recent'], '<a href="profile.php?uid='.$newest['user_id'].'">'.$newest['user_name'].'</a>');
         print ".&nbsp;\r\n";
         if ($num_online == 1) {
-	        printf($lang_plugin_php['onlinestats_is'], '<strong>'.$num_online.'</strong>');
+            printf($lang_plugin_php['onlinestats_is'], '<strong>'.$num_online.'</strong>');
         } else {
-	        printf($lang_plugin_php['onlinestats_are'], '<strong>'.$num_online.'</strong>');
+            printf($lang_plugin_php['onlinestats_are'], '<strong>'.$num_online.'</strong>');
         }
         print ': ';
         if ($num_reg_online == 1) {
-	        printf($lang_plugin_php['onlinestats_reg_member'], '<strong>'.$num_reg_online.'</strong>');
+            printf($lang_plugin_php['onlinestats_reg_member'], '<strong>'.$num_reg_online.'</strong>');
         } else {
-	        printf($lang_plugin_php['onlinestats_reg_members'], '<strong>'.$num_reg_online.'</strong>');
+            printf($lang_plugin_php['onlinestats_reg_members'], '<strong>'.$num_reg_online.'</strong>');
         }
         print ' '.$lang_plugin_php['onlinestats_and'].' ';
         if ($num_guests == 1) {
-	        printf($lang_plugin_php['onlinestats_guest'], '<strong>'.$num_guests.'</strong>');
+            printf($lang_plugin_php['onlinestats_guest'], '<strong>'.$num_guests.'</strong>');
         } else {
-	        printf($lang_plugin_php['onlinestats_guests'], '<strong>'.$num_guests.'</strong>');
+            printf($lang_plugin_php['onlinestats_guests'], '<strong>'.$num_guests.'</strong>');
         }
         print ".&nbsp;\r\n";
         printf($lang_plugin_php['onlinestats_record'], '<strong>'.$CONFIG['record_online_users'].'</strong>', localised_date($CONFIG['record_online_date'], $lang_date['lastcom']));
@@ -206,8 +206,8 @@ function online_install() {
                 
                 // Add the string "onlinestats" to "the content of the main page" if it doesn't exist
                 if (strpos($CONFIG['main_page_layout'], 'onlinestats') === FALSE) {
-	                $contentOfTheMainpage = rtrim($CONFIG['main_page_layout'], '/').'/onlinestats';
-	                cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$contentOfTheMainpage' WHERE name = 'main_page_layout'"); 
+                    $contentOfTheMainpage = rtrim($CONFIG['main_page_layout'], '/').'/onlinestats';
+                    cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$contentOfTheMainpage' WHERE name = 'main_page_layout'"); 
                 }
 
            return true;
@@ -221,17 +221,15 @@ function online_uninstall() {
         global $CONFIG;
         $superCage = Inspekt::makeSuperCage();
 
-        if ($superCage->post->keyExists('drop')) {
-        } else {
-	        return 1;
+        if (!$superCage->post->keyExists('drop')) {
+            return 1;
         }
-
         // Drop the tables
-        if ($superCage->post->keyExists('drop')) {
-			cpg_db_query("DROP TABLE IF EXISTS {$CONFIG['TABLE_ONLINE']}");
-			cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'mod_updates_duration'");
-			cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'record_online_users'");
-			cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'record_online_date'");
+        if ($superCage->post->getInt('drop') == 1) {
+            cpg_db_query("DROP TABLE IF EXISTS {$CONFIG['TABLE_ONLINE']}");
+            cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'mod_updates_duration'");
+            cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'record_online_users'");
+            cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'record_online_date'");
         }
         
         // Remove the string "onlinestats" from the config option "content of the main page"
@@ -245,30 +243,30 @@ function online_uninstall() {
 
 // Ask if we want to drop the table
 function online_cleanup($action) {
-	global $lang_plugin_php, $CONFIG, $lang_common;
-	$superCage = Inspekt::makeSuperCage();
-	$cleanup = $superCage->server->getEscaped('REQUEST_URI');
+    global $lang_plugin_php, $CONFIG, $lang_common;
+    $superCage = Inspekt::makeSuperCage();
+    $cleanup = $superCage->server->getEscaped('REQUEST_URI');
     if ($action===1) {
     print <<< EOT
     <form action="{$cleanup}" method="post">
-	    <table border="0" cellspacing="0" cellpadding="0">
-	        <tr>
-	            <td class="tableb">
-		            {$lang_plugin_php['onlinestats_remove']}
-	            </td>
-		        <td class="tableb">
-			        <input type="radio" name="drop" id="drop_yes" value="1" />
-			        <label for="drop_yes" class="clickable_option">{$lang_common['yes']}</label>
-		        </td>
-		        <td class="tableb">
-			        <input type="radio" name="drop" id="drop_no" checked="checked" value="0" />
-			        <label for="drop_no" class="clickable_option">{$lang_common['no']}</label>
-		        </td>
-		        <td class="tableb">
-			        <input type="submit" name="submit" value="{$lang_common['go']}" class="button" />
-		        </td>
-	        </tr>
-	    </table>
+        <table border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="tableb">
+                    {$lang_plugin_php['onlinestats_remove']}
+                </td>
+                <td class="tableb">
+                    <input type="radio" name="drop" id="drop_yes" value="1" />
+                    <label for="drop_yes" class="clickable_option">{$lang_common['yes']}</label>
+                </td>
+                <td class="tableb">
+                    <input type="radio" name="drop" id="drop_no" checked="checked" value="0" />
+                    <label for="drop_no" class="clickable_option">{$lang_common['no']}</label>
+                </td>
+                <td class="tableb">
+                    <input type="submit" name="submit" value="{$lang_common['go']}" class="button" />
+                </td>
+            </tr>
+        </table>
     </form>
 EOT;
     }
