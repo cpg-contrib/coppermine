@@ -17,17 +17,27 @@
 **********************************************/
 
 /* Colors used in this style sheet:
-   Hex 000000 = RBG   0,   0,   0 = black
-   Hex 181818 = RGB  24,  24,  24 = light black
-   Hex 666666 = RBG 102, 102, 102 = light black
-   Hex 999999 = RBG 153, 153, 153 = dark grey
-   Hex BDBEBD = RBG 189, 190, 189 = medium grey
-   Hex EFEFEF = RBG 239, 239, 239 = light grey
-   Hex FFFFFF = RBG 255, 255, 255 = white
-   Hex FFC956 = RBG 255, 201,  86 = medium orange
-   Hex FFE8B7 = RBG 255, 232, 183 = light orange
-   Hex 447AC9 = RBG  68, 122, 201 = darker blue
-   Hex 0397FF = RBG   3, 151, 255 = lighter blue
+	Hex 000000 = RBG   0,   0,   0 = black
+	Hex 181818 = RGB  24,  24,  24 = light black
+	Hex 666666 = RBG 102, 102, 102 = light black
+	Hex 999999 = RBG 153, 153, 153 = dark grey
+	Hex BDBEBD = RBG 189, 190, 189 = medium grey
+	Hex EFEFEF = RBG 239, 239, 239 = light grey
+	Hex FFFFFF = RBG 255, 255, 255 = white
+	Hex FFC956 = RBG 255, 201,  86 = medium orange
+	Hex FFE8B7 = RBG 255, 232, 183 = light orange
+	Hex 447AC9 = RBG  68, 122, 201 = darker blue
+	Hex 0397FF = RBG   3, 151, 255 = lighter blue
+	Hex 00529B = RGB   0,  82, 155 = blue
+	Hex BDE5F8 = RGB 189, 229, 247 = cyan
+	Hex 4F8A10 = RGB  79, 138,  16 = dark green
+	Hex DFF2BF = RGB 223, 242, 191 = light green
+	Hex 9F6000 = RGB 159,  96,   0 = dark brown
+	Hex FEEFB3 = RGB 254, 239, 179 = light brown
+	Hex D8000C = RGB 216,   0,  12 = red
+	Hex FFBABA = RGB 255, 186, 186 = pink
+	Hex D63301 = RGB 214,  51,   1 = red
+	Hex FFCCBA = RGB 255, 204, 186 = pink
 */
 
 /* Foreground color definition */
@@ -1162,4 +1172,37 @@ a.photoDown {
 
 table#album_sort tr td {
 	padding: 2px;
+}
+
+.cpg_message_info, .cpg_message_success, .cpg_message_warning, .cpg_message_error, .cpg_message_validation {
+    border: 1px solid;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+.cpg_message_info {
+    color: #00529B;
+    background-color: #BDE5F8;
+    background-image: url('../../images/message/info.png');
+}
+.cpg_message_success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image: url('../../images/message/ok.png');
+}
+.cpg_message_warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('../../images/message/warning.png');
+}
+.cpg_message_error {
+    color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url('../../images/message/stop.png');
+}
+.cpg_message_validation {
+    color: #D63301;
+    background-color: #FFCCBA;
+    background-image: url('../../images/message/error.png');
 }
