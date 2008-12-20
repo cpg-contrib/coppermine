@@ -1417,7 +1417,6 @@ $lang_list_albums['from_category'] = ' - From Category: '; // cpg1.5
 if (defined('INSTALL_PHP')) {
 $lang_install['already_succ'] = 'The installer has already been run successfully once and is now locked.';
 $lang_install['already_succ_explain'] = 'If you want to run the installer again, you first need to delete the \'include/config.inc.php\' file that was created in the directory where you put Coppermine. You can do this with any FTP program';
-$lang_install['c_mode'] = 'Current mode';
 $lang_install['cant_read_tmp_conf'] = 'The installer can\'t read the temporary config file %s.';
 $lang_install['cant_write_tmp_conf'] = 'The installer can\'t write the temporary config file %s.';
 $lang_install['review_permissions'] = 'Please review directory permissions.';
@@ -1486,7 +1485,6 @@ $lang_install['perm_ok'] = 'The permissions on certain directories have been che
 $lang_install['perm_not_ok'] = 'The permissions on certain directories are not set correctly.<br />Please change the permissions of the directories below that are marked "Not OK".'; // cpg1.5
 $lang_install['please_go_back'] = 'Please %sclick here%s to go back and fix this problem before proceeding.';
 $lang_install['populate_db'] = 'Populate Database';
-$lang_install['r_mode'] = 'Required mode';
 $lang_install['ready_to_roll'] = '<a href="index.php">Coppermine</a> is now properly configured and ready to roll.<br /><br /><a href="login.php">Login</a> using the information you provided for your admin account.';
 $lang_install['sect_create_adm'] = 'This section requires information to create your Coppermine administration account. Use only alphanumeric characters. Enter the data carefully!';
 $lang_install['sect_mysql_info'] = 'This section requires information on how to access your MySQL database.<br />If you don\'t know how to fill them, check with your webhost support.';
@@ -1532,6 +1530,10 @@ $lang_install['scale'] = 'Scale an image';
 $lang_install['generated_image'] = 'Generated image';
 $lang_install['reference_image'] = 'Reference image';
 $lang_install['imp_test_error'] = 'There was an error in one or more of the test, please make sure you selected the appropriate Image Processing Package and it is configured correctly!';
+$lang_install['writable'] = 'Writable';
+$lang_install['not_writable'] = 'Not writable';
+$lang_install['not_exist'] = 'Does not exist';
+
 }
 
 // ------------------------------------------------------------------------- //

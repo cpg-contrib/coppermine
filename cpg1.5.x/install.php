@@ -353,9 +353,9 @@ switch($step) {
                 && trim($superCage->post->getRaw('new_db_name')) != '') 
         {
             // try to create a new database.
-            createMysqlDb(trim($superCage->post->getRaw('new_db_name')));
+            createMysqlDb(trim($superCage->post->getRaw('new_db_name'))); // no /\:*?"<>|.
             // save table prefix
-            setTmpConfig('db_prefix', $superCage->post->getRaw('db_prefix'));
+            setTmpConfig('db_prefix', $superCage->post->getRaw('db_prefix')); // no /\:*?"<>|.
         }
         checkSqlConnection(); 
         html_header();
@@ -1160,27 +1160,23 @@ function checkPermissions()
 	// Always add the maximum required permission as the first item as the installer will try to chmod the files to that value.
 	$files_to_check = array(
 		'./albums'  => array('777', '755'),
-		'./include' => array('777', '755'),
 		'./albums/userpics' => array('777', '755'),
 		'./albums/edit'     => array('777', '755'),
+		'./include' => array('777', '755'),
+
 	);
 
 	// clear the file status cache to make sure we are reading the most recent info of the file.
 	clearstatcache();
 	
 	// start creating table with results
-	$temp_data = "<tr><td align=\"center\"><table><tr><td><strong>{$language['directory']}</strong></td><td width=\"25%\"><strong>{$language['c_mode']}</strong></td><td width=\"25%\"><strong>{$language['r_mode']}</strong></td><td width=\"10%\"><strong>{$language['status']}</strong></td></tr>";
+	$temp_data = "<tr><td align=\"center\"><table><tr><td><strong>{$language['directory']}</strong></td><td width=\"10%\"><strong>{$language['status']}</strong></td></tr>";
 	foreach($files_to_check as $folder => $perm) {
-		// create a string of all allowed permissions
-		$possible_modes = implode(' '.$language['or'].' ',$perm);
-		$not_ok = '<font color="red">' . $language['nok'] . '</font>';
-		$_ok = '<font color="green">' . $language['ok'] . '</font>';
-		
 		// check folder existence
 		if (!is_dir($folder)) {
 			$peCheck = false;
-			$GLOBALS['error'] .= sprintf($language['subdir_called'], $folder) . '<br />';
-			$temp_data .= "<tr><td>$folder</td><td>{$language['n_a']}</td><td>$possible_modes</td><td>{$not_ok}</td></tr>";
+			$GLOBALS['error'] .= sprintf($language['subdir_called'], $folder) . '<br /><br />';
+			$temp_data .= "<tr><td>$folder</td><td><font color='red'>{$language['not_exist']}</font></td></tr>";
 		} else {
 			// try to create a file in the folder
 			$test_file = $folder . '/testwritability';
@@ -1199,12 +1195,12 @@ function checkPermissions()
 						$peCheck = false;
 						$possible_modes_left = implode(' '.$language['or'].' ',array_diff($perm,array($mode)));
 						$GLOBALS['error'] .= sprintf($language['perm_error'], $folder, $mode) . ' ' . $possible_modes_left . '.<br />';
-						$temp_data .= "<tr><td>$folder</td><td>$mode</td><td>$possible_modes</td><td>{$not_ok}</td></tr>";
+						$temp_data .= "<tr><td>$folder</td><td><font color='red'>{$language['not_writable']}</font></td></tr>";
 					} else {
 						//close handle and remove file
 						fclose($file_handle2);
 						unlink($test_file);
-						$temp_data .= "<tr><td>$folder</td><td>$mode</td><td>$possible_modes</td><td>{$_ok}</td></tr>";
+						$temp_data .= "<tr><td>$folder</td><td><font color='green'>{$language['writable']}</font></td></tr>";
 					}
 				} else {
 					// could not change mode, add error.
@@ -1212,13 +1208,13 @@ function checkPermissions()
 					$possible_modes_left = implode(' '.$language['or'].' ',array_diff($perm,array($mode)));
 					$GLOBALS['error'] .= sprintf($language['perm_error'], $folder, $mode) . ' ' . $possible_modes_left . '.<br />';
 
-					$temp_data .= "<tr><td>$folder</td><td>$mode</td><td>$possible_modes</td><td>{$not_ok}</td></tr>";
+					$temp_data .= "<tr><td>$folder</td><td><font color='red'>{$language['not_writable']}</font>v</tr>";
 				}
 			} else {
 				//close file handle and remove file
 				fclose($file_handle);
 				unlink($test_file);
-				$temp_data .= "<tr><td>$folder</td><td>$mode</td><td>$possible_modes</td><td>{$_ok}</td></tr>";
+				$temp_data .= "<tr><td>$folder</td><td><font color='green'>{$language['writable']}</font></td></tr>";
 			}
 		}   
 	}
