@@ -167,12 +167,12 @@ EOT;
                   $value = '';
               }
               if (isset($lang_register_php[$element[1].'_warning1']) == TRUE) {
-              	$warning1 = '<div id="'.$element[1].'_warning1" class="important formFieldWarning" style="display:none;">' . $lang_register_php[$element[1].'_warning1'] . '</div>';
+              	$warning1 = '<div id="'.$element[1].'_warning1" class="cpg_message_validation formFieldWarning" style="display:none;">' . $lang_register_php[$element[1].'_warning1'] . '</div>';
               } else {
               	$warning1 = '';
               }
               if (isset($lang_register_php[$element[1].'_warning2']) == TRUE) {
-              	$warning2 = '<div id="'.$element[1].'_warning2" class="important formFieldWarning" style="display:none;">' . $lang_register_php[$element[1].'_warning2'] . '</div>';
+              	$warning2 = '<div id="'.$element[1].'_warning2" class="cpg_message_validation formFieldWarning" style="display:none;">' . $lang_register_php[$element[1].'_warning2'] . '</div>';
               } else {
               	$warning2 = '';
               }
@@ -267,12 +267,12 @@ EOT;
 
           case 'password' :
 			  if (isset($lang_register_php[$element[1].'_warning1']) == TRUE) {
-              	$warning1 = '<div id="'.$element[1].'_warning1" class="important formFieldWarning" style="display:none;">' . $lang_register_php[$element[1].'_warning1'] . '</div>';
+              	$warning1 = '<div id="'.$element[1].'_warning1" class="cpg_message_validation formFieldWarning" style="display:none;">' . $lang_register_php[$element[1].'_warning1'] . '</div>';
               } else {
               	$warning1 = '';
               }
               if (isset($lang_register_php[$element[1].'_warning2']) == TRUE) {
-              	$warning2 = '<div id="'.$element[1].'_warning2" class="important formFieldWarning" style="display:none;">' . $lang_register_php[$element[1].'_warning2'] . '</div>';
+              	$warning2 = '<div id="'.$element[1].'_warning2" class="cpg_message_validation formFieldWarning" style="display:none;">' . $lang_register_php[$element[1].'_warning2'] . '</div>';
               } else {
               	$warning2 = '';
               }              
@@ -316,7 +316,7 @@ EOT;
         </tr>
         <tr>
                 <td colspan="2" class="tablef">
-                        <div class="important">
+                        <div class="cpg_message_validation">
                         	<ul>$errors</ul>
                         </div>
                 </td>

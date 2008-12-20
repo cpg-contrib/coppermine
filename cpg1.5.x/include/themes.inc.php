@@ -1194,7 +1194,7 @@ if (!isset($template_msg_box)) { //{THEMES}
 $template_msg_box = <<<EOT
 
         <tr>
-                <td class="tableb tableb_alternate tableb tableb_alternate_alternate" align="center">
+                <td class="tableb tableb_alternate" align="center">
                         <span class="cpg_user_message">{MESSAGE}</span>
                 </td>
         </tr>

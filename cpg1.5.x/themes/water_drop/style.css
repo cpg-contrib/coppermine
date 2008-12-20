@@ -666,11 +666,6 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
     background-image:none;
 }
 
-.cpg_user_message {
-    font-size:1.4em;
-    font-weight:bold;
-}
-
 #vanity a {
     display:block;
     width:57px;

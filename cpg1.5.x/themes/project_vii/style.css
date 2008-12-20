@@ -723,11 +723,6 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
     background-image:none;
 }
 
-.cpg_user_message {
-    font-size:1.4em;
-    font-weight:bold;
-}
-
 #SUB_MENU {
     width:100%;
     padding: 0 20px;

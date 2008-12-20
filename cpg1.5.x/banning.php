@@ -238,15 +238,15 @@ EOT;
                     </td>
                     <td class="{$row_style_class}" valign="top">
                         <input type="text" class="textinput email_field" style="width: 100%" name="email_{$row['ban_id']}" id="email_{$row['ban_id']}" value="{$row['email']}" />
-                        <div id="email_{$row['ban_id']}_warning" class="important formFieldWarning" style="display:none;">{$lang_banning_php['email_field_invalid']}</div>
+                        <div id="email_{$row['ban_id']}_warning" class="cpg_message_validation formFieldWarning" style="display:none;">{$lang_banning_php['email_field_invalid']}</div>
                     </td>
                     <td class="{$row_style_class}" valign="top">
                         <input type="text" class="textinput ip_field" size="15" maxlength="15" name="ip_addr_{$row['ban_id']}" id="ip_addr_{$row['ban_id']}" value="{$row['ip_addr']}" />
-                        <div id="ip_addr_{$row['ban_id']}_warning" class="important formFieldWarning" style="display:none;">{$lang_banning_php['ip_address_field_invalid']}</div>
+                        <div id="ip_addr_{$row['ban_id']}_warning" class="cpg_message_validation formFieldWarning" style="display:none;">{$lang_banning_php['ip_address_field_invalid']}</div>
                     </td>
                     <td class="{$row_style_class}" valign="top">
                         <input type="text" class="textinput date-pick" style="width:80%" size="10" maxlength="10" name="expiration_{$row['ban_id']}" id="expiration_{$row['ban_id']}" value="{$expiry}"  title="{$lang_banning_php['select_date']}" />
-                        <div id="expiration_{$row['ban_id']}_warning" class="important formFieldWarning" style="display:none;">{$lang_banning_php['expiry_field_invalid']}</div>
+                        <div id="expiration_{$row['ban_id']}_warning" class="cpg_message_validation formFieldWarning" style="display:none;">{$lang_banning_php['expiry_field_invalid']}</div>
                     </td>
                 </tr>
 EOT;
@@ -544,7 +544,7 @@ print <<< EOT
     <tr>
         <td colspan="6">
             {$tabs}
-            <div id="form_not_submit_top" class="important formFieldWarning" style="display:none;">
+            <div id="form_not_submit_top" class="cpg_message_warning formFieldWarning" style="display:none;">
                 {$lang_banning_php['form_not_submit']}
             </div>
         </td>
@@ -562,15 +562,15 @@ echo <<<EOT
         </td>
         <td class="tablef" valign="top">
             <input type="text" class="textinput email_field" style="width: 100%" name="add_email" id="add_email" value="" title="{$lang_banning_php['email_address']}" />
-            <div id="add_email_warning" class="important formFieldWarning" style="display:none;">{$lang_banning_php['email_field_invalid']}</div>
+            <div id="add_email_warning" class="cpg_message_validation formFieldWarning" style="display:none;">{$lang_banning_php['email_field_invalid']}</div>
         </td>
         <td class="tablef" valign="top">
             <input type="text" class="textinput ip_field" name="add_ip" id="add_ip" value="{$comm_info['msg_ip']}" size="15" maxlength="15" title="{$lang_banning_php['ip_address']}" />
-            <div id="add_ip_warning" class="important formFieldWarning" style="display:none;">{$lang_banning_php['ip_address_field_invalid']}</div>
+            <div id="add_ip_warning" class="cpg_message_validation formFieldWarning" style="display:none;">{$lang_banning_php['ip_address_field_invalid']}</div>
         </td>
         <td class="tablef" valign="top">
             <input type="text" class="textinput date-pick"  name="add_expires" id="add_expires" value="" size="10" maxlength="10" title="{$lang_banning_php['select_date']}" />
-            <div id="add_expires_warning" class="important formFieldWarning" style="display:none;">{$lang_banning_php['expiry_field_invalid']}</div>
+            <div id="add_expires_warning" class="cpg_message_validation formFieldWarning" style="display:none;">{$lang_banning_php['expiry_field_invalid']}</div>
         </td>
     </tr>
     <tr>
@@ -585,7 +585,7 @@ echo <<<EOT
     <tr>
         <td class="tablef" align="center" valign="middle" colspan="6">
             <button type="submit" class="button" name="submit" id="submit" value="{$lang_common['ok']}">{$icon_array['ok']}{$lang_common['ok']}</button>
-            <div id="form_not_submit_bottom" class="important formFieldWarning" style="display:none;">
+            <div id="form_not_submit_bottom" class="cpg_message_warning formFieldWarning" style="display:none;">
                 {$lang_banning_php['form_not_submit']}
             </div>
         </td>

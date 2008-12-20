@@ -506,7 +506,7 @@ $loopCounter--; // Subtract one from counter, since we start counting from zero
 if (in_array('english', $lang_file_array) != TRUE) {
     print <<< EOT
     <tr>
-        <td class="tablef important" colspan="8" align="center">
+        <td class="cpg_message_error" colspan="8" align="center">
         	{$lang_langmgr_php['english_missing']}
         </td>
     </tr>
@@ -519,9 +519,9 @@ print <<< EOT
     <tr>
         <td class="tablef" colspan="6" align="center">
             <button type="submit" class="button" name="submit" id="submit" value="{$lang_common['ok']}">{$submit_icon}{$lang_common['ok']}</button>
-            <span id="cpg_form_error_message_enable_one" class="important" style="display:none;">{$lang_langmgr_php['enable_at_least_one']}</span>
-            <span id="cpg_form_error_message_not_available" class="important" style="display:none;">{$lang_langmgr_php['available_default']}</span>
-            <span id="cpg_form_error_message_not_enabled" class="important" style="display:none;">{$lang_langmgr_php['enable_default']}</span>
+            <div id="cpg_form_error_message_enable_one" class="cpg_message_validation" style="display:none;">{$lang_langmgr_php['enable_at_least_one']}</div>
+            <div id="cpg_form_error_message_not_available" class="cpg_message_validation" style="display:none;">{$lang_langmgr_php['available_default']}</div>
+            <div id="cpg_form_error_message_not_enabled" class="cpg_message_validation" style="display:none;">{$lang_langmgr_php['enable_default']}</div>
         </td>
         <td class="tablef" colspan="2" align="center">
         	<span id="expand_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('expand');">{$show_icon}{$lang_langmgr_php['show_details']}</a></span>

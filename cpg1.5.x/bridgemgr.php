@@ -380,7 +380,6 @@ pageheader($lang_bridgemgr_php['title']);
 echo <<<EOT
 <style type="text/css">
 .explanation {font-size: 80%;}
-.important {color:red;}
 </style>
 EOT;
 
@@ -681,7 +680,7 @@ EOT;
                     print '        <span class="explanation">'.$value;
                     // check if we really can allow enabling bridging: are all required fields in the db?
                     if (strstr($default_bridge_data[$BRIDGE['short_name']][$key.'_used'], 'not_empty') != false && $value == '') {
-                        print ' (<span class="important">'.$lang_bridgemgr_php['error_must_not_be_empty'].'</span>)';
+                        print ' (<div class="cpg_message_validation">'.$lang_bridgemgr_php['error_must_not_be_empty'].'</div>)';
                         $mandatory_fields_missing++;
                     }
                     $explode = explode(',', $default_bridge_data[$BRIDGE['short_name']][$key.'_used']);
