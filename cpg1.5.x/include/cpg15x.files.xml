@@ -8177,14 +8177,6 @@
     <hash>3b36001726610506699dea5368617c0a</hash>
   </element>
   <element>
-    <fullpath>include/slideshow.inc.php</fullpath>
-    <version>1.5.0</version>
-    <revision>5129</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>85265905a538ea60e9887eda661595e5</hash>
-  </element>
-  <element>
     <fullpath>include/smilies.inc.php</fullpath>
     <version>1.5.0</version>
     <revision>5136</revision>
