@@ -284,7 +284,7 @@ set_js_var('icon_dir', $ICON_DIR);
 
 // Language processing --- start
 // We load the default language file
-require_once('lang/english.php');
+require('lang/english.php');
 
 $CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
 $enabled_languages_array = array();
