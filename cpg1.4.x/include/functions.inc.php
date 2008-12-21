@@ -2640,20 +2640,6 @@ function cpg_alert_dev_version() {
             $return = ob_get_contents();
             ob_end_clean();
         }
-        // check if relocate_server.php exists
-        /* removed, because a harmless version of the file has been added
-        if (file_exists('relocate_server.php')) {
-            ob_start();
-            starttable('100%', $lang_version_alert['security_alert']);
-            print '<tr><td class="tableb">';
-            print $lang_version_alert['relocate_exists'];
-            print '</td></tr>';
-            endtable();
-            print '<br />';
-            $return .= ob_get_contents();
-            ob_end_clean();
-        }
-        */
         // check if gallery is offline
         if ($CONFIG['offline'] == 1 && GALLERY_ADMIN_MODE) {
             $return .= '<span style="color:red;font-weight:bold">'.$lang_version_alert['gallery_offline'].'</span><br />&nbsp;<br />';
