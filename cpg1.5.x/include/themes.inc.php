@@ -288,7 +288,7 @@ $template_gallery_admin_menu = <<<EOT
                                 <div class="admin_menu admin_float"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}">{DOCUMENTATION_ICO}{DOCUMENTATION_LNK}</a></div>
                             <!-- END documentation -->
                             <!-- BEGIN plugin_manager -->
-                                <div class="admin_menu admin_float"><a href="pluginmgr.php" title="{PLUGINMGR_TITLE}">{PLUGINMGR_ICO}{PLUGINMGR_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="{PLUGINMGR_HREF}" title="{PLUGINMGR_TITLE}">{PLUGINMGR_ICO}{PLUGINMGR_LNK}</a></div>
                             <!-- END plugin_manager -->
                             <!-- BEGIN bridge_manager -->
                                 <div class="admin_menu admin_float"><a href="bridgemgr.php" title="{BRIDGEMGR_TITLE}">{BRIDGEMGR_ICO}{BRIDGEMGR_LNK}</a></div>
@@ -2278,6 +2278,7 @@ function theme_admin_mode_menu()
                 '{DOCUMENTATION_TITLE}' => $lang_gallery_admin_menu['documentation_title'],
                 '{DOCUMENTATION_LNK}' => $lang_gallery_admin_menu['documentation_lnk'],
                 '{DOCUMENTATION_ICO}' => cpg_fetch_icon('documentation', 1),
+                '{PLUGINMGR_HREF}' => 'pluginmgr.php',
                 '{PLUGINMGR_TITLE}' => $lang_gallery_admin_menu['pluginmgr_title'],
                 '{PLUGINMGR_LNK}' => $lang_gallery_admin_menu['pluginmgr_lnk'],
                 '{PLUGINMGR_ICO}' => cpg_fetch_icon('plugin_mgr', 1),
