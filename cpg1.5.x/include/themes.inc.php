@@ -288,7 +288,7 @@ $template_gallery_admin_menu = <<<EOT
                                 <div class="admin_menu admin_float"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}">{DOCUMENTATION_ICO}{DOCUMENTATION_LNK}</a></div>
                             <!-- END documentation -->
                             <!-- BEGIN plugin_manager -->
-                                <div class="admin_menu admin_float"><a href="{PLUGINMGR_HREF}" title="{PLUGINMGR_TITLE}">{PLUGINMGR_ICO}{PLUGINMGR_LNK}</a></div>
+                                <div class="admin_menu admin_float"><a href="pluginmgr.php" title="{PLUGINMGR_TITLE}">{PLUGINMGR_ICO}{PLUGINMGR_LNK}</a></div>
                             <!-- END plugin_manager -->
                             <!-- BEGIN bridge_manager -->
                                 <div class="admin_menu admin_float"><a href="bridgemgr.php" title="{BRIDGEMGR_TITLE}">{BRIDGEMGR_ICO}{BRIDGEMGR_LNK}</a></div>
@@ -882,17 +882,23 @@ if (!isset($template_display_media)) { //{THEMES}
 $template_display_media = <<<EOT
         <tr>
                 <td align="center" class="display_media" nowrap="nowrap">
-                        <table cellspacing="2" cellpadding="0" class="imageborder">
-                                <tr>
-                                        <td align="center">
-                                            <div id="slideShow" style="position:relative;">
-                                               {IMAGE}
-                                            </div>
-                                        </td>
+                        <table cellspacing="2" cellpadding="0" class="slideshow-bk"  >
+                        		<tr>    
+								 	<td>
+									     <img id="load" src="images/slideshow-loader.gif" style="display: none; position: absolute; "/>
+                                	</td>
+                                </tr>
+                                
+								<tr>
+                                        <td align="center" id="slideShow" style="{SLIDESHOW_STYLE}">
+											   {IMAGE}
+										</td>
                                 </tr>
                         </table>
-                </td></tr>
-                <tr><td>
+                </td>
+			</tr>
+            <tr>
+				<td>
                 <table width="100%" cellspacing="2" cellpadding="0" class="tableb tableb_alternate tableb tableb_alternate_alternate">
                                 <tr>
                                         <td align="center">
@@ -900,9 +906,6 @@ $template_display_media = <<<EOT
                                         </td>
                                 </tr>
                 </table>
-
-
-
 
 
 <!-- BEGIN img_desc -->
@@ -1194,7 +1197,7 @@ if (!isset($template_msg_box)) { //{THEMES}
 $template_msg_box = <<<EOT
 
         <tr>
-                <td class="tableb tableb_alternate" align="center">
+                <td class="tableb tableb_alternate tableb tableb_alternate_alternate" align="center">
                         <span class="cpg_user_message">{MESSAGE}</span>
                 </td>
         </tr>
@@ -2278,7 +2281,6 @@ function theme_admin_mode_menu()
                 '{DOCUMENTATION_TITLE}' => $lang_gallery_admin_menu['documentation_title'],
                 '{DOCUMENTATION_LNK}' => $lang_gallery_admin_menu['documentation_lnk'],
                 '{DOCUMENTATION_ICO}' => cpg_fetch_icon('documentation', 1),
-                '{PLUGINMGR_HREF}' => 'pluginmgr.php',
                 '{PLUGINMGR_TITLE}' => $lang_gallery_admin_menu['pluginmgr_title'],
                 '{PLUGINMGR_LNK}' => $lang_gallery_admin_menu['pluginmgr_lnk'],
                 '{PLUGINMGR_ICO}' => cpg_fetch_icon('plugin_mgr', 1),
@@ -3781,12 +3783,18 @@ function theme_slideshow($start_img,$title)
 
     pageheader($lang_display_image_php['slideshow']);
     template_extract_block($template_display_media, 'img_desc', $start_slideshow);
-
-    $params = array('{CELL_HEIGHT}' => $CONFIG['picture_width'] + 100,
-        '{IMAGE}' => '<img id="showImage" src="' . $start_img . '" name="SlideShow" class="image" /><br />',
+	
+	/** set styles to slideshow background */
+	$setDimentionW= $CONFIG['picture_width'] + 100;
+	$setDimentionH= $CONFIG['picture_width'] + 20;
+	
+    $params = array(
+		'{SLIDESHOW_STYLE}' => 'width:' .$setDimentionW. 'px; height: '.$setDimentionH.'px; position: relative;' ,
+        '{IMAGE}' => '<img id="showImage" src="' . $start_img . '" class="image" /><br />',
         '{ADMIN_MENU}' => '',
         );
 
+	echo "<a name=\"top_display_media\"/>";
     starttable();
     echo <<<EOT
         <noscript>
@@ -3798,7 +3806,7 @@ function theme_slideshow($start_img,$title)
         </noscript>
         <tr>
             <td align="center" class="navmenu" style="white-space: nowrap;">
-                <div id="Title">{$title}</div>
+                <div id="title">{$title}</div>
             </td>
         </tr>
 EOT;
@@ -3810,7 +3818,7 @@ EOT;
     starttable();
     echo <<<EOT
         <tr>
-                <td align="center" class="navmenu" style="white-space: nowrap;">
+                <td align="center" id="back-to" class="navmenu" >
                         <a class="navmenu" style="cursor:pointer">{$lang_display_image_php['stop_slideshow']}</a>
                 </td>
         </tr>

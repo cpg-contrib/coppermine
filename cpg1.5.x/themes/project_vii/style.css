@@ -1206,3 +1206,8 @@ table#album_sort tr td {
     background-color: #FFCCBA;
     background-image: url('../../images/message/error.png');
 }
+
+/** slideshow styles*/
+table.slideshow-bk {
+	background-color: #121212;
+}

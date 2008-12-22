@@ -820,30 +820,32 @@ EOT;
 ******************************************************************************/
 // HTML template for intermediate image display
 $template_display_media = <<<EOT
-        <tr>
+         <tr>
                 <td align="center" class="display_media" nowrap="nowrap">
-                        <table cellspacing="2" cellpadding="0" class="imageborder">
-                                <tr>
-                                        <td align="center">
-                                                {IMAGE}
-
-                                        </td>
+                        <table cellspacing="2" cellpadding="0" class="slideshow-bk" >
+                        		<tr>    
+								 	<td>
+									     <img id="load" src="images/slideshow-loader.gif" style="display: none; position: absolute; "/>
+                                	</td>
+                                </tr>
+                                
+								<tr>
+                                        <td align="center" id="slideShow" style="{SLIDESHOW_STYLE}">
+											   {IMAGE}
+										</td>
                                 </tr>
                         </table>
-                </td></tr>
-                <tr><td>
-                                                <table width="100%" cellspacing="2" cellpadding="0" class="tableb tableb_alternate tableb tableb_alternate_alternate">
+                </td>
+			</tr>
+            <tr>
+				<td>
+                <table width="100%" cellspacing="2" cellpadding="0" class="tableb tableb_alternate tableb tableb_alternate_alternate">
                                 <tr>
                                         <td align="center">
-
                                                 {ADMIN_MENU}
                                         </td>
                                 </tr>
-                        </table>
-
-
-
-
+                </table>
 
 <!-- BEGIN img_desc -->
                         <table cellpadding="0" cellspacing="0" class="tableb tableb_alternate tableb tableb_alternate_alternate" width="100%">
@@ -3633,12 +3635,18 @@ function theme_slideshow($start_img,$title)
 
     pageheader($lang_display_image_php['slideshow']);
     template_extract_block($template_display_media, 'img_desc', $start_slideshow);
-
-    $params = array('{CELL_HEIGHT}' => $CONFIG['picture_width'] + 100,
-        '{IMAGE}' => '<img id="showImage" src="' . $start_img . '" name="SlideShow" class="image" /><br />',
+    
+	/** set styles to slideshow background */
+	$setDimentionW= $CONFIG['picture_width'] + 100;
+	$setDimentionH= $CONFIG['picture_width'] + 20;
+	
+    $params = array(
+		'{SLIDESHOW_STYLE}' => 'width:' .$setDimentionW. 'px; height: '.$setDimentionH.'px; position: relative;' ,
+        '{IMAGE}' => '<img id="showImage" src="' . $start_img . '" class="image" /><br />',
         '{ADMIN_MENU}' => '',
         );
-
+        
+    echo "<a name=\"top_display_media\"/>";    
     starttable();
     echo <<<EOT
         <noscript>
@@ -3650,7 +3658,7 @@ function theme_slideshow($start_img,$title)
         </noscript>
         <tr>
             <td align="center" class="navmenu" style="white-space: nowrap;">
-                <div id="Title">{$title}</div>
+                <div id="title">{$title}</div>
             </td>
         </tr>
 EOT;
@@ -3662,7 +3670,7 @@ EOT;
     starttable();
     echo <<<EOT
         <tr>
-                <td align="center" class="navmenu" style="white-space: nowrap;">
+                <td align="center" class="navmenu"  id="back-to" >
                         <a class="navmenu" style="cursor:pointer">{$lang_display_image_php['stop_slideshow']}</a>
                 </td>
         </tr>
