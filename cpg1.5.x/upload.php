@@ -626,9 +626,9 @@ if (!$superCage->post->keyExists('process') && !$superCage->post->keyExists('plu
     if ($CONFIG['allow_user_upload_choice']) {
         // allow user to choose upload method
         $upload_select .= '&nbsp;&nbsp;&nbsp;';
-        // $upload_select .= $lang_upload_php['choose_method'];
-        $upload_select .= '<select name="method" class="listbox" title="' . $lang_upload_php['choose_method'] . '"'
-            . ' onChange="if (this.options[this.selectedIndex].value) window.location.href=\'upload.php?method=\' + this.options[this.selectedIndex].value;">';
+
+        $upload_select .= '<select name="method" id="uploadMethod" class="listbox" title="' . $lang_upload_php['choose_method'] . '"';
+
         foreach ($upload_choices as $key => $label) {
             $upload_select .= '<option value="' . $key . '"'
                 . ($key == $upload_form ? ' selected="selected"' : '')
