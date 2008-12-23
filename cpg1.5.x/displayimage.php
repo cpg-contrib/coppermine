@@ -394,6 +394,8 @@ if ($superCage->get->keyExists('fullsize')) {
         $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />';
     }
 
+    $meta_keywords .= $meta_nav;
+    
     // Display Filmstrip if the album is not search
     if ($album != 'search') {
         $film_strip = display_film_strip($album, (isset($cat) ? $cat : 0), $pos, true);
