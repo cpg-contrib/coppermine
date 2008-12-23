@@ -123,7 +123,7 @@ if (EDIT_PICTURES_MODE) {
     mysql_free_result($result);
     $cat = $ALBUM_DATA['category'];
     $actual_cat = $cat;
-    if ((!user_is_allowed() && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE) 
+    if ((!user_is_allowed() && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE)
             || (!$CONFIG['users_can_edit_pics'] && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE)) {
         cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
     }
@@ -329,13 +329,13 @@ function process_post_data()
             foreach ($files as $currFile) {
                     if (is_file($currFile)) @unlink($currFile);
             }
-            
+
             // Plugin filter to be called before deleting a file
             CPGPluginAPI::filter('before_delete_file', $pic);
-            
+
             $query = "DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1";
             $result = cpg_db_query($query);
-            
+
             // Plugin filter to be called after a file is deleted
             CPGPluginAPI::filter('after_delete_file', $pic);
         } else {
@@ -361,7 +361,7 @@ EOT;
 
 function form_pic_info($text)
 {
-    global $CURRENT_PIC, $THUMB_ROWSPAN, $CONFIG; 
+    global $CURRENT_PIC, $THUMB_ROWSPAN, $CONFIG;
     global $lang_byte_units, $lang_editpics_php, $lang_common, $loop_counter, $row_style_class, $icon_array;
 
     if (!is_movie($CURRENT_PIC['filename'])) {
@@ -377,7 +377,7 @@ function form_pic_info($text)
     }
 
     $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
-    $thumb_link = 'displayimage.php?&amp;pos='.(-$CURRENT_PIC['pid']);
+    $thumb_link = 'displayimage.php?pid='.$CURRENT_PIC['pid'];
     $filename = htmlspecialchars($CURRENT_PIC['filename']);
     $filepath = htmlspecialchars($CURRENT_PIC['filepath']);
     $isgalleryicon_selected = ($CURRENT_PIC['galleryicon']) ? 'checked="checked" ':'';
@@ -416,16 +416,19 @@ EOT;
     } else {
         $votes_reset_disabled = '';
     }
-    
+
 
     echo <<<EOT
     <tr>
         <td colspan="3">
             <table border="0" cellspacing="0" cellpadding="0" width="100%">
                 <tr>
-                    <td class="{$row_style_class}">
+                    <td class="{$row_style_class}" colspan="6">
                             {$icon_array['file_name']}{$lang_common['filename']}: <tt>{$CONFIG['site_url']}{$CONFIG['fullpath']}{$filepath}{$filename}</tt>
                     </td>
+                </tr>
+                <tr>
+                    <td class="{$row_style_class}">&nbsp;</td>
                     <td class="{$row_style_class}" width="40" valign="top">
                     <input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_pic']}" /><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option">{$icon_array['delete']}</label>
                     </td>
@@ -623,7 +626,7 @@ function create_form(&$data)
     } // foreach
 }
 
-function get_user_albums($user_id = '') 
+function get_user_albums($user_id = '')
 {
     global $CONFIG, $user_albums_list, $albStr, $icon_array;
 
@@ -637,7 +640,7 @@ function get_user_albums($user_id = '')
     if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
         if (MODERATOR_MODE && UPLOAD_APPROVAL_MODE || MODERATOR_EDIT_MODE) {
             $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid IN $albStr AND category > '".FIRST_USER_CAT."' OR category='".(FIRST_USER_CAT + USER_ID)."' ORDER BY title");
-                
+
             if (mysql_num_rows($user_albums)) {
                 $user_albums_list=cpg_db_fetch_rowset($user_albums);
             } else {
@@ -694,7 +697,7 @@ if (GALLERY_ADMIN_MODE) {
 get_user_albums(USER_ID);
 
 //if (count($_POST)) process_post_data();
-if ($superCage->post->keyExists('go')) { 
+if ($superCage->post->keyExists('go')) {
     process_post_data();
 }
 
@@ -791,7 +794,7 @@ if (UPLOAD_APPROVAL_MODE) {
     $help = '&nbsp;'.cpg_display_help('f=files.htm&amp;as=edit_pics&amp;ae=edit_pics_end&amp;top=1', '800', '500');
 }
 
-if (!mysql_num_rows($result)) { 
+if (!mysql_num_rows($result)) {
     // TO DO: replace these raw error messages with a page showing link to 'album properties', 'parent category'
     if ($link_count > 0) {
         cpg_die(INFORMATION, $lang_editpics_php['error_linked_only'], __FILE__, __LINE__);
@@ -856,7 +859,7 @@ if (GALLERY_ADMIN_MODE || MODERATOR_MODE) {
 EOT;
 }
 
- 
+
 echo <<<EOT
         <tr>
             <td colspan="3" align="center">
