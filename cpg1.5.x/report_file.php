@@ -57,6 +57,8 @@ if (defined('UDB_INTEGRATION')AND USER_ID) {
 if ($USER_DATA['user_email']) {
     $sender_email = $USER_DATA['user_email'];
     $sender_box = $sender_email;
+	$sender_name = $USER_DATA['user_name'];
+	$sender_name_box = $sender_name;
 } else {
     $sender_email = get_post_var('sender_email',$USER['email'] ? $USER['email'] : '');
     $sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"width: 100%;\" />";
