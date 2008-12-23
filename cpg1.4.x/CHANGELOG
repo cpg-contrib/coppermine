@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-12-23 [B] Fixed issue involving display of name field in the report to admin form {TranzNDance}
 2008-11-09 [B] Added missing translation to German language files (thread ID 56204) {GauGau}
 2008-10-20 [M] Re-did the credits section of the language files for easier future integration into cpg1.5.x {GauGau}
 2008-10-19 [O] Removed double ; at line ends (thread ID 51899) {GauGau}
