@@ -403,7 +403,7 @@ if ($CONFIG['purge_expired_bans'] == 1) {
 // Check if the user is banned
 $user_id = USER_ID;
 // Compose the query
-$query_string = "SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE (";
+$query_string = "SELECT null FROM {$CONFIG['TABLE_BANNED']} WHERE (";
 if (USER_ID) {
     $query_string .= "user_id=$user_id OR ";
 }
