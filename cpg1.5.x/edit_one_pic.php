@@ -209,27 +209,29 @@ function process_post_data()
     }
 }
 
-function get_user_albums($user_id = '')
+function get_user_albums($user_id = 0)
 {
-        global $CONFIG, $USER_ALBUMS_ARRAY, $user_albums_list;
+    global $CONFIG, $USER_ALBUMS_ARRAY, $user_albums_list;
 
-        if ($user_id != '') {
-                $or = " OR category='" . (FIRST_USER_CAT + $user_id) . "'";
-        }
+    if ($user_id) {
+        $or = " OR category = " . (FIRST_USER_CAT + $user_id);
+    } else {
+        $or = '';
+    }
 
-        if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
-                $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + USER_ID)."' $or ORDER BY title");
-
-                if (mysql_num_rows($user_albums)) {
-                    $user_albums_list=cpg_db_fetch_rowset($user_albums);
-                } else {
-                        $user_albums_list = array();
-                }
-                mysql_free_result($user_albums);
-                $USER_ALBUMS_ARRAY[USER_ID] = $user_albums_list;
+    if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
+        $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + USER_ID)."' $or ORDER BY title");
+    
+        if (mysql_num_rows($user_albums)) {
+            $user_albums_list = cpg_db_fetch_rowset($user_albums);
         } else {
-                $user_albums_list = &$USER_ALBUMS_ARRAY[USER_ID];
+            $user_albums_list = array();
         }
+        mysql_free_result($user_albums);
+        $USER_ALBUMS_ARRAY[USER_ID] = $user_albums_list;
+    } else {
+        $user_albums_list = &$USER_ALBUMS_ARRAY[USER_ID];
+    }
 }
 
 function form_alb_list_box()
@@ -307,7 +309,7 @@ echo <<<EOT
 <input type="hidden" name="id" value="{$CURRENT_PIC['pid']}" />
 EOT;
 
-starttable("100%", cpg_fetch_icon('edit', 2) . $lang_editpics_php[edit_pic], 3);
+starttable("100%", cpg_fetch_icon('edit', 2) . $lang_editpics_php['edit_pic'], 3);
 
 //$pic_info = sprintf($lang_editpics_php['pic_info_str'], $CURRENT_PIC['pwidth'], $CURRENT_PIC['pheight'], ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
 
