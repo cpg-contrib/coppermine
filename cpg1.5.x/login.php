@@ -61,15 +61,15 @@ if ($superCage->post->keyExists('submitted')) {
 EOT;
 
         // get IP address of the person who tried to log in, look it up on the banning table and increase the brute force counter. If the brute force counter has reached a critical limit, set a regular banning record
-        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE ip_addr='$raw_ip' OR ip_addr='$hdr_ip'");
-        $failed_logon_counter = mysql_fetch_array($result);
+        $result = cpg_db_query("SELECT ban_id, brute_force FROM {$CONFIG['TABLE_BANNED']} WHERE ip_addr='$raw_ip' OR ip_addr='$hdr_ip' LIMIT 1");
+        $failed_logon_counter = mysql_fetch_assoc($result);
         mysql_free_result($result);
-        $expiry_date = date("Y-m-d H:i:s", mktime(date('H'), date('i')+$CONFIG['login_expiry'], date('s'), date('m'), date('d'),date('Y')));
+        $expiry_date = date("Y-m-d H:i:s", mktime(date('H'), date('i') + $CONFIG['login_expiry'], date('s'), date('m'), date('d'),date('Y')));
 
         if ($failed_logon_counter['brute_force']) {
             $failed_logon_counter['brute_force'] = $failed_logon_counter['brute_force'] - 1;
             $query_string = "UPDATE {$CONFIG['TABLE_BANNED']} SET brute_force='".$failed_logon_counter['brute_force']."',  expiry='".$expiry_date."' WHERE ban_id=".$failed_logon_counter['ban_id'];
-        }else{
+        } else {
             $failed_logon_counter['brute_force'] = $CONFIG['login_threshold'];
             $query_string = "INSERT INTO {$CONFIG['TABLE_BANNED']} (ip_addr, expiry, brute_force) VALUES ('$raw_ip', '$expiry_date','".$failed_logon_counter['brute_force']."')";
         }
