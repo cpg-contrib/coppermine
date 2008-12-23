@@ -27,6 +27,8 @@ if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
+js_include('js/searchnew.js');
+
 $rowCounter = 0;
 
 /**
@@ -447,7 +449,7 @@ function CPGscandir($dir, &$expic_array)
                     <input type="checkbox" name="checkAll2" onClick="selectAll(this,'pics');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
                 </td>
                 <td colspan="3" align="right" class="tablef">
-                        <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}" onclick="process(); return false;" />
+                        <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}" id="submit_button" />
                 </td>
         </tr>
 EOT;
@@ -591,215 +593,11 @@ EOT;
 //} elseif (isset($_GET['startdir'])) {
 } elseif ($superCage->get->keyExists('startdir') && $matches = $superCage->get->getMatched('startdir', '/^[0-9A-Za-z\/_-]+$/')) {
     $startdir = $matches[0];
+
+    set_js_var('no_album_selected', $lang_search_new_php['no_album']);
+    set_js_var('proc_limit', 2);
+    
     pageheader($lang_search_new_php['page_title']);
-    
-    echo <<< EOT
-    
-<script type="text/javascript">
-<!--
-
-// Initiate a queue manager with a limit of 2 concurrent processes
-var qm = new queuemanager(2);
-
-// Start the script
-function process(){
-
-    var aidbox = document.getElementById('aid');
-    
-    // append the album id
-    qm.aid = aidbox.options[aidbox.selectedIndex].value;
-    
-    if (qm.aid == 0){
-        alert('{$lang_search_new_php['no_album']}');
-        return false;
-    }
-    
-    // Collect object that represent jobs from the html list
-    var queuelist = document.getElementById('queue');
-    var objects = queuelist.getElementsByTagName('p');
-
-    // Cycle through the objects, making jobs from them, adding them to the queue manager
-    for (var i=0; i < objects.length; i++){
-    
-        // if this is image is not selected then skip it
-        if (document.getElementById('checkbox_' + objects[i].id).checked == false){
-            continue;
-        }   
-        
-        // add job to queue
-        qm.add(new job(objects[i]));
-        
-        // clear the display from any previous run
-        objects[i].innerHTML = '';
-    }
-    
-    // Start the queue manager
-    qm.step();
-}
-
-// Queue manager class - manages the queue
-function queuemanager(maxproc){
-
-    // Register methods
-    this.step = qm_step;
-    this.add = qm_add;
-    this.notifydone = qm_notifydone;
-    this.queuedone = qm_alldone;
-    
-    // Store the assigned process limit
-    this.maxprocesses = maxproc;
-    
-    // Concurrent process counter
-    this.processes = 0;
-    
-    // List of jobs which are pending
-    this.pending = new Array();
-    
-    // Selected album
-    this.aid = 0;
-}
-
-// Looks for a chance to start new jobs 
-function qm_step(){
-
-    // Starts as many as limit allows, assuming we have anything left to do
-    while (this.processes < this.maxprocesses && this.pending.length > 0){
-    
-        // Grab next job from pending list
-        var nextjob = this.pending.shift();
-        
-        // signal it to start
-        nextjob.commence();
-        
-        // increment the process counter
-        this.processes++;
-    }
-}
-
-// Add a job to the pending queue
-function qm_add(job){
-    this.pending.push(job);
-}
-
-// Queue manager is notified of a completed job 
-function qm_notifydone(){
-
-    // Decrement the process counter
-    this.processes-=1;
-    
-    // Look for next job
-    this.step();
-    
-    // If queue is empty and that was last running job we announce completion
-    if (this.pending.length == 0 && this.processes == 0) this.queuedone();  
-}
-
-// Announce completion of all tasks
-function qm_alldone(){
-    //alert('Jobs completed');
-}
-
-// Job class - represents a single job in the system
-function job(obj){
-
-    // This is the object we are representing, update its status as things happen
-    this.obj = obj
-    
-    // Register methods
-    this.commence = job_start
-    this.notifydone = job_done
-    this.notifyfailed = job_failed
-}
-
-// Start the job
-function job_start(){
-
-    // Update status
-    //this.obj.innerHTML = 'Processing';
-    
-    // Get url stub from the p tag's name
-    var url = this.obj.getAttribute('name');
-    
-    // append the album id
-    url += '&aid=' + qm.aid;
-    
-    // Send http request
-    request(url, this);
-}
-
-// Job is completed
-function job_done(response){
-    var src;
-    
-    switch (response) {
-    
-        case 'OK':
-            src = 'images/batch/ok.png';
-        break;
-
-        case 'DUPE':
-            src = 'images/batch/duplicate.png';
-        break;
-        
-        case 'PB':
-            src = 'images/batch/folder_locked.png';
-        break;      
-    }
-
-    var img = document.createElement('img');
-    img.setAttribute('src', src);
-    
-    this.obj.appendChild(img);
-    
-    // Notify the queue manager
-    qm.notifydone();
-}
-
-// Job has failed (http request failed)
-function job_failed(){
-    job_done('PB');
-}
-
-// Sends the http request (developer.mozilla.org)
-function request(url, job){
-
-    if (window.XMLHttpRequest) { // Mozilla, Safari, ...
-        var httpRequest = new XMLHttpRequest();
-    } else if (window.ActiveXObject) { // IE
-        try {
-            var httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
-        } catch (e) {
-            try {
-                var httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-            } catch (e) {}
-        }
-    }
-
-     url += '&k=' + Math.floor(Math.random() * 10000);
-
-    httpRequest.onreadystatechange = function() { alertContents(httpRequest, job); };
-    httpRequest.open('GET', url, true);
-    httpRequest.send(null);
-
-    return true;
-}
-
-// Status callback function
-function alertContents(req, job) {
-
-    if (req.readyState == 4) {
-        if (req.status == 200) {
-            job.notifydone(req.responseText);
-        } else {
-            job.notifyfailed(req.responseText);
-        }
-    }
-}
-
--->
-</script>
-
-EOT;
 
     $help = '&nbsp;'.cpg_display_help('f=uploading.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_select_file', '550', '400');
     echo <<<EOT
