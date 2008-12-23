@@ -387,11 +387,11 @@ if ($superCage->get->keyExists('fullsize')) {
     $meta_keywords = '';
     
     if ($CURRENT_PIC_DATA['keywords']) {
-        $meta_keywords .= "<meta name=\"keywords\" content=\"".$CURRENT_PIC_DATA['keywords']."\"/>";
+        $meta_keywords .= "<meta name=\"keywords\" content=\"" . str_replace($CONFIG['keyword_separator'], ',', $CURRENT_PIC_DATA['keywords']) . "\"/>\n";
     }
 
     if ($album == 'lastup' || $album == 'lastcom' || $album == 'topn' || $album == 'toprated' || $album == 'favpics' || $album == 'random' || $album == 'datebrowse') {
-        $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />';
+        $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />' . "\n";
     }
 
     $meta_keywords .= $meta_nav;
