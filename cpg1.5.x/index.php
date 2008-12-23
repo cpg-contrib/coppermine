@@ -906,10 +906,10 @@ function album_adm_menu($aid, $cat)
         }
 
         //check if the user is the owner of the album
-        $sql = "SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid' AND owner='" . $USER_DATA['user_id'] . "'";
+        $sql = "SELECT null FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid' AND owner='" . $USER_DATA['user_id'] . "'";
         $result = cpg_db_query($sql);
-        $check = cpg_db_fetch_rowset($result);
-        if ($check[0] != '') {
+        
+        if (mysql_num_rows($result)) {
             //check if admin allows editing after closing category
             if ($CONFIG['allow_user_edit_after_cat_close'] == 0) {
                 //Disallowed -> Check if albums is in such a category
