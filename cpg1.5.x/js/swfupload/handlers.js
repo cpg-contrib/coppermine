@@ -232,6 +232,12 @@ function swfUploadLoaded() {
 	$("#divAlternateContent").hide();
 	
 	$("#button_cancel").click(function () { self.cancelQueue(); });
+    
+    // If some album is preselected then set browse button enabled
+    if ($("select[name='album']").val()) {
+        this.setButtonDisabled(false);
+    }
+
 }
    
 function swfUploadLoadFailed() {

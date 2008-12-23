@@ -794,10 +794,6 @@ SWFUpload.prototype.flashReady = function () {
 	}
 	
 	this.queueEvent("swfupload_loaded_handler");
-    
-    if ($("select[name='album']").val()) {
-        this.setButtonDisabled(false);
-    }
 };
 
 
