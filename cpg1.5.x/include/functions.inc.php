@@ -3590,7 +3590,7 @@ function cpg_display_help($reference = 'f=empty.htm', $width = '600', $height = 
     
    // $help_html = "<a href=\"javascript:;\" onclick=\"coppermine_help_window=window.open('help.php?css=" . $help_theme . "&amp;" . $reference . "','coppermine_help','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "'); coppermine_help_window.focus()\" style=\"cursor:help\">" . $icon . "</a>";
     
-    $help_html = "<a class=\"jt\" href='help.php?". $reference."'  rel='help.php?css=" . $help_theme . "&amp;" . $reference . "' title=".$title_help." >".$icon."</a>";
+    $help_html = "<a class=\"jt\" href='help.php?". $reference."'  rel='help.php?css=" . $help_theme . "&amp;" . $reference . "' title=\"".$title_help."\">".$icon."</a>";
     return $help_html;
 } // function cpg_display_help
 
