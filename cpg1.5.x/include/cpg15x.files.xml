@@ -17,14 +17,6 @@
     <hash>86caa4063bf711f80b56bb3010c34d68</hash>
   </element>
   <element>
-    <fullpath>addHit.php</fullpath>
-    <version>1.5.0</version>
-    <revision>5126</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>2c8ac13aec6219c31e7a8516e677c3d1</hash>
-  </element>
-  <element>
     <fullpath>admin.php</fullpath>
     <version>1.5.0</version>
     <revision>5155</revision>

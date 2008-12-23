@@ -2601,7 +2601,9 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
 function& display_slideshow($pos,$ajax_show=0)
 {
    global $CONFIG, $lang_display_image_php, $template_display_media, $lang_common, $album, $pid, $slideshow;
-   global $cat, $date;
+   global $cat, $date, $USER;
+   
+   $superCage = Inspekt::makeSuperCage();
 
     $Pic    = array();
     $Pid    = array();
@@ -2637,30 +2639,30 @@ function& display_slideshow($pos,$ajax_show=0)
          $condition = false;
         }
             
-    if (is_image($picture['filename'])) {
-        if ($CONFIG['make_intermediate'] && $condition ) {
-            $picture_url = get_pic_url($picture, 'normal');
-        } else {
-            $picture_url = get_pic_url($picture, 'fullsize');
-        }
-
-        if ( $picture['title'] ) {
-            $Title_get = $picture['title'];
-        } else {
-            $Title_get = $picture['filename'];
-        }
-        
-        $Pic[$i] =  htmlspecialchars($picture_url, ENT_QUOTES) ;
-        $Pid[$i] =  $picture['pid'] ;       
-        $Title[$i] = $Title_get;
+        if (is_image($picture['filename'])) {
+            if ($CONFIG['make_intermediate'] && $condition ) {
+                $picture_url = get_pic_url($picture, 'normal');
+            } else {
+                $picture_url = get_pic_url($picture, 'fullsize');
+            }
+    
+            if ( $picture['title'] ) {
+                $Title_get = $picture['title'];
+            } else {
+                $Title_get = $picture['filename'];
+            }
             
-        if ($picture['pid'] == $pid) {
-            $j = $i;
-            $start_img = $picture_url;
+            $Pic[$i] =  htmlspecialchars($picture_url, ENT_QUOTES) ;
+            $Pid[$i] =  $picture['pid'] ;       
+            $Title[$i] = $Title_get;
+                
+            if ($picture['pid'] == $pid) {
+                $j = $i;
+                $start_img = $picture_url;
+            }
+            $i++; 
         }
-        $i++; 
     }
-}
 
     /** set variables to jquery.slideshow.js */
     set_js_var('Time',$slideshow);
@@ -2668,15 +2670,29 @@ function& display_slideshow($pos,$ajax_show=0)
     
     if (!$i) { echo "Pic[0] = 'images/thumb_document.jpg'\n"; }
     
+    // Add the hit if the user is not admin and slideshow hits are enabled in config
+    if (!GALLERY_ADMIN_MODE && $CONFIG['slideshow_hits'] != 0) {
+        // Add 1 to hit counter
+        if (!in_array($Pid['0'], $USER['liv']) && $superCage->cookie->keyExists($CONFIG['cookie_name'] . '_data')) {
+
+            add_hit($Pid['0']);
+            if (count($USER['liv']) > 4) array_shift($USER['liv']);
+            array_push($USER['liv'], $Pid['0']);
+            user_save_profile();
+        }
+    }
+    
     /** show slide show on first time*/
     if($ajax_show==0){ theme_slideshow($Pic['0'],$Title['0']); }
     
     /** now we make a array to encode*/
     $dataArray  = array ('url'=>$Pic['0'],'title'=>$Title['0'],'pid'=>$Pid['0']);
-    $dataJons = json_encode($dataArray);
+    $dataJson = json_encode($dataArray);
     
     /** send variable to javascript script*/
-    if($ajax_show==1){  echo $dataJons; }
+    if($ajax_show==1) {
+        echo $dataJson;
+    }
 
 }
 

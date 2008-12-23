@@ -57,7 +57,7 @@ $(document).ready(function(){
 					title: Title,
 					alt: "jQuery Logo",
 					style: "visibility: hidden;"
-				}).fadeIn("slow");
+				}).fadeIn("fast");
 				
 				$("#showImage").css('visibility', 'visible');
 				$("#title").html(Title);
@@ -66,8 +66,6 @@ $(document).ready(function(){
 			/** hide the loader*/
 			$("#load").hide();
 			
-			/** add hit*/
-			$.get("addHit.php", { pid: Pid });
 			//now set time to loaded image.
 			runSlideShow();
 			}
