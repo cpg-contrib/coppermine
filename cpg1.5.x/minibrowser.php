@@ -321,8 +321,6 @@ if (is_array($filename)) {
         print '</tr>'.$newline;
     }
 }
-print '                        <input type="hidden" name="parentform" value="'.$parentform.'" />'."\n";
-print '                        <input type="hidden" name="formelementname" value="'.$formelementname.'" />'."\n";
 if ($searchnew_php == 1 && $dirCounter == 0) {
 print '<tr>'.$newline;
 print '<td class="tablef" colspan="2">'.$newline;
@@ -331,6 +329,9 @@ print '</td>'.$newline;
 print '</tr>'.$newline;
 }
 endtable();
+print '<input type="hidden" name="parentform" value="'.$parentform.'" />'."\n";
+print '<input type="hidden" name="formelementname" value="'.$formelementname.'" />'."\n";
+
 // print '<div align="center"><a href="#" class="admin_menu" onclick="window.close();">'.$lang_common['close'].'</a></div>';
 ?>
 </form>
