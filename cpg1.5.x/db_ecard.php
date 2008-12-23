@@ -205,7 +205,7 @@ if ($maxPage > 1) {
 
 print '</td><td align="right" class="tableb_compact">';
 print $lang_db_ecard_php['ecard_records_per_page'];
-print '  <select onChange="if(this.options[this.selectedIndex].value) window.location.href=\''.$formTarget.'count=\'+this.options[this.selectedIndex].value;"  name="count" class="listbox">';
+print '  <select onchange="if(this.options[this.selectedIndex].value) window.location.href=\''.$formTarget.'count=\'+this.options[this.selectedIndex].value;"  name="count" class="listbox">';
 
 foreach ($selectOptions as $key ) {
     print '   <option value="'.$key.'" ';

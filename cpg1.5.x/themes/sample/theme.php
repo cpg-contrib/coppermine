@@ -1666,7 +1666,7 @@ function theme_create_tabs($items, $curr_page, $total_pages, $template)
     if ($CONFIG['tabs_dropdown']) {
         // Dropdown list for all pages
         $tabs_dropdown = $lang_create_tabs['jump_to_page'] . ' '
-                . '<select onChange="if (this.options[this.selectedIndex].value != -1) { window.location.href = this.options[this.selectedIndex].value; }">';
+                . '<select onchange="if (this.options[this.selectedIndex].value != -1) { window.location.href = this.options[this.selectedIndex].value; }">';
         for ($page = 1; $page <= $total_pages; $page++) {
             $tabs_dropdown .= '<option value="' . sprintf($template['page_link'], $page) . '"' 
                     . ($page == $curr_page ? ' selected="selected"' : '') . '>' . $page .'</option>';

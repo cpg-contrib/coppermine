@@ -336,7 +336,7 @@ EOT;
                                         <td width="$thumb_cell_height" height="$thumb_cell_height" align="center"><img src="$initial_thumb_url" name='Thumb' class='image' /><br /></td>
                                 </tr>
                         </table>
-                        <select name="$name" class="listbox" onChange="if(this.options[this.selectedIndex].value) ChangeThumb(this.options[this.selectedIndex].value);" onKeyUp="if(this.options[this.selectedIndex].value) ChangeThumb(this.options[this.selectedIndex].value);">
+                        <select name="$name" class="listbox" onchange="if(this.options[this.selectedIndex].value) ChangeThumb(this.options[this.selectedIndex].value);" onKeyUp="if(this.options[this.selectedIndex].value) ChangeThumb(this.options[this.selectedIndex].value);">
 
 EOT;
     foreach($img_list as $pid => $pic_name) {
@@ -619,7 +619,7 @@ function alb_list_box()
     if(count($rowset)){
          // Create the nicely sorted and formatted drop down list
         $alb_cat = '';
-        $select = cpg_fetch_icon('alb_mgr', 2) . "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
+        $select = cpg_fetch_icon('alb_mgr', 2) . "<select name=\"album_listbox\" class=\"listbox\" onchange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
         foreach ($rowset as $val) {
             if ($val['cat'] != $alb_cat) {
                 if ($alb_cat) $select .= "</optgroup>\n";
@@ -634,7 +634,7 @@ function alb_list_box()
     }
     /*
     if (count($rowset)) {
-        $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
+        $lb = "<select name=\"album_listbox\" class=\"listbox\" onchange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
         foreach ($rowset as $row) {
             $selected = ($row['aid'] == $CLEAN['album']) ? 'selected="selected"' : "";
             $lb .= "        <option value=\"" . $row['aid'] . "\" $selected>" . $row['title'] . "</option>\n";

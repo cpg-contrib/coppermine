@@ -202,7 +202,7 @@ function list_users($search = '')
 
     $lb = '<span id="album_listbox_wrapper" style="display:none">';
     $lb .= $lang_usermgr_php['sort_by'].': ';
-    $lb .= "<select name=\"album_listbox\" id=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?page=$page&amp;sort='+this.options[this.selectedIndex].value;\">\n";
+    $lb .= "<select name=\"album_listbox\" id=\"album_listbox\" class=\"listbox\" onchange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?page=$page&amp;sort='+this.options[this.selectedIndex].value;\">\n";
     foreach($sort_codes as $key => $value) {
         $selected = ($key == $sort) ? "SELECTED" : "";
         $lb .= "        <option value=\"" . $key . "\" $selected>" . $lang_usermgr_php[$key] . "</option>\n";

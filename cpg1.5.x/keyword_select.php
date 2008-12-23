@@ -84,7 +84,7 @@ if ($total > 0) {
 
 
     <tr>
-        <td class="tableb" align="center"><select name="keyword" size="15" onChange="CM_select(this)" class="listbox">';
+        <td class="tableb" align="center"><select name="keyword" size="15" onchange="CM_select(this)" class="listbox">';
 
         foreach ($keywords as $keyword) {
             $form.= '<option value="'.$keyword.'">'.$keyword.'</option>';

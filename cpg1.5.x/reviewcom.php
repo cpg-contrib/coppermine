@@ -383,7 +383,7 @@ echo <<<EOT
                             </td>
                             <td class="tableh1" align="right">
                                 {$lang_reviewcom_php['n_comm_disp']}
-                                <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?start=$start&amp;count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
+                                <select onchange="if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?start=$start&amp;count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
                                         <option value="25">25</option>
                                         <option value="50" $s50>50</option>
                                         <option value="75" $s75>75</option>

@@ -831,7 +831,7 @@ echo <<<EOT
                         $prev_link
                         $next_link
                         <strong>{$lang_editpics_php['n_of_pic_to_disp']}</strong>
-                        <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album=$album_id$mode&amp;start=$start&amp;count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
+                        <select onchange="if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album=$album_id$mode&amp;start=$start&amp;count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
                                 <option value="25">25</option>
                                 <option value="50" $s50>50</option>
                                 <option value="75" $s75>75</option>
