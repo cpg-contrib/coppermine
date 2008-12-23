@@ -202,7 +202,7 @@ function picrow($picfile, $picid, $albid)
         $winsizeX = ($fullimagesize[0] + 16);
         $winsizeY = ($fullimagesize[1] + 16);
         // $checked = isset($expic_array[$picfile]) || !$fullimagesize ? '' : 'checked';
-        $checked = isset($expic_array[$picfile]) ? '' : 'checked';
+        $checked = isset($expic_array[$picfile]) ? '' : 'checked="checked"';
         $return = <<<EOT
         <tr>
                 <td class="$rowStyle" valign="middle" width="30">
