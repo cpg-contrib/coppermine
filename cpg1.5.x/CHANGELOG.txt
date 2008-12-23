@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-12-23 [B] Fixed issue involving display of name field in the report to admin form {TranzNDance}
 2008-12-23 [O] Modified code to record hit in a single ajax call instead of two in slideshow {Abbas}
 2008-12-22 [O] Developed AJAX slideshow in new looks and new functionality {Sameera}
 2008-12-20 [M] Removed the redundant slideshow.inc.php and its references {Abbas}
