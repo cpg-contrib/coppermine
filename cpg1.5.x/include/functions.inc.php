@@ -3630,8 +3630,8 @@ function cpg_get_bridge_db_values()
 {
     global $CONFIG;
     // Retrieve DB stored configuration
-    $results = cpg_db_query("SELECT name, value FROM {$CONFIG['TABLE_BRIDGE']}");
-    while ($row = mysql_fetch_assoc($results)) {
+    $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_BRIDGE']}");
+    while ($row = mysql_fetch_array($results)) {
         $BRIDGE[$row['name']] = $row['value'];
     } // while
     mysql_free_result($results);
