@@ -168,26 +168,31 @@ function picrow($picfile, $picid, $albid)
     $pic_dirname = dirname($picname);
 
     $thumb_file = dirname($picname) . '/' . $CONFIG['thumb_pfx'] . $pic_fname;
-    if (file_exists($thumb_file)) {
-        $thumb_info = cpg_getimagesize($picname);
-        $thumb_size = compute_img_size($thumb_info[0], $thumb_info[1], 48);
-        if ($CONFIG['display_thumbs_batch_add'] == 1) {
-          $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" alt="" />';
-        }
-    } elseif (is_image($picname)) {
-        if ($CONFIG['display_thumbs_batch_add'] == 1) {
-          $img = '<img src="showthumb.php?picfile=' . $pic_url . '&amp;size=48" class="thumbnail" border="0" alt="" />';
-        }
+    
+    if ($CONFIG['display_thumbs_batch_add'] == 1) {
+    
+        if (file_exists($thumb_file)) {
+        
+            $thumb_info = cpg_getimagesize($picname);
+            $thumb_size = compute_img_size($thumb_info[0], $thumb_info[1], 48);
+
+            $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" alt="" />';
+
+        } elseif (is_image($picname)) {
+
+            $img = '<img src="showthumb.php?picfile=' . $pic_url . '&amp;size=48" class="thumbnail" border="0" alt="" />';
+
+        } else {
+        
+            $file['filepath'] = $pic_dirname.'/';
+            $file['filename'] = $pic_fname;
+            $filepathname = get_pic_url($file,'thumb');
+
+            $img = '<img src="'.$filepathname.'" class="thumbnail" width="48" border="0" alt="" />';
+        }  
+    
     } else {
-        $file['filepath'] = $pic_dirname.'/'; //substr($picname,0,strrpos($picname,'/'))
-        $file['filename'] = $pic_fname;
-        $filepathname = get_pic_url($file,'thumb');
-        //$mime_content = cpg_get_type($picname);
-        //$extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
-        //$img = '<img src="images/thumb_'.$extension.'.jpg" class="thumbnail" width="48" border="0" alt="" />';
-        if ($CONFIG['display_thumbs_batch_add'] == 1) {
-          $img = '<img src="'.$filepathname.'" class="thumbnail" width="48" border="0" alt="" />';
-        }
+        $img = '';
     }
 
     if (filesize($picname) && is_readable($picname)) {
@@ -593,12 +598,12 @@ EOT;
 //} elseif (isset($_GET['startdir'])) {
 } elseif ($superCage->get->keyExists('startdir') && $matches = $superCage->get->getMatched('startdir', '/^[0-9A-Za-z\/_-]+$/')) {
     $startdir = $matches[0];
-
+    
     set_js_var('no_album_selected', $lang_search_new_php['no_album']);
     set_js_var('proc_limit', 2);
     
     pageheader($lang_search_new_php['page_title']);
-
+    
     $help = '&nbsp;'.cpg_display_help('f=uploading.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_select_file', '550', '400');
     echo <<<EOT
         <script language="javascript" type="text/javascript">
