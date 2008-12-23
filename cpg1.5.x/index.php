@@ -1203,18 +1203,4 @@ if (!$file) {
     pagefooter();
 }
 
-ob_end_flush();
-
-/* Not used anymore, somone else removed the usage of this keying in functions.inc.php due to problems - donnoman
-// Speed-up the random image query by 'keying' the image table
-if (time() - $CONFIG['randpos_interval'] > 86400) {
-    $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1");
-    $nbEnr = mysql_fetch_array($result);
-    mysql_free_result($result);
-    $pic_count = $nbEnr[0];
-    $granularity = floor($pic_count / RANDPOS_MAX_PIC);
-    $result = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET randpos = ROUND(RAND()*$granularity) WHERE 1");
-    $result = cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '" . time() . "' WHERE name = 'randpos_interval'");
-}
-*/
 ?>

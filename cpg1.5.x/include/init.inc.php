@@ -80,7 +80,6 @@ $CAT_LIST = '';
 // Define some constants
 define('USER_GAL_CAT', 1);
 define('FIRST_USER_CAT', 10000);
-define('RANDPOS_MAX_PIC', 200);
 define('TEMPLATE_FILE', 'template.html');
 // Constants used by the cpg_die function
 define('INFORMATION', 1);
