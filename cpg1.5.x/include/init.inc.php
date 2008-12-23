@@ -43,7 +43,10 @@ $cpg_time_start = cpgGetMicroTime();
 // Store all reported errors in the $cpgdebugger
 require_once('include/debugger.inc.php');
 
-set_magic_quotes_runtime(0);
+if (get_magic_quotes_runtime()) {
+    set_magic_quotes_runtime(0);
+}
+
 // used for timing purpos
 $query_stats = array();
 $queries = array();
