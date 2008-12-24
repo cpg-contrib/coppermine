@@ -4497,8 +4497,11 @@ function json_encode($arr)
         } else {
             // If the value is not numeric and boolean then escape and quote it
             if ((!is_numeric($val) && !is_bool($val))) {
-                $escape = array("\r\n" => '\n', "\r" => '\n', "\n" => '\n', '"' => '\"', "'" => "\'");
-                $val = str_replace(array_keys($escape), array_values($escape), $val);
+                // Escape these characters with a backslash:
+                // " \ / \n \r \t \b \f
+                $search  = array('\\', "\n", "\t", "\r", "\b", "\f", '"', '/');
+                $replace = array('\\\\', '\\n', '\\t', '\\r', '\\b', '\\f', '\"', '\/');
+                $val  = str_replace($search, $replace, $val);
                 $val = '"' . $val . '"';
             }
             if ($val === null) {
