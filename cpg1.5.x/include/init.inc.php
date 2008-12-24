@@ -47,18 +47,26 @@ if (get_magic_quotes_runtime()) {
     set_magic_quotes_runtime(0);
 }
 
-// used for timing purpos
+// used for timing purposes
 $query_stats = array();
-$queries = array();
+$queries     = array();
 
 // Initialise the $CONFIG array and some other variables
 $CONFIG = array();
-//$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];
 
 $PHP_SELF = '';
+
 $ORIGINAL_PHP_SELF = $superCage->server->getRaw('PHP_SELF');
-$possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
-foreach ($possibilities as $test){
+
+$possibilities = array(
+    'REDIRECT_URL',
+    'PHP_SELF',
+    'SCRIPT_URL',
+    'SCRIPT_NAME',
+    'SCRIPT_FILENAME'
+);
+
+foreach ($possibilities as $test) {
     if ($matches = $superCage->server->getMatched($test, '/([^\/]+\.php)$/')) {
         $CPG_PHP_SELF = $matches[1];
         break;
@@ -69,13 +77,13 @@ foreach ($possibilities as $test){
  * A probable solution is to parse the query string into its individual key and values and check
  * them against a regex, recombine and use only if all the values are safe else set referer to index.php
  */
-$REFERER = urlencode($CPG_PHP_SELF . (($superCage->server->keyExists('QUERY_STRING') && $superCage->server->getRaw('QUERY_STRING')) ? '?' . $superCage->server->getRaw('QUERY_STRING') : ''));
-$ALBUM_SET = '';
-$META_ALBUM_SET = '';
-$FORBIDDEN_SET = '';
+$REFERER            = urlencode($CPG_PHP_SELF . (($superCage->server->keyExists('QUERY_STRING') && $superCage->server->getRaw('QUERY_STRING')) ? '?' . $superCage->server->getRaw('QUERY_STRING') : ''));
+$ALBUM_SET          = '';
+$META_ALBUM_SET     = '';
+$FORBIDDEN_SET      = '';
 $FORBIDDEN_SET_DATA = array();
-$CURRENT_CAT_NAME = '';
-$CAT_LIST = '';
+$CURRENT_CAT_NAME   = '';
+$CAT_LIST           = '';
 
 // Define some constants
 define('USER_GAL_CAT', 1);
@@ -87,13 +95,13 @@ define('ERROR', 2);
 define('CRITICAL_ERROR', 3);
 
 // Include config and functions files
-if(file_exists('include/config.inc.php')){
-        ob_start();
-        require_once 'include/config.inc.php';
-        ob_clean();
+if (file_exists('include/config.inc.php')) {
+    ob_start();
+    require_once 'include/config.inc.php';
+    ob_clean();
 } else {
-  // error handling: if the config file doesn't exist go to install
-  die('<html>
+    // error handling: if the config file doesn't exist go to install
+    die('<html>
     <head>
       <title>Coppermine not installed yet</title>
       <meta http-equiv="refresh" content="10;url=install.php" />
@@ -109,10 +117,15 @@ if(file_exists('include/config.inc.php')){
     </body>
 </html>');
 }
+
 $mb_utf8_regex = '[\xE1-\xEF][\x80-\xBF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xC2-\xDF][\x80-\xBF]';
+
 require 'include/functions.inc.php';
-# see http://php.net/mbstring for details
-if (function_exists('mb_internal_encoding')) { mb_internal_encoding('UTF-8'); }
+
+// see http://php.net/mbstring for details
+if (function_exists('mb_internal_encoding')) {
+    mb_internal_encoding('UTF-8');
+}
 
 $CONFIG['TABLE_PICTURES']      = $CONFIG['TABLE_PREFIX'].'pictures';
 $CONFIG['TABLE_ALBUMS']        = $CONFIG['TABLE_PREFIX'].'albums';
@@ -133,15 +146,17 @@ $CONFIG['TABLE_VOTE_STATS']    = $CONFIG['TABLE_PREFIX'].'vote_stats';
 $CONFIG['TABLE_HIT_STATS']     = $CONFIG['TABLE_PREFIX'].'hit_stats';
 $CONFIG['TABLE_TEMP_MESSAGES'] = $CONFIG['TABLE_PREFIX'].'temp_messages';
 $CONFIG['TABLE_CATMAP']        = $CONFIG['TABLE_PREFIX'].'categorymap';
-$CONFIG['TABLE_LANGUAGE']        = $CONFIG['TABLE_PREFIX'].'languages';
+$CONFIG['TABLE_LANGUAGE']      = $CONFIG['TABLE_PREFIX'].'languages';
+
 // Connect to database
 ($CONFIG['LINK_ID'] = cpg_db_connect()) || die('<strong>Coppermine critical error</strong>:<br />Unable to connect to database !<br /><br />MySQL said: <strong>' . mysql_error() . '</strong>');
+
 // Retrieve DB stored configuration
-$results = cpg_db_query("SELECT name, value FROM {$CONFIG['TABLE_CONFIG']}");
-while ($row = mysql_fetch_assoc($results)) {
+$result = cpg_db_query("SELECT name, value FROM {$CONFIG['TABLE_CONFIG']}");
+while ($row = mysql_fetch_assoc($result)) {
     $CONFIG[$row['name']] = $row['value'];
 } // while
-mysql_free_result($results);
+mysql_free_result($result);
 
 // Record User's IP address
 $raw_ip = $superCage->server->testIp('REMOTE_ADDR') ? $superCage->server->getEscaped('REMOTE_ADDR') : '0.0.0.0';
@@ -155,9 +170,6 @@ if ($superCage->server->testIp('HTTP_CLIENT_IP')) {
         $hdr_ip = $raw_ip;
     }
 }
-
-/*if (!preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $raw_ip)) $raw_ip = '0.0.0.0';
-if (!preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $hdr_ip)) $hdr_ip = '0.0.0.0';*/
 
 // Reference 'site_url' to 'ecards_more_pic_target'
 $CONFIG['site_url'] =& $CONFIG['ecards_more_pic_target'];
@@ -173,9 +185,9 @@ include_once('include/logger.inc.php');
 
 // Check for GD GIF Create support
 if ($CONFIG['thumb_method'] == 'im' || function_exists('imagecreatefromgif')) {
-  $CONFIG['GIF_support'] = 1;
+    $CONFIG['GIF_support'] = 1;
 } else {
-  $CONFIG['GIF_support'] = 0;
+    $CONFIG['GIF_support'] = 0;
 }
 
 // Include plugin API
@@ -188,37 +200,14 @@ if ($CONFIG['enable_plugins'] == 1) {
 if ($CONFIG['bridge_enable'] == 1 && !defined('BRIDGEMGR_PHP')) {
     $BRIDGE = cpg_get_bridge_db_values();
 } else {
-  $BRIDGE['short_name'] = 'coppermine';
-  $BRIDGE['use_standard_groups'] = 1;
-  $BRIDGE['recovery_logon_failures'] = 0;
-  $BRIDGE['use_post_based_groups'] = false;
+    $BRIDGE['short_name']              = 'coppermine';
+    $BRIDGE['recovery_logon_failures'] = 0;
+    $BRIDGE['use_post_based_groups']   = false;
 }
 
 define('UDB_INTEGRATION', $BRIDGE['short_name']);
 
 require_once 'bridge/' . UDB_INTEGRATION . '.inc.php';
-
-/*
-
-Removed temporarily due to non-compliance with bridging system - Nibbler
-
-// Retrieve Array of Admin Groups (used for hiding admin usernames on thumbnails)
-$results = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_USERGROUPS']} WHERE has_admin_access ");
-$CONFIG['ADMIN_GROUPS']=array();
-while ($row = mysql_fetch_array($results)) {
-    $CONFIG['ADMIN_GROUPS'][]= $row['group_id'];
-} // while
-mysql_free_result($results);
-
-// Retrieve Array of Admin Users (used for hiding admin usernames on thumbnails)
-$results = cpg_db_query("SELECT {$cpg_udb->field['user_id']} as user_id FROM $cpg_udb->usertable WHERE {$cpg_udb->field['usertbl_group_id']} in (" . implode(',',$CONFIG['ADMIN_GROUPS']).')');
-$CONFIG['ADMIN_USERS']=array();
-while ($row = mysql_fetch_array($results)) {
-    $CONFIG['ADMIN_USERS'][] = $row['user_id'];
-} // while
-mysql_free_result($results);
-
-*/
 
 // Start output buffering
 ob_start('cpg_filter_page_html');
@@ -234,31 +223,30 @@ $USER['am'] = isset($USER['am']) ? (int)$USER['am'] : 0;
 define('GALLERY_ADMIN_MODE', USER_IS_ADMIN && $USER['am']);
 define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !GALLERY_ADMIN_MODE);
 
-
 // Set error logging level
 // Maze's new error report system
 if (!USER_IS_ADMIN) {
-    if (!$CONFIG['debug_mode']) $cpgdebugger->stop(); // useless to run debugger cos there's no output
+    if (!$CONFIG['debug_mode']) {
+        $cpgdebugger->stop(); // useless to run debugger cos there's no output
+    }
     error_reporting(0); // hide all errors for visitors
 }
 
 $USER_DATA['allowed_albums'] = array();
 
 if (!GALLERY_ADMIN_MODE) {
-  $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE moderator_group IN ".USER_GROUP_SET);
-  if (mysql_num_rows($result)) {
-    while ($row = mysql_fetch_assoc($result)) {
-      $USER_DATA['allowed_albums'][] = $row['aid'];
+    $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE moderator_group IN ".USER_GROUP_SET);
+    if (mysql_num_rows($result)) {
+        while ($row = mysql_fetch_assoc($result)) {
+            $USER_DATA['allowed_albums'][] = $row['aid'];
+        }
     }
-  }
 }
 
 // Process theme selection if present in URI or in user profile
 if ($matches = $superCage->get->getMatched('theme', '/^[A-Za-z0-9_]+$/')) {
     $USER['theme'] = $CONFIG['theme'] = $matches[0];
-}/* else {
-    unset($USER['theme']);
-}*/
+}
 
 if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . $USER['theme'])) {
     $CONFIG['theme'] = strtr($USER['theme'], '$/\\:*?"\'<>|`', '____________');
@@ -277,9 +265,9 @@ require('themes/'.$CONFIG['theme'].'/theme.php');
 require('include/themes.inc.php');  //All Fallback Theme Templates and Functions
 
 if (defined('THEME_HAS_MENU_ICONS')) {
-  $ICON_DIR = $THEME_DIR . 'images/icons/';
+    $ICON_DIR = $THEME_DIR . 'images/icons/';
 } else {
-  $ICON_DIR = 'images/icons/';
+    $ICON_DIR = 'images/icons/';
 }
 
 set_js_var('icon_dir', $ICON_DIR);
@@ -289,13 +277,16 @@ set_js_var('icon_dir', $ICON_DIR);
 require('lang/english.php');
 
 $CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
+
 $enabled_languages_array = array();
-$results = cpg_db_query("SELECT lang_id FROM {$CONFIG['TABLE_LANGUAGE']} WHERE enabled='YES' ");
-while ($row = mysql_fetch_assoc($results)) {
+
+$result = cpg_db_query("SELECT lang_id FROM {$CONFIG['TABLE_LANGUAGE']} WHERE enabled='YES'");
+
+while ($row = mysql_fetch_assoc($result)) {
     $enabled_languages_array[] = $row['lang_id'];
 }
-mysql_free_result($results);
-unset($row);
+
+mysql_free_result($result);
 
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8
@@ -310,16 +301,12 @@ if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' .
 } elseif ($CONFIG['charset'] == 'utf-8' && $CONFIG['language_autodetect'] != 0) {
     include('include/select_lang.inc.php');
     if (file_exists('lang/' . $USER['lang'] . '.php') == TRUE) {
-        if (in_array($USER['lang'], $enabled_languages_array)){
+        if (in_array($USER['lang'], $enabled_languages_array)) {
             $CONFIG['lang'] = $USER['lang'];
         }
     }
 } else {
     unset($USER['lang']);
-}
-
-if (isset($CONFIG['default_lang']) && ($CONFIG['default_lang']==$CONFIG['lang'])) {
-    //unset($CONFIG['default_lang']);
 }
 
 if (!file_exists("lang/{$CONFIG['lang']}.php")) {
@@ -336,7 +323,7 @@ set_js_var('lang_close', $lang_common['close']);
 // See if the fav cookie is set else set it
 if ($superCage->cookie->keyExists($CONFIG['cookie_name'] . '_fav')) {
     $FAVPICS = @unserialize(@base64_decode($superCage->cookie->getRaw($CONFIG['cookie_name'] . '_fav')));
-    foreach ($FAVPICS as $key => $id ){
+    foreach ($FAVPICS as $key => $id ) {
         $FAVPICS[$key] = (int)$id; //protect against sql injection attacks
     }
 } else {
@@ -344,13 +331,14 @@ if ($superCage->cookie->keyExists($CONFIG['cookie_name'] . '_fav')) {
 }
 
 // If the person is logged in get favs from DB those in the DB have precedence
-if (USER_ID > 0){
-    $sql = "SELECT user_favpics FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = ".USER_ID;
-    $results = cpg_db_query($sql);
-    $row = mysql_fetch_assoc($results);
-    if (!empty($row['user_favpics'])){
+if (USER_ID > 0) {
+    $result = cpg_db_query("SELECT user_favpics FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = ".USER_ID);
+
+    $row = mysql_fetch_assoc($result);
+    mysql_free_result($result);
+    if (!empty($row['user_favpics'])) {
         $FAVPICS = @unserialize(@base64_decode($row['user_favpics']));
-    }else{
+    } else {
         $FAVPICS = array();
     }
 }
@@ -390,7 +378,7 @@ if ($matches = $superCage->get->getMatched('referer', '/((\%3C)|<)[^\n]+((\%3E)|
  * @return N/A
  **/
 
-CPGPluginAPI::action('page_start',null);
+CPGPluginAPI::action('page_start', null);
 
 // load the main template
 load_template();
@@ -405,16 +393,17 @@ if ($CONFIG['purge_expired_bans'] == 1) {
 // Check if the user is banned
 $user_id = USER_ID;
 // Compose the query
-$query_string = "SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE (";
+$query_string = "SELECT null FROM {$CONFIG['TABLE_BANNED']} WHERE (";
 if (USER_ID) {
     $query_string .= "user_id=$user_id OR ";
 }
 if ($raw_ip != $hdr_ip) {
     $query_string .= "'$raw_ip' LIKE ip_addr OR '$hdr_ip' LIKE ip_addr ";
-} elseif($raw_ip != '') {
+} elseif ($raw_ip != '') {
     $query_string .= "'$raw_ip' LIKE ip_addr ";
 }
 $query_string .= ") AND brute_force=0 LIMIT 1";
+
 $result = cpg_db_query($query_string);
 unset($query_string);
 if (mysql_num_rows($result)) {
@@ -424,10 +413,13 @@ if (mysql_num_rows($result)) {
     exit;
 }
 mysql_free_result($result);
-// Retrieve the "private" album set
-if (!GALLERY_ADMIN_MODE && $CONFIG['allow_private_albums']) get_private_album_set();
 
-if (!USER_IS_ADMIN && $CONFIG['offline'] && !strstr($CPG_PHP_SELF,'login')) {
+// Retrieve the "private" album set
+if (!GALLERY_ADMIN_MODE && $CONFIG['allow_private_albums']) {
+    get_private_album_set();
+}
+
+if (!USER_IS_ADMIN && $CONFIG['offline'] && !strstr($CPG_PHP_SELF, 'login')) {
     pageheader($lang_errors['offline_title']);
     msg_box($lang_errors['offline_title'], $lang_errors['offline_text']);
     pagefooter();
