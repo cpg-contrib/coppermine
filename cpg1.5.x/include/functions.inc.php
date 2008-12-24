@@ -1992,7 +1992,7 @@ function count_pic_comments($pid, $skip = 0)
 {
     global $CONFIG;
     
-    $sql = "SELECT COUNT(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid = $pid");
+    $sql = "SELECT COUNT(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid = $pid";
 
     if ($skip) {
         $sql .= " AND msg_id != $skip";
