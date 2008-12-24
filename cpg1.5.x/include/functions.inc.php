@@ -37,7 +37,7 @@
 * @param integer $cat Category
 * @return void
 **/
-// TODO: add in INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category 
+// TODO: add in INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category
 // only add when we are at the top level, cat == 0
 function get_meta_album_set($cat)
 {
@@ -63,9 +63,9 @@ function get_meta_album_set($cat)
                                     WHERE (c2.lft BETWEEN $lft AND $rgt";
 
      } elseif ($cat < 0) {
-     
+
         $RESTRICTEDWHERE = "WHERE (r.aid = " . -$cat;
-     
+
     } else {
         $RESTRICTEDWHERE = "WHERE (1";
         $CURRENT_CAT_DEPTH = 0;
@@ -323,8 +323,8 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
         global $CONFIG, $lang_cpg_die, $template_cpg_die, $lang_common, $lang_errors;
         // Three types of error levels: INFORMATION, ERROR, CRITICAL_ERROR.
         // There used to be a clumsy method for error mesages that didn't work well with i18n.
-        // Let's add some more logic to this: try to get the translation 
-        // for the error type from the language file. If that fails, use the hard-coded 
+        // Let's add some more logic to this: try to get the translation
+        // for the error type from the language file. If that fails, use the hard-coded
         // English string.
         $msg_icon = 'warning'; // Default icon
         if ($msg_code == 1) {
@@ -349,7 +349,7 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
                 $msg_string = 'Critical error';
             }
         }
-        
+
 
         // Simple output if theme file is not loaded
         if (!function_exists('pageheader')) {
@@ -524,7 +524,7 @@ function bb_decode($text)
             return $text;
         }
         $text = CPGPluginAPI::filter('bbcode', $text);
-        
+
         // [b] and [/b] for bolding text.
         $text = str_replace("[b]", '<strong>', $text);
         $text = str_replace("[/b]", '</strong>', $text);
@@ -536,7 +536,7 @@ function bb_decode($text)
         // [i] and [/i] for italicizing text.
         $text = str_replace("[i]", '<i>', $text);
         $text = str_replace("[/i]", '</i>', $text);
-        
+
         // [s] and [/s] for striking through
         $text = str_replace("[s]", '<del>', $text);
         $text = str_replace("[/s]", '</del>', $text);
@@ -559,7 +559,7 @@ function bb_decode($text)
                 // [url]xxxx://www.phpbb.com[/url] code..
                 $patterns['link'][1] = "#\[url\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
                 $replacements['link'][1] = $bbcode_tpl['url1'];
-				
+
                 $bbcode_tpl['url2'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['url']);
                 $bbcode_tpl['url2'] = str_replace('{DESCRIPTION}', '\\1', $bbcode_tpl['url2']);
 
@@ -596,11 +596,11 @@ function bb_decode($text)
                 $replacements['other'][2] = $bbcode_tpl['img'];
 
         }
-		$text = check_link_type_and_replace($patterns['link'][1], $replacements['link'][1], $text, 1);
-		$text = check_link_type_and_replace($patterns['link'][2], $replacements['link'][2], $text, 2);
-		$text = check_link_type_and_replace($patterns['link'][3], $replacements['link'][3], $text, 3);
-		$text = check_link_type_and_replace($patterns['link'][4], $replacements['link'][4], $text, 4);
-		
+        $text = check_link_type_and_replace($patterns['link'][1], $replacements['link'][1], $text, 1);
+        $text = check_link_type_and_replace($patterns['link'][2], $replacements['link'][2], $text, 2);
+        $text = check_link_type_and_replace($patterns['link'][3], $replacements['link'][3], $text, 3);
+        $text = check_link_type_and_replace($patterns['link'][4], $replacements['link'][4], $text, 4);
+
         $text = preg_replace($patterns['other'], $replacements['other'], $text);
         return $text;
 }
@@ -687,9 +687,9 @@ function is_link_local($url, $cpg_url = false)
 */
 function generate_cpg_url()
 {
-		$superCage = Inspekt::makeSuperCage();
-		$server_name = $superCage->server->keyExists('server_name') ? $superCage->server->getRaw('server_name') : getenv('SERVER_NAME');
-		$server_port = $superCage->server->keyExists('server_port') ? $superCage->server->getRaw('server_port') : getenv('SERVER_PORT');
+        $superCage = Inspekt::makeSuperCage();
+        $server_name = $superCage->server->keyExists('server_name') ? $superCage->server->getRaw('server_name') : getenv('SERVER_NAME');
+        $server_port = $superCage->server->keyExists('server_port') ? $superCage->server->getRaw('server_port') : getenv('SERVER_PORT');
 
         // Do not rely on cookie_secure, users seem to think that it means a secured cookie instead of an encrypted connection
         $cookie_secure = ($superCage->server->keyExists('HTTPS') && $superCage->server->getAlpha('HTTPS') == 'on') ? 1 : 0;
@@ -881,7 +881,7 @@ function get_private_album_set($aid_str="")
 
                 $sql = "SELECT rgt, lft, depth FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = $cat LIMIT 1";
                 $result = cpg_db_query($sql);
-                list($rgt, $lft, $CURRENT_CAT_DEPTH) = mysql_fetch_row($result);    
+                list($rgt, $lft, $CURRENT_CAT_DEPTH) = mysql_fetch_row($result);
 
                 $RESTRICTEDWHERE = "INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS c2 ON c2.cid = category
                                         WHERE (c2.lft BETWEEN $lft AND $rgt";
@@ -1011,7 +1011,7 @@ function build_caption(&$rowset,$must_have=array())
  * @return
  **/
 
-function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true) 
+function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true)
 {
     global $USER, $CONFIG, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA;
     global $lang_date, $cat;
@@ -1055,7 +1055,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         $select_column_list[] = 'pic_raw_ip';
         $select_column_list[] = 'pic_hdr_ip';
     }
-                    
+
     if (count($FORBIDDEN_SET_DATA) > 0 ) {
         $forbidden_set_string =" AND aid NOT IN (".implode(",", $FORBIDDEN_SET_DATA).")";
     } else {
@@ -1081,7 +1081,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $keyword = '';
         }
 
-        if (array_key_exists('allowed_albums',$USER_DATA) && is_array($USER_DATA['allowed_albums']) 
+        if (array_key_exists('allowed_albums',$USER_DATA) && is_array($USER_DATA['allowed_albums'])
                 && in_array($album,$USER_DATA['allowed_albums'])) {
             $approved = '';
         } else {
@@ -1090,15 +1090,15 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
 
-        $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} 
+        $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']}
                     WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved";
         $result = cpg_db_query($query);
         $nbEnr = mysql_fetch_array($result);
         $count = $nbEnr[0];
         mysql_free_result($result);
-        
+
         $select_columns = implode(', ', $select_column_list);
-        
+
         $query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} AS r
                     WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved
                     ORDER BY $sort_order $limit";
@@ -1131,7 +1131,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         $rowset = $meta_album_params['rowset'];
         return $rowset;
     }
-        
+
     // Meta albums
     switch($album) {
         case 'lastcom': // Last comments
@@ -1158,9 +1158,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $select_column_list[] = 'msg_body';
             $select_column_list[] = 'author_id';
             $select_column_list[] = 'msg_author';
-            
+
             $select_columns = implode(', ', $select_column_list);
-               
+
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_COMMENTS']} AS c
                     INNER JOIN {$CONFIG['TABLE_PICTURES']} AS r ON r.pid = c.pid
@@ -1216,9 +1216,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $select_column_list[] = 'msg_body';
             $select_column_list[] = 'author_id';
             $select_column_list[] = 'msg_author';
-            
+
             $select_columns = implode(', ', $select_column_list);
-            
+
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_COMMENTS']} AS c
                     INNER JOIN {$CONFIG['TABLE_PICTURES']} AS r ON r.pid = c.pid
@@ -1260,9 +1260,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $nbEnr = mysql_fetch_array($result);
             $count = $nbEnr[0];
             mysql_free_result($result);
-            
+
             $select_columns = implode(', ', $select_column_list);
-            
+
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_PICTURES']} AS r
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
@@ -1310,7 +1310,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             mysql_free_result($result);
 
             $select_columns = implode(', ', $select_column_list);
-            
+
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_PICTURES']} AS r
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
@@ -1353,7 +1353,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             mysql_free_result($result);
 
             $select_columns = implode(', ', $select_column_list);
-            
+
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_PICTURES']} AS r
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
@@ -1396,7 +1396,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             mysql_free_result($result);
 
             $select_columns = implode(', ', $select_column_list);
-            
+
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_PICTURES']} AS r
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
@@ -1439,13 +1439,13 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             mysql_free_result($result);
 
             $select_column_list[] = 'UNIX_TIMESTAMP(mtime) AS mtime';
-            
+
             if (GALLERY_ADMIN_MODE) {
                 $select_column_list[] = 'lasthit_ip';
             }
-            
+
             $select_columns = implode(', ', $select_column_list);
-            
+
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_PICTURES']} AS r
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
@@ -1500,18 +1500,18 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $pidlist[] = $row['pid'];
             }
             mysql_free_result($result);
-            
+
             sort($pidlist);
-            
+
             $select_columns = implode(', ', $select_column_list);
-            
+
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_PICTURES']} AS r
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
                     WHERE pid IN (" . implode(', ', $pidlist) . ")";
 
             $rowset = array();
-            
+
             // Fire the query if at least one pid is in pidlist array
             if (count($pidlist)) {
                 $result = cpg_db_query($query);
@@ -1569,8 +1569,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             mysql_free_result($result);
 
             $select_columns = implode(', ', $select_column_list);
-            
-            $query = "SELECT $select_columns 
+
+            $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_PICTURES']} AS r
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
                     $RESTRICTEDWHERE
@@ -1654,7 +1654,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             mysql_free_result($result);
 
             $select_columns = implode(', ', $select_column_list);
-            
+
             $query = "SELECT $select_columns
                     FROM {$CONFIG['TABLE_PICTURES']} AS r
                     INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
@@ -1677,7 +1677,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 } // function get_pic_data
 
 // Copy of get_pic_data, created to obtain position for the given pid in the given album
-function get_pic_pos($album, $pid) 
+function get_pic_pos($album, $pid)
 {
     global $USER, $CONFIG, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA;
     global $lang_date, $cat;
@@ -1725,7 +1725,7 @@ function get_pic_pos($album, $pid)
             $keyword = '';
         }
 
-        if (array_key_exists('allowed_albums',$USER_DATA) && is_array($USER_DATA['allowed_albums']) 
+        if (array_key_exists('allowed_albums',$USER_DATA) && is_array($USER_DATA['allowed_albums'])
                 && in_array($album,$USER_DATA['allowed_albums'])) {
             $approved = '';
         } else {
@@ -1737,15 +1737,15 @@ function get_pic_pos($album, $pid)
             list($param) = explode(' ', $comp_order);
 
             $result = cpg_db_query("SELECT filename, title, pid, position FROM {$CONFIG['TABLE_PICTURES']}  WHERE pid = $pid");
-            
-        
+
+
             $pic = mysql_fetch_assoc($result);
 
-            
+
         $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']}
                     WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved
                     AND $comp_order '{$pic[$param]}'";
-                    
+
         $result = cpg_db_query($query);
         list($pos) = mysql_fetch_row($result);
         mysql_free_result($result);
@@ -1764,7 +1764,7 @@ function get_pic_pos($album, $pid)
                     $RESTRICTEDWHERE
                     AND approved = 'YES'
                           AND pid > $pid";
-                        
+
              $result = cpg_db_query($query);
              list($pos) = mysql_fetch_row($result);
              mysql_free_result($result);
@@ -1988,7 +1988,7 @@ function cpg_determine_client($pid)
         } elseif (preg_match('#Epiphany#i',$server_agent)) {
             $browser = 'Epiphany';
         } elseif (preg_match('#Phoenix#i',$server_agent)) {
-            $browser = 'Phoenix';        
+            $browser = 'Phoenix';
         } elseif (preg_match('#Firebird#i',$server_agent)) {
             $browser = 'Mozilla Firebird';
         } elseif (preg_match('#NetSurf#i',$server_agent)) {
@@ -2052,7 +2052,7 @@ function cpg_determine_client($pid)
         } elseif (preg_match('#K-Meleon#i',$server_agent)) {
             $browser = 'K-Meleon';
         }
-        
+
         //Code to get the search string if the referrer is any of the following
         $search_engines = array('google', 'lycos', 'yahoo');
 
@@ -2092,7 +2092,7 @@ function add_hit($pid)
 
         //Making Cage
         $superCage = Inspekt::makeSuperCage();
-        
+
         $time = time();
 
         //Sanitize the referer
@@ -2128,7 +2128,7 @@ function add_hit($pid)
 function add_album_hit($aid)
 {
         global $CONFIG, $USER;
-        
+
         if ($CONFIG['count_album_hits']) {
           $aid = (int)$aid;
           cpg_db_query("UPDATE {$CONFIG['TABLE_ALBUMS']} SET alb_hits=alb_hits+1 WHERE aid='$aid'");
@@ -2162,7 +2162,7 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
             $row = mysql_fetch_assoc($result);
 
             $category_array[] = array(USER_GAL_CAT, $row['name']);
-                           
+
             $user_name = get_username($cat - FIRST_USER_CAT);
             if (!$user_name) {
                 $user_name = $lang_common['username_if_blank'];
@@ -2174,8 +2174,8 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
 
         } else {
 
-            $result = cpg_db_query("SELECT p.cid, p.name FROM {$CONFIG['TABLE_CATEGORIES']} AS c, 
-                {$CONFIG['TABLE_CATEGORIES']} AS p 
+            $result = cpg_db_query("SELECT p.cid, p.name FROM {$CONFIG['TABLE_CATEGORIES']} AS c,
+                {$CONFIG['TABLE_CATEGORIES']} AS p
                 WHERE c.lft BETWEEN p.lft AND p.rgt
                 AND c.cid = $cat
                 ORDER BY p.lft");
@@ -2453,20 +2453,20 @@ function& cpg_get_system_thumb($filename,$user=10001)
 function display_film_strip($album, $cat, $pos,$ajax_call)
 {
         global $CONFIG, $AUTHORIZED;
-        global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common, $pic_count,$ajax_call,$pos; 
+        global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common, $pic_count,$ajax_call,$pos;
 
         $superCage      = Inspekt::makeSuperCage();
         $max_item       = $CONFIG['max_film_strip_items'];
         $thumb_width    = $CONFIG['thumb_width'];
 
         /** set to variable with to javascript*/
-        set_js_var('thumb_width',$thumb_width);    
-            
+        set_js_var('thumb_width',$thumb_width);
+
         if(($CONFIG['max_film_strip_items']%2)==0){
             $max_item   = $CONFIG['max_film_strip_items']+1;
             $pic_count = $pic_count + 1;
         }
-        
+
          $max_item_real = $max_item;
          /** check the thumb_per_page variable valid to query database*/
         if($pic_count < $max_item_real){
@@ -2474,14 +2474,14 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
         }
          /** pass the max_items to the dispalyimage.js file */
          set_js_var('max_item',$max_item_real);
-        
+
         $max_block_items = $CONFIG['max_film_strip_items'];
 
         $thumb_per_page = $max_item_real;
         /** assign the varible $l_limit diffen */
-        $l_limit = (int)($max_item_real/2); 
+        $l_limit = (int)($max_item_real/2);
         $l_limit = max(0,$pos-$l_limit);
-        
+
         /** set $l_limit to last images */
         if($l_limit >($pic_count-$max_item_real)){
             $l_limit = $pic_count-$max_item_real;
@@ -2492,34 +2492,34 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
         if (count($pic_data) < $max_item ){
             $max_item = count($pic_data);
         }
-        
-        $lower_limit = 0;   
-        
+
+        $lower_limit = 0;
+
         if($ajax_call==2){
-            $lower_limit = $max_item_real -1; 
+            $lower_limit = $max_item_real -1;
             $max_item =1;
         }
         if($ajax_call ==1){
-            $lower_limit = 0; 
-            $max_item =1; 
+            $lower_limit = 0;
+            $max_item =1;
         }
-        
+
         $pic_data=array_slice($pic_data,$lower_limit,$max_item);
         $i=$l_limit;
 
         set_js_var('count', $pic_count);
-        
+
         $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
         $date_link = $date=='' ? '' : '&amp;date=' . $date;
-    
+
         if ($superCage->get->getInt('uid')) {
             $uid_link = '&amp;uid=' . $superCage->get->getInt('uid');
         } else {
             $uid_link = '';
         }
-        
+
         if (count($pic_data) > 0){
-            
+
                 foreach ($pic_data as $key => $row) {
                         $hi =(($pos==($i + $lower_limit))  ? '1': '');
                         $i++;
@@ -2530,7 +2530,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
                                 $lang_display_thumbnails['date_added'].localised_date($row['ctime'], $album_date_fmt);
 
                         $pic_url =  get_pic_url($row, 'thumb');
-                        //print $pic_url; 
+                        //print $pic_url;
                         if (!is_image($row['filename'])) {
                                 $image_info = cpg_getimagesize(urldecode($pic_url));
                                 $row['pwidth'] = $image_info[0];
@@ -2553,7 +2553,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
                         $thumb_list[$i]['pid'] = $row['pid'];
                         ######################################
                         $target = "displayimage.php?album=$album$cat_link$date_link&amp;pid={$row['pid']}$uid_link";
-                    
+
                 }
 
                             // Get the pos for next and prev links in filmstrip navigation
@@ -2566,7 +2566,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
 
                 //Using getRaw(). The date is sanitized in the called function.
                 $date = $superCage->get->keyExists('date') ? cpgValidateDate($superCage->get->getRaw('date')) : null;
-                
+
             if($ajax_call==2 || $ajax_call==1){
                 $setArray  = array ('url'=>$pic_url,'target'=>$target);
                 $jonsArray = json_encode($setArray);
@@ -2577,7 +2577,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
         }
     }
     else{
-    	    if($ajax_call==2 || $ajax_call==1){
+            if($ajax_call==2 || $ajax_call==1){
                 $setArray  = array ('url'=>'images/stamp.png','target'=>'images/stamp.png');
                 $jonsArray = json_encode($setArray);
                 echo $jonsArray;
@@ -2602,19 +2602,19 @@ function& display_slideshow($pos,$ajax_show=0)
 {
    global $CONFIG, $lang_display_image_php, $template_display_media, $lang_common, $album, $pid, $slideshow;
    global $cat, $date, $USER;
-   
+
    $superCage = Inspekt::makeSuperCage();
 
     $Pic    = array();
     $Pid    = array();
     $Title  = array();
-    
+
     $i = 0;
     $j = 0;
     $a = 0;
     //$pid = (int)$_GET['pid'];
     $start_img = '';
-    
+
     /** calculate total amount of pic a perticular album */
     if($ajax_show==0){
         $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
@@ -2638,38 +2638,38 @@ function& display_slideshow($pos,$ajax_show=0)
         }else{
          $condition = false;
         }
-            
+
         if (is_image($picture['filename'])) {
             if ($CONFIG['make_intermediate'] && $condition ) {
                 $picture_url = get_pic_url($picture, 'normal');
             } else {
                 $picture_url = get_pic_url($picture, 'fullsize');
             }
-    
+
             if ( $picture['title'] ) {
                 $Title_get = $picture['title'];
             } else {
                 $Title_get = $picture['filename'];
             }
-            
+
             $Pic[$i] =  htmlspecialchars($picture_url, ENT_QUOTES) ;
-            $Pid[$i] =  $picture['pid'] ;       
+            $Pid[$i] =  $picture['pid'] ;
             $Title[$i] = $Title_get;
-                
+
             if ($picture['pid'] == $pid) {
                 $j = $i;
                 $start_img = $picture_url;
             }
-            $i++; 
+            $i++;
         }
     }
 
     /** set variables to jquery.slideshow.js */
     set_js_var('Time',$slideshow);
     set_js_var('Pid',$pid);
-    
+
     if (!$i) { echo "Pic[0] = 'images/thumb_document.jpg'\n"; }
-    
+
     // Add the hit if the user is not admin and slideshow hits are enabled in config
     if (!GALLERY_ADMIN_MODE && $CONFIG['slideshow_hits'] != 0) {
         // Add 1 to hit counter
@@ -2681,14 +2681,14 @@ function& display_slideshow($pos,$ajax_show=0)
             user_save_profile();
         }
     }
-    
+
     /** show slide show on first time*/
     if($ajax_show==0){ theme_slideshow($Pic['0'],$Title['0']); }
-    
+
     /** now we make a array to encode*/
     $dataArray  = array ('url'=>$Pic['0'],'title'=>$Title['0'],'pid'=>$Pid['0']);
     $dataJson = json_encode($dataArray);
-    
+
     /** send variable to javascript script*/
     if($ajax_show==1) {
         echo $dataJson;
@@ -2744,9 +2744,15 @@ function& get_pic_url(&$pic_row, $mode, $system_pic = false)
         $thumb_extensions = Array('.gif','.png','.jpg');
         // Check for user-level custom thumbnails
         // Create custom thumb path and erase extension using filename; Erase filename's extension
-        $custom_thumb_path = array_key_exists('url_prefix',$pic_row) ? $url_prefix[$pic_row['url_prefix']] : ''
-                . $pic_row['filepath']
-                . array_key_exists($mode,$pic_prefix) ? $pic_prefix[$mode] : '';
+
+        if (array_key_exists('url_prefix',$pic_row)) {
+            $custom_thumb_path = $url_prefix[$pic_row['url_prefix']];
+        } else {
+            $custom_thumb_path = '';
+        }
+
+        $custom_thumb_path .= $pic_row['filepath'] . (array_key_exists($mode,$pic_prefix) ? $pic_prefix[$mode] : '');
+
         $file_base_name = str_replace('.'.$mime_content['extension'],'',basename($pic_row['filename']));
         // Check for file-specific thumbs
         foreach ($thumb_extensions as $extension) {
@@ -2847,7 +2853,7 @@ function& get_pic_url(&$pic_row, $mode, $system_pic = false)
  * @param unknown $override_language
  * @return
  **/
-function& cpg_get_default_lang_var($language_var_name,$override_language = null) 
+function& cpg_get_default_lang_var($language_var_name,$override_language = null)
 {
     global $CONFIG;
     if (is_null($override_language)) {
@@ -2875,7 +2881,7 @@ function& cpg_get_default_lang_var($language_var_name,$override_language = null)
  * @return
  **/
 
-function& cpg_lang_var($varname,$index=null) 
+function& cpg_lang_var($varname,$index=null)
 {
     global $$varname;
 
@@ -2941,7 +2947,7 @@ addonload("document.getElementById(\'debug_output_toggle\').style.display = \'in
 EOT;
     if (GALLERY_ADMIN_MODE) {
         echo '<span class="album_stat">'.$lang_cpg_debug_output['copy_and_paste_instructions'].'</span><br />';
-    } 
+    }
     echo '<span class="album_stat">'.$lang_cpg_debug_output['debug_output_explain'].'</span>';
     echo '</td></tr>';
     echo '<tr><td class="tableb" colspan="2">';
@@ -3059,9 +3065,9 @@ EOT;
         echo cpg_phpinfo_conf_output("post_max_size");
         echo cpg_phpinfo_conf_output("memory_limit");
         echo "\n$debug_separate";
-        
+
         if (ini_get('suhosin.post.max_vars')){
-        
+
             echo 'Suhosin limits';
             echo $debug_underline;
             echo 'Directive | Local Value | Master Value';
@@ -3084,7 +3090,7 @@ EOT;
         echo '<a href="phpinfo.php" class="admin_menu">' . $lang_cpg_debug_output['phpinfo'] . '</a>';
         // error_reporting  (E_ERROR | E_WARNING | E_PARSE); // New maze's error report system
         echo '</td></tr>';
-    } 
+    }
 
     // Maze's new error report system
     global $cpgdebugger;
@@ -3104,8 +3110,8 @@ EOT;
         echo '<tr><td class="tableb" colspan="2">';
         foreach($report AS $file => $errors) {
             echo '<strong>'.substr($file, $strstart).'</strong><ul>';
-            foreach($errors AS $error) { 
-                echo "<li>$error</li>"; 
+            foreach($errors AS $error) {
+                echo "<li>$error</li>";
             }
             echo '</ul>';
         }
@@ -3129,9 +3135,9 @@ EOT;
 function cpg_phpinfo_mod($search)
 {
     static $pieces = array();
-    
+
     if (!$pieces) {
-    
+
         // this could be done much better with regexpr - anyone who wants to change it: go ahead
         ob_start();
         phpinfo(INFO_MODULES);
@@ -3147,9 +3153,9 @@ function cpg_phpinfo_mod($search)
         $string = str_replace('</tr>', $delimiter, $string);
         $string = chop(strip_tags($string));
         $pieces = explode($delimiter, $string);
-        
+
      }
-     
+
     foreach($pieces as $key => $val) {
         $bits[$key] = explode("|", $val);
     }
@@ -3244,15 +3250,15 @@ function cpg_phpinfo_mysql_version()
 function cpg_phpinfo_conf($search)
 {
     static $pieces = array();
-    
+
     if (!$pieces) {
-    
+
         // this could be done much better with regexpr - anyone who wants to change it: go ahead
         $string ='';
         $pieces = '';
         $delimiter = '#cpgdelimiter#';
         $bits = '';
-    
+
         ob_start();
         phpinfo(INFO_CONFIGURATION);
         $string = ob_get_contents();
@@ -3264,7 +3270,7 @@ function cpg_phpinfo_conf($search)
         $string = chop(strip_tags($string));
         $pieces = explode($delimiter, $string);
     }
-    
+
     foreach($pieces as $val) {
         $bits = explode("|", $val);
         if (strchr($bits[0], $search)) {
@@ -3305,7 +3311,7 @@ function cpg_config_output($key)
  * @return
  **/
 
-function languageSelect($parameter) 
+function languageSelect($parameter)
 {
     global $CONFIG, $lang_language_selection, $lang_common, $CPG_PHP_SELF;
     $superCage = Inspekt::makeSuperCage();
@@ -3323,12 +3329,12 @@ function languageSelect($parameter)
     // get the current language
     //use the default language of the gallery
     $cpgCurrentLanguage = $CONFIG['lang'];
-   
+
     // Forget all the nonsense sanitization code that used to reside here - redefine the variable for the base URL using the function that we already have for that purpose
     $cpgChangeUrl = cpgGetScriptNameParams('lang').'lang=';
-    
-    // Make sure that the language table exists in the first place - 
-    // return without return value if the table doesn't exist because 
+
+    // Make sure that the language table exists in the first place -
+    // return without return value if the table doesn't exist because
     // the upgrade script hasn't been run
     $results = cpg_db_query("SHOW TABLES LIKE '{$CONFIG['TABLE_LANGUAGE']}'");
     if (!mysql_num_rows($results)) {
@@ -3336,7 +3342,7 @@ function languageSelect($parameter)
     }
     mysql_free_result($results);
     unset($results);
-    
+
     // get list of available languages
     $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_LANGUAGE']}");
     while ($row = mysql_fetch_array($results)) {
@@ -3348,7 +3354,7 @@ function languageSelect($parameter)
     unset($results);
     // sort the array by English name
     ksort($lang_language_data);
-    
+
     $value = strtolower($CONFIG['lang']);
 
 
@@ -3459,7 +3465,7 @@ function themeSelect($parameter)
             $return.=  '</noscript>'. $lineBreak;
             $return.=  '</form>' . $lineBreak;
             $return.=  '</div>' . $lineBreak;
-    } // switch $parameter 
+    } // switch $parameter
 
     return $return;
 } // function themeSelect
@@ -3471,7 +3477,7 @@ function themeSelect($parameter)
  * @return
  **/
 
-function cpg_alert_dev_version() 
+function cpg_alert_dev_version()
 {
     global $lang_version_alert, $lang_common, $CONFIG, $REFERER;
     $return = '';
@@ -3565,14 +3571,14 @@ EOT;
  * @return
  **/
 
-function cpg_display_help($reference = 'f=empty.htm', $width = '600', $height = '350', $icon = 'help') 
+function cpg_display_help($reference = 'f=empty.htm', $width = '600', $height = '350', $icon = 'help')
 {
     global $CONFIG, $USER, $lang_common ;
     if ($reference == '' || $CONFIG['enable_help'] == '0') {
-        return; 
+        return;
     }
     if ($CONFIG['enable_help'] == '2' && GALLERY_ADMIN_MODE == false) {
-        return; 
+        return;
     }
     $help_theme = $CONFIG['theme'];
     if (isset($USER['theme'])) {
@@ -3587,9 +3593,9 @@ function cpg_display_help($reference = 'f=empty.htm', $width = '600', $height = 
     }
 
     $title_help =   $lang_common['help'];
-    
+
    // $help_html = "<a href=\"javascript:;\" onclick=\"coppermine_help_window=window.open('help.php?css=" . $help_theme . "&amp;" . $reference . "','coppermine_help','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "'); coppermine_help_window.focus()\" style=\"cursor:help\">" . $icon . "</a>";
-    
+
     $help_html = "<a class=\"jt\" href='help.php?". $reference."'  rel='help.php?css=" . $help_theme . "&amp;" . $reference . "' title=\"".$title_help."\">".$icon."</a>";
     return $help_html;
 } // function cpg_display_help
@@ -3601,7 +3607,7 @@ function cpg_display_help($reference = 'f=empty.htm', $width = '600', $height = 
 * syntax:
 * $array = array_csort($array [, 'col1' [, SORT_FLAG [, SORT_FLAG]]]...);
 **/
-function array_csort() 
+function array_csort()
 {
    $args = func_get_args();
    $marray = array_shift($args);
@@ -3626,7 +3632,7 @@ function array_csort()
 } // function array_csort
 
 
-function cpg_get_bridge_db_values() 
+function cpg_get_bridge_db_values()
 {
     global $CONFIG;
     // Retrieve DB stored configuration
@@ -3639,7 +3645,7 @@ function cpg_get_bridge_db_values()
 } // function cpg_get_bridge_db_values
 
 
-function cpg_get_webroot_path() 
+function cpg_get_webroot_path()
 {
     global $CPG_PHP_SELF;
 
@@ -3718,7 +3724,7 @@ function cpg_get_webroot_path()
  * Function to get the search string if the picture is viewed from google, lycos or yahoo search engine
  */
 
-function get_search_query_terms($engine = 'google') 
+function get_search_query_terms($engine = 'google')
 {
     global $s, $s_array;
 
@@ -3752,7 +3758,7 @@ function get_search_query_terms($engine = 'google')
 } // function get_search_query_terms
 
 
-function is_referer_search_engine($engine = 'google') 
+function is_referer_search_engine($engine = 'google')
 {
     //$siteurl = get_settings('home');
     $superCage = Inspekt::makeSuperCage();
@@ -3862,8 +3868,8 @@ function get_post_var($name, $default = '')
 
 function utf_strtolower($str)
 {
-    if (!function_exists('mb_strtolower')) { 
-        require 'include/mb.inc.php'; 
+    if (!function_exists('mb_strtolower')) {
+        require 'include/mb.inc.php';
     }
     return mb_strtolower($str);
 } // function utf_strtolower
@@ -3871,7 +3877,7 @@ function utf_strtolower($str)
 function utf_substr($str, $start, $end=null)
 {
     if (!function_exists('mb_substr')) {
-        require 'include/mb.inc.php'; 
+        require 'include/mb.inc.php';
     }
     return mb_substr($str, $start, $end);
 } // function utf_substr
@@ -3879,7 +3885,7 @@ function utf_substr($str, $start, $end=null)
 function utf_strlen($str)
 {
     if (!function_exists('mb_strlen')) {
-        require 'include/mb.inc.php'; 
+        require 'include/mb.inc.php';
     }
     return mb_strlen($str);
 } // function utf_strlen
@@ -3887,7 +3893,7 @@ function utf_strlen($str)
 function utf_ucfirst($str)
 {
     if (!function_exists('mb_strtoupper')) {
-        require 'include/mb.inc.php'; 
+        require 'include/mb.inc.php';
     }
     return mb_strtoupper(mb_substr($str, 0, 1)).mb_substr($str, 1);
 } // function utf_ucfirst
@@ -4003,7 +4009,7 @@ function resetDetailVotes($pid)
 * @param string $color
 * @return $color
 **/
-function cpgValidateColor($color) 
+function cpgValidateColor($color)
 {
     $x11ColorNames = array('white', 'ivory', 'lightyellow', 'yellow', 'snow', 'floralwhite', 'lemonchiffon', 'cornsilk', 'seashell', 'lavenderblush', 'papayawhip', 'blanchedalmond', 'mistyrose', 'bisque', 'moccasin', 'navajowhite', 'peachpuff', 'gold', 'pink', 'lightpink', 'orange', 'lightsalmon', 'darkorange', 'coral', 'hotpink', 'tomato', 'orangered', 'deeppink', 'fuchsia', 'magenta', 'red', 'oldlace', 'lightgoldenrodyellow', 'linen', 'antiquewhite', 'salmon', 'ghostwhite', 'mintcream', 'whitesmoke', 'beige', 'wheat', 'sandybrown', 'azure', 'honeydew', 'aliceblue', 'khaki', 'lightcoral', 'palegoldenrod', 'violet', 'darksalmon', 'lavender', 'lightcyan', 'burlywood', 'plum', 'gainsboro', 'crimson', 'palevioletred', 'goldenrod', 'orchid', 'thistle', 'lightgrey', 'tan', 'chocolate', 'peru', 'indianred', 'mediumvioletred', 'silver', 'darkkhaki', 'rosybrown', 'mediumorchid', 'darkgoldenrod', 'firebrick', 'powderblue', 'lightsteelblue', 'paleturquoise', 'greenyellow', 'lightblue', 'darkgray', 'brown', 'sienna', 'yellowgreen', 'darkorchid', 'palegreen', 'darkviolet', 'mediumpurple', 'lightgreen', 'darkseagreen', 'saddlebrown', 'darkmagenta', 'darkred', 'blueviolet', 'lightskyblue', 'skyblue', 'gray', 'olive', 'purple', 'maroon', 'aquamarine', 'chartreuse', 'lawngreen', 'mediumslateblue', 'lightslategray', 'slategray', 'olivedrab', 'slateblue', 'dimgray', 'mediumaquamarine', 'cornflowerblue', 'cadetblue', 'darkolivegreen', 'indigo', 'mediumturquoise', 'darkslateblue', 'steelblue', 'royalblue', 'turquoise', 'mediumseagreen', 'limegreen', 'darkslategray', 'seagreen', 'forestgreen', 'lightseagreen', 'dodgerblue', 'midnightblue', 'aqua', 'cyan', 'springgreen', 'lime', 'mediumspringgreen', 'darkturquoise', 'deepskyblue', 'darkcyan', 'teal', 'green', 'darkgreen', 'blue', 'mediumblue', 'darkblue', 'navy', 'black');
     if (in_array(strtolower($color), $x11ColorNames) == TRUE) {
@@ -4026,7 +4032,7 @@ function cpgValidateColor($color)
 * @param string $message
 * @return $message_id
 **/
-function cpgStoreTempMessage($message) 
+function cpgStoreTempMessage($message)
 {
     global $CONFIG;
     $message = urlencode($message);
@@ -4090,7 +4096,7 @@ function cpgFetchTempMessage($message_id)
 * @param string $seconds
 * @return void
 **/
-function cpgCleanTempMessage($seconds = 3600) 
+function cpgCleanTempMessage($seconds = 3600)
 {
     global $CONFIG;
     $time = time() - (int)$seconds;
@@ -4111,7 +4117,7 @@ function cpgCleanTempMessage($seconds = 3600)
 * @param string $countdown
 * @return void
 **/
-function cpgRedirectPage($targetAddress = '', $caption = '', $message = '', $countdown = 0) 
+function cpgRedirectPage($targetAddress = '', $caption = '', $message = '', $countdown = 0)
 {
     global $CONFIG, $lang_common;
     if ($CONFIG['display_redirection_page'] == 0) {
@@ -4146,7 +4152,7 @@ function cpgRedirectPage($targetAddress = '', $caption = '', $message = '', $cou
 * @param mixed $exception
 * @return $return
 **/
-function cpgGetScriptNameParams($exception = '') 
+function cpgGetScriptNameParams($exception = '')
 {
     $superCage = Inspekt::makeSuperCage();
 
@@ -4164,15 +4170,15 @@ function cpgGetScriptNameParams($exception = '')
 
     // Now get the parameters.
     // WARNING: as this function is meant to just return the URL parameters
-    // (minus the one mentioned in $exception), neither the parameter names 
-    // nor the the values should be sanitized, as we simply don't know here 
+    // (minus the one mentioned in $exception), neither the parameter names
+    // nor the the values should be sanitized, as we simply don't know here
     // against what we're suppossed to sanitize.
-    // For now, I have chosen the safe method, sanitizing the parameters. 
+    // For now, I have chosen the safe method, sanitizing the parameters.
     // Not sure if this is a bright idea for the future.
-    // So, use the parameters returned from this function here with the same 
-    // caution that applies to anything the user could tamper with. 
-    // The function is meant to help you generate links (in other words: 
-    // something the user could come up with by typing them just as well), 
+    // So, use the parameters returned from this function here with the same
+    // caution that applies to anything the user could tamper with.
+    // The function is meant to help you generate links (in other words:
+    // something the user could come up with by typing them just as well),
     // so don't abuse this function for anything else.
      $matches = $superCage->server->getMatched('QUERY_STRING', '/^[a-zA-Z0-9&=_\/.]+$/');
      if ($matches) {
@@ -4200,7 +4206,7 @@ function cpgGetScriptNameParams($exception = '')
  * @param mixed $date
  * @return $return
 **/
-function cpgValidateDate($date) 
+function cpgValidateDate($date)
 {
     if (Inspekt::isDate($date)) {
         return $date;
@@ -4221,7 +4227,7 @@ function cpgValidateDate($date)
  * @param mixed $url, $method, $data, $redirect
  * @return array
  **/
-function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $minLength = '0') 
+function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $minLength = '0')
 {
     global $lang_get_remote_file_by_url;
     // FSOCK code snippets taken from http://jeenaparadies.net/weblog/2007/jan/get_remote_file
@@ -4352,7 +4358,7 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
  *
  * @return boolean $check_approve
  */
-function user_is_allowed() 
+function user_is_allowed()
 {
     if (GALLERY_ADMIN_MODE) {
         return true;
@@ -4445,7 +4451,7 @@ function js_include($filename, $inline = false)
  * @param string $var Name of the variable by which the value will be accessed in js
  * @param mixed $val Value which can be string, int, array or boolean
  */
-function set_js_var($var, $val) 
+function set_js_var($var, $val)
 {
     global $JS;
 
@@ -4464,26 +4470,26 @@ function set_js_var($var, $val)
  * @return string json string
  */
 if (!function_exists('json_encode')) {
-function json_encode($arr) 
+function json_encode($arr)
 {
     // If the arr is object then gets its variables
     if (is_object($arr)) {
         $arr = get_object_vars($arr);
     }
-  
+
     $out = array();
     $keys = array();
     // If arr is array then get its keys
     if (is_array($arr)) {
         $keys = array_keys($arr);
     }
-  
+
     $numeric = true;
     // Find whether the keys are numeric or not
     if (!empty($keys)) {
         $numeric = (array_values($keys) === array_keys(array_values($keys)));
     }
-  
+
     foreach ($arr as $key => $val) {
         // If the value is array or object then call json_encode recursively
         if (is_array($val) || is_object($val)) {
@@ -4515,7 +4521,7 @@ function json_encode($arr)
     } else {
         $return = '[' . implode(', ', $out) . ']';
     }
-  
+
     return $return;
 } // function json_encode
 } // if !function_exists(json_encode)
@@ -4638,7 +4644,7 @@ function rebuild_tree($parent, $left, $depth, $pos)
     }
 
     $childpos = 0;
-    
+
     // get all children of this node
     $result = cpg_db_query("SELECT cid FROM {$CONFIG['TABLE_PREFIX']}categories WHERE parent = $parent ORDER BY $sort_query, cid");
     while ($row = mysql_fetch_array($result)) {
@@ -4652,7 +4658,7 @@ function rebuild_tree($parent, $left, $depth, $pos)
     // we've got the left value, and now that we've processed
     // the children of this node we also know the right value
     cpg_db_query("UPDATE {$CONFIG['TABLE_PREFIX']}categories SET lft = $left, rgt = $right, depth = $depth, pos = $pos WHERE cid = $parent LIMIT 1");
-   
+
     // return the right value of this node + 1
     return $right+1;
 } // function rebuild_tree
@@ -4689,7 +4695,7 @@ function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '',
     $return .= '<img src="';
     $return .= $relative_path;
     $return .= '" border="0" alt="" ';
-    // Add width and height attributes. 
+    // Add width and height attributes.
     // Actually reading the dimensions would be too time-consuming,
     // so we assume 16 x 16 pixels unless specified otherwise in
     // the custom theme
@@ -4716,7 +4722,7 @@ function cpg_float2decimal($float) {
     global $lang_decimal_separator;
     $value = floor($float);
     $decimal_page = ltrim(strstr($float, '.'),'.');
-    
+
     // initialize some vars start
         $return = '';
         $fit = 3; // how many digits to use
@@ -4747,7 +4753,7 @@ function cpg_float2decimal($float) {
  * @return array: a list of file names (without extension)
  */
 if (!function_exists('form_get_foldercontent')) {
-    function form_get_foldercontent ($foldername, $fileOrFolder = 'folder', $validextension = '', $exception_array = array('')) 
+    function form_get_foldercontent ($foldername, $fileOrFolder = 'folder', $validextension = '', $exception_array = array(''))
     {
         global $CONFIG;
         $dir = opendir($foldername);
@@ -4778,12 +4784,12 @@ if (!function_exists('form_get_foldercontent')) {
   * @return array: an ascotiative array of language file names (without extension) and language names
  */
 if (!function_exists('cpg_get_available_languages')) {
-    function cpg_get_available_languages() 
+    function cpg_get_available_languages()
     {
         // Work in progress - GauGau
         global $CONFIG;
-        // Make sure that the language table exists in the first place - 
-        // return without return value if the table doesn't exist because 
+        // Make sure that the language table exists in the first place -
+        // return without return value if the table doesn't exist because
         // the upgrade script hasn't been run
         $results = cpg_db_query("SHOW TABLES LIKE '{$CONFIG['TABLE_LANGUAGE']}'");
         if (!mysql_num_rows($results)) {
@@ -4794,7 +4800,7 @@ if (!function_exists('cpg_get_available_languages')) {
         }
         mysql_free_result($results);
         unset($results);
-        
+
         // get list of available languages
         $results = cpg_db_query("SELECT lang_id, english_name, native_name, custom_name FROM {$CONFIG['TABLE_LANGUAGE']} WHERE available='YES' AND enabled='YES' ");
         while ($row = mysql_fetch_array($results)) {
@@ -4819,18 +4825,18 @@ if (!function_exists('cpg_get_available_languages')) {
             $language_array = form_get_foldercontent('lang/','file', 'php');
         }
         // sort the array by English name
-        ksort($language_array);        
+        ksort($language_array);
         return $language_array;
     }
 }
 
 if (!function_exists('array_is_associative')) { // make sure that this will not break in future PHP versions
-    function array_is_associative($array) 
+    function array_is_associative($array)
     {
         if (is_array($array) && ! empty($array)) {
             for ( $iterator = count($array) - 1; $iterator; $iterator-- ) {
-                if (!array_key_exists($iterator, $array)) { 
-                    return true; 
+                if (!array_key_exists($iterator, $array)) {
+                    return true;
                 }
             }
             return !array_key_exists(0, $array);
@@ -4842,43 +4848,43 @@ if (!function_exists('array_is_associative')) { // make sure that this will not 
 function cpg_config_set($name, $value) {
 
     global $CONFIG, $USER_DATA;
-    
+
     $value = addslashes($value);
-    
+
     if ($CONFIG[$name] === $value) {
         return;
     }
-    
+
     $sql = "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '$name'";
-    
+
     cpg_db_query($sql);
 
     $CONFIG[$name] = $value;
-    
+
     if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
-    
+
         log_write(
             "CONFIG UPDATE SQL: $sql\n".
             'TIME: '.date("F j, Y, g:i a")."\n".
             'USER: '.$USER_DATA['user_name'],
             CPG_DATABASE_LOG
         );
-    }      
+    }
 }
 
 function cpg_format_bytes($bytes) {
 
     global $lang_byte_units, $lang_decimal_separator;
-    
+
     foreach ($lang_byte_units as $unit) {
 
         if ($bytes < 1024) {
             break;
         }
-                
+
         $bytes /= 1024;
     }
-    
+
     return number_format($bytes, 2, $lang_decimal_separator[1], $lang_decimal_separator[0]) . ' ' . $unit;
 }
 
@@ -4889,20 +4895,20 @@ if (!function_exists('stripos')) {
   }
 }
 
-function cpg_get_type($filename,$filter=null) 
+function cpg_get_type($filename,$filter=null)
 {
     global $CONFIG;
     static $FILE_TYPES = array();
-    
+
     if (!$FILE_TYPES) {
 
         // Map content types to corresponding user parameters
         $content_types_to_vars = array('image'=>'allowed_img_types','audio'=>'allowed_snd_types','movie'=>'allowed_mov_types','document'=>'allowed_doc_types');
 
         $result = cpg_db_query('SELECT extension, mime, content, player FROM '.$CONFIG['TABLE_FILETYPES']);
-    
+
         $CONFIG['allowed_file_extensions'] = '';
-        
+
         while ($row = mysql_fetch_assoc($result)) {
             // Only add types that are in both the database and user defined parameter
             if ($CONFIG[$content_types_to_vars[$row['content']]]=='ALL' || is_int(strpos('/'.$CONFIG[$content_types_to_vars[$row['content']]].'/','/'.$row['extension'].'/'))) {
@@ -4910,12 +4916,12 @@ function cpg_get_type($filename,$filter=null)
                 $CONFIG['allowed_file_extensions'].= '/'.$row['extension'];
         }
         }
-        
+
         $CONFIG['allowed_file_extensions'] = substr($CONFIG['allowed_file_extensions'],1);
-        
+
         mysql_free_result($result);
     }
-    
+
     if (!is_array($filename)) {
         $filename = explode('.',$filename);
     }
@@ -4931,32 +4937,32 @@ function cpg_get_type($filename,$filter=null)
     }
 }
 
-function is_image(&$file) 
+function is_image(&$file)
 {
     return cpg_get_type($file,'image');
 }
 
-function is_movie(&$file) 
+function is_movie(&$file)
 {
     return cpg_get_type($file,'movie');
 }
 
-function is_audio(&$file) 
+function is_audio(&$file)
 {
     return cpg_get_type($file,'audio');
 }
 
-function is_document(&$file) 
+function is_document(&$file)
 {
     return cpg_get_type($file,'document');
 }
 
-function is_flash(&$file) 
+function is_flash(&$file)
 {
     return strrpos($file, '.swf' );
 }
 
-function is_known_filetype($file) 
+function is_known_filetype($file)
 {
     return is_image($file) || is_movie($file) || is_audio($file) || is_document($file);
 }
@@ -4965,16 +4971,16 @@ function is_known_filetype($file)
 * Check if a plugin is used to diplay captcha
 **/
 function captcha_plugin_enabled(){
-	global $CPG_PLUGINS;
-	
-	if(!empty($CPG_PLUGINS)){
-		foreach($CPG_PLUGINS as $plugin){
-			if(isset($plugin->filters['captcha_contact_print'])){
-				return true;	
-			}
-		}
-	}
-	return false;
+    global $CPG_PLUGINS;
+
+    if(!empty($CPG_PLUGINS)){
+        foreach($CPG_PLUGINS as $plugin){
+            if(isset($plugin->filters['captcha_contact_print'])){
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 ?>
