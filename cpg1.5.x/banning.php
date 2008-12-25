@@ -232,7 +232,7 @@ EOT;
                         <input type="checkbox" class="checkbox" name="select_{$row['ban_id']}" id="select_{$row['ban_id']}" value="1" />
                     </td>
                     <td class="{$row_style_class}" valign="top">
-                        <input type="text" class="textinput" style="width: 80%" name="user_name_{$row['ban_id']}" id="user_name_{$row['ban_id']}" value="{$username}" />
+                        <input type="text" class="textinput" style="width: 100%" name="user_name_{$row['ban_id']}" id="user_name_{$row['ban_id']}" value="{$username}" />
                         {$view_profile}
                         <input type="hidden" name="user_id_{$row['ban_id']}" id="user_id_{$row['ban_id']}" value="{$row['user_id']}" />
                     </td>
@@ -241,7 +241,7 @@ EOT;
                         <div id="email_{$row['ban_id']}_warning" class="cpg_message_validation formFieldWarning" style="display:none;">{$lang_banning_php['email_field_invalid']}</div>
                     </td>
                     <td class="{$row_style_class}" valign="top">
-                        <input type="text" class="textinput ip_field" size="15" maxlength="15" name="ip_addr_{$row['ban_id']}" id="ip_addr_{$row['ban_id']}" value="{$row['ip_addr']}" />
+                        <input type="text" class="textinput ip_field" style="width: 100%" size="15" maxlength="15" name="ip_addr_{$row['ban_id']}" id="ip_addr_{$row['ban_id']}" value="{$row['ip_addr']}" />
                         <div id="ip_addr_{$row['ban_id']}_warning" class="cpg_message_validation formFieldWarning" style="display:none;">{$lang_banning_php['ip_address_field_invalid']}</div>
                     </td>
                     <td class="{$row_style_class}" valign="top">
@@ -363,7 +363,7 @@ if ($superCage->post->keyExists('submit')) {
             $action_output .= '<li style="list-style-image:url(images/icons/ok.png)">' . sprintf($lang_banning_php['ban_record_x_updated'], $posted_ban_id) .'</li>';
             // There has been an actual change of the database record - let's write it back --- end
         }
-        // Determine wether there has actually been a change --- end
+        // Determine whether there has actually been a change --- end
         // Write the changes into the database --- end
     } // end foreach loop
     // Now let's take care of new ban records
@@ -554,8 +554,8 @@ create_banlist();
 
 echo <<<EOT
     <tr>
-        <td class="tablef" valign="middle" rowspan="2" colspan="2">
-            {$icon_array['add']}{$lang_banning_php['add_new']}
+        <td class="tablef" valign="top" align="right" rowspan="2" colspan="2">
+            {$lang_banning_php['add_new']}:
         </td>
         <td class="tablef" valign="top">
             <input type="text" class="textinput" style="width: 100%" name="add_user_name" id="add_user_name" value="{$comm_info['msg_author']}" title="{$lang_banning_php['user_name']}" />
@@ -565,11 +565,11 @@ echo <<<EOT
             <div id="add_email_warning" class="cpg_message_validation formFieldWarning" style="display:none;">{$lang_banning_php['email_field_invalid']}</div>
         </td>
         <td class="tablef" valign="top">
-            <input type="text" class="textinput ip_field" name="add_ip" id="add_ip" value="{$comm_info['msg_ip']}" size="15" maxlength="15" title="{$lang_banning_php['ip_address']}" />
+            <input type="text" class="textinput ip_field" style="width: 100%" name="add_ip" id="add_ip" value="{$comm_info['msg_ip']}" size="15" maxlength="15" title="{$lang_banning_php['ip_address']}" />
             <div id="add_ip_warning" class="cpg_message_validation formFieldWarning" style="display:none;">{$lang_banning_php['ip_address_field_invalid']}</div>
         </td>
         <td class="tablef" valign="top">
-            <input type="text" class="textinput date-pick"  name="add_expires" id="add_expires" value="" size="10" maxlength="10" title="{$lang_banning_php['select_date']}" />
+            <input type="text" class="textinput date-pick"  style="width: 80%" name="add_expires" id="add_expires" value="" size="10" maxlength="10" title="{$lang_banning_php['select_date']}" />
             <div id="add_expires_warning" class="cpg_message_validation formFieldWarning" style="display:none;">{$lang_banning_php['expiry_field_invalid']}</div>
         </td>
     </tr>
