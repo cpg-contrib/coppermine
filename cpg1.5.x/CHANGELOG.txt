@@ -1,4 +1,4 @@
-************************
+﻿************************
 Coppermine Photo Gallery
 ************************
 Copyright (c) 2003-2008 Dev Team
@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-12-27 [C] Addapted French lang file to new core changes of internationalization {Frantz}
 2008-12-25 [C] Removed potentially confusing plus icon in ban manager; adjusted text input sizes for consistent look {TranzNDance}
 2008-12-25 [C] Reorganized admin menu to place related buttons next to each other {TranzNDance}
 2008-12-24 [B] Fixed the json_encode function to properly escape the strings {Abbas}
