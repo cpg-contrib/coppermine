@@ -571,7 +571,7 @@ if (defined('CATMGR_PHP')) {
 if (defined('CONTACT_PHP')) {
   $lang_contact_php['title'] ='Contact'; // cpg1.5
   $lang_contact_php['your_name'] = 'Votre Nom'; // cpg1.5
-  $lang_contact_php['your_email'] = 'Votre adresse couriel'; // cpg1.5
+  $lang_contact_php['your_email'] = 'Votre adresse courriel'; // cpg1.5
   $lang_contact_php['subject'] = 'Objet'; // cpg1.5
   $lang_contact_php['your_message'] = 'Votre message'; // cpg1.5
   $lang_contact_php['name_field_mandatory'] = 'Veuillez entrez votre nom'; // cpg1.5 //js-alert
@@ -1168,7 +1168,7 @@ if (defined('ECARDS_PHP')) {
   $lang_ecard_php['ecard_title'] = 'Une Carte Electronique pour vous, de la part de %s';
   $lang_ecard_php['error_not_image'] = 'Seules les images peuvent être envoyées sous forme de Cartes Electroniques.'; // cpg1.5.x
   $lang_ecard_php['error_not_image_flash'] = 'Seuls les images et les fichiers au format Flash peuvent être envoyés sous forme de Cartes Electroniques.'; // cpg1.5.x
-  $lang_ecard_php['view_ecard'] = 'Alternate link if the e-card does not display correctly';
+  $lang_ecard_php['view_ecard'] = 'Lien de substitution si la Carte Electronique ne s\'affiche pas correctement';
   $lang_ecard_php['view_ecard_plaintext'] = 'Pour voir cette Carte Postale Electronique, copiez et collez cette URL dans la barre d\'adresse de votre navigateur:'; //cpg1.4
   $lang_ecard_php['view_more_pics'] = 'Suivez ce lien pour découvrir davantage de photos&nbsp;!';
   $lang_ecard_php['send_success'] = 'Votre Carte Electronique a été envoyée avec succès !';
@@ -1178,7 +1178,7 @@ if (defined('ECARDS_PHP')) {
   $lang_ecard_php['your_email'] = 'Votre adresse courriel :';
   $lang_ecard_php['to'] = 'A';
   $lang_ecard_php['rcpt_name'] = 'Nom du destinataire :';
-  $lang_ecard_php['rcpt_email'] = 'Adresse e-mail du destinataire :';
+  $lang_ecard_php['rcpt_email'] = 'Adresse courriel du destinataire :';
   $lang_ecard_php['greetings'] = 'Introduction :';
   $lang_ecard_php['message'] = 'Message :';
   $lang_ecard_php['ecards_footer'] = 'Envoyé par %s depuis l\'adresse IP %s à %s (Heure de la Galerie)'; //cpg1.4
@@ -1423,7 +1423,7 @@ if (defined('INSTALL_PHP')) {
   $lang_install['change_lang'] = 'Changer de langue';
   $lang_install['check_path'] = 'Vérifier le chemin';
   $lang_install['continue'] = 'Etape suivante';
-  $lang_install['conv_said'] = 'Le programme de conversion dit::';
+  $lang_install['conv_said'] = 'Le programme de conversion dit:';
   $lang_install['license_info']= 'Coppermine est un script de galerie d\'images et de contenu multimédia qui est publié sous licence GNU GPL v3. En l\'installant, vous acceptés les termes de celle-ci:';
   $lang_install['cpg_info_frames'] = 'Votre navigateur semble ne pas pouvoir afficher les cadres imbriqués (iframes). Vous pouvez trouver la licence dans le répertoire \'docs\' qui se trouve dans le pack de Coppermine.';
   $lang_install['license'] = 'Acceptation de la licence de Coppermine';
@@ -1468,8 +1468,8 @@ if (defined('INSTALL_PHP')) {
   $lang_install['no_admin_password'] = 'Vous devez entrer un mot de passe administrateur';
   $lang_install['no_admin_username'] = 'Vous devez entre un nom d\'utilisateur pour l\'administrateur';
   $lang_install['no_dir'] = 'Répertoire non disponible';
-  $lang_install['no_gd'] = 'Votre installation de PHP ne semble pas inclure l\'extention pour la librarie graphique \'GD\' et vous n\'avez pas indiqué voulir utiliser ImageMagick. Coppermine a été configuré pourutiliser GD2, la détection automatique de GD posant parfois des problèmes. Si GD est installé sur votre système, le script pourra fonctionner, sinon, vous devrez installer ImageMagik.';
-  $lang_install['no_mysql_conn'] = 'Impossible de créer une connection MySQL, vérifiez les donénes entrées pour la connection';
+  $lang_install['no_gd'] = 'Votre installation de PHP ne semble pas inclure l\'extension pour la librarie graphique \'GD\' et vous n\'avez pas indiqué voulir utiliser ImageMagick. Coppermine a été configuré pour utiliser GD2, la détection automatique de GD posant parfois des problèmes. Si GD est installé sur votre système, le script pourra fonctionner, sinon, vous devrez installer ImageMagik.';
+  $lang_install['no_mysql_conn'] = 'Impossible de créer une connection MySQL, vérifiez les données entrées pour la connection';
   $lang_install['no_mysql_support'] = 'PHP n\'a pas de support Mysql actif.';
   $lang_install['no_thumb_method'] = 'Vous avez choisi un système de manipulation d\'images (GD/IM)';
   $lang_install['nok'] = 'INCORRECT';
@@ -1482,11 +1482,11 @@ if (defined('INSTALL_PHP')) {
   $lang_install['password_verif'] = 'Vérification du Mot de Passe';
   $lang_install['perm_error'] = 'Les autorisations de \'%s\' sont paramétrées à %s, merci de les paramétrer à';
   $lang_install['perm_ok'] = 'Les autorisations de certains répertoires ont été vérifiées et semblent correctes. <br />Merfci d\'aller à l\'étape suivante.';
-  $lang_install['perm_not_ok'] = 'Les autorisations de certains réperoirs ne sont par correctes.<br />Changez les autorisations des répertoires ci-desous marqués "INCORRECT".'; // cpg1.5
+  $lang_install['perm_not_ok'] = 'Les autorisations de certains répertoires ne sont par correctes.<br />Changez les autorisations des répertoires ci-desous marqués "INCORRECT".'; // cpg1.5
   $lang_install['please_go_back'] = 'Merci de %scliquer ici%s pour revenir en arrière et corriger ce problème avant de continuer.';
   $lang_install['populate_db'] = 'Completer la base de donnée';
   $lang_install['ready_to_roll'] = '<a href="index.php">Coppermine</a> est maintenant corectement configuré et prêt à fonctionner.<br /><br /><a href="login.php">Identiez-vous</a> en utilisant les informations que vous avez données pour votre compte administrateur.';
-  $lang_install['sect_create_adm'] = 'Cette partie requière des informations pour crére votre compte administrateur Coppermine. N\'utilisez que des caractères alphanumériques. Entrez ces données attentivement!';
+  $lang_install['sect_create_adm'] = 'Cette partie requière des informations pour créer votre compte administrateur Coppermine. N\'utilisez que des caractères alphanumériques. Entrez ces données attentivement!';
   $lang_install['sect_mysql_info'] = 'Cette section demande les informations pour savoir comment se connecter à votre base de donnée MySQL.<br />Si vou sne savez pas comment les remplir, demandez de l\'aide à votre hébergeur.';
   $lang_install['sect_mysql_sel_db'] = 'Ici vous devez choisir quelle base de donnée vous voulez utiliser pour Coppermine. <br />Si votre compte Mysql a les privilèges requis, vous pouvez créer une nouvelle base de donnée depusi l\'installeur ou utiliser une base de donnée existante. Si vous ne voulez d\'aucune de ces deux options, vous devrez créer une base de donnée hors de l\installeur Coppermine, puis revenir ici et sélectionner la nouvelle base de donnée depuis la liste déroulante. Vous pouvez aussi changer le préfixe des tables (N\'utilisez pas de point), mais il est recommander de laisser le préfixe par défaut tel quel.';
   $lang_install['select_lang'] = 'Sélectionnez la langue par défaut: ';
@@ -1496,23 +1496,23 @@ if (defined('INSTALL_PHP')) {
   $lang_install['title_admin'] = 'Créer l\'adiminstrateur Coppermine';
   $lang_install['title_dir_check'] = 'Vérification des autorisations des répertoires';
   $lang_install['title_file_check'] = 'Vérification des fichiers d\installation';
-  $lang_install['title_finished'] = 'Installation Complete';
+  $lang_install['title_finished'] = 'Installation Compète';
   $lang_install['title_imp'] = 'Sélection de la Librairie Graphique';
   $lang_install['title_imp_test'] = 'Test de la Librairie Graphique';
   $lang_install['title_mysql_db_sel'] = 'Sélection de la base de donnée MySql';
-  $lang_install['title_mysql_pop'] = 'Creation de la structure de la base de donnée';
+  $lang_install['title_mysql_pop'] = 'Création de la structure de la base de donnée';
   $lang_install['title_mysql_user'] = 'Autentification de l\'utilisateur de MySql';
   $lang_install['title_welcome'] = 'Bienvenue dans l\installation de Coppermine';
-  $lang_install['tmp_conf_error'] = 'Impossible d\'écire dans le fichier temporaire de configuration, <br />assurez vous que le répertoire \'include\' à les permissions en écriture (777)';
-  $lang_install['tmp_conf_ser_err'] = 'Une erreur sérieure est intervenue dans l\'installeur, essayez de recharger votre page ou recommencez en éffacant le fichier \'include/config.tmp\'.';
+  $lang_install['tmp_conf_error'] = 'Impossible d\'écrire dans le fichier temporaire de configuration, <br />assurez vous que le répertoire \'include\' à les permissions en écriture (777)';
+  $lang_install['tmp_conf_ser_err'] = 'Une erreur sérieuse est intervenue dans l\'installeur, essayez de recharger votre page ou recommencez en effacant le fichier \'include/config.tmp\'.';
   $lang_install['try_again'] = 'Essayez encore !';
-  $lang_install['unable_write_config'] = 'Impossible de crére le fichier de configuration';
+  $lang_install['unable_write_config'] = 'Impossible de créer le fichier de configuration';
   $lang_install['user_err'] = 'Le nom d\'utilisateur doit contenir uniquement des caractères alphanumériques et ne peut être vide.';
   $lang_install['username'] = 'Nom d\'utilisateur';
   $lang_install['your_admin_account'] = 'Votre compte administrateur';
   $lang_install['no_cookie'] = 'Votre navigateur n\'accèpte pas les cookies (mêm si il est très sucré). Il est recommandé d\'accepter les cookies.';
   $lang_install['no_javascript'] = 'Votre navigateur semble ne pas avoir le Javascript activé, il est hautement recommandé de l\'activer.';
-  $lang_install['register_globals_detected'] = 'Il semble que votre configuration de PHP à le \'register_globals\' actif, vous devriez le désactyiver pour des raisons de sécurité.';
+  $lang_install['register_globals_detected'] = 'Il semble que votre configuration de PHP à le \'register_globals\' actif, vous devriez le désactiver pour des raisons de sécurité.';
   $lang_install['version_undetected'] = 'Le script ne peut pas déterminer quelle version de %s votre serveur utilise. Assurez vous que c\'est au moins la version %s';
   $lang_install['version_incompatible'] = 'Le script à détecté une version incompatible (%s) de %s sur votre serveur.<br />Assurez vous d\'utiliser une version compatible (%s ou plus) avant de continuer!';
   $lang_install['read_gif'] = 'Lire/Ecrire un fichier .gif';
@@ -1565,25 +1565,25 @@ if (defined('LANGMGR_PHP')) {
   $lang_langmgr_php['default'] = 'Default';
   $lang_langmgr_php['missing'] = 'manquant';
   $lang_langmgr_php['broken'] = 'Semble corrompu ou inaccessile';
-  $lang_langmgr_php['exists_in_db_and_file'] = 'exite dans la base de donnée et en tant que fichier';
+  $lang_langmgr_php['exists_in_db_and_file'] = 'existe dans la base de donnée et en tant que fichier';
   $lang_langmgr_php['exists_as_file_only'] = 'existe en tant que fichier uniquement';
   $lang_langmgr_php['pick_a_flag'] = 'Choisir';
   $lang_langmgr_php['replace_x_with_y'] = 'Remplacer %s par %s';
   $lang_langmgr_php['tanslator_information'] = 'Information sur le traducteur';
   $lang_langmgr_php['cpg_version'] = 'Version de Coppermine';
   $lang_langmgr_php['hide_details'] = 'Cacher les détails';
-  $lang_langmgr_php['show_details'] = 'Montert les détails';
+  $lang_langmgr_php['show_details'] = 'Montrer les détails';
   $lang_langmgr_php['loading'] = 'Chargement';
   $lang_langmgr_php['english_missing'] = 'LE fichier langue Anglaise est manquant alors qu\'il ne devrait pas être effacé. Restaurez le immédiatement.';
   $lang_langmgr_php['enable_at_least_one'] = 'Vous devez au moins activer une langue pour que la galerie fonctionne';
-  $lang_langmgr_php['enable_default'] = 'Vous avez choisi une langue par défaut qui n\'est pas active. Choisissez une autre langue par défaut ou activezla langue que vous avez sélectionnée par défaut!';
+  $lang_langmgr_php['enable_default'] = 'Vous avez choisi une langue par défaut qui n\'est pas active. Choisissez une autre langue par défaut ou activez la langue que vous avez sélectionnée par défaut!';
   $lang_langmgr_php['available_default'] = 'Vous avez sélectionné une langue par défaut qui n\'est plus disponible. Choisissez une autre langue par défaut!';
-  $lang_langmgr_php['version_does_not_match'] = 'La version de ce fichier ne corrspond pas à votre version de Coppermine. Utilisez le avec prudence et testez le attentivement!';
-  $lang_langmgr_php['no_version'] = 'Aucune information de version n\'a été trouvée. Il semblerait que ce fichier langue ne fonctionne pas ou que ce n\'est pas un fichier langue.';
-  $lang_langmgr_php['filesize'] = 'La taille du fichier %s n\'est pas possible';
+  $lang_langmgr_php['version_does_not_match'] = 'La version de ce fichier ne correspond pas à votre version de Coppermine. Utilisez le avec prudence et testez le attentivement!';
+  $lang_langmgr_php['no_version'] = 'Aucune information de version n\'a été trouvée. Il semblerait que ce fichier langue ne fonctionne pas ou que ce ne soit pas un fichier langue.';
+  $lang_langmgr_php['filesize'] = 'La taille du fichier %s n\'est pas cohérente';
   $lang_langmgr_php['content_missing'] = 'Ce fichier ne semble pas contenir les données nécessaires, il ne s\'agit certainement pas d\'un fichier langue valide.';
   $lang_langmgr_php['status'] = 'Status';
-  $lang_langmgr_php['default_language'] = 'La langue par défut est %s';
+  $lang_langmgr_php['default_language'] = 'La langue par défaut est %s';
 }
 
 // ----------------------- //

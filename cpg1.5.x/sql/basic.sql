@@ -388,7 +388,7 @@ INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, 
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('estonian', 'Estonian','Eesti','ee', 'NO', 'NO', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('filipino', 'Filipino Tagalog','','ph', 'NO', 'NO', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('finnish', 'Finnish','Suomea','fi', 'NO', 'NO', 'NO');
-INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('french', 'French','Fran&ccedil;ais','fr', 'NO', 'NO', 'NO');
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('french', 'French','Fran&ccedil;ais','fr', 'YES', 'YES', 'YES');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('galician', 'Galician','Galego','galician', 'NO', 'NO', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('georgian', 'Georgian','&#4325;&#4304;&#4320;&#4311;&#4323;&#4314;&#4312;','ge', 'NO', 'NO', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('german', 'German (informal)', 'Deutsch (Du)', 'de', 'YES', 'YES', 'NO');
