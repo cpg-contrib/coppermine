@@ -30,14 +30,18 @@
 * @version $Id$
 */
 
-if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+if (!defined('IN_COPPERMINE')) {
+    die('Not in Coppermine...');
+}
 
 starttable("100%", "Welcome");
 
 ?>
-<tr><td class="tableb" >
-This is for any content block - just a test - Edit the file "anycontent.php" to change what is shown here
-</td></tr>
+    <tr>
+        <td class="tableb" >
+            This is for any content block - just a test - Edit the file "anycontent.php" to change what is shown here
+        </td>
+    </tr>
 <?php
 endtable();
 
