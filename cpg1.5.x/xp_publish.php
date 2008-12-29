@@ -166,21 +166,6 @@ function javascript_string($str)
     return $str;
 }
 
-// Retrieve the category list
-function get_subcat_data($parent, $ident = '')
-{
-    global $CONFIG, $CAT_LIST;
-
-    $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
-    if (mysql_num_rows($result) > 0) {
-        $rowset = cpg_db_fetch_rowset($result);
-        foreach ($rowset as $subcat) {
-            $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
-            get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
-        }
-    }
-}
-
 // Return the HTML code for the album list select box
 function html_album_list(&$alb_count)
 {
@@ -230,7 +215,7 @@ function html_cat_list()
     if (USER_CAN_CREATE_ALBUMS) $CAT_LIST[] = array(FIRST_USER_CAT + USER_ID, $lang_albmgr_php['my_gallery']);
     $CAT_LIST[] = array(0, $lang_albmgr_php['no_category']);
 
-    get_subcat_data(0, '');
+    get_cat_data();
 
     $html = "\n";
     foreach($CAT_LIST as $category) {

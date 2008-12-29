@@ -49,51 +49,19 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
 $icon_array = array();
 $icon_array['ok'] = cpg_fetch_icon('ok', 0);
 
-/**
- * alb_get_subcat_data()
- *
- * @param integer $parent
- * @param string $ident
- **/
-function alb_get_subcat_data($parent, $ident = '')
-{
-    global $CONFIG, $CAT_LIST, $USER_DATA;
-
-    //select cats where the users can change the albums
-    $group_id = $USER_DATA['group_id'];
-    $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
-
-    if (mysql_num_rows($result) > 0) {
-        $rowset = cpg_db_fetch_rowset($result);
-        foreach ($rowset as $subcat) {
-            if (!GALLERY_ADMIN_MODE) {
-                $check_group = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_CATMAP']} WHERE group_id = '$group_id' AND cid=".$subcat['cid']);
-                $check_group_rowset = cpg_db_fetch_rowset($check_group);
-                if ($check_group_rowset) {
-                    $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
-                }
-            } else {
-                $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
-            }
-            alb_get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
-        }
-    }
-}
-
-
-    /**set the message varialble to javascript file*/
-    $confirm_modifs =  $lang_albmgr_php['confirm_modifs'];
-    set_js_var('confirm_modifs', $confirm_modifs) ;
-    /**Albums delete confirem message*/
-    $confirm_delete  = $lang_albmgr_php['confirm_delete1'] . $lang_albmgr_php['confirm_delete2'];
-    set_js_var("confirm_delete", $confirm_delete);
-    /**When user try to delete albums without any selections*/
-    $delete_not_selected = $lang_albmgr_php['select_first'];
-    set_js_var('dontDelete', $delete_not_selected);
-    /**when user change the category*/
-    $category_change = $lang_albmgr_php['category_change'];
-    set_js_var('category_change', $category_change);
-    set_js_var('new_album', $lang_albmgr_php['new_album']);
+/**set the message varialble to javascript file*/
+$confirm_modifs =  $lang_albmgr_php['confirm_modifs'];
+set_js_var('confirm_modifs', $confirm_modifs) ;
+/**Albums delete confirem message*/
+$confirm_delete  = $lang_albmgr_php['confirm_delete1'] . $lang_albmgr_php['confirm_delete2'];
+set_js_var("confirm_delete", $confirm_delete);
+/**When user try to delete albums without any selections*/
+$delete_not_selected = $lang_albmgr_php['select_first'];
+set_js_var('dontDelete', $delete_not_selected);
+/**when user change the category*/
+$category_change = $lang_albmgr_php['category_change'];
+set_js_var('category_change', $category_change);
+set_js_var('new_album', $lang_albmgr_php['new_album']);
 
 pageheader($lang_albmgr_php['title']);
 ?>
@@ -155,7 +123,7 @@ if (GALLERY_ADMIN_MODE||USER_ADMIN_MODE) {
     if (GALLERY_ADMIN_MODE) {
         $CAT_LIST[] = array(0, $lang_albmgr_php['no_category']);
     }
-    alb_get_subcat_data(0, '');
+    get_cat_data();
 
     echo <<<EOT
                     <tr>
@@ -165,6 +133,9 @@ if (GALLERY_ADMIN_MODE||USER_ADMIN_MODE) {
 
 EOT;
     foreach ($CAT_LIST as $category) {
+        if ($category[0] == 1) {
+            continue;
+        }
         echo '<option value="' . $category[0] . '"' . ($cat == $category[0] ? ' selected': '') . ">" . $category[1] . "</option>\n";
     }
     echo <<<EOT
