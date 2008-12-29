@@ -39,27 +39,29 @@ define('ADDPIC_PHP', true);
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
 
-/**
- * Clean up GPC and other Globals here
- */
-$aid = $superCage->get->getInt('aid');
+if (!GALLERY_ADMIN_MODE) {
+    die('Access denied');
+}
 
-if (!GALLERY_ADMIN_MODE) die('Access denied');
+$aid = $superCage->get->getInt('aid');
 
 /**
  * TODO: $_GET['pic_file'] cannot be cleaned sensibly with current methods available. Refactor.
  */
-$matches = $superCage->get->getMatched('pic_file','/^[0-9A-Za-z=\+\/]+$/');
-$pic_file = base64_decode($matches[0]);
-$dir_name = dirname($pic_file) . '/';
+$matches   = $superCage->get->getMatched('pic_file', '/^[0-9A-Za-z=\+\/]+$/');
+$pic_file  = base64_decode($matches[0]);
+$dir_name  = dirname($pic_file) . '/';
 $file_name = basename($pic_file);
 
-# Create the holder $picture_name by translating the file name.
-# Translate any forbidden character into an underscore.
+// Create the holder $picture_name by translating the file name.
+// Translate any forbidden character into an underscore.
 $sane_name = replace_forbidden($file_name);
-$source = './'.$CONFIG['fullpath'].$dir_name.$file_name;
+$source    = './' . $CONFIG['fullpath'] . $dir_name . $file_name;
+
 rename($source, './' . $CONFIG['fullpath'] . $dir_name . $sane_name);
+
 $sql = "SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE filepath='" . addslashes($dir_name) . "' AND filename='" . addslashes($file_name) . "' LIMIT 1";
+
 $result = cpg_db_query($sql);
 
 if (mysql_num_rows($result)) {
