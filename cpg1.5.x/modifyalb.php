@@ -719,12 +719,6 @@ if (GALLERY_ADMIN_MODE) {
     }
     die;
     */
-    $nbEnr = mysql_fetch_array($result);
-    $files = $nbEnr[0];
-    if (!$files) { 
-    	$files = 0; 
-    }
-    mysql_free_result($result);
 
     // missing $comments
     $comments = '';
