@@ -693,17 +693,19 @@ EOT;
     }
 
 
-    $iframe_startfolder .= str_replace('searchnew.php', '', __FILE__).rtrim($CONFIG['fullpath'], '/').'/';
+    $iframe_startfolder = str_replace('searchnew.php', '', __FILE__).rtrim($CONFIG['fullpath'], '/').'/';
     $iframe_hide = rawurlencode('.,..,.svn,edit,'.rtrim($CONFIG['userpics'], '/'));
     print '    <tr>'."\n";
     print '        <td class="tableb" align="center">'."\n";
+
     if ($CONFIG['browse_batch_add'] == 1) {
-        print '            <iframe src="minibrowser.php?startfolder='.$iframe_startfolder.'&amp;parentform=choosefolder&amp;formelementname=startdir&amp;no_popup=1&amp;limitfolder='.$iframe_startfolder.'&amp;hidefolders='.$iframe_hide.'&amp;linktarget='.$CPG_PHP_SELF.'&amp;searchnew_php=1&amp;radio=0" width="95%" height="400" name="popup_in_a_box">'."\n";
+        print '            <iframe src="minibrowser.php?startfolder='.$iframe_startfolder.'&amp;parentform=choosefolder&amp;formelementname=startdir&amp;no_popup=1&amp;limitfolder='.$iframe_startfolder.'&amp;hidefolders='.$iframe_hide.'&amp;linktarget='.$CPG_PHP_SELF.'&amp;searchnew_php=1&amp;radio=0" width="95%" height="400" name="popup_in_a_box"></iframe>'."\n";
+    } else {
+        echo '<table width="100%">';
+        display_dir_tree('', '');
+        echo '</table>';
     }
-    display_dir_tree('', '');
-    if ($CONFIG['browse_batch_add'] == 1) {
-        print '            </iframe>'."\n";
-    }
+    
     print '        </td>'."\n";
     print '    </tr>'."\n";
 
