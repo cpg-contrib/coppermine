@@ -35,23 +35,17 @@ set_js_var('lang_no_change_needed', $lang_admin_php['no_change_needed']);
 // Include the JS for admin.php
 js_include('js/admin.js');
 
-$admin_data_array = $CONFIG;
+$admin_data_array  = $CONFIG;
 $optionLoopCounter = 0;
-
-
-$lineBreak = "\r\n";
-
-
+$lineBreak         = "\r\n";
 
 require_once('include/admin.inc.php'); // populate the array for the admin data (could later be done using an XML file)
 
 // Pull in alternate upload methods from active plugins
-$alternate_choices = CPGPluginAPI::filter('upload_option',null);
+$alternate_choices = CPGPluginAPI::filter('upload_option', null);
 if (is_array($alternate_choices)) {
     // If plugins add upload choices, merge them with the default ones
-    $config_data['user_settings']['upload_mechanism']['options'] = array_merge(
-        $config_data['user_settings']['upload_mechanism']['options'], $alternate_choices
-    );
+    $config_data['user_settings']['upload_mechanism']['options'] = array_merge($config_data['user_settings']['upload_mechanism']['options'], $alternate_choices);
 }
 
 // loop through the config sections and populate the array that determines what sections to expand/collapse
@@ -60,26 +54,13 @@ foreach ($config_data as $key => $value) {
     $collapseSections_array[] = $key;
 }
 
-//$postCount = count($_POST);
-
-//if ($postCount > 0) {
-    /*
-    if ($superCage->post->keyExists('update_config')) {
-        $evaluation_array = $_POST;
-        //print_r($evaluation_array);
-        //die();
-    } else {
-        $evaluation_array = $CONFIG;
-    }
-    */
-
 $userMessage = ''; //The message that the will be displayed if something went wrong or to tell the user that we had success
+
 $problemFields_array = array(); // we'll add field-wrapper-IDs to this array to visualize that something went wrong. Onload we'll assign the class "important" to the boxes that correspond to the array data
 
-//if (isset($_POST['restore_config'])) {
 if ($superCage->post->keyExists('restore_config')) { // user has chosen to factory-reset the config --- start
 
-    foreach ($config_data as $section => $values){
+    foreach ($config_data as $section => $values) {
     
         foreach ($values as $name => $value) {
 
@@ -131,15 +112,15 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
         // regex check
         if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '') || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '')) {
             if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '' && preg_match('#' . $adminDataValue['regex'] . '#i', $evaluate_value) == FALSE) || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '' && preg_match('#' . $adminDataValue['regex_not'] . '#i', $evaluate_value) == TRUE)) {
-                $userMessage .= '<li style="list-style-image:url(images/icons/stop.png)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
+                $userMessage    .= '<li style="list-style-image:url(images/icons/stop.png)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
                 $regexValidation = '0';
                 //$admin_data_array[$adminDataKey] = $evaluation_array[$adminDataKey]; // replace the stuff in the form field with the improper input, so the user can see and correct his error
                 $admin_data_array[$adminDataKey] = $evaluate_value; // replace the stuff in the form field with the improper input, so the user can see and correct his error
-                if (in_array($adminDataKey,$problemFields_array) != TRUE) {
+                if (in_array($adminDataKey, $problemFields_array) != TRUE) {
                     $problemFields_array[] = $adminDataKey;
                 }
-                if (in_array($config_section_key,$collapseSections_array) == TRUE) {
-                    unset($collapseSections_array[array_search($config_section_key,$collapseSections_array)]);
+                if (in_array($config_section_key, $collapseSections_array) == TRUE) {
+                    unset($collapseSections_array[array_search($config_section_key, $collapseSections_array)]);
                 }
             } else { // regex validation succesfull -- start
                 $regexValidation = '1';
@@ -156,21 +137,23 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
 
             // Code to rename system thumbs in images folder
             $old_thumb_pfx =& $CONFIG['thumb_pfx'];
-            $matches = $superCage->post->getMatched('thumb_pfx','/^[0-9A-Za-z_-]+$/');
-            $thumb_pfx = $matches[0];
+            $matches       = $superCage->post->getMatched('thumb_pfx', '/^[0-9A-Za-z_-]+$/');
+            $thumb_pfx     = $matches[0];
+            
             if ($old_thumb_pfx != $thumb_pfx) {
                 $folders = array('images/', $THEME_DIR.'images/');
                 foreach ($folders as $folder) {
                     $thumbs = cpg_get_system_thumb_list($folder);
                     foreach ($thumbs as $thumb) {
                         @rename($folder.$thumb['filename'],
-                                $folder.str_replace($old_thumb_pfx,$thumb_pfx,$thumb['filename']));
+                                $folder.str_replace($old_thumb_pfx, $thumb_pfx, $thumb['filename']));
                     }
                 }
             }
             // perform special tasks -- end
             $admin_data_array[$adminDataKey] = stripslashes($evaluate_value);
-            $CONFIG[$adminDataKey] = stripslashes($evaluate_value);
+            $CONFIG[$adminDataKey]           = stripslashes($evaluate_value);
+            
             $userMessage .= '<li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
         }
     } // inner foreach loop -- end
@@ -230,7 +213,7 @@ EOT;
 
 $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE_VERSION_STATUS . ')';
 
-$tabindexCounter = 1;
+$tabindexCounter      = 1;
 $numberOfConfigFields = count($CONFIG);
 
 print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform" onSubmit="return deleteUnneededFields();">';
@@ -284,16 +267,16 @@ EOT;
         }
         if ($value['type'] == 'checkbox') {
             $labelWrapperStart = '<label for="'.$key.'">';
-            $labelWrapperEnd = '</label>';
+            $labelWrapperEnd   = '</label>';
         } else {
             $labelWrapperStart = '';
-            $labelWrapperEnd = '';
+            $labelWrapperEnd   = '';
         }
         if (!empty($value['warning'])) { // set warning text
-            $warningText = $value['warning'];
-            $warningPopUp = cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_admin_php[$key]))).'&amp;t='.urlencode(base64_encode(serialize(htmlspecialchars($value['warning'])))),500,250,'*');
+            $warningText  = $value['warning'];
+            $warningPopUp = cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_admin_php[$key]))).'&amp;t='.urlencode(base64_encode(serialize(htmlspecialchars($value['warning'])))), 500, 250, '*');
         } else {
-            $warningText = '';
+            $warningText  = '';
             $warningPopUp = '';
         }
 
@@ -317,13 +300,13 @@ EOT;
         // grey out the field if not applicable because bridging is enabled
         //if ($value['bridged'] == 'hide') { //
         if ($CONFIG['bridge_enable'] != 0 && $value['bridged'] == 'hide') { //
-            $readonly_text = ' readonly="readonly" title="'.$lang_admin_php['bbs_disabled'].'"';
+            $readonly_text    = ' readonly="readonly" title="'.$lang_admin_php['bbs_disabled'].'"';
             $readonly_message = ' '.$lang_admin_php['bbs_disabled'];
-            $readonly_radio = ' disabled="disabled" title="'.$lang_admin_php['bbs_disabled'].'"';
+            $readonly_radio   = ' disabled="disabled" title="'.$lang_admin_php['bbs_disabled'].'"';
         } else {
-            $readonly_text = '';
+            $readonly_text    = '';
             $readonly_message = '';
-            $readonly_radio = '';
+            $readonly_radio   = '';
         }
         if (!empty($value['width'])) { // set width if option is set in array
             $widthOption = ' style="width:'.$value['width'].'"';
@@ -340,7 +323,7 @@ EOT;
         } else {
             $maxlengthOption = '';
         }
-        if (in_array($key,$problemFields_array) == TRUE) {
+        if (in_array($key, $problemFields_array) == TRUE) {
             $highlightFieldCSS = ' important';
         } else {
             $highlightFieldCSS = '';
@@ -364,7 +347,7 @@ EOT;
             $optionLoopCounter = 0;
             print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'">'; // wrap the radio-buttons set into a container box
             foreach ($value['options'] as $option) { // loop through the options array
-                $checked='';
+                $checked = '';
                 if ($admin_data_array[$key] == $optionLoopCounter) {
                     $checked = ' checked="checked"';
                 }
@@ -384,8 +367,8 @@ EOT;
             // not implemented (yet)
 
         } elseif ($value['type'] == 'select_multiple') { //SELECT_MULTIPLE
-            $optionLoopCounter = 0;
-            $option_value_array = explode ("|",$admin_data_array[$key]);
+            $optionLoopCounter  = 0;
+            $option_value_array = explode("|", $admin_data_array[$key]);
             if (count($value['options']) > 10) {
                 $maxSize = 10;
             } else {
@@ -407,7 +390,7 @@ EOT;
 
         } elseif ($value['type'] == 'select') { //SELECT
             $optionLoopCounter = 0;
-            $associativeArray = array_is_associative($value['options']);
+            $associativeArray  = array_is_associative($value['options']);
             print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'" id="'.$key.'" class="listbox" size="1" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" onchange="checkDefaultBox(\''.$key.'\', \'select\', \''.count($value['options']).'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">';
             foreach ($value['options'] as $option_key => $option_value) { // loop through the options array
                 if ($associativeArray == TRUE) {
@@ -437,7 +420,7 @@ EOT;
         if ($value['help_link'] != '' && $admin_data_array['enable_help'] != 0) {
             $helpIcon = cpg_display_help($value['help_link']);
         }
-        $resetCheckbox = '';
+        $resetCheckbox     = '';
         $defaultValueField = '';
         if (isset($value['default_value'])) { // we have a default value
             if ($value['default_value'] == $admin_data_array[$key]) { // the default value equals the current config setting - hide the "reset to default" checkbox
@@ -473,8 +456,9 @@ EOT;
     $sectionLoopCounter++;
 } // foreach-loop through the config sections
 
-$submit_icon = cpg_fetch_icon('ok', 1);
+$submit_icon  = cpg_fetch_icon('ok', 1);
 $factory_icon = cpg_fetch_icon('delete', 1);
+
 print <<<EOT
           <tr>
             <td align="left" class="tablef" colspan="2">
@@ -507,5 +491,5 @@ echo <<< EOT
 </form>
 EOT;
 pagefooter();
-ob_end_flush();
+
 ?>
