@@ -274,15 +274,19 @@ jQuery(document).ready(function() {
      
 
         //load the form when click the submit button
-        $("#cpgformAlbum").submit(function () { 
+        $("#cpgformAlbum").submit(function () {
+            // Call the click event of OK (#saveEvent) button
+            /// This is done so that clicking OK button is not compulsory after making changes
+            $("#saveEvent").click();
+            
             var a = $("input[name='sort_order']").attr("value");
             //  if(a.length > 0){
-                    if(confirm(confirm_modifs)) {
+            if(confirm(confirm_modifs)) {
                 return true;
-                }
+            }
         //  }
             return false; 
-    }); // so it won't submit
+        }); // so it won't submit
     
         //function to compare the current and initial rows..
         function compareRows(rows,amount){
