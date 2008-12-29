@@ -705,23 +705,13 @@ if (GALLERY_ADMIN_MODE) {
     }
     mysql_free_result($result);
     
-    $comment_pid_array = array();
-    $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='{$CLEAN['album']}'");
-    while ($row = mysql_fetch_array($result)) {
-    	$comment_pid_array[] = $row['pid'];
+    $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_COMMENTS']} AS c INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.pid = c.pid WHERE aid='{$CLEAN['album']}'");
+    $nbEnr = mysql_fetch_array($result);
+    $comments = $nbEnr[0];
+    if (!$comments) { 
+    	$comments = 0; 
     }
     mysql_free_result($result);
-    /*
-     * Commented out by Abbas - Don't know why this was here
-    foreach ($comment_pid_array as $comment_pid){
-    	print $comment_pid;
-    	print '<br />';
-    }
-    die;
-    */
-
-    // missing $comments
-    $comments = '';
 
     echo <<<EOT
     <br />
