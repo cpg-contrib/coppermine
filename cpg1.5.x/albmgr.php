@@ -93,6 +93,7 @@ function alb_get_subcat_data($parent, $ident = '')
     /**when user change the category*/
     $category_change = $lang_albmgr_php['category_change'];
     set_js_var('category_change', $category_change);
+    set_js_var('new_album', $lang_albmgr_php['new_album']);
 
 pageheader($lang_albmgr_php['title']);
 ?>

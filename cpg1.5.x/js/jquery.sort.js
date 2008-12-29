@@ -128,6 +128,7 @@ jQuery(document).ready(function() {
         var confirm_delete  =    js_vars.confirm_delete;
         var dontDelete      =    js_vars.dontDelete;
         var category_change =    js_vars.category_change;
+        var new_album       =    js_vars.new_album;
         
     //  alert (confirm);
     //variable defining which need to handle the events
@@ -155,7 +156,7 @@ jQuery(document).ready(function() {
     
     /**If new TR object is added then input text field will ready to type album names*/
     $("#add_new_album").click(function(){
-        $("#album_nm").removeAttr("disabled").focus().val("New album");
+        $("#album_nm").removeAttr("disabled").focus().val(new_album);
         $("#saveEvent").removeAttr("disabled");
         event = 'addAlbumButton';
         categorySelectOption = false;
