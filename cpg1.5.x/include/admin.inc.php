@@ -21,8 +21,9 @@
   Defines the scope of configuration variables
 **********************************************/
 
-if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
-
+if (!defined('IN_COPPERMINE')) {
+    die('Not in Coppermine...');
+}
 
 $config_data = array(
   'general_settings' => array(
@@ -215,7 +216,7 @@ $config_data = array(
     'theme' => array(
       'type'      => 'select',
       'help_link' => 'f=configuration.htm&amp;as=admin_theme_theme&amp;ae=admin_theme_theme_end',
-      'options'   => form_get_foldercontent('themes/','folder', '', array('sample', '.svn')),
+      'options'   => form_get_foldercontent('themes/', 'folder', '', array('sample', '.svn')),
       'default_value' => 'classic',
     ),
     'theme_list' => array(
