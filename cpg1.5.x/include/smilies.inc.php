@@ -23,6 +23,7 @@
 
 
 define('SMILIES_PHP', true);
+
 function get_smilies_table1()
 {
     global $lang_smilies_inc_php;
@@ -111,9 +112,9 @@ function process_smilies($message, $url_prefix = '')
 
         $smilies = get_smilies_table1();
 
-        $paths = array($THEME_DIR.'/smiles/','images/smiles/');
+        $paths = array($THEME_DIR.'/smiles/', 'images/smiles/');
 
-        for($i = 0; $i < count($smilies); $i++) {
+        for ($i = 0; $i < count($smilies); $i++) {
             $orig[] = "/(?<=.\W|\W.|^\W)" . preg_quote($smilies[$i][0], "/") . "(?=.\W|\W.|\W$)/";
             $smile_path = (file_exists($paths[0].$smilies[$i][1]))?($paths[0]):($paths[1]);
             $repl[] = '<img src="' . $url_prefix . $smile_path . ($smilies[$i][1]) . '" alt="' . ($smilies[$i][2]) . '"  />';
@@ -134,18 +135,15 @@ function generate_smilies($form = 'post', $field = 'message')
 {
     global $THEME_DIR;
     $smilies = get_smilies_table2();
-    $paths = array($THEME_DIR.'/smiles/','images/smiles/');
+    $paths = array($THEME_DIR.'/smiles/', 'images/smiles/');
 
-    if (function_exists('theme_generate_smilies'))
-    {
+    if (function_exists('theme_generate_smilies')) {
         $html = theme_generate_smilies($smilies, $form);
-    }
-    else
-    {
+    } else {
 
         $html = '<table width="100%" border="0" cellspacing="0" cellpadding="0">' . "\n" . '        <tr align="center" valign="middle">' . "\n";
 
-        foreach($smilies as $smiley) {
+        foreach ($smilies as $smiley) {
             $smile_path = (file_exists($paths[0].$smiley[1]))?($paths[0]):($paths[1]);
             $caption = $smiley[2] . " " . $smiley[0];
             $html .= '                <td width="5%"><img src="images/smiles/' . $smiley[1] . '" alt="' . $caption . '" width="15" height="15" border="0" style="cursor:pointer;" title="' . $caption . '" onclick="javascript:emoticon_' . $form . '(\'' . $smiley[0] . '\')" /></td>' . "\n";
