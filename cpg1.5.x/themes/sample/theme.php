@@ -1526,13 +1526,13 @@ function theme_javascript_head() {
     // Convert the $JS['vars'] array to json object string
     $json_vars = json_encode($JS['vars']);
     // Output the json object
-    $return .= "<script type=\"text/javascript\">var js_vars = eval('($json_vars)');</script>\n";
+    $return .= "<script type=\"text/javascript\">var js_vars = $json_vars;</script>\n";
   }
 
   // Check if we have any js includes
   if (isset($JS['includes']) && count($JS['includes'])) {
     // Include all the file which were set using js_include() function
-    foreach($JS['includes'] as $js_file) {
+    foreach ($JS['includes'] as $js_file) {
       $return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . "\n";
     }
   }
