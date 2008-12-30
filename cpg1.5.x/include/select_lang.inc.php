@@ -67,8 +67,8 @@ $available_languages = array(
 	array('zh|chinese simplified', 'chinese_gb'),
 );
 
-function lang_detect_q($available_languages) {
-
+function lang_detect_q($available_languages)
+{
     $superCage = Inspekt::makeSuperCage();
 
     // We can use the getRaw method here because the data is not used directly
@@ -95,14 +95,14 @@ function lang_detect_q($available_languages) {
         foreach ($quality_tag as $q_key => $q_val) {
             // loop through each available_languages 
             foreach ($available_languages as $language) {
-                if (preg_match('#^(?:'. $language[0] .')#i', $lang_tag[$q_key])){
+                if (preg_match('#^(?:'. $language[0] .')#i', $lang_tag[$q_key])) {
                     // exit function on first match.
                     return $language[1];
                 }
             }
         }
 
-    // if Accept-Language not present in the client's http header, we try the User-Agent string
+        // if Accept-Language not present in the client's http header, we try the User-Agent string
     } elseif (!empty($HTTP_USER_AGENT)) {      
         // once again, loop through each available_languages 
         foreach ($available_languages as $language) {
