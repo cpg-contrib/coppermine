@@ -72,11 +72,15 @@ function display_group_list()
         3 => $lang_groupmgr_php['thumbnail_intermediate_full']
     );
 
-    while ($group = mysql_fetch_array($result)) {
+    while ($group = mysql_fetch_assoc($result)) {
         $group['group_name'] = $group['group_name'];
         $row_counter++;
-        if ($row_counter == 1 ) {$table_background = 'tableb';}else{$table_background = 'tableb tableb_alternate';$row_counter = 0;}
-
+        if ($row_counter == 1) {
+            $table_background = 'tableb';
+        } else {
+            $table_background = 'tableb tableb_alternate';
+            $row_counter = 0;
+        }
 
         if ($group['group_id'] > 3 && UDB_INTEGRATION == 'coppermine') {
             $custom_group_counter++;
@@ -99,7 +103,7 @@ EOT;
         // disable row if applicable
         if ($group['group_id'] == 3 && $CONFIG['allow_unlogged_access'] == 0) {
             $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
-            $explain_greyedout = '&nbsp;'.cpg_display_help('f=empty.htm&amp;base=64&h='.urlencode(base64_encode(serialize($lang_groupmgr_php['explain_greyed_out_title']))).'&amp;t='.urlencode(base64_encode(serialize(sprintf($lang_groupmgr_php['explain_guests_greyed_out_text'],'<em>'.$group['group_name'].'</em>')))), '450', '300');
+            $explain_greyedout = '&nbsp;'.cpg_display_help('f=empty.htm&amp;base=64&h='.urlencode(base64_encode(serialize($lang_groupmgr_php['explain_greyed_out_title']))).'&amp;t='.urlencode(base64_encode(serialize(sprintf($lang_groupmgr_php['explain_guests_greyed_out_text'], '<em>'.$group['group_name'].'</em>')))), '450', '300');
         } else {
             $disabled = '';
             $explain_greyedout = '';
@@ -111,7 +115,7 @@ EOT;
                         $explain_greyedout
 EOT;
         // show reset option if applicable
-        if (UDB_INTEGRATION == 'coppermine' and isset($default_group_names[$group['group_id']])) {
+        if (UDB_INTEGRATION == 'coppermine' && isset($default_group_names[$group['group_id']])) {
             if ($group['group_name'] != $default_group_names[$group['group_id']] && $default_group_names[$group['group_id']] != '') {
                 // we have a group here that doesn't have the default name
                 //print '<img src="images/flags/reset.gif" width="16" height="11" border="0" alt="" title="'.sprintf($lang_groupmgr_php['reset_to_default'], $default_group_names[$group['group_id']]).'" style="cursor:pointer" onclick="document.groupmanager.group_name_'.$group['group_id'].'.value=\''.$default_group_names[$group['group_id']].'\'" />';
@@ -132,27 +136,23 @@ EOT;
             $value = $group[$field_name];
             $yes_selected = ($value == 1) ? 'checked="checked"' : '';
             $no_selected = ($value == 0) ? 'checked="checked"' : '';
-            if ($field_name=='can_rate_pictures'){
+            
+            if ($field_name == 'can_rate_pictures') {
                 echo $table_start.$tr_start.$td_start.$lang_groupmgr_php['rating'].$td_end;
-            }
-            elseif ($field_name=='can_send_ecards') {
+            } elseif ($field_name == 'can_send_ecards') {
                 echo $tr_start.$td_start.$lang_groupmgr_php['ecards'].$td_end;
-            }
-            elseif ($field_name=='can_post_comments') {
+            } elseif ($field_name == 'can_post_comments') {
                 echo $tr_start.$td_start.$lang_groupmgr_php['comments'].$td_end;
-            }
-            elseif ($field_name=='can_upload_pictures') {
+            } elseif ($field_name == 'can_upload_pictures') {
                 echo $table_start.$tr_start.$td_start.$lang_groupmgr_php['allowed'].$td_end;
-            }
-            elseif ($field_name=='pub_upl_need_approval') {
+            } elseif ($field_name == 'pub_upl_need_approval') {
+                echo $tr_start.$td_start.$lang_groupmgr_php['approval'].$td_end;
+            } elseif ($field_name == 'can_create_albums') {
+                echo $table_start.$tr_start.$td_start.$lang_groupmgr_php['allowed'].$td_end;
+            } elseif ($field_name == 'priv_upl_need_approval') {
                 echo $tr_start.$td_start.$lang_groupmgr_php['approval'].$td_end;
             }
-            elseif ($field_name=='can_create_albums') {
-                echo $table_start.$tr_start.$td_start.$lang_groupmgr_php['allowed'].$td_end;
-            }
-            elseif ($field_name=='priv_upl_need_approval') {
-                echo $tr_start.$td_start.$lang_groupmgr_php['approval'].$td_end;
-            }
+            
             if ($group['group_id'] == 3 && $CONFIG['allow_unlogged_access'] == 0) {
                 $disabled_yes = 'disabled="disabled"';
                 $disabled_no = 'disabled="disabled"';
@@ -160,6 +160,7 @@ EOT;
                 $disabled_yes = '';
                 $disabled_no = '';
             }
+            
             echo <<< EOT
             $td_start
             <input type="radio" id="{$field_name}_{$group['group_id']}1" name="{$field_name}_{$group['group_id']}" value="1" $yes_selected $disabled_yes /><label for="{$field_name}_{$group['group_id']}1" class="clickable_option">{$lang_common['yes']}</label>
@@ -250,7 +251,7 @@ function process_post_data()
 if ($superCage->post->keyExists('del_sel') && $superCage->post->keyExists('delete_group')) {
     $delete_group_arr = $superCage->post->getInt('delete_group');
     if (is_array($delete_group_arr)) {
-        foreach($delete_group_arr as $group_id) {
+        foreach ($delete_group_arr as $group_id) {
             cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = '" . (int)$group_id . "' LIMIT 1");
             cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group = '2' WHERE user_group = '" . (int)$group_id . "'");
         }
@@ -354,7 +355,7 @@ EOT;
                         <button type="submit" class="button" name="new_group" id="new_group" value="{$lang_groupmgr_php['create_new_group']}">{$icon_array['add']}{$lang_groupmgr_php['create_new_group']}</button>
                         &nbsp;&nbsp;&nbsp;
 EOT;
-    if($custom_group_counter > 0) {
+    if ($custom_group_counter > 0) {
         print '                        <button type="submit" class="button" name="del_sel" id="del_sel" value="'.$lang_groupmgr_php['del_groups'].'" onClick="return confirmDel()">'.$icon_array['delete'].$lang_groupmgr_php['del_groups'].'</button>';
     }
     echo <<<EOT
