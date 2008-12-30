@@ -20,6 +20,7 @@
 // ------------------------------------------------------------------------- //
 // This theme has all CORE items removed                                     //
 // ------------------------------------------------------------------------- //
-define('THEME_HAS_MENU_ICONS',16);
-//define('THEME_HAS_NAVBAR_GRAPHICS',1);
+
+define('THEME_HAS_MENU_ICONS', 16);
+
 ?>

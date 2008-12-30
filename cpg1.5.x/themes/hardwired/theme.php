@@ -20,15 +20,16 @@
 // ------------------------------------------------------------------------- //
 // This theme has had redundant CORE items removed                           //
 // ------------------------------------------------------------------------- //
+
 define('THEME_HAS_RATING_GRAPHICS', 1);
 define('THEME_HAS_NAVBAR_GRAPHICS', 1);
 define('THEME_HAS_NO_SYS_MENU_BUTTONS', 1);
 define('THEME_HAS_NO_SUB_MENU_BUTTONS', 1);
-define('THEME_HAS_SIDEBAR_GRAPHICS',1);
-define('THEME_HAS_PROGRESS_GRAPHICS',1);
+define('THEME_HAS_SIDEBAR_GRAPHICS', 1);
+define('THEME_HAS_PROGRESS_GRAPHICS', 1);
 
 // HTML template for sys menu
-$template_sys_menu = <<<EOT
+$template_sys_menu = <<< EOT
 
                         <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
@@ -142,7 +143,7 @@ $template_sys_menu = <<<EOT
 EOT;
 
 // HTML template for sub menu
-$template_sub_menu = <<<EOT
+$template_sub_menu = <<< EOT
 
                         <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>

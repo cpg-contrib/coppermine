@@ -20,15 +20,16 @@
 // ------------------------------------------------------------------------- //
 // This theme has had all redundant CORE items removed                       //
 // ------------------------------------------------------------------------- //
+
 define('THEME_HAS_NO_SUB_MENU_BUTTONS', 1);
 
 // HTML template for template sys_menu spacer
-$template_sys_menu_spacer ="|";
+$template_sys_menu_spacer = "|";
 
 // HTML template for sub_menu
 if ($CONFIG['custom_lnk_url'] != '') {
 
-$template_sub_menu = <<<EOT
+    $template_sub_menu = <<< EOT
                         <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
 <!-- BEGIN custom_link -->
@@ -79,7 +80,8 @@ EOT;
 
 
 } else {
-$template_sub_menu = <<<EOT
+
+    $template_sub_menu = <<< EOT
                         <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
 <!-- BEGIN custom_link -->
@@ -125,7 +127,8 @@ EOT;
 }
 
 // Function for the JavaScript inside the <head>-section
-function theme_javascript_head() {
+function theme_javascript_head()
+{
 	global $CONFIG, $JS;
 	$return = '';
 	// Check if we have any variables being set using set_js_vars function
@@ -139,7 +142,7 @@ function theme_javascript_head() {
 	// Check if we have any js includes
 	if (isset($JS['includes']) && count($JS['includes'])) {
 		// Include all the file which were set using js_include() function
-		foreach($JS['includes'] as $js_file) {
+		foreach ($JS['includes'] as $js_file) {
 			$return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . "\n";
 		}
 	}

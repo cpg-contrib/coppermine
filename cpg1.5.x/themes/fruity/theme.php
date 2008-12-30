@@ -26,17 +26,16 @@
 
 define('THEME_HAS_RATING_GRAPHICS', 1);
 define('THEME_HAS_NAVBAR_GRAPHICS', 1);
-define('THEME_HAS_PROGRESS_GRAPHICS',1);
+define('THEME_HAS_PROGRESS_GRAPHICS', 1);
 
 // HTML template for main menu
-$template_sys_menu = <<<EOT
+$template_sys_menu = <<< EOT
                 <div class="topmenu">
                      {BUTTONS}
                 </div>
 EOT;
 
 // HTML template for template sys_menu spacer
-$template_sys_menu_spacer ='';
-
+$template_sys_menu_spacer = '';
 
 ?>

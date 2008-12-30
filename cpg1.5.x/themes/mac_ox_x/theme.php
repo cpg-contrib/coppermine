@@ -21,21 +21,22 @@
 // This theme has had redundant CORE items removed                           //
 // ------------------------------------------------------------------------- //
 define('THEME_HAS_RATING_GRAPHICS', 1);
-define('THEME_HAS_NO_SUB_MENU_BUTTONS',1);
-define('THEME_HAS_PROGRESS_GRAPHICS',1);
+define('THEME_HAS_NO_SUB_MENU_BUTTONS', 1);
+define('THEME_HAS_PROGRESS_GRAPHICS', 1);
 
 // HTML template for sys_menu
-$template_sys_menu = <<<EOT
+$template_sys_menu = <<< EOT
          |{BUTTONS}|
 EOT;
 
 // HTML template for template sys_menu spacer
-$template_sys_menu_spacer ="|";
+$template_sys_menu_spacer = "|";
 
 // HTML template for template sub_menu
 // special note: I left the JavaScript 'hide' off of the first and third buttons to help avoid trouble keeping sys_menu open. :Donnoman
 
-$template_sub_menu = <<<EOT
+$template_sub_menu = <<< EOT
+
 <table cellpadding="0" cellspacing="0" border="0" width="100%">
 <tr>
     <td width="50%"></td>
@@ -103,7 +104,8 @@ $template_sub_menu = <<<EOT
 EOT;
 
 // Function for the JavaScript inside the <head>-section
-function theme_javascript_head() {
+function theme_javascript_head()
+{
 	global $CONFIG, $JS;
 	$return = '';
 	// Check if we have any variables being set using set_js_vars function
@@ -118,7 +120,7 @@ function theme_javascript_head() {
 	// Check if we have any js includes
 	if (isset($JS['includes']) && count($JS['includes'])) {
 		// Include all the file which were set using js_include() function
-		foreach($JS['includes'] as $js_file) {
+		foreach ($JS['includes'] as $js_file) {
 			$return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . "\n";
 		}
 	}
@@ -145,8 +147,6 @@ function MM_showHideLayers() { //v6.0
 EOT;
     return $return;
 }
-
-
 
 // Function to start a 'standard' table
 function starttable($width = '-1', $title = '', $title_colspan = '1')
@@ -208,7 +208,5 @@ function endtable()
 
 EOT;
 }
-
-
 
 ?>
