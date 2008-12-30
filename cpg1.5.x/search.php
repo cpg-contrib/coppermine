@@ -49,9 +49,9 @@ $ip = GALLERY_ADMIN_MODE ? '
 
 $customs = '';
 
-$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']} WHERE name LIKE 'user_field%_name' AND value <> '' ORDER BY name ASC");
+$result = cpg_db_query("SELECT name, value FROM {$CONFIG['TABLE_CONFIG']} WHERE name LIKE 'user_field%_name' AND value <> '' ORDER BY name ASC");
 
-while ($row = mysql_fetch_assoc($result)){
+while ($row = mysql_fetch_assoc($result)) {
         $name = str_replace(array('_field', '_name'), '', $row['name']);
         $customs .= <<< EOT
                 <tr>
@@ -143,5 +143,5 @@ echo <<< EOT
 EOT;
 
 pagefooter();
-ob_end_flush();
+
 ?>
