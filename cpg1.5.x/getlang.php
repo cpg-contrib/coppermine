@@ -37,8 +37,8 @@ asort($lang_files);
 /*if (isset($_GET['get'])) {
     $file_index = (int)$_GET['get'];*/
 if ($superCage->get->keyExists('get')) {
-		$file_index = $superCage->get->getInt('get') ;   
-    if ((isset($lang_files[$file_index]))) {
+    $file_index = $superCage->get->getInt('get');   
+    if (isset($lang_files[$file_index])) {
         header("Content-type: application/php");
         header("Content-Disposition: attachment; filename={$lang_files[$file_index]}");
         fpassthru(fopen(LANG_DIR . '/' . $lang_files[$file_index], 'r'));
@@ -49,7 +49,7 @@ if ($superCage->get->keyExists('get')) {
 pageheader('Language files');
 starttable('100%', 'Language files');
 $folder_icon = cpg_fetch_icon('folder', 0);
-foreach($lang_files as $index => $file) {
+foreach ($lang_files as $index => $file) {
     echo <<<EOT
                 <tr>
                         <td class="tableb">
@@ -60,6 +60,5 @@ EOT;
 }
 endtable();
 pagefooter();
-ob_end_flush();
 
 ?>
