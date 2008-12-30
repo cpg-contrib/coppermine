@@ -22,20 +22,14 @@ define('LOGOUT_PHP', true);
 
 require('include/init.inc.php');
 
-if (!USER_ID) cpg_die(ERROR, $lang_logout_php['err_not_logged_in'], __FILE__, __LINE__);
+if (!USER_ID) {
+    cpg_die(ERROR, $lang_logout_php['err_not_logged_in'], __FILE__, __LINE__);
+}
 
-if (defined('UDB_INTEGRATION')) $cpg_udb->logout_page();
+if (defined('UDB_INTEGRATION')) {
+    $cpg_udb->logout_page();
+}
 
-/*
-setcookie($CONFIG['cookie_name'] . '_pass', '', time()-86400, $CONFIG['cookie_path']);
-setcookie($CONFIG['cookie_name'] . '_uid', '', time()-86400, $CONFIG['cookie_path']);
-*/
-//$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
-/*$referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
-if (strpos($referer, "http") !== false) {
-  $referer = "index.php";
-}*/
-cpgRedirectPage($CPG_REFERER, $lang_logout_php['logout'], sprintf($lang_logout_php['bye'], stripslashes(USER_NAME)),3);
-
+cpgRedirectPage($CPG_REFERER, $lang_logout_php['logout'], sprintf($lang_logout_php['bye'], stripslashes(USER_NAME)), 3);
 
 ?>
