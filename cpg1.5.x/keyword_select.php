@@ -28,7 +28,7 @@ if (!USER_CAN_UPLOAD_PICTURES) {
 
 $query = "SELECT * FROM {$CONFIG['TABLE_PREFIX']}dict ORDER BY keyword";
 $result = cpg_db_query($query);
-while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+while ($row = mysql_fetch_assoc($result)) {
     $keywordIds[] = $row["keyId"];
     $keywords[]   = $row["keyword"];
 }
@@ -58,7 +58,7 @@ if ($superCage->get->keyExists('id')) {
 	$formFieldId = $superCage->get->getInt('id');
 }
 print '    <form name="form" name="keywordform" id="cpgform2">'."\n";
-starttable("100%",$lang_upload_php['keywords_sel'], 3);
+starttable("100%", $lang_upload_php['keywords_sel'], 3);
 if ($total > 0) {
 
     $form = '
@@ -86,9 +86,10 @@ if ($total > 0) {
     <tr>
         <td class="tableb" align="center"><select name="keyword" size="15" onchange="CM_select(this)" class="listbox">';
 
-        foreach ($keywords as $keyword) {
-            $form.= '<option value="'.$keyword.'">'.$keyword.'</option>';
-        }
+    foreach ($keywords as $keyword) {
+        $form .= '<option value="'.$keyword.'">'.$keyword.'</option>';
+    }
+    
     $form .= '
             </select>
         </td>
