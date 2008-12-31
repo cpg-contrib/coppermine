@@ -157,20 +157,13 @@ jQuery(document).ready(function() {
     /**If new TR object is added then input text field will ready to type album names*/
     $("#add_new_album").click(function(){
         $("#album_nm").removeAttr("disabled").focus().val(new_album);
-        $("#saveEvent").removeAttr("disabled");
         event = 'addAlbumButton';
         categorySelectOption = false;
         
     });
-    /**Remove disable option in the save button */
-    jQuery("input#album_nm").keyup(function(){
-        if(albumObjectSelectedTr){
-            $("#saveEvent").removeAttr("disabled");
-        }   
-    });
     
     //add new album when click the save buttons
-    $("#saveEvent").click(function (){
+    function saveEvent (){
         var get_album = $("#album_nm").val();
             
         // add new album check whether null and event
@@ -184,8 +177,6 @@ jQuery(document).ready(function() {
         jQuery.tableDnD.makeDraggable(jQuery.tableDnD.currentTable);
             /**to empty the box value */
             $("#album_nm").attr({value: null, disabled: 'disabled' });
-            /**disable the ok button after saving edit*/
-            $("#saveEvent").attr({ disabled: 'disabled' });
             /**recolor current row*/
             addRowColors();
     }/**end of the add new item save */
@@ -208,15 +199,36 @@ jQuery(document).ready(function() {
             $(object_edit).empty().text(get_album);
             /**to empty the box value */
             $("#album_nm").attr({value: null, disabled: 'disabled' });
-            /**disable the ok button after saving edit*/
-            $("#saveEvent").attr({ disabled: 'disabled' });
             }
         $("#sort_order").val(getSerialize());
         /**set to category changes don't select if you have changed */
             categorySelectOption = false;
         /**return false doesn't occurred form submission*/
         return false;
+    }
+    
+    /**
+     * Bind the keypress event to album title edit box
+     * If user has pressed Enter key then instead of submitting the form
+     * we will call the js saveEvent function which will save the changes
+     * on client side only. For changes to take place user needs to click
+     * the "Apply Changes" button
+     */
+    $("#album_nm").keypress(function(e) {
+        // If the pressed key is ENTER then call saveEvent function and return false so that form is not submitted
+        if (e.which == KEY_CODES.ENTER) {
+            saveEvent();
+            return false;
+        }
     });
+    
+    /**
+     * Bind onblur event to album title edit box
+     * On blur we will call the saveEvent function which will save the changes on client side only
+     * For applying changes user needs to click "Apply Changes" button.
+     */
+    $("#album_nm").blur(saveEvent);
+    
     /**after drag and drop assigning a changes to the TR title*/
     $('#album_sort').tableDnD({
             onDrop: function(table, row) {
@@ -275,9 +287,8 @@ jQuery(document).ready(function() {
 
         //load the form when click the submit button
         $("#cpgformAlbum").submit(function () {
-            // Call the click event of OK (#saveEvent) button
-            /// This is done so that clicking OK button is not compulsory after making changes
-            $("#saveEvent").click();
+            //First save any unsaved changes on client side
+            saveEvent();
             
             var a = $("input[name='sort_order']").attr("value");
             //  if(a.length > 0){
@@ -347,8 +358,6 @@ jQuery(document).ready(function() {
             $("#album_nm").removeAttr("disabled");
             $("#album_nm").val(null);
             $("#album_nm").val(object_edit.text()).focus();
-            /**enable the disabled option to the saveEvent button still don't have to save because album name didn't change still''*/
-            $("#saveEvent").attr({ disabled: 'disabled' });
             /**set even to save edit things*/
             event   =   'editAlbumButton';
         });

@@ -16,6 +16,12 @@
 	$Date$
 **********************************************/
 
+// Object to hold javascript keyCodes for various keys
+var KEY_CODES = {
+    TAB   : 9,
+    ENTER : 13
+};
+
 function MM_openBrWindow(theURL,winName,features) { //v2.0
 	window.open(theURL,winName,features);
 }

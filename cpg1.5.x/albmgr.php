@@ -194,9 +194,7 @@ if (count($rowset) > 0) {
                 <td>
                     <img src="images/bullet.png" alt="" />
                 </td>
-                <td class="album_text" style="width:400px;">
-                    {$album['title']}
-                </td>
+                <td class="album_text" style="width:400px;">{$album['title']}</td>
             </tr>
 EOT;
 
@@ -247,7 +245,6 @@ echo <<< EOT
                         <td align="center" style="width: 10px;"><img src="images/spacer.gif" width="1" alt="" /><br /></td>
                         <td><input type="text" id="album_nm" name="album_nm" size="27" maxlength="80" class="textinput" value="" disabled="disabled" /></td>
                         <td align="center" style="width: 10px;"><img src="images/spacer.gif" width="1" alt="" /><br /></td>
-                        <td align="center" ><button id="saveEvent" title="Save" style="color: Black; font-weight: bold;cursor:pointer;" disabled="disabled" >{$lang_common['ok']}</button></td>
                     </tr>
                 </table>
             </td>
