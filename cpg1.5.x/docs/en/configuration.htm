@@ -1375,6 +1375,7 @@ address. Recommended setting is NO. As most internet users today have more than 
 <h3>SMTP Host</h3>
 <p>The hostname of the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server<br />
 If you leave this blank, sendmail (or a surrogate) will be used to send emails from your server. Sendmail exists on most Unix/Linux webservers. If you specify a SMTP hostname, Coppermine will try to send emails using SMTP (this usually is needed on Windows webservers).</p>
+<p>To specify a non-default port number enter it after the hostname with a colon, for example <strong>yourdomain.com:26</strong> to use port 26. To use SSL or TLS add a prefix to the hostname, for example <strong>ssl://yourdomain.com</strong> to use an SSL encrypted connection. You must have OpenSSL support enabled in PHP and the SMTP server must support SSL connections for this to work. You can use both an SSL prefix and a port number if neccessary. To use gmail's SMTP server you would use <strong>ssl://smtp.gmail.com:465</strong></p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Email settings &rarr; SMTP Host</p>
 
 <hr />
