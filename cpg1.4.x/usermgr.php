@@ -782,6 +782,12 @@ function update_user($user_id)
     $sql_update .= " WHERE user_id = '$user_id'";
 
     cpg_db_query($sql_update);
+    
+    // Update pictures' owner name
+    cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_name = '$user_name' WHERE owner_id = $user_id");
+
+    // Update comments' author name
+    cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_author = '$user_name' WHERE author_id = $user_id");    
 }
 
 $op = (GALLERY_ADMIN_MODE && isset($_GET['op'])) ? $_GET['op'] : '';

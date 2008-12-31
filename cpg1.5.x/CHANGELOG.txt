@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2008-12-31 [B] Update names associated with pictures and comments when user name is changed {Nibbler}
 2008-12-31 [O] Removed the OK button from albmgr. Now the changes are saved on client side on blur {Abbas}
 2008-12-27 [C] Addapted French lang file to new core changes of internationalization {Frantz}
 2008-12-25 [C] Removed potentially confusing plus icon in ban manager; adjusted text input sizes for consistent look {TranzNDance}
