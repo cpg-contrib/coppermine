@@ -299,7 +299,7 @@ EOT;
 EOT;
         // grey out the field if not applicable because bridging is enabled
         //if ($value['bridged'] == 'hide') { //
-        if ($CONFIG['bridge_enable'] != 0 && $value['bridged'] == 'hide') { //
+        if ($CONFIG['bridge_enable'] != 0 && !empty($value['bridged']) && $value['bridged'] == 'hide') { //
             $readonly_text    = ' readonly="readonly" title="'.$lang_admin_php['bbs_disabled'].'"';
             $readonly_message = ' '.$lang_admin_php['bbs_disabled'];
             $readonly_radio   = ' disabled="disabled" title="'.$lang_admin_php['bbs_disabled'].'"';
