@@ -8121,14 +8121,6 @@
     <hash>3e20e1261485358f3a42d93ec2825581</hash>
   </element>
   <element>
-    <fullpath>include/phpmailer.lang-en.php</fullpath>
-    <version>1.5.0</version>
-    <revision>5129</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>4ef98ee9e34facb38de6a77cc6749233</hash>
-  </element>
-  <element>
     <fullpath>include/picmgmt.inc.php</fullpath>
     <version>1.5.0</version>
     <revision>5129</revision>
