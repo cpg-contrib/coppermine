@@ -2609,4 +2609,23 @@ $lang_plugin_php['onlinestats_config_text'] = 'How long do you want to keep user
 $lang_plugin_php['onlinestats_minute'] = 'minutes';
 $lang_plugin_php['onlinestats_remove'] = 'Remove the table that was used to store online data?';
 }
+
+// ------------------------------------------------------------------------- //
+// File include/mailer.inc.php
+// ------------------------------------------------------------------------- //
+$lang_mailer['provide_address'] = 'You must provide at least one ';
+$lang_mailer['mailer_not_supported'] = ' mailer is not supported.';
+$lang_mailer['execute'] = 'Could not execute: ';
+$lang_mailer['instantiate'] = 'Could not instantiate mail function.';
+$lang_mailer['authenticate'] = 'SMTP Error: Could not authenticate.';
+$lang_mailer['from_failed'] = 'The following From address failed: ';
+$lang_mailer['recipients_failed'] = 'SMTP Error: The following ';
+$lang_mailer['data_not_accepted'] = 'SMTP Error: Data not accepted.';
+$lang_mailer['connect_host'] = 'SMTP Error: Could not connect to SMTP host.';
+$lang_mailer['file_access'] = 'Could not access file: ';
+$lang_mailer['file_open'] = 'File Error: Could not open file: ';
+$lang_mailer['encoding'] = 'Unknown encoding: ';
+$lang_mailer['signing'] = 'Signing Error: ';
+
+      
 ?>
