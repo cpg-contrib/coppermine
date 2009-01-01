@@ -307,7 +307,7 @@ jQuery(document).ready(function() {
                 for(var i=0; i<getAmount; i++){
                     
                         //get the current row title value
-                        var getTitleRow =  $("#"+(i+1)).attr("title");                      
+                        var getTitleRow =  $("#sort"+(i+1)).attr("title");                      
                         //split the title value
                         var words = getTitleRow.split('@');
                         var result = [];
@@ -319,7 +319,7 @@ jQuery(document).ready(function() {
                         
                     if(getCurrentRows[i]==(i+1)){
                         if(result[2]==2){
-                            $("#"+(i+1)).attr({title: result[0]+'@'+result[1]+'@'+0})
+                            $("#sort"+(i+1)).attr({title: result[0]+'@'+result[1]+'@'+0})
                         }
                         else
                         continue;
@@ -327,7 +327,7 @@ jQuery(document).ready(function() {
                     else if(getCurrentRows[i]!=(i+1)){
                     
                         if(result[2]==0){
-                        $("#"+(i+1)).attr({title: result[0]+'@'+result[1]+'@'+2})
+                        $("#sort"+(i+1)).attr({title: result[0]+'@'+result[1]+'@'+2})
                         }
                         else{
                             continue;

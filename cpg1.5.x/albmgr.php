@@ -176,18 +176,15 @@ EOT;
 
 $i = 100;
 $j = 1;
-
+echo '<table id="album_sort">';
 if (count($rowset) > 0) {
-
-    echo '<table id="album_sort">';
-    
     foreach ($rowset as $album) {
     
         $album['title'] = stripslashes($album['title']);
         
         echo <<< EOT
         
-            <tr id="$j" title="{$album['aid']}@{$album['title']}@0">
+            <tr id="sort{$j}" title="{$album['aid']}@{$album['title']}@0">
                 <td width="10%" style="padding-left:20px" >
                     $j
                 </td>
@@ -200,11 +197,8 @@ EOT;
 
         $j++;
     }
-    
-    echo '</table>';
-    
 }
-
+echo '</table>';
 echo <<< EOT
 
     </div>
