@@ -13,8 +13,8 @@
   Coppermine version: 1.5.0
   $Source$
   $Revision$
-  $LastChangedBy: Frantz $
-  $Date: 2007-09-15 20:00:01 +0200 (Mer, 11 Juillet 2007) $
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
