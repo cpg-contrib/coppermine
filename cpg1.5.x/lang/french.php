@@ -11,8 +11,8 @@
   (at your option) any later version.
   ********************************************
   Coppermine version: 1.5.0
-  $Source: /cvsroot/coppermine/devel/lang/english.php,v $
-  $Revision: $
+  $Source$
+  $Revision$
   $LastChangedBy: Frantz $
   $Date: 2007-09-15 20:00:01 +0200 (Mer, 11 Juillet 2007) $
 **********************************************/
@@ -1254,7 +1254,7 @@ if (defined('EDITPICS_PHP')) {
   $lang_editpics_php['del_all_comm'] = 'Supprimer TOUS les Commentaires'; //cpg1.4
   $lang_editpics_php['upl_approval'] = 'Autorisation d\'upload';
   $lang_editpics_php['edit_pics']= 'Modifier les images';
-  $lang_editpics_php['edit_pic'] = 'Edit file'; //cpg 1.5
+  $lang_editpics_php['edit_pic'] = 'Modifier le Fichier'; //cpg 1.5
   $lang_editpics_php['see_next'] = 'Voir les images suivantes';
   $lang_editpics_php['see_prev'] = 'Voir les images précédentes';
   $lang_editpics_php['n_pic'] = '%s images';
@@ -1265,7 +1265,7 @@ if (defined('EDITPICS_PHP')) {
   $lang_editpics_php['save_thumb'] ='Sauvegarder en tant que Vignette'; //cpg1.3.0
   $lang_editpics_php['gallery_icon'] = 'Faites-en mon Icône (avatar)'; //cpg1.4
   $lang_editpics_php['sel_on_img'] ='La sélection doit être entièrement sur l\\\'image'; //js-alert //cpg1.3.0
-  $lang_editpics_php['album_propertie'] ='Propriétés de l\'Album'; //cpg1.4
+  $lang_editpics_php['album_properties'] ='Propriétés de l\'Album'; //cpg1.4
   $lang_editpics_php['parent_category'] ='Catégorie parente'; //cpg1.4
   $lang_editpics_php['thumbnail_view'] ='Visualisation des Vignettes'; //cpg1.4
   $lang_editpics_php['select_unselect'] ='sélectionner/<br>déselectionner tout'; //cpg1.4
@@ -1321,7 +1321,7 @@ if (defined('FORGOT_PASSWD_PHP')) {
   $lang_forgot_passwd_php['account_verify_subject'] = '%s - Demande de nouveau Mot de Passe'; //cpg1.4
   $lang_forgot_passwd_php['passwd_reset_subject'] = '%s - Votre nouveau Mot de Passe';
   $lang_forgot_passwd_php['account_verify_email'] = <<<EOT
-Vous avez demandé la génération d'un nouveau mot de passe. Si vous voulez qu'un nouveau mot de passe vou ssoit envoyé, cliquez sur le lien:
+Vous avez demandé la génération d'un nouveau mot de passe. Si vous voulez qu'un nouveau mot de passe vous soit envoyé, cliquez sur le lien:
 
 <a href="{VERIFY_LINK}">{VERIFY_LINK}</a>
 
@@ -1865,7 +1865,7 @@ EOT;
 $lang_register_php['activated_email'] = <<<EOT
 Votre Compte a été approuvé et activé.
 
-Vous pouvez maintenant vous connecter <a href="{SITE_LINK}">{SITE_LINK}</a> en utilisant ce Nom d\'Utilisateur &quot;{USER_NAME}&quot;
+Vous pouvez maintenant vous connecter <a href="{SITE_LINK}">{SITE_LINK}</a> en utilisant ce Nom d'Utilisateur &quot;{USER_NAME}&quot;
 
 
 Cordialement,
