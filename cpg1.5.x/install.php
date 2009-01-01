@@ -2088,7 +2088,7 @@ class GDtest
      */
     function testTextOnImage()
     {
-        $text = '2008 � Susanna Thornton';
+        $text = '2008 © Susanna Thornton';
         $font = 'images/fonts/LiberationSans-Regular.ttf';
         $source = imagecreatefromjpeg('images/install/jpgtest.jpg');
         $front_color = imagecolorallocate($source, 255, 255, 255);
