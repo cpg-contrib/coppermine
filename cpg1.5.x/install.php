@@ -549,9 +549,10 @@ function html_footer()
  */
 function html_stepper() 
 {
-    global $config, $page_title, $step;
+    global $config, $page_title, $step, $language;
 	
-    $stepper = '';
+    $old_install = sprintf($language['old_install'],'<a href="install_old.php">','</a>'); //can be removed if old installer is not needed anymore
+	$stepper = '';
     $tpl_step_done = '<td class="stepper_d" onMouseOver="this.className=\'stepper_do\'" onMouseOut="this.className=\'stepper_d\'" onClick="document.location=\'install.php?step=%s\'"><a href="install.php?step=%s" title="Step: %s">%s</a></td>';
     $tpl_step_current = '<td class="stepper_c"><span title="Step: %s">%s</span></td>';
     $tpl_step_notyet = '<td class="stepper_n"><span title="Step: %s">%s</span></td>';
@@ -576,7 +577,7 @@ print <<< EOT
        </td>
       </tr>
        <tr>
-      <td class="tableb" valign="top">Warning, this installer is still in alpha, you can use the old one by going <a href="install_old.php">here</a>
+	   <td class="tableb" valign="top">{$old_install}
       </td>
     </tr>
     </table>

@@ -1521,6 +1521,7 @@ $lang_install['scale'] = 'Scale an image';
 $lang_install['generated_image'] = 'Generated image';
 $lang_install['reference_image'] = 'Reference image';
 $lang_install['imp_test_error'] = 'There was an error in one or more of the test, please make sure you selected the appropriate Image Processing Package and it is configured correctly!';
+$lang_install['old_install'] = 'This is the new install wizard. Click %shere%s for the classic install screen.'; //cpg1.5
 }
 
 // ------------------------------------------------------------------------- //

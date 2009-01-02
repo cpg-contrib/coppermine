@@ -1496,13 +1496,13 @@ if (defined('INSTALL_PHP')) {
   $lang_install['title_admin'] = 'Créer l\'adiminstrateur Coppermine';
   $lang_install['title_dir_check'] = 'Vérification des autorisations des répertoires';
   $lang_install['title_file_check'] = 'Vérification des fichiers d\installation';
-  $lang_install['title_finished'] = 'Installation Compète';
+  $lang_install['title_finished'] = 'Installation Complète';
   $lang_install['title_imp'] = 'Sélection de la Librairie Graphique';
   $lang_install['title_imp_test'] = 'Test de la Librairie Graphique';
   $lang_install['title_mysql_db_sel'] = 'Sélection de la base de donnée MySql';
   $lang_install['title_mysql_pop'] = 'Création de la structure de la base de donnée';
   $lang_install['title_mysql_user'] = 'Autentification de l\'utilisateur de MySql';
-  $lang_install['title_welcome'] = 'Bienvenue dans l\installation de Coppermine';
+  $lang_install['title_welcome'] = 'Bienvenue dans l\'installation de Coppermine';
   $lang_install['tmp_conf_error'] = 'Impossible d\'écrire dans le fichier temporaire de configuration, <br />assurez vous que le répertoire \'include\' à les permissions en écriture (777)';
   $lang_install['tmp_conf_ser_err'] = 'Une erreur sérieuse est intervenue dans l\'installeur, essayez de recharger votre page ou recommencez en effacant le fichier \'include/config.tmp\'.';
   $lang_install['try_again'] = 'Essayez encore !';
@@ -1510,7 +1510,7 @@ if (defined('INSTALL_PHP')) {
   $lang_install['user_err'] = 'Le nom d\'utilisateur doit contenir uniquement des caractères alphanumériques et ne peut être vide.';
   $lang_install['username'] = 'Nom d\'utilisateur';
   $lang_install['your_admin_account'] = 'Votre compte administrateur';
-  $lang_install['no_cookie'] = 'Votre navigateur n\'accèpte pas les cookies (mêm si il est très sucré). Il est recommandé d\'accepter les cookies.';
+  $lang_install['no_cookie'] = 'Votre navigateur n\'accèpte pas les cookies (même si il est très sucré). Il est recommandé d\'accepter les cookies.';
   $lang_install['no_javascript'] = 'Votre navigateur semble ne pas avoir le Javascript activé, il est hautement recommandé de l\'activer.';
   $lang_install['register_globals_detected'] = 'Il semble que votre configuration de PHP à le \'register_globals\' actif, vous devriez le désactiver pour des raisons de sécurité.';
   $lang_install['version_undetected'] = 'Le script ne peut pas déterminer quelle version de %s votre serveur utilise. Assurez vous que c\'est au moins la version %s';
@@ -1533,7 +1533,7 @@ if (defined('INSTALL_PHP')) {
   $lang_install['writable'] = 'Inscriptible';
   $lang_install['not_writable'] = 'Non Inscriptible';
   $lang_install['not_exist'] = 'N\'existe pas';
-
+  $lang_install['old_install'] = 'Vous êtes dans le nouvel assistant d\'installation. Cliquez %sici%s pour accéder à l\'ancien écran d\'installation.'; //cpg1.5
 }
 
 // ----------------------- //

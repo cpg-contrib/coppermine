@@ -1533,6 +1533,7 @@ $lang_install['imp_test_error'] = 'There was an error in one or more of the test
 $lang_install['writable'] = 'Writable';
 $lang_install['not_writable'] = 'Not writable';
 $lang_install['not_exist'] = 'Does not exist';
+$lang_install['old_install'] = 'This is the new install wizard. Click %shere%s for the classic install screen.'; //cpg1.5
 
 }
 
@@ -2612,7 +2613,8 @@ $lang_plugin_php['onlinestats_remove'] = 'Remove the table that was used to stor
 
 // ------------------------------------------------------------------------- //
 // File include/mailer.inc.php
-// ------------------------------------------------------------------------- //
+// ------------------------------------------------------------------------- //
+
 $lang_mailer['provide_address'] = 'You must provide at least one ';
 $lang_mailer['mailer_not_supported'] = ' mailer is not supported.';
 $lang_mailer['execute'] = 'Could not execute: ';
