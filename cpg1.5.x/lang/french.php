@@ -120,7 +120,7 @@ $lang_common['captcha_help'] = 'Pour éviter le Spam, vous devez confirmer que v
 $lang_common['title'] = 'Titre'; // cpg1.5.x
 $lang_common['caption'] = 'Légende'; // cpg1.5.x
 $lang_common['keywords'] = 'Mots clef'; // cpg1.5.x
-$lang_common['keywords_insert1'] = 'Mots clef (séparés par un espace)'; // cpg1.5.x
+$lang_common['keywords_insert1'] = 'Mots clef (séparés par un point virgule)'; // cpg1.5.x
 $lang_common['keywords_insert2'] = 'Insérer depuis une liste'; // cpg1.5.x
 $lang_common['keyword_separators'] = array(' '=>'espace', ','=>'vigule', ';'=>'point virgule'); // cpg1.5
 $lang_common['owner_name'] = 'Nom de Propriétaire'; // cpg1.5.x
@@ -142,7 +142,7 @@ $lang_common['edit'] = 'Modifier'; // cpg1.5
 $lang_common['username_if_blank'] = 'M. X'; // cpg1.5
 $lang_common['albums_no_category'] = 'Albums sans catégorie'; // cpg1.5
 $lang_common['personal_albums'] = '* Album personnel'; // cpg1.5
-$lang_common['select_album'] = 'Album délectionné'; // cpg1.5
+$lang_common['select_album'] = 'Album sélectionné'; // cpg1.5
 $lang_common['ok'] = 'OK'; // cpg1.5
 $lang_common['status'] = 'Status'; // cpg1.5
 $lang_common['apply_changes'] = 'Appliquer les changements'; // cpg1.5
