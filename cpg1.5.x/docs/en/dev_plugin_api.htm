@@ -120,8 +120,8 @@
 <p>Make sure you enable read and execute permissions on this folder (see the <a href="install_permissions.htm">permissions section</a> in the main manual).  You can create the folder and files on your personal computer and upload them using FTP to your web server, but keep in  mind that you cannot try out your plugin until it is on the web server.  For each step in this tutorial where you add new lines, edit the text file on your computer, save it, then upload the new version onto web server, making sure to overwrite the previous file on the web server.  (Some FTP programs "append" by default - which won't work with these text files, so make sure you are definitely overwriting the file with the new version.)</p>
 <p><strong>Create this file in the "hello_world" folder, with contents as shown (and read & execute permissions):</strong></p>
 <p class="filename">configuration.php</p>
-<pre>&lt;?php
-/**************************************************
+<pre><span style="color: #000000"><span style="color: #0000BB">&lt;?php
+</span><span style="color: #FF8000">/**************************************************
   Coppermine Plugin - Hello, World
   *************************************************
   Copyright (c) 2008 &lt;-InsertNameHere-&gt;
@@ -132,11 +132,13 @@
   (at your option) any later version.
 ***************************************************/
 
-$name='Hello, World';
-$description='Plugin API Tutorial - 2.1 My First Plugin';
-$author='Tutorial';
-$version='2.1';
-?&gt;</pre>
+</span><span style="color: #0000BB">$name</span><span style="color: #007700">=</span><span style="color: #DD0000">'Hello, World'</span><span style="color: #007700">;
+</span><span style="color: #0000BB">$description</span><span style="color: #007700">=</span><span style="color: #DD0000">'Plugin API Tutorial - 2.1 My First Plugin'</span><span style="color: #007700">;
+
+</span><span style="color: #0000BB">$author</span><span style="color: #007700">=</span><span style="color: #DD0000">'Tutorial'</span><span style="color: #007700">;
+</span><span style="color: #0000BB">$version</span><span style="color: #007700">=</span><span style="color: #DD0000">'2.1'</span><span style="color: #007700">;
+</span><span style="color: #0000BB">?&gt;</span>
+</span></pre>
 <p>The beginning part is a comment block of course.  We suggest you use such a block at the beginning of each of your plugin files.  The first text line tells people this is a Coppermine Plugin and lists the name of your plugin.  The next text line has a copyright message with your name (real name or username used on the Coppermine forum).  The next text block  gives the GPL message that Coppermine uses and is recommended for your code as well.  This comment block is not strictly required for your plugin to work.  That being said, it is important for organization and clarity, so please make sure to add it to each of your plugin files.</p>
 <p>The parameters used by the Plugin API are the 4 variables shown.  These variables are shown on the plugin manager page to describe your plugin.</p>
 <ul>
@@ -147,8 +149,8 @@ $version='2.1';
 </ul>
 <p><strong>Now create your code file in the "hello_world" folder, with contents as shown (and read & execute permissions):</strong></p>
 <p class="filename">codebase.php</p>
-<pre>&lt;?php
-/**************************************************
+<pre><span style="color: #000000"><span style="color: #0000BB">&lt;?php
+</span><span style="color: #FF8000">/**************************************************
   Coppermine Plugin - Hello, World
   *************************************************
   Copyright (c) 2008 &lt;-InsertNameHere-&gt;
@@ -159,35 +161,39 @@ $version='2.1';
   (at your option) any later version.
 ***************************************************/
 
-if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+</span><span style="color: #007700">if (!</span><span style="color: #0000BB">defined</span><span style="color: #007700">(</span><span style="color: #DD0000">'IN_COPPERMINE'</span><span style="color: #007700">)) die(</span><span style="color: #DD0000">'Not in Coppermine...'</span><span style="color: #007700">);
 
-// Add a filter for the gallery header
-$thisplugin->add_filter('gallery_header','helloworld_header');
 
-// Sample function to modify gallery header html
-function helloworld_header($html) {
-    $html = '&lt;p style="color:red"&gt;&lt;b&gt;Hello, world.&lt;/b&gt; (tutorial 2.1)&lt;/p&gt;'
-            .$html;
-    return $html;
+</span><span style="color: #FF8000">// Add a filter for the gallery header
+</span><span style="color: #0000BB">$thisplugin</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add_filter</span><span style="color: #007700">(</span><span style="color: #DD0000">'gallery_header'</span><span style="color: #007700">,</span><span style="color: #DD0000">'helloworld_header'</span><span style="color: #007700">);
+
+</span><span style="color: #FF8000">// Sample function to modify gallery header html
+</span><span style="color: #007700">function </span><span style="color: #0000BB">helloworld_header</span><span style="color: #007700">(</span><span style="color: #0000BB">$html</span><span style="color: #007700">) {
+    </span><span style="color: #0000BB">$html </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;p style="color:red"&gt;&lt;b&gt;Hello, world.&lt;/b&gt; (tutorial 2.1)&lt;/p&gt;'
+            </span><span style="color: #007700">.</span><span style="color: #0000BB">$html</span><span style="color: #007700">;
+    return </span><span style="color: #0000BB">$html</span><span style="color: #007700">;
 }
-?&gt;</pre>
+
+</span><span style="color: #0000BB">?&gt;</span>
+</span></pre>
 <p>These 2 files are all you need to install and run your first plugin.  Before explaining the code for this plugin, go ahead and install this plugin.  The plugin manager will show "Hello, World" as one of the "Plugins Not Installed".  Click on the install button to install this plugin.  It will immediately show up on the "Installed Plugins" section since there is no configuration for it.  You should see bold red text declaring "Hello, world." near the top of the page.  For detailed instructions on how to use plugins as an end-user, read the <a href="plugins.htm">plugins section</a> of the main documentation.  If you haven't read this section completely, please do so now.</p>
 <p>So how does this plugin work?  The first block in <tt class="code">codebase.php</tt> is the same comment block we used in <tt class="code">configuration.php</tt>.  For the same reasons as noted above, it is recommended that you use this comment block in each and every one of your plugin files.</p>
 <p>Moving on, the first line of code is the following:</p>
-<pre>if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');</pre>
+<pre><span style="color: #000000"><span style="color: #007700">if (!</span><span style="color: #0000BB">defined</span><span style="color: #007700">(</span><span style="color: #DD0000">'IN_COPPERMINE'</span><span style="color: #007700">)) die(</span><span style="color: #DD0000">'Not in Coppermine...'</span><span style="color: #007700">);
+</span></span></pre>
 <p>The constant 'IN_COPPERMINE' is defined in each of the public scripts that users use directly, i.e. ones that show up in the URL of a webpage.  All secondary scripts check for this constant before doing anything else.  If it has not been set, then the script stops and exits with a "Not in Coppermine..." message.  With this technique, all secondary files are inaccessible to users and cannot be run directly.  Besides security, a larger reason is that these scripts are not meant to be run directly; they assume they are being called by another script - a script which ensures that all the standard Coppermine definitions and declarations have been made.  Your plugin script is such a secondary script and is not meant to be run directly, hence the check for 'IN_COPPERMINE' and the quick exit if it doesn't exist.  You can see this in action by typing the following URL into your web browser: <tt class="filename">http://www.yourdomain.org/cpg/plugins/hello_world/codebase.php</tt> (assuming Coppermine is located in the 'cpg' folder under your domain).</p>
 <p>The next line of code (after the comment describing it) tells Coppermine which hook your plugin wants to access:</p>
-<pre>// Add a filter for the gallery header
-$thisplugin->add_filter('gallery_header','hello_world_header');</pre>
+<pre><span style="color: #000000"><span style="color: #FF8000">// Add a filter for the gallery header
+</span><span style="color: #0000BB">$thisplugin</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add_filter</span><span style="color: #007700">(</span><span style="color: #DD0000">'gallery_header'</span><span style="color: #007700">,</span><span style="color: #DD0000">'hello_world_header'</span><span style="color: #007700">);</span></span></pre>
 <p>With this line of code, you are registering your plugin to use this plugin hook.  In this case, we're hooking onto the <tt class="code">gallery_header</tt> hook which is located in <tt class="filename">functions.inc.php</tt> in the load_template() function.  This function parses your theme's <tt class="filename">template.html</tt> file, replacing tags like {ADMIN_MENU} and {LANGUAGE_SELECT_LIST} with the corresponding Coppermine HTML to render these content blocks.  The two plugin hooks <tt class="code">gallery_header</tt> and <tt class="code">gallery_footer</tt> allow HTML to be placed before and after the {GALLERY} tag, respectively.  (See the <a href="#plugin_api_hooks_func_gh-gf">reference section</a> below on these hooks for more detailed information.)  On the main page, {GALLERY} is replaced with the "content of the main page" config setting, which usually includes the breadcrumb, category list, album list, and random/lastup blocks.  On a page like the plugin manager (where you first see "Hello, world." after installing the plugin), {GALLERY} is replaced with the main part of the page, in this case, the plugin manager tables listing the plugins.  The "Hello, World" plugin places the text "Hello, world." just above {GALLERY} in both places.  If you modify the line of code above to use <tt class="code">gallery_footer</tt> instead, you'll see "Hello, world." just below the main part of the page, as expected.</p>
 <p>Let's break apart this line of code to understand how you register your plugin to use a particular plugin hook.  For those programmers who have used classes before (in PHP or another language with similar constructs), you'll recognize the arrow operator <tt class="code">-></tt> as a class operator used to access class properties and methods.  In this case, the Coppermine Plugin API provides <tt class="code">$thisplugin</tt> as a pointer to the instance of your plugin's class.  So when your plugin's <tt class="filename">codebase.php</tt> is loaded by the plugin API, you can access the properties and methods of your plugin's class by using <tt class="code">$thisplugin</tt>.  For example, <tt class="code">$thisplugin->name</tt> refers to your plugin's name (whose value is defined in your plugin's <tt class="filename">configuration.php</tt>).  See the <a href="#plugin_api_plugin_class">section below</a> on plugin class properties & methods for more detailed information.</p>
 <p>In this case, we are using the add_filter() function to add the filter hook we want to use to our plugin's list of registered plugin hooks.  The user-defined function we will use for each call of the hook is <tt class="code">hello_world_header</tt>, which is defined in the last section of code in our plugin, as shown:</p>
-<pre>// Function to modify the gallery header
-function hello_world_header($html) {
-    $html = '&lt;p style="color:red"&gt;&lt;b&gt;Hello, world.&lt;/b&gt;  (tutorial 2.1)&lt;/p&gt;'
-            .$html;
-    return $html;
-}</pre>
+<pre><span style="color: #000000"><span style="color: #FF8000">// Function to modify the gallery header
+</span><span style="color: #007700">function </span><span style="color: #0000BB">hello_world_header</span><span style="color: #007700">(</span><span style="color: #0000BB">$html</span><span style="color: #007700">) {
+    </span><span style="color: #0000BB">$html </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;p style="color:red"&gt;&lt;b&gt;Hello, world.&lt;/b&gt;  (tutorial 2.1)&lt;/p&gt;'
+            </span><span style="color: #007700">.</span><span style="color: #0000BB">$html</span><span style="color: #007700">;
+    return </span><span style="color: #0000BB">$html</span><span style="color: #007700">;
+}</span></span></pre>
 <p>Our function needs one parameter since it is attached to a filter hook (instead of an action hook), and here we name it <tt class="code">$html</tt>.  In this function, we add on the "Hello, world." text, which is tagged to be bold & red for extra effect.  We need to ensure that the parameter is added-on to, <strong>not</strong> replaced, so that it plays well with other plugins who tag on to the same hook.  We place the parameter coming in on a separate line to ensure we don't forget to do this.  Finally, the function returns the modified parameter.  And that does it.</p>
 <p>So now you should know how a plugin, albeit a very basic plugin, works.  The other sections in this tutorial describe useful features to add to your plugin including installation, configuration, linking in Coppermine, multi-language support, and distributing your plugin as a package.  Read on and follow along.</p>
 
@@ -204,8 +210,8 @@ function hello_world_header($html) {
 <p><a href="tutorial/cpg1.5_plugin_hello_world_2-2-1.zip">Click here</a> to download the plugin for this section.</p>
 
 <p>Here's the new <tt class="filename">codebase.php</tt> with the new sections highlighted in bold.</p>
-<pre>&lt;?php
-/**************************************************
+<pre><span style="color: #000000"><span style="color: #0000BB">&lt;?php
+</span><span style="color: #FF8000">/**************************************************
   Coppermine Plugin - Hello, World
   *************************************************
   Copyright (c) 2008 &lt;-InsertNameHere-&gt;
@@ -216,64 +222,70 @@ function hello_world_header($html) {
   (at your option) any later version.
 ***************************************************/
 
-if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+</span><span style="color: #007700">if (!</span><span style="color: #0000BB">defined</span><span style="color: #007700">(</span><span style="color: #DD0000">'IN_COPPERMINE'</span><span style="color: #007700">)) die(</span><span style="color: #DD0000">'Not in Coppermine...'</span><span style="color: #007700">);
 
-// Add install & configure actions
-$thisplugin-&gt;add_action('plugin_install','hello_world_install');
-$thisplugin-&gt;add_action('plugin_configure','hello_world_configure');
 
-// Add a filter for the gallery header
-$thisplugin-&gt;add_filter('gallery_header','hello_world_header');
+</span><span style="color: #FF8000">// Add install &amp; configure actions
+</span><span style="color: #0000BB">$thisplugin</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add_action</span><span style="color: #007700">(</span><span style="color: #DD0000">'plugin_install'</span><span style="color: #007700">,</span><span style="color: #DD0000">'hello_world_install'</span><span style="color: #007700">);
+</span><span style="color: #0000BB">$thisplugin</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add_action</span><span style="color: #007700">(</span><span style="color: #DD0000">'plugin_configure'</span><span style="color: #007700">,</span><span style="color: #DD0000">'hello_world_configure'</span><span style="color: #007700">);
 
-// Function to modify the gallery header
-function hello_world_header($html) {
-    $html = '&lt;p style="color:red"&gt;&lt;b&gt;Hello, world.&lt;/b&gt; (tutorial 2.2.1)&lt;/p&gt;'
-            .$html;
-    return $html;
+
+</span><span style="color: #FF8000">// Add a filter for the gallery header
+</span><span style="color: #0000BB">$thisplugin</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add_filter</span><span style="color: #007700">(</span><span style="color: #DD0000">'gallery_header'</span><span style="color: #007700">,</span><span style="color: #DD0000">'hello_world_header'</span><span style="color: #007700">);
+
+</span><span style="color: #FF8000">// Function to modify the gallery header
+</span><span style="color: #007700">function </span><span style="color: #0000BB">hello_world_header</span><span style="color: #007700">(</span><span style="color: #0000BB">$html</span><span style="color: #007700">) {
+    </span><span style="color: #0000BB">$html </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;p style="color:red"&gt;&lt;b&gt;Hello, world.&lt;/b&gt; (tutorial 2.2.1)&lt;/p&gt;'
+            </span><span style="color: #007700">.</span><span style="color: #0000BB">$html</span><span style="color: #007700">;
+    return </span><span style="color: #0000BB">$html</span><span style="color: #007700">;
 }
 
-<strong>// Install the plugin
-function hello_world_install() {
-    $superCage = Inspekt::makeSuperCage();
-    $submit_code = '';
-    if ($superCage-&gt;post-&gt;keyExists('submit')) {
-      $submit_code = $superCage-&gt;post-&gt;getEscaped('submit');
+
+</span><span style="color: #FF8000"><strong>// Install the plugin
+</strong></span><span style="color: #007700"><strong>function </strong></span><span style="color: #0000BB"><strong>hello_world_install</strong></span><span style="color: #007700"><strong>() {
+    </strong></span><span style="color: #0000BB"><strong>$superCage </strong></span><span style="color: #007700"><strong>= </strong></span><span style="color: #0000BB"><strong>Inspekt</strong></span><span style="color: #007700"><strong>::</strong></span><span style="color: #0000BB"><strong>makeSuperCage</strong></span><span style="color: #007700"><strong>();
+    </strong></span><span style="color: #0000BB"><strong>$submit_code </strong></span><span style="color: #007700"><strong>= </strong></span><span style="color: #DD0000"><strong>''</strong></span><span style="color: #007700"><strong>;
+    if (</strong></span><span style="color: #0000BB"><strong>$superCage</strong></span><span style="color: #007700"><strong>-&gt;</strong></span><span style="color: #0000BB"><strong>post</strong></span><span style="color: #007700"><strong>-&gt;</strong></span><span style="color: #0000BB"><strong>keyExists</strong></span><span style="color: #007700"><strong>(</strong></span><span style="color: #DD0000"><strong>'submit'</strong></span><span style="color: #007700"><strong>)) {
+      </strong></span><span style="color: #0000BB"><strong>$submit_code </strong></span><span style="color: #007700"><strong>= </strong></span><span style="color: #0000BB"><strong>$superCage</strong></span><span style="color: #007700"><strong>-&gt;</strong></span><span style="color: #0000BB"><strong>post</strong></span><span style="color: #007700"><strong>-&gt;</strong></span><span style="color: #0000BB"><strong>getEscaped</strong></span><span style="color: #007700"><strong>(</strong></span><span style="color: #DD0000"><strong>'submit'</strong></span><span style="color: #007700"><strong>);
     }
-    if (!$submit_code) {
-        return 1;  // configure function has not been called yet, so return error code '1'
-    } elseif ($submit_code == 'Yes') {
-        return true;  // configure function has been called, so install the plugin
-    } elseif ($submit_code == 'No')  {
-        header("Location: pluginmgr.php\n\n");  // go back to plugin manager without installing the plugin
-        exit(0);
-    } elseif ($submit_code == 'Simulate critical error') {
-        return false;  // simulate a critical error by returning false
-    } else {
-        return 2;  // user is not sure whether to install yet, so return error code '2'
-    }
+    if (!</strong></span><span style="color: #0000BB"><strong>$submit_code</strong></span><span style="color: #007700"><strong>) {
+        return </strong></span><span style="color: #0000BB"><strong>1</strong></span><span style="color: #007700"><strong>;  </strong></span><span style="color: #FF8000"><strong>// configure function has not been called yet, so return error code '1'
+    </strong></span><span style="color: #007700"><strong>} elseif (</strong></span><span style="color: #0000BB"><strong>$submit_code </strong></span><span style="color: #007700"><strong>== </strong></span><span style="color: #DD0000"><strong>'Yes'</strong></span><span style="color: #007700"><strong>) {
+        return </strong></span><span style="color: #0000BB"><strong>true</strong></span><span style="color: #007700"><strong>;  </strong></span><span style="color: #FF8000"><strong>// configure function has been called, so install the plugin
+    </strong></span><span style="color: #007700"><strong>} elseif (</strong></span><span style="color: #0000BB"><strong>$submit_code </strong></span><span style="color: #007700"><strong>== </strong></span><span style="color: #DD0000"><strong>'No'</strong></span><span style="color: #007700"><strong>)  {
+        </strong></span><span style="color: #0000BB"><strong>header</strong></span><span style="color: #007700"><strong>(</strong></span><span style="color: #DD0000"><strong>"Location: pluginmgr.php\n\n"</strong></span><span style="color: #007700"><strong>);  </strong></span><span style="color: #FF8000"><strong>// go back to plugin manager without installing the plugin
+        </strong></span><span style="color: #007700"><strong>exit(</strong></span><span style="color: #0000BB"><strong>0</strong></span><span style="color: #007700"><strong>);
+    } elseif (</strong></span><span style="color: #0000BB"><strong>$submit_code </strong></span><span style="color: #007700"><strong>== </strong></span><span style="color: #DD0000"><strong>'Simulate critical error'</strong></span><span style="color: #007700"><strong>) {
+        return </strong></span><span style="color: #0000BB"><strong>false</strong></span><span style="color: #007700"><strong>;  </strong></span><span style="color: #FF8000"><strong>// simulate a critical error by returning false
+    </strong></span><span style="color: #007700"><strong>} else {
+        return </strong></span><span style="color: #0000BB"><strong>2</strong></span><span style="color: #007700"><strong>;  </strong></span><span style="color: #FF8000"><strong>// user is not sure whether to install yet, so return error code '2'
+    </strong></span><span style="color: #007700"><strong>}
 }
 
-// Configure function: displays the configuration form
-function hello_world_configure($action_code) {
-    global $thisplugin;
-    $still = '';
-    if ($action_code == 2) {
-        echo 'Ok, I hope you\'ve had enough time to decide now.&lt;br /&gt;';
-        $still = 'still ';
+
+</strong></span><span style="color: #FF8000"><strong>// Configure function: displays the configuration form
+</strong></span><span style="color: #007700"><strong>function </strong></span><span style="color: #0000BB"><strong>hello_world_configure</strong></span><span style="color: #007700"><strong>(</strong></span><span style="color: #0000BB"><strong>$action_code</strong></span><span style="color: #007700"><strong>) {
+    global </strong></span><span style="color: #0000BB"><strong>$thisplugin</strong></span><span style="color: #007700"><strong>;
+    </strong></span><span style="color: #0000BB"><strong>$still </strong></span><span style="color: #007700"><strong>= </strong></span><span style="color: #DD0000"><strong>''</strong></span><span style="color: #007700"><strong>;
+    if (</strong></span><span style="color: #0000BB"><strong>$action_code </strong></span><span style="color: #007700"><strong>== </strong></span><span style="color: #0000BB"><strong>2</strong></span><span style="color: #007700"><strong>) {
+        echo </strong></span><span style="color: #DD0000"><strong>'Ok, I hope you\'ve had enough time to decide now.&lt;br /&gt;'</strong></span><span style="color: #007700"><strong>;
+        </strong></span><span style="color: #0000BB"><strong>$still </strong></span><span style="color: #007700"><strong>= </strong></span><span style="color: #DD0000"><strong>'still '</strong></span><span style="color: #007700"><strong>;
     }
-    if (($action_code === 1) || ($action_code == 2)) {
+    if ((</strong></span><span style="color: #0000BB"><strong>$action_code </strong></span><span style="color: #007700"><strong>=== </strong></span><span style="color: #0000BB"><strong>1</strong></span><span style="color: #007700"><strong>) || (</strong></span><span style="color: #0000BB"><strong>$action_code </strong></span><span style="color: #007700"><strong>== </strong></span><span style="color: #0000BB"><strong>2</strong></span><span style="color: #007700"><strong>)) {
         echo &lt;&lt;&lt; EOT
-            &lt;h3&gt;Do you want to install plugin &lt;b&gt;{$thisplugin-&gt;name}&lt;/b&gt;?&lt;/h3&gt;
-            &lt;form action="{$_SERVER['REQUEST_URI']}" method="post"&gt;
+
+</strong></span><span style="color: #0000BB"><strong>            &lt;h3&gt;Do you want to install plugin &lt;b&gt;</strong></span><span style="color: #007700"><strong>{</strong></span><span style="color: #0000BB"><strong>$thisplugin</strong></span><span style="color: #007700"><strong>-&gt;</strong></span><span style="color: #0000BB"><strong>name</strong></span><span style="color: #007700"><strong>}</strong></span><span style="color: #0000BB"><strong>&lt;/b&gt;?&lt;/h3&gt;
+            &lt;form action="</strong></span><span style="color: #007700"><strong>{</strong></span><span style="color: #0000BB"><strong>$_SERVER</strong></span><span style="color: #007700"><strong>[</strong></span><span style="color: #DD0000"><strong>'REQUEST_URI'</strong></span><span style="color: #007700"><strong>]}</strong></span><span style="color: #0000BB"><strong>" method="post"&gt;
+
             &lt;input type="submit" name="submit" value="Yes" /&gt;
             &lt;input type="submit" name="submit" value="No" /&gt;
-            &lt;input type="submit" name="submit" value="I'm {$still}not sure" /&gt;
+            &lt;input type="submit" name="submit" value="I'm </strong></span><span style="color: #007700"><strong>{</strong></span><span style="color: #0000BB"><strong>$still</strong></span><span style="color: #007700"><strong>}</strong></span><span style="color: #0000BB"><strong>not sure" /&gt;
             &lt;input type="submit" name="submit" value="Simulate critical error" /&gt;
             &lt;/form&gt;
-EOT;
+
+</strong></span><span style="color: #007700"><strong>EOT;
     }
-}</strong>
-?&gt;</pre>
+}</strong></span></span><span style="color: #0000BB">?&gt;</span></pre>
 
 <p>Install this new plugin and give it a whirl.  You can use the plugin package linked above, or you can edit the plugin code yourself if you want to get your hands dirty.  It's certainly recommended for you to play with and modify each tutorial plugin to see how things work, and typing in the new code each time may be a useful exercise.  If you have shell access to your web server, you could modify the plugin code directly, in fact you could modify the plugin code while the plugin is installed because the code is loaded on each page load and so the new code would be available immediately.  However, it is not recommended to do this with a "live" website since you may break things in modifying the plugin code directly.  You should set up a system for working on your plugin, ideally on a test installation, but it could also be done by including an administration check for each operational feature of your plugin so only you the admin would see the effect of the plugin in progress.  Or you could set your site offline (in the Coppermine configuration) during this maintenance/upgrade work.  The test installation is clearly the most versatile option, as long as you include enough test content there to simulate the real website and test out your plugin thoroughly.</p>
 
@@ -321,11 +333,11 @@ EOT;
 
 <p>Back to the configure form: we ask the user, "Do you want to install plugin Hello, World?".  The four submit buttons are "Yes", "No", "I'm not sure", and "Simulate critical error".  Each button will trigger a different return value in the install function.  The form itself uses POST to return its data and it should be returned to the plugin manager.  The best way to define the form action is as shown:</p>
 
-<pre>&lt;form action="{$_SERVER['REQUEST_URI']}" method="post"&gt;</pre>
+<pre><span style="color: #000000"><span style="color: #007700">&lt;</span><span style="color: #0000BB">form action</span><span style="color: #007700">=</span><span style="color: #DD0000">"{$_SERVER['REQUEST_URI']}" </span><span style="color: #0000BB">method</span><span style="color: #007700">=</span><span style="color: #DD0000">"post"</span><span style="color: #007700">&gt;</span></span></pre>
 
 <p>Now let's see what the buttons do.  "Yes" triggers a return value of <em>True</em> which will cause the plugin to be installed.  "No" means that the user wants to cancel the installation of the plugin.  There is no way through the Plugin API to do so, so you need to do it yourself in your plugin code.  Our plugin code shows a good way to cancel the plugin installation: send a header pointing to the Plugin Manager and exit, as shown:</p>
-<pre>header("Location: pluginmgr.php\n\n");  // go back to plugin manager without installing the plugin
-exit(0);</pre>
+<pre><span style="color: #000000"><span style="color: #007700">(</span><span style="color: #DD0000">"Location: pluginmgr.php\n\n"</span><span style="color: #007700">);  </span><span style="color: #FF8000">// go back to plugin manager without installing the plugin
+</span><span style="color: #007700">exit(</span><span style="color: #0000BB">0</span><span style="color: #007700">);</span></span></pre>
 <p>The button "I'm not sure" triggers a return value of "2" in the install function, which triggers another display of the configure form.  For fun, we add a line regarding having enough time to decide and modify the button to "I'm still not sure".  This shows how you can use the integer return value from the install function to direct program flow in the configure function.  The return value is passed to the configure function; you can call the parameter whatever you like.  We called it here <tt class="code">$action_code</tt>.</p>
 
 <p>Finally, the button "Simulate critical error" shows you what happens when you return <em>False</em> from the install function.  Admittedly, this is not very useful to the poor administrator trying to install your plugin, so it should not be used unless you do not implement another way to inform the user of an installation problem.  There may be times when your plugin installation runs into a fatal error.  For example, your plugin may add a table for its data but during installation, the table cannot be created.  In this case, you should output an informative error message saying the table could not be created, then exit, returning to the plugin manager or using the <tt class="code">cpg_die</tt> function.  The user will appreciate your extra effort to tell him/her what went wrong with the plugin installation.</p>

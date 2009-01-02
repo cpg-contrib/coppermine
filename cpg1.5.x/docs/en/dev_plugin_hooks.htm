@@ -587,20 +587,20 @@ CPGPluginAPI::filter('after_delete_file', $pic);</div>
 <p>This filter is a special one to add or modify meta albums</p>
 <div class="quote">$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);<br /><br />
 It works like this:<br />
-<pre class="bigcode">
-$meta_album_passto = array (
-        'album' => $album,
-        'limit' => $limit,
-        'set_caption' => $set_caption,
+<pre><span style="color: #000000"><span style="color: #0000BB">&lt;?php
+$meta_album_passto </span><span style="color: #007700">= array (
+        </span><span style="color: #DD0000">'album' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$album</span><span style="color: #007700">,
+        </span><span style="color: #DD0000">'limit' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$limit</span><span style="color: #007700">,
+        </span><span style="color: #DD0000">'set_caption' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$set_caption</span><span style="color: #007700">,
 );
-$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);
-if ($meta_album_params['album_name']) {
-        $album_name = $meta_album_params['album_name'];
-        $count = $meta_album_params['count'];
-        $rowset = $meta_album_params['rowset'];
-        return $rowset;
-}
-</pre><br />
+
+</span><span style="color: #0000BB">$meta_album_params </span><span style="color: #007700">= </span><span style="color: #0000BB">CPGPluginAPI</span><span style="color: #007700">::</span><span style="color: #0000BB">filter</span><span style="color: #007700">(</span><span style="color: #DD0000">'meta_album'</span><span style="color: #007700">, </span><span style="color: #0000BB">$meta_album_passto</span><span style="color: #007700">);
+if (</span><span style="color: #0000BB">$meta_album_params</span><span style="color: #007700">[</span><span style="color: #DD0000">'album_name'</span><span style="color: #007700">]) {
+        </span><span style="color: #0000BB">$album_name </span><span style="color: #007700">= </span><span style="color: #0000BB">$meta_album_params</span><span style="color: #007700">[</span><span style="color: #DD0000">'album_name'</span><span style="color: #007700">];
+        </span><span style="color: #0000BB">$count </span><span style="color: #007700">= </span><span style="color: #0000BB">$meta_album_params</span><span style="color: #007700">[</span><span style="color: #DD0000">'count'</span><span style="color: #007700">];
+        </span><span style="color: #0000BB">$rowset </span><span style="color: #007700">= </span><span style="color: #0000BB">$meta_album_params</span><span style="color: #007700">[</span><span style="color: #DD0000">'rowset'</span><span style="color: #007700">];
+        return </span><span style="color: #0000BB">$rowset</span><span style="color: #007700">;
+}</span></span></pre><br />
 A plugin needs three input variables to do its thing: <br />
 $album, $limit, $set_caption <br />
 and it needs to modify three variables: <br />
@@ -612,32 +612,33 @@ $admin_menu = CPGPluginAPI::filter('admin_menu',$html);<br />
 $sys_menu_buttons = CPGPluginAPI::filter('sys_menu',$sys_menu_buttons);<br />
 $sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);<br /><br />
 To add a button to the admin menu you can do the following:<br />
-<pre class="bigcode">
-$thisplugin->add_filter('admin_menu','add_admin_button');<br />
-function add_admin_button($admin_menu){
-	$new_button = '&lt;div class="admin_menu admin_float"&gt;&lt;a href="./menu_link.php" title="menu link"&gt;MENU LINK&lt;/a&gt;&lt;/div&gt;';
-	$look_for = '&lt;!-- END export --&gt;';
-	$admin_menu = str_replace($look_for, $look_for . $new_button, $admin_menu); 
-	
-	return $admin_menu;
-}</pre><br />
+<pre><span style="color: #000000"><span style="color: #0000BB">&lt;?php
+$thisplugin</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add_filter</span><span style="color: #007700">(</span><span style="color: #DD0000">'admin_menu'</span><span style="color: #007700">,</span><span style="color: #DD0000">'add_admin_button'</span><span style="color: #007700">);
+
+function </span><span style="color: #0000BB">add_admin_button</span><span style="color: #007700">(</span><span style="color: #0000BB">$admin_menu</span><span style="color: #007700">){
+    </span><span style="color: #0000BB">$new_button </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;div class="admin_menu admin_float"&gt;&lt;a href="./menu_link.php" title="menu link"&gt;MENU LINK&lt;/a&gt;&lt;/div&gt;'</span><span style="color: #007700">;
+    </span><span style="color: #0000BB">$look_for </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;!-- END export --&gt;'</span><span style="color: #007700">;
+    </span><span style="color: #0000BB">$admin_menu </span><span style="color: #007700">= </span><span style="color: #0000BB">str_replace</span><span style="color: #007700">(</span><span style="color: #0000BB">$look_for</span><span style="color: #007700">, </span><span style="color: #0000BB">$look_for </span><span style="color: #007700">. </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">, </span><span style="color: #0000BB">$admin_menu</span><span style="color: #007700">); 
+    
+    return </span><span style="color: #0000BB">$admin_menu</span><span style="color: #007700">;
+}</span></span></pre><br />
 For the sys & sub menus you have to take another approach:<br />
-<pre class="bigcode">
-$thisplugin->add_filter('sub_menu','add_sub_button');<br />
-function add_sub_button($menu) {
-	$new_button = array();
-	$new_button[0][0] = 'MENU LINK';
-	$new_button[0][1] = 'menu link';
-	$new_button[0][2] = './menu_link.php';
-	$new_button[0][3] = 'class_name';
-	$new_button[0][4] = '::';
-	$new_button[0][5] = 'rel="nofolow"';
+<pre><span style="color: #000000"><span style="color: #0000BB">&lt;?php
+$thisplugin</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add_filter</span><span style="color: #007700">(</span><span style="color: #DD0000">'sub_menu'</span><span style="color: #007700">,</span><span style="color: #DD0000">'add_sub_button'</span><span style="color: #007700">);&lt;</span><span style="color: #0000BB">br </span><span style="color: #007700">/&gt;
 
-	array_splice($menu, count($menu)-1, 0, $new_button);
+function </span><span style="color: #0000BB">add_sub_button</span><span style="color: #007700">(</span><span style="color: #0000BB">$menu</span><span style="color: #007700">) {
+    </span><span style="color: #0000BB">$new_button </span><span style="color: #007700">= array();
+    </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #0000BB">0</span><span style="color: #007700">] = </span><span style="color: #DD0000">'MENU LINK'</span><span style="color: #007700">;
+    </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #0000BB">1</span><span style="color: #007700">] = </span><span style="color: #DD0000">'menu link'</span><span style="color: #007700">;
+    </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #0000BB">2</span><span style="color: #007700">] = </span><span style="color: #DD0000">'./menu_link.php'</span><span style="color: #007700">;
+    </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #0000BB">3</span><span style="color: #007700">] = </span><span style="color: #DD0000">'class_name'</span><span style="color: #007700">;
+    </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #0000BB">4</span><span style="color: #007700">] = </span><span style="color: #DD0000">'::'</span><span style="color: #007700">;
+    </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #0000BB">5</span><span style="color: #007700">] = </span><span style="color: #DD0000">'rel="nofolow"'</span><span style="color: #007700">;
 
-	return $menu;
-}
-</pre>
+    </span><span style="color: #0000BB">array_splice</span><span style="color: #007700">(</span><span style="color: #0000BB">$menu</span><span style="color: #007700">, </span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">$menu</span><span style="color: #007700">)-</span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">);
+
+    return </span><span style="color: #0000BB">$menu</span><span style="color: #007700">;
+}</span></span></pre>
 </div>
 <p>These four hooks can be used to add a custom CAPTCHA validation that overrides the one built into Coppermine.
 </p><div class="quote">
