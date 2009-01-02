@@ -59,6 +59,7 @@ if ($superCage->get->keyExists('id')) {
 }
 print '    <form name="form" name="keywordform" id="cpgform2">'."\n";
 starttable("100%", $lang_upload_php['keywords_sel'], 3);
+$keyword_separator = $CONFIG['keyword_separator'];
 if ($total > 0) {
 
     $form = '
@@ -68,10 +69,12 @@ if ($total > 0) {
 
     function CM_select(f)
     {
-        str = window.document.form.elements[0].value;
-        var substrings = window.opener.document.getElementById(\'keywords' . $formFieldId . '\').value.split(str);
-        if (substrings.length <= 1){
-                window.opener.document.getElementById(\'keywords' . $formFieldId . '\').value += \' \' + str;
+        new_keyword = window.document.form.elements[0].value;
+        var current_keywords = window.opener.document.getElementById(\'keywords' . $formFieldId . '\').value;
+        var substrings = current_keywords.split(new_keyword);
+        if (substrings.length <= 1) {
+                keyword_separator = (current_keywords.length == 0) ? \'\' : \'' . $keyword_separator . '\';
+                window.opener.document.getElementById(\'keywords' . $formFieldId . '\').value += keyword_separator + new_keyword;
         }
 
 
