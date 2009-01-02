@@ -614,7 +614,7 @@ class core_udb {
         {
                 global $lang_util_php, $CONFIG;
 
-                echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
+                echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">'.$lang_util_php['all_albums'].'</option>';
 
                 // Padding to indicate level
                 $padding = 8;
@@ -631,7 +631,7 @@ class core_udb {
                 if (!empty($albums[0])) {
         
                     // Albums in no category
-                    echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">No category</option>';
+                    echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">'.$lang_util_php['no_category'].'</option>';
 
                     foreach ($albums[0] as $aid => $title) {
                         echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>'."\n", $padding, $aid, $title);

@@ -2429,6 +2429,7 @@ $lang_util_php['cannot_fix'] = 'Kann nicht reparieren'; // cpg1.5
 $lang_util_php['fullpic_error'] = 'Datei %s existiert nicht!'; // cpg1.5
 $lang_util_php['no_prob_detect'] = 'Es wurden keine Probleme festgestellt'; // cpg1.5
 $lang_util_php['no_prob_found'] = 'Es wurden keine Probleme gefunden.'; // cpg1.5
+$lang_util_php['no_category'] = 'Keine Kategorie'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //

@@ -2453,6 +2453,7 @@ $lang_util_php['cannot_fix'] = 'Cannot fix'; // cpg1.5
 $lang_util_php['fullpic_error'] = 'File %s does not exist!'; // cpg1.5
 $lang_util_php['no_prob_detect'] = 'No problems detected'; // cpg1.5
 $lang_util_php['no_prob_found'] = 'No problems were found.'; // cpg1.5
+$lang_util_php['no_category'] = 'No Category'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //

@@ -1417,7 +1417,7 @@ $lang_list_users['n_pics'] = '%s photo(s)';
 if (defined('INSTALL_PHP')) {
   $lang_install['already_succ'] = 'L\'installeur a déjà été utilisé avec succès, il est maintenant vérouillé.';
   $lang_install['already_succ_explain'] = 'Si vous souhaitez relancer l\'installeur à nouveau, vous devez d\'abbord effacer le fichier \'include/config.inc.php\' qui a été crée dans le répertoire ou vous avez placé Coppermine. Vous pouvez le faire avec un éditeur de texte';
-  $lang_install['cant_read_tmp_conf'] = 'L\installeur ne peut pas lir ele fichier temporaire de configuration %s, vérifiez les permissions de vos répertoires';
+  $lang_install['cant_read_tmp_conf'] = 'L\'installeur ne peut pas lir ele fichier temporaire de configuration %s, vérifiez les permissions de vos répertoires';
   $lang_install['cant_write_tmp_conf'] = 'l\'installeur de peut pas écrite le fichier temporaire de configuration %s, vérifiez les permissions de vos répertoires';
   $lang_install['review_permissions'] = 'Merci de vérifier les permissions de ce répertoire.';
   $lang_install['change_lang'] = 'Changer de langue';
@@ -1488,7 +1488,7 @@ if (defined('INSTALL_PHP')) {
   $lang_install['ready_to_roll'] = '<a href="index.php">Coppermine</a> est maintenant corectement configuré et prêt à fonctionner.<br /><br /><a href="login.php">Identiez-vous</a> en utilisant les informations que vous avez données pour votre compte administrateur.';
   $lang_install['sect_create_adm'] = 'Cette partie requière des informations pour créer votre compte administrateur Coppermine. N\'utilisez que des caractères alphanumériques. Entrez ces données attentivement!';
   $lang_install['sect_mysql_info'] = 'Cette section demande les informations pour savoir comment se connecter à votre base de donnée MySQL.<br />Si vou sne savez pas comment les remplir, demandez de l\'aide à votre hébergeur.';
-  $lang_install['sect_mysql_sel_db'] = 'Ici vous devez choisir quelle base de donnée vous voulez utiliser pour Coppermine. <br />Si votre compte Mysql a les privilèges requis, vous pouvez créer une nouvelle base de donnée depusi l\'installeur ou utiliser une base de donnée existante. Si vous ne voulez d\'aucune de ces deux options, vous devrez créer une base de donnée hors de l\installeur Coppermine, puis revenir ici et sélectionner la nouvelle base de donnée depuis la liste déroulante. Vous pouvez aussi changer le préfixe des tables (N\'utilisez pas de point), mais il est recommander de laisser le préfixe par défaut tel quel.';
+  $lang_install['sect_mysql_sel_db'] = 'Ici vous devez choisir quelle base de donnée vous voulez utiliser pour Coppermine. <br />Si votre compte Mysql a les privilèges requis, vous pouvez créer une nouvelle base de donnée depusi l\'installeur ou utiliser une base de donnée existante. Si vous ne voulez d\'aucune de ces deux options, vous devrez créer une base de donnée hors de l\'installeur Coppermine, puis revenir ici et sélectionner la nouvelle base de donnée depuis la liste déroulante. Vous pouvez aussi changer le préfixe des tables (N\'utilisez pas de point), mais il est recommander de laisser le préfixe par défaut tel quel.';
   $lang_install['select_lang'] = 'Sélectionnez la langue par défaut: ';
   $lang_install['sql_file_not_found'] = 'Le fichier \'%s\' n\'a pas pu être trouvé. Vérifiez que vous avez téléchargé tous les fichiers Coppermine sur votre serveur';
   $lang_install['status'] = 'Statut';
@@ -1812,13 +1812,13 @@ EOT;
   $lang_register_php['pass_chg_success'] = 'Votre Mot de Passe a été modifié';
   $lang_register_php['pass_chg_error'] = 'Votre Mot de Passe n\'a pas été modifié';
   $lang_register_php['notify_admin_email_subject'] = '%s - notification d\'inscription';
-  $lang_register_php['last_uploads'] = 'Dernier fichier uploadé.<br />Cliquer pour voir tous les Derniers Téléchargements par'; //cpg1.4
+  $lang_register_php['last_uploads'] = 'Dernier fichier uploadé.'; //cpg1.4
   $lang_register_php['last_uploads_detail'] = 'Cliquez pour voir tous les téléchargements de %s'; //cpg1.5
-  $lang_register_php['last_comments'] = 'Dernier Commentaire.<br />Cliquer pour voir tous les Derniers Commentaires par'; //cpg1.4
-  $lang_register_php['you'] = 'you'; //cpg1.5
+  $lang_register_php['last_comments'] = 'Dernier Commentaire.'; //cpg1.4
+  $lang_register_php['you'] = 'vous'; //cpg1.5
   $lang_register_php['last_comments_detail'] = 'Cliquez pour voir tous les comentaires de %s'; //cpg1.5
   $lang_register_php['notify_admin_email_body'] = 'Un Nouvel Utilisateur s\'est inscrit dans votre Galerie, sous le nom &quot;%s&quot;';
-  $lang_register_php['pic_count'] = 'Fichiers tétéchargés'; //cpg1.4
+  $lang_register_php['pic_count'] = 'Fichiers téléchargés'; //cpg1.4
   $lang_register_php['notify_admin_request_email_subject'] = '%s - Demande d\'enregistrement'; //cpg1.4
   $lang_register_php['thank_you_admin_activation'] = 'Merci.<br /><br />Votre requête d\'activation du Compte a été envoyé à l\'Administrateur. Vous recevrez un courriel si votre inscription est approuvé.'; //cpg1.4
   $lang_register_php['acct_active_admin_activation'] = 'Le Compte est maintenant actif et un courriel a été envoyé à l\'Utilisateur.'; //cpg1.4
@@ -2138,9 +2138,9 @@ if (defined('UPLOAD_PHP')) {
   $lang_upload_php['forb_ext'] = 'Extension de fichier non autorisée.';
   $lang_upload_php['exc_php_ini'] = 'Le poids excède celui permis par le fichier php.ini.';
   $lang_upload_php['exc_file_size'] = 'Le poids excède celui permis par l\'Admin de la Galerie Coppermine.';
-  $lang_upload_php['partial_upload'] = 'Upload partiel uniquement.';
-  $lang_upload_php['no_upload'] = 'L\'upload ne s\'est pas effectué.';
-  $lang_upload_php['unknown_code'] = 'Code d\'erreur d\'upload PHP inconnu.';
+  $lang_upload_php['partial_upload'] = 'Téléchargement partiel uniquement.';
+  $lang_upload_php['no_upload'] = 'Le téléchargement ne s\'est pas effectué.';
+  $lang_upload_php['unknown_code'] = 'Code d\'erreur de téléchargement PHP inconnu.';
   //$lang_upload_php['no_temp_name'] = 'Pas d\'upload - Pas de dossier temporaire.';
   //$lang_upload_php['no_file_size'] = 'Pas de données ou données endommagées';
   $lang_upload_php['impossible'] = 'Impossible à déplacer.';
@@ -2169,7 +2169,7 @@ if (defined('UPLOAD_PHP')) {
   //$lang_upload_php['succ'] = 'Uploads effectués avec succès';
   //$lang_upload_php['success'] = '%s upload(s) effectué(s) avec succès.';
   //$lang_upload_php['add'] = 'Cliquez sur \'CONTINUEZ\' pour ajouter les fichiers aux Albums.';
-  $lang_upload_php['failure'] = 'Erreur d\'upload';
+  $lang_upload_php['failure'] = 'Erreur de téléchargementupload';
   //$lang_upload_php['f_info'] = 'Information du fichier';
   $lang_upload_php['no_place'] = 'Le fichier précédent n\'a pas pu être placé.';
   //$lang_upload_php['yes_place'] = 'Le fichier précédent a été placé avec succès';
@@ -2178,14 +2178,14 @@ if (defined('UPLOAD_PHP')) {
   $lang_upload_php['pic_title'] = 'Titre du fichier';
   $lang_upload_php['description'] = 'Description du fichier';
   $lang_upload_php['keywords_sel'] ='Choisissez un Mot-Clef'; //cpg1.4
-  $lang_upload_php['err_no_alb_uploadables'] = 'Désolés, mais il n\'existe pas d\'Album dans lequel vous avez le droit d\'uploader des photos';
+  $lang_upload_php['err_no_alb_uploadables'] = 'Désolés, mais il n\'existe pas d\'Album dans lequel vous avez le droit de télécharger des photos';
   //$lang_upload_php['place_instr_1'] = 'Merci de placer les fichiers dans les Albums maintenant.  Vous pouvez aussi saisir les informations de chaque fichier.';
   //$lang_upload_php['place_instr_2'] = 'D\'autres fichiers doivent être placés. Merci de cliquer sur \'CONTINUEZ\'.';
   //$lang_upload_php['process_complete'] = 'Vous avez placé tous les fichiers avec succès.';
   $lang_upload_php['close'] = 'Fermez'; //cpg1.4
   $lang_upload_php['no_keywords'] = 'Désolé, aucun Mot-Clef disponible&nbsp;!'; //cpg1.4
   $lang_upload_php['regenerate_dictionary'] = 'Regénérez le dictionnaire'; //cpg1.4
-  $lang_upload_php['allowed_types'] = 'Vous pouvez à télécharger des fichiers avec les extensions suivantesYou are allowed to upload files with the following extensions:'; // cpg1.5
+  $lang_upload_php['allowed_types'] = 'Vous pouvez à télécharger des fichiers avec les extensions suivantes:'; // cpg1.5
   $lang_upload_php['allowed_img_types'] = 'Extensions d\'Image: %s'; // cpg1.5
   $lang_upload_php['allowed_mov_types'] = 'Extensions Video: %s'; // cpg1.5
   $lang_upload_php['allowed_doc_types'] = 'Extension de Document: %s'; // cpg1.5
@@ -2198,7 +2198,7 @@ if (defined('UPLOAD_PHP')) {
   $lang_upload_php['err_flash_disabled'] = 'L\'interface de téléchargement prends beaucoup de temps pour charger ou le chargement à échoué.  Vérifiez que le plugin Flash est activé et qu\'une version fonctionnelle d\'Adobe Flash Player est installée.'; // cpg1.5
   $lang_upload_php['err_alternate_method'] = 'A la place, vous pouvez utiliser l\'interface de téléchargement <a href="upload.php?single=1">fichier unique</a>.'; // cpg1.5
   $lang_upload_php['err_flash_version'] = 'L\'interface de téléchargement ne peut pas être chargé.  vous devriez installer ou mettre à jour Flash Player. Visitez le <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">site Adobe</a> pour vous procurer Flash Player.'; // cpg1.5
-  $lang_upload_php['flash_loading'] = 'L\'interface de téléchargement est en train de se charger. Please wait a moment...'; // cpg1.5
+  $lang_upload_php['flash_loading'] = 'L\'interface de téléchargement est en train de se charger. Veuillez patienter...'; // cpg1.5
 
 $lang_upload_swf_php['all_files'] = 'Tous les Fichiers'; //cpg1.5
 $lang_upload_swf_php['status_pending'] = 'En cours...'; //cpg1.5
@@ -2398,8 +2398,8 @@ if (defined('UTIL_PHP')) {
   $lang_util_php['delete_original_explanation'] = 'Cela va supprimer les photos à la taille d\'origine'; //cpg1.4
   $lang_util_php['delete_intermediate'] = 'Supprimez les images intermédiaires'; //cpg1.4
   $lang_util_php['delete_intermediate_explanation1'] = 'Celà va effacer les images intermédiaires (normale).'; // cpg1.5
-  $lang_util_php['delete_intermediate_explanation2'] = 'Utilisez cette option pour faire de laplace sur le disque si vous avez désactivé \'Créer des images intermédiaires \' dans la configuration après avoir ajouté des images.'; // cpg1.5
-  $lang_util_php['delete_intermediate_check'] = 'L\'option de la configuration \'Créer des images intérmédiares\' est actuellement %s.'; // cpg1.5
+  $lang_util_php['delete_intermediate_explanation2'] = 'Utilisez cette option pour faire de la place sur le disque si vous avez désactivé \'Créer des images intermédiaires \' dans la configuration après avoir ajouté des images.'; // cpg1.5
+  $lang_util_php['delete_intermediate_check'] = 'L\'option de la configuration \'Créer des images intérmédiaires\' est actuellement %s.'; // cpg1.5
   $lang_util_php['no_image'] = '%s a été ignoré parce que ce n\'est pas une image.'; // cpg1.5
   $lang_util_php['enabled'] = 'activé'; // cpg1.5
   $lang_util_php['disabled'] = 'désactivé'; // cpg1.5
@@ -2412,7 +2412,7 @@ if (defined('UTIL_PHP')) {
   $lang_util_php['update_full_normal_thumb'] = 'Tout... Images originales, Images intermédiaires, Vignettes'; // cpg1.5
   $lang_util_php['update_full_normal'] = 'Les deux : Intermédiaires et taille originale (si une copie de l\'originale est disponible)'; // cpg1.5
   $lang_util_php['update_full'] = 'Uniquement les images de taille originale (si une copie de l\'originale est disponible)';// cpg1.5
-  $lang_util_php['delete_back'] = 'Effacez la copie de l\'image originale (watermark mod)'; // cpg1.5
+  $lang_util_php['delete_back'] = 'Effacez la copie de l\'image originale (Mod filigrane)'; // cpg1.5
   $lang_util_php['delete_back_explanation'] = 'Celà va effacer la copie de l\'image originale. <br>Vous gagnerez ainsi de la place sur votre serveur mais ne pourrez pas annuler le filigrane de votre image par la suite !!! <br>Le filigrane sera permanent après cette opération'; // cpg1.5
   $lang_util_php['finished'] = '<br />Terminer la mise à jour des Vignettes/Images!<br />'; // cpg1.5
   $lang_util_php['autorefresh'] = ' Réactualisation automatique de la page (inutile de cliquer sur le bouton CONTINUEZ)<br /><br />'; // cpg1.5
@@ -2427,15 +2427,15 @@ if (defined('UTIL_PHP')) {
   $lang_util_php['comment'] = 'Commentaire : ';
   $lang_util_php['nonexist'] = 'Lié à un fichier innexistant # ';
   $lang_util_php['delete_old'] = 'Effacer les fichiers plus anciens qu\'un nombre de jours déterminé';  // cpg1.5
-  $lang_util_php['delete_old_explanation'] = 'Cela va effacer les fichiers plus anciens que le nombre de jours que vous avez déterminé (images normael, intermediaires, vignettes). Utilisez cette fonction pour gagner le l\'espace disque.';  // cpg1.5
+  $lang_util_php['delete_old_explanation'] = 'Cela va effacer les fichiers plus anciens que le nombre de jours que vous avez déterminé (images normales, intermediaires, vignettes). Utilisez cette fonction pour gagner le l\'espace disque.';  // cpg1.5
   $lang_util_php['delete_old_warning'] = 'Attention: Les fichiers sélectionnés seront effacés définitivement sans autres avertissements!';  // cpg1.5
   $lang_util_php['deleting_old'] = 'Effacement de images anciennes, Merci de patienter...';  // cpg1.5
   $lang_util_php['older_than'] = 'Effacer les fichiers plus vieux que %s jours';  // cpg1.5
   $lang_util_php['del_orig'] = 'L\'image originale %s a été effacée avec succès';  // cpg1.5
   $lang_util_php['del_intermediate'] = 'L\'image intermédiaire %s a été effacée avec succès';  // cpg1.5
-  $lang_util_php['del_thumb'] = 'LA vignette %s a été effacée avec succès';  // cpg1.5
+  $lang_util_php['del_thumb'] = 'La vignette %s a été effacée avec succès';  // cpg1.5
   $lang_util_php['del_error'] = 'Erreur d\'effacement de %s !';  // cpg1.5
-  $lang_util_php['affected_records'] = '%s enrgistrements affectés.'; // cpg1.5
+  $lang_util_php['affected_records'] = '%s enregistrements affectés.'; // cpg1.5
   $lang_util_php['all_albums'] = 'Tous les Albums'; // cpg1.5
   $lang_util_php['update_result'] = 'Résultats de la mise à jour'; // cpg1.5
   $lang_util_php['incorrect_filesize'] = 'La taille totale de l\'image est incorrecte'; // cpg1.5
@@ -2452,6 +2452,7 @@ if (defined('UTIL_PHP')) {
   $lang_util_php['fullpic_error'] = 'Le fichier %s n\'existe pas!'; // cpg1.5
   $lang_util_php['no_prob_detect'] = 'Pas de problèmes détectés'; // cpg1.5
   $lang_util_php['no_prob_found'] = 'Pas de problèmes trouvés.'; // cpg1.5
+  $lang_util_php['no_category'] = 'Pas de Catégorie'; // cpg1.5
 }
 
 // ----------------------- //
