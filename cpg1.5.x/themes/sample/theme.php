@@ -228,6 +228,9 @@ $template_gallery_admin_menu = <<<EOT
                             <!-- BEGIN albmgr -->
                                 <div class="admin_menu admin_float"><a href="albmgr.php{CATL}" title="{ALBUMS_TITLE}">{ALBUMS_ICO}{ALBUMS_LNK}</a></div>
                             <!-- END albmgr -->
+                            <!-- BEGIN picmgr -->
+                                <div class="admin_menu admin_float"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_ICO}{PICTURES_LNK}</a></div>
+                            <!-- end picmgr -->
                             <!-- BEGIN groupmgr -->
                                 <div class="admin_menu admin_float"><a href="groupmgr.php" title="{GROUPS_TITLE}">{GROUPS_ICO}{GROUPS_LNK}</a></div>
                             <!-- END groupmgr -->
@@ -237,60 +240,57 @@ $template_gallery_admin_menu = <<<EOT
                             <!-- BEGIN banmgr -->
                                 <div class="admin_menu admin_float"><a href="banning.php" title="{BAN_TITLE}">{BAN_ICO}{BAN_LNK}</a></div>
                             <!-- END banmgr -->
+                            <!-- BEGIN admin_profile -->
+                                <div class="admin_menu admin_float"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_ICO}{MY_PROF_LNK}</a></div>
+                            <!-- END admin_profile -->
                             <!-- BEGIN review_comments -->
                                 <div class="admin_menu admin_float"><a href="reviewcom.php" title="{COMMENTS_TITLE}">{COMMENTS_ICO}{COMMENTS_LNK}</a></div>
                             <!-- END review_comments -->
                             <!-- BEGIN log_ecards -->
                                 <div class="admin_menu admin_float"><a href="db_ecard.php" title="{DB_ECARD_TITLE}">{DB_ECARD_ICO}{DB_ECARD_LNK}</a></div>
                             <!-- END log_ecards -->
-                            <!-- BEGIN picmgr -->
-                                <div class="admin_menu admin_float"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_ICO}{PICTURES_LNK}</a></div>
-                            <!-- end picmgr -->
                             <!-- BEGIN batch_add -->
                                 <div class="admin_menu admin_float"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_ICO}{SEARCHNEW_LNK}</a></div>
                             <!-- END batch_add -->
                             <!-- BEGIN admin_tools -->
                                 <div class="admin_menu admin_float"><a href="util.php?t={TIME_STAMP}#admin_tools" title="{UTIL_TITLE}">{UTIL_ICO}{UTIL_LNK}</a></div>
                             <!-- END admin_tools -->
-                            <!-- BEGIN admin_profile -->
-                                <div class="admin_menu admin_float"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_ICO}{MY_PROF_LNK}</a></div>
-                            <!-- END admin_profile -->
-                            <!-- BEGIN documentation -->
-                                <div class="admin_menu admin_float"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}">{DOCUMENTATION_ICO}{DOCUMENTATION_LNK}</a></div>
-                            <!-- END documentation -->
-                            <!-- BEGIN plugin_manager -->
-                                <div class="admin_menu admin_float"><a href="{PLUGINMGR_HREF}" title="{PLUGINMGR_TITLE}">{PLUGINMGR_ICO}{PLUGINMGR_LNK}</a></div>
-                            <!-- END plugin_manager -->
-                            <!-- BEGIN bridge_manager -->
-                                <div class="admin_menu admin_float"><a href="bridgemgr.php" title="{BRIDGEMGR_TITLE}">{BRIDGEMGR_ICO}{BRIDGEMGR_LNK}</a></div>
-                            <!-- END bridge_manager -->
-                            <!-- BEGIN php_info -->
-                                <div class="admin_menu admin_float"><a href="phpinfo.php" title="{PHPINFO_TITLE}">{PHPINFO_ICO}{PHPINFO_LNK}</a></div>
-                            <!-- END php_info -->
-                            <!-- BEGIN update_database -->
-                                <div class="admin_menu admin_float"><a href="update.php" title="{UPDATE_DATABASE_TITLE}">{UPDATE_DATABASE_ICO}{UPDATE_DATABASE_LNK}</a></div>
-                            <!-- END update_database -->
-                            <!-- BEGIN view_log_files -->
-                                <div class="admin_menu admin_float"><a href="viewlog.php" title="{VIEW_LOG_FILES_TITLE}">{VIEW_LOG_FILES_ICO}{VIEW_LOG_FILES_LNK}</a></div>
-                            <!-- END view_log_files -->
-                            <!-- BEGIN check_versions -->
-                                <div class="admin_menu admin_float"><a href="versioncheck.php" title="{CHECK_VERSIONS_TITLE}">{CHECK_VERSIONS_ICO}{CHECK_VERSIONS_LNK}</a></div>
-                            <!-- END check_versions -->
-                            <!-- BEGIN overall_stats -->
-                                <div class="admin_menu admin_float"><a href="stat_details.php?type=hits&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;search_phrase=0&amp;referer=0&amp;browser=1&amp;os=1&amp;mode=fullscreen&amp;page=1&amp;amount=50" title="{OVERALL_STATS_TITLE}">{OVERALL_STATS_ICO}{OVERALL_STATS_LNK}</a></div>
-                            <!-- END overall_stats -->
                             <!-- BEGIN keyword_manager -->
                                 <div class="admin_menu admin_float"><a href="keywordmgr.php" title="{KEYWORDMGR_TITLE}">{KEYWORDMGR_ICO}{KEYWORDMGR_LNK}</a></div>
                             <!-- END keyword_manager -->
                             <!-- BEGIN exif_manager -->
                                 <div class="admin_menu admin_float"><a href="exifmgr.php" title="{EXIFMGR_TITLE}">{EXIFMGR_ICO}{EXIFMGR_LNK}</a></div>
                             <!-- END exif_manager -->
-                            <!-- BEGIN show_news -->
-                                <div class="admin_menu admin_float"><a href="mode.php?what=news&amp;referer=$REFERER" title="{SHOWNEWS_TITLE}">{SHOWNEWS_ICO}{SHOWNEWS_LNK}</a></div>
-                            <!-- END show_news -->
+                            <!-- BEGIN plugin_manager -->
+                                <div class="admin_menu admin_float"><a href="pluginmgr.php" title="{PLUGINMGR_TITLE}">{PLUGINMGR_ICO}{PLUGINMGR_LNK}</a></div>
+                            <!-- END plugin_manager -->
+                            <!-- BEGIN bridge_manager -->
+                                <div class="admin_menu admin_float"><a href="bridgemgr.php" title="{BRIDGEMGR_TITLE}">{BRIDGEMGR_ICO}{BRIDGEMGR_LNK}</a></div>
+                            <!-- END bridge_manager -->
+                            <!-- BEGIN view_log_files -->
+                                <div class="admin_menu admin_float"><a href="viewlog.php" title="{VIEW_LOG_FILES_TITLE}">{VIEW_LOG_FILES_ICO}{VIEW_LOG_FILES_LNK}</a></div>
+                            <!-- END view_log_files -->
+                            <!-- BEGIN overall_stats -->
+                                <div class="admin_menu admin_float"><a href="stat_details.php?type=hits&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;search_phrase=0&amp;referer=0&amp;browser=1&amp;os=1&amp;mode=fullscreen&amp;page=1&amp;amount=50" title="{OVERALL_STATS_TITLE}">{OVERALL_STATS_ICO}{OVERALL_STATS_LNK}</a></div>
+                            <!-- END overall_stats -->
+                            <!-- BEGIN check_versions -->
+                                <div class="admin_menu admin_float"><a href="versioncheck.php" title="{CHECK_VERSIONS_TITLE}">{CHECK_VERSIONS_ICO}{CHECK_VERSIONS_LNK}</a></div>
+                            <!-- END check_versions -->
+                            <!-- BEGIN update_database -->
+                                <div class="admin_menu admin_float"><a href="update.php" title="{UPDATE_DATABASE_TITLE}">{UPDATE_DATABASE_ICO}{UPDATE_DATABASE_LNK}</a></div>
+                            <!-- END update_database -->
                             <!-- BEGIN export -->
                               <div class="admin_menu admin_float"><a href="export.php" title="{EXPORT_TITLE}">{EXPORT_ICO}{EXPORT_LNK}</a></div>
                             <!-- END export -->
+                            <!-- BEGIN php_info -->
+                                <div class="admin_menu admin_float"><a href="phpinfo.php" title="{PHPINFO_TITLE}">{PHPINFO_ICO}{PHPINFO_LNK}</a></div>
+                            <!-- END php_info -->
+                            <!-- BEGIN show_news -->
+                                <div class="admin_menu admin_float"><a href="mode.php?what=news&amp;referer=$REFERER" title="{SHOWNEWS_TITLE}">{SHOWNEWS_ICO}{SHOWNEWS_LNK}</a></div>
+                            <!-- END show_news -->
+                            <!-- BEGIN documentation -->
+                                <div class="admin_menu admin_float"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}">{DOCUMENTATION_ICO}{DOCUMENTATION_LNK}</a></div>
+                            <!-- END documentation -->
                 <div style="clear:left;">
                 </div>
               </div>
