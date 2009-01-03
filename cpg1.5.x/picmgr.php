@@ -146,6 +146,7 @@ function albumselect($id = "album")
 }
         /**set js variable to changes albums*/
      set_js_var('change_album', $lang_picmgr_php['change_album']);
+     set_js_var('confirm_modifs', $lang_picmgr_php['confirm_modifs']);
      
      pageheader($lang_picmgr_php['pic_mgr']);
 
@@ -218,7 +219,7 @@ EOT;
         /** create a table to sort the picture*/  
     if (count ($rowset) > 0) 
         foreach ($rowset as $picture){
-            $lb .='<tr id='.$picture["pid"].' title='.$picture["pid"].'><td width="10%" style="padding-left:20px" >'.$j.'</td><td><img src="images/bullet.png"  /><td style="width:335px;padding-left:10px;">'.$picture["title"].'</td><td style="width:300px;padding-left:10px;">'.$picture["filename"].'</td></tr>';
+            $lb .='<tr id=sort'.$picture["pid"].' title='.$picture["pid"].'><td width="10%" style="padding-left:20px" >'.$j.'</td><td><img src="images/bullet.png"  /><td style="width:335px;padding-left:10px;">'.$picture["title"].'</td><td style="width:300px;padding-left:10px;">'.$picture["filename"].'</td></tr>';
             $j++;
         }
         

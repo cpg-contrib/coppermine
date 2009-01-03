@@ -109,7 +109,7 @@ jQuery(document).ready(function()
         $("#pictur_order").val(getSerializePic());
         var a = $("input[name='pictur_order']").attr("value");
         if(a.length > 0){
-        if(confirm('Confirm modifications!')) {
+        if(confirm(js_vars.confirm_modifs)) {
             return true;
             }
         }

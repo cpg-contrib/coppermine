@@ -1705,7 +1705,7 @@ if (defined('PICMGR_PHP')) {
 $lang_picmgr_php['pic_mgr'] = 'Picture Manager';
 $lang_picmgr_php['confirm_delete1'] = 'Are you sure you want to delete this picture ?';
 $lang_picmgr_php['confirm_delete2'] = '\nPicture will be permanently deleted.';
-$lang_picmgr_php['confirm_modifs'] = 'Confirm modifications';
+$lang_picmgr_php['confirm_modifs'] = 'Confirm modifications?';
 $lang_picmgr_php['pic_need_name'] = 'Picture needs to have a name !';
 $lang_picmgr_php['no_change'] = 'You did not make any change !';
 $lang_picmgr_php['no_album'] = '* No album *';
