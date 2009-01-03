@@ -2201,6 +2201,9 @@ $lang_upload_php['err_alternate_method'] = 'Alternately you can use the <a href=
 $lang_upload_php['err_flash_version'] = 'Upload interface could not load.  You may need to install or upgrade Flash Player. Visit the <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> to get the Flash Player.'; // cpg1.5
 $lang_upload_php['flash_loading'] = 'Upload interface is loading. Please wait a moment...'; // cpg1.5
 
+$lang_upload_swf_php['cancel_all'] = 'Cancel All Uploads'; //cpg1.5
+$lang_upload_swf_php['upload_queue'] = 'Upload Queue'; //cpg1.5
+$lang_upload_swf_php['files_uploaded'] = 'Files Uploaded'; //cpg1.5
 $lang_upload_swf_php['all_files'] = 'All Files'; //cpg1.5
 $lang_upload_swf_php['status_pending'] = 'Pending...'; //cpg1.5
 $lang_upload_swf_php['status_uploading'] = 'Uploading...'; //cpg1.5

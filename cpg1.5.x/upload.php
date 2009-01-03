@@ -434,7 +434,7 @@ function create_form_simple(&$data)
 // Function to create the swfupload form
 function create_form_swfupload()
 {
-    global $lang_common;
+    global $lang_common, $lang_upload_swf_php;
     form_alb_list_box($lang_common['album'], 'album');
 
     $cancel_icon = cpg_fetch_icon('cancel', 0);
@@ -448,14 +448,14 @@ function create_form_swfupload()
                 <span id="browse_button_place_holder"></span>
                 <button id="button_cancel" onclick="swfu.cancelQueue();" disabled="disabled" class="button">
                     {$cancel_icon}
-                    Cancel All Uploads
+                    {$lang_upload_swf_php['cancel_all']}
                 </button>
             </div>
             <br />
             <div class="fieldset flash" id="upload_progress">
-                <span class="legend">Upload Queue</span>
+                <span class="legend">{$lang_upload_swf_php['upload_queue']}</span>
             </div>
-            <div id="upload_status"><span id="upload_count">0</span> Files Uploaded</div>
+            <div id="upload_status"><span id="upload_count">0</span> {$lang_upload_swf_php['files_uploaded']}</div>
             </div>
         </td>
     </tr>
@@ -463,7 +463,7 @@ function create_form_swfupload()
         <td colspan="2">
             <button id="button_continue" class="button" onclick="return continue_upload();" style="display: none; margin-top: 5px;">
                 {$ok_icon}
-                Continue
+                {$lang_common['continue']}
             </button>
         </td>
     </tr>
