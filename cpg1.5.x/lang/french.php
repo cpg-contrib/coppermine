@@ -769,7 +769,7 @@ $lang_admin_php['comment_akismet_enable'] = 'Options Akismet'; // cpg1.5
 $lang_admin_php['comment_akismet_enable_description'] = 'Que dot on faire si Akismet rejette un commentaire comme un SPAM?'; // cpg1.5
 $lang_admin_php['comment_akismet_applicable_only'] = 'L\'option ne s\'applique que si Akismet a été activé en entrant une clé API valide'; // cpg1.5
 $lang_admin_php['comment_akismet_enable_disapproved'] = 'Autorise les commentaires qui n\'ont pas passé le filtre Akismet, mais les paramètre comme désaprouvés'; // cpg1.5
-$lang_admin_php['comment_akismet_drop_tell'] = 'Efface les commentaires qui n\'ont pas été validés et ptévient leurs auteurs qu\'ils ont été rejetés'; // cpg1.5
+$lang_admin_php['comment_akismet_drop_tell'] = 'Efface les commentaires qui n\'ont pas été validés et prévient leurs auteurs qu\'ils ont été rejetés'; // cpg1.5
 $lang_admin_php['comment_akismet_drop_lie'] = 'Efface les commentaires qui n\'ont pas été validés, mais prévient l\'utilisateur final (Spammeur) qu\'ils ont été ajoutés'; // cpg1.5
 $lang_admin_php['comment_akismet_api_key'] = 'clé de l\'API Akismet'; // cpg1.5
 $lang_admin_php['comment_akismet_api_key_description'] = 'Laisser vide pur désavtiver Akismet'; // cpg1.5
@@ -1534,6 +1534,7 @@ if (defined('INSTALL_PHP')) {
   $lang_install['not_writable'] = 'Non Inscriptible';
   $lang_install['not_exist'] = 'N\'existe pas';
   $lang_install['old_install'] = 'Vous êtes dans le nouvel assistant d\'installation. Cliquez %sici%s pour accéder à l\'ancien écran d\'installation.'; //cpg1.5
+
 }
 
 // ----------------------- //
@@ -2200,6 +2201,9 @@ if (defined('UPLOAD_PHP')) {
   $lang_upload_php['err_flash_version'] = 'L\'interface de téléchargement ne peut pas être chargé.  vous devriez installer ou mettre à jour Flash Player. Visitez le <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">site Adobe</a> pour vous procurer Flash Player.'; // cpg1.5
   $lang_upload_php['flash_loading'] = 'L\'interface de téléchargement est en train de se charger. Veuillez patienter...'; // cpg1.5
 
+$lang_upload_swf_php['cancel_all'] = 'Annuler tous les téléchargements'; //cpg1.5
+$lang_upload_swf_php['upload_queue'] = 'File de téléchargement'; //cpg1.5
+$lang_upload_swf_php['files_uploaded'] = 'Fichier(s) téléchargé(s)'; //cpg1.5
 $lang_upload_swf_php['all_files'] = 'Tous les Fichiers'; //cpg1.5
 $lang_upload_swf_php['status_pending'] = 'En cours...'; //cpg1.5
 $lang_upload_swf_php['status_uploading'] = 'Téléchargement...'; //cpg1.5
@@ -2339,7 +2343,7 @@ if (defined('UPDATE_PHP')) {
   $lang_update_php['mysql_said'] = 'MySQL dit'; // cpg1.5
   $lang_update_php['check_config_file'] = 'Merci de vérifier les données SQL dans %s'; // cpg1.5
   $lang_update_php['performing_database_updates'] = 'Mise à jour de la base de donnée'; // cpg1.5
-  $lang_update_php['performing_file_updates'] = 'Mise à joure des fichiers'; // cpg1.5
+  $lang_update_php['performing_file_updates'] = 'Mise à jour des fichiers'; // cpg1.5
   $lang_update_php['already_done'] = 'Déjà fait'; // cpg1.5
   $lang_update_php['password_encryption'] = 'Cryptage du Mot de Passe'; // cpg1.5
   $lang_update_php['alb_password_encryption'] = 'Cryptage du mot de passe album'; // cpg1.5
@@ -2347,7 +2351,7 @@ if (defined('UPDATE_PHP')) {
   $lang_update_php['authentication_needed'] = 'Authenticafication requise'; // cpg1.5
   $lang_update_php['username'] = 'Nom d\'utilisateur'; // cpg1.5
   $lang_update_php['password'] = 'Mot de Passe'; // cpg1.5
-  $lang_update_php['update_completed'] = 'Mise à jour complête'; // cpg1.5
+  $lang_update_php['update_completed'] = 'Mise à jour complète'; // cpg1.5
   $lang_update_php['check_versions'] = 'Il est recommandé de %svérifier la version de vos fichiers%s si vous venez juste de mettre à jour depuis une ancienne version de Coppermine'; // cpg1.5 // Leave the %s untouched when translating - it wraps the link
   $lang_update_php['start_page'] = 'Si vous ne le faites pas( ou si vous ne voulez pas le faire), vous pouvez aller %ssur la page d\'accueil de votre galerie%s'; // cpg1.5 // Leave the %s untouched when translating - it wraps the link
   $lang_update_php['errors_encountered'] = 'Les erreurs suivantes sont survenues et doivent être corrigées d\'abbord'; // cpg1.5
@@ -2610,4 +2614,24 @@ if (defined('CORE_PLUGIN')) {
   $lang_plugin_php['onlinestats_minute'] = 'minutes';
   $lang_plugin_php['onlinestats_remove'] = 'Effacer la table utilisée pour stocker les données du plugin ?';
 }
+
+// ------------------------------------------------------------------------- //
+// File include/mailer.inc.php
+// ------------------------------------------------------------------------- //
+
+$lang_mailer['provide_address'] = 'Vous devez en indiquer au moins une ';
+$lang_mailer['mailer_not_supported'] = ' mailer n\'est pas supporté.';
+$lang_mailer['execute'] = 'Impossible d\'éxecuter: ';
+$lang_mailer['instantiate'] = 'Impossible d\'instancier la fonction mail.';
+$lang_mailer['authenticate'] = 'Erreur SMTP: Identification impossible.';
+$lang_mailer['from_failed'] = 'l\'adresse suivante DE est manquante: ';
+$lang_mailer['recipients_failed'] = 'Erreur SMTP: Suivant ';
+$lang_mailer['data_not_accepted'] = 'Ereur SMTP: Données non acceptées.';
+$lang_mailer['connect_host'] = 'Erreur SMTP: Impossible de se connecter à l\'hôte SMTP.';
+$lang_mailer['file_access'] = 'Impossible d\'accéder au fichier: ';
+$lang_mailer['file_open'] = 'Erreur Fichier: Impossible d\'ouvrir le fichier: ';
+$lang_mailer['encoding'] = 'Encodage inconnu: ';
+$lang_mailer['signing'] = 'Erreur de signature: ';
+
+
 ?>
