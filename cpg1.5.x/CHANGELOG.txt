@@ -1,14 +1,14 @@
 ﻿************************
 Coppermine Photo Gallery
 ************************
-Copyright (c) 2003-2008 Dev Team
+Copyright (c) 2003-2009 Coppermine Dev Team
 v1.1 originally written by Gregory DEMAR
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 3
 as published by the Free Software Foundation.
 ********************************************
-Coppermine version: 1.5.0
+Coppermine version: 1.5.1
 $HeadURL$
 $Revision$
 $Author$
@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-01-04 [M] Updated version count from cpg1.5.0 to cpg1.5.1 to prepare upcoming alpha release {GauGau}
+2009-01-04 [M] Updated header information to reflect new year {GauGau}
 2009-01-02 [C] Add lang string for i18n of udb_base.inc {Frantz}
 2009-01-02 [B] Fixed keyword_select.php not using keyword_separator setting {Paver}
 2009-01-02 [C] Color coded some of the docs for better readability {SaWey}
