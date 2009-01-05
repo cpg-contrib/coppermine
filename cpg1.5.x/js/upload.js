@@ -38,7 +38,7 @@ SWFUpload.onload = function () {
         // Button settings
         button_width: "130",
         button_height: "20",
-        button_image_url: "images/new_browse.png",
+        button_image_url: "images/browse_swf.png",
         button_placeholder_id: "browse_button_place_holder",
         button_text: '<span id="browse_button" class="browse">' + js_vars.lang_upload_swf_php.browse + '</span>',
         button_text_style: button_disabled_style,
