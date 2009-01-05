@@ -1278,6 +1278,7 @@ div#film {
 /**styles for photo manager*/
 table#pic_sort tr td { 
     padding: 4px;
+    border-bottom: 1px solid #ccc;
 }
 a.photoUp   { 
     cursor: pointer; 
