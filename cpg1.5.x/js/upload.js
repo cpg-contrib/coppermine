@@ -17,7 +17,8 @@
 **********************************************/
 
 var swfu;
-
+var button_enabled_style;
+var button_disabled_style;
 SWFUpload.onload = function () {
     var settings = {
         flash_url : "js/swfupload/swfupload.swf",
@@ -35,10 +36,13 @@ SWFUpload.onload = function () {
         debug: false,
 
         // Button settings
-        button_width: "93",
-        button_height: "24",
-        button_image_url: "images/browse_swf.png",
+        button_width: "130",
+        button_height: "20",
+        button_image_url: "images/new_browse.png",
         button_placeholder_id: "browse_button_place_holder",
+        button_text: '<span id="browse_button" class="browse">' + js_vars.lang_upload_swf_php.browse + '</span>',
+        button_text_style: button_disabled_style,
+        button_text_left_padding: 30,
         // By default browse button will be disabled. It will get enabled when some album is chosen
         button_disabled : true,
 
@@ -67,9 +71,13 @@ SWFUpload.onload = function () {
         // Enable the browse button only if some album is selected
        if ($(this).val()) {
            swfu.setButtonDisabled(false);
+           // Set the button style to enabled
+           swfu.setButtonTextStyle(button_enabled_style);
        } else {
            // If no album is selected then disable the browse button
            swfu.setButtonDisabled(true);
+           // Set the button style to disabled
+           swfu.setButtonTextStyle(button_disabled_style);
        }
     });
  }
@@ -80,6 +88,9 @@ SWFUpload.onload = function () {
  }
 
 $(document).ready(function() {
+    button_enabled_style = '.browse { font-family: Arial,Helvetica,sans-serif;}';
+    button_disabled_style = '.browse { font-family: Arial,Helvetica,sans-serif; color: #D0CFD0;}';
+
     $('#uploadMethod').change(function() {
         var param = 'method=' + $(this).val();
         if ($("select[name='album']").val()) {

@@ -236,6 +236,8 @@ function swfUploadLoaded() {
     // If some album is preselected then set browse button enabled
     if ($("select[name='album']").val()) {
         this.setButtonDisabled(false);
+        // Set the button style to enabled
+        this.setButtonTextStyle(button_enabled_style);
     }
 
 }
