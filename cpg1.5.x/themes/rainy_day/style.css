@@ -1054,31 +1054,108 @@ div#film {
 }
 
 /**styles for photo manager*/
-div#sort {  
-	margin: 10px; 
-	padding: 5px 25px; 
-	height: 240px; 
-	overflow: auto; 
-	background: #FFF; 
-	width: 700px; 
-	border:5px solid #0E72A4; 
-}
 table#pic_sort tr td { 
-	padding: 2px;
+    padding: 4px;
 }
-a.photoUp 	{ 
-	cursor: pointer; 
+a.photoUp   { 
+    cursor: pointer; 
 }
 a.photoDown { 
-	cursor: pointer; 
+    cursor: pointer; 
 }
 
+/** styles for album manager and photo album*/
+div#sort {  
+    margin: 0; 
+    padding: 11px ; 
+    height: 240px; 
+    overflow: auto; 
+    background: #FFF; 
+    border: 1px solid #0E72A4; 
+    border-top: none;
+    border-bottom: none;
+}
 .click {
-	cursor:pointer;
+    cursor:pointer;
 }
 
+table#album_sort {
+	width: 100%;
+	border-top: 1px solid #ccc;
+}
 table#album_sort tr td {
-	padding: 2px;
+    padding: 3px;
+    border-bottom: 1px solid #ccc;
+}
+
+table#album_sort tr td span.editAlbum {
+	margin-left: 100px;
+	font-size: 10px;
+	line-height: 100%;
+	text-decoration: underline;
+	cursor: pointer;
+	display: none;
+	color: #FF0000;
+}
+
+table#album_sort tr td span.albumName{
+	width: 200px;
+	float: left;
+}
+table.head-album {
+	margin: 2px 0 2px 0;
+	padding-left: 15px;
+	height: 40px; 
+	width: 100%;
+	border: 1px solid #0E72A4;
+	background-color: #C2CFF1;
+
+}
+
+table.album-operate{
+	background-color:#C2CFF1;
+	border: 1px solid #0E72A4;
+	border-bottom: none;
+	width: 100%;
+}
+table.album-operate td {
+	height: 40px; 
+	border-bottom: 1px solid #0E72A4;
+}
+table.album-operate td#control{
+	padding-left: 15px;
+}
+table.album-operate td#edit-box span, table.album-operate td#add-box span {
+	vertical-align: bottom;
+}
+table.album-operate td#edit-box a , table.album-operate td#add-box a{
+	vertical-align: bottom;
+	color: #FF0000;
+	text-decoration: underline;
+	cursor: pointer;
+} 
+table.album-operate span.load{
+	margin-left: 10px;
+}
+
+.dragHandle {
+	background-image: url(images/bullet.png)  ;
+	background-position:center center;
+	background-repeat:no-repeat;
+	width: 50px;
+	height: 14px;
+}
+
+table.album-save{
+	border:1px solid #FFDD99;
+	width: 100%;
+}
+table.album-save td {
+	padding: 10px 0 10px 15px;
+	float: left;
+}
+table.album-save td span{
+	color: #E09010;
 }
 
 .cpg_message_info, .cpg_message_success, .cpg_message_warning, .cpg_message_error, .cpg_message_validation {

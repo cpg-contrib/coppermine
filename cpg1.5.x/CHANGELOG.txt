@@ -24,7 +24,7 @@ Changelog
 [O] = Optimization of code
 [S] = Security fix (issues that are related to security)
 *********************************************
-
+2009-01-05 [B] Album manager and photo manger bugs fixed
 2009-01-05 [M] Internationalized the swfupload's browse button {Abbas}
 2009-01-04 [M] Updated version count from cpg1.5.0 to cpg1.5.1 to prepare upcoming alpha release {GauGau}
 2009-01-04 [M] Updated header information to reflect new year {GauGau}

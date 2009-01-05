@@ -1,7 +1,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2009 Coppermine Dev Team
+  Copyright (c) 2003-2008 Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -9,7 +9,7 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.1
+  Coppermine version: 1.5.0
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/displayimage.js $
   $Revision: 5405 $
   $LastChangedBy: saweyyy $
@@ -29,7 +29,89 @@
         var bb = jQuery.tableDnD.serialize();
         return bb;
     } 
-    
+
+var Sort = {
+	/**submit all the data to the upload.php*/
+	updateAlbum: function(albumSelectedTr)
+	{
+		/**get aid from albumSelectedTr*/
+		var serializeRegexp = /[^\-]*$/;
+		var aid = albumSelectedTr.match(serializeRegexp)[0];
+
+	    /** get the name of the edited album value*/
+   		var editedName = $("#edit-name").val();
+		/**check whether null and event to edit the album*/
+	    if(editedName.length > 0){
+		    $("td#edit-box").hide();
+		    /** loadaing image*/
+			$("#loadin").show();
+			
+		/**now we make ajax call to update the table*/
+	  	$.getJSON("delete.php?what=albmgr&aid="+aid+"&updatedname="+editedName+"&op='update'", function(data){
+			if(data['message']){
+		        /** get the DOM of change album name*/
+		        editedObject = $('#'+albumSelectedTr).find('span.albumName');
+		        //change the text which having album name.
+		        $(editedObject).empty().text(editedName);
+		        /**show user the changes*/
+		        $('#'+albumSelectedTr).css({'background-color': '#FFFFDD'});
+				$("#loadin").hide();
+	        }
+        });
+        
+		}
+
+		return false;
+		
+	},
+	addAlbum: function(cat){
+		var addedName = $("#add-name").val();
+		
+	    // add new album check whether null and event
+	    if(addedName.length > 0){
+	    $("td#add-box").hide();
+
+		/** get the position of the album*/
+		if($("#album_sort tr").length>0){
+			var albumCount = 100 + $("#album_sort tr").length ;
+		}
+		else{
+			var albumCount = 100 ;  
+		}
+		/** loadaing image*/
+		$("#loadin").show();
+		
+		/**now we make ajax call to add the table*/
+	  	$.getJSON("delete.php?what=albmgr&cat="+cat+"&op='add'&position="+albumCount+"&name="+addedName, function(data){
+
+	  		if(data['message']){
+				var album_tr = '<tr id="sort-'+data['newAid']+'" ><td class="dragHandle"></td><td class="album_text" width="96%"><span class="albumName">'+addedName+'</span><span class="editAlbum">Edit</span></td></tr>';
+			    $("#album_sort").append(album_tr);
+			    /**call the function to add the new TR on more action*/
+			    jQuery.tableDnD.currentTable = document.getElementById("album_sort");
+			    jQuery.tableDnD.makeDraggable(jQuery.tableDnD.currentTable);
+			    /**to empty the box value */
+			    Sort.addRowColors();
+			    /**empty the value*/
+			    $("#add-name").val("");
+			    $("#loadin").hide();
+		    }
+	    });              
+		}
+		
+		return false;	
+	},
+	    /** styles to album list this consider to even TR which apply color #EFEFEF*/
+    addRowColors: function(){
+        jQuery("#album_sort tr:even").css("background-color", "#EEE");
+        jQuery("#album_sort tr:odd").css("background-color", "#FFFFFF");
+    },
+    	/**show the message*/
+    showMessage: function(){
+		$('.album-save').fadeIn('slow');
+	}
+};
+
 // this jquery.tablednd is to drag and drop sort images. 
 jQuery(document).ready(function()
     {
@@ -61,34 +143,49 @@ jQuery(document).ready(function()
     });
     
     //highlight the album onclick event
-        $("#pic_sort tr").livequery('mousedown', function() {
-        /**assign the last color to TR object and remove the selected class having the selected last object*/
-            $(photoSelectedObject).css("background", photoselectedColor);
+        $("#pic_sort tr").livequery('mousedown click', function() {
+        	/**assign the last color to TR object and remove the selected class having the selected last object*/
+            $(photoSelectedObject).css("background-color", photoselectedColor);
             $(photoSelectedObject).removeClass("selected");
-        /**add the selected class to current selected object*/   
+        	/**add the selected class to current selected object*/   
             $(this).addClass("selected");
-        /**add the selected color to variable selectedColor*/
-            photoselectedColor = $(this).css("background");
-        //  alert(selectedColor)
-            $(this).css("backgroundColor", "#E0ECFF");
+        	/**add the selected color to variable selectedColor*/
+            photoselectedColor = $(this).css("background-color");
+        	//  alert(selectedColor)
+            $(this).css("background-color", "#E0ECFF");
             /**set current selected item in the album*/
             photoSelectedObject = this;
         });
         
         //sort items up and down arrows using 
         $("a.photoUp").click(function(){
-        /**sort manually to go upwards*/
-            jQuery.tableDnD.sortManually(-1);
-        /**set to category changes don't select if you have changed */
-            albumSelectOption = false;
+        	if(photoSelectedObject){
+	        	/**sort manually to up wards*/
+	            jQuery.tableDnD.sortManually(-1,photoSelectedObject,'pic_sort');
+	        	/**after one click event called to doChanges function*/
+           		$("#pictur_order").val(getSerializePic());  
+	        	/**set to category changes don't select if you have changed */
+            	albumSelectOption = false;
+	            /**show the message to save changes*/
+	            //Sort.showMessage();
+            }
+
         });     
         $("a.photoDown").click(function(){
-        /**sort manually to down wards*/
-            jQuery.tableDnD.sortManually(1);        
-        /**set to category changes don't select if you have changed */
-            albumSelectOption = false;          
-    });
-    /**when user changes the album name if user has done some changes to the current album name then let's use known*/
+        	if(photoSelectedObject){
+	        	/**sort manually to down wards*/
+	            jQuery.tableDnD.sortManually(1,photoSelectedObject,'pic_sort');
+	        	/**after one click event called to doChanges function*/
+				$("#pictur_order").val(getSerializePic());         
+	        	/**set to category changes don't select if you have changed */
+	            albumSelectOption = false;  
+	            
+	            //Sort.showMessage();
+			}     
+        
+    	});
+    
+    		/**when user changes the album name if user has done some changes to the current album name then let's use known*/
             $("select[name='aid']").change(function(){
             /**selected value assigning*/
                 var getSelectedOption = $(this).val();
@@ -106,11 +203,13 @@ jQuery(document).ready(function()
             }); 
     //load the form when click the submit button
     $("#cpgformPic").submit(function () { 
+    	
         $("#pictur_order").val(getSerializePic());
         var a = $("input[name='pictur_order']").attr("value");
+        
         if(a.length > 0){
-        if(confirm(js_vars.confirm_modifs)) {
-            return true;
+        	if(confirm('Confirm modifications!')) {
+            	return true;
             }
         }
         return false; 
@@ -128,128 +227,114 @@ jQuery(document).ready(function() {
         var confirm_delete  =    js_vars.confirm_delete;
         var dontDelete      =    js_vars.dontDelete;
         var category_change =    js_vars.category_change;
-        var new_album       =    js_vars.new_album;
-        
-    //  alert (confirm);
-    //variable defining which need to handle the events
+        var category        =    js_vars.category;
+
+	    //variable defining which need to handle the events
         var object_edit =   null;
         var event       =   null;
-        var getId       =   null;
-        var amountOfRows=   null;
-        var currentRows =   [];
         /**assign variable Keep hold the selected TR object*/
         var albumObjectSelectedTr   = null;
+        /** assign a variabl to keep hold the selected Tr id*/
+        var albumSelectedTr			= null;
         /**assign vaible to Keep hold the color of selected TR object*/
         var selectedColor           = null;
         /**category changes option (it read that ok or not to change the category)*/
         var categorySelectOption    = true;
-        
-    /** Initialize the first table (as before)*/
-    jQuery("#album_sort").tableDnD();
-    /** styles to album list this consider to even TR which apply color #EFEFEF*/
-    function addRowColors(){
-        jQuery("#album_sort tr:even").css("background", "#EEE");
-        jQuery("#album_sort tr:odd").css("background", "#FFFFFF");
-    }
+
     /**called to addRowColors function when document ready state*/
-        addRowColors();
+        Sort.addRowColors();
     
-    /**If new TR object is added then input text field will ready to type album names*/
-    $("#add_new_album").click(function(){
-        $("#album_nm").removeAttr("disabled").focus().val(new_album);
-        event = 'addAlbumButton';
-        categorySelectOption = false;
+	    /**If new TR object is added then input text field will ready to type album names*/
+	    $("#add_new_album").click(function(){
+	    	/**when edit box is visible then just hide to show add box.*/
+			$("td#edit-box").hide();
+	    	$("td#add-box").show();
+	        $("#add-name").focus().val();
+	        event = 'addAlbumButton';
+	        categorySelectOption = false;
+	        
+	    });
+    
+	    /** Cancel when user don't want to add the album to the list'*/
+	    $(".albumCancel").click(function(){
+			$("td#edit-box").hide();
+		});
+		
+		/** Cancel when user don't want to add the album to the list'*/
+	    $(".addCancel").click(function(){
+			$("td#add-box").hide();
+		});        
         
-    });
-    
-    //add new album when click the save buttons
-    function saveEvent (){
-        var get_album = $("#album_nm").val();
-            
-        // add new album check whether null and event
-        if(get_album.length > 0 && event=='addAlbumButton'){
-            var get_album_item_count = $("#album_sort tr").length +1;               
-            var album_tr = '<tr id="sort'+get_album_item_count+'" class="new" title="'+get_album_item_count+'@'+get_album+'@1" ><td width="10%" style="padding-left: 20px;">'+get_album_item_count+'</td><td><img src="images/bullet.png"/></td><td class="album_text" style="width:400px;">'+get_album+'</td></tr>';
+		/** visible the edit link ot the user edit the album name */
+		$("#album_sort tr").livequery('mouseover', function () {
+		        $(this).find("span:last").show();   
+		}).livequery('mouseout', function(){
+			    $(this).find("span:last").hide();
+		}).livequery('mousedown click', function() {
+	        	//addRowColors();
+	        	/**assign the last color to TR object and remove the selected class having the selected last object*/
+	            $(albumObjectSelectedTr).css("background-color", selectedColor);
+	            $(albumObjectSelectedTr).removeClass("selected");
+	        	/**add the slected class to current selected object*/   
+	            $(this).addClass("selected");
+	        	/**add the selected color to variable selectedColor*/
+	            selectedColor = $(this).css("background-color");
+	      
+	            $(this).css("background-color", "#E0ECFF");
+	            /**set current selected item in the album*/
+	            albumObjectSelectedTr = this;
+        });
         
-        $("#album_sort").append(album_tr);
-        /**call the function to add the new TR on more action*/
-        jQuery.tableDnD.currentTable = document.getElementById("album_sort");
-        jQuery.tableDnD.makeDraggable(jQuery.tableDnD.currentTable);
-            /**to empty the box value */
-            $("#album_nm").attr({value: null, disabled: 'disabled' });
-            /**recolor current row*/
-            addRowColors();
-    }/**end of the add new item save */
-                
-        /**check whether null and event to edit the album*/
-        if(get_album.length > 0 && event=='editAlbumButton'){
-            
-            getTitle = $(albumObjectSelectedTr).attr("title");
-            /**split the title value */
-            var words = getTitle.split('@');
-            var result = [];
-                //put values in to the array
-                $.each(words, function(i, value) {
-                    if ( $.trim(value) )
-                    result[i] = $.trim(value);
-                });
-                //change the title in main table
-            $(albumObjectSelectedTr).attr({title: result[0]+'@'+get_album+'@'+3})
-            //change the text which having album name.
-            $(object_edit).empty().text(get_album);
-            /**to empty the box value */
-            $("#album_nm").attr({value: null, disabled: 'disabled' });
-            }
-        $("#sort_order").val(getSerialize());
-        /**set to category changes don't select if you have changed */
-            categorySelectOption = false;
-        /**return false doesn't occurred form submission*/
-        return false;
-    }
-    
-    /**
-     * Bind the keypress event to album title edit box
-     * If user has pressed Enter key then instead of submitting the form
-     * we will call the js saveEvent function which will save the changes
-     * on client side only. For changes to take place user needs to click
-     * the "Apply Changes" button
-     */
-    $("#album_nm").keypress(function(e) {
-        // If the pressed key is ENTER then call saveEvent function and return false so that form is not submitted
-        if (e.which == KEY_CODES.ENTER) {
-            saveEvent();
+        
+        /** now user can edit the album name contain list*/
+        $(".editAlbum").livequery("click", function(){			            
+            /**selected item's text put into the input field'*/
+            object_edit     		= $(this).prev().text();
+            albumSelectedTr   = $(this).parents("tr").attr("id");
+            /** first hide the add box*/
+            $("td#add-box").hide();
+          	$("td#edit-box").show();
+            $("#edit-name").val(object_edit).focus();
+ 
+		});
+		
+        /** Now update the album name*/
+        $("#updateEvent").click(function(){
+        	/** call to updateAlbum function */
+			Sort.updateAlbum(albumSelectedTr);
             return false;
-        }
-    });
-    
-    /**
-     * Bind onblur event to album title edit box
-     * On blur we will call the saveEvent function which will save the changes on client side only
-     * For applying changes user needs to click "Apply Changes" button.
-     */
-    $("#album_nm").blur(saveEvent);
-    
-    /**after drag and drop assigning a changes to the TR title*/
-    $('#album_sort').tableDnD({
-            onDrop: function(table, row) {
-            var rows = table.tBodies[0].rows;
-            var debugStr = [];
-            for (var i=0; i<rows.length; i++) {
-                debugStr[i] = rows[i].id;
-            }
-            currentRows = debugStr;
-            compareRows(currentRows,amountOfRows);
-           $("#sort_order").val(getSerialize());
-        /**set to category changes don't select if you have changed */
-            categorySelectOption = false;       
-        },
-        // Initialize the second table specifying a dragClass and an onDrop function that will display an alert
-        onDragStart: function(table, row) {
-            var rows1 = table.tBodies[0].rows;
-            var getRows = rows1.length; 
-                amountOfRows = getRows;
-        }
-    });
+		});
+		
+		/**
+	     * Bind the keypress event to album title edit box
+	     */
+	 	 $("#edit-name").keyup(function(e) {
+	          // If the pressed key is ENTER then call saveEvent function and return false so that form is not submitted
+	          if (e.which == KEY_CODES.ENTER) {
+	              Sort.updateAlbum(albumSelectedTr)
+	              return false;
+	          }
+	      });
+		
+		/** Now add a album to the list*/
+		$("#addEvent").livequery('click', function(){
+     	  		if(!isNaN(category)){
+          			Sort.addAlbum(category)
+          		}
+	        return false;
+		});
+		
+		/** Bind the keypress event to album title edit box*/
+	 	 $("#add-name").keyup(function(e) {
+	    // If the pressed key is ENTER then call saveEvent function and return false so that form is not submitted
+	     	  if (e.which == KEY_CODES.ENTER) {
+	     	  		if(!isNaN(category)){
+	          			Sort.addAlbum(category)
+	          		}
+	          return false;
+		      }
+	      });
+	      
         /**delete the selected TR object items which having the  album list*/ 
         $("a#deleteEvent").livequery('click', function(){
             /**if there  isn't any TR object to select then user has to select, if not can't delete'*/
@@ -257,146 +342,71 @@ jQuery(document).ready(function() {
                 alert(dontDelete);
                 return false;
             }
-                var getDeleteId = $(albumObjectSelectedTr).attr("id");
-                if(confirm(confirm_delete)) {
-                    /**get the current row title value*/
-                        var getTitleRowDelete =  $("#"+getDeleteId).attr("title");
-                    /**get the class which is going to be deleted*/
-                        var deleteClass       =  $(albumObjectSelectedTr).hasClass("new");
-                    /**if there is class called 'new' then just remove that TR object form the album table"*/   
-                            if(deleteClass){
-                                $(albumObjectSelectedTr).remove();
-                            }
-                            else{
-                    /**split the title value*/
-                        var wordsDelete = getTitleRowDelete.split('@');
-                        var resultDelete = [];
-                        //put values in to the array
-                        $.each(wordsDelete, function(i, value){
-                            if ( $.trim(value) )
-                            resultDelete[i] = $.trim(value);
-                        });
-                $("#"+getDeleteId).attr({title: resultDelete[0]+'@'+resultDelete[1]+'@'+4}).hide(); 
-                $("#sort_order").val(getSerialize());   
-                }
-                /**set to category changes don't select if you have changed */
-                categorySelectOption = false;
-            }           
-        });
-     
+	   		/**get aid from albumSelectedTr*/
+	   		var albumTrId		= $(albumObjectSelectedTr).attr("id");
+			var serializeRegexp = /[^\-]*$/;
+			var aid = albumTrId.match(serializeRegexp)[0];
 
-        //load the form when click the submit button
-        $("#cpgformAlbum").submit(function () {
-            //First save any unsaved changes on client side
-            saveEvent();
-            
-            var a = $("input[name='sort_order']").attr("value");
-            //  if(a.length > 0){
-            if(confirm(confirm_modifs)) {
+            if(confirm(confirm_delete)) {
+            	window.location.href = ("delete.php?what=albmgr&op=delete&deleteAid="+aid+"&cat="+category);
                 return true;
             }
-        //  }
+            else
+            return false;
+
+                     
+        });	
+		
+		    
+    	/**after drag and drop assigning a changes to the TR title*/
+	    $('#album_sort').tableDnD({
+	        onDrop: function(table, row) {
+	        	$("#sort_order").val(getSerialize());
+	        	/**set to category changes don't select if you have changed */
+	            categorySelectOption = false;    
+	        }    
+	    });
+    
+		//sort items up and down arrows using 
+        $("#up_click").click(function(){
+        	if(albumObjectSelectedTr){
+	        	/**sort manually to up wards*/
+	            jQuery.tableDnD.sortManually(-1,albumObjectSelectedTr,'album_sort');
+	        	/**after one click event called to doChanges function*/
+	            $("#sort_order").val(getSerialize());   
+	        	/**set to category changes don't select if you have changed */
+	            categorySelectOption = false;
+	            /**show the message to save changes*/
+	            Sort.showMessage();
+            }
+        });  
+		
+		//sort items up and down arrows using 
+        $("#down_click").click(function(){
+        	if(albumObjectSelectedTr){
+	        	/**sort manually to down wards*/
+	            jQuery.tableDnD.sortManually(1,albumObjectSelectedTr,'album_sort');
+	        	/**after one click event called to doChanges function*/
+				$("#sort_order").val(getSerialize());        
+	        	/**set to category changes don't select if you have changed */
+	            categorySelectOption = false; 
+	        	/**show the message to save changes*/
+	            Sort.showMessage();
+			}          
+    	});
+            
+        
+        //load the form when click the submit button
+        $("#cpgformAlbum").submit(function () {          
+            var a = $("input[name='sort_order']").attr("value");
+			if(a.length > 0){
+	            if(confirm(confirm_modifs)) {
+	                return true;
+	            }
+	        }
             return false; 
         }); // so it won't submit
-    
-        //function to compare the current and initial rows..
-        function compareRows(rows,amount){
-            var getCurrentRows =[];
-                getCurrentRows = rows;
-            var getAmount      = amount;
-                for(var i=0; i<getAmount; i++){
-                    
-                        //get the current row title value
-                        var getTitleRow =  $("#sort"+(i+1)).attr("title");                      
-                        //split the title value
-                        var words = getTitleRow.split('@');
-                        var result = [];
-                        //put values in to the array
-                        $.each(words, function(i, value){
-                            if ( $.trim(value) )
-                            result[i] = $.trim(value);
-                        });
-                        
-                    if(getCurrentRows[i]==(i+1)){
-                        if(result[2]==2){
-                            $("#sort"+(i+1)).attr({title: result[0]+'@'+result[1]+'@'+0})
-                        }
-                        else
-                        continue;
-                    }
-                    else if(getCurrentRows[i]!=(i+1)){
-                    
-                        if(result[2]==0){
-                        $("#sort"+(i+1)).attr({title: result[0]+'@'+result[1]+'@'+2})
-                        }
-                        else{
-                            continue;
-                        }
-                    }
-                    
-                }
-        }
         
-
-        //highlight the album onclick event
-        $("#album_sort tr").livequery('mousedown', function() {
-        /**assign the last color to TR object and remove the selected class having the selected last object*/
-            $(albumObjectSelectedTr).css("background", selectedColor);
-            $(albumObjectSelectedTr).removeClass("selected");
-        /**add the slected class to current selected object*/   
-            $(this).addClass("selected");
-        /**add the selected color to variable selectedColor*/
-            selectedColor = $(this).css("background");
-        //  alert(selectedColor)
-            $(this).css("background", "#E0ECFF");
-            /**set current selected item in the album*/
-            albumObjectSelectedTr = this;
-            
-            /**selected item's text put into the input field'*/
-            object_edit     = $(this.cells[2]);
-            getId           = $(this).attr("id");
-            $("#album_nm").removeAttr("disabled");
-            $("#album_nm").val(null);
-            $("#album_nm").val(object_edit.text()).focus();
-            /**set even to save edit things*/
-            event   =   'editAlbumButton';
-        });
-
-        //sort items up and down arrows using 
-        $("#up_click").click(function(){
-        /**sort manually to up wards*/
-            jQuery.tableDnD.sortManually(-1);
-        /**after one click event called to doChanges function*/
-            doChanges("album_sort");
-        /**set to category changes don't select if you have changed */
-            categorySelectOption = false;
-        });     
-        $("#down_click").click(function(){
-        /**sort manually to down wards*/
-            jQuery.tableDnD.sortManually(1);
-        /**after one click event called to doChanges function*/
-            doChanges("album_sort");        
-        /**set to category changes don't select if you have changed */
-            categorySelectOption = false;           
-    });
-    
-        /**when selected TR object goes up position in one time at that point will assign the changes to the TR's'*/    
-        function doChanges(tableName){
-            /**get the current table tr's after moving*/
-                var table = jQuery.tableDnD.currentTable = document.getElementById(tableName);
-                var rows = table.rows;
-                var debugStr = [];
-            /**assign the new position array*/
-                for (var i=0; i<rows.length; i++) {
-                    debugStr[i] = rows[i].id;
-                    }
-                currentRows = debugStr;
-            /**called to compareRows function to do so*/
-                compareRows(currentRows,amountOfRows);
-            /**after doing operations finally add the serialize to the hidden input value*/
-                $("#sort_order").val(getSerialize());   
-            }
-            
         /**when user change the category if user has done some changes to the current category then let's use's known'*/
             $("select[name='cat']").change(function(){
             /**selected vale assigning*/
@@ -477,20 +487,18 @@ jQuery.tableDnD = {
         // Now initialize the rows
         var rows = table.rows; //getElementsByTagName("tr")
         var config = table.tableDnDConfig;
-        //jQuery.tableDnD.selectObject = null;
-        for (var i=0; i<rows.length; i++) {
-            // To make non-draggable rows, add the nodrag class (eg for Category and Header rows) 
-            // inspired by John Tarr and Famic
-            var nodrag = $(rows[i]).hasClass("nodrag");
-            if (! nodrag) { //There is no NoDnD attribute on rows I want to drag
-                jQuery(rows[i]).mousedown(function(ev) {
-                    if (ev.target.tagName == "TD") {
-                        jQuery.tableDnD.dragObject = this;
+     
+			// We only need to add the event to the specified cells
+			var cells = jQuery("td.dragHandle", table);
+			cells.each(function() {
+				
+               jQuery(this).mousedown(function(ev) {
+                        jQuery.tableDnD.dragObject = this.parentNode;
                         /**select the tr object when sort manually */
-                        jQuery.tableDnD.selectObject  = this;
-                        jQuery(this).addClass("selected");
+                        jQuery.tableDnD.selectObject  = this.parentNode;
+                        jQuery(this.parentNode).addClass("selected");
                         /**get the y length of the selected TR object when sort manually*/
-                        jQuery.tableDnD.selectObjectY  = jQuery.tableDnD.getPosition(this).y;
+                        jQuery.tableDnD.selectObjectY  = jQuery.tableDnD.getPosition(this.parentNode).y;
                         /**get the first element height*/
                         jQuery.tableDnD.firstObjectHeight = jQuery.tableDnD.getPosition(rows[0]).y;
                         /**get the last element height*/
@@ -502,10 +510,10 @@ jQuery.tableDnD = {
                             config.onDragStart(table, this);
                         }
                         return false;
-                    }
                 }).css("cursor", "move"); // Store the tableDnD object
-            }
-        }
+                
+            });
+      
     },
 
     /** Get the mouse coordinates from the event (allowing for browser differences) */
@@ -605,8 +613,12 @@ jQuery.tableDnD = {
                 // TODO worry about what happens when there are multiple TBODIES
                 if (movingDown && jQuery.tableDnD.dragObject != currentRow) {
                     jQuery.tableDnD.dragObject.parentNode.insertBefore(jQuery.tableDnD.dragObject, currentRow.nextSibling);
+                    /**show the message to save changes*/
+	            	Sort.showMessage();
                 } else if (! movingDown && jQuery.tableDnD.dragObject != currentRow) {
                     jQuery.tableDnD.dragObject.parentNode.insertBefore(jQuery.tableDnD.dragObject, currentRow);
+                    /**show the message to save changes*/
+	            	Sort.showMessage();
                 }
             }
         }
@@ -672,19 +684,23 @@ jQuery.tableDnD = {
                 // Call the onDrop method if there is one
                 config.onDrop(jQuery.tableDnD.currentTable, droppedRow);
             }
-            
         }
     },
     //**this edit by Nuwan sameera for manually sorting*/
-    sortManually: function(count){
+    sortManually: function(count,albumObjectSelectedTr,tableName){
+    	
+    	var table = jQuery.tableDnD.currentTable = document.getElementById(tableName);
+    	
         var downOrUp    = count;
         if(downOrUp>0){
-            downCount = 22;
+            downCount = 20;
         }
         if(downOrUp<0){
-            downCount = -22;
+            downCount = -20;
         }
-        var dragObj     = jQuery(jQuery.tableDnD.selectObject);
+        var dragObj     = albumObjectSelectedTr;
+        jQuery.tableDnD.currentHeight = jQuery.tableDnD.getPosition(dragObj).y;
+  
             if(jQuery.tableDnD.currentHeight){
                jQuery.tableDnD.selectObjectY = jQuery.tableDnD.currentHeight;
                jQuery.tableDnD.currentHeight = null;
@@ -692,6 +708,13 @@ jQuery.tableDnD = {
         var prevY = jQuery.tableDnD.selectObjectY;
         var y = (jQuery.tableDnD.selectObjectY + downCount);
             jQuery.tableDnD.selectObjectY =y;
+            
+            /**get rows*/
+            var rows = table.rows;
+            jQuery.tableDnD.firstObjectHeight = jQuery.tableDnD.getPosition(rows[0]).y;
+            /**get the last element height*/
+            jQuery.tableDnD.lastObjectHeight  = jQuery.tableDnD.getPosition(rows[(rows.length-1)]).y;
+                        
         
         if((jQuery.tableDnD.firstObjectHeight > jQuery.tableDnD.selectObjectY) || (jQuery.tableDnD.lastObjectHeight < jQuery.tableDnD.selectObjectY)){
             jQuery.tableDnD.selectObjectY = prevY;
@@ -709,10 +732,10 @@ jQuery.tableDnD = {
             var currentRow = jQuery.tableDnD.findDropTargetRow(dragObj, y);
             if (currentRow) {
                 // TODO worry about what happens when there are multiple TBODIES
-                if (movingDown && jQuery.tableDnD.selectObject != currentRow) {
-                    jQuery.tableDnD.selectObject.parentNode.insertBefore(jQuery.tableDnD.selectObject, currentRow.nextSibling);
+                if (movingDown && albumObjectSelectedTr != currentRow) {
+                    albumObjectSelectedTr.parentNode.insertBefore(albumObjectSelectedTr, currentRow.nextSibling);
                 } else if (! movingDown && jQuery.tableDnD.selectObject != currentRow) {
-                    jQuery.tableDnD.selectObject.parentNode.insertBefore(jQuery.tableDnD.selectObject, currentRow);
+                    albumObjectSelectedTr.parentNode.insertBefore(albumObjectSelectedTr, currentRow);
                 }
             }
         }
@@ -726,7 +749,10 @@ jQuery.tableDnD = {
             var tableId = jQuery.tableDnD.currentTable.id;
             var rows = jQuery.tableDnD.currentTable.rows;
             for (var i=0; i<rows.length; i++) {
-                result += rows[i].title+",";
+    
+				var serializeRegexp = /[^\-]*$/;
+				var aid = (rows[i].id).match(serializeRegexp)[0];
+                result += aid+",";
             }
             return result;
         } else {
@@ -892,5 +918,3 @@ $.prototype.init = function(a,c) {
 };
 $.prototype.init.prototype = $.prototype;
 })(jQuery);
-
-

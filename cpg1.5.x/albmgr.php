@@ -60,8 +60,70 @@ $category_change = $lang_albmgr_php['category_change'];
 set_js_var('category_change', $category_change);
 set_js_var('new_album', $lang_albmgr_php['new_album']);
 
+<<<<<<< .mine
+/**
+ * alb_get_subcat_data()
+ *
+ * @param integer $parent
+ * @param string $ident
+ **/
+function alb_get_subcat_data($parent, $ident = '')
+{
+    global $CONFIG, $CAT_LIST, $USER_DATA;
+    
+    //select cats where the users can change the albums
+    $group_id = $USER_DATA['group_id'];
+    $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
+
+    if (mysql_num_rows($result) > 0) {
+        $rowset = cpg_db_fetch_rowset($result);
+        foreach ($rowset as $subcat) {
+            if (!GALLERY_ADMIN_MODE) {
+                $check_group = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_CATMAP']} WHERE group_id = '$group_id' AND cid=".$subcat['cid']);
+                $check_group_rowset = cpg_db_fetch_rowset($check_group);
+                if ($check_group_rowset) {
+                    $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
+                }
+            } else {
+                $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
+            }
+            alb_get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
+        }
+    }
+}
+        
+
+    /**set the message varialble to javascript file*/
+    $confirm_modifs =  $lang_albmgr_php['confirm_modifs'];
+    set_js_var('confirm_modifs', $confirm_modifs) ;
+    /**Albums delete confirem message*/
+    $confirm_delete  = $lang_albmgr_php['confirm_delete1'] . $lang_albmgr_php['confirm_delete2'];
+    set_js_var("confirm_delete", $confirm_delete);
+    /**When user try to delete albums without any selections*/
+    $delete_not_selected = $lang_albmgr_php['select_first'];
+    set_js_var('dontDelete', $delete_not_selected);
+    /**when user change the category*/
+    $category_change = $lang_albmgr_php['category_change'];
+    set_js_var('category_change', $category_change);
+    /**get the category value */
+    if ($superCage->get->keyExists('cat')) {
+    	$cat = $superCage->get->getInt('cat');
+	} else {
+	    $cat = 0;
+	}
+	if ($cat == 1) {
+	    $cat = 0;
+	}
+	/** set the cat value to sort.js*/
+	set_js_var('category', $cat);
+
+=======
+>>>>>>> .r5581
 pageheader($lang_albmgr_php['title']);
 
+<<<<<<< .mine
+	
+=======
 if ($superCage->get->keyExists('cat')) {
     $cat = $superCage->get->getInt('cat');
 } else {
@@ -72,6 +134,7 @@ if ($cat == 1) {
     $cat = 0;
 }
 
+>>>>>>> .r5581
 if (GALLERY_ADMIN_MODE) {
     $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat ORDER BY pos ASC");
 } elseif (USER_ADMIN_MODE) {
@@ -86,12 +149,18 @@ if (GALLERY_ADMIN_MODE) {
 } else {
     cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 }
+<<<<<<< .mine
+	$rowset = cpg_db_fetch_rowset($result);
+	$i = 100;
+	$sort_order = '';
+=======
 
 $rowset = cpg_db_fetch_rowset($result);
 
 $i = 100;
 
 $sort_order = '';
+>>>>>>> .r5581
 
 if (count($rowset) > 0) {
     foreach ($rowset as $album) {
@@ -100,6 +169,14 @@ if (count($rowset) > 0) {
 }
 
 echo <<< EOT
+<<<<<<< .mine
+    <input type="hidden" id="sort_order" name="sort_order" value="" />
+    <input type="hidden" name="category" value="<?= $cat; ?>">
+     
+    <td class="tableb" >
+        <table class="head-album" border="0" cellspacing="0" cellpadding="0">
+<?php
+=======
 
 <form name="album_menu" id="cpgformAlbum" method="post" action="delete.php?what=albmgr">
     <input type="hidden" name="delete_album" value="" />
@@ -127,6 +204,7 @@ echo <<< EOT
 
 EOT;
 
+>>>>>>> .r5581
 if (GALLERY_ADMIN_MODE||USER_ADMIN_MODE) {
 
     $CAT_LIST = array();
@@ -140,7 +218,16 @@ if (GALLERY_ADMIN_MODE||USER_ADMIN_MODE) {
     
     get_cat_data();
 
+<<<<<<< .mine
+    echo <<<EOT
+                    <tr>
+                        <td>
+                            <strong>{$lang_albmgr_php['select_category']}</strong>
+                            &nbsp;
+                            <select name="cat" class="listbox">
+=======
     echo <<< EOT
+>>>>>>> .r5581
 
             <tr>
                 <td>
@@ -158,7 +245,6 @@ EOT;
     
     echo <<<EOT
                         </select>
-                        <br /><br />
                 </td>
              </tr>
 
@@ -169,16 +255,31 @@ EOT;
 echo <<< EOT
 
 </table>
+<<<<<<< .mine
+      <div id="sort">
+          <table id="album_sort" cellspacing="0" cellpadding="0" border="0">
+<?php
+=======
     <div id="sort">
         
+>>>>>>> .r5581
 
+<<<<<<< .mine
+    $album_list = '';
+    if (count ($rowset) > 0) 
+=======
 EOT;
 
 $i = 100;
 $j = 1;
 echo '<table id="album_sort">';
 if (count($rowset) > 0) {
+>>>>>>> .r5581
     foreach ($rowset as $album) {
+<<<<<<< .mine
+        $album_list .='<tr id="sort-'.$album['aid'].'" ><td class="dragHandle"></td><td class="album_text" width="96%"><span class="albumName">'.stripslashes($album['title']).'</span><span class="editAlbum">Edit</span></td></tr>';
+
+=======
     
         $album['title'] = stripslashes($album['title']);
         
@@ -196,42 +297,113 @@ if (count($rowset) > 0) {
 EOT;
 
         $j++;
+>>>>>>> .r5581
+<<<<<<< .mine
+    }       
+    echo $album_list;
+?>
+</table>
+=======
     }
 }
 echo '</table>';
 echo <<< EOT
 
+>>>>>>> .r5581
     </div>
-    <table>
+    <table class="album-operate" cellspacing="0" cellpadding="0" border="0">
         <tr>
+<<<<<<< .mine
+      
+<?php
+=======
             <td>
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
 EOT;
 
+>>>>>>> .r5581
 // Only show move-buttons when admin or in user's private category.
 // Sorting is also prevented in delete.php when user doesn't have the rights.
+<<<<<<< .mine
+  if(GALLERY_ADMIN_MODE||($cat == USER_ID + FIRST_USER_CAT))
+  {
+  	
+    $up_arrow 		= cpg_fetch_icon('up', 0, $lang_common['move_up']);
+    $down_arrow 	= cpg_fetch_icon('down', 0, $lang_common['move_down']);
+    $icon_new 		= cpg_fetch_icon('add', 0, $lang_albmgr_php['new_album']);
+	$icon_delete 	= cpg_fetch_icon('delete', 0, $lang_albmgr_php['delete_album']);
+	
+=======
 if (GALLERY_ADMIN_MODE || ($cat == USER_ID + FIRST_USER_CAT)) {
 
     $up_arrow   = cpg_fetch_icon('up', 0, $lang_common['move_up']);
     $down_arrow = cpg_fetch_icon('down', 0, $lang_common['move_down']);
+>>>>>>> .r5581
     
     echo <<< EOT
+<<<<<<< .mine
+	<td style="width: 115px" id="control">
+		<a id="up_click" class="click">{$up_arrow}</a>
+		<a id="down_click" class="click">{$down_arrow}</a>
+     	<a id="deleteEvent" class="click" title="addAlbumButton">$icon_delete</a>
+    	<a id="add_new_album"  class="click" title="New" >$icon_new</a>
+    	<img id="loadin" class="icon" src="images/loadin.gif" style="margin-left: 10px; display: none;" />
+	</td>
+=======
 
                         <td>
                             <a id="up_click" class="click">{$up_arrow}</a>
                             <a id="down_click" class="click">{$down_arrow}</a>
                         </td>
+>>>>>>> .r5581
 EOT;
+<<<<<<< .mine
+  }
+  else
+  {
+=======
 
 } else {
+>>>>>>> .r5581
     echo '<td></td>';
+<<<<<<< .mine
+  }
+
+=======
 }
 
 $icon_new    = cpg_fetch_icon('add', 0, $lang_albmgr_php['new_album']);
 $icon_delete = cpg_fetch_icon('delete', 0, $lang_albmgr_php['delete_album']);
+>>>>>>> .r5581
 
 echo <<< EOT
+<<<<<<< .mine
+	
+        <td id="add-box" style="display: none;">
+			<input type="text" id="add-name" name="add-name" size="27" maxlength="80" class="textinput" value="" />
+			<button id="addEvent" class="button">Publish</button> <span>or</span>
+			<a title="Cancel" class="addCancel close">Cancel</a>
+		</td>
+		<td id="edit-box" style="display: none;">
+			<input type="text" id="edit-name" name="edit-name" size="27" maxlength="80" class="textinput" value="" />
+			<button id="updateEvent" class="button">Update</button> <span>or</span>
+			<a title="Cancel" class="albumCancel close">Cancel</a>
+		</td>
+    </tr>
+</table>
+<table class="album-save" style="display: none;" cellspacing="0" cellpadding="0" border="0">
+	<tr class='message'>
+		<td>
+	    <input type="submit" class="button" value="{$lang_common['apply_changes']}" />
+		</td>
+		<td><span>*</span> Sorting Changes made in this list will not be saved until the form is submitted.</td>
+
+	</tr>
+</table>
+        </td>
+      </tr>
+=======
                         <td align="center" style="width: 10px;"><img src="images/spacer.gif" width="1" alt="" /><br /></td>
                         <td align="center" class="click"><a id="deleteEvent" title="addAlbumButton">$icon_delete</a></td>
                         <td align="center" style="width: 10px;"><img src="images/spacer.gif" width="1" alt="" /><br /></td>
@@ -251,11 +423,20 @@ echo <<< EOT
         <input type="submit" class="button" value="{$lang_common['apply_changes']}" />
     </td>
 </tr>
+>>>>>>> .r5581
 
 EOT;
+<<<<<<< .mine
+	
+=======
 
 endtable();
 print '                </form>';
 pagefooter();
+>>>>>>> .r5581
+
+	endtable();
+	pagefooter();
+	ob_end_flush();
 
 ?>

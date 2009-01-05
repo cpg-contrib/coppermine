@@ -83,23 +83,7 @@ function albumselect($id = "album")
         }
 
         // Get albums in users' personal galleries
-        // we can always use $cpg_udb now, so we don't have to check if bridged
-/*
-        // check if bridged
-        if (defined('UDB_INTEGRATION')) {
-            if (GALLERY_ADMIN_MODE) {
-                $sql = $cpg_udb->get_admin_album_list();
-            } else {
-                $sql = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = ".(FIRST_USER_CAT + USER_ID);
-            }
-        } else {
-            if (GALLERY_ADMIN_MODE) {
-                $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
-            } else {
-                $sql = "SELECT aid, title AS title FROM {$CONFIG['TABLE_ALBUMS']}  WHERE category = " . (FIRST_USER_CAT + USER_ID);
-            }
-        }
-*/
+
         if (GALLERY_ADMIN_MODE) {
             $sql = $cpg_udb->get_admin_album_list();  
         } else {
@@ -173,21 +157,22 @@ function albumselect($id = "album")
     else cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
     $rowset = cpg_db_fetch_rowset($result);
+	
     $i=100;
     $sort_order = '';
 
-   if (count ($rowset) > 0) foreach ($rowset as $picture){
+   if (count ($rowset) > 0) 
+   foreach ($rowset as $picture){
       $sort_order .= $picture['pid'].'@'.($i++).',';
    }
 ?>
 
-   <td class="tableb" valign="top" align="center">
+   <td class="tableb" valign="top" >
        <input type="hidden" name="albunm_id" value="<?php echo $aid; ?>" />
-       <input type="hidden" name="delete_picture" value="" />
        <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />
        <input type="hidden" id="pictur_order" name="pictur_order" value="" />  
-        <br />
-        <table width="300" border="0" cellspacing="0" cellpadding="0">
+
+       <table class="head-album" border="0" cellspacing="0" cellpadding="0">
 <?php
     //Joe Ernst - Added USER_ADMIN_MODE
     if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
@@ -196,7 +181,7 @@ function albumselect($id = "album")
         get_album_data(FIRST_USER_CAT + USER_ID,'');
 
 echo <<<EOT
-      <tr>
+      <tr class='head-album'>
          <td>
             <strong>{$lang_common['select_album']}</strong>
 EOT;
@@ -204,14 +189,12 @@ EOT;
 echo <<<EOT
          </td>
       </tr>
-
+	</table>
 EOT;
 }
 ?>
-    <tr>
-        <td>
-        <div id="sort">
-            <table id="pic_sort">
+        <div id="sort" >
+            <table id="pic_sort" cellspacing="0" cellpadding="0" border="0">
 <?php
        $i   =   100;
        $lb  =   '';
@@ -219,7 +202,13 @@ EOT;
         /** create a table to sort the picture*/  
     if (count ($rowset) > 0) 
         foreach ($rowset as $picture){
-            $lb .='<tr id=sort'.$picture["pid"].' title='.$picture["pid"].'><td width="10%" style="padding-left:20px" >'.$j.'</td><td><img src="images/bullet.png"  /><td style="width:335px;padding-left:10px;">'.$picture["title"].'</td><td style="width:300px;padding-left:10px;">'.$picture["filename"].'</td></tr>';
+        	/**get the photo name*/
+		    $get_pohoto_name = $picture['title'];
+		    /**check the photo name is available*/
+		    if($get_pohoto_name == ''){
+				$get_pohoto_name = $picture['filename'];	
+			}
+            $lb .='<tr id=sort-'.$picture["pid"].' ><td class="dragHandle"></td><td width="96%">'.$get_pohoto_name.'</td></tr>';
             $j++;
         }
         
@@ -230,29 +219,14 @@ EOT;
     echo <<<EOT
       </table>
       </div>
-    </td>
-     </tr>
-     
-      <tr>
-         <td>
-            <table>
-               <tr>
-               <td style="float:left; margin-left:50px;"><a class="photoUp">$up_arrow</a>
-               <a class="photoDown">$down_arrow</a>
-               </td>
-<!-- Joe Ernst: I commented this out because I can't get it to work. -->
-               <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br />
-               </td>
-            </tr>
+            <table class="album-operate" cellspacing="0" cellpadding="0" border="0">
+              	<tr>
+	            <td style="width: 115px" id="control">
+				  	<a class="photoUp">$up_arrow</a>
+	              	<a class="photoDown">$down_arrow</a>
+	            </td>
+            	</tr>
             </table>
-         </td>
-      </tr>
-      <tr>
-         <td><br />
-            <br />
-         </td>
-      </tr>
-        </table>
    </td>
 </tr>
 EOT;
@@ -272,7 +246,7 @@ EOT;
      }
      echo <<<EOT
 <tr>
-   <td colspan="2" align="center" class="tablef">
+   <td colspan="2" class="tablef">
    <button type="submit" class="button" name="apply" id="apply" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
    </td>
 </tr>
