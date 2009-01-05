@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2008 Dev Team
+  Copyright (c) 2003-2009 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -10,23 +10,12 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.0
+  Coppermine version: 1.5.1
   $HeadURL$
   $Revision$
   $LastChangedBy$
   $Date$
 **********************************************/
-
-/**
-* Coppermine Photo Gallery 1.5.0 mode.php
-*
-* Toggles admin controls on / off
-*
-* @copyright 2002-2007 Gregory DEMAR, Coppermine Dev Team
-* @package Coppermine
-* @version $Id$
-*/
-
 
 define('IN_COPPERMINE', true);
 define('MODE_PHP', true);
