@@ -4565,11 +4565,8 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $remoteURL);
         curl_setopt($curl, CURLOPT_HEADER, 0);
-        ob_start();
-        curl_exec($curl);
-        $body = ob_get_contents();
-        ob_end_clean();
-        ob_end_flush();
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);        
+        $body = curl_exec($curl);
         $headers = curl_getinfo($curl);
         curl_close($curl);
         if (strlen($body) < $minLength) {

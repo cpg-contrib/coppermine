@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-01-06 [B] Fixed output buffering bug in cpgGetRemoteFileByURL's curl code that caused the page_html plugin filter to fail (thread ID 57424) {Nibbler}
 2009-01-06 [O] Removed features "custom thumbs" and "allowed extensions" that have not been implemented yet (thread ID 54826) {GauGau}
 2009-01-05 [B] Album manager and photo manger bugs fixed {Sameera}
 2009-01-05 [M] Internationalized the swfupload's browse button {Abbas}
