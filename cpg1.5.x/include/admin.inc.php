@@ -828,12 +828,6 @@ $config_data = array(
       'warning'                => $lang_admin_php['warning_change'],
       'end_description'        => $lang_admin_php['pixels'],
     ),
-    'enable_custom_thumbs' => array(
-      'type'                   => 'checkbox',
-      'default_value'          => '0',
-      'help_link'              => '',
-      'additional_description' => '(' . $lang_admin_php['movie_audio_document'] . ')',
-    ),
     'thumb_pfx' => array(
       'type'                => 'textfield',
       'default_value'       => 'thumb_',
@@ -973,11 +967,6 @@ $config_data = array(
       'type'          => 'checkbox',
       'default_value' => '0',
       'help_link'     => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_silly_safe_mode_start&amp;ae=admin_picture_thumb_advanced_silly_safe_mode_end',
-    ),
-    'allowed_file_extensions' => array(
-      'type'      => 'hidden',
-      'default_value' => '',
-      'help_link' => 'f=configuration.htm&amp;as=&amp;ae=_end',
     ),
     'allowed_img_types' => array(
       'type'          => 'textfield',
