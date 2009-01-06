@@ -2,16 +2,16 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2007 Coppermine Dev Team
+  Copyright (c) 2003-2009 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+
   ********************************************
-  Coppermine version: 1.5.0
-  $Source$
+  Coppermine version: 1.5.1
+  $URL$
   $Revision$
   $LastChangedBy$
   $Date$
@@ -1601,9 +1601,9 @@ if (defined('LOGIN_PHP')) {
   $lang_login_php['welcome'] = 'Bienvenue %s ...';
   $lang_login_php['err_login'] = '*** Impossible de vous connecter. Essayez encore ***';
   $lang_login_php['err_already_logged_in'] = 'Vous êtes déjà connecté(e)&nbsp;!';
-  $lang_login_php['forgot_password_link'] = 'Damned ! J\'ai oublié mon Mot de Passe&nbsp;!'; //cpg1.3.0
-  $lang_login_php['cookie_warning'] = 'Attention votre navigateur n\'accepte pas les Cookies'; //cpg1.4
-  $lang_login_php['send_activation_link'] = 'Lien d\'Activation perdu ?';//cpg 1.5.0
+  $lang_login_php['forgot_password_link'] = 'Damned ! J\'ai oublié mon Mot de Passe&nbsp;!';
+  $lang_login_php['cookie_warning'] = 'Attention votre navigateur n\'accepte pas les Cookies';
+  $lang_login_php['send_activation_link'] = 'Lien d\'Activation perdu ?';//cpg 1.5
   $lang_login_php['force_login'] = 'Vous deviez vous identifier pour voir cette page'; // cpg1.5
   $lang_login_php['force_login_title'] = 'Identifiez vous pour continuer'; // cpg1.5
 }
