@@ -1094,9 +1094,8 @@ EOT;
 ******************************************************************************/
 // HTML template used by the cpg_die function
 $template_cpg_die = <<<EOT
-
-        <tr>
-                <td class="tableb tableb_alternate tableb tableb_alternate_alternate" align="center">
+					<div class="{CSS_CLASS}">
+						<h2>{HEADER_TXT}</h2>
                         <span class="cpg_user_message">{MESSAGE}</span>
 <!-- BEGIN file_line -->
                         <br />
@@ -1111,9 +1110,7 @@ $template_cpg_die = <<<EOT
                         </div>
 <!-- END output_buffer -->
                         <br /><br />
-                </td>
-        </tr>
-
+                    </div>
 
 EOT;
 /******************************************************************************
@@ -1126,25 +1123,16 @@ EOT;
 // HTML template used by the msg_box function
 $template_msg_box = <<<EOT
 
-        <tr>
-                <td class="tableb tableb_alternate tableb tableb_alternate_alternate" align="center">
-                        <span class="cpg_user_message">{MESSAGE}</span>
-                </td>
-        </tr>
+        <div class="{CLASS}">
+            <span class="cpg_user_message">{MESSAGE}</span>
 <!-- BEGIN button -->
-                <tr>
-                        <td align="center" class="tablef">
-                                <table cellpadding="0" cellspacing="0">
-                                        <tr>
-                                                <td class="admin_menu">
-                                                        <a href="{LINK}">{TEXT}</a>
-                                                </td>
-                                        </tr>
-                                </table>
-                        </td>
-                </tr>
+	        <br />&nbsp;
+	        <br />
+	        <span class="admin_menu">
+	                <a href="{LINK}">{TEXT}</a>
+	        </span>
 <!-- END button -->
-
+        </div>
 EOT;
 /******************************************************************************
 ** Section <<<$template_msg_box>>> - END
@@ -1547,7 +1535,7 @@ function theme_javascript_head() {
 ** Section <<<theme_cpg_die>>> - START
 ******************************************************************************/
 // Function for showing error messages
-function theme_cpg_die($msg_code, $msg_text, $msg_string, $msg_icon, $error_file, $error_line, $output_buffer, $ob) 
+function theme_cpg_die($msg_code, $msg_text, $msg_string, $css_class = 'cpg_message_info', $error_file, $error_line, $output_buffer, $ob) 
 {
     global $CONFIG, $lang_cpg_die, $template_cpg_die;
 
@@ -1558,21 +1546,18 @@ function theme_cpg_die($msg_code, $msg_text, $msg_string, $msg_icon, $error_file
             '{LINE_TXT}' => $lang_cpg_die['line'],
             '{LINE}' => $error_line,
             '{OUTPUT_BUFFER}' => $ob,
+            '{HEADER_TXT}' => $msg_string,
+            '{CSS_CLASS}' => $css_class,
     );
 
     if (!($CONFIG['debug_mode'] == 1 || ($CONFIG['debug_mode'] == 2 && GALLERY_ADMIN_MODE))) {
         template_extract_block($template_cpg_die, 'file_line');
     }
-    //if (!$output_buffer && !$CONFIG['debug_mode'])
     template_extract_block($template_cpg_die, 'output_buffer');
 
-    $icon_output = (function_exists('cpg_fetch_icon') ? cpg_fetch_icon($msg_icon, 2) : '');
-
     pageheader($msg_string);
-    starttable(-1, $icon_output . $msg_string);
     echo "<!-- cpg_die -->";
     echo template_eval($template_cpg_die, $params);
-    endtable();
     pagefooter();
 }
 /******************************************************************************
@@ -1609,7 +1594,7 @@ function theme_breadcrumb($breadcrumb_links, $BREADCRUMB_TEXTS, &$breadcrumb, &$
 ** Section <<<theme_msg_box>>> - START
 ******************************************************************************/
 // Function for displaying a message-box-like table
-function theme_msg_box($title, $msg_text, $msg_icon = 'info', $button_text, $button_link, $width) 
+function theme_msg_box($title, $msg_text, $css_class = 'cpg_message_info', $button_text, $button_link) 
 {
     global $template_msg_box;
 
@@ -1619,13 +1604,11 @@ function theme_msg_box($title, $msg_text, $msg_icon = 'info', $button_text, $but
     $params = array(
             '{MESSAGE}' => $msg_text,
             '{LINK}' => $button_link,
-            '{TEXT}' => $button_text
+            '{TEXT}' => $button_text,
+            '{CLASS}' => $css_class
     );
-    $icon_output = (function_exists('cpg_fetch_icon') ? cpg_fetch_icon($msg_icon, 2) : '');
 
-    starttable($width, $icon_output.$title);
     echo template_eval($template_msg_box, $params);
-    endtable();
 }
 /******************************************************************************
 ** Section <<<theme_msg_box>>> - END
@@ -2248,32 +2231,39 @@ function theme_display_message_block() {
 
     $superCage = Inspekt::makeSuperCage();
     $return = '';
+    $message_id = '';
+    $message_icon = '';
+    $message_style = '';
 
     if ($superCage->get->keyExists('message_id')) {
-        $message_id = $superCage->get->getEscaped('message_id');
+      $message_id = $superCage->get->getEscaped('message_id');
+    }
+    
+    if ($superCage->get->keyExists('message_icon')) {
+		$message_icon = $superCage->get->getAlpha('message_icon');
+    }
+    
+    if ($message_icon == 'error') {
+    	$message_style = 'cpg_message_error';
+    } elseif ($message_icon == 'warning') {
+    	$message_style = 'cpg_message_warning';
+    } elseif ($message_icon == 'validation') {
+    	$message_style = 'cpg_message_validation';
+    } elseif ($message_icon == 'success') {
+    	$message_style = 'cpg_message_success';
+    } else {
+    	$message_style = 'cpg_message_info';
     }
 
     if ($message_id != '') {
         $tempMessage = cpgFetchTempMessage($message_id);
         if ($tempMessage != '') {
             $return .= '<a name="cpgMessageBlock"></a>';
-            ob_start();
-            starttable(-1, cpg_fetch_icon('info', 2) . $lang_common['information']);
-            $return .= ob_get_contents();
-            ob_end_clean();
             $return .= <<< EOT
-            <tr>
-              <td class="tableb" align="center">
-                <div id="cpgMessage" class="cpg_user_message">
-                  {$tempMessage}
-                </div>
-              </td>
-            </tr>
+            <div id="cpgMessage" class="cpg_user_message {$message_style}">
+              {$tempMessage}
+            </div>
 EOT;
-            ob_start();
-            endtable();
-            $return .= ob_get_contents();
-            ob_end_clean();
         }
     }
     if (GALLERY_ADMIN_MODE) {
