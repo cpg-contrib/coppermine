@@ -90,6 +90,40 @@ Within this section you will find several folders: the "trunk" folder contains t
 <a name="dev_subversion_commit"></a><h3>Committing your code<a href="#dev_subversion_commit" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When using the Windows-driven subversion client tortoise, simply right-click on folder that represents the root folder of your local working copy and choose "commit" from the context menu to upload your changes to the repository.</p>
 
+<a name="dev_subversion_changelog"></a><h3>Changelog<a href="#dev_subversion_changelog" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>The changelog is meant to be a documentation of the added features and fixes that went into the release as well as a good list of improvements. This way, we can make updating more attractive to end users, as they would have to rely on our word that the new version is better than the old one - the improvements and added features should all go into the changelog in reverse chronological order, with the oldest record at the very bottom and the newest record at the top.</p>
+<p>This being said: all non-trivial commits performed against the subversion repository should be documented as well by a corresponding changelog record that summarizes what your commit is meant to do.</p>
+<p>The changelog file resides within the root folder of each coppermine package and is named <tt class="code">CHANGELOG.txt</tt>.</p>
+<p>The changelog format is structured in a self-explanatory way, so here's just a short summary how each line is composed:
+<ul>
+	<li>
+		<h4>Date</h4>
+		Use the international scientific notation YYYY-MM-DD to allow easy sorting
+	</li>
+	<li>
+		<h4>Commit type</h4>
+		Use a token from the list in square brackets that explains what type of commit you have performed. As of now, the following tokens exist:
+		<ul>
+			<li><strong>[A]</strong> = Added new feature</li>
+			<li><strong>[B]</strong> = Bugfix (fix something that wasn't working as expected)</li>
+			<li><strong>[C]</strong> = Cosmetical fix (layout, typo etc.)</li>
+			<li><strong>[D]</strong> = Documentation improvements</li>
+			<li><strong>[M]</strong> = Maintenance works</li>
+			<li><strong>[O]</strong> = Optimization of code</li>
+			<li><strong>[S]</strong> = Security fix (issues that are related to security)</li>
+		</ul>
+	</li>
+	<li>
+		<h4>Explanatory text</h4>
+		Text that explains your actual commit. When refering to a bug brought up on the forum, refere to the thread ID there.
+	</li>
+	<li>
+		<h4>Developer name</h4>
+		Add your name or nickname in curly braces
+	</li>
+</ul>
+<p>It's <strong>mandatory</strong> to edit the changelog (even when contributing minor fixes or features). Please try to remember updating the changelog when commiting.</p>
+
 <a name="dev_subversion_step-by-step"></a><h2>Step by step<a href="#dev_subversion_step-by-step" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>We will provide a short step-by-step guide how to check out the mainstream cpg1.5.x repository using the Windows-client TortoiseSVN. Please understand though that this goes unsupported; please don't ask questions about it on Coppermine's support forum.</p>
 
