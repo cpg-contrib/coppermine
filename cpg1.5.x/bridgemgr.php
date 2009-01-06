@@ -811,7 +811,7 @@ else { // not in gallery admin mode --- start
     $logon_allowed = cpg_check_allowed_emergency_logon($recovery_logon_timestamp,$recovery_logon_failures);
     if ($logon_allowed > 0) {
         // the user is not allowed to logon yet, the wait time has not elapsed yet
-        msg_box($lang_bridgemgr_php['recovery_wait_title'], $lang_bridgemgr_php['recovery_wait_content'], $lang_bridgemgr_php['try_again'], $CPG_PHP_SELF, "-1");
+        msg_box($lang_bridgemgr_php['recovery_wait_title'], $lang_bridgemgr_php['recovery_wait_content'], $lang_bridgemgr_php['try_again'], $CPG_PHP_SELF);
     } else { // the logon wait time has passed, the user is allowed to try to logon now
         // go through the list of standalone admins and check if we have a match
         $temp_user_table = $CONFIG['TABLE_PREFIX'].'users';
@@ -841,9 +841,9 @@ else { // not in gallery admin mode --- start
                         VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3, 3)");
 
             if (USER_ID) { //user already logged in
-                msg_box($lang_bridgemgr_php['recovery_success_title'], $lang_bridgemgr_php['recovery_success_content'], $lang_bridgemgr_php['goto_bridgemgr'], $CPG_PHP_SELF, "-1");
+                msg_box($lang_bridgemgr_php['recovery_success_title'], $lang_bridgemgr_php['recovery_success_content'], $lang_bridgemgr_php['goto_bridgemgr'], $CPG_PHP_SELF, 'success');
             } else { // user not logged in yet
-                msg_box($lang_bridgemgr_php['recovery_success_title'], $lang_bridgemgr_php['recovery_success_content'].'<br />'.$lang_bridgemgr_php['recovery_success_advice_login'], $lang_bridgemgr_php['goto_login'], "login.php?referer=".$CPG_PHP_SELF, "-1");
+                msg_box($lang_bridgemgr_php['recovery_success_title'], $lang_bridgemgr_php['recovery_success_content'].'<br />'.$lang_bridgemgr_php['recovery_success_advice_login'], $lang_bridgemgr_php['goto_login'], "login.php?referer=".$CPG_PHP_SELF, 'success');
             }
         } else {
             // authentification failed
@@ -854,7 +854,7 @@ else { // not in gallery admin mode --- start
             }
             $number_of_failed_attempts = $row['value'] + 1;
             cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '$number_of_failed_attempts' WHERE name = 'recovery_logon_failures'");
-            msg_box($lang_bridgemgr_php['recovery_failure_title'], $lang_bridgemgr_php['recovery_failure_content'], $lang_bridgemgr_php['try_again'], $CPG_PHP_SELF, "-1");
+            msg_box($lang_bridgemgr_php['recovery_failure_title'], $lang_bridgemgr_php['recovery_failure_content'], $lang_bridgemgr_php['try_again'], $CPG_PHP_SELF, 'error');
         }
     }
     break;

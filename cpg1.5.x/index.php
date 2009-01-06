@@ -633,7 +633,7 @@ function list_users()
     $rowset = $cpg_udb->list_users_query($user_count);
 
     if (!$rowset) {
-        msg_box($lang_list_users['user_list'], $lang_list_users['no_user_gal'], '', '', '100%');
+        msg_box($lang_list_users['user_list'], $lang_list_users['no_user_gal'], '', '', 'info');
         return;
     }
 

@@ -2239,7 +2239,7 @@ function theme_admin_mode_menu()
 ******************************************************************************/
 /******************************************************************************
 // Function for the theme_display_message_block
-The message block (not to be confused with the admin menu) will display message carried over from one page to the other and an RSS feed from the coppermine project page for the admin.
+The message block (not to be confused with the admin menu) will display message carried over from one page to the other.
 It's advisable not to change it unless you really know what you're doing.
 This function composes the individual sections of the block.
 ******************************************************************************/

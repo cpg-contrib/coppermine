@@ -55,7 +55,7 @@ if ($superCage->post->keyExists('submitted')) {
         $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET user_language = '{$USER['lang']}' WHERE user_id = {$USER_DATA['user_id']}";
         $result = cpg_db_query($sql);
 
-        cpgRedirectPage($CPG_REFERER, $lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']), 3);
+        cpgRedirectPage($CPG_REFERER, $lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']), 3, 'success');
         exit;
     } else {
         // Write the log entry

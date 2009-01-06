@@ -337,10 +337,9 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
     // for the error type from the language file. If that fails, use the hard-coded
     // English string.
     
-    $msg_icon = 'warning'; // Default icon
-    
     if ($msg_code == 1) {
         $msg_icon = 'info';
+        $css_class = 'cpg_message_info';
         if ($lang_common['information'] != '') {
             $msg_string = $lang_common['information'];
         } else {
@@ -348,6 +347,7 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
         }
     } elseif ($msg_code == 2) {
         $msg_icon = 'warning';
+        $css_class = 'cpg_message_warning';
         if ($lang_errors['error'] != '') {
             $msg_string = $lang_errors['error'];
         } else {
@@ -355,13 +355,14 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
         }
     } elseif ($msg_code == 3) {
         $msg_icon = 'stop';
+        $css_class = 'cpg_message_error';
         if ($lang_errors['critical_error'] != '') {
             $msg_string = $lang_errors['critical_error'];
         } else {
             $msg_string = 'Critical error';
         }
     }
-
+    
     // Simple output if theme file is not loaded
     if (!function_exists('pageheader')) {
         echo 'Fatal error :<br />'.$msg_text;
@@ -374,7 +375,7 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
         ob_end_clean();
     }
 
-    theme_cpg_die($msg_code, $msg_text, $msg_string, $msg_icon, $error_file, $error_line, $output_buffer, $ob);
+    theme_cpg_die($msg_code, $msg_text, $msg_string, $css_class, $error_file, $error_line, $output_buffer, $ob);
     exit;
 }
 
@@ -456,13 +457,21 @@ function path2url($path)
  * @return
  **/
 
-function msg_box($title, $msg_text, $button_text="", $button_link="", $width="-1")
+function msg_box($title, $msg_text, $button_text='', $button_link='', $type = 'info')
 {
-    // Could add $msg_icon to parameter list above, then modify all calls to msg_box
-    // For now, use a standard 'info' icon
-    $msg_icon = 'info';
+    if ($type == 'error') {
+    	$css_class = 'cpg_message_error';
+    } elseif ($type == 'warning') {
+    	$css_class = 'cpg_message_warning';
+    } elseif ($type == 'validation') {
+    	$css_class = 'cpg_message_validation';
+    } elseif ($type == 'success') {
+    	$css_class = 'cpg_message_success';
+    } else {
+    	$css_class = 'cpg_message_info';
+    }
     // Call theme function to display message box
-    theme_msg_box($title, $msg_text, $msg_icon, $button_text, $button_link, $width);
+    theme_msg_box($title, $msg_text, $css_class, $button_text, $button_link);
 }
 
 
@@ -3755,28 +3764,21 @@ function cpg_alert_dev_version()
     $return = '';
 
     if (COPPERMINE_VERSION_STATUS != 'stable') {
-        ob_start();
-        starttable('100%', cpg_fetch_icon('warning', 2) . $lang_version_alert['version_alert']);
-        print '<tr><td class="tableb">';
-        print sprintf($lang_version_alert['no_stable_version'], COPPERMINE_VERSION, COPPERMINE_VERSION_STATUS);
-        print '</td></tr>';
-        endtable();
-        print '<br />';
-        $return = ob_get_contents();
-        ob_end_clean();
+        $return = <<< EOT
+        <div class="cpg_message_warning">
+        <h2>{$lang_version_alert['version_alert']}</h2>
+EOT;
+		$return .= sprintf($lang_version_alert['no_stable_version'], COPPERMINE_VERSION, COPPERMINE_VERSION_STATUS);
+		$return .= '</div>';
     }
     
     // check if gallery is offline
     if ($CONFIG['offline'] == 1 && GALLERY_ADMIN_MODE) {
-        ob_start();
-        starttable('100%', $lang_common['information']);
-        print '<tr><td class="tableb">';
-        print '<span style="color:red;font-weight:bold">' . $lang_version_alert['gallery_offline'] . '</span>';
-        print '</td></tr>';
-        endtable();
-        print '<br />';
-        $return .= ob_get_contents();
-        ob_end_clean();
+        $return .= <<< EOT
+        <div class="cpg_message_validation">
+        {$lang_version_alert['gallery_offline']}
+        </div>
+EOT;
     }
     
     // display news from coppermine-gallery.net
@@ -4421,7 +4423,7 @@ function cpgCleanTempMessage($seconds = 3600)
 * @param string $countdown
 * @return void
 **/
-function cpgRedirectPage($targetAddress = '', $caption = '', $message = '', $countdown = 0)
+function cpgRedirectPage($targetAddress = '', $caption = '', $message = '', $countdown = 0, $type = 'info')
 {
     global $CONFIG, $lang_common;
     
@@ -4432,15 +4434,15 @@ function cpgRedirectPage($targetAddress = '', $caption = '', $message = '', $cou
         } else {
             $separator = '&';
         }
-        header($header_location . $targetAddress.$separator.'message_id='.cpgStoreTempMessage($message).'#cpgMessageBlock');
+        header($header_location . $targetAddress . $separator . 'message_id=' . cpgStoreTempMessage($message) . '&message_icon=' . $type . '#cpgMessageBlock');
         pageheader($caption, "<META http-equiv=\"refresh\" content=\"1;url=$targetAddress\">");
-        msg_box($caption, $message, $lang_common['continue'], $location);
+        msg_box($caption, $message, $lang_common['continue'], $location, $type);
         pagefooter();
         ob_end_flush();
         exit;
     } else {
         pageheader($caption, "<META http-equiv=\"refresh\" content=\"1;url=$targetAddress\">");
-        msg_box($caption, $message, $lang_common['continue'], $location);
+        msg_box($caption, $message, $lang_common['continue'], $location, $type);
         pagefooter();
         ob_end_flush();
         exit;

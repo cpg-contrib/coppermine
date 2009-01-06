@@ -145,7 +145,6 @@ switch ($event) {
 				require("include/captcha.inc.php");
 				$matches = $superCage->post->getMatched('confirmCode', '/^[a-zA-Z0-9]+$/');
 				if ($matches[0] && !PhpCaptcha::Validate($matches[0])) {
-				  //msg_box($lang_common['error'], $lang_errors['captcha_error'], $lang_common['back'], 'javascript:history.back()');
 				  cpg_die(ERROR, $lang_errors['captcha_error'], __FILE__, __LINE__);
 				}
 			}else{
