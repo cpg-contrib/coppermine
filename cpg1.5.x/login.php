@@ -63,8 +63,10 @@ if ($superCage->post->keyExists('submitted')) {
 
         $login_failed = <<<EOT
                   <tr>
-                      <td colspan="2" align="center" class="tableh2">
-                          <span style="color:red"><strong>{$lang_login_php['err_login']}</strong></span>
+                      <td colspan="2" class="tableh2">
+                          <div id="cpgMessage" class="cpg_user_message cpg_message_validation">
+	                          {$lang_login_php['err_login']}
+                          </div>
                       </td>
                   </tr>
 EOT;

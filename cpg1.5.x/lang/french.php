@@ -1596,7 +1596,7 @@ if (defined('LOGIN_PHP')) {
   $lang_login_php['password'] = 'Mot de Passe';
   $lang_login_php['remember_me'] = '<b>Se souvenir de moi</b>';
   $lang_login_php['welcome'] = 'Bienvenue %s ...';
-  $lang_login_php['err_login'] = '*** Impossible de vous connecter. Essayez encore ***';
+  $lang_login_php['err_login'] = 'Impossible de vous connecter. Essayez encore.';
   $lang_login_php['err_already_logged_in'] = 'Vous êtes déjà connecté(e)&nbsp;!';
   $lang_login_php['forgot_password_link'] = 'Damned ! J\'ai oublié mon Mot de Passe&nbsp;!';
   $lang_login_php['cookie_warning'] = 'Attention votre navigateur n\'accepte pas les Cookies';
