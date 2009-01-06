@@ -2,7 +2,7 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2008 Dev Team
+  Copyright (c) 2003-2009 Coppermine Dev Team
   v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.0
+  Coppermine version: 1.5.1
   $HeadURL$
   $Revision$
   $LastChangedBy$
@@ -20,7 +20,7 @@
 $name = $lang_plugin_php['sample_config_name'];
 $description = $lang_plugin_php['sample_config_description'];
 $author = 'Coppermine Development Team';
-$version = '1.2';
+$version = '1.3';
 /*
  * $extra_info is displayed with the title of a plugin that IS installed and
  * can be used to present extra information.  In this case I show a complex
@@ -29,7 +29,7 @@ $version = '1.2';
 $extra_info = <<<EOT
     <table border="0" cellspacing="0" cellpadding="0">
     <tr>
-        <td class="admin_menu"><a href="docs/index.htm#plugin" title="{$lang_plugin_php['sample_plugin_documentation']}">{$lang_plugin_php['sample_plugin_documentation']}</a></td>
+        <td class="admin_menu"><a href="docs/en/plugins.htm" title="{$lang_plugin_php['sample_plugin_documentation']}">{$lang_plugin_php['sample_plugin_documentation']}</a></td>
     </tr>
     </table>
 EOT;
