@@ -1487,7 +1487,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
                 $RESTRICTEDWHERE
                 AND approved = 'YES'
-                AND r.votes > '{$CONFIG['min_votes_for_rating']}'";
+                AND r.votes >= '{$CONFIG['min_votes_for_rating']}'";
 
         $result = cpg_db_query($query);
         
@@ -1501,7 +1501,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
                 $RESTRICTEDWHERE
                 AND approved = 'YES'
-                AND r.votes > '{$CONFIG['min_votes_for_rating']}'
+                AND r.votes >= '{$CONFIG['min_votes_for_rating']}'
                 ORDER BY pic_rating DESC, r.votes DESC, pid DESC
                 $limit";
 

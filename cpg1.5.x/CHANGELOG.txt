@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-01-06 [B] Fixed "'Minimum number of votes for a file to appear in the 'top-rated' list' is one step too low" issue (thread ID 57462) {Nibbler}
 2009-01-06 [C] Added message styles to core functions (thread ID 57133) {GauGau}
 2009-01-06 [B] Fixed output buffering bug in cpgGetRemoteFileByURL's curl code that caused the page_html plugin filter to fail (thread ID 57424) {Nibbler}
 2009-01-06 [O] Removed features "custom thumbs" and "allowed extensions" that have not been implemented yet (thread ID 54826) {GauGau}
