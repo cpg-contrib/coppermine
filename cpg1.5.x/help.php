@@ -111,13 +111,21 @@ if ($close != 1) {
 // Determine the language of the user and display the help file in his language if available. 
 // Fall back to English if the file is not available in his/her language.
 // This should be done at a later stage in an i18n table. For now, let's do a straightforward if/then.
-if ($CONFIG['lang'] == 'german') {
-    $help_lang = 'de';
-} elseif ($CONFIG['lang'] == 'french') {
-    $help_lang = 'fr';
-} else {
-    $help_lang = 'en';
-}
+
+// Populate a list of available sub-folders of the docs folder
+$available_doc_folders_array = form_get_foldercontent('docs/', 'folder', '', array('images', 'js', 'style', '.svn'));
+
+// Query the languages table
+$results = cpg_db_query("SELECT lang_id, abbr FROM {$CONFIG['TABLE_LANGUAGE']} WHERE available='YES' AND enabled='YES'");
+while ($row = mysql_fetch_array($results)) {
+	if ($CONFIG['lang'] == $row['lang_id']) {
+		$help_lang = $row['abbr'];
+	} else {
+		$help_lang = 'en';
+	}
+} // whilemysql_free_result($results);
+unset($row);
+
 // Make sure that the chosen help file actually exists
 if (file_exists('docs/'.$help_lang.'/'.$file) != TRUE) {
     $help_lang = 'en';

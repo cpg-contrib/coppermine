@@ -2190,9 +2190,22 @@ function theme_admin_mode_menu()
                  template_extract_block($template_gallery_admin_menu, 'admin_approval');
             }
 
-            // do the docs exist on the webserver?
-            if (file_exists('docs/index.htm') == true) {
-                $documentation_href = 'docs/index.htm';
+            // Determine the documentation target
+            $available_doc_folders_array = form_get_foldercontent('docs/', 'folder', '', array('images', 'js', 'style', '.svn'));
+// Query the languages table
+			$results = cpg_db_query("SELECT lang_id, abbr FROM {$CONFIG['TABLE_LANGUAGE']} WHERE available='YES' AND enabled='YES'");
+			while ($row = mysql_fetch_array($results)) {
+				if ($CONFIG['lang'] == $row['lang_id']) {
+					$help_lang = $row['abbr'];
+				} else {
+					$help_lang = 'en';
+				}
+			} // while			mysql_free_result($results);
+			unset($row);            
+
+             // do the docs exist on the webserver?
+            if (file_exists('docs/'.$help_lang.'/index.htm') == true) {
+                $documentation_href = 'docs/'.$help_lang.'/index.htm';
             } else {
                 $documentation_href = 'http://documentation.coppermine-gallery.net/';
             }

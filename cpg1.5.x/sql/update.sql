@@ -312,6 +312,7 @@ CREATE TABLE IF NOT EXISTS CPG_languages (
   native_name varchar(70) default NULL,
   custom_name varchar(70) default NULL,
   flag varchar(15) default NULL,
+  abbr varchar(15) NOT NULL default '',
   available enum('YES','NO') NOT NULL default 'NO',
   enabled enum('YES','NO') NOT NULL default 'NO',
   complete enum('YES','NO') NOT NULL default 'NO',
@@ -319,8 +320,9 @@ CREATE TABLE IF NOT EXISTS CPG_languages (
 ) TYPE=MyISAM COMMENT='Contains the language file definitions';
 
 
-INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('english', 'English (US)', 'English (US)', 'us', 'YES', 'YES', 'YES');
-INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, available, enabled, complete) VALUES ('german', 'German (informal)', 'Deutsch (Du)', 'de', 'YES', 'YES', 'NO');
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, enabled, complete) VALUES ('english', 'English (US)', 'English (US)', 'us','en', 'YES', 'YES', 'YES');
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, enabled, complete) VALUES ('german', 'German (informal)', 'Deutsch (Du)', 'de','de', 'YES', 'YES', 'NO');
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, enabled, complete) VALUES ('french', 'French', 'Fran&ccedil;ais', 'fr','fr', 'YES', 'YES', 'NO');
 
 
 
@@ -360,3 +362,10 @@ ALTER TABLE CPG_dict ADD UNIQUE KEY `keyword` (keyword);
 INSERT INTO CPG_config VALUES('keyword_separator', ' ');
 # Remove the display filename in film strip config value
 DELETE FROM CPG_config WHERE `name` = 'display_film_strip_filename';
+# Add the column "abbreviation" for the language folder names within the docs folder
+DELETE FROM CPG_config WHERE `name` = 'display_film_strip_filename';
+ALTER TABLE `CPG_languages` ADD `abbr` varchar(15) default '' NOT NULL AFTER `flag`;
+
+UPDATE CPG_languages SET `abbr` = 'en' WHERE `lang_id`='english';
+UPDATE CPG_languages SET `abbr` = 'de' WHERE `lang_id`='german';
+UPDATE CPG_languages SET `abbr` = 'fr' WHERE `lang_id`='french';

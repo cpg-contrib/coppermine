@@ -18,17 +18,6 @@
 **********************************************/
 
 /**
-* Coppermine Photo Gallery functions.inc.php
-*
-* This file has almost all the functions of Coppermine
-*
-* @copyright 2002-2007 Gregory DEMAR, Coppermine Dev Team
-* @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
-* @package Coppermine
-* @version  $Id$
-*/
-
-/**
 * get_meta_album_set()
 *
 * Generates a WHERE statement that reflects the meta album

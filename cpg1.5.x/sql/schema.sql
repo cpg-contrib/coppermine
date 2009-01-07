@@ -218,6 +218,7 @@ CREATE TABLE CPG_languages (
   native_name varchar(70) default NULL,
   custom_name varchar(70) default NULL,
   flag varchar(15) default NULL,
+  abbr varchar(15) NOT NULL default '',
   available enum('YES','NO') NOT NULL default 'NO',
   enabled enum('YES','NO') NOT NULL default 'NO',
   complete enum('YES','NO') NOT NULL default 'NO',
