@@ -651,6 +651,15 @@ $config_data = array(
       'help_link'     => 'f=configuration.htm&amp;as=admin_comment_sort_start&amp;ae=admin_comment_sort_end',
       'options'       => array($lang_admin_php['ascending'], $lang_admin_php['descending']),
     ),
+    'comments_per_page' => array(
+      'type'          => 'textfield',
+      'default_value' => '20',
+      'help_link'     => 'f=configuration.htm&amp;as=admin_comment_pagination_start&amp;ae=admin_comment_pagination_end',
+      'regex'         => '^[0-9]{1,4}$',
+      'size'          => '5',
+      'width'         => '5',
+      'maxlength'     => '5',
+    ),
     'comments_anon_pfx' => array(
       'type'      => 'textfield',
       'default_value' => 'Guest_',

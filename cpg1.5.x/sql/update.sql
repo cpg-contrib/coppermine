@@ -360,11 +360,15 @@ INSERT INTO CPG_config VALUES ('tabs_dropdown', '1');
 ALTER TABLE CPG_dict ADD UNIQUE KEY `keyword` (keyword);
 
 INSERT INTO CPG_config VALUES('keyword_separator', ' ');
+
 # Remove the display filename in film strip config value
 DELETE FROM CPG_config WHERE `name` = 'display_film_strip_filename';
+
 # Add the column "abbreviation" for the language folder names within the docs folder
-DELETE FROM CPG_config WHERE `name` = 'display_film_strip_filename';
 ALTER TABLE `CPG_languages` ADD `abbr` varchar(15) default '' NOT NULL AFTER `flag`;
+
+# Add option for comments per page
+INSERT INTO CPG_config VALUES ('comments_per_page', '20');
 
 UPDATE CPG_languages SET `abbr` = 'en' WHERE `lang_id`='english';
 UPDATE CPG_languages SET `abbr` = 'de' WHERE `lang_id`='german';

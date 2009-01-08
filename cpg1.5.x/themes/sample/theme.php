@@ -3476,7 +3476,7 @@ function theme_html_comments($pid)
     
     if ($num) {
     
-        $limit = 20;
+        $limit = $CONFIG['comments_per_page'];
         $max = ceil($num/$limit);
 
         if ($superCage->get->keyExists('page')) {

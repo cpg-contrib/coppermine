@@ -759,6 +759,7 @@ $lang_admin_php['max_com_lines'] = 'Max number of lines in a comment'; // cpg1.5
 $lang_admin_php['max_com_size'] = 'Maximum length of a comment'; // cpg1.5
 $lang_admin_php['email_comment_notification'] = 'Notify admin of comments by email'; // cpg1.5
 $lang_admin_php['comments_sort_descending'] = 'Sort order of comments'; // cpg1.5
+$lang_admin_php['comments_per_page'] = 'Comments per page'; // cpg1.5
 $lang_admin_php['comments_anon_pfx'] = 'Prefix for anonymous comments authors'; // cpg1.5
 $lang_admin_php['comment_approval'] = 'Comments require approval'; // cpg1.5
 $lang_admin_php['display_comment_approval_only'] = 'Only display comments needing approval on the &quot;Review Comments&quot; page'; // cpg1.5

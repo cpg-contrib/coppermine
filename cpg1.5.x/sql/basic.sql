@@ -58,6 +58,7 @@ INSERT INTO CPG_config VALUES ('comment_captcha', '1');
 INSERT INTO CPG_config VALUES ('comment_placeholder', '1');
 INSERT INTO CPG_config VALUES ('comment_promote_registration', '0');
 INSERT INTO CPG_config VALUES ('comments_anon_pfx', 'Guest_');
+INSERT INTO CPG_config VALUES ('comments_per_page', '20');
 INSERT INTO CPG_config VALUES ('comments_sort_descending', '0');
 INSERT INTO CPG_config VALUES ('comment_user_edit', '1');
 INSERT INTO CPG_config VALUES ('contact_form_guest_email_field', '2');
