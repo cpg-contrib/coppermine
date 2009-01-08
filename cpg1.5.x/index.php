@@ -692,6 +692,8 @@ function list_users()
     }
     theme_display_thumbnails($user_list, $user_count, '', '', 1, $PAGE, $totalPages, false, true, 'user');
 }
+// End list_users()
+
 
 /**
 * list_albums()

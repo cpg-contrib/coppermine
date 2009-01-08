@@ -817,7 +817,7 @@ function template_extract_block(&$template, $block_name, $subst='')
     $pattern = "#<!-- BEGIN $block_name -->(.*?)<!-- END $block_name -->#s";
     
     if (!preg_match($pattern, $template, $matches)) {
-        die('<strong>Template error<strong><br />Failed to find block \'' . $block_name . '\'(' . htmlspecialchars($pattern) . ') in :<br /><pre>' . htmlspecialchars($template) . '</pre>');
+        die('<strong>Template error<strong><br />Failed to find block \'' . $block_name . '\' (' . htmlspecialchars($pattern) . ') in :<br /><pre>' . htmlspecialchars($template) . '</pre>');
     }
     
     $template = str_replace($matches[0], $subst, $template);
@@ -2467,14 +2467,20 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                 $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
             }
             
-            $thumb_list[$i]['pos']        = $key < 0 ? $key : $i - 1 + $lower_limit;
-            $thumb_list[$i]['pid']        = $row['pid'];
-            $thumb_list[$i]['image']      = '<img src="' . $pic_url . '" class="image" ' . $image_size['geom'] . ' border="0" alt="' . $row['filename'] . '" title="' . $pic_title . '" />';
-            $thumb_list[$i]['caption']    = bb_decode($row['caption_text']);
-            $thumb_list[$i]['admin_menu'] = '';
-            $thumb_list[$i]['aid']        = $row['aid'];
-            $thumb_list[$i]['pwidth']     = $row['pwidth'];
-            $thumb_list[$i]['pheight']    = $row['pheight'];
+            $thumb_list[$i]['pos']          = $key < 0 ? $key : $i - 1 + $lower_limit;
+            $thumb_list[$i]['pid']          = $row['pid'];
+            $thumb_list[$i]['image']        = '<img src="' . $pic_url . '" class="image" ' . $image_size['geom'] . ' border="0" alt="' . $row['filename'] . '" title="' . $pic_title . '" />';
+            $thumb_list[$i]['caption']      = bb_decode($row['caption_text']);
+            $thumb_list[$i]['admin_menu']   = '';
+            $thumb_list[$i]['aid']          = $row['aid'];
+            $thumb_list[$i]['pwidth']       = $row['pwidth'];
+            $thumb_list[$i]['pheight']      = $row['pheight'];
+            // cpg1.5: new thumb fields below
+            $thumb_list[$i]['title']        = $row['title'];
+            $thumb_list[$i]['description']  = $row['caption'];
+            $thumb_list[$i]['filepath']     = $row['filepath'];
+            $thumb_list[$i]['filename']     = $row['filename'];
+            $thumb_list[$i]['filesize']     = $row['filesize'];
         }
 
         // Add a hit to album counter if it is a numeric album

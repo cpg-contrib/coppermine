@@ -35,6 +35,18 @@
 // ------------------------------------------------------------------------- //
 
 
+// ----------------------------------------------------------------------------- //
+// The individual sections are marked accordingly with                       //
+      /***********************************
+      ** Section <<<SECTIONNAME>>> - START
+      ***********************************/
+      // actual code here
+      /***********************************
+      ** Section <<<SECTIONNAME>>> - END
+      ***********************************/
+// ----------------------------------------------------------------------------- //
+
+
 // The following terms can be defined in theme.php
 // ('THEME_HAS_RATING_GRAPHICS', 1) : The location for the ratings graphics will
 //    be directed to the themes images folder.
@@ -50,12 +62,14 @@
 // ('THEME_HAS_FILM_STRIP_GRAPHIC', 1) : The location for the film strip graphics will
 //    be directed to the themes images folder.
 //    tile                 : images/tile.gif
+// ('THEME_HAS_FILM_STRIP_GRAPHICS', 1) : The location for the film strip graphics will
+//    be directed to the themes images folder.
 //    tile on the top      : images/tile1.gif
 //    tile on the bottom   : images/tile2.gif
 //  ('THEME_HAS_NO_SYS_MENU_BUTTONS', 1) : When present the system won't attempt to replace {BUTTONS} in the SYS_MENU template
-//    The entire block needs to be present
+//    The entire block needs to be present like in Coppermine 1.3 themes
 //  ('THEME_HAS_NO_SUB_MENU_BUTTONS', 1) When present the system won't attempt to replace {BUTTONS} in the SUB_MENU template
-//    The entire block needs to be present
+//    The entire block needs to be present like in Coppermine 1.3 themes
 // ('THEME_HAS_SIDEBAR_GRAPHICS', 1) : The location for the sidebar graphics that compose the tree menu will
 //    be directed to the themes images folder, subfolder 'sidebar', i.e. themes/yourtheme/images/sidebar/.
 //    Gallery root                                                             : images/sidebar/base.gif
@@ -107,6 +121,7 @@ function assemble_template_buttons($template_buttons,$buttons) {
 ** Section <<<assemble_template_buttons>>> - END
 ******************************************************************************/
 
+
 /******************************************************************************
 ** Section <<<addbutton>>> - START
 ******************************************************************************/
@@ -118,6 +133,7 @@ function addbutton(&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer,$hre
 /******************************************************************************
 ** Section <<<addbutton>>> - END
 ******************************************************************************/
+
 
 /******************************************************************************
 ** Section <<<$template_sys_menu>>> - START
@@ -142,7 +158,6 @@ if (!defined('THEME_HAS_NO_SYS_MENU_BUTTONS')) {
   $template_sys_menu_spacer ="::";
 
   // HTML template for template sys_menu buttons
-  if (!isset($template_sys_menu_button))  //{THEMES}
   $template_sys_menu_button = <<<EOT
   <!-- BEGIN {BLOCK_ID} -->
         <a href="{HREF_TGT}" title="{HREF_TITLE}" {HREF_ATTRIBUTES}>{HREF_LNK}</a> {SPACER}
@@ -168,6 +183,7 @@ EOT;
     addbutton($sys_menu_buttons,'{LOGOUT_LNK}','{LOGOUT_TITLE}','{LOGOUT_TGT}','logout','');
     // Login and Logout don't have a spacer as only one is shown, and either would be the last option.
 
+  
   $sys_menu_buttons = CPGPluginAPI::filter('sys_menu',$sys_menu_buttons);
   $params = array('{BUTTONS}' => assemble_template_buttons($template_sys_menu_button,$sys_menu_buttons));
   $template_sys_menu = template_eval($template_sys_menu,$params);
@@ -648,10 +664,10 @@ $template_thumb_view_title_row = <<<EOT
                         <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                                 <td width="100%" class="statlink"><h2>{ALBUM_NAME}</h2></td>
-								<td><img src="images/spacer.gif" width="1" alt="" /></td>
-								<td class="sortorder_cell" id="sortorder_cell">
-									<!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
-								</td>
+                                <td><img src="images/spacer.gif" width="1" alt="" /></td>
+                                <td class="sortorder_cell" id="sortorder_cell">
+                                    <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
+                                </td>
                         </tr>
                         </table>
 
@@ -659,6 +675,7 @@ EOT;
 /******************************************************************************
 ** Section <<<$template_thumb_view_title_row>>> - END
 ******************************************************************************/
+
 
 /******************************************************************************
 ** Section <<<$template_fav_thumb_view_title_row>>> - START
@@ -685,9 +702,11 @@ EOT;
 ** Section <<<$template_fav_thumb_view_title_row>>> - END
 ******************************************************************************/
 
+
 /******************************************************************************
 ** Section <<<$template_thumbnail_view>>> - START
 ******************************************************************************/
+
 // HTML template for thumbnails display
 $template_thumbnail_view = <<<EOT
 
@@ -788,12 +807,12 @@ $template_img_navbar = <<<EOT
         <tr>
                 <td align="center" valign="middle" class="navmenu" width="48"><a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/navbar/thumbnails.png" align="middle" border="0" alt="{THUMB_TITLE}" /></a></td>
 <!-- BEGIN pic_info_button -->
-				<!-- button will be added by displayimage.js -->
-				<td id="pic_info_button" align="center" valign="middle" class="navmenu" width="48"></td>
+                <!-- button will be added by displayimage.js -->
+                <td id="pic_info_button" align="center" valign="middle" class="navmenu" width="48"></td>
 <!-- END pic_info_button -->
 <!-- BEGIN slideshow_button -->
-				<!-- button will be added by displayimage.js -->
-				<td id="slideshow_button" align="center" valign="middle" class="navmenu" width="48"></td>
+                <!-- button will be added by displayimage.js -->
+                <td id="slideshow_button" align="center" valign="middle" class="navmenu" width="48"></td>
 <!-- END slideshow_button -->
                 <td align="center" valign="middle" class="navmenu" width="100%">{PIC_POS}</td>
 <!-- BEGIN report_file_button -->
@@ -820,25 +839,25 @@ EOT;
 ******************************************************************************/
 // HTML template for intermediate image display
 $template_display_media = <<<EOT
-         <tr>
+        <tr>
                 <td align="center" class="display_media" nowrap="nowrap">
-                        <table cellspacing="2" cellpadding="0" class="slideshow-bk" >
-                        		<tr>    
-								 	<td>
-									     <img id="load" src="images/slideshow-loader.gif" style="display: none; position: absolute; "/>
-                                	</td>
+                        <table cellspacing="2" cellpadding="0" class="slideshow-bk"  >
+                                <tr>    
+                                    <td>
+                                         <img id="load" src="images/slideshow-loader.gif" style="display: none; position: absolute; "/>
+                                    </td>
                                 </tr>
                                 
-								<tr>
+                                <tr>
                                         <td align="center" id="slideShow" style="{SLIDESHOW_STYLE}">
-											   {IMAGE}
-										</td>
+                                               {IMAGE}
+                                        </td>
                                 </tr>
                         </table>
                 </td>
-			</tr>
+            </tr>
             <tr>
-				<td>
+                <td>
                 <table width="100%" cellspacing="2" cellpadding="0" class="tableb tableb_alternate tableb tableb_alternate_alternate">
                                 <tr>
                                         <td align="center">
@@ -846,6 +865,7 @@ $template_display_media = <<<EOT
                                         </td>
                                 </tr>
                 </table>
+
 
 <!-- BEGIN img_desc -->
                         <table cellpadding="0" cellspacing="0" class="tableb tableb_alternate tableb tableb_alternate_alternate" width="100%">
@@ -883,9 +903,9 @@ $template_image_rating = <<<EOT
                 <td colspan="6" class="tableh2_compact" id="voting_title"><strong>{TITLE}</strong> {VOTES}</td>
         </tr>
         <tr  id="rating_stars">
-        	<td class="tableb_compact" id="star_rating" ></td>
+            <td class="tableb_compact" id="star_rating" ></td>
         </tr>
-        <noscript>
+    <noscript>
         <tr>
           <td class="tableb_compact" colspan="6" align="center">{JS_WARNING}</td>
         </tr>
@@ -1007,7 +1027,6 @@ EOT;
 ** Section <<<$template_image_comments>>> - END
 ******************************************************************************/
 
-
 /******************************************************************************
 ** Section <<<$template_add_your_comment>>> - START
 ******************************************************************************/
@@ -1094,8 +1113,8 @@ EOT;
 ******************************************************************************/
 // HTML template used by the cpg_die function
 $template_cpg_die = <<<EOT
-					<div class="{CSS_CLASS}">
-						<h2>{HEADER_TXT}</h2>
+                    <div class="{CSS_CLASS}">
+                        <h2>{HEADER_TXT}</h2>
                         <span class="cpg_user_message">{MESSAGE}</span>
 <!-- BEGIN file_line -->
                         <br />
@@ -1126,11 +1145,11 @@ $template_msg_box = <<<EOT
         <div class="{CLASS}">
             <span class="cpg_user_message">{MESSAGE}</span>
 <!-- BEGIN button -->
-	        <br />&nbsp;
-	        <br />
-	        <span class="admin_menu">
-	                <a href="{LINK}">{TEXT}</a>
-	        </span>
+            <br />&nbsp;
+            <br />
+            <span class="admin_menu">
+                    <a href="{LINK}">{TEXT}</a>
+            </span>
 <!-- END button -->
         </div>
 EOT;
@@ -1194,6 +1213,7 @@ EOT;
 /******************************************************************************
 ** Section <<<$template_ecard>>> - END
 ******************************************************************************/
+
 
 /******************************************************************************
 ** Section <<<$template_ecard_plaintext>>> - START
@@ -1372,7 +1392,6 @@ EOT;
 ** Section <<<$template_report_comment_email>>> - END
 ******************************************************************************/
 
-if (!isset($template_zipfile_plaintext)) { //{THEMES}
 /******************************************************************************
 ** Section <<<$template_zipfile_plaintext>>> - START
 ******************************************************************************/
@@ -1391,7 +1410,6 @@ EOT;
 /******************************************************************************
 ** Section <<<template_zipfile_plaintext>>> - END
 ******************************************************************************/
-} //{THEMES}
 
 /******************************************************************************
 ** Section <<<$template_tab_display>>> - START
@@ -1446,7 +1464,8 @@ function pageheader($section, $meta = '')
     header("Content-Type: text/html; charset=$charset");
     user_save_profile();
 
-    $template_vars = array('{LANG_DIR}' => $lang_text_dir,
+    $template_vars = array(
+        '{LANG_DIR}' => $lang_text_dir,
         '{TITLE}' => theme_page_title($section),
         '{CHARSET}' => $charset,
         '{META}' => $meta,
@@ -1458,7 +1477,7 @@ function pageheader($section, $meta = '')
         '{CUSTOM_HEADER}' => $custom_header,
         '{JAVASCRIPT}' => theme_javascript_head(),
         '{MESSAGE_BLOCK}' => theme_display_message_block(),
-        );
+    );
 
     echo template_eval($template_header, $template_vars);
 }
@@ -1479,7 +1498,7 @@ function pagefooter()
     $custom_footer = cpg_get_custom_include($CONFIG['custom_footer_path']);
 
     if ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE)) {
-    cpg_debug_output();
+        cpg_debug_output();
     }
 
     $template_vars = array(
@@ -1758,25 +1777,25 @@ function theme_social_bookmark()
         $socialBookmarks_array = array('aol', 'ask', 'blinklist', 'blogmarks', 'care2', 'delicious', 'digg', 'diigo', 'dzone', 'facebook', 'fark', 'faves', 'feedmelinks', 'furl', 'google', 'hugg', 'kool', 'linkagogo', 'livejournal', 'magnolia', 'mindbody', 'misterwong', 'mixx', 'multiply', 'myspace', 'netscape', 'netvouz', 'newsvine', 'nowpublic', 'reddit', 'segnalo', 'simpy', 'slashdot', 'smarking', 'spurl', 'squidoo', 'stumbleupon', 'tailrank', 'technorati', 'thisnext', 'windows', 'yahoo', 'alltagz', 'linksilo', 'iciode', 'maodi', 'misterwongde', 'newstube', 'oneview', 'readster', 'tausendreporter', 'webbrille', 'webnews');
         $social_bookmarks_config_array = explode ("|",$CONFIG['display_social_bookmarks']);
         $countLoop = 0;
-		$i = 0;
+        $i = 0;
         $bookmark_list = array();
         foreach ($socialBookmarks_array as $key) {
             if (array_key_exists($countLoop, $social_bookmarks_config_array) && ($social_bookmarks_config_array[$countLoop] == 1)) {
                 $bookmark_list[$i] = $socialBookmarks_array[$countLoop];
-				$i++;
+                $i++;
             }
             $countLoop++;
         }
         $close_icon = cpg_fetch_icon('close', 0, $lang_common['close']);
         $return .= "<div id=\"bookmarkIt\">{$lang_social_bookmarks['bookmark_this_page']}<span id=\"popupClose\">{$close_icon}</span><div id=\"popupBookmark\"></div></div>";
         
-		$js_bookmark = array(
-			'display_social_bookmarks' => true,
-			'favorite_close' => str_replace("'", '&lsquo;', $lang_social_bookmarks['favorite_close']),
-			'favorite' => str_replace("'", '&lsquo;', $lang_social_bookmarks['favorite']),
-			'bookmark_list' => $bookmark_list
-		);
-		set_js_var('bookmark', $js_bookmark);
+        $js_bookmark = array(
+            'display_social_bookmarks' => true,
+            'favorite_close' => str_replace("'", '&lsquo;', $lang_social_bookmarks['favorite_close']),
+            'favorite' => str_replace("'", '&lsquo;', $lang_social_bookmarks['favorite']),
+            'bookmark_list' => $bookmark_list
+        );
+        set_js_var('bookmark', $js_bookmark);
         
     } // if display_social_bookmarks
     return $return;
@@ -1785,9 +1804,11 @@ function theme_social_bookmark()
 ** Section <<<theme_social_bookmark>>> - END
 ******************************************************************************/
 
+
 /******************************************************************************
 ** Section <<<theme_credits>>> - START
 ******************************************************************************/
+
 /******************************************************************************
 // Function for the credits-section
 In previous versions of Coppermine the "Powered by Coppermine" used to be
@@ -2065,8 +2086,10 @@ function theme_admin_mode_menu()
     // Populate the admin menu only if empty to avoid template errors
     if ($admin_menu == '') {
 
+        $admin_menu = '<!-- -->';  // set in case an error occurs here; otherwise, theme_cpg_die will call this function and crash
+
         if (GALLERY_ADMIN_MODE) {
-            
+
             if ($CONFIG['log_ecards'] == 0) {
                 template_extract_block($template_gallery_admin_menu, 'log_ecards');
             }
@@ -2075,9 +2098,23 @@ function theme_admin_mode_menu()
                  template_extract_block($template_gallery_admin_menu, 'admin_approval');
             }
 
+            // Determine the documentation target
+            $available_doc_folders_array = form_get_foldercontent('docs/', 'folder', '', array('images', 'js', 'style', '.svn'));
+            // Query the languages table
+            $results = cpg_db_query("SELECT lang_id, abbr FROM {$CONFIG['TABLE_LANGUAGE']} WHERE available='YES' AND enabled='YES'");
+            while ($row = mysql_fetch_array($results)) {
+                if ($CONFIG['lang'] == $row['lang_id']) {
+                    $help_lang = $row['abbr'];
+                } else {
+                    $help_lang = 'en';
+                }
+            } // while 
+            mysql_free_result($results);
+            unset($row);
+
             // do the docs exist on the webserver?
-            if (file_exists('docs/index.htm') == true) {
-                $documentation_href = 'docs/index.htm';
+            if (file_exists('docs/'.$help_lang.'/index.htm') == true) {
+                $documentation_href = 'docs/'.$help_lang.'/index.htm';
             } else {
                 $documentation_href = 'http://documentation.coppermine-gallery.net/';
             }
@@ -2185,7 +2222,7 @@ function theme_admin_mode_menu()
                 '{EXPORT_ICO}' => cpg_fetch_icon('export', 1),
                 '{TIME_STAMP}' => date('His').trim(floor(rand(0, 1000))),
                 );
-
+            
             $html = template_eval($template_gallery_admin_menu, $param);
             // $html.= cpg_alert_dev_version();
         } elseif (USER_ADMIN_MODE) {
@@ -2202,7 +2239,7 @@ function theme_admin_mode_menu()
                 '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
                 '{PICTURES_ICO}' => cpg_fetch_icon('picture_sort', 1),
                 );
-
+            
             $html = template_eval($template_user_admin_menu, $param);
         } else {
             $html = '';
@@ -2240,19 +2277,19 @@ function theme_display_message_block() {
     }
     
     if ($superCage->get->keyExists('message_icon')) {
-		$message_icon = $superCage->get->getAlpha('message_icon');
+        $message_icon = $superCage->get->getAlpha('message_icon');
     }
     
     if ($message_icon == 'error') {
-    	$message_style = 'cpg_message_error';
+        $message_style = 'cpg_message_error';
     } elseif ($message_icon == 'warning') {
-    	$message_style = 'cpg_message_warning';
+        $message_style = 'cpg_message_warning';
     } elseif ($message_icon == 'validation') {
-    	$message_style = 'cpg_message_validation';
+        $message_style = 'cpg_message_validation';
     } elseif ($message_icon == 'success') {
-    	$message_style = 'cpg_message_success';
+        $message_style = 'cpg_message_success';
     } else {
-    	$message_style = 'cpg_message_info';
+        $message_style = 'cpg_message_info';
     }
 
     if ($message_id != '') {
@@ -2288,40 +2325,44 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
     if (count($cat_data) > 0) {
         starttable('100%');
         $template = template_extract_block($template_cat_list, 'header');
-        $params = array('{CATEGORY}' => $lang_cat_list['category'],
-            '{ALBUMS}' => $lang_cat_list['albums'],
-            '{PICTURES}' => $lang_cat_list['pictures'],
-            );
+        $params = array(
+                '{CATEGORY}' => $lang_cat_list['category'],
+                '{ALBUMS}' => $lang_cat_list['albums'],
+                '{PICTURES}' => $lang_cat_list['pictures'],
+        );
         echo template_eval($template, $params);
     }
 
-    $template_noabl = template_extract_block($template_cat_list, 'catrow_noalb');
+    $template_noalb = template_extract_block($template_cat_list, 'catrow_noalb');
     $template = template_extract_block($template_cat_list, 'catrow');
     foreach($cat_data as $category) {
         if (!isset($category['cat_thumb'])) { $category['cat_thumb'] = ''; }
         if (count($category) == 3) {
-            $params = array('{CAT_TITLE}' => $category[0],
+            $params = array(
+                    '{CAT_TITLE}' => $category[0],
                     '{CAT_THUMB}' => $category['cat_thumb'],
-                '{CAT_DESC}' => $category[1]
-                );
-            echo template_eval($template_noabl, $params);
+                    '{CAT_DESC}' => $category[1],
+            );
+            echo template_eval($template_noalb, $params);
         } elseif (isset($category['cat_albums']) && ($category['cat_albums'] != '')) {
-            $params = array('{CAT_TITLE}' => $category[0],
-                '{CAT_THUMB}' => $category['cat_thumb'],
-                '{CAT_DESC}' => $category[1],
-                '{CAT_ALBUMS}' => $category['cat_albums'],
-                '{ALB_COUNT}' => $category[2],
-                '{PIC_COUNT}' => $category[3],
-                );
+            $params = array(
+                    '{CAT_TITLE}' => $category[0],
+                    '{CAT_THUMB}' => $category['cat_thumb'],
+                    '{CAT_DESC}' => $category[1],
+                    '{CAT_ALBUMS}' => $category['cat_albums'],
+                    '{ALB_COUNT}' => $category[2],
+                    '{PIC_COUNT}' => $category[3],
+            );
             echo template_eval($template, $params);
         } else {
-            $params = array('{CAT_TITLE}' => $category[0],
-                '{CAT_THUMB}' => $category['cat_thumb'],
-                '{CAT_DESC}' => $category[1],
-                '{CAT_ALBUMS}' => '',
-                '{ALB_COUNT}' => $category[2],
-                '{PIC_COUNT}' => $category[3],
-                );
+            $params = array(
+                    '{CAT_TITLE}' => $category[0],
+                    '{CAT_THUMB}' => $category['cat_thumb'],
+                    '{CAT_DESC}' => $category[1],
+                    '{CAT_ALBUMS}' => '',
+                    '{ALB_COUNT}' => $category[2],
+                    '{PIC_COUNT}' => $category[3],
+            );
             echo template_eval($template, $params);
         }
     }
@@ -2354,8 +2395,9 @@ function theme_display_breadcrumb($breadcrumb, &$cat_data)
     starttable('100%');
     if ($breadcrumb) {
         $template = template_extract_block($template_breadcrumb, 'breadcrumb');
-        $params = array('{BREADCRUMB}' => $breadcrumb
-            );
+        $params = array(
+                '{BREADCRUMB}' => $breadcrumb,
+        );
         echo template_eval($template, $params);
     }
         endtable();
@@ -2599,9 +2641,10 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $param = array('{ALBUM_NAME}' => $album_name);
         $title = template_eval($template_thumb_view_title_row, $param);
     } elseif ($aid == 'favpics' && $CONFIG['enable_zipdownload'] > 0) { //Lots of stuff can be added here later
-       $param = array('{ALBUM_NAME}' => $album_name,
-                      '{DOWNLOAD_ZIP}' => cpg_fetch_icon ('zip', 2) . $lang_thumb_view['download_zip']
-                      );
+        $param = array(
+            '{ALBUM_NAME}' => $album_name,
+            '{DOWNLOAD_ZIP}' => cpg_fetch_icon ('zip', 2) . $lang_thumb_view['download_zip'],
+        );
        $title = template_eval($template_fav_thumb_view_title_row, $param);
     } else {
         $title = $album_name;
@@ -2617,26 +2660,29 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     echo $header;
 
     $i = 0;
+    global $thumb;  // make $thumb accessible to plugins
     foreach($thumb_list as $thumb) {
         $i++;
         if ($mode == 'thumb') {
             if ($aid == 'lastalb') {
-                $params = array('{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}' => "thumbnails.php?album={$thumb['aid']}",
-                    '{THUMB}' => $thumb['image'],
-                    '{CAPTION}' => $thumb['caption'],
-                    '{ADMIN_MENU}' => $thumb['admin_menu']
-                    );
+                $params = array(
+                    '{CELL_WIDTH}' => $cell_width,
+                    '{LINK_TGT}'   => "thumbnails.php?album={$thumb['aid']}",
+                    '{THUMB}'      => $thumb['image'],
+                    '{CAPTION}'    => $thumb['caption'],
+                    '{ADMIN_MENU}' => $thumb['admin_menu'],
+                );
             ########## Commented by Abbas for new URL ###############
             // Can be removed after testing
             /*
             } else {
-                $params = array('{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link",
-                    '{THUMB}' => $thumb['image'],
-                    '{CAPTION}' => $thumb['caption'],
-                    '{ADMIN_MENU}' => $thumb['admin_menu']
-                    );
+                $params = array(
+                    '{CELL_WIDTH}' => $cell_width,
+                    '{LINK_TGT}'   => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link",
+                    '{THUMB}'      => $thumb['image'],
+                    '{CAPTION}'    => $thumb['caption'],
+                    '{ADMIN_MENU}' => $thumb['admin_menu'],
+                );
             }
             */
             ########################################################
@@ -2655,12 +2701,13 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 } else {
                     $target = "displayimage.php?pid={$thumb['pid']}$uid_link";
                 }
-                $params = array('{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}' => $target,
-                    '{THUMB}' => $thumb['image'],
-                    '{CAPTION}' => $thumb['caption'],
-                    '{ADMIN_MENU}' => $thumb['admin_menu']
-                    );
+                $params = array(
+                    '{CELL_WIDTH}' => $cell_width,
+                    '{LINK_TGT}'   => $target,
+                    '{THUMB}'      => $thumb['image'],
+                    '{CAPTION}'    => $thumb['caption'],
+                    '{ADMIN_MENU}' => $thumb['admin_menu'],
+                );
             ######################################################
             } else {
                 // determine if thumbnail link targets should open in a pop-up
@@ -2675,37 +2722,50 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 } else {
                     $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
                 }
-                $params = array('{CELL_WIDTH}' => $cell_width,
+                $params = array(
+                    '{CELL_WIDTH}' => $cell_width,
                     //'{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
-                    '{LINK_TGT}' => $target,
-                    '{THUMB}' => $thumb['image'],
-                    '{CAPTION}' => $thumb['caption'],
-                    '{ADMIN_MENU}' => $thumb['admin_menu']
-                    );
+                    '{LINK_TGT}'   => $target,
+                    '{THUMB}'      => $thumb['image'],
+                    '{CAPTION}'    => $thumb['caption'],
+                    '{ADMIN_MENU}' => $thumb['admin_menu'],
+                );
             }
 
-        } else {
-            $params = array('{CELL_WIDTH}' => $cell_width,
-                '{LINK_TGT}' => "index.php?cat={$thumb['cat']}",
-                '{THUMB}' => $thumb['image'],
-                '{CAPTION}' => $thumb['caption'],
-                '{ADMIN_MENU}' => ''
-                );
+        } else {  // mode != 'thumb'
+
+            // Used for mode = 'user' from list_users() in index.php
+            $params = array(
+                '{CELL_WIDTH}' => $cell_width,
+                '{LINK_TGT}'   => "index.php?cat={$thumb['cat']}",
+                '{THUMB}'      => $thumb['image'],
+                '{CAPTION}'    => $thumb['caption'],
+                '{ADMIN_MENU}' => '',
+            );
+
         }
+
+        // Plugin Filter: allow plugin to modify or add tags to process
+        $params = CPGPluginAPI::filter('theme_display_thumbnails_params', $params);
         echo template_eval($thumb_cell, $params);
+
         if ((($i % $thumbcols) == 0) && ($i < count($thumb_list))) {
             echo $row_separator;
         }
     } // foreach $thumb
+
+    unset($thumb);  // unset $thumb to avoid conflicting with global
+
     for (;($i % $thumbcols); $i++) {
         echo $empty_cell;
     }
     echo $footer;
 
     if ($display_tabs) {
-        $params = array('{THUMB_COLS}' => $thumbcols,
-            '{TABS}' => $tabs_html
-            );
+        $params = array(
+            '{THUMB_COLS}' => $thumbcols,
+            '{TABS}'       => $tabs_html,
+        );
         echo template_eval($tabs, $params);
     }
 
@@ -2905,7 +2965,7 @@ function theme_html_picinfo(&$info)
 {
     global $lang_picinfo, $CONFIG, $CURRENT_PIC_DATA;
 
-        if($CONFIG['picinfo_movie_download_link']){
+        if ($CONFIG['picinfo_movie_download_link']) {
                 $path_to_pic = $CONFIG['fullpath'] . $CURRENT_PIC_DATA['filepath'] . $CURRENT_PIC_DATA['filename'];
                 $mime_content = cpg_get_type($CURRENT_PIC_DATA['filename']);
                 if ($mime_content['content']=='movie') {
@@ -2950,16 +3010,17 @@ function theme_html_picture()
         array_push($USER['liv'], $pid);
     }
 
-    if($CONFIG['thumb_use']=='ht' && $CURRENT_PIC_DATA['pheight'] > $CONFIG['picture_width'] ){ // The wierd comparision is because only picture_width is stored
+    // This weird comparison is because only picture_width is stored
+    if ($CONFIG['thumb_use']=='ht' && $CURRENT_PIC_DATA['pheight'] > $CONFIG['picture_width'] ) {
       $condition = true;
-    }elseif($CONFIG['thumb_use']=='wd' && $CURRENT_PIC_DATA['pwidth'] > $CONFIG['picture_width']){
+    } elseif ($CONFIG['thumb_use']=='wd' && $CURRENT_PIC_DATA['pwidth'] > $CONFIG['picture_width']) {
       $condition = true;
-    }elseif($CONFIG['thumb_use']=='any' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']){
+    } elseif ($CONFIG['thumb_use']=='any' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']) {
       $condition = true;
         //thumb cropping
-    }elseif($CONFIG['thumb_use']=='ex' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']){
+    } elseif ($CONFIG['thumb_use']=='ex' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']) {
       $condition = true;
-    }else{
+    } else {
      $condition = false;
     }
 
@@ -3021,8 +3082,8 @@ function theme_html_picture()
 
     if ($mime_content['content']=='image') {
         if (isset($image_size['reduced'])) {
-            $winsizeX = $CURRENT_PIC_DATA['pwidth']+$CONFIG['fullsize_padding_x'];  //the +'s are the mysterious FF and IE paddings
-            $winsizeY = $CURRENT_PIC_DATA['pheight']+$CONFIG['fullsize_padding_y']; //the +'s are the mysterious FF and IE paddings
+            $winsizeX = $CURRENT_PIC_DATA['pwidth'] + $CONFIG['fullsize_padding_x'];  //the +'s are the mysterious FF and IE paddings
+            $winsizeY = $CURRENT_PIC_DATA['pheight'] + $CONFIG['fullsize_padding_y']; //the +'s are the mysterious FF and IE paddings
             if ($CONFIG['transparent_overlay'] == 1) {
                 $pic_html = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td background=\"" . $picture_url . "\" width=\"{$image_size['width']}\" height=\"{$image_size['height']}\" class=\"image\">";
                 if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
@@ -3111,7 +3172,7 @@ function theme_html_picture()
             $user_player = $mime_content['player'];
         }
 
-                // There isn't a player selected or user wants client-side control
+        // There isn't a player selected or user wants client-side control
         if (!$user_player) {
             $user_player = 'UNK';
         }
@@ -3160,9 +3221,9 @@ function theme_html_img_nav_menu() {
 
     if ($superCage->get->keyExists('date')) {
       //date will be validated
-        $date_link = '&date=' . cpgValidateDate($superCage->get->getRaw('date'));
+      $date_link = '&date=' . cpgValidateDate($superCage->get->getRaw('date'));
     } else {
-        $date_link = '';
+      $date_link = '';
     }
 
     //$uid_link = is_numeric($_GET['uid']) ? '&amp;uid=' . $_GET['uid'] : '';
@@ -3246,14 +3307,14 @@ function theme_html_img_nav_menu() {
         } else {
             $location= '';
         }
-	//add javascript vars
-	$js_buttons = array(
-		'pic_info_title' => $lang_img_nav_bar['pic_info_title'],
-		'slideshow_tgt' => $slideshow_tgt,
-		'slideshow_title' => $lang_img_nav_bar['slideshow_title'],
-		'loc' => $location
-	);
-	set_js_var('buttons', $js_buttons);
+    //add javascript vars
+    $js_buttons = array(
+        'pic_info_title' => $lang_img_nav_bar['pic_info_title'],
+        'slideshow_tgt' => $slideshow_tgt,
+        'slideshow_title' => $lang_img_nav_bar['slideshow_title'],
+        'loc' => $location
+    );
+    set_js_var('buttons', $js_buttons);
 
     $params = array('{THUMB_TGT}' => $thumb_tgt,
         '{THUMB_TITLE}' => $lang_img_nav_bar['thumb_title'],
@@ -3317,38 +3378,38 @@ function theme_html_rating_box()
     $superCage = Inspekt::makeSuperCage();
     
     if($CONFIG['old_style_rating']){
-		//use old style rating
-		$start_td = '<td class="tableb_compact" width="17%" align="center">';
-		$end_td = '</td>';
-		$empty_star = '<img style="cursor:pointer" id="' . $pid . '_0" title="0" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['rubbish'] . '" onclick="rate(this)" />';
-		$rating_images = $start_td . $empty_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
-		
-		$empty_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
-		$full_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
-		$rating_images .= $start_td . $full_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
-		
-		$empty_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
-		$full_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
-		$rating_images .= $start_td . $full_star . $full_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
-		
-		$empty_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
-		$full_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
-		$rating_images .= $start_td . $full_star . $full_star . $full_star . $empty_star . $empty_star . $end_td . "\n";
-		
-		$empty_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
-		$full_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
-		$rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $empty_star . $end_td . "\n";
-		
-		$full_star = '<img style="cursor:pointer" id="' . $pid . '_5" title="5" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['great'] . '" onclick="rate(this)" />';
-		$rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . "\n";
-	}else{
+        //use old style rating
+        $start_td = '<td class="tableb_compact" width="17%" align="center">';
+        $end_td = '</td>';
+        $empty_star = '<img style="cursor:pointer" id="' . $pid . '_0" title="0" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['rubbish'] . '" onclick="rate(this)" />';
+        $rating_images = $start_td . $empty_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
+        
+        $empty_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
+        $full_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
+        $rating_images .= $start_td . $full_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
+        
+        $empty_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
+        $full_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
+        $rating_images .= $start_td . $full_star . $full_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
+        
+        $empty_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
+        $full_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
+        $rating_images .= $start_td . $full_star . $full_star . $full_star . $empty_star . $empty_star . $end_td . "\n";
+        
+        $empty_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
+        $full_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
+        $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $empty_star . $end_td . "\n";
+        
+        $full_star = '<img style="cursor:pointer" id="' . $pid . '_5" title="5" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['great'] . '" onclick="rate(this)" />';
+        $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . "\n";
+    }else{
       //use new rating
-	  set_js_var('rating', round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 0));
-	  set_js_var('picture_id', $pid);
-	  set_js_var('theme_dir', $location);
-	  set_js_var('can_vote', $user_can_vote);
-	  set_js_var('lang_rate_pic', $rate_title);
-	  set_js_var('stars_amount', $rating_stars_amount);
+      set_js_var('rating', round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 0));
+      set_js_var('picture_id', $pid);
+      set_js_var('theme_dir', $location);
+      set_js_var('can_vote', $user_can_vote);
+      set_js_var('lang_rate_pic', $rate_title);
+      set_js_var('stars_amount', $rating_stars_amount);
     }
 
     $params = array(
@@ -3375,10 +3436,10 @@ function theme_html_comments($pid)
     global $template_image_comments, $template_add_your_comment, $lang_display_comments, $lang_common, $REFERER, $lang_bbcode_help_title, $lang_bbcode_help;
 
     $superCage = Inspekt::makeSuperCage();
-	$template_add_your_comment = CPGPluginAPI::filter('theme_add_comment', $template_add_your_comment);
+    $template_add_your_comment = CPGPluginAPI::filter('theme_add_comment', $template_add_your_comment);
     $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_image_comments);
-    
-	$html = '';
+
+    $html = '';
 
 //report to moderator buttons
     if (!(($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS))) {
@@ -3404,7 +3465,7 @@ function theme_html_comments($pid)
     } else {
         $comment_sort_order = 'ASC';
     }
-
+    
     $result = cpg_db_query("SELECT COUNT(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'");
     list($num) = mysql_fetch_row($result);
     
@@ -3545,7 +3606,6 @@ function theme_html_comments($pid)
 
         $html .= $tabs;
     }
-
     if (USER_CAN_POST_COMMENTS && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
         if (USER_ID) {
             $user_name_input = '<tr><td><input type="hidden" name="msg_author" value="' . stripslashes(USER_NAME) . '" /></td>';
@@ -3562,8 +3622,8 @@ function theme_html_comments($pid)
         if (($CONFIG['comment_captcha'] == 0) || ($CONFIG['comment_captcha'] == 1 && USER_ID)) {
             template_extract_block($template_add_your_comment, 'comment_captcha');
         }else{
-			$template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);
-		}
+            $template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);
+        }
 
     if ($CONFIG['show_bbcode_help']) {
         $captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);
@@ -3626,17 +3686,17 @@ function theme_slideshow($start_img,$title)
     pageheader($lang_display_image_php['slideshow']);
     template_extract_block($template_display_media, 'img_desc', $start_slideshow);
     
-	/** set styles to slideshow background */
-	$setDimentionW= $CONFIG['picture_width'] + 100;
-	$setDimentionH= $CONFIG['picture_width'] + 20;
-	
+    /** set styles to slideshow background */
+    $setDimentionW= $CONFIG['picture_width'] + 100;
+    $setDimentionH= $CONFIG['picture_width'] + 20;
+    
     $params = array(
-		'{SLIDESHOW_STYLE}' => 'width:' .$setDimentionW. 'px; height: '.$setDimentionH.'px; position: relative;' ,
+        '{SLIDESHOW_STYLE}' => 'width:' .$setDimentionW. 'px; height: '.$setDimentionH.'px; position: relative;' ,
         '{IMAGE}' => '<img id="showImage" src="' . $start_img . '" class="image" /><br />',
         '{ADMIN_MENU}' => '',
         );
-        
-    echo "<a name=\"top_display_media\"/>";    
+
+    echo "<a name=\"top_display_media\"/>";
     starttable();
     echo <<<EOT
         <noscript>
@@ -3660,7 +3720,7 @@ EOT;
     starttable();
     echo <<<EOT
         <tr>
-                <td align="center" class="navmenu"  id="back-to" >
+                <td align="center" id="back-to" class="navmenu" >
                         <a class="navmenu" style="cursor:pointer">{$lang_display_image_php['stop_slideshow']}</a>
                 </td>
         </tr>
@@ -3791,6 +3851,7 @@ function theme_display_fullsize_pic()
 ** Section <<<theme_display_fullsize_pic>>> - END
 ******************************************************************************/
 
+
 /******************************************************************************
 ** Section <<<theme_vanity>>> - START
 ******************************************************************************/
@@ -3848,7 +3909,7 @@ function theme_display_bar(
   }
   // Initialize some vars:
   $return = '';
-  $cell1Width = floor(100 * $actualValue/$maxValue);
+  $cell1Width = (($maxValue != 0) ? floor(100 * $actualValue/$maxValue): 0);
   $cell2Width = 100 - $cell1Width;
   // compose the output string
   //$return .= $cell1Width . '/' . $cell2Width;
@@ -3918,7 +3979,6 @@ function theme_page_title($section) {
 ** Section <<<theme_page_title>>> - END
 ******************************************************************************/
 
-
 /******************************************************************************
 ** Section <<<$template_sidebar>>> - START
 ******************************************************************************/
@@ -3962,3 +4022,4 @@ EOT;
 ******************************************************************************/
 
 ?>
+

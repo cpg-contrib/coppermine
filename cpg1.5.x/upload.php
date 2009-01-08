@@ -43,12 +43,8 @@ $upload_choices = array(
     'swfupload'   => $lang_upload_php['upload_swf'],
     'html_single' => $lang_upload_php['upload_single'],
 );
-// Pull in alternate upload methods from active plugins
-$alternate_choices = CPGPluginAPI::filter('upload_option',null);
-if (is_array($alternate_choices)) {
-    // If plugins add upload choices, merge them with the default ones
-    $upload_choices = array_merge($upload_choices, $alternate_choices);
-}
+// Filter upload choices to allow plugins to add upload methods
+$upload_choices = CPGPluginAPI::filter('upload_options',$upload_choices);
 
 // Default upload method set by the gallery administrator
 $upload_form = $CONFIG['upload_mechanism'];

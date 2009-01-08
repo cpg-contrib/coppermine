@@ -2181,7 +2181,7 @@ function theme_admin_mode_menu()
     // Populate the admin menu only if empty to avoid template errors
     if ($admin_menu == '') {
 
-        $admin_menu = '1';  // set in case an error occurs here; otherwise, theme_cpg_die will call this function and crash
+        $admin_menu = '<!-- -->';  // set in case an error occurs here; otherwise, theme_cpg_die will call this function and crash
 
         if (GALLERY_ADMIN_MODE) {
 
@@ -2766,6 +2766,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     echo $header;
 
     $i = 0;
+    global $thumb;  // make $thumb accessible to plugins
     foreach($thumb_list as $thumb) {
         $i++;
         if ($mode == 'thumb') {
@@ -2850,11 +2851,17 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 
         }
 
+        // Plugin Filter: allow plugin to modify or add tags to process
+        $params = CPGPluginAPI::filter('theme_display_thumbnails_params', $params);
         echo template_eval($thumb_cell, $params);
+
         if ((($i % $thumbcols) == 0) && ($i < count($thumb_list))) {
             echo $row_separator;
         }
     } // foreach $thumb
+
+    unset($thumb);  // unset $thumb to avoid conflicting with global
+
     for (;($i % $thumbcols); $i++) {
         echo $empty_cell;
     }
