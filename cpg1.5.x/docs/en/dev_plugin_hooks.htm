@@ -311,21 +311,21 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <td valign="top" class="tableb tableb_alternate">filters $pic_html when the html to display a reduced image with transparant overlay is created. </td>
     <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_image_reduced_overlay',$pic_html);</pre></td>
   </tr>
-	<tr>
+    <tr>
     <td valign="top" class="tableb">include/themes.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_html_image_reduced"></a><strong>html_image_reduced</strong><a href="#plugin_hooks_filename_html_image_reduced" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">filters $pic_html when the html to display a reduced image is created.</td>
     <td valign="top" class="tableb"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_image_reduced',$pic_html);</pre></td>
   </tr>
-	<tr>
+    <tr>
     <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_html_image_overlay"></a><strong>html_image_overlay</strong><a href="#plugin_hooks_filename_html_image_overlay" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">filters $pic_html when the html to display an image with transparant overlay is created.</td>
     <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_image_overlay',$pic_html);</pre></td>
   </tr>
-	<tr>
+    <tr>
     <td valign="top" class="tableb">include/themes.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_html_image"></a><strong>html_image</strong><a href="#plugin_hooks_filename_html_image" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
@@ -339,7 +339,7 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <td valign="top" class="tableb tableb_alternate">filters $pic_html when the html to display a document is created.</td>
     <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_document',$pic_html);</pre></td>
   </tr>
-	<tr>
+    <tr>
     <td valign="top" class="tableb">include/themes.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_html_other_media"></a><strong>html_other_media</strong><a href="#plugin_hooks_filename_html_other_media" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
@@ -354,7 +354,7 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <td valign="top" class="tableb tableb_alternate">filters $admin_menu which allows to add a button to it. <br />(See below how to do that)</td>
     <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$admin_menu = CPGPluginAPI::filter('admin_menu',$html);</pre></td>
   </tr>
-	<tr>
+    <tr>
     <td valign="top" class="tableb">include/themes.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_sys_menu"></a><strong>sys_menu</strong><a href="#plugin_hooks_filename_sys_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
@@ -508,11 +508,34 @@ ob_start('cpg_filter_page_html');</pre></td>
     <td valign="top" class="tableb tableb_alternate">called right after a new file's data is written to the database. $CURRENT_PIC_DATA holds the pid of new file along with other data.</td>
     <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data_success',$CURRENT_PIC_DATA);</pre></td>
   </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">upload.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_upload_options"></a><strong>upload_options</strong><a href="#plugin_hooks_filename_add_file_data_success" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Filter</td>
+    <td valign="top" class="tableb tableb_alternate">modify or add upload methods which can be selected from the configuration panel or upload form (if allowed) - see <a href="#plugin_hook_example_upload_method">details and examples below</a></td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$upload_choices = CPGPluginAPI::filter('upload_options',$upload_choices);</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">upload.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_upload_form"></a><strong>upload_form</strong><a href="#plugin_hooks_filename_add_file_data_success" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Action</td>
+    <td valign="top" class="tableb tableb_alternate">used to display alternate upload form - see <a href="#plugin_hook_example_upload_method">details and examples below</a></td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::action('upload_form',array($upload_form,$upload_select));</pre></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">upload.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_upload_process"></a><strong>upload_process</strong><a href="#plugin_hooks_filename_add_file_data_success" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Action</td>
+    <td valign="top" class="tableb tableb_alternate">used to processs alternate upload form - see <a href="#plugin_hook_example_upload_method">details and examples below</a></td>
+    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::action('upload_process',$upload_form);</pre></td>
+  </tr>
 </table>
+<p><a class="back" href="#top">Back to top</a></p><hr />
 
-<a name="plugin_hooks_alphabetic"></a>
+<a name="plugin_hooks_alphabetically"></a>
 <h2>Plugin Hooks Alphabetically<a href="#plugin_hooks_alphabetic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p><acronym title="to be continued">tbc</acronym> (the above table needs to be re-sorted - let's do that when we release)</p>
+<p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="plugin_hooks_hooktype"></a>
 <h2>Plugin Hooks by Hook Type<a href="#plugin_hooks_hooktype" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
@@ -524,13 +547,13 @@ ob_start('cpg_filter_page_html');</pre></td>
 CPGPluginAPI::action('plugin_cleanup',$uninstalled,$plugin_id);</div>
 <p>These next two hooks are useful for running code that does not require anything to be exported.  These hooks have access to the global variables and functions inside of Coppermine.  These hooks will most likely be used to execute code that does not require an output.</p>
 <div class="quote">
-	<p>CPGPluginAPI::action('page_start',null)<br />
-		CPGPluginAPI::action('page_end',null);</p>
+    <p>CPGPluginAPI::action('page_start',null)<br />
+        CPGPluginAPI::action('page_end',null);</p>
 </div>
 <p>These two hooks provide the ability to add a custom CAPTCHA validation. The third validation function is a filter, so don't forget to provide that one as well.</p>
 <div class="quote">
 <p>CPGPluginAPI::action('captcha_comment_validate', null);<br />
-	CPGPluginAPI::action('captcha_contact_validate', null);</p>
+    CPGPluginAPI::action('captcha_contact_validate', null);</p>
 </div>
 
 
@@ -647,6 +670,135 @@ $captcha_print = CPGPluginAPI::filter('captcha_register_print',$captcha_print);<
 $captcha_print = CPGPluginAPI::filter('captcha_contact_print',$captcha_print);<br />
 $error = CPGPluginAPI::filter('captcha_register_validate', $error);
 </div>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="plugin_hook_examples"></a>
+<h2>Plugin Hook Examples<a href="#plugin_hook_example" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+
+<a name="plugin_hook_example_upload_method"></a>
+<h3>Adding an upload method<a href="#plugin_hook_example_upload_method" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>To add an upload method that administrators and users (if allowed) can use, use these 3 plugin hooks in concert:</p>
+<pre class="code">
+$thisplugin->add_filter('upload_options','myfunction_add_upload_option');
+$thisplugin->add_action('upload_form','myfunction_display_upload_form');
+$thisplugin->add_action('upload_process','myfunction_process_upload_form');
+</pre>
+<p>All 3 hooks are called from upload.php.  The first 'upload_options' allows you to add your upload method to the dropdown list displayed on the configuration panel and on the upload page (if allowed on the configuration panel).  Here are the relevant lines from upload.php:</p>
+<pre class="code">
+// Set up an array of choices for the upload method
+$upload_choices = array(
+    'swfupload'   => $lang_upload_php['upload_swf'],
+    'html_single' => $lang_upload_php['upload_single'],
+);
+// Filter upload choices to allow plugins to add upload methods
+$upload_choices = CPGPluginAPI::filter('upload_options',$upload_choices);
+</pre>
+<p>The key for your upload method must be a simple key (with no spaces or special characters) that can be used as a GET parameter to select your upload form.  The value that corresponds to this key is the label shown on the dropdown list.  Here's an example of a plugin function that uses this hook to add an upload choice to the dropdown box:</p>
+<pre class="code">
+function myfunction_add_upload_option($upload_choices) 
+{
+    $more_upload_choices = array('alt_upload' => 'Alternate Upload Mechanism');
+    return array_merge($upload_choices, $more_upload_choices);
+}
+</pre>
+<p>The next hook is 'upload_form' used to display the upload form for you upload method.  It is called whether or not your method is chosen, so you need to check this first, and return if your upload method is not chosen.  It is expected that you will display your upload form and then exit.  Here are the relevant lines that call this hook:</p>
+<pre class="code">
+    // Call active plugins for alternate upload forms
+    CPGPluginAPI::action('upload_form',array($upload_form,$upload_select));
+</pre>
+<p>An array of 2 elements is passed with the hook call.  The first element is  $upload_form which is the choice of upload method.  The second element is a dropdown list of all the upload methods which you should display with your upload form to be consistent with the default upload forms.  In your upload form, you need to include two hidden inputs: 'method' and 'plugin_process'.  The input 'method' must match the key provided in the 'upload_options' hook function.  The input 'plugin_process' must have a value of '1' to signal upload.php that it must process your upload form.  The two required inputs are shown here:
+</p>
+<pre class="code">
+&lt;input type="hidden" name="method" value="alt_upload" /&gt;
+&lt;input type="hidden" name="plugin_process" value="1" /&gt;
+</pre>
+<p>Here is a complete example of a plugin function that displays an upload form:</p>
+<pre class="code">
+function myfunction_display_upload_form($upload_settings) 
+{
+    list($upload_form, $upload_select) = $upload_settings;
+    if ($upload_form != 'alt_upload') {
+        return;
+    }
+    pageheader('Alternate Upload Form');
+    starttable('100%', cpg_fetch_icon('upload',2).'Upload Here'.$upload_select, 2);
+    echo &lt;&lt;&lt; EOT
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;form name="altuploadform" id="altuploadform" method="post" action="upload.php" enctype="multipart/form-data"&gt;
+                &lt;input type="hidden" name="method" value="alt_upload" /&gt;
+                &lt;input type="hidden" name="plugin_process" value="1" /&gt;
+                &lt;input type="submit" name="submit" value="submit" /&gt;
+            &lt;/form&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+
+EOT;
+    endtable();
+    pagefooter();
+    ob_end_flush();
+    exit;
+}
+</pre>
+<p>The last plugin hook is 'upload_process' and is used to process the upload form.  As with 'upload_form', it is called whether or not your upload form is used, so you need to check this first.  Here are the relevant lines from the hook call:</p>
+<pre class="code">
+    // Call active plugins for alternate upload forms
+    CPGPluginAPI::action('upload_process',$upload_form);
+</pre>
+<p>As with 'upload_form', $upload_form is the choice of upload method.  Check this for your upload method, then respond appropriately.  You should also exit once you have processed your upload form.  Here is an example plugin function:</p>
+<pre class="code">
+function myfunction_process_upload_form($upload_form) 
+{
+    if ($upload_form != 'alt_upload') {
+        return;
+    }
+    pageheader('Alternate Upload Form');
+    starttable('100%', cpg_fetch_icon('upload',2).'Upload Here', 2);
+    echo &lt;&lt;&lt; EOT
+    &lt;tr&gt;
+        &lt;td&gt;
+            Alternate Upload Form Processed.
+        &lt;/td&gt;
+    &lt;/tr&gt;
+
+EOT;
+    endtable();
+    pagefooter();
+    ob_end_flush();
+    exit;
+}
+</pre>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+
+<a name="plugin_hook_example_theme_display_thumbnails"></a>
+<h3>Add tags for thumbnails display<a href="#plugin_hook_example_theme_display_thumbnails" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>To add tags that will be processed in $template_thumbnail_view in the function theme_display_thumbnails (in theme.php), use the filter hook 'theme_display_thumbnails_params':</p>
+<pre class="code">
+$params = CPGPluginAPI::filter('theme_display_thumbnails_params', $params);
+</pre>
+<p>Here's an example of a plugin function that adds more thumbnail information that can be tagged in $template_thumbnail_view:</p>
+<pre class="code">
+function myfunction_add_params($params) 
+{
+    global $thumb;
+    $more_params = array(
+        '{PID}'         => $thumb['pid'],
+        '{TITLE}'       => $thumb['title'],
+        '{DESCRIPTION}' => $thumb['description'],
+        '{PWIDTH}'      => $thumb['pwidth'],
+        '{PHEIGHT}'     => $thumb['pheight'],
+        '{FILEPATH}'    => $thumb['filepath'],
+        '{FILENAME}'    => $thumb['filename'],
+        '{FILESIZE}'    => $thumb['filesize'],
+    );
+    return array_merge($params,$more_params);
+}
+</pre>
+<p>To add the new tags to $template_thumbnail_view in your plugin, you can override the theme template by using the 'page_start' hook.  Some users may have a theme that uses this template and in that case, your plugin documentation should list the new tags your plugin uses so the user can add these tags to their theme template.  You would also need to disable your plugin from overriding this template.  Ideally, this would be done on your plugin configuration panel.</p>
+
+
+<p><a class="back" href="#top">Back to top</a></p><hr />
 
 
 <script type="text/javascript">
