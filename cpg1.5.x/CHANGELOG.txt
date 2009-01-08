@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-01-08 [A] Added plugin hook 'theme_img_navbar' to function theme_html_img_nav_menu {Paver}
 2009-01-07 [B] Fixed upload_choices plugin hook in upload.php to work with multiple plugins {Paver}
 2009-01-07 [A] Added plugin hook to theme_display_thumbnails in theme engine & core themes {Paver}
 2009-01-07 [B] Set default value for $admin_menu in theme engine to allow for error in theme_admin_mode_menu {Paver}

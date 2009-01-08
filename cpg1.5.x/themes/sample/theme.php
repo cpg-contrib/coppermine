@@ -3216,6 +3216,8 @@ function theme_html_img_nav_menu() {
 
     $superCage = Inspekt::makeSuperCage();
 
+    $template_img_navbar = CPGPluginAPI::filter('theme_img_navbar', $template_img_navbar);
+
     $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
     //$date_link = $_GET['date']=='' ? '' : '&date=' . cpgValidateDate($_GET['date']);
 
@@ -3282,8 +3284,10 @@ function theme_html_img_nav_menu() {
         $ecard_title = $lang_img_nav_bar['ecard_title'];
     } else {
         template_extract_block($template_img_navbar, 'ecard_button'); // added to remove button if cannot send ecard
-        /*$ecard_tgt = "javascript:alert('" . addslashes($lang_img_nav_bar['ecard_disabled_msg']) . "');";
-        $ecard_title = $lang_img_nav_bar['ecard_disabled'];*/
+        /*
+        $ecard_tgt = "javascript:alert('" . addslashes($lang_img_nav_bar['ecard_disabled_msg']) . "');";
+        $ecard_title = $lang_img_nav_bar['ecard_disabled'];
+        */
     }
 
     //report to moderator buttons
@@ -3295,18 +3299,18 @@ function theme_html_img_nav_menu() {
 
     }
 
-                              $thumb_tgt = "thumbnails.php?album=$album$cat_link$date_link&amp;page=$page$uid_link";
-        $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>\n";
+    $thumb_tgt = "thumbnails.php?album=$album$cat_link$date_link&amp;page=$page$uid_link";
+    $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>\n";
 
     $slideshow_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'].'#top_display_media';
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
 
     if (defined('THEME_HAS_NAVBAR_GRAPHICS')) {
-            $location= $THEME_DIR;
-        } else {
-            $location= '';
-        }
+        $location= $THEME_DIR;
+    } else {
+        $location= '';
+    }
     //add javascript vars
     $js_buttons = array(
         'pic_info_title' => $lang_img_nav_bar['pic_info_title'],
@@ -3316,7 +3320,8 @@ function theme_html_img_nav_menu() {
     );
     set_js_var('buttons', $js_buttons);
 
-    $params = array('{THUMB_TGT}' => $thumb_tgt,
+    $params = array(
+        '{THUMB_TGT}' => $thumb_tgt,
         '{THUMB_TITLE}' => $lang_img_nav_bar['thumb_title'],
         '{PIC_POS}' => $pic_pos,
         '{ECARD_TGT}' => $ecard_tgt,
@@ -3330,7 +3335,7 @@ function theme_html_img_nav_menu() {
         '{REPORT_TGT}' => $report_tgt,
         '{REPORT_TITLE}' => $lang_img_nav_bar['report_title'],
         '{LOCATION}' => $location,
-        );
+    );
 
     return template_eval($template_img_navbar, $params);
 }
