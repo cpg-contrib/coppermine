@@ -145,6 +145,15 @@ $config_data = array(
       'default_value' => '1',
       'help_link'     => 'f=configuration.htm&amp;as=admin_general_browsable_batch_add&amp;ae=admin_general_browsable_batch_add_end',
     ),
+    'batch_proc_limit' => array(
+      'type'          => 'textfield',
+      'default_value' => '2',
+      'help_link'     => 'f=configuration.htm&amp;as=admin_general_batch_proc_limit&amp;ae=admin_general_batch_proc_limit_end',
+      'regex'         => '^[0-9]{1,2}$',
+      'size'          => '3',
+      'width'         => '3',
+      'maxlength'     => '3',
+    ),
     'display_thumbs_batch_add' => array(
       'type'          => 'checkbox',
       'default_value' => '1',

@@ -684,6 +684,7 @@ $lang_admin_php['keyword_separator'] = 'Keyword separator'; // cpg1.5
 $lang_admin_php['enable_plugins'] = 'Enable plugins'; // cpg1.5
 $lang_admin_php['purge_expired_bans'] = 'Automatically purge expired bans'; // cpg1.5
 $lang_admin_php['browse_batch_add'] = 'Browsable batch-add interface'; // cpg1.5
+$lang_admin_php['batch_proc_limit'] = 'Process concurrency for batch-add interface'; // cpg1.5
 $lang_admin_php['display_thumbs_batch_add'] = 'Display preview thumbnails on batch-add interface'; // cpg1.5
 $lang_admin_php['lang'] = 'Default language'; // cpg1.5
 $lang_admin_php['language_autodetect'] = 'Autodetect language'; // cpg1.5

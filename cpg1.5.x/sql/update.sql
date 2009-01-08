@@ -370,6 +370,9 @@ ALTER TABLE `CPG_languages` ADD `abbr` varchar(15) default '' NOT NULL AFTER `fl
 # Add option for comments per page
 INSERT INTO CPG_config VALUES ('comments_per_page', '20');
 
+# Add option for batch add process limit
+INSERT INTO CPG_config VALUES ('batch_proc_limit', '2');
+
 UPDATE CPG_languages SET `abbr` = 'en' WHERE `lang_id`='english';
 UPDATE CPG_languages SET `abbr` = 'de' WHERE `lang_id`='german';
 UPDATE CPG_languages SET `abbr` = 'fr' WHERE `lang_id`='french';
