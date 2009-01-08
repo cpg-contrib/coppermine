@@ -693,10 +693,10 @@ $template_thumb_view_title_row = <<<EOT
                         <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                                 <td width="100%" class="statlink"><h2>{ALBUM_NAME}</h2></td>
-								<td><img src="images/spacer.gif" width="1" alt="" /></td>
-								<td class="sortorder_cell" id="sortorder_cell">
-									<!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
-								</td>
+                                <td><img src="images/spacer.gif" width="1" alt="" /></td>
+                                <td class="sortorder_cell" id="sortorder_cell">
+                                    <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
+                                </td>
                         </tr>
                         </table>
 
@@ -846,12 +846,12 @@ $template_img_navbar = <<<EOT
         <tr>
                 <td align="center" valign="middle" class="navmenu" width="48"><a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/navbar/thumbnails.png" align="middle" border="0" alt="{THUMB_TITLE}" /></a></td>
 <!-- BEGIN pic_info_button -->
-				<!-- button will be added by displayimage.js -->
-				<td id="pic_info_button" align="center" valign="middle" class="navmenu" width="48"></td>
+                <!-- button will be added by displayimage.js -->
+                <td id="pic_info_button" align="center" valign="middle" class="navmenu" width="48"></td>
 <!-- END pic_info_button -->
 <!-- BEGIN slideshow_button -->
-				<!-- button will be added by displayimage.js -->
-				<td id="slideshow_button" align="center" valign="middle" class="navmenu" width="48"></td>
+                <!-- button will be added by displayimage.js -->
+                <td id="slideshow_button" align="center" valign="middle" class="navmenu" width="48"></td>
 <!-- END slideshow_button -->
                 <td align="center" valign="middle" class="navmenu" width="100%">{PIC_POS}</td>
 <!-- BEGIN report_file_button -->
@@ -883,22 +883,22 @@ $template_display_media = <<<EOT
         <tr>
                 <td align="center" class="display_media" nowrap="nowrap">
                         <table cellspacing="2" cellpadding="0" class="slideshow-bk"  >
-                        		<tr>    
-								 	<td>
-									     <img id="load" src="images/slideshow-loader.gif" style="display: none; position: absolute; "/>
-                                	</td>
+                                <tr>    
+                                    <td>
+                                         <img id="load" src="images/slideshow-loader.gif" style="display: none; position: absolute; "/>
+                                    </td>
                                 </tr>
                                 
-								<tr>
+                                <tr>
                                         <td align="center" id="slideShow" style="{SLIDESHOW_STYLE}">
-											   {IMAGE}
-										</td>
+                                               {IMAGE}
+                                        </td>
                                 </tr>
                         </table>
                 </td>
-			</tr>
+            </tr>
             <tr>
-				<td>
+                <td>
                 <table width="100%" cellspacing="2" cellpadding="0" class="tableb tableb_alternate tableb tableb_alternate_alternate">
                                 <tr>
                                         <td align="center">
@@ -1162,8 +1162,8 @@ if (!isset($template_cpg_die)) { //{THEMES}
 ******************************************************************************/
 // HTML template used by the cpg_die function
 $template_cpg_die = <<<EOT
-					<div class="{CSS_CLASS}">
-						<h2>{HEADER_TXT}</h2>
+                    <div class="{CSS_CLASS}">
+                        <h2>{HEADER_TXT}</h2>
                         <span class="cpg_user_message">{MESSAGE}</span>
 <!-- BEGIN file_line -->
                         <br />
@@ -1196,11 +1196,11 @@ $template_msg_box = <<<EOT
         <div class="{CLASS}">
             <span class="cpg_user_message">{MESSAGE}</span>
 <!-- BEGIN button -->
-	        <br />&nbsp;
-	        <br />
-	        <span class="admin_menu">
-	                <a href="{LINK}">{TEXT}</a>
-	        </span>
+            <br />&nbsp;
+            <br />
+            <span class="admin_menu">
+                    <a href="{LINK}">{TEXT}</a>
+            </span>
 <!-- END button -->
         </div>
 EOT;
@@ -1535,7 +1535,8 @@ function pageheader($section, $meta = '')
     header("Content-Type: text/html; charset=$charset");
     user_save_profile();
 
-    $template_vars = array('{LANG_DIR}' => $lang_text_dir,
+    $template_vars = array(
+        '{LANG_DIR}' => $lang_text_dir,
         '{TITLE}' => theme_page_title($section),
         '{CHARSET}' => $charset,
         '{META}' => $meta,
@@ -1547,7 +1548,7 @@ function pageheader($section, $meta = '')
         '{CUSTOM_HEADER}' => $custom_header,
         '{JAVASCRIPT}' => theme_javascript_head(),
         '{MESSAGE_BLOCK}' => theme_display_message_block(),
-        );
+    );
 
     echo template_eval($template_header, $template_vars);
 }
@@ -1570,7 +1571,7 @@ function pagefooter()
     $custom_footer = cpg_get_custom_include($CONFIG['custom_footer_path']);
 
     if ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE)) {
-    cpg_debug_output();
+        cpg_debug_output();
     }
 
     $template_vars = array(
@@ -1861,25 +1862,25 @@ function theme_social_bookmark()
         $socialBookmarks_array = array('aol', 'ask', 'blinklist', 'blogmarks', 'care2', 'delicious', 'digg', 'diigo', 'dzone', 'facebook', 'fark', 'faves', 'feedmelinks', 'furl', 'google', 'hugg', 'kool', 'linkagogo', 'livejournal', 'magnolia', 'mindbody', 'misterwong', 'mixx', 'multiply', 'myspace', 'netscape', 'netvouz', 'newsvine', 'nowpublic', 'reddit', 'segnalo', 'simpy', 'slashdot', 'smarking', 'spurl', 'squidoo', 'stumbleupon', 'tailrank', 'technorati', 'thisnext', 'windows', 'yahoo', 'alltagz', 'linksilo', 'iciode', 'maodi', 'misterwongde', 'newstube', 'oneview', 'readster', 'tausendreporter', 'webbrille', 'webnews');
         $social_bookmarks_config_array = explode ("|",$CONFIG['display_social_bookmarks']);
         $countLoop = 0;
-		$i = 0;
+        $i = 0;
         $bookmark_list = array();
         foreach ($socialBookmarks_array as $key) {
             if (array_key_exists($countLoop, $social_bookmarks_config_array) && ($social_bookmarks_config_array[$countLoop] == 1)) {
                 $bookmark_list[$i] = $socialBookmarks_array[$countLoop];
-				$i++;
+                $i++;
             }
             $countLoop++;
         }
         $close_icon = cpg_fetch_icon('close', 0, $lang_common['close']);
         $return .= "<div id=\"bookmarkIt\">{$lang_social_bookmarks['bookmark_this_page']}<span id=\"popupClose\">{$close_icon}</span><div id=\"popupBookmark\"></div></div>";
         
-		$js_bookmark = array(
-			'display_social_bookmarks' => true,
-			'favorite_close' => str_replace("'", '&lsquo;', $lang_social_bookmarks['favorite_close']),
-			'favorite' => str_replace("'", '&lsquo;', $lang_social_bookmarks['favorite']),
-			'bookmark_list' => $bookmark_list
-		);
-		set_js_var('bookmark', $js_bookmark);
+        $js_bookmark = array(
+            'display_social_bookmarks' => true,
+            'favorite_close' => str_replace("'", '&lsquo;', $lang_social_bookmarks['favorite_close']),
+            'favorite' => str_replace("'", '&lsquo;', $lang_social_bookmarks['favorite']),
+            'bookmark_list' => $bookmark_list
+        );
+        set_js_var('bookmark', $js_bookmark);
         
     } // if display_social_bookmarks
     return $return;
@@ -2172,7 +2173,7 @@ function theme_admin_mode_menu()
     global $template_gallery_admin_menu, $template_user_admin_menu;
     global $CONFIG;
     global $THEME_DIR;
-    
+
     $cat_l = isset($cat) ? "?cat=$cat" : '';
 
     static $admin_menu = '';
@@ -2180,8 +2181,10 @@ function theme_admin_mode_menu()
     // Populate the admin menu only if empty to avoid template errors
     if ($admin_menu == '') {
 
+        $admin_menu = '1';  // set in case an error occurs here; otherwise, theme_cpg_die will call this function and crash
+
         if (GALLERY_ADMIN_MODE) {
-            
+
             if ($CONFIG['log_ecards'] == 0) {
                 template_extract_block($template_gallery_admin_menu, 'log_ecards');
             }
@@ -2192,18 +2195,19 @@ function theme_admin_mode_menu()
 
             // Determine the documentation target
             $available_doc_folders_array = form_get_foldercontent('docs/', 'folder', '', array('images', 'js', 'style', '.svn'));
-// Query the languages table
-			$results = cpg_db_query("SELECT lang_id, abbr FROM {$CONFIG['TABLE_LANGUAGE']} WHERE available='YES' AND enabled='YES'");
-			while ($row = mysql_fetch_array($results)) {
-				if ($CONFIG['lang'] == $row['lang_id']) {
-					$help_lang = $row['abbr'];
-				} else {
-					$help_lang = 'en';
-				}
-			} // while			mysql_free_result($results);
-			unset($row);            
+            // Query the languages table
+            $results = cpg_db_query("SELECT lang_id, abbr FROM {$CONFIG['TABLE_LANGUAGE']} WHERE available='YES' AND enabled='YES'");
+            while ($row = mysql_fetch_array($results)) {
+                if ($CONFIG['lang'] == $row['lang_id']) {
+                    $help_lang = $row['abbr'];
+                } else {
+                    $help_lang = 'en';
+                }
+            } // while 
+            mysql_free_result($results);
+            unset($row);
 
-             // do the docs exist on the webserver?
+            // do the docs exist on the webserver?
             if (file_exists('docs/'.$help_lang.'/index.htm') == true) {
                 $documentation_href = 'docs/'.$help_lang.'/index.htm';
             } else {
@@ -2369,19 +2373,19 @@ function theme_display_message_block() {
     }
     
     if ($superCage->get->keyExists('message_icon')) {
-		$message_icon = $superCage->get->getAlpha('message_icon');
+        $message_icon = $superCage->get->getAlpha('message_icon');
     }
     
     if ($message_icon == 'error') {
-    	$message_style = 'cpg_message_error';
+        $message_style = 'cpg_message_error';
     } elseif ($message_icon == 'warning') {
-    	$message_style = 'cpg_message_warning';
+        $message_style = 'cpg_message_warning';
     } elseif ($message_icon == 'validation') {
-    	$message_style = 'cpg_message_validation';
+        $message_style = 'cpg_message_validation';
     } elseif ($message_icon == 'success') {
-    	$message_style = 'cpg_message_success';
+        $message_style = 'cpg_message_success';
     } else {
-    	$message_style = 'cpg_message_info';
+        $message_style = 'cpg_message_info';
     }
 
     if ($message_id != '') {
@@ -2743,9 +2747,10 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $param = array('{ALBUM_NAME}' => $album_name);
         $title = template_eval($template_thumb_view_title_row, $param);
     } elseif ($aid == 'favpics' && $CONFIG['enable_zipdownload'] > 0) { //Lots of stuff can be added here later
-       $param = array('{ALBUM_NAME}' => $album_name,
-                      '{DOWNLOAD_ZIP}' => cpg_fetch_icon ('zip', 2) . $lang_thumb_view['download_zip']
-                      );
+        $param = array(
+            '{ALBUM_NAME}' => $album_name,
+            '{DOWNLOAD_ZIP}' => cpg_fetch_icon ('zip', 2) . $lang_thumb_view['download_zip'],
+        );
        $title = template_eval($template_fav_thumb_view_title_row, $param);
     } else {
         $title = $album_name;
@@ -2765,22 +2770,24 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $i++;
         if ($mode == 'thumb') {
             if ($aid == 'lastalb') {
-                $params = array('{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}' => "thumbnails.php?album={$thumb['aid']}",
-                    '{THUMB}' => $thumb['image'],
-                    '{CAPTION}' => $thumb['caption'],
-                    '{ADMIN_MENU}' => $thumb['admin_menu']
-                    );
+                $params = array(
+                    '{CELL_WIDTH}' => $cell_width,
+                    '{LINK_TGT}'   => "thumbnails.php?album={$thumb['aid']}",
+                    '{THUMB}'      => $thumb['image'],
+                    '{CAPTION}'    => $thumb['caption'],
+                    '{ADMIN_MENU}' => $thumb['admin_menu'],
+                );
             ########## Commented by Abbas for new URL ###############
             // Can be removed after testing
             /*
             } else {
-                $params = array('{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link",
-                    '{THUMB}' => $thumb['image'],
-                    '{CAPTION}' => $thumb['caption'],
-                    '{ADMIN_MENU}' => $thumb['admin_menu']
-                    );
+                $params = array(
+                    '{CELL_WIDTH}' => $cell_width,
+                    '{LINK_TGT}'   => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link",
+                    '{THUMB}'      => $thumb['image'],
+                    '{CAPTION}'    => $thumb['caption'],
+                    '{ADMIN_MENU}' => $thumb['admin_menu'],
+                );
             }
             */
             ########################################################
@@ -2799,12 +2806,13 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 } else {
                     $target = "displayimage.php?pid={$thumb['pid']}$uid_link";
                 }
-                $params = array('{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}' => $target,
-                    '{THUMB}' => $thumb['image'],
-                    '{CAPTION}' => $thumb['caption'],
-                    '{ADMIN_MENU}' => $thumb['admin_menu']
-                    );
+                $params = array(
+                    '{CELL_WIDTH}' => $cell_width,
+                    '{LINK_TGT}'   => $target,
+                    '{THUMB}'      => $thumb['image'],
+                    '{CAPTION}'    => $thumb['caption'],
+                    '{ADMIN_MENU}' => $thumb['admin_menu'],
+                );
             ######################################################
             } else {
                 // determine if thumbnail link targets should open in a pop-up
@@ -2819,23 +2827,29 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 } else {
                     $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
                 }
-                $params = array('{CELL_WIDTH}' => $cell_width,
+                $params = array(
+                    '{CELL_WIDTH}' => $cell_width,
                     //'{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
-                    '{LINK_TGT}' => $target,
-                    '{THUMB}' => $thumb['image'],
-                    '{CAPTION}' => $thumb['caption'],
-                    '{ADMIN_MENU}' => $thumb['admin_menu']
-                    );
+                    '{LINK_TGT}'   => $target,
+                    '{THUMB}'      => $thumb['image'],
+                    '{CAPTION}'    => $thumb['caption'],
+                    '{ADMIN_MENU}' => $thumb['admin_menu'],
+                );
             }
 
-        } else {
-            $params = array('{CELL_WIDTH}' => $cell_width,
-                '{LINK_TGT}' => "index.php?cat={$thumb['cat']}",
-                '{THUMB}' => $thumb['image'],
-                '{CAPTION}' => $thumb['caption'],
-                '{ADMIN_MENU}' => ''
-                );
+        } else {  // mode != 'thumb'
+
+            // Used for mode = 'user' from list_users() in index.php
+            $params = array(
+                '{CELL_WIDTH}' => $cell_width,
+                '{LINK_TGT}'   => "index.php?cat={$thumb['cat']}",
+                '{THUMB}'      => $thumb['image'],
+                '{CAPTION}'    => $thumb['caption'],
+                '{ADMIN_MENU}' => '',
+            );
+
         }
+
         echo template_eval($thumb_cell, $params);
         if ((($i % $thumbcols) == 0) && ($i < count($thumb_list))) {
             echo $row_separator;
@@ -2847,9 +2861,10 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     echo $footer;
 
     if ($display_tabs) {
-        $params = array('{THUMB_COLS}' => $thumbcols,
-            '{TABS}' => $tabs_html
-            );
+        $params = array(
+            '{THUMB_COLS}' => $thumbcols,
+            '{TABS}'       => $tabs_html,
+        );
         echo template_eval($tabs, $params);
     }
 
@@ -3402,14 +3417,14 @@ function theme_html_img_nav_menu() {
         } else {
             $location= '';
         }
-	//add javascript vars
-	$js_buttons = array(
-		'pic_info_title' => $lang_img_nav_bar['pic_info_title'],
-		'slideshow_tgt' => $slideshow_tgt,
-		'slideshow_title' => $lang_img_nav_bar['slideshow_title'],
-		'loc' => $location
-	);
-	set_js_var('buttons', $js_buttons);
+    //add javascript vars
+    $js_buttons = array(
+        'pic_info_title' => $lang_img_nav_bar['pic_info_title'],
+        'slideshow_tgt' => $slideshow_tgt,
+        'slideshow_title' => $lang_img_nav_bar['slideshow_title'],
+        'loc' => $location
+    );
+    set_js_var('buttons', $js_buttons);
 
     $params = array('{THUMB_TGT}' => $thumb_tgt,
         '{THUMB_TITLE}' => $lang_img_nav_bar['thumb_title'],
@@ -3721,8 +3736,8 @@ function theme_html_comments($pid)
         if (($CONFIG['comment_captcha'] == 0) || ($CONFIG['comment_captcha'] == 1 && USER_ID)) {
             template_extract_block($template_add_your_comment, 'comment_captcha');
         }else{
-			$template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);
-		}
+            $template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);
+        }
 
     if ($CONFIG['show_bbcode_help']) {
         $captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);
@@ -3786,18 +3801,18 @@ function theme_slideshow($start_img,$title)
 
     pageheader($lang_display_image_php['slideshow']);
     template_extract_block($template_display_media, 'img_desc', $start_slideshow);
-	
-	/** set styles to slideshow background */
-	$setDimentionW= $CONFIG['picture_width'] + 100;
-	$setDimentionH= $CONFIG['picture_width'] + 20;
-	
+    
+    /** set styles to slideshow background */
+    $setDimentionW= $CONFIG['picture_width'] + 100;
+    $setDimentionH= $CONFIG['picture_width'] + 20;
+    
     $params = array(
-		'{SLIDESHOW_STYLE}' => 'width:' .$setDimentionW. 'px; height: '.$setDimentionH.'px; position: relative;' ,
+        '{SLIDESHOW_STYLE}' => 'width:' .$setDimentionW. 'px; height: '.$setDimentionH.'px; position: relative;' ,
         '{IMAGE}' => '<img id="showImage" src="' . $start_img . '" class="image" /><br />',
         '{ADMIN_MENU}' => '',
         );
 
-	echo "<a name=\"top_display_media\"/>";
+    echo "<a name=\"top_display_media\"/>";
     starttable();
     echo <<<EOT
         <noscript>
