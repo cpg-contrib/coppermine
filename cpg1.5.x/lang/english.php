@@ -122,6 +122,7 @@ $lang_common['caption'] = 'Caption'; // cpg1.5
 $lang_common['keywords'] = 'Keywords'; // cpg1.5
 $lang_common['keywords_insert1'] = 'Keywords (separate with %s)'; // cpg1.5
 $lang_common['keywords_insert2'] = 'Insert from list'; // cpg1.5
+$lang_common['keyword_separator'] = 'Keyword separator'; //cpg1.5
 $lang_common['keyword_separators'] = array(' '=>'space', ','=>'comma', ';'=>'semicolon'); // cpg1.5
 $lang_common['owner_name'] = 'Owner name'; // cpg1.5
 $lang_common['filename'] = 'Filename'; // cpg1.5
@@ -2457,6 +2458,12 @@ $lang_util_php['fullpic_error'] = 'File %s does not exist!'; // cpg1.5
 $lang_util_php['no_prob_detect'] = 'No problems detected'; // cpg1.5
 $lang_util_php['no_prob_found'] = 'No problems were found.'; // cpg1.5
 $lang_util_php['no_category'] = 'No Category'; // cpg1.5
+$lang_util_php['keyword_convert'] = 'Convert keyword separator'; // cpg1.5
+$lang_util_php['keyword_from_to'] = 'Convert keyword separator from %s to %s'; // cpg1.5
+$lang_util_php['keyword_set'] = 'Set keyword separator to new value (%s)'; // cpg1.5
+$lang_util_php['keyword_replace'] = 'Before conversion, replace %s with %s'; // cpg1.5
+$lang_util_php['keyword_replace_values'] = array('_'=>'underscore', '-'=>'hyphen', '~'=>'tilde'); // cpg1.5
+$lang_util_php['keyword_explanation'] = 'This will convert the keyword separator for all your files from one value to another value.  See the help documentation for details.'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //

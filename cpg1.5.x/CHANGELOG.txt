@@ -25,6 +25,9 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-01-08 [A] Added language keys for admin tool to convert keyword separator {Paver}
+2009-01-08 [A] Added config option for batch add process limit {Nibbler}
+2009-01-08 [A] Added config option for number of comments per page {Nibbler}
 2009-01-08 [A] Added plugin hook 'theme_img_navbar' to function theme_html_img_nav_menu {Paver}
 2009-01-07 [B] Fixed upload_choices plugin hook in upload.php to work with multiple plugins {Paver}
 2009-01-07 [A] Added plugin hook to theme_display_thumbnails in theme engine & core themes {Paver}

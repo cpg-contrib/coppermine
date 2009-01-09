@@ -40,9 +40,9 @@ pageheader($lang_util_php['title']);
 // 'action name (for the $_REQUEST)' => array('function name','title for main page','description/options for main page')
 
 if ($CONFIG['make_intermediate'] == 1) {
-	$intermediate_create_string = $lang_util_php['enabled'];
+    $intermediate_create_string = $lang_util_php['enabled'];
 } else {
-	$intermediate_create_string = $lang_util_php['disabled'];
+    $intermediate_create_string = $lang_util_php['disabled'];
 }
 
 $tasks =  array(
@@ -98,6 +98,14 @@ $tasks =  array(
                 ),
 
         'reset_views' => array('reset_views', $lang_util_php['reset_views'], $lang_util_php['reset_views_explanation']),
+
+        'keyword_convert' => array('keyword_convert', $lang_util_php['keyword_convert'],'
+                <strong>'.$lang_util_php['keyword_from_to'].' (2)</strong><br />
+                <input type="checkbox" name="keyword_set" checked="checked" value="1" class="nobg" />'.$lang_util_php['keyword_set'].'<br />
+                <input type="checkbox" name="keyword_replace" checked="checked" value="1" class="nobg" />'.$lang_util_php['keyword_replace']
+                .'<br /><br />'.$lang_util_php['keyword_explanation']
+                ),
+
         );
 
 //$action = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : '';
@@ -208,10 +216,10 @@ function filename_to_title()
         $albumid = 0;
     }
     // only apply for items with empty titles (Frantz)
-    if ($superCage->post->getInt('notitle') == 1){	//$_POST['notitle'];
+    if ($superCage->post->getInt('notitle') == 1){  //$_POST['notitle'];
         $albstr = ($albumid) ? " WHERE aid = $albumid AND title = ''" : "WHERE title = ''";
     }else{
-        $albstr = ($albumid) ? " WHERE aid = $albumid " : '';	
+        $albstr = ($albumid) ? " WHERE aid = $albumid " : '';   
     }
 
     //$parsemode = $_POST['parsemode'];
@@ -337,18 +345,18 @@ function update_thumbs()
         $allowedImageExtensionArray = explode('/', $CONFIG['allowed_img_types']);
 
         while ($row = mysql_fetch_assoc($result)) {
-			$extension = ltrim(substr($row['filename'],strrpos($row['filename'],'.')),'.');
-			//print $row['filepath'] . $row['filename'] . '|'.$extension. '|'.$CONFIG['allowed_img_types'].'<br />';
-			if (in_array($extension, $allowedImageExtensionArray) == TRUE) { // the file is an image --- end
+            $extension = ltrim(substr($row['filename'],strrpos($row['filename'],'.')),'.');
+            //print $row['filepath'] . $row['filename'] . '|'.$extension. '|'.$CONFIG['allowed_img_types'].'<br />';
+            if (in_array($extension, $allowedImageExtensionArray) == TRUE) { // the file is an image --- end
                 //print_r($row);
                 //print ltrim(substr($row['filename'],strrpos($row['filename'],'.')),'.');
                 //die;
                 // ltrim(substr($row['filename'],strrpos($row['filename'],'.')),'.');
                 $loopCounter++;
                 if ($loopCounter/2 == floor($loopCounter/2)) {
-                	$tablestyle = 'tableb tableb_alternate';
+                    $tablestyle = 'tableb tableb_alternate';
                 } else {
-                	$tablestyle = 'tableb';
+                    $tablestyle = 'tableb';
                 } 
                 $image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
                 $normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
@@ -441,10 +449,10 @@ function update_thumbs()
                 $imagesize = cpg_getimagesize($image);
                 $query_up = "UPDATE {$CONFIG['TABLE_PICTURES']} SET pwidth='$imagesize[0]' , pheight='$imagesize[1]' WHERE pid='".$row['pid']."' ";
                 cpg_db_query($query_up);
-			} else { // the file is an image --- end
-				echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('cancel', 2) . sprintf($lang_util_php['no_image'], '<tt>' . $row['filepath'] . $row['filename'] . '</tt>') . '</td></tr>';
-				my_flush();
-			}
+            } else { // the file is an image --- end
+                echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('cancel', 2) . sprintf($lang_util_php['no_image'], '<tt>' . $row['filepath'] . $row['filename'] . '</tt>') . '</td></tr>';
+                my_flush();
+            }
         }
 
         if ($count == $numpics) {
@@ -457,23 +465,23 @@ EOT;
             } else {
                 print <<< EOT
                 <tr>
-	                <td class="tablef">
-		                <form action="util.php#admin_tool_thumb_update" method="post">
-		                    <input type="hidden" name="action" value="update_thumbs" />
-		                    <input type="hidden" name="numpics" value="{$numpics}" />
-		                    <input type="hidden" name="startpic" value="{$startpic}" />
-		                    <input type="hidden" name="updatetype" value="{$updatetype}" />
-		                    <input type="hidden" name="albumid" value="{$albumid}" />
-		                    <input type="hidden" name="autorefresh" value="{$autorefresh}" />
-		                    <!--<input type="submit" value="{$lang_util_php['continue']}" class="button" />-->
-		                    <button type="submit" class="button" name="submit" id="submit" value="{$lang_util_php['continue']}">{$lang_util_php['continue']} {$icon_array['continue']}</button>
-		                </form>
-	                </td>
+                    <td class="tablef">
+                        <form action="util.php#admin_tool_thumb_update" method="post">
+                            <input type="hidden" name="action" value="update_thumbs" />
+                            <input type="hidden" name="numpics" value="{$numpics}" />
+                            <input type="hidden" name="startpic" value="{$startpic}" />
+                            <input type="hidden" name="updatetype" value="{$updatetype}" />
+                            <input type="hidden" name="albumid" value="{$albumid}" />
+                            <input type="hidden" name="autorefresh" value="{$autorefresh}" />
+                            <!--<input type="submit" value="{$lang_util_php['continue']}" class="button" />-->
+                            <button type="submit" class="button" name="submit" id="submit" value="{$lang_util_php['continue']}">{$lang_util_php['continue']} {$icon_array['continue']}</button>
+                        </form>
+                    </td>
                 </tr>
 EOT;
             }
         } else {
-        	echo '<tr><td class="tablef">' . $lang_util_php['finished'] . '</td></tr>';
+            echo '<tr><td class="tablef">' . $lang_util_php['finished'] . '</td></tr>';
         }
         endtable();
 }
@@ -635,7 +643,7 @@ function del_orphans()
                     <input type="hidden" name="action" value="del_orphans" />
                     <input type="hidden" name="del" value="all" />
                     {$lang_util_php['delete_all_orphans']}
-		            <button type="submit" class="button" name="submit" id="submit" value="{$lang_util_php['delete_all']}">{$lang_util_php['delete_all']} {$icon_array['delete_all']}</button>
+                    <button type="submit" class="button" name="submit" id="submit" value="{$lang_util_php['delete_all']}">{$lang_util_php['delete_all']} {$icon_array['delete_all']}</button>
             </form>
 EOT;
         }
@@ -847,6 +855,18 @@ function refresh_db()
 EOT;
         }
 }
+
+
+function keyword_convert()
+{
+    global $lang_common, $lang_util_php;
+
+    // TO DO: implement 'convert keyword separator'
+    // language keys are set
+    echo $lang_util_php['keyword_convert'] . '<br />' . $lang_common['error'] . '<br />';
+}
+
+
 pagefooter();
 ob_end_flush();
 ?>
