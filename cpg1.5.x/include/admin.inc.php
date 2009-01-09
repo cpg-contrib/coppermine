@@ -133,6 +133,7 @@ $config_data = array(
       'default_value'         => ';',
       'help_link'             => 'f=configuration.htm&amp;as=admin_general_keyword_separator_start&amp;ae=admin_general_keyword_separator_end',
       'options'               => $lang_common['keyword_separators'],
+      'end_description'       => '&nbsp;&nbsp;(<a href="util.php">'.$lang_admin_php['keyword_convert'].'</a>)',
     ),
     'enable_plugins' => array(
       'type'            => 'checkbox',

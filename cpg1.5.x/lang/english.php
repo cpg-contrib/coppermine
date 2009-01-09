@@ -682,6 +682,7 @@ $lang_admin_php['enable_help'] = 'Enable help-icons'; // cpg1.5
 $lang_admin_php['enable_help_description'] = 'help partially available in English only'; // cpg1.5
 $lang_admin_php['clickable_keyword_search'] = 'Enable clickable keywords in search'; // cpg1.5
 $lang_admin_php['keyword_separator'] = 'Keyword separator'; // cpg1.5
+$lang_admin_php['keyword_convert'] = 'Convert keyword separator'; // cpg1.5
 $lang_admin_php['enable_plugins'] = 'Enable plugins'; // cpg1.5
 $lang_admin_php['purge_expired_bans'] = 'Automatically purge expired bans'; // cpg1.5
 $lang_admin_php['browse_batch_add'] = 'Browsable batch-add interface'; // cpg1.5
