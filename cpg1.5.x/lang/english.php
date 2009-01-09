@@ -419,13 +419,15 @@ $lang_albmgr_php['confirm_modifs'] = 'Are you sure you want to make these modifi
 $lang_albmgr_php['no_change'] = 'You did not make any change !'; // js-alert
 $lang_albmgr_php['new_album'] = 'New album';
 $lang_albmgr_php['delete_album'] = 'Delete album'; // cpg1.5
-$lang_albmgr_php['confirm_delete1'] = 'Are you sure you want to delete this album ?'; // js-alert
-$lang_albmgr_php['confirm_delete2'] = '\nAll files and comments it contains will be lost !'; // js-alert
+$lang_albmgr_php['confirm_delete1'] = 'Are you sure you want to delete this album?'; // js-alert
+$lang_albmgr_php['confirm_delete2'] = 'All files and comments it contains will be lost!'; // js-alert
 $lang_albmgr_php['select_first'] = 'Select an album first'; // js-alert
 $lang_albmgr_php['my_gallery'] = '* My gallery *';
 $lang_albmgr_php['no_category'] = '* No category *';
 $lang_albmgr_php['select_category'] = 'Select category';
 $lang_albmgr_php['category_change'] = 'If you change the category, your changes will be lost!'; // cpg1.5
+$lang_albmgr_php['cancel'] = 'Cancel'; // cpg1.5
+$lang_albmgr_php['submit_reminder'] = 'Sorting changes made in this list will not be saved until the form is submit'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
