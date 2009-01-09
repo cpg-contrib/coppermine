@@ -469,7 +469,6 @@ print <<<EOT
                             <span id="collapse_all_bottom" style="display:none"><a href="javascript:void(0);" class="admin_menu">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a></span>
                         </td>
                         <td width="67%" align="center">
-                            <!--<input type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}" />-->
                             <button type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}">{$submit_icon}{$lang_admin_php['save_cfg']}</button>
 
                     &nbsp;&nbsp;
