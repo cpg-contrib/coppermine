@@ -203,7 +203,7 @@ EOT;
         }
 
         $confirm_function = ($CONFIG['enable_plugins'] == 1) ? 'confirmUninstall' : 'confirmRemove';
-        $delete = cpg_fetch_icon('stop', 0);
+        $delete = cpg_fetch_icon('plugin_uninstall', 0);
         echo <<<EOT
             <td width="3%" align="center" valign="middle">
                 <a href="pluginmgr.php?op=uninstall&amp;p={$thisplugin['plugin_id']}" onClick="return {$confirm_function}('$safename')" title="{$lang_pluginmgr_php['uninstall']}">
@@ -308,7 +308,7 @@ EOT;
             }
             // remove 'true ||' below to remove install button when plugin API is disabled
             $install_button = (true || ($CONFIG['enable_plugins'] == 1)) ? 
-                '<a href="pluginmgr.php?op=install&amp;p='.$path.'" title="' . $lang_pluginmgr_php['install'] . '">' . cpg_fetch_icon('add', 0) . '</a>'
+                '<a href="pluginmgr.php?op=install&amp;p='.$path.'" title="' . $lang_pluginmgr_php['install'] . '">' . cpg_fetch_icon('plugin_install', 0) . '</a>'
                 : cpg_fetch_icon('blank', 0);
             $delete = cpg_fetch_icon('delete', 0);
             echo <<<EOT
