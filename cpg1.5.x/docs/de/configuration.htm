@@ -150,7 +150,7 @@ Diese Option kann auch ein- und augeschaltet werden auf den <a href="uploading.h
 <a name="admin_language_charset"></a><h3>Zeichensatz<a href="#admin_language_charset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Dies sollte normalerweise auf "Unicode (utf-8)" eingestellt sein, vgl. die Erklärungen im Bereich &quot;<strong><a href="languages.htm#translating">Sprache</a></strong>&quot; der Doku.</p>
 <p>Ändere diese Einstellung nicht von Unicode auf irgend etwas anderes, wenn Du Dir nicht vollständig über die Tragweite dieser Änderung bewusst bist!</p>
-<p class="important">Sobald Kommentare oder Dateibeschreibungen zu Deiner Galerie hinzugefügt wurden sollte diese Einstellung auf keinen Fall geändert werden. Falls Du das doch tust werden Sonderzeichen (z.B. Umlaute) nicht richtig dargestellt werden.</p>
+<p class="cpg_message_warning">Sobald Kommentare oder Dateibeschreibungen zu Deiner Galerie hinzugefügt wurden sollte diese Einstellung auf keinen Fall geändert werden. Falls Du das doch tust werden Sonderzeichen (z.B. Umlaute) nicht richtig dargestellt werden.</p>
 <a name="admin_language_charset_end"></a>
 <a name="admin_language_list"></a><h3>Sprachauswahl-Liste anzeigen <a href="#admin_language_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Aktiviere diese Option um den Besuchern der Galerie zu ermöglichen, aus einer Liste von Sprachen ihre bevorzugte Sprache auszuwählen (Du kannst wählen, ob nur die Liste alleine oder mit einem Hinweistext &quot;Wähle Sprache&quot; erscheinen soll). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Sprachauswahlliste auf der Seite erscheinen soll innerhalb Deiner Galerie (benutze den Platzhalter <a href="theme_template.htm#theme_template_language_select_list">{LANGUAGE_SELECT_LIST}</a>).</p>
@@ -253,8 +253,8 @@ Diese Option kann auch ein- und augeschaltet werden auf den <a href="uploading.h
 <a name="admin_theme_include_path_start"></a>
 <a name="admin_theme_custom_header_path_start"></a><h3>Pfad zu benutzerdefiniertem header-include<a href="#admin_theme_custom_header_path_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Optionaler relativer Pfad zu einer benutzerdefinierten Header-Datei. Benutze diese Option, um Code von außerhalb Deiner Coppermine-Installation in Dein Thema (Design) zu includieren, z.B. eine Gesamtnavigation für Deine Webseite. Du kannst nur einen relativen Pfad (gesehen vom Stammverzeichnis Deiner Coppermine-Installation aus) angeben. Es kann weder ein absoluter Pfad angegeben werden, noch kannst Du einen http-include von einer anderen Webseite damit realisieren! Diese Option ist nur für fortgeschrittene Benutzer mit etwas PHP-Kenntnissen gedacht.</p>
-<p><span class="important">Achtung: es darf keine vollständige HTML-Seite includiert werden, die einen HTML-Kopf enthält (HTML-Tags wie <tt class="code">&lt;head&gt;</tt> oder <tt class="code">&lt;body&gt;</tt>). Ebenfalls kann keine Datei includiert werden, die http-Header Manipulationen durchführt, wie beispielsweise das Einlesen eines anderen Cookies.</span><br />
-Details zum Thema includes befinden sich unter <a href="php-content.htm#php-content_header_footer">Benutzerdefinierter header und footer</a></p>
+<p class="cpg_message_warning">Achtung: es darf keine vollständige HTML-Seite includiert werden, die einen HTML-Kopf enthält (HTML-Tags wie <tt class="code">&lt;head&gt;</tt> oder <tt class="code">&lt;body&gt;</tt>). Ebenfalls kann keine Datei includiert werden, die http-Header Manipulationen durchführt, wie beispielsweise das Einlesen eines anderen Cookies.</p>
+<p>Details zum Thema includes befinden sich unter <a href="php-content.htm#php-content_header_footer">Benutzerdefinierter header und footer</a></p>
 <p><strong>Beispiel</strong>: Wenn Coppermine sich unter http://deine_domain.tld/dein_coppermine_verzeichnis/ befindet und die Include-Datei sich unter http://deine_domain.tld/meine_seiten-navigation/mein_benutzerdefinierter_header.php befindet, muss <tt class="code">../meine_seiten-navigation/mein_benutzerdefinierter_header.php</tt> (der relative Pfad zu Deiner Include-Datei, gesehen vom Verzeichnis, in dem sich Coppermine befindet) als &quot;Pfad zu benutzerdefiniertem header-include&quot; angegeben werden.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; Pfad zu benutzerdefiniertem header-include</p>
 <a name="admin_theme_custom_header_path_end">
@@ -622,7 +622,7 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <a name="admin_comment_captcha_start"></a><h3>Captcha (Visuelle Bestätigung) für Kommentar-Abgabe notwendig<a href="#admin_comment_captcha_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>To prevent spam comments being posted by bots (automated scripts), this toggle will display an image next to the comment field with some random letters on it. The visitor is required to enter those letters into a textfield to prove that he's actually a human and not just some dumb bot that drops spam. It's recommended to enable Captchas for anonymous comments (guests who are not logged in).</p>
 <p>Note: this setting doesn't determine if guests can actually post comments at all (this is instead being determined on the groups page).</p>
-<p class="important">Captchas will only work if GD2 is available on your server with FreeType support enabled.</p>
+<p class="cpg_message_info">Captchas will only work if GD2 is available on your server with FreeType support enabled.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Einstellungen Kommentare &rarr; Captcha (Visuelle Bestätigung) für Kommentar-Abgabe notwendig</p>
 
 <a name="admin_comment_captcha_end"></a>
@@ -795,12 +795,14 @@ Of course this message will only be displayed if you have disallowed guests to p
 
 <a name="admin_thumb_start"></a><h2>Thumbnail Einstellungen<a href="#admin_thumb_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_picture_thumbnail_max-dimension"></a><h3>Maximalgröße Thumbnail<a href="#admin_picture_thumbnail_max-dimension" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Sets the maximum allowable size in pixels for the specified dimension of your thumbnails.</p><p class="important">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
+<p>Sets the maximum allowable size in pixels for the specified dimension of your thumbnails.</p>
+<p class="cpg_message_info">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Thumbnail Einstellungen &rarr; Maximalgröße Thumbnail</p>
 <a name="admin_picture_thumbnail_max-dimension_end"></a>
 <hr />
 <a name="admin_picture_thumbnail_use-dimension"></a><h3>Welche Dimension soll genutzt werden für Thumbnails (Breite oder Höhe oder das, was jeweils größer ist, oder Exakte Grösse)<a href="#admin_picture_thumbnail_use-dimension" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Sets the dimension (height or width) on which the maximum pixel size limitation should apply to.</p><p class="important">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
+<p>Sets the dimension (height or width) on which the maximum pixel size limitation should apply to.</p>
+<p class="cpg_message_info">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Thumbnail Einstellungen &rarr; Welche Dimension soll genutzt werden für Thumbnails</p>
 <a name="admin_picture_thumbnail_use-dimension_end"></a>
 <hr />
@@ -870,7 +872,7 @@ Of course this message will only be displayed if you have disallowed guests to p
 <p>If set to YES then your gallery can contain albums that are visible only to users that belong to a specified group. This is ideal for creating albums that contain files that you want accessible to only a select group of people.  You could also create a userID and password and inform specific users/customers of the ID and password needed to view these files. </p>
 <p>If a user is a member of a group that can have its own gallery and this option is turned on then this user will have the permission to hide any of his/her albums from other users.</p>
 <p>This option does <strong>not</strong> determine whether users can have personal galleries at all, <strong>nor</strong> does it determine who is allowed to upload and who is not (these settings are accessible in the <a href="groups.htm#group_cp">groups manager</a>). You should only set this option to NO if you really know what you're doing (by default, it is set to YES).</p>
-<p class="important">Note: if you switch from 'yes' to 'no' all currently private albums will become public! Do not set this option to 'no' unless you understand what this option actually does!</p>
+<p class="cpg_message_error">Note: if you switch from 'yes' to 'no' all currently private albums will become public! Do not set this option to 'no' unless you understand what this option actually does!</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Bild/Datei-Einstellungen &rarr; Alben können nicht-öffentlich sein</p>
 <a name="admin_picture_thumb_advanced_private_toggle_end"></a>
 <hr />
@@ -1008,13 +1010,13 @@ OpenDocument: odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/otc/otf/oti/oth</p
 <hr />
 <a name="admin_picture_thumb_advanced_chmod_folder"></a><h3>Standard-Modus für Verzeichnisse<a href="#admin_picture_thumb_advanced_chmod_folder" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If, and only if, during the file upload or batch add process, the installer complains about the directory not having the right permissions, try setting this to <strong>0777</strong> . Failure to do so may prevent you from being able to delete directories created by the script with your FTP client should you ever decide it necessary to uninstall the coppermine script.</p>
-<p><span class="important">Note</span>: setting this option doesn't CHMOD the files or folders that are being uploaded. Instead, the setting is used when coppermine, itself, creates <strong>new</strong> folders for user uploads (within the userpics directory). If you experienced problems during the initial Coppermine setup related to permissions, this option is <strong>not</strong> what you have been looking for nor should it be changed (for more information regarding CHMOD, see the <a href="install_permissions.htm#permissions">permissions</a> section of this document and the <a href="faq.htm">FAQ</a> section).</p>
+<p><strong>Note</strong>: setting this option doesn't CHMOD the files or folders that are being uploaded. Instead, the setting is used when coppermine, itself, creates <strong>new</strong> folders for user uploads (within the userpics directory). If you experienced problems during the initial Coppermine setup related to permissions, this option is <strong>not</strong> what you have been looking for nor should it be changed (for more information regarding CHMOD, see the <a href="install_permissions.htm#permissions">permissions</a> section of this document and the <a href="faq.htm">FAQ</a> section).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Bild/Datei-Einstellungen &rarr; Standard-Modus für Verzeichnisse</p>
 <a name="admin_picture_thumb_advanced_chmod_folder_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_chmod_files"></a><h3>Standard-Modus für Dateien<a href="#admin_picture_thumb_advanced_chmod_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If, and only if, during the file upload or batch add process, the installer complains about the directory not having the right permissions, try setting this to <strong>0666</strong>.</p>
-<p><span class="important">Note</span>: setting this option doesn't CHMOD the files or folders that are being uploaded. Instead, the setting is used when coppermine, itself, creates <strong>new</strong> folders for user uploads (within the userpics directory). If you experienced problems during the initial Coppermine setup related to permissions, this option is <strong>not</strong> what you have been looking for nor should it be changed (for more information regarding CHMOD, see the <a href="#permissions">permissions</a> section of this document and the <a href="faq.htm">FAQ.htm</a> document located in the DOCS folder of this installation package).</p>
+<p><strong>Note</strong>: setting this option doesn't CHMOD the files or folders that are being uploaded. Instead, the setting is used when coppermine, itself, creates <strong>new</strong> folders for user uploads (within the userpics directory). If you experienced problems during the initial Coppermine setup related to permissions, this option is <strong>not</strong> what you have been looking for nor should it be changed (for more information regarding CHMOD, see the <a href="#permissions">permissions</a> section of this document and the <a href="faq.htm">FAQ.htm</a> document located in the DOCS folder of this installation package).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Bild/Datei-Einstellungen &rarr; Standard-Modus für Dateien</p>
 <a name="admin_picture_thumb_advanced_chmod_files_end"></a>
 <a name="admin_picture_thumb_advanced_end"></a>
@@ -1128,7 +1130,7 @@ This setting only applies if coppermine is not bridged.</p>
 <a name="admin_registration_captcha_start"></a><h3>Captcha (Visuelle Bestätigung) auf Registrierungs-Seite anzeigen<a href="#admin_registration_captcha_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>To prevent automated registration by bots (automated scripts), this toggle will display an image on the registration page with some random letters on it. The visitor who is trying to register is required to enter those letters into a textfield to prove that he's actually a human and not just some dumb bot.</p>
 <p>Note: this setting isn't being taken into account when coppermine is bridged.</p>
-<p class="important">Captchas will only work if GD2 is available on your server.</p>
+<p class="cpg_message_info">Captchas will only work if GD2 is available on your server.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Registrierung &rarr; Captcha (Visuelle Bestätigung) auf Registrierungs-Seite anzeigen</p>
 
 <a name="admin_registration_captcha_end"></a>
@@ -1292,7 +1294,8 @@ address. Recommended setting is NO. As most internet users today have more than 
 
 <a name="admin_cookie"></a><h3>Cookie-Einstellungen<a href="#admin_cookie" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <a name="admin_cookie_name"></a><h3>Cookie-Name<a href="#admin_cookie_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Default value is something like &quot;cpg15x&quot;. Even if you have multiple instances of the script running on the same server you can keep the default value.</p><p><span class="important">When using <a href="bridging.htm">bridging</a>, make sure it <strong>differs</strong> from the bbs's cookie name</span></p>
+<p>Default value is something like &quot;cpg15x&quot;. Even if you have multiple instances of the script running on the same server you can keep the default value.</p>
+<p class="cpg_message_warning">When using <a href="bridging.htm">bridging</a>, make sure it <strong>differs</strong> from the bbs's cookie name.</p>
 <p>This has to be a valid cookie name (no special chars, particularly no dots!) - this setting should best be left alone unless you really know your way around. After all, the cookie name doesn't matter and doesn't mean anything to the end user anyway. Let me repeat: there are many users who blindly change the cookie name to something that just doesn't make sense at all and then complain on the coppermine support board that things are not working as expected. Do <strong>not</strong> use special chars in the cookie name! In fact, don't change it at all unless you must.</p>
 <p>If you change the cookie name, everybody will have to log in on the next visit of your gallery. As a result, changing the cookie name would be the same as if you were deleting the cookies on all your visitor's machines - this can be helpful if you experience issues with authentification.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Cookie-Einstellungen &rarr; Cookie-Name</p>
@@ -1309,7 +1312,7 @@ address. Recommended setting is NO. As most internet users today have more than 
 <p>Normalerweise muss hier nichts eingestellt werden; lasse im Zweifelsfall alle Felder leer. Only if you run into problems (e.g. if ecards, registration info or notifications don't get sent) you should change these settings. Coppermine itself doesn't come with an engine to send mails, it relies on a webserver being able to do so (using the built-in mechanisms of PHP). If you're not sure what to enter, ask your webhost for support.</p>
 
 
-<p><span class="important">Using SMTP to send emails</span>: by default the script uses the PHP built-in <strong>mail</strong> function to send emails. In some cases, the PHP built-in function can't be used.</p>
+<p><strong>Using SMTP to send emails</strong>: by default the script uses the PHP built-in <strong>mail</strong> function to send emails. In some cases, the PHP built-in function can't be used.</p>
 <p> If, in order to send emails with PHP, you are required to supply a <strong>hostname</strong>, a <strong>username</strong> and a <strong>password</strong>, you will need to edit the CONFIG menu section &quot;Email settings&quot; and insert the correct values there. If you don't need a username and password to connect to your SMTP server, just leave these lines blank. If you don't know what settings to enter, you will need to check with your webhost.</p>
 
 
@@ -1361,8 +1364,8 @@ All log files are written in english</p>
   </ol>
    <p>of the voter.</p>
    <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.</p>
-<p class="important">Note: The total votes may not match if you enable details and do not reset the earlier votes.</p>
-<p class="important">Warning: keeping detailed statistics means additional database queries and subsequently a heavy load on the page. You have to understand that the size of the corresponding database tables can increase <strong>dramatically</strong> if you enable this feature.</p>
+<p class="cpg_message_info">Note: The total votes may not match if you enable details and do not reset the earlier votes.</p>
+<p class="cpg_message_warning">Warning: keeping detailed statistics means additional database queries and subsequently a heavy load on the page. You have to understand that the size of the corresponding database tables can increase <strong>dramatically</strong> if you enable this feature.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Logging und Statistiken &rarr; Detailierte Abstimmungs-Statistiken aufzeichnen</p>
 <a name="admin_logging_votedetails_end"></a>
 <hr />
@@ -1381,8 +1384,8 @@ All log files are written in english</p>
    <p>of the visitor.</p>
    <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.
 </p>
-<p class="important">Note: The total hits may not match if you enable details and do not reset the earlier hits.</p>
-<p class="important">Warning: keeping detailed statistics means additional database queries and subsequently a <strong>heavy</strong> load on the page. You have to understand that the size of the corresponding database tables can increase <strong>dramatically</strong> if you enable this feature, so you should closely monitor the resources consumption caused by it and empty the table from time to time.</p>
+<p class="cpg_message_info">Note: The total hits may not match if you enable details and do not reset the earlier hits.</p>
+<p class="cpg_message_warning">Warning: keeping detailed statistics means additional database queries and subsequently a <strong>heavy</strong> load on the page. You have to understand that the size of the corresponding database tables can increase <strong>dramatically</strong> if you enable this feature, so you should closely monitor the resources consumption caused by it and empty the table from time to time.</p>
 <p>Do not enable this option if you don't need it!</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Logging und Statistiken &rarr; Detailierte Treffer-Statistiken aufzeichnen</p>
 <a name="admin_logging_hitdetails_end"></a>
@@ -1406,8 +1409,8 @@ All log files are written in english</p>
 <a name="debug_mode"></a><h3>Debug-Modus ein<a href="#debug_mode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>CPG will show error messages which are normally suppressed. This is helpful in troubleshooting problems with your gallery or when asking for help on the <a href="http://coppermine-gallery.net/forum/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.</p>
 <p>Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine-gallery.net/forum/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when troubleshooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
+<p class="cpg_message_error">Do <strong>not</strong> post debug_output on the coppermine support board unless a supporter explicitely asks for it!</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Wartungs-Einstellungen &rarr; Debug-Modus ein</p>
-<p class="important">Do <strong>not</strong> post debug_output on the coppermine support board unless a supporter explicitely asks for it!</p>
 <hr />
 <a name="admin_misc_debug_notices"></a><h3>PHP-notices in Debug-Modus anzeigen<a href="#admin_misc_debug_notices" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>May be helpful to troubleshoot problems with your coppermine install - only recommended if you know a little PHP and you can understand the additional error messages this option shows. Notices being displayed don't actually mean that there is something wrong with your gallery. This option only applies if debug mode is enabled.</p>
