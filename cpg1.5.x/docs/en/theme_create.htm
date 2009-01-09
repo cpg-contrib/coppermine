@@ -75,12 +75,13 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 </div>
 
 <a name="theme_create_wysiwyg"></a><h2>Using WYSIWYG-editors<a href="#theme_create_wysiwyg" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p class="important">It is strongly recommended <strong>not</strong> to use a <acronym title="What You See Is What You Get">WYSIWYG</acronym>-editor at all to edit Coppermine files. The coppermine dev team is aware that it might seem easier for beginners to use those graphical editors. However, they have some major drawbacks:</p>
+<p>It is strongly recommended <strong>not</strong> to use a <acronym title="What You See Is What You Get">WYSIWYG</acronym>-editor at all to edit Coppermine files. The coppermine dev team is aware that it might seem easier for beginners to use those graphical editors. However, they have some major drawbacks:</p>
 <ul>
   <li>Some editors (mostly MS Frontpage) are notorious for &quot;beautifying&quot; the code in a manner that renders embedded PHP code invalid. Subsequently, if you use a WYSIWYG-editor to edit theme.php, the file may get corrupt (i.e. un-usable)</li>
   <li>Graphical editors tend to create deprecated, invalid, proprietary HTML. You have more control if you use a plain text editor instead.</li>
   <li>You don't learn anything. Sooner or later, you will want to do something your precious WYSIWYG-editor isn't capable to do. Now what? You have always used the editor to do your work - you don't understand HTML. When using a plain text editor, the learning curve may be steep, but it's much more entertaining.</li>
 </ul>
+<p class="cpg_message_info">If you're not sure what editor to use, take a look at the list of editors on the page <a href="dev_tools.htm">tools recommended by the devs</a>.</p>
 
 <a name="theme_create_template_html"></a><h2>Editing template.html<a href="#theme_create_template_html" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>The file <a href="theme_template.htm">template.html</a> is the core file of each theme: it can only contain HTML/CSS/JavaScript code (no PHP!) plus some placeholder tokens that will get replaced with content when the theme is being parsed (i.e. when the HTML output of a gallery page is being generated). Template.html determines the overall layout of your gallery pages. Use it to make your gallery match the overall look of your entire website.</p>

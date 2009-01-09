@@ -288,6 +288,7 @@ document.write('        <ul>');
 document.write('          <li><a href="plugins.htm#plugin_definition">What is a plugin?</a></li>');
 document.write('          <li><a href="plugins.htm#plugin_api">The Plugin API</a></li>');
 document.write('          <li><a href="plugins.htm#plugin_obtain">Where to get Plugins from?</a></li>');
+document.write('          <li><a href="plugins.htm#plugin_bundled">Plugins that ship with Coppermine</a></li>');
 document.write('          <li><a href="plugins.htm#plugin_manager">The Plugin Manager</a>');
 document.write('            <ul>');
 document.write('              <li><a href="plugins.htm#plugin_manager_upload">Uploading a plugin</a></li>');

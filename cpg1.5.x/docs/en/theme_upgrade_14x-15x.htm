@@ -52,9 +52,9 @@
 <p>For all changes below, edit themes/your_custom_theme/style.css</p>
 <a name="theme_convert_style_form-padding"></a><h3>Form-padding<a href="#theme_convert_style_form-padding" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>By default, &lt;form&gt;-tags have a padding in most browsers that differs and is hard to control. This is of course silly, as it adds unnecessary whitespace, so let's fix it:</p>
-<div class="important">Find:</div>
+<p>Find:</p>
 <pre class="smallcode">.textinput {</pre>
-<div class="important">Add before it (in a new line):</div>
+<p>Add before it (in a new line):</p>
 <pre class="smallcode">form {
         margin-top:0px;
         margin-bottom:0px;
@@ -62,18 +62,18 @@
 </pre>
 
 <a name="theme_convert_style_inline"></a><h3>New class &laquo;inline&raquo;<a href="#theme_convert_style_inline" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<div class="important">Find:</div>
+<p>Find:</p>
 <pre class="smallcode">.textinput {</pre>
-<div class="important">Add before it (in a new line):</div>
+<p>Add before it (in a new line):</p>
 <pre class="smallcode">.inline {
         display:inline;
 }</pre>
 
 <a name="theme_convert_style_pseudo"></a><h3>Define pseudo-classes :link, :visited, :focus, :active<a href="#theme_convert_style_pseudo" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Before applying this fix, make sure that your stylesheet doesn't contain definitions for the pseudo-classes already. If it doesn't contain those classes</p>
-<div class="important">Find:</div>
+<p>Find:</p>
 <pre class="smallcode">a:hover {</pre>
-<div class="important">Add before it (in a new line):</div>
+<p>Add before it (in a new line):</p>
 <pre class="smallcode">a:link {
         color: #0033CC;
         text-decoration: none;
@@ -96,50 +96,50 @@ a:active {
 and edit the colors and format as you see fit.
 
 <a name="theme_convert_style_bold_table_headers"></a><h3>Bold table headers<a href="#theme_convert_style_bold_table_headers" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<div class="important">Find:</div>
+<p>Find:</p>
 <pre class="smallcode">.tableh1 {</pre>
-<div class="important">and add after it:</div>
+<p>and add after it:</p>
 <pre class="smallcode">        font-weight:bold;</pre>
 <hr />
-<div class="important">Find:</div>
+<p>Find:</p>
 <pre class="smallcode">.tableh1_compact {</pre>
-<div class="important">and add after it:</div>
+<p>and add after it:</p>
 <pre class="smallcode">        font-weight:bold;</pre>
 <hr />
-<div class="important">Find:</div>
+<p>Find:</p>
 <pre class="smallcode">.tableh2_compact {</pre>
-<div class="important">and add after it:</div>
+<p>and add after it:</p>
 <pre class="smallcode">        font-weight:bold;</pre>
 <hr />
-<div class="important">Find:</div>
+<p>Find:</p>
 <pre class="smallcode">.alblink a {</pre>
-<div class="important">and add before it (into a new line):</div>
+<p>and add before it (into a new line):</p>
 <pre class="smallcode">.alblink {
         font-weight:bold;
 }</pre>
 <hr />
-<div class="important">Find:</div>
+<p>Find:</p>
 <pre class="smallcode">.catlink {</pre>
-<div class="important">and add after it:</div>
+<p>and add after it:</p>
 <pre class="smallcode">        font-weight:bold;</pre>
 
 <a name="theme_convert_style_navmenu"></a><h3>Edit class &laquo;navmenu&raquo;<a href="#theme_convert_style_navmenu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<div class="important">Find:</div>
+<p>Find:</p>
 <pre class="smallcode">.navmenu a {
         position: relative;</pre>
-<div class="important">and replace with:</div>
+<p>and replace with:</p>
 <pre class="smallcode">.navmenu a {</pre>
 
 <a name="theme_convert_style_admin_menu"></a><h3>Fix background repetition for &laquo;admin_menu&raquo;<a href="#theme_convert_style_admin_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<div class="important">Find:</div>
+<p>Find:</p>
 <pre class="smallcode">.admin_menu {</pre>
-<div class="important">and add after it:</div>
+<p>and add after it:</p>
 <pre class="smallcode">background-repeat:repeat-x;</pre>
 
 <a name="theme_convert_style_admin_float_wrapper"></a><h3>Add classes &laquo;admin_float&raquo; &amp; &laquo;admin_menu_wrapper&raquo;<a href="#theme_convert_style_admin_float_wrapper" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<div class="important">Find:</div>
+<p>Find:</p>
 <pre class="smallcode">#admin_menu_anim {</pre>
-<div class="important">and add before it (into a new line):</div>
+<p>and add before it (into a new line):</p>
 <pre class="smallcode">.admin_float {
         float:left;
         margin-left: 1px;
@@ -153,9 +153,9 @@ and edit the colors and format as you see fit.
 }</pre>
 
 <a name="theme_convert_style_image_links"></a><h3>Add pseudo-classes for image links<a href="#theme_convert_style_image_links" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<div class="important">Find:</div>
+<p>Find:</p>
 <pre class="smallcode">.image {</pre>
-<div class="important">and add before it (into a new line):</div>
+<p>and add before it (into a new line):</p>
 <pre class="smallcode">/* pseudo-classes for image links */
 a:link .image{
         border-style:solid;
@@ -193,9 +193,9 @@ a:active .image{
 }</pre>Edit the colors and attributes as you see fit. This is suppossed to show which thumbnails have already been clicked. The important bit being the attributes of the pseudo-class :visited; they have to differ from the other pseudo-classes.
 
 <a name="theme_convert_style_pic_title_caption_user_message"></a><h3>Add the classes &laquo;pic_title&raquo;, &laquo;pic_caption&raquo;<a href="#theme_convert_style_pic_title_caption_user_message" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<div class="important">Find:</div>
+<p>Find:</p>
 <pre class="smallcode">#vanity a {</pre>
-<div class="important">and add before it (into a new line):</div>
+<p>and add before it (into a new line):</p>
 <pre class="smallcode">.pic_title {
         color: #000000;
         font-size: 120%;
@@ -223,9 +223,9 @@ a:active .image{
 }</pre>
 
 <a name="theme_convert_style_cpg_message"></a><h3>Add the classes &laquo;cpg_message_info&raquo;, &laquo;cpg_message_success&raquo;, &laquo;cpg_message_warning&raquo;, &laquo;cpg_message_error&raquo;, &laquo;cpg_message_validation&raquo;<a href="#theme_convert_style_cpg_message" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<div class="important">Find:</div>
+<p>Find:</p>
 <pre class="smallcode">#vanity a {</pre>
-<div class="important">and add before it (into a new line):</div>
+<p>and add before it (into a new line):</p>
 <pre class="smallcode">.cpg_message_info, .cpg_message_success, .cpg_message_warning, .cpg_message_error, .cpg_message_validation {
     border: 1px solid;
     margin: 10px 0px;
@@ -286,18 +286,18 @@ a:active .image{
 <p>There have been only minor changes to this file. Open <tt class="code">themes/your_theme/template.html</tt> with a plain text editor and edit as suggested below:</p>
 
 <a name="theme_convert_template_javascript"></a><h3>Replace the call for script.js<a href="#theme_convert_template_javascript" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<div class="important">Find:</div>
+<p>Find:</p>
 <pre class="smallcode">&lt;script type="text/javascript" src="scripts.js"&gt;&lt;/script&gt;</pre>
-<div class="important">and replace with:</div>
+<p>and replace with:</p>
 <pre class="smallcode">{JAVASCRIPT}</pre>
 <p>Failing to apply this change to your custom theme will make your theme work no longer (see <a href="theme_template.htm#theme_template_javascript">details</a> on the <tt class="code">{JAVASCRIPT}</tt>-placeholder-token).</p>
 
 <a name="theme_convert_template_message_block"></a><h3>Add {MESSAGE_BLOCK} token<a href="#theme_convert_template_message_block" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<div class="important">Insert</div>
+<p>Insert</p>
 <pre class="smallcode">{MESSAGE_BLOCK}</pre>anywhere before the <tt class="code">{GALLERY}</tt>-token, preferably right after the menu section. This new placeholder will display messages both to the admin as well as the end user. It should be visible in the upper part of the screen without the need to scroll down, see <a href="theme_template.htm#theme_template_message_block">details</a> on the <tt class="code">{MESSAGE_BLOCK}</tt>-placeholder-token.
 
 <a name="theme_convert_template_credits"></a><h3>Add {CREDITS} token<a href="#theme_convert_template_credits" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<div class="important">Insert</div>
+<p>Insert</p>
 <pre class="smallcode">{CREDITS}</pre>anywhere after the <tt class="code">{GALLERY}</tt>-token, preferably at the very end of the file, above the <tt class="code">&lt;/body&gt;</tt>-tag. This new placeholder can display the copyright notice of your gallery and (ideally) the <a href="theme_copyright.htm#theme_copyright">Coppermine disclaimer</a>.<br />
 If you don't insert that token, there will be no error message and the default Credits will be displayed, see <a href="theme_template.htm#theme_template_credits">details</a> on the <tt class="code">{CREDITS}</tt>-placeholder-token. 
 

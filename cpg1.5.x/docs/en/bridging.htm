@@ -88,7 +88,7 @@
     </tr>
 </table>
 <p>The cookie path in the forum's configuration should be set to '/' where this option is available.</p>
-<p><span class="important">Important</span>: the cookie names of your bridge app and coppermine must <strong>not</strong> be the same - they <strong>must</strong> differ!</p>
+<p class="cpg_message_warning">The cookie names of your bridge app and coppermine must <strong>not</strong> be the same - they <strong>must</strong> differ!</p>
 <p>Some bridging apps have an option to enable sub-domain independant cookies that you should enable if you own the entire domain.</p>
 <p>Some bridging apps use a cookie path by default that will make the cookie only available for the bridging app itself and not for other apps that reside in different folders on the webserver. If this is the case for you, you have to review your bridging app's config first and make sure that it is set to allow the cookie from the bridging app to be read by coppermine.</p>
 <p class="quote">Example:<br />
@@ -102,7 +102,7 @@ For other bridging apps, the setting may be named differently and may reside in 
 <a name="integrating_standalone_end"></a>
 
 <a name="integrating_users_start"></a><h3>Coppermine users, groups and pics uploaded by users are lost when integrating<a href="#integrating_users_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><span class="important">Warning:</span> If you already have users and custom groups in your coppermine database when you enable bridging, be aware that they will be lost. If your coppermine users have already created private albums and uploaded pics to them, they will be lost as well!</p>
+<p class="cpg_message_warning"><span class="important">Warning:</span> If you already have users and custom groups in your coppermine database when you enable bridging, be aware that they will be lost. If your coppermine users have already created private albums and uploaded pics to them, they will be lost as well!</p>
 <p><strong>Detailed explanation:</strong><br />
 As most community applications, coppermine stores everything that users (including the admin) do (like uploading pics, posting comments, rating files) inside the database. The reference to each user action is being kept using a unique user ID. The correlation between the user actions and the corresponding user profile is being kept by storing the user ID within each record in the database that determines the user action.<br />
 When bridging is enabled, coppermine's user management is being dropped in favor of the user management that comes with the application you bridge with. Subsequently, the user IDs from your bridging app (that differ from Coppermine's user IDs) are being taken into account.</p>
@@ -117,7 +117,7 @@ Correlation between the actions that the unbridged coppermine users have perform
 <a name="integrating_users_end"></a>
 
 <a name="integrating_backup_start"></a><h3>Backup<a href="#integrating_backup_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><span class="important">Backup</span>: it is very advisable to backup both your coppermine database and your files before enabling bridging, so you can safely go back if the integration fails.</p>
+<p class="cpg_message_info">It is very advisable to backup both your coppermine database and your files before enabling bridging, so you can safely go back if the integration fails.</p>
 <p>In fact you're encouraged to backup your database on a regular base, and especially before applying code changes.</p>
 <p>However, don't be afraid that bridging might cause your bridging app to malfunction: coppermine doesn't harm your forum (or the app you bridge with) at all. When enabling bridging, coppermine doesn't run write/alter queries against the bridging app's database tables nor does coppermine modify any of the files of the bridging app. The worst thing that may happen if something goes wrong is your coppermine gallery becoming inaccessible. It is completely impossible that coppermine bridging will do harm to your bridging application.</p>
 <a name="integrating_backup_end"></a>
@@ -132,7 +132,7 @@ Correlation between the actions that the unbridged coppermine users have perform
 <a name="bridge_manager_start"></a><h3>Using the bridge manager<a href="#bridge_manager_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The bridge manager is a new feature in cpg1.4, it is not available in older versions. Instead of manually editing coppermine code files, you can enable/disable bridging in your browser, using a wizard-like user interface. To start the bridge manager, log in as admin, choose &quot;Bridge Manager&quot; from the admin menu.</p>
 <p><img src="images/bridge_01_start.gif" width="429" height="72" border="0" alt="" align="right" />If you run the bridge manager for the first time, there will only be one button that let's you actually start the wizard (if you return to the bridge manager later, you will also find a switch to enable/disable bridging) click it.</p>
-<p class="important">Note: with each step in the wizard, some information is being written to the coppermine database. Unlike other wizards (mostly on your local machine), the bridge manager doesn't have a &quot;cancel&quot;-button! Once you have enabled bridging and everything is working fine, you shouldn't change any values just out of curiosity, as they will get written to the database, which might result in a bridging that used to work not working any more after &quot;playing&quot; with it.<br clear="all" /></p>
+<p class="cpg_message_info">Note: with each step in the wizard, some information is being written to the coppermine database. Unlike other wizards (mostly on your local machine), the bridge manager doesn't have a &quot;cancel&quot;-button! Once you have enabled bridging and everything is working fine, you shouldn't change any values just out of curiosity, as they will get written to the database, which might result in a bridging that used to work not working any more after &quot;playing&quot; with it.<br clear="all" /></p>
 <p class="quote"><em>Side-note</em><br />
 If you have a custom-made bridge file, just copy that bridge file into coppermine's bridge folder and it will show up on the bridge manager interface (the bridge file must reside in the coppermine sub-folder &quot;bridge&quot;).</p>
 
@@ -279,7 +279,7 @@ If you have a custom-made bridge file, just copy that bridge file into coppermin
 <p>Login using the admin account of your board. Go to the gallery, enter admin mode and click on the &quot;Groups&quot; button. This will synchronize Coppermine groups with those of your board. The permission you will see for each group will be completely messy, so take some time to set them properly.</p>
 <p>Each time you add or delete a group in your board you will need to do the operation above in order to keep the synchronisation of the groups.</p>
 <p>When you will try to login / logout or manage users from Coppermine, you will be redirected to the corresponding page of your bulletin board. Once the login or logout is performed you won't be redirected automatically to the gallery because your board does not have any function for that. It's up to you to add a link on your board to get you back to the gallery.</p>
-<p class="important">It's mandatory that you (as admin) go to the groups page directly after bridging or whenever you change anything in your bridging configuration or if you change anything in your groups settings on your bbs, as you need to trigger the re-sync.</p>
+<p class="cpg_message_validation">It's mandatory that you (as admin) go to the groups page directly after bridging or whenever you change anything in your bridging configuration or if you change anything in your groups settings on your bbs, as you need to trigger the re-sync.</p>
 <a name="integrating_steps_sync_end"></a>
 <a name="integrating_steps_end"></a>
 
