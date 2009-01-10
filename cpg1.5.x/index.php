@@ -341,7 +341,7 @@ function get_subcat_data(&$cat_data, &$album_set_array)
             if (!empty($user_galleries)) {
                 $categories[$row['cid']] = $user_galleries;
             }
-        		
+            
             continue;
         }
 
