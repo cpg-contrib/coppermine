@@ -675,10 +675,13 @@ function get_user_albums($user_id = '')
                 $result2 = cpg_db_query("SELECT alb.aid AS aid, CONCAT_WS('', '(', cat.name, ') ', alb.title) AS title FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS cat ON alb.owner = '$user_id' AND alb.category = cat.cid ORDER BY alb.category DESC, alb.pos ASC");
                 $rowset2 = cpg_db_fetch_rowset($result2);
                 mysql_free_result($result2);
-            
-                // Merge rowsets
-                $user_albums_list = array_merge($rowset1, $rowset2);
+                
+            } else {
+                $rowset2 = array();
             }
+            
+            // Merge rowsets
+            $user_albums_list = array_merge($rowset1, $rowset2);
         }
 
         $USER_ALBUMS_ARRAY[USER_ID] = $user_albums_list;
