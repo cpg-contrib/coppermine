@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-01-10 [C] Corrected non Internationalized string in jquery.sort.js {Frantz}
 2009-01-10 [C] Fixed typo in french.php and corrected the file accordingly to the english.php {Frantz} 
 2009-01-10 [B] Fixed missing 'abbr' field for languages table in basic.sql {Paver}
 2009-01-09 [O] Cleaned up album/picture manager and language files {Paver}

@@ -117,6 +117,7 @@ jQuery(document).ready(function()
     {
     /**get the lang variable to js file*/
         var change_album = js_vars.change_album;
+		var confirm_modifs  =    js_vars.confirm_modifs;
     /**Keep hold the selected photo object*/
         var photoSelectedObject = null;
     /**Keep hold the selected photo color*/
@@ -208,7 +209,7 @@ jQuery(document).ready(function()
         var a = $("input[name='picture_order']").attr("value");
         
         if(a.length > 0){
-            if(confirm('Confirm modifications!')) {
+            if(confirm(confirm_modifs)) {
                 return true;
             }
         }
