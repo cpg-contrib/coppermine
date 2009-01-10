@@ -346,12 +346,12 @@ $lang_language_selection['choose_language'] = 'Choose your language';
 $lang_theme_selection['reset_theme'] = 'Default theme';
 $lang_theme_selection['choose_theme'] = 'Choose a theme';
 
-$lang_social_bookmarks['bookmark_this_page'] = 'Bookmark this page'; // js-alert
-$lang_social_bookmarks['favorite'] = 'Add this page to your browser\'s favorites/bookmarks'; // js-alert
-$lang_social_bookmarks['send_email'] = 'Recommend this page by eMail'; // js-alert
-$lang_social_bookmarks['email_subject'] = 'Interesting page'; // js-alert
-$lang_social_bookmarks['email_body'] = 'I thought you might find this page interesting'; // js-alert
-$lang_social_bookmarks['favorite_close'] = 'This doesn\'t work with your browser.'."\n".'Please close this dialog and'."\n".'press Ctrl-D to bookmark this page.'; // js-alert
+$lang_social_bookmarks['bookmark_this_page'] = 'Bookmark this page'; // cpg1.5
+$lang_social_bookmarks['favorite'] = 'Add this page to your browser\'s favorites/bookmarks'; // cpg1.5 // js-alert
+$lang_social_bookmarks['send_email'] = 'Recommend this page by eMail'; // cpg1.5 // js-alert
+$lang_social_bookmarks['email_subject'] = 'Interesting page'; // cpg1.5 // js-alert
+$lang_social_bookmarks['email_body'] = 'I thought you might find this page interesting'; // cpg1.5 // js-alert
+$lang_social_bookmarks['favorite_close'] = 'This doesn\'t work with your browser.'."\n".'Please close this dialog and'."\n".'press Ctrl-D to bookmark this page.'; // cpg1.5 // js-alert
 
 $lang_version_alert['version_alert'] = 'Unsupported version!';
 $lang_version_alert['no_stable_version'] = 'You are running Coppermine %s (%s) which is only meant for very experienced users - this version comes without support nor any warranties. Use it at your own risk or downgrade to the latest stable version if you need support!';
@@ -1372,7 +1372,7 @@ $lang_groupmgr_php['allowed'] = 'Allowed';
 $lang_groupmgr_php['approval'] = 'Approval';
 $lang_groupmgr_php['create_new_group'] = 'Create new group';
 $lang_groupmgr_php['del_groups'] = 'Delete selected group(s)';
-$lang_groupmgr_php['confirm_del'] = 'Warning, when you delete a group, users that belong to this group will be transferred to the \'Registered\' group!\\nDo you want to proceed?'; // js-alert
+$lang_groupmgr_php['confirm_del'] = 'Warning, when you delete a group, users that belong to this group will be transferred to the \'Registered\' group!\n\nDo you want to proceed?'; // js-alert
 $lang_groupmgr_php['title'] = 'Manage user groups';
 $lang_groupmgr_php['reset_to_default'] = 'Reset to default name (%s) - recommended!';
 $lang_groupmgr_php['error_group_empty'] = 'Group table was empty!<br /><br />Default groups created, please reload this page';

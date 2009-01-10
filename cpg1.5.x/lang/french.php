@@ -344,12 +344,12 @@ $lang_language_selection['choose_language'] = 'Choisissez votre langue'; //cpg1.
 $lang_theme_selection['reset_theme'] = 'Thème par défaut'; //cpg1.3.0
 $lang_theme_selection['choose_theme'] = 'Choisissez votre thème'; //cpg1.3.0
 
-$lang_social_bookmarks['bookmark_this_page'] = 'Marquez cette page'; // js-alert
-$lang_social_bookmarks['favorite'] = 'Ajoutez cette page dans les favoris, Bookmarks (marques-pages) de votre navigateur'; // js-alert
-$lang_social_bookmarks['send_email'] = 'Recommandez cette page par courriel'; // js-alert
-$lang_social_bookmarks['email_subject'] = 'Page Intéressante'; // js-alert
-$lang_social_bookmarks['email_body'] = 'Je pense que cette page pourrait vous intérresser'; // js-alert
-$lang_social_bookmarks['favorite_close'] = 'Ceci ne fonctionne pas avec votre navigateur.'."\n".'Fermez cette boite de dialiogue et'."\n".'appuyez sur Ctrl-D pour marque cette page.'; // js-alert
+$lang_social_bookmarks['bookmark_this_page'] = 'Marquez cette page'; // cpg1.5
+$lang_social_bookmarks['favorite'] = 'Ajoutez cette page dans les favoris, Bookmarks (marques-pages) de votre navigateur'; // cpg1.5 // js-alert
+$lang_social_bookmarks['send_email'] = 'Recommandez cette page par courriel'; // cpg1.5 // js-alert
+$lang_social_bookmarks['email_subject'] = 'Page Intéressante'; // cpg1.5 // js-alert
+$lang_social_bookmarks['email_body'] = 'Je pense que cette page pourrait vous intérresser'; // cpg1.5 // js-alert
+$lang_social_bookmarks['favorite_close'] = 'Ceci ne fonctionne pas avec votre navigateur.'."\n".'Fermez cette boite de dialiogue et'."\n".'appuyez sur Ctrl-D pour marque cette page.'; // cpg1.5 // js-alert
 
 $lang_version_alert['version_alert'] = 'Version sans support d\'aide!'; //cpg1.4
 $lang_version_alert['no_stable_version'] = 'Vous utilisez Coppermine  %s (%s) qui s\'adresse aux Utilisateurs très expérimentés - Cette version n\'offre aucun support d\'aide. Vous pouvez l\'Utilisez, mais à vos risques et périls. Si vous êtes un nouvel Utilisateur, téléchargez la dernière version stable alors vous aurez accès au Support Copermine, si vous avez besoin d\'aide!'; //cpg1.4
@@ -1362,7 +1362,7 @@ if (defined('GROUPMGR_PHP')) {
   $lang_groupmgr_php['approval'] = 'Approbation'; //cpg1.4
   $lang_groupmgr_php['create_new_group'] = 'Créez un Nouveau Groupe';
   $lang_groupmgr_php['del_groups'] = 'Supprimez le(s) Groupe(s) sélectionné(s)';
-  $lang_groupmgr_php['confirm_del'] = 'Attention, lorsque vous supprimez un Groupe, les Utilisateurs de ce groupe seront transférés dans le groupe d\\\'Utilisateurs \\\'Enregistré\\\'!\\nSouhaitez-vous vraiment CONTINUEZ ?';//js-alert
+  $lang_groupmgr_php['confirm_del'] = 'Attention, lorsque vous supprimez un Groupe, les Utilisateurs de ce groupe seront transférés dans le groupe d\\\'Utilisateurs \\\'Enregistré\\\'!\n\nSouhaitez-vous vraiment CONTINUEZ ?';//js-alert
   $lang_groupmgr_php['title'] = 'Gérez les Groupes d\'Utilisateurs';
   $lang_groupmgr_php['reset_to_default'] = 'Mettre le nom par défaut (%s) - recommandé&nbsp;!'; //cpg1.4
   $lang_groupmgr_php['error_group_empty'] = 'La Table MySQL du Groupe est vide&nbsp;!<br /><br />Groupe par défaut créé, rechargez s\'il vous plait la page'; //cpg1.4

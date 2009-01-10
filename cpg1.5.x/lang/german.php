@@ -340,12 +340,12 @@ $lang_language_selection['choose_language'] = 'Wähle Sprache';
 $lang_theme_selection['reset_theme'] = 'Standard-Design';
 $lang_theme_selection['choose_theme'] = 'Wähle Design';
 
-$lang_social_bookmarks['bookmark_this_page'] = 'Lesezeichen speichern';
-$lang_social_bookmarks['favorite'] = 'Diese Seite zu den Lesezeichen/Favoriten Deines Browsers hinzufügen'; // js-alert
-$lang_social_bookmarks['send_email'] = 'Diese Seite per eMail empfehlen'; // js-alert
-$lang_social_bookmarks['email_subject'] = 'Interessante Seite'; // js-alert
-$lang_social_bookmarks['email_body'] = 'Du könntest die folgende Seite interessant finden'; // js-alert
-$lang_social_bookmarks['favorite_close'] = 'Diese Funktion wird von Deinem Browser nicht unterstützt.'."\n".'Bitte schließe diesen Dialog und'."\n".'drücke Strg-D, um diese Seite zu den Lesezeichen hinzuzufügen.'; // js-alert
+$lang_social_bookmarks['bookmark_this_page'] = 'Lesezeichen speichern'; // cpg1.5 
+$lang_social_bookmarks['favorite'] = 'Diese Seite zu den Lesezeichen/Favoriten Deines Browsers hinzufügen'; // cpg1.5 // js-alert
+$lang_social_bookmarks['send_email'] = 'Diese Seite per eMail empfehlen'; // cpg1.5 // js-alert
+$lang_social_bookmarks['email_subject'] = 'Interessante Seite'; // cpg1.5 // js-alert
+$lang_social_bookmarks['email_body'] = 'Du könntest die folgende Seite interessant finden'; // cpg1.5 // js-alert
+$lang_social_bookmarks['favorite_close'] = 'Diese Funktion wird von Deinem Browser nicht unterstützt.'."\n".'Bitte schließe diesen Dialog und'."\n".'drücke Strg-D, um diese Seite zu den Lesezeichen hinzuzufügen.'; // cpg1.5 // js-alert
 
 $lang_version_alert['version_alert'] = 'Nicht unterstützte Version!';
 $lang_version_alert['no_stable_version'] = 'Du betreibst Coppermine version  %s (%s), das nur für erfahrene Benutzer gedacht ist - für diese Version gibt es keinen Support oder Funktions-Garantien. Benutze sie auf eigenes Risiko oder downgrade auf die aktuellste stabile Version, wenn Du Support brauchst!';
@@ -1354,7 +1354,7 @@ $lang_groupmgr_php['variable'] = 'variabel';
 $lang_groupmgr_php['fixed'] = 'fest';
 $lang_groupmgr_php['create_new_group'] = 'Neue Gruppe erstellen';
 $lang_groupmgr_php['del_groups'] = 'ausgewählte Gruppe(n) löschen';
-$lang_groupmgr_php['confirm_del'] = 'Achtung: wenn Du eine Gruppe löschst werden die dazu gehörenden Benutzer in die Gruppe \'Registrierte Benutzer\' verschoben!\\nWillst Du das ?'; // js-alert
+$lang_groupmgr_php['confirm_del'] = 'Achtung: wenn Du eine Gruppe löschst werden die dazu gehörenden Benutzer in die Gruppe \'Registrierte Benutzer\' verschoben!\n\nWillst Du das ?'; // js-alert
 $lang_groupmgr_php['title'] = 'Benutzer-Gruppen verwalten';
 $lang_groupmgr_php['num_file_upload'] = 'Datei-Upload Felder';
 $lang_groupmgr_php['num_URI_upload'] = 'URI-Upload Felder';
