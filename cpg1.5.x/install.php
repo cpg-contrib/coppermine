@@ -197,12 +197,15 @@ switch($step) {
         if ($error != '') {
             html_error(false /*false to not include a button*/);
         }
-		
-		//use versioncheck to check file versions
-		require_once('include/versioncheck.inc.php');
-		
+        
+        //use versioncheck to check file versions
+        require_once('include/versioncheck.inc.php');
+        
         $lang_versioncheck_php = $language['versioncheck'];
         
+        
+        // TO DO: need to deal with connection failing and skip this step (and maybe allow a retry)
+
         // Connect to the repository and populate the array with data from the XML file
         $file_data_array = cpgVersioncheckConnectRepository($displayOption_array);
 
@@ -212,7 +215,9 @@ switch($step) {
         // Print the results
         $outputResult = cpg_versioncheckCreateHTMLOutput($file_data_array, $textFileExtensions_array, $lang_versioncheck_php, $majorVersion, $displayOption_array);
         $versioncheck_output = sprintf($lang_versioncheck_php['files_folder_processed'], $outputResult['display'], $outputResult['total'], $outputResult['error']);
-		
+
+        // TO DO: end
+
         html_content($versioncheck_output); 
         html_footer();
         setTmpConfig('step', STEP_FOLDER_PERMISSIONS);
@@ -504,16 +509,15 @@ switch($step) {
  */
 function html_header() 
 {
-
     global $language;
 
-?>
+    echo <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Pragma" content="no-cache" />
-<title>Coppermine - <?php echo $language['installation']; ?></title><link type="text/css" rel="stylesheet" href="installer.css">
+<title>Coppermine - {$language['installation']}</title><link type="text/css" rel="stylesheet" href="installer.css">
 </head>
 <body>
  <div align="center">
@@ -524,9 +528,13 @@ function html_header()
       </td>
     </tr>
   </table>
-<?php
-html_stepper();
+
+EOT;
+
+    html_stepper();
 }
+// end function html_header
+
 
 /* html_footer()
  * 
@@ -534,14 +542,17 @@ html_stepper();
  */
 function html_footer() 
 {
-?>
+    echo <<<EOT
   </div>
  </div>
 </body>
 </html>
 <noscript><plaintext>
-<?php
+
+EOT;
 }
+// end function html_footer
+
 
 /* html_stepper()
  * 
@@ -550,9 +561,9 @@ function html_footer()
 function html_stepper() 
 {
     global $config, $page_title, $step, $language;
-	
+    
     $old_install = sprintf($language['old_install'],'<a href="install_old.php">','</a>'); //can be removed if old installer is not needed anymore
-	$stepper = '';
+    $stepper = '';
     $tpl_step_done = '<td class="stepper_d" onMouseOver="this.className=\'stepper_do\'" onMouseOut="this.className=\'stepper_d\'" onClick="document.location=\'install.php?step=%s\'"><a href="install.php?step=%s" title="Step: %s">%s</a></td>';
     $tpl_step_current = '<td class="stepper_c"><span title="Step: %s">%s</span></td>';
     $tpl_step_notyet = '<td class="stepper_n"><span title="Step: %s">%s</span></td>';
@@ -567,9 +578,9 @@ function html_stepper()
     }
 print <<< EOT
     <table class="stepper_table">
-	    <tr>
-		    <td>{$stepper}</td>
-	    </tr>
+        <tr>
+            <td>{$stepper}</td>
+        </tr>
     </table>
     <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
       <tr>
@@ -577,7 +588,7 @@ print <<< EOT
        </td>
       </tr>
        <tr>
-	   <td class="tableb" valign="top">{$old_install}
+       <td class="tableb" valign="top">{$old_install}
       </td>
     </tr>
     </table>
@@ -591,7 +602,7 @@ EOT;
 function html_installer_locked() 
 {
     global $language, $error;
-	
+    
 print <<< EOT
       <form action="index.php" style="margin:0px;padding:0px" name="cpgform" id="cpgform">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
@@ -624,7 +635,7 @@ EOT;
 function html_welcome() 
 {
     global $language, $error;
-	
+    
     if (!setTmpConfig('step', STEP_VERSIONCHECK)) {
         $next_step = STEP_INIT_AND_LANG;
     } else {
@@ -636,19 +647,19 @@ function html_welcome()
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableh1" colspan="2">
-          	<h2>{$language['license']}</h2>
+            <h2>{$language['license']}</h2>
           </td>
          </tr>
          <tr>
           <td class="tableb" colspan="2">
-          	{$language['license_info']}
+            {$language['license_info']}
           </td>
          </tr>
          <tr>
           <td class="tableb" colspan="2">
-          	<iframe src="docs/en/copyrights.htm?hide_nav=1" width="100%" height="300" name="license">
-  			{$language['cpg_info_frames']}</a>.
-			</iframe>
+            <iframe src="docs/en/copyrights.htm?hide_nav=1" width="100%" height="300" name="license">
+            {$language['cpg_info_frames']}</a>.
+            </iframe>
           </td>
          </tr>
        </table>
@@ -656,7 +667,7 @@ function html_welcome()
        <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
 EOT;
     if ($error != '') {
-    	print <<< EOT
+        print <<< EOT
          <tr>
           <td class="tableh2" colspan="2" align="left"><span class="error">{$language['error']}</span>
           </td>
@@ -687,9 +698,9 @@ EOT;
   </form>
   <!-- This code will check if javascript is enabled -->
       <script type="text/javascript">
-	  <!--
+      <!--
         document.forms[0][3].value = "passed";
-	  -->
+      -->
       </script>
 EOT;
 }
@@ -701,27 +712,32 @@ EOT;
 function html_content($content) 
 {
     global $language, $step, $temp_data;
-	
-?>
-      <form action="install.php?step=<?php echo ($step + 1); ?>" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
+    
+    $step_next = $step + 1;
+    echo <<<EOT
+      <form action="install.php?step={$step_next}" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
-          <td class="tableb" colspan="2"><?php echo $content; ?><br /><br /><br /></td>
+          <td class="tableb" colspan="2">{$content}<br /><br /><br /></td>
          </tr>
-         <?php
-         if ($temp_data != '') {
-            echo $temp_data;
-         }
-         ?>
+
+EOT;
+    if ($temp_data != '') {
+        echo $temp_data;
+    }
+    echo <<<EOT
          <tr>
           <td colspan="2" align="center" class="tableh2"><br />
-            <input type="submit" value="<?php echo $language['continue']; ?>" /><br /><br />
+            <input type="submit" value="{$language['continue']}" /><br /><br />
           </td>
          </tr>
         </table>
       </form>   
-<?php
+
+EOT;
 }
+// end function html_content
+
 
 /* html_error()
  * 
@@ -732,8 +748,8 @@ function html_content($content)
 function html_error($button = true) 
 {
     global $language, $step, $error;
-	
-	print <<< EOT
+    
+    print <<< EOT
       <form action="install.php?step={$step}" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
@@ -767,66 +783,77 @@ EOT;
 function html_mysql_start() 
 {
     global $language, $step, $mysql_connected, $config;
-	
-?>
-      <form action="install.php?step=<?php echo ($step + 1); ?>" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
+
+    $step_next = $step + 1;
+    echo <<<EOT
+      <form action="install.php?step={$step_next}" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableb" colspan="2">
-          <?php echo $language['sect_mysql_info']; ?><br /><br />
+          {$language['sect_mysql_info']}<br /><br />
           </td>
          </tr>
          <tr>
           <td colspan="2">&nbsp;</td>
          </tr>
-         <?php 
-            if ($mysql_connected) {
-                ?>
+
+EOT;
+    if ($mysql_connected) {
+        echo <<<EOT
         <tr>
-            <td colspan="2" align="center"><fieldset><?php echo $language['mysql_succ']; ?></fieldset></td>
+            <td colspan="2" align="center"><fieldset>{$language['mysql_succ']}</fieldset></td>
         </tr>   
-                <?php 
-            }
-         ?>
+
+EOT;
+    }
+    $db_host     = isset($config['db_host']) ? $config['db_host'] : 'localhost';
+    $db_user     = isset($config['db_user']) ? $config['db_user'] : '';
+    $db_password = isset($config['db_password']) ? $config['db_password'] : '';
+    echo <<<EOT
          <tr>
-          <td align="right"><?php echo $language['mysql_host']; ?></td>
-          <td><input type="text" name="db_host" value="<?php echo (isset($config['db_host'])) ? $config['db_host'] : 'localhost'; ?>" /></td>
+          <td align="right">{$language['mysql_host']}</td>
+          <td><input type="text" name="db_host" value="$db_host" /></td>
          </tr>
          <tr>
-          <td align="right">MySql <?php echo $language['username']; ?></td>
-          <td><input type="text" name="db_user" value="<?php echo isset($config['db_user']) ? $config['db_user'] : ''; ?>" /></td>
+          <td align="right">{$language['mysql_username']}</td>
+          <td><input type="text" name="db_user" value="$db_user" /></td>
          </tr>
          <tr>
-          <td align="right">MySql <?php echo $language['password']; ?></td>
-          <td><input type="password" name="db_password" value="<?php echo isset($config['db_password']) ? $config['db_password'] : ''; ?>" /></td>
+          <td align="right">{$language['mysql_password']}</td>
+          <td><input type="password" name="db_password" value="$db_password" /></td>
          </tr>
          <tr>
          <td colspan="2" align="center">
-            <input type="submit" name="update_check_connection" value="<?php echo $language['mysql_test_connection']; ?>" /><br />
+            <input type="submit" name="update_check_connection" value="{$language['mysql_test_connection']}" /><br />
           </td>
          </tr>
-         <?php 
-            if ($mysql_connected) {
-                ?>
+
+EOT;
+    if ($mysql_connected) {
+        echo <<<EOT
         <tr>
           <td colspan="2" align="center" class="tableh2">
-            <input type="submit" value="<?php echo $language['continue']; ?>" /><br /><br />
+            <input type="submit" value="{$language['continue']}" /><br /><br />
           </td>
          </tr>  
-                <?php 
-            } else {
-                ?>
+
+EOT;
+    } else {
+        echo <<<EOT
         <tr>
           <td colspan="2" align="center" class="tableh2">&nbsp;<br /><br /></td>
-         </tr>  
-                <?php 
-            }
-         ?>
-         
+        </tr>
+
+EOT;
+    }
+    echo <<<EOT
+
         </table>
       </form>   
-<?php
+
+EOT;
 }
+// end function html_mysql_start
 
 
 /* html_mysql_select_db()
@@ -836,42 +863,51 @@ function html_mysql_start()
 function html_mysql_select_db() 
 {
     global $language, $step, $config;
-	
-?>
-      <form action="install.php?step=<?php echo ($step + 1); ?>" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
+
+    $step_next = $step + 1;
+    $dbs = getMysqlDbs();
+    if (!$dbs) {
+        $dbs = '<input type="text" name="db_name" value="' . $config['db_name'] . '" />';
+    }
+    $db_prefix = isset($config['db_prefix']) ? $config['db_prefix'] : 'cpg15x_';
+    echo <<<EOT
+      <form action="install.php?step={$step_next}" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableb" colspan="2">
-          <?php echo $language['sect_mysql_sel_db']; ?><br /><br />
+          {$language['sect_mysql_sel_db']}<br /><br />
           </td>
          </tr>
          <tr>
           <td colspan="2">&nbsp;</td>
          </tr>
          <tr>
-          <td align="right"><?php echo $language['mysql_db_name']; ?></td>
-          <td><?php echo ($dbs = getMysqlDbs()) ? $dbs : '<input type="text" name="db_name" value="' . $config['db_name'] . '" />'; ?></td>
+          <td align="right">{$language['mysql_db_name']}</td>
+          <td>$dbs</td>
          </tr>
          <tr>
-          <td align="right"><?php echo $language['mysql_create_db']; ?></td>
-          <td><input type="text" name="new_db_name" /><input type="submit" name="update_create_db" value="<?php echo $language['mysql_create_btn']; ?>" /></td>
+          <td align="right">{$language['mysql_create_db']}</td>
+          <td><input type="text" name="new_db_name" /><input type="submit" name="update_create_db" value="{$language['mysql_create_btn']}" /></td>
          </tr>
          <tr>
          <td colspan="2">&nbsp;</td>
          </tr>
          <tr>
-          <td align="right"><?php echo $language['mysql_tbl_pref']; ?></td>
-          <td><input type="text" name="db_prefix" value="<?php echo isset($config['db_prefix']) ? $config['db_prefix'] : 'cpg15x_'; ?>" /></td>
+          <td align="right">{$language['mysql_tbl_pref']}</td>
+          <td><input type="text" name="db_prefix" value="$db_prefix" /></td>
          </tr>
          <tr>
           <td colspan="2" align="center" class="tableh2">
-            <input type="submit" value="<?php echo $language['populate_db']; ?>" /><br /><br />
+            <input type="submit" value="{$language['populate_db']}" /><br /><br />
           </td>
          </tr>
         </table>
       </form>   
-<?php
+
+EOT;
 }
+// end function html_mysql_select_db
+
 
 /* html_admin()
  * 
@@ -880,49 +916,59 @@ function html_mysql_select_db()
 function html_admin() 
 {
     global $language, $step;
-?>
-      <form action="install.php?step=<?php echo $step; ?>" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
+
+    $admin_username = isset($config['admin_username']) ? $config['admin_username'] : '';
+    $admin_password = isset($config['admin_password']) ? $config['admin_password'] : '';
+    // TO DO: check verify field in $config to see if checked against password
+    $admin_password_verify = isset($config['admin_password']) ? $config['admin_password'] : '';
+    $admin_email = isset($config['admin_email']) ? $config['admin_email'] : '';
+    // TO DO: ditto above
+    $admin_email_verify = isset($config['admin_email']) ? $config['admin_email'] : '';
+    echo <<<EOT
+      <form action="install.php?step=$step" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableb" colspan="2">
-          <?php echo $language['sect_create_adm']; ?><br /><br />
+          {$language['sect_create_adm']}<br /><br />
           </td>
          </tr>
          <tr>
           <td colspan="2">&nbsp;</td>
          </tr>
          <tr>
-          <td align="right"><?php echo $language['username']; ?></td>
-          <td><input type="text" name="admin_username" value="<?php echo isset($config['admin_username']) ? $config['admin_username'] : ''; ?>"  /></td>
+          <td align="right">{$language['username']}</td>
+          <td><input type="text" name="admin_username" value="$admin_username"  /></td>
          </tr>
          <tr>
-          <td align="right"><?php echo $language['password']; ?></td>
-          <td><input type="password" name="admin_password" value="<?php echo isset($config['admin_password']) ? $config['admin_password'] : ''; ?>" /></td>
+          <td align="right">{$language['password']}</td>
+          <td><input type="password" name="admin_password" value="$admin_password" /></td>
          </tr>
           <tr>
-          <td align="right"><?php echo $language['password_verif']; ?></td>
-          <td><input type="password" name="admin_password_verif" value="<?php echo isset($config['admin_password']) ? $config['admin_password'] : ''; ?>" /></td>
+          <td align="right">{$language['password_verif']}</td>
+          <td><input type="password" name="admin_password_verif" value="$admin_password_verify" /></td>
          </tr>
          <tr>
-          <td align="right"><?php echo $language['email']; ?></td>
-          <td><input type="text" name="admin_email" value="<?php echo isset($config['admin_email']) ? $config['admin_email'] : ''; ?>" /></td>
+          <td align="right">{$language['email']}</td>
+          <td><input type="text" name="admin_email" value="$admin_email" /></td>
          </tr>
           <tr>
-          <td align="right"><?php echo $language['email_verif']; ?></td>
-          <td><input type="text" name="admin_email_verif" value="<?php echo isset($config['admin_email']) ? $config['admin_email'] : ''; ?>" /></td>
+          <td align="right">{$language['email_verif']}</td>
+          <td><input type="text" name="admin_email_verif" value="$admin_email_verify" /></td>
          </tr>
          <tr>
          <td colspan="2">&nbsp;</td>
          </tr>
          <tr>
           <td colspan="2" align="center" class="tableh2">
-            <input type="submit" value="<?php echo $language['last_step'] ?>" /><br /><br />
+            <input type="submit" value="{$language['last_step']}" /><br /><br />
           </td>
          </tr>
         </table>
       </form>   
-<?php
+
+EOT;
 }
+// end function html_admin
 
 
 /* html_finish()
@@ -932,12 +978,13 @@ function html_admin()
 function html_finish() 
 {
     global $language;
-?>
+
+    echo <<<EOT
       <form action="index.php" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableb" colspan="2">
-          <?php echo $language['ready_to_roll']; ?><br /><br />
+          {$language['ready_to_roll']}<br /><br />
           </td>
          </tr>
          <tr>
@@ -945,13 +992,16 @@ function html_finish()
          </tr>
          <tr>
           <td colspan="2" align="center" class="tableh2">
-            <input type="submit" value="<?php echo $language['finish'] ?>" /><br /><br />
+            <input type="submit" value="{$language['finish']}" /><br /><br />
           </td>
          </tr>
         </table>
       </form>   
-<?php
+
+EOT;
 }
+// end function html_finish
+
 
 ############################
 #####CPGInstall functions###
@@ -966,20 +1016,20 @@ function html_finish()
 */
 function loadTempConfig($rp=0) 
 {
-	global $config, $config_file;
-	if (file_exists($config_file['permanent'])) {
-		$GLOBALS['language'] = getLanguage();
-		$GLOBALS['error'] = '<h3>'.$GLOBALS['language']['already_succ'].'</h3>'.$GLOBALS['language']['already_succ_explain'];
-		return false;
-	} else {
-		// read the temporary file
-		if (file_exists($config_file['temporary'])) {
-			include($config_file['temporary']);
-			$GLOBALS['config'] = $install_config;
-		} else {
-			$GLOBALS['config'] = array();
-		}
-	}
+    global $config, $config_file;
+    if (file_exists($config_file['permanent'])) {
+        $GLOBALS['language'] = getLanguage();
+        $GLOBALS['error'] = '<h3>'.$GLOBALS['language']['already_succ'].'</h3>'.$GLOBALS['language']['already_succ_explain'];
+        return false;
+    } else {
+        // read the temporary file
+        if (file_exists($config_file['temporary'])) {
+            include($config_file['temporary']);
+            $GLOBALS['config'] = $install_config;
+        } else {
+            $GLOBALS['config'] = array();
+        }
+    }
 }
 
 /* setTmpConfig()
@@ -994,19 +1044,19 @@ function loadTempConfig($rp=0)
  */
 function setTmpConfig($key, $value, $isarray = false) 
 {
-	global $language;
-	if (!$isarray) {
-		$GLOBALS['config'][$key] = $value;
-	} else {
-		$GLOBALS['config'][$key][] = $value;
-		$GLOBALS['config'][$key] = array_unique($GLOBALS['config'][$key]);
-	}
-	if (!createTempConfig()) {
-		// can't write temp config, set error
-		$GLOBALS['error'] .= '<br /><br />' . $language['tmp_conf_error'];
-		return false;
-	}
-	return true;
+    global $language;
+    if (!$isarray) {
+        $GLOBALS['config'][$key] = $value;
+    } else {
+        $GLOBALS['config'][$key][] = $value;
+        $GLOBALS['config'][$key] = array_unique($GLOBALS['config'][$key]);
+    }
+    if (!createTempConfig()) {
+        // can't write temp config, set error
+        $GLOBALS['error'] .= '<br /><br />' . $language['tmp_conf_error'];
+        return false;
+    }
+    return true;
 }
 
 /*
@@ -1018,19 +1068,19 @@ function setTmpConfig($key, $value, $isarray = false)
 */
 function createTempConfig() 
 {
-	global $language, $config, $config_file;
-	if ($handle = @fopen($config_file['temporary'], 'w')) {
-		//$config = serialize($config);
-		//create php array in config
-		$fconfig = '<?php' . "\n" . arrayToString($config, '$install_config') . "\n" . '?>';
-		fwrite($handle, $fconfig);
-		fclose($handle);
-		return true;
-	} else {
-		// could not write tmp config, add error
-		$GLOBALS['error'] = sprintf($language['cant_write_tmp_conf'], $config_file['temporary']) . ' ' . $language['review_permissions'];
-		return false;
-	}
+    global $language, $config, $config_file;
+    if ($handle = @fopen($config_file['temporary'], 'w')) {
+        //$config = serialize($config);
+        //create php array in config
+        $fconfig = '<?php' . "\n" . arrayToString($config, '$install_config') . "\n" . '?>';
+        fwrite($handle, $fconfig);
+        fclose($handle);
+        return true;
+    } else {
+        // could not write tmp config, add error
+        $GLOBALS['error'] = sprintf($language['cant_write_tmp_conf'], $config_file['temporary']) . ' ' . $language['review_permissions'];
+        return false;
+    }
 }
 
 /*
@@ -1046,30 +1096,30 @@ function createTempConfig()
 */
 function arrayToString($array, $array_name, $indent = '') 
 {
-	if (is_array($array)) {
-		if ($indent == '') {
-			$array_string = $indent . $array_name . " = array(" . "\n";
-		} else {
-			$array_string = $indent . "'" .  $array_name . "' => array(" . "\n";
-		}
-		
-		foreach($array as $key => $value) {
-			if (is_array($value)) {
-				$array_string .= arrayToString($value, $key, $indent . '     ');
-			} else {
-				$array_string .= $indent . "        '$key' => '$value'," . "\n";
-			}
-		}
-		if ($indent == '') {
-			$array_string .= ');' . "\n";
-		} else {
-			$array_string .= $indent . '),' . "\n";
-		}
-	} else {
-		return $array;
-	}
-	
-	return $array_string;
+    if (is_array($array)) {
+        if ($indent == '') {
+            $array_string = $indent . $array_name . " = array(" . "\n";
+        } else {
+            $array_string = $indent . "'" .  $array_name . "' => array(" . "\n";
+        }
+        
+        foreach($array as $key => $value) {
+            if (is_array($value)) {
+                $array_string .= arrayToString($value, $key, $indent . '     ');
+            } else {
+                $array_string .= $indent . "        '$key' => '$value'," . "\n";
+            }
+        }
+        if ($indent == '') {
+            $array_string .= ');' . "\n";
+        } else {
+            $array_string .= $indent . '),' . "\n";
+        }
+    } else {
+        return $array;
+    }
+    
+    return $array_string;
 }
 
 /*
@@ -1081,35 +1131,35 @@ function arrayToString($array, $array_name, $indent = '')
 */
 function getLanguage() 
 {
-	global $config, $language;
-	
-	$superCage = Inspekt::makeSuperCage();
-	
-	// try to find the users language if we don't have one defined yet
-	if (!isset($config['lang'])) {
-		include_once('include/select_lang.inc.php');
-		setTmpConfig('lang', $USER['lang']);
-		loadTempConfig();
-	}
+    global $config, $language;
+    
+    $superCage = Inspekt::makeSuperCage();
+    
+    // try to find the users language if we don't have one defined yet
+    if (!isset($config['lang'])) {
+        include_once('include/select_lang.inc.php');
+        setTmpConfig('lang', $USER['lang']);
+        loadTempConfig();
+    }
 
-	// change default language
-	if ($lang = $superCage->post->getAlnum('lang_list')) {
-		setTmpConfig('lang', $lang);
-		loadTempConfig();
-	} 
-	if ($language == '') {
-		include('lang/english.php');
-		$lang_en = $lang_install;
-		$lang_en_versioncheck = $lang_versioncheck_php;
-		if (isset($config['lang']) && file_exists('lang/' . $config['lang'] . '.php')) {
-			// include this lang
-			include('lang/' . $config['lang'] . '.php');
-		}
-		// provide fallback
-		$language = array_merge($lang_en, $lang_install);
-		$language['versioncheck'] = isset($lang_versioncheck_php) ? $lang_versioncheck_php : $lang_en_versioncheck;
-	}
-	return $language;
+    // change default language
+    if ($lang = $superCage->post->getAlnum('lang_list')) {
+        setTmpConfig('lang', $lang);
+        loadTempConfig();
+    } 
+    if ($language == '') {
+        include('lang/english.php');
+        $lang_en = $lang_install;
+        $lang_en_versioncheck = $lang_versioncheck_php;
+        if (isset($config['lang']) && file_exists('lang/' . $config['lang'] . '.php')) {
+            // include this lang
+            include('lang/' . $config['lang'] . '.php');
+        }
+        // provide fallback
+        $language = array_merge($lang_en, $lang_install);
+        $language['versioncheck'] = isset($lang_versioncheck_php) ? $lang_versioncheck_php : $lang_en_versioncheck;
+    }
+    return $language;
 }
 
 /*
@@ -1121,27 +1171,27 @@ function getLanguage()
 */
 function getLangSelect() 
 {
-	global $config;
-	
-	$dir = opendir('lang/');
-	$available_languages = array();
-	while ($file = readdir($dir)) {
-		$extension = ltrim(substr($file,strrpos($file,'.')),'.');
-		$filenameWithoutExtension = str_replace('.' . 'php', '', $file);
-		if (is_file('lang/' . $file) && $extension == 'php') {
-			$available_languages[] = ucfirst($filenameWithoutExtension);
-		}
-	}
-	closedir($dir);
-	natcasesort($available_languages);
-	
-	$lang_select = '<select name="lang_list">' . "\n";
-	foreach($available_languages as $key => $language) {
-		$lang_select .= "                       <option " . ((strtolower($config['lang']) == strtolower($language)) ? 'selected="selected"' : '') . " value=\"{$language}\">{$language}</option>" . "\n";
-	}
-	$lang_select .= '               </select>';
-	
-	return $lang_select;
+    global $config;
+    
+    $dir = opendir('lang/');
+    $available_languages = array();
+    while ($file = readdir($dir)) {
+        $extension = ltrim(substr($file,strrpos($file,'.')),'.');
+        $filenameWithoutExtension = str_replace('.' . 'php', '', $file);
+        if (is_file('lang/' . $file) && $extension == 'php') {
+            $available_languages[] = ucfirst($filenameWithoutExtension);
+        }
+    }
+    closedir($dir);
+    natcasesort($available_languages);
+    
+    $lang_select = '<select name="lang_list">' . "\n";
+    foreach($available_languages as $key => $language) {
+        $lang_select .= "                       <option " . ((strtolower($config['lang']) == strtolower($language)) ? 'selected="selected"' : '') . " value=\"{$language}\">{$language}</option>" . "\n";
+    }
+    $lang_select .= '               </select>';
+    
+    return $lang_select;
 }
 
 /*
@@ -1153,76 +1203,76 @@ function getLangSelect()
 */
 function checkPermissions() 
 {
-	global $config, $language;
-	
-	$peCheck = true;
-	// If another dir has to be added, you can define as many possible permissions as you want, 
-	// but if it only has to be a directory, then use the $only_folders array (will only be checked on existence)
-	// Always add the maximum required permission as the first item as the installer will try to chmod the files to that value.
-	$files_to_check = array(
-		'./albums'  => array('777', '755'),
-		'./albums/userpics' => array('777', '755'),
-		'./albums/edit'     => array('777', '755'),
-		'./include' => array('777', '755'),
+    global $config, $language;
+    
+    $peCheck = true;
+    // If another dir has to be added, you can define as many possible permissions as you want, 
+    // but if it only has to be a directory, then use the $only_folders array (will only be checked on existence)
+    // Always add the maximum required permission as the first item as the installer will try to chmod the files to that value.
+    $files_to_check = array(
+        './albums'  => array('777', '755'),
+        './albums/userpics' => array('777', '755'),
+        './albums/edit'     => array('777', '755'),
+        './include' => array('777', '755'),
 
-	);
+    );
 
-	// clear the file status cache to make sure we are reading the most recent info of the file.
-	clearstatcache();
-	
-	// start creating table with results
-	$temp_data = "<tr><td align=\"center\"><table><tr><td><strong>{$language['directory']}</strong></td><td width=\"10%\"><strong>{$language['status']}</strong></td></tr>";
-	foreach($files_to_check as $folder => $perm) {
-		// check folder existence
-		if (!is_dir($folder)) {
-			$peCheck = false;
-			$GLOBALS['error'] .= sprintf($language['subdir_called'], $folder) . '<br /><br />';
-			$temp_data .= "<tr><td>$folder</td><td><font color='red'>{$language['not_exist']}</font></td></tr>";
-		} else {
-			// try to create a file in the folder
-			$test_file = $folder . '/testwritability';
-			$file_handle = @fopen($test_file, 'w');
-			$mode = substr(sprintf('%o', fileperms($folder)), -3);
-			if (!$file_handle) {
-				//file could not be created, try to modify the mode
-				if (@chmod($folder, (int)("0" . $perm[0]))) {
-					// we have changed the mode, jippie :)
-					clearstatcache();
-					$mode = substr(sprintf('%o', fileperms($folder)), -3);
-					// again try to write a file to the folder
-					$file_handle2 = @fopen($test_file, 'w');
-					if (!$file_handle2) {
-						// not working, admin will have to check this by hand, add error
-						$peCheck = false;
-						$possible_modes_left = implode(' '.$language['or'].' ',array_diff($perm,array($mode)));
-						$GLOBALS['error'] .= sprintf($language['perm_error'], $folder, $mode) . ' ' . $possible_modes_left . '.<br />';
-						$temp_data .= "<tr><td>$folder</td><td><font color='red'>{$language['not_writable']}</font></td></tr>";
-					} else {
-						//close handle and remove file
-						fclose($file_handle2);
-						unlink($test_file);
-						$temp_data .= "<tr><td>$folder</td><td><font color='green'>{$language['writable']}</font></td></tr>";
-					}
-				} else {
-					// could not change mode, add error.
-					$peCheck = false;
-					$possible_modes_left = implode(' '.$language['or'].' ',array_diff($perm,array($mode)));
-					$GLOBALS['error'] .= sprintf($language['perm_error'], $folder, $mode) . ' ' . $possible_modes_left . '.<br />';
+    // clear the file status cache to make sure we are reading the most recent info of the file.
+    clearstatcache();
+    
+    // start creating table with results
+    $temp_data = "<tr><td align=\"center\"><table><tr><td><strong>{$language['directory']}</strong></td><td width=\"10%\"><strong>{$language['status']}</strong></td></tr>";
+    foreach($files_to_check as $folder => $perm) {
+        // check folder existence
+        if (!is_dir($folder)) {
+            $peCheck = false;
+            $GLOBALS['error'] .= sprintf($language['subdir_called'], $folder) . '<br /><br />';
+            $temp_data .= "<tr><td>$folder</td><td><font color='red'>{$language['not_exist']}</font></td></tr>";
+        } else {
+            // try to create a file in the folder
+            $test_file = $folder . '/testwritability';
+            $file_handle = @fopen($test_file, 'w');
+            $mode = substr(sprintf('%o', fileperms($folder)), -3);
+            if (!$file_handle) {
+                //file could not be created, try to modify the mode
+                if (@chmod($folder, (int)("0" . $perm[0]))) {
+                    // we have changed the mode, jippie :)
+                    clearstatcache();
+                    $mode = substr(sprintf('%o', fileperms($folder)), -3);
+                    // again try to write a file to the folder
+                    $file_handle2 = @fopen($test_file, 'w');
+                    if (!$file_handle2) {
+                        // not working, admin will have to check this by hand, add error
+                        $peCheck = false;
+                        $possible_modes_left = implode(' '.$language['or'].' ',array_diff($perm,array($mode)));
+                        $GLOBALS['error'] .= sprintf($language['perm_error'], $folder, $mode) . ' ' . $possible_modes_left . '.<br />';
+                        $temp_data .= "<tr><td>$folder</td><td><font color='red'>{$language['not_writable']}</font></td></tr>";
+                    } else {
+                        //close handle and remove file
+                        fclose($file_handle2);
+                        unlink($test_file);
+                        $temp_data .= "<tr><td>$folder</td><td><font color='green'>{$language['writable']}</font></td></tr>";
+                    }
+                } else {
+                    // could not change mode, add error.
+                    $peCheck = false;
+                    $possible_modes_left = implode(' '.$language['or'].' ',array_diff($perm,array($mode)));
+                    $GLOBALS['error'] .= sprintf($language['perm_error'], $folder, $mode) . ' ' . $possible_modes_left . '.<br />';
 
-					$temp_data .= "<tr><td>$folder</td><td><font color='red'>{$language['not_writable']}</font>v</tr>";
-				}
-			} else {
-				//close file handle and remove file
-				fclose($file_handle);
-				unlink($test_file);
-				$temp_data .= "<tr><td>$folder</td><td><font color='green'>{$language['writable']}</font></td></tr>";
-			}
-		}   
-	}
+                    $temp_data .= "<tr><td>$folder</td><td><font color='red'>{$language['not_writable']}</font>v</tr>";
+                }
+            } else {
+                //close file handle and remove file
+                fclose($file_handle);
+                unlink($test_file);
+                $temp_data .= "<tr><td>$folder</td><td><font color='green'>{$language['writable']}</font></td></tr>";
+            }
+        }   
+    }
 
-	$temp_data .= '</table></td></tr>';
-	$GLOBALS['temp_data'] = $temp_data;
-	return $peCheck;
+    $temp_data .= '</table></td></tr>';
+    $GLOBALS['temp_data'] = $temp_data;
+    return $peCheck;
 }
 
 /*
@@ -1234,27 +1284,27 @@ function checkPermissions()
 */
 function checkImageProcessor() 
 {
-	if ($im = getIM()) {
-		$imagesProcessors['im'] = $im;
-	}
-	$gd = getGDVersion();
-	switch($gd) {
-		case 1:
-			// check basic functionality
-			if (checkBasicGD(1)) {
-				$imagesProcessors['gd1'] = 'installed';
-			}
-			break;
-		case 2:
-			// check basic functionality
-			if (checkBasicGD()) {
-				$imagesProcessors['gd2'] = 'installed';
-			}
-			break;
-		default:
-			break;
-	}
-	return $imagesProcessors;
+    if ($im = getIM()) {
+        $imagesProcessors['im'] = $im;
+    }
+    $gd = getGDVersion();
+    switch($gd) {
+        case 1:
+            // check basic functionality
+            if (checkBasicGD(1)) {
+                $imagesProcessors['gd1'] = 'installed';
+            }
+            break;
+        case 2:
+            // check basic functionality
+            if (checkBasicGD()) {
+                $imagesProcessors['gd2'] = 'installed';
+            }
+            break;
+        default:
+            break;
+    }
+    return $imagesProcessors;
 }
 
 /*
@@ -1266,29 +1316,29 @@ function checkImageProcessor()
 */
 function testImageProcessor() 
 {
-	global $config;
-	
-	//check which library to use
-	switch($config['thumb_method']) {
-		case 'gd1':
-			$image_processor = new GDtest(1);
-			break;
-		case 'gd2':
-			$image_processor = new GDtest(2);
-			break;
-		case 'im':
-			$image_processor = new IMtest($config['im_path']);
-			break;
-		default:
-			$image_processor = new GDtest(2);
-			break;
-	}
-	$results = createImageTestResult($image_processor->testReadWrite());
-	$results .= createImageTestResult($image_processor->testCombineImage());
-	$results .= createImageTestResult($image_processor->testTextOnImage());
-	$results .= createImageTestResult($image_processor->testScale());
-	
-	return $results;
+    global $config;
+    
+    //check which library to use
+    switch($config['thumb_method']) {
+        case 'gd1':
+            $image_processor = new GDtest(1);
+            break;
+        case 'gd2':
+            $image_processor = new GDtest(2);
+            break;
+        case 'im':
+            $image_processor = new IMtest($config['im_path']);
+            break;
+        default:
+            $image_processor = new GDtest(2);
+            break;
+    }
+    $results = createImageTestResult($image_processor->testReadWrite());
+    $results .= createImageTestResult($image_processor->testCombineImage());
+    $results .= createImageTestResult($image_processor->testTextOnImage());
+    $results .= createImageTestResult($image_processor->testScale());
+    
+    return $results;
 }
 
 
@@ -1302,28 +1352,28 @@ function testImageProcessor()
 */
 function getGDVersion() 
 {
-	// check if gd is loaded
-	if (!extension_loaded('gd')) {
-		$version = 0; 
-	} else {
-		// Use the gd_info() function if possible.
-		if (function_exists('gd_info')) {
-			$ver_info = gd_info();
-			preg_match('/\d/', $ver_info['GD Version'], $match);
-			$version = $match[0];
-		} else {
-			// get available gd functions to determine the version
-			$gd_functions = get_extension_funcs('gd');
-			if (in_array('imagecreatetruecolor', $gd_functions)) {
-				$version = 2;
-			} elseif (in_array('imagecreate', $gd_functions)) {
-				$version = 1;
-			} else {
-				$version = 0;
-			}
-		}
-	}
-	return $version;
+    // check if gd is loaded
+    if (!extension_loaded('gd')) {
+        $version = 0; 
+    } else {
+        // Use the gd_info() function if possible.
+        if (function_exists('gd_info')) {
+            $ver_info = gd_info();
+            preg_match('/\d/', $ver_info['GD Version'], $match);
+            $version = $match[0];
+        } else {
+            // get available gd functions to determine the version
+            $gd_functions = get_extension_funcs('gd');
+            if (in_array('imagecreatetruecolor', $gd_functions)) {
+                $version = 2;
+            } elseif (in_array('imagecreate', $gd_functions)) {
+                $version = 1;
+            } else {
+                $version = 0;
+            }
+        }
+    }
+    return $version;
 } 
 
 /*
@@ -1337,29 +1387,29 @@ function getGDVersion()
 */
 function checkBasicGD($gd_version = 2) 
 {
-	if ($gd_version == 1) {
-		$im = imagecreate(1, 1);
-		$tst_image = "albums/gd1.jpg";
-		imagejpeg($im, $tst_image);
-		$size = cpgGetimagesize($tst_image);
-		@unlink($tst_image);
-		if ($size[2] == 2) {
-			return true;
-		} else {
-			return false;
-		}
-	} else {
-		$im = imagecreatetruecolor(1, 1);
-		$tst_image = "albums/gd2.jpg";
-		imagejpeg($im, $tst_image);
-		$size = cpgGetimagesize($tst_image);
-		@unlink($tst_image);
-		if ($size[2] == 2) {
-			return true;
-		} else {
-			return false;
-		}   
-	}
+    if ($gd_version == 1) {
+        $im = imagecreate(1, 1);
+        $tst_image = "albums/gd1.jpg";
+        imagejpeg($im, $tst_image);
+        $size = cpgGetimagesize($tst_image);
+        @unlink($tst_image);
+        if ($size[2] == 2) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        $im = imagecreatetruecolor(1, 1);
+        $tst_image = "albums/gd2.jpg";
+        imagejpeg($im, $tst_image);
+        $size = cpgGetimagesize($tst_image);
+        @unlink($tst_image);
+        if ($size[2] == 2) {
+            return true;
+        } else {
+            return false;
+        }   
+    }
 }
 
 /*
@@ -1371,92 +1421,92 @@ function checkBasicGD($gd_version = 2)
 */
 function getIM() 
 {
-	global $config, $language;
-	
-	$im_paths = array(
-		'/imagemagick/convert',
-		'/imagemagick/bin/convert',
-		'/local/bin/convert',
-		'/local/bin/imagemagick/convert',
-		'/local/bin/imagemagick/bin/convert',
-		'/usr/local/convert',
-		'/usr/local/bin/convert',
-		'/usr/local/bin/imagemagick/convert',
-		'/usr/local/bin/imagemagick/bin/convert',
-		'/usr/bin/convert',
-		'C:/Program Files/ImageMagick/convert.exe',
-		'C:/ImageMagick/convert.exe',
-		'/usr/bin/imagemagick/convert',
-		'/usr/bin/imagemagick/bin/convert',
-		'/usr/sbin/convert',
-		'/bin/convert',
-		'/bin/imagemagick/convert',
-		'/bin/imagemagick/bin/convert',
-		'convert'
-		);
-	// add trailing slash if necessary
-	if (!empty($config['im_path']) && !preg_match('|[/\\\\]\Z|', $config['im_path'])) {
-		$config['im_path'] .= '/';
-	}
-	// add user defined path to paths array
-	if (!empty($config['im_path'])) {
-		// add unix version
-		$im_paths[] = $config['im_path'] . 'convert';
-		// add windows version
-		$im_paths[] = '"' . $config['im_path'] . 'convert.exe"';
-		// both versions are added so we can't make mistakes on finding which OS is used.
-	}
-	
-	// check if IM is on default path
-	foreach ($im_paths as $key => $path) {
-		if (stristr($path, ':/')) {
-			$path = '"' . $path . '"';
-		}
-		$command = "$path --version";
-		// execute an im command to test if it is working
-		@exec($command, $exec_output, $exec_retval);
-		$version = @$exec_output[0] . @$exec_output[1];
-		if ($version != '') {
-			// IM is found and working.
-			// check for spaces in the path (we don't want those...)
-			if (preg_match('/ /', $path)) {
-				$path = str_replace(array('.exe', '"'), '',$path);
-				$path = substr($path, 0, (strlen($path) - 7));
-				$GLOBALS['error'] = sprintf($language['im_path_space'], $path);
-				return false;
-			}
-			// do a real image conversion check
-			$tst_image = "albums/userpics/im.gif";
-			exec ("$path images/coppermine-logo.png $tst_image", $output, $result);
-			$size = cpgGetimagesize($tst_image);
-			@unlink($tst_image);
-			$im_installed = ($size[2] == 1);
-			// convert tool found, but did not work as expected
-			if (!$im_installed) {
-				$GLOBALS['error'] = sprintf($language['im_no_convert_ex'], $path);
-				return false;
-			}
-			// convert tool returned errors, add them to our error list
-			if ($result && count($output)) {
-				$GLOBALS['error'] = $language['conv_said'] . '<br /></pre>';
-				foreach($output as $line) {
-					$GLOBALS['error'] .= htmlspecialchars($line);
-				}
-				$GLOBALS['error'] .= "</pre>";
-				return false;
-			}
-			
-			// all went fine, return version info
-			$im = array(
-				'version' => $version, 
-				'path' => $path
-			);
-			return $im;
-			break;
-		}
-	}
-	return false;
-	
+    global $config, $language;
+    
+    $im_paths = array(
+        '/imagemagick/convert',
+        '/imagemagick/bin/convert',
+        '/local/bin/convert',
+        '/local/bin/imagemagick/convert',
+        '/local/bin/imagemagick/bin/convert',
+        '/usr/local/convert',
+        '/usr/local/bin/convert',
+        '/usr/local/bin/imagemagick/convert',
+        '/usr/local/bin/imagemagick/bin/convert',
+        '/usr/bin/convert',
+        'C:/Program Files/ImageMagick/convert.exe',
+        'C:/ImageMagick/convert.exe',
+        '/usr/bin/imagemagick/convert',
+        '/usr/bin/imagemagick/bin/convert',
+        '/usr/sbin/convert',
+        '/bin/convert',
+        '/bin/imagemagick/convert',
+        '/bin/imagemagick/bin/convert',
+        'convert'
+        );
+    // add trailing slash if necessary
+    if (!empty($config['im_path']) && !preg_match('|[/\\\\]\Z|', $config['im_path'])) {
+        $config['im_path'] .= '/';
+    }
+    // add user defined path to paths array
+    if (!empty($config['im_path'])) {
+        // add unix version
+        $im_paths[] = $config['im_path'] . 'convert';
+        // add windows version
+        $im_paths[] = '"' . $config['im_path'] . 'convert.exe"';
+        // both versions are added so we can't make mistakes on finding which OS is used.
+    }
+    
+    // check if IM is on default path
+    foreach ($im_paths as $key => $path) {
+        if (stristr($path, ':/')) {
+            $path = '"' . $path . '"';
+        }
+        $command = "$path --version";
+        // execute an im command to test if it is working
+        @exec($command, $exec_output, $exec_retval);
+        $version = @$exec_output[0] . @$exec_output[1];
+        if ($version != '') {
+            // IM is found and working.
+            // check for spaces in the path (we don't want those...)
+            if (preg_match('/ /', $path)) {
+                $path = str_replace(array('.exe', '"'), '',$path);
+                $path = substr($path, 0, (strlen($path) - 7));
+                $GLOBALS['error'] = sprintf($language['im_path_space'], $path);
+                return false;
+            }
+            // do a real image conversion check
+            $tst_image = "albums/userpics/im.gif";
+            exec ("$path images/coppermine-logo.png $tst_image", $output, $result);
+            $size = cpgGetimagesize($tst_image);
+            @unlink($tst_image);
+            $im_installed = ($size[2] == 1);
+            // convert tool found, but did not work as expected
+            if (!$im_installed) {
+                $GLOBALS['error'] = sprintf($language['im_no_convert_ex'], $path);
+                return false;
+            }
+            // convert tool returned errors, add them to our error list
+            if ($result && count($output)) {
+                $GLOBALS['error'] = $language['conv_said'] . '<br /></pre>';
+                foreach($output as $line) {
+                    $GLOBALS['error'] .= htmlspecialchars($line);
+                }
+                $GLOBALS['error'] .= "</pre>";
+                return false;
+            }
+            
+            // all went fine, return version info
+            $im = array(
+                'version' => $version, 
+                'path' => $path
+            );
+            return $im;
+            break;
+        }
+    }
+    return false;
+    
 }
 
 
@@ -1471,42 +1521,42 @@ $mysql_connection;          // (mysql_connection) connection to the db
 $mysql_connected = false;   // (bool) connected to the db?
 function checkSqlConnection() 
 {
-	global $config, $language;
-	// we only need 1 connection
-	if ($GLOBALS['mysql_connected']) {
-		return true;
-	} else {
-		if (isset($config['db_name'])) {
-			$db_name = $config['db_name'];
-		} else {
-			$db_name = '';
-		}
+    global $config, $language;
+    // we only need 1 connection
+    if ($GLOBALS['mysql_connected']) {
+        return true;
+    } else {
+        if (isset($config['db_name'])) {
+            $db_name = $config['db_name'];
+        } else {
+            $db_name = '';
+        }
 
-	   // check for MySql support of PHP
-		if (!function_exists('mysql_connect')) {
-			$GLOBALS['error'] = $language['no_mysql_support'];
-			return false;
+       // check for MySql support of PHP
+        if (!function_exists('mysql_connect')) {
+            $GLOBALS['error'] = $language['no_mysql_support'];
+            return false;
 
-		// try to connect with given auth parameters
-		} elseif (! $connect_id = @mysql_connect($config['db_host'], 
-				$config['db_user'], $config['db_password'])) 
-		{
-			$GLOBALS['error'] = $language['no_mysql_conn'] . '<br />' 
-				. $language['mysql_error'] . mysql_error();
-			return false;
+        // try to connect with given auth parameters
+        } elseif (! $connect_id = @mysql_connect($config['db_host'], 
+                $config['db_user'], $config['db_password'])) 
+        {
+            $GLOBALS['error'] = $language['no_mysql_conn'] . '<br />' 
+                . $language['mysql_error'] . mysql_error();
+            return false;
 
-		// if a database is specified, try to select it.
-		} elseif ($db_name != '') {
-			if ( !mysql_select_db($db_name, $connect_id)) {
-				$GLOBALS['error'] = sprintf($language['mysql_wrong_db'], $db_name);
-				return false;
-			}
-		}
-		// set our connection id
-		$GLOBALS['mysql_connection'] = $connect_id;
-		$GLOBALS['mysql_connected'] = true;
-		return true;
-	}
+        // if a database is specified, try to select it.
+        } elseif ($db_name != '') {
+            if ( !mysql_select_db($db_name, $connect_id)) {
+                $GLOBALS['error'] = sprintf($language['mysql_wrong_db'], $db_name);
+                return false;
+            }
+        }
+        // set our connection id
+        $GLOBALS['mysql_connection'] = $connect_id;
+        $GLOBALS['mysql_connected'] = true;
+        return true;
+    }
 }
 
 /*
@@ -1519,33 +1569,33 @@ function checkSqlConnection()
 */
 function getMysqlDbs() 
 {
-	// Get a connection with the db
-	if (!checkSqlConnection()) {
-		return false;
-	}
-	// get a list of db's
-	if ($db_list = @mysql_list_dbs($GLOBALS['mysql_connection'])) {
-		// create dropdown box
-		$db_select = '<select name="db_name">';
-		while ($row = mysql_fetch_object($db_list)) {
-			$db = $row->Database;
-			if (in_array($db, array('information_schema', 'mysql', 'test'))) {
-				continue;
-			}
-			if (isset($config['db_name']) && $db == $config['db_name']) {
-				$sel = ' selected="selected"'; 
-			} else { 
-				$sel = '';
-			}
-			$db_select .= '<option name="' . $db . '"' . $sel . ' >' . $db . '</option>';
-		}
-		$db_select .= '</select>';
-		return $db_select;
-	} else {
-		// probably no permission to do this.
-		//$GLOBALS['error'] = $language['mysql_no_sel_dbs'] . '<br />' . $language['mysql_error'] . '<br />' . mysql_error($GLOBALS['mysql_connection']);
-		return false;
-	}
+    // Get a connection with the db
+    if (!checkSqlConnection()) {
+        return false;
+    }
+    // get a list of db's
+    if ($db_list = @mysql_list_dbs($GLOBALS['mysql_connection'])) {
+        // create dropdown box
+        $db_select = '<select name="db_name">';
+        while ($row = mysql_fetch_object($db_list)) {
+            $db = $row->Database;
+            if (in_array($db, array('information_schema', 'mysql', 'test'))) {
+                continue;
+            }
+            if (isset($config['db_name']) && $db == $config['db_name']) {
+                $sel = ' selected="selected"'; 
+            } else { 
+                $sel = '';
+            }
+            $db_select .= '<option name="' . $db . '"' . $sel . ' >' . $db . '</option>';
+        }
+        $db_select .= '</select>';
+        return $db_select;
+    } else {
+        // probably no permission to do this.
+        //$GLOBALS['error'] = $language['mysql_no_sel_dbs'] . '<br />' . $language['mysql_error'] . '<br />' . mysql_error($GLOBALS['mysql_connection']);
+        return false;
+    }
 }
 
 /*
@@ -1558,21 +1608,21 @@ function getMysqlDbs()
 */
 function createMysqlDb($db_name) 
 {
-	global $language;
-	// Get a connection with the db
-	if (!checkSqlConnection()) {
-		return false;
-	}
-	$query = 'CREATE DATABASE ' . $db_name;
-	// try to create new db
-	if (!mysql_query($query, $GLOBALS['mysql_connection'])) {
-		$GLOBALS['error'] = $language['mysql_no_create_db'] . '<br />' 
-			. $language['mysql_error'] . '<br />' . mysql_error($GLOBALS['mysql_connection']);
-		return false;
-	} else {
-		setTmpConfig('db_name', $db_name);
-	}
-	return true;
+    global $language;
+    // Get a connection with the db
+    if (!checkSqlConnection()) {
+        return false;
+    }
+    $query = 'CREATE DATABASE ' . $db_name;
+    // try to create new db
+    if (!mysql_query($query, $GLOBALS['mysql_connection'])) {
+        $GLOBALS['error'] = $language['mysql_no_create_db'] . '<br />' 
+            . $language['mysql_error'] . '<br />' . mysql_error($GLOBALS['mysql_connection']);
+        return false;
+    } else {
+        setTmpConfig('db_name', $db_name);
+    }
+    return true;
 }
 
 /*
@@ -1584,103 +1634,103 @@ function createMysqlDb($db_name)
 */
 function populateMysqlDb() 
 {
-	global $config, $language;
-	
-	// define some vars so we can easily find them at the top and change if needed.
-	$db_schema = "sql/schema.sql";
-	$db_basic = "sql/basic.sql";
-	
-	// check if all config values are present.
-	if (!isset($config['thumb_method'])) { 
-		$GLOBALS['error'] = $language['no_thumb_method'];
-		return false;
-	}
-	if (@get_magic_quotes_runtime()) {
-		set_magic_quotes_runtime(0);
-	}
-	// Get a connection with the db.
-	if (!checkSqlConnection()) {
-		return false;
-	}
-	// Check if we can read the db_schema file
-	if (($sch_open = fopen($db_schema, 'r')) === FALSE) {
-		$GLOBALS['error'] = sprintf($language['sql_file_not_found'], $db_schema);
-		return false;
-	} else {
-		$sql_query = fread($sch_open, filesize($db_schema));
-		// Check if we can read the db_basic file
-		if (($bas_open = fopen($db_basic, 'r')) === FALSE) {
-			$GLOBALS['error'] = sprintf($language['sql_file_not_found'], $db_basic);
-			return false;
-		} else {
-			$sql_query .= fread($bas_open, filesize($db_basic));
-		}
-	}
-	// Create our fantastic cage object
-	$superCage = Inspekt::makeSuperCage();
-	require_once('include/sql_parse.php');
-	// Get gallery directory
-	$possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
-	foreach ($possibilities as $test) {
-		if ($matches = $superCage->server->getMatched($test, '/([^\/]+\.php)$/')) {
-			$CPG_PHP_SELF = $superCage->server->getEscaped($test);
-			break;
-		}
-	}
-	
-	$gallery_dir = strtr(dirname($CPG_PHP_SELF), '\\', '/');
-	if ($gallery_dir == '.') {
-		$gallery_dir = '';
-	}
+    global $config, $language;
+    
+    // define some vars so we can easily find them at the top and change if needed.
+    $db_schema = "sql/schema.sql";
+    $db_basic = "sql/basic.sql";
+    
+    // check if all config values are present.
+    if (!isset($config['thumb_method'])) { 
+        $GLOBALS['error'] = $language['no_thumb_method'];
+        return false;
+    }
+    if (@get_magic_quotes_runtime()) {
+        set_magic_quotes_runtime(0);
+    }
+    // Get a connection with the db.
+    if (!checkSqlConnection()) {
+        return false;
+    }
+    // Check if we can read the db_schema file
+    if (($sch_open = fopen($db_schema, 'r')) === FALSE) {
+        $GLOBALS['error'] = sprintf($language['sql_file_not_found'], $db_schema);
+        return false;
+    } else {
+        $sql_query = fread($sch_open, filesize($db_schema));
+        // Check if we can read the db_basic file
+        if (($bas_open = fopen($db_basic, 'r')) === FALSE) {
+            $GLOBALS['error'] = sprintf($language['sql_file_not_found'], $db_basic);
+            return false;
+        } else {
+            $sql_query .= fread($bas_open, filesize($db_basic));
+        }
+    }
+    // Create our fantastic cage object
+    $superCage = Inspekt::makeSuperCage();
+    require_once('include/sql_parse.php');
+    // Get gallery directory
+    $possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
+    foreach ($possibilities as $test) {
+        if ($matches = $superCage->server->getMatched($test, '/([^\/]+\.php)$/')) {
+            $CPG_PHP_SELF = $superCage->server->getEscaped($test);
+            break;
+        }
+    }
+    
+    $gallery_dir = strtr(dirname($CPG_PHP_SELF), '\\', '/');
+    if ($gallery_dir == '.') {
+        $gallery_dir = '';
+    }
 
-	$gallery_url_prefix = 'http://' . $superCage->server->getEscaped('HTTP_HOST') 
-		. $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
+    $gallery_url_prefix = 'http://' . $superCage->server->getEscaped('HTTP_HOST') 
+        . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
 
-	// Set configuration values for image package
-	$sql_query .= "REPLACE INTO CPG_config VALUES ('thumb_method', '{$config['thumb_method']}');\n";
-	$sql_query .= "REPLACE INTO CPG_config VALUES ('impath', '{$config['im_path']}');\n";
-	$sql_query .= "REPLACE INTO CPG_config VALUES ('ecards_more_pic_target', '$gallery_url_prefix');\n";
+    // Set configuration values for image package
+    $sql_query .= "REPLACE INTO CPG_config VALUES ('thumb_method', '{$config['thumb_method']}');\n";
+    $sql_query .= "REPLACE INTO CPG_config VALUES ('impath', '{$config['im_path']}');\n";
+    $sql_query .= "REPLACE INTO CPG_config VALUES ('ecards_more_pic_target', '$gallery_url_prefix');\n";
 
-	// Enable silly_safe_mode if test has shown it is not configured properly
-	if (checkSillySafeMode()) {
-		$sql_query .= "REPLACE INTO CPG_config VALUES ('silly_safe_mode', '1');\n";
-	}
-	// Test write permissions for main dir
-	if (!is_writable('.')) {
-		$sql_query .= "REPLACE INTO CPG_config VALUES ('default_dir_mode', '0777');\n";
-		$sql_query .= "REPLACE INTO CPG_config VALUES ('default_file_mode', '0666');\n";
-	}
-	// Update table prefix
-	$sql_query = preg_replace('/CPG_/', $config['db_prefix'], $sql_query);
+    // Enable silly_safe_mode if test has shown it is not configured properly
+    if (checkSillySafeMode()) {
+        $sql_query .= "REPLACE INTO CPG_config VALUES ('silly_safe_mode', '1');\n";
+    }
+    // Test write permissions for main dir
+    if (!is_writable('.')) {
+        $sql_query .= "REPLACE INTO CPG_config VALUES ('default_dir_mode', '0777');\n";
+        $sql_query .= "REPLACE INTO CPG_config VALUES ('default_file_mode', '0666');\n";
+    }
+    // Update table prefix
+    $sql_query = preg_replace('/CPG_/', $config['db_prefix'], $sql_query);
 
-	$sql_query = remove_remarks($sql_query);
-	$sql_query = split_sql_file($sql_query, ';');
-	
-	$GLOBALS['temp_data'] .= '<tr><td>';
-	foreach($sql_query as $q) {
-		$is_table = false;
-		//check if we are creating a table so we can add it to the output
-		if (preg_match('/(CREATE TABLE IF NOT EXISTS `?|CREATE TABLE `?)([\w]*)`?/i', $q, $table_match)) {
-			$table = $table_match[2];
-			$is_table = true;
-		}
-		if (! mysql_query($q, $GLOBALS['mysql_connection'])) {
-			$GLOBALS['error'] = $language['mysql_error'] . mysql_error($GLOBALS['mysql_connection']) 
-				. ' ' . $language['on_q'] . " '$q'";
-			if ($is_table) {
-				$GLOBALS['temp_data'] .= "<br />" . sprintf($language['create_table'], $table) 
-					. '&nbsp;&nbsp;&nbsp;&nbsp;' . $language['status'] . ':... ' . $language['nok'];
-			}
-			return false;
-		} else {
-			if ($is_table) {
-				$GLOBALS['temp_data'] .= "<br />" . sprintf($language['create_table'], $table)
-					. '&nbsp;&nbsp;&nbsp;&nbsp;' . $language['status'] . ':... ' . $language['ok'];
-			}
-		}
-	}
-	$GLOBALS['temp_data'] .= '<br /><br /><br /></td></tr>';
-	return true;
+    $sql_query = remove_remarks($sql_query);
+    $sql_query = split_sql_file($sql_query, ';');
+    
+    $GLOBALS['temp_data'] .= '<tr><td>';
+    foreach($sql_query as $q) {
+        $is_table = false;
+        //check if we are creating a table so we can add it to the output
+        if (preg_match('/(CREATE TABLE IF NOT EXISTS `?|CREATE TABLE `?)([\w]*)`?/i', $q, $table_match)) {
+            $table = $table_match[2];
+            $is_table = true;
+        }
+        if (! mysql_query($q, $GLOBALS['mysql_connection'])) {
+            $GLOBALS['error'] = $language['mysql_error'] . mysql_error($GLOBALS['mysql_connection']) 
+                . ' ' . $language['on_q'] . " '$q'";
+            if ($is_table) {
+                $GLOBALS['temp_data'] .= "<br />" . sprintf($language['create_table'], $table) 
+                    . '&nbsp;&nbsp;&nbsp;&nbsp;' . $language['status'] . ':... ' . $language['nok'];
+            }
+            return false;
+        } else {
+            if ($is_table) {
+                $GLOBALS['temp_data'] .= "<br />" . sprintf($language['create_table'], $table)
+                    . '&nbsp;&nbsp;&nbsp;&nbsp;' . $language['status'] . ':... ' . $language['ok'];
+            }
+        }
+    }
+    $GLOBALS['temp_data'] .= '<br /><br /><br /></td></tr>';
+    return true;
 }
 
 /*
@@ -1692,42 +1742,42 @@ function populateMysqlDb()
 */
 function createAdmin() 
 {
-	global $config, $language;
-	
-	if (!isset($config['admin_username']) || $config['admin_username'] == '') { $GLOBALS['error'] = $language['no_admin_username'];     return false;}
-	if (!isset($config['admin_password']) || $config['admin_password'] == '') { $GLOBALS['error'] = $language['no_admin_password'];     return false;}
-	if (!isset($config['admin_email']) || $config['admin_email'] == '')  { $GLOBALS['error'] = $language['no_admin_email'];     return false;}
-	
-	// Insert the admin account
-	$sql_query .= "INSERT INTO {$config['db_prefix']}users "
-		. "(user_id, user_group, user_active, user_name, user_password, user_lastvisit, "
-		. " user_regdate, user_group_list, user_email, user_profile1, user_profile2, user_profile3, "
-		. " user_profile4, user_profile5, user_profile6, user_actkey ) "
-		. "VALUES "
-		. "(1, 1, 'YES', '{$config['admin_username']}', "
-		. " md5('{$config['admin_password']}'), NOW(), NOW(), '', "
-		. " '{$config['admin_email']}', '', '', '', '', '', '', '');\n";
+    global $config, $language;
+    
+    if (!isset($config['admin_username']) || $config['admin_username'] == '') { $GLOBALS['error'] = $language['no_admin_username'];     return false;}
+    if (!isset($config['admin_password']) || $config['admin_password'] == '') { $GLOBALS['error'] = $language['no_admin_password'];     return false;}
+    if (!isset($config['admin_email']) || $config['admin_email'] == '')  { $GLOBALS['error'] = $language['no_admin_email'];     return false;}
+    
+    // Insert the admin account
+    $sql_query .= "INSERT INTO {$config['db_prefix']}users "
+        . "(user_id, user_group, user_active, user_name, user_password, user_lastvisit, "
+        . " user_regdate, user_group_list, user_email, user_profile1, user_profile2, user_profile3, "
+        . " user_profile4, user_profile5, user_profile6, user_actkey ) "
+        . "VALUES "
+        . "(1, 1, 'YES', '{$config['admin_username']}', "
+        . " md5('{$config['admin_password']}'), NOW(), NOW(), '', "
+        . " '{$config['admin_email']}', '', '', '', '', '', '', '');\n";
 
-	// Set gallery admin mail
-	$sql_query .= "REPLACE INTO CPG_config VALUES ('gallery_admin_email', '{$config['admin_email']}');\n";
+    // Set gallery admin mail
+    $sql_query .= "REPLACE INTO CPG_config VALUES ('gallery_admin_email', '{$config['admin_email']}');\n";
 
 // Update table prefix
-	$sql_query = preg_replace('/CPG_/', $config['db_prefix'], $sql_query);
+    $sql_query = preg_replace('/CPG_/', $config['db_prefix'], $sql_query);
 
-	require_once('include/sql_parse.php');
-	$sql_query = remove_remarks($sql_query);
-	$sql_query = split_sql_file($sql_query, ';');
-	// Get a connection with the db.
-	if (!checkSqlConnection()) {
-		return false;
-	}
-	foreach($sql_query as $q) {
-		if (! mysql_query($q, $GLOBALS['mysql_connection'])) {
-			$GLOBALS['error'] = $language['mysql_error'] . mysql_error($GLOBALS['mysql_connection']) . ' ' . $language['on_q'] . " '$q'";
-			return false;
-		}
-	}
-	return true;
+    require_once('include/sql_parse.php');
+    $sql_query = remove_remarks($sql_query);
+    $sql_query = split_sql_file($sql_query, ';');
+    // Get a connection with the db.
+    if (!checkSqlConnection()) {
+        return false;
+    }
+    foreach($sql_query as $q) {
+        if (! mysql_query($q, $GLOBALS['mysql_connection'])) {
+            $GLOBALS['error'] = $language['mysql_error'] . mysql_error($GLOBALS['mysql_connection']) . ' ' . $language['on_q'] . " '$q'";
+            return false;
+        }
+    }
+    return true;
 }
 
 
@@ -1740,17 +1790,17 @@ function createAdmin()
 */
 function checkSillySafeMode() 
 {
-	$test_file = "albums/userpics/dummy/dummy.txt";
-	@mkdir(dirname($test_file), 0755);
-	$fd = @fopen($test_file, 'w');
-	if (!$fd) {
-		@rmdir(dirname($test_file));
-		return true;
-	}
-	fclose($fd);
-	@unlink($test_file);
-	@rmdir(dirname($test_file));
-	return false;
+    $test_file = "albums/userpics/dummy/dummy.txt";
+    @mkdir(dirname($test_file), 0755);
+    $fd = @fopen($test_file, 'w');
+    if (!$fd) {
+        @rmdir(dirname($test_file));
+        return true;
+    }
+    fclose($fd);
+    @unlink($test_file);
+    @rmdir(dirname($test_file));
+    return false;
 }
 
 /*
@@ -1762,11 +1812,11 @@ function checkSillySafeMode()
 */
 function writeConfig() 
 {
-	global $config, $language;
-	
-	// this is used to prevent screwing up the color coding in my editor.
-	$end_php_tag = '?>';
-	$config = <<<EOT
+    global $config, $language;
+    
+    // this is used to prevent screwing up the color coding in my editor.
+    $end_php_tag = '?>';
+    $config = <<<EOT
 <?php
 // Coppermine configuration file
 // MySQL configuration
@@ -1780,13 +1830,13 @@ function writeConfig()
 \$CONFIG['TABLE_PREFIX'] =                '{$config['db_prefix']}';
 $end_php_tag
 EOT;
-	//write config file to disk
-	if ($fd = @fopen('include/config.inc.php', 'wb')) {
-		fwrite($fd, $config);
-		fclose($fd);
-	} else {
-		$GLOBALS['error'] = '<hr /><br />' . $language['unable_write_config'] . '<br /><br />';
-	}
+    //write config file to disk
+    if ($fd = @fopen('include/config.inc.php', 'wb')) {
+        fwrite($fd, $config);
+        fclose($fd);
+    } else {
+        $GLOBALS['error'] = '<hr /><br />' . $language['unable_write_config'] . '<br /><br />';
+    }
 }
 
 /*
@@ -1800,59 +1850,59 @@ EOT;
  */
 function createImageTestResult($results) 
 {
-	global $config, $language;
-	
-	$tables = '';
+    global $config, $language;
+    
+    $tables = '';
 
-	foreach($results as $test_title => $test_result) {
-		if (isset($test_result['error'])) {
-			//there was an error, show this to the user
-			$result_error_tpl = <<<EOT
-	<table>
-		<tr>
-			<th colspan="3" align="left">{$language[$test_title]}</th>
-		</tr>
-		<tr>
-			<td>{$language[$test_result['error']]}</td>
-			<td>{$language['generated_image']}</td>
-			<td>{$language['reference_image']}</td>
-		</tr>
-	</table>
-	<br /><br />
+    foreach($results as $test_title => $test_result) {
+        if (isset($test_result['error'])) {
+            //there was an error, show this to the user
+            $result_error_tpl = <<<EOT
+    <table>
+        <tr>
+            <th colspan="3" align="left">{$language[$test_title]}</th>
+        </tr>
+        <tr>
+            <td>{$language[$test_result['error']]}</td>
+            <td>{$language['generated_image']}</td>
+            <td>{$language['reference_image']}</td>
+        </tr>
+    </table>
+    <br /><br />
 EOT;
-			$tables .= $result_error_tpl;
-			$GLOBALS['error'] = $language['imp_test_error'];
-		} else {
-			//all went as it had to, put info on template
-			$generated_size = cpgGetimagesize($test_result['created']);
-			$generated_size = $generated_size[0] . 'x' . $generated_size[1];
-			$reference_size = cpgGetimagesize($test_result['original']);
-			$reference_size = $reference_size[0] . 'x' . $reference_size[1];
-			$result_ok_tpl = <<<EOT
-	<table>
-		<tr>
-			<th colspan="2" align="left">{$language[$test_title]}</th>
-		</tr>
-		<tr>
-			<td width="200px"><img src="{$test_result['created']}" /></td>
-			<td><img src="{$test_result['original']}" /></td>
-		</tr>
-		<tr>
-			<td>{$language['generated_image']}</td>
-			<td>{$language['reference_image']}</td>
-		</tr>
-		<tr>
-			<td>$generated_size {$language['pixels']}</td>
-			<td>$reference_size {$language['pixels']}</td>
-		</tr>
-	</table>
-	<br /><br />
+            $tables .= $result_error_tpl;
+            $GLOBALS['error'] = $language['imp_test_error'];
+        } else {
+            //all went as it had to, put info on template
+            $generated_size = cpgGetimagesize($test_result['created']);
+            $generated_size = $generated_size[0] . 'x' . $generated_size[1];
+            $reference_size = cpgGetimagesize($test_result['original']);
+            $reference_size = $reference_size[0] . 'x' . $reference_size[1];
+            $result_ok_tpl = <<<EOT
+    <table>
+        <tr>
+            <th colspan="2" align="left">{$language[$test_title]}</th>
+        </tr>
+        <tr>
+            <td width="200px"><img src="{$test_result['created']}" /></td>
+            <td><img src="{$test_result['original']}" /></td>
+        </tr>
+        <tr>
+            <td>{$language['generated_image']}</td>
+            <td>{$language['reference_image']}</td>
+        </tr>
+        <tr>
+            <td>$generated_size {$language['pixels']}</td>
+            <td>$reference_size {$language['pixels']}</td>
+        </tr>
+    </table>
+    <br /><br />
 EOT;
-			$tables .= $result_ok_tpl;
-		}
-	}
-	
-	return $tables;
+            $tables .= $result_ok_tpl;
+        }
+    }
+    
+    return $tables;
 }   
 
 /*
@@ -1867,78 +1917,78 @@ EOT;
  */
 function cpgGetimagesize($image, $force_cpg_function = false) 
 {
-	if (!function_exists('getimagesize') || $force_cpg_function) {  
-		//custom function borrowed from http://www.wischik.com/lu/programmer/get-image-size.html
-		$f = @fopen($image, 'rb'); 
-		if ($f === false) {
-			return false;
-		} 
-		fseek($f, 0, SEEK_END); 
-		$len = ftell($f);
-		if ($len < 24) {
-			fclose($f); 
-			return false;
-		}
-		fseek($f, 0); 
-		$buf = fread($f, 24);
-		if ($buf === false) {
-			fclose($f); 
-			return false;
-		}
-		if (ord($buf[0]) == 255 && ord($buf[1]) == 216 && ord($buf[2]) == 255 && ord($buf[3]) == 224 && $buf[6] == 'J' && $buf[7] == 'F' && $buf[8] == 'I' && $buf[9] == 'F') { 
-			$pos=2; 
-			while (ord($buf[2]) == 255) {
-				if (ord($buf[3]) == 192 || ord($buf[3]) == 193 || ord($buf[3]) == 194 || ord($buf[3]) == 195 || ord($buf[3]) == 201 || ord($buf[3]) == 202 || ord($buf[3]) == 203) {
-					break; // we've found the image frame
-				}
-				$pos += 2 + (ord($buf[4]) << 8) + ord($buf[5]);
-				if ($pos+12>$len) {
-					break; // too far
-				}
-				fseek($f,$pos); 
-				$buf = $buf[0] . $buf[1] . fread($f,12);
-			}
-		}
-		fclose($f);
-	
-		// GIF:
-		if ($buf[0] == 'G' && $buf[1] == 'I' && $buf[2] == 'F') {
-			$x = ord($buf[6]) + (ord($buf[7])<<8);
-			$y = ord($buf[8]) + (ord($buf[9])<<8);
-			$type = 1;
-		}
-	
-		// JPEG:
-		if (ord($buf[0]) == 255 && ord($buf[1]) == 216 && ord($buf[2]) == 255) { 
-			$y = (ord($buf[7])<<8) + ord($buf[8]);
-			$x = (ord($buf[9])<<8) + ord($buf[10]);
-			$type = 2;
-		}
-	
-		// PNG:
-		if (ord($buf[0]) == 0x89 && $buf[1] == 'P' && $buf[2] == 'N' && $buf[3] == 'G' && ord($buf[4]) == 0x0D && ord($buf[5]) == 0x0A && ord($buf[6]) == 0x1A && ord($buf[7]) == 0x0A && $buf[12] == 'I' && $buf[13] == 'H' && $buf[14] == 'D' && $buf[15] == 'R') {
-			$x = (ord($buf[16])<<24) + (ord($buf[17])<<16) + (ord($buf[18])<<8) + (ord($buf[19])<<0);
-			$y = (ord($buf[20])<<24) + (ord($buf[21])<<16) + (ord($buf[22])<<8) + (ord($buf[23])<<0);
-			$type = 3;
-		}
-	
-		if (!isset($x, $y, $type)) {
-			return false;
-		}
-		return array($x, $y, $type, 'height="' . $x . '" width="' . $y . '"');
-	} else {
-		$size = getimagesize($image);
-		if (!$size) {
-			//false was returned
-			return $this->cpgGetimagesize($image, true/*force the use of custom function*/);
-		}elseif (!isset($size[0]) || !isset($size[1])) {
-			//webhost possibly changed getimagesize functionality
-			return $this->cpgGetimagesize($image, true/*force the use of custom function*/);
-		}else {
-			//function worked as expected, return the results
-			return $size;
-		}
-	}
+    if (!function_exists('getimagesize') || $force_cpg_function) {  
+        //custom function borrowed from http://www.wischik.com/lu/programmer/get-image-size.html
+        $f = @fopen($image, 'rb'); 
+        if ($f === false) {
+            return false;
+        } 
+        fseek($f, 0, SEEK_END); 
+        $len = ftell($f);
+        if ($len < 24) {
+            fclose($f); 
+            return false;
+        }
+        fseek($f, 0); 
+        $buf = fread($f, 24);
+        if ($buf === false) {
+            fclose($f); 
+            return false;
+        }
+        if (ord($buf[0]) == 255 && ord($buf[1]) == 216 && ord($buf[2]) == 255 && ord($buf[3]) == 224 && $buf[6] == 'J' && $buf[7] == 'F' && $buf[8] == 'I' && $buf[9] == 'F') { 
+            $pos=2; 
+            while (ord($buf[2]) == 255) {
+                if (ord($buf[3]) == 192 || ord($buf[3]) == 193 || ord($buf[3]) == 194 || ord($buf[3]) == 195 || ord($buf[3]) == 201 || ord($buf[3]) == 202 || ord($buf[3]) == 203) {
+                    break; // we've found the image frame
+                }
+                $pos += 2 + (ord($buf[4]) << 8) + ord($buf[5]);
+                if ($pos+12>$len) {
+                    break; // too far
+                }
+                fseek($f,$pos); 
+                $buf = $buf[0] . $buf[1] . fread($f,12);
+            }
+        }
+        fclose($f);
+    
+        // GIF:
+        if ($buf[0] == 'G' && $buf[1] == 'I' && $buf[2] == 'F') {
+            $x = ord($buf[6]) + (ord($buf[7])<<8);
+            $y = ord($buf[8]) + (ord($buf[9])<<8);
+            $type = 1;
+        }
+    
+        // JPEG:
+        if (ord($buf[0]) == 255 && ord($buf[1]) == 216 && ord($buf[2]) == 255) { 
+            $y = (ord($buf[7])<<8) + ord($buf[8]);
+            $x = (ord($buf[9])<<8) + ord($buf[10]);
+            $type = 2;
+        }
+    
+        // PNG:
+        if (ord($buf[0]) == 0x89 && $buf[1] == 'P' && $buf[2] == 'N' && $buf[3] == 'G' && ord($buf[4]) == 0x0D && ord($buf[5]) == 0x0A && ord($buf[6]) == 0x1A && ord($buf[7]) == 0x0A && $buf[12] == 'I' && $buf[13] == 'H' && $buf[14] == 'D' && $buf[15] == 'R') {
+            $x = (ord($buf[16])<<24) + (ord($buf[17])<<16) + (ord($buf[18])<<8) + (ord($buf[19])<<0);
+            $y = (ord($buf[20])<<24) + (ord($buf[21])<<16) + (ord($buf[22])<<8) + (ord($buf[23])<<0);
+            $type = 3;
+        }
+    
+        if (!isset($x, $y, $type)) {
+            return false;
+        }
+        return array($x, $y, $type, 'height="' . $x . '" width="' . $y . '"');
+    } else {
+        $size = getimagesize($image);
+        if (!$size) {
+            //false was returned
+            return $this->cpgGetimagesize($image, true/*force the use of custom function*/);
+        }elseif (!isset($size[0]) || !isset($size[1])) {
+            //webhost possibly changed getimagesize functionality
+            return $this->cpgGetimagesize($image, true/*force the use of custom function*/);
+        }else {
+            //function worked as expected, return the results
+            return $size;
+        }
+    }
 
 }
 
