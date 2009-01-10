@@ -163,7 +163,7 @@ if (array_key_exists($action, $tasks)) {
         print '  </tr>'.$lineBreak;
         print '  <tr>'.$lineBreak;
         print '    <td>'.$lineBreak;
-        print '      <span id="'.$name.'_wrapper">'.$lineBreak;
+        print '      <div id="'.$name.'_wrapper">'.$lineBreak;
         print '        '.$lineBreak;
         
         starttable('100%', '', 2);
@@ -179,7 +179,7 @@ if (array_key_exists($action, $tasks)) {
         
         endtable();
         
-        print '      </span>'.$lineBreak;
+        print '      </div>'.$lineBreak;
         print '    </td>'.$lineBreak;
         print '  </tr>'.$lineBreak;
         

@@ -712,7 +712,6 @@ class core_udb {
                 print '</select> (3)';
                 print '&nbsp;&nbsp;&nbsp;&nbsp;';
                 print '<button type="submit" class="button" name="submit" id="submit" value="'.$lang_util_php['submit_form'].'">'.$lang_util_php['submit_form'].' '.cpg_fetch_icon('ok', 2).'</button> (4)';
-                print '</form>';
             }
 
         // Taken from Mambo (com_registration.php)

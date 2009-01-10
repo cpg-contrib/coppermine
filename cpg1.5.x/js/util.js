@@ -17,7 +17,7 @@
 **********************************************/
 
 function init_utils(){
-	jQuery.each($("span[id$='_wrapper']"), function(){
+	jQuery.each($("div[id$='_wrapper']"), function(){
 		$(this).css('display', 'none');					  
 	});
 	jQuery.each($("input[type='radio'][name='action']"), function(){
