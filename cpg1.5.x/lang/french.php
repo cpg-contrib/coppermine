@@ -54,19 +54,19 @@ $lang_date['scientific'] = '%d-%m-%Y %H:%M:%S';
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*', 'merde', 'putain', 'enculé*', 'salope', 'bite', 'cul', 'pute', 'pénis', 'clito', 'couille', 'pétasse', 'connard', 'salaud');
 
-$lang_meta_Album_names['random'] = 'Photos Aléatoires';
-$lang_meta_Album_names['lastup'] = 'Derniers Ajouts';
-$lang_meta_Album_names['lastalb'] = 'Derniers Albums mis à jour';
-$lang_meta_Album_names['lastcom'] = 'Derniers Commentaires';
-$lang_meta_Album_names['mostcom'] = 'Les plus commentées'; //cpg1.5
-$lang_meta_Album_names['topn'] = 'Les Plus Populaires';
-$lang_meta_Album_names['toprated'] = 'Les Mieux Notées';
-$lang_meta_Album_names['lasthits'] = 'Les Dernières images Vues';
-$lang_meta_Album_names['search'] = 'Résultats de la Recherche';
-$lang_meta_Album_names['album_search'] = 'Résultat de la recherche dans les Albums';
-$lang_meta_Album_names['category_search'] = 'Résultat de la recherche dans les Catégories';
-$lang_meta_Album_names['favpics'] = 'Photos Préférées';
-$lang_meta_Album_names['datebrowse'] = 'Navigation par date'; //cpg1.5
+$lang_meta_album_names['random'] = 'Photos Aléatoires';
+$lang_meta_album_names['lastup'] = 'Derniers Ajouts';
+$lang_meta_album_names['lastalb'] = 'Derniers Albums mis à jour';
+$lang_meta_album_names['lastcom'] = 'Derniers Commentaires';
+$lang_meta_album_names['mostcom'] = 'Les plus commentées'; //cpg1.5
+$lang_meta_album_names['topn'] = 'Les Plus Populaires';
+$lang_meta_album_names['toprated'] = 'Les Mieux Notées';
+$lang_meta_album_names['lasthits'] = 'Les Dernières images Vues';
+$lang_meta_album_names['search'] = 'Résultats de la Recherche';
+$lang_meta_album_names['album_search'] = 'Résultat de la recherche dans les Albums';
+$lang_meta_album_names['category_search'] = 'Résultat de la recherche dans les Catégories';
+$lang_meta_album_names['favpics'] = 'Photos Préférées';
+$lang_meta_album_names['datebrowse'] = 'Navigation par date'; //cpg1.5
 	
 $lang_errors['access_denied'] = 'Vous n\'avez pas la permission d\'accéder à cette page.';
 $lang_errors['perm_denied'] = 'Vous n\'avez pas la permission d\'effectuer cette opération.';
@@ -1269,7 +1269,7 @@ if (defined('EDITPICS_PHP')) {
   $lang_editpics_php['save_thumb'] ='Sauvegardez en tant que Vignette'; //cpg1.3.0
   $lang_editpics_php['gallery_icon'] = 'Faites-en mon Icône (avatar)'; //cpg1.4
   $lang_editpics_php['sel_on_img'] ='La sélection doit être entièrement sur l\\\'image'; //js-alert //cpg1.3.0
-  $lang_editpics_php['Album_properties'] ='Propriétés de l\'Album'; //cpg1.4
+  $lang_editpics_php['album_properties'] ='Propriétés de l\'Album'; //cpg1.4
   $lang_editpics_php['parent_category'] ='Catégorie parente'; //cpg1.4
   $lang_editpics_php['thumbnail_view'] ='Visualisation des Vignettes'; //cpg1.4
   $lang_editpics_php['select_unselect'] ='sélectionner/<br>déselectionner tout'; //cpg1.4
@@ -1712,7 +1712,7 @@ if (defined('PICMGR_PHP')) {
   $lang_picmgr_php['pic_mgr'] = 'Gestionnaire d\'image'; //cpg1.4
   $lang_picmgr_php['confirm_delete1'] = 'Etes-vous sur de vouloir supprimer cette image ?'; //cpg1.4
   $lang_picmgr_php['confirm_delete2'] = 'L\'image sera supprimée de façon permanente.'; //cpg1.4
-  $lang_picmgr_php['confirm_modifs'] = 'Confirmez les modifications'; //cpg1.4
+  $lang_picmgr_php['confirm_modifs'] = 'Voulez-vous vraiment effectuer ces modifications ?'; //cpg1.4
   $lang_picmgr_php['pic_need_name'] = 'L\'image doit avoir un nom&nbsp;!'; //cpg1.4
   $lang_picmgr_php['no_change'] = 'Vous n\'avez pas fait de changement&nbsp;!'; //cpg1.4
   $lang_picmgr_php['no_album'] = '* Pas d\'Album *'; //cpg1.4
@@ -1720,7 +1720,7 @@ if (defined('PICMGR_PHP')) {
   $lang_picmgr_php['explanation1'] = 'l\'Administrateur du site a défini &quot;l\'ordre de tri par défaut des images&quot; dans la Configuration en  &quot;Ordre croissant&quot; ou &quot;Ordre décroissant&quot; (configuration générale pour tous les Utilisateurs qui n\'ont pas choisi une autre option de tri de manière individuelle)'; //cpg1.4
   $lang_picmgr_php['explanation2'] = 'l\'Utilisateur a choisi &quot;Ordre croissant&quot; ou &quot;Ordre décroissant&quot; sur la page des vignettes (Choix personnel de l\'Utilisateur)'; //cpg1.4
   $lang_picmgr_php['change_album'] = 'Si vous changez d\'album, vos modifications seront perdues!'; // cpg1.5
-  $lang_picmgr_php['submit_reminder'] = 'Les changements dans l\ordre s\'affichage ne seront pas sauvegardés tant que vous n\'aurez pas cliqué sur &quot;Appliquer les changements&quot;.'; // cpg1.5
+  $lang_picmgr_php['submit_reminder'] = 'Les changements dans l\'ordre d\'affichage ne seront pas sauvegardés tant que vous n\'aurez pas cliqué sur &quot;Appliquez les changements&quot;.'; // cpg1.5
 }
 
 
