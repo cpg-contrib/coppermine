@@ -28,7 +28,7 @@ remove extract() from refresh_db()
 */
 
 define('IN_COPPERMINE', true);
-define('UPLOAD_PHP', true);
+define('UTIL_PHP', true);
 
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
