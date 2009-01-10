@@ -50,9 +50,9 @@ $icon_array['ok'] = cpg_fetch_icon('ok', 2);
 if ($superCage->get->keyExists('id')) {
     $pid = $superCage->get->getInt('id');
 } elseif ($superCage->post->keyExists('id')){
-	$pid = $superCage->post->getInt('id');
+    $pid = $superCage->post->getInt('id');
 } else {
-	$pid = -1;
+    $pid = -1;
 }
 
 function process_post_data()
@@ -78,19 +78,19 @@ function process_post_data()
     $isgalleryicon = ($galleryicon===$pid);
 
     if ($superCage->post->keyExists('read_exif')){
-    	$read_exif = $superCage->post->getInt('read_exif');
+        $read_exif = $superCage->post->getInt('read_exif');
     }
 
     if ($superCage->post->keyExists('reset_vcount')){
-		$reset_vcount = $superCage->post->getInt('reset_vcount');
+        $reset_vcount = $superCage->post->getInt('reset_vcount');
     }
 
     if ($superCage->post->keyExists('reset_votes')){
-		$reset_votes = $superCage->post->getInt('reset_votes');
+        $reset_votes = $superCage->post->getInt('reset_votes');
     }
 
     if ($superCage->post->keyExists('del_comments')){
-		$del_comments = $superCage->post->getInt('del_comments') || $delete;
+        $del_comments = $superCage->post->getInt('del_comments') || $delete;
     }
 
     $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
@@ -152,7 +152,7 @@ function process_post_data()
 
     // rename a file
     if ($superCage->post->keyExists('filename') && $matches = $superCage->post->getMatched('filename','/^[0-9A-Za-z\/_.-]+$/')){
-    		$post_filename = $matches[0];
+            $post_filename = $matches[0];
     }
 
     if ($post_filename != $pic['filename']) {

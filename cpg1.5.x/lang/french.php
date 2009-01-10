@@ -349,7 +349,7 @@ $lang_social_bookmarks['favorite'] = 'Ajoutez cette page dans les favoris, Bookm
 $lang_social_bookmarks['send_email'] = 'Recommandez cette page par courriel'; // js-alert
 $lang_social_bookmarks['email_subject'] = 'Page Intéressante'; // js-alert
 $lang_social_bookmarks['email_body'] = 'Je pense que cette page pourrait vous intérresser'; // js-alert
-$lang_social_bookmarks['favorite_close'] = 'Ceci ne fonctionne pas avec votre navigateur.\\\nFermez cette boite de dialiogue et\\\nappuyez sur Ctrl-D pour marque cette page.'; // js-alert
+$lang_social_bookmarks['favorite_close'] = 'Ceci ne fonctionne pas avec votre navigateur.'."\n".'Fermez cette boite de dialiogue et'."\n".'appuyez sur Ctrl-D pour marque cette page.'; // js-alert
 
 $lang_version_alert['version_alert'] = 'Version sans support d\'aide!'; //cpg1.4
 $lang_version_alert['no_stable_version'] = 'Vous utilisez Coppermine  %s (%s) qui s\'adresse aux Utilisateurs très expérimentés - Cette version n\'offre aucun support d\'aide. Vous pouvez l\'Utilisez, mais à vos risques et périls. Si vous êtes un nouvel Utilisateur, téléchargez la dernière version stable alors vous aurez accès au Support Copermine, si vous avez besoin d\'aide!'; //cpg1.4
@@ -419,7 +419,7 @@ $lang_albmgr_php['no_change'] = 'vous n\\\'avez effectué Aucun changement&nbsp;
 $lang_albmgr_php['new_Album'] = 'Nouvel Album';
 $lang_albmgr_php['delete_Album'] = 'Effacez l\'Album'; // cpg1.5
 $lang_albmgr_php['confirm_delete1'] = 'Voulez vous vraiment Supprimez cet Album ?'; //js-alert
-$lang_albmgr_php['confirm_delete2'] = '\nToutes vos Images et tous les Commentaires seront perdus !'; //js-alert
+$lang_albmgr_php['confirm_delete2'] = 'Toutes vos Images et tous les Commentaires seront perdus !'; //js-alert
 $lang_albmgr_php['select_first'] = 'Sélectionnez un Album avant';//js-alert
 $lang_albmgr_php['my_gAllezy'] = '* Ma Galerie *';
 $lang_albmgr_php['no_category'] = '* Pas de Catégorie *';
@@ -1362,7 +1362,7 @@ if (defined('GROUPMGR_PHP')) {
   $lang_groupmgr_php['approval'] = 'Approbation'; //cpg1.4
   $lang_groupmgr_php['create_new_group'] = 'Créez un Nouveau Groupe';
   $lang_groupmgr_php['del_groups'] = 'Supprimez le(s) Groupe(s) sélectionné(s)';
-  $lang_groupmgr_php['confirm_del'] = 'Attention, lorsque vous supprimez un Groupe, les Utilisateurs de ce groupe seront transférés dans le groupe d\\\'Utilisateurs \\\'Enregistré\\\'!\n\nSouhaitez-vous vraiment CONTINUEZ ?';//js-alert
+  $lang_groupmgr_php['confirm_del'] = 'Attention, lorsque vous supprimez un Groupe, les Utilisateurs de ce groupe seront transférés dans le groupe d\\\'Utilisateurs \\\'Enregistré\\\'!\\nSouhaitez-vous vraiment CONTINUEZ ?';//js-alert
   $lang_groupmgr_php['title'] = 'Gérez les Groupes d\'Utilisateurs';
   $lang_groupmgr_php['reset_to_default'] = 'Mettre le nom par défaut (%s) - recommandé&nbsp;!'; //cpg1.4
   $lang_groupmgr_php['error_group_empty'] = 'La Table MySQL du Groupe est vide&nbsp;!<br /><br />Groupe par défaut créé, rechargez s\'il vous plait la page'; //cpg1.4
@@ -1701,7 +1701,7 @@ if (defined('PHPINFO_PHP')) {
 if (defined('PICMGR_PHP')) {
   $lang_picmgr_php['pic_mgr'] = 'Gestionnaire d\'image'; //cpg1.4
   $lang_picmgr_php['confirm_delete1'] = 'Etes-vous sur de vouloir supprimer cette image ?'; //cpg1.4
-  $lang_picmgr_php['confirm_delete2'] = '\nL\'image sera supprimée de façon permanente.'; //cpg1.4
+  $lang_picmgr_php['confirm_delete2'] = 'L\'image sera supprimée de façon permanente.'; //cpg1.4
   $lang_picmgr_php['apply_modifs'] = 'Appliquez les modifications'; //cpg1.4
   $lang_picmgr_php['confirm_modifs'] = 'Confirmez les modifications'; //cpg1.4
   $lang_picmgr_php['pic_need_name'] = 'L\'image doit avoir un nom&nbsp;!'; //cpg1.4
@@ -2422,7 +2422,7 @@ if (defined('UTIL_PHP')) {
   $lang_util_php['refresh_db_explanation'] = 'Cela va recharger les informations de poids et de taille. Utilisez cette fonction si les quotas sont incorrects ou si vous avez changé manuellement ces données.'; //cpg1.4
   $lang_util_php['reset_views'] = 'Réinitialisation du compteur de vues'; //cpg1.4
   $lang_util_php['reset_views_explanation'] = 'Met à zero le compteur de vue de l\'ensemble des fichiers de l\'Album sélectionné.'; //cpg1.4
-  $lang_util_php['reset_succes'] = 'Réinitialisation réussie'; // cpg1.5
+  $lang_util_php['reset_success'] = 'Réinitialisation réussie'; // cpg1.5
   $lang_util_php['orphan_comment'] = 'Pas de Commentaire ophelin trouvé'; //cpg1.3.0
   $lang_util_php['delete_all'] = 'Tout Supprimer';
   $lang_util_php['delete_all_orphans'] = 'Supprimez tous les Commentaires orphelins ?'; //cpg1.4

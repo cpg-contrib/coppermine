@@ -152,9 +152,9 @@ function delete_album($aid)
     $loopCounter = 0;
     while ($pic = mysql_fetch_array($result)) {
         if ($loopCounter/2 == floor($loopCounter/2)) {
-        	$tablecellstyle = 'tableb';
+            $tablecellstyle = 'tableb';
         } else {
-        	$tablecellstyle = 'tableb tableb_alternate';
+            $tablecellstyle = 'tableb tableb_alternate';
         }
         ob_start();
         delete_picture($pic['pid'], $tablecellstyle);
@@ -251,164 +251,164 @@ if ($superCage->get->keyExists('what')) {
 
 
 switch ($what) {
-	
+    
     // Album manager (don't necessarily delete something ;-)
     case 'albmgr':
         if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
         if (!GALLERY_ADMIN_MODE) {
-			//restrict to allowed categories of user
-			//first get allowed categories
-			global $USER_DATA;
-			
-			$group_id = $USER_DATA['group_id'];
-			$result = cpg_db_query("SELECT DISTINCT cid FROM {$CONFIG[TABLE_CATMAP]} WHERE group_id = $group_id");
-			$rowset = cpg_db_fetch_rowset($result);
-			
-			//add allowed categories to the restriction		
+            //restrict to allowed categories of user
+            //first get allowed categories
+            global $USER_DATA;
+            
+            $group_id = $USER_DATA['group_id'];
+            $result = cpg_db_query("SELECT DISTINCT cid FROM {$CONFIG[TABLE_CATMAP]} WHERE group_id = $group_id");
+            $rowset = cpg_db_fetch_rowset($result);
+            
+            //add allowed categories to the restriction     
             $restrict = "AND (category = '" . (FIRST_USER_CAT + USER_ID) . "'";
-			
-			foreach($rowset as $key => $value){
-				$restrict .= " OR category = '" . $value['cid'] . "'";
-			}
-			$restrict .= ")";        
-		} else {
+            
+            foreach($rowset as $key => $value){
+                $restrict .= " OR category = '" . $value['cid'] . "'";
+            }
+            $restrict .= ")";        
+        } else {
             $restrict = '';
         }
 
        
-		$returnOutput = ''; // the var that will later be shown as a result of the action performed
+        $returnOutput = ''; // the var that will later be shown as a result of the action performed
         //pageheader($lang_delete_php['alb_mgr']);
         $returnOutput .= '<table border="0" cellspacing="0" cellpadding="0" width="100%">';
-		
-		//prevent sorting of the albums if not admin or in own album
-		$sorted_list 	= $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
-		/**get the category value*/
-		$category 		= $superCage->post->getInt('category');
+        
+        //prevent sorting of the albums if not admin or in own album
+        $sorted_list    = $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
+        /**get the category value*/
+        $category       = $superCage->post->getInt('category');
 /**
- * 		if(GALLERY_ADMIN_MODE || $superCage->post->getInt('cat') == FIRST_USER_CAT + USER_ID){
- * 			$orig_sort_order = parse_list($sort_list_matched[0]);
- * 			$i=0;
- * 			foreach ($orig_sort_order as $album) {
- * 				$op = parse_orig_sort_order($album);
- * 				$sort_array[$i] = $op['aid'];
- * 				if (count ($op) == 2) {
- * 					$query = "UPDATE {$CONFIG[TABLE_ALBUMS]} SET pos='{$op['pos']}' WHERE aid='{$op['aid']}' $restrict LIMIT 1";
- * 					cpg_db_query($query);
- * 				} else {
- * 					cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $sort_list_matched), __FILE__, __LINE__);
- * 				}
- * 			$i++;
- * 			}
- * 		}
+ *      if(GALLERY_ADMIN_MODE || $superCage->post->getInt('cat') == FIRST_USER_CAT + USER_ID){
+ *          $orig_sort_order = parse_list($sort_list_matched[0]);
+ *          $i=0;
+ *          foreach ($orig_sort_order as $album) {
+ *              $op = parse_orig_sort_order($album);
+ *              $sort_array[$i] = $op['aid'];
+ *              if (count ($op) == 2) {
+ *                  $query = "UPDATE {$CONFIG[TABLE_ALBUMS]} SET pos='{$op['pos']}' WHERE aid='{$op['aid']}' $restrict LIMIT 1";
+ *                  cpg_db_query($query);
+ *              } else {
+ *                  cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $sort_list_matched), __FILE__, __LINE__);
+ *              }
+ *          $i++;
+ *          }
+ *      }
  */
 
- 		//getting the category to rederecte to ablum manager 
-		$category 	= $superCage->get->getInt('cat');
-		/**get the action*/
-		$op			= $superCage->get->getAlpha('op');	
-		/**get the position*/
-		$position		= $superCage->get->getInt('position');	
-		/**get the album name*/
-		$get_album_name = $superCage->get->getRaw('name');
-		
-		/**add the new album name to database*/
-		if($superCage->get->keyExists('op') && $op	== 'add'){
-			/**add the album to database*/
-	        $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description, owner) VALUES ('$category', '" . addslashes($get_album_name) . "', 'NO',  '{$position}', '', '$user_id')";
-	        cpg_db_query($query);
-	        /**get the aid of added the albums*/
-	        $getAid = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE pos ='{$position}' and category='{$category}'");
-		    /** now we make a array to encode*/
-		    $getAid = cpg_db_fetch_rowset($getAid);
-
-		    $dataArray = array(
-		        'message' => 'true',
-		        'newAid'  => $getAid['0']['aid']
-		    );
-		    $dataJson = json_encode($dataArray);
-		    echo $dataJson;
-		}
-		
-		/**get the updated album name*/
-		$get_updated_album_name = $superCage->get->getRaw('updatedname');
-		/**get the aid which user edited*/
-		$aid_updated 	= $superCage->get->getInt('aid');
-		
-		/**update album name when user save changes*/
-		if($superCage->get->keyExists('op') && $op	== 'update'){
-			
-			$query = "UPDATE $CONFIG[TABLE_ALBUMS] SET title='{$get_updated_album_name}' WHERE aid='{$aid_updated}' $restrict LIMIT 1";
+        //getting the category to rederecte to ablum manager 
+        $category   = $superCage->get->getInt('cat');
+        /**get the action*/
+        $op         = $superCage->get->getAlpha('op');  
+        /**get the position*/
+        $position       = $superCage->get->getInt('position');  
+        /**get the album name*/
+        $get_album_name = $superCage->get->getRaw('name');
+        
+        /**add the new album name to database*/
+        if($superCage->get->keyExists('op') && $op  == 'add'){
+            /**add the album to database*/
+            $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description, owner) VALUES ('$category', '" . addslashes($get_album_name) . "', 'NO',  '{$position}', '', '$user_id')";
             cpg_db_query($query);
-			/** now we make a array to encode*/
-		    $dataArray = array(
-		        'message' => 'true',
-		    );
-		    $dataJson = json_encode($dataArray);
-		    echo $dataJson;
-		}	
-		
-		/**get the aid to going to delete album */
-		$deleted_id		= $superCage->get->getInt('deleteAid');
-		/**delete the album which user click*/
-		if($superCage->get->keyExists('op') && $op == 'delete'){
-			/**delecte commnets and phots */
-		    $returnOutput .= delete_album($deleted_id);
-			
-			$result = cpg_db_query("SELECT aid  FROM {$CONFIG['TABLE_ALBUMS']} WHERE category ='{$category}' ORDER BY pos ASC");
-        	$rowset = cpg_db_fetch_rowset($result);	
+            /**get the aid of added the albums*/
+            $getAid = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE pos ='{$position}' and category='{$category}'");
+            /** now we make a array to encode*/
+            $getAid = cpg_db_fetch_rowset($getAid);
 
-			$i = 100;
-			foreach($rowset as $key => $set_value ){
-	        	$query = "UPDATE $CONFIG[TABLE_ALBUMS] SET pos='{$i}' WHERE aid='{$set_value['aid']}' $restrict LIMIT 1";
-	          	cpg_db_query($query);
-	        $i++;
-		    }
-		    
-			$returnOutput .= '</table>';
-        	/**redirect to the album manager*/
-        	cpgRedirectPage('albmgr.php?cat='.$category, $lang_common['information'], $returnOutput); // redirect the user
-		}
-		
-		/**save sorted list here*/
+            $dataArray = array(
+                'message' => 'true',
+                'newAid'  => $getAid['0']['aid']
+            );
+            $dataJson = json_encode($dataArray);
+            echo $dataJson;
+        }
+        
+        /**get the updated album name*/
+        $get_updated_album_name = $superCage->get->getRaw('updatedname');
+        /**get the aid which user edited*/
+        $aid_updated    = $superCage->get->getInt('aid');
+        
+        /**update album name when user save changes*/
+        if($superCage->get->keyExists('op') && $op  == 'update'){
+            
+            $query = "UPDATE $CONFIG[TABLE_ALBUMS] SET title='{$get_updated_album_name}' WHERE aid='{$aid_updated}' $restrict LIMIT 1";
+            cpg_db_query($query);
+            /** now we make a array to encode*/
+            $dataArray = array(
+                'message' => 'true',
+            );
+            $dataJson = json_encode($dataArray);
+            echo $dataJson;
+        }   
+        
+        /**get the aid to going to delete album */
+        $deleted_id     = $superCage->get->getInt('deleteAid');
+        /**delete the album which user click*/
+        if($superCage->get->keyExists('op') && $op == 'delete'){
+            /**delecte commnets and phots */
+            $returnOutput .= delete_album($deleted_id);
+            
+            $result = cpg_db_query("SELECT aid  FROM {$CONFIG['TABLE_ALBUMS']} WHERE category ='{$category}' ORDER BY pos ASC");
+            $rowset = cpg_db_fetch_rowset($result); 
+
+            $i = 100;
+            foreach($rowset as $key => $set_value ){
+                $query = "UPDATE $CONFIG[TABLE_ALBUMS] SET pos='{$i}' WHERE aid='{$set_value['aid']}' $restrict LIMIT 1";
+                cpg_db_query($query);
+            $i++;
+            }
+            
+            $returnOutput .= '</table>';
+            /**redirect to the album manager*/
+            cpgRedirectPage('albmgr.php?cat='.$category, $lang_common['information'], $returnOutput); // redirect the user
+        }
+        
+        /**save sorted list here*/
         if ($superCage->post->keyExists('category')) {
-			$category 		= $superCage->post->getInt('category');
-			
-			$result = cpg_db_query("SELECT aid, pos, title  FROM {$CONFIG['TABLE_ALBUMS']} WHERE category ='{$category}' ORDER BY pos ASC, category");
-			$rowset = cpg_db_fetch_rowset($result);	 
+            $category       = $superCage->post->getInt('category');
+            
+            $result = cpg_db_query("SELECT aid, pos, title  FROM {$CONFIG['TABLE_ALBUMS']} WHERE category ='{$category}' ORDER BY pos ASC, category");
+            $rowset = cpg_db_fetch_rowset($result);  
 
-			if ($superCage->post->keyExists('sort_order')) {
-					$get_rows = $superCage->post->getRaw('sort_order');
+            if ($superCage->post->keyExists('sort_order')) {
+                    $get_rows = $superCage->post->getRaw('sort_order');
 
-					$action= '';
-					$assign_position = '';
-					$sucess="";
-					$sort_rows = parse_pic_list($get_rows);
+                    $action= '';
+                    $assign_position = '';
+                    $sucess="";
+                    $sort_rows = parse_pic_list($get_rows);
 
-					foreach($sort_rows as $key => $option_value ){
-						
-						if($option_value==$rowset[$key]['aid']){
-							 continue;
-						}
-						
-						if($option_value!=$rowset[$key]['aid']){
+                    foreach($sort_rows as $key => $option_value ){
+                        
+                        if($option_value==$rowset[$key]['aid']){
+                             continue;
+                        }
+                        
+                        if($option_value!=$rowset[$key]['aid']){
 
-		                  	$returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\"> Updating album '".$option_value."' Position to ". $rowset[$key]['pos']."</td></tr>\n";
-							$query = "UPDATE $CONFIG[TABLE_ALBUMS] SET pos='{$rowset[$key]['pos']}' WHERE aid='{$option_value}' $restrict LIMIT 1";
-		              		cpg_db_query($query);
-		                  		              
-						}
-				
-					}
+                            $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\"> Updating album '".$option_value."' Position to ". $rowset[$key]['pos']."</td></tr>\n";
+                            $query = "UPDATE $CONFIG[TABLE_ALBUMS] SET pos='{$rowset[$key]['pos']}' WHERE aid='{$option_value}' $restrict LIMIT 1";
+                            cpg_db_query($query);
+                                              
+                        }
+                
+                    }
 
-				} 
+                } 
 
         $returnOutput .= '</table>';
         cpgRedirectPage('albmgr.php?cat='.$category, $lang_common['information'], $returnOutput); // redirect the user
         }
 
 
-		break;
+        break;
 
 //
 // Picture manager (don't necessarily delete something ;-)
@@ -426,16 +426,16 @@ switch ($what) {
       }
 
       $returnOutput = ''; // the var that will later be shown as a result of the action performed
-	  $returnOutput .= '<table border="0" cellspacing="0" cellpadding="0" width="100%">';
-	  
+      $returnOutput .= '<table border="0" cellspacing="0" cellpadding="0" width="100%">';
+      
  
-  		$sort_list_matched = $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
-       	$orig_sort_order = parse_pic_list($sort_list_matched[0]);
+        $sort_list_matched = $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
+        $orig_sort_order = parse_pic_list($sort_list_matched[0]);
 
         foreach ($orig_sort_order as $picture){
            $op = parse_pic_orig_sort_order($picture);
            $sort_array[$i] = $op['aid'];
-           				
+                        
            if (count ($op) == 2){
               $query = "UPDATE $CONFIG[TABLE_PICTURES] SET position='{$op['pos']}' WHERE pid='{$op['aid']}' $restrict LIMIT 1";
               cpg_db_query($query);
@@ -446,30 +446,30 @@ switch ($what) {
  
       
       
-			$album_id 	= $category = $superCage->post->getInt('albunm_id');
-			$result 	= cpg_db_query("SELECT aid, pid, filename,title,position FROM {$CONFIG['TABLE_PICTURES']} WHERE aid =".$album_id." ORDER BY position ASC, pid");
-			$rowset = cpg_db_fetch_rowset($result);
+            $album_id   = $category = $superCage->post->getInt('albunm_id');
+            $result     = cpg_db_query("SELECT aid, pid, filename,title,position FROM {$CONFIG['TABLE_PICTURES']} WHERE aid =".$album_id." ORDER BY position ASC, pid");
+            $rowset = cpg_db_fetch_rowset($result);
 
-			//$aa = $superCage->post->getMatched('ajax_to', '/^[0-9@,]+$/');
-			if ($superCage->post->keyExists('pictur_order')) {
-					/**get the sorted order*/
-					$get_rows = $superCage->post->getRaw('pictur_order');
-					$sort_rows = parse_pic_list($get_rows);
+            //$aa = $superCage->post->getMatched('ajax_to', '/^[0-9@,]+$/');
+            if ($superCage->post->keyExists('picture_order')) {
+                    /**get the sorted order*/
+                    $get_rows = $superCage->post->getRaw('picture_order');
+                    $sort_rows = parse_pic_list($get_rows);
 
-					foreach($sort_rows as $key => $option_value){
-						
-						if($option_value==$rowset[$key]['pid']){
-							 continue;
-						}
-						if($option_value!=$rowset[$key]['pid']){
-							/**update the new position */
-		                  	$returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\"> Updating picture ".$option_value." Position to ".$rowset[$key]['position']."</td></tr>\n";
-		                  	$query = "UPDATE $CONFIG[TABLE_PICTURES] SET position='{$rowset[$key]['position']}' WHERE pid='{$option_value}' $restrict LIMIT 1";
-		                	cpg_db_query($query);
-						}
-					}
-				} 
-				
+                    foreach($sort_rows as $key => $option_value){
+                        
+                        if($option_value==$rowset[$key]['pid']){
+                             continue;
+                        }
+                        if($option_value!=$rowset[$key]['pid']){
+                            /**update the new position */
+                            $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\"> Updating picture ".$option_value." Position to ".$rowset[$key]['position']."</td></tr>\n";
+                            $query = "UPDATE $CONFIG[TABLE_PICTURES] SET position='{$rowset[$key]['position']}' WHERE pid='{$option_value}' $restrict LIMIT 1";
+                            cpg_db_query($query);
+                        }
+                    }
+                } 
+                
         if ($need_caption) {
               ob_start();
               output_caption();
@@ -477,7 +477,7 @@ switch ($what) {
               ob_end_clean();
         }
         $returnOutput .= '</table>';
-      	cpgRedirectPage('picmgr.php?aid='.$album_id, $lang_common['information'], $returnOutput); // redirect the user
+        cpgRedirectPage('picmgr.php?aid='.$album_id, $lang_common['information'], $returnOutput); // redirect the user
       
       break;
 

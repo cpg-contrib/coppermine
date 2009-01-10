@@ -513,17 +513,17 @@ echo <<<EOT
 <script language="javascript" type="text/javascript">
 function confirmUninstall(text)
 {
-    return confirm("{$lang_pluginmgr_php['confirm_uninstall']} (" + text + ") ?");
+    return confirm("{$lang_pluginmgr_php['confirm_uninstall']} (" + text + ")");
 }
 
 function confirmRemove(text)
 {
-    return confirm("{$lang_pluginmgr_php['confirm_remove']} (" + text + ") ?");
+    return confirm("{$lang_pluginmgr_php['confirm_remove']} (" + text + ")");
 }
 
 function confirmDel(text)
 {
-    return confirm("{$lang_pluginmgr_php['confirm_delete']} (" + text + ") ?");
+    return confirm("{$lang_pluginmgr_php['confirm_delete']} (" + text + ")");
 }
 </script>
 EOT;

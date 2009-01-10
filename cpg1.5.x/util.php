@@ -737,7 +737,7 @@ function reset_views()
         }
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
 
-        if (cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits ='0' $albstr")) echo $lang_util_pgp['reset_succes'];
+        if (cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits ='0' $albstr")) echo $lang_util_pgp['reset_success'];
 }
 
 function refresh_db()

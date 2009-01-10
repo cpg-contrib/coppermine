@@ -33,7 +33,7 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
 $icon_array = array();
 $icon_array['ok'] = cpg_fetch_icon('ok', 0);
 $icon_array['up'] = cpg_fetch_icon('up', 0, $lang_common['move_up']);
-$icon_array['down']	= cpg_fetch_icon('down', 0, $lang_common['move_down']);
+$icon_array['down'] = cpg_fetch_icon('down', 0, $lang_common['move_down']);
 $icon_array['new'] = cpg_fetch_icon('add', 0, $lang_albmgr_php['new_album']);
 $icon_array['delete'] = cpg_fetch_icon('delete', 0, $lang_albmgr_php['delete_album']);
 
@@ -70,11 +70,11 @@ function alb_get_subcat_data($parent, $ident = '')
 }
         
 
-/**set the message varialble to javascript file*/
+/**set the message variable to javascript file*/
 $confirm_modifs =  $lang_albmgr_php['confirm_modifs'];
 set_js_var('confirm_modifs', $confirm_modifs) ;
 /**Albums delete confirm message*/
-$confirm_delete  = $lang_albmgr_php['confirm_delete1'] . '\n' . $lang_albmgr_php['confirm_delete2'];
+$confirm_delete  = $lang_albmgr_php['confirm_delete1'] . "\n" . $lang_albmgr_php['confirm_delete2'];
 set_js_var("confirm_delete", $confirm_delete);
 /**When user try to delete albums without any selections*/
 $delete_not_selected = $lang_albmgr_php['select_first'];
@@ -84,7 +84,7 @@ $category_change = $lang_albmgr_php['category_change'];
 set_js_var('category_change', $category_change);
 /**get the category value */
 if ($superCage->get->keyExists('cat')) {
-	$cat = $superCage->get->getInt('cat');
+    $cat = $superCage->get->getInt('cat');
 } else {
     $cat = 0;
 }
@@ -100,16 +100,16 @@ print <<< EOT
 EOT;
 starttable('100%', cpg_fetch_icon('alb_mgr', 2).$lang_albmgr_php['title'].'&nbsp;'.cpg_display_help('f=albums.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1);
 print <<< EOT
-	<noscript>
-	<tr>
-		<td colspan="2" class="tableh2">
-			{lang_common['javascript_needed']}
-		</td>
-	</tr>
-	</noscript>
-	<tr>
+    <noscript>
+    <tr>
+        <td colspan="2" class="tableh2">
+            {lang_common['javascript_needed']}
+        </td>
+    </tr>
+    </noscript>
+    <tr>
 EOT;
-	
+    
 if (GALLERY_ADMIN_MODE) {
     $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat ORDER BY pos ASC");
 } elseif (USER_ADMIN_MODE) {
@@ -121,9 +121,9 @@ if (GALLERY_ADMIN_MODE) {
 } else {
     cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 }
-	$rowset = cpg_db_fetch_rowset($result);
-	$i = 100;
-	$sort_order = '';
+    $rowset = cpg_db_fetch_rowset($result);
+    $i = 100;
+    $sort_order = '';
 if (count ($rowset) > 0) foreach ($rowset as $album) {
     $sort_order .= $album['aid'] . '@' . ($i++) . ',';
 }
@@ -176,7 +176,7 @@ EOT;
 
     }       
     print $album_list;
-	print <<< EOT
+    print <<< EOT
 </table>
     </div>
     <table class="album-operate" cellspacing="0" cellpadding="0" border="0">
@@ -187,21 +187,21 @@ EOT;
 // Sorting is also prevented in delete.php when user doesn't have the rights.
   if(GALLERY_ADMIN_MODE||($cat == USER_ID + FIRST_USER_CAT))
   {
-  	
+    
     if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
         $prefix = $THEME_DIR;
     } else {
         $prefix = '';
-    }	
-	
+    }   
+    
     print <<< EOT
-	<td style="width: 115px" id="control">
-		<a id="up_click" class="click">{$icon_array['up']}</a>
-		<a id="down_click" class="click">{$icon_array['down']}</a>
-     	<a id="deleteEvent" class="click" title="addAlbumButton">{$icon_array['delete']}</a>
-    	<a id="add_new_album"  class="click" title="New" >{$icon_array['new']}</a>
-    	<img id="loadin" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" />
-	</td>
+    <td style="width: 115px" id="control">
+        <a id="up_click" class="click">{$icon_array['up']}</a>
+        <a id="down_click" class="click">{$icon_array['down']}</a>
+        <a id="deleteEvent" class="click" title="addAlbumButton">{$icon_array['delete']}</a>
+        <a id="add_new_album"  class="click" title="New" >{$icon_array['new']}</a>
+        <img id="loadin" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" />
+    </td>
 EOT;
   }
   else
@@ -209,41 +209,41 @@ EOT;
     print '<td></td>';
   }
 
-	print <<< EOT
-	
+    print <<< EOT
+    
         <td id="add-box" style="display: none;">
-			<input type="text" id="add-name" name="add-name" size="27" maxlength="80" class="textinput" value="" />
-			<button id="addEvent" class="button">{$lang_common['ok']}</button>
-			<a class="addCancel close">{$lang_albmgr_php['cancel']}</a>
-		</td>
-		<td id="edit-box" style="display: none;">
-			<input type="text" id="edit-name" name="edit-name" size="27" maxlength="80" class="textinput" value="" />
-			<button id="updateEvent" class="button">{$lang_common['ok']}</button>
-			<a class="albumCancel close">{$lang_albmgr_php['cancel']}</a>
-		</td>
+            <input type="text" id="add-name" name="add-name" size="27" maxlength="80" class="textinput" value="" />
+            <button id="addEvent" class="button">{$lang_common['ok']}</button>
+            <a class="addCancel close">{$lang_albmgr_php['cancel']}</a>
+        </td>
+        <td id="edit-box" style="display: none;">
+            <input type="text" id="edit-name" name="edit-name" size="27" maxlength="80" class="textinput" value="" />
+            <button id="updateEvent" class="button">{$lang_common['ok']}</button>
+            <a class="albumCancel close">{$lang_albmgr_php['cancel']}</a>
+        </td>
     </tr>
 </table>
 <table class="album-save" style="display: none;" cellspacing="0" cellpadding="0" border="0">
-	<tr>
-		<td>
-	    	<button type="submit" class="button" name="apply_changes" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
-		</td>
-		<td>
-			<div class="cpg_message_warning">
-				{$lang_albmgr_php['submit_reminder']}.
-			</div>
-		</td>
+    <tr>
+        <td>
+            <button type="submit" class="button" name="apply_changes" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
+        </td>
+        <td>
+            <div class="cpg_message_warning">
+                {$lang_albmgr_php['submit_reminder']}
+            </div>
+        </td>
 
-	</tr>
+    </tr>
 </table>
         </td>
       </tr>
 
 EOT;
-	
+    
 
-	endtable();
-	pagefooter();
-	ob_end_flush();
+    endtable();
+    pagefooter();
+    ob_end_flush();
 
 ?>

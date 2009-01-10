@@ -45,7 +45,7 @@ function get_album_data()
     }
 }
 
-function albumselect($id = "album") 
+function albumselect($id = "album")
 {
     global $CONFIG, $aid, $cpg_udb, $CPG_PHP_SELF, $lang_picmgr_php, $lang_common, $lang_errors;
     static $select = "";
@@ -111,7 +111,6 @@ function albumselect($id = "album")
         // $alb_cat = '';
         $alb_cid = '';
         foreach ($listArray as $val) {
-            //if ($val['cat'] != $alb_cat) {  // old method compared names which might not be unique
             if ($val['cid'] !== $alb_cid) {
                 if ($alb_cid) {
                     $select .= "</optgroup>\n";
@@ -128,27 +127,33 @@ function albumselect($id = "album")
 
     return "\n<select name=\"$id\" class=\"listbox\">\n$select</select>\n";
 }
-        /**set js variable to changes albums*/
-     set_js_var('change_album', $lang_picmgr_php['change_album']);
-     set_js_var('confirm_modifs', $lang_picmgr_php['confirm_modifs']);
-     
-     pageheader($lang_picmgr_php['pic_mgr']);
 
 
-?>
+// set js variable to changes albums
+set_js_var('change_album', $lang_picmgr_php['change_album']);
+set_js_var('confirm_modifs', $lang_picmgr_php['confirm_modifs']);
+
+pageheader($lang_picmgr_php['pic_mgr']);
+
+print <<<EOT
 
 <form name="picture_menu" id="cpgformPic" method="post" action="delete.php?what=picmgr" >
-<?php starttable("100%", cpg_fetch_icon('picture_sort', 2) . $lang_picmgr_php['pic_mgr'], 1); ?>
+EOT;
+
+starttable("100%", cpg_fetch_icon('picture_sort', 2) . $lang_picmgr_php['pic_mgr'], 1);
+
+print <<<EOT
     <noscript>
         <tr>
             <td colspan="2" class="tableh2">
-            <?php echo $lang_common['javascript_needed'] ?>
+            {$lang_common['javascript_needed']}
             </td>
         </tr>
     </noscript>
 <tr>
 
-<?php
+EOT;
+
     $aid = ($superCage->get->keyExists('aid')) ? $superCage->get->getInt('aid') : 0;
     
     if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
@@ -157,7 +162,7 @@ function albumselect($id = "album")
     else cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
     $rowset = cpg_db_fetch_rowset($result);
-	
+    
     $i=100;
     $sort_order = '';
 
@@ -165,49 +170,53 @@ function albumselect($id = "album")
    foreach ($rowset as $picture){
       $sort_order .= $picture['pid'].'@'.($i++).',';
    }
-?>
+
+print <<<EOT
 
    <td class="tableb" valign="top" >
-       <input type="hidden" name="albunm_id" value="<?php echo $aid; ?>" />
-       <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />
-       <input type="hidden" id="pictur_order" name="pictur_order" value="" />  
+       <input type="hidden" name="albunm_id" value="{$aid}" />
+       <input type="hidden" name="sort_order" value="{$sort_order}" />
+       <input type="hidden" id="picture_order" name="picture_order" value="" />  
 
        <table class="head-album" border="0" cellspacing="0" cellpadding="0">
-<?php
-    //Joe Ernst - Added USER_ADMIN_MODE
-    if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
-        $ALBUM_LIST = array();
-        $ALBUM_LIST[] = array(0, $lang_picmgr_php['no_album']);
-        get_album_data(FIRST_USER_CAT + USER_ID,'');
+EOT;
 
-echo <<<EOT
-      <tr class='head-album'>
+//Joe Ernst - Added USER_ADMIN_MODE
+if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
+    $ALBUM_LIST = array();
+    $ALBUM_LIST[] = array(0, $lang_picmgr_php['no_album']);
+    get_album_data(FIRST_USER_CAT + USER_ID,'');
+
+    echo <<<EOT
+      <tr class="head-album">
          <td>
             <strong>{$lang_common['select_album']}</strong>
 EOT;
         print albumselect('aid');
-echo <<<EOT
+    echo <<<EOT
          </td>
       </tr>
-	</table>
+    </table>
 EOT;
 }
-?>
+
+print <<<EOT
         <div id="sort" >
             <table id="pic_sort" cellspacing="0" cellpadding="0" border="0">
-<?php
+
+EOT;
        $i   =   100;
        $lb  =   '';
        $j   =   1;
         /** create a table to sort the picture*/  
     if (count ($rowset) > 0) 
         foreach ($rowset as $picture){
-        	/**get the photo name*/
-		    $get_pohoto_name = $picture['title'];
-		    /**check the photo name is available*/
-		    if($get_pohoto_name == ''){
-				$get_pohoto_name = $picture['filename'];	
-			}
+            /**get the photo name*/
+            $get_pohoto_name = $picture['title'];
+            /**check the photo name is available*/
+            if($get_pohoto_name == ''){
+                $get_pohoto_name = $picture['filename'];    
+            }
             $lb .='<tr id=sort-'.$picture["pid"].' ><td class="dragHandle"></td><td width="96%">'.$get_pohoto_name.'</td></tr>';
             $j++;
         }
@@ -220,12 +229,12 @@ EOT;
       </table>
       </div>
             <table class="album-operate" cellspacing="0" cellpadding="0" border="0">
-              	<tr>
-	            <td style="width: 115px" id="control">
-				  	<a class="photoUp">$up_arrow</a>
-	              	<a class="photoDown">$down_arrow</a>
-	            </td>
-            	</tr>
+                <tr>
+                <td style="width: 115px" id="control">
+                    <a class="photoUp">$up_arrow</a>
+                    <a class="photoDown">$down_arrow</a>
+                </td>
+                </tr>
             </table>
    </td>
 </tr>
@@ -246,9 +255,20 @@ EOT;
      }
      echo <<<EOT
 <tr>
-   <td colspan="2" class="tablef">
-   <button type="submit" class="button" name="apply" id="apply" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
-   </td>
+    <td colspan="2" class="tablef">
+        <table class="album-save" style="display: none;" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+                <td>
+                    <button type="submit" class="button" name="apply" id="apply" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
+                </td>
+                <td>
+                    <div class="cpg_message_warning">
+                        {$lang_picmgr_php['submit_reminder']}
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </td>
 </tr>
 EOT;
    endtable();

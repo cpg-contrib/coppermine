@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-01-09 [O] Cleaned up album/picture manager and language files {Paver}
 2009-01-08 [A] Added language keys for admin tool to convert keyword separator {Paver}
 2009-01-08 [A] Added config option for batch add process limit {Nibbler}
 2009-01-08 [A] Added config option for number of comments per page {Nibbler}
@@ -48,7 +49,7 @@ Changelog
 2008-12-31 [M] Updated bundled PHPMailer to 2.03 {Nibbler}
 2008-12-31 [B] Update names associated with pictures and comments when user name is changed {Nibbler}
 2008-12-31 [O] Removed the OK button from albmgr. Now the changes are saved on client side on blur {Abbas}
-2008-12-27 [C] Addapted French lang file to new core changes of internationalization {Frantz}
+2008-12-27 [C] Adapted French lang file to new core changes of internationalization {Frantz}
 2008-12-25 [C] Removed potentially confusing plus icon in ban manager; adjusted text input sizes for consistent look {TranzNDance}
 2008-12-25 [C] Reorganized admin menu to place related buttons next to each other {TranzNDance}
 2008-12-24 [B] Fixed the json_encode function to properly escape the strings {Abbas}
