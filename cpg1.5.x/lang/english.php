@@ -2457,7 +2457,6 @@ $lang_util_php['database'] = 'Database: '; // cpg1.5
 $lang_util_php['bytes'] = ' bytes'; // cpg1.5
 $lang_util_php['actual'] = ' Actual: '; // cpg1.5
 $lang_util_php['updated'] = 'Updated'; // cpg1.5
-$lang_util_php['update_failed'] = 'Update failed.'; // cpg1.5
 $lang_util_php['filesize_error'] = 'Could not obtain file size (may be invalid file), skipping....'; // cpg1.5
 $lang_util_php['skipped'] = 'Skipped'; // cpg1.5
 $lang_util_php['incorrect_dimension'] = 'Dimensions are incorrect'; // cpg1.5
