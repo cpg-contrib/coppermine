@@ -2472,8 +2472,9 @@ $lang_util_php['no_prob_found'] = 'No problems were found.'; // cpg1.5
 $lang_util_php['no_category'] = 'No Category'; // cpg1.5
 $lang_util_php['keyword_convert'] = 'Convert keyword separator'; // cpg1.5
 $lang_util_php['keyword_from_to'] = 'Convert keyword separator from %s to %s'; // cpg1.5
-$lang_util_php['keyword_set'] = 'Set keyword separator to new value (%s)'; // cpg1.5
-$lang_util_php['keyword_replace'] = 'Before conversion, replace %s with %s'; // cpg1.5
+$lang_util_php['keyword_set'] = 'Set gallery keyword separator to new value'; // cpg1.5
+$lang_util_php['keyword_replace_before'] = 'Before conversion, replace %s with %s'; // cpg1.5
+$lang_util_php['keyword_replace_after'] = 'After conversion, replace %s with %s'; // cpg1.5
 $lang_util_php['keyword_replace_values'] = array('_'=>'underscore', '-'=>'hyphen', '~'=>'tilde'); // cpg1.5
 $lang_util_php['keyword_explanation'] = 'This will convert the keyword separator for all your files from one value to another value.  See the help documentation for details.'; // cpg1.5
 }

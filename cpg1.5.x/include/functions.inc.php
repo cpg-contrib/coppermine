@@ -5204,7 +5204,8 @@ function cpg_config_set($name, $value)
         return;
     }
 
-    cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '$name'");
+    $sql = "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '$name'";
+    cpg_db_query($sql);
 
     $CONFIG[$name] = $value;
 

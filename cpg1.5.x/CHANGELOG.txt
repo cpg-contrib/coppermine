@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-01-10 [A] Implemented admin tool to convert keyword separator {Paver}
 2009-01-10 [O] Added heredoc to install.php and cleaned up code {Paver}
 2009-01-10 [C] Corrected non Internationalized string in jquery.sort.js {Frantz}
 2009-01-10 [C] Fixed typo in french.php and corrected the file accordingly to the english.php {Frantz} 

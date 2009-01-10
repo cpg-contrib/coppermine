@@ -59,66 +59,131 @@ if ($CONFIG['make_intermediate'] == 1) {
     $intermediate_create_string = $lang_util_php['disabled'];
 }
 
+// Set up labels for keyword separator conversion
+$keyword_select = "\n" . '                <select size="1" name="%s" class="listbox">';
+foreach ($lang_common['keyword_separators'] as $key_value=>$key_label) {
+    $keyword_select .= '<option value="' . htmlentities($key_value) . '">' . $key_label . '</option>';  
+}
+$keyword_select .= '</select>' . "\n" . '                ';
+$keyword_from_to = sprintf(
+                        $lang_util_php['keyword_from_to'],
+                        sprintf($keyword_select,'keyword_from'),
+                        sprintf($keyword_select,'keyword_to')
+                    );
+$keyword_set = $lang_util_php['keyword_set'];
+$replace_options = array_merge($lang_common['keyword_separators'],$lang_util_php['keyword_replace_values']);
+$replace_select = "\n" . '                <select size="1" name="%s" class="listbox">';
+foreach ($replace_options as $key_value=>$key_label) {
+    $replace_select .= '<option value="' . htmlentities($key_value) . '">' . $key_label . '</option>';  
+}
+$replace_select .= '</select>' . "\n" . '                ';
+$keyword_replace1 = sprintf(
+                        $lang_util_php['keyword_replace_before'],
+                        sprintf($replace_select,'keyword_replace1_from'),
+                        sprintf($replace_select,'keyword_replace1_to')
+                    );
+$keyword_replace2 = sprintf(
+                        $lang_util_php['keyword_replace_after'],
+                        sprintf($replace_select,'keyword_replace2_from'),
+                        sprintf($replace_select,'keyword_replace2_to')
+                    );
+// $lang_util_php['keyword_replace_values']
+// $lang_common['keyword_separators']
+
+// Set up array of admin tools to choose
 $tasks = array(
 
-    'update_thumbs' => array('update_thumbs', $lang_util_php['update'],'
-
-                <strong>'.$lang_util_php['update_what'].' (2):</strong><br />
+    'update_thumbs' => array(
+        'update_thumbs',
+        $lang_util_php['update'],'
+                <strong>' . $lang_util_php['update_what'] . ' (2):</strong><br />
                 <input type="radio" name="updatetype" id="updatetype1" value="0" class="nobg" /><label for="updatetype1" class="clickable_option">'.$lang_util_php['update_thumb'].'</label><br />
                 <input type="radio" name="updatetype" id="updatetype2" value="1" class="nobg" /><label for="updatetype2" class="clickable_option">'.$lang_util_php['update_pic'].'</label><br />
                 <input type="radio" name="updatetype" id="updatetype3" value="2" class="nobg" /><label for="updatetype3" class="clickable_option">'.$lang_util_php['update_both'].'</label><br />
                 <input type="radio" name="updatetype" id="updatetype5" value="4" class="nobg" /><label for="updatetype5" class="clickable_option">'.$lang_util_php['update_full'].'</label><br />
                 <input type="radio" name="updatetype" id="updatetype4" value="3" checked="checked" class="nobg" /><label for="updatetype4" class="clickable_option">'.$lang_util_php['update_full_normal'].'</label><br />
                 <input type="radio" name="updatetype" id="updatetype6" value="5" class="nobg" /><label for="updatetype6" class="clickable_option">'.$lang_util_php['update_full_normal_thumb'].'</label><hr />
-                '.$lang_util_php['update_number'].'
-                <input type="text" name="numpics" value="'.$defpicnum.'" size="5" class="textinput" /> '.$lang_util_php['update_option'].'<br />
+                '. $lang_util_php['update_number'] . ' <input type="text" name="numpics" value="'.$defpicnum.'" size="5" class="textinput" /> '.$lang_util_php['update_option'].'<br />
                 <input type="checkbox" name="autorefresh" id="autorefresh" checked="checked" value="1" class="checkbox" /><label for="autorefresh">'.$lang_util_php['autorefresh'].'</label><br />'
-                ),
+    ),
 
-    'filename_to_title' => array('filename_to_title', $lang_util_php['filename_title'],'
-
-                <strong>'.$lang_util_php['filename_how'].' (2):</strong><br />
+    'filename_to_title' => array(
+        'filename_to_title',
+        $lang_util_php['filename_title'],'
+                <strong>' . $lang_util_php['filename_how'] . ' (2):</strong><br />
                 <input type="radio" name="parsemode" id="parsemode1" value="0" checked="checked" class="nobg" /><label for="parsemode1" class="clickable_option">' . $lang_util_php['filename_remove'] . '</label><br />
-                <input type="radio" name="parsemode" id="parsemode2" value="1" class="nobg" /><label for="parsemode2" class="clickable_option">'.$lang_util_php['filename_euro'].'</label><br />
-                <input type="radio" name="parsemode" id="parsemode3" value="2" class="nobg" /><label for="parsemode3" class="clickable_option">'.$lang_util_php['filename_us'].'</label><br />
-                <input type="radio" name="parsemode" id="parsemode4" value="3" class="nobg" /><label for="parsemode4" class="clickable_option">'.$lang_util_php['filename_time'].'</label><br /><br />
-                <input type="checkbox" name="notitle" checked="checked" value="1" class="nobg" />'.$lang_util_php['notitle']
-                ),
+                <input type="radio" name="parsemode" id="parsemode2" value="1" class="nobg" /><label for="parsemode2" class="clickable_option">' . $lang_util_php['filename_euro'] . '</label><br />
+                <input type="radio" name="parsemode" id="parsemode3" value="2" class="nobg" /><label for="parsemode3" class="clickable_option">' . $lang_util_php['filename_us'] . '</label><br />
+                <input type="radio" name="parsemode" id="parsemode4" value="3" class="nobg" /><label for="parsemode4" class="clickable_option">' . $lang_util_php['filename_time'] . '</label><br />
+                <br />
+                <input type="checkbox" name="notitle" checked="checked" value="1" class="nobg" />' . $lang_util_php['notitle']
+    ),
 
-    'del_titles' => array('del_titles', $lang_util_php['delete_title'], $lang_util_php['delete_title_explanation']),
+    'del_titles' => array(
+        'del_titles',
+        $lang_util_php['delete_title'],
+        $lang_util_php['delete_title_explanation']
+    ),
 
-    'del_orig' => array('del_orig', $lang_util_php['delete_original'], $lang_util_php['delete_original_explanation']),
+    'del_orig' => array(
+        'del_orig',
+        $lang_util_php['delete_original'],
+        $lang_util_php['delete_original_explanation']
+    ),
 
-    'del_norm' => array('del_norm', $lang_util_php['delete_intermediate'], $lang_util_php['delete_intermediate_explanation1'].'<br />'.$lang_util_php['delete_intermediate_explanation2'].'<br />'.sprintf($lang_util_php['delete_intermediate_check'], $intermediate_create_string)),
+    'del_norm' => array(
+        'del_norm',
+        $lang_util_php['delete_intermediate'],'
+                ' . $lang_util_php['delete_intermediate_explanation1'] . '<br />
+                '. $lang_util_php['delete_intermediate_explanation2'] . '<br />
+                '. sprintf($lang_util_php['delete_intermediate_check'], $intermediate_create_string)
+    ),
 
-    'del_old' => array('del_old',
-                           $lang_util_php['delete_old'],
-                           $lang_util_php['delete_old_explanation'].
-                           '<br /><span style="color:red">'.
-                           $lang_util_php['delete_old_warning'].
-                           '</span><br />'.
-                           sprintf($lang_util_php['older_than'],
-                           '<input type="text" name="day_number" value="'.$dayolder.'" size="5" class="textinput"/>')
-                           ),
+    'del_old' => array(
+        'del_old',
+        $lang_util_php['delete_old'],'
+                ' . $lang_util_php['delete_old_explanation'] . '<br />
+                <span style="color:red">' . $lang_util_php['delete_old_warning'] . '</span><br />
+                '. sprintf($lang_util_php['older_than'],'<input type="text" name="day_number" value="'.$dayolder.'" size="5" class="textinput"/>')
+    ),
 
 
-    'del_orphans' => array('del_orphans', $lang_util_php['delete_orphans'], $lang_util_php['delete_orphans_explanation']),
+    'del_orphans' => array(
+        'del_orphans',
+        $lang_util_php['delete_orphans'],
+        $lang_util_php['delete_orphans_explanation']
+    ),
 
-    'deletebackup_img' => array('deletebackup_img', $lang_util_php['delete_back'], $lang_util_php['delete_back_explanation']),
+    'deletebackup_img' => array(
+        'deletebackup_img',
+        $lang_util_php['delete_back'],
+        $lang_util_php['delete_back_explanation']
+    ),
 
-    'refresh_db' => array('refresh_db', $lang_util_php['refresh_db'], $lang_util_php['refresh_db'].'<br />' . $lang_util_php['update_number'].'
+    'refresh_db' => array(
+        'refresh_db',
+        $lang_util_php['refresh_db'],'
+                ' . $lang_util_php['refresh_db'] . '<br />
+                '. $lang_util_php['update_number'] . '<input type="text" name="refresh_numpics" value="'.$defpicnum.'" size="5" class="textinput" /><br />
+                '. $lang_util_php['update_option']
+    ),
 
-                <input type="text" name="refresh_numpics" value="'.$defpicnum.'" size="5" class="textinput" /><br />'.$lang_util_php['update_option']
-                ),
+    'reset_views' => array(
+        'reset_views',
+        $lang_util_php['reset_views'],
+        $lang_util_php['reset_views_explanation']
+    ),
 
-    'reset_views' => array('reset_views', $lang_util_php['reset_views'], $lang_util_php['reset_views_explanation']),
-
-    'keyword_convert' => array('keyword_convert', $lang_util_php['keyword_convert'],'
-                <strong>'.$lang_util_php['keyword_from_to'].' (2)</strong><br />
-                <input type="checkbox" name="keyword_set" checked="checked" value="1" class="nobg" />'.$lang_util_php['keyword_set'].'<br />
-                <input type="checkbox" name="keyword_replace" checked="checked" value="1" class="nobg" />'.$lang_util_php['keyword_replace']
-                .'<br /><br />'.$lang_util_php['keyword_explanation']
-                ),
+    'keyword_convert' => array(
+        'keyword_convert', 
+        $lang_util_php['keyword_convert'],'
+                <strong>' . $keyword_from_to . ' (2)</strong><br />
+                <input type="checkbox" name="keyword_set" checked="checked" value="1" class="nobg" />' . $keyword_set . '<br />
+                <input type="checkbox" name="keyword_replace1" value="1" class="nobg" />' . $keyword_replace1 . '<br />
+                <input type="checkbox" name="keyword_replace2" value="1" class="nobg" />' . $keyword_replace2 . '<br />
+                <br />
+                '. $lang_util_php['keyword_explanation']
+    ),
 );
 
 if ($superCage->post->keyExists('action') && $matches = $superCage->post->getMatched('action', '/^[A-Za-z_]+$/')) {
@@ -922,11 +987,58 @@ EOT;
 
 function keyword_convert()
 {
-    global $lang_common, $lang_util_php;
+    global $CONFIG, $lang_common, $lang_util_php;
 
-    // TO DO: implement 'convert keyword separator'
-    // language keys are set
-    echo $lang_util_php['keyword_convert'] . '<br />' . $lang_common['error'] . '<br />';
+    $superCage = Inspekt::makeSuperCage();
+    $set_config    = $superCage->post->keyExists('keyword_set') ? $superCage->post->getInt('keyword_set') : 0;
+    $replace_from  = $superCage->post->keyExists('keyword_from') ? html_entity_decode($superCage->post->getRaw('keyword_from')) : '';
+    $replace_to    = $superCage->post->keyExists('keyword_to') ? html_entity_decode($superCage->post->getRaw('keyword_to')) : '';
+    $replace1      = $superCage->post->keyExists('keyword_replace1') ? $superCage->post->getInt('keyword_replace1') : 0;
+    $replace1_from = $superCage->post->keyExists('keyword_replace1_from') ? html_entity_decode($superCage->post->getRaw('keyword_replace1_from')) : '';
+    $replace1_to   = $superCage->post->keyExists('keyword_replace1_to') ? html_entity_decode($superCage->post->getRaw('keyword_replace1_to')) : '';
+    $replace2      = $superCage->post->keyExists('keyword_replace2') ? $superCage->post->getInt('keyword_replace2') : 0;
+    $replace2_from = $superCage->post->keyExists('keyword_replace2_from') ? html_entity_decode($superCage->post->getRaw('keyword_replace2_from')) : '';
+    $replace2_to   = $superCage->post->keyExists('keyword_replace2_to') ? html_entity_decode($superCage->post->getRaw('keyword_replace2_to')) : '';
+
+    starttable('100%', cpg_fetch_icon('info', 2) . ' ' . $lang_util_php['keyword_convert'], 1);
+    echo "    <tr><td><br />\n";
+    $replace_options = array_merge($lang_common['keyword_separators'],$lang_util_php['keyword_replace_values']);
+    if ($replace1 && strlen($replace1_from) && strlen($replace1_to) && ($replace1_from != $replace1_to)) {
+        $sql = "UPDATE `{$CONFIG['TABLE_PICTURES']}` SET keywords = REPLACE(keywords, '$replace1_from', '$replace1_to')";
+        cpg_db_query($sql);
+        echo '        '
+            . sprintf($lang_util_php['keyword_replace_before'],
+                '<strong>' . $replace_options[$replace1_from] . '</strong>',
+                '<strong>' . $replace_options[$replace1_to] . '</strong>')
+            . ": {$lang_common['done']}<br /><br />\n";
+    }
+    if (strlen($replace_from) && strlen($replace_to) && ($replace_from != $replace_to)) {
+        $sql = "UPDATE `{$CONFIG['TABLE_PICTURES']}` SET keywords = REPLACE(keywords, '$replace_from', '$replace_to')";
+        cpg_db_query($sql);
+        echo '        '
+            . sprintf($lang_util_php['keyword_from_to'],
+                '<strong>' . $replace_options[$replace_from] . '</strong>',
+                '<strong>' . $replace_options[$replace_to] . '</strong>')
+            . ": {$lang_common['done']}<br /><br />\n";
+    }
+    if ($replace2 && strlen($replace2_from) && strlen($replace2_to) && ($replace2_from != $replace2_to)) {
+        $sql = "UPDATE `{$CONFIG['TABLE_PICTURES']}` SET keywords = REPLACE(keywords, '$replace2_from', '$replace2_to')";
+        cpg_db_query($sql);
+        echo '        '
+            . sprintf($lang_util_php['keyword_replace_after'],
+                '<strong>' . $replace_options[$replace2_from] . '</strong>',
+                '<strong>' . $replace_options[$replace2_to] . '</strong>')
+            . ": {$lang_common['done']}<br /><br />\n";
+    }
+    if ($set_config) {
+        cpg_config_set('keyword_separator', $replace_to);
+        echo "{$lang_util_php['keyword_set']} (<strong>" 
+            . $lang_common['keyword_separators'][$replace_to]
+            . "</strong>): {$lang_common['done']}<br /><br />\n";
+    }
+
+    echo "    </td></tr>";
+    endtable();
 }
 
 pagefooter();
