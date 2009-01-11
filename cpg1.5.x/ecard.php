@@ -224,7 +224,7 @@ if ($superCage->post->keyExists('submit')) {
                 cpg_db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email', '$encoded_data', '$tempTime', '$raw_ip')");
             }
         
-            msg_box($lang_info, $lang_ecard_php['send_success'], $lang_common['continue'], "displayimage.php?album=$album&amp;pid=$pid");
+            msg_box($lang_common['information'], $lang_ecard_php['send_success'], $lang_common['continue'], "displayimage.php?album=$album&amp;pid=$pid");
             echo '<br />';
             starttable('100%', $lang_ecard_php['preview']);
             echo '<tr><td>';
