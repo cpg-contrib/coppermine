@@ -991,14 +991,14 @@ function keyword_convert()
 
     $superCage = Inspekt::makeSuperCage();
     $set_config    = $superCage->post->keyExists('keyword_set') ? $superCage->post->getInt('keyword_set') : 0;
-    $replace_from  = $superCage->post->keyExists('keyword_from') ? html_entity_decode($superCage->post->getRaw('keyword_from')) : '';
-    $replace_to    = $superCage->post->keyExists('keyword_to') ? html_entity_decode($superCage->post->getRaw('keyword_to')) : '';
+    $replace_from  = $superCage->post->keyExists('keyword_from') ? html_entity_decode($superCage->post->getEscaped('keyword_from')) : '';
+    $replace_to    = $superCage->post->keyExists('keyword_to') ? html_entity_decode($superCage->post->getEscaped('keyword_to')) : '';
     $replace1      = $superCage->post->keyExists('keyword_replace1') ? $superCage->post->getInt('keyword_replace1') : 0;
-    $replace1_from = $superCage->post->keyExists('keyword_replace1_from') ? html_entity_decode($superCage->post->getRaw('keyword_replace1_from')) : '';
-    $replace1_to   = $superCage->post->keyExists('keyword_replace1_to') ? html_entity_decode($superCage->post->getRaw('keyword_replace1_to')) : '';
+    $replace1_from = $superCage->post->keyExists('keyword_replace1_from') ? html_entity_decode($superCage->post->getEscaped('keyword_replace1_from')) : '';
+    $replace1_to   = $superCage->post->keyExists('keyword_replace1_to') ? html_entity_decode($superCage->post->getEscaped('keyword_replace1_to')) : '';
     $replace2      = $superCage->post->keyExists('keyword_replace2') ? $superCage->post->getInt('keyword_replace2') : 0;
-    $replace2_from = $superCage->post->keyExists('keyword_replace2_from') ? html_entity_decode($superCage->post->getRaw('keyword_replace2_from')) : '';
-    $replace2_to   = $superCage->post->keyExists('keyword_replace2_to') ? html_entity_decode($superCage->post->getRaw('keyword_replace2_to')) : '';
+    $replace2_from = $superCage->post->keyExists('keyword_replace2_from') ? html_entity_decode($superCage->post->getEscaped('keyword_replace2_from')) : '';
+    $replace2_to   = $superCage->post->keyExists('keyword_replace2_to') ? html_entity_decode($superCage->post->getEscaped('keyword_replace2_to')) : '';
 
     starttable('100%', cpg_fetch_icon('info', 2) . ' ' . $lang_util_php['keyword_convert'], 1);
     echo "    <tr><td><br />\n";
