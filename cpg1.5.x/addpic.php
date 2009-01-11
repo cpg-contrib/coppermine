@@ -65,15 +65,15 @@ $sql = "SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE filepath='" . addslash
 $result = cpg_db_query($sql);
 
 if (mysql_num_rows($result)) {
-	$status = 'DUPE';
+    $status = 'DUPE';
 } elseif (add_picture($aid, $dir_name, $sane_name)) {
-	$status = 'OK';
+    $status = 'OK';
 } else {
-	$status = 'PB';
+    $status = 'PB';
 }
 
 if (ob_get_length()) {
-	ob_end_clean();
+    ob_end_clean();
 }
 
 echo $status;

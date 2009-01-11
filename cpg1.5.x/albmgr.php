@@ -72,7 +72,7 @@ function alb_get_subcat_data($parent, $ident = '')
 
 /**set the message variable to javascript file*/
 $confirm_modifs =  $lang_albmgr_php['confirm_modifs'];
-set_js_var('confirm_modifs', $confirm_modifs) ;
+set_js_var('confirm_modifs', $confirm_modifs);
 /**Albums delete confirm message*/
 $confirm_delete  = $lang_albmgr_php['confirm_delete1'] . "\n" . $lang_albmgr_php['confirm_delete2'];
 set_js_var("confirm_delete", $confirm_delete);
@@ -121,11 +121,15 @@ if (GALLERY_ADMIN_MODE) {
 } else {
     cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 }
-    $rowset = cpg_db_fetch_rowset($result);
-    $i = 100;
-    $sort_order = '';
-if (count ($rowset) > 0) foreach ($rowset as $album) {
-    $sort_order .= $album['aid'] . '@' . ($i++) . ',';
+
+$rowset = cpg_db_fetch_rowset($result);
+$i = 100;
+$sort_order = '';
+
+if (count($rowset) > 0) {
+    foreach ($rowset as $album) {
+        $sort_order .= $album['aid'] . '@' . ($i++) . ',';
+    }
 }
 
 print <<< EOT
@@ -166,18 +170,20 @@ EOT;
 print <<< EOT
 </table>
       <div id="sort">
-          <table id="album_sort" cellspacing="0" cellpadding="0" border="0">
 EOT;
 
-    $album_list = '';
-    if (count ($rowset) > 0) 
-    foreach ($rowset as $album) {
-        $album_list .='<tr id="sort-'.$album['aid'].'" ><td class="dragHandle"></td><td class="album_text" width="96%"><span class="albumName">'.stripslashes($album['title']).'</span><span class="editAlbum">Edit</span></td></tr>';
+if (count($rowset) > 0) { 
 
-    }       
-    print $album_list;
-    print <<< EOT
-</table>
+    echo '<table id="album_sort" cellspacing="0" cellpadding="0" border="0">';
+
+    foreach ($rowset as $album) {
+        echo '<tr id="sort-'.$album['aid'].'" ><td class="dragHandle"></td><td class="album_text" width="96%"><span class="albumName">'.stripslashes($album['title']).'</span><span class="editAlbum">Edit</span></td></tr>';
+    }
+
+    echo '</table>';
+}
+
+print <<< EOT
     </div>
     <table class="album-operate" cellspacing="0" cellpadding="0" border="0">
         <tr>
@@ -185,8 +191,7 @@ EOT;
 EOT;
 // Only show move-buttons when admin or in user's private category.
 // Sorting is also prevented in delete.php when user doesn't have the rights.
-  if(GALLERY_ADMIN_MODE||($cat == USER_ID + FIRST_USER_CAT))
-  {
+if (GALLERY_ADMIN_MODE || ($cat == USER_ID + FIRST_USER_CAT)) {
     
     if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
         $prefix = $THEME_DIR;
@@ -203,13 +208,12 @@ EOT;
         <img id="loadin" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" />
     </td>
 EOT;
-  }
-  else
-  {
-    print '<td></td>';
-  }
 
-    print <<< EOT
+} else {
+    print '<td></td>';
+}
+
+print <<< EOT
     
         <td id="add-box" style="display: none;">
             <input type="text" id="add-name" name="add-name" size="27" maxlength="80" class="textinput" value="" />
@@ -241,9 +245,7 @@ EOT;
 
 EOT;
     
-
-    endtable();
-    pagefooter();
-    ob_end_flush();
+endtable();
+pagefooter();
 
 ?>
