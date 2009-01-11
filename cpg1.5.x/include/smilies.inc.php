@@ -21,9 +21,6 @@
 // CODE IN THIS MODULE IS TAKEN FROM phpBB                                   //
 // ------------------------------------------------------------------------- //
 
-
-define('SMILIES_PHP', true);
-
 function get_smilies_table1()
 {
     global $lang_smilies_inc_php;
