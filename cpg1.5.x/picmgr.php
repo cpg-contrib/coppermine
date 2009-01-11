@@ -174,7 +174,7 @@ EOT;
 print <<<EOT
 
    <td class="tableb" valign="top" >
-       <input type="hidden" name="albunm_id" value="{$aid}" />
+       <input type="hidden" name="album_id" value="{$aid}" />
        <input type="hidden" name="sort_order" value="{$sort_order}" />
        <input type="hidden" id="picture_order" name="picture_order" value="" />  
 
