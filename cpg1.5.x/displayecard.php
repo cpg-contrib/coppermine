@@ -20,6 +20,7 @@
 define('IN_COPPERMINE', true);
 define('DB_ECARD_PHP', true);
 define('ECARDS_PHP', true);
+define('SMILIES_PHP', true);
 
 require('include/init.inc.php');
 require('include/smilies.inc.php');
