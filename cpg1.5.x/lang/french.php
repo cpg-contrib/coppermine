@@ -148,6 +148,8 @@ $lang_common['ok'] = 'OK'; // cpg1.5
 $lang_common['status'] = 'Status'; // cpg1.5
 $lang_common['apply_changes'] = 'Appliquez les changements'; // cpg1.5
 $lang_common['reset'] = 'Réinitialiser'; // cpg1.5
+$lang_common['done'] = 'Fait'; // cpg1.5
+$lang_common['show_password'] = 'Montrer le mot de passe'; // cpg1.5
 
 
 // ----------------------- //
@@ -1464,6 +1466,8 @@ if (defined('INSTALL_PHP')) {
   $lang_install['mysql_db_name'] = 'Nom de la base de donnée MySQL';
   $lang_install['mysql_error'] = 'erreur MySQL : ';
   $lang_install['mysql_host'] = 'Hôte MySQL <br />(localhost est généralement OK)';
+  $lang_install['mysql_username'] = 'Nom d\'utilisateur MySQL'; // cpg1.5
+  $lang_install['mysql_password'] = 'Mot de passe MySQL'; // cpg1.5
   $lang_install['mysql_no_create_db'] = 'La base de donnée MySql ne peut pas être créer.';
   $lang_install['mysql_no_sel_dbs'] = 'Impossible de récupérer les bases de données MySQL disponible';
   $lang_install['mysql_succ'] = 'Succès de la connection avec la base de donnée';
@@ -2469,7 +2473,7 @@ if (defined('UTIL_PHP')) {
   $lang_util_php['no_category'] = 'Pas de Catégorie'; // cpg1.5
 $lang_util_php['keyword_convert'] = 'Convertir le séprarteur demots clé'; // cpg1.5
 $lang_util_php['keyword_from_to'] = 'Convertir le séparateur de mots clé de %s à %s'; // cpg1.5
-$lang_util_php['keyword_set'] = 'Paramétrer le séparateur de mots clé à la nouvelle valeur (%s)'; // cpg1.5
+$lang_util_php['keyword_set'] = 'Paramétrer le séparateur de mots clé à la nouvelle valeur'; // cpg1.5
 $lang_util_php['keyword_replace'] = 'Avant la convertion, remplacer %s par %s'; // cpg1.5
 $lang_util_php['keyword_replace_values'] = array('_'=>'Souligné', '-'=>'tiret', '~'=>'tilde'); // cpg1.5
 $lang_util_php['keyword_explanation'] = 'Cela va convertir le séparateur de mots clé pour tous vos fichiers d\'une valeur à une autre.  Allez dans la documentation pour plus de détails.'; // cpg1.5
