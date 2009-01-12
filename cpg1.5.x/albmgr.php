@@ -91,6 +91,13 @@ if ($superCage->get->keyExists('cat')) {
 if ($cat == 1) {
     $cat = 0;
 }
+if (!GALLERY_ADMIN_MODE && USER_ADMIN_MODE) {
+    //Only list the albums owned by the user
+    if ($cat == 0) {
+        $cat = USER_ID + FIRST_USER_CAT;
+    }
+    $user_id = USER_ID;
+}
 /** set the cat value to sort.js*/
 set_js_var('category', $cat);
 
@@ -113,11 +120,8 @@ EOT;
 if (GALLERY_ADMIN_MODE) {
     $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat ORDER BY pos ASC");
 } elseif (USER_ADMIN_MODE) {
-    //Only list the albums owned by the user
-    if ($cat == 0) $cat = USER_ID + FIRST_USER_CAT;
-    $user_id = USER_ID;
+    // $cat and $user_id set above
     $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat AND owner = $user_id ORDER BY pos ASC");
-
 } else {
     cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 }
