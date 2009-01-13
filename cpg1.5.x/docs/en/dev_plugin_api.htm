@@ -55,7 +55,7 @@
     <p><strong>People who should read this documentation:</strong></p>
     <ul type="square">
         <li>Anyone who wants to write plugins to customize Coppermine</li>
-        <li>Current Coppermine coders who want to convert their hacks & mods to plugins</li>
+        <li>Current Coppermine coders who want to convert their hacks &amp; mods to plugins</li>
         <li>Anyone who wants to add in features or modify a current plugin</li>
         <li>Coders who want to start customizing Coppermine but do not know where to start</li>
     </ul>
@@ -64,27 +64,27 @@
     <p><strong>People who do not need to read this documentation:</strong></p>
     <ul>
         <li>Anyone learning Coppermine for the first time - the <a href="index.htm">main manual</a> is all you need at first</li>
-        <li>Anyone who wants to download & use plugins - you can use many plugins without knowing what they do internally</li>
+        <li>Anyone who wants to download &amp; use plugins - you can use many plugins without knowing what they do internally</li>
     </ul>
     </div>
     <p>People interested in using plugins but who do not need to modify them or write their own should read the main documentation instead - <a href="plugins.htm">the plugins section</a> describes everything you need to know.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
     <a name="plugin_api_overview_skills"></a>
-    <h3>Required Skills & Knowledge<a href="#plugin_api_overview_skills" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>This documentation assumes a few skills & knowledge you need to have before creating or modifying plugins.</p>
+    <h3>Required Skills &amp; Knowledge<a href="#plugin_api_overview_skills" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>This documentation assumes a few skills &amp; knowledge you need to have before creating or modifying plugins.</p>
     <ul>
         <li><strong>Some PHP knowledge</strong><br />
         You don't need advanced skills, but you do need to know basic syntax and how to read (and search) the <a href="http://www.php.net/docs.php"  rel="external" class="external">PHP Documentation</a>.  Classes (a.k.a. objects) are used by the Plugin API, but you don't need to know <em>a priori</em> much about classes; this documentation will teach you enough about the plugin class to use it in writing plugins.  (If you don't know what a "class" is, that's OK too, although it's a bit strange that you haven't heard of classes in any of your programming experience.  Regardless, make sure you know PHP syntax well.)  If you are an advanced programmer in another language, take a look at some PHP quick-start guides and learn enough to get going.</li>
         <li><strong>Good working knowledge of Coppermine</strong><br />
-        You don't need to know anything about the Coppermine code (yet), but you do need to be able to use Coppermine as an end-user.  You should know how to use plugins; this documentation assumes that you have read the <a href="plugins.htm">plugins section</a> of the main manual and know the user interface for installing & configuring plugins.  Of course you need to have administrator access to a Coppermine gallery, but that should be obvious.</li>
+        You don't need to know anything about the Coppermine code (yet), but you do need to be able to use Coppermine as an end-user.  You should know how to use plugins; this documentation assumes that you have read the <a href="plugins.htm">plugins section</a> of the main manual and know the user interface for installing &amp; configuring plugins.  Of course you need to have administrator access to a Coppermine gallery, but that should be obvious.</li>
         <li><strong>Basic MySQL knowledge</strong><br />
         You can get by with very simple plugins or modifying current plugins with not using MySQL commands, but otherwise, you need to know how to write basic UPDATE, SELECT, and DELETE queries.  The main reason is that a good plugin has configuration options for the user and to save, update, and delete these configuration parameters, you need to be able to write MySQL queries.  Read a simple tutorial online and keep a bookmark on the <a href="http://dev.mysql.com/doc/"  rel="external" class="external">MySQL documentation</a>.  You could merely copy the examples here, but we strongly recommend you learn the basic syntax well, for reasons of sanity when debugging.</li>
     </ul>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
     <a name="plugin_api_overview_tools"></a>
-    <h3>Recommended Software & Support Forums<a href="#plugin_api_overview_tools" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <h3>Recommended Software &amp; Support Forums<a href="#plugin_api_overview_tools" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
     <p>You can easily write plugin code with simply a text editor and administrator-access to a Coppermine gallery, but here are a few more tools that are useful in one way or another.</p>
     <ul>
         <li><strong>grep</strong> - <span class="small">[<a href="http://en.wikipedia.org/wiki/Grep"  rel="external" class="external">definition</a>]</span><br />
@@ -118,7 +118,7 @@
 <p><strong>Create a folder named "hello_world" in the Coppermine plugins folder as shown:</strong></p>
 <pre>http://www.yourdomain.org/cpg/plugins/hello_world/</pre>
 <p>Make sure you enable read and execute permissions on this folder (see the <a href="install_permissions.htm">permissions section</a> in the main manual).  You can create the folder and files on your personal computer and upload them using FTP to your web server, but keep in  mind that you cannot try out your plugin until it is on the web server.  For each step in this tutorial where you add new lines, edit the text file on your computer, save it, then upload the new version onto web server, making sure to overwrite the previous file on the web server.  (Some FTP programs "append" by default - which won't work with these text files, so make sure you are definitely overwriting the file with the new version.)</p>
-<p><strong>Create this file in the "hello_world" folder, with contents as shown (and read & execute permissions):</strong></p>
+<p><strong>Create this file in the "hello_world" folder, with contents as shown (and read &amp; execute permissions):</strong></p>
 <p class="filename">configuration.php</p>
 <pre><span style="color: #000000"><span style="color: #0000BB">&lt;?php
 </span><span style="color: #FF8000">/**************************************************
@@ -147,7 +147,7 @@
     <li><tt class="code">$author</tt> gives the author or authors of your plugin (if you collaborated with others on the creation or modification of the plugin).  Use whatever credits you want to give here.  This is also shown on the plugin manager page.</li>
     <li><tt class="code">$version</tt> gives the version number (or letter) of your plugin.  You can use whatever version numbering you want.  Most people use 1.0 for the first release of a plugin that works (sub-1.0 could be used for trial releases if you are not sure it will work in all cases).  Then you can use tenths or hundredths for follow-up minor revisions, e.g. 1.01, 1.02, etc. or 1.1, 1.2, etc.  Feel free to put the tag "beta" in the version variable if desired, however with the fact that most plugins are fairly simple, it's probably not necessary to do so.  If you find a bug in a version, fix it, and release another revision.  In any case, you can put whatever text you like to describe your plugin's current version.  </li>
 </ul>
-<p><strong>Now create your code file in the "hello_world" folder, with contents as shown (and read & execute permissions):</strong></p>
+<p><strong>Now create your code file in the "hello_world" folder, with contents as shown (and read &amp; execute permissions):</strong></p>
 <p class="filename">codebase.php</p>
 <pre><span style="color: #000000"><span style="color: #0000BB">&lt;?php
 </span><span style="color: #FF8000">/**************************************************
@@ -186,7 +186,7 @@
 <pre><span style="color: #000000"><span style="color: #FF8000">// Add a filter for the gallery header
 </span><span style="color: #0000BB">$thisplugin</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add_filter</span><span style="color: #007700">(</span><span style="color: #DD0000">'gallery_header'</span><span style="color: #007700">,</span><span style="color: #DD0000">'hello_world_header'</span><span style="color: #007700">);</span></span></pre>
 <p>With this line of code, you are registering your plugin to use this plugin hook.  In this case, we're hooking onto the <tt class="code">gallery_header</tt> hook which is located in <tt class="filename">functions.inc.php</tt> in the load_template() function.  This function parses your theme's <tt class="filename">template.html</tt> file, replacing tags like {ADMIN_MENU} and {LANGUAGE_SELECT_LIST} with the corresponding Coppermine HTML to render these content blocks.  The two plugin hooks <tt class="code">gallery_header</tt> and <tt class="code">gallery_footer</tt> allow HTML to be placed before and after the {GALLERY} tag, respectively.  (See the <a href="#plugin_api_hooks_func_gh-gf">reference section</a> below on these hooks for more detailed information.)  On the main page, {GALLERY} is replaced with the "content of the main page" config setting, which usually includes the breadcrumb, category list, album list, and random/lastup blocks.  On a page like the plugin manager (where you first see "Hello, world." after installing the plugin), {GALLERY} is replaced with the main part of the page, in this case, the plugin manager tables listing the plugins.  The "Hello, World" plugin places the text "Hello, world." just above {GALLERY} in both places.  If you modify the line of code above to use <tt class="code">gallery_footer</tt> instead, you'll see "Hello, world." just below the main part of the page, as expected.</p>
-<p>Let's break apart this line of code to understand how you register your plugin to use a particular plugin hook.  For those programmers who have used classes before (in PHP or another language with similar constructs), you'll recognize the arrow operator <tt class="code">-></tt> as a class operator used to access class properties and methods.  In this case, the Coppermine Plugin API provides <tt class="code">$thisplugin</tt> as a pointer to the instance of your plugin's class.  So when your plugin's <tt class="filename">codebase.php</tt> is loaded by the plugin API, you can access the properties and methods of your plugin's class by using <tt class="code">$thisplugin</tt>.  For example, <tt class="code">$thisplugin->name</tt> refers to your plugin's name (whose value is defined in your plugin's <tt class="filename">configuration.php</tt>).  See the <a href="#plugin_api_plugin_class">section below</a> on plugin class properties & methods for more detailed information.</p>
+<p>Let's break apart this line of code to understand how you register your plugin to use a particular plugin hook.  For those programmers who have used classes before (in PHP or another language with similar constructs), you'll recognize the arrow operator <tt class="code">-></tt> as a class operator used to access class properties and methods.  In this case, the Coppermine Plugin API provides <tt class="code">$thisplugin</tt> as a pointer to the instance of your plugin's class.  So when your plugin's <tt class="filename">codebase.php</tt> is loaded by the plugin API, you can access the properties and methods of your plugin's class by using <tt class="code">$thisplugin</tt>.  For example, <tt class="code">$thisplugin->name</tt> refers to your plugin's name (whose value is defined in your plugin's <tt class="filename">configuration.php</tt>).  See the <a href="#plugin_api_plugin_class">section below</a> on plugin class properties &amp; methods for more detailed information.</p>
 <p>In this case, we are using the add_filter() function to add the filter hook we want to use to our plugin's list of registered plugin hooks.  The user-defined function we will use for each call of the hook is <tt class="code">hello_world_header</tt>, which is defined in the last section of code in our plugin, as shown:</p>
 <pre><span style="color: #000000"><span style="color: #FF8000">// Function to modify the gallery header
 </span><span style="color: #007700">function </span><span style="color: #0000BB">hello_world_header</span><span style="color: #007700">(</span><span style="color: #0000BB">$html</span><span style="color: #007700">) {
@@ -194,7 +194,7 @@
             </span><span style="color: #007700">.</span><span style="color: #0000BB">$html</span><span style="color: #007700">;
     return </span><span style="color: #0000BB">$html</span><span style="color: #007700">;
 }</span></span></pre>
-<p>Our function needs one parameter since it is attached to a filter hook (instead of an action hook), and here we name it <tt class="code">$html</tt>.  In this function, we add on the "Hello, world." text, which is tagged to be bold & red for extra effect.  We need to ensure that the parameter is added-on to, <strong>not</strong> replaced, so that it plays well with other plugins who tag on to the same hook.  We place the parameter coming in on a separate line to ensure we don't forget to do this.  Finally, the function returns the modified parameter.  And that does it.</p>
+<p>Our function needs one parameter since it is attached to a filter hook (instead of an action hook), and here we name it <tt class="code">$html</tt>.  In this function, we add on the "Hello, world." text, which is tagged to be bold &amp; red for extra effect.  We need to ensure that the parameter is added-on to, <strong>not</strong> replaced, so that it plays well with other plugins who tag on to the same hook.  We place the parameter coming in on a separate line to ensure we don't forget to do this.  Finally, the function returns the modified parameter.  And that does it.</p>
 <p>So now you should know how a plugin, albeit a very basic plugin, works.  The other sections in this tutorial describe useful features to add to your plugin including installation, configuration, linking in Coppermine, multi-language support, and distributing your plugin as a package.  Read on and follow along.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -356,7 +356,7 @@
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_cleanup"></a>
-<h4>Uninstallation & Clean-Up<a href="#plugin_api_tutorial_cleanup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<h4>Uninstallation &amp; Clean-Up<a href="#plugin_api_tutorial_cleanup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -390,12 +390,12 @@
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="plugin_api_plugin_class"></a>
-<h2>Plugin Class Properties & Methods<a href="#plugin_api_plugin_class" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<h2>Plugin Class Properties &amp; Methods<a href="#plugin_api_plugin_class" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_globals"></a>
-<h2>Global Variables & Constants<a href="#plugin_api_" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<h2>Global Variables &amp; Constants<a href="#plugin_api_" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Placeholder.  Content will be added.</p>
 
 <a name="plugin_api_globals_system"></a>

@@ -454,7 +454,7 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_page_html"></a><strong>page_html</strong><a href="#plugin_hooks_filename_page_html" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">filters the final output html</td>
-    <td valign="top" class="tableb"><pre class="smallcode">function& cpg_filter_page_html( &$html ) {
+    <td valign="top" class="tableb"><pre class="smallcode">function&amp; cpg_filter_page_html( &amp;$html ) {
     return CPGPluginAPI::filter('page_html',$html);
 }</pre><br />from include/init.inc.php<br /><pre class="smallcode">// Start output buffering
 ob_start('cpg_filter_page_html');</pre></td>
@@ -645,7 +645,7 @@ function </span><span style="color: #0000BB">add_admin_button</span><span style=
     
     return </span><span style="color: #0000BB">$admin_menu</span><span style="color: #007700">;
 }</span></span></pre><br />
-For the sys & sub menus you have to take another approach:<br />
+For the sys &amp; sub menus you have to take another approach:<br />
 <pre><span style="color: #000000"><span style="color: #0000BB">&lt;?php
 $thisplugin</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add_filter</span><span style="color: #007700">(</span><span style="color: #DD0000">'sub_menu'</span><span style="color: #007700">,</span><span style="color: #DD0000">'add_sub_button'</span><span style="color: #007700">);&lt;</span><span style="color: #0000BB">br </span><span style="color: #007700">/&gt;
 
