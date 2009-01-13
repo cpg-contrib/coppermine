@@ -1677,12 +1677,6 @@
     <hash>1517f3cdf5539ad2f4a6606ec6d97c5a</hash>
   </element>
   <element>
-    <fullpath>docs/en/images/upload_groups.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>07d95fcd4e7eb519d3c89261677983db</hash>
-  </element>
-  <element>
     <fullpath>docs/en/images/user_folder_link.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
