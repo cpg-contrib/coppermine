@@ -71,27 +71,29 @@
 
 
 <a name="integrating_cookie_start"></a><h3>Authentication by cookie<a href="#integrating_cookie_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The login integration uses your bulletin board cookies, therefore it won't work if your board cookies are not visible by Coppermine. So unless you are an expert, keep things simple and install Coppermine and your bridge app on the same domain. Examples :</p>
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
-    <tr>
-        <td class="tableh1">This <strong>will</strong> work:</td>
-        <td class="tableh1">This <strong title="depending on your subdomain setup">might</strong> work:</td>
-        <td class="tableh1">This <strong class="important">won't</strong> work:</td>
-    </tr>
-    <tr>
-        <td class="tableb">Bridge app: <tt class="code">http://yourdomain.com/board/</tt><br />
-        Coppermine: <tt class="code">http://yourdomain.com/gallery/</td>
-        <td class="tableb tableb_alternate">Bridge app: <tt class="code">http://board.yourdomain.com/</tt><br />
-        Coppermine: <tt class="code">http://gallery.yourdomain.com/</tt></td>
-        <td class="tableb">Bridge app: <tt class="code">http://yourfirstdomain.com/board/</tt><br />
-        Coppermine: <tt class="code">http://yourseconddomain.com/gallery/</tt></td>
-    </tr>
-</table>
+<p>The login integration uses your bulletin board cookies, therefore it won't work if your board cookies are not visible by Coppermine. So unless you are an expert, keep things simple and install Coppermine and your bridge app on the same domain.</p>
+<div class="cpg_example">
+	<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+	    <tr>
+	        <td class="tableh1">This <strong>will</strong> work:</td>
+	        <td class="tableh1">This <strong title="depending on your subdomain setup">might</strong> work:</td>
+	        <td class="tableh1">This <strong class="important">won't</strong> work:</td>
+	    </tr>
+	    <tr>
+	        <td class="tableb">Bridge app: <tt class="code">http://yourdomain.com/board/</tt><br />
+	        Coppermine: <tt class="code">http://yourdomain.com/gallery/</td>
+	        <td class="tableb tableb_alternate">Bridge app: <tt class="code">http://board.yourdomain.com/</tt><br />
+	        Coppermine: <tt class="code">http://gallery.yourdomain.com/</tt></td>
+	        <td class="tableb">Bridge app: <tt class="code">http://yourfirstdomain.com/board/</tt><br />
+	        Coppermine: <tt class="code">http://yourseconddomain.com/gallery/</tt></td>
+	    </tr>
+	</table>
+</div>
 <p>The cookie path in the forum's configuration should be set to '/' where this option is available.</p>
 <p class="cpg_message_warning">The cookie names of your bridge app and coppermine must <strong>not</strong> be the same - they <strong>must</strong> differ!</p>
 <p>Some bridging apps have an option to enable sub-domain independant cookies that you should enable if you own the entire domain.</p>
 <p>Some bridging apps use a cookie path by default that will make the cookie only available for the bridging app itself and not for other apps that reside in different folders on the webserver. If this is the case for you, you have to review your bridging app's config first and make sure that it is set to allow the cookie from the bridging app to be read by coppermine.</p>
-<p class="quote">Example:<br />
+<p class="cpg_example">
 In SMF 1.1.x, the setting is named &quot;local storage of cookies&quot;. When enabled, the cookies issued by SMF will be accessible only for the forum and not for other apps. Therefor, when bridging Coppermine with SMF, you have to go to SMF's admin panel first and turn local storage of cookies off. In SMF, that option can be found under "Admin" &rarr; "Server Settings" &rarr; "Feature configuration" &rarr; "Enable local storage of cookies".<br />
 For other bridging apps, the setting may be named differently and may reside in a different navigation structure, but the result should be the same: the cookie issued by the bridging app should be stored in a way that makes it accessible for other apps on the same domain.</p>
 <p>In many recent BBS apps you can specify wether you want to handle authentification of users by cookie or by session. If you want to bridge, you have to make sure that the app you bridge with is using cookies as authentification method - coppermine doesn't work with session-driven authentification!</p>
@@ -106,10 +108,9 @@ For other bridging apps, the setting may be named differently and may reside in 
 <p><strong>Detailed explanation:</strong><br />
 As most community applications, coppermine stores everything that users (including the admin) do (like uploading pics, posting comments, rating files) inside the database. The reference to each user action is being kept using a unique user ID. The correlation between the user actions and the corresponding user profile is being kept by storing the user ID within each record in the database that determines the user action.<br />
 When bridging is enabled, coppermine's user management is being dropped in favor of the user management that comes with the application you bridge with. Subsequently, the user IDs from your bridging app (that differ from Coppermine's user IDs) are being taken into account.</p>
-<div class="quote">
-<p><strong>Example:</strong><br />
+<div class="cpg_example">
 Coppermine-user &quot;Bill&quot; has got the coppermine user ID &quot;3&quot;. He used to upload several pics that went into the folder /albums/userpics/10003/. The URL of his personal gallery used to be http://yoursite.tld/your_coppermine_folder/index.php?cat=10003.<br /> In the BBS application, the user &quot;Linus&quot; has got the user ID &quot;3&quot;.<br />
-After enabling bridging, the URL http://yoursite.tld/your_coppermine_folder/index.php?cat=10003 points to the personal gallery of the user &quot;Linus&quot;. All pics that Bill used to upload appear to be owned by Linus.</p>
+After enabling bridging, the URL http://yoursite.tld/your_coppermine_folder/index.php?cat=10003 points to the personal gallery of the user &quot;Linus&quot;. All pics that Bill used to upload appear to be owned by Linus.
 </div>
 <p><strong>Summary:</strong><br />
 Correlation between the actions that the unbridged coppermine users have performed and the &quot;new&quot; accounts from the app you bridged with is lost. Subsequently, you don't actually loose files that have been uploaded previously, but they appear to have been uploaded by a different user.</p>
@@ -173,20 +174,20 @@ If you have a custom-made bridge file, just copy that bridge file into coppermin
 <a name="bridge_manager_path_full_forum_url_end"></a></li></ul>
 <ul><li><a name="bridge_manager_path_relative_path_of_forum_from_webroot"></a><h5>Absolute bridge app path<a href="#bridge_manager_path_relative_path_of_forum_from_webroot" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
 <p>Absolute path to your bridge app seen from the webroot</p>
-<p>Examples:</p>
-<div class="quote"> 
+<div class="cpg_example"> 
     <ul>
         <li>If your bridging app is at http://www.example.com/forum/, enter <tt class="code">/forum/</tt> into this field</li>
         <li>If your bridging app is at http://www.example.com/foo/bar/, enter <tt class="code">/foo/bar/</tt> into this field</li>
     </ul>
 </div>
 <p>You have to understand that this setting is <strong>not</strong> the absolute path on file system level on your web-server, but only the absolute path seen from the webroot.</p>
-<p>Example:</p>
-<p class="quote">On file system level of your web-server, the absolute path your webroot might be something like <tt class="code">/var/www/your_account_name/public_html/</tt>. Subsequently, the app you bridge with might reside in an absolute path on file system level like this: <tt class="code">/var/www/your_account_name/public_html/forum/</tt>. Your coppermine gallery might reside in an absolute path on file system level that looks like this: <tt class="code">/var/www/your_account_name/public_html/gallery/</tt>. However, it's the webroot folder that matters in this aspect - coppermine doesn't dig deeper on file system level and doesn't take the absolute paths into account that you might be using with other applications or to include files - it just uses the path seen from the webroot (the stuff that can be accessed directly in the browser). Hence, in this example the absolute path seen from the webroot would be <tt class="code">/forum/</tt> - nothing more, nothing less.</p>
+
+<p class="cpg_example">On file system level of your web-server, the absolute path your webroot might be something like <tt class="code">/var/www/your_account_name/public_html/</tt>. Subsequently, the app you bridge with might reside in an absolute path on file system level like this: <tt class="code">/var/www/your_account_name/public_html/forum/</tt>. Your coppermine gallery might reside in an absolute path on file system level that looks like this: <tt class="code">/var/www/your_account_name/public_html/gallery/</tt>. However, it's the webroot folder that matters in this aspect - coppermine doesn't dig deeper on file system level and doesn't take the absolute paths into account that you might be using with other applications or to include files - it just uses the path seen from the webroot (the stuff that can be accessed directly in the browser). Hence, in this example the absolute path seen from the webroot would be <tt class="code">/forum/</tt> - nothing more, nothing less.</p>
 <a name="bridge_manager_path_relative_path_of_forum_from_webroot_end"></a></li></ul>
 <ul><li><a name="bridge_manager_path_relative_path_to_config_file"></a><h5>Relative path to your bridge app's config file<a href="#bridge_manager_path_relative_path_to_config_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
 <p>Relative path to your bridge app, seen from your Coppermine folder (e.g. "../forum/" if your bridge app is at http://www.yourdomain.tld/forum/ and Coppermine at http://www.yourdomain.tld/gallery/)</p>
 <p>A relative path does <strong>not</strong> start with a slash - that's the visual difference to an absolute path. You need to think on folder/sub-folder level to understand the concept of relative paths. Imagine that all folders on your webserver where the branches of a tree that was turned upside down: the root being at the top and branches going to the bottom. The relative path describes the way you need to take from a particular folder (the folder where coppermine resides in) to another folder (the folder where your bridge app resides in). The notation for relative paths contains a special way to say "one level up": that's two dots, followed by a forward slash (<tt class="code">../</tt>). This being said, let's look at some examples:</p>
+<div class="cpg_example">
 <table border="0" cellspacing="1" cellpadding="0" class="maintable">
     <tr>
         <th class="tableh1">Your coppermine install</th>
@@ -239,11 +240,12 @@ If you have a custom-made bridge file, just copy that bridge file into coppermin
         <td class="tableb"><tt class="code">../community/forum/</tt></td>
     </tr>
 </table>
+</div>
 <a name="bridge_manager_path_relative_path_to_config_file_end"></a></li></ul>
 <ul><li><a name="bridge_manager_path_cookie_prefix"></a><h5>Cookie prefix<a href="#bridge_manager_path_cookie_prefix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
 <p>This has to be the cookie name of the application you bridge with. Do <strong>not</strong> enter the cookie prefix of your coppermine gallery here! You can not make this setting up - you have to look it up in the documentation or settings that come with the application you're going to bridge with.</p>
-<p>Example:</p>
-<p class="quote">The popular BBS application "phpBB" is using the default cookie prefix <tt class="code">phpbb2mysql</tt> - this can be changed by the forum administrator, so if you're not sure what your cookie prefix is, go to the config panel of the app you bridge with and look the cookie prefix up.</p>
+
+<p class="cpg_example">The popular BBS application "phpBB" is using the default cookie prefix <tt class="code">phpbb2mysql</tt> - this can be changed by the forum administrator, so if you're not sure what your cookie prefix is, go to the config panel of the app you bridge with and look the cookie prefix up.</p>
 <p>The cookie prefix must not be confused with the cookie path - they are entirely different animals. The cookie prefix (in some applications it is being called "cookie name" as well) is something on application level - something the people who designed your bridge app have come up with.</p>
 <a name="bridge_manager_path_cookie_prefix_end"></a></li></ul>
 <a name="bridge_manager_path_end"></a>
@@ -360,8 +362,8 @@ Cookie fix (if your board is not installed to site root): edit XMB's file <tt cl
 
 <a name="integrating_subdomain_file_system"></a><h3>File system<a href="#integrating_subdomain_file_system"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Most webhosts set up their servers to make a subdomain being just a sub-folder of the parent domain on file system level. We (the coppermine dev team) can't guarantee that this is the case for your webserver setup, so when in doubt you should ask your webhost for support. So here's just an explanation how sub-domains work on <em>most</em> webservers - don't sue us if this is not the case for you.</p>
-<p>Example:</p>
-<p class="quote">Your bridge app has got the URL <tt class="code">http://forum.example.com/</tt>, with a absolute path on file system level like this: <tt class="code">/var/www/your_account_name/public_html/forum/</tt>, with <tt class="code">/var/www/your_account_name/public_html/</tt> representing the webroot (i.e. <tt class="code">http://example.com/</tt>). Your gallery is accessible with the URL <tt class="code">http://gallery.example.com/</tt>, which equals the absolute path on file system level <tt class="code">/var/www/your_account_name/public_html/gallery/</tt>. Seen from the webroot, the sub-domains "forum" and "gallery" are just representations of the sub-folders of the webroot that are named accordingly ("forum" and "gallery"). Therefor, if the <a href="#bridge_manager_start">bridge manager</a> requires you to enter a relative path from the gallery to the bridge app, this would be <tt class="code">../forum/</tt> (which reads "one folder level up, then into the sub-folder "forum").</p>
+
+<p class="cpg_example">Your bridge app has got the URL <tt class="code">http://forum.example.com/</tt>, with a absolute path on file system level like this: <tt class="code">/var/www/your_account_name/public_html/forum/</tt>, with <tt class="code">/var/www/your_account_name/public_html/</tt> representing the webroot (i.e. <tt class="code">http://example.com/</tt>). Your gallery is accessible with the URL <tt class="code">http://gallery.example.com/</tt>, which equals the absolute path on file system level <tt class="code">/var/www/your_account_name/public_html/gallery/</tt>. Seen from the webroot, the sub-domains "forum" and "gallery" are just representations of the sub-folders of the webroot that are named accordingly ("forum" and "gallery"). Therefor, if the <a href="#bridge_manager_start">bridge manager</a> requires you to enter a relative path from the gallery to the bridge app, this would be <tt class="code">../forum/</tt> (which reads "one folder level up, then into the sub-folder "forum").</p>
 
 <a name="integrating_subdomain_cookie"></a><h3>Cookies<a href="#integrating_subdomain_cookie"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>As pointed out several times, coppermine's authentification relies on the fact to read and write cookies. If bridging is enabled, coppermine needs to be capable to read the bridge app's cookie as well. This is only possible if you don't have restrictions in place that keeps coppermine from doing so. Many third-party apps (and many of the apps that coppermine can be bridged with) allow you to specify a <em>cookie path</em>. Sadly, not all of them clearly label the cookie path setting accordingly in their control panel app: some label them as <em>subdomain-independant cookies</em> as well without allowing you to specify a particular path. This option mostly exists for historical reasons: some time ago, many users couldn't afford a domain of their own, so they just got webhosting on a child folder of the parent domain. All their content used to reside in the one folder only and subsequently they needed an option in their applications to make sure that their cookies were not accessible for all users of the parent domain. Nowadays, universities often offer webspace to their students that looks like this: <tt class="code">http://example.tld/~username/</tt>. Users on that sort of webhosting need the option to have a cookie path to make sure that someone else who is hosted on <tt class="code">http://example.tld/~someone_else/</tt> doesn't have access to his/her cookies.</p>

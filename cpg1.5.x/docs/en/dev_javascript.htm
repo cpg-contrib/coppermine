@@ -58,24 +58,24 @@
 
 <a name="dev_javascript_include_files"></a><h2>How to include javascript files<a href="#dev_javascript_include_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Javascript files can be included from within php code by calling <tt class="code">js_include()</tt> function.
-<p>Example:
+<div class="cpg_example">
 <pre class="code">
 // This line of code will include displayimage.js file
 js_include('js/displayimage.js');
 </pre>
-</p>
+</div>
 However there is a catch in using this function. This function should be called before the <tt class="code">pageheader()</tt> function is called. The actual inclusion of javascript files is done in <tt class="code">pageheader()</tt> function and that is the reason all js inclusion should be done before that.<br /><br />
 If you need to add a javascript file for a plugin, the 'page_start' plugin action might be used.
 </p>
 
 <a name="dev_javascript_php_vars"></a><h2>How to pass PHP variables to included javascript<a href="#dev_javascript_php_vars" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>If you need to pass dynamic data from PHP code (e.g. a language string that resides in a PHP variable) to the JavaScript code that resides in an external file included with the method explained above, you can use the function <tt class="code">set_js_var()</tt> that get's defined in include/functions.inc.php.</p>
-<p>Example: if you need to pass the content of the variable <tt class="code">$foo</tt> to JS, use this code:</p>
+<div class="cpg_example">If you need to pass the content of the variable <tt class="code">$foo</tt> to JS, use this code:
 <pre class="code">&lt;?php
 $foo = 'bar';
 set_js_var('php_foo', $foo);
 ?&gt;</pre>
-
+</div>
 
 <script type="text/javascript">
   cpgDocFooter();

@@ -98,19 +98,19 @@ If you need a powerfull, free editor for Windows, the dev team recommends using 
 <li>open english.php with your text editor</li>
 <li>Save the file immediately after opening under a different filename (to make sure you always have an unmodified english language file that can be used as a reference) - the filenames of the language files will decide how the language name will look in the dropdown list of the coppermine backend - use the english (roman characters) name of your language as the final filename, using lowercase in the name with no spaces or special chars (except &quot;-&quot; and &quot;_&quot; and the dot to mark the extension. If the language name itself isn't self-explanatory, add info with an underscore.<br />
 <strong>Examples</strong>: german.php, italian.php, greek.php, brazilian_portuguese.php</li>
-<li>Edit the header info (example content is <span class="example">highlighted</span>):<br />
+<li>Edit the header info (example content is <span class="important">highlighted</span>):<br />
 <tt class="code">// info about translators and translated language</tt><br />
 <tt class="code">$lang_translation_info = array(</tt><br />
-<tt class="code">'lang_name_english' => '<span class="example">German</span>',</tt>The name of your language in English<br />
-<tt class="code">'lang_name_native' => '<span class="example">Deutsch</span>',</tt>The name of your language in your mother tongue<br />
-<tt class="code">'lang_country_code' => '<span class="example">de</span>',</tt>The country code representing your language. If your language is spoken in several countries, choose the one most people will relate to your language<br />
-<tt class="code">'trans_name'=> '<span class="example">GauGau</span>',</tt>Your name (or rather the name you would like to appear on the credits page)<br />
+<tt class="code">'lang_name_english' => '<span class="important">German</span>',</tt>The name of your language in English<br />
+<tt class="code">'lang_name_native' => '<span class="important">Deutsch</span>',</tt>The name of your language in your mother tongue<br />
+<tt class="code">'lang_country_code' => '<span class="important">de</span>',</tt>The country code representing your language. If your language is spoken in several countries, choose the one most people will relate to your language<br />
+<tt class="code">'trans_name'=> '<span class="important">GauGau</span>',</tt>Your name (or rather the name you would like to appear on the credits page)<br />
 <tt class="code">'trans_email' => '',</tt>If you prefer, your email address, which would normally appear on the credits page, can be left blank<br />
-<tt class="code">'trans_website' => '<span class="example">http://gaugau.de/</span>',</tt>Your website (goes to credit page). If you specify none, your profile page will be displayed instead<br />
-<tt class="code">'trans_date' => '<span class="example">2004-03-17</span>',</tt>The date you translated/last changed the language file<br />
+<tt class="code">'trans_website' => '<span class="important">http://gaugau.de/</span>',</tt>Your website (goes to credit page). If you specify none, your profile page will be displayed instead<br />
+<tt class="code">'trans_date' => '<span class="important">2004-03-17</span>',</tt>The date you translated/last changed the language file<br />
 <tt class="code">);</tt><br />
 Fill in the data you want to appear on the credits page as shown in the example above.</li>
-<li>The coppermine language file is used to dynamically replace php variables/arrays with the correct content. There are different ways those arrays are being filled - as shown in these examples (stuff that needs to be translated is <span class="example">highlighted</span>):<br />
+<li>The coppermine language file is used to dynamically replace php variables/arrays with the correct content. There are different ways those arrays are being filled - as shown in these examples (stuff that needs to be translated is <span class="important">highlighted</span>):<br />
   <ul style="list-style-type:square" type="square">
   <li>
   <tt class="code">$lang_day_of_week = array('<strong>Sun</strong>', '<strong>Mon</strong>', '<strong>Tue</strong>', '<strong>Wed</strong>', '<strong>Thu</strong>', '<strong>Fri</strong>', '<strong>Sat</strong>');</tt>A plain list of values in an array. Translate each word inside the quotes.</li>
@@ -144,14 +144,14 @@ You can post the attachment as a txt file or you can put it inside of a .zip arc
 
 <a name="translation_special_issues"></a><h2>Special issues<a href="#translation_special_issues" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="translation_escaping"></a><h3>Escaping single quotes<a href="#translation_escaping" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>As you may have already noticed, all translation strings are contained between a pair of  single quotes or apostrophes - this is the proper method used in PHP. Therefore, if you want your translation to actually contain a single quote (apostrophe), you must &quot;instruct&quot; PHP that the apostrophe (single quote) contained in a text string is part of the string and not the end of the string. For this purpose, a backslash (<span class="example">\</span>) is used to instruct PHP that the character immediately following it is a "string" character and not part of the PHP code, itself. This is called <em>escaping</em> a character in programing languages. PHP uses the backslash (<span class="example">\</span>) to escape characters, that's why care must be taken to <strong>not</strong> do this:
+<p>As you may have already noticed, all translation strings are contained between a pair of  single quotes or apostrophes - this is the proper method used in PHP. Therefore, if you want your translation to actually contain a single quote (apostrophe), you must &quot;instruct&quot; PHP that the apostrophe (single quote) contained in a text string is part of the string and not the end of the string. For this purpose, a backslash (<span class="important">\</span>) is used to instruct PHP that the character immediately following it is a "string" character and not part of the PHP code, itself. This is called <em>escaping</em> a character in programing languages. PHP uses the backslash (<span class="important">\</span>) to escape characters, that's why care must be taken to <strong>not</strong> do this:
 <pre>array('Target address for the 'See more pictures' link in e-cards', 'ecards_more_pic_target', 0),</pre> <p>but, to do this, instead: </p>
 <pre>array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),</pre></p>
 <a name="translation_quotes_javascript"></a><h3>Single quotes in JavaScript (//js-alert)<a href="#translation_quotes_javascript" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Things are a bit more complicated if the output is to be used not only in plain HTML, but in JavaScript, as well.  Single quotes that appear in the HTML output of the language file must also be escaped for use in any JavaScript routine with a backslash as well.  That's why specific lines in the language file that will be used as JavaScript in Coppermine's output have been tagged with a comment at the end of the line, which reads: <tt class="code">//js-alert</tt>. If you intend to have a single quote in the final output, you'll have to add 3 backslashes in front of the single quote, as in this example: <pre>'no_change' => 'Vous n\\\'avez effectu&eacute; aucun changement !', //js-alert</pre></p>
 <a name="translation_placeholders"></a><h3>Placeholders with " % "<a href="#translation_placeholders" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>You'll also notice that in several places of the language file, there are text that contain a percent-sign (<span class="example">%</span>), followed immediately by a letter. Those combinations must not be translated or separated - they are there intentionally and are used later as specifier arguments, or calls, for variable replacement and/or formating that needs to take place.</p>
-<p><strong>Example</strong>:<br />
+<p>You'll also notice that in several places of the language file, there are text that contain a percent-sign (<span class="important">%</span>), followed immediately by a letter. Those combinations must not be translated or separated - they are there intentionally and are used later as specifier arguments, or calls, for variable replacement and/or formating that needs to take place.</p>
+<p class="cpg_example">
 <tt class="code">  'rating' => '(current rating : %s / 5 with %s votes)',</tt></p>
 
 <a name="translation_versions"></a><h2>Language versions<a href="#translation_versions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>

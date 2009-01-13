@@ -694,6 +694,7 @@ $upload_choices = array(
 $upload_choices = CPGPluginAPI::filter('upload_options',$upload_choices);
 </pre>
 <p>The key for your upload method must be a simple key (with no spaces or special characters) that can be used as a GET parameter to select your upload form.  The value that corresponds to this key is the label shown on the dropdown list.  Here's an example of a plugin function that uses this hook to add an upload choice to the dropdown box:</p>
+<div class="cpg_example">
 <pre class="code">
 function myfunction_add_upload_option($upload_choices) 
 {
@@ -701,6 +702,7 @@ function myfunction_add_upload_option($upload_choices)
     return array_merge($upload_choices, $more_upload_choices);
 }
 </pre>
+</div>
 <p>The next hook is 'upload_form' used to display the upload form for you upload method.  It is called whether or not your method is chosen, so you need to check this first, and return if your upload method is not chosen.  It is expected that you will display your upload form and then exit.  Here are the relevant lines that call this hook:</p>
 <pre class="code">
     // Call active plugins for alternate upload forms
@@ -713,6 +715,7 @@ function myfunction_add_upload_option($upload_choices)
 &lt;input type="hidden" name="plugin_process" value="1" /&gt;
 </pre>
 <p>Here is a complete example of a plugin function that displays an upload form:</p>
+<div class="cpg_example">
 <pre class="code">
 function myfunction_display_upload_form($upload_settings) 
 {
@@ -740,12 +743,14 @@ EOT;
     exit;
 }
 </pre>
+</div>
 <p>The last plugin hook is 'upload_process' and is used to process the upload form.  As with 'upload_form', it is called whether or not your upload form is used, so you need to check this first.  Here are the relevant lines from the hook call:</p>
 <pre class="code">
     // Call active plugins for alternate upload forms
     CPGPluginAPI::action('upload_process',$upload_form);
 </pre>
 <p>As with 'upload_form', $upload_form is the choice of upload method.  Check this for your upload method, then respond appropriately.  You should also exit once you have processed your upload form.  Here is an example plugin function:</p>
+<div class="cpg_example">
 <pre class="code">
 function myfunction_process_upload_form($upload_form) 
 {
@@ -768,6 +773,7 @@ EOT;
     exit;
 }
 </pre>
+</div>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 
@@ -778,6 +784,7 @@ EOT;
 $params = CPGPluginAPI::filter('theme_display_thumbnails_params', $params);
 </pre>
 <p>Here's an example of a plugin function that adds more thumbnail information that can be tagged in $template_thumbnail_view:</p>
+<div class="cpg_example">
 <pre class="code">
 function myfunction_add_params($params) 
 {
@@ -795,6 +802,7 @@ function myfunction_add_params($params)
     return array_merge($params,$more_params);
 }
 </pre>
+</div>
 <p>To add the new tags to $template_thumbnail_view in your plugin, you can override the theme template by using the 'page_start' hook.  Some users may have a theme that uses this template and in that case, your plugin documentation should list the new tags your plugin uses so the user can add these tags to their theme template.  You would also need to disable your plugin from overriding this template.  Ideally, this would be done on your plugin configuration panel.</p>
 
 

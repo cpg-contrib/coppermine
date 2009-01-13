@@ -57,8 +57,7 @@
 
 <a name="dev_config_step_basiq_sql"></a><h3>Basic.sql<a href="#dev_config_step_basiq_sql" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Add the needed sql queries to sql/basic.sql for fresh installs. The config entries should exist in the same order they will be displayed on the config page. Find the line with the existing query that you want your entry to appear after and add it below.</p>
-<div class="quote">
-<strong>Example:</strong><br />
+<div class="cpg_example">
 If you want your new config option to be displayed beneath the &quot;Enable plugins&quot; entry, find <tt class="code">INSERT INTO CPG_config VALUES ('enable_plugins', '1');</tt> and add your new line beneath it.
 </div>
 
@@ -67,8 +66,7 @@ If you want your new config option to be displayed beneath the &quot;Enable plug
 
 <a name="dev_config_step_array"></a><h3>Admin.inc.php<a href="#dev_config_step_array" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>As suggested above, the logic of the config entry has been moved from the language file to a separate, language-independent include file. Edit include/admin.inc.php and add a new line to the array definition there are suggested below.</p>
-<div class="quote">
-<strong>Example:</strong><br />
+<div class="cpg_example">
 If you want your new config option to be displayed beneath the &quot;Enable plugins&quot; entry, find <pre class="code">    'enable_plugins' => array(
       'type' => 'radio',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_enable-plugins&amp;ae=admin_general_enable-plugins_end',
@@ -102,7 +100,7 @@ If you want your new config option to be displayed beneath the &quot;Enable plug
   </tr>
   <tr>
     <td valign="top" class="tableb">help_link</td>
-    <td valign="top" class="tableb">When the help icon display is enabled, the content of this field determines what the help pop-up will contain.<br /><div class="quote">Example content: <tt class="code">f=foo.htm&amp;as=bla&amp;ae=bar</tt></div></td>
+    <td valign="top" class="tableb">When the help icon display is enabled, the content of this field determines what the help pop-up will contain.<br /><div class="cpg_example">Example content: <tt class="code">f=foo.htm&amp;as=bla&amp;ae=bar</tt></div></td>
     <td valign="top" class="tableb">mandatory</td>
     <td valign="top" class="tableb">The f-parameter determines the file name (needs to reside within the docs folder), the as-parameter determines the starting anchor and the ae-parameter the ending anchor.</td>
     <td valign="top" class="tableb">none</td>
@@ -155,12 +153,12 @@ If you want your new config option to be displayed beneath the &quot;Enable plug
     <td valign="top" class="tableb">Sub-array determines the &lt;option&gt;-entries for a select field or the possible choices for radio buttons</td>
     <td valign="top" class="tableb">mandatory for 'type' => 'select' and 'radio'</td>
     <td valign="top" class="tableb"><strong>For radio buttons:</strong><br />
-    Non-associative array, that contains the possible options, starting from the option that corresponds to 0 onwards.<br /><div class="quote">Example:<br /><tt class="code">$lang_common['no'],<br />
+    Non-associative array, that contains the possible options, starting from the option that corresponds to 0 onwards.<br /><div class="cpg_example"><tt class="code">$lang_common['no'],<br />
 $lang_common['yes'].': '.$lang_admin_php['debug_everyone'],<br />
 $lang_common['yes'].': '.$lang_admin_php['debug_admin']</tt></div><hr />
     <strong>For select-fields:</strong><br />
     Either an associative array with the scheme ('option_value' => 'option_label') or a non-associative array ('foo', 'bar', 'whatever').<br />
-    <div class="quote">Example:<br /><tt class="code">'options' => array(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25)</tt></div>
+    <div class="cpg_example"><tt class="code">'options' => array(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25)</tt></div>
     </td>
     <td valign="top" class="tableb"></td>
   </tr>

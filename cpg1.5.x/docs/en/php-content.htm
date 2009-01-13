@@ -66,7 +66,9 @@ This being said, here's some potential sample content for anycontent.php:
 <p>Here's how the custom header/footer includes work: if you have specified a working and valid path to your include file in Coppermine's config (&quot;<a href="configuration.htm#admin_theme_custom_header_path_start">Path to custom header include</a>&quot; and &quot;<a href="configuration.htm#admin_theme_custom_footer_path_start">Path to custom footer include</a>&quot;), the code that resides in the include file is being inserted right at the place the placeholder token resides (the generated content replacing the placeholder token in the output) when the template is being parsed (i.e. each time a Coppermine page is being displayed).</p>
 <h4>Possible content</h4>
 <p>The include file can contain HTML, PHP (or a mixture of both), but you have to understand that you can't include all kinds of PHP code: in fact the same limitations apply that apply for all PHP includes - after the file headers have been sent, you can't include PHP code that tries to mess with the file header (e.g. cookie stuff). Be carefull as well with opening database connections: when a new one is opened, connection to the first one is lost.</p>
-<p>This may sound very geekish for non-coders, so let's take a look at some examples:<br />The content of your custom header include file could be:<br />
+<p>This may sound very geekish for non-coders, so let's take a look at some examples:</p>
+
+<div class="cpg_example">The content of your custom header include file could be:<br />
 <pre class="code">
 &lt;div style=&quot;background-color:blue&quot;&gt;
   &lt;a href=&quot;/&quot;&gt;Site home page&lt;/a&gt; -
@@ -74,6 +76,7 @@ This being said, here's some potential sample content for anycontent.php:
   &lt;a href=&quot;http://google.com&quot;&gt;Search the web&lt;/a&gt;
 &lt;/div&gt;
 </pre>
+</div>
 Subsequently, this overall navigation would appear at the top of every Coppermine page. So far so good you might say, but what's the benefit? Well, in itself, there is no great advantage here, as you could as well have added this piece of code to template.html - the result would be the same. However, you could use the custom include file from other, non-coppermine pages on your website as well (using PHP's <a href="http://www.php.net/manual/en/function.include.php" class="external" rel="external">include</a>-command) to provide a unique, overall navigation for your entire website. If the navigation needs to be changed, you only need to change it once, in one file.</p>
 <h4>Dynamic content</h4>
 <p>Not too bad, but there are even better things you could do: you can have dynamic content, e.g. content based on certain conditions to be met (or not).<br />

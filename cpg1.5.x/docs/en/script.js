@@ -317,10 +317,15 @@ document.write('        </ul>');
 document.write('      </li>');
 document.write('      <li><a href="upload_troubleshooting.htm#upload_trouble">Upload troubleshooting</a>');
 document.write('         <ul>');
+document.write('           <li><a href="upload_troubleshooting.htm#upload_trouble_permission">Permissions</a></li>');
+document.write('           <li><a href="upload_troubleshooting.htm#upload_trouble_enable_settings">Enable troubleshooting settings</a></li>');
 document.write('           <li><a href="upload_troubleshooting.htm#upload_support">Asking for support on upload issues</a></li>');
 document.write('           <li><a href="upload_troubleshooting.htm#upload_error_messages">Error messages</a></li>');
-document.write('           <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions">Server-sided restrictions</a></li>');
-document.write('           <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions_check">Things to check</a></li>');
+document.write('           <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions">Server-sided restrictions</a>');
+document.write('             <ul>');
+document.write('               <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions_check">Things to check</a></li>');
+document.write('             </ul>');
+document.write('           </li>');
 document.write('         </ul>');
 document.write('      </li>');
 document.write('    </ul>');
@@ -544,7 +549,7 @@ function cpgDocHeader() {
 	if (getUrlParameters('hide_nav') == 1) {
 		return;
 	}
-	document.write('<img src="images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />');
+	document.write('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />');
 	document.write('<h1>Coppermine Photo Gallery v1.5.1: Documentation and Manual</h1>');
 	document.write('<br clear="all" />');
 	//cpgDocPrevNext();

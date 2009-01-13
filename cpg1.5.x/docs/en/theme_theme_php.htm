@@ -47,15 +47,15 @@
 <ul>
   <li><strong>Definitions of constants</strong><br />
   Think of constants as general switches that can be set once while the script is run
-  <div class="quote"><p><strong>Example:</strong><br />
-  <tt class="code">define('THEME_HAS_RATING_GRAPHICS',1);</tt></p></div></li>
+  <div class="cpg_example">
+  <tt class="code">define('THEME_HAS_RATING_GRAPHICS',1);</tt></div></li>
   <li><strong>Definition of variables</strong><br />
   Variables can be manipulated (i.e. changed) during runtime. The vast majority of items that can reside in theme.php are variables. Variable names always start with a $-sign.
-  <div class="quote"><p><strong>Example:</strong><br />
-  <tt class="code">$template_sys_menu = &lt;&lt;&lt;EOT<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{BUTTONS}<br />EOT;</tt></p></div></li>
+  <div class="cpg_example">
+  <tt class="code">$template_sys_menu = &lt;&lt;&lt;EOT<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{BUTTONS}<br />EOT;</tt></div></li>
   <li><strong>Definition of functions</strong><br />
   Functions are the most powerfull mechanisms that can reside in theme.php, as they allow great flexibility and are re-usable. They start with the word <tt class="code">function</tt>, followed by the function name and the parameters in brackets and a curly bracket that actually determines the start of the function. The function definition usually contains several lines of code and ends with a closing curly bracket.
-  <div class="quote"><p><strong>Example:</strong><br />
+  <div class="cpg_example">
   <tt class="code">function endtable()<br />
 {<br />
 &nbsp;&nbsp;&nbsp;&nbsp;echo &lt;&lt;&lt;EOT<br />
@@ -63,7 +63,7 @@
 &lt;!-- End standard table --&gt;<br />
 <br />
 EOT;<br />
-}</tt></p></div></li>
+}</tt></div></li>
 </ul>
 
 <a name="theme_php_list"></a><h2>List of items in theme.php<a href="#theme_php_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>

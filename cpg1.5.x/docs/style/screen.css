@@ -470,7 +470,7 @@ dt {
 .filetree li.expandable span.folder { background: url(../images/tree/folder-closed.gif) 0 0 no-repeat; }
 .filetree span.file { background: url(../images/tree/file.gif) 0 0 no-repeat; }
 
-.cpg_message_info, .cpg_message_success, .cpg_message_warning, .cpg_message_error, .cpg_message_validation {
+.cpg_message_info, .cpg_message_success, .cpg_message_warning, .cpg_message_error, .cpg_message_validation, .cpg_example {
     border: 1px solid;
     margin: 10px 0px;
     padding:15px 10px 15px 50px;
@@ -501,5 +501,10 @@ dt {
     color: #D63301;
     background-color: #FFCCBA;
     background-image: url('../images/message/error.png');
+}
+.cpg_example {
+    color: #915F15;
+    background-color: #FFF7E8;
+    background-image: url('../images/message/example.png');
 }
 

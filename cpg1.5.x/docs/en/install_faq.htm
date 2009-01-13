@@ -101,7 +101,8 @@
 
 <a name="GD1vsGD2"></a>
 <h2>What's the difference between <strong>GD1 and GD2</strong>?<a href="#GD1vsGD2" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>GD2 is an updated version of GD1 and, as such, will create pictures with better quality (intermediate and thumbnails). <table border="0" class="frame2"><tr><td colspan="2"><span class="winzig">Here's an example taken from <a href="http://www.vddh.com/wnailer/index.php?pag=res&pic=1#comp" class="external">w-nailer: about resizing</a><br />(Original pic size: 1024 x 768 pixels):</span></td></tr><tr><td align="center"><img src="images/128x96gd1.jpg" width="128" height="96" border="0" alt="" title="GD1"></td><td align="center"><img src="images/128x96gd2.jpg" width="128" height="96" border="0" alt="" title="GD2"></td></tr><tr><td align="center"><span class="winzig">GD 1.8.4:<br />ImageCreate<br />ImageCopyResized<br />128 x 96 pixels</span></td><td align="center"><span class="winzig">GD 2.0.1:<br />ImageCreateTrueColor<br />ImageCopyResampled<br />128 x 96 pixels</span></td></tr></table>Upgrades of the GD lib after coppermine has already installed will not affect pictures that were previously created. It will only affect those created after the upgrade. <strong>Unless you are running your own webserver, you cannot upgrade nor install GD lib  - only your webhost can!</strong></p>
+<p>GD2 is an updated version of GD1 and, as such, will create pictures with better quality (intermediate and thumbnails). <table border="0" class="frame2"><tr><td colspan="2"><span class="winzig">Here's an example taken from <a href="http://www.vddh.com/wnailer/index.php?pag=res&pic=1#comp" class="external">w-nailer: about resizing</a><br />(Original pic size: 1024 x 768 pixels):</span></td></tr><tr><td align="center"><img src="../images/128x96gd1.jpg" width="128" height="96" border="0" alt="" title="GD1"></td><td align="center"><img src="../images/128x96gd2.jpg" width="128" height="96" border="0" alt="" title="GD2"></td></tr><tr><td align="center"><span class="winzig">GD 1.8.4:<br />ImageCreate<br />ImageCopyResized<br />128 x 96 pixels</span></td><td align="center"><span class="winzig">GD 2.0.1:<br />ImageCreateTrueColor<br />ImageCopyResampled<br />128 x 96 pixels</span></td></tr></table>Upgrades of the GD lib after coppermine has already installed will not affect pictures that were previously created. It will only affect those created after the upgrade. <strong>Unless you are running your own webserver, you cannot upgrade nor install GD lib  - only your webhost can!</strong></p>
+<p class="cpg_message_info">By now, the GD1 library is totally outdated and should only be found on very old hardware. If you're webhosted, you should have GD2. If your webhost is still only offering GD1, it's probably time to look for another, better webhost.</p>
 <hr />
 
 <a name="enableGD"></a>
@@ -148,44 +149,46 @@ For details, read the <a href="install_permissions.htm#permissions">permission s
 
 <a name="minimumInstall"></a>
 <h2>I'm running short on webspace. Is there a &quot;<strong>minimum install</strong>&quot;?<a href="#minimumInstall" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>This is of course a contradiction in terms: running a gallery page usually means you will considerable webspace to store your pics, but if you only want to publish a few pics with what little webspace you have left, there are some files that don't have to be uploaded or that can be removed if not needed. It is however recommended that only experienced users create a minimum install; when in doubt, do a full install.</p>
+<p>This is of course a contradiction in terms: running a gallery page usually means that you will need considerable webspace to store your pics, but if you only want to publish a few pics with what little webspace you have left, there are some files that don't have to be uploaded or that can be removed if not needed. It is however recommended that only experienced users create a minimum install; when in doubt, do a full install.</p>
 <ol>
-<li><strong>Remove all languages that you don't need</strong> (if your users are all from the same country).<br />
-It's recommended that you keep English anyway even if your users use another language, just for you as admin to be able to temporarily switch to English. If you need to use the <a href="configuration.htm#admin_language_fallback">language fallback option</a>, you will have to keep the english language file no matter what.<br />
-Delete all files in the lang-subfolder of your coppermine install except yourlanguage.php (e.g. if you're using french, delete all files but /lang/french.php).
-<br /><div class="totop">Webspace that can be saved (maximum): 2.9 MB</div>
-</li>
-<li><strong>Remove all unnecessary themes</strong><br />
-Remove all themes you won't use from your themes folder. If you're using a customized theme, it's recommended to leave the classic theme in place for administrative purposes.<br />
-Example: if you're using the theme &quot;Eyeball&quot; that comes with coppermine, you can safely delete the sub-folders &quot;classic&quot;, &quot;fruity&quot;, &quot;hardwired&quot;, &quot;igames&quot;, &quot;mac_ox_x&quot;, &quot;project_vii&quot;, &quot;rainy_day&quot; and &quot;water_drop&quot; from your themes folder.
-<br /><div class="totop">Webspace that can be saved (maximum): 1 MB</div>
-</li>
-<li><strong>Remove bridge files</strong><br />
-The Coppermine package includes bridge files used for integration of coppermine with bulletin board software like phpBB, SMF etc. It is safe to delete some files in the bridge folder; if you <em>are</em> using bbs integration, you will have to keep the bridge file that corresponds to the bbs you're using. If you are not using integration, you must keep the file <strong>coppermine.inc.php</strong>. The file <strong>udb_base.php</strong> is required under all setups and must not be deleted.
-<br /><div class="totop">Webspace that can be saved (maximum): 85 KB</div>
-</li>
-<li><strong>Remove the flags</strong><br />
-If you're not going to use the &quot;<a href="configuration.htm#admin_language_flags">select language by flags</a>&quot; option from the coppermine menu, it's safe to delete the flags folder (/your_coppermine_folder/images/flags/). If you <em>are</em> using the flags option, you can of course delete all flags you don't use at all.
-<br /><div class="totop">Webspace that can be saved (maximum): 80 KB</div>
-</li>
-<li><strong>Remove files that are needed for install or upgrade only</strong><br />
-Once Coppermine has been installed and is &quot;up-and-running&quot;, you can safely delete the files that are needed for installing only: from the coppermine root folder, delete install.php, installer.css, update.php,  upgrade-1.0-to-1.2.php. You can delete the folder &quot;sql&quot; as well.<br />
-If you want to update/upgrade your coppermine install later (once a new version comes out), you will of course have to re-upload the update files and the sql folder to your webserver.
-<br /><div class="totop">Webspace that can be saved (maximum): 73 KB</div>
-</li>
-<li><strong>Choose to only display full-sized images and thumbnails.</strong><br />
-This is option that will save most webspace when used properly, so here are detailed setup instructions:
-  <ul>
-    <li>Determine the max resolution that you are going to allow. This should be something that makes sense and fits on the screen of most users (and depends to your theme as well). Recommended setting is 800 pixels (which is being used in this example configuration)</li>
-    <li>Set &quot;<a href="configuration.htm#admin_picture_thumbnail_intermediate_toggle">Create intermediate pictures</a>&quot; to &quot;no&quot;.</li>
-    <li>Set &quot;<a href="configuration.htm#admin_picture_thumbnail_intermediate_dimension">Max width or height of an intermediate picture</a>&quot; to &quot;800&quot;.</li>
-    <li>Set &quot;<a href="configuration.htm#admin_picture_thumbnail_max_upload_dimension">Max width or height for uploaded pictures (pixels)</a>&quot; to &quot;800&quot;.</li>
-    <li>Set &quot;<a href="configuration.htm#admin_picture_thumbnail_auto-resize">Auto resize images that are larger than max width or height</a>&quot; to &quot;Yes: Everyone &quot;. This will result in bigger images being resized during upload.</li>
-    <li>Above mentioned config sections will be taken into account for future uploads. If you already have pictures within your gallery, do as suggested and use the admin tools to get rid of the intermediate images.</li>
-  </ul>
-</li><br />
+	<li><strong>Remove all languages that you don't need</strong> (if your users are all from the same country).<br />
+	It's recommended that you keep English anyway even if your users use another language, just for you as admin to be able to temporarily switch to English. If you need to use the <a href="configuration.htm#admin_language_fallback">language fallback option</a>, you will have to keep the english language file no matter what.<br />
+	Delete all files in the lang-subfolder of your coppermine install except yourlanguage.php (e.g. if you're using french, delete all files but /lang/french.php).
+	</li>
+	<li><strong>Remove the unneeded parts of the documentation</strong>
+	Remove the documentation parts that you don't need, i.e. the language sub-folders of the documentation that doesn't apply. <div class="cpg_example">If you're only going to use English, delete the folders <tt class="code">docs/fr/</tt> and <tt class="code">docs/de/</tt> etc.</div>
+	</li>
+	<li><strong>Remove all unnecessary themes</strong><br />
+	Remove all themes you won't use from your themes folder. If you're using a customized theme, it's recommended to leave the classic theme in place for administrative purposes.<br />
+	<div class="cpg_example">If you're using the theme &quot;Eyeball&quot; that comes with coppermine, you can safely delete the sub-folders &quot;classic&quot;, &quot;fruity&quot;, &quot;hardwired&quot;, &quot;igames&quot;, &quot;mac_ox_x&quot;, &quot;project_vii&quot;, &quot;rainy_day&quot; and &quot;water_drop&quot; from your themes folder.</div>
+	</li>
+	<li><strong>Remove bridge files</strong><br />
+	The Coppermine package includes bridge files used for integration of coppermine with bulletin board software like phpBB, SMF etc. It is safe to delete some files in the bridge folder; if you <em>are</em> using bbs integration, you will have to keep the bridge file that corresponds to the bbs you're using. If you are not using integration, you must keep the file <strong>coppermine.inc.php</strong>. The file <strong>udb_base.php</strong> is required under all setups and must not be deleted.
+	</li>
+	<li><strong>Remove the flags</strong><br />
+	If you're not going to use the &quot;<a href="configuration.htm#admin_language_flags">select language by flags</a>&quot; option from the coppermine menu, it's safe to delete the flags folder (/your_coppermine_folder/images/flags/). If you <em>are</em> using the flags option, you can of course delete all flags you don't use at all.
+	</li>
+	<li><strong>Remove files that are needed for install or upgrade only</strong><br />
+	Once Coppermine has been installed and is &quot;up-and-running&quot;, you can safely delete the files that are needed for installing only: from the coppermine root folder, delete install.php, installer.css, update.php. You can delete the folder &quot;sql&quot; as well.<br />
+	If you want to update/upgrade your coppermine install later (once a new version comes out), you will of course have to re-upload the update files and the sql folder to your webserver.
+	</li>
+	<li><strong>Choose to only display full-sized images and thumbnails.</strong><br />
+	This is option that will save most webspace when used properly, so here are detailed setup instructions:
+	  <ul>
+	    <li>Determine the max resolution that you are going to allow. This should be something that makes sense and fits on the screen of most users (and depends to your theme as well). Recommended setting is 800 pixels (which is being used in this example configuration)</li>
+	    <li>Set &quot;<a href="configuration.htm#admin_picture_thumbnail_intermediate_toggle">Create intermediate pictures</a>&quot; to &quot;no&quot;.</li>
+	    <li>Set &quot;<a href="configuration.htm#admin_picture_thumbnail_intermediate_dimension">Max width or height of an intermediate picture</a>&quot; to &quot;800&quot;.</li>
+	    <li>Set &quot;<a href="configuration.htm#admin_picture_thumbnail_max_upload_dimension">Max width or height for uploaded pictures (pixels)</a>&quot; to &quot;800&quot;.</li>
+	    <li>Set &quot;<a href="configuration.htm#admin_picture_thumbnail_auto-resize">Auto resize images that are larger than max width or height</a>&quot; to &quot;Yes: Everyone &quot;. This will result in bigger images being resized during upload.</li>
+	    <li>Above mentioned config sections will be taken into account for future uploads. If you already have pictures within your gallery, do as suggested and use the admin tools to get rid of the intermediate images.</li>
+	  </ul>
+	</li>
+	<li><strong>Turn logging off</strong>
+	The log files will eat up space as well. In Coppermine's config, scroll to the very bottom and turn logging off there.
+	</li>
+	<li><strong>Delete the plugins you don't need</strong>
+	There are some plugins that come with Coppermine out of the box. Delete them if you want to save some webspace. Don't delete the plugin folder - just delete the sub-folders that you don't need.</li>
 </ol>
-Summary: a minimum install of coppermine will need approx. 3.3 MB of webspace.
 <hr />
 
 <a name="imagecreatefromjpeg"></a>

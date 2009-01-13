@@ -521,7 +521,7 @@ function cpgDocHeader() {
   if (hideNav == 1) {
   	return;
   }
-  document.write('<img src="images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />');
+  document.write('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />');
   document.write('<h1>Coppermine Photo Gallery v1.5.1: Manuel et Documentation</h1>');
   document.write('<br clear="all" />');
   //cpgDocPrevNext();

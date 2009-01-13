@@ -43,38 +43,31 @@
 <p>If you have upload issues, read this page - entirely!</p>
 
 <a name="upload_trouble_permission"></a><h2>Permissions<a href="#upload_trouble_permission" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<fieldset><legend class="important"><strong>First and foremost:</strong></legend>Check your folder and file permission settings on the <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, and <tt class="code">/albums/edit</tt> directories. All should usually be 777 or 755 (depending on your webserver configuration).</span><br /><br />If you don't know what we mean by <em>777</em> or <em>755</em>, you need to read up the <a href="install_permissions.htm#permissions">permission section</a> (if this doesn't help, do a Google search on <em>UNIX file permissions</em>). Windows has a similar set of file permissions. You can usually set these permissions using an <em>FTP client</em> (If you don't know what an <em>FTP client</em> is, Google for <em>FTP client</em>).<br />
-For those of you who skim over statements written in red letters, we will repeat to try to get your attention:
+<p class="cpg_message_info"><strong>First and foremost:</strong> Check your folder and file permission settings on the <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, and <tt class="code">/albums/edit</tt> directories. On *nix-driven webservers, the folder <tt class="code">/albums</tt> and all sub-folders should usually be 777 or 755 (depending on your webserver configuration). If you don't know what we mean by <em>777</em> or <em>755</em>, you need to read up the <a href="install_permissions.htm#permissions">permission section</a> (if this doesn't help, do a Google search on <em>UNIX file permissions</em>). Windows has a similar set of file permissions. You can usually set these permissions using an <em>FTP client</em> (If you don't know what an <em>FTP client</em> is, Google for <em>FTP client</em> or take a look at the list of <a href="dev_tools.htm#dev_tools_ftp_client">recommended tools</a>).</p>
+
+<p class="cpg_message_error">For those of you who skim over statements written in red letters, we will repeat to try to get your attention:<br />
 <span class="important"><strong>Yes, we are writing about something that could easily apply to you</strong></span>
-<br />
-We repeat - check your permissions on the <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, and <tt class="code">/albums/edit</tt> directories.  All should usually be 777 or 755 (depending on your webserver configuration).
-<br />&nbsp;<br />
-Yes, we do want you to set the permissions of each folder even if you think you have already done this. Yes, we mean it.<br /></fieldset>
+</p>
+<p>We repeat - check/apply your permissions on the <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, and <tt class="code">/albums/edit</tt> directories.  All should usually be 777 or 755 (depending on your webserver configuration) or whatever is needed on your webserver setup to allow the coppermine script write access.</p>
+<p class="cpg_message_info">Yes, we do want you to <strong>set</strong> the permissions of each folder even if you think you have already done this. Yes, we <strong>mean</strong> it.</p>
 
 <a name="upload_trouble_enable_settings"></a><h2>Enable troubleshooting settings<a href="#upload_trouble_enable_settings" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed <a href="#upload_error_messages">error messages</a>. This applies to <strong>all</strong> upload methods, not only <a href="uploading_http.htm#upload_http">HTTP uploads</a>.</p>
-<p>When troubleshooting uploads in CPG 1.5, you are advised to change the upload settings in the Groups console to 'Single uploads only' and to activate 'Debug mode' in the config console. Changing this setting negates some of the error masking done in the multiple upload setting. This will allow you to access more detailed error messages.</p>
+<p>When troubleshooting uploads in <abbr title="Coppermine Photo Gallery">CPG</abbr> 1.5, you are advised to activate '<a href="configuration.htm#debug_mode">Debug mode</a>' in the <a href="configuration.htm">config console</a>. Changing this setting negates some of the error masking done in the multiple upload setting. This will allow you to access more detailed error messages.</p>
 <ul>
-<li><strong>Log in as admin</strong><br />
-Go to your coppermine page and log in as admin</li>
-<li><strong>Go to the <a href="configuration.htm#admin">config screen</a></strong></li>
-<li><strong>Scroll to the bottom of the page</strong></li>
-<li><strong>Expand the "Maintenance settings" section by clicking on it</strong></li>
-<li><strong>Enable debug mode for everyone</strong><br />
-(set <em>Enable debug mode</em> to "Yes: Everyone")</li>
-<li><strong>Leave display of notices switched off</strong><br />
-(notices are only meant for developers. If you have idea what they mean, leave them off.)</li>
-<li><strong>Save the new settings by clicking on "Save new configuration"</strong></li>
-<li><strong>Go to the <a href="groups.htm#group_cp">"groups" panel</a></strong></li>
-<li><strong>Set the upload form configuration for all groups to "Single file uploads only"</strong><br />
- <ol>
-   <li>set <em>File upload boxes</em> to &quot;1&quot; (1)</li>
-   <li>set <em>URI upload boxes</em> to &quot;0&quot; (2)</li>
-   <li>set <em>No. of boxes</em> to &quot;fixed&quot; (3)</li>
- </ul>
-<img src="images/upload_groups.png" width="500" height="185" border="0" alt="" /></li>
-<li><strong>Save your new settings</strong><br />
-(click on "Apply Modifications")</li>
+	<li><strong>Log in as admin</strong><br />
+	Go to your coppermine page and log in as admin</li>
+	<li><strong>Go to the <a href="configuration.htm#admin">config screen</a></strong></li>
+	<li><strong>Scroll to the section &quot;User settings&quot; and expand it by clicking on it</strong></li>
+	<li><strong>Set the <a href="configuration.htm#admin_upload_mechanism">Default upload mechanism</a> to  &quot;<em>Simple - one file at a time</em>&quot;</strong></li>
+	<li><strong>Scroll to the bottom of the page</strong></li>
+	<li><strong>Expand the &quot;Maintenance settings&quot; section by clicking on it</strong></li>
+	<li><strong>Enable debug mode for everyone</strong><br />
+	(set <em>Enable debug mode</em> to &quot;Yes: Everyone&quot;)</li>
+	<li><strong>Leave display of notices switched off</strong><br />
+	(notices are only meant for developers. If you have idea what they mean, leave them off.)</li>
+	<li><strong>Save the new settings by clicking on &quot;Save new configuration&quot;</strong></li>
+	<li><strong>Go to the http uploads page by clicking on the &quot;upload file&quot; link in the main coppermine menu</strong></li>
 </ul>
 <p>Then try to upload (using http uploads, even if you experienced troubles using another upload method) - you should get a more detailed <a href="#upload_error_messages">error message</a> that tells you what exactly goes wrong with your uploads. If the error message doesn't mean anything to you, <a href="http://coppermine-gallery.net/forum/index.php?action=search" rel="external" class="external">search the support board</a> for the error message you get.</p>
 
@@ -305,11 +298,13 @@ Replace it with<br />
 
 
 <p><strong>Some notes about the different types of upload mechanisms available since cpg1.3.x (or better):</strong><br />
-Multiple HTTP uploads are designed to handle a small number of files, and have an upper limit of 10 files at a time.  Therefore, they are not well suited for the uploading of large numbers of files unless you are running your own webserver or have control over the php.ini configuration.
+Multiple HTTP uploads are designed to handle a small number of files.  Therefore, they are not well suited for the uploading of large numbers of files unless you are running your own webserver or have control over the php.ini configuration.
 <br />
 If you are looking to upload more than 15 or 20 files at a time, you should consider the <a href="uploading_batch-add.htm#batch_add_pics">batch add</a> process or the <a href="uploading_xp-publisher.htm#xp_publish_upload">XP Publisher</a> utility.  Each has its own drawbacks and advantages.
 <br />
-The batch add process is fast, but it creates quite a load on the server and, as a result, you may experience timeouts causing your uploads to terminate prematurely.  XP Publisher, on the otherhand, is considerably slower, but it limits the load on the server.  It also circumvents many of the pitfalls caused by limitations set in the php.ini configuration by uploading each file in the batch being uploaded as an individual post request.</p>
+The batch add process is fast, but it creates quite a load on the server and, as a result, you may experience timeouts causing your uploads to terminate prematurely.  XP Publisher, on the other hand, is considerably slower, but it limits the load on the server.  It also circumvents many of the pitfalls caused by limitations set in the php.ini configuration by uploading each file in the batch being uploaded as an individual post request.</p>
+<p>Other alternative upload mechanisms (like Client-based agents as JUpload or similar) may be provided as third-party contributions - you're encouraged to look at them as well, but please keep in mind that the coppermine developers can only provide limited support for third-party contributions.</p>
+<p>Keep in mind though that before trying any alternative upload mechanism, you have to make sure that the initial upload method &quot;http uploads&quot; works as expected - if it doesn't, you have to fix that first; it doesn't make sense to try alternative upload mechanisms if the core upload mechanism doesn't work.</p>
 
 
 <a name="upload_trouble_end"></a>

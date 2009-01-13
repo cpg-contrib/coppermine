@@ -51,7 +51,7 @@
   <li><strong>Choose a name</strong><br />
   Your plugin needs a meaningfull, simple name. Make sure that a plugin doesn't already exist with the same name you've chosen. Then create a sub-folder within the plugin folder and name it as you see fit. Make sure to use web-safe names (only alphanumerals, all lower-case, no special chars except dash and underscore.<br />
   For clarification: there can be only alphanumerals in a plugin's folder name. There mustn't be any dots or other special chars in it. The only exception is the hypen (-) and underscore (_)
-  Example: <tt class="code">your_coppermine_folder/plugins/coffee_maker/</tt></li>
+  <div class="cpg_example"><tt class="code">your_coppermine_folder/plugins/coffee_maker/</tt></div></li>
   <li><strong>Consider translations</strong><br />
   Coppermine is an international project, with users from all over the world. If you should decide to contribute your custom plugin later, it would be a good idea to design it properly in the first place: keep all strings that could need translation in a separate include file and only hard-code the corresponding vars into your code.
   </li>
@@ -82,23 +82,23 @@
   <ul>
     <li><strong>$name</strong><br />
     The full name of your plugin (not only the web-safe folder name chosen initially, but a name that indicates what the plugin does).<br />
-    Example: <span class="quote">$name = 'Coffee Maker';</span>
+   <div class="cpg_example">$name = 'Coffee Maker';</div>
     </li>
     <li><strong>$description</strong><br />
     A short description that explains what your plugin actually does.<br />
-    Example: <span class="quote">$description = 'Turns your Coppermine gallery into a coffee machine.';</span>
+    <div class="cpg_example">$description = 'Turns your Coppermine gallery into a coffee machine.';</div>
     </li>
     <li><strong>$author</strong><br />
     Obviously, this is the place for your credits. You can use your real name or a nickname (or even both). You can even slightly promote your site by adding a link to it within the content of this variable.<br />
-    Example: <span class="quote">$author = 'John Smith (aka &quot;&lt;a href="http://yoursite.tld/" rel="external" class="external"&gt;NeoIsDead&lt;/a&gt;&quot;).';</span>
+    <div class="cpg_example">$author = 'John Smith (aka &quot;&lt;a href="http://yoursite.tld/" rel="external" class="external"&gt;NeoIsDead&lt;/a&gt;&quot;).';</div>
     </li>
     <li><strong>$version</strong><br />
     The version of your plugin - usually starting with 1.0 (although you're welcome to come up with any other numbering scheme as long as the difference between versions will be obvious).<br />
-    Example: <span class="quote">$version = '1.0';</span>
+    <div class="cpg_example">$version = '1.0';</div>
     </li>
     <li><strong>$extra_info</strong><br />
     Is displayed with the title of a plugin that is <strong>not</strong> installed and can be used to present extra information. Use it for example to present an additional link to the plugin documentation if your plugin needs detailed explanation. When using larger pieces of HTML, it's recommended to use the heredoc-syntax to define the variable to make the code better readable.<br />
-    Example:<div class="quote">$extra_info = &lt;&lt;&lt;EOT<br />
+    <div class="cpg_example">$extra_info = &lt;&lt;&lt;EOT<br />
     &lt;table border="0" cellspacing="0" cellpadding="0"&gt;<br />
     &lt;tr&gt;<br />
         &lt;td class="admin_menu"&gt;<br />
@@ -110,7 +110,7 @@ EOT;</div>
     </li>
     <li><strong>$install_info</strong><br />
     Is displayed with the title of a plugin that <strong>is</strong> installed and can be used to present extra information. When using larger pieces of HTML, it's recommended to use the heredoc-syntax to define the variable to make the code better readable.<br />
-    Example:<div class="quote">$install_info = &lt;&lt;&lt;EOT<br />
+    <div class="cpg_example">$install_info = &lt;&lt;&lt;EOT<br />
 &lt;div class=&quot;admin_menu_wrapper&quot;&gt;<br />
     &lt;div class=&quot;admin_menu admin_float&quot;&gt;<br />
         &lt;a href=&quot;index.php?file=coffee_maker/admin&action=config&quot; title=&quot;Configuration&quot;&gt;Plugin configuration&lt;/a&gt;<br />

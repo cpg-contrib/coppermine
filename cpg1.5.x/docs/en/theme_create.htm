@@ -46,8 +46,7 @@
 <p>To create a new theme, the best solution is to use an existing one as its copy template. To do that, make a copy of the folder of the theme you want to use as a basis. Then edit the &quot;<strong>template.html</strong>&quot;, &quot;style.css&quot; and &quot;<strong>theme.php</strong>&quot; files and replace all occurences of &quot;<strong>themes/old_theme_dir</strong>&quot; with &quot;<strong>themes/new_theme_dir</strong>&quot; in order for the links to point to the correct place.<br />
 Avoid using spaces and special chars in your custom theme name - only use alphanumerals and the underscore (_).</p>
 <p>Also keep in mind that despite this file being located in the &quot;<strong>themes/your_theme_dir</strong>&quot; directory, it must be coded as if it was in the main directory of the coppermine installation. For example, in order to display an image, you must use <tt class="code">&lt;img src=&quot;<strong>themes</strong>/theme_dir/images/image.gif&quot; alt=&quot;&quot;/&gt;</tt> and not just <tt class="code">&lt;img src=&quot;images/image.gif&quot; alt=&quot;&quot;/&gt;.</tt> The same principle applies for the &quot;<strong>theme.php</strong>&quot; file.</p>
-<div class="quote">
-<p><strong>Example:</strong></p>
+<div class="cpg_example">
 <ul>
   <li><strong>Create a copy</strong><br />
   Browse the local coppermine gallery copy on your client, navigate to the themes folder (<tt class="code">your_coppermine_folder/themes/</tt>), right-click on the folder name that represents the theme you want to base your custom theme on (in this example, we will use the classic theme, so we will use <tt class="code">your_coppermine_folder/themes/classic/</tt>), select &quot;copy&quot; from the context menu. Then paste the content of the clipboard into the themes folder; a folder (named &quot;Copy of classic&quot; or similar) will turn up.</li>
@@ -65,8 +64,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 <p>If you're not sure how to go about creating your own theme, you could also have a look at the download section of the coppermine homepage: there are many <a href="theme_user-contributions.htm#theme_user-contributions">user-contributed themes</a> available for download that can be previewed on the <a href="http://coppermine-gallery.net/demo/">coppermine demo page</a>.</p>
 <p>While you're in the process of creating or testing a new theme, you might not want your theme to be displayed to visitors of your site, but you (as the coppermine admin) may want to still be able to preview your theme. To do that, simply add <tt class="code">theme=your_theme_name</tt> to the url in your browser.</p>
 <br />
-<div class="quote">
-<strong>Examples:</strong>
+<div class="cpg_example">
 <ul>
 <li><tt class="code">http://yoursite.tld/coppermine/index.php?theme=your_theme_name</tt> will show the coppermine index page, using your theme</li>
 <li><tt class="code">http://yoursite.tld/coppermine/thumbnails.php?album=1&amp;theme=your_theme_name</tt> will show the thumbnail view of album 1, using your theme</li>
@@ -88,14 +86,6 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
 
 <a name="theme_create_template_favicon"></a><h3>Favicon<a href="#theme_create_template_favicon" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Coppermine comes with a <a href="http://en.wikipedia.org/wiki/Favicon" rel="external" class="external">favicon</a> file that resides in the gallery root folder. There is reference to it in all themes that come with coppermine out of the box. You're welcome to use a favicon file of your own and change the reference to it in your custom theme. To accomplish this, edit themes/your_custom_theme/template.html, find <tt class="code">&lt;link rel=&quot;shortcut icon&quot; href=&quot;favicon.ico&quot; /&gt;</tt> and edit as you see fit.</p>
-
-
-
-<!--<div class="quote">
-<p><strong>Example:</strong></p>
-
-</div>
--->
 
 
 

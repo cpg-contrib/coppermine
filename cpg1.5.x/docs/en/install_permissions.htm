@@ -69,12 +69,13 @@ Needless to say, other combinations are technically possible (such as -wx, --x o
 </li>
 <li><strong>Groups in <abbr title="Unix or Linux derivates">Lunix</abbr></strong><br />
 <abbr title="Unix or Linux derivates">Lunix</abbr> uses a set of three-group permissions, each of which can be applied independently. These are: <em>owner</em>, <em>group</em> and <em>world</em>. Using this set, you can dictate if a user who owns a file has permission to modify or delete it (write permission) while other users will only be able to read/view and possibly execute the file. On your server, these permission settings for the three possible groups are written in as a single line entry (in the order "owner", "group", "world"). <br />
-Examples  :
+<div class="cpg_example">
   <ul>
   <li><tt class="code">rwxrwxrwx</tt> ... read, write and execute (rwx) permissions for all three groups</li>
   <li><tt class="code">rwxr-xr-x</tt> ... rwx permissions for the owner, r-x permissions for all others</li>
   <li><tt class="code">r-xr-xr-x</tt> ... read and execute permissions for all groups, only</li>
   </ul>
+</div>
 </li>
 <li><strong>Webserver daemon</strong><br />
 Even though you (the user who owns the files on your server and who has control over the permissions) may be able to access a file (e.g. using your <abbr title="File Transfer Protocol">FTP</abbr> <abbr title="application = program = software">app</abbr>), the coppermine script may not be able to do so. This is often caused by a particular setup option for servers: services (in <abbr title="Unix or Linux derivates">Lunix</abbr> often called "daemons") may run in the context of a specific user that is different from the user who is allowed to access the files. On many such servers, the webserver (apache) service runs as user "nobody". This way, the server can be protected against hacker attacks. Therefore, setting permissions on a server for the "owner" only does not work on these particular setups, you must set permissions for both "group" and "world" (at least for the group the webserver daemon is in).
@@ -83,34 +84,36 @@ Even though you (the user who owns the files on your server and who has control 
 As you can see, permissions can be either "on" or "off" - this is the equivalent to the two different states that a bit of data can have in binary arithmetics (and therefore, also in the whole world of computing).
 As we have three types of different permissions (read, write, execute), we will need three bits to assign a set of permissions. The highest bit is the "<em><strong>r</strong>ead</em>" bit - decimal "4" is used to represent it. The middle bit "<em><strong>w</strong>rite</em>" is assigned to decimal "2", the lowest bit "<em>e<strong>x</strong>ecute</em>" is represented by decimal "1".
 This may be a bit hard to understand or follow at first, especially if you haven't dealt with binary arithmetics before. If you would like to learn more, google for it. It's easier to understand if you look at some examples:
-<div class="floatleft">
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
-<tr><td class="tableh1">permission</td><td class="tableh1">bit value</td><td class="tableh1">set?</td><td class="tableh1">value</td></tr>
-<tr><td class="tableb">read</td><td class="tableb">4</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true"/></td><td class="tableb">4</td></tr>
-<tr><td class="tableb">write</td><td class="tableb">2</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">2</td></tr>
-<tr><td class="tableb">execute</td><td class="tableb">1</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">1</td></tr>
-<tr><td colspan="3" class="tablef">sum (resulting byte value)</td><td class="tablef">7</td></tr>
-</table>
+<div class="cpg_example">
+	<div class="floatleft">
+	<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+	<tr><td class="tableh1">permission</td><td class="tableh1">bit value</td><td class="tableh1">set?</td><td class="tableh1">value</td></tr>
+	<tr><td class="tableb">read</td><td class="tableb">4</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true"/></td><td class="tableb">4</td></tr>
+	<tr><td class="tableb">write</td><td class="tableb">2</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">2</td></tr>
+	<tr><td class="tableb">execute</td><td class="tableb">1</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">1</td></tr>
+	<tr><td colspan="3" class="tablef">sum (resulting byte value)</td><td class="tablef">7</td></tr>
+	</table>
+	</div>
+	<div class="floatleft">
+	<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+	<tr><td class="tableh1">permission</td><td class="tableh1">bit value</td><td class="tableh1">set?</td><td class="tableh1">value</td></tr>
+	<tr><td class="tableb">read</td><td class="tableb">4</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">4</td></tr>
+	<tr><td class="tableb">write</td><td class="tableb">2</td><td class="tableb"><input type="checkbox" onclick="javascript:this.checked=false" /></td><td class="tableb">-</td></tr>
+	<tr><td class="tableb">execute</td><td class="tableb">1</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">1</td></tr>
+	<tr><td colspan="3" class="tablef">sum (resulting byte value)</td><td class="tablef">5</td></tr>
+	</table>
+	</div>
+	<div class="floatleft">
+	<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+	<tr><td class="tableh1">permission</td><td class="tableh1">bit value</td><td class="tableh1">set?</td><td class="tableh1">value</td></tr>
+	<tr><td class="tableb">read</td><td class="tableb">4</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">4</td></tr>
+	<tr><td class="tableb">write</td><td class="tableb">2</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">2</td></tr>
+	<tr><td class="tableb">execute</td><td class="tableb">1</td><td class="tableb"><input type="checkbox" onclick="javascript:this.checked=false" /></td><td class="tableb">-</td></tr>
+	<tr><td colspan="3" class="tablef">sum (resulting byte value)</td><td class="tablef">6</td></tr>
+	</table>
+	</div>
+	<div style="clear:left"></div>
 </div>
-<div class="floatleft">
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
-<tr><td class="tableh1">permission</td><td class="tableh1">bit value</td><td class="tableh1">set?</td><td class="tableh1">value</td></tr>
-<tr><td class="tableb">read</td><td class="tableb">4</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">4</td></tr>
-<tr><td class="tableb">write</td><td class="tableb">2</td><td class="tableb"><input type="checkbox" onclick="javascript:this.checked=false" /></td><td class="tableb">-</td></tr>
-<tr><td class="tableb">execute</td><td class="tableb">1</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">1</td></tr>
-<tr><td colspan="3" class="tablef">sum (resulting byte value)</td><td class="tablef">5</td></tr>
-</table>
-</div>
-<div class="floatleft">
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
-<tr><td class="tableh1">permission</td><td class="tableh1">bit value</td><td class="tableh1">set?</td><td class="tableh1">value</td></tr>
-<tr><td class="tableb">read</td><td class="tableb">4</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">4</td></tr>
-<tr><td class="tableb">write</td><td class="tableb">2</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">2</td></tr>
-<tr><td class="tableb">execute</td><td class="tableb">1</td><td class="tableb"><input type="checkbox" onclick="javascript:this.checked=false" /></td><td class="tableb">-</td></tr>
-<tr><td colspan="3" class="tablef">sum (resulting byte value)</td><td class="tablef">6</td></tr>
-</table>
-</div>
-<div style="clear:left"></div>
 </li>
 <li><strong>What good is all of this?</strong><br />
 Instead of having to remember and write <tt class="code">rwxrwxrwx</tt> for each file or folder in your setup, you can now write <tt class="code">777</tt> in its place. The same applies for <tt class="code">rwxr-xr-x</tt>, you can write <tt class="code">755</tt>, instead.

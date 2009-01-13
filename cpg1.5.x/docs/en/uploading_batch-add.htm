@@ -57,20 +57,23 @@
     <img src="images/searchnew_1.gif" border="0" alt="" /><a name="ftp_select_dir_end"></a></li>
     <li><a name="ftp_select_file"></a>select the photos you wish to upload (by ticking them).  New pics are automatically pre-selected, those that already are in your coppermine database are not selected. Next select the album you wish to insert them into. Click &quot;Insert Selected Pictures&quot; to start the batch-add process.<br />
     <img src="images/searchnew_2.gif" border="0" alt="" /><a name="ftp_select_file_end"></a></li>
-    <li><a name="ftp_show_result"></a>CPG will then display the results of the batch-add (allow some time for all results to display).<br />
+    <li><a name="ftp_show_result"></a><abbr title="Coppermine Photo Gallery">CPG</abbr> will then display the results of the batch-add (allow some time for all results to display).<br />
     If the OK, DP, or PB 'signs' does not appear, click on the broken file image to see if any error message was produced by PHP.<br />
     Should your browser time out, hit the reload button.
         <ul>
-            <li><em>OK</em> : means that the file was successfully added</li>
-            <li><em>DP</em> : means that the file is a duplicate and is already in the database</li>
-            <li><em>PB</em> : means that the file could not be added, check your configuration and the permission of directories where the files are located</li>
-            <li><em>NA</em> : means that you haven't selected an album the files should go to, hit 'back' and select an album. If you don't have an album create one first</li>
+            <li><img src="../../images/batch/ok_small.png" width="16" height="16" border="0" alt="" title="OK" align="" style="" />: means that the file was successfully added</li>
+            <li><img src="../../images/batch/duplicate_small.png" width="16" height="16" border="0" alt="" title="DP" align="" style="" />: means that the file is a duplicate and is already in the database</li>
+            <li><img src="../../images/batch/folder_locked_small.png" width="16" height="16" border="0" alt="" title="PB" align="" style="" />: means that the file could not be added, check your configuration and the permission of directories where the files are located</li>
+            <li><img src="../../images/batch/back_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: means that you haven't selected an album the files should go to, hit 'back' and select an album. If you don't have an album create one first</li>
+            <li><img src="../../images/batch/file_broken_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: the file is broken or inacessible</li>
+            <li><img src="../../images/batch/unknown_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: unknown file type</li>
+            <li><img src="../../images/batch/gif_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: the file is actually a GIF image and has just been renamed (e.g. to jpg or png)</li>
         </ul>
     <a name="ftp_show_result_end"></a>
     </li>
 </ul>
-<p>Giving FTP-access to other users can pose a serious security threat, this is why batch-add is only available for the coppermine gallery admin.</p>
-<p>Once files have been added to coppermine's database, make sure that you never rename or delete them via ftp - use coppermine's admin menu options to remove or rename files, instead.  Only in this way will these files be removed from both the file system <strong>and</strong> the database.</p>
+<p class="cpg_message_info">Giving FTP-access to other users can pose a serious security threat, this is why batch-add is only available for the coppermine gallery admin.</p>
+<p>Once files have been added to coppermine's database, make sure that you <strong>never</strong> rename or delete them via ftp - use coppermine's admin menu options to remove or rename files, instead.  Only in this way will these files be removed from both the file system <strong>and</strong> the database.</p>
 <a name="batch_add_pics_end"></a>
 
 

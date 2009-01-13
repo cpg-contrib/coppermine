@@ -59,8 +59,7 @@
 <li>coppermine config setting</li>
 </ul>
 <p>This three-step-process is very helpful: in fact, you only set a default language in Coppermine's config (usually the language the majority of your visitors is speaking) and that's it: if a visitor who speaks another language visits your page, Coppermine's controls will display in his language. Usually, you don't have to provide a <a href="configuration.htm#admin_language_list">language selector</a> on your page (but it's an option in Coppermine's config to display one if you prefer so). The language selector in fact just adds a parameter to the URL, which then subsequently triggers a cookie to be set on the client. You (as Coppermine admin) can accomplish the same by manually adding the parameter to the URL in the address bar of your browser. Just observe how the URL changes on the your coppermine gallery if you have enabled the language selector in coppermine's config to get an idea how this works.</p>
-<div class="quote">
-<p><strong>Example:</strong></p>
+<div class="cpg_example">
 <p>If your browser is set to German and you have specified Spanish to be the default (fallback) language, your gallery will display for you in German. To see it in English, add the parameter <tt class="code">lang=english</tt> to the URL of your gallery in your browser's address bar, so that it looks like this: <tt class="code">http://yoursite.tld/your_coppermine_folder/?lang=english</tt>. If you do so, you have specified a language preference that is being stored in a cookie that will override the language detection of your prefered language in your browser. To go back to how things were before, simply unset the cookie that stores your preference by entering <tt class="code">http://yoursite.tld/your_coppermine_folder/?lang=xxx</tt>, where "xxx" is just a language name that doesn't exist (you can use the xxx literally).</p>
 </div>
 
