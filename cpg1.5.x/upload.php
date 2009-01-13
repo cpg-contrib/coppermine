@@ -323,12 +323,13 @@ function form_instructions()
 
     //show allowed filetypes
     echo "<br />{$lang_upload_php['allowed_types']}";
+    print "<br />\n";
     printf ($lang_upload_php['allowed_img_types'], $CONFIG['allowed_img_types']);
-    print "<br />\r\n";
+    print "<br />\n";
     printf ($lang_upload_php['allowed_mov_types'], $CONFIG['allowed_mov_types']);
-    print "<br />\r\n";
+    print "<br />\n";
     printf ($lang_upload_php['allowed_snd_types'], $CONFIG['allowed_snd_types']);
-    print "<br />\r\n";
+    print "<br />\n";
     printf ($lang_upload_php['allowed_doc_types'], $CONFIG['allowed_doc_types']);
 
     echo "<br /><br />{$lang_upload_php['up_instr_2']}";
@@ -623,7 +624,7 @@ if (!$superCage->post->keyExists('process') && !$superCage->post->keyExists('plu
         // allow user to choose upload method
         $upload_select .= '&nbsp;&nbsp;&nbsp;';
 
-        $upload_select .= '<select name="method" id="uploadMethod" class="listbox" title="' . $lang_upload_php['choose_method'] . '"';
+        $upload_select .= '<select name="method" id="uploadMethod" class="listbox" title="' . $lang_upload_php['choose_method'] . '">';
 
         foreach ($upload_choices as $key => $label) {
             $upload_select .= '<option value="' . $key . '"'

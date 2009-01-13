@@ -41,12 +41,8 @@ $lineBreak         = "\r\n";
 
 require_once('include/admin.inc.php'); // populate the array for the admin data (could later be done using an XML file)
 
-// Pull in alternate upload methods from active plugins
-$alternate_choices = CPGPluginAPI::filter('upload_option', null);
-if (is_array($alternate_choices)) {
-    // If plugins add upload choices, merge them with the default ones
-    $config_data['user_settings']['upload_mechanism']['options'] = array_merge($config_data['user_settings']['upload_mechanism']['options'], $alternate_choices);
-}
+// Filter upload choices to allow plugins to add upload methods
+$config_data['user_settings']['upload_mechanism']['options'] = CPGPluginAPI::filter('upload_options', $config_data['user_settings']['upload_mechanism']['options']);
 
 // loop through the config sections and populate the array that determines what sections to expand/collapse
 $collapseSections_array = array(); // By default, all sections should be hidden. Let's populate the array first with all existing sections and then later remove the ones that are suppossed to be expanded by default
