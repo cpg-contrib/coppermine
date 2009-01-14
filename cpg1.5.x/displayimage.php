@@ -20,6 +20,7 @@
 define('IN_COPPERMINE', true);
 define('DISPLAYIMAGE_PHP', true);
 define('SMILIES_PHP', true);
+define('INDEX_PHP', true);
 
 require('include/init.inc.php');
 
