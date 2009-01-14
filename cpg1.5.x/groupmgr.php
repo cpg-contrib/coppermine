@@ -272,40 +272,6 @@ function confirmDel()
     return confirm("{$lang_groupmgr_php['confirm_del']}");
 }
 
-function selectAll(d,box) {
-  var f = document.groupmanager;
-  for (i = 0; i < f.length; i++) {
-    //alert (f[i].name.indexOf(box));
-    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
-      if (d.checked) {
-        f[i].checked = true;
-      } else {
-        f[i].checked = false;
-      }
-    }
-  }
-  if (d.name == "checkAll") {
-      document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
-  } else {
-      document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
-  }
-}
-
-function selectall()
-{
-        for( var i = 0; i < document.groupmanager.elements.length; i++ )
-        {
-                var e = document.groupmanager.elements[i];
-                if( ( e.name != 'allbox' ) && ( e.type == 'checkbox' ) )
-                {
-                        e.checked = document.groupmanager.allbox.checked;
-                        if( document.groupmanager.allbox.checked )
-                                select( e );
-                        else
-                                unselect( e );
-                }
-        }
-}
 addonload("show_section('checkAll')");
 addonload("show_section('checkAll2')");
 //]]>-->
@@ -324,7 +290,7 @@ starttable('100%', cpg_fetch_icon('groups_mgr', 2).$lang_groupmgr_php['group_man
 echo <<<EOT
 
         <tr style="white-space:nowrap">
-                <td class="tableh2"><input type="checkbox" name="checkAll" id="checkAll" onclick="selectAll(this,'delete_group');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
+                <td class="tableh2"><input type="checkbox" name="checkAll" id="checkAll" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
                 <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['group_name']}</span>$help_group</td>
                 <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['permissions']}</span>$help_permissions</td>
                 <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['public_albums']}</span> $help_public</td>
@@ -349,7 +315,7 @@ EOT;
 } else {
     echo <<<EOT
         <tr>
-            <td class="tablef"><input type="checkbox" name="checkAll2" id="checkAll2" onClick="selectAll(this,'delete_group');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
+            <td class="tablef"><input type="checkbox" name="checkAll2" id="checkAll2" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
             <td colspan="13" align="center" class="tablef">
                         <button type="submit" class="button" name="apply_modifs" id="apply_modifs" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>&nbsp;&nbsp;&nbsp;
                         <button type="submit" class="button" name="new_group" id="new_group" value="{$lang_groupmgr_php['create_new_group']}">{$icon_array['add']}{$lang_groupmgr_php['create_new_group']}</button>
