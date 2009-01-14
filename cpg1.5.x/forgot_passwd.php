@@ -33,15 +33,15 @@ $lookup_failed = '';
  * Clean up GPC and other Globals here
  */
 if ($superCage->post->keyExists('email') && $superCage->post->testEmail('email')) {
-	$CLEAN['email'] = $superCage->post->testEmail('email');
+    $CLEAN['email'] = $superCage->post->testEmail('email');
 }
 
 if ($superCage->get->keyExists('key')) {
-	$CLEAN['key'] = $superCage->get->getEscaped('key');
+    $CLEAN['key'] = $superCage->get->getEscaped('key');
 }
 
 if ($superCage->get->keyExists('id')) {
-	$CLEAN['id'] = $superCage->get->getEscaped('id');
+    $CLEAN['id'] = $superCage->get->getEscaped('id');
 }
 
 //END CLEANUP
@@ -77,10 +77,10 @@ if (isset($CLEAN['email'])) {
 
         cpg_db_query($sql);
 
-		$template_vars = array(
-			'{VERIFY_LINK}' => $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'forgot_passwd.php?key='.$randkey.'&id='.$USER_DATA['user_id'],
-			'{SITE_NAME}' => $CONFIG['gallery_name'],
-		);
+        $template_vars = array(
+            '{VERIFY_LINK}' => $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'forgot_passwd.php?key='.$randkey.'&id='.$USER_DATA['user_id'],
+            '{SITE_NAME}' => $CONFIG['gallery_name'],
+        );
 
         // send the email
         if (!cpg_mail($USER_DATA['user_email'], sprintf($lang_forgot_passwd_php['account_verify_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_forgot_passwd_php['account_verify_email'], $template_vars)))) {
@@ -114,7 +114,7 @@ EOT;
 
     $result = cpg_db_query($sql);
 
-	if (!mysql_num_rows($result)) {
+    if (!mysql_num_rows($result)) {
         cpg_die($lang_forgot_passwd_php['forgot_passwd'], $lang_forgot_passwd_php['illegal_session']);
     }
 
@@ -124,7 +124,7 @@ EOT;
 
     $result = cpg_db_query($sql);
 
-	if (!mysql_num_rows($result)) {
+    if (!mysql_num_rows($result)) {
         cpg_die($lang_forgot_passwd_php['forgot_passwd'], $lang_forgot_passwd_php['err_unk_user']);
     }
 
@@ -139,12 +139,12 @@ EOT;
     $sql =  "UPDATE {$cpg_udb->usertable} SET {$cpg_udb->field['password']} = '$password' WHERE {$cpg_udb->field['email']} = '{$row['user_email']}'";
     cpg_db_query($sql);
 
-	$template_vars = array(
-		'{USER_NAME}' => $row['user_name'],
-		'{PASSWORD}'  => $new_password,
-		'{SITE_LINK}' => $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'login.php',
-		'{SITE_NAME}' => $CONFIG['gallery_name'],
-	);
+    $template_vars = array(
+        '{USER_NAME}' => $row['user_name'],
+        '{PASSWORD}'  => $new_password,
+        '{SITE_LINK}' => $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'login.php',
+        '{SITE_NAME}' => $CONFIG['gallery_name'],
+    );
     // send the password
     if (!cpg_mail($row['user_email'],
         sprintf($lang_forgot_passwd_php['passwd_reset_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_forgot_passwd_php['reset_email'], $template_vars)))) {
@@ -182,13 +182,13 @@ echo <<< EOT
                   </tr>
                   <tr>
                         <td colspan="2" align="center" class="tablef">
-	                        <script language="javascript" type="text/javascript">
-	                        <!--
-	                        document.passwordreminder.email.focus();
-	                        -->
-	                        </script>
-	                        <!--<input name="submitted" type="submit" class="button" value="{$lang_forgot_passwd_php['submit']}" />-->
-	                        <button type="submit" class="button" name="submitted" value="{$lang_common['ok']}"  tabindex="4">{$ok_icon}{$lang_common['ok']}</button>
+                            <script language="javascript" type="text/javascript">
+                            <!--
+                            document.passwordreminder.email.focus();
+                            -->
+                            </script>
+                            <!--<input name="submitted" type="submit" class="button" value="{$lang_forgot_passwd_php['submit']}" />-->
+                            <button type="submit" class="button" name="submitted" value="{$lang_common['ok']}"  tabindex="4">{$ok_icon}{$lang_common['ok']}</button>
                         </td>
                   </tr>
 
