@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-01-14 [M] Removed include/smtp.inc.php since it is no longer used. {Nibbler}
 2009-01-14 [A] Added the albmgr.js to carry out the album and picture manger functionality - thread 57113 {Sameera}
 2009-01-14 [O] Cleaned up album/picture manager file codes - thread 57113 {Sameera}
 2009-01-14 [B] Fixed duplicate and blank albums in edit_one_pic album list {Paver}

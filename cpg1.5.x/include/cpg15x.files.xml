@@ -7737,14 +7737,6 @@
     <hash>b4e5f5d5deb216c43f5b40345a73ab7b</hash>
   </element>
   <element>
-    <fullpath>include/smtp.inc.php</fullpath>
-    <version>1.5.1</version>
-    <revision>5575</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>1ccb9de4792fc63f832081e158e89ae4</hash>
-  </element>
-  <element>
     <fullpath>include/sql_parse.php</fullpath>
     <version>1.5.1</version>
     <revision>5575</revision>
