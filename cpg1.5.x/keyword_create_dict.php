@@ -17,48 +17,62 @@
   $Date$
 **********************************************/
 
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
-// +----------------------------------------------------------------------+
-// | Filename: keyword_create_dict.php                                    |
-// +----------------------------------------------------------------------+
-// | Copyright (c) http://www.sanisoft.com                                |
-// +----------------------------------------------------------------------+
-// | Description:                                                         |
-// +----------------------------------------------------------------------+
-// | Authors: Original Author                                             |
-// |          SANIsoft Developement Team                                  |
-// +----------------------------------------------------------------------+
-
-
 define('IN_COPPERMINE', true);
 define('EDITPICS_PHP', true);
+
 require('include/init.inc.php');
-if (!(GALLERY_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-$query  = "SELECT keywords from {$CONFIG['TABLE_PREFIX']}pictures";
+
+if (!GALLERY_ADMIN_MODE) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
+
+pageheader_mini($lang_gallery_admin_menu['key_lnk']);
+
+$query = "SELECT keywords FROM {$CONFIG['TABLE_PICTURES']} WHERE keywords <> ''";
 $result = cpg_db_query($query);
-$i=0;
-   while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
-    $keywords = $row["keywords"];
-    $keyArr   = explode(" ",$keywords);
+$i = 0;
+
+if (mysql_num_rows($result)) {
+
+    starttable('100%', $lang_gallery_admin_menu['key_lnk']);
+    
+    while ($row = mysql_fetch_assoc($result)) {
+    
+        $keyArr = explode($CONFIG['keyword_separator'], $row['keywords']);
+        
         foreach ($keyArr as $keyword) {
-            $query = "SELECT keyword from {$CONFIG['TABLE_PREFIX']}dict WHERE keyword = '$keyword'";
+        
+            $keyword = trim($keyword);
+            
+            if (empty($keyword)) {
+                continue;
+            }
+            
+            $query = "SELECT null FROM {$CONFIG['TABLE_DICT']} WHERE keyword = '$keyword'";
             $result2 = cpg_db_query($query);
-
-            if (mysql_num_rows($result2) == 0 && $keyword != "" && $keyword != " ") {
-                $query = "INSERT INTO {$CONFIG['TABLE_PREFIX']}dict SET keyword = '$keyword'";
+    
+            if (!mysql_num_rows($result2)) {
+                $query = "INSERT INTO {$CONFIG['TABLE_DICT']} (keyword) VALUES ('$keyword')";
                 cpg_db_query($query);
-                echo "* ";
-                                $i++ ;
-            } else {
-                echo "% ";
+                
+                echo '<tr><td class="tableh2">' . $keyword . '</td></tr>';
+                
+                $i++ ;
             }
         }
+    
         mysql_free_result($result2);
         flush();
     }
-echo "<p>{$lang_editpics_php['new_keywords']} = ".$i;
-echo "<br/>* = {$lang_editpics_php['new_keyword']}";
-echo "<br/>% = {$lang_editpics_php['existing_keyword']}</p>";
-mysql_free_result($result);
+
+    endtable();
+    
+    mysql_free_result($result);
+}
+
+echo "<p>{$lang_editpics_php['new_keywords']}: $i</p>";
+
+pagefooter_mini();
+
 ?>

@@ -1551,6 +1551,43 @@ function pageheader($section, $meta = '')
 ******************************************************************************/
 }  //{THEMES}
 
+if (!function_exists('pageheader_mini')) {  //{THEMES}
+/******************************************************************************
+** Section <<<pageheader_mini>>> - START
+******************************************************************************/
+function pageheader_mini($section)
+{
+    global $CONFIG;
+    global $lang_charset, $lang_text_dir;
+
+    $custom_header = cpg_get_custom_include($CONFIG['custom_header_path']);
+
+    $charset = ($CONFIG['charset'] == 'language file') ? $lang_charset : $CONFIG['charset'];
+
+    header('P3P: CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"');
+    header("Content-Type: text/html; charset=$charset");
+    user_save_profile();
+
+    echo <<< EOT
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="$lang_text_dir">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=$charset" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <title>$section</title>
+        <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" type="text/css" />
+        <link rel="shortcut icon" href="favicon.ico" />
+    </head>
+    <body>
+
+EOT;
+}
+/******************************************************************************
+** Section <<<pageheader_mini>>> - END
+******************************************************************************/
+}  //{THEMES}
+
 if (!function_exists('pagefooter')) {  //{THEMES}
 /******************************************************************************
 ** Section <<<pagefooter>>> - START
@@ -1585,6 +1622,24 @@ function pagefooter()
 }
 /******************************************************************************
 ** Section <<<pagefooter>>> - END
+******************************************************************************/
+}  //{THEMES}
+
+if (!function_exists('pagefooter_mini')) {  //{THEMES}
+/******************************************************************************
+** Section <<<pagefooter_mini>>> - START
+******************************************************************************/
+function pagefooter_mini()
+{
+    echo <<< EOT
+
+    </body>
+</html>
+
+EOT;
+}
+/******************************************************************************
+** Section <<<pagefooter_mini>>> - END
 ******************************************************************************/
 }  //{THEMES}
 

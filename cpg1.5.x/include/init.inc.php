@@ -147,6 +147,7 @@ $CONFIG['TABLE_HIT_STATS']     = $CONFIG['TABLE_PREFIX'].'hit_stats';
 $CONFIG['TABLE_TEMP_MESSAGES'] = $CONFIG['TABLE_PREFIX'].'temp_messages';
 $CONFIG['TABLE_CATMAP']        = $CONFIG['TABLE_PREFIX'].'categorymap';
 $CONFIG['TABLE_LANGUAGE']      = $CONFIG['TABLE_PREFIX'].'languages';
+$CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';
 
 // Connect to database
 ($CONFIG['LINK_ID'] = cpg_db_connect()) || die('<strong>Coppermine critical error</strong>:<br />Unable to connect to database !<br /><br />MySQL said: <strong>' . mysql_error() . '</strong>');
