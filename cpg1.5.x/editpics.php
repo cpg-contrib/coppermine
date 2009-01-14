@@ -541,10 +541,10 @@ function form_alb_list_box($text, $name)
 
 EOT;
     foreach ($public_albums_list as $album) {
-        echo '              <option value="' , $album['aid'] , '"' , ($album['aid'] == $sel_album ? ' selected' : '') , '>' , $album['cat_title'] , "</option>\n";
+        echo '              <option value="' , $album['aid'] , '"' , ($album['aid'] == $sel_album ? ' selected="selected"' : '') , '>' , $album['cat_title'] , "</option>\n";
     }
     foreach ($user_albums_list as $album) {
-        echo '                        <option value="' , $album['aid'] , '"' , ($album['aid'] == $sel_album ? ' selected' : '') , '>* ' , $album['title'] , "</option>\n";
+        echo '                        <option value="' , $album['aid'] , '"' , ($album['aid'] == $sel_album ? ' selected="selected"' : '') , '>* ' , $album['title'] , "</option>\n";
     }
     echo <<<EOT
                         </select>
@@ -740,9 +740,9 @@ if ($superCage->get->keyExists('count')) {
 $next_target = $CPG_PHP_SELF . '?album=' . $album_id . '&amp;start=' . ($start + $count) . '&amp;count=' . $count . (UPLOAD_APPROVAL_MODE ? '&amp;mode=upload_approval' : '');
 $prev_target = $CPG_PHP_SELF . '?album=' . $album_id . '&amp;start=' . max(0, $start - $count) . '&amp;count=' . $count . (UPLOAD_APPROVAL_MODE ? '&amp;mode=upload_approval' : '');
 
-$s50 = $count == 50 ? 'selected' : '';
-$s75 = $count == 75 ? 'selected' : '';
-$s100 = $count == 100 ? 'selected' : '';
+$s50 = $count == 50 ? 'selected="selected"' : '';
+$s75 = $count == 75 ? 'selected="selected"' : '';
+$s100 = $count == 100 ? 'selected="selected"' : '';
 
 $link_count = 0;  // initialize
 
