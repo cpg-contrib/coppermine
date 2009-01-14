@@ -24,6 +24,7 @@ require('include/init.inc.php');
 
 /** sort the piture manager**/
 js_include('js/jquery.sort.js');
+js_include('js/albmgr.js');
 
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
@@ -178,7 +179,7 @@ print <<<EOT
        <input type="hidden" name="sort_order" value="{$sort_order}" />
        <input type="hidden" id="picture_order" name="picture_order" value="" />  
 
-       <table class="head-album" border="0" cellspacing="0" cellpadding="0">
+       <table class="head_album" border="0" cellspacing="0" cellpadding="0">
 EOT;
 
 //Joe Ernst - Added USER_ADMIN_MODE
@@ -228,7 +229,7 @@ EOT;
     echo <<<EOT
       </table>
       </div>
-            <table class="album-operate" cellspacing="0" cellpadding="0" border="0">
+            <table class="album_operate" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                 <td style="width: 115px" id="control">
                     <a class="photoUp">$up_arrow</a>
@@ -256,7 +257,7 @@ EOT;
      echo <<<EOT
 <tr>
     <td colspan="2" class="tablef">
-        <table class="album-save" style="display: none;" cellspacing="0" cellpadding="0" border="0">
+        <table class="album_save" style="display: none;" cellspacing="0" cellpadding="0" border="0">
             <tr>
                 <td>
                     <button type="submit" class="button" name="apply" id="apply" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>

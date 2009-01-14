@@ -1150,7 +1150,7 @@ table#album_sort tr td span.albumName{
 	width: 200px;
 	float: left;
 }
-table.head-album {
+table.head_album {
 	margin: 2px 0 2px 0;
 	padding-left: 15px;
 	height: 40px; 
@@ -1160,29 +1160,29 @@ table.head-album {
 
 }
 
-table.album-operate{
+table.album_operate{
 	background-color:#C2CFF1;
 	border: 1px solid #0E72A4;
 	border-bottom: none;
 	width: 100%;
 }
-table.album-operate td {
+table.album_operate td {
 	height: 40px; 
 	border-bottom: 1px solid #0E72A4;
 }
-table.album-operate td#control{
+table.album_operate td#control{
 	padding-left: 15px;
 }
-table.album-operate td#edit-box span, table.album-operate td#add-box span {
+table.album_operate td#edit-box span, table.album_operate td#add-box span {
 	vertical-align: bottom;
 }
-table.album-operate td#edit-box a , table.album-operate td#add-box a{
+table.album_operate td#edit-box a , table.album_operate td#add-box a{
 	vertical-align: bottom;
 	color: #FF0000;
 	text-decoration: underline;
 	cursor: pointer;
 } 
-table.album-operate span.load{
+table.album_operate span.load{
 	margin-left: 10px;
 }
 
@@ -1194,16 +1194,13 @@ table.album-operate span.load{
 	height: 14px;
 }
 
-table.album-save{
+table.album_save{
 	border:1px solid #FFDD99;
 	width: 100%;
 }
-table.album-save td {
+table.album_save td {
 	padding: 10px 0 10px 15px;
 	float: left;
-}
-table.album-save td span{
-	color: #E09010;
 }
 
 

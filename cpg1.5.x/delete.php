@@ -334,9 +334,6 @@ case 'albmgr':
     //prevent sorting of the albums if not admin or in own album
     $sorted_list = $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
 
-    //get the category value
-    $category = $superCage->post->getInt('category');
-
     //getting the category to redirect to album manager 
     $category = $superCage->get->getInt('cat');
     
@@ -351,7 +348,8 @@ case 'albmgr':
     
     //add the new album name to database
     if ($op == 'add') {
-    
+    	
+		$user_id = USER_ID;
         //add the album to database
         $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description, owner) VALUES ('$category', '$get_album_name', 'NO', '{$position}', '', '$user_id')";
         cpg_db_query($query);
@@ -413,16 +411,18 @@ case 'albmgr':
     }
     
     // save sorted list here
-    if ($category) {
-            
-        $result = cpg_db_query("SELECT aid, pos, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '{$category}' ORDER BY pos ASC");
+    if ($superCage->post->keyExists('category')) {
+    	//get the category value
+    	$category = $superCage->post->getInt('category');
+        
+		$result = cpg_db_query("SELECT aid, pos, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '{$category}' ORDER BY pos ASC");
         $rowset = cpg_db_fetch_rowset($result);  
 
         if ($superCage->post->keyExists('sort_order')) {
         
             // Used to get the aid, cast to integer for query
-            $get_rows = $superCage->post->getRaw('sort_order');
-
+            $get_rows = $superCage->post->getEscaped('sort_order');
+            
             $action = '';
             $assign_position = '';
             $sucess = '';
