@@ -245,6 +245,11 @@ function form_alb_list_box()
 
     $sel_album = $CURRENT_PIC['aid'];
 
+    $onChange = '';
+    // TO DO: add confirm alerts to select list for albums with restrictions (admin approval or no editing)
+    // $lang_editpics_php['confirm_move_public']
+    // $lang_editpics_php['confirm_move_private']
+
     echo <<< EOT
     
     <tr>
@@ -253,7 +258,7 @@ function form_alb_list_box()
         </td>
         <td class="tableb" valign="top">
             {$icon_array['move']}
-            <select name="aid" class="listbox">
+            <select name="aid" class="listbox"{$onChange}>
 
 EOT;
 
@@ -264,10 +269,16 @@ EOT;
     foreach ($user_albums_list as $album) {
         echo '                <option value="'.$album['aid'].'"'.($album['aid'] == $sel_album ? ' selected="selected"' : '').'>* '.$album['title'] . "</option>\n";
     }
-                
+
+    $note_permissions = '';
+    // TO DO: add note under select list for albums with restrictions (admin approval or no editing)
+    // $lang_editpics_php['note_move_approve_public'];
+    // $lang_editpics_php['note_move_approve_private']
+    // $lang_editpics_php['note_move_control'];
+
     echo <<< EOT
             </select>
-        </td>
+        {$note_permissions}</td>
     </tr>
 EOT;
 }

@@ -1296,9 +1296,11 @@ $lang_editpics_php['approve_pic'] = 'Approve file'; // cpg 1.5
 $lang_editpics_php['approve_all'] = 'Approve ALL files'; // cpg 1.5
 $lang_editpics_php['error_empty'] = 'Album is empty'; // cpg1.5
 $lang_editpics_php['error_linked_only'] = 'Album only contains linked files, which you cannot edit here'; // cpg1.5
-$lang_editpics_php['confirm_move_approve_public']= 'Files in a public album must be approved by an admin.\\nAre you sure you want to move this file to a public album?'; // cpg1.5 //js-alert
-$lang_editpics_php['confirm_move_approve_private']= 'Files in a private gallery album must be approved by an admin.\\nAre you sure you want to move this file to a private gallery album?'; // cpg1.5 //js-alert
-$lang_editpics_php['confirm_move_control'] = 'You are not allowed to edit files in a public album.\\nAre you sure you want to move this file to a public album?'; // cpg1.5 //js-alert
+$lang_editpics_php['note_move_approve_public'] = 'Files in a public album must be approved by an admin.'; // cpg1.5
+$lang_editpics_php['note_move_approve_private'] = 'Files in a private gallery album must be approved by an admin.' ; // cpg1.5
+$lang_editpics_php['note_move_control'] = 'You are not allowed to edit files in a public album.'; // cpg1.5
+$lang_editpics_php['confirm_move_public'] = 'Are you sure you want to move this file to a public album?'; // cpg1.5 //js-alert
+$lang_editpics_php['confirm_move_private'] = 'Are you sure you want to move this file to a private gallery album?'; // cpg1.5 //js-alert
 }
 
 // ------------------------------------------------------------------------- //
