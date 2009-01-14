@@ -27,9 +27,9 @@ $meta_charset = '<meta http-equiv="Content-Type" content="text/html; charset=utf
 // Get the vars from the url
 if ($superCage->get->keyExists('as')) {
     if ($matched = $superCage->get->getMatched('as', "/^[a-zA-Z0-9_\-]*$/")) {
-      $anchor_start = $matched[0];
+        $anchor_start = $matched[0];
     } else {
-      $anchor_start = '';
+        $anchor_start = '';
     }
 } else {
     $anchor_start = '';
@@ -37,9 +37,9 @@ if ($superCage->get->keyExists('as')) {
 unset($matched);
 if ($superCage->get->keyExists('ae')) {
     if ($matched = $superCage->get->getMatched('ae', "/^[a-zA-Z0-9_\-]*$/")) {
-      $anchor_end = $matched[0];
+        $anchor_end = $matched[0];
     } else {
-      $anchor_end = '';
+        $anchor_end = '';
     }
 } else {
     $anchor_end = '';
@@ -73,9 +73,9 @@ if ($superCage->get->keyExists('t')) {
 
 if ($superCage->get->keyExists('style')) {
     if ($matched = $superCage->get->getMatched('style', "/^[a-zA-Z0-9_\-]*$/")) {
-      $style = $matched[0];
+        $style = $matched[0];
     } else {
-      $style = '';
+        $style = '';
     }
 } else {
     $style = '';
@@ -83,9 +83,9 @@ if ($superCage->get->keyExists('style')) {
 unset($matched);
 if ($superCage->get->keyExists('f')) {
     if ($matched = $superCage->get->getMatched('f', "/^([a-zA-Z0-9_\-]){1,}(\.){0,1}([a-zA-Z0-9]){0,}$/")) {
-      $file = $matched[0];
+        $file = $matched[0];
     } else {
-      $file = 'index.htm';
+        $file = 'index.htm';
     }
 } else {
     $file = 'index.htm';
@@ -93,19 +93,19 @@ if ($superCage->get->keyExists('f')) {
 unset($matched);
 // sanitize the file name
 if (strrpos($file, '.') != FALSE) {
-  $file = substr($file, 0, strrpos($file, '.'));
+    $file = substr($file, 0, strrpos($file, '.'));
 }
 $file = preg_replace('/[^0-9a-zA-Z_-]/', '', $file);
 $file = $file . '.htm';
 
 if ($base != '') {
-// content of header and text have been base64-encoded - decode it now
-$header = @unserialize(@base64_decode($header));
-$text = @unserialize(@base64_decode($text));
+    // content of header and text have been base64-encoded - decode it now
+    $header = @unserialize(@base64_decode($header));
+    $text = @unserialize(@base64_decode($text));
 }
 
 if ($close != 1) {
-//$close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_menu" onclick="window.close();">'.$lang_common['close'].'</a><br />&nbsp;</div>';
+    //$close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_menu" onclick="window.close();">'.$lang_common['close'].'</a><br />&nbsp;</div>';
 }
 
 // Determine the language of the user and display the help file in his language if available. 
@@ -116,13 +116,13 @@ if ($close != 1) {
 $available_doc_folders_array = form_get_foldercontent('docs/', 'folder', '', array('images', 'js', 'style', '.svn'));
 
 // Query the languages table
-$results = cpg_db_query("SELECT lang_id, abbr FROM {$CONFIG['TABLE_LANGUAGE']} WHERE available='YES' AND enabled='YES'");
-while ($row = mysql_fetch_array($results)) {
-	if ($CONFIG['lang'] == $row['lang_id']) {
-		$help_lang = $row['abbr'];
-	} else {
-		$help_lang = 'en';
-	}
+$results = cpg_db_query("SELECT lang_id, abbr FROM {$CONFIG['TABLE_LANGUAGE']} WHERE available = 'YES' AND enabled = 'YES'");
+while ($row = mysql_fetch_assoc($results)) {
+    if ($CONFIG['lang'] == $row['lang_id']) {
+        $help_lang = $row['abbr'];
+    } else {
+        $help_lang = 'en';
+    }
 } // whilemysql_free_result($results);
 unset($row);
 
@@ -165,20 +165,31 @@ $string = str_replace('<a href="', '<a href="docs/'.$help_lang.'/', $string);
 $string = str_replace('<a externalLinkTempReplacement', '<a href="http://', $string); // restore external links
 $string = str_replace('<a internalAnchorLinkTempReplacement', '<a href="#', $string); // restore links to anchors on this page
 
+if ($header != '') {
+    $content = '<h1>'.$header.'</h1>';
+    $content .= $text;
+} else {
+    $content = '';
+}
+    
+echo <<< EOT
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+    <head>
+        <title>{$lang_common['help']}</title>
+        $meta_charset
+        <link href="themes/{$CONFIG['theme']}/style.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body class="tableb">
+        <div style="padding: 5px;">
+            $string
+            $content
+            $close_link
+        </div>
+    </body>
+</html>
 
-    $string = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n\t\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\" dir=\"ltr\">\n<head>\n<title>".$lang_common['help']."</title>\n" .
-              $meta_charset . "\n" .
-              '<link href="themes/'.$CONFIG['theme'].'/style.css" rel="stylesheet" type="text/css" />' .
-              "\n</head>\n<body class=\"tableb\">\n<div style=\"padding: 5px;\">\n" .
-              $string;
-    if ($header != '') {
-        $string .= '<h1>'.$header.'</h1>';
-        $string .= $text;
-    }
-    $string .= $close_link."\n</div>\n</body>\n</html>";
+EOT;
 
-
-
-
-print $string;
 ?>
