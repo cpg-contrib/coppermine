@@ -22,48 +22,43 @@ define('MODE_PHP', true);
 
 require('include/init.inc.php');
 
-//if ($_GET['what'] == 'news') {
-if (($superCage->get->getAlpha('what')) == 'news'){
-  if (!GALLERY_ADMIN_MODE) {
-    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-  }
-  if ($CONFIG['display_coppermine_news'] == 0) {
-    $value = 1;
-    $message = $lang_mode_php['news_show'];
-  } else {
-    $value = 0;
-    $message = $lang_mode_php['news_hide'];
-  }
+if ($superCage->get->getAlpha('what') == 'news') {
 
-  cpg_config_set('display_coppermine_news', $value);
+    if (!GALLERY_ADMIN_MODE) {
+        cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+    }
+    
+    if ($CONFIG['display_coppermine_news'] == 0) {
+        $value = 1;
+        $message = $lang_mode_php['news_show'];
+    } else {
+        $value = 0;
+        $message = $lang_mode_php['news_hide'];
+    }
 
-  //$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
-  /*$referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
-  $referer = rawurldecode($referer);
-  $referer = str_replace('&amp;', '&', $referer);
-  $referer = str_replace('&amp;', '&', $referer);*/
-  cpgRedirectPage($CPG_REFERER, $lang_common['information'], $message,3);
+    cpg_config_set('display_coppermine_news', $value);
+
+    cpgRedirectPage($CPG_REFERER, $lang_common['information'], $message, 3);
 
 } else {
 
-  if (!USER_IS_ADMIN) {
-      cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-  }
+    if (!USER_IS_ADMIN) {
+        cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+    }
 
-  //if (!isset($_GET['admin_mode']) || !isset($_GET['referer'])) {
-  if (!$superCage->get->keyExists('admin_mode') || !$CPG_REFERER){
-      cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
-  }
+    if (!$superCage->get->keyExists('admin_mode') || !$CPG_REFERER) {
+        cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+    }
 
- // $admin_mode = (int)$_GET['admin_mode'] ? 1 : 0;
-  $admin_mode = $superCage->get->getInt('admin_mode')? 1 : 0;
-  //$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
-  //$referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
-  $USER['am'] = $admin_mode;
-  if (!$admin_mode) {
-      $CPG_REFERER = 'index.php';
-  }
+    $admin_mode = $superCage->get->getInt('admin_mode')? 1 : 0;
 
-  cpgRedirectPage($CONFIG['ecards_more_pic_target'].$CPG_REFERER, $lang_common['information'], $lang_mode_php[$admin_mode],3);
+    $USER['am'] = $admin_mode;
+    
+    if (!$admin_mode) {
+        $CPG_REFERER = 'index.php';
+    }
+
+    cpgRedirectPage($CPG_REFERER, $lang_common['information'], $lang_mode_php[$admin_mode], 3);
 }
+
 ?>
