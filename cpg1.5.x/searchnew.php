@@ -451,7 +451,7 @@ function CPGscandir($dir, &$expic_array)
         echo <<< EOT
         <tr>
                 <td class="tablef">
-                    <input type="checkbox" name="checkAll2" onClick="selectAll(this,'pics');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
+                    <input type="checkbox" name="checkAll2" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
                 </td>
                 <td colspan="3" align="right" class="tablef">
                         <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}" id="submit_button" />
@@ -606,28 +606,6 @@ EOT;
     
     $help = '&nbsp;'.cpg_display_help('f=uploading.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_select_file', '550', '400');
     echo <<<EOT
-        <script language="javascript" type="text/javascript">
-        <!--
-        function selectAll(d,box) {
-          var f = document.selectPics;
-          for (i = 0; i < f.length; i++) {
-            //alert (f[i].name.indexOf(box));
-            if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
-              if (d.checked) {
-                f[i].checked = true;
-              } else {
-                f[i].checked = false;
-              }
-            }
-          }
-          if (d.name == "checkAll") {
-              document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
-          } else {
-              document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
-          }
-        }
-        -->
-        </script>
         <form method="post" action="{$CPG_PHP_SELF}?insert=1" name="selectPics" id="cpgform" style="margin:0px;padding:0px">
 EOT;
     
@@ -646,7 +624,7 @@ EOT;
         echo <<<EOT
         <tr>
                 <td class="tablef">
-                    <input type="checkbox" name="checkAll" onClick="selectAll(this,'pics');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
+                    <input type="checkbox" name="checkAll" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
                 </td>
                 <td colspan="3" align="right" class="tablef">
                         <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}" onclick="process(); return false;" />
