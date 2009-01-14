@@ -418,7 +418,7 @@ EOT;
           <td class="tableh2" valign="middle" align="center">
           </td>
           <td class="tableh2" valign="middle" align="center">
-            <input type="checkbox" name="checkAll" onClick="selectAll(this,'cid_array');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
+            <input type="checkbox" name="checkAll" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
           </td>
           <td class="tableh2" valign="top">
             {$lang_reviewcom_php['approval']}
@@ -608,7 +608,7 @@ echo <<<EOT
             <td class="tablef" valign="middle" align="center">
             </td>
             <td class="tablef" valign="middle" align="center">
-                <input type="checkbox" name="checkAll2" onClick="selectAll(this,'cid_array');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
+                <input type="checkbox" name="checkAll2" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
             </td>
             <td colspan="5" class="tablef" valign="middle" align="left">
                 {$lang_reviewcom_php['with_selected']}: 

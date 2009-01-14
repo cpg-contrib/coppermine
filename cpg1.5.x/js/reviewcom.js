@@ -21,25 +21,6 @@ function textCounter(field, maxlimit) {
         field.value = field.value.substring(0, maxlimit);
 }
 
-function selectAll(d,box) {
-  var f = document.editForm;
-  for (i = 0; i < f.length; i++) {
-    //alert (f[i].name.indexOf(box));
-    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
-      if (d.checked) {
-        f[i].checked = true;
-      } else {
-        f[i].checked = false;
-      }
-    }
-  }
-  if (d.name == "checkAll") {
-      document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
-  } else {
-      document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
-  }
-}
-
 function approveCommentEnable(id) {
     if (document.getElementById('approved'+id+'yes').checked == true) {
         document.getElementById('status_approved_yes'+id).value = id;
