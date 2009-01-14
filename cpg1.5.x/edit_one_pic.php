@@ -272,9 +272,9 @@ EOT;
 
     $note_permissions = '';
     // TO DO: add note under select list for albums with restrictions (admin approval or no editing)
-    // $lang_editpics_php['note_move_approve_public'];
-    // $lang_editpics_php['note_move_approve_private']
-    // $lang_editpics_php['note_move_control'];
+    // $lang_editpics_php['note_approve_public'];
+    // $lang_editpics_php['note_approve_private']
+    // $lang_editpics_php['note_edit_control'];
 
     echo <<< EOT
             </select>
