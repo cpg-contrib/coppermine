@@ -185,7 +185,7 @@ function get_post_var($var, $pid)
 function process_post_data()
 {
     global $CONFIG, $user_albums_list, $lang_errors;
-    
+
     $superCage = Inspekt::makeSuperCage();
 
     $user_album_set = array();
@@ -195,7 +195,7 @@ function process_post_data()
     }
 
     $pid_array = $superCage->post->getInt('pid');
-    
+
     if (!is_array($pid_array)) {
         cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
     }
@@ -207,7 +207,7 @@ function process_post_data()
     }
 
     foreach ($pid_array as $pid) {
-    
+
         $aid         = $superCage->post->getInt("aid$pid");
 
         $title       = get_post_var('title', $pid);
@@ -240,7 +240,7 @@ function process_post_data()
         if ($superCage->post->keyExists('del_comments' . $pid)) {
             $del_comments = $superCage->post->getInt('del_comments' . $pid);
         }
-        
+
         // We will be selecting pid in the query as we need it in $pic array for the plugin filter
         $query = "SELECT pid, category, filepath, filename, owner_id FROM {$CONFIG['TABLE_PICTURES']} AS p INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = p.aid WHERE pid = $pid";
         $result = cpg_db_query($query);
@@ -288,18 +288,18 @@ function process_post_data()
             $update .= ", hits = 0";
             resetDetailHits($pid);
         }
-        
+
         if ($reset_votes) {
             $update .= ", pic_rating = 0, votes = 0";
             resetDetailVotes($pid);
         }
 
         if (GALLERY_ADMIN_MODE || UPLOAD_APPROVAL_MODE || MODERATOR_MODE) {
-        
+
             if ($superCage->post->keyExists('approved' . $pid)) {
                 $approved = $superCage->post->getAlpha('approved' . $pid);
             }
-            
+
             if ($approved == 'YES') {
                 $update .= ", approved = 'YES'";
             } else {
@@ -312,7 +312,7 @@ function process_post_data()
         }
 
         if ($delete) {
-        
+
             $dir = $CONFIG['fullpath'].$pic['filepath'];
             $file = $pic['filename'];
 
@@ -377,14 +377,14 @@ function form_pic_info($text)
     $filepath = htmlspecialchars($CURRENT_PIC['filepath']);
 
     $isgalleryicon_selected = ($CURRENT_PIC['galleryicon']) ? 'checked="checked" ':'';
-    $isgalleryicon_disabled = ($CURRENT_PIC['category'] < FIRST_USER_CAT) ? ' style="display:none;" ':'';
+    $isgalleryicon_disabled = (!isset($CURRENT_PIC['category']) || ($CURRENT_PIC['category'] < FIRST_USER_CAT)) ? ' style="display:none;" ':'';
 
     if ($loop_counter == 0) {
         $row_style_class = 'tableb';
     } else {
         $row_style_class = 'tableb tableb_alternate';
     }
-    
+
     $loop_counter++;
 
     if ($loop_counter > 1) {
@@ -401,19 +401,18 @@ function form_pic_info($text)
     if (GALLERY_ADMIN_MODE || MODERATOR_MODE) {
         $approve_html = <<<EOT
                           <td class="{$row_style_class}" width="40" valign="top">
-                                  <input type="checkbox" name="approved{$CURRENT_PIC['pid']}" id="approve{$CURRENT_PIC['pid']}" value="YES" {$pic_approval_checked} class="checkbox" title="{$lang_editpics_php['approve_pic']}" />
-                                  <label for="approve{$CURRENT_PIC['pid']}" class="clickable_option">{$icon_array['file_approve']}</label>
+                                  <input type="checkbox" name="approved{$CURRENT_PIC['pid']}" id="approve{$CURRENT_PIC['pid']}" value="YES" {$pic_approval_checked} class="checkbox" title="{$lang_editpics_php['approve_pic']}" /><label for="approve{$CURRENT_PIC['pid']}" class="clickable_option">{$icon_array['file_approve']}</label>
                           </td>
 EOT;
     }
-    
+
     // The reset hits box will only be displayed if a file has more than zero hits
     if ($CURRENT_PIC['hits'] == 0) {
         $hits_reset_disabled = 'disabled="disabled"';
     } else {
         $hits_reset_disabled = '';
     }
-    
+
     // The reset votes box will only be displayed if a file has more than zero votes
     if ($CURRENT_PIC['votes'] == 0) {
         $votes_reset_disabled = 'disabled="disabled"';
@@ -585,7 +584,7 @@ function form_status($text, $name)
     $name .= $CURRENT_PIC['pid'];
 
     if (!UPLOAD_APPROVAL_MODE && GALLERY_ADMIN_MODE) {
-    
+
         echo <<< EOT
         <tr>
             <td class="{$row_style_class}" style="white-space: nowrap;">
@@ -645,9 +644,9 @@ function get_user_albums($user_id = '')
     }
 
     if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
-    
+
         if (MODERATOR_MODE && UPLOAD_APPROVAL_MODE || MODERATOR_EDIT_MODE) {
-        
+
             $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid IN $albStr AND category > '".FIRST_USER_CAT."' OR category='".(FIRST_USER_CAT + USER_ID)."' ORDER BY title");
 
             if (mysql_num_rows($user_albums)) {
@@ -659,7 +658,7 @@ function get_user_albums($user_id = '')
             mysql_free_result($user_albums);
             
         } else {
-        
+
             // Only list the albums owned by the user
             $cat = USER_ID + FIRST_USER_CAT;
             $user_id = USER_ID;
@@ -670,16 +669,16 @@ function get_user_albums($user_id = '')
             mysql_free_result($result1);
 
             if (!GALLERY_ADMIN_MODE) {
-            
+
                 // Get public albums
                 $result2 = cpg_db_query("SELECT alb.aid AS aid, CONCAT_WS('', '(', cat.name, ') ', alb.title) AS title FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS cat ON alb.owner = '$user_id' AND alb.category = cat.cid ORDER BY alb.category DESC, alb.pos ASC");
                 $rowset2 = cpg_db_fetch_rowset($result2);
                 mysql_free_result($result2);
-                
+
             } else {
                 $rowset2 = array();
             }
-            
+
             // Merge rowsets
             $user_albums_list = array_merge($rowset1, $rowset2);
         }
@@ -703,7 +702,7 @@ if (GALLERY_ADMIN_MODE) {
     }
 
     mysql_free_result($public_albums);
-    
+
 } elseif (MODERATOR_MODE) {
 
     $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE aid IN $albStr AND category < '" . FIRST_USER_CAT . "' ORDER BY cat_title");

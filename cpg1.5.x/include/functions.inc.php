@@ -4702,7 +4702,7 @@ function user_is_allowed()
 
     $allowed_albums = cpg_db_fetch_rowset($result);
 
-    $cat = $allowed_albums[0]['category'];
+    $cat = $allowed_albums ? $allowed_albums[0]['category'] : '';
 
     if ($cat != '') {
         $check_approve = true;
@@ -4715,7 +4715,7 @@ function user_is_allowed()
 
         $allowed_albums = cpg_db_fetch_rowset($result);
 
-        if ($allowed_albums[0]['aid'] == '' && $cat != (FIRST_USER_CAT + USER_ID)) {
+        if ($allowed_albums && $allowed_albums[0]['aid'] == '' && $cat != (FIRST_USER_CAT + USER_ID)) {
             $check_approve = false;
         } elseif ($cat == (FIRST_USER_CAT + USER_ID)) {
             $check_approve = true;

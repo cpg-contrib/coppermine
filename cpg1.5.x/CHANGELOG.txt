@@ -24,6 +24,8 @@ Changelog
 [O] = Optimization of code
 [S] = Security fix (issues that are related to security)
 *********************************************
+
+2009-01-14 [B] Fixed duplicate and blank albums in edit_one_pic album list {Paver}
 2009-01-14 [C] Remove the picture background color in slideshow - thread 57055 {Sameera}
 2009-01-12 [B] Fixed album manager creating user albums in 'No category' - thread 57536 {Paver}
 2009-01-10 [A] Implemented admin tool to convert keyword separator {Paver}

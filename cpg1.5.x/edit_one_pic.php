@@ -76,21 +76,10 @@ function process_post_data()
     $galleryicon = $superCage->post->getInt('galleryicon');
     $isgalleryicon = ($galleryicon == $pid);
 
-    if ($superCage->post->keyExists('read_exif')) {
-        $read_exif = $superCage->post->getInt('read_exif');
-    }
-
-    if ($superCage->post->keyExists('reset_vcount')) {
-        $reset_vcount = $superCage->post->getInt('reset_vcount');
-    }
-
-    if ($superCage->post->keyExists('reset_votes')) {
-        $reset_votes = $superCage->post->getInt('reset_votes');
-    }
-
-    if ($superCage->post->keyExists('del_comments')) {
-        $del_comments = $superCage->post->getInt('del_comments');
-    }
+    $read_exif    = $superCage->post->keyExists('read_exif') ? $superCage->post->getInt('read_exif') : 0;
+    $reset_vcount = $superCage->post->keyExists('reset_vcount') ? $superCage->post->getInt('reset_vcount') : 0;
+    $reset_votes  = $superCage->post->keyExists('reset_votes') ? $superCage->post->getInt('reset_votes') : 0;
+    $del_comments = $superCage->post->keyExists('del_comments') ? $superCage->post->getInt('del_comments') : 0;
 
     $result = cpg_db_query("SELECT category, owner_id, url_prefix, filepath, filename, pwidth, pheight FROM {$CONFIG['TABLE_PICTURES']} AS p INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = p.aid WHERE pid = '$pid'");
 
@@ -236,7 +225,7 @@ function get_user_albums($user_id = 0)
 
     if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
         $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + USER_ID)."' $or ORDER BY title");
-    
+
         if (mysql_num_rows($user_albums)) {
             $user_albums_list = cpg_db_fetch_rowset($user_albums);
         } else {
@@ -325,7 +314,7 @@ if (GALLERY_ADMIN_MODE) {
     $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON category = cid WHERE category < '" . FIRST_USER_CAT . "' ORDER BY cat_title");
 } else {
     $forbidden_set_alt = $FORBIDDEN_SET ? 'AND ' . str_replace('p.', '', $FORBIDDEN_SET) : '';
-    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON category = cid WHERE (category < '" . FIRST_USER_CAT . "' AND uploads = 'YES' $forbidden_set_alt) OR aid = '{$CURRENT_PIC['aid']}' ORDER BY cat_title");
+    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON category = cid WHERE (category < '" . FIRST_USER_CAT . "' AND ((uploads = 'YES' $forbidden_set_alt) OR aid = '{$CURRENT_PIC['aid']}')) ORDER BY cat_title");
 }
 
 if (mysql_num_rows($public_albums)) {
