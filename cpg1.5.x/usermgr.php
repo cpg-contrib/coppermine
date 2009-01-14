@@ -213,24 +213,6 @@ function list_users($search = '')
 echo <<<EOT
 <script type="text/javascript" language="javascript">
 <!--
-function selectAll(d,box) {
-  var f = document.editForm;
-  for (i = 0; i < f.length; i++) {
-    //alert (f[i].name.indexOf(box));
-    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
-      if (d.checked) {
-        f[i].checked = true;
-      } else {
-        f[i].checked = false;
-      }
-    }
-  }
-  if (d.name == "checkAll") {
-      document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
-  } else {
-      document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
-  }
-}
 
 function selectaction(d,box) {
 // check if an action has been selected
@@ -345,7 +327,7 @@ EOT;
 
         <tr>
                 <td class="tableh1" align="center">
-                    <input type="checkbox" {$makereadonly}name="checkAll" id="checkAll" onClick="selectAll(this,'u');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" />
+                    <input type="checkbox" {$makereadonly}name="checkAll" id="checkAll" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" />
                 </td>
                 <td class="tableh1" colspan="2">
                     <span class="statlink">{$lang_usermgr_php['name']}</span>
@@ -590,7 +572,7 @@ EOT;
             $help = cpg_display_help('f=users.htm&as=user_cp_search&ae=user_cp_search_end&top=1', '400', '150');
             echo <<<EOT
         <tr>
-                <td class="tablef" align="center"><input type="checkbox" name="checkAll2" id="checkAll2" {$makereadonly}onClick="selectAll(this,'u');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
+                <td class="tablef" align="center"><input type="checkbox" name="checkAll2" id="checkAll2" {$makereadonly}onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
                 <td colspan="$number_of_columns_minus_four"  class="tablef">
                 <table cellpadding="0" cellspacing="0" width="100%" border="0">
                 <tr>
