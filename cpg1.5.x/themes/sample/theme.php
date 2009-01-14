@@ -841,16 +841,10 @@ EOT;
 $template_display_media = <<<EOT
         <tr>
                 <td align="center" class="display_media" nowrap="nowrap">
-                        <table cellspacing="2" cellpadding="0" class="slideshow-bk"  >
-                        		<tr>    
-								 	<td>
-									     <img id="load" src="{LOADER_ICON_PATH}" border="0" style="display:none; position:absolute;" alt="" />
-                                	</td>
-                                </tr>
-                                
+                        <table cellspacing="2" cellpadding="0" > 
                                 <tr>
-                                        <td align="center" id="slideShow" style="{SLIDESHOW_STYLE}">
-                                               {IMAGE}
+                                        <td align="center" style="{SLIDESHOW_STYLE}">
+                                                {IMAGE}
                                         </td>
                                 </tr>
                         </table>

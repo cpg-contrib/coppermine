@@ -43,11 +43,15 @@ $(document).ready(function(){
 				Pid		= data['pid'];
               }); 
 		}
-		/** start the slideshow */
-		if(PiCount>1) runSlideShow();
- 		/**  next pic view and keeping hold the previous pitcure ID */
- 		var PidTemp = '';
+		
+		/**  next pic view and keeping hold the previous pitcure ID */
+ 		var PidTemp = Pid;
  		var timer 	= '';
+ 		
+		/** start the slideshow */
+		if(PiCount>1) {
+			runSlideShow();
+		}
  			
 		/** set time to run slideshow */
 		function runSlideShow(){
@@ -58,7 +62,6 @@ $(document).ready(function(){
  			
 			 /** clear time out */
 			clearTimeout(timer);
- 			$("#load").show();
  			
  			/** now load a image */			
 			pos = parseInt(pos) + 1;
@@ -70,19 +73,18 @@ $(document).ready(function(){
 			i.onload = function() {
 				
 				if(i.complete){
-				$("#showImage").attr({
+				$("#show_image").attr({
 					src: i.src,
 					title: Title,
 					alt: "jQuery Logo",
 					style: "visibility: hidden;"
 				}).fadeIn("fast");
 				
-				$("#showImage").css('visibility', 'visible');
+				$("#show_image").css('visibility', 'visible');
 				$("#title").html(Title);
 				/** set Pid to temp */
 				PidTemp = Pid; 
-			/** hide the loader*/
-			$("#load").hide();
+
 			
 			//now set time to loaded image.
 			runSlideShow();

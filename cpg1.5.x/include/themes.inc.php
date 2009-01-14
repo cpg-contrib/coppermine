@@ -882,16 +882,10 @@ if (!isset($template_display_media)) { //{THEMES}
 $template_display_media = <<<EOT
         <tr>
                 <td align="center" class="display_media" nowrap="nowrap">
-                        <table cellspacing="2" cellpadding="0" class="slideshow-bk"  >
-                        		<tr>    
-								 	<td>
-									     <img id="load" src="{LOADER_ICON_PATH}" border="0" style="display:none; position:absolute;" alt="" />
-                                	</td>
-                                </tr>
-                                
+                        <table cellspacing="2" cellpadding="0" > 
                                 <tr>
-                                        <td align="center" id="slideShow" style="{SLIDESHOW_STYLE}">
-                                               {IMAGE}
+                                        <td align="center" style="{SLIDESHOW_STYLE}">
+                                                {IMAGE}
                                         </td>
                                 </tr>
                         </table>
@@ -3815,8 +3809,8 @@ function theme_slideshow($start_img,$title)
     template_extract_block($template_display_media, 'img_desc', $start_slideshow);
 	
 	/** set styles to slideshow background */
-	$setDimentionW= $CONFIG['picture_width'] + 100;
-	$setDimentionH= $CONFIG['picture_width'] + 10;
+	$setDimentionW= $CONFIG['picture_width'];
+	$setDimentionH= $CONFIG['picture_width'];
 	
     if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
         $prefix = $THEME_DIR;
@@ -3825,10 +3819,9 @@ function theme_slideshow($start_img,$title)
     }
 	
     $params = array(
-        '{SLIDESHOW_STYLE}' => 'width:' .$setDimentionW. 'px; height: '.$setDimentionH.'px; position: relative;' ,
-        '{IMAGE}' => '<img id="showImage" src="' . $start_img . '" class="image" /><br />',
+        '{SLIDESHOW_STYLE}' => 'height: '.$setDimentionH.'px;' ,
+        '{IMAGE}' => '<img id="show_image" src="' . $start_img . '" class="image" /><br />',
         '{ADMIN_MENU}' => '',
-        '{LOADER_ICON_PATH}' => $prefix . 'images/loader.gif',
         );
 
     echo "<a name=\"top_display_media\"/>";
@@ -3842,7 +3835,7 @@ function theme_slideshow($start_img,$title)
         </tr>
         </noscript>
         <tr>
-            <td align="center" class="navmenu" style="white-space: nowrap;">
+            <td align="center" style="white-space: nowrap;" class="navmenu">
                 <div id="title">{$title}</div>
             </td>
         </tr>
@@ -3852,6 +3845,7 @@ EOT;
     starttable();
     echo template_eval($template_display_media, $params);
     endtable();
+    
     starttable();
     echo <<<EOT
         <tr>

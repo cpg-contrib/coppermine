@@ -1252,8 +1252,3 @@ table.album-save td span{
     background-color: #FFCCBA;
     background-image: url('../../images/message/error.png');
 }
-
-/** slideshow styles*/
-table.slideshow-bk {
-	background-color: #121212;
-}
