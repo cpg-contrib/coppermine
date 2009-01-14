@@ -79,6 +79,13 @@ function hideall() {
 	});
 }
 
+function selectAll(form_name) {
+    $('#' + form_name).data('boxes_checked', $('#' + form_name).data('boxes_checked') ? false : true);
+    $('#' + form_name + ' input:checkbox').each(function(){
+        this.checked = $('#' + form_name).data('boxes_checked');
+    });
+}
+
 function redirect(url) {
 	window.location=url;
 }

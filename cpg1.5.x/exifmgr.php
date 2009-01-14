@@ -71,30 +71,6 @@ $exifCurrentData = explode("|", $CONFIG['show_which_exif']);
 echo <<< EOT
     <form method="post" action="" name="editForm" id="cpgform">
     <input type="hidden" name="save" value="save" />
-
-    <script type="text/javascript" language="javascript">
-    <!--
-    function selectAll(d,box) {
-      var f = document.editForm;
-      for (i = 0; i < f.length; i++) {
-        //alert (f[i].name.indexOf(box));
-        if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
-          if (d.checked) {
-            f[i].checked = true;
-          } else {
-            f[i].checked = false;
-          }
-        }
-      }
-      if (d.name == "checkAll") {
-          document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
-      } else {
-          document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
-      }
-    }
-
-    -->
-    </script>
 EOT;
 
 $exif_help = '&nbsp;' . cpg_display_help('f=exif.htm&amp;as=exif&amp;ae=exif_end', '640', '450');
@@ -107,7 +83,7 @@ echo <<< EOT
             <span class="cpg_user_message">{$output_message}</span>
         </td>
         <td class="tableh2" align="center">
-            <input type="checkbox" name="checkAll" onclick="selectAll(this,'exif_tags');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
+            <input type="checkbox" name="checkAll" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
         </td>
     </tr>
 
@@ -145,7 +121,7 @@ echo <<< EOT
             <button type="submit" class="button" name="submit" id="submit" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
         </td>
         <td class="tablef" align="center">
-            <input type="checkbox" name="checkAll2" onclick="selectAll(this,'exif_tags');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
+            <input type="checkbox" name="checkAll2" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
         </td>
     </tr>
 
