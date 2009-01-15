@@ -106,24 +106,24 @@ EOT;
 // Function for the JavaScript inside the <head>-section
 function theme_javascript_head()
 {
-	global $CONFIG, $JS;
-	$return = '';
-	// Check if we have any variables being set using set_js_vars function
-	$JS['vars']['not_default_theme'] = true;
-	if (isset($JS['vars']) && count($JS['vars'])) {
-		// Convert the $JS['vars'] array to json object string
-		$json_vars = json_encode($JS['vars']);
-		// Output the json object
-		$return .= '<script type="text/javascript">var js_vars = ' . $json_vars . ";</script>\n";
-	}
+    global $CONFIG, $JS;
+    $return = '';
+    // Check if we have any variables being set using set_js_vars function
+    $JS['vars']['not_default_theme'] = true;
+    if (isset($JS['vars']) && count($JS['vars'])) {
+        // Convert the $JS['vars'] array to json object string
+        $json_vars = json_encode($JS['vars']);
+        // Output the json object
+        $return .= '<script type="text/javascript">var js_vars = ' . $json_vars . ";</script>\n";
+    }
 
-	// Check if we have any js includes
-	if (isset($JS['includes']) && count($JS['includes'])) {
-		// Include all the file which were set using js_include() function
-		foreach ($JS['includes'] as $js_file) {
-			$return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . "\n";
-		}
-	}
+    // Check if we have any js includes
+    if (isset($JS['includes']) && count($JS['includes'])) {
+        // Include all the file which were set using js_include() function
+        foreach ($JS['includes'] as $js_file) {
+            $return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . "\n";
+        }
+    }
     $return .= <<< EOT
 
 <script language="JavaScript" type="text/javascript">

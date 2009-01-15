@@ -3735,17 +3735,17 @@ function theme_slideshow($start_img,$title)
 
     pageheader($lang_display_image_php['slideshow']);
     template_extract_block($template_display_media, 'img_desc', $start_slideshow);
-	
-	/** set styles to slideshow background */
-	$setDimentionW= $CONFIG['picture_width'] + 100;
-	$setDimentionH= $CONFIG['picture_width'] + 10;
-	
+    
+    /** set styles to slideshow background */
+    $setDimentionW= $CONFIG['picture_width'] + 100;
+    $setDimentionH= $CONFIG['picture_width'] + 10;
+    
     if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
         $prefix = $THEME_DIR;
     } else {
         $prefix = '';
     }
-	
+    
     $params = array(
         '{SLIDESHOW_STYLE}' => 'width:' .$setDimentionW. 'px; height: '.$setDimentionH.'px; position: relative;' ,
         '{IMAGE}' => '<img id="showImage" src="' . $start_img . '" class="image" /><br />',
