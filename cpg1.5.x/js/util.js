@@ -10,23 +10,23 @@
 
   ********************************************
   Coppermine version: 1.5.1
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/banning.js $
-  $Revision: 5258 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-11-17 21:43:14 +0100 (Mo, 17 Nov 2008) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 function init_utils(){
-	jQuery.each($("div[id$='_wrapper']"), function(){
-		$(this).css('display', 'none');					  
-	});
-	jQuery.each($("input[type='radio'][name='action']"), function(){
-		$(this).change(function(){
-			jQuery.each($("input[type='radio'][name='action']"), function(){
-				$('#' + $(this).attr('id') + '_wrapper').css('display', ($(this).attr('checked')) ? 'block' : 'none');					  
-			});
-		});				  
-	});
+    jQuery.each($("div[id$='_wrapper']"), function(){
+        $(this).css('display', 'none');                   
+    });
+    jQuery.each($("input[type='radio'][name='action']"), function(){
+        $(this).change(function(){
+            jQuery.each($("input[type='radio'][name='action']"), function(){
+                $('#' + $(this).attr('id') + '_wrapper').css('display', ($(this).attr('checked')) ? 'block' : 'none');                    
+            });
+        });               
+    });
 }
 
 addonload('init_utils()');

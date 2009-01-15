@@ -10,18 +10,18 @@
 
   ********************************************
   Coppermine version: 1.5.1
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/scripts.js $
-  $Revision: 5163 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-10-22 18:32:07 +0200 (Mi, 22 Okt 2008) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 /* Copyright (c) 2007 Paul Bakaus (paul.bakaus@googlemail.com) and Brandon Aaron (brandon.aaron@gmail.com || http://brandonaaron.net)
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  *
- * $LastChangedDate: 2007-12-20 08:43:48 -0600 (Thu, 20 Dec 2007) $
- * $Rev: 4257 $
+ * $LastChangedDate$
+ * $Rev$
  *
  * Version: 1.2
  *

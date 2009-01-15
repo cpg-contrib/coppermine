@@ -10,10 +10,10 @@
 
   ********************************************
   Coppermine version: 1.5.1
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/scripts.js $
-  $Revision: 5163 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-10-22 18:32:07 +0200 (Mi, 22 Okt 2008) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 /********************************************************************************
@@ -34,20 +34,20 @@
  */
 $(document).ready(function() {
 
-	$('a.jt').cluetip({
-	cluetipClass: 'jtip', 
-	sticky: true,
-	arrows: true, 
-	width: 550,
-	height: 250,
-    	dropShadow: false, 
-    	sticky: true,
-    	//closeText:'<img src=\"images/cluetip_close.png\" alt=\"\"  />',
-    	closeText: '<img src=\"' + js_vars.icon_dir + 'close.png\" alt=\"\" title=\"' + js_vars.lang_close +  '\" />',
-	closePosition: 'title',
-	activation: 'click'
-	//mouseOutClose: true
-	
+    $('a.jt').cluetip({
+    cluetipClass: 'jtip', 
+    sticky: true,
+    arrows: true, 
+    width: 550,
+    height: 250,
+        dropShadow: false, 
+        sticky: true,
+        //closeText:'<img src=\"images/cluetip_close.png\" alt=\"\"  />',
+        closeText: '<img src=\"' + js_vars.icon_dir + 'close.png\" alt=\"\" title=\"' + js_vars.lang_close +  '\" />',
+    closePosition: 'title',
+    activation: 'click'
+    //mouseOutClose: true
+    
   });
 });
 
@@ -59,13 +59,13 @@ $(document).ready(function() {
       options = js;
       js = null;
     }
-	
+    
     return this.each(function(index) {
       var $this = $(this);      
       
       // support metadata plugin (v1.0 and 2.0)
       var opts = $.extend(false, {}, $.fn.cluetip.defaults, options || {}, $.metadata ? $this.metadata() : $.meta ? $this.data() : {});
-	
+    
       // start out with no contents (for ajax activation)
       var cluetipContents = false;
       var cluezIndex = parseInt(opts.cluezIndex, 10)-1;
@@ -190,19 +190,19 @@ $(document).ready(function() {
         };
         cluetipShow(pY);
       }else if(tipAttribute){
-	  	 	if (opts.waitImage) {
+            if (opts.waitImage) {
               $('#cluetip-waitimage')
               .css({top: mouseY+1, left: mouseX+10})
               .show();
             }
             
-		  $.get(tipAttribute,{},function(data){
-		  $cluetipInner.html (data);
-		  cluetipShow(pY);	
-		  		$('#cluetip-waitimage').hide();	  	
-		  });
-		  
-	  }
+          $.get(tipAttribute,{},function(data){
+          $cluetipInner.html (data);
+          cluetipShow(pY);  
+                $('#cluetip-waitimage').hide();     
+          });
+          
+      }
 else if (opts.local){
         var $localContent = $(tipAttribute + ':first');
         var localCluetip = $.fn.wrapInner ? $localContent.wrapInner('<div></div>').children().clone(true) : $localContent.html();
@@ -441,8 +441,8 @@ clearTimeout(closeOnDelay);
     // settings for when hoverIntent plugin is used             
     hoverIntent: {    
                       sensitivity:  3,
-              			  interval:     50,
-              			  timeout:      0
+                          interval:     50,
+                          timeout:      0
     },
     // function to run just before clueTip is shown.           
     onActivate:       function(e) {return true;},

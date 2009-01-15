@@ -28,13 +28,13 @@ $(document).ready(function() {
     var album           = js_vars.album; 
     var maxItems        = parseInt(js_vars.max_item);
     var width           = js_vars.thumb_width;
-    var cat				= parseInt(js_vars.cat);
+    var cat             = parseInt(js_vars.cat);
     // Display the stars        
     displayStars();
     // Display the slideshow buttons
     printSlideshowButton();
     // Display the pic info button
-	printPicInfoButton();
+    printPicInfoButton();
 
     /** The code below this is filmstrip specific **/
    // We need not execute the filmstrip js if there are not enough pictures in the album        
@@ -106,13 +106,13 @@ $(document).ready(function() {
         }
             
         if (!url_cache[nextPosition + $go_next]) {
-        	if (!isNaN(cat)) {
+            if (!isNaN(cat)) {
                 addCat = '&cat=' + cat;
             } else {
                 addCat = "";
             }
             
-			var next_url = "displayimage.php?film_strip=1&album=" + album + "&ajax_call=2&pos=" + nextPosition+addCat;
+            var next_url = "displayimage.php?film_strip=1&album=" + album + "&ajax_call=2&pos=" + nextPosition+addCat;
             // Send the ajax request for getting next set of filmstrip thumbnails
             $.getJSON(next_url, function(data) {
 
@@ -172,13 +172,13 @@ $(document).ready(function() {
         }
                     
         if(!url_cache[nextPosition-$go_next]) {
-	
-    	    if (!isNaN(cat)) {
+    
+            if (!isNaN(cat)) {
                 addCat = '&cat=' + cat;
             } else {
                 addCat = "";
             }
-				
+                
             var prev_url = "displayimage.php?film_strip=1&album="+album+"&ajax_call=1&pos="+nextPosition+addCat;  
             $.getJSON(prev_url, function(data) {
                 url_cache[nextPosition-$go_next]  = data['url'];
@@ -251,11 +251,11 @@ function changeover(obj){
 function changeout(obj){
     var id = obj.title; 
     for(i=0; i<id; i++) {
-		var img = js_vars.theme_dir + 'images/rate_full.gif';
+        var img = js_vars.theme_dir + 'images/rate_full.gif';
         if(js_vars.rating <= i) {
-			img = js_vars.theme_dir + 'images/rate_empty.gif';
-		}
-		$('#' + js_vars.picture_id + '_' + (i+1)).attr('src', img);     
+            img = js_vars.theme_dir + 'images/rate_empty.gif';
+        }
+        $('#' + js_vars.picture_id + '_' + (i+1)).attr('src', img);     
     }
 }
 
@@ -300,13 +300,13 @@ function isNumber(val){
 }
 
 function printSlideshowButton(){
-	var btn = '<a href="' + js_vars.buttons.slideshow_tgt + '" class="navmenu_pic" title="' + js_vars.buttons.slideshow_title + '" rel="nofollow"><img src="' + js_vars.buttons.loc;
-	btn += 'images/navbar/slideshow.png" border="0" align="middle" alt="' + js_vars.buttons.slideshow_title + '" /></a>';
-	$('#slideshow_button').append(btn);
+    var btn = '<a href="' + js_vars.buttons.slideshow_tgt + '" class="navmenu_pic" title="' + js_vars.buttons.slideshow_title + '" rel="nofollow"><img src="' + js_vars.buttons.loc;
+    btn += 'images/navbar/slideshow.png" border="0" align="middle" alt="' + js_vars.buttons.slideshow_title + '" /></a>';
+    $('#slideshow_button').append(btn);
 }
 
 function printPicInfoButton(){
-	var btn = '<a href="javascript:;" class="navmenu_pic" onclick="blocking(\'picinfo\',\'yes\', \'block\'); return false;" title="' + js_vars.buttons.pic_info_title;
-	btn += '" rel="nofollow"><img src="' + js_vars.buttons.loc + 'images/navbar/info.png" border="0" align="middle" alt="' + js_vars.buttons.pic_info_title + '" /></a>';
-	$('#pic_info_button').append(btn);
+    var btn = '<a href="javascript:;" class="navmenu_pic" onclick="blocking(\'picinfo\',\'yes\', \'block\'); return false;" title="' + js_vars.buttons.pic_info_title;
+    btn += '" rel="nofollow"><img src="' + js_vars.buttons.loc + 'images/navbar/info.png" border="0" align="middle" alt="' + js_vars.buttons.pic_info_title + '" /></a>';
+    $('#pic_info_button').append(btn);
 }

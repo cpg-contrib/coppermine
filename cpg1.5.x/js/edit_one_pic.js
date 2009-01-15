@@ -10,10 +10,10 @@
 
   ********************************************
   Coppermine version: 1.5.1
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/scripts.js $
-  $Revision: 5163 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-10-22 18:32:07 +0200 (Mi, 22 Okt 2008) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 function textCounter(field, maxlimit) {
@@ -22,9 +22,19 @@ function textCounter(field, maxlimit) {
 }
 
 $(document).ready (function() {
-	$('textarea.autogrow').autogrow({
-		maxHeight: 150,
-		minHeight: 10,
-		lineHeight: 16
-	});
+    $('textarea.autogrow').autogrow({
+        maxHeight: 150,
+        minHeight: 10,
+        lineHeight: 16
+    });
+    /*
+    $('#album').change(function() {
+        var confirm_move_public  = js_vars.confirm_move_public;
+        var confirm_move_private = js_vars.confirm_move_private;
+        var confirm_move_public = js_vars.confirm_move_public;
+        var param = $(this).val();
+        // if (/^(?:bobby|sue|smith)$/.test(name))
+        // if (confirm(msg)) 
+    });
+    */
 });

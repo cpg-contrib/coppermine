@@ -54,6 +54,10 @@ if ($superCage->get->keyExists('id')) {
     $pid = -1;
 }
 
+/* --------------------------------------------------------------------------
+ * FUNCTION DEFINITIONS
+ * --------------------------------------------------------------------------*/
+
 function process_post_data()
 {
     global $CONFIG, $mb_utf8_regex;
@@ -86,21 +90,21 @@ function process_post_data()
     if (!mysql_num_rows($result)) {
         cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
     }
-    
+
     $pic = mysql_fetch_assoc($result);
     mysql_free_result($result);
 
     if (!(GALLERY_ADMIN_MODE || $pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID)) || !USER_ID) {
         cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
     }
-    
+
     $update  = "aid = '".$aid."'";
-    
+
     if (is_movie($pic['filename'])) {
         $update .= ", pwidth = " . $pwidth;
         $update .= ", pheight = " . $pheight;
     }
-    
+
     $update .= ", title = '".$title."'";
     $update .= ", caption = '".$caption."'";
     $update .= ", keywords = '".$keywords."'";
@@ -125,17 +129,16 @@ function process_post_data()
         $update .= ", hits = 0";
         resetDetailHits($pid);
     }
-    
+
     if ($reset_votes) {
         $update .= ", pic_rating = 0, votes = 0";
         resetDetailVotes($pid);
     }
-    
-    if ($read_exif) {
-    
-        $filepath = urldecode(get_pic_url($pic, 'fullsize'));
 
-        // If read exif info again is checked then we will just delete the entry from exif table. The new exif information will automatically be read when someone views the image.
+    if ($read_exif) {
+        $filepath = urldecode(get_pic_url($pic, 'fullsize'));
+        // If "read exif info again" is checked then just delete the entry from the exif table. 
+        // The new exif information will automatically be read when someone views the image.
         $query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE filename = '$filepath'";
         cpg_db_query($query);
     }
@@ -144,10 +147,10 @@ function process_post_data()
         $query = "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid = '$pid'";
         cpg_db_query($query);
     }
-    
+
     $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET $update WHERE pid='$pid' LIMIT 1";
     cpg_db_query($query);
-    
+
     // rename a file
     if ($superCage->post->keyExists('filename') && $matches = $superCage->post->getMatched('filename', '/^[0-9A-Za-z\/_.-]+$/')) {
         $post_filename = $matches[0];
@@ -211,7 +214,8 @@ function process_post_data()
             }
         }
     }
-}
+} // end function process_post_data
+
 
 function get_user_albums($user_id = 0)
 {
@@ -236,7 +240,8 @@ function get_user_albums($user_id = 0)
     } else {
         $user_albums_list = &$USER_ALBUMS_ARRAY[USER_ID];
     }
-}
+} // end function get_user_albums
+
 
 function form_alb_list_box()
 {
@@ -245,29 +250,33 @@ function form_alb_list_box()
 
     $sel_album = $CURRENT_PIC['aid'];
 
-    $onChange = '';
     // TO DO: add confirm alerts to select list for albums with restrictions (admin approval or no editing)
     // $lang_editpics_php['confirm_move_public']
     // $lang_editpics_php['confirm_move_private']
+    // $USER_DATA['pub_upl_need_approval']
+    // $USER_DATA['priv_upl_need_approval']
+    // $CONFIG['users_can_edit_pics']
 
     echo <<< EOT
-    
+
     <tr>
         <td class="tableb" style="white-space: nowrap;">
             {$icon_array['album']}{$lang_common['album']}
         </td>
         <td class="tableb" valign="top">
             {$icon_array['move']}
-            <select name="aid" class="listbox"{$onChange}>
+            <select name="aid" id="album" class="listbox">
 
 EOT;
-
     foreach ($public_albums_list as $album) {
-        echo '                <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected="selected"' : '') . '>' . $album['cat_title'] . "</option>\n";
+        echo '                <option value="' . $album['aid'] . '"'
+            . ($album['aid'] == $sel_album ? ' selected="selected"' : '') . '>'
+            . $album['cat_title'] . "</option>\n";
     }
-
     foreach ($user_albums_list as $album) {
-        echo '                <option value="'.$album['aid'].'"'.($album['aid'] == $sel_album ? ' selected="selected"' : '').'>* '.$album['title'] . "</option>\n";
+        echo '                <option value="' . $album['aid'] . '"'
+            . ($album['aid'] == $sel_album ? ' selected="selected"' : '') . '>* '
+            . $album['title'] . "</option>\n";
     }
 
     $note_permissions = '';
@@ -277,11 +286,17 @@ EOT;
     // $lang_editpics_php['note_edit_control'];
 
     echo <<< EOT
-            </select>
-        {$note_permissions}</td>
+            </select>{$note_permissions}
+        </td>
     </tr>
+
 EOT;
-}
+} // end function form_alb_list_box
+
+
+/* --------------------------------------------------------------------------
+ * MAIN CODE
+ * --------------------------------------------------------------------------*/
 
 if ($superCage->post->keyExists('submitDescription')) {
     process_post_data();

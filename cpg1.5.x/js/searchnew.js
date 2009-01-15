@@ -10,10 +10,10 @@
 
   ********************************************
   Coppermine version: 1.5.1
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/admin.js $
-  $Revision: 5414 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-12-16 09:25:47 +0000 (Tue, 16 Dec 2008) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 // Queue manager object - manages the queue
@@ -186,7 +186,7 @@ function process() {
 }
 
 function searchnewPageLoaded() {
-	$('#submit_button').click(process);
+    $('#submit_button').click(process);
 }
 
 addonload('searchnewPageLoaded()');

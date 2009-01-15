@@ -10,10 +10,10 @@
 
   ********************************************
   Coppermine version: 1.5.1
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/displayimage.js $
-  $Revision: 5405 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-12-15 22:23:58 +0100 (Mo, 15 Dez 2008) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 var swfu;

@@ -10,34 +10,34 @@
 
   ********************************************
   Coppermine version: 1.5.1
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/scripts.js $
-  $Revision: 5163 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-10-22 18:32:07 +0200 (Mi, 22 Okt 2008) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 function textCounter(field, maxlimit) {
-        if (field.value.length > maxlimit) // if too long...trim it!
+    if (field.value.length > maxlimit) // if too long...trim it!
         field.value = field.value.substring(0, maxlimit);
 }
 
 function selectAll(d,box) {
-  var f = document.editForm;
-  for (i = 0; i < f.length; i++) {
-    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
-      if (d.checked) {
-        f[i].checked = true;
-      } else {
-        f[i].checked = false;
-      }
+    var f = document.editForm;
+    for (i = 0; i < f.length; i++) {
+        if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
+            if (d.checked) {
+                f[i].checked = true;
+            } else {
+                f[i].checked = false;
+            }
+        }
     }
-  }
 }
 
 $(document).ready (function() {
-	$('textarea.autogrow').autogrow({
-		maxHeight: 200,
-		minHeight: 10,
-		lineHeight: 16
-	});
+    $('textarea.autogrow').autogrow({
+        maxHeight: 200,
+        minHeight: 10,
+        lineHeight: 16
+    });
 });

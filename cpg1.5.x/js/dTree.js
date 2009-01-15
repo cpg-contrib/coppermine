@@ -10,10 +10,10 @@
 
   ********************************************
   Coppermine version: 1.5.1
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/scripts.js $
-  $Revision: 5401 $
-  $LastChangedBy: saweyyy $
-  $Date: 2008-12-15 10:45:07 +0100 (ma, 15 dec 2008) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 /*--------------------------------------------------|
 | dTree 2.05 | www.destroydrop.com/javascript/tree/ |
@@ -259,10 +259,10 @@ dTree.prototype.openTo = function(nId, bSelect, bFirst) {
         cn._is = bSelect;
         if (this.completed && cn._hc) this.nodeStatus(true, cn._ai, cn._ls);
         if (this.completed && bSelect){
-			this.s(cn._ai);
-		}else if (bSelect){
-			this._sn=cn._ai;
-		}
+            this.s(cn._ai);
+        }else if (bSelect){
+            this._sn=cn._ai;
+        }
         this.openTo(cn._p._ai, false, true);
 };
 

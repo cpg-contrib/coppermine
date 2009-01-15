@@ -10,40 +10,40 @@
 
   ********************************************
   Coppermine version: 1.5.1
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/scripts.js $
-  $Revision: 5163 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-10-22 18:32:07 +0200 (Mi, 22 Okt 2008) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 function adjust_popup()
 {
-	// Let's build a list of variables that we need to take into account
-	var windowWidth = $(window).width();
-	var windowHeight = $(window).height();
-	var imageWidth = $("#fullsize_image").width();
-	var imageHeight = $("#fullsize_image").height();
-	var widthMargin = 16;
-	var heightMargin = 30;
-	var imageRatio = imageWidth/imageHeight;
-	var windowRatio = windowWidth/windowHeight;
-	var alertString = 'Window width:' + windowWidth + '\n' + 'Window height:' + windowHeight + '\n' + 'Image width:' + imageWidth + '\n' + 'Image height:' + imageHeight;
+    // Let's build a list of variables that we need to take into account
+    var windowWidth = $(window).width();
+    var windowHeight = $(window).height();
+    var imageWidth = $("#fullsize_image").width();
+    var imageHeight = $("#fullsize_image").height();
+    var widthMargin = 16;
+    var heightMargin = 30;
+    var imageRatio = imageWidth/imageHeight;
+    var windowRatio = windowWidth/windowHeight;
+    var alertString = 'Window width:' + windowWidth + '\n' + 'Window height:' + windowHeight + '\n' + 'Image width:' + imageWidth + '\n' + 'Image height:' + imageHeight;
     if (imageWidth > windowWidth || imageHeight > windowHeight) {
-    	// The image is larger than the window, so let's resize the image
-    	if (imageRatio > windowRatio) { // the image width is the culprit
-    		imageWidth = windowWidth;
-    		imageHeight = imageWidth / imageRatio;
-    	} else { // the image height is the culprit
-    		imageHeight = windowHeight;
-    		imageWidth = imageHeight * imageRatio;
-    	}
-    	imageWidth = parseInt(imageWidth);
-    	imageHeight = parseInt(imageHeight);
-    	$("#fullsize_image").width(imageWidth);
-    	$("#fullsize_image").height(imageHeight);
-    	$("#content").width(imageWidth);
-    	$("#content").height(imageHeight);
-    	window.resizeTo(imageWidth + widthMargin, imageHeight + heightMargin);
+        // The image is larger than the window, so let's resize the image
+        if (imageRatio > windowRatio) { // the image width is the culprit
+            imageWidth = windowWidth;
+            imageHeight = imageWidth / imageRatio;
+        } else { // the image height is the culprit
+            imageHeight = windowHeight;
+            imageWidth = imageHeight * imageRatio;
+        }
+        imageWidth = parseInt(imageWidth);
+        imageHeight = parseInt(imageHeight);
+        $("#fullsize_image").width(imageWidth);
+        $("#fullsize_image").height(imageHeight);
+        $("#content").width(imageWidth);
+        $("#content").height(imageHeight);
+        window.resizeTo(imageWidth + widthMargin, imageHeight + heightMargin);
     } else {
         var w, h, fixedW, fixedH, diffW, diffH;
         if (document.documentElement && document.body.clientHeight==0) {     // Catches IE6 and FF in DOCMODE
@@ -84,5 +84,5 @@ function adjust_popup()
 }
 
 $(document).ready(function() {
-	adjust_popup();
+    adjust_popup();
 })

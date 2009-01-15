@@ -143,10 +143,10 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
         $approved = 'NO';
     }
     $PIC_NEED_APPROVAL = ($approved == 'NO');
-    // User ID is now recorded when in admin mode (casper)
-    $user_id = USER_ID;
-    $username= USER_NAME;
-    // Populate Array to pass to plugins, then to SQL.
+    // User ID is recorded when in admin mode
+    $user_id  = USER_ID;
+    $username = USER_NAME;
+    // Populate Array to pass to plugins, then to SQL
     $CURRENT_PIC_DATA['aid'] = $aid;
     $CURRENT_PIC_DATA['filepath'] = $filepath;
     $CURRENT_PIC_DATA['filename'] = $filename;
