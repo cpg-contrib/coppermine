@@ -16,6 +16,43 @@
   $Date$
 **********************************************/
 
+function ChangeThumb(index)
+{
+    if (index == -1) {
+        index = 0;
+    }
+    
+    document.images.Thumb.src = Pic[index];
+}
+
+var checkobj;
+
+function agreesubmit(el){
+
+    checkobj = el;
+    
+    if (document.all || document.getElementById) {
+        for (i = 0; i < checkobj.form.length; i++) {  //hunt down submit button
+            var tempobj = checkobj.form.elements[i];
+            if (tempobj.type.toLowerCase() == "submit") {
+                tempobj.disabled = !checkobj.checked;
+            }
+        }
+    }
+}
+
+function defaultagree(el){
+
+    if (!document.all && !document.getElementById) {
+        if (window.checkobj && checkobj.checked) {
+            return true;
+        } else {
+            alert(js_vars.reset_views_confirm);
+            return false;
+        }
+    }
+}
+
 // When the document is ready i.e. on page load
 $(document).ready(function() {
     // See if password_protect checkbox is checked
