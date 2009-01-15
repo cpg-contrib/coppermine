@@ -136,7 +136,7 @@ function delete_picture($pid, $tablecellstyle = 'tableb')
     
     echo "</td>";
             
-    $query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE filename='".addslashes($dir.$file)."' LIMIT 1";
+    $query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE pid = $pid";
     cpg_db_query($query);
 
     $query = "DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1";

@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-01-15 [O] EXIF table now uses pid instead of filename for indexing {Nibbler}
 2009-01-14 [O] Added universal javascript function selectAll() to be used in all pages with a select/deselect all feature {Nibbler,SaWey}
 2009-01-14 [M] Removed include/smtp.inc.php since it is no longer used. {Nibbler}
 2009-01-14 [A] Added the albmgr.js to carry out the album and picture manger functionality - thread 57113 {Sameera}

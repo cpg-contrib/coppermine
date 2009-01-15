@@ -195,9 +195,12 @@ function html_picinfo()
     $path_to_pic = $CONFIG['fullpath'] . $CURRENT_PIC_DATA['filepath'] . $CURRENT_PIC_DATA['filename'];
     $path_to_orig_pic = $CONFIG['fullpath'] . $CURRENT_PIC_DATA['filepath'] . $CONFIG['orig_pfx'] . $CURRENT_PIC_DATA['filename'];
 
+    // Read the iptc and EXIF data from original pic (if watermarked)
+    $metadata_path = file_exists($path_to_orig_pic) ? $path_to_orig_pic : $path_to_pic;
+    
     if ($CONFIG['read_exif_data']) {
     
-        $exif = exif_parse_file($path_to_pic);
+        $exif = exif_parse_file($metadata_path, $CURRENT_PIC_DATA['pid']);
     
         if (is_array($exif)) {
             array_walk($exif, 'sanitize_data');
@@ -207,9 +210,8 @@ function html_picinfo()
     
     // Read the iptc data
     if ($CONFIG['read_iptc_data']) {
-    
-        // Read the iptc data from original pic (if watermarked)
-        $iptc = file_exists($path_to_orig_pic) ? get_IPTC($path_to_orig_pic) : get_IPTC($path_to_pic);
+          
+        $iptc = get_IPTC($metadata_path);
     
         if (is_array($iptc)) {
         

@@ -164,10 +164,10 @@ CREATE TABLE CPG_ecards (
 # Table structure for table CPG_exif
 #
 CREATE TABLE CPG_exif (
-  `filename` varchar(255) NOT NULL default '',
+  `pid` int(11) NOT NULL,
   `exifData` text NOT NULL,
-  UNIQUE KEY `filename` (`filename`)
-) TYPE=MyISAM COMMENT='Stores EXIF data from individual pics';
+  PRIMARY KEY (`pid`)
+) ENGINE=MyISAM COMMENT='Stores EXIF data from individual pics'
 # --------------------------------------------------------
 
 #

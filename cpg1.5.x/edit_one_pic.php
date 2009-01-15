@@ -136,10 +136,9 @@ function process_post_data()
     }
 
     if ($read_exif) {
-        $filepath = urldecode(get_pic_url($pic, 'fullsize'));
         // If "read exif info again" is checked then just delete the entry from the exif table. 
         // The new exif information will automatically be read when someone views the image.
-        $query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE filename = '$filepath'";
+        $query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE pid = $pid";
         cpg_db_query($query);
     }
 

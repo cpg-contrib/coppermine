@@ -830,7 +830,7 @@ function del_old()
       
         cpg_db_query("DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = $pid");
         cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid = $pid");
-        cpg_db_query("DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE filename = '" . addslashes($image) . "'");
+        cpg_db_query("DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE pid = $pid");
 
         $delete_counter++;
     }
