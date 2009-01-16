@@ -279,6 +279,8 @@ function get_subcat_data(&$cat_data, &$album_set_array)
             );
         } // while
 
+        mysql_free_result($result);
+         
         // collect info about the user galleries category
         $result = cpg_db_query("SELECT name, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = " . USER_GAL_CAT);
         
@@ -313,8 +315,6 @@ function get_subcat_data(&$cat_data, &$album_set_array)
         $user_galleries['subalbums'][0]['pic_count'] = $row['pic_count'];
 
     } // if mysql_num_rows($result)
-
-    mysql_free_result($result);
     
     //TODO: optimize this for when first level album thumbs are disabled
     // all we need then is a count
