@@ -80,12 +80,12 @@ SWFUpload.onload = function () {
            swfu.setButtonTextStyle(button_disabled_style);
        }
     });
- }
+}
 
- function continue_upload() {
-     window.location = js_vars.site_url + '/editpics.php?album=' + $("select[name='album']").val();
-     return false;
- }
+function continue_upload() {
+    window.location = js_vars.site_url + '/editpics.php?album=' + $("select[name='album']").val();
+    return false;
+}
 
 $(document).ready(function() {
     button_enabled_style = '.browse { font-family: Arial,Helvetica,sans-serif;}';

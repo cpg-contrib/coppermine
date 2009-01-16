@@ -35,9 +35,13 @@ function selectAll(d,box) {
 }
 
 $(document).ready (function() {
-    $('textarea.autogrow').autogrow({
-        maxHeight: 200,
-        minHeight: 10,
-        lineHeight: 16
-    });
+    if ($.browser.msie) {
+        $('textarea.autogrow').height(40);
+    } else {
+        $('textarea.autogrow').autogrow({
+            maxHeight: 200,
+            minHeight: 10,
+            lineHeight: 16
+        });
+    }
 });

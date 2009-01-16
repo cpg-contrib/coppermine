@@ -21,7 +21,6 @@ define('IN_COPPERMINE', true);
 define('EDITPICS_PHP', true);
 require('include/init.inc.php');
 
-// Include the JS for versioncheck.php
 js_include('js/jquery.autogrow.js');
 js_include('js/edit_one_pic.js');
 
@@ -60,7 +59,7 @@ if ($superCage->get->keyExists('id')) {
 
 function process_post_data()
 {
-    global $CONFIG, $mb_utf8_regex;
+    global $CONFIG, $USER_DATA, $mb_utf8_regex;
     global $lang_errors, $lang_editpics_php;
 
     $superCage = Inspekt::makeSuperCage();
@@ -85,44 +84,60 @@ function process_post_data()
     $reset_votes  = $superCage->post->keyExists('reset_votes') ? $superCage->post->getInt('reset_votes') : 0;
     $del_comments = $superCage->post->keyExists('del_comments') ? $superCage->post->getInt('del_comments') : 0;
 
-    $result = cpg_db_query("SELECT category, owner_id, url_prefix, filepath, filename, pwidth, pheight FROM {$CONFIG['TABLE_PICTURES']} AS p INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = p.aid WHERE pid = '$pid'");
-
+    $result = cpg_db_query("SELECT category, owner_id, url_prefix, filepath, filename, pwidth, pheight, p.aid AS aid FROM {$CONFIG['TABLE_PICTURES']} AS p INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = p.aid WHERE pid = '$pid'");
     if (!mysql_num_rows($result)) {
         cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
     }
-
     $pic = mysql_fetch_assoc($result);
     mysql_free_result($result);
 
-    if (!(GALLERY_ADMIN_MODE || $pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID)) || !USER_ID) {
+    if (!USER_ID
+        || !(GALLERY_ADMIN_MODE
+                || ($pic['category'] == FIRST_USER_CAT + USER_ID) 
+                || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID)
+            )
+       ) {
         cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
     }
 
-    $update  = "aid = '".$aid."'";
+    $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '$aid'");
+    if (!mysql_num_rows($result)) {
+        cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+    }
+    $new_alb = mysql_fetch_assoc($result);
+    mysql_free_result($result);
+
+    $update  = "aid = '{$aid}'";
 
     if (is_movie($pic['filename'])) {
         $update .= ", pwidth = " . $pwidth;
         $update .= ", pheight = " . $pheight;
     }
 
-    $update .= ", title = '".$title."'";
-    $update .= ", caption = '".$caption."'";
-    $update .= ", keywords = '".$keywords."'";
+    $update .= ", title = '{$title}'";
+    $update .= ", caption = '{$caption}'";
+    $update .= ", keywords = '{$keywords}'";
 
     if (GALLERY_ADMIN_MODE) {
         $approved = $superCage->post->getAlpha('approved');
-        $update .= ", approved = '".$approved."'";
+        $update .= ", approved = '{$approved}'";
+    } elseif (($new_alb['category'] < FIRST_USER_CAT) && ($aid != $pic['aid'])) {
+        $approved = $USER_DATA['pub_upl_need_approval'] ? 'NO' : 'YES';
+        $update .= ", approved = '{$approved}'";
+    } elseif (($new_alb['category'] > FIRST_USER_CAT) && ($aid != $pic['aid'])) {
+        $approved = $USER_DATA['priv_upl_need_approval'] ? 'NO' : 'YES';
+        $update .= ", approved = '{$approved}'";
     }
 
-    $update .= ", user1 = '".$user1."'";
-    $update .= ", user2 = '".$user2."'";
-    $update .= ", user3 = '".$user3."'";
-    $update .= ", user4 = '".$user4."'";
+    $update .= ", user1 = '{$user1}'";
+    $update .= ", user2 = '{$user2}'";
+    $update .= ", user3 = '{$user3}'";
+    $update .= ", user4 = '{$user4}'";
 
     if ($isgalleryicon && $pic['category'] > FIRST_USER_CAT) {
         $sql = "UPDATE {$CONFIG['TABLE_PICTURES']} SET galleryicon = 0 WHERE owner_id = {$pic['owner_id']}";
         cpg_db_query($sql);
-        $update .= ", galleryicon = ".$galleryicon;
+        $update .= ", galleryicon = " . $galleryicon;
     }
 
     if ($reset_vcount) {
@@ -138,7 +153,7 @@ function process_post_data()
     if ($read_exif) {
         // If "read exif info again" is checked then just delete the entry from the exif table. 
         // The new exif information will automatically be read when someone views the image.
-        $query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE pid = $pid";
+        $query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE pid = '$pid'";
         cpg_db_query($query);
     }
 
@@ -168,20 +183,20 @@ function process_post_data()
         }
 
         if ($CONFIG['make_intermediate'] && $condition) {
-            $prefices = array('fullsize', 'normal', 'thumb');
+            $prefixes = array('fullsize', 'normal', 'thumb');
         } else {
-            $prefices = array('fullsize', 'thumb');
+            $prefixes = array('fullsize', 'thumb');
         }
 
         if ($CONFIG['enable_watermark'] == '1' && ($CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original')) {
-            $prefices[] = 'orig';
+            $prefixes[] = 'orig';
         }
 
         if (!is_image($pic['filename'])) {
-            $prefices = array('fullsize');
+            $prefixes = array('fullsize');
         }
 
-        foreach ($prefices as $prefix) {
+        foreach ($prefixes as $prefix) {
         
             $oldname = urldecode(get_pic_url($pic, $prefix));
             $filename = replace_forbidden($post_filename);
@@ -249,17 +264,10 @@ function form_alb_list_box()
 
     $sel_album = $CURRENT_PIC['aid'];
 
-    // TO DO: add confirm alerts to select list for albums with restrictions (admin approval or no editing)
-    // $lang_editpics_php['confirm_move_public']
-    // $lang_editpics_php['confirm_move_private']
-    // $USER_DATA['pub_upl_need_approval']
-    // $USER_DATA['priv_upl_need_approval']
-    // $CONFIG['users_can_edit_pics']
-
     echo <<< EOT
 
     <tr>
-        <td class="tableb" style="white-space: nowrap;">
+        <td class="tableb" style="white-space: nowrap;" valign="top">
             {$icon_array['album']}{$lang_common['album']}
         </td>
         <td class="tableb" valign="top">
@@ -267,25 +275,34 @@ function form_alb_list_box()
             <select name="aid" id="album" class="listbox">
 
 EOT;
+    $hidden_public = '';
     foreach ($public_albums_list as $album) {
         echo '                <option value="' . $album['aid'] . '"'
             . ($album['aid'] == $sel_album ? ' selected="selected"' : '') . '>'
             . $album['cat_title'] . "</option>\n";
+        $hidden_public .= ($hidden_public ? ',' : '') . $album['aid'];
     }
+    $hidden_private = '';
     foreach ($user_albums_list as $album) {
         echo '                <option value="' . $album['aid'] . '"'
             . ($album['aid'] == $sel_album ? ' selected="selected"' : '') . '>* '
             . $album['title'] . "</option>\n";
+        $hidden_private .= ($hidden_private ? ',' : '') . $album['aid'];
     }
 
-    $note_permissions = '';
-    // TO DO: add note under select list for albums with restrictions (admin approval or no editing)
-    // $lang_editpics_php['note_approve_public'];
-    // $lang_editpics_php['note_approve_private']
-    // $lang_editpics_php['note_edit_control'];
-
+    $icon_warning = cpg_fetch_icon('warning');
     echo <<< EOT
-            </select>{$note_permissions}
+            </select>
+            <input type="hidden" name="public_albums" id="public_albums" value="{$hidden_public}" />
+            <input type="hidden" name="private_albums" id="private_albums" value="{$hidden_private}" />
+            <table id="wrapper_permissions" style="display:none; padding-top:6px;" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td>$icon_warning</td>
+                    <td style="padding-left:10px;">
+                        <div id="note_permissions"></div>
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
 
@@ -297,7 +314,7 @@ EOT;
  * MAIN CODE
  * --------------------------------------------------------------------------*/
 
-if ($superCage->post->keyExists('submitDescription')) {
+if ($superCage->post->keyExists('apply_changes')) {
     process_post_data();
 }
 
@@ -310,27 +327,21 @@ if (!(GALLERY_ADMIN_MODE || $CURRENT_PIC['category'] == FIRST_USER_CAT + USER_ID
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
-pageheader($lang_editpics_php['edit_pics']);
-
 $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
 $thumb_link = 'displayimage.php?pos='.(-$CURRENT_PIC['pid']);
 $filename = htmlspecialchars($CURRENT_PIC['filename']);
 $filepath = htmlspecialchars($CURRENT_PIC['filepath']);
 
 $THUMB_ROWSPAN = 6;
-
 if ($CONFIG['user_field1_name'] != '') {
     $THUMB_ROWSPAN++;
 }
-
 if ($CONFIG['user_field2_name'] != '') {
     $THUMB_ROWSPAN++;
 }
-
 if ($CONFIG['user_field3_name'] != '') {
     $THUMB_ROWSPAN++;
 }
-
 if ($CONFIG['user_field4_name'] != '') {
     $THUMB_ROWSPAN++;
 }
@@ -354,8 +365,19 @@ if (GALLERY_ADMIN_MODE && $CURRENT_PIC['owner_id'] != USER_ID) {
     get_user_albums();
 }
 
+$public_can_edit_pics = GALLERY_ADMIN_MODE ? 1 : $CONFIG['users_can_edit_pics'];
+set_js_var('confirm_move',          $lang_editpics_php['confirm_move']);
+set_js_var('note_approve_public',   $lang_editpics_php['note_approve_public']);
+set_js_var('note_approve_private',  $lang_editpics_php['note_approve_private']);
+set_js_var('note_edit_control',     $lang_editpics_php['note_edit_control']);
+set_js_var('public_need_approval',  $USER_DATA['pub_upl_need_approval']);
+set_js_var('private_need_approval', $USER_DATA['priv_upl_need_approval']);
+set_js_var('public_can_edit_pics',  $public_can_edit_pics);
+
+pageheader($lang_editpics_php['edit_pic']);
+
 echo <<<EOT
-<form name="editonepicform" id="cpgform" method="post" action="edit_one_pic.php">
+<form name="editonepicform" id="cpgform_editonepic" method="post" action="edit_one_pic.php">
 <input type="hidden" name="id" value="{$CURRENT_PIC['pid']}" />
 EOT;
 
@@ -466,11 +488,22 @@ if (GALLERY_ADMIN_MODE) {
             <label for="approved_yes" class="clickable_option">{$icon_array['file_approve']}{$lang_editpics_php['approved']}</label>
             &nbsp;&nbsp;
             <input type="radio" id="approved_no" name="approved" value="NO" $checkNo />
-            <label for="approved_no" class="clickable_option">{$icon_array['file_disapprove']}{$lang_editpics_php['disapproved']}</label>
+            <label for="approved_no" class="clickable_option">{$icon_array['file_disapprove']}{$lang_editpics_php['unapproved']}</label>
         </td>
     </tr>
 EOT;
-
+} elseif ($CURRENT_PIC['approved'] == 'NO') {
+    echo <<< EOT
+    
+    <tr>
+        <td class="tableb" style="white-space: nowrap;">
+            {$icon_array['file_approval']}{$lang_editpics_php['approval']}
+        </td>
+        <td width="100%" class="tableb" valign="top">
+            {$icon_array['file_disapprove']}{$lang_editpics_php['unapproved']}
+        </td>
+    </tr>
+EOT;
 }
 
 if ($CONFIG['user_field1_name'] != '') {
@@ -569,7 +602,7 @@ print <<<EOT
     </tr>
     <tr>
         <td colspan="3" align="center" class="tablef">
-            <button type="submit" class="button" name="submitDescription" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
+            <button type="submit" class="button" name="apply_changes" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
         </td>
     </tr>
 

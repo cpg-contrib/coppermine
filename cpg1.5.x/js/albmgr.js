@@ -125,10 +125,10 @@ var Sort = {
     }
 };
 
-// this jquery.tablednd is to drag and drop sort images. 
+// this jquery.tablednd is to drag and drop to sort images
 jQuery(document).ready(function(){
     // get the lang variable to js file
-    var change_album = js_vars.change_album;
+    var change_album    = js_vars.change_album;
     var confirm_modifs  = js_vars.confirm_modifs;
     // to hold the selected photo object
     var photoSelectedObject = null;

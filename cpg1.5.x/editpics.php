@@ -22,7 +22,6 @@ define('EDITPICS_PHP', true);
 
 require('include/init.inc.php');
 
-// Include the JS for versioncheck.php
 js_include('js/jquery.autogrow.js');
 js_include('js/editpics.js');
 
@@ -61,7 +60,7 @@ if ($superCage->get->keyExists('album')) {
     $album_id = 0;
 }
 
-if (array_key_exists('allowed_albums', $USER_DATA) && is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums'])) {
+if (isset($USER_DATA['allowed_albums']) && is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums'])) {
 
     define('MODERATOR_MODE', 1);
     $albStr = implode(',', $USER_DATA['allowed_albums']);
@@ -109,19 +108,15 @@ if (EDIT_PICTURES_MODE) {
 }
 
 $THUMB_ROWSPAN = 5;
-
 if ($CONFIG['user_field1_name'] != '') {
     $THUMB_ROWSPAN++;
 }
-
 if ($CONFIG['user_field2_name'] != '') {
     $THUMB_ROWSPAN++;
 }
-
 if ($CONFIG['user_field3_name'] != '') {
     $THUMB_ROWSPAN++;
 }
-
 if ($CONFIG['user_field4_name'] != '') {
     $THUMB_ROWSPAN++;
 }
@@ -592,7 +587,7 @@ function form_status($text, $name)
             </td>
             <td width="100%" class="{$row_style_class}" valign="top">
                 <input type="radio" id="approved_yes_{$name}" name="$name" value="YES" $checkYes /><label for="approved_yes_{$name}" class="clickable_option">{$lang_editpics_php['approved']}</label>&nbsp;&nbsp;
-                <input type="radio" id="approved_no_{$name}" name="$name" value="NO" $checkNo /><label for="approved_no_{$name}" class="clickable_option">{$lang_editpics_php['disapproved']}</label>
+                <input type="radio" id="approved_no_{$name}" name="$name" value="NO" $checkNo /><label for="approved_no_{$name}" class="clickable_option">{$lang_editpics_php['unapproved']}</label>
             </td>
         </tr>
 
