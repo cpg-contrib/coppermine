@@ -110,7 +110,7 @@ if (GALLERY_ADMIN_MODE) {
     echo <<< EOT
     <tr>
         <td class="tablef" align="center">
-            <a href="keyword_create_dict.php" class="admin_menu">{$lang_upload_php['regenerate_dictionary']}</a>
+            <a href="keyword_create_dict.php?referer=keyword_select.php" class="admin_menu">{$lang_upload_php['regenerate_dictionary']}</a>
         </td>
     </tr>
 EOT;

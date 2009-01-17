@@ -45,7 +45,7 @@ require_once('include/admin.inc.php'); // populate the array for the admin data 
 $config_data['user_settings']['upload_mechanism']['options'] = CPGPluginAPI::filter('upload_options', $config_data['user_settings']['upload_mechanism']['options']);
 
 // loop through the config sections and populate the array that determines what sections to expand/collapse
-$collapseSections_array = array(); // By default, all sections should be hidden. Let's populate the array first with all existing sections and then later remove the ones that are suppossed to be expanded by default
+$collapseSections_array = array(); // By default, all sections should be hidden. Let's populate the array first with all existing sections and then later remove the ones that are supposed to be expanded by default
 foreach ($config_data as $key => $value) {
     $collapseSections_array[] = $key;
 }

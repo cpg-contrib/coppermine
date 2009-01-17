@@ -332,7 +332,7 @@ EOT;
 <script type="text/javascript">
 function os_browser_detection() {
   // browser detection.
-  // Usually, browser detection is buggy and should not be used. However, the sidebar works only in mainstream browsers anyway and requires JavaScript, so we can be pretty sure that the user has it enabled if this is suppossed to work in the first place.
+  // Usually, browser detection is buggy and should not be used. However, the sidebar works only in mainstream browsers anyway and requires JavaScript, so we can be pretty sure that the user has it enabled if this is supposed to work in the first place.
    var detection_success = 0;
    if (navigator.userAgent.indexOf('Firefox') != -1 || navigator.userAgent.indexOf('Netscape') != -1 || navigator.userAgent.indexOf('Konqueror') != -1 || navigator.userAgent.indexOf('Gecko') != -1) {
        document.getElementById('ie').style.display = 'none';

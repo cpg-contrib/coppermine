@@ -25,6 +25,9 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-01-16 [B] Fix "Select a Keyword" list not refreshing to itself when click "Regenerate Dictionary" {Paver}
+2009-01-16 [B] Fix "Regenerate Dictionary" including old keywords {Paver}
+2009-01-16 [B] Fix bug in picture info for keyword separator in keywords field {Paver}
 2009-01-15 [B] Fix approval status based on permissions in edit_one_pic - thread 57344 {Paver}
 2009-01-15 [O] EXIF table now uses pid instead of filename for indexing {Nibbler}
 2009-01-14 [O] Added universal javascript function selectAll() to be used in all pages with a select/deselect all feature {Nibbler,SaWey}

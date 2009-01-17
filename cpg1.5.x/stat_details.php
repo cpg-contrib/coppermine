@@ -314,7 +314,7 @@ EOT;
 
   } // type == vote end
   if ($type == 'hits') { // type == hits start
-      // do nothing here, as the regular user isn't suppossed to see the hit stats
+      // do nothing here, as the regular user isn't supposed to see the hit stats
   } // type == hits end
   individualStatsByOS($pid,$type,$statsTableWidth);
   individualStatsByBrowser($pid,$type,$statsTableWidth);

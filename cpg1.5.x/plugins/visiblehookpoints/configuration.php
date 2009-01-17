@@ -42,7 +42,7 @@ $extra_info = <<<EOT
     </tr>
     </table>
 EOT;
-$install_info = 'Plugin comes with a configuration page (accessible via the config manager) that will allow you to specify if the hookpoints should be displayed only if the parameter &quot;hookpoints&quot; is set in the URL or if they are suppossed to be display always to every visitor. Second option is only meant for plugin development on testbeds - do not use on production sites, as this plugin will output information about the hookpoints directly on all pages.';
+$install_info = 'Plugin comes with a configuration page (accessible via the config manager) that will allow you to specify if the hookpoints should be displayed only if the parameter &quot;hookpoints&quot; is set in the URL or if they are supposed to be display always to every visitor. Second option is only meant for plugin development on testbeds - do not use on production sites, as this plugin will output information about the hookpoints directly on all pages.';
 $author = <<< EOT
 <a href="mailto:Donnoman@donovanbray.com">Donnoman</a> from <a href="http://cpg-contrib.org">cpg-contrib.org</a> (v1.x and 2.x)<br />
 Plugin config section added by <a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=2">Joachim M&uuml;ller</a> (v3.0)

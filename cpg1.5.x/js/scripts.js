@@ -159,6 +159,29 @@ function sprintf () {
     }
     return o.join('');
 }
+// end function sprintf
+
+
+// This prototype is from the public domain.
+// Source: http://www.hunlock.com/blogs/Mastering_Javascript_Arrays
+Array.prototype.find = function(searchStr) {
+  var returnArray = false;
+  for (i=0; i<this.length; i++) {
+    if (typeof(searchStr) == 'function') {
+      if (searchStr.test(this[i])) {
+        if (!returnArray) { returnArray = [] }
+        returnArray.push(i);
+      }
+    } else {
+      if (this[i]===searchStr) {
+        if (!returnArray) { returnArray = [] }
+        returnArray.push(i);
+      }
+    }
+  }
+  return returnArray;
+}
+// end function prototype array.find
 
 
 //This prototype is provided by the Mozilla foundation and
@@ -187,6 +210,7 @@ if (!Array.prototype.indexOf)
     return -1;
   };
 }
+// end function prototype array.indexOf
 
 
 function bookmarks(){

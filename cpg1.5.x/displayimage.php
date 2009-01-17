@@ -169,8 +169,25 @@ function html_picinfo()
         $info[sprintf($lang_picinfo['Rating'], $CURRENT_PIC_DATA['votes'])] = $rating_images . $detailsLink_votes;
     }
 
-    if ($CURRENT_PIC_DATA['keywords'] != "") {
-        $info[$lang_common['keywords']] = '<span class="alblink">' . preg_replace("/(\S+)/", "<a href=\"thumbnails.php?album=search&amp;search=\\1\">\\1</a>", $CURRENT_PIC_DATA['keywords']) . '</span>';
+    if ($CURRENT_PIC_DATA['keywords'] != '') {
+        if ($CONFIG['keyword_separator'] == ' ') {
+            $info[$lang_common['keywords']] = '<span class="alblink">' 
+                . preg_replace("/([^{$CONFIG['keyword_separator']}]+)/"
+                        , '<a href="thumbnails.php?album=search&amp;search=$1">$1</a>'
+                        , $CURRENT_PIC_DATA['keywords'])
+                . '</span>';
+        } else {
+            $keyword_links = '';
+            foreach (split($CONFIG['keyword_separator'],$CURRENT_PIC_DATA['keywords']) as $keyword) {
+                $keyword_links .= ($keyword_links ? ' '.$CONFIG['keyword_separator'].' ' : '')
+                        . '<a href="thumbnails.php?album=search&amp;search='
+                        . str_replace(' ', '+', $keyword)
+                        . '">' . $keyword . '</a>';
+            }
+            $info[$lang_common['keywords']] = '<span class="alblink">' 
+                . $keyword_links
+                . '</span>';
+        }
     }
 
     for ($i = 1; $i <= 4; $i++) {

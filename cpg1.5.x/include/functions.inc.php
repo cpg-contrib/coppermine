@@ -4477,7 +4477,7 @@ function cpgGetScriptNameParams($exception = '')
     // WARNING: as this function is meant to just return the URL parameters
     // (minus the one mentioned in $exception), neither the parameter names
     // nor the the values should be sanitized, as we simply don't know here
-    // against what we're suppossed to sanitize.
+    // against what we're supposed to sanitize.
     // For now, I have chosen the safe method, sanitizing the parameters.
     // Not sure if this is a bright idea for the future.
     // So, use the parameters returned from this function here with the same

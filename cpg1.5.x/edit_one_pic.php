@@ -45,6 +45,7 @@ $icon_array = array(
     'ok'               => cpg_fetch_icon('ok', 2),
 );
 
+$superCage = Inspekt::makeSuperCage();
 if ($superCage->get->keyExists('id')) {
     $pid = $superCage->get->getInt('id');
 } elseif ($superCage->post->keyExists('id')) {
@@ -59,10 +60,7 @@ if ($superCage->get->keyExists('id')) {
 
 function process_post_data()
 {
-    global $CONFIG, $USER_DATA, $mb_utf8_regex;
-    global $lang_errors, $lang_editpics_php;
-
-    $superCage = Inspekt::makeSuperCage();
+    global $CONFIG, $USER_DATA, $mb_utf8_regex, $lang_errors, $lang_editpics_php, $superCage;
 
     $pid = $superCage->post->getInt('id');
     $aid = $superCage->post->getInt('aid');
