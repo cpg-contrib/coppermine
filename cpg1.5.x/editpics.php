@@ -630,7 +630,7 @@ function get_user_albums($user_id = '')
 {
     global $CONFIG, $user_albums_list, $albStr, $icon_array;
 
-    $USER_ALBUMS_ARRAY = array(0 => array());
+    static $USER_ALBUMS_ARRAY = array(0 => array());
 
     if ($user_id != '') {
         $or = " OR category='" . (FIRST_USER_CAT + $user_id) . "'";
