@@ -167,7 +167,7 @@ CREATE TABLE CPG_exif (
   `pid` int(11) NOT NULL,
   `exifData` text NOT NULL,
   PRIMARY KEY (`pid`)
-) ENGINE=MyISAM COMMENT='Stores EXIF data from individual pics'
+) ENGINE=MyISAM COMMENT='Stores EXIF data from individual pics';
 # --------------------------------------------------------
 
 #

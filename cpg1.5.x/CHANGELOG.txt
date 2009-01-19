@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-01-19 [B] Fixed missing delimiter in basic.sql on exif table {SaWey}
 2009-01-16 [B] Fix "Select a Keyword" list not refreshing to itself when click "Regenerate Dictionary" {Paver}
 2009-01-16 [B] Fix "Regenerate Dictionary" including old keywords {Paver}
 2009-01-16 [B] Fix bug in picture info for keyword separator in keywords field {Paver}
