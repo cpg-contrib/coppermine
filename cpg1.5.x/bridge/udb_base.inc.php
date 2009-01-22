@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.1
   $HeadURL$
@@ -618,18 +618,18 @@ class core_udb {
 
                 // Padding to indicate level
                 $padding = 8;
-        
+
                 $albums = array();
-    
+
                 // load all albums
                 $result = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY pos");
-        
+
                 while ($row = mysql_fetch_assoc($result)) {
                     $albums[$row['category']][$row['aid']] = $row['title'];
                 }
 
                 if (!empty($albums[0])) {
-        
+
                     // Albums in no category
                     echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">'.$lang_util_php['no_category'].'</option>';
 
@@ -637,68 +637,68 @@ class core_udb {
                         echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>'."\n", $padding, $aid, $title);
                     }
                 }
-                    
+
                 // Load all categories
                 $result = cpg_db_query("SELECT cid, rgt, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft");
-           
+
                 $cats = array();
-            
-                // Loop through all categories                  
+
+                // Loop through all categories
                 while ($row = mysql_fetch_assoc($result)) {
-            
+
                     // Determine category heirarchy
                     if (count($cats)) {
                         while ($cats && $cats[count($cats)-1]['rgt'] < $row['rgt']) {
                             array_pop($cats);
                         }
                     }
-                
+
                     $cats[] = $row;
-                    
+
                     // Add this category to the heirarchy
                     if ($row['cid'] == USER_GAL_CAT) {
-                    
+
                         // User galleries
                         echo '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">User galleries</option>' . "\n";
-        
+
                         $result2 = cpg_db_query("SELECT {$this->field['user_id']} AS user_id, {$this->field['username']} AS user_name FROM {$this->usertable} ORDER BY {$this->field['username']}");
-        
+
                         $users = cpg_db_fetch_rowset($result2);
-                        
+
                         mysql_free_result($result2);
-                        
+
                         foreach ($users as $user) {
-                    
+
                             if (!empty($albums[$user['user_id'] + FIRST_USER_CAT])) {
-                
+
                                 echo '<option style="padding-left: ' . $padding . 'px; color: black; font-weight: bold" disabled="disabled">' . $user['user_name'] . '</option>' . "\n";
-        
+
                                 foreach ($albums[$user['user_id'] + FIRST_USER_CAT] as $aid => $title) {
                                     echo sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . "\n", $padding * 2, $aid, $title);
                                 }
                             }
                         }
-                
+
                         unset($users);
-                        
+
                         continue;
                     }
 
                     // construct a category heirarchy string breadcrumb style
                     $elements = array();
-                
+
                     foreach ($cats as $cat) {
                         $elements[] = $cat['name'];
                     }
-                
+
                     $heirarchy = implode(' - ', $elements);
-    
+
                     // calculate padding for this level
                     $p = (count($elements) - 1) * $padding;
-            
+
                     // category header
                     echo '<option style="padding-left: '.$p.'px; color: black; font-weight: bold" disabled="disabled">' ."\n". $heirarchy . '</option>' . "\n";
-                
+
                     // albums in the category
                     if (!empty($albums[$row['cid']])) {
                         foreach ($albums[$row['cid']] as $aid => $title) {
@@ -708,7 +708,7 @@ class core_udb {
                 }
 
                 unset($albums);
-       
+
                 print '</select> (3)';
                 print '&nbsp;&nbsp;&nbsp;&nbsp;';
                 print '<button type="submit" class="button" name="submit" id="submit" value="'.$lang_util_php['submit_form'].'">'.$lang_util_php['submit_form'].' '.cpg_fetch_icon('ok', 2).'</button> (4)';
@@ -736,7 +736,7 @@ class core_udb {
         function cookie_extraction() {
            return false;
         }
-        
+
         /**
          * Function to extract auth info from POST
          * This is a special case used only on upload page (swfupload)
@@ -746,7 +746,7 @@ class core_udb {
             // Get the super cage instance
             $superCage = Inspekt::makeSuperCage();
             // We will extract the auth info from post only on upload page.
-            if (defined('UPLOAD_PHP') && $superCage->post->keyExists('process')) {
+            if (defined('UPLOAD_PHP') && ($superCage->post->keyExists('process') || $superCage->post->keyExists('plugin_process'))) {
                 // Get the user id and password hash from post
                 $user = unserialize(base64_decode($superCage->post->getRaw('user')));
                 if (is_array($user)) {
@@ -785,13 +785,13 @@ class core_udb {
                         return strcmp($b[$this->sortfield], $a[$this->sortfield]);
                 }
         }
-        
+
         function get_user_pass($user_id) {
             $sql =  "SELECT {$this->field['user_id']} AS user_id, {$this->field['password']} AS pass_hash FROM {$this->usertable} WHERE ";
             $sql .= "{$this->field['user_id']} = '$user_id'";
-            
+
             $result = cpg_db_query($sql);
-            
+
             if (mysql_num_rows($result)) {
                 $row = cpg_db_fetch_row($result);
                 return array('user_id' => $row['user_id'], 'pass_hash' => $row['pass_hash']);
