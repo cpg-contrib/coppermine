@@ -191,7 +191,7 @@ EOT;
     // Login and Logout don't have a spacer as only one is shown, and either would be the last option.
   } //{THEMES}
 
-  
+
   $sys_menu_buttons = CPGPluginAPI::filter('sys_menu',$sys_menu_buttons);
   $params = array('{BUTTONS}' => assemble_template_buttons($template_sys_menu_button,$sys_menu_buttons));
   $template_sys_menu = template_eval($template_sys_menu,$params);
@@ -882,7 +882,7 @@ if (!isset($template_display_media)) { //{THEMES}
 $template_display_media = <<<EOT
         <tr>
                 <td align="center" class="display_media" nowrap="nowrap">
-                        <table cellspacing="2" cellpadding="0" > 
+                        <table cellspacing="2" cellpadding="0" >
                                 <tr>
                                         <td align="center" style="{SLIDESHOW_STYLE}">
                                                 {IMAGE}
@@ -1555,7 +1555,7 @@ if (!function_exists('pageheader_mini')) {  //{THEMES}
 /******************************************************************************
 ** Section <<<pageheader_mini>>> - START
 ******************************************************************************/
-function pageheader_mini($section)
+function pageheader_mini($section, $javascript=false)
 {
     global $CONFIG;
     global $lang_charset, $lang_text_dir;
@@ -1568,6 +1568,12 @@ function pageheader_mini($section)
     header("Content-Type: text/html; charset=$charset");
     user_save_profile();
 
+    if ($javascript) {
+        $js = theme_javascript_head();
+    } else {
+        $js = '';
+    }
+
     echo <<< EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -1578,6 +1584,7 @@ function pageheader_mini($section)
         <title>$section</title>
         <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" type="text/css" />
         <link rel="shortcut icon" href="favicon.ico" />
+        $js
     </head>
     <body>
 
@@ -1680,7 +1687,7 @@ if (!function_exists('theme_cpg_die')) {  //{THEMES}
 ** Section <<<theme_cpg_die>>> - START
 ******************************************************************************/
 // Function for showing error messages
-function theme_cpg_die($msg_code, $msg_text, $msg_string, $css_class = 'cpg_message_info', $error_file, $error_line, $output_buffer, $ob) 
+function theme_cpg_die($msg_code, $msg_text, $msg_string, $css_class = 'cpg_message_info', $error_file, $error_line, $output_buffer, $ob)
 {
     global $CONFIG, $lang_cpg_die, $template_cpg_die;
 
@@ -1718,7 +1725,7 @@ if (!function_exists('theme_breadcrumb')) {  //{THEMES}
 // Function for building the breadcrumb
 // Inputs:  $breadcrumb_links, $BREADCRUMB_TEXTS
 // Outputs: $breadcrumb, $BREADCRUMB_TEXT
-function theme_breadcrumb($breadcrumb_links, $BREADCRUMB_TEXTS, &$breadcrumb, &$BREADCRUMB_TEXT) 
+function theme_breadcrumb($breadcrumb_links, $BREADCRUMB_TEXTS, &$breadcrumb, &$BREADCRUMB_TEXT)
 {
     $breadcrumb = '';
     $BREADCRUMB_TEXT = '';
@@ -1743,7 +1750,7 @@ if (!function_exists('theme_msg_box')) {  //{THEMES}
 ** Section <<<theme_msg_box>>> - START
 ******************************************************************************/
 // Function for displaying a message-box-like table
-function theme_msg_box($title, $msg_text, $css_class = 'cpg_message_info', $button_text, $button_link) 
+function theme_msg_box($title, $msg_text, $css_class = 'cpg_message_info', $button_text, $button_link)
 {
     global $template_msg_box;
 
@@ -1802,7 +1809,7 @@ function theme_create_tabs($items, $curr_page, $total_pages, $template)
         $tabs_dropdown = $lang_create_tabs['jump_to_page'] . ' '
                 . '<select onchange="if (this.options[this.selectedIndex].value != -1) { window.location.href = this.options[this.selectedIndex].value; }">';
         for ($page = 1; $page <= $total_pages; $page++) {
-            $tabs_dropdown .= '<option value="' . sprintf($template['page_link'], $page) . '"' 
+            $tabs_dropdown .= '<option value="' . sprintf($template['page_link'], $page) . '"'
                     . ($page == $curr_page ? ' selected="selected"' : '') . '>' . $page .'</option>';
         }
         $tabs_dropdown .= '</select>';
@@ -1824,7 +1831,7 @@ function theme_create_tabs($items, $curr_page, $total_pages, $template)
         $tabs .= sprintf($template['nav_tab'], $curr_page-1, cpg_fetch_icon('left',0,$lang_create_tabs['previous']));
     } else {
         // A previous tab with link is not needed.
-        // If you want to show a disabled previous tab, 
+        // If you want to show a disabled previous tab,
         //   create an image 'left_inactive.png', put it into themes/YOUR_THEME/images/icons/,
         //   then uncomment the line below.
         // $tabs .= sprintf($template['nav_tab_nolink'], cpg_fetch_icon('left_inactive',0,$lang_create_tabs['previous']));
@@ -1877,7 +1884,7 @@ function theme_create_tabs($items, $curr_page, $total_pages, $template)
         $tabs .= sprintf($template['nav_tab'], $curr_page + 1, cpg_fetch_icon('right',0,$lang_create_tabs['next']));
     } else {
         // A next tab with link is not needed.
-        // If you want to show a disabled next tab, 
+        // If you want to show a disabled next tab,
         //   create an image 'right_inactive.png', put it into themes/YOUR_THEME/images/icons/,
         //   then uncomment the line below.
         // $tabs .= sprintf($template['nav_tab_nolink'], cpg_fetch_icon('right_inactive',0,$lang_create_tabs['next']));
@@ -1899,7 +1906,7 @@ if (!function_exists('theme_social_bookmark')) {  //{THEMES}
 ** Section <<<theme_social_bookmark>>> - START
 ******************************************************************************/
 // Function for the social bookmark icons
-function theme_social_bookmark() 
+function theme_social_bookmark()
 {
     global $CONFIG, $lang_social_bookmarks, $lang_common;
 
@@ -1922,7 +1929,7 @@ function theme_social_bookmark()
         }
         $close_icon = cpg_fetch_icon('close', 0, $lang_common['close']);
         $return .= "<div id=\"bookmarkIt\">{$lang_social_bookmarks['bookmark_this_page']}<span id=\"popupClose\">{$close_icon}</span><div id=\"popupBookmark\"></div></div>";
-        
+
         $js_bookmark = array(
             'display_social_bookmarks' => true,
             'favorite_close' => str_replace("'", '&lsquo;', $lang_social_bookmarks['favorite_close']),
@@ -1930,7 +1937,7 @@ function theme_social_bookmark()
             'bookmark_list' => $bookmark_list
         );
         set_js_var('bookmark', $js_bookmark);
-        
+
     } // if display_social_bookmarks
     return $return;
 }
@@ -2252,7 +2259,7 @@ function theme_admin_mode_menu()
                 } else {
                     $help_lang = 'en';
                 }
-            } // while 
+            } // while
             mysql_free_result($results);
             unset($row);
 
@@ -2365,7 +2372,7 @@ function theme_admin_mode_menu()
                 '{EXPORT_ICO}' => cpg_fetch_icon('export', 1),
                 '{TIME_STAMP}' => date('His').trim(floor(rand(0, 1000))),
                 );
-            
+
             $html = template_eval($template_gallery_admin_menu, $param);
             // $html.= cpg_alert_dev_version();
         } elseif (USER_ADMIN_MODE) {
@@ -2382,7 +2389,7 @@ function theme_admin_mode_menu()
                 '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
                 '{PICTURES_ICO}' => cpg_fetch_icon('picture_sort', 1),
                 );
-            
+
             $html = template_eval($template_user_admin_menu, $param);
         } else {
             $html = '';
@@ -2420,11 +2427,11 @@ function theme_display_message_block() {
     if ($superCage->get->keyExists('message_id')) {
       $message_id = $superCage->get->getEscaped('message_id');
     }
-    
+
     if ($superCage->get->keyExists('message_icon')) {
         $message_icon = $superCage->get->getAlpha('message_icon');
     }
-    
+
     if ($message_icon == 'error') {
         $message_style = 'cpg_message_error';
     } elseif ($message_icon == 'warning') {
@@ -2937,7 +2944,7 @@ if (!function_exists('theme_display_film_strip')) {  //{THEMES}
 ** Section <<<theme_display_film_strip>>> - START
 ******************************************************************************/
 // Function to display the film strip
-function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='', $filmstrip_prev_pos, $filmstrip_next_pos,$max_block_items,$thumb_width) 
+function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb', $date='', $filmstrip_prev_pos, $filmstrip_next_pos,$max_block_items,$thumb_width)
 {
     global $CONFIG, $THEME_DIR;
     global $template_film_strip, $lang_film_strip, $lang_common, $pic_count,$mar_pic;
@@ -3025,12 +3032,12 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $max_itme_width_ul = $max_block_items +1;
     }
     $set_width_to_film = "width:".($max_block_items*($thumb_width+4))."px; position:relative;";
-    
+
     $params = array('{THUMB_STRIP}' => $thumb_strip,
         '{COLS}' => $i,
         '{TILE1}' => $tile1,
         '{TILE2}' => $tile2,
-        '{SET_WIDTH}'  => $set_width_to_film,   
+        '{SET_WIDTH}'  => $set_width_to_film,
         );
 
     ob_start();
@@ -3348,7 +3355,7 @@ function theme_html_picture()
         $pic_html .= "<param name=\"autostart\" value=\"$autostart\" /><param name=\"src\" value=\"". $picture_url . "\" />";
         $pic_html .= '<embed '.$image_size['whole'].' src="'. $picture_url . '" autostart="'.$autostart.'" '.$player['mime'].'></embed>';
         $pic_html .= "</object><br />\n";
-        
+
         //PLUGIN FILTER
         $pic_html = CPGPluginAPI::filter('html_other_media', $pic_html);
     }
@@ -3534,7 +3541,7 @@ function theme_html_rating_box()
     } elseif (!mysql_num_rows($result)) {
       //user hasn't voted yet, show voting things
       $rate_title = ($CONFIG['old_style_rating']) ? $lang_rate_pic['rate_this_pic'] : $lang_rate_pic['rollover_to_rate'];
-      $user_can_vote = 'true';  
+      $user_can_vote = 'true';
     } else {
       //user has voted
       $rate_title = $lang_rate_pic['already_voted'];
@@ -3542,38 +3549,38 @@ function theme_html_rating_box()
     $rating_stars_amount = ($CONFIG['old_style_rating']) ? 5 : $CONFIG['rating_stars_amount'];
     $votes = $CURRENT_PIC_DATA['votes'] ? sprintf($lang_rate_pic['rating'], round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 1), $rating_stars_amount, $CURRENT_PIC_DATA['votes']) : $lang_rate_pic['no_votes'];
     $pid = $CURRENT_PIC_DATA['pid'];
-  
+
     if (defined('THEME_HAS_RATING_GRAPHICS')) {
       $location= $THEME_DIR;
     } else {
       $location= '';
     }
-    
+
     $superCage = Inspekt::makeSuperCage();
-    
+
     if($CONFIG['old_style_rating']){
         //use old style rating
         $start_td = '<td class="tableb_compact" width="17%" align="center">';
         $end_td = '</td>';
         $empty_star = '<img style="cursor:pointer" id="' . $pid . '_0" title="0" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['rubbish'] . '" onclick="rate(this)" />';
         $rating_images = $start_td . $empty_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
-        
+
         $empty_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
         $full_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
         $rating_images .= $start_td . $full_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
-        
+
         $empty_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
         $full_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
         $rating_images .= $start_td . $full_star . $full_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
-        
+
         $empty_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
         $full_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
         $rating_images .= $start_td . $full_star . $full_star . $full_star . $empty_star . $empty_star . $end_td . "\n";
-        
+
         $empty_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
         $full_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
         $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $empty_star . $end_td . "\n";
-        
+
         $full_star = '<img style="cursor:pointer" id="' . $pid . '_5" title="5" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['great'] . '" onclick="rate(this)" />';
         $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . "\n";
     }else{
@@ -3592,10 +3599,10 @@ function theme_html_rating_box()
       '{WIDTH}' => $CONFIG['picture_table_width'],
       '{JS_WARNING}' => $lang_rate_pic['js_warning'],
       );
-      
+
     return template_eval($template_image_rating, $params);
   }
-} 
+}
 /******************************************************************************
 ** Section <<<theme_html_rating_box>>> - END
 ******************************************************************************/
@@ -3641,12 +3648,12 @@ function theme_html_comments($pid)
     } else {
         $comment_sort_order = 'ASC';
     }
-    
+
     $result = cpg_db_query("SELECT COUNT(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'");
     list($num) = mysql_fetch_row($result);
-    
+
     if ($num) {
-    
+
         $limit = $CONFIG['comments_per_page'];
         $max = ceil($num/$limit);
 
@@ -3663,11 +3670,11 @@ function theme_html_comments($pid)
         ob_start();
         echo '<br />';
         starttable();
-        
+
         echo '<tr><td class="tableh2_compact"><div style="float: left">'.($start+1).' to '.min($num, $start+$limit).' of '.$num.'</div>';
         echo '<div style="float: right">Page: ';
         $links = array();
-            
+
         for ($i = 1; $i <= $max; $i++){
             if ($i < 5 || ($i > $max - 5) || (($i > $page -5) && ($i < $page + 5))){
                 $links[$i]= '<a href="displayimage.php?pid=' . $pid . '&amp;page='.$i.'#comments_top">'.$i.'</a>';
@@ -3677,11 +3684,11 @@ function theme_html_comments($pid)
         $links[$page] = "<b>$page</b>";
         echo implode(' - ', $links);
         echo '</div></td></tr>';
-        
+
         endtable();
         echo '<br />';
         $html .= ($tabs = ob_get_clean());
-    
+
     $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, pid, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order LIMIT $start, $limit");
 
     while ($row = mysql_fetch_assoc($result)) { // while-loop start
@@ -3863,17 +3870,17 @@ function theme_slideshow($start_img,$title)
 
     pageheader($lang_display_image_php['slideshow']);
     template_extract_block($template_display_media, 'img_desc', $start_slideshow);
-	
-	/** set styles to slideshow background */
-	$setDimentionW= $CONFIG['picture_width'];
-	$setDimentionH= $CONFIG['picture_width'];
-	
+
+    /** set styles to slideshow background */
+    $setDimentionW= $CONFIG['picture_width'];
+    $setDimentionH= $CONFIG['picture_width'];
+
     if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
         $prefix = $THEME_DIR;
     } else {
         $prefix = '';
     }
-	
+
     $params = array(
         '{SLIDESHOW_STYLE}' => 'height: '.$setDimentionH.'px;' ,
         '{IMAGE}' => '<img id="show_image" src="' . $start_img . '" class="image" /><br />',
@@ -3901,7 +3908,7 @@ EOT;
     starttable();
     echo template_eval($template_display_media, $params);
     endtable();
-    
+
     starttable();
     echo <<<EOT
         <tr>
@@ -3961,7 +3968,7 @@ function theme_display_fullsize_pic()
         $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
         $imagedata = array('name' => $row['filename'], 'path' => $pic_url, 'geometry' => $geom);
     }
-    if ((!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) || (USER_ID && USER_ACCESS_LEVEL <= 2)) { 
+    if ((!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) || (USER_ID && USER_ACCESS_LEVEL <= 2)) {
         // adjust the size of the window if we don't have to catter for a full-size pop-up, but only a text message
         $row['pwidth'] = 200;
         $row['pheight'] = 100;
