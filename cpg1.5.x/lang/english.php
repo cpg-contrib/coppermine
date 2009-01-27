@@ -377,6 +377,22 @@ $lang_get_remote_file_by_url['error_number'] = 'Error number: %s'; // cpg1.5
 $lang_get_remote_file_by_url['error_message'] = 'Error message: %s'; // cpg1.5
 
 // ------------------------------------------------------------------------- //
+// File include/mailer.inc.php
+// ------------------------------------------------------------------------- //$lang_mailer['provide_address'] = 'You must provide at least one ';
+$lang_mailer['mailer_not_supported'] = ' mailer is not supported.';
+$lang_mailer['execute'] = 'Could not execute: ';
+$lang_mailer['instantiate'] = 'Could not instantiate mail function.';
+$lang_mailer['authenticate'] = 'SMTP Error: Could not authenticate.';
+$lang_mailer['from_failed'] = 'The following From address failed: ';
+$lang_mailer['recipients_failed'] = 'SMTP Error: The following ';
+$lang_mailer['data_not_accepted'] = 'SMTP Error: Data not accepted.';
+$lang_mailer['connect_host'] = 'SMTP Error: Could not connect to SMTP host.';
+$lang_mailer['file_access'] = 'Could not access file: ';
+$lang_mailer['file_open'] = 'File Error: Could not open file: ';
+$lang_mailer['encoding'] = 'Unknown encoding: ';
+$lang_mailer['signing'] = 'Signing Error: ';
+
+// ------------------------------------------------------------------------- //
 // File include/plugin_api.inc.php
 // ------------------------------------------------------------------------- //
 $lang_plugin_api['error_wakeup'] = 'Couldn\'t awaken plugin \'%s\'';
@@ -2124,28 +2140,9 @@ $lang_upload_php['title'] = 'Upload file';
 $lang_upload_php['choose_method'] = 'Choose upload method'; // cpg1.5
 $lang_upload_php['upload_swf']    = 'default - Flash-driven'; // cpg1.5
 $lang_upload_php['upload_single'] = 'simple - one file at a time'; // cpg1.5
-// $lang_upload_php['custom_title'] = 'Customized Request Form';
-// $lang_upload_php['cust_instr_1'] = 'You may select a customized number of upload boxes. However, you may not select more than the limits listed below.';
-// $lang_upload_php['cust_instr_2'] = 'Box Number Requests';
-// $lang_upload_php['cust_instr_3'] = 'File upload boxes: %s';
-// $lang_upload_php['cust_instr_4'] = 'URI/URL upload boxes: %s';
-// $lang_upload_php['cust_instr_5'] = 'URI/URL upload boxes:';
-// $lang_upload_php['cust_instr_6'] = 'File upload boxes:';
-// $lang_upload_php['cust_instr_7'] = 'Please enter the number of each type of upload box you desire at this time.  Then click \'Continue\'. ';
 $lang_upload_php['up_instr_1'] = 'Now you may upload your files by first selecting the album and then using the "Browse" button below. The size of files uploaded from your client to the server should not exceed %s KB each. ZIP files uploaded will remain compressed.';
 $lang_upload_php['up_instr_2'] = 'When you have uploaded the files click the "Continue" button. (Note: The button will appear after you have uploaded at least one file).';
 $lang_upload_php['reg_instr_1'] = 'Invalid action for form creation.';
-// $lang_upload_php['reg_instr_2'] = 'Now you may upload your files using the upload boxes below. The size of files uploaded from your client to the server should not exceed %s KB each. ZIP files uploaded in the \'File Upload\' and \'URI/URL Upload\' sections will remain compressed.';
-// $lang_upload_php['reg_instr_3'] = 'If you want the zipped file or archive to be decompressed, you must use the file upload box provided in the \'Decompressive ZIP Upload\' area.';
-// $lang_upload_php['reg_instr_4'] = 'When using the URI/URL upload section, please enter the path to the file like so: http://www.mysite.com/images/example.jpg';
-// $lang_upload_php['reg_instr_5'] = 'When you have completed the form, please click \'Continue\'.';
-// $lang_upload_php['reg_instr_6'] = 'Decompressive ZIP Uploads:';
-// $lang_upload_php['reg_instr_7'] = 'File Uploads:';
-// $lang_upload_php['reg_instr_8'] = 'URI/URL Uploads:';
-// $lang_upload_php['error_report'] = 'Error Report';
-// $lang_upload_php['error_instr'] = 'The following uploads encountered errors:';
-// $lang_upload_php['file_name_url'] = 'File Name/URL';
-// $lang_upload_php['error_message'] = 'Error Message';
 $lang_upload_php['no_name'] = 'Filename unavailable'; // cpg 1.5
 $lang_upload_php['no_tmp_name'] = 'Unable to upload'; // cpg 1.5
 $lang_upload_php['no_post'] = 'File not uploaded by POST.';
@@ -2155,47 +2152,18 @@ $lang_upload_php['exc_file_size'] = 'Exceeded filesize permitted by CPG.';
 $lang_upload_php['partial_upload'] = 'Only a partial upload.';
 $lang_upload_php['no_upload'] = 'No upload occurred.';
 $lang_upload_php['unknown_code'] = 'Unknown PHP upload error code.';
-// $lang_upload_php['no_temp_name'] = 'No upload - No temp name.';
-// $lang_upload_php['no_file_size'] = 'Contains no data/Corrupted';
 $lang_upload_php['impossible'] = 'Impossible to move.';
 $lang_upload_php['not_image'] = 'Not an image/corrupt';
 $lang_upload_php['not_GD'] = 'Not a GD extension.';
 $lang_upload_php['pixel_allowance'] = 'The height and or width of the uploaded picture is more than that allowed by the gallery config.';
-// $lang_upload_php['incorrect_prefix'] = 'Incorrect URI/URL prefix';
-// $lang_upload_php['could_not_open_URI'] = 'Could not open URI.';
-// $lang_upload_php['unsafe_URI'] = 'Safety not verifiable.';
-// $lang_upload_php['meta_data_failure'] = 'Meta data failure';
-// $lang_upload_php['http_401'] = '401 Unauthorized';
-// $lang_upload_php['http_402'] = '402 Payment Required';
-// $lang_upload_php['http_403'] = '403 Forbidden';
-// $lang_upload_php['http_404'] = '404 Not Found';
-// $lang_upload_php['http_500'] = '500 Internal Server Error';
-// $lang_upload_php['http_503'] = '503 Service Unavailable';
-// $lang_upload_php['MIME_extraction_failure'] = 'MIME could not be determined.';
-// $lang_upload_php['MIME_type_unknown'] = 'Unknown MIME type';
-// $lang_upload_php['cant_create_write'] = 'Cannot create write file.';
-// $lang_upload_php['not_writable'] = 'Cannot write to write file.';
-// $lang_upload_php['cant_read_URI'] = 'Cannot read URI/URL';
-// $lang_upload_php['cant_open_write_file'] = 'Cannot open URI write file.';
-// $lang_upload_php['cant_write_write_file'] = 'Cannot write to URI write file.';
-// $lang_upload_php['cant_unzip'] = 'Cannot unzip.';
-// $lang_upload_php['unknown'] = 'Unknown error';
-// $lang_upload_php['succ'] = 'Successful Uploads';
-// $lang_upload_php['success'] = '%s uploads were successful.';
-// $lang_upload_php['add'] = 'Please click \'Continue\' to add the files to albums.';
 $lang_upload_php['failure'] = 'Upload Failure';
-// $lang_upload_php['f_info'] = 'File Information';
 $lang_upload_php['no_place'] = 'The previous file could not be placed.';
-// $lang_upload_php['yes_place'] = 'The previous file was placed successfully.';
 $lang_upload_php['max_fsize'] = 'Maximum allowed file size is %s KB';
 $lang_upload_php['picture'] = 'File';
 $lang_upload_php['pic_title'] = 'File title';
 $lang_upload_php['description'] = 'File description';
 $lang_upload_php['keywords_sel'] = 'Select a Keyword';
 $lang_upload_php['err_no_alb_uploadables'] = 'Sorry there is no album where you are allowed to upload files';
-// $lang_upload_php['place_instr_1'] = 'Please place the files in albums at this time.  You may also enter relevant information about each file now.';
-// $lang_upload_php['place_instr_2'] = 'More files need placement. Please click \'Continue\'.';
-// $lang_upload_php['process_complete'] = 'You have successfully placed all the files.';
 $lang_upload_php['close'] = 'Close';
 $lang_upload_php['no_keywords'] = 'Sorry, no keywords available!';
 $lang_upload_php['regenerate_dictionary'] = 'Regenerate Dictionary';
@@ -2209,7 +2177,7 @@ $lang_upload_php['alternative_upload'] = 'Alternative upload method'; // cpg1.5
 $lang_upload_php['xp_publish_promote'] = 'If you are running Windows XP/Vista, you can use the Windows XP Uploading Wizard as well to upload files, providing an easier user interface directly on the client.'; // cpg1.5
 $lang_upload_php['more'] = 'more'; // cpg1.5
 $lang_upload_php['err_js_disabled'] = 'Flash upload interface could not load.  You must have JavaScript enabled to enjoy flash upload interface.'; // cpg1.5
-$lang_upload_php['err_flash_disabled'] = 'Upload interface is taking a long time to load or the load has failed.  Please make sure that the Flash Plugin is enabled and that a working version of the Adobe Flash Player is installed.'; // cpg1.5
+$lang_upload_php['err_flash_disabled'] = 'Upload interface is taking a long time to load or the load has failed.  Please make sure that the Flash Plugin is enabled and that a working version of the Flash Player is installed.'; // cpg1.5
 $lang_upload_php['err_alternate_method'] = 'Alternately you can use the <a href="upload.php?single=1">single</a> file upload interface.'; // cpg1.5
 $lang_upload_php['err_flash_version'] = 'Upload interface could not load.  You may need to install or upgrade Flash Player. Visit the <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> to get the Flash Player.'; // cpg1.5
 $lang_upload_php['flash_loading'] = 'Upload interface is loading. Please wait a moment...'; // cpg1.5
@@ -2635,24 +2603,5 @@ $lang_plugin_php['onlinestats_config_text'] = 'How long do you want to keep user
 $lang_plugin_php['onlinestats_minute'] = 'minutes';
 $lang_plugin_php['onlinestats_remove'] = 'Remove the table that was used to store online data?';
 }
-
-// ------------------------------------------------------------------------- //
-// File include/mailer.inc.php
-// ------------------------------------------------------------------------- //
-
-$lang_mailer['provide_address'] = 'You must provide at least one ';
-$lang_mailer['mailer_not_supported'] = ' mailer is not supported.';
-$lang_mailer['execute'] = 'Could not execute: ';
-$lang_mailer['instantiate'] = 'Could not instantiate mail function.';
-$lang_mailer['authenticate'] = 'SMTP Error: Could not authenticate.';
-$lang_mailer['from_failed'] = 'The following From address failed: ';
-$lang_mailer['recipients_failed'] = 'SMTP Error: The following ';
-$lang_mailer['data_not_accepted'] = 'SMTP Error: Data not accepted.';
-$lang_mailer['connect_host'] = 'SMTP Error: Could not connect to SMTP host.';
-$lang_mailer['file_access'] = 'Could not access file: ';
-$lang_mailer['file_open'] = 'File Error: Could not open file: ';
-$lang_mailer['encoding'] = 'Unknown encoding: ';
-$lang_mailer['signing'] = 'Signing Error: ';
-
-      
+  
 ?>
