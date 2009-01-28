@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-01-28 [M] Updated header to reflect new year {GauGau}
 2009-01-28 [O] Updated XMB bridge file to work with recent versions of that application (user contribution, thread ID 57550) {GauGau}
 2008-12-31 [B] Update names associated with pictures and comments when user name is changed {Nibbler}
 2008-12-23 [B] Fixed issue involving display of name field in the report to admin form {TranzNDance}
