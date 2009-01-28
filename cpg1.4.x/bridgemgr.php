@@ -506,14 +506,14 @@ $default_bridge_data['mybb'] = array(
 );
 
 $default_bridge_data['xmb'] = array(
-  'full_name' => 'XMB 1.9',
+  'full_name' => 'XMB 1.9.10 or better',
   'short_name' => 'xmb',
   'support_url' => 'http://www.xmbforum.com/',
-  'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/',
+  'full_forum_url_default' => '',
+  'full_forum_url_used' => '',
+  'relative_path_to_config_file_default' => '../XMB/',
   'relative_path_to_config_file_used' => 'lookfor,config.php',
-  'use_post_based_groups_default' => '0',
+  'use_post_based_groups_default' => '1',
   'use_post_based_groups_used' => 'radio,1,0',
 );
 
