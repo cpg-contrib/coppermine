@@ -29,7 +29,7 @@
 Cookie fix (if your board is not installed to site root):
 functions.php,
 find put_cookie function definition (c. line 1394) and add
-$path = NULL;
+$path = '/';
 just inside the top of the function
 */
 
