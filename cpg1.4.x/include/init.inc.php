@@ -39,14 +39,20 @@ $cpg_time_start = cpgGetMicroTime();
 // Do some cleanup in GET, POST and cookie data and un-register global vars
 $HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', '%26' => '&amp;', '%22' => '&quot;', '%3C' => '&lt;', '%3E' => '&gt;','%27' => '&#39;', "'" => '&#39;');
 
-$keysToSkip = array('_POST', '_GET', '_COOKIE', '_REQUEST', '_SERVER', 'HTML_SUBST');
+$keysToSkip = array('_POST', '_GET', '_COOKIE', '_REQUEST', '_SERVER', 'HTML_SUBST', 'keysToSkip');
+
+if (ini_get('register_globals') == '1' || strtolower(ini_get('register_globals')) == 'on') {
+    $register_globals_flag = true;
+} else {
+    $register_globals_flag = false;
+}
 
 if (get_magic_quotes_gpc()) {
         if (is_array($_POST)) {
                 foreach ($_POST as $key => $value) {
                         if (!is_array($value))
                                 $_POST[$key] = strtr(stripslashes($value), $HTML_SUBST);
-                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+                        if (!in_array($key, $keysToSkip) && isset($$key) && $register_globals_flag) unset($$key);
                 }
         }
 
@@ -54,7 +60,7 @@ if (get_magic_quotes_gpc()) {
                 foreach ($_GET as $key => $value) {
                         unset($_GET[$key]);
                         $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
-                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+                        if (!in_array($key, $keysToSkip) && isset($$key) && $register_globals_flag) unset($$key);
                 }
         }
 
@@ -62,14 +68,14 @@ if (get_magic_quotes_gpc()) {
                 foreach ($_COOKIE as $key => $value) {
                         if (!is_array($value))
                                 $_COOKIE[$key] = stripslashes($value);
-                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+                        if (!in_array($key, $keysToSkip) && isset($$key) && $register_globals_flag) unset($$key);
                 }
         }
         if (is_array($_REQUEST)) {
                 foreach ($_REQUEST as $key => $value) {
                         if (!is_array($value))
                                 $_REQUEST[$key] = strtr(stripslashes($value), $HTML_SUBST);
-                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+                        if (!in_array($key, $keysToSkip) && isset($$key) && $register_globals_flag) unset($$key);
                 }
         }
 } else {
@@ -77,7 +83,7 @@ if (get_magic_quotes_gpc()) {
                 foreach ($_POST as $key => $value) {
                         if (!is_array($value))
                                 $_POST[$key] = strtr($value, $HTML_SUBST);
-                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+                        if (!in_array($key, $keysToSkip) && isset($$key) && $register_globals_flag) unset($$key);
                 }
         }
 
@@ -85,20 +91,23 @@ if (get_magic_quotes_gpc()) {
                 foreach ($_GET as $key => $value) {
                         unset($_GET[$key]);
                         $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
-                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+
+                        if (!in_array($key, $keysToSkip) && isset($$key) && $register_globals_flag) {
+                            unset($$key);
+                        }
                 }
         }
 
         if (is_array($_COOKIE)) {
                 foreach ($_COOKIE as $key => $value) {
-                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+                        if (!in_array($key, $keysToSkip) && isset($$key) && $register_globals_flag) unset($$key);
                 }
         }
         if (is_array($_REQUEST)) {
                 foreach ($_REQUEST as $key => $value) {
                         if (!is_array($value))
                                 $_REQUEST[$key] = strtr($value, $HTML_SUBST);
-                        if (!in_array($key, $keysToSkip) && isset($$key) && ini_get('register_globals') == '1') unset($$key);
+                        if (!in_array($key, $keysToSkip) && isset($$key) && $register_globals_flag) unset($$key);
                 }
         }
 }

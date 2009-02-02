@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-02-02 [S] Added fix for security vulnerability reported on -> http://www.milw0rm.com/exploits/7909 {Aditya}
 2009-01-28 [M] Updated header to reflect new year {GauGau}
 2009-01-28 [O] Updated XMB bridge file to work with recent versions of that application (user contribution, thread ID 57550) {GauGau}
 2008-12-31 [B] Update names associated with pictures and comments when user name is changed {Nibbler}

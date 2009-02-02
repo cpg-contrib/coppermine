@@ -75,8 +75,11 @@ if (isset($_GET['id'])) {
         cpg_die(ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }
 
-if (!(GALLERY_ADMIN_MODE || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID)) || !USER_ID) { 
-	cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+// Initialize the array
+$CURRENT_PIC = array();
+
+if (!(GALLERY_ADMIN_MODE || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID)) || !USER_ID) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
 if ($pid > 0){
