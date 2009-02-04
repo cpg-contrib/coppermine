@@ -1,7 +1,22 @@
 <?php
-// ------------------------------------------------------------------------- //
-// This theme has had redundant CORE items removed                           //
-// ------------------------------------------------------------------------- //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2009 Coppermine Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
+  ********************************************
+  Coppermine version: 1.4.20
+  $HeadURL$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
+
 define('THEME_HAS_RATING_GRAPHICS', 1);
 define('THEME_HAS_NAVBAR_GRAPHICS', 1);
 define('THEME_HAS_NO_SYS_MENU_BUTTONS', 1);
