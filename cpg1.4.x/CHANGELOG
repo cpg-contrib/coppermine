@@ -26,7 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2009-02-04 [M] Release of cpg1.4.18 {GauGau}
+2009-02-04 [M] Release of cpg1.4.20 {GauGau}
 2009-02-04 [M] Updated version count as a preparation for the release of cpg1.4.20 {GauGau}
 2009-02-02 [S] Added fix for security vulnerability reported on -> http://www.milw0rm.com/exploits/7909 {Aditya}
 2009-01-28 [M] Updated header to reflect new year {GauGau}
