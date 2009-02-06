@@ -724,7 +724,7 @@ $config_data = array(
       'help_link'     => 'f=configuration.htm&amp;as=admin_comment_akismet_enable&amp;ae=admin_comment_akismet_enable_end',
       'additional_description' => ': ' . $lang_admin_php['comment_akismet_enable_description'] . '<br />('.$lang_admin_php['comment_akismet_applicable_only'].')',
       'options'       => array(
-                           $lang_admin_php['comment_akismet_enable_disapproved'],
+                           $lang_admin_php['comment_akismet_enable_approval'],
                            $lang_admin_php['comment_akismet_drop_tell'],
                            $lang_admin_php['comment_akismet_drop_lie'],
                          ),

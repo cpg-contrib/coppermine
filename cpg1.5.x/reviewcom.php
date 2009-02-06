@@ -25,7 +25,7 @@ define('REVIEWCOM_PHP', true);
 require('include/init.inc.php');
 include("include/smilies.inc.php");
 if ($CONFIG['comment_akismet_api_key'] != '') {
-	require_once('include/akismet.inc.php');
+    require_once('include/akismet.inc.php');
 }
 
 if (!GALLERY_ADMIN_MODE) {
@@ -117,9 +117,9 @@ if ($get_data_rejected==0) { // individual approval start
         }
         $thumb_url =  get_pic_url($row, 'thumb');
         if (!is_image($row['filename'])) {
-	        $image_info = cpg_getimagesize($thumb_url);
-	        $row['pwidth'] = $image_info[0];
-	        $row['pheight'] = $image_info[1];
+            $image_info = cpg_getimagesize($thumb_url);
+            $row['pwidth'] = $image_info[0];
+            $row['pheight'] = $image_info[1];
         }
         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
         $thumb_link = 'displayimage.php?pos=' . - $row['pid'];
@@ -127,8 +127,8 @@ if ($get_data_rejected==0) { // individual approval start
         $msg_body = bb_decode(process_smilies($row['msg_body']));
         // build a link to the author's profile if applicable
         if ($row['author_id'] != 0) {
-	        $profile_link_start = '<a href="profile.php?uid='.$row['author_id'].'">';
-	        $profile_link_end = '</a>';
+            $profile_link_start = '<a href="profile.php?uid='.$row['author_id'].'">';
+            $profile_link_end = '</a>';
         } else {
             $profile_link_start = '';
             $profile_link_end = '';
@@ -136,14 +136,14 @@ if ($get_data_rejected==0) { // individual approval start
         $msg_author = $row['msg_author'];
     }
 
-    // if all verifications have passed, execute the change and output the result. Else, display an error message
+    // if all verifications have passed, execute the change and output the result; else, display an error message
     if ($get_data_rejected == 0) {
         if ($single_approval_array['what'] == 'approve') {
             $query_approval = 'YES';
             $title = $lang_reviewcom_php['comment_approved'];
         } else {
             $query_approval = 'NO';
-            $title = $lang_reviewcom_php['comment_disapproved'];
+            $title = $lang_reviewcom_php['comment_unapproved'];
         }
         cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = '{$query_approval}' WHERE msg_id = {$single_approval_array['msg_id']}");
         starttable('-2', $title, 2);
@@ -186,36 +186,36 @@ if ($CONFIG['display_comment_approval_only'] == 1) {
 // Get the hidden field that contains all message IDs that are being
 // handled by the form that was just submit.
 if ($superCage->post->keyExists('total_message_id_collector')) {
-	$total_message_id_submit = $superCage->post->getMatched('total_message_id_collector', '/^[0-9\/|]+$/');
-	$total_message_id_array = explode('|' , rtrim($total_message_id_submit[0],'|'));
-	sort($total_message_id_array);
-	// Now loop through that array to check wether an individual approval change has been submit.
-	$approved_yes_set = '';
-	$approved_no_set = '';
-	foreach ($total_message_id_array as $message_id_check) {
-		if ($superCage->post->getInt('status_approved_yes'.$message_id_check) != '') {
-			$approved_yes_set .= $superCage->post->getInt('status_approved_yes'.$message_id_check) . ',';
-			if ($superCage->post->getInt('spam'.$message_id_check) == 'YES') {
-				// A comment that Akismet has detected as SPAM has been approved by the admin. Let's put the ID into the ham array
-				$akismet_ham_array[] = $message_id_check;
-			}
-		}
-		if ($superCage->post->getInt('status_approved_no'.$message_id_check) != '') {
-			$approved_no_set .= $superCage->post->getInt('status_approved_no'.$message_id_check) . ',';
-		}
-	}
-	$approved_yes_set = rtrim($approved_yes_set, ',');
-	$approved_no_set = rtrim($approved_no_set, ',');
-	$nb_com_yes = 0;
-	$nb_com_no = 0;
-	if ($approved_yes_set != '') {
-		cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'YES' WHERE msg_id IN ($approved_yes_set)");
-		$nb_com_yes = mysql_affected_rows();
-	}
-	if ($approved_no_set != '') {
-	    cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'NO' WHERE msg_id IN ($approved_no_set)");
-	    $nb_com_no = mysql_affected_rows();
-	}
+    $total_message_id_submit = $superCage->post->getMatched('total_message_id_collector', '/^[0-9\/|]+$/');
+    $total_message_id_array = explode('|' , rtrim($total_message_id_submit[0],'|'));
+    sort($total_message_id_array);
+    // Now loop through that array to check wether an individual approval change has been submit.
+    $approved_yes_set = '';
+    $approved_no_set = '';
+    foreach ($total_message_id_array as $message_id_check) {
+        if ($superCage->post->getInt('status_approved_yes'.$message_id_check) != '') {
+            $approved_yes_set .= $superCage->post->getInt('status_approved_yes'.$message_id_check) . ',';
+            if ($superCage->post->getInt('spam'.$message_id_check) == 'YES') {
+                // A comment that Akismet has detected as SPAM has been approved by the admin. Let's put the ID into the ham array
+                $akismet_ham_array[] = $message_id_check;
+            }
+        }
+        if ($superCage->post->getInt('status_approved_no'.$message_id_check) != '') {
+            $approved_no_set .= $superCage->post->getInt('status_approved_no'.$message_id_check) . ',';
+        }
+    }
+    $approved_yes_set = rtrim($approved_yes_set, ',');
+    $approved_no_set = rtrim($approved_no_set, ',');
+    $nb_com_yes = 0;
+    $nb_com_no = 0;
+    if ($approved_yes_set != '') {
+        cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'YES' WHERE msg_id IN ($approved_yes_set)");
+        $nb_com_yes = mysql_affected_rows();
+    }
+    if ($approved_no_set != '') {
+        cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET `approval` = 'NO' WHERE msg_id IN ($approved_no_set)");
+        $nb_com_no = mysql_affected_rows();
+    }
 }
 
 $nb_com_del = 0;
@@ -226,13 +226,13 @@ if ($superCage->post->keyExists('cid_array')) {
     foreach ($cid_array as $cid) {
         $cid_set .= ($cid_set == '') ? '(' . $cid : ', ' . $cid;
         if ($superCage->post->getAlpha('with_selected') == 'approve' && $superCage->post->getInt('spam'.$cid) == 'YES') {
-        	$akismet_ham_array[] = $cid;
+            $akismet_ham_array[] = $cid;
         }
     }
     $cid_set .= ')';
     
     if($superCage->post->getAlpha('with_selected') == 'delete') {
-		// Delete selected comments if form is posted
+        // Delete selected comments if form is posted
         cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id IN $cid_set");
         $nb_com_del = mysql_affected_rows();
     } elseif ($superCage->post->getAlpha('with_selected') == 'approve') {
@@ -246,11 +246,11 @@ if ($superCage->post->keyExists('cid_array')) {
 
 // Submit ham samples back to akismet
 if ($CONFIG['comment_akismet_api_key'] != '' && $CONFIG['comment_akismet_enable'] == 0) {
-	foreach ($akismet_ham_array as $key) {
-		$result = cpg_db_query("SELECT pid, msg_author,	msg_body, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$key' LIMIT 1");
-		$comment_data = mysql_fetch_array($result);
-		$akismet_result = cpg_akismet_submit_data($comment_evaluation_array, 'ham');
-	}
+    foreach ($akismet_ham_array as $key) {
+        $result = cpg_db_query("SELECT pid, msg_author, msg_body, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$key' LIMIT 1");
+        $comment_data = mysql_fetch_array($result);
+        $akismet_result = cpg_akismet_submit_data($comment_evaluation_array, 'ham');
+    }
 }
 
 $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE 1");
@@ -258,20 +258,20 @@ $nbEnr = mysql_fetch_array($result);
 $comment_count = $nbEnr[0];
 
 if (!$comment_count) {
-	cpg_die(INFORMATION , $lang_reviewcom_php['no_comment'], __FILE__, __LINE__);
+    cpg_die(INFORMATION , $lang_reviewcom_php['no_comment'], __FILE__, __LINE__);
 }
 
 //$start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
 if ($superCage->get->keyExists('start')) {
-	$start = $superCage->get->getInt('start');
+    $start = $superCage->get->getInt('start');
 } else {
-	$start = 0;
+    $start = 0;
 }
 //$count = isset($_GET['count']) ? $_GET['count'] : 25;
 if ($superCage->get->keyExists('count')) {
-	$count = $superCage->get->getInt('count');
+    $count = $superCage->get->getInt('count');
 } else {
-	$count = 25;
+    $count = 25;
 }
 $next_target = $CPG_PHP_SELF . '?start=' . ($start + $count) . '&amp;count=' . $count;
 $prev_target = $CPG_PHP_SELF . '?start=' . max(0, $start - $count) . '&amp;count=' . $count;
@@ -280,9 +280,9 @@ $s75 = $count == 75 ? 'selected' : '';
 $s100 = $count == 100 ? 'selected' : '';
 //$single_picture = isset($_GET['pid']) ? (int)$_GET['pid'] : '';
 if ($superCage->get->keyExists('pid')) {
-	$single_picture = $superCage->get->getInt('pid');
+    $single_picture = $superCage->get->getInt('pid');
 } else {
-	$single_picture = '';
+    $single_picture = '';
 }
 
 if ($start + $count < $comment_count) {
@@ -336,7 +336,7 @@ if ($nb_com_yes > 0) {
     $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_reviewcom_php['n_comm_appr'], $nb_com_yes).'</li>'."\n\r";
 }
 if ($nb_com_no > 0) {
-    $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_reviewcom_php['n_comm_disappr'], $nb_com_no).'</li>'."\n\r";
+    $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_reviewcom_php['n_comm_unappr'], $nb_com_no).'</li>'."\n\r";
 }
 if ($flag_conf_change != '') {
     $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.$lang_reviewcom_php['configuration_changed'].'</li>'."\n\r";
@@ -403,15 +403,15 @@ echo <<<EOT
         </noscript>
 
 EOT;
-	if ($CONFIG['comment_akismet_api_key'] != '') {
-		$akismet_row_heading = <<< EOT
-			{$lang_reviewcom_php['akismet']}
-			<a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=akismet_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['akismet_a']}" /></a>
+    if ($CONFIG['comment_akismet_api_key'] != '') {
+        $akismet_row_heading = <<< EOT
+            {$lang_reviewcom_php['akismet']}
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=akismet_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['akismet_a']}" /></a>
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=akismet_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['akismet_d']}" /></a>
 EOT;
-	} else {
-		$akismet_row_heading = '';
-	}
+    } else {
+        $akismet_row_heading = '';
+    }
 
     echo <<<EOT
         <tr>
@@ -470,17 +470,17 @@ $sort_codes = array('name_a' => 'msg_author ASC',
 // sort by date descending if no other sorting order is given
 //$sort = (!isset($_GET['sort']) || !isset($sort_codes[$_GET['sort']])) ? 'date_d' : $_GET['sort'];
 if ($superCage->get->keyExists('sort')) {
-	$get_sort = $superCage->get->getEscaped('sort');
+    $get_sort = $superCage->get->getEscaped('sort');
 }
 if (!isset($get_sort) || !isset($sort_codes[$get_sort])) {
-	$sort = 'date_d';
+    $sort = 'date_d';
 } else {
-	$sort = $get_sort;
+    $sort = $get_sort;
 }
 if ($CONFIG['display_comment_approval_only'] == 1) {
     $only_comments_needing_approval = "AND approval='NO'";
 } else {
-	$only_comments_needing_approval = '';
+    $only_comments_needing_approval = '';
 }
 
 $result = cpg_db_query("
@@ -518,34 +518,34 @@ while ($row = mysql_fetch_array($result)) {
         $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' .$lang_common['yes']."</label><br />\n\r                        ";
         $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">' .$lang_common['no'].'</label>';
         if ($row['spam'] == 'YES') {
-        	$checkbox_status = 'checked="checked"';
-        	$default_action_with_selected['do_nothing'] = 'checked="checked"';
-        	$default_action_with_selected['delete'] = '';
-        	$default_action_with_selected['approve'] = '';
-        	$default_action_with_selected['disapprove'] = '';
+            $checkbox_status = 'checked="checked"';
+            $default_action_with_selected['do_nothing'] = 'checked="checked"';
+            $default_action_with_selected['delete'] = '';
+            $default_action_with_selected['approve'] = '';
+            $default_action_with_selected['disapprove'] = '';
         } else {
-        	$checkbox_status = '';
+            $checkbox_status = '';
         }
     }
     $comment_approval_status .= '<input type="hidden" name="status_approved_yes'.$row['msg_id'].'" id="status_approved_yes'.$row['msg_id'].'" value="" />';
     $comment_approval_status .= '<input type="hidden" name="status_approved_no'.$row['msg_id'].'" id="status_approved_no'.$row['msg_id'].'" value="" />';
     if ($CONFIG['comment_akismet_api_key'] != '') {
-    	if ($row['spam'] == 'YES') {
-    		$akismet_status = cpg_fetch_icon('ignore', 0, $lang_reviewcom_php['is_spam']);
-    	} else {
-    		$akismet_status = cpg_fetch_icon('ok', 0, $lang_reviewcom_php['is_not_spam']);
-    	}
+        if ($row['spam'] == 'YES') {
+            $akismet_status = cpg_fetch_icon('ignore', 0, $lang_reviewcom_php['is_spam']);
+        } else {
+            $akismet_status = cpg_fetch_icon('ok', 0, $lang_reviewcom_php['is_not_spam']);
+        }
     } else {
-    	$akismet_status = '';
+        $akismet_status = '';
     }
     $spam_field = '<input type="hidden" name="spam'.$row['msg_id'].'" id="spam'.$row['msg_id'].'" value="' . $row['spam'] . '" />';
-	//get link to ban and delete
-	if ($row['author_id'] == 0) {
-		//$ban_and_delete = '<a href="banning.php?delete_comment_id=' . $row['msg_id'] . '">' . $lang_reviewcom_php['ban_and_delete'] . '</a>';
-		$ban_and_delete = '';
-	} else {
-		$ban_and_delete = '<a href="banning.php?ban_user=' . $row['author_id'] . '&amp;delete_comment_id=' . $row['msg_id'] . '" title="' . $lang_reviewcom_php['ban_and_delete'] . '">' . cpg_fetch_icon('ban_user_comment', 0) . '</a>';
-	}
+    //get link to ban and delete
+    if ($row['author_id'] == 0) {
+        //$ban_and_delete = '<a href="banning.php?delete_comment_id=' . $row['msg_id'] . '">' . $lang_reviewcom_php['ban_and_delete'] . '</a>';
+        $ban_and_delete = '';
+    } else {
+        $ban_and_delete = '<a href="banning.php?ban_user=' . $row['author_id'] . '&amp;delete_comment_id=' . $row['msg_id'] . '" title="' . $lang_reviewcom_php['ban_and_delete'] . '">' . cpg_fetch_icon('ban_user_comment', 0) . '</a>';
+    }
     $rowcounter++;
     if ($rowcounter >=2 ) { //let the row colors alternate, for now they are the same
         $rowcounter = 0;
@@ -563,9 +563,9 @@ while ($row = mysql_fetch_array($result)) {
     }
     // Create the output of the IP address
     if ($row['msg_raw_ip'] == $row['msg_hdr_ip']) {
-    	$ip_address_output = $row['msg_raw_ip'];
+        $ip_address_output = $row['msg_raw_ip'];
     } else {
-    	$ip_address_output = $row['msg_raw_ip'] . '<br />' . $row['msg_hdr_ip'];
+        $ip_address_output = $row['msg_raw_ip'] . '<br />' . $row['msg_hdr_ip'];
     }
     // output the table rows
     echo <<<EOT
@@ -635,61 +635,61 @@ endtable();
 echo '</form>';
 
 if ($CONFIG['comment_akismet_api_key'] != '') {
-	print '<br /><a name="akismet"></a>';
-	starttable('-2', $icon_array['info'] . $lang_reviewcom_php['akismet'], 2);
-	print <<< EOT
-	<tr>
-		<td class="tableb" colspan="2">
+    print '<br /><a name="akismet"></a>';
+    starttable('-2', $icon_array['info'] . $lang_reviewcom_php['akismet'], 2);
+    print <<< EOT
+    <tr>
+        <td class="tableb" colspan="2">
 EOT;
-	print sprintf($lang_reviewcom_php['akismet_count'].'.', '<strong>' . cpg_float2decimal($CONFIG['comment_akismet_counter']) . '</strong>');
-	print <<< EOT
-		</td>
-	</tr>
+    print sprintf($lang_reviewcom_php['akismet_count'].'.', '<strong>' . cpg_float2decimal($CONFIG['comment_akismet_counter']) . '</strong>');
+    print <<< EOT
+        </td>
+    </tr>
 EOT;
-	$test_text = sprintf($lang_reviewcom_php['akismet_test_result'], '<strong>' . $CONFIG['comment_akismet_api_key'] . '</strong>');
-	$result = cpg_akismet_verify_key();
-	if (stripos($result[0], '404 Not Found') != FALSE) {
-		$test_result = $icon_array['cancel'] . $lang_reviewcom_php['not_found'];
+    $test_text = sprintf($lang_reviewcom_php['akismet_test_result'], '<strong>' . $CONFIG['comment_akismet_api_key'] . '</strong>');
+    $result = cpg_akismet_verify_key();
+    if (stripos($result[0], '404 Not Found') != FALSE) {
+        $test_result = $icon_array['cancel'] . $lang_reviewcom_php['not_found'];
         $test_error = $result[0];
     } elseif (stripos($result[1], 'Error') != FALSE) {
-		$test_result = $icon_array['stop'] . $lang_reviewcom_php['unknown_error'];
+        $test_result = $icon_array['stop'] . $lang_reviewcom_php['unknown_error'];
         $test_error = $result[1];
-	} elseif ($result == TRUE) {
-		$test_result = $icon_array['ok'] . $lang_common['ok'];
+    } elseif ($result == TRUE) {
+        $test_result = $icon_array['ok'] . $lang_common['ok'];
         $test_error = '';
-	} elseif (stripos($result[0], 'Empty "blog" value') != FALSE) {
-		$test_result = $icon_array['stop'] . $lang_reviewcom_php['missing_gallery_url'];
+    } elseif (stripos($result[0], 'Empty "blog" value') != FALSE) {
+        $test_result = $icon_array['stop'] . $lang_reviewcom_php['missing_gallery_url'];
         $test_error = '';
-	} elseif ($result[1] == 'invalid') {
-		$test_result = $icon_array['stop'] . $lang_reviewcom_php['invalid'];
+    } elseif ($result[1] == 'invalid') {
+        $test_result = $icon_array['stop'] . $lang_reviewcom_php['invalid'];
         $test_error = '';
-	} elseif (isset($result) == FALSE) {
-		$test_result = $icon_array['cancel'] . $lang_reviewcom_php['unable_to_connect'];
+    } elseif (isset($result) == FALSE) {
+        $test_result = $icon_array['cancel'] . $lang_reviewcom_php['unable_to_connect'];
         $test_error = $result[0]."\r\n".$result[1];
-	} else {
-		$test_result = $icon_array['stop'] . $lang_reviewcom_php['unknown_error'];
+    } else {
+        $test_result = $icon_array['stop'] . $lang_reviewcom_php['unknown_error'];
         $test_error = $result[0]."\r\n".$result[1];
-	}
-	print <<< EOT
-	<tr>
-		<td class="tableb tableb_alternate" valign="top">
-			{$test_text}
-		</td>
-		<td class="tableb tableb_alternate" valign="top">
-			{$test_result}
-		</td>
-	</tr>
+    }
+    print <<< EOT
+    <tr>
+        <td class="tableb tableb_alternate" valign="top">
+            {$test_text}
+        </td>
+        <td class="tableb tableb_alternate" valign="top">
+            {$test_result}
+        </td>
+    </tr>
 EOT;
-	if ($test_error != '') {
+    if ($test_error != '') {
         $test_error = strip_tags($test_error);
         print <<< EOT
-	<tr>
-		<td class="tableb tableb_alternate" valign="top" colspan="2">
+    <tr>
+        <td class="tableb tableb_alternate" valign="top" colspan="2">
             {$lang_reviewcom_php['error_message']}<br />
-			<textarea cols="100" rows="5" class="textinput">{$test_error}</textarea>
-		</td>
-		</td>
-	</tr>
+            <textarea cols="100" rows="5" class="textinput">{$test_error}</textarea>
+        </td>
+        </td>
+    </tr>
 EOT;
     }
     endtable();

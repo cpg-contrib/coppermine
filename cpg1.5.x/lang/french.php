@@ -777,7 +777,7 @@ $lang_admin_php['comment_captcha'] =   'Affichez CAPTCHA (confirmation visuelle)
 $lang_admin_php['comment_akismet_enable'] = 'Options Akismet'; // cpg1.5
 $lang_admin_php['comment_akismet_enable_description'] = 'Que doit-on faire si Akismet rejette un commentaire comme un SPAM?'; // cpg1.5
 $lang_admin_php['comment_akismet_applicable_only'] = 'L\'option ne s\'applique que si Akismet a été activé en entrant une clé API valide'; // cpg1.5
-$lang_admin_php['comment_akismet_enable_disapproved'] = 'Autorise les Commentaires qui n\'ont pas passé le filtre Akismet, mais les paramètre comme désaprouvés'; // cpg1.5
+$lang_admin_php['comment_akismet_enable_approval'] = 'Autorise les Commentaires qui n\'ont pas passé le filtre Akismet, mais les paramètre comme désaprouvés'; // cpg1.5
 $lang_admin_php['comment_akismet_drop_tell'] = 'Efface les Commentaires qui n\'ont pas été validés et prévient leurs auteurs qu\'ils ont été rejetés'; // cpg1.5
 $lang_admin_php['comment_akismet_drop_lie'] = 'Efface les Commentaires qui n\'ont pas été validés, mais prévient l\'Utilisateur final (Spammeur) qu\'ils ont été ajoutés'; // cpg1.5
 $lang_admin_php['comment_akismet_api_key'] = 'clé de l\'API Akismet'; // cpg1.5
@@ -1242,7 +1242,7 @@ if (defined('EDITPICS_PHP')) {
   $lang_editpics_php['desc'] = 'Déscription';
   $lang_editpics_php['approval'] = 'Approbation'; //cpg 1.5
   $lang_editpics_php['approved'] = 'Approuvé'; //cpg 1.5
-  $lang_editpics_php['disapproved'] = 'Désaprouvé'; //cpg 1.5
+  $lang_editpics_php['unapproved'] = 'Désaprouvé'; //cpg 1.5
   $lang_editpics_php['new_keyword'] = 'Nouveau Mot-Clef';
   $lang_editpics_php['new_keywords'] = 'Nouveaux Mots-Clefs trouvés'; //cpg1.4
   $lang_editpics_php['existing_keyword'] = 'Mots-Clefs existants'; //cpg1.4
@@ -1918,7 +1918,7 @@ if (defined('REVIEWCOM_PHP')) {
   $lang_reviewcom_php['akismet_a'] = 'Evaluation Akismet (Commentaires valides en bas)'; // cpg1.5
   $lang_reviewcom_php['akismet_d'] = 'Evaluation Akismet (Commentaires valides en haut)'; // cpg1.5
   $lang_reviewcom_php['n_comm_appr'] = '%s Commentaire(s) approuvé(s)'; // cpg1.5.x
-  $lang_reviewcom_php['n_comm_disappr'] = '%s Commentaire(s) désapprouvé(s)'; // cpg1.5.x
+  $lang_reviewcom_php['n_comm_unappr'] = '%s Commentaire(s) désapprouvé(s)'; // cpg1.5.x
   $lang_reviewcom_php['configuration_changed'] = 'Changement de la Configuration des approbations'; // cpg1.5.x
   $lang_reviewcom_php['only_approval'] = 'N\'affichez que les Commentaires nécessitant une approbation'; // cpg1.5.x
   $lang_reviewcom_php['approval'] = 'Approuvé'; // cpg1.5.x
@@ -1930,7 +1930,7 @@ if (defined('REVIEWCOM_PHP')) {
   $lang_reviewcom_php['disapprove'] = 'désapprouvez'; // cpg1.5.x
   $lang_reviewcom_php['do_nothing'] = 'ne rien faire'; // cpg1.5
   $lang_reviewcom_php['comment_approved'] = 'Commentaire approuvé'; // cpg1.5.x
-  $lang_reviewcom_php['comment_disapproved'] = 'Commentaire désapprouvé'; // cpg1.5.x
+  $lang_reviewcom_php['comment_unapproved'] = 'Commentaire désapprouvé'; // cpg1.5.x
   $lang_reviewcom_php['ban_and_delete'] = 'Bannir l\'Utilisateur et effacer les Commentaires'; // cpg1.5
   $lang_reviewcom_php['akismet_status'] = 'Akismet dit'; // cpg1.5
   $lang_reviewcom_php['is_spam'] = 'est un spam'; // cpg1.5
