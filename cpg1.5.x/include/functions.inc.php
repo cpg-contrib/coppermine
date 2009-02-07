@@ -87,7 +87,7 @@ function user_get_profile()
 
     /**
      * TODO: Use the md5 # to verify integrity of cookie string
-     * At the time of installation we write a randonmly generated secret salt in config.inc
+     * At the time of installation we write a randomly generated secret salt in config.inc
      * This secret salt will be appended to the encoded string and the resulting md5 # of this string will
      * be appended to the encoded string with @ separator
      * e.g. $encoded_string_with_md5 = "asdfkhasdf987we89rfadfjhasdfklj@^@".md5("asdfkhasdf987we89rfadfjhasdfklj".$secret_salt)
@@ -127,7 +127,7 @@ function user_save_profile()
     
     /**
      * TODO: Use the md5 # to verify integrity of cookie string
-     * At the time of installation we write a randonmly generated secret salt in config.inc
+     * At the time of installation we write a randomly generated secret salt in config.inc
      * This secret salt will be appended to the encoded string and the resulting md5 # of this string will
      * be appended to the encoded string with @ separator
      * e.g. $encoded_string_with_md5 = "asdfkhasdf987we89rfadfjhasdfklj@^@".md5("asdfkhasdf987we89rfadfjhasdfklj".$secret_salt)
@@ -4420,8 +4420,14 @@ function cpgCleanTempMessage($seconds = 3600)
 **/
 function cpgRedirectPage($targetAddress = '', $caption = '', $message = '', $countdown = 0, $type = 'info')
 {
-    global $CONFIG, $lang_common;
-    
+    global $CONFIG, $USER_DATA, $lang_common;
+
+    $logged_in = (USER_ID || (isset($USER_DATA['user_id']) && is_numeric($USER_DATA['user_id'])));
+    if (!$logged_in && $CONFIG['allow_unlogged_access'] == 0) {
+        // Anonymous access to site is not allowed, so need to redirect to login page
+        $targetAddress = 'login.php';
+    }
+
     if ($CONFIG['display_redirection_page'] == 0) {
         $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
         if (strpos($targetAddress, '?') == FALSE) {

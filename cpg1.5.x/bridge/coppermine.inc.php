@@ -25,8 +25,8 @@ if (isset($bridge_lookup)) {
     // In other bridge files, we populate an array that specifies what bridging options are available for that particular file
 } else {
 
-	// Switch that allows overriding the bridge manager with hard-coded values
-	define('USE_BRIDGEMGR', 1);
+    // Switch that allows overriding the bridge manager with hard-coded values
+    define('USE_BRIDGEMGR', 1);
 
     require_once 'bridge/udb_base.inc.php';
 
@@ -120,19 +120,19 @@ if (isset($bridge_lookup)) {
 
                     // Check for user in users table
                     $sql =  "SELECT user_id, user_name, user_password FROM {$this->usertable} WHERE ";
-    				//Check the login method (username, email address or both)
-    				switch($CONFIG['login_method']){
-    					case 'both':
-    						$sql .= "(user_name = '$username' OR user_email = '$username') AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
-    						break;
-    					case 'email':
-    						$sql .= "user_email = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
-    						break;
-    					case 'username':
-    					default:
-    						$sql .= "user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
-    						break;
-    				}
+                    //Check the login method (username, email address or both)
+                    switch($CONFIG['login_method']){
+                        case 'both':
+                            $sql .= "(user_name = '$username' OR user_email = '$username') AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+                            break;
+                        case 'email':
+                            $sql .= "user_email = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+                            break;
+                        case 'username':
+                        default:
+                            $sql .= "user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+                            break;
+                    }
                    
                     $results = cpg_db_query($sql);
 
@@ -141,19 +141,19 @@ if (isset($bridge_lookup)) {
 
                             // Update lastvisit value
                             $sql =  "UPDATE {$this->usertable} SET user_lastvisit = NOW() ";
-    						//Check the login method (username, email address or both)
-    						switch($CONFIG['login_method']){
-    							case 'both':
-    								$sql .= "WHERE (user_name = '$username' OR user_email = '$username') AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
-    								break;
-    							case 'email':
-    								$sql .= "WHERE user_email = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
-    								break;
-    							case 'username':
-    							default:
-    								$sql .= "WHERE user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
-    								break;
-    						}
+                            //Check the login method (username, email address or both)
+                            switch($CONFIG['login_method']){
+                                case 'both':
+                                    $sql .= "WHERE (user_name = '$username' OR user_email = '$username') AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+                                    break;
+                                case 'email':
+                                    $sql .= "WHERE user_email = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+                                    break;
+                                case 'username':
+                                default:
+                                    $sql .= "WHERE user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+                                    break;
+                            }
                             cpg_db_query($sql, $this->link_id);
 
                             $USER_DATA = mysql_fetch_assoc($results);
@@ -193,19 +193,19 @@ if (isset($bridge_lookup)) {
             // Get groups of which user is member
             function get_groups( $user )
             {
-    			$groups = array($user['group_id']);
+                $groups = array($user['group_id']);
 
-    			$sql = "SELECT user_group_list FROM {$this->usertable} AS u WHERE {$this->field['user_id']}='{$user['id']}' and user_group_list <> '';";
+                $sql = "SELECT user_group_list FROM {$this->usertable} AS u WHERE {$this->field['user_id']}='{$user['id']}' and user_group_list <> '';";
 
-    			$result = cpg_db_query($sql, $this->link_id);
+                $result = cpg_db_query($sql, $this->link_id);
 
-    			if ($row = mysql_fetch_array($result)){
-    				$groups = array_merge($groups, explode(',', $row['user_group_list']));
-    			}
+                if ($row = mysql_fetch_array($result)){
+                    $groups = array_merge($groups, explode(',', $row['user_group_list']));
+                }
 
-    			mysql_free_result($result);
+                mysql_free_result($result);
 
-    			return $groups;
+                return $groups;
             }
 
             // definition of actions required to convert a password from user database form to cookie form
@@ -238,18 +238,18 @@ if (isset($bridge_lookup)) {
                 // Lifetime of normal session is 1 hour
                 $session_life_time = time()-CPG_HOUR;
 
-    			// only clean up old sessions sometimes
-    			if (rand(0, 100) == 42){
+                // only clean up old sessions sometimes
+                if (rand(0, 100) == 42){
                 
-                	// Delete old sessions
-    				$sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0;";
-    				cpg_db_query($sql, $this->link_id);
+                    // Delete old sessions
+                    $sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0;";
+                    cpg_db_query($sql, $this->link_id);
 
-                	// Delete stale 'remember me' sessions
-                	$sql = "delete from {$this->sessionstable} where time<$rememberme_life_time;";
-                	cpg_db_query($sql, $this->link_id);
-    			}
-    				
+                    // Delete stale 'remember me' sessions
+                    $sql = "delete from {$this->sessionstable} where time<$rememberme_life_time;";
+                    cpg_db_query($sql, $this->link_id);
+                }
+                    
                 // Check for valid session if session_cookie_value exists
                 if ($sessioncookie) {
 
@@ -263,7 +263,7 @@ if (isset($bridge_lookup)) {
                         mysql_free_result($result);
 
                         $row['user_id'] = (int) $row['user_id'];
-    					$this->sessiontime = $row['time'];
+                        $this->sessiontime = $row['time'];
 
                         // Check if there's a user for this session
                         $sql =  'select user_id as id, user_password as password ';
@@ -302,12 +302,16 @@ if (isset($bridge_lookup)) {
             // Function used to keep the session alive
             function session_update()
             {
-            		// don't update null sessions
-     		       	if (!$this->session_id) return false;
-     		       	
-     		       	// only update session time once per minute at maximum
-     		       	if (time() - $this->sessiontime < 60) return false;
-            	
+                    // don't update null sessions
+                    if (!isset($this->session_id) || !$this->session_id) {
+                        return false;
+                    }
+
+                    // only update session time once per minute at maximum
+                    if (!isset($this->sessiontime) || (time() - $this->sessiontime < 60)) {
+                        return false;
+                    }
+
                     $session_id = $this->session_id.$this->client_id;
                     $sql = "update {$this->sessionstable} set time='".time()."' where session_id = '" . md5($session_id) . "'";
                     cpg_db_query($sql);
@@ -317,12 +321,14 @@ if (isset($bridge_lookup)) {
             // Create a new session with the cookie lifetime set to 2 weeks
             function create_session() {
                     global $CONFIG;
-                    
+
                     $superCage = Inspekt::makeSuperCage();
-                    
-         			// don't create sessions for people that don't accept cookies anyway
-         			if (!$superCage->cookie->keyExists($CONFIG['cookie_name'].'_data')) return false;   
-    				
+
+                    // don't create sessions for people that don't accept cookies anyway
+                    if (!$superCage->cookie->keyExists($CONFIG['cookie_name'].'_data')) {
+                        return false;
+                    }
+
                     // start session
                     $this->session_id = $this->generateId();
                     $session_id = $this->session_id.$this->client_id;
@@ -347,7 +353,7 @@ if (isset($bridge_lookup)) {
                             $session_id = $randnum.$this->client_id;
                             if ($randnum != "") {
                                     $sql = "SELECT session_id FROM {$this->sessionstable} WHERE session_id = '" . md5($session_id) . "'";
-    								$result = cpg_db_query($sql, $this->link_id);
+                                    $result = cpg_db_query($sql, $this->link_id);
                                     if (!mysql_num_rows($result)) {
                                             break;
                                     }
@@ -413,70 +419,70 @@ if (isset($bridge_lookup)) {
             function logout_page() {
                 $this->logout();
             }
-    		/* Note : we don't want to overide this - the groups need to be resynced to coppermine default after un-integration
+            /* Note : we don't want to overide this - the groups need to be resynced to coppermine default after un-integration
              * Rebuttal: without overriding and removing Coppermine group deletion (see below) its impossible to add new groups to a non-bridged install.
              */
 
-        	function synchronize_groups()
-        	{
-        		global $CONFIG ;
+            function synchronize_groups()
+            {
+                global $CONFIG ;
 
-        		if ($this->use_post_based_groups){
-        			if ($this->group_overrride){
-        				$udb_groups = $this->collect_groups();
-        			} else {
-        				$sql = "SELECT * FROM {$this->groupstable} WHERE {$this->field['grouptbl_group_name']} <> ''";
+                if ($this->use_post_based_groups){
+                    if ($this->group_overrride){
+                        $udb_groups = $this->collect_groups();
+                    } else {
+                        $sql = "SELECT * FROM {$this->groupstable} WHERE {$this->field['grouptbl_group_name']} <> ''";
 
-        				$result = cpg_db_query($sql, $this->link_id);
+                        $result = cpg_db_query($sql, $this->link_id);
 
-        				$udb_groups = array();
+                        $udb_groups = array();
 
-        				while ($row = mysql_fetch_assoc($result))
-        				{
-        					$udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
-        				}
-        			}
-        		} else {
-        			$udb_groups = array(1 =>'Administrators', 2=> 'Registered', 3=>'Guests');
-        		}
+                        while ($row = mysql_fetch_assoc($result))
+                        {
+                            $udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
+                        }
+                    }
+                } else {
+                    $udb_groups = array(1 =>'Administrators', 2=> 'Registered', 3=>'Guests');
+                }
 
-        		$result = cpg_db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
+                $result = cpg_db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
 
-        		while ($row = mysql_fetch_array($result)) {
-        			$cpg_groups[$row['group_id']] = $row['group_name'];
-        		}
+                while ($row = mysql_fetch_array($result)) {
+                    $cpg_groups[$row['group_id']] = $row['group_name'];
+                }
 
-        		mysql_free_result($result);
+                mysql_free_result($result);
                 /* Must be removed to allow new groups to be created in an unbridged install.
-        		// Scan Coppermine groups that need to be deleted
-        		foreach($cpg_groups as $c_group_id => $c_group_name) {
-        			if ((!isset($udb_groups[$c_group_id]))) {
-        				cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = '" . $c_group_id . "' LIMIT 1");
-        				unset($cpg_groups[$c_group_id]);
-        			}
-        		}
-        		*/
+                // Scan Coppermine groups that need to be deleted
+                foreach($cpg_groups as $c_group_id => $c_group_name) {
+                    if ((!isset($udb_groups[$c_group_id]))) {
+                        cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = '" . $c_group_id . "' LIMIT 1");
+                        unset($cpg_groups[$c_group_id]);
+                    }
+                }
+                */
 
-        		// Scan udb groups that need to be created inside Coppermine table
-        		foreach($udb_groups as $i_group_id => $i_group_name) {
-        			if ((!isset($cpg_groups[$i_group_id]))) {
-        				// add admin info
-        				$admin_access = in_array($i_group_id-100, $this->admingroups) ? '1' : '0';
-        				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name, has_admin_access) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "', '$admin_access')");
-        				$cpg_groups[$i_group_id] = $i_group_name;
-        			}
-        		}
+                // Scan udb groups that need to be created inside Coppermine table
+                foreach($udb_groups as $i_group_id => $i_group_name) {
+                    if ((!isset($cpg_groups[$i_group_id]))) {
+                        // add admin info
+                        $admin_access = in_array($i_group_id-100, $this->admingroups) ? '1' : '0';
+                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name, has_admin_access) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "', '$admin_access')");
+                        $cpg_groups[$i_group_id] = $i_group_name;
+                    }
+                }
 
-        		// Update Group names
-        		foreach($udb_groups as $i_group_id => $i_group_name) {
-        			if ($cpg_groups[$i_group_id] != $i_group_name) {
-        				cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '" . addslashes($i_group_name) . "' WHERE group_id = '$i_group_id' LIMIT 1");
-        			}
-        		}
-        		// fix admin grp
-        		if (!$this->use_post_based_groups) cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET has_admin_access = '1' WHERE group_id = '1' LIMIT 1");
+                // Update Group names
+                foreach($udb_groups as $i_group_id => $i_group_name) {
+                    if ($cpg_groups[$i_group_id] != $i_group_name) {
+                        cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '" . addslashes($i_group_name) . "' WHERE group_id = '$i_group_id' LIMIT 1");
+                    }
+                }
+                // fix admin grp
+                if (!$this->use_post_based_groups) cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET has_admin_access = '1' WHERE group_id = '1' LIMIT 1");
 
-        	}
+            }
 
     }
 

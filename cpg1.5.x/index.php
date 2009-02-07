@@ -78,15 +78,14 @@ if ($file) {
 }
 
 if (!$file) {
-    /**
-    * Sets the flag for lang file
-    */
-    //define('INDEX_PHP', true);
-
-    //require_once('include/init.inc.php');
 
     if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
-        $redirect = $redirect . "login.php";
+        // Anonymous access to site is not allowed, so need to redirect to login page
+        // First try to set cookie so login page doesn't show 'cookie_warning' even when no problem
+        $data = base64_encode(serialize($USER));
+        setcookie($CONFIG['cookie_name'].'_data', $data, time()+86400*30, $CONFIG['cookie_path']);
+        // Now redirect to login page
+        $redirect = 'login.php';
         header("Location: $redirect");
         exit();
     }

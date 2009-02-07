@@ -34,7 +34,7 @@ define('INDEX_PHP', true);
 require_once ('include/init.inc.php');
 
 if (!USER_ID && ($CONFIG['allow_unlogged_access'] == 0)) {
-    $redirect = $redirect . "login.php";
+    $redirect = 'login.php';
     header("Location: $redirect");
     exit();
 }

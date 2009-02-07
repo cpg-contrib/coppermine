@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-02-06 [B] Changed redirect for login/logout pages as appropriate to avoid extraneous messages {Paver}
+2009-02-06 [B] Fixed 'cookie_warning' on login page when anonymous access is not allowed {Paver}
 2009-02-06 [C] Changed 'disapproved' to 'unapproved' in language keys as appropriate {Paver}
 2009-01-19 [B] Fixed missing delimiter in basic.sql on exif table {SaWey}
 2009-01-16 [B] Fix "Select a Keyword" list not refreshing to itself when click "Regenerate Dictionary" {Paver}

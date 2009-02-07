@@ -321,7 +321,7 @@ if ($CONFIG['lang'] != 'english') {
 set_js_var('lang_close', $lang_common['close']);
 // Language processing --- end
 
-// See if the fav cookie is set else set it
+// See if the fav cookie is set; else set it
 if ($superCage->cookie->keyExists($CONFIG['cookie_name'] . '_fav')) {
     $FAVPICS = @unserialize(@base64_decode($superCage->cookie->getRaw($CONFIG['cookie_name'] . '_fav')));
     foreach ($FAVPICS as $key => $id ) {
