@@ -561,14 +561,14 @@ EOT;
     }
     $add_more_folder = '<a href="'.$CPG_PHP_SELF.'?startdir='.rtrim($dir_name, '/').'" class="admin_menu">'.sprintf($lang_search_new_php['add_more_folder'], '&laquo;'.rtrim($dir_name, '/').'&raquo;').'</a>';
     $notes = sprintf($lang_search_new_php['notes'], 
-    				'<img src="images/batch/ok_small.png" border="0" width="16" height="16" alt="" />',
-    				'<img src="images/batch/duplicate_small.png" border="0" width="16" height="16" alt="" />',
-    				'<img src="images/batch/folder_locked_small.png" border="0" width="16" height="16" alt="" />',
-    				'<img src="images/batch/back_small.png" border="0" width="16" height="16" alt="" />',
-    				'<img src="images/batch/file_broken_small.png" border="0" width="16" height="16" alt="" />',
-    				'<img src="images/batch/unknown_small.png" border="0" width="16" height="16" alt="" />',
-    				'<img src="images/batch/gif_small.png" border="0" width="16" height="16" alt="" />'
-    				);
+                    '<img src="images/batch/ok_small.png" border="0" width="16" height="16" alt="" />',
+                    '<img src="images/batch/duplicate_small.png" border="0" width="16" height="16" alt="" />',
+                    '<img src="images/batch/folder_locked_small.png" border="0" width="16" height="16" alt="" />',
+                    '<img src="images/batch/back_small.png" border="0" width="16" height="16" alt="" />',
+                    '<img src="images/batch/file_broken_small.png" border="0" width="16" height="16" alt="" />',
+                    '<img src="images/batch/unknown_small.png" border="0" width="16" height="16" alt="" />',
+                    '<img src="images/batch/gif_small.png" border="0" width="16" height="16" alt="" />'
+                    );
 
     echo <<<EOT
         <tr>
@@ -661,18 +661,27 @@ EOT;
         //$browse_batch_add = (int)$_POST['browse_batch_add'];
         $browse_batch_add = $superCage->post->getInt('browse_batch_add');
         if ($browse_batch_add != $CONFIG['browse_batch_add']) {
-        	 cpg_config_set('browse_batch_add', $browse_batch_add);
+             cpg_config_set('browse_batch_add', $browse_batch_add);
         }
         //$display_thumbs_batch_add = (int)$_POST['display_thumbs_batch_add'];
         $display_thumbs_batch_add = $superCage->post->getInt('display_thumbs_batch_add');
         if ($display_thumbs_batch_add != $CONFIG['display_thumbs_batch_add']) {
-        	 cpg_config_set('display_thumbs_batch_add', $display_thumbs_batch_add);
+             cpg_config_set('display_thumbs_batch_add', $display_thumbs_batch_add);
         }
     }
 
 
-    $iframe_startfolder = str_replace('searchnew.php', '', __FILE__).rtrim($CONFIG['fullpath'], '/').'/';
-    $iframe_hide = rawurlencode('.,..,.svn,edit,'.rtrim($CONFIG['userpics'], '/'));
+    // define folder prefix, separator, and regex (to sanitize incoming parameters)
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        // Windows server
+        $folder_sep = '\\';
+    } else {
+        // *nix server
+        $folder_sep = '/';
+    }
+
+    $iframe_startfolder = str_replace('searchnew.php', '', __FILE__) . rtrim($CONFIG['fullpath'],'/') . $folder_sep;
+    $iframe_hide = rawurlencode('.,..,.svn,edit,'.rtrim($CONFIG['userpics'],'/'));
     print '    <tr>'."\n";
     print '        <td class="tableb" align="center">'."\n";
 

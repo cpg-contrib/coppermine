@@ -26,172 +26,148 @@ require('include/init.inc.php');
 // set/define some vars
 $scriptfilename = 'minibrowser.php';
 
-/*if (isset($_REQUEST['folder'])) {
-    $folder = rawurldecode($_REQUEST['folder']);
+// define folder prefix, separator, and regex (to sanitize incoming parameters)
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+    // Windows server
+    $folder_prefix = '';
+    $folder_sep = '\\';
+    $folder_regex = '/^([A-Za-z]:){0,1}[0-9A-Za-z\\.\\\\_\\-,&\' ]+$/';
+} else {
+    // *nix server
+    $folder_prefix = '/';
+    $folder_sep = '/';
+    $folder_regex = '/^[0-9A-Za-z\\.\\/_\\-,&\' ]+$/';
+}
+
+if ($superCage->get->keyExists('folder') && ($matches = $superCage->get->getMatched('folder', $folder_regex))) {
+    $folder = rawurldecode($matches[0]);
+} elseif ($superCage->post->keyExists('folder') && ($matches = $superCage->post->getMatched('folder', $folder_regex))) {
+    $folder = rawurldecode($matches[0]);
 } else {
     $folder = '';
-}*/
-if ($superCage->get->keyExists('folder') && $matches = $superCage->get->getMatched('folder','/^[0-9A-Za-z\/_-]+$/')) {
-		$folder = rawurldecode($matches[0]);
-} elseif ($superCage->post->keyExists('folder') && $matches = $superCage->post->getMatched('folder','/^[0-9A-Za-z\/_-]+$/')) {
-		$folder = rawurldecode($matches[0]);
-} else {
-		$folder = '';
 }
 
-/*if (isset($_REQUEST['startfolder'])) {
-    $startfolder = rawurldecode($_REQUEST['startfolder']);
+if ($superCage->get->keyExists('startfolder') && ($matches = $superCage->get->getMatched('startfolder', $folder_regex))) {
+    $startfolder = rawurldecode($matches[0]);
+} elseif ($superCage->post->keyExists('folder') && ($matches = $superCage->post->getMatched('startfolder', $folder_regex))) {
+    $startfolder = rawurldecode($matches[0]);
 } else {
     $startfolder = '';
-}*/
-if ($superCage->get->keyExists('startfolder') && $matches = $superCage->get->getMatched('startfolder','/^[0-9A-Za-z\/_-]+$/')) {
-		$startfolder = rawurldecode($matches[0]);
-} elseif ($superCage->post->keyExists('folder') && $matches = $superCage->post->getMatched('startfolder','/^[0-9A-Za-z\/_-]+$/')) {
-		$startfolder = rawurldecode($matches[0]);
-} else {
-		$startfolder = '';
 }
 
-if ($folder == '' && $startfolder != '') {
+if (($folder == '') && ($startfolder != '')) {
     $folder = $startfolder;
 }
 
-/*if (isset($_REQUEST['parentform'])) {
-    $parentform = rawurldecode($_REQUEST['parentform']);
-} else {
-    $parentform = '';
-}*/
-if ($superCage->get->keyExists('parentform') && $matches = $superCage->get->getMatched('parentform','/^[0-9A-Za-z\/_.-]+$/')) {
-		$parentform = rawurldecode($matches[0]);
-} elseif ($superCage->post->keyExists('parentform') && $matches = $superCage->post->getMatched('parentform','/^[0-9A-Za-z\/_.-]+$/')) {
-		$parentform = rawurldecode($matches[0]);
-} else {
-		$parentform = '';
-}
-
-/*if (isset($_REQUEST['formelementname'])) {
-    $formelementname = rawurldecode($_REQUEST['formelementname']);
-} else {
-    $formelementname = '';
-}*/
-if ($superCage->get->keyExists('formelementname') && $matches = $superCage->get->getMatched('formelementname','/^[0-9A-Za-z\/_.-]+$/')) {
-		$formelementname = rawurldecode($matches[0]);
-} elseif ($superCage->post->keyExists('formelementname') && $matches = $superCage->post->getMatched('formelementname','/^[0-9A-Za-z\/_.-]+$/')) {
-		$formelementname = rawurldecode($matches[0]);
-} else {
-		$formelementname = '';
-}
-
-/*if (isset($_REQUEST['hidefolders'])) {
-    $hidefolders = rawurldecode($_REQUEST['hidefolders']);
+if ($superCage->get->keyExists('hidefolders') && ($matches = $superCage->get->getMatched('hidefolders', $folder_regex))) {
+    $hidefolders = rawurldecode($matches[0]);
     $hiddenfolders = explode(',', $hidefolders);
-}*/
-if ($superCage->get->keyExists('hidefolders') && $matches = $superCage->get->getMatched('hidefolders','/^[0-9A-Za-z\/_.,-]+$/')) {
-		$hidefolders = rawurldecode($matches[0]);
-		$hiddenfolders = explode(',', $hidefolders);
-} elseif ($superCage->post->keyExists('hidefolders') && $matches = $superCage->post->getMatched('hidefolders','/^[0-9A-Za-z\/_.,-]+$/')) {
-		$hidefolders = rawurldecode($matches[0]);
-		$hiddenfolders = explode(',', $hidefolders);
+} elseif ($superCage->post->keyExists('hidefolders') && ($matches = $superCage->post->getMatched('hidefolders', $folder_regex))) {
+    $hidefolders = rawurldecode($matches[0]);
+    $hiddenfolders = explode(',', $hidefolders);
+} else {
+    $hidefolders = '';
+    $hiddenfolders = array();
 }
 
-/*if (isset($_REQUEST['linktarget'])) {
-    $linktarget = rawurldecode($_REQUEST['linktarget']);
+if ($superCage->get->keyExists('limitfolder') && $matches = $superCage->get->getMatched('limitfolder', $folder_regex)) {
+    $limitfolder = rawurldecode($matches[0]);
+} elseif ($superCage->post->keyExists('limitfolder') && $matches = $superCage->post->getMatched('limitfolder', $folder_regex)) {
+    $limitfolder = rawurldecode($matches[0]);
+} else {
+    $limitfolder = '';
+}
+
+if ($superCage->get->keyExists('linktarget') && ($matches = $superCage->get->getMatched('linktarget', $folder_regex))) {
+    $linktarget = rawurldecode($matches[0]);
+} elseif ($superCage->post->keyExists('linktarget') && ($matches = $superCage->post->getMatched('linktarget', $folder_regex))) {
+    $linktarget = rawurldecode($matches[0]);
 } else {
     $linktarget = '';
-}*/
-if ($superCage->get->keyExists('linktarget') && $matches = $superCage->get->getMatched('linktarget','/^[0-9A-Za-z\/_.-]+$/')) {
-		$linktarget = rawurldecode($matches[0]);
-} elseif ($superCage->post->keyExists('linktarget') && $matches = $superCage->post->getMatched('linktarget','/^[0-9A-Za-z\/_.-]+$/')) {
-		$linktarget = rawurldecode($matches[0]);
-} else {
-		$linktarget = '';
 }
 
-/*if (isset($_REQUEST['searchnew_php'])) {
-    $searchnew_php = rawurldecode($_REQUEST['searchnew_php']);
+if ($superCage->get->keyExists('parentform') && ($matches = $superCage->get->getMatched('parentform','/^[0-9A-Za-z\/_.-]+$/'))) {
+    $parentform = rawurldecode($matches[0]);
+} elseif ($superCage->post->keyExists('parentform') && ($matches = $superCage->post->getMatched('parentform','/^[0-9A-Za-z\/_.-]+$/'))) {
+    $parentform = rawurldecode($matches[0]);
+} else {
+    $parentform = '';
+}
+
+if ($superCage->get->keyExists('formelementname') && ($matches = $superCage->get->getMatched('formelementname','/^[0-9A-Za-z\/_.-]+$/'))) {
+    $formelementname = rawurldecode($matches[0]);
+} elseif ($superCage->post->keyExists('formelementname') && ($matches = $superCage->post->getMatched('formelementname','/^[0-9A-Za-z\/_.-]+$/'))) {
+    $formelementname = rawurldecode($matches[0]);
+} else {
+    $formelementname = '';
+}
+
+if ($superCage->get->keyExists('searchnew_php')){
+    $searchnew_php = rawurldecode($superCage->get->getInt('searchnew_php'));
+} elseif ($superCage->post->keyExists('searchnew_php')){
+    $searchnew_php= rawurldecode($superCage->post->getInt('searchnew_php'));
 } else {
     $searchnew_php = '0';
-}*/
-if ($superCage->get->keyExists('searchnew_php')){
-		$searchnew_php = rawurldecode($superCage->get->getInt('searchnew_php'));
-} elseif ($superCage->post->keyExists('searchnew_php')){
-		$searchnew_php= rawurldecode($superCage->post->getInt('searchnew_php'));
-} else {
-		$searchnew_php = '0';
 }
 
-/*if (isset($_REQUEST['radio'])) {
-    $radio = rawurldecode($_REQUEST['radio']);
-} else {
-    $radio = '';
-}*/
 if ($superCage->get->keyExists('radio')){
-		$radio = rawurldecode($superCage->get->getInt('radio'));
+    $radio = rawurldecode($superCage->get->getInt('radio'));
 } elseif ($superCage->post->keyExists('radio')){
-		$radio= rawurldecode($superCage->post->getInt('radio'));
+    $radio= rawurldecode($superCage->post->getInt('radio'));
 } else {
-		$radio = '0';
+    $radio = '0';
 }
 
-if ($superCage->get->keyExists('limitfolder') && $matches = $superCage->get->getMatched('limitfolder','/^[0-9A-Za-z\/_-]+$/')) {
-	$limitfolder = $matches[0];
+if ($superCage->get->keyExists('no_popup')){
+    $no_popup = $superCage->get->getInt('no_popup');
+} elseif ($superCage->post->keyExists('no_popup')){
+    $no_popup = $superCage->post->getInt('no_popup');
+} else {
+    $no_popup = 0;
 }
 
 $newline = "\n";
-
-?>
+$title = $CONFIG['gallery_name'] . ': ' . $lang_minibrowser_php['click_to_close'];
+$charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
+echo <<< EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html>
 <head>
-<title><?php echo $CONFIG['gallery_name'] .': '. $lang_minibrowser_php['click_to_close'];  ?></title>
-<meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
-<link rel="stylesheet" href="<?php echo $THEME_DIR ?>style.css" />
+<title>{$title}</title>
+<meta http-equiv="content-type" content="text/html; charset={$charset}" />
+<link rel="stylesheet" href="{$THEME_DIR}style.css" />
 <script type="text/javascript" src="js/minibrowser.js"></script>
-<?php
 
-//if ($parentform != '' && $formelementname != '') { // print the javascript bit that updates the parent element --- start
-?>
 <script type="text/javascript">
 function updateParent() {
-    opener.document.<?php print $parentform; ?>.<?php print $formelementname; ?>.value = document.childform.cf2.value;
-    //window.self.close();
+    opener.document.{$parentform}.{$formelementname}.value = document.childform.cf2.value;
     return false;
 }
-<?php
-//if (!$_REQUEST['no_popup']) {
-if ($superCage->get->keyExists('no_popup')){
-		$no_popup = $superCage->get->getInt('no_popup');
-	} elseif ($superCage->post->keyExists('no_popup')){
-		$no_popup = $superCage->post->getInt('no_popup');
-	}
-if (!$no_popup){
 
-?>
-adjust_popup();
-<?php
+EOT;
+if (!$no_popup){
+    echo 'adjust_popup();' . $newline;
 }
-?>
+echo <<< EOT
 </script>
-<?php
-//} // print the javascript bit that updates the parent element --- end
-?>
 </head>
 <body class="tableb" scroll="auto" marginwidth="0" marginheight="0">
 
-<form name="childform" id="childform" method="get" action="<?php print $CPG_PHP_SELF; ?>" onsubmit="return updateParent();">
+<form name="childform" id="childform" method="get" action="{$CPG_PHP_SELF}" onsubmit="return updateParent();">
 
-<?php
-//print $_SERVER["REQUEST_URI"];
+EOT;
+
 starttable(-2, $lang_minibrowser_php['select_directory'], 2);
-if (!GALLERY_ADMIN_MODE) { cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__); }
+if (!GALLERY_ADMIN_MODE) { 
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__); 
+}
 
+// Remove $base_folder because it doesn't appear necessary and breaks on Windows servers
+// $base_folder = rtrim(cpg_get_webroot_path(), $folder_sep).$folder_sep;
+$base_folder = '';
+$dir = opendir($base_folder . $folder);
 
-$base_folder = rtrim(cpg_get_webroot_path(), '/').'/';
-
-//print "basefolder: ".$base_folder;
-
-$dir = opendir($base_folder.$folder);
 // read the folder/file structure we're currently in and put it into an array
 $dirCounter = 0;
 while($file = readdir($dir)){
@@ -211,22 +187,21 @@ while($file = readdir($dir)){
 }
 closedir($dir);
 
-
-// print the folder we're in
-print '<tr>'.$newline;
-print '<td class="tableh2">'.$newline;
+echo '<tr>' . $newline;
+echo '<td class="tableh2">' . $newline;
 if ($radio != 0) {
-    print '<input type="radio" name="cf1" value="'.$folder.rtrim($key, '/').'/" class="radio"  checked="checked" />'.$newline;
+    echo '<input type="radio" name="cf1" value="' . $folder . '/" class="radio"  checked="checked" />' . $newline;
 }
-print '</td>'.$newline;
-print '<td class="tableh2">'.$newline;
-print '<input type="text" name="cf2" size="50" value="/'.ltrim($folder, '/').'" disabled="disabled" class="tableh2_compact" />&nbsp;'.$newline;
+echo '</td>' . $newline;
+echo '<td class="tableh2">' . $newline;
+$folder_array = split(rtrim($CONFIG['fullpath'],'/'),ltrim($folder, $folder_sep));
+$folder_display = rtrim($CONFIG['fullpath'],'/') . $folder_array[1];
+echo '<input type="text" name="cf2" size="50" value="' . $folder_display . '" disabled="disabled" class="tableh2_compact" />&nbsp;' . $newline;
 if ($linktarget != '') {
-    // determine if we should display a submit button start
+    // determine if we should display a submit button - START BLOCK
     // get the allowed extensions
     $filetypes = array();
     $result = cpg_db_query("SELECT extension FROM {$CONFIG['TABLE_FILETYPES']}");
-    //print mysql_num_rows($result);
     while($row = mysql_fetch_row($result)) {
         $filetypes[] = $row[0];
     }
@@ -242,67 +217,56 @@ if ($linktarget != '') {
         } // end foreach
     } // end is_array
     if ($allowed_file_counter!=0) {
-        print '<a href="'.$linktarget.'?startdir='.rtrim(str_replace($limitfolder, '',$folder), '/').'" class="admin_menu" target="_parent">'.$lang_common['ok'].'</a>'.$newline;
-    } // determine if we should display a submit button end
+        echo '<a href="'.$linktarget.'?startdir='.rtrim(str_replace($limitfolder, '',$folder), $folder_sep).'" class="admin_menu" target="_parent">'.$lang_common['ok'].'</a>' . $newline;
+    } // determine if we should display a submit button - END BLOCK
 } else {
-    print '<input type="submit" name="submit" value="'.$lang_common['ok'].'" class="button" />'.$newline;
+    echo '<input type="submit" name="submit" value="'.$lang_common['ok'].'" class="button" />' . $newline;
 }
-print '</td>'.$newline;
-print '</tr>'.$newline;
-
+echo '</td>' . $newline;
+echo '</tr>' . $newline;
 
 // display the "up" link if we're not already in the root folder
-//if ((!empty($_REQUEST['folder']) || !empty($_REQUEST['startfolder'])) && ($folder != '' && $folder!= '/')) {
-if ((!empty($folder) || !empty($startfolder)) && ($folder != '' && $folder!= '/')) {
-    $uplink = rtrim($folder, '/');
-    $remove = strrchr ($uplink,'/');
-    //print 'uplink:'.$uplink.'<br />';
-    //print 'remove:'.$remove.'<br />';
+if (($folder != '') && ($folder != $folder_sep)) {
+    $uplink = rtrim($folder, $folder_sep);
+    $remove = strrchr($uplink, $folder_sep);
     if ($remove != '') {
-        $uplink = str_replace($remove, '', $uplink).'/';
+        $uplink = str_replace($remove, '', $uplink) . $folder_sep;
     } else {
         $uplink = '';
     }
-    //print 'uplink:'.$uplink.'<br />';
-    //if ($_REQUEST['limitfolder'] != $folder) {
-    if ($superCage->get->keyExists('limitfolder') && $matches = $superCage->get->getMatched('limitfolder','/^[0-9A-Za-z\/_-]+$/')) {
-		$limitfolder = rawurldecode($matches[0]);
-} elseif ($superCage->post->keyExists('limitfolder') && $matches = $superCage->post->getMatched('limitfolder','/^[0-9A-Za-z\/_-]+$/')) {
-		$limitfolder = rawurldecode($matches[0]);
-}
-		if ($limitfolder != $folder) {
-        print '<tr>'.$newline;
-        print '<td class="tableb">'.$newline;
-        print '&nbsp;';
-        print '</td>'.$newline;
-        print '<td class="tableb">'.$newline;
-        print '<img src="images/spacer.gif" width="16" height="16" border="0" alt="" align="left" />'.$newline;
-        print '<a href="'.$CPG_PHP_SELF.'?folder='.rawurlencode($uplink).'&amp;parentform='.rawurlencode($parentform).'&amp;formelementname='.rawurlencode($formelementname).'&amp;no_popup='.$no_popup.'&amp;limitfolder='.$limitfolder.'&amp;hidefolders='.$hidefolders.'&amp;linktarget='.$linktarget.'">'.$newline;
-        print '.. '.$lang_minibrowser_php['up'];
-        print '</a>'.$newline;
-        print '</td>'.$newline;
-        print '</tr>'.$newline;
+    if ($limitfolder != $folder) {
+        echo '<tr>' . $newline;
+        echo '<td class="tableb">' . $newline;
+        echo '&nbsp;';
+        echo '</td>' . $newline;
+        echo '<td class="tableb">' . $newline;
+        echo '<img src="images/spacer.gif" width="16" height="16" border="0" alt="" align="left" />' . $newline;
+        echo '<a href="'.$CPG_PHP_SELF.'?folder='.rawurlencode($uplink).'&amp;parentform='.rawurlencode($parentform).'&amp;formelementname='.rawurlencode($formelementname).'&amp;no_popup='.$no_popup.'&amp;limitfolder='.$limitfolder.'&amp;hidefolders='.$hidefolders.'&amp;linktarget='.$linktarget.'">' . $newline;
+        echo '.. '.$lang_minibrowser_php['up'];
+        echo '</a>' . $newline;
+        echo '</td>' . $newline;
+        echo '</tr>' . $newline;
     }
 }
-
 
 if (is_array($foldername)) {
     natcasesort ($foldername);
     foreach($foldername as $key) {
         if ($key != '.' && $key != '..') {
-            print '<tr>'.$newline;
-            print '<td class="tableb">'.$newline;
+            echo '<tr>' . $newline;
+            echo '<td class="tableb">' . $newline;
             if ($radio != 0) {
-                print '<input type="radio" name="cf1" value="'.$folder.rtrim($key, '/').'/" class="radio" onclick="document.childform.cf2.value=\''.$folder.$key.'\'" />'.$newline;
+                echo '<input type="radio" name="cf1" value="'.$folder.rtrim($key, $folder_sep).'/" class="radio" onclick="document.childform.cf2.value=\''.$folder.$key.'\'" />' . $newline;
             }
-            print '</td>'.$newline;
-            print '<td class="tableb">'.$newline;
-            print '<a href="'.$CPG_PHP_SELF.'?folder='.rawurlencode('/'.ltrim($folder, '/').$key.'/').'&amp;parentform='.rawurlencode($parentform).'&amp;formelementname='.rawurlencode($formelementname).'&amp;no_popup='.$no_popup.'&amp;limitfolder='.$limitfolder.'&amp;hidefolders='.$hidefolders.'&amp;linktarget='.$linktarget.'">'.$newline;
-            print cpg_fetch_icon('folder', 0, $lang_minibrowser_php['folder']) . $newline;
-            print $key.$newline;
-            print '</a>'.$newline;
-            print '</td>'.$newline;
-            print '</tr>'.$newline;
+            echo '</td>' . $newline;
+            echo '<td class="tableb">' . $newline;
+            // echo '<a href="'.$CPG_PHP_SELF.'?folder='.rawurlencode($folder_sep.ltrim($folder, $folder_sep).$key.$folder_sep).'&amp;parentform='.rawurlencode($parentform).'&amp;formelementname='.rawurlencode($formelementname).'&amp;no_popup='.$no_popup.'&amp;limitfolder='.$limitfolder.'&amp;hidefolders='.$hidefolders.'&amp;linktarget='.$linktarget.'">' . $newline;
+            echo '<a href="'.$CPG_PHP_SELF.'?folder='.rawurlencode($folder_prefix.ltrim($folder, $folder_sep).$key.$folder_sep).'&amp;parentform='.rawurlencode($parentform).'&amp;formelementname='.rawurlencode($formelementname).'&amp;no_popup='.$no_popup.'&amp;limitfolder='.$limitfolder.'&amp;hidefolders='.$hidefolders.'&amp;linktarget='.$linktarget.'">' . $newline;
+            echo cpg_fetch_icon('folder', 0, $lang_minibrowser_php['folder']) . $newline;
+            echo $key . $newline;
+            echo '</a>' . $newline;
+            echo '</td>' . $newline;
+            echo '</tr>' . $newline;
         }
     }
 }
@@ -310,34 +274,32 @@ if (is_array($foldername)) {
 if (is_array($filename)) {
     natcasesort ($filename);
     foreach($filename as $key) {
-        print '<tr>'.$newline;
-        print '<td class="tableb">'.$newline;
-        print '&nbsp;';
-        print '</td>'.$newline;
-        print '<td class="tableb">'.$newline;
-        print '<img src="images/spacer.gif" width="10" height="15" border="0" alt="" align="left" />'.$newline;
-        print $key.$newline;
-        print '</td>'.$newline;
-        print '</tr>'.$newline;
+        echo '<tr>' . $newline;
+        echo '<td class="tableb">' . $newline;
+        echo '&nbsp;';
+        echo '</td>' . $newline;
+        echo '<td class="tableb">' . $newline;
+        echo '<img src="images/spacer.gif" width="10" height="15" border="0" alt="" align="left" />' . $newline;
+        echo $key . $newline;
+        echo '</td>' . $newline;
+        echo '</tr>' . $newline;
     }
 }
 if ($searchnew_php == 1 && $dirCounter == 0) {
-print '<tr>'.$newline;
-print '<td class="tablef" colspan="2">'.$newline;
-print $lang_search_new_php['no_folders'].$newline;
-print '</td>'.$newline;
-print '</tr>'.$newline;
+echo '<tr>' . $newline;
+echo '<td class="tablef" colspan="2">' . $newline;
+echo $lang_search_new_php['no_folders'] . $newline;
+echo '</td>' . $newline;
+echo '</tr>' . $newline;
 }
 endtable();
-print '<input type="hidden" name="parentform" value="'.$parentform.'" />'."\n";
-print '<input type="hidden" name="formelementname" value="'.$formelementname.'" />'."\n";
+echo '<input type="hidden" name="parentform" value="'.$parentform.'" />'."\n";
+echo '<input type="hidden" name="formelementname" value="'.$formelementname.'" />'."\n";
 
-// print '<div align="center"><a href="#" class="admin_menu" onclick="window.close();">'.$lang_common['close'].'</a></div>';
-?>
+echo <<< EOT
 </form>
 </body>
 </html>
-<?php
 
-
+EOT;
 ?>

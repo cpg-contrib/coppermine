@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-02-08 [B] Fixed minibrowser for Windows servers ('browsable interface' for 'batch add files') {Paver}
 2009-02-06 [B] Changed redirect for login/logout pages as appropriate to avoid extraneous messages {Paver}
 2009-02-06 [B] Fixed 'cookie_warning' on login page when anonymous access is not allowed {Paver}
 2009-02-06 [C] Changed 'disapproved' to 'unapproved' in language keys as appropriate {Paver}
