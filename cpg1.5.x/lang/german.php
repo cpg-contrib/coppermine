@@ -1468,7 +1468,7 @@ $lang_install['finish'] = 'Finish Installation';
 $lang_install['gd_note'] = '<strong>Important :</strong> older versions of the GD graphic library support only JPEG and PNG images. If this is the case for you, then the script will not be able to create thumbnails for GIF images.';
 $lang_install['go_to_main'] = 'Go to the main page';
 $lang_install['im_no_convert_ex'] = 'The installer found the ImageMagick \'convert\' program in \'%s\', however it can\'t be executed by the script.<br /><br />You may consider using GD instead of ImageMagick.';
-$lang_install['im_not_found'] = 'The installer tried to find ImageMagick, but could not determine it\'s existence or there was an error. <br />Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a> 	\'convert\' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />If ImageMagick is installed on your system and you want to use it, <br />you need to input the full path to the \'convert\' program below. <br />On Windows the path should look like \'c:/ImageMagick/\' and should not contain any space, on Unix is it something like \'/usr/bin/X11/\'.<br /><br />If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will try to use GD2 then by default (which is what most users have). <br />You can change this later as well (in Coppermine\'s config screen), so don\'t be afraid if you\'re not sure what to enter here - leave it blank.';
+$lang_install['im_not_found'] = 'The installer tried to find ImageMagick, but could not determine it\'s existence or there was an error. <br />Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a>     \'convert\' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />If ImageMagick is installed on your system and you want to use it, <br />you need to input the full path to the \'convert\' program below. <br />On Windows the path should look like \'c:/ImageMagick/\' and should not contain any space, on Unix is it something like \'/usr/bin/X11/\'.<br /><br />If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will try to use GD2 then by default (which is what most users have). <br />You can change this later as well (in Coppermine\'s config screen), so don\'t be afraid if you\'re not sure what to enter here - leave it blank.';
 $lang_install['im_packages'] = 'Your server supports the following image package(s)';
 $lang_install['im_path'] = 'Path to ImageMagick:';
 $lang_install['im_path_space'] = 'The path to ImageMagick (\'%s\') contains at least one space. This will cause problems in the script.<br /><br />You must move ImageMagick to another directory.';
@@ -2043,16 +2043,16 @@ $lang_search_new_php['be_patient'] = 'Bitte Geduld, das Skript brauchst Zeit, um
 $lang_search_new_php['no_album'] = 'Kein Album gewählt';
 $lang_search_new_php['result_icon'] = 'Klicken für Details oder zum erneut laden';
 $lang_search_new_php['notes'] = <<< EOT
-	<ul>
-	    <li>%s: bedeuted, dass die Datei erfolgreich hinzugefügt wurde</li>
-	    <li>%s: bedeutet, dass die Datei ein Duplikat ist und schon in der Datenbank vorhanden ist</li>
-	    <li>%s: bedeutet, dass die Datei nicht hinzugefügt werden konnte; überprüfe Deine Einstellungen und die Berechtigungen der Verzeichnisse, in dem die Dateien liegen</li>
-	    <li>%s: bedeutet, dass Du kein Album gewählt hast, in das die Dateien eingefügt werden können</li>
-	    <li>%s: bedeutet, dass die Datei kaputt oder nicht verfügbar ist</li>
-	    <li>%s: unbekannter Datei-Typ</li>
-	    <li>%s: die Datei ist eigentlich ein umbenanntes GIF</li>
-	    <li>Falls keines der Icons erscheint, klicke auf die nicht-funktionierenden Bilder, um die Fehlermeldungen von PHP zu sehen</li>
-	    <li>Wenn Dein Browser in ein Timeout läuft, klicke auf die Aktualisieren-Schaltfläche</li>
+    <ul>
+        <li>%s: bedeuted, dass die Datei erfolgreich hinzugefügt wurde</li>
+        <li>%s: bedeutet, dass die Datei ein Duplikat ist und schon in der Datenbank vorhanden ist</li>
+        <li>%s: bedeutet, dass die Datei nicht hinzugefügt werden konnte; überprüfe Deine Einstellungen und die Berechtigungen der Verzeichnisse, in dem die Dateien liegen</li>
+        <li>%s: bedeutet, dass Du kein Album gewählt hast, in das die Dateien eingefügt werden können</li>
+        <li>%s: bedeutet, dass die Datei kaputt oder nicht verfügbar ist</li>
+        <li>%s: unbekannter Datei-Typ</li>
+        <li>%s: die Datei ist eigentlich ein umbenanntes GIF</li>
+        <li>Falls keines der Icons erscheint, klicke auf die nicht-funktionierenden Bilder, um die Fehlermeldungen von PHP zu sehen</li>
+        <li>Wenn Dein Browser in ein Timeout läuft, klicke auf die Aktualisieren-Schaltfläche</li>
    </ul>
 EOT;
 $lang_search_new_php['check_all'] = 'alle auswählen';

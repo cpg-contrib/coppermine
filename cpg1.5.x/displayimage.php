@@ -41,7 +41,7 @@ if (USER_ID && (USER_ACCESS_LEVEL <= 1)) {
 }
 
 if (!$superCage->get->keyExists('slideshow')) {
-    js_include('js/displayimage.js');	
+    js_include('js/displayimage.js');   
 }
 
 if ($CONFIG['enable_smilies']) {

@@ -20,78 +20,78 @@
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
 $akismet_config['akismet_user_agent'] = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' | akismet.inc.php/1.0';
-$akismet_config['akismet_host']	= 'rest.akismet.com';
+$akismet_config['akismet_host'] = 'rest.akismet.com';
 $akismet_config['akismet_version'] = '1.1';
 $akismet_config['linebreak'] = "\r\n";
 $akismet_config['key'] = $CONFIG['comment_akismet_api_key'];
 $akismet_config['blog'] = $CONFIG['site_url'];
 
 function cpg_akismet_send($argument_array = '', $host = '', $url = '') {
-	global $akismet_config;
-	if (!(is_array($argument_array)) || $host == '' || $url == '') { 
-		return FALSE; 
-	}
-	$content = '';
-	foreach ($argument_array as $key => $val) {
-		$content .= $key . '=' . rawurlencode(stripslashes($val)) . '&';
-	}
-	$request = 'POST ' . $url .' HTTP/1.0' . $akismet_config['linebreak']
-		     . 'Host: ' . $host . $akismet_config['linebreak']
-		     . 'Content-Type: application/x-www-form-urlencoded' . $akismet_config['linebreak']
-		     . 'User-Agent: ' . $akismet_config['akismet_user_agent'] . $akismet_config['linebreak']
-		     . 'Content-Length: ' . strlen($content) . $akismet_config['linebreak'].$akismet_config['linebreak']
-		     . $content . $akismet_config['linebreak'];
-	$port = 80;
-	unset($response);
-	$fh = fsockopen($host, $port, $errno, $errstr, 3);
-	if ($fh != FALSE) {
-		@fwrite($fh, $request);
-		while (!(feof($fh))) {
-			$response .= fgets($fh, 1160); 
-		}
-		@fclose( $fh );
-		$response = explode("\r\n\r\n", $response, 2);
-	}
-	return $response;
+    global $akismet_config;
+    if (!(is_array($argument_array)) || $host == '' || $url == '') { 
+        return FALSE; 
+    }
+    $content = '';
+    foreach ($argument_array as $key => $val) {
+        $content .= $key . '=' . rawurlencode(stripslashes($val)) . '&';
+    }
+    $request = 'POST ' . $url .' HTTP/1.0' . $akismet_config['linebreak']
+             . 'Host: ' . $host . $akismet_config['linebreak']
+             . 'Content-Type: application/x-www-form-urlencoded' . $akismet_config['linebreak']
+             . 'User-Agent: ' . $akismet_config['akismet_user_agent'] . $akismet_config['linebreak']
+             . 'Content-Length: ' . strlen($content) . $akismet_config['linebreak'].$akismet_config['linebreak']
+             . $content . $akismet_config['linebreak'];
+    $port = 80;
+    unset($response);
+    $fh = fsockopen($host, $port, $errno, $errstr, 3);
+    if ($fh != FALSE) {
+        @fwrite($fh, $request);
+        while (!(feof($fh))) {
+            $response .= fgets($fh, 1160); 
+        }
+        @fclose( $fh );
+        $response = explode("\r\n\r\n", $response, 2);
+    }
+    return $response;
 }
 
 function cpg_akismet_verify_key() {
-	global $akismet_config;
-	$argument_array = array('key' => $akismet_config['key'], 'blog' => $akismet_config['blog']);
-	$host = $akismet_config['akismet_host'];
-	$url = 'http://' . $host . '/' . $akismet_config['akismet_version'] . '/verify-key';
-	$valid	= cpg_akismet_send($argument_array, $host, $url);
-	if ($valid[1] == 'valid') { 
-		return TRUE;  
-	} else {
-		return $valid; 
-	}
+    global $akismet_config;
+    $argument_array = array('key' => $akismet_config['key'], 'blog' => $akismet_config['blog']);
+    $host = $akismet_config['akismet_host'];
+    $url = 'http://' . $host . '/' . $akismet_config['akismet_version'] . '/verify-key';
+    $valid  = cpg_akismet_send($argument_array, $host, $url);
+    if ($valid[1] == 'valid') { 
+        return TRUE;  
+    } else {
+        return $valid; 
+    }
 }
 
 function cpg_akismet_submit_data($variable_array, $type = '') {
-	global $akismet_config;
-	$result = cpg_akismet_verify_key();
-	if ($result != TRUE) { 
-		return FALSE; 
-	}
-	if ($type == 'ham') {
-		$submit_type = 'submit-ham';
-	} elseif ($type == 'spam') {
-		$submit_type = 'submit-spam';
-	} else {
-		$submit_type = 'comment-check';
-	}
-	$variable_array['blog']	= $akismet_config['blog'];
-	$host = $akismet_config['key'] . '.' . $akismet_config['akismet_host'];
-	$url = 'http://' . $host . '/' . $akismet_config['akismet_version'] . '/' . $submit_type;
-	$result = cpg_akismet_send($variable_array, $host, $url);
-	// Akismet sends the a lower-case string "true" back, not to be confused with a boolean!
-	// We convert this to a boolean return value.
-	if ($result[1] == 'true') { 
-		return TRUE; 
-	} else {
-		return FALSE;  
-	}
+    global $akismet_config;
+    $result = cpg_akismet_verify_key();
+    if ($result != TRUE) { 
+        return FALSE; 
+    }
+    if ($type == 'ham') {
+        $submit_type = 'submit-ham';
+    } elseif ($type == 'spam') {
+        $submit_type = 'submit-spam';
+    } else {
+        $submit_type = 'comment-check';
+    }
+    $variable_array['blog'] = $akismet_config['blog'];
+    $host = $akismet_config['key'] . '.' . $akismet_config['akismet_host'];
+    $url = 'http://' . $host . '/' . $akismet_config['akismet_version'] . '/' . $submit_type;
+    $result = cpg_akismet_send($variable_array, $host, $url);
+    // Akismet sends the a lower-case string "true" back, not to be confused with a boolean!
+    // We convert this to a boolean return value.
+    if ($result[1] == 'true') { 
+        return TRUE; 
+    } else {
+        return FALSE;  
+    }
 }
 
 ?>

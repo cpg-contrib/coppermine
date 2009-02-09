@@ -348,8 +348,8 @@ case 'albmgr':
     
     //add the new album name to database
     if ($op == 'add') {
-    	
-		$user_id = USER_ID;
+        
+        $user_id = USER_ID;
         //add the album to database
         $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description, owner) VALUES ('$category', '$get_album_name', 'NO', '{$position}', '', '$user_id')";
         cpg_db_query($query);
@@ -412,10 +412,10 @@ case 'albmgr':
     
     // save sorted list here
     if ($superCage->post->keyExists('category')) {
-    	//get the category value
-    	$category = $superCage->post->getInt('category');
+        //get the category value
+        $category = $superCage->post->getInt('category');
         
-		$result = cpg_db_query("SELECT aid, pos, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '{$category}' ORDER BY pos ASC");
+        $result = cpg_db_query("SELECT aid, pos, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '{$category}' ORDER BY pos ASC");
         $rowset = cpg_db_fetch_rowset($result);  
 
         if ($superCage->post->keyExists('sort_order')) {

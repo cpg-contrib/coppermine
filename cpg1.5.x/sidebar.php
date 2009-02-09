@@ -43,10 +43,6 @@ if (USER_ID) {
 if ($superCage->get->getAlpha('action') == 'install') {
 //////// install --- start
 pageheader($lang_sidebar_php['sidebar'] . ' - ' . $lang_sidebar_php['install']);
-?>
-
-<?php
-
 starttable('100%', $CONFIG['gallery_name']. ' - ' . $lang_sidebar_php['sidebar'] , 1);
 
 print <<< EOT

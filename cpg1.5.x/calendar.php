@@ -34,11 +34,11 @@ class MyCalendar extends Calendar {
         // Fixed possible security hole
         //$s = $_SERVER['PHP_SELF']; //getenv('SCRIPT_NAME');
         if ($matches = $superCage->get->getMatched('action', '/^[a-z]+$/')) {
-        	$action = $matches[0];
+            $action = $matches[0];
         } elseif ($matches = $superCage->post->getMatched('action', '/^[a-z]+$/')) {
             $action = $matches[0];
         } else {
-        	$action = '';
+            $action = '';
         }
         return "$CPG_PHP_SELF?action=$action&amp;month=$month&amp;year=$year";
     }
@@ -83,101 +83,103 @@ if ($matches = $superCage->get->getMatched('action', '/^[a-z]+$/')) {
 }
 
 if ($action == 'banning' || $action == 'browsebydate')  {
-?>
+    $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
+    echo <<< EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <title><?php print $lang_calendar_php['title']; ?></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=<?php echo 'language file' ? $lang_charset : $CONFIG['charset']; ?>" />
+    <title>{$lang_calendar_php['title']}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
     <meta http-equiv="Pragma" content="no-cache" />
-<link rel="stylesheet" href="themes/<?php echo $CONFIG['theme']; ?>
-/style.css" />
-<script language="javascript" type="text/javascript">
+    <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" />
+    <script language="javascript" type="text/javascript">
+    // get the date format
+    var calendarFormat = 'y-m-d';
+    var targetDateField = window.opener.calendarTarget;
 
-// get the date format
-var calendarFormat = 'y-m-d';
-var targetDateField = window.opener.calendarTarget;
+    function sendDate(month, day, year) 
+    {
+        // pad with blank zeros numbers under 10
+        month = month < 10 ? '0' + month : month;
+        day   = day   < 10 ? '0' + day   : day;
+        selectedDate = parent.calendarFormat;
+        selectedDate = selectedDate.replace(/m/, month);
+        selectedDate = selectedDate.replace(/d/, day);
+        selectedDate = selectedDate.replace(/y/, year);
 
-function sendDate(month, day, year) {
-    // pad with blank zeros numbers under 10
-    month = month < 10 ? '0' + month : month;
-    day   = day   < 10 ? '0' + day   : day;
-    selectedDate = parent.calendarFormat;
-    selectedDate = selectedDate.replace(/m/, month);
-    selectedDate = selectedDate.replace(/d/, day);
-    selectedDate = selectedDate.replace(/y/, year);
+EOT;
+    if ($action == 'banning') {
+        echo <<< EOT
+        if (selectedDate == '-0-0') {
+            selectedDate = '';
+        }
+        targetDateField.value = selectedDate;
+        parent.window.close();
 
-<?php
-if ($action == 'banning'){
-?>
-
-    if (selectedDate == '-0-0') {
-       selectedDate = '';
-       }
-    targetDateField.value = selectedDate;
-    parent.window.close();
-<?php }
-else {
-?>
-    window.opener.location='thumbnails.php?album=datebrowse&date=' + selectedDate;
-<?php
-}
-?>
-}
-</script>
+EOT;
+    } else {
+        echo <<< EOT
+        window.opener.location='thumbnails.php?album=datebrowse&date=' + selectedDate;
+EOT;
+    }
+    echo <<< EOT
+    }
+    </script>
 </head>
 <body>
-<?php
 
-$today = getdate();
+EOT;
 
-if ($superCage->get->testInt('month')) {
-	$month = $superCage->get->getInt('month');
-} elseif ($superCage->post->testInt('month')) {
-    $month = $superCage->post->getInt('month');
-} else {
-	$month = 0;
-}
+    $today = getdate();
 
-if ($superCage->get->testInt('year')) {
-    $year = $superCage->get->getInt('year');
-} elseif ($superCage->post->testInt('year')) {
-    $year = $superCage->post->getInt('year');
-} else {
-    $year = 0;
-}
+    if ($superCage->get->testInt('month')) {
+        $month = $superCage->get->getInt('month');
+    } elseif ($superCage->post->testInt('month')) {
+        $month = $superCage->post->getInt('month');
+    } else {
+        $month = 0;
+    }
 
-if ($year == 0) {
-    $year = $today['year'];
-}
+    if ($superCage->get->testInt('year')) {
+        $year = $superCage->get->getInt('year');
+    } elseif ($superCage->post->testInt('year')) {
+        $year = $superCage->post->getInt('year');
+    } else {
+        $year = 0;
+    }
 
-if ($month == 0) {
-    $month = $today['mon'];
-}
+    if ($year == 0) {
+        $year = $today['year'];
+    }
+    if ($month == 0) {
+        $month = $today['mon'];
+    }
 
-$cal = new MyCalendar;
-$cal->setMonthNames($lang_month);
-$cal->setDayNames($lang_day_of_week);
-$cal->setStartDay(1);
-if($action == 'banning') {
-	echo $cal->getMonthView($month, $year, true);
-} else {
-	echo $cal->getMonthView($month, $year, false);
-}
+    $cal = new MyCalendar;
+    $cal->setMonthNames($lang_month);
+    $cal->setDayNames($lang_day_of_week);
+    $cal->setStartDay(1);
+    if($action == 'banning') {
+        echo $cal->getMonthView($month, $year, true);
+    } else {
+        echo $cal->getMonthView($month, $year, false);
+    }
 
+    echo <<< EOT
+<div align="center"><a href="javascript:window.close()" class="admin_menu">{$lang_common['close']}</a>
 
-?>
-<div align="center"><a href="javascript:window.close()" class="admin_menu"><?php print $lang_common['close']; ?></a>
-<?php
-  if ($action == 'banning') {
-      print '<a href="#" onclick="sendDate(\'\', \'\', \'\');" class="admin_menu">'.$lang_calendar_php['clear_date'].'</a></div>';
-  }
-?>
+EOT;
+    if ($action == 'banning') {
+        echo '<a href="#" onclick="sendDate(\'\', \'\', \'\');" class="admin_menu">' . $lang_calendar_php['clear_date'] . '</a></div>';
+    }
+    echo <<< EOT
 <br />
 </body>
 </html>
-<?php
-} // end action=banning
+
+EOT;
+}
+// end action=banning
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -400,12 +402,12 @@ class Calendar
               $s .= "<td class=\"$class\" align=\"right\" valign=\"top\">";
               if ($d > 0 && $d <= $daysInMonth)
               {
-			      if($this->needs_link($year, $month, $d, $today, $only_future_dates)) {
+                  if($this->needs_link($year, $month, $d, $today, $only_future_dates)) {
                       $link = $this->getDateLink($d, $month, $year);
-				  } else {
-				      $link = '';
-				  }
-				  $s .= (($link == "") ? $d : $link.$d."</a>");
+                  } else {
+                      $link = '';
+                  }
+                  $s .= (($link == "") ? $d : $link.$d."</a>");
               }
               else
               {
@@ -423,31 +425,31 @@ class Calendar
     }
 
 
-	/* needs_link()
-	*
-	* @param int $year
-	* @param int $month
-	* @param int $day
-	* @param array $today
-	* @param bool $only_future_dates
-	*
-	* @return bool $needs_link
-	*/
-	function needs_link($year, $month, $day, $today, $only_future_dates) {
-		if($only_future_dates) {
-			if($year >= $today['year']) {
-				if($month >= $today['mon']) {
-					if($day >= $today['mday']) {
-						return true;
-					}
-				}
-			} else {
-				return false;
-			}
-		} else {
-			return true;
-		}
-	}
+    /* needs_link()
+    *
+    * @param int $year
+    * @param int $month
+    * @param int $day
+    * @param array $today
+    * @param bool $only_future_dates
+    *
+    * @return bool $needs_link
+    */
+    function needs_link($year, $month, $day, $today, $only_future_dates) {
+        if($only_future_dates) {
+            if($year >= $today['year']) {
+                if($month >= $today['mon']) {
+                    if($day >= $today['mday']) {
+                        return true;
+                    }
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
 
     /* Generate the HTML for a given year */
     function getYearHTML($year) {

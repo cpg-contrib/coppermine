@@ -90,11 +90,11 @@ echo <<< EOT
                                         <tr>
                                                 <td><input type="checkbox" name="owner_name" id="owner_name" class="checkbox" /><label for="owner_name" class="clickable_option">{$lang_common['owner_name']}</label></td>
                                                 <td align="right">
-																	<select name="type" class="listbox">
-																		<option value="AND" selected="selected">{$lang_search_php['all_words']}</option>
-																		<option value="OR">{$lang_search_php['any_words']}</option>
-																		<option value="regex">{$lang_search_php['regex']}</option>
-																	</select>
+                                                                    <select name="type" class="listbox">
+                                                                        <option value="AND" selected="selected">{$lang_search_php['all_words']}</option>
+                                                                        <option value="OR">{$lang_search_php['any_words']}</option>
+                                                                        <option value="regex">{$lang_search_php['regex']}</option>
+                                                                    </select>
                                                 </td>
                                         </tr>
                                         <tr>
@@ -119,7 +119,7 @@ echo <<< EOT
                                                 <td>&nbsp;</td>
                                         </tr>
                                         
-											              $customs
+                                                          $customs
                                                 $ip
                                 </table>
                         </td>

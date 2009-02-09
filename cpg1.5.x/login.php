@@ -66,7 +66,7 @@ if ($superCage->post->keyExists('submitted')) {
                   <tr>
                       <td colspan="2" class="tableh2">
                           <div id="cpgMessage" class="cpg_user_message cpg_message_validation">
-	                          {$lang_login_php['err_login']}
+                              {$lang_login_php['err_login']}
                           </div>
                       </td>
                   </tr>

@@ -319,10 +319,10 @@ function initPhotoCopy($album,$directory)
    
   $js_pictures = phpArrayToJS($pic_array,'pictures');
   
-  ?>
+  echo <<< EOT
     
     <script type="text/javascript">
-      var <?php echo $js_pictures ?>;
+      var {$js_pictures};
       processPicture(0);
       
       function processPicture(offset)
@@ -350,17 +350,17 @@ function initPhotoCopy($album,$directory)
             };
             
             // Generate and do xmlHttp call
-          ajxobj.open('GET',"export.php?dir=<?php echo $superCage->post->getEscaped('directory') ?>&id=" + pictures[offset]['pid'], true);
+          ajxobj.open('GET',"export.php?dir={$superCage->post->getEscaped('directory')}&id=" + pictures[offset]['pid'], true);
           ajxobj.send(null);
       }
 
 
 
     </script>
-    
-  <?php
-  
- 
+
+EOT;
+
+
 }
 // Does a recursive copy on a directory
 function recursive_copy($src,$dest)

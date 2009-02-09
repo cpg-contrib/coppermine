@@ -232,40 +232,40 @@ function display_instructions()
     global $lang_xp_publish_required, $lang_xp_publish_client, $lang_xp_publish_select, $lang_xp_publish_testing, $lang_xp_publish_notes, $lang_xp_publish_flood, $lang_xp_publish_php;
     global $CONFIG, $lang_charset, $lang_common, $lang_errors;
 
-	$publish_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp&amp;ae=xp_end', '600', '600');
-	//$requirements_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp&amp;ae=xp_end', '600', '600');
-	$install_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp_publish_setup&amp;ae=xp_publish_setup_end', '450', '400');
-	$usage_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp_publish_upload&amp;ae=xp_publish_upload_end', '600', '450');
-	$ok_icon = cpg_fetch_icon('ok', 0);
-	$stop_icon = cpg_fetch_icon('stop', 0);
-	$warning_icon = cpg_fetch_icon('warning', 0);
-	pageheader($CONFIG['gallery_name'] . ' &bull; ' . $lang_xp_publish_php['title']);
-	starttable('100%' , '<h1>'.$lang_xp_publish_php['client_header'].$publish_help.'</h1>', 1);
-	print <<< EOT
-	<tr>
-		<td class="tableh2">
-			<h2>{$lang_xp_publish_php['requirements']}</h2>
-		</td>
-	</tr>
-	<tr>
-		<td class="tableb">
-			<ul>
-				<li>
-					{$lang_xp_publish_php['windows_xp']}<br />
-					<div id="xp_vista" style="display:none">{$ok_icon}{$lang_common['ok']} - {$lang_xp_publish_php['windows_xp']}</div>
-					<div id="other_os" style="display:none">{$stop_icon}{$lang_xp_publish_php['no_windows_xp']}</div>
-					<div id="no_os_detection" style="display:block">{$warning_icon}{$lang_xp_publish_php['no_os_detect']}</div>
-				</li>
-				<li>
-					{$lang_xp_publish_php['requirement_ie']}<br />
-					<div id="ie" style="display:none">{$ok_icon}{$lang_common['ok']} - {$lang_xp_publish_php['requirement_ie']}</div>
-					<div id="other_browser" style="display:none">{$stop_icon}{$lang_xp_publish_php['no_ie']}</div>
-					<div id="no_browser_detection" style="display:block">{$warning_icon}{$lang_xp_publish_php['no_browser_detect']}</div>
-				</li>
+    $publish_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp&amp;ae=xp_end', '600', '600');
+    //$requirements_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp&amp;ae=xp_end', '600', '600');
+    $install_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp_publish_setup&amp;ae=xp_publish_setup_end', '450', '400');
+    $usage_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp_publish_upload&amp;ae=xp_publish_upload_end', '600', '450');
+    $ok_icon = cpg_fetch_icon('ok', 0);
+    $stop_icon = cpg_fetch_icon('stop', 0);
+    $warning_icon = cpg_fetch_icon('warning', 0);
+    pageheader($CONFIG['gallery_name'] . ' &bull; ' . $lang_xp_publish_php['title']);
+    starttable('100%' , '<h1>'.$lang_xp_publish_php['client_header'].$publish_help.'</h1>', 1);
+    print <<< EOT
+    <tr>
+        <td class="tableh2">
+            <h2>{$lang_xp_publish_php['requirements']}</h2>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableb">
+            <ul>
+                <li>
+                    {$lang_xp_publish_php['windows_xp']}<br />
+                    <div id="xp_vista" style="display:none">{$ok_icon}{$lang_common['ok']} - {$lang_xp_publish_php['windows_xp']}</div>
+                    <div id="other_os" style="display:none">{$stop_icon}{$lang_xp_publish_php['no_windows_xp']}</div>
+                    <div id="no_os_detection" style="display:block">{$warning_icon}{$lang_xp_publish_php['no_os_detect']}</div>
+                </li>
+                <li>
+                    {$lang_xp_publish_php['requirement_ie']}<br />
+                    <div id="ie" style="display:none">{$ok_icon}{$lang_common['ok']} - {$lang_xp_publish_php['requirement_ie']}</div>
+                    <div id="other_browser" style="display:none">{$stop_icon}{$lang_xp_publish_php['no_ie']}</div>
+                    <div id="no_browser_detection" style="display:block">{$warning_icon}{$lang_xp_publish_php['no_browser_detect']}</div>
+                </li>
 EOT;
-	if (GALLERY_ADMIN_MODE) {
-		print <<< EOT
-				<li>{$lang_xp_publish_php['requirement_http_upload']}</li>
+    if (GALLERY_ADMIN_MODE) {
+        print <<< EOT
+                <li>{$lang_xp_publish_php['requirement_http_upload']}</li>
 EOT;
         if ($CONFIG['gallery_name'] == '') {
             print '<li>'.$stop_icon.$lang_xp_publish_php['no_gallery_name'].'</li>';
@@ -273,62 +273,62 @@ EOT;
         if ($CONFIG['gallery_description'] == '') {
             print '<li>'.$stop_icon.$lang_xp_publish_php['no_gallery_description'].'</li>';
         }
-	}
-	if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
-		print <<< EOT
-				<li>{$lang_xp_publish_php['requirement_permissions']}</li>
+    }
+    if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
+        print <<< EOT
+                <li>{$lang_xp_publish_php['requirement_permissions']}</li>
 EOT;
-	}
-	if (!USER_ID) {
-		print <<< EOT
-				<li>{$lang_xp_publish_php['requirement_login']}</li>
+    }
+    if (!USER_ID) {
+        print <<< EOT
+                <li>{$lang_xp_publish_php['requirement_login']}</li>
 EOT;
-	}
-	print <<< EOT
-			</ul>
-		</td>
-	</tr>
-	<tr>
-		<td class="tableh2">
-			<h2>{$lang_xp_publish_php['howto_install']}{$install_help}</h2>
-		</td>
-	</tr>
-	<tr>
-		<td class="tableb">
-			<ul>
-				<li>
+    }
+    print <<< EOT
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableh2">
+            <h2>{$lang_xp_publish_php['howto_install']}{$install_help}</h2>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableb">
+            <ul>
+                <li>
 EOT;
-	printf($lang_xp_publish_php['install_right_click'],'<a href="'.$CPG_PHP_SELF.'?cmd=send_reg">'.cpg_fetch_icon('download',0), '</a>');
-	print <<< EOT
-				</li>
-				<li>{$lang_xp_publish_php['install_save']}</li>
-				<li>{$lang_xp_publish_php['install_execute']}</li>
-			</ul>
-		</td>
-	</tr>
-	<tr>
-		<td class="tableh2">
-			<h2>{$lang_xp_publish_php['usage']}{$usage_help}</h2>
-		</td>
-	</tr>
-	<tr>
-		<td class="tableb">
-			<ul>
-				<li>{$lang_xp_publish_php['select_files']}</li>
-				<li>{$lang_xp_publish_php['display_tasks']}</li>
-				<li>{$lang_xp_publish_php['publish_on_the_web']}</li>
-				<li>{$lang_xp_publish_php['confirm_selection']}, {$lang_xp_publish_php['next']}</li>
-				<li>{$lang_xp_publish_php['select_service']}</li>
-				<li>{$lang_xp_publish_php['enter_login']}</li>
-				<li>{$lang_xp_publish_php['select_album']}, {$lang_xp_publish_php['next']}</li>
-				<li>{$lang_xp_publish_php['upload_starts']}</li>
-				<li>{$lang_xp_publish_php['upload_completed']}</li>
-			</ul>
-		</td>
-	</tr>
+    printf($lang_xp_publish_php['install_right_click'],'<a href="'.$CPG_PHP_SELF.'?cmd=send_reg">'.cpg_fetch_icon('download',0), '</a>');
+    print <<< EOT
+                </li>
+                <li>{$lang_xp_publish_php['install_save']}</li>
+                <li>{$lang_xp_publish_php['install_execute']}</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableh2">
+            <h2>{$lang_xp_publish_php['usage']}{$usage_help}</h2>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableb">
+            <ul>
+                <li>{$lang_xp_publish_php['select_files']}</li>
+                <li>{$lang_xp_publish_php['display_tasks']}</li>
+                <li>{$lang_xp_publish_php['publish_on_the_web']}</li>
+                <li>{$lang_xp_publish_php['confirm_selection']}, {$lang_xp_publish_php['next']}</li>
+                <li>{$lang_xp_publish_php['select_service']}</li>
+                <li>{$lang_xp_publish_php['enter_login']}</li>
+                <li>{$lang_xp_publish_php['select_album']}, {$lang_xp_publish_php['next']}</li>
+                <li>{$lang_xp_publish_php['upload_starts']}</li>
+                <li>{$lang_xp_publish_php['upload_completed']}</li>
+            </ul>
+        </td>
+    </tr>
 EOT;
-	endtable();
-	print <<< EOT
+    endtable();
+    print <<< EOT
 <script type="text/javascript">
 function os_browser_detection() {
   // browser detection.
@@ -370,7 +370,7 @@ function os_browser_detection() {
 self.onload = os_browser_detection();
 </script>
 EOT;
-	pagefooter();
+    pagefooter();
 
 }
 
@@ -730,7 +730,7 @@ function create_album()
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_create_album;
     global $lang_errors, $lang_xp_publish_php;
-  	$superCage = Inspekt::makeSuperCage();
+    $superCage = Inspekt::makeSuperCage();
 
     if (!(USER_CAN_CREATE_ALBUMS || USER_IS_ADMIN)) simple_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
@@ -765,14 +765,14 @@ function process_picture()
 {
     global $CONFIG, $IMG_TYPES;
     global $lang_db_input_php, $lang_errors;
-	$superCage = Inspekt::makeSuperCage();
+    $superCage = Inspekt::makeSuperCage();
 
     @unlink(LOGFILE);
 
     if (!USER_ID || !USER_CAN_UPLOAD_PICTURES) simple_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
     //$album = (int)$_GET['album'];
-	$album = $superCage->get->getInt('album');
+    $album = $superCage->get->getInt('album');
     $title = '';
     $caption = '';
     $keywords = '';
@@ -841,14 +841,14 @@ function process_picture()
     $matches = array();
 
     //if (get_magic_quotes_gpc()) $_FILES['userpicture']['name'] = stripslashes($_FILES['userpicture']['name']);
-  	//using getRaw as it will be sanitized in the code below in the preg_match. {SaWey}
- 	 $filename = $superCage->files->getRaw('/userpicture/name');
-	 if (get_magic_quotes_gpc()){
-		$filename = stripslashes($filename); 
-	 }
+    //using getRaw as it will be sanitized in the code below in the preg_match. {SaWey}
+     $filename = $superCage->files->getRaw('/userpicture/name');
+     if (get_magic_quotes_gpc()){
+        $filename = stripslashes($filename); 
+     }
     // Replace forbidden chars with underscores
     //$picture_name = replace_forbidden($_FILES['userpicture']['name']);
-	$picture_name = replace_forbidden($filename);
+    $picture_name = replace_forbidden($filename);
     // Check that the file uploaded has a valid extension
     if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
         $matches[1] = 'invalid_fname';

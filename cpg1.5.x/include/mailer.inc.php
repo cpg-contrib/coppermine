@@ -20,16 +20,16 @@
 // Custom mail function
 function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_name = '', $sender_email = '', $msg_body_plaintext = '')
 {
-	global $CONFIG, $lang_charset, $HTML_SUBST;
+    global $CONFIG, $lang_charset, $HTML_SUBST;
 
         // makeshift plaintext if not set
         if (!$msg_body_plaintext){
                 $msg_body_plaintext = strip_tags($msg_body);
         }
 
-		// Convert html entities back into normal form for display in non HTML formats
-		//$msg_body_plaintext = strtr($msg_body_plaintext, array_flip($HTML_SUBST));
-		//$subject = strtr($subject, array_flip($HTML_SUBST));
+        // Convert html entities back into normal form for display in non HTML formats
+        //$msg_body_plaintext = strtr($msg_body_plaintext, array_flip($HTML_SUBST));
+        //$subject = strtr($subject, array_flip($HTML_SUBST));
 
         // send mails to ALL admins - not bridged only
     if ($to == 'admin'){
@@ -47,7 +47,7 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
                 $to = array($to);
         }
 
-	if ($sender_name == '') $sender_name = strtr($CONFIG['gallery_name'], array_flip($HTML_SUBST));
+    if ($sender_name == '') $sender_name = strtr($CONFIG['gallery_name'], array_flip($HTML_SUBST));
     if ($sender_email == '') { $sender_email = $CONFIG['gallery_admin_email']; }
 
     $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];

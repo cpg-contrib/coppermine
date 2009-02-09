@@ -114,25 +114,25 @@ if (isset($album) && is_numeric($album)) {
     mysql_free_result($result);
     
     //show sort options only when not a meta album
-	$js_sort_vars = array(
-		'aid'           => $album,
-		'page'          => $page,
-		'sort_name'     => $lang_thumb_view['name'],
-		'sort_title'    => $lang_common['title'],
-		'sort_date'     => $lang_thumb_view['date'],
-		'sort_position' => $lang_thumb_view['position'],
-		'sort_ta'       => $lang_thumb_view['sort_ta'],
-		'sort_td'       => $lang_thumb_view['sort_td'],
-		'sort_na'       => $lang_thumb_view['sort_na'],
-		'sort_nd'       => $lang_thumb_view['sort_nd'],
-		'sort_da'       => $lang_thumb_view['sort_da'],
-		'sort_dd'       => $lang_thumb_view['sort_dd'],
-		'sort_pa'       => $lang_thumb_view['sort_pa'],
-		'sort_pd'       => $lang_thumb_view['sort_pd']
-	);
-	
-	set_js_var('sort_vars', $js_sort_vars);
-	js_include('js/thumbnails.js');
+    $js_sort_vars = array(
+        'aid'           => $album,
+        'page'          => $page,
+        'sort_name'     => $lang_thumb_view['name'],
+        'sort_title'    => $lang_common['title'],
+        'sort_date'     => $lang_thumb_view['date'],
+        'sort_position' => $lang_thumb_view['position'],
+        'sort_ta'       => $lang_thumb_view['sort_ta'],
+        'sort_td'       => $lang_thumb_view['sort_td'],
+        'sort_na'       => $lang_thumb_view['sort_na'],
+        'sort_nd'       => $lang_thumb_view['sort_nd'],
+        'sort_da'       => $lang_thumb_view['sort_da'],
+        'sort_dd'       => $lang_thumb_view['sort_dd'],
+        'sort_pa'       => $lang_thumb_view['sort_pa'],
+        'sort_pd'       => $lang_thumb_view['sort_pd']
+    );
+    
+    set_js_var('sort_vars', $js_sort_vars);
+    js_include('js/thumbnails.js');
 
     // Meta albums, we need to restrict the albums to the current category
     // except lastupby and lastcomby as CPG currently restricts these to the user's albums

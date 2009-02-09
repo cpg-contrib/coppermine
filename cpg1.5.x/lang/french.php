@@ -67,7 +67,7 @@ $lang_meta_album_names['album_search'] = 'Résultat de la recherche dans les Alb
 $lang_meta_album_names['category_search'] = 'Résultat de la recherche dans les Catégories';
 $lang_meta_album_names['favpics'] = 'Photos Préférées';
 $lang_meta_album_names['datebrowse'] = 'Navigation par date'; //cpg1.5
-	
+    
 $lang_errors['access_denied'] = 'Vous n\'avez pas la permission d\'accéder à cette page.';
 $lang_errors['perm_denied'] = 'Vous n\'avez pas la permission d\'effectuer cette opération.';
 $lang_errors['param_missing'] = 'Script appelé sans les paramètres nécessaires.';
@@ -416,7 +416,7 @@ $lang_smilies_inc_php['Mr. Green'] = 'Mr. Green';
 // File albmgr.php
 // ----------------------- //
 if (defined('ALBMGR_PHP')) {
-$lang_albmgr_php['title'] = 'Gestionnaire d\'Albums'; // cpg1.5	
+$lang_albmgr_php['title'] = 'Gestionnaire d\'Albums'; // cpg1.5 
 $lang_albmgr_php['alb_need_name'] = 'Les Albums doivent avoir un nom&nbsp;!';//js-alert
 $lang_albmgr_php['confirm_modifs'] = 'Voulez-vous vraiment effectuer ces modifications ?'; //js-alert
 $lang_albmgr_php['no_change'] = 'vous n\\\'avez effectué Aucun changement&nbsp;!';//js-alert
@@ -1451,7 +1451,7 @@ if (defined('INSTALL_PHP')) {
   $lang_install['gd_note'] = '<strong>Important :</strong> les anciennes versions de la librairie graphiqueGD ne gèrent que les images JPEG et PNG . Si vous êtes dans ce cas, le script ne pourra pas créer des vignettes pour les fichiers GIF.';
   $lang_install['go_to_main'] = 'Allez à la page d\'accueil';
   $lang_install['im_no_convert_ex'] = 'L\'installeur a trouvé l\'utilitaire  \'convert\' ImageMagick dansn \'%s\', toutefois il ne peut pas être utilisé par le script.<br /><br />Vous devriez utiliser GD à la place d\'ImageMagick.';
-  $lang_install['im_not_found'] = 'L\'installeur a essayé de trouver ImageMagick, mais n\'a pas pus vérifier son existence ou a rencontré une erreur. <br />Coppermine peut utiliser l\'utilitaire <a href="http://www.imagemagick.org/" target="_blank">d\'ImageMagick</a> 	\'convert\' pour créer les vignettes. La qualité des images produites par ImageMagick est supérieure à GD1 mais équivalente à GD2.<br /><br />Si ImageMagick est installé sur votre système et que vous voulez l\'utiliser, <br />vous devez entrer le chemin complet vers l\'utilitaire \'convert\' ci-desous. <br />Sous Windows le chemin devrait ressembler à ça: \'c:/ImageMagick/\' et ne doit pas comprendre d\'espaces, sous Unix c\'est quelque chose comme \'/usr/bin/X11/\'.<br /><br />Si vous ne savez pas si vous avez ImageMagick ou pas, laissez ce champ vide - l\'installeur va essayer d\'Utilisez GD2 par défaut (c\'est la configuration de la plupart des Utilisateurs). <br />Vous pourrez changer cela plus tard (dans la page de configuration de Coppermine), n\'ayez donc aucune crainte si vous ne savez pas quoi entrer ici - laissez simplement le champ vide.';
+  $lang_install['im_not_found'] = 'L\'installeur a essayé de trouver ImageMagick, mais n\'a pas pus vérifier son existence ou a rencontré une erreur. <br />Coppermine peut utiliser l\'utilitaire <a href="http://www.imagemagick.org/" target="_blank">d\'ImageMagick</a>  \'convert\' pour créer les vignettes. La qualité des images produites par ImageMagick est supérieure à GD1 mais équivalente à GD2.<br /><br />Si ImageMagick est installé sur votre système et que vous voulez l\'utiliser, <br />vous devez entrer le chemin complet vers l\'utilitaire \'convert\' ci-desous. <br />Sous Windows le chemin devrait ressembler à ça: \'c:/ImageMagick/\' et ne doit pas comprendre d\'espaces, sous Unix c\'est quelque chose comme \'/usr/bin/X11/\'.<br /><br />Si vous ne savez pas si vous avez ImageMagick ou pas, laissez ce champ vide - l\'installeur va essayer d\'Utilisez GD2 par défaut (c\'est la configuration de la plupart des Utilisateurs). <br />Vous pourrez changer cela plus tard (dans la page de configuration de Coppermine), n\'ayez donc aucune crainte si vous ne savez pas quoi entrer ici - laissez simplement le champ vide.';
   $lang_install['im_packages'] = 'Votre serveur supporte les librairies graphiques suivantes :';
   $lang_install['im_path'] = 'Chemin vers ImageMagick:';
   $lang_install['im_path_space'] = 'Le chemin vers ImageMagick (\'%s\') contient au moins un espace. Cela va poser des problèmes dans le script.<br /><br />Vous devez déplacer ImageMagick dans un autre répertoire.';
@@ -2023,7 +2023,7 @@ if (defined('SEARCHNEW_PHP')) {
   $lang_search_new_php['no_album'] = 'Aucun Album sélectionné';
   $lang_search_new_php['result_icon'] = 'Cliquez pour voir les détails ou pour les recharger';  //cpg1.4
   $lang_search_new_php['notes'] = <<< EOT
-	<ul>
+    <ul>
         <li>%s: Le fichier a été ajouté correctement</li>
         <li>%s: Le fichier est une copie et existe déjà dans la base de donnée</li>
         <li>%s: Le fichier n\a pas pu être ajouté, vérifiez votr configuration et les permissions du répertoire où les fichiers sont placés</li>

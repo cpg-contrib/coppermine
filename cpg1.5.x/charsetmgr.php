@@ -127,7 +127,7 @@ function register_changes()
     $superCage = Inspekt::makeSuperCage();
 
     //if (count($_POST) > 0) {
-		if ($superCage->post->keyExists('check') ||$superCage->post->keyExists('convert')) {
+        if ($superCage->post->keyExists('check') ||$superCage->post->keyExists('convert')) {
         if ($superCage->post->keyExists('check')) {
             $doconvert = 0;
         } else if ($superCage->post->keyExists('convert')) {
@@ -229,13 +229,14 @@ EOT;
 
 function html_prereq_errors($error_msg)
 {
-    ?>
+    echo <<< EOT
     <h2>Welcome to Coppermine installation</h2>
 
     <form name="cpgform" id="cpgform" action="install.php">
     <h2 class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</h2>
 
-        <p class="tableb"> Before you continue with the Coppermine upgrade, there are some problems that need to be fixed.<br /><br /><b><?php echo $error_msg ?></b>Once you are done, hit the "Try again" button.<br />
+        <p class="tableb"> Before you continue with the Coppermine upgrade, there are some problems that need to be fixed.<br /><br />
+            <b>{$error_msg}</b>Once you are done, hit the "Try again" button.<br />
         </p>
 
         <div class="input">
@@ -244,24 +245,24 @@ function html_prereq_errors($error_msg)
 
         </form>
 
-        <?php
+EOT;
 }
 
 function html_header($title, $charset = '')
 {
-
-    ?>
+    $charset = ($charset !='') ? '<meta http-equiv="Content-Type" content="text/html; charset=' . $charset . '" />' : '';
+    echo <<< EOT
 <!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-    <title><?php echo $title; ?></title>
-        <?php if ($charset !='') echo '<meta http-equiv="Content-Type" content="text/html; charset='.$charset.'" />'; ?>
+    <title>{$title}</title>
+    $charset
     <meta http-equiv="Pragma" content="no-cache" />
     <link type="text/css" rel="stylesheet" href="installer.css">
 </head>
 <body>
 
-<?php
+EOT;
 }
 
 function html_logo()
@@ -274,63 +275,65 @@ function html_error($error_msg = '')
 {
     global $im_installed;
 
-    ?>
+    echo <<< EOT
       <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
        <tr>
             <form name="cpgform" id="cpgform" action="upgrade.php" method="post">
         <td class="tableh1" colspan="2"><h2>Welcome to the Coppermine upgrade program</h2>
         </td>
        </tr>
-<?php
-    if ($error_msg) {
 
-        ?>
+EOT;
+    if ($error_msg) {
+        echo <<< EOT
        <tr>
         <td class="tableh2" colspan="2" align="center"><span class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</span>
         </td>
        </tr>
        <tr>
-        <td class="tableb" colspan="2"> The following errors were encountered and need to be corrected first:<br /><br /><b><?php echo $error_msg ?></b>
+        <td class="tableb" colspan="2"> The following errors were encountered and need to be corrected first:<br /><br /><b>{$error_msg}</b>
         </td>
        </tr>
-<?php
+
+EOT;
     }
 
-    ?>
-
+    echo <<< EOT
        </tr>
       </table>
-<?php
+
+EOT;
 }
 
 
 function html_install_success($notes)
 {
     global $DFLT;
-//Coppermine is now upgraded and ready to roll.
+    // Coppermine is now upgraded and ready to roll.
     $loginaddress = '<a href="login.php?referer=charsetmgr.php">';
-    ?>
+    echo <<< EOT
 <h2>Upgrade completed</h2>
 
-  <!--  <p class="tableb">Please <?php echo $loginaddress ?>login</a> and proceed to the <a href="charsetmgr.php">charset manager</a> to convert the encoding of your database, if needed.</p> -->
+  <!--  <p class="tableb">Please {$loginaddress} login</a> and proceed to the <a href="charsetmgr.php">charset manager</a> to convert the encoding of your database, if needed.</p> -->
         <p style="align:center" class="tableh2">
                 It's recommended to <a href="versioncheck.php">check your file versions</a> if you just upgraded from an older version of coppermine.<br />
                 If you didn't (or you don't want to check), you can go to <a href="index.php">your gallery's start page</a><br />
 </p>
-                    <?php
+
+EOT;
 }
 
 function html_footer()
 {
-
-    ?>
+    echo <<< EOT
 </body>
 </html>
 
-<?php
+EOT;
 }
 
-function html_auth_box($method){
+function html_auth_box($method)
+{
     $superCage = Inspekt::makeSuperCage();
     $debug_mode = '';
     if ($superCage->get->keyExists('debug')) {
@@ -344,18 +347,18 @@ function html_auth_box($method){
 
         <p class="tableb" align="center">
 EOT;
-		if($method=='MySQL'){
-			echo 'Could not authenticate you via your admin details, if you think you entered the wrong details, click <a href=\'update.php\'>here</a> and try again.<br />Else, you can try to login with you MySQL account:';
-		}else{
-			echo 'Please provide your <b>admin</b> account details:';
-		}
-        ?>
+        if($method=='MySQL') {
+            echo 'Could not authenticate you via your admin details, if you think you entered the wrong details, click <a href=\'update.php\'>here</a> and try again.<br />Else, you can try to login with you MySQL account:';
+        } else {
+            echo 'Please provide your <b>admin</b> account details:';
+        }
+        echo <<< EOT
         </p>
 
         <div class="input">
         Username: <input type="text" name="user" /><br />
         Password: <input type="password" name="pass" /><br />
-        <input type="hidden" name="method" value="<?php echo $method; ?>" /><br />
+        <input type="hidden" name="method" value="{$method}" /><br />
         <input type="submit" value="Login" />
         </div>
 
@@ -366,7 +369,7 @@ EOT;
             -->
         </script>
 
-<?php
+EOT;
 }
 
 
@@ -375,19 +378,14 @@ register_changes();
 
 $languagefilecfg = 0;
 
-if ($CONFIG['charset'] == 'language file')
-{
+if ($CONFIG['charset'] == 'language file') {
     $thecharset = $lang_charset;
     $languagefilecfg = 1;
     // we set the charset once and for all (better than 'language file')
     cpg_config_set('charset', $thecharset);
-}
-else
-{
+} else {
     $thecharset = $CONFIG['charset'];
 }
-
-
 
 
 
@@ -446,7 +444,7 @@ echo "Convert from ";
 form_charset('charset_in', $thecharset);
 echo " to ";
 form_charset('charset_out', 'utf-8');
-echo <<<EOT
+echo <<< EOT
 <input type="submit" class="button" name="check" value="Check" />
 
 EOT;

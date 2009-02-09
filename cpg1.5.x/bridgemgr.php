@@ -383,7 +383,7 @@ echo <<<EOT
 </style>
 EOT;
 
-//print 'Current step:'.$step.', previous step:'.$previous_step[$step].', next step:'.$next_step[$step];  // debug ouput
+// print 'Current step:'.$step.', previous step:'.$previous_step[$step].', next step:'.$next_step[$step]; // debug output
 
 // Loop through the bridge folder
 $foldername = 'bridge';
@@ -403,7 +403,7 @@ unset($bridge_lookup);
 sort($existing_bridge_files);
 // Populate the array $default_bridge_data
 foreach ($existing_bridge_files as $bridge_lookup) {
-	include_once($foldername . '/' . $bridge_lookup . '.inc.php');
+    include_once($foldername . '/' . $bridge_lookup . '.inc.php');
 }
 unset($existing_bridge_files);
 unset($bridge_lookup);
@@ -446,8 +446,6 @@ foreach($default_bridge_data as $key => $value) {
         $custom_bridge_counter_exist++;
     }
 }
-
-
 print cpg_submit_button($next_step[$step], 'false', '2');
 endtable();
 print "</form>\n";

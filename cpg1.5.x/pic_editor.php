@@ -58,27 +58,27 @@ require('include/picmgmt.inc.php');
 define('IMG_DIR', $CONFIG['fullpath'].'edit/');
 // image calls
 if ($superCage->get->keyExists('img')) {
-	if ($superCage->get->getAlpha('img') == "left") {
-		cornerleft();
-		exit;
-	} elseif ($superCage->get->getAlpha('img') == "right") {
-		cornerright();
-		exit;
-	}
+    if ($superCage->get->getAlpha('img') == "left") {
+        cornerleft();
+        exit;
+    } elseif ($superCage->get->getAlpha('img') == "right") {
+        cornerright();
+        exit;
+    }
 }
 
 if ($superCage->get->keyExists('id')) {
-		$pid = $superCage->get->getInt('id');
+        $pid = $superCage->get->getInt('id');
 } elseif ($superCage->post->keyExists('id')) {
-		$pid = $superCage->post->getInt('id');
+        $pid = $superCage->post->getInt('id');
 } else {
-		$pid = -1;
-		cpg_die(ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+        $pid = -1;
+        cpg_die(ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }
 
 
 if (!(GALLERY_ADMIN_MODE || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID)) || !USER_ID) {
-	cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
 if ($pid > 0){
@@ -124,7 +124,7 @@ if (!$img_dir) $img_dir = IMG_DIR;
 
 //if ($_GET['id']){
 if ($superCage->get->getInt('id')) {
-	
+    
    //Copy the Image file to the editing directory
    if (copy($CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CURRENT_PIC['filename'],$img_dir.$CURRENT_PIC['filename']))
    $newimage = $CURRENT_PIC['filename'];
@@ -140,7 +140,7 @@ if ($superCage->get->getInt('id')) {
                       $imgObj->quality = $_POST['quality'];
         }*/
       if ($superCage->post->keyExists('quality')) {
-      		$imgObj->quality = $superCage->post->getInt('quality');
+            $imgObj->quality = $superCage->post->getInt('quality');
       }  
 
       if ($imgObj->imgRes){
@@ -148,14 +148,14 @@ if ($superCage->get->getInt('id')) {
                   $imgObj = $imgObj->cropImage($_POST['clipval']);
           }*/
           if ($superCage->post->getEscaped('clipval') && $superCage->post->getInt('cropping') == true) {
-          				$imgObj = $imgObj->cropImage($superCage->post->getEscaped('clipval'));
+                        $imgObj = $imgObj->cropImage($superCage->post->getEscaped('clipval'));
           }
 
           /*if ($_POST['angle']<>0){
                   $imgObj = $imgObj->rotateImage($_POST['angle']);
           }*/
           if ($superCage->post->getInt('angle') <> 0) {
-          				$imgObj = $imgObj->rotateImage($superCage->post->getInt('angle'));
+                        $imgObj = $imgObj->rotateImage($superCage->post->getInt('angle'));
           }
 
 
@@ -201,7 +201,7 @@ if ($superCage->get->getInt('id')) {
    }
 
    //if(isset($_POST["save_thumb"])) {
-	 if ($superCage->post->keyExists('save_thumb')) {
+     if ($superCage->post->keyExists('save_thumb')) {
         $width=$imgObj->width;
         $height=$imgObj->height;
                 $normal = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['normal_pfx'] . $CURRENT_PIC['filename'];
@@ -250,8 +250,8 @@ $json_script = "<script type=\"text/javascript\">var js_vars = eval('($json_vars
   <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
     <title><?php echo $lang_editpics_php['crop_title'] ?></title>
     <?php if($imgObj){
-	echo $json_script;
-	?>
+    echo $json_script;
+    ?>
     <script type="text/javascript" src="js/pic_editor.js"></script>
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/scripts.js" type="text/javascript"></script>
@@ -304,10 +304,10 @@ $json_script = "<script type=\"text/javascript\">var js_vars = eval('($json_vars
 <input type="hidden" name="img_dir" value="<?php print $img_dir ; ?>" />
 <?php
 if ($superCage->get->keyExists('id')) {
-		$get_id = $superCage->get->getInt('id');
-	} else {
-		$get_int = $superCage->post->getInt('id');
-	}
+        $get_id = $superCage->get->getInt('id');
+    } else {
+        $get_int = $superCage->post->getInt('id');
+    }
 ?>
 <input type="hidden" name="id" value="<?php print ($get_id); ?>" />
 

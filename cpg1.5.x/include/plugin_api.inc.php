@@ -631,8 +631,8 @@ class CPGPlugin {
 function& cpg_get_scope( $plugin_id = null ) {
     global $CPG_PLUGINS,$thisplugin;
 
-	// Create the super cage
-	$superCage = Inspekt::makeSuperCage();
+    // Create the super cage
+    $superCage = Inspekt::makeSuperCage();
 
     if (!is_null($plugin_id)) {
         return $CPG_PLUGINS[$plugin_id];

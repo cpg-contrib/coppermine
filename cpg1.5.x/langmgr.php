@@ -167,7 +167,7 @@ while ($row = mysql_fetch_array($results)) {
         $lang_language_data[$row['lang_id']]['enabled'] = $row['enabled'];
         $lang_language_data[$row['lang_id']]['complete'] = $row['complete'];
         if (in_array($lang_language_data[$row['lang_id']]['lang_id'], $lang_file_orphan_array) == TRUE) {
-        	unset($lang_file_orphan_array[array_search($lang_language_data[$row['lang_id']]['lang_id'],$lang_file_orphan_array)]);
+            unset($lang_file_orphan_array[array_search($lang_language_data[$row['lang_id']]['lang_id'],$lang_file_orphan_array)]);
         }
         $lang_language_data[$row['lang_id']]['new'] = 'NO';
 } // while
@@ -176,14 +176,14 @@ unset($row);
 
 // Now let's merge the orphaned files (i.e. the files that exist on file system level, but not in the database) into the array that will compose the form output
 foreach ($lang_file_orphan_array as $orphans) {
-	$lang_language_data[$orphans]['lang_id'] = $orphans;
-	$lang_language_data[$orphans]['english_name'] = ucfirst($orphans);
-	$lang_language_data[$orphans]['native_name'] = '';
-	$lang_language_data[$orphans]['custom_name'] = '';
-	$lang_language_data[$orphans]['flag'] = '';
-	$lang_language_data[$orphans]['available'] = 'NO';
-	$lang_language_data[$orphans]['enabled'] = 'NO';
-	$lang_language_data[$orphans]['complete'] = 'NO';
+    $lang_language_data[$orphans]['lang_id'] = $orphans;
+    $lang_language_data[$orphans]['english_name'] = ucfirst($orphans);
+    $lang_language_data[$orphans]['native_name'] = '';
+    $lang_language_data[$orphans]['custom_name'] = '';
+    $lang_language_data[$orphans]['flag'] = '';
+    $lang_language_data[$orphans]['available'] = 'NO';
+    $lang_language_data[$orphans]['enabled'] = 'NO';
+    $lang_language_data[$orphans]['complete'] = 'NO';
     $lang_language_data[$orphans]['new'] = 'YES';
 }
 
@@ -197,13 +197,13 @@ ksort($lang_language_data);
 starttable('100%', cpg_fetch_icon('babelfish', 2) . $lang_langmgr_php['title'], 9);
 print <<< EOT
     <tr>
-    	<td class="tableh2" colspan="6">
-    	</td>
-    	<td class="tableh2" colspan="2" align="center">
-    		<span id="expand_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('expand');">{$show_icon}{$lang_langmgr_php['show_details']}</a></span>
+        <td class="tableh2" colspan="6">
+        </td>
+        <td class="tableh2" colspan="2" align="center">
+            <span id="expand_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('expand');">{$show_icon}{$lang_langmgr_php['show_details']}</a></span>
             <span id="collapse_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('collapse');">{$hide_icon}{$lang_langmgr_php['hide_details']}</a></span>
             {$loader_html}
-    	</td>
+        </td>
     </tr>
     <tr>
         <th class="tableh2" rowspan="2" align="center">
@@ -286,12 +286,12 @@ foreach ($lang_language_data as $language) {
                 $file_lookup_errors++;
             }
             if ($language['native_name'] == '') {
-            	$language['native_name'] = $language['file_native']; // Populate the native name field from the file if emtpy 
+                $language['native_name'] = $language['file_native']; // Populate the native name field from the file if emtpy 
             }
             if ($language['file_native'] != $language['native_name'] && $language['file_native'] != '') {
-            	$reset_native = '<a href="javascript:;" title="' . sprintf($lang_langmgr_php['replace_x_with_y'], '&quot;'.$language['native_name'].'&quot;', '&quot;'.$language['file_native'].'&quot;') . '" id="reset_native_'.$loopCounter.'" onclick="document.getElementById(\'native_name_'.$language['lang_id'].'\').value = \''.$language['file_native'].'\';document.getElementById(\'reset_native_'.$loopCounter.'\').style.display = \'none\';">' . cpg_fetch_icon('undo',0) . '</a>';
+                $reset_native = '<a href="javascript:;" title="' . sprintf($lang_langmgr_php['replace_x_with_y'], '&quot;'.$language['native_name'].'&quot;', '&quot;'.$language['file_native'].'&quot;') . '" id="reset_native_'.$loopCounter.'" onclick="document.getElementById(\'native_name_'.$language['lang_id'].'\').value = \''.$language['file_native'].'\';document.getElementById(\'reset_native_'.$loopCounter.'\').style.display = \'none\';">' . cpg_fetch_icon('undo',0) . '</a>';
             } else {
-            	$reset_native = '';
+                $reset_native = '';
             }
             // Perform the lookup for the English language name
             $language['file_english'] = strings_from_language_file('lang_name_english');
@@ -299,12 +299,12 @@ foreach ($lang_language_data as $language) {
                 $file_lookup_errors++;
             }
             if ($language['english_name'] == '') {
-            	$language['english_name'] = $language['file_english']; // Populate the english name field from the file if emtpy 
+                $language['english_name'] = $language['file_english']; // Populate the english name field from the file if emtpy 
             }
             if ($language['file_english'] != $language['english_name'] && $language['file_english'] != '') {
-            	$reset_english = '<a href="javascript:;" title="' . sprintf($lang_langmgr_php['replace_x_with_y'], '&quot;'.$language['english_name'].'&quot;', '&quot;'.$language['file_english'].'&quot;') . '" id="reset_english_'.$loopCounter.'" onclick="document.getElementById(\'english_name_'.$language['lang_id'].'\').value = \''.$language['file_english'].'\';document.getElementById(\'reset_english_'.$loopCounter.'\').style.display = \'none\';">' . cpg_fetch_icon('undo',0) . '</a>';
+                $reset_english = '<a href="javascript:;" title="' . sprintf($lang_langmgr_php['replace_x_with_y'], '&quot;'.$language['english_name'].'&quot;', '&quot;'.$language['file_english'].'&quot;') . '" id="reset_english_'.$loopCounter.'" onclick="document.getElementById(\'english_name_'.$language['lang_id'].'\').value = \''.$language['file_english'].'\';document.getElementById(\'reset_english_'.$loopCounter.'\').style.display = \'none\';">' . cpg_fetch_icon('undo',0) . '</a>';
             } else {
-            	$reset_english = '';
+                $reset_english = '';
             }
             // Look up the translator name
             $language['translator_name'] = strings_from_language_file('trans_name');
@@ -374,23 +374,23 @@ foreach ($lang_language_data as $language) {
         //  Flag new records accordingly --- end
         // Populate credits section
         if ($language['translator_name'] != '') {
-        	$translator_output = '<li>'.$lang_langmgr_php['tanslator_information'] . ': ';
-        	if ($language['translator_website'] != '') {
-        		$translator_output .= '<a href="'.$language['translator_website'].'" rel="external" class="external">';
-        	}
-        	$translator_output .= $language['translator_name'];
-        	if ($language['translator_website'] != '') {
-        		$translator_output .= '</a>';
-        	}
+            $translator_output = '<li>'.$lang_langmgr_php['tanslator_information'] . ': ';
+            if ($language['translator_website'] != '') {
+                $translator_output .= '<a href="'.$language['translator_website'].'" rel="external" class="external">';
+            }
+            $translator_output .= $language['translator_name'];
+            if ($language['translator_website'] != '') {
+                $translator_output .= '</a>';
+            }
             $translator_output .= '</li>';
         } else {
-        	$translator_output = '';
+            $translator_output = '';
             $file_lookup_errors++;
         }
         if ($language['version'] != '') {
-        	$version_output .= '<li>'.$lang_langmgr_php['cpg_version'] . ': ' . $language['version'].'<br />'.$version_warning.'</li>';
+            $version_output .= '<li>'.$lang_langmgr_php['cpg_version'] . ': ' . $language['version'].'<br />'.$version_warning.'</li>';
         } else {
-        	$version_output = '<li>'.$lang_langmgr_php['no_version'].'</li>';
+            $version_output = '<li>'.$lang_langmgr_php['no_version'].'</li>';
             $file_lookup_errors++;
         }
         if ($language['file_size'] < 100000 || $language['file_size'] > 400000) {
@@ -403,12 +403,12 @@ foreach ($lang_language_data as $language) {
         }
         // Flag icon population --- start
         if ($language['flag'] != '') {
-        	$flag_path = 'images/flags/'.$language['flag'] . '.png';
+            $flag_path = 'images/flags/'.$language['flag'] . '.png';
         } elseif (in_array($language['file_flag'], $flag_array) == TRUE) {
-        	$flag_path = 'images/flags/'.$language['file_flag'] . '.png';
-        	$language['flag'] = $language['file_flag'];
+            $flag_path = 'images/flags/'.$language['file_flag'] . '.png';
+            $language['flag'] = $language['file_flag'];
         } else {
-        	$flag_path = 'images/spacer.gif';
+            $flag_path = 'images/spacer.gif';
         }
         // Flag icon population --- end
         // Actual table row output --- start
@@ -445,7 +445,7 @@ EOT;
 >
 EOT;
         if ($language['flag'] == '') {
-        	print '            <option value="">'.$lang_langmgr_php['pick_a_flag'].'</option>'.$lineBreak;
+            print '            <option value="">'.$lang_langmgr_php['pick_a_flag'].'</option>'.$lineBreak;
         }
         foreach ($flag_array as $flags) {
             if ($flags == $language['flag']) {
@@ -462,7 +462,7 @@ EOT;
         print <<< EOT
         
         <td class="{$cellstyle}">
-        	{$availability_output}{$new_output}
+            {$availability_output}{$new_output}
         </td>
 EOT;
         print <<< EOT
@@ -485,8 +485,8 @@ EOT;
         </td>
     </tr>
     <tr>
-    	<td class="{$cellstyle}" colspan="7">
-    		<span id="translator_{$loopCounter}">
+        <td class="{$cellstyle}" colspan="7">
+            <span id="translator_{$loopCounter}">
                 <ul style="margin:0px">
                     {$translator_output}
                     {$version_output}
@@ -494,7 +494,7 @@ EOT;
                     {$additional_output}
                 </ul>
             </span> 
-    	</td>
+        </td>
     </tr>
 EOT;
         // Actual table row output --- end
@@ -507,7 +507,7 @@ if (in_array('english', $lang_file_array) != TRUE) {
     print <<< EOT
     <tr>
         <td class="cpg_message_error" colspan="8" align="center">
-        	{$lang_langmgr_php['english_missing']}
+            {$lang_langmgr_php['english_missing']}
         </td>
     </tr>
 EOT;
@@ -524,7 +524,7 @@ print <<< EOT
             <div id="cpg_form_error_message_not_enabled" class="cpg_message_validation" style="display:none;">{$lang_langmgr_php['enable_default']}</div>
         </td>
         <td class="tablef" colspan="2" align="center">
-        	<span id="expand_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('expand');">{$show_icon}{$lang_langmgr_php['show_details']}</a></span>
+            <span id="expand_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('expand');">{$show_icon}{$lang_langmgr_php['show_details']}</a></span>
             <span id="collapse_all_bottom" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('collapse');">{$hide_icon}{$lang_langmgr_php['hide_details']}</a></span>
             <input type="hidden" name="loopCounter" id="loopCounter" value="{$loopCounter}" />
         </td>
@@ -539,15 +539,15 @@ pagefooter();
 ob_end_flush();
 
 function strings_from_language_file($string) {
-	global $blob;
-	$string = "'" . $string . "'";
-	if (strstr($blob , $string) == FALSE) {
-		return '';
-	}
-	$return = str_replace($string, '', substr($blob,strpos($blob, $string),100)); // get the first 100 characters starting at $string
-	$return = str_replace('=>', '', $return); // strip the string '=>'
-	$return = str_replace(strstr($return, "',"), '', $return); // Throw everything away after and including ';
-	$return = ltrim(trim($return), "'"); // Trim the leading single quotes and the whitespace
-	return $return;
+    global $blob;
+    $string = "'" . $string . "'";
+    if (strstr($blob , $string) == FALSE) {
+        return '';
+    }
+    $return = str_replace($string, '', substr($blob,strpos($blob, $string),100)); // get the first 100 characters starting at $string
+    $return = str_replace('=>', '', $return); // strip the string '=>'
+    $return = str_replace(strstr($return, "',"), '', $return); // Throw everything away after and including ';
+    $return = ltrim(trim($return), "'"); // Trim the leading single quotes and the whitespace
+    return $return;
 }
 ?>

@@ -449,15 +449,15 @@ function path2url($path)
 function msg_box($title, $msg_text, $button_text='', $button_link='', $type = 'info')
 {
     if ($type == 'error') {
-    	$css_class = 'cpg_message_error';
+        $css_class = 'cpg_message_error';
     } elseif ($type == 'warning') {
-    	$css_class = 'cpg_message_warning';
+        $css_class = 'cpg_message_warning';
     } elseif ($type == 'validation') {
-    	$css_class = 'cpg_message_validation';
+        $css_class = 'cpg_message_validation';
     } elseif ($type == 'success') {
-    	$css_class = 'cpg_message_success';
+        $css_class = 'cpg_message_success';
     } else {
-    	$css_class = 'cpg_message_info';
+        $css_class = 'cpg_message_info';
     }
     // Call theme function to display message box
     theme_msg_box($title, $msg_text, $css_class, $button_text, $button_link);
@@ -3763,8 +3763,8 @@ function cpg_alert_dev_version()
         <div class="cpg_message_warning">
         <h2>{$lang_version_alert['version_alert']}</h2>
 EOT;
-		$return .= sprintf($lang_version_alert['no_stable_version'], COPPERMINE_VERSION, COPPERMINE_VERSION_STATUS);
-		$return .= '</div>';
+        $return .= sprintf($lang_version_alert['no_stable_version'], COPPERMINE_VERSION, COPPERMINE_VERSION_STATUS);
+        $return .= '</div>';
     }
     
     // check if gallery is offline
@@ -5374,11 +5374,11 @@ function get_cat_data()
                 // check if we should remove a node from the stack
                 while ($right && $right[count($right) - 1] < $subcat['rgt']) {
                     array_pop($right);
-           		}
-       		}
-       		 
-       		$ident = str_repeat('&nbsp;&nbsp;&nbsp;', count($right));
-       		$right[] = $subcat['rgt']; 
+                }
+            }
+             
+            $ident = str_repeat('&nbsp;&nbsp;&nbsp;', count($right));
+            $right[] = $subcat['rgt']; 
 
             $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
         }

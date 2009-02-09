@@ -20,7 +20,7 @@
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
 if (isset($bridge_lookup)) {
-	$default_bridge_data[$bridge_lookup] = array(
+    $default_bridge_data[$bridge_lookup] = array(
         'full_name' => 'Simple Machines (SMF) 1.x',
         'short_name' => 'smf10',
         'support_url' => 'http://www.simplemachines.org/',
@@ -31,8 +31,8 @@ if (isset($bridge_lookup)) {
     );
 } else {
 
-	// Switch that allows overriding the bridge manager with hard-coded values
-	define('USE_BRIDGEMGR', 1);
+    // Switch that allows overriding the bridge manager with hard-coded values
+    define('USE_BRIDGEMGR', 1);
 
     require_once 'bridge/udb_base.inc.php';
 
@@ -54,7 +54,7 @@ if (isset($bridge_lookup)) {
                     $this->boardurl = $boardurl;
                     $this->multigroups = 1;
                     $this->group_overrride = 1;
-						  $this->cookie_name = $cookiename;
+                          $this->cookie_name = $cookiename;
 
                     // Board table names
                     $this->table = array(
@@ -109,7 +109,7 @@ if (isset($bridge_lookup)) {
                     );
 
                     // Group ids - admin and guest only.
-	                 $this->admingroups = array(1);
+                     $this->admingroups = array(1);
                     $this->guestgroup = 3;
 
                     // Connect to db - or supply a connection id to be used instead of making own connection.
@@ -117,69 +117,69 @@ if (isset($bridge_lookup)) {
             }
 
 
-    	// definition of how to extract id, name, group from a session cookie
-    	function session_extraction()
-    	{
-    		$superCage = Inspekt::makeSuperCage();
+        // definition of how to extract id, name, group from a session cookie
+        function session_extraction()
+        {
+            $superCage = Inspekt::makeSuperCage();
 
-    		if ($superCage->cookie->keyExists($this->cookie_name)) {
-    			
-    			$data = unserialize($superCage->cookie->getRaw($this->cookie_name));
-    			
- 				if (is_numeric($data[0]) && preg_match('/^[A-F0-9]{40}$/i', $data[1])) {
- 					return $data;
-    			} else {
-    			    return false;
-    			}
-    		}
-    	}
-    	
-    	// definition of how to extract an id and password hash from a cookie
-    	function cookie_extraction()
-    	{
-    		return false;
-    	}
+            if ($superCage->cookie->keyExists($this->cookie_name)) {
+                
+                $data = unserialize($superCage->cookie->getRaw($this->cookie_name));
+                
+                if (is_numeric($data[0]) && preg_match('/^[A-F0-9]{40}$/i', $data[1])) {
+                    return $data;
+                } else {
+                    return false;
+                }
+            }
+        }
+        
+        // definition of how to extract an id and password hash from a cookie
+        function cookie_extraction()
+        {
+            return false;
+        }
 
-    	// definition of actions required to convert a password from user database form to cookie form
-    	function udb_hash_db($password)
-    	{
-    		return $password; // unused
-    	}
+        // definition of actions required to convert a password from user database form to cookie form
+        function udb_hash_db($password)
+        {
+            return $password; // unused
+        }
 
-    	// Get groups of which user is member
-    	function get_groups($row)
-    	{
-    		$data = array();
-    		
-			if ($this->use_post_based_groups) {
+        // Get groups of which user is member
+        function get_groups($row)
+        {
+            $data = array();
+            
+            if ($this->use_post_based_groups) {
 
-				$data[0] = $row['group_id'] + 100;
-				
-				$sql = "SELECT {$this->field['postgroup']} AS postgroup, {$this->field['additionals']} AS additionals FROM {$this->usertable} WHERE {$this->field['user_id']} = {$row['id']}";
-				$result = cpg_db_query($sql, $this->link_id);
-				
-				$groupdata = mysql_fetch_assoc($result);
-				
-				// add in post group
-				$data[] = $groupdata['postgroup'] + 100;
-				
-				//  now add in any additional groups
-				if ($groupdata['additionals']) {
-				
-					$additionals = explode(',', $groupdata['additionals']);
-					
-					foreach ($additionals as $group) {
-						$data[] = $group + 100;
-					}
-				}
-				
-			} else {
-    			$data[0] = in_array($row['group_id'] , $this->admingroups) ? 1 : 2;
-			}
-    		
-    		return $data;
-    	}
-    	    	
+                $data[0] = $row['group_id'] + 100;
+                
+                $sql = "SELECT {$this->field['postgroup']} AS postgroup, {$this->field['additionals']} AS additionals FROM {$this->usertable} WHERE {$this->field['user_id']} = {$row['id']}";
+                $result = cpg_db_query($sql, $this->link_id);
+                
+                $groupdata = mysql_fetch_assoc($result);
+                
+                // add in post group
+                $data[] = $groupdata['postgroup'] + 100;
+                
+                //  now add in any additional groups
+                if ($groupdata['additionals']) {
+                
+                    $additionals = explode(',', $groupdata['additionals']);
+                    
+                    foreach ($additionals as $group) {
+                        $data[] = $group + 100;
+                    }
+                }
+                
+            } else {
+                $data[0] = in_array($row['group_id'] , $this->admingroups) ? 1 : 2;
+            }
+            
+            return $data;
+        }
+                
             function collect_groups()
             {
                     // Use this version to exclude true post based groups
@@ -204,76 +204,76 @@ if (isset($bridge_lookup)) {
             {
                     global $CONFIG;
 
-							if ($session = $this->_session_load()) {
-								$session['old_url'] = $CONFIG['site_url'] . '?board=redirect';
-								$this->_session_save($session);							
-							}
+                            if ($session = $this->_session_load()) {
+                                $session['old_url'] = $CONFIG['site_url'] . '?board=redirect';
+                                $this->_session_save($session);                         
+                            }
 
                     $this->redirect('/index.php?action=login');
             }
 
-				function _session_load() {
-				
-					$superCage = Inspekt::makeSuperCage();
+                function _session_load() {
+                
+                    $superCage = Inspekt::makeSuperCage();
 
-    				if ($superCage->cookie->keyExists('PHPSESSID')) {
-    			
-    					$session_id = $superCage->cookie->getEscaped('PHPSESSID');
-					
-						$sql = "SELECT data FROM {$this->sessionstable} WHERE session_id = '$session_id'";
+                    if ($superCage->cookie->keyExists('PHPSESSID')) {
+                
+                        $session_id = $superCage->cookie->getEscaped('PHPSESSID');
+                    
+                        $sql = "SELECT data FROM {$this->sessionstable} WHERE session_id = '$session_id'";
 
-    					$result = cpg_db_query($sql, $this->link_id);
+                        $result = cpg_db_query($sql, $this->link_id);
 
-						if (mysql_num_rows($result)) {
-						
-    						list($data) = mysql_fetch_row($result);
-    			
-    						session_name('CPG');
-    						session_start();
+                        if (mysql_num_rows($result)) {
+                        
+                            list($data) = mysql_fetch_row($result);
+                
+                            session_name('CPG');
+                            session_start();
 
-							session_decode($data);
+                            session_decode($data);
 
-							$session = $_SESSION;
+                            $session = $_SESSION;
 
-							return $session;
-						}
-					}
-						
-					return false;
-				}
-				
-				function _session_save($session) {
-				
-					$superCage = Inspekt::makeSuperCage();
+                            return $session;
+                        }
+                    }
+                        
+                    return false;
+                }
+                
+                function _session_save($session) {
+                
+                    $superCage = Inspekt::makeSuperCage();
 
-    				if ($superCage->cookie->keyExists('PHPSESSID')) {
-    			
-    					$session_id = $superCage->cookie->getEscaped('PHPSESSID');
+                    if ($superCage->cookie->keyExists('PHPSESSID')) {
+                
+                        $session_id = $superCage->cookie->getEscaped('PHPSESSID');
 
-						$_SESSION = $session;
+                        $_SESSION = $session;
 
-						$data = addslashes(session_encode());
+                        $data = addslashes(session_encode());
 
-						$sql = "UPDATE {$this->sessionstable} SET data = '$data' WHERE session_id = '$session_id'";
+                        $sql = "UPDATE {$this->sessionstable} SET data = '$data' WHERE session_id = '$session_id'";
 
-    					cpg_db_query($sql, $this->link_id);
-					}				
-				}
-				
-				
+                        cpg_db_query($sql, $this->link_id);
+                    }               
+                }
+                
+                
             function logout_page()
             {
-            	global $CONFIG;
-            	
-					if ($session = $this->_session_load()) {
-						$sesc = $session['rand_code'];
-						$session['logout_url'] = $CONFIG['site_url'];
-						$this->_session_save($session);	
-					} else {
-						$sesc = '';
-					}
+                global $CONFIG;
+                
+                    if ($session = $this->_session_load()) {
+                        $sesc = $session['rand_code'];
+                        $session['logout_url'] = $CONFIG['site_url'];
+                        $this->_session_save($session); 
+                    } else {
+                        $sesc = '';
+                    }
 
-            	$this->redirect('/index.php?action=logout&sesc=' . $sesc);
+                $this->redirect('/index.php?action=logout&sesc=' . $sesc);
             }
 
             function view_users() {}

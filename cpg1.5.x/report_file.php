@@ -38,7 +38,7 @@ function get_post_var($name, $default = '')
     if ($superCage->post->keyExists($name)) {
         return get_magic_quotes_gpc() ? stripslashes($superCage->post->noTags($name)) : $superCage->post->noTags($name);
     } else {
-    	return $default;
+        return $default;
     }
 }
 
@@ -57,8 +57,8 @@ if (defined('UDB_INTEGRATION')AND USER_ID) {
 if ($USER_DATA['user_email']) {
     $sender_email = $USER_DATA['user_email'];
     $sender_box = $sender_email;
-	$sender_name = $USER_DATA['user_name'];
-	$sender_name_box = $sender_name;
+    $sender_name = $USER_DATA['user_name'];
+    $sender_name_box = $sender_name;
 } else {
     $sender_email = get_post_var('sender_email',$USER['email'] ? $USER['email'] : '');
     $sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"width: 100%;\" />";
@@ -108,7 +108,7 @@ $valid_sender_email = Inspekt::isEmail($sender_email);
 $invalid_email = '<font size="1">' . $lang_report_php['invalid_email'] . '</font>';
 
 if (!$valid_sender_email && $superCage->post->keyExists('subject')) {
-	$sender_email_warning = $invalid_email;
+    $sender_email_warning = $invalid_email;
 }
 
 // Create and send the e-card

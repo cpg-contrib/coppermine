@@ -35,11 +35,11 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
 // write the plugin enable/disable change to the db
 if ($superCage->post->keyExists('update_config')) {
 
-	$value = $superCage->post->getInt('enable_plugins');
+    $value = $superCage->post->getInt('enable_plugins');
     
-	cpg_config_set('enable_plugins', $value);
+    cpg_config_set('enable_plugins', $value);
     
-	header('Location: pluginmgr.php');
+    header('Location: pluginmgr.php');
 }
 
 function display_plugin_list() {

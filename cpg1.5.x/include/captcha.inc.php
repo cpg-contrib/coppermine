@@ -26,7 +26,7 @@
  /***************************************************************/
 
 if (!defined('IN_COPPERMINE')) {
-	die('Not in Coppermine...');
+    die('Not in Coppermine...');
 }
 
    // start a PHP session - this class uses sessions to store the generated
