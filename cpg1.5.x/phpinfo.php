@@ -24,7 +24,9 @@ require('include/init.inc.php');
 
 $CONFIG['debug_mode']=0;
 
-if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied']);
+if (!GALLERY_ADMIN_MODE) {
+    cpg_die(ERROR, $lang_errors['access_denied']);
+}
 
 pageheader($lang_cpg_debug_output['phpinfo']);
 

@@ -40,6 +40,10 @@ define('STEP_DB_INIT', 8);
 define('STEP_SET_ADMIN', 9);
 define('STEP_FINALISE', 10);
 
+// Set required versions
+$required_php_version = '4.3.0';
+$required_mysql_version = '3.23.23';
+
 // Set the parameters that normally get populated by the option form
 $displayOption_array = array(
     'errors_only' => 1,
@@ -146,12 +150,11 @@ switch($step) {
         
         //PHP VERSION CHECK
         $php_version = phpversion();
-        $required_php_version = '4.3.0';
         if (version_compare($required_php_version, $php_version, '>=')) {
             //check if php_version is actualy a version number
             if ($php_version == '') {
                 //version could not be detected, show corresponding error
-                $error .= sprintf($language['version_undetected'], $required_php_version, 'PHP') . '<br /><br />';
+                $error .= sprintf($language['version_undetected'], 'PHP', $required_php_version) . '<br /><br />';
             } else {
                 //user is using incompatible php version
                 $error .= sprintf($language['version_incompatible'], $php_version, 'PHP', $required_php_version) . '<br /><br />';
@@ -159,16 +162,17 @@ switch($step) {
         }
         //MySQL VERSION CHECK
         ob_start();
-        $coulwegettheinfoofphpinfo = phpinfo();
-        $php_info = ob_get_clean ();
-        preg_match('%<tr><td class="e">Client API version </td><td class="v">([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})%', $php_info, $temp_version);
-        $mysql_version = $temp_version[1];
-        $required_mysql_version = '3.23.23';
+        phpinfo();
+        $php_info = ob_get_clean();
+        $php_info = stristr($php_info, 'Client API version');
+        preg_match('%([1-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})%', $php_info, $matches);
+        // preg_match('%<tr><td class="e">Client API version </td><td class="v">([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})%', $php_info, $matches);
+        $mysql_version = $matches[1];
         if (version_compare($required_mysql_version, $mysql_version, '>=')) {
             //check if php_version is actualy a version number
             if ($mysql_version == '') {
                 //version could not be detected, show corresponding error
-                $error .= sprintf($language['version_undetected'], $required_mysql_version, 'MySQL') . '<br /><br />';
+                $error .= sprintf($language['version_undetected'], 'MySQL', $required_mysql_version) . '<br /><br />';
             } else {
                 //user is using incompatible php version
                 $error .= sprintf($language['version_incompatible'], $mysql_version, 'MySQL', $required_mysql_version) . '<br /><br />';
