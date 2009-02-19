@@ -2438,7 +2438,6 @@ $lang_util_php['cannot_fix'] = 'Cannot fix'; // cpg1.5
 $lang_util_php['fullpic_error'] = 'File %s does not exist!'; // cpg1.5
 $lang_util_php['no_prob_detect'] = 'No problems detected'; // cpg1.5
 $lang_util_php['no_prob_found'] = 'No problems were found.'; // cpg1.5
-$lang_util_php['no_category'] = 'No Category'; // cpg1.5
 $lang_util_php['keyword_convert'] = 'Convert keyword separator'; // cpg1.5
 $lang_util_php['keyword_from_to'] = 'Convert keyword separator from %s to %s'; // cpg1.5
 $lang_util_php['keyword_set'] = 'Set gallery keyword separator to new value'; // cpg1.5

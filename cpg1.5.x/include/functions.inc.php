@@ -5385,4 +5385,104 @@ function get_cat_data()
     }
 }
 
+// Returns an html string containing albums for use in a <select> dropdown.
+// Contains no permission checks so only suitable for use on admin pages
+function album_selection_options()
+{
+    global $CONFIG, $lang_common, $cpg_udb;
+
+    // html string of options to be returned    
+    $options = '';
+    
+    // Padding to indicate level
+    $padding = 8;
+
+    $albums = array();
+
+    // load all albums
+    $result = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY pos");
+
+    while ($row = mysql_fetch_assoc($result)) {
+        $albums[$row['category']][$row['aid']] = $row['title'];
+    }
+
+    if (!empty($albums[0])) {
+
+        // Albums in no category
+        $options .= '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">' . $lang_common['albums_no_category'] . '</option>';
+
+        foreach ($albums[0] as $aid => $title) {
+            $options .= sprintf('<option style="padding-left: %dpx" value="%d">%s</option>'."\n", $padding, $aid, $title);
+        }
+    }
+
+    // Load all categories
+    $result = cpg_db_query("SELECT cid, rgt, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft");
+
+    $cats = array();
+
+    // Loop through all categories
+    while ($row = mysql_fetch_assoc($result)) {
+
+        // Determine category hierarchy
+        if (count($cats)) {
+            while ($cats && $cats[count($cats)-1]['rgt'] < $row['rgt']) {
+                array_pop($cats);
+            }
+        }
+
+        $cats[] = $row;
+
+        // Add this category to the hierarchy
+        if ($row['cid'] == USER_GAL_CAT) {
+
+            // User galleries
+            $options .= '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">' . $lang_common['personal_albums'] . '</option>' . "\n";
+
+            $result2 = cpg_db_query("SELECT {$cpg_udb->field['user_id']} AS user_id, {$cpg_udb->field['username']} AS user_name "
+                . "FROM {$cpg_udb->usertable} ORDER BY {$cpg_udb->field['username']}");
+            $users = cpg_db_fetch_rowset($result2);
+            mysql_free_result($result2);
+
+            foreach ($users as $user) {
+                if (!empty($albums[$user['user_id'] + FIRST_USER_CAT])) {
+                    $options .= '<option style="padding-left: ' . $padding . 'px; color: black; font-weight: bold" disabled="disabled">' 
+                        . $user['user_name'] . '</option>' . "\n";
+                    foreach ($albums[$user['user_id'] + FIRST_USER_CAT] as $aid => $title) {
+                        $options .= sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . "\n", $padding * 2, $aid, $title);
+                    }
+                }
+            }
+
+            unset($users);
+            continue;
+        }
+
+        // construct a category hierarchy string breadcrumb style
+        $elements = array();
+
+        foreach ($cats as $cat) {
+            $elements[] = $cat['name'];
+        }
+
+        $heirarchy = implode(' - ', $elements);
+
+        // calculate padding for this level
+        $p = (count($elements) - 1) * $padding;
+
+        // category header
+        $options .= '<option style="padding-left: '.$p.'px; color: black; font-weight: bold" disabled="disabled">' . "\n"
+            . $heirarchy . '</option>' . "\n";
+
+        // albums in the category
+        if (!empty($albums[$row['cid']])) {
+            foreach ($albums[$row['cid']] as $aid => $title) {
+                $options .= sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . "\n", $p+$padding, $aid, $title);
+            }
+        }
+    }
+    
+    return $options;
+}
+
 ?>

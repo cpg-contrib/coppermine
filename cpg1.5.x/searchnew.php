@@ -46,78 +46,18 @@ $rowCounter = 0;
  */
 
 
- function albumselect($id = "album") 
+function albumselect($id = "album") 
 {
-    global $CONFIG, $lang_search_new_php, $lang_common, $cpg_udb;
-    static $select = "";
+    global $lang_common;
 
-    // Reset counter
-    $list_count = 0;
-
-    if ($select == "") {
-        $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
-        while ($row = mysql_fetch_array($result)) {
-            // Add to multi-dim array for later sorting
-            $listArray[$list_count]['cat'] = $lang_common['albums_no_category'];
-            $listArray[$list_count]['aid'] = $row['aid'];
-            $listArray[$list_count]['title'] = $row['title'];
-            $listArray[$list_count]['cid'] = 0;
-            $list_count++;
-        }
-        mysql_free_result($result);
-
-        $result = cpg_db_query("SELECT DISTINCT a.aid AS aid, a.title AS title, c.name AS cname, c.cid AS cid FROM {$CONFIG['TABLE_ALBUMS']} AS a, {$CONFIG['TABLE_CATEGORIES']} AS c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
-        while ($row = mysql_fetch_array($result)) {
-            // Add to multi-dim array for later sorting
-            $listArray[$list_count]['cat'] = $row['cname'];
-            $listArray[$list_count]['aid'] = $row['aid'];
-            $listArray[$list_count]['title'] = $row['title'];
-            $listArray[$list_count]['cid'] = $row['cid'];
-            $list_count++;
-        }
-        mysql_free_result($result);
-
-        //if (defined('UDB_INTEGRATION')) {
-            $sql = $cpg_udb->get_batch_add_album_list();
-        /*} else {
-            $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
-        }*/
-        $result = cpg_db_query($sql);
-        while ($row = mysql_fetch_array($result)) {
-            // Add to multi-dim array for later sorting
-            $listArray[$list_count]['cat'] = $lang_common['personal_albums'];
-            $listArray[$list_count]['aid'] = $row['aid'];
-            $listArray[$list_count]['title'] = $row['title'];
-            $listArray[$list_count]['cid'] = -1;
-            $list_count++;
-        }
-        mysql_free_result($result);
-
-        $select = '<option value="0" selected="selected">' . $lang_common['select_album'] . "</option>\n";
-
-        // Sort the pulldown options by category and album name
-        $listArray = array_csort($listArray,'cat','title');
-
-        // Create the nicely sorted and formatted drop down list
-        // $alb_cat = '';
-        $alb_cid = '';
-        foreach ($listArray as $val) {
-            //if ($val['cat'] != $alb_cat) {  // old method compared names which might not be unique
-            if ($val['cid'] !== $alb_cid) {
-                if ($alb_cid) {
-                    $select .= "</optgroup>\n";
-                }
-                $select .= '<optgroup label="' . $val['cat'] . '">' . "\n";
-                $alb_cid = $val['cid'];
-            }
-            $select .= '<option value="' . $val['aid'] . '">   ' . $val['title'] . "</option>\n";
-        }
-        if ($alb_cid) {
-            $select .= "</optgroup>\n";
-        }
-    }
-
-    return "\n<select id=\"aid\" name=\"$id\" class=\"listbox\">\n$select</select>\n";
+    $options = album_selection_options();
+    
+    return <<< EOT
+        <select id="aid" name="$id" class="listbox">
+            <option value="0" selected="selected">{$lang_common['select_album']}</option>
+            $options
+        </select>
+EOT;
 }
 
 /**
