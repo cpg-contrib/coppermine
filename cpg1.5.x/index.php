@@ -388,6 +388,8 @@ function get_subcat_data(&$cat_data, &$album_set_array)
         $sql .= "\nAND lft BETWEEN $lft AND $rgt";
     }
 
+    $sql .= "\nORDER BY r.pos, r.aid";
+     
     $result = cpg_db_query($sql);
 
     while ($row = mysql_fetch_assoc($result)) {
@@ -764,7 +766,7 @@ function list_albums()
             . ' FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' 
             . ' LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' 
             . ' WHERE a.category=' . $cat . $album_filter 
-            . ' ORDER BY a.pos ' . $limit;
+            . ' ORDER BY a.pos, a.aid ' . $limit;
         $alb_thumbs_q = cpg_db_query($sql);
         $alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
         mysql_free_result($alb_thumbs_q);
@@ -776,7 +778,7 @@ function list_albums()
     $sql = "SELECT a.aid, count( p.pid ) AS pic_count, max( p.pid ) AS last_pid, max( p.ctime ) AS last_upload, a.keyword, a.alb_hits"
             ." FROM {$CONFIG['TABLE_ALBUMS']} AS a "
             ." LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' "
-            ." WHERE a.category = $cat $album_filter GROUP BY a.aid $limit";
+            ." WHERE a.category = $cat $album_filter GROUP BY a.aid ORDER BY a.pos, a.aid $limit";
     $alb_stats_q = cpg_db_query($sql);
     $alb_stats = cpg_db_fetch_rowset($alb_stats_q);
     mysql_free_result($alb_stats_q);
