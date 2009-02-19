@@ -470,7 +470,7 @@ function get_subcat_data(&$cat_data, &$album_set_array)
         } else {
 
             if ($cat['details']['thumb'] > 0) {
-                $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$cat['details']['thumb']}'";
+                $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE pid = {$cat['details']['thumb']} $FORBIDDEN_SET";
                 $result = cpg_db_query($sql);
                 if (mysql_num_rows($result)) {
                     $picture = mysql_fetch_assoc($result);
@@ -484,6 +484,8 @@ function get_subcat_data(&$cat_data, &$album_set_array)
                     $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
                     $user_thumb = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\" />";
                     $user_thumb = "<a href=\"index.php?cat={$cid}\">" . $user_thumb . "</a>";
+                } else {
+                    $user_thumb = "";
                 }
             } else {
                 $user_thumb = "";
