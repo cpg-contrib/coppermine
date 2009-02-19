@@ -189,6 +189,8 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                         $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
                         $user_thumb = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\" />";
                         $user_thumb = "<a href=\"index.php?cat={$subcat['cid']}\">" . $user_thumb . "</a>";
+                    } else {
+                        $user_thumb = "";
                     }
                 } else {
                     $user_thumb = "";
