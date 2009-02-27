@@ -18,27 +18,30 @@
 **********************************************/
 
 /**
-* Coppermine Photo Gallery 1.4.14 anycontent.php
+* Coppermine Photo Gallery 1.4.20 anycontent.php
 *
-* This file file gets included in the index.php if you set the option in admin
-* can be used to display any content from any program, it is always to be edited
-* according to tastes and then used
+* This file gets included in index.php if you set the option on the configuration panel: "content of the main page".
+* It can be used to display any content from any program, it is to be edited according to one's tastes.
 *
-* @copyright 2002,2007 Gregory DEMAR, Coppermine Dev Team
-* @license http://www.gnu.org/licenses/gpl.html GNU General Public License V3
-* @package Coppermine
-* @version $Id$
 */
 
-if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+if (!defined('IN_COPPERMINE')) {
+    die('Not in Coppermine...');
+}
 
 starttable("100%", "Welcome");
 
-?>
-<tr><td class="tableb" >
-This is for any content block - just a test - Edit the file "anycontent.php" to change what is shown here
-</td></tr>
-<?php
+echo <<< EOT
+    <tr>
+        <td class="tableb">
+            Here is text in the "anycontent" block.<br />
+            Edit the file "anycontent.php" in your Coppermine folder to change what is shown here.<br />
+            To show this block on your gallery, go to the configuration panel under "Album List View", then "content of the main page".
+        </td>
+    </tr>
+
+EOT;
+
 endtable();
 
 ?>
