@@ -2011,7 +2011,7 @@ function count_pic_comments($pid, $skip = 0)
  * @param
  * @return $return_array
  **/
-function cpg_determine_client($pid)
+function cpg_determine_client()
 {
     global $CONFIG;
 
@@ -2023,10 +2023,9 @@ function cpg_determine_client($pid)
      */
      
     // Get the details of user browser, IP, OS, etc
-    $os = 'Unknown';
-    
     $server_agent = $superCage->server->getRaw('HTTP_USER_AGENT');
-    
+
+    $os = 'Unknown';
     if (preg_match('#Ubuntu#i', $server_agent)) {
         $os = 'Linux Ubuntu';
     } elseif (preg_match('#Debian#i', $server_agent)) {
@@ -2047,11 +2046,11 @@ function cpg_determine_client($pid)
         $os = 'Windows 2000';
     } elseif (preg_match('#win98|Windows 98#i', $server_agent)) {
         $os = 'Windows 98';
-    } elseif (preg_match('#Windows NT 5.1#i', $server_agent)) {
+    } elseif (preg_match('#Windows NT 5\.1#i', $server_agent)) {
         $os = 'Windows XP';
-    } elseif (preg_match('#Windows NT 5.2#i', $server_agent)) {
+    } elseif (preg_match('#Windows NT 5\.2#i', $server_agent)) {
         $os = 'Windows 2003 Server';
-    } elseif (preg_match('#Windows NT 6.0#i', $server_agent)) {
+    } elseif (preg_match('#Windows NT 6\.0#i', $server_agent)) {
         $os = 'Windows Vista';
     } elseif (preg_match('#Windows CE#i', $server_agent)) {
         $os = 'Windows CE';
@@ -2078,22 +2077,23 @@ function cpg_determine_client($pid)
     }
 
     $browser = 'Unknown';
-    
     if (preg_match('#MSIE#i', $server_agent)) {
-        if (preg_match('#MSIE 5.5#i', $server_agent)) {
-            $browser = 'IE5.5';
-        } elseif (preg_match('#MSIE 6.0#i', $server_agent)) {
-            $browser = 'IE6';
-        } elseif (preg_match('#MSIE 7.0#i', $server_agent)) {
-            $browser = 'IE7';
-        } elseif (preg_match('#MSIE 8.0#i', $server_agent)) {
+        if (preg_match('#MSIE 8\.0#i', $server_agent)) {
             $browser = 'IE8';
-        } elseif (preg_match('#MSIE 3.0#i', $server_agent)) {
-            $browser = 'IE3';
-        } elseif (preg_match('#MSIE 4.0#i', $server_agent)) {
-            $browser = 'IE4';
-        } elseif (preg_match('#MSIE 5.0#i', $server_agent)) {
+        } elseif (preg_match('#MSIE 7\.0#i', $server_agent)) {
+            $browser = 'IE7';
+        } elseif (preg_match('#MSIE 6\.0#i', $server_agent)) {
+            $browser = 'IE6';
+        } elseif (preg_match('#MSIE 5\.5#i', $server_agent)) {
+            $browser = 'IE5.5';
+        } elseif (preg_match('#MSIE 5\.0#i', $server_agent)) {
             $browser = 'IE5.0';
+        } elseif (preg_match('#MSIE 4\.0#i', $server_agent)) {
+            $browser = 'IE4';
+        } elseif (preg_match('#MSIE 3\.0#i', $server_agent)) {
+            $browser = 'IE3';
+        } else {
+            $browser = 'IE';
         }
     } elseif (preg_match('#Epiphany#i', $server_agent)) {
         $browser = 'Epiphany';
@@ -2170,17 +2170,19 @@ function cpg_determine_client($pid)
         'yahoo'
     );
 
+    $query_array = array();
     foreach ($search_engines as $engine) {
         if (is_referer_search_engine($engine)) {
-            $query_terms = get_search_query_terms($engine);
+            $query_array = get_search_query_terms($engine);
             break;
         }
     }
+    $query_terms = is_array($query_array) ? implode(',', $query_array) : '';
     
     $return_array = array(
         'os' => $os,
         'browser' => $browser,
-        'query_term' => $query_terms
+        'query_terms' => $query_terms
     );
     
     return $return_array;
@@ -2198,17 +2200,17 @@ function cpg_determine_client($pid)
 function add_hit($pid)
 {
     global $CONFIG, $raw_ip;
-    
+
     if ($CONFIG['count_file_hits']) {
         cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits = hits + 1, lasthit_ip = '$raw_ip', mtime = CURRENT_TIMESTAMP WHERE pid = $pid");
     }
-      
+
     /**
      * Code to record the details of hits for the picture, if the option is set in CONFIG
      */
      
     if ($CONFIG['hit_details']) {
-    
+
         // Get the details of user browser, IP, OS, etc
         $client_details = cpg_determine_client();
         
@@ -2225,20 +2227,18 @@ function add_hit($pid)
             $referer = '';
         }
         
+        $hitUserId = USER_ID;        
+
         // Insert the record in database
-        $hitUserId = USER_ID;
-        
-        $query = "INSERT INTO {$CONFIG['TABLE_HIT_STATS']}
-              SET
-                pid = $pid,
-                search_phrase = '{$client_details['query_term']}',
-                Ip   = '$raw_ip',
-                sdate = '$time',
-                referer='$referer',
-                browser = '{$client_details['browser']}',
-                os = '{$client_details['os']}',
-                uid ='$hitUserId'";
-                
+        $query = "INSERT INTO {$CONFIG['TABLE_HIT_STATS']} SET"
+            ." pid = $pid,"
+            ." search_phrase = '{$client_details['query_terms']}',"
+            ." Ip   = '$raw_ip',"
+            ." sdate = '$time',"
+            ." referer='$referer',"
+            ." browser = '{$client_details['browser']}',"
+            ." os = '{$client_details['os']}',"
+            ." uid ='$hitUserId'";
         cpg_db_query($query);
     }
 }

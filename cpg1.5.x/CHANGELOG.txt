@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-02-26 [B] Fixed browser detect giving older IE version when user_agent gives multiple {Paver}
+2009-02-26 [B] Fixed converting 'search_phrase' from array to string for table 'hit_stats' {Paver}
 2009-02-20 [B] Fixed 'Selecting private pics as a category thumbnail' issue (thread ID 57898) {Nibbler}
 2009-02-08 [B] Fixed minibrowser for Windows servers ('browsable interface' for 'batch add files') {Paver}
 2009-02-06 [B] Changed redirect for login/logout pages as appropriate to avoid extraneous messages {Paver}

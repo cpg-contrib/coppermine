@@ -30,9 +30,10 @@ starttable("100%", $lang_index_php['welcome']);
 
 echo <<< EOT
     <tr>
-        <td class="tableb" >
-            This is for the "anycontent" block - just a test.<br />
-            Edit the file "anycontent.php" to change what is shown here.
+        <td class="tableb">
+            Here is text in the "anycontent" block.<br />
+            Edit the file "anycontent.php" in your Coppermine folder to change what is shown here.<br />
+            To show this block on your gallery, go to the configuration panel under "Album List View", then "content of the main page".
         </td>
     </tr>
 
