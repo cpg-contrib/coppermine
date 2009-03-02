@@ -515,6 +515,7 @@ function create_tabs($items, $curr_page, $total_pages, $template)
         return $tabs.$template['tab_trailer'];
 }
 
+
 /**
  * Rewritten by Nathan Codding - Feb 6, 2001. Taken from phpBB code
  * - Goes through the given string, and replaces xxxx://yyyy with an HTML <a> tag linking
@@ -557,90 +558,86 @@ function make_clickable($text)
 
 function bb_decode($text)
 {
-        $text = nl2br($text);
+    $text = nl2br($text);
 
-        static $bbcode_tpl = array();
-        static $patterns = array();
-        static $replacements = array();
+    static $bbcode_tpl = array();
+    static $patterns = array();
+    static $replacements = array();
 
-        // First: If there isn't a "[" and a "]" in the message, don't bother.
-        if ((strpos($text, "[") === false || strpos($text, "]") === false))
-        {
-                return $text;
-        }
-
-        // [b] and [/b] for bolding text.
-        $text = str_replace("[b]", '<b>', $text);
-        $text = str_replace("[/b]", '</b>', $text);
-
-        // [u] and [/u] for underlining text.
-        $text = str_replace("[u]", '<u>', $text);
-        $text = str_replace("[/u]", '</u>', $text);
-
-        // [i] and [/i] for italicizing text.
-        $text = str_replace("[i]", '<i>', $text);
-        $text = str_replace("[/i]", '</i>', $text);
-
-        // colours
-        $text = preg_replace("/\[color=(\#[0-9A-F]{6}|[a-z]+)\]/", '<span style="color:$1">', $text);
-        $text = str_replace("[/color]", '</span>', $text);
-
-        // [i] and [/i] for italicizing text.
-        //$text = str_replace("[i:$uid]", $bbcode_tpl['i_open'], $text);
-        //$text = str_replace("[/i:$uid]", $bbcode_tpl['i_close'], $text);
-
-        if (!count($bbcode_tpl)) {
-                // We do URLs in several different ways..
-                $bbcode_tpl['url']  = '<span class="bblink"><a href="{URL}" rel="external">{DESCRIPTION}</a></span>';
-                $bbcode_tpl['email']= '<span class="bblink"><a href="mailto:{EMAIL}">{EMAIL}</a></span>';
-
-                $bbcode_tpl['url1'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['url']);
-                $bbcode_tpl['url1'] = str_replace('{DESCRIPTION}', '\\1\\2', $bbcode_tpl['url1']);
-
-                $bbcode_tpl['url2'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['url']);
-                $bbcode_tpl['url2'] = str_replace('{DESCRIPTION}', '\\1', $bbcode_tpl['url2']);
-
-                $bbcode_tpl['url3'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['url']);
-                $bbcode_tpl['url3'] = str_replace('{DESCRIPTION}', '\\3', $bbcode_tpl['url3']);
-
-                $bbcode_tpl['url4'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['url']);
-                $bbcode_tpl['url4'] = str_replace('{DESCRIPTION}', '\\2', $bbcode_tpl['url4']);
-
-                $bbcode_tpl['email'] = str_replace('{EMAIL}', '\\1', $bbcode_tpl['email']);
-
-                // [url]xxxx://www.phpbb.com[/url] code..
-                $patterns[1] = "#\[url\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
-                $replacements[1] = $bbcode_tpl['url1'];
-
-                // [url]www.phpbb.com[/url] code.. (no xxxx:// prefix).
-                $patterns[2] = "#\[url\]([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
-                $replacements[2] = $bbcode_tpl['url2'];
-
-                // [url=xxxx://www.phpbb.com]phpBB[/url] code..
-                $patterns[3] = "#\[url=([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si";
-                $replacements[3] = $bbcode_tpl['url3'];
-
-                // [url=www.phpbb.com]phpBB[/url] code.. (no xxxx:// prefix).
-                $patterns[4] = "#\[url=([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si";
-                $replacements[4] = $bbcode_tpl['url4'];
-
-                // [email]user@domain.tld[/email] code..
-                $patterns[5] = "#\[email\]([a-z0-9\-_.]+?@[\w\-]+\.([\w\-\.]+\.)?[\w]+)\[/email\]#si";
-                $replacements[5] = $bbcode_tpl['email'];
-
-                // [img]xxxx://www.phpbb.com[/img] code..
-                $bbcode_tpl['img']  = '<img src="{URL}" alt="" />';
-                $bbcode_tpl['img']  = str_replace('{URL}', '\\1\\2', $bbcode_tpl['img']);
-
-                $patterns[6] = "#\[img\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/img\]#si";
-                $replacements[6] = $bbcode_tpl['img'];
-
-        }
-
-        $text = preg_replace($patterns, $replacements, $text);
-
+    // First: If there isn't a "[" and a "]" in the message, don't bother.
+    if ((strpos($text, "[") === false || strpos($text, "]") === false)) {
         return $text;
+    }
+
+    // [b] and [/b] for bolding text.
+    $text = str_replace("[b]", '<b>', $text);
+    $text = str_replace("[/b]", '</b>', $text);
+
+    // [u] and [/u] for underlining text.
+    $text = str_replace("[u]", '<u>', $text);
+    $text = str_replace("[/u]", '</u>', $text);
+
+    // [i] and [/i] for italicizing text.
+    $text = str_replace("[i]", '<i>', $text);
+    $text = str_replace("[/i]", '</i>', $text);
+
+    // colors
+    $text = preg_replace("/\[color=(\#[0-9A-F]{6}|[a-z]+)\]/", '<span style="color:$1">', $text);
+    $text = str_replace("[/color]", '</span>', $text);
+
+    // [i] and [/i] for italicizing text.
+    //$text = str_replace("[i:$uid]", $bbcode_tpl['i_open'], $text);
+    //$text = str_replace("[/i:$uid]", $bbcode_tpl['i_close'], $text);
+
+    if (!count($bbcode_tpl)) {
+        // We do URLs in several different ways..
+        $bbcode_tpl['url']  = '<span class="bblink"><a href="{URL}" rel="external">{DESCRIPTION}</a></span>';
+        $bbcode_tpl['email']= '<span class="bblink"><a href="mailto:{EMAIL}">{EMAIL}</a></span>';
+
+        $bbcode_tpl['url1'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['url']);
+        $bbcode_tpl['url1'] = str_replace('{DESCRIPTION}', '\\1\\2', $bbcode_tpl['url1']);
+
+        $bbcode_tpl['url2'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['url']);
+        $bbcode_tpl['url2'] = str_replace('{DESCRIPTION}', '\\1', $bbcode_tpl['url2']);
+
+        $bbcode_tpl['url3'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['url']);
+        $bbcode_tpl['url3'] = str_replace('{DESCRIPTION}', '\\3', $bbcode_tpl['url3']);
+
+        $bbcode_tpl['url4'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['url']);
+        $bbcode_tpl['url4'] = str_replace('{DESCRIPTION}', '\\2', $bbcode_tpl['url4']);
+
+        $bbcode_tpl['email'] = str_replace('{EMAIL}', '\\1', $bbcode_tpl['email']);
+
+        // [url]xxxx://www.phpbb.com[/url] code..
+        $patterns[1] = "#\[url\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
+        $replacements[1] = $bbcode_tpl['url1'];
+
+        // [url]www.phpbb.com[/url] code.. (no xxxx:// prefix).
+        $patterns[2] = "#\[url\]([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
+        $replacements[2] = $bbcode_tpl['url2'];
+
+        // [url=xxxx://www.phpbb.com]phpBB[/url] code..
+        $patterns[3] = "#\[url=([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si";
+        $replacements[3] = $bbcode_tpl['url3'];
+
+        // [url=www.phpbb.com]phpBB[/url] code.. (no xxxx:// prefix).
+        $patterns[4] = "#\[url=([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si";
+        $replacements[4] = $bbcode_tpl['url4'];
+
+        // [email]user@domain.tld[/email] code..
+        $patterns[5] = "#\[email\]([a-z0-9\-_.]+?@[\w\-]+\.([\w\-\.]+\.)?[\w]+)\[/email\]#si";
+        $replacements[5] = $bbcode_tpl['email'];
+
+        // [img]xxxx://www.phpbb.com[/img] code..
+        $bbcode_tpl['img'] = '<img src="{URL}" alt="" />';
+        $bbcode_tpl['img'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['img']);
+        $patterns[6] = "#\[img\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/img\]#si";
+        $replacements[6] = $bbcode_tpl['img'];
+    }
+    $text = preg_replace($patterns, $replacements, $text);
+    return $text;
 }
+
 
 /**************************************************************************
    Template functions
@@ -1218,7 +1215,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $select_columns = '*'; //allows building any data into any thumbnail caption
                 // if we have more than 1000 pictures, we limit the number of picture returned
                 // by the SELECT statement as ORDER BY RAND() is time consuming
-                                /* Commented out due to image not found bug
+
+                /* Commented out due to image not found bug
                 if ($pic_count > 1000) {
                     $result = cpg_db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'");
                         $nbEnr = mysql_fetch_array($result);
@@ -1232,8 +1230,10 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $random_num_set = substr($random_num_set,0, -2);
                         $result = cpg_db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE  randpos IN ($random_num_set) AND approved = 'YES' $ALBUM_SET ORDER BY RAND() LIMIT $limit2");
                 } else {
-                                */
-                $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET ORDER BY RAND() LIMIT $limit2";
+                */
+
+                $limit_random = $limit2 ? 'LIMIT '.$limit2 : '';
+                $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET ORDER BY RAND() $limit_random";
                 $result = cpg_db_query($query);
 
                 $rowset = array();
@@ -1456,65 +1456,80 @@ function count_pic_comments($pid, $skip=0)
  **/
 function add_hit($pid)
 {
-        global $CONFIG, $raw_ip;
-        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='$raw_ip', mtime=CURRENT_TIMESTAMP WHERE pid='$pid'");
+    global $CONFIG, $raw_ip;
+    cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='$raw_ip', mtime=CURRENT_TIMESTAMP WHERE pid='$pid'");
 
-        /**
-         * Code to record the details of hits for the picture, if the option is set in CONFIG
-         */
-        if ($CONFIG['hit_details']) {
+    /**
+     * Code to record the details of hits for the picture, if the option is set in CONFIG
+     */
+    $server_agent = $_SERVER["HTTP_USER_AGENT"];
+    if ($CONFIG['hit_details']) {
         // Get the details of user browser, IP, OS, etc
         $os = "Unknown";
-        if(eregi("Linux",$_SERVER["HTTP_USER_AGENT"])) {
+        if(eregi("Linux",$server_agent)) {
             $os = "Linux";
-        } else if(eregi("Windows NT 5.0",$_SERVER["HTTP_USER_AGENT"])) {
+        } else if(eregi("Windows NT 5.0",$server_agent)) {
             $os = "Windows 2000";
-        } else if(eregi("win98|Windows 98",$_SERVER["HTTP_USER_AGENT"])) {
+        } else if(eregi("win98|Windows 98",$server_agent)) {
             $os = "Windows 98";
-        } else if(eregi("Windows NT 5.1",$_SERVER["HTTP_USER_AGENT"])) {
+        } else if(eregi("Windows NT 5.1",$server_agent)) {
             $os = "Windows XP";
-        } else if(eregi("Windows",$_SERVER["HTTP_USER_AGENT"])) {
+        } else if(eregi("Windows",$server_agent)) {
             $os = "Windows";
         }
 
         $browser = 'Unknown';
-        if(eregi("MSIE",$browser)) {
-            if(eregi("MSIE 5.5",$browser)) {
-                $browser = "Microsoft Internet Explorer 5.5";
-            } else if(eregi("MSIE 6.0",$browser)) {
-                $browser = "Microsoft Internet Explorer 6.0";
+        if(eregi("MSIE",$server_agent)) {
+            if(eregi("MSIE 8\.0",$server_agent)) {
+                $browser = "IE8";
+            } elseif(eregi("MSIE 7\.0",$server_agent)) {
+                $browser = "IE7";
+            } elseif(eregi("MSIE 6\.0",$server_agent)) {
+                $browser = "IE6";
+            } elseif(eregi("MSIE 5\.5",$server_agent)) {
+                $browser = "IE5.5";
+            } elseif(eregi("MSIE 5\.0",$server_agent)) {
+                $browser = "IE5.0";
+            } elseif(eregi("MSIE 4\.0",$server_agent)) {
+                $browser = "IE4";
+            } elseif(eregi("MSIE 3\.0",$server_agent)) {
+                $browser = "IE3";
+            } else {
+                $browser = "IE";
             }
-        } else if(eregi("Mozilla Firebird",$browser)) {
+        } else if(eregi("Mozilla Firebird",$server_agent)) {
             $browser = "Mozilla Firebird";
-        } else if(eregi("netscape",$browser)) {
+        } else if(eregi("netscape",$server_agent)) {
             $browser = "Netscape";
-        } else if(eregi("Firefox",$browser)) {
+        } else if(eregi("Firefox",$server_agent)) {
             $browser = "Firefox";
         }
 
         //Code to get the search string if the referrer is any of the following
         $search_engines = array('google', 'lycos', 'yahoo');
 
+        $query_array = array();
         foreach ($search_engines as $engine) {
-          if ( is_referer_search_engine($engine)) {
-            $query_terms = get_search_query_terms($engine);
+          if (is_referer_search_engine($engine)) {
+            $query_array = get_search_query_terms($engine);
             break;
           }
         }
+        $query_terms = is_array($query_array) ? implode(',', $query_array) : '';
+        $search_phrase = addslashes($query_terms);
 
         $time = time();
         $referer = urlencode(addslashes($_SERVER['HTTP_REFERER']));
 
         // Insert the record in database
-        $query = "INSERT INTO {$CONFIG['TABLE_HIT_STATS']}
-                          SET
-                            pid = $pid,
-                            search_phrase = '$query_terms',
-                            Ip   = '$raw_ip',
-                            sdate = '$time',
-                            referer='$referer',
-                            browser = '$browser',
-                            os = '$os'";
+        $query = "INSERT INTO {$CONFIG['TABLE_HIT_STATS']} SET"
+            ." pid = $pid,"
+            ." search_phrase = '$search_phrase',"
+            ." Ip   = '$raw_ip',"
+            ." sdate = '$time',"
+            ." referer='$referer',"
+            ." browser = '$browser',"
+            ." os = '$os'";
         cpg_db_query($query);
      }
 }
@@ -2626,7 +2641,8 @@ return $return;
  * @return
  **/
 
-function cpg_alert_dev_version() {
+function cpg_alert_dev_version() 
+{
         global $lang_version_alert, $CONFIG;
         $return = '';
         if (COPPERMINE_VERSION_STATUS != 'stable') {
@@ -2656,17 +2672,18 @@ function cpg_alert_dev_version() {
  * @return
  **/
 
-function cpg_display_help($reference = 'f=index.htm', $width = '600', $height = '350') {
-global $CONFIG, $USER;
-if ($reference == '' || $CONFIG['enable_help'] == '0') {return; }
-if ($CONFIG['enable_help'] == '2' && GALLERY_ADMIN_MODE == false) {return; }
-$help_theme = $CONFIG['theme'];
-if (isset($USER['theme'])) {
-    $help_theme = $USER['theme'];
-}
-// $help_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('docs/showdoc.php?css=" . $help_theme . "&amp;" . $reference . "','coppermine_help','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "')\" style=\"cursor:help\"><img src=\"images/help.gif\" width=\"13\" height=\"11\" border=\"0\" alt=\"\" title=\"\" /></a>";
-$help_html = "<a href=\"javascript:;\" onclick=\"coppermine_help_window=window.open('docs/showdoc.php?css=" . $help_theme . "&amp;" . $reference . "','coppermine_help','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "'); coppermine_help_window.focus()\" style=\"cursor:help\"><img src=\"images/help.gif\" width=\"13\" height=\"11\" border=\"0\" alt=\"\" title=\"\" /></a>";
-return $help_html;
+function cpg_display_help($reference = 'f=index.htm', $width = '600', $height = '350') 
+{
+    global $CONFIG, $USER;
+    if ($reference == '' || $CONFIG['enable_help'] == '0') {return; }
+    if ($CONFIG['enable_help'] == '2' && GALLERY_ADMIN_MODE == false) {return; }
+    $help_theme = $CONFIG['theme'];
+    if (isset($USER['theme'])) {
+        $help_theme = $USER['theme'];
+    }
+    // $help_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('docs/showdoc.php?css=" . $help_theme . "&amp;" . $reference . "','coppermine_help','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "')\" style=\"cursor:help\"><img src=\"images/help.gif\" width=\"13\" height=\"11\" border=\"0\" alt=\"\" title=\"\" /></a>";
+    $help_html = "<a href=\"javascript:;\" onclick=\"coppermine_help_window=window.open('docs/showdoc.php?css=" . $help_theme . "&amp;" . $reference . "','coppermine_help','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "'); coppermine_help_window.focus()\" style=\"cursor:help\"><img src=\"images/help.gif\" width=\"13\" height=\"11\" border=\"0\" alt=\"\" title=\"\" /></a>";
+    return $help_html;
 }
 
 /**
@@ -2675,7 +2692,8 @@ return $help_html;
 * syntax:
 * $array = array_csort($array [, 'col1' [, SORT_FLAG [, SORT_FLAG]]]...);
 **/
-function array_csort() {
+function array_csort() 
+{
    $args = func_get_args();
    $marray = array_shift($args);
 
@@ -2697,18 +2715,20 @@ function array_csort() {
    return $marray;
 }
 
-function cpg_get_bridge_db_values() {
-global $CONFIG;
-// Retrieve DB stored configuration
-$results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_BRIDGE']}");
-while ($row = mysql_fetch_array($results)) {
-    $BRIDGE[$row['name']] = $row['value'];
-} // while
-mysql_free_result($results);
-return $BRIDGE;
+function cpg_get_bridge_db_values() 
+{
+    global $CONFIG;
+    // Retrieve DB stored configuration
+    $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_BRIDGE']}");
+    while ($row = mysql_fetch_array($results)) {
+        $BRIDGE[$row['name']] = $row['value'];
+    } // while
+    mysql_free_result($results);
+    return $BRIDGE;
 }
 
-function cpg_get_webroot_path() {
+function cpg_get_webroot_path() 
+{
     //global $PHP_SELF;
     // get the webroot folder out of a given PHP_SELF of any coppermine page
 
@@ -2772,10 +2792,11 @@ function cpg_get_webroot_path() {
 }
 
 /**
- * Function to get the search string if the picture is viewed from google, lucos or yahoo search engine
+ * Function to get the search string if the picture is viewed from google, lycos or yahoo search engine
  */
 
-function get_search_query_terms($engine = 'google') {
+function get_search_query_terms($engine = 'google')
+{
   global $s, $s_array;
   $referer = urldecode($_SERVER[HTTP_REFERER]);
   $query_array = array();
@@ -2785,26 +2806,27 @@ function get_search_query_terms($engine = 'google') {
       // Google Hilite 0.3. http://textism.com
       $query_terms = preg_replace('/^.*q=([^&]+)&?.*$/i','$1', $referer);
       $query_terms = preg_replace('/\'|"/', '', $query_terms);
-      $query_array = preg_split ("/[\s,\+\.]+/", $query_terms);
+      $query_array = preg_split("/[\s,\+\.]+/", $query_terms);
       break;
 
     case 'lycos':
       $query_terms = preg_replace('/^.*query=([^&]+)&?.*$/i','$1', $referer);
       $query_terms = preg_replace('/\'|"/', '', $query_terms);
-      $query_array = preg_split ("/[\s,\+\.]+/", $query_terms);
+      $query_array = preg_split("/[\s,\+\.]+/", $query_terms);
       break;
 
     case 'yahoo':
       $query_terms = preg_replace('/^.*p=([^&]+)&?.*$/i','$1', $referer);
       $query_terms = preg_replace('/\'|"/', '', $query_terms);
-      $query_array = preg_split ("/[\s,\+\.]+/", $query_terms);
+      $query_array = preg_split("/[\s,\+\.]+/", $query_terms);
       break;
   }
   return $query_array;
 }
 
 
-function is_referer_search_engine($engine = 'google') {
+function is_referer_search_engine($engine = 'google') 
+{
   //$siteurl = get_settings('home');
   $referer = urldecode($_SERVER['HTTP_REFERER']);
     //echo "referer is: $referer<br />";
@@ -2823,7 +2845,7 @@ function is_referer_search_engine($engine = 'google') {
     if (preg_match('|^http://search\.lycos.*|i', $referer)) {
       return 1;
     }
-        break;
+    break;
 
     case 'yahoo':
     if (preg_match('|^http://search\.yahoo.*|i', $referer)) {
