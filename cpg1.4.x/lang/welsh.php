@@ -8,7 +8,7 @@
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
    ********************************************
-  Coppermine version: 1.4.20
+  Coppermine version: 1.4.21
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.4.x/lang/spanish.php $
   $Revision: 4380 $
   $Author: gaugau $

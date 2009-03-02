@@ -10,7 +10,7 @@ it under the terms of the GNU General Public License version 3
 as published by the Free Software Foundation.
 
 ********************************************
-Coppermine version: 1.4.20
+Coppermine version: 1.4.21
 $HeadURL$
 $Revision$
 $Author$

@@ -9,7 +9,7 @@ it under the terms of the GNU General Public License version 3
 as published by the Free Software Foundation.
 
 ********************************************
-Coppermine version: 1.4.20
+Coppermine version: 1.4.21
 $Source$
 $Revision$
 $Author$
@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-03-02 [M] Updated version count as a preparation for the release of cpg1.4.21 {GauGau}
 2009-02-20 [B] Fixed 'Selecting private pics as a category thumbnail' issue (thread ID 57898) {Nibbler}
 2009-02-04 [M] Release of cpg1.4.20 {GauGau}
 2009-02-04 [M] Updated version count as a preparation for the release of cpg1.4.20 {GauGau}
