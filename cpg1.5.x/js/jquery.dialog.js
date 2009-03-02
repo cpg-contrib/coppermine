@@ -80,6 +80,8 @@ $(document).ready(function() {
         .append($cluetipOuter).append('<div id="cluetip-extra"></div>')[insertionType](insertionElement).hide();
         $('<div id="cluetip-waitimage"></div>').css({position: 'absolute', zIndex: cluezIndex-1})
         .insertBefore('#cluetip').hide();
+        $('<div id="cluetip-waitimage"></div>').css({backgroundColor: '#FF0000'});
+        // GauGau
         $cluetip.css({position: 'absolute', zIndex: cluezIndex});
         $cluetipOuter.css({position: 'relative', zIndex: cluezIndex+1});
         $cluetipArrows = $('<div id="cluetip-arrows" class="cluetip-arrows"></div>').css({zIndex: cluezIndex+1}).appendTo('#cluetip');

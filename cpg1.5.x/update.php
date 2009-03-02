@@ -43,6 +43,101 @@ function cpgGetMicroTime()
 }
 }
 
+if (!function_exists('cpg_folder_file_delete')) {
+function cpg_folder_file_delete($path, $output = '') {
+	// Perform some validity checks first
+	rtrim($path,'/'); // if the path has a trailing slash we remove it here
+	if (is_link($path)) { // We don't want to delete symlinks, so let's just return some text
+		if ($output != '') {
+			return $path . ' appears to be a symlink - we won\'t delete them for security reasons';
+		} else {
+			return;
+		}
+	}
+	if (!file_exists($path) && !is_dir($path)) {// if the path is not valid
+		if ($output != '') {
+			return 'Path ' . $path . ' does not exist';
+		} else {
+			return;
+		}
+	} elseif (!is_readable($path)) {// ... if the path is not readable
+		if ($output != '') {
+			return 'Path ' . $path . ' is not readable';
+		} else {
+			return;
+		}
+	}	
+	if (is_dir($path)) {
+		if (version_compare(PHP_VERSION, '5.0.0') < 0) {
+			$entries = array();
+			if ($handle = opendir($path)) {
+				while (false !== ($file = readdir($handle))) {
+					$entries[] = $file;
+				}
+				closedir($handle);
+			}
+		} else {
+			$entries = scandir($path);
+			if ($entries === false) {
+				$entries = array();
+			}
+		}
+		foreach ($entries as $entry) {
+			if ($entry != '.' && $entry != '..') {
+				cpg_folder_file_delete($path.'/'.$entry);
+			}
+		}
+		// Delete the folder
+		if ($output != '') {
+			$result = rmdir($path);
+		} else {
+			$result = @rmdir($path);
+		}
+		if ($output != '') {
+			if ($result == 1) {
+				// We have issued the command to delete the folder and everything
+				// appears to have gone fine, but we can not be sure if we succeeded,
+				// so we'll test if the folder still is there.
+				clearstatcache(); // We need to clear the cache before we check if the folder is still there.
+				if (is_dir($path)) {
+					return 'Couldn\'t delete folder ' . $path . '. Review permissions!';
+				} else {
+					return 'Folder deleted successfully';
+				}
+			} else {
+				return 'Couldn\'t delete folder ' . $path . '. Review permissions!';
+			}
+		} else {
+			return;
+		}
+	} else {
+		// Delete the file
+		if ($output != '') {
+			$result = unlink($path);
+		} else {
+			$result = @unlink($path);
+		}
+		if ($output != '') {
+			if ($result == 1) {
+				// We have issued the command to delete the file and everything
+				// appears to have gone fine, but we can not be sure if we succeeded,
+				// so we'll test if the file still is there.
+				clearstatcache(); // We need to clear the cache first.
+				if (file_exists($path)) {
+					return 'Couldn\'t delete file ' . $path . '. Review permissions!';
+				} else {
+					return 'File deleted successfully';
+				}
+			} else {
+				return 'Couldn\'t delete file ' . $path . '. Review permissions!';
+			}
+		} else {
+			return;
+		}
+	}
+}
+}
+
 set_include_path(get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'include');
 
 require_once('include/Inspekt.php');
@@ -365,11 +460,11 @@ function update_system_thumbs()
 
     // If old images for nopic.jpg and private.jpg exist, delete the new ones
     if (file_exists('images/nopic.jpg')) {
-        @unlink('images/thumb_nopic.jpg');
+        cpg_folder_file_delete('images/thumb_nopic.jpg');
     }
 
     if (file_exists('images/private.jpg')) {
-        @unlink('images/thumb_private.jpg');
+        cpg_folder_file_delete('images/thumb_private.jpg');
     }
 
     // Rename old images to new format
@@ -701,7 +796,7 @@ EOT;
         if (!file_exists($delete_file)) {
             $result_output = $already_done_icon . $lang_update_php['already_done'];
         } else {
-            $delete_result = unlink($delete_file);
+            $delete_result = cpg_folder_file_delete($delete_file);
             $delete_check = file_exists($delete_file);
             if ($delete_result == TRUE && $delete_check == FALSE) {
                 $result_output = $ok_icon . $lang_common['ok'];
