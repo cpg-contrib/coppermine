@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-03-02 [B] Fixed HTML special characters in referer for hit/vote stats {Paver}
 2009-03-02 [B] Added function to recursively delete folder/file structures as a fix for the unlink-issue in update script (thread ID 57514) {GauGau}
 2009-02-26 [B] Fixed browser detect giving older IE version when user_agent gives multiple {Paver}
 2009-02-26 [B] Fixed converting 'search_phrase' from array to string for table 'hit_stats' {Paver}

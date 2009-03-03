@@ -2213,7 +2213,8 @@ function add_hit($pid)
 
         // Get the details of user browser, IP, OS, etc
         $client_details = cpg_determine_client();
-        
+        $search_phrase = addslashes($client_details['query_terms']);
+
         //Making Cage
         $superCage = Inspekt::makeSuperCage();
         
@@ -2222,7 +2223,7 @@ function add_hit($pid)
         //Sanitize the referer
         //Used getRaw() method but sanitized immediately
         if ($superCage->server->keyExists('HTTP_REFERER')) {
-            $referer = urlencode(addslashes(htmlentities($superCage->server->getRaw('HTTP_REFERER'))));
+            $referer = addslashes(htmlentities($superCage->server->getRaw('HTTP_REFERER')));
         } else {
             $referer = '';
         }
@@ -2232,7 +2233,7 @@ function add_hit($pid)
         // Insert the record in database
         $query = "INSERT INTO {$CONFIG['TABLE_HIT_STATS']} SET"
             ." pid = $pid,"
-            ." search_phrase = '{$client_details['query_terms']}',"
+            ." search_phrase = '$search_phrase',"
             ." Ip   = '$raw_ip',"
             ." sdate = '$time',"
             ." referer='$referer',"
@@ -5343,6 +5344,7 @@ function captcha_plugin_enabled()
     return false;
 }
 
+
 /**
  * get_cat_data()
  *
@@ -5384,6 +5386,8 @@ function get_cat_data()
         }
     }
 }
+// end function get_cat_data
+
 
 // Returns an html string containing albums for use in a <select> dropdown.
 // Contains no permission checks so only suitable for use on admin pages
@@ -5484,6 +5488,8 @@ function album_selection_options()
     
     return $options;
 }
+// end function album_selection_options
+
 
 /**
 * Function used to delete a folder and everything within it except symlinks.
@@ -5496,110 +5502,111 @@ function album_selection_options()
 * @param $path full-path or relative path to folder
 * @return result of deletion
 */
-function cpg_folder_file_delete($path) {
-	global $CONFIG;
-	if ($CONFIG['debug_notice'] == 0) {
-		$output = '';
-	} else {
-		if ($CONFIG['debug_mode'] == 1) {
-			$output = 1;
-		} elseif ($CONFIG['debug_mode'] == 2 && defined(GALLERY_ADMIN_MODE)) {
-			$output = 1;
-		} else {
-			$output = '';
-		}
-	}
-	// Perform some validity checks first
-	rtrim($path,'/'); // if the path has a trailing slash we remove it here
-	if (is_link($path)) { // We don't want to delete symlinks, so let's just return some text
-		if ($output != '') {
-			return $path . ' appears to be a symlink - we won\'t delete them for security reasons';
-		} else {
-			return;
-		}
-	}
-	if (!file_exists($path) && !is_dir($path)) {// if the path is not valid
-		if ($output != '') {
-			return 'Path ' . $path . ' does not exist';
-		} else {
-			return;
-		}
-	} elseif (!is_readable($path)) {// ... if the path is not readable
-		if ($output != '') {
-			return 'Path ' . $path . ' is not readable';
-		} else {
-			return;
-		}
-	}	
-	if (is_dir($path)) {
-		if (version_compare(PHP_VERSION, '5.0.0') < 0) {
-			$entries = array();
-			if ($handle = opendir($path)) {
-				while (false !== ($file = readdir($handle))) {
-					$entries[] = $file;
-				}
-				closedir($handle);
-			}
-		} else {
-			$entries = scandir($path);
-			if ($entries === false) {
-				$entries = array();
-			}
-		}
-		foreach ($entries as $entry) {
-			if ($entry != '.' && $entry != '..') {
-				cpg_folder_file_delete($path.'/'.$entry);
-			}
-		}
-		// Delete the folder
-		if ($output != '') {
-			$result = rmdir($path);
-		} else {
-			$result = @rmdir($path);
-		}
-		if ($output != '') {
-			if ($result == 1) {
-				// We have issued the command to delete the folder and everything
-				// appears to have gone fine, but we can not be sure if we succeeded,
-				// so we'll test if the folder still is there.
-				clearstatcache(); // We need to clear the cache before we check if the folder is still there.
-				if (is_dir($path)) {
-					return 'Couldn\'t delete folder ' . $path . '. Review permissions!';
-				} else {
-					return 'Folder deleted successfully';
-				}
-			} else {
-				return 'Couldn\'t delete folder ' . $path . '. Review permissions!';
-			}
-		} else {
-			return;
-		}
-	} else {
-		// Delete the file
-		if ($output != '') {
-			$result = unlink($path);
-		} else {
-			$result = @unlink($path);
-		}
-		if ($output != '') {
-			if ($result == 1) {
-				// We have issued the command to delete the file and everything
-				// appears to have gone fine, but we can not be sure if we succeeded,
-				// so we'll test if the file still is there.
-				clearstatcache(); // We need to clear the cache first.
-				if (file_exists($path)) {
-					return 'Couldn\'t delete file ' . $path . '. Review permissions!';
-				} else {
-					return 'File deleted successfully';
-				}
-			} else {
-				return 'Couldn\'t delete file ' . $path . '. Review permissions!';
-			}
-		} else {
-			return;
-		}
-	}
+function cpg_folder_file_delete($path) 
+{
+    global $CONFIG;
+    if ($CONFIG['debug_notice'] == 0) {
+        $output = '';
+    } else {
+        if ($CONFIG['debug_mode'] == 1) {
+            $output = 1;
+        } elseif ($CONFIG['debug_mode'] == 2 && defined(GALLERY_ADMIN_MODE)) {
+            $output = 1;
+        } else {
+            $output = '';
+        }
+    }
+    // Perform some validity checks first
+    rtrim($path,'/'); // if the path has a trailing slash we remove it here
+    if (is_link($path)) { // We don't want to delete symlinks, so let's just return some text
+        if ($output != '') {
+            return $path . ' appears to be a symlink - we won\'t delete them for security reasons';
+        } else {
+            return;
+        }
+    }
+    if (!file_exists($path) && !is_dir($path)) {// if the path is not valid
+        if ($output != '') {
+            return 'Path ' . $path . ' does not exist';
+        } else {
+            return;
+        }
+    } elseif (!is_readable($path)) {// ... if the path is not readable
+        if ($output != '') {
+            return 'Path ' . $path . ' is not readable';
+        } else {
+            return;
+        }
+    }   
+    if (is_dir($path)) {
+        if (version_compare(PHP_VERSION, '5.0.0') < 0) {
+            $entries = array();
+            if ($handle = opendir($path)) {
+                while (false !== ($file = readdir($handle))) {
+                    $entries[] = $file;
+                }
+                closedir($handle);
+            }
+        } else {
+            $entries = scandir($path);
+            if ($entries === false) {
+                $entries = array();
+            }
+        }
+        foreach ($entries as $entry) {
+            if ($entry != '.' && $entry != '..') {
+                cpg_folder_file_delete($path.'/'.$entry);
+            }
+        }
+        // Delete the folder
+        if ($output != '') {
+            $result = rmdir($path);
+        } else {
+            $result = @rmdir($path);
+        }
+        if ($output != '') {
+            if ($result == 1) {
+                // We have issued the command to delete the folder and everything
+                // appears to have gone fine, but we can not be sure if we succeeded,
+                // so we'll test if the folder still is there.
+                clearstatcache(); // We need to clear the cache before we check if the folder is still there.
+                if (is_dir($path)) {
+                    return 'Couldn\'t delete folder ' . $path . '. Review permissions!';
+                } else {
+                    return 'Folder deleted successfully';
+                }
+            } else {
+                return 'Couldn\'t delete folder ' . $path . '. Review permissions!';
+            }
+        } else {
+            return;
+        }
+    } else {
+        // Delete the file
+        if ($output != '') {
+            $result = unlink($path);
+        } else {
+            $result = @unlink($path);
+        }
+        if ($output != '') {
+            if ($result == 1) {
+                // We have issued the command to delete the file and everything
+                // appears to have gone fine, but we can not be sure if we succeeded,
+                // so we'll test if the file still is there.
+                clearstatcache(); // We need to clear the cache first.
+                if (file_exists($path)) {
+                    return 'Couldn\'t delete file ' . $path . '. Review permissions!';
+                } else {
+                    return 'File deleted successfully';
+                }
+            } else {
+                return 'Couldn\'t delete file ' . $path . '. Review permissions!';
+            }
+        } else {
+            return;
+        }
+    }
 }
-
+// end function cpg_folder_file_delete
 
 ?>
