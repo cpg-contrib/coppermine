@@ -101,7 +101,7 @@ if(eregi("MSIE",$browser)) {
 }
 $time = time();
 
-$referer = urlencode(addslashes($_SERVER['HTTP_REFERER']));
+$referer = addslashes(htmlentities($_SERVER['HTTP_REFERER']));
 
 // Insert the record in database
 $query = "INSERT INTO {$CONFIG['TABLE_VOTE_STATS']}
