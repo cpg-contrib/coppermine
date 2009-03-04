@@ -2634,7 +2634,7 @@ $cpgCurrentTheme.="theme=";
 
     $dir = opendir($theme_dir);
     while ($file = readdir($dir)) {
-        if (is_dir($theme_dir . $file) && $file != "." && $file != ".." && $file != 'CVS' && $file != 'sample') {
+        if (is_dir($theme_dir . $file) && $file != "." && $file != ".." && $file != 'CVS' && $file != 'sample' && $file != '.svn') {
             $theme_array[] = $file;
         }
     }
