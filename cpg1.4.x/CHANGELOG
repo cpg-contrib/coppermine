@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-03-03 [S] Removed processing of bbcodes [img] and [url] due to CSRF vulnerability (thread ID 58309) {Paver}
 2009-03-02 [B] Fixed HTML special characters in referer for hit/vote stats {Paver}
 2009-03-02 [B] Fixed converting 'search_phrase' from array to string for table 'hit_stats' {Paver}
 2009-03-02 [B] Fixed 'unknown' browser field in hit_stats table since SVN 3132 (thread ID 56433) {Paver}

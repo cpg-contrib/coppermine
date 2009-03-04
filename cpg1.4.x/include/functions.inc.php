@@ -547,7 +547,7 @@ function make_clickable($text)
 }
 
 // Allow the use of a limited set of phpBB bb codes in albums and image descriptions
-// Taken from phpBB code
+// Based on phpBB code
 
 /**
  * bb_decode()
@@ -591,8 +591,24 @@ function bb_decode($text)
 
     if (!count($bbcode_tpl)) {
         // We do URLs in several different ways..
-        $bbcode_tpl['url']  = '<span class="bblink"><a href="{URL}" rel="external">{DESCRIPTION}</a></span>';
-        $bbcode_tpl['email']= '<span class="bblink"><a href="mailto:{EMAIL}">{EMAIL}</a></span>';
+        
+        // **** WARNING *******************************************************
+        // The [url] tag can be used for a serious attack against your website.
+        // So [url] tags are no longer processed to show links.
+        // This simple action here is not an ideal solution but is necessary.
+        // Now, [url] tags are processed as follows:
+        // [url=link]text[/url] shows 'text' with a dummy image for the link.
+        // [url]link[/url] shows 'link' as plain text with a dummy image.
+        // The following line is the original line that processed [url]:
+        // $bbcode_tpl['url']  = '<span class="bblink"><a href="{URL}" rel="external">{DESCRIPTION}</a></span>';
+        // ********************************************************************
+        // See this thread on the Coppermine forum for more information:
+        // http://forum.coppermine-gallery.net/index.php/topic,58309.0.html
+        // Please read this thread carefully before deciding to process [url].
+        // ********************************************************************
+        $url_removed = '{URL}';  // put the image URL in the tooltip/mouse-over
+        $bbcode_tpl['url']   = '{DESCRIPTION}<img src="images/descending.gif" alt="" title="' . $url_removed . '" />';
+        $bbcode_tpl['email'] = '<span class="bblink"><a href="mailto:{EMAIL}">{EMAIL}</a></span>';
 
         $bbcode_tpl['url1'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['url']);
         $bbcode_tpl['url1'] = str_replace('{DESCRIPTION}', '\\1\\2', $bbcode_tpl['url1']);
@@ -629,7 +645,21 @@ function bb_decode($text)
         $replacements[5] = $bbcode_tpl['email'];
 
         // [img]xxxx://www.phpbb.com[/img] code..
-        $bbcode_tpl['img'] = '<img src="{URL}" alt="" />';
+        // **** WARNING *******************************************************
+        // The [img] tag can be used for a serious attack against your website.
+        // So [img] tags are no longer processed to show the specified images.
+        // This simple action here is not an ideal solution but is necessary.
+        // Now [img] tags will show a dummy image instead as a placeholder.
+        // ********************************************************************
+        // The following line is the original line that processed [img]:
+        // $bbcode_tpl['img'] = '<img src="{URL}" alt="" />';
+        // ********************************************************************
+        // See this thread on the Coppermine forum for more information:
+        // http://forum.coppermine-gallery.net/index.php/topic,58309.0.html
+        // Please read this thread carefully before deciding to process [img].
+        // ********************************************************************
+        $img_removed = '{URL}';  // put the image URL in the tooltip/mouse-over
+        $bbcode_tpl['img'] = '<img src="images/thumbnails.gif" alt="" title="' . $img_removed . '" />';
         $bbcode_tpl['img'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['img']);
         $patterns[6] = "#\[img\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/img\]#si";
         $replacements[6] = $bbcode_tpl['img'];
