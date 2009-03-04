@@ -1753,9 +1753,9 @@ Currently, this is not possible.</li>
 <ul>
   <li><tt class="code">[url=http://yoursite.com/]Url Text[/url]</tt> =&gt; Url Text<img src="../images/descending.gif" alt="" title="http://yoursite.com/" /></li>
   <li><tt class="code">[url]http://yoursite.com[/url]</tt> =&gt; http://yoursite.com<img src="../images/descending.gif" alt="" title="http://yoursite.com" /></li>
-  <li><tt class="code">[img]http://site.com/image.gif[/img]</tt> =&gt; <img src="../images/red.gif" border="0" alt="" title="http://site.com/image.gif" /></li>
+  <li><tt class="code">[img]http://site.com/image.gif[/img]</tt> =&gt; <img src="../images/thumbnails.gif" border="0" alt="" title="http://site.com/image.gif" /></li>
 </ul>
-<p>As you can see above, no links are displayed for [url] tags, but you will see the link either as plain text or as a mouse-over/tooltip on the image next to the link text: <img src="../images/descending.gif" alt="" />.  For [img] tags, a red dot (<img src="../images/red.gif" border="0" alt="" />) will show up as a placeholder with the mouse-over/tooltip showing the image link.</p>
+<p>As you can see above, no links are displayed for [url] tags, but you will see the link either as plain text or as a mouse-over/tooltip on the image next to the link text: <img src="../images/descending.gif" alt="" />.  For [img] tags, a placeholder image (<img src="../images/thumbnails.gif" border="0" alt="" />) is shown with the mouse-over/tooltip showing the image link.</p>
 <p>We realize that some administrators will want to process [img] and [url] tags correctly.  The Coppermine dev team is working on a solution for cpg1.5 and also one that can be applied to cpg1.4.  Information can be found on this <a href="http://forum.coppermine-gallery.net/index.php/topic,58309.0.html" rel="external" class="external">thread</a> on the Coppermine support forum.  For those who want to hack the code themselves, the relevant function is <tt class="code">bb_decode()</tt> in <tt class="code">include/functions.inc.php</tt>.  Please be <strong>very</strong> careful to address CSRF attacks and read as much as you can about them before going live on your website with your hacked fix.</p>
 <a name="bbcode_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
