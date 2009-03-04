@@ -1835,18 +1835,25 @@ Currently, this is not possible.</li>
 
 
 <a name="bbcode"></a>
-<h2>4.10 Using bbcode to insert enlaces and special formatting in various description fields</h2>
-<p>Coppermine understands the following bbCodes (the same bbCodes that
-are used by phpBB and many other BBS apps) in image and álbum
-description</p>
+<h2>4.10 Using bbcode to insert links and special formatting in various description fields</h2>
+<p>Coppermine understands the following bbCodes (the same bbCodes that are used by phpBB and many other BBS apps) in image and album description</p>
 <ul>
   <li><tt class="code">[b]Bold[/b]</tt> =&gt; <strong>Bold</strong></li>
   <li><tt class="code">[i]Italic[/i]</tt> =&gt; <em>Italic</em></li>
-  <li><tt class="code">[url=http://yoursite.com/]Url Text[/url]</tt> =&gt; <a href="http://yoursite.com/">Url Text</a></li>
+  <li><s><tt class="code">[url=http://yoursite.com/]Url Text[/url]</tt> =&gt; <a href="http://yoursite.com">Url Text</a></s> (* see below)</li>
   <li><tt class="code">[email]user@domain.com[/email]</tt> =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li>
-  <li><tt class="code">[color=red]some text[/color]</tt> =&gt; <span style="color: red;">some text</span></li>
-  <li><tt class="code">[img]http://Coppermine.sf.net/demo/images/red.gif[/img]</tt> =&gt; <img src="../images/red.gif" alt="" border="0"></li>
+  <li><tt class="code">[color=red]some text[/color]</tt> =&gt; <span style="color:red">some text</span></li>
+  <li><s><tt class="code">[img]http://coppermine.sf.net/demo/images/red.gif[/img]</tt> =&gt; <img src="../images/red.gif" border="0" alt="" /></s> (* see below)</li>
 </ul>
+<p>(*) As of cpg1.4.21, the bbcode tags [img] and [url] are no longer processed properly.  These two tags can be used to launch an attack against your website called a Cross-Site Request Forgery attack (<a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" rel="external" class="external">CSRF definition</a>).  In such an attack a user puts a malicious link in an [img] or [url] tag and can gain control of your website.  With such a serious vulnerability, the Coppermine dev team removed processing of these tags to address the immediate risk of such an attack.  This is not a final solution but a necessary one.</p>
+<p>Now the following processing is done (so that users won't be completely confused):</p>
+<ul>
+  <li><tt class="code">[url=http://yoursite.com/]Url Text[/url]</tt> =&gt; Url Text<img src="../images/descending.gif" alt="" title="http://yoursite.com/" /></li>
+  <li><tt class="code">[url]http://yoursite.com[/url]</tt> =&gt; http://yoursite.com<img src="../images/descending.gif" alt="" title="http://yoursite.com" /></li>
+  <li><tt class="code">[img]http://site.com/image.gif[/img]</tt> =&gt; <img src="../images/red.gif" border="0" alt="" title="http://site.com/image.gif" /></li>
+</ul>
+<p>As you can see above, no links are displayed for [url] tags, but you will see the link either as plain text or as a mouse-over/tooltip on the image next to the link text: <img src="../images/descending.gif" alt="" />.  For [img] tags, a red dot (<img src="../images/red.gif" border="0" alt="" />) will show up as a placeholder with the mouse-over/tooltip showing the image link.</p>
+<p>We realize that some administrators will want to process [img] and [url] tags correctly.  The Coppermine dev team is working on a solution for cpg1.5 and also one that can be applied to cpg1.4.  Information can be found on this <a href="http://forum.coppermine-gallery.net/index.php/topic,58309.0.html" rel="external" class="external">thread</a> on the Coppermine support forum.  For those who want to hack the code themselves, the relevant function is <tt class="code">bb_decode()</tt> in <tt class="code">include/functions.inc.php</tt>.  Please be <strong>very</strong> careful to address CSRF attacks and read as much as you can about them before going live on your website with your hacked fix.</p>
 <a name="bbcode_end"></a>
 <p><a class="back" href="#top">Volver arriba</a></p><hr>
 
