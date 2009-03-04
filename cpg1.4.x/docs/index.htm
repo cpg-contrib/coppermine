@@ -1302,7 +1302,7 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td class="tableb" valign="top">cpg1.4.20</td>
     <td class="tableb" valign="top">
       <ul>
-        <li>Fixed vulnerability that allows (if unpatched) the uploading and execution of remote code (<a href="http://www.milw0rm.com/exploits/7909" rel="external" class="external">milw0rm exploit 7909</a>)</li>
+        <li class="important">Fixed vulnerability that allows (if unpatched) the uploading and execution of remote code (<a href="http://www.milw0rm.com/exploits/7909" rel="external" class="external">milw0rm exploit 7909</a>)</li>
         <li>Updated XMB bridge file to work with recent versions of that application (user contribution, <a href="http://forum.coppermine-gallery.net/index.php/topic,57550.0.html">thread ID 57550</a>)</li>
         <li>Update names associated with pictures and comments when user name is changed</li>
         <li>Fixed issue involving display of name field in the report to admin form</li>
@@ -1328,12 +1328,16 @@ Avoid using spaces and special chars in your custom theme name - only use alphan
     <td class="tableb tableb_alternate" valign="top">cpg1.4.21</td>
     <td class="tableb tableb_alternate" valign="top">
       <ul>
-        <li>Not released yet</li>
+        <li class="important">Fixed serious vulnerability that allows (if unpatched) the attacker to gain admin privileges (milw0rm exploits <a href="http://www.milw0rm.com/exploits/8114" rel="external" class="external">8114</a> and <a href="http://www.milw0rm.com/exploits/8115" rel="external" class="external">8115</a>)</li>
         <li><a href="http://forum.coppermine-gallery.net/index.php/topic,57898.0.html">Fixed 'Selecting private pics as a category thumbnail' issue</a></li>
+        <li><a href="http://forum.coppermine-gallery.net/index.php/topic,52597.0.html">Fixed HTML special characters in referer for hit/vote stats</a></li>
+		<li>Fixed converting 'search_phrase' from array to string for table 'hit_stats'</li>
+		<li><a href="http://forum.coppermine-gallery.net/index.php/topic,56433.0.html">Fixed 'unknown' browser field in hit_stats table</a></li>
+		<li><a href="http://forum.coppermine-gallery.net/index.php/topic,52160.0.html">Fixed invalid query limit in 'random' meta-album in certain cases</a></li>
       </ul>
       <div class="small" align="right">[<a href="http://forum.coppermine-gallery.net/index.php/topic,58309.0.html">more</a>]</div>
     </td>
-    <td class="tableb tableb_alternate" valign="top" align="right"><!--2009-03-04--></td>
+    <td class="tableb tableb_alternate" valign="top" align="right">2009-03-04</td>
   </tr>
 </table>
 <p>As you can see, the coppermine dev team is constantly fixing and improving coppermine. Every non-trivial piece of software contains bugs, so there is no guarantee that the version that currently is the most recent one will be the final, ultimately bug-free version to be released in the cpg1.4.x series. It is absolutely vital that you perform regular updates as soon as new packages are being released.</p>
