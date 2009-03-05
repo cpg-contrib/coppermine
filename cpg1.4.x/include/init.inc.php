@@ -10,14 +10,14 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.4.21
+  Coppermine version: 1.4.22
   $HeadURL$
   $Revision$
   $Author$
   $Date$
 **********************************************/
 
-define('COPPERMINE_VERSION', '1.4.21');
+define('COPPERMINE_VERSION', '1.4.22');
 define('COPPERMINE_VERSION_STATUS', 'stable');
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}

@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-03-05 [M] Updated version count from cpg1.4.21 to cpg1.4.22 in subversion repository as a preparation for the next release {GauGau}
 2009-03-04 [M] Release of cpg1.4.21 {GauGau}
 2009-03-04 [M] Changed versioncheck repository URL from sf.net to coppermine-gallery.net {GauGau}
 2009-03-03 [D] Added information to the bbcode section of the docs about the CSRF vulnerability {Paver}
