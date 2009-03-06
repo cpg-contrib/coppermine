@@ -78,76 +78,76 @@
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_anycontent"></a><strong>anycontent</strong><a href="#plugin_hooks_filename_anycontent" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">anycontent (anycontent page + plugin accessible content)</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$anycontent = CPGPluginAPI::filter('anycontent',ob_get_contents());</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$anycontent = CPGPluginAPI::filter('anycontent',ob_get_contents());</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">index.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_user_caption_params"></a><strong>user_caption_params</strong><a href="#plugin_hooks_filename_user_caption_params" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb"></td>
-    <td valign="top" class="tableb"><pre class="smallcode">$params = CPGPluginAPI::filter('user_caption_params', 
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$params = CPGPluginAPI::filter('user_caption_params', 
                                array('{USER_NAME}' => $user['user_name'],
                                      '{USER_ID}' => $user['user_id'],
                                      '{ALBUMS}' => $albums_txt,
                                      '{PICTURES}' => $pictures_txt,
                                )
-          );</pre></td>
+          );</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">index.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_plugin_block"></a><strong>plugin_block</strong><a href="#plugin_hooks_filename_plugin_block" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">filters main page blocks</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$matches = CPGPluginAPI::filter('plugin_block', $matches);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$matches = CPGPluginAPI::filter('plugin_block', $matches);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">delete.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_before_delete_file"></a><strong>before_delete_file</strong><a href="#plugin_hooks_filename_before_delete_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">Plugin filter to be called before deleting a file</td>
-    <td valign="top" class="tableb"><pre class="smallcode">CPGPluginAPI::filter('before_delete_file', $pic);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">CPGPluginAPI::filter('before_delete_file', $pic);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">delete.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_after_delete_file"></a><strong>after_delete_file</strong><a href="#plugin_hooks_filename_after_delete_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">Plugin filter to be called after a file is deleted</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::filter('after_delete_file', $pic);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">CPGPluginAPI::filter('after_delete_file', $pic);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">displayimage.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_file_info"></a><strong>file_info</strong><a href="#plugin_hooks_filename_file_info" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">filters file information array</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$info = CPGPluginAPI::filter('file_info',$info);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$info = CPGPluginAPI::filter('file_info',$info);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">displayimage.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_post_breadcrumb"></a><strong>post_breadcrumb</strong><a href="#plugin_hooks_filename_post_breadcrumb" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">only on thumbnails.php and displayimage.php</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::filter('post_breadcrumb',null);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">CPGPluginAPI::filter('post_breadcrumb',null);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">editpics.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_editpics_before_delete_file"></a><strong>before_delete_file</strong><a href="#plugin_hooks_editpics_before_delete_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">Plugin filter to be called before deleting a file</td>
-    <td valign="top" class="tableb"><pre class="smallcode">CPGPluginAPI::filter('before_delete_file', $pic);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">CPGPluginAPI::filter('before_delete_file', $pic);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">editpics.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_editpics_after_delete_file"></a><strong>after_delete_file</strong><a href="#plugin_hooks_editpics_after_delete_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">Plugin filter to be called after a file is deleted</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::filter('after_delete_file', $pic);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">CPGPluginAPI::filter('after_delete_file', $pic);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">thumbnails.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_post_breadcrumb"></a><strong>post_breadcrumb</strong><a href="#plugin_hooks_filename_post_breadcrumb" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">only on thumbnails.php and displayimage.php</td>
-    <td valign="top" class="tableb"><pre class="smallcode">CPGPluginAPI::filter('post_breadcrumb',null);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">CPGPluginAPI::filter('post_breadcrumb',null);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/functions.inc.php</td>
@@ -161,190 +161,190 @@
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_gallery_footer"></a><strong>gallery_footer</strong><a href="#plugin_hooks_filename_gallery_footer" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">shows just below the gallery, defined by {GALLERY} in template.html</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$template_footer = CPGPluginAPI::filter('gallery_footer','').substr($template, $gallery_pos);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$template_footer = CPGPluginAPI::filter('gallery_footer','').substr($template, $gallery_pos);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/functions.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_thumb_data"></a><strong>thumb_data</strong><a href="#plugin_hooks_filename_thumb_data" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">filters $pic_row when get_pic_url is called... usually this is called before any html output is created so you can use this to change a lot of data</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$pic_row = CPGPluginAPI::filter('thumb_data',$pic_row);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$pic_row = CPGPluginAPI::filter('thumb_data',$pic_row);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">include/functions.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_template_html"></a><strong>template_html</strong><a href="#plugin_hooks_filename_template_html" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">filters the template html</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$template = CPGPluginAPI::filter('template_html',$template);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$template = CPGPluginAPI::filter('template_html',$template);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/functions.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_page_meta"></a><strong>page_meta</strong><a href="#plugin_hooks_filename_page_meta" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">filters header meta data for {META}</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$template_header = str_replace('{META}', '{META}'.CPGPluginAPI::filter('page_meta',''), $template_header);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$template_header = str_replace('{META}', '{META}'.CPGPluginAPI::filter('page_meta',''), $template_header);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">include/functions.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_thumb_caption"></a><strong>thumb_caption</strong><a href="#plugin_hooks_filename_thumb_caption" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">executed before the more specific "thumb_caption_*" plugins</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$rowset = CPGPluginAPI::filter('thumb_caption',$rowset);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$rowset = CPGPluginAPI::filter('thumb_caption',$rowset);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/functions.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_thumb_caption_regular"></a><strong>thumb_caption_regular</strong><a href="#plugin_hooks_filename_thumb_caption_regular" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">executed after the more general "thumb_caption" plugin</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_regular',$rowset);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_regular',$rowset);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">include/functions.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_thumb_caption_lastcom"></a><strong>thumb_caption_lastcom</strong><a href="#plugin_hooks_filename_thumb_caption_lastcom" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">executed after the more general "thumb_caption" plugin</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_lastcom',$rowset);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_lastcom',$rowset);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/functions.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_thumb_caption_lastcomby"></a><strong>thumb_caption_lastcomby</strong><a href="#plugin_hooks_filename_thumb_caption_lastcomby" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">executed after the more general "thumb_caption" plugin</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_lastcomby',$rowset);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_lastcomby',$rowset);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">include/functions.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_thumb_caption_lastup"></a><strong>thumb_caption_lastup</strong><a href="#plugin_hooks_filename_thumb_caption_lastup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">executed after the more general "thumb_caption" plugin</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_lastup',$rowset);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_lastup',$rowset);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/functions.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_thumb_caption_lastupby"></a><strong>thumb_caption_lastupby</strong><a href="#plugin_hooks_filename_thumb_caption_lastupby" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">executed after the more general "thumb_caption" plugin</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_lastupby',$rowset);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_lastupby',$rowset);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">include/functions.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_thumb_caption_topn"></a><strong>thumb_caption_topn</strong><a href="#plugin_hooks_filename_thumb_caption_topn" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">executed after the more general "thumb_caption" plugin</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_topn',$rowset);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_topn',$rowset);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/functions.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_thumb_caption_toprated"></a><strong>thumb_caption_toprated</strong><a href="#plugin_hooks_filename_thumb_caption_toprated" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">executed after the more general "thumb_caption" plugin</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_toprated',$rowset);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_toprated',$rowset);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">include/functions.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_thumb_caption_lasthits"></a><strong>thumb_caption_lasthits</strong><a href="#plugin_hooks_filename_thumb_caption_lasthits" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">executed after the more general "thumb_caption" plugin</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_lasthits',$rowset);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_lasthits',$rowset);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/functions.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_thumb_caption_random"></a><strong>thumb_caption_random</strong><a href="#plugin_hooks_filename_thumb_caption_random" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">executed after the more general "thumb_caption" plugin</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_random',$rowset);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_random',$rowset);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">include/functions.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_thumb_caption_search"></a><strong>thumb_caption_search</strong><a href="#plugin_hooks_filename_thumb_caption_search" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">executed after the more general "thumb_caption" plugin</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_search',$rowset);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_search',$rowset);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/functions.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_thumb_caption_lastalb"></a><strong>thumb_caption_lastalb</strong><a href="#plugin_hooks_filename_thumb_caption_lastalb" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">executed after the more general "thumb_caption" plugin</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_lastalb',$rowset);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_lastalb',$rowset);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">include/functions.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_thumb_caption_favpics"></a><strong>thumb_caption_favpics</strong><a href="#plugin_hooks_filename_thumb_caption_favpics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">executed after the more general "thumb_caption" plugin</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_favpics',$rowset);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$rowset = CPGPluginAPI::filter('thumb_caption_favpics',$rowset);</div></td>
   </tr>  
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/functions.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_meta_album"></a><strong>meta_album</strong><a href="#plugin_hooks_meta_album" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">executed before meta albums are retrieved, giving the possibility to add or filter meta albums.<br />See below for more info.</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">include/functions.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_bbcode"></a><strong>bbcode</strong><a href="#plugin_hooks_bbcode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">with this hook, you can modify the comment that has been submitted and add your custom bbcodes. (Only available when a '[' has been found in the comment)</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$text = CPGPluginAPI::filter('bbcode', $text);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$text = CPGPluginAPI::filter('bbcode', $text);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_theme_add_comment"></a><strong>theme_add_comment<br />theme_edit_comment</strong><a href="#plugin_hooks_theme_add_comment" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">filters $template_add_your_comment &amp; $template_image_comments, can be used to display extra data when comments are displayed (like bbcode buttons).</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$template_add_your_comment = CPGPluginAPI::filter('theme_add_comment', $template_add_your_comment);<br />
-$template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_image_comments);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$template_add_your_comment = CPGPluginAPI::filter('theme_add_comment', $template_add_your_comment);<br />
+$template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_image_comments);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">include/themes.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_file_data"></a><strong>file_data</strong><a href="#plugin_hooks_filename_file_data" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">filters $pic_row when get_pic_url is called... usually this is called before any html is created so you can use this to change a lot of data</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$CURRENT_PIC_DATA = CPGPluginAPI::filter('file_data',$CURRENT_PIC_DATA);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$CURRENT_PIC_DATA = CPGPluginAPI::filter('file_data',$CURRENT_PIC_DATA);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_html_image_reduced_overlay"></a><strong>html_image_reduced_overlay</strong><a href="#plugin_hooks_filename_html_image_reduced_overlay" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">filters $pic_html when the html to display a reduced image with transparant overlay is created. </td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_image_reduced_overlay',$pic_html);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$pic_html = CPGPluginAPI::filter('html_image_reduced_overlay',$pic_html);</div></td>
   </tr>
     <tr>
     <td valign="top" class="tableb">include/themes.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_html_image_reduced"></a><strong>html_image_reduced</strong><a href="#plugin_hooks_filename_html_image_reduced" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">filters $pic_html when the html to display a reduced image is created.</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_image_reduced',$pic_html);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$pic_html = CPGPluginAPI::filter('html_image_reduced',$pic_html);</div></td>
   </tr>
     <tr>
     <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_html_image_overlay"></a><strong>html_image_overlay</strong><a href="#plugin_hooks_filename_html_image_overlay" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">filters $pic_html when the html to display an image with transparant overlay is created.</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_image_overlay',$pic_html);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$pic_html = CPGPluginAPI::filter('html_image_overlay',$pic_html);</div></td>
   </tr>
     <tr>
     <td valign="top" class="tableb">include/themes.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_html_image"></a><strong>html_image</strong><a href="#plugin_hooks_filename_html_image" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">filters $pic_html when the html to display an image is created.</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_image',$pic_html);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$pic_html = CPGPluginAPI::filter('html_image',$pic_html);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_html_document"></a><strong>html_document</strong><a href="#plugin_hooks_filename_html_document" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">filters $pic_html when the html to display a document is created.</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_document',$pic_html);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$pic_html = CPGPluginAPI::filter('html_document',$pic_html);</div></td>
   </tr>
     <tr>
     <td valign="top" class="tableb">include/themes.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_html_other_media"></a><strong>html_other_media</strong><a href="#plugin_hooks_filename_html_other_media" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">filters $pic_html when the html to display other media (video, flash, ...) is created.</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$pic_html = CPGPluginAPI::filter('html_other_media',$pic_html);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$pic_html = CPGPluginAPI::filter('html_other_media',$pic_html);</div></td>
   </tr>
   
   <tr>
@@ -352,21 +352,21 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_admin_menu"></a><strong>admin_menu</strong><a href="#plugin_hooks_filename_admin_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">filters $admin_menu which allows to add a button to it. <br />(See below how to do that)</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$admin_menu = CPGPluginAPI::filter('admin_menu',$html);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$admin_menu = CPGPluginAPI::filter('admin_menu',$html);</div></td>
   </tr>
     <tr>
     <td valign="top" class="tableb">include/themes.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_sys_menu"></a><strong>sys_menu</strong><a href="#plugin_hooks_filename_sys_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">filters $sys_menu_buttons which allows to add a button to it. <br />(See below how to do that)</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$sys_menu_buttons = CPGPluginAPI::filter('sys_menu',$sys_menu_buttons);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$sys_menu_buttons = CPGPluginAPI::filter('sys_menu',$sys_menu_buttons);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_sub_menu"></a><strong>sub_menu</strong><a href="#plugin_hooks_filename_sub_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">filters $sub_menu_buttons which allows to add a button to it. <br />(See below how to do that)</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);</div></td>
   </tr>
   
   
@@ -375,7 +375,7 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <td valign="top" class="tableb"><a name="plugin_hooks_captcha_comment_print"></a><strong>captcha_comment_print</strong><a href="#plugin_hooks_captcha_comment_print" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">filters $template_add_your_comment when CAPTCHA is enabled and allows you to override the standard CAPTCHA for comments</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);</div></td>
   </tr>
   </tr>
    <tr>
@@ -383,7 +383,7 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_captcha_comment_validate"></a><strong>captcha_comment_validate</strong><a href="#plugin_hooks_captcha_comment_validate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Action</td>
     <td valign="top" class="tableb tableb_alternate">action when CAPTCHA is enabled and allows you to override the standard CAPTCHA validation for comments</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::action('captcha_comment_validate', null);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">CPGPluginAPI::action('captcha_comment_validate', null);</div></td>
   </tr>
   </tr>
    <tr>
@@ -391,7 +391,7 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <td valign="top" class="tableb"><a name="plugin_hooks_captcha_contact_print"></a><strong>captcha_contact_print</strong><a href="#plugin_hooks_captcha_contact_print" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">filters $captcha_print when CAPTCHA is enabled and allows you to override the standard CAPTCHA for the contact form.</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$captcha_print = CPGPluginAPI::filter('captcha_contact_print',$captcha_print);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$captcha_print = CPGPluginAPI::filter('captcha_contact_print',$captcha_print);</div></td>
   </tr>
   </tr>
    <tr>
@@ -399,7 +399,7 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_captcha_contact_validate"></a><strong>captcha_contact_validate</strong><a href="#plugin_hooks_captcha_contact_validate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Action</td>
     <td valign="top" class="tableb tableb_alternate">action when CAPTCHA is enabled and allows you to override the standard CAPTCHA validation for the contact form.</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::action('captcha_contact_validate', null);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">CPGPluginAPI::action('captcha_contact_validate', null);</div></td>
   </tr>
   </tr>
    <tr>
@@ -407,7 +407,7 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <td valign="top" class="tableb"><a name="plugin_hooks_captcha_register_print"></a><strong>captcha_register_print</strong><a href="#plugin_hooks_captcha_register_print" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">filters $captcha_print when CAPTCHA is enabled and allows you to override the standard CAPTCHA for registrations</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$captcha_print = CPGPluginAPI::filter('captcha_register_print',$captcha_print);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$captcha_print = CPGPluginAPI::filter('captcha_register_print',$captcha_print);</div></td>
   </tr>
   </tr>
    <tr>
@@ -415,7 +415,7 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_captcha_register_validate"></a><strong>captcha_register_validate</strong><a href="#plugin_hooks_captcha_register_validate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">filters $error when CAPTCHA is enabled and allows you to override the standard CAPTCHA validation for registrations</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$error = CPGPluginAPI::filter('captcha_register_validate', $error);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$error = CPGPluginAPI::filter('captcha_register_validate', $error);</div></td>
   </tr>
   
   
@@ -426,108 +426,108 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_usermgr_header"></a><strong>usermgr_header</strong><a href="#plugin_hooks_filename_usermgr_header" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb"></td>
-    <td valign="top" class="tableb"><pre class="smallcode">echo CPGPluginAPI::filter('usermgr_header','');</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">echo CPGPluginAPI::filter('usermgr_header','');</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">usermgr.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_usermgr_footer"></a><strong>usermgr_footer</strong><a href="#plugin_hooks_filename_usermgr_footer" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate"></td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">echo CPGPluginAPI::filter('usermgr_footer','');</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">echo CPGPluginAPI::filter('usermgr_footer','');</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">pluginmgr.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_plugin_configure"></a><strong>plugin_configure</strong><a href="#plugin_hooks_filename_plugin_configure" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Action</td>
     <td valign="top" class="tableb">executes when plugin_install returns an integer; returns bool/integer</td>
-    <td valign="top" class="tableb"><pre class="smallcode">CPGPluginAPI::action('plugin_configure',$installed,CPG_EXEC_NEW);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">CPGPluginAPI::action('plugin_configure',$installed,CPG_EXEC_NEW);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">pluginmgr.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_plugin_cleanup"></a><strong>plugin_cleanup</strong><a href="#plugin_hooks_filename_plugin_cleanup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Action</td>
     <td valign="top" class="tableb tableb_alternate">executes when plugin_uninstall returns an integer; returns bool/integer</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::action('plugin_cleanup',$uninstalled,$plugin_id);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">CPGPluginAPI::action('plugin_cleanup',$uninstalled,$plugin_id);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">include/plugin_api.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_page_html"></a><strong>page_html</strong><a href="#plugin_hooks_filename_page_html" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">filters the final output html</td>
-    <td valign="top" class="tableb"><pre class="smallcode">function&amp; cpg_filter_page_html( &amp;$html ) {
+    <td valign="top" class="tableb"><div class="preBorder smallcode">function&amp; cpg_filter_page_html( &amp;$html ) {
     return CPGPluginAPI::filter('page_html',$html);
-}</pre><br />from include/init.inc.php<br /><pre class="smallcode">// Start output buffering
-ob_start('cpg_filter_page_html');</pre></td>
+}</div><br />from include/init.inc.php<br /><div class="preBorder smallcode">// Start output buffering
+ob_start('cpg_filter_page_html');</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/plugin_api.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_page_end"></a><strong>page_end</strong><a href="#plugin_hooks_filename_page_end" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">executes when the script has output the page to the browser</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">register_shutdown_function('cpg_action_page_end');</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">register_shutdown_function('cpg_action_page_end');</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">include/plugin_api.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_plugin_install"></a><strong>plugin_install</strong><a href="#plugin_hooks_filename_plugin_install" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">executes when the plugin is installed returns true/false/integer</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$installed = CPGPluginAPI::action('plugin_install',true,CPG_EXEC_NEW);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$installed = CPGPluginAPI::action('plugin_install',true,CPG_EXEC_NEW);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/plugin_api.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_plugin_wakeup"></a><strong>plugin_wakeup</strong><a href="#plugin_hooks_filename_plugin_wakeup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">when initialized </td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">if (!($thisplugin->awake = CPGPluginAPI::action('plugin_wakeup',true)))</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">if (!($thisplugin->awake = CPGPluginAPI::action('plugin_wakeup',true)))</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">include/plugin_api.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_plugin_sleep"></a><strong>plugin_sleep</strong><a href="#plugin_hooks_filename_plugin_sleep" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">when shutdown</td>
-    <td valign="top" class="tableb"><pre class="smallcode">register_shutdown_function(array('CPGPluginAPI','sleep'));</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">register_shutdown_function(array('CPGPluginAPI','sleep'));</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/init.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_page_start"></a><strong>page_start</strong><a href="#plugin_hooks_filename_page_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Action</td>
     <td valign="top" class="tableb tableb_alternate">add/modify/delete init settings before they get to the page</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::action('page_start',null);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">CPGPluginAPI::action('page_start',null);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb">include/picmgmt.inc.php</td>
     <td valign="top" class="tableb"><a name="plugin_hooks_filename_add_file_data"></a><strong>add_file_data</strong><a href="#plugin_hooks_filename_add_file_data" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb">Filter</td>
     <td valign="top" class="tableb">available in picmgmt.php, called right before a new image's data is written to the database</td>
-    <td valign="top" class="tableb"><pre class="smallcode">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data',$CURRENT_PIC_DATA);</pre></td>
+    <td valign="top" class="tableb"><div class="preBorder smallcode">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data',$CURRENT_PIC_DATA);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">include/picmgmt.inc.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_add_file_data_success"></a><strong>add_file_data_success</strong><a href="#plugin_hooks_filename_add_file_data_success" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">called right after a new file's data is written to the database. $CURRENT_PIC_DATA holds the pid of new file along with other data.</td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data_success',$CURRENT_PIC_DATA);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data_success',$CURRENT_PIC_DATA);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">upload.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_upload_options"></a><strong>upload_options</strong><a href="#plugin_hooks_filename_add_file_data_success" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Filter</td>
     <td valign="top" class="tableb tableb_alternate">modify or add upload methods which can be selected from the configuration panel or upload form (if allowed) - see <a href="#plugin_hook_example_upload_method">details and examples below</a></td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">$upload_choices = CPGPluginAPI::filter('upload_options',$upload_choices);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">$upload_choices = CPGPluginAPI::filter('upload_options',$upload_choices);</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">upload.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_upload_form"></a><strong>upload_form</strong><a href="#plugin_hooks_filename_add_file_data_success" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Action</td>
     <td valign="top" class="tableb tableb_alternate">used to display alternate upload form - see <a href="#plugin_hook_example_upload_method">details and examples below</a></td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::action('upload_form',array($upload_form,$upload_select));</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">CPGPluginAPI::action('upload_form',array($upload_form,$upload_select));</div></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate">upload.php</td>
     <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_upload_process"></a><strong>upload_process</strong><a href="#plugin_hooks_filename_add_file_data_success" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top" class="tableb tableb_alternate">Action</td>
     <td valign="top" class="tableb tableb_alternate">used to processs alternate upload form - see <a href="#plugin_hook_example_upload_method">details and examples below</a></td>
-    <td valign="top" class="tableb tableb_alternate"><pre class="smallcode">CPGPluginAPI::action('upload_process',$upload_form);</pre></td>
+    <td valign="top" class="tableb tableb_alternate"><div class="preBorder smallcode">CPGPluginAPI::action('upload_process',$upload_form);</div></td>
   </tr>
 </table>
 <p><a class="back" href="#top">Back to top</a></p><hr />

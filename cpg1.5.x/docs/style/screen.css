@@ -180,7 +180,7 @@ li.content {
     border-bottom: 0;
 }
 
-pre {
+pre, .preBorder {
     border-right: #999999 1px solid;
     padding: 5px;
     border-top: #999999 1px solid;
@@ -329,7 +329,7 @@ a.external {
 .code {
     /*font-size: 12px;*/
     font-style: normal;
-    font-family: "Courier New", Courier, monospace;
+    font-family: Fixedsys,"Courier New", Courier, monospace;
     background-color: #E0E0E0;
 }
 
