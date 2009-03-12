@@ -149,7 +149,6 @@ document.write('  </li>');
 //document.write('      </ul>');
 //document.write('      </li>');
 //document.write('      <li><a href="theme.htm#theme_files">Content of a theme</a></li>');
-//document.write('      <li><a href="theme.htm#theme_sample">The sample theme - a template to copy from</a></li>');
 //document.write('      <li><a href="theme.htm#theme_engine">How the theme engine works</a></li>');
 //document.write('      <li><a href="theme_user-contributions.htm#theme_user-contributions">User-contributed themes</a></li>');
 //document.write('      <li><a href="theme_create.htm#theme_create">Creating your custom theme</a>');

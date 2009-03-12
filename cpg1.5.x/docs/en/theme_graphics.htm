@@ -77,6 +77,13 @@
 <p>A Coppermine theme <em>can</em> come with a set of images used for rating. The ability of visitors to rate is not determined by the presence of the rating image - it's a setting that depends on the permission of the group the visitor is in (&rarr; <a href="groups.htm#group_cp">Groups control panel</a>) and the properties of the album (&rarr; <a href="albums.htm#album_prop">Album Properties</a>). If a theme doesn't come with rating images of it's own, the default set of images is being used that resides in the folder <tt class="code">./your_coppermine_folder/images/</tt>. If a theme comes with a set of rating images, the images will reside in the folder <tt class="code">./your_coppermine_folder/themes/your_custom_theme/images/</tt>. You have to explicitely specify that a custom theme has got a per-theme rating images of it's own. To accomplish this, you need to edit <tt class="code">./your_coppermine_folder/themes/your_custom_theme/theme.php</tt> with a <a href="dev_tools.htm#dev_tools_editor">plain-text editor</a> and add/uncomment a line like this:</p>
 <pre class="code">define('THEME_HAS_RATING_GRAPHICS',1);</pre>
 <p>The code you need to add must be in a line of it's own. It defines a constant, where the value of the constant doesn't have a particular meaning.</p>
+<p>If defined, the following files need to reside in the theme's images folder:</p>
+<ul>
+	<li><tt class="code">rate_empty.gif</tt></li>
+	<li><tt class="code">rate_full.gif</tt></li>
+	<li><tt class="code">rate_new.gif</tt></li>
+	<li><tt class="code">rating.gif</tt></li>
+</ul>
 <a name="theme_graphics_rating_end"></a>
 
 <a name="theme_graphics_film_strip"></a><h2>Film Strip graphics<a href="#theme_graphics_film_strip" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
