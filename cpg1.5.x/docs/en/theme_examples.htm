@@ -50,9 +50,22 @@
 <p class="cpg_message_success">This page will only explain what sections of theme.php need editing to accomplish particular extra features. You need to read up <strong>how</strong> to copy those sections first.</p>
 
 <a name="theme_examples_summary"></a><h2>Summary<a href="#theme_examples_summary" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<ul>
+	<li><a href="#theme_examples_content">Additional content</a>
+		<ul>
+			<li><a href="#theme_examples_content_thumbnail">Additional content on the thumbnail page</a>
+				<ul>
+					<li><a href="#theme_examples_content_thumbnail_extra_row">Extra row between thumbnail rows</a></li>
+					<li><a href="#theme_examples_content_thumbnail_cell">Extra table cell on each thumbnail page</a></li>
+				</ul>
+			</li>
+			<li><a href="#theme_examples_content_fullsize">Additional content full-size pop-up</a></li>
+		</ul>
+	</li>
+</ul>
 
 <a name="theme_examples_content"></a><h2>Additional content<a href="#theme_examples_content" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>This section how to explain additional content to particular places of Coppermine's output. Most users want to display adverts as additional content, like Google's adsense.</p>
+<p>This section how to explain additional content to particular places of Coppermine's output. Most users want to display adverts as additional content, like Google's adsense or Adbrite (as seen on Yahoo and ebay).</p>
 <p>As examples, we will only add a short sentence like "your custom content" or similar. You can replace that of course with any HTML/JavaScript as you see fit.</p>
 
 <a name="theme_examples_content_thumbnail"></a><h3>Additional content on the thumbnail page<a href="#theme_examples_content_thumbnail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -146,7 +159,34 @@ and <strong>replace</strong> that line with
         	echo template_eval($thumb_cell, $params);
         }</pre><br />
 <!-- Taken from http://forum.coppermine-gallery.net/index.php/topic,58008.0.html -->
-<p>You have to make sure to apply this mod thoroughly. It's advisable to back up your custom theme.php first in case enything should go wrong, so that you can safely go back just in case.</p>
+<p>You have to make sure to apply this mod thoroughly. It's advisable to back up your custom theme.php first in case anything should go wrong, so that you can safely go back just in case.</p>
+
+<hr />
+
+<a name="theme_examples_content_fullsize"></a><h3>Additional content on the full-size pop-up<a href="#theme_examples_content_fullsize" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>The pop-up that shows up if you click on the intermediate image can contain additional content (e.g. adverts) as well. However, you need to make up your mind if there will be enough space on the screen of your site visitors to ad even more content. In other words: only display additional content on the full-size pop-up if your full-size images have a resolution that is smaller than your visitor's minimum monitor resolution. Since you can't tell for sure what size they will have, you can still consider 800 x 600 pixels to be the minimum. Remember as well that with smartphones and other mobile devices that have internet acccess recently you can't even be sure that there will be resolutions that are even smaller.</p>
+<p>If you must have an advert on the fullsize pop-up, make sure to use a text advert only and not a banner. This being said as a warning, here's how to add custom content to the full-size pop-up:</p>
+Edit themes/yourtheme/theme.php, find
+<pre>// Display the full size image
+function theme_display_fullsize_pic()</pre>
+and edit that function definition as suggested below. If this piece of code doesn't exist in your custom theme, copy the function definition from the sample theme, starting at
+<pre>/******************************************************************************
+** Section &lt;&lt;&lt;theme_display_fullsize_pic&gt;&gt;&gt; - START
+******************************************************************************/</pre>and ending with
+<pre>/******************************************************************************
+** Section &lt;&lt;&lt;theme_display_fullsize_pic&gt;&gt;&gt; - END
+******************************************************************************/</pre>
+To add the Adsense code or any other custom content, add it as you see fit in the HTML section of above mentioned code, e.g. right after the closing tag of the div container.<br />
+In this particular case, you'll have to circumvent another issue: the window size of the full-size pic is being calculated based on the dimensions of the pic. Therefor, if you add content to the window, you'll have to make sure that the dimensions of the window increase by the space the advert "eats up". The dimensions of the window are being calculated in the function <tt class="code">function theme_html_picture()</tt>. The same method used above applies: search your custom theme (themes/yourtheme/theme.php) for that function definition. If it exists there, edit it as suggested below. If it doesn't, copy the function defintion from themes/sample/theme.php into a new line before <tt class="code">?&gt;</tt> of themes/yourtheme/theme.php.<br />
+The piece of code that actually needs editing is
+<pre>            $winsizeX = $CURRENT_PIC_DATA['pwidth'] + $CONFIG['fullsize_padding_x'];  //the +'s are the mysterious FF and IE paddings
+            $winsizeY = $CURRENT_PIC_DATA['pheight'] + $CONFIG['fullsize_padding_y']; //the +'s are the mysterious FF and IE paddings</pre>
+Edit it as you see fit - you will have to increase the variable's value by the amount of space (in pixels) that your ads need. As an example: if you decide to add your adsense code at the top of the full-size pop-up and it eats up 200 pixels, change
+<pre>            $winsizeX = $CURRENT_PIC_DATA['pwidth'] + $CONFIG['fullsize_padding_x'];  //the +'s are the mysterious FF and IE paddings
+            $winsizeY = $CURRENT_PIC_DATA['pheight'] + $CONFIG['fullsize_padding_y']; //the +'s are the mysterious FF and IE paddings</pre>
+to
+<pre>            $winsizeX = $CURRENT_PIC_DATA['pwidth'] + $CONFIG['fullsize_padding_x'];  //the +'s are the mysterious FF and IE paddings
+            $winsizeY = $CURRENT_PIC_DATA['pheight'] + $CONFIG['fullsize_padding_y'] + 200; //the +'s are the mysterious FF and IE paddings</pre>
 
 <!--
 Todo:
