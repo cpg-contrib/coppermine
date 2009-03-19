@@ -45,60 +45,22 @@
   <li>
 	  <a name="what_minimum_webserver"></a><h3>A web server<a href="#what_minimum_webserver" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	  <img src="../images/apache.gif" border="0" alt="" width="180" height="50" title="Apache" align="right" style="padding-left:10px" />
-	  Coppermine can run on any webserver - there are reports about successfull installs on <a href="http://httpd.apache.org/" rel="external" class="external">Apache</a> (1.x supported, 2.x recommended), <a href="http://www.microsoft.com/iis/" rel="external" class="external">Microsoft Internet Information Server</a> (IIS), <a href="http://www.roxen.com/products/webserver/" rel="external" class="external">Roxen WebServer</a>, <a href="http://www.aprelium.com/" rel="external" class="external">Abyss</a>, <a href="http://www.janaserver.de/" rel="external" class="external">JanaServer</a>. The Coppermine dev team recommends Apache 2.x.
+	  Coppermine can run on any webserver - there are reports about successfull installs on <a href="http://httpd.apache.org/" rel="external" class="external">Apache</a>, <a href="http://www.microsoft.com/iis/" rel="external" class="external">Microsoft Internet Information Server</a> (IIS), <a href="http://www.roxen.com/products/webserver/" rel="external" class="external">Roxen WebServer</a>, <a href="http://www.aprelium.com/" rel="external" class="external">Abyss</a>, <a href="http://www.janaserver.de/" rel="external" class="external">JanaServer</a>. The Coppermine dev team recommends Apache.
 	</li>
 	<li>
 	  <a name="what_minimum_php"></a><h3>PHP support<a href="#what_minimum_webserver" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	  <img src="../images/php-med-trans.png" border="0" alt="" width="95" height="51" title="PHP" align="left" style="padding-right:10px" />
-	  The webserver must come with support for PHP (version 4.3.0 or better), either compiled with the support for the GD library or permission to use the exec() function for the ImageMagick &quot;convert&quot; utility in order to make thumbnails and reduced size images. Mysql support needs to be compiled into PHP as well.<br />
-	  Coppermine has been tested both with PHP4 as well as PHP5. The Coppermine developers strongly encourage the use of PHP5 (especially since support for PHP4 has been dropped for long already). 
-	  <div class="cpg_message_warning">
-	  	There is no support on the Coppermine forum for questions that relate to webserver setup and particularly no support for questions on php.ini nor how to set up a webserver on your own. If you have questions on webserver setup, ask your webhost for support.<br />
-	  	The Coppermine dev team does not recommend nor support self-hosting!
-	  	<br />
-	  	 We can't tell you where your php.ini file is located (although you could check for yourself by looking at the output of <a href="admin_menu.htm#phpinfo">phpinfo</a>) nor wether you're allowed to edit or override it.<br />
-	  	 The reason for this strict policy has been discussed in detail, so if you want to find out why this policy exists, google for previous discussions. Basically, it's beyond the scope of the Coppermine support board to explain webserver setup.
-	  </div>
-	  <div class="cpg_message_info">
-	  	<p>The following are required to be set correctly in your php.ini file. Please note that php.ini is a webserver configuration file and not a part of Coppermine.</p>
-	  	<ul>
-	  		<li>file_uploads directive must be On</li>
-	  		<li>upload_tmp_dir must be set to a valid directory</li>
-	  		<li>max_input_time set to a value of at least 30</li>
-	  		<li>post_max_size and upload_max_filesize set to correspond to the largest file you wish to be able to upload</li>
-	  		<li>memory_limit set to at least 8M<br />
-	  		You will run into uploading issues if this is set to a very low number. </li>
-	  		<li>max_execution_time set to at least 15</li>
-	  		<li>register_globals set to Off</li>
-	  	</ul>
-	  	Details can be found on the <a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions_check">server-sided restrictions section of the documentation</a>.
-	  </div>
+	  The webserver must come with support for PHP (version 4.3.0 or better), either compiled with the support for the GD library or permission to use the exec() function for the ImageMagick &quot;convert&quot; utility in order to make thumbnails and reduced size images. Mysql support needs to be compiled into PHP as well.
   </li>
   <li>
 	  <a name="what_minimum_mysql"></a><h3>A MySQL database<a href="#what_minimum_mysql" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	  <img src="../images/mysql.png" border="0" alt="" width="125" height="64" title="mySQL" align="right" style="" />
 	  You will need MySQL version 3.23.23 or better. MySQL 4.1 is recommended, MySQL 5 is supported. The MySQL user needs permissions to perform CREATE, ALTER, REPLACE, SELECT, UPDATE, DELETE, INSERT data from the database. Most users have these permissions when webhosted. If you don't have them, you will not be able to use this or any other pre-made scripts at all. If you are uncertain about your permissions, please check with your webhost. Most hosting services can probably tell you whether coppermine can or cannot be run on their servers.<br />
-	  A database needs to be set up that Coppermine can use - the install script will <strong>not</strong> create a database for you, but it will automatically create the tables and data structure in your database during install. In most webhosted environments, you will already have at least one database set up for you by your webhost. If not, you will need to create one. If you do need to create a database, check with your webhost on the proper procedures for doing so. Write down your database name, userID and password. You will require all three to successfully install Coppermine.<br />
-	  Database requirements summary:
-	  <ul>
-	  	<li>mySQL 3.23.23 or better</li>
-	  	<li>privileges to perform the following commands:
-	  		<ul>
-	  			<li>CREATE</li>
-	  			<li>ALTER</li>
-	  			<li>REPLACE</li>
-	  			<li>SELECT</li>
-	  			<li>UPDATE</li>
-	  			<li>DELETE</li>
-	  			<li>INSERT</li>
-	  		</ul>
-	  	</li>
-	  	<li>A minimum of 500 kilobytes of storage space in the database, although more is highly recommended</li>
-	  </ul>
+	  A database needs to be set up that Coppermine can use - the install script will <strong>not</strong> create a database for you, but it will automatically create the tables and data structure in your database during install. In most webhosted environments, you will already have at least one database set up for you by your webhost. If not, you will need to create one. If you do need to create a database, check with your webhost on the proper procedures for doing so. Write down your database name, userID and password. You will require all three to successfully install Coppermine.
   </li>
   <li>
 	  <a name="what_minimum_image_library"></a><h3>An image library<a href="#what_minimum_image_library" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	  Coppermine relies on the presence of an image library to create resized copies of the images that you upload. Currently, Coppermine canEither GD version 1.x or 2.x (PHP has to be compiled to support it) or ImageMagick.<br />
+	  Coppermine relies on the presence of an image library to create resized copies of the images that you upload. Currently, Coppermine can use either GD version 1.x or 2.x (PHP has to be compiled to support it) or ImageMagick.<br />
 	  (see <a href="install_faq.htm#whatIsImageMagick">What's ImageMagick</a> and <a href="install_faq.htm#WhatIsGD">What is GD</a>)
   </li>
 </ul>

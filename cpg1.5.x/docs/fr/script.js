@@ -37,14 +37,14 @@ function cpgDocToc() {
 if (getUrlParameters('hide_nav') == 1) {
 	return;
 }
-document.write('<h6>Table of contents (<a href="../index.htm">documentation language selection</a>)</h6>');
+document.write('<h6>Table des matières (<a href="../index.htm">Sélection de la langue de la documentation</a>)</h6>');
 document.write('<ul id="tree">');
-document.write('  <li><a href="index.htm">Coppermine documentation</a>');
+document.write('  <li><a href="index.htm">Documentation de Coppermine</a>');
 document.write('    <ul>');
 document.write('      <li><a href="index.htm#about">A Propos de Coppermine</a></li>');
 document.write('      <li><a href="index.htm#about_documentation">A propos de cette Documentation</a></li>');
-//document.write('     <li><a href="index.htm#features">Features</a></li>');
-//document.write('      <li><a href="quickstart.htm#about">Quick-Start guide</a></li>');
+document.write('     <li><a href="index.htm#features">Fonctions</a></li>');
+document.write('      <li><a href="quickstart.htm#about">Guide de Démarrage Rapide</a></li>');
 document.write('      <li><a href="toc.htm">Table des Matières</a></li>');
 document.write('      <li><a href="requirements.htm">Minimum requis</a></li>');
 document.write('      <li><a href="testing.htm">Version Alpha/Beta (Test)!</a></li>');
@@ -148,6 +148,7 @@ document.write('  </li>');
 //document.write('      </ul>');
 //document.write('      </li>');
 //document.write('      <li><a href="theme.htm#theme_files">Content of a theme</a></li>');
+//document.write('      <li><a href="theme.htm#theme_sample">The sample theme - a template to copy from</a></li>');
 //document.write('      <li><a href="theme.htm#theme_engine">How the theme engine works</a></li>');
 //document.write('      <li><a href="theme_user-contributions.htm#theme_user-contributions">User-contributed themes</a></li>');
 //document.write('      <li><a href="theme_create.htm#theme_create">Creating your custom theme</a>');
