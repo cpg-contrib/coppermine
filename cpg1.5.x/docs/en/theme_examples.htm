@@ -59,7 +59,13 @@
 					<li><a href="#theme_examples_content_thumbnail_cell">Extra table cell on each thumbnail page</a></li>
 				</ul>
 			</li>
-			<li><a href="#theme_examples_content_fullsize">Additional content full-size pop-up</a></li>
+			<li><a href="#theme_examples_content_displayimage">Additional content on the intermediate-image pages</a>
+			<ul>
+				<li><a href="#theme_examples_content_displayimage_image">Directly next to the intermediate image</a></li>
+				<li><a href="#theme_examples_content_displayimage_filmstrip">Directly next to the film strip</a></li>
+			</ul>
+			</li>
+			<li><a href="#theme_examples_content_fullsize">Additional content on the full-size pop-up</a></li>
 		</ul>
 	</li>
 </ul>
@@ -163,10 +169,67 @@ and <strong>replace</strong> that line with
 
 <hr />
 
+<a name="theme_examples_content_displayimage"></a><h3>Additional content on the intermediate-image pages (displayimage.php)<a href="#theme_examples_content_displayimage" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>The output of displayimage.php - the page that shows the intermediate-sized image embedded into your site's layout is the page that your visitors will pay most attention to, as you managed to attract their attention on previous pages, so they decided to click on a thumbnail that sent them to the intermediate imaghe view. On this page, you can display adverts easily and you will almost certainly get a good click-through-rate, but you need to pay attention: the site already contains a lot of information - cluttering it more with even more content can be dangerous, as the visitor might feel overwhelmed and leave.</p>
+
+<a name="theme_examples_content_displayimage_image"></a><h4>Directly next to the intermediate image<a href="#theme_examples_content_displayimage_image" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>The instructions apply for all extra content that should be applied <em>above</em>, <em>below</em> or next to (at the <em>right</em> or <em>left</em>) of your actual intermediate image that is embedded into the page. Keep in mind though that the place at the right or left may already be small, depending on the screen resolution of your visitor and the size of your intermediate image, so it's advisable to add your extra content at the top or bottom rather.</p>
+Edit <tt class="code">themes/yourtheme/theme.php</tt>, find the variable definition for <tt class="code">$template_display_media</tt> and edit as suggested below. If that definition doesn't exist in your custom theme, copy it first from the sample theme, then edit accordingly.<br />
+The section that needs changing is the table that wraps the template token <tt class="code">{IMAGE}</tt>, so you need to edit
+<pre>           &lt;tr&gt;
+                &lt;td align="center" class="display_media" nowrap="nowrap"&gt;
+                        &lt;table cellspacing="2" cellpadding="0" &gt;
+                                &lt;tr&gt;
+                                        &lt;td align="center" style="{SLIDESHOW_STYLE}"&gt;
+                                                {IMAGE}
+                                        &lt;/td&gt;
+                                &lt;/tr&gt;
+                        &lt;/table&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;</pre>
+Just modify the inner table as you see fit. To add some content at the bottom, you would have to change those lines to
+<pre>           &lt;tr&gt;
+                &lt;td align="center" class="display_media" nowrap="nowrap"&gt;
+                        &lt;table cellspacing="2" cellpadding="0" &gt;
+                                &lt;tr&gt;
+                                        &lt;td align="center" style="{SLIDESHOW_STYLE}"&gt;
+                                                {IMAGE}
+                                        &lt;/td&gt;
+                                        &lt;td align="center" style="{SLIDESHOW_STYLE}"&gt;
+                                                Your custom content
+                                        &lt;/td&gt;
+                                &lt;/tr&gt;
+                        &lt;/table&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;</pre>
+
+<hr />
+
+<a name="theme_examples_content_displayimage_filmstrip"></a><h4>Directly next to the film strip<a href="#theme_examples_content_displayimage_filmstrip" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>The instructions apply for all extra content that should be applied <em>above</em> or <em>below</em> of your film strip that is displayed on the page if the corresponding option "<a href="configuration.htm#admin_image_comment_filmstrip_toggle">Show film strip</a>" is enabled in Coppermine's config.</p>
+Edit <tt class="code">themes/yourtheme/theme.php</tt>, find the function definition for <tt class="code">theme_display_film_strip</tt> and edit as suggested below. If that definition doesn't exist in your custom theme, copy it first from the sample theme, then edit accordingly.<br />
+The section that needs changing is at the end where the template is finally evaluated. Find
+<pre>    echo '&lt;div id="filmstrip"&gt;';
+    starttable($CONFIG['picture_table_width']);
+    echo template_eval($template, $params);
+    endtable();
+    echo '&lt;/div&gt;';</pre>
+To output extra content right above the film strip, you would need to change that code snippet to
+<pre>    echo '&lt;div id="filmstrip"&gt;';
+    echo <<< EOT
+    Your custom content
+EOT;
+    starttable($CONFIG['picture_table_width']);
+    echo template_eval($template, $params);
+    endtable();
+    echo '&lt;/div&gt;';</pre>
+
+<hr />
+
 <a name="theme_examples_content_fullsize"></a><h3>Additional content on the full-size pop-up<a href="#theme_examples_content_fullsize" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The pop-up that shows up if you click on the intermediate image can contain additional content (e.g. adverts) as well. However, you need to make up your mind if there will be enough space on the screen of your site visitors to ad even more content. In other words: only display additional content on the full-size pop-up if your full-size images have a resolution that is smaller than your visitor's minimum monitor resolution. Since you can't tell for sure what size they will have, you can still consider 800 x 600 pixels to be the minimum. Remember as well that with smartphones and other mobile devices that have internet acccess recently you can't even be sure that there will be resolutions that are even smaller.</p>
 <p>If you must have an advert on the fullsize pop-up, make sure to use a text advert only and not a banner. This being said as a warning, here's how to add custom content to the full-size pop-up:</p>
-Edit themes/yourtheme/theme.php, find
+Edit <tt class="code">themes/yourtheme/theme.php</tt>, find
 <pre>// Display the full size image
 function theme_display_fullsize_pic()</pre>
 and edit that function definition as suggested below. If this piece of code doesn't exist in your custom theme, copy the function definition from the sample theme, starting at
@@ -192,7 +255,7 @@ to
 Todo:
 Implement
 
-http://forum.coppermine-gallery.net/index.php/topic,44115.0.html
+
 
 -->
 <script type="text/javascript">
