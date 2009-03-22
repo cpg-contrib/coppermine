@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Installation - Coppermine Photo Gallery - Documentation &amp; Manuel</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="fr" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Installation and Setup - How to install the script" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.1
+  $Revision: 5743 $
+  $LastChangedBy: gaugau $
+  $Date: 2009-03-12 09:17:56 +0100 (jeu. 12 mars 2009) $
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table des Matières</a>
+</noscript>
+</div>
+<a name="installation"></a><h1>Installation et Configuration<a href="#installation" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<div class="indent"><!-- start sub-section of "installation and setup" (level 1 x)-->
+
+<a name="how"></a><h2>Comment Installer le script<a href="#how" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<ul>
+  <li><strong>Décompressez l'archive en préservant la structure des répertoires.</strong><br />Vous pouvez (et vous devirez) renommer le répertoire de Coppermine, mais pas les fichiers ou les dossiers qu'il contient.</li>
+  <li><strong>Téléchargez tous les fichiers sur votre serveur Web</strong> (En vous assurant d'utiliser le bon mode FTP)</li>
+  <li><strong><a href="install_permissions.htm#permissions">Parametrez les permissions</a> pour les répertoires "<em>albums</em>" et "<em>include</em>" dans le répertoire ou se trouvent vos fichiers Coppermine</strong><br />
+  Habituellement, vous devrez utiliser la commande CHMOD, et régler les permission sur 755 (ou 777, en fonction de la configuration de votre serveur).<br />
+  <div class="cpg_message_warning">Chez certains hébergeurs gratuits(Free par exemple) la commande CHMOD n'est pas active. Vous pourez néanmoins installer Coppermine sans problèmes dans la plupart des cas</div>
+  <div class="cpg_message_info">Cette étape est très importante et ne doit pas être négligée!</div></li>
+  <li><strong>Assurez vous d'avoir les informations correctes à propos de votr ebase de donnée</strong><br />
+- Vous devez <em>connaitre</em> le nom de la base de donnée ainsi que les détails du compte utilisateur MySQL avec lequel Coppermine se connectera à la base de donnée. La Base de Donée et l'utilisateur doivent déjà exister, et l'utilisateur doit avoir accès à cette base de donnée. Coppermine ne créera pas la base de donnée pour vous, mais il créera les tables dans la base de donnée pendant l'installation, vous n'aurez pas besoin d'ajouter vous même de tables.</li>
+  <li><strong>Lancez le script d'installation sur votre serveur</strong><br />
+  Entrez l'URL suivante dans la barre d'adresse de votre navigateur:&nbsp;&nbsp; http://votre_serveur/votre_repertoire_Coppermine/install.php&nbsp;&nbsp; (<em>votre_serveur</em> = votre site web, <em>votre_repertoire_Coppermine</em> = le répertoire dans lequel vous avez téléchargé les fichiers Coppermine.)   Suivez les instructions de <a href="install_screen.htm">l'écran d'installation</a> et entrez les informations necessaires demandées.</li>
+  <li><strong>Confirmez que vous avez entré toutes les informations correctes à propos de la base de donnée utilisée pour votre installation de Coppermine.</strong><br />
+   Si il n'y a pas de base de donnée existante pour votre site Web, vous devrez en crée une, ou votr ehébergeur devra en créer une pour vous. Votre hébergeur est le mieux placé pour vour fournir les instructions pour que vous puissiez faire ceci.  Pour l'installation, vous devrez connaître le chemin d'accès au serveur de la base de donnée qui sera utilisée par Coppermine et les détails du compte utilisateur MySQL avec lequel Coppermine se connectera à la base de donnée. Vous devrez avoir le chemin d'accès au serveur de la base de donnée (habituellement 'localhost'), votre nom d'utilisateur MySQL, le mot de passe MySQL, et le nom de la base de donnée MySQL avant d'installer Coppermine. L'utilisateur qui installe Coppermine doit avoir les droits d'accès à cette base de donnée.<br />
+Si vous utilisez une base de donnée nouvellement crée, vous n'avez pas besoin d'ajouter manuellement des tables. Coppermine créera les tables necessaires pendant le processus d'installation.</li>
+</ul>
+
+<a name="what"></a><h2>Ce que fait l'Installeur<a href="#what" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Après avoir fait quelques vérifications de base, l'installeur créer les tables necessaires dans la base de donnée et les remplis avec les valeurs par défaut. Il crée le fichier include/config.inc.php dans le répertoire Coppermine sur votre serveur et qui contient les détails concernant votre base de donnée que vous avez entrés lors de l'installation. Si vous deviez changer vos données de connection MySQL plus tard (par exemple si vous changez le mot de passe de votre compte utilisateur MySQL ou si vous migrez vers un autre serveur), vous devrez modifier le fichier include/config.inc.php manuellement pour prendre en compte ces changements. le fichier include/config.inc.php empêche aussi que le script d'installation soit lancé une deuxième fois: si l'installeur est lancé, une vérification de l'existance de ce fichier est faite - si oui, l'installeur est arrêté et l'utilisateur est redirigé vers la page d'index.</p>
+
+<a name="install_related"></a><h2>Information Complémentaires<a href="#install_related" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Il y a d'autres éléments et informations relatifs à l'installation:</p>
+<ul>
+    <li><strong><a href="auto-installers.htm">Auto-Installeurs</a> (comme Fantastico)</strong><br />
+    Cmprenez ce qui ne va pas avec eux, et pourquoi vous ne devriez pas les utiliser ainsi que ce que vous devrez faire si vous avez utilisé un auto-installeur</li>
+    <li><strong><a href="install_faq.htm">FAQ d'Installation</a></strong><br />
+    Questions fréquemment posée relatives à l'installation de Coppermine. Lisez là d'abbord avant de poser des questions!</li>
+    <li><strong><a href="uninstall.htm">Désinstallation</a></strong><br />
+    Même si nous sommes persuadés que Coppermine convient à tout le monde, vous pourriez vouloir le désinstaller (pour quelque raison qu ece soit) - Vous aurez ici les instructions pour ce faire.</li>
+    <li><strong><a href="start.htm">Premiers pas</a> (premières étapes après l'installation)</strong><br />
+    Bien, vous avez installé Coppermine avec succès? Et maintenant - voici une autre courte page qui vous permettra de configurer Coppermine et d'y placer du contenu en en temps record.
+</ul>
+<a name="install_related_end"></a>
+
+<a name="install_server_config"></a><h2>Configuration du serveur<a href="#install_server_config" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Lors de l'installation de Coppermine, vous pouriez être confrontés à des problèmes qui ne sont pas directement liés à Coppermine, mais à la configuration de votr eserveur. Par conséquent, cette section de la documentation ne peut que donner un aperçu sur la question de la configuration des serveurs. Nous ne pouvons que formuler des recommandations, mais il est au-delà de la portée du support de Coppermine de conseiller comment configurer un serveur web. Cela étant dit: si vous avez des questions liées à la configuration du serveur, demandez de l'aide à votre hébergeur plutôt que de poser vos questions sur le forum de Coppermine.</p>
+<a name="install_server_config_register_globals"></a><h3>register_globals<a href="#install_server_config_register_globals" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Dans les anciennes versions de PHP, le paramétrage par défaut pour <a href="http://www.php.net/manual/en/security.globals.php" rel="external" class="external">register_globals</a> était "on", ce qui a amené beaucoup de programmeurs PHP à produire des codes non sécurisés (simplement parce qu'ils n'avaient pas concience des dangers de en terme de sécurité de leur manière de coder). En conséquence, il y avait beaucoup de scripts qui s'appuient sur la variable serveur  "register_globals" sur "on". Toutefois, comme de nombreuses attaques ont été menées avec des scripts malveillants qui comptent sur register_globals activé, il est conseillé de désactivez cette fonctionnalité dans la configuration des paramètres PHP de votre serveur Web. Dans les versions récentes de PHP, le réglage par défaut est "off". Toutefois, votre hébergeur peut avoir laissé register_globals sur "on" pour vous permettre d'exécuter des scripts obsolètes qui s'appuient sur register_globals. <br />
+Pour que les choses soient absolument claires: Coppermine n'a <strong>pas</strong> besoin de register_globals=on, mais il peut fonctionner avec les deux paramétrages de register_gloabls "on" ou "off". Il y a juste un impact concernant la sécurité avec la variable paramétrée sur "on" dont nous voulons vous prévenir. Si votre serveur Web a register_globals = on, l'installeur vous préviendra simplement de ce fait , mais il continuera.</p>
+<a name="install_server_config_register_globals_end"></a>
+<a name="install_server_config_end"></a>
+
+<script type="text/javascript">
+  cpgDocFooter();
+  dateRevision(' $LastChangedDate: 2009-03-12 09:17:56 +0100 (jeu. 12 mars 2009) $ ', ' $Revision: 5743 $ ');
+</script>
+
+</body>
+</html>
