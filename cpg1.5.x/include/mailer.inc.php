@@ -56,7 +56,7 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
    * Code to send confirmation email starts
    * Create the mail object
    */
-   $mail = new PHPmailer();
+   $mail = new cpg_PHPmailer();
 
    // Set the mail configuration
 
@@ -121,7 +121,7 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
  * @copyright 2004 - 2008 Andy Prevost
  */
 
-class PHPMailer {
+class cpg_PHPMailer {
 
   /////////////////////////////////////////////////
   // PROPERTIES, PUBLIC
@@ -668,7 +668,7 @@ class PHPMailer {
    */
   function SmtpConnect() {
     if($this->smtp == NULL) {
-      $this->smtp = new SMTP();
+      $this->smtp = new cpg_SMTP();
     }
 
     $this->smtp->do_debug = $this->SMTPDebug;
@@ -2007,7 +2007,7 @@ class PHPMailer {
  * @author Chris Ryan
  */
 
-class SMTP
+class cpg_SMTP
 {
   /**
    *  SMTP server port
