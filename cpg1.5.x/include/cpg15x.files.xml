@@ -1116,6 +1116,14 @@
     <hash>8661ee764a4f9f182f1b6167d123a513</hash>
   </element>
   <element>
+    <fullpath>docs/en/dev_database.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5662</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>cf297e65ee7d44d33b7393473d7af054</hash>
+  </element>
+  <element>
     <fullpath>docs/en/quickstart.htm</fullpath>
     <version>1.5.1</version>
     <revision>5585</revision>
