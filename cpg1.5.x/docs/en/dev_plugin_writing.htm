@@ -49,9 +49,10 @@
 <p>Before starting to hack away, you should make some preparations and maybe sketch the layout of your plugin.</p>
 <ul>
   <li><strong>Choose a name</strong><br />
-  Your plugin needs a meaningfull, simple name. Make sure that a plugin doesn't already exist with the same name you've chosen. Then create a sub-folder within the plugin folder and name it as you see fit. Make sure to use web-safe names (only alphanumerals, all lower-case, no special chars except dash and underscore.<br />
-  For clarification: there can be only alphanumerals in a plugin's folder name. There mustn't be any dots or other special chars in it. The only exception is the hypen (-) and underscore (_)
-  <div class="cpg_example"><tt class="code">your_coppermine_folder/plugins/coffee_maker/</tt></div></li>
+  Your plugin needs a meaningfull, simple name. Make sure that a plugin doesn't already exist with the same name you've chosen. Then create a sub-folder within the plugin folder and name it as you see fit. Make sure to use web-safe names (only alphanumerals, all lower-case, no special chars except underscore.<br />
+  For clarification: there can be only alphanumerals in a plugin's folder name. There mustn't be any dots or other special chars in it. The only exception is the underscore (_)
+  <div class="cpg_example"><tt class="code">your_coppermine_folder/plugins/coffee_maker/</tt></div>
+  Coming up with a folder name sounds easy, and you may be tempted to just use the name <tt class="code">my_plugin</tt> or <tt class="code">foobar</tt> to be able to start coding right away. However, you have to keep in mind that while you progress writing your plugin, the folder name will appear hard-coded into your plugin (possibly many times), so it will be hard to change it later. That's why it's advisable to come up with a good folder name in the first place: it should be descriptive, consist of two or three words and mean something initially. A folder named &quot;<tt class="code">coppermine_candy</tt>&quot; wouldn't mean much - the word "coppermine" would make no point, as the plugin already resides within coppermine, and the word "candy" would no describe what your plugin does. Better, self-explanatory names for plugins would be "rename_users", "thumbnail_dropshadow" or "backup_files".</li>
   <li><strong>Consider translations</strong><br />
   Coppermine is an international project, with users from all over the world. If you should decide to contribute your custom plugin later, it would be a good idea to design it properly in the first place: keep all strings that could need translation in a separate include file and only hard-code the corresponding vars into your code.
   </li>

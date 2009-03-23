@@ -48,11 +48,10 @@
     <p>Placeholder.  Content will be added.</p>
     
 <p><a class="back" href="#top">Back to top</a></p><hr />
-    <a name="plugin_api_overview_who"></a>
-    <h3>Intended Audience<a href="#plugin_api_overview_who" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <a name="plugin_api_overview_who"></a><h3>Intended Audience<a href="#plugin_api_overview_who" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
     <p>Here's a list of who should and who should not (or doesn't need to) read this documentation.  The categories overlap in many places, so make sure to read the entire list.  Find yourself in the list and then decide whether you should read on.</p>
-    <div id="ulgreen">
-    <p><strong>People who should read this documentation:</strong></p>
+    <div id="ulgreen" class="cpg_message_success">
+    <a name="plugin_api_overview_who_yes"></a><h4>People who <em>should</em> read this documentation:<a href="#plugin_api_overview_who_yes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     <ul type="square">
         <li>Anyone who wants to write plugins to customize Coppermine</li>
         <li>Current Coppermine coders who want to convert their hacks &amp; mods to plugins</li>
@@ -60,8 +59,8 @@
         <li>Coders who want to start customizing Coppermine but do not know where to start</li>
     </ul>
     </div>
-    <div id="ulred">
-    <p><strong>People who do not need to read this documentation:</strong></p>
+    <div id="ulred" class="cpg_message_validation">
+    <a name="plugin_api_overview_who_no"></a><h4>People who do <em>not</em> need to read this documentation:<a href="#plugin_api_overview_who_no" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     <ul>
         <li>Anyone learning Coppermine for the first time - the <a href="index.htm">main manual</a> is all you need at first</li>
         <li>Anyone who wants to download &amp; use plugins - you can use many plugins without knowing what they do internally</li>
@@ -376,7 +375,25 @@
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_distrib"></a>
 <h3>Distributing Your Plugin<a href="#plugin_api_" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Placeholder.  Content will be added.</p>
+<p>If you have written a plugin that works for you, why not share it with the Coppermine community - others might find your plugin helpfull as well. If you decide to share your plugin, please do as suggested in these steps:</p>
+<ul>
+	<li>Read up the <a href="dev_plugins.htm#plugin_writing_naming_conventions">naming conventions</a> (if you haven't already done so) to make sure your plugin matches the standards</li>
+	<li>Create a readme file within your plugin's sub-folder and name it "readme.txt". In that file you should write down all needed details:
+	<ul>
+		<li>Author name (your name)</li>
+		<li>Plugin name</li>
+		<li>Plugin description (summarize what the plugin does)</li>
+		<li>Plugin license (if you plan to release your plugin under a particular license that differs from <a href="copyrights.htm#copyright_license">the license Coppermine is being released under</a> - the GNU GPL v3)</li>
+		<li>Installation instructions (if they differ from regular plugin installation instructions using the <a href="plugins.htm#plugin_manager">plugin manager</a>)</li>
+		<li>Version history / changelog (if applicable)</li>
+	</ul>
+	</li>
+	<li>Create a zip-archive of your plugin's folder (including the folder name itself). It is vital that your plugin doesn't just contain your plugin files only (<tt class="code">codebase.php</tt>, <tt class="code">configuration.php</tt> and <tt class="code">readme.txt</tt>), but the plugin's sub-folder as well (and the plugin files residing in that sub-folder of course), as your plugin will only work for others if it is being installed using the exact folder name you chose in the first place. If you're not sure, take a look at some plugins from the download section of the <a href="http://coppermine-gallery.net/">Coppermine site</a> as an example.</li>
+	<li>Name the zip-archive that contains your plugin according to <a href="dev_plugins.htm#plugin_writing_naming_conventions">naming conventions</a></li>
+	<li>Go to the official <a href="http://coppermine-gallery.net/">Coppermine site</a> and register an account if you haven't already done so.</li>
+	<li>Log in with your account, go to the <a href="http://forum.coppermine-gallery.net/index.php/board,97.0.html">plugin support board for cpg1.5.x</a> and start a new thread there (your thread will be moved later to the <a href="http://forum.coppermine-gallery.net/index.php/board,91.0.html">plugin contributions board for cpg1.5.x</a> by a moderator if applicable: you can't start new threads there directly to stop the board from getting cluttered with plugin requests started by newbies who are too lazy to read the board rules)</li>
+	<li>In your new thread, post a summary of your plugin (in fact everything that went into your readme) and all additional data if appicable (e.g. a link to a working demo where end users can see the plugin in action). Attach your plugin's zip archive to the thread. You might as well attach a screenshot that illustrates what the plugin does.</li>
+</ul>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_wherenext"></a>
