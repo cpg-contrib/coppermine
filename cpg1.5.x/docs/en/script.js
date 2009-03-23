@@ -512,6 +512,7 @@ document.write('      <li><a href="dev_config.htm">Adding config options</a></li
 document.write('      <li><a href="dev_versioncheck.htm">Versioncheck</a></li>');
 document.write('      <li><a href="dev_update.htm">Updating</a></li>');
 document.write('      <li><a href="dev_tools.htm">Tools recommended by the devs</a></li>');
+document.write('      <li><a href="dev_database.htm">Database schema</a></li>');
 document.write('    </ul>');
 document.write('  </li>');
 document.write('</ul>');

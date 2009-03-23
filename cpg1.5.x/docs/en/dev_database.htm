@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Database schema - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Database schema: This part of documentation describes the database tables Coppermine uses and how they relate to each other. This part of the documentation is not meant for end users of Coppermine, but only for developers. There is no support for this section, it comes as-is." />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.1
+  $Revision: 5662 $
+  $LastChangedBy: gaugau $
+  $Date: 2009-01-13 08:56:48 +0100 (Tue, 13 Jan 2009) $
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table of Contents</a>
+</noscript>
+</div>
+
+<a name="db_intro"></a><h1>Database schema<a href="#db_intro" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>The following is a list of the tables created by Coppermine during installation plus a description of the fields used. The default table prefix of cpg15x_ is used here, but this is user configurable.</p>
+
+<a name="db_albums"></a><h2>cpg15x_albums<a href="#db_albums" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Stores information about albums. Albums contain pictures and are (optionally) contained within categories.</p>
+<br />
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</td>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</td>
+    <th valign="top" align="left" class="tableh1">Description</td>
+    <th valign="top" align="left" class="tableh1">References</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a href="#db_albums-aid"></a><strong>aid</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Primary key. This is the identifier of the album used throughout Coppermine.</td>
+    <td valign="top" class="tableb tableb_alternate">
+        <a href="#db_pictures-aid">cpg15x_pictures.aid</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>title</strong></td>
+    <td valign="top" class="tableb">String (<=255 chars)</td>
+    <td valign="top" class="tableb">The short title of the album.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>description</strong></td>
+    <td valign="top" class="tableb tableb_alternate">String (<=65K chars)</td>
+    <td valign="top" class="tableb tableb_alternate">The longer album description or caption.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>visibility</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">
+        <p>This corresponds to the 'album can be viewed by' option.</p>
+        <p>If the value is less than 10000 the number corresponds to the group that has permission to view the album.</p>
+        <p>If the value is over 10000 then the number corresponds to 10000 plus the user_id of the user that has permission to view this album (the 'me only' option).</p>
+        <p>The default value of 0 means there are no restrictions (with the exception of a possible album password); the album is publicly visible.</p></td>
+    <td valign="top" class="tableb">
+        <a href="#db_usergroups-group_id">cpg15x_usergroups.group_id</a>
+        <a href="#db_users-user_id">cpg15x_users.user_id</a></p>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>uploads</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Enum ('YES', 'NO')</td>
+    <td valign="top" class="tableb tableb_alternate">Whether uploads are permitted to this album.<p><small>Note: Group based permissions also apply.</small></p></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>comments</strong></td>
+    <td valign="top" class="tableb">Enum ('YES', 'NO')</td>
+    <td valign="top" class="tableb">Whether comments are permitted on pictures in this album.<p><small>Note: Group based permissions also apply.</small></p></td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>votes</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Enum ('YES', 'NO')</td>
+    <td valign="top" class="tableb tableb_alternate">Whether voting/rating of pictures is permitted in this album.<p><small>Note: Group based permissions also apply.</small></p>
+    <p><small>Note: do not confuse this field with the votes field in the pictures table, which is a count of the number of votes on that picture.</small></p></td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>pos</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">This is the position of the album within its parent category. Albums are sorted by position ascending then by aid. The default position is 0. This causes new albums to appear at the end of listings unless moved manually.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>category</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">The parent category of this album. A category of 0 indicates the album is in 'no category' and is displayed on the main page directly.</td>
+    <td valign="top" class="tableb tableb_alternate">
+        <a href="#db_categories-cid">cpg15x_categories.cid</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>owner</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">
+        <a href="#db_users-user_id">cpg15x_users.user_id</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>thumb</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Indicates which picture is to be used as the thumbnail image for the album. If the value is 0 the last uploaded picture in that album is used. If the value is -1 a random picture from the album is selected. Otherwise, the value corresponds to the pid of the picture selected as thumbnail.</td>
+    <td valign="top" class="tableb tableb_alternate">
+        <a href="#db_pictures-pid">cpg15x_pictures.pid</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>keyword</strong></td>
+    <td valign="top" class="tableb">String (<=50 chars)</td>
+    <td valign="top" class="tableb">The album keyword. Used by the 'linked files' 'feature' to display files in multiple albums. Files that contain the album keyword as one of their picture keywords will be displayed in the album. <p><small>Note: Files cannot truely be in multiple albums as a consequence of the original database design.</small></p></td>
+    <td valign="top" class="tableb">
+        <a href="#db_users-user_id">cpg15x_pictures.keywords</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>alb_password</strong></td>
+    <td valign="top" class="tableb tableb_alternate">MD5 hash</td>
+    <td valign="top" class="tableb tableb_alternate">This is an MD5 hash of the album password. If this is blank then there is no album password.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>alb_password_hint</strong></td>
+    <td valign="top" class="tableb">String (<=65K chars)</td>
+    <td valign="top" class="tableb">An album hint which is displayed to users when they are asked to enter the album password.</td>
+    <td valign="top" class="tablebe"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>moderator_group</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Specifies a group which has moderator permissions for this album. If set to 0 (the default) then no such group is specified.</td>
+    <td valign="top" class="tableb tableb_alternate">
+      <a href="#db_usergroups-group_id">cpg15x_usergroups.group_id</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>alb_hits</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">Counts the number of times this album has been viewed. This counter can be disabled in config. <p><small>Note: This is not a sum of the individual file view counters.</small></p></td>
+    <td valign="top" class="tablebe"></td>
+  </tr>
+</table>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<script type="text/javascript">
+  cpgDocFooter();
+  dateRevision(' $LastChangedDate: 2009-01-13 08:56:48 +0100 (Tue, 13 Jan 2009) $ ', ' $Revision: 5662 $ ');
+</script>
+
+</body>
+</html>
