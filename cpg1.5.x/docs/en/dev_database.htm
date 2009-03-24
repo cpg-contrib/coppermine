@@ -52,7 +52,7 @@
     <th valign="top" align="left" class="tableh1">References</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><a href="#db_albums-aid"></a><strong>aid</strong></td>
+    <td valign="top" class="tableb tableb_alternate"><a name="#db_albums-aid"></a><strong>aid</strong></td>
     <td valign="top" class="tableb tableb_alternate">Integer</td>
     <td valign="top" class="tableb tableb_alternate">Primary key. This is the identifier of the album used throughout Coppermine.</td>
     <td valign="top" class="tableb tableb_alternate">
@@ -61,13 +61,13 @@
   </tr>
   <tr>
     <td valign="top" class="tableb"><strong>title</strong></td>
-    <td valign="top" class="tableb">String (<=255 chars)</td>
+    <td valign="top" class="tableb">Text (<=255 chars)</td>
     <td valign="top" class="tableb">The short title of the album.</td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><strong>description</strong></td>
-    <td valign="top" class="tableb tableb_alternate">String (<=65K chars)</td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=65K chars)</td>
     <td valign="top" class="tableb tableb_alternate">The longer album description or caption.</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
@@ -86,19 +86,19 @@
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><strong>uploads</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Enum ('YES', 'NO')</td>
+    <td valign="top" class="tableb tableb_alternate">YES / NO</td>
     <td valign="top" class="tableb tableb_alternate">Whether uploads are permitted to this album.<p><small>Note: Group based permissions also apply.</small></p></td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><strong>comments</strong></td>
-    <td valign="top" class="tableb">Enum ('YES', 'NO')</td>
+    <td valign="top" class="tableb">YES / NO</td>
     <td valign="top" class="tableb">Whether comments are permitted on pictures in this album.<p><small>Note: Group based permissions also apply.</small></p></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><strong>votes</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Enum ('YES', 'NO')</td>
+    <td valign="top" class="tableb tableb_alternate">YES / NO</td>
     <td valign="top" class="tableb tableb_alternate">Whether voting/rating of pictures is permitted in this album.<p><small>Note: Group based permissions also apply.</small></p>
     <p><small>Note: do not confuse this field with the votes field in the pictures table, which is a count of the number of votes on that picture.</small></p></td>
     <td valign="top" class="tableb tableb_alternate"></td>
@@ -128,14 +128,14 @@
   <tr>
     <td valign="top" class="tableb tableb_alternate"><strong>thumb</strong></td>
     <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Indicates which picture is to be used as the thumbnail image for the album. If the value is 0 the last uploaded picture in that album is used. If the value is -1 a random picture from the album is selected. Otherwise, the value corresponds to the pid of the picture selected as thumbnail.</td>
+    <td valign="top" class="tableb tableb_alternate">Indicates which picture is to be used as the thumbnail image for the album. If the value is 0 the last uploaded picture in that album is used. If the value is -1 a random picture from the album is selected. Otherwise, the value corresponds to the pid of the picture selected as thumbnail. If the album is empty a special icon is used to indicate this.</td>
     <td valign="top" class="tableb tableb_alternate">
         <a href="#db_pictures-pid">cpg15x_pictures.pid</a>
     </td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><strong>keyword</strong></td>
-    <td valign="top" class="tableb">String (<=50 chars)</td>
+    <td valign="top" class="tableb">Text (<=50 chars)</td>
     <td valign="top" class="tableb">The album keyword. Used by the 'linked files' 'feature' to display files in multiple albums. Files that contain the album keyword as one of their picture keywords will be displayed in the album. <p><small>Note: Files cannot truely be in multiple albums as a consequence of the original database design.</small></p></td>
     <td valign="top" class="tableb">
         <a href="#db_users-user_id">cpg15x_pictures.keywords</a>
@@ -149,7 +149,7 @@
   </tr>
   <tr>
     <td valign="top" class="tableb"><strong>alb_password_hint</strong></td>
-    <td valign="top" class="tableb">String (<=65K chars)</td>
+    <td valign="top" class="tableb">Text (<=65K chars)</td>
     <td valign="top" class="tableb">An album hint which is displayed to users when they are asked to enter the album password.</td>
     <td valign="top" class="tablebe"></td>
   </tr>
@@ -168,7 +168,486 @@
     <td valign="top" class="tablebe"></td>
   </tr>
 </table>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="db_banned"></a><h2>cpg15x_banned<a href="#db_banned" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Contains bans placed on users, user names, email addresses, and IP addresses.</p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</td>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</td>
+    <th valign="top" align="left" class="tableh1">Description</td>
+    <th valign="top" align="left" class="tableh1">References</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>ban_id</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Primary key. Unique identifier for a ban.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>user_id</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">The user that this ban applies to. Banned users are unable to use the gallery in any way.</td>
+    <td valign="top" class="tableb">
+        <a href="#db_users-user_id">cpg15x_users.user_id</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>user_name</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">A username that this ban applies to. Registrations from a banned username are refused.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>email</strong></td>
+    <td valign="top" class="tableb">Text (<=255 chars)</td>
+    <td valign="top" class="tableb">An email address which this ban applies to. Registrations from a banned email address are refused.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>ip_addr</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">An IP address or wildcard IP (eg. 192.168.0.%) that this ban applies to. Visitors with a matching IP address will be unable to use the gallery in any way.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>expiry</strong></td>
+    <td valign="top" class="tableb">Datetime</td>
+    <td valign="top" class="tableb">The date/time that this ban is set to expire.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>brute_force</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">A counter used to track failed login attempts which may lead to an actual ban. Counts down from the config setting 'Number of failed login attempts until temporary ban' to 0.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+</table>
+
+<a name="db_bridge"></a><h2>cpg15x_bridge<a href="#db_bridge" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Contains bridge configuration settings. Used only by the bridge manager and only when bridging is enabled.</p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</td>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</td>
+    <th valign="top" align="left" class="tableh1">Description</td>
+    <th valign="top" align="left" class="tableh1">References</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>name</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=40 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">Name of configuration setting.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>value</strong></td>
+    <td valign="top" class="tableb">Text (<=255 chars)</td>
+    <td valign="top" class="tableb">Value of configuration setting.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+</table>
+
+<a name="db_categories"></a><h2>cpg15x_categories<a href="#db_categories" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Contains information about categories. Categories contain albums and can be infinitely nested.</p>
+<p>Coppermine uses both the adjacency list and nested set models to represent category heirarchy. For a description of these methods see <a href="http://dev.mysql.com/tech-resources/articles/hierarchical-data.html">dev.mysql.com</a>. The ajacency method should be used for simple lookups (eg. how many subcategories does category 3 have?) and the the nested set model should be used when generating a complete or partial hierarchy (eg. for a dropdown menu) since it scales much better.</p>
+<p>The category manager will regenerate the nested set representation from <strong>parent</strong> information if any category has <strong>lft</strong> set to 0. This is useful if you are importing categories from another system or have made changes manually.</p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</td>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</td>
+    <th valign="top" align="left" class="tableh1">Description</td>
+    <th valign="top" align="left" class="tableh1">References</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="db_categories-cid"></a><strong>cid</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Primary key. Unique identifier for a category.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>owner_id</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb"></td>
+    <td valign="top" class="tableb">
+        <a href="#db_users-user_id">cpg15x_users.user_id</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>name</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">Short name of the category.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>description</strong></td>
+    <td valign="top" class="tableb">Text (<=65k chars)</td>
+    <td valign="top" class="tableb">A longer description of the category.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>pos</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Position of the category. Categories are sorted by position ascending. The category manager assigns the position and all categories have a non-zero position.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>parent</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">The immediate parent category of this category.</td>
+    <td valign="top" class="tableb">
+        <a href="#db_categories-cid">cpg15x_categories.cid</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>thumb</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">The picture to be used as thumbnail for the category. If 0 then no thumbnail is displayed.</td>
+    <td valign="top" class="tableb tableb_alternate">
+        <a href="#db_pictures-pid">cpg15x_pictures.pid</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>lft</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">The <strong>lft</strong> and <strong>rgt</strong> fields are used to represent the category heirarchy using the nested set model.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>rgt</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">The <strong>lft</strong> and <strong>rgt</strong> fields are used to represent the category heirarchy using the nested set model.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>depth</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">Represents the depth of the category in the heirarchy. A depth of 1 indicates a top level category.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+</table>
+
+<a name="db_categorymap"></a><h2>cpg15x_categorymap<a href="#db_categorymap" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Contains information on which groups have access to create albums in which categories.</p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</td>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</td>
+    <th valign="top" align="left" class="tableh1">Description</td>
+    <th valign="top" align="left" class="tableh1">References</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>cid</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">The category this permission applies to.</td>
+    <td valign="top" class="tableb tableb_alternate">
+        <a href="#db_categories-cid">cpg15x_categories.cid</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>group_id</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">The group this permission applies to.</td>
+    <td valign="top" class="tableb">
+        <a href="#db_usergroups-group_id">cpg15x_usergroups.group_id</a>
+    </td>
+  </tr>
+</table>
+
+<a name="db_comments"></a><h2>cpg15x_comments<a href="#db_comments" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Contains all comments made on files. This table can get quite large if you have lots of comments. It can safely be pruned to remove comments older than a certain date.</p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</td>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</td>
+    <th valign="top" align="left" class="tableh1">Description</td>
+    <th valign="top" align="left" class="tableh1">References</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>pid</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">The file that this comment has been made against.</td>
+    <td valign="top" class="tableb tableb_alternate">
+        <a href="#db_pictures-pid">cpg15x_pictures.pid</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>msg_id</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">Primary key. Unique identifier for a comment.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>msg_author</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=25 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">The name of the user that posted the comment. This is needed mainly for anonymous commenting, however usernames of registered users are recorded here also (and must be kept up to date if a username changes).</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>msg_body</strong></td>
+    <td valign="top" class="tableb">Text (<=65k chars)</td>
+    <td valign="top" class="tableb">The text of the comment that was entered.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>msg_date</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Datetime</td>
+    <td valign="top" class="tableb tableb_alternate">The date and time the comment was posted.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>msg_raw_ip</strong></td>
+    <td valign="top" class="tableb">Text (<=255 chars)</td>
+    <td valign="top" class="tableb">The IP of the comment poster. This IP is derived from the REMOTE_ADDR variable. If the webserver is behind a proxy this will probably be the IP of the proxy.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>msg_hdr_ip</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">The IP of the comment poster. This IP is derived from the HTTP_CLIENT_IP or HTTP_X_FORWARDED_FOR variables. If the webserver is behind a proxy this should be the actual client IP instead of the proxy's IP. If neither variable is present this will be the same as the <strong>msg_raw_ip</strong> value.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>author_md5_id</strong></td>
+    <td valign="top" class="tableb">MD5 hash</td>
+    <td valign="top" class="tableb">A randomly generated unique id used to 'identify' anonymous users and allow them to edit/delete their own comments (but not those of other anonymous users). It also allows enforcement of flood protection rules against individual anonymous users. This field is empty for comments by registered users.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>author_id</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">The user id of the comment poster, or 0 for anonymous comments.</td>
+    <td valign="top" class="tableb tableb_alternate">
+        <a href="#db_users-user_id">cpg15x_users.user_id</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>approval</strong></td>
+    <td valign="top" class="tableb">YES / NO</td>
+    <td valign="top" class="tableb">Whether the comment has been approved. If comment approval is not enabled, all comments are added with <strong>approval</strong> already set to YES. Comments with <strong>approval</strong> set to NO are not displayed to normal users.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>spam</strong></td>
+    <td valign="top" class="tableb tableb_alternate">YES / NO</td>
+    <td valign="top" class="tableb tableb_alternate">Whether the comment has been determined to be a spam comment by akismet (if enabled).</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+</table>
+
+<a name="db_config"></a><h2>cpg15x_config<a href="#db_config" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Contains main configuration settings.</p>
+<p>Plugins can also add settings here. If so, they should prefix their settings with the short name of the plugin and clean up when uninstalled.</p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</td>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</td>
+    <th valign="top" align="left" class="tableh1">Description</td>
+    <th valign="top" align="left" class="tableh1">References</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>name</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=40 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">Name of configuration setting.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>value</strong></td>
+    <td valign="top" class="tableb">Text (<=255 chars)</td>
+    <td valign="top" class="tableb">Value of configuration setting.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+</table>
+
+<a name="db_dict"></a><h2>cpg15x_dict<a href="#db_dict" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>A list of all keywords that have been applied to files. Using this is more efficient that loading the keywords from the pictures table every time it's needed. It can be regenerated using the keyword_create_dict.php script.</p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</td>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</td>
+    <th valign="top" align="left" class="tableh1">Description</td>
+    <th valign="top" align="left" class="tableh1">References</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>keyId</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Primary key. Used to manage the keyword dictionary.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>keyword</strong></td>
+    <td valign="top" class="tableb">Text (<=60 chars)</td>
+    <td valign="top" class="tableb">Unique field. The keyword itself.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+</table>
+
+<a name="db_ecards"></a><h2>cpg15x_ecards<a href="#db_ecards" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>If logging of sent ecards has been enabled, this table will contain that log. Can be used to see if the feature is being abused (or if it is being used at all).</p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</td>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</td>
+    <th valign="top" align="left" class="tableh1">Description</td>
+    <th valign="top" align="left" class="tableh1">References</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>eid</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Primary key. Used purely to manage the ecard log.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>sender_name</strong></td>
+    <td valign="top" class="tableb">Text (<=50 chars)</td>
+    <td valign="top" class="tableb">The name specified as sender name on the sent ecard.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>sender_email</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=65k chars)</td>
+    <td valign="top" class="tableb tableb_alternate">The email address specified as sender email on the sent ecard.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>recipient_name</strong></td>
+    <td valign="top" class="tableb">Text (<=50 chars)</td>
+    <td valign="top" class="tableb">The name specified as recipient name on the sent ecard.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>recipient_email</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=65k chars)</td>
+    <td valign="top" class="tableb tableb_alternate">The email address specified as recipient email on the sent ecard.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>link</strong></td>
+    <td valign="top" class="tableb">Text (<=65k chars)</td>
+    <td valign="top" class="tableb">The link of the ecard. The link actually contains all details of the ecard as a base64 encoded serialized array. This is not ideal, but means ecards do not take up space in the database (unless logging is enabled) and as a consequence never expire.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>date</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">The date/time the ecard was sent (as a unix timestamp).</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>sender_ip</strong></td>
+    <td valign="top" class="tableb">Text (<=255 chars)</td>
+    <td valign="top" class="tableb">The IP address of the ecard sender. See remarks on the <strong>msg_raw_ip</strong> field in the comments table for details.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+</table>
+
+<a name="db_exif"></a><h2>cpg15x_exif<a href="#db_exif" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>EXIF data for pictures. This table is used as a cache to avoid having to read the EXIF data from the file every time it is viewed. Can safely be emptied - the data will be reloaded as needed.</p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</td>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</td>
+    <th valign="top" align="left" class="tableh1">Description</td>
+    <th valign="top" align="left" class="tableh1">References</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>pid</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Primary key. The file that this EXIF data is from.</td>
+    <td valign="top" class="tableb tableb_alternate">
+        <a href="#db_pictures-pid">cpg15x_pictures.pid</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>exifData</strong></td>
+    <td valign="top" class="tableb">Text (<=65k chars)</td>
+    <td valign="top" class="tableb">The EXIF data.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+</table>
+
+<a name="db_favpics"></a><h2>cpg15x_favpics<a href="#db_favpics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Stores the user's favorite files list.</p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</td>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</td>
+    <th valign="top" align="left" class="tableh1">Description</td>
+    <th valign="top" align="left" class="tableh1">References</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>user_id</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Primary key. The user whose favorites these are.</td>
+    <td valign="top" class="tableb tableb_alternate">
+        <a href="#db_users-user_id">cpg15x_users.user_id</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>user_favpics</strong></td>
+    <td valign="top" class="tableb">Text (<=65k chars)</td>
+    <td valign="top" class="tableb">The favorites data - stored as a serialized array of pids.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+</table>
+
+<a name="db_filetypes"></a><h2>cpg15x_filetypes<a href="#db_filetypes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>List of filetypes known to Coppermine. This tells Coppermine how to handle uploaded files based on the filename extension. Any files uploaded that are not of a known type will be rejected.</p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</td>
+    <th valign="top" align="left" class="tableh1" width="160px">Type</td>
+    <th valign="top" align="left" class="tableh1">Description</td>
+    <th valign="top" align="left" class="tableh1">References</td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>extension</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=7 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">Primary key. The filename extension in question (lower case, without a leading dot)</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>mime</strong></td>
+    <td valign="top" class="tableb">Text (<=254 chars)</td>
+    <td valign="top" class="tableb">The mime type associated with this filename extension. For list of possible mime types see <a href="http://www.iana.org/assignments/media-types/index.html">iana.org</a> or /etc/mime.types on linux systems.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>content</strong></td>
+    <td valign="top" class="tableb tableb_alternate">audio/document/image/movie</td>
+    <td valign="top" class="tableb tableb_alternate">States how Coppermine should display the file. Images are displayed using normal &lt;img&gt; tags, audio and video files using &lt;object&gt; and &lt;embed&gt; tags and documents are simply linked to. Only filetypes that are defined as images get automatic thumbails and resized versions created.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>player</strong></td>
+    <td valign="top" class="tableb">DIVX/QT/RMP/SWF/WMP</td>
+    <td valign="top" class="tableb">States which media player should be used to play files of this type. Applies only to movie and audio files. The visitor must have an appropriate plugin to be able to view the media file.
+        <p><small>DIVX = DivX Player, QT = QuickTime, RMP = RealPlayer, SWF = Shockwave Flash Player, WMP = Windows Media Player</small></p>
+    </td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+</table>
 
 <script type="text/javascript">
   cpgDocFooter();
