@@ -387,3 +387,5 @@ UPDATE CPG_languages SET `abbr` = 'fr' WHERE `lang_id`='french';
 TRUNCATE TABLE CPG_exif;
 ALTER TABLE CPG_exif CHANGE `filename` `pid` int(11) NOT NULL;
 ALTER TABLE CPG_exif DROP INDEX `filename`, ADD PRIMARY KEY ( `pid` );
+
+ALTER TABLE CPG_sessions CHANGE `session_id` `session_id` char(32);

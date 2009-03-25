@@ -289,7 +289,7 @@ CREATE TABLE CPG_plugins (
 # Table structure for table CPG_sessions
 #
 CREATE TABLE CPG_sessions (
-  session_id varchar(40) NOT NULL default '',
+  session_id char(32) NOT NULL default '',
   user_id int(11) default '0',
   time int(11) default NULL,
   remember int(1) default '0',
