@@ -11,34 +11,34 @@
   <element>
     <fullpath>addpic.php</fullpath>
     <version>1.5.1</version>
-    <revision>5567</revision>
+    <revision>5648</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2bc152d277ccb366efab61f752c4a333</hash>
+    <hash>ba238ac4b8bc16114218237d43a967b5</hash>
   </element>
   <element>
     <fullpath>admin.php</fullpath>
     <version>1.5.1</version>
-    <revision>5567</revision>
+    <revision>5695</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9f6b46b8f958491df65b07d5c33c750</hash>
+    <hash>8d7a336dc7c11a4bcced57b8ef3597a9</hash>
   </element>
   <element>
     <fullpath>albmgr.php</fullpath>
     <version>1.5.0</version>
-    <revision>5583</revision>
+    <revision>5704</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0afbc6c3c1ae3ab1505eee3d10a5db89</hash>
+    <hash>e114935164a5ca2230d22672621a722f</hash>
   </element>
   <element>
     <fullpath>anycontent.php</fullpath>
     <version>1.5.1</version>
-    <revision>5567</revision>
+    <revision>5725</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>844098997e5d8dd661e4ba992008b17e</hash>
+    <hash>631c76ca2245b30299ff94ab4a9d90ab</hash>
   </element>
   <element>
     <fullpath>banning.php</fullpath>
@@ -51,18 +51,18 @@
   <element>
     <fullpath>bridgemgr.php</fullpath>
     <version>1.5.1</version>
-    <revision>5594</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5db0f424c7ef22996021f0542132c62f</hash>
+    <hash>209904bbe90fe1e1471883992132a078</hash>
   </element>
   <element>
     <fullpath>calendar.php</fullpath>
     <version>1.5.1</version>
-    <revision>5567</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>36cf6da72452a77a9aa90752148edeed</hash>
+    <hash>c701592c63be6453f461e1696670fa2f</hash>
   </element>
   <element>
     <fullpath>captcha.php</fullpath>
@@ -83,10 +83,10 @@
   <element>
     <fullpath>charsetmgr.php</fullpath>
     <version>1.5.1</version>
-    <revision>5567</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>136d04ed11ee9c0a6a6afea99f31bb5d</hash>
+    <hash>2958627a8ae458057353c4fe25608632</hash>
   </element>
   <element>
     <fullpath>config.php</fullpath>
@@ -95,66 +95,66 @@
   <element>
     <fullpath>contact.php</fullpath>
     <version>1.5.1</version>
-    <revision>5567</revision>
+    <revision>5649</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6ecf2f655226bc7bfe9431c64a97b333</hash>
+    <hash>2e59efe067347c45333ccdd223d0e0e2</hash>
   </element>
   <element>
     <fullpath>db_ecard.php</fullpath>
     <version>1.5.1</version>
-    <revision>5568</revision>
+    <revision>5650</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d11b35bf7a8937038c9ab43b45a1be98</hash>
+    <hash>063d8816ff4431f2eee051fa10834ac0</hash>
   </element>
   <element>
     <fullpath>db_input.php</fullpath>
     <version>1.5.1</version>
-    <revision>5594</revision>
+    <revision>5640</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8ec8e7e2eacb540d68022f6656dd4da5</hash>
+    <hash>25e68386798fb18c778acbf204c346a7</hash>
   </element>
   <element>
     <fullpath>delete.php</fullpath>
     <version>1.5.1</version>
-    <revision>5582</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>05333fda364e61853207802237b7fc47</hash>
+    <hash>b01d224d933c8ef5ff577252c1f8905b</hash>
   </element>
   <element>
     <fullpath>displayecard.php</fullpath>
     <version>1.5.1</version>
-    <revision>5568</revision>
+    <revision>5655</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fb2fff42fb774df5506698763b3eb17f</hash>
+    <hash>b1a825e9314bd327550fb9e7cd2e69e6</hash>
   </element>
   <element>
     <fullpath>displayimage.php</fullpath>
     <version>1.5.1</version>
-    <revision>5568</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1a41ba2c99b22c5bd24321734932328f</hash>
+    <hash>e15b68f0efad4546434550a6db13742f</hash>
   </element>
   <element>
     <fullpath>displayreport.php</fullpath>
     <version>1.5.1</version>
-    <revision>5568</revision>
+    <revision>5655</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5da8ff93e402d83798bcae034f10968f</hash>
+    <hash>3ee1d8a68bfa18761de1715adaa8107a</hash>
   </element>
   <element>
     <fullpath>ecard.php</fullpath>
     <version>1.5.1</version>
-    <revision>5568</revision>
+    <revision>5657</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3cb0758f3ae9ac05db337f72eb020b3f</hash>
+    <hash>636706f32d7df76eae944bfbe01da1e7</hash>
   </element>
   <element>
     <fullpath>editOnePic.php</fullpath>
@@ -163,26 +163,26 @@
   <element>
     <fullpath>edit_one_pic.php</fullpath>
     <version>1.5.1</version>
-    <revision>5568</revision>
+    <revision>5695</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>668e2b9a8cfca995bc4e1ac62cc472a8</hash>
+    <hash>0ed38efee5ad8372a10adfa770608982</hash>
   </element>
   <element>
     <fullpath>editpics.php</fullpath>
     <version>1.5.1</version>
-    <revision>5568</revision>
+    <revision>5697</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>cd2e15a25b5a685a2eb432e9acdee71c</hash>
+    <hash>29181c015ee434706269d4f88d686f94</hash>
   </element>
   <element>
     <fullpath>exifmgr.php</fullpath>
     <version>1.5.1</version>
-    <revision>5568</revision>
+    <revision>5677</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>073bf9a4fa2746d36e8e8c1f69d0140b</hash>
+    <hash>e65cc6279715435142c67c11ac025cad</hash>
   </element>
   <element>
     <fullpath>favicon.ico</fullpath>
@@ -197,10 +197,10 @@
   <element>
     <fullpath>forgot_passwd.php</fullpath>
     <version>1.5.1</version>
-    <revision>5572</revision>
+    <revision>5673</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ce146fadb01bfdf41ebcb92d3c5cae51</hash>
+    <hash>32c6128ff376f0650b2b712b6d58c7ff</hash>
   </element>
   <element>
     <fullpath>getlang.php</fullpath>
@@ -213,34 +213,34 @@
   <element>
     <fullpath>groupmgr.php</fullpath>
     <version>1.5.1</version>
-    <revision>5572</revision>
+    <revision>5678</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b202f3dd36251248152edf99bb9ab067</hash>
+    <hash>3c374f93f4a73f44512bf5157c82e7f8</hash>
   </element>
   <element>
     <fullpath>image_processor.php</fullpath>
     <version>1.5.1</version>
-    <revision>5572</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>98239e86c7ef1f5ecf1e78fa66da321a</hash>
+    <hash>73976365ef3172d48bbd84e7397cac98</hash>
   </element>
   <element>
     <fullpath>index.php</fullpath>
     <version>1.5.1</version>
-    <revision>5594</revision>
+    <revision>5722</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d34bee08ee45a7dc4e7ab3c6a69f1eb1</hash>
+    <hash>f2226646b5c3ce6206845644f8b885de</hash>
   </element>
   <element>
     <fullpath>install.php</fullpath>
     <version>1.5.1</version>
-    <revision>5572</revision>
+    <revision>5718</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0dffd52dfb4728675f94a14c4d6a5261</hash>
+    <hash>5459dccc15bfbf9af54457929f52857f</hash>
   </element>
   <element>
     <fullpath>installer.css</fullpath>
@@ -253,18 +253,18 @@
   <element>
     <fullpath>keyword_create_dict.php</fullpath>
     <version>1.5.1</version>
-    <revision>5572</revision>
+    <revision>5695</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>166007ec44df2dfa503e38bdd6752512</hash>
+    <hash>44a23cdf5ee91400088ca96cc67520d9</hash>
   </element>
   <element>
     <fullpath>keyword_select.php</fullpath>
     <version>1.5.1</version>
-    <revision>5572</revision>
+    <revision>5695</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e52bfdb173c757b81153294a8c38012b</hash>
+    <hash>e5e0ec558468e4a0b8354bc1854fed78</hash>
   </element>
   <element>
     <fullpath>keywordmgr.php</fullpath>
@@ -277,18 +277,18 @@
   <element>
     <fullpath>langmgr.php</fullpath>
     <version>1.5.1</version>
-    <revision>5572</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>45140f80ea0be44bb33b8e2c1e630057</hash>
+    <hash>ce0518992e69af5013f6f65e26632522</hash>
   </element>
   <element>
     <fullpath>login.php</fullpath>
     <version>1.5.1</version>
-    <revision>5596</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d10c87e968a2a07740fed812bb5ba28b</hash>
+    <hash>bafdda9961a1c24cf986b090a1a4bdda</hash>
   </element>
   <element>
     <fullpath>logout.php</fullpath>
@@ -301,34 +301,34 @@
   <element>
     <fullpath>minibrowser.php</fullpath>
     <version>1.5.1</version>
-    <revision>5572</revision>
+    <revision>5716</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e7b64d47e1f149d76a2591c67f4c6ebc</hash>
+    <hash>9da945f032c21faade755ed09c7fe3e5</hash>
   </element>
   <element>
     <fullpath>mode.php</fullpath>
     <version>1.5.1</version>
-    <revision>5572</revision>
+    <revision>5676</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c8bd9decd1fe1914033b2e97df7db4f1</hash>
+    <hash>e743c4797e591e2307ed51144d9363fd</hash>
   </element>
   <element>
     <fullpath>modifyalb.php</fullpath>
     <version>1.5.1</version>
-    <revision>5572</revision>
+    <revision>5688</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7875be0a980677637d51bc79abc32d1e</hash>
+    <hash>84dd37ff08a35612bfc46384bb890d05</hash>
   </element>
   <element>
     <fullpath>phpinfo.php</fullpath>
     <version>1.5.1</version>
-    <revision>5572</revision>
+    <revision>5718</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b060bbc1835f68e92874061a489a8228</hash>
+    <hash>1dcf881db1c74859eeedeafa40330808</hash>
   </element>
   <element>
     <fullpath>picEditor.php</fullpath>
@@ -337,50 +337,50 @@
   <element>
     <fullpath>pic_editor.php</fullpath>
     <version>1.5.1</version>
-    <revision>5573</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>20b0eb2aa3a4db8f241f182c977f7515</hash>
+    <hash>a1a3f4947b380057919f34fb8d4e0c1a</hash>
   </element>
   <element>
     <fullpath>picmgr.php</fullpath>
     <version>1.5.1</version>
-    <revision>5582</revision>
+    <revision>5668</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>83014b5fed719b47a6f74f64ce7db2f0</hash>
+    <hash>cf49fe783488a19eca3cd4c5a472c54d</hash>
   </element>
   <element>
     <fullpath>pluginmgr.php</fullpath>
     <version>1.5.1</version>
-    <revision>5573</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>df0cbfbe99fe5530736598f74a4318f9</hash>
+    <hash>e10c78013c2f58f840380e40802f790d</hash>
   </element>
   <element>
     <fullpath>profile.php</fullpath>
     <version>1.5.1</version>
-    <revision>5573</revision>
+    <revision>5644</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a8affbf89459272518e457cb4f9b3d9d</hash>
+    <hash>00b1ee1a9d56ca9b1923689d591377e6</hash>
   </element>
   <element>
     <fullpath>ratepic.php</fullpath>
     <version>1.5.1</version>
-    <revision>5573</revision>
+    <revision>5691</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>14d6bb711406ce696917b19093e2e0de</hash>
+    <hash>6be0c446b8bb66a54b0aedfe11a7d509</hash>
   </element>
   <element>
     <fullpath>register.php</fullpath>
     <version>1.5.1</version>
-    <revision>5573</revision>
+    <revision>5692</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>76763deb1828969bfdf1502b27ba6c2a</hash>
+    <hash>08db920c5e245f8f5c3f6aad61987d9d</hash>
   </element>
   <element>
     <fullpath>relocate_server.php</fullpath>
@@ -389,18 +389,18 @@
   <element>
     <fullpath>report_file.php</fullpath>
     <version>1.5.1</version>
-    <revision>5573</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a86bd6b0506a00b8f569bc9942925670</hash>
+    <hash>80a2ac84425ba75c4e4069f497bc7385</hash>
   </element>
   <element>
     <fullpath>reviewcom.php</fullpath>
     <version>1.5.1</version>
-    <revision>5573</revision>
+    <revision>5714</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>cfb1fc2390e7cf0f403a0fd7fe640070</hash>
+    <hash>b22292a066be86eb6f7e422d8d597906</hash>
   </element>
   <element>
     <fullpath>scripts.js</fullpath>
@@ -409,18 +409,18 @@
   <element>
     <fullpath>search.php</fullpath>
     <version>1.5.1</version>
-    <revision>5573</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d0d73ab10ed97a58d14dc23f3e6f2af3</hash>
+    <hash>727d54c61bb9e33dfaa564d8d7e5faf4</hash>
   </element>
   <element>
     <fullpath>searchnew.php</fullpath>
     <version>1.5.1</version>
-    <revision>5573</revision>
+    <revision>5719</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a08aef006f33ecc4670fbb37595c2ca2</hash>
+    <hash>fb41e3287674e13c508a7bd15ef1d962</hash>
   </element>
   <element>
     <fullpath>send_activation.php</fullpath>
@@ -441,50 +441,50 @@
   <element>
     <fullpath>stat_details.php</fullpath>
     <version>1.5.1</version>
-    <revision>5573</revision>
+    <revision>5695</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c0e07f2a968eed4e189960c7f8069aa6</hash>
+    <hash>ccde26c6bfdb517ad5bf8c00293846a1</hash>
   </element>
   <element>
     <fullpath>thumbnails.php</fullpath>
     <version>1.5.1</version>
-    <revision>5573</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>71a1548ba88e3bd1af7d4ef4caabbf5e</hash>
+    <hash>8533dbc37608db5028825493d083073b</hash>
   </element>
   <element>
     <fullpath>update.php</fullpath>
     <version>1.5.1</version>
-    <revision>5573</revision>
+    <revision>5727</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0358ac813502d20d4ed35961b0a807f1</hash>
+    <hash>a36520541efe4bbf620bd9fd894df98a</hash>
   </element>
   <element>
     <fullpath>upload.php</fullpath>
     <version>1.5.1</version>
-    <revision>5573</revision>
+    <revision>5660</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fdca936a6a4bee79e3b1e4493aeaf10a</hash>
+    <hash>379e3e599e6e59ff7d31fab2e38714c5</hash>
   </element>
   <element>
     <fullpath>usermgr.php</fullpath>
     <version>1.5.1</version>
-    <revision>5573</revision>
+    <revision>5681</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>85c33885c3c64241e1a8e5683117b9f4</hash>
+    <hash>9667fbc5588be6a07e576673a73180a4</hash>
   </element>
   <element>
     <fullpath>util.php</fullpath>
     <version>1.5.1</version>
-    <revision>5574</revision>
+    <revision>5689</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c01703f4bc248eb66bebf350926ab6be</hash>
+    <hash>16afb6c06ca2bfd9dd1ed339089be26f</hash>
   </element>
   <element>
     <fullpath>versioncheck.php</fullpath>
@@ -497,26 +497,26 @@
   <element>
     <fullpath>viewlog.php</fullpath>
     <version>1.5.1</version>
-    <revision>5574</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0ba1e000ac5fd69a7c5978485d5c4321</hash>
+    <hash>2a57839c19423339907b83bb40b3d892</hash>
   </element>
   <element>
     <fullpath>xp_publish.php</fullpath>
     <version>1.5.1</version>
-    <revision>5574</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d42dd46c7752679644646db4dd8b7636</hash>
+    <hash>8809db86918b0fabe6b1353f8d2a289a</hash>
   </element>
   <element>
     <fullpath>zipdownload.php</fullpath>
     <version>1.5.1</version>
-    <revision>5574</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>56ec7cb11fe34176cceb0a2c19f29bbe</hash>
+    <hash>4909044f288ec4378bdb191e946f5e47</hash>
   </element>
   <element>
     <fullpath>**fullpath**/</fullpath>
@@ -566,10 +566,10 @@
   <element>
     <fullpath>bridge/coppermine.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5578</revision>
+    <revision>5715</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>904a73598d39e7330a7cfececeec239a</hash>
+    <hash>b47eaa2727c7f5a17654a048ace026a6</hash>
   </element>
   <element>
     <fullpath>bridge/invisionboard20.inc.php</fullpath>
@@ -590,10 +590,10 @@
   <element>
     <fullpath>bridge/mybb.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5578</revision>
+    <revision>5717</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>1d8da2c5e2ec4191e95854131d4a7a7b</hash>
+    <hash>387ae072584cadf493f76ed71149cee5</hash>
   </element>
   <element>
     <fullpath>bridge/phorum.inc.php</fullpath>
@@ -606,18 +606,18 @@
   <element>
     <fullpath>bridge/phpbb.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5578</revision>
+    <revision>5717</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>7f037eb367489d71ed523cee28a9da53</hash>
+    <hash>77b4e94e56c10baeeaca58f512df41c2</hash>
   </element>
   <element>
     <fullpath>bridge/phpbb2018.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5578</revision>
+    <revision>5717</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>4454e2b4362d8c4f1b73d3afa448a9f3</hash>
+    <hash>4f4162bba5358e1eb589a37e96bf42fc</hash>
   </element>
   <element>
     <fullpath>bridge/phpbb22.inc.php</fullpath>
@@ -626,66 +626,66 @@
   <element>
     <fullpath>bridge/punbb115.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5578</revision>
+    <revision>5717</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>9ea7fdc158e80452a095615e0af1c808</hash>
+    <hash>6f7695efc552dcd9c73db79393dc519f</hash>
   </element>
   <element>
     <fullpath>bridge/punbb12.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5578</revision>
+    <revision>5717</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>8edec83fdbcb82531f15fa9949f2108c</hash>
+    <hash>2e5ab791f9d42219555f1ead4ea11a7b</hash>
   </element>
   <element>
     <fullpath>bridge/smf10.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5578</revision>
+    <revision>5717</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>08a571bd0e701f69be8501df2b2b33b1</hash>
+    <hash>9fd19acfb96feac1658ac0907060ff36</hash>
   </element>
   <element>
     <fullpath>bridge/smf20.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5578</revision>
+    <revision>5717</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>35f5d0f0eb0aab7bf3587c218546308f</hash>
+    <hash>3c0d4b18306f4d0ffebdeb83df8297aa</hash>
   </element>
   <element>
     <fullpath>bridge/udb_base.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5578</revision>
+    <revision>5719</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>632bfaf26b015848a88194994baaaeb1</hash>
+    <hash>9bdf842cca4d7fb15d37a3682b5b412b</hash>
   </element>
   <element>
     <fullpath>bridge/vbulletin30.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5578</revision>
+    <revision>5717</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>27bcf1cce1e99f183594208a89d4a732</hash>
+    <hash>fefcd3ff94e86a44341e3626f2607a81</hash>
   </element>
   <element>
     <fullpath>bridge/xmb.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5578</revision>
+    <revision>5717</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>0cf2f7c9ee357f1efa07a81fa8def11d</hash>
+    <hash>bf3dd12ca083ba9d1ab974f09197e476</hash>
   </element>
   <element>
     <fullpath>bridge/xoops.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5578</revision>
+    <revision>5717</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>eb7b9d9142622b6b327b8002443209cf</hash>
+    <hash>3e8dd609d333cb7dbb08aafa7dd61f1f</hash>
   </element>
   <element>
     <fullpath>docs/</fullpath>
@@ -752,18 +752,18 @@
   <element>
     <fullpath>docs/de/configuration.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5590</revision>
+    <revision>5766</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>5013e197c8e399561abd3fb7d24e4bdc</hash>
+    <hash>b9ebb3f36a76319db623e22ef4706783</hash>
   </element>
   <element>
     <fullpath>docs/de/credits.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5579</revision>
+    <revision>5663</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>507ac4ddfd2f5f78522b3a9733c09e44</hash>
+    <hash>5d8173e042384941376c133785c6276b</hash>
   </element>
   <element>
     <fullpath>docs/de/index.htm</fullpath>
@@ -776,10 +776,10 @@
   <element>
     <fullpath>docs/de/languages.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5579</revision>
+    <revision>5766</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>8f53036781f04afa38937ca2b2c0ef00</hash>
+    <hash>f40590b084c1070e9463e6ef3cfa3d0b</hash>
   </element>
   <element>
     <fullpath>docs/de/requirements.htm</fullpath>
@@ -792,18 +792,221 @@
   <element>
     <fullpath>docs/de/script.js</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5743</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>a4db91c34cb9089f11371e9fb276a338</hash>
+    <hash>47f2016088c3c4da261d23237ca12246</hash>
   </element>
   <element>
     <fullpath>docs/de/toc.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5579</revision>
+    <revision>5743</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>23516a85ec54c4179722ca16eef3ce19</hash>
+    <hash>b547e7bbb2aec834b32a65da66e8bb6b</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+  </element>
+  <element>
+    <fullpath>docs/de/images/albmgr.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>a9e73175f12a8c0f46eaa9d47330c381</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/album_menu.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>a3f3a58192c51d80d8c0c1c807b6788f</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/anchor.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>acfc14ca75e143ec72fae1920f6f9e97</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/bridge_01_start.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>41646c3291e2947736ac9117cfaa4859</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/bridge_02_app.png</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>d02f0d9b54014274443283eff820914d</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/bridge_03_path.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>93c55a1ab847545dd5ac81d64f5aa27c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/category_cp.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>4599da2999e2883e0f789a6012851bca</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/config_language.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>d265a8aa9f58702e61f48728852ee065</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/cust_thmb.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b699af8e8d257de609943362aa5afe3e</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/cust_thmb_3.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>06be8f790ad5bb44d1b0df6e0edcc0dd</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/cust_thmb_final.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>f6f440dd6c0a5631938e967a20315d13</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/ecard_log.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>408a61afba00476209206a9a036ff017</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/edit_album.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>06e7db1643a1d5a5cc8a0c0891f76e30</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/edit_picture.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>d60c995c0d569187022d3869b65e3278</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/edit_video.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>c7a7ce5d7a92814f00705ce48eb07981</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/exif_data_cpg1.4.x.jpg</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>676c12f357018029b0284e48b3042554</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/exifmanager_cpg1.4.x.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>5eb58d467ebcf005fbe339f901292b4f</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/filmstrip.jpg</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>4e981102491abad384d3f3b806f36b49</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/group_cp.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>42582e06c4898fcae27e49caf6a219c8</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/imgfolder.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>1d488d377762e65ab4e8b691ba01e5a4</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/keywordmgr.jpg</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>d2e487e2c78d2ccdd39057eb9adc4780</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/modifyalb_reset.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>bbd890c6d1ea772d3f36392264976270</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/phpmyadmin_tables.png</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>4c387ab224ac9a39a24b4fdfa4f95d97</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/plugin_manager.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>205839b91e0c2a7a90cc9c39a59a0d07</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/review_comments.png</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>f8ea5a17dc1f44ab21b10b10818bca12</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/searchnew_1.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>7e48d6a58b55dda8cbc4f3480526d44b</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/searchnew_2.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>a63826e4e96939edeac5191ae60def28</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/subversion_checkout_success.jpg</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>110b08067511659a1097f1ea53753aed</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/thumbnail_tabs.jpg</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>4c507419a82d2742d8f8b1aa20050d88</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/user_folder_link.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>308253efa0028cdc57b5f1bbed39df68</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/usermgr.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>2ccc7f185260069dfd378b67197bbf22</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/usermgr_edit.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>78b0c9ad4944660d036ab7ead1cfa8da</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/images/util_re-size.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>c193750ac22a78128ceb9516e8b57fe4</hash>
   </element>
   <element>
     <fullpath>docs/en/</fullpath>
@@ -813,10 +1016,10 @@
   <element>
     <fullpath>docs/en/admin_menu.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5726</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>50ceec3506c5369a2111d4bab47ee798</hash>
+    <hash>3e906e3766ce3ebe123ebbf4a66d947a</hash>
   </element>
   <element>
     <fullpath>docs/en/administration.htm</fullpath>
@@ -829,27 +1032,26 @@
   <element>
     <fullpath>docs/en/admin-tools.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5695</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9d1e6b55ff6737419e903f0a5dc83b52</hash>
+    <hash>cb470af9d80050f9e5b84652a9038ec2</hash>
   </element>
   <element>
     <fullpath>docs/en/albums.htm</fullpath>
     <version>1.5.1</version>
-
-    <revision>5585</revision>
+    <revision>5662</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a72e70da4af78be18fc51f30eac6b1b2</hash>
+    <hash>acc7ad0c392011ca3004ebb22f8c66c8</hash>
   </element>
   <element>
     <fullpath>docs/en/auto-installers.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5747</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>719b72e4160451fca3950d4368dc7962</hash>
+    <hash>b545e8dbdc77a70f1dc6cb429d7a383a</hash>
   </element>
   <element>
     <fullpath>docs/en/banning.htm</fullpath>
@@ -862,58 +1064,58 @@
   <element>
     <fullpath>docs/en/bbcode.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5662</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>463782419668d36e0c7ba403ff714ec1</hash>
+    <hash>bf9524b4c064af6337ad094cbff48c87</hash>
   </element>
   <element>
     <fullpath>docs/en/bridging.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5695</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5a91d22c9f4142c667924e99e37de4fd</hash>
+    <hash>291548ef00d9db90687df1538a53bd88</hash>
   </element>
   <element>
     <fullpath>docs/en/categories.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5662</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d326ca2ae5f2a0853a85eacd29e47cbf</hash>
+    <hash>933faa89d49011018a864ee9eeefe175</hash>
   </element>
   <element>
     <fullpath>docs/en/comments.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5714</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3dc60f409399d6238e8e741208ee0119</hash>
+    <hash>0450a9144027679f3165291b872f3689</hash>
   </element>
   <element>
     <fullpath>docs/en/configuration.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5590</revision>
+    <revision>5766</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>58e76b7c8481cec5a112892b4d5ddd64</hash>
+    <hash>cb2da6a4906126482d93222dbd41c07c</hash>
   </element>
   <element>
     <fullpath>docs/en/copyrights.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5662</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>25949cfc878fc82a439379ecc09dd102</hash>
+    <hash>bd2fd4a73eeaa291191fe5379eb76bb2</hash>
   </element>
   <element>
     <fullpath>docs/en/credits.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5599</revision>
+    <revision>5663</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d50035eb4f8291545e62e4e03db1cff8</hash>
+    <hash>638e919ce5de9c0df0de92a043771a53</hash>
   </element>
   <element>
     <fullpath>docs/en/dev.htm</fullpath>
@@ -926,10 +1128,10 @@
   <element>
     <fullpath>docs/en/dev_config.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5662</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>bf57c1e11fa7538071241c531d471ea1</hash>
+    <hash>5964d6235261fe00ebbf4ae6757756f1</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_documentation.htm</fullpath>
@@ -950,10 +1152,10 @@
   <element>
     <fullpath>docs/en/dev_subversion.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5591</revision>
+    <revision>5695</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>632f30dec297842d0398651b8e2a51cc</hash>
+    <hash>1841c2ab86d8d52e68c153c3718c742b</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_superglobals.htm</fullpath>
@@ -982,10 +1184,10 @@
   <element>
     <fullpath>docs/en/errors.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5662</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ee915764a1751e50d980a89ab18c486a</hash>
+    <hash>bb4a0c37e35f2623335a140867d433c2</hash>
   </element>
   <element>
     <fullpath>docs/en/exif.htm</fullpath>
@@ -998,58 +1200,58 @@
   <element>
     <fullpath>docs/en/faq.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5620</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>724fceb4e2ea08ca10a873a2af2d2a55</hash>
+    <hash>416a53c53f9285b8bdaf02aa7a0e8648</hash>
   </element>
   <element>
     <fullpath>docs/en/files.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5695</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6120ed36450b15887c7ee9c0f30183fe</hash>
+    <hash>254b658e1450507aff53d85bf687b12c</hash>
   </element>
   <element>
     <fullpath>docs/en/groups.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5662</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6e4fa1f8683dd6c00e72397898bf8cab</hash>
+    <hash>b0b02a98de3440dc8269f567cf27513a</hash>
   </element>
   <element>
     <fullpath>docs/en/index.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5766</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7dde85416a835b28bc68be1c614431a1</hash>
+    <hash>75dc4a82608b28a2a5db5c1a70a87858</hash>
   </element>
   <element>
     <fullpath>docs/en/install.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5743</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9d0dd823458280d0e25cdca8e72488b</hash>
+    <hash>8d7827f3a2bdbacc649289f5199efcf1</hash>
   </element>
   <element>
     <fullpath>docs/en/install_faq.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5766</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5e8be0807e9d66bf11d8394d973cacee</hash>
+    <hash>0f1db94ee0493f6363fe477cc3f7ccc0</hash>
   </element>
   <element>
     <fullpath>docs/en/install_permissions.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5695</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>bc8e09d84568180184f60ceca04ddc59</hash>
+    <hash>580a7d1e89a61f105436b03542b1a59c</hash>
   </element>
   <element>
     <fullpath>docs/en/install_screen.htm</fullpath>
@@ -1062,10 +1264,10 @@
   <element>
     <fullpath>docs/en/keywords.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5696</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6c458c7e699a63c6a2acd5a2630c8af7</hash>
+    <hash>4dc5d2e61221c03154e031ad29be5b60</hash>
   </element>
   <element>
     <fullpath>docs/en/known_issues.htm</fullpath>
@@ -1078,186 +1280,186 @@
   <element>
     <fullpath>docs/en/languages.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5766</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>422ae766d563b1aee5a561af8e7ef25e</hash>
+    <hash>b3b4587e79ed9befcac1340a7f42e022</hash>
   </element>
   <element>
     <fullpath>docs/en/php-content.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5743</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f1606873af2a427ddccfa2105b19e302</hash>
+    <hash>49931b8e269008102a7760d125f23110</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_plugin_hooks.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5742</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>50499221d2867fa526c994e10ce2bed6</hash>
+    <hash>0e73cf49976e9190f1d95312e1df0a15</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_plugin_writing.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5762</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c647ab8f78179704952ffaafe761b5f2</hash>
+    <hash>affdbfdeb6c2865fa631487c7c7e7479</hash>
   </element>
   <element>
     <fullpath>docs/en/plugins.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5662</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8661ee764a4f9f182f1b6167d123a513</hash>
+    <hash>a245acc5e712ce93fb256577710852fe</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_database.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5662</revision>
+    <revision>5765</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>cf297e65ee7d44d33b7393473d7af054</hash>
+    <hash>54b65c261a8ca717a8c5300d867c94fa</hash>
   </element>
   <element>
     <fullpath>docs/en/quickstart.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5663</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5a362b7ada464c9a869323409f48cd87</hash>
+    <hash>a8204cd3f12b9e3b1217a28ef2d4b413</hash>
   </element>
   <element>
     <fullpath>docs/en/requirements.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5749</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ebfec682c304cfd21db7655c8dc121da</hash>
+    <hash>f5c19cbd895319dc36257fd30d5e7d35</hash>
   </element>
   <element>
     <fullpath>docs/en/script.js</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5763</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a2ee4c3be0c02b76a70dcff19325864a</hash>
+    <hash>22f84a6ab23d64c3885c8da195ed1ed7</hash>
   </element>
   <element>
     <fullpath>docs/en/start.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5662</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d8f2b7d7c203a307ae31bd6d0427ad85</hash>
+    <hash>ba7ec0b354c770865fb7dd7d496b04e3</hash>
   </element>
   <element>
     <fullpath>docs/en/testing.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5620</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>628dab15121397d2fa394fe140d71edb</hash>
+    <hash>872abd382aa307b6d3cd3ad72fd5e08a</hash>
   </element>
   <element>
     <fullpath>docs/en/theme.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5766</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>bb560c47f1a8aae427dd06b81a42b14d</hash>
+    <hash>b66652976a272fba417df62082f71e1c</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_copyright.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5662</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>29667db06045e89d329633663af2b96d</hash>
+    <hash>3f08bb56f69fbecf9bb1d36e8bb88158</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_create.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5662</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2e328c635a95445ef7af598e7b17d419</hash>
+    <hash>a2819b2194b8ef711051666b147dbf8e</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_upgrade_13x-14x.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5620</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d440846fdc3d115b9af1696c60781903</hash>
+    <hash>d7a66b67d1ce356eb2f116fbe695371e</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_upgrade_14x-15x.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5766</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>86aa5318241d814cd09d6c20e7ed0f46</hash>
+    <hash>7c59d3ad499e4d2f5827c1dd632f756b</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_user-contributions.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5662</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c18dfd3ebe94ae151ab1ac6143327d55</hash>
+    <hash>b7b92fa22be566f5f5aeecbddc456e53</hash>
   </element>
   <element>
     <fullpath>docs/en/toc.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5763</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>67a557ba5f6c156aea77f2e13a84d285</hash>
+    <hash>3f655d1501bf1954458f092285ccce9f</hash>
   </element>
   <element>
     <fullpath>docs/en/translation.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5662</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fb02a57bae037a7adcb684b1ee8d335b</hash>
+    <hash>16a46a95c56ee4ee63be8b9459ab565e</hash>
   </element>
   <element>
     <fullpath>docs/en/upgrading.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5747</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8371ca773e76eb8ae80c09fe6b880ea6</hash>
+    <hash>4fb0d770c2760fde2cfef9f6fd945725</hash>
   </element>
   <element>
     <fullpath>docs/en/upload_troubleshooting.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5695</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a0e08b977a769e6faea0d71932479d84</hash>
+    <hash>9a53bfe1c876559bfc56ff32b793d59e</hash>
   </element>
   <element>
     <fullpath>docs/en/uploading.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5663</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c6073a34cfa38dc4334665666a4e7e23</hash>
+    <hash>3bc06a989899ace0455618b9043585d0</hash>
   </element>
   <element>
     <fullpath>docs/en/users.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5662</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c375e185e26e4e457424cb962f661c42</hash>
+    <hash>67f4bc2993680775b65ec0b02d8347b5</hash>
   </element>
   <element>
     <fullpath>docs/en/images/</fullpath>
@@ -1265,52 +1467,22 @@
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/en/images/128x96gd1.jpg</fullpath>
+    <fullpath>docs/en/images/albmgr.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ee568d1ad170645a327ef47af04cfa6f</hash>
+    <hash>744b20fc37ca7cbee25a88d594773631</hash>
   </element>
   <element>
-    <fullpath>docs/en/images/128x96gd2.jpg</fullpath>
+    <fullpath>docs/en/images/album_menu.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>bdcab542b6ff8a7903faa5a64e2f03b3</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/admin_mode_bar.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>1198acbe00d6ee822cb5b374bc98b10a</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/albmgr.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>a9e73175f12a8c0f46eaa9d47330c381</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/album_menu.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>a3f3a58192c51d80d8c0c1c807b6788f</hash>
+    <hash>41d7cdc329646d581d66ddd9bc858779</hash>
   </element>
   <element>
     <fullpath>docs/en/images/anchor.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>acfc14ca75e143ec72fae1920f6f9e97</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/barre_menu_fr.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>f9114d21c05c98fdee9a1a496b977179</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/base.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>1f71b021e061a4948d69adc4ff10ccad</hash>
   </element>
   <element>
     <fullpath>docs/en/images/bridge_01_start.gif</fullpath>
@@ -1331,46 +1503,16 @@
     <hash>93c55a1ab847545dd5ac81d64f5aa27c</hash>
   </element>
   <element>
-    <fullpath>docs/en/images/category_cp.gif</fullpath>
+    <fullpath>docs/en/images/catmgr.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4599da2999e2883e0f789a6012851bca</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/cd.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>f41037663522fab5c5c31530c7fa43d8</hash>
+    <hash>147b484382b143d1d93499d6cc267a40</hash>
   </element>
   <element>
     <fullpath>docs/en/images/config_language.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>21012196fe97fd47eb1160bab652684d</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/coppermine-logo.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>35fde8cb15fb5fa0fdb1b601f4be5c78</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/cpg_exclam.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>935d0f8d971e2fb93d0c2aa525e00b75</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/cpg_no.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>3530fb84fac7723365b642cb1448a195</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/cpg_ok.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>6d725338f1d482320faa61f949aebde8</hash>
   </element>
   <element>
     <fullpath>docs/en/images/cust_thmb.gif</fullpath>
@@ -1391,28 +1533,10 @@
     <hash>f6f440dd6c0a5631938e967a20315d13</hash>
   </element>
   <element>
-    <fullpath>docs/en/images/delete.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>6ea3ce6c5b16b475606ce373110eb3c3</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/down.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>197894d13514e55194572fe554248123</hash>
-  </element>
-  <element>
     <fullpath>docs/en/images/ecard_log.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>408a61afba00476209206a9a036ff017</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/edit.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>f97822ef4050a0b59f2a27a7c50f91b7</hash>
   </element>
   <element>
     <fullpath>docs/en/images/edit_album.gif</fullpath>
@@ -1433,12 +1557,6 @@
     <hash>c7a7ce5d7a92814f00705ce48eb07981</hash>
   </element>
   <element>
-    <fullpath>docs/en/images/empty.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>df22aff6e941ff1cc577333d1712b584</hash>
-  </element>
-  <element>
     <fullpath>docs/en/images/exif_data_cpg1.4.x.jpg</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -1451,46 +1569,10 @@
     <hash>5eb58d467ebcf005fbe339f901292b4f</hash>
   </element>
   <element>
-    <fullpath>docs/en/images/folder.gif</fullpath>
+    <fullpath>docs/en/images/group_cp.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ea16980ab437fa6ba4aba3d480e83e9e</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/folderopen.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>18aa3d75315bf95bf080357733437fcc</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/globe.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>d6b48614cf8dc9553e077c19197637d2</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/group_cp.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>42582e06c4898fcae27e49caf6a219c8</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/imgfolder.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>1d488d377762e65ab4e8b691ba01e5a4</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/join.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>4d5d614e0da056df815a4306d6368692</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/joinbottom.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>4b3daa7f2cc584f1aac0d142275d7cba</hash>
+    <hash>1e953d7503153b68e08f67b3f42cb19e</hash>
   </element>
   <element>
     <fullpath>docs/en/images/keywordmgr.jpg</fullpath>
@@ -1499,94 +1581,22 @@
     <hash>d2e487e2c78d2ccdd39057eb9adc4780</hash>
   </element>
   <element>
-    <fullpath>docs/en/images/line.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>63ab38a6203262f15ca46c631232ea2c</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/link.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>c69e5a6cf6036eefece7c7fba80da5c9</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/minus.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>d647fbbd0ec410b8f3bb3357b62eedcf</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/minusbottom.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>b09d684cca7135ef728141aaf2464baa</hash>
-  </element>
-  <element>
     <fullpath>docs/en/images/modifyalb_reset.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>bbd890c6d1ea772d3f36392264976270</hash>
   </element>
   <element>
-    <fullpath>docs/en/images/musicfolder.gif</fullpath>
+    <fullpath>docs/en/images/phpmyadmin_tables.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>21ece951734f23adb2f75befe1f31fc1</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/nolines_minus.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>eb2243a354ffcfac93ba0fe948f7167d</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/nolines_plus.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>ec92b634b63608fb4b0dbf114e3b89e1</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/page.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>c25b136c1cb3bb145495c25b35d93754</hash>
+    <hash>4c387ab224ac9a39a24b4fdfa4f95d97</hash>
   </element>
   <element>
     <fullpath>docs/en/images/plugin_manager.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>205839b91e0c2a7a90cc9c39a59a0d07</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/plus.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>5c55d798909c553deca31d610bd18fac</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/plusbottom.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>1924ce363c38a992f888a4df48c0b274</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/powered-mysql.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>8595107f50a95a73b43abc4ea9cdd84e</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/powered-php.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>fa72f2b4c8ab0efc242a8a80a5d820a0</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/question.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>ea0ca196ce0ebfd625cc1210abfdec6c</hash>
   </element>
   <element>
     <fullpath>docs/en/images/review_comments.png</fullpath>
@@ -1607,82 +1617,16 @@
     <hash>a63826e4e96939edeac5191ae60def28</hash>
   </element>
   <element>
-    <fullpath>docs/en/images/spacer.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>55fade2068e7503eae8d7ddf5eb6bd09</hash>
-  </element>
-  <element>
     <fullpath>docs/en/images/subversion_checkout_success.jpg</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>110b08067511659a1097f1ea53753aed</hash>
   </element>
   <element>
-    <fullpath>docs/en/images/thumb_classic.png</fullpath>
+    <fullpath>docs/en/images/thumbnail_tabs.jpg</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d55f1d688a03d7a158f17712da539989</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/thumb_eyeball.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>beeda109fb9470fc37bc33cb5ebc5599</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/thumb_fruity.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>5deec8deb43e497d9fd3d62dd9f0898c</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/thumb_hardwired.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>bfdaf236a959cf942a202b443b400120</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/thumb_igames.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>1f7d08df18d80c228d749d66802f561b</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/thumb_mac_ox_x.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>3799cc00c87b4aa5243df9820941f90d</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/thumb_project_vii.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>1c6f315e9b5cd94f63e6b666404e402d</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/thumb_rainy_day.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>dadc5f4fa785684504d44c9da8205983</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/thumb_water_drop.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>42c614c508423ad8be836e972b6b21dc</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/trash.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>6cbfd3ed29531044aed9b4edb3cca9ad</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/up.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>1517f3cdf5539ad2f4a6606ec6d97c5a</hash>
+    <hash>4c507419a82d2742d8f8b1aa20050d88</hash>
   </element>
   <element>
     <fullpath>docs/en/images/user_folder_link.gif</fullpath>
@@ -1709,28 +1653,16 @@
     <hash>c193750ac22a78128ceb9516e8b57fe4</hash>
   </element>
   <element>
-    <fullpath>docs/en/images/valid-css.gif</fullpath>
+    <fullpath>docs/en/images/versioncheck_options.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4ad9c86b09a0c28c01206e9e2ac484ab</hash>
+    <hash>4c8f60ec79037dc3e871dd0dc26eee86</hash>
   </element>
   <element>
-    <fullpath>docs/en/images/valid-xhtml10.gif</fullpath>
+    <fullpath>docs/en/images/versioncheck_output.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5a01f08eea83dfff0c2fcd49e23f4a60</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/vanity.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>22f2e5228abfa57b10f563fe8da61fdd</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/images/views.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>e0837ce815171d7c56120b3799eb8936</hash>
+    <hash>15b92692c13f16e3f9cdcb3723cd5e11</hash>
   </element>
   <element>
     <fullpath>docs/fr/</fullpath>
@@ -1740,82 +1672,82 @@
   <element>
     <fullpath>docs/fr/auto-installers.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5270</revision>
+    <revision>5601</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>1abd8b77427e8d1d4d4bd244f0a23911</hash>
+    <hash>55806106d8b5613a988035ea9b85c36f</hash>
   </element>
   <element>
     <fullpath>docs/fr/credits.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5270</revision>
+    <revision>5758</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>1abd8b77427e8d1d4d4bd244f0a23911</hash>
+    <hash>9e4255f1c78f2c39d673358453332e44</hash>
   </element>
   <element>
     <fullpath>docs/fr/faq.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5586</revision>
+    <revision>5662</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>511e6b13182677eb97eb086d249af079</hash>
+    <hash>9174571eb66030ff9d0709273fb7f6f4</hash>
   </element>
   <element>
     <fullpath>docs/fr/index.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5586</revision>
+    <revision>5766</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>c6e67d61310c5e483b20d11768fb568f</hash>
+    <hash>16786b047b8375c145249f9b37545cbe</hash>
   </element>
   <element>
     <fullpath>docs/fr/languages.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5586</revision>
+    <revision>5766</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>75748919d136622a74e8d61b3337e4ff</hash>
+    <hash>ed806d008babced2c350c53c1b52caf4</hash>
   </element>
   <element>
     <fullpath>docs/fr/requirements.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5586</revision>
+    <revision>5749</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>7a6d4db15e1d9b4e43d78bd29da6e3b3</hash>
+    <hash>ead85568f37f15762af443059d4b7c3b</hash>
   </element>
   <element>
     <fullpath>docs/fr/script.js</fullpath>
     <version>1.5.1</version>
-    <revision>5586</revision>
+    <revision>5760</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>d1fb90e1bae478049621a5c6e2823915</hash>
+    <hash>265abcd80868e1438e652fbf6efc6c34</hash>
   </element>
   <element>
     <fullpath>docs/fr/testing.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5586</revision>
+    <revision>5750</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>24ecbb2f7a6c1548deb804fa3fea6a6d</hash>
+    <hash>6b53ea8501681b0a121bb8b4dfc1ec0f</hash>
   </element>
   <element>
     <fullpath>docs/fr/toc.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5586</revision>
+    <revision>5749</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>219d70686e7901bf05ba6c4be8452be7</hash>
+    <hash>8128d0702a4701357e80c798bcb00532</hash>
   </element>
   <element>
     <fullpath>docs/fr/translation.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5586</revision>
+    <revision>5758</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>7e7a84538dabf87ab4bf136f24e16d3b</hash>
+    <hash>362831cc6f5855727602ccabca26ce18</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/</fullpath>
@@ -1832,228 +1764,203 @@
     <fullpath>docs/fr/images/base.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>1f71b021e061a4948d69adc4ff10ccad</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/empty.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>df22aff6e941ff1cc577333d1712b584</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/folder.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>ea16980ab437fa6ba4aba3d480e83e9e</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/folderopen.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>18aa3d75315bf95bf080357733437fcc</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_admin_menu.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>b073e44cc0422ce42918e2bf9cf37b47</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_albmgr.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>ad2629b606e550b8bb1ce7b543abb771</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_album_menu.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>2b12518fd178c070fda943de686b6c57</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_bridge_01_start.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>cef2973cc254469ad1c9dad1601fe6f1</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_bridge_02_app.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>9eba29a278faae7717bc15a8c4088de6</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_category_cp.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>ba97a23b016bc352e28167201f7308a5</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_config_language.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>0ca466f2d63ef5cc664d5caa835bc84d</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/coppermine-logo.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>35fde8cb15fb5fa0fdb1b601f4be5c78</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_ecard_log.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>7c956210c68c05c38a0060d2f1008c02</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_edit_album.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6c7525b50ad82c915be07a67875a595a</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_edit_picture.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>53025a8a00397381b08f316bfe2f6c72</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_exif_data_cpg1.jpg</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>676c12f357018029b0284e48b3042554</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_exifmanager_cpg1.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>5eb58d467ebcf005fbe339f901292b4f</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_group_cp.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>210d3de2dce7afc1908562ed254144a7</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_groupsscrsht2.jpg</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>dcd63bb8475c35a980d440de08671635</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_modifyalb_reset.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>cd3e647768b2e347090dfc464d7ddade</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_searchnew_1.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>f8cec8154b00712c5d70608d55d9780a</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_searchnew_2.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>cb9b11a438e42c722cb6f81b43f4cedd</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_usermgr.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>301f86eeb89f20429e9dd709fa8c483a</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_util_re-size.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>771eff49d950bf662431d01a77da97f6</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/fr_versioncheck_options.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>b4ee6412da6dfe0748dac06926ed21f5</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/join.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>4d5d614e0da056df815a4306d6368692</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/joinbottom.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>4b3daa7f2cc584f1aac0d142275d7cba</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/line.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>63ab38a6203262f15ca46c631232ea2c</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/link.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>c69e5a6cf6036eefece7c7fba80da5c9</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/minus.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>d647fbbd0ec410b8f3bb3357b62eedcf</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/minusbottom.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>b09d684cca7135ef728141aaf2464baa</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/nolines_minus.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>eb2243a354ffcfac93ba0fe948f7167d</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/nolines_plus.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>ec92b634b63608fb4b0dbf114e3b89e1</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/page.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>c25b136c1cb3bb145495c25b35d93754</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/plus.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>5c55d798909c553deca31d610bd18fac</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/plusbottom.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>1924ce363c38a992f888a4df48c0b274</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/spacer.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>55fade2068e7503eae8d7ddf5eb6bd09</hash>
   </element>
   <element>
     <fullpath>docs/images/</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
+  </element>
+  <element>
+    <fullpath>docs/images/128x96gd1.jpg</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>ee568d1ad170645a327ef47af04cfa6f</hash>
+  </element>
+  <element>
+    <fullpath>docs/images/128x96gd2.jpg</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>bdcab542b6ff8a7903faa5a64e2f03b3</hash>
   </element>
   <element>
     <fullpath>docs/images/browser.png</fullpath>
@@ -2085,1264 +1992,1516 @@
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/images/flags/ad.gif</fullpath>
+    <fullpath>docs/images/flags/ad.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>cc750844215aed20b2b05c10d6082b0d</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ae.gif</fullpath>
+    <fullpath>docs/images/flags/ae.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>7391e6b6df7b181d51ffeb2a5a6d7bd4</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/af.gif</fullpath>
+    <fullpath>docs/images/flags/af.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>ae7c58272ae46cde945ccc4bed00fe9e</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ag.gif</fullpath>
+    <fullpath>docs/images/flags/ag.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>390af4c36d462bbf2627a1182946825a</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ai.gif</fullpath>
+    <fullpath>docs/images/flags/ai.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>08cf0788a582710062140f69887300fc</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/al.gif</fullpath>
+    <fullpath>docs/images/flags/al.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>7c5bc720b2cf3047c9fab800e271eec9</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/am.gif</fullpath>
+    <fullpath>docs/images/flags/am.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>fd5d9d1d864ea76406afec5e11f2632f</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/an.gif</fullpath>
+    <fullpath>docs/images/flags/an.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>7d7d682a9dc9f2a26a6dea1fdb87334f</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ao.gif</fullpath>
+    <fullpath>docs/images/flags/ao.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>41a8aa1e11f7086d2413d8d9a777680b</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ar.gif</fullpath>
+    <fullpath>docs/images/flags/ar.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>2fa357868e66f1aec9c4c4230baa45b3</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/as.gif</fullpath>
+    <fullpath>docs/images/flags/as.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>96e49204e758277b6720584c4d844ecc</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/at.gif</fullpath>
+    <fullpath>docs/images/flags/at.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>62bf1a5653692b34b2ee1f734a59b062</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/au.gif</fullpath>
+    <fullpath>docs/images/flags/au.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>2fba49c88880e9ffcff947015cb7ab9c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/aw.gif</fullpath>
+    <fullpath>docs/images/flags/aw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>6e82279ceb4702171f345fead7ff3e35</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ax.gif</fullpath>
+    <fullpath>docs/images/flags/ax.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>27708378fcc025e375fd3c303fc1cbd6</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/az.gif</fullpath>
+    <fullpath>docs/images/flags/az.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>d63f5c99e25eca9de2a97f63161f38e6</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ba.gif</fullpath>
+    <fullpath>docs/images/flags/ba.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>cbb6ce46c69e14bbd8d2c8fd91680d33</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/basque.gif</fullpath>
+    <fullpath>docs/images/flags/basque.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>9f4323d2363210f7ae0bc54d38a12149</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/bb.gif</fullpath>
+    <fullpath>docs/images/flags/bb.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>47c8aea417660e5f4e8b5a7a73f2cb18</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/bd.gif</fullpath>
+    <fullpath>docs/images/flags/bd.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>f02d8deb9de271cd246646872798af15</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/be.gif</fullpath>
+    <fullpath>docs/images/flags/be.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>2404b88a07bdb7aef652eec0f6fce287</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/bf.gif</fullpath>
+    <fullpath>docs/images/flags/bf.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>cc65efa74cd7367933ecd52115204b2d</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/bg.gif</fullpath>
+    <fullpath>docs/images/flags/bg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>77b2183ab10cd26ee4e79fdfc12b8621</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/bh.gif</fullpath>
+    <fullpath>docs/images/flags/bh.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>5bbf6106968b2517d924bac4d99b41bd</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/bi.gif</fullpath>
+    <fullpath>docs/images/flags/bi.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>427c72cd341f288faf0e62f03586c7ba</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/bj.gif</fullpath>
+    <fullpath>docs/images/flags/bj.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>67bd2e990cc7e3dc5bbae821fd38f20c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/bm.gif</fullpath>
+    <fullpath>docs/images/flags/bm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>cf195bf1921659202cf8ae899e9171d0</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/bn.gif</fullpath>
+    <fullpath>docs/images/flags/bn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>4911cd2a8fae48d82f9ce124d908be3c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/bo.gif</fullpath>
+    <fullpath>docs/images/flags/bo.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>151854ff619d7a44894a37b5be73f463</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/br.gif</fullpath>
+    <fullpath>docs/images/flags/br.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>54c40b8a9ad7df4783d19acc05910f8e</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/bs.gif</fullpath>
+    <fullpath>docs/images/flags/bs.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>8b45f84cb140ec2448692187a82abfc7</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/bt.gif</fullpath>
+    <fullpath>docs/images/flags/bt.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>2f13e87c1868b03b0b47cd0bb60737d5</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/bv.gif</fullpath>
+    <fullpath>docs/images/flags/bv.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>559ce5baaee373db8da150a5066c1062</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/bw.gif</fullpath>
+    <fullpath>docs/images/flags/bw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>15d59270fb25d9e467d5a730682c5644</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/by.gif</fullpath>
+    <fullpath>docs/images/flags/by.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>9e18ac464c49a91d90eaf11ad21357e9</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/bz.gif</fullpath>
+    <fullpath>docs/images/flags/bz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>6e14aaafe632fe367409415545c27e73</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ca.gif</fullpath>
+    <fullpath>docs/images/flags/ca.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>8618709a45d8d1c4d9d254c61bdf29b8</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/catalonia.gif</fullpath>
+    <fullpath>docs/images/flags/catalonia.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>76991f3da407b7dec2603ff86f1b9724</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/cc.gif</fullpath>
+    <fullpath>docs/images/flags/cc.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>ebbfb19d79975289e7a9cbb12caf0a23</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/cd.gif</fullpath>
+    <fullpath>docs/images/flags/cd.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>34e2a72a9cb9e873db413b020d7f1845</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/cf.gif</fullpath>
+    <fullpath>docs/images/flags/cf.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>252d14145f4c47374a3e0bc2bb8ae0bf</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/cg.gif</fullpath>
+    <fullpath>docs/images/flags/cg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>b5bed6c75a72dc56f8eb8c559d437f59</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ch.gif</fullpath>
+    <fullpath>docs/images/flags/ch.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>ec25ca0e1111eb91e790d48baa9901dc</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ci.gif</fullpath>
+    <fullpath>docs/images/flags/ci.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>90e8d52c215176bb04b7453b84e6fa43</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ck.gif</fullpath>
+    <fullpath>docs/images/flags/ck.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>e70409285b72ac2ebd8d6ee1849e4083</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/cl.gif</fullpath>
+    <fullpath>docs/images/flags/cl.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>dc7b3be27813faeb454d02b55b79b9e3</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/cm.gif</fullpath>
+    <fullpath>docs/images/flags/cm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>f5cdc865bf36948532707c42e716e14a</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/cn.gif</fullpath>
+    <fullpath>docs/images/flags/cn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>a82ff00f39eff54062328b4474c33dbc</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/co.gif</fullpath>
+    <fullpath>docs/images/flags/co.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>4bd223b284a0900cda6826ee656c5333</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/cr.gif</fullpath>
+    <fullpath>docs/images/flags/cr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>cd28a01f91e89fa2b844857642fd5fb7</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/cs.gif</fullpath>
+    <fullpath>docs/images/flags/cs.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>4db37e9044c342fb819515d13768e058</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/cu.gif</fullpath>
+    <fullpath>docs/images/flags/cu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>9d5366e9b01d5cd428429e608433d5f3</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/cv.gif</fullpath>
+    <fullpath>docs/images/flags/cv.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>2f4edfdcba4cdb3fa903047a235f3296</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/cx.gif</fullpath>
+    <fullpath>docs/images/flags/cx.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>8efc55a14b900c47f4b920c4510f192f</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/cy.gif</fullpath>
+    <fullpath>docs/images/flags/cy.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>f29741d622fe02759bb7a2a91eb5e2e0</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/cz.gif</fullpath>
+    <fullpath>docs/images/flags/cz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>815b6d2bf60a3179c0652f0b6895bcbb</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/de.gif</fullpath>
+    <fullpath>docs/images/flags/de.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>ddabae687ecae5edaaeb808d440543e6</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/dj.gif</fullpath>
+    <fullpath>docs/images/flags/dj.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>197e6fc2579eec8bcd7303393de841ba</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/dk.gif</fullpath>
+    <fullpath>docs/images/flags/dk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>fe926c8271b35febf4a6cb0a41b111eb</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/dm.gif</fullpath>
+    <fullpath>docs/images/flags/dm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>85845da8ae28e94f2885ceeb16515dd0</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/do.gif</fullpath>
+    <fullpath>docs/images/flags/do.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>153949105845e18a133a4c778b3de31e</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/dz.gif</fullpath>
+    <fullpath>docs/images/flags/dz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>c57f3c0951ba1525b3359fc0acbfd6b1</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ec.gif</fullpath>
+    <fullpath>docs/images/flags/ec.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>0152114421e281913d0c1c148e196c92</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ee.gif</fullpath>
+    <fullpath>docs/images/flags/ee.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>1cdfaaa10ff170ce19ed46339efe3af6</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/eg.gif</fullpath>
+    <fullpath>docs/images/flags/eg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>09c48d3562f0dc51e2f9507704f6437f</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/eh.gif</fullpath>
+    <fullpath>docs/images/flags/eh.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>7dd5a46a34bee2f10532f1213a941d7b</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/england.gif</fullpath>
+    <fullpath>docs/images/flags/england.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>73f2f220f6d51d249e45a04d9a03da91</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/er.gif</fullpath>
+    <fullpath>docs/images/flags/er.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>481d394ac9a44f3040f7c457fc1f23a6</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/es.gif</fullpath>
+    <fullpath>docs/images/flags/es.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>d6693ce2a6346b2da89ceda335554e0a</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/et.gif</fullpath>
+    <fullpath>docs/images/flags/et.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>73763e46da896f3e951954ad473b4a4b</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/eu.gif</fullpath>
+    <fullpath>docs/images/flags/eu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>ffce5e64df4d367a20e1ef4033f60257</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/fam.gif</fullpath>
+    <fullpath>docs/images/flags/fam.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>0b36de21772c8d87e1d0106878b65231</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/fi.gif</fullpath>
+    <fullpath>docs/images/flags/fi.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>e30bd2493de78c998d1ac6c22d20146b</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/fj.gif</fullpath>
+    <fullpath>docs/images/flags/fj.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>7c3e78e31bb34b0fafbb0865737f8d36</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/fk.gif</fullpath>
+    <fullpath>docs/images/flags/fk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>9627317fe9a5757ee8c06df7d8e8a887</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/fm.gif</fullpath>
+    <fullpath>docs/images/flags/fm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>d3767ea95466571e10c7e563d456d754</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/fo.gif</fullpath>
+    <fullpath>docs/images/flags/fo.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>d0e6b0a3fdb4e2271b5b5057bd969966</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/fr.gif</fullpath>
+    <fullpath>docs/images/flags/fr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>c1cf1874c3305e5663547a48f6ad2d8c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ga.gif</fullpath>
+    <fullpath>docs/images/flags/ga.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>972da84bdea1359d69c719a37d89d219</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/galician.gif</fullpath>
+    <fullpath>docs/images/flags/galician.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>78fb01fc32f9a65e20a752ef13f21c88</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gb.gif</fullpath>
+    <fullpath>docs/images/flags/gb.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>0894999b108830afc0733ee7b6e08310</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gd.gif</fullpath>
+    <fullpath>docs/images/flags/gd.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>95b8b79fafc6b1510978977bc8067b46</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ge.gif</fullpath>
+    <fullpath>docs/images/flags/ge.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>aa40721b7a179f6c9c8f666a64063767</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gf.gif</fullpath>
+    <fullpath>docs/images/flags/gf.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>c1cf1874c3305e5663547a48f6ad2d8c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gh.gif</fullpath>
+    <fullpath>docs/images/flags/gh.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>12da850e724de5ff779572bbdb8ded71</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gi.gif</fullpath>
+    <fullpath>docs/images/flags/gi.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>0ca5a4db2ac11c8a5cb57701b18b8088</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gl.gif</fullpath>
+    <fullpath>docs/images/flags/gl.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>073b6bf37f6eefe07145d9dd89bc9e7d</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gm.gif</fullpath>
+    <fullpath>docs/images/flags/gm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>a7d785fa41e66a5e6d82301688686f20</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gn.gif</fullpath>
+    <fullpath>docs/images/flags/gn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>acba9c908c29db8aa890b6a20265ac22</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gp.gif</fullpath>
+    <fullpath>docs/images/flags/gp.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>c2dc0a2062b24f906431337186888f01</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gq.gif</fullpath>
+    <fullpath>docs/images/flags/gq.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>70f64b2b38b8a21152e7446a1b3e1133</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gr.gif</fullpath>
+    <fullpath>docs/images/flags/gr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>fd9b321b80be31c027585c8992f1799f</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gs.gif</fullpath>
+    <fullpath>docs/images/flags/gs.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>3b510d36dc70edd5b301da8096c9b71c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gt.gif</fullpath>
+    <fullpath>docs/images/flags/gt.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>384e9d38421a6853f9c35d48d8c49a85</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gu.gif</fullpath>
+    <fullpath>docs/images/flags/gu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>2d058f7cea364d247fee5bb53fe70390</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gw.gif</fullpath>
+    <fullpath>docs/images/flags/gw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>35eb1d9b882111ccec5f58cd778364bf</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/gy.gif</fullpath>
+    <fullpath>docs/images/flags/gy.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>d816170967c67a98db73cd89c56014fd</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/hk.gif</fullpath>
+    <fullpath>docs/images/flags/hk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>389d0451c5c2ff40e88a93588dcbd6f1</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/hm.gif</fullpath>
+    <fullpath>docs/images/flags/hm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>2fba49c88880e9ffcff947015cb7ab9c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/hn.gif</fullpath>
+    <fullpath>docs/images/flags/hn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>ac9242c256af7800a223bdcbf0798f57</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/hr.gif</fullpath>
+    <fullpath>docs/images/flags/hr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>0868c49000b253d9b4f290471898c961</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ht.gif</fullpath>
+    <fullpath>docs/images/flags/ht.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>b5360c0f01d574333b3bfa27c3dce856</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/hu.gif</fullpath>
+    <fullpath>docs/images/flags/hu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>6c6fce8a6fd09c340964b00c5e82a8c3</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/id.gif</fullpath>
+    <fullpath>docs/images/flags/id.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>fed538f9c8cd0500a6a655b55426744c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ie.gif</fullpath>
+    <fullpath>docs/images/flags/ie.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>48e42d0d1451e7b19b7b79d631a3a95c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/il.gif</fullpath>
+    <fullpath>docs/images/flags/il.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>a135fcdefe8a391b416bdb102476e12b</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/in.gif</fullpath>
+    <fullpath>docs/images/flags/in.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>50d62cba8134c8c097d073646cda1b9b</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/io.gif</fullpath>
+    <fullpath>docs/images/flags/io.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>38afe5a0e9817027e1f1615028aca521</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/iq.gif</fullpath>
+    <fullpath>docs/images/flags/iq.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>39cfe476621ad630cf3418c3234f0594</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ir.gif</fullpath>
+    <fullpath>docs/images/flags/ir.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>2ac099e190547501704d309d59831d2b</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/is.gif</fullpath>
+    <fullpath>docs/images/flags/is.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>7fffd4f1acabc2ccc890049e48587e8a</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/it.gif</fullpath>
+    <fullpath>docs/images/flags/it.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>784f7eb333f0591558bcce9616a3c105</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/jm.gif</fullpath>
+    <fullpath>docs/images/flags/jm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>a582c95e205f76277afa1571940121cd</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/jo.gif</fullpath>
+    <fullpath>docs/images/flags/jo.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>9dd19e8da30782b2bfb9b5a0d1c51e8b</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/jp.gif</fullpath>
+    <fullpath>docs/images/flags/jp.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>10958397bc7c25c746e6e122365c003c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ke.gif</fullpath>
+    <fullpath>docs/images/flags/ke.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>357152ed37ece2a45a7d57c5bf30ab3c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/kg.gif</fullpath>
+    <fullpath>docs/images/flags/kg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>192033ce169b1b107dc4aabb1f635c1c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/kh.gif</fullpath>
+    <fullpath>docs/images/flags/kh.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>8658c066eb4f9d6c15efb31a821b482c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ki.gif</fullpath>
+    <fullpath>docs/images/flags/ki.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>703ced92b97cc2713038f0d50ee5a0f0</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/km.gif</fullpath>
+    <fullpath>docs/images/flags/km.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>cc942486999d072021c0b3582306f834</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/kn.gif</fullpath>
+    <fullpath>docs/images/flags/kn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>f096727a7612c065259c6334b61a8b6a</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/kp.gif</fullpath>
+    <fullpath>docs/images/flags/kp.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>0eaa3e8dc84bae9283a9969f2e360080</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/kr.gif</fullpath>
+    <fullpath>docs/images/flags/kr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>cf63c15bf955e54afed8061497c7f7ea</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/kurdish.gif</fullpath>
+    <fullpath>docs/images/flags/kurdish.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>de4f78f698f897e6df2e79939e2a86c5</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/kw.gif</fullpath>
+    <fullpath>docs/images/flags/kw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>2e0485cdb9ca8240c9fc372e4cef0eb7</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ky.gif</fullpath>
+    <fullpath>docs/images/flags/ky.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>da2c56cc2568d516031e3082713fd90c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/kz.gif</fullpath>
+    <fullpath>docs/images/flags/kz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>6d51066ba152b15fd05d761745333135</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/la.gif</fullpath>
+    <fullpath>docs/images/flags/la.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>3375d707535d69248f0ab23ef80268c8</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/lb.gif</fullpath>
+    <fullpath>docs/images/flags/lb.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>dad5d86f0d90cca0ff4ab5332d7fd7fc</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/lc.gif</fullpath>
+    <fullpath>docs/images/flags/lc.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>18c05f2c79f8774bbb201593b20a06e2</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/li.gif</fullpath>
+    <fullpath>docs/images/flags/li.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>822034b39b46abaa91127f8342092a32</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/lk.gif</fullpath>
+    <fullpath>docs/images/flags/lk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>4e90c553f186c9776976b5b11dba4ea4</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/lr.gif</fullpath>
+    <fullpath>docs/images/flags/lr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>3b6d8d720721f68ceb465249aad32b27</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ls.gif</fullpath>
+    <fullpath>docs/images/flags/ls.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>c228783a0785a8541d96d5515a2a16cf</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/lt.gif</fullpath>
+    <fullpath>docs/images/flags/lt.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>95efec9db9d274d25fbb98eb53a9c384</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/lu.gif</fullpath>
+    <fullpath>docs/images/flags/lu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>3be0b3a6096e9d77d9d7b997d464e612</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/lv.gif</fullpath>
+    <fullpath>docs/images/flags/lv.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>6ffae4cc65036d3de052a58e062d1ed7</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ly.gif</fullpath>
+    <fullpath>docs/images/flags/ly.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>3f9d6e8cba5fd7cb8c201acfe9b7bc15</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ma.gif</fullpath>
+    <fullpath>docs/images/flags/ma.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>c936b9f794def7d85fbb4c120d68684e</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mc.gif</fullpath>
+    <fullpath>docs/images/flags/mc.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>63c6fd073106c8b0eb7336d9c19653a2</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/md.gif</fullpath>
+    <fullpath>docs/images/flags/md.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>e414980c55af38676c5312bd330d6bb9</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/me.gif</fullpath>
+    <fullpath>docs/images/flags/me.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>7a2ee5d7f1bc5ef478106a86d2c1cc09</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mg.gif</fullpath>
+    <fullpath>docs/images/flags/mg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>5aea24a18ca7e8b65770dcf2a738dd08</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mh.gif</fullpath>
+    <fullpath>docs/images/flags/mh.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>948dd15821a6fe45b0df8667b6601ead</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mk.gif</fullpath>
+    <fullpath>docs/images/flags/mk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>617997cbcaafaea0035a4c0474ae16dd</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ml.gif</fullpath>
+    <fullpath>docs/images/flags/ml.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>d951cb1c43a8077167b731a1aea70b6c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mm.gif</fullpath>
+    <fullpath>docs/images/flags/mm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>82ad2104b5490e1f6adfcfa777ab8243</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mn.gif</fullpath>
+    <fullpath>docs/images/flags/mn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>4adb9a834188753731add527aa4f67f0</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mo.gif</fullpath>
+    <fullpath>docs/images/flags/mo.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>6339bdf0e24c871301d1fc0207e2685f</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mp.gif</fullpath>
+    <fullpath>docs/images/flags/mp.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>929b9802e7bfb58bab0330a4c6925595</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mq.gif</fullpath>
+    <fullpath>docs/images/flags/mq.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>be5fb2cd33e8df13e0b2f2feffb9373f</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mr.gif</fullpath>
+    <fullpath>docs/images/flags/mr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>6c1cc8a1babe91421a38ddc573ee7cb4</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ms.gif</fullpath>
+    <fullpath>docs/images/flags/ms.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>bfddbc2aae078e0aa80633f784e18526</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mt.gif</fullpath>
+    <fullpath>docs/images/flags/mt.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>7a7ee4f98185ecfb6e1ba753aa6f2111</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mu.gif</fullpath>
+    <fullpath>docs/images/flags/mu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>48d5cbc23fedfbb77b06ed0e9b04522f</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mv.gif</fullpath>
+    <fullpath>docs/images/flags/mv.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>24c90cfb0c883f9d1b303276c3b069e7</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mw.gif</fullpath>
+    <fullpath>docs/images/flags/mw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>1d2b8e369b2d4384d1ab4b24315fa139</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mx.gif</fullpath>
+    <fullpath>docs/images/flags/mx.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>479a865f838c70d654a9f818a23f9a7d</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/my.gif</fullpath>
+    <fullpath>docs/images/flags/my.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>e1c0f262c141e8615f819b1cd18393d3</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/mz.gif</fullpath>
+    <fullpath>docs/images/flags/mz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>159c85011041bea6bd3c68b6ba2919d7</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/na.gif</fullpath>
+    <fullpath>docs/images/flags/na.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>e582101531b620fb0138c83602aab920</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/nc.gif</fullpath>
+    <fullpath>docs/images/flags/nc.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>ad8bf708e9db5fa423b5da123c914378</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ne.gif</fullpath>
+    <fullpath>docs/images/flags/ne.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>f2eccd65605d8babcdd3af4b01215ecc</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/nf.gif</fullpath>
+    <fullpath>docs/images/flags/nf.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>c624a221dae959256a3e143a5147f825</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ng.gif</fullpath>
+    <fullpath>docs/images/flags/ng.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>0c506131e1841cee782e4faf5cec89a9</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ni.gif</fullpath>
+    <fullpath>docs/images/flags/ni.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>f43a5f35488513de58e2e5fbda9a98db</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/nl.gif</fullpath>
+    <fullpath>docs/images/flags/nl.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>6186550ebc77b1c51cd3ae37e78c33c1</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/no.gif</fullpath>
+    <fullpath>docs/images/flags/no.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>559ce5baaee373db8da150a5066c1062</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/np.gif</fullpath>
+    <fullpath>docs/images/flags/np.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>20e3fa389c1035536102ec932ae7625f</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/nr.gif</fullpath>
+    <fullpath>docs/images/flags/nr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>2fb04b74787698835b63a46cbdef6fab</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/nu.gif</fullpath>
+    <fullpath>docs/images/flags/nu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>9a2f682db640f1c36ee40f296f63dc87</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/nz.gif</fullpath>
+    <fullpath>docs/images/flags/nz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>179cc39a58e324df1e9a19a5eae9dca0</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/om.gif</fullpath>
+    <fullpath>docs/images/flags/om.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>7b002bc8c4ab1a85c2c807ec2c4442d2</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/pa.gif</fullpath>
+    <fullpath>docs/images/flags/pa.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>64795009d69b36b6a4461b8159dcf356</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/pe.gif</fullpath>
+    <fullpath>docs/images/flags/pe.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>d1ed0462edb8cbc3220b7aca250b0437</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/pf.gif</fullpath>
+    <fullpath>docs/images/flags/pf.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>e59d18e48cf0924687618bbf60ea4fee</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/pg.gif</fullpath>
+    <fullpath>docs/images/flags/pg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>48f68aaeefaa3b8ee7ce1f1761e6c11d</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ph.gif</fullpath>
+    <fullpath>docs/images/flags/ph.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>8ff2d08518d3e1224d34467f5e24fcc2</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/pk.gif</fullpath>
+    <fullpath>docs/images/flags/pk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>3bd18971ec170e6e9c461026068508da</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/pl.gif</fullpath>
+    <fullpath>docs/images/flags/pl.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>fad0e96c20f20be196499d26a6c74cd1</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/pm.gif</fullpath>
+    <fullpath>docs/images/flags/pm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>ba41b8c349070250f814188080c2a8e8</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/pn.gif</fullpath>
+    <fullpath>docs/images/flags/pn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>e4dcc857f534b48e8377ee36f63be013</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/pr.gif</fullpath>
+    <fullpath>docs/images/flags/pr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>40b7fb1a4c1ebb076d40f0df5c6fd59a</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ps.gif</fullpath>
+    <fullpath>docs/images/flags/ps.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>68d5f99924c67ef7d3b3aa32ff22b805</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/pt.gif</fullpath>
+    <fullpath>docs/images/flags/pt.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>5b8ab69ac52129bd32a3927f1b94d170</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/pw.gif</fullpath>
+    <fullpath>docs/images/flags/pw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>f2bff7cd01d8eff6401e811f3de6af4f</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/py.gif</fullpath>
+    <fullpath>docs/images/flags/py.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>b9d3d10b185a3144e21a452903857870</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/qa.gif</fullpath>
+    <fullpath>docs/images/flags/qa.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>c1dc363a27f5b5d19e24032747d7bedf</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/re.gif</fullpath>
+    <fullpath>docs/images/flags/re.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>c1cf1874c3305e5663547a48f6ad2d8c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/reset.gif</fullpath>
+    <fullpath>docs/images/flags/reset.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>ddb43ad10f5ad8248d1f92ca94c4493c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ro.gif</fullpath>
+    <fullpath>docs/images/flags/ro.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>d038c9c152c5e14f875c7b13afcd4711</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/rs.gif</fullpath>
+    <fullpath>docs/images/flags/rs.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>5b672e3ee63317614288615ba0774bf7</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ru.gif</fullpath>
+    <fullpath>docs/images/flags/ru.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>0d31ef75adef220e73f0cb93a84a7422</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/rw.gif</fullpath>
+    <fullpath>docs/images/flags/rw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>bef92348e3ea38dc462326e1ba2ff622</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/sa.gif</fullpath>
+    <fullpath>docs/images/flags/sa.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>605884cec6f446d418a092c0941acad5</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/sb.gif</fullpath>
+    <fullpath>docs/images/flags/sb.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>5e4b74f8a611742bdc3a04629e871eb4</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/sc.gif</fullpath>
+    <fullpath>docs/images/flags/sc.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>39650e922851e1b72165d7b016dc3b44</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/scotland.gif</fullpath>
+    <fullpath>docs/images/flags/scotland.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>eca5bebe6e4dbc9eb858d4f58ea3f9de</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/sd.gif</fullpath>
+    <fullpath>docs/images/flags/sd.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>b972f90fea3369c020d258d1b860a6e0</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/se.gif</fullpath>
+    <fullpath>docs/images/flags/se.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>4c01f06db23324267e2802dcade3572f</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/sg.gif</fullpath>
+    <fullpath>docs/images/flags/sg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>8af65159c137a6a7ed3d1bc9c2eed18b</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/sh.gif</fullpath>
+    <fullpath>docs/images/flags/sh.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>e707aacb0986ad7a4a60ab8d82cf093d</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/si.gif</fullpath>
+    <fullpath>docs/images/flags/si.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>d94ea79a5a8e0b6900941a1271c58191</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/sj.gif</fullpath>
+    <fullpath>docs/images/flags/sj.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>559ce5baaee373db8da150a5066c1062</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/sk.gif</fullpath>
+    <fullpath>docs/images/flags/sk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>5a7edc7e4492629ea5ce24b830839d32</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/sl.gif</fullpath>
+    <fullpath>docs/images/flags/sl.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>73904ec1cf4f0be282693c4e954e5821</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/sm.gif</fullpath>
+    <fullpath>docs/images/flags/sm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>56e3c1b483bf27e619146b50ee5181bc</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/sn.gif</fullpath>
+    <fullpath>docs/images/flags/sn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>501a5fab662d127ad588825cd0cd4954</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/so.gif</fullpath>
+    <fullpath>docs/images/flags/so.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>4be2ffc4d06de407434a877dc03ff88b</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/sr.gif</fullpath>
+    <fullpath>docs/images/flags/sr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>8f9aca73767b8e7876c72add438a6007</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/st.gif</fullpath>
+    <fullpath>docs/images/flags/st.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>ab272a50ea656512c036c001fcaca61c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/sv.gif</fullpath>
+    <fullpath>docs/images/flags/sv.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>c6c853766dfbab2ddd225980d3012f5c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/sy.gif</fullpath>
+    <fullpath>docs/images/flags/sy.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>a0886eca3ef87d646af1514d025752f6</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/sz.gif</fullpath>
+    <fullpath>docs/images/flags/sz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>e97675a21b5280b9cb4c1fc99aab004f</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/tc.gif</fullpath>
+    <fullpath>docs/images/flags/tc.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>50733ccc670058e9a737b652089287ca</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/td.gif</fullpath>
+    <fullpath>docs/images/flags/td.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>6c8d3f6c96bcd5d34a0bae497d0e13ca</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/tf.gif</fullpath>
+    <fullpath>docs/images/flags/tf.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>f7ccbaa513a24eb3dc4c7860ab8007ee</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/tg.gif</fullpath>
+    <fullpath>docs/images/flags/tg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>5c62720575f914ffff9fe06e2b9c1b95</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/th.gif</fullpath>
+    <fullpath>docs/images/flags/th.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>af85286bf1cadae9c2c636fe83195251</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/tj.gif</fullpath>
+    <fullpath>docs/images/flags/tj.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>5cc548d1858d19f336ca7390b381ad07</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/tk.gif</fullpath>
+    <fullpath>docs/images/flags/tk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>896fb1a34638a76361d4307668cd5414</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/tl.gif</fullpath>
+    <fullpath>docs/images/flags/tl.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>093e76da6759647c331ea75ef1ba9da0</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/tm.gif</fullpath>
+    <fullpath>docs/images/flags/tm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>b36ce71226fad4da67764e05b800292b</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/tn.gif</fullpath>
+    <fullpath>docs/images/flags/tn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>ae9947d99c48894d1d1824d624361eb9</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/to.gif</fullpath>
+    <fullpath>docs/images/flags/to.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>ce868fde2d77788a669001995f4b73df</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/tr.gif</fullpath>
+    <fullpath>docs/images/flags/tr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>31ea1f705854ad57c432845068bd05d3</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/tt.gif</fullpath>
+    <fullpath>docs/images/flags/tt.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>9ead47e1d48627b1806cd992b62c8c2b</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/tv.gif</fullpath>
+    <fullpath>docs/images/flags/tv.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>6fec556dd8bd936ca706b0d7cc864993</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/tw.gif</fullpath>
+    <fullpath>docs/images/flags/tw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>0e41af2b3ca03d145e7665d0821931fa</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/tz.gif</fullpath>
+    <fullpath>docs/images/flags/tz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>c846788492ef1188f631113bd8cced5c</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ua.gif</fullpath>
+    <fullpath>docs/images/flags/ua.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>7ef7a6f5def3a4117d5c2f08e37008ff</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ug.gif</fullpath>
+    <fullpath>docs/images/flags/ug.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>17e134aa84a076bf5541f5d11c616e5d</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/uighur.gif</fullpath>
+    <fullpath>docs/images/flags/uighur.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>352ae4a04a50171c2ec75711d6f3215e</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/um.gif</fullpath>
+    <fullpath>docs/images/flags/um.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>f0f12f4afaccb13ea40e15f3b81c5921</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/us.gif</fullpath>
+    <fullpath>docs/images/flags/us.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>968591e0050981be9fa94bd2597afb48</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/uy.gif</fullpath>
+    <fullpath>docs/images/flags/uy.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>9ca8f3d9b1b1101d30a4555c997e871b</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/uz.gif</fullpath>
+    <fullpath>docs/images/flags/uz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>37e4bdb64229f4624cacec7d4297214d</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/va.gif</fullpath>
+    <fullpath>docs/images/flags/va.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>493642ad6bf3a344602fe006e7d44fa2</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/vc.gif</fullpath>
+    <fullpath>docs/images/flags/vc.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>60eec8d579d55ea0f2ec62d837c104d2</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ve.gif</fullpath>
+    <fullpath>docs/images/flags/ve.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>3aee24fa5f6a85f5ce452001182fdccc</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/vg.gif</fullpath>
+    <fullpath>docs/images/flags/vg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>79ef17575149f2663df51419f39feff2</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/vi.gif</fullpath>
+    <fullpath>docs/images/flags/vi.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>c95b9175142cd29177a9b25e16c3fc39</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/vn.gif</fullpath>
+    <fullpath>docs/images/flags/vn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>638136b1a6f5dab7be6cec84fcc2cd53</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/vu.gif</fullpath>
+    <fullpath>docs/images/flags/vu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>c37b82a52cdf80492ee94dc7f46256cf</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/wales.gif</fullpath>
+    <fullpath>docs/images/flags/wales.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>42c7ca83721190322499c94d7ff2ae26</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/wf.gif</fullpath>
+    <fullpath>docs/images/flags/wf.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>86cc1aa337ebb6cb74a2c3196770a7f5</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ws.gif</fullpath>
+    <fullpath>docs/images/flags/ws.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>68183f64328d121a9ee77a92319bbfcd</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/ye.gif</fullpath>
+    <fullpath>docs/images/flags/ye.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>290e09160bb2ef42ba8129a41159eb07</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/yt.gif</fullpath>
+    <fullpath>docs/images/flags/yt.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>f46c7cd7b2474cbcf61c5b2007a7558f</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/za.gif</fullpath>
+    <fullpath>docs/images/flags/za.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>98e1044d0ffd11afc67a79f3676ba97a</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/zm.gif</fullpath>
+    <fullpath>docs/images/flags/zm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>ec69def9e77d23446867caeb4a5223b1</hash>
   </element>
   <element>
-    <fullpath>docs/images/flags/zw.gif</fullpath>
+    <fullpath>docs/images/flags/zw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
+    <hash>e7ae0b7e3c49a5a775a9d6854912e21a</hash>
   </element>
   <element>
     <fullpath>docs/images/license/</fullpath>
@@ -3525,7 +3684,7 @@
     <revision>5129</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>521407e533fb4771af41501edd0d8ec6</hash>
+    <hash>b9d01eda375533fd8b3e73d0e3e701c1</hash>
   </element>
   <element>
     <fullpath>docs/style/screen.css</fullpath>
@@ -3533,7 +3692,7 @@
     <revision>5129</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d6196a1a2f0349a8c4b1e092c4a59cfa</hash>
+    <hash>bdad44466a42ae1aaba49b090425eed2</hash>
   </element>
   <element>
     <fullpath>docs/style/style.css</fullpath>
@@ -5834,7 +5993,7 @@
     <fullpath>images/icons/edit.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a01b4592ed8b78c6e5e270a3097d5d6d</hash>
+    <hash>c46df5c68a413dbb4a05558e7c3f4844</hash>
   </element>
   <element>
     <fullpath>images/icons/erase.png</fullpath>
@@ -6134,7 +6293,7 @@
     <fullpath>images/icons/searchnew.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f9b75e2d3563fa961e390c024028771b</hash>
+    <hash>91093108e27ae174880b1c6205a1743e</hash>
   </element>
   <element>
     <fullpath>images/icons/show_table_row.png</fullpath>
@@ -7528,10 +7687,10 @@
   <element>
     <fullpath>include/admin.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5590</revision>
+    <revision>5766</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>868362f1253e5d5cf31ffffd7e351022</hash>
+    <hash>98351a24a5de070fc3a875399f143cc3</hash>
   </element>
   <element>
     <fullpath>include/akismet.inc.php</fullpath>
@@ -7539,7 +7698,7 @@
     <revision>5268</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ff30d234cfa028e72f71025cec4ae047</hash>
+    <hash>72a99300403b022598444ca1686b59e1</hash>
   </element>
   <element>
     <fullpath>include/archive.php</fullpath>
@@ -7552,10 +7711,10 @@
   <element>
     <fullpath>include/captcha.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5575</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8277d28f49dabd382e969215d0f12af5</hash>
+    <hash>d56ae401f53a2b0aba8ea2eaca908351</hash>
   </element>
   <element>
     <fullpath>include/config.inc.php.sample</fullpath>
@@ -7587,26 +7746,26 @@
   <element>
     <fullpath>include/exif.php</fullpath>
     <version>1.5.1</version>
-    <revision>5575</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6b4b835b19d39af6642d0dff9d421f63</hash>
+    <hash>a2f8f760b80b93746b5548982ebdabdd</hash>
   </element>
   <element>
     <fullpath>include/exif_php.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5575</revision>
+    <revision>5690</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>cf41a038f6442fe11ea4fdafdd53aae3</hash>
+    <hash>ac0dc42e25150cce4d710322b5a5c8e8</hash>
   </element>
   <element>
     <fullpath>include/functions.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5600</revision>
+    <revision>5766</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8b95e8b141a4c9d39e48a0b098cb63de</hash>
+    <hash>5e3522eefd5291ebc266b43df9754ec6</hash>
   </element>
   <element>
     <fullpath>include/imageObjectGD.class.php</fullpath>
@@ -7643,10 +7802,10 @@
   <element>
     <fullpath>include/init.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5575</revision>
+    <revision>5715</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7ebecdf9ef0aa2c0c0600433e25b828c</hash>
+    <hash>c34dcd790ccb30d26e4c161e59e8f5b5</hash>
   </element>
   <element>
     <fullpath>include/iptc.inc.php</fullpath>
@@ -7659,10 +7818,10 @@
   <element>
     <fullpath>include/Inspekt.php</fullpath>
     <version>1.5.1</version>
-    <revision>5575</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0455c0c49d38e0a6176e1280ea499f5c</hash>
+    <hash>8e204204011bc9c5cf0def2ed516e2fd</hash>
   </element>
   <element>
     <fullpath>include/keyword.inc.php</fullpath>
@@ -7691,34 +7850,34 @@
   <element>
     <fullpath>include/mailer.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5575</revision>
+    <revision>5761</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6a5917053de28dae10679a843024bf54</hash>
+    <hash>29fc8a8808fd9a08e3010aa38d783cfa</hash>
   </element>
   <element>
     <fullpath>include/mb.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5575</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6695ce0505a62ea53e0fe712fc358780</hash>
+    <hash>ab512d922b304e66199b642753da7040</hash>
   </element>
   <element>
     <fullpath>include/picmgmt.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5598</revision>
+    <revision>5686</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8a21bf0009163d45f2b96f0dd57f14f6</hash>
+    <hash>ebe50c473e2be912ea61b987f9187f3e</hash>
   </element>
   <element>
     <fullpath>include/plugin_api.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5575</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>bca90713fb71b921eff4ad768b604a6b</hash>
+    <hash>21cc2f2fe798c7fe8e1d633c14f6c5d9</hash>
   </element>
   <element>
     <fullpath>include/search.inc.php</fullpath>
@@ -7731,18 +7890,18 @@
   <element>
     <fullpath>include/select_lang.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5575</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>89d208f6c1ad3d7208480a98885e7f76</hash>
+    <hash>d5dda54ad13ce35276f5276bcdcd132e</hash>
   </element>
   <element>
     <fullpath>include/smilies.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5575</revision>
+    <revision>5656</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b4e5f5d5deb216c43f5b40345a73ab7b</hash>
+    <hash>b0fc28ce42aaad68b6732ec6fb6d0c19</hash>
   </element>
   <element>
     <fullpath>include/sql_parse.php</fullpath>
@@ -7763,18 +7922,18 @@
   <element>
     <fullpath>include/themes.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5600</revision>
+    <revision>5700</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>129636b69cb5e0eb32936961c2d0bdd7</hash>
+    <hash>662247f5b6d921f0a3916d3d66097dc9</hash>
   </element>
   <element>
     <fullpath>include/versioncheck.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5575</revision>
+    <revision>5717</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3bc4b60c21461b3e9d14808989d59367</hash>
+    <hash>a881040fdba3a3ea2dc6b7fc6bed537b</hash>
   </element>
   <element>
     <fullpath>include/zip.lib.php</fullpath>
@@ -7890,18 +8049,18 @@
   <element>
     <fullpath>lang/english.php</fullpath>
     <version>1.5.1</version>
-    <revision>5596</revision>
+    <revision>5766</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1e99effc2b3526358e2863a9765bc807</hash>
+    <hash>136a49730bddeab6e29d0bb52c0afc70</hash>
   </element>
   <element>
     <fullpath>lang/german.php</fullpath>
     <version>1.5.1</version>
-    <revision>5596</revision>
+    <revision>5766</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>32fbf94a80d2df42442c74102ca73477</hash>
+    <hash>2fb7bd553e64f5915ab722fbd3119a2c</hash>
   </element>
   <element>
     <fullpath>js</fullpath>
@@ -7911,50 +8070,50 @@
   <element>
     <fullpath>js/admin.js</fullpath>
     <version>1.5.1</version>
-    <revision>5576</revision>
+    <revision>5686</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>391d2658d618e5c420e33fec7cb32bf5</hash>
+    <hash>d06ad766aa61e3d75e8aaaad07b4eed1</hash>
   </element>
   <element>
     <fullpath>js/banning.js</fullpath>
     <version>1.5.1</version>
-    <revision>5576</revision>
+    <revision>5686</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8331959d182028bb1f577309eec57786</hash>
+    <hash>cf92afa0ee6d4c30b1dc136ffc40c7ec</hash>
   </element>
   <element>
     <fullpath>js/date.js</fullpath>
     <version>1.5.1</version>
-    <revision>5163</revision>
+    <revision>5686</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4b38af675f6313ebb6a32da61c04519b</hash>
+    <hash>869af3e2d3edaf88739ae328a9cb4212</hash>
   </element>
   <element>
     <fullpath>js/datePicker.css</fullpath>
     <version>1.5.1</version>
-    <revision>5406</revision>
+    <revision>5686</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a04374ed47b289d2cf62f0c4cf3a1f6c</hash>
+    <hash>61229961a665eec658e51c27a33453e5</hash>
   </element>
   <element>
     <fullpath>js/displayimage.fullsize.js</fullpath>
     <version>1.5.1</version>
-    <revision>5163</revision>
+    <revision>5686</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a504dce6a74e58eb3e9359eceae4ed2c</hash>
+    <hash>c5d761c246aa631541fc5558c06273a9</hash>
   </element>
   <element>
     <fullpath>js/displayimage.js</fullpath>
     <version>1.5.1</version>
-    <revision>5576</revision>
+    <revision>5686</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3757e5c8944898c6c23be63d8a56c68d</hash>
+    <hash>32d1d00aa77903f9b9ea2f5c9d45c9a1</hash>
   </element>
   <element>
     <fullpath>js/jquery.bookmark.js</fullpath>
@@ -7967,10 +8126,10 @@
   <element>
     <fullpath>js/jquery.dimensions.pack.js</fullpath>
     <version>1.5.1</version>
-    <revision>5163</revision>
+    <revision>5686</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>018bf0c3e7887e4fe2020b507ae02106</hash>
+    <hash>fadda59ec22f75e9a552e1f94c986d6b</hash>
   </element>
   <element>
     <fullpath>js/jquery.js</fullpath>
@@ -7983,50 +8142,50 @@
   <element>
     <fullpath>js/langmgr.js</fullpath>
     <version>1.5.1</version>
-    <revision>5163</revision>
+    <revision>5686</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f56db7ab967df04468ca34d8d4954fab</hash>
+    <hash>84cf18c9a3cb8b158b063575c17c3ba9</hash>
   </element>
   <element>
     <fullpath>js/minibrowser.js</fullpath>
     <version>1.5.1</version>
-    <revision>5163</revision>
+    <revision>5686</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5ef20bca8afa85d3e5fd1ebdc3d24d70</hash>
+    <hash>d09243c7e1db6e5b1d4969e152d3519c</hash>
   </element>
   <element>
     <fullpath>js/register.js</fullpath>
     <version>1.5.1</version>
-    <revision>5576</revision>
+    <revision>5686</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>838bf1c6098b2899a99e997f66b01cab</hash>
+    <hash>72f6885a55a2790d4b239a35ab0a8d1c</hash>
   </element>
   <element>
     <fullpath>js/reviewcom.js</fullpath>
     <version>1.5.1</version>
-    <revision>5163</revision>
+    <revision>5686</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>37110e01f6596029f6df5595339b3c45</hash>
+    <hash>ca4fb888c084238b731c6b87f5b70d93</hash>
   </element>
   <element>
     <fullpath>js/scripts.js</fullpath>
     <version>1.5.1</version>
-    <revision>5576</revision>
+    <revision>5695</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1b06b19c927fd2e9d68939b79a75009f</hash>
+    <hash>cb0e2bb571859acea9fceae018f36aff</hash>
   </element>
   <element>
     <fullpath>js/upload.js</fullpath>
     <version>1.5.1</version>
-    <revision>5405</revision>
+    <revision>5694</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>df328ade14060b3ae8745ea98db473f2</hash>
+    <hash>2ac7463b208b9e78bdd3453b74b1f3c7</hash>
   </element>
   <element>
     <fullpath>logs/</fullpath>
@@ -8167,10 +8326,10 @@
   <element>
     <fullpath>plugins/visiblehookpoints/configuration.php</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5695</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>c67d508c49c537dc8747e24482a2b4b4</hash>
+    <hash>af56c3da149bd76e84a286d6269fbfe5</hash>
   </element>
   <element>
     <fullpath>plugins/visiblehookpoints/index.php</fullpath>
@@ -8188,26 +8347,26 @@
   <element>
     <fullpath>sql/basic.sql</fullpath>
     <version>1.5.1</version>
-    <revision>5600</revision>
+    <revision>5766</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fcae8e1e9d74eb173542ed5642022742</hash>
+    <hash>9f18a784f426ebbc4b5b5d2f7b895ecf</hash>
   </element>
   <element>
     <fullpath>sql/schema.sql</fullpath>
     <version>1.5.1</version>
-    <revision>5600</revision>
+    <revision>5698</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2323effc5db5edc4dfd4baabc2fa70b6</hash>
+    <hash>d464a78216b97fcf366fe83899ff2f08</hash>
   </element>
   <element>
     <fullpath>sql/update.sql</fullpath>
     <version>1.5.1</version>
-    <revision>5600</revision>
+    <revision>5766</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e3640bf955634804863f94f53cd30445</hash>
+    <hash>0037dd9a80c77a03b7d17541912bdbec</hash>
   </element>
   <element>
     <fullpath>themes/</fullpath>
@@ -8222,18 +8381,18 @@
   <element>
     <fullpath>themes/classic/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5584</revision>
+    <revision>5668</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>e9048da6baae5c59548350e10c175d74</hash>
+    <hash>2404c2cac453418ba8eabdaa188a727d</hash>
   </element>
   <element>
     <fullpath>themes/classic/template.html</fullpath>
     <version>1.5.1</version>
-    <revision>5577</revision>
+    <revision>5766</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>cade4e6dedab268558473420a3c599ac</hash>
+    <hash>128ee4246ac5ca730a4511aefc0e395f</hash>
   </element>
   <element>
     <fullpath>themes/classic/theme.php</fullpath>
@@ -8986,26 +9145,26 @@
   <element>
     <fullpath>themes/eyeball/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5584</revision>
+    <revision>5668</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>f89ac3c755922f9e78705c6483970dc9</hash>
+    <hash>b0c066f97ab557f3d8f3f5e87bc592bd</hash>
   </element>
   <element>
     <fullpath>themes/eyeball/template.html</fullpath>
     <version>1.5.1</version>
-    <revision>5577</revision>
+    <revision>5766</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>7e58cfdf88d1685f14ae9f64aadb578d</hash>
+    <hash>e0ac9f586125a622494136e7558196e8</hash>
   </element>
   <element>
     <fullpath>themes/eyeball/theme.php</fullpath>
     <version>1.5.1</version>
-    <revision>5577</revision>
+    <revision>5687</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>fc1fe1f19a1509b4ef11b3cf4a5d81c2</hash>
+    <hash>18c52a80201f7ae2d932ad903f5caa95</hash>
   </element>
   <element>
     <fullpath>themes/eyeball/images</fullpath>
@@ -9378,18 +9537,18 @@
   <element>
     <fullpath>themes/fruity/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5584</revision>
+    <revision>5668</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>3bd4f68f62539906268ad1cd6e4a7434</hash>
+    <hash>c364f5711a2a9babb61e150f5237b79d</hash>
   </element>
   <element>
     <fullpath>themes/fruity/template.html</fullpath>
     <version>1.5.1</version>
-    <revision>5577</revision>
+    <revision>5766</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>88d3a58a8161ef2664bf77cb187541a4</hash>
+    <hash>4dc111b042b76fb82e373b520e8c5314</hash>
   </element>
   <element>
     <fullpath>themes/fruity/theme.php</fullpath>
@@ -9609,18 +9768,18 @@
   <element>
     <fullpath>themes/hardwired/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5584</revision>
+    <revision>5668</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>9594106c910ed3fbec8d22151bc3d7b0</hash>
+    <hash>b745b81102f8fbcb5b219510674f973f</hash>
   </element>
   <element>
     <fullpath>themes/hardwired/template.html</fullpath>
     <version>1.5.1</version>
-    <revision>5577</revision>
+    <revision>5766</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>55a97e93d818492be12525e92250ca3e</hash>
+    <hash>1284c1142894a9ca3061d4933ec22809</hash>
   </element>
   <element>
     <fullpath>themes/hardwired/theme.php</fullpath>
@@ -10025,26 +10184,26 @@
   <element>
     <fullpath>themes/igames/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5584</revision>
+    <revision>5668</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>9194b6c53f5c145f5848914a23d195f6</hash>
+    <hash>0c7c7282a37a16dbaf91c20f259ec88f</hash>
   </element>
   <element>
     <fullpath>themes/igames/template.html</fullpath>
     <version>1.5.1</version>
-    <revision>5577</revision>
+    <revision>5766</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>849fe9f66b9264a0fdaf2e2869216241</hash>
+    <hash>b109798905715af1a32669f37f26f42d</hash>
   </element>
   <element>
     <fullpath>themes/igames/theme.php</fullpath>
     <version>1.5.1</version>
-    <revision>5577</revision>
+    <revision>5687</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>77be91366f155305efa8efa8214abe45</hash>
+    <hash>5e0d0febec707a5787727d2797437623</hash>
   </element>
   <element>
     <fullpath>themes/igames/images</fullpath>
@@ -10328,26 +10487,26 @@
   <element>
     <fullpath>themes/mac_ox_x/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5668</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>d2f8faa697cbb37e06d03cda79833af1</hash>
+    <hash>08813855e94354d019cd113df8d4a582</hash>
   </element>
   <element>
     <fullpath>themes/mac_ox_x/template.html</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5766</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>5ce25ca5855a71ca865c74d8686f79d2</hash>
+    <hash>a2117ce8e89ebfc2d3614ce4999427f6</hash>
   </element>
   <element>
     <fullpath>themes/mac_ox_x/theme.php</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5687</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>2dc37717f98b1a5772276befbca24c97</hash>
+    <hash>b40c5a60d729332baa0c1d6e60d2d1b3</hash>
   </element>
   <element>
     <fullpath>themes/mac_ox_x/images</fullpath>
@@ -10548,26 +10707,26 @@
   <element>
     <fullpath>themes/project_vii/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5668</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>09f4a97174651830fef613138fd7b4d8</hash>
+    <hash>a5cad8e2accb825b33fce75060f7eaee</hash>
   </element>
   <element>
     <fullpath>themes/project_vii/template.html</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5766</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>214662c38c9ea7b423a0221327690a48</hash>
+    <hash>68a129e3103c9790744f15899189785b</hash>
   </element>
   <element>
     <fullpath>themes/project_vii/theme.php</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5687</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>d6d0c966032ae2cfbaf9c2d832a9bf1b</hash>
+    <hash>cc16e4af0ddee043e8698e902709c892</hash>
   </element>
   <element>
     <fullpath>themes/project_vii/images</fullpath>
@@ -10690,26 +10849,26 @@
   <element>
     <fullpath>themes/rainy_day/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5668</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>e3aaf1594ff010b4629eed00838be837</hash>
+    <hash>5af76ba328d469bda57d27d019dcc276</hash>
   </element>
   <element>
     <fullpath>themes/rainy_day/template.html</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5766</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>db74a4675b81d117f885cb36fbe1a2cc</hash>
+    <hash>dd212d83eb303e65db837c20be3c14d8</hash>
   </element>
   <element>
     <fullpath>themes/rainy_day/theme.php</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5687</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>909e2b2be3f7d8f2da50ce50352cd7aa</hash>
+    <hash>087e646fa2c0e0b86c68c0bd6c13262d</hash>
   </element>
   <element>
     <fullpath>themes/rainy_day/images</fullpath>
@@ -11035,10 +11194,10 @@
   <element>
     <fullpath>themes/sample/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5664</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>ed476dc3a6bed37c13a6a73c6ae0a298</hash>
+    <hash>30f8a700900fc2d3605b8fd5018d8a4c</hash>
   </element>
   <element>
     <fullpath>themes/sample/template.html</fullpath>
@@ -11051,10 +11210,10 @@
   <element>
     <fullpath>themes/sample/theme.php</fullpath>
     <version>1.5.1</version>
-    <revision>5595</revision>
+    <revision>5766</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>51b269fd40877215221b147844c5077a</hash>
+    <hash>bfad1069a50a9e4f24fea772823ec601</hash>
   </element>
   <element>
     <fullpath>themes/sample/images</fullpath>
@@ -11099,18 +11258,18 @@
   <element>
     <fullpath>themes/water_drop/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5668</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>915d666836bdac424fff3e1ec3cd31d6</hash>
+    <hash>997542144ed4774555440c22a21708a7</hash>
   </element>
   <element>
     <fullpath>themes/water_drop/template.html</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5766</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>47dbd31a2c0e3acf9335ac3142ad3498</hash>
+    <hash>6178438af2552e93514fd922b3af75d5</hash>
   </element>
   <element>
     <fullpath>themes/water_drop/theme.php</fullpath>
