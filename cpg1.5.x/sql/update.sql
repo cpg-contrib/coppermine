@@ -163,6 +163,13 @@ DELETE FROM CPG_config WHERE `name` = 'vanity_block';
 DELETE FROM CPG_config WHERE `name` = 'display_faq';
 DELETE FROM CPG_config WHERE `name` = 'ban_private_ip';
 DELETE FROM CPG_config WHERE `name` = 'language_fallback';
+DELETE FROM CPG_config WHERE `name` = 'language_list';
+DELETE FROM CPG_config WHERE `name` = 'language_flags';
+DELETE FROM CPG_config WHERE `name` = 'language_reset';
+DELETE FROM CPG_config WHERE `name` = 'theme_list';
+DELETE FROM CPG_config WHERE `name` = 'theme_reset';
+
+
 
 
 

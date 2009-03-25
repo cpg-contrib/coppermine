@@ -3593,15 +3593,6 @@ function languageSelect($parameter)
     $return    = '';
     $lineBreak = "\n";
 
-    //check if language display is enabled
-    if ($CONFIG['language_list'] == 0 && $parameter == 'list') {
-        return;
-    }
-    
-    if ($CONFIG['language_flags'] == 0 && $parameter == 'flags') {
-        return;
-    }
-
     // get the current language
     //use the default language of the gallery
     $cpgCurrentLanguage = $CONFIG['lang'];
@@ -3637,9 +3628,7 @@ function languageSelect($parameter)
     
     case 'flags':
         $return .= '<div id="cpgChooseFlags" class="inline">';
-        if ($CONFIG['language_flags'] == 2) {
-            $return .= $lang_language_selection['choose_language'] . ': ';
-        }
+        $return .= $lang_language_selection['choose_language'] . ': ';
         foreach ($lang_language_data as $language) {
             $return .= $lineBreak . '<a href="' . $cpgChangeUrl . $language['lang_id'] . '" rel="nofollow"><img src="images/flags/' . $language['flag'] . '.png" border="0" width="16" height="11" alt="" title="';
             $return .= $language['english_name'];
@@ -3648,10 +3637,8 @@ function languageSelect($parameter)
             }
             $return .= '" /></a>' . $lineBreak;
         }
-        if ($CONFIG['language_reset'] == 1) {
-            $return .=  '<a href="' . $cpgChangeUrl. 'xxx" rel="nofollow"><img src="images/flags/reset.png" border="0" width="16" height="11" alt="" title="';
-            $return .=  $lang_language_selection['reset_language'] . '" /></a>' . $lineBreak;
-        }
+        $return .=  '<a href="' . $cpgChangeUrl. 'xxx" rel="nofollow"><img src="images/flags/reset.png" border="0" width="16" height="11" alt="" title="';
+        $return .=  $lang_language_selection['reset_language'] . '" /></a>' . $lineBreak;
         $return .= '</div>';
         break;
         
@@ -3672,9 +3659,7 @@ function languageSelect($parameter)
             $return .= ($value == $language['lang_id'] ? '*' : '');
             $return .= '</option>' . $lineBreak;
         }
-        if ($CONFIG['language_reset'] == 1) {
-            $return .=  '<option value="xxx">' . $lang_language_selection['reset_language'] . '</option>' . $lineBreak;
-        }
+        $return .=  '<option value="xxx">' . $lang_language_selection['reset_language'] . '</option>' . $lineBreak;
         $return .=  '</select>' . $lineBreak;
         $return .=  '<noscript>' . $lineBreak;
         $return .=  '<input type="submit" name="language_submit" value="' . $lang_common['go'] . '" class="listbox_lang" />&nbsp;'. $lineBreak;
@@ -3703,10 +3688,6 @@ function themeSelect($parameter)
     $return    = '';
     $lineBreak = "\n";
 
-    if ($CONFIG['theme_list'] == 0) {
-        return;
-    }
-
     $cpgCurrentTheme = cpgGetScriptNameParams('theme') . 'theme=';
 
     // get list of available themes
@@ -3732,9 +3713,7 @@ function themeSelect($parameter)
         $return .= '<option value="' . $theme . '"'. ($value == $theme ? '  selected="selected"' : '') . '>' . strtr(ucfirst($theme), '_', ' ') . ($value == $theme ? '  *' : '') . '</option>' . $lineBreak;
     }
     
-    if ($CONFIG['theme_reset'] == 1) {
-        $return .= '<option value="xxx">' . $lang_theme_selection['reset_theme'] . '</option>' . $lineBreak;
-    }
+    $return .= '<option value="xxx">' . $lang_theme_selection['reset_theme'] . '</option>' . $lineBreak;
     
     $return .= '</select>' . $lineBreak;
     $return .= '<noscript>' . $lineBreak;

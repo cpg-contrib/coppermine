@@ -150,7 +150,7 @@ Diese Option kann auch ein- und augeschaltet werden auf den <a href="uploading.h
 <a name="admin_language_charset"></a><h3>Zeichensatz<a href="#admin_language_charset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Dies sollte normalerweise auf "Unicode (utf-8)" eingestellt sein, vgl. die Erklärungen im Bereich &quot;<strong><a href="languages.htm#translating">Sprache</a></strong>&quot; der Doku.</p>
 <p>Ändere diese Einstellung nicht von Unicode auf irgend etwas anderes, wenn Du Dir nicht vollständig über die Tragweite dieser Änderung bewusst bist!</p>
-<p class="cpg_message_warning">Sobald Kommentare oder Dateibeschreibungen zu Deiner Galerie hinzugefügt wurden sollte diese Einstellung auf keinen Fall geändert werden. Falls Du das doch tust werden Sonderzeichen (z.B. Umlaute) nicht richtig dargestellt werden.</p>
+<p class="cpg_message_validation">Sobald Kommentare oder Dateibeschreibungen zu Deiner Galerie hinzugefügt wurden sollte diese Einstellung auf keinen Fall geändert werden. Falls Du das doch tust werden Sonderzeichen (z.B. Umlaute) nicht richtig dargestellt werden.</p>
 <a name="admin_language_charset_end"></a>
 <a name="admin_language_list"></a><h3>Sprachauswahl-Liste anzeigen <a href="#admin_language_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Aktiviere diese Option um den Besuchern der Galerie zu ermöglichen, aus einer Liste von Sprachen ihre bevorzugte Sprache auszuwählen (Du kannst wählen, ob nur die Liste alleine oder mit einem Hinweistext &quot;Wähle Sprache&quot; erscheinen soll). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Sprachauswahlliste auf der Seite erscheinen soll innerhalb Deiner Galerie (benutze den Platzhalter <a href="theme_template.htm#theme_template_language_select_list">{LANGUAGE_SELECT_LIST}</a>).</p>
@@ -159,36 +159,10 @@ Diese Option kann auch ein- und augeschaltet werden auf den <a href="uploading.h
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; Zeichensatz</p>
 <a name="admin_language_list_end"></a>
 
-<hr />
-<a name="admin_language_flags"></a><h3>Sprachauswahl-Flaggen anzeigen<a href="#admin_language_flags" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Aktiviere diese Option um den Besuchern der Galerie zu ermöglichen, aus einer Reihe von Flaggen, die unterschiedliche Sprachen repräsentieren ihre gewünschte Sprache auszuwählen (Du kannst wählen, ob nur die Flaggen alleine oder mit einem Hinweistext &quot;Wähle Sprache&quot; erscheinen soll). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Flaggenliste auf der Seite erscheinen soll innerhalb Deiner Galerie (benutze den Platzhalter <a href="theme_template.htm#theme_template_language_select_flags">{LANGUAGE_SELECT_FLAGS}</a>).</p>
-<p>Um Sprachen aus dieser Auswahl zu entfernen, benutze Dein FTP-Programm und lösche damit die unerwünschten Sprachdateien aus dem Verzeichnis <tt class="code">lang</tt> auf Deinem Server. Lösche auf keinen Fall die englische Sprachdatei <tt class="code">english.php</tt> von Deinem Server!</p>
-<p>Normalerweise ist es nicht notwendig, diese Sprachauswahl anzuzeigen, da die Menüs und Bedienelemente sowieso in der bevorzugten Sprache des Besuchers angezeigt werden. Empfohlene Einstellung dieser Option ist "aus".</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; Sprachauswahl-Flaggen anzeigen</p>
-<a name="admin_language_flags_end"></a>
-
-<a name="admin_language_reset"></a><h3>&quot;Standard&quot; in Sprachauswahl anzeigen<a href="#admin_language_reset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Diese Option wird nur in Betracht gezogen, wenn der Besucher mit den o.g. Optionen seine gewünschte Sprache wählen kann - wenn diese Option aktiviert ist wird ein Listenelement "Standard" angezeigt, das es ermöglicht, getroffene Sprachauswahlen zu revidieren und wieder in den ursprünglichen Sprachauswahlmechanismus zurückzukehren.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Sprach- &amp; Zeichensatz-Einstellungen &rarr; &quot;Standard&quot; in Sprachauswahl anzeigen</p>
-<a name="admin_language_reset_end"></a>
-
-
-
 <a name="admin_theme"></a><h2>Themen-/Design-Einstellungen<a href="#admin_theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_theme_theme"></a><h3>Thema (Design)<a href="#admin_theme_theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Benutze diese Auswahlliste, um das Standard-Theme Deiner Galerie zu wählen (Themen werden in Unterverzeichnissen des Verzeichnisses <strong>themes</strong> gespeichert).</p>
 <a name="admin_theme_theme_end"></a>
-<hr />
-<a name="admin_theme_theme_list"></a><h3>Designauswahl-Liste anzeigen<a href="#admin_theme_theme_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Aktiviere diese Option, um den Besuchern der Galerie zu ermöglichen, andere Themen (Designs) als das Standard-Thema aus einer Auswahlliste auszuwählen (Du kannst festlegen, ob Du nur die Liste oder auch eine Beschriftung mit der Auschrift &quot;<strong>Wähle Design:</strong>&quot; vor der Liste anzeigen möchtest). Bearbeite Dein Template (/themes/yourtheme/template.html) um festzulegen, wo die Auswahlliste innerhalb der Galerie angezeigt werden soll (suche nach dem Platzhalter <a href="theme_template.htm#theme_template_theme_select_list">{THEME_SELECT_LIST}</a>).</p>
-<p>Diese Option macht nur Sinn, wenn Du mindestens ein alternatives Design für Deine Seite erstellt hast, das einen zusätzlichen Nutzen für den Besucher darstellt (beispielsweise ein Design mit weniger grafischen Elementen für Besucher mit langsamer Internet-Anbindung oder ein Design mit starkem Kontrast und grossen Zeichen für Benutzer mit eingeschränkter Sehfähigkeit). Empfohlene Einstellung: aus.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; Themen-/Design-Einstellungen</p>
-<a name="admin_theme_theme_list_end"></a>
-<hr />
-<a name="admin_theme_theme_reset"></a><h3>&quot;Standard&quot; in Designauswahl-Liste anzeigen<a href="#admin_theme_theme_reset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Diese Option wird nur in Betracht gezogen, wenn Du obige Auswahlliste für die Themen-/Designauswahl aktiviert hast. Falls dann diese Option ebenfalls aktiviert wird erscheint in der Themenauswahlliste ein Eintrag "Standard", der es dem Besucher ermöglicht, wieder zum Standard-Design Deiner Galerie zurück zu kehren.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Themen-/Design-Einstellungen &rarr; &quot;Standard&quot; in Designauswahl-Liste anzeigen</p>
-<a name="admin_theme_theme_reset_end"></a>
 <hr />
 <a name="admin_sidebar"></a><h3>Sidebar für Gäste / registrierte Benutzer<a href="#admin_sidebar" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Legt fest, ob eine Sidebar für Browser für die Mitglieder der Admin-Gruppe, für registrierte Benutzer oder für Gäste verfpgbar sein soll..</p>

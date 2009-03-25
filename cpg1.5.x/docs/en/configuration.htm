@@ -161,47 +161,14 @@ You can toggle between these options (enabled or disabled) on the <a href="uploa
 
 <a name="admin_language_charset"></a><h3>Character encoding<a href="#admin_language_charset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This should normally be set to "Unicode (utf-8)" (or "Default (language file)"). See the explanation in the &quot;<strong><a href="languages.htm#translating">language</a></strong>&quot; section of this documentation.</p>
-<p class="cpg_message_warning">Don't change this from Unicode to anything else if you're not absolutely sure about the impact this will have!<br />
+<p class="cpg_message_validation">Don't change this from Unicode to anything else if you're not absolutely sure about the impact this will have!<br />
 Once you have added comments or files to your gallery, you should not change the character set of your gallery. If you do so, non-ASCII characters may not display properly.</p>
 <a name="admin_language_charset_end"></a>
-<a name="admin_language_list"></a><h3>Display language list<a href="#admin_language_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you want your users to be able to select a preferred language from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your language:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for the call tag: <a href="theme_template.htm#theme_template_language_select_list">{LANGUAGE_SELECT_LIST}</a>).</p>
-<p>To remove languages from this list, use your FTP application to delete all unneeded langauge files from the <tt class="code">lang</tt> folder. Coppermine will populate the list of available languages based on the files that reside in the lang folder. Do <strong>not</strong> remove english.php from the lang folder.</p>
-<p>Usually, you don't have to display the list of available languages, as the menus will be displayed in the prefered language of your visitors anyway. Recommended setting is "off".</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Character encoding</p>
-
-<a name="admin_language_list_end"></a>
-<hr />
-<a name="admin_language_flags"></a><h3>Display language flags<a href="#admin_language_flags" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you would like the option of having your users select languages appropriate for their use by merely clicking on a flag icon which representing their language or country (you can specify to display the flags themselves or include a label that states: &quot;<strong>Choose your language:</strong>&quot; in front of the flags). Edit your template file (/themes/yourtheme/template.html) to specify where the flags should appear in your gallery (look for the call tag: <a href="theme_template.htm#theme_template_language_select_flags">{LANGUAGE_SELECT_FLAGS}</a>).</p>
-<p>To remove languages from this list, use your FTP application to delete all unneeded langauge files from the <tt class="code">lang</tt> folder. Coppermine will populate the list of available languages based on the files that reside in the lang folder. Do <strong>not</strong> remove english.php from the lang folder.</p>
-<p>Usually, you don't have to display the list of available languages, as the menus will be displayed in the prefered language of your visitors anyway. Recommended setting is "off".</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Display language flags</p>
-
-<a name="admin_language_flags_end"></a>
-<hr />
-<a name="admin_language_reset"></a><h3>Display &quot;reset&quot; in the language selection<a href="#admin_language_reset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option only applies only if you enabled user language selection - it will show a &quot;default&quot;-icon or list entry to let the users go back to the original language of your gallery.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Language &amp; Charset settings &rarr; Display &quot;reset&quot; in the language selection</p>
-<a name="admin_language_reset_end"></a>
-
-
 
 <a name="admin_theme"></a><h2>Themes settings<a href="#admin_theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_theme_theme"></a><h3>Theme<a href="#admin_theme_theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Use this dropdown list to select the default theme for your gallery (Themes are stored in sub-directories of the <strong>themes</strong> directory ).</p>
 <a name="admin_theme_theme_end"></a>
-<hr />
-<a name="admin_theme_theme_list"></a><h3>Display theme list<a href="#admin_theme_theme_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable this option if you want your users to be able to select other themes from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your theme:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the theme dropdown list should appear on your gallery (look for <a href="theme_template.htm#theme_template_theme_select_list">{THEME_SELECT_LIST}</a>).</p>
-<p>This option only makes sense if you have at least one alternative theme in your /themes/ folder other than your default theme. We recommend using this option only if there's are additional benefits for the user (for example a theme with less graphics in it that loads faster for users on a dial-up connection, or a theme with reduced color pallettes and good contrast). Recommended setting: off.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display theme list</p>
-<a name="admin_theme_theme_list_end"></a>
-<hr />
-<a name="admin_theme_theme_reset"></a><h3>Display &quot;reset&quot; in theme selection<a href="#admin_theme_theme_reset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option applies only if you enabled the user theme selection option - it will show a &quot;default&quot; list entry to let the users go back to the original theme of your gallery.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Display &quot;reset&quot; in theme selection</p>
-<a name="admin_theme_theme_reset_end"></a>
 <hr />
 <a name="admin_sidebar"></a><h3>Sidebar for users / guests<a href="#admin_sidebar" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Determines wether a sidebar for browsers will be available for members of the admin group, registered users group and guest group.</p>

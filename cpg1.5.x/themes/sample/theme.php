@@ -839,7 +839,7 @@ EOT;
 ******************************************************************************/
 // HTML template for intermediate image display
 $template_display_media = <<<EOT
-        <tr>
+           <tr>
                 <td align="center" class="display_media" nowrap="nowrap">
                         <table cellspacing="2" cellpadding="0" >
                                 <tr>

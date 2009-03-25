@@ -201,26 +201,6 @@ $config_data = array(
        'additional_description' => ' (Unicode '.$lang_admin_php['recommended'].'!)',
        'end_description'        => '<br />'.$lang_admin_php['do_not_change'],
     ),
-    'language_list' => array(
-      'type'          => 'checkbox',
-      'default_value' => '0',
-      'help_link'     => 'f=configuration.htm&amp;as=admin_language_list&amp;ae=admin_language_list_end',
-    ),
-    'language_flags' => array(
-      'type'          => 'radio',
-      'default_value' => '0',
-      'help_link'     => 'f=configuration.htm&amp;as=admin_language_flags&amp;ae=admin_language_flags_end&amp;top=1',
-      'options'       => array(
-                           $lang_common['no'],
-                           $lang_common['yes'] . ': ' . $lang_admin_php['item'],
-                           $lang_common['yes'] . ': ' . $lang_admin_php['label'],
-                         ),
-    ),
-    'language_reset' => array(
-      'type'          => 'checkbox',
-      'default_value' => '1',
-      'help_link'     => 'f=configuration.htm&amp;as=admin_language_reset&amp;ae=admin_language_reset_end&amp;top=1',
-    ),
   ),
   'themes_settings' => array(
     'theme' => array(
@@ -228,16 +208,6 @@ $config_data = array(
       'help_link' => 'f=configuration.htm&amp;as=admin_theme_theme&amp;ae=admin_theme_theme_end',
       'options'   => form_get_foldercontent('themes/', 'folder', '', array('sample', '.svn')),
       'default_value' => 'classic',
-    ),
-    'theme_list' => array(
-      'type'          => 'checkbox',
-      'default_value' => '0',
-      'help_link'     => 'f=configuration.htm&amp;as=admin_theme_theme_list&amp;ae=admin_theme_theme_list_end',
-    ),
-    'theme_reset' => array(
-      'type'          => 'checkbox',
-      'default_value' => '1',
-      'help_link'     => 'f=configuration.htm&amp;as=admin_theme_theme_reset&amp;ae=admin_theme_theme_reset_end',
     ),
     'display_sidebar_user' => array(
       'type'          => 'radio',
