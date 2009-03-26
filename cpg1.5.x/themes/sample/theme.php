@@ -525,9 +525,7 @@ $template_film_strip = <<<EOT
         </tr>
 <!-- BEGIN thumb_cell -->
                 <td class="thumb" >
-                        <a href="{LINK_TGT}" class="thumbLink" style="{ONE_WIDTH}" >{THUMB}</a>
-                        {CAPTION}
-                        {ADMIN_MENU}
+                  <a href="{LINK_TGT}" class="thumbLink" style="{ONE_WIDTH}">{THUMB}</a>
                 </td>
 <!-- END thumb_cell -->
 <!-- BEGIN empty_cell -->
@@ -2859,9 +2857,6 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $uid_link = '';
     }
 
-    $thumbcols = $CONFIG['thumbcols'];
-    $cell_width = ceil(100 / $CONFIG['max_film_strip_items']) . '%';
-
     $i = 0;
     $thumb_strip = '';
     foreach($thumb_list as $thumb) {
@@ -2882,19 +2877,15 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             } else {
                 $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link#top_display_media";
             }
-            $params = array('{CELL_WIDTH}' => $cell_width,
+            $params = array(
                 '{LINK_TGT}' => $target,
                 '{THUMB}' => $thumb['image'],
-                '{CAPTION}' => $thumb['caption'],
-                '{ADMIN_MENU}' => '',
                 '{ONE_WIDTH}'  => "width:".$thumb_width."px; float: left" ,
                 );
         } else {
-            $params = array('{CELL_WIDTH}' => $cell_width,
+            $params = array(
                 '{LINK_TGT}' => "index.php?cat={$thumb['cat']}",
                 '{THUMB}' => $thumb['image'],
-                '{CAPTION}' => '',
-                '{ADMIN_MENU}' => '',
                 '{ONE_WIDTH}'  => "width:".$thumb_width."px; float: left" ,
                 );
         }
