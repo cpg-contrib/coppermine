@@ -49,16 +49,24 @@ $ip = GALLERY_ADMIN_MODE ? '
 
 $customs = '';
 
-$result = cpg_db_query("SELECT name, value FROM {$CONFIG['TABLE_CONFIG']} WHERE name LIKE 'user_field%_name' AND value <> '' ORDER BY name ASC");
+foreach (range(1, 4) as $i) {
 
-while ($row = mysql_fetch_assoc($result)) {
-        $name = str_replace(array('_field', '_name'), '', $row['name']);
-        $customs .= <<< EOT
-                <tr>
-                        <td><input type="checkbox" name="$name" id="$name" class="checkbox" /><label for="$name" class="clickable_option">{$row['value']}</label></td>
-                </tr>
+    $value = $CONFIG["user_field{$i}_name"];
+    
+    if (!$value) {
+        continue;
+    }
+
+    $customs .= <<< EOT
+                                        <tr>
+                                                <td>
+                                                    <input type="checkbox" name="user$i" id="user$i" class="checkbox" /><label for="user$i" class="clickable_option">$value</label>
+                                                </td>
+                                        </tr>
+
 EOT;
 }
+
 echo <<< EOT
         <tr>
             <td class="tableb" align="center" >
@@ -101,6 +109,7 @@ echo <<< EOT
                                                 <td><input type="checkbox" name="filename" id="filename" class="checkbox" /><label for="filename" class="clickable_option">{$lang_common['filename']}</label></td>
                                                 <td>&nbsp;</td>
                                         </tr>
+$customs
                                         <tr>
                                                 <td>&nbsp;</td>
                                                 <td>&nbsp;</td>
@@ -118,8 +127,6 @@ echo <<< EOT
                                                 <td><input type="checkbox" name="category_title" id="category_title" class="checkbox" /><label for="category_title" class="clickable_option">{$lang_search_php['category_title']}</label></td>
                                                 <td>&nbsp;</td>
                                         </tr>
-                                        
-                                                          $customs
                                                 $ip
                                 </table>
                         </td>
