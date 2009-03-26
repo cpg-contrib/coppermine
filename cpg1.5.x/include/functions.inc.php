@@ -752,19 +752,31 @@ function load_template()
     $template = CPGPluginAPI::filter('template_html', $template);
 
     $gallery_pos = strpos($template, '{LANGUAGE_SELECT_FLAGS}');
-    $template    = str_replace('{LANGUAGE_SELECT_FLAGS}', languageSelect('flags'), $template);
+    
+    if ($gallery_pos) {
+        $template    = str_replace('{LANGUAGE_SELECT_FLAGS}', languageSelect('flags'), $template);
+    }
     
     $gallery_pos = strpos($template, '{LANGUAGE_SELECT_LIST}');
-    $template    = str_replace('{LANGUAGE_SELECT_LIST}', languageSelect('list'), $template);
     
+    if ($gallery_pos) {
+        $template    = str_replace('{LANGUAGE_SELECT_LIST}', languageSelect('list'), $template);
+    }
+        
     $gallery_pos = strpos($template, '{THEME_DIR}');
     $template    = str_replace('{THEME_DIR}', $THEME_DIR, $template);
     
     $gallery_pos = strpos($template, '{THEME_SELECT_LIST}');
-    $template    = str_replace('{THEME_SELECT_LIST}', themeSelect('list'), $template);
+    
+    if ($gallery_pos) {
+        $template    = str_replace('{THEME_SELECT_LIST}', themeSelect('list'), $template);
+    }
     
     $gallery_pos = strpos($template, '{SOCIAL_BOOKMARKS}');
-    $template    = str_replace('{SOCIAL_BOOKMARKS}', theme_social_bookmark(), $template);
+
+    if ($gallery_pos) {
+        $template    = str_replace('{SOCIAL_BOOKMARKS}', theme_social_bookmark(), $template);
+    }
     
     $gallery_pos = strpos($template, '{GALLERY}');
     
