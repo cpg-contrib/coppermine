@@ -148,6 +148,8 @@ function html_picinfo()
         if ($CONFIG['vote_details'] == 1) {
             $stat_link = "stat_details.php?type=vote&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&rating=1&referer=0&browser=0&os=0&uid=1";
             $detailsLink_votes = '<div>(<a href="javascript:;" onclick="MM_openBrWindow(\'' . $stat_link . '\', \'stat_detail\', \'width=650,height=800,scrollbars=yes,resizable=yes\');">' . $lang_picinfo['show_details'] . '</a>)</div>';
+        } else {
+            $detailsLink_votes = '';
         }
         
         //calculate required amount of stars in picinfo
