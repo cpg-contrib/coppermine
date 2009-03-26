@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-03-26 [M] CPG_temp_data table no longer required {Nibbler}
 2009-03-25 [M] Removed language list, theme list and language flags from config (thread ID 58681) {GauGau}
 2009-02-22 [M] Renamed PHPMailer and SMTP classes to avoid conflicts with other scripts {Nibbler}
 2009-03-02 [B] Fixed HTML special characters in referer for hit/vote stats {Paver}

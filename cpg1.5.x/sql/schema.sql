@@ -298,17 +298,6 @@ CREATE TABLE CPG_sessions (
 # --------------------------------------------------------
 
 #
-# Table structure for table CPG_temp_data
-#
-CREATE TABLE IF NOT EXISTS CPG_temp_data (
-`unique_ID` CHAR( 8 ) NOT NULL ,
-`encoded_string` BLOB NOT NULL ,
-`timestamp` INT( 11 ) UNSIGNED NOT NULL ,
-PRIMARY KEY ( `unique_ID` )
-) TYPE = MyISAM COMMENT = 'Holds temporary file data for multiple file uploads';
-# --------------------------------------------------------
-
-#
 # Table structure for table CPG_temp_messages
 #
 CREATE TABLE CPG_temp_messages (
