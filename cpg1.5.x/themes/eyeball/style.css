@@ -573,6 +573,8 @@ a:hover {
 .icon {
 	vertical-align:middle;
 	margin-right:1px;
+	display:none;
+	float:left;
 }
 
 .comment_date{
@@ -772,7 +774,6 @@ a:hover {
 #v_css:hover{background-image:url(../../images/vanity/h_valid-css.gif);}
 
 .important {
-    /* background-image : url(images/important.gif); */
     color: red;
     font-weight: bold;
     padding-left:1px;
@@ -1246,32 +1247,32 @@ table.album_save td {
 .cpg_message_info, .cpg_message_success, .cpg_message_warning, .cpg_message_error, .cpg_message_validation {
     border: 1px solid;
     margin: 10px 0px;
-    padding:15px 10px 15px 50px;
+    padding:5px 5px 5px 45px;
     background-repeat: no-repeat;
-    background-position: 10px center;
+    background-position: 5px center;
 }
 .cpg_message_info {
-    color: #00529B;
-    background-color: #BDE5F8;
+    color: #BDE5F8;
+    background-color: #00529B;
     background-image: url('../../images/message/info.png');
 }
 .cpg_message_success {
-    color: #4F8A10;
-    background-color: #DFF2BF;
+    color: #DFF2BF;
+    background-color: #4F8A10;
     background-image: url('../../images/message/ok.png');
 }
 .cpg_message_warning {
-    color: #9F6000;
-    background-color: #FEEFB3;
+    color: #FEEFB3;
+    background-color: #9F6000;
     background-image: url('../../images/message/warning.png');
 }
 .cpg_message_error {
-    color: #D8000C;
-    background-color: #FFBABA;
+    color: #FFBABA;
+    background-color: #D8000C;
     background-image: url('../../images/message/stop.png');
 }
 .cpg_message_validation {
-    color: #D63301;
-    background-color: #FFCCBA;
+    color: #FFCCBA;
+    background-color: #D63301;
     background-image: url('../../images/message/error.png');
 }
