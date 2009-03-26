@@ -2743,7 +2743,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
             }
 
             //thumb cropping
-            if ($row['system_icon'] == 'true') {
+            if (array_key_exists('system_icon', $row) && ($row['system_icon'] == true)) {
                 $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width'], true);
             } else {
                 $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
