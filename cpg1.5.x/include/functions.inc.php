@@ -1145,6 +1145,12 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         $select_column_list[] = 'pic_hdr_ip';
     }
 
+    for ($i = 1; $i <= 4; $i++) {
+        if ($CONFIG['user_field' . $i . '_name']) {
+            $select_column_list[] = 'user' . $i;
+        }
+    }
+    
     if (count($FORBIDDEN_SET_DATA) > 0) {
         $forbidden_set_string = ' AND aid NOT IN (' . implode(', ', $FORBIDDEN_SET_DATA) . ')';
     } else {
