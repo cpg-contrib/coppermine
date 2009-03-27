@@ -42,7 +42,7 @@
 <p>The following is a list of the tables created by Coppermine during installation plus a description of the fields used. The default table prefix of cpg15x_ is used here, but this is user configurable.</p>
 
 <a name="db_albums"></a><h2>cpg15x_albums<a href="#db_albums" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Stores information about albums. Albums contain pictures and are (optionally) contained within categories.</p>
+<p>Stores information about albums. Albums contain files and are (optionally) contained within categories.</p>
 <br />
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
   <tr>
@@ -93,13 +93,13 @@
   <tr>
     <td valign="top" class="tableb"><strong>comments</strong></td>
     <td valign="top" class="tableb">YES / NO</td>
-    <td valign="top" class="tableb">Whether comments are permitted on pictures in this album.<p><small>Note: Group based permissions also apply.</small></p></td>
+    <td valign="top" class="tableb">Whether comments are permitted on files in this album.<p><small>Note: Group based permissions also apply.</small></p></td>
     <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><strong>votes</strong></td>
     <td valign="top" class="tableb tableb_alternate">YES / NO</td>
-    <td valign="top" class="tableb tableb_alternate">Whether voting/rating of pictures is permitted in this album.<p><small>Note: Group based permissions also apply.</small></p>
+    <td valign="top" class="tableb tableb_alternate">Whether voting/rating of files is permitted in this album.<p><small>Note: Group based permissions also apply.</small></p>
     <p><small>Note: do not confuse this field with the votes field in the pictures table, which is a count of the number of votes on that picture.</small></p></td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
@@ -137,9 +137,7 @@
     <td valign="top" class="tableb"><strong>keyword</strong></td>
     <td valign="top" class="tableb">Text (<=50 chars)</td>
     <td valign="top" class="tableb">The album keyword. Used by the 'linked files' 'feature' to display files in multiple albums. Files that contain the album keyword as one of their picture keywords will be displayed in the album. <p><small>Note: Files cannot truely be in multiple albums as a consequence of the original database design.</small></p></td>
-    <td valign="top" class="tableb">
-        <a href="#db_users-user_id">cpg15x_pictures.keywords</a>
-    </td>
+    <td valign="top" class="tableb"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><strong>alb_password</strong></td>
@@ -544,8 +542,8 @@
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><strong>date</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The date/time the ecard was sent (as a unix timestamp).</td>
+    <td valign="top" class="tableb tableb_alternate">Unix timestamp</td>
+    <td valign="top" class="tableb tableb_alternate">The date/time the ecard was sent.</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
@@ -688,8 +686,8 @@
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><strong>sdate</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The date/time of the hit, stored as a unix timestamp.</td>
+    <td valign="top" class="tableb tableb_alternate">Unix timestamp</td>
+    <td valign="top" class="tableb tableb_alternate">The date/time of the hit.</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
@@ -808,13 +806,7 @@
     <td valign="top" class="tableb tableb_alternate"><a name="db_pictures-pid"></a><strong>pid</strong></td>
     <td valign="top" class="tableb tableb_alternate">Integer</td>
     <td valign="top" class="tableb tableb_alternate">Primary key. Used throughout Coppermine to identify this file.</td>
-    <td valign="top" class="tableb tableb_alternate">
-        <a href="#db_albums-thumb">cpg15x_albums.thumb</a><br />
-        <a href="#db_categories-thumb">cpg15x_categories.thumb</a><br />
-        <a href="#db_comments-pid">cpg15x_comments.pid</a><br />
-        <a href="#db_exif-pid">cpg15x_exif.pid</a><br />
-        <a href="#db_hit_stats-pid">cpg15x_hit_stats.pid</a>
-    </td>
+    <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
     <td valign="top" class="tableb"><strong>aid</strong></td>
@@ -874,8 +866,8 @@
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><strong>ctime</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The date/time the file was added to Coppermine stored as a unix timestamp.<p><small>Note: Coppermine does not use this field when sorting files by date. (It uses the pid field instead).</small></p></td>
+    <td valign="top" class="tableb tableb_alternate">Unix timestamp</td>
+    <td valign="top" class="tableb tableb_alternate">The date/time the file was added to Coppermine.<p><small>Note: Coppermine does not use this field when sorting files by date. (It uses the pid field instead).</small></p></td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
@@ -1024,7 +1016,7 @@
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><strong>session_id</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=40 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">MD5 hash</td>
     <td valign="top" class="tableb tableb_alternate">Primary key. Session identifier. This is generated the first time a visitor loads a page and is retained until it expires. The <strong>user_id</strong> associated with the session is updated if the user logs in and out.</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
@@ -1038,8 +1030,8 @@
   </tr>
   <tr>
     <td valign="top" class="tableb tableb_alternate"><strong>time</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The time of the last action by the visitor stored as a unix timestamp. This is used to clean out expired sessions periodically.</td>
+    <td valign="top" class="tableb tableb_alternate">Unix timestamp</td>
+    <td valign="top" class="tableb tableb_alternate">The time of the last action by the visitor. This is used to clean out expired sessions periodically.</td>
     <td valign="top" class="tableb tableb_alternate"></td>
   </tr>
   <tr>
@@ -1049,6 +1041,348 @@
     <td valign="top" class="tableb"></td>
   </tr>
 </table>
+
+<a name="db_temp_messages"></a><h2>cpg15x_temp_messages<a href="#db_temp_messages" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Used to store messages from one page to the other.</p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</th>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
+    <th valign="top" align="left" class="tableh1">Description</th>
+    <th valign="top" align="left" class="tableh1">References</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>message_id</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=80 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">Primary key. Uniquely identifies the messages.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>user_id</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">The user the message is aimed at.</td>
+    <td valign="top" class="tableb">
+        <a href="#db_users-user_id">cpg15x_users.user_id</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>time</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Unix timestamp</td>
+    <td valign="top" class="tableb tableb_alternate">The time of the message. This is used to clean out expired messages periodically.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>message</strong></td>
+    <td valign="top" class="tableb">Text (<=65k chars)</td>
+    <td valign="top" class="tableb">The text of the message.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+</table>
+
+<a name="db_usergroups"></a><h2>cpg15x_usergroups<a href="#db_usergroups" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Contains the user groups. If bridged the table will contain imported groups from the forum. The data for the default groups are available in <i>sql/basic.sql</i></p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</th>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
+    <th valign="top" align="left" class="tableh1">Description</th>
+    <th valign="top" align="left" class="tableh1">References</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="db_usergroups-group_id"></a><strong>group_id</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Primary key. Uniquely identifies the group.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>group_name</strong></td>
+    <td valign="top" class="tableb">Text (<=255 chars)</td>
+    <td valign="top" class="tableb">The name of the group.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>group_quota</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Maximum amount of disk space (in bytes) that users in this group are permitted to upload to their user gallery.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>can_rate_pictures</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">Indicates whether or not this group has permission to vote/rate files.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>can_send_ecards</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Indicates whether or not this group has permission to send ecards files.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>can_post_comments</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">Indicates whether or not this group has permission to post comments.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>can_upload_pictures</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Indicates whether or not this group has permission to upload files to public albums.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>can_create_albums</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">Indicates whether or not this group has permission to upload files to their personal user gallery.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>pub_upl_need_approval</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Indicates whether or not this group must await approval for any uploads to public albums.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>priv_upl_need_approval</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">Indicates whether or not this group must await approval for any uploads to their personal user gallery.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>access_level</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Indicates what level of access the group has. 0 = no access, 1 = thumbnails only, 2 = thumbnails and intermedaite files, 3 = All</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+</table>
+
+<a name="db_users"></a><h2>cpg15x_users<a href="#db_users" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Contains all registered users. If bridged this table is not used, however the original admin account and any accounts created while unbridged will remain.</p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</th>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
+    <th valign="top" align="left" class="tableh1">Description</th>
+    <th valign="top" align="left" class="tableh1">References</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><a name="db_users-user_id"></a><strong>user_id</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Primary key. Uniquely identifies the user.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>user_group</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">The primary group of the user.</td>
+    <td valign="top" class="tableb">
+        <a href="#db_usergroups-group_id">cpg15x_usergroups.group_id</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>user_active</strong></td>
+    <td valign="top" class="tableb tableb_alternate">YES / NO</td>
+    <td valign="top" class="tableb tableb_alternate">Indicates whether the user has completed any necessary activation/approval steps after registration.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>user_name</strong></td>
+    <td valign="top" class="tableb">Text (<=25 chars)</td>
+    <td valign="top" class="tableb">Unique key. The name of the user.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>user_password</strong></td>
+    <td valign="top" class="tableb tableb_alternate">MD5 hash</td>
+    <td valign="top" class="tableb tableb_alternate">A hash of the user's password. The password cannot be determined from the hash, so the 'forgot password' feature generates a new password.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>user_lastvisit</strong></td>
+    <td valign="top" class="tableb">Datetime</td>
+    <td valign="top" class="tableb">The date/time of the last login by this user. This is only updated when the user logs in. If the user has never logged in this will be 0000-00-00 00:00:00</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>user_regdate</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Datetime</td>
+    <td valign="top" class="tableb tableb_alternate">The date/time the user registered their account.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>user_group_list</strong></td>
+    <td valign="top" class="tableb">Text (<=255 chars)</td>
+    <td valign="top" class="tableb">Any additional groups the user is a member of are listed here, separated with commas.</td>
+    <td valign="top" class="tableb">
+        <a href="#db_usergroups-group_id">cpg15x_usergroups.group_id</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>user_email</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">The current email address of the user.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>user_profile1</strong></td>
+    <td valign="top" class="tableb">Text (<=255 chars)</td>
+    <td valign="top" class="tableb">Custom profile field. By default this is 'Location'.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>user_profile2</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">Custom profile field. By default this is 'Interests'.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>user_profile3</strong></td>
+    <td valign="top" class="tableb">Text (<=255 chars)</td>
+    <td valign="top" class="tableb">Custom profile field. By default this is 'Website'.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>user_profile4</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">Custom profile field. By default this is 'Occupation'.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>user_profile5</strong></td>
+    <td valign="top" class="tableb">Text (<=255 chars)</td>
+    <td valign="top" class="tableb">Custom profile field. By default this is unused.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>user_profile6</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=65k chars)</td>
+    <td valign="top" class="tableb tableb_alternate">Custom profile field. By default this is 'Biography'. This field is longer than the others.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>user_actkey</strong></td>
+    <td valign="top" class="tableb">MD5 hash</td>
+    <td valign="top" class="tableb">Randomly generated key used in account activation.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>user_language</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=40 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">The user's language preference. Only half implemented.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+</table>
+
+<a name="db_votes"></a><h2>cpg15x_votes<a href="#db_votes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Tracks user votes to prevent repeat ratings. The table is pruned automatically.</p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</th>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
+    <th valign="top" align="left" class="tableh1">Description</th>
+    <th valign="top" align="left" class="tableh1">References</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>pic_id</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Composite primary key. The pid of the file the vote related to/</td>
+    <td valign="top" class="tableb tableb_alternate">
+        <a href="#db_pictures-pid">cpg15x_pictures.pid</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>user_md5_id</strong></td>
+    <td valign="top" class="tableb">MD5 hash</td>
+    <td valign="top" class="tableb">Composite primary key. A randomly generated unique id used to 'identify' anonymous users. For registered users this is the hash of the user_id.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>vote_time</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Unix timestamp</td>
+    <td valign="top" class="tableb tableb_alternate">The date/time of the vote. Used when cleaning the table of old votes.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+</table>
+
+<a name="db_vote_stats"></a><h2>cpg15x_vote_stats<a href="#db_vote_stats" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>If the detailed vote stats feature is enabled, this table will contain that data. Can safely be emptied or pruned if required.</p>
+<br />
+
+<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <th valign="top" align="left" class="tableh1">Field</th>
+    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
+    <th valign="top" align="left" class="tableh1">Description</th>
+    <th valign="top" align="left" class="tableh1">References</th>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>sid</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">Primary key. Used to identify this vote in the interface.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><a name="db_hit_stats-pid"></a><strong>pid</strong></td>
+    <td valign="top" class="tableb">Integer</td>
+    <td valign="top" class="tableb">The file that this vote was on.</td>
+    <td valign="top" class="tableb">
+        <a href="#db_pictures-pid">cpg15x_pictures.pid</a>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>rating</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">The rating given.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>ip</strong></td>
+    <td valign="top" class="tableb">Text (<=20 chars)</td>
+    <td valign="top" class="tableb">The IP address of the voter. This IP is derived from the REMOTE_ADDR variable. If the webserver is behind a proxy this will probably be the IP of the proxy.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>sdate</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Unix timestamp</td>
+    <td valign="top" class="tableb tableb_alternate">The date/time of the vote.</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>referer</strong></td>
+    <td valign="top" class="tableb">Text (<=65k chars)</td>
+    <td valign="top" class="tableb">If the voter arrived from another page, the URL of that page (if available) will be stored here.</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>browser</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
+    <td valign="top" class="tableb tableb_alternate">The web browser the voter used (if reported by the browser, and if recognised as a known browser).</td>
+    <td valign="top" class="tableb tableb_alternate"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb"><strong>os</strong></td>
+    <td valign="top" class="tableb">Text (<=50 chars)</td>
+    <td valign="top" class="tableb">The operating system the voter used (if reported by the browser, and if recognised as a known operating system).</td>
+    <td valign="top" class="tableb"></td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate"><strong>uid</strong></td>
+    <td valign="top" class="tableb tableb_alternate">Integer</td>
+    <td valign="top" class="tableb tableb_alternate">The id of the user if logged in, 0 for anonymous visitors.</td>
+    <td valign="top" class="tableb tableb_alternate">
+        <a href="#db_users-user_id">cpg15x_users.user_id</a>
+    </td>
+  </tr>
+</table>
+
 
 <script type="text/javascript">
   cpgDocFooter();
