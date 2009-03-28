@@ -18,6 +18,12 @@
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+if (!defined('PLUGINMGR_PHP')) {
+	define('PLUGINMGR_PHP', true);
+}
+if (!defined('ADMIN_PHP')) {
+    define('ADMIN_PHP', true);
+}
 if (!defined('CORE_PLUGIN')) {
     define('CORE_PLUGIN', true);
 }
@@ -42,23 +48,40 @@ $thisplugin->add_action('plugin_configure','online_configure');
 
 
 function online_configure() {
-        global $lang_plugin_php, $CONFIG, $lang_common;
+        global $lang_plugin_php, $CONFIG, $lang_common, $lang_pluginmgr_php, $lang_admin_php, $icon_array;
         $superCage = Inspekt::makeSuperCage();
         $action = $superCage->server->getEscaped('REQUEST_URI');
-        print <<< EOT
-    
+        $matches = $superCage->post->getMatched('main_page_layout', '/^[0-9a-z,\/]{1,}$/' );
+        $contentOfTheMainpage_array = explode('/',$matches[0]);
+        if (in_array('onlinestats', $contentOfTheMainpage_array) == TRUE){
+        	// We have a winner
+        }
+
+        echo <<< EOT
     <form action="{$action}" method="post">
         <table border="0" cellspacing="0" cellpadding="0" width="100%">
             <tr>
-                <td class="tableb">
+                <td class="tableb" width="50%">
                     {$lang_plugin_php['onlinestats_config_text']}
                 </td>
-                <td class="tableb">
+                <td class="tableb" width="50%">
                     <input size="2" type="text" name="duration" value="10" class="textinput" />
                     {$lang_plugin_php['onlinestats_minute']}
                 </td>
-                <td class="tableb">
-                    <input type="submit" name="submit" value="{$lang_common['go']}" class="button" />
+            </tr>
+            <tr>
+                <td class="tableb tableb_alternate">
+                    {$lang_admin_php['main_page_layout']}
+                </td>
+                <td class="tableb tableb_alternate">
+                    <input type="text" size="50" maxlength="250" class="textinput" style="width:90%" name="main_page_layout" id="main_page_layout"  value="{$CONFIG['main_page_layout']}" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tablef">
+                </td>
+                <td class="tablef">
+                    <button type="submit" class="button" name="submit" value="{$lang_common['go']}">{$icon_array['ok']}{$lang_common['go']}</button>
                 </td>
             </tr>
         </table>
@@ -68,9 +91,11 @@ EOT;
 
 function online_page_start()
 {
-        global $raw_ip, $CONFIG;
+        global $raw_ip, $CONFIG, $icon_array;
 
         $CONFIG['TABLE_ONLINE'] = $CONFIG['TABLE_PREFIX']."mod_online";
+        $icon_array['ok']  = cpg_fetch_icon('ok', 1);
+        $icon_array['config']  = cpg_fetch_icon('config', 1);
 
         $user_id = USER_ID;
         $user_name = USER_NAME;
@@ -243,7 +268,7 @@ function online_uninstall() {
 
 // Ask if we want to drop the table
 function online_cleanup($action) {
-    global $lang_plugin_php, $CONFIG, $lang_common;
+    global $lang_plugin_php, $CONFIG, $lang_common, $icon_array;
     $superCage = Inspekt::makeSuperCage();
     $cleanup = $superCage->server->getEscaped('REQUEST_URI');
     if ($action===1) {
@@ -263,7 +288,8 @@ function online_cleanup($action) {
                     <label for="drop_no" class="clickable_option">{$lang_common['no']}</label>
                 </td>
                 <td class="tableb">
-                    <input type="submit" name="submit" value="{$lang_common['go']}" class="button" />
+                    <button type="submit" class="button" name="submit" value="{$lang_common['go']}">{$icon_array['ok']}{$lang_common['go']}</button>
+
                 </td>
             </tr>
         </table>

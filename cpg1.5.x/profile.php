@@ -762,6 +762,7 @@ default:
     pageheader($title);
 
     starttable(-1, cpg_fetch_icon('my_profile', 2) . $title, 2);
+    $profile_data = CPGPluginAPI::filter('profile_add_data', array ( 0 => $display_profile_form_param, 1 => $form_data ));
     make_form($display_profile_form_param, $form_data);
     endtable();
 

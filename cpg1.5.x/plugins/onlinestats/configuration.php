@@ -20,7 +20,10 @@
 $name = $lang_plugin_php['onlinestats_name'];
 $description = $lang_plugin_php['onlinestats_description'];
 $author = 'Originally created by <a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=941">Nibbler</a>, <acronym title="internationalization">i18n</acronym> by <a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=9980">Frantz</a>';
-$version = '2.1';
-$extra_info = $lang_plugin_php['onlinestats_config_extra'];
+$version = '2.2';
+$extra_info = <<< EOT
+	<a href="index.php?file=onlinestats/index&amp;action=configure" class="admin_menu">{$lang_pluginmgr_php['configure_plugin']}</a>&nbsp;
+	 {$lang_plugin_php['onlinestats_config_extra']}
+EOT;
 $install_info = $lang_plugin_php['onlinestats_config_install'];
 ?>

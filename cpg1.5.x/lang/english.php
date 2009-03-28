@@ -2577,8 +2577,8 @@ $lang_plugin_php['opensearch_description'] = 'Description'; // cpg1.5
 $lang_plugin_php['opensearch_character_limit'] = '%s character limit'; // cpg1.5
 $lang_plugin_php['onlinestats_description'] = 'Display a block on each gallery page that shows users and guests actually online.';
 $lang_plugin_php['onlinestats_name'] = 'Who is online?';
-$lang_plugin_php['onlinestats_config_extra'] = 'To enable this plugin (make it actually display the onlinestats block), the string "onlinestats" (separated with a slash) has been added to "<a href="docs/en/configuration.htm#admin_album_list_content">the content of the main page</a>" in <a href="admin.php">Coppermine\'s config</a> in the section "Album list view". The setting should now look like "breadcrumb/catlist/alblist/onlinestats" or similar. To change the position of the block, move the string "onlinestats" around inside that config field.';
-$lang_plugin_php['onlinestats_config_install'] = 'The plugin runs additional queries on the database each time it is being executed, burning cpu cycles and using resources. If your Coppermine gallery is slow or has got a lot of users, you shouldn\'t use it.';
+$lang_plugin_php['onlinestats_config_extra'] = 'To enable this plugin (make it actually display the onlinestats block), the string "onlinestats" (separated with a slash) has been added to "the content of the main page" in <a href="admin.php">Coppermine\'s config</a> in the section "Album list view". The setting should now look like "breadcrumb/catlist/alblist/onlinestats" or similar. To change the position of the block, move the string "onlinestats" around inside that config field.';
+$lang_plugin_php['onlinestats_config_install'] = 'The plugin runs additional queries on the database each time it is being executed, burning CPU cycles and using resources. If your Coppermine gallery is slow or has got a lot of users, you shouldn\'t use it.';
 $lang_plugin_php['onlinestats_we_have_reg_member'] = 'There is %s registered user';
 $lang_plugin_php['onlinestats_we_have_reg_members'] = ' There are %s registered users';
 $lang_plugin_php['onlinestats_most_recent'] = 'The newest registered user is %s';

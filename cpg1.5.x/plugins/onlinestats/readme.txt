@@ -65,3 +65,7 @@ From 1.8 to 2.0
 * Introduced sanitization (Inspekt) to make this plugin fit for being used with cpg1.5.x
 * Added feature to enable the plugin once it get's installed by adding the string "onlinestats" to the config field "content of the main page" during plugin install
 * Cleaned up table layout
+
+From 2.0 to 2.2
+* Added config page link
+* Added option to move onlinestats placeholder around on plugin config screen

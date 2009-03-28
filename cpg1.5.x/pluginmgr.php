@@ -163,16 +163,16 @@ EOT;
                         <td colspan="2" class="tableh1">{$name} ({$pluginPath}): {$lang_pluginmgr_php['vers']}$version</td>
                     </tr>
                     <tr>
+                        <td class="tableb" valign="top">{$lang_pluginmgr_php['author']}:</td>
+                        <td class="tableb" valign="top">$author</td>
+                    </tr>
+                    <tr>
+                        <td class="tableb tableb_alternate" valign="top">{$lang_pluginmgr_php['desc']}</td>
+                        <td class="tableb tableb_alternate" valign="top">$description</td>
+                    </tr>
+                    <tr>
                         <td class="tableb" width="20%" valign="top">{$lang_pluginmgr_php['extra']}:</td>
                         <td class="tableb" valign="top">{$extra}</td>
-                    </tr>
-                    <tr>
-                        <td class="tableb tableb_alternate" valign="top">{$lang_pluginmgr_php['author']}:</td>
-                        <td class="tableb tableb_alternate" valign="top">$author</td>
-                    </tr>
-                    <tr>
-                        <td class="tableb" valign="top">{$lang_pluginmgr_php['desc']}</td>
-                        <td class="tableb" valign="top">$description</td>
                     </tr>
                 </table>
             </td>
