@@ -55,11 +55,11 @@ function display_group_list()
     $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1 ORDER BY group_id");
     if (!mysql_num_rows($result)) {
         cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-        VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3)");
+        VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3)");
         cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-        VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
+        VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3)");
         cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-        VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+        VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 3)");
         cpg_die(CRITICAL_ERROR, $lang_groupmgr_php['error_group_empty'], __FILE__, __LINE__);
     }
 
