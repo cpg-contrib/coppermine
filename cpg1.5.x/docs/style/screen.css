@@ -184,7 +184,7 @@ pre, .preBorder {
     border-right: #999999 1px solid;
     padding: 5px;
     border-top: #999999 1px solid;
-    font-size: 12px;
+    font-size: 0.9em;
     margin: 10px 10px 0px 0px;
     border-left: #999999 1px solid;
     border-bottom: #999999 1px solid;
@@ -508,3 +508,12 @@ dt {
     background-image: url('../images/message/example.png');
 }
 
+textarea.samplecode {
+    border: #999999 1px solid;
+    padding: 0px;
+    font-size: 9px;
+    margin: 0px 0px 0px 0px;
+    font-style: normal; font-family: "Courier New", Courier, monospace;
+    background-color: #E0E0E0;
+    width:100%;
+}
