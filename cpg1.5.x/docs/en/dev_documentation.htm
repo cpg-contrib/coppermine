@@ -87,6 +87,9 @@
 <a name="dev_documentation_hidden_feature"></a><h2>Hidden features<a href="#dev_documentation_hidden_feature" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>To display the content of a particular page of the documentation without the page header, logo, table of contents, search form and footer, add the URL parameter <tt class="code">hide_nav=1</tt> to the URL. This is meant to allow displaying content within an iframe or similar. Currently, this feature is being used in the installer only.</p>
 
+<a name="dev_documentation_database_structure"></a><h2>Database structure<a href="#dev_documentation_database_structure" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The documentation file <a href="dev_database.htm">dev_database.htm</a> contains documentation about Coppermine's database structure. It's important to keep that piece of the documentation in sync with the actual database changes, i.e. if a dev changes something at database level by editing <tt class="code">sql/basic.sql</tt>, <tt class="code">sql/schema.sql</tt> or <tt class="code">sql/update.sql</tt> that has an impact on the database schema, the documentation has to be updated as well, preferably with the same commit.</p>
+
 <script type="text/javascript">
   cpgDocFooter();
   dateRevision(' $LastChangedDate$ ', ' $Revision$ ');
