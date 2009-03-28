@@ -41,10 +41,40 @@
 <a name="db_intro"></a><h1>Database schema<a href="#db_intro" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>The following is a list of the tables created by Coppermine during installation plus a description of the fields used. The default table prefix of cpg15x_ is used here, but this is user configurable.</p>
 
+<a name="db_config_file"></a><h2>Configuration file<a href="#db_config_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Database details (mySQL hostname, database name, mySQL username, mySQL password, table prefix) are being stored in the file <tt class="code">include/config.inc.php</tt></p>
+<p>When migrating to another server or if the database details should change (e.g. if the mySQL password has been changed), reflect those changes by editing the file <tt class="code">include/config.inc.php</tt>, which does not come with the coppermine package, but is created during the install process of coppermine on the server.</p>
+
+<a name="db_reference within_code"></a><h2>Database reference within coppermine code<a href="#db_reference within_code" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>To reflect the ability of coppermine to use a common table prefix for all tables created by coppermine, there is no direct reference to the tables in the Coppermine code. If you try to modify Coppermine's core code or if your try to come up with a plugin of your own, you need to understand how Coppermine refers to the table names internally. Here's a list that should explain how to refer to tables within the code: the code snippet has been taken from <tt class="code">include/init.inc.php</tt>:</p>
+<textarea class="samplecode" rows="20" cols="80">$CONFIG['TABLE_PICTURES']      = $CONFIG['TABLE_PREFIX'].'pictures';
+$CONFIG['TABLE_ALBUMS']        = $CONFIG['TABLE_PREFIX'].'albums';
+$CONFIG['TABLE_COMMENTS']      = $CONFIG['TABLE_PREFIX'].'comments';
+$CONFIG['TABLE_CATEGORIES']    = $CONFIG['TABLE_PREFIX'].'categories';
+$CONFIG['TABLE_CONFIG']        = $CONFIG['TABLE_PREFIX'].'config';
+$CONFIG['TABLE_USERGROUPS']    = $CONFIG['TABLE_PREFIX'].'usergroups';
+$CONFIG['TABLE_VOTES']         = $CONFIG['TABLE_PREFIX'].'votes';
+$CONFIG['TABLE_USERS']         = $CONFIG['TABLE_PREFIX'].'users';
+$CONFIG['TABLE_BANNED']        = $CONFIG['TABLE_PREFIX'].'banned';
+$CONFIG['TABLE_EXIF']          = $CONFIG['TABLE_PREFIX'].'exif';
+$CONFIG['TABLE_FILETYPES']     = $CONFIG['TABLE_PREFIX'].'filetypes';
+$CONFIG['TABLE_ECARDS']        = $CONFIG['TABLE_PREFIX'].'ecards';
+$CONFIG['TABLE_FAVPICS']       = $CONFIG['TABLE_PREFIX'].'favpics';
+$CONFIG['TABLE_BRIDGE']        = $CONFIG['TABLE_PREFIX'].'bridge';
+$CONFIG['TABLE_VOTE_STATS']    = $CONFIG['TABLE_PREFIX'].'vote_stats';
+$CONFIG['TABLE_HIT_STATS']     = $CONFIG['TABLE_PREFIX'].'hit_stats';
+$CONFIG['TABLE_TEMP_MESSAGES'] = $CONFIG['TABLE_PREFIX'].'temp_messages';
+$CONFIG['TABLE_CATMAP']        = $CONFIG['TABLE_PREFIX'].'categorymap';
+$CONFIG['TABLE_LANGUAGE']      = $CONFIG['TABLE_PREFIX'].'languages';
+$CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
+<p class="cpg_example">If you want to refer to the albums table code-wise, use <tt class="code">$CONFIG['TABLE_ALBUMS']</tt>.</p>
+<p>In the individual table information below, you will find the variable name for each table as an example.</p>
+
 <a name="db_albums"></a><h2>cpg15x_albums<a href="#db_albums" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Stores information about albums. Albums contain files and are (optionally) contained within categories.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_ALBUMS']</tt>.</p>
 <br />
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -169,9 +199,10 @@
 
 <a name="db_banned"></a><h2>cpg15x_banned<a href="#db_banned" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Contains bans placed on users, user names, email addresses, and IP addresses.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_BANNED']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -226,9 +257,10 @@
 
 <a name="db_bridge"></a><h2>cpg15x_bridge<a href="#db_bridge" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Contains bridge configuration settings. Used only by the bridge manager and only when bridging is enabled.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_BRIDGE']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -253,9 +285,10 @@
 <p>Contains information about categories. Categories contain albums and can be infinitely nested.</p>
 <p>Coppermine uses both the adjacency list and nested set models to represent category heirarchy. For a description of these methods see <a href="http://dev.mysql.com/tech-resources/articles/hierarchical-data.html">dev.mysql.com</a>. The ajacency method should be used for simple lookups (eg. how many subcategories does category 3 have?) and the the nested set model should be used when generating a complete or partial hierarchy (eg. for a dropdown menu) since it scales much better.</p>
 <p>The category manager will regenerate the nested set representation from <strong>parent</strong> information if any category has <strong>lft</strong> set to 0. This is useful if you are importing categories from another system or have made changes manually.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_CATEGORIES']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -332,9 +365,10 @@
 
 <a name="db_categorymap"></a><h2>cpg15x_categorymap<a href="#db_categorymap" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Contains information on which groups have access to create albums in which categories.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_CATMAP']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -361,9 +395,10 @@
 
 <a name="db_comments"></a><h2>cpg15x_comments<a href="#db_comments" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Contains all comments made on files. This table can get quite large if you have lots of comments. It can safely be pruned to remove comments older than a certain date.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_COMMENTS']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -445,9 +480,10 @@
 <a name="db_config"></a><h2>cpg15x_config<a href="#db_config" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Contains main configuration settings.</p>
 <p>Plugins can also add settings here. If so, they should prefix their settings with the short name of the plugin and clean up when uninstalled.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_CONFIG']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -470,9 +506,10 @@
 
 <a name="db_dict"></a><h2>cpg15x_dict<a href="#db_dict" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>A list of all keywords that have been applied to files. Using this is more efficient that loading the keywords from the pictures table every time it's needed. It can be regenerated using the keyword_create_dict.php script.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_DICT']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -495,9 +532,10 @@
 
 <a name="db_ecards"></a><h2>cpg15x_ecards<a href="#db_ecards" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>If logging of sent ecards has been enabled, this table will contain that log. Can be used to see if the feature is being abused (or if it is being used at all).</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_ECARDS']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -556,9 +594,10 @@
 
 <a name="db_exif"></a><h2>cpg15x_exif<a href="#db_exif" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>EXIF data for pictures. This table is used as a cache to avoid having to read the EXIF data from the file every time it is viewed. Can safely be emptied - the data will be reloaded as needed.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_EXIF']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -583,9 +622,10 @@
 
 <a name="db_favpics"></a><h2>cpg15x_favpics<a href="#db_favpics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Stores the user's favorite files list.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_FAVPICS']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -610,9 +650,10 @@
 
 <a name="db_filetypes"></a><h2>cpg15x_filetypes<a href="#db_filetypes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>List of filetypes known to Coppermine. This tells Coppermine how to handle uploaded files based on the filename extension. Any files uploaded that are not of a known type will be rejected.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_FILETYPES']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="160px">Type</th>
@@ -649,9 +690,10 @@
 
 <a name="db_hit_stats"></a><h2>cpg15x_hit_stats<a href="#db_hit_stats" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>If the detailed hit stats feature is enabled, this table will contain that data. Can safely be emptied or pruned if required.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_HIT_STATS']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -720,9 +762,10 @@
 
 <a name="db_languages"></a><h2>cpg15x_languages<a href="#db_languages" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Contains the language file definitions.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_LANGUAGE']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -793,9 +836,10 @@
 
 <a name="db_pictures"></a><h2>cpg15x_pictures<a href="#db_pictures" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Contains all files that have been added to Coppermine. (Not just pictures).</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_PICTURES']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -970,7 +1014,7 @@
 <p>List the currently installed plugins.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -1007,7 +1051,7 @@
 <p>Tracks sessions for logged in and anonymous users. This is not used if Coppermine is bridged. As such, all relevant code can be found in <i>bridge/coppermine.inc.php</i>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -1044,9 +1088,10 @@
 
 <a name="db_temp_messages"></a><h2>cpg15x_temp_messages<a href="#db_temp_messages" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Used to store messages from one page to the other.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_TEMP_MESSAGES']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -1083,9 +1128,10 @@
 
 <a name="db_usergroups"></a><h2>cpg15x_usergroups<a href="#db_usergroups" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Contains the user groups. If bridged the table will contain imported groups from the forum. The data for the default groups are available in <i>sql/basic.sql</i></p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_USERGROUPS']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -1162,9 +1208,10 @@
 
 <a name="db_users"></a><h2>cpg15x_users<a href="#db_users" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Contains all registered users. If bridged this table is not used, however the original admin account and any accounts created while unbridged will remain.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_USERS']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -1281,9 +1328,10 @@
 
 <a name="db_votes"></a><h2>cpg15x_votes<a href="#db_votes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Tracks user votes to prevent repeat ratings. The table is pruned automatically.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_VOTES']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
@@ -1314,9 +1362,10 @@
 
 <a name="db_vote_stats"></a><h2>cpg15x_vote_stats<a href="#db_vote_stats" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>If the detailed vote stats feature is enabled, this table will contain that data. Can safely be emptied or pruned if required.</p>
+<p class="cpg_example">If you want to refer to this table code-wise, use <tt class="code">$CONFIG['TABLE_VOTE_STATS']</tt>.</p>
 <br />
 
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+<table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
     <th valign="top" align="left" class="tableh1">Field</th>
     <th valign="top" align="left" class="tableh1" width="120px">Type</th>
