@@ -66,7 +66,7 @@
         <li>Anyone who wants to download &amp; use plugins - you can use many plugins without knowing what they do internally</li>
     </ul>
     </div>
-    <p>People interested in using plugins but who do not need to modify them or write their own should read the main documentation instead - <a href="plugins.htm">the plugins section</a> describes everything you need to know.</p>
+    <p class="cpg_message_info">People interested in using plugins but who do not need to modify them or write their own should read the main documentation instead - <a href="plugins.htm">the plugins section</a> describes everything you need to know.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
     <a name="plugin_api_overview_skills"></a>
@@ -194,7 +194,7 @@
     return </span><span style="color: #0000BB">$html</span><span style="color: #007700">;
 }</span></span></pre>
 <p>Our function needs one parameter since it is attached to a filter hook (instead of an action hook), and here we name it <tt class="code">$html</tt>.  In this function, we add on the "Hello, world." text, which is tagged to be bold &amp; red for extra effect.  We need to ensure that the parameter is added-on to, <strong>not</strong> replaced, so that it plays well with other plugins who tag on to the same hook.  We place the parameter coming in on a separate line to ensure we don't forget to do this.  Finally, the function returns the modified parameter.  And that does it.</p>
-<p>So now you should know how a plugin, albeit a very basic plugin, works.  The other sections in this tutorial describe useful features to add to your plugin including installation, configuration, linking in Coppermine, multi-language support, and distributing your plugin as a package.  Read on and follow along.</p>
+<p>So now you should know how a plugin, albeit a very basic plugin, works.  The other sections in this tutorial describe useful features to add to your plugin including installation, configuration, linking in Coppermine, <a href="#plugin_api_tutorial_lang">multi-language support</a>, and distributing your plugin as a package.  Read on and follow along.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_installconfig"></a>
@@ -370,7 +370,31 @@
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_lang"></a>
 <h3>Multi-language Support<a href="#plugin_api_tutorial_lang" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Placeholder.  Content will be added.</p>
+<p>You can make your plugins capable to be used in multiple languages. Therefor, your mustn't hard-code language strings into your plugin, but use variables instead. As you wouldn't want to introduce a load of individual language variables, you better use an array, preferably following the naming scheme <tt class="code">$lang_plugin_foldername</tt>. All that is left to do is adding a little switch into your plugin that determines the end user's language and make it use the language file if present.</p>
+<p class="cpg_example">Let's assume that the folder your plugin resides in is named <tt class="code">coffee_maker</tt> and the name is "Coffee Maker".</p>
+<p>It's advisable to move the definition of languages and other resources that you want to use globaly into a separate file. This way, you can call the function directly if needed (outside the scope of the plugin).</p>
+<div class="cpg_example">Therefor, at the very start of codebase.php, right after the starting PHP tag, insert
+<pre>require_once "./plugins/coffee_maker/initialize.inc.php";</pre></div>
+<p>Of course you need to create the file you just refered to.</p>
+<div class="cpg_example">This is how the content of <tt class="code">initialize.inc.php</tt> should look like:
+<pre>&lt;?php
+function coffee_maker_language() {
+	global $CONFIG, $lang_plugin_coffee_maker;
+	require "./plugins/coffee_maker/lang/english.php";
+	if ($CONFIG['lang'] != 'english' && file_exists("./plugins/coffee_maker/lang/{$CONFIG['lang']}.php")) {
+	    require "./plugins/coffee_maker/lang/{$CONFIG['lang']}.php";
+	}
+}
+?&gt;</pre></div>
+<p>As you can see from the code above, inside your plugin's folder, there should be another folder named <tt class="code">lang</tt> that contains the language files. It needs to contains <tt class="code">english.php</tt> at least.</p>
+<div class="cpg_example">Here's how the content of english.php could look like:
+<pre>&lt;?php
+$lang_plugin_coffee_maker['plugin_name'] = 'Coffee Maker';
+$lang_plugin_coffee_maker['plugin_description'] = 'This plugin will turn your gallery into a full-featured coffee machine.';
+$lang_plugin_coffee_maker['coffee_bean'] = 'coffee bean';
+$lang_plugin_coffee_maker['brew'] = 'brew';
+?&gt;</pre></div>
+<p>Within <tt class="code">codebase.php</tt> or any other plugin file, you can then use the language strings instead of hard-coding them in. Don't forget to make them global inside functions (see <a href="http://www.php.net/manual/en/language.variables.scope.php" rel="external" class="external">PHP: variable scope</a>).</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_distrib"></a>
