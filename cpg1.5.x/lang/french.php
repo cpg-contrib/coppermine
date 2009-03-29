@@ -2626,6 +2626,10 @@ if (defined('CORE_PLUGIN')) {
   $lang_plugin_php['onlinestats_config_text'] = 'Combien de temps voulez vous laisser les visiteurs affichés comme en ligne avant de considérer qu\'ils sont partis ?';
   $lang_plugin_php['onlinestats_minute'] = 'minutes';
   $lang_plugin_php['onlinestats_remove'] = 'Effacez la table utilisée pour stocker les données du plugin ?';
+  $lang_plugin_php['link_target_name'] = 'Link target';
+  $lang_plugin_php['link_target_description'] = 'Changes the way external links are being opened: when this plugin is enabled, all links that contain the attribute rel="external" will open in a new window (instead of the same window).';
+  $lang_plugin_php['link_target_extra'] = 'This plugin has an impact mostly on the "Powered by Coppermine" link at the bottom of the gallery output.';
+  $lang_plugin_php['link_target_recommendation'] = 'It is recommended not to use this plugin to avoid bossing your users around: opening links in a new window means bossing around your site visitors.';
 }
 
 // ------------------------------------------------------------------------- //

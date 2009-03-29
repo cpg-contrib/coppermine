@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-03-29 [O] Removed hard-coded script that opened external links in new windows. Added corresponding plugin instead {GauGau}
 2009-03-26 [M] CPG_temp_data table no longer required {Nibbler}
 2009-03-25 [M] Removed language list, theme list and language flags from config (thread ID 58681) {GauGau}
 2009-02-22 [M] Renamed PHPMailer and SMTP classes to avoid conflicts with other scripts {Nibbler}

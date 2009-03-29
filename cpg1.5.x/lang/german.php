@@ -2599,5 +2599,9 @@ $lang_plugin_php['onlinestats_since'] = ' Registrierte Benutzer, die in den letz
 $lang_plugin_php['onlinestats_config_text'] = 'Wie lange sollen Besucher als online gezählt werden, bevor davon auszugehen ist, dass sie die Seite verlassen haben?';
 $lang_plugin_php['onlinestats_minute'] = 'Minuten';
 $lang_plugin_php['onlinestats_remove'] = 'Tabelle entfernen, in der die Online-Daten gespeichert wurden?';
+$lang_plugin_php['link_target_name'] = 'Link target';
+$lang_plugin_php['link_target_description'] = 'Ändert die Art, in der externe Links geöffnet werden: wenn dieses Plugin aktiviert ist werden alle Links, die das Attribute rel="external" tragen in einem neuen Fenster geöffnet (anstelle des gleichen Fensters).';
+$lang_plugin_php['link_target_extra'] = 'Dieses Plugin hat hauptsächlich Auswirkungen auf den "Powered by Coppermine" Verweis ganz unten auf der Seite.';
+$lang_plugin_php['link_target_recommendation'] = 'Es wird empfohlen, dieses Plugin nicht zu benutzen, um die Besucher der Galerie nicht unnötig zu bevormunden.';
 }
 ?>
