@@ -344,7 +344,7 @@ if (USER_ID > 0) {
 }
 
 // Include the jquery javascript library. Jquery will be included on all pages.
-js_include('js/jquery.js');
+js_include('js/jquery-1.3.2.js');
 
 // Include the bookmark JavaScript if at least one bookmarking service is selected
 if (!empty($CONFIG['display_social_bookmarks'])) {
