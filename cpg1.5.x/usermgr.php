@@ -123,7 +123,7 @@ function list_groups_alb_access() //shows a list of albums each group can see. C
     foreach($groups as $group) {
         $group_name = $group['group_name'];
         $group_id = $group['group_id'];
-        echo '<tr><td colspan="3" class="tableh1_compact">' . $group_name . '</td></tr>';
+        echo '<tr><td colspan="3" class="tableh1">' . $group_name . '</td></tr>';
         list_group_alb_access($group_id);
     }
     endtable();
@@ -164,10 +164,10 @@ function list_users($search = '')
         }
     }
 
-    $tab_tmpl = array('left_text' => '<td width="100%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap">' . $lang_usermgr_php['u_user_on_p_pages'] . '</td>' . "\n",
+    $tab_tmpl = array('left_text' => '<td width="100%" align="left" valign="middle" class="tableh1" style="white-space: nowrap">' . $lang_usermgr_php['u_user_on_p_pages'] . '</td>' . "\n",
         'tab_header' => '',
         'tab_trailer' => '',
-        'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact">%d</td>',
+        'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb">%d</td>',
         'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="' . $CPG_PHP_SELF . '?page=%d&amp;sort=' . $sort . '"%d</a></td>' . "\n"
         );
 

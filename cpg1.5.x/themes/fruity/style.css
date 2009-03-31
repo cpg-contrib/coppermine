@@ -133,16 +133,6 @@ form {
     background-position : bottom;
 }
 
-.comment_button {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 10px;
-    border: 1px solid #005D8C;
-    background-image : url(images/button_bg.gif);
-    background-position : bottom;
-    padding-left: 3px;
-    padding-right: 3px;
-}
-
 .radio {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -220,16 +210,6 @@ a:hover.yebg {
     font-weight:bold;
 }
 
-.tableh1_compact {
-    background : #6BBE10 ;
-    color : #FFFFFF;
-    padding-top: 2px;
-    padding-right: 5px;
-    padding-bottom: 2px;
-    padding-left: 5px;
-    font-weight:bold;
-}
-
 .tableh2 {
     background: #F7F37B ;
     color : #000000;
@@ -237,16 +217,6 @@ a:hover.yebg {
     padding-right: 10px;
     padding-bottom: 3px;
     padding-left: 10px;
-}
-
-.tableh2_compact {
-    background: #FFFF00 ;
-    color : #000000;
-    font-weight:bold;
-    padding-top: 2px;
-    padding-right: 5px;
-    padding-bottom: 2px;
-    padding-left: 5px;
 }
 
 .tableb {
@@ -262,14 +232,6 @@ a:hover.yebg {
 /* It's recommended to only assign another background color that slightly differs from the one defined in tableb */
 .tableb_alternate {
     background: #CCFF66;
-}
-
-.tableb_compact {
-    background: #F7F37B ;
-    padding-top: 2px;
-    padding-right: 5px;
-    padding-bottom: 2px;
-    padding-left: 5px;
 }
 
 .tablef {

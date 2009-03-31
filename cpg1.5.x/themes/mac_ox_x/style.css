@@ -54,11 +54,11 @@ body {
 	color : #666666; 
 }
 
-.tableh1, .tableh1a, .tableh1_compact, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover { 
+.tableh1, .tableh1a, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover { 
 	color : #000000; 
 }
 
-.tableh2, .tableh2_compact, .catrow_noalb { 
+.tableh2, .catrow_noalb { 
 	color : #000000; 
 }
 
@@ -78,7 +78,7 @@ a:hover, .bblink a:hover, .user_thumb_infobox a:hover, .alblink a:hover, .catlin
 	color : #666666; 
 }
 
-.button, .comment_button, .admin_menu, .admin_menu a, .admin_menu a:hover { 
+.button, .admin_menu, .admin_menu a, .admin_menu a:hover { 
 	color : #000000; 
 }
 
@@ -100,15 +100,15 @@ body {
 	background-color: #FFFFFF; 
 }
 
-.tableh1, .tableh1_compact, .navmenu, .navmenu a, .navmenu a:hover  {
+.tableh1, .navmenu, .navmenu a, .navmenu a:hover  {
 	background : #FFFFFF ; 
 }
 
-.tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {         
+.tableh2, .catrow_noalb, .tablef, .img_caption_table th {         
 	background : #FFFFFF ; 
 }
 
-.tableb, .catrow, .display_media, .tableb_compact, .thumbnails, .img_caption_table td { 
+.tableb, .catrow, .display_media, .thumbnails, .img_caption_table td { 
 	background : #FFFFFF ; 
 }
 
@@ -120,7 +120,7 @@ body {
 }
 
 /* Borders for input controls */
-.textinput, .listbox, .button, .comment_button, .admin_menu  {        
+.textinput, .listbox, .button, .admin_menu  {        
 	border: 1px solid #666666; 
 }
 
@@ -275,14 +275,6 @@ form {
     background-position : bottom;
 }
 
-.comment_button {
-    font-size: 100%;
-    background-image : url(images/button_bg.gif);
-    background-position : bottom;
-    padding-left: 3px;
-    padding-right: 3px;
-}
-
 .radio {
     font-size: 100%;
     vertical-align : middle;
@@ -338,16 +330,6 @@ a:hover {
     display: block;
 }
 
-.tableh1_compact {
-    padding-top: 2px;
-    padding-right: 5px;
-    padding-bottom: 2px;
-    padding-left: 5px;
-    height: 25px;
-    background-image: url(images/tableh1_bg.gif);
-    font-weight:bold;
-}
-
 .tableh2 {
     padding-top: 3px;
     padding-right: 10px;
@@ -356,27 +338,11 @@ a:hover {
     background-image: url(images/tableh2_bg.gif);
 }
 
-.tableh2_compact {
-    padding-top: 2px;
-    padding-right: 5px;
-    padding-bottom: 2px;
-    padding-left: 5px;
-    background-image: url(images/tableh2_bg.gif);
-    font-weight:bold;
-}
-
 .tableb {
     padding-top: 3px;
     padding-right: 10px;
     padding-bottom: 3px;
     padding-left: 10px;
-}
-
-.tableb_compact {
-    padding-top: 2px;
-    padding-right: 5px;
-    padding-bottom: 2px;
-    padding-left: 5px;
 }
 
 .tablef {

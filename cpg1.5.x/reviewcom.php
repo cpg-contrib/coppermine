@@ -549,7 +549,7 @@ while ($row = mysql_fetch_array($result)) {
     $rowcounter++;
     if ($rowcounter >=2 ) { //let the row colors alternate, for now they are the same
         $rowcounter = 0;
-        $tableclass = 'tableb'; // change to "tableh2_compact" or similar for alternation
+        $tableclass = 'tableb'; // change to "tableh2" or similar for alternation
     } else {
         $tableclass = 'tableb tableb_alternate';
     }

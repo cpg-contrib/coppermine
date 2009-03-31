@@ -49,9 +49,9 @@ table { border-collapse: collapse; }
 
 .topmenu a:hover { color : #666666; }
 
-.tableh1, .tableh1a, .tableh1_compact, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover { color : #FFC956; }
+.tableh1, .tableh1a, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover { color : #FFC956; }
 
-.tableh2, .tableh2_compact, .catrow_noalb { color : #FFC956; }
+.tableh2, .catrow_noalb { color : #FFC956; }
 
 .textinput, .listbox, .radio, .checkbox { color: #FFFFFF; }
 
@@ -63,7 +63,7 @@ a, .bblink a, .user_thumb_infobox a  { color: #447AC9; }
 
 a:hover, .bblink a:hover, .user_thumb_infobox a:hover { color : #0397FF; }
 
-.button, .comment_button, .admin_menu, .admin_menu a, .admin_menu a:hover { color : #FFFFFF; }
+.button, .admin_menu, .admin_menu a, .admin_menu a:hover { color : #FFFFFF; }
 
 .comment_date { color : #999999; }
 
@@ -75,11 +75,11 @@ body { background-color: #000000; }
 
 .textinput, .listbox, .radio, .checkbox { background-color: #000000; }
 
-.tableh1, .tableh1_compact, .navmenu, .navmenu a, .navmenu a:hover  {         background : #000000 ; }
+.tableh1, .navmenu, .navmenu a, .navmenu a:hover  {         background : #000000 ; }
 
-.tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {         background : #000000 ; }
+.tableh2, .catrow_noalb, .tablef, .img_caption_table th {         background : #000000 ; }
 
-.tableb, .catrow, .tableb_compact, .thumbnails, .img_caption_table td { background : #000000 ; }
+.tableb, .catrow, .thumbnails, .img_caption_table td { background : #000000 ; }
 
 /* This class will be used in conjunction with class tableb: attributes not particularly (re)-assigned will be taken into account from tableb. */
 /* It is being used to accomplish alternating row colors for lists. */
@@ -90,7 +90,7 @@ body { background-color: #000000; }
 
 
 /* Borders for input controls */
-.textinput, .listbox, .button, .comment_button, .admin_menu {        border: 1px solid #666666; }
+.textinput, .listbox, .button, .admin_menu {        border: 1px solid #666666; }
 
 .image { border: 1px solid #FFFFFF; }
 
@@ -151,7 +151,7 @@ body { font-family: Arial, Helvetica, sans-serif; }
 
 .textinput, .listbox, .radio, .checkbox { font-family: Arial, Helvetica, sans-serif; }
 
-.button, .comment_button, .sortorder_options, { font-family: Arial, Helvetica, sans-serif; }
+.button, .sortorder_options, { font-family: Arial, Helvetica, sans-serif; }
 
 
 table {
@@ -263,17 +263,6 @@ form {
     height: 20px;
 }
 
-
-.comment_button {
-    font-size: 100%;
-    background-image : url(images/button_bg.gif);
-    background-position : bottom;
-    padding-left: 3px;
-    padding-right: 3px;
-    height: 20px;
-}
-
-
 .radio {
     font-size: 100%;
     vertical-align : middle;
@@ -355,15 +344,6 @@ a:hover {
 }
 
 
-.tableh1_compact {
-    padding-top: 2px;
-    padding-right: 5px;
-    padding-bottom: 2px;
-    padding-left: 5px;
-    height: 25px;
-}
-
-
 .tableh2 {
     padding-top: 3px;
     padding-right: 10px;
@@ -371,29 +351,12 @@ a:hover {
     padding-left: 10px;
 }
 
-.tableh2_compact {
-    padding-top: 2px;
-    padding-right: 5px;
-    padding-bottom: 2px;
-    padding-left: 5px;
-    font-weight:bold;
-}
-
-
 .tableb {
     padding-top: 3px;
     padding-right: 10px;
     padding-bottom: 3px;
     padding-left: 10px;
 }
-
-.tableb_compact {
-    padding-top: 2px;
-    padding-right: 5px;
-    padding-bottom: 2px;
-    padding-left: 5px;
-}
-
 
 .tablef {
     padding-top: 10px;

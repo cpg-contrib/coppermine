@@ -892,14 +892,14 @@ EOT;
 $template_image_rating = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
-                <td colspan="6" class="tableh2_compact" id="voting_title"><strong>{TITLE}</strong> {VOTES}</td>
+                <td colspan="6" class="tableh2" id="voting_title"><strong>{TITLE}</strong> {VOTES}</td>
         </tr>
         <tr  id="rating_stars">
-            <td class="tableb_compact" id="star_rating" ></td>
+            <td class="tableb" id="star_rating" ></td>
         </tr>
     <noscript>
         <tr>
-          <td class="tableb_compact" colspan="6" align="center">{JS_WARNING}</td>
+          <td class="tableb" colspan="6" align="center">{JS_WARNING}</td>
         </tr>
         </noscript>
 </table>
@@ -919,7 +919,7 @@ $template_image_comments = <<<EOT
                 <td>
                         <table width="100%" cellpadding="0" cellspacing="0">
                            <tr>
-                                <td class="tableh2_compact" nowrap="nowrap">
+                                <td class="tableh2" nowrap="nowrap">
                                         <strong>{MSG_AUTHOR_LNK}</strong><a name="comment{MSG_ID}"></a>&nbsp;
 <!-- BEGIN ipinfo -->
                                                                                  ({IP})
@@ -928,7 +928,7 @@ $template_image_comments = <<<EOT
 </td>
 
 
-                                <td class="tableh2_compact" align="right" width="100%">
+                                <td class="tableh2" align="right" width="100%">
 <!-- BEGIN report_comment_button -->
      <a href="report_file.php?pid={PID}&amp;msg_id={MSG_ID}&amp;what=comment" title="{REPORT_COMMENT_TITLE}">{REPORT_COMMENT_ICON}</a>
 <!-- END report_comment_button -->
@@ -942,7 +942,7 @@ $template_image_comments = <<<EOT
                                         <a href="delete.php?msg_id={MSG_ID}&amp;what=comment" onclick="return confirm('{CONFIRM_DELETE}');" title="{DELETE_TITLE}">{DELETE_ICON}</a>
 <!-- END buttons -->
                                 </td>
-                                <td class="tableh2_compact" align="right" nowrap="nowrap">
+                                <td class="tableh2" align="right" nowrap="nowrap">
                                         <span class="comment_date">[{MSG_DATE}]</span>
                                 </td></tr>
                         </table>
@@ -971,7 +971,7 @@ $template_image_comments = <<<EOT
                                                 <td class="tableb tableb_alternate">
                                                 </td>
                                                 <td>
-                                                        <input type="submit" class="comment_button" name="submit" value="{OK}" />
+                                                        <input type="submit" class="button" name="submit" value="{OK}" />
                                                 </td>
                                                 </form>
                                         </tr>
@@ -1001,7 +1001,7 @@ $template_image_comments = <<<EOT
                                                 <td class="tableb tableb_alternate">
                                                 </td>
                                                 <td>
-                                                        <input type="submit" class="comment_button" name="submit" value="{OK}" />
+                                                        <input type="submit" class="button" name="submit" value="{OK}" />
                                                 </td>
                                                 </form>
                                         </tr>
@@ -1026,7 +1026,7 @@ $template_add_your_comment = <<<EOT
         <form method="post" name="post" id="post" action="db_input.php">
                 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
                         <tr>
-                                        <td width="100%" class="tableh2_compact">{ADD_YOUR_COMMENT}{HELP_ICON}</td>
+                                        <td width="100%" class="tableh2">{ADD_YOUR_COMMENT}{HELP_ICON}</td>
                         </tr>
                         <tr>
                 <td colspan="1">
@@ -1061,7 +1061,7 @@ $template_add_your_comment = <<<EOT
                                 <td class="tableb tableb_alternate">
                                 <input type="hidden" name="event" value="comment" />
                                 <input type="hidden" name="pid" value="{PIC_ID}" />
-                                <input type="submit" class="comment_button" name="submit" value="{OK}" onclick="return notDefaultUsername(this.form, '{DEFAULT_USERNAME}', '{DEFAULT_USERNAME_MESSAGE}');" />
+                                <input type="submit" class="button" name="submit" value="{OK}" onclick="return notDefaultUsername(this.form, '{DEFAULT_USERNAME}', '{DEFAULT_USERNAME_MESSAGE}');" />
                                 </td>
 <!-- END submit -->
                                                         </tr>
@@ -1408,7 +1408,7 @@ EOT;
 ******************************************************************************/
 // Template used for tabbed display
 $template_tab_display = array(
-    'left_text'         => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap">{LEFT_TEXT}</td>' . "\n",
+    'left_text'         => '<td width="100%%" align="left" valign="middle" class="tableh1" style="white-space: nowrap">{LEFT_TEXT}</td>' . "\n",
     'tab_header'        => '',
     'tab_trailer'       => '',
     'active_tab'        => '<td align="center" valign="middle" class="tableb tableb_alternate">%d</td>',
@@ -3017,7 +3017,7 @@ function theme_html_picinfo(&$info)
     }
 
     $html = '';
-    $html .= "        <tr><td colspan=\"2\" class=\"tableh2_compact\">{$lang_picinfo['title']}</td></tr>\n";
+    $html .= "        <tr><td colspan=\"2\" class=\"tableh2\">{$lang_picinfo['title']}</td></tr>\n";
     $template = "        <tr><td class=\"tableb tableb_alternate\" valign=\"top\" >%s:</td><td class=\"tableb tableb_alternate\">%s</td></tr>\n";
     foreach ($info as $key => $value) {
         $html .= sprintf($template, $key, $value);
@@ -3428,7 +3428,7 @@ function theme_html_rating_box()
 
     if($CONFIG['old_style_rating']){
         //use old style rating
-        $start_td = '<td class="tableb_compact" width="17%" align="center">';
+        $start_td = '<td class="tableb" width="17%" align="center">';
         $end_td = '</td>';
         $empty_star = '<img style="cursor:pointer" id="' . $pid . '_0" title="0" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['rubbish'] . '" onclick="rate(this)" />';
         $rating_images = $start_td . $empty_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
@@ -3537,7 +3537,7 @@ function theme_html_comments($pid)
         echo '<br />';
         starttable();
 
-        echo '<tr><td class="tableh2_compact"><div style="float: left">'.($start+1).' to '.min($num, $start+$limit).' of '.$num.'</div>';
+        echo '<tr><td class="tableh2"><div style="float: left">'.($start+1).' to '.min($num, $start+$limit).' of '.$num.'</div>';
         echo '<div style="float: right">Page: ';
         $links = array();
 

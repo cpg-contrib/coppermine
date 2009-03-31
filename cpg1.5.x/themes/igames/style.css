@@ -60,11 +60,11 @@ body {
 	color : #FFFFCC;
 }
 
-.tableh1, .tableh1a, .tableh1_compact, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover {
+.tableh1, .tableh1a, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover {
 	color : #C6B78E;
 }
 
-.tableh2, .tableh2_compact, .catrow_noalb {
+.tableh2, .catrow_noalb {
 	color : #FFFFCC;
 }
 
@@ -84,7 +84,7 @@ a:hover, .bblink a:hover, .user_thumb_infobox a:hover, .alblink a:hover, .catlin
 	color : #E6E6E6;
 }
 
-.button, .comment_button, .admin_menu, .admin_menu a, .admin_menu a:hover {
+.button, .admin_menu, .admin_menu a, .admin_menu a:hover {
 	color : #FFFFFF;
 }
 
@@ -105,15 +105,15 @@ body {
 	background-color: #4A4A4A;
 }
 
-.tableh1, .tableh1_compact, .navmenu, .navmenu a, .navmenu a:hover  {
+.tableh1, .navmenu, .navmenu a, .navmenu a:hover  {
 	background : #3F3F3F;
 }
 
-.tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {
+.tableh2, .catrow_noalb, .tablef, .img_caption_table th {
 	background : #343333;
 }
 
-.tableb, .catrow, .display_media, .tableb_compact, .thumbnails, .img_caption_table td {
+.tableb, .catrow, .display_media, .thumbnails, .img_caption_table td {
 	background : #454444;
 }
 
@@ -127,7 +127,7 @@ body {
 }
 
 /* Borders for input controls */
-.textinput, .listbox, .button, .comment_button, .admin_menu  {
+.textinput, .listbox, .button, .admin_menu  {
 	border: 1px solid #666666;
 }
 
@@ -187,7 +187,7 @@ body {
 	font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
 }
 
-.button, .comment_button, .sortorder_options {
+.button, .sortorder_options {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -395,14 +395,6 @@ form {
     background-position : bottom;
 }
 
-.comment_button {
-    font-size: 100%;
-    background-image : url(images/button_bg.gif);
-    background-position : bottom;
-    padding-left: 3px;
-    padding-right: 3px;
-}
-
 .radio {
     font-size: 100%;
     vertical-align : middle;
@@ -471,17 +463,6 @@ a:hover {
     display: block;
 }
 
-.tableh1_compact {
-    padding-top: 2px;
-    padding-right: 5px;
-    padding-bottom: 2px;
-    padding-left: 5px;
-    border-bottom: 1px solid #000000;
-    border-right: 1px solid #000000;
-    height: 25px;
-    background-image: url(images/tableh1_bg.gif);
-}
-
 .tableh2 {
     padding-top: 3px;
     padding-right: 10px;
@@ -489,26 +470,11 @@ a:hover {
     padding-left: 10px;
 }
 
-.tableh2_compact {
-    padding-top: 2px;
-    padding-right: 5px;
-    padding-bottom: 2px;
-    padding-left: 5px;
-    font-weight:bold;
-}
-
 .tableb {
     padding-top: 3px;
     padding-right: 10px;
     padding-bottom: 3px;
     padding-left: 10px;
-}
-
-.tableb_compact {
-    padding-top: 2px;
-    padding-right: 5px;
-    padding-bottom: 2px;
-    padding-left: 5px;
 }
 
 .tablef {

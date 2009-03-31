@@ -229,16 +229,16 @@ $tableHeader1 = $lang_db_ecard_php['title']." (".$lang_db_ecard_php['ecard_sorte
 
 starttable('100%', cpg_fetch_icon('ecard_review', 2) . $tableHeader1, 3);
 
-print '<tr><td class="tableb_compact">';
+print '<tr><td class="tableb">';
 printf($lang_db_ecard_php['ecard_number'], $currentStart, $currentEnd, $totalEcards);
-print '</td><td class="tableb_compact">';
+print '</td><td class="tableb">';
 
 if ($maxPage > 1) {
     print $lang_db_ecard_php['ecard_goto_page'] . ' ';
     print $tabOutput;
 }
 
-print '</td><td align="right" class="tableb_compact">';
+print '</td><td align="right" class="tableb">';
 print $lang_db_ecard_php['ecard_records_per_page'];
 print '  <select onchange="if(this.options[this.selectedIndex].value) window.location.href=\''.$formTarget.'count=\'+this.options[this.selectedIndex].value;"  name="count" class="listbox">';
 
@@ -262,10 +262,10 @@ starttable('100%');
 
 print <<< EOT
     <tr>
-        <th class="tableh1_compact" align="left" valign="bottom" rowspan="2"></th>
-        <th class="tableh1_compact" colspan="3" align="left" valign="bottom">{$lang_db_ecard_php['ecard_sender']}</th>
-        <th class="tableh1_compact" colspan="2" align="left" valign="bottom">{$lang_db_ecard_php['ecard_recipient']}</th>
-        <th class="tableh1_compact" rowspan="2" align="left" valign="bottom">{$lang_db_ecard_php['ecard_date']}
+        <th class="tableh1" align="left" valign="bottom" rowspan="2"></th>
+        <th class="tableh1" colspan="3" align="left" valign="bottom">{$lang_db_ecard_php['ecard_sender']}</th>
+        <th class="tableh1" colspan="2" align="left" valign="bottom">{$lang_db_ecard_php['ecard_recipient']}</th>
+        <th class="tableh1" rowspan="2" align="left" valign="bottom">{$lang_db_ecard_php['ecard_date']}
             <a href="{$urlWithoutSort}sort=da">
                 <img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
             </a>
@@ -274,10 +274,10 @@ print <<< EOT
                 <img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
             </a>
         </th>
-        <th class="tableh1_compact" rowspan="2" align="left" valign="bottom"></th>
+        <th class="tableh1" rowspan="2" align="left" valign="bottom"></th>
     </tr>
     <tr>
-        <th class="tableh1_compact" align="left" valign="bottom">{$lang_db_ecard_php['ecard_name']}
+        <th class="tableh1" align="left" valign="bottom">{$lang_db_ecard_php['ecard_name']}
             <a href="{$urlWithoutSort}sort=sna">
                 <img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
             </a>
@@ -286,7 +286,7 @@ print <<< EOT
                 <img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
             </a>
         </th>
-        <th class="tableh1_compact" align="left" valign="bottom">{$lang_db_ecard_php['ecard_email']}
+        <th class="tableh1" align="left" valign="bottom">{$lang_db_ecard_php['ecard_email']}
             <a href="{$urlWithoutSort}sort=sea">
                 <img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
             </a>
@@ -295,7 +295,7 @@ print <<< EOT
                 <img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
             </a>
         </th>
-        <th class="tableh1_compact" align="left" valign="bottom">{$lang_db_ecard_php['ecard_ip']}
+        <th class="tableh1" align="left" valign="bottom">{$lang_db_ecard_php['ecard_ip']}
             <a href="{$urlWithoutSort}sort=ia">
                 <img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
             </a>
@@ -304,7 +304,7 @@ print <<< EOT
                 <img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
             </a>
         </th>    
-        <th class="tableh1_compact" align="left" valign="bottom">{$lang_db_ecard_php['ecard_name']}
+        <th class="tableh1" align="left" valign="bottom">{$lang_db_ecard_php['ecard_name']}
             <a href="{$urlWithoutSort}sort=rna">
                 <img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
             </a>
@@ -313,7 +313,7 @@ print <<< EOT
                 <img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
             </a>
         </th>
-        <th class="tableh1_compact" align="left" valign="bottom">{$lang_db_ecard_php['ecard_email']}
+        <th class="tableh1" align="left" valign="bottom">{$lang_db_ecard_php['ecard_email']}
             <a href="{$urlWithoutSort}sort=rea">
                 <img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
             </a>
@@ -384,13 +384,13 @@ mysql_free_result($result);
 echo <<< EOT
 
     <tr>
-        <td class="tableh1_compact" align="center"></td>
-        <td colspan="3" class="tableh1_compact">
+        <td class="tableh1" align="center"></td>
+        <td colspan="3" class="tableh1">
             <input type="button" name="CheckAll" class="button" value="{$lang_db_ecard_php['check_all']}" onclick="check(true)" />
             &nbsp;
             <input type="button" name="UnCheckAll" class="button" value="{$lang_db_ecard_php['uncheck_all']}" onclick="check(false)" />
         </td>
-        <td colspan="4" class="tableh1_compact" align="left">
+        <td colspan="4" class="tableh1" align="left">
             <input type="submit" class="button" name="delete" value="{$lang_db_ecard_php['ecards_delete_selected']}" disabled="disabled" />
             &nbsp;
             <input name="agreecheck" id="agreecheck" type="checkbox" onclick="agreesubmit()" />
