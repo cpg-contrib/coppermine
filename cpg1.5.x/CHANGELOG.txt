@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-03-31 [D] Added document about style.css (work in progress) {GauGau}
 2009-03-30 [M] Upgraded jquery to version 1.3.2 {Abbas}
 2009-03-29 [O] Removed hard-coded script that opened external links in new windows. Added corresponding plugin instead {GauGau}
 2009-03-26 [M] CPG_temp_data table no longer required {Nibbler}
