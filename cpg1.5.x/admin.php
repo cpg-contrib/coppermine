@@ -212,7 +212,7 @@ $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE
 $tabindexCounter      = 1;
 $numberOfConfigFields = count($CONFIG);
 
-print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform" onSubmit="return deleteUnneededFields();">';
+print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform" onsubmit="return deleteUnneededFields();">';
 starttable('100%', cpg_fetch_icon('config', 2) . $lang_admin_php['title'] . ' - ' . $signature, 2);
 print <<< EOT
     <tr>
@@ -243,9 +243,9 @@ EOT;
     $withinSectionLoopCounter = 0;
     foreach ($config_section_value as $key => $value) {
         if ($withinSectionLoopCounter/2 == floor($withinSectionLoopCounter/2)) {
-            $cellStyle = 'tableb '.$withinSectionLoopCounter;
+            $cellStyle = 'tableb ';
         } else {
-            $cellStyle = 'tableb tableb_alternate '.$withinSectionLoopCounter;
+            $cellStyle = 'tableb tableb_alternate ';
         }
 
         if (isset($value['only_display_if']) && $value['only_display_if'] != $CONFIG[$key]) {  // change the type if a "one-way-setting" is in place
@@ -287,11 +287,11 @@ EOT;
         print <<< EOT
 
                 <tr{$visibility}>
-                  <td class="{$cellStyle}" width="60%">
+                  <td class="{$cellStyle}" style="vertical-align:top;" width="50%">
                     <a name="{$key}"></a>
                     {$labelWrapperStart}{$lang_admin_php[$key]} {$value['additional_description']}{$warningPopUp}{$labelWrapperEnd}
                   </td>
-                  <td class="{$cellStyle}" width="50%">
+                  <td class="{$cellStyle}" style="vertical-align:top;" width="40%">
 EOT;
         // grey out the field if not applicable because bridging is enabled
         //if ($value['bridged'] == 'hide') { //
@@ -431,12 +431,12 @@ EOT;
         $resetCheckbox = str_replace("'", "\'", $resetCheckbox);
         print <<< EOT
                   </td>
-                  <td class="{$cellStyle}">
+                  <td class="{$cellStyle}" style="vertical-align:top;" width="5%">
                     <script type="text/javascript">
                         document.write('{$resetCheckbox}');
                     </script>
                   </td>
-                  <td class="{$cellStyle}">
+                  <td class="{$cellStyle}" style="vertical-align:top;" width="5%">
                     {$helpIcon}
                   </td>
                 </tr>
