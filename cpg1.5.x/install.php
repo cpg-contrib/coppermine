@@ -1231,7 +1231,7 @@ function checkPermissions()
         if (!is_dir($folder)) {
             $peCheck = false;
             $GLOBALS['error'] .= sprintf($language['subdir_called'], $folder) . '<br /><br />';
-            $temp_data .= "<tr><td>$folder</td><td><font color='red'>{$language['not_exist']}</font></td></tr>";
+            $temp_data .= "<tr><td>$folder</td><td><div class=\"cpg_message_error\">{$language['not_exist']}</div></td></tr>";
         } else {
             // try to create a file in the folder
             $test_file = $folder . '/testwritability';
@@ -1250,12 +1250,12 @@ function checkPermissions()
                         $peCheck = false;
                         $possible_modes_left = implode(' '.$language['or'].' ',array_diff($perm,array($mode)));
                         $GLOBALS['error'] .= sprintf($language['perm_error'], $folder, $mode) . ' ' . $possible_modes_left . '.<br />';
-                        $temp_data .= "<tr><td>$folder</td><td><font color='red'>{$language['not_writable']}</font></td></tr>";
+                        $temp_data .= "<tr><td>$folder</td><td><div class=\"cpg_message_error\">{$language['not_writable']}</div></td></tr>";
                     } else {
                         //close handle and remove file
                         fclose($file_handle2);
                         unlink($test_file);
-                        $temp_data .= "<tr><td>$folder</td><td><font color='green'>{$language['writable']}</font></td></tr>";
+                        $temp_data .= "<tr><td>$folder</td><td><div class=\"cpg_message_success\">{$language['writable']}</div></td></tr>";
                     }
                 } else {
                     // could not change mode, add error.
@@ -1263,13 +1263,13 @@ function checkPermissions()
                     $possible_modes_left = implode(' '.$language['or'].' ',array_diff($perm,array($mode)));
                     $GLOBALS['error'] .= sprintf($language['perm_error'], $folder, $mode) . ' ' . $possible_modes_left . '.<br />';
 
-                    $temp_data .= "<tr><td>$folder</td><td><font color='red'>{$language['not_writable']}</font>v</tr>";
+                    $temp_data .= "<tr><td>$folder</td><td><div class=\"cpg_message_error\">{$language['not_writable']}</div>v</tr>";
                 }
             } else {
                 //close file handle and remove file
                 fclose($file_handle);
                 unlink($test_file);
-                $temp_data .= "<tr><td>$folder</td><td><font color='green'>{$language['writable']}</font></td></tr>";
+                $temp_data .= "<tr><td>$folder</td><td><div class=\"cpg_message_success\">{$language['writable']}</div></td></tr>";
             }
         }   
     }

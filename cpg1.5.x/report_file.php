@@ -105,7 +105,7 @@ if ($what == 'comment') {
 
 // Check supplied email address
 $valid_sender_email = Inspekt::isEmail($sender_email);
-$invalid_email = '<font size="1">' . $lang_report_php['invalid_email'] . '</font>';
+$invalid_email = '<div class="cpg_message_error">' . $lang_report_php['invalid_email'] . '</div>';
 
 if (!$valid_sender_email && $superCage->post->keyExists('subject')) {
     $sender_email_warning = $invalid_email;

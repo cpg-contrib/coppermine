@@ -136,11 +136,11 @@ $valid_sender_email = Inspekt::isEmail($sender_email);
 $valid_recipient_email = Inspekt::isEmail($recipient_email);
 
 if (!$valid_sender_email && $superCage->post->keyExists('sender_name')) {
-    $sender_email_warning = '<font size="1" color="red">' . $lang_ecard_php['invalid_email'] . ' (' . $sender_email . ')</font>';
+    $sender_email_warning = '<div class="cpg_message_error">' . $lang_ecard_php['invalid_email'] . ' (' . $sender_email . ')</div>';
 }
 
 if (!$valid_recipient_email && $superCage->post->keyExists('sender_name')) {
-    $recipient_email_warning = '<font size="1" color="red">' . $lang_ecard_php['invalid_email'] . ' (' . $recipient_email . ')</font>';
+    $recipient_email_warning = '<div class="cpg_message_error">' . $lang_ecard_php['invalid_email'] . ' (' . $recipient_email . ')</div>';
 }
 
 $gallery_url_prefix = $CONFIG['ecards_more_pic_target']. (substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/');
