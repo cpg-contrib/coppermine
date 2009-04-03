@@ -797,8 +797,7 @@ EOT;
             $result_output = $already_done_icon . $lang_update_php['already_done'];
         } else {
             $delete_result = cpg_folder_file_delete($delete_file);
-            $delete_check = file_exists($delete_file);
-            if ($delete_result == TRUE && $delete_check == FALSE) {
+            if ($delete_result == TRUE ) {
                 $result_output = $ok_icon . $lang_common['ok'];
             } else {
                 $result_output = $error_icon . $lang_update_php['could_not_delete'];
