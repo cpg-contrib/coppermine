@@ -356,7 +356,7 @@ if ($superCage->post->keyExists('use_post_based_groups')) {
 // initialize vars
 $step = $posted_var['step'];
 if (!$step) {
-    $step = 'finalize';
+    $step = 'choose_bbs';
 }
 $new_line = "\n";
 
