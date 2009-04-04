@@ -840,10 +840,27 @@ function cpgVersioncheckConnectRepository() {
     unset($result['headers']); // we should take a look the header data and error messages before dropping them. Well, later maybe ;-)
     unset($result['error']);
     $result = array_shift($result);
-    include_once('include/lib.xml.php');
-    $xml = new Xml;
-    $file_data_array = $xml->parse($result);
-    $file_data_array = array_shift($file_data_array);
+    
+    if (function_exists('simplexml_load_string')) {
+    
+        $xml = simplexml_load_string($result);
+        
+        unset($result);
+        
+        $file_data_array = array();
+    
+        foreach ($xml as $file) {
+           $file_data_array[] = (array) $file;
+        }
+   
+    } else {
+    
+        include_once('include/lib.xml.php');
+        $xml = new Xml;
+        $file_data_array = $xml->parse($result);
+        $file_data_array = array_shift($file_data_array);
+    }
+    
     // Perform the repository lookup and xml creation --- end
     return $file_data_array;
 }
