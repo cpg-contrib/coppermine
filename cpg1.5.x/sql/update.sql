@@ -393,3 +393,5 @@ ALTER TABLE CPG_sessions CHANGE `session_id` `session_id` char(32);
 DROP TABLE CPG_temp_data;
 
 ALTER TABLE `CPG_usergroups` DROP `upload_form_config`, DROP `custom_user_upload`, DROP `num_file_upload`, DROP `num_URI_upload`;
+
+ALTER TABLE `CPG_pictures` DROP INDEX `pic_aid`, ADD INDEX `pic_aid` ( `aid` , `pid` );
