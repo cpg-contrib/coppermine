@@ -1086,7 +1086,7 @@ function build_caption(&$rowset, $must_have = array())
  * @return
  **/
 
-function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true)
+function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true, $mode = '')
 {
     global $USER, $CONFIG, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA;
     global $lang_date, $cat;
@@ -1113,43 +1113,64 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
     $limit      = ($limit1 != -1) ? ' LIMIT ' . $limit1 : '';
     $limit     .= ($limit2 != -1) ? ' ,' . $limit2 : '';
 
-    $select_column_list = array(
-        'r.pid',
-        'r.aid',
-        'filepath',
-        'filename',
-        'url_prefix',
-        'pwidth',
-        'pheight',
-        'filesize',
-        'ctime',
-        'r.title',
-        'r.keywords',
-        'r.votes', 
-        'pic_rating'
-    );
+    if ($mode == 'pidonly') {
+    
+        $select_column_list = array('r.pid');
+    
+    } elseif ($mode == 'filmstrip') {
 
-    //if ($CONFIG['views_in_thumbview']) {
-        $select_column_list[] = 'hits';
-    //}
+        $select_column_list = array(
+            'r.pid',
+            'r.aid',
+            'filepath',
+            'filename',
+            'url_prefix',
+            'pwidth',
+            'pheight',
+            'filesize',
+            'ctime',
+        );
+        
+    } else {
 
-    //if ($CONFIG['caption_in_thumbview']) {
-        $select_column_list[] = 'caption';
-    //}
-
-    //if ($CONFIG['display_uploader']) {
-        $select_column_list[] = 'r.owner_id';
-        $select_column_list[] = 'owner_name';
-    //}
-
-    if (GALLERY_ADMIN_MODE) {
-        $select_column_list[] = 'pic_raw_ip';
-        $select_column_list[] = 'pic_hdr_ip';
-    }
-
-    for ($i = 1; $i <= 4; $i++) {
-        if ($CONFIG['user_field' . $i . '_name']) {
-            $select_column_list[] = 'user' . $i;
+        $select_column_list = array(
+            'r.pid',
+            'r.aid',
+            'filepath',
+            'filename',
+            'url_prefix',
+            'pwidth',
+            'pheight',
+            'filesize',
+            'ctime',
+            'r.title',
+            'r.keywords',
+            'r.votes', 
+            'pic_rating'
+        );
+    
+        //if ($CONFIG['views_in_thumbview']) {
+            $select_column_list[] = 'hits';
+        //}
+    
+        //if ($CONFIG['caption_in_thumbview']) {
+            $select_column_list[] = 'caption';
+        //}
+    
+        //if ($CONFIG['display_uploader']) {
+            $select_column_list[] = 'r.owner_id';
+            $select_column_list[] = 'owner_name';
+        //}
+    
+        if (GALLERY_ADMIN_MODE) {
+            $select_column_list[] = 'pic_raw_ip';
+            $select_column_list[] = 'pic_hdr_ip';
+        }
+    
+        for ($i = 1; $i <= 4; $i++) {
+            if ($CONFIG['user_field' . $i . '_name']) {
+                $select_column_list[] = 'user' . $i;
+            }
         }
     }
     
@@ -2662,7 +2683,7 @@ function& cpg_get_system_thumb($filename, $user = 10001)
 function display_film_strip($album, $cat, $pos,$ajax_call)
 {
     global $CONFIG, $AUTHORIZED;
-    global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common, $pic_count,$ajax_call,$pos;
+    global $lang_date, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common, $pic_count,$ajax_call,$pos;
 
     $superCage = Inspekt::makeSuperCage();
     
@@ -2700,7 +2721,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
         $l_limit = $pic_count - $max_item_real;
     }
 
-    $pic_data = get_pic_data($album, $thumb_count, $album_name, $l_limit, $thumb_per_page);
+    $pic_data = get_pic_data($album, $thumb_count, $album_name, $l_limit, $thumb_per_page, false, 'filmstrip');
 
     if (count($pic_data) < $max_item) {
         $max_item = count($pic_data);
@@ -2742,7 +2763,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
             $pic_title = $lang_common['filename'] . '=' . $row['filename'] . "\n" .
                 $lang_common['filesize'] . '=' . ($row['filesize'] >> 10) . $lang_byte_units[1] . "\n" .
                 $lang_display_thumbnails['dimensions'] . $row['pwidth'] . "x" . $row['pheight'] . "\n" .
-                $lang_display_thumbnails['date_added'] . localised_date($row['ctime'], $album_date_fmt);
+                $lang_display_thumbnails['date_added'] . localised_date($row['ctime'], $lang_date['album']);
 
             $pic_url = get_pic_url($row, 'thumb');
 

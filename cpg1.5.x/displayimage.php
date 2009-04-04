@@ -351,19 +351,19 @@ if (!$superCage->get->keyExists('fullsize') && ($pos < 0 || $pid > 0)) {
   
         // load prev, next, start and end for the navbar
         if ($pos > 0) {
-            $prev = get_pic_data($album, $pic_count, $album_name, $pos - 1, 1, false);
+            $prev = get_pic_data($album, $pic_count, $album_name, $pos - 1, 1, false, 'pidonly');
             $pic_data[$pos - 1] = $prev[0];
         }
   
         if ($pos < ($pic_count -1)) {
-            $next = get_pic_data($album, $pic_count, $album_name, $pos + 1, 1, false);
+            $next = get_pic_data($album, $pic_count, $album_name, $pos + 1, 1, false, 'pidonly');
             $pic_data[$pos + 1] = $next[0];
         }
 
-        $start = get_pic_data($album, $pic_count, $album_name, 0, 1, false);
+        $start = get_pic_data($album, $pic_count, $album_name, 0, 1, false, 'pidonly');
         $pic_data[0] = $start[0];
      
-        $end = get_pic_data($album, $pic_count, $album_name, $pic_count - 1, 1, false);
+        $end = get_pic_data($album, $pic_count, $album_name, $pic_count - 1, 1, false, 'pidonly');
         $pic_data[$pic_count - 1] = $end[0];
     }
     
