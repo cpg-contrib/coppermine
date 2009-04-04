@@ -92,8 +92,11 @@ if ($superCage->get->getInt('no_modification_check') == '1') {
   
 
 // Connect to the repository
-$file_data_array = cpgVersioncheckConnectRepository();
-
+if ($displayOption_array['output'] != 'options') {
+    $file_data_array = cpgVersioncheckConnectRepository();
+    $file_data_array = cpg_versioncheckPopulateArray($file_data_array);
+    $file_data_count = count($file_data_array);
+}
 
 // main code starts here
 $title_help = ' ' . cpg_display_help('f=upgrading.htm&amp;as=versioncheck&amp;ae=versioncheck_end', '600', '400');
@@ -115,18 +118,14 @@ EOT;
 EOT;
 }
 
-if ($displayOption_array['output'] != 'create') {
-    $file_data_array = cpg_versioncheckPopulateArray($file_data_array);
-    $file_data_count = count($file_data_array);
-} else { // create data --- start
+if ($displayOption_array['output'] == 'create') {
+
+    // create data 
     $file_data_count = cpg_versioncheckCreateXml($file_data_array);
-}
 
+} else if ($displayOption_array['output'] == 'textarea') {
 
-
-
-
-if ($displayOption_array['output'] == 'textarea') { // display the output in a textarea field --- start
+    // display the output in a textarea field
     print <<< EOT
     <tr>
         <td class="tableb">
@@ -136,9 +135,10 @@ EOT;
         </td>
     </tr>
 EOT;
-} // display the output in a textarea field --- end
 
-if ($displayOption_array['output'] == 'screen') { // display the output in HTML --- start
+} else if ($displayOption_array['output'] == 'screen') {
+
+    // display the output in HTML
     print <<< EOT
     <tr>
         <td class="tableb">
@@ -158,13 +158,9 @@ EOT;
     </tr>
 EOT;
    
-} // display the output in HTML --- end
+}
 
 endtable();
+pagefooter();
 
-
-// display page footer if applicable
-  pagefooter();
-
-// end
 ?>
