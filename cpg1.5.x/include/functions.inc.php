@@ -1093,6 +1093,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
     global $lang_common, $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
     global $lft, $rgt, $RESTRICTEDWHERE, $FORBIDDEN_SET;
 
+    static $album_name_keyword = '', $pic_count = null;
+    
     $superCage = Inspekt::makeSuperCage();
 
     $sort_array = array(
@@ -1167,9 +1169,12 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
     // Regular albums
     if (is_numeric($album)) {
     
-        $album_name_keyword = get_album_name($album);
-        $album_name         = $album_name_keyword['title'];
-        $album_keyword      = addslashes($album_name_keyword['keyword']);
+        if (!$album_name_keyword) {
+            $album_name_keyword = get_album_name($album);
+        }
+        
+        $album_name    = $album_name_keyword['title'];
+        $album_keyword = addslashes($album_name_keyword['keyword']);
 
         if (!empty($album_keyword)) {
             $keyword = "OR (keywords like '%$album_keyword%' $forbidden_set_string )";
@@ -1186,10 +1191,17 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
 
-        $result      = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved");
-        list($count) = mysql_fetch_row($result);
-        mysql_free_result($result);
-
+        // Note: Using a second variable, $pic_count, since $count is passed by reference
+        // and having it defined as static in the function may be problematic
+        if (is_null($pic_count)) {
+            $result      = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved");
+            list($count) = mysql_fetch_row($result);
+            mysql_free_result($result);
+            $pic_count = $count;
+        } else {
+            $count = $pic_count;
+        }
+        
         $select_columns = implode(', ', $select_column_list);
 
         $query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} AS r
