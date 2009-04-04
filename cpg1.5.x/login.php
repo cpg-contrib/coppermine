@@ -105,6 +105,8 @@ EOT;
 
 if ($CONFIG['reg_requires_valid_email'] == 1) {
     $send_activation_link = '<br /><a href="send_activation.php" class="topmenu">'.$lang_login_php['send_activation_link'].'</a>';
+} else {
+    $send_activation_link = '';
 }
 
 pageheader($lang_login_php['login']);

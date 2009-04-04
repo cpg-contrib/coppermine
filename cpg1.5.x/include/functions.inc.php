@@ -192,9 +192,9 @@ function cpg_db_query($query, $link_id = 0)
     $query_end = cpgGetMicroTime();
     
     if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
-        $duration      = round($query_end - $query_start, 3);
+        $duration      = round(($query_end - $query_start) * 1000);
         $query_stats[] = $duration;
-        $queries[]     = "$query ({$duration}s)";
+        $queries[]     = "$query ({$duration} ms)";
     }
     
     if (!$result && !defined('UPDATE_PHP')) {
@@ -3167,7 +3167,7 @@ function cpg_debug_output()
     global $USER, $USER_DATA, $CONFIG, $cpg_time_start, $query_stats, $queries, $lang_cpg_debug_output, $CPG_PHP_SELF, $superCage, $CPG_PLUGINS;
 
     $time_end         = cpgGetMicroTime();
-    $time             = round($time_end - $cpg_time_start, 3);
+    $time             = round(($time_end - $cpg_time_start) * 1000);
     $query_count      = count($query_stats);
     $total_query_time = array_sum($query_stats);
 
@@ -3344,7 +3344,7 @@ EOT;
     }
 
     echo <<<EOT
-Page generated in $time seconds - $query_count queries in $total_query_time seconds;
+Page generated in $time ms - $query_count queries in $total_query_time ms;
 EOT;
     echo '</textarea>';
     echo '</td>';
