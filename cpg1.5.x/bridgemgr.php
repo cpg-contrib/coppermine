@@ -301,6 +301,11 @@ function cpg_is_writable($folder)
 
 ///////////// function defintions end /////////////////////////////
 
+//$posted_var['hide_unused_fields'] = 0;//override the posted var for debugging purposes
+if ($superCage->post->keyExists('step')) {
+    $matches = $superCage->post->getMatched('step', '/^[a-zA-Z0-9_\-]*$/');
+    $posted_var['step'] = $matches[0];
+}
 
 if (GALLERY_ADMIN_MODE) { // gallery admin mode --- start
 
@@ -309,11 +314,6 @@ if (GALLERY_ADMIN_MODE) { // gallery admin mode --- start
 // Sanitize superglobals
 if ($superCage->post->keyExists('hide_unused_fields')) {
     $posted_var['hide_unused_fields'] = $superCage->post->getDigits('hide_unused_fields');
-}
-//$posted_var['hide_unused_fields'] = 0;//override the posted var for debugging purposes
-if ($superCage->post->keyExists('step')) {
-    $matches = $superCage->post->getMatched('step', '/^[a-zA-Z0-9_\-]*$/');
-    $posted_var['step'] = $matches[0];
 }
 if ($superCage->post->keyExists('force_startpage')) {
     $posted_var['force_startpage'] = $superCage->post->getDigits('force_startpage');
@@ -337,12 +337,6 @@ if ($superCage->post->keyExists('bridge_enable')) {
 }
 if ($superCage->post->keyExists('clear_unused_db_fields')) {
     $posted_var['clear_unused_db_fields'] = $superCage->post->getDigits('clear_unused_db_fields');
-}
-if ($superCage->post->keyExists('username')) {
-    $posted_var['username'] = $superCage->post->getEscaped('username');
-}
-if ($superCage->post->keyExists('password')) {
-    $posted_var['password'] = $superCage->post->getEscaped('password');
 }
 if ($superCage->post->keyExists('full_forum_url')) {
     $posted_var['full_forum_url'] = $superCage->post->getEscaped('full_forum_url');
@@ -813,6 +807,13 @@ else { // not in gallery admin mode --- start
     } else { // the logon wait time has passed, the user is allowed to try to logon now
         // go through the list of standalone admins and check if we have a match
         $temp_user_table = $CONFIG['TABLE_PREFIX'].'users';
+
+        if ($superCage->post->keyExists('username')) {
+            $posted_var['username'] = $superCage->post->getEscaped('username');
+        }
+        if ($superCage->post->keyExists('password')) {
+            $posted_var['password'] = $superCage->post->getEscaped('password');
+        }
 
         $encpassword = md5(addslashes($posted_var['password']));
 
