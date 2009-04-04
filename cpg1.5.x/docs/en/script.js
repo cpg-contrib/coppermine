@@ -307,6 +307,7 @@ document.write('      </li>');
 document.write('      <li><a href="admin-tools.htm#admin_tools">Admin Tools</a></li>');
 document.write('      <li><a href="errors.htm#errors">Errors</a></li>');
 document.write('      <li><a href="export.htm#export">Exporting</a></li>');
+document.write('      <li><a href="performance.htm#perf_tips">Performance</a></li>');
 document.write('    </ul>');
 document.write('  </li>');
 document.write('  <li><a href="uploading.htm">Uploading</a>');
