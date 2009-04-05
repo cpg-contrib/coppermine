@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Problèmes connus - Coppermine Photo Gallery - Documentation &amp; Manuel</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="fr" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Problèmes connus" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.1
+  $Revision: 5585 $
+  $LastChangedBy: gaugau $
+  $Date: 2009-01-06 09:11:46 +0100 (mar. 06 janv. 2009) $
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table des Matières</a>
+</noscript>
+</div>
+
+<a name="known_issues"></a><h1>Problèmes connus<a href="#known_issues" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Les légères bizarreries et petits problèmes suivants sont connus et on peut espérer qu'ils seront corrigés dans les prochaines versions.</p>
+<ul>
+        <li>Les <a href="http://coppermine-gallery.net/forum/index.php?topic=1866.0">flêches utilisées pour la navigation</a>  d'une image à une autre s'affichent dans le mauvais ordre pour les langues au format rtl (lecture de droite à gauche)</li>
+        <li>La liste des mots clé renvoie un résultat incorrect pour les caractère asiatiques</li>
+        <li>Bug lié au navigateur: IE n'affiche pas correctement les largeurs de valeur 100%</li>
+        <li>La nouvelle interface de téléchargement par lots ne fonctionne pas avec toutes les configurations de serveurs. Les utilisateurs qui ont des problèmes avec cette fonction doivent utiliser l'interface classique à la place de la nouvelle.</li>
+        <li>Requête manquante dans la sortie de débuggage: La valeur de $CONFIG['debug_mode'] n'est pas fixée avant la première requête pour la table de configuration</li>
+        <li>Les onglets de page dans le Gestionnaire des utilisateurs ne se comportent pas de la même manière que les autres onglets</li>
+        <li>Le redimmentionnement des gif/png avec un fond transparent ne préservent pas les infos alpha</li>
+        <li>Carractères incorrects dans les courriels envoyés depuis Coppermine</li>
+        <li>Lat taille des vignettes supérieure à 120px cause un débordement du champs de texte au desus du cadre</li>
+        <li>Pas de vignettes d'albums pour les albums qui ne contiennent que des images liées par mots clés</li>
+        <li>Le recadrage et la rotation ne fonctionnent pas avec GD1</li>
+        <li>La rotation cause des distortions d'images pour les grands fichiers</li>
+        <li>la constrction<tt class="code">&lt;object&gt;&lt;param&gt;&lt;/param&gt;&lt;/object&gt;</tt> pour les fichiers multimédia n'est pas valide mais est necessaire pour une compatibilité ascendante</li>
+        <li>Les informations EXIF et IPTC sont perdues avec la rotation</li>
+        <li>Le groupe d'utilisateur "Banned" ne fonctionne pas comme souhaité</li>
+        <li>Les albums sont crées en utilisant  XP publisher même en cas d'erreur de téléchargement</li>
+        <li>Pas de vignette de catégorie pour les galeries utilisateurs ni pour les catégories qui ne contiennet pas d'albums avec des images mais uniquement des sous-catégories</li>
+</ul>
+
+<script type="text/javascript">
+  cpgDocFooter();
+  dateRevision(' $LastChangedDate: 2009-01-06 09:11:46 +0100 (mar. 06 janv. 2009) $ ', ' $Revision: 5585 $ ');
+</script>
+
+</body>
+</html>

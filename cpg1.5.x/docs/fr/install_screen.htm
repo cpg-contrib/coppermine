@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Ecran d'Installation - Coppermine Photo Gallery - Documentation &amp; Manuel</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="fr" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="The install screen" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.1
+  $Revision: 5585 $
+  $LastChangedBy: gaugau $
+  $Date: 2009-01-06 09:11:46 +0100 (mar. 06 janv. 2009) $
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table des matières</a>
+</noscript>
+</div>
+
+<a name="install_screen_start"></a><h1>L'Ecran d'Installation<a href="#install_screen_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<table border="0" cellpadding="5" cellspacing="0">
+ <tr>
+  <td style="border-top:1px solid #0E72A4;border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><strong>Your admin account (Votre compte Administrateur)</strong>
+  </td>
+  <td></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"> <span class="small">Cette section demande les informations pour la création de votre compte administrateur. N'entrez que des caratères alphanumériques. Entrez les données avec soin !</span>
+  </td>
+  <td><span class="small">Entrez ici un nom d'administrateur et un mot de passe. Assurez vous de bien les mémoriser, ou notez les dans un endroit sur; vous ne pourrez plus administrer votre galerie si vous perdez ces données. </span><hr /></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;" width="20%"><strong>Username (Nom d'Utilisateur)</strong>
+  </td>
+  <td style="border-right:1px solid #0E72A4;" width="20%">
+          <input type="text" style="width:100%" readonly="readonly" name="admin_username" value="" />
+  </td>
+  <td valign="top" width="60%"><span class="small">Ce sera le nom d'utilisateur pour l'administration quotidienne de Coppermine - choisissez en un que vous pourrez mémoriser et entrer facilement. Cette saisie est sensible à la casse, soyez donc particulièrement attentif lors de la création du nom d'utilisateur. Les images que vous téléchargerez plus tard sous ce compte administrateur afficheront ce nom dans le champ "Téléchargé par". Les commentaires que vous ferez afficheront aussi ce nom visble par les autres.</span><hr /></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;"><strong>Password (Mot de Passe)</strong>
+  </td>
+  <td style="border-right:1px solid #0E72A4;">
+          <input type="text" style="width:100%" readonly="readonly" name="admin_password" value="" />
+  </td>
+  <td><span class="small">Ce sera votre mot de passe administrateur pourvotre installation de Coppermine. N'utilisez pas de mots de passes évidents et trop souvent utilisés - si un hacker trouve votre mot de passe, il/elle pourra hacker l'ensemble de votre site! Utilisez une combinaison de majuscules et de miniscules avec des chiffres comme "<tt class="code">j3e4N5n6yG</tt>". Rappelez vous, les mots de passe tout comme votre nom d'utilisateur administrateur sont sesibles à la casse. Soyez prudents lors de la cration du mot de passe. Copiez le et palcez le dans un endroit sur autant que possible loint de votre ordinateur<span><hr /></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;"><strong>Email address (Adresse Courriel)</strong>
+  </td>
+  <td style="border-right:1px solid #0E72A4;">
+          <input type="text" style="width:100%" readonly="readonly" name="admin_email" value="" />
+  </td>
+  <td><span class="small">Cette adress courriel sera utilisée pour envoyer des courriels depuis le serveur web (exemples:le courriel d'enregistrement, les notifications et les e-cartes). Assurez vous que ce soit une adress courriel valide.</span><hr /></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><strong>Your MySQL configuration (votre configuration MySQL)</strong>
+  </td>
+  <td rowspan="2"><span class="small">MySQL est le type de service de base de donnée disponible sur la plupart des serveurs web. Si vous ne l'avez pas, vous ne pouvez pas l'installer vous-même. Si vous avez un hébegement web, vous êtes probablement malchanceux. Il est obligatoir d'avoir une base de donnée MySQL pour utiliser Coppermine ou beaucoup d'autres scipts PHP. Vous ne pouvez pas truquer les informations MySQL pendant l'installation, vous devez <strong>les connaitre</strong> avant, et entrer les informations comme demandé. Si vous n'êtes pas sur des informations requises, demandez votre hébergeur.</span><hr /></td>
+ </tr>
+ <tr>
+<td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><span class="small">Cette partie requière les informations pour se connecter à votre base de donnée MySQL. Si vous ne savez pas comment la remplir, vérifiez avec l'aide de votre hébergeur.</span>
+    </td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;"><strong>MySQL Host (Hôte MySQL)</strong><br /><span class="small">(localhost est souvent OK)</span>
+  </td>
+  <td style="border-right:1px solid #0E72A4;" valign="top">
+          <input type="text" style="width:100%" readonly="readonly" name="dbserver" value="localhost" />
+  </td>
+  <td><span class="small"></span></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;"><strong>MySQL Database Name (Nom de la base de donnée MySQL)</strong>
+  </td>
+  <td style="border-right:1px solid #0E72A4;">
+          <input type="text" style="width:100%" readonly="readonly" name="dbname" value="" />
+  </td>
+  <td><span class="small">Coppermine ne va <strong>pas</strong> créer cette base de donnée pour vous - elle doit exister avant 'essayer d'installer Coppermine. (Si vous n'en de base de donnée pré établie, vous devrez en créer une, à condition d'avoir le droit de le faire pour votre site).</span><hr /></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;"><strong>MySQL Username (Nom d'Utilisateur MySQL)</strong>
+  </td>
+  <td style="border-right:1px solid #0E72A4;">
+          <input type="text" style="width:100%" readonly="readonly" name="dbuser" value="" />
+  </td>
+  <td><span class="small">Le nom d'utilisateur MySQL ne doit <strong>pas</strong> être votre nom d'administrateur Coppermine, ni être nécessairement le même que votre nom d'utilisateur FTP (quoique cela <em>peut</em> être le cas pour certains utilisateurs, mais uniquement par simple coïncidence ou de manière délibérée, pour simplifier l'administration du site).<br />
+  L'utilisateur MySQL doit avoir les permissions pour les fonctions CREATE TABLE, INSERT, ALTER, REPLACE, UPDATE, DELETE, SELECT.</span><hr /></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;"><strong>MySQL Password (Mot de passe MySQL)</strong>
+  </td>
+  <td style="border-right:1px solid #0E72A4;">
+          <input type="text" style="width:100%" readonly="readonly" name="dbpass" value="" />
+  </td>
+  <td><span class="small">Le Mot de Passe qui va avec le nom d'utilisateur MySQL.</span><hr /></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;"><strong>MySQL table prefix (préfixe des tables MySQL)</strong><br /><span class="small">(La valeur par défaut est bonne; si vous deviez en changer, n'utilisez pas de point!)</span>
+  </td>
+  <td style="border-right:1px solid #0E72A4;" valign="top">
+          <input type="text" style="width:100%" readonly="readonly" name="table_prefix" value="cpg140_" />
+  </td>
+  <td><span class="small">Les tables de Coppermine peuvent coéxister avec les tables d'une autre application dans la base de donnée. Toutes kes tables Coppermine utiliseront un préfixe différent, spécifié ici. Vous pouvez même avoir plusieurs installations de Coppermine utilisant une seule base de donnée - seuls les préfixes de tables doivent être différents pour chaque installation. Sauf si vous savez ce que vous faites, ne changez pas la valeur par défaut.</span><hr /></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><strong>ImageMagick</strong>
+  </td>
+  <td rowspan="3" valign="top"><span class="small">Vous ne pouvez pas truquer un chemin d'accès à ImageMagick, vous devez <em>le connaitre</em>. Si vous n'êtes pas sur, laissez ce champs vide - Coppermine essayera d'utiliser GD par défaut. Vous poyrez modifier le chemin d'accès plus tard dans <a href="#admin_picture_thumb_advanced">la page de configuration</a>. Vous ne pourrez installer ImageMagick ou GD que si vous pouvez adminsitrer entièrement votre serveur - si vous êtes hébergés par un hébergeur web, vous ne pourrez certainement pas. L'utilisateur qui souhaite utiliser ImageMagick, devra avoir des droits d'accès en lecture/écriture/et éxécution sur le répertoire ou se trouve l'éxecutable "convert" d'ImageMagik.</span><hr /></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2" valign="top"><span class="small">Coppermine peut utiliser le programme "convert" <a href="http://www.imagemagick.org/" rel="external" class="external">d'ImageMagick</a> pour créer les vignettes. La qualité des images produites par ImageMagick est supérieure à GD1 mais équivalente à.<br /><br />
+  Si ImageMagick est installé sur votre système, et que vous voulez l'utiliser, vous devrez entrer le chemin complet vers le programme "convert" ici. Sur Windows le chemin ressemble à 'c:/ImageMagick/' (utilisez / pas \ dans le chemin d'accès) et ne doit pas contenir d'espaces, sur Unix ce sera quelque chose comme '/usr/bin/X11/'.</span>
+  </td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;" valign="top"><strong>ImageMagick path (Chemin pour ImageMagik)</strong>
+  </td>
+  <td style="border-right:1px solid #0E72A4;" valign="top">
+          <input type="text" style="width:100%" readonly="readonly" name="impath" value="" />
+  </td>
+ </tr>
+ <tr>
+  <td colspan="2" align="center" style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;border-bottom:1px solid #0E72A4;"><br />
+   <input type="submit" value="Let's Go !" /><br /><br />
+  </td>
+  <td><span class="small">Après avoir entré toutes les données demandées, cliquez sur ce bouton pour soumettre le formulaire</span><td>
+ </tr>
+</table>
+<a name="install_screen_end"></a>
+
+<script type="text/javascript">
+  cpgDocFooter();
+  dateRevision(' $LastChangedDate: 2009-01-06 09:11:46 +0100 (mar. 06 janv. 2009) $ ', ' $Revision: 5585 $ ');
+</script>
+
+</body>
+</html>
