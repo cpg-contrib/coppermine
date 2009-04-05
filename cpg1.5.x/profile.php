@@ -357,7 +357,7 @@ if ($superCage->post->keyExists('change_profile') && USER_ID && UDB_INTEGRATION 
 
         if (!Inspekt::isEmail($email)) {
         
-            $error = $lang_register_php['err_invalid_email'];
+            $error = $lang_register_php['email_warning2'];
             
         } elseif (!$CONFIG['allow_duplicate_emails_addr']) {
 
@@ -396,11 +396,11 @@ if ($superCage->post->keyExists('change_password') && USER_ID && UDB_INTEGRATION
     $new_pass_again = get_post_var('new_pass_again');
 
     if (utf_strlen($new_pass) < 2) {
-        cpg_die(ERROR, $lang_register_php['err_password_short'], __FILE__, __LINE__);
+        cpg_die(ERROR, $lang_register_php['password_warning1'], __FILE__, __LINE__);
     }
     
     if ($new_pass != $new_pass_again) {
-        cpg_die(ERROR, $lang_register_php['err_password_mismatch'], __FILE__, __LINE__);
+        cpg_die(ERROR, $lang_register_php['password_verification_warning1'], __FILE__, __LINE__);
     }
 
     $new_pass = md5($new_pass);
