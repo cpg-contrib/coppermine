@@ -19,10 +19,10 @@
   <element>
     <fullpath>admin.php</fullpath>
     <version>1.5.1</version>
-    <revision>5695</revision>
+    <revision>5802</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8d7a336dc7c11a4bcced57b8ef3597a9</hash>
+    <hash>445c5fd3cbde254e7b89a768276109fc</hash>
   </element>
   <element>
     <fullpath>albmgr.php</fullpath>
@@ -51,18 +51,18 @@
   <element>
     <fullpath>bridgemgr.php</fullpath>
     <version>1.5.1</version>
-    <revision>5717</revision>
+    <revision>5810</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>209904bbe90fe1e1471883992132a078</hash>
+    <hash>ed0cbc426212e20759dbd2fa925c8c42</hash>
   </element>
   <element>
     <fullpath>calendar.php</fullpath>
     <version>1.5.1</version>
-    <revision>5717</revision>
+    <revision>5799</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c701592c63be6453f461e1696670fa2f</hash>
+    <hash>5c136b77af0650e19138520205d2e37e</hash>
   </element>
   <element>
     <fullpath>captcha.php</fullpath>
@@ -103,10 +103,10 @@
   <element>
     <fullpath>db_ecard.php</fullpath>
     <version>1.5.1</version>
-    <revision>5650</revision>
+    <revision>5799</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>063d8816ff4431f2eee051fa10834ac0</hash>
+    <hash>23c3d59a57c7af7ddac677233bc42f3f</hash>
   </element>
   <element>
     <fullpath>db_input.php</fullpath>
@@ -135,10 +135,10 @@
   <element>
     <fullpath>displayimage.php</fullpath>
     <version>1.5.1</version>
-    <revision>5717</revision>
+    <revision>5808</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e15b68f0efad4546434550a6db13742f</hash>
+    <hash>18cf2d9a79ddf7fe22aec4ddbc10e2f0</hash>
   </element>
   <element>
     <fullpath>displayreport.php</fullpath>
@@ -151,10 +151,10 @@
   <element>
     <fullpath>ecard.php</fullpath>
     <version>1.5.1</version>
-    <revision>5657</revision>
+    <revision>5800</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>636706f32d7df76eae944bfbe01da1e7</hash>
+    <hash>0ef2984c87574a6e81e469ae3171eda2</hash>
   </element>
   <element>
     <fullpath>editOnePic.php</fullpath>
@@ -213,10 +213,10 @@
   <element>
     <fullpath>groupmgr.php</fullpath>
     <version>1.5.1</version>
-    <revision>5678</revision>
+    <revision>5790</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3c374f93f4a73f44512bf5157c82e7f8</hash>
+    <hash>cf01a1ed87499dbac486e6510daaf059</hash>
   </element>
   <element>
     <fullpath>image_processor.php</fullpath>
@@ -237,18 +237,18 @@
   <element>
     <fullpath>install.php</fullpath>
     <version>1.5.1</version>
-    <revision>5718</revision>
+    <revision>5800</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5459dccc15bfbf9af54457929f52857f</hash>
+    <hash>2300ebe3197587f3fe7dd0c8da2a8b24</hash>
   </element>
   <element>
     <fullpath>installer.css</fullpath>
     <version>1.5.1</version>
-    <revision>5572</revision>
+    <revision>5800</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9eb5f49cad95afcba1328ebf67249273</hash>
+    <hash>f3b43142ea37eb9322c8c6cd3b13149d</hash>
   </element>
   <element>
     <fullpath>keyword_create_dict.php</fullpath>
@@ -285,10 +285,10 @@
   <element>
     <fullpath>login.php</fullpath>
     <version>1.5.1</version>
-    <revision>5717</revision>
+    <revision>5805</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>bafdda9961a1c24cf986b090a1a4bdda</hash>
+    <hash>3a3dd5e5ac811e536bf8699d1a10736b</hash>
   </element>
   <element>
     <fullpath>logout.php</fullpath>
@@ -301,10 +301,10 @@
   <element>
     <fullpath>minibrowser.php</fullpath>
     <version>1.5.1</version>
-    <revision>5716</revision>
+    <revision>5799</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9da945f032c21faade755ed09c7fe3e5</hash>
+    <hash>58b171516b981c7a05a9c73267d456ac</hash>
   </element>
   <element>
     <fullpath>mode.php</fullpath>
@@ -353,18 +353,18 @@
   <element>
     <fullpath>pluginmgr.php</fullpath>
     <version>1.5.1</version>
-    <revision>5717</revision>
+    <revision>5785</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e10c78013c2f58f840380e40802f790d</hash>
+    <hash>8aea9429c20af574f5bf2552efee481a</hash>
   </element>
   <element>
     <fullpath>profile.php</fullpath>
     <version>1.5.1</version>
-    <revision>5644</revision>
+    <revision>5814</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>00b1ee1a9d56ca9b1923689d591377e6</hash>
+    <hash>b95f578309125c43843d617525894e78</hash>
   </element>
   <element>
     <fullpath>ratepic.php</fullpath>
@@ -389,18 +389,18 @@
   <element>
     <fullpath>report_file.php</fullpath>
     <version>1.5.1</version>
-    <revision>5717</revision>
+    <revision>5800</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>80a2ac84425ba75c4e4069f497bc7385</hash>
+    <hash>f0eda9b18d6a6eced46d4231bd010681</hash>
   </element>
   <element>
     <fullpath>reviewcom.php</fullpath>
     <version>1.5.1</version>
-    <revision>5714</revision>
+    <revision>5799</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b22292a066be86eb6f7e422d8d597906</hash>
+    <hash>78e67d565a71ef990ec16e09a20b9d2f</hash>
   </element>
   <element>
     <fullpath>scripts.js</fullpath>
@@ -409,10 +409,10 @@
   <element>
     <fullpath>search.php</fullpath>
     <version>1.5.1</version>
-    <revision>5717</revision>
+    <revision>5777</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>727d54c61bb9e33dfaa564d8d7e5faf4</hash>
+    <hash>84dc1bc2eba86cdb894b1da56c1e61d0</hash>
   </element>
   <element>
     <fullpath>searchnew.php</fullpath>
@@ -457,10 +457,10 @@
   <element>
     <fullpath>update.php</fullpath>
     <version>1.5.1</version>
-    <revision>5727</revision>
+    <revision>5803</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a36520541efe4bbf620bd9fd894df98a</hash>
+    <hash>7b907dfd115e39e18c9f84ca63d6d8cd</hash>
   </element>
   <element>
     <fullpath>upload.php</fullpath>
@@ -473,10 +473,10 @@
   <element>
     <fullpath>usermgr.php</fullpath>
     <version>1.5.1</version>
-    <revision>5681</revision>
+    <revision>5799</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9667fbc5588be6a07e576673a73180a4</hash>
+    <hash>188eff7e89bb1f2eff0eb8f9736ac88f</hash>
   </element>
   <element>
     <fullpath>util.php</fullpath>
@@ -489,10 +489,10 @@
   <element>
     <fullpath>versioncheck.php</fullpath>
     <version>1.5.1</version>
-    <revision>5574</revision>
+    <revision>5812</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>abf73c2a54cdab464137a324236aa354</hash>
+    <hash>c74e95d1adb5ecc1610c746ef0a9e952</hash>
   </element>
   <element>
     <fullpath>viewlog.php</fullpath>
@@ -519,44 +519,53 @@
     <hash>4909044f288ec4378bdb191e946f5e47</hash>
   </element>
   <element>
-    <fullpath>**fullpath**/</fullpath>
+    <fullpath>albums/</fullpath>
     <status>mandatory</status>
     <permission>write</permission>
   </element>
   <element>
-    <fullpath>**fullpath**/index.php</fullpath>
+    <fullpath>albums/index.php</fullpath>
+    <version>1.5.1</version>
+    <revision>5589</revision>
     <status>mandatory</status>
     <permission>read</permission>
+    <hash>c2fa90dcbcf5474d0c7225d72912a8c1</hash>
   </element>
   <element>
-    <fullpath>**fullpath**/edit/</fullpath>
+    <fullpath>albums/edit/</fullpath>
     <status>mandatory</status>
     <permission>write</permission>
   </element>
   <element>
-    <fullpath>**fullpath**/edit/index.htm</fullpath>
+    <fullpath>albums/edit/index.htm</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
+    <hash>5a67ed387def5a3f7f769b100788c774</hash>
   </element>
   <element>
-    <fullpath>**fullpath**/edit/no_FTP-uploads_into_this_folder!.txt</fullpath>
+    <fullpath>albums/edit/no_FTP-uploads_into_this_folder!.txt</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
+    <hash>6c2b09864ed59782e15e407eb60a1963</hash>
   </element>
   <element>
-    <fullpath>**fullpath**/**userpics**</fullpath>
+    <fullpath>albums/userpics</fullpath>
     <status>mandatory</status>
     <permission>write</permission>
   </element>
   <element>
-    <fullpath>**fullpath**/**userpics**/index.php</fullpath>
+    <fullpath>albums/userpics/index.php</fullpath>
+    <version>1.5.1</version>
+    <revision>5589</revision>
     <status>mandatory</status>
     <permission>read</permission>
+    <hash>60d38558555d92d6eb7e88cfad5234bf</hash>
   </element>
   <element>
-    <fullpath>**fullpath**/**userpics**/no_FTP-uploads_into_this_folder!.txt</fullpath>
+    <fullpath>albums/userpics/no_FTP-uploads_into_this_folder!.txt</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
+    <hash>ccd470b0a339596e6df305539e94a0d6</hash>
   </element>
   <element>
     <fullpath>bridge/</fullpath>
@@ -792,10 +801,10 @@
   <element>
     <fullpath>docs/de/script.js</fullpath>
     <version>1.5.1</version>
-    <revision>5743</revision>
+    <revision>5793</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>47f2016088c3c4da261d23237ca12246</hash>
+    <hash>b00c38237f39891799cbae8704ef7e8c</hash>
   </element>
   <element>
     <fullpath>docs/de/toc.htm</fullpath>
@@ -1136,10 +1145,10 @@
   <element>
     <fullpath>docs/en/dev_documentation.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5585</revision>
+    <revision>5791</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>431cd9951bdb113d641be88d1badbdbb</hash>
+    <hash>de4ae6278312df8ac382ba14f44dc85c</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_files.htm</fullpath>
@@ -1232,10 +1241,10 @@
   <element>
     <fullpath>docs/en/install.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5743</revision>
+    <revision>5787</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8d7827f3a2bdbacc649289f5199efcf1</hash>
+    <hash>2a70a06f2f12ed6e615367aeb4403b45</hash>
   </element>
   <element>
     <fullpath>docs/en/install_faq.htm</fullpath>
@@ -1296,10 +1305,10 @@
   <element>
     <fullpath>docs/en/dev_plugin_hooks.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5742</revision>
+    <revision>5789</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0e73cf49976e9190f1d95312e1df0a15</hash>
+    <hash>3dde96c969fc5aee48496a0e2990d2d8</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_plugin_writing.htm</fullpath>
@@ -1312,18 +1321,18 @@
   <element>
     <fullpath>docs/en/plugins.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5662</revision>
+    <revision>5793</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a245acc5e712ce93fb256577710852fe</hash>
+    <hash>0e16535c90a85aca0f328c25998e5df5</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_database.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5765</revision>
+    <revision>5789</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>54b65c261a8ca717a8c5300d867c94fa</hash>
+    <hash>b571b676d208fdd278ac254312de5a88</hash>
   </element>
   <element>
     <fullpath>docs/en/quickstart.htm</fullpath>
@@ -1344,10 +1353,10 @@
   <element>
     <fullpath>docs/en/script.js</fullpath>
     <version>1.5.1</version>
-    <revision>5763</revision>
+    <revision>5809</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>22f84a6ab23d64c3885c8da195ed1ed7</hash>
+    <hash>12c9a29f0b809b2bdfa8162593910835</hash>
   </element>
   <element>
     <fullpath>docs/en/start.htm</fullpath>
@@ -1368,10 +1377,10 @@
   <element>
     <fullpath>docs/en/theme.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5766</revision>
+    <revision>5796</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b66652976a272fba417df62082f71e1c</hash>
+    <hash>fda08a605b69ce69e398153291135fea</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_copyright.htm</fullpath>
@@ -1400,10 +1409,10 @@
   <element>
     <fullpath>docs/en/theme_upgrade_14x-15x.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5766</revision>
+    <revision>5799</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7c59d3ad499e4d2f5827c1dd632f756b</hash>
+    <hash>0e69f8060e07d196a43b5551696d8e42</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_user-contributions.htm</fullpath>
@@ -1416,10 +1425,10 @@
   <element>
     <fullpath>docs/en/toc.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5763</revision>
+    <revision>5809</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3f655d1501bf1954458f092285ccce9f</hash>
+    <hash>5708798ae71309c339fecfb3e98b0a7d</hash>
   </element>
   <element>
     <fullpath>docs/en/translation.htm</fullpath>
@@ -1672,10 +1681,10 @@
   <element>
     <fullpath>docs/fr/auto-installers.htm</fullpath>
     <version>1.5.1</version>
-    <revision>5601</revision>
+    <revision>5815</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>55806106d8b5613a988035ea9b85c36f</hash>
+    <hash>9242f4119fbb4d6f0267aafd636ed594</hash>
   </element>
   <element>
     <fullpath>docs/fr/credits.htm</fullpath>
@@ -1720,10 +1729,10 @@
   <element>
     <fullpath>docs/fr/script.js</fullpath>
     <version>1.5.1</version>
-    <revision>5760</revision>
+    <revision>5815</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>265abcd80868e1438e652fbf6efc6c34</hash>
+    <hash>cbc96d9ffccedb9ef159bce4daea854c</hash>
   </element>
   <element>
     <fullpath>docs/fr/testing.htm</fullpath>
@@ -1755,193 +1764,93 @@
     <permission>read</permission>
   </element>
   <element>
+    <fullpath>docs/fr/images/albmgr.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+  </element>
+  <element>
+    <fullpath>docs/fr/images/album_menu.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+  </element>
+  <element>
     <fullpath>docs/fr/images/anchor.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
     <hash>acfc14ca75e143ec72fae1920f6f9e97</hash>
   </element>
   <element>
-    <fullpath>docs/fr/images/base.gif</fullpath>
+    <fullpath>docs/fr/images/bridge_01_start.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/fr/images/empty.gif</fullpath>
+    <fullpath>docs/fr/images/bridge_02_app.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/fr/images/folder.gif</fullpath>
+    <fullpath>docs/fr/images/category_cp.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/fr/images/folderopen.gif</fullpath>
+    <fullpath>docs/fr/images/config_language.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/fr/images/fr_admin_menu.gif</fullpath>
+    <fullpath>docs/fr/images/ecard_log.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/fr/images/fr_albmgr.gif</fullpath>
+    <fullpath>docs/fr/images/edit_album.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/fr/images/fr_album_menu.gif</fullpath>
+    <fullpath>docs/fr/images/edit_picture.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/fr/images/fr_bridge_01_start.gif</fullpath>
+    <fullpath>docs/fr/images/exif_data_cpg1.jpg</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/fr/images/fr_bridge_02_app.gif</fullpath>
+    <fullpath>docs/fr/images/exifmanager_cpg1.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/fr/images/fr_category_cp.gif</fullpath>
+    <fullpath>docs/fr/images/modifyalb_reset.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/fr/images/fr_config_language.gif</fullpath>
+    <fullpath>docs/fr/images/searchnew_1.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/fr/images/coppermine-logo.png</fullpath>
+    <fullpath>docs/fr/images/searchnew_2.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/fr/images/fr_ecard_log.gif</fullpath>
+    <fullpath>docs/fr/images/usermgr.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/fr/images/fr_edit_album.gif</fullpath>
+    <fullpath>docs/fr/images/util_re-size.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/fr/images/fr_edit_picture.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/fr_exif_data_cpg1.jpg</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/fr_exifmanager_cpg1.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/fr_group_cp.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/fr_groupsscrsht2.jpg</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/fr_modifyalb_reset.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/fr_searchnew_1.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/fr_searchnew_2.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/fr_usermgr.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/fr_util_re-size.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/fr_versioncheck_options.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/join.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/joinbottom.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/line.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/link.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/minus.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/minusbottom.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/nolines_minus.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/nolines_plus.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/page.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/plus.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/plusbottom.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/spacer.gif</fullpath>
+    <fullpath>docs/fr/images/versioncheck_options.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
@@ -3692,7 +3601,7 @@
     <revision>5129</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>bdad44466a42ae1aaba49b090425eed2</hash>
+    <hash>a486a0d89bd11c55197759603fda9528</hash>
   </element>
   <element>
     <fullpath>docs/style/style.css</fullpath>
@@ -3963,7 +3872,7 @@
     <fullpath>images/browser/dillo.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>182db47b6cbe6552bc48b93857a44dab</hash>
+    <hash>e3b0da896936812991e32ea0c45733df</hash>
   </element>
   <element>
     <fullpath>images/browser/dreamcast.png</fullpath>
@@ -4035,7 +3944,7 @@
     <fullpath>images/browser/galeon.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>df55e6b75765212ccb40646e487f0762</hash>
+    <hash>288b71bf8512c5eacbb18aa1faa6cdc3</hash>
   </element>
   <element>
     <fullpath>images/browser/getright.png</fullpath>
@@ -4498,1262 +4407,1262 @@
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ad.gif</fullpath>
+    <fullpath>images/flags/ad.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ae.gif</fullpath>
+    <fullpath>images/flags/ae.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/af.gif</fullpath>
+    <fullpath>images/flags/af.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ag.gif</fullpath>
+    <fullpath>images/flags/ag.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ai.gif</fullpath>
+    <fullpath>images/flags/ai.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/al.gif</fullpath>
+    <fullpath>images/flags/al.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/am.gif</fullpath>
+    <fullpath>images/flags/am.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/an.gif</fullpath>
+    <fullpath>images/flags/an.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ao.gif</fullpath>
+    <fullpath>images/flags/ao.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ar.gif</fullpath>
+    <fullpath>images/flags/ar.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/as.gif</fullpath>
+    <fullpath>images/flags/as.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/at.gif</fullpath>
+    <fullpath>images/flags/at.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/au.gif</fullpath>
+    <fullpath>images/flags/au.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/aw.gif</fullpath>
+    <fullpath>images/flags/aw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ax.gif</fullpath>
+    <fullpath>images/flags/ax.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/az.gif</fullpath>
+    <fullpath>images/flags/az.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ba.gif</fullpath>
+    <fullpath>images/flags/ba.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/basque.gif</fullpath>
+    <fullpath>images/flags/basque.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/bb.gif</fullpath>
+    <fullpath>images/flags/bb.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/bd.gif</fullpath>
+    <fullpath>images/flags/bd.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/be.gif</fullpath>
+    <fullpath>images/flags/be.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/bf.gif</fullpath>
+    <fullpath>images/flags/bf.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/bg.gif</fullpath>
+    <fullpath>images/flags/bg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/bh.gif</fullpath>
+    <fullpath>images/flags/bh.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/bi.gif</fullpath>
+    <fullpath>images/flags/bi.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/bj.gif</fullpath>
+    <fullpath>images/flags/bj.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/bm.gif</fullpath>
+    <fullpath>images/flags/bm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/bn.gif</fullpath>
+    <fullpath>images/flags/bn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/bo.gif</fullpath>
+    <fullpath>images/flags/bo.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/br.gif</fullpath>
+    <fullpath>images/flags/br.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/bs.gif</fullpath>
+    <fullpath>images/flags/bs.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/bt.gif</fullpath>
+    <fullpath>images/flags/bt.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/bv.gif</fullpath>
+    <fullpath>images/flags/bv.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/bw.gif</fullpath>
+    <fullpath>images/flags/bw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/by.gif</fullpath>
+    <fullpath>images/flags/by.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/bz.gif</fullpath>
+    <fullpath>images/flags/bz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ca.gif</fullpath>
+    <fullpath>images/flags/ca.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/catalonia.gif</fullpath>
+    <fullpath>images/flags/catalonia.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/cc.gif</fullpath>
+    <fullpath>images/flags/cc.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/cd.gif</fullpath>
+    <fullpath>images/flags/cd.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/cf.gif</fullpath>
+    <fullpath>images/flags/cf.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/cg.gif</fullpath>
+    <fullpath>images/flags/cg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ch.gif</fullpath>
+    <fullpath>images/flags/ch.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ci.gif</fullpath>
+    <fullpath>images/flags/ci.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ck.gif</fullpath>
+    <fullpath>images/flags/ck.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/cl.gif</fullpath>
+    <fullpath>images/flags/cl.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/cm.gif</fullpath>
+    <fullpath>images/flags/cm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/cn.gif</fullpath>
+    <fullpath>images/flags/cn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/co.gif</fullpath>
+    <fullpath>images/flags/co.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/cr.gif</fullpath>
+    <fullpath>images/flags/cr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/cs.gif</fullpath>
+    <fullpath>images/flags/cs.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/cu.gif</fullpath>
+    <fullpath>images/flags/cu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/cv.gif</fullpath>
+    <fullpath>images/flags/cv.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/cx.gif</fullpath>
+    <fullpath>images/flags/cx.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/cy.gif</fullpath>
+    <fullpath>images/flags/cy.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/cz.gif</fullpath>
+    <fullpath>images/flags/cz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/de.gif</fullpath>
+    <fullpath>images/flags/de.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/dj.gif</fullpath>
+    <fullpath>images/flags/dj.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/dk.gif</fullpath>
+    <fullpath>images/flags/dk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/dm.gif</fullpath>
+    <fullpath>images/flags/dm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/do.gif</fullpath>
+    <fullpath>images/flags/do.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/dz.gif</fullpath>
+    <fullpath>images/flags/dz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ec.gif</fullpath>
+    <fullpath>images/flags/ec.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ee.gif</fullpath>
+    <fullpath>images/flags/ee.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/eg.gif</fullpath>
+    <fullpath>images/flags/eg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/eh.gif</fullpath>
+    <fullpath>images/flags/eh.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/england.gif</fullpath>
+    <fullpath>images/flags/england.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/er.gif</fullpath>
+    <fullpath>images/flags/er.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/es.gif</fullpath>
+    <fullpath>images/flags/es.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/et.gif</fullpath>
+    <fullpath>images/flags/et.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/eu.gif</fullpath>
+    <fullpath>images/flags/eu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/fam.gif</fullpath>
+    <fullpath>images/flags/fam.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/fi.gif</fullpath>
+    <fullpath>images/flags/fi.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/fj.gif</fullpath>
+    <fullpath>images/flags/fj.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/fk.gif</fullpath>
+    <fullpath>images/flags/fk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/fm.gif</fullpath>
+    <fullpath>images/flags/fm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/fo.gif</fullpath>
+    <fullpath>images/flags/fo.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/fr.gif</fullpath>
+    <fullpath>images/flags/fr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ga.gif</fullpath>
+    <fullpath>images/flags/ga.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/galician.gif</fullpath>
+    <fullpath>images/flags/galician.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gb.gif</fullpath>
+    <fullpath>images/flags/gb.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gd.gif</fullpath>
+    <fullpath>images/flags/gd.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ge.gif</fullpath>
+    <fullpath>images/flags/ge.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gf.gif</fullpath>
+    <fullpath>images/flags/gf.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gh.gif</fullpath>
+    <fullpath>images/flags/gh.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gi.gif</fullpath>
+    <fullpath>images/flags/gi.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gl.gif</fullpath>
+    <fullpath>images/flags/gl.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gm.gif</fullpath>
+    <fullpath>images/flags/gm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gn.gif</fullpath>
+    <fullpath>images/flags/gn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gp.gif</fullpath>
+    <fullpath>images/flags/gp.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gq.gif</fullpath>
+    <fullpath>images/flags/gq.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gr.gif</fullpath>
+    <fullpath>images/flags/gr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gs.gif</fullpath>
+    <fullpath>images/flags/gs.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gt.gif</fullpath>
+    <fullpath>images/flags/gt.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gu.gif</fullpath>
+    <fullpath>images/flags/gu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gw.gif</fullpath>
+    <fullpath>images/flags/gw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/gy.gif</fullpath>
+    <fullpath>images/flags/gy.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/hk.gif</fullpath>
+    <fullpath>images/flags/hk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/hm.gif</fullpath>
+    <fullpath>images/flags/hm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/hn.gif</fullpath>
+    <fullpath>images/flags/hn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/hr.gif</fullpath>
+    <fullpath>images/flags/hr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ht.gif</fullpath>
+    <fullpath>images/flags/ht.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/hu.gif</fullpath>
+    <fullpath>images/flags/hu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/id.gif</fullpath>
+    <fullpath>images/flags/id.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ie.gif</fullpath>
+    <fullpath>images/flags/ie.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/il.gif</fullpath>
+    <fullpath>images/flags/il.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/in.gif</fullpath>
+    <fullpath>images/flags/in.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/io.gif</fullpath>
+    <fullpath>images/flags/io.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/iq.gif</fullpath>
+    <fullpath>images/flags/iq.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ir.gif</fullpath>
+    <fullpath>images/flags/ir.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/is.gif</fullpath>
+    <fullpath>images/flags/is.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/it.gif</fullpath>
+    <fullpath>images/flags/it.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/jm.gif</fullpath>
+    <fullpath>images/flags/jm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/jo.gif</fullpath>
+    <fullpath>images/flags/jo.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/jp.gif</fullpath>
+    <fullpath>images/flags/jp.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ke.gif</fullpath>
+    <fullpath>images/flags/ke.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/kg.gif</fullpath>
+    <fullpath>images/flags/kg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/kh.gif</fullpath>
+    <fullpath>images/flags/kh.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ki.gif</fullpath>
+    <fullpath>images/flags/ki.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/km.gif</fullpath>
+    <fullpath>images/flags/km.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/kn.gif</fullpath>
+    <fullpath>images/flags/kn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/kp.gif</fullpath>
+    <fullpath>images/flags/kp.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/kr.gif</fullpath>
+    <fullpath>images/flags/kr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/kurdish.gif</fullpath>
+    <fullpath>images/flags/kurdish.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/kw.gif</fullpath>
+    <fullpath>images/flags/kw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ky.gif</fullpath>
+    <fullpath>images/flags/ky.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/kz.gif</fullpath>
+    <fullpath>images/flags/kz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/la.gif</fullpath>
+    <fullpath>images/flags/la.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/lb.gif</fullpath>
+    <fullpath>images/flags/lb.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/lc.gif</fullpath>
+    <fullpath>images/flags/lc.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/li.gif</fullpath>
+    <fullpath>images/flags/li.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/lk.gif</fullpath>
+    <fullpath>images/flags/lk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/lr.gif</fullpath>
+    <fullpath>images/flags/lr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ls.gif</fullpath>
+    <fullpath>images/flags/ls.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/lt.gif</fullpath>
+    <fullpath>images/flags/lt.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/lu.gif</fullpath>
+    <fullpath>images/flags/lu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/lv.gif</fullpath>
+    <fullpath>images/flags/lv.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ly.gif</fullpath>
+    <fullpath>images/flags/ly.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ma.gif</fullpath>
+    <fullpath>images/flags/ma.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mc.gif</fullpath>
+    <fullpath>images/flags/mc.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/md.gif</fullpath>
+    <fullpath>images/flags/md.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/me.gif</fullpath>
+    <fullpath>images/flags/me.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mg.gif</fullpath>
+    <fullpath>images/flags/mg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mh.gif</fullpath>
+    <fullpath>images/flags/mh.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mk.gif</fullpath>
+    <fullpath>images/flags/mk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ml.gif</fullpath>
+    <fullpath>images/flags/ml.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mm.gif</fullpath>
+    <fullpath>images/flags/mm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mn.gif</fullpath>
+    <fullpath>images/flags/mn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mo.gif</fullpath>
+    <fullpath>images/flags/mo.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mp.gif</fullpath>
+    <fullpath>images/flags/mp.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mq.gif</fullpath>
+    <fullpath>images/flags/mq.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mr.gif</fullpath>
+    <fullpath>images/flags/mr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ms.gif</fullpath>
+    <fullpath>images/flags/ms.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mt.gif</fullpath>
+    <fullpath>images/flags/mt.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mu.gif</fullpath>
+    <fullpath>images/flags/mu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mv.gif</fullpath>
+    <fullpath>images/flags/mv.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mw.gif</fullpath>
+    <fullpath>images/flags/mw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mx.gif</fullpath>
+    <fullpath>images/flags/mx.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/my.gif</fullpath>
+    <fullpath>images/flags/my.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/mz.gif</fullpath>
+    <fullpath>images/flags/mz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/na.gif</fullpath>
+    <fullpath>images/flags/na.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/nc.gif</fullpath>
+    <fullpath>images/flags/nc.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ne.gif</fullpath>
+    <fullpath>images/flags/ne.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/nf.gif</fullpath>
+    <fullpath>images/flags/nf.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ng.gif</fullpath>
+    <fullpath>images/flags/ng.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ni.gif</fullpath>
+    <fullpath>images/flags/ni.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/nl.gif</fullpath>
+    <fullpath>images/flags/nl.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/no.gif</fullpath>
+    <fullpath>images/flags/no.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/np.gif</fullpath>
+    <fullpath>images/flags/np.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/nr.gif</fullpath>
+    <fullpath>images/flags/nr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/nu.gif</fullpath>
+    <fullpath>images/flags/nu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/nz.gif</fullpath>
+    <fullpath>images/flags/nz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/om.gif</fullpath>
+    <fullpath>images/flags/om.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/pa.gif</fullpath>
+    <fullpath>images/flags/pa.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/pe.gif</fullpath>
+    <fullpath>images/flags/pe.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/pf.gif</fullpath>
+    <fullpath>images/flags/pf.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/pg.gif</fullpath>
+    <fullpath>images/flags/pg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ph.gif</fullpath>
+    <fullpath>images/flags/ph.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/pk.gif</fullpath>
+    <fullpath>images/flags/pk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/pl.gif</fullpath>
+    <fullpath>images/flags/pl.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/pm.gif</fullpath>
+    <fullpath>images/flags/pm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/pn.gif</fullpath>
+    <fullpath>images/flags/pn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/pr.gif</fullpath>
+    <fullpath>images/flags/pr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ps.gif</fullpath>
+    <fullpath>images/flags/ps.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/pt.gif</fullpath>
+    <fullpath>images/flags/pt.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/pw.gif</fullpath>
+    <fullpath>images/flags/pw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/py.gif</fullpath>
+    <fullpath>images/flags/py.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/qa.gif</fullpath>
+    <fullpath>images/flags/qa.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/re.gif</fullpath>
+    <fullpath>images/flags/re.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/reset.gif</fullpath>
+    <fullpath>images/flags/reset.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ro.gif</fullpath>
+    <fullpath>images/flags/ro.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/rs.gif</fullpath>
+    <fullpath>images/flags/rs.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ru.gif</fullpath>
+    <fullpath>images/flags/ru.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/rw.gif</fullpath>
+    <fullpath>images/flags/rw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/sa.gif</fullpath>
+    <fullpath>images/flags/sa.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/sb.gif</fullpath>
+    <fullpath>images/flags/sb.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/sc.gif</fullpath>
+    <fullpath>images/flags/sc.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/scotland.gif</fullpath>
+    <fullpath>images/flags/scotland.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/sd.gif</fullpath>
+    <fullpath>images/flags/sd.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/se.gif</fullpath>
+    <fullpath>images/flags/se.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/sg.gif</fullpath>
+    <fullpath>images/flags/sg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/sh.gif</fullpath>
+    <fullpath>images/flags/sh.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/si.gif</fullpath>
+    <fullpath>images/flags/si.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/sj.gif</fullpath>
+    <fullpath>images/flags/sj.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/sk.gif</fullpath>
+    <fullpath>images/flags/sk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/sl.gif</fullpath>
+    <fullpath>images/flags/sl.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/sm.gif</fullpath>
+    <fullpath>images/flags/sm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/sn.gif</fullpath>
+    <fullpath>images/flags/sn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/so.gif</fullpath>
+    <fullpath>images/flags/so.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/sr.gif</fullpath>
+    <fullpath>images/flags/sr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/st.gif</fullpath>
+    <fullpath>images/flags/st.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/sv.gif</fullpath>
+    <fullpath>images/flags/sv.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/sy.gif</fullpath>
+    <fullpath>images/flags/sy.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/sz.gif</fullpath>
+    <fullpath>images/flags/sz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/tc.gif</fullpath>
+    <fullpath>images/flags/tc.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/td.gif</fullpath>
+    <fullpath>images/flags/td.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/tf.gif</fullpath>
+    <fullpath>images/flags/tf.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/tg.gif</fullpath>
+    <fullpath>images/flags/tg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/th.gif</fullpath>
+    <fullpath>images/flags/th.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/tj.gif</fullpath>
+    <fullpath>images/flags/tj.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/tk.gif</fullpath>
+    <fullpath>images/flags/tk.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/tl.gif</fullpath>
+    <fullpath>images/flags/tl.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/tm.gif</fullpath>
+    <fullpath>images/flags/tm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/tn.gif</fullpath>
+    <fullpath>images/flags/tn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/to.gif</fullpath>
+    <fullpath>images/flags/to.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/tr.gif</fullpath>
+    <fullpath>images/flags/tr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/tt.gif</fullpath>
+    <fullpath>images/flags/tt.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/tv.gif</fullpath>
+    <fullpath>images/flags/tv.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/tw.gif</fullpath>
+    <fullpath>images/flags/tw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/tz.gif</fullpath>
+    <fullpath>images/flags/tz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ua.gif</fullpath>
+    <fullpath>images/flags/ua.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ug.gif</fullpath>
+    <fullpath>images/flags/ug.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/uighur.gif</fullpath>
+    <fullpath>images/flags/uighur.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/um.gif</fullpath>
+    <fullpath>images/flags/um.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/us.gif</fullpath>
+    <fullpath>images/flags/us.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/uy.gif</fullpath>
+    <fullpath>images/flags/uy.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/uz.gif</fullpath>
+    <fullpath>images/flags/uz.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/va.gif</fullpath>
+    <fullpath>images/flags/va.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/vc.gif</fullpath>
+    <fullpath>images/flags/vc.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ve.gif</fullpath>
+    <fullpath>images/flags/ve.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/vg.gif</fullpath>
+    <fullpath>images/flags/vg.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/vi.gif</fullpath>
+    <fullpath>images/flags/vi.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/vn.gif</fullpath>
+    <fullpath>images/flags/vn.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/vu.gif</fullpath>
+    <fullpath>images/flags/vu.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/wales.gif</fullpath>
+    <fullpath>images/flags/wales.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/wf.gif</fullpath>
+    <fullpath>images/flags/wf.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ws.gif</fullpath>
+    <fullpath>images/flags/ws.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/ye.gif</fullpath>
+    <fullpath>images/flags/ye.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/yt.gif</fullpath>
+    <fullpath>images/flags/yt.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/za.gif</fullpath>
+    <fullpath>images/flags/za.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/zm.gif</fullpath>
+    <fullpath>images/flags/zm.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/flags/zw.gif</fullpath>
+    <fullpath>images/flags/zw.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
   </element>
@@ -6847,7 +6756,7 @@
     <fullpath>images/os/unknown.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8f1b20d6ebe06ae7e1944af74a516223</hash>
+    <hash>adb3e903df6f45c3c35868b2105f393d</hash>
   </element>
   <element>
     <fullpath>images/os/vms.png</fullpath>
@@ -7762,10 +7671,10 @@
   <element>
     <fullpath>include/functions.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5766</revision>
+    <revision>5808</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5e3522eefd5291ebc266b43df9754ec6</hash>
+    <hash>6b89b5f792913238673b9014b08a181a</hash>
   </element>
   <element>
     <fullpath>include/imageObjectGD.class.php</fullpath>
@@ -7802,10 +7711,10 @@
   <element>
     <fullpath>include/init.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5715</revision>
+    <revision>5794</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c34dcd790ccb30d26e4c161e59e8f5b5</hash>
+    <hash>6f8c8634632fe56f3c9084f4a3419069</hash>
   </element>
   <element>
     <fullpath>include/iptc.inc.php</fullpath>
@@ -7874,10 +7783,10 @@
   <element>
     <fullpath>include/plugin_api.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5717</revision>
+    <revision>5813</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>21cc2f2fe798c7fe8e1d633c14f6c5d9</hash>
+    <hash>9f757f17e71e6e07e15cff44b360b56d</hash>
   </element>
   <element>
     <fullpath>include/search.inc.php</fullpath>
@@ -7922,18 +7831,18 @@
   <element>
     <fullpath>include/themes.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5700</revision>
+    <revision>5799</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>662247f5b6d921f0a3916d3d66097dc9</hash>
+    <hash>ec13de0ea2a88d81df2f62dfbe164466</hash>
   </element>
   <element>
     <fullpath>include/versioncheck.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>5717</revision>
+    <revision>5811</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a881040fdba3a3ea2dc6b7fc6bed537b</hash>
+    <hash>229506816b3f525557a7c8e215fcd09e</hash>
   </element>
   <element>
     <fullpath>include/zip.lib.php</fullpath>
@@ -8049,18 +7958,18 @@
   <element>
     <fullpath>lang/english.php</fullpath>
     <version>1.5.1</version>
-    <revision>5766</revision>
+    <revision>5793</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>136a49730bddeab6e29d0bb52c0afc70</hash>
+    <hash>89c2cd8f9988086e1a1012529aca7a10</hash>
   </element>
   <element>
     <fullpath>lang/german.php</fullpath>
     <version>1.5.1</version>
-    <revision>5766</revision>
+    <revision>5793</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>2fb7bd553e64f5915ab722fbd3119a2c</hash>
+    <hash>5a4f515a51d1d7c3bce32ef9bcb057a1</hash>
   </element>
   <element>
     <fullpath>js</fullpath>
@@ -8174,10 +8083,10 @@
   <element>
     <fullpath>js/scripts.js</fullpath>
     <version>1.5.1</version>
-    <revision>5695</revision>
+    <revision>5793</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>cb0e2bb571859acea9fceae018f36aff</hash>
+    <hash>9c442a89f951c20e78d482bfe81d9a37</hash>
   </element>
   <element>
     <fullpath>js/upload.js</fullpath>
@@ -8213,26 +8122,26 @@
   <element>
     <fullpath>plugins/onlinestats/codebase.php</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5785</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6cf573edf924d57441baae7049725154</hash>
+    <hash>24547691bb92f1a3a54d42e825cfa2dd</hash>
   </element>
   <element>
     <fullpath>plugins/onlinestats/configuration.php</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5785</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>80669ea6219a40ab036edb2fa6bb379c</hash>
+    <hash>51a68a04dbbfbdeedab14b8b67298724</hash>
   </element>
   <element>
     <fullpath>plugins/onlinestats/readme.txt</fullpath>
     <version>1.5.1</version>
-    <revision>5589</revision>
+    <revision>5785</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>ef4da94b57ad146d13d05a42e482ccb6</hash>
+    <hash>2c4a45dbca8f0b082bb9bdb113a55e82</hash>
   </element>
   <element>
     <fullpath>plugins/onlinestats/schema.sql</fullpath>
@@ -8347,26 +8256,26 @@
   <element>
     <fullpath>sql/basic.sql</fullpath>
     <version>1.5.1</version>
-    <revision>5766</revision>
+    <revision>5790</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9f18a784f426ebbc4b5b5d2f7b895ecf</hash>
+    <hash>e0c0e66f996a7c6c554bb029615d2c01</hash>
   </element>
   <element>
     <fullpath>sql/schema.sql</fullpath>
     <version>1.5.1</version>
-    <revision>5698</revision>
+    <revision>5807</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d464a78216b97fcf366fe83899ff2f08</hash>
+    <hash>a7a9ec301b00955ea770fdf62eab0582</hash>
   </element>
   <element>
     <fullpath>sql/update.sql</fullpath>
     <version>1.5.1</version>
-    <revision>5766</revision>
+    <revision>5807</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0037dd9a80c77a03b7d17541912bdbec</hash>
+    <hash>aa77b1cb7cc271b31e1196bdb7d14b29</hash>
   </element>
   <element>
     <fullpath>themes/</fullpath>
@@ -8381,10 +8290,10 @@
   <element>
     <fullpath>themes/classic/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5668</revision>
+    <revision>5799</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>2404c2cac453418ba8eabdaa188a727d</hash>
+    <hash>1575032e3418b68e8e9514f93a5112c4</hash>
   </element>
   <element>
     <fullpath>themes/classic/template.html</fullpath>
@@ -9145,10 +9054,10 @@
   <element>
     <fullpath>themes/eyeball/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5668</revision>
+    <revision>5799</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>b0c066f97ab557f3d8f3f5e87bc592bd</hash>
+    <hash>b472aef78c06804770c9c303339345f3</hash>
   </element>
   <element>
     <fullpath>themes/eyeball/template.html</fullpath>
@@ -9537,10 +9446,10 @@
   <element>
     <fullpath>themes/fruity/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5668</revision>
+    <revision>5799</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>c364f5711a2a9babb61e150f5237b79d</hash>
+    <hash>c02e993602d4032398c02a1dd6c3d4e3</hash>
   </element>
   <element>
     <fullpath>themes/fruity/template.html</fullpath>
@@ -9768,10 +9677,10 @@
   <element>
     <fullpath>themes/hardwired/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5668</revision>
+    <revision>5799</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>b745b81102f8fbcb5b219510674f973f</hash>
+    <hash>f0f686da0cb7f7056338863fd5d9600d</hash>
   </element>
   <element>
     <fullpath>themes/hardwired/template.html</fullpath>
@@ -10184,10 +10093,10 @@
   <element>
     <fullpath>themes/igames/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5668</revision>
+    <revision>5799</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>0c7c7282a37a16dbaf91c20f259ec88f</hash>
+    <hash>29af4109a3d2081a82489b8430b1de1b</hash>
   </element>
   <element>
     <fullpath>themes/igames/template.html</fullpath>
@@ -10487,10 +10396,10 @@
   <element>
     <fullpath>themes/mac_ox_x/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5668</revision>
+    <revision>5799</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>08813855e94354d019cd113df8d4a582</hash>
+    <hash>f5fa0ef120d50b308115f51f75ec7841</hash>
   </element>
   <element>
     <fullpath>themes/mac_ox_x/template.html</fullpath>
@@ -10707,10 +10616,10 @@
   <element>
     <fullpath>themes/project_vii/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5668</revision>
+    <revision>5799</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>a5cad8e2accb825b33fce75060f7eaee</hash>
+    <hash>7a26cc90ebfac5d8c4d44a0f2d1759a2</hash>
   </element>
   <element>
     <fullpath>themes/project_vii/template.html</fullpath>
@@ -10849,10 +10758,10 @@
   <element>
     <fullpath>themes/rainy_day/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5668</revision>
+    <revision>5799</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>5af76ba328d469bda57d27d019dcc276</hash>
+    <hash>377728c9ac663c8a633b574ec3e609fc</hash>
   </element>
   <element>
     <fullpath>themes/rainy_day/template.html</fullpath>
@@ -11194,10 +11103,10 @@
   <element>
     <fullpath>themes/sample/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5664</revision>
+    <revision>5799</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>30f8a700900fc2d3605b8fd5018d8a4c</hash>
+    <hash>bc0f78ad5be605953e132a3787072fc7</hash>
   </element>
   <element>
     <fullpath>themes/sample/template.html</fullpath>
@@ -11210,10 +11119,10 @@
   <element>
     <fullpath>themes/sample/theme.php</fullpath>
     <version>1.5.1</version>
-    <revision>5766</revision>
+    <revision>5799</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>bfad1069a50a9e4f24fea772823ec601</hash>
+    <hash>a4c7be24eb1fe6b427dcecab7bcc3993</hash>
   </element>
   <element>
     <fullpath>themes/sample/images</fullpath>
@@ -11258,10 +11167,10 @@
   <element>
     <fullpath>themes/water_drop/style.css</fullpath>
     <version>1.5.1</version>
-    <revision>5668</revision>
+    <revision>5799</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>997542144ed4774555440c22a21708a7</hash>
+    <hash>c7b97c6a89bbbd44bf71507fe7325cf7</hash>
   </element>
   <element>
     <fullpath>themes/water_drop/template.html</fullpath>
