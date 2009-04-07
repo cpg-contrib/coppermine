@@ -2250,16 +2250,18 @@ function theme_admin_mode_menu()
             // Determine the documentation target
             $available_doc_folders_array = form_get_foldercontent('docs/', 'folder', '', array('images', 'js', 'style', '.svn'));
             // Query the languages table
+            $help_lang = '';
             $results = cpg_db_query("SELECT lang_id, abbr FROM {$CONFIG['TABLE_LANGUAGE']} WHERE available='YES' AND enabled='YES'");
             while ($row = mysql_fetch_array($results)) {
                 if ($CONFIG['lang'] == $row['lang_id']) {
                     $help_lang = $row['abbr'];
-                } else {
-                    $help_lang = 'en';
                 }
             } // while
             mysql_free_result($results);
             unset($row);
+            if ($help_lang == '') {
+            	$help_lang = 'en';
+            }
 
             // do the docs exist on the webserver?
             if (file_exists('docs/'.$help_lang.'/index.htm') == true) {
