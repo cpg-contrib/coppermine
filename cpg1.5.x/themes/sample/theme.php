@@ -2151,16 +2151,18 @@ function theme_admin_mode_menu()
             // Determine the documentation target
             $available_doc_folders_array = form_get_foldercontent('docs/', 'folder', '', array('images', 'js', 'style', '.svn'));
             // Query the languages table
+            $help_lang = '';
             $results = cpg_db_query("SELECT lang_id, abbr FROM {$CONFIG['TABLE_LANGUAGE']} WHERE available='YES' AND enabled='YES'");
             while ($row = mysql_fetch_array($results)) {
                 if ($CONFIG['lang'] == $row['lang_id']) {
                     $help_lang = $row['abbr'];
-                } else {
-                    $help_lang = 'en';
                 }
             } // while
             mysql_free_result($results);
             unset($row);
+            if ($help_lang == '') {
+            	$help_lang = 'en';
+            }
 
             // do the docs exist on the webserver?
             if (file_exists('docs/'.$help_lang.'/index.htm') == true) {
@@ -2236,7 +2238,6 @@ function theme_admin_mode_menu()
                 '{DOCUMENTATION_TITLE}' => $lang_gallery_admin_menu['documentation_title'],
                 '{DOCUMENTATION_LNK}' => $lang_gallery_admin_menu['documentation_lnk'],
                 '{DOCUMENTATION_ICO}' => cpg_fetch_icon('documentation', 1),
-                '{PLUGINMGR_HREF}' => 'pluginmgr.php',
                 '{PLUGINMGR_TITLE}' => $lang_gallery_admin_menu['pluginmgr_title'],
                 '{PLUGINMGR_LNK}' => $lang_gallery_admin_menu['pluginmgr_lnk'],
                 '{PLUGINMGR_ICO}' => cpg_fetch_icon('plugin_mgr', 1),
