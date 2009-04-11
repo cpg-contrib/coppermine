@@ -1012,12 +1012,6 @@
     <hash>78b0c9ad4944660d036ab7ead1cfa8da</hash>
   </element>
   <element>
-    <fullpath>docs/de/images/util_re-size.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>c193750ac22a78128ceb9516e8b57fe4</hash>
-  </element>
-  <element>
     <fullpath>docs/en/</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -1618,6 +1612,42 @@
     <fullpath>docs/en/images/</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
+  </element>
+  <element>
+    <fullpath>docs/en/images/admin-tools.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>744b20fc37ca7cbee25a88d594773631</hash>
+  </element>
+  <element>
+    <fullpath>docs/en/images/admin-tools_convert-keyword-separator.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>744b20fc37ca7cbee25a88d594773631</hash>
+  </element>
+  <element>
+    <fullpath>docs/en/images/admin-tools_delete-older.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>744b20fc37ca7cbee25a88d594773631</hash>
+  </element>
+  <element>
+    <fullpath>docs/en/images/admin-tools_filename.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>744b20fc37ca7cbee25a88d594773631</hash>
+  </element>
+  <element>
+    <fullpath>docs/en/images/admin-tools_reload-dimensions.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>744b20fc37ca7cbee25a88d594773631</hash>
+  </element>
+  <element>
+    <fullpath>docs/en/images/admin-tools_resize.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>744b20fc37ca7cbee25a88d594773631</hash>
   </element>
   <element>
     <fullpath>docs/en/images/albmgr.png</fullpath>
