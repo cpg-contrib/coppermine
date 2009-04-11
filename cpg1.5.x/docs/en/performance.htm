@@ -51,22 +51,23 @@ The general advice is to disable any feature you don't actually make use of and 
 <br />
 <ul>
     <li><strong>Number of &lt;something&gt;</strong> - Keep the number of anything set to reasonable values, the defaults are usually fine for most galleries.</li>
-    <li><strong>Enable plugins</strong> - If you don't use plugins, you can disable the plugin system entirely. Don't add all known plugins to your gallery - just add those that you need.  You can disable individual plugins on the plugin manager page to troubleshoot speed and server load issues.  A disabled plugin doesn't do anything except be listed on the plugin manager page.</li>
-    <li><strong>Non-English language</strong> - Displaying your gallery in a language other than English (US) carries a small performance penalty.</li>
-    <li><strong>The content of the main page</strong> - Keep this setting simple so your index page loads quickly.  Avoid using the <i>random</i> block on very large galleries.  The "lastalb" (last-updated albums) block can be slow on very large galleries, particularly if you have the album thumbnail set to "random" or "last uploaded" for most albums.</li>
-    <li><strong>Show number of linked files</strong> - This requires an additional database query per album displayed on the index page - disable if not needed.</li>
-    <li><strong>Allow users to assign album keywords</strong> - The <i>linked files</i> feature is not suitable for very large galleries.</li>
-    <li><strong>Display number of comments below the thumbnail</strong> - This requires an additional database query per file displayed in an album view - disable if not needed.</li>
-    <li><strong>Default sort order for files</strong> - Avoid sorting by filename or title; sorting by date or position is faster.</li>
-    <li><strong>Show film strip</strong> - The filmstrip requires an additional database query to display - disable if not needed.</li>
-    <li><strong>Albums can be private</strong> - Disabling this allows privacy/visibility checks to be skipped, helping performance.</li>
-    <li><strong>Automatically purge expired bans</strong> - Enabling this keeps the bans table smaller and so faster.</li>
-    <li><strong>Display statistics on index page</strong> - Disabling this will avoid the expensive stats queries on the index page.</li>
-    <li><strong>Keep detailed vote/hit statistics</strong> - Disabling this will help keep the database small.</li>
-    <li><strong>Count file/album views</strong> - Disabling these will mean fewer writes to the pictures/albums table which helps the MySQL query cache be more efficient.</li>
-    <li><strong>Enable debug mode</strong> - Debug more itself will increase load times as a result of the additional information it displays. Unless you are actually debugging your gallery keep this disabled.</li>
-    <li><strong>Display news from coppermine-gallery.net</strong> - This causes a small delay while the news is fetched.</li>
-    <li><strong>Album Properties: Album Thumbnail</strong> - Choosing "Last Uploaded" or "Random" for an album thumbnail adds extra queries for each such album shown on a page.  Choose a specific image to avoid these queries.</li>
+    <li><strong><a href="configuration.htm#admin_general_enable-plugins">Enable plugins</a></strong> - If you don't use <a href="plugins.htm#plugin">plugins</a>, you can disable the plugin system entirely. Don't add all known plugins to your gallery - just add those that you need.  You can disable individual plugins on the plugin manager page to troubleshoot speed and server load issues.  A disabled plugin doesn't do anything except be listed on the plugin manager page.</li>
+    <li><strong>Non-English language</strong> - Displaying your gallery in a <a href="languages.htm">language</a> other than English (US) carries a small performance penalty.</li>
+    <li><strong><a href="configuration.htm#admin_album_list_content">The content of the main page</a></strong> - Keep this setting simple so your index page loads quickly.  Avoid using the <em>random</em> block on very large galleries.  The "lastalb" (last-updated albums) block can be slow on very large galleries, particularly if you have the album thumbnail set to "random" or "last uploaded" for most albums.</li>
+    <li><strong><a href="configuration.htm#admin_album_linked_files_start">Show number of linked files</a></strong> - This requires an additional database query per album displayed on the index page - disable if not needed.</li>
+    <li><strong><a href="configuration.htm#admin_allow_user_album_keyword">Allow users to assign album keywords</a></strong> - The <em>linked files</em> feature is not suitable for very large galleries.</li>
+    <li><strong><a href="configuration.htm#admin_thumbnail_display_comments">Display number of comments below the thumbnail</a></strong> - This requires an additional database query per file displayed in an album view - disable if not needed.</li>
+    <li><strong><a href="configuration.htm#admin_thumbnail_default_sortorder">Default sort order for files</a></strong> - Avoid sorting by filename or title; sorting by date or position is faster.</li>
+    <li><strong><a href="configuration.htm#admin_image_comment_filmstrip_toggle">Show film strip</a></strong> - The filmstrip requires an additional database query to display - disable if not needed.</li>
+    <li><strong><a href="configuration.htm#admin_picture_thumb_advanced_private_toggle">Albums can be private</a></strong> - Disabling this allows privacy/visibility checks to be skipped, helping performance.</li>
+    <li><strong><a href="configuration.htm#admin_user_purge_expired_bans">Automatically purge expired bans</a></strong> - Enabling this keeps the bans table smaller and so faster.</li>
+    <li><strong><a href="configuration.htm#admin_logging_display_stats_on_index">Display statistics on index page</a></strong> - Disabling this will avoid the expensive stats queries on the index page.</li>
+    <li><strong><a href="configuration.htm#admin_logging_votedetails">Keep detailed vote statistics</a></strong> - Disabling this will help keep the database small.</li>
+    <li><strong><a href="configuration.htm#admin_logging_hitdetails">Keep detailed hit statistics</a></strong> - Disabling this will help keep the database small.</li>
+    <li><strong><a href="configuration.htm#admin_count_file_hits">Count file views</a> / <a href="configuration.htm#admin_count_album_hits">Count album views</a></strong> - Disabling these will mean fewer writes to the pictures/albums table which helps the MySQL query cache be more efficient.</li>
+    <li><strong><a href="configuration.htm#debug_mode">Enable debug mode</a></strong> - Debug more itself will increase load times as a result of the additional information it displays. Unless you are actually debugging your gallery keep this disabled.</li>
+    <li><strong><a href="configuration.htm#admin_general_coppermine_news">Display news from coppermine-gallery.net</a></strong> - This causes a small delay while the news is fetched. Only applies for the admin, so your site's visitors won't notice a difference.</li>
+    <li><strong><a href="albums.htm#album_prop">Album Properties</a>: Album Thumbnail</strong> - Choosing "Last Uploaded" or "Random" for an album thumbnail adds extra queries for each such album shown on a page.  Choose a specific image to avoid these queries.</li>
 </ul>
 
 <a name="perf_config_spikes"></a><h3>Spiking<a href="#perf_config_spikes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -91,7 +92,7 @@ The general advice is to disable any feature you don't actually make use of and 
 
 <ul>
     <li><strong>Use the latest version</strong> - Use the latest stable version for best performance - PHP 5.2 is much faster than previous versions.</li>
-    <li><strong>Use a PHP accelerator</strong> - These can cut page load times by 40% or so. Note: Coppermine won't use any data caching ability but will benefit from bytecode caching. See list at <a href="http://en.wikipedia.org/wiki/PHP_accelerator" rel="external">Wikipedia</a>.</li>
+    <li><strong>Use a PHP accelerator</strong> - These can cut page load times by 40% or so. Note: Coppermine won't use any data caching ability but will benefit from bytecode caching. See list at <a href="http://en.wikipedia.org/wiki/PHP_accelerator" rel="external" class="external">Wikipedia</a>.</li>
 </ul>
 
 <a name="perf_mysql"></a><h2>MySQL settings<a href="#perf_mysql" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
