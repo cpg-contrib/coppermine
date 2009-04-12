@@ -891,35 +891,6 @@ a:hover {
 	background-color:#000000;
 }
 
-.dtree {
-    color: #C6B78E;
-    white-space: nowrap;
-}
-.dtree img {
-    border: 0px;
-    vertical-align: middle;
-}
-.dtree a {
-    color: #C6B78E;
-    text-decoration: none;
-}
-.dtree a.node, .dtree a.nodeSel {
-    white-space: nowrap;
-    padding: 1px 2px 1px 2px;
-}
-.dtree a.node:hover, .dtree a.nodeSel:hover {
-    color: #FFFFFF;
-    text-decoration: underline;
-}
-.dtree a.nodeSel {
-    background-image: url(images/tableh1a_bg_middle.gif);
-    border-bottom: 1px solid #000000;
-    color: #C6B78E;
-}
-.dtree .clip {
-    overflow: hidden;
-}
-
 /* jQuery Bookmark styles */
 .bookmark_list {
 	display: block;

@@ -715,34 +715,6 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
     background-color:#000000;
 }
 
-.dtree {
-    color: #666;
-    white-space: nowrap;
-}
-.dtree img {
-    border: 0px;
-    vertical-align: middle;
-}
-.dtree a {
-    color: #333;
-    text-decoration: none;
-}
-.dtree a.node, .dtree a.nodeSel {
-    white-space: nowrap;
-    padding: 1px 2px 1px 2px;
-}
-.dtree a.node:hover, .dtree a.nodeSel:hover {
-    color: #333;
-    text-decoration: underline;
-}
-.dtree a.nodeSel {
-    background-color: #0871A5;
-    color: #FFFFFF;
-}
-.dtree .clip {
-    overflow: hidden;
-}
-
 /* jQuery Bookmark styles */
 .bookmark_list {
     display: block;

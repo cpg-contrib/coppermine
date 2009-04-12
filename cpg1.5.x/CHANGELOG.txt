@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-04-12 [O] Replaced sidebar library dtree with treeview plugin for jquery {GauGau}
 2009-03-31 [O] Removed css class variants that hardly made a difference to the original classes {GauGau} 
 2009-03-31 [M] Upgraded SwfUpload to v2.2.0.1 Stable version. {Abbas}
 2009-03-31 [D] Added document about style.css (work in progress) {GauGau}

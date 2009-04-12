@@ -22,7 +22,6 @@
 define('THEME_HAS_RATING_GRAPHICS', 1);
 define('THEME_HAS_NAVBAR_GRAPHICS', 1);
 define('THEME_HAS_NO_SUB_MENU_BUTTONS', 1);
-define('THEME_HAS_SIDEBAR_GRAPHICS', 1);
 define('THEME_HAS_PROGRESS_GRAPHICS', 1);
 
 // HTML template for template sys_menu spacer

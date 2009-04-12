@@ -267,7 +267,6 @@ if (!$album_count) {
         $HIDE_USER_CAT = 1;
 }
 
-
 $dtree_counter=0;
 
 function get_tree_subcat_data($parent, $dtree_parent = 0) {
@@ -282,20 +281,25 @@ function get_tree_subcat_data($parent, $dtree_parent = 0) {
         if (($cat_count = mysql_num_rows($result)) > 0) {
                 $rowset = cpg_db_fetch_rowset($result);
                 $pos = 0;
+                $catStr .= '<ul>'."\n";
                 foreach ($rowset as $subcat) {
                         if ($subcat['cid'] == USER_GAL_CAT && $HIDE_USER_CAT == 1) {
 
                         } else {
                                 $dtree_counter++;
-                                $catStr .= "d.add(".$dtree_counter.",".$dtree_parent.",'".addslashes($subcat['name'])."','index.php?cat=".$subcat['cid']."','');\n";
+                                // Category
+                                $catStr .= '<li><a href="index.php?cat='.$subcat['cid'].'">'.$subcat['name'].'</a>'."\n";
                                 $dtree_temp=$dtree_counter;
                                 get_tree_subcat_data($subcat['cid'], $dtree_temp);
                                 get_tree_album_data($subcat['cid'], $dtree_temp);
+                                $catStr .= '</li>'."\n";
                         }
                 }
+                $catStr .= '</ul>'."\n";
                 if ($parent == 0) {
                         get_tree_album_data($parent,0);
                 }
+                
         }
 }
 
@@ -313,11 +317,15 @@ function get_tree_album_data($category,$dtree_parent) {
                 $result = cpg_db_query($sql);
                 if (($cat_count = mysql_num_rows($result)) > 0) {
                         $rowset = cpg_db_fetch_rowset($result);
+                        $catStr .= '<ul>'."\n";
                         foreach ($rowset as $subcat) {
                                 $dtree_counter++;
-                                $catStr .= "d.add(".$dtree_counter.",".$dtree_parent.",'".addslashes($subcat['user_name'])."','index.php?cat=". (FIRST_USER_CAT + (int) $subcat['user_id']) ."');\n";
+                                // User gallery
+                                $catStr .= '<li><a href="index.php?cat='.(FIRST_USER_CAT + (int) $subcat['user_id']).'">'.$subcat['user_name'].'</a>'."\n";
                                 get_tree_album_data(FIRST_USER_CAT + (int) $subcat['user_id'], $dtree_counter);
+                                $catStr .= '</li>'."\n";
                         }
+                        $catStr .= '</ul>'."\n";
                 }
         } else {
                 if ($category == USER_GAL_CAT) {
@@ -329,10 +337,13 @@ function get_tree_album_data($category,$dtree_parent) {
                 $result = cpg_db_query($sql);
                 if (($cat_count = mysql_num_rows($result)) > 0) {
                         $rowset = cpg_db_fetch_rowset($result);
+                        $catStr .= '<ul>'."\n";
                         foreach ($rowset as $subcat) {
                                 $dtree_counter++;
-                                $catStr .= "d.add(".$dtree_counter.",".$dtree_parent.",'".addslashes($subcat['title'])."','thumbnails.php?album=".$subcat['aid']."','');\n";
+                                // Album
+                                $catStr .= '<li><a href="thumbnails.php?album='.$subcat['aid'].'">'.$subcat['title'].'</a></li>'."\n";
                         }
+                        $catStr .= '</ul>'."\n";
                 }
         }
 }
@@ -340,10 +351,13 @@ function get_tree_album_data($category,$dtree_parent) {
 get_tree_subcat_data(0,0);
 
 
-$output = "d = new dTree('d');\n";
-$output .= "d.add(0,-1,'".$CONFIG['gallery_name'].$lang_list_categories['home']."','index.php');\n";
-$output .= $catStr;
-$output .= "document.write(d);\n";
+$output = <<< EOT
+<ul id="tree" class="treeview">
+<li><a href="index.php">{$CONFIG['gallery_name']}{$lang_list_categories['home']}</a>
+{$catStr}
+</li>
+</ul>
+EOT;
 
 if (defined('THEME_HAS_SIDEBAR_GRAPHICS')) {
     $location= $THEME_DIR;
@@ -355,18 +369,17 @@ if (defined('THEME_HAS_SIDEBAR_GRAPHICS')) {
 // Load template parameters
 $params = array(
     '{LANG_DIR}' => $lang_text_dir,
-    '{TITLE}' => $CONFIG['gallery_name']. ' - ' . $lang_sidebar_php['sidebar'],
+    '{TITLE}' => $lang_sidebar_php['sidebar'] . ' - ' . $CONFIG['gallery_name'],
     '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
     '{SIDEBAR_CONTENT}' => $output,
     '{SEARCH_TITLE}' => $lang_sidebar_php['search'],
-    '{RELOAD_TITLE}' => $lang_sidebar_php['reload'],
     '{THEME}' => $CONFIG['theme'],
     '{LOCATION}' => $location,
+    '{SEARCH_ICON}' => cpg_fetch_icon('search',0),
+    '{REFRESH_ICON}' => cpg_fetch_icon('reload',0, $lang_sidebar_php['reload']),
     );
 // Parse template
-print('<pre>');
-print_r(template_eval($template_sidebar, $params));
-print('</pre>');
+echo(template_eval($template_sidebar, $params));
 
 }
 ?>

@@ -745,34 +745,6 @@ a:hover {
 	clear:left;
 }
 
-.dtree {
-    color: #000000;
-    white-space: nowrap;
-}
-.dtree img {
-    border: 0px;
-    vertical-align: middle;
-}
-.dtree a {
-    color: #000000;
-    text-decoration: none;
-}
-.dtree a.node, .dtree a.nodeSel {
-    white-space: nowrap;
-    padding: 1px 2px 1px 2px;
-}
-.dtree a.node:hover, .dtree a.nodeSel:hover {
-    color: #000000;
-    text-decoration: underline;
-}
-.dtree a.nodeSel {
-    background-image: url(images/tableh1_bg.gif);
-    border: 1px solid #666666;
-}
-.dtree .clip {
-    overflow: hidden;
-}
-
 /* jQuery Bookmark styles */
 .bookmark_list {
 	display: block;

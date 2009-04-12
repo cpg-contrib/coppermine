@@ -747,33 +747,6 @@ background-image:url(images/right-banner.gif);
 	background-color:#000000;
 }
 
-.dtree {
-    color: #FFFFFF;
-    white-space: nowrap;
-}
-.dtree img {
-    border: 0px;
-    vertical-align: middle;
-}
-.dtree a {
-    color: #9A9EA4;
-    text-decoration: none;
-}
-.dtree a.node, .dtree a.nodeSel {
-    white-space: nowrap;
-    padding: 1px 2px 1px 2px;
-}
-.dtree a.node:hover, .dtree a.nodeSel:hover {
-    color: #FFFFFF;
-    text-decoration: underline;
-}
-.dtree a.nodeSel {
-    background-color: #5D6674;
-}
-.dtree .clip {
-    overflow: hidden;
-}
-
 /* jQuery Bookmark styles */
 .bookmark_list {
 	display: block;

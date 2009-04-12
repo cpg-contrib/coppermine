@@ -70,24 +70,6 @@
 //    The entire block needs to be present like in Coppermine 1.3 themes
 //  ('THEME_HAS_NO_SUB_MENU_BUTTONS', 1) When present the system won't attempt to replace {BUTTONS} in the SUB_MENU template
 //    The entire block needs to be present like in Coppermine 1.3 themes
-// ('THEME_HAS_SIDEBAR_GRAPHICS', 1) : The location for the sidebar graphics that compose the tree menu will
-//    be directed to the themes images folder, subfolder 'sidebar', i.e. themes/yourtheme/images/sidebar/.
-//    Gallery root                                                             : images/sidebar/base.gif
-//    Blank image                                                              : images/sidebar/empty.gif
-//    Category icon, collapsed state                                           : images/sidebar/folder.gif
-//    Category icon, expanded state                                            : images/sidebar/folderopen.gif
-//    Line between parent folder, child folder and next folder                 : images/sidebar/join.gif
-//    Line between parent folder and child folder                              : images/sidebar/joinbottom.gif
-//    Line between parent and next folder                                      : images/sidebar/line.gif
-//    Line between parent folder, child folder and next folder, expanded state : images/sidebar/minus.gif
-//    Line between parent folder and child folder, expanded state              : images/sidebar/minusbottom.gif
-//    Expanded state                                                           : images/sidebar/nolines_minus.gif
-//    Collapsed state                                                          : images/sidebar/nolines_plus.gif
-//    Album icon                                                               : images/sidebar/page.gif
-//    Line between parent folder, child folder and next folder, collapsed state: images/sidebar/plus.gif
-//    Line between parent folder and child folder, collapsed state             : images/sidebar/plusbottom.gif
-//    Reload the sidebar                                                       : images/sidebar/reload.gif
-//    Search icon                                                              : images/sidebar/search.gif
 
 /******************************************************************************
 ** Section <<<assemble_template_buttons>>> - START
@@ -3852,7 +3834,7 @@ function theme_display_fullsize_pic()
     td { vertical-align: middle; text-align:center; }
   </style>
 
-  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery-1.3.2.js"></script>
   <script type="text/javascript" src="js/jquery.dimensions.pack.js"></script>
   <script type="text/javascript" src="js/displayimage.fullsize.js"></script>
   </head>
@@ -4040,35 +4022,35 @@ function theme_page_title($section) {
 ** Section <<<$template_sidebar>>> - START
 ******************************************************************************/
 // HTML template for sidebar
-if (defined('THEME_HAS_NAVBAR_GRAPHICS')) {
-    $location= $THEME_DIR;
-} else {
-    $location= '';
-}
 $template_sidebar = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
 <head>
 <meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
 <title>{TITLE}</title>
+<script src="js/jquery-1.3.2.js" type="text/javascript"></script>
+<script src="js/jquery.treeview.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-var loc = '{LOCATION}';
-var cookie_name = '{$CONFIG['cookie_name']}';
+	$(function() {
+	    $("#tree").treeview({
+	        collapsed: true,
+	        unique: true,
+	        animated: "slow",
+	        persist: "location",
+	    });
+	})
 </script>
-<script src="js/dTree.js" type="text/javascript"></script>
-<script type="text/javascript">
-{SIDEBAR_CONTENT}
-</script>
-<link href="themes/{THEME}/style.css" rel="stylesheet" type="text/css" />
+<link href="treeview.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+{SIDEBAR_CONTENT}
 <form method="GET" action="thumbnails.php" target="_content">
   <input type="hidden" name="album" value="search" />
   <input type="hidden" name="type" value="full" />
-  <div id="dtreeSearchWrapper" style="margin: 1px 1px;float: left;">
-    <input id="dtreeSearchField" type="text" name="search" class="textinput" />
-    <input id="dtreeSearchButton" type="image" src="{LOCATION}images/sidebar/search.gif" alt="" title="{SEARCH_TITLE}" />
-    <a href="sidebar.php" target="_self" ><img id="dtreeReloadButton" src="{LOCATION}images/sidebar/reload.gif" border="0" width="13" height="15" alt="" title="{RELOAD_TITLE}" /></a>
+  <div id="SidebarSearchWrapper" style="margin: 1px 1px;float: left;">
+    <input id="sidebarSearchField" type="text" name="search" class="textinput" />
+    <button type="submit" class="button" name="sidebarSearchButton" id="sidebarSearchButton" value="{SEARCH_TITLE}">{SEARCH_ICON}</button>
+    <a href="sidebar.php" target="_self">{REFRESH_ICON}</a>
   </div>
 </form>
 </body>

@@ -22,7 +22,6 @@
 // ------------------------------------------------------------------------- //
 
 define('THEME_HAS_RATING_GRAPHICS', 1);
-define('THEME_HAS_SIDEBAR_GRAPHICS', 1);
 define('THEME_HAS_PROGRESS_GRAPHICS', 1);
 
 // HTML template for sys_menu
