@@ -105,6 +105,39 @@ The general advice is to disable any feature you don't actually make use of and 
     <li><strong>Tune the configuration</strong> - Use a tool like <a href="http://wiki.mysqltuner.com/MySQLTuner" rel="external">MySQLTuner</a> or <a href="http://www.day32.com/MySQL/" rel="external">tuning-primer.sh</a> to tweak MySQL for your usage patterns.</li>
 </ul>
 
+<a name="perf_yslow"></a><h2>YSlow<a href="#perf_yslow" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>YSlow analyzes web pages and tells you why they're slow based on the <a href="http://developer.yahoo.com/performance/index.html#rules" rel="external" class="external">rules for high performance web sites</a>. YSlow is a <a href="https://addons.mozilla.org/en-US/firefox/addon/5369" rel="external" class="external">Firefox add-on</a> integrated with the popular <a href="http://www.getfirebug.com/" rel="external" class="external">Firebug</a> web development tool.</p>
+<p>By adding an <i>.htaccess</i> file containing the following code into your Coppermine gallery directory you can apply some of these suggestions. If you do not use Apache as your webserver you will need to find the corresponding configuration settings for your webserver of choice. If your site no longer works after making these changes you can simply rename or delete the <i>.htaccess</i> file.</p>
+<br />
+
+<ul>
+    <li>
+        <strong>3. Add an Expires header</strong>
+        <pre class="code">
+        
+&lt;IfModule mod_expires.c&gt;
+    ExpiresActive on
+    ExpiresDefault &quot;access plus 2 weeks&quot;
+    ExpiresByType text/html &quot;access plus 1 seconds&quot;
+&lt;/IfModule&gt;</pre>
+    </li>
+    <li>
+        <strong>4. Gzip components</strong>
+        <pre class="code">
+        
+&lt;IfModule mod_deflate.c&gt;
+	AddOutputFilterByType DEFLATE application/x-javascript text/css text/html
+&lt;/IfModule&gt;</pre>
+    </li>    
+    <li>
+        <strong>13. Configure ETags</strong>
+        <pre class="code">
+        
+FileETag none</pre>
+    </li>      
+ </ul>
+
+
 <script type="text/javascript">
   cpgDocFooter();
   dateRevision(' $LastChangedDate$ ', ' $Revision$ ');
