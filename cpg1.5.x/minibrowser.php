@@ -39,18 +39,20 @@ if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
     $folder_regex = '/^[0-9A-Za-z\\.\\/_\\-,&\' ]+$/';
 }
 
+$mq = get_magic_quotes_gpc();
+
 if ($superCage->get->keyExists('folder') && ($matches = $superCage->get->getMatched('folder', $folder_regex))) {
-    $folder = rawurldecode($matches[0]);
+    $folder = rawurldecode($mq ? stripslashes($matches[0]) : $matches[0]);
 } elseif ($superCage->post->keyExists('folder') && ($matches = $superCage->post->getMatched('folder', $folder_regex))) {
-    $folder = rawurldecode($matches[0]);
+    $folder = rawurldecode($mq ? stripslashes($matches[0]) : $matches[0]);
 } else {
     $folder = '';
 }
 
 if ($superCage->get->keyExists('startfolder') && ($matches = $superCage->get->getMatched('startfolder', $folder_regex))) {
-    $startfolder = rawurldecode($matches[0]);
+    $startfolder = rawurldecode($mq ? stripslashes($matches[0]) : $matches[0]);
 } elseif ($superCage->post->keyExists('folder') && ($matches = $superCage->post->getMatched('startfolder', $folder_regex))) {
-    $startfolder = rawurldecode($matches[0]);
+    $startfolder = rawurldecode($mq ? stripslashes($matches[0]) : $matches[0]);
 } else {
     $startfolder = '';
 }
@@ -60,10 +62,10 @@ if (($folder == '') && ($startfolder != '')) {
 }
 
 if ($superCage->get->keyExists('hidefolders') && ($matches = $superCage->get->getMatched('hidefolders', $folder_regex))) {
-    $hidefolders = rawurldecode($matches[0]);
+    $hidefolders = rawurldecode($mq ? stripslashes($matches[0]) : $matches[0]);
     $hiddenfolders = explode(',', $hidefolders);
 } elseif ($superCage->post->keyExists('hidefolders') && ($matches = $superCage->post->getMatched('hidefolders', $folder_regex))) {
-    $hidefolders = rawurldecode($matches[0]);
+    $hidefolders = rawurldecode($mq ? stripslashes($matches[0]) : $matches[0]);
     $hiddenfolders = explode(',', $hidefolders);
 } else {
     $hidefolders = '';
@@ -71,17 +73,17 @@ if ($superCage->get->keyExists('hidefolders') && ($matches = $superCage->get->ge
 }
 
 if ($superCage->get->keyExists('limitfolder') && $matches = $superCage->get->getMatched('limitfolder', $folder_regex)) {
-    $limitfolder = rawurldecode($matches[0]);
+    $limitfolder = rawurldecode($mq ? stripslashes($matches[0]) : $matches[0]);
 } elseif ($superCage->post->keyExists('limitfolder') && $matches = $superCage->post->getMatched('limitfolder', $folder_regex)) {
-    $limitfolder = rawurldecode($matches[0]);
+    $limitfolder = rawurldecode($mq ? stripslashes($matches[0]) : $matches[0]);
 } else {
     $limitfolder = '';
 }
 
 if ($superCage->get->keyExists('linktarget') && ($matches = $superCage->get->getMatched('linktarget', $folder_regex))) {
-    $linktarget = rawurldecode($matches[0]);
+    $linktarget = rawurldecode($mq ? stripslashes($matches[0]) : $matches[0]);
 } elseif ($superCage->post->keyExists('linktarget') && ($matches = $superCage->post->getMatched('linktarget', $folder_regex))) {
-    $linktarget = rawurldecode($matches[0]);
+    $linktarget = rawurldecode($mq ? stripslashes($matches[0]) : $matches[0]);
 } else {
     $linktarget = '';
 }
@@ -159,7 +161,7 @@ echo <<< EOT
 EOT;
 
 starttable(-2, $lang_minibrowser_php['select_directory'], 2);
-if (!GALLERY_ADMIN_MODE) { 
+if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__); 
 }
 
