@@ -516,3 +516,23 @@ textarea.samplecode {
     font-style: normal; font-family: "Courier New", Courier, monospace;
     background-color: #E0E0E0;
 }
+
+.detail_head_collapsed, .detail_head_expanded {
+	cursor: pointer;
+	position: relative;
+	padding: 5px 10px;
+	background-repeat:no-repeat;
+	background-position:center left;
+	color: #0033CC;
+}
+
+.detail_head_collapsed {
+	background-image:url('../../images/tree/plus.gif');
+}
+
+.detail_head_expanded {
+	background-image:url('../../images/tree/minus.gif');
+}
+
+.detail_body {
+}

@@ -49,7 +49,7 @@
 	</li>
 	<li>
 	  <a name="what_minimum_php"></a><h3>PHP support<a href="#what_minimum_webserver" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	  <img src="../images/php-med-trans.png" border="0" alt="" width="95" height="51" title="PHP" align="left" style="padding-right:10px" />
+	  <img src="../images/php-med-trans.png" border="0" alt="" width="95" height="51" title="PHP" align="right" style="padding-left:10px" />
 	  The webserver must come with support for PHP (version 4.3.0 or better), either compiled with the support for the GD library or permission to use the exec() function for the ImageMagick &quot;convert&quot; utility in order to make thumbnails and reduced size images. Mysql support needs to be compiled into PHP as well.
   </li>
   <li>
@@ -64,8 +64,12 @@
 	  (see <a href="install_faq.htm#whatIsImageMagick">What's ImageMagick</a> and <a href="install_faq.htm#WhatIsGD">What is GD</a>)
   </li>
 </ul>
-<p>It's always a good idea to contact your webhosting service first and ask them if they are aware of any known issues when installing Coppermine.</p>
+<p class="cpg_message_success">It's always a good idea to contact your webhosting service first and ask them if they are aware of any known issues when installing Coppermine.</p>
+
+ <a name="what_minimum_self-hosting"></a><h2>Self-Hosting &amp; Webserver Setup<a href="#what_minimum_self-hosting" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p class="cpg_message_info">Although Coppermine can be run on <em>any</em> webserver that has the minimum requirements mentioned above, the Coppermine dev team can not support you on setting up your webserver in the first place. As suggested, those are requirements, i.e. they have to be met before actually considering to run Coppermine. Please note that the Coppermine group does <strong>not</strong> recommend self-hosting unless you're an experienced webserver administrator and know your way around.</p>
+<p>In fact, some of the Coppermine developers are webserver admins by profession, so we can judge this pretty good. We are convinced that running a webserver that is publicly accessible on the internet is a 24/7 task that should only performed by pros who have the needed skills, manpower and budget to do so. It is OK to run a locally available webserver as a testbed, but we can not recommend self-hosting, especially with unsecure setups like webservers on desktop operating systems.</p>
+<p>When asking for support on the coppermine support board on issues related to webserver setup, you will usually get the stereotype answer that webserver setup is beyond the scope of the coppermine support board; we can not teach you webserver setup and administration because of the complexity. There is no such thing as the one server setup that will work for anybody.</p>
 
 <a name="personal"></a><h2>Personal requirements<a href="#personal" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Coppermine is aimed at webmasters who have at least basic HTML know-how and some experience in setting up pre-made scripts. The Coppermine dev team is aware that there are Coppermine users who set up their gallery using <a href="auto-installers.htm">auto-installers</a> who have little or no experience in setting up similar scripts, which is fine as well. We just ask you to read the documentation thoroughly before asking questions on the Coppermine support board, as this should answer most newbie questions. You can use coppermine just fine using the <a href="theme.htm#theme_builtin">pre-made themes that come with the coppermine package</a>. However, if you want to modify existing themes or <a href="theme_create.htm#theme_create">come up with a theme of your own</a> (that matches the look of the rest of your site), you should have basic to intermediate <acronym title="Hyper Text Markup Language">HTML</acronym> and <acronym title="Cascading Style Sheets">CSS</acronym> skills. You don't necessarilly need PHP coding skills to run or maintain a Coppermine-driven gallery.</p>

@@ -665,6 +665,13 @@ function getUrlParameters(name)
     return results[1];
   }
 }
-$(document).ready(function() {
-
+$(document).ready(function()
+{
+  //hide all elements with class detail_body
+  $(".detail_body").hide();
+  //toggle the componenet with class detail_body
+  $(".detail_head_collapsed").click(function()
+  {
+    $(this).toggleClass("detail_head_expanded").next(".detail_body").slideToggle(600);
+  });
 });

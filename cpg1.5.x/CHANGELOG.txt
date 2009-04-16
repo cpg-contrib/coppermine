@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-04-16 [D] Added expandable detail boxes to documentation {GauGau}
 2009-04-13 [B] Fixed minibrowser when magic_quotes is on {Paver}
 2009-04-12 [O] Replaced sidebar library dtree with treeview plugin for jquery {GauGau}
 2009-03-31 [O] Removed css class variants that hardly made a difference to the original classes {GauGau} 
