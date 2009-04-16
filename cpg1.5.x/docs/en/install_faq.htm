@@ -56,6 +56,7 @@
     <li><a class="content" href="#minimumInstall">I'm short on webspace. Is there a &quot;<strong>minimum install</strong>&quot;?</a></li>
     <li><a class="content" href="#imagecreatefromjpeg">When installing I get the <strong>error</strong> <tt class="code">Fatal error: Call to undefined function: imagecreatefromjpeg() in /include/picmgmt.inc.php on line 168</tt>. What does that mean?</a></li>
     <li><a class="content" href="#mkdirPermissionDenied">When installing I get the <strong>error</strong> <tt class="code">Warning: mkdir(dummy) [function.mkdir]: Permission denied in /your/path/to/coppermine/install.php on line 126</tt>. What does that mean?</a></li>
+    <li><a class="content" href="#installFTP_mode">What <strong>FTP mode</strong> should I use?</a></li>
 </ul>
 
 
@@ -209,6 +210,12 @@ If you know that the ImageMagick suite is installed on your server, you could tr
 </ul>
 For details, read the <a href="install_permissions.htm#permissions">permission section</a>.</p>
 <hr />
+
+<a name="installFTP_mode"></a>
+<h3>What <strong>FTP mode</strong> should I use?</h3>
+<p>File Transfer Protocol (FTP) is used to exchange and manipulate files over a computer network. An FTP client may connect to an FTP server to manipulate files on that server.</p>
+<p>There are two different transfer modes in <abbr title="File Transfer Protocol">FTP</abbr>.</p>
+<p>All images (.jpg, .gif, .png etc) should be uploaded as binary, all files that contain text (php, htm, css, js etc.) in ASCII mode. Most FTP clients have an "auto" mode that will use the proper mode for each file; if your FTP client has "Auto", use it. This mode is particularly usefull then installing Coppermine as the package contains a mixture of file type. If your client does not have an "Auto" mode then switch to "Binary". For more information consult the manual for your <a href="dev_tools.htm#dev_tools_ftp_client">FTP client</a> or read up <a href="http://en.wikipedia.org/wiki/File_Transfer_Protocol" rel="external" class="external">the Wikipedia article on FTP</a>.</p>
 
 
 <script type="text/javascript">

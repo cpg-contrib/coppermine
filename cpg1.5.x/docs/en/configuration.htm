@@ -1036,11 +1036,11 @@ OpenOffice 1.x / StarOffice 6.x: sxw/stw/sxc/stc/sxd/std/sxi/sti/sxg/sxm</p>
 <hr />
 <a name="admin_watermarking_enable"></a><h3>Watermark Image<a href="#admin_watermarking_enable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>General toggle that determines if watermarking should be enabled or disabled. By default, it is disabled.</p>
-<p>Note: as watermarking actually means that each picture needs to be re-calculated during the upload stage, there may be issues with memory consumption and speed. If you experience issues with watermarking, turn it off or ask your webhost to increase server-sided settings that have an impact on watermarking.</p>
-<p>Also keep in mind that the re-calculation of the image will result in a loss of quality.</p>
-<p>Keep in mind as well that watermarking will not only have an impact on the quality and recources consumption (in turns of burning CPU cycles on the server), but as well in the consumption of webspace: when watermarking is enabled, coppermine will keep a safe, unmodified copy of the orginal image (prefixed with "orig_") in the same folder your watermarked file will reside and thus consume additional webspace.<br />
-You can use the admin tools to get rid of this copy as well, ,but you have to keep in mind then that there is not turning back in this case: if you delete the unmarked original, you can never go back or apply another watermark.</p>
-<p>When enabling this option, you have to understand that watermarks are not automatically being applied to all files that already exist in your gallery. When enabled, only images that get uploaded from that point on will become watermarked. If you want to apply watermarking to all the images that already existed in your coppermine gallery before you enabled watermarking, take a look at the corresponding section of the admin tools. However, before applying your new watermark permanently to all your images, perform some test uploads first to see if watermarking works as expected for you.</p>
+<p class="cpg_message_info">As watermarking actually means that each picture needs to be re-calculated during the upload stage, there may be issues with memory consumption and speed. If you experience issues with watermarking, turn it off or ask your webhost to increase server-sided settings that have an impact on watermarking.<br />
+Also keep in mind that the re-calculation of the image will result in a loss of quality.</p>
+<p>Remember as well that watermarking will not only have an impact on the quality and recources consumption (in turns of burning CPU cycles on the server), but as well in the consumption of webspace: when watermarking is enabled, coppermine will keep a safe, unmodified copy of the orginal image (prefixed with "orig_") in the same folder your watermarked file will reside and thus consume additional webspace.<br />
+You can use the <a href="admin-tools.htm#admin_tools">admin tools</a> to get rid of this copy as well, ,but you have to keep in mind then that there is not turning back in this case: if you delete the unmarked original, you can never go back or apply another watermark.</p>
+<p class="cpg_message_warning">When enabling this option, you have to understand that watermarks are not automatically being applied to all files that already exist in your gallery. When enabled, only images that get uploaded from that point on will become watermarked. If you want to apply watermarking to all the images that already existed in your coppermine gallery before you enabled watermarking, take a look at the corresponding section of the admin tools. However, before applying your new watermark permanently to all your images, perform some test uploads first to see if watermarking works as expected for you.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Watermark Image</p>
 
 <a name="admin_watermarking_enable_end"></a>
@@ -1078,7 +1078,7 @@ You can use the admin tools to get rid of this copy as well, ,but you have to ke
 <a name="admin_watermarking_filetype_end"></a>
 <hr />
 <a name="admin_watermarking_filepath"></a><h3>Which file to use for watermark<a href="#admin_watermarking_filepath" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Specify the relative path to the watermark file, seen from the root folder of your coppermine-gallery. Default value: <tt class="code">images/watermark.png</tt>. You can (and are even encouraged) to come up with a watermarking file of your own - only a standard desktop drawing application is needed, e.g. MS Paint.</p>
+<p><img src="../../images/watermark.png" border="0" width="300" height="51" alt="" align="left" />Specify the relative path to the watermark file, seen from the root folder of your coppermine-gallery. Default value: <tt class="code">images/watermark.png</tt>. You can (and are even encouraged) to come up with a watermarking file of your own - only a standard desktop drawing application is needed, e.g. MS Paint.</p>
 <p>Coppermine only comes with a sample watermarking file that you should not apply lightheartedly, as it is only meant for testing purposes and to give you an idea how the watermarking file could look like. You have to come up with your custom watermark file and FTP-upload that file to your webserver. It's a good idea to name it accordingly, e.g. "custom_watermark.png" and upload it to the <tt class="code">images</tt> folder (<tt class="code">http://your_domain.tld/your_coppermine_folder/images/</tt>). All you then have to do is change the setting for "Which file to use for watermark" to <tt class="code">images/custom_watermark.png</tt>.</p>
 <p>Coming up with a custom watermark can be tricky: it should work well both for dark as well as light backgrounds. You have to find a good compromise: the watermarked files should be still OK to look at, while on the other hand potential image thieves should get discouraged to steal your watermarked images.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Which file to use for watermark</p>
@@ -1139,7 +1139,7 @@ This setting only applies if coppermine is not bridged.</p>
 <a name="admin_registration_captcha_start"></a><h3>Display Captcha (Visual Confirmation) on registration page<a href="#admin_registration_captcha_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>To prevent automated registration by bots (automated scripts), this toggle will display an image on the registration page with some random letters on it. The visitor who is trying to register is required to enter those letters into a textfield to prove that he's actually a human and not just some dumb bot.</p>
 <p>Note: this setting isn't being taken into account when coppermine is bridged.</p>
-<p class="cpg_message_info">Captchas will only work if GD2 is available on your server.</p>
+<p class="cpg_message_info">Captchas will only work if <a href="install_faq.htm#WhatIsGD">GD2</a> is available on your server.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Display Captcha (Visual Confirmation) on registration page</p>
 
 <a name="admin_registration_captcha_end"></a>
@@ -1214,7 +1214,7 @@ This setting only applies if coppermine is not bridged.</p>
 <hr />
 <a name="admin_allow_duplicate_emails_addr"></a><h3>Allow two users to have the same email address<a href="#admin_allow_duplicate_emails_addr" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Allow or prevent two users from registering with the same email
-address. Recommended setting is NO. As most internet users today have more than one email address, this option is being considered as deprecated and will possibly be removed in future versions of coppermine.</p>
+address. Recommended setting is NO. As most internet users today have more than one email address, this option is being considered as deprecated and has been removed in cpg1.5.x for fresh installs. Only if you have upgraded from an older version you should be able to see this option. It's a one-way settimg though: once you disallow identical email addresses for different users, you can not re-enable that option. It's recommended to turn this option off if you have it turned on.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow two users to have the same email address</p>
 <a name="admin_allow_duplicate_emails_addr_end"></a>
 <hr />
@@ -1226,20 +1226,20 @@ address. Recommended setting is NO. As most internet users today have more than 
 <hr />
 <a name="admin_user_memberlist"></a><h3>Allow logged in users to view memberlist<a href="#admin_user_memberlist" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When enabled, an additional menu item &quot;Memberlist&quot; is displayed in the coppermine main menu if a user is logged in, to let him see a list of all users, with stats on their last visits, uploads and quota usage.</p>
-<p>Recommended setting is 'no'.</p>
+<p>Recommended setting is 'no', especially if you're concerned about your user's privacy.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow logged in users to view memberlist</p>
 
 <a name="admin_user_memberlist_end"></a>
 <hr />
 <a name="admin_user_allow_email_change"></a><h3>Allow users to change their email address in profile<a href="#admin_user_allow_email_change" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This option impacts the user's profile page, it determines whether or not the user can change his/her own email address.<br />Use this option wisely, as the old email address of a user is not preserved after a change: if you allow users to change their email address, abusers may change it to a non-existing email address (e.g. after uploading some pics that go against your gallery's rules) - you would have no chance of tracking this user.</p>
-<p>This option only applies if you use Coppermine as a standalone application; if you run Coppermine integrated with a bbs, this option will be deferred to the user profile from your bbs to manage each user's profile.</p>
+<p class="cpg_message_info">This option only applies if you use Coppermine as a standalone application; if you run Coppermine integrated with a <abbr title="Bulletin Board System">BBS</abbr>, this option will be deferred to the user profile from your bbs to manage each user's profile.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow users to change their email address in profile</p>
 <a name="admin_user_allow_email_change_end"></a>
 <hr />
 <a name="admin_user_allow_account_delete"></a><h3>Allow users to delete their own user account<a href="#admin_user_allow_account_delete" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When enabled, users can delete their user accounts. This option has been added in cpg1.5.x because of legal requirements in some countries.</p>
-<p>This option will not be taken into account if your gallery is bridged.</p>
+<p class="cpg_message_info">This option will not be taken into account if your gallery is bridged.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow users to delete their own user account</p>
 <a name="admin_user_allow_account_delete_end"></a>
 <hr />
@@ -1327,7 +1327,7 @@ address. Recommended setting is NO. As most internet users today have more than 
 <a name="admin_cookie"></a><h3>Cookie settings<a href="#admin_cookie" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <a name="admin_cookie_name"></a><h3>Name of the cookie used by coppermine<a href="#admin_cookie_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Default value is something like &quot;cpg15x&quot;. Even if you have multiple instances of the script running on the same server you can keep the default value.</p>
-<p class="cpg_message_warning">When using <a href="bridging.htm">bridging</a>, make sure it <strong>differs</strong> from the bbs's cookie name.</p>
+<p class="cpg_message_warning">When using <a href="bridging.htm">bridging</a>, make sure it <strong>differs</strong> from the bridge app's cookie name.</p>
 <p>This has to be a valid cookie name (no special chars, particularly no dots!) - this setting should best be left alone unless you really know your way around. After all, the cookie name doesn't matter and doesn't mean anything to the end user anyway. Let me repeat: there are many users who blindly change the cookie name to something that just doesn't make sense at all and then complain on the coppermine support board that things are not working as expected. Do <strong>not</strong> use special chars in the cookie name! In fact, don't change it at all unless you must.</p>
 <p>If you change the cookie name, everybody will have to log in on the next visit of your gallery. As a result, changing the cookie name would be the same as if you were deleting the cookies on all your visitor's machines - this can be helpful if you experience issues with authentification.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Cookie settings &rarr; Name of the cookie used by coppermine</p>
@@ -1335,7 +1335,7 @@ address. Recommended setting is NO. As most internet users today have more than 
 <a name="admin_cookie_path"></a><h3>Path of the cookie used by the script<a href="#admin_cookie_path" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Default value is "/". Don't change this unless you know what you are doing. This may prevent you from logging in.</p>
 <p>If you have broken your gallery by modifying this value, use phpMyAdmin to edit the xxxx_config table in your database and restore the default value. </p>
-<p>When using bbs integration into Coppermine, make sure to use <strong>different</strong> cookie names for coppermine and your bbs! The paths in both applications have to be set so coppermine is able to read both. Usually the default value &quot;<tt class="code">/</tt>&quot; should be set as path both for coppermine install and the BBS app you bridge with.</p>
+<p>When using bbs integration into Coppermine (<abbr title="also known as">aka</abbr> bridging), make sure to use <strong>different</strong> cookie names for coppermine and your bridging app! The paths in both applications have to be set so coppermine is able to read both. Usually the default value &quot;<tt class="code">/</tt>&quot; should be set as path both for coppermine install and the <abbr title="Bulletin Board System">BBS</abbr> app you bridge with.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Cookie settings &rarr; Path of the cookie used by the script</p>
 <a name="admin_cookie_path_end"></a>
 
