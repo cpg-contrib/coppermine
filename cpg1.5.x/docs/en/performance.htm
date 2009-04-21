@@ -65,7 +65,7 @@ The general advice is to disable any feature you don't actually make use of and 
     <li><strong><a href="configuration.htm#admin_logging_votedetails">Keep detailed vote statistics</a></strong> - Disabling this will help keep the database small.</li>
     <li><strong><a href="configuration.htm#admin_logging_hitdetails">Keep detailed hit statistics</a></strong> - Disabling this will help keep the database small.</li>
     <li><strong><a href="configuration.htm#admin_count_file_hits">Count file views</a> / <a href="configuration.htm#admin_count_album_hits">Count album views</a></strong> - Disabling these will mean fewer writes to the pictures/albums table which helps the MySQL query cache be more efficient.</li>
-    <li><strong><a href="configuration.htm#debug_mode">Enable debug mode</a></strong> - Debug more itself will increase load times as a result of the additional information it displays. Unless you are actually debugging your gallery keep this disabled.</li>
+    <li><strong><a href="configuration.htm#debug_mode">Enable debug mode</a></strong> - Debug mode itself will increase load times as a result of the additional information it displays. Unless you are actually debugging your gallery keep this disabled.</li>
     <li><strong><a href="configuration.htm#admin_general_coppermine_news">Display news from coppermine-gallery.net</a></strong> - This causes a small delay while the news is fetched. Only applies for the admin, so your site's visitors won't notice a difference.</li>
     <li><strong><a href="albums.htm#album_prop">Album Properties</a>: Album Thumbnail</strong> - Choosing "Last Uploaded" or "Random" for an album thumbnail adds extra queries for each such album shown on a page.  Choose a specific image to avoid these queries.</li>
 </ul>
@@ -127,7 +127,7 @@ The general advice is to disable any feature you don't actually make use of and 
         <pre class="code">
         
 &lt;IfModule mod_deflate.c&gt;
-	AddOutputFilterByType DEFLATE application/x-javascript text/css text/html
+	AddOutputFilterByType DEFLATE application/x-javascript text/javascript text/css text/html text/xml
 &lt;/IfModule&gt;</pre>
     </li>    
     <li>
