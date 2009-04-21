@@ -221,6 +221,8 @@ if ($superCage->post->keyExists('submit')) {
         
             // write ecard log, only if mail was sent
             if ($CONFIG['log_ecards'] == 1) {
+                $sender_name = addslashes($sender_name);
+                $recipient_name = addslashes($recipient_name);
                 cpg_db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email', '$encoded_data', '$tempTime', '$raw_ip')");
             }
         
