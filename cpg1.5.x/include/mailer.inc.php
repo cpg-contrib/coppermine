@@ -22,71 +22,74 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
 {
     global $CONFIG, $lang_charset, $HTML_SUBST;
 
-        // makeshift plaintext if not set
-        if (!$msg_body_plaintext){
-                $msg_body_plaintext = strip_tags($msg_body);
-        }
+    // makeshift plaintext if not set
+    if (!$msg_body_plaintext){
+        $msg_body_plaintext = strip_tags($msg_body);
+    }
 
-        // Convert html entities back into normal form for display in non HTML formats
-        //$msg_body_plaintext = strtr($msg_body_plaintext, array_flip($HTML_SUBST));
-        //$subject = strtr($subject, array_flip($HTML_SUBST));
-
-        // send mails to ALL admins - not bridged only
-    if ($to == 'admin'){
-            if (UDB_INTEGRATION == 'coppermine') {
-                    $to = array($CONFIG['gallery_admin_email']);
-                    $result = cpg_db_query("SELECT user_email FROM {$CONFIG['TABLE_USERS']} WHERE user_group = 1");
-                    while($row = mysql_fetch_assoc($result)) {
-                            if (!empty($row['user_email'])) $to[] = $row['user_email'];
-                    }
-                    $to = array_unique($to);
-            } else {
-                    $to = array($CONFIG['gallery_admin_email']);
+    // send mails to ALL admins - not bridged only
+    if ($to == 'admin') {
+        if (UDB_INTEGRATION == 'coppermine') {
+            $to = array($CONFIG['gallery_admin_email']);
+            $result = cpg_db_query("SELECT user_email FROM {$CONFIG['TABLE_USERS']} WHERE user_group = 1");
+            while ($row = mysql_fetch_assoc($result)) {
+                if (!empty($row['user_email'])) {
+                    $to[] = $row['user_email'];
+                }
             }
+            $to = array_unique($to);
         } else {
-                $to = array($to);
+            $to = array($CONFIG['gallery_admin_email']);
         }
+    } else {
+            $to = array($to);
+    }
 
-    if ($sender_name == '') $sender_name = strtr($CONFIG['gallery_name'], array_flip($HTML_SUBST));
-    if ($sender_email == '') { $sender_email = $CONFIG['gallery_admin_email']; }
+    if ($sender_name == '') {
+        $sender_name = $CONFIG['gallery_name'];
+    }
 
+    if ($sender_email == '') {
+        $sender_email = $CONFIG['gallery_admin_email'];
+    }
+        
+    $sender_name = strtr($sender_name, array_flip($HTML_SUBST));
+        
     $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
 
-  /**
-   * Code to send confirmation email starts
-   * Create the mail object
-   */
-   $mail = new cpg_PHPmailer();
+    $mail = new cpg_PHPmailer();
 
-   // Set the mail configuration
-
-
-   if ($CONFIG['smtp_host']) {
-    $mail->IsSMTP();
-    $mail->Host     = $CONFIG['smtp_host'];
-    if ($CONFIG['smtp_username']) {
-      $mail->SMTPAuth = true;
-      $mail->Username = $CONFIG['smtp_username'];
-      $mail->Password = $CONFIG['smtp_password'];
+    if ($CONFIG['smtp_host']) {
+        
+        $mail->IsSMTP();
+        $mail->Host = $CONFIG['smtp_host'];
+        
+        if ($CONFIG['smtp_username']) {
+            $mail->SMTPAuth = true;
+            $mail->Username = $CONFIG['smtp_username'];
+            $mail->Password = $CONFIG['smtp_password'];
+        } else {
+            $mail->SMTPAuth = false;
+        }
+        
     } else {
-      $mail->SMTPAuth = false;
+        $mail->IsMail();
     }
-   } else {
-    $mail->IsMail();
-  }
-   $mail->IsHTML(true);
 
-   foreach ($to as $email) {
-    $mail->AddAddress($email);
-   }
-   $mail->From = $sender_email;
-   $mail->FromName = $sender_name;
-   $mail->Subject = $subject;
-   $mail->Body = $msg_body;
-   $mail->AltBody = $msg_body_plaintext;
-   $mail->CharSet = $charset;
+    $mail->IsHTML(true);
+
+    foreach ($to as $email) {
+        $mail->AddAddress($email);
+    }
+
+    $mail->From = $sender_email;
+    $mail->FromName = $sender_name;
+    $mail->Subject = $subject;
+    $mail->Body = $msg_body;
+    $mail->AltBody = $msg_body_plaintext;
+    $mail->CharSet = $charset;
    
-   return $mail->Send();
+    return $mail->Send();
 }
 
 /*~ class.phpmailer.php
@@ -2046,7 +2049,7 @@ class cpg_SMTP
    * @access public
    * @return void
    */
-  function SMTP() {
+  function cpg_SMTP() {
     $this->smtp_conn = 0;
     $this->error = null;
     $this->helo_rply = null;
