@@ -75,7 +75,8 @@ if (is_array($CLEAN['data'])) {
     mysql_free_result($result);
     
     if ($row['pwidth'] != 0 && $row['pheight'] != 0) {
-        $dimensions = 'width="'.$row['pwidth'].'" height="'.$row['pheight'].'"';
+        $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['picture_width'], 'normal');
+        $dimensions = $image_size['geom'];
     } else {
         $dimensions = '';
     }
