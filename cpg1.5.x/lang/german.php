@@ -2289,7 +2289,7 @@ $lang_usermgr_php['edit_profile'] = 'Profil bearbeiten'; // cpg1.5
 $lang_usermgr_php['ban_user'] = 'Benutzer verbannen'; // cpg1.5
 $lang_usermgr_php['user_is_banned'] = 'Benutzer ist verbannt'; // cpg1.5
 $lang_usermgr_php['status'] = 'Status'; // cpg1.5
-$lang_usermgr_php['status_active'] = 'aktive'; // cpg1.5
+$lang_usermgr_php['status_active'] = 'aktiv'; // cpg1.5
 $lang_usermgr_php['status_inactive'] = 'inaktiv'; // cpg1.5
 $lang_usermgr_php['total'] = 'Summe'; // cpg1.5
 
