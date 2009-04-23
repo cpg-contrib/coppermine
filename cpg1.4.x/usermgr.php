@@ -479,7 +479,7 @@ EOT;
                                 <option value="add_group">{$lang_usermgr_php['add_secondary_membergroup']}</option>
                             </select>
                             <input type="hidden" name="what" value="user"/>
-                              <input type="text" name="new_password" value="{$lang_usermgr_php['password']}" size="8" maxlength="8" class="textinput" onfocus="this.value='';" style="display:none" />
+                              <input type="text" name="new_password" value="{$lang_usermgr_php['password']}" size="8" maxlength="25" class="textinput" onfocus="this.value='';" style="display:none" />
                               <select name="group" size="1" class="listbox" style="display:none" onchange="return selectaction(this,'u');">
                                   <option value="">{$lang_usermgr_php['select_group']}</option>
 
