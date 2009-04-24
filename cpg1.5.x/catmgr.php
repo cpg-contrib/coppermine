@@ -33,6 +33,8 @@ $CAT_LIST = array(
     ),
 );
 
+$icon_array['submit'] = cpg_fetch_icon('ok', 1);
+
 function get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST;
@@ -782,7 +784,7 @@ if ($op == 'editcat') {
 echo <<<EOT
         <tr>
             <td colspan="2" align="center" class="tablef">
-                <input type="submit" value="{$lang_catmgr_php['update_create']}" class="button" />
+				<button type="submit" class="button" name="cat_submit" value="{$lang_catmgr_php['update_create']}">{$icon_array['submit']}{$lang_catmgr_php['update_create']}</button>
             </td>
             </form>
         </tr>
