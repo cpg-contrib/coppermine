@@ -5038,9 +5038,10 @@ function rebuild_tree($parent = 0, $left = 0, $depth = 0, $pos = 0)
  * @param string $config_level boolean: If populated, the config option that allows toggling icons on/off will be ignored and the icon will be displayed no matter what
  * @param string $check boolean: If populated, the icon will be checked first if it exists
  * @param string $extension: name of the extension, default being 'png'
+ * @param string $type: what should the function return, default (0) being the entire HTML-tag <img>. Specify "1" to make the function return the actual image path only without the embedding HTML tag
  * @return string: the fully populated <img>-tag
  */
-function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '', $extension = 'png')
+function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '', $extension = 'png', $type = 0)
 {
     global $CONFIG, $ICON_DIR;
     
@@ -5064,7 +5065,7 @@ function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '',
         }
     }
     
-    $return .= '<img src="';
+	$return .= '<img src="';
     $return .= $relative_path;
     $return .= '" border="0" alt="" ';
     
@@ -5083,6 +5084,9 @@ function cpg_fetch_icon($icon_name, $config_level = 0, $title = '', $check = '',
     }
     
     $return .= 'class="icon" />';
+	if ($type == 1) {
+		$return = $relative_path;
+	}
     
     return $return;
 }
