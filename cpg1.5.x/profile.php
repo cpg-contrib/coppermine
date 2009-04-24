@@ -24,11 +24,14 @@ define('USERMGR_PHP', true);
 require('include/init.inc.php');
 include("include/smilies.inc.php");
 
+js_include('js/profile.js');
+
 $cpg_udb->view_profile($superCage->get->getInt('uid'));
 
 $icon_array = array(
     'ok'       => cpg_fetch_icon('ok', 0),
     'password' => cpg_fetch_icon('key_enter', 0),
+	'delete' => cpg_fetch_icon('delete', 0),
 );
 
 function cpgUserPicCount($uid)
@@ -645,10 +648,11 @@ EOT;
         <input type="hidden" name="delete_files" value="no" />
         <input type="hidden" name="delete_comments" value="no" />
         <script type="text/javascript">
-          document.write('<input type="submit" name="delete_submit" id="delete_submit" value="{$lang_register_php['delete_my_account']}" class="button" disabled="disabled" onclick="return confirmUserDelete(this);" />');
+          document.write('<button type="submit" class="button" name="delete_submit" id="delete_submit" value="{$lang_register_php['delete_my_account']}" disabled="disabled" onclick="return confirmUserDelete(this);" />{$icon_array['delete']}{$lang_register_php['delete_my_account']}</button>');
         </script>
         <noscript>
         <input type="submit" name="delete_submit" id="delete_submit" value="{$lang_register_php['delete_my_account']}" class="button" />
+		<button type="submit" class="button" name="delete_submit" id="delete_submit" value="{$lang_register_php['delete_my_account']}">{$icon_array['delete']}{$lang_register_php['delete_my_account']}</button>
         </noscript>
     </td>
 </tr>

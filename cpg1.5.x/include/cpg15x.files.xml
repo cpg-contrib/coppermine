@@ -7020,6 +7020,14 @@
     <hash>a7924a7af8d0521694cb275a546d925b</hash>
   </element>
   <element>
+    <fullpath>js/profile.js</fullpath>
+    <version>1.5.1</version>
+    <revision>5686</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>84cf18c9a3cb8b158b063575c17c3ba9</hash>
+  </element>
+  <element>
     <fullpath>js/register.js</fullpath>
     <version>1.5.1</version>
     <revision>5686</revision>
