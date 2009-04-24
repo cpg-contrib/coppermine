@@ -294,7 +294,7 @@ EOT;
 
 
 EOT;
-            }
+            }
             break;
 
         case 'password':
