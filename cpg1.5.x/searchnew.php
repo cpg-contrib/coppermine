@@ -31,6 +31,8 @@ js_include('js/searchnew.js');
 
 $rowCounter = 0;
 
+$icon_array['ok'] = cpg_fetch_icon('ok', 1);
+
 /**
  * Local functions definition
  */
@@ -375,7 +377,7 @@ function getallalbumsindb(&$album_array)
  */
 function CPGscandir($dir, &$expic_array)
 {
-    global $lang_search_new_php, $lang_common, $rowCounter;
+    global $lang_search_new_php, $lang_common, $rowCounter, $icon_array;
     $dir = str_replace(".","" ,$dir);
     static $dir_id = 0;
     static $count = 0;
@@ -394,7 +396,7 @@ function CPGscandir($dir, &$expic_array)
                     <input type="checkbox" name="checkAll2" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
                 </td>
                 <td colspan="3" align="right" class="tablef">
-                        <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}" id="submit_button" />
+						<button type="submit" class="button" name="insert" id="submit_button" value="{$lang_search_new_php['insert_selected']}" onclick="process(); return false;">{$icon_array['ok']}{$lang_search_new_php['insert_selected']}</button>
                 </td>
         </tr>
 EOT;
@@ -407,7 +409,7 @@ EOT;
     }
     if (count($dir_array) > 0) {
         foreach ($dir_array as $directory) {
-            if (substr($directory,0,1) != ".") // added do not show folders with dots: gaugau 03-11-02
+            //if (substr($directory,0,1) != ".") // added do not show folders with dots: gaugau 03-11-02
             CPGscandir($dir . $directory . '/', $expic_array);
         }
     }
@@ -567,7 +569,7 @@ EOT;
                     <input type="checkbox" name="checkAll" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
                 </td>
                 <td colspan="3" align="right" class="tablef">
-                        <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}" onclick="process(); return false;" />
+						<button type="submit" class="button" name="insert" id="submit_button_bottom" value="{$lang_search_new_php['insert_selected']}" onclick="process(); return false;">{$icon_array['ok']}{$lang_search_new_php['insert_selected']}</button>
                 </td>
         </tr>
 
