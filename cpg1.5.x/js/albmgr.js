@@ -85,7 +85,7 @@ var Sort = {
             $.getJSON("delete.php?what=albmgr&cat="+cat+"&op='add'&position="+albumCount+"&name="+addedName, function(data){
 
                 if(data['message']){
-                    var album_tr = '<tr id="sort-'+data['newAid']+'" ><td class="dragHandle"></td><td class="album_text" width="96%"><span class="albumName">'+addedName+'</span><span class="editAlbum">Edit</span></td></tr>';
+                    var album_tr = '<tr id="sort-'+data['newAid']+'" ><td class="dragHandle"></td><td class="album_text" width="96%"><span class="albumName">'+addedName+'</span><span class="editAlbum">'+js_vars.lang_edit+'</span></td></tr>';
                     $("#album_sort").append(album_tr);
                     // call the function to add the new TR on more action
                     jQuery.tableDnD.currentTable = document.getElementById("album_sort");
@@ -266,7 +266,7 @@ jQuery(document).ready(function() {
     $(".album_cancel").click(function(){
         $("td#edit-box").hide();
     });
-
+	
     // Cancel when user doesn't want to add the album to the list
     $(".add_cancel").click(function(){
         $("td#add-box").hide();

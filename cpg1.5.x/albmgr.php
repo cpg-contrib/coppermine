@@ -23,6 +23,7 @@ define('IN_COPPERMINE', true);
 define('ALBMGR_PHP', true);
 require('include/init.inc.php');
 
+set_js_var('lang_edit', $lang_common['edit']);
 js_include('js/jquery.sort.js');
 js_include('js/albmgr.js');
 
@@ -31,11 +32,13 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
 }
 
 $icon_array = array();
-$icon_array['ok'] = cpg_fetch_icon('ok', 0);
+$icon_array['ok'] = cpg_fetch_icon('ok', 1);
+$icon_array['cancel'] = cpg_fetch_icon('cancel', 1);
 $icon_array['up'] = cpg_fetch_icon('up', 0, $lang_common['move_up']);
 $icon_array['down'] = cpg_fetch_icon('down', 0, $lang_common['move_down']);
 $icon_array['new'] = cpg_fetch_icon('add', 0, $lang_albmgr_php['new_album']);
 $icon_array['delete'] = cpg_fetch_icon('delete', 0, $lang_albmgr_php['delete_album']);
+$icon_array['edit'] = cpg_fetch_icon('edit', 1);
 
 
 /**
@@ -105,7 +108,7 @@ set_js_var('category', $cat);
 
 pageheader($lang_albmgr_php['title']);
     echo <<< EOT
-        <form name="album_menu" id="cpg_form_album" method="post" action="delete.php?what=albmgr" >
+        <form name="album_menu" id="cpg_form_album" method="post" action="delete.php?what=albmgr">
 EOT;
 starttable('100%', cpg_fetch_icon('alb_mgr', 2).$lang_albmgr_php['title'].'&nbsp;'.cpg_display_help('f=albums.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1);
     echo <<< EOT
@@ -188,7 +191,7 @@ if (count($rowset) > 0) {
         echo <<< EOT
         <tr id="sort-{$album['aid']}" >
             <td class="dragHandle"></td>
-            <td class="album_text" width="96%"><span class="albumName">{$title}</span><span class="editAlbum">Edit</span></td>
+            <td class="album_text" width="96%"><span class="albumName">{$title}</span><span class="editAlbum">{$icon_array['edit']}{$lang_common['edit']}</span></td>
         </tr>
 EOT;
     }
@@ -229,14 +232,14 @@ EOT;
     echo <<< EOT
     
         <td id="add-box" style="display: none;">
-            <input type="text"   id="add-name" name="add-name" size="27" maxlength="80" class="textinput" value="" onKeyPress="return Sort.disableEnterKey(event)" />
-            <input type="button" id="addEvent" class="button" value="{$lang_common['ok']}" />
-            <a class="add_cancel close">{$lang_albmgr_php['cancel']}</a>
+            <input type="text"   id="add-name" name="add-name" size="27" maxlength="80" class="textinput" value="" onkeypress="return Sort.disableEnterKey(event)" />
+			<button type="submit" id="addEvent" class="button" name="addEvent" value="{$lang_common['ok']}">{$icon_array['ok']}{$lang_common['ok']}</button>
+			<button type="button" class="button add_cancel close" value="{$lang_albmgr_php['cancel']}">{$icon_array['cancel']}{$lang_albmgr_php['cancel']}</button>
         </td>
         <td id="edit-box" style="display: none;">
-            <input type="text"      id="edit-name" name="edit-name" size="27" maxlength="80" class="textinput" value="" onKeyPress="return Sort.disableEnterKey(event)" />
-            <input type ="button"   id="updateEvent" class="button" value="{$lang_common['ok']}" />
-            <a class="album_cancel close">{$lang_albmgr_php['cancel']}</a>
+            <input type="text" id="edit-name" name="edit-name" size="27" maxlength="80" class="textinput" value="" onkeypress="return Sort.disableEnterKey(event)" />
+			<button type="submit" id="updateEvent" class="button" name="updateEvent" value="{$lang_common['ok']}">{$icon_array['ok']}{$lang_common['ok']}</button>
+			<button type="button" class="button album_cancel close" value="{$lang_albmgr_php['cancel']}">{$icon_array['cancel']}{$lang_albmgr_php['cancel']}</button>
         </td>
     </tr>
 </table>
