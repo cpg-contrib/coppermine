@@ -823,7 +823,7 @@ else { // not in gallery admin mode --- start
             $retrieved_data = mysql_fetch_array($results);
         }
         if ($retrieved_data['user_name'] == $posted_var['username'] && $retrieved_data['user_password'] == $encpassword && $retrieved_data['user_name'] != '' ) {
-            // authentification successfull
+            // authentication successful
             
             cpg_config_set('bridge_enable', '0');
             
@@ -845,7 +845,7 @@ else { // not in gallery admin mode --- start
                 msg_box($lang_bridgemgr_php['recovery_success_title'], $lang_bridgemgr_php['recovery_success_content'].'<br />'.$lang_bridgemgr_php['recovery_success_advice_login'], $lang_bridgemgr_php['goto_login'], "login.php?referer=".$CPG_PHP_SELF, 'success');
             }
         } else {
-            // authentification failed
+            // authentication failed
             cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = NOW() WHERE name = 'recovery_logon_timestamp'");
             $results = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_BRIDGE']} WHERE name = 'recovery_logon_failures'");
             if (mysql_num_rows($results)) {
