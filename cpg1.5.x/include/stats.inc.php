@@ -74,6 +74,7 @@ $browserArray = array(
                       'IE5.5' => 'msie.png',
                       'IE6' => 'msie6.png',
                       'IE7' => 'msie7.png',
+                      'IE8' => 'msie8.png',
                       'IE' => 'msie.png',
                       'HTTrack' => 'httrack.png',
                       'Multizilla' => 'multizilla.png',

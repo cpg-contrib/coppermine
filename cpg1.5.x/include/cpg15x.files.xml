@@ -2658,6 +2658,12 @@
     <hash>e79f010da1ed611354f2ca8c82dddb19</hash>
   </element>
   <element>
+    <fullpath>images/browser/msie8.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>e79f010da1ed611354f2ca8c82dddb19</hash>
+  </element>
+  <element>
     <fullpath>images/browser/multizilla.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
