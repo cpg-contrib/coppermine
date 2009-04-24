@@ -1665,6 +1665,8 @@ $lang_mode_php['news_show'] = 'Showing news...'; // cpg1.5
 // ------------------------------------------------------------------------- //
 if (defined('MODIFYALB_PHP')) {
 $lang_modifyalb_php['upd_alb_n'] = 'Update album %s';
+$lang_modifyalb_php['related_tasks'] = 'Related tasks'; // cpg1.5
+$lang_modifyalb_php['choose_album'] = 'Choose album'; // cpg1.5
 $lang_modifyalb_php['general_settings'] = 'General settings';
 $lang_modifyalb_php['alb_title'] = 'Album title';
 $lang_modifyalb_php['alb_cat'] = 'Album category';
