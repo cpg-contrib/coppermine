@@ -20,7 +20,6 @@
 // Todo list (stuff the hasn't been implemented yet):
 // * overall stats taking AID into account
 // * Allow admin to delete single votes and corresponding stats entry (UI partly created and commented out. Tricky stuff in delete.php not even started)
-// * Enable user name display instead of just displaying the user id for rating stats
 // * Add stats about users, numbers of albums and other things stat lovers constantly request
 
 define('IN_COPPERMINE', true);
@@ -28,8 +27,14 @@ define('STAT_DETAILS_PHP', true);
 require_once('include/init.inc.php');
 
 // initialize the vars - start
-    $line_break = "\n";
-    $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
+$line_break = "\n";
+$charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
+$icon_array['stats'] = cpg_fetch_icon('stats', 1);
+$icon_array['os'] = cpg_fetch_icon('client', 1);
+$icon_array['browser'] = cpg_fetch_icon('browser', 1);
+$icon_array['vote'] = cpg_fetch_icon('top_rated', 1);
+$icon_array['hits'] = cpg_fetch_icon('info', 1);
+
 // initialize the vars - end
 
 // sanitize the GET parameters - start
@@ -192,21 +197,21 @@ require_once('include/init.inc.php');
         pageheader($lang_stat_details_php['title']);
         // display a menu
         print <<< EOT
-              <h1>{$lang_stat_details_php['title']}</h1>
+              <h1>{$icon_array['stats']}{$lang_stat_details_php['title']}</h1>
               <div class="admin_menu_wrapper">
-                  <div class="admin_menu admin_float"><a href="#os" title="">{$lang_stat_details_php['stats_by_os']}</a></div>
-                  <div class="admin_menu admin_float"><a href="#browser" title="">{$lang_stat_details_php['stats_by_browser']}</a></div>
+                  <div class="admin_menu admin_float"><a href="#os">{$icon_array['os']}{$lang_stat_details_php['stats_by_os']}</a></div>
+                  <div class="admin_menu admin_float"><a href="#browser">{$icon_array['browser']}{$lang_stat_details_php['stats_by_browser']}</a></div>
 EOT;
         if (GALLERY_ADMIN_MODE) {
             if ($type != 'hits') {
-                print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=hits#details" title="">'.$lang_stat_details_php['hits'].'</a></div>';
+                print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=hits#details">'.$icon_array['hits'].$lang_stat_details_php['hits'].'</a></div>';
             } else {
-                print '<div class="admin_menu admin_float"><a href="#details" title="">'.$lang_stat_details_php['hits'].'</a></div>';
+                print '<div class="admin_menu admin_float"><a href="#details">'.$icon_array['hits'].$lang_stat_details_php['hits'].'</a></div>';
             }
             if ($type != 'vote') {
-                print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=vote#details" title="">'.$lang_stat_details_php['vote'].'</a></div>';
+                print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=vote#details">'.$icon_array['vote'].$lang_stat_details_php['vote'].'</a></div>';
             } else {
-                print '<div class="admin_menu admin_float"><a href="#details" title="">'.$lang_stat_details_php['vote'].'</a></div>';
+                print '<div class="admin_menu admin_float"><a href="#details">'.$icon_array['vote'] . $lang_stat_details_php['vote'].'</a></div>';
             }
             if ($type != 'users') {
                 //print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=users" title="">'.$lang_stat_details_php['users'].'</a></div>';

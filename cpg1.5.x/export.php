@@ -26,6 +26,8 @@ if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
+$icon_array['ok'] = cpg_fetch_icon('ok', 1);
+
 pageheader($lang_export_php['export']);
 
 if($superCage->post->keyExists('exportSubmit'))
@@ -78,7 +80,7 @@ if($superCage->post->keyExists('exportSubmit'))
     </tr>
     <tr>
         <td class="tablef" colspan="2">
-            <input type="submit" name="exportSubmit" value="{$lang_common['go']}" class="button" />
+            <button type="submit" class="button" name="exportSubmit" value="{$lang_common['go']}">{$icon_array['ok']}{$lang_common['go']}</button>
         </td>
     </tr>
 

@@ -28,6 +28,8 @@ if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
+$icon_array['ok'] = cpg_fetch_icon('ok', 1);
+
 pageheader($lang_keywordmgr_php['title']);
 
 echo '<form name="keywordForm" id="cpgform" action="keywordmgr.php?page=changeword" method="post">';
@@ -127,7 +129,7 @@ EOT;
     <tr>
         <td colspan="5" class="tablef" align="center">
             <input type="text" name="newword" />
-            <input type="submit" value="{$lang_keywordmgr_php['change_keyword']}" />
+            <button type="submit" class="button" name="keyword_submit" value="{$lang_keywordmgr_php['change_keyword']}">{$icon_array['ok']}{$lang_keywordmgr_php['change_keyword']}</button>
         </td>
     </tr>
 

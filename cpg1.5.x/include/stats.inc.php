@@ -196,7 +196,7 @@ $osArray = array(
  * function defintions start
  */
 function individualStatsByOS($pid='',$type='hits', $tableWidth='100%') {
-      global $osArray, $CONFIG, $lang_stat_details_php;
+      global $osArray, $CONFIG, $lang_stat_details_php, $icon_array;
        $maxBarWidth = 200;
       if (GALLERY_ADMIN_MODE == true){
         foreach ($osArray as $key => $value) {
@@ -220,7 +220,7 @@ function individualStatsByOS($pid='',$type='hits', $tableWidth='100%') {
         array_multisort($osResultArray,SORT_DESC);
         $osTotal = array_sum($osResultArray);
         print '<a name="os"></a>';
-        starttable($tableWidth, $lang_stat_details_php['stats_by_os'], 3);
+        starttable($tableWidth, $icon_array['os'] . $lang_stat_details_php['stats_by_os'], 3);
         print <<< EOT
         <tr>
           <td class="tableh2" colspan="2">{$lang_stat_details_php['os']}</td>
@@ -266,7 +266,7 @@ EOT;
 }
 
 function individualStatsByBrowser($pid='',$type='hits', $tableWidth='100%') {
-      global $browserArray, $CONFIG, $lang_stat_details_php;
+      global $browserArray, $CONFIG, $lang_stat_details_php, $icon_array;
       $maxBarWidth = 200;
       if (GALLERY_ADMIN_MODE == true){
         foreach ($browserArray as $key => $value) {
@@ -290,7 +290,7 @@ function individualStatsByBrowser($pid='',$type='hits', $tableWidth='100%') {
         array_multisort($browserResultArray,SORT_DESC);
         $browserTotal = array_sum($browserResultArray);
         print '<a name="browser"></a>';
-        starttable($tableWidth, $lang_stat_details_php['stats_by_browser'], 3);
+        starttable($tableWidth, $icon_array['browser'] . $lang_stat_details_php['stats_by_browser'], 3);
         print <<< EOT
         <tr>
           <td class="tableh2" colspan="2">{$lang_stat_details_php['browser']}</td>
