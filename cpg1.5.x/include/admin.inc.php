@@ -761,8 +761,6 @@ $config_data = array(
       'type'          => 'textfield',
       'default_value' => 'Coppermine gallery contact form',
       'help_link'     => 'f=configuration.htm&amp;as=admin_contact_subject_content&amp;ae=admin_contact_subject_content_end',
-      'size'          => '100%',
-      'width'         => '200',
     ),
     'contact_form_subject_field' => array(
       'type'          => 'radio',

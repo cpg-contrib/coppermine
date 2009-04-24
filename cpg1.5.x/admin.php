@@ -238,7 +238,7 @@ foreach ($config_data as $config_section_key => $config_section_value) { // star
           </tr>
           <tr>
             <td class="tableb" colspan="2">
-              <table align="center" width="90%" cellspacing="1" cellpadding="0" class="maintable" id="section{$sectionLoopCounter}" border="0">
+              <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable" id="section{$sectionLoopCounter}" border="0">
 EOT;
     $withinSectionLoopCounter = 0;
     foreach ($config_section_value as $key => $value) {

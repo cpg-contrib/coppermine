@@ -57,26 +57,16 @@ function blocking(nr, cookie, vis_state) {
     $('#' + nr).css('display', display);
 }
 
-
 function show_section(e) {
-    if ($('#' + e).css('display') == 'none') {
-        $('#' + e).css('display', 'block');
-    } else {
-        $('#' + e).css('display', 'none');
-    }
+    $('#' + e).toggle();
 }
 
-
 function expand() {
-    jQuery.each($("table[id^='section']"), function(){
-        $(this).css('display', 'block');                              
-    });
+    $("table[id^='section']").show();
 }
 
 function hideall() {
-    jQuery.each($("table[id^='section']"), function(){
-        $(this).css('display', 'none');                           
-    });
+    $("table[id^='section']").hide();
 }
 
 function selectAll(form_name) {

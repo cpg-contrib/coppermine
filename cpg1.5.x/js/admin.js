@@ -71,7 +71,7 @@ function deleteUnneededFields()
     return true;
 }
 
-function toggleExpandCollpaseButtons(action) 
+function toggleExpandCollapseButtons(action) 
 {
     jQuery.each($("img[id^='expand']"), function(){
         $(this).css('display', (action == 'collapse') ? 'block' : 'none');                            
@@ -88,7 +88,7 @@ function adminPageLoaded(){
             show_section('collapse_all_top');
             show_section('expand_all_bottom');
             show_section('collapse_all_bottom');
-            toggleExpandCollpaseButtons('expand');                             
+            toggleExpandCollapseButtons('expand');                             
         });
     
     $('span[id^=collapse_all]').click(function(){
@@ -97,14 +97,12 @@ function adminPageLoaded(){
             show_section('collapse_all_top');
             show_section('expand_all_bottom');
             show_section('collapse_all_bottom');
-            toggleExpandCollpaseButtons('collapse');                       
+            toggleExpandCollapseButtons('collapse');                       
         });
     show_section('expand_all_top');
     show_section('expand_all_bottom');
     
-    jQuery.each($("table[id^='section']"), function(){
-        $(this).css('display', 'none');
-    });
+    hideall();
     
     //TODO
     //due to a bug in webkit based browsers, the onfocus event isn't fired
@@ -113,4 +111,5 @@ function adminPageLoaded(){
         $(this).blur($(this).focus());      
     });*/
 }
+
 addonload('adminPageLoaded()');

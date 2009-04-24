@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-04-24 [B] Fixed sections in admin page to use full width {Nibbler}
 2009-04-24 [O] Added expand/collapse styles {GauGau}
 2009-04-24 [O] Added some icons to buttons {GauGau}
 2009-04-24 [O] Optimized debug output {GauGau}
