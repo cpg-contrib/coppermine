@@ -29,9 +29,3 @@ function confirmUserDelete() {
 	}
 }
 
-function agreesubmit(el){
-check = document.cpgform2.confirmation.checked;
-	if (check == true) {
-		document.cpgform2.delete_submit.disabled = false;
-	}
-}

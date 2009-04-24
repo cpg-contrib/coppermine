@@ -595,19 +595,6 @@ EOT;
     <br />
     <script type="text/javascript">
       <!--//
-      function confirmUserDelete() {
-        if (document.cpgform2.confirmation.checked = true) {
-          check = confirm('{$lang_register_php['really_delete']}');
-          if (check == true) {
-            //document.cpgform2.submit();
-          } else {
-            document.cpgform2.confirmation.checked = false;
-            document.cpgform2.delete_submit.disabled = true;
-            return;
-          }
-        }
-      }
-
       function agreesubmit(el){
         check = document.cpgform2.confirmation.checked;
         if (check == true) {
