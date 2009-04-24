@@ -28,6 +28,7 @@ require('include/init.inc.php');
 
 $header_printed = false;
 $need_caption = false;
+$icon_array['ok'] = cpg_fetch_icon('ok', 1);
 
 function output_table_header()
 {
@@ -549,7 +550,7 @@ case 'comment':
     header($header_location . $redirect);
 
     pageheader($lang_common['information'], "<META http-equiv=\"refresh\" content=\"1;url=$redirect\">");
-    msg_box($lang_common['information'], $lang_delete_php['comment_deleted'], $lang_common['continue'], $redirect);
+    msg_box($lang_common['information'], $lang_delete_php['comment_deleted'], $icon_array['ok'] . $lang_common['continue'], $redirect);
     pagefooter();
 
     break;
@@ -565,7 +566,7 @@ case 'picture':
     $tablecellstyle = 'tableb';
     $aid = delete_picture($pid, $tablecellstyle);
     echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
-    echo "<div class=\"admin_menu\"><a href=\"thumbnails.php?album=$aid\">".$lang_common['continue']."</a></div>\n";
+    echo "<div class=\"admin_menu\"><a href=\"thumbnails.php?album=$aid\">".$icon_array['ok'] . $lang_common['continue']."</a></div>\n";
     echo "</td></tr>\n";
     endtable();
 
@@ -587,7 +588,7 @@ case 'album':
     print delete_album($aid);
 
     echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
-    echo "<div class=\"admin_menu\"><a href=\"index.php\">".$lang_common['continue']."</a></div>\n";
+    echo "<div class=\"admin_menu\"><a href=\"index.php\">".$icon_array['ok'] . $lang_common['continue']."</a></div>\n";
     echo "</td></tr>";
     endtable();
 
@@ -755,7 +756,7 @@ case 'user':
                 print '</tr>';
             }
             echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
-            echo "<a href=\"usermgr.php\"  class=\"admin_menu\">".$lang_common['continue']."</a>\n";
+            echo "<a href=\"usermgr.php\"  class=\"admin_menu\">".$icon_array['ok'] . $lang_common['continue']."</a>\n";
             echo "</td></tr>";
             endtable();
             
@@ -806,7 +807,7 @@ case 'user':
             } // foreach --- end
             
             echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
-            echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$lang_common['continue']."</a>\n";
+            echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$icon_array['ok'] . $lang_common['continue']."</a>\n";
             echo "</td></tr>";
             endtable();
             
@@ -857,7 +858,7 @@ case 'user':
             } // foreach --- end
             
             echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
-            echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$lang_common['continue']."</a>\n";
+            echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$icon_array['ok'] . $lang_common['continue']."</a>\n";
             echo "</td></tr>";
             endtable();
             
@@ -905,7 +906,7 @@ case 'user':
             } // foreach --- end
 
             echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
-            echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$lang_common['continue']."</a>\n";
+            echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$icon_array['ok'] . $lang_common['continue']."</a>\n";
             echo "</td></tr>";
             endtable();
             
@@ -963,7 +964,7 @@ case 'user':
             } // foreach --- end
 
             echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
-            echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$lang_common['continue']."</a>\n";
+            echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$icon_array['ok'] . $lang_common['continue']."</a>\n";
             echo "</td></tr>";
             endtable();
             
@@ -1052,7 +1053,7 @@ case 'user':
             } // foreach --- end
             
             echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
-            echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$lang_common['continue']."</a>\n";
+            echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$icon_array['ok'] . $lang_common['continue']."</a>\n";
             echo "</td></tr>";
             endtable();
             
@@ -1221,7 +1222,7 @@ case 'user':
             }
             
             echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
-            echo "<a href=\"index.php\"  class=\"admin_menu\">".$lang_common['continue']."</a>\n";
+            echo "<a href=\"index.php\"  class=\"admin_menu\">".$icon_array['ok'] . $lang_common['continue']."</a>\n";
             echo "</td></tr>";
             endtable();
             

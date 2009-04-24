@@ -25,6 +25,9 @@ require('include/init.inc.php');
 
 $cpg_udb->view_users();
 
+$icon_array['ok'] = cpg_fetch_icon('ok', 1);
+$icon_array['search'] = cpg_fetch_icon('search', 1);
+
 if (USER_ID !='') {
  if (GALLERY_ADMIN_MODE) {
   $lim_user = 0;
@@ -55,7 +58,7 @@ function show_memberlist()
 }
 
 function list_group_alb_access($group_id) {  //shows a list of albums a specific group can see. Categories are listed with albums for clarity
-    global $CONFIG, $group_id, $aid;
+    global $CONFIG, $group_id, $aid, $icon_array;
 
     $query = "
       SELECT
@@ -90,7 +93,7 @@ function list_group_alb_access($group_id) {  //shows a list of albums a specific
 function list_groups_alb_access() //shows a list of albums each group can see. Categories are listed with albums for clarity
 {
     global $CONFIG;
-    global $lang_usermgr_php, $lang_common, $group_id;
+    global $lang_usermgr_php, $lang_common, $group_id, $icon_array;
 
     starttable(500, $lang_usermgr_php['groups_alb_access'].'&nbsp;'.cpg_display_help('f=users.htm&amp;as=user_cp_edit_permission_by_group&amp;ae=user_cp_edit_permission_by_group_end', '450', '300'), 3);
 
@@ -133,7 +136,7 @@ function list_groups_alb_access() //shows a list of albums each group can see. C
 function list_users($search = '')
 {
     global $CONFIG, $cpg_udb, $CPG_PHP_SELF; //, $PHP_SELF;
-    global $lang_usermgr_php, $lang_byte_units, $lang_date, $lang_common;
+    global $lang_usermgr_php, $lang_byte_units, $lang_date, $lang_common, $icon_array;
     global $lim_user, $number_of_columns;
     global $USER_DATA;
 
@@ -622,7 +625,7 @@ EOT;
                                 <option value="no">{$lang_usermgr_php['delete_comments_no']}</option>
                                 <option value="yes">{$lang_usermgr_php['delete_comments_yes']}</option>
                             </select>
-                            <input type="submit" name="go" value="{$lang_usermgr_php['submit']}" class="button" style="display:none" />
+							<button type="submit" class="button" name="go" value="{$lang_usermgr_php['submit']}" style="display:none">{$icon_array['ok']}{$lang_usermgr_php['submit']}</button>
                         </td>
                 </tr>
                 </table>
@@ -639,7 +642,7 @@ EOT;
                         <td class="tablef" align="center" valign="middle">
                             <form method="post" action="{$CPG_PHP_SELF}" name="searchUser" id="cpgform2">
                                 <input type="text" name="username" class="textinput" $search_string_default />
-                                <input type="submit" name="user_search" value="{$lang_usermgr_php['search_submit']}" class="button" />
+								<button type="submit" class="button" name="user_search" value="{$lang_usermgr_php['search_submit']}">{$icon_array['search']}{$lang_usermgr_php['search_submit']}</button>
                                 $help
                             </form>
                         </td>
@@ -694,7 +697,7 @@ EOT;
 function edit_user($user_id)
 {
     global $CONFIG, $CPG_PHP_SELF; //, $PHP_SELF;
-    global $lang_usermgr_php, $lang_common;
+    global $lang_usermgr_php, $lang_common, $icon_array;
 
     $form_data = array(
         array('input', 'user_name', cpg_fetch_icon('my_profile', 2) . $lang_usermgr_php['name'], 25),
@@ -904,7 +907,7 @@ EOT;
         </tr>
         <tr>
                 <td colspan="2" align="center" class="tablef">
-                        <input type="submit" value="{$lang_usermgr_php['modify_user']}" class="button" />
+						<button type="submit" class="button" name="usermgr_edit_submit" value="{$lang_usermgr_php['modify_user']}">{$icon_array['ok']}{$lang_usermgr_php['modify_user']}</button>
                 </td>
                 </form>
         </tr>
@@ -917,7 +920,7 @@ EOT;
 function update_user($user_id)
 {
     global $CONFIG; //, $PHP_SELF;
-    global $lang_usermgr_php, $lang_register_php;
+    global $lang_usermgr_php, $lang_register_php, $icon_array;
 
     $superCage = Inspekt::makeSuperCage();
 

@@ -47,6 +47,13 @@ $help_album_password = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop
 
 $captionLabel = $lang_modifyalb_php['alb_desc'];
 
+$icon_array['edit_files'] = cpg_fetch_icon('edit', 1);
+$icon_array['category'] = cpg_fetch_icon('category', 1);
+$icon_array['thumbnail'] = cpg_fetch_icon('thumbnails', 1);
+$icon_array['ok'] = cpg_fetch_icon('ok', 1);
+$icon_array['move'] = cpg_fetch_icon('move', 1);
+$icon_array['stop'] = cpg_fetch_icon('stop', 0, '', '', 'png', 1); // Only get the image path and not the embedding <img>-tag
+
 if ($CONFIG['show_bbcode_help']) {
     $captionLabel .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))), 470, 245);
 }
@@ -138,7 +145,7 @@ EOT;
 
 function form_category($text, $name)
 {
-    global $ALBUM_DATA, $CAT_LIST, $USER_DATA, $lang_modifyalb_php, $CONFIG;
+    global $ALBUM_DATA, $CAT_LIST, $USER_DATA, $lang_modifyalb_php, $CONFIG, $icon_array;
 
     //check if users are allowed to move their albums
     if (!GALLERY_ADMIN_MODE && $CONFIG['allow_user_move_album'] == 0) {
@@ -159,7 +166,7 @@ function form_category($text, $name)
             $text
         </td>
         <td class="tableb" valign="top">
-            <i>{$cat_name}</i>
+            <em>{$cat_name}</em>
             <input type="hidden" name="$name" value="{$ALBUM_DATA['category']}" />
         </td>
     </tr>
@@ -186,7 +193,7 @@ EOT;
             $text
         </td>
         <td class="tableb" valign="top">
-            <select name="$name" class="listbox">
+            {$icon_array['move']}<select name="$name" class="listbox">
 EOT;
 
     foreach ($CAT_LIST as $category) {
@@ -244,7 +251,7 @@ function form_alb_thumb($text, $name)
             $text
         </td>
         <td class="tableb" valign="top">
-            <i>{$lang_modifyalb_php['alb_empty']}</i>
+            <em>{$lang_modifyalb_php['alb_empty']}</em>
             <input type="hidden" name="$name" value="0" />
         </td>
     </tr>
@@ -690,22 +697,30 @@ echo <<< EOT
     <input type="hidden" name="aid" value="{$CLEAN['album']}" />
 EOT;
 
-$edit_files_icon = cpg_fetch_icon('edit', 1);
-$category_icon   = cpg_fetch_icon('category', 1);
-$thumbnail_icon  = cpg_fetch_icon('thumbnails', 1);
-
 starttable("100%", cpg_fetch_icon('modifyalb', 1) . $lang_modifyalb_php['update'].$help, 2);
 
 echo <<< EOT
     <tr>
-        <td class="tableh2" align="center">
-            <a href="editpics.php?album={$CLEAN['album']}" class="admin_menu">{$edit_files_icon}{$lang_modifyalb_php['edit_files']}</a>
-            &nbsp;&nbsp;-&nbsp;&nbsp;
-            <a href="index.php?cat={$ALBUM_DATA['category']}" class="admin_menu">{$category_icon}{$lang_modifyalb_php['parent_category']}</a>
-            &nbsp;&nbsp;-&nbsp;&nbsp;
-            <a href="thumbnails.php?album={$CLEAN['album']}" class="admin_menu">{$thumbnail_icon}{$lang_modifyalb_php['thumbnail_view']}</a>
+        <td class="tableh2" colspan="2">
+            <strong>{$lang_modifyalb_php['related_tasks']}</strong>
         </td>
-        <td class="tableh2" align="right">
+    </tr>
+    <tr>
+        <td class="tableh2" align="center" colspan="2">
+            <a href="editpics.php?album={$CLEAN['album']}" class="admin_menu">{$icon_array['edit_files']}{$lang_modifyalb_php['edit_files']}</a>
+            &nbsp;&nbsp;-&nbsp;&nbsp;
+            <a href="index.php?cat={$ALBUM_DATA['category']}" class="admin_menu">{$icon_array['category']}{$lang_modifyalb_php['parent_category']}</a>
+            &nbsp;&nbsp;-&nbsp;&nbsp;
+            <a href="thumbnails.php?album={$CLEAN['album']}" class="admin_menu">{$icon_array['thumbnail']}{$lang_modifyalb_php['thumbnail_view']}</a>
+        </td>
+	</tr>
+    <tr>
+        <td class="tableh2" colspan="2">
+            <strong>{$lang_modifyalb_php['choose_album']}</strong>
+        </td>
+    </tr>
+	<tr>
+        <td class="tableh2" align="right" colspan="2">
             $album_lb
         </td>
     </tr>
@@ -730,7 +745,7 @@ echo <<< EOT
     </tr>
     <tr>
         <td colspan="2" align="center" class="tablef">
-            <input type="submit" class="button" value="{$lang_modifyalb_php['update']}" />
+			<button type="submit" class="button" name="update_album" value="{$lang_modifyalb_php['update']}">{$icon_array['ok']}{$lang_modifyalb_php['update']}</button>
         </td>
     </tr>
 
@@ -836,7 +851,7 @@ EOT;
     </tr>
     <tr>
             <td class="tablef" colspan="2" align="center" valign="bottom">
-                <input type="submit" class="button" value="{$lang_modifyalb_php['submit_reset']}" disabled="disabled" />
+				<button type="submit" class="button" name="reset_submit" value="{$lang_modifyalb_php['submit_reset']}" disabled="disabled" style="cursor:url({$icon_array['stop']}),text;">{$icon_array['ok']}{$lang_modifyalb_php['submit_reset']}</button>
                 <input name="agreecheck" type="checkbox" onclick="agreesubmit(this)" />{$lang_modifyalb_php['reset_views_confirm']}
             </td>
     </tr>
@@ -845,7 +860,6 @@ EOT;
     endtable();
     print "</form>\n";
 }
-
 pagefooter();
 
 ?>
