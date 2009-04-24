@@ -18,7 +18,7 @@
 
 /*
  * Date prototype extensions. Doesn't depend on any
- * other code. Doens't overwrite existing methods.
+ * other code. Doesn't overwrite existing methods.
  *
  * Adds dayNames, abbrDayNames, monthNames and abbrMonthNames static properties and isLeapYear,
  * isWeekend, isWeekDay, getDaysInMonth, getDayName, getMonthName, getDayOfYear, getWeekOfYear,
