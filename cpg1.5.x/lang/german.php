@@ -331,13 +331,14 @@ $lang_get_pic_data['n_views'] = '%s x angesehen';
 $lang_get_pic_data['n_votes'] = '(%s Bewertungen)';
 
 $lang_cpg_debug_output['debug_info'] = 'Debug-Info';
+$lang_cpg_debug_output['debug_output'] = 'Debug-Ausgabe'; // cpg1.5
 $lang_cpg_debug_output['select_all'] = 'Alles markieren';
-$lang_cpg_debug_output['copy_and_paste_instructions'] = 'Wenn Du Hilfe im Coppermine-Forum suchen willst, kopiere diese Debug-Ausgabe in Deinen Beitrag im Forum. Ersetze eventuell vorhandene Passwörter in den Queries durch ***.';
+$lang_cpg_debug_output['copy_and_paste_instructions'] = 'Wenn Du Hilfe im Coppermine-Forum suchen willst, kopiere diese Debug-Ausgabe in Deinen Beitrag im Forum, wenn ein Supporter ausdrücklich danach verlangt (und NUR dann)! Ersetze eventuell vorhandene Passwörter in den Queries durch ***.';
 $lang_cpg_debug_output['debug_output_explain'] = 'Anmerkung: Diese Ausgabe erfolgt nur zur Information und bedeutet nicht, dass ein Fehler in der Galerie vorliegt.'; // cpg1.5
 $lang_cpg_debug_output['phpinfo'] = 'phpinfo anzeigen';
 $lang_cpg_debug_output['notices'] = 'Notices';
-$lang_cpg_debug_output['notices_help_admin'] = 'Die Notices, die auf dieser Seite angezeigt werden erscheinen nur, weil Du (als Galerie-Admin) diese Funktion in den Einstellungen aktiviert hast. Sie bedeuten nicht, dass etwas mit Deiner Galerie nicht stimmt. Sie sind eine Entwickler-Funktion, die nur von erfahrenen Programmierern eingeschaltet werden sollte, um Fehlern auf die Schliche zu kommen. Wenn die Anzeige der Notices Dich stört und/oder DU keine Ahnung hast, wozu sie gut sind, dann schalte die entsprechende Option in den Einstellungen ab.'; // cpg1.5
-$lang_cpg_debug_output['notices_help_non_admin'] = 'Die Notices, die auf dieser Seite angezeigt werden erscheinen nur, weil der Admin diese Funktion in den Einstellungen aktiviert hat. Sie bedeuten nicht, dass etwas von Deiner Seite her nicht stimmt. Die angezeigten Notizen können problemlos ignoriert werden.'; // cpg1.5
+$lang_cpg_debug_output['notices_help_admin'] = 'Die Notizen, die nachfolgend angezeigt werden erscheinen nur, weil Du (als Galerie-Admin) diese Funktion in den Einstellungen aktiviert hast. Sie bedeuten nicht, dass etwas mit Deiner Galerie nicht stimmt. Sie sind eine Entwickler-Funktion, die nur von erfahrenen Programmierern eingeschaltet werden sollte, um Fehlern auf die Schliche zu kommen. Wenn die Anzeige der Notices Dich stört und/oder Du keine Ahnung hast, wozu sie gut sind, dann schalte die entsprechende Option in den Einstellungen ab.'; // cpg1.5
+$lang_cpg_debug_output['notices_help_non_admin'] = 'Die Notizen, die nachfolgend angezeigt werden erscheinen nur, weil der Admin diese Funktion in den Einstellungen aktiviert hat. Sie bedeuten nicht, dass etwas von Deiner Seite her nicht stimmt. Die angezeigten Notizen können problemlos ignoriert werden.'; // cpg1.5
 $lang_cpg_debug_output['show_hide'] = 'anzeigen / verbergen'; // cpg1.5
 
 $lang_language_selection['reset_language'] = 'Standard-Sprache';

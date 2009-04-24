@@ -25,6 +25,9 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-04-24 [O] Added expand/collapse styles {GauGau}
+2009-04-24 [O] Added some icons to buttons {GauGau}
+2009-04-24 [O] Optimized debug output {GauGau}
 2009-04-23 [B] Increased maxlength for password field in user manager from 8 to 25 to match the limits elsewhere {Nibbler}
 2009-04-21 [B] Fixed ecard image displaying at the wrong size {Nibbler}
 2009-04-16 [D] Added expandable detail boxes to documentation {GauGau}

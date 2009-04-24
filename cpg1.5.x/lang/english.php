@@ -333,6 +333,7 @@ $lang_get_pic_data['n_views'] = '%s views';
 $lang_get_pic_data['n_votes'] = '(%s votes)';
 
 $lang_cpg_debug_output['debug_info'] = 'Debug Info';
+$lang_cpg_debug_output['debug_output'] = 'Debug Output'; // cpg1.5
 $lang_cpg_debug_output['select_all'] = 'Select All';
 $lang_cpg_debug_output['copy_and_paste_instructions'] = 'If you\'re going to request help on the Coppermine support board, copy-and-paste this debug output into your posting when requested, along with the error message you get (if any). Only post the debug_output on the support board if a supporter definitely asks for it! Make sure to replace any passwords from the query with *** before posting.'; // cpg1.5
 $lang_cpg_debug_output['debug_output_explain'] = 'Note: This is for information only and does not mean there is an error with the gallery.'; // cpg1.5

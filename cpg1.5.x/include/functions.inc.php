@@ -3206,38 +3206,34 @@ function cpg_debug_output()
 
     $debug_underline   = '&#0010;------------------&#0010;';
     $debug_separate    = '&#0010;==========================&#0010;';
-    $debug_toggle_link = ' <a href="javascript:;" onclick="show_section(\'debug_output_rows\');" class="admin_menu" id="debug_output_toggle" style="display:none;">' . $lang_cpg_debug_output['show_hide'] . '</a>';
-
-    echo '<form name="debug" action="' . $CPG_PHP_SELF . '" id="debug">';
-
-    starttable('100%', cpg_fetch_icon('bug', 2) . $lang_cpg_debug_output['debug_info'] . $debug_toggle_link, 2);
-
-    echo '<tr><td align="center" valign="top" width="100%" colspan="2">';
-    echo '<table border="0" cellspacing="0" cellpadding="0" width="100%" id="debug_output_rows">';
-    echo '<tr><td align="center" valign="middle" class="tableh2" width="100">';
-    echo '<script language="javascript" type="text/javascript">
-<!--
-
-// only hide the debug_output if the user is capable to display it, i.e. if JavaScript is enabled. If JavaScript is off, debug_output will be displayed and the toggle will remain invisible (as it would not do anything anyway with JS off)
-addonload("document.getElementById(\'debug_output_rows\').style.display = \'none\'");
-addonload("document.getElementById(\'debug_output_toggle\').style.display = \'inline\'");
-//-->
-</script>';
-    echo <<< EOT
-        <script type="text/javascript">
-            document.write('<a href="javascript:HighlightAll(\'debug.debugtext\')" class="admin_menu">');
-            document.write("{$lang_cpg_debug_output['select_all']}");
-            document.write('</a>');
-        </script>
-        </td><td align="left" valign="middle" class="tableh2">
-EOT;
-    if (GALLERY_ADMIN_MODE) {
-        echo '<span class="album_stat">' . $lang_cpg_debug_output['copy_and_paste_instructions'] . '</span><br />';
+	$debug_toggle_link = $lang_cpg_debug_output['debug_output'] . ': <span class="detail_head_collapsed">'. $lang_cpg_debug_output['show_hide'].'</span>';
+	$debug_help = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_cpg_debug_output['debug_output_explain']))).'&amp;t='.urlencode(base64_encode(serialize($lang_cpg_debug_output['copy_and_paste_instructions']))), 470, 245);
+	 if (GALLERY_ADMIN_MODE) {
+        $debug_phpinfo_link = '<a href="phpinfo.php" class="admin_menu">' . cpg_fetch_icon('phpinfo', 1) . $lang_cpg_debug_output['phpinfo'] . '</a> ';
     }
-    echo '<span class="album_stat">' . $lang_cpg_debug_output['debug_output_explain'] . '</span>';
-    echo '</td></tr>';
-    echo '<tr><td class="tableb" colspan="2">';
-    echo '<textarea  rows="10" cols="60" class="debug_text" name="debugtext">';
+
+	echo <<< EOT
+	<script language="javascript" type="text/javascript">
+		<!--
+		addonload("document.getElementById('debug_output_select_all').style.display = 'inline'");
+		//-->
+	</script>
+	<form name="debug" action="{$CPG_PHP_SELF}" id="debug">
+EOT;
+	starttable('100%', cpg_fetch_icon('bug', 2) . $lang_cpg_debug_output['debug_info'] . $debug_help, 2);
+	echo <<< EOT
+	<tr>
+		<td>
+			
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" align="left" class="tableb">
+			{$debug_phpinfo_link}{$debug_toggle_link}
+			<span class="detail_body">
+				<button type="button" class="button" name="debug_output_select_all" style="display:none" id="debug_output_select_all" value="{$lang_cpg_debug_output['select_all']}" onclick="HighlightAll('debug.debugtext');">{$lang_cpg_debug_output['select_all']}</button><br />
+				<textarea  rows="10" cols="60" class="debug_text" name="debugtext">
+EOT;
     echo "USER: ";
     echo $debug_underline;
     print_r($USER);
@@ -3378,53 +3374,49 @@ EOT;
 
     echo <<<EOT
 Page generated in $time ms - $query_count queries in $total_query_time ms;
+				</textarea>
+			</span>
+		</td>
+	</tr>
+	
 EOT;
-    echo '</textarea>';
-    echo '</td>';
-    echo '</tr>';
-    echo '</table>';
-    echo '</td></tr>';
-    
-    if (GALLERY_ADMIN_MODE) {
-        echo '<tr><td class="tablef" colspan="2">';
-        echo '<a href="phpinfo.php" class="admin_menu">' . $lang_cpg_debug_output['phpinfo'] . '</a>';
-        echo '</td></tr>';
-    }
 
-    // Maze's new error report system
-    global $cpgdebugger;
-    $report = $cpgdebugger->stop();
-    
-    if (GALLERY_ADMIN_MODE) {
-        $notices_help =  $lang_cpg_debug_output['notices_help_admin'];
-    } else {
-        $notices_help =  $lang_cpg_debug_output['notices_help_non_admin'];
-    }
-    
-    $notices_help = '&nbsp;' . cpg_display_help('f=empty.htm&amp;base=64&amp;h=' . urlencode(base64_encode(serialize($lang_cpg_debug_output['notices']))) . '&amp;t=' . urlencode(base64_encode(serialize($notices_help))), 470, 245);
-
-    if (is_array($report) && $CONFIG['debug_notice'] != 0) {
-        echo '<tr><td class="tableh1" colspan="2">';
-        echo '<strong>';
-        echo cpg_fetch_icon('text_left', 2) . $lang_cpg_debug_output['notices'] . $notices_help;
-        echo '</strong>';
-        echo '</td></tr>';
-        echo '<tr><td class="tableb" colspan="2">';
-        
-        foreach ($report as $file => $errors) {
-        
+	if ($CONFIG['debug_notice'] != 0) {
+		// Maze's new error report system
+		global $cpgdebugger;
+		$report = $cpgdebugger->stop();
+		$debug_notices_icon = cpg_fetch_icon('text_left', 2);
+		if (GALLERY_ADMIN_MODE) {
+			$notices_help =  $lang_cpg_debug_output['notices_help_admin'];
+		} else {
+			$notices_help =  $lang_cpg_debug_output['notices_help_non_admin'];
+		}
+		$notices_help = '&nbsp;' . cpg_display_help('f=empty.htm&amp;base=64&amp;h=' . urlencode(base64_encode(serialize($lang_cpg_debug_output['notices']))) . '&amp;t=' . urlencode(base64_encode(serialize($notices_help))), 470, 245);
+		if (is_array($report)) {
+			echo <<< EOT
+			<tr>
+				<td class="tableh2">
+					{$lang_cpg_debug_output['notices']}{$notices_help}
+				</td>
+			</tr>
+			<tr>
+				<td class="tableb">
+EOT;
+		foreach ($report as $file => $errors) {
             echo '<strong>' . substr($file, $strstart) . '</strong><ul>';
-
             foreach ($errors as $error) {
                 echo "<li>$error</li>";
             }
-            
             echo '</ul>';
         }
-        echo '</td></tr>';
-    }
-    endtable();
-    echo "</form>";
+			echo <<< EOT
+				</td>
+			</tr>
+EOT;
+		}
+	}
+	endtable();
+	echo '</form>';
 
 } // function cpg_debug_output
 
