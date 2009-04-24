@@ -740,7 +740,7 @@ case 'user':
                     cpg_db_query("DELETE FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = '$key'");
 
                     // Clear any sessions
-                    cpg_db_query("DELETE FROM {$CONFIG['TABLE_SESSIONS']} WHERE user_id = '$key'");
+                    cpg_db_query("DELETE FROM {$cpg_udb->sessionstable} WHERE user_id = '$key'");
 
                     print '<td class="tableb" width="50%">';
                     print '<strong>';
@@ -1201,7 +1201,7 @@ case 'user':
                     cpg_db_query("DELETE FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = '$key'");
 
                     // Clear any sessions
-                    cpg_db_query("DELETE FROM {$CONFIG['TABLE_SESSIONS']} WHERE user_id = '$key'");
+                    cpg_db_query("DELETE FROM {$cpg_udb->sessionstable} WHERE user_id = '$key'");
                     
                     print '<td class="tableb" width="50%">';
                     print '<strong>';

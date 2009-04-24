@@ -24,6 +24,7 @@ define('USERMGR_PHP', true);
 require('include/init.inc.php');
 include("include/smilies.inc.php");
 
+set_js_var('lang_really_delete', $lang_register_php['really_delete']);
 js_include('js/profile.js');
 
 $cpg_udb->view_profile($superCage->get->getInt('uid'));
