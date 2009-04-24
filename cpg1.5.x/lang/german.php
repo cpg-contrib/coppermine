@@ -1425,7 +1425,7 @@ $lang_list_albums['n_pictures'] = '%s Dateien';
 $lang_list_albums['last_added'] = ', letzte Aktualisierung am %s';
 $lang_list_albums['n_link_pictures'] = '%s verknüpfte Dateien';
 $lang_list_albums['total_pictures'] = '%s Dateien insgesamt';
-$lang_list_albums['alb_hits'] = 'Album gesehene %s Zeiten'; // cpg1.5
+$lang_list_albums['alb_hits'] = 'Album %s mal aufgerufen'; // cpg1.5
 $lang_list_albums['from_categorie'] = ' - von der Kategorie: '; // cpg1.5
 }
 
