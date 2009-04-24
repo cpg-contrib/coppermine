@@ -261,6 +261,7 @@ form {
     background-image : url(images/button_bg.gif);
     background-position : bottom;
     height: 20px;
+	cursor:pointer ;
 }
 
 .radio {

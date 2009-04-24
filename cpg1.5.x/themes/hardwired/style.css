@@ -159,6 +159,7 @@ form {
     border: 1px solid #404750;
     background-color : #5D6674;
     color:#cccccc;
+	cursor:pointer ;
 }
 
 .radio {

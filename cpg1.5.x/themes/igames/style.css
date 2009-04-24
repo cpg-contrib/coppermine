@@ -393,6 +393,7 @@ form {
     font-size: 100%;
     background-image : url(images/button_bg.gif);
     background-position : bottom;
+	cursor:pointer ;
 }
 
 .radio {

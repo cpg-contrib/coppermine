@@ -135,6 +135,7 @@ form {
     border: 1px solid #CCD7E0;
     background-image : url(images/button_bg.gif);
     background-position : bottom;
+	cursor:pointer ;
 }
 
 .radio {
