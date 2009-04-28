@@ -805,7 +805,8 @@ EOT;
     if ($mysql_connected) {
         echo <<<EOT
         <tr>
-            <td colspan="2" align="center"><fieldset>{$language['mysql_succ']}</fieldset></td>
+            <td></td>
+            <td align="left"><div class="cpg_message_success">{$language['mysql_succ']}</div></td>
         </tr>   
 
 EOT;
@@ -883,11 +884,12 @@ function html_mysql_select_db()
           </td>
          </tr>
          <tr>
-          <td colspan="2">&nbsp;</td>
-         </tr>
-         <tr>
           <td align="right">{$language['mysql_db_name']}</td>
           <td>$dbs</td>
+         </tr>
+         <tr>
+          <td></td>
+          <td>{$language['or']}</td>
          </tr>
          <tr>
           <td align="right">{$language['mysql_create_db']}</td>
