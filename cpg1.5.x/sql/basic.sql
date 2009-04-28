@@ -103,7 +103,7 @@ INSERT INTO CPG_config VALUES ('ecard_flash', '0');
 INSERT INTO CPG_config VALUES ('ecards_more_pic_target', 'http://yoursite.tld/your_coppermine_folder/');
 INSERT INTO CPG_config VALUES ('email_comment_notification', '0');
 INSERT INTO CPG_config VALUES ('enable_help', '1');
-INSERT INTO CPG_config VALUES ('enable_menu_icons', '1');
+INSERT INTO CPG_config VALUES ('enable_menu_icons', '2');
 INSERT INTO CPG_config VALUES ('enable_plugins', '1');
 INSERT INTO CPG_config VALUES ('enable_smilies', '1');
 INSERT INTO CPG_config VALUES ('enable_thumb_watermark', '1');
