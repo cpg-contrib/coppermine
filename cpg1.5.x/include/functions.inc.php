@@ -5254,16 +5254,12 @@ function cpg_config_set($name, $value)
 function cpg_format_bytes($bytes)
 {
     global $lang_byte_units, $lang_decimal_separator;
-
     foreach ($lang_byte_units as $unit) {
-
         if ($bytes < 1024) {
             break;
         }
-
         $bytes /= 1024;
     }
-
     return number_format($bytes, 2, $lang_decimal_separator[1], $lang_decimal_separator[0]) . ' ' . $unit;
 }
 
@@ -5381,33 +5377,24 @@ function captcha_plugin_enabled()
 function get_cat_data()
 {
     global $CONFIG, $CAT_LIST, $USER_DATA;
-
     if (GALLERY_ADMIN_MODE) {
         $sql = "SELECT rgt, cid, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft ASC"; 
     } else {
         $sql = "SELECT rgt, cid, name FROM {$CONFIG['TABLE_CATEGORIES']} NATURAL JOIN {$CONFIG['TABLE_CATMAP']} WHERE group_id IN (" . implode(', ', $USER_DATA['groups']) . ") ORDER BY lft ASC";             
     }
-
     $result = cpg_db_query($sql);
-    
     if (mysql_num_rows($result) > 0) {
-
         $rowset = cpg_db_fetch_rowset($result);
-        
         $right = array(); 
-        
         foreach ($rowset as $subcat) {
-        
             if (count($right) > 0) {
                 // check if we should remove a node from the stack
                 while ($right && $right[count($right) - 1] < $subcat['rgt']) {
                     array_pop($right);
                 }
             }
-             
             $ident = str_repeat('&nbsp;&nbsp;&nbsp;', count($right));
             $right[] = $subcat['rgt']; 
-
             $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
         }
     }
@@ -5420,60 +5407,43 @@ function get_cat_data()
 function album_selection_options()
 {
     global $CONFIG, $lang_common, $cpg_udb;
-
     // html string of options to be returned    
     $options = '';
-    
     // Padding to indicate level
     $padding = 8;
-
     $albums = array();
-
     // load all albums
     $result = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY pos");
-
     while ($row = mysql_fetch_assoc($result)) {
         $albums[$row['category']][$row['aid']] = $row['title'];
     }
-
     if (!empty($albums[0])) {
-
         // Albums in no category
         $options .= '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">' . $lang_common['albums_no_category'] . '</option>';
-
         foreach ($albums[0] as $aid => $title) {
             $options .= sprintf('<option style="padding-left: %dpx" value="%d">%s</option>'."\n", $padding, $aid, $title);
         }
     }
-
     // Load all categories
     $result = cpg_db_query("SELECT cid, rgt, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft");
-
     $cats = array();
-
     // Loop through all categories
     while ($row = mysql_fetch_assoc($result)) {
-
         // Determine category hierarchy
         if (count($cats)) {
             while ($cats && $cats[count($cats)-1]['rgt'] < $row['rgt']) {
                 array_pop($cats);
             }
         }
-
         $cats[] = $row;
-
         // Add this category to the hierarchy
         if ($row['cid'] == USER_GAL_CAT) {
-
             // User galleries
             $options .= '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">' . $lang_common['personal_albums'] . '</option>' . "\n";
-
             $result2 = cpg_db_query("SELECT {$cpg_udb->field['user_id']} AS user_id, {$cpg_udb->field['username']} AS user_name "
                 . "FROM {$cpg_udb->usertable} ORDER BY {$cpg_udb->field['username']}");
             $users = cpg_db_fetch_rowset($result2);
             mysql_free_result($result2);
-
             foreach ($users as $user) {
                 if (!empty($albums[$user['user_id'] + FIRST_USER_CAT])) {
                     $options .= '<option style="padding-left: ' . $padding . 'px; color: black; font-weight: bold" disabled="disabled">' 
@@ -5483,27 +5453,20 @@ function album_selection_options()
                     }
                 }
             }
-
             unset($users);
             continue;
         }
-
         // construct a category hierarchy string breadcrumb style
         $elements = array();
-
         foreach ($cats as $cat) {
             $elements[] = $cat['name'];
         }
-
         $heirarchy = implode(' - ', $elements);
-
         // calculate padding for this level
         $p = (count($elements) - 1) * $padding;
-
         // category header
         $options .= '<option style="padding-left: '.$p.'px; color: black; font-weight: bold" disabled="disabled">' . "\n"
             . $heirarchy . '</option>' . "\n";
-
         // albums in the category
         if (!empty($albums[$row['cid']])) {
             foreach ($albums[$row['cid']] as $aid => $title) {
@@ -5511,7 +5474,6 @@ function album_selection_options()
             }
         }
     }
-    
     return $options;
 }
 // end function album_selection_options
