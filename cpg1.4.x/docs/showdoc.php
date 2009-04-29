@@ -52,6 +52,7 @@ $close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_me
 $file = stripslashes($file);
 $forbidden_chars = array("..", "/", "%", "<", ">", "$", "'", '"');
 $file = str_replace($forbidden_chars, '', $file);
+$add_stylesheet = str_replace($forbidden_chars, '', $add_stylesheet);
 
 ob_start();
 @include('index.htm');
