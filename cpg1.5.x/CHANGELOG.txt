@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-04-29 [B] Fixed improper ban expirations due to time offset being incorrectly applied (thread ID 58546) {Paver}
 2009-04-24 [B] Fixed sections in admin page to use full width {Nibbler}
 2009-04-24 [O] Added expand/collapse styles {GauGau}
 2009-04-24 [O] Added some icons to buttons {GauGau}

@@ -382,11 +382,10 @@ CPGPluginAPI::action('page_start', null);
 
 // load the main template
 load_template();
-// Remove expired bans
-$now = date('Y-m-d H:i:s', localised_timestamp());
-
 $CONFIG['template_loaded'] = true;
 
+// Remove expired bans
+$now = date('Y-m-d H:i:s');
 if ($CONFIG['purge_expired_bans'] == 1) {
     cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE expiry < '$now'");
 }
