@@ -95,9 +95,9 @@ function dirheader($dir, $dirid)
  */
 function picrow($picfile, $picid, $albid)
 {
-    global $CONFIG, $expic_array, $rowCounter;
-    $rowCounter++;
-    if ( ($rowCounter / 2) == floor($rowCounter / 2) ) {
+    global $CONFIG, $expic_array, $picrowCounter;
+    $picrowCounter++;
+    if ( ($picrowCounter / 2) == floor($picrowCounter / 2) ) {
       $rowStyle = 'tableb';
     } else {
       $rowStyle = 'tableb tableb_alternate';
@@ -145,12 +145,12 @@ function picrow($picfile, $picid, $albid)
         $winsizeY = ($fullimagesize[1] + 16);
         // $checked = isset($expic_array[$picfile]) || !$fullimagesize ? '' : 'checked';
         $checked = isset($expic_array[$picfile]) ? '' : 'checked="checked"';
-        $return = <<<EOT
+        $return = <<< EOT
         <tr>
-                <td class="$rowStyle" valign="middle" width="30">
-                        <input name="pics[]" id="checkbox_p_{$picid}" type="checkbox" value="$picid" $checked />
-                        <input name="album_lb_id_$picid" type="hidden" value="$albid" />
-                        <input name="picfile_$picid" type="hidden" value="$encoded_picfile" />
+                <td class="{$rowStyle}" valign="middle" width="30">
+                        <input name="pics[]" id="checkbox_p_{$picid}" type="checkbox" value="{$picid}" {$checked} />
+                        <input name="album_lb_id_{$picid}" type="hidden" value="{$albid}" />
+                        <input name="picfile_{$picid}" type="hidden" value="{$encoded_picfile}" />
                 </td>
 EOT;
         // if $fullimagesize is not null, then assume it's an image
@@ -623,7 +623,7 @@ EOT;
     }
 
     $iframe_startfolder = str_replace('searchnew.php', '', __FILE__) . rtrim($CONFIG['fullpath'],'/') . $folder_sep;
-    $iframe_hide = rawurlencode('.,..,.svn,edit,'.rtrim($CONFIG['userpics'],'/'));
+    $iframe_hide = rawurlencode('.,..,.svn,edit,Thumbs.db,.DS_Store,.htaccess,'.rtrim($CONFIG['userpics'],'/'));
     print '    <tr>'."\n";
     print '        <td class="tableb" align="center">'."\n";
 
