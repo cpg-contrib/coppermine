@@ -393,11 +393,10 @@ CPGPluginAPI::action('page_start',null);
 
 // load the main template
 load_template();
-// Remove expired bans
-$now = date('Y-m-d H:i:s', localised_timestamp());
-
 $CONFIG['template_loaded'] = true;
 
+// Remove expired bans
+$now = date('Y-m-d H:i:s');
 cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE expiry < '$now'");
 // Check if the user is banned
 $user_id = USER_ID;
@@ -409,6 +408,7 @@ if (mysql_num_rows($result)) {
         exit;
 }
 mysql_free_result($result);
+
 // Retrieve the "private" album set
 if (!GALLERY_ADMIN_MODE && $CONFIG['allow_private_albums']) get_private_album_set();
 

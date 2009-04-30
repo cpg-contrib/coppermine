@@ -26,7 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2009-04-29 [S] Fixed XSS vulnerability in showdoc.php (threadID 59237) {Nibbler}
+2009-04-29 [B] Fixed improper ban expirations due to time offset being incorrectly applied (thread ID 55464) {Paver}
+2009-04-29 [S] Fixed XSS vulnerability in showdoc.php (thread ID 59237) {Nibbler}
 2009-04-23 [B] Increased maxlength for password field in user manager from 8 to 25 to match the limits elsewhere {Nibbler}
 2009-03-05 [M] Updated version count from cpg1.4.21 to cpg1.4.22 in subversion repository as a preparation for the next release {GauGau}
 2009-03-04 [M] Release of cpg1.4.21 {GauGau}
