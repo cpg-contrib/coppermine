@@ -2744,7 +2744,11 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
     set_js_var('count', $pic_count);
 
     $cat_link  = is_numeric($album) ? '' : '&amp;cat=' . $cat;
-    $date_link = ($date == '') ? '' : '&amp;date=' . $date;
+	if (isset($date) && $date != '') {
+		$date_link = '&amp;date=' . $date;
+	} else {
+		$date_link = '';
+	}
 
     if ($superCage->get->getInt('uid')) {
         $uid_link = '&amp;uid=' . $superCage->get->getInt('uid');
@@ -3399,20 +3403,29 @@ EOT;
 					{$lang_cpg_debug_output['notices']}{$notices_help}
 				</td>
 			</tr>
-			<tr>
-				<td class="tableb">
 EOT;
-		foreach ($report as $file => $errors) {
-            echo '<strong>' . substr($file, $strstart) . '</strong><ul>';
-            foreach ($errors as $error) {
-                echo "<li>$error</li>";
-            }
-            echo '</ul>';
-        }
-			echo <<< EOT
+			$noticesLoopCounter = 0;
+			foreach ($report as $file => $errors) {
+				if ($noticesLoopCounter/2 == floor($noticesLoopCounter/2)) {
+					$cellstyle = 'tableb tableb_alternate';
+				} else {
+					$cellstyle = 'tableb';
+				}
+				echo <<< EOT
+			<tr>
+				<td class="{$cellstyle}">
+EOT;
+				echo '<strong>' . substr($file, $strstart) . '</strong><ul>';
+				foreach ($errors as $error) {
+					echo "<li>$error</li>";
+				}
+				echo <<< EOT
+					</ul>
 				</td>
 			</tr>
 EOT;
+				$noticesLoopCounter++;
+			}
 		}
 	}
 	endtable();
