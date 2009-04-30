@@ -6378,7 +6378,7 @@ $return = '
 1.4.22|update.php|1.4.22|5740|mandatory|r@
 1.4.22|upgrade-1.0-to-1.2.php|1.4.22|5740|mandatory|r@
 1.4.22|upload.php|1.4.22|5740|mandatory|r@
-1.4.22|usermgr.php|1.4.22|5740|mandatory|r@
+1.4.22|usermgr.php|1.4.22|5849|mandatory|r@
 1.4.22|util.php|1.4.22|5740|mandatory|r@
 1.4.22|versioncheck.php|1.4.22|5741|mandatory|r@
 1.4.22|viewlog.php|1.4.22|5740|mandatory|r@
@@ -6414,11 +6414,11 @@ $return = '
 1.4.22|docs/faq.htm|1.4.22|5740|optional|r@
 1.4.22|docs/faq_de.htm|1.4.22|5740|optional|r@
 1.4.22|docs/faq_fr.htm|1.4.22|5740|optional|r@
-1.4.22|docs/index.htm|1.4.22|5740|mandatory|r@
+1.4.22|docs/index.htm|1.4.22|5882|mandatory|r@
 1.4.22|docs/index_es.htm|1.4.22|4392|mandatory|r@
 1.4.22|docs/index_fr.htm|1.4.22|5740|mandatory|r@
 1.4.22|docs/README.html|1.4.22|5740|optional|r@
-1.4.22|docs/showdoc.php|1.4.22|5740|mandatory|r@
+1.4.22|docs/showdoc.php|1.4.22|5879|mandatory|r@
 1.4.22|docs/style.css|1.4.22|5740|mandatory|r@
 1.4.22|docs/theme.htm|1.4.22|5740|optional|r@
 1.4.22|docs/translation.htm|1.4.22|5740|optional|r@
@@ -6442,7 +6442,7 @@ $return = '
 1.4.22|include/imageObjectGD.class.php|1.4.22|5740|mandatory|r@
 1.4.22|include/imageObjectIM.class.php|1.4.22|5740|mandatory|r@
 1.4.22|include/index.html|1.4.22|5740|mandatory|r@
-1.4.22|include/init.inc.php|1.4.22|5740|mandatory|r@
+1.4.22|include/init.inc.php|1.4.22|5880|mandatory|r@
 1.4.22|include/iptc.inc.php|1.4.22|5740|mandatory|r@
 1.4.22|include/keyword.inc.php|1.4.22|5740|mandatory|r@
 1.4.22|include/langfallback.inc.php|1.4.22|5740|mandatory|r@
@@ -6525,7 +6525,7 @@ $return = '
 1.4.22|plugins/sample/codebase.php|1.4.22|5740|optional|r@
 1.4.22|plugins/sample/configuration.php|1.4.22|5740|optional|r@
 1.4.22|sql|||mandatory|r@
-1.4.22|sql/basic.sql|1.4.22|5740|mandatory|r@
+1.4.22|sql/basic.sql|1.4.22|5827|mandatory|r@
 1.4.22|sql/schema.sql|1.4.22|5740|mandatory|r@
 1.4.22|sql/update.sql|1.4.22|5740|mandatory|r@
 1.4.22|themes|||mandatory|r@
