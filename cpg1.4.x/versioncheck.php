@@ -6380,7 +6380,7 @@ $return = '
 1.4.22|upload.php|1.4.22|5740|mandatory|r@
 1.4.22|usermgr.php|1.4.22|5849|mandatory|r@
 1.4.22|util.php|1.4.22|5740|mandatory|r@
-1.4.22|versioncheck.php|1.4.22|5741|mandatory|r@
+1.4.22|versioncheck.php|1.4.22|5885|mandatory|r@
 1.4.22|viewlog.php|1.4.22|5740|mandatory|r@
 1.4.22|xp_publish.php|1.4.22|5740|mandatory|r@
 1.4.22|zipdownload.php|1.4.22|5740|mandatory|r@
