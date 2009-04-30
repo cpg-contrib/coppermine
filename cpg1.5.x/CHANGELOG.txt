@@ -25,6 +25,10 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-04-30 [B] Re-added alternating table rows for batch-add {GauGau}
+2009-04-30 [O] Hiding unneeded file types from minibrowser {GauGau}
+2009-04-30 [C] Added icon to minibrowser {GauGau}
+2009-04-30 [O] Added alternating colors to debug_output {GauGau}
 2009-04-29 [B] Fixed improper ban expirations due to time offset being incorrectly applied (thread ID 58546) {Paver}
 2009-04-24 [B] Fixed sections in admin page to use full width {Nibbler}
 2009-04-24 [O] Added expand/collapse styles {GauGau}
