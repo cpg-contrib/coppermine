@@ -336,8 +336,8 @@ $lang_cpg_debug_output['select_all'] = 'Alles markieren';
 $lang_cpg_debug_output['copy_and_paste_instructions'] = 'Wenn Du Hilfe im Coppermine-Forum suchen willst, kopiere diese Debug-Ausgabe in Deinen Beitrag im Forum, wenn ein Supporter ausdrücklich danach verlangt (und NUR dann)! Ersetze eventuell vorhandene Passwörter in den Queries durch ***.';
 $lang_cpg_debug_output['debug_output_explain'] = 'Anmerkung: Diese Ausgabe erfolgt nur zur Information und bedeutet nicht, dass ein Fehler in der Galerie vorliegt.'; // cpg1.5
 $lang_cpg_debug_output['phpinfo'] = 'phpinfo anzeigen';
-$lang_cpg_debug_output['notices'] = 'Notices';
-$lang_cpg_debug_output['notices_help_admin'] = 'Die Notizen, die nachfolgend angezeigt werden erscheinen nur, weil Du (als Galerie-Admin) diese Funktion in den Einstellungen aktiviert hast. Sie bedeuten nicht, dass etwas mit Deiner Galerie nicht stimmt. Sie sind eine Entwickler-Funktion, die nur von erfahrenen Programmierern eingeschaltet werden sollte, um Fehlern auf die Schliche zu kommen. Wenn die Anzeige der Notices Dich stört und/oder Du keine Ahnung hast, wozu sie gut sind, dann schalte die entsprechende Option in den Einstellungen ab.'; // cpg1.5
+$lang_cpg_debug_output['notices'] = 'PHP-Notizen (notices)';
+$lang_cpg_debug_output['notices_help_admin'] = 'Die Notizen, die nachfolgend angezeigt werden erscheinen nur, weil Du (als Galerie-Admin) diese Funktion in den Einstellungen aktiviert hast. Sie bedeuten nicht, dass etwas mit Deiner Galerie nicht stimmt. Sie sind eine Entwickler-Funktion, die nur von erfahrenen Programmierern eingeschaltet werden sollte, um Fehlern auf die Schliche zu kommen. Wenn die Anzeige der Notizen Dich stört und/oder Du keine Ahnung hast, wozu sie gut sind, dann schalte die entsprechende Option in den Einstellungen ab.'; // cpg1.5
 $lang_cpg_debug_output['notices_help_non_admin'] = 'Die Notizen, die nachfolgend angezeigt werden erscheinen nur, weil der Admin diese Funktion in den Einstellungen aktiviert hat. Sie bedeuten nicht, dass etwas von Deiner Seite her nicht stimmt. Die angezeigten Notizen können problemlos ignoriert werden.'; // cpg1.5
 $lang_cpg_debug_output['show_hide'] = 'anzeigen / verbergen'; // cpg1.5
 
@@ -2584,7 +2584,7 @@ $lang_plugin_php['opensearch_display_name'] = 'Anzeigename im Browser'; // cpg1.
 $lang_plugin_php['opensearch_description'] = 'Beschreibung'; // cpg1.5
 $lang_plugin_php['opensearch_character_limit'] = '%s Zeichen Begrenzung'; // cpg1.5
 $lang_plugin_php['onlinestats_description'] = 'Zeige einen Block auf jeder Galerie-Seite, der anzeigt, wieviele Benutzer und Gäste tatsächlich online sind.';
-$lang_plugin_php['onlinestats_name'] = 'Who is online?';
+$lang_plugin_php['onlinestats_name'] = 'Wer ist online?';
 $lang_plugin_php['onlinestats_config_extra'] = 'Um dieses Plugin zu aktivieren (damit es tatsächlich den onlinestats-Block anzeigt) muss die Zeichenfolge "onlinestats" (getrennt mit einem Schrägstrich) zu der Zeichenfolge "<a href="docs/de/configuration.htm#admin_album_list_content">Inhalt der Hauptseite</a>" in den <a href="admin.php">Einstellungen</a> unter dem Abschnitt "Ansicht Albenliste" eingetragen sein. Die Einstellung sollte dann wie folgt aussehen: "breadcrumb/catlist/alblist/onlinestats" oder vergleichbar. Um die Position des Blocks auf der Seite zu verschieben kann einfach die Position innerhalb der Zeichenkette verschoben werden.';
 $lang_plugin_php['onlinestats_config_install'] = 'Dieses Plugin verursacht zusätzliche Datenbankabfragen bei jedem Lauf und verbraucht daher zusätzliche Resourcen auf dem Server. Wenn Deine Galerie bereits langsam läuft und Du eine große Menge von Benutzern hast sollte dieses Plugin nicht installiert werden.';
 $lang_plugin_php['onlinestats_we_have_reg_member'] = 'Es gibt %s registrierten Benutzer';
