@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.22
+  Coppermine version: 1.4.23
   $Source$
   $Revision: 3966 $
   $Author: gaugau $

@@ -11,7 +11,7 @@
   
 ********************************************
 
-  Coppermine version: 1.4.22
+  Coppermine version: 1.4.23
 
   $HeadURL$
   $Revision$
