@@ -524,6 +524,13 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <td valign="top" class="tableb">filters $template_add_your_comment when CAPTCHA is enabled and allows you to override the standard CAPTCHA for comments</td>
     <td valign="top" class="tableb"><textarea class="samplecode" style="width:100%">$template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);</textarea></td>
   </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">include/themes.inc.php</td>
+    <td valign="top" class="tableb tableb_alternate"><a name="plugin_hooks_filename_thumbnail_params"></a><strong>theme_display_thumbnails_params</strong><a href="#plugin_hooks_filename_thumbnail_params" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top" class="tableb tableb_alternate">Filter</td>
+    <td valign="top" class="tableb tableb_alternate">filters $template_thumbnail_view which allows you to modify the thumbnail output or add things beneath the thumbails.</td>
+    <td valign="top" class="tableb tableb_alternate"><textarea class="samplecode" style="width:100%">$params = CPGPluginAPI::filter('theme_display_thumbnails_params', $params);</textarea></td>
+  </tr>
 </table>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -573,6 +580,7 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
 	<li><a href="#plugin_hooks_filename_sys_menu">sys_menu</a></li>
 	<li><a href="#plugin_hooks_filename_template_html">template_html</a></li>
 	<li><a href="#plugin_hooks_theme_add_comment">theme_add_comment</a></li>
+	<li><a href="#plugin_hooks_filename_thumbnail_params">theme_display_thumbnails_params</a></li>
 	<li><a href="#plugin_hooks_theme_add_comment">theme_edit_comment</a></li>
 	<li><a href="#plugin_hooks_filename_thumb_caption">thumb_caption</a></li>
 	<li><a href="#plugin_hooks_filename_thumb_caption_favpics">thumb_caption_favpics</a></li>
