@@ -291,6 +291,7 @@ function process_post_data()
 
         if (GALLERY_ADMIN_MODE || UPLOAD_APPROVAL_MODE || MODERATOR_MODE) {
 
+            $approved = '';
             if ($superCage->post->keyExists('approved' . $pid)) {
                 $approved = $superCage->post->getAlpha('approved' . $pid);
             }

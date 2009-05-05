@@ -762,7 +762,7 @@ function list_albums()
             }
         }
     } else {
-        $sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, filename, url_prefix, pwidth, pheight ' 
+        $sql = 'SELECT a.aid, a.title, a.description, a.thumb, a.keyword, category, visibility, filepath, filename, url_prefix, pwidth, pheight ' 
             . ' FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' 
             . ' LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' 
             . ' WHERE a.category=' . $cat . $album_filter 
@@ -777,22 +777,23 @@ function list_albums()
     //This query will fetch album stats and keywords for the albums
     $sql = "SELECT a.aid, count( p.pid ) AS pic_count, max( p.pid ) AS last_pid, max( p.ctime ) AS last_upload, a.keyword, a.alb_hits"
             ." FROM {$CONFIG['TABLE_ALBUMS']} AS a "
-            ." LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' "
+            ." LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved = 'YES' "
             ." WHERE a.category = $cat $album_filter GROUP BY a.aid ORDER BY a.pos, a.aid $limit";
     $alb_stats_q = cpg_db_query($sql);
     $alb_stats = cpg_db_fetch_rowset($alb_stats_q);
     mysql_free_result($alb_stats_q);
 
+    $approved = 'AND approved=\'YES\'';
+    $forbidden_set_string = ((count($FORBIDDEN_SET_DATA) > 0) ? ' AND aid NOT IN (' . implode(', ', $FORBIDDEN_SET_DATA) . ')' : '');
+
     foreach ($alb_stats as $key => $value) {
         $cross_ref[$value['aid']] = &$alb_stats[$key];
         if ($CONFIG['link_pic_count'] == 1) {
             if (!empty($value['keyword'])) {
-                $value['keyword'] = addslashes($value['keyword']);
+                $keyword = ($value['keyword'] ? "OR (keywords like '%".addslashes($value['keyword'])."%' $forbidden_set_string )" : '');
                 $query = "SELECT count(pid) AS link_pic_count, max(pid) AS link_last_pid "
                         ." FROM {$CONFIG['TABLE_PICTURES']} "
-                        ." WHERE aid != {$value['aid']} AND "
-                            ." keywords LIKE '%{$value['keyword']}%' AND "
-                            ." approved = 'YES'";
+                        ." WHERE ((aid != '{$value['aid']}' $forbidden_set_string) $keyword) $approved";
                 $result = cpg_db_query($query);
                 $link_stat = mysql_fetch_assoc($result);
                 mysql_free_result($result);
@@ -817,18 +818,22 @@ function list_albums()
         }
         // Inserts a thumbnail if the album contains 1 or more images
         $visibility = $alb_thumb['visibility'];
-
+        $keyword = ($alb_thumb['keyword'] ? "OR (keywords like '%".addslashes($alb_thumb['keyword'])."%' $forbidden_set_string )" : '');
         if (!in_array($aid, $FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) {
             if ($count > 0 || !empty($alb_stats[$alb_idx]['link_pic_count'])) {
                 if (!empty($alb_thumb['filename'])) {
                     $picture = &$alb_thumb;
                 } elseif ($alb_thumb['thumb'] < 0) {
-                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '{$alb_thumb['aid']}' ORDER BY RAND() LIMIT 0,1";
+                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " 
+                        . "FROM {$CONFIG['TABLE_PICTURES']} "
+                        . "WHERE ((aid = '{$alb_thumb['aid']}' $forbidden_set_string) $keyword) $approved "
+                        . "ORDER BY RAND() LIMIT 0,1";
                     $result = cpg_db_query($sql);
                     $picture = mysql_fetch_assoc($result);
                     mysql_free_result($result);
                 } else {
-                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$alb_stat['last_pid']}'";
+                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " 
+                        . "FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='{$alb_stat['last_pid']}'";
                     $result = cpg_db_query($sql);
                     $picture = mysql_fetch_assoc($result);
                     mysql_free_result($result);
@@ -840,7 +845,7 @@ function list_albums()
                     $picture['pwidth'] = $image_info[0];
                     $picture['pheight'] = $image_info[1];
                 }
-                                //thumb cropping
+                //thumb cropping
                 //$image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
                 if (array_key_exists('system_icon', $picture) && ($picture['system_icon'] == true)) {
                     $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size'], true, 'cat_thumb');
@@ -922,7 +927,7 @@ function album_adm_menu($aid, $cat)
                 //Disallowed -> Check if albums is in such a category
                 $result = cpg_db_query("SELECT DISTINCT alb.category FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON alb.category=catm.cid WHERE alb.owner = '" . $USER_DATA['user_id'] . "' AND alb.aid='$aid' AND catm.group_id='" . $USER_DATA['group_id'] . "'");
                 $allowed_albums = cpg_db_fetch_rowset($result);
-                if ($allowed_albums[0]['category'] == '') {
+                if (!$allowed_albums || ($allowed_albums[0]['category'] == '')) {
                     return "<strong>" . $lang_album_admin_menu['cat_locked'] . "</strong>";
                 }
             }
@@ -992,14 +997,15 @@ function list_cat_albums($cat, $catdata)
 
     foreach ($catdata['subalbums'] as $aid => $album) {
 
+        $approved = ' AND approved=\'YES\'';
+        $forbidden_set_string = ((count($FORBIDDEN_SET_DATA) > 0) ? ' AND aid NOT IN (' . implode(', ', $FORBIDDEN_SET_DATA) . ')' : '');
+        $keyword = ($album['keyword'] ? "OR (keywords like '%".addslashes($album['keyword'])."%' $forbidden_set_string)" : '');
         if ($CONFIG['link_pic_count'] == 1) {
 
             if (!empty($album['keyword'])) {
                 $query = "SELECT count(pid) AS link_pic_count, max(pid) AS link_last_pid "
                         ." FROM {$CONFIG['TABLE_PICTURES']} "
-                        ." WHERE aid != $aid AND "
-                        ." keywords LIKE '%{$album['keyword']}%' AND "
-                        ." approved = 'YES'";
+                        ." WHERE ((aid != '$aid' $forbidden_set_string) $keyword) $approved";
                 $result = cpg_db_query($query);
                 $link_stat = mysql_fetch_assoc($result);
                 mysql_free_result($result);
@@ -1020,12 +1026,15 @@ function list_cat_albums($cat, $catdata)
                     $picture = mysql_fetch_assoc($result);
                     mysql_free_result($result);
                 } elseif ($album['thumb'] < 0) {
-                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$aid' ORDER BY RAND() LIMIT 0,1";
+                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " 
+                        . "FROM {$CONFIG['TABLE_PICTURES']} WHERE ((aid = '$aid' $forbidden_set_string) $keyword) $approved "
+                        . "ORDER BY RAND() LIMIT 0,1";
                     $result = cpg_db_query($sql);
                     $picture = mysql_fetch_assoc($result);
                     mysql_free_result($result);
                 } else {
-                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$album['last_pid']}'";
+                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " 
+                        . "FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='{$album['last_pid']}'";
                     $result = cpg_db_query($sql);
                     $picture = mysql_fetch_assoc($result);
                     mysql_free_result($result);
