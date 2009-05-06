@@ -182,6 +182,11 @@ function process_post_data()
     global $CONFIG, $user_albums_list, $lang_errors;
 
     $superCage = Inspekt::makeSuperCage();
+    
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
 
     $user_album_set = array();
     
@@ -954,7 +959,7 @@ echo <<<EOT
 EOT;
 
 endtable();
-
+echo '<input type="hidden" name="form_token" value="' . getFormToken() . '" />';
 echo <<<EOT
         </form>
 EOT;

@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-06 [S] Added form token to all important forms and also added a check on the token where needed {SaWey}
+2009-05-05 [O] Cleaned up some unnecessary code in functions.inc.php {SaWey}
 2009-05-05 [B] Fixed album thumbnail display on index page ignoring album keyword and approval status {Paver}
 2009-05-05 [B] Fixed album thumbnail display for "Last-Updated Albums" meta-album {Paver}
 2009-04-30 [B] Re-added alternating table rows for batch-add {GauGau}

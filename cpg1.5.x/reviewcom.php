@@ -55,6 +55,10 @@ $icon_array['cancel'] = cpg_fetch_icon('cancel',2);
 
 // Change config options if applicable
 if ($superCage->post->keyExists('is_submit')) {
+        //Check if the form token is valid
+        if(!checkFormToken()){
+            cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+        }
         if ($superCage->post->keyExists('approval_only')) {
            $approval_only = 1;
         } else {
@@ -231,6 +235,10 @@ if ($superCage->post->keyExists('cid_array')) {
     }
     $cid_set .= ')';
     
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
     if($superCage->post->getAlpha('with_selected') == 'delete') {
         // Delete selected comments if form is posted
         cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id IN $cid_set");
@@ -632,7 +640,8 @@ echo <<<EOT
 
 EOT;
 endtable();
-echo '</form>';
+echo '<input type="hidden" name="form_token" value="' . getFormToken() . '" />
+</form>';
 
 if ($CONFIG['comment_akismet_api_key'] != '') {
     print '<br /><a name="akismet"></a>';

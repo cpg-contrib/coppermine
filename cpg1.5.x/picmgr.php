@@ -273,7 +273,8 @@ EOT;
 </tr>
 EOT;
    endtable();
-   print '</form>';
+   print '<input type="hidden" name="form_token" value="' . getFormToken() . '" />
+   </form>';
    pagefooter();
    ob_end_flush();
 ?>

@@ -69,6 +69,7 @@ $lang_meta_album_names['favpics'] = 'Favorite files';
 $lang_meta_album_names['datebrowse'] = 'Browse by date'; //cpg1.5
 
 $lang_errors['access_denied'] = 'You don\'t have permission to access this page.';
+$lang_errors['invalid_form_token'] = 'A valid form token could not be found.'; //cpg1.5
 $lang_errors['perm_denied'] = 'You don\'t have permission to perform this operation.';
 $lang_errors['param_missing'] = 'Script called without the required parameter(s).';
 $lang_errors['non_exist_ap'] = 'The selected album/file does not exist!';

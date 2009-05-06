@@ -236,7 +236,7 @@ function cpg_db_fetch_rowset($result)
 {
     $rowset = array();
 
-    while ($row = mysql_fetch_assoc($result)) {
+    while ( ($row = mysql_fetch_assoc($result)) ) {
         $rowset[] = $row;
     }
 
@@ -309,7 +309,7 @@ function cpgSanitizeUserTextInput($string)
 
 function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer = false)
 {
-    global $CONFIG, $lang_cpg_die, $template_cpg_die, $lang_common, $lang_errors;
+    global $lang_common, $lang_errors;
 
     // Three types of error levels: INFORMATION, ERROR, CRITICAL_ERROR.
     // There used to be a clumsy method for error mesages that didn't work well with i18n.
@@ -318,7 +318,7 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
     // English string.
 
     if ($msg_code == 1) {
-        $msg_icon = 'info';
+        //$msg_icon = 'info'; not used anymore?
         $css_class = 'cpg_message_info';
         if ($lang_common['information'] != '') {
             $msg_string = $lang_common['information'];
@@ -326,7 +326,7 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
             $msg_string = 'Information';
         }
     } elseif ($msg_code == 2) {
-        $msg_icon = 'warning';
+        //$msg_icon = 'warning'; not used anymore?
         $css_class = 'cpg_message_warning';
         if ($lang_errors['error'] != '') {
             $msg_string = $lang_errors['error'];
@@ -334,7 +334,7 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
             $msg_string = 'Error';
         }
     } elseif ($msg_code == 3) {
-        $msg_icon = 'stop';
+        //$msg_icon = 'stop'; not used anymore?
         $css_class = 'cpg_message_error';
         if ($lang_errors['critical_error'] != '') {
             $msg_string = $lang_errors['critical_error'];
@@ -374,7 +374,7 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
 
 function localised_date($timestamp, $datefmt)
 {
-    global $lang_month, $lang_day_of_week, $CONFIG;
+    global $lang_month, $lang_day_of_week;
 
     $timestamp = localised_timestamp($timestamp);
 
@@ -544,7 +544,7 @@ function bb_decode($text)
     $text = str_replace("[/s]", '</del>', $text);
 
     // colours
-    $text = preg_replace("/\[color=(\#[0-9A-F]{6}|[a-z]+)\]/", '<span style="color:$1">', $text);
+    $text = preg_replace('/\[color=(\#[0-9A-F]{6}|[a-z]+)\]/', '<span style="color:$1">', $text);
     $text = str_replace("[/color]", '</span>', $text);
 
     if (!count($bbcode_tpl)) {
@@ -556,42 +556,42 @@ function bb_decode($text)
         $bbcode_tpl['url1'] = str_replace('{DESCRIPTION}', '\\1\\2', $bbcode_tpl['url1']);
 
         // [url]xxxx://www.phpbb.com[/url] code..
-        $patterns['link'][1]     = "#\[url\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
+        $patterns['link'][1]     = '#\[url\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si';
         $replacements['link'][1] = $bbcode_tpl['url1'];
 
         $bbcode_tpl['url2'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['url']);
         $bbcode_tpl['url2'] = str_replace('{DESCRIPTION}', '\\1', $bbcode_tpl['url2']);
 
         // [url]www.phpbb.com[/url] code.. (no xxxx:// prefix).
-        $patterns['link'][2]     = "#\[url\]([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si";
+        $patterns['link'][2]     = '#\[url\]([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/url\]#si';
         $replacements['link'][2] = $bbcode_tpl['url2'];
 
         $bbcode_tpl['url3'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['url']);
         $bbcode_tpl['url3'] = str_replace('{DESCRIPTION}', '\\3', $bbcode_tpl['url3']);
 
         // [url=xxxx://www.phpbb.com]phpBB[/url] code..
-        $patterns['link'][3]     = "#\[url=([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si";
+        $patterns['link'][3]     = '#\[url=([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si';
         $replacements['link'][3] = $bbcode_tpl['url3'];
 
         $bbcode_tpl['url4'] = str_replace('{URL}', 'http://\\1', $bbcode_tpl['url']);
         $bbcode_tpl['url4'] = str_replace('{DESCRIPTION}', '\\2', $bbcode_tpl['url4']);
 
         // [url=www.phpbb.com]phpBB[/url] code.. (no xxxx:// prefix).
-        $patterns['link'][4]     = "#\[url=([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si";
+        $patterns['link'][4]     = '#\[url=([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\](.*?)\[/url\]#si';
         $replacements['link'][4] = $bbcode_tpl['url4'];
 
         $bbcode_tpl['email'] = '<span class="bblink"><a href="mailto:{EMAIL}">{EMAIL}</a></span>';
         $bbcode_tpl['email'] = str_replace('{EMAIL}', '\\1', $bbcode_tpl['email']);
 
         // [email]user@domain.tld[/email] code..
-        $patterns['other'][1]     = "#\[email\]([a-z0-9\-_.]+?@[\w\-]+\.([\w\-\.]+\.)?[\w]+)\[/email\]#si";
+        $patterns['other'][1]     = '#\[email\]([a-z0-9\-_.]+?@[\w\-]+\.([\w\-\.]+\.)?[\w]+)\[/email\]#si';
         $replacements['other'][1] = $bbcode_tpl['email'];
 
         // [img]xxxx://www.phpbb.com[/img] code..
         $bbcode_tpl['img'] = '<img src="{URL}" alt="" />';
         $bbcode_tpl['img'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['img']);
 
-        $patterns['other'][2]     = "#\[img\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/img\]#si";
+        $patterns['other'][2]     = '#\[img\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/img\]#si';
         $replacements['other'][2] = $bbcode_tpl['img'];
     }
 
@@ -732,7 +732,7 @@ function generate_cpg_url()
 
 function load_template()
 {
-    global $THEME_DIR, $CONFIG, $template_header, $template_footer;
+    global $THEME_DIR, $template_header, $template_footer;
 
     $template = file_get_contents($THEME_DIR . TEMPLATE_FILE);
 
@@ -879,7 +879,7 @@ function get_private_album_set($aid_str="")
         $result = cpg_db_query($sql);
 
         if (mysql_num_rows($result)) {
-            while ($data = mysql_fetch_assoc($result)) {
+            while ( ($data = mysql_fetch_assoc($result)) ) {
                 $albpw_db[$data['aid']] = $data['alb_password'];
             }
         }
@@ -914,10 +914,13 @@ function get_private_album_set($aid_str="")
             $RESTRICTEDWHERE = "WHERE (category = $cat";
 
         } elseif ($cat > 0) {
+            //$CURRENT_CAT_DEPTH isn't used
+            //$result = cpg_db_query("SELECT rgt, lft, depth FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = $cat LIMIT 1");
+            //list($rgt, $lft, $CURRENT_CAT_DEPTH) = mysql_fetch_row($result); 
+            
+            $result = cpg_db_query("SELECT rgt, lft FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = $cat LIMIT 1");
 
-            $result = cpg_db_query("SELECT rgt, lft, depth FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = $cat LIMIT 1");
-
-            list($rgt, $lft, $CURRENT_CAT_DEPTH) = mysql_fetch_row($result);
+            list($rgt, $lft) = mysql_fetch_row($result);
             mysql_free_result($result);
 
             $RESTRICTEDWHERE = "INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS c2 ON c2.cid = category
@@ -937,7 +940,7 @@ function get_private_album_set($aid_str="")
 
     if (mysql_num_rows($result)) {
 
-        while ($album = mysql_fetch_assoc($result)) {
+        while ( ($album = mysql_fetch_assoc($result)) ) {
             $FORBIDDEN_SET_DATA[] = $album['aid'];
         } // while
 
@@ -962,8 +965,8 @@ function get_private_album_set($aid_str="")
 function build_caption(&$rowset, $must_have = array(), $mode = 'files')
 {
     global $CONFIG, $THEME_DIR;
-    global $lang_date, $cat;
-    global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
+    global $lang_date;
+    global $lang_get_pic_data;
 
     foreach ($rowset as $key => $row) {
 
@@ -1080,10 +1083,10 @@ function build_caption(&$rowset, $must_have = array(), $mode = 'files')
 
 function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true, $mode = '')
 {
-    global $USER, $CONFIG, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA;
-    global $lang_date, $cat;
-    global $lang_common, $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
-    global $lft, $rgt, $RESTRICTEDWHERE, $FORBIDDEN_SET;
+    global $USER, $CONFIG, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA;
+    global $cat;
+    global $lang_common, $lang_meta_album_names, $lang_errors;
+    global $RESTRICTEDWHERE;
 
     static $album_name_keyword = '', $pic_count = null;
 
@@ -1628,7 +1631,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         $pidlist = array();
 
-        while ($row = mysql_fetch_assoc($result)) {
+        while ( ($row = mysql_fetch_assoc($result)) ) {
             $pidlist[] = $row['pid'];
         }
         mysql_free_result($result);
@@ -1649,7 +1652,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
             $result = cpg_db_query($query);
 
-            while ($row = mysql_fetch_assoc($result)) {
+            while ( ($row = mysql_fetch_assoc($result)) ) {
                 $rowset[-$row['pid']] = $row;
             }
 
@@ -1892,12 +1895,10 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 // Copy of get_pic_data, created to obtain position for the given pid in the given album
 function get_pic_pos($album, $pid)
 {
-    global $USER, $CONFIG, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA;
-    global $lang_date, $cat;
-    global $lang_common, $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
-    global $lft, $rgt, $RESTRICTEDWHERE, $FORBIDDEN_SET;
+    global $USER, $CONFIG, $CURRENT_ALBUM_KEYWORD, $FORBIDDEN_SET_DATA, $USER_DATA;
+    global $RESTRICTEDWHERE;
 
-    $superCage = Inspekt::makeSuperCage();
+    //$superCage = Inspekt::makeSuperCage();
 
     $sort_array = array(
         'na' => 'filename <',
@@ -1930,7 +1931,7 @@ function get_pic_pos($album, $pid)
     if (is_numeric($album)) {
 
         $album_name_keyword = get_album_name($album);
-        $album_name         = $album_name_keyword['title'];
+        //$album_name         = $album_name_keyword['title'];
         $album_keyword      = addslashes($album_name_keyword['keyword']);
 
         if (!empty($album_keyword)) {
@@ -2029,7 +2030,7 @@ function get_album_name($aid)
  **/
 function get_username($uid)
 {
-    global $CONFIG, $cpg_udb;
+    global $cpg_udb;
 
     $uid = (int) $uid;
 
@@ -2051,7 +2052,7 @@ function get_username($uid)
  **/
 function get_userid($username)
 {
-    global $CONFIG, $cpg_udb;
+    global $cpg_udb;
 
     $username = addslashes($username);
 
@@ -2117,8 +2118,6 @@ function count_pic_comments($pid, $skip = 0)
  **/
 function cpg_determine_client()
 {
-    global $CONFIG;
-
     //Making Cage
     $superCage = Inspekt::makeSuperCage();
 
@@ -2356,7 +2355,7 @@ function add_hit($pid)
  **/
 function add_album_hit($aid)
 {
-    global $CONFIG, $USER;
+    global $CONFIG;
 
     if ($CONFIG['count_album_hits']) {
         $aid = (int) $aid;
@@ -2376,7 +2375,7 @@ function add_album_hit($aid)
 
 function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
 {
-    global $album, $lang_errors, $lang_list_categories, $lang_common;
+    global $lang_list_categories, $lang_common;
     global $CONFIG,$CURRENT_ALBUM_DATA, $CURRENT_CAT_NAME;
 
     $category_array = array();
@@ -2411,7 +2410,7 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
                 AND c.cid = $cat
                 ORDER BY p.lft");
 
-            while ($row = mysql_fetch_assoc($result)) {
+            while ( ($row = mysql_fetch_assoc($result)) ) {
                 $category_array[] = array($row['cid'], $row['name']);
                 $CURRENT_CAT_NAME = $row['name'];
             }
@@ -2532,8 +2531,8 @@ function compute_img_size($width, $height, $max, $system_icon = false, $normal =
 
 function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $display_tabs)
 {
-    global $CONFIG, $AUTHORIZED, $USER;
-    global $lang_date, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common;
+    global $CONFIG, $USER;
+    global $lang_date, $lang_display_thumbnails, $lang_byte_units, $lang_common;
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -2687,7 +2686,7 @@ function cpg_get_system_thumb_list($search_folder = 'images/')
 
 function& cpg_get_system_thumb($filename, $user = 10001)
 {
-    global $CONFIG,$USER_DATA;
+    global $CONFIG;
 
     // Correct user_id
     if ($user < 10000) {
@@ -2735,8 +2734,8 @@ function& cpg_get_system_thumb($filename, $user = 10001)
 
 function display_film_strip($album, $cat, $pos,$ajax_call)
 {
-    global $CONFIG, $AUTHORIZED;
-    global $lang_date, $lang_display_thumbnails, $lang_errors, $lang_byte_units, $lang_common, $pic_count,$ajax_call,$pos;
+    global $CONFIG;
+    global $lang_date, $lang_display_thumbnails, $lang_byte_units, $lang_common, $pic_count,$ajax_call,$pos;
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -2797,6 +2796,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
     set_js_var('count', $pic_count);
 
     $cat_link  = is_numeric($album) ? '' : '&amp;cat=' . $cat;
+    //FIXME: Where does this '$date' come from?
     if (isset($date) && $date != '') {
         $date_link = '&amp;date=' . $date;
     } else {
@@ -2812,8 +2812,8 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
     if (count($pic_data) > 0) {
 
         foreach ($pic_data as $key => $row) {
-
-            $hi = (($pos == ($i + $lower_limit))  ? '1': '');
+            //$hi is never used
+            //$hi = (($pos == ($i + $lower_limit))  ? '1': '');
 
             $i++;
 
@@ -2833,11 +2833,11 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
             }
 
             //thumb cropping
-            if (array_key_exists('system_icon', $row) && ($row['system_icon'] == true)) {
+            /*if (array_key_exists('system_icon', $row) && ($row['system_icon'] == true)) {
                 $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width'], true);
             } else {
                 $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
-            }
+            }*/ //'$image_size' is never used
 
             $p = $i - 1 + $lower_limit;
             $p = ($p < 0 ? 0 : $p);
@@ -2907,8 +2907,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
  **/
 function& display_slideshow($pos, $ajax_show = 0)
 {
-    global $CONFIG, $lang_display_image_php, $template_display_media, $lang_common, $album, $pid, $slideshow;
-    global $cat, $date, $USER;
+    global $CONFIG, $album, $pid, $slideshow, $USER;
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -2918,9 +2917,6 @@ function& display_slideshow($pos, $ajax_show = 0)
 
     $i = 0;
     $j = 0;
-    $a = 0;
-
-    $start_img = '';
 
     /** calculate total amount of pic a perticular album */
     if ($ajax_show == 0) {
@@ -2965,10 +2961,10 @@ function& display_slideshow($pos, $ajax_show = 0)
             $Pid[$i]   = $picture['pid'];
             $Title[$i] = $Title_get;
 
-            if ($picture['pid'] == $pid) {
+            /*if ($picture['pid'] == $pid) {
                 $j         = $i;
                 $start_img = $picture_url;
-            }
+            }*/ //$j and $start_img are never used
             $i++;
         }
     }
@@ -3442,7 +3438,7 @@ EOT;
         // Maze's error report system
         global $cpgdebugger;
         $report = $cpgdebugger->stop();
-        $debug_notices_icon = cpg_fetch_icon('text_left', 2);
+        //$debug_notices_icon = cpg_fetch_icon('text_left', 2);
         if (GALLERY_ADMIN_MODE) {
             $notices_help =  $lang_cpg_debug_output['notices_help_admin'];
         } else {
@@ -3468,7 +3464,8 @@ EOT;
             <tr>
                 <td class="{$cellstyle}">
 EOT;
-                echo '<strong>' . substr($file, $strstart) . '</strong><ul>';
+                //echo '<strong>' . substr($file, $strstart) . '</strong><ul>'; //$strstart does not exist
+                echo '<strong>' . $file . '</strong><ul>';
                 foreach ($errors as $error) {
                     echo "<li>$error</li>";
                 }
@@ -3506,7 +3503,7 @@ function cpg_phpinfo_mod($search)
         ob_start();
         phpinfo(INFO_MODULES);
         $string    = ob_get_contents();
-        $module    = $string;
+        //$module    = $string;
         $delimiter = '#cpgdelimiter#';
         ob_end_clean();
 
@@ -3697,14 +3694,12 @@ function languageSelect($parameter)
 {
     global $CONFIG, $lang_language_selection, $lang_common, $CPG_PHP_SELF;
 
-    $superCage = Inspekt::makeSuperCage();
-
     $return    = '';
     $lineBreak = "\n";
 
     // get the current language
     //use the default language of the gallery
-    $cpgCurrentLanguage = $CONFIG['lang'];
+    //$cpgCurrentLanguage = $CONFIG['lang']; //not used
 
     // Forget all the nonsense sanitization code that used to reside here - redefine the variable for the base URL using the function that we already have for that purpose
     $cpgChangeUrl = cpgGetScriptNameParams('lang') . 'lang=';
@@ -3720,7 +3715,7 @@ function languageSelect($parameter)
 
     // get list of available languages
     $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_LANGUAGE']}");
-    while ($row = mysql_fetch_array($results)) {
+    while ( ($row = mysql_fetch_array($results)) ) {
         if ($row['available'] == 'YES' && $row['enabled'] == 'YES' && file_exists('lang/'.$row['lang_id'].'.php')) {
             $lang_language_data[$row['lang_id']] = $row;
         }
@@ -3792,8 +3787,6 @@ function themeSelect($parameter)
 {
     global $CONFIG,$lang_theme_selection, $lang_common, $CPG_PHP_SELF;
 
-    $superCage = Inspekt::makeSuperCage();
-
     $return    = '';
     $lineBreak = "\n";
 
@@ -3805,7 +3798,7 @@ function themeSelect($parameter)
 
     $dir = opendir($theme_dir);
 
-    while ($file = readdir($dir)) {
+    while ( ($file = readdir($dir)) ) {
         if (is_dir($theme_dir . $file) && $file != "." && $file != ".." && $file != '.svn' && $file != 'sample') {
             $theme_array[] = $file;
         }
@@ -3843,7 +3836,7 @@ function themeSelect($parameter)
 
 function cpg_alert_dev_version()
 {
-    global $lang_version_alert, $lang_common, $CONFIG, $REFERER;
+    global $lang_version_alert, $CONFIG, $REFERER;
 
     $return = '';
 
@@ -3950,12 +3943,16 @@ function cpg_display_help($reference = 'f=empty.htm', $width = '600', $height = 
     if (isset($USER['theme'])) {
         $help_theme = $USER['theme'];
     }
-
-    if ($icon == '*') {
+    
+    //This makes no sense
+    /*if ($icon == '*') {
         $icon == '*';
     } elseif ($icon == '?') {
         $icon = '?';
     } else {
+        $icon = '<img src="images/help.gif" width="13" height="11" border="0" alt="" title="" />';
+    }*/
+    if($icon != '*' && $icon != '?') {
         $icon = '<img src="images/help.gif" width="13" height="11" border="0" alt="" title="" />';
     }
 
@@ -4007,7 +4004,7 @@ function cpg_get_bridge_db_values()
     // Retrieve DB stored configuration
     $results = cpg_db_query("SELECT name, value FROM {$CONFIG['TABLE_BRIDGE']}");
 
-    while ($row = mysql_fetch_assoc($results)) {
+    while ( ($row = mysql_fetch_assoc($results)) ) {
         $BRIDGE[$row['name']] = $row['value'];
     } // while
 
@@ -4027,7 +4024,7 @@ function cpg_get_webroot_path()
     // what we have: we can say for sure where we are right now: $PHP_SELF (if the server doesn't even have it, there will be problems everywhere anyway)
 
     // let's make those into an array:
-    if ($matches = $superCage->server->getMatched('SCRIPT_FILENAME', '/^[a-z,A-Z0-9_-\/\\:.]+$/')) {
+    if ( ($matches = $superCage->server->getMatched('SCRIPT_FILENAME', '/^[a-z,A-Z0-9_-\/\\:.]+$/')) ) {
         $path_from_serverroot[] = $matches[0];
     }
     /*
@@ -4036,7 +4033,7 @@ function cpg_get_webroot_path()
        $path_from_serverroot[] = $_SERVER["PATH_TRANSLATED"];
     }
     */
-    if ($matches = $superCage->server->getMatched('PATH_TRANSLATED', '/^[a-z,A-Z0-9_-\/\\:.]+$/')) {
+    if ( ($matches = $superCage->server->getMatched('PATH_TRANSLATED', '/^[a-z,A-Z0-9_-\/\\:.]+$/')) ) {
         $path_from_serverroot[] = $matches[0];
     }
     //$path_from_serverroot[] = $HTTP_SERVER_VARS["SCRIPT_FILENAME"];
@@ -4098,8 +4095,6 @@ function cpg_get_webroot_path()
 
 function get_search_query_terms($engine = 'google')
 {
-    global $s, $s_array;
-
     $superCage = Inspekt::makeSuperCage();
 
     //Using getRaw(). $referer is sanitized below wherever needed
@@ -4113,19 +4108,19 @@ function get_search_query_terms($engine = 'google')
         // Google Hilite 0.3. http://textism.com
         $query_terms = preg_replace('/^.*q=([^&]+)&?.*$/i', '$1', $referer);
         $query_terms = preg_replace('/\'|"/', '', $query_terms);
-        $query_array = preg_split("/[\s,\+\.]+/", $query_terms);
+        $query_array = preg_split('/[\s,\+\.]+/', $query_terms);
         break;
 
     case 'lycos':
         $query_terms = preg_replace('/^.*query=([^&]+)&?.*$/i', '$1', $referer);
         $query_terms = preg_replace('/\'|"/', '', $query_terms);
-        $query_array = preg_split("/[\s,\+\.]+/", $query_terms);
+        $query_array = preg_split('/[\s,\+\.]+/', $query_terms);
         break;
 
     case 'yahoo':
         $query_terms = preg_replace('/^.*p=([^&]+)&?.*$/i', '$1', $referer);
         $query_terms = preg_replace('/\'|"/', '', $query_terms);
-        $query_array = preg_split("/[\s,\+\.]+/", $query_terms);
+        $query_array = preg_split('/[\s,\+\.]+/', $query_terms);
         break;
     } // switch $engine
     return $query_array;
@@ -4176,8 +4171,6 @@ function is_referer_search_engine($engine = 'google')
  **/
 function cpg_get_custom_include($path = '')
 {
-    global $CONFIG;
-
     $return = '';
 
     // check if path is set in config
@@ -4452,8 +4445,8 @@ function cpgFetchTempMessage($message_id)
 {
     global $CONFIG;
 
-    $user_id = USER_ID;
-    $time    = time();
+    //$user_id = USER_ID;
+    //$time    = time();
     $message = '';
 
     // Read the record in database
@@ -4526,13 +4519,13 @@ function cpgRedirectPage($targetAddress = '', $caption = '', $message = '', $cou
         }
         header($header_location . $targetAddress . $separator . 'message_id=' . cpgStoreTempMessage($message) . '&message_icon=' . $type . '#cpgMessageBlock');
         pageheader($caption, "<META http-equiv=\"refresh\" content=\"1;url=$targetAddress\">");
-        msg_box($caption, $message, $lang_common['continue'], $location, $type);
+        msg_box($caption, $message, $lang_common['continue'], $targetAddress, $type);
         pagefooter();
         ob_end_flush();
         exit;
     } else {
         pageheader($caption, "<META http-equiv=\"refresh\" content=\"1;url=$targetAddress\">");
-        msg_box($caption, $message, $lang_common['continue'], $location, $type);
+        msg_box($caption, $message, $lang_common['continue'], $targetAddress, $type);
         pagefooter();
         ob_end_flush();
         exit;
@@ -4678,6 +4671,7 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
         if ($fp) { // fsockopen file handle success - start
             $path   = (!empty($url['path']) ? $url['path'] : "/").(!empty($url['query']) ? "?".$url['query'] : "");
             $header = "\r\nHost: ".$url['host'];
+            //FIXME: '$data' is not defined anywhere?
             fputs($fp, $method." ".$path." HTTP/1.0".$header."\r\n\r\n".("post" == strtolower($method) ? $data : ""));
             if (!feof($fp)) {
                 $scheme = fgets($fp);
@@ -5199,11 +5193,9 @@ function cpg_float2decimal($float)
 if (!function_exists('form_get_foldercontent')) {
     function form_get_foldercontent ($foldername, $fileOrFolder = 'folder', $validextension = '', $exception_array = array(''))
     {
-        global $CONFIG;
-
         $dir = opendir($foldername);
 
-        while ($file = readdir($dir)) {
+        while ( ($file = readdir($dir)) ) {
 
             if ($fileOrFolder == 'file') {
 
@@ -5253,7 +5245,7 @@ if (!function_exists('cpg_get_available_languages')) {
 
         // get list of available languages
         $results = cpg_db_query("SELECT lang_id, english_name, native_name, custom_name FROM {$CONFIG['TABLE_LANGUAGE']} WHERE available='YES' AND enabled='YES' ");
-        while ($row = mysql_fetch_array($results)) {
+        while ( ($row = mysql_fetch_array($results)) ) {
             if (file_exists('lang/' . $row['lang_id'] . '.php')) {
                 if ($row['custom_name'] != '') {
                     $language_array[$row['lang_id']] = $row['custom_name'];
@@ -5356,7 +5348,7 @@ function cpg_get_type($filename,$filter=null)
 
         $CONFIG['allowed_file_extensions'] = '';
 
-        while ($row = mysql_fetch_assoc($result)) {
+        while ( ($row = mysql_fetch_assoc($result)) ) {
             // Only add types that are in both the database and user defined parameter
             if ($CONFIG[$content_types_to_vars[$row['content']]] == 'ALL' || is_int(strpos('/' . $CONFIG[$content_types_to_vars[$row['content']]] . '/', '/' . $row['extension'] . '/'))) {
                 $FILE_TYPES[$row['extension']]      = $row;
@@ -5480,7 +5472,7 @@ function album_selection_options()
     $albums = array();
     // load all albums
     $result = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY pos");
-    while ($row = mysql_fetch_assoc($result)) {
+    while ( ($row = mysql_fetch_assoc($result)) ) {
         $albums[$row['category']][$row['aid']] = $row['title'];
     }
     if (!empty($albums[0])) {
@@ -5494,7 +5486,7 @@ function album_selection_options()
     $result = cpg_db_query("SELECT cid, rgt, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft");
     $cats = array();
     // Loop through all categories
-    while ($row = mysql_fetch_assoc($result)) {
+    while ( ($row = mysql_fetch_assoc($result))) {
         // Determine category hierarchy
         if (count($cats)) {
             while ($cats && $cats[count($cats)-1]['rgt'] < $row['rgt']) {
@@ -5595,7 +5587,7 @@ function cpg_folder_file_delete($path)
     if (is_dir($path)) {
         if (version_compare(PHP_VERSION, '5.0.0') < 0) {
             $entries = array();
-            if ($handle = opendir($path)) {
+            if ( ($handle = opendir($path)) ) {
                 while (false !== ($file = readdir($handle))) {
                     $entries[] = $file;
                 }
@@ -5660,7 +5652,40 @@ function cpg_folder_file_delete($path)
             return;
         }
     }
+}// end function cpg_folder_file_delete
+
+/**
+ * Get the form token for the current user
+ * this is calculated 
+ *
+ * @return string $token
+ */
+function getFormToken(){
+    global $cpg_udb;
+
+    return $cpg_udb->client_id;
 }
-// end function cpg_folder_file_delete
+
+/**
+ * Checks if the form token of a request is valid
+ *
+ * @return boolean
+ */
+function checkFormToken(){
+    global $cpg_udb;
+    $superCage = Inspekt::makeSuperCage();
+    
+    if( $superCage->post->keyExists('form_token') || $superCage->get->keyExists('form_token') ){
+        //check if the token is valid
+        $received_token = ($superCage->post->keyExists('form_token')) ? 
+        $superCage->post->getAlNum('form_token') : $superCage->get->getAlNum('form_token');
+        if($received_token == $cpg_udb->client_id){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    return false;
+}
 
 ?>

@@ -164,6 +164,7 @@ function html_albummenu($id)
             '{DELETE}' => cpg_fetch_icon('delete', 1) . $lang_album_admin_menu['delete'],
             '{MODIFY}' => cpg_fetch_icon('modifyalb', 1) . $lang_album_admin_menu['modify'],
             '{EDIT_PICS}' => cpg_fetch_icon('edit', 1) . $lang_album_admin_menu['edit_pics'],
+            '{FORM_TOKEN}' => getFormToken()
             );
 
         $template = template_eval($template_album_admin_menu, $params);

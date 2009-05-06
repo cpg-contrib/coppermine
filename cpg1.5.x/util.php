@@ -195,7 +195,10 @@ if ($superCage->post->keyExists('action') && $matches = $superCage->post->getMat
 }
 
 if (array_key_exists($action, $tasks)) {
-
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
     call_user_func($action);
     echo '<br /><a href="util.php?t=' . date('His') . floor(rand(0, 1000)) . '#admin_tools" class="admin_menu">' . $icon_array['back'] . ' ' . $lang_util_php['back'] . '</a>';
 
@@ -261,7 +264,8 @@ if (array_key_exists($action, $tasks)) {
     $cpg_udb->util_filloptions();
     echo '<br /></td></tr>';
     endtable();
-    echo '</form>';
+   
+    echo '<input type="hidden" name="form_token" value="' . getFormToken() . '" /></form>';
 }
 
 function my_flush()
@@ -540,6 +544,7 @@ function update_thumbs()
             <meta http-equiv="refresh" content="1; URL=util.php?numpics={$numpics}&startpic={$startpic}&albumid={$albumid}&autorefresh={$autorefresh}&action=update_thumbs&updatetype={$updatetype}#admin_tool_thumb_update">
 EOT;
         } else {
+            $form_token = getFormToken();
             print <<< EOT
             <tr>
                 <td class="tablef">
@@ -552,6 +557,7 @@ EOT;
                         <input type="hidden" name="autorefresh" value="{$autorefresh}" />
                         <!--<input type="submit" value="{$lang_util_php['continue']}" class="button" />-->
                         <button type="submit" class="button" name="submit" id="submit" value="{$lang_util_php['continue']}">{$lang_util_php['continue']} {$icon_array['continue']}</button>
+                    	<input type="hidden" name="form_token" value="{$form_token}" />
                     </form>
                 </td>
             </tr>
@@ -739,7 +745,8 @@ function del_orphans()
         $count = mysql_num_rows($result);
         
         echo "<br /><br />$count {$lang_util_php['orphan_comment']}<br /><br />";
-    
+        
+        $form_token = getFormToken();
         if ($count > 1) {
             echo <<< EOT
                 <form name="cpgform3" id="cpgform3" action="util.php" method="post">
@@ -747,6 +754,7 @@ function del_orphans()
                         <input type="hidden" name="del" value="all" />
                         {$lang_util_php['delete_all_orphans']}
                         <button type="submit" class="button" name="submit" id="submit" value="{$lang_util_php['delete_all']}">{$lang_util_php['delete_all']} {$icon_array['delete_all']}</button>
+                		<input type="hidden" name="form_token" value="{$form_token}" />
                 </form>
 EOT;
         }
@@ -969,6 +977,7 @@ function refresh_db()
     
         $startpic += $numpics;
         
+        $form_token = getFormToken();
         echo <<< EOT
                     <form name="cpgform4" id="cpgform4" action="util.php" method="post">
                             <input type="hidden" name="action" value="refresh_db" />
@@ -977,6 +986,7 @@ function refresh_db()
                             <input type="hidden" name="albumid" value="$albumid" />
                             <!--<input type="submit" value="{$lang_util_php['continue']}" class="button" />-->
                             <button type="submit" class="button" name="submit" id="submit" value="{$lang_util_php['continue']}">{$lang_util_php['continue']} {$icon_array['continue']}</button>
+                            <input type="hidden" name="form_token" value="{$form_token}" />
                     </form>
 EOT;
     }

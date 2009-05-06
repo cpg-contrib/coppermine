@@ -138,7 +138,10 @@ EOT;
     break;
 
 case 'changeword':
-    
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
     if ($superCage->get->keyExists('keywordEdit')) {
         $request_keywordEdit = $superCage->get->getEscaped('keywordEdit');
     } elseif ($superCage->post->keyExists('keywordEdit')) {
@@ -193,7 +196,10 @@ case 'changeword':
     break;
 
 case 'delete':
-    
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
     if ($superCage->get->keyExists('remove')) {
         $remove = $superCage->get->getEscaped('remove');
     } elseif ($superCage->post->keyExists('remove')) {
@@ -238,7 +244,7 @@ case 'delete':
 
 endtable();
 
-echo '</form>';
+echo '<input type="hidden" name="form_token" value="' . getFormToken() . '" /></form>';
 
 if ($CONFIG['clickable_keyword_search'] != 0) {
     include('include/keyword.inc.php');

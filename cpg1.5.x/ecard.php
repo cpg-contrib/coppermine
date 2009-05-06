@@ -148,7 +148,10 @@ $gallery_url_prefix = $CONFIG['ecards_more_pic_target']. (substr($CONFIG['ecards
 pageheader($lang_ecard_php['title']);
 
 if ($superCage->post->keyExists('submit')) {
-
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
     // Create and send the e-card
     if ($superCage->post->keyExists('sender_name') && $valid_sender_email && $valid_recipient_email) {
     
@@ -426,7 +429,7 @@ EOT;
 
 endtable();
 
-echo '</form>';
+echo '<input type="hidden" name="form_token" value="' . getFormToken() . '" /></form>';
 
 pagefooter();
 

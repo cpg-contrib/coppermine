@@ -67,7 +67,7 @@ $possibilities = array(
 );
 
 foreach ($possibilities as $test) {
-    if ($matches = $superCage->server->getMatched($test, '/([^\/]+\.php)$/')) {
+    if ( ($matches = $superCage->server->getMatched($test, '/([^\/]+\.php)$/')) ) {
         $CPG_PHP_SELF = $matches[1];
         break;
     }
@@ -153,7 +153,7 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';
 
 // Retrieve DB stored configuration
 $result = cpg_db_query("SELECT name, value FROM {$CONFIG['TABLE_CONFIG']}");
-while ($row = mysql_fetch_assoc($result)) {
+while ( ($row = mysql_fetch_assoc($result)) ) {
     $CONFIG[$row['name']] = $row['value'];
 } // while
 mysql_free_result($result);
@@ -237,14 +237,14 @@ $USER_DATA['allowed_albums'] = array();
 if (!GALLERY_ADMIN_MODE) {
     $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE moderator_group IN ".USER_GROUP_SET);
     if (mysql_num_rows($result)) {
-        while ($row = mysql_fetch_assoc($result)) {
+        while ( ($row = mysql_fetch_assoc($result)) ) {
             $USER_DATA['allowed_albums'][] = $row['aid'];
         }
     }
 }
 
 // Process theme selection if present in URI or in user profile
-if ($matches = $superCage->get->getMatched('theme', '/^[A-Za-z0-9_]+$/')) {
+if ( ($matches = $superCage->get->getMatched('theme', '/^[A-Za-z0-9_]+$/')) ) {
     $USER['theme'] = $CONFIG['theme'] = $matches[0];
 }
 
@@ -282,7 +282,7 @@ $enabled_languages_array = array();
 
 $result = cpg_db_query("SELECT lang_id FROM {$CONFIG['TABLE_LANGUAGE']} WHERE enabled='YES'");
 
-while ($row = mysql_fetch_assoc($result)) {
+while ( ($row = mysql_fetch_assoc($result)) ) {
     $enabled_languages_array[] = $row['lang_id'];
 }
 
@@ -360,7 +360,7 @@ js_include('js/jquery.dialog.js');
 /**
  * Use $CPG_REFERER wherever $_GET['referer'] is used
  */
-if ($matches = $superCage->get->getMatched('referer', '/((\%3C)|<)[^\n]+((\%3E)|>)|(.*http.*)|(.*script.*)/i')) {
+if ( ($matches = $superCage->get->getMatched('referer', '/((\%3C)|<)[^\n]+((\%3E)|>)|(.*http.*)|(.*script.*)/i')) ) {
     $CPG_REFERER = 'index.php';
 } else {
     /**

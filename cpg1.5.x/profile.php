@@ -345,7 +345,10 @@ if ($superCage->post->keyExists('change_pass')) {
 }
 
 if ($superCage->post->keyExists('change_profile') && USER_ID && UDB_INTEGRATION == 'coppermine') { //!defined('UDB_INTEGRATION')) {
-
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
     $profile1 = $superCage->post->getEscaped('user_profile1');
     $profile2 = $superCage->post->getEscaped('user_profile2');
     $profile3 = $superCage->post->getEscaped('user_profile3');
@@ -394,7 +397,10 @@ if ($superCage->post->keyExists('change_profile') && USER_ID && UDB_INTEGRATION 
 }
 
 if ($superCage->post->keyExists('change_password') && USER_ID && UDB_INTEGRATION == 'coppermine') { //!defined('UDB_INTEGRATION')) {
-
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
     $current_pass = get_post_var('current_pass');
     $new_pass = get_post_var('new_pass');
     $new_pass_again = get_post_var('new_pass_again');
@@ -588,7 +594,7 @@ EOT;
 EOT;
     endtable();
     
-    echo "</form>";
+    echo '<input type="hidden" name="form_token" value="' . getFormToken() . '" /></form>';
     
     if ($CONFIG['allow_user_account_delete'] != 0) { // user is allowed to delete his account --- start
 
@@ -646,7 +652,7 @@ EOT;
 </tr>
 EOT;
         endtable();
-        print '</form>';
+        print '<input type="hidden" name="form_token" value="' . getFormToken() . '" /></form>';
     } // user is allowed to delete his account --- end
     
     pagefooter();
@@ -683,7 +689,7 @@ EOT;
 </tr>
 EOT;
     endtable();
-    echo "    </form>";
+    echo '<input type="hidden" name="form_token" value="' . getFormToken() . '" /></form>';
     pagefooter();
 
     break;

@@ -26,7 +26,7 @@ require('include/init.inc.php');
 ///////////// function defintions start /////////////////////////////
 
 function write_to_db($step) {
-    global $BRIDGE,$CONFIG,$default_bridge_data,$lang_bridgemgr_php, $previous_step, $next_step, $posted_var;
+    global $BRIDGE,$CONFIG,$default_bridge_data,$lang_bridgemgr_php, $posted_var;
     $error = 0;
     // do the check for plausibility of posted data
     foreach($posted_var as $key => $value) { // loop through the posted data -- start

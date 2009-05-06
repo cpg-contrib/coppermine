@@ -49,13 +49,19 @@ var Sort = {
             
         // make ajax call to update the table
         $.getJSON("delete.php?what=albmgr&aid="+aid+"&updatedname="+editedName+"&op='update'", function(data){
-            if(data['message']){
+            if(data['message'] == 'true'){
                 // get the DOM of change album name
                 editedObject = $('#'+albumSelectedTr).find('span.albumName');
                 // change the text which having album name.
                 $(editedObject).empty().text(editedName);
                 // show user the changes
                 $('#'+albumSelectedTr).css({'background-color': '#FFFFDD'});
+                $("#loading").hide();
+            }else{
+            	var error_msg = '<div class="cpg_message_validation"><h2>' + data['title'] + '</h2>' + data['description'] + '</div>';
+            	$('#cpg_form_album').parents('table').before(error_msg);
+            	// empty the value
+                $("#add-name").val("");
                 $("#loading").hide();
             }
         });
@@ -82,9 +88,9 @@ var Sort = {
             $("#loading").show();
 
             // make ajax call to add the table
-            $.getJSON("delete.php?what=albmgr&cat="+cat+"&op='add'&position="+albumCount+"&name="+addedName, function(data){
+            $.getJSON("delete.php?what=albmgr&cat="+cat+"&op='add'&position="+albumCount+"&name="+addedName+"&form_token="+$("input[name=form_token]").val(), function(data){
 
-                if(data['message']){
+                if(data['message'] == 'true'){
                     var album_tr = '<tr id="sort-'+data['newAid']+'" ><td class="dragHandle"></td><td class="album_text" width="96%"><span class="albumName">'+addedName+'</span><span class="editAlbum">'+js_vars.lang_edit+'</span></td></tr>';
                     $("#album_sort").append(album_tr);
                     // call the function to add the new TR on more action
@@ -93,6 +99,12 @@ var Sort = {
                     // to empty the box value
                     Sort.addRowColors();
                     // empty the value
+                    $("#add-name").val("");
+                    $("#loading").hide();
+                }else{
+                	var error_msg = '<div class="cpg_message_validation"><h2>' + data['title'] + '</h2>' + data['description'] + '</div>';
+                	$('#cpg_form_album').parents('table').before(error_msg);
+                	// empty the value
                     $("#add-name").val("");
                     $("#loading").hide();
                 }
@@ -316,7 +328,7 @@ jQuery(document).ready(function() {
     $("#edit-name").keyup(function(e) {
         // If the pressed key is ENTER then call saveEvent function and return false so that form is not submitted
         if (e.which == 13 || e.keyCode == 13) {
-            Sort.updateAlbum(albumSelectedTr)
+            Sort.updateAlbum(albumSelectedTr);
             return false;
         }
     });
@@ -324,7 +336,7 @@ jQuery(document).ready(function() {
     // Now add a album to the list
     $("#addEvent").livequery('click', function(){
         if(!isNaN(category)){
-            Sort.addAlbum(category)
+            Sort.addAlbum(category);
         }
         return false;
     });
@@ -357,7 +369,7 @@ jQuery(document).ready(function() {
         var aid             = albumTrId.match(serializeRegexp)[0];
 
         if(confirm(confirm_delete)) {
-            window.location.href = ("delete.php?what=albmgr&op=delete&deleteAid="+aid+"&cat="+category);
+            window.location.href = ("delete.php?what=albmgr&op=delete&deleteAid="+aid+"&cat="+category+"&form_token="+$("input[name=form_token]").val());
             return true;
         }else{
             return false;

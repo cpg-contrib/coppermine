@@ -68,6 +68,10 @@ function check_comment(&$str)
 
 if (!$superCage->get->keyExists('event') && !$superCage->post->keyExists('event')) {
     cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+    
+    //Check if the form token is valid
+}elseif (!checkFormToken()){
+    cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
 }
 
 if ($matches = $superCage->post->getMatched('event', '/^[a-z_]+$/')) {

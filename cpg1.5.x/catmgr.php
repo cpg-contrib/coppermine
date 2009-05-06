@@ -265,6 +265,8 @@ function display_cat_list()
     $CAT_LIST3 = $CAT_LIST;
 
     $loop_counter = 0;
+    $form_token = '&amp;form_token=' . getFormToken();
+    
 
     foreach ($CAT_LIST3 as $key => $category) {
     
@@ -288,28 +290,28 @@ function display_cat_list()
         echo '                <td class="'.$row_style_class.'" width="80%"><strong>' . $category['name'] . '</strong></td>' . "\n";
 
         if ($category['pos'] > 0 && $CONFIG['categories_alpha_sort'] != 1) {
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=movetop&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']) . '">' . cpg_fetch_icon('upup', 0, $lang_common['move_top']) . '</a></td>' . "\n";
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']-1) . '&amp;cid2=' . $category['prev'] . '&amp;pos2=' . ($category['pos']) . '">' . cpg_fetch_icon('up', 0, $lang_common['move_up']) . '</a></td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=movetop&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('upup', 0, $lang_common['move_top']) . '</a></td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']-1) . '&amp;cid2=' . $category['prev'] . '&amp;pos2=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('up', 0, $lang_common['move_up']) . '</a></td>' . "\n";
         } else {
             echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
             echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
         if ($category['pos'] < $CAT_LIST[$category['parent']]['cat_count']-1  && $CONFIG['categories_alpha_sort'] != 1) {
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos'] + 1) . '&amp;cid2=' . $category['next'] . '&amp;pos2=' . ($category['pos']) . '">' . cpg_fetch_icon('down', 0, $lang_common['move_down']) . '</a></td>' . "\n";
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=movebottom&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']) . '">' . cpg_fetch_icon('downdown', 0, $lang_common['move_bottom']) . '</a></td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos'] + 1) . '&amp;cid2=' . $category['next'] . '&amp;pos2=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('down', 0, $lang_common['move_down']) . '</a></td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=movebottom&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('downdown', 0, $lang_common['move_bottom']) . '</a></td>' . "\n";
         } else {
             echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
             echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
         if ($category['cid'] != 1) {
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=deletecat&amp;cid=' . $category['cid'] . '" onClick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . cpg_fetch_icon('delete', 0, $lang_common['delete']) . '</a></td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=deletecat&amp;cid=' . $category['cid'] . $form_token . '" onClick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . cpg_fetch_icon('delete', 0, $lang_common['delete']) . '</a></td>' . "\n";
         } else {
             echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
-        echo '                <td class="'.$row_style_class.'" width="4%">' . '<a href="' . $CPG_PHP_SELF . '?op=editcat&amp;cid=' . $category['cid'] . '">' . cpg_fetch_icon('edit', 0, $lang_common['edit']) . '</a></td>' . "\n";
+        echo '                <td class="'.$row_style_class.'" width="4%">' . '<a href="' . $CPG_PHP_SELF . '?op=editcat&amp;cid=' . $category['cid'] . $form_token . '">' . cpg_fetch_icon('edit', 0, $lang_common['edit']) . '</a></td>' . "\n";
         echo '                <td class="'.$row_style_class.'" width="4%">' . "\n" . cat_list_box($category['cid'], $CAT_LIST3[$category['parent']]) . "\n" . '</td>' . "\n";
         echo "        </tr>\n";
     }
@@ -333,7 +335,11 @@ function verify_children($parent, $cid)
 }
 
 if ($superCage->post->keyExists('update_config')) {
-
+     //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
+    
     $value = $superCage->post->getInt('categories_alpha_sort');
     
     cpg_config_set('categories_alpha_sort', $value);
@@ -341,9 +347,15 @@ if ($superCage->post->keyExists('update_config')) {
 
 if ($superCage->get->keyExists('op')) {
     $op = $superCage->get->getAlpha('op');
+    
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
 } else {
     $op = '';
 }
+$form_token = getFormToken();
 
 $current_category = array(
     'cid'         => 0,
@@ -351,6 +363,7 @@ $current_category = array(
     'parent'      => 0,
     'description' => '',
 );
+
 
 switch ($op) {
 
@@ -526,7 +539,6 @@ case 'updatecat':
     break;
 
 case 'createcat':
-
     if (!$superCage->post->keyExists('parent') || !$superCage->post->keyExists('name') || !$superCage->post->keyExists('description')) {
         cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'createcat'), __FILE__, __LINE__);
     }
@@ -713,6 +725,8 @@ echo <<<EOT
                         <label for="categories_alpha_sort0" class="clickable_option">{$lang_common['no']}</label>
                         &nbsp;&nbsp;
                         <input type="hidden" name="update_config" value="{$lang_catmgr_php['save_cfg']}" class="button" />
+                        <input type="hidden" name="form_token" value="{$form_token}" />
+                        
                 </td>
         </tr>
         </form>
@@ -785,7 +799,9 @@ echo <<<EOT
         <tr>
             <td colspan="2" align="center" class="tablef">
 				<button type="submit" class="button" name="cat_submit" value="{$lang_catmgr_php['update_create']}">{$icon_array['submit']}{$lang_catmgr_php['update_create']}</button>
-            </td>
+            	<input type="hidden" name="form_token" value="{$form_token}" />
+			</td>
+			<input type="hidden" name="form_token" value="{$form_token}" />
             </form>
         </tr>
 

@@ -110,6 +110,7 @@ pageheader($lang_albmgr_php['title']);
     echo <<< EOT
         <form name="album_menu" id="cpg_form_album" method="post" action="delete.php?what=albmgr">
 EOT;
+    echo '<input type="hidden" name="form_token" value="' . getFormToken() . '" />';
 starttable('100%', cpg_fetch_icon('alb_mgr', 2).$lang_albmgr_php['title'].'&nbsp;'.cpg_display_help('f=albums.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1);
     echo <<< EOT
         <noscript>

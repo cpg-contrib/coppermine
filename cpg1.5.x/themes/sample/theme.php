@@ -619,7 +619,7 @@ $template_album_admin_menu = <<<EOT
         <table border="0" cellpadding="0" cellspacing="1">
                 <tr>
                         <td align="center" valign="middle" class="admin_menu">
-                                <a href="delete.php?id={ALBUM_ID}&amp;what=album" class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a>
+                                <a href="delete.php?id={ALBUM_ID}&amp;what=album&amp;form_token={FORM_TOKEN}" class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a>
                         </td>
                         <td align="center" valign="middle" class="admin_menu">
                                 <a href="modifyalb.php?album={ALBUM_ID}" class="adm_menu">{MODIFY}</a>
@@ -921,7 +921,7 @@ $template_image_comments = <<<EOT
                                         <script type="text/javascript">
                                           document.write('<a href="javascript:;" onclick="blocking(\'cbody{MSG_ID}\',\'\', \'block\'); blocking(\'cedit{MSG_ID}\',\'\', \'block\'); return false;" title="{EDIT_TITLE}">{EDIT_ICON}</a>');
                                         </script>
-                                        <a href="delete.php?msg_id={MSG_ID}&amp;what=comment" onclick="return confirm('{CONFIRM_DELETE}');" title="{DELETE_TITLE}">{DELETE_ICON}</a>
+                                        <a href="delete.php?msg_id={MSG_ID}&amp;what=comment&amp;form_token={FORM_TOKEN}" onclick="return confirm('{CONFIRM_DELETE}');" title="{DELETE_TITLE}">{DELETE_ICON}</a>
 <!-- END buttons -->
                                 </td>
                                 <td class="tableh2" align="right" nowrap="nowrap">
@@ -954,6 +954,7 @@ $template_image_comments = <<<EOT
                                                 </td>
                                                 <td>
                                                         <input type="submit" class="button" name="submit" value="{OK}" />
+                                                        <input type="hidden" name="form_token" value="{FORM_TOKEN}" />
                                                 </td>
                                                 </form>
                                         </tr>
@@ -984,6 +985,7 @@ $template_image_comments = <<<EOT
                                                 </td>
                                                 <td>
                                                         <input type="submit" class="button" name="submit" value="{OK}" />
+                                                        <input type="hidden" name="form_token" value="{FORM_TOKEN}" />
                                                 </td>
                                                 </form>
                                         </tr>
@@ -1044,6 +1046,7 @@ $template_add_your_comment = <<<EOT
                                 <input type="hidden" name="event" value="comment" />
                                 <input type="hidden" name="pid" value="{PIC_ID}" />
                                 <input type="submit" class="button" name="submit" value="{OK}" onclick="return notDefaultUsername(this.form, '{DEFAULT_USERNAME}', '{DEFAULT_USERNAME_MESSAGE}');" />
+                                <input type="hidden" name="form_token" value="{FORM_TOKEN}" />
                                 </td>
 <!-- END submit -->
                                                         </tr>
@@ -3442,6 +3445,7 @@ function theme_html_rating_box()
       set_js_var('can_vote', $user_can_vote);
       set_js_var('lang_rate_pic', $rate_title);
       set_js_var('stars_amount', $rating_stars_amount);
+      set_js_var('form_token', getFormToken());
     }
 
     $params = array(
@@ -3599,7 +3603,8 @@ function theme_html_comments($pid)
         $params = array('{EDIT}' => &$comment_edit_box,
             '{BUTTONS}' => &$comment_buttons,
             '{IPINFO}' => &$comment_ipinfo,
-            '{PENDING_APPROVAL}' => &$pending_approval
+            '{PENDING_APPROVAL}' => &$pending_approval,
+        	'{FORM_TOKEN}' => getFormToken()
             );
 
         $template = template_eval($template_image_comments, $params);
@@ -3628,6 +3633,7 @@ function theme_html_comments($pid)
             '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
             '{REPORT_COMMENT_ICON}' => cpg_fetch_icon('report', 0),
             '{WIDTH}' => $CONFIG['picture_table_width'],
+            '{FORM_TOKEN}' => getFormToken()
             );
 
         if ($hide_comment != 1) {
@@ -3675,6 +3681,7 @@ function theme_html_comments($pid)
             '{SMILIES}' => '',
             '{WIDTH}' => $CONFIG['picture_table_width'],
             '{HELP_ICON}' => $captionLabel,
+        	'{FORM_TOKEN}' => getFormToken()
             );
 
         if ($CONFIG['enable_smilies']) {

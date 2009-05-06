@@ -55,7 +55,10 @@ $userMessage = ''; //The message that the will be displayed if something went wr
 $problemFields_array = array(); // we'll add field-wrapper-IDs to this array to visualize that something went wrong. Onload we'll assign the class "important" to the boxes that correspond to the array data
 
 if ($superCage->post->keyExists('restore_config')) { // user has chosen to factory-reset the config --- start
-
+    //first we check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
     foreach ($config_data as $section => $values) {
     
         foreach ($values as $name => $value) {
@@ -77,6 +80,10 @@ if ($superCage->post->keyExists('restore_config')) { // user has chosen to facto
 foreach ($config_data as $config_section_key => $config_section_value) { // Loop through the config fields to check posted values for validity -- start
     foreach ($config_section_value as $adminDataKey => $adminDataValue) {
         if ($superCage->post->keyExists('update_config')) {
+            //first we check if the form token is valid
+            if(!checkFormToken()){
+                cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+            }
             $evaluate_value = $superCage->post->getEscaped($adminDataKey);
         } else {
             $evaluate_value = $CONFIG[$adminDataKey];
@@ -482,9 +489,9 @@ print '<br />';
 
 
 
-echo <<< EOT
-</form>
-EOT;
+echo '
+<input type="hidden" name="form_token" value="' . getFormToken() . '" />
+</form>';
 pagefooter();
 
 ?>

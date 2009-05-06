@@ -32,7 +32,15 @@ pageheader($lang_export_php['export']);
 
 if($superCage->post->keyExists('exportSubmit'))
 {
-  ($superCage->post->getAlpha('exportType') == 'html') ? initHTMLExport($superCage->post->getInt('album'),$superCage->post->getEscaped('directory')) : initPhotoCopy($superCage->post->getInt('album'),$superCage->post->getEscaped('directory'));
+  //Check if the form token is valid
+  if(!checkFormToken()){
+      cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+  }
+  if($superCage->post->getAlpha('exportType') == 'html'){
+      initHTMLExport($superCage->post->getInt('album'),$superCage->post->getEscaped('directory'));
+  }else{
+      initPhotoCopy($superCage->post->getInt('album'),$superCage->post->getEscaped('directory'));
+  }
 } else if ($superCage->get->keyExists('album') && $superCage->get->keyExists('path') && $superCage->get->keyExists('page')) {
   exportThumbnailPage($superCage->get->getInt('album'), $superCage->get->getInt('page'), $superCage->get->getEscaped('path'));
 } else if ($superCage->get->keyExists('id') && $superCage->get->keyExists('dir')) { 
@@ -87,6 +95,7 @@ if($superCage->post->keyExists('exportSubmit'))
 EOT;
 
   endtable();
+  echo '<input type="hidden" name="form_token" value="' . getFormToken() . '" />';
   echo '</form>';
 }
 

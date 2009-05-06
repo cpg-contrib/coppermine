@@ -224,7 +224,7 @@ $(document).ready(function() {
 * This part is the rating part of displayimage.php
 */
 function rate(obj){
-    $.get('ratepic.php?rate=' + obj.title + '&pic=' + js_vars.picture_id, function(data){
+    $.get('ratepic.php?rate=' + obj.title + '&pic=' + js_vars.picture_id + '&form_token=' + js_vars.form_token, function(data){
         //create a JSON object of the returned data
         var json_data = eval('(' + data + ')');
         //check the data and respond upon it

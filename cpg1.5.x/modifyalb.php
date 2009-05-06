@@ -739,14 +739,15 @@ if (GALLERY_ADMIN_MODE) {
 } else {
     printf($lang_modifyalb_php['notice1'], '', '');
 }
-
+$form_token = getFormToken();
 echo <<< EOT
         </td>
     </tr>
     <tr>
         <td colspan="2" align="center" class="tablef">
 			<button type="submit" class="button" name="update_album" value="{$lang_modifyalb_php['update']}">{$icon_array['ok']}{$lang_modifyalb_php['update']}</button>
-        </td>
+        	<input type="hidden" name="form_token" value="{$form_token}" />
+		</td>
     </tr>
 
 EOT;
@@ -858,7 +859,7 @@ EOT;
 
 EOT;
     endtable();
-    print "</form>\n";
+    print "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" /></form>\n";
 }
 pagefooter();
 

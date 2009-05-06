@@ -284,10 +284,24 @@ function parse_pic_list($value)
     return preg_split("/,/", $value, -1, PREG_SPLIT_NO_EMPTY);
 }
 
+function jsCheckFormToken(){
+    global $lang_common, $lang_errors;
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        $dataArray = array(
+            'message' => 'false',
+            'title'   => $lang_common['error'],
+            'description' => $lang_errors['invalid_form_token']
+        );
+        
+        echo json_encode($dataArray);
+        exit;
+    }
+}
+
 /**
  * Main code starts here
  */
-
 
 if ($superCage->get->keyExists('what')) {
     $what = $superCage->get->getAlpha('what');
@@ -349,6 +363,7 @@ case 'albmgr':
     
     //add the new album name to database
     if ($op == 'add') {
+        jsCheckFormToken();
         
         $user_id = USER_ID;
         //add the album to database
@@ -374,6 +389,7 @@ case 'albmgr':
     
     //update album name when user save changes
     if ($op == 'update') {
+        jsCheckFormToken();
         
         $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title = '{$get_updated_album_name}' WHERE aid = '{$aid_updated}' $restrict LIMIT 1";
         cpg_db_query($query);
@@ -390,22 +406,28 @@ case 'albmgr':
     
     //delete the album which user click
     if ($op == 'delete') {
+        //Check if the form token is valid
+        if(!checkFormToken()){
+            $returnOutput = '<div class="cpg_message_validation"><h2>' 
+                            . $lang_common['error'] . '</h2>' . $lang_errors['invalid_form_token'] . '</div>';
+        }else{
+        
+            //delete commnets and photos
+            $returnOutput .= delete_album($deleted_id);
+            
+            $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '{$category}' ORDER BY pos ASC");
+            $rowset = cpg_db_fetch_rowset($result); 
     
-        //delete commnets and photos
-        $returnOutput .= delete_album($deleted_id);
-        
-        $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '{$category}' ORDER BY pos ASC");
-        $rowset = cpg_db_fetch_rowset($result); 
-
-        $i = 100;
-        
-        foreach ($rowset as $key => $set_value) {
-            $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET pos = '{$i}' WHERE aid = '{$set_value['aid']}' $restrict LIMIT 1";
-            cpg_db_query($query);
-            $i++;
+            $i = 100;
+            
+            foreach ($rowset as $key => $set_value) {
+                $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET pos = '{$i}' WHERE aid = '{$set_value['aid']}' $restrict LIMIT 1";
+                cpg_db_query($query);
+                $i++;
+            }
+            
+            $returnOutput .= '</table>';
         }
-        
-        $returnOutput .= '</table>';
         
         //redirect to the album manager
         cpgRedirectPage('albmgr.php?cat='.$category, $lang_common['information'], $returnOutput); // redirect the user
@@ -420,7 +442,10 @@ case 'albmgr':
         $rowset = cpg_db_fetch_rowset($result);  
 
         if ($superCage->post->keyExists('sort_order')) {
-        
+            //Check if the form token is valid
+            if(!checkFormToken()){
+                cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+            }
             // Used to get the aid, cast to integer for query
             $get_rows = $superCage->post->getEscaped('sort_order');
             
@@ -489,7 +514,10 @@ case 'picmgr':
     mysql_free_result($result);
     
     if ($superCage->post->keyExists('picture_order')) {
-    
+        //Check if the form token is valid
+        if(!checkFormToken()){
+            cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+        }
         //get the sorted order - cast to int below
         $get_rows = $superCage->post->getRaw('picture_order');
         $sort_rows = parse_pic_list($get_rows);
@@ -522,7 +550,10 @@ case 'picmgr':
     break;
 
 case 'comment':
-
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
     $msg_id = $superCage->get->getInt('msg_id');
 
     $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id = '$msg_id'");
@@ -556,7 +587,10 @@ case 'comment':
     break;
 
 case 'picture':
-
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
     $pid = $superCage->get->getInt('id');
 
     pageheader($lang_delete_php['del_pic']);
@@ -575,9 +609,12 @@ case 'picture':
     break;
 
 case 'album':
-
     if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
         cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+    }
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
     }
 
     $aid = $superCage->get->getInt('id');
@@ -610,6 +647,10 @@ case 'user':
     
         if ($user_id == USER_ID) { // make sure that the admin doesn't delete his own account
             cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+        }
+        //Check if the form token is valid
+        if(!checkFormToken()){
+            cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
         }
 
         if ($superCage->get->keyExists('action') && ($matches = $superCage->get->getMatched('action', '/^[a-z_]+$/'))) {
@@ -867,7 +908,6 @@ case 'user':
             break; // end case "deactivate"
             
         case 'reset_password':
-        
             pageheader($lang_delete_php['reset_password']);
             
             starttable("100%", $lang_delete_php['reset_password'], 2);
@@ -1079,7 +1119,10 @@ case 'user':
         switch ($user_action) {
         
         case 'delete':
-        
+            //Check if the form token is valid
+            if(!checkFormToken()){
+                cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+            }
             pageheader($lang_delete_php['del_user']);
 
             starttable("100%", $lang_delete_php['del_user'], 6);

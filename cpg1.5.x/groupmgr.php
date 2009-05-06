@@ -218,8 +218,13 @@ function get_post_var($var)
 
 function process_post_data()
 {
-    global $CONFIG;
+    global $CONFIG, $lang_errors;
     $superCage = Inspekt::makeSuperCage();
+    
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
 
     $field_list = array('group_name', 'group_quota', 'can_rate_pictures', 'can_send_ecards', 'can_post_comments', 'can_upload_pictures', 'pub_upl_need_approval', 'can_create_albums', 'priv_upl_need_approval', 'access_level');
 
@@ -332,7 +337,7 @@ EOT;
 EOT;
 }
 endtable();
-echo "</form>";
+echo '<input type="hidden" name="form_token" value="' . getFormToken() . '" />' . "</form>";
 pagefooter();
 ob_end_flush();
 

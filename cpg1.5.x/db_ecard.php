@@ -88,6 +88,10 @@ if ($superCage->get->keyExists('eid')) {
 }
 
 if ($eid) {
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
     foreach ($eid as $key) {
         $query = "DELETE FROM {$CONFIG['TABLE_ECARDS']} WHERE eid = $key";
         cpg_db_query($query);
@@ -402,7 +406,7 @@ EOT;
 
 endtable();
 
-print "</form>\n";
+print '<input type="hidden" name="form_token" value="' . getFormToken() . '" />' . "</form>\n";
 
 pagefooter();
 

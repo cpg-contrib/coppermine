@@ -203,7 +203,7 @@ EOT;
         $row_counter  = 0;
         $loop_counter = 0;
         
-        while ($row = mysql_fetch_assoc($result)) {
+        while ( ($row = mysql_fetch_assoc($result)) ) {
             if ($loop_counter == 0) {
                 $row_style_class = 'tableb';
             } else {
@@ -270,7 +270,10 @@ EOT;
 
 // Processing of form data --- start
 if ($superCage->post->keyExists('submit')) {
-
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
     $result = cpg_db_query("SELECT *, UNIX_TIMESTAMP(expiry) AS expiry FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force = 0 ORDER BY $sort $limit");
 
     $count = mysql_num_rows($result);
@@ -639,6 +642,7 @@ print <<< EOT
     </tr>
 EOT;
 endtable();
+print '<input type="hidden" name="form_token" value="' . getFormToken() . '" />';
 print <<< EOT
 </form>
 <br />

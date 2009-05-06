@@ -204,9 +204,7 @@ echo <<<EOT
 EOT;
 echo '<div class="input"><input type="submit" class="button" name="convert" value="Convert" /></div>';
                 echo '</form>';
-            }
-            if ($doconvert)
-            {
+            }else{
                 // the script has succeeded (hopefully): we change the charset accordingly in the database
                 cpg_config_set('charset', $charsetout);
 

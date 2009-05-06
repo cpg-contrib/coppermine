@@ -60,7 +60,12 @@ if ($superCage->get->keyExists('id')) {
 
 function process_post_data()
 {
-    global $CONFIG, $USER_DATA, $mb_utf8_regex, $lang_errors, $lang_editpics_php, $superCage;
+    global $CONFIG, $USER_DATA, $lang_errors, $lang_editpics_php, $superCage;
+    
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
 
     $pid = $superCage->post->getInt('id');
     $aid = $superCage->post->getInt('aid');
@@ -607,7 +612,7 @@ print <<<EOT
 EOT;
 
 endtable();
-
+echo '<input type="hidden" name="form_token" value="' . getFormToken() . '" />';
 echo '</form>';
 
 pagefooter();

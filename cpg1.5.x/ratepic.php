@@ -58,6 +58,17 @@ if (!mysql_num_rows($result)) {
     echo json_encode($send_back);
     exit;
 }
+//Check if the form token is valid
+if(!checkFormToken()){
+    //send back voting failure to ajax request
+    $send_back = array(
+        'status' => 'error',
+        'msg'    => $lang_errors['invalid_form_token'],
+    );
+    
+    echo json_encode($send_back);
+    exit;
+}
 
 $row = mysql_fetch_assoc($result);
 mysql_free_result($result);
