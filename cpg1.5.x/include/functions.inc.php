@@ -3944,21 +3944,13 @@ function cpg_display_help($reference = 'f=empty.htm', $width = '600', $height = 
         $help_theme = $USER['theme'];
     }
     
-    //This makes no sense
-    /*if ($icon == '*') {
-        $icon == '*';
-    } elseif ($icon == '?') {
-        $icon = '?';
-    } else {
-        $icon = '<img src="images/help.gif" width="13" height="11" border="0" alt="" title="" />';
-    }*/
     if($icon != '*' && $icon != '?') {
-        $icon = '<img src="images/help.gif" width="13" height="11" border="0" alt="" title="" />';
+        $icon = '<img src="images/help.gif" width="13" height="11" border="0" alt="" />';
     }
 
     $title_help = $lang_common['help'];
 
-    $help_html = "<a class=\"jt\" href='help.php?" . $reference . "' rel='help.php?css=" . $help_theme . "&amp;" . $reference . "' title=\"" . $title_help . "\">" . $icon . "</a>";
+    $help_html = '<a class="jt" href="help.php?' . $reference . '" rel="help.php?css=' . $help_theme . '&amp;' . $reference . '" title="' . $title_help . '">' . $icon . '</a>';
 
     return $help_html;
 } // function cpg_display_help
