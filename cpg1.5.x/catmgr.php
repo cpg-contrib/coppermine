@@ -665,10 +665,9 @@ function setbuild(obj, cid)
 function updateParent(obj, cid)
 {
     if (obj.options[obj.selectedIndex].value) {
-        window.location.href = 'catmgr.php?op=setparent&cid=' + cid + '&parent=' + obj.options[obj.selectedIndex].value;
+        window.location.href = 'catmgr.php?op=setparent&cid=' + cid + '&parent=' + obj.options[obj.selectedIndex].value + '&form_token={$form_token}';
     }
 }
-
 </script>
 
 EOT;
