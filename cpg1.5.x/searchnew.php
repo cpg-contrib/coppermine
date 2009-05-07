@@ -623,7 +623,7 @@ EOT;
     }
 
     $iframe_startfolder = str_replace('searchnew.php', '', __FILE__) . rtrim($CONFIG['fullpath'],'/') . $folder_sep;
-    $iframe_hide = rawurlencode('.,..,.svn,edit,Thumbs.db,.DS_Store,.htaccess,'.rtrim($CONFIG['userpics'],'/'));
+    $iframe_hide = rawurlencode('.,..,.svn,edit,Thumbs.db,.DS_Store,__MACOSX,.htaccess,'.rtrim($CONFIG['userpics'],'/'));
     print '    <tr>'."\n";
     print '        <td class="tableb" align="center">'."\n";
 
