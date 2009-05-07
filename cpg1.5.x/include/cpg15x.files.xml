@@ -81,14 +81,6 @@
     <hash>6bd7f0d200098dcc669801b63a520848</hash>
   </element>
   <element>
-    <fullpath>charsetmgr.php</fullpath>
-    <version>1.5.1</version>
-    <revision>5717</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>2958627a8ae458057353c4fe25608632</hash>
-  </element>
-  <element>
     <fullpath>config.php</fullpath>
     <status>remove</status>
   </element>
