@@ -32,12 +32,12 @@ if (!defined('IN_COPPERMINE')) {
 /**
  * require main Inspekt class
  */
-require_once 'Inspekt.php';
+require_once 'include/Inspekt.php';
 
 /**
  * require the Cage class
  */
-require_once 'Inspekt/Cage.php';
+require_once 'include/Inspekt/Cage.php';
 
 /**
  * The Supercage object wraps ALL of the superglobals

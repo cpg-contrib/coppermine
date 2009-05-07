@@ -33,7 +33,7 @@ if (!defined('IN_COPPERMINE')) {
 /**
  * require main Inspekt file
  */
-require_once 'Inspekt.php';
+require_once 'include/Inspekt.php';
 
 
 define ('ISPK_ARRAY_PATH_SEPARATOR', '/');
