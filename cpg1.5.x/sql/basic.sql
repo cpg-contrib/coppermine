@@ -170,6 +170,7 @@ INSERT INTO CPG_config VALUES ('show_bbcode_help', '1');
 INSERT INTO CPG_config VALUES ('show_private', '0');
 INSERT INTO CPG_config VALUES ('show_which_exif', '|0|0|0|0|0|0|0|0|1|0|1|1|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|1|0|0|0|1|1|0|0|0|0|1|0|0|0|1|0|0|1|1|0|0|0|0|0|1|0|1|1');
 INSERT INTO CPG_config VALUES ('silly_safe_mode', '0');
+INSERT INTO CPG_config VALUES ('site_token', MD5(RAND()));
 INSERT INTO CPG_config VALUES ('slideshow_hits', '1');
 INSERT INTO CPG_config VALUES ('slideshow_interval', '5000');
 INSERT INTO CPG_config VALUES ('smtp_host', '');

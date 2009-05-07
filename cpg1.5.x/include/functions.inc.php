@@ -5654,10 +5654,10 @@ function cpg_folder_file_delete($path)
  * @return string $token
  */
 function getFormToken(){
-    global $raw_ip;
+    global $raw_ip, $CONFIG;
     $superCage = Inspekt::makeSuperCage();
-    
-    return md5(USER_ID . $raw_ip . $superCage->server->getRaw('DOCUMENT_ROOT'));
+
+    return md5(USER_ID . $raw_ip . $superCage->server->getRaw('HTTP_USER_AGENT') . $CONFIG['site_token']);
 }
 
 /**
