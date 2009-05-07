@@ -4498,6 +4498,7 @@ function cpgCleanTempMessage($seconds = 3600)
 * @param string $caption
 * @param string $message
 * @param string $countdown
+* @param string $type (possible values: 'info', 'error', 'warning', 'validation', 'success' -> theme_display_message_block
 * @return void
 **/
 function cpgRedirectPage($targetAddress = '', $caption = '', $message = '', $countdown = 0, $type = 'info')
