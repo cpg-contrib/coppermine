@@ -6938,6 +6938,14 @@
     <hash>d81dca1ac10d1fa19792e94c5894ff68</hash>
   </element>
   <element>
+    <fullpath>js/jquery.dimensions.pack.js</fullpath>
+    <version>1.5.1</version>
+    <revision>5686</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>d81dca1ac10d1fa19792e94c5894ff68</hash>
+  </element>
+  <element>
     <fullpath>js/jquery.slideshow.js</fullpath>
     <version>1.5.1</version>
     <revision>5686</revision>
