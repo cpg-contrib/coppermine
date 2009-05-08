@@ -651,6 +651,7 @@ $lang_admin_php['view_logs'] = 'Voir les Logs';
 $lang_admin_php['click_expand'] = 'Cliquez sur un nom de Section pour Afficher';
 $lang_admin_php['click_collapse'] = 'Cliquez sur un nom de Section pour Réduire'; // cpg1.5
 $lang_admin_php['expand_all'] = 'Tout Afficher';
+$lang_admin_php['toggle_all'] = 'Toggle All';
 $lang_admin_php['notice1'] = '(*) Cette Configuration ne doit pas être changée si vous avez déjà des fichiers dans votre Base de Données.'; // - (relocated)
 $lang_admin_php['notice2'] = '(**) Si vous changez cette Configuration, seuls les nouveaux fichiers ajoutés seront concernés, il est donc conseillé de ne pas la modifier si vous avez déjà des fichiers. Vous pouvez cependant appliquer les modifications aux fichiers existant à l\'aide des &quot;<a href="util.php">Outils d\'Administration</a> (redimensionner les images)&quot; depuis le Menu d\'Administration.'; //- (relocated)
 $lang_admin_php['notice3'] = '(***) Tous les Logs sont écrits en Anglais.'; // - (relocated)

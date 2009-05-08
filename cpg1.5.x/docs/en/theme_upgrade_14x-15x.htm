@@ -259,6 +259,28 @@ a:active .image{
     background-image: url('../../images/message/error.png');
 }</pre>
 
+<a name="theme_convert_style_spinbutton"></a><h3>Add the classes &laquo;spin-button&raquo;<a href="#theme_convert_style_spinbutton" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Find:</p>
+<pre class="smallcode">.detail_body {
+}</pre>
+<p>and add after it (into a new line):</p>
+<pre class="smallcode">input.spin-button {
+	padding-right:20px;
+	background-repeat:no-repeat;
+	background-position:100% 0%;
+	background-image:url(../../images/spinbtn_updn.gif);
+}
+
+input.spin-button.up {
+	cursor:pointer;
+	background-position:100% -18px;
+}
+
+input.spin-button.down {
+	cursor:pointer;
+	background-position:100% -36px;
+}</pre>
+
 <a name="theme_convert_style_vanity"></a><h3>Adopt the changed path for the vanity icons<a href="#theme_convert_style_vanity" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The path for the <a href="theme_template.htm#theme_template_vanity">vanity icons</a> has changed from the images folder to a sub-folder named &quot;<tt class="code">vanity</tt>&quot;.</p>
 <p>Find</p>

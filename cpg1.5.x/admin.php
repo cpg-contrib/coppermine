@@ -33,6 +33,7 @@ set_js_var('lang_no_change_needed', $lang_admin_php['no_change_needed']);
 
 
 // Include the JS for admin.php
+js_include('js/jquery.spinbutton.js');
 js_include('js/admin.js');
 
 $admin_data_array  = $CONFIG;
@@ -117,20 +118,30 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
             if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '' && preg_match('#' . $adminDataValue['regex'] . '#i', $evaluate_value) == FALSE) || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '' && preg_match('#' . $adminDataValue['regex_not'] . '#i', $evaluate_value) == TRUE)) {
                 $userMessage    .= '<li style="list-style-image:url(images/icons/stop.png)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
                 $regexValidation = '0';
-                //$admin_data_array[$adminDataKey] = $evaluation_array[$adminDataKey]; // replace the stuff in the form field with the improper input, so the user can see and correct his error
-                $admin_data_array[$adminDataKey] = $evaluate_value; // replace the stuff in the form field with the improper input, so the user can see and correct his error
-                if (in_array($adminDataKey, $problemFields_array) != TRUE) {
-                    $problemFields_array[] = $adminDataKey;
-                }
-                if (in_array($config_section_key, $collapseSections_array) == TRUE) {
-                    unset($collapseSections_array[array_search($config_section_key, $collapseSections_array)]);
-                }
             } else { // regex validation succesfull -- start
                 $regexValidation = '1';
             } // regex validation succesfull -- end
         } else { // no regex settings available - set validation var to successful anyway
             $regexValidation = '1';
         }
+		if ( (isset($adminDataValue['min']) || isset($adminDataValue['min']) ) && $regexValidation == '1') { // Only perform the additional validation if the regex is green so far
+			if (isset($adminDataValue['min']) && $evaluate_value < $adminDataValue['min'] ) {
+				$regexValidation = '0';
+			}
+			if (isset($adminDataValue['max']) && $evaluate_value > $adminDataValue['max'] ) {
+				$regexValidation = '0';
+			}
+		}
+		// If validation failed, set things right
+		if ($regexValidation == '0') {
+			$admin_data_array[$adminDataKey] = $evaluate_value; // replace the stuff in the form field with the improper input, so the user can see and correct his error
+			if (in_array($adminDataKey, $problemFields_array) != TRUE) {
+				$problemFields_array[] = $adminDataKey;
+			}
+			if (in_array($config_section_key, $collapseSections_array) == TRUE) {
+				unset($collapseSections_array[array_search($config_section_key, $collapseSections_array)]);
+			}
+		}
         if ($superCage->post->keyExists('update_config') && $regexValidation == '1' && $evaluate_value != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes($evaluate_value) ) {
             //  finally, all criteria have been met - let's write the updated data to the database
             
@@ -218,34 +229,45 @@ $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE
 
 $tabindexCounter      = 1;
 $numberOfConfigFields = count($CONFIG);
+$javascriptOutput = '';
 
 print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform" onsubmit="return deleteUnneededFields();">';
 starttable('100%', cpg_fetch_icon('config', 2) . $lang_admin_php['title'] . ' - ' . $signature, 2);
 print <<< EOT
     <tr>
         <td class="tableh2" colspan="2">
-            <span id="expand_all_top" style="display:none"><a href="javascript:void(0);" class="admin_menu" >{$lang_admin_php['expand_all']}&nbsp;&nbsp;<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a></span>
-            <span id="collapse_all_top" style="display:none"><a href="javascript:void(0);" class="admin_menu" >{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a></span>
+            <button type="button" class="button detail_expand_all" name="expandalltop" id="expandalltop" onclick="return false">
+				<img src="images/tree/plus.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" />
+				{$lang_admin_php['expand_all']}
+			</button>
+			<button type="button" class="button detail_collapse_all" name="collapsealltop" id="collapsealltop" style="display:none;" onclick="return false">
+				<img src="images/tree/minus.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" />
+				{$lang_admin_php['collapse_all']}
+			</button>
+			<button type="button" class="button detail_toggle_all" name="togglealltop" id="togglealltop" onclick="return false">
+				<img src="images/tree/toggle.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['toggle_all']}" />
+				{$lang_admin_php['toggle_all']}
+			</button>
         </td>
     </tr>
 EOT;
 
 $sectionLoopCounter = 0;
 foreach ($config_data as $config_section_key => $config_section_value) { // start foreach-loop through the config sections
-    print <<< EOT
+    if ($sectionLoopCounter/2 == floor($sectionLoopCounter/2)) {
+		$tableRowStyle = 'tableb';
+	} else {
+		$tableRowStyle = 'tableb tableb_alternate';
+	}
+	echo <<< EOT
           <tr>
-            <td class="tableh2" colspan="2" onclick="show_section('section{$sectionLoopCounter}');show_section('expand{$sectionLoopCounter}');show_section('collapse{$sectionLoopCounter}')">
-                    <span style="cursor:pointer">
-                    <img src="images/descending.gif" border="0" width="9" height="9" alt="" title="{$lang_admin_php['click_expand']}" id="expand{$sectionLoopCounter}" align="left" />
-                    <img src="images/ascending.gif" border="0" width="9" height="9" alt="" title="{$lang_admin_php['click_collapse']}" id="collapse{$sectionLoopCounter}" style="display:none;" align="left" />
-                    &nbsp;
-                    {$lang_admin_php[$config_section_key]}
-                    </span>
-            </td>
-          </tr>
-          <tr>
-            <td class="tableb" colspan="2">
-              <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable" id="section{$sectionLoopCounter}" border="0">
+            <td class="{$tableRowStyle}" colspan="2">
+                    <span class="detail_head_collapsed">
+						{$lang_admin_php[$config_section_key]}
+					</span>
+
+				<div id="section{$sectionLoopCounter}" class="detail_body">
+					<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable" border="0">
 EOT;
     $withinSectionLoopCounter = 0;
     foreach ($config_section_value as $key => $value) {
@@ -331,10 +353,29 @@ EOT;
         } else {
             $highlightFieldCSS = '';
         }
+		if ($value['min'] != '' || $value['max'] != '') { // apply class spinbutton if applicable
+            $spinbuttonOption = ' spin-button';
+			$javascriptOutput .= '	$("#'.$key.'").SpinButton({';
+			if ($value['min'] != '') {
+				$javascriptOutput .= 'min: '.$value['min'];
+				if ($value['max'] != '') {
+					$javascriptOutput .= ',';
+				}
+			}
+			if ($value['max'] != '') {
+				$javascriptOutput .= 'max: '.$value['max'];
+			}
+			if ($value['step'] != '') {
+				$javascriptOutput .= ', step: '.$value['step'];
+			}
+			$javascriptOutput .= '});' . $lineBreak;
+        } else {
+            $spinbuttonOption = '';
+        }
 
         // Different types of fields --- start
         if ($value['type'] == 'textfield') { // TEXTFIELD
-            print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="text" class="textinput"'.$widthOption.$sizeOption.$maxlengthOption.'  name="'.$key.'" id="'.$key.'" value="'.htmlspecialchars($admin_data_array[$key]).'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onblur="checkDefaultBox(\''.$key.'\', \'textfield\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" />'.$readonly_message.'</span>';
+            print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="text" class="textinput'.$spinbuttonOption.'"'.$widthOption.$sizeOption.$maxlengthOption.'  name="'.$key.'" id="'.$key.'" value="'.htmlspecialchars($admin_data_array[$key]).'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onblur="checkDefaultBox(\''.$key.'\', \'textfield\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" />'.$readonly_message.'</span>';
 
         } elseif ($value['type'] == 'password') { // PASSWORD
             print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="password" class="textinput" maxlength="255"'.$widthOption.$sizeOption.$maxlengthOption.' name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onblur="checkDefaultBox(\''.$key.'\', \'password\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" />'.$readonly_message.'</span>';
@@ -452,7 +493,8 @@ EOT;
         $tabindexCounter++;
     }
     print <<< EOT
-              </table>
+					</table>
+				</div>
             </td>
           </tr>
 EOT;
@@ -468,8 +510,18 @@ print <<<EOT
                 <table border="0" cellspacing="0" cellpadding="0" width="100%">
                     <tr>
                         <td width="33%">
-                            <span id="expand_all_bottom" style="display:none"><a href="javascript:void(0);" class="admin_menu" >{$lang_admin_php['expand_all']}<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a></span>
-                            <span id="collapse_all_bottom" style="display:none"><a href="javascript:void(0);" class="admin_menu">{$lang_admin_php['collapse_all']}&nbsp;&nbsp;<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" /></a></span>
+                            <button type="button" class="button detail_expand_all" name="expandallbottom" id="expandallbottom" onclick="return false">
+								<img src="images/tree/plus.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" />
+								{$lang_admin_php['expand_all']}
+							</button>
+							<button type="button" class="button detail_collapse_all" name="collapseallbottom" id="collapseallbottom" style="display:none;" onclick="return false">
+								<img src="images/tree/minus.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" />
+								{$lang_admin_php['collapse_all']}
+							</button>
+							<button type="button" class="button detail_toggle_all" name="toggleallbottom" id="toggleallbottom" onclick="return false">
+								<img src="images/tree/toggle.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['toggle_all']}" />
+								{$lang_admin_php['toggle_all']}
+							</button>
                         </td>
                         <td width="67%" align="center">
                             <button type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}">{$submit_icon}{$lang_admin_php['save_cfg']}</button>
@@ -492,6 +544,16 @@ print '<br />';
 echo '
 <input type="hidden" name="form_token" value="' . getFormToken() . '" />
 </form>';
+if ($javascriptOutput != '') {
+	echo <<< EOT
+<script type="text/javascript">
+	$(document).ready(function() {
+	
+		{$javascriptOutput}
+	});
+</script>
+EOT;
+}
 pagefooter();
 
 ?>

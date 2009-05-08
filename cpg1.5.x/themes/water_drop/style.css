@@ -1140,3 +1140,20 @@ table.album_save td {
 
 .detail_body {
 }
+
+input.spin-button {
+	padding-right:20px;
+	background-repeat:no-repeat;
+	background-position:100% 0%;
+	background-image:url(../../images/spinbtn_updn.gif);
+}
+
+input.spin-button.up {
+	cursor:pointer;
+	background-position:100% -18px;
+}
+
+input.spin-button.down {
+	cursor:pointer;
+	background-position:100% -36px;
+}

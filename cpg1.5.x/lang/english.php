@@ -668,6 +668,7 @@ $lang_admin_php['view_logs'] = 'View logs';
 $lang_admin_php['click_expand'] = 'click section name to expand';
 $lang_admin_php['click_collapse'] = 'click section name to collapse'; // cpg1.5
 $lang_admin_php['expand_all'] = 'Expand All';
+$lang_admin_php['toggle_all'] = 'Toggle All';
 $lang_admin_php['notice1'] = '(*) These settings mustn\'t be changed if you already have files in your database.';
 $lang_admin_php['notice2'] = '(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.';
 $lang_admin_php['notice3'] = '(***) All log files are written in english.';

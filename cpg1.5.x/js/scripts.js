@@ -214,10 +214,31 @@ $(document).ready(function() {
 
 	//hide all elements with class detail_body
 	$(".detail_body").hide();
-	//toggle the componenet with class detail_body
+	//toggle the component with class detail_body
 	$(".detail_head_collapsed").click(function()
 	{
 		$(this).toggleClass("detail_head_expanded").next(".detail_body").slideToggle(600);
+	});
+	$(".detail_expand_all").click(function()
+	{
+		$(".detail_body").slideDown(1200);
+		$(".detail_head_collapsed").toggleClass("detail_head_expanded");
+		$(".detail_expand_all").hide();
+		$(".detail_collapse_all").show();
+
+	});
+	$(".detail_collapse_all").click(function()
+	{
+		$(".detail_body").slideUp(1200);
+		$(".detail_head_collapsed").toggleClass("detail_head_expanded");
+		$(".detail_expand_all").show();
+		$(".detail_collapse_all").hide();
+
+	});
+	$(".detail_toggle_all").click(function()
+	{
+		$(".detail_body").slideToggle(600);
+		$(".detail_head_collapsed").toggleClass("detail_head_expanded");
 	});
     
     //Add bookmarks if available
