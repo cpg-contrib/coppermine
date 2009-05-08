@@ -461,7 +461,7 @@ print <<<EOT
             {$icon_array['description']}{$lang_editpics_php['desc']}$captionLabel
         </td>
         <td class="tableb" valign="top">
-            <textarea name="caption" id="caption" rows="1" cols="60" class="elastic textinput" onkeydown="textCounter(this, {$CONFIG['max_img_desc_length']});" onkeyup="textCounter(this, {$CONFIG['max_img_desc_length']});">{$CURRENT_PIC['caption']}</textarea>
+            <textarea name="caption" id="caption" rows="1" cols="60" class="elastic textinput" onkeydown="textCounter(this, {$CONFIG['max_img_desc_length']});" onkeyup="textCounter(this, {$CONFIG['max_img_desc_length']});" style="max-height:200px;">{$CURRENT_PIC['caption']}</textarea>
         </td>
     </tr>
     <tr>
