@@ -1592,6 +1592,14 @@
     <hash>f031a86b677924d82fdb0de202024eba</hash>
   </element>
   <element>
+    <fullpath>docs/en/watermarking.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5828</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>f031a86b677924d82fdb0de202024eba</hash>
+  </element>
+  <element>
     <fullpath>docs/en/images/</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
