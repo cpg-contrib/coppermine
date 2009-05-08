@@ -26,7 +26,6 @@ require_once('include/init.inc.php');
 
 // Include the JS for versioncheck.php
 js_include('js/versioncheck.js');
-//js_include('js/jquery.autogrow.js');
 
 require_once('include/versioncheck.inc.php');
 

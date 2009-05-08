@@ -47,16 +47,8 @@ function checkPermissions(album, html) {
 
 
 $(document).ready(function() {
-    if ($.browser.msie) {
-        $('textarea.autogrow').height(40);
-    } else {
-        $('textarea.autogrow').autogrow({
-            maxHeight: 150,
-            minHeight: 10,
-            lineHeight: 16
-        });
-    }
-    $('#album').change(function() {
+    $('.elastic').elastic();
+	$('#album').change(function() {
         var sel_album = $(this).val();
         var note = checkPermissions(sel_album, true);
         $('#note_permissions').html(note)

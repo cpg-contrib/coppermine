@@ -22,7 +22,7 @@ define('EDITPICS_PHP', true);
 
 require('include/init.inc.php');
 
-js_include('js/jquery.autogrow.js');
+js_include('js/jquery.elastic.js');
 js_include('js/editpics.js');
 
 // Define the icons
@@ -569,7 +569,7 @@ function form_textarea($text, $name, $max_length)
                         $text
                 </td>
                 <td class="{$row_style_class}" valign="top">
-                        <textarea name="$name" id="{$name}" rows="1" cols="60" class="textinput autogrow" onkeydown="textCounter(this, $max_length);" onkeyup="textCounter(this, $max_length);">$value</textarea>
+                        <textarea name="$name" id="{$name}" rows="1" cols="60" class="textinput elastic" onkeydown="textCounter(this, $max_length);" onkeyup="textCounter(this, $max_length);">$value</textarea>
                 </td>
         </tr>
 EOT;

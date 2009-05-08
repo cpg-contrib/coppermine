@@ -21,7 +21,7 @@ define('IN_COPPERMINE', true);
 define('EDITPICS_PHP', true);
 require('include/init.inc.php');
 
-js_include('js/jquery.autogrow.js');
+js_include('js/jquery.elastic.js');
 js_include('js/edit_one_pic.js');
 
 // Define the icons
@@ -461,7 +461,7 @@ print <<<EOT
             {$icon_array['description']}{$lang_editpics_php['desc']}$captionLabel
         </td>
         <td class="tableb" valign="top">
-            <textarea name="caption" rows="1" cols="60" class="textinput autogrow" onkeydown="textCounter(this, {$CONFIG['max_img_desc_length']});" onkeyup="textCounter(this, {$CONFIG['max_img_desc_length']});">{$CURRENT_PIC['caption']}</textarea>
+            <textarea name="caption" id="caption" rows="1" cols="60" class="elastic textinput" onkeydown="textCounter(this, {$CONFIG['max_img_desc_length']});" onkeyup="textCounter(this, {$CONFIG['max_img_desc_length']});">{$CURRENT_PIC['caption']}</textarea>
         </td>
     </tr>
     <tr>
