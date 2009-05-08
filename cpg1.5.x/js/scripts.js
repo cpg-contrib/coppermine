@@ -217,7 +217,7 @@ $(document).ready(function() {
 	//toggle the componenet with class detail_body
 	$(".detail_head_collapsed").click(function()
 	{
-	$(this).toggleClass("detail_head_expanded").next(".detail_body").slideToggle(600);
+		$(this).toggleClass("detail_head_expanded").next(".detail_body").slideToggle(600);
 	});
     
     //Add bookmarks if available
