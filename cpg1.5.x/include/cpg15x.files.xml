@@ -6922,15 +6922,7 @@
     <hash>5d0125622113f23de22ae7d85eeec105</hash>
   </element>
   <element>
-    <fullpath>js/jquery.datePicker.js</fullpath>
-    <version>1.5.1</version>
-    <revision>5686</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>d81dca1ac10d1fa19792e94c5894ff68</hash>
-  </element>
-  <element>
-    <fullpath>js/jquery.dialog.js</fullpath>
+    <fullpath>js/jquery.cluetip.js</fullpath>
     <version>1.5.1</version>
     <revision>5727</revision>
     <status>mandatory</status>
@@ -6938,12 +6930,12 @@
     <hash>6f628454c4b676c6fbc5e267b20579be</hash>
   </element>
   <element>
-    <fullpath>js/jquery.dimensions.pack.js</fullpath>
+    <fullpath>js/jquery.datePicker.js</fullpath>
     <version>1.5.1</version>
     <revision>5686</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fadda59ec22f75e9a552e1f94c986d6b</hash>
+    <hash>d81dca1ac10d1fa19792e94c5894ff68</hash>
   </element>
   <element>
     <fullpath>js/jquery.slideshow.js</fullpath>

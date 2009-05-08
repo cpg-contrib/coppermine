@@ -19,7 +19,6 @@
 
 /*
 TODO:
-remove cpg_fetch_icon() calls from inside loops
 update filesize in db when thumbs are updated
 change use of string 'true' and 'false' to booleans for resize_image parameter
 autorefresh detection of more images to process is incorrect, would lead to an additional refresh in some cases
@@ -46,6 +45,10 @@ $icon_array = array(
     'back'       => cpg_fetch_icon('leftleft', 2),
     'delete_all' => cpg_fetch_icon('delete', 2),
     'ok'         => cpg_fetch_icon('ok', 2),
+	'stop'       => cpg_fetch_icon('stop', 2),
+	'cancel'     => cpg_fetch_icon('cancel', 2),
+	'info'       => cpg_fetch_icon('info', 2),
+	'util'       => cpg_fetch_icon('util', 2),
 );
 
 js_include('js/util.js');
@@ -210,7 +213,7 @@ if (array_key_exists($action, $tasks)) {
     print '<br /><form name="cpgform" id="cpgform" action="util.php?t=' . date('His') . floor(rand(0, 1000)) . '#admin_tools" method="post">';
     print '<a name="admin_tools"></a>';
 
-    starttable('100%', cpg_fetch_icon('util', 2) . $lang_util_php['title'] . $help, 1);
+    starttable('100%', $icon_array['util'] . $lang_util_php['title'] . $help, 1);
 
     $loopCounter = 0;
 
@@ -417,7 +420,7 @@ function update_thumbs()
 
     print '<a name="admin_tool_thumb_update"></a>';
 
-    starttable('100%', cpg_fetch_icon('util', 2) . $lang_util_php['thumbs_wait']);
+    starttable('100%', $icon_array['util'] . $lang_util_php['thumbs_wait']);
 
     $result = cpg_db_query("SELECT pid, filepath, filename FROM {$CONFIG['TABLE_PICTURES']} $albstr LIMIT $startpic, $numpics");
     $count = mysql_num_rows($result);
@@ -452,10 +455,10 @@ function update_thumbs()
             
             if ($updatetype == 0 || $updatetype == 2 || $updatetype == 5) {
                 if (resize_image($work_image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], "false", 1)) {
-                    echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('ok', 2) . '<tt>' . $thumb .'</tt> '. $lang_util_php['updated_successfully'] . '</td></tr>';
+                    echo '<tr><td class="'.$tablestyle.'">' . $icon_array['ok'] . '<tt>' . $thumb .'</tt> '. $lang_util_php['updated_successfully'] . '</td></tr>';
                     my_flush();
                 } else {
-                    echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('stop', 2) . $lang_util_php['error_create'] . ': <tt>' . $thumb.'</tt></td></tr>';
+                    echo '<tr><td class="'.$tablestyle.'">' . $icon_array['stop'] . $lang_util_php['error_create'] . ': <tt>' . $thumb.'</tt></td></tr>';
                     my_flush();
                 }
             }
@@ -464,10 +467,10 @@ function update_thumbs()
                 ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'resized') ? $watermark = "true" : $watermark = "false";
                 if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate']) {
                     if (resize_image($work_image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], $watermark)) {
-                        echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('ok', 2) . '<tt>' . $normal . "</tt> " . $lang_util_php['updated_successfully'] . '!</td></tr>';
+                        echo '<tr><td class="'.$tablestyle.'">' . $icon_array['ok'] . '<tt>' . $normal . "</tt> " . $lang_util_php['updated_successfully'] . '!</td></tr>';
                         my_flush();
                     } else {
-                        echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('stop', 2) . $lang_util_php['error_create'] . ': <tt>' . $normal . '</tt></td></tr>';
+                        echo '<tr><td class="'.$tablestyle.'">' . $icon_array['stop'] . $lang_util_php['error_create'] . ': <tt>' . $normal . '</tt></td></tr>';
                         my_flush();
                     }
                 }
@@ -487,10 +490,10 @@ function update_thumbs()
                     if (copy($image, $orig)) {
                         if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original') {
                             if (resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) {
-                                echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('ok', 2) . '<tt>' . $image . "</tt> " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
+                                echo '<tr><td class="'.$tablestyle.'">' . $icon_array['ok'] . '<tt>' . $image . "</tt> " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
                                 my_flush();
                             } else {
-                                echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('stop', 2) . $lang_util_php['error_create'] . ': <tt>' . $image . '</tt></td></tr>';
+                                echo '<tr><td class="'.$tablestyle.'">' . $icon_array['stop'] . $lang_util_php['error_create'] . ': <tt>' . $image . '</tt></td></tr>';
                                 my_flush();
                             }
                         }
@@ -498,26 +501,26 @@ function update_thumbs()
                 } else {
                     if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original') {
                         if (resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) {
-                            echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('ok', 2) . '<tt>' . $image . "</tt> " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
+                            echo '<tr><td class="'.$tablestyle.'">' . $icon_array['ok'] . '<tt>' . $image . "</tt> " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
                             my_flush();
                         } else {
-                            echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('stop', 2) . $lang_util_php['error_create'] . ': <tt>' . $image . '</tt></td></tr>';
+                            echo '<tr><td class="'.$tablestyle.'">' . $icon_array['stop'] . $lang_util_php['error_create'] . ': <tt>' . $image . '</tt></td></tr>';
                             my_flush();
                         }
                     } else {
                         if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) {
                             if (resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'false')) {
-                                echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('ok', 2) . '<tt>' . $image . "</tt> " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
+                                echo '<tr><td class="'.$tablestyle.'">' . $icon_array['ok'] . '<tt>' . $image . "</tt> " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
                                 my_flush();
                             } else {
-                                echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('stop', 2) . $lang_util_php['error_create'] . ': <tt>' . $image . '</tt></td></tr>';
+                                echo '<tr><td class="'.$tablestyle.'">' . $icon_array['stop'] . $lang_util_php['error_create'] . ': <tt>' . $image . '</tt></td></tr>';
                                 my_flush();
                             }
                         } elseif (copy($orig, $image)) {
-                            echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('ok', 2) . '<tt>' . $orig . "</tt> " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
+                            echo '<tr><td class="'.$tablestyle.'">' . $icon_array['ok'] . '<tt>' . $orig . "</tt> " . $lang_util_php['updated_successfully'] . '!' . '</td></tr>';
                             my_flush();
                         } else {
-                            echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('stop', 2) . $lang_util_php['error_create'] . ': <tt>' . $image . '</tt></td></tr>';
+                            echo '<tr><td class="'.$tablestyle.'">' . $icon_array['stop'] . $lang_util_php['error_create'] . ': <tt>' . $image . '</tt></td></tr>';
                             my_flush();
                         }
                     }
@@ -530,7 +533,7 @@ function update_thumbs()
             cpg_db_query($query_up);
 
         } else { // the file is an image --- end
-            echo '<tr><td class="'.$tablestyle.'">' . cpg_fetch_icon('cancel', 2) . sprintf($lang_util_php['no_image'], '<tt>' . $row['filepath'] . $row['filename'] . '</tt>') . '</td></tr>';
+            echo '<tr><td class="'.$tablestyle.'">' . $icon_array['cancel'] . sprintf($lang_util_php['no_image'], '<tt>' . $row['filepath'] . $row['filename'] . '</tt>') . '</td></tr>';
             my_flush();
         }
     }
@@ -997,7 +1000,7 @@ EOT;
 
 function keyword_convert()
 {
-    global $CONFIG, $lang_common, $lang_util_php;
+    global $CONFIG, $lang_common, $lang_util_php, $icon_array;
 
     $superCage = Inspekt::makeSuperCage();
     $set_config    = $superCage->post->keyExists('keyword_set') ? $superCage->post->getInt('keyword_set') : 0;
@@ -1010,7 +1013,7 @@ function keyword_convert()
     $replace2_from = $superCage->post->keyExists('keyword_replace2_from') ? html_entity_decode($superCage->post->getEscaped('keyword_replace2_from')) : '';
     $replace2_to   = $superCage->post->keyExists('keyword_replace2_to') ? html_entity_decode($superCage->post->getEscaped('keyword_replace2_to')) : '';
 
-    starttable('100%', cpg_fetch_icon('info', 2) . ' ' . $lang_util_php['keyword_convert'], 1);
+    starttable('100%', $icon_array['info'] . ' ' . $lang_util_php['keyword_convert'], 1);
     echo "    <tr><td><br />\n";
     $replace_options = array_merge($lang_common['keyword_separators'],$lang_util_php['keyword_replace_values']);
     if ($replace1 && strlen($replace1_from) && strlen($replace1_to) && ($replace1_from != $replace1_to)) {

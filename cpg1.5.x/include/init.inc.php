@@ -353,7 +353,7 @@ if (!empty($CONFIG['display_social_bookmarks'])) {
 // JavaScript that is being used on all pages.
 // Do not remove this line unless you really know what you're doing
 js_include('js/scripts.js');
-js_include('js/jquery.dialog.js');
+js_include('js/jquery.cluetip.js');
 // If referer is set in URL and it contains 'http' or 'script' texts then set it to 'index.php' script
 /**
  * Use $CPG_REFERER wherever $_GET['referer'] is used
