@@ -91,6 +91,12 @@ var Sort = {
             $.getJSON("delete.php?what=albmgr&cat="+cat+"&op='add'&position="+albumCount+"&name="+addedName+"&form_token="+$("input[name=form_token]").val(), function(data){
 
                 if(data['message'] == 'true'){
+                    //check if we have a table already
+                    if($.trim($('div#sort').html()) == ''){
+                        //create the table
+                        $('div#sort').html('<table id="album_sort" cellspacing="0" cellpadding="0" border="0"></table>');
+                    }
+                    
                     var album_tr = '<tr id="sort-'+data['newAid']+'" ><td class="dragHandle"></td><td class="album_text" width="96%"><span class="albumName">'+addedName+'</span><span class="editAlbum">'+js_vars.lang_edit+'</span></td></tr>';
                     $("#album_sort").append(album_tr);
                     // call the function to add the new TR on more action
@@ -109,6 +115,8 @@ var Sort = {
                     $("#loading").hide();
                 }
             });
+        }else{
+        	$("#add-name").focus();
         }
 
         return false;

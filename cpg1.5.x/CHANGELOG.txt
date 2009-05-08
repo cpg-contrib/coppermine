@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-08 [B] Fixed albmgr not showing the first created album when the category was empty {SaWey}
 2009-05-07 [M] Removed charsetmgr.php (also from cpg15x.files.xml) {SaWey}
 2009-05-07 [B] Removed the include path for Inspekt {SaWey}
 2009-05-06 [S] Added form token to all important forms and also added a check on the token where needed {SaWey}
