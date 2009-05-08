@@ -75,7 +75,6 @@ function cpg_is_writable($folder){
   $folder = rtrim($folder, '/').'/';
   $return = 0;
   $file_content = "this is just a test file that hasn't been deleted properly.\nIt's safe to delete it now";
-  @unlink($folder.'cpgvc_tf.txt'); // This will throw a warning when notices_display is enabled, as there probably is no such file. We'll try to delete such a file anyway just to make sure there is no leftover file
   if ($fd = @fopen($folder.'cpgvc_tf.txt', 'w')) {
       @fwrite($fd, $file_content);
       @fclose($fd);

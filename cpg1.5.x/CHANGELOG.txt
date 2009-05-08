@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-08 [B] Fixed @unlink($folder.'cpgvc_tf.txt'); throwing errors {SaWey}
 2009-05-08 [O] Replaced autogrow plugin with elastic plugin {GauGau}
 2009-05-08 [O] Replaced expand/collapse all toggles on config page with jquery technology {GauGau}
 2009-05-08 [O] Added sanitization element for config screen with additional ease of use (spin button) {GauGau}

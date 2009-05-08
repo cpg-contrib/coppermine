@@ -287,7 +287,6 @@ function cpg_is_writable($folder)
 {
     $return = 0;
     $file_content = "this is just a test file that hasn't been deleted properly.\nIt's safe to delete it now";
-    @unlink($folder.'/cpgvc_tf.txt');
     if ($fd = @fopen($folder.'/cpgvc_tf.txt', 'w')) {
         @fwrite($fd, $file_content);
         @fclose($fd);
