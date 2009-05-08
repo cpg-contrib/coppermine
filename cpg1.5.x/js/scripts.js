@@ -242,4 +242,19 @@ $(document).ready(function() {
             }
         );
     }
+	
+	// Cluetip plugin initialization for the help system
+    $('a.jt').cluetip({
+		cluetipClass: 'jtip', 
+		sticky: true,
+		arrows: true, 
+		width: 550,
+		height: 250,
+			dropShadow: false, 
+			sticky: true,
+			closeText: '<img src=\"' + js_vars.icon_dir + 'close.png\" alt=\"\" title=\"' + js_vars.lang_close +  '\" />',
+		closePosition: 'title',
+		activation: 'click'
+	});
+	
 });
