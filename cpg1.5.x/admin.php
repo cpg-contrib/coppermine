@@ -353,7 +353,7 @@ EOT;
         } else {
             $highlightFieldCSS = '';
         }
-		if ($value['min'] != '' || $value['max'] != '') { // apply class spinbutton if applicable
+		if (isset($value['min']) && ($value['min'] != '' || $value['max'] != '')) { // apply class spinbutton if applicable
             $spinbuttonOption = ' spin-button';
 			$javascriptOutput .= '	$("#'.$key.'").SpinButton({';
 			if ($value['min'] != '') {
@@ -365,7 +365,7 @@ EOT;
 			if ($value['max'] != '') {
 				$javascriptOutput .= 'max: '.$value['max'];
 			}
-			if ($value['step'] != '') {
+			if (isset($value['step']) && $value['step'] != '') {
 				$javascriptOutput .= ', step: '.$value['step'];
 			}
 			$javascriptOutput .= '});' . $lineBreak;
