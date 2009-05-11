@@ -600,28 +600,47 @@ function check_user_info(&$error)
 
     // email notification to admin
     if ($CONFIG['reg_notify_admin_email']) {
-
-        // get default language in which to inform the admin
-        $lang_register_php_def = cpg_get_default_lang_var('lang_register_php');
-        $lang_register_approve_email_def = cpg_get_default_lang_var('lang_register_approve_email');
-
-        // if the admin has to activate the login, give them the link to do so
-        if ($CONFIG['admin_activation'] == 1) {
-
-            $act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $act_key;
-
-            $template_vars = array(
-                '{SITE_NAME}' => $CONFIG['gallery_name'],
-                '{USER_NAME}' => $user_name,
-                '{ACT_LINK}' => $act_link,
-            );
+        if(UDB_INTEGRATION == 'coppermine'){
+            // get default language in which to inform the admins
+            $result = cpg_db_query("SELECT user_id, user_email, user_language FROM {$CONFIG['TABLE_USERS']} WHERE user_group = 1");
+            while ( ($row = mysql_fetch_assoc($result)) ) {
+                if (!empty($row['user_email'])) {
+                    $admins[$row['user_id']] = array('email' => $row['user_email'], 'lang' => $row['user_language']);
+                }
+            }
+        }else{
+            //@todo: is it possible to get the language from bridged installs?
+            $admins[] = array('email' => $CONFIG['gallery_admin_email'], 'lang' => 'english');
+        }
+        foreach($admins as $admin){
+            //check if the admin language is available
+            if(file_exists("lang/{$admin['lang']}.php")){
+                $lang_register_php_def = cpg_get_default_lang_var('lang_register_php', $admin['lang']);
+                $lang_register_approve_email_def = cpg_get_default_lang_var('lang_register_approve_email', $admin['lang']);
+            }else{
+                $lang_register_php_def = cpg_get_default_lang_var('lang_register_php');
+                $lang_register_approve_email_def = cpg_get_default_lang_var('lang_register_approve_email');
+            }
             
-            cpg_mail('admin', sprintf($lang_register_php_def['notify_admin_request_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_approve_email_def, $template_vars)));
+    
+            // if the admin has to activate the login, give them the link to do so
+            if ($CONFIG['admin_activation'] == 1) {
+    
+                $act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $act_key;
+    
+                $template_vars = array(
+                    '{SITE_NAME}' => $CONFIG['gallery_name'],
+                    '{USER_NAME}' => $user_name,
+                    '{ACT_LINK}' => $act_link,
+                );
 
-        } else {
-        
-            // otherwise, email is for information only
-            cpg_mail('admin', sprintf($lang_register_php_def['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_register_php_def['notify_admin_email_body'], $user_name));
+                cpg_mail($admin['email'], sprintf($lang_register_php_def['notify_admin_request_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_approve_email_def, $template_vars)));
+    
+            } else {
+            
+                // otherwise, email is for information only
+                cpg_mail($admin['email'], sprintf($lang_register_php_def['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_register_php_def['notify_admin_email_body'], $user_name));
+            }
         }
     }
 

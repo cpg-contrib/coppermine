@@ -88,7 +88,7 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
     $mail->Body = $msg_body;
     $mail->AltBody = $msg_body_plaintext;
     $mail->CharSet = $charset;
-   
+
     return $mail->Send();
 }
 

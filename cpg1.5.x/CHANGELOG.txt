@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-11 [B] Fixed admin approval email now sent in admin language for user registrations {SaWey}
 2009-05-11 [B] Fixed not able to create new user from admin panel {SaWey}
 2009-05-10 [O] Got rid of some undefined index error messages in admin.php {SaWey}
 2009-05-08 [D] Added documentation section about watermarking based on Stramm's modpack document {GauGau}
