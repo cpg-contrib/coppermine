@@ -617,6 +617,7 @@ EOT;
     $help_create = '&nbsp;'.cpg_display_help('f=users.htm&amp;as=user_cp_new&amp;ae=user_cp_new_end', '600', '250');
 
     $create_new_user_icon = cpg_fetch_icon('add_user', 2);
+	$form_token = getFormToken();
     echo <<<EOT
                               </select>
                             <select name="delete_files" size="1" class="listbox" style="display:none">
@@ -650,7 +651,7 @@ EOT;
                             </form>
                         </td>
                         <td class="tablef" align="center" valign="middle">
-                            <a href="{$CPG_PHP_SELF}?op=new_user" {$makereadonly}class="admin_menu">{$create_new_user_icon}{$lang_usermgr_php['create_new_user']}</a>
+                            <a href="{$CPG_PHP_SELF}?op=new_user&form_token={$form_token}" {$makereadonly}class="admin_menu">{$create_new_user_icon}{$lang_usermgr_php['create_new_user']}</a>
                             {$help_create}
                         </td>
                     </tr>
