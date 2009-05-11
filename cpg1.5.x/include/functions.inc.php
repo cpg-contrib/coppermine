@@ -1769,8 +1769,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $album_thumbs_set = implode(',', array_unique($album_thumbs));
             $query = "SELECT $select_columns_files
                     FROM {$CONFIG['TABLE_PICTURES']} AS r
-                    $RESTRICTEDWHERE
-                    AND approved = 'YES'
+                    WHERE approved = 'YES'
                     AND r.pid IN ($album_thumbs_set)
                     ORDER BY ctime DESC
                     $limit";
@@ -3261,9 +3260,7 @@ function cpg_debug_output()
     $debug_separate    = '&#0010;==========================&#0010;';
     $debug_toggle_link = $lang_cpg_debug_output['debug_output'] . ': <span class="detail_head_collapsed">'. $lang_cpg_debug_output['show_hide'].'</span>';
     $debug_help = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_cpg_debug_output['debug_output_explain']))).'&amp;t='.urlencode(base64_encode(serialize($lang_cpg_debug_output['copy_and_paste_instructions']))), 470, 245);
-     if (GALLERY_ADMIN_MODE) {
-        $debug_phpinfo_link = '<a href="phpinfo.php" class="admin_menu">' . cpg_fetch_icon('phpinfo', 1) . $lang_cpg_debug_output['phpinfo'] . '</a> ';
-    }
+    $debug_phpinfo_link = GALLERY_ADMIN_MODE ? '<a href="phpinfo.php" class="admin_menu">' . cpg_fetch_icon('phpinfo', 1) . $lang_cpg_debug_output['phpinfo'] . '</a> ' : '';
 
     echo <<< EOT
     <script language="javascript" type="text/javascript">
@@ -5653,7 +5650,8 @@ function cpg_folder_file_delete($path)
  *
  * @return string $token
  */
-function getFormToken(){
+function getFormToken()
+{
     global $raw_ip, $CONFIG;
     $superCage = Inspekt::makeSuperCage();
 
@@ -5665,7 +5663,8 @@ function getFormToken(){
  *
  * @return boolean
  */
-function checkFormToken(){
+function checkFormToken()
+{
     $superCage = Inspekt::makeSuperCage();
     
     if( $superCage->post->keyExists('form_token') || $superCage->get->keyExists('form_token') ){

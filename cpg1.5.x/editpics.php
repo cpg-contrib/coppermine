@@ -399,6 +399,7 @@ function form_pic_info($text)
     }
 
     // The approve checkbox is shown only if the user is admin or moderator.
+    $approve_html = '';
     if (GALLERY_ADMIN_MODE || MODERATOR_MODE) {
         $approve_html = <<<EOT
                           <td class="{$row_style_class}" width="40" valign="top">
@@ -886,6 +887,7 @@ echo <<<EOT
 EOT;
 
 // The approve all checkbox is shown only if the user is admin or moderator.
+$approve_all_html = '';
 if (GALLERY_ADMIN_MODE || MODERATOR_MODE) {
 
     $approve_all_html = <<<EOT
