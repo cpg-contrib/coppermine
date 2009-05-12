@@ -5667,13 +5667,12 @@ function checkFormToken()
 {
     $superCage = Inspekt::makeSuperCage();
     
-    if( $superCage->post->keyExists('form_token') || $superCage->get->keyExists('form_token') ){
-        //check if the token is valid
-        $received_token = ($superCage->post->keyExists('form_token')) ? 
-        $superCage->post->getAlNum('form_token') : $superCage->get->getAlNum('form_token');
-        if($received_token == getFormToken()){
+    if ($superCage->post->keyExists('form_token') || $superCage->get->keyExists('form_token')){
+        // check if the token is valid
+        $received_token = ($superCage->post->keyExists('form_token')) ? $superCage->post->getAlNum('form_token') : $superCage->get->getAlNum('form_token');
+        if ($received_token == getFormToken()) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
