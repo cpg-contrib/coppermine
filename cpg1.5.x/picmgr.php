@@ -273,8 +273,9 @@ EOT;
 </tr>
 EOT;
    endtable();
-   print '<input type="hidden" name="form_token" value="' . getFormToken() . '" />
-   </form>';
+   list($timestamp, $form_token) = getFormToken();	
+   echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
+        <input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" /></form>";
    pagefooter();
    ob_end_flush();
 ?>

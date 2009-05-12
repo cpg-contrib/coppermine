@@ -640,8 +640,9 @@ echo <<<EOT
 
 EOT;
 endtable();
-echo '<input type="hidden" name="form_token" value="' . getFormToken() . '" />
-</form>';
+list($timestamp, $form_token) = getFormToken();	
+echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
+     <input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" /></form>";    
 
 if ($CONFIG['comment_akismet_api_key'] != '') {
     print '<br /><a name="akismet"></a>';

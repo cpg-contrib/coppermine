@@ -142,7 +142,7 @@ function list_users($search = '')
 
     $superCage = Inspekt::makeSuperCage();
     
-    $form_token = getFormToken();
+    list($timestamp, $form_token) = getFormToken();
 
     $number_of_columns_minus_one = $number_of_columns - 1;
     $number_of_columns_minus_three = $number_of_columns - 3;
@@ -470,7 +470,8 @@ EOT;
             $action = 'deactivate';
         }
         if (!$lim_user) {
-            $user['status'] = '<a href="delete.php?id=u'.$user['user_id'].'&amp;album_listbox='.$sort.'&amp;action='.$action.'&amp;what=user&amp;form_token=' . $form_token . '" title="">' . $user['status'] . '</a>';
+            $user['status'] = '<a href="delete.php?id=u'.$user['user_id'].'&amp;album_listbox='.$sort.'&amp;action='.$action
+            .'&amp;what=user&amp;form_token=' . $form_token . '&amp;timestamp=' . $timestamp . '" title="">' . $user['status'] . '</a>';
         }
         $user['user_regdate'] = localised_date($user['user_regdate'], $lang_date['register']);
         if ($user['user_lastvisit']) {
@@ -523,7 +524,7 @@ EOT;
                     $checkbox_html = '';
                     $ban_user_link = cpg_fetch_icon('blank', 0);
                 } else {
-                    $profile_link = $CPG_PHP_SELF.'?op=edit&user_id='.$user['user_id'].'&amp;form_token=' . $form_token;
+                    $profile_link = $CPG_PHP_SELF.'?op=edit&user_id='.$user['user_id'].'&amp;form_token=' . $form_token . '&amp;timestamp=' . $timestamp;
                     $checkbox_html = '<input name="u'.$user['user_id'].'" '.$makereadonly.'type="checkbox" value="" class="checkbox" />';
                 }
                 $profile_link = '<a href="' . $profile_link . '">' . cpg_fetch_icon('edit', 0, $lang_usermgr_php['edit_profile']) . '</a>';
@@ -617,7 +618,7 @@ EOT;
     $help_create = '&nbsp;'.cpg_display_help('f=users.htm&amp;as=user_cp_new&amp;ae=user_cp_new_end', '600', '250');
 
     $create_new_user_icon = cpg_fetch_icon('add_user', 2);
-	$form_token = getFormToken();
+	list($timestamp, $form_token) = getFormToken();	
     echo <<<EOT
                               </select>
                             <select name="delete_files" size="1" class="listbox" style="display:none">
@@ -633,6 +634,7 @@ EOT;
                 </tr>
                 </table>
                 <input type="hidden" name="form_token" value="{$form_token}" />
+                <input type="hidden" name="timestamp" value="{$timestamp}" />
                 </form>
                 </td>
                 <td align="right" class="tablef">$totalCommentCount_fmt</td>
@@ -651,7 +653,7 @@ EOT;
                             </form>
                         </td>
                         <td class="tablef" align="center" valign="middle">
-                            <a href="{$CPG_PHP_SELF}?op=new_user&form_token={$form_token}" {$makereadonly}class="admin_menu">{$create_new_user_icon}{$lang_usermgr_php['create_new_user']}</a>
+                            <a href="{$CPG_PHP_SELF}?op=new_user&form_token={$form_token}&timestamp={$timestamp}" {$makereadonly}class="admin_menu">{$create_new_user_icon}{$lang_usermgr_php['create_new_user']}</a>
                             {$help_create}
                         </td>
                     </tr>
@@ -716,7 +718,7 @@ function edit_user($user_id)
         array('input', 'user_profile5', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile5_name'], 255),
         array('textarea', 'user_profile6', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile6_name'], 255)
         );
-    $form_token = getFormToken();
+    list($timestamp, $form_token) = getFormToken();
 
     $sql = "SELECT * FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$user_id'";
     $result = cpg_db_query($sql);
@@ -869,7 +871,7 @@ EOT;
                             </select><br />
                             $group_cb
                             <br />
-                            <a href="usermgr.php?op=groups_alb_access&amp;form_token={$form_token}" class="admin_menu">{$lang_usermgr_php['groups_alb_access']}</a>
+                            <a href="usermgr.php?op=groups_alb_access&amp;form_token={$form_token}&timestamp={$timestamp}" class="admin_menu">{$lang_usermgr_php['groups_alb_access']}</a>
                             {$assignedGroupsHelp}
     
               </td>
@@ -914,6 +916,7 @@ EOT;
                 <td colspan="2" align="center" class="tablef">
 						<button type="submit" class="button" name="usermgr_edit_submit" value="{$lang_usermgr_php['modify_user']}">{$icon_array['ok']}{$lang_usermgr_php['modify_user']}</button>
                 		<input type="hidden" name="form_token" value="{$form_token}" />
+                		<input type="hidden" name="timestamp" value="{$timestamp}" />
 				</td>
                 </form>
         </tr>

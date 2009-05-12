@@ -619,7 +619,7 @@ $template_album_admin_menu = <<<EOT
         <table border="0" cellpadding="0" cellspacing="1">
                 <tr>
                         <td align="center" valign="middle" class="admin_menu">
-                                <a href="delete.php?id={ALBUM_ID}&amp;what=album&amp;form_token={FORM_TOKEN}" class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a>
+                                <a href="delete.php?id={ALBUM_ID}&amp;what=album&amp;form_token={FORM_TOKEN}&amp;timestamp={TIMESTAMP}" class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a>
                         </td>
                         <td align="center" valign="middle" class="admin_menu">
                                 <a href="modifyalb.php?album={ALBUM_ID}" class="adm_menu">{MODIFY}</a>
@@ -921,7 +921,7 @@ $template_image_comments = <<<EOT
                                         <script type="text/javascript">
                                           document.write('<a href="javascript:;" onclick="blocking(\'cbody{MSG_ID}\',\'\', \'block\'); blocking(\'cedit{MSG_ID}\',\'\', \'block\'); return false;" title="{EDIT_TITLE}">{EDIT_ICON}</a>');
                                         </script>
-                                        <a href="delete.php?msg_id={MSG_ID}&amp;what=comment&amp;form_token={FORM_TOKEN}" onclick="return confirm('{CONFIRM_DELETE}');" title="{DELETE_TITLE}">{DELETE_ICON}</a>
+                                        <a href="delete.php?msg_id={MSG_ID}&amp;what=comment&amp;form_token={FORM_TOKEN}&amp;timestamp={TIMESTAMP}" onclick="return confirm('{CONFIRM_DELETE}');" title="{DELETE_TITLE}">{DELETE_ICON}</a>
 <!-- END buttons -->
                                 </td>
                                 <td class="tableh2" align="right" nowrap="nowrap">
@@ -955,6 +955,7 @@ $template_image_comments = <<<EOT
                                                 <td>
                                                         <input type="submit" class="button" name="submit" value="{OK}" />
                                                         <input type="hidden" name="form_token" value="{FORM_TOKEN}" />
+                                                        <input type="hidden" name="timestamp" value="{TIMESTAMP}" />
                                                 </td>
                                                 </form>
                                         </tr>
@@ -986,6 +987,7 @@ $template_image_comments = <<<EOT
                                                 <td>
                                                         <input type="submit" class="button" name="submit" value="{OK}" />
                                                         <input type="hidden" name="form_token" value="{FORM_TOKEN}" />
+                                                        <input type="hidden" name="timestamp" value="{TIMESTAMP}" />
                                                 </td>
                                                 </form>
                                         </tr>
@@ -1047,6 +1049,7 @@ $template_add_your_comment = <<<EOT
                                 <input type="hidden" name="pid" value="{PIC_ID}" />
                                 <input type="submit" class="button" name="submit" value="{OK}" onclick="return notDefaultUsername(this.form, '{DEFAULT_USERNAME}', '{DEFAULT_USERNAME_MESSAGE}');" />
                                 <input type="hidden" name="form_token" value="{FORM_TOKEN}" />
+                                <input type="hidden" name="timestamp" value="{TIMESTAMP}" />
                                 </td>
 <!-- END submit -->
                                                         </tr>
@@ -3439,13 +3442,15 @@ function theme_html_rating_box()
         $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . "\n";
     }else{
       //use new rating
+      list($timestamp, $form_token) = getFormToken();
       set_js_var('rating', round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 0));
       set_js_var('picture_id', $pid);
       set_js_var('theme_dir', $location);
       set_js_var('can_vote', $user_can_vote);
       set_js_var('lang_rate_pic', $rate_title);
       set_js_var('stars_amount', $rating_stars_amount);
-      set_js_var('form_token', getFormToken());
+      set_js_var('form_token', $form_token);
+      set_js_var('timestamp', $timestamp);
     }
 
     $params = array(
@@ -3604,7 +3609,8 @@ function theme_html_comments($pid)
             '{BUTTONS}' => &$comment_buttons,
             '{IPINFO}' => &$comment_ipinfo,
             '{PENDING_APPROVAL}' => &$pending_approval,
-        	'{FORM_TOKEN}' => getFormToken()
+        	'{FORM_TOKEN}' => $form_token,
+        	'{TIMESTAMP}' => $timestamp,
             );
 
         $template = template_eval($template_image_comments, $params);
@@ -3633,7 +3639,8 @@ function theme_html_comments($pid)
             '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
             '{REPORT_COMMENT_ICON}' => cpg_fetch_icon('report', 0),
             '{WIDTH}' => $CONFIG['picture_table_width'],
-            '{FORM_TOKEN}' => getFormToken()
+            '{FORM_TOKEN}' => $form_token,
+        	'{TIMESTAMP}' => $timestamp,
             );
 
         if ($hide_comment != 1) {
@@ -3681,7 +3688,8 @@ function theme_html_comments($pid)
             '{SMILIES}' => '',
             '{WIDTH}' => $CONFIG['picture_table_width'],
             '{HELP_ICON}' => $captionLabel,
-        	'{FORM_TOKEN}' => getFormToken()
+        	'{FORM_TOKEN}' => $form_token,
+        	'{TIMESTAMP}' => $timestamp,
             );
 
         if ($CONFIG['enable_smilies']) {

@@ -5645,17 +5645,22 @@ function cpg_folder_file_delete($path)
 }// end function cpg_folder_file_delete
 
 /**
- * Get the form token for the current user
+ * Get the form token and timestamp for the current user
  * this is calculated 
  *
- * @return string $token
+ * @return array ($timestamp, $token)
  */
-function getFormToken()
+function getFormToken($timestamp = null)
 {
     global $raw_ip, $CONFIG;
     $superCage = Inspekt::makeSuperCage();
-
-    return md5(USER_ID . $raw_ip . $superCage->server->getRaw('HTTP_USER_AGENT') . $CONFIG['site_token']);
+    
+    if($timestamp == null){
+        $timestamp = time();
+    }
+    
+    $token = md5(USER_ID . $raw_ip . $superCage->server->getRaw('HTTP_USER_AGENT') . $CONFIG['site_token'] . $timestamp);
+    return array($timestamp, $token);
 }
 
 /**
@@ -5665,12 +5670,21 @@ function getFormToken()
  */
 function checkFormToken()
 {
+    global $CONFIG;
     $superCage = Inspekt::makeSuperCage();
     
     if ($superCage->post->keyExists('form_token') || $superCage->get->keyExists('form_token')){
         // check if the token is valid
         $received_token = ($superCage->post->keyExists('form_token')) ? $superCage->post->getAlNum('form_token') : $superCage->get->getAlNum('form_token');
-        if ($received_token == getFormToken()) {
+        $received_timestamp = ($superCage->post->keyExists('timestamp')) ? $superCage->post->getInt('timestamp') : $superCage->get->getInt('timestamp');
+        
+        //first check if the timestamp hasn't expired yet
+        if( ($received_timestamp + (int)$CONFIG['form_token_lifetime']) < time() ){
+            return false;
+        }
+        
+        $token = getFormToken($received_timestamp);
+        if ($received_token == $token[1]) {
             return true;
         } else {
             return false;

@@ -108,8 +108,10 @@ INSERT INTO CPG_config VALUES ('global_registration_pw','');
 
 #movie download link -> to picinfo
 INSERT INTO CPG_config VALUES ('picinfo_movie_download_link', '1');
+
 #site token to use in forms
 INSERT INTO CPG_config VALUES ('site_token', MD5(RAND()));
+INSERT INTO CPG_config VALUES ('form_token_lifetime', '900');
 
 INSERT INTO CPG_config VALUES ('rating_stars_amount', '5');
 INSERT INTO CPG_config VALUES ('old_style_rating', '0');

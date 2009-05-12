@@ -942,6 +942,8 @@ $lang_admin_php['warning_dont_submit'] = 'If you are not sure about the impact t
 $lang_admin_php['menu_only'] = 'menu only'; // cpg1.5
 $lang_admin_php['everywhere'] = 'everywhere'; // cpg1.5
 $lang_admin_php['manage_languages'] = 'Manage languages'; // cpg1.5
+$lang_admin_php['form_token_lifetime'] = 'Form token lifetime'; // cpg1.5
+$lang_admin_php['seconds'] = 'Seconds'; // cpg1.5
 }
 
 

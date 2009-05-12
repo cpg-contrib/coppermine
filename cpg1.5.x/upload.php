@@ -692,8 +692,9 @@ if (!$superCage->post->keyExists('process') && !$superCage->post->keyExists('plu
         close_form($lang_upload_php['title'],1);
         // Close the table, create footers, and flush the output buffer.
         endtable();
-        echo '<input type="hidden" name="form_token" value="' . getFormToken() . '" />';
-        echo "</form>";
+        list($timestamp, $form_token) = getFormToken();	
+        echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
+        <input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" /></form>";
 
     } elseif ($upload_form == 'swfupload') {
         // Show form instructions

@@ -29,7 +29,7 @@ if (!GALLERY_ADMIN_MODE) {
 }
 
 $icon_array['ok'] = cpg_fetch_icon('ok', 1);
-$form_token = getFormToken();
+list($timestamp, $form_token) = getFormToken();
 
 pageheader($lang_keywordmgr_php['title']);
 
@@ -102,7 +102,7 @@ case 'display':
             </label>
         </td>
         <td class="tableb">
-            <a href="keywordmgr.php?page=delete&amp;remove=$orig_word_param&amp;form_token=$form_token" onclick="return confirm('$confirm_delete')" title="$title">
+            <a href="keywordmgr.php?page=delete&amp;remove=$orig_word_param&amp;form_token={$form_token}&amp;timestamp={$timestamp}" onclick="return confirm('$confirm_delete')" title="$title">
                 $delete_icon $orig_word
             </a>
         </td>
@@ -245,7 +245,8 @@ case 'delete':
 
 endtable();
 
-echo '<input type="hidden" name="form_token" value="' . $form_token . '" /></form>';
+echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
+<input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" /></form>";
 
 if ($CONFIG['clickable_keyword_search'] != 0) {
     include('include/keyword.inc.php');

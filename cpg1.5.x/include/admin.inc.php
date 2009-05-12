@@ -164,6 +164,19 @@ $config_data = array(
       'default_value' => '1',
       'help_link'     => 'f=configuration.htm&amp;as=admin_general_display_thumbs_batch_add&amp;ae=admin_general_display_thumbs_batch_add_end',
     ),
+    'form_token_lifetime' => array(
+      'type'            => 'textfield',
+	  'min'             => '0',
+	  'max'             => '999999',
+	  'step'            => '10',
+      'default_value'   => '900',
+      'help_link'       => 'f=configuration.htm&amp;as=admin_general_form_token_lifetime&amp;ae=admin_general_form_token_lifetime_end',
+      'regex'           => '^[0-9]{1,6}$',
+      'size'            => '5',
+      'width'           => '5',
+      'maxlength'       => '6',
+      'end_description' => $lang_admin_php['seconds']
+    ),
   ),
   'language_charset_settings' => array(
     'lang' => array(

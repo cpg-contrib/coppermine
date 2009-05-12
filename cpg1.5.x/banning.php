@@ -642,7 +642,9 @@ print <<< EOT
     </tr>
 EOT;
 endtable();
-print '<input type="hidden" name="form_token" value="' . getFormToken() . '" />';
+list($timestamp, $form_token) = getFormToken();
+print '<input type="hidden" name="form_token" value="' . $form_token . '" />';
+print '<input type="hidden" name="timestamp" value="' . $timestamp . '" />';
 print <<< EOT
 </form>
 <br />

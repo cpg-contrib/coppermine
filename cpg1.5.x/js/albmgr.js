@@ -88,7 +88,9 @@ var Sort = {
             $("#loading").show();
 
             // make ajax call to add the table
-            $.getJSON("delete.php?what=albmgr&cat="+cat+"&op='add'&position="+albumCount+"&name="+addedName+"&form_token="+$("input[name=form_token]").val(), function(data){
+            $.getJSON("delete.php?what=albmgr&cat="+cat+"&op='add'&position="+albumCount+"&name="+addedName
+                    +"&form_token="+$("input[name=form_token]").val()
+                    +"&timestamp="+$("input[name=timestamp]").val(), function(data){
 
                 if(data['message'] == 'true'){
                     //check if we have a table already
@@ -377,7 +379,9 @@ jQuery(document).ready(function() {
         var aid             = albumTrId.match(serializeRegexp)[0];
 
         if(confirm(confirm_delete)) {
-            window.location.href = ("delete.php?what=albmgr&op=delete&deleteAid="+aid+"&cat="+category+"&form_token="+$("input[name=form_token]").val());
+            window.location.href = ("delete.php?what=albmgr&op=delete&deleteAid="+aid+"&cat="+category
+                    +"&form_token="+$("input[name=form_token]").val()
+                    +"&timestamp="+$("input[name=timestamp]").val());
             return true;
         }else{
             return false;

@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-12 [A] Added a timestamp to the generated form_token to increase security, now we can also set the lifetime of a token. {SaWey}
 2009-05-12 [B] Fixed keyword manager delete to use form token {Paver}
 2009-05-11 [B] Fixed admin approval email now sent in admin language for user registrations {SaWey}
 2009-05-11 [B] Fixed not able to create new user from admin panel {SaWey}

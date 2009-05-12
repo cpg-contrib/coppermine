@@ -265,7 +265,9 @@ function display_cat_list()
     $CAT_LIST3 = $CAT_LIST;
 
     $loop_counter = 0;
-    $form_token = '&amp;form_token=' . getFormToken();
+    
+    list($timestamp, $form_token) = getFormToken();
+    $form_token = "&amp;form_token={$form_token}&amp;timestamp={$timestamp}";
     
 
     foreach ($CAT_LIST3 as $key => $category) {
@@ -355,7 +357,7 @@ if ($superCage->get->keyExists('op')) {
 } else {
     $op = '';
 }
-$form_token = getFormToken();
+list($timestamp, $form_token) = getFormToken();
 
 $current_category = array(
     'cid'         => 0,
@@ -665,7 +667,7 @@ function setbuild(obj, cid)
 function updateParent(obj, cid)
 {
     if (obj.options[obj.selectedIndex].value) {
-        window.location.href = 'catmgr.php?op=setparent&cid=' + cid + '&parent=' + obj.options[obj.selectedIndex].value + '&form_token={$form_token}';
+        window.location.href = 'catmgr.php?op=setparent&cid=' + cid + '&parent=' + obj.options[obj.selectedIndex].value + '&form_token={$form_token}&timestamp={$timestamp}';
     }
 }
 </script>
@@ -725,6 +727,7 @@ echo <<<EOT
                         &nbsp;&nbsp;
                         <input type="hidden" name="update_config" value="{$lang_catmgr_php['save_cfg']}" class="button" />
                         <input type="hidden" name="form_token" value="{$form_token}" />
+                        <input type="hidden" name="timestamp" value="{$timestamp}" />
                         
                 </td>
         </tr>
@@ -799,8 +802,8 @@ echo <<<EOT
             <td colspan="2" align="center" class="tablef">
 				<button type="submit" class="button" name="cat_submit" value="{$lang_catmgr_php['update_create']}">{$icon_array['submit']}{$lang_catmgr_php['update_create']}</button>
             	<input type="hidden" name="form_token" value="{$form_token}" />
+            	<input type="hidden" name="timestamp" value="{$timestamp}" />
 			</td>
-			<input type="hidden" name="form_token" value="{$form_token}" />
             </form>
         </tr>
 

@@ -594,7 +594,9 @@ EOT;
 EOT;
     endtable();
     
-    echo '<input type="hidden" name="form_token" value="' . getFormToken() . '" /></form>';
+    list($timestamp, $form_token) = getFormToken();	
+    echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
+    <input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" /></form>";
     
     if ($CONFIG['allow_user_account_delete'] != 0) { // user is allowed to delete his account --- start
 
@@ -652,7 +654,9 @@ EOT;
 </tr>
 EOT;
         endtable();
-        print '<input type="hidden" name="form_token" value="' . getFormToken() . '" /></form>';
+        list($timestamp, $form_token) = getFormToken();	
+        echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
+        <input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" /></form>";
     } // user is allowed to delete his account --- end
     
     pagefooter();
@@ -689,7 +693,9 @@ EOT;
 </tr>
 EOT;
     endtable();
-    echo '<input type="hidden" name="form_token" value="' . getFormToken() . '" /></form>';
+    list($timestamp, $form_token) = getFormToken();	
+    echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
+    <input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" /></form>";
     pagefooter();
 
     break;

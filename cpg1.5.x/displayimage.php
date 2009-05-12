@@ -85,11 +85,11 @@ function html_picture_menu()
         $edit_icon   = cpg_fetch_icon('edit', 1);
         $rotate_icon = cpg_fetch_icon('rotate_ccw', 1); 
         
-       // $form_token = getFormToken();
+        list($timestamp, $form_token) = getFormToken();
         $picmenu = <<< EOT
     <a href="javascript:;" onclick="return MM_openBrWindow('pic_editor.php?id={$CURRENT_PIC_DATA['pid']}','Crop_Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')" class="admin_menu">{$rotate_icon}{$lang_display_image_php['crop_pic']}</a>
     <a href="edit_one_pic.php?id={$CURRENT_PIC_DATA['pid']}&amp;what=picture" class="admin_menu">{$edit_icon}{$lang_display_image_php['edit_pic']}</a>
-    <a href="delete.php?id={$CURRENT_PIC_DATA['pid']}&amp;what=picture&amp;form_token={$form_token}" class="admin_menu" onclick="return confirm('{$lang_display_image_php['confirm_del']}'); return false; ">{$delete_icon}{$lang_display_image_php['del_pic']}</a>
+    <a href="delete.php?id={$CURRENT_PIC_DATA['pid']}&amp;what=picture&amp;form_token={$form_token}&amp;timestamp={$timestamp}" class="admin_menu" onclick="return confirm('{$lang_display_image_php['confirm_del']}'); return false; ">{$delete_icon}{$lang_display_image_php['del_pic']}</a>
 EOT;
 
     } else {
