@@ -3193,17 +3193,18 @@ function theme_html_picture()
         array_push($USER['liv'], $pid);
     }
 
-    if ($CONFIG['thumb_use']=='ht' && $CURRENT_PIC_DATA['pheight'] > $CONFIG['picture_width'] ) { // The wierd comparision is because only picture_width is stored
-      $condition = true;
+    // The weird comparision is because only picture_width is stored
+    if ($CONFIG['thumb_use']=='ht' && $CURRENT_PIC_DATA['pheight'] > $CONFIG['picture_width'] ) { 
+        $condition = true;
     } elseif ($CONFIG['thumb_use']=='wd' && $CURRENT_PIC_DATA['pwidth'] > $CONFIG['picture_width']) {
-      $condition = true;
+        $condition = true;
     } elseif ($CONFIG['thumb_use']=='any' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']) {
-      $condition = true;
+        $condition = true;
         //thumb cropping
     } elseif ($CONFIG['thumb_use']=='ex' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']) {
-      $condition = true;
+        $condition = true;
     } else {
-     $condition = false;
+        $condition = false;
     }
 
     if ($CURRENT_PIC_DATA['title'] != '') {
@@ -3500,7 +3501,7 @@ function theme_html_img_nav_menu() {
         'pic_info_title' => $lang_img_nav_bar['pic_info_title'],
         'slideshow_tgt' => $slideshow_tgt,
         'slideshow_title' => $lang_img_nav_bar['slideshow_title'],
-        'loc' => $location
+        'loc' => $location,
     );
     set_js_var('buttons', $js_buttons);
 
@@ -3893,8 +3894,8 @@ function theme_slideshow($start_img,$title)
     template_extract_block($template_display_media, 'img_desc', $start_slideshow);
 
     /** set styles to slideshow background */
-    $setDimentionW= $CONFIG['picture_width'];
-    $setDimentionH= $CONFIG['picture_width'];
+    $setDimentionW= $CONFIG['picture_width'] + 100;
+    $setDimentionH= $CONFIG['picture_width'] + 10;
 
     if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
         $prefix = $THEME_DIR;
@@ -3903,10 +3904,11 @@ function theme_slideshow($start_img,$title)
     }
 
     $params = array(
-        '{SLIDESHOW_STYLE}' => 'height: '.$setDimentionH.'px;' ,
-        '{IMAGE}' => '<img id="show_image" src="' . $start_img . '" class="image" /><br />',
+        '{SLIDESHOW_STYLE}' => 'width:' .$setDimentionW. 'px; height: '.$setDimentionH.'px; position: relative;' ,
+        '{IMAGE}' => '<img id="showImage" src="' . $start_img . '" class="image" /><br />',
         '{ADMIN_MENU}' => '',
-        );
+        '{LOADER_ICON_PATH}' => $prefix . 'images/loader.gif',
+    );
 
     echo "<a name=\"top_display_media\"/>";
     starttable();
@@ -3919,7 +3921,7 @@ function theme_slideshow($start_img,$title)
         </tr>
         </noscript>
         <tr>
-            <td align="center" style="white-space: nowrap;" class="navmenu">
+            <td align="center" class="navmenu" style="white-space: nowrap;">
                 <div id="title">{$title}</div>
             </td>
         </tr>

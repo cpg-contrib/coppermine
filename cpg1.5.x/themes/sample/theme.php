@@ -35,18 +35,6 @@
 // ------------------------------------------------------------------------- //
 
 
-// ----------------------------------------------------------------------------- //
-// The individual sections are marked accordingly with                       //
-      /***********************************
-      ** Section <<<SECTIONNAME>>> - START
-      ***********************************/
-      // actual code here
-      /***********************************
-      ** Section <<<SECTIONNAME>>> - END
-      ***********************************/
-// ----------------------------------------------------------------------------- //
-
-
 // The following terms can be defined in theme.php
 // ('THEME_HAS_RATING_GRAPHICS', 1) : The location for the ratings graphics will
 //    be directed to the themes images folder.
@@ -70,6 +58,7 @@
 //    The entire block needs to be present like in Coppermine 1.3 themes
 //  ('THEME_HAS_NO_SUB_MENU_BUTTONS', 1) When present the system won't attempt to replace {BUTTONS} in the SUB_MENU template
 //    The entire block needs to be present like in Coppermine 1.3 themes
+
 
 /******************************************************************************
 ** Section <<<assemble_template_buttons>>> - START
@@ -104,6 +93,8 @@ function assemble_template_buttons($template_buttons,$buttons) {
 ******************************************************************************/
 
 
+
+
 /******************************************************************************
 ** Section <<<addbutton>>> - START
 ******************************************************************************/
@@ -117,6 +108,8 @@ function addbutton(&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer,$hre
 ******************************************************************************/
 
 
+
+
 /******************************************************************************
 ** Section <<<$template_sys_menu>>> - START
 ******************************************************************************/
@@ -128,18 +121,23 @@ EOT;
 ** Section <<<$template_sys_menu>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_sub_menu>>> - START
 ******************************************************************************/
 // HTML template for sub_menu
 $template_sub_menu = $template_sys_menu;
 
+
 if (!defined('THEME_HAS_NO_SYS_MENU_BUTTONS')) {
 
   // HTML template for template sys_menu spacer
+
   $template_sys_menu_spacer ="::";
 
   // HTML template for template sys_menu buttons
+
   $template_sys_menu_button = <<<EOT
   <!-- BEGIN {BLOCK_ID} -->
         <a href="{HREF_TGT}" title="{HREF_TITLE}" {HREF_ATTRIBUTES}>{HREF_LNK}</a> {SPACER}
@@ -147,6 +145,7 @@ if (!defined('THEME_HAS_NO_SYS_MENU_BUTTONS')) {
 EOT;
 
   // HTML template for template sys_menu buttons
+
     // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}{HREF_ATTRIBUTES}
     addbutton($sys_menu_buttons,'{HOME_LNK}','{HOME_TITLE}','{HOME_TGT}','home',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{CONTACT_LNK}','{CONTACT_TITLE}','{CONTACT_TGT}','contact',$template_sys_menu_spacer);
@@ -166,6 +165,7 @@ EOT;
     // Login and Logout don't have a spacer as only one is shown, and either would be the last option.
 
 
+
   $sys_menu_buttons = CPGPluginAPI::filter('sys_menu',$sys_menu_buttons);
   $params = array('{BUTTONS}' => assemble_template_buttons($template_sys_menu_button,$sys_menu_buttons));
   $template_sys_menu = template_eval($template_sys_menu,$params);
@@ -180,12 +180,15 @@ EOT;
 if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
 
   // HTML template for template sub_menu spacer
+
   $template_sub_menu_spacer = $template_sys_menu_spacer;
 
   // HTML template for template sub_menu buttons
+
   $template_sub_menu_button = $template_sys_menu_button;
 
   // HTML template for template sub_menu buttons
+
     // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}{HREF_ATTRIBUTES}
     addbutton($sub_menu_buttons,'{CUSTOM_LNK_LNK}','{CUSTOM_LNK_TITLE}','{CUSTOM_LNK_TGT}','custom_link',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{ALB_LIST_LNK}','{ALB_LIST_TITLE}','{ALB_LIST_TGT}','album_list',$template_sub_menu_spacer);
@@ -199,6 +202,7 @@ if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
     }
     addbutton($sub_menu_buttons,'{SEARCH_LNK}','{SEARCH_TITLE}','{SEARCH_TGT}','search','');
 
+
   $sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);
   $params = array('{BUTTONS}' => assemble_template_buttons($template_sub_menu_button,$sub_menu_buttons));
   $template_sub_menu = template_eval($template_sub_menu,$params);
@@ -206,6 +210,7 @@ if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
 /******************************************************************************
 ** Section <<<THEME_HAS_NO_SUB_MENU_BUTTONS>>> - END
 ******************************************************************************/
+
 
 /******************************************************************************
 ** Section <<<$template_gallery_admin_menu>>> - START
@@ -297,6 +302,8 @@ EOT;
 ** Section <<<$template_gallery_admin_menu>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_user_admin_menu>>> - START
 ******************************************************************************/
@@ -318,6 +325,8 @@ EOT;
 /******************************************************************************
 ** Section <<<$template_user_admin_menu>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<$template_cat_list>>> - START
@@ -360,6 +369,8 @@ EOT;
 ** Section <<<$template_cat_list>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_breadcrumb>>> - START
 ******************************************************************************/
@@ -387,6 +398,8 @@ EOT;
 /******************************************************************************
 ** Section <<<$template_breadcrumb>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<$template_album_list>>> - START
@@ -480,6 +493,8 @@ EOT;
 ** Section <<<$template_album_list>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_film_strip>>> - START
 ******************************************************************************/
@@ -518,6 +533,8 @@ EOT;
 /******************************************************************************
 ** Section <<<$template_film_strip>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<$template_album_list_cat>>> - START
@@ -611,6 +628,8 @@ EOT;
 ** Section <<<$template_album_list_cat>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_album_admin_menu>>> - START
 ******************************************************************************/
@@ -635,6 +654,8 @@ EOT;
 ** Section <<<$template_album_admin_menu>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_thumb_view_title_row>>> - START
 ******************************************************************************/
@@ -649,12 +670,27 @@ $template_thumb_view_title_row = <<<EOT
                                     <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
                                 </td>
                         </tr>
+<!-- BEGIN admin_buttons -->
+                        <tr>
+                                <td colspan="3">
+                                        <a href="modifyalb.php?album={ALBUM_ID}" class="admin_menu">{MODIFY}</a>
+                                        &nbsp;&nbsp;-&nbsp;&nbsp;
+                                        <a href="index.php?cat={CAT_ID}" class="admin_menu">{PARENT_CAT}</a>
+                                        &nbsp;&nbsp;-&nbsp;&nbsp;
+                                        <a href="editpics.php?album={ALBUM_ID}" class="admin_menu">{EDIT_PICS}</a>
+                                        &nbsp;&nbsp;-&nbsp;&nbsp;
+                                        <a href="albmgr.php?cat={CAT_ID}" class="admin_menu">{ALBUM_MGR}</a>
+                                </td>
+                        </tr>
+<!-- END admin_buttons -->
                         </table>
 
 EOT;
 /******************************************************************************
 ** Section <<<$template_thumb_view_title_row>>> - END
 ******************************************************************************/
+
+
 
 
 /******************************************************************************
@@ -681,6 +717,8 @@ EOT;
 /******************************************************************************
 ** Section <<<$template_fav_thumb_view_title_row>>> - END
 ******************************************************************************/
+
+
 
 
 /******************************************************************************
@@ -736,6 +774,8 @@ EOT;
 ** Section <<<$template_thumbnail_view>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_no_img_to_display>>> - START
 ******************************************************************************/
@@ -754,6 +794,8 @@ EOT;
 /******************************************************************************
 ** Section <<<$template_no_img_to_display>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<$template_user_list_info_box>>> - START
@@ -777,6 +819,8 @@ EOT;
 /******************************************************************************
 ** Section <<<$template_user_list_info_box>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<$template_img_navbar>>> - START
@@ -814,12 +858,14 @@ EOT;
 ** Section <<<$template_img_navbar>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_display_media>>> - START
 ******************************************************************************/
 // HTML template for intermediate image display
 $template_display_media = <<<EOT
-           <tr>
+        <tr>
                 <td align="center" class="display_media" nowrap="nowrap">
                         <table cellspacing="2" cellpadding="0" >
                                 <tr>
@@ -867,6 +913,8 @@ EOT;
 ** Section <<<$template_display_media>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_image_rating>>> - START
 ******************************************************************************/
@@ -889,6 +937,8 @@ EOT;
 /******************************************************************************
 ** Section <<<$template_image_rating>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<$template_image_comments>>> - START
@@ -1005,6 +1055,8 @@ EOT;
 ** Section <<<$template_image_comments>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_add_your_comment>>> - START
 ******************************************************************************/
@@ -1088,6 +1140,8 @@ EOT;
 ** Section <<<$template_add_your_comment>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_cpg_die>>> - START
 ******************************************************************************/
@@ -1116,6 +1170,8 @@ EOT;
 ** Section <<<$template_cpg_die>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_msg_box>>> - START
 ******************************************************************************/
@@ -1136,6 +1192,8 @@ EOT;
 /******************************************************************************
 ** Section <<<$template_msg_box>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<$template_ecard>>> - START
@@ -1195,6 +1253,8 @@ EOT;
 ******************************************************************************/
 
 
+
+
 /******************************************************************************
 ** Section <<<$template_ecard_plaintext>>> - START
 ******************************************************************************/
@@ -1220,6 +1280,8 @@ EOT;
 /******************************************************************************
 ** Section <<<$template_ecard_plaintext>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<$template_report>>> - START
@@ -1267,6 +1329,8 @@ EOT;
 ** Section <<<$template_report>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_report_plaintext>>> - START
 ******************************************************************************/
@@ -1294,6 +1358,8 @@ EOT;
 /******************************************************************************
 ** Section <<<$template_report_plaintext>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<$template_report_comment>>> - START
@@ -1343,6 +1409,8 @@ EOT;
 ** Section <<<$template_report_comment>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_report_comment_email>>> - START
 ******************************************************************************/
@@ -1372,6 +1440,8 @@ EOT;
 ** Section <<<$template_report_comment_email>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_zipfile_plaintext>>> - START
 ******************************************************************************/
@@ -1390,6 +1460,8 @@ EOT;
 /******************************************************************************
 ** Section <<<template_zipfile_plaintext>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<$template_tab_display>>> - START
@@ -1412,6 +1484,8 @@ $template_tab_display = array(
 ** Section <<<$template_tab_display>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_vanity>>> - START
 ******************************************************************************/
@@ -1427,6 +1501,8 @@ EOT;
 /******************************************************************************
 ** Section <<<$template_vanity>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<pageheader>>> - START
@@ -1464,6 +1540,8 @@ function pageheader($section, $meta = '')
 /******************************************************************************
 ** Section <<<pageheader>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<pageheader_mini>>> - START
@@ -1507,6 +1585,8 @@ EOT;
 ** Section <<<pageheader_mini>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<pagefooter>>> - START
 ******************************************************************************/
@@ -1542,6 +1622,8 @@ function pagefooter()
 ** Section <<<pagefooter>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<pagefooter_mini>>> - START
 ******************************************************************************/
@@ -1557,6 +1639,8 @@ EOT;
 /******************************************************************************
 ** Section <<<pagefooter_mini>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<theme_javascript_head>>> - START
@@ -1586,6 +1670,8 @@ function theme_javascript_head() {
 /******************************************************************************
 ** Section <<<theme_javascript_head>>> - END
 ******************************************************************************/
+
+
 
 
 /******************************************************************************
@@ -1622,6 +1708,8 @@ function theme_cpg_die($msg_code, $msg_text, $msg_string, $css_class = 'cpg_mess
 ******************************************************************************/
 
 
+
+
 /******************************************************************************
 ** Section <<<theme_breadcrumb>>> - START
 ******************************************************************************/
@@ -1647,6 +1735,8 @@ function theme_breadcrumb($breadcrumb_links, $BREADCRUMB_TEXTS, &$breadcrumb, &$
 ******************************************************************************/
 
 
+
+
 /******************************************************************************
 ** Section <<<theme_msg_box>>> - START
 ******************************************************************************/
@@ -1670,6 +1760,8 @@ function theme_msg_box($title, $msg_text, $css_class = 'cpg_message_info', $butt
 /******************************************************************************
 ** Section <<<theme_msg_box>>> - END
 ******************************************************************************/
+
+
 
 
 /******************************************************************************
@@ -1799,6 +1891,8 @@ function theme_create_tabs($items, $curr_page, $total_pages, $template)
 ******************************************************************************/
 
 
+
+
 /******************************************************************************
 ** Section <<<theme_social_bookmark>>> - START
 ******************************************************************************/
@@ -1843,6 +1937,8 @@ function theme_social_bookmark()
 ******************************************************************************/
 
 
+
+
 /******************************************************************************
 ** Section <<<theme_credits>>> - START
 ******************************************************************************/
@@ -1873,6 +1969,8 @@ EOT;
 ** Section <<<theme_credits>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<starttable>>> - START
 ******************************************************************************/
@@ -1902,6 +2000,8 @@ EOT;
 ** Section <<<starttable>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<endtable>>> - START
 ******************************************************************************/
@@ -1916,6 +2016,8 @@ EOT;
 /******************************************************************************
 ** Section <<<endtable>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<theme_main_menu>>> - START
@@ -2106,6 +2208,8 @@ function theme_main_menu($which)
 ** Section <<<theme_main_menu>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<theme_admin_mode_menu>>> - START
 ******************************************************************************/
@@ -2149,7 +2253,7 @@ function theme_admin_mode_menu()
             mysql_free_result($results);
             unset($row);
             if ($help_lang == '') {
-            	$help_lang = 'en';
+                $help_lang = 'en';
             }
 
             // do the docs exist on the webserver?
@@ -2293,6 +2397,8 @@ function theme_admin_mode_menu()
 ** Section <<<theme_admin_mode_menu>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<theme_display_message_block>>> - START
 ******************************************************************************/
@@ -2354,6 +2460,8 @@ EOT;
 /******************************************************************************
 ** Section <<<theme_display_message_block>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<theme_display_cat_list>>> - START
@@ -2421,6 +2529,8 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
 ** Section <<<theme_display_cat_list>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<theme_display_breadcrumb>>> - START
 ******************************************************************************/
@@ -2444,6 +2554,8 @@ function theme_display_breadcrumb($breadcrumb, &$cat_data)
 /******************************************************************************
 ** Section <<<theme_display_breadcrumb>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<theme_display_album_list>>> - START
@@ -2532,6 +2644,8 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
 /******************************************************************************
 ** Section <<<theme_display_album_list>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<theme_display_album_list_cat>>> - START
@@ -2625,13 +2739,15 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
 ** Section <<<theme_display_album_list_cat>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<theme_display_thumbnails>>> - START
 ******************************************************************************/
 function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb', $date='')
 {
     global $CONFIG;
-    global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view,$lang_common, $template_tab_display, $template_thumbnail_view, $lang_album_list, $lang_errors;
+    global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view, $lang_common, $template_tab_display, $template_thumbnail_view, $lang_album_list, $lang_errors;
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -2675,9 +2791,25 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     $cell_width = ceil(100 / $CONFIG['thumbcols']) . '%';
 
     $tabs_html = $display_tabs ? create_tabs($nbThumb, $page, $total_pages, $theme_thumb_tab_tmpl) : '';
+
+    if (!GALLERY_ADMIN_MODE) {
+        template_extract_block($template_thumb_view_title_row, 'admin_buttons');
+    }
     // The sort order options are not available for meta albums
     if ($sort_options) {
-        $param = array('{ALBUM_NAME}' => $album_name);
+        if (GALLERY_ADMIN_MODE) {
+            $param = array(
+                '{ALBUM_ID}'   => $aid,
+                '{CAT_ID}'     => ($cat > 0 ? $cat : $cat),
+                '{MODIFY}'     => cpg_fetch_icon('modifyalb', 1).$lang_common['album_properties'],
+                '{PARENT_CAT}' => cpg_fetch_icon('category', 1).$lang_common['parent_category'],
+                '{EDIT_PICS}'  => cpg_fetch_icon('edit', 1).$lang_common['edit_files'],
+                '{ALBUM_MGR}'  => cpg_fetch_icon('alb_mgr', 1).$lang_common['album_manager'],
+            );
+        } else {
+            $param = array();
+        }
+        $param['{ALBUM_NAME}'] = $album_name;
         $title = template_eval($template_thumb_view_title_row, $param);
     } elseif ($aid == 'favpics' && $CONFIG['enable_zipdownload'] > 0) { //Lots of stuff can be added here later
         $param = array(
@@ -2815,6 +2947,8 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 ** Section <<<theme_display_thumbnails>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<theme_display_film_strip>>> - START
 ******************************************************************************/
@@ -2923,6 +3057,8 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 ** Section <<<theme_display_film_strip>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<theme_no_img_to_display>>> - START
 ******************************************************************************/
@@ -2946,6 +3082,8 @@ function theme_no_img_to_display($album_name)
 /******************************************************************************
 ** Section <<<theme_no_img_to_display>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<theme_display_image>>> - START
@@ -2990,6 +3128,8 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
 ** Section <<<theme_display_image>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<theme_html_picinfo>>> - START
 ******************************************************************************/
@@ -3018,6 +3158,8 @@ function theme_html_picinfo(&$info)
 ** Section <<<theme_html_picinfo>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<theme_html_picture>>> - START
 ******************************************************************************/
@@ -3043,18 +3185,18 @@ function theme_html_picture()
         array_push($USER['liv'], $pid);
     }
 
-    // This weird comparison is because only picture_width is stored
-    if ($CONFIG['thumb_use']=='ht' && $CURRENT_PIC_DATA['pheight'] > $CONFIG['picture_width'] ) {
-      $condition = true;
+    // The weird comparision is because only picture_width is stored
+    if ($CONFIG['thumb_use']=='ht' && $CURRENT_PIC_DATA['pheight'] > $CONFIG['picture_width'] ) { 
+        $condition = true;
     } elseif ($CONFIG['thumb_use']=='wd' && $CURRENT_PIC_DATA['pwidth'] > $CONFIG['picture_width']) {
-      $condition = true;
+        $condition = true;
     } elseif ($CONFIG['thumb_use']=='any' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']) {
-      $condition = true;
+        $condition = true;
         //thumb cropping
     } elseif ($CONFIG['thumb_use']=='ex' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']) {
-      $condition = true;
+        $condition = true;
     } else {
-     $condition = false;
+        $condition = false;
     }
 
     if ($CURRENT_PIC_DATA['title'] != '') {
@@ -3240,6 +3382,8 @@ function theme_html_picture()
 ** Section <<<theme_html_picture>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<theme_html_img_nav_menu>>> - START
 ******************************************************************************/
@@ -3376,6 +3520,8 @@ function theme_html_img_nav_menu() {
 ** Section <<<theme_html_img_nav_menu>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<theme_html_rating_box>>> - START
 ******************************************************************************/
@@ -3440,15 +3586,15 @@ function theme_html_rating_box()
 
         $full_star = '<img style="cursor:pointer" id="' . $pid . '_5" title="5" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['great'] . '" onclick="rate(this)" />';
         $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . "\n";
-    }else{
+    } else {
       //use new rating
-      list($timestamp, $form_token) = getFormToken();
       set_js_var('rating', round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 0));
       set_js_var('picture_id', $pid);
       set_js_var('theme_dir', $location);
       set_js_var('can_vote', $user_can_vote);
       set_js_var('lang_rate_pic', $rate_title);
       set_js_var('stars_amount', $rating_stars_amount);
+      list($timestamp, $form_token) = getFormToken();
       set_js_var('form_token', $form_token);
       set_js_var('timestamp', $timestamp);
     }
@@ -3466,6 +3612,8 @@ function theme_html_rating_box()
 /******************************************************************************
 ** Section <<<theme_html_rating_box>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<theme_html_comments>>> - START
@@ -3604,13 +3752,14 @@ function theme_html_comments($pid)
         if ($row['msg_hdr_ip'] != $row['msg_raw_ip']) {
             $ip .= ' [' . $row['msg_raw_ip'] . ']';
         }
-
+        
+        list($timestamp, $form_token) = getFormToken();
         $params = array('{EDIT}' => &$comment_edit_box,
             '{BUTTONS}' => &$comment_buttons,
             '{IPINFO}' => &$comment_ipinfo,
             '{PENDING_APPROVAL}' => &$pending_approval,
-        	'{FORM_TOKEN}' => $form_token,
-        	'{TIMESTAMP}' => $timestamp,
+            '{FORM_TOKEN}' => $form_token,
+            '{TIMESTAMP}' => $timestamp,
             );
 
         $template = template_eval($template_image_comments, $params);
@@ -3640,7 +3789,7 @@ function theme_html_comments($pid)
             '{REPORT_COMMENT_ICON}' => cpg_fetch_icon('report', 0),
             '{WIDTH}' => $CONFIG['picture_table_width'],
             '{FORM_TOKEN}' => $form_token,
-        	'{TIMESTAMP}' => $timestamp,
+            '{TIMESTAMP}' => $timestamp,
             );
 
         if ($hide_comment != 1) {
@@ -3666,14 +3815,15 @@ function theme_html_comments($pid)
 
         if (($CONFIG['comment_captcha'] == 0) || ($CONFIG['comment_captcha'] == 1 && USER_ID)) {
             template_extract_block($template_add_your_comment, 'comment_captcha');
-        }else{
+        } else {
             $template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);
         }
 
-    if ($CONFIG['show_bbcode_help']) {
-        $captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);
-    }
+        if ($CONFIG['show_bbcode_help']) {
+            $captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);
+        }
 
+        list($timestamp, $form_token) = getFormToken();
         $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
             // Modified Name and comment field
             '{NAME}' => $lang_display_comments['name'],
@@ -3688,8 +3838,8 @@ function theme_html_comments($pid)
             '{SMILIES}' => '',
             '{WIDTH}' => $CONFIG['picture_table_width'],
             '{HELP_ICON}' => $captionLabel,
-        	'{FORM_TOKEN}' => $form_token,
-        	'{TIMESTAMP}' => $timestamp,
+            '{FORM_TOKEN}' => $form_token,
+            '{TIMESTAMP}' => $timestamp,
             );
 
         if ($CONFIG['enable_smilies']) {
@@ -3722,6 +3872,8 @@ function theme_html_comments($pid)
 ** Section <<<theme_html_comments>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<theme_slideshow>>> - START
 ******************************************************************************/
@@ -3748,7 +3900,7 @@ function theme_slideshow($start_img,$title)
         '{IMAGE}' => '<img id="showImage" src="' . $start_img . '" class="image" /><br />',
         '{ADMIN_MENU}' => '',
         '{LOADER_ICON_PATH}' => $prefix . 'images/loader.gif',
-        );
+    );
 
     echo "<a name=\"top_display_media\"/>";
     starttable();
@@ -3771,6 +3923,7 @@ EOT;
     starttable();
     echo template_eval($template_display_media, $params);
     endtable();
+
     starttable();
     echo <<<EOT
         <tr>
@@ -3786,6 +3939,8 @@ EOT;
 /******************************************************************************
 ** Section <<<theme_slideshow>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<theme_display_fullsize_pic>>> - START
@@ -3906,6 +4061,8 @@ function theme_display_fullsize_pic()
 ******************************************************************************/
 
 
+
+
 /******************************************************************************
 ** Section <<<theme_vanity>>> - START
 ******************************************************************************/
@@ -3926,6 +4083,8 @@ function theme_vanity()
 /******************************************************************************
 ** Section <<<theme_vanity>>> - END
 ******************************************************************************/
+
+
 
 /******************************************************************************
 ** Section <<<theme_display_bar>>> - START
@@ -4019,6 +4178,8 @@ function theme_display_bar(
 ** Section <<<theme_display_bar>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<theme_page_title>>> - START
 ******************************************************************************/
@@ -4033,6 +4194,8 @@ function theme_page_title($section) {
 ** Section <<<theme_page_title>>> - END
 ******************************************************************************/
 
+
+
 /******************************************************************************
 ** Section <<<$template_sidebar>>> - START
 ******************************************************************************/
@@ -4046,14 +4209,14 @@ $template_sidebar = <<<EOT
 <script src="js/jquery-1.3.2.js" type="text/javascript"></script>
 <script src="js/jquery.treeview.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-	$(function() {
-	    $("#tree").treeview({
-	        collapsed: true,
-	        unique: true,
-	        animated: "slow",
-	        persist: "location",
-	    });
-	})
+    $(function() {
+        $("#tree").treeview({
+            collapsed: true,
+            unique: true,
+            animated: "slow",
+            persist: "location",
+        });
+    })
 </script>
 <link href="treeview.css" rel="stylesheet" type="text/css" />
 </head>
@@ -4075,5 +4238,5 @@ EOT;
 ** Section <<<$template_sidebar>>> - END
 ******************************************************************************/
 
-?>
 
+?>
