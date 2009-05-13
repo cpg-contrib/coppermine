@@ -48,7 +48,9 @@ var Sort = {
             $("#loading").show();
             
         // make ajax call to update the table
-        $.getJSON("delete.php?what=albmgr&aid="+aid+"&updatedname="+editedName+"&op='update'", function(data){
+        $.getJSON("delete.php?what=albmgr&aid="+aid+"&updatedname="+editedName+"&op='update'"
+                  +"&form_token="+$("input[name=form_token]").val()
+                  +"&timestamp="+$("input[name=timestamp]").val(), function(data){
             if(data['message'] == 'true'){
                 // get the DOM of change album name
                 editedObject = $('#'+albumSelectedTr).find('span.albumName');
