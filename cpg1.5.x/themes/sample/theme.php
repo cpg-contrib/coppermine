@@ -3627,7 +3627,9 @@ function theme_html_comments($pid)
     $superCage = Inspekt::makeSuperCage();
     $template_add_your_comment = CPGPluginAPI::filter('theme_add_comment', $template_add_your_comment);
     $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_image_comments);
-
+    
+    list($timestamp, $form_token) = getFormToken();
+    
     $html = '';
 
 //report to moderator buttons
