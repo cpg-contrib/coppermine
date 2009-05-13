@@ -151,6 +151,11 @@ $lang_common['apply_changes'] = 'Appliquez les changements'; // cpg1.5
 $lang_common['reset'] = 'Réinitialiser'; // cpg1.5
 $lang_common['done'] = 'Fait'; // cpg1.5
 $lang_common['show_password'] = 'Montrer le mot de passe'; // cpg1.5
+$lang_common['album_properties'] = 'Propriétés de l\'Album'; // cpg1.5
+$lang_common['parent_category'] = 'Catégorie parente'; // cpg1.5
+$lang_common['edit_files'] = 'Editer les fichiers'; // cpg1.5
+$lang_common['thumbnail_view'] = 'Vue des Vignettes'; // cpg1.5
+$lang_common['album_manager'] = 'Créer et classer mes Albums'; // cpg1.5
 
 
 // ----------------------- //
@@ -669,7 +674,7 @@ $lang_admin_php['view_logs'] = 'Voir les Logs';
 $lang_admin_php['click_expand'] = 'Cliquer sur un nom de Section pour Afficher';
 $lang_admin_php['click_collapse'] = 'Cliquer sur un nom de Section pour Réduire'; // cpg1.5
 $lang_admin_php['expand_all'] = 'Tout Afficher';
-$lang_admin_php['toggle_all'] = 'Toggle All';
+$lang_admin_php['toggle_all'] = 'Toggle All'; // cpg1.5
 $lang_admin_php['notice1'] = '(*) Cette Configuration ne doit pas être changée si vous avez déjà des fichiers dans votre Base de Données.'; // - (relocated)
 $lang_admin_php['notice2'] = '(**) Si vous changez cette Configuration, seuls les nouveaux fichiers ajoutés seront concernés, il est donc conseillé de ne pas la modifier si vous avez déjà des fichiers. Vous pouvez cependant appliquer les modifications aux fichiers existant à l\'aide des &quot;<a href="util.php">Outils d\'Administration</a> (redimensionner les images)&quot; depuis le Menu d\'Administration.'; //- (relocated)
 $lang_admin_php['notice3'] = '(***) Tous les Logs sont écrits en Anglais.'; // - (relocated)

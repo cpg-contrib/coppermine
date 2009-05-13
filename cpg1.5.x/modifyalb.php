@@ -713,13 +713,13 @@ echo <<< EOT
             &nbsp;&nbsp;-&nbsp;&nbsp;
             <a href="thumbnails.php?album={$CLEAN['album']}" class="admin_menu">{$icon_array['thumbnail']}{$lang_modifyalb_php['thumbnail_view']}</a>
         </td>
-	</tr>
+    </tr>
     <tr>
         <td class="tableh2" colspan="2">
             <strong>{$lang_modifyalb_php['choose_album']}</strong>
         </td>
     </tr>
-	<tr>
+    <tr>
         <td class="tableh2" align="right" colspan="2">
             $album_lb
         </td>
@@ -745,10 +745,10 @@ echo <<< EOT
     </tr>
     <tr>
         <td colspan="2" align="center" class="tablef">
-			<button type="submit" class="button" name="update_album" value="{$lang_modifyalb_php['update']}">{$icon_array['ok']}{$lang_modifyalb_php['update']}</button>
-        	<input type="hidden" name="form_token" value="{$form_token}" />
-        	<input type="hidden" name="timestamp" value="{$timestamp}" />
-		</td>
+            <button type="submit" class="button" name="update_album" value="{$lang_modifyalb_php['update']}">{$icon_array['ok']}{$lang_modifyalb_php['update']}</button>
+            <input type="hidden" name="form_token" value="{$form_token}" />
+            <input type="hidden" name="timestamp" value="{$timestamp}" />
+        </td>
     </tr>
 
 EOT;
@@ -853,15 +853,19 @@ EOT;
     </tr>
     <tr>
             <td class="tablef" colspan="2" align="center" valign="bottom">
-				<button type="submit" class="button" name="reset_submit" value="{$lang_modifyalb_php['submit_reset']}" disabled="disabled" style="cursor:url({$icon_array['stop']}),text;">{$icon_array['ok']}{$lang_modifyalb_php['submit_reset']}</button>
+                <button type="submit" class="button" name="reset_submit" value="{$lang_modifyalb_php['submit_reset']}" disabled="disabled" style="cursor:url({$icon_array['stop']}),text;">{$icon_array['ok']}{$lang_modifyalb_php['submit_reset']}</button>
                 <input name="agreecheck" type="checkbox" onclick="agreesubmit(this)" />{$lang_modifyalb_php['reset_views_confirm']}
             </td>
     </tr>
 
 EOT;
     endtable();
-    echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
-          <input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" /></form>";
+    echo <<< EOT
+        <input type="hidden" name="form_token" value="{$form_token}" />
+        <input type="hidden" name="timestamp" value="{$timestamp}" />
+    </form>
+
+EOT;
 }
 pagefooter();
 

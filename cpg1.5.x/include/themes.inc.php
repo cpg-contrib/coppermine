@@ -678,6 +678,19 @@ $template_thumb_view_title_row = <<<EOT
                                     <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
                                 </td>
                         </tr>
+<!-- BEGIN admin_buttons -->
+                        <tr>
+                                <td colspan="3">
+                                        <a href="modifyalb.php?album={ALBUM_ID}" class="admin_menu">{MODIFY}</a>
+                                        &nbsp;&nbsp;-&nbsp;&nbsp;
+                                        <a href="index.php?cat={CAT_ID}" class="admin_menu">{PARENT_CAT}</a>
+                                        &nbsp;&nbsp;-&nbsp;&nbsp;
+                                        <a href="editpics.php?album={ALBUM_ID}" class="admin_menu">{EDIT_PICS}</a>
+                                        &nbsp;&nbsp;-&nbsp;&nbsp;
+                                        <a href="albmgr.php?cat={CAT_ID}" class="admin_menu">{ALBUM_MGR}</a>
+                                </td>
+                        </tr>
+<!-- END admin_buttons -->
                         </table>
 
 EOT;
@@ -2248,7 +2261,7 @@ function theme_admin_mode_menu()
             mysql_free_result($results);
             unset($row);
             if ($help_lang == '') {
-            	$help_lang = 'en';
+                $help_lang = 'en';
             }
 
             // do the docs exist on the webserver?
@@ -2742,7 +2755,7 @@ if (!function_exists('theme_display_thumbnails')) {  //{THEMES}
 function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb', $date='')
 {
     global $CONFIG;
-    global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view,$lang_common, $template_tab_display, $template_thumbnail_view, $lang_album_list, $lang_errors;
+    global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view, $lang_common, $template_tab_display, $template_thumbnail_view, $lang_album_list, $lang_errors;
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -2786,9 +2799,25 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     $cell_width = ceil(100 / $CONFIG['thumbcols']) . '%';
 
     $tabs_html = $display_tabs ? create_tabs($nbThumb, $page, $total_pages, $theme_thumb_tab_tmpl) : '';
+
+    if (!GALLERY_ADMIN_MODE) {
+        template_extract_block($template_thumb_view_title_row, 'admin_buttons');
+    }
     // The sort order options are not available for meta albums
     if ($sort_options) {
-        $param = array('{ALBUM_NAME}' => $album_name);
+        if (GALLERY_ADMIN_MODE) {
+            $param = array(
+                '{ALBUM_ID}'   => $aid,
+                '{CAT_ID}'     => ($cat > 0 ? $cat : $cat),
+                '{MODIFY}'     => cpg_fetch_icon('modifyalb', 1).$lang_common['album_properties'],
+                '{PARENT_CAT}' => cpg_fetch_icon('category', 1).$lang_common['parent_category'],
+                '{EDIT_PICS}'  => cpg_fetch_icon('edit', 1).$lang_common['edit_files'],
+                '{ALBUM_MGR}'  => cpg_fetch_icon('alb_mgr', 1).$lang_common['album_manager'],
+            );
+        } else {
+            $param = array();
+        }
+        $param['{ALBUM_NAME}'] = $album_name;
         $title = template_eval($template_thumb_view_title_row, $param);
     } elseif ($aid == 'favpics' && $CONFIG['enable_zipdownload'] > 0) { //Lots of stuff can be added here later
         $param = array(
@@ -3564,7 +3593,7 @@ function theme_html_rating_box()
 
         $full_star = '<img style="cursor:pointer" id="' . $pid . '_5" title="5" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['great'] . '" onclick="rate(this)" />';
         $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . "\n";
-    }else{
+    } else {
       //use new rating
       set_js_var('rating', round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 0));
       set_js_var('picture_id', $pid);
@@ -3737,7 +3766,7 @@ function theme_html_comments($pid)
             '{IPINFO}' => &$comment_ipinfo,
             '{PENDING_APPROVAL}' => &$pending_approval,
             '{FORM_TOKEN}' => $form_token,
-        	'{TIMESTAMP}' => $timestamp,
+            '{TIMESTAMP}' => $timestamp,
             );
 
         $template = template_eval($template_image_comments, $params);
@@ -3767,7 +3796,7 @@ function theme_html_comments($pid)
             '{REPORT_COMMENT_ICON}' => cpg_fetch_icon('report', 0),
             '{WIDTH}' => $CONFIG['picture_table_width'],
             '{FORM_TOKEN}' => $form_token,
-        	'{TIMESTAMP}' => $timestamp,
+            '{TIMESTAMP}' => $timestamp,
             );
 
         if ($hide_comment != 1) {
@@ -3793,14 +3822,15 @@ function theme_html_comments($pid)
 
         if (($CONFIG['comment_captcha'] == 0) || ($CONFIG['comment_captcha'] == 1 && USER_ID)) {
             template_extract_block($template_add_your_comment, 'comment_captcha');
-        }else{
+        } else {
             $template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);
         }
 
-    if ($CONFIG['show_bbcode_help']) {
-        $captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);
-    }
+        if ($CONFIG['show_bbcode_help']) {
+            $captionLabel = '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);
+        }
 
+        list($timestamp, $form_token) = getFormToken();
         $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
             // Modified Name and comment field
             '{NAME}' => $lang_display_comments['name'],
@@ -3815,8 +3845,8 @@ function theme_html_comments($pid)
             '{SMILIES}' => '',
             '{WIDTH}' => $CONFIG['picture_table_width'],
             '{HELP_ICON}' => $captionLabel,
-        	'{FORM_TOKEN}' => $form_token,
-        	'{TIMESTAMP}' => $timestamp
+            '{FORM_TOKEN}' => $form_token,
+            '{TIMESTAMP}' => $timestamp,
             );
 
         if ($CONFIG['enable_smilies']) {
@@ -4185,14 +4215,14 @@ $template_sidebar = <<<EOT
 <script src="js/jquery-1.3.2.js" type="text/javascript"></script>
 <script src="js/jquery.treeview.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-	$(function() {
-	    $("#tree").treeview({
-	        collapsed: true,
-	        unique: true,
-	        animated: "slow",
-	        persist: "location",
-	    });
-	})
+    $(function() {
+        $("#tree").treeview({
+            collapsed: true,
+            unique: true,
+            animated: "slow",
+            persist: "location",
+        });
+    })
 </script>
 <link href="treeview.css" rel="stylesheet" type="text/css" />
 </head>

@@ -39,6 +39,9 @@ $icon_array['down'] = cpg_fetch_icon('down', 0, $lang_common['move_down']);
 $icon_array['new'] = cpg_fetch_icon('add', 0, $lang_albmgr_php['new_album']);
 $icon_array['delete'] = cpg_fetch_icon('delete', 0, $lang_albmgr_php['delete_album']);
 $icon_array['edit'] = cpg_fetch_icon('edit', 1);
+$icon_array['modifyalb'] = cpg_fetch_icon('modifyalb', 1, $lang_common['album_properties']);
+$icon_array['edit_files'] = cpg_fetch_icon('edit', 1, $lang_common['edit_files']);
+$icon_array['thumbnail'] = cpg_fetch_icon('thumbnails', 1, $lang_common['thumbnail_view']);
 
 
 /**
@@ -74,18 +77,22 @@ function alb_get_subcat_data($parent, $ident = '')
 }
 
 
-// set the message variables for the javascript file
-$confirm_modifs =  $lang_albmgr_php['confirm_modifs'];
-set_js_var('confirm_modifs', $confirm_modifs);
-// album delete confirmation message
-$confirm_delete  = $lang_albmgr_php['confirm_delete1'] . "\n" . $lang_albmgr_php['confirm_delete2'];
-set_js_var("confirm_delete", $confirm_delete);
-// when user try to delete albums without any selections
-$delete_not_selected = $lang_albmgr_php['select_first'];
-set_js_var('dontDelete', $delete_not_selected);
-// when user changes the category
-$category_change = $lang_albmgr_php['category_change'];
-set_js_var('category_change', $category_change);
+list($timestamp, $form_token) = getFormToken();	
+
+// Set the message variables for the javascript file
+// confirm album modifications
+set_js_var('confirm_modifs', $lang_albmgr_php['confirm_modifs']);  
+// confirm album delete
+set_js_var("confirm_delete", $lang_albmgr_php['confirm_delete1'] . "\n" . $lang_albmgr_php['confirm_delete2']);
+// alert when try to delete album without an album selected
+set_js_var('dontDelete', $lang_albmgr_php['select_first']);
+// confirm category change when there are unsaved changes
+set_js_var('category_change', $lang_albmgr_php['category_change']);
+// confirm page change when there are unsaved changes
+set_js_var('page_change', $lang_albmgr_php['page_change']);
+// form token & timestamp
+set_js_var('form_token', $form_token);
+set_js_var('timestamp', $timestamp);
 
 // get the category value
 if ($superCage->get->keyExists('cat')) {
@@ -109,10 +116,11 @@ set_js_var('category', $cat);
 pageheader($lang_albmgr_php['title']);
     echo <<< EOT
         <form name="album_menu" id="cpg_form_album" method="post" action="delete.php?what=albmgr">
+            <input type="hidden" name="form_token" value="{$form_token}" />
+            <input type="hidden" name="timestamp" value="{$timestamp}" />
+
 EOT;
-    list($timestamp, $form_token) = getFormToken();
-    echo '<input type="hidden" name="form_token" value="' . $form_token . '" />';
-    echo '<input type="hidden" name="timestamp" value="' . $timestamp . '" />';
+
 starttable('100%', cpg_fetch_icon('alb_mgr', 2).$lang_albmgr_php['title'].'&nbsp;'.cpg_display_help('f=albums.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1);
     echo <<< EOT
         <noscript>
@@ -222,8 +230,11 @@ if (GALLERY_ADMIN_MODE || ($cat == USER_ID + FIRST_USER_CAT)) {
     <td style="width: 115px" id="control">
         <a id="up_click" class="click">{$icon_array['up']}</a>
         <a id="down_click" class="click">{$icon_array['down']}</a>
-        <a id="delete_album" class="click" >{$icon_array['delete']}</a>
-        <a id="add_new_album"  class="click" >{$icon_array['new']}</a>
+        <a id="delete_album" class="click">{$icon_array['delete']}</a>
+        <a id="modify_album" class="click">{$icon_array['modifyalb']}</a>
+        <a id="editfiles_album" class="click">{$icon_array['edit_files']}</a>
+        <a id="thumbnail_album" class="click">{$icon_array['thumbnail']}</a>
+        <a id="add_new_album" class="click">{$icon_array['new']}</a>
         <img id="loading" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" />
     </td>
 EOT;
@@ -236,13 +247,13 @@ EOT;
     
         <td id="add-box" style="display: none;">
             <input type="text"   id="add-name" name="add-name" size="27" maxlength="80" class="textinput" value="" onkeypress="return Sort.disableEnterKey(event)" />
-			<button type="submit" id="addEvent" class="button" name="addEvent" value="{$lang_common['ok']}">{$icon_array['ok']}{$lang_common['ok']}</button>
-			<button type="button" class="button add_cancel close" value="{$lang_albmgr_php['cancel']}">{$icon_array['cancel']}{$lang_albmgr_php['cancel']}</button>
+            <button type="submit" id="addEvent" class="button" name="addEvent" value="{$lang_common['ok']}">{$icon_array['ok']}{$lang_common['ok']}</button>
+            <button type="button" class="button add_cancel close" value="{$lang_albmgr_php['cancel']}">{$icon_array['cancel']}{$lang_albmgr_php['cancel']}</button>
         </td>
         <td id="edit-box" style="display: none;">
             <input type="text" id="edit-name" name="edit-name" size="27" maxlength="80" class="textinput" value="" onkeypress="return Sort.disableEnterKey(event)" />
-			<button type="submit" id="updateEvent" class="button" name="updateEvent" value="{$lang_common['ok']}">{$icon_array['ok']}{$lang_common['ok']}</button>
-			<button type="button" class="button album_cancel close" value="{$lang_albmgr_php['cancel']}">{$icon_array['cancel']}{$lang_albmgr_php['cancel']}</button>
+            <button type="submit" id="updateEvent" class="button" name="updateEvent" value="{$lang_common['ok']}">{$icon_array['ok']}{$lang_common['ok']}</button>
+            <button type="button" class="button album_cancel close" value="{$lang_albmgr_php['cancel']}">{$icon_array['cancel']}{$lang_albmgr_php['cancel']}</button>
         </td>
     </tr>
 </table>

@@ -151,7 +151,11 @@ $lang_common['apply_changes'] = 'Apply changes'; // cpg1.5
 $lang_common['reset'] = 'Reset'; // cpg1.5
 $lang_common['done'] = 'Done'; // cpg1.5
 $lang_common['show_password'] = 'Show password'; // cpg1.5
-
+$lang_common['album_properties'] = 'Album properties'; // cpg1.5
+$lang_common['parent_category'] = 'Parent category'; // cpg1.5
+$lang_common['edit_files'] = 'Edit files'; // cpg1.5
+$lang_common['thumbnail_view'] = 'Thumbnail view'; // cpg1.5
+$lang_common['album_manager'] = 'Album Manager'; // cpg1.5
 
 // ------------------------------------------------------------------------- //
 // File theme.php
@@ -447,6 +451,7 @@ $lang_albmgr_php['my_gallery'] = '* My gallery *';
 $lang_albmgr_php['no_category'] = '* No category *';
 $lang_albmgr_php['select_category'] = 'Select category';
 $lang_albmgr_php['category_change'] = 'If you change the category, your changes will be lost!'; // cpg1.5
+$lang_albmgr_php['page_change'] = 'If you follow this link, your changes will be lost!'; // cpg1.5
 $lang_albmgr_php['cancel'] = 'Cancel'; // cpg1.5
 $lang_albmgr_php['submit_reminder'] = 'Sorting changes are not saved until you click &quot;Apply changes&quot;.'; // cpg1.5
 }
@@ -668,7 +673,7 @@ $lang_admin_php['view_logs'] = 'View logs';
 $lang_admin_php['click_expand'] = 'click section name to expand';
 $lang_admin_php['click_collapse'] = 'click section name to collapse'; // cpg1.5
 $lang_admin_php['expand_all'] = 'Expand All';
-$lang_admin_php['toggle_all'] = 'Toggle All';
+$lang_admin_php['toggle_all'] = 'Toggle All'; // cpg1.5
 $lang_admin_php['notice1'] = '(*) These settings mustn\'t be changed if you already have files in your database.';
 $lang_admin_php['notice2'] = '(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.';
 $lang_admin_php['notice3'] = '(***) All log files are written in english.';

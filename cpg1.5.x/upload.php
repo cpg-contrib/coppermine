@@ -228,7 +228,7 @@ function form_alb_list_box($text, $name)
 EOT;
 
     // Get the ancestry of the categories
-    $vQuery = "SELECT cid, parent, name FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE 1";
+    $vQuery = "SELECT cid, parent, name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE 1";
     $vResult = cpg_db_query($vQuery);
     $vRes = cpg_db_fetch_rowset($vResult);
     mysql_free_result($vResult);
@@ -692,9 +692,12 @@ if (!$superCage->post->keyExists('process') && !$superCage->post->keyExists('plu
         close_form($lang_upload_php['title'],1);
         // Close the table, create footers, and flush the output buffer.
         endtable();
-        list($timestamp, $form_token) = getFormToken();	
-        echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
-        <input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" /></form>";
+        list($timestamp, $form_token) = getFormToken(); 
+        echo <<< EOT
+        <input type="hidden" name="form_token" value="{$form_token}" />
+        <input type="hidden" name="timestamp" value="{$timestamp}" />
+    </form>
+EOT;
 
     } elseif ($upload_form == 'swfupload') {
         // Show form instructions

@@ -149,7 +149,11 @@ $lang_common['apply_changes'] = 'Änderungen speichern'; // cpg1.5
 $lang_common['reset'] = 'Zurücksetzen'; // cpg1.5
 $lang_common['done'] = 'Erledigt'; // cpg1.5
 $lang_common['show_password'] = 'Passwort anzeigen'; // cpg1.5
-
+$lang_common['album_properties'] = 'Alben-Eigenschaften'; // cpg1.5
+$lang_common['parent_category'] = 'Eltern-Kategorie'; // cpg1.5
+$lang_common['edit_files'] = 'Dateien bearbeiten'; // cpg1.5
+$lang_common['thumbnail_view'] = 'Thumbnail-Ansicht'; // cpg1.5
+$lang_common['album_manager'] = 'Alben-Verwaltung'; // cpg1.5
 
 
 // ------------------------------------------------------------------------- //
@@ -666,7 +670,7 @@ $lang_admin_php['log_all'] = 'All';
 $lang_admin_php['view_logs'] = 'Historie anzeigen';
 $lang_admin_php['click_expand'] = 'Klicke auf die jeweilige Bezeichnung zum Ausklappen des Abschnitts';
 $lang_admin_php['expand_all'] = 'Alle ausklappen';
-$lang_admin_php['toggle_all'] = 'Alle umschalten';
+$lang_admin_php['toggle_all'] = 'Alle umschalten'; // cpg1.5
 $lang_admin_php['notice1'] = '(*) Diese Einstellungen dürfen nicht mehr verändert werden, wenn bereits Dateien in der Datenbank vorhanden sind.';
 $lang_admin_php['notice2'] = '(**) Bei Änderung dieser Einstellung werden die geänderten Werte nur für Dateien herangezogen, die ab dem Zeitpunkt der Änderung hinzugefügt werden - daher ist es ratsam, hier nichts zu ändern, wenn bereits Bilder in der Galerie vorhanden sind. Die geänderten Einstellungen können jedoch auch auf ältere Dateien angewendet werden durch Verwendung der &quot;<a href="util.php">Admin-Werkzeuge</a> (Thumbnails und/oder Bilder in Zwischengrösse aktualisieren)&quot; aus dem Admin-Menü.';
 $lang_admin_php['notice3'] = '(***) Alle Logs werden in Englisch geschrieben.';

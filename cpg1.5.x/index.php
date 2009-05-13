@@ -137,8 +137,9 @@ EOT;
         $template = template_eval($template_album_moderator_menu, $params);
     }
 
-    $params = array('{ALBUM_ID}' => $id,
-        );
+    $params = array(
+        '{ALBUM_ID}' => $id,
+    );
 
     return template_eval($template, $params);
 }
@@ -167,7 +168,7 @@ function html_albummenu($id)
             '{EDIT_PICS}' => cpg_fetch_icon('edit', 1) . $lang_album_admin_menu['edit_pics'],
             '{FORM_TOKEN}' => $form_token,
         	'{TIMESTAMP}' => $timestamp
-            );
+        );
 
         $template = template_eval($template_album_admin_menu, $params);
     }
