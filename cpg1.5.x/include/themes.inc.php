@@ -3539,8 +3539,8 @@ function theme_html_rating_box()
     global $template_image_rating, $lang_rate_pic;
 
     if (!(USER_CAN_RATE_PICTURES && $CURRENT_ALBUM_DATA['votes'] == 'YES')) {
-    return '';
-  } else {
+      return '';
+    } else {
     //check if the users already voted or if this user is the owner
     $user_md5_id = USER_ID ? md5(USER_ID) : $USER['ID'];
     $result = cpg_db_query("SELECT pic_id FROM {$CONFIG['TABLE_VOTES']} WHERE pic_id={$CURRENT_PIC_DATA['pid']} AND user_md5_id='$user_md5_id'");
@@ -3762,7 +3762,7 @@ function theme_html_comments($pid)
         if ($row['msg_hdr_ip'] != $row['msg_raw_ip']) {
             $ip .= ' [' . $row['msg_raw_ip'] . ']';
         }
-        
+
         $params = array('{EDIT}' => &$comment_edit_box,
             '{BUTTONS}' => &$comment_buttons,
             '{IPINFO}' => &$comment_ipinfo,

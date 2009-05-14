@@ -61,7 +61,7 @@ if ($superCage->get->keyExists('id')) {
 function process_post_data()
 {
     global $CONFIG, $USER_DATA, $lang_errors, $lang_editpics_php, $superCage;
-    
+
     //Check if the form token is valid
     if(!checkFormToken()){
         cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
@@ -69,7 +69,7 @@ function process_post_data()
 
     $pid = $superCage->post->getInt('id');
     $aid = $superCage->post->getInt('aid');
-    $pwight = $superCage->post->getInt('pwidth');
+    $pwidth = $superCage->post->getInt('pwidth');
     $pheight = $superCage->post->getInt('pheight');
     $title = cpgSanitizeUserTextInput($superCage->post->getEscaped('title'));
     $caption = cpgSanitizeUserTextInput($superCage->post->getEscaped('caption'));
@@ -96,7 +96,7 @@ function process_post_data()
 
     if (!USER_ID
         || !(GALLERY_ADMIN_MODE
-                || ($pic['category'] == FIRST_USER_CAT + USER_ID) 
+                || ($pic['category'] == FIRST_USER_CAT + USER_ID)
                 || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID)
             )
        ) {
@@ -154,7 +154,7 @@ function process_post_data()
     }
 
     if ($read_exif) {
-        // If "read exif info again" is checked then just delete the entry from the exif table. 
+        // If "read exif info again" is checked then just delete the entry from the exif table.
         // The new exif information will automatically be read when someone views the image.
         $query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE pid = '$pid'";
         cpg_db_query($query);
@@ -174,7 +174,7 @@ function process_post_data()
     }
 
     if ($post_filename != $pic['filename']) {
-    
+
         if ($CONFIG['thumb_use'] == 'ht' && $pic['pheight'] > $CONFIG['picture_width']) {
             $condition = true;
         } elseif ($CONFIG['thumb_use'] == 'wd' && $pic['pwidth'] > $CONFIG['picture_width']) {
@@ -200,7 +200,7 @@ function process_post_data()
         }
 
         foreach ($prefixes as $prefix) {
-        
+
             $oldname = urldecode(get_pic_url($pic, $prefix));
             $filename = replace_forbidden($post_filename);
             $newname = str_replace($pic['filename'], $filename, $oldname);
@@ -211,19 +211,19 @@ function process_post_data()
             if (($old_mime['mime'] != $new_mime['mime']) && isset($new_mime['mime'])) {
                 cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['mime_conv'], $old_mime['mime'], $new_mime['mime']), __FILE__, __LINE__);
             }
-            
+
             if (!is_known_filetype($newname)) {
                 cpg_die(CRITICAL_ERROR, $lang_editpics_php['forb_ext'], __FILE__, __LINE__);
             }
-            
+
             if (file_exists($newname)) {
                 cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['file_exists'], $newname), __FILE__, __LINE__);
             }
-            
+
             if (!file_exists($oldname)) {
                 cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['src_file_missing'], $oldname), __FILE__, __LINE__);
             }
-            
+
             if (rename($oldname, $newname)) {
                 cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filename = '$filename' WHERE pid = '$pid' LIMIT 1");
             } else {
@@ -481,7 +481,7 @@ if (GALLERY_ADMIN_MODE) {
     $checkNo = ($CURRENT_PIC['approved'] == 'NO') ? 'checked="checked"' : '';
 
     echo <<< EOT
-    
+
     <tr>
         <td class="tableb" style="white-space: nowrap;">
             {$icon_array['file_approval']}{$lang_editpics_php['approval']}
@@ -497,7 +497,7 @@ if (GALLERY_ADMIN_MODE) {
 EOT;
 } elseif ($CURRENT_PIC['approved'] == 'NO') {
     echo <<< EOT
-    
+
     <tr>
         <td class="tableb" style="white-space: nowrap;">
             {$icon_array['file_approval']}{$lang_editpics_php['approval']}
@@ -512,7 +512,7 @@ EOT;
 if ($CONFIG['user_field1_name'] != '') {
 
     echo <<< EOT
-    
+
     <tr>
         <td class="tableb" style="white-space: nowrap;">
             {$CONFIG['user_field1_name']}
@@ -527,7 +527,7 @@ EOT;
 if ($CONFIG['user_field2_name'] != '') {
 
     echo <<< EOT
-    
+
     <tr>
         <td class="tableb" style="white-space: nowrap;">
             {$CONFIG['user_field2_name']}
@@ -542,7 +542,7 @@ EOT;
 if ($CONFIG['user_field3_name'] != '') {
 
     echo <<< EOT
-    
+
     <tr>
         <td class="tableb" style="white-space: nowrap;">
             {$CONFIG['user_field3_name']}
@@ -557,7 +557,7 @@ EOT;
 if ($CONFIG['user_field4_name'] != '') {
 
     echo <<< EOT
-    
+
     <tr>
         <td class="tableb" style="white-space: nowrap;">
             {$CONFIG['user_field4_name']}
