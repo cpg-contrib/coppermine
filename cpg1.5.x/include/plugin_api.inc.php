@@ -478,7 +478,7 @@ class CPGPluginAPI {
      **/
 
     function uninstall($plugin_id) {
-        global $CONFIG,$USER_DATA,$CPG_PLUGINS,$thisplugin,$lang_plugin_api;
+        global $CONFIG,$USER_DATA,$CPG_PLUGINS,$thisplugin,$lang_plugin_api,$name;
 
         if (!isset($CPG_PLUGINS[$plugin_id])) {
             return true;
@@ -506,7 +506,7 @@ class CPGPluginAPI {
             unset($CPG_PLUGINS[$plugin_id]);
 
             if ($CONFIG['log_mode']) {
-                log_write("Plugin '".$name."' uninstalled at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+                log_write("Plugin '".$thisplugin->name."' uninstalled at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
             }
 
             return true;
