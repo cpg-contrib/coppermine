@@ -31,7 +31,10 @@ if (!defined('IN_COPPERMINE')) {
 
    // start a PHP session - this class uses sessions to store the generated
    // code. Comment out if you are calling already from your application
-   session_id($superCage->cookie->getAlnum('PHPSESSID'));
+    if ($superCage->cookie->keyExists('PHPSESSID')) {
+        session_id($superCage->cookie->getAlnum('PHPSESSID'));
+    }
+   
    session_start();
 
    class PhpCaptcha {

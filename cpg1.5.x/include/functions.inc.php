@@ -3312,8 +3312,10 @@ EOT;
     if ($superCage->cookie->keyExists('PHPSESSID')) {
         echo "SESSION :";
         echo $debug_underline;
-        session_id($superCage->cookie->getAlnum('PHPSESSID'));
-        session_start();
+        if(!isset($_SESSION)){
+            session_id($superCage->cookie->getAlnum('PHPSESSID'));
+            session_start();
+        }
         print_r($_SESSION);
         echo $debug_separate;
     }
