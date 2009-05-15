@@ -635,6 +635,7 @@ function create_form(&$data)
 
 function get_user_albums($user_id = '')
 {
+    //TODO: This function has to be overhauledg
     global $CONFIG, $user_albums_list, $albStr, $icon_array;
 
     static $USER_ALBUMS_ARRAY = array(0 => array());
@@ -645,7 +646,7 @@ function get_user_albums($user_id = '')
         $or = '';
     }
 
-    if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
+    if (!isset($USER_ALBUMS_ARRAY[$user_id])) {
 
         if (MODERATOR_MODE && UPLOAD_APPROVAL_MODE || MODERATOR_EDIT_MODE) {
 
@@ -662,12 +663,14 @@ function get_user_albums($user_id = '')
         } else {
 
             // Only list the albums owned by the user
-            $cat = USER_ID + FIRST_USER_CAT;
-            $user_id = USER_ID;
+            //$cat = USER_ID + FIRST_USER_CAT;
+            $cat = $user_id + FIRST_USER_CAT;
+            //$user_id = USER_ID;
 
             // Get albums in "my albums"
             $result1 = cpg_db_query("SELECT aid , title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat");
             $rowset1 = cpg_db_fetch_rowset($result1);
+
             mysql_free_result($result1);
 
             if (!GALLERY_ADMIN_MODE) {
@@ -685,7 +688,7 @@ function get_user_albums($user_id = '')
             $user_albums_list = array_merge($rowset1, $rowset2);
         }
 
-        $USER_ALBUMS_ARRAY[USER_ID] = $user_albums_list;
+        $USER_ALBUMS_ARRAY[$user_id] = $user_albums_list;
 
     } else {
         $user_albums_list = &$USER_ALBUMS_ARRAY[USER_ID];
