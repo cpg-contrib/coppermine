@@ -240,7 +240,17 @@ if (GALLERY_ADMIN_MODE || ($cat == USER_ID + FIRST_USER_CAT)) {
 EOT;
 
 } else {
-    echo '<td></td>';
+    //we still need to show buttons to add/edit albums
+    echo <<< EOT
+    <td style="width: 115px" id="control">
+        <a id="delete_album" class="click">{$icon_array['delete']}</a>
+        <a id="modify_album" class="click">{$icon_array['modifyalb']}</a>
+        <a id="editfiles_album" class="click">{$icon_array['edit_files']}</a>
+        <a id="thumbnail_album" class="click">{$icon_array['thumbnail']}</a>
+        <a id="add_new_album" class="click">{$icon_array['new']}</a>
+        <img id="loading" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" />
+    </td>
+EOT;
 }
 
     echo <<< EOT

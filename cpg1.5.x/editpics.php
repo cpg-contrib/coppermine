@@ -20,7 +20,7 @@
 define('IN_COPPERMINE', true);
 define('EDITPICS_PHP', true);
 
-require('include/init.inc.php');
+require 'include/init.inc.php';
 
 js_include('js/jquery.elastic.js');
 js_include('js/editpics.js');
@@ -60,7 +60,7 @@ if ($superCage->get->keyExists('album')) {
     $album_id = 0;
 }
 
-if (isset($USER_DATA['allowed_albums']) && is_array($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums'])) {
+if (isset($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums']) > 0) {
 
     define('MODERATOR_MODE', 1);
     $albStr = implode(',', $USER_DATA['allowed_albums']);
@@ -99,8 +99,7 @@ if (EDIT_PICTURES_MODE) {
     mysql_free_result($result);
     $cat = $ALBUM_DATA['category'];
     $actual_cat = $cat;
-    if ((!user_is_allowed() && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE)
-            || (!$CONFIG['users_can_edit_pics'] && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE)) {
+    if ((!user_is_allowed() && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE)) {
         cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
     }
 } else {
@@ -635,22 +634,18 @@ function create_form(&$data)
 
 function get_user_albums($user_id = '')
 {
-    //TODO: This function has to be overhauledg
     global $CONFIG, $user_albums_list, $albStr, $icon_array;
 
     static $USER_ALBUMS_ARRAY = array(0 => array());
-
-    if ($user_id != '') {
-        $or = " OR category='" . (FIRST_USER_CAT + $user_id) . "'";
-    } else {
-        $or = '';
-    }
 
     if (!isset($USER_ALBUMS_ARRAY[$user_id])) {
 
         if (MODERATOR_MODE && UPLOAD_APPROVAL_MODE || MODERATOR_EDIT_MODE) {
 
-            $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid IN $albStr AND category > '".FIRST_USER_CAT."' OR category='".(FIRST_USER_CAT + USER_ID)."' ORDER BY title");
+            $user_albums = cpg_db_query("SELECT aid, title 
+                                             FROM {$CONFIG['TABLE_ALBUMS']} 
+                                             WHERE aid IN $albStr AND category > '".FIRST_USER_CAT."' OR category='".(FIRST_USER_CAT + USER_ID)."' 
+                                             ORDER BY title");
 
             if (mysql_num_rows($user_albums)) {
                 $user_albums_list = cpg_db_fetch_rowset($user_albums);
@@ -676,7 +671,11 @@ function get_user_albums($user_id = '')
             if (!GALLERY_ADMIN_MODE) {
 
                 // Get public albums
-                $result2 = cpg_db_query("SELECT alb.aid AS aid, CONCAT_WS('', '(', cat.name, ') ', alb.title) AS title FROM {$CONFIG['TABLE_ALBUMS']} AS alb INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS cat ON alb.owner = '$user_id' AND alb.category = cat.cid ORDER BY alb.category DESC, alb.pos ASC");
+                $result2 = cpg_db_query("SELECT alb.aid AS aid, CONCAT_WS('', '(', cat.name, ') ', alb.title) AS title 
+                                             FROM {$CONFIG['TABLE_ALBUMS']} AS alb 
+                                                 INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS cat 
+                                                 ON alb.owner = '$user_id' AND alb.category = cat.cid 
+                                             ORDER BY alb.category DESC, alb.pos ASC");
                 $rowset2 = cpg_db_fetch_rowset($result2);
                 mysql_free_result($result2);
 
@@ -691,40 +690,46 @@ function get_user_albums($user_id = '')
         $USER_ALBUMS_ARRAY[$user_id] = $user_albums_list;
 
     } else {
-        $user_albums_list = &$USER_ALBUMS_ARRAY[USER_ID];
+        $user_albums_list = &$USER_ALBUMS_ARRAY[$user_id];
     }
 } // function get_user_albums
 
 
 if (GALLERY_ADMIN_MODE) {
-
-    $public_albums = cpg_db_query("SELECT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < '" . FIRST_USER_CAT . "' ORDER BY cat_title");
-
+    $public_albums = cpg_db_query("SELECT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title ".
+                                       "FROM {$CONFIG['TABLE_ALBUMS']} ".
+                                           "LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ".
+                                           "ON cid = category ".
+                                       "WHERE category < '" . FIRST_USER_CAT . "' ".
+                                       "ORDER BY cat_title");
     if (mysql_num_rows($public_albums)) {
         $public_albums_list = cpg_db_fetch_rowset($public_albums);
     } else {
         $public_albums_list = array();
     }
-
     mysql_free_result($public_albums);
-
+    
 } elseif (MODERATOR_MODE) {
-
-    $public_albums = cpg_db_query("SELECT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE aid IN $albStr AND category < '" . FIRST_USER_CAT . "' ORDER BY cat_title");
-
+    $public_albums = cpg_db_query("SELECT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title ".
+                                       "FROM {$CONFIG['TABLE_ALBUMS']} ".
+                                           "LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ".
+                                           "ON cid = category ".
+                                       "WHERE aid IN $albStr AND category < '" . FIRST_USER_CAT . "' ". 
+                                       "ORDER BY cat_title");
     if (mysql_num_rows($public_albums)) {
         $public_albums_list = cpg_db_fetch_rowset($public_albums);
     } else {
         $public_albums_list = array();
     }
-
     mysql_free_result($public_albums);
-
+    
 } else {
-    $public_albums_list = array();
+     $public_albums_list = array();
 }
 
+//below function gets albums available for this user in $user_albums_list
 get_user_albums(USER_ID);
+
 
 if ($superCage->post->keyExists('go')) {
     process_post_data();
@@ -932,7 +937,7 @@ while ($CURRENT_PIC = mysql_fetch_assoc($result)) {
     if (GALLERY_ADMIN_MODE && $CURRENT_PIC['owner_id'] != USER_ID) {
         get_user_albums($CURRENT_PIC['owner_id']);
     } else {
-        get_user_albums();
+        get_user_albums(USER_ID);
     }
     
     // wrap the actual block into another table
