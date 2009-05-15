@@ -3815,7 +3815,7 @@ function theme_html_comments($pid)
             }
         }
 
-        if (($CONFIG['comment_captcha'] == 0) || ($CONFIG['comment_captcha'] == 1 && USER_ID)) {
+        if (($CONFIG['comment_captcha'] == 0) || ($CONFIG['comment_captcha'] == 2 && USER_ID)) {
             template_extract_block($template_add_your_comment, 'comment_captcha');
         } else {
             $template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);

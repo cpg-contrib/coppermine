@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-15 [B] Fixed CAPTCHA not enabled according to config {SaWey}
 2009-05-15 [B] Fixed users not able to edit pics and wrong albums being shown in editpics {SaWey}
 2009-05-12 [O] Added admin buttons for album management to album manager and thumbnail view {Paver}
 2009-05-12 [A] Added a timestamp to the generated form_token to increase security, now we can also set the lifetime of a token. {SaWey}
