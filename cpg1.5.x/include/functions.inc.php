@@ -5695,4 +5695,52 @@ function checkFormToken()
     return false;
 }
 
+/**
+ * array_slice with preserve_keys for every php version
+ * (see: http://www.php.net/manual/en/function.array-slice.php#70913)
+ * 
+ *
+ * @param array $array Input array
+ * @param int $offset Start offset
+ * @param int $length Length
+ * @param bool $preserve_keys
+ * @return array
+ */
+function array_slice_preserve_keys($array, $offset, $length = null, $preserve_keys = false)
+{
+    // PHP >= 5.0.2 is able to do this itself
+    if((int)str_replace('.', '', phpversion()) >= 502){
+        return(array_slice($array, $offset, $length, $preserve_keys));
+    }
+    
+    if(!$preserve_keys){
+        return(array_slice($array, $offset, $length));
+    }else{
+        // prepare input variables
+        $result = array();
+        $i = 0;
+        if($offset < 0){
+            $offset = count($array) + $offset;
+        }
+        if($length > 0){
+            $endOffset = $offset + $length;
+        }else if($length < 0){
+            $endOffset = count($array) + $length;
+        }else{
+            $endOffset = count($array);
+        }
+        
+        // collect elements
+        foreach($array as $key=>$value){
+            if($i >= $offset && $i < $endOffset){
+                 $result[$key] = $value;
+            }
+            $i++;
+        }
+        // return
+        return($result);
+    }
+}
+
+
 ?>

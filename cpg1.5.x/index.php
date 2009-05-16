@@ -337,7 +337,7 @@ function get_subcat_data(&$cat_data, &$album_set_array)
 
     $result = cpg_db_query($sql);
 
-    while ($row = mysql_fetch_assoc($result)) {
+    while ( ($row = mysql_fetch_assoc($result)) ) {
 
         if ($row['cid'] == 1) {
         
@@ -375,7 +375,7 @@ function get_subcat_data(&$cat_data, &$album_set_array)
 
     $result = cpg_db_query($sql);
 
-    while ($row = mysql_fetch_assoc($result)) {
+    while ( ($row = mysql_fetch_assoc($result)) ) {
         $categories[$row['category']]['details']['alb_count'] = $row['num'];
     }
 
@@ -396,7 +396,7 @@ function get_subcat_data(&$cat_data, &$album_set_array)
      
     $result = cpg_db_query($sql);
 
-    while ($row = mysql_fetch_assoc($result)) {
+    while ( ($row = mysql_fetch_assoc($result)) ) {
 
         $categories[$row['category']]['subalbums'][$row['aid']] = array(
             'aid'         => $row['aid'],
@@ -426,7 +426,7 @@ function get_subcat_data(&$cat_data, &$album_set_array)
 
     $result = cpg_db_query($sql);
 
-    while ($row = mysql_fetch_assoc($result)) {
+    while ( ($row = mysql_fetch_assoc($result)) ) {
         $categories[$row['cid']]['subalbums'][$row['aid']]['pic_count']   = $row['pic_count'];
         $categories[$row['cid']]['subalbums'][$row['aid']]['last_pid']    = $row['last_pid'];
         $categories[$row['cid']]['subalbums'][$row['aid']]['last_upload'] = $row['last_upload'];
@@ -453,7 +453,7 @@ function get_subcat_data(&$cat_data, &$album_set_array)
         } // if
 
         if (!empty($cat['subalbums'])) {
-            $cat['subalbums'] = array_slice($cat['subalbums'], 0, $CONFIG['albums_per_page'], true);
+            $cat['subalbums'] = array_slice_preserve_keys($cat['subalbums'], 0, $CONFIG['albums_per_page'], true);
         }
 
         $cat['details']['description'] = preg_replace("/<br.*?>[\r\n]*/i", '<br />' . str_repeat($ident, $level-1), bb_decode($cat['details']['description']));
@@ -531,10 +531,10 @@ function get_subcat_data(&$cat_data, &$album_set_array)
  **/
 function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
 {
-    global $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $BREADCRUMB_TEXT, $STATS_IN_ALB_LIST, $FORBIDDEN_SET;
+    global $CONFIG, $ALBUM_SET, $BREADCRUMB_TEXT, $STATS_IN_ALB_LIST, $FORBIDDEN_SET;
     global $HIDE_USER_CAT, $cpg_show_private_album;
     global $cat;
-    global $lang_list_categories, $lang_errors;
+    global $lang_list_categories;
     // Build the breadcrumb
     breadcrumb($cat, $breadcrumb, $BREADCRUMB_TEXT);
     // Build the category list
@@ -558,7 +558,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
         $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '$cat'" . $album_filter;
         $result = cpg_db_query($sql);
     } 
-    while ($row = mysql_fetch_assoc($result)) {
+    while ( ($row = mysql_fetch_assoc($result)) ) {
         $album_set_array[] = $row['aid'];
     } // while
     mysql_free_result($result);
@@ -634,9 +634,10 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
 */
 function list_users()
 {
-    global $CONFIG, $PAGE, $FORBIDDEN_SET;
-    global $lang_list_users, $lang_errors, $template_user_list_info_box, $cpg_show_private_album, $cpg_udb;
+    global $CONFIG, $PAGE;
+    global $lang_list_users, $template_user_list_info_box, $cpg_udb;
 
+    $user_count = 0;
     $rowset = $cpg_udb->list_users_query($user_count);
 
     if (!$rowset) {
@@ -709,20 +710,23 @@ function list_users()
 */
 function list_albums()
 {
-    global $CONFIG, $USER, $USER_DATA, $PAGE, $lang_date, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA;
+    global $CONFIG, $USER_DATA, $PAGE, $lang_date, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA;
     global $cat;
-    global $lang_list_albums, $lang_errors, $cpg_show_private_album;
+    global $lang_list_albums, $cpg_show_private_album;
 
     $alb_per_page = $CONFIG['albums_per_page'];
-    $maxTab = $CONFIG['max_tabs'];
+    //unused code {SaWey}
+    /*$maxTab = $CONFIG['max_tabs'];
 
     $album_filter = '';
     $pic_filter = '';
     $pic_subquery = '';
+	*/
 
     if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
         $album_filter = ' ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
-        $pic_filter = ' ' . $FORBIDDEN_SET;
+        //unused code {SaWey}
+        //$pic_filter = ' ' . $FORBIDDEN_SET;
     }
 
     if (USER_ADMIN_MODE && $cat == (USER_ID + FIRST_USER_CAT)) {
@@ -821,7 +825,8 @@ function list_albums()
             $alb_hits = 0;
         }
         // Inserts a thumbnail if the album contains 1 or more images
-        $visibility = $alb_thumb['visibility'];
+        //unused code {SaWey}
+        //$visibility = $alb_thumb['visibility'];
         $keyword = ($alb_thumb['keyword'] ? "OR (keywords like '%".addslashes($alb_thumb['keyword'])."%' $forbidden_set_string )" : '');
         if (!in_array($aid, $FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) {
             if ($count > 0 || !empty($alb_stats[$alb_idx]['link_pic_count'])) {
@@ -959,14 +964,14 @@ function album_adm_menu($aid, $cat)
 /**
 * list_cat_albums()
 *
-* This has been added to list the albums in a category, used for showing first level albumslargely a repetition of code elsewhere
+* This has been added to list the albums in a category, used for showing first level albums, largely a repetition of code elsewhere
 * Redone for a cleaner approach
 * @param integer $cat Category id for which albums are needed
 */
 function list_cat_albums($cat, $catdata)
 {
-    global $CONFIG, $USER, $lang_date, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA, $cpg_show_private_album;
-    global $lang_list_albums, $lang_errors;
+    global $CONFIG, $lang_date, $FORBIDDEN_SET_DATA;
+    global $lang_list_albums;
 
     $PAGE = 1;
 
@@ -979,7 +984,9 @@ function list_cat_albums($cat, $catdata)
     $cpg_privatepic_data = cpg_get_system_thumb('private.jpg', $cat_owner_id);
 
     $alb_per_page = $CONFIG['albums_per_page'];
-    $maxTab = $CONFIG['max_tabs'];
+    
+    //unused code {SaWey}
+	/*$maxTab = $CONFIG['max_tabs'];
 
     $album_filter = '';
     $pic_filter = '';
@@ -987,7 +994,7 @@ function list_cat_albums($cat, $catdata)
     if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
         $album_filter = ' and ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
         $pic_filter = ' and ' . $FORBIDDEN_SET;
-    }
+    }*/
 
     $nbAlb = $catdata['details']['alb_count'];
 
@@ -1019,7 +1026,8 @@ function list_cat_albums($cat, $catdata)
         }
 
         // Inserts a thumbnail if the album contains 1 or more images
-        $visibility = $album['visibility'];
+        //unused code {SaWey}
+        //$visibility = $album['visibility'];
         if (!in_array($aid, $FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) { //test for visibility
             if ($album['pic_count'] > 0  || !empty($album['link_pic_count'])) { 
                 // Inserts a thumbnail if the album contains 1 or more images
