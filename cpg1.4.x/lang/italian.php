@@ -24,10 +24,10 @@ $lang_translation_info = array(
   'lang_name_english' => 'Italian', //cpg1.4
   'lang_name_native' => 'Italiano', //cpg1.4
   'lang_country_code' => 'it', //cpg1.4
-  'trans_name'=> 'Ganesh',
-  'trans_email' => 'gq@gospel.bo.it',
-  'trans_website' => 'http://www.gospel.bo.it/',
-  'trans_date' => '2005-12-02',
+  'trans_name'=> array('Ganesh','Ludo'),
+  'trans_email' => array('gq@gospel.bo.it', 'glrocca@tin.it'),
+  'trans_website' => array('http://www.gospel.bo.it/', 'http://vanrokken.altervista.org/'),
+  'trans_date' => '2009-05-05',
 );
 
 $lang_charset = 'utf-8';
@@ -51,16 +51,16 @@ $lang_check_uncheck_all = 'seleziona/deseleziona tutto'; //cpg1.4
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
-$album_date_fmt =    '%B %d, %Y';
-$lastcom_date_fmt =  '%m/%d/%y at %H:%M';
-$lastup_date_fmt = '%B %d, %Y';
-$register_date_fmt = '%B %d, %Y';
-$lasthit_date_fmt = '%B %d, %Y at %I:%M %p';
-$comment_date_fmt =  '%B %d, %Y at %I:%M %p';
-$log_date_fmt = '%B %d, %Y at %I:%M %p'; //cpg1.4
+$album_date_fmt =  '%d %B %Y';
+$lastcom_date_fmt =  '%d/%m/%y, %H.%M';
+$lastup_date_fmt = '%d %B %Y';
+$register_date_fmt = '%d %B %Y';
+$lasthit_date_fmt = '%d %B %Y, %H.%M';
+$comment_date_fmt =  '%d %B %Y, %H.%M';
+$log_date_fmt = '%d %B %Y, %H.%M'; //cpg1.4
 
 // For the word censor
-$lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
+$lang_bad_words = array('*cazz*', 'figa', '*culo*', 'puttan*', 'sborra*', 'stronz*', 'bastard*', 'troia*', 'minchia*');
 
 $lang_meta_album_names = array(
   'random' => 'Immagini a caso',
@@ -143,7 +143,7 @@ $lang_main_menu = array(
   'fav_lnk' => 'Preferiti',
   'memberlist_title' => 'Mostra Lista Utenti',
   'memberlist_lnk' => 'Lista Utenti',
-  'faq_title' => 'Frequently Asked Questions sulla galleria di immagini &quot;Coppermine&quot;',
+  'faq_title' => 'Domande frequenti sulla galleria di immagini &quot;Coppermine&quot;',
   'faq_lnk' => 'FAQ',
 );
 
@@ -276,7 +276,7 @@ $lang_display_thumbnails = array(
 
 $lang_get_pic_data = array(
   'n_comments' => '%s commenti',
-  'n_views' => '%s viste',
+  'n_views' => '%s visite',
   'n_votes' => '(%s voti)',
 );
 
@@ -289,12 +289,12 @@ $lang_cpg_debug_output = array(
 );
 
 $lang_language_selection = array(
-  'reset_language' => 'Lingua di Default',
-  'choose_language' => 'Seleziona Linguaggio',
+  'reset_language' => 'Lingua predefinita',
+  'choose_language' => 'Seleziona lingua',
 );
 
 $lang_theme_selection = array(
-  'reset_theme' => 'Tema di Default',
+  'reset_theme' => 'Tema predefinito',
   'choose_theme' => 'Seleziona un Tema',
 );
 
@@ -675,7 +675,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Numero di righe nella pagina miniature', 'thumbrows', 0, 'f=index.htm&amp;as=admin_thumbnail_rows&amp;ae=admin_thumbnail_rows_end'), //cpg1.4
   array('Numero massimo di tabs da mostrare', 'max_tabs', 10, 'f=index.htm&amp;as=admin_thumbnail_tabs&amp;ae=admin_thumbnail_tabs_end'), //cpg1.4
   array('Mostra descrizione file (oltre al titolo) sotto la miniatura', 'caption_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_caption&amp;ae=admin_thumbnail_display_caption_end'), //cpg1.4
-  array('Mostra numero di viste sotto la miniatura', 'views_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_views&amp;ae=admin_thumbnail_display_views_end'), //cpg1.4
+  array('Mostra numero di visite sotto la miniatura', 'views_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_views&amp;ae=admin_thumbnail_display_views_end'), //cpg1.4
   array('Mostra numero di commenti sotto la miniatura', 'display_comment_count', 1, 'f=index.htm&amp;as=admin_thumbnail_display_comments&amp;ae=admin_thumbnail_display_comments_end'), //cpg1.4
   array('Mostra nome utente sotto la miniatura', 'display_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_uploader&amp;ae=admin_thumbnail_display_uploader_end'), //cpg1.4
   //array('Display name of admin uploaders below the thumbnail', 'display_admin_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end'), //cpg1.4
@@ -781,7 +781,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Modo di Logging <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&amp;as=admin_logging_log_mode&amp;ae=admin_logging_log_mode_end'), //cpg1.4
   array('Log ecards', 'log_ecards', 1, 'f=index.htm&amp;as=admin_general_log_ecards&amp;ae=admin_general_log_ecards_end'), //cpg1.4
   array('Mantieni statistiche dettagliate per i voti','vote_details',1, 'f=index.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end'), //cpg1.4
-  array('Mantieni statistiche dettagliate per le viste','hit_details',1, 'f=index.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end'), //cpg1.4
+  array('Mantieni statistiche dettagliate per le visite','hit_details',1, 'f=index.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end'), //cpg1.4
 
   'Impostazioni Manutenzione', //cpg1.4
   array('Abilita debug mode', 'debug_mode', 9, 'f=index.htm&amp;as=debug_mode&amp;ae=debug_mode_end'), //cpg1.4
@@ -930,12 +930,12 @@ $lang_display_image_php = array(
   'del_pic' => 'CANCELLA FILE',
   'size' => '%s x %s pixels',
   'views' => '%s volte',
-  'slideshow' => 'Slideshow',
-  'stop_slideshow' => 'STOP SLIDESHOW',
-  'view_fs' => 'Clicca per l\'immagine full size',
+  'slideshow' => 'Presentazione',
+  'stop_slideshow' => 'FERMA PRESENTAZIONE',
+  'view_fs' => 'Clicca per l\'immagine a grandezza piena',
   'edit_pic' => 'Modifica informazioni file', //cpg1.4
   'crop_pic' => 'Ritaglia e Ruota',
-  'set_player' => 'Cambia Player',
+  'set_player' => 'Cambia riproduttore',
 );
 
 $lang_picinfo = array(
@@ -1120,14 +1120,14 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'new_keyword' => 'Nuove keyword', //cpg1.4
   'new_keywords' => 'Nuove keywords trovate', //cpg1.4
   'existing_keyword' => 'Keywords esistenti', //cpg1.4
-  'pic_info_str' => '%s &times; %s - %s KB - %s viste - %s voti',
+  'pic_info_str' => '%s &times; %s - %s KB - %s visite - %s voti',
   'approve' => 'Approva file',
   'postpone_app' => 'Posticipa approvazione',
   'del_pic' => 'Cancella file',
   'del_all' => 'Cancella TUTTI i files', //cpg1.4
   'read_exif' => 'Rileggi informazioni EXIF',
-  'reset_view_count' => 'Azzera contatore viste',
-  'reset_all_view_count' => 'Azzera TUTTI i contatori viste', //cpg1.4
+  'reset_view_count' => 'Azzera contatore visite',
+  'reset_all_view_count' => 'Azzera TUTTI i contatori visite', //cpg1.4
   'reset_votes' => 'Azzera voti',
   'reset_all_votes' => 'Azzera TUTTI i voti', //cpg1.4
   'del_comm' => 'Cancella commenti',
@@ -1138,7 +1138,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'see_prev' => 'Visualizza files precedenti',
   'n_pic' => '%s files',
   'n_of_pic_to_disp' => 'Numero di files da visualizzare',
-  'apply' => 'Applica Modifice',
+  'apply' => 'Applica modifiche',
   'crop_title' => 'Coppermine Picture Editor',
   'preview' => 'Anteprima',
   'save' => 'Salva immagine',
@@ -1265,7 +1265,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-  'welcome' => 'Benvenuto !',
+  'welcome' => 'Benvenuto!',
 );
 
 $lang_album_admin_menu = array(
@@ -1382,17 +1382,17 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'err_no_alb_to_modify' => 'Non puoi modificare nessun album nel database.',
   'update' => 'Aggiorna album',
   'reset_album' => 'Resetta album', //cpg1.4
-  'reset_views' => 'Resetta contatore viste a &quot;0&quot; in %s', //cpg1.4
+  'reset_views' => 'Imposta contatore visite a &quot;0&quot; in %s', //cpg1.4
   'reset_rating' => 'Resetta voti su tutti i files in %s', //cpg1.4
   'delete_comments' => 'Cancella tutti i commenti postati in %s', //cpg1.4
   'delete_files' => 'Cancella %sIrreversibilmente%s tutti i files in %s', //cpg1.4
-  'views' => 'viste', //cpg1.4
+  'views' => 'visite', //cpg1.4
   'votes' => 'voti', //cpg1.4
   'comments' => 'commenti', //cpg1.4
   'files' => 'files', //cpg1.4
-  'submit_reset' => 'Applica Modifice', //cpg1.4
+  'submit_reset' => 'Applica modifiche', //cpg1.4
   'reset_views_confirm' => 'Sono sicuro', //cpg1.4
-  'notice1' => '(*) dipende dalle impostazioi dei %sgroups%s',  //cpg1.4 //(do not translate %s!)
+  'notice1' => '(*) dipende dalle impostazioni dei %sgruppi%s',  //cpg1.4 //(do not translate %s!)
   'alb_password' => 'Album password', //cpg1.4
   'alb_password_hint' => 'Suggerimento per Album password', //cpg1.4
   'edit_files' =>'Modifica files', //cpg1.4
@@ -1898,7 +1898,7 @@ $lang_util_desc_php = array(
 'Cancella le immagini originali o intermedie per liberare spazio web', //cpg1.4
 'Cancella commenti orfani', //cpg1.4
 'Rileggi le dimensioni dei files (se le hai modificate manualmente)', //cpg1.4
-'Resetta contatore viste', //cpg1.4
+'Azzera contatore visite', //cpg1.4
 'Mostra phpinfo', //cpg1.4
 'Aggiorna il database', //cpg1.4
 'Mostra files di log', //cpg1.4
@@ -1957,8 +1957,8 @@ $lang_util_php = array(
   'delete_orphans_explanation' => 'Questo identificherà e ti consentirà di cancellare ogni commento non più esistente nella Galleria.<br />Controlla tutti gli albums.', //cpg1.4
   'refresh_db' => 'Aggiorna dimensioni e informazioni del file', //cpg1.4
   'refresh_db_explanation' => 'Questo aggiornerà le dimensioni del file, sia come peso che di spazio occupato. Utilizza questo strumento se le quote disco risultano non corrette o se hai cambiato manualmente i files.', //cpg1.4
-  'reset_views' => 'Resetta contatore viste', //cpg1.4
-  'reset_views_explanation' => 'Imposta a zero tutte le viste nell\'album specificato.', //cpg1.4
+  'reset_views' => 'Azzera contatore visite', //cpg1.4
+  'reset_views_explanation' => 'Imposta a zero tutte le visite nell\'album specificato.', //cpg1.4
   'orphan_comment' => 'commenti orfani trovati',
   'delete' => 'Cancella',
   'delete_all' => 'Cancella tutto',
