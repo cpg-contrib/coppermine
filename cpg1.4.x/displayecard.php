@@ -28,15 +28,6 @@ if (!isset($_GET['data'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing']
 $data = array();
 $data = @unserialize(@base64_decode($_GET['data']));
 
-// attempt to obtain full link from db if ecard logging enabled and min 12 chars of data is provided and only 1 match
-if ((!is_array($data)) && $CONFIG['log_ecards'] && (strlen($_GET['data']) > 12)) {
-        $result = cpg_db_query("SELECT link FROM {$CONFIG['TABLE_ECARDS']} WHERE link LIKE '{$_GET['data']}%'");
-        if (mysql_num_rows($result) === 1) {
-                $row = mysql_fetch_assoc($result);
-                $data = @unserialize(@base64_decode($row['link']));
-        }
-}
-
 if (is_array($data)) {
 
 // Remove HTML tags as we can't trust what we receive

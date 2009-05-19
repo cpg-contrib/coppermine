@@ -189,7 +189,7 @@ switch ($event) {
         $uploads = $_POST['uploads'] == 'YES' ? 'YES' : 'NO';
         $comments = $_POST['comments'] == 'YES' ? 'YES' : 'NO';
         $votes = $_POST['votes'] == 'YES' ? 'YES' : 'NO';
-        $password = $_POST['alb_password'];
+        $password = addslashes($_POST['alb_password']);
                 $password_hint = addslashes(trim($_POST['alb_password_hint']));
         $visibility = !empty($password) ? FIRST_USER_CAT + USER_ID : $visibility;
 

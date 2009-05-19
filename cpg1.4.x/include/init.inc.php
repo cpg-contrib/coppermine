@@ -47,6 +47,12 @@ if (ini_get('register_globals') == '1' || strtolower(ini_get('register_globals')
     $register_globals_flag = false;
 }
 
+if (is_array($GLOBALS)) {
+        foreach ($GLOBALS as $key => $value) {
+                if (!in_array($key, $keysToSkip) && isset($$key) && $register_globals_flag) unset($$key);
+        }
+}
+
 if (get_magic_quotes_gpc()) {
         if (is_array($_POST)) {
                 foreach ($_POST as $key => $value) {
