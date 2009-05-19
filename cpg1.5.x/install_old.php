@@ -190,7 +190,7 @@ function html_header()
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Pragma" content="no-cache" />
 <title>Coppermine - Installation</title>
-<link type="text/css" rel="stylesheet" href="installer.css">
+<link rel="stylesheet" href="css/installer.css" type="text/css" />
 </head>
 <body>
  <div align="center">

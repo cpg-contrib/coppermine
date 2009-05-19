@@ -521,7 +521,8 @@ function html_header()
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Pragma" content="no-cache" />
-<title>Coppermine - {$language['installation']}</title><link type="text/css" rel="stylesheet" href="installer.css">
+<title>Coppermine - {$language['installation']}</title>
+<link rel="stylesheet" href="css/installer.css" type="text/css" />
 </head>
 <body>
  <div align="center">

@@ -254,7 +254,7 @@ function html_header($title, $charset = 'iso8859-1')
     <title>{$title}</title>
     <meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
     <meta http-equiv="Pragma" content="no-cache" />
-    <link type="text/css" rel="stylesheet" href="installer.css">
+    <link rel="stylesheet" href="css/installer.css" type="text/css" />
 </head>
 <body>
 <img class="logo" src="images/coppermine-logo.png" border="0" alt="" />

@@ -179,7 +179,8 @@ echo <<< EOT
     <head>
         <title>{$lang_common['help']}</title>
         $meta_charset
-        <link href="themes/{$CONFIG['theme']}/style.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="css/coppermine.css" type="text/css" />
+        <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" type="text/css" />
     </head>
     <body class="tableb">
         <div style="padding: 5px;">

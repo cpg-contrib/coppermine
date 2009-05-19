@@ -11,9 +11,9 @@
   ********************************************
   Coppermine version: 1.5.1
   $Source$
-  $Revision$
-  $LastChangedBy$
-  $Date$
+  $Revision: 5800 $
+  $LastChangedBy: gaugau $
+  $Date: 2009-04-01 07:38:31 +0200 (Mi, 01 Apr 2009) $
 **********************************************/
 
 body {
@@ -58,7 +58,7 @@ hr {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 100%;
 	border: 1px solid #005D8C;
-	background-image : url(images/button_bg.gif);
+	background-image : url(../images/button_bg.gif);
 	background-position : bottom;
 }
 a {
@@ -197,15 +197,15 @@ fieldset form {
 	color: #FFFFFF;
 }
 .stepper_c {
-	background:url(images/install/current.gif);
+	background:url(../images/install/current.gif);
 	background-repeat:no-repeat;
 }
 .stepper_n {
-	background:url(images/install/notyet.gif);
+	background:url(../images/install/notyet.gif);
 	background-repeat:no-repeat;
 }
 .stepper_d, .stepper_do {
-	background:url(images/install/done.gif);
+	background:url(../images/install/done.gif);
 	background-repeat:no-repeat;
 	cursor:pointer;
 }
@@ -226,25 +226,25 @@ fieldset form {
 .cpg_message_info {
     color: #00529B;
     background-color: #BDE5F8;
-    background-image: url('images/message/info.png');
+    background-image: url('../images/message/info.png');
 }
 .cpg_message_success {
     color: #4F8A10;
     background-color: #DFF2BF;
-    background-image: url('images/message/ok.png');
+    background-image: url('../images/message/ok.png');
 }
 .cpg_message_warning {
     color: #9F6000;
     background-color: #FEEFB3;
-    background-image: url('images/message/warning.png');
+    background-image: url('../images/message/warning.png');
 }
 .cpg_message_error {
     color: #D8000C;
     background-color: #FFBABA;
-    background-image: url('images/message/stop.png');
+    background-image: url('../images/message/stop.png');
 }
 .cpg_message_validation {
     color: #D63301;
     background-color: #FFCCBA;
-    background-image: url('images/message/error.png');
+    background-image: url('../images/message/error.png');
 }

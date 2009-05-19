@@ -291,7 +291,8 @@ $json_script = "<script type=\"text/javascript\">var js_vars = eval('($json_vars
     <?php if (!$imgObj->imgRes) print "visibility:hidden;\n";?>
     }
     </style>
-    <link rel="stylesheet" type="text/css" href="themes/<?php echo $CONFIG['theme'];?>/style.css" />
+    <link rel="stylesheet" href="css/coppermine.css" type="text/css" />
+    <link rel="stylesheet" href="themes/<?php echo $CONFIG['theme'];?>/style.css" type="text/css" />
 </head>
 
 <body>

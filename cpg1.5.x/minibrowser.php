@@ -138,7 +138,8 @@ echo <<< EOT
 <head>
 <title>{$title}</title>
 <meta http-equiv="content-type" content="text/html; charset={$charset}" />
-<link rel="stylesheet" href="{$THEME_DIR}style.css" />
+<link rel="stylesheet" href="css/coppermine.css" type="text/css" />
+<link rel="stylesheet" href="{$THEME_DIR}style.css" type="text/css" />
 <script type="text/javascript" src="js/minibrowser.js"></script>
 
 <script type="text/javascript">

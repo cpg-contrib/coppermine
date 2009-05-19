@@ -484,11 +484,9 @@ if ($superCage->post->keyExists('submit')) {
                 cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = $post_user_id");
                 $nb_com_del = mysql_affected_rows();
 
-                if ($nb_com_del == 1) {
+                if ($nb_com_del != 0 && $post_user_name != '') {
                     $action_output .= '<li style="list-style-image:url(images/icons/ok.png)">' . sprintf($lang_banning_php['comment_deleted'], $nb_com_del, $post_user_name) . '.</li>';
-                } else {
-                    $action_output .= '<li style="list-style-image:url(images/icons/ok.png)">' . sprintf($lang_banning_php['comments_deleted'], $nb_com_del, $post_user_name) . '.</li>';
-                }
+                } 
             } //no need for an "else" - we don't delete a comment if else, i.e. if "none" has been selected
         }
         // Form fields for a new database record have been submit - let's create a new record --- end
@@ -552,7 +550,7 @@ if ($superCage->get->keyExists('delete_comment_id') && $superCage->get->getInt('
     }
 }
 
-pageheader($lang_banning_php['title'], '<link rel="stylesheet" href="js/datePicker.css" type="text/css" />');
+pageheader($lang_banning_php['title'], '<link rel="stylesheet" href="css/date_picker.css" type="text/css" />');
 
 if ($CONFIG['bridge_enable'] != 0) {
     starttable('100%', cpg_fetch_icon('warning', 2) . $lang_common['information'] . $help_array['bridge'], 1);

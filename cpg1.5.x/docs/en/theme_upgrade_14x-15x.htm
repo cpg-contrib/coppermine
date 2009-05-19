@@ -50,24 +50,6 @@
 
 <a name="theme_convert_style"></a><h2>Edit style.css<a href="#theme_convert_style" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>For all changes below, edit themes/your_custom_theme/style.css</p>
-<a name="theme_convert_style_form-padding"></a><h3>Form-padding<a href="#theme_convert_style_form-padding" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>By default, &lt;form&gt;-tags have a padding in most browsers that differs and is hard to control. This is of course silly, as it adds unnecessary whitespace, so let's fix it:</p>
-<p>Find:</p>
-<pre class="smallcode">.textinput {</pre>
-<p>Add before it (in a new line):</p>
-<pre class="smallcode">form {
-        margin-top:0px;
-        margin-bottom:0px;
-}
-</pre>
-
-<a name="theme_convert_style_inline"></a><h3>New class &laquo;inline&raquo;<a href="#theme_convert_style_inline" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Find:</p>
-<pre class="smallcode">.textinput {</pre>
-<p>Add before it (in a new line):</p>
-<pre class="smallcode">.inline {
-        display:inline;
-}</pre>
 
 <a name="theme_convert_style_pseudo"></a><h3>Define pseudo-classes :link, :visited, :focus, :active<a href="#theme_convert_style_pseudo" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Before applying this fix, make sure that your stylesheet doesn't contain definitions for the pseudo-classes already. If it doesn't contain those classes</p>
@@ -259,85 +241,20 @@ a:active .image{
     background-image: url('../../images/message/error.png');
 }</pre>
 
-<a name="theme_convert_style_greybox"></a><h3>Add the &laquo;greybox&raquo;-classes to your stylesheet<a href="#theme_convert_style_greybox" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>In cpg1.5.x, the jquery plugin Greybox Redux is used to display the help-popups embedeed into the page. You need to add the corresponding CSS classes into your stylesheet.</p>
-<p>Find:</p>
-<pre class="smallcode">.detail_body {
-}</pre>
-<p>and add after it (into a new line):</p>
-<pre class="smallcode">/* Greybox used for help pop-ups */
-#GB_overlay {
-  background-image: url(../../images/overlay.png); 
-  position: absolute;
-  margin: auto;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  width:  100%;
-  height: 100%;
-}
-
-* html #GB_overlay {
-  background-color: #000000;
-  background-color: transparent;
-  background-image: url(../../images/spacer.gif);
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/overlay.png", sizingMethod="scale");
-}
-
-#GB_window {
-  top: 10px;
-  left: 0px;
-  position: absolute;
+<a name="theme_convert_style_greybox"></a><h3>Add the &laquo;greybox&raquo;-class to your stylesheet<a href="#theme_convert_style_greybox" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>In cpg1.5.x, the jquery plugin Greybox Redux is used to display the help-popups embedeed into the page. You need to add the corresponding CSS color definition into your stylesheet.</p>
+<p>Add at the end of your stylesheet (into a new line):</p>
+<pre class="smallcode">#GB_window {
   background-color: #FFFFFF;
   border: 5px solid #AAAAAA;
-  overflow: auto;
-  width: 600px;
-  height: 400px;
-  z-index: 150;
-}
-
-#GB_frame {
-  border: 0;
-  overflow: auto;
-  width: 100%;
-  height: 378px;
-}
-
-#GB_window img {
-  position: absolute;
-  top: 2px;
-  right: 5px;
-  cursor: pointer;
-  cursor: hand;
 }</pre>
 
 <p>In the definition for <tt class="code">#GB_window</tt>, change the background attribute to match your theme's background color. Change the border attribute to match your theme's border color.<br />
 If you're not sure what the background color of your theme is or what border color to use, take a look at your theme's color definitions for the class <tt class="code">maintable</tt>.</p>
+<p>The other styles of the greybox are being defined in <tt class="code">css/coppermine.css</tt>. The definitions in that file should be left alone - don't edit that file unless you really know what you're doing.</p>
 
-<a name="theme_convert_style_spinbutton"></a><h3>Add the classes &laquo;spin-button&raquo;<a href="#theme_convert_style_spinbutton" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Find:</p>
-<pre class="smallcode">.detail_body {
-}</pre>
-<p>and add after it (into a new line):</p>
-<pre class="smallcode">input.spin-button {
-	padding-right:20px;
-	background-repeat:no-repeat;
-	background-position:100% 0%;
-	background-image:url(../../images/spinbtn_updn.gif);
-}
-
-input.spin-button.up {
-	cursor:pointer;
-	background-position:100% -18px;
-}
-
-input.spin-button.down {
-	cursor:pointer;
-	background-position:100% -36px;
-}</pre>
-
-<a name="theme_convert_style_vanity"></a><h3>Adopt the changed path for the vanity icons<a href="#theme_convert_style_vanity" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The path for the <a href="theme_template.htm#theme_template_vanity">vanity icons</a> has changed from the images folder to a sub-folder named &quot;<tt class="code">vanity</tt>&quot;.</p>
+<a name="theme_convert_style_vanity"></a><h3>Remove the vanity styles<a href="#theme_convert_style_vanity" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>The styles for the <a href="theme_template.htm#theme_template_vanity">vanity icons</a> has been moved into the overall CSS file (located at <tt class="code">css/coppermine.css</tt>).</p>
 <p>Find</p>
 <pre class="smallcode">#v_php {float:left;background-image:url(../../images/powered-php.gif);}
 #v_php:hover {background-image:url(../../images/h_powered-php.gif);}
@@ -347,16 +264,7 @@ input.spin-button.down {
 #v_xhtml:hover {background-image:url(../../images/h_valid-xhtml10.gif);}
 #v_css {float:right;background-image:url(../../images/valid-css.gif);}
 #v_css:hover{background-image:url(../../images/h_valid-css.gif);}</pre>
-<p>and replace with</p>
-<pre class="smallcode">#v_php {float:left;background-image:url(../../images/vanity/powered-php.gif);}
-#v_php:hover {background-image:url(../../images/vanity/h_powered-php.gif);}
-#v_mysql {float:left;background-image:url(../../images/vanity/powered-mysql.gif);}
-#v_mysql:hover  {background-image:url(../../images/vanity/h_powered-mysql.gif);}
-#v_xhtml {float:right;background-image:url(../../images/vanity/valid-xhtml10.gif);}
-#v_xhtml:hover {background-image:url(../../images/vanity/h_valid-xhtml10.gif);}
-#v_css {float:right;background-image:url(../../images/vanity/valid-css.gif);}
-#v_css:hover{background-image:url(../../images/vanity/h_valid-css.gif);}</pre>
-<p>If you don't use the vanity icons at all, you can savely ignore the changes.</p>
+<p>and delete from your custom stylesheet.</p>
 <a name="theme_convert_style_end"></a>
 
 <a name="theme_convert_style_comment_button"></a><h3>Remove the class &laquo;comment_button&raquo;<a href="#theme_convert_style_comment_button" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -380,6 +288,13 @@ input.spin-button.down {
 <p>and replace with:</p>
 <pre class="smallcode">{JAVASCRIPT}</pre>
 <p>Failing to apply this change to your custom theme will make your theme work no longer (see <a href="theme_template.htm#theme_template_javascript">details</a> on the <tt class="code">{JAVASCRIPT}</tt>-placeholder-token).</p>
+
+<a name="theme_convert_template_global_css"></a><h3>Add the call for the global stylesheet<a href="#theme_convert_template_global_css" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>To reduce the weight of an individual style sheet, the global CSS definitions that are the same for all Coppermine themes have been moved from <tt class="code">themes/yourtheme/style.css</tt> into a global CSS file located at <tt class="code">css/coppermine.css</tt>. The new stylesheet <tt class="code">css/coppermine.css</tt> should not be edited at all. To upgrade your custom theme designed for cpg1.4.x for the new cpg1.5.x, you need to add the call to the new stylesheet to your theme's template.html:</p>
+<p>Find:</p>
+<pre class="smallcode">&lt;link rel="stylesheet" href="themes/YOUR_THEME/style.css" type="text/css"&gt;</pre>
+<p>and add before it into a new line:</p>
+<pre class="smallcode">&lt;link rel="stylesheet" href="css/coppermine.css" type="text/css" /&gt;</pre>
 
 <a name="theme_convert_template_message_block"></a><h3>Add {MESSAGE_BLOCK} token<a href="#theme_convert_template_message_block" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Insert</p>

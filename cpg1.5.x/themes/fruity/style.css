@@ -101,15 +101,6 @@ li {
     list-style-type: disc;
 }
 
-form {
-    margin-top:0px;
-    margin-bottom:0px;
-}
-
-.inline {
-    display:inline;
-}
-
 .textinput {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -681,26 +672,6 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
     text-align:center;
 }
 
-#vanity {
-    margin-top: 10px;
-}
-
-#vanity a {
-    display:block;
-    width:57px;
-    height:20px;
-    margin: 3px 20px;
-}
-#vanity img {border:0}
-#v_php {float:left;background-image:url(../../images/vanity/powered-php.gif);}
-#v_php:hover {background-image:url(../../images/vanity/h_powered-php.gif);}
-#v_mysql {float:left;background-image:url(../../images/vanity/powered-mysql.gif);}
-#v_mysql:hover  {background-image:url(../../images/vanity/h_powered-mysql.gif);}
-#v_xhtml {float:right;background-image:url(../../images/vanity/valid-xhtml10.gif);}
-#v_xhtml:hover {background-image:url(../../images/vanity/h_valid-xhtml10.gif);}
-#v_css {float:right;background-image:url(../../images/vanity/valid-css.gif);}
-#v_css:hover{background-image:url(../../images/vanity/h_valid-css.gif);}
-
 .important {
     /* background-image : url(images/important.gif); */
     color: red;
@@ -719,64 +690,6 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 
 .filmstrip_background {
 	background-color:#000000;
-}
-
-/* jQuery Bookmark styles */
-.bookmark_list {
-	display: block;
-	list-style-type: none;
-	margin: 0px;
-	padding: 0px;
-}
-@media screen and (-webkit-min-device-pixel-ratio:0) {  /* Safari3/Opera9 */
-	.bookmark_list {
-		font-size: 100%;
-	}
-}
-html:first-child .bookmark_list {  /* Opera */
-	/*font-size: 80%;*/
-}
-.bookmark_list li {
-	float: left;
-	width: 23%;
-	margin: 0% 0.5%;
-	padding: 2px;
-	background-color: #eee;
-	border: 1px outset;
-	list-style-type: none;
-}
-.bookmark_compact {
-	background-color: #eee;
-	border: 1px outset;
-}
-.bookmark_compact li {
-	width: 16px;
-	height: 16px;
-	margin: 0%;
-	background-color: transparent;
-	border: none;
-}
-.bookmark_list a {
-	width: 100%;
-}
-.bookmark_list span {
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-}
-.bookmark_list img {
-	border: none;
-	vertical-align: bottom;
-}
-@media screen and (-webkit-min-device-pixel-ratio:0) {  /* Safari3/Opera9 */
-	.bookmark_list img {
-		margin-bottom: 3px;
-		vertical-align: middle;
-	}
-}
-html:first-child .bookmark_list img { /* Opera */
-	margin-bottom: 3px;
-	vertical-align: middle;
 }
 
 #bookmarkIt { /* This is the container that wraps the entire social bookmarks button */
@@ -798,21 +711,6 @@ html:first-child .bookmark_list img { /* Opera */
     white-space:nowrap;
     width:120px;
 } 
-#popupClose { 
-	display: none; 
-	vertical-align: top; 
-} 
-#popupBookmark { 
-	display: none; 
-	position: absolute; 
-	z-index: 100; 
-} 
-#popupBookmark ul { 
-	float: left; 
-	width: 180px; 
-    border: 1px solid #E7F38C; 
-    background-color: #6BBE10; 
-}
 
 /** Swfupload css **/
 div.fieldset {
@@ -1092,84 +990,7 @@ table.album_save td {
     background-image: url('../../images/message/error.png');
 }
 
-.detail_head_collapsed, .detail_head_expanded {
-	cursor: pointer;
-	position: relative;
-	padding: 5px 10px;
-	background-repeat:no-repeat;
-	background-position:center left;
-}
-
-.detail_head_collapsed {
-	background-image:url('../../images/tree/plus.gif');
-}
-
-.detail_head_expanded {
-	background-image:url('../../images/tree/minus.gif');
-}
-
-.detail_body {
-}
-
-input.spin-button {
-	padding-right:20px;
-	background-repeat:no-repeat;
-	background-position:100% 0%;
-	background-image:url(../../images/spinbtn_updn.gif);
-}
-
-input.spin-button.up {
-	cursor:pointer;
-	background-position:100% -18px;
-}
-
-input.spin-button.down {
-	cursor:pointer;
-	background-position:100% -36px;
-}
-
-/* Greybox used for help pop-ups */
-#GB_overlay {
-  background-image: url(../../images/overlay.png); 
-  position: absolute;
-  margin: auto;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  width:  100%;
-  height: 100%;
-}
-
-* html #GB_overlay {
-  background-color: #000000;
-  background-color: transparent;
-  background-image: url(../../images/spacer.gif);
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/overlay.png", sizingMethod="scale");
-}
-
 #GB_window {
-  top: 10px;
-  left: 0px;
-  position: absolute;
   background-color: #F7F37B;
   border: 5px solid #6BBE10;
-  overflow: auto;
-  width: 600px;
-  height: 400px;
-  z-index: 150;
-}
-
-#GB_frame {
-  border: 0;
-  overflow: auto;
-  width: 100%;
-  height: 378px;
-}
-
-#GB_window img {
-  position: absolute;
-  top: 2px;
-  right: 5px;
-  cursor: pointer;
-  cursor: hand;
 }

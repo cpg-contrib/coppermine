@@ -1573,6 +1573,7 @@ function pageheader_mini($section, $javascript=false)
         <meta http-equiv="Content-Type" content="text/html; charset=$charset" />
         <meta http-equiv="Pragma" content="no-cache" />
         <title>$section</title>
+        <link rel="stylesheet" href="css/coppermine.css" type="text/css" />
         <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" type="text/css" />
         <link rel="shortcut icon" href="favicon.ico" />
         $js
@@ -4220,7 +4221,8 @@ $template_sidebar = <<<EOT
         });
     })
 </script>
-<link href="treeview.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/coppermine.css" type="text/css" />
+<link rel="stylesheet" href="css/treeview.css" type="text/css" />
 </head>
 <body>
 {SIDEBAR_CONTENT}

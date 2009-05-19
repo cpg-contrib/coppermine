@@ -235,14 +235,6 @@
     <hash>4879be394a6d504286da188934b06a38</hash>
   </element>
   <element>
-    <fullpath>installer.css</fullpath>
-    <version>1.5.1</version>
-    <revision>5800</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>b95fe065f098288744c9c90fa1580238</hash>
-  </element>
-  <element>
     <fullpath>keyword_create_dict.php</fullpath>
     <version>1.5.1</version>
     <revision>5695</revision>
@@ -678,6 +670,43 @@
     <status>optional</status>
     <permission>read</permission>
     <hash>49a86ae80128a711d42dcb2ee47d67af</hash>
+  </element>
+  <element>
+    <fullpath>css/</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+  </element>
+  <element>
+    <fullpath>css/coppermine.css</fullpath>
+    <version>1.5.1</version>
+    <revision>5800</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>b95fe065f098288744c9c90fa1580238</hash>
+  </element>
+  <element>
+    <fullpath>css/date_picker.css</fullpath>
+    <version>1.5.1</version>
+    <revision>5800</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>b95fe065f098288744c9c90fa1580238</hash>
+  </element>
+  <element>
+    <fullpath>css/installer.css</fullpath>
+    <version>1.5.1</version>
+    <revision>5800</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>b95fe065f098288744c9c90fa1580238</hash>
+  </element>
+  <element>
+    <fullpath>css/treeview.css</fullpath>
+    <version>1.5.1</version>
+    <revision>5800</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>b95fe065f098288744c9c90fa1580238</hash>
   </element>
   <element>
     <fullpath>docs/</fullpath>
@@ -6855,14 +6884,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>8171384171d951bb0bc828c77f3eadc3</hash>
-  </element>
-  <element>
-    <fullpath>js/datePicker.css</fullpath>
-    <version>1.5.1</version>
-    <revision>5865</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>8231f6007132afa7374ccd6e9bddb870</hash>
   </element>
   <element>
     <fullpath>js/db_ecard.js</fullpath>

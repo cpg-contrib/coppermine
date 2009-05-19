@@ -91,7 +91,8 @@ if ($action == 'banning' || $action == 'browsebydate')  {
     <title>{$lang_calendar_php['title']}</title>
     <meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
     <meta http-equiv="Pragma" content="no-cache" />
-    <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" />
+    <link rel="stylesheet" href="css/coppermine.css" type="text/css" />
+    <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" type="text/css" />
     <script language="javascript" type="text/javascript">
     // get the date format
     var calendarFormat = 'y-m-d';
