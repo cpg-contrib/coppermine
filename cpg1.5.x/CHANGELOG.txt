@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-19 [C] Replaced cluetip plugin with greybox plugin {GauGau}
 2009-05-16 [B] Fixed first level album thumbs not showing in pre PHP 5.0.2 {SaWey}
 2009-05-15 [B] Fixed CAPTCHA Session not correctly starting {SaWey}
 2009-05-15 [B] Fixed CAPTCHA not enabled according to config {SaWey}

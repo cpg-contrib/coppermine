@@ -316,6 +316,11 @@ if ($CONFIG['lang'] != 'english') {
     require('lang/' . $CONFIG['lang'] . '.php');
 }
 set_js_var('lang_close', $lang_common['close']);
+if (defined('THEME_HAS_MENU_ICONS')) {
+	set_js_var('icon_close_path', $THEME_DIR . 'images/icons/close.png');
+} else {
+	set_js_var('icon_close_path', 'images/icons/close.png');
+}
 // Language processing --- end
 
 // See if the fav cookie is set; else set it
@@ -353,7 +358,7 @@ if (!empty($CONFIG['display_social_bookmarks'])) {
 // JavaScript that is being used on all pages.
 // Do not remove this line unless you really know what you're doing
 js_include('js/scripts.js');
-js_include('js/jquery.cluetip.js');
+js_include('js/jquery.greybox.js');
 // If referer is set in URL and it contains 'http' or 'script' texts then set it to 'index.php' script
 /**
  * Use $CPG_REFERER wherever $_GET['referer'] is used

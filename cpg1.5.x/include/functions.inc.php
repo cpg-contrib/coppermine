@@ -3949,7 +3949,7 @@ function cpg_display_help($reference = 'f=empty.htm', $width = '600', $height = 
 
     $title_help = $lang_common['help'];
 
-    $help_html = '<a class="jt" href="help.php?' . $reference . '" rel="help.php?css=' . $help_theme . '&amp;' . $reference . '" title="' . $title_help . '">' . $icon . '</a>';
+    $help_html = '<a class="greybox" href="help.php?' . $reference . '" rel="help.php?css=' . $help_theme . '&amp;' . $reference . '" title="' . $title_help . '">' . $icon . '</a>';
 
     return $help_html;
 } // function cpg_display_help

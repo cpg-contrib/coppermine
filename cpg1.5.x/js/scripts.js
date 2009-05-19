@@ -22,6 +22,8 @@ var KEY_CODES = {
     ENTER : 13
 };
 
+var GB_ANIMATION = true;
+
 function MM_openBrWindow(theURL,winName,features) { //v2.0
     window.open(theURL,winName,features);
 }
@@ -264,18 +266,11 @@ $(document).ready(function() {
         );
     }
 	
-	// Cluetip plugin initialization for the help system
-    $('a.jt').cluetip({
-		cluetipClass: 'jtip', 
-		sticky: true,
-		arrows: true, 
-		width: 550,
-		height: 250,
-			dropShadow: false, 
-			sticky: true,
-			closeText: '<img src=\"' + js_vars.icon_dir + 'close.png\" alt=\"\" title=\"' + js_vars.lang_close +  '\" />',
-		closePosition: 'title',
-		activation: 'click'
-	});
+	// Greybox plugin initialization for the help system
+    $("a.greybox").click(function(){
+      var t = this.title || $(this).text() || this.href;
+      GB_show(t,this.href,470,600);
+      return false;
+    });
 	
 });

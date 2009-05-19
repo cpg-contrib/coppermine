@@ -259,6 +259,61 @@ a:active .image{
     background-image: url('../../images/message/error.png');
 }</pre>
 
+<a name="theme_convert_style_greybox"></a><h3>Add the &laquo;greybox&raquo;-classes to your stylesheet<a href="#theme_convert_style_greybox" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>In cpg1.5.x, the jquery plugin Greybox Redux is used to display the help-popups embedeed into the page. You need to add the corresponding CSS classes into your stylesheet.</p>
+<p>Find:</p>
+<pre class="smallcode">.detail_body {
+}</pre>
+<p>and add after it (into a new line):</p>
+<pre class="smallcode">/* Greybox used for help pop-ups */
+#GB_overlay {
+  background-image: url(../../images/overlay.png); 
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width:  100%;
+  height: 100%;
+}
+
+* html #GB_overlay {
+  background-color: #000000;
+  background-color: transparent;
+  background-image: url(../../images/spacer.gif);
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/overlay.png", sizingMethod="scale");
+}
+
+#GB_window {
+  top: 10px;
+  left: 0px;
+  position: absolute;
+  background-color: #FFFFFF;
+  border: 5px solid #AAAAAA;
+  overflow: auto;
+  width: 600px;
+  height: 400px;
+  z-index: 150;
+}
+
+#GB_frame {
+  border: 0;
+  overflow: auto;
+  width: 100%;
+  height: 378px;
+}
+
+#GB_window img {
+  position: absolute;
+  top: 2px;
+  right: 5px;
+  cursor: pointer;
+  cursor: hand;
+}</pre>
+
+<p>In the definition for <tt class="code">#GB_window</tt>, change the background attribute to match your theme's background color. Change the border attribute to match your theme's border color.<br />
+If you're not sure what the background color of your theme is or what border color to use, take a look at your theme's color definitions for the class <tt class="code">maintable</tt>.</p>
+
 <a name="theme_convert_style_spinbutton"></a><h3>Add the classes &laquo;spin-button&raquo;<a href="#theme_convert_style_spinbutton" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Find:</p>
 <pre class="smallcode">.detail_body {

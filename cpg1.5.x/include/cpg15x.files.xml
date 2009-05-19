@@ -6913,14 +6913,6 @@
     <hash>adeaf50c0f722840c9cebed0b30e4abd</hash>
   </element>
   <element>
-    <fullpath>js/jquery.cluetip.js</fullpath>
-    <version>1.5.1</version>
-    <revision>5915</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>71d03512a26b4c1e6af34ba52c5ad606</hash>
-  </element>
-  <element>
     <fullpath>js/jquery.datePicker.js</fullpath>
     <version>1.5.1</version>
     <revision>5865</revision>
@@ -6943,6 +6935,14 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>1be70b7fe77d91b9b49b898cd82b6cfa</hash>
+  </element>
+  <element>
+    <fullpath>js/jquery.greybox.js</fullpath>
+    <version>1.5.1</version>
+    <revision>5915</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>71d03512a26b4c1e6af34ba52c5ad606</hash>
   </element>
   <element>
     <fullpath>js/jquery.slideshow.js</fullpath>

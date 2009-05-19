@@ -416,9 +416,13 @@ switch ($op) {
         $path = $p;
         if (is_bool(strpos('/',$path))) {
             deldir('./plugins/'.$path);
+            if ($CONFIG['log_mode']) {
+              log_write("Plugin '".$path."' deleted at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+            }
         }
         break;
     case 'moveu':
+        $name = $installed_plugin['name'];
         unset($installed_plugin);
         unset($priority);
         $plugin_id = $p;
@@ -442,6 +446,12 @@ switch ($op) {
           $sql = 'UPDATE '.$CONFIG['TABLE_PLUGINS'].' '.
                  'SET priority='.($priority-1).' WHERE plugin_id='.$plugin_id.';';
           cpg_db_query($sql);
+          if ($CONFIG['log_mode']) {
+              $query = 'SELECT * FROM '.$CONFIG['TABLE_PLUGINS'].' WHERE plugin_id='.$plugin_id.' LIMIT 1;';
+              $result = cpg_db_query($query);
+              $installed_plugin = mysql_fetch_assoc($result);
+              log_write("Plugin '".$installed_plugin['name']."' moved up in plugin list at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+          }
         }
         break;
     case 'moved':
@@ -474,6 +484,12 @@ switch ($op) {
             $sql = 'UPDATE '.$CONFIG['TABLE_PLUGINS'].' '.
                    'SET priority='.($priority+1).' WHERE plugin_id='.$plugin_id.';';
             cpg_db_query($sql);
+            if ($CONFIG['log_mode']) {
+              $query = 'SELECT * FROM '.$CONFIG['TABLE_PLUGINS'].' WHERE plugin_id='.$plugin_id.' LIMIT 1;';
+              $result = cpg_db_query($query);
+              $installed_plugin = mysql_fetch_assoc($result);
+              log_write("Plugin '".$installed_plugin['name']."' moved down in plugin list at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+          	}
         }
         break;
     case 'upload':
