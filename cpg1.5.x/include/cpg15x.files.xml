@@ -8092,18 +8092,6 @@
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>themes/eyeball/images/bg.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>43380573355452e16d6caa6b3b2a80b8</hash>
-  </element>
-  <element>
-    <fullpath>themes/eyeball/images/blank.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>fadac21ab6528a4516beb8a56ddb5f34</hash>
-  </element>
-  <element>
     <fullpath>themes/eyeball/images/button_bg.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
