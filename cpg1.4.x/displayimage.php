@@ -318,6 +318,7 @@ if (isset($_GET['fullsize'])) {
        // ";
         $meta_keywords .= $meta_nav;
     pageheader($album_name . '/' . $picture_title, $meta_keywords, false);
+    adminmessages();
     // Display Breadcrumbs
     if ($breadcrumb && !(strpos($CONFIG['main_page_layout'],"breadcrumb")===false)) {
         theme_display_breadcrumb($breadcrumb, $cat_data);

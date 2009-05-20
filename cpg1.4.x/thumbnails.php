@@ -161,6 +161,7 @@ if (is_numeric($album)) {
 }
 
 pageheader(isset($CURRENT_ALBUM_DATA) ? $CURRENT_ALBUM_DATA['title'] : $lang_meta_album_names[$album]);
+adminmessages();
 if ($breadcrumb) {
     if (!(strpos($CONFIG['main_page_layout'], "breadcrumb") === false)) {
         theme_display_breadcrumb($breadcrumb, $cat_data);

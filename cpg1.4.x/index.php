@@ -764,6 +764,7 @@ if (!$file) {
     get_cat_list($breadcrumb, $cat_data, $statistics);
 
     pageheader($BREADCRUMB_TEXT ? $BREADCRUMB_TEXT : $lang_index_php['welcome']);
+    adminmessages();
 
     $elements = preg_split("|/|", $CONFIG['main_page_layout'], -1, PREG_SPLIT_NO_EMPTY);
 

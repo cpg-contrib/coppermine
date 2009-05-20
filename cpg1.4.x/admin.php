@@ -857,7 +857,7 @@ if (count($_POST) > 0) {
 }
 
 pageheader($lang_admin_php['title']);
-
+adminmessages();
 $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE_VERSION_STATUS . ')';
 
 ?>

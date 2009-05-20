@@ -99,6 +99,7 @@ $lang_errors = array(
   'zip_type' => 'You do not have permission to upload ZIP files.',
   'database_query' => 'There was an error while processing a database query', //cpg1.4
   'non_exist_comment' => 'The selected comment does not exist', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://coppermine-gallery.net/register_globals.php" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'bbcode help'; //cpg1.4

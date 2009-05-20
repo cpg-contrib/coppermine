@@ -2612,4 +2612,24 @@ function theme_vanity()
 }
 } //{THEMES}
 
+// Function to display messages which are shown only to admin
+if (!function_exists('adminmessages')) { //{THEMES}
+function adminmessages()
+{
+    global $register_globals_flag, $lang_errors;
+    // If user is not admin then return
+    if (!GALLERY_ADMIN_MODE) {
+        return;
+    }
+    // If register_globals is On then show the warning message.
+    if ($register_globals_flag == true) {
+        if ($lang_errors['register_globals_on'] != '') {
+            $message = $lang_errors['register_globals_on'];
+        } else {
+            $message = 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://coppermine-gallery.net/register_globals.php" rel="external" class="external">more</a>]';
+        }
+        echo '<div style="padding:5px;color:#ff0000;font-weight:bold;font-size:120%;text-align:center;">' . $message . '</div>';
+    }
+}
+}
 ?>
