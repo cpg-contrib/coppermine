@@ -6636,7 +6636,7 @@ $return = '
 1.4.23|upload.php|1.4.23|5891|mandatory|r@
 1.4.23|usermgr.php|1.4.23|5891|mandatory|r@
 1.4.23|util.php|1.4.23|5891|mandatory|r@
-1.4.23|versioncheck.php|1.4.23|5954|mandatory|r@
+1.4.23|versioncheck.php|1.4.23|5956|mandatory|r@
 1.4.23|viewlog.php|1.4.23|5891|mandatory|r@
 1.4.23|xp_publish.php|1.4.23|5891|mandatory|r@
 1.4.23|zipdownload.php|1.4.23|5891|mandatory|r@
