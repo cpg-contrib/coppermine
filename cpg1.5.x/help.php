@@ -181,6 +181,16 @@ echo <<< EOT
         $meta_charset
         <link rel="stylesheet" href="css/coppermine.css" type="text/css" />
         <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" type="text/css" />
+        <script type="text/javascript">
+        	function cpgDocHeader() {
+        	}
+        	function cpgDocToc() {
+        	}
+        	function cpgDocFooter() {
+        	}
+        	function dateRevision() {
+        	}
+        </script>
     </head>
     <body class="tableb">
         <div style="padding: 5px;">

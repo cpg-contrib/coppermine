@@ -150,11 +150,11 @@ html:first-child .bookmark_list img { /* Opera */
 }
 
 .detail_head_collapsed {
-	background-image:url('../../images/tree/plus.gif');
+	background-image:url('../images/tree/plus.gif');
 }
 
 .detail_head_expanded {
-	background-image:url('../../images/tree/minus.gif');
+	background-image:url('../images/tree/minus.gif');
 }
 
 .detail_body {
@@ -164,7 +164,7 @@ input.spin-button {
 	padding-right:20px;
 	background-repeat:no-repeat;
 	background-position:100% 0%;
-	background-image:url(../../images/spinbtn_updn.gif);
+	background-image:url(../images/spinbtn_updn.gif);
 }
 
 input.spin-button.up {
@@ -178,7 +178,7 @@ input.spin-button.down {
 
 /* Greybox used for help pop-ups */
 #GB_overlay {
-  background-image: url(../../images/overlay.png); 
+  background-image: url(../images/overlay.png); 
   position: absolute;
   margin: auto;
   top: 0;
@@ -191,8 +191,8 @@ input.spin-button.down {
 * html #GB_overlay {
   background-color: #000000;
   background-color: transparent;
-  background-image: url(../../images/spacer.gif);
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../../images/overlay.png", sizingMethod="scale");
+  background-image: url(../images/spacer.gif);
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/overlay.png", sizingMethod="scale");
 }
 
 #GB_window {
