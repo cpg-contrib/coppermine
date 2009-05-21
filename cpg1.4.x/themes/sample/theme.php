@@ -2493,7 +2493,7 @@ function adminmessages()
         if ($lang_errors['register_globals_on'] != '') {
             $message = $lang_errors['register_globals_on'];
         } else {
-            $message = 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://coppermine-gallery.net/register_globals.php" rel="external" class="external">more</a>]';
+            $message = 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]';
         }
         echo '<div style="padding:5px;color:#ff0000;font-weight:bold;font-size:120%;text-align:center;">' . $message . '</div>';
     }
