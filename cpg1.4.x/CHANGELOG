@@ -9,8 +9,8 @@ it under the terms of the GNU General Public License version 3
 as published by the Free Software Foundation.
 
 ********************************************
-Coppermine version: 1.4.23
-$Source$
+Coppermine version: 1.4.24
+$HeadURL$
 $Revision$
 $Author$
 $Date$
@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-21 [M] Updated version count from cpg1.4.23 to cpg1.4.24 in subversion repository as a preparation for a possible future release {GauGau}
 2009-05-21 [M] Release of cpg1.4.23 {GauGau}
 2009-05-20 [M] Added a warning message for admin if register_globals is on {Abbas}
 2009-05-19 [S] Fixing http://www.milw0rm.com/exploits/8713 {Nibbler}

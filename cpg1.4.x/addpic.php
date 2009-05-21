@@ -10,28 +10,13 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.23
+  Coppermine version: 1.4.24
   $HeadURL$
   $Revision$
   $Author$
   $Date$
 **********************************************/
 
-/**
-* Coppermine Photo Gallery addpic.php
-*
-* This file file gets called in the img src when you do batch add, there is nothing
-* much to look here the grunt work is done by the function add_picture
-*
-* @copyright 2002,2007 Gregory DEMAR, Coppermine Dev Team
-* @license http://www.gnu.org/licenses/gpl.html GNU General Public License V3
-* @package Coppermine
-* @version $Id$
-*/
-
-/**
-* @ignore
-*/
 define('IN_COPPERMINE', true);
 
 define('ADDPIC_PHP', true);
