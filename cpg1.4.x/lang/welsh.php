@@ -101,7 +101,7 @@ $lang_errors = array(
   'no_zip' => 'Nid yw\'r llyfrgelloedd i brosesu ffeiliau ZIP ar gael. Cysylltwch â gweinyddwr Coppermine.',
   'zip_type' => 'Nid oes hawl \'da chi i lwytho ffeiliau ZIP.',
   'database_query' => 'Roedd gwall wrth brosesu\'ch cais i\'r databas', //cpg1.4
-  'non_exist_comment' => 'Nid yw\'r sylw yn bodoli', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 // "Peidiwch newid  y tagiau na 'color' na'r lliwiau: lliwiau swyddogol HTML/CSS/BBCode yw'r rhain - nid oes modd eu cyfieithu" ...  diafol
 $lang_bbcode_help_title = 'cymorth <i>bbcode</i>'; //cpg1.4

@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => 'ZIPファイルを生成するライブラリが使用できません。Coppermine管理者に連絡してください。', 
   'zip_type' => 'ZIPファイルをアップロードする権限がありません。',
   'database_query' => 'データベース参照時にエラーが発生しました。',
-  'non_exist_comment' => '選択されたコメントは登録されていません。',
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'bbcodeヘルプ';

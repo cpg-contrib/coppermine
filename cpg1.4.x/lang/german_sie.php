@@ -97,7 +97,7 @@ $lang_errors = array(
   'no_zip' => 'Die zum Verarbeiten von ZIP-Dateien notwendigen libraries sind auf dem Server nicht verfügbar. Setzen Sie sich mit dem Server-Admin in Verbindung.',
   'zip_type' => 'Keine Berechtigung für den Upload von ZIP-Dateien.',
   'database_query' => 'Beim Ausführen einer Datenbank-Abfrage ist ein Fehler aufgetreten', //cpg1.4
-  'non_exist_comment' => 'Der gewählte Kommentar existiert nicht', //cpg1.4
+  'register_globals_on' => 'Die PHP-Einstellung register_globals ist auf Ihrem Server aktiviert, was keine sehr gute Idee ist in Sachen Sicherheit. Es wird wärmstens empfohlen, diese Einstellung zu deaktivieren. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">mehr</a>]',
 );
 
 $lang_bbcode_help_title = 'Bulletin Board code Hilfe'; //cpg1.4

@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => 'Οι απαραίτητες βιβλιοθήκες για την επεξεργασία ZIP αρχείων δεν είναι διαθέσιμες. Παρακαλώ επικοινωνήστε με τον διαχειριστή του Coppermine.',
   'zip_type' => 'Δεν έχετε άδεια για να προσθέσετε αρχεία ZIP.',
   'database_query' => 'Υπήρξε λάθος κατά την επεξεργασία του ερωτήματος στην βάση δεδομένων', //cpg1.4
-  'non_exist_comment' => 'Το επιλεγμένο σχόλιο δεν υπάρχει', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'Βοήθεια για το bbcode'; //cpg1.4

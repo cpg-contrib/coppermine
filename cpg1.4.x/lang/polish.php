@@ -111,7 +111,7 @@ $lang_errors = array(
   'no_zip' => 'Biblioteki do obsługi archiwów ZIP nie są obecnie dostępne. Skontaktuj się z administratorem Coppermine.', //cpg1.3.0
   'zip_type' => 'Nie masz uprawnień by przesyłać archiwa ZIP.', //cpg1.3.0
   'database_query' => 'Wystąpił błąd podczas przetwarzania bazy danych', //cpg1.4
-  'non_exist_comment' => 'Wybrany komentarz nie istnieje', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'Pomoc - bbcode'; //cpg1.4

@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => 'برنامه هاي مورد نياز براي استفاده از فايلهاي فشرده (zip) موجود نيست، با مديريت تماس بگيريد.', //cpg1.3.0
   'zip_type' => 'شما اجازه ارسال فايل ZIP را نداريد.', //cpg1.3.0
   'database_query' => 'خطايي در زمان اجراي دستورات بر روي ديتابيس بوجود آمده.', //cpg1.4
-  'non_exist_comment' => 'نظر انتخاب شده وجود ندارد!', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = '<span dir=rtl>راهنماي bbcode<span>'; //cpg1.4

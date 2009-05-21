@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => 'ZIP-failide käsitlemiseks vajalikud teegid pole saadaval. Palun võta ühendust oma Coppermine\'i-administraatoriga.',
   'zip_type' => 'Sul pole lubatud ZIP-faile üles laadida.',
   'database_query' => 'Andmebaasipäringu töötlemisel tekkis viga.', //cpg1.4
-  'non_exist_comment' => 'Valitud kommentaari pole olemas.', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'BBcode\'i abi'; //cpg1.4

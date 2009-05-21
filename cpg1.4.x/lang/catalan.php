@@ -101,7 +101,7 @@ $lang_errors = array(
 	'no_zip' => 'Les llibreries necessàries per processar fitxers ZIP no es troben disponibles. Contacteu amb l\'administrador/a d\'aquest àlbum', //cpg1.3.0
 	'zip_type' => 'No teniu autorització per afegir fitxers ZIP', //cpg1.3.0
 	'database_query' => 'S\'ha produït un error en executar la consulta', //cpg1.4
-  	'non_exist_comment' => 'El comentari seleccionat no existeix', //cpg1.4
+  	'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'Ajuda dels codis'; //cpg1.4

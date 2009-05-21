@@ -97,7 +97,7 @@ $lang_errors = array(
   'no_zip' => 'ZIP dosyası oluşturmak için gerekli dosyalar bulunamadı.  Lütfen Coppermine admininiz ile iletişime geçin.', //cpg1.3.0
   'zip_type' => 'ZIP dosyalarını yüklemek için yetkiniz yok.', //cpg1.3.0
   'database_query' => 'Veritabanı yazarken hata oluştu', //cpg1.4
-  'non_exist_comment' => 'Seçilen yorum bulunamadı', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'bbcode yardım'; //cpg1.4

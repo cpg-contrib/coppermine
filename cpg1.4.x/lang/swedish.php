@@ -101,7 +101,7 @@ $lang_errors = array(
   'no_zip' => 'Filerna som behövs för att hantera Zip-filer kan inte hittas.  Kontakta administratören.', //cpg1.3.0
   'zip_type' => 'Du har inte behörighet att ladda upp Zip-filer.', //cpg1.3.0
   'database_query' => 'Det uppstod ett fel under förfrågan till databasen', //cpg1.4
-  'non_exist_comment' => 'Den valda kommentaren finns inte', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'Hjälp med BBkod'; //cpg1.4

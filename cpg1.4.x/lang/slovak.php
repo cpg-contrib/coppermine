@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => 'Knižnice potrebné pre zpracovanie ZIP súborov nie sú dostupné.  Prosím kontaktujte Vášho administrátora galérie.',
   'zip_type' => 'Nemáte oprávnenie pridávať ZIP súbory.',
   'database_query' => 'Vyskytla sa chyba pri spracovávaní databázovej požiadavky.', //cpg1.4
-  'non_exist_comment' => 'Zvolený komentár neexistuje.', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'bbcode pomoc'; //cpg1.4

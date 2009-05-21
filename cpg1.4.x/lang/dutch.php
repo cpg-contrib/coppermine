@@ -98,7 +98,7 @@
 		'no_zip' => 'De benodigde bibliotheken om zip-bestanden te verwerken zijn niet beschikbaar.  Neem contact op met je Coppermine-beheerder.',
 		'zip_type' => 'Je hebt geen toestemming om zip-bestanden te uploaden.',
 		'database_query' => 'Er was een fout bij het ophalen van de gegevens uit de database', //cpg1.4
-		'non_exist_comment' => 'Het geselectederde commentaar bestaat niet', //cpg1.4
+		'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 	);
 	
 	$lang_bbcode_help_title = 'bbcode help';

@@ -99,8 +99,8 @@ $lang_errors = array(
     'action_failed' => 'Akce selhala.  Coppermine není schopno váš požadavek zpracovat.', //cpg1.3.0
     'no_zip' => 'Knihovny potřebné pro zpracování ZIP souborů nejsou dostupné.  Prosím kontaktujte Vašeho administrátora aplikace Coppermine.', //cpg1.3.0
     'zip_type' => 'Nemáte povolení nahrávat na server soubory ZIP.', //cpg1.3.0
-  'database_query' => 'Vyskytla se chyba pi databázovém dotazu.', //cpg1.4
-  'non_exist_comment' => 'Vybraná komponenta neexistuje.', //cpg1.4
+    'database_query' => 'Vyskytla se chyba pi databázovém dotazu.', //cpg1.4
+    'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'bbcode pomoc'; //cpg1.4

@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => 'Potrebne biblioteke za procesuiranje ZIP dokumenata ne postoje.  Molimo Vas, kontaktirajte administratora.',
   'zip_type' => 'Nemate dopuštenje za slanje ZIP dokumenata.',
   'database_query' => 'Došlo je do greške pri izvedbi u bazi podataka', //cpg1.4
-  'non_exist_comment' => 'Odabrani komentar ne postoji', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'Pomoć za bbcode'; //cpg1.4

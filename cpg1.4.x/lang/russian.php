@@ -101,7 +101,7 @@ $lang_errors = array(
   'no_zip' => 'Необходимые библиотеки для обработки ZIP файлов недоступны. Пожалуйста, свяжитесь с администрацией сайта.',
   'zip_type' => 'У вас нет прав для загрузки ZIP файлов.',
   'database_query' => 'Произошла ошибка при обращении к базе данных', //cpg1.4
-  'non_exist_comment' => 'Выбранный комментарий не существует', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'помощь по bbcode'; //cpg1.4

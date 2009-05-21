@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => 'Understøttelse af ZIP filer er ikke tilgængelig. Kontakt venligst administratoren af galleriet.',
   'zip_type' => 'Du har ikke tilladelse til at uploade zip filer.',
   'database_query' => 'Det opstod en fejl under søgning i databasen', //cpg1.4
-  'non_exist_comment' => 'Den valgte kommentaren findes ikke', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'Hjælp til bbkode '; //cpg1.4

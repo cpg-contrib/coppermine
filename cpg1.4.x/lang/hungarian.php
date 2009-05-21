@@ -101,7 +101,7 @@ $lang_errors = array(
   'no_zip' => 'Nincs feltelepítve program a zip fájlok kezeléséhez. Keresd fel a rendszergazdát!',
   'zip_type' => 'Nincs jogosultságod zip fájlok feltöltésére.',
   'database_query' => 'Hiba történt az adatbázis lekérdezése közben.', //cpg1.4
-  'non_exist_comment' => 'A kiválasztott megjegyzés nem létezik', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'Bulletin Board kód segítség'; //cpg1.4

@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => 'المكتبات المطلوبه لصنع ZIP فايل غير موجوده .  الرجاء مراجعة الإداره.',
   'zip_type' => 'لا تملك الصلاحيه لرفع ملفات ZIP.',
   'database_query' => 'حصل خطا عند التعامل مع الداتا بيس', //cpg1.4
-  'non_exist_comment' => 'التعليق الذي اخترته غير موجود', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'مساعده في كود بي بي'; //cpg1.4

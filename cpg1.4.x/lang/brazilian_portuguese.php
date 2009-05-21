@@ -100,7 +100,7 @@ interpretada pela biblioteca GD',
   'no_zip' => 'As bibliotecas necessárias para processar os arquivos em ZIP não estão disponiveis. Por favor contacte o Administrador.',
   'zip_type' => 'Não tem permissão para enviar arquivos ZIP.',
   'database_query' => 'Erro ao processar um pedido ha Base de Dados!', //cpg1.4
-  'non_exist_comment' => 'Comentário não existe', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'Ajuda bbcode'; //cpg1.4

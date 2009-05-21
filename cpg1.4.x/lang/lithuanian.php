@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => 'Reikalingos bibliotekos ZIP bylos apdorojimui nėra. Prašome susisiekti su Coppermine administratoriumi.',
   'zip_type' => 'Jūs neturite teisės siųsti ZIP bylų.',
   'database_query' => 'Klaida vykdant duomenų bazės užklausą', //cpg1.4
-  'non_exist_comment' => 'Pasirinktas komentaras neegzistuoja.', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'bbcode pagalba'; //cpg1.4

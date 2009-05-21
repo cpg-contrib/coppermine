@@ -98,8 +98,8 @@ $lang_errors = array(
 	'action_failed' => 'Acción non completada. O Coppermine non puido procesar a túa petición.', //cpg1.3.0
 'no_zip' => 'As bibliotecas necesarias para procesar os arquivos ZIP non estan dispoñibles. Por favor contacta co teu administrador do Coppermine.', //cpg1.3.0
 	'zip_type' => 'Non tes permiso para subir arquivos ZIP.', //cpg1.3.0
-  'database_query' => 'Houbo un erro ó tentar procesar unha petición ó banco de datos', //cpg1.4
-  'non_exist_comment' => 'O comentario seleccionado non existe', //cpg1.4
+    'database_query' => 'Houbo un erro ó tentar procesar unha petición ó banco de datos', //cpg1.4
+    'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'Axuda bbcode'; //cpg1.4

@@ -26,8 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-21 [M] Release of cpg1.4.23 {GauGau}
 2009-05-20 [M] Added a warning message for admin if register_globals is on {Abbas}
-2009-04-30 [M] Release of cpg1.4.23 {Phill}
 2009-05-19 [S] Fixing http://www.milw0rm.com/exploits/8713 {Nibbler}
 2009-05-18 [O] Updated Italian language file (user contribution) {GauGau}
 2009-05-19 [B] Add PHP 5.3 support to debugger {Nibbler}

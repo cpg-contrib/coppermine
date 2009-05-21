@@ -92,13 +92,13 @@ $lang_errors = array(
   'banned' => 'Du bist zur Zeit von dieser Seite verbannt.',
   'not_with_udb' => 'Diese Funktion ist innerhalb von Coppermine deaktiviert, weil sie in die Forums-Software integriert ist. Entweder wird das, was Du gerade zu tun versucht hast, in dieser Konfiguration nicht unterstützt oder die Funktion sollte von der Forums-Software übernommen werden.',
   'offline_title' => 'Wartungsmodus',
-  'offline_text' => 'Die Galerie ist zur Zeit im Wartungsmodus - schau später nochmal vorbei!', //cpg1.3.0
+  'offline_text' => 'Die Galerie ist zur Zeit im Wartungsmodus - schau später nochmal vorbei!',
   'ecards_empty' => 'Es können derzeit keine eCard-Einträge gefunden werden. Überprüfe, ob die Aufzeichung von eCards in den Einstellungen aktivert wurde!',
-  'action_failed' => 'Aktion fehlgeschlagen. Coppermine konnte die gewünschte Aktion nicht ausführen.', //cpg1.3.0
+  'action_failed' => 'Aktion fehlgeschlagen. Coppermine konnte die gewünschte Aktion nicht ausführen.',
   'no_zip' => 'Die zum Verarbeiten von ZIP-Dateien notwendigen libraries sind auf dem Server nicht verfügbar. Setze Dich mit dem Server-Admin in Verbindung.',
   'zip_type' => 'Keine Berechtigung für den Upload von ZIP-Dateien.',
   'database_query' => 'Beim Ausführen einer Datenbank-Abfrage ist ein Fehler aufgetreten', //cpg1.4
-  'non_exist_comment' => 'Der gewählte Kommentar existiert nicht', //cpg1.4
+  'register_globals_on' => 'Die PHP-Einstellung register_globals ist auf Deinem Server aktiviert, was keine sehr gute Idee ist in Sachen Sicherheit. Es wird wärmstens empfohlen, diese Einstellung zu deaktivieren. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">mehr</a>]',
 );
 
 $lang_bbcode_help_title = 'Bulletin Board code Hilfe'; //cpg1.4
@@ -838,8 +838,8 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'err_mkdir' => 'Verzeichnis %s konnte nicht angelegt werden!',
   'dest_dir_ro' => 'In das Zielverzeichnis %s kann vom Skript nicht geschrieben werden!',
   'err_move' => '%s kann nicht nach %s verschoben werden!',
-  'err_fsize_too_large' => 'Die Datei, die Du hochgeladen hast, ist zu groß (maximal zulässig ist %s x %s) !', //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
-  'err_imgsize_too_large' => 'Die Datei, die Du hochgeladen hast, ist zu groß (maximal zulässig ist %s kB) !', //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
+  'err_fsize_too_large' => 'Die Datei, die Du hochgeladen hast, ist zu groß (maximal zulässig ist %s x %s) !',
+  'err_imgsize_too_large' => 'Die Datei, die Du hochgeladen hast, ist zu groß (maximal zulässig ist %s kB) !',
   'err_invalid_img' => 'Die Datei, die Du hochgeladen hast, ist kein gültiger Bildtyp!',
   'allowed_img_types' => 'Du kannst nur %s Bilder hochladen.',
   'err_insert_pic' => 'Das Bild \'%s\' kann nicht in das Album eingefügt werden ',
@@ -1047,7 +1047,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'title' => 'eCard senden',
   'invalid_email' => '<b>Achtung</b> : ungültige eMail-Adresse !',
   'ecard_title' => 'Eine eCard von %s für Dich',
-  'error_not_image' => 'Nur Bilder können als eCard verschickt werden.', //cpg1.3.0
+  'error_not_image' => 'Nur Bilder können als eCard verschickt werden.',
   'view_ecard' => 'Falls diese eCard nicht korrekt angezeigt wird, klicke auf den folgenden Link: ',
   'view_ecard_plaintext' => 'Markiere die folgende URL und füge sie in die Adresszeile Deines Browsers ein, um diese eCard anzuzeigen:', //cpg1.4
   'view_more_pics' => 'Klicke auf diesen Link, um mehr Bilder ansehen zu können!', //cpg1.4
@@ -1464,7 +1464,7 @@ $lang_pluginmgr_php = array(
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
   'already_rated' => 'Du hast diese Datei schon bewertet',
   'rate_ok' => 'Deine Bewertung wurde akzeptiert',
-  'forbidden' => 'Du kannst Deine eigenen Dateien nicht bewerten.', //cpg1.3.0
+  'forbidden' => 'Du kannst Deine eigenen Dateien nicht bewerten.',
 );
 
 // ------------------------------------------------------------------------- //

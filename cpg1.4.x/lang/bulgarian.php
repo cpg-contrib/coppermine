@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => 'Нужните библиотеки за обработка на ZIP файлове не са в наличност. Обърнете се , моля, към администратора на Coppermine.', //cpg1.3.0
   'zip_type' => 'Не ви е позволено да качвате ZIP файлове.', //cpg1.3.0
   'database_query' => 'Възникна грешка в обработваната от базата данни заявка', //cpg1.4
-  'non_exist_comment' => 'Избраният коментар не съществува', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'bbcode помощ'; //cpg1.4

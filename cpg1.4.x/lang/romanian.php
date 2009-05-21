@@ -108,7 +108,7 @@ $lang_errors = array(
   'no_zip' => 'Librăriile necesare procesării fişierelor arhiva ZIP nu sunt disponibile. Vă rugăm să contactaţi administratorul galeriei.',
   'zip_type' => 'Nu aveţi permisiunea de a încărca fişiere arhivă ZIP.',
   'database_query' => 'S-a înregistrat o eroare în timpul procesării bazei de date', //cpg1.4
-  'non_exist_comment' => 'Comentariul selecţionat nu există', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'Ajutor coduri bbcode'; //cpg1.4

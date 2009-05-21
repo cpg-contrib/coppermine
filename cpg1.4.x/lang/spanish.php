@@ -101,7 +101,7 @@ $lang_errors = array(
 	'no_zip' => 'Las librerías necesarias para procesar ficheros ZIP no están disponibles. Contacta con el administrador de este álbum.', //cpg1.3.0
 	'zip_type' => 'No tienes permisos para añadir ficheros ZIP.', //cpg1.3.0
 	'database_query' => 'Hubo un error al procesar la consulta', //cpg1.4
-  	'non_exist_comment' => 'El comentario seleccionado no existe', //cpg1.4
+'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'Ayuda de los códigos'; //cpg1.4

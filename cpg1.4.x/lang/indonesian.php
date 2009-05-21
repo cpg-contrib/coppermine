@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => 'Libraries yang penting untuk memproses ZIP files tidak tersedia. Tolong hubungi Coppermine administrator kamu.', 
   'zip_type' => 'Kamu tidak mempunyai hak untuk upload file ZIP.', 
   'database_query' => 'Aksi gagal ketika memproses database query', //cpg1.4
-  'non_exist_comment' => 'Komentar yang dipilih tidak ada', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'Bantuan bbkode'; //cpg1.4

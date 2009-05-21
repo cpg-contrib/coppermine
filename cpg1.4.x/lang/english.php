@@ -98,7 +98,6 @@ $lang_errors = array(
   'no_zip' => 'The necessary libraries to process ZIP files are not available.  Please contact your Coppermine administrator.',
   'zip_type' => 'You do not have permission to upload ZIP files.',
   'database_query' => 'There was an error while processing a database query', //cpg1.4
-  'non_exist_comment' => 'The selected comment does not exist', //cpg1.4
   'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 

@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => 'ZIP फाईल के लिये आवश्यक लाईब्रेरी उपलब्द नही हैं. कॄपया अपने कोपरमाइन एडमिन से सम्पर्क करॅ.',
   'zip_type' => 'आपको ZIP फाईल अपलोड करने की अनुमति नही हैं.',
   'database_query' => 'डाटाबेस क्युरी को चलाते समय व्यव्धान!', //cpg1.4
-  'non_exist_comment' => 'चुना गया कमेन्ट अस्तित्व मॅ नही है.', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'bbcode सहायता'; //cpg1.4

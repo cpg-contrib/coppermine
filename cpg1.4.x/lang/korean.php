@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => 'Zip 화일을 처리하는데 필요한 라이브러리를 사용할 수 없습니다.  코퍼마인 관리자에게 연락하세요.',
   'zip_type' => '귀하는 ZIP 화일을 업로드하는 권한이 없습니다.',
   'database_query' => '데이타베이스 쿼리를 하는 도중에 오류가 발생하였습니다.', //cpg1.4
-  'non_exist_comment' => '선택한 코멘트는 존재하지 않습니다.', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = '비비코드 도움말'; //cpg1.4

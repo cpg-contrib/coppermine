@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => '无法执行ZIP压缩文件。请联络您的相册管理员。',
   'zip_type' => '您没有上传ZIP压缩文件的权限。',
   'database_query' => '进行数据库查询时发生了错误', //cpg1.4
-  'non_exist_comment' => '选择的留言不存在', //cpg1.4
+  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'bbcode 帮助'; //cpg1.4

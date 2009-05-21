@@ -97,8 +97,8 @@ $lang_errors = array(
         'action_failed' => 'Veprim i dështuar.  Coppermine nuk është në gjendje të kryej veprimin që ju kërkuat.', //cpg1.3.0
         'no_zip' => 'Libraritë e nevojshme për të trajtuar proceset e zipimit nuk janë instaluar.  Luteni të kontaktoni administratorin tuaj Coppermine !', //cpg1.3.0
         'zip_type' => 'Ju nuk keni leje të ngarkoni skedare ZIP.', 
-	'database_query' => 'Një problem u krijua gjatë procesit të një kërkimi në bazën e të dhënave', //cpg1.4
-        'non_exist_comment' => 'Komenti që keni zgjedhur nuk ekziston', //cpg1.4
+	    'database_query' => 'Një problem u krijua gjatë procesit të një kërkimi në bazën e të dhënave', //cpg1.4
+	    'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'ndihmë bbcode'; //cpg1.4
