@@ -2484,11 +2484,11 @@ function theme_vanity()
 function adminmessages()
 {
     global $register_globals_flag, $lang_errors;
-    // If user is not admin then return
+    // If user is not admin (and in admin mode), then return
     if (!GALLERY_ADMIN_MODE) {
         return;
     }
-    // If register_globals is On then show the warning message.
+    // If register_globals is On, then show the warning message.
     if ($register_globals_flag == true) {
         if ($lang_errors['register_globals_on'] != '') {
             $message = $lang_errors['register_globals_on'];
