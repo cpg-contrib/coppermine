@@ -8392,12 +8392,6 @@
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>themes/fruity/images/blind.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>07e0eb7f71716a8aced62ea3b9fe0105</hash>
-  </element>
-  <element>
     <fullpath>themes/fruity/images/button_bg.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
@@ -8518,22 +8512,16 @@
     <hash>48f05c7412492ed52b6299f056425694</hash>
   </element>
   <element>
-    <fullpath>themes/fruity/images/site_logo.jpg</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>e6cd83d43f01d7c2515ecca88bdfc2bb</hash>
-  </element>
-  <element>
-    <fullpath>themes/fruity/images/site_logo.png</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>f4fe81c6e8d6a9a220f14a98ab3b711a</hash>
-  </element>
-  <element>
     <fullpath>themes/fruity/images/tile.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
     <hash>ad7e20118cbd3c0ed4bcdcf8001d3fc8</hash>
+  </element>
+  <element>
+    <fullpath>themes/fruity/images/yellow_bar.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>ed7422b5dc00ad593bedee88db7a8d96</hash>
   </element>
   <element>
     <fullpath>themes/fruity/images/yellow_corner.gif</fullpath>
