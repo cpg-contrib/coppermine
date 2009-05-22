@@ -148,7 +148,7 @@ function html_picinfo()
         
         if ($CONFIG['vote_details'] == 1) {
             $stat_link = "stat_details.php?type=vote&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&rating=1&referer=0&browser=0&os=0&uid=1";
-            $detailsLink_votes = '<div>(<a href="javascript:;" onclick="MM_openBrWindow(\'' . $stat_link . '\', \'stat_detail\', \'width=650,height=800,scrollbars=yes,resizable=yes\');">' . $lang_picinfo['show_details'] . '</a>)</div>';
+            $detailsLink_votes = '(<a href="' . $stat_link . '" class="greybox">' . $lang_picinfo['show_details'] . '</a>)';
         } else {
             $detailsLink_votes = '';
         }
@@ -209,7 +209,7 @@ function html_picinfo()
 
     if ($CURRENT_PIC_DATA['hits'] && $CONFIG['hit_details'] && GALLERY_ADMIN_MODE) {
         $stat_link = "stat_details.php?type=hits&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&search_phrase=0&referer=0&browser=1&os=1";
-        $info[$lang_picinfo['Displayed']] = '<div>(<a href="javascript:;" onclick="MM_openBrWindow(\'' . $stat_link . '\', \'stat_detail\', \'width=650,height=800,scrollbars=yes,resizable=yes\');">' . $lang_picinfo['show_details'] . '</a>)</div>';
+        $info[$lang_picinfo['Displayed']] = '(<a href="' . $stat_link . '" class="greybox">' . $lang_picinfo['show_details'] . '</a>)';
     }
 
     $path_to_pic = $CONFIG['fullpath'] . $CURRENT_PIC_DATA['filepath'] . $CURRENT_PIC_DATA['filename'];

@@ -166,10 +166,12 @@ EOT;
         echo $cal->getMonthView($month, $year, false);
     }
 
+    /*
     echo <<< EOT
 <div align="center"><a href="javascript:window.close()" class="admin_menu">{$lang_common['close']}</a>
 
 EOT;
+	*/
     if ($action == 'banning') {
         echo '<a href="#" onclick="sendDate(\'\', \'\', \'\');" class="admin_menu">' . $lang_calendar_php['clear_date'] . '</a></div>';
     }

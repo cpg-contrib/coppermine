@@ -243,11 +243,7 @@ EOT;
 <div class="admin_menu_wrapper">
 </div>
 EOT;
-        if ($pid != '') { // individual stat - start
-            print <<<EOT
-            <div class="admin_menu admin_float"><a href="javascript:;" onClick="window.close()">{$lang_stat_details_php['close']}</a></div>
-EOT;
-        } // individual stat - end
+
     print '<div style="clear:left;"></div>'.$line_break.'</div>';
     } // mode=embedded ends
 // output the header depending on the mode (fullscreen vs embedded) - end

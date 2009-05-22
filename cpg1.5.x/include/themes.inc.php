@@ -2198,7 +2198,7 @@ function theme_main_menu($which)
         '{FAV_TGT}' => "thumbnails.php?album=favpics",
         '{FAV_TITLE}' => $lang_main_menu['fav_title'],
         '{FAV_LNK}' => $lang_main_menu['fav_lnk'],
-        '{BROWSEBYDATE_TGT}' => 'javascript:;" onclick="MM_openBrWindow(\'calendar.php?action=browsebydate&amp;month='.ltrim(strftime('%m'),'0').'&amp;year='.strftime('%Y').'\', \'Calendar\', \'width=300, height=200, scrollbars=no, toolbar=no, status=no, resizable=no\'); return false;',
+        '{BROWSEBYDATE_TGT}' => 'calendar.php?action=browsebydate&amp;month='.ltrim(strftime('%m'),'0').'&amp;year='.strftime('%Y').'" class="greybox',
         '{BROWSEBYDATE_LNK}' => $lang_main_menu['browse_by_date_lnk'],
         '{BROWSEBYDATE_TITLE}' => $lang_main_menu['browse_by_date_title'],
         '{SEARCH_TGT}' => "search.php",
