@@ -880,14 +880,6 @@ table.album_operate span.load{
 	margin-left: 10px;
 }
 
-.dragHandle {
-	background-image: url(images/bullet.png)  ;
-	background-position:center center;
-	background-repeat:no-repeat;
-	width: 50px;
-	height: 14px;
-}
-
 table.album_save{
 	border:1px solid #FFDD99;
 	width: 100%;

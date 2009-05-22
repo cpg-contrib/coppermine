@@ -220,3 +220,10 @@ input.spin-button.down {
   cursor: hand;
 }
 
+.dragHandle {
+	background-image: url(../images/icons/move.png)  ;
+	background-position:center center;
+	background-repeat:no-repeat;
+	width: 50px;
+	height: 14px;
+}
