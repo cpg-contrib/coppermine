@@ -39,7 +39,7 @@ $cpg_time_start = cpgGetMicroTime();
 // Do some cleanup in GET, POST and cookie data and un-register global vars
 $HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', '%26' => '&amp;', '%22' => '&quot;', '%3C' => '&lt;', '%3E' => '&gt;','%27' => '&#39;', "'" => '&#39;');
 
-$keysToSkip = array('_POST', '_GET', '_COOKIE', '_REQUEST', '_SERVER', 'HTML_SUBST', 'keysToSkip', 'register_globals_flag', 'cpgdebugger');
+$keysToSkip = array('_POST', '_GET', '_COOKIE', '_REQUEST', '_SERVER', 'HTML_SUBST', 'keysToSkip', 'register_globals_flag', 'cpgdebugger', 'key');
 
 if (ini_get('register_globals') == '1' || strtolower(ini_get('register_globals')) == 'on') {
     $register_globals_flag = true;
