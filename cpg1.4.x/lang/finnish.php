@@ -35,7 +35,7 @@ $lang_charset = 'utf-8';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
-$lang_byte_units = array('tavua', 'KB', 'MB');
+$lang_byte_units = array('tavua', 'kt', 'Mt');
 
 // Day of weeks and months
 $lang_day_of_week = array('su', 'ma', 'ti', 'ke', 'to', 'pe', 'la');
@@ -91,15 +91,15 @@ $lang_errors = array(
   'non_exist_comment' => 'Valittua kommenttia ei löydy.',
   'pic_in_invalid_album' => 'Kuvaa ei ole albumissa (%s)!?',
   'banned' => 'Sinut on bannattu sivustolta.',
-  'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',
+  'not_with_udb' => 'Tämä funktio on poistettu käytöstä Coppermine:ssä, koska se on integroitu foorumin kanssa. Joko pyydetty toiminto ei ole tuettu tässä konfiguraatiossa tai sen pitäisi olla foorumin käsittelemä.',
   'offline_title' => 'Offline',
-  'offline_text' => 'Kalleria on poissa käytöstä. Tarkista myöhemmin uudelleen.',
+  'offline_text' => 'Galleria on poissa käytöstä. Tarkista myöhemmin uudelleen.',
   'ecards_empty' => 'Tällä hetkellä ei ole e-kortteja.',
   'action_failed' => 'Toiminto epäonnistui.',
   'no_zip' => 'ZIP -tiedostojen käsittelyyn vaadittava kirjasto puuttuu. Ota yhteyttä ylläpitäjään!',
   'zip_type' => 'Sinulla ei ole oikeuksia lähettää ZIP -tiedostoja.',
   'database_query' => 'Tietokantakyselyn käsittely epäonnistui.', //cpg1.4
-  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
+  'register_globals_on' => 'PHP asetus register_globals on päällä palvelimellasi, mikä on huono idea heikomman tietoturvan vuoksi. On suositeltavaa ottaa se pois päältä. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">lisää</a>]',
 );
 
 $lang_bbcode_help_title = 'bbcode-ohje'; //cpg1.4
@@ -841,8 +841,8 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'err_mkdir' => 'Hakemiston %s luonti epäonnistui!',
   'dest_dir_ro' => 'Lähdehakemistoon %s ei voitu kirjoittaa!',
   'err_move' => 'Ei voida siirtää kohdetta %s kohteeseen %s!',
-  'err_fsize_too_large' => 'Kuva, jota yritit lisätä, on liian suuri. (Suurin sallittu koko on %s x %s.)', //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
-  'err_imgsize_too_large' => 'Kuva, jota yritit lisätä, on liian suuri. (Suurin sallittu koko on %s KB.)', //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
+  'err_fsize_too_large' => 'Kuva, jota yritit lisätä, on liian suuri. (Suurin sallittu koko on %s x %s.)',
+  'err_imgsize_too_large' => 'Kuva, jota yritit lisätä, on liian suuri. (Suurin sallittu koko on %s kt.)',
   'err_invalid_img' => 'Tiedostoa ei tunnistettu kuvaksi.',
   'allowed_img_types' => 'Voit lisätä vain %s kuvia.',
   'err_insert_pic' => 'Tiedostoa \'%s\' ei voitu lisätä albumiin.',
@@ -979,7 +979,7 @@ $lang_picinfo = array(
   'yResolution' => 'Y-resoluutio', //cpg1.4
   'ResolutionUnit' => 'Resoluutioyksikkö', //cpg1.4
   'Software' => 'Ohjelma', //cpg1.4
-  'YCbCrPositioning' => 'YCbCrPositioning', //cpg1.4
+  'YCbCrPositioning' => 'YCbCr -asemointi', //cpg1.4
   'ExifOffset' => 'Exif Offset', //cpg1.4
   'IFD1Offset' => 'IFD1 Offset', //cpg1.4
   'FNumber' => 'Aukon koko', //cpg1.4
