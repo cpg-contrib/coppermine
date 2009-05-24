@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => 'Les librairies nécessaires au traitement des fichiers ZIP ne sont pas installées. Contactez l\'Administrateur du site.', //cpg1.3.0
   'zip_type' => 'Vous n\'avez pas l\'autorisation de télécharger des fichiers ZIP.', //cpg1.3.0
   'database_query' => 'Il y eu une erreur lors de l\'exécution de la requête', //cpg1.4
-  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
+  'register_globals_on' => 'Le paramètre PHP register_globals est activé (sur on) sur votre serveur, ce qui est une mauvaise idée en terme de sécurité. Il est fortement recommandé de le désactiver (mettre à off). [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'aide bbcode'; //cpg1.4
@@ -935,7 +935,7 @@ $lang_display_image_php = array(
   'view_fs' => 'Cliquez pour voir l\'image en taille réelle',
   'edit_pic' => 'Modifier la description', //cpg1.3.0
   'crop_pic' => 'Retoucher', //cpg1.3.0
-  'set_player' => 'Changer le player',
+  'set_player' => 'Changer le lecteur',
 );
 
 $lang_picinfo = array(
