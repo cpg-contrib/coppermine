@@ -340,6 +340,7 @@ class Calendar
 
     /* Generate the HTML for a given month */
     function getMonthHTML($m, $y, $showYear = 1, $only_future_dates) {
+        global $LINEBREAK;
         $s = "";
 
         $a = $this->adjustDate($m, $y);
@@ -368,22 +369,22 @@ class Calendar
 
       $header = $monthName . (($showYear > 0) ? " " . $year : "");
 
-      $s .= "<table class=\"maintable\" align=\"center\">\n";
-      $s .= "<tr>\n";
-      $s .= "<td align=\"center\" valign=\"top\">" . (($prevMonth == "") ? "&nbsp;" : "<a href=\"$prevMonth\" class=\"user_thumb_infobox\">&laquo;</a>")  . "</td>\n";
-      $s .= "<td align=\"center\" valign=\"top\" class=\"tableh1\" colspan=\"5\">$header</td>\n";
-      $s .= "<td align=\"center\" valign=\"top\">" . (($nextMonth == "") ? "&nbsp;" : "<a href=\"$nextMonth\" class=\"user_thumb_infobox\">&raquo;</a>")  . "</td>\n";
-      $s .= "</tr>\n";
+      $s .= '<table class="maintable" align="center">' . $LINEBREAK;
+      $s .= '<tr>' . $LINEBREAK;
+      $s .= '<td align="center" valign="top">' . (($prevMonth == '') ? '&nbsp;' : '<a href="'.$prevMonth.'" class="user_thumb_infobox">&laquo;</a>')  . '</td>' . $LINEBREAK;
+      $s .= '<td align="center" valign="top" class="tableh1" colspan="5">'.$header.'</td>' . $LINEBREAK;
+      $s .= '<td align="center" valign="top">' . (($nextMonth == '') ? '&nbsp;' : '<a href="'.$nextMonth.'" class="user_thumb_infobox">&raquo;</a>')  . '</td>' . $LINEBREAK;
+      $s .= '</tr>' . $LINEBREAK;
 
-      $s .= "<tr>\n";
-      $s .= "<td align=\"center\" valign=\"top\" class=\"tableh1\">" . $this->dayNames[($this->startDay)%7] . "</td>\n";
-      $s .= "<td align=\"center\" valign=\"top\" class=\"tableh1\">" . $this->dayNames[($this->startDay+1)%7] . "</td>\n";
-      $s .= "<td align=\"center\" valign=\"top\" class=\"tableh1\">" . $this->dayNames[($this->startDay+2)%7] . "</td>\n";
-      $s .= "<td align=\"center\" valign=\"top\" class=\"tableh1\">" . $this->dayNames[($this->startDay+3)%7] . "</td>\n";
-      $s .= "<td align=\"center\" valign=\"top\" class=\"tableh1\">" . $this->dayNames[($this->startDay+4)%7] . "</td>\n";
-      $s .= "<td align=\"center\" valign=\"top\" class=\"tableh1\">" . $this->dayNames[($this->startDay+5)%7] . "</td>\n";
-      $s .= "<td align=\"center\" valign=\"top\" class=\"tableh1\">" . $this->dayNames[($this->startDay+6)%7] . "</td>\n";
-      $s .= "</tr>\n";
+      $s .= '<tr>' . $LINEBREAK;
+      $s .= '<td align="center" valign="top" class="tableh1">' . $this->dayNames[($this->startDay)%7] . '</td>' . $LINEBREAK;
+      $s .= '<td align="center" valign="top" class="tableh1">' . $this->dayNames[($this->startDay+1)%7] . '</td>' . $LINEBREAK;
+      $s .= '<td align="center" valign="top" class="tableh1">' . $this->dayNames[($this->startDay+2)%7] . '</td>' . $LINEBREAK;
+      $s .= '<td align="center" valign="top" class="tableh1">' . $this->dayNames[($this->startDay+3)%7] . '</td>' . $LINEBREAK;
+      $s .= '<td align="center" valign="top" class="tableh1">' . $this->dayNames[($this->startDay+4)%7] . '</td>' . $LINEBREAK;
+      $s .= '<td align="center" valign="top" class="tableh1">' . $this->dayNames[($this->startDay+5)%7] . '</td>' . $LINEBREAK;
+      $s .= '<td align="center" valign="top" class="tableh1">' . $this->dayNames[($this->startDay+6)%7] . '</td>' . $LINEBREAK;
+      $s .= '</tr>' . $LINEBREAK;
 
       // We need to work out what date to start at so that the first appears in the correct column
       $d = $this->startDay + 1 - $first;
@@ -397,7 +398,7 @@ class Calendar
 
       while ($d <= $daysInMonth)
       {
-          $s .= "<tr>\n";
+          $s .= '<tr>' . $LINEBREAK;
 
           for ($i = 0; $i < 7; $i++)
           {
@@ -410,19 +411,19 @@ class Calendar
                   } else {
                       $link = '';
                   }
-                  $s .= (($link == "") ? $d : $link.$d."</a>");
+                  $s .= (($link == '') ? $d : $link.$d.'</a>');
               }
               else
               {
-                  $s .= "&nbsp;";
+                  $s .= '&nbsp;';
               }
-                $s .= "</td>\n";
+                $s .= '</td>' . $LINEBREAK;
               $d++;
           }
-          $s .= "</tr>\n";
+          $s .= '</tr>' . $LINEBREAK;
       }
 
-      $s .= "</table>\n";
+      $s .= '</table>' . $LINEBREAK;
 
       return $s;
     }
@@ -456,37 +457,37 @@ class Calendar
 
     /* Generate the HTML for a given year */
     function getYearHTML($year) {
-        $s = "";
+        $s = '';
       $prev = $this->getCalendarLink(0, $year - 1);
       $next = $this->getCalendarLink(0, $year + 1);
 
-        $s .= "<table class=\"maintable\" border=\"0\">\n";
-        $s .= "<tr>";
-      $s .= "<td align=\"center\" valign=\"top\" align=\"left\">" . (($prev == "") ? "&nbsp;" : "<a href=\"$prev\">&lt;&lt;</a>")  . "</td>\n";
-        $s .= "<td class=\"tableh1\" valign=\"top\" align=\"center\">" . (($this->startMonth > 1) ? $year . " - " . ($year + 1) : $year) ."</td>\n";
-      $s .= "<td align=\"center\" valign=\"top\" align=\"right\">" . (($next == "") ? "&nbsp;" : "<a href=\"$next\">&gt;&gt;</a>")  . "</td>\n";
-        $s .= "</tr>\n";
-        $s .= "<tr>";
-        $s .= "<td class=\"tableh1\" valign=\"top\">" . $this->getMonthHTML(0 + $this->startMonth, $year, 0) ."</td>\n";
-        $s .= "<td class=\"tableh1\" valign=\"top\">" . $this->getMonthHTML(1 + $this->startMonth, $year, 0) ."</td>\n";
-        $s .= "<td class=\"tableh1\" valign=\"top\">" . $this->getMonthHTML(2 + $this->startMonth, $year, 0) ."</td>\n";
-        $s .= "</tr>\n";
-        $s .= "<tr>\n";
-        $s .= "<td class=\"tableh1\" valign=\"top\">" . $this->getMonthHTML(3 + $this->startMonth, $year, 0) ."</td>\n";
-        $s .= "<td class=\"tableh1\" valign=\"top\">" . $this->getMonthHTML(4 + $this->startMonth, $year, 0) ."</td>\n";
-        $s .= "<td class=\"tableh1\" valign=\"top\">" . $this->getMonthHTML(5 + $this->startMonth, $year, 0) ."</td>\n";
-        $s .= "</tr>\n";
-        $s .= "<tr>\n";
-        $s .= "<td class=\"tableh1\" valign=\"top\">" . $this->getMonthHTML(6 + $this->startMonth, $year, 0) ."</td>\n";
-        $s .= "<td class=\"tableh1\" valign=\"top\">" . $this->getMonthHTML(7 + $this->startMonth, $year, 0) ."</td>\n";
-        $s .= "<td class=\"tableh1\" valign=\"top\">" . $this->getMonthHTML(8 + $this->startMonth, $year, 0) ."</td>\n";
-        $s .= "</tr>\n";
-        $s .= "<tr>\n";
-        $s .= "<td class=\"tableh1\" valign=\"top\">" . $this->getMonthHTML(9 + $this->startMonth, $year, 0) ."</td>\n";
-        $s .= "<td class=\"tableh1\" valign=\"top\">" . $this->getMonthHTML(10 + $this->startMonth, $year, 0) ."</td>\n";
-        $s .= "<td class=\"tableh1\" valign=\"top\">" . $this->getMonthHTML(11 + $this->startMonth, $year, 0) ."</td>\n";
-        $s .= "</tr>\n";
-        $s .= "</table>\n";
+        $s .= '<table class="maintable" border="0">' . $LINEBREAK;
+        $s .= '<tr>';
+      $s .= '<td align="center" valign="top" align="left">' . (($prev == '') ? '&nbsp;' : '<a href="'.$prev.'">&lt;&lt;</a>')  . '</td>' . $LINEBREAK;
+        $s .= '<td class="tableh1" valign="top" align="center">' . (($this->startMonth > 1) ? $year . ' - ' . ($year + 1) : $year) .'</td>' . $LINEBREAK;
+      $s .= '<td align="center" valign="top" align="right">' . (($next == '') ? '&nbsp;' : '<a href="'.$next.'">&gt;&gt;</a>')  . '</td>' . $LINEBREAK;
+        $s .= '</tr>' . $LINEBREAK;
+        $s .= '<tr>';
+        $s .= '<td class="tableh1" valign="top">' . $this->getMonthHTML(0 + $this->startMonth, $year, 0) .'</td>' . $LINEBREAK;
+        $s .= '<td class="tableh1" valign="top">' . $this->getMonthHTML(1 + $this->startMonth, $year, 0) .'</td>' . $LINEBREAK;
+        $s .= '<td class="tableh1" valign="top">' . $this->getMonthHTML(2 + $this->startMonth, $year, 0) .'</td>' . $LINEBREAK;
+        $s .= '</tr>' . $LINEBREAK;
+        $s .= '<tr>' . $LINEBREAK;
+        $s .= '<td class="tableh1" valign="top">' . $this->getMonthHTML(3 + $this->startMonth, $year, 0) .'</td>' . $LINEBREAK;
+        $s .= '<td class="tableh1" valign="top">' . $this->getMonthHTML(4 + $this->startMonth, $year, 0) .'</td>' . $LINEBREAK;
+        $s .= '<td class="tableh1" valign="top">' . $this->getMonthHTML(5 + $this->startMonth, $year, 0) .'</td>' . $LINEBREAK;
+        $s .= '</tr>' . $LINEBREAK;
+        $s .= '<tr>' . $LINEBREAK;
+        $s .= '<td class="tableh1" valign="top">' . $this->getMonthHTML(6 + $this->startMonth, $year, 0) .'</td>' . $LINEBREAK;
+        $s .= '<td class="tableh1" valign="top">' . $this->getMonthHTML(7 + $this->startMonth, $year, 0) .'</td>' . $LINEBREAK;
+        $s .= '<td class="tableh1" valign="top">' . $this->getMonthHTML(8 + $this->startMonth, $year, 0) .'</td>' . $LINEBREAK;
+        $s .= '</tr>' . $LINEBREAK;
+        $s .= '<tr>' . $LINEBREAK;
+        $s .= '<td class="tableh1" valign="top">' . $this->getMonthHTML(9 + $this->startMonth, $year, 0) .'</td>' . $LINEBREAK;
+        $s .= '<td class="tableh1" valign="top">' . $this->getMonthHTML(10 + $this->startMonth, $year, 0) .'</td>' . $LINEBREAK;
+        $s .= '<td class="tableh1" valign="top">' . $this->getMonthHTML(11 + $this->startMonth, $year, 0) .'</td>' . $LINEBREAK;
+        $s .= '</tr>' . $LINEBREAK;
+        $s .= '</table>' . $LINEBREAK;
 
         return $s;
     }

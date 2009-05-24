@@ -662,28 +662,29 @@ EOT;
 // HTML template for title row of the thumbnail view (album title + sort options)
 $template_thumb_view_title_row = <<<EOT
 
-                        <table width="100%" cellpadding="0" cellspacing="0">
-                        <tr>
-                                <td width="100%" class="statlink"><h2>{ALBUM_NAME}</h2></td>
-                                <td><img src="images/spacer.gif" width="1" alt="" /></td>
-                                <td class="sortorder_cell" id="sortorder_cell">
-                                    <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
-                                </td>
-                        </tr>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td class="statlink" rowspan="2">
+                    <h2>{ALBUM_NAME}</h2>
+                </td>
+                <td class="sortorder_cell" id="sortorder_cell">
+                    <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right">
 <!-- BEGIN admin_buttons -->
-                        <tr>
-                                <td colspan="3">
-                                        <a href="modifyalb.php?album={ALBUM_ID}" class="admin_menu">{MODIFY}</a>
-                                        &nbsp;&nbsp;-&nbsp;&nbsp;
-                                        <a href="index.php?cat={CAT_ID}" class="admin_menu">{PARENT_CAT}</a>
-                                        &nbsp;&nbsp;-&nbsp;&nbsp;
-                                        <a href="editpics.php?album={ALBUM_ID}" class="admin_menu">{EDIT_PICS}</a>
-                                        &nbsp;&nbsp;-&nbsp;&nbsp;
-                                        <a href="albmgr.php?cat={CAT_ID}" class="admin_menu">{ALBUM_MGR}</a>
-                                </td>
-                        </tr>
+                    <a href="modifyalb.php?album={ALBUM_ID}" class="admin_menu">{MODIFY}</a>
+                    &nbsp;&nbsp;
+                    <a href="index.php?cat={CAT_ID}" class="admin_menu">{PARENT_CAT}</a>
+                    &nbsp;&nbsp;
+                    <a href="editpics.php?album={ALBUM_ID}" class="admin_menu">{EDIT_PICS}</a>
+                    &nbsp;&nbsp;
+                    <a href="albmgr.php?cat={CAT_ID}" class="admin_menu">{ALBUM_MGR}</a>
 <!-- END admin_buttons -->
-                        </table>
+                </td>
+            </tr>
+        </table>
 
 EOT;
 /******************************************************************************
@@ -1468,16 +1469,16 @@ EOT;
 ******************************************************************************/
 // Template used for tabbed display
 $template_tab_display = array(
-    'left_text'         => '<td width="100%%" align="left" valign="middle" class="tableh1" style="white-space: nowrap">{LEFT_TEXT}</td>' . "\n",
+    'left_text'         => '<td width="100%%" align="left" valign="middle" class="tableh1" style="white-space: nowrap">{LEFT_TEXT}</td>' . $LINEBREAK,
     'tab_header'        => '',
     'tab_trailer'       => '',
     'active_tab'        => '<td align="center" valign="middle" class="tableb tableb_alternate">%d</td>',
-    'inactive_tab'      => '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">%d</a></td>' . "\n",
-    'nav_tab'           => '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">%s</a></td>' . "\n",
-    'nav_tab_nolink'    => '<td align="center" valign="middle" class="navmenu">%s</td>' . "\n",
-    'allpages_dropdown' => '<td align="center" valign="middle" style="white-space: nowrap; padding-right: 10px;" class="navmenu">%s</td>' . "\n",
-    'page_gap'          => '<td align="center" valign="middle" class="navmenu">-</td>' . "\n",
-    'tab_spacer'        => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n",
+    'inactive_tab'      => '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">%d</a></td>' . $LINEBREAK,
+    'nav_tab'           => '<td align="center" valign="middle" class="navmenu"><a href="{LINK}">%s</a></td>' . $LINEBREAK,
+    'nav_tab_nolink'    => '<td align="center" valign="middle" class="navmenu">%s</td>' . $LINEBREAK,
+    'allpages_dropdown' => '<td align="center" valign="middle" style="white-space: nowrap; padding-right: 10px;" class="navmenu">%s</td>' . $LINEBREAK,
+    'page_gap'          => '<td align="center" valign="middle" class="navmenu">-</td>' . $LINEBREAK,
+    'tab_spacer'        => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . $LINEBREAK,
     'page_link'         => '{LINK}',
 );
 /******************************************************************************
@@ -1648,7 +1649,7 @@ EOT;
 ******************************************************************************/
 // Function for the JavaScript inside the <head>-section
 function theme_javascript_head() {
-    global $CONFIG, $JS;
+    global $CONFIG, $JS, $LINEBREAK;
 
   $return = '';
   // Check if we have any variables being set using set_js_vars function
@@ -1656,14 +1657,14 @@ function theme_javascript_head() {
     // Convert the $JS['vars'] array to json object string
     $json_vars = json_encode($JS['vars']);
     // Output the json object
-    $return .= "<script type=\"text/javascript\">var js_vars = $json_vars;</script>\n";
+    $return .= "<script type=\"text/javascript\">var js_vars = $json_vars;</script>" . $LINEBREAK;
   }
 
   // Check if we have any js includes
   if (isset($JS['includes']) && count($JS['includes'])) {
     // Include all the file which were set using js_include() function
     foreach ($JS['includes'] as $js_file) {
-      $return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . "\n";
+      $return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . $LINEBREAK;
     }
   }
   return $return;
@@ -3091,7 +3092,7 @@ function theme_no_img_to_display($album_name)
 ******************************************************************************/
 function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, $film_strip)
 {
-    global $CONFIG;
+    global $CONFIG, $LINEBREAK;
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -3113,16 +3114,16 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
     echo $votes;
 
     $picinfo = $superCage->cookie->keyExists('picinfo') ? $superCage->cookie->getAlpha('picinfo') : ($CONFIG['display_pic_info'] ? 'block' : 'none');
-    echo "\n\r<div id=\"picinfo\" style=\"display: $picinfo;\">\n";
+    echo $LINEBREAK . '<div id="picinfo" style="display: '.$picinfo.';">' . $LINEBREAK;
     starttable();
     echo $pic_info;
     endtable();
-    echo "</div>\n";
+    echo '</div>' . $LINEBREAK;
 
     echo '<a name="comments_top"></a>';
-    echo "<div id=\"comments\">\n";
+    echo '<div id="comments">' . $LINEBREAK;
         echo $comments;
-        echo "</div>\n";
+        echo '</div>' . $LINEBREAK;
 
 }
 /******************************************************************************
@@ -3136,7 +3137,7 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
 ******************************************************************************/
 function theme_html_picinfo(&$info)
 {
-    global $lang_picinfo, $CONFIG, $CURRENT_PIC_DATA;
+    global $lang_picinfo, $CONFIG, $CURRENT_PIC_DATA, $LINEBREAK;
 
     if ($CONFIG['picinfo_movie_download_link']) {
         $path_to_pic = $CONFIG['fullpath'] . $CURRENT_PIC_DATA['filepath'] . $CURRENT_PIC_DATA['filename'];
@@ -3147,8 +3148,8 @@ function theme_html_picinfo(&$info)
     }
 
     $html = '';
-    $html .= "        <tr><td colspan=\"2\" class=\"tableh2\">{$lang_picinfo['title']}</td></tr>\n";
-    $template = "        <tr><td class=\"tableb tableb_alternate\" valign=\"top\" >%s:</td><td class=\"tableb tableb_alternate\">%s</td></tr>\n";
+    $html .= '        <tr><td colspan="2" class="tableh2">'.$lang_picinfo['title'].'</td></tr>' . $LINEBREAK;
+    $template = '        <tr><td class="tableb tableb_alternate" valign="top" >%s:</td><td class="tableb tableb_alternate">%s</td></tr>' . $LINEBREAK;
     foreach ($info as $key => $value) {
         $html .= sprintf($template, $key, $value);
     }
@@ -3167,7 +3168,7 @@ function theme_html_picinfo(&$info)
 // Displays a picture
 function theme_html_picture()
 {
-    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $USER;
+    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $USER, $LINEBREAK;
     global $album, $lang_date, $template_display_media;
     global $lang_display_image_php, $lang_picinfo, $lang_common, $lang_errors;
 
@@ -3201,10 +3202,10 @@ function theme_html_picture()
     }
 
     if ($CURRENT_PIC_DATA['title'] != '') {
-        $pic_title .= $CURRENT_PIC_DATA['title'] . "\n";
+        $pic_title .= $CURRENT_PIC_DATA['title'] . $LINEBREAK;
     }
     if ($CURRENT_PIC_DATA['caption'] != '') {
-        $pic_title .= $CURRENT_PIC_DATA['caption'] . "\n";
+        $pic_title .= $CURRENT_PIC_DATA['caption'] . $LINEBREAK;
     }
     if ($CURRENT_PIC_DATA['keywords'] != '') {
         $pic_title .= $lang_common['keywords'] . ": " . $CURRENT_PIC_DATA['keywords'];
@@ -3269,9 +3270,9 @@ function theme_html_picture()
                 } else {
                   $pic_html .= "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
                 }
-                $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
+                $pic_title = $lang_display_image_php['view_fs'] . $LINEBREAK . '==============' . $LINEBREAK . $pic_title;
                 $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width=\"{$image_size['width']}\" height=\"{$image_size['height']}\"  border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
-                $pic_html .= "</a>\n </td></tr></table>";
+                $pic_html .= '</a>' . $LINEBREAK . '</td></tr></table>';
                 //PLUGIN FILTER
                 $pic_html = CPGPluginAPI::filter('html_image_reduced_overlay', $pic_html);
             } else {
@@ -3282,28 +3283,28 @@ function theme_html_picture()
                 } else {
                   $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
                 }
-                $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
+                $pic_title = $lang_display_image_php['view_fs'] . $LINEBREAK . '==============' . $LINEBREAK . $pic_title;
                 $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
-                $pic_html .= "</a>\n";
+                $pic_html .= '</a>' . $LINEBREAK;
                 //PLUGIN FILTER
                 $pic_html = CPGPluginAPI::filter('html_image_reduced', $pic_html);
             }
         } else {
             if ($CONFIG['transparent_overlay'] == 1) {
                 $pic_html = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td background=\"" . $picture_url . "\" width=\"{$CURRENT_PIC_DATA['pwidth']}\" height=\"{$CURRENT_PIC_DATA['pheight']}\" class=\"image\">";
-                $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width={$CURRENT_PIC_DATA['pwidth']} height={$CURRENT_PIC_DATA['pheight']} border=\"0\" alt=\"\" /><br />\n";
+                $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width={$CURRENT_PIC_DATA['pwidth']} height={$CURRENT_PIC_DATA['pheight']} border=\"0\" alt=\"\" /><br />" . $LINEBREAK;
                 $pic_html .= "</td></tr></table>";
                 //PLUGIN FILTER
                 $pic_html = CPGPluginAPI::filter('html_image_overlay', $pic_html);
             } else {
-                $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" alt=\"\" /><br />\n";
+                $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" alt=\"\" /><br />" . $LINEBREAK;
                 //PLUGIN FILTER
                 $pic_html = CPGPluginAPI::filter('html_image', $pic_html);
             }
         }
     } elseif ($mime_content['content']=='document') {
         $pic_thumb_url = get_pic_url($CURRENT_PIC_DATA,'thumb');
-        $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"".$pic_thumb_url."\" border=\"0\" class=\"image\" /></a>\n<br />";
+        $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"".$pic_thumb_url."\" border=\"0\" class=\"image\" /></a><br />" . $LINEBREAK;
         //PLUGIN FILTER
         $pic_html = CPGPluginAPI::filter('html_document', $pic_html);
     } else {
@@ -3358,7 +3359,7 @@ function theme_html_picture()
         $pic_html  = '<object id="'.$player['id'].'" '.$player['classid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
         $pic_html .= "<param name=\"autostart\" value=\"$autostart\" /><param name=\"src\" value=\"". $picture_url . "\" />";
         $pic_html .= '<embed '.$image_size['whole'].' src="'. $picture_url . '" autostart="'.$autostart.'" '.$player['mime'].'></embed>';
-        $pic_html .= "</object><br />\n";
+        $pic_html .= '</object><br />' . $LINEBREAK;
 
         //PLUGIN FILTER
         $pic_html = CPGPluginAPI::filter('html_other_media', $pic_html);
@@ -3422,19 +3423,19 @@ function theme_html_img_nav_menu() {
         //$start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$start"; // Abbas - added pid in URL instead of pos
         $start_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$start]['pid']}";
         $start_title = $lang_img_nav_bar['go_album_start'];
-        $meta_nav .= "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />\n";
+        $meta_nav .= "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />" . $LINEBREAK;
         $end = $pic_count - 1;
         //$end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$end";// Abbas - added pid in URL instead of pos
         $end_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$end]['pid']}";
         $end_title = $lang_img_nav_bar['go_album_end'];
-        $meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />\n";
+        $meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />" . $LINEBREAK;
 
     if ($pos > 0) {
         $prev = $pos - 1;
         //$prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev$uid_link";// Abbas - added pid in URL instead of pos
         $prev_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link#top_display_media";
         $prev_title = $lang_img_nav_bar['prev_title'];
-        $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />\n";
+        $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />" . $LINEBREAK;
         $prev_image = (($lang_text_dir == 'ltr') ? 'prev.png' : 'next.png');
     } else {
         // on first image, so no previous button/link
@@ -3448,7 +3449,7 @@ function theme_html_img_nav_menu() {
         //$next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next$uid_link";// Abbas - added pid in URL instead of pos
         $next_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link#top_display_media";
         $next_title = $lang_img_nav_bar['next_title'];
-        $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>\n";
+        $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>" . $LINEBREAK;
         $next_image = (($lang_text_dir == 'ltr') ? 'next.png' : 'prev.png');
     } else {
         // on last image, so no next button/link
@@ -3478,7 +3479,7 @@ function theme_html_img_nav_menu() {
     }
 
     $thumb_tgt = "thumbnails.php?album=$album$cat_link$date_link&amp;page=$page$uid_link";
-    $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>\n";
+    $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>" . $LINEBREAK;
 
     $slideshow_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'].'#top_display_media';
 
@@ -3494,7 +3495,7 @@ function theme_html_img_nav_menu() {
         'pic_info_title' => $lang_img_nav_bar['pic_info_title'],
         'slideshow_tgt' => $slideshow_tgt,
         'slideshow_title' => $lang_img_nav_bar['slideshow_title'],
-        'loc' => $location
+        'loc' => $location,
     );
     set_js_var('buttons', $js_buttons);
 
@@ -3528,7 +3529,7 @@ function theme_html_img_nav_menu() {
 ******************************************************************************/
 function theme_html_rating_box()
 {
-    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $USER_DATA, $USER;
+    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $USER_DATA, $USER, $LINEBREAK;
     global $template_image_rating, $lang_rate_pic;
 
     if (!(USER_CAN_RATE_PICTURES && $CURRENT_ALBUM_DATA['votes'] == 'YES')) {
@@ -3567,26 +3568,26 @@ function theme_html_rating_box()
         $start_td = '<td class="tableb" width="17%" align="center">';
         $end_td = '</td>';
         $empty_star = '<img style="cursor:pointer" id="' . $pid . '_0" title="0" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['rubbish'] . '" onclick="rate(this)" />';
-        $rating_images = $start_td . $empty_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
+        $rating_images = $start_td . $empty_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
 
         $empty_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
         $full_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
-        $rating_images .= $start_td . $full_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
+        $rating_images .= $start_td . $full_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
 
         $empty_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
         $full_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
-        $rating_images .= $start_td . $full_star . $full_star . $empty_star . $empty_star . $empty_star . $end_td . "\n";
+        $rating_images .= $start_td . $full_star . $full_star . $empty_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
 
         $empty_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
         $full_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
-        $rating_images .= $start_td . $full_star . $full_star . $full_star . $empty_star . $empty_star . $end_td . "\n";
+        $rating_images .= $start_td . $full_star . $full_star . $full_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
 
         $empty_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
         $full_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
-        $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $empty_star . $end_td . "\n";
+        $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $empty_star . $end_td . $LINEBREAK;
 
         $full_star = '<img style="cursor:pointer" id="' . $pid . '_5" title="5" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['great'] . '" onclick="rate(this)" />';
-        $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . "\n";
+        $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . $LINEBREAK;
     } else {
       //use new rating
       set_js_var('rating', round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 0));
@@ -3951,7 +3952,7 @@ EOT;
 // Display the full size image
 function theme_display_fullsize_pic()
 {
-    global $CONFIG, $THEME_DIR, $FORBIDDEN_SET, $pid;
+    global $CONFIG, $THEME_DIR, $FORBIDDEN_SET, $LINEBREAK, $pid;
     global $lang_errors, $lang_fullsize_popup, $lang_charset;
 
     $superCage = Inspekt::makeSuperCage();
@@ -4028,8 +4029,8 @@ function theme_display_fullsize_pic()
                 . htmlspecialchars($imagedata['name'])
                 . '" title="'
                 . htmlspecialchars($imagedata['name'])
-                . "\n" . $lang_fullsize_popup['click_to_close']
-                . '" /></a><br />' ."\n";
+                . $LINEBREAK . $lang_fullsize_popup['click_to_close']
+                . '" /></a><br />' .$LINEBREAK;
 ?>
           </div>
         </td>
@@ -4047,8 +4048,8 @@ function theme_display_fullsize_pic()
         . htmlspecialchars($imagedata['name'])
         . '" title="'
         . htmlspecialchars($imagedata['name'])
-        . "\n" . $lang_fullsize_popup['click_to_close']
-        . '" /></a><br />' ."\n";
+        . $LINEBREAK . $lang_fullsize_popup['click_to_close']
+        . '" /></a><br />' . $LINEBREAK;
        ?>
   </div>
 <?php

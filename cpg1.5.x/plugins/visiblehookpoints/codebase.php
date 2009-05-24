@@ -189,6 +189,7 @@ function vhp_plugin_sleep($var)
 
 function vhp_stat_table($title,$status)
 {
+    global $LINEBREAK;
     //$column1=ceil(count($status)/3);
     $entries=ceil(count($status)/3);
 
@@ -213,14 +214,14 @@ function vhp_stat_table($title,$status)
        </tr>
 EOT;
     for ($entry=0;$entry<$entries;$entry++) {
-        $html .= "<tr>\n";
+        $html .= '<tr>' . $LINEBREAK;
         for ($column=0;$column<3;$column++) {
-            $html .= "<th class=\"tableh2\">{$columns[$column][$entry]['Variable_name']}</th>\n";
-            $html .= "<td class=\"tableb\">{$columns[$column][$entry]['Value']}</td>\n";
+            $html .= "<th class=\"tableh2\">{$columns[$column][$entry]['Variable_name']}</th>" . $LINEBREAK;
+            $html .= "<td class=\"tableb\">{$columns[$column][$entry]['Value']}</td>" . $LINEBREAK;
         }
-        $html .= "</tr>\n";
+        $html .= "</tr>" . $LINEBREAK;
     }
-    $html .= "</table>\n";
+    $html .= "</table>" . $LINEBREAK;
     return $html;
 }
 function vhp_stats()
@@ -432,7 +433,8 @@ if (!class_exists('dBug')) {
 
             //close table row
             function closeTDRow() {
-                    return "</td>\n</tr>\n";
+                    global $LINEBREAK;
+                    return '</td>' . $LINEBREAK . '</tr>';
             }
 
             //error
@@ -447,6 +449,7 @@ if (!class_exists('dBug')) {
 
             //check variable type
             function checkType($var) {
+                    global $LINEBREAK;
                     switch(gettype($var)) {
                             case "resource":
                                     $this->varIsResource($var);
@@ -462,19 +465,21 @@ if (!class_exists('dBug')) {
                                     break;
                             default:
                                     $var=($var=="") ? "[empty string]" : $var;
-                                    echo "<table cellspacing=0><tr>\n<td>".$var."</td>\n</tr>\n</table>\n";
+                                    echo '<table cellspacing="0"><tr>' . $LINEBREAK . '<td>'.$var.'</td>' . $LINEBREAK . '</tr>' . $LINEBREAK . '</table>' . $LINEBREAK;
                                     break;
                     }
             }
 
             //if variable is a boolean type
             function varIsBoolean($var) {
+                    global $LINEBREAK;
                     $var=($var==1) ? "TRUE" : "FALSE";
-                    echo $var."</td>\n</tr>\n";
+                    echo $var.'</td>' . $LINEBREAK . '</tr>' . $LINEBREAK;
             }
 
             //if variable is an array type
             function varIsArray($var) {
+                    global $LINEBREAK;
                     $this->makeTableHeader("array","array");
                     if(is_array($var)) {
                             foreach($var as $key=>$value) {
@@ -483,7 +488,7 @@ if (!class_exists('dBug')) {
                                             $this->checkType($value);
                                     else {
                                             $value=(trim($value)=="") ? "[empty string]" : $value;
-                                            echo $value."</td>\n</tr>\n";
+                                            echo $value.'</td>' . $LINEBREAK . '</tr>' . $LINEBREAK;
                                     }
                             }
                     }
@@ -515,8 +520,9 @@ if (!class_exists('dBug')) {
 
             //if variable is a resource type
             function varIsResource($var) {
+                    global $LINEBREAK;
                     $this->makeTableHeader("resourceC","resource",1);
-                    echo "<tr>\n<td>\n";
+                    echo '<tr>' . $LINEBREAK . '<td>' . $LINEBREAK;
                     switch(get_resource_type($var)) {
                             case "fbsql result":
                             case "mssql result":
@@ -538,7 +544,7 @@ if (!class_exists('dBug')) {
                                     echo get_resource_type($var).$this->closeTDRow();
                                     break;
                     }
-                    echo $this->closeTDRow()."</table>\n";
+                    echo $this->closeTDRow().'</table>' . $LINEBREAK;
             }
 
             //if variable is an xml type
@@ -548,6 +554,7 @@ if (!class_exists('dBug')) {
 
             //if variable is an xml resource type
             function varIsXmlResource($var) {
+                    global $LINEBREAK;
                     $xml_parser=xml_parser_create();
                     xml_parser_set_option($xml_parser,XML_OPTION_CASE_FOLDING,0);
                     xml_set_element_handler($xml_parser,array(&$this,"xmlStartElement"),array(&$this,"xmlEndElement"));
@@ -568,21 +575,22 @@ if (!class_exists('dBug')) {
                     //if xml is not a file, attempt to read it as a string
                     else {
                             if(!is_string($var)) {
-                                    echo $this->error("xml").$this->closeTDRow()."</table>\n";
+                                    echo $this->error("xml").$this->closeTDRow().'</table>' . $LINEBREAK;
                                     return;
                             }
                             $data=$var;
                             $this->xmlParse($xml_parser,$data,1);
                     }
 
-                    echo $this->closeTDRow()."</table>\n";
+                    echo $this->closeTDRow().'</table>' . $LINEBREAK;
 
             }
 
             //parse xml
             function xmlParse($xml_parser,$data,$bFinal) {
+                    global $LINEBREAK;
                     if (!xml_parse($xml_parser,$data,$bFinal)) {
-                                       die(sprintf("XML error: %s at line %d\n",
+                                       die(sprintf("XML error: %s at line %d" . $LINEBREAK,
                                                                xml_error_string(xml_get_error_code($xml_parser)),
                                                                xml_get_current_line_number($xml_parser)));
                     }
@@ -655,14 +663,14 @@ if (!class_exists('dBug')) {
                     echo "</tr>";
                     for($i=0;$i<$numrows;$i++) {
                             $row=call_user_func($db."_fetch_array",$var,constant(strtoupper($db)."_ASSOC"));
-                            echo "<tr>\n";
-                            echo "<td class=\"dBug_resourceKey\">".($i+1)."</td>";
+                            echo '<tr>' . $LINEBREAK;
+                            echo '<td class="dBug_resourceKey">'.($i+1).'</td>';
                             for($k=0;$k<$numfields;$k++) {
                                     $fieldrow=$row[($field[$k]->name)];
                                     $fieldrow=($fieldrow=="") ? "[empty string]" : $fieldrow;
-                                    echo "<td>".$fieldrow."</td>\n";
+                                    echo '<td>'.$fieldrow.'</td>' . $LINEBREAK;
                             }
-                            echo "</tr>\n";
+                            echo '</tr>' . $LINEBREAK;
                     }
                     echo "</table>";
                     if($numrows>0)

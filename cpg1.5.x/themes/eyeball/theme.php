@@ -82,7 +82,7 @@ EOT;
 // Function for the JavaScript inside the <head>-section
 function theme_javascript_head()
 {
-    global $CONFIG, $JS;
+    global $CONFIG, $JS, $LINEBREAK;
     $return = '';
     // Check if we have any variables being set using set_js_vars function
     $JS['vars']['not_default_theme'] = true;
@@ -90,14 +90,14 @@ function theme_javascript_head()
         // Convert the $JS['vars'] array to json object string
         $json_vars = json_encode($JS['vars']);
         // Output the json object
-        $return .= '<script type="text/javascript">var js_vars = ' . $json_vars . ";</script>\n";
+        $return .= '<script type="text/javascript">var js_vars = ' . $json_vars . ";</script>" . $LINEBREAK;
     }
 
     // Check if we have any js includes
     if (isset($JS['includes']) && count($JS['includes'])) {
         // Include all the file which were set using js_include() function
         foreach ($JS['includes'] as $js_file) {
-            $return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . "\n";
+            $return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . $LINEBREAK;
         }
     }
 
@@ -193,7 +193,7 @@ EOT;
 
 function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, $film_strip)
 {
-    global $CONFIG;
+    global $CONFIG, $LINEBREAK;
     
     $superCage = Inspekt::makeSuperCage();
 
@@ -206,7 +206,7 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
 
 EOT;
 
-    echo '        <img src="images/spacer.gif" width="1" height="25" alt="" /><br />' . "\n";
+    echo '        <img src="images/spacer.gif" width="1" height="25" alt="" /><br />' . $LINEBREAK;
     starttable();
     echo $nav_menu;
     endtable();
@@ -227,22 +227,22 @@ EOT;
     }
 
     $picinfo = $superCage->cookie->keyExists('picinfo') ? $superCage->cookie->getAlpha('picinfo') : ($CONFIG['display_pic_info'] ? 'block' : 'none');
-    echo "<div id=\"picinfo\" style=\"display: $picinfo;\">\n";
+    echo '<div id="picinfo" style="display: ' . $picinfo . ';">' . $LINEBREAK;
     starttable();
     echo $spacer;
     endtable();
     starttable();
     echo $pic_info;
     endtable();
-    echo "</div>\n";
+    echo '</div>' . $LINEBREAK;
 
     if ($comments) {
         starttable();
         echo $spacer;
         endtable();
-        echo "<div id=\"comments\">\n";
+        echo '<div id="comments">' . $LINEBREAK;
         echo $comments;
-        echo "</div>\n";
+        echo '</div>' . $LINEBREAK;
     }
 }
 

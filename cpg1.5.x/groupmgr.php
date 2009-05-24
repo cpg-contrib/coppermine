@@ -35,15 +35,15 @@ $cpg_udb->synchronize_groups();
 
 function display_group_list()
 {
-    global $CONFIG, $custom_group_counter;
+    global $CONFIG, $LINEBREAK, $custom_group_counter;
     global $lang_groupmgr_php, $lang_byte_units, $lang_common;
     $row_counter = 0;
-    $table_start = '<table border="0" cellspacing="0" cellpadding="0" style="white-space:nowrap;font-size:90%;">'."\n";
-    $table_end = '</table>'."\n";
-    $tr_start = '<tr>'."\n";
-    $tr_end = '</tr>'."\n";
-    $td_start = '<td>'."\n";
-    $td_end = '</td>'."\n";
+    $table_start = '<table border="0" cellspacing="0" cellpadding="0" style="white-space:nowrap;font-size:90%;">'.$LINEBREAK;
+    $table_end = '</table>'.$LINEBREAK;
+    $tr_start = '<tr>'.$LINEBREAK;
+    $tr_end = '</tr>'.$LINEBREAK;
+    $td_start = '<td>'.$LINEBREAK;
+    $td_end = '</td>'.$LINEBREAK;
     //$approval_needed = ', admin approval needed';
     //$approval_not_needed = ', visible instantly';
     $default_group_names = array(

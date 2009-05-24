@@ -145,7 +145,7 @@ EOT;
 
 function form_category($text, $name)
 {
-    global $ALBUM_DATA, $CAT_LIST, $USER_DATA, $lang_modifyalb_php, $CONFIG, $icon_array;
+    global $ALBUM_DATA, $CAT_LIST, $USER_DATA, $lang_modifyalb_php, $CONFIG, $icon_array, $LINEBREAK;
 
     //check if users are allowed to move their albums
     if (!GALLERY_ADMIN_MODE && $CONFIG['allow_user_move_album'] == 0) {
@@ -197,7 +197,7 @@ EOT;
 EOT;
 
     foreach ($CAT_LIST as $category) {
-        echo '                <option value="' . $category[0] . '"' . ($ALBUM_DATA['category'] == $category[0] ? ' selected="selected"': '') . ">" . $category[1] . "</option>\n";
+        echo '                <option value="' . $category[0] . '"' . ($ALBUM_DATA['category'] == $category[0] ? ' selected="selected"': '') . ">" . $category[1] . '</option>' . $LINEBREAK;
     }
 
     echo <<< EOT
@@ -229,7 +229,7 @@ EOT;
 
 function form_alb_thumb($text, $name)
 {
-    global $CONFIG, $ALBUM_DATA, $CLEAN, $lang_modifyalb_php, $USER_DATA;
+    global $CONFIG, $ALBUM_DATA, $CLEAN, $lang_modifyalb_php, $USER_DATA, $LINEBREAK;
 
     $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg', $USER_DATA['user_id']);
 
@@ -311,7 +311,7 @@ EOT;
 
 EOT;
     foreach ($img_list as $pid => $pic_name) {
-        echo '                <option value="' . $pid . '"' . ($pid == $ALBUM_DATA[$name] ? ' selected="selected"' : '') . '>' . $pic_name . "</option>\n";
+        echo '                <option value="' . $pid . '"' . ($pid == $ALBUM_DATA[$name] ? ' selected="selected"' : '') . '>' . $pic_name . '</option>' . $LINEBREAK;
     }
     
     echo <<< EOT
@@ -385,10 +385,10 @@ EOT;
 
 function form_visibility($text, $name)
 {
-    global $CONFIG, $USER_DATA, $ALBUM_DATA, $lang_modifyalb_php, $cpg_udb;
+    global $CONFIG, $USER_DATA, $ALBUM_DATA, $lang_modifyalb_php, $cpg_udb, $LINEBREAK;
 
     if (!$CONFIG['allow_private_albums']) {
-        echo '        <input type="hidden" name="' . $name . '" value="0" />' . "\n";
+        echo '        <input type="hidden" name="' . $name . '" value="0" />' . $LINEBREAK;
         return;
     }
 
@@ -441,7 +441,7 @@ function form_visibility($text, $name)
 EOT;
 
     foreach ($options as $value => $caption) {
-        echo '                <option value="' . $value . '"' . ($ALBUM_DATA['visibility'] == $value ? ' selected="selected"' : '') . '>' . $caption . "</option>\n";
+        echo '                <option value="' . $value . '"' . ($ALBUM_DATA['visibility'] == $value ? ' selected="selected"' : '') . '>' . $caption . '</option>' . $LINEBREAK;
     }
 
     echo <<< EOT
@@ -454,7 +454,7 @@ EOT;
 
 function form_moderator($text, $name)
 {
-    global $CONFIG, $ALBUM_DATA, $lang_modifyalb_php;
+    global $CONFIG, $ALBUM_DATA, $lang_modifyalb_php, $LINEBREAK;
 
     $options = array(
         0 => $lang_modifyalb_php['admins_only'],
@@ -479,7 +479,7 @@ function form_moderator($text, $name)
 EOT;
 
     foreach ($options as $value => $caption) {
-        echo '                <option value="' . $value . '"' . ($ALBUM_DATA['moderator_group'] == $value ? ' selected="selected"' : '') . '>' . $caption . "</option>\n";
+        echo '                <option value="' . $value . '"' . ($ALBUM_DATA['moderator_group'] == $value ? ' selected="selected"' : '') . '>' . $caption . '</option>' . $LINEBREAK;
     }
 
     echo <<< EOT
@@ -536,7 +536,7 @@ function create_form(&$data)
 
 function alb_list_box()
 {
-    global $CONFIG, $CLEAN, $cpg_udb, $CPG_PHP_SELF, $lang_modifyalb_php;
+    global $CONFIG, $CLEAN, $cpg_udb, $CPG_PHP_SELF, $lang_modifyalb_php, $LINEBREAK;
     
     $rowset = array();
     
@@ -626,24 +626,24 @@ function alb_list_box()
     
          // Create the nicely sorted and formatted drop down list
         $alb_cat = '';
-        $select = cpg_fetch_icon('alb_mgr', 2) . "<select name=\"album_listbox\" class=\"listbox\" onchange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">\n";
+        $select = cpg_fetch_icon('alb_mgr', 2) . "<select name=\"album_listbox\" class=\"listbox\" onchange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?album='+this.options[this.selectedIndex].value;\">" . $LINEBREAK;
 
         foreach ($rowset as $val) {
             if ($val['cat'] != $alb_cat) {
                 if ($alb_cat) {
-                    $select .= "</optgroup>\n";
+                    $select .= '</optgroup>' . $LINEBREAK;
                 }
-                $select .= '<optgroup label="' . $val['cat'] . '">' . "\n";
+                $select .= '<optgroup label="' . $val['cat'] . '">' . $LINEBREAK;
                 $alb_cat = $val['cat'];
             }
-            $select .= '<option value="' . $val['aid'] . '"' . ($val['aid'] == $CLEAN['album'] ? ' selected="selected"' : '') . '>   ' . $val['title'] . "</option>\n";
+            $select .= '<option value="' . $val['aid'] . '"' . ($val['aid'] == $CLEAN['album'] ? ' selected="selected"' : '') . '>   ' . $val['title'] . '</option>' . $LINEBREAK;
         }
         
         if ($alb_cat) {
-            $select .= "</optgroup>\n";
+            $select .= '</optgroup>' . $LINEBREAK;
         }
 
-        $select .= "</select>\n";
+        $select .= '</select>' . $LINEBREAK;
         
         return $select;
     }

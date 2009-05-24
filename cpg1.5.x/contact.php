@@ -171,17 +171,17 @@ if ($superCage->post->keyExists('submit')) {
         }
         
         $html_message = $message_header .
-                        "<br />\n\r" .
+                        '<br />' . $LINEBREAK .
                         sprintf($lang_contact_php['user_info'], $visitor_status, $html_user_name, $email_address) .
-                        "<br />\n\r" .
+                        '<br />' . $LINEBREAK .
                         '<div style="border:1px solid black">' .
                         $html_message .
                         '</div>';
                         
         $message = $message_header .
-                   "\n\r" .
+                   $LINEBREAK .
                    sprintf($lang_contact_php['user_info'], $visitor_status, $text_user_name, $email_address) .
-                   "\n\r" .
+                   $LINEBREAK .
                    $message;
                    
         if (!cpg_mail($CONFIG['gallery_admin_email'], $subject, $html_message, 'text/html', $sender_name, $sender_email, $message)) {
@@ -207,7 +207,7 @@ if ($superCage->post->keyExists('submit')) {
 }
 
 // the form has not been submit yet, so let's display it
-print '<form method="post" action="'.$CPG_PHP_SELF.'" name="contactForm" id="contactForm" onsubmit="return validateContactFormFields();">'."\n";
+print '<form method="post" action="'.$CPG_PHP_SELF.'" name="contactForm" id="contactForm" onsubmit="return validateContactFormFields();">'.$LINEBREAK;
 
 starttable('100%', cpg_fetch_icon('contact', 2) . $lang_contact_php['title'], 3);
 

@@ -241,7 +241,7 @@ $js_vars['height'] = $imgObj->height;
 $js_vars['error_document_size'] = $lang_editpics_php['error_document_size'];
 $json_vars = json_encode($js_vars);
 // Output the json object
-$json_script = "<script type=\"text/javascript\">var js_vars = eval('($json_vars)');</script>\n";
+$json_script = "<script type=\"text/javascript\">var js_vars = eval('($json_vars)');</script>" . $LINEBREAK;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -288,7 +288,11 @@ $json_script = "<script type=\"text/javascript\">var js_vars = eval('($json_vars
     margin-left:auto;
     margin-right:auto;
     z-index:0;
-    <?php if (!$imgObj->imgRes) print "visibility:hidden;\n";?>
+    <?php 
+    	if (!$imgObj->imgRes) {
+    		echo 'visibility:hidden;' . $LINEBREAK;
+    	}
+    ?>
     }
     </style>
     <link rel="stylesheet" href="css/coppermine.css" type="text/css" />
@@ -348,7 +352,7 @@ for ($i=0.1;$i<=2.01;$i=$i+0.01) {
 print '         <option value="'.$i.'">';
 print $i*100;
 print '%</option>';
-print "\n";
+print $LINEBREAK;
 }
 ?>
        </select>

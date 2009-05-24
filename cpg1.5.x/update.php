@@ -510,9 +510,8 @@ function test_sql_connection()
 // ------------------------- SQL QUERIES TO CREATE TABLES ------------------ //
 function update_tables()
 {
-    global $errors, $CONFIG, $lang_update_php, $lang_common;
+    global $errors, $CONFIG, $lang_update_php, $lang_common, $LINEBREAK;
     
-    $lineBreak = "\n";
     $loopCounter = 0;
     $cellStyle = '';
     $superCage = Inspekt::makeSuperCage();
@@ -624,11 +623,11 @@ EOT;
                 }
             }
         }
-        print '</td>'.$lineBreak; // end the table cell that contains the output
+        print '</td>'.$LINEBREAK; // end the table cell that contains the output
         if ($result && $affected) {
-            echo '<td width="20%" class="'.$cellStyle.' updatesOK">' . $ok_icon . $lang_common['ok'] . '</td>'.$lineBreak;
+            echo '<td width="20%" class="'.$cellStyle.' updatesOK">' . $ok_icon . $lang_common['ok'] . '</td>'.$LINEBREAK;
         } else {
-            echo '<td width="20%" class="'.$cellStyle.' updatesFail">' . $already_done_icon . $lang_update_php['already_done'] . '</td>'.$lineBreak;
+            echo '<td width="20%" class="'.$cellStyle.' updatesFail">' . $already_done_icon . $lang_update_php['already_done'] . '</td>'.$LINEBREAK;
         }
     } // end foreach loop
     

@@ -74,13 +74,13 @@ EOT;
  */
 function dirheader($dir, $dirid)
 {
-    global $CONFIG, $lang_search_new_php, $lang_common;
+    global $CONFIG, $lang_search_new_php, $lang_common, $LINEBREAK;
     $warning = '';
 
     if (!is_writable($CONFIG['fullpath'] . $dir))
-        $warning = "<tr><td class=\"tableh2\" valign=\"middle\" colspan=\"4\">\n" . "<strong>{$lang_search_new_php['warning']}</strong>: {$lang_search_new_php['change_perm']}</td></tr>\n";
-    return "<tr><td class=\"tableh2\" valign=\"middle\" align=\"right\" colspan=\"4\">\n" .
-    sprintf($lang_search_new_php['target_album'], $dir, albumselect($dirid)) . "</td></tr>\n" . $warning;
+        $warning = '<tr><td class="tableh2" valign="middle" colspan="4">' . $LINEBREAK . '<strong>' . $lang_search_new_php['warning'] . '</strong>: ' . $lang_search_new_php['change_perm'] . '</td></tr>' . $LINEBREAK;
+    return '<tr><td class="tableh2" valign="middle" align="right" colspan="4">' . $LINEBREAK .
+    sprintf($lang_search_new_php['target_album'], $dir, albumselect($dirid)) . '</td></tr>' . $LINEBREAK . $warning;
 }
 
 /**
@@ -480,12 +480,12 @@ EOT;
         }  else {
           $rowStyle = 'tableb tableb_alternate';
         }
-        echo "<tr>\n";
-        echo "<td class=\"".$rowStyle."\" valign=\"middle\" align=\"left\">$dir_name</td>\n";
-        echo "<td class=\"".$rowStyle."\" valign=\"middle\" align=\"left\">$file_name</td>\n";
-        echo "<td class=\"".$rowStyle."\" valign=\"middle\" align=\"left\">$album_name</td>\n";
-        echo "<td class=\"".$rowStyle."\" valign=\"middle\" align=\"center\">$status</td>\n";
-        echo "</tr>\n";
+        echo '<tr>' . $LINEBREAK;
+        echo '<td class="'.$rowStyle.'" valign="middle" align="left">'.$dir_name.'</td>' . $LINEBREAK;
+        echo '<td class="'.$rowStyle.'" valign="middle" align="left">'.$file_name.'</td>' . $LINEBREAK;
+        echo '<td class="'.$rowStyle.'" valign="middle" align="left">'.$album_name.'</td>' . $LINEBREAK;
+        echo '<td class="'.$rowStyle.'" valign="middle" align="center">'.$status.'</td>' . $LINEBREAK;
+        echo '</tr>' . $LINEBREAK;
         $count++;
         flush();
     }
@@ -624,19 +624,19 @@ EOT;
 
     $iframe_startfolder = str_replace('searchnew.php', '', __FILE__) . rtrim($CONFIG['fullpath'],'/') . $folder_sep;
     $iframe_hide = rawurlencode('.,..,.svn,edit,Thumbs.db,.DS_Store,__MACOSX,.htaccess,'.rtrim($CONFIG['userpics'],'/'));
-    print '    <tr>'."\n";
-    print '        <td class="tableb" align="center">'."\n";
+    print '    <tr>'.$LINEBREAK;
+    print '        <td class="tableb" align="center">'.$LINEBREAK;
 
     if ($CONFIG['browse_batch_add'] == 1) {
-        print '            <iframe src="minibrowser.php?startfolder='.$iframe_startfolder.'&amp;parentform=choosefolder&amp;formelementname=startdir&amp;no_popup=1&amp;limitfolder='.$iframe_startfolder.'&amp;hidefolders='.$iframe_hide.'&amp;linktarget='.$CPG_PHP_SELF.'&amp;searchnew_php=1&amp;radio=0" width="95%" height="400" name="popup_in_a_box"></iframe>'."\n";
+        print '            <iframe src="minibrowser.php?startfolder='.$iframe_startfolder.'&amp;parentform=choosefolder&amp;formelementname=startdir&amp;no_popup=1&amp;limitfolder='.$iframe_startfolder.'&amp;hidefolders='.$iframe_hide.'&amp;linktarget='.$CPG_PHP_SELF.'&amp;searchnew_php=1&amp;radio=0" width="95%" height="400" name="popup_in_a_box"></iframe>'.$LINEBREAK;
     } else {
         echo '<table width="100%">';
         display_dir_tree('', '');
         echo '</table>';
     }
     
-    print '        </td>'."\n";
-    print '    </tr>'."\n";
+    print '        </td>'.$LINEBREAK;
+    print '    </tr>'.$LINEBREAK;
 
     // configure batch-add interface (classic or browsable)
     $yes_selected = $CONFIG['browse_batch_add'] ? 'checked="checked"' : '';

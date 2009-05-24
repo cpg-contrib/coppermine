@@ -45,7 +45,7 @@ if ($superCage->get->keyExists('id')) {
     $formFieldId = $superCage->get->getInt('id');
 }
 
-echo '<form name="keywordform" action="">'."\n";
+echo '<form name="keywordform" action="">'.$LINEBREAK;
 
 starttable("100%", $lang_upload_php['keywords_sel'], 3);
 
@@ -56,7 +56,7 @@ if ($total > 0) {
     $options = '';
     
     foreach ($keywords as $keyword) {
-        $options .= '              <option value="'.$keyword.'">'.$keyword.'</option>' . "\n";
+        $options .= '              <option value="'.$keyword.'">'.$keyword.'</option>' . $LINEBREAK;
     }
     
     echo <<< EOT

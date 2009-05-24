@@ -496,7 +496,7 @@ EOT;
 
 function form_input($text, $name, $max_length,$field_width = 100)
 {
-    global $CURRENT_PIC, $row_style_class;
+    global $CURRENT_PIC, $LINEBREAK, $row_style_class;
 
     $value = array_key_exists($name, $CURRENT_PIC) ? $CURRENT_PIC[$name] : '';
 
@@ -505,7 +505,7 @@ function form_input($text, $name, $max_length,$field_width = 100)
     $text = sprintf($text, $CURRENT_PIC['pid']);
 
     if ($text == '') {
-        echo "        <input type=\"hidden\" name=\"$name\" value=\"\" />\n";
+        echo '        <input type="hidden" name="'.$name.'" value="" />' . $LINEBREAK;
         return;
     }
 
@@ -542,10 +542,10 @@ function form_alb_list_box($text, $name)
 
 EOT;
     foreach ($public_albums_list as $album) {
-        echo '              <option value="' , $album['aid'] , '"' , ($album['aid'] == $sel_album ? ' selected="selected"' : '') , '>' , $album['cat_title'] , "</option>\n";
+        echo '              <option value="' , $album['aid'] , '"' , ($album['aid'] == $sel_album ? ' selected="selected"' : '') , '>' , $album['cat_title'] , '</option>' . $LINEBREAK;
     }
     foreach ($user_albums_list as $album) {
-        echo '                        <option value="' , $album['aid'] , '"' , ($album['aid'] == $sel_album ? ' selected="selected"' : '') , '>* ' , $album['title'] , "</option>\n";
+        echo '                        <option value="' , $album['aid'] , '"' , ($album['aid'] == $sel_album ? ' selected="selected"' : '') , '>* ' , $album['title'] , '</option>' . $LINEBREAK;
     }
     echo <<<EOT
                         </select>

@@ -52,7 +52,7 @@ EOT;
 
 function delete_picture($pid, $tablecellstyle = 'tableb')
 {
-    global $CONFIG, $header_printed, $lang_errors, $lang_delete_php;
+    global $CONFIG, $header_printed, $lang_errors, $lang_delete_php, $LINEBREAK;
 
     if (!$header_printed) {
         output_table_header();
@@ -151,8 +151,8 @@ function delete_picture($pid, $tablecellstyle = 'tableb')
         echo $red;
     }
     
-    echo "</td>";
-    echo "</tr>\n";
+    echo '</td>';
+    echo '</tr>' . $LINEBREAK;
     
     // Plugin filter to be called after a file is deleted
     CPGPluginAPI::filter('after_delete_file', $pic);
@@ -162,7 +162,7 @@ function delete_picture($pid, $tablecellstyle = 'tableb')
 
 function delete_album($aid)
 {
-    global $CONFIG, $lang_errors, $lang_delete_php;
+    global $CONFIG, $lang_errors, $lang_delete_php, $LINEBREAK;
 
     $return = '';
 
@@ -211,7 +211,7 @@ function delete_album($aid)
     cpg_db_query($query);
     
     if (mysql_affected_rows($CONFIG['LINK_ID']) > 0) {
-        $return .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['alb_del_success'], $album_data['title']) . "</td></tr>\n";
+        $return .= "<tr><td colspan=\"6\" class=\"tableb\">" . sprintf($lang_delete_php['alb_del_success'], $album_data['title']) . '</td></tr>' . $LINEBREAK;
     }
     
     return $return;
@@ -462,7 +462,7 @@ case 'albmgr':
                     continue;
                 }
 
-                $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\"> Updating album '".$option_value."' Position to ". $rowset[$key]['pos']."</td></tr>\n";
+                $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\"> Updating album '".$option_value."' Position to ". $rowset[$key]['pos'].'</td></tr>' . $LINEBREAK;
                 $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET pos = '{$rowset[$key]['pos']}' WHERE aid = '{$option_value}' $restrict LIMIT 1";
                 cpg_db_query($query);
             }
@@ -531,7 +531,7 @@ case 'picmgr':
             }
            
             //update the new position
-            $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\"> Updating picture ".$option_value." Position to ".$rowset[$key]['position']."</td></tr>\n";
+            $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\"> Updating picture ".$option_value." Position to ".$rowset[$key]['position'].'</td></tr>' . $LINEBREAK;
             $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET position = '{$rowset[$key]['position']}' WHERE pid = '{$option_value}' $restrict LIMIT 1";
             cpg_db_query($query);
         }
@@ -599,9 +599,9 @@ case 'picture':
     output_table_header();
     $tablecellstyle = 'tableb';
     $aid = delete_picture($pid, $tablecellstyle);
-    echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
-    echo "<div class=\"admin_menu\"><a href=\"thumbnails.php?album=$aid\">".$icon_array['ok'] . $lang_common['continue']."</a></div>\n";
-    echo "</td></tr>\n";
+    echo '<tr><td colspan="7" class="tablef" align="center">' . $LINEBREAK;
+    echo '<div class="admin_menu"><a href="thumbnails.php?album='.$aid.'">'.$icon_array['ok'] . $lang_common['continue'].'</a></div>' . $LINEBREAK;
+    echo '</td></tr>' . $LINEBREAK;
     endtable();
 
     pagefooter();
@@ -624,9 +624,9 @@ case 'album':
 
     print delete_album($aid);
 
-    echo "<tr><td colspan=\"7\" class=\"tablef\" align=\"center\">\n";
-    echo "<div class=\"admin_menu\"><a href=\"index.php\">".$icon_array['ok'] . $lang_common['continue']."</a></div>\n";
-    echo "</td></tr>";
+    echo '<tr><td colspan="7" class="tablef" align="center">' . $LINEBREAK;
+    echo '<div class="admin_menu"><a href="index.php">'.$icon_array['ok'] . $lang_common['continue'].'</a></div>' . $LINEBREAK;
+    echo '</td></tr>';
     endtable();
 
     pagefooter();
@@ -796,9 +796,9 @@ case 'user':
                 mysql_free_result($result);
                 print '</tr>';
             }
-            echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
-            echo "<a href=\"usermgr.php\"  class=\"admin_menu\">".$icon_array['ok'] . $lang_common['continue']."</a>\n";
-            echo "</td></tr>";
+            echo '<tr><td colspan="6" class="tablef" align="center">' . $LINEBREAK;
+            echo '<a href="usermgr.php" class="admin_menu">'.$icon_array['ok'] . $lang_common['continue'].'</a>' . $LINEBREAK;
+            echo '</td></tr>';
             endtable();
             
             pagefooter();
@@ -811,10 +811,10 @@ case 'user':
 
             starttable("100%", $lang_delete_php['activate_user'], 2);
 
-            print "<tr>\n";
-            print "<td class=\"tableh2\"><strong>{$lang_delete_php['username']}</strong></td>\n";
-            print "<td class=\"tableh2\"><strong>{$lang_delete_php['status']}</strong></td>\n";
-            print "</tr>\n";
+            print '<tr>' . $LINEBREAK;
+            print '<td class="tableh2"><strong>'.$lang_delete_php['username'].'</strong></td>' . $LINEBREAK;
+            print '<td class="tableh2"><strong>'.$lang_delete_php['status'].'</strong></td>' . $LINEBREAK;
+            print '</tr>' . $LINEBREAK;
 
             foreach ($users_scheduled_for_action as $key) {
             
@@ -847,9 +847,9 @@ case 'user':
                 
             } // foreach --- end
             
-            echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
-            echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$icon_array['ok'] . $lang_common['continue']."</a>\n";
-            echo "</td></tr>";
+            echo '<tr><td colspan="2" class="tablef" align="center">' . $LINEBREAK;
+            echo '<a href="usermgr.php" class="admin_menu">'.$icon_array['ok'] . $lang_common['continue'].'</a>' . $LINEBREAK;
+            echo '</td></tr>';
             endtable();
             
             pagefooter();
@@ -862,10 +862,10 @@ case 'user':
             
             starttable("100%", $lang_delete_php['deactivate_user'], 2);
             
-            print "<tr>\n";
-            print "<td class=\"tableh2\"><strong>{$lang_delete_php['username']}</strong></td>\n";
-            print "<td class=\"tableh2\"><strong>{$lang_delete_php['status']}</strong></td>\n";
-            print "</tr>\n";
+            print '<tr>' . $LINEBREAK;
+            print '<td class="tableh2"><strong>'.$lang_delete_php['username'].'</strong></td>' . $LINEBREAK;
+            print '<td class="tableh2"><strong>'.$lang_delete_php['status'].'</strong></td>' . $LINEBREAK;
+            print '</tr>' . $LINEBREAK;
 
             foreach ($users_scheduled_for_action as $key) {
             
@@ -898,9 +898,9 @@ case 'user':
                 mysql_free_result($result);
             } // foreach --- end
             
-            echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
-            echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$icon_array['ok'] . $lang_common['continue']."</a>\n";
-            echo "</td></tr>";
+            echo '<tr><td colspan="2" class="tablef" align="center">' . $LINEBREAK;
+            echo '<a href="usermgr.php" class="admin_menu">'.$icon_array['ok'] . $lang_common['continue'].'</a>' . $LINEBREAK;
+            echo '</td></tr>';
             endtable();
             
             pagefooter();
@@ -912,10 +912,10 @@ case 'user':
             
             starttable("100%", $lang_delete_php['reset_password'], 2);
             
-            print "<tr>\n";
-            print "<td class=\"tableh2\"><strong>{$lang_delete_php['username']}</strong></td>\n";
-            print "<td class=\"tableh2\"><strong>{$lang_delete_php['status']}</strong></td>\n";
-            print "</tr>\n";
+            print '<tr>' . $LINEBREAK;
+            print '<td class="tableh2"><strong>'.$lang_delete_php['username'].'</strong></td>' . $LINEBREAK;
+            print '<td class="tableh2"><strong>'.$lang_delete_php['status'].'</strong></td>' . $LINEBREAK;
+            print '</tr>' . $LINEBREAK;
 
             foreach ($users_scheduled_for_action as $key) {
             
@@ -945,9 +945,9 @@ case 'user':
                 mysql_free_result($result);
             } // foreach --- end
 
-            echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
-            echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$icon_array['ok'] . $lang_common['continue']."</a>\n";
-            echo "</td></tr>";
+            echo '<tr><td colspan="2" class="tablef" align="center">' . $LINEBREAK;
+            echo '<a href="usermgr.php" class="admin_menu">'.$icon_array['ok'] . $lang_common['continue'].'</a>' . $LINEBREAK;
+            echo '</td></tr>';
             endtable();
             
             pagefooter();
@@ -960,10 +960,10 @@ case 'user':
             
             starttable("100%", $lang_delete_php['change_group'], 2);
             
-            print "<tr>\n";
-            print "<td class=\"tableh2\"><strong>{$lang_delete_php['username']}</strong></td>\n";
-            print "<td class=\"tableh2\"><strong>{$lang_delete_php['status']}</strong></td>\n";
-            print "</tr>\n";
+            print '<tr>' . $LINEBREAK;
+            print '<td class="tableh2"><strong>'.$lang_delete_php['username'].'</strong></td>' . $LINEBREAK;
+            print '<td class="tableh2"><strong>'.$lang_delete_php['status'].'</strong></td>' . $LINEBREAK;
+            print '</tr>' . $LINEBREAK;
             
             $result_group = cpg_db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']}");
 
@@ -1003,9 +1003,9 @@ case 'user':
                 mysql_free_result($result);
             } // foreach --- end
 
-            echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
-            echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$icon_array['ok'] . $lang_common['continue']."</a>\n";
-            echo "</td></tr>";
+            echo '<tr><td colspan="2" class="tablef" align="center">' . $LINEBREAK;
+            echo '<a href="usermgr.php" class="admin_menu">'.$icon_array['ok'] . $lang_common['continue'].'</a>' . $LINEBREAK;
+            echo '</td></tr>';
             endtable();
             
             pagefooter();
@@ -1018,10 +1018,10 @@ case 'user':
             
             starttable("100%", $lang_delete_php['add_group'], 2);
             
-            print "<tr>\n";
-            print "<td class=\"tableh2\"><strong>{$lang_delete_php['username']}</strong></td>\n";
-            print "<td class=\"tableh2\"><strong>{$lang_delete_php['status']}</strong></td>\n";
-            print "</tr>\n";
+            print '<tr>' . $LINEBREAK;
+            print '<td class="tableh2"><strong>'.$lang_delete_php['username'].'</strong></td>' . $LINEBREAK;
+            print '<td class="tableh2"><strong>'.$lang_delete_php['status'].'</strong></td>' . $LINEBREAK;
+            print '</tr>' . $LINEBREAK;
 
             $result_group = cpg_db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']}");
 
@@ -1092,9 +1092,9 @@ case 'user':
                 mysql_free_result($result);
             } // foreach --- end
             
-            echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
-            echo "<a href=\"usermgr.php\" class=\"admin_menu\">".$icon_array['ok'] . $lang_common['continue']."</a>\n";
-            echo "</td></tr>";
+            echo '<tr><td colspan="2" class="tablef" align="center">' . $LINEBREAK;
+            echo '<a href="usermgr.php" class="admin_menu">'.$icon_array['ok'] . $lang_common['continue'].'</a>' . $LINEBREAK;
+            echo '</td></tr>';
             endtable();
             
             pagefooter();
@@ -1264,9 +1264,9 @@ case 'user':
                 print '</tr>';
             }
             
-            echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
-            echo "<a href=\"index.php\"  class=\"admin_menu\">".$icon_array['ok'] . $lang_common['continue']."</a>\n";
-            echo "</td></tr>";
+            echo '<tr><td colspan="6" class="tablef" align="center">' . $LINEBREAK;
+            echo '<a href="index.php"  class="admin_menu">'.$icon_array['ok'] . $lang_common['continue'].'</a>' . $LINEBREAK;
+            echo '</td></tr>';
             endtable();
             
             pagefooter();

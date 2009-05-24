@@ -124,7 +124,7 @@ if ($superCage->post->keyExists('subject') && $valid_sender_email) {
         $n_picname = $gallery_url_prefix . $n_picname;
     }
     //output list of reasons checkmarked
-    $reasons = $lang_report_php['reasons_list_heading'] . "\n";
+    $reasons = $lang_report_php['reasons_list_heading'] . $LINEBREAK;
     if ($superCage->post->keyExists('reason')) {
         foreach(get_post_var('reason') as $value) {
             $value = $lang_report_php["$value"];

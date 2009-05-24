@@ -338,16 +338,16 @@ EOT;
 
 $msg_txt = '';
 if ($nb_com_del > 0) {
-    $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_reviewcom_php['n_comm_del'], $nb_com_del).'</li>'."\n\r";
+    $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_reviewcom_php['n_comm_del'], $nb_com_del).'</li>'.$LINEBREAK;
 }
 if ($nb_com_yes > 0) {
-    $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_reviewcom_php['n_comm_appr'], $nb_com_yes).'</li>'."\n\r";
+    $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_reviewcom_php['n_comm_appr'], $nb_com_yes).'</li>'.$LINEBREAK;
 }
 if ($nb_com_no > 0) {
-    $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_reviewcom_php['n_comm_unappr'], $nb_com_no).'</li>'."\n\r";
+    $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_reviewcom_php['n_comm_unappr'], $nb_com_no).'</li>'.$LINEBREAK;
 }
 if ($flag_conf_change != '') {
-    $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.$lang_reviewcom_php['configuration_changed'].'</li>'."\n\r";
+    $msg_txt .= '                          <li style="list-style-image:url(images/icons/ok.png)">'.$lang_reviewcom_php['configuration_changed'].'</li>'.$LINEBREAK;
 }
 
 
@@ -519,11 +519,11 @@ while ($row = mysql_fetch_array($result)) {
     $msg_date = localised_date($row['msg_date'], $lang_date['scientific']);
     $msg_body = bb_decode(process_smilies($row['msg_body']));
     if ($row['approval'] == 'YES') {
-        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' . $lang_common['yes']."</label><br />\n\r";
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' . $lang_common['yes'].'</label><br />' . $LINEBREAK;
         $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">' .$lang_common['no'].'</label>';
         $checkbox_status = '';
     } else {
-        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' .$lang_common['yes']."</label><br />\n\r                        ";
+        $comment_approval_status = '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'yes" type="radio" value="1" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'yes" class="clickable_option">' .$lang_common['yes'].'</label><br />' . $LINEBREAK;
         $comment_approval_status .= '<input name="approved'.$row['msg_id'].'" id="approved'.$row['msg_id'].'no" type="radio" value="0" checked="checked" onchange="approveCommentEnable('.$row['msg_id'].');" /><label for="approved'.$row['msg_id'].'no" class="clickable_option">' .$lang_common['no'].'</label>';
         if ($row['spam'] == 'YES') {
             $checkbox_status = 'checked="checked"';
@@ -675,10 +675,10 @@ EOT;
         $test_error = '';
     } elseif (isset($result) == FALSE) {
         $test_result = $icon_array['cancel'] . $lang_reviewcom_php['unable_to_connect'];
-        $test_error = $result[0]."\r\n".$result[1];
+        $test_error = $result[0].$LINEBREAK.$result[1];
     } else {
         $test_result = $icon_array['stop'] . $lang_reviewcom_php['unknown_error'];
-        $test_error = $result[0]."\r\n".$result[1];
+        $test_error = $result[0].$LINEBREAK.$result[1];
     }
     print <<< EOT
     <tr>

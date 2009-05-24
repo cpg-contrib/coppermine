@@ -178,7 +178,7 @@ if (GALLERY_ADMIN_MODE||USER_ADMIN_MODE) {
 
 EOT;
     foreach ($CAT_LIST as $category) {
-        echo '<option value="' . $category[0] . '"' . ($cat == $category[0] ? ' selected': '') . ">" . $category[1] . "</option>\n";
+        echo '<option value="' . $category[0] . '"' . ($cat == $category[0] ? ' selected': '') . ">" . $category[1] . '</option>' . $LINEBREAK;
     }
     echo <<< EOT
                         </select>

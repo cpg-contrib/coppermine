@@ -1075,11 +1075,11 @@ function setTmpConfig($key, $value, $isarray = false)
 */
 function createTempConfig() 
 {
-    global $language, $config, $config_file;
+    global $language, $config, $config_file, $LINEBREAK;
     if ($handle = @fopen($config_file['temporary'], 'w')) {
         //$config = serialize($config);
         //create php array in config
-        $fconfig = '<?php' . "\n" . arrayToString($config, '$install_config') . "\n" . '?>';
+        $fconfig = '<?php' . $LINEBREAK . arrayToString($config, '$install_config') . $LINEBREAK . '?>';
         fwrite($handle, $fconfig);
         fclose($handle);
         return true;
@@ -1103,24 +1103,25 @@ function createTempConfig()
 */
 function arrayToString($array, $array_name, $indent = '') 
 {
+    global $LINEBREAK;
     if (is_array($array)) {
         if ($indent == '') {
-            $array_string = $indent . $array_name . " = array(" . "\n";
+            $array_string = $indent . $array_name . " = array(" . $LINEBREAK;
         } else {
-            $array_string = $indent . "'" .  $array_name . "' => array(" . "\n";
+            $array_string = $indent . "'" .  $array_name . "' => array(" . $LINEBREAK;
         }
         
         foreach($array as $key => $value) {
             if (is_array($value)) {
                 $array_string .= arrayToString($value, $key, $indent . '     ');
             } else {
-                $array_string .= $indent . "        '$key' => '$value'," . "\n";
+                $array_string .= $indent . "        '$key' => '$value'," . $LINEBREAK;
             }
         }
         if ($indent == '') {
-            $array_string .= ');' . "\n";
+            $array_string .= ');' . $LINEBREAK;
         } else {
-            $array_string .= $indent . '),' . "\n";
+            $array_string .= $indent . '),' . $LINEBREAK;
         }
     } else {
         return $array;
@@ -1178,7 +1179,7 @@ function getLanguage()
 */
 function getLangSelect() 
 {
-    global $config;
+    global $config, $LINEBREAK;
     
     $dir = opendir('lang/');
     $available_languages = array();
@@ -1192,9 +1193,9 @@ function getLangSelect()
     closedir($dir);
     natcasesort($available_languages);
     
-    $lang_select = '<select name="lang_list">' . "\n";
+    $lang_select = '<select name="lang_list">' . $LINEBREAK;
     foreach($available_languages as $key => $language) {
-        $lang_select .= "                       <option " . ((strtolower($config['lang']) == strtolower($language)) ? 'selected="selected"' : '') . " value=\"{$language}\">{$language}</option>" . "\n";
+        $lang_select .= "                       <option " . ((strtolower($config['lang']) == strtolower($language)) ? 'selected="selected"' : '') . " value=\"{$language}\">{$language}</option>" . $LINEBREAK;
     }
     $lang_select .= '               </select>';
     

@@ -71,10 +71,11 @@ function cpg_get_path_and_file($string) {
 }
 
 function cpg_is_writable($folder){
+  global $LINEBREAK;
   // Make sure that there is a trailing slash at the end of the variable $folder
   $folder = rtrim($folder, '/').'/';
   $return = 0;
-  $file_content = "this is just a test file that hasn't been deleted properly.\nIt's safe to delete it now";
+  $file_content = "this is just a test file that hasn't been deleted properly." . $LINEBREAK . "It's safe to delete it now";
   if ($fd = @fopen($folder.'cpgvc_tf.txt', 'w')) {
       @fwrite($fd, $file_content);
       @fclose($fd);
@@ -491,8 +492,7 @@ function cpg_versioncheckPopulateArray($file_data_array) {
 } // end function definition "cpg_versioncheckPopulateArray()"
 
 function cpg_versioncheckCreateXml($file_data_array) {
-  global $textFileExtensions_array, $lang_versioncheck_php, $displayOption_array;
-  $newLine = "\r\n";
+  global $textFileExtensions_array, $lang_versioncheck_php, $displayOption_array, $LINEBREAK;
   $loopCounter = 0;
   print <<< EOT
   <script type="text/javascript">
@@ -503,18 +503,18 @@ function cpg_versioncheckCreateXml($file_data_array) {
   </script>
 EOT;
   print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="20" class="textinput debug_text" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;height:auto;overflow:auto;">';
-  print '<?xml version="1.0" encoding="ISO-8859-1"?>'.$newLine;
-  print '<file_data>'.$newLine;
+  print '<?xml version="1.0" encoding="ISO-8859-1"?>'.$LINEBREAK;
+  print '<file_data>'.$LINEBREAK;
   $loopCounter++;
   foreach ($file_data_array as $file_data_key => $file_data_values) {
-    print '  <element>'.$newLine;
+    print '  <element>'.$LINEBREAK;
     $loopCounter++;
     // populate the path and file from the fullpath
     $tempArray = cpg_get_path_and_file($file_data_values['fullpath']);
     $file_data_array[$file_data_key]['folder'] = $tempArray['path'];
     $file_data_array[$file_data_key]['file'] = $tempArray['file'];
     $file_data_array[$file_data_key]['extension'] = ltrim(substr($file_data_array[$file_data_key]['file'],strrpos($file_data_array[$file_data_key]['file'],'.')),'.');
-    print "    <fullpath>".$file_data_values['fullpath']."</fullpath>".$newLine;
+    print "    <fullpath>".$file_data_values['fullpath']."</fullpath>".$LINEBREAK;
     $loopCounter++;
     if (in_array($file_data_array[$file_data_key]['extension'],$textFileExtensions_array) == TRUE) { // the file is not binary --- start
       $handle = @fopen($file_data_values['fullpath'], 'r');
@@ -547,11 +547,11 @@ EOT;
         $file_data_array[$file_data_key]['revision'] = '';
     }
     if ($file_data_array[$file_data_key]['version'] != '') {
-        print "    <version>".$file_data_array[$file_data_key]['version']."</version>".$newLine;
+        print "    <version>".$file_data_array[$file_data_key]['version']."</version>".$LINEBREAK;
         $loopCounter++;
     }
     if ($file_data_array[$file_data_key]['revision'] != '') {
-        print "    <revision>".$file_data_array[$file_data_key]['revision']."</revision>".$newLine;
+        print "    <revision>".$file_data_array[$file_data_key]['revision']."</revision>".$LINEBREAK;
         $loopCounter++;
     }
     if ($file_data_array[$file_data_key]['status'] != '') {
@@ -559,7 +559,7 @@ EOT;
     } else {
       $status = 'mandatory';
     }
-    print "    <status>".$status."</status>".$newLine;
+    print "    <status>".$status."</status>".$LINEBREAK;
     $loopCounter++;
     if ($file_data_array[$file_data_key]['permission'] != '') {
       $permission = $file_data_array[$file_data_key]['permission'];
@@ -567,7 +567,7 @@ EOT;
       $permission = 'read';
     }
     if ($file_data_array[$file_data_key]['status'] != 'remove') {
-        print "    <permission>".$permission."</permission>".$newLine;
+        print "    <permission>".$permission."</permission>".$LINEBREAK;
     }
     $loopCounter++;
     if ($file_data_array[$file_data_key]['file'] != '' && $file_data_array[$file_data_key]['status'] != 'remove' && $file_data_array[$file_data_key]['extension'] != 'xml') {
@@ -576,13 +576,13 @@ EOT;
       $hash = '';
     }
     if ($hash != '') {
-        print "    <hash>".$hash."</hash>".$newLine;
+        print "    <hash>".$hash."</hash>".$LINEBREAK;
         $loopCounter++;
     }
-    print "  </element>".$newLine;
+    print "  </element>".$LINEBREAK;
     $loopCounter++;
   }
-  print '</file_data>'.$newLine;
+  print '</file_data>'.$LINEBREAK;
   // display formatted footer data
   if ($displayOption_array['output'] == 'textarea' || $displayOption_array['output'] == 'create') {
     print <<< EOT
@@ -595,8 +595,7 @@ EOT;
 } // end function definition "cpg_versioncheckCreateXml()"
 
 function cpg_versioncheckCreateTextOnlyOutput($file_data_array) {
-  global $displayOption_array, $file_data_count, $lang_versioncheck_php, $maxLength_array, $imageFileExtensions_array;
-  $newLine = "\r\n";
+  global $displayOption_array, $file_data_count, $lang_versioncheck_php, $maxLength_array, $imageFileExtensions_array, $LINEBREAK;
 
     // display formatted header data
     if ($displayOption_array['output'] == 'textarea') {
@@ -639,11 +638,11 @@ EOT;
       $caption .= $textSeparator;
   }
   $caption .= cpg_fillArrayFieldWithSpaces($lang_versioncheck_php['comment'], $maxLength_array['comment']);
-  $caption .= $newLine;
+  $caption .= $LINEBREAK;
   for ($i = 1; $i <= strlen($caption); $i++) {
     $underline .= '-';
   }
-  $underline .= $newLine;
+  $underline .= $LINEBREAK;
   // loop through all the elements in $file_data_array (which equals looping thorugh all folders and files) once more and create the textual output
   foreach ($file_data_array as $file_data_values) {
     if (($displayOption_array['errors_only'] == 0) || ($displayOption_array['errors_only'] == 1 && $file_data_values['comment'] != '')) { // only display if corrsponding option is not disabled --- start
@@ -671,7 +670,7 @@ EOT;
             if ($file_data_values['comment'] != '') {
                 $output .= $lang_versioncheck_php['warning'];
             }
-            $output .= $newLine;
+            $output .= $LINEBREAK;
             $loopCounter++;
         } // Only display image if corresponding option is not enabled --- end
     } // only display if corrsponding option is not disabled --- end
@@ -694,8 +693,7 @@ EOT;
 }
 
 function cpg_versioncheckCreateHTMLOutput($file_data_array) {
-  global $textFileExtensions_array, $lang_versioncheck_php, $lang_common, $majorVersion, $displayOption_array, $file_data_count, $maxLength_array, $subversionRepository, $imageFileExtensions_array;
-  $newLine = "\r\n";
+  global $textFileExtensions_array, $lang_versioncheck_php, $lang_common, $majorVersion, $displayOption_array, $file_data_count, $maxLength_array, $subversionRepository, $imageFileExtensions_array, $LINEBREAK;
   $loopCounter_array = array('total' => 0, 'error' => 0, 'display' => 0);
   if (strlen($file_data_count) > $maxLength_array['counter']) {
     $maxLength_array['counter'] = strlen($file_data_count);
@@ -811,7 +809,7 @@ EOT;
       $loopCounter_array['display']++;
     } // only display if corrsponding option is not disabled --- end
   }
-    print "\r\n".'</table>';
+    print $LINEBREAK.'</table>';
     return $loopCounter_array;
 }
 
@@ -866,11 +864,10 @@ function cpgVersioncheckConnectRepository() {
 
 if (!function_exists('cpgGetRemoteFileByURL')) {  // This function is normally being populated in include/functions.inc.php - let's define it in case it doesn't exist
 function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $minLength = '0') {
-    global $lang_get_remote_file_by_url;
+    global $lang_get_remote_file_by_url, $LINEBREAK;
     // FSOCK code snippets taken from http://jeenaparadies.net/weblog/2007/jan/get_remote_file
     $url = parse_url($remoteURL); // chop the URL into protocol, domain, port, folder, file, parameter
     $error = '';
-    $lineBreak = "<br />\r\n";
     // Let's try CURL first
     if (function_exists('curl_init') == TRUE) { // don't bother to try curl if it isn't there in the first place
       $curl = curl_init();
@@ -885,22 +882,22 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
       curl_close($curl);
       if (strlen($body) < $minLength ) {
               // Fetching the data by CURL obviously failed
-              $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['curl']) . $lineBreak;
+              $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['curl']) . '<br />' . $LINEBREAK;
       } else {
               // Fetching the data by CURL was successfull. Let's return the data
               return array("headers" => $headers, "body" => $body);
       }
     } else {
       // Curl is not available
-      $error .= $lang_get_remote_file_by_url['curl_not_available'] . $lineBreak;
+      $error .= $lang_get_remote_file_by_url['curl_not_available'] . '<br />' . $LINEBREAK;
     }
     // Now let's try FSOCKOPEN
     if ($url['host'] != ''){
       $fp = @fsockopen ($url['host'], (!empty($url['port']) ? (int)$url['port'] : 80), $errno, $errstr, 30);
       if ($fp) { // fsockopen file handle success - start
           $path = (!empty($url['path']) ? $url['path'] : "/").(!empty($url['query']) ? "?".$url['query'] : "");
-          $header = "\r\nHost: ".$url['host'];
-          fputs ($fp, $method." ".$path." HTTP/1.0".$header."\r\n\r\n".("post" == strtolower($method) ? $data : ""));
+          $header = $LINEBREAK . 'Host: '.$url['host'];
+          fputs ($fp, $method." ".$path." HTTP/1.0".$header.$LINEBREAK.$LINEBREAK.("post" == strtolower($method) ? $data : ""));
           if(!feof($fp)) {
             $scheme = fgets($fp);
             //list(, $code ) = explode(" ", $scheme);
@@ -928,10 +925,10 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
           fclose($fp);
           if (strlen($body) < $minLength) {
                 // Fetching the data by FSOCKOPEN obviously failed
-                $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['fsockopen']) . $lineBreak;
+                $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['fsockopen']) . '<br />' . $LINEBREAK;
           } elseif (in_array('404', $headers) == TRUE) {
                 // We got a 404 error
-                $error .= sprintf($lang_get_remote_file_by_url['error_number'], '404') . $lineBreak;
+                $error .= sprintf($lang_get_remote_file_by_url['error_number'], '404') . '<br />' . $LINEBREAK;
           } else {
                 // Fetching the data by FSOCKOPEN was successfull. Let's return the data
                 return array("headers" => $headers, "body" => $body, "error" => $error);
@@ -965,7 +962,7 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
       }
       fclose($handle);
       if (strlen($body) < $minLength) {
-        $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['fopen']) . $lineBreak;
+        $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['fopen']) . '<br />' . $LINEBREAK;
       } else {
         // Fetching the data by FOPEN was successfull. Let's return the data
         return array("headers" => $headers, "body" => $body, "error" => $error);

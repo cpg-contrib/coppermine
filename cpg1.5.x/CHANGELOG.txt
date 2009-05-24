@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-25 [O] Replaced hardcoded linebreaks with global variable {GauGau}
 2009-05-22 [A] Turned calendar pop-up and stats pop-up into greyboxes {GauGau}
 2009-05-22 [O] Made fruity theme more standards-compliant {GauGau}
 2009-05-22 [O] Moved draghandle class from individual to global stylesheet {GauGau}

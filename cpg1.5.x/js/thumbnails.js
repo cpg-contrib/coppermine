@@ -24,7 +24,7 @@ function addSortable(){
     if(js_vars.not_default_theme != undefined){
         extra_att = ' style="font-size: 100%;"';
     }
-    var sortable =  '       <table cellpadding="0" cellspacing="0">';
+    var sortable =  '       <table cellpadding="0" cellspacing="0" style="margin-left:10px" border="0">';
     sortable += '       <tr>';
     sortable += '               <td class="sortorder_options"' + extra_att + '>' + js_vars.sort_vars.sort_title + '</td>';
     sortable += '               <td class="sortorder_options"' + extra_att + '><span class="statlink">&nbsp;<a href="thumbnails.php?album=' + js_vars.sort_vars.aid

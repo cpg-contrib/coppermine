@@ -26,7 +26,7 @@ require('include/init.inc.php');
 ///////////// function defintions start /////////////////////////////
 
 function write_to_db($step) {
-    global $BRIDGE,$CONFIG,$default_bridge_data,$lang_bridgemgr_php, $posted_var;
+    global $BRIDGE,$CONFIG,$default_bridge_data,$lang_bridgemgr_php, $posted_var, $LINEBREAK;
     $error = 0;
     // do the check for plausibility of posted data
     foreach($posted_var as $key => $value) { // loop through the posted data -- start
@@ -45,7 +45,7 @@ function write_to_db($step) {
                 } // check for the existance of a file/folder --- end
                 if ($options[0] == 'cookie') { // check for the existance of a cookie --- start
                     foreach ($_COOKIE as $key2 => $value2) { // loop through the cookie global var --- start
-                        //print '<br>cookie:'.$key2.', content:'.$value2."<br />\n";
+                        //print '<br>cookie:'.$key2.', content:'.$value2.'<br />' . $LINEBREAK;
                         if (@strstr($key2,$value) == false && $options[1] == 'not_empty') {
                             $return[$key] = sprintf($lang_bridgemgr_php['error_cookie_not_readible'], '&quot;<tt>'.$value.'</tt>*&quot;','<i>'.$lang_bridgemgr_php[$key].'</i>');
                         }
@@ -144,11 +144,11 @@ function write_to_db($step) {
             print '<li>'.$key.'</li>';
         }
         print '</ul></td></tr>';
-        print '<tr>'.$new_line;
-        print '    <td class="tablef" align="center">'.$new_line;
-        print '        <a href="javascript:history.back()" class="admin_menu" title="'.$lang_bridgemgr_php['back'].'" />&laquo;'.$lang_bridgemgr_php['back'].'</a>'.$new_line;
-        print '    </td>'.$new_line;
-        print '</tr>'.$new_line;
+        print '<tr>'.$LINEBREAK;
+        print '    <td class="tablef" align="center">'.$LINEBREAK;
+        print '        <a href="javascript:history.back()" class="admin_menu" title="'.$lang_bridgemgr_php['back'].'" />&laquo;'.$lang_bridgemgr_php['back'].'</a>'.$LINEBREAK;
+        print '    </td>'.$LINEBREAK;
+        print '</tr>'.$LINEBREAK;
         endtable();
         $error = 1;
     }
@@ -187,44 +187,44 @@ if ($BRIDGE[$key]) {
 
 function cpg_submit_button($step, $back = 'true', $columns = '3', $next = 'true')
 {
-    global $lang_bridgemgr_php,$new_line, $posted_var;
+    global $lang_bridgemgr_php,$LINEBREAK, $posted_var;
     $checked = '';
 
     if ($posted_var['hide_unused_fields'] != 1) {
         $checked = 'checked="checked"';
     }
-    $return = '    <tr>'.$new_line;
-    $return .= '        <td colspan="'.$columns.'" class="tablef" align="center">'.$new_line;
-    $return .= '            <table border="0" cellspacing="0" cellpadding="0" width="100%"><tr>'.$new_line;
-    $return .= '            <td align="left">'.$new_line;
-    $return .= '            <input type="hidden" name="hide_unused_fields" id="hide_unused_fields" value="1" class="checkbox" '.$checked.' onclick="toggleUnusedFields(this);" />'.$new_line;
-    $return .= '            <!--<label for="hide_unused_fields" class="clickable_option">'.$new_line;
-    $return .= '            <span class="explanation">'.$new_line;
-    $return .= '                '.$lang_bridgemgr_php['hide_unused_fields'].$new_line;
-    $return .= '            </span>'.$new_line;
-    $return .= '            </label>-->&nbsp;'.$new_line;
+    $return = '    <tr>'.$LINEBREAK;
+    $return .= '        <td colspan="'.$columns.'" class="tablef" align="center">'.$LINEBREAK;
+    $return .= '            <table border="0" cellspacing="0" cellpadding="0" width="100%"><tr>'.$LINEBREAK;
+    $return .= '            <td align="left">'.$LINEBREAK;
+    $return .= '            <input type="hidden" name="hide_unused_fields" id="hide_unused_fields" value="1" class="checkbox" '.$checked.' onclick="toggleUnusedFields(this);" />'.$LINEBREAK;
+    $return .= '            <!--<label for="hide_unused_fields" class="clickable_option">'.$LINEBREAK;
+    $return .= '            <span class="explanation">'.$LINEBREAK;
+    $return .= '                '.$lang_bridgemgr_php['hide_unused_fields'].$LINEBREAK;
+    $return .= '            </span>'.$LINEBREAK;
+    $return .= '            </label>-->&nbsp;'.$LINEBREAK;
     $return .= '            <script type="text/javascript">';
-    $return .= '            <!--'.$new_line;
-    $return .= '            //function toggleUnusedFields(el_name) {'.$new_line;
-    $return .= '            //var elems = el_name.getElementsById("hide_row");'.$new_line;
-    $return .= '            '.$new_line;
-    $return .= '            '.$new_line;
-    $return .= '            }'.$new_line;
-    $return .= '            -->'.$new_line;
-    $return .= '            </script>'.$new_line;
-    $return .= '        </td>'.$new_line;
-    $return .= '        <td align="right">'.$new_line;
+    $return .= '            <!--'.$LINEBREAK;
+    $return .= '            //function toggleUnusedFields(el_name) {'.$LINEBREAK;
+    $return .= '            //var elems = el_name.getElementsById("hide_row");'.$LINEBREAK;
+    $return .= '            '.$LINEBREAK;
+    $return .= '            '.$LINEBREAK;
+    $return .= '            }'.$LINEBREAK;
+    $return .= '            -->'.$LINEBREAK;
+    $return .= '            </script>'.$LINEBREAK;
+    $return .= '        </td>'.$LINEBREAK;
+    $return .= '        <td align="right">'.$LINEBREAK;
     if ($back == 'true') {
-        $return .= '            <input type="button" name="back" value="&laquo;'.$lang_bridgemgr_php['back'].'" class="button" onclick="javascript:history.back()" />'.$new_line;
+        $return .= '            <input type="button" name="back" value="&laquo;'.$lang_bridgemgr_php['back'].'" class="button" onclick="javascript:history.back()" />'.$LINEBREAK;
     }
     if ($next != 'false') {
-        $return .= '            <input type="submit" name="submit" value="'.$lang_bridgemgr_php['next'].'&raquo;" class="button" />'.$new_line;
+        $return .= '            <input type="submit" name="submit" value="'.$lang_bridgemgr_php['next'].'&raquo;" class="button" />'.$LINEBREAK;
     }
-    $return .= '            <input type="hidden" name="step" value="'.$step.'" />'.$new_line;
+    $return .= '            <input type="hidden" name="step" value="'.$step.'" />'.$LINEBREAK;
     $return .= '            </td>';
     $return .= '                </tr></table>';
-    $return .= '        </td>'.$new_line;
-    $return .= '    </tr>'.$new_line;
+    $return .= '        </td>'.$LINEBREAK;
+    $return .= '    </tr>'.$LINEBREAK;
     return $return;
 }
 
@@ -257,10 +257,10 @@ function remote_file_exists ($url)
        $parse = parse_url($url);
        $host = $parse['host'];
 
-       fputs($fp, "HEAD ".$url." HTTP/1.1\r\n");
-       fputs($fp, "HOST: ".$host."\r\n");
-       fputs($fp, "Connection: close\r\n\r\n");
-       $headers = "";
+       fputs($fp, 'HEAD '.$url.' HTTP/1.1' . $LINEBREAK);
+       fputs($fp, 'HOST: '.$host.$LINEBREAK);
+       fputs($fp, 'Connection: close'.$LINEBREAK.$LINEBREAK);
+       $headers = '';
        while (!feof ($fp))
        { $headers .= fgets ($fp, 128); }
    }
@@ -268,7 +268,7 @@ function remote_file_exists ($url)
    $arr_headers = explode("\n", $headers);
    $return = false;
    if (isset ($arr_headers[0]))
-   { $return = strpos ($arr_headers[0], "404") === false; }
+   { $return = strpos ($arr_headers[0], '404') === false; }
    return $return;
 }
 
@@ -286,7 +286,7 @@ function cpg_refresh_config_db_values() {
 function cpg_is_writable($folder)
 {
     $return = 0;
-    $file_content = "this is just a test file that hasn't been deleted properly.\nIt's safe to delete it now";
+    $file_content = "this is just a test file that hasn't been deleted properly.".$LINEBREAK."It's safe to delete it now";
     if ($fd = @fopen($folder.'/cpgvc_tf.txt', 'w')) {
         @fwrite($fd, $file_content);
         @fclose($fd);
@@ -357,7 +357,7 @@ $step = $posted_var['step'];
 if (!$step) {
     $step = 'choose_bbs';
 }
-$new_line = "\n";
+
 
 $next_step = array( // this defines the order of steps
   'choose_bbs' => 'settings_path',
@@ -415,19 +415,19 @@ print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="po
 starttable(-1, cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['choose_bbs_app'].'&nbsp;'.cpg_display_help('f=bridging.htm&amp;as=bridge_manager_app_start&amp;ae=bridge_manager_app_end', '800', '450'),2);
 $checked[$BRIDGE['short_name']] = 'checked="checked"';
 foreach($default_bridge_data as $key => $value) {
-    print '<tr>'.$new_line;
-    print '    <td class="tableb">'.$new_line;
-    print '        <input type="radio" name="short_name" id="'.$key.'" class="radio" value="'.$key.'" '.$checked[$key].' />'.$new_line;
-    print '        <label for="'.$key.'" class="clickable_option">'.$new_line;
-    print '            '.$value['full_name'].$new_line;
-    print '        </label>'.$new_line;
-    print '    </td>'.$new_line;
-    print '    <td class="tableb">'.$new_line;
-    print '        <span class="explanation">'.$new_line;
-    print '            <a href="'.$value['support_url'].'" title="'.$lang_bridgemgr_php['support_url'].'" rel="external">'.$value['support_url'].'</a>'.$new_line;
-    print '        </span>'.$new_line;
-    print '    </td>'.$new_line;
-    print '</tr>'.$new_line;
+    print '<tr>'.$LINEBREAK;
+    print '    <td class="tableb">'.$LINEBREAK;
+    print '        <input type="radio" name="short_name" id="'.$key.'" class="radio" value="'.$key.'" '.$checked[$key].' />'.$LINEBREAK;
+    print '        <label for="'.$key.'" class="clickable_option">'.$LINEBREAK;
+    print '            '.$value['full_name'].$LINEBREAK;
+    print '        </label>'.$LINEBREAK;
+    print '    </td>'.$LINEBREAK;
+    print '    <td class="tableb">'.$LINEBREAK;
+    print '        <span class="explanation">'.$LINEBREAK;
+    print '            <a href="'.$value['support_url'].'" title="'.$lang_bridgemgr_php['support_url'].'" rel="external">'.$value['support_url'].'</a>'.$LINEBREAK;
+    print '        </span>'.$LINEBREAK;
+    print '    </td>'.$LINEBREAK;
+    print '</tr>'.$LINEBREAK;
 } // end foreach
 
 // loop through the pre-made bridges. If there's one in the db that doesn't exist in the bridges, that's our custom theme; prefill the form fields with it.
@@ -441,7 +441,7 @@ foreach($default_bridge_data as $key => $value) {
 }
 print cpg_submit_button($next_step[$step], 'false', '2');
 endtable();
-print "</form>\n";
+print '</form>' . $LINEBREAK;
    break;
 
 case "settings_path":
@@ -474,20 +474,20 @@ case "settings_path":
             }
             if ($posted_var['hide_unused_fields'] != 1 || $disabled == '')
             {
-                print '<tr>'.$new_line;
-                print '    <td class="tableb" width="30%">'.$new_line;
-                print '        '.$lang_bridgemgr_php[$key].':'.$new_line;
-                print '    </td>'.$new_line;
-                print '    <td class="tableb" width="60%" style="overflow:visible">'.$new_line;
-                print '        <input type="text" name="'.$key.'" id="'.$key.'" size="50" class="textinput" style="width:80%" value="'.$prefill.'" '.$disabled.' />'.$minibrowser.$reset_to_default.$new_line;
-                print '    </td>'.$new_line;
-                print '    <td class="tableb" width="10%">'.$new_line;
-                print $display1.$new_line;
+                print '<tr>'.$LINEBREAK;
+                print '    <td class="tableb" width="30%">'.$LINEBREAK;
+                print '        '.$lang_bridgemgr_php[$key].':'.$LINEBREAK;
+                print '    </td>'.$LINEBREAK;
+                print '    <td class="tableb" width="60%" style="overflow:visible">'.$LINEBREAK;
+                print '        <input type="text" name="'.$key.'" id="'.$key.'" size="50" class="textinput" style="width:80%" value="'.$prefill.'" '.$disabled.' />'.$minibrowser.$reset_to_default.$LINEBREAK;
+                print '    </td>'.$LINEBREAK;
+                print '    <td class="tableb" width="10%">'.$LINEBREAK;
+                print $display1.$LINEBREAK;
                 print '        ';
-                print cpg_display_help('f=bridging.htm&amp;as=bridge_manager_path_'.$key.'&amp;ae=bridge_manager_path_'.$key.'_end', '800', '450').'</span>'.$new_line;
-                print $display2.$new_line;
-                print '    </td>'.$new_line;
-                print '</tr>'.$new_line;
+                print cpg_display_help('f=bridging.htm&amp;as=bridge_manager_path_'.$key.'&amp;ae=bridge_manager_path_'.$key.'_end', '800', '450').'</span>'.$LINEBREAK;
+                print $display2.$LINEBREAK;
+                print '    </td>'.$LINEBREAK;
+                print '</tr>'.$LINEBREAK;
             }
         }
         if ($rows_displayed == 0) {
@@ -499,7 +499,7 @@ case "settings_path":
         }
         print cpg_submit_button($next_step[$step]);
         endtable();
-        print "</form>\n";
+        print '</form>' . $LINEBREAK;
     } // end if not error
    break;
 
@@ -544,48 +544,48 @@ case "special_settings":
             if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == 'password') {$fieldtype = 'password';} else {$fieldtype = 'text';}
             if ($posted_var['hide_unused_fields'] != 1 || $disabled == '') { // actually display the row? --- start
                 if ($options[0] == 'radio') { // radio button --- start
-                    print '<tr>'.$new_line;
-                    print '    <td class="tableb">'.$new_line;
-                    print '        '.$lang_bridgemgr_php[$key].':'.$new_line;
-                    print '    </td>'.$new_line;
-                    print '    <td class="tableb">'.$new_line;
-                    print '        <input type="radio" name="'.$key.'" id="'.$key.'_yes" class="radio" value="'.$option_yes.'" '.$disabled.' '.$checked_yes.' />'.$new_line;
-                    print '        <label for="'.$key.'_yes" class="clickable_option">'.$new_line;
-                    print '            '.$lang_bridgemgr_php[$key.'_yes'].$new_line;
-                    print '        </label>&nbsp;'.$new_line;
-                    print '        &nbsp;&nbsp;&nbsp;'.$new_line;
-                    print '        <input type="radio" name="'.$key.'" id="'.$key.'_no" class="radio" value="'.$option_no.'" '.$disabled.' '.$checked_no.' /><label for="'.$key.'_no" class="clickable_option">'.$lang_bridgemgr_php[$key.'_no'].'</label>'.$new_line;
-                    print '    </td>'.$new_line;
-                    print '    <td class="tableb">'.$new_line;
-                    print '        '.cpg_display_help('f=bridging.htm&amp;as=bridge_manager_'.$key.'&amp;ae=bridge_manager_'.$key.'_end', '800', '450').'</span>'.$new_line;
-                    print '    </td>'.$new_line;
-                    print '</tr>'.$new_line;
+                    print '<tr>'.$LINEBREAK;
+                    print '    <td class="tableb">'.$LINEBREAK;
+                    print '        '.$lang_bridgemgr_php[$key].':'.$LINEBREAK;
+                    print '    </td>'.$LINEBREAK;
+                    print '    <td class="tableb">'.$LINEBREAK;
+                    print '        <input type="radio" name="'.$key.'" id="'.$key.'_yes" class="radio" value="'.$option_yes.'" '.$disabled.' '.$checked_yes.' />'.$LINEBREAK;
+                    print '        <label for="'.$key.'_yes" class="clickable_option">'.$LINEBREAK;
+                    print '            '.$lang_bridgemgr_php[$key.'_yes'].$LINEBREAK;
+                    print '        </label>&nbsp;'.$LINEBREAK;
+                    print '        &nbsp;&nbsp;&nbsp;'.$LINEBREAK;
+                    print '        <input type="radio" name="'.$key.'" id="'.$key.'_no" class="radio" value="'.$option_no.'" '.$disabled.' '.$checked_no.' /><label for="'.$key.'_no" class="clickable_option">'.$lang_bridgemgr_php[$key.'_no'].'</label>'.$LINEBREAK;
+                    print '    </td>'.$LINEBREAK;
+                    print '    <td class="tableb">'.$LINEBREAK;
+                    print '        '.cpg_display_help('f=bridging.htm&amp;as=bridge_manager_'.$key.'&amp;ae=bridge_manager_'.$key.'_end', '800', '450').'</span>'.$LINEBREAK;
+                    print '    </td>'.$LINEBREAK;
+                    print '</tr>'.$LINEBREAK;
                 } // radio button --- end
                 if ($options[0] == 'mandatory') { // input field --- start
-                    print '<tr>'.$new_line;
-                    print '    <td class="tableb">'.$new_line;
-                    print '        '.$lang_bridgemgr_php[$key].':'.$new_line;
-                    print '    </td>'.$new_line;
-                    print '    <td class="tableb">'.$new_line;
-                    print '        <input type="'.$fieldtype.'" name="'.$key.'" id="'.$key.'" class="textinput" value="'.$prefill.'" '.$disabled.' size="30"  style="width:80%" />'.$reset_to_default.$new_line;
-                    print '    </td>'.$new_line;
-                    print '    <td class="tableb">'.$new_line;
-                    print '        <span class="explanation">'.$lang_bridgemgr_php[$key.'_explanation'].'</span>'.$new_line;
-                    print '    </td>'.$new_line;
-                    print '</tr>'.$new_line;
+                    print '<tr>'.$LINEBREAK;
+                    print '    <td class="tableb">'.$LINEBREAK;
+                    print '        '.$lang_bridgemgr_php[$key].':'.$LINEBREAK;
+                    print '    </td>'.$LINEBREAK;
+                    print '    <td class="tableb">'.$LINEBREAK;
+                    print '        <input type="'.$fieldtype.'" name="'.$key.'" id="'.$key.'" class="textinput" value="'.$prefill.'" '.$disabled.' size="30"  style="width:80%" />'.$reset_to_default.$LINEBREAK;
+                    print '    </td>'.$LINEBREAK;
+                    print '    <td class="tableb">'.$LINEBREAK;
+                    print '        <span class="explanation">'.$lang_bridgemgr_php[$key.'_explanation'].'</span>'.$LINEBREAK;
+                    print '    </td>'.$LINEBREAK;
+                    print '</tr>'.$LINEBREAK;
                 } // input field --- end
                 if ($options[0] == 'checkbox') { // checkbox --- start
-                    print '<tr>'.$new_line;
-                    print '    <td class="tableb" colspan="2">'.$new_line;
-                    print '        <input type="checkbox" name="'.$key.'" id="'.$key.'" class="checkbox" value="1" '.$checked.' />'.$new_line;
-                    print '        <label for="'.$key.'" class="clickable_option">'.$new_line;
-                    print '            '.$lang_bridgemgr_php[$key].$new_line;
-                    print '        </label>&nbsp;'.$new_line;
-                    print '    </td>'.$new_line;
-                    print '    <td class="tableb">'.$new_line;
-                    print '        <span class="explanation">'.$lang_bridgemgr_php[$key.'_explanation'].'</span>'.$new_line;
-                    print '    </td>'.$new_line;
-                    print '</tr>'.$new_line;
+                    print '<tr>'.$LINEBREAK;
+                    print '    <td class="tableb" colspan="2">'.$LINEBREAK;
+                    print '        <input type="checkbox" name="'.$key.'" id="'.$key.'" class="checkbox" value="1" '.$checked.' />'.$LINEBREAK;
+                    print '        <label for="'.$key.'" class="clickable_option">'.$LINEBREAK;
+                    print '            '.$lang_bridgemgr_php[$key].$LINEBREAK;
+                    print '        </label>&nbsp;'.$LINEBREAK;
+                    print '    </td>'.$LINEBREAK;
+                    print '    <td class="tableb">'.$LINEBREAK;
+                    print '        <span class="explanation">'.$lang_bridgemgr_php[$key.'_explanation'].'</span>'.$LINEBREAK;
+                    print '    </td>'.$LINEBREAK;
+                    print '</tr>'.$LINEBREAK;
                 } // checkbox --- end
             } // actually display the row? --- end
         } // foreach loop_array --- end
@@ -599,7 +599,7 @@ case "special_settings":
         }
         print cpg_submit_button($next_step[$step]);
         endtable();
-        print "</form>\n";
+        print '</form>' . $LINEBREAK;
     } // end if error
     break;
 
@@ -721,24 +721,24 @@ EOT;
                 print '    </td>';
                 print '</tr>';
             } // display the enable/disable option only if there's at least a db entry about the file to bridge with --- end
-            print '<tr>'.$new_line;
-            print '        <td colspan="2" class="tablef" align="center">'.$new_line;
-            print '            <table border="0" cellspacing="0" cellpadding="0" width="100%">'.$new_line;
-            print '                <tr>'.$new_line;
-            print '                    <td align="left">'.$new_line;
-            print '                        <input type="hidden" name="hide_unused_fields" id="hide_unused_fields" value="1" class="checkbox"  />'.$new_line;
-            print '                        <!--<label for="hide_unused_fields" class="clickable_option"><span class="explanation">hide unused form fields (recommended)</span></label>-->'.$new_line;
-            print '                   </td>'.$new_line;
-            print '                   <td align="right">'.$new_line;
-            print '                        <!--<input type="button" name="back" value="&laquo;back" class="button" onclick="javascript:history.back()" />-->'.$new_line;
-            print '                        <input type="submit" name="submit" value="'.$lang_bridgemgr_php['start_wizard'].'" class="button" />'.$new_line;
-            print '                        <input type="hidden" name="step" value="choose_bbs" />'.$new_line;
-            print '                        <input type="hidden" name="force_startpage" value="0" />'.$new_line;
-            print '                   </td>'.$new_line;
-            print '                 </tr>'.$new_line;
-            print '             </table>'.$new_line;
-            print '        </td>'.$new_line;
-            print '</tr>'.$new_line;
+            print '<tr>'.$LINEBREAK;
+            print '        <td colspan="2" class="tablef" align="center">'.$LINEBREAK;
+            print '            <table border="0" cellspacing="0" cellpadding="0" width="100%">'.$LINEBREAK;
+            print '                <tr>'.$LINEBREAK;
+            print '                    <td align="left">'.$LINEBREAK;
+            print '                        <input type="hidden" name="hide_unused_fields" id="hide_unused_fields" value="1" class="checkbox"  />'.$LINEBREAK;
+            print '                        <!--<label for="hide_unused_fields" class="clickable_option"><span class="explanation">hide unused form fields (recommended)</span></label>-->'.$LINEBREAK;
+            print '                   </td>'.$LINEBREAK;
+            print '                   <td align="right">'.$LINEBREAK;
+            print '                        <!--<input type="button" name="back" value="&laquo;back" class="button" onclick="javascript:history.back()" />-->'.$LINEBREAK;
+            print '                        <input type="submit" name="submit" value="'.$lang_bridgemgr_php['start_wizard'].'" class="button" />'.$LINEBREAK;
+            print '                        <input type="hidden" name="step" value="choose_bbs" />'.$LINEBREAK;
+            print '                        <input type="hidden" name="force_startpage" value="0" />'.$LINEBREAK;
+            print '                   </td>'.$LINEBREAK;
+            print '                 </tr>'.$LINEBREAK;
+            print '             </table>'.$LINEBREAK;
+            print '        </td>'.$LINEBREAK;
+            print '</tr>'.$LINEBREAK;
         } else {
             print '<tr>';
             print '    <td class="tableb" width="50%">';
@@ -748,24 +748,24 @@ EOT;
             print '        <input type="radio" name="bridge_enable" id="bridge_enable_no" class="radio" value="0" '.$disabled_no.' '.$checked_no.' /><label for="bridge_enable_no" class="clickable_option">'.$lang_bridgemgr_php['bridge_enable_no'].'</label>';
             print '    </td>';
             print '</tr>';
-            print '<tr>'.$new_line;
-            print '        <td colspan="2" class="tablef" align="center">'.$new_line;
-            print '            <table border="0" cellspacing="0" cellpadding="0" width="100%">'.$new_line;
-            print '                <tr>'.$new_line;
-            print '                    <td align="left">'.$new_line;
-            //print '                        <input type="checkbox" name="clear_unused_db_fields" id="clear_unused_db_fields" value="1" class="checkbox"  checked="checked" />'.$new_line;
-            //print '                        <label for="clear_unused_db_fields" class="clickable_option"><span class="explanation">'.$lang_bridgemgr_php['clear_unused_db_fields'].'</span></label>'.$new_line;
-            print '                   </td>'.$new_line;
-            print '                   <td align="center">'.$new_line;
-            print '                        <input type="button" name="back" value="&laquo;'.$lang_bridgemgr_php['back'].'" class="button" onclick="javascript:history.back()" />'.$new_line;
-            print '                        <input type="submit" name="submit" value="'.$lang_bridgemgr_php['finish'].'" class="button" />'.$new_line;
-            print '                        <input type="hidden" name="step" value="finalize" />'.$new_line;
-            print '                        <input type="hidden" name="wizard_finished" value="finished" />'.$new_line;
-            print '                   </td>'.$new_line;
-            print '                 </tr>'.$new_line;
-            print '             </table>'.$new_line;
-            print '        </td>'.$new_line;
-            print '</tr>'.$new_line;
+            print '<tr>'.$LINEBREAK;
+            print '        <td colspan="2" class="tablef" align="center">'.$LINEBREAK;
+            print '            <table border="0" cellspacing="0" cellpadding="0" width="100%">'.$LINEBREAK;
+            print '                <tr>'.$LINEBREAK;
+            print '                    <td align="left">'.$LINEBREAK;
+            //print '                        <input type="checkbox" name="clear_unused_db_fields" id="clear_unused_db_fields" value="1" class="checkbox"  checked="checked" />'.$LINEBREAK;
+            //print '                        <label for="clear_unused_db_fields" class="clickable_option"><span class="explanation">'.$lang_bridgemgr_php['clear_unused_db_fields'].'</span></label>'.$LINEBREAK;
+            print '                   </td>'.$LINEBREAK;
+            print '                   <td align="center">'.$LINEBREAK;
+            print '                        <input type="button" name="back" value="&laquo;'.$lang_bridgemgr_php['back'].'" class="button" onclick="javascript:history.back()" />'.$LINEBREAK;
+            print '                        <input type="submit" name="submit" value="'.$lang_bridgemgr_php['finish'].'" class="button" />'.$LINEBREAK;
+            print '                        <input type="hidden" name="step" value="finalize" />'.$LINEBREAK;
+            print '                        <input type="hidden" name="wizard_finished" value="finished" />'.$LINEBREAK;
+            print '                   </td>'.$LINEBREAK;
+            print '                 </tr>'.$LINEBREAK;
+            print '             </table>'.$LINEBREAK;
+            print '        </td>'.$LINEBREAK;
+            print '</tr>'.$LINEBREAK;
         }
         endtable();
         print '</form>';
@@ -774,7 +774,7 @@ EOT;
 }
 
 
-print "<br />\n";
+print '<br />' . $LINEBREAK;
 pagefooter();
 } // gallery admin mode --- end
 else { // not in gallery admin mode --- start
@@ -782,8 +782,7 @@ else { // not in gallery admin mode --- start
 
     // initialize vars
     $step = $posted_var['step'];
-    $new_line = "\n";
-
+    
     pageheader($lang_bridgemgr_php['title']);
     switch ($step) {
     case "attempt_to_disable":

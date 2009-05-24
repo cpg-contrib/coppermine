@@ -175,7 +175,8 @@ function fooFunction($arg1, $arg2 = '')
 </ul>
 
 <a name="dev_coding_html_nesting"></a><h3>Nesting of HTML in PHP<a href="#dev_coding_html_nesting" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When more than one line of HTML needs to be printed, the <a href="http://de2.php.net/manual/en/language.types.string.php#language.types.string.syntax.heredoc" rel="external" class="external">heredoc syntax</a> should be used instead of ending the PHP processing and starting it later.</p>
+<p>When more than one line of HTML needs to be printed, the <a href="http://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.heredoc" rel="external" class="external">heredoc syntax</a> should be used instead of ending the PHP processing and starting it later.</p>
+<div class="cpg_example">
 <p>Good:</p>
 <pre class="code">// PHP content here
 if ($foo == $bar) {
@@ -190,6 +191,24 @@ if ($foo == $bar) {
 	&lt;h1&gt;Hello &lt;?php echo $bla; ?&gt;&lt;/h1&gt;
 &lt;?php
 }</pre>
+</div>
+<hr />
+
+<a name="dev_coding_linebreaks"></a><h3>Line breaks<a href="#dev_coding_linebreaks" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>To echo line breaks to the HTML output, use the <a href="http://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.heredoc" rel="external" class="external">heredoc syntax</a> or use the variable <tt class="code">$LINEBREAK</tt> instead of hardcoding line breaks into the code.</p>
+<p>Remember to make the variable global inside functions.</p>
+<div class="cpg_example">
+<p>Good:</p>
+<pre class="code">echo '&lt;h1&gt;Hello world&lt;/h1&gt;' . $LINEBREAK;
+echo '&lt;p&gt;foo bar&lt;/p&gt;';
+}</pre>
+<p>Bad:</p>
+<pre class="code">echo "&lt;h1&gt;Hello world&lt;/h1&gt;\n";
+echo '&lt;p&gt;foo bar&lt;/p&gt;';
+}</pre>
+</div> 
+
+<hr />
 
 <a name="dev_coding_naming_conventions"></a><h3>Naming Conventions<a href="#dev_coding_naming_conventions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <ul>

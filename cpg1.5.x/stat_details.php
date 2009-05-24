@@ -27,7 +27,6 @@ define('STAT_DETAILS_PHP', true);
 require_once('include/init.inc.php');
 
 // initialize the vars - start
-$line_break = "\n";
 $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
 $icon_array['stats'] = cpg_fetch_icon('stats', 1);
 $icon_array['os'] = cpg_fetch_icon('client', 1);
@@ -244,7 +243,7 @@ EOT;
 </div>
 EOT;
 
-    print '<div style="clear:left;"></div>'.$line_break.'</div>';
+    print '<div style="clear:left;"></div>'.$LINEBREAK.'</div>';
     } // mode=embedded ends
 // output the header depending on the mode (fullscreen vs embedded) - end
 
@@ -260,7 +259,7 @@ if ($type == 'vote' && $pid != '') { // type == vote start
 
     $rateArr = array();
 
-    print $line_break.'<a name="details"></a>'.$line_break;
+    print $LINEBREAK.'<a name="details"></a>'.$LINEBREAK;
     starttable($statsTableWidth, $lang_stat_details_php['stats'], 3);
 
     $totalVotesSum = 0;
@@ -312,7 +311,7 @@ EOT;
 EOT;
       }
   endtable();
-  print "<br />\n";
+  print '<br />' . $LINEBREAK;
 
   } // type == vote end
   if ($type == 'hits') { // type == hits start
@@ -406,16 +405,16 @@ EOT;
       }
       print '<a name="details"></a>';
       starttable($statsTableWidth, $lang_stat_details_php[$type], $tableColumns + 1);
-      print '  <tr>'.$line_break;
-      print '    <td class="tableh2" align="center" valign="bottom">'.$line_break;
+      print '  <tr>'.$LINEBREAK;
+      print '    <td class="tableh2" align="center" valign="bottom">'.$LINEBREAK;
       if ($type == 'vote') {
-          print '    <input type="checkbox" name="checkAll" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$line_break;
+          print '    <input type="checkbox" name="checkAll" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$LINEBREAK;
       }
-      print '    </td>'.$line_break;
+      print '    </td>'.$LINEBREAK;
       foreach ($db_fields as $value) {
           $show_column_checked[$value] = ($$value == '1') ? 'checked="checked"' : '';
-          print '    <td class="tableh2" valign="top">'.$line_break;
-          print '      <input type="checkbox" name="'.$value.'" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$show_column_checked[$value].' onclick="sendForm();" />'.$line_break;
+          print '    <td class="tableh2" valign="top">'.$LINEBREAK;
+          print '      <input type="checkbox" name="'.$value.'" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$show_column_checked[$value].' onclick="sendForm();" />'.$LINEBREAK;
           //print '      <img src="images/'.$icon[$value].'" border="0" width="16" height="16" alt="" title="'.$lang_stat_details_php[$value].'" />';
           print '      '.cpg_fetch_icon($icon[$value], 0, $lang_stat_details_php[$value]);
           if ($$value == 1) {
@@ -426,13 +425,13 @@ EOT;
               print '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_stat_details_php[$value]).', '.$lang_stat_details_php['descending'].'" />';
               print '</a>';
           }
-          print $line_break;
-          print '    </td>'.$line_break;
+          print $LINEBREAK;
+          print '    </td>'.$LINEBREAK;
       }
       if ($pid == '') {
           $show_file_column = ($file == '1') ? 'checked="checked"' : '';
-          print '    <td class="tableh2" valign="top">'.$line_break;
-          print '      <input type="checkbox" name="file" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$lang_common['file'].' onclick="sendForm();" '.$show_file_column.' />'.$line_break;
+          print '    <td class="tableh2" valign="top">'.$LINEBREAK;
+          print '      <input type="checkbox" name="file" value="1" class="checkbox" title="'.$lang_stat_details_php['show_hide'].'" '.$lang_common['file'].' onclick="sendForm();" '.$show_file_column.' />'.$LINEBREAK;
           print '      '.cpg_fetch_icon('file', 0, $lang_common['file']);
           if ($file == 1) {
               print '<a href="#" onclick="return sortthetable(\'file\',\'asc\');">';
@@ -442,9 +441,9 @@ EOT;
               print '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['descending'].'" />';
               print '</a>';
           }
-          print '    </td>'.$line_break;
+          print '    </td>'.$LINEBREAK;
       }
-      print "  </tr>\n";
+      print '  </tr>' . $LINEBREAK;
       // display the table header - end
       if (mysql_num_rows($result) > 0) {
           $loop_counter = 0;
@@ -473,34 +472,34 @@ EOT;
               }
               if ($hide_internal == 1 && $is_internal == 1) { // check internals start
               } else {
-                  print '  <tr>'.$line_break;
-                  print '    <td class="'.$row_style_class.'" align="center">'.$line_break;
+                  print '  <tr>'.$LINEBREAK;
+                  print '    <td class="'.$row_style_class.'" align="center">'.$LINEBREAK;
                   if ($type == 'vote') {
-                      print '      <input name="del'.$row['sid'].'" type="checkbox" value="" class="checkbox" />'.$line_break;
+                      print '      <input name="del'.$row['sid'].'" type="checkbox" value="" class="checkbox" />'.$LINEBREAK;
                   }
-                  print '    </td>'.$line_break;
+                  print '    </td>'.$LINEBREAK;
                   foreach($db_fields as $value) {
-                      print '    <td class="'.$row_style_class.'">'.$line_break;
+                      print '    <td class="'.$row_style_class.'">'.$LINEBREAK;
                       if ($$value == 1) {
                           if ($value == 'browser' && array_key_exists($row[$value],$browserArray)) {
-                              print '      <img src="images/browser/'.$browserArray[$row[$value]].'" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
+                              print '      <img src="images/browser/'.$browserArray[$row[$value]].'" border="0" title="'.$row[$value].'" alt="" />'.$LINEBREAK;
                           } elseif ($value == 'os' && array_key_exists($row[$value],$osArray)) {
-                              print '      <img src="images/os/'.$osArray[$row[$value]].'" border="0" title="'.$row[$value].'" alt="" />'.$line_break;
+                              print '      <img src="images/os/'.$osArray[$row[$value]].'" border="0" title="'.$row[$value].'" alt="" />'.$LINEBREAK;
                           } elseif ($value == 'uid') {
                               if ($row[$value] != 0) {
                                   $user_data = $cpg_udb->get_user_infos($row[$value]);
-                                  print '      <a href="profile.php?uid='.$row[$value].'">'.$user_data['user_name'].'</a>'.$line_break;
+                                  print '      <a href="profile.php?uid='.$row[$value].'">'.$user_data['user_name'].'</a>'.$LINEBREAK;
                               }  else {
-                                  print '      <span title="'.$lang_stat_details_php['guest'].'">-</span>'.$line_break;
+                                  print '      <span title="'.$lang_stat_details_php['guest'].'">-</span>'.$LINEBREAK;
                               }
                           } else {
-                              print '      '.$row[$value].$line_break;
+                              print '      '.$row[$value].$LINEBREAK;
                           }
                       }
-                      print '    </td>'.$line_break;
+                      print '    </td>'.$LINEBREAK;
                   }
               if ($pid == '') {
-                  print '    <td class="'.$row_style_class.'">'.$line_break;
+                  print '    <td class="'.$row_style_class.'">'.$LINEBREAK;
                   if ($file == 1) {
                       $thumb_url =  get_pic_url($row, 'thumb');
                       if (!is_image($row['filename'])) {
@@ -511,9 +510,9 @@ EOT;
                       $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
                       print '      <a href="displayimage.php?pid='.$row['pid'].'"><img src="'.$thumb_url.'" '.$image_size['geom'].' class="image" border="0" alt="" /></a>';
                   }
-                  print '    </td>'.$line_break;
+                  print '    </td>'.$LINEBREAK;
               }
-              print '  </tr>'.$line_break;
+              print '  </tr>'.$LINEBREAK;
               } // check internals end
           }
       }
@@ -524,9 +523,9 @@ EOT;
       if ($amount==$key) {
           $record_selector .= ' selected="selected"';
       }
-      $record_selector .= '>'.$key.'</option>'.$line_break;
+      $record_selector .= '>'.$key.'</option>'.$LINEBREAK;
   }
-  $record_selector .= '</select> '.$lang_stat_details_php['records_per_page'].$line_break;
+  $record_selector .= '</select> '.$lang_stat_details_php['records_per_page'].$LINEBREAK;
 
   $stats_tmpl = $template_tab_display;
   $stats_tmpl['left_text'] = strtr($stats_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_stat_details_php['records_on_page'] . $record_selector));
@@ -563,7 +562,7 @@ EOT;
       <td class="tablef" align="center" valign="top">
 EOT;
   if ($type == 'vote') {
-      print '    <input type="checkbox" name="checkAll2" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$line_break;
+      print '    <input type="checkbox" name="checkAll2" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$LINEBREAK;
   }
   print <<< EOT
       </td>

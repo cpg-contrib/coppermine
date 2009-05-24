@@ -916,7 +916,6 @@ class Inspekt
                 $regex .= '(\?[^#]*)?';                         // query
                 $regex .= '(#([-a-z0-9_]*))?';                  // anchor (fragment)
                 $regex .= '$&i';
-                //echo "<pre>"; echo print_r($regex, true); echo "</pre>\n";
 
                 break;
 
@@ -939,13 +938,11 @@ class Inspekt
 //              $regex .= '(\?[^#]*)?';                         // query
 //              $regex .= '(#([-a-z0-9_]*))?';                  // anchor (fragment)
 //              $regex .= '$&i';
-                //echo "<pre>"; echo print_r($regex, true); echo "</pre>\n";
 
                 break;
 
         }
         $result = preg_match($regex, $value, $subpatterns);
-        //echo "<pre>"; echo print_r($subpatterns, true); echo "</pre>\n";
         return $result;
     }
 

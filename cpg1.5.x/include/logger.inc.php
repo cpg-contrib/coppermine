@@ -36,6 +36,7 @@ define('CPG_HOUR',3600);
 
 // Writes log text to the log file
 function log_write( $text, $log = null ) {
+        global $LINEBREAK;
         if (is_null($log)) {
                 $log = CPG_GLOBAL_LOG;
         }
@@ -50,7 +51,7 @@ function log_write( $text, $log = null ) {
 
         $fp = fopen($log,'a');
         fwrite($fp,$log_header);
-        fwrite($fp,$text."\n");
+        fwrite($fp,$text.$LINEBREAK);
         fclose($fp);
 }
 

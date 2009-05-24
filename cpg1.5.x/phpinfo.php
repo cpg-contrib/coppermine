@@ -54,7 +54,7 @@ print '<br />';
 
 
 print $string;
-print "</div>\n";
+print '</div>' . $LINEBREAK;
 
 
 pagefooter();

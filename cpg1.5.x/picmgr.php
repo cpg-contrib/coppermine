@@ -48,7 +48,7 @@ function get_album_data()
 
 function albumselect($id = "album")
 {
-    global $CONFIG, $aid, $cpg_udb, $CPG_PHP_SELF, $lang_picmgr_php, $lang_common, $lang_errors;
+    global $CONFIG, $aid, $cpg_udb, $CPG_PHP_SELF, $lang_picmgr_php, $lang_common, $lang_errors, $LINEBREAK;
     static $select = "";
 
     // Reset counter
@@ -102,7 +102,7 @@ function albumselect($id = "album")
         mysql_free_result($result);
 
         if (!$aid) {
-            $select = '<option value="0">' . $lang_picmgr_php['no_album'] . "</option>\n";
+            $select = '<option value="0">' . $lang_picmgr_php['no_album'] . '</option>' . $LINEBREAK;
         }
 
         // Sort the pulldown options by category and album name
@@ -114,19 +114,19 @@ function albumselect($id = "album")
         foreach ($listArray as $val) {
             if ($val['cid'] !== $alb_cid) {
                 if ($alb_cid) {
-                    $select .= "</optgroup>\n";
+                    $select .= '</optgroup>' . $LINEBREAK;
                 }
-                $select .= '<optgroup label="' . $val['cat'] . '">' . "\n";
+                $select .= '<optgroup label="' . $val['cat'] . '">' . $LINEBREAK;
                 $alb_cid = $val['cid'];
             }
-            $select .= '<option value="' . $val['aid'] . '"' . ($val['aid'] == $aid ? ' selected="selected"' : '') . '>   ' . $val['title'] . "</option>\n";
+            $select .= '<option value="' . $val['aid'] . '"' . ($val['aid'] == $aid ? ' selected="selected"' : '') . '>   ' . $val['title'] . '</option>' . $LINEBREAK;
         }
         if ($alb_cid) {
-            $select .= "</optgroup>\n";
+            $select .= '</optgroup>' . $LINEBREAK;
         }
     }
 
-    return "\n<select name=\"$id\" class=\"listbox\">\n$select</select>\n";
+    return $LINEBREAK . '<select name="'.$id.'" class="listbox">' . $LINEBREAK . $select . '</select>' . $LINEBREAK;
 }
 
 

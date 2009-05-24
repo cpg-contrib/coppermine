@@ -463,12 +463,12 @@ if ($superCage->get->keyExists('fullsize')) {
     $meta_keywords = '';
     
     if ($CURRENT_PIC_DATA['keywords']) {
-        $meta_keywords .= "<meta name=\"keywords\" content=\"" . str_replace($CONFIG['keyword_separator'], ',', $CURRENT_PIC_DATA['keywords']) . "\"/>\n";
+        $meta_keywords .= '<meta name="keywords" content="' . str_replace($CONFIG['keyword_separator'], ',', $CURRENT_PIC_DATA['keywords']) . '" />' . $LINEBREAK;
     }
 
     // Tell robots tp ignore meta albums
     if (!is_numeric($album)) {
-        $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />' . "\n";
+        $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />' . $LINEBREAK;
     }
 
     $meta_keywords .= $meta_nav;

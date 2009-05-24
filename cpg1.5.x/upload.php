@@ -88,12 +88,12 @@ if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
 function text_box_input($text, $name, $max_length, $iterations, $default='')
 {
 
-    global $CONFIG;
+    global $CONFIG, $LINEBREAK;
 
     $ordinal = '';
 
     if (($text == '') and ($iterations == '')) {
-        echo "        <input type=\"hidden\" name=\"$name\" value=\"$default\" />\n";
+        echo '        <input type="hidden" name="' . $name . '" value="' . $default . '" />' . $LINEBREAK;
         return;
     }
 
@@ -287,20 +287,20 @@ EOT;
     // Finally, print out the nicely sorted and formatted drop down list
     // $alb_cat = '';
     $alb_cid = '';
-    echo '                <option value="">' . $lang_common['select_album'] . "</option>\n";
+    echo '                <option value="">' . $lang_common['select_album'] . '</option>' . $LINEBREAK;
     foreach ($listArray as $val) {
         //if ($val['cat'] != $alb_cat) {  // old method compared names which might not be unique
         if ($val['cid'] !== $alb_cid) {
             if ($alb_cid) {
-                echo "                </optgroup>\n";
+                echo '                </optgroup>' . $LINEBREAK;
             }
-            echo '                <optgroup label="' . $val['cat'] . '">' . "\n";
+            echo '                <optgroup label="' . $val['cat'] . '">' . $LINEBREAK;
             $alb_cid = $val['cid'];
         }
-        echo '                <option value="' . $val['aid'] . '"' . ($val['aid'] == $sel_album ? ' selected' : '') . '>   ' . $val['title'] . "</option>\n";
+        echo '                <option value="' . $val['aid'] . '"' . ($val['aid'] == $sel_album ? ' selected' : '') . '>   ' . $val['title'] . '</option>' . $LINEBREAK;
     }
     if ($alb_cid) {
-        echo "                </optgroup>\n";
+        echo '                </optgroup>' . $LINEBREAK;
     }
 
     // Close the drop down
@@ -315,7 +315,7 @@ EOT;
 
 function form_instructions()
 {
-    global $CONFIG, $lang_upload_php, $upload_form, $max_file_size;
+    global $CONFIG, $lang_upload_php, $upload_form, $max_file_size, $LINEBREAK;
 
     echo "<tr><td colspan=\"2\">";
 
@@ -323,13 +323,13 @@ function form_instructions()
 
     //show allowed filetypes
     echo "<br />{$lang_upload_php['allowed_types']}";
-    print "<br />\n";
+    print '<br />' . $LINEBREAK;
     printf ($lang_upload_php['allowed_img_types'], $CONFIG['allowed_img_types']);
-    print "<br />\n";
+    print '<br />' . $LINEBREAK;
     printf ($lang_upload_php['allowed_mov_types'], $CONFIG['allowed_mov_types']);
-    print "<br />\n";
+    print '<br />' . $LINEBREAK;
     printf ($lang_upload_php['allowed_snd_types'], $CONFIG['allowed_snd_types']);
-    print "<br />\n";
+    print '<br />' . $LINEBREAK;
     printf ($lang_upload_php['allowed_doc_types'], $CONFIG['allowed_doc_types']);
 
     echo "<br /><br />{$lang_upload_php['up_instr_2']}";

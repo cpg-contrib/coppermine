@@ -169,11 +169,11 @@ function list_users($search = '')
         }
     }
 
-    $tab_tmpl = array('left_text' => '<td width="100%" align="left" valign="middle" class="tableh1" style="white-space: nowrap">' . $lang_usermgr_php['u_user_on_p_pages'] . '</td>' . "\n",
+    $tab_tmpl = array('left_text' => '<td width="100%" align="left" valign="middle" class="tableh1" style="white-space: nowrap">' . $lang_usermgr_php['u_user_on_p_pages'] . '</td>' . $LINEBREAK,
         'tab_header' => '',
         'tab_trailer' => '',
-        'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb">%d</td>',
-        'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="' . $CPG_PHP_SELF . '?page=%d&amp;sort=' . $sort . '"%d</a></td>' . "\n"
+        'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . $LINEBREAK . '<td align="center" valign="middle" class="tableb">%d</td>',
+        'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . $LINEBREAK . '<td align="center" valign="middle" class="navmenu"><a href="' . $CPG_PHP_SELF . '?page=%d&amp;sort=' . $sort . '"%d</a></td>' . $LINEBREAK
         );
 
     $makereadonly = ($CONFIG['bridge_enable']) ? 'style="display:none;" disabled="disabled" ':'';
@@ -207,13 +207,13 @@ function list_users($search = '')
 
     $lb = '<span id="album_listbox_wrapper" style="display:none">';
     $lb .= $lang_usermgr_php['sort_by'].': ';
-    $lb .= "<select name=\"album_listbox\" id=\"album_listbox\" class=\"listbox\" onchange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?page=$page&amp;sort='+this.options[this.selectedIndex].value;\">\n";
+    $lb .= "<select name=\"album_listbox\" id=\"album_listbox\" class=\"listbox\" onchange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?page=$page&amp;sort='+this.options[this.selectedIndex].value;\">" . $LINEBREAK;
     foreach($sort_codes as $key => $value) {
         $selected = ($key == $sort) ? "SELECTED" : "";
-        $lb .= "        <option value=\"" . $key . "\" $selected>" . $lang_usermgr_php[$key] . "</option>\n";
+        $lb .= '        <option value="' . $key . '" '.$selected.'>' . $lang_usermgr_php[$key] . '</option>' . $LINEBREAK;
     }
-    $lb .= "</select>\n";
-    $lb .= "</span>\n";
+    $lb .= '</select>' . $LINEBREAK;
+    $lb .= '</span>' . $LINEBREAK;
 
 echo <<<EOT
 <script type="text/javascript" language="javascript">
@@ -612,7 +612,7 @@ EOT;
 
 
         foreach($group_list as $group) {
-            print '                                  <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . "</option>\n";
+            print '                                  <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . '</option>' . $LINEBREAK;
         }
 
     $help_create = '&nbsp;'.cpg_display_help('f=users.htm&amp;as=user_cp_new&amp;ae=user_cp_new_end', '600', '250');
@@ -854,7 +854,7 @@ EOT;
 EOT;
                 $group_cb = '';
                 foreach($group_list as $group) {
-                    echo '                        <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . "</option>\n";
+                    echo '                        <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . '</option>' . $LINEBREAK;
     
                     /**
                      * If the group is registered, don't show it here as all the users must be a member of this group
@@ -863,7 +863,7 @@ EOT;
                      */
                     if ($group['group_id'] != 1 && $group['group_id'] != 2 && $group['group_id'] != 4) {
                       $checked = strpos(' ' . $user_group_list, ',' . $group['group_id'] . ',') ? 'checked' : '';
-                      $group_cb .= '<input name="group_list[]" type="checkbox" value="' . $group['group_id'] . '" ' . $checked . ' />' . $group['group_name'] . "<br />\n";
+                      $group_cb .= '<input name="group_list[]" type="checkbox" value="' . $group['group_id'] . '" ' . $checked . ' />' . $group['group_name'] . '<br />' . $LINEBREAK;
                     }
                 }
                 $assignedGroupsHelp = cpg_display_help('f=users.htm&amp;as=user_cp_edit_permission_by_group&amp;ae=user_cp_edit_permission_by_group_end', '450', '300');

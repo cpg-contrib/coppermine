@@ -130,7 +130,7 @@ function process_smilies($message, $url_prefix = '')
 
 function generate_smilies($form = 'post', $field = 'message')
 {
-    global $THEME_DIR;
+    global $THEME_DIR, $LINEBREAK;
     $smilies = get_smilies_table2();
     $paths = array($THEME_DIR.'/smiles/', 'images/smiles/');
 
@@ -138,15 +138,15 @@ function generate_smilies($form = 'post', $field = 'message')
         $html = theme_generate_smilies($smilies, $form);
     } else {
 
-        $html = '<table width="100%" border="0" cellspacing="0" cellpadding="0">' . "\n" . '        <tr align="center" valign="middle">' . "\n";
+        $html = '<table width="100%" border="0" cellspacing="0" cellpadding="0">' . $LINEBREAK . '        <tr align="center" valign="middle">' . $LINEBREAK;
 
         foreach ($smilies as $smiley) {
             $smile_path = (file_exists($paths[0].$smiley[1]))?($paths[0]):($paths[1]);
             $caption = $smiley[2] . " " . $smiley[0];
-            $html .= '                <td width="5%"><img src="images/smiles/' . $smiley[1] . '" alt="' . $caption . '" width="15" height="15" border="0" style="cursor:pointer;" title="' . $caption . '" onclick="javascript:emoticon_' . $form . '(\'' . $smiley[0] . '\')" /></td>' . "\n";
+            $html .= '                <td width="5%"><img src="images/smiles/' . $smiley[1] . '" alt="' . $caption . '" width="15" height="15" border="0" style="cursor:pointer;" title="' . $caption . '" onclick="javascript:emoticon_' . $form . '(\'' . $smiley[0] . '\')" /></td>' . $LINEBREAK;
         }
 
-        $html .= '        </tr>' . "\n" . '</table>' . "\n";
+        $html .= '        </tr>' . $LINEBREAK . '</table>' . $LINEBREAK;
     }
 
     $html .= <<<EOT
@@ -171,7 +171,7 @@ function storeCaret_$form(textEl) {
 //-->
 
 EOT;
-    $html .= "</script>\n";
+    $html .= '</script>' . $LINEBREAK;
     return $html;
 }
 

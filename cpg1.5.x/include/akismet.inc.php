@@ -22,12 +22,11 @@ if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 $akismet_config['akismet_user_agent'] = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' | akismet.inc.php/1.0';
 $akismet_config['akismet_host'] = 'rest.akismet.com';
 $akismet_config['akismet_version'] = '1.1';
-$akismet_config['linebreak'] = "\r\n";
 $akismet_config['key'] = $CONFIG['comment_akismet_api_key'];
 $akismet_config['blog'] = $CONFIG['site_url'];
 
 function cpg_akismet_send($argument_array = '', $host = '', $url = '') {
-    global $akismet_config;
+    global $akismet_config, $LINEBREAK;
     if (!(is_array($argument_array)) || $host == '' || $url == '') { 
         return FALSE; 
     }
@@ -35,12 +34,12 @@ function cpg_akismet_send($argument_array = '', $host = '', $url = '') {
     foreach ($argument_array as $key => $val) {
         $content .= $key . '=' . rawurlencode(stripslashes($val)) . '&';
     }
-    $request = 'POST ' . $url .' HTTP/1.0' . $akismet_config['linebreak']
-             . 'Host: ' . $host . $akismet_config['linebreak']
-             . 'Content-Type: application/x-www-form-urlencoded' . $akismet_config['linebreak']
-             . 'User-Agent: ' . $akismet_config['akismet_user_agent'] . $akismet_config['linebreak']
-             . 'Content-Length: ' . strlen($content) . $akismet_config['linebreak'].$akismet_config['linebreak']
-             . $content . $akismet_config['linebreak'];
+    $request = 'POST ' . $url .' HTTP/1.0' . $LINEBREAK
+             . 'Host: ' . $host . $LINEBREAK
+             . 'Content-Type: application/x-www-form-urlencoded' . $LINEBREAK
+             . 'User-Agent: ' . $akismet_config['akismet_user_agent'] . $LINEBREAK
+             . 'Content-Length: ' . strlen($content) . $LINEBREAK . $LINEBREAK
+             . $content . $LINEBREAK;
     $port = 80;
     unset($response);
     $fh = fsockopen($host, $port, $errno, $errstr, 3);
@@ -50,7 +49,7 @@ function cpg_akismet_send($argument_array = '', $host = '', $url = '') {
             $response .= fgets($fh, 1160); 
         }
         @fclose( $fh );
-        $response = explode("\r\n\r\n", $response, 2);
+        $response = explode($LINEBREAK . $LINEBREAK, $response, 2);
     }
     return $response;
 }

@@ -169,7 +169,7 @@ function javascript_string($str)
 // Return the HTML code for the album list select box
 function html_album_list(&$alb_count)
 {
-    global $CONFIG;
+    global $CONFIG, $LINEBREAK;
 
     if (USER_IS_ADMIN) {
         $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
@@ -195,12 +195,12 @@ function html_album_list(&$alb_count)
 
     $alb_count = count($public_albums_list) + count($user_albums_list);
 
-    $html = "\n";
+    $html = $LINEBREAK;
     foreach($user_albums_list as $album) {
-        $html .= '                        <option value="' . $album['aid'] . '">* ' . $album['title'] . "</option>\n";
+        $html .= '                        <option value="' . $album['aid'] . '">* ' . $album['title'] . '</option>' . $LINEBREAK;
     }
     foreach($public_albums_list as $album) {
-        $html .= '                        <option value="' . $album['aid'] . '">' . $album['title'] . "</option>\n";
+        $html .= '                        <option value="' . $album['aid'] . '">' . $album['title'] . '</option>' . $LINEBREAK;
     }
 
     return $html;
@@ -217,9 +217,9 @@ function html_cat_list()
 
     get_cat_data();
 
-    $html = "\n";
+    $html = $LINEBREAK;
     foreach($CAT_LIST as $category) {
-        $html .= '                        <option value="' . $category[0] . '">' . $category[1] . "</option>\n";
+        $html .= '                        <option value="' . $category[0] . '">' . $category[1] . '</option>' . $LINEBREAK;
     }
 
     return $html;
@@ -559,7 +559,7 @@ EOT;
 // Send the file needed to register the service under Windows XP
 function send_reg_file()
 {
-    global $CONFIG, $CPG_PHP_SELF; //, $PHP_SELF;
+    global $CONFIG, $CPG_PHP_SELF, $LINEBREAK; //, $PHP_SELF;
   $superCage = Inspekt::makeSuperCage();
 
     header("Content-Type: application/octet-stream");
@@ -581,8 +581,8 @@ function send_reg_file()
     $lines[] = '"href"="' . trim($CONFIG['site_url'], '/') . '/' . $CPG_PHP_SELF . '?cmd=publish"';
     $lines[] = '"icon"="' . "http://" . $superCage->server->getEscaped('HTTP_HOST') . '/favicon.ico"';
     $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\InternetPhotoprinting\providers\\' . utf8_decode($CONFIG['gallery_name'] .']');
-    print join("\r\n", $lines);
-    print "\r\n";
+    print join($LINEBREAK, $lines);
+    print $LINEBREAK;
     exit;
 }
 

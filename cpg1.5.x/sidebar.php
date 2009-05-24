@@ -270,7 +270,7 @@ if (!$album_count) {
 $dtree_counter=0;
 
 function get_tree_subcat_data($parent, $dtree_parent = 0) {
-        global $CONFIG, $HIDE_USER_CAT, $catStr, $dtree_counter;
+        global $CONFIG, $HIDE_USER_CAT, $catStr, $dtree_counter, $LINEBREAK;
         if ($CONFIG['categories_alpha_sort'] == 1) {
                 $cat_sort_order = 'name';
         }else{
@@ -281,21 +281,21 @@ function get_tree_subcat_data($parent, $dtree_parent = 0) {
         if (($cat_count = mysql_num_rows($result)) > 0) {
                 $rowset = cpg_db_fetch_rowset($result);
                 $pos = 0;
-                $catStr .= '<ul>'."\n";
+                $catStr .= '<ul>'.$LINEBREAK;
                 foreach ($rowset as $subcat) {
                         if ($subcat['cid'] == USER_GAL_CAT && $HIDE_USER_CAT == 1) {
 
                         } else {
                                 $dtree_counter++;
                                 // Category
-                                $catStr .= '<li><a href="index.php?cat='.$subcat['cid'].'">'.$subcat['name'].'</a>'."\n";
+                                $catStr .= '<li><a href="index.php?cat='.$subcat['cid'].'">'.$subcat['name'].'</a>'.$LINEBREAK;
                                 $dtree_temp=$dtree_counter;
                                 get_tree_subcat_data($subcat['cid'], $dtree_temp);
                                 get_tree_album_data($subcat['cid'], $dtree_temp);
-                                $catStr .= '</li>'."\n";
+                                $catStr .= '</li>'.$LINEBREAK;
                         }
                 }
-                $catStr .= '</ul>'."\n";
+                $catStr .= '</ul>'.$LINEBREAK;
                 if ($parent == 0) {
                         get_tree_album_data($parent,0);
                 }
@@ -304,7 +304,7 @@ function get_tree_subcat_data($parent, $dtree_parent = 0) {
 }
 
 function get_tree_album_data($category,$dtree_parent) {
-        global $catStr,$ALBUM_SET, $dtree_counter;
+        global $catStr,$ALBUM_SET, $dtree_counter, $LINEBREAK;
         global $CONFIG, $HIDE_USER_CAT, $FORBIDDEN_SET,$cpg_show_private_album;
         $album_filter='';
         $pic_filter='';
@@ -317,15 +317,15 @@ function get_tree_album_data($category,$dtree_parent) {
                 $result = cpg_db_query($sql);
                 if (($cat_count = mysql_num_rows($result)) > 0) {
                         $rowset = cpg_db_fetch_rowset($result);
-                        $catStr .= '<ul>'."\n";
+                        $catStr .= '<ul>'.$LINEBREAK;
                         foreach ($rowset as $subcat) {
                                 $dtree_counter++;
                                 // User gallery
-                                $catStr .= '<li><a href="index.php?cat='.(FIRST_USER_CAT + (int) $subcat['user_id']).'">'.$subcat['user_name'].'</a>'."\n";
+                                $catStr .= '<li><a href="index.php?cat='.(FIRST_USER_CAT + (int) $subcat['user_id']).'">'.$subcat['user_name'].'</a>'.$LINEBREAK;
                                 get_tree_album_data(FIRST_USER_CAT + (int) $subcat['user_id'], $dtree_counter);
-                                $catStr .= '</li>'."\n";
+                                $catStr .= '</li>'.$LINEBREAK;
                         }
-                        $catStr .= '</ul>'."\n";
+                        $catStr .= '</ul>'.$LINEBREAK;
                 }
         } else {
                 if ($category == USER_GAL_CAT) {
@@ -337,13 +337,13 @@ function get_tree_album_data($category,$dtree_parent) {
                 $result = cpg_db_query($sql);
                 if (($cat_count = mysql_num_rows($result)) > 0) {
                         $rowset = cpg_db_fetch_rowset($result);
-                        $catStr .= '<ul>'."\n";
+                        $catStr .= '<ul>'.$LINEBREAK;
                         foreach ($rowset as $subcat) {
                                 $dtree_counter++;
                                 // Album
-                                $catStr .= '<li><a href="thumbnails.php?album='.$subcat['aid'].'">'.$subcat['title'].'</a></li>'."\n";
+                                $catStr .= '<li><a href="thumbnails.php?album='.$subcat['aid'].'">'.$subcat['title'].'</a></li>'.$LINEBREAK;
                         }
-                        $catStr .= '</ul>'."\n";
+                        $catStr .= '</ul>'.$LINEBREAK;
                 }
         }
 }

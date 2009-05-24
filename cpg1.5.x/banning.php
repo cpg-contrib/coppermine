@@ -664,7 +664,7 @@ print <<< EOT
     </tr>
 EOT;
 endtable();
-print "</form>\n";
+print '</form>' . $LINEBREAK;
 
 pagefooter();
 ob_end_flush();

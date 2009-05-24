@@ -128,7 +128,7 @@ if ($superCage->get->keyExists('no_popup')){
     $no_popup = 0;
 }
 
-$newline = "\n";
+$newline = $LINEBREAK;
 $title = $CONFIG['gallery_name'] . ': ' . $lang_minibrowser_php['click_to_close'];
 $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
 echo <<< EOT
@@ -302,8 +302,8 @@ echo '</td>' . $newline;
 echo '</tr>' . $newline;
 }
 endtable();
-echo '<input type="hidden" name="parentform" value="'.$parentform.'" />'."\n";
-echo '<input type="hidden" name="formelementname" value="'.$formelementname.'" />'."\n";
+echo '<input type="hidden" name="parentform" value="'.$parentform.'" />'.$LINEBREAK;
+echo '<input type="hidden" name="formelementname" value="'.$formelementname.'" />'.$LINEBREAK;
 
 echo <<< EOT
 </form>

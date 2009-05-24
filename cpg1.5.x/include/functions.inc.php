@@ -209,12 +209,12 @@ function cpg_db_query($query, $link_id = 0)
 
 function cpg_db_error($the_error)
 {
-    global $CONFIG, $lang_errors;
+    global $CONFIG, $lang_errors, $LINEBREAK;
 
     if ($CONFIG['debug_mode'] === '0' || (!GALLERY_ADMIN_MODE)) {
         cpg_die(CRITICAL_ERROR, $lang_errors['database_query'], __FILE__, __LINE__);
     } else {
-        $the_error .= "\n\nmySQL error: " . mysql_error() . "\n";
+        $the_error .= $LINEBREAK . $LINEBREAK . 'mySQL error: ' . mysql_error() . $LINEBREAK;
         $out        = "<br />" . $lang_errors['database_query'] . ".<br /><br/>
                 <form name=\"mysql\" id=\"mysql\"><textarea rows=\"8\" cols=\"60\">" . htmlspecialchars($the_error) . "</textarea></form>";
         cpg_die(CRITICAL_ERROR, $out, __FILE__, __LINE__);
@@ -784,7 +784,7 @@ function load_template()
     $template_header .= CPGPluginAPI::filter('gallery_header', '');
     $template_footer  = CPGPluginAPI::filter('gallery_footer', '') . substr($template, $gallery_pos);
 
-    $add_version_info = "<!--Coppermine Photo Gallery " . COPPERMINE_VERSION . " (" . COPPERMINE_VERSION_STATUS . ")-->\n</body>";
+    $add_version_info = '<!--Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' (' . COPPERMINE_VERSION_STATUS . ')-->' . $LINEBREAK . '</body>';
     $template_footer  = preg_replace("#</body[^>]*>#", $add_version_info, $template_footer);
 }
 
@@ -2530,7 +2530,7 @@ function compute_img_size($width, $height, $max, $system_icon = false, $normal =
 
 function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $display_tabs)
 {
-    global $CONFIG, $USER;
+    global $CONFIG, $USER, $LINEBREAK;
     global $lang_date, $lang_display_thumbnails, $lang_byte_units, $lang_common;
 
     $superCage = Inspekt::makeSuperCage();
@@ -2550,9 +2550,9 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
 
             $i++;
 
-            $pic_title = $lang_common['filename'] . '=' . $row['filename'] . "\n" .
-                $lang_common['filesize'] . '=' . ($row['filesize'] >> 10) . $lang_byte_units[1] . "\n" .
-                $lang_display_thumbnails['dimensions'] . $row['pwidth'] . "x" . $row['pheight'] . "\n" .
+            $pic_title = $lang_common['filename'] . '=' . $row['filename'] . $LINEBREAK .
+                $lang_common['filesize'] . '=' . ($row['filesize'] >> 10) . $lang_byte_units[1] . $LINEBREAK .
+                $lang_display_thumbnails['dimensions'] . $row['pwidth'] . "x" . $row['pheight'] . $LINEBREAK .
                 $lang_display_thumbnails['date_added'] . localised_date($row['ctime'], $lang_date['album']);
 
             $pic_url = get_pic_url($row, 'thumb');
@@ -2733,7 +2733,7 @@ function& cpg_get_system_thumb($filename, $user = 10001)
 
 function display_film_strip($album, $cat, $pos,$ajax_call)
 {
-    global $CONFIG;
+    global $CONFIG, $LINEBREAK;
     global $lang_date, $lang_display_thumbnails, $lang_byte_units, $lang_common, $pic_count,$ajax_call,$pos;
 
     $superCage = Inspekt::makeSuperCage();
@@ -2816,9 +2816,9 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
 
             $i++;
 
-            $pic_title = $lang_common['filename'] . '=' . $row['filename'] . "\n" .
-                $lang_common['filesize'] . '=' . ($row['filesize'] >> 10) . $lang_byte_units[1] . "\n" .
-                $lang_display_thumbnails['dimensions'] . $row['pwidth'] . "x" . $row['pheight'] . "\n" .
+            $pic_title = $lang_common['filename'] . '=' . $row['filename'] . $LINEBREAK .
+                $lang_common['filesize'] . '=' . ($row['filesize'] >> 10) . $lang_byte_units[1] . $LINEBREAK .
+                $lang_display_thumbnails['dimensions'] . $row['pwidth'] . "x" . $row['pheight'] . $LINEBREAK .
                 $lang_display_thumbnails['date_added'] . localised_date($row['ctime'], $lang_date['album']);
 
             $pic_url = get_pic_url($row, 'thumb');
@@ -3249,7 +3249,7 @@ function& cpg_lang_var($varname, $index = null)
 
 function cpg_debug_output()
 {
-    global $USER, $USER_DATA, $CONFIG, $cpg_time_start, $query_stats, $queries, $lang_cpg_debug_output, $CPG_PHP_SELF, $superCage, $CPG_PLUGINS;
+    global $USER, $USER_DATA, $CONFIG, $cpg_time_start, $query_stats, $queries, $lang_cpg_debug_output, $CPG_PHP_SELF, $superCage, $CPG_PLUGINS, $LINEBREAK;
 
     $time_end         = cpgGetMicroTime();
     $time             = round(($time_end - $cpg_time_start) * 1000);
@@ -3331,7 +3331,7 @@ EOT;
         }
 
         echo 'PHP version: ' . phpversion() . $version_comment;
-        echo "\n";
+        echo $LINEBREAK;
 
         $version_comment = ' - OK';
         $mySqlVersion    = cpg_phpinfo_mysql_version();
@@ -3341,11 +3341,11 @@ EOT;
         }
 
         echo 'MySQL version: ' . $mySqlVersion . $version_comment;
-        echo "\n";
+        echo $LINEBREAK;
 
         echo 'Coppermine version: ';
         echo COPPERMINE_VERSION . '(' . COPPERMINE_VERSION_STATUS . ')';
-        echo "\n";
+        echo $LINEBREAK;
 
         echo $debug_separate;
 
@@ -3354,7 +3354,7 @@ EOT;
             echo $debug_underline;
             $gd_array = gd_info();
             foreach ($gd_array as $key => $value) {
-                echo "$key: $value\n";
+                echo $key . ': ' . $value . $LINEBREAK;
             }
             echo $debug_separate;
         } else {
@@ -3380,8 +3380,8 @@ EOT;
         echo $debug_underline;
 
         foreach ($CPG_PLUGINS as $plugin) {
-            echo 'Plugin: ' . $plugin->name . "\n";
-            echo 'Actions: ' . implode(', ', array_keys($plugin->actions)) . "\n";
+            echo 'Plugin: ' . $plugin->name . $LINEBREAK;
+            echo 'Actions: ' . implode(', ', array_keys($plugin->actions)) . $LINEBREAK;
             echo 'Filters: ' . implode(', ', array_keys($plugin->filters));
             echo $debug_underline;
         }
@@ -3401,7 +3401,7 @@ EOT;
         echo cpg_phpinfo_conf_output("include_path");
         echo cpg_phpinfo_conf_output("open_basedir");
         echo cpg_phpinfo_conf_output("allow_url_fopen");
-        echo "\n$debug_separate";
+        echo $LINEBREAK . $debug_separate;
 
         echo 'Resource limits';
         echo $debug_underline;
@@ -3411,7 +3411,7 @@ EOT;
         echo cpg_phpinfo_conf_output("upload_max_filesize");
         echo cpg_phpinfo_conf_output("post_max_size");
         echo cpg_phpinfo_conf_output("memory_limit");
-        echo "\n$debug_separate";
+        echo $LINEBREAK . $debug_separate;
 
         if (ini_get('suhosin.post.max_vars')) {
 
@@ -3420,7 +3420,7 @@ EOT;
             echo 'Directive | Local Value | Master Value';
             echo cpg_phpinfo_conf_output("suhosin.post.max_vars");
             echo cpg_phpinfo_conf_output("suhosin.request.max_vars");
-            echo "\n$debug_separate";
+            echo $LINEBREAK . $debug_separate;
         }
     }
 
@@ -3674,9 +3674,9 @@ function cpg_phpinfo_conf_output($search)
 
 function cpg_config_output($key)
 {
-    global $CONFIG;
+    global $CONFIG, $LINEBREAK;
 
-    return "$key: {$CONFIG[$key]}\n";
+    return $key . ': ' . $CONFIG[$key] . $LINEBREAK;
 } // function cpg_config_output
 
 
@@ -3691,10 +3691,9 @@ function cpg_config_output($key)
 
 function languageSelect($parameter)
 {
-    global $CONFIG, $lang_language_selection, $lang_common, $CPG_PHP_SELF;
+    global $CONFIG, $lang_language_selection, $lang_common, $CPG_PHP_SELF, $LINEBREAK;
 
     $return    = '';
-    $lineBreak = "\n";
 
     // get the current language
     //use the default language of the gallery
@@ -3733,15 +3732,15 @@ function languageSelect($parameter)
         $return .= '<div id="cpgChooseFlags" class="inline">';
         $return .= $lang_language_selection['choose_language'] . ': ';
         foreach ($lang_language_data as $language) {
-            $return .= $lineBreak . '<a href="' . $cpgChangeUrl . $language['lang_id'] . '" rel="nofollow"><img src="images/flags/' . $language['flag'] . '.png" border="0" width="16" height="11" alt="" title="';
+            $return .= $LINEBREAK . '<a href="' . $cpgChangeUrl . $language['lang_id'] . '" rel="nofollow"><img src="images/flags/' . $language['flag'] . '.png" border="0" width="16" height="11" alt="" title="';
             $return .= $language['english_name'];
             if ($language['english_name'] != $language['native_name'] && $language['native_name'] != '') {
                 $return .= ' / ' . $language['native_name'] ;
             }
-            $return .= '" /></a>' . $lineBreak;
+            $return .= '" /></a>' . $LINEBREAK;
         }
         $return .=  '<a href="' . $cpgChangeUrl. 'xxx" rel="nofollow"><img src="images/flags/reset.png" border="0" width="16" height="11" alt="" title="';
-        $return .=  $lang_language_selection['reset_language'] . '" /></a>' . $lineBreak;
+        $return .=  $lang_language_selection['reset_language'] . '" /></a>' . $LINEBREAK;
         $return .= '</div>';
         break;
 
@@ -3750,9 +3749,9 @@ function languageSelect($parameter)
         break;
 
     default:
-        $return .= $lineBreak . '<div id="cpgChooseLanguageWrapper">' . $lineBreak . '<form name="cpgChooseLanguage" id="cpgChooseLanguage" action="' . $CPG_PHP_SELF . '" method="get" class="inline">' . $lineBreak;
-        $return .= '<select name="lang" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgChangeUrl . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
-        $return .='<option>' . $lang_language_selection['choose_language'] . '</option>' . $lineBreak;
+        $return .= $LINEBREAK . '<div id="cpgChooseLanguageWrapper">' . $LINEBREAK . '<form name="cpgChooseLanguage" id="cpgChooseLanguage" action="' . $CPG_PHP_SELF . '" method="get" class="inline">' . $LINEBREAK;
+        $return .= '<select name="lang" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgChangeUrl . '\' + this.options[this.selectedIndex].value;">' . $LINEBREAK;
+        $return .='<option>' . $lang_language_selection['choose_language'] . '</option>' . $LINEBREAK;
         foreach ($lang_language_data as $language) {
             $return .=  '<option value="' . $language['lang_id']  . '" >';
             $return .= $language['english_name'];
@@ -3760,15 +3759,15 @@ function languageSelect($parameter)
                 $return .= ' / ' . $language['native_name'] ;
             }
             $return .= ($value == $language['lang_id'] ? '*' : '');
-            $return .= '</option>' . $lineBreak;
+            $return .= '</option>' . $LINEBREAK;
         }
-        $return .=  '<option value="xxx">' . $lang_language_selection['reset_language'] . '</option>' . $lineBreak;
-        $return .=  '</select>' . $lineBreak;
-        $return .=  '<noscript>' . $lineBreak;
-        $return .=  '<input type="submit" name="language_submit" value="' . $lang_common['go'] . '" class="listbox_lang" />&nbsp;'. $lineBreak;
-        $return .=  '</noscript>' . $lineBreak;
-        $return .=  '</form>' . $lineBreak;
-        $return .=  '</div>' . $lineBreak;
+        $return .=  '<option value="xxx">' . $lang_language_selection['reset_language'] . '</option>' . $LINEBREAK;
+        $return .=  '</select>' . $LINEBREAK;
+        $return .=  '<noscript>' . $LINEBREAK;
+        $return .=  '<input type="submit" name="language_submit" value="' . $lang_common['go'] . '" class="listbox_lang" />&nbsp;'. $LINEBREAK;
+        $return .=  '</noscript>' . $LINEBREAK;
+        $return .=  '</form>' . $LINEBREAK;
+        $return .=  '</div>' . $LINEBREAK;
     } // switch $parameter
 
     return $return;
@@ -3784,11 +3783,9 @@ function languageSelect($parameter)
 
 function themeSelect($parameter)
 {
-    global $CONFIG,$lang_theme_selection, $lang_common, $CPG_PHP_SELF;
+    global $CONFIG,$lang_theme_selection, $lang_common, $CPG_PHP_SELF, $LINEBREAK;
 
     $return    = '';
-    $lineBreak = "\n";
-
     $cpgCurrentTheme = cpgGetScriptNameParams('theme') . 'theme=';
 
     // get list of available themes
@@ -3806,22 +3803,22 @@ function themeSelect($parameter)
 
     natcasesort($theme_array);
 
-    $return .= $lineBreak . '<div id="cpgChooseThemeWrapper">' . $lineBreak . '<form name="cpgChooseTheme" id="cpgChooseTheme" action="' . $CPG_PHP_SELF . '" method="get" class="inline">' . $lineBreak;
-    $return .= '<select name="theme" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgCurrentTheme . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
+    $return .= $LINEBREAK . '<div id="cpgChooseThemeWrapper">' . $LINEBREAK . '<form name="cpgChooseTheme" id="cpgChooseTheme" action="' . $CPG_PHP_SELF . '" method="get" class="inline">' . $LINEBREAK;
+    $return .= '<select name="theme" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgCurrentTheme . '\' + this.options[this.selectedIndex].value;">' . $LINEBREAK;
     $return .= '<option selected="selected">' . $lang_theme_selection['choose_theme'] . '</option>';
 
     foreach ($theme_array as $theme) {
-        $return .= '<option value="' . $theme . '"'. ($value == $theme ? '  selected="selected"' : '') . '>' . strtr(ucfirst($theme), '_', ' ') . ($value == $theme ? '  *' : '') . '</option>' . $lineBreak;
+        $return .= '<option value="' . $theme . '"'. ($value == $theme ? '  selected="selected"' : '') . '>' . strtr(ucfirst($theme), '_', ' ') . ($value == $theme ? '  *' : '') . '</option>' . $LINEBREAK;
     }
 
-    $return .= '<option value="xxx">' . $lang_theme_selection['reset_theme'] . '</option>' . $lineBreak;
+    $return .= '<option value="xxx">' . $lang_theme_selection['reset_theme'] . '</option>' . $LINEBREAK;
 
-    $return .= '</select>' . $lineBreak;
-    $return .= '<noscript>' . $lineBreak;
-    $return .= '<input type="submit" name="theme_submit" value="' . $lang_common['go'] . '" class="listbox_lang" />&nbsp;'. $lineBreak;
-    $return .= '</noscript>' . $lineBreak;
-    $return .= '</form>' . $lineBreak;
-    $return .= '</div>' . $lineBreak;
+    $return .= '</select>' . $LINEBREAK;
+    $return .= '<noscript>' . $LINEBREAK;
+    $return .= '<input type="submit" name="theme_submit" value="' . $lang_common['go'] . '" class="listbox_lang" />&nbsp;'. $LINEBREAK;
+    $return .= '</noscript>' . $LINEBREAK;
+    $return .= '</form>' . $LINEBREAK;
+    $return .= '</div>' . $LINEBREAK;
 
     return $return;
 } // function themeSelect
@@ -4615,7 +4612,7 @@ function cpgValidateDate($date)
  **/
 function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $minLength = '0')
 {
-    global $lang_get_remote_file_by_url;
+    global $lang_get_remote_file_by_url, $LINEBREAK;
 
     // FSOCK code snippets taken from http://jeenaparadies.net/weblog/2007/jan/get_remote_file
     $url = parse_url($remoteURL); // chop the URL into protocol, domain, port, folder, file, parameter
@@ -4635,7 +4632,6 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
     $body      = '';
     $headers   = '';
     $error     = '';
-    $lineBreak = "<br />\r\n";
 
     // Let's try CURL first
     if (function_exists('curl_init')) { // don't bother to try curl if it isn't there in the first place
@@ -4648,23 +4644,23 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
         curl_close($curl);
         if (strlen($body) < $minLength) {
             // Fetching the data by CURL obviously failed
-            $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['curl']) . $lineBreak;
+            $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['curl']) . '<br />'.$LINEBREAK;
         } else {
             // Fetching the data by CURL was successfull. Let's return the data
             return array("headers" => $headers, "body" => $body);
         }
     } else {
         // Curl is not available
-        $error .= $lang_get_remote_file_by_url['curl_not_available'] . $lineBreak;
+        $error .= $lang_get_remote_file_by_url['curl_not_available'] . '<br />' . $LINEBREAK;
     }
     // Now let's try FSOCKOPEN
     if ($url['host'] != '') {
         $fp = @fsockopen($url['host'], (!empty($url['port']) ? (int)$url['port'] : 80), $errno, $errstr, 30);
         if ($fp) { // fsockopen file handle success - start
             $path   = (!empty($url['path']) ? $url['path'] : "/").(!empty($url['query']) ? "?".$url['query'] : "");
-            $header = "\r\nHost: ".$url['host'];
+            $header = $LINEBREAK . 'Host: '.$url['host'];
             //FIXME: '$data' is not defined anywhere?
-            fputs($fp, $method." ".$path." HTTP/1.0".$header."\r\n\r\n".("post" == strtolower($method) ? $data : ""));
+            fputs($fp, $method." ".$path." HTTP/1.0".$header.$LINEBREAK.$LINEBREAK.("post" == strtolower($method) ? $data : ""));
             if (!feof($fp)) {
                 $scheme = fgets($fp);
                 //list(, $code ) = explode(" ", $scheme);
@@ -4695,10 +4691,10 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
             fclose($fp);
             if (strlen($body) < $minLength) {
                 // Fetching the data by FSOCKOPEN obviously failed
-                $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['fsockopen']) . $lineBreak;
+                $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['fsockopen']) . '<br />' . $LINEBREAK;
             } elseif (in_array('404', $headers) == TRUE) {
                 // We got a 404 error
-                $error .= sprintf($lang_get_remote_file_by_url['error_number'], '404') . $lineBreak;
+                $error .= sprintf($lang_get_remote_file_by_url['error_number'], '404') . '<br />' . $LINEBREAK;
             } else {
                 // Fetching the data by FSOCKOPEN was successfull. Let's return the data
                 return array("headers" => $headers, "body" => $body, "error" => $error);
@@ -4732,7 +4728,7 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
         }
         fclose($handle);
         if (strlen($body) < $minLength) {
-            $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['fopen']) . $lineBreak;
+            $error .= sprintf($lang_get_remote_file_by_url['no_data_returned'], $lang_get_remote_file_by_url['fopen']) . '<br />' . $LINEBREAK;
         } else {
             // Fetching the data by FOPEN was successfull. Let's return the data
             return array("headers" => $headers, "body" => $body, "error" => $error);
@@ -5279,7 +5275,7 @@ function array_is_associative($array)
 
 function cpg_config_set($name, $value)
 {
-    global $CONFIG, $USER_DATA;
+    global $CONFIG, $USER_DATA, $LINEBREAK;
 
     $value = addslashes($value);
 
@@ -5294,8 +5290,8 @@ function cpg_config_set($name, $value)
 
     if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
 
-        log_write("CONFIG UPDATE SQL: $sql\n" .
-            'TIME: ' . date("F j, Y, g:i a") . "\n" .
+        log_write("CONFIG UPDATE SQL: $sql" . $LINEBREAK .
+            'TIME: ' . date("F j, Y, g:i a") . $LINEBREAK .
             'USER: ' . $USER_DATA['user_name'],
             CPG_DATABASE_LOG);
     }
@@ -5456,7 +5452,7 @@ function get_cat_data()
 // Contains no permission checks so only suitable for use on admin pages
 function album_selection_options()
 {
-    global $CONFIG, $lang_common, $cpg_udb;
+    global $CONFIG, $lang_common, $cpg_udb, $LINEBREAK;
     // html string of options to be returned    
     $options = '';
     // Padding to indicate level
@@ -5471,7 +5467,7 @@ function album_selection_options()
         // Albums in no category
         $options .= '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">' . $lang_common['albums_no_category'] . '</option>';
         foreach ($albums[0] as $aid => $title) {
-            $options .= sprintf('<option style="padding-left: %dpx" value="%d">%s</option>'."\n", $padding, $aid, $title);
+            $options .= sprintf('<option style="padding-left: %dpx" value="%d">%s</option>'.$LINEBREAK, $padding, $aid, $title);
         }
     }
     // Load all categories
@@ -5489,7 +5485,7 @@ function album_selection_options()
         // Add this category to the hierarchy
         if ($row['cid'] == USER_GAL_CAT) {
             // User galleries
-            $options .= '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">' . $lang_common['personal_albums'] . '</option>' . "\n";
+            $options .= '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">' . $lang_common['personal_albums'] . '</option>' . $LINEBREAK;
             $result2 = cpg_db_query("SELECT {$cpg_udb->field['user_id']} AS user_id, {$cpg_udb->field['username']} AS user_name "
                 . "FROM {$cpg_udb->usertable} ORDER BY {$cpg_udb->field['username']}");
             $users = cpg_db_fetch_rowset($result2);
@@ -5497,9 +5493,9 @@ function album_selection_options()
             foreach ($users as $user) {
                 if (!empty($albums[$user['user_id'] + FIRST_USER_CAT])) {
                     $options .= '<option style="padding-left: ' . $padding . 'px; color: black; font-weight: bold" disabled="disabled">' 
-                        . $user['user_name'] . '</option>' . "\n";
+                        . $user['user_name'] . '</option>' . $LINEBREAK;
                     foreach ($albums[$user['user_id'] + FIRST_USER_CAT] as $aid => $title) {
-                        $options .= sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . "\n", $padding * 2, $aid, $title);
+                        $options .= sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . $LINEBREAK, $padding * 2, $aid, $title);
                     }
                 }
             }
@@ -5515,12 +5511,12 @@ function album_selection_options()
         // calculate padding for this level
         $p = (count($elements) - 1) * $padding;
         // category header
-        $options .= '<option style="padding-left: '.$p.'px; color: black; font-weight: bold" disabled="disabled">' . "\n"
-            . $heirarchy . '</option>' . "\n";
+        $options .= '<option style="padding-left: '.$p.'px; color: black; font-weight: bold" disabled="disabled">' . $LINEBREAK
+            . $heirarchy . '</option>' . $LINEBREAK;
         // albums in the category
         if (!empty($albums[$row['cid']])) {
             foreach ($albums[$row['cid']] as $aid => $title) {
-                $options .= sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . "\n", $p+$padding, $aid, $title);
+                $options .= sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . $LINEBREAK, $p+$padding, $aid, $title);
             }
         }
     }

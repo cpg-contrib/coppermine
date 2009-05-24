@@ -134,7 +134,7 @@ function online_page_start()
 
 function online_mainpage()
 {
-        global $CONFIG, $cpg_udb, $matches, $lang_plugin_php, $lang_date;
+        global $CONFIG, $cpg_udb, $matches, $lang_plugin_php, $lang_date, $LINEBREAK;
     
         if($matches[1] != 'onlinestats') {
           return $matches;
@@ -180,9 +180,9 @@ function online_mainpage()
         } else {
             printf($lang_plugin_php['onlinestats_we_have_reg_members'], '<strong>'.$num_users.'</strong>');
         }
-        print ".&nbsp;\r\n";
+        echo '.&nbsp;' . $LINEBREAK;
         printf($lang_plugin_php['onlinestats_most_recent'], '<a href="profile.php?uid='.$newest['user_id'].'">'.$newest['user_name'].'</a>');
-        print ".&nbsp;\r\n";
+        echo '.&nbsp;' . $LINEBREAK;
         if ($num_online == 1) {
             printf($lang_plugin_php['onlinestats_is'], '<strong>'.$num_online.'</strong>');
         } else {
@@ -200,9 +200,9 @@ function online_mainpage()
         } else {
             printf($lang_plugin_php['onlinestats_guests'], '<strong>'.$num_guests.'</strong>');
         }
-        print ".&nbsp;\r\n";
+        echo '.&nbsp;' . $LINEBREAK;
         printf($lang_plugin_php['onlinestats_record'], '<strong>'.$CONFIG['record_online_users'].'</strong>', localised_date($CONFIG['record_online_date'], $lang_date['lastcom']));
-        print ".&nbsp;\r\n";
+        echo '.&nbsp;' . $LINEBREAK;
         printf($lang_plugin_php['onlinestats_since'], $CONFIG['mod_updates_duration'], $logged_in_names);
         print '.</td></tr>';
         endtable();

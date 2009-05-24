@@ -308,7 +308,7 @@ function copyPhoto($id,$dir)
 
 function initPhotoCopy($album,$directory)
 {
-  global $CONFIG;
+  global $CONFIG, $LINEBREAK;
   
   $superCage = Inspekt::makeSuperCage();
   
@@ -323,7 +323,7 @@ function initPhotoCopy($album,$directory)
   $pictures = cpg_db_query("SELECT pid,title,filename,filepath FROM {$CONFIG['TABLE_PICTURES']} WHERE `aid` = '$album'");
   while($picture = mysql_fetch_assoc($pictures))
   {
-    echo "<tr><td class='tableb'><span id='id_{$picture['pid']}'>{$picture['pid']}</span></td><td><span id='path_{$picture['pid']}'>{$picture['filepath']}{$picture['filename']}</span></td></tr>\n";
+    echo "<tr><td class='tableb'><span id='id_{$picture['pid']}'>{$picture['pid']}</span></td><td><span id='path_{$picture['pid']}'>{$picture['filepath']}{$picture['filename']}</span></td></tr>" . $LINEBREAK;
     $pic_array[] = $picture;
   }
   

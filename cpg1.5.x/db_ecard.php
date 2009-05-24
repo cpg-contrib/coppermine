@@ -407,9 +407,9 @@ EOT;
 endtable();
 
 list($timestamp, $form_token) = getFormToken();
-print "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
-<input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" />
-</form>\n";
+print '<input type="hidden" name="form_token" value="'.$form_token.'" />
+<input type="hidden" name="timestamp" value="'.$timestamp.'" />
+</form>' . $LINEBREAK;
 
 pagefooter();
 

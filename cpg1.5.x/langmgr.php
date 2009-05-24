@@ -31,9 +31,8 @@ require_once('include/sql_parse.php');
 js_include('js/langmgr.js');
 
 
-$lineBreak = "\r\n";
-$query_output_ok = '<li style="list-style-image:url(images/icons/ok.png)">%s</li>'.$lineBreak;
-$query_output_error = '<li style="list-style-image:url(images/icons/cancel.png)">%s</li>'.$lineBreak;
+$query_output_ok = '<li style="list-style-image:url(images/icons/ok.png)">%s</li>'.$LINEBREAK;
+$query_output_error = '<li style="list-style-image:url(images/icons/cancel.png)">%s</li>'.$LINEBREAK;
 $query_output = '';
 
 if (!GALLERY_ADMIN_MODE) {
@@ -42,15 +41,15 @@ if (!GALLERY_ADMIN_MODE) {
 
 pageheader($lang_langmgr_php['title']);
 print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform" onsubmit="return form_submit();">';
-$loader_html = '<script type="text/javascript">'.$lineBreak;
-$loader_html .= 'document.write(\'<span id="cpg_progress_bar">\');'.$lineBreak;
+$loader_html = '<script type="text/javascript">'.$LINEBREAK;
+$loader_html .= 'document.write(\'<span id="cpg_progress_bar">\');'.$LINEBREAK;
 if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
     $prefix = $THEME_DIR;
 } else {
     $prefix = '';
 }
-$loader_html .= 'document.write(\'<img src="' . $prefix . 'images/loader.gif" border="0" alt="" title="' . $lang_langmgr_php['loading'] . '" />\');'.$lineBreak;
-$loader_html .= 'document.write(\'</span>\');'.$lineBreak;
+$loader_html .= 'document.write(\'<img src="' . $prefix . 'images/loader.gif" border="0" alt="" title="' . $lang_langmgr_php['loading'] . '" />\');'.$LINEBREAK;
+$loader_html .= 'document.write(\'</span>\');'.$LINEBREAK;
 $loader_html .= '</script>';
 $hide_icon = cpg_fetch_icon('hide_table_row', 2);
 $show_icon = cpg_fetch_icon('show_table_row', 2);
@@ -144,7 +143,7 @@ if ($superCage->post->keyExists('submit')) {
         </tr>
 EOT;
         endtable;
-        print '<br />'.$lineBreak;
+        print '<br />'.$LINEBREAK;
     }
 }
 // Form has been submit --- end
@@ -445,7 +444,7 @@ EOT;
 >
 EOT;
         if ($language['flag'] == '') {
-            print '            <option value="">'.$lang_langmgr_php['pick_a_flag'].'</option>'.$lineBreak;
+            print '            <option value="">'.$lang_langmgr_php['pick_a_flag'].'</option>'.$LINEBREAK;
         }
         foreach ($flag_array as $flags) {
             if ($flags == $language['flag']) {
@@ -453,7 +452,7 @@ EOT;
             } else {
                 $flag_selected = '';
             }
-            print '            <option style="background-image:url(images/flags/' . $flags . '.png);background-repeat:no-repeat;text-indent:16px;width:20px;" value="' . $flags . '" '.$flag_selected.'>' . $flags . '</option>'.$lineBreak;
+            print '            <option style="background-image:url(images/flags/' . $flags . '.png);background-repeat:no-repeat;text-indent:16px;width:20px;" value="' . $flags . '" '.$flag_selected.'>' . $flags . '</option>'.$LINEBREAK;
         }
         print <<< EOT
             </ul>    

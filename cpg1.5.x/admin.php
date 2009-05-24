@@ -38,7 +38,6 @@ js_include('js/admin.js');
 
 $admin_data_array  = $CONFIG;
 $optionLoopCounter = 0;
-$lineBreak         = "\r\n";
 
 require_once('include/admin.inc.php'); // populate the array for the admin data (could later be done using an XML file)
 
@@ -116,7 +115,7 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
         // regex check
         if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '') || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '')) {
             if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '' && preg_match('#' . $adminDataValue['regex'] . '#i', $evaluate_value) == FALSE) || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '' && preg_match('#' . $adminDataValue['regex_not'] . '#i', $evaluate_value) == TRUE)) {
-                $userMessage    .= '<li style="list-style-image:url(images/icons/stop.png)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$lineBreak;
+                $userMessage    .= '<li style="list-style-image:url(images/icons/stop.png)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$LINEBREAK;
                 $regexValidation = '0';
             } else { // regex validation succesfull -- start
                 $regexValidation = '1';
@@ -168,12 +167,12 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
             $admin_data_array[$adminDataKey] = stripslashes($evaluate_value);
             $CONFIG[$adminDataKey]           = stripslashes($evaluate_value);
             
-            $userMessage .= '<li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$lineBreak;
+            $userMessage .= '<li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$LINEBREAK;
         }
     } // inner foreach loop -- end
 } // Loop through the config fields to check posted values for validity -- end
 if ($userMessage != '') {
-    $userMessage = '<ul>'.$lineBreak.$userMessage.'</ul>'.$lineBreak;
+    $userMessage = '<ul>'.$LINEBREAK.$userMessage.'</ul>'.$LINEBREAK;
 }
 //print_r($evaluation_array);
 if ($superCage->post->keyExists('update_config') > 0 && $userMessage == '') {
@@ -222,7 +221,7 @@ if ($userMessage != '') {
     </tr>
 EOT;
     endtable();
-    print '<br />'.$lineBreak;
+    print '<br />'.$LINEBREAK;
 }
 
 $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE_VERSION_STATUS . ')';
@@ -368,7 +367,7 @@ EOT;
 			if (isset($value['step']) && $value['step'] != '') {
 				$javascriptOutput .= ', step: '.$value['step'];
 			}
-			$javascriptOutput .= '});' . $lineBreak;
+			$javascriptOutput .= '});' . $LINEBREAK;
         } else {
             $spinbuttonOption = '';
         }
@@ -418,7 +417,7 @@ EOT;
             } else {
                 $maxSize = count($value['options']);
             }
-            print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'[]" id="'.$key.'" class="listbox" size="'.$maxSize.'" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" multiple="multiple" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">'.$lineBreak;
+            print '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'[]" id="'.$key.'" class="listbox" size="'.$maxSize.'" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" multiple="multiple" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">'.$LINEBREAK;
             foreach ($value['options'] as $option_value) { // loop through the options array
                 $admin_data_array[$key] = (int)$admin_data_array[$key];
                 if (array_key_exists($optionLoopCounter, $option_value_array) && ($option_value_array[$optionLoopCounter] == 1)) {
@@ -427,10 +426,10 @@ EOT;
                     $selected = '';
                 }
                 print '                      <option value="'.$optionLoopCounter.'"'.$selected.'>'.ucfirst($option_value);
-                print '</option>'.$lineBreak;
+                print '</option>'.$LINEBREAK;
                 $optionLoopCounter++;
             }
-            print '</select>'.$readonly_message.'</span><br />'.$lineBreak;
+            print '</select>'.$readonly_message.'</span><br />'.$LINEBREAK;
 
         } elseif ($value['type'] == 'select') { //SELECT
             $optionLoopCounter = 0;

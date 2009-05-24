@@ -600,7 +600,7 @@ EOT;
 }
 
 
-echo "<br />\n";
+echo '<br />' . $LINEBREAK;
 
 pagefooter();
 ob_end_flush();

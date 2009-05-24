@@ -27,7 +27,7 @@ In some cases the output of a hookpoint is not the same as its "echo" point.  A 
     <li>If the hookpoint is not an array it has "_HTML" appended to it and the marker without any appendage is tacked onto the filtered var</li>
     <li>In all cases a var_dump of that filtered variable is output to the source html as an html remark just below the echo point</li>
 </ul>
-There is now a statistics output showing how many times each hookpoint was called. There is also a timeline of when each hookpoint was executed relative to the scripts start time'."\r\n";
+There is now a statistics output showing how many times each hookpoint was called. There is also a timeline of when each hookpoint was executed relative to the scripts start time'.$LINEBREAK;
 EOT;
 $extra_info = <<<EOT
     <table border="0" cellspacing="0" cellpadding="0">

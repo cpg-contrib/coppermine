@@ -82,6 +82,7 @@ $FORBIDDEN_SET      = '';
 $FORBIDDEN_SET_DATA = array();
 $CURRENT_CAT_NAME   = '';
 $CAT_LIST           = '';
+$LINEBREAK          = "\r\n"; // For compatibility both on Windows as well as *nix
 
 // Define some constants
 define('USER_GAL_CAT', 1);

@@ -262,7 +262,7 @@ function get_user_albums($user_id = 0)
 
 function form_alb_list_box()
 {
-    global $CONFIG, $CURRENT_PIC;
+    global $CONFIG, $CURRENT_PIC, $LINEBREAK;
     global $user_albums_list, $public_albums_list, $lang_common, $icon_array;
 
     $sel_album = $CURRENT_PIC['aid'];
@@ -282,14 +282,14 @@ EOT;
     foreach ($public_albums_list as $album) {
         echo '                <option value="' . $album['aid'] . '"'
             . ($album['aid'] == $sel_album ? ' selected="selected"' : '') . '>'
-            . $album['cat_title'] . "</option>\n";
+            . $album['cat_title'] . '</option>' . $LINEBREAK;
         $hidden_public .= ($hidden_public ? ',' : '') . $album['aid'];
     }
     $hidden_private = '';
     foreach ($user_albums_list as $album) {
         echo '                <option value="' . $album['aid'] . '"'
             . ($album['aid'] == $sel_album ? ' selected="selected"' : '') . '>* '
-            . $album['title'] . "</option>\n";
+            . $album['title'] . '</option>' . $LINEBREAK;
         $hidden_private .= ($hidden_private ? ',' : '') . $album['aid'];
     }
 

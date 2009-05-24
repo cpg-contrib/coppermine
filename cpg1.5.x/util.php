@@ -38,7 +38,6 @@ if (!GALLERY_ADMIN_MODE) {
 
 $defpicnum = 25; // Default number of pictures to process at a time when rebuilding thumbs or normals:
 $dayolder  = 365; // Default number of days for deleting files older than xxx days {Frantz}
-$lineBreak = "\r\n";
 
 $icon_array = array(
     'continue'   => cpg_fetch_icon('right', 2),
@@ -63,11 +62,11 @@ if ($CONFIG['make_intermediate'] == 1) {
 }
 
 // Set up labels for keyword separator conversion
-$keyword_select = "\n" . '                <select size="1" name="%s" class="listbox">';
+$keyword_select = $LINEBREAK . '                <select size="1" name="%s" class="listbox">';
 foreach ($lang_common['keyword_separators'] as $key_value=>$key_label) {
     $keyword_select .= '<option value="' . htmlentities($key_value) . '">' . $key_label . '</option>';  
 }
-$keyword_select .= '</select>' . "\n" . '                ';
+$keyword_select .= '</select>' . $LINEBREAK . '                ';
 $keyword_from_to = sprintf(
                         $lang_util_php['keyword_from_to'],
                         sprintf($keyword_select,'keyword_from'),
@@ -75,11 +74,11 @@ $keyword_from_to = sprintf(
                     );
 $keyword_set = $lang_util_php['keyword_set'];
 $replace_options = array_merge($lang_common['keyword_separators'],$lang_util_php['keyword_replace_values']);
-$replace_select = "\n" . '                <select size="1" name="%s" class="listbox">';
+$replace_select = $LINEBREAK . '                <select size="1" name="%s" class="listbox">';
 foreach ($replace_options as $key_value=>$key_label) {
     $replace_select .= '<option value="' . htmlentities($key_value) . '">' . $key_label . '</option>';  
 }
-$replace_select .= '</select>' . "\n" . '                ';
+$replace_select .= '</select>' . $LINEBREAK . '                ';
 $keyword_replace1 = sprintf(
                         $lang_util_php['keyword_replace_before'],
                         sprintf($replace_select,'keyword_replace1_from'),
@@ -221,38 +220,38 @@ if (array_key_exists($action, $tasks)) {
 
         list($name, $title, $options) = $task;
 
-        print '  <tr>'.$lineBreak;
-        print '    <td class="tableh2">'.$lineBreak;
+        print '  <tr>'.$LINEBREAK;
+        print '    <td class="tableh2">'.$LINEBREAK;
         
         if ($name) {
-            print '      <input type="radio" name="action" value="'.$name.'" id="'.$name.'" class="nobg" /><label for="'.$name.'" class="clickable_option">'.$title.'</label>'.$lineBreak;
+            print '      <input type="radio" name="action" value="'.$name.'" id="'.$name.'" class="nobg" /><label for="'.$name.'" class="clickable_option">'.$title.'</label>'.$LINEBREAK;
         } else {
             print '      '.$title;
         }
         
-        print '    </td>'.$lineBreak;
-        print '  </tr>'.$lineBreak;
-        print '  <tr>'.$lineBreak;
-        print '    <td>'.$lineBreak;
-        print '      <div id="'.$name.'_wrapper">'.$lineBreak;
-        print '        '.$lineBreak;
+        print '    </td>'.$LINEBREAK;
+        print '  </tr>'.$LINEBREAK;
+        print '  <tr>'.$LINEBREAK;
+        print '    <td>'.$LINEBREAK;
+        print '      <div id="'.$name.'_wrapper">'.$LINEBREAK;
+        print '        '.$LINEBREAK;
         
         starttable('100%', '', 2);
         
-        print '          <tr>'.$lineBreak;
-        print '            <td class="tableb">'.$lineBreak;
-        print '            </td>'.$lineBreak;
-        print '            <td class="tableb">'.$lineBreak;
+        print '          <tr>'.$LINEBREAK;
+        print '            <td class="tableb">'.$LINEBREAK;
+        print '            </td>'.$LINEBREAK;
+        print '            <td class="tableb">'.$LINEBREAK;
         print $options;
-        print '            </td>'.$lineBreak;
-        print '          </tr>'.$lineBreak;
-        print '        '.$lineBreak;
+        print '            </td>'.$LINEBREAK;
+        print '          </tr>'.$LINEBREAK;
+        print '        '.$LINEBREAK;
         
         endtable();
         
-        print '      </div>'.$lineBreak;
-        print '    </td>'.$lineBreak;
-        print '  </tr>'.$lineBreak;
+        print '      </div>'.$LINEBREAK;
+        print '    </td>'.$LINEBREAK;
+        print '  </tr>'.$LINEBREAK;
         
         $loopCounter++;
     }
@@ -369,13 +368,13 @@ function filename_to_title()
 
         $file_count++;
         
-        echo "{$lang_util_php['file']} : <strong>$filename</strong> {$lang_util_php['title_set_to']} : <strong>$newtitle</strong><br />\n";
+        echo "{$lang_util_php['file']} : <strong>$filename</strong> {$lang_util_php['title_set_to']} : <strong>$newtitle</strong><br />" . $LINEBREAK;
 
         my_flush();
 
     } // end while
     
-    echo "<br />\n" . sprintf($lang_util_php['titles_updated'], $file_count) . "<br />\n";
+    echo '<br />' . $LINEBREAK . sprintf($lang_util_php['titles_updated'], $file_count) . '<br />' . $LINEBREAK;
 }
 
 function update_thumbs()
@@ -1019,7 +1018,7 @@ function keyword_convert()
     $replace2_to   = $superCage->post->keyExists('keyword_replace2_to') ? html_entity_decode($superCage->post->getEscaped('keyword_replace2_to')) : '';
 
     starttable('100%', $icon_array['info'] . ' ' . $lang_util_php['keyword_convert'], 1);
-    echo "    <tr><td><br />\n";
+    echo '    <tr><td><br />' . $LINEBREAK;
     $replace_options = array_merge($lang_common['keyword_separators'],$lang_util_php['keyword_replace_values']);
     if ($replace1 && strlen($replace1_from) && strlen($replace1_to) && ($replace1_from != $replace1_to)) {
         $sql = "UPDATE `{$CONFIG['TABLE_PICTURES']}` SET keywords = REPLACE(keywords, '$replace1_from', '$replace1_to')";
@@ -1028,7 +1027,7 @@ function keyword_convert()
             . sprintf($lang_util_php['keyword_replace_before'],
                 '<strong>' . $replace_options[$replace1_from] . '</strong>',
                 '<strong>' . $replace_options[$replace1_to] . '</strong>')
-            . ": {$lang_common['done']}<br /><br />\n";
+            . ': ' . $lang_common['done'] . '<br /><br />' . $LINEBREAK;
     }
     if (strlen($replace_from) && strlen($replace_to) && ($replace_from != $replace_to)) {
         $sql = "UPDATE `{$CONFIG['TABLE_PICTURES']}` SET keywords = REPLACE(keywords, '$replace_from', '$replace_to')";
@@ -1037,7 +1036,7 @@ function keyword_convert()
             . sprintf($lang_util_php['keyword_from_to'],
                 '<strong>' . $replace_options[$replace_from] . '</strong>',
                 '<strong>' . $replace_options[$replace_to] . '</strong>')
-            . ": {$lang_common['done']}<br /><br />\n";
+            . ': ' . $lang_common['done'] . '<br /><br />' . $LINEBREAK;
     }
     if ($replace2 && strlen($replace2_from) && strlen($replace2_to) && ($replace2_from != $replace2_to)) {
         $sql = "UPDATE `{$CONFIG['TABLE_PICTURES']}` SET keywords = REPLACE(keywords, '$replace2_from', '$replace2_to')";
@@ -1046,13 +1045,13 @@ function keyword_convert()
             . sprintf($lang_util_php['keyword_replace_after'],
                 '<strong>' . $replace_options[$replace2_from] . '</strong>',
                 '<strong>' . $replace_options[$replace2_to] . '</strong>')
-            . ": {$lang_common['done']}<br /><br />\n";
+            . ': ' . $lang_common['done'] . '<br /><br />' . $LINEBREAK;
     }
     if ($set_config) {
         cpg_config_set('keyword_separator', $replace_to);
         echo "{$lang_util_php['keyword_set']} (<strong>" 
             . $lang_common['keyword_separators'][$replace_to]
-            . "</strong>): {$lang_common['done']}<br /><br />\n";
+            . '</strong>): ' . $lang_common['done'] . '<br /><br />' . $LINEBREAK;
     }
 
     echo "    </td></tr>";

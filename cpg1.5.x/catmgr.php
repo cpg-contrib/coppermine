@@ -92,7 +92,7 @@ function get_subcat_data($parent, $ident = '')
 
 function cat_list_box($cid, &$parent, $on_change_refresh = true)
 {
-    global $lang_catmgr_php, $CAT_LIST;
+    global $lang_catmgr_php, $CAT_LIST, $LINEBREAK;
 
     if ($on_change_refresh) {
 
@@ -108,14 +108,14 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
 
     } else {
 
-        $lb = '<select name="parent" id="build_source" class="listbox">' . "\n";
+        $lb = '<select name="parent" id="build_source" class="listbox">' . $LINEBREAK;
 
-        $lb .= '    <option value="0"' . ($parent == 0 ? ' selected': '') . '>' . $lang_catmgr_php['no_category'] . "</option>\n";
+        $lb .= '    <option value="0"' . ($parent == 0 ? ' selected': '') . '>' . $lang_catmgr_php['no_category'] . '</option>' . $LINEBREAK;
 
         foreach ($CAT_LIST as $category) {
         
             if ($category['cid'] > 1) {
-                $lb .= '    <option value="' . $category['cid'] . '"' . ($parent == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
+                $lb .= '    <option value="' . $category['cid'] . '"' . ($parent == $category['cid'] ? ' selected': '') . ">" . $category['name'] . '</option>' . $LINEBREAK;
             }
         }
         
@@ -152,17 +152,17 @@ function usergroup_list_box($cid)
     }
     
     //create listbox
-    $usergroup_listbox = '<select name="user_groups[]" class="listbox" multiple>' . "\n";
+    $usergroup_listbox = '<select name="user_groups[]" class="listbox" multiple>' . $LINEBREAK;
     
     //loop through all groups
     foreach ($groups as $id => $values) {
         //make sure the administrator group isn't listed here.
         if ($id != 1) {
-            $usergroup_listbox .= '    <option value="' . $id . '"' . ($values['selected'] == 'true'? 'selected="selected"' : '') . ' >' . $values['name'] . '</option>' . "\n";
+            $usergroup_listbox .= '    <option value="' . $id . '"' . ($values['selected'] == 'true'? 'selected="selected"' : '') . ' >' . $values['name'] . '</option>' . $LINEBREAK;
         }
     }
     
-    $usergroup_listbox .= '</select>' . "\n";
+    $usergroup_listbox .= '</select>' . $LINEBREAK;
     
     //return listbox
     return $usergroup_listbox;
@@ -247,7 +247,7 @@ EOT;
 EOT;
 
     foreach ($img_list as $pid => $pic_name) {
-        echo '                            <option value="' . $pid . '"' . (!empty($current_category['thumb']) && $pid == $current_category['thumb'] ? ' selected':'') . '>' . $pic_name . "</option>\n";
+        echo '                            <option value="' . $pid . '"' . (!empty($current_category['thumb']) && $pid == $current_category['thumb'] ? ' selected':'') . '>' . $pic_name . '</option>' . $LINEBREAK;
     }
     
     echo <<<EOT
@@ -288,34 +288,34 @@ function display_cat_list()
             $loop_counter = 0;
         }
 
-        echo "        <tr>\n";
-        echo '                <td class="'.$row_style_class.'" width="80%"><strong>' . $category['name'] . '</strong></td>' . "\n";
+        echo '        <tr>' . $LINEBREAK;
+        echo '                <td class="'.$row_style_class.'" width="80%"><strong>' . $category['name'] . '</strong></td>' . $LINEBREAK;
 
         if ($category['pos'] > 0 && $CONFIG['categories_alpha_sort'] != 1) {
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=movetop&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('upup', 0, $lang_common['move_top']) . '</a></td>' . "\n";
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']-1) . '&amp;cid2=' . $category['prev'] . '&amp;pos2=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('up', 0, $lang_common['move_up']) . '</a></td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=movetop&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('upup', 0, $lang_common['move_top']) . '</a></td>' . $LINEBREAK;
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']-1) . '&amp;cid2=' . $category['prev'] . '&amp;pos2=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('up', 0, $lang_common['move_up']) . '</a></td>' . $LINEBREAK;
         } else {
-            echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
-            echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . $LINEBREAK;
+            echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . $LINEBREAK;
         }
 
         if ($category['pos'] < $CAT_LIST[$category['parent']]['cat_count']-1  && $CONFIG['categories_alpha_sort'] != 1) {
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos'] + 1) . '&amp;cid2=' . $category['next'] . '&amp;pos2=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('down', 0, $lang_common['move_down']) . '</a></td>' . "\n";
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=movebottom&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('downdown', 0, $lang_common['move_bottom']) . '</a></td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos'] + 1) . '&amp;cid2=' . $category['next'] . '&amp;pos2=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('down', 0, $lang_common['move_down']) . '</a></td>' . $LINEBREAK;
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=movebottom&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('downdown', 0, $lang_common['move_bottom']) . '</a></td>' . $LINEBREAK;
         } else {
-            echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
-            echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . $LINEBREAK;
+            echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . $LINEBREAK;
         }
 
         if ($category['cid'] != 1) {
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=deletecat&amp;cid=' . $category['cid'] . $form_token . '" onClick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . cpg_fetch_icon('delete', 0, $lang_common['delete']) . '</a></td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=deletecat&amp;cid=' . $category['cid'] . $form_token . '" onClick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . cpg_fetch_icon('delete', 0, $lang_common['delete']) . '</a></td>' . $LINEBREAK;
         } else {
-            echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . "\n";
+            echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . $LINEBREAK;
         }
 
-        echo '                <td class="'.$row_style_class.'" width="4%">' . '<a href="' . $CPG_PHP_SELF . '?op=editcat&amp;cid=' . $category['cid'] . $form_token . '">' . cpg_fetch_icon('edit', 0, $lang_common['edit']) . '</a></td>' . "\n";
-        echo '                <td class="'.$row_style_class.'" width="4%">' . "\n" . cat_list_box($category['cid'], $CAT_LIST3[$category['parent']]) . "\n" . '</td>' . "\n";
-        echo "        </tr>\n";
+        echo '                <td class="'.$row_style_class.'" width="4%">' . '<a href="' . $CPG_PHP_SELF . '?op=editcat&amp;cid=' . $category['cid'] . $form_token . '">' . cpg_fetch_icon('edit', 0, $lang_common['edit']) . '</a></td>' . $LINEBREAK;
+        echo '                <td class="'.$row_style_class.'" width="4%">' . $LINEBREAK . cat_list_box($category['cid'], $CAT_LIST3[$category['parent']]) . $LINEBREAK . '</td>' . $LINEBREAK;
+        echo '        </tr>' . $LINEBREAK;
     }
 }
 
@@ -735,7 +735,7 @@ echo <<<EOT
 EOT;
 endtable();
 
-echo "<br />\n";
+echo '<br />' . $LINEBREAK;
 
 starttable('100%', $lang_catmgr_php['update_create'], 2);
 
