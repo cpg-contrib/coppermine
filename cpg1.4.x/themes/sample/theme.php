@@ -2121,24 +2121,22 @@ function theme_html_img_nav_menu()
     $human_pos = $pos + 1;
     $page = ceil(($pos + 1) / ($CONFIG['thumbrows'] * $CONFIG['thumbcols']));
     $pid = $CURRENT_PIC_DATA['pid'];
+    $linebreak = "\r\n";
 
     $start = 0;
         $start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$start";
         $start_title = $lang_img_nav_bar['go_album_start'];
-        $meta_nav .= "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />
-        ";
+        $meta_nav .= $linebreak . "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />";
         $end = $pic_count - 1;
         $end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$end";
         $end_title = $lang_img_nav_bar['go_album_end'];
-        $meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />
-        ";
+        $meta_nav .= $linebreak . "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />";
 
     if ($pos > 0) {
         $prev = $pos - 1;
         $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev$uid_link";
         $prev_title = $lang_img_nav_bar['prev_title'];
-                                $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
-                                ";
+        $meta_nav .= $linebreak . "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />";
     } else {
         $prev_tgt = "javascript:;";
         $prev_title = "";
@@ -2148,8 +2146,7 @@ function theme_html_img_nav_menu()
         $next = $pos + 1;
         $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next$uid_link";
         $next_title = $lang_img_nav_bar['next_title'];
-                                $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
-                                ";
+        $meta_nav .= $linebreak . "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>";
     } else {
         $next_tgt = "javascript:;";
         $next_title = "";
@@ -2160,8 +2157,6 @@ function theme_html_img_nav_menu()
         $ecard_title = $lang_img_nav_bar['ecard_title'];
     } else {
         template_extract_block($template_img_navbar, 'ecard_button'); // added to remove button if cannot send ecard
-        /*$ecard_tgt = "javascript:alert('" . addslashes($lang_img_nav_bar['ecard_disabled_msg']) . "');";
-        $ecard_title = $lang_img_nav_bar['ecard_disabled'];*/
     }
 
     //report to moderator buttons
@@ -2173,9 +2168,8 @@ function theme_html_img_nav_menu()
 
     }
 
-                    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page$uid_link";
-        $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>
-        ";
+    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page$uid_link";
+    $meta_nav .= $linebreak . "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>";
 
     $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
 
