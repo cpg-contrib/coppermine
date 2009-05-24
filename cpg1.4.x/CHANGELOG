@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-24 [O] Updated Georgian language file (user contribution) {GauGau}
 2009-05-23 [B] Updated previous security fix to avoid causing an infinite loop in PHP 4.3 {Nibbler}
 2009-05-23 [O] Updated Finnish language file (user contribution) {GauGau}
 2009-05-23 [O] Updated Italian language file (user contribution) {GauGau}
