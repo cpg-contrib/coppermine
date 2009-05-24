@@ -1492,48 +1492,12 @@ function add_hit($pid)
     /**
      * Code to record the details of hits for the picture, if the option is set in CONFIG
      */
-    $server_agent = $_SERVER["HTTP_USER_AGENT"];
+    
     if ($CONFIG['hit_details']) {
+        $client_details = cpg_determine_client();
         // Get the details of user browser, IP, OS, etc
-        $os = "Unknown";
-        if(eregi("Linux",$server_agent)) {
-            $os = "Linux";
-        } else if(eregi("Windows NT 5.0",$server_agent)) {
-            $os = "Windows 2000";
-        } else if(eregi("win98|Windows 98",$server_agent)) {
-            $os = "Windows 98";
-        } else if(eregi("Windows NT 5.1",$server_agent)) {
-            $os = "Windows XP";
-        } else if(eregi("Windows",$server_agent)) {
-            $os = "Windows";
-        }
-
-        $browser = 'Unknown';
-        if(eregi("MSIE",$server_agent)) {
-            if(eregi("MSIE 8\.0",$server_agent)) {
-                $browser = "IE8";
-            } elseif(eregi("MSIE 7\.0",$server_agent)) {
-                $browser = "IE7";
-            } elseif(eregi("MSIE 6\.0",$server_agent)) {
-                $browser = "IE6";
-            } elseif(eregi("MSIE 5\.5",$server_agent)) {
-                $browser = "IE5.5";
-            } elseif(eregi("MSIE 5\.0",$server_agent)) {
-                $browser = "IE5.0";
-            } elseif(eregi("MSIE 4\.0",$server_agent)) {
-                $browser = "IE4";
-            } elseif(eregi("MSIE 3\.0",$server_agent)) {
-                $browser = "IE3";
-            } else {
-                $browser = "IE";
-            }
-        } else if(eregi("Mozilla Firebird",$server_agent)) {
-            $browser = "Mozilla Firebird";
-        } else if(eregi("netscape",$server_agent)) {
-            $browser = "Netscape";
-        } else if(eregi("Firefox",$server_agent)) {
-            $browser = "Firefox";
-        }
+        $os = $client_details['os'];
+		$browser = $client_details['browser'];
 
         //Code to get the search string if the referrer is any of the following
         $search_engines = array('google', 'lycos', 'yahoo');
@@ -3058,5 +3022,168 @@ function resetDetailVotes($pid)
 
   $query = "DELETE FROM {$CONFIG['TABLE_VOTE_STATS']} WHERE $clause";
   cpg_db_query($query);
+}
+
+/******************
+/**
+ * cpg_determine_client()
+ * Backported from cpg1.5.x
+ *
+ * @param
+ * @return $return_array
+ **/
+function cpg_determine_client()
+{
+    /**
+     * Populate the client stats
+     */
+
+    // Get the details of user browser, IP, OS, etc
+    $server_agent = $_SERVER["HTTP_USER_AGENT"];
+
+    $os = 'Unknown';
+    if (preg_match('#Ubuntu#i', $server_agent)) {
+        $os = 'Linux Ubuntu';
+    } elseif (preg_match('#Debian#i', $server_agent)) {
+        $os = 'Linux Debian';
+    } elseif (preg_match('#CentOS#i', $server_agent)) {
+        $os = 'Linux CentOS';
+    } elseif (preg_match('#Fedora#i', $server_agent)) {
+        $os = 'Linux Fedora';
+    } elseif (preg_match('#Mandrake#i', $server_agent)) {
+        $os = 'Linux Mandrake';
+    } elseif (preg_match('#RedHat#i', $server_agent)) {
+        $os = 'Linux RedHat';
+    } elseif (preg_match('#Suse#i', $server_agent)) {
+        $os = 'Linux Suse';
+    } elseif (preg_match('#Linux#i', $server_agent)) {
+        $os = 'Linux';
+    } elseif (preg_match('#Windows NT 5.0#i', $server_agent)) {
+        $os = 'Windows 2000';
+    } elseif (preg_match('#win98|Windows 98#i', $server_agent)) {
+        $os = 'Windows 98';
+    } elseif (preg_match('#Windows NT 5\.1#i', $server_agent)) {
+        $os = 'Windows XP';
+    } elseif (preg_match('#Windows NT 5\.2#i', $server_agent)) {
+        $os = 'Windows 2003 Server';
+    } elseif (preg_match('#Windows NT 6\.0#i', $server_agent)) {
+        $os = 'Windows Vista';
+    } elseif (preg_match('#Windows CE#i', $server_agent)) {
+        $os = 'Windows CE';
+    } elseif (preg_match('#Windows#i', $server_agent)) {
+        $os = 'Windows';
+    } elseif (preg_match('#SunOS#i', $server_agent)) {
+        $os = 'Sun OS';
+    } elseif (preg_match('#Macintosh#i', $server_agent)) {
+        $os = 'Macintosh';
+    } elseif (preg_match('#Mac_PowerPC#i', $server_agent)) {
+        $os = 'Mac OS';
+    } elseif (preg_match('#Mac_PPC#i', $server_agent)) {
+        $os = 'Macintosh';
+    } elseif (preg_match('#OS/2#i', $server_agent)) {
+        $os = 'OS/2';
+    } elseif (preg_match('#aix#i', $server_agent)) {
+        $os = 'aix';
+    } elseif (preg_match('#FreeBSD#i', $server_agent)) {
+        $os = 'BSD FreeBSD';
+    } elseif (preg_match('#Unix#i', $server_agent)) {
+        $os = 'Unix';
+    } elseif (preg_match('#iphone#i', $server_agent)) {
+        $os = 'iPhone';
+    }
+
+    $browser = 'Unknown';
+    if (preg_match('#MSIE#i', $server_agent)) {
+        if (preg_match('#MSIE 8\.0#i', $server_agent)) {
+            $browser = 'IE8';
+        } elseif (preg_match('#MSIE 7\.0#i', $server_agent)) {
+            $browser = 'IE7';
+        } elseif (preg_match('#MSIE 6\.0#i', $server_agent)) {
+            $browser = 'IE6';
+        } elseif (preg_match('#MSIE 5\.5#i', $server_agent)) {
+            $browser = 'IE5.5';
+        } elseif (preg_match('#MSIE 5\.0#i', $server_agent)) {
+            $browser = 'IE5.0';
+        } elseif (preg_match('#MSIE 4\.0#i', $server_agent)) {
+            $browser = 'IE4';
+        } elseif (preg_match('#MSIE 3\.0#i', $server_agent)) {
+            $browser = 'IE3';
+        } else {
+            $browser = 'IE';
+        }
+    } elseif (preg_match('#Epiphany#i', $server_agent)) {
+        $browser = 'Epiphany';
+    } elseif (preg_match('#Phoenix#i', $server_agent)) {
+        $browser = 'Phoenix';
+    } elseif (preg_match('#Firebird#i', $server_agent)) {
+        $browser = 'Mozilla Firebird';
+    } elseif (preg_match('#NetSurf#i', $server_agent)) {
+        $browser = 'NetSurf';
+    } elseif (preg_match('#netscape#i', $server_agent)) {
+        $browser = 'Netscape';
+    } elseif (preg_match('#Chrome#i', $server_agent)) {
+        $browser = 'Chrome';
+    } elseif (preg_match('#Firefox#i', $server_agent)) {
+        $browser = 'Firefox';
+    } elseif (preg_match('#Galeon#i', $server_agent)) {
+        $browser = 'Galeon';
+    } elseif (preg_match('#Camino#i', $server_agent)) {
+        $browser = 'Camino';
+    } elseif (preg_match('#Konqueror#i', $server_agent)) {
+        $browser = 'Konqueror';
+    } elseif (preg_match('#Safari#i', $server_agent)) {
+        $browser = 'Safari';
+    } elseif (preg_match('#OmniWeb#i', $server_agent)) {
+        $browser = 'OmniWeb';
+    } elseif (preg_match('#Opera#i', $server_agent)) {
+        $browser = 'Opera';
+    } elseif (preg_match('#HTTrack#i', $server_agent)) {
+        $browser = 'HTTrack';
+    } elseif (preg_match('#OffByOne#i', $server_agent)) {
+        $browser = 'Off By One';
+    } elseif (preg_match('#amaya#i', $server_agent)) {
+        $browser = 'Amaya';
+    } elseif (preg_match('#iCab#i', $server_agent)) {
+        $browser = 'iCab';
+    } elseif (preg_match('#Lynx#i', $server_agent)) {
+        $browser = 'Lynx';
+    } elseif (preg_match('#Googlebot#i', $server_agent)) {
+        $browser = 'Googlebot';
+    } elseif (preg_match('#Lycos_Spider#i', $server_agent)) {
+        $browser = 'Lycos Spider';
+    } elseif (preg_match('#Firefly#i', $server_agent)) {
+        $browser = 'Fireball Spider';
+    } elseif (preg_match('#Advanced Browser#i', $server_agent)) {
+        $browser = 'Avant';
+    } elseif (preg_match('#Amiga-AWeb#i', $server_agent)) {
+        $browser = 'AWeb';
+    } elseif (preg_match('#Cyberdog#i', $server_agent)) {
+        $browser = 'Cyberdog';
+    } elseif (preg_match('#Dillo#i', $server_agent)) {
+        $browser = 'Dillo';
+    } elseif (preg_match('#DreamPassport#i', $server_agent)) {
+        $browser = 'DreamCast';
+    } elseif (preg_match('#eCatch#i', $server_agent)) {
+        $browser = 'eCatch';
+    } elseif (preg_match('#ANTFresco#i', $server_agent)) {
+        $browser = 'Fresco';
+    } elseif (preg_match('#RSS#i', $server_agent)) {
+        $browser = 'RSS';
+    } elseif (preg_match('#Avant#i', $server_agent)) {
+        $browser = 'Avant';
+    } elseif (preg_match('#HotJava#i', $server_agent)) {
+        $browser = 'HotJava';
+    } elseif (preg_match('#W3C-checklink|W3C_Validator|Jigsaw#i', $server_agent)) {
+        $browser = 'W3C';
+    } elseif (preg_match('#K-Meleon#i', $server_agent)) {
+        $browser = 'K-Meleon';
+    }
+
+    $return_array = array(
+        'os' => $os,
+        'browser' => $browser,
+    );
+
+    return $return_array;
 }
 ?>

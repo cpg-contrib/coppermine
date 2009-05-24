@@ -77,43 +77,23 @@ $result = cpg_db_query($sql);
  * Code to record the details of hits for the picture if the option is set in CONFIG
  */
 if ($CONFIG['vote_details']) {
-// Get the details of user browser, IP, OS, etc
-$os = "Unknown";
-if(eregi("Linux",$_SERVER["HTTP_USER_AGENT"])) {
-    $os = "Linux";
-} else if(eregi("Windows NT 5.0",$_SERVER["HTTP_USER_AGENT"])) {
-    $os = "Windows 2000";
-} else if(eregi("win98|Windows 98",$_SERVER["HTTP_USER_AGENT"])) {
-    $os = "Windows 98";
-}
-
-$browser = 'Unknown';
-if(eregi("MSIE",$browser)) {
-    if(eregi("MSIE 5.5",$browser)) {
-        $browser = "Microsoft Internet Explorer 5.5";
-    } else if(eregi("MSIE 6.0",$browser)) {
-        $browser = "Microsoft Internet Explorer 6.0";
-    }
-} else if(eregi("Mozilla Firebird",$browser)) {
-    $browser = "Mozilla Firebird";
-} else if(eregi("netscape",$browser)) {
-    $browser = "Netscape";
-}
-$time = time();
-
-$referer = addslashes(htmlentities($_SERVER['HTTP_REFERER']));
-
-// Insert the record in database
-$query = "INSERT INTO {$CONFIG['TABLE_VOTE_STATS']}
-                  SET
-                    pid = $pic,
-                    rating = $rate,
-                    Ip   = '$raw_ip',
-                    sdate = '$time',
-                    referer = '$referer',
-                    browser = '$browser',
-                    os = '$os'";
-cpg_db_query($query);
+	$client_details = cpg_determine_client();
+	// Get the details of user browser, IP, OS, etc
+	$os = $client_details['os'];
+	$browser = $client_details['browser'];
+	$time = time();
+	$referer = addslashes(htmlentities($_SERVER['HTTP_REFERER']));
+	// Insert the record in database
+	$query = "INSERT INTO {$CONFIG['TABLE_VOTE_STATS']}
+	                 SET
+	                    pid = $pic,
+	                    rating = $rate,
+	                    Ip   = '$raw_ip',
+	                    sdate = '$time',
+	                    referer = '$referer',
+	                    browser = '$browser',
+	                    os = '$os'";
+	cpg_db_query($query);
 }
 
 $location = "displayimage.php?pos=" . (- $pic);
