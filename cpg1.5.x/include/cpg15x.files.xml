@@ -5717,144 +5717,139 @@
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>images/smiles/icon_arrow.gif</fullpath>
+    <fullpath>images/smiles/arrow.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>394bffa679f650b7d2f22aa263cc06ba</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_biggrin.gif</fullpath>
+    <fullpath>images/smiles/biggrin.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>f970a6591668c625e4b9dbd3b7a450d7</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_confused.gif</fullpath>
+    <fullpath>images/smiles/confused.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>4affed1b55e5f73c9f0675ae7d0ad823</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_cool.gif</fullpath>
+    <fullpath>images/smiles/cool.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>25c83ea511f206e88f214719dad9c88c</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_cry.gif</fullpath>
+    <fullpath>images/smiles/cry.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>7605eca95aaeda46e641745ef6f0e0b0</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_eek.gif</fullpath>
+    <fullpath>images/smiles/eek.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>52e43743e38a67d5d28845a104ca8c7d</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_evil.gif</fullpath>
+    <fullpath>images/smiles/evil.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>178255bb3fe2c3aa790c1f8ec8738504</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_exclaim.gif</fullpath>
+    <fullpath>images/smiles/exclaim.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>da86bbf377f97d06047aa781a582c52f</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_frown.gif</fullpath>
+    <fullpath>images/smiles/frown.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>5a50535a06def9d01076772e5e9d235b</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_idea.gif</fullpath>
+    <fullpath>images/smiles/idea.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>aaebc9c048367118ba65e1da46bc3e08</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_lol.gif</fullpath>
+    <fullpath>images/smiles/lol.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>b76e7729d43c4a49182d020741285bef</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_mad.gif</fullpath>
+    <fullpath>images/smiles/mad.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>e4355c00894da1bd78341a6b54d20b56</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_mrgreen.gif</fullpath>
+    <fullpath>images/smiles/mrgreen.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>54e8505227edae1e583cf2f9554abc3a</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_neutral.gif</fullpath>
+    <fullpath>images/smiles/neutral.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>4e8b7a51c7f60a2362a4f67fbbc937e7</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_question.gif</fullpath>
+    <fullpath>images/smiles/question.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>0518596a4eb94c32a2b2ed898bdc3549</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_razz.gif</fullpath>
+    <fullpath>images/smiles/razz.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>7aec68426aa06f01e2b1ac250e5aee62</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_redface.gif</fullpath>
+    <fullpath>images/smiles/redface.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>d7e9d095432cbcf09375ffc782c30c23</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_rolleyes.gif</fullpath>
+    <fullpath>images/smiles/rolleyes.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>19071b1af987946e96dcef6ce0611c6b</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_sad.gif</fullpath>
+    <fullpath>images/smiles/sad.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>5a50535a06def9d01076772e5e9d235b</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_smile.gif</fullpath>
+    <fullpath>images/smiles/smile.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>9ee646ffab71107d1a11407be52f33a5</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_surprised.gif</fullpath>
+    <fullpath>images/smiles/surprised.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>ae735b5dd659dc4b3b0f249ce59bef79</hash>
   </element>
   <element>
-    <fullpath>images/smiles/icon_twisted.gif</fullpath>
+    <fullpath>images/smiles/twisted.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>c9c3d12da1e9da699e490b86d24eee85</hash>
   </element>
   <element>
-    <fullpath>images/smiles/</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>images/smiles/icon_wink.gif</fullpath>
+    <fullpath>images/smiles/wink.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>f058206bb8ff732dbe8e7aa10d74c9cd</hash>
