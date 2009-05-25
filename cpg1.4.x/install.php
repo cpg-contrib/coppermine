@@ -376,7 +376,7 @@ function html_input_config($error_msg = '')
           </td>
          </tr>
          <tr>
-          <td class="tableh2" colspan="2">Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a> 'convert' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />
+          <td class="tableh2" colspan="2">Coppermine can use the <a href="http://www.imagemagick.org/">ImageMagick</a> 'convert' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />
           If ImageMagick is installed on your system and you want to use it, you need to input the full path to the 'convert' program below. On Windows the path should look like 'c:/ImageMagick/' (use / not \ in the path) and should not contain any space, on Unix is it something like '/usr/bin/X11/'.<br />
           If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will try to use GD2 then by default (which is what most users have). You can change this later as well (in Coppermine's config screen), so don't be afraid if you're not sure what to enter here - leave it blank.
           </td>

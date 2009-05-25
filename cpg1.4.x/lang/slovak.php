@@ -301,7 +301,7 @@ $lang_theme_selection = array(
 $lang_version_alert = array(
   'version_alert' => 'Nepodporovaná verzia!', //cpg1.4
   'security_alert' => 'Bezpečnostná výstraha!', //cpg1.4.3
-  'relocate_exists' => 'Odstráňte <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> z vašich stránok!',
+  'relocate_exists' => 'Odstráňte <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0">relocate_server.php</a> z vašich stránok!',
   'no_stable_version' => 'Prevádzkujete verziu Coppermine %s (%s) ,ktorá je len pre veľmi skúsených užívateľov - táto verzia je bez podpory a záruky. použitie je na vlastnú zodpovednosť a nebezpečie!', //cpg1.4
   'gallery_offline' => 'Galéria je momentálne offline a je viditeľná len pre administrátorov. Nezabudnite ju pripojiť online po ukončení údržby.', //cpg1.4
 );

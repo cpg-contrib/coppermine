@@ -301,7 +301,7 @@ $lang_theme_selection = array(
 $lang_version_alert = array(
   'version_alert' => 'Ikke understøttet version!', //cpg1.4
   'security_alert' => 'Sikkerheds Advarsel!', //cpg1.4.3
-  'relocate_exists' => 'Fjern <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> filen fra din hjemmeside!',
+  'relocate_exists' => 'Fjern <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0">relocate_server.php</a> filen fra din hjemmeside!',
   'no_stable_version' => 'Du kører Coppermine %s (%s) som kun er til brug af erfarne brugere  - denne version kommer uden nogen form for hjælp eller garanti. Brug den på egen risiko eller nedgrader til den sidst stabile version hvis du behøver hjælp!', //cpg1.4
   'gallery_offline' => 'Galleriet er midlertidig ude af drift, og vil kun være tilgængelig for administratorer. Glem ikke at sætte det i drift igen efter at du er færdig med vedligeholdelse.', //cpg1.4
 );
@@ -1187,7 +1187,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Hvordan kan jeg vælge hvem der kan se mine albums?', 'Du burde allerede være i "Admin. tilstand"<br />Gå til "Rediger Mine Albums" på "Opdater album" baren, og vælg det album du vil redigere.<br />Her kan du ændre navn, beskrivelse, minibillede, og begrænse visning og kommentar tilladelser.<br />Tryk på "Opdater album".', 'allow_private_albums', 0),
   array('Hvordan kan jeg se andre brugeres gallerier?', 'Gå til "Album Liste" og vælg "Bruger gallerier".', 'allow_private_albums', 0),
   array('Hvad er cookies?', 'Cookies er en tekst fil som sendes fra en hjemmesside og gemmes på din computer.<br />Cookies tillader brugeren at forlade en side og komme tilbage uden at logge ind igen og at tilpasse siden på forskellige måder.', 'offline', 0),
-  array('Hvor kan jeg hente dette program til min side?', 'Coppermine er et gratis Multimedia Galleri, udgiver under GNU licens. Det er fuld af funktioner og findes til forskellige platforme. Besøg <a href="http://coppermine.sf.net/">Coppermine hjemmesiden</a> for at læse mere eller at hente det.', 'offline', 0),
+  array('Hvor kan jeg hente dette program til min side?', 'Coppermine er et gratis Multimedia Galleri, udgiver under GNU licens. Det er fuld af funktioner og findes til forskellige platforme. Besøg <a href="http://coppermine-gallery.net/">Coppermine hjemmesiden</a> for at læse mere eller at hente det.', 'offline', 0),
 
   'Navigering på siden',
   array('Hvad er "Albumliste"?', 'Dette vil vise dig hele galleriet med et link til hver kategori. Minibilleder kan være et link til en kategori.', 'offline', 0),

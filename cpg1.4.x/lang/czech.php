@@ -303,7 +303,7 @@ $lang_theme_selection = array(
 $lang_version_alert = array(
   'version_alert' => 'Nepodporovaná verze!', //cpg1.4
   'security_alert' => 'Bezpečnostní poplach!', //cpg1.4.3
-  'relocate_exists' => 'Odstraň <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> soubor z website!',
+  'relocate_exists' => 'Odstraň <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0">relocate_server.php</a> soubor z website!',
   'no_stable_version' => 'Používáte Coppermine %s (%s) která je míněna pro zkušené uživatele - tato verze je distribuována bez podpory a záruky funkčnosti. Riziko užití je na uživateli!', //cpg1.4
   'gallery_offline' => 'Galerie je momentálně offline a bude viditelná jen pro administrátora. Nezapomeňte ji prepnout do online režimu po dokončení údržby.', //cpg1.4
 );
@@ -1184,7 +1184,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('How can I modify and restrict users from viewing my albums?', 'You should already be in &quot;Admin Mode&quot;<br />Go to &quot;Modify My Albums. On the &quot;Update Album&quot; bar, select the album that you want to modify.<br />Here, you can change the name, description, thumbnail picture, restrict viewing and comment/rating permissions.<br />Click &quot;Update Album&quot;.', 'allow_private_albums', 0),
   array('How can I view other users\' galleries?', 'Go to &quot;Album List&quot; and select &quot;User Galleries&quot;.', 'allow_private_albums', 0),
   array('What are cookies?', 'Cookies are a plain text piece of data that is sent from a website and is put on to your computer.<br />Cookies usually allow a user to leave and return to the site without having to login again and other various chores.', 'offline', 0),
-  array('Where can I get this program for my site?', 'Coppermine is a free Multimedia Gallery, released under GNU GPL. It is full of features and has been ported to various platforms. Visit the <a href="http://coppermine.sf.net/">Coppermine Home Page</a> to find out more or download it.', 'offline', 0),
+  array('Where can I get this program for my site?', 'Coppermine is a free Multimedia Gallery, released under GNU GPL. It is full of features and has been ported to various platforms. Visit the <a href="http://coppermine-gallery.net/">Coppermine Home Page</a> to find out more or download it.', 'offline', 0),
 
   'Navigating the Site - Only english',
   array('What\'s &quot;Album List&quot;?', 'This will show you the entire category you are currently in, with a link to each album. If you are not in a category, it will show you the entire gallery with a link to each category. Thumbnails may be a link to the category.', 'offline', 0),

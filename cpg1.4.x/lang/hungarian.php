@@ -304,7 +304,7 @@ $lang_theme_selection = array(
 $lang_version_alert = array(
   'version_alert' => 'Nem támogatott verzió!', //cpg1.4
   'security_alert' => 'Biztonsági riasztás!', //cpg1.4.3
-  'relocate_exists' => 'Távolítsd el a <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> fájlt a webszerveredről!',
+  'relocate_exists' => 'Távolítsd el a <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0">relocate_server.php</a> fájlt a webszerveredről!',
   'no_stable_version' => 'Te most a Coppermine %s (%s) verziót használod, melyhez nem tartozik támogatás. Csak saját felelősségedre használd!', //cpg1.4
   'gallery_offline' => 'A képtár jelenleg kikapcsolt állapotban van, csak rendszergazdaként léphetsz be. Ha végeztél a karbantartással, ne felejtsd el bekapcsolni.', //cpg1.4
 );
@@ -1190,7 +1190,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Hogyan tudok létrehozni, átnevezni és törölni albumot a &quot;saját Képtár&quot;-ban?', 'Ehhez rendszergazda módban kell lenni.Menj a &quot; Saját album létrehozás/rendezés&quot;menübe és kattints az &quot;új&quot;-ra. Írd át az &quot;Új album&quot;nevet amire szeretnéd nevezni az albumodat .<br />Itt bármelyik létező albumod nevét meg tudod változtatni .<br />Kattints a &quot;Változtatások elfogadás&quot;-ára .', 'allow_private_albums', 0),
   array('Hogy tudom módosítani az albumom tulajdonságait?', 'Ehhez rendszergazda módban kell lenni.<br />Meny a &quot; Saját album módosítása&quot; menübe. Az &quot;album frissítése&quot; listában válaszd ki a módosítani kivánt albumot.<br />Itt tudsz nevet, leírást, indexképet, megtekintés korlátozást és véleményezés korlátozást változtatni.<br />A végén kattints az  &quot;Album frissítés&quot; -re.', 'allow_private_albums', 0),
   array('Mik azok a sütik?', 'A sütik kisméretü text fájlok , melyet a webszerver küld a számítógépednek. A sütik segítségével jegyzi meg a böngésző a felhasználó beálításait.<br /> ', 'offline', 0),
-  array('Hogyan használhatnám ezt a programot a saját weboldalomon?', 'A Coppermine egy szabadon felhasználható multimédiás képtár,mely a GNU alatt ljelent meg. Az összes szolgáltatása elérhető különböző platformokon. Láttogasd meg a  <a href="http://coppermine.sf.net/">Coppermine weboldalát</a> további információkért és a program letöltéséhez .', 'offline', 0),
+  array('Hogyan használhatnám ezt a programot a saját weboldalomon?', 'A Coppermine egy szabadon felhasználható multimédiás képtár,mely a GNU alatt ljelent meg. Az összes szolgáltatása elérhető különböző platformokon. Láttogasd meg a  <a href="http://coppermine-gallery.net/">Coppermine weboldalát</a> további információkért és a program letöltéséhez .', 'offline', 0),
 
   'Navigálás az oldalon',
   array('Mi az &quot;Album lista&quot;?', 'Itt tudod megnézni az egész képtárat, minden albumhoz tartozik link. Ha nem vagy benne valamelyik képtárban akkor a képtárak listáját látod.', 'offline', 0),

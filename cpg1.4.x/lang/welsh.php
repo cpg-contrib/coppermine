@@ -304,7 +304,7 @@ $lang_theme_selection = array(
 $lang_version_alert = array(
   'version_alert' => 'Fersiwn heb gynhaliaeth!', //cpg1.4
   'security_alert' => 'Rhybudd Diogelwch!', //cpg1.4.3
-  'relocate_exists' => 'Dileu\'r ffeil <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> o\'ch gwefan!',
+  'relocate_exists' => 'Dileu\'r ffeil <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0">relocate_server.php</a> o\'ch gwefan!',
   'no_stable_version' => 'Rydych yn rhedeg Coppermine %s (%s) sydd ar gyfer defnyddwyr profiadol iawn yn unig - mae\'r fersiwn yn dod heb unrhyw gynhaliaeth nac unrhyw warantau. Eich risg chi yw defnyddio hwn - neu ewch i\'r fersiwn mwyaf sefydlog os ydych angen cynhaliaeth!', //cpg1.4
   'gallery_offline' => 'Mae\'r oriel all-lein a dim ond chi, fel gweinyddwr, bydd yn gallu ei gweld. Cofiwch ei droi arlein ar ôl gorffen cynnal a chadw.', //cpg1.4
 );
@@ -1191,7 +1191,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Sut ydy i\'n cyfyngu\'r defnyddwyr sy\'n gallu edrych ar f\'albymau?', 'Dylech eisoes fod mewn  &quot;Modd-Gweinyddu.&quot;<br /> Ewch i &quot;Addasu f\'albymau. Ar far &quot;Diweddaru Albwm&quot;, dewiswch yr albwm rydych am ei addasu.<br />Yma, gallwch newid yr enw, disgrifiad, bawdlun, cyfyngu golwg a hawliau sylwadau/graddio.<br />Clic &quot;Diweddaru Albwm&quot;.', 'allow_private_albums', 0),
   array('Sut allaf edrych ar orielau defnyddwyr eraill?', 'Ewch i &quot;Rhestr Albwm&quot; a dewis &quot;Orielau Defnyddwyr&quot;.', 'allow_private_albums', 0),
   array('Beth yw cwcis?', 'Data (testun) yw cwci sydd yn cael ei anfon o\'r wefan i\'ch peiriant.<br />Mae cwcis yn aml yn storio gwybodaeth mewngofnodi.', 'offline', 0),
-  array('O ble allaf gael y rhaglen hon ar gyfer fy ngwefan?', 'Oriel Amlgyfrwng rhad ac am ddim yw Coppermine, wedi\'i gyhoeddi dan GNU GPL. Mae\'n llawn nodweddion ac mae wedi\'i borthi i sawl platfform. Ewch i <a href="http://coppermine.sf.net/">Hafan Coppermine</a> i ddarganfod mwy a\'i lawrlwytho.', 'offline', 0),
+  array('O ble allaf gael y rhaglen hon ar gyfer fy ngwefan?', 'Oriel Amlgyfrwng rhad ac am ddim yw Coppermine, wedi\'i gyhoeddi dan GNU GPL. Mae\'n llawn nodweddion ac mae wedi\'i borthi i sawl platfform. Ewch i <a href="http://coppermine-gallery.net/">Hafan Coppermine</a> i ddarganfod mwy a\'i lawrlwytho.', 'offline', 0),
 
   'Pori\'r Wefan',
   array('Beth yw &quot;Rhestr Albymau&quot;?', 'Dyma\'r categori rydych mewn ar y pryd, gyda dolen i bob albwm. Os nac ydych mewn categori, bydd yn dangos yr oriel gyfan gyda dolenni i bob categori. Gall bawdlun fod yn ddolen i\'r categori.', 'offline', 0),

@@ -301,7 +301,7 @@ $lang_theme_selection = array(
 $lang_version_alert = array(
   'version_alert' => 'Неподржана верзија!', //cpg1.4
   'security_alert' => 'Сигурносно упозорење!', //cpg1.4.3
-  'relocate_exists' => 'Одстраните <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> датотеку са свог сервера!',
+  'relocate_exists' => 'Одстраните <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0">relocate_server.php</a> датотеку са свог сервера!',
   'no_stable_version' => 'Користите Coppermine %s (%s) који је намењен само искусним корисницима - уз ову верзију не долази подршка нити било каква гаранција. Користите је на свој ризик или скините старију стабилну верзију ако требате подршку!', //cpg1.4
   'gallery_offline' => 'Галерија тренутно није у функцији и биће видљива само за Вас као Администратора. Не заборавите да је вратите у функцију након што завршите преправке.', //cpg1.4
 );

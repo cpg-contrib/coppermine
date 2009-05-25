@@ -301,7 +301,7 @@ $lang_theme_selection = array(
 $lang_version_alert = array(
   'version_alert' => 'Nepodprta verzija!', //cpg1.4
   'security_alert' => 'Varnostno opozorilo!', //cpg1.4.3
-  'relocate_exists' => 'Odstranite <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> datoteko s strežnika!',
+  'relocate_exists' => 'Odstranite <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0">relocate_server.php</a> datoteko s strežnika!',
   'no_stable_version' => 'Uporabljate Coppermine %s (%s), ki je namenjena samo izkušenim uporabnikom - ta verzija je eksperimentalne narave in ne vključuje podpore s strani razvijalcev. Uporabljate jo na lastno odgovornost. Če želite podporo, namestite stabilno različico galerije!', //cpg1.4
   'gallery_offline' => 'Galerija je trenutno izklopljena in je vidna samo vam, kot administratorju. Ne pozabite je ponovno vključiti, ko končate z vzdrževanjem.', //cpg1.4
 );
@@ -1189,7 +1189,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Kako lahko spremenim in onemogočim ostalim, da vidijo moje albume?', 'Po prijavi ste že v &quot;Administraciji&quot;<br />Kliknite na &quot;Urejanje svojih albumov&quot; izberite album, ki ga želite urejati.<br />Tukaj lahko spremenite vse lastnosti albuma. Na koncu kliknite še na &quot;Posodobi album&quot;.', 'allow_private_albums', 0),
   array('Kako lahko vidim galerije ostalih uporabnikov?', 'Kliknite na &quot;Seznam albumov&quot; in izberite &quot;Uporabniške galerije&quot;.', 'allow_private_albums', 0),
   array('Kaj so piškotki?', 'Piškotki so majhne tekstovne datoteke, ki jih spletno mesto shrani na vašem računalniku.<br />Piškotki omogočajo prijavo in odjavo na strani galerije.', 'offline', 0),
-  array('Kje lahko najdem to galerijo še za svojo spletno stran?', 'Coppermine je prosta multimedijska galerija, ki je dostopna pod pogoji GNU GPL. Vsebuje obilico možnosti in obstaja za različne platforme. Obiščite <a href="http://coppermine.sf.net/">spletišče Coppermine</a>, kjer si jo lahko presnamete.', 'offline', 0),
+  array('Kje lahko najdem to galerijo še za svojo spletno stran?', 'Coppermine je prosta multimedijska galerija, ki je dostopna pod pogoji GNU GPL. Vsebuje obilico možnosti in obstaja za različne platforme. Obiščite <a href="http://coppermine-gallery.net/">spletišče Coppermine</a>, kjer si jo lahko presnamete.', 'offline', 0),
 
   'Sprehod po galeriji',
   array('Kaj pomeni &quot;Seznam albumov&quot;?', 'Ta povezava prikaže celotno galerijo, v kateri se trenutno nahajate, vključno s povezavami do vseh albumov. Če se ne nahajate v eni od kategorij, boste videli tudi povezave do posameznih kategorij. Ikone so lahko povezave do posamezne kategorije.', 'offline', 0),

@@ -306,7 +306,7 @@ $lang_theme_selection = array(
 $lang_version_alert = array(
   'version_alert' => 'Nepalaikoma versija!', //cpg1.4
   'security_alert' => 'Saugumo įspėjimas!', //cpg1.4.3
-  'relocate_exists' => 'Pašalinkite <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> Bylą iš savo serverio!',
+  'relocate_exists' => 'Pašalinkite <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0">relocate_server.php</a> Bylą iš savo serverio!',
   'no_stable_version' => 'Jūs naudojate Coppermine %s (%s) versiją kuri skirta tik patyrusiems vartotojams - ši versija išleista be palaikymo ir jokių garantijų. Naudodami atsakote tik savo rizika arba atsisiųskite stabilę versiją!', //cpg1.4
   'gallery_offline' => '  Galerija šiuo metu išjungta, matoma tik administratoriams. Nepamirškite jos įjungti kai baigsite atnaujinimą.', //cpg1.4
 );
@@ -1194,7 +1194,7 @@ Instrukcijos ir detalesnė informacija <a href="xp_publish.php">čia.</a>
   array('Kur man siųsti nuotraukas?', 'Jūs galite siųsti bylas į viena iš savo albumu kurie yra "Mano galerijoje" . Administratorius taip pag gali leisti siųsti bylas ir į kitas galerijas.', 'allow_private_albums', 0),
   array('Kaip kurti, redaguoti, šalinti albumus &quot;Mano galerijoje&quot;?', 'Jūs turėtumėte būt admino būsenoje<br /> Spauskite &quot;Albumai&quot; ir &quot;naujas&quot;. Pakeiskite &quot;Naujas albumas&quot; į norima pavadinima.<br />Taip pat galite keisti kitus albumus.<br />Spauskite &quot;Pateikti pakeitimus &quot;.', 'allow_private_albums', 0),
   array('Kas yra sausainėliai?', 'Sausainėliai (Cookies) teksto dalis kuri siunčiama iš svetainės į jūsų kompiuterį<br />Sausainėliai palengvina prisijungimą, ir suteikia galimybė svetainei atpažinti jos lankytoja.', 'offline', 0),
-  array('Kur gauti šią programa savo svetainei?', 'Coppermine yra nemokama Multimedia Gallery, išleista pagal GNU GPL. Tinka daugeliui platformų. Aplankykite <a href="http://coppermine.sf.net/">Coppermine namų puslapį</a> sužinosite daugiau.', 'offline', 0),
+  array('Kur gauti šią programa savo svetainei?', 'Coppermine yra nemokama Multimedia Gallery, išleista pagal GNU GPL. Tinka daugeliui platformų. Aplankykite <a href="http://coppermine-gallery.net/">Coppermine namų puslapį</a> sužinosite daugiau.', 'offline', 0),
 
   'Svetainės navigacija',
   array('Kas yra &quot;Albumų sąrašas&quot;?', 'Čia rodomi visi svetainės albumai ir nuorodos į juos. Jei jūs neesate kategorijoje bus rodoma visa galerija ir nuorodas į kategorijas.', 'offline', 0),

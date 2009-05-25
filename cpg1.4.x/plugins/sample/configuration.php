@@ -29,7 +29,7 @@ $version='1.1';
 $extra_info = <<<EOT
     <table border="0" cellspacing="0" cellpadding="0">
     <tr>
-        <td class="admin_menu"><a target="_blank" href="docs/index.htm#plugin" title="Plugin Documentation">Documentation</a></td>
+        <td class="admin_menu"><a href="docs/index.htm#plugin" title="Plugin Documentation">Documentation</a></td>
     </tr>
     </table>
 EOT;
@@ -41,7 +41,7 @@ EOT;
 $install_info=<<<EOT
     <table border="0" cellspacing="0" cellpadding="0">
     <tr>
-        <td class="admin_menu"><a target="_blank" href="http://coppermine-gallery.net/forum/index.php?board=53.0" title="Plugin Support">Support</a></td>
+        <td class="admin_menu"><a href="http://coppermine-gallery.net/forum/index.php?board=53.0" title="Plugin Support">Support</a></td>
     </tr>
     </table>
 EOT;

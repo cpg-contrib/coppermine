@@ -221,10 +221,8 @@ function form_pic_info($text)
         }
 
         if (UPLOAD_APPROVAL_MODE) {
-                // Commented out by Omni; Duplicate of above
-                //$pic_info = $CURRENT_PIC['pwidth'].' &times; '.$CURRENT_PIC['pheight'].' - '.($CURRENT_PIC['filesize'] >> 10).$lang_byte_units[1];
-                if($CURRENT_PIC['owner_name']){
-                        $pic_info .= ' - <a href ="profile.php?uid='.$CURRENT_PIC['owner_id'].'" target="_blank">'.$CURRENT_PIC['owner_name'].'</a>';
+               if($CURRENT_PIC['owner_name']){
+                        $pic_info .= ' - <a href ="profile.php?uid='.$CURRENT_PIC['owner_id'].'">'.$CURRENT_PIC['owner_name'].'</a>';
                 }
         }
 

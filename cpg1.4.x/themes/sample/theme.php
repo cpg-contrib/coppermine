@@ -173,7 +173,7 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="util.php" title="{UTIL_TITLE}">{UTIL_LNK}</a></td>
                                 <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a></td>
 <!-- BEGIN documentation -->
-                                <td class="admin_menu"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}" target="cpg_documentation">{DOCUMENTATION_LNK}</a></td>
+                                <td class="admin_menu"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}">{DOCUMENTATION_LNK}</a></td>
 <!-- END documentation -->
                         </tr>
                 </table>
@@ -1127,10 +1127,10 @@ $template_tab_display = array('left_text' => '<td width="100%%" align="left" val
 // Template used for Vanity Footer
 $template_vanity = <<<EOT
 <div id="vanity">
-      <a id="v_php" href="http://www.php.net/" target="_blank"></a>
-      <a id="v_mysql" href="http://www.mysql.com/" target="_blank"></a>
-      <a id="v_xhtml" href="http://validator.w3.org/check/referer" target="_blank"></a>
-      <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"></a>
+      <a id="v_php" href="http://www.php.net/"></a>
+      <a id="v_mysql" href="http://www.mysql.com/"></a>
+      <a id="v_xhtml" href="http://validator.w3.org/check/referer"></a>
+      <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer"></a>
 </div>
 EOT;
 

@@ -301,7 +301,7 @@ $lang_theme_selection = array(
 $lang_version_alert = array(
   'version_alert' => 'Toetamata versioon.', //cpg1.4
   'security_alert' => 'Turvahoiatus!', //cpg1.4.3
-  'relocate_exists' => 'Eemalda fail <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> oma veebilehelt!',
+  'relocate_exists' => 'Eemalda fail <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0">relocate_server.php</a> oma veebilehelt!',
   'no_stable_version' => 'Sa kasutad Coppermine %s (%s), mis on mõeldud ainult väga kogenud kasutajatele - sellel versioonil puudub igasugune garantii ja tootetugi. Kasuta seda omal vastutusel või kui vajad tootetuge, vaheta see viimase stabiilse versiooni vastu.', //cpg1.4
   'gallery_offline' => 'Galerii on hetkel kättesaamatu ja on nähtav ainult administraatorile. Ära unusta pärast hooldustööde lõpetamist seda jälle kättesaadavaks lülitada.', //cpg1.4
 );
@@ -1186,7 +1186,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Kuidas saab muuta ja piirata, kes mu albumeid vaadata võib?', 'Alustuseks pead olema &quot;Admin-režiimis&quot;.<br />Klõpsa &quot;Muuda mu albumeid&quot;. Ribal &quot;Uuenda albumit&quot; vali album, mida tahad muuta.<br />Seejärel saad muuta nime, kirjeldust, pisipilti, piirata vaatamise ja kommenteerimise/hindamise õigust.<br />Klõpsa &quot;Uuenda albumit&quot;.', 'allow_private_albums', 0),
   array('Kuidas teiste kasutajate galeriisid vaadata saab?', 'Klõpsa lingil &quot;Albumite nimekiri&quot; ja vali &quot;Kasutajate galeriid&quot;.', 'allow_private_albums', 0),
   array('Mis on küpsised?', 'Küpsised on väiksed tekstifailid, mida veebisaidid sinu arvutisse salvestavad.<br />Tavaliselt seisneb küpsiste roll selles, et kasutaja ei pea saidilt lahkudes hiljem uuesti sisse logima.', 'offline', 0),
-  array('Kust ma selle programmi enda saidile ka saan?', 'Coppermine on vaba multimeediagalerii, avaldatud GNU GPL litsentsi all. See on võimalusi täis ja porditud mitmetele platvormidele. Rohkem infot ja allalaadimisvõimaluse leiad <a href="http://coppermine.sf.net/">Coppermine\'i kodulehelt</a>.', 'offline', 0),
+  array('Kust ma selle programmi enda saidile ka saan?', 'Coppermine on vaba multimeediagalerii, avaldatud GNU GPL litsentsi all. See on võimalusi täis ja porditud mitmetele platvormidele. Rohkem infot ja allalaadimisvõimaluse leiad <a href="http://coppermine-gallery.net/">Coppermine\'i kodulehelt</a>.', 'offline', 0),
 
   'Saidil liikumine',
   array('Mis on &quot;Albumite nimekiri&quot;?', 'See funktsioon näitab kogu kategooriat, kus kasutaja parajasti asub, linkidega albumite juurde. Kui kasutaja ei asu üheski kategoorias, näidatakse kogu galeriid, linkidega kategooriate juurde. Lingiks võib olla pisipilt.', 'offline', 0),

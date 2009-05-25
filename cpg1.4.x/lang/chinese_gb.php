@@ -1185,7 +1185,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('我要如何禁止其它会员看我的相册?', '你必须在 &quot;管理模式&quot;<br />到 &quot;改变我的相册. 在 &quot;更新相册&quot; 字段, 选择你要改变的相册.<br />在这里, 你可以改变相册名称 描述 缩略图 ,及限制查看 留言 评分 的权限.<br />按 &quot;更新相册&quot;.', 'allow_private_albums', 0),
   array('如何查看其它会员的相册?', '到 &quot;相册目录&quot; 选择 &quot;会员相册&quot;.', 'allow_private_albums', 0),
   array('什么是 cookies?', 'Cookies 是网站放在你计算机中的纪录信息的文本文件。<br />Cookies 通常让用户再次回到网站时自动登录 并记录其它设定数据.', 'offline', 0),
-  array('在哪里可以取得这个相册程序?', 'Coppermine 是基于GNU GPL的免费多媒体相册. 它是全功能的 且支持不同的平台. 请到<a href="http://coppermine.sf.net/">Coppermine 的网站</a> 获得更多的信息 或是下载它.', 'offline', 0),
+  array('在哪里可以取得这个相册程序?', 'Coppermine 是基于GNU GPL的免费多媒体相册. 它是全功能的 且支持不同的平台. 请到<a href="http://coppermine-gallery.net/">Coppermine 的网站</a> 获得更多的信息 或是下载它.', 'offline', 0),
 
   '网站导引',
   array('什么是 &quot;相册目录 &quot;?', '这将显示整个相册 包含每一个分类. 缩略图可以连接到类别中.', 'offline', 0),
@@ -1407,7 +1407,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
   'php_info' => 'PHP 信息',
-  'explanation' => '这是用 PHP 的函式来建立的信息 <a href="http://www.php.net/phpinfo" target="_blank">phpinfo()</a>，在 CPG 相册内显示 (删除右边的输出)。',
+  'explanation' => '这是用 PHP 的函式来建立的信息 <a href="http://www.php.net/phpinfo">phpinfo()</a>，在 CPG 相册内显示 (删除右边的输出)。',
   'no_link' => '让其它人看到您的 phpinfo 会有安全问题，所以这个信息只有在登录管理账号后才能看到。您不能将这个页面的连接给别人，他们会看不到任何信息。',
 );
 

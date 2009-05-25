@@ -302,7 +302,7 @@ $lang_theme_selection = array(
 $lang_version_alert = array(
   'version_alert' => 'Versi tidak didukung!', //cpg1.4
   'security_alert' => 'Sinyal Keamanan!', //cpg1.4.3
-  'relocate_exists' => 'Hapus <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> file dari websitemu!',
+  'relocate_exists' => 'Hapus <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0">relocate_server.php</a> file dari websitemu!',
   'no_stable_version' => 'kamu menggunakan Coppermine  %s (%s) yang artinya digunakan oleh sangat eksperimen pemakai - Versi ini tidak ada support (bantuan) atau garansi. Gunakan dengan resiko sendiri atau downgrade ke versi stabil yang terbaru bila kamu butuh support (bantuan)!', //cpg1.4
   'gallery_offline' => 'Galeri saat ini sedang keadaan tertutup dan hanya bisa digunakan (dilihat) oleh kamu admin. Jangan lupa untuk merubah (online) kembali setelah selesai pemeliharaan.', //cpg1.4
 );
@@ -1190,7 +1190,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Bagaimana cara merubah atau membatasi user dari melihat album saya?', 'Anda harus berada dalam &quot;Mode Admin&quot;<br />Klik &quot;Modifikasi Album&quot;. Pilih album yang akan anda modifikasi pada &quot;Update Album&quot;.<br />Disini anda bisa merubah judul, keterangan, image thumbnail, membatasi izin akses untuk melihat, mengirim komentar, maupun menilai.<br />Click &quot;Update Album&quot;.', 'allow_private_albums', 0), 
   array('Bagaimana cara melihat galeri user lain?', 'Klik &quot;Daftar Album&quot; dan pilih &quot;User Galleries&quot;.', 'allow_private_albums', 0), 
   array('Apa itu cookie?', 'Cookie adalah data berupa file teks yang dikirimkan dari sebuah situs web dan disimpan di komputer anda.<br />Cookie biasanya memudahkan user untuk meninggalkan sebuah situs dan kembali lagi ke situs tersebut tanpa harus login lagi serta beberapa fungsi lainnya.', 'offline', 0), 
-  array('Dimana aku bisa mendapatkan program ini?', 'Coppermine adalah software Galeri Multimedia yang bersifat freeware, dibawah lisesnsi GNU GPL. Memiliki banyak fitur dan telah diport dan bisa digunakan di berbagai system. Kunjungi <a href="http://coppermine.sf.net/">Situs Web Coppermine</a> untuk informasi lebih lanjut atau untuk mendownloadnya.', 'offline', 0), 
+  array('Dimana aku bisa mendapatkan program ini?', 'Coppermine adalah software Galeri Multimedia yang bersifat freeware, dibawah lisesnsi GNU GPL. Memiliki banyak fitur dan telah diport dan bisa digunakan di berbagai system. Kunjungi <a href="http://coppermine-gallery.net/">Situs Web Coppermine</a> untuk informasi lebih lanjut atau untuk mendownloadnya.', 'offline', 0), 
 
   'Menjelajahi situs ini', 
   array('Apa itu &quot;Daftar Album&quot;?', 'Ini akan memperlihatkan kepada anda keseluruhan kategori dimana anda sedang berada, dengan link ke setiap album. Jika anda tidak berada dalam kategori, ia akan menampilkan keseluruhan galeri dengan link ke setiap kategori. Thumbnail juga bisa merupakan link ke kategori.', 'offline', 0), 
@@ -1996,7 +1996,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'online_repository_skipped' => 'Koneksi ke repository di skip', //cpg1.4
   'online_repository_to_local' => 'Skrip ini tidak berubah dari lokal salinan dari versi yang sekarang. Data mungkin tidak akurat jika kamu upgrade Coppermine dan kamu belom upload semua file. Ganti semua file setelah yang di keluarkan tidak akan diambil dari akun juga.', //cpg1.4
   'local_repository_unable' => 'Tidak memungkinkan untuk berhubungan dengan repository dengan server kamu', //cpg1.4
-  'local_repository_explanation' => 'Coppermine tidak bisa berhubungan dengan file repository %s dalam server kamu. Ini mungkin kamu belum upload file repository ke server kamu. Lakukan sekarang dan coba untuk menjalankan halaman ini sekali lagi (tekan refresh).<br />Bila skrip tetap gagal, webhost kamu mungkin mentidakatifkan <a target="_blank" href="http://www.php.net/manual/fr/ref.filesystem.php">Fungsu PHP sistem file</a> selengkapnya. Dalam masalah ini, Kamu tidak bisa menggunakan file ini, maafkan.', //cpg1.4
+  'local_repository_explanation' => 'Coppermine tidak bisa berhubungan dengan file repository %s dalam server kamu. Ini mungkin kamu belum upload file repository ke server kamu. Lakukan sekarang dan coba untuk menjalankan halaman ini sekali lagi (tekan refresh).<br />Bila skrip tetap gagal, webhost kamu mungkin mentidakatifkan <a href="http://www.php.net/manual/en/ref.filesystem.php">Fungsu PHP sistem file</a> selengkapnya. Dalam masalah ini, Kamu tidak bisa menggunakan file ini, maafkan.', //cpg1.4
   'coppermine_version_header' => 'Instalasi versi Coppermine', //cpg1.4
   'coppermine_version_info' => 'Kamu saat ini menginstal versi: %s', //cpg1.4
   'coppermine_version_explanation' => 'Bila kamu pikir semuanya salah dan kamu harusnya untuk menjalankan versi yang lebih baru, kamu harusnya belum upload semua file versi <i>include/init.inc.php</i>', //cpg1.4

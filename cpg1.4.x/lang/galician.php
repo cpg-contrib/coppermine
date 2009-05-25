@@ -304,7 +304,7 @@ $lang_theme_selection = array(
 $lang_version_alert = array(
   'version_alert' => 'Versión non admitida!', //cpg1.4
   'security_alert' => 'Alerta de Seguridade!', //cpg1.4.3
-  'relocate_exists' => 'Elimina o arquivo <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> do teu sitio web!',
+  'relocate_exists' => 'Elimina o arquivo <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0">relocate_server.php</a> do teu sitio web!',
   'no_stable_version' => 'Estás utilizando o Coppermine %s (%s), que está indicado só para usuarios moi experimentados - esta versión non ten soporte nin garantías de tipo ningún. Ó usala asumes o risco persoalmente, senón, podes instalar a última versión estable se precisas axuda!', //cpg1.4
   'gallery_offline' => 'A galería está actualmente fóra de liña e só é visible para ti como administrador. Non esquezas volvela poñer en liña logo de rematar coas tarefas de mantemento.', //cpg1.4
 );
@@ -1194,7 +1194,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
 />Preme en &quot;Actualizar álbum&quot;.', 'allow_private_albums', 0), //cpg1.3.0
   array('Cómo podo ver outros usuarios da galería?', 'Vai a &quot;albums&quot; e depois preme en Membros &quot;Membros&quot;.', 'allow_private_albums', 0), //cpg1.3.0
   array('Qué son as cookies?', 'As cookies son uns arquivos que conteñen informacións que se gardan no teu computador.<br />as cookies xeralmente permiten ós usuario sair, e cando volten ó sitio ter varias informacións gardadas incluindo contrasinal e o login.', 'offline', 0), //cpg1.3.0
-  //array('Onde podo encontrar este programa para o meu sitio?', 'O Coppermine é unha Galería Multimedia gratuita, ofrecida baixo licenza GNU GPL. Ten unha chea de características e foi portado a diversas plataformas. Visita a <a href="http://coppermine.sf.net/">Páxina Principal do Coppermine</a> para obter máis detalles ou descargalo.', 'offline', 0), //cpg1.3.0
+  //array('Onde podo encontrar este programa para o meu sitio?', 'O Coppermine é unha Galería Multimedia gratuita, ofrecida baixo licenza GNU GPL. Ten unha chea de características e foi portado a diversas plataformas. Visita a <a href="http://coppermine-gallery.net/">Páxina Principal do Coppermine</a> para obter máis detalles ou descargalo.', 'offline', 0), //cpg1.3.0
 
   'Navegando no Sitio', //cpg1.3.0
   array('Qué é o boton &quot;albums&quot;?', 'Isto amosará toda a galería coa ligazón de cada categoria. As Miniaturas poden ser unha ligazón para unha categoria.', 'offline', 0), //cpg1.3.0

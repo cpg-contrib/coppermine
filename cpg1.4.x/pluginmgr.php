@@ -21,11 +21,6 @@
 //  Open Plugin API (OpenPAPI) for Coppermine Photo Gallery                  //
 // ------------------------------------------------------------------------- //
 //  Copyright (C) 2004  Christopher Brown-Floyd                              //
-//  http://www.brownfloyd.com/                                               //
-// ------------------------------------------------------------------------- //
-//  For Coppermine support goto http://coppermine.sf.net/board/              //
-//  For generic support (non-Coppermine integration) goto                    //
-//  the Open Plugin API webpage: http://www.brownfloyd.com/openpapi/         //
 // ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);

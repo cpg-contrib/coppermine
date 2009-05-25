@@ -307,7 +307,7 @@ $lang_theme_selection = array(
 $lang_version_alert = array(
   'version_alert' => 'Versió no implementada!', //cpg1.4
   'security_alert' => 'Alerta de seguretat!', //cpg1.4.3
-  'relocate_exists' => 'Elimineu el fitxer <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> del vostre servidor!',
+  'relocate_exists' => 'Elimineu el fitxer <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0">relocate_server.php</a> del vostre servidor!',
   'no_stable_version' => 'Esteu utilitzant el Coppermine %s (%s) que està orientat a usuaris experimentats. Aquesta versió no té cap tipus de suport ni garantia. Pel fet d\'utilitzar-la esteu corrent un risc. Feu servir la versió estable si voleu tenir garanties de bon funcionament!', //cpg1.4
   'gallery_offline' => 'La galeria està fora de línia i només està accessible pels administradors. No us descuideu de tornar-la a posar en línia després d\'acabar les tasques de manteniment', //cpg1.4
 );
@@ -1194,7 +1194,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Com puc modificar i restringir l\'accés als meus àlbums als altres usuaris?', 'Heu d\'entrar en &quot;mode administració&quot;.<br />Cliqueu a &quot;Modifica els meus àlbums&quot;. A la barra de &quot;modificació d\'àlbums&quot;, trieu el que voleu modificar.<br />Des d\'aquí podeu canviar-li el nom, la descripció, la seva miniatura i restringir qui el pot veure i qui pot enviar comentaris a l\'àlbum.<br />Cliqueu a &quot;Modifica l\'àlbum&quot; per desar els canvis', 'allow_private_albums', 0), //cpg1.3.0
   array('Com puc veure galeries d\'altres usuaris?', 'Aneu a la &quot;Llista d\'àlbums&quot; i trieu &quot;Galeries dels usuaris&quot;', 'allow_private_albums', 0), //cpg1.3.0
   array('Què són les galetes?', 'Les galetes (<em>cookies</em>) són uns petits textos que s\'envien des de la pàgina web i que s\'emmgatzemen en el vostre ordinador.<br />Normalment les galetes serveixen per "recordar" a l\'usuari/ària quan torna a visitar la pàgina, així com per a altres usos', 'offline', 0), //cpg1.3.0
-  array('On puc aconseguir aquest programa per a posar-lo a la meva pàgina web?', 'El Coppermine és una galeria multimèdia gratuïta, publicada sota llicencia GNU/GPL. Proporciona un gran nombre de funcionalitats i ha estat adaptada a diverses plataformes i sistemes de continguts. Visiteu el <a href="http://coppermine.sf.net/">web del Coppermine</a> per a saber-ne més i per descarregar el programa.', 'offline', 0), //cpg1.3.0
+  array('On puc aconseguir aquest programa per a posar-lo a la meva pàgina web?', 'El Coppermine és una galeria multimèdia gratuïta, publicada sota llicencia GNU/GPL. Proporciona un gran nombre de funcionalitats i ha estat adaptada a diverses plataformes i sistemes de continguts. Visiteu el <a href="http://coppermine-gallery.net/">web del Coppermine</a> per a saber-ne més i per descarregar el programa.', 'offline', 0), //cpg1.3.0
 
   'Navegant pel Coppermine', //cpg1.3.0
   array('Què és la &quot;Llista d\'àlbums&quot;?', 'Des de la llista d\'àlbums es pot veure la galeria sencera, amb un enllaç a cada categoria. Les miniatures de les imatges poden ser enllaços directes a les categories', 'offline', 0), //cpg1.3.0

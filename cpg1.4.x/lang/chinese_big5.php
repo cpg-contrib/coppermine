@@ -1185,7 +1185,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('我要如何禁止其他會員看我的相簿?', '你必須在 &quot;管理模式&quot;<br />到 &quot;變更我的相簿. 在 &quot;更新相簿&quot; 欄位, 選擇你要變更的相簿.<br />在這裡, 你可以變更相簿名稱 描述 縮圖 ,及限制觀看 留言 評分 的權限.<br />按 &quot;更新相簿&quot;.', 'allow_private_albums', 0),
   array('如何觀看其他會員的相簿?', '到 &quot;相簿目錄&quot; 選擇 &quot;會員相簿&quot;.', 'allow_private_albums', 0),
   array('什麼是 cookies?', 'Cookies 是網站放在你電腦中的文字資料.<br />Cookies 通常讓使用者再次回到網站時自動登入 並記錄其他設定資料.', 'offline', 0),
-  array('在哪裡可以取得這個相簿程式?', 'Coppermine 是基於GNU GPL的免費多媒體相簿. 它是全功能的 且支援不同的平台. 請到<a href="http://coppermine.sf.net/">Coppermine 的網站</a> 取得更多的資訊 或是下載它.', 'offline', 0),
+  array('在哪裡可以取得這個相簿程式?', 'Coppermine 是基於GNU GPL的免費多媒體相簿. 它是全功能的 且支援不同的平台. 請到<a href="http://coppermine-gallery.net/">Coppermine 的網站</a> 取得更多的資訊 或是下載它.', 'offline', 0),
 
   '網站導引',
   array('什麼是 &quot;相簿目錄 &quot;?', '這將顯示整個相簿 包含每一個分類. 縮圖可以連結到類別中.', 'offline', 0),

@@ -292,7 +292,7 @@ if ($file) {
 
 
 if ($online_repository_connection != 1) { // connecting to the online repository didn't work or didn't return any data
-    $err_reason1 = sprintf($lang_versioncheck_php['online_repository_reason1'],'<a href="'.$online_repository_url.'" target="_blank">'.$online_repository_url.'</a>');
+    $err_reason1 = sprintf($lang_versioncheck_php['online_repository_reason1'],'<a href="'.$online_repository_url.'">'.$online_repository_url.'</a>');
     $err_reason2 = sprintf($lang_versioncheck_php['online_repository_reason2'],'<a href="http://www.php.net/manual/en/ref.filesystem.php#ini.allow-url-fopen"><i>allow_url_fopen</i></a>','<a href="http://www.php.net/manual/en/function.ini-set.php"><i>ini_set</i></a>');
 if ($additional_info != 0 && $online == 1) { //display warning that repository connection was not possible: start
     echo <<<EOT

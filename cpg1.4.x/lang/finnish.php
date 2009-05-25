@@ -302,7 +302,7 @@ $lang_theme_selection = array(
 $lang_version_alert = array(
   'version_alert' => 'Versiota ei tueta!', //cpg1.4
   'security_alert' => 'Turvahälytys!', //cpg1.4.3
-  'relocate_exists' => 'Poista <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> tiedosto sivustoltasi!',
+  'relocate_exists' => 'Poista <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0">relocate_server.php</a> tiedosto sivustoltasi!',
   'no_stable_version' => 'Sinulla on ajossa Coppermine %s (%s), joka on tarkoitettu vain kokeneille käyttäjille - tälle versiolle ei ole tukea eikä takuuta. Käytä sitä omalla vastuullasi tai päivitä alaspäin viimeisimpään vakaaseen versioon, jos tarvitset tukea!', //cpg1.4
   'gallery_offline' => 'Galleria ei ole tällä hetkellä julkinen, vaan se näkyy vain sinulle ylläpitäjänä. Älä unohda laittaa galleriaa takaisin julkiseksi, kun olet saanut ylläpitotoimet valmiiksi.', //cpg1.4
 );
@@ -1186,7 +1186,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Kuinka voin rajoittaa käyttäjien pääsyä albumiini?', 'Sinun pitäisi jo olla &quot;Ylläpitäjätilassa&quot;<br />Mene &quot;Muokkaa albumeitani&quot;. Valitse muokattava albumi kohdassa &quot;Päivitä albumi&quot;.<br />Täällä voit muuttaa nimeä, kuvausta, thumbnailkuvaa, rajoittaa katselu-, kommentointi- ja äänestysoikeuksia.<br />Klikkaa &quot;Päivitä albumi&quot;.', 'allow_private_albums', 0),
   array('Miten voin nähdä muiden käyttäjien galleriat?', 'Mene &quot;albumilistaan&quot; ja valitse &quot;Käyttäjien galleriat&quot;.', 'allow_private_albums', 0),
   array('Mitä ovat evästeet?', 'Evästeet ovat tekstitietoa, joka lähetetään websivulta ja tallennetaan tietokoneellesi.<br />Evästeet yleensä sallivat käyttäjän lähteä ja palata sivustolle ilman, että käyttäjän tarvitsee kirjautua uudelleen tai tehdä muita toimintoja.', 'offline', 0),
-  array('Mistä saan tämän ohjelman omalle sivustolleni?', 'Coppermine on ilmainen multimediagalleria, jota jaetaan GNU GPL:n alla. Se on täynnä ominaisuuksia ja se on toteutettu monille eri alustoille.  Käy <a href="http://coppermine.sf.net/">Copperminen kotisivulla</a>, jolta saa tietoa ja voit ladata ohjelman.', 'offline', 0),
+  array('Mistä saan tämän ohjelman omalle sivustolleni?', 'Coppermine on ilmainen multimediagalleria, jota jaetaan GNU GPL:n alla. Se on täynnä ominaisuuksia ja se on toteutettu monille eri alustoille.  Käy <a href="http://coppermine-gallery.net/">Copperminen kotisivulla</a>, jolta saa tietoa ja voit ladata ohjelman.', 'offline', 0),
 
   'Sivustolla liikkuminen',
   array('Mikä on &quot;Albumilista&quot;?', 'Tämä näyttää koko kategorian sisältämät albumit. Jos et kategoriassa, näytetään kaikki gallerian kategoriat. Thumbnailit voivat olla linkkejä kategorioihin.', 'offline', 0),

@@ -1206,7 +1206,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
 
   array('Zer dira cookieak?', 'Cookieak zerbitzariak nebegagoreei bidaltzen dizkien testu fitxategi txikiak dira.<br />Normalean horien bitartez zure ezarpenak gogoratu ahal ditu zerbitzariak (beste erabilpen batzuk ere izan ditzakete).', 'offline', 0), //cpg1.3.0
 
-  array('Non lor dezaket programa hau?', 'Coppermine galeria multimedia librea da, GNU GPL lizentziapean argitaratuta. Ezaugarriz beteta eta plataforma eta sistema anitza. Gehiago jakiteko eta programa eskuratzeko <a href="http://coppermine.sf.net/">Coppermineren webgunea</a> bisita ezazu.', 'offline', 0), //cpg1.3.0
+  array('Non lor dezaket programa hau?', 'Coppermine galeria multimedia librea da, GNU GPL lizentziapean argitaratuta. Ezaugarriz beteta eta plataforma eta sistema anitza. Gehiago jakiteko eta programa eskuratzeko <a href="http://coppermine-gallery.net/">Coppermineren webgunea</a> bisita ezazu.', 'offline', 0), //cpg1.3.0
 
 
 
