@@ -6892,7 +6892,7 @@ $return = '
 1.4.24|upload.php|1.4.24|5969|mandatory|r@
 1.4.24|usermgr.php|1.4.24|5969|mandatory|r@
 1.4.24|util.php|1.4.24|5969|mandatory|r@
-1.4.24|versioncheck.php|1.4.24|5989|mandatory|r@
+1.4.24|versioncheck.php|1.4.24|5992|mandatory|r@
 1.4.24|viewlog.php|1.4.24|5969|mandatory|r@
 1.4.24|xp_publish.php|1.4.24|5969|mandatory|r@
 1.4.24|zipdownload.php|1.4.24|5969|mandatory|r@
@@ -6954,7 +6954,7 @@ $return = '
 1.4.24|include/imageObjectGD.class.php|1.4.24|5969|mandatory|r@
 1.4.24|include/imageObjectIM.class.php|1.4.24|5969|mandatory|r@
 1.4.24|include/index.html|1.4.24|5969|mandatory|r@
-1.4.24|include/init.inc.php|1.4.24|5989|mandatory|r@
+1.4.24|include/init.inc.php|1.4.24|5991|mandatory|r@
 1.4.24|include/iptc.inc.php|1.4.24|5969|mandatory|r@
 1.4.24|include/keyword.inc.php|1.4.24|5969|mandatory|r@
 1.4.24|include/langfallback.inc.php|1.4.24|5969|mandatory|r@
