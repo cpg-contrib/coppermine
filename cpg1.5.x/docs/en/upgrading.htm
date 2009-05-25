@@ -136,7 +136,31 @@
   <li>If your webserver is running in safe_mode and you have enabled "SILLY_SAFE_MODE" in include/config.inc.php, you will have to go to coppermine's config after performing above mentioned steps and enable "<a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">silly safe mode</a>" there, as the setting in <tt class="code">include/config.inc.php</tt> is no longer being taken into account in cpg1.5.x. The silly_safe_mode setting has been turned into a <a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">config setting</a> instead.</li>
 </ul>
 
-
+<a name="updater"></a><h2>The update script<a href="#updater" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The updater is a script that will update your database and delete leftover files from outdated versions that are no longer used in your version. It can be accessed by clicking on the corresponding link inside the admin menu or by entering the URL into the address bar of your browser.</p>
+<p class="cpg_example">You can run the updater by entering <tt class="code">http://yoursite.tld/your_coppermine_folder/update.php</tt> into your browser's address bar.</p>
+<a name="updater_what_it_does"></a><h3>What it does<a href="#updater_what_it_does" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+The updater performs three things:
+<ul>
+	<li>Check the authorization of the visitor who accesses the script</li>
+	<li>Run the mysql database queries that reside in the file <tt class="code">sql/update.sql</tt> (replacing the generic table prefix with the one you actually chose during initial install)</li>
+	<li>Delete some files that used to reside inside coppermine's core in previous versions. The script only deletes unneeded files, but it doesn't touch your custom files, so there is absolutely no reason to be alarmed.</li>
+</ul>
+<a name="updater_purpose"></a><h3>Purpose<a href="#updater_purpose" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>The updater will perform the database update for you after you manually have replaced the sql file it is using. The updater will <strong>not</strong> detect for you if there is a new version of coppermine available, nor will it download anything from the coppermine website. The level of automation is not that advanced in coppermine (yet).</p>
+<p>To find out about new versions of coppermine or maintenance releases, check the <a href="configuration.htm#admin_general_coppermine_news">news from coppermine-gallery.net</a>.</p>
+<a name="updater_authorization"></a><h3>Authorization check<a href="#updater_authorization" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>In Coppermine versions before cpg1.5.x, the update script used to be publicly accessible, e.g. everybody was able to run it. While this was good for support purposes (supporters were able to run the updater for users looking for help if it was obvious that they had not done so), there was a slight chance that this accessibility for everyone could at some stage be a security risk. That's why the dev team members decided to protect the updater from being run by any visitor who accesses it - starting with cpg1.5x you need to supply admin credentials. This can happen in four different ways:</p>
+<ul>
+	<li>If you're already logged in as admin and run the updater from the link in coppermine's admin menu, the updater should run without further prompts for authentification - it uses the "regular" cookie-driven authentification that the entire coppermine script is using</li>
+	<li>If you're not logged in as admin or if the coppermine core components no longer work without running the updater first (usually happens when upgrading major coppermine versions), you are prompted for credentials - enter the coppermine admin account details that you set up when installing coppermine in the first place</li>
+	<li>If you can not remember your standalone coppermine admin credentials, you can supply your mysql credentials - you needed them when you installed coppermine in the first place. If you have forgotten them, read them up in the file that is used to store the mysql database connection details: download <tt class="code">include/config.inc.php</tt> from your webserver to your client and then edit it with a plain text editor - you should see the mysql credentials in that file. If they have changed, your webhost should be able to help you retrieving them.</li>
+	<li>If everything else fails, there is a toggle inside the code of the update script that you can use to skip authentification - to switch that toggle, download the update script (<tt class="code">update.php</tt>) from your webserver to your client, find <tt class="code">// define('SKIP_AUTHENTICATION', true);</tt> and replace with <tt class="code">define('SKIP_AUTHENTICATION', true);</tt>. Safe your changes and upload the edited file to your webserver, overwriting the version that already resides on your server. Remember to restore the file as it was after having successfully performed the update.</li>
+</ul>
+<a name="updater_when"></a><h3>When must the updater be run?<a href="#updater_when" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>You need to run the updater every time you upgrade/update, i.e. each time the file <tt class="code">sql/update.sql</tt> is being replaced with a new version.</p>
+<p>It doesn't hurt to run the updater several times in a row, so if you're in doubt, run it again.</p>
+<a name="updater_end"></a>
 
 <a name="versioncheck"></a><h2>The version check tool<a href="#versioncheck" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Since the release of cpg1.3.2 Coppermine comes with an additional version checking tool to help you resolve issues with upgrades and updates easily. To launch the versioncheck, simply add <tt>versioncheck.php</tt> to your browser's address bar after being logged into coppermine as admin (example: <tt>http://yourdomain.tld/your_coppermine_folder/versioncheck.php</tt>). With version 1.5.x, you can run the versioncheck utility from the <a href="admin_menu.htm#admin_menu">Admin menu</a>.</p>

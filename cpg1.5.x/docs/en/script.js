@@ -98,6 +98,14 @@ document.write('          <li><a href="upgrading.htm#upgrade_10">Upgrading from 
 document.write('          <li><a href="upgrading.htm#upgrade_14">Upgrading from cpg1.4.x to version cpg1.5.x</a></li>');
 document.write('        </ul>');
 document.write('      </li>');
+document.write('      <li><a href="upgrading.htm#updater">The update script</a>');
+document.write('      	<ul class="level3" id="versioncheck">');
+document.write('      		<li><a href="upgrading.htm#updater_what_it_does">What it does</a></li>');
+document.write('      		<li><a href="upgrading.htm#updater_purpose">Purpose</a></li>');
+document.write('      		<li><a href="upgrading.htm#updater_authorization">Authorization check</a></li>');
+document.write('      		<li><a href="upgrading.htm#updater_when">When must the updater be run?</a></li>');
+document.write('      	</ul>');
+document.write('      </li>');
 document.write('      <li><a href="upgrading.htm#versioncheck">The version check tool</a>');
 document.write('        <ul>');
 document.write('          <li><a href="upgrading.htm#versioncheck_description_start">What it does</a></li>');

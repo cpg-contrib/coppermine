@@ -149,6 +149,7 @@ require_once('include/functions.inc.php');
 $errors = '';
 $notes  = '';
 
+
 $DFLT = array(
     'cfg_d' => 'include', // The config file dir
     'cfg_f' => 'include/config.inc.php', // The config file name
@@ -188,6 +189,12 @@ if (!defined('SKIP_AUTHENTICATION') && defined('COPPERMINE_VERSION') && GALLERY_
       'delete_file' => 'Delete %s', // cpg1.5
       'could_not_delete' => 'Could not delete due to missing permissions. Delete the file manually!', // cpg1.5
     );
+}
+
+if (!function_exists('cpg_display_help')) {
+	$help = '&nbsp;'.cpg_display_help('f=upgrading.htm&amp;as=updater&amp;ae=updater_end&amp;top=1', '650', '500');
+} else {
+	$help = '&nbsp;<a href="docs/en/upgrading.htm#updater"><img src="images/help.gif" border="0" width="13" height="11" alt="" /></a>';
 }
 
 // ---------------------------- AUTHENTICATION --------------------------- //
@@ -264,12 +271,12 @@ EOT;
 
 function html_error($error_msg = '')
 {
-    global $lang_update_php;
+    global $lang_update_php, $help;
 
     print <<< EOT
       <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
        <tr>
-        <td class="tableh1" colspan="2"><h2>{$lang_update_php['welcome_updater']}</h2>
+        <td class="tableh1" colspan="2"><h2>{$lang_update_php['welcome_updater']}{$help}</h2>
         </td>
        </tr>
 EOT;
@@ -326,7 +333,7 @@ EOT;
 
 function html_auth_box($method)
 {
-    global $lang_update_php, $lang_common;
+    global $lang_update_php, $lang_common, $help;
     
     $superCage = Inspekt::makeSuperCage();
 
@@ -355,7 +362,7 @@ function html_auth_box($method)
         <table border="0" cellspacing="0" cellpadding="0" class="maintable">
             <tr>
                 <td class="tableh1" colspan="2">
-                    <h1>{$update_icon}{$lang_update_php['welcome_updater']}</h1>
+                    <h1>{$update_icon}{$lang_update_php['welcome_updater']}{$help}</h1>
                 </td>
             </tr>
             <tr>
@@ -510,7 +517,7 @@ function test_sql_connection()
 // ------------------------- SQL QUERIES TO CREATE TABLES ------------------ //
 function update_tables()
 {
-    global $errors, $CONFIG, $lang_update_php, $lang_common, $LINEBREAK;
+    global $errors, $CONFIG, $lang_update_php, $lang_common, $LINEBREAK, $help;
     
     $loopCounter = 0;
     $cellStyle = '';
@@ -552,7 +559,7 @@ function update_tables()
         <table border="0" cellspacing="0" cellpadding="0" class="maintable">
             <tr>
                 <td class="tableh1" colspan="2">
-                    {$update_icon}{$lang_update_php['performing_database_updates']}
+                    {$update_icon}{$lang_update_php['performing_database_updates']}{$help}
                 </td>
             </tr>
 

@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-25 [D] Added documentation about updater {GauGau}
 2009-05-25 [C] Removed unneeded tables from thumbnail sorting {GauGau}
 2009-05-25 [O] Replaced hardcoded linebreaks with global variable {GauGau}
 2009-05-22 [A] Turned calendar pop-up and stats pop-up into greyboxes {GauGau}
