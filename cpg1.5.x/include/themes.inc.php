@@ -672,10 +672,10 @@ $template_thumb_view_title_row = <<<EOT
 
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
-                <td class="statlink" rowspan="2">
+                <td style="width:60%;vertical-align:top" class="statlink" rowspan="2">
                     <h2>{ALBUM_NAME}</h2>
                 </td>
-                <td class="sortorder_cell" id="sortorder_cell"  style="text-align:right">
+                <td style="text-align:right;width:40%;" class="sortorder_cell" id="sortorder_cell">
                     <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
                 </td>
             </tr>
@@ -2853,22 +2853,6 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     '{CAPTION}'    => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu'],
                 );
-            ########## Commented by Abbas for new URL ###############
-            // Can be removed after testing
-            /*
-            } else {
-                $params = array(
-                    '{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}'   => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link",
-                    '{THUMB}'      => $thumb['image'],
-                    '{CAPTION}'    => $thumb['caption'],
-                    '{ADMIN_MENU}' => $thumb['admin_menu'],
-                );
-            }
-            */
-            ########################################################
-
-            ######### Added by Abbas for new URL #################
             } elseif ($aid == 'random') {
                 // determine if thumbnail link targets should open in a pop-up
                 if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
@@ -2889,7 +2873,6 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     '{CAPTION}'    => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu'],
                 );
-            ######################################################
             } else {
                 // determine if thumbnail link targets should open in a pop-up
                 if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
@@ -2905,7 +2888,6 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 }
                 $params = array(
                     '{CELL_WIDTH}' => $cell_width,
-                    //'{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
                     '{LINK_TGT}'   => $target,
                     '{THUMB}'      => $thumb['image'],
                     '{CAPTION}'    => $thumb['caption'],

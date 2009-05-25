@@ -2845,22 +2845,6 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     '{CAPTION}'    => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu'],
                 );
-            ########## Commented by Abbas for new URL ###############
-            // Can be removed after testing
-            /*
-            } else {
-                $params = array(
-                    '{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}'   => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}$uid_link",
-                    '{THUMB}'      => $thumb['image'],
-                    '{CAPTION}'    => $thumb['caption'],
-                    '{ADMIN_MENU}' => $thumb['admin_menu'],
-                );
-            }
-            */
-            ########################################################
-
-            ######### Added by Abbas for new URL #################
             } elseif ($aid == 'random') {
                 // determine if thumbnail link targets should open in a pop-up
                 if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
@@ -2881,7 +2865,6 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     '{CAPTION}'    => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu'],
                 );
-            ######################################################
             } else {
                 // determine if thumbnail link targets should open in a pop-up
                 if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
@@ -2897,7 +2880,6 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 }
                 $params = array(
                     '{CELL_WIDTH}' => $cell_width,
-                    //'{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
                     '{LINK_TGT}'   => $target,
                     '{THUMB}'      => $thumb['image'],
                     '{CAPTION}'    => $thumb['caption'],

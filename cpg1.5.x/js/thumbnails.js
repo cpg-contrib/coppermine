@@ -16,40 +16,64 @@
   $Date$
 **********************************************/
 $(document).ready(function() {
-    addSortable();
+    addSortOptions();
 });
 
-function addSortable(){
-    var extra_att = '';
-    if(js_vars.not_default_theme != undefined){
-        extra_att = ' style="font-size: 100%;"';
-    }
-    var sortable =  '       <table cellpadding="0" cellspacing="0" style="margin-left:10px" border="0">';
-    sortable += '       <tr>';
-    sortable += '               <td class="sortorder_options"' + extra_att + '>' + js_vars.sort_vars.sort_title + '</td>';
-    sortable += '               <td class="sortorder_options"' + extra_att + '><span class="statlink">&nbsp;<a href="thumbnails.php?album=' + js_vars.sort_vars.aid
-    sortable += '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=ta" title="' + js_vars.sort_vars.sort_ta + '">+</a>&nbsp;</span></td>';
-    sortable += '               <td class="sortorder_options"' + extra_att + '><span class="statlink">&nbsp;<a href="thumbnails.php?album=' + js_vars.sort_vars.aid
-    sortable += '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=td" title="' + js_vars.sort_vars.sort_td + '">-</a>&nbsp;</span></td>';
-    sortable += (extra_att == '') ? '       </tr><tr>' : '      <td></td>';
-    sortable += '               <td class="sortorder_options"' + extra_att + '>' + js_vars.sort_vars.sort_name + '</td>';
-    sortable += '               <td class="sortorder_options"' + extra_att + '><span class="statlink">&nbsp;<a href="thumbnails.php?album=' + js_vars.sort_vars.aid
-    sortable += '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=na" title="' + js_vars.sort_vars.sort_na + '">+</a>&nbsp;</span></td>';
-    sortable += '               <td class="sortorder_options"' + extra_att + '><span class="statlink">&nbsp;<a href="thumbnails.php?album=' + js_vars.sort_vars.aid
-    sortable += '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=nd" title="' + js_vars.sort_vars.sort_nd + '">-</a>&nbsp;</span></td>';
-    sortable += (extra_att == '') ? '       </tr><tr>' : '      <td></td>';
-    sortable += '               <td class="sortorder_options"' + extra_att + '>' + js_vars.sort_vars.sort_date + '</td>';
-    sortable += '               <td class="sortorder_options"' + extra_att + '><span class="statlink">&nbsp;<a href="thumbnails.php?album=' + js_vars.sort_vars.aid
-    sortable += '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=da" title="' + js_vars.sort_vars.sort_da + '">+</a>&nbsp;</span></td>';
-    sortable += '               <td class="sortorder_options"' + extra_att + '><span class="statlink">&nbsp;<a href="thumbnails.php?album=' + js_vars.sort_vars.aid
-    sortable += '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=dd" title="' + js_vars.sort_vars.sort_dd + '">-</a>&nbsp;</span></td>';
-    sortable += (extra_att == '') ? '       </tr><tr>' : '      <td></td>';
-    sortable += '               <td class="sortorder_options"' + extra_att + '>' + js_vars.sort_vars.sort_position + '</td>';
-    sortable += '               <td class="sortorder_options"' + extra_att + '><span class="statlink">&nbsp;<a href="thumbnails.php?album=' + js_vars.sort_vars.aid
-    sortable += '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=pa" title="' + js_vars.sort_vars.sort_pa + '">+</a>&nbsp;</span></td>';
-    sortable += '               <td class="sortorder_options"' + extra_att + '><span class="statlink">&nbsp;<a href="thumbnails.php?album=' + js_vars.sort_vars.aid
-    sortable += '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=pd" title="' + js_vars.sort_vars.sort_pd + '">-</a>&nbsp;</span></td>';
-    sortable += '       </tr>';
-    sortable += '       </table>';
-    $('#sortorder_cell').append(sortable);  
+function addSortOptions(){
+	var extra_att = '';
+	var sortable = '';
+	// Change the separator to '<br />' for vertical stacking
+	var separator = '&nbsp;&bull;&nbsp;';
+	sortable += '<span class="sortorder_options">';
+	sortable += js_vars.sort_vars.sort_title;
+	sortable += '</span>';
+	sortable += '&nbsp;';
+	sortable += '<span class="statlink">';
+	sortable += '<a href="thumbnails.php?album=' + js_vars.sort_vars.aid + '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=ta" title="' + js_vars.sort_vars.sort_ta + '">+</a>';
+	sortable += '</span>';
+	sortable += '&nbsp;';
+	sortable += '<span class="statlink">';
+	sortable += '<a href="thumbnails.php?album=' + js_vars.sort_vars.aid + '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=td" title="' + js_vars.sort_vars.sort_td + '">-</a>';
+	sortable += '</span>';
+	sortable += separator;
+	
+    sortable += '<span class="sortorder_options">';
+    sortable += js_vars.sort_vars.sort_name;
+    sortable += '</span>';
+    sortable += '&nbsp;';
+    sortable += '<span class="statlink">';
+    sortable += '<a href="thumbnails.php?album=' + js_vars.sort_vars.aid + '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=na" title="' + js_vars.sort_vars.sort_na + '">+</a>';
+    sortable += '</span>';
+    sortable += '&nbsp;';
+    sortable += '<span class="statlink">';
+    sortable += '<a href="thumbnails.php?album=' + js_vars.sort_vars.aid + '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=nd" title="' + js_vars.sort_vars.sort_nd + '">-</a>';
+    sortable += '</span>';
+    sortable += separator;
+    
+    sortable += '<span class="sortorder_options">';
+    sortable += js_vars.sort_vars.sort_date;
+    sortable += '</span>';
+    sortable += '&nbsp;';
+    sortable += '<span class="statlink">';
+    sortable += '<a href="thumbnails.php?album=' + js_vars.sort_vars.aid + '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=da" title="' + js_vars.sort_vars.sort_da + '">+</a>';
+    sortable += '</span>';
+    sortable += '&nbsp;';
+    sortable += '<span class="statlink">';
+    sortable += '<a href="thumbnails.php?album=' + js_vars.sort_vars.aid + '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=dd" title="' + js_vars.sort_vars.sort_dd + '">-</a>';
+    sortable += '</span>';
+    sortable += separator;
+    
+    sortable += '<span class="sortorder_options">';
+    sortable += js_vars.sort_vars.sort_position;
+    sortable += '</span>';
+    sortable += '&nbsp;';
+    sortable += '<span class="statlink">';
+    sortable += '<a href="thumbnails.php?album=' + js_vars.sort_vars.aid + '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=pa" title="' + js_vars.sort_vars.sort_pa + '">+</a>';
+    sortable += '</span>';
+    sortable += '&nbsp;';
+    sortable += '<span class="statlink">';
+    sortable += '<a href="thumbnails.php?album=' + js_vars.sort_vars.aid + '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=pd" title="' + js_vars.sort_vars.sort_pd + '">-</a>';
+    sortable += '</span>';
+    
+    $('#sortorder_cell').append(sortable); 
 }
