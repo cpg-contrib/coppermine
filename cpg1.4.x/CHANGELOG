@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-25 [O] Updated Russian language file (user contribution) {GauGau}
 2009-05-24 [C] Added line breaks for meta navigation (thread ID 56888) {GauGau}
 2009-09-24 [O] Backported browser and client OS detection function from cpg1.5.x for granular stats {GauGau}
 2009-09-24 [B] Added code for correct keyword separation in keyword meta tag (thread ID 56873) {GauGau}

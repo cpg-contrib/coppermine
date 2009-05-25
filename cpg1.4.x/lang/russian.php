@@ -16,9 +16,6 @@
   $Author$
   $Date$
 **********************************************/
-// ------------------------------------------------------------------------- //
-// $Id$
-// ------------------------------------------------------------------------- //
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
@@ -29,8 +26,8 @@ $lang_translation_info = array(
   'lang_country_code' => 'ru', //cpg1.4
   'trans_name'=> 'Makc666',
   'trans_email' => 'makc666@yahoo.com',
-  'trans_website' => 'http://makc666.com/',
-  'trans_date' => '2007-07-25',
+  'trans_website' => 'http://makc666.com',
+  'trans_date' => '2009-05-25',
 );
 
 $lang_charset = 'utf-8';
@@ -94,14 +91,14 @@ $lang_errors = array(
   'pic_in_invalid_album' => 'Файл находится в несуществующем альбоме (%s)!?',
   'banned' => 'В данный момент Вы забанены на данном сайте.',
   'not_with_udb' => 'Эта функция отключена в Coppermine, потому что она интегрирована с движком форума. То, что Вы пытаетесь сделать, или недоступно в данной конфигурации, или должно изменяться с помощью движка форума.',
-  'offline_title' => 'Выключена',
-  'offline_text' => 'Извините, галерея отключена. Попробуйте зайти позже',
+  'offline_title' => 'Отключена',
+  'offline_text' => 'Галерея в настоящее время отключена - попробуйте зайти позже',
   'ecards_empty' => 'В данный момент отсутствуют открытки занесенные в логи. Проверьте, что Вы включили лог открыток в настройках сайта!',
   'action_failed' => 'Действие не удалось. Coppermine не смог выполнить Ваш запрос.',
   'no_zip' => 'Необходимые библиотеки для обработки ZIP файлов недоступны. Пожалуйста, свяжитесь с администрацией сайта.',
   'zip_type' => 'У вас нет прав для загрузки ZIP файлов.',
   'database_query' => 'Произошла ошибка при обращении к базе данных', //cpg1.4
-  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
+  'register_globals_on' => 'На вашем сервере включена опция PHP register_globals, что является плохой идеей с точки зрения безопасности. Настоятельно рекомендуется её выключить. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">подробнее</a>]',
 );
 
 $lang_bbcode_help_title = 'помощь по bbcode'; //cpg1.4
@@ -662,7 +659,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Отображать помощь по bbcode', 'show_bbcode_help', 1, 'f=index.htm&amp;as=admin_theme_bbcode&amp;ae=admin_theme_bbcode_end&amp;top=1'), //cpg1.4
   array('Отображать иконки совместимости внизу страницы для тем, которые поддерживают XHTML и CSS','vanity_block',1, 'f=index.htm&amp;as=vanity_block&amp;ae=vanity_block_end'), //cpg1.4
   array('Путь к дополнительному файлу верхней части галереи', 'custom_header_path', 0, 'f=index.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'), //cpg1.4
-  array('Путь к дополнительному файлу нижней части страницы галереи', 'custom_footer_path', 0, 'f=index.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'), //cpg1.4
+  array('Путь к дополнительному файлу нижней части галереи', 'custom_footer_path', 0, 'f=index.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'), //cpg1.4
 
   'Отображение списка альбомов',
   array('Ширина главной таблицы (пиксели или %)', 'main_table_width', 0, 'f=index.htm&amp;as=admin_album_table-width&amp;ae=admin_album_table-width_end'), //cpg1.4
@@ -952,7 +949,7 @@ $lang_picinfo = array(
   'File Size' => 'Размер файла',
   'Date Added' => 'Добавлен', //cpg1.4
   'Dimensions' => 'Размеры',
-  'Displayed' => 'Отображен',
+  'Displayed' => 'Просмотрен',
   'URL' => 'Ссылка', //cpg1.4
   'Make' => 'Производитель камеры', //cpg1.4
   'Model' => 'Модель', //cpg1.4
@@ -1054,7 +1051,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'view_ecard' => 'Если открытка не отображается корректно, пройдите по этой ссылке', //cpg1.4
   'view_ecard_plaintext' => 'Чтобы просмотреть открытку, скопируйте и вставьте в Ваш браузер эту ссылку:', //cpg1.4
   'view_more_pics' => 'Посмотреть остальные картинки!', //cpg1.4
-  'send_success' => 'Ваша открытка была отправить',
+  'send_success' => 'Ваша открытка была отправлена',
   'send_failed' => 'Извините, но сервер не может отправить Вашу открытку...',
   'from' => 'От',
   'your_name' => 'Ваше имя',
@@ -1941,7 +1938,7 @@ $lang_util_php = array(
   'update_number' => 'Количество обрабатываемых изображений по одному клику',
   'update_option' => '(Попробуйте установить это значение ниже, если возникают проблемы с таймаутами)',
   'filename_title' => 'Имя файла -&gt; Название файла',
-  'filename_how' => 'Как должно быть изменено имя файла?',
+  'filename_how' => 'Как должен быть изменен заголовок файла',
   'filename_remove' => 'Удалить окончание .jpg и заменить _ (подчеркивание) на пробелы',
   'filename_euro' => 'Изменить 2003_11_23_13_20_20.jpg на 23/11/2003 13:20',
   'filename_us' => 'Изменить 2003_11_23_13_20_20.jpg на 11/23/2003 13:20',
