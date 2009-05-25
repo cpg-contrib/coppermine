@@ -222,13 +222,13 @@ function getfoldercontent($folder, &$dir_array, &$pic_array, &$expic_array)
 {
     global $CONFIG, $lang_db_input_php;
     $dir = opendir($CONFIG['fullpath'] . $folder);
-    while ($file = readdir($dir)) {
+    while (($file = readdir($dir)) !== FALSE) {
         if (is_dir($CONFIG['fullpath'] . $folder . $file)) {
             if ($file != "." && $file != ".." && $CONFIG['fullpath'] . $folder . $file != $CONFIG['fullpath'].'/edit' && $CONFIG['fullpath'] . $folder . $file != $CONFIG['fullpath'].'/'.substr($CONFIG['userpics'],0,strlen($CONFIG['userpics'])-1)) {
                 $dir_array[] = $file;
             }
         }
-        if (is_file($CONFIG['fullpath'] . $folder . $file)) {
+        if (is_file($CONFIG['fullpath'] . $folder . $file) && !in_array($file, $pic_array)) {
             if (strncmp($file, $CONFIG['thumb_pfx'], strlen($CONFIG['thumb_pfx'])) != 0 && strncmp($file, $CONFIG['normal_pfx'], strlen($CONFIG['normal_pfx'])) != 0 && $file != 'index.html') {
                 $newfile = replace_forbidden($file);
                 if ($newfile != $file) {
@@ -271,12 +271,14 @@ function display_dir_tree($folder, $ident)
 
     $dir = opendir($dir_path);
     static $dirCounter = 0;
-    while ($file = readdir($dir)) { // loop looking for files - start
+    while (($file = readdir($dir)) !== FALSE) { // loop looking for files - start
         if (is_dir($CONFIG['fullpath'] . $folder . $file) &&
             substr($file,0,1) != "." &&
             strpos($file,"'") == FALSE &&
             strpos($file,trim($CONFIG['userpics'],'/')) === FALSE &&
             strpos($file,'edit') === FALSE &&
+            strpos($file,'svn') === FALSE &&
+            strpos($file,'.svn') === FALSE &&
             strpos($file,'CVS') === FALSE) {
                 $start_target = $folder . $file;
                 $dir_path = $CONFIG['fullpath'] . $folder . $file;
@@ -575,7 +577,7 @@ EOT;
 
 
     $iframe_startfolder .= str_replace('searchnew.php', '', __FILE__).rtrim($CONFIG['fullpath'], '/').'/';
-    $iframe_hide = rawurlencode('.,..,CVS,edit,'.rtrim($CONFIG['userpics'], '/'));
+    $iframe_hide = rawurlencode('.,..,CVS,.svn,svn,edit,'.rtrim($CONFIG['userpics'], '/'));
     print '    <tr>'."\n";
     print '        <td class="tableb" align="center">'."\n";
     if ($CONFIG['browse_batch_add'] == 1) {
