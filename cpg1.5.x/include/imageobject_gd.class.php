@@ -18,7 +18,6 @@
 **********************************************/
 
 class imageObject{
-
          // image resource
          var $imgRes;
          // px
@@ -73,10 +72,9 @@ class imageObject{
               case 3:
               $im = imagecreatefrompng($name);
               break;
-                      }
+            }
            return $im;
          }
-
 
          function createUnique(&$imgnew)
          {
@@ -106,66 +104,49 @@ class imageObject{
              $clip_right = $cliparray[1];
              $clip_bottom = $cliparray[2];
              $clip_left = $cliparray[3];
-
              $new_w = $clip_right - $clip_left;
              $new_h = $clip_bottom - $clip_top;
-
              $dst_img = $this->createImage($new_w,$new_h);
-
              $result = @imagecopyresampled($dst_img, $this->imgRes, 0,0,$clip_left, $clip_top,$new_w, $new_h, $new_w, $new_h);
              if (!$result) $result = @imagecopyresized($dst_img, $this->imgRes, 0,0,$clip_left, $clip_top,$new_w, $new_h, $new_w, $new_h);
-
              return $this->createUnique($dst_img);
-
          }
 
          function rotateImage(&$angle){
-
           if ($angle == 180){
               $dst_img = @imagerotate($this->imgRes, $angle, 0);
-          }else{
+          } else {
                   $width = imagesx($this->imgRes);
                   $height = imagesy($this->imgRes);
                   if ($width > $height){
                       $size = $width;
-                      }else{
+                      } else {
                       $size = $height;
                   }
-
                   $dst_img = $this->createImage($size, $size);
                   imagecopy($dst_img, $this->imgRes, 0, 0, 0, 0, $width, $height);
                   $dst_img = @imagerotate($dst_img, $angle, 0);
                   $this->imgRes = $dst_img;
                   $dst_img = $this->createImage($height, $width);
-
                   if ((($angle == 90) && ($width > $height)) || (($angle == 270) && ($width < $height))){
                           imagecopy($dst_img, $this->imgRes, 0, 0, 0, 0, $size, $size);
-
                   }
-
                   if ((($angle == 270) && ($width > $height)) || (($angle == 90) && ($width < $height))){
                           imagecopy($dst_img, $this->imgRes, 0, 0, $size - $height, $size - $width, $size, $size);
                   }
           }
-
            return $this->createUnique($dst_img);
          }
 
-
-
          function resizeImage($new_w=0,$new_h=0){
-
              $dst_img = $this->createImage($new_w,$new_h);
-
              $result = @imagecopyresampled($dst_img, $this->imgRes, 0, 0, 0, 0, $new_w, $new_h, $this->width,$this->height);
              if (!$result) $result = @imagecopyresized($dst_img, $this->imgRes, 0, 0, 0, 0, $new_w, $new_h, $this->width,$this->height);
              return $this->createUnique($dst_img);
-
          }
 
 
          function saveImage(){
-
          }
 
    }
