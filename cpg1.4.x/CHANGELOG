@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-26 [M] Release of cpg1.4.24 {GauGau}
 2009-05-25 [O] Removed deprecated target attributes {GauGau}
 2009-05-25 [M] Replaced reference to coppermine.sf.net with currenty URL coppermine-gallery.net {GauGau}
 2009-05-25 [O] Updated Russian language file (user contribution) {GauGau}
