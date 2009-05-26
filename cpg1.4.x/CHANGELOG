@@ -9,7 +9,7 @@ it under the terms of the GNU General Public License version 3
 as published by the Free Software Foundation.
 
 ********************************************
-Coppermine version: 1.4.24
+Coppermine version: 1.4.25
 $HeadURL$
 $Revision$
 $Author$
@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-26 [M] Updated version count from cpg1.4.24 to cpg1.4.25 in subversion repository as a preparation for a possible future release {GauGau}
 2009-05-26 [M] Release of cpg1.4.24 {GauGau}
 2009-05-25 [B] Added 'svn' to the list of foldernames to skip during batch-add {GauGau}
 2009-05-25 [B] Fixing duplicates during batch-add (thread ID 57717) {GauGau}
