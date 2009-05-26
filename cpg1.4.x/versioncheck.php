@@ -6892,7 +6892,7 @@ $return = '
 1.4.24|upload.php|1.4.24|5969|mandatory|r@
 1.4.24|usermgr.php|1.4.24|5969|mandatory|r@
 1.4.24|util.php|1.4.24|5969|mandatory|r@
-1.4.24|versioncheck.php|1.4.24|5992|mandatory|r@
+1.4.24|versioncheck.php|1.4.24|5996|mandatory|r@
 1.4.24|viewlog.php|1.4.24|5969|mandatory|r@
 1.4.24|xp_publish.php|1.4.24|5969|mandatory|r@
 1.4.24|zipdownload.php|1.4.24|5969|mandatory|r@
