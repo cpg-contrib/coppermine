@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.25
+  Coppermine version: 1.4.24
   $HeadURL$
   $Revision$
   $Author$
@@ -62,32 +62,32 @@ $log_date_fmt = '%B %d, %Y at %I:%M %p'; //cpg1.4
 $lang_bad_words = array('bok*', '*erefsiz', 'sikerim', 'göt*', 'eşeko*', 'orosp*', 'pezev*', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
-  'random' => 'Rastgele Resim',
+  'random' => 'Rastgele Dosya',
   'lastup' => 'Son Yüklenenler',
   'lastalb'=> 'Son Yorum Yapılanlar',
   'lastcom' => 'Son Yorumlar',
-  'topn' => 'En Son Bakınlan',
+  'topn' => 'En Son Bakılan',
   'toprated' => 'En Beğenilen',
   'lasthits' => 'Son Bakılan',
   'search' => 'Arama Sonuçları',
-  'favpics'=> 'Favori Resimler', //cpg1.4
+  'favpics'=> 'Favorilerim', //cpg1.4
 );
 
 $lang_errors = array(
   'access_denied' => 'Bu Sayfaya erişim hakkınız yok.',
   'perm_denied' => 'Bu işlemi yapma hakkınız yok.',
   'param_missing' => 'Eksik parametre(ler)!',
-  'non_exist_ap' => 'Böyle bir Album, Resim yok !',
+  'non_exist_ap' => 'Böyle bir albümde resim yok !',
   'quota_exceeded' => 'Diks alanı aşıldı<br /><br />[quota]K da boş bir alanınız var, resimleriniz şuanda kullanılıyor [space]K, bu resmi eklemek alanınızı aşıracaktır.',
   'gd_file_type_err' => 'Eğer GD image library kullanılıyorsa sadece JPEG ve PNG formatları işlenebilir.',
   'invalid_image' => 'Yolladığınız resim hasarlı yada GD library tarafından işlenemiyor',
   'resize_failed' => 'Simge yada Düşürülmüş kalite resmi yaratılmadı.',
   'no_img_to_display' => 'Gösterilebilecek resim yok',
   'non_exist_cat' => 'Seçili Kategori yok',
-  'orphan_cat' => 'Katagorinin Üst katagorisi belli değil, Düzeltmek için katagori yönete gidiniz.', //cpg1.3.0
+  'orphan_cat' => 'Katagorinin üst katagorisi belli değil, düzeltmek için katagori yönete gidiniz.', //cpg1.3.0
   'directory_ro' => ' \'%s\'  klasörü yazılabilir değil, resimler silinemedi.', //cpg1.3.0
   'non_exist_comment' => 'Seçili Yorum aslında yok.',
-  'pic_in_invalid_album' => 'Seçili resim geçersiz bir albumde (%s)!?', //cpg1.3.0
+  'pic_in_invalid_album' => 'Seçili resim geçersiz bir albümde (%s)!?', //cpg1.3.0
   'banned' => 'Kullanılan bu siteden banlandınız',
   'not_with_udb' => 'Bu fonksiyon Coppermine da kullanılamaz çünkü forum yazılımı ile bütünleştirildi. Yapmaya çalıştığınız şey bü şekilde kaldırılamadı, yada fonksiyon forum yazlımı tarafından elegeçirildi.',
   'offline_title' => 'Kapalı',
@@ -97,11 +97,11 @@ $lang_errors = array(
   'no_zip' => 'ZIP dosyası oluşturmak için gerekli dosyalar bulunamadı.  Lütfen Coppermine admininiz ile iletişime geçin.', //cpg1.3.0
   'zip_type' => 'ZIP dosyalarını yüklemek için yetkiniz yok.', //cpg1.3.0
   'database_query' => 'Veritabanı yazarken hata oluştu', //cpg1.4
-  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
+  'register_globals_on' => 'Sunucunuzdaki PHP ayarlarında register_globals açık olarak ayarlanmış. Güvenliğiniz için kötü bir fikir olduğundan bunu kapatmanızı şiddetle tavsiye ediyoruz. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">devamı</a>]',
 );
 
 $lang_bbcode_help_title = 'bbcode yardım'; //cpg1.4
-$lang_bbcode_help = 'Kullanabileceginiz bbcodlari: <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
+$lang_bbcode_help = 'Kullanabileçeğiniz bbcodları: <li>[b]Bold[/b] =&gt; <b>Bold</b></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://coppermine-gallery.net/demo/cpg14x/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php
@@ -143,7 +143,7 @@ $lang_main_menu = array(
   'memberlist_title' => 'Üye listesini göster', //cpg1.3.0
   'memberlist_lnk' => 'Üye listesi', //cpg1.3.0
   'faq_title' => 'Resim galerisi üzerindeki Sorulan Soru &quot;Coppermine&quot;', //cpg1.3.0
-  'faq_lnk' => 'FAQ',
+  'faq_lnk' => 'S.S.S.',
 );
 
 $lang_gallery_admin_menu = array(
@@ -165,8 +165,8 @@ $lang_gallery_admin_menu = array(
   'searchnew_lnk' => 'Çoklu resim ekleme', //cpg1.3.0
   'util_title' => 'Admin seçenekleri', //cpg1.4
   'util_lnk' => 'Admin seçenekleri', //cpg1.3.0
-  'key_title' => 'Arama sözlügü', //cpg1.4
-  'key_lnk' => 'Arama sözlügü', //cpg1.4
+  'key_title' => 'Arama sözlüğü', //cpg1.4
+  'key_lnk' => 'Arama sözlüğü', //cpg1.4
   'ban_title' => 'Kullanıcı banla', //cpg1.4
   'ban_lnk' => 'Kullanıcı banla',
   'db_ecard_title' => 'Ekart gösterimi', //cpg1.4
@@ -193,7 +193,7 @@ $lang_cat_list = array(
 );
 
 $lang_album_list = array(
-        'album_on_page' => '%d album var %d sayfada'
+        'album_on_page' => '%d albüm var %d sayfada'
 );
 
 $lang_thumb_view = array(
@@ -238,7 +238,7 @@ $lang_img_nav_bar = array(
 
 $lang_rate_pic = array(
   'rate_this_pic' => 'Bu resimi puanla', 
-  'no_votes' => '(Puanlama henuz yok)',
+  'no_votes' => '(Puanlama henüz yok)',
   'rating' => '(Güncel Beğeni Oranı : %s / 5 etkiyen %s oy',
   'rubbish' => 'Berbat',
   'poor' => 'Değersiz',
@@ -384,20 +384,20 @@ if (defined('MODE_PHP')) $lang_mode_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-  'alb_need_name' => 'Albumlerin adı olmalı!', //js-alert
+  'alb_need_name' => 'Albümlerin adı olmalı!', //js-alert
   'confirm_modifs' => 'Bu değişiklikleri yapmak istediğinizden eminmisiniz?', //js-alert
   'no_change' => 'Değişiklik yapmadınız!', //js-alert
   'new_album' => 'Yeni albüm',
-  'confirm_delete1' => 'Bu albumu silmek istediğinizden eminmisiniz ?', //js-alert
+  'confirm_delete1' => 'Bu albümü silmek istediğinizden eminmisiniz ?', //js-alert
   'confirm_delete2' => '\n Bütün RESİMLER,YORUMLAR ve İÇERİĞİ YOK OLACAK !', //js-alert
-  'select_first' => 'İlk önce bir album seçiniz', //js-alert
+  'select_first' => 'İlk önce bir albüm seçiniz', //js-alert
   'alb_mrg' => 'Albüm ayarları',
   'my_gallery' => '* Kişisel galerim *',
-  'no_category' => '* Katagori yok *',
+  'no_category' => '* Kategori yok *',
   'delete' => 'Sil',
   'new' => 'Yeni',
   'apply_modifs' => 'Değişiklikleri yap',
-  'select_category' => 'Katagori seç',
+  'select_category' => 'Kategori seç',
 );
 
 // ------------------------------------------------------------------------- //
@@ -566,11 +566,11 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'operations' => 'İşlemler',
   'move_into' => 'Taşı',
   'update_create' => 'Kategori güncelle/ekle',
-  'parent_cat' => 'Ana katogori',
-  'cat_title' => 'Katogori adı',
-  'cat_thumb' => 'Katagori görüntüsü',
-  'cat_desc' => 'Katagori tanımı',
-  'categories_alpha_sort' => 'Katagorileri alfabetik sıraya göre diz', //cpg1.4
+  'parent_cat' => 'Ana kategori',
+  'cat_title' => 'Kategori adı',
+  'cat_thumb' => 'Kategori görüntüsü',
+  'cat_desc' => 'Kategori tanımı',
+  'categories_alpha_sort' => 'Kategorileri alfabetik sıraya göre diz', //cpg1.4
   'save_cfg' => 'Tamam', //cpg1.4
 );
 
@@ -614,7 +614,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'notice2' => '(**) Değerlerde yapacagınız degişiklikler tüm dosyalarınıza yansıyacaktır. Bunun için dosyalarınız veritabanında kayıtlı ise değiştirmemenizi tavsiye ederiz. Değerleri degiştirmek için &quot;<a href="util.php">Admin İşlevleri</a> seçeneğini kullanınız (resim büyüklügü ayarla)&quot;.',  //cpg1.4
   'notice3' => '(***) Günlük dosyalrı ingilizcedir.', //cpg1.4 - (relocated)
   'bbs_disabled' => 'BBS köprüsü kullanırken bu bu fonksiyon kapalıdır', //cpg1.4
-  'auto_resize_everyone' => 'herkez', //cpg1.4
+  'auto_resize_everyone' => 'herkes', //cpg1.4
   'auto_resize_user' => 'sadece kullanıcı', //cpg1.4
   'ascending' => 'artan', //cpg1.4
   'descending' => 'azalan', //cpg1.4
@@ -624,8 +624,8 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   'Genel ayarlar',
 		array('Galeri adı', 'gallery_name', 0, 'f=index.htm&amp;as=admin_general_name&amp;ae=admin_general_name_end'), //cpg1.4
 		array('Galeri tanımı', 'gallery_description', 0, 'f=index.htm&amp;as=admin_general_description&amp;ae=admin_general_description_end'), //cpg1.4
-		array('Galari yöneticisinin emaili', 'gallery_admin_email', 0, 'f=index.htm&amp;as=admin_general_email&amp;ae=admin_general_email_end'), //cpg1.4
-		array('Coppermi klasörünün URL adresi (\'index.php\' eklemeyin)', 'ecards_more_pic_target', 0, 'f=index.htm&amp;as=admin_general_coppermine-url&amp;ae=admin_general_coppermine-url_end'), //cpg1.4
+		array('Galeri yöneticisinin emaili', 'gallery_admin_email', 0, 'f=index.htm&amp;as=admin_general_email&amp;ae=admin_general_email_end'), //cpg1.4
+		array('Coppermine klasörünün URL adresi (\'index.php\' eklemeyin)', 'ecards_more_pic_target', 0, 'f=index.htm&amp;as=admin_general_coppermine-url&amp;ae=admin_general_coppermine-url_end'), //cpg1.4
 		array('Başlangıç sayfasının URL adı (örnek: index.php)', 'home_target', 0, 'f=index.htm&amp;as=admin_general_home-url&amp;ae=admin_general_home-url_end'), //cpg1.4
 		array('Zip dosya indirilmesine izin ver', 'enable_zipdownload', 1, 'f=index.htm&amp;as=admin_general_zip-download&amp;ae=admin_general_zip-download_end'), //cpg1.4
 		array('GMT saatine göre saat durumu (şimdiki tarih ve saat: ' . localised_date(-1, $comment_date_fmt) . ')','time_offset',0, 'f=index.htm&amp;as=admin_general_time-offset&amp;ae=admin_general_time-offset_end&amp;top=1'), //cpg1.4
@@ -659,19 +659,19 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 
   'Albüm listesi ayarları',
 		array('Ana tablonun genişligi (pixelin %)', 'main_table_width', 0, 'f=index.htm&amp;as=admin_album_table-width&amp;ae=admin_album_table-width_end'), //cpg1.4
-		array('Seviye ve katogori sayısı', 'subcat_level', 0, 'f=index.htm&amp;as=admin_album_category-levels&amp;ae=admin_album_category-levels_end'), //cpg1.4
+		array('Seviye ve kategori sayısı', 'subcat_level', 0, 'f=index.htm&amp;as=admin_album_category-levels&amp;ae=admin_album_category-levels_end'), //cpg1.4
 		array('Sayfadaki albüm sayısı', 'albums_per_page', 0, 'f=index.htm&amp;as=admin_album_number&amp;ae=admin_album_number_end'), //cpg1.4
 		array('Albüm listesindeki kolonların sayısı', 'album_list_cols', 0, 'f=index.htm&amp;as=admin_album_columns&amp;ae=admin_album_columns_end'), //cpg1.4
 		array('Ekrandaki küçük resimlerin pixel olarak boyları', 'alb_list_thumb_size', 0, 'f=index.htm&amp;as=admin_album_thumbnail-size&amp;ae=admin_album_thumbnail-size_end'), //cpg1.4
 		array('Ana sayfanın görünüşü', 'main_page_layout', 0, 'f=index.htm&amp;as=admin_album_list_content&amp;ae=admin_album_list_content_end'), //cpg1.4
-		array('Resimleri katogorilerdeki ana seviyeye göre göster','first_level',1, 'f=index.htm&amp;as=admin_album_first-level_thumbs&amp;ae=admin_album_first-level_thumbs_end'), //cpg1.4
-		array('Katogorileri alfabetik sıra ile göster (kişisel sıralama yerine)','categories_alpha_sort',1, 'f=index.htm&amp;as=admin_album_list_alphasort_start&amp;ae=admin_album_list_alphasort_end'), //cpg1.4
+		array('Resimleri kategorilerdeki ana seviyeye göre göster','first_level',1, 'f=index.htm&amp;as=admin_album_first-level_thumbs&amp;ae=admin_album_first-level_thumbs_end'), //cpg1.4
+		array('Kategorileri alfabetik sıra ile göster (kişisel sıralama yerine)','categories_alpha_sort',1, 'f=index.htm&amp;as=admin_album_list_alphasort_start&amp;ae=admin_album_list_alphasort_end'), //cpg1.4
 		array('Albümdeki resim sayısını göster','link_pic_count',1, 'f=index.htm&amp;as=admin_album_linked_files_start&amp;ae=admin_album_linked_files_end'), //cpg1.4
 
   'Önizleme ayarları',
 		array('Önizleme sayfasındaki kolon sayısı', 'thumbcols', 0, 'f=index.htm&amp;as=admin_thumbnail_columns&amp;ae=admin_thumbnail_columns_end'), //cpg1.4
 		array('Önizleme sayfasındaki satır sayısı', 'thumbrows', 0, 'f=index.htm&amp;as=admin_thumbnail_rows&amp;ae=admin_thumbnail_rows_end'), //cpg1.4
-		array('Makimum gösterilecek tab sayısı', 'max_tabs', 10, 'f=index.htm&amp;as=admin_thumbnail_tabs&amp;ae=admin_thumbnail_tabs_end'), //cpg1.4
+		array('Maksimum gösterilecek tab sayısı', 'max_tabs', 10, 'f=index.htm&amp;as=admin_thumbnail_tabs&amp;ae=admin_thumbnail_tabs_end'), //cpg1.4
 		array('Dosya ismini göster (başlık ile birlikte)', 'caption_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_caption&amp;ae=admin_thumbnail_display_caption_end'), //cpg1.4
 		array('Resmin kaç kez bakıldıgını göster', 'views_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_views&amp;ae=admin_thumbnail_display_views_end'), //cpg1.4
 		array('Yapılan yorumların adetini göster', 'display_comment_count', 1, 'f=index.htm&amp;as=admin_thumbnail_display_comments&amp;ae=admin_thumbnail_display_comments_end'), //cpg1.4
@@ -685,31 +685,31 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   'Resim görüntü ayarları', //cpg1.4
 		array('Resim genişligi (pixel %)', 'picture_table_width', 0, 'f=index.htm&amp;as=admin_image_comment_table-width&amp;ae=admin_image_comment_table-width_end'), //cpg1.4
 		array('Bilgileri geniş olarak standart yayınla', 'display_pic_info', 1, 'f=index.htm&amp;as=admin_image_comment_info_visible&amp;ae=admin_image_comment_info_visible_end'), //cpg1.4
-		array('Resim tanımlarının makimum boyu', 'max_img_desc_length', 0, 'f=index.htm&amp;as=admin_image_comment_descr_length&amp;ae=admin_image_comment_descr_length_end'), //cpg1.4
-		array('Bir kelimedeki makimum boyu', 'max_com_wlength', 0, 'f=index.htm&amp;as=admin_image_comment_chars_per_word&amp;ae=admin_image_comment_chars_per_word_end'), //cpg1.4
+		array('Resim tanımlarının maksimum boyu', 'max_img_desc_length', 0, 'f=index.htm&amp;as=admin_image_comment_descr_length&amp;ae=admin_image_comment_descr_length_end'), //cpg1.4
+		array('Bir kelimedeki maksimum boyu', 'max_com_wlength', 0, 'f=index.htm&amp;as=admin_image_comment_chars_per_word&amp;ae=admin_image_comment_chars_per_word_end'), //cpg1.4
 		array('Film şeritini göster', 'display_film_strip', 1, 'f=index.htm&amp;as=admin_image_comment_filmstrip_toggle&amp;ae=admin_image_comment_filmstrip_toggle_end'), //cpg1.4
 		array('Film şeritinin altında dosya ismini göster', 'display_film_strip_filename', 1, 'f=index.htm&amp;as=admin_image_comment_display_film_strip_filename&amp;ae=admin_image_comment_display_film_strip_filename_end'), //cpg1.4
-		array('Film şeritindeki makimum resim sayısı', 'max_film_strip_items', 0, 'f=index.htm&amp;as=admin_image_comment_filmstrip_number&amp;ae=admin_image_comment_filmstrip_number_end'), //cpg1.4
+		array('Film şeritindeki maksimum resim sayısı', 'max_film_strip_items', 0, 'f=index.htm&amp;as=admin_image_comment_filmstrip_number&amp;ae=admin_image_comment_filmstrip_number_end'), //cpg1.4
 		array('Dia gösterimlerinde zaman ayarı (1 seniye = 1000 milisaniye)', 'slideshow_interval', 0, 'f=index.htm&amp;as=admin_image_comment_slideshow_interval&amp;ae=admin_image_comment_slideshow_interval_end'), //cpg1.4
 
   'Yorum ayarları', //cpg1.4
 		array('Uygun olmayan kelimeleri yorumdan çıkart', 'filter_bad_words', 1, 'f=index.htm&amp;as=admin_image_comment_bad_words&amp;ae=admin_image_comment_bad_words_end'), //cpg1.4
 		array('Yorumda smilies kullanılmasına izin ver', 'enable_smilies', 1, 'f=index.htm&amp;as=admin_image_comment_smilies&amp;ae=admin_image_comment_smilies_end'), //cpg1.4
 		array('Aynı kullanıcının birden fazla ard arda yorum yapmasına izin ver (flood protection)', 'disable_comment_flood_protect', 1, 'f=index.htm&amp;as=admin_image_comment_flood&amp;ae=admin_image_comment_flood_end'), //cpg1.4
-		array('Yorumda kullanılabilecek makimum satır sayısı', 'max_com_lines', 0, 'f=index.htm&amp;as=admin_image_comment_lines&amp;ae=admin_image_comment_lines_end'), //cpg1.4
-		array('Yorumun makimum uzunlugu', 'max_com_size', 0, 'f=index.htm&amp;as=admin_image_comment_length&amp;ae=admin_image_comment_length_end'), //cpg1.4
+		array('Yorumda kullanılabilecek maksimum satır sayısı', 'max_com_lines', 0, 'f=index.htm&amp;as=admin_image_comment_lines&amp;ae=admin_image_comment_lines_end'), //cpg1.4
+		array('Yorumun maksimum uzunluğu', 'max_com_size', 0, 'f=index.htm&amp;as=admin_image_comment_length&amp;ae=admin_image_comment_length_end'), //cpg1.4
 		array('Yapılan yorumlardan yöneticiyi email ile haberdar et', 'email_comment_notification', 1, 'f=index.htm&amp;as=admin_image_comment_admin_notify&amp;ae=admin_image_comment_admin_notify_end'), //cpg1.4
 		array('Yorumların sıralanması', 'comments_sort_descending', 17, 'f=index.htm&amp;as=admin_comment_sort_start&amp;ae=admin_comment_sort_end'), //cpg1.4
             array('Üye olmayan kişiler', 'comments_anon_pfx', 0, 'f=index.htm&amp;as=comments_anon_pfx&amp;ae=comments_anon_pfx_end'), //cpg1.4
 
   'Dosya ve önizleme ayarları',
-		array('JPEG dosyalarının kaliesi', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'), //cpg1.4
-		array('Önizleme dosyasının makimum boyutu <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max-dimension&amp;ae=admin_picture_thumbnail_max-dimension_end'), //cpg1.4
+		array('JPEG dosyalarının kalitesi', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'), //cpg1.4
+		array('Önizleme dosyasının maksimum boyutu <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max-dimension&amp;ae=admin_picture_thumbnail_max-dimension_end'), //cpg1.4
 		array('Resmin boyutları (genişlik veya yükseklik veya maximum önizleme) <a href="#notice2" class="clickable_option">**</a>', 'thumb_use', 7, 'f=index.htm&amp;as=admin_picture_thumbnail_use-dimension&amp;ae=admin_picture_thumbnail_use-dimension_end'), //cpg1.4
 		array('Orta boyut resimler oluşturulsunmu?','make_intermediate',1, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_toggle&amp;ae=admin_picture_thumbnail_intermediate_toggle_end'), //cpg1.4
 		array('Orta boyutlardaki resimlerin genişligi veya boyları <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_dimension&amp;ae=admin_picture_thumbnail_intermediate_dimension_end'), //cpg1.4
-		array('Yüklenen dosyaların makimum boyutları (KB)', 'max_upl_size', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_size&amp;ae=admin_picture_thumbnail_max_upload_size_end'), //cpg1.4
-		array('Yüklenen dosyaların makimum genişlikleri veya boyları(pixel)', 'max_upl_width_height', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_dimension&amp;ae=admin_picture_thumbnail_max_upload_dimension_end'), //cpg1.4
+		array('Yüklenen dosyaların maksimum boyutları (KB)', 'max_upl_size', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_size&amp;ae=admin_picture_thumbnail_max_upload_size_end'), //cpg1.4
+		array('Yüklenen dosyaların maksimum genişlikleri veya boyları(pixel)', 'max_upl_width_height', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_dimension&amp;ae=admin_picture_thumbnail_max_upload_dimension_end'), //cpg1.4
 		array('Eğer resimler izin verilen boyutlardan daha büyük olursa otamatik uyarla?', 'auto_resize', 16, 'f=index.htm&amp;as=admin_picture_thumbnail_auto-resize&amp;ae=admin_picture_thumbnail_auto-resize_end'), //cpg1.4
 
   'Dosya ve önizleme ayarları (genişletilmiş)',
@@ -735,7 +735,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 		array('Varsayılan klasör izinleri', 'default_dir_mode', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_chmod_folder&amp;ae=admin_picture_thumb_advanced_chmod_folder_end'), //cpg1.4
 		array('Varsaıylan dosya izinleri', 'default_file_mode', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_chmod_files&amp;ae=admin_picture_thumb_advanced_chmod_files_end'), //cpg1.4
 
-  'Kulannıcı ayarları',
+  'Kullanıcı ayarları',
 		array('Yeni kullanıcıların üye olmasına izin ver', 'allow_user_registration', 1, 'f=index.htm&amp;as=admin_allow_registration&amp;ae=admin_allow_registration_end'), //cpg1.4
 		array('Misafir kullanıcılara izin ver (Misafir)', 'allow_unlogged_access', 1, 'f=index.htm&amp;as=admin_allow_unlogged_access&amp;ae=admin_allow_unlogged_access_end'), //cpg1.4
 		array('Üyeliklerin aktifleşmesi için yeni üyelerden email doğrulamasını gerekli', 'reg_requires_valid_email', 1, 'f=index.htm&amp;as=admin_registration_verify&amp;ae=admin_registration_verify_end'), //cpg1.4
@@ -746,12 +746,12 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 		array('Üyelerin üye listesini görmelerine izin ver', 'allow_memberlist', 1, 'f=index.htm&amp;as=admin_user_memberlist&amp;ae=admin_user_memberlist_end'), //cpg1.4
 		array('Giriş yamış üyelerin üye listesini görmesine izin ver', 'allow_email_change', 1, 'f=index.htm&amp;as=admin_user_allow_email_change&amp;ae=admin_user_allow_email_change_end'), //cpg1.4
 		array('Üyelerin yayınladıkları kişisel resimleri yönetmesine izin ver', 'users_can_edit_pics', 1, 'f=index.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end'), //cpg1.4
-		array('Bir kişinin yapabilecegi makimum giriş deneme sayısı. (Geçici olarak banlar. Hacklere karşı güvenlik,) ', 'login_threshold', 0, 'f=index.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'), //cpg1.4
+		array('Bir kişinin yapabilecegi maksimum giriş deneme sayısı. (Geçici olarak banlar. Hacklere karşı güvenlik,) ', 'login_threshold', 0, 'f=index.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'), //cpg1.4
 		array('Giriş sırasında banlanmış kullanıcıların banlanma süresi (dakika)', 'login_expiry', 0, 'f=index.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'), //cpg1.4
 		array('Yöneticiye şikayette bulunulmasına izin ver', 'report_post', 1, 'f=index.htm&amp;as=admin_user_enable_report&amp;ae=admin_user_enable_report_end'),  //cpg1.4
 
 // custom profile fields,  //cpg1.4
-  'Üye profilinde kullanabileceginiz ek bilgiler (kullanmıyorsanız boş bırakın). (Uzun yazılar için 6. yı kullanın)', //cpg1.4
+  'Üye profilinde kullanabileçeğiniz ek bilgiler (kullanmıyorsanız boş bırakın). (Uzun yazılar için 6. yı kullanın)', //cpg1.4
 		array('Profil 1 adı', 'user_profile1_name', 0, 'f=index.htm&amp;as=admin_custom&amp;ae=admin_custom_end'), //cpg1.4
 		array('Profil 2 adı', 'user_profile2_name', 0), //cpg1.4
 		array('Profil 3 adı', 'user_profile3_name', 0), //cpg1.4
@@ -759,7 +759,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 		array('Profil 5 adı', 'user_profile5_name', 0), //cpg1.4
 		array('Profil 6 adı', 'user_profile6_name', 0), //cpg1.4
 
-  'Resimlerde kullanbileceginiz ek bilgiler (kullanmıyorsanız boş bırakın)',
+  'Resimlerde kullanbileçeğiniz ek bilgiler (kullanmıyorsanız boş bırakın)',
 		array('Satır 1 adı', 'user_field1_name', 0, 'f=index.htm&amp;as=admin_custom_image&amp;ae=admin_custom_image_end'), //cpg1.4
 		array('Satır 2 adı', 'user_field2_name', 0), 
 		array('Satır 3 adı', 'user_field3_name', 0), 
@@ -769,15 +769,15 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 		array('Kurabiye adı', 'cookie_name', 0, 'f=index.htm&amp;as=admin_cookie_name&amp;ae=admin_cookie_name_end'), //cpg1.4
 		array('Kurabiye adresi', 'cookie_path', 0, 'f=index.htm&amp;as=admin_cookie_path&amp;ae=admin_cookie_path_end'), //cpg1.4
 
-  'Email ayarları  (normalde hiç bir şey değiştirmeyin buradan; bilmediginiz kutuları boş bırakın)', //cpg1.4
+  'Email ayarları  (normalde hiç bir şey değiştirmeyin buradan; bilmediğiniz kutuları boş bırakın)', //cpg1.4
 		array('SMTP Host (Sendmail olanagından yararlanmak için boş bırakın)', 'smtp_host', 0, 'f=index.htm&amp;as=admin_email&amp;ae=admin_email_end'), //cpg1.4
 		array('SMTP kullanıcı adı', 'smtp_username', 0), //cpg1.4
 		array('SMTP şifresi', 'smtp_password', 0), //cpg1.4
 
-  'Girişler ve statistikler', //cpg1.4
+  'Girişler ve istatistikler', //cpg1.4
 		array('Giriş modu <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&amp;as=admin_logging_log_mode&amp;ae=admin_logging_log_mode_end'), //cpg1.4
-		array('E-kart günlügü', 'log_ecards', 1, 'f=index.htm&amp;as=admin_general_log_ecards&amp;ae=admin_general_log_ecards_end'), //cpg1.4
-		array('Geniş oy istatistikklerini tut','vote_details',1, 'f=index.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end'), //cpg1.4
+		array('E-kart günlüğü', 'log_ecards', 1, 'f=index.htm&amp;as=admin_general_log_ecards&amp;ae=admin_general_log_ecards_end'), //cpg1.4
+		array('Geniş oy istatistiklerini tut','vote_details',1, 'f=index.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end'), //cpg1.4
 		array('Geniş izlenme istatistiklerini tut','hit_details',1, 'f=index.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end'), //cpg1.4
 
   'Onarma ayarları', //cpg1.4
@@ -845,15 +845,15 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'notify_admin_email_body' => ' %s tarafından onayınızı bekleyen resim eklendi. %s bak', 
   'info' => 'Bilgi',
   'com_added' => 'Yorum eklendi',
-  'alb_updated' => 'Album updated',
+  'alb_updated' => 'Albüm güncellendi',
   'err_comment_empty' => 'Yorumunuz boş !',
   'err_invalid_fext' => 'Sadece izin verilen resimler büyütülebilir : <br /><br />%s.',
   'no_flood' => 'Üzgümün ama bu dosya için son yorumun yazarı sizsiniz<br /><br /> Eğer istiyorsanız yorumunuzu düzeltin', 
   'redirect_msg' => 'Adresiniz değiştiriliyor.<br /><br /><br />Click \'DEVAM\' eğer sayfa otomatik olarak yenilenmezse',
   'upl_success' => 'Resminiz başarılyla eklendi', 
-  'email_comment_subject' => 'Yorum İbrahim ALTINOK Galeri de yolandı', 
-  'email_comment_body' => 'Birisi galerinize bir yorum yolladı. Buradan bakın',
-  'album_not_selected' => 'Album seçili degil', //cpg1.4
+  'email_comment_subject' => 'Galeri de yorum yazıldı', 
+  'email_comment_body' => 'Birisi galerinizde bir yorum yazdı. Buradan bakın',
+  'album_not_selected' => 'Albüm seçili değil', //cpg1.4
   'com_author_error' => 'Bu kullanıcı ismi bir başka üye tarafından kullanılmakta. Ltf bir başka kullanıcı ismi seçiniz', //cpg1.4
 );
 
@@ -1043,10 +1043,10 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'invalid_email' => '<b>Uyarı</b> : geçersiz email adres !',
   'ecard_title' => ' %s den sizin için bir ekart ',
   'error_not_image' => 'Sadece görüntüler ekart olarak gönderilebilir', 
-  'view_ecard' => 'Eğer ekart tam olarak görünmezse bu linki yıklayınız',
+  'view_ecard' => 'Eğer ekart tam olarak görünmezse bu linki tıklayınız',
   'view_ecard_plaintext' => 'Kartı görmek için verilen adresi kopyala yapıştır yöntemi ile web programınıza yazınız ve bakınız.:', //cpg1.4
   'view_more_pics' => 'Daha fazla resim resim için bu linki tıklayınız !',
-  'send_success' => 'Ekartınız yolandı',
+  'send_success' => 'Ekartınız yollandı',
   'send_failed' => 'Üzgünüm ama sunucu ekartınızı yollayamadı...',
   'from' => 'Kimden',
   'your_name' => 'Adınız',
@@ -1056,7 +1056,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'rcpt_email' => 'Alanın email adresi',
   'greetings' => 'Başlık',
   'message' => 'Mesajınız',
-  'ecards_footer' => 'Sent by %s from IP %s at %s (Gallery time)', //cpg1.4
+  'ecards_footer' => '%s IP %s tarafından gönderildi %s (Galeri zamanı)', //cpg1.4
   'preview' => 'Önizle', //cpg1.4
   'preview_button' => 'Önizle', //cpg1.4
   'submit_button' => 'E kart gönder', //cpg1.4
@@ -1115,7 +1115,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'new_keyword' => 'Yeni anahtarsözcük', //cpg1.4
   'new_keywords' => 'Yeni anahtarsözcük bulunamadı', //cpg1.4
   'existing_keyword' => 'Varolan anaktarsözcük', //cpg1.4
-  'pic_info_str' => '%s &kez; %s - %s KB - %s görüntülenmiş - %s oylanmış',
+  'pic_info_str' => '%sx%s - %s kB - %s x görüntülenmiş - %s x oylanmış',
   'approve' => 'Resmi onayla', 
   'postpone_app' => 'Onayı ertele',
   'del_pic' => 'Resmi sil', 
@@ -1134,19 +1134,19 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'n_pic' => '%s resimler', 
   'n_of_pic_to_disp' => 'Gösterim için resimlerin numaraları', 
   'apply' => 'Değişiklikleri kaydet', 
-  'crop_title' => 'Coppermine resim editoru', 
+  'crop_title' => 'Coppermine resim editöru', 
   'preview' => 'Özel gösterim', 
   'save' => 'Resimleri kaydet', 
-  'save_thumb' =>'Küçük resim olarak kaydet',   'gallery_icon' => 'Galareimin ikonu yap', //cpg1.4
+  'save_thumb' =>'Küçük resim olarak kaydet',   'gallery_icon' => 'Galarimin ikonu yap', //cpg1.4
   'sel_on_img' =>'Seçilen alan resimin üzerinde olmalı!', //js-alert
   'album_properties' =>'Albüm ayarları', //cpg1.4
-  'parent_category' =>'Ana katogori', //cpg1.4
+  'parent_category' =>'Ana kategori', //cpg1.4
   'thumbnail_view' =>'Önizleme', //cpg1.4
   'select_unselect' =>'Hepsini işaretleri/işaretleri kaldır', //cpg1.4
   'file_exists' => "'%s' zaten mevcut.", //cpg1.4
   'rename_failed' => "'%s' ismini '%s' olarak değiştirme isteginiz başarısız oldu.", //cpg1.4
   'src_file_missing' => "Source dosyası '%s' bulunamıyor.", // cpg 1.4
-  'mime_conv' => "'%s' dan '%s' çevirme işlemi başarısız oldu.",//cpg1.4
+  'mime_conv' => "'%s' dan '%s' çevirme işlemi başarısız oldu.", //cpg1.4
   'forb_ext' => 'Yasak olan uzantı.',//cpg1.4
 );
 
@@ -1164,7 +1164,7 @@ if (defined('FAQ_PHP')) $lang_faq_php = array(
 if (defined('FAQ_PHP')) $lang_faq_data = array(
   'General FAQ',
 		'Sıkça sorulan sorular - genel',
-		array('Niçin kayıt olmak zorundayım?', 'Üyelik zorunlulugu site yönetimi tarafında zorunlu koşulabilir. Üyelik kullanıcılara daha çok imkanlar sunar. Sunulan imkanlar mesala: dosya yükleme, favorit listesi tutma, resimleri oylama ve yorum yapma ve buna benzer ayrıcalıklar tanır.', 'allow_user_registration', '0'),
+		array('Niçin kayıt olmak zorundayım?', 'Üyelik zorunluluğu site yönetimi tarafında zorunlu koşulabilir. Üyelik kullanıcılara daha çok imkanlar sunar. Sunulan imkanlar mesala: dosya yükleme, favorit listesi tutma, resimleri oylama ve yorum yapma ve buna benzer ayrıcalıklar tanır.', 'allow_user_registration', '0'),
 		array('Nasıl kayıt olabilirim?', 'Bunun için &quot;Registreer&quot; git ve gereken bilgileri gir (isterseniz opsiyonel bölümleride doldurabilirsiniz).<br/>Site yönetiminin ayarlarına bağlı olarak, kayıt bilgilerini gönderdikten sonra size kayıt anında verdiginiz email adresine bir elektronik posta gelir. Burada üyeliginizin aktifleştirilmesi için neler yapmanı gerektigi yazılıdır. Giriş yapabilmeniz için önce üyeliginiz aktifleşmiş olamalıdır.', 'allow_user_registration', '1'),
 		array('Nasıl giriş yapılır?', '&quot;Login&quot; git, kullanıcı ismini ve şifreni gir ve &quot;Onthoud mij&quot; seçki bir sonraki ziyaretinizde otamatik giriş yapabilesiniz.<br/><b>Önemli: Sisteminiz kurabiye dosyalarına açık olmalı ve sitenin kurabiye &quot;Onthoud mij&quot; kullanabilmek için silinmemeli.</b>', 'Çevrimdışı', 0),
   array('Why can I not login?', 'Did you register and click the link that was sent to you via email?. The link will activate your account. For other login problems contact the site administrator.', 'offline', 0),
@@ -1305,9 +1305,9 @@ if (defined('KEYWORDMGR_PHP')) $lang_keywordmgr_php = array(
   'delete' => 'sil', //cpg1.4
   'search' => 'ara', //cpg1.4
   'keyword_test_search' => 'yeni ekranda %s ara', //cpg1.4
-  'keyword_del' => '%s anahtarsözcügünü sil', //cpg1.4
-  'confirm_delete' => '%s anahtarsözcügünü silmek istediginize eminmisiniz?', //cpg1.4  // js-alert
-  'change_keyword' => 'anahtarsözcügünü değiştir', //cpg1.4
+  'keyword_del' => '%s anahtarsözcüğünü sil', //cpg1.4
+  'confirm_delete' => '%s anahtarsözcüğünü silmek istediğinize eminmisiniz?', //cpg1.4  // js-alert
+  'change_keyword' => 'anahtarsözcüğünü değiştir', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -1375,7 +1375,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'me_only' => 'Sadece ben',
   'owner_only' => 'Sadece (%s) albüm sahibi',
   'groupp_only' => ' \'%s\' grubunun üyeleri',
-  'err_no_alb_to_modify' => 'veritabanında albüm düzenleyemazsiniz.',
+  'err_no_alb_to_modify' => 'veritabanında albüm düzenleyemezsiniz.',
   'update' => 'Albümü güncelle', 
   'reset_album' => 'Albümü sıfırla', //cpg1.4
   'reset_views' => 'İzlenme sayacını ayarla &quot;0&quot; in %s', //cpg1.4
@@ -1403,7 +1403,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
   'php_info' => 'PHP info',
   'explanation' => 'PHP tarafından üretilen bilgiler <a href="http://www.php.net/phpinfo">phpinfo()</a>, Coppermine içinde gösterilir (sağ tarafta).',
-  'no_link' => 'Bu bilğilerin yayınlanması güvenlik rizikos oluşturabileceginden bu sayfa sadece yöneticilere açıktır. Bu sayfanın linkini de gönderemezsiniz. Yöneticiler dışında kimse açamaz bu sayfayı.',
+  'no_link' => 'Bu bilgilerin yayınlanması güvenlik rizikosu oluşturabileceğinden bu sayfa sadece yöneticilere açıktır. Bu sayfanın linkini de gönderemezsiniz. Yöneticiler dışında kimse açamaz bu sayfayı.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1413,7 +1413,7 @@ if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'pic_mgr' => 'Resim yönetimi', //cpg1.4
   'select_album' => 'Albüm seç', //cpg1.4
   'delete' => 'Sil', //cpg1.4
-  'confirm_delete1' => 'Bu dosyayı silmek istediginize eminmisiniz?', //cpg1.4
+  'confirm_delete1' => 'Bu dosyayı silmek istediğinize eminmisiniz?', //cpg1.4
   'confirm_delete2' => '\nDosya tamamen silinecektir.', //cpg1.4
   'apply_modifs' => 'Degişiklikleri uygula', //cpg1.4
   'confirm_modifs' => 'Degişiklikleri onayla', //cpg1.4
@@ -1432,22 +1432,22 @@ if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
 if (defined('PLUGINMGR_PHP')){
 
 $lang_pluginmgr_php = array(
-  'confirm_uninstall' => 'Bu pluginsi kaldırmak istediğinize eminmisiniz?', //cpg1.4
-  'confirm_delete' => 'Bu pluginis silmek istediğinize eminmisiniz?', //cpg1.4
-  'pmgr' => 'Plugin Ayarları', //cpg1.4
+  'confirm_uninstall' => 'Bu eklentiyi kaldırmak istediğinize eminmisiniz?', //cpg1.4
+  'confirm_delete' => 'Bu eklentiyi silmek istediğinize eminmisiniz?', //cpg1.4
+  'pmgr' => 'Eklenti Ayarları', //cpg1.4
   'name' => 'Ad', //cpg1.4
   'author' => 'Yazar', //cpg1.4
   'desc' => 'Tanımla', //cpg1.4
   'vers' => 'v', //cpg1.4
-  'i_plugins' => 'Plugins Kur', //cpg1.4
-  'n_plugins' => 'Plugins Kurulmadı', //cpg1.4
+  'i_plugins' => 'Eklenti kur', //cpg1.4
+  'n_plugins' => 'Eklenti kurulmadı', //cpg1.4
   'none_installed' => 'Kurulmadı', //cpg1.4
   'operation' => 'Çalışma', //cpg1.4
-  'not_plugin_package' => 'Yüklenen dosya plugin paketi değil.', //cpg1.4
-  'copy_error' => 'Plugin klasöre kopyalamada bir hata oluştu.', //cpg1.4
+  'not_plugin_package' => 'Yüklenen dosya eklenti paketi değil.', //cpg1.4
+  'copy_error' => 'Eklenti klasöre kopyalamada bir hata oluştu.', //cpg1.4
   'upload' => 'Yükle', //cpg1.4
-  'configure_plugin' => 'Plugin ayarları', //cpg1.4
-  'cleanup_plugin' => 'Plugin temizle', //cpg1.4
+  'configure_plugin' => 'Eklenti ayarları', //cpg1.4
+  'cleanup_plugin' => 'Eklenti temizle', //cpg1.4
 );
 }
 
@@ -1468,7 +1468,7 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-Her nekadar{SITE_NAME} da istenmeyen yayınlar veya yorumlar site yönetimi tarafından en kısa sürede silinsede, yöneticinin herşeyi takip etmesi oldukca zor. Bunların tamamen onları yazan kişilerin görüşü olduğu ve yöneticilerin görüş ve düşüncelerini temsil etmediğini kabul etmiş olursunuz.<br />
+Her nekadar{SITE_NAME} da istenmeyen yayınlar veya yorumlar site yönetimi tarafından en kısa sürede silinsede, yöneticinin herşeyi takip etmesi oldukça zor. Bunların tamamen onları yazan kişilerin görüşü olduğu ve yöneticilerin görüş ve düşüncelerini temsil etmediğini kabul etmiş olursunuz.<br />
 <br />
 Kaba, hakaret içeren, yanlış, sıkıcı, tehdit içeren, diğer kullanıcıların kişilik haklarını ihlal edici, cinsel öğeler içeren, TC yasalarını çiğneyen mesajlardan lütfen kaçınınız. Foruma telif haklarına muhalif metaryel göndermeyiniz. Mesajın içeri mesajı gönderenin sorumluğundadır,  --sitenizin adı--- bağlamaz. Foruma mesaj gönderdiğinizde gönderim tarih, saati, IP numaranız gibi bilgiler kaydedilir. Sitemize kaydedilen ve yüklenen bilgiler sizin izniniz olmadan bir başkasına verilmez. Yanlız yöneticilerin kontrolü dışında hack gibi olaylardan dolayı alınan bilgilerden doğacak maddi ve manevi zararlardan sitemiz ve yönetiçilerimiz sorumlu tutulamıyacagını kabul emiş olursunuz.<br />
 <br />
@@ -1484,11 +1484,11 @@ $lang_register_php = array(
   'submit' => 'Üyelik oluştur',
   'err_user_exists' => 'Yazdığınız kullanıcı adı bulunamadı, lütfen başka birtane seçin',
   'err_password_mismatch' => 'İki şifre birbirine uymuyor, lütfen tekrar yazın',
-  'err_uname_short' => 'Kullanıcı dı en az 2 karakterden fazla olmalıdır',
+  'err_uname_short' => 'Kullanıcı adı en az 2 karakterden fazla olmalıdır',
   'err_password_short' => 'Şifre en az 2 karakterden fazla olmalıdır',
   'err_uname_pass_diff' => 'Üye adı ve şifre birbirinden farklı olmalıdır',
   'err_invalid_email' => 'Email adresi geçersiz',
-  'err_duplicate_email' => 'Yazdıgınız email adresi zaten sitemizde kayıtlıdır. Lütfen size ait bir email adresi yazınız.',
+  'err_duplicate_email' => 'Yazdığınız email adresi zaten sitemizde kayıtlıdır. Lütfen size ait bir email adresi yazınız.',
   'enter_info' => 'Kayıt bilgilerini girin',
   'required_info' => 'Zorunlu bilgiler',
   'optional_info' => 'İsteğe bağlı bilgiler',
@@ -1525,9 +1525,9 @@ $lang_register_php = array(
   'pass_chg_error' => 'Şifreniz değişmedi',
   'notify_admin_email_subject' => '%s - Kayıt Bildirisi', 
   'notify_admin_email_body' => 'Yeni bi kullanıcı "%s" galerinize kayıt oldu', 
-  'last_uploads' => 'Son yüklenen dosya.<br /> Yüklemelerin tamamını görmek için tıla', //cpg1.4
+  'last_uploads' => 'Son yüklenen dosya.<br /> Yüklemelerin tamamını görmek için tıkla', //cpg1.4
   'last_comments' => 'Son yorum.<br />Yorumların tamamını görmek için tıkla', //cpg1.4
-  'notify_admin_email_body' => '"%s" isimli yeni üye galarinize üye oldu',
+  'notify_admin_email_body' => '"%s" isimli yeni üye galerinize üye oldu',
   'pic_count' => 'Dosya yüklendi', //cpg1.4
   'notify_admin_request_email_subject' => '%s - Kayıt taleb', //cpg1.4
   'thank_you_admin_activation' => 'Teşekkürler.<br /><br />Üyelik kayıt aktifleştirme isteğiniz site yönetimine gönderildi. Üyeliğiniz aktifleştirildiği email ile bildirilecektir.', //cpg1.4
@@ -1555,7 +1555,7 @@ EOT;
 $lang_register_approve_email = <<<EOT
 "{USER_NAME}" adlı kullanıcı sitenize üye oldu.
 
-Üyeligi aktif etmek için linke tıklayınız.
+Üyeliği aktif etmek için linke tıklayınız.
 
 <a href="{ACT_LINK}">{ACT_LINK}</a>
 
@@ -1612,7 +1612,7 @@ $lang_search_php = array(
   'title' => 'Site içi ara', //cpg1.4
   'submit_search' => 'ara', //cpg1.4
   'keyword_list_title' => 'Kelimeler', //cpg1.4
-  'keyword_msg' => 'Yukardaki liste bütün kelimeleri içermez. Lütfen aradıgınız kelimeleri yazınız.',  //cpg1.4
+  'keyword_msg' => 'Yukarıdaki liste bütün kelimeleri içermez. Lütfen aradığınız kelimeleri yazınız.',  //cpg1.4
   'edit_keywords' => 'Anahtarsözcük değiştir', //cpg1.4
   'search in' => 'Aranacak seçenekler:', //cpg1.4
   'ip_address' => 'IP adresi', //cpg1.4
@@ -1641,7 +1641,7 @@ $lang_adv_opts = array(
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'page_title' => 'Yeni resimler ara', 
   'select_dir' => 'Klasör seç',
-  'select_dir_msg' => 'Bu fonksiyon size FTP ile sunucunuza resim grubu eklemenize izin verir.<br /><br />Resimlerinizi eklediğiniz klsörü seçin', 
+  'select_dir_msg' => 'Bu fonksiyon size FTP ile sunucunuza resim grubu eklemenize izin verir.<br /><br />Resimlerinizi eklediğiniz klasörü seçin', 
   'no_pic_to_add' => 'Eklemek için resim bulunamadı', 
   'need_one_album' => 'Son olarak bu fonksiyonu kullanabilmek için bir albüme ihtiyacınız var',
   'warning' => 'Uyarı',
@@ -1662,7 +1662,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'notes' =>  '<ul>'.
                           '<li><b>OK</b> : anlamı resim başarıyla eklendi'.
                           '<li><b>DP</b> : anlamı resim aynı ve daha öneceden veri tabanın içinde'.
-                          '<li><b>PB</b> : anlamı resim eklanamedi, biçiminizi ve resimlerin nerede kloasör izninine sahip olduğunuzu konyrol ediniz'.
+                          '<li><b>PB</b> : anlamı resim eklenemedi, biçiminizi ve resimlerin nerede klasör izninine sahip olduğunuzu kontrol ediniz'.
                           '<li><b>NA</b> : anlamı resime gidebilmek için bir albüm seçmediniz, \' <a href="javascript:history.back(1)">geriye gidin</a>\' ve bir albüm seçin. Eğer albümünüz yoksa<a href="albmgr.php">birtane oluşturun</a></li>'.
                           '<li>Eğer TAMAM, DP, PB \'signs\' gözükmüyorsa hata görmemek için resme tıklayın'.
                           '<li>Eğer browserınız timeout ise, tekrar yükle butonunu tıklayınız'.
@@ -1717,15 +1717,15 @@ if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'title' => 'Upload file', 
-  'custom_title' => 'Talep Formu Düzenleme', 
+  'custom_title' => 'Talep formu düzenleme', 
   'cust_instr_1' => 'Yükleme kutularının numarasını seçebilirisin. Bununla birlikte, Aşağıda listelenen limitin üstünde seçim yapamzsınız.', 
   'cust_instr_2' => 'Kutu numarası talebi', 
   'cust_instr_3' => 'Resim yükleme kutuları: %s', 
-  'cust_instr_4' => 'URI/URL yükleme kutulrı: %s', 
+  'cust_instr_4' => 'URI/URL yükleme kutuları: %s', 
   'cust_instr_5' => 'URI/URL yükleme kutuları:', 
   'cust_instr_6' => 'Resim yükleme kutuları:', 
-  'cust_instr_7' => 'Lütfen istediğiniz yükleme kutusunun numarasını girin.  sonra tıklayın \'Devam et\'. ', 
-  'reg_instr_1' => 'Forum aluşumunda geçersiz durum.', 
+  'cust_instr_7' => 'Lütfen istediğiniz yükleme kutusunun numarasını girin, sonra tıklayın \'Devam et\'. ', 
+  'reg_instr_1' => 'Forum oluşumunda geçersiz durum.', 
   'reg_instr_2' => 'Aşağıda kullanılan yükleme kutularından resimlerinizi yükleyebilirsiniz. Sunucuya yüklediğiniz resimler boyutu aşmamalıdır ve herbiri için %s KB olmalıdır. ZIP resimleri \'File Upload\' e yüklendi ve  \'URI/URL Upload\' bölümleri sıkışmış olarak kalacaktır.', 
   'reg_instr_3' => 'Eğer sıkıştırılmış resimleri açmak istiyorsanız, \'Decompressive ZIP Upload\' daki yükleme kutusunu kullanmalısınız.', //cpg1.3.0
   'reg_instr_4' => 'URI/URL yükleme seçeneklerini kullandığınız zaman, lütfen örnekteki gibi: http://www.mysite.com/images/example.jpg yol verin', //cpg1.3.0
@@ -1745,7 +1745,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'no_upload' => 'Yükleme yok.', //cpg1.3.0
   'unknown_code' => 'Bilinmeyen PHP yükleme hata kodu.', //cpg1.3.0
   'no_temp_name' => 'Yükleme yok - Temp adı yok.', //cpg1.3.0
-  'no_file_size' => 'İçerilen veri bulunamadı/Bozulmuş', //cpg1.3.0
+  'no_file_size' => 'İçerilen veri bulunamadı/bozulmuş', //cpg1.3.0
   'impossible' => 'Hareket etmek imkansız.', //cpg1.3.0
   'not_image' => 'İmaj notu/bozma', //cpg1.3.0
   'not_GD' => 'GD genişletme değil.', //cpg1.3.0
@@ -1820,8 +1820,8 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'edit' => 'DÜZELT',
   'with_selected' => 'Bir uygulama seç', //cpg1.4
   'delete' => 'Sil',
-  'delete_files_no' => 'herkeze acık dosyaları koru (anonimleştir)', //cpg1.4
-  'delete_files_yes' => 'herkeze acık dosyalarınıda sil', //cpg1.4
+  'delete_files_no' => 'herkese açık dosyaları koru (anonimleştir)', //cpg1.4
+  'delete_files_yes' => 'herkese açık dosyalarınıda sil', //cpg1.4
   'delete_comments_no' => 'yorumlarını koru (anonimleştir)', //cpg1.4
   'delete_comments_yes' => 'yorumlarınıda sil', //cpg1.4
   'activate' => 'Aktifleştir', //cpg1.4
@@ -1831,11 +1831,11 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'add_secondary_membergroup' => 'İkinci grup ekle', //cpg1.4
   'name' => 'Üye adı',
   'group' => 'Grup',
-  'inactive' => 'Inaktif',
+  'inactive' => 'Pasif',
   'operations' => 'İşlemler',
   'pictures' => 'Resimler', //cpg1.3.0
-  'disk_space_used' => 'Kullandıgı alan', //cpg1.4
-  'disk_space_quota' => 'Kullanabilecegi alan', //cpg1.4
+  'disk_space_used' => 'Kullandığı alan', //cpg1.4
+  'disk_space_quota' => 'Kullanabileceği alan', //cpg1.4
   'registered_on' => 'Kayıt tarihi',
   'last_visit' => 'Son ziyaret tarihi', //cpg1.3.0
   'u_user_on_p_pages' => '%d kullanıcılar %d sayfa(-lar)da',
@@ -1846,7 +1846,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'notes' => 'Notlar',
   'note_list' => '<li>Şimdiki şifreni değiştirmek istemiyorsan, "şifre" alanını boş bırakınız',
   'password' => 'Şifre',
-  'user_active' => 'Kullanıcı Aktif',
+  'user_active' => 'Kullanıcı aktif',
   'user_group' => 'Kullanıcı grubu',
   'user_email' => 'Kullanıcı emaili',
   'user_web_site' => 'Kullanıcı web sitesi',
@@ -1875,7 +1875,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'modify' => 'Değiştirilsinmi?', //cpg1.4
   'group_no_access' => 'Bu grup için giriş yok', //cpg1.4
   'notice' => 'Not: ', //cpg1.4
-  'group_can_access' => 'Sadece "%s" bu albüme uluşma yetkisine sahiptir.', //cpg1.4
+  'group_can_access' => 'Sadece "%s" bu albüme oluşma yetkisine sahiptir.', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -1890,11 +1890,11 @@ $lang_util_desc_php = array(
 'Orjinal boyutlardaki fotoğrafları tekrar yeni boyutlarla yerleştirir', //cpg1.4
 'Orta boyutlardaki orjinal fotoğrafları silerek yer açar', //cpg1.4
 'Seçilen yorumları siler', //cpg1.4
-'Dosya boyutlarını ve boyutunu ayarlar (el ile fotoğrafları degiştirdikten sonra)', //cpg1.4
+'Dosya boyutlarını ve boyutunu ayarlar (el ile fotoğrafları değiştirdikten sonra)', //cpg1.4
 'Bakılma oranlarını sıfırlar', //cpg1.4
 'php hakkında bilgi gösterir', //cpg1.4
 'Veritabanını günceller', //cpg1.4
-'Günlügü gösterir', //cpg1.4
+'Günlüğü gösterir', //cpg1.4
 );
 $lang_util_php = array(
   'title' => 'Admin İşlevleri (Resimleri yeniden boyutlandır)', //cpg1.3.0
@@ -1914,8 +1914,8 @@ $lang_util_php = array(
   'thumbs_wait' => 'Küçük resimler ve/veya yeniden boyutlanan resimler Güncelleniyor, lütfen bekliyor...',
   'thumbs_continue_wait' => 'Küçük resimleri ve/veya yeniden boyutlanan resimleri gücelleme devam ediyor...',
   'titles_wait' => 'Başlıklar güncelleniyor, Lütfen bekleyin...',
-  'delete_wait' => 'Başlılar siliniyor, lütfen bekleiyin...',
-  'replace_wait' => 'Orjinal resimler yeniden boyutlanana resimler ile orjinal halde siliniyor, lütfen bekleyin..',
+  'delete_wait' => 'Başlıklar siliniyor, lütfen bekleyin...',
+  'replace_wait' => 'Orjinal resimler yeniden boyutlanan resimler ile orjinal halde siliniyor, lütfen bekleyin..',
   'instruction' => 'Hızlı talimat',
   'instruction_action' => 'İşlem seç',
   'instruction_parameter' => 'Parametreleri ayarla',
@@ -1925,10 +1925,10 @@ $lang_util_php = array(
   'update_what' => 'Ne güncellenmeli',
   'update_thumb' => 'Sadece küçük resimler',
   'update_pic' => 'Sadece yeniden boyutlandırılan resimler',
-  'update_both' => 'Küçük resimler ve yeniden boyutlandırılan reimler',
-  'update_number' => 'Resimleri tılama sürecini numaralandır',
-  'update_option' => '(Bu tecihi azaltma ayarlarını deneyin eğer timeout problemlerinde tecrübeliysen)',
-  'filename_title' => 'Resim adı ve Resim başlıgı', //cpg1.3.0
+  'update_both' => 'Küçük resimler ve yeniden boyutlandırılan resimler',
+  'update_number' => 'Resimleri tıklama sürecini numaralandır',
+  'update_option' => '(Bu tercihi azaltma ayarlarını deneyin eğer timeout problemlerinde tecrübeliysen)',
+  'filename_title' => 'Resim adı ve Resim başlığı', //cpg1.3.0
   'filename_how' => 'Resim adı nasıl düzenlenmeli',
   'filename_remove' => ' .jpg sonlandırmasını sil ve yerine _ (alt tire) ekle ',
   'filename_euro' => '2003_11_23_13_20_20.jpg ği  23/11/2003 13:20 ğe çevir',
@@ -1951,7 +1951,7 @@ $lang_util_php = array(
   'refresh_db' => 'Dosya boyutlarını ve bilgilerini tekrar kontrol et.', //cpg1.4
   'refresh_db_explanation' => 'Dosyaların boyutları ve bilgilerini tekrar kontrol edip güncelleyebilirsiniz. Eğer dosyalarınız kendiniz yazdıysanız bu seçenegi seçiniz.', //cpg1.4
   'reset_views' => 'Bakılma sayacını sıfırla', //cpg1.4
-  'reset_views_explanation' => 'Seçilen albumdeki bakılma sayaçlarını sıfırla.', //cpg1.4
+  'reset_views_explanation' => 'Seçilen albümdeki bakılma sayaçlarını sıfırla.', //cpg1.4
   'orphan_comment' => 'bağlantısız bir yorum bulundu',
   'delete' => 'Sil', //cpg1.3.0
   'delete_all' => 'Tümünü sil', //cpg1.3.0
@@ -1963,11 +1963,11 @@ $lang_util_php = array(
   'update_db' => 'veritabanını güncelle', //cpg1.3.0
   'update_db_explanation' => 'Eğer coppermine resimleri tekrar yerleştirmişsen, değişiklik, eklenti yada Copperminenin yeni versiyonu yüklemişsen bu seçenegi kullanabilirsiniz, sisteminizdeki veritabanın güncellenir. Bu gerekli çizelgeleri ve/veya seçenekleri coppermine veri tabanında değerlendirir.', //cpg1.3.0
   'view_log' => 'Günlük dosyalarını göster', //cpg1.4
-  'view_log_explanation' => 'Buradan Coppermine sistemindeki yapılanları detaylı bir günlükte görebilirsiniz. Bu günlüge girebilmek için <a href="admin.php">coppermine config</a>.', //cpg1.4
+  'view_log_explanation' => 'Buradan Coppermine sistemindeki yapılanları detaylı bir günlükte görebilirsiniz. Bu günlüğe girebilmek için <a href="admin.php">coppermine config</a>.', //cpg1.4
   'versioncheck' => 'Sürüm kontrol', //cpg1.4
-  'versioncheck_explanation' => 'Buradan kullandıgınız sistemin güncel sürümlerini görebilirsiniz.', //cpg1.4
+  'versioncheck_explanation' => 'Buradan kullandığınız sistemin güncel sürümlerini görebilirsiniz.', //cpg1.4
   'bridgemanager' => 'Köprü ayarları', //cpg1.4
-  'bridgemanager_explanation' => 'Diger programlarla kurdugunuz köprüleri açıp kapatabilir veya ayarlarını degiştirebilirsniz.', //cpg1.4
+  'bridgemanager_explanation' => 'Diğer proğramlarla kurduğunuz köprüleri açıp kapatabilir veya ayarlarını degiştirebilirsniz.', //cpg1.4
 );
 }
 // ------------------------------------------------------------------------- //
@@ -1976,18 +1976,18 @@ $lang_util_php = array(
 
 if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'title' => 'Sürüm kontrol', //cpg1.4
-  'what_it_does' => 'Bu ekran Coppermine sürümünü güncellemiş kullanıcılar içindir. Bu yazılım sizin dosyalarınızın Coppirme sitesindeki (http://coppermine.sourceforge.net) dosyalarla aynı olup olmadığını kontrol eder ve bu şekilde programdaki eksiklikleri görebilirsiniz. <br />Düzeltilmesi gerekenler kırmızı gösterir. Sarı ile tekrar kontrol edilmesi gereken yerleri gösterir. Yeşil olarak gösterilenlerde ise bir sorun yok. Yardım tuşlarına basarak geniş bilgi alabilirsiniz.', //cpg1.4
+  'what_it_does' => 'Bu ekran Coppermine sürümünü güncellemiş kullanıcılar içindir. Bu yazılım sizin dosyalarınızın Coppermine sitesindeki (http://coppermine.sourceforge.net) dosyalarla aynı olup olmadığını kontrol eder ve bu şekilde programdaki eksiklikleri görebilirsiniz. <br />Düzeltilmesi gerekenler kırmızı gösterir. Sarı ile tekrar kontrol edilmesi gereken yerleri gösterir. Yeşil olarak gösterilenlerde ise bir sorun yok. Yardım tuşlarına basarak geniş bilgi alabilirsiniz.', //cpg1.4
   'online_repository_unable' => 'Depoya ulaşılamıyor', //cpg1.4
   'online_repository_noconnect' => 'Coppermine depoya ulaşamıyor. Sebeb olarak şu sorunlar olabilir:', //cpg1.4
   'online_repository_reason1' => 'Coppermine deposu şu anda hizmet dışı olabilir - Sayfayı kontrol ediniz: %s - Bu sayfaya ulaşamıyorsanız, tekrar deneyiniz.', //cpg1.4
-  'online_repository_reason2' => 'Sunucunuzdaki PHP ayarlarıdn %s kapalı (normalde acık olmalı). Sunucu yöneticinize bu seçenegi açtırınız. <i>php.ini</i> (at least allow it to be overridden with %s). Eğer bu dosyalar değiştirilemez ise dosyaları karşılaştırmak mümkün olmıyacaktır. Ve sadece burada kullandığınız sürüm yazılacaktır.', //cpg1.4
+  'online_repository_reason2' => 'Sunucunuzdaki PHP ayarların %s kapalı (normalde acık olmalı). Sunucu yöneticinize bu seçenegi açtırınız. <i>php.ini</i> (at least allow it to be overridden with %s). Eğer bu dosyalar değiştirilemez ise dosyaları karşılaştırmak mümkün olmayacaktır. Ve sadece burada kullandığınız sürüm yazılacaktır.', //cpg1.4
   'online_repository_skipped' => 'Depoya ulaşmayı iptal et', //cpg1.4
-  'online_repository_to_local' => 'Bu yazılım şimdi tekrar yerel klasöre geri döndü. Eğer dosyaları kontrol etmiş ve yükleme anında kapatmışsanız programınız belki güvenilir bir şekilde çalışmayabilir. Bu sürümden sonraki değişiklikler uygulanmıyacaktır.', //cpg1.4
+  'online_repository_to_local' => 'Bu yazılım şimdi tekrar yerel klasöre geri döndü. Eğer dosyaları kontrol etmiş ve yükleme anında kapatmışsanız proğramınız belki güvenilir bir şekilde çalışmayabilir. Bu sürümden sonraki değişiklikler uygulanmıyacaktır.', //cpg1.4
   'local_repository_unable' => 'Sunucunuzdaki depoya ulaşılamıyor', //cpg1.4
-  'local_repository_explanation' => 'Coppermine sizin depo dosyalarınıza %s ulaşamıyor. Bu belki sizin dosyalarınızı depoya yüklemediğinizden dolayı kaynaklanabilir. Dosyaları yükleyin ve tekrar deneyiniz.<br />Eğer hala düzelmediyse belki web sunucunuz <a href="http://www.php.net/manual/en/ref.filesystem.php">PHP\'s dosya sistemlerinin bir kısmını kapatmış olabilir.</a>. Eğer öyle ise malesef bu modulu kullanamazsınız.', //cpg1.4
+  'local_repository_explanation' => 'Coppermine sizin depo dosyalarınıza %s ulaşamıyor. Bu belki sizin dosyalarınızı depoya yüklemediğinizden dolayı kaynaklanabilir. Dosyaları yükleyin ve tekrar deneyiniz.<br />Eğer hala düzelmediyse belki web sunucunuz <a href="http://www.php.net/manual/en/ref.filesystem.php">PHP\'s dosya sistemlerinin bir kısmını kapatmış olabilir.</a>. Eğer öyle ise maalesef bu modülü kullanamazsınız.', //cpg1.4
   'coppermine_version_header' => 'Kurulu Coppermine sürümü', //cpg1.4
   'coppermine_version_info' => 'Kullandıgınız Coppermine sürümü: %s', //cpg1.4
-  'coppermine_version_explanation' => 'Son sürümünü yüklediğiniz halde ekranda gösterilen sürüm doğru degil ise büyük bi ihtimalle <i>include/init.inc.php</i> dosyasının son sürmü sisteminizde yüklü değil.', //cpg1.4
+  'coppermine_version_explanation' => 'Son sürümünü yüklediğiniz halde ekranda gösterilen sürüm doğru değil ise büyük bir ihtimalle <i>include/init.inc.php</i> dosyasının son sürmü sisteminizde yüklü değil.', //cpg1.4
   'version_comparison' => 'Sürüm karşılaştır', //cpg1.4
   'folder_file' => 'klasör/dosya', //cpg1.4
   'coppermine_version' => 'Coppermine sürümü', //cpg1.4
@@ -2025,7 +2025,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'go_to_webcvs' => '%s a git', //cpg1.4
   'options' => 'Ayarlar', //cpg1.4
   'show_optional_files' => 'opsiyonel dosya/klasörleri göster', //cpg1.4
-  'show_mandatory_files' => 'gerekl dosyaları göster', //cpg1.4
+  'show_mandatory_files' => 'gerekli dosyaları göster', //cpg1.4
   'show_file_versions' => 'dosya sürümünü göster', //cpg1.4
   'show_errors_only' => 'sadece hatalı dosya/klasörleri göster', //cpg1.4
   'show_permissions' => 'klasör yetkilerini göster', //cpg1.4
@@ -2086,11 +2086,11 @@ $lang_xp_publish_php = array(
   'title' => 'Coppermine - XP Web yayınlama sihirbazı', //cpg1.4
   'welcome' => 'Hoşgeidiniz <b>%s</b>,', //cpg1.4
 			'need_login' => 'Sihirbazı kullanabilmek için galeriye giriş yapmış olmalısınız.<p/><p>Giriş yaparken <b>beni hatırla</b> seçenegini kullanmayı unutmayın.', //cpg1.4
-			'no_alb' => 'Özürdilerim, Ama malesef şu anda bu resimleri yükleyebileceginiz bir albüm bulunamadı.', //cpg1.4
+			'no_alb' => 'Özürdilerim, ama malesef şu anda bu resimleri yükleyebileceğiniz bir albüm bulunamadı.', //cpg1.4
 			'upload' => 'Olan bir albümün içine resimleri yükle.', //cpg1.4
 			'create_new' => 'Albüm için yeni bir albüm oluştur.', //cpg1.4
 			'album' => 'Albüm', //cpg1.4
-			'category' => 'Katagori',
+			'category' => 'Kategori',
 			'new_alb_created' => '&quot;<b>%s</b>&quot; isimli albümünüz oluşturuldu.', //cpg1.4
 			'continue' => 'Devam etmek için &quot;Sonraki&quot; tuşuna basınız', //cpg1.4
 			'link' => 'bu link', //cpg1.4

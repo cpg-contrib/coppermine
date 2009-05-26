@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-26 [O] Updated Turkish language file (user contribution) (thread ID 59699) {GauGau}
 2009-05-26 [M] Updated version count from cpg1.4.24 to cpg1.4.25 in subversion repository as a preparation for a possible future release {GauGau}
 2009-05-26 [M] Release of cpg1.4.24 {GauGau}
 2009-05-25 [B] Added 'svn' to the list of foldernames to skip during batch-add {GauGau}
