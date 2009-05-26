@@ -6883,7 +6883,7 @@ $return = '
 1.4.24|reviewcom.php|1.4.24|5969|mandatory|r@
 1.4.24|scripts.js|1.4.24|5969|mandatory|r@
 1.4.24|search.php|1.4.24|5969|mandatory|r@
-1.4.24|searchnew.php|1.4.24|5969|mandatory|r@
+1.4.24|searchnew.php|1.4.24|5993|mandatory|r@
 1.4.24|showthumb.php|1.4.24|5969|mandatory|r@
 1.4.24|stat_details.php|1.4.24|5969|mandatory|r@
 1.4.24|thumbnails.php|1.4.24|5969|mandatory|r@
@@ -6926,7 +6926,7 @@ $return = '
 1.4.24|docs/faq.htm|1.4.24|5969|optional|r@
 1.4.24|docs/faq_de.htm|1.4.24|5969|optional|r@
 1.4.24|docs/faq_fr.htm|1.4.24|5969|optional|r@
-1.4.24|docs/index.htm|1.4.24|5989|mandatory|r@
+1.4.24|docs/index.htm|1.4.24|5993|mandatory|r@
 1.4.24|docs/index_es.htm|1.4.24|4392|mandatory|r@
 1.4.24|docs/index_fr.htm|1.4.24|5979|mandatory|r@
 1.4.24|docs/README.html|1.4.24|5969|optional|r@
