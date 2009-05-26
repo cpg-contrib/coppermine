@@ -339,30 +339,6 @@ EOT;
     endtable();
 }
 
-// Delete a directory and its contents
-function deldir($dir) {
-    $handle = opendir($dir);
-
-    // Remove all files
-    while (false!==($FolderOrFile = readdir($handle))) {
-        if($FolderOrFile != "." && $FolderOrFile != "..") {
-            if(is_dir("$dir/$FolderOrFile")) {
-                deldir("$dir/$FolderOrFile");
-            } else {
-                unlink("$dir/$FolderOrFile");
-            }
-        }
-    }
-    closedir($handle);
-
-    // If directory was removed return true
-    if(rmdir($dir)) {
-        return true;
-    }
-  return false;
-}
-
-
 /**
  * Main code
  */
@@ -415,7 +391,7 @@ switch ($op) {
     case 'delete':
         $path = $p;
         if (is_bool(strpos('/',$path))) {
-            deldir('./plugins/'.$path);
+            cpg_folder_file_delete('./plugins/'.$path);
             if ($CONFIG['log_mode']) {
               log_write("Plugin '".$path."' deleted at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
             }
