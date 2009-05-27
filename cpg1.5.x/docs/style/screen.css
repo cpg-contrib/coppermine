@@ -79,7 +79,22 @@ li {
     margin: 0px 5px 5px 15px;
     padding: 0;
     list-style-position: outside;
-    list-style-type: disc;
+}
+
+ul li {
+    list-style-type: square;
+}
+
+ol li {
+    list-style-type: decimal;
+}
+
+ul li li {
+	list-style-type: disc;
+}
+
+ul li li li{
+	list-style-type: circle;
 }
 
 li pre {

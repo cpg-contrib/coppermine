@@ -143,7 +143,9 @@ function generate_smilies($form = 'post', $field = 'message')
         foreach ($smilies as $smiley) {
             $smile_path = (file_exists($paths[0].$smiley[1]))?($paths[0]):($paths[1]);
             $caption = $smiley[2] . " " . $smiley[0];
-            $html .= '                <td width="5%"><img src="images/smiles/' . $smiley[1] . '" alt="' . $caption . '" width="15" height="15" border="0" style="cursor:pointer;" title="' . $caption . '" onclick="javascript:emot' . $form . '(\'' . $smiley[0] . '\')" /></td>' . $LINEBREAK;
+            if (file_exists('images/smiles/' . $smiley[1]) == TRUE) {
+				$html .= '                <td width="5%"><img src="images/smiles/' . $smiley[1] . '" alt="' . $caption . '" border="0" style="cursor:pointer;" title="' . $caption . '" onclick="javascript:emot' . $form . '(\'' . $smiley[0] . '\')" /></td>' . $LINEBREAK;
+			}
         }
 
         $html .= '        </tr>' . $LINEBREAK . '</table>' . $LINEBREAK;

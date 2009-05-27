@@ -26,17 +26,11 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<script type="text/javascript">
-  cpgDocHeader();
-</script>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
 <div id="toc">
-<script type="text/javascript">
-  cpgDocToc();
-</script>
-<noscript>
 <a href="toc.htm">Table of Contents</a>
-</noscript>
 </div>
+
 <a name="php-content"></a><h1>Dynamic (PHP-driven) content<a href="#php-content" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>Coppermine is PHP-driven, which means that pages are being created dynamically on the server when requested and sent to the client. Don't worry though: you don't need to know PHP at all to be able to run Coppermine - that's the advantage of a pre-made script. However, there may be some who want to customize their Coppermine-installation to do additional things that can only be accomplished by adding or modifying the PHP code. If you're just getting started with Coppermine, you don't have to read this section - only advanced stuff will be explained here:</p>
 
@@ -99,10 +93,11 @@ Often, you may want to display different content based on the visitor's status (
 <p>Core files (PHP files that come with the Coppermine package) could be modified as well to achieve custom features. However, the dev team strongly recommends to use this option only if you're absolutely sure what you're doing: although that you may not be planning to update Coppermine in the near future, an update may become mandatory. The reason is quite simple: every non-trivial piece of software contains bugs. This certainly is the case for Coppermine as well. Although we try to deliver a flawless application, there will almost certainly be bugs that will be fixed in future maintenance releases. Therefor, it will be mandatory to keep your Coppermine-install up-to-date. Updating your Coppermine install will require you to replace all core files with the new ones that come with the maintenance release. Subsequently, your custom modifications of core files would be lost, so you would have to re-apply your hacks.<br />
 This being said, you should think twice before starting to modify core files: almost all custom modifications can be accomplished by performing the recommended method to create or modify a custom theme instead of modifying core files. If you must use core file hacks, make sure to comment your modifications and to take notes of them. After upgrading, you could use a diff viewer to re-apply your custom hacks easily.</p>
 
-<script type="text/javascript">
-  cpgDocFooter();
-  dateRevision(' $LastChangedDate$ ', ' $Revision$ ');
-</script>
-
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate$</span>
+		<span id="doc_revision">$Revision$</span>
+	</div>
+</div>
 </body>
 </html>

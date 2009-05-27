@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="language" content="en" />
 <meta name="copyright" content="Coppermine dev team" />
-<meta name="description" content="There are several methods to upload files within Coppermine. You (as gallery admin) should use FTP-upload plus batch-add (only the admin can do this). Regular users are supposed to use the regular http upload or (if they have Windows XP) the XP Publisher." />
+<meta name="description" content="If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested here to get more detailed error messages. This applies to all upload methods, not only HTTP uploads." />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -26,21 +26,16 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<script type="text/javascript">
-  cpgDocHeader();
-</script>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
 <div id="toc">
-<script type="text/javascript">
-  cpgDocToc();
-</script>
-<noscript>
 <a href="toc.htm">Table of Contents</a>
-</noscript>
 </div>
 
 
 <a name="upload_trouble"></a><h1>Upload troubleshooting<a href="#upload_trouble" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>If you have upload issues, read this page - entirely! The Coppermine dev team considers this page to be the most important page of the entire documentation, simply because there are many different things that can go wrong when uploading. This is caused by different webserver setups mostly.</p>
+<button type="button" class="button detail_expand_all" name="expandalltop" id="expandalltop" onclick="return false"><img src="../../images/tree/plus.gif" width="9" height="9" border="0" alt="" title="Expand All" />Expand all details</button>
+<button type="button" class="button detail_collapse_all" name="collapsealltop" id="collapsealltop" style="display:none;" onclick="return false"><img src="../../images/tree/minus.gif" width="9" height="9" border="0" alt="" title="Collapse all" />Collapse all details</button>
 
 <a name="upload_trouble_permission"></a><h2>Permissions<a href="#upload_trouble_permission" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p class="cpg_message_info"><strong>First and foremost:</strong> Check your folder and file permission settings on the <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, and <tt class="code">/albums/edit</tt> directories. On <abbr title="Unix, Linux and related operating systems">*nix</abbr>-driven webservers, the folder <tt class="code">/albums</tt> and all sub-folders should usually be 777 or 755 (depending on your webserver configuration). If you don't know what we mean by <em>777</em> or <em>755</em>, you need to read up the <a href="install_permissions.htm#permissions">permission section</a> (if this doesn't help, do a Google search on <em>UNIX file permissions</em>). Windows has a similar set of file permissions. You can usually set these permissions using an <em>FTP client</em> (If you don't know what an <em>FTP client</em> is, Google for <em>FTP client</em> or take a look at the list of <a href="dev_tools.htm#dev_tools_ftp_client">recommended tools</a>).</p>
@@ -59,9 +54,6 @@
 	If you're going to request support on upload issues on the coppermine support board, you're requested to perform the steps mentioned below in detail.
 </div>
 <p>When troubleshooting uploads in <abbr title="Coppermine Photo Gallery">CPG</abbr> 1.5, you are advised to activate '<a href="configuration.htm#debug_mode">Debug mode</a>' in the <a href="configuration.htm">config console</a>. Changing this setting negates some of the error masking done in the multiple upload setting. This will allow you to access more detailed error messages.</p>
-<button type="button" class="button detail_expand_all" name="expandalltop" id="expandalltop" onclick="return false"><img src="../../images/tree/plus.gif" width="9" height="9" border="0" alt="" title="Expand All" />Expand all details</button>
-<button type="button" class="button detail_collapse_all" name="collapsealltop" id="collapsealltop" style="display:none;" onclick="return false"><img src="../../images/tree/minus.gif" width="9" height="9" border="0" alt="" title="Collapse all" />Collapse all details</button>
-
 <ul>
 	<li>
 		<strong class="detail_head_collapsed">Log in as admin</strong>
@@ -92,9 +84,33 @@
 			</ul>
 		</div>
 	</li>
-	<li><strong>Go to the http uploads page by clicking on the &quot;upload file&quot; link in the main coppermine menu</strong></li>
+	<li>
+		<strong class="detail_head_collapsed">Go to the http uploads page by clicking on the &quot;upload file&quot; link in the main coppermine menu</strong>
+		<div class="detail_body">
+			The http uploads page will be available for you as admin at any time. This is not the case though for non-admin visitors of your gallery: it depends on the permissions you assign them if they will have the upload file link in the menu.
+		</div>
+	</li>
+	<li>
+		<strong class="detail_head_collapsed">On the upload file screen, choose an album from the "Album" dropdown</strong>
+		<div class="detail_body">
+			If you don't have an album you can pick from the list, you haven't created an album yet. You have to understand that you need at least one album where your upload can go to. Go to the <a href="albums.htm#albmgr">album manager</a> and create at least one album first, then try again uploading.
+		</div>
+	</li>
+	<li>
+		<strong class="detail_head_collapsed">Click the "Browse..." button and navigate to a small, known-good jpg-file on your hard drive</strong>
+		<div class="detail_body">
+			Don't assume that <em>any</em> image will work - the term "known-good" in this case means that you should use an image that already has been processed by coppermine to make sure it is a file that coppermine can handle - this can best be achieved if you download an image from the coppermine demo on the original coppermine home page.
+		</div>
+	</li>
+	<li>
+		<strong class="detail_head_collapsed">Submit the form by clicking on the "Upload file" button</strong>
+		<div class="detail_body">
+			By submitting the form you start the actual upload process - everything you did before were just preparations.
+		</div>
+	</li>
 </ul>
-<p>Then try to upload (using http uploads, even if you experienced troubles using another upload method) - you should get a more detailed <a href="#upload_error_messages">error message</a> that tells you what exactly goes wrong with your uploads. If the error message doesn't mean anything to you, <a href="http://coppermine-gallery.net/forum/index.php?action=search" rel="external" class="external">search the support board</a> for the error message you get.</p>
+<p>You should try using http uploads, even if you experienced troubles using another upload method. You should get a more detailed <a href="#upload_error_messages">error message</a> if something is wrong that tells you what exactly goes wrong with your uploads. If the error message doesn't mean anything to you, <a href="http://coppermine-gallery.net/forum/index.php?action=search" rel="external" class="external">search the support board</a> for the error message you get.</p>
+<p>If you don't get an error message at all, you probably have overloaded the server with previous attempts - please review the <a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions">server-sided limitations</a> that might apply for you.
 
 
 
@@ -106,8 +122,6 @@
 <a name="upload_support"></a><h3>Step-by-step guide when asking for support<a href="#upload_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This is a step-by-step guide that is meant to explain in a fool-proof way what settings you need to make when asking for support on the Coppermine support board.</p>
 <p>We assume that you have applied tight permission settings, so we'll go through this a bit more complicated than actually necessary on most setups: the instructions below are meant to allow upload troubleshooting for the supporter even if the rest of users of your gallery isn't allowed to upload or if you don't even allow user registration in the first place. If you know your way around, you can of course skip the steps that explain the creation of an extra group if all your registered users are allowed to upload anyway. In the end, the important thing that counts is that the supporter can go through uploading untill he/she can see what actually goes wrong during the upload stage.</p>
-<button type="button" class="button detail_expand_all" name="expandalltop" id="expandalltop" onclick="return false"><img src="../../images/tree/plus.gif" width="9" height="9" border="0" alt="" title="Expand All" />Expand all details</button>
-<button type="button" class="button detail_collapse_all" name="collapsealltop" id="collapsealltop" style="display:none;" onclick="return false"><img src="../../images/tree/minus.gif" width="9" height="9" border="0" alt="" title="Collapse all" />Collapse all details</button>
 <ul>
 	<li>
 		<a name="upload_support_admin_login"></a><h4 class="detail_head_collapsed">Log in as admin<a href="#upload_support_admin_login" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
@@ -468,10 +482,11 @@ The batch add process is fast, but it creates quite a load on the server and, as
 
 <a name="upload_trouble_end"></a>
 
-<script type="text/javascript">
-  cpgDocFooter();
-  dateRevision(' $LastChangedDate$ ', ' $Revision$ ');
-</script>
-
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate$</span>
+		<span id="doc_revision">$Revision$</span>
+	</div>
+</div>
 </body>
 </html>

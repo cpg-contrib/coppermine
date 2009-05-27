@@ -26,16 +26,9 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<script type="text/javascript">
-  cpgDocHeader();
-</script>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
 <div id="toc">
-<script type="text/javascript">
-  cpgDocToc();
-</script>
-<noscript>
 <a href="toc.htm">Table of Contents</a>
-</noscript>
 </div>
 
 <a name="subversion"></a><h1>Subversion<a href="#subversion" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
@@ -155,10 +148,11 @@ Within this section you will find several folders: the "trunk" folder contains t
 <p>As you can see from the example, this is a great thing to keep track of file revisions: whenever a file changes, it will get a new revision number.</p>
 <p>This is great for the developer, but what's the benefit for regular users then? To be able to understand this, you'll have to understand how releases work: the dev team decides that it's time to release a new package, so the packager (the dev team member who is in charge of creating the package for end users) will perform a checkout from the SVN repository to make sure that his local files are up to date. Then he creates an archive and uploads that archive to the downloads section of the coppermine webspace, where the end user can get that package. In each of the files inside the package, the revision numbers still show through, but don't have an impact on the release, so you (the end user) don't need to worry about the revision numbers in the first place - after all, you the package you have downloaded has got a version number, that's all you need to know. However, development continues - developers are still fixing bugs in the repository, so the revision count of the files in the svn repository will increase. There won't be a new package release just because just one file in the repository changed - usually, several changes (=fixes) will be rolled into one when a new package is being released. Now, what's the catch? Well, between official package releases, you can still get the most recent files from the svn repository - that's recommended for users who are concerned about security, but as well if you experience an issue with your gallery and read about a fix on the bugs board that a developer has reported to be fixed in the svn. If you want to get the fix, head over to the web SVN, browse it and get the file that contains the fix. Use it as a replacement for the file on your server that was buggy. If you do that, versioncheck will report your file on the server to be newer than expected (because it actually <strong>is</strong> newer than the file that went into the released package).</p>
 
-<script type="text/javascript">
-  cpgDocFooter();
-  dateRevision(' $LastChangedDate$ ', ' $Revision$ ');
-</script>
-
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate$</span>
+		<span id="doc_revision">$Revision$</span>
+	</div>
+</div>
 </body>
 </html>
