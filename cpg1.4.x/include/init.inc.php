@@ -26,20 +26,11 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 require_once('include/debugger.inc.php');
 
 set_magic_quotes_runtime(0);
-// used for timing purpose
-$query_stats = array();
-$queries = array();
 
-function cpgGetMicroTime()
-{
-        list($usec, $sec) = explode(" ", microtime());
-        return ((float)$usec + (float)$sec);
-}
-$cpg_time_start = cpgGetMicroTime();
 // Do some cleanup in GET, POST and cookie data and un-register global vars
 $HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', '%26' => '&amp;', '%22' => '&quot;', '%3C' => '&lt;', '%3E' => '&gt;','%27' => '&#39;', "'" => '&#39;');
 
-$keysToSkip = array('_POST', '_GET', '_COOKIE', '_REQUEST', '_SERVER', 'HTML_SUBST', 'keysToSkip', 'register_globals_flag', 'cpgdebugger', 'key');
+$keysToSkip = array('_POST', '_GET', '_COOKIE', '_REQUEST', '_SERVER', '_FILES', 'HTML_SUBST', 'keysToSkip', 'register_globals_flag', 'cpgdebugger', 'key');
 
 if (ini_get('register_globals') == '1' || strtolower(ini_get('register_globals')) == 'on') {
     $register_globals_flag = true;
@@ -117,6 +108,18 @@ if (get_magic_quotes_gpc()) {
                 }
         }
 }
+
+// used for timing purpose
+$query_stats = array();
+$queries = array();
+
+function cpgGetMicroTime()
+{
+        list($usec, $sec) = explode(" ", microtime());
+        return ((float)$usec + (float)$sec);
+}
+$cpg_time_start = cpgGetMicroTime();
+
 // Initialise the $CONFIG array and some other variables
 $CONFIG = array();
 //$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];
