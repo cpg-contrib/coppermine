@@ -1808,6 +1808,12 @@
     <hash>7e48d6a58b55dda8cbc4f3480526d44b</hash>
   </element>
   <element>
+    <fullpath>docs/en/images/simple_file_upload.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>7e48d6a58b55dda8cbc4f3480526d44b</hash>
+  </element>
+  <element>
     <fullpath>docs/en/images/searchnew_2.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>

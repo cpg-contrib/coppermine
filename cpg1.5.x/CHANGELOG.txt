@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-27 [D] Added detailed instructions to the upload troubleshooting section of the docs {GauGau}
 2009-05-26 [O] Removed function deldir in plugin manager in favor of existing global function cpg_folder_file_delete (thread ID 58603) {GauGau}
 2009-05-25 [B] Fixing duplicates during batch-add (thread ID 57717) {GauGau}
 2009-05-25 [D] Added documentation about updater {GauGau}

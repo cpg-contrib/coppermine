@@ -40,33 +40,58 @@
 
 
 <a name="upload_trouble"></a><h1>Upload troubleshooting<a href="#upload_trouble" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>If you have upload issues, read this page - entirely!</p>
+<p>If you have upload issues, read this page - entirely! The Coppermine dev team considers this page to be the most important page of the entire documentation, simply because there are many different things that can go wrong when uploading. This is caused by different webserver setups mostly.</p>
 
 <a name="upload_trouble_permission"></a><h2>Permissions<a href="#upload_trouble_permission" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p class="cpg_message_info"><strong>First and foremost:</strong> Check your folder and file permission settings on the <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, and <tt class="code">/albums/edit</tt> directories. On *nix-driven webservers, the folder <tt class="code">/albums</tt> and all sub-folders should usually be 777 or 755 (depending on your webserver configuration). If you don't know what we mean by <em>777</em> or <em>755</em>, you need to read up the <a href="install_permissions.htm#permissions">permission section</a> (if this doesn't help, do a Google search on <em>UNIX file permissions</em>). Windows has a similar set of file permissions. You can usually set these permissions using an <em>FTP client</em> (If you don't know what an <em>FTP client</em> is, Google for <em>FTP client</em> or take a look at the list of <a href="dev_tools.htm#dev_tools_ftp_client">recommended tools</a>).</p>
+<p class="cpg_message_info"><strong>First and foremost:</strong> Check your folder and file permission settings on the <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, and <tt class="code">/albums/edit</tt> directories. On <abbr title="Unix, Linux and related operating systems">*nix</abbr>-driven webservers, the folder <tt class="code">/albums</tt> and all sub-folders should usually be 777 or 755 (depending on your webserver configuration). If you don't know what we mean by <em>777</em> or <em>755</em>, you need to read up the <a href="install_permissions.htm#permissions">permission section</a> (if this doesn't help, do a Google search on <em>UNIX file permissions</em>). Windows has a similar set of file permissions. You can usually set these permissions using an <em>FTP client</em> (If you don't know what an <em>FTP client</em> is, Google for <em>FTP client</em> or take a look at the list of <a href="dev_tools.htm#dev_tools_ftp_client">recommended tools</a>).</p>
 
 <p class="cpg_message_error">For those of you who skim over statements written in red letters, we will repeat to try to get your attention:<br />
 <span class="important"><strong>Yes, we are writing about something that could easily apply to you</strong></span>
 </p>
 <p>We repeat - check/apply your permissions on the <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, and <tt class="code">/albums/edit</tt> directories.  All should usually be 777 or 755 (depending on your webserver configuration) or whatever is needed on your webserver setup to allow the coppermine script write access.</p>
-<p class="cpg_message_info">Yes, we do want you to <strong>set</strong> the permissions of each folder even if you think you have already done this. Yes, we <strong>mean</strong> it.</p>
+<p class="cpg_message_info">Yes, we do want you to <strong>set</strong> the permissions of each folder even if you think you have already done this. Yes, we <strong>mean</strong> it. No, just <em>checking</em> permissions (i.e. looking up what your FTP client reports permissions to be) is <strong>not</strong> enough. As we said: set/apply permissions, don't just look at them.</p>
 
 <a name="upload_trouble_enable_settings"></a><h2>Enable troubleshooting settings<a href="#upload_trouble_enable_settings" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed <a href="#upload_error_messages">error messages</a>. This applies to <strong>all</strong> upload methods, not only <a href="uploading_http.htm#upload_http">HTTP uploads</a>.</p>
+<span class="detail_head_collapsed">Details</span>
+<div class="detail_body border1">
+	Even if you have issues with batch-adding pics (or any other uploading method), you should perform the steps mentioned below that check http uploads, as http uploads are the most basic upload method that needs to work under all circumstances.<br />
+	If you're going to request support on upload issues on the coppermine support board, you're requested to perform the steps mentioned below in detail.
+</div>
 <p>When troubleshooting uploads in <abbr title="Coppermine Photo Gallery">CPG</abbr> 1.5, you are advised to activate '<a href="configuration.htm#debug_mode">Debug mode</a>' in the <a href="configuration.htm">config console</a>. Changing this setting negates some of the error masking done in the multiple upload setting. This will allow you to access more detailed error messages.</p>
+<button type="button" class="button detail_expand_all" name="expandalltop" id="expandalltop" onclick="return false"><img src="../../images/tree/plus.gif" width="9" height="9" border="0" alt="" title="Expand All" />Expand all details</button>
+<button type="button" class="button detail_collapse_all" name="collapsealltop" id="collapsealltop" style="display:none;" onclick="return false"><img src="../../images/tree/minus.gif" width="9" height="9" border="0" alt="" title="Collapse all" />Collapse all details</button>
+
 <ul>
-	<li><strong>Log in as admin</strong><br />
-	Go to your coppermine page and log in as admin</li>
-	<li><strong>Go to the <a href="configuration.htm#admin">config screen</a></strong></li>
-	<li><strong>Scroll to the section &quot;User settings&quot; and expand it by clicking on it</strong></li>
-	<li><strong>Set the <a href="configuration.htm#admin_upload_mechanism">Default upload mechanism</a> to  &quot;<em>Simple - one file at a time</em>&quot;</strong></li>
-	<li><strong>Scroll to the bottom of the page</strong></li>
-	<li><strong>Expand the &quot;Maintenance settings&quot; section by clicking on it</strong></li>
-	<li><strong>Enable debug mode for everyone</strong><br />
-	(set <em>Enable debug mode</em> to &quot;Yes: Everyone&quot;)</li>
-	<li><strong>Leave display of notices switched off</strong><br />
-	(notices are only meant for developers. If you have idea what they mean, leave them off.)</li>
-	<li><strong>Save the new settings by clicking on &quot;Save new configuration&quot;</strong></li>
+	<li>
+		<strong class="detail_head_collapsed">Log in as admin</strong>
+		<div class="detail_body">Go to your coppermine page and log in as admin</div>
+	</li>
+	<li>
+		<strong class="detail_head_collapsed">Set &quot;Default upload method&quot; to &quot;Simple&quot;</strong>
+		<div class="detail_body">
+			<ul>
+				<li>Go to the <a href="configuration.htm#admin">config screen</a></li>
+				<li>Scroll to the section &quot;User settings&quot; and expand it by clicking on it</li>
+				<li>Set the <a href="configuration.htm#admin_upload_mechanism">Default upload mechanism</a> to  &quot;<em>Simple - one file at a time</em>&quot;</li>
+				<li>Scroll to the bottom of the page</li>
+				<li>Save the new settings by clicking on &quot;Save new configuration&quot;</li>
+			</ul>
+		</div>
+	</li>
+	<li>
+		<strong class="detail_head_collapsed">Enable &quot;debug mode&quot;</strong>
+		<div class="detail_body">
+			<ul>
+				<li>Go to the <a href="configuration.htm#admin">config screen</a></li>
+				<li>Scroll to the section &quot;Maintenance settings&quot; and expand it by clicking on it</li>
+				<li>Enable debug mode for everyone by clicking on &quot;Yes: Everyone&quot; in the line &quot;Enable debug mode&quot;</li>
+				<li>Leave display of notices switched off - if the checkbox &quot;Display notices in debug mode&quot; is ticked, un-tick it (notices are only meant for developers - if you have idea what they mean, leave them off permanently)</li>
+				<li>Scroll to the bottom of the page</li>
+				<li>Save the new settings by clicking on &quot;Save new configuration&quot;</li>
+			</ul>
+		</div>
+	</li>
 	<li><strong>Go to the http uploads page by clicking on the &quot;upload file&quot; link in the main coppermine menu</strong></li>
 </ul>
 <p>Then try to upload (using http uploads, even if you experienced troubles using another upload method) - you should get a more detailed <a href="#upload_error_messages">error message</a> that tells you what exactly goes wrong with your uploads. If the error message doesn't mean anything to you, <a href="http://coppermine-gallery.net/forum/index.php?action=search" rel="external" class="external">search the support board</a> for the error message you get.</p>
@@ -76,8 +101,140 @@
 
 <a name="upload_support"></a><h2>Asking for support on upload issues<a href="#upload_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 
-<p class="cpg_message_error">When asking for support on the coppermine forum, post a link to your site and a <a href="users.htm#user_cp_new">test user account</a> (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well. Do not post debug_output unless requested. If you want fast results, you should disable admin approval for the group the test user is in, so supporters can tell instantly what is wrong without needing to double-check.</p>
+<p class="cpg_message_error">When asking for support on the coppermine forum, post a link to your site and a <a href="users.htm#user_cp_new">test user account</a> (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well. Do <strong>not</strong> post debug_output unless requested. If you want fast results, you should disable admin approval for the group the test user is in, so supporters can tell instantly what is wrong without needing to double-check.</p>
 <p class="cpg_message_warning">When people have issues with uploading and decide to post their question on the Coppermine support board, they usually are told to read this upload troubleshooting section. Many of them fail to do so properly, which results in frustration both for users as well as supporters. To make this absolutely clear: the above mentioned steps are absolutely <strong>mandatory</strong>, no matter what skill level you have, no matter what upload method you have troubles with. Failing to do <strong>exactly</strong> as suggested will result in your request for help being ignored. Yes, this applies to you. We mean it!</p>
+<a name="upload_support"></a><h3>Step-by-step guide when asking for support<a href="#upload_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>This is a step-by-step guide that is meant to explain in a fool-proof way what settings you need to make when asking for support on the Coppermine support board.</p>
+<p>We assume that you have applied tight permission settings, so we'll go through this a bit more complicated than actually necessary on most setups: the instructions below are meant to allow upload troubleshooting for the supporter even if the rest of users of your gallery isn't allowed to upload or if you don't even allow user registration in the first place. If you know your way around, you can of course skip the steps that explain the creation of an extra group if all your registered users are allowed to upload anyway. In the end, the important thing that counts is that the supporter can go through uploading untill he/she can see what actually goes wrong during the upload stage.</p>
+<button type="button" class="button detail_expand_all" name="expandalltop" id="expandalltop" onclick="return false"><img src="../../images/tree/plus.gif" width="9" height="9" border="0" alt="" title="Expand All" />Expand all details</button>
+<button type="button" class="button detail_collapse_all" name="collapsealltop" id="collapsealltop" style="display:none;" onclick="return false"><img src="../../images/tree/minus.gif" width="9" height="9" border="0" alt="" title="Collapse all" />Collapse all details</button>
+<ul>
+	<li>
+		<a name="upload_support_admin_login"></a><h4 class="detail_head_collapsed">Log in as admin<a href="#upload_support_admin_login" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<div class="detail_body">Go to your coppermine page and log in as admin</div>
+	</li>
+	<li>
+		<a name="upload_support_create_uploader_group"></a><h4 class="detail_head_collapsed">Create uploader group<a href="#upload_support_create_uploader_group" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<div class="detail_body">
+			The instructions below how to create a group only applies if you are running Coppermine in standalone mode. If you have bridged your Coppermine gallery, use your bridging application to create the uploader group.
+			<ul>
+				<li>Go to the <a href="groups.htm#group_cp">group control panel</a> by clicking on the corresponding link in the <a href="admin_menu.htm#admin_menu">admin menu</a></li>
+				<li>Scroll to the bottom of the page</li>
+				<li>Click on the &quot;Create new group&quot; button</li>
+				<li>A new table row will appear at the bottom of the groups control panel table. Click into the name field and enter a name for the group that will make sense, e.g. &quot;uploaders&quot;</li>
+				<li>Scroll to the bottom of the page</li>
+				<li>Submit the form by clicking on the &quot;Apply changes&quot; button</li>
+			</ul>
+		</div>
+	</li>
+	<li>
+		<a name="upload_support_assign_permissions_uploader_group"></a><h4 class="detail_head_collapsed">Assign upload permissions to the uploader group<a href="#upload_support_assign_permissions_uploader_group" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<div class="detail_body">
+			The instructions below how to assign upload permissions to a group applies both for bridged as well as for standalone galleries.
+			<ul>
+				<li>Go to the <a href="groups.htm#group_cp">group control panel</a> by clicking on the corresponding link in the <a href="admin_menu.htm#admin_menu">admin menu</a></li>
+				<li>For the uploader group you created in the previous step, set the &quot;Allowed&quot; toggle to &quot;Yes&quot; in the column &quot;Public albums upload&quot;. Set the &quot;Approval&quot; toggle to &quot;No&quot; in that table cell.</li>
+				<li>Scroll to the bottom of the page</li>
+				<li>Submit the form by clicking on the &quot;Apply changes&quot; button</li>
+			</ul>
+		</div>
+	</li>
+	<li>
+		<a name="upload_support_create_test_user"></a><h4 class="detail_head_collapsed">Create a non-admin test user account<a href="#upload_support_create_test_user" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<div class="detail_body">
+			The instructions below how to create a user only applies if you are running Coppermine in standalone mode. If you have bridged your Coppermine gallery, use your bridging application to create the test user account.
+			<ul>
+				<li>Go to the <a href="users.htm#user_cp">user manager</a> by clicking on the corresponding link in the <a href="admin_menu.htm#admin_menu">admin menu</a></li>
+				<li>Scroll to the bottom of the page</li>
+				<li>Click on the &quot;Create new user&quot; button</li>
+				<li>On the following screen, enter a user name that is easy to memorize and type - we recommend something simple like &quot;tester&quot;, preferably without capitalization.</li>
+				<li>Assign an easy password - can be the same as the user name.</li>
+				<li>Assign the user to the "Uploaders" user group you created previously - make sure that for the user group dropdown field the value is &quot;Uploaders&quot; (or whatever name you chose for the custom group).</li>
+				<li>Scroll to the bottom and submit the form.</li>
+			</ul>
+		</div>
+	</li>
+	<li>
+		<a name="upload_support_create_album"></a><h4 class="detail_head_collapsed">Create an album where the uploads can go into<a href="#upload_support_create_album" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<div class="detail_body">
+			So far, we have created a custom group that is allowed to upload to public albums, but we haven't specified into what album the upload is allowed to go to. We need to create an album first.
+			<ul>
+				<li>Go to the <a href="albums.htm#albmgr">album manager</a> by clicking on the corresponding link in the <a href="admin_menu.htm#admin_menu">admin menu</a></li>
+				<li>Choose a category in which the test album should be created in - pick the category using the dropdown field at the top of the album manager. For ease of use it's recommended to create the test album in the gallery root (i.e. picking &quot;* No category *&quot; from the dropdown).</li>
+				<li>Click on the &quot;New album&quot; button at the bottom of the album manager page</li>
+				<li>An input field will show. Enter the name of the new album as &quot;test album&quot; and submit the form by clicking on the OK button</li>
+			</ul>
+		</div>
+	</li>
+	<li>
+		<a name="upload_support_album_permissions"></a><h4 class="detail_head_collapsed">Allow uploads to the test album<a href="#upload_support_album_permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<div class="detail_body">
+			The album where the uploads should go to exists, but so far nobody except the admin has got permissions to upload to it. Let's allow uploads for that album.
+			<ul>
+				<li>Go to the gallery index by clicking on the &quot;Album list&quot; link in the regular gallery navigation</li>
+				<li>Navigate to the category in which you created the test album in (if you did as suggested and created the test album inside the gallery root, you should already be where you're suppossed to be, so no need for action here)</li>
+				<li>Click on the &quot;Properties&quot; button next to the empty thumbnail that represents the test album</li>
+				<li>On the <a href="albums.htm#album_prop">album properties</a> screen, set &quot;Visitors can upload files&quot; to &quot;Yes&quot;</li>
+				<li>If your gallery has heavy traffic and you don't want your site visitors to notice that there is a test album, choose &quot;Members of the 'Uploaders' group&quot; from the dropdown list &quot;Visitors can upload files&quot;</li>
+				<li>Scroll to the bottom and submit the form by clicking on the button &quot;Update album&quot;</li>
+			</ul>
+		</div>
+	</li>
+	<li>
+		<a name="upload_support_simple_upload_method"></a><h4 class="detail_head_collapsed">Set &quot;Default upload method&quot; to &quot;Simple&quot;<a href="#upload_support_simple_upload_method" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<div class="detail_body">
+			<ul>
+				<li>Go to the <a href="configuration.htm#admin">config screen</a></li>
+				<li>Scroll to the section &quot;User settings&quot; and expand it by clicking on it</li>
+				<li>Set the <a href="configuration.htm#admin_upload_mechanism">Default upload mechanism</a> to  &quot;<em>Simple - one file at a time</em>&quot;</li>
+				<li>Scroll to the bottom of the page</li>
+				<li>Save the new settings by clicking on &quot;Save new configuration&quot;</li>
+			</ul>
+		</div>
+	</li>
+	<li>
+		<a name="upload_support_debug_mode"></a><h4 class="detail_head_collapsed">Enable &quot;debug mode&quot;<a href="#upload_support_debug_mode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<div class="detail_body">
+			<ul>
+				<li>Go to the <a href="configuration.htm#admin">config screen</a></li>
+				<li>Scroll to the section &quot;Maintenance settings&quot; and expand it by clicking on it</li>
+				<li>Enable debug mode for everyone by clicking on &quot;Yes: Everyone&quot; in the line &quot;Enable debug mode&quot;</li>
+				<li>Leave display of notices switched off - if the checkbox &quot;Display notices in debug mode&quot; is ticked, un-tick it (notices are only meant for developers - if you have idea what they mean, leave them off permanently)</li>
+				<li>Scroll to the bottom of the page</li>
+				<li>Save the new settings by clicking on &quot;Save new configuration&quot;</li>
+			</ul>
+		</div>
+	</li>
+	<li>
+		<a name="upload_support_test_for_yourself"></a><h4 class="detail_head_collapsed">Test uploading using the test user account<a href="#upload_support_test_for_yourself" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<div class="detail_body">
+			You may be tempted to go ahead and ask for support now, but wait a minute: you haven't tried for yourself yet if everything works as expected yet. You wouldn't want to start a support thread and just be told &quot;do your homework first&quot; (because that's what will happen if you obviously failed to do as suggested here). Here's what you do:
+			<ul>
+				<li>Log out from Coppermine (or use another browser alternatively) if you're logged in as admin</li>
+				<li>Log in using the non-admin test user account. If logging in fails, review the test user account details while being logged in as admin.</li>
+				<li><img src="images/simple_file_upload.png" width="400" height="178" border="0" alt="" title="Simple file uploads interface" align="right" style="padding-left:5px;" />Click on &quot;Upload file&quot;. If you don't have that upload link, you have failed to set up permissions properly - review the steps above carefully.</li>
+				<li>On the upload file screen, choose the test album from the &quot;Album&quot; dropdown. If you can't select the test album, you have made a mistake when setting up the upload permissions</li>
+				<li>Click the "Browse..." button and navigate to a small, known-good jpg-file on your hard drive</li>
+				<li>Submit the form by clicking on the &quot;Upload file&quot; button</li>
+			</ul>
+			In an ideal world, everything will work as expected - your upload will succeed and you will see your uploaded image embedded into a coppermine page. If this is the case, http uploads work as expected. If this is not the case, you should get an <a href="#upload_error_messages">error message</a> that explains what went wrong. If you can't figure out what the error message means, but you were able to perform all the steps above including the last one (submitting the upload form), then please go ahead and ask for support on the coppermine support board.
+		</div>
+	</li>
+	<li>
+		<a name="upload_support_post_support_request"></a><h4 class="detail_head_collapsed">Post your support request on the Coppermine support board<a href="#upload_support_post_support_request" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<div class="detail_body">
+			<ul>
+				<li>Go to the <a href="http://forum.coppermine-gallery.net/" rel="external" class="external">Coppermine support board</a></li>
+				<li>Register for a new account if you don't already have one and log in with that account on the coppermine forum.</li>
+				<li>Make sure to have read the board rules before posting (a link to the board rules can be found in the forum navigation)</li>
+				<li>Start a new thread on the support board that corresponds to your coppermine version. Since you are reading the documentation for cpg1.5.x, you are probably using that version, so you should start your thread on the sub-board that deals with that version. Posting on a board for another version is not an option and will lead to frustration only both for you as well as for the supporter. Since you have issues with uploading, you should post on the sub-board that deals with upload issues.</li>
+				<li>In your posting, make sure to post a link to your gallery. If your gallery contains adult content (mild nudity falls into this category as well), make sure to post a warning with your link</li>
+				<li>Post the test user account details (user name and password) that you have set up above</li>
+				<li>It's a good idea to show supporters that you tried for yourself before asking for support - explain what actually goes wrong, how far you got, what error message you get etc.</li>
+			</ul>
+		</div>
+	</li>
+</ul>
 <a name="upload_support_end"></a>
 
 
@@ -243,20 +400,15 @@ Replace it with<br />
   </tr>
   <tr>
     <td valign="top" class="tableb">
-      <a name="allow_file_uploads"></a><tt class="code">No picture was uploaded. If you have really selected a picture to upload, check that the server allows file uploads</tt><a href="#allow_file_uploads" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <a name="no_file_uploaded"></a><a name="allow_file_uploads"></a>
+      <tt class="code">No file was uploaded ! If you have really selected a file to upload, check that the server allows file uploads...</tt><a href="#no_file_uploaded" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb">File uploads are disabled in php.ini or there is a permissions issue.</td>
-    <td valign="top" class="tableb">Check if there's a problem with HTTP uploads on your server - this feature may have been disabled or improperly configured. In <a href="faq.htm#VersionPHP">phpinfo()</a>, check that "file_uploads" is ON, "upload_max_filesize" is something like 2M and "upload_tmp_dir" is a valid directory! Make sure to review your <a href="install_permissions.htm#permissions">file/folder permissions</a> as well.</td>
-  </tr>
-  <tr>
-    <td valign="top" class="tableb tableb_alternate">
-      <a name="no_file_uploaded"></a><tt class="code">No file was uploaded ! If you have really selected a file to upload, check that the server allows file uploads...</tt><a href="#no_file_uploaded" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    <td valign="top" class="tableb">
+      File uploads are disabled in php.ini or there is a permissions issue or there is an issue with your webserver's upload mechansim.
     </td>
-    <td valign="top" class="tableb tableb_alternate">
-      There is an issue with your webserver's upload mechansim.
-    </td>
-    <td valign="top" class="tableb tableb_alternate">
-      There may be several reasons for this error message. The file you tried to upload did not &quot;reach&quot; the folder on the webserver where it is supposed to go. If the server isn't yours to administer, you may have to ask your webhost for support. Here is what you should check:
+    <td valign="top" class="tableb">
+      There may be several reasons for this error message. The file you tried to upload did not &quot;reach&quot; the folder on the webserver where it is supposed to go. Check if there's a problem with HTTP uploads on your server - this feature may have been disabled or improperly configured. In <a href="faq.htm#VersionPHP">phpinfo()</a>, check that "file_uploads" is ON, "upload_max_filesize" is something like 2M and "upload_tmp_dir" is a valid directory! Make sure to review your <a href="install_permissions.htm#permissions">file/folder permissions</a> as well.<br />
+      If the server isn't yours to administer, you may have to ask your webhost for support. Here is what you should check:
       <ul>
 	      <li>test file &quot;<strong>too large</strong>&quot;<br />
 	      If you encounter this error message in the first place, make sure that the file you test uploading with is not to large in terms of file size and dimensions. Test with a known-good, small file first. You are welcome to download one from the coppermine demo gallery and use that for testing purposes.</li>
@@ -268,11 +420,11 @@ Replace it with<br />
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">
+    <td valign="top" class="tableb tableb_alternate">
       <a name="destination_not_writable"></a><tt class="code">Destination directory albums/userpics/XXXXX/ is not writable by the script</tt><a href="#destination_not_writable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb">permissions on file system level are not correct</td>
-    <td valign="top" class="tableb">Make sure to review your <a href="install_permissions.htm#permissions">file/folder permissions</a>. If that doesn't help, ask your webhost for support.</td>
+    <td valign="top" class="tableb tableb_alternate">permissions on file system level are not correct</td>
+    <td valign="top" class="tableb tableb_alternate">Make sure to review your <a href="install_permissions.htm#permissions">file/folder permissions</a>. If that doesn't help, ask your webhost for support.</td>
   </tr>
 </table>
 <a name="upload_error_messages_end"></a>

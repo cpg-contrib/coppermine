@@ -60,6 +60,7 @@ h4 {
     font-size: 1.2em;
     padding-top:20px;
     padding-bottom:0px;
+    margin-bottom:0px;
 }
 
 h5 {
@@ -204,8 +205,8 @@ ul {
     padding-right: 0px;
     padding-left: 0px;
     padding-bottom: 0px;
-    margin: 0px 0px 10px 5px;
-    padding-top: 0px
+    padding-top: 0px;
+    margin: 0px 0px 0px 0px;
 }
 
 #toc {
@@ -520,7 +521,10 @@ textarea.samplecode {
 .detail_head_collapsed, .detail_head_expanded {
 	cursor: pointer;
 	position: relative;
-	padding: 5px 10px;
+	padding-top: 0px;
+	padding-bottom:0px;
+	padding-left:10px;
+	padding-right: 10px;
 	background-repeat:no-repeat;
 	background-position:center left;
 	color: #0033CC;
