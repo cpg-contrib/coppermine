@@ -94,7 +94,7 @@ doc_toc += '          <li><a href="upgrading.htm#upgrade_14">Upgrading from cpg1
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="upgrading.htm#updater">The update script</a>\n';
-doc_toc += '          <ul class="level3" id="versioncheck">\n';
+doc_toc += '          <ul class="level3" id="updater">\n';
 doc_toc += '              <li><a href="upgrading.htm#updater_what_it_does">What it does</a></li>\n';
 doc_toc += '              <li><a href="upgrading.htm#updater_purpose">Purpose</a></li>\n';
 doc_toc += '              <li><a href="upgrading.htm#updater_authorization">Authorization check</a></li>\n';
@@ -608,13 +608,13 @@ function dateRevision() {
   var lastChangeDate = lastChangeDate.replace('$', '');
   var lastChangeDate = lastChangeDate.replace('LastChangedDate: ', '');
   var lastChangeDate = lastChangeDate.replace(/Date: /g, '');
-  $('#doc_last_changed').text('About this document: ' + 'Last changed on ' + lastChangeDate);
+  $('#doc_last_changed').text('About this document: ' + 'last changed on ' + lastChangeDate);
 
   var revisionNumber = $('#doc_revision').text();
   var revisionNumber = revisionNumber.replace('$', '');
   var revisionNumber = revisionNumber.replace('$', '');
   var revisionNumber = revisionNumber.replace(/Revision: /g, '');
-  $('#doc_revision').text(', Revision ' + revisionNumber);
+  $('#doc_revision').text(', SVN revision ' + revisionNumber);
 }
 
 function getUrlParameters(name)
@@ -629,6 +629,11 @@ function getUrlParameters(name)
   } else {
     return results[1];
   }
+}
+
+function cpgDocTranslationWarning() {
+  $('#doc_en_only').replaceWith('');
+  $('#doc_en_partial').replaceWith('');
 }
 
 $(document).ready(function()
@@ -662,6 +667,7 @@ $(document).ready(function()
 		$(".detail_head_collapsed").toggleClass("detail_head_expanded");
 	});
 	cpgDocHeader();
+	cpgDocTranslationWarning();
 	cpgDocToc();
 	$("#tree").treeview({
         collapsed: true,
@@ -672,4 +678,7 @@ $(document).ready(function()
 	cpgDocSearch();
 	cpgDocFooter();
 	dateRevision();
+    $("a.nolink").click(function(){
+      return false;
+    });
 });

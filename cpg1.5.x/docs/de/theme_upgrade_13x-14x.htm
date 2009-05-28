@@ -1,0 +1,1029 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Theme Upgrading from cpg1.3.x to cpg1.4.x - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="To make your custom made theme from cpg1.3.x work with cpg1.4.x, you will need to make some changes. Remember to back up your original files, so you can go back to a working version in case something goes wrong with the modifications." />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noindex" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.1
+  $Revision: 6003 $
+  $LastChangedBy: gaugau $
+  $Date: 2009-05-27 20:18:54 +0200 (Mi, 27 Mai 2009) $
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<div id="toc">
+<a href="toc.htm">Table of Contents</a>
+</div>
+
+<div id="doc_en_only">No translation available</div>
+
+<h1>Converting cpg1.3.x themes to cpg1.4.x</h1>
+<p>To make your custom made theme from cpg1.3.x work with cpg1.4.x, you will need to make some changes. Remember to back up your original files, so you can go back to a working version in case something goes wrong with the modifications.</p>
+<p>The files to be edited would be in the particular folder of the theme in the themes folder. For example, the files for the "classic" theme could be found in themes/classic</p>
+<ul>
+  <li><a href="#style">Edit style.css</a></li>
+  <li><a href="#template">Edit template.html</a></li>
+  <li><a href="#theme">Edit theme.php</a></li>
+  <li><a href="#validation">Validation</a></li>
+</ul>
+
+<a name="style"></a><h2>Edit style.css<a href="#style" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<ol>
+    <li>
+      Create a new ID for the "#admin_menu_anim object"
+
+      <p>Find:</p>
+      <pre>.admin_menu a:hover {
+        color: #000000;
+        text-decoration: underline;
+}
+</pre>
+
+      <p>Add after it:</p>
+      <pre>td #admin_menu_anim {
+        background-image : url(images/button_bg_anim.gif);
+}
+</pre>
+    </li>
+
+<li>Copy the file "button_bg_anim.gif" from "themes/classic/images" to the theme's "images" directory.</li>
+
+<li>Create a new class for the "thumb_filename" class.
+    <p>Find:</p>
+    <pre>.thumb_title {
+        font-weight : bold;
+        font-size: 80%;
+        padding: 2px;
+        display : block;
+}
+    </pre>
+    <p>Add before it:</p>
+    <pre>.thumb_filename {
+        font-size: 80%;
+        display: block;
+}
+    </pre>
+</li>
+
+<li>
+      Remove the proprietary value "hand" for class ".clickable_option"
+
+      <p>Find:</p>
+      <pre>.clickable_option {
+        border-bottom : 1px dotted blue;
+        cursor : hand;
+}
+</pre>
+
+      <p>Replace with:</p>
+      <pre>.clickable_option {
+        border-bottom : 1px dotted blue;
+        cursor : default;
+}
+</pre>
+</li>
+
+<li>
+      Add the style information for the vanity roll-over graphics
+
+      <p>Insert at the bottom of style.css</p>
+      <pre>#vanity a {
+        display:block;
+        width:57px;
+        height:20px;
+        margin: 3px 20px;
+}
+#vanity img {border:0}
+#v_php {float:left;background-image:url(../../images/powered-php.gif);}
+#v_php:hover {background-image:url(../../images/h_powered-php.gif);}
+#v_mysql {float:left;background-image:url(../../images/powered-mysql.gif);}
+#v_mysql:hover  {background-image:url(../../images/h_powered-mysql.gif);}
+#v_xhtml {float:right;background-image:url(../../images/valid-xhtml10.gif);}
+#v_xhtml:hover {background-image:url(../../images/h_valid-xhtml10.gif);}
+#v_css {float:right;background-image:url(../../images/valid-css.gif);}
+#v_css:hover{background-image:url(../../images/h_valid-css.gif);}</pre>
+</li>
+
+<li>Add the "catrow_noalb" class. It  is used for rows that do not contain albums and was based on &quot;tableh2&quot;. In order to maintain your themes look simply add it to &quot;tableh2&quot; selector.
+              <p>Find:</p>
+          <pre>.tableh2 {<br />        background: #D1D7DC ;<br />        color : #000000;<br />        padding-top: 3px;<br />        padding-right: 10px;<br />        padding-bottom: 3px;<br />        padding-left: 10px;<br />}</pre>
+          <p>Replace with:</p>
+          <pre>.tableh2, .catrow_noalb {<br />        background: #D1D7DC ;<br />        color : #000000;<br />        padding-top: 3px;<br />        padding-right: 10px;<br />        padding-bottom: 3px;<br />        padding-left: 10px;<br />}</pre>
+</li>
+
+<li>Add the &quot;catrow&quot; and &quot;display_media&quot; classes which are both based on &quot;tableb&quot;. &quot;catrow&quot; styles the category rows on the index page and &quot;display_media&quot; styles the background color of the intermediate image on the displayimage page.
+                  <p>Find:</p>
+          <pre>.tableb {<br />        background: #EFEFEF ;<br />        padding-top: 3px;<br />        padding-right: 10px;<br />        padding-bottom: 3px;<br />        padding-left: 10px;<br />}</pre>
+          <p>Replace with:</p>
+          <pre>.tableb , .display_media , .catrow {<br />        background: #EFEFEF ;<br />        padding-top: 3px;<br />        padding-right: 10px;<br />        padding-bottom: 3px;<br />        padding-left: 10px;<br />}</pre>
+</li>
+
+<li>Validate the style sheet: <a href="http://jigsaw.w3.org/css-validator/">http://jigsaw.w3.org/css-validator</a>
+
+          <p>Make changes as necessary.</p>
+</li>
+</ol>
+<a name="style_end"></a>
+
+<a name="template"></a><h2>Edit template.html<a href="#template" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+
+  <ol>
+    <li>
+      Change the <a href="http://www.w3.org/QA/Tips/Doctype">DOCTYPE</a>; Coppermine 1.4.x is XHTML 1.0 Transitional.
+
+      <p>Find:</p>
+      <pre>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;
+</pre>
+
+      <p>Replace with:</p>
+       <span>(or insert as the first line of template.html if it is missing)</span>
+      <pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+</pre>
+    </li>
+
+    <li>
+      Coppermine 1.4.x officially split the main menu into two menus: SYS_MENU and SUB_MENU.
+
+      <p>If your theme uses a single menu, find:</p>
+      <pre>{MAIN_MENU}
+</pre>
+
+      <p>Replace with:</p><span>Note: the "&lt;br /&gt;" is for classic your theme may require a different separator.</span>
+      <pre>{SYS_MENU}&lt;br /&gt;{SUB_MENU}
+</pre>
+
+      <p>If your theme uses two menus, Find:</p>
+      <pre>{MAIN_MENU1}
+</pre>
+
+      <p>Replace with:</p>
+      <pre>{SYS_MENU}
+</pre>
+
+      <p>Then find:</p>
+      <pre>{MAIN_MENU2}
+</pre>
+
+      <p>Replace with:</p>
+      <pre>{SUB_MENU}
+</pre>
+    </li>
+
+    <li> Choose a place where the vanity graphics
+should be located on your Coppermine pages. Vanity graphics display the
+"Powered by MySQL and PHP, as well as the XHTML and CSS Validation
+banners and link to their respective parties. <p>It is recommended to do this even if you're not planning to
+actually use them as they can be enabled or disabled according to
+whether the theme is defined as XHTML 1.0 Transitional Valid.</p>
+
+      <p>Below are the vanity icons used in the classic theme:</p>
+
+      <p class="vanity">
+        <img src="images/powered-php.gif" alt="Powered by PHP" height="20" width="57" />
+                                <img src="images/powered-mysql.gif" alt="Powered by MySQL" height="20" width="57" />
+                                <img src="images/valid-css.gif" alt="Valid CSS" height="20" width="57" />
+                                <img src="images/valid-xhtml10.gif" alt="Valid XHTML 1.0" height="20" width="57" />
+      </p>
+
+      <p>Find
+a place anywhere between &lt;body&gt; and &lt;/body&gt; where you want
+the vanity icons to appear. Usually this should go at the bottom of the
+page right before the &lt;/body&gt; tag.</p>
+
+      <p>Insert the vanity graphics:</p>
+      <pre>{VANITY}
+</pre>
+    </li>
+
+    <li> Choose a place where the custom header
+and custom footer should be located on your Coppermine pages. It is
+recommended to do this even if you're not planning to actually use them
+as they can be enabled or disabled at any time in the Coppermine
+configuration: <ul>
+        <li>{CUSTOM_HEADER}: Custom PHP header, like anycontent.php but shown on every page.</li>
+
+        <li>{CUSTOM_FOOTER}: Custom PHP footer, like anycontent.php but shown on every page.</li>
+      </ul>
+
+      <p>It's
+recommended to place the custom header immediately following the
+&lt;body&gt; tag and the custom footer immediately before the
+"{VANITY}" token or immediately before the &lt;/body&gt; tag.</p>
+
+      <p>Insert the custom header:</p>
+      <pre>{CUSTOM_HEADER}
+</pre>
+
+      <p>Insert the custom footer:</p>
+      <pre>{CUSTOM_FOOTER}
+</pre>
+    </li>
+
+    <li>
+      Prepare the template.html for validation by itself.
+
+      <p>Find:</p>
+      <pre>&lt;html dir="{LANG_DIR}"&gt;
+</pre>
+
+      <p>Replace with:</p>
+      <pre>&lt;!-- &lt;html dir="{LANG_DIR}"&gt; --&gt;
+&lt;html&gt;
+</pre>
+
+      <p>Find:</p>
+      <pre>&lt;meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" /&gt;
+</pre>
+
+      <p>Replace with:</p>
+      <pre>&lt;!-- &lt;meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" /&gt; --&gt;
+</pre>
+
+      <p>Find:</p>
+      <pre>{META}
+</pre>
+
+      <p>Replace with:</p>
+      <pre>&lt;!-- {META} --&gt;
+</pre>
+    </li>
+
+    <li>
+      Validate the template.html: <a href="http://validator.w3.org/">http://validator.w3.org</a>
+
+      <p>Common Errors:</p>
+
+      <ul>
+        <li>Missing &lt;head&gt; or &lt;/head&gt; elements; Insert them in the proper place.</li>
+
+        <li>Tables nested inside of &lt;span&gt;&lt;/span&gt; elements; switch to &lt;div&gt;&lt;/div&gt; instead.</li>
+
+        <li>Table
+cells using the depreciated background property "&lt;td background=";
+use inline styles: "&lt;td style="background-image:url(...);"&gt;"</li>
+
+        <li>Duplicate
+"id=" fields; The "id" field is supposed to be unique because it is
+used as a javascript selector as well as a CSS selector; Eliminate the
+duplicate values</li>
+      </ul>
+
+      <p>Make other changes as necessary.</p>
+    </li>
+
+    <li>
+      Prepare template.html to be used as a Coppermine template after validation.
+
+      <p>Find:</p>
+      <pre>&lt;!-- &lt;html dir="{LANG_DIR}"&gt; --&gt;
+&lt;html&gt;
+</pre>
+
+      <p>Replace with:</p>
+      <pre>&lt;html dir="{LANG_DIR}"&gt;
+</pre>
+
+      <p>Find:</p>
+      <pre>&lt;!-- &lt;meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" /&gt; --&gt;
+</pre>
+
+      <p>Replace with:</p>
+      <pre> &lt;meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" /&gt;
+</pre>
+
+      <p>Find:</p>
+      <pre>&lt;!-- {META} --&gt;
+</pre>
+
+      <p>Replace with</p>
+      <pre>{META}
+</pre>
+    </li>
+  </ol>
+<a name="template_end"></a>
+
+<a name="theme"></a><h2>Edit theme.php<a href="#theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+
+  <p>Many notable things have happened that will influence your modifications to your theme.php.</p>
+
+  <ul>
+    <li>{MAIN_MENU} was officially split into "{SYS_MENU}" and "{SUB_MENU}".</li>
+
+    <li>Both menus can have buttons generated by a button template instead of all buttons being coded into a single menu template.</li>
+
+    <li>Several
+DEFINES were added to redirect graphics so that you don't have to
+modify their respective templates if you are only replacing graphics
+sets</li>
+
+    <li>There are now theme $template_ and theme_ function
+fallbacks which allow you to eliminate many un-modified templates or
+functions from the theme.php. You only need to modify the templates or
+functions that you want to act differently from the default "Classic"
+theme.</li>
+  </ul>
+
+  <p>It is recommended to have access to a
+server that is still running the theme that you are attempting to
+upgrade so that you can see the differences in the 1.3.x theme and the
+new 1.4.x theme.</p>
+
+  <p>The following instructions will have you
+create a theme.php from scratch, only moving over and modifying the
+items that are different than Coppermine's internal theme "Classic".</p>
+
+  <ol>
+    <li>Rename your theme.php to theme.old.php</li>
+
+    <li>
+      Create a new theme.php file in it's place
+
+      <p>Insert the following:</p>
+      <pre>&lt;?php
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2009 Coppermine Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+
+  ********************************************
+  Coppermine version: 1.5.1
+  $Source:
+  $Revision:
+  $LastChangedBy:
+  $Date:
+**********************************************/
+
+
+?&gt;
+</pre>
+
+      <p>You now have a functional theme.</p>
+    </li>
+
+    <li>
+      Everything from this point forward should be added between these two lines:
+      <pre>**********************************************/
+
+
+?&gt;
+</pre>
+    </li>
+
+    <li>
+      Evaluate the available defines and add them to your theme.php
+
+      <ul>
+        <li>
+          define('THEME_HAS_RATING_GRAPHICS', 1);
+
+          <p>The location for the ratings graphics will be directed to the themes images folder.</p>
+
+          <ul>
+            <li>RUBBISH : images/rating0.gif</li>
+
+            <li>POOR : images/rating1.gif</li>
+
+            <li>FAIR : images/rating2.gif</li>
+
+            <li>GOOD : images/rating3.gif</li>
+
+            <li>EXCELLENT : images/rating4.gif</li>
+
+            <li>GREAT : images/rating5.gif</li>
+          </ul>
+
+          <p>if your theme's images folder contain these filenames insert the define</p>
+          <pre>define('THEME_HAS_RATING_GRAPHICS', 1);
+</pre>
+        </li>
+
+        <li>
+          define('THEME_HAS_NAVBAR_GRAPHICS', 1);
+
+          <p>The location for the navbar graphics will be directed to the themes images folder.</p>
+
+          <ul>
+            <li>Back to thumbnails : images/thumbnails.gif</li>
+
+            <li>Picture Information : images/info.gif</li>
+
+            <li>Slideshow : images/slideshow.gif</li>
+
+            <li>Report to admin : images/report.gif <span class="new">*NEW*</span></li>
+
+            <li>Ecard : images/ecard.gif</li>
+
+            <li>Previous : images/prev.gif</li>
+
+            <li>Next : images/next.gif</li>
+          </ul>
+
+          <p>If
+you have some of these graphics it could be that the original author
+did not keep the same names; you will need to rename the graphics to
+conform to the define, or you will need to modify the navbar template
+directly.</p>
+
+          <p>if your theme's images folder contain these filenames insert the define</p>
+          <pre>define('THEME_HAS_NAVBAR_GRAPHICS', 1);
+</pre>
+
+          <p>Copy classic's report.gif or create a new report.gif for your theme if you set the define</p>
+        </li>
+
+        <li>
+          define('THEME_HAS_FILM_STRIP_GRAPHIC', 1);
+
+            <p>The location for the film strip graphic will be directed to the themes images folder.</p>
+
+          <ul>
+            <li>tile : images/tile.gif</li>
+          </ul>
+
+          <p>This
+define specifies a single tile to be used for both locations.</p>
+
+          <p>if your theme's images folder contains the above filename insert this define</p>
+          <pre>define('THEME_HAS_FILM_STRIP_GRAPHIC', 1);
+</pre>
+        </li>
+<li>
+          define('THEME_HAS_FILM_STRIP_GRAPHICS', 1);
+
+          <p>The location for the film strip graphics will be directed to the themes images folder.</p>
+
+          <ul>
+            <li>tile on the top : images/tile1.gif <span class="new">*NEW*</span></li>
+
+            <li>tile on the bottom : images/tile2.gif <span class="new">*NEW*</span></li>
+          </ul>
+
+          <p>This
+define specifies TWO tiles. </p>
+
+          <p>if your theme's images folder contains these filenames insert this define</p>
+          <pre>define('THEME_HAS_FILM_STRIP_GRAPHICS', 1);
+</pre>
+        </li>
+
+        <li>
+          define('THEME_IS_XHTML10_TRANSITIONAL',1);
+
+          <p>If
+the theme is defined as XHTML10_TRANSITIONAL the VANITY footer will be
+enabled. You shouldn't enable this until you've been able to follow the
+validation methodology discussed later in this document.</p>
+
+          <p>if your theme has passed the validation methodology insert this define:</p>
+          <pre>define('THEME_IS_XHTML10_TRANSITIONAL',1);
+</pre>
+        </li>
+
+        <li>
+          define('THEME_HAS_NO_SYS_MENU_BUTTONS', 1);
+
+          <p>When
+present the system won't attempt to replace the token {BUTTONS} in the
+SYS_MENU template. The entire block needs to be present.</p>
+
+          <p>Only set this after you determine you can't use the buttons template!</p>
+
+          <p>If you can't use the SYS_MENU buttons template insert this define:</p>
+          <pre>define('THEME_HAS_NO_SYS_MENU_BUTTONS', 1);
+</pre>
+
+          <p>if you have set the define your theme.php will
+need to set the "$template_sys_menu", this may be in your theme.old.php
+as part of "$template_main_menu" or all of "$template_main_menu1".</p>
+        </li>
+
+        <li>
+          define('THEME_HAS_NO_SUB_MENU_BUTTONS', 1);
+
+          <p>When present the system won't attempt to replace {BUTTONS} in the SUB_MENU template The entire block needs to be present.</p>
+
+          <p>Only set this after you determine you can't use the buttons template!</p>
+
+          <p>If you can't use the SUB_MENU buttons template insert this define:</p>
+          <pre>define('THEME_HAS_NO_SUB_MENU_BUTTONS', 1);
+</pre>
+
+          <p>if you have set the define your theme.php will
+need to set the "$template_sub_menu", this may be in your theme.old.php
+as part of "$template_main_menu" or all of "$template_main_menu2".</p>
+        </li>
+      </ul>
+    </li>
+
+    <li>Take stock of what you have so far, test your theme.</li>
+
+    <li>
+      Changing the menu item separator
+
+      <p>Classic uses a "::" separator between each menu option that you can override by modifying the "$template_sys_menu_spacer"</p>
+      <pre>// HTML template for template sys_menu spacer
+$template_sys_menu_spacer ="::";
+</pre>
+
+      <p>Insert into your theme.php and modify to suit</p>
+
+      <p>The sub menu templates are automatically inherited from sys menu's and you override them in exactly the same way</p>
+
+      <h5>Examples:</h5>
+
+      <ul>
+        <li>Water_Drop</li>
+
+        <li>Fruity</li>
+
+        <li>Eyeball</li>
+      </ul>
+    </li>
+
+    <li>
+      If you need a separator before the first and after the last buttons you can use this example from "MAC_OX_X"
+
+      <p>"$template_sys_menu_spacer" and "$template_sub_menu_spacer" are only rendered BETWEEN active elements.</p>
+
+      <p>Insert into your theme.php and modify to suit</p>
+      <pre>// HTML template for sys_menu
+$template_sys_menu = &lt;&lt;&lt;EOT
+         |{BUTTONS}|
+EOT;
+
+// HTML template for template sys_menu spacer
+$template_sys_menu_spacer ="|";
+</pre>
+    </li>
+
+    <li> If your theme requires more than a spacer
+for each button, such as buttons rendered inside of a table you can use
+this example from "Rainy_Day". <p>Copy a button from your theme.old.php from
+$template_main_menu, $template_main_menu1, or $template_main_menu2 and
+put it in between the "&lt;!-- BEGIN {BLOCK_ID} --&gt;" and "&lt;!--
+END {BLOCK_ID} --&gt;" lines and change the "{TOKENS}" as necessary.</p>
+
+      <p>Insert into your theme.php and modify to suit</p>
+      <pre>// HTML template for sys_menu
+$template_sys_menu = &lt;&lt;&lt;EOT
+  &lt;div class="topmenu"&gt;
+          &lt;table border="0" cellpadding="0" cellspacing="0"&gt;
+                  &lt;tr&gt;
+  {BUTTONS}
+                  &lt;/tr&gt;
+          &lt;/table&gt;
+  &lt;/div&gt;
+EOT;
+
+// HTML template for template sys_menu buttons
+$template_sys_menu_button = &lt;&lt;&lt;EOT
+&lt;!-- BEGIN {BLOCK_ID} --&gt;
+  &lt;td&gt;&lt;img src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+  &lt;td&gt;&lt;img src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+  &lt;td style="background-image:url(themes/rainy_day/images/button1_r1_c2.gif)"&gt;
+          &lt;a href="{HREF_TGT}" title="{HREF_TITLE}"&gt;{HREF_LNK}&lt;/a&gt;
+  &lt;/td&gt;
+  &lt;td&gt;&lt;img src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+&lt;!-- END {BLOCK_ID} --&gt;
+EOT;
+</pre>
+    </li>
+
+    <li> If each of your sys_menu buttons need to
+be rendered differently and you can't easily use the button template
+you can disable it and include the entire block. <p>Define 'THEME_HAS_NO_SYS_MENU_BUTTONS' and include a "$template_sys_menu" template.</p>
+
+      <p>Insert this define</p>
+      <pre>define('THEME_HAS_NO_SYS_MENU_BUTTONS', 1);
+</pre>
+
+      <p>Copy the correct portion of "$template_main_menu" or
+"$template_main_menu1" from your theme.old.php as in this example from
+"Hardwired"</p>
+
+      <p>Verify that your template includes all of the following {TOKENS}, and rename the template to "$template_sys_menu"</p>
+      <pre>// HTML template for sys menu
+$template_sys_menu = &lt;&lt;&lt;EOT
+
+                        &lt;table border="0" cellpadding="0" cellspacing="0"&gt;
+                                &lt;tr&gt;
+&lt;!-- BEGIN home --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleftmy" src="themes/hardwired/images/buttonleftmy.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{HOME_TGT}" title="{HOME_TITLE}"&gt;{HOME_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END home --&gt;
+&lt;!-- BEGIN my_gallery --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleftmy" src="themes/hardwired/images/buttonleftmy.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}"&gt;{MY_GAL_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END my_gallery --&gt;
+&lt;!-- BEGIN allow_memberlist --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft" src="themes/hardwired/images/buttonleftmemb.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}"&gt;{MEMBERLIST_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END allow_memberlist --&gt;
+&lt;!-- BEGIN my_profile --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{MY_PROF_TGT}" title="{MY_PROF_LNK}"&gt;{MY_PROF_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END my_profile --&gt;
+&lt;!-- BEGIN faq --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft" src="themes/hardwired/images/buttonleftfaq.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{FAQ_TGT}" title="{FAQ_TITLE}"&gt;{FAQ_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END faq --&gt;
+&lt;!-- BEGIN enter_admin_mode --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleftad" src="themes/hardwired/images/buttonleftad.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}"&gt;{ADM_MODE_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END enter_admin_mode --&gt;
+&lt;!-- BEGIN leave_admin_mode --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleftad" src="themes/hardwired/images/buttonleftad.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{USR_MODE_TGT}" title="{USR_MODE_TITLE}"&gt;{USR_MODE_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+&lt;!-- END leave_admin_mode --&gt;
+&lt;!-- BEGIN upload_pic --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleftup" src="themes/hardwired/images/buttonleftup.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                       &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{UPL_PIC_TGT}" title="{UPL_PIC_TITLE}"&gt;{UPL_PIC_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END upload_pic --&gt;
+&lt;!-- BEGIN register --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{REGISTER_TGT}" title="{REGISTER_TITLE}"&gt;{REGISTER_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END register --&gt;
+&lt;!-- BEGIN login --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                       &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{LOGIN_TGT}" title="{LOGIN_LNK}"&gt;{LOGIN_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END login --&gt;
+&lt;!-- BEGIN logout --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleftout" src="themes/hardwired/images/buttonleftout.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{LOGOUT_TGT}" title="{LOGOUT_LNK}"&gt;{LOGOUT_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+&lt;!-- END logout --&gt;
+                                &lt;/tr&gt;
+                        &lt;/table&gt;
+EOT;
+</pre>
+    </li>
+
+    <li> If each of your sub_menu buttons need to
+be rendered differently and you can't easily use the button template
+you can disable it and include the entire block. <p>Define 'THEME_HAS_NO_SUB_MENU_BUTTONS' and include a "$template_sys_menu" template.</p>
+
+      <p>Insert this define</p>
+      <pre>define('THEME_HAS_NO_SUB_MENU_BUTTONS', 1);
+</pre>
+
+      <p>Copy the correct portion of "$template_main_menu" or
+"$template_main_menu2" from your theme.old.php as in this example from
+"Hardwired"</p>
+
+      <p>Verify that your template includes all of the following {TOKENS}, and rename the template to "$template_sub_menu"</p>
+      <pre>// HTML template for sub menu
+$template_sub_menu = &lt;&lt;&lt;EOT
+
+                        &lt;table border="0" cellpadding="0" cellspacing="0"&gt;
+                                &lt;tr&gt;
+&lt;!-- BEGIN custom_link --&gt;
+                                        &lt;td&gt;&lt;img name=&quot;spacer&quot; src=&quot;images/spacer.gif&quot; width=&quot;5&quot; height=&quot;25&quot; border=&quot;0&quot; alt=&quot;&quot; /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name=&quot;buttonleft1&quot; src=&quot;themes/hardwired/images/buttonleft1.gif&quot; width=&quot;7&quot; height=&quot;25&quot; border=&quot;0&quot; alt=&quot;&quot; /&gt;&lt;/td&gt;
+                                        &lt;td style=&quot;background: url(themes/hardwired/images/buttoncenter.gif);&quot;&gt;
+                                                &lt;a href=&quot;{CUSTOM_LNK_TGT}&quot; title=&quot;{CUSTOM_LNK_TITLE}&quot;&gt;{CUSTOM_LNK_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name=&quot;buttonright1&quot; src=&quot;themes/hardwired/images/buttonright1.gif&quot; width=&quot;7&quot; height=&quot;25&quot; border=&quot;0&quot; alt=&quot;&quot; /&gt;&lt;/td&gt;
+&lt;!-- END custom_link --&gt;
+&lt;!-- BEGIN album_list --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}"&gt;{ALB_LIST_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+&lt;!-- END album_list --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                       &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{LASTUP_TGT}" title="{LASTUP_LNK}"&gt;{LASTUP_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                       &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{LASTCOM_TGT}" title="{LASTCOM_LNK}"&gt;{LASTCOM_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{TOPN_TGT}" title="{TOPN_LNK}"&gt;{TOPN_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{TOPRATED_TGT}" title="{TOPRATED_LNK}"&gt;{TOPRATED_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{FAV_TGT}" title="{FAV_LNK}"&gt;{FAV_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{SEARCH_TGT}" title="{SEARCH_LNK}"&gt;{SEARCH_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                &lt;/tr&gt;
+                        &lt;/table&gt;
+
+EOT;
+</pre>
+    </li>
+
+    <li>
+      You've reached another milestone in your theme upgrade.
+
+      <p>Take stock of what you have so far, test your theme.</p>
+    </li>
+
+    <li>
+If your theme uses custom starttable and endtable functions they can be
+moved over from theme.php.old as in this example from "MAC_OX_X" <p>Insert into your theme.php and modify to suit</p>
+      <pre>// Function to start a 'standard' table
+function starttable($width = '-1', $title = '', $title_colspan = '1')
+{
+    global $CONFIG;
+
+    if ($width == '-1') $width = $CONFIG['picture_table_width'];
+    if ($width == '100%') $width = $CONFIG['main_table_width'];
+    if ($title) {
+        echo &lt;&lt;&lt;EOT
+&lt;!-- Start standard table title --&gt;
+&lt;table align="center" width="$width" cellspacing="0" cellpadding="0" class="maintablea"&gt;
+        &lt;tr&gt;
+                &lt;td&gt;
+                        &lt;table width="100%" cellspacing="0" cellpadding="0" class="tableh1a"&gt;
+                                &lt;tr&gt;
+                                        &lt;td class="tableh1a"&gt;&lt;img src="themes/mac_ox_x/images/tableh1a_bg_left.gif" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td class="tableh1a" style="background-image:url(themes/mac_ox_x/images/tableh1a_bg_middle.gif);" width="100%"&gt;$title&lt;/td&gt;
+                                        &lt;td class="tableh1a"&gt;&lt;img src="themes/mac_ox_x/images/tableh1a_bg_right.gif" alt="" /&gt;&lt;/td&gt;
+                                &lt;/tr&gt;
+                        &lt;/table&gt;
+                &lt;/td&gt;
+        &lt;/tr&gt;
+&lt;/table&gt;
+&lt;!-- Start standard table --&gt;
+&lt;table align="center" width="$width" cellspacing="0" cellpadding="0"&gt;
+  &lt;tr&gt;
+   &lt;td style="background-image:url(themes/mac_ox_x/images/main_table_r1_c1b.gif);" valign="top"&gt;&lt;img name="main_table_r1_c1" src="themes/mac_ox_x/images/main_table_r1_c1.gif" border="0"  alt="" /&gt;&lt;/td&gt;
+        &lt;td width="100%"&gt;&lt;table width="100%" cellspacing="1" cellpadding="0" class="maintableb"&gt;
+
+EOT;
+    } else {
+        echo &lt;&lt;&lt;EOT
+
+&lt;!-- Start standard table --&gt;
+&lt;table align="center" width="$width" cellspacing="0" cellpadding="0"&gt;
+  &lt;tr&gt;
+   &lt;td style="background-image:url(themes/mac_ox_x/images/main_table_r1_c1b.gif);" valign="top"&gt;&lt;img name="main_table_r1_c1" src="themes/mac_ox_x/images/main_table_r1_c1.gif" border="0"  alt="" /&gt;&lt;/td&gt;
+        &lt;td width="100%"&gt;&lt;table width="100%" cellspacing="1" cellpadding="0" class="maintable"&gt;
+
+EOT;
+    }
+}
+
+function endtable()
+{
+    echo &lt;&lt;&lt;EOT
+        &lt;/table&gt;
+   &lt;/td&gt;
+   &lt;td style="background-image:url(themes/mac_ox_x/images/main_table_r1_c3b.gif);" valign="top"&gt;&lt;img name="main_table_r1_c3" src="themes/mac_ox_x/images/main_table_r1_c3.gif" border="0"  alt="" /&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;img name="main_table_r2_c1" src="themes/mac_ox_x/images/main_table_r2_c1.gif" width="10" height="4" border="0"  alt="" /&gt;&lt;/td&gt;
+   &lt;td style="background-image:url(themes/mac_ox_x/images/main_table_r2_c2b.gif);"&gt;&lt;img name="main_table_r2_c2" src="themes/mac_ox_x/images/main_table_r2_c2.gif" border="0"  alt="" /&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;img name="main_table_r2_c3" src="themes/mac_ox_x/images/main_table_r2_c3.gif" width="10" height="4" border="0"  alt="" /&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;!-- End standard table --&gt;
+
+EOT;
+}
+</pre>
+    </li>
+
+    <li> If you have included custom starttable
+and endtable code the sort options in the thumbnail view may no longer
+fit properly. <p>You can use this example also from "MAC_OX_X" to correct it.</p>
+
+      <p>Insert into your theme.php and modify to suit</p>
+      <pre>// HTML template for title row of the thumbnail view (album title + sort options)
+$template_thumb_view_title_row = &lt;&lt;&lt;EOT
+
+                        &lt;table width="100%" cellpadding="0" cellspacing="0"&gt;
+                        &lt;tr&gt;
+                                &lt;td width="100%" class="statlink"&gt;{ALBUM_NAME}&lt;/td&gt;
+                                &lt;td class="sortorder_options" style="font-size: 100%;"&gt;{TITLE}&lt;/td&gt;
+                                &lt;td class="sortorder_options" style="font-size: 100%;"&gt;&lt;span class="statlink"&gt;&lt;a href="thumbnails.php?album={AID}&amp;amp;page={PAGE}&amp;amp;sort=ta" title="{SORT_TA}"&gt;&amp;nbsp;+&amp;nbsp;&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
+                                &lt;td class="sortorder_options" style="font-size: 100%;"&gt;&lt;span class="statlink"&gt;&lt;a href="thumbnails.php?album={AID}&amp;amp;page={PAGE}&amp;amp;sort=td" title="{SORT_TD}"&gt;&amp;nbsp;-&amp;nbsp;&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
+                                &lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;
+                                &lt;td class="sortorder_options" style="font-size: 100%;"&gt;{NAME}&lt;/td&gt;
+                                &lt;td class="sortorder_options" style="font-size: 100%;"&gt;&lt;span class="statlink"&gt;&lt;a href="thumbnails.php?album={AID}&amp;amp;page={PAGE}&amp;amp;sort=na" title="{SORT_NA}"&gt;&amp;nbsp;+&amp;nbsp;&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
+                                &lt;td class="sortorder_options" style="font-size: 100%;"&gt;&lt;span class="statlink"&gt;&lt;a href="thumbnails.php?album={AID}&amp;amp;page={PAGE}&amp;amp;sort=nd" title="{SORT_ND}"&gt;&amp;nbsp;-&amp;nbsp;&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
+                                &lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;
+                                &lt;td class="sortorder_options" style="font-size: 100%;"&gt;{DATE}&lt;/td&gt;
+                                &lt;td class="sortorder_options" style="font-size: 100%;"&gt;&lt;span class="statlink"&gt;&lt;a href="thumbnails.php?album={AID}&amp;amp;page={PAGE}&amp;amp;sort=da" title="{SORT_DA}"&gt;&amp;nbsp;+&amp;nbsp;&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
+                                &lt;td class="sortorder_options" style="font-size: 100%;"&gt;&lt;span class="statlink"&gt;&lt;a href="thumbnails.php?album={AID}&amp;amp;page={PAGE}&amp;amp;sort=dd" title="{SORT_DD}"&gt;&amp;nbsp;-&amp;nbsp;&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
+                                &lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;
+                                &lt;td class="sortorder_options" style="font-size: 100%;"&gt;{POSITION}&lt;/td&gt;
+                                &lt;td class="sortorder_options" style="font-size: 100%;"&gt;&lt;span class="statlink"&gt;&lt;a href="thumbnails.php?album={AID}&amp;amp;page={PAGE}&amp;amp;sort=pa" title="{SORT_PA}"&gt;&amp;nbsp;+&amp;nbsp;&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
+                                &lt;td class="sortorder_options" style="font-size: 100%;"&gt;&lt;span class="statlink"&gt;&lt;a href="thumbnails.php?album={AID}&amp;amp;page={PAGE}&amp;amp;sort=pd" title="{SORT_PD}"&gt;&amp;nbsp;-&amp;nbsp;&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;/table&gt;
+
+EOT;
+</pre>
+    </li>
+
+
+    <li>If your theme modifies $template_display_picture
+                        replace it with $template_display_media
+                          <p>Find all instances of:</p>
+                        <pre>$template_display_picture</pre>
+                        <p>Replace all with:</p>
+                        <pre>$template_display_media</pre>
+                </li>
+    <li>
+                        If you used a previous $template_display_picture replace tableb with display_media in $template_display_media block
+                          <p>Find:</p>
+                        <pre>&lt;td align="center" class="tableb" nowrap="nowrap"&gt;</pre>
+
+                        <p>Replace with:</p>
+                        <pre>&lt;td align="center" class="display_media" nowrap="nowrap"&gt;</pre>
+                </li>
+    <li>
+                        If your theme modifies $template_cat_list replace tableh2 with catrow_noalb in the catrow_noalb block
+                          <p>Find:</p>
+                        <pre>&lt;!-- BEGIN catrow_noalb --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="tableh2" colspan="3"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td align="left"&gt;{CAT_THUMB}&lt;/td&gt;&lt;td align="left"&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow_noalb --&gt;</pre>
+                        <p>Replace with :</p>
+                        <pre>&lt;!-- BEGIN catrow_noalb --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="catrow_noalb" colspan="3"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td align="left"&gt;{CAT_THUMB}&lt;/td&gt;&lt;td align="left"&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow_noalb --&gt;</pre>
+                </li>
+    <li>
+                        If your theme modifies $template_cat_list replace tableb with catrow in the catrow block
+                          <p>Find:</p>
+                        <pre>&lt;!-- BEGIN catrow --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="tableb" align="left"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td&gt;{CAT_THUMB}&lt;/td&gt;&lt;td&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />                &lt;td class="tableb" align="center"&gt;{ALB_COUNT}&lt;/td&gt;<br />                &lt;td class="tableb" align="center"&gt;{PIC_COUNT}&lt;/td&gt;<br />        &lt;/tr&gt;<br />        &lt;tr&gt;<br />            &lt;td class="tableb" colspan="3"&gt;{CAT_ALBUMS}&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow --&gt;</pre>
+                        <p>Replace with :</p>
+                        <pre>&lt;!-- BEGIN catrow --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="catrow" align="left"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td&gt;{CAT_THUMB}&lt;/td&gt;&lt;td&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />                &lt;td class="catrow" align="center"&gt;{ALB_COUNT}&lt;/td&gt;<br />                &lt;td class="catrow" align="center"&gt;{PIC_COUNT}&lt;/td&gt;<br />        &lt;/tr&gt;<br />        &lt;tr&gt;<br />            &lt;td class="tableb" colspan="3"&gt;{CAT_ALBUMS}&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow --&gt;</pre>
+                </li>
+    <li>For the majority of themes you are now done adding content to your theme.php.
+
+      <p>Take stock of what you have so far, test your theme.</p>
+    </li>
+    <li>
+      For a list of everything that could be modified examine the "sample" theme.
+
+      <p>The "sample" theme found in themes/sample is designed to be a showcase for every themeable function and template used in Coppermine.</p>
+
+      <p>"Hardwired",
+"Eyeball", and "MAC_OX_X" are all good examples of more complicated
+theme designs that you can use as reference in continuing to modify
+your theme.</p>
+    </li>
+  </ol>
+<a name="theme_end"></a>
+
+<a name="validation"></a><h2>Validation Methodology<a href="#validation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+
+  <p>Now that you have a functioning "style.css", "template.html" and
+"theme.php" you should verify that it is generating valid output.
+        </p>
+
+  <ol>
+    <li>
+      Suggestions to help you bring the theme you are editing up to XHTML 1.0 Transitional HTML
+
+      <ul>
+        <li>All ampersands that form part of a <u><strong>URL</strong></u> are to be coded '&amp;amp;'. There are quite a few of these in the functions of theme.php.</li>
+
+        <li>All images to have the 'alt' attribute, and be closed ' /&gt;'.</li>
+
+        <li>All meta tags should be closed ' /&gt;'</li>
+
+        <li>All &lt;hr&gt; and &lt;br&gt; tags should be closed &lt;hr /&gt;&lt;br /&gt;</li>
+
+        <li>All background images/colors to be changed to CSS or style attributes. This depends on the layout.</li>
+
+        <li>Any existing tags or attributes in uppercase (such as onClick) to be changed to lowercase.</li>
+      </ul>
+    </li>
+
+    <li>Save all your open files and upload them to your webserver; test-drive both as admin and as "regular" user.</li>
+
+    <li>
+      Use the following methodology to confirm that your theme generates valid XHTML 1.0 Transitional HTML.
+
+      <p>Each of the following pages needs to be <a href="http://validator.w3.org/">validated</a> as an anonymous user, registered user, and in admin mode:</p>
+
+      <ul>
+        <li>index.php</li>
+
+        <li>thumbnails.php</li>
+
+        <li>displayimage.php</li>
+
+        <li>search.php</li>
+
+        <li>emailed HTML E-card.</li>
+      </ul>
+
+      <p>The following toolbars can assist you in validating the resulting output of your theme:</p>
+
+      <p>Internet Explorer:</p>
+
+      <ul>
+        <li><a href="http://www.nils.org.au/ais/web/resources/toolbar/index.html">Web Accessibility Toolbar</a> (Creative Commons License)</li>
+      </ul>
+
+      <p>Mozilla Firefox:</p>
+
+      <ul>
+        <li><a href="http://www.chrispederick.com/work/firefox/webdeveloper/">Web Developer Extension</a> (GPL)</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h2>Congratulations</h2>
+
+  <p>Your theme should now be ready to use with Coppermine 1.4.x</p>
+
+<a name="validation_end"></a>
+
+
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate: 2009-05-27 20:18:54 +0200 (Mi, 27 Mai 2009) $</span>
+		<span id="doc_revision">$Revision: 6003 $</span>
+	</div>
+</div>
+</body>
+</html>

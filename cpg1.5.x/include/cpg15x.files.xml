@@ -763,12 +763,52 @@
     <permission>read</permission>
   </element>
   <element>
+    <fullpath>docs/de/admin_menu.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5726</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>94220f8a72db92de6c888563e38ee7e1</hash>
+  </element>
+  <element>
     <fullpath>docs/de/administration.htm</fullpath>
     <version>1.5.1</version>
     <revision>5579</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>9313438a14c0006e2245d7425eb441dd</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/albums.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5662</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>8085600abe45e543332aeb69177ea8a5</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/auto-installers.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5747</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>01e82902cacf751cc1c32d0b8fbe3828</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/banning.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5865</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>172c0c699c66cfe09af80389a4f6b1c7</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/categories.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5662</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>0f02be91d7d7e69cfb5b7aa1b47bee06</hash>
   </element>
   <element>
     <fullpath>docs/de/configuration.htm</fullpath>
@@ -779,6 +819,14 @@
     <hash>220b887e7b90b5f99a6838a08686643c</hash>
   </element>
   <element>
+    <fullpath>docs/de/copyrights.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5839</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>0155051aedf1f191b7b1d3f9c523f643</hash>
+  </element>
+  <element>
     <fullpath>docs/de/credits.htm</fullpath>
     <version>1.5.1</version>
     <revision>5917</revision>
@@ -787,12 +835,68 @@
     <hash>fd4084213aec5dca3e9a4942252d3c89</hash>
   </element>
   <element>
+    <fullpath>docs/de/faq.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5620</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>e1686f7ed996a7c7c4bbece3aac85a23</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/groups.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5828</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>21668cc9e7411212f8b944f1fbc3267d</hash>
+  </element>
+  <element>
     <fullpath>docs/de/index.htm</fullpath>
     <version>1.5.1</version>
     <revision>5579</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>c70b886e8c86bf98adc79a92bec72281</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/install.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5839</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>595a9eba651874d4db4ec6b4dc30d130</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/install_faq.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5837</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>fecf6349b4de4417e88eca2aa58cb4e2</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/install_permissions.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5695</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>3e7e62711810cafe8ac41ed87790e11e</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/install_screen.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5585</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>5c380d626dc234f84d60533fd6e3f5cd</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/known_issues.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5585</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>7d8c2cf46ee80a4a9f0facbcde0994ae</hash>
   </element>
   <element>
     <fullpath>docs/de/languages.htm</fullpath>
@@ -819,12 +923,148 @@
     <hash>7a433ea6430b735fc84a4acda43469e8</hash>
   </element>
   <element>
+    <fullpath>docs/de/start.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5835</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>ebd2239831f65ff2eebcf1902ca43214</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/testing.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5620</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>d865a63eb97935ca50bce0b8ce615a1b</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/theme.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5796</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>db3c76d987b5d70a5c7c0dbd5f71f896</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/theme_copyright.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5662</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>a75d5fe291e5e726547302aa9b2819c2</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/theme_create.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5821</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>bb5dce64f6b76ab8e57a12e47b9dff66</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/theme_create_matching_page_tutorial.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5865</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>a9febe063600e9013d4049dc43b8c8a8</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/theme_examples.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5748</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>a76b0bba099b06427494591aaa873c3d</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/theme_graphics.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5270</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>69b5dd49c09ed8abf5bb2fc169049909</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/theme_style_css.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5766</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>c931b3f068cf932927a457ef5b63a47c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/theme_template.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5766</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>1a1a6b2a73784621d8a797128c5833f4</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/theme_theme_php.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5270</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>7e2a72bdc106c0f9db42e89fbdb1e8e9</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/theme_upgrade_13x-14x.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5620</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>a17f64a750a544d814ab0f04cc8817d8</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/theme_upgrade_14x-15x.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5917</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>c3d02e352ac339065a14292c089d1905</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/theme_user-contributions.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5662</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>02bc85d369f3d837aa67010aed77e9d1</hash>
+  </element>
+  <element>
     <fullpath>docs/de/toc.htm</fullpath>
     <version>1.5.1</version>
     <revision>5743</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>88ef8517784096f032fa5bc4d02d2683</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/uninstall.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5585</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>7f03e47ff6b0ebd9fd58c6f4722c0f61</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/upgrading.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5866</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>cc045c37dd3c3d7345f65fec8eca75e4</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/users.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5828</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>f031a86b677924d82fdb0de202024eba</hash>
   </element>
   <element>
     <fullpath>docs/de/images/</fullpath>
@@ -1029,20 +1269,20 @@
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>docs/en/administration.htm</fullpath>
-    <version>1.5.1</version>
-    <revision>5585</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>413d171954a0efeef6d4fd9388afd0cd</hash>
-  </element>
-  <element>
     <fullpath>docs/en/admin_menu.htm</fullpath>
     <version>1.5.1</version>
     <revision>5726</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>94220f8a72db92de6c888563e38ee7e1</hash>
+  </element>
+  <element>
+    <fullpath>docs/en/administration.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>5585</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>413d171954a0efeef6d4fd9388afd0cd</hash>
   </element>
   <element>
     <fullpath>docs/en/admin-tools.htm</fullpath>

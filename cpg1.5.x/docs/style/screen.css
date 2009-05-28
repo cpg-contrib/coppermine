@@ -310,6 +310,14 @@ a.content:hover {
     text-decoration: underline
 }
 
+a.nolink {
+	color:black;
+}
+
+a.nlink:hover {
+	color:black;
+}
+
 a.external {
     background: transparent url('../images/link.gif') 100% 50% no-repeat;
     padding-right: 10px;
@@ -479,6 +487,21 @@ dt {
 .treeview li.lastExpandable { background-position: -32px -67px }
 
 .treeview div.lastCollapsable-hitarea, .treeview div.lastExpandable-hitarea { background-position: 0; }
+.treeview a.cancel { 
+	background-image: url(../../images/icons/cancel.png);
+	background-repeat:no-repeat;
+	background-position:2px 0px;
+	padding: 1px 0 1px 20px; 
+	display: block; 
+}
+
+.treeview a.en { 
+	background-image: url(../../images/flags/us.png);
+	background-repeat:no-repeat;
+	background-position:2px 2px;
+	padding: 1px 0 1px 20px; 
+	display: block; 
+}
 
 .filetree li { padding: 3px 0 2px 16px; }
 .filetree span.folder, .filetree span.file { padding: 1px 0 1px 16px; display: block; }
@@ -493,6 +516,7 @@ dt {
     background-repeat: no-repeat;
     background-position: 10px center;
 }
+
 .cpg_message_info {
     color: #00529B;
     background-color: #BDE5F8;
@@ -522,6 +546,24 @@ dt {
     color: #915F15;
     background-color: #FFF7E8;
     background-image: url('../images/message/example.png');
+}
+.cpg_message_info h1 {
+	color:#00529B;
+}
+.cpg_message_success h1 {
+	color:#4F8A10;
+}
+.cpg_message_warning h1 {
+	color:#9F6000;
+}
+.cpg_message_error h1 {
+	color:#D8000C;
+}
+.cpg_message_validation h1 {
+	color:#D63301;
+}
+.cpg_example h1 {
+	color:#915F15;
 }
 
 textarea.samplecode {

@@ -83,6 +83,62 @@
 <a name="dev_documentation_database_structure"></a><h2>Database structure<a href="#dev_documentation_database_structure" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>The documentation file <a href="dev_database.htm">dev_database.htm</a> contains documentation about Coppermine's database structure. It's important to keep that piece of the documentation in sync with the actual database changes, i.e. if a dev changes something at database level by editing <tt class="code">sql/basic.sql</tt>, <tt class="code">sql/schema.sql</tt> or <tt class="code">sql/update.sql</tt> that has an impact on the database schema, the documentation has to be updated as well, preferably with the same commit.</p>
 
+<a name="dev_documentation_header_block"></a><h2>Header &amp; footer blocks<a href="#dev_documentation_header_block" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+Each "regular" file in the documentation needs to contain the header and footer blocks that will be replaced using JavaScript with additional chrome. If you're interessted how this is done, please review <tt class="code">./docs/en/script.js</tt>. The only important thing to keep in mind is that the section
+<pre>&lt;h1 id="docheader"&gt;Coppermine Photo Gallery v1.5.x: Documentation and Manual&lt;/h1&gt;
+&lt;div id="toc"&gt;
+&lt;a href="toc.htm"&gt;Table of Contents&lt;/a&gt;
+&lt;/div&gt;</pre>
+needs to be preserved right after the <tt class="code">&lt;body&gt;</tt>-tag.<br />
+In a similar manner, the footer section
+<pre>&lt;div id="doc_footer"&gt;
+	&lt;div class="doc_info_wrapper"&gt;
+		&lt;span id="doc_last_changed"&gt;&#036;LastChangedDate: 2009-05-27 20:18:54 +0200 (Mi, 27 Mai 2009) &#036;&lt;/span&gt;
+		&lt;span id="doc_revision"&gt;&#036;Revision: 6003 &#036;&lt;/span&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</pre>
+right in front of the closing <tt class="code">&lt;/body&gt;</tt>-tag mustn't be edited nor removed.
+
+
+<a name="dev_documentation_i18n"></a><h2>Documentation internationalization<a href="#dev_documentation_i18n" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>To help translators come up with valid translations of the docs some extra JavaScript goodies have been added: if a file in a non-english branch of the docs (e.g. "de" -> German) get's added initially in English as a preparation for the translation, the translator or maintainer is encoraged to edit that file (e.g. <tt class="code">./docs/de/example.htm</tt>) and add <tt class="code">&lt;div id="doc_en_only"&gt;No translation available&lt;/div&gt;</tt> into the body right after the div blocks that compose the header and menu. This block will be replaced using JavaScript/jquery with a more advanced text that explains the document's temporary stage and that translations are welcome. That text can be edited per language in <tt class="code">./docs/yourlanguage/script.js</tt> in the function definition for <tt class="code">cpgDocTranslationWarning</tt>. The maintainer of that language is welcome to add a link to a corresponding thread on the support board.</p>
+<p>To mark such documents in the localized, non-English menu, you can use the class <tt class="code">en</tt>, e.g. like this:</p>
+<div class="cpg_example">
+	<pre>&lt;li&gt;&lt;a href="example.htm" class="en"&gt;Foo bar&lt;/a&gt;&lt;/li&gt;</pre>
+	will result in
+	<div class="border1">
+		<ul>
+			<li><a href="example.htm" class="en" style="text-decoration:none;" rel="nofollow"><img src="../../images/flags/us.png" width="16" height="10" border="0" alt="" style="margin-right:5px" />Foo bar</a></li>
+		</ul>
+	</div>
+</div>
+<p>To enable translators to come up with the navigation structure in advance, you can use the CSS class <tt class="code">nolink</tt> to make a link go "blind", i.e. make it do nothing when clicked, as in this example:</p>
+<div class="cpg_example">
+	<pre>&lt;li&gt;&lt;a href="example.htm" class="nolink"&gt;Foo bar&lt;/a&gt;&lt;/li&gt;</pre>
+	will result in
+	<div class="border1">
+		<ul>
+			<li><a href="example.htm" class="nolink" style="text-decoration:none;">Foo bar</a></li>
+		</ul>
+	</div>
+	Go ahead and click the link to see what happens then: nothing. Keep in mind that this will only work if JavaScript is enabled. If it is disabled, the link will of course lead to it's target no matter what. 
+</div>
+<p>If particular anchor targets haven't been finished yet, you can use the CSS class <tt class="code">cancel</tt> to display a cancel icon like this:</p>
+<div class="cpg_example">
+	<pre>&lt;li&gt;&lt;a href="example.htm" class="cancel"&gt;Foo bar&lt;/a&gt;&lt;/li&gt;</pre>
+	will result in
+	<div class="border1">
+		<ul>
+			<li><a href="example.htm" class="cancel" style="text-decoration:none;" rel="nofollow"><img src="../../images/icons/cancel.png" width="16" height="16" border="0" alt="" style="margin-right:5px" />Foo bar</a></li>
+		</ul>
+	</div>
+</div>
+<p>To make sure that temporary content doesn't ruin the google page rank or clutters the search result, you should instruct the robots not to index temporary pages - this is done by adding the corresponding meta tag to the file's HTM header:</p>
+<div class="cpg_example">
+	<pre>&lt;meta name="robots" content="noindex" /&gt;</pre>
+</div>
+<p>Subsequently, if a temporary document get's permanent, the meta tag should be removed.</p>
+
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
 		<span id="doc_last_changed">$LastChangedDate$</span>
