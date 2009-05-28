@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Writing Plugins - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="writing plugins for Coppermine" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noindex" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.1
+  $Revision: 6003 $
+  $LastChangedBy: gaugau $
+  $Date: 2009-05-27 20:18:54 +0200 (Mi, 27 Mai 2009) $
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<div id="toc">
+<a href="toc.htm">Table of Contents</a>
+</div>
+
+<div id="doc_en_only">No translation available</div>
+
+<a name="plugin_writing"></a><h1>Writing Plugins for Coppermine<a href="#plugin_writing" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+
+<a name="plugin_writing_target_audience"></a><h2>Intended Audience<a href="#plugin_writing_target_audience" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Here's a list of who should and who should not (or doesn't need to) read this documentation.  The categories overlap in many places, so make sure to read the entire list.  Find yourself in the list and then decide whether you should read on.</p>
+<div id="ulgreen" class="cpg_message_success">
+<a name="plugin_writing_target_audience_yes"></a><h4>People who <em>should</em> read this documentation:<a href="#plugin_writing_target_audience_yes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<ul type="square">
+    <li>Anyone who wants to write plugins to customize Coppermine</li>
+    <li>Current Coppermine coders who want to convert their hacks &amp; mods to plugins</li>
+    <li>Anyone who wants to add in features or modify a current plugin</li>
+    <li>Coders who want to start customizing Coppermine but do not know where to start</li>
+</ul>
+</div>
+<div id="ulred" class="cpg_message_validation">
+<a name="plugin_writing_target_audience_no"></a><h4>People who do <em>not</em> need to read this documentation:<a href="#plugin_writing_target_audience_no" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<ul>
+    <li>Anyone learning Coppermine for the first time - the <a href="index.htm">main manual</a> is all you need at first</li>
+    <li>Anyone who wants to download &amp; use plugins - you can use many plugins without knowing what they do internally</li>
+</ul>
+</div>
+<p>People interested in using plugins but who do not need to modify them or write their own should read the main documentation instead - <a href="plugins.htm">the plugins section</a> describes everything you need to know.</p>
+
+
+<a name="plugin_writing_why_write"></a><h2>Why write plugins?<a href="#plugin_writing_why_write" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The biggest advantage of a plugin over a mod is the fact that plugins will remain when updating Coppermine, while mods (<abbr title="also known as">aka</abbr> &quot;modifications&quot; or &quot;hacks&quot;) need to be re-applied after updating.</p>
+<p>It's pretty easy to come up with a plugin of your own. This page and it's sub-pages is meant to explain how to come up with your first home-made plugin.</p>
+
+<a name="plugin_writing_naming_conventions"></a><h2>Naming conventions<a href="#plugin_writing_naming_conventions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Even if you plan to write a plugin just for your purposes you should pay attention to the naming conventions for plugins to make sure that your plugin will not stop working as expected at a later stage (e.g. after an update).</p>
+<p>The naming conventions exist for two purposes: they enable Coppermine's developers to come with restrictive rules for Coppermine's core code to prevent hacking. Unsanitized user input can have a huge impact in hacking scenarios, that's why there are rules for plugins as well. Additionally, naming conventions are supposed to make maintenance and support easier, and finally, end users will find their way around easier as well.</p>
+<ul>
+	<li>
+		<a name="plugin_writing_naming_conventions_folders"></a><h3>Folders<a href="#plugin_writing_naming_conventions_folders" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		Use web-safe names:
+		<ul>
+			<li>only alphanumerals</li>
+			<li>all lower-case</li>
+			<li>no special chars except underscore (_)</li>
+		</ul>
+		<div class="cpg_example"><tt class="code">your_coppermine_folder/plugins/coffee_maker/</tt></div>
+	</li>
+	<li>
+		<a name="plugin_writing_naming_conventions_files"></a><h3>Files<a href="#plugin_writing_naming_conventions_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		Use web-safe names:
+		<ul>
+			<li>only alphanumerals</li>
+			<li>all lower-case</li>
+			<li>no special chars except underscore (_) and only one dot (.) to separate the actual file name from the extension</li>
+		</ul>
+		<div class="cpg_example"><tt class="code">your_coppermine_folder/plugins/coffee_maker/my_file.php</tt></div>
+	</li>
+	<li>
+		<a name="plugin_writing_naming_conventions_archives"></a><h3>Archives<a href="#plugin_writing_naming_conventions_archives" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		You only need to worry about naming conventions for archives if you plan to release your plugin for the public. The zip-archives for plugin releases follow a naming convention - it's advisable to adopt to that convention to prevent confusion for end-users.
+		<ul>
+			<li>only alphanumerals</li>
+			<li>all lower-case</li>
+			<li>no special chars except underscore (_), hyphen (-) and dot (.)</li>
+			<li>All archives start with the official abbreviation "<tt class="code">cpg</tt>" to indicate that the archive is meant to be used with coppermine or is related to coppermine</li>
+			<li>The major version an archive is meant to be used with comes right after that - the minor version being replaced with an <tt class="code">x</tt>. Possible values for plugins can currently be <tt class="code">1.4.x</tt> and <tt class="code">1.5.x</tt>. The Coppermine version is being followed by an underscore</li>
+			<li>The word "plugin" to indicate that the archive contains a plugin (opposed to a theme or similar), followed by an underscore</li>
+			<li>The name of the actual plugin, preferably using the same name that has been used as folder name. The plugin name should usually consist of at least two words. Unlike the naming convention for folders, then words in the archive name are being separated with hyphens (-) to make them distinguishable from the underscore that separates the components of the file name. In above example, where the folder name <tt class="code">coffee_maker</tt> was used, the corresponding part of the archive file name would be <tt class="code">coffee-maker</tt>.<br />
+			To separate the actual plugin name component in the file name from the rest, another underscore should be used</li>
+			<li>All plugins have versions. Even if you don't plan to create more versions after having released your initial plugin, others may want to do so. That's why you should always populate the version number inside <tt class="code">configuration.php</tt>. The same version should show through in the archive file name, with the letter "<tt class="code">v</tt>" prepended to indicate the word "version". Major and minor version numbers should be separated with dots. Coppermine itself currently features three digits for the version number. We advise plugin authors to use a two-folder version numbering scheme, where the first digit indicates the major version and the second digit indicates the minor version change (usually a maintenance release). <br />This two-digit version numbering scheme for plugins is not written in stone - plugin authors can use a three-digit notation as well if they desire.<br />
+			The Coppermine dev team suggests starting the numbering at version 1.0</li>
+			<li>The extension <tt class="code">zip</tt> can of course not be edited. We strongly suggest only to use zip and not some other archive format like <tt class="code">rar</tt> or <tt class="code">7z</tt> even if those other formats may have advantages. The archive-type <tt class="code">zip</tt> is most commonly used; everybody should have a tool to extract zip files.</li>
+		</ul>
+		<div class="cpg_example"><tt class="code">cpg1.5.x_plugin_coffee-maker_v1.0.zip</tt></div>
+	</li>
+	<li>
+		<a name="plugin_writing_naming_conventions_coding"></a><h3>Coding<a href="#plugin_writing_naming_conventions_coding" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		<p>There are naming conventions as well as far as the stuff within your files is concerned: you should take a look at the <a href="dev_coding.htm#dev_coding_naming_conventions">coding guidelines</a> for Coppermine as well to get an idea how to name your functions, variables and constants.</p>
+	</li>
+</ul>
+
+<a name="plugin_writing_sub_sections"></a><h2>Sub-sections<a href="#plugin_writing_sub_sections" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>These plugin documents are a work-in-progress, and a to-do list. The following sub-sections exist so far that are recommended to read:</p>
+<ul>
+  <li><a href="dev_plugin_writing.htm">Quick Start Guide to Writing Plugins</a><br />
+  The guide explains the next steps to start coding a plugin of your own - read it if you're still not sure what to do next</li>
+  <li><a href="dev_plugin_api.htm">Tutorial, Plugin API, Coppermine Global Variables &amp; Constants</a><br />The tutorial is the next logical step to follow after having read the quick start guide</li>
+  <li><a href="dev_plugin_hooks.htm">Reference List of Plugin Hooks</a><br />
+  The reference list is meant as a source for experienced plugin writer who need to look up the names of hooks.</li>
+</ul>
+
+
+<br clear="all" />
+
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate: 2009-05-27 20:18:54 +0200 (Mi, 27 Mai 2009) $</span>
+		<span id="doc_revision">$Revision: 6003 $</span>
+	</div>
+</div>
+</body>
+</html>

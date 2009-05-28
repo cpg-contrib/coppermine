@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-29 [D] Added missing documents to German documentation {GauGau}
 2009-05-28 [D] Upgraded jquery to version 1.3.2 for documentation {Abbas}
 2009-05-28 [D] Added i18n helpers to documentation {GauGau}
 2009-05-27 [D] Changed documentation to use more jquery mechanisms {GauGau}

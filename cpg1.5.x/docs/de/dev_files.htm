@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Adding/renaming/removing files - Developer documentation - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="This part of the documentation is not meant for end users of Coppermine, but only for developers. There is no support for this section, it comes as-is." />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noindex" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.1
+  $Revision: 6003 $
+  $LastChangedBy: gaugau $
+  $Date: 2009-05-27 20:18:54 +0200 (Mi, 27 Mai 2009) $
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<div id="toc">
+<a href="toc.htm">Table of Contents</a>
+</div>
+
+<div id="doc_en_only">No translation available</div>
+
+<a name="dev_files"></a><h1>Adding/renaming/removing files<a href="#dev_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+
+<a name="dev_files_target_audience"></a><h2>Target audience<a href="#dev_files_target_audience" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>This part of the documentation is not meant for end users of Coppermine, but only for developers. There is no support for this section, it comes as-is.</p>
+
+<a name="dev_files_scope"></a><h2>Scope<a href="#dev_files_scope" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>This document is meant to explain what needs to be done by developers when adding / renaming / deleting files to/from the SVN during development stage.</p>
+
+<a name="dev_files_naming"></a><h2>Naming conventions<a href="#dev_files_naming" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Refer to the section &quot;<a href="dev_coding.htm#dev_coding_naming_conventions">Naming Conventions</a>&quot; when adding new files or renaming existing files.</p>
+
+<a name="dev_files_adding"></a><h2>Adding files<a href="#dev_files_adding" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>If a developer needs to add a new file to Coppermine's core, here's a list of things that needs to be done:</p>
+<ul>
+	<li>Create the file locally on your client (within the working copy of your Subversion checkout), respecting the <a href="dev_coding.htm#dev_coding_naming_conventions">naming conventions</a></li>
+	<li>If it is a non-binary (i.e. a text file), add the file header that will show that your file is part of the coppermine package. Currently, the file header for PHP files looks like this:<pre class="code">/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2009 Coppermine Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+  
+  ********************************************
+  Coppermine version: 1.5.1
+  &#36;HeadURL&#36;
+  &#36;Revision&#36;
+  &#36;LastChangedBy&#36;
+  &#36;Date&#36;
+**********************************************/</pre>For other file types (e.g. sql files), different comment symbols might apply.</li>
+	<li>Add the file to the SVN, using the add and then the commit command of your favorite SVN client</li>
+	<li>In your SVN client, make sure that the file you have added has the needed SVN-properties. In RapidSVN (Linux-Client), do a right-click, properties and make sure that the name/value pair "svn:keywords"/"Author Date Id Revision HeadURL" exists. If it doesn't exist, create such an entry (using the "new" button on the properties dialog). This will make sure that the placeholder SVN variables within $-signs are populated properly. Take a look at existing files to see how this is done.</li>
+	<li>Add an entry for your newly-created file in <tt class="code">includes/cpg15x.files.xml</tt>. Details can be found in the section <a href="dev_versioncheck.htm#dev_versioncheck_xml">Versioncheck : XML structure</a></li>
+	<li>If applicable, come up with instructions about your file in the documentation</li>
+</ul>
+
+<a name="dev_files_renaming"></a><h2>Renaming files<a href="#dev_files_renaming" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>If a file name can not be kept (e.g. because of collision with naming conventions), it should be renamed instead of deleting the old one and creating a new one. The benfit of renaming is the fact that the version history will be kept in the Subversion repository.</p>
+<p>Once a file has been renamed in SVN, you will have to make additional edits:</p>
+<ul>
+	<li>Add an entry for your the new file name in <tt class="code">includes/cpg15x.files.xml</tt>. Details can be found in the section <a href="dev_versioncheck.htm#dev_versioncheck_xml">Versioncheck : XML structure</a></li>
+	<li>If the old file name already has gone into a prvious public release, you need to make sure that end users will not have an outdated, leftover copy of the file with the old name when performing an update. To accomplish this, you should edit <tt class="code">update.php</tt>, find the definition of the array <tt class="code">$delete_file_array</tt> and add the old file name to it.<br />
+	Additionally, you should edit <tt class="code">includes/cpg15x.files.xml</tt> and flag the old name with the status "remove".</li>
+	<li>If the old file name has <em>not</em> gone into a previous release, it's enough to edit <tt class="code">includes/cpg15x.files.xml</tt> and just remove the record that refers to the old file name.</li>
+</ul>
+
+<a name="dev_files_deleting"></a><h2>Deleting files<a href="#dev_files_deleting" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>In a nutshell: what has been said above about renaming files applies to deleting files as well: after having deleted the file in SVN, make sure to edit the XML file used for versioncheck and the array of files scheduled for deleting by the updater.</p>
+<p>Keep in mind though that before deleting core PHP files, you should discuss this with your fellow devs first on the dev-only board.</p>
+
+
+<br clear="all" />
+
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate: 2009-05-27 20:18:54 +0200 (Mi, 27 Mai 2009) $</span>
+		<span id="doc_revision">$Revision: 6003 $</span>
+	</div>
+</div>
+</body>
+</html>

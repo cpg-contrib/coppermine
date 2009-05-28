@@ -780,6 +780,14 @@
     <hash>6109d5decb2acb77357946b7ec40d61c</hash>
   </element>
   <element>
+    <fullpath>docs/de/admin-tools.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
     <fullpath>docs/de/administration.htm</fullpath>
     <version>1.5.1</version>
     <revision>6003</revision>
@@ -812,12 +820,36 @@
     <hash>37442d50ab2c46bbbff0640d8083d1e5</hash>
   </element>
   <element>
+    <fullpath>docs/de/bbcode.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/bridging.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
     <fullpath>docs/de/categories.htm</fullpath>
     <version>1.5.1</version>
     <revision>6003</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>c6fb70584132a00c1ac124ebf2a21390</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/comments.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
   </element>
   <element>
     <fullpath>docs/de/configuration.htm</fullpath>
@@ -844,12 +876,172 @@
     <hash>fa37d37a45872693b3124096baa4cdd2</hash>
   </element>
   <element>
+    <fullpath>docs/de/dev.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_coding.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_config.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_database.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_documentation.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_files.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_javascript.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_plugin_api.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_plugin_hooks.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_plugin_writing.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_plugins.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_subversion.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_superglobals.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_tools.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_update.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_versioncheck.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/errors.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/exif.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/export.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
     <fullpath>docs/de/faq.htm</fullpath>
     <version>1.5.1</version>
     <revision>6003</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>6d766bf6b951a15929f7a33a57e61b9a</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/files.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
   </element>
   <element>
     <fullpath>docs/de/groups.htm</fullpath>
@@ -900,6 +1092,14 @@
     <hash>c95624ee8a54293f9fdf8462d6ef29d5</hash>
   </element>
   <element>
+    <fullpath>docs/de/keywords.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
     <fullpath>docs/de/known_issues.htm</fullpath>
     <version>1.5.1</version>
     <revision>6003</revision>
@@ -914,6 +1114,38 @@
     <status>optional</status>
     <permission>read</permission>
     <hash>4dfc1c095eee52bee23f94b16bac6735</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/performance.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/php-content.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/plugins.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/quickstart.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
   </element>
   <element>
     <fullpath>docs/de/requirements.htm</fullpath>
@@ -1052,6 +1284,14 @@
     <hash>aa20356df4d508cb28f22702a18a336d</hash>
   </element>
   <element>
+    <fullpath>docs/de/translation.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
     <fullpath>docs/de/uninstall.htm</fullpath>
     <version>1.5.1</version>
     <revision>6003</revision>
@@ -1068,12 +1308,60 @@
     <hash>e4234934b1f086cd9fe99da2eaea6db1</hash>
   </element>
   <element>
+    <fullpath>docs/de/upload_troubleshooting.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/uploading.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/uploading_batch-add.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/uploading_http.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/uploading_xp-publisher.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
     <fullpath>docs/de/users.htm</fullpath>
     <version>1.5.1</version>
     <revision>6003</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>058627be664d7aa551204f19e52b338f</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/watermarking.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
   </element>
   <element>
     <fullpath>docs/de/images/</fullpath>

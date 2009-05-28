@@ -28,8 +28,6 @@
 <body>
 <h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
 
-
-
 <h1 style="margin:0px;padding:0px;">Inhaltsverzeichnis</h1>
 <script type="text/javascript">
     document.write('<div id="sidetreecontrol">');
@@ -41,331 +39,606 @@
 <div id="toc_main">
 <a href="../index.htm">Dokumentation Sprachauswahl</a>
 <ul id="toc_overall">
-  <li><a href="index.htm">Coppermine Dokumentation</a>
-    <ul class="level2" id="index">
+  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="index.htm">Coppermine Dokumentation</a>
+    <ul style="display: none;" class="level2" id="index">
       <li><a href="index.htm#about">Über Coppermine</a></li>
-      <!--<li><a href="index.htm#about_documentation">About the documentation</a></li>-->
-      <!--<li><a href="index.htm#features">Features</a></li>-->
-      <!--<li><a href="quickstart.htm#about">Quick-Start guide</a></li>-->
+      <li><a href="index.htm#about_documentation">Über die Dokumentation</a></li>
+      <li><a href="index.htm#features" class="cancel">Features</a></li>
+      <li><a href="quickstart.htm#about" class="cancel">Schnellstart-Assistent</a></li>
+
       <li><a href="toc.htm">Inhaltsverzeichnis</a></li>
       <li><a href="requirements.htm">Mindestvoraussetzung</a></li>
-      <!--<li><a href="testing.htm">Testing (alpha/beta versions!)</a></li>-->
-      <li><a href="languages.htm">Sprachen</a>
-        <!--<ul class="level3" id="languages">-->
-          <!--<li><a href="translation.htm">Translation guide</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <li><a href="credits.htm">Credits</a>
-        <ul class="level3" id="credits">
-          <li><a href="credits.htm#developers">Coppermine Team</a></li>
-          <li><a href="credits.htm#contributors">Unterstützer</a></li>
-          <li><a href="credits.htm#codebase">Verwendeter Open Source Code</a></li>
+      <li><a href="testing.htm" class="en">Test (Alpha/Beta-Versionen!)</a></li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="languages.htm">Sprachen</a>
+        <ul style="display: none;" class="level3" id="languages">
+          <li class="last"><a href="translation.htm" class="cancel">Übersetzungs-Assistent</a></li>
+
         </ul>
       </li>
-      <!--<li><a href="copyrights.htm">License &amp; Copyright</a></li>-->
-      <!--<li><a href="known_issues.htm">Known issues</a></li>-->
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="credits.htm">Danksagungen</a>
+        <ul style="display: none;" class="level3" id="credits">
+          <li><a href="credits.htm#developers">Coppermine Team</a></li>
+          <li><a href="credits.htm#contributors">Unterstützer</a></li>
+          <li class="last"><a href="credits.htm#codebase">Verwendeter Open Source Code</a></li>
+
+        </ul>
+      </li>
+      <li><a href="copyrights.htm" class="en">Lizenz &amp; Copyright</a></li>
+      <li class="last"><a href="known_issues.htm" class="en">Bekannte Probleme</a></li>
     </ul>
   </li>
-  <!--<li><a href="install.htm">Installation and setup</a>
-    <!--<ul class="level2" id="install">
-      <!--<li><a href="install.htm#how">How to install the script</a></li>-->
-      <!--<li><a href="install.htm#what">What the installer does</a></li>-->
-      <!--<li><a href="install_permissions.htm">Setting permissions</a>
-        <!--<ul class="level3" id="install_permissions">
-          <!--<li><a href="install_permissions.htm#chmod">Apache on Unix/Linux (CHMOD)</a></li>-->
-          <!--<li><a href="install_permissions.htm#apache_windows">Apache on Windows</a></li>-->
-          <!--<li><a href="install_permissions.htm#iis">IIS on Windows</a></li>-->
-          <!--<li><a href="install_permissions.htm#support">Asking for support on permissions issues</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="install_screen.htm">The install screen</a></li>-->
-      <!--<li><a href="auto-installers.htm">Auto-Installers</a></li>-->
-      <!--<li><a href="install_faq.htm">Installation FAQ</a></li>-->
-      <!--<li><a href="uninstall.htm">Uninstall</a></li>-->
-    <!--</ul>-->
-  <!--</li>-->
-  <!--<li><a href="upgrading.htm">Upgrading</a>-->
-    <!--<ul class="level2" id="upgrading">-->
-      <!--<li><a href="upgrading.htm#upgrade_why">Why upgrade?</a>-->
-      	<!--<ul class="level3" id="why_upgrade">-->
-      		<!--<li><a href="upgrading.htm#upgrade_why_reasons">Reasons for package releases</a></li>-->
-      		<!--<li><a href="upgrading.htm#upgrade_why_changelog">Changelog</a></li>-->
-      	<!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="upgrading.htm#upgrade_any">Steps needed to perform when upgrading Coppermine (from any version)</a></li>-->
-      <!--<li><a href="upgrading.htm#upgrade_particular">Additional actions for updating from particular versions</a>-->
-        <!--<ul class="level3" id="upgrade_particular">-->
-          <!--<li><a href="upgrading.htm#upgrade_10">Upgrading from versions cpg1.0,1.1,1.2.x or 1.3.x</a></li>-->
-          <!--<li><a href="upgrading.htm#upgrade_14">Upgrading from cpg1.4.x to version cpg1.5.x</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="upgrading.htm#versioncheck">The version check tool</a>-->
-        <!--<ul class="level3" id="versioncheck">-->
-          <!--<li><a href="upgrading.htm#versioncheck_description_start">What it does</a></li>-->
-          <!--<li><a href="upgrading.htm#versioncheck_options_start">Options</a></li>-->
-          <!--<li><a href="upgrading.htm#versioncheck_comparison_start">Version comparison</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="upgrading.htm#upgrade_faq">Upgrading FAQ</a></li>-->
-      <!--<li><a href="upgrading.htm#downgrading">Downgrading from cpg1.5.x to an older version</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="upgrading.htm#downgrading">Downgrading from cpg1.5.x to an older version</a></li>-->
-    <!--</ul>-->
-  <!--</li>-->
-  <!--<li><a href="start.htm">Getting Started</a>
-    <!--<ul class="level2" id="start">
-      <!--<li><a href="start.htm#getting_concepts">Basic concepts</a></li>-->
-      <!--<li><a href="start.htm#getting_initial_configuration">Initial configuration</a></li>-->
-      <!--<li><a href="start.htm#getting_structure">Category/album/file structure</a></li>-->
-      <!--<li><a href="start.htm#getting_resizing">Resized images</a></li>-->
-      <!--<li><a href="start.htm#getting_admin_account">Your admin account</a></li>-->
-      <!--<li><a href="start.htm#getting_check_uploads">Check uploads</a></li>-->
-      <!--<li><a href="start.htm#getting_consider_bridging">Consider bridging</a></li>-->
-      <!--<li><a href="start.htm#getting_interaction">What are your visitors allowed to do?</a></li>-->
-      <!--<li><a href="start.htm#getting_design">Change your coppermine's design</a></li>-->
-      <!--<li><a href="start.htm#getting_typical">Typical setups</a></li>-->
-    <!--</ul>-->
-  <!--</li>-->
-  <!--<li><a href="faq.htm">Frequently Asked Questions</a></li>-->
-  <!--<li><a href="theme.htm">Themes</a>
-    <!--<ul class="level2" id="themes">
-      <!--<li><a href="theme.htm#theme_builtin">Themes that come with Coppermine</a></li>-->
-      <!--<li><a href="theme.htm#theme_upgrading">Upgrading your custom theme</a>
-      <!--<ul class="level3" id="theme_upgrading">
-        <!--<li><a href="theme_upgrade_14x-15x.htm">Converting cpg1.4.x themes to cpg1.5.x</a>
-          <!--<ul class="level3" id="upgrade_14_15">
-            <!--<li><a href="theme_upgrade_14x-15x.htm#style">Edit style.css</a></li>-->
-            <!--<li><a href="theme_upgrade_14x-15x.htm#template">Edit template.html</a></li>-->
-            <!--<li><a href="theme_upgrade_14x-15x.htm#theme">Edit theme.php</a></li>-->
-            <!--<li><a href="theme_upgrade_14x-15x.htm#validation">Validation Methodology</a></li>-->
-          <!--</ul>-->
-        <!--</li>-->
-        <!--<li><a href="theme_upgrade_13x-14x.htm">Converting cpg1.3.x themes to cpg1.4.x</a>
-          <!--<ul class="level3" id="upgrade_13_14">
-            <!--<li><a href="theme_upgrade_13x-14x.htm#style">Edit style.css</a></li>-->
-            <!--<li><a href="theme_upgrade_13x-14x.htm#template">Edit template.html</a></li>-->
-            <!--<li><a href="theme_upgrade_13x-14x.htm#theme">Edit theme.php</a></li>-->
-            <!--<li><a href="theme_upgrade_13x-14x.htm#validation">Validation Methodology</a></li>-->
-          <!--</ul>-->
-        <!--</li>-->
-      <!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="theme.htm#theme_files">Content of a theme</a></li>-->
-      <!--<li><a href="theme.htm#theme_engine">How the theme engine works</a></li>-->
-      <!--<li><a href="theme_user-contributions.htm#theme_user-contributions">User-contributed themes</a></li>-->
-      <!--<li><a href="theme_create.htm#theme_create">Creating your custom theme</a>
-        <!--<ul class="level3" id="theme_create">
-          <!--<li><a href="theme_create.htm#theme_create_rename">Rename your theme first</a></li>-->
-          <!--<li><a href="theme_create.htm#theme_create_tipps">Tipps &amp; tricks</a></li>-->
-          <!--<li><a href="theme_create.htm#theme_create_wysiwyg">Using WYSIWYG-editors</a></li>-->
-          <!--<li><a href="theme_create.htm#theme_create_colors">Modifying colors</a></li>-->
-          <!--<li><a href="theme_create.htm#theme_create_theme_php">Editing theme.php</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="theme_template.htm#theme_template_html">Editing template.html</a></li>-->
-      <!--<li><a href="theme_copyright.htm">Copyright-disclaimer in footer</a></li>-->
-      <!--<li><a href="php-content.htm">Dynamic (PHP-driven) content</a>
-        <!--<ul class="level3" id="php-content">
-          <!--<li><a href="php-content.htm#php-content_anycontent">Using anycontent.php</a></li>-->
-          <!--<li><a href="php-content.htm#php-content_header_footer">Custom header and footer</a></li>-->
-          <!--<li><a href="php-content.htm#php-content_theme">Theme-based dynamic content (theme.php)</a></li>-->
-          <!--<li><a href="php-content.htm#php-content_core">Modifying core files</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-    <!--</ul>-->
-  <!--</li>-->
-  <li><a href="administration.htm">Administration</a>
-    <ul class="level2" id="administration">
-      <!--<li><a href="admin_menu.htm">Admin menu items</a></li>-->
-      <!--<li><a href="banning.htm#banning">Banning</a></li>-->
-      <li><a href="configuration.htm">Einstellungen</a>
-        <ul class="level3" id="configuration">
+  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="install.htm" class="en">Installation und Einstellungen</a>
+
+    <ul style="display: none;">
+      <li><a href="install.htm#how" class="en">Wie man das Skript installiert</a></li>
+      <li><a href="install.htm#what" class="en">Was passiert während der Installation</a></li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="install_permissions.htm" class="en">Berechtigungs-Einstellungen</a>
+        <ul style="display: none;">
+          <li><a href="install_permissions.htm#chmod" class="en">Apache auf Unix/Linux (CHMOD)</a></li>
+          <li><a href="install_permissions.htm#apache_windows" class="en">Apache auf Windows</a></li>
+
+          <li><a href="install_permissions.htm#iis" class="en">IIS auf Windows</a></li>
+          <li class="last"><a href="install_permissions.htm#support" class="en">Unterstützung/Support in Berechtigungsfragen</a></li>
+        </ul>
+      </li>
+      <li><a href="install_screen.htm" class="en">Der Installations-Assistent</a></li>
+      <li><a href="auto-installers.htm" class="en">Automatische Installation</a></li>
+      <li><a href="install_faq.htm" class="en">Installations FAQ</a></li>
+
+      <li class="last"><a href="uninstall.htm" class="en">De-Installation</a></li>
+    </ul>
+  </li>
+  <li class="collapsable"><div class="hitarea collapsable-hitarea"></div><a href="upgrading.htm" class="en">Aktualisierung</a>
+    <ul style="display: block;">
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="upgrading.htm#upgrade_why" class="en">Warum aktualisieren?</a>
+          <ul style="display: none;">
+
+              <li><a href="upgrading.htm#upgrade_why_reasons" class="en">Gründe für die Veröffentlichungen</a></li>
+              <li class="last"><a href="upgrading.htm#upgrade_why_changelog" class="en">Changelog</a></li>
+          </ul>
+      </li>
+      <li><a href="upgrading.htm#upgrade_any" class="en">Aktualisierungs-Schritte (alle Versionen)</a></li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="upgrading.htm#upgrade_particular" class="en">Zusätzliche Schritte für bestimmte Versionen</a>
+        <ul style="display: none;">
+
+          <li><a href="upgrading.htm#upgrade_10" class="en">Aktualisierung von cpg1.0,1.1,1.2.x oder 1.3.x</a></li>
+          <li class="last"><a href="upgrading.htm#upgrade_14" class="en">Aktualisierung von cpg1.4.x auf Version cpg1.5.x</a></li>
+        </ul>
+      </li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="upgrading.htm#updater" class="en">Das Aktualisierungs-Skript</a>
+          <ul style="display: none;" class="level3" id="updater">
+              <li><a href="upgrading.htm#updater_what_it_does" class="en">Was das Skript tut</a></li>
+
+              <li><a href="upgrading.htm#updater_purpose" class="en">Zweck</a></li>
+              <li><a href="upgrading.htm#updater_authorization" class="en">Überprüfung der Berechtigung</a></li>
+              <li class="last"><a href="upgrading.htm#updater_when" class="en">Wann muss das Aktualiserungs-Skript laufen?</a></li>
+          </ul>
+      </li>
+      <li class="collapsable"><div class="hitarea collapsable-hitarea"></div><a href="upgrading.htm#versioncheck" class="en selected">Die Versions-Prüfung</a>
+        <ul style="display: block;">
+
+          <li><a href="upgrading.htm#versioncheck_description_start" class="en">Was das Skript tut</a></li>
+          <li><a href="upgrading.htm#versioncheck_options_start" class="en">Optionen</a></li>
+          <li class="last"><a href="upgrading.htm#versioncheck_comparison_start" class="en">Versionsvergleich</a></li>
+        </ul>
+      </li>
+      <li><a href="upgrading.htm#upgrade_faq" class="en">Aktualisierungs-FAQ</a></li>
+      <li class="last"><a href="upgrading.htm#downgrading" class="en">Von cpg1.5.x auf eine ältere Version downgraden</a></li>
+
+    </ul>
+  </li>
+  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="start.htm" class="en">Am Anfang</a>
+    <ul style="display: none;">
+      <li><a href="start.htm#getting_concepts" class="en">Grundlegende Konzepte</a></li>
+      <li><a href="start.htm#getting_initial_configuration" class="en">Erstmalige Einrichtung</a></li>
+      <li><a href="start.htm#getting_structure" class="en">Kategorie/Alben/Datei-Struktur</a></li>
+
+      <li><a href="start.htm#getting_resizing" class="en">Größenänderung von Bildern</a></li>
+      <li><a href="start.htm#getting_admin_account" class="en">Dein Admin-Konto</a></li>
+      <li><a href="start.htm#getting_check_uploads" class="en">Hochladen</a></li>
+      <li><a href="start.htm#getting_consider_bridging" class="en">Bridging in Betracht ziehen</a></li>
+      <li><a href="start.htm#getting_interaction" class="en">Was dürfen die Besucher der Seite tun?</a></li>
+      <li><a href="start.htm#getting_design" class="en">Das Aussehen Deiner Galerie anpassen</a></li>
+
+      <li class="last"><a href="start.htm#getting_typical" class="en">Gebräuchliche Einstellungen</a></li>
+    </ul>
+  </li>
+  <li><a href="faq.htm" class="en">Häufig gestellte Fragen (FAQ)</a></li>
+  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="theme.htm" class="en">Designs (Themes)</a>
+    <ul style="display: none;">
+      <li><a href="theme.htm#theme_builtin" class="en">Mitgelieferte Designs</a></li>
+
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="theme.htm#theme_upgrading" class="en">Aktualisierung Deines selbstgemachten Designs</a>
+      <ul style="display: none;">
+        <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="theme_upgrade_14x-15x.htm" class="en">Konvertierung von cpg1.4.x-Themes auf cpg1.5.x</a>
+          <ul style="display: none;">
+            <li><a href="theme_upgrade_14x-15x.htm#style" class="en">Bearbeite style.css</a></li>
+            <li><a href="theme_upgrade_14x-15x.htm#template" class="en">Bearbeite template.html</a></li>
+            <li><a href="theme_upgrade_14x-15x.htm#theme" class="en">Bearbeite theme.php</a></li>
+
+            <li class="last"><a href="theme_upgrade_14x-15x.htm#validation" class="en">Validierung</a></li>
+          </ul>
+        </li>
+        <li class="expandable lastExpandable"><div class="hitarea expandable-hitarea lastExpandable-hitarea"></div><a href="theme_upgrade_13x-14x.htm" class="en">Konvertierung von cpg1.3.x-Themes auf cpg1.4.x</a>
+          <ul style="display: none;">
+            <li><a href="theme_upgrade_13x-14x.htm#style" class="en">Bearbeite style.css</a></li>
+            <li><a href="theme_upgrade_13x-14x.htm#template" class="en">Bearbeite template.html</a></li>
+
+            <li><a href="theme_upgrade_13x-14x.htm#theme" class="en">Bearbeite theme.php</a></li>
+            <li class="last"><a href="theme_upgrade_13x-14x.htm#validation" class="en">Bearbeite Methodology</a></li>
+          </ul>
+        </li>
+      </ul>
+      </li>
+      <li><a href="theme.htm#theme_files" class="en">Inhalt eines Themes</a></li>
+
+      <li><a href="theme.htm#theme_engine" class="en">Wie ein Theme funktioniert</a></li>
+      <li><a href="theme_user-contributions.htm#theme_user-contributions" class="en">Zusätzliche Themes</a></li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="theme_create.htm#theme_create" class="en">Erstellung eines eigenen Themes</a>
+        <ul style="display: none;">
+          <li><a href="theme_create.htm#theme_create_rename" class="en">Benennen Dein Theme zuerst um</a></li>
+          <li><a href="theme_create.htm#theme_create_tipps" class="en">Tips &amp; Tricks</a></li>
+
+          <li><a href="theme_create.htm#theme_create_wysiwyg" class="en">Verwendung von grafischen Editoren</a></li>
+          <li><a href="theme_create.htm#theme_create_colors" class="en">Farben bearbeiten</a></li>
+          <li class="last"><a href="theme_create_matching_page_tutorial.htm#theme_matching" class="en">Erstellen eines Themes für Coppermine im Stil der restlichen Seite</a></li>
+        </ul>
+      </li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="theme_template.htm#theme_template_html" class="en">Bearbeitung von template.html</a>
+          <ul style="display: none;" class="level3" id="theme_template_html">
+
+              <li><a href="theme_template.htm#theme_template_token" class="en">Template-Platzhalter</a></li>
+              <li><a href="theme_template.htm#theme_template_important" class="en">Wichtig</a></li>
+              <li class="last"><a href="theme_template.htm#theme_template_token_list" class="en">Übersicht der Platzhalter in template.html</a></li>
+          </ul>
+      </li>
+      <li><a href="theme_style_css.htm#theme_style_css" class="en">Bearbeitung von style.css</a></li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="theme_theme_php.htm#theme_create_theme_php" class="en">Bearbeitung von theme.php</a>
+
+          <ul style="display: none;" class="level3" id="theme_theme_php">
+              <li><a href="theme_theme_php.htm#theme_php_types" class="en">Element-Arten</a></li>
+              <li><a href="theme_theme_php.htm" class="en">Das sample Theme - eine Kopiervorlage</a></li>
+              <li><a href="theme_theme_php.htm#theme_php_method" class="en">Methode</a></li>
+              <li><a href="theme_theme_php.htm#theme_php_scope" class="en">Anwendungsbereich</a></li>
+              <li><a href="theme_theme_php.htm#theme_php_list" class="en">Übersicht der Elemente in theme.php</a></li>
+
+              <li class="last"><a href="theme_examples.htm#theme_examples" class="en">Theme-Beispiele</a></li>
+          </ul>
+      </li>
+      <li><a href="theme_copyright.htm" class="en">Copyright-Disclaimer in der Fußzeile</a></li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="php-content.htm" class="en">Dynamischer (PHP-basierter) Inhalt</a>
+        <ul style="display: none;">
+          <li><a href="php-content.htm#php-content_anycontent" class="en">Verwendung von anycontent.php</a></li>
+
+          <li><a href="php-content.htm#php-content_header_footer" class="en">Benutzerdefinierte Kopf- und Fußzeile</a></li>
+          <li><a href="php-content.htm#php-content_theme" class="en">Theme-basierter dynamischer Inhalt (theme.php)</a></li>
+          <li class="last"><a href="php-content.htm#php-content_core" class="en">Veränderung von Grund-Dateien</a></li>
+        </ul>
+      </li>
+      <li class="expandable lastExpandable"><div class="hitarea expandable-hitarea lastExpandable-hitarea"></div><a href="theme_graphics.htm" class="en">Grafische Resourcen in Designs</a>
+          <ul style="display: none;" class="level3" id="theme_graphics">
+
+              <li><a href="theme_graphics.htm#theme_graphics_menu_icons" class="en">Menü-Icons</a></li>
+              <li><a href="theme_graphics.htm#theme_graphics_nav_bar" class="en">Bildnavigation</a></li>
+              <li class="last"><a href="theme_graphics.htm#theme_graphics_rating" class="en">Bewertungs-Icons</a></li>
+          </ul>
+      </li>
+    </ul>
+  </li>
+
+  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="administration.htm">Administration</a>
+    <ul style="display: none;">
+      <li><a href="admin_menu.htm" class="en">Admin-Menü-Einträge</a></li>
+      <li><a href="banning.htm#banning" class="en">Verbannen</a></li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="configuration.htm">Einstellungen</a>
+        <ul style="display: none;" class="level3" id="configuration">
           <li><a href="configuration.htm#admin_general">Allgemeine Einstellungen</a></li>
+
           <li><a href="configuration.htm#admin_language">Sprach- &amp; Zeichensatz-Einstellungen</a></li>
           <li><a href="configuration.htm#admin_theme">Themen-Einstellungen</a></li>
           <li><a href="configuration.htm#admin_album_list">Ansicht Albenliste</a></li>
           <li><a href="configuration.htm#admin_thumbnail_view">Ansicht Thumbnail</a></li>
-          <li><a href="configuration.htm#admin_image_comment">Ansicht Bild</a></li>
-          <li><a href="configuration.htm#admin_comment_start">Einstellungen Kommentare</a></li>
-          <li><a href="configuration.htm#admin_contact_start">Kontakformular-Einstellungen</a></li>
-          <li><a href="configuration.htm#admin_thumb_start">Thumbnail Einstellungen</a></li>
-          <li><a href="configuration.htm#admin_picture_thumbnail">Bild/Datei-Einstellungen</a></li>
-          <li><a href="configuration.htm#admin_watermarking">Wasserzeichen auf Bildern</a></li>
-          <li><a href="configuration.htm#admin_registration">Registrierung</a></li>
-          <li><a href="configuration.htm#admin_user">Benutzer-Einstellungen</a></li>
-          <li><a href="configuration.htm#admin_custom">Benutzerdefinierte Felder für Benutzerprofile</a></li>
-          <li><a href="configuration.htm#admin_custom_image">Benutzerdefinierte Felder für zusätzliche Dateiinformationen</a></li>
-          <li><a href="configuration.htm#admin_cookie">Cookie-Einstellungen</a></li>
-          <li><a href="configuration.htm#admin_email">Email-Einstellungen</a></li>
-          <li><a href="configuration.htm#admin_logging">Logging und Statistiken</a></li>
-          <li><a href="configuration.htm#admin_misc">Wartungs-Einstellungen</a></li>
+          <li><a href="configuration.htm#admin_image_comment" class="en">Ansicht Bild</a></li>
+
+          <li><a href="configuration.htm#admin_comment_start" class="en">Einstellungen Kommentare</a></li>
+          <li><a href="configuration.htm#admin_contact_start" class="en">Kontakformular-Einstellungen</a></li>
+          <li><a href="configuration.htm#admin_thumb_start" class="en">Thumbnail Einstellungen</a></li>
+          <li><a href="configuration.htm#admin_picture_thumbnail" class="en">Bild/Datei-Einstellungen</a></li>
+          <li><a href="configuration.htm#admin_watermarking" class="en">Wasserzeichen auf Bildern</a></li>
+          <li><a href="configuration.htm#admin_registration" class="en">Registrierung</a></li>
+
+          <li><a href="configuration.htm#admin_user" class="en">Benutzer-Einstellungen</a></li>
+          <li><a href="configuration.htm#admin_custom" class="en">Benutzerdefinierte Felder für Benutzerprofile</a></li>
+          <li><a href="configuration.htm#admin_custom_image" class="en">Benutzerdefinierte Felder für zusätzliche Dateiinformationen</a></li>
+          <li><a href="configuration.htm#admin_cookie" class="en">Cookie-Einstellungen</a></li>
+          <li><a href="configuration.htm#admin_email" class="en">Email-Einstellungen</a></li>
+          <li><a href="configuration.htm#admin_logging" class="en">Logging und Statistiken</a></li>
+
+          <li class="last"><a href="configuration.htm#admin_misc" class="en">Wartungs-Einstellungen</a></li>
         </ul>
       </li>
-      <!--<li><a href="groups.htm">Groups</a>-->
-        <!--<ul class="level3" id="groups">-->
-          <!--<li><a href="groups.htm#group_cp">The group control panel</a></li>-->
-          <!--<li><a href="groups.htm#group_cp_names">Group names</a></li>-->
-          <!--<li><a href="groups.htm#group_cp_types">Group types</a></li>-->
-          <!--<li><a href="groups.htm#group_cp_quota">Quota</a></li>-->
-          <!--<li><a href="groups.htm#group_cp_permissions">Group permissions (Rating/Ecards/Comments)</a></li>-->
-          <!--<li><a href="groups.htm#group_cp_public">Public albums upload</a></li>-->
-          <!--<li><a href="groups.htm#group_cp_personal">Personal gallery</a></li>-->
-          <!--<li><a href="groups.htm#group_cp_upload_method">Upload method</a></li>-->
-          <!--<li><a href="groups.htm#group_cp_assigned">Assigned albums</a></li>-->
-          <!--<li><a href="groups.htm#group_cp_create">Creating custom groups</a></li>-->
-          <!--<li><a href="groups.htm#group_cp_delete">Deleting custom groups</a></li>-->
-          <!--<li><a href="groups.htm#group_cp_sync">Triggering synchronisation (bridged only)</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="users.htm">Users</a>-->
-        <!--<ul class="level3" id="users">-->
-          <!--<li><a href="users.htm#user_cp">The user control panel</a></li>-->
-          <!--<li><a href="users.htm#user_cp_page">Page controls</a></li>-->
-          <!--<li><a href="users.htm#user_cp_search">Searching for user(s)</a></li>-->
-          <!--<li><a href="users.htm#user_cp_new">Creating new users</a></li>-->
-          <!--<li><a href="users.htm#user_cp_edit">Editing users</a></li>-->
-          <!--<li><a href="users.htm#user_cp_group">Group membership</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="categories.htm">Categories</a></li>-->
-      <!--<li><a href="albums.htm">Albums</a>-->
-        <!--<ul class="level3" id="albums">-->
-          <!--<li><a href="albums.htm#albmgr">The Album Manager</a>-->
-            <!--<ul class="level4" id="albmgr">-->
-              <!--<li><a href="albums.htm#albmgr_create">Creating albums</a></li>-->
-              <!--<li><a href="albums.htm#albmgr_rename">Renaming albums</a></li>-->
-              <!--<li><a href="albums.htm#albmgr_order">Changing the album order</a></li>-->
-              <!--<li><a href="albums.htm#albmgr_delete">Deleting albums</a></li>-->
-            <!--</ul>-->
-          <!--</li>-->
-          <!--<li><a href="albums.htm#modif_alb_pics">Modifying albums/files</a></li>-->
-          <!--<li><a href="albums.htm#album_prop">Album properties</a>
-            <!--<ul class="level3" id="album_prop">
-              <!--<li><a href="albums.htm#album_prop_reset_start">Reset album properties</a></li>-->
-            <!--</ul>-->
-          <!--</li>-->
-          <!--<li><a href="albums.htm#album_admin_user">Admin vs. user</a></li>-->
-          <!--<li><a href="albums.htm#album_faq">Album FAQ</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="files.htm">Files</a>
-        <!--<ul class="level3" id="files">
-          <!--<li><a href="files.htm#edit_pics">Editing files</a></li>-->
-          <!--<li><a href="files.htm#edit_vids">Editing videos</a></li>-->
-          <!--<li><a href="files.htm#cust_thmb">Custom Thumbnails</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="keywords.htm">Keywords</a>
-        <!--<ul class="level3" id="files">
-          <!--<li><a href="keywords.htm#keywords_assign">Assigning keywords</a></li>-->
-          <!--<li><a href="keywords.htm#keywords_assign_upload">Assigning keywords when uploading</a></li>-->
-          <!--<li><a href="keywords.htm#keywords_assign_edit">Editing/adding keywords</a></li>-->
-          <!--<li><a href="keywords.htm#keywords_manager">Keywords manager</a></li>-->
-          <!--<li><a href="keywords.htm#keywords_album">Album keywords</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="bbcode.htm">BBCODE</a></li>-->
-      <!--<li><a href="exif.htm">EXIF data</a></li>-->
-      <!--<li><a href="plugins.htm">Plugins</a>
-        <!--<ul class="level3" id="plugins">
-          <!--<li><a href="plugins.htm#plugin_definition">What is a plugin?</a></li>-->
-          <!--<li><a href="plugins.htm#plugin_api">The Plugin API</a></li>-->
-          <!--<li><a href="plugins.htm#plugin_obtain">Where to get Plugins from?</a></li>-->
-          <!--<li><a href="plugins.htm#plugin_manager">The Plugin Manager</a>
-            <!--<ul class="level4" id="plugin_manager">
-              <!--<li><a href="plugins.htm#plugin_manager_upload">Uploading a plugin</a></li>-->
-              <!--<li><a href="plugins.htm#plugin_manager_install">Installing a plugin</a></li>-->
-              <!--<li><a href="plugins.htm#plugin_manager_configuration">Plugin Configuration</a></li>-->
-              <!--<li><a href="plugins.htm#plugin_manager_uninstall">Uninstalling a plugin</a></li>-->
-            <!--</ul>-->
-          <!--</li>-->
-          <!--<li><a href="plugins.htm#plugin_writing">Writing plugins</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="admin-tools.htm#admin_tools">Admin Tools</a></li>-->
-      <!--<li><a href="errors.htm#errors">Errors</a></li>-->
-      <!--<li><a href="export.htm#export">Exporting</a></li>-->
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="groups.htm" class="en">Gruppen</a>
+        <ul style="display: none;">
+          <li><a href="groups.htm#group_cp" class="en">Gruppen-Einstellungen</a></li>
+          <li><a href="groups.htm#group_cp_names" class="en">Gruppen-Namen</a></li>
+
+          <li><a href="groups.htm#group_cp_types" class="en">Gruppen-Arten</a></li>
+          <li><a href="groups.htm#group_cp_quota" class="en">Speicherlimits</a></li>
+          <li><a href="groups.htm#group_cp_permissions" class="en">Gruppenberechtigungen (Bewertung/Ecards/Kommentare)</a></li>
+          <li><a href="groups.htm#group_cp_public" class="en">Uploads in öffentliche Alben</a></li>
+          <li><a href="groups.htm#group_cp_personal" class="en">Persönliche Galerien</a></li>
+          <li><a href="groups.htm#group_cp_upload_method" class="en">Upload-Methoden</a></li>
+
+          <li><a href="groups.htm#group_cp_assigned" class="en">Zugewiesene Alben</a></li>
+          <li><a href="groups.htm#group_cp_create" class="en">Benutzerdefinierte Gruppen erstellen</a></li>
+          <li><a href="groups.htm#group_cp_delete" class="en">Benutzerdefinierte Gruppen löschen</a></li>
+          <li class="last"><a href="groups.htm#group_cp_sync" class="en">Synchronisierung auslösen (nur bei Bridging)</a></li>
+        </ul>
+      </li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="users.htm" class="en">Benutzer</a>
+
+        <ul style="display: none;">
+          <li><a href="users.htm#user_cp" class="en">Benutzer-Manager</a></li>
+          <li><a href="users.htm#user_cp_page" class="en">Bedien-Elemente</a></li>
+          <li><a href="users.htm#user_cp_search" class="en">Benutzer suchen</a></li>
+          <li><a href="users.htm#user_cp_new" class="en">Benutzer erstellen</a></li>
+          <li><a href="users.htm#user_cp_edit" class="en">Benutzer bearbeiten</a></li>
+
+          <li class="last"><a href="users.htm#user_cp_group" class="en">Gruppen-Mitgliedschaft</a></li>
+        </ul>
+      </li>
+      <li><a href="categories.htm" class="en">Kategorien</a></li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="albums.htm" class="en">Alben</a>
+        <ul style="display: none;">
+          <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="albums.htm#albmgr" class="en">Der Alben-Manager</a>
+
+            <ul style="display: none;">
+              <li><a href="albums.htm#albmgr_create" class="en">Alben erzeugen</a></li>
+              <li><a href="albums.htm#albmgr_rename" class="en">Alben umbenennen</a></li>
+              <li><a href="albums.htm#albmgr_order" class="en">Alben-Reihenfolge ändern</a></li>
+              <li class="last"><a href="albums.htm#albmgr_delete" class="en">Alben löschen</a></li>
+            </ul>
+          </li>
+
+          <li><a href="albums.htm#modif_alb_pics" class="en">Alben/Dateien bearbeiten</a></li>
+          <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="albums.htm#album_prop" class="en">Alben-Eigenschaften</a>
+            <ul style="display: none;">
+              <li class="last"><a href="albums.htm#album_prop_reset_start" class="en">Alben-Eigenschaften zurücksetzen</a></li>
+            </ul>
+          </li>
+          <li><a href="albums.htm#album_admin_user" class="en">Gegenüberstellung Admin/Benutzer</a></li>
+
+          <li class="last"><a href="albums.htm#album_faq" class="en">Alben-FAQ</a></li>
+        </ul>
+      </li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="files.htm" class="en">Dateien</a>
+        <ul style="display: none;">
+          <li><a href="files.htm#edit_pics" class="en">Dateien bearbeiten</a></li>
+          <li><a href="files.htm#edit_vids" class="en">Videos bearbeiten</a></li>
+
+          <li class="last"><a href="files.htm#cust_thmb" class="en">Benutzerdefinierte Thumbnails</a></li>
+        </ul>
+      </li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="keywords.htm" class="en">Schlüsselwörter</a>
+        <ul style="display: none;">
+          <li><a href="keywords.htm#keywords_assign" class="en">Schlüsselwörter zuweisen</a></li>
+          <li><a href="keywords.htm#keywords_assign_upload" class="en">Schlüsselwörter zuweisen beim Upload</a></li>
+
+          <li><a href="keywords.htm#keywords_assign_edit" class="en">Schlüsselwörter bearbeiten/ändern</a></li>
+          <li><a href="keywords.htm#keywords_manager" class="en">Schlüsselwort-Manager</a></li>
+          <li class="last"><a href="keywords.htm#keywords_album" class="en">Alben-Schlüsselwörter</a></li>
+        </ul>
+      </li>
+      <li><a href="bbcode.htm" class="en">BBCODE</a></li>
+      <li><a href="exif.htm" class="en">EXIF-Daten</a></li>
+
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="plugins.htm" class="en">Zusatzmodule (Plugins)</a>
+        <ul style="display: none;">
+          <li><a href="plugins.htm#plugin_definition" class="en">Was ist ein Plugin?</a></li>
+          <li><a href="plugins.htm#plugin_api" class="en">Die Plugin-API</a></li>
+          <li><a href="plugins.htm#plugin_obtain" class="en">Wo erhalte ich Plugins?</a></li>
+          <li><a href="plugins.htm#plugin_bundled" class="en">Im Paket enthaltene Plugins</a></li>
+
+          <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="plugins.htm#plugin_manager" class="en">Der Plugin-Manager</a>
+            <ul style="display: none;">
+              <li><a href="plugins.htm#plugin_manager_upload" class="en">Plugins hochladen</a></li>
+              <li><a href="plugins.htm#plugin_manager_install" class="en">Plugins installieren</a></li>
+              <li><a href="plugins.htm#plugin_manager_configuration" class="en">Plugins konfigurieren</a></li>
+              <li class="last"><a href="plugins.htm#plugin_manager_uninstall" class="en">Plugins deinstallieren</a></li>
+
+            </ul>
+          </li>
+          <li class="last"><a href="plugins.htm#plugin_writing" class="en">Plugins erstellen</a></li>
+        </ul>
+      </li>
+      <li><a href="performance.htm#perf_tips" class="en">Leistung</a></li>
+      <li><a href="admin-tools.htm#admin_tools" class="en">Admin-Werkzeuge</a></li>
+
+      <li><a href="errors.htm#errors" class="en">Fehlermeldungen</a></li>
+      <li><a href="export.htm#export" class="en">Export</a></li>
+      <li class="last"><a href="watermarking.htm#watermark" class="en">Wasserzeichen</a></li>
     </ul>
   </li>
-  <!--<li><a href="uploading.htm">Uploading</a>-->
-    <!--<ul class="level2" id="uploading">-->
-      <!--<li><a href="uploading_batch-add.htm#batch_add_pics">Uploading pics by FTP / Batch-Add Pictures</a></li>-->
-      <!--<li><a href="uploading_http.htm#upload_http">Uploading by HTTP</a></li>-->
-      <!--<li><a href="uploading_xp-publisher.htm#xp">Windows XP Web Publishing Wizard</a>-->
-        <!--<ul class="level3" id="xp">-->
-          <!--<li><a href="uploading_xp-publisher.htm#xp_publish_setup">XP Web Publishing Wizard: Setup</a></li>-->
-          <!--<li><a href="uploading_xp-publisher.htm#xp_publish_upload">XP Web Publishing Wizard: Uploading pictures</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="upload_troubleshooting.htm#upload_trouble">Upload troubleshooting</a>-->
-         <!--<ul class="level3" id="upload_troubleshooting">-->
-           <!--<li><a href="upload_troubleshooting.htm#upload_support">Asking for support on upload issues</a></li>-->
-           <!--<li><a href="upload_troubleshooting.htm#upload_error_messages">Error messages</a></li>-->
-           <!--<li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions">Server-sided restrictions</a></li>-->
-           <!--<li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions_check">Things to check</a></li>-->
-         <!--</ul>-->
-      <!--</li>-->
-    <!--</ul>-->
-  <!--</li>-->
-  <!--<li><a href="comments.htm">Comments</a>-->
-    <!--<ul class="level2" id="comments">-->
-      <!--<li><a href="comments.htm#comments_allow">Allowing comments</a></li>-->
-      <!--<li><a href="comments.htm#comments_options">Comments options</a></li>-->
-      <!--<li><a href="comments.htm#comments_options_spam">Spam issues</a></li>-->
-      <!--<li><a href="comments.htm#comments_review">Reviewing Comments</a></li>-->
-      <!--<li><a href="comments.htm#comments_individual">Individual Comments</a></li>-->
-    <!--</ul>-->
-  <!--</li>-->
-  <!--<li><a href="bridging.htm">Bridging</a>-->
-    <!--<ul class="level2" id="bridging">-->
-      <!--<li><a href="bridging.htm#integrating_bridge_purpose">What bridging does</a></li>-->
-      <!--<li><a href="bridging.htm#integrating_bridge_start">Available bridge files</a></li>-->
-      <!--<li><a href="bridging.htm#integrating_prerequisites_start">Pre-requistes</a>
-        <!--<ul class="level3" id="integrating_prerequisites_start">
-          <!--<li><a href="bridging.htm#integrating_cookie_start">Authentication by cookie</a></li>-->
-          <!--<li><a href="bridging.htm#integrating_standalone_start">Standalone version first</a></li>-->
-          <!--<li><a href="bridging.htm#integrating_users_start">Coppermine users, groups and pics uploaded by users are lost when integrating</a></li>-->
-          <!--<li><a href="bridging.htm#integrating_backup_start">Backup</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="bridging.htm#integrating_steps_start">Integration steps</a>-->
-        <!--<ul class="level3" id="integrating_steps_start">-->
-          <!--<li><a href="bridging.htm#bridge_manager_start">Using the bridge manager</a></li>-->
-          <!--<li><a href="bridging.htm#bridge_manager_app_start">Choose application to bridge coppermine with</a></li>-->
-          <!--<li><a href="bridging.htm#bridge_manager_path_start">Path(s) used by your bridge app</a></li>-->
-          <!--<li><a href="bridging.htm#bridge_manager_specific_start">Bridge-app-specific settings</a></li>-->
-          <!--<li><a href="bridging.htm#bridge_manager_enable_start">Enable/disable bridging</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
-      <!--<li><a href="bridging.htm#bridge_manager_recover_start">Recover from failed bridging</a></li>-->
-      <!--<li><a href="bridging.htm#integrating_steps_sync_start">Synchronising the bridge app groups with Coppermine's groups</a></li>-->
-      <!--<li><a href="bridging.htm#integrating_support_start">Bridging support</a></li>-->
-      <!--<li><a href="bridging.htm#integrating_config_options_start">Some config options get disabled</a></li>-->
-      <!--<li><a href="bridging.htm#integrating_files_start">Bridging files</a></li>-->
-      <!--<li><a href="bridging.htm#integrating_bridge_file_creating_start">Creating a custom bridge file</a></li>-->
-      <!--<li><a href="bridging.htm#integrating_philosophy_start">Bridging philosophy</a></li>-->
-      <!--<li><a href="bridging.htm#integrating_individual_bridge_issues_start">Individual bridge issues</a></li>-->
-      <!--<li><a href="bridging.htm#integrating_subdomain">Subdomain issues</a></li>-->
-    <!--</ul>-->
-  <!--</li>-->
-  <!--<li><a href="dev.htm">Developer documentation</a>-->
-    <!--<ul class="level2" id="dev">-->
-      <!--<li><a href="dev_coding.htm">Coding guidelines</a></li>-->
-      <!--<li><a href="dev_files.htm">Adding/renaming/removing files</a></li>-->
-      <!--<li><a href="dev_superglobals.htm">Sanitization of Superglobals using Inspekt</a></li>-->
-      <!--<li><a href="dev_javascript.htm">Javascript in Coppermine</a></li>-->
-      <!--<li><a href="dev_plugin_writing.htm">Plugin Writing</a></li>-->
-      <!--<li><a href="dev_plugin_hooks.htm">Plugin hooks</a></li>-->
-      <!--<li><a href="dev_documentation.htm">Editing the documentation</a></li>-->
-      <!--<li><a href="dev_subversion.htm">Subversion</a></li>-->
-      <!--<li><a href="dev_config.htm">Adding config options</a></li>-->
-      <!--<li><a href="dev_versioncheck.htm">Versioncheck</a></li>-->
-      <!--<li><a href="dev_update.htm">Updating</a></li>-->
-      <!--<li><a href="dev_tools.htm">Tools recommended by the devs</a></li>-->
-    <!--</ul>-->
+  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="uploading.htm" class="en">Hochladen (Upload)</a>
+    <ul style="display: none;">
+
+      <li><a href="uploading_batch-add.htm#batch_add_pics" class="en">Hochladen per FTP/Stapel-Hinzufügen</a></li>
+      <li><a href="uploading_http.htm#upload_http" class="en">Hochladen per http</a></li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="uploading_xp-publisher.htm#xp" class="en">Windows XP Web Publishing-Assistent</a>
+        <ul style="display: none;">
+          <li><a href="uploading_xp-publisher.htm#xp_publish_setup" class="en">XP Web Publishing-Assistent: Einstellungen</a></li>
+          <li class="last"><a href="uploading_xp-publisher.htm#xp_publish_upload" class="en">XP Web Publishing-Assistent: Bilder hochladen</a></li>
+
+        </ul>
+      </li>
+      <li class="expandable lastExpandable"><div class="hitarea expandable-hitarea lastExpandable-hitarea"></div><a href="upload_troubleshooting.htm#upload_trouble" class="en">Fehlerbehandlung beim Hochladen</a>
+         <ul style="display: none;">
+           <li><a href="upload_troubleshooting.htm#upload_trouble_permission" class="en">Berechtigungen</a></li>
+           <li><a href="upload_troubleshooting.htm#upload_trouble_enable_settings" class="en">Einstellungen für die Fehlersuche</a></li>
+           <li><a href="upload_troubleshooting.htm#upload_support" class="en">Upload-Support</a></li>
+
+           <li><a href="upload_troubleshooting.htm#upload_error_messages" class="en">Fehlermeldungen beim Hochladen</a></li>
+           <li class="expandable lastExpandable"><div class="hitarea expandable-hitarea lastExpandable-hitarea"></div><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions" class="en">Server-seitige Einschränkungen</a>
+             <ul style="display: none;">
+               <li class="last"><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions_check" class="en">Überprüfenswerte Einstellungen</a></li>
+             </ul>
+           </li>
+         </ul>
+
+      </li>
+    </ul>
+  </li>
+  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="comments.htm" class="en">Kommentare</a>
+    <ul style="display: none;">
+      <li><a href="comments.htm#comments_allow" class="en">Kommentare zulassen</a></li>
+      <li><a href="comments.htm#comments_options" class="en">Kommentar-Optionen</a></li>
+
+      <li><a href="comments.htm#comments_options_spam" class="en">Spam-Probleme</a></li>
+      <li><a href="comments.htm#comments_review" class="en">Kommentare begutachten</a></li>
+      <li class="last"><a href="comments.htm#comments_individual" class="en">Einzelne Kommentare</a></li>
+    </ul>
+  </li>
+  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="bridging.htm" class="en">Integration mit anderen Applikationen (Bridging)</a>
+    <ul style="display: none;">
+
+      <li><a href="bridging.htm#integrating_bridge_purpose" class="en">Was bedeutet Bridging</a></li>
+      <li><a href="bridging.htm#integrating_bridge_start" class="en">Verfügbare Bridging-Dateien</a></li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="bridging.htm#integrating_prerequisites_start" class="en">Vorbedingungen</a>
+        <ul style="display: none;">
+          <li><a href="bridging.htm#integrating_cookie_start" class="en">Authentifizierung durch Cookies</a></li>
+          <li><a href="bridging.htm#integrating_standalone_start" class="en">Zuerst die unabhängige Version</a></li>
+
+          <li><a href="bridging.htm#integrating_users_start" class="en">Coppermine-Benutzer, -Gruppen und duch die Benutzer hochgeladene Bilder gehen verloren bei der Integration</a></li>
+          <li class="last"><a href="bridging.htm#integrating_backup_start" class="en">Backup</a></li>
+        </ul>
+      </li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="bridging.htm#integrating_steps_start" class="en">Integrations-Schritte</a>
+        <ul style="display: none;">
+          <li><a href="bridging.htm#bridge_manager_start" class="en">Verwendung des Bridge-Managers</a></li>
+
+          <li><a href="bridging.htm#bridge_manager_app_start" class="en">Wähle Applikation, mit der gebridged werden soll</a></li>
+          <li><a href="bridging.htm#bridge_manager_path_start" class="en">Von der Bridge-Applikation verwendete Pfade</a></li>
+          <li><a href="bridging.htm#bridge_manager_specific_start" class="en">Bridge-Applikations-spezifische Einstellungen</a></li>
+          <li class="last"><a href="bridging.htm#bridge_manager_enable_start" class="en">Bridging ein-/ausschalten</a></li>
+        </ul>
+      </li>
+      <li><a href="bridging.htm#bridge_manager_recover_start" class="en">Rettung nach fehlgeschlagenem Bridging-Versuch</a></li>
+
+      <li><a href="bridging.htm#integrating_steps_sync_start" class="en">Gruppen-Synchronisierung zwischen der Bridge-Applikation und Coppermine</a></li>
+      <li><a href="bridging.htm#integrating_support_start" class="en">Bridging-Support</a></li>
+      <li><a href="bridging.htm#integrating_config_options_start" class="en">Einige Einstellungen werden deaktiviert</a></li>
+      <li><a href="bridging.htm#integrating_files_start" class="en">Bridge-Dateien</a></li>
+      <li><a href="bridging.htm#integrating_bridge_file_creating_start" class="en">Eigene Bridge erstellen</a></li>
+      <li><a href="bridging.htm#integrating_philosophy_start" class="en">Bridging-Philosophie</a></li>
+
+      <li><a href="bridging.htm#integrating_individual_bridge_issues_start" class="en">Bridge-spezifische Probleme</a></li>
+      <li class="last"><a href="bridging.htm#integrating_subdomain" class="en">Subdomains</a></li>
+    </ul>
+  </li>
+  <li class="expandable lastExpandable"><div class="hitarea expandable-hitarea lastExpandable-hitarea"></div><a href="dev.htm" class="en">Entwickler-Doku</a>
+    <ul style="display: none;">
+      <li><a href="dev_coding.htm" class="en">Coding-Richtlinien</a></li>
+
+      <li><a href="dev_files.htm" class="en">Dateien hinzufügen/entfernen/umbenennen</a></li>
+      <li><a href="dev_superglobals.htm" class="en">Superglobals bereinigen mit Inspekt</a></li>
+      <li><a href="dev_javascript.htm" class="en">JavaScript in Coppermine</a></li>
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_plugins.htm" class="en">Plugins für Coppermine schreiben</a>
+        <ul style="display: none;">
+          <li><a href="dev_plugin_writing.htm" class="en">Leitfaden für die Plugin-Erstellung</a></li>
+
+          <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_plugin_api.htm" class="en">Plugin-Tutorial, API-Beschreibung, Globale Coppermine-Variablen</a>
+            <ul style="display: none;">
+              <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_plugin_api.htm#plugin_api_overview" class="en">Plugin-API von Coppermine: ein Überblick</a>
+                <ul style="display: none;" class="level5">
+                    <li><a href="dev_plugin_api.htm#plugin_api_overview_intro" class="en">Einführung</a></li>
+                    <li><a href="dev_plugin_api.htm#plugin_api_overview_who" class="en">Zielpublikum</a></li>
+                    <li><a href="dev_plugin_api.htm#plugin_api_overview_skills" class="en">Benötigte Fähigkeiten &amp; Kenntnisse</a></li>
+
+                    <li><a href="dev_plugin_api.htm#plugin_api_overview_tools" class="en">Empfohlene Software &amp; Support-Foren</a></li>
+                    <li class="last"><a href="dev_plugin_api.htm#plugin_api_overview_doc" class="en">Struktur dieses Dokuments</a></li>
+                </ul>
+              </li>
+              <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_plugin_api.htm#plugin_api_tutorial" class="en">"Hallo Welt" Plugin-Tutorial</a>
+                <ul style="display: none;" class="level5">
+
+                  <li><a href="dev_plugin_api.htm#plugin_api_tutorial_first" class="en">Mein erstes Plugin</a></li>
+                  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_plugin_api.htm#plugin_api_tutorial_installconfig" class="en">Installation, Konfiguration, Aufräumen</a>
+                    <ul style="display: none;" class="level5">
+                      <li><a href="dev_plugin_api.htm#plugin_api_tutorial_installsimple" class="en">Installation mit einfachen Einstellungen</a></li>
+                      <li><a href="dev_plugin_api.htm#plugin_api_tutorial_install" class="en">Installation mit Konfigurations-Paramtern</a></li>
+                      <li><a href="dev_plugin_api.htm#plugin_api_tutorial_config" class="en">Einstellungen während der Laufzeit</a></li>
+
+                      <li class="last"><a href="dev_plugin_api.htm#plugin_api_tutorial_cleanup" class="en">De-Installation &amp; Aufäumen</a></li>
+                    </ul>
+                  </li>  
+                  <li><a href="dev_plugin_api.htm#plugin_api_tutorial_linking" class="en">Verweise auf benutzerdefinierte Plugins</a></li>
+                  <li><a href="dev_plugin_api.htm#plugin_api_tutorial_button" class="en">Einen Button zu Coppermine hinzufügen</a></li>
+                  <li><a href="dev_plugin_api.htm#plugin_api_tutorial_lang" class="en">Mehrsprachigkeit</a></li>
+
+                  <li><a href="dev_plugin_api.htm#plugin_api_tutorial_distrib" class="en">Plugin-Verteilung</a></li>
+                  <li class="last"><a href="dev_plugin_api.htm#plugin_api_tutorial_wherenext" class="en">Wie geht es weiter</a></li>
+                </ul>
+              </li>
+              <li><a href="dev_plugin_api.htm#plugin_api_hooks" class="en">Plugin-Hooks</a></li>
+              <li><a href="dev_plugin_api.htm#plugin_api_plugin_class" class="en">Plugin Klassen-Eigenschaften &amp; Methoden</a></li>
+
+              <li class="expandable lastExpandable"><div class="hitarea expandable-hitarea lastExpandable-hitarea"></div><a href="dev_plugin_api.htm#plugin_api_globals" class="en">Globale Variablen &amp; Konstanten</a>
+                <ul style="display: none;" class="level5">
+                  <li><a href="dev_plugin_api.htm#plugin_api_globals_system" class="en">Systemweite globale Variablen</a></li>
+                  <li class="last"><a href="dev_plugin_api.htm#plugin_api_globals_cpg" class="en">Coppermine Konstanten</a></li>
+                </ul>
+              </li>
+
+            </ul>
+          </li>
+          <li class="expandable lastExpandable"><div class="hitarea expandable-hitarea lastExpandable-hitarea"></div><a href="dev_plugin_hooks.htm" class="en">Reference list of plugin hooks </a>
+            <ul style="display: none;" class="level5">
+              <li><a href="dev_plugin_hooks.htm#plugin_hooks_choosing" class="en">Choosing Plugin Hooks</a></li>
+              <li><a href="dev_plugin_hooks.htm#plugin_hooks_finding" class="en">Finding Plugin Hooks</a></li>
+              <li><a href="dev_plugin_hooks.htm#plugin_hooks_using" class="en">Using Plugin Hooks</a></li>
+
+              <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_plugin_hooks.htm#plugin_hooks_filename" class="en">Plugin Hooks by Script Filename</a>
+                <ul style="display: none;" class="level6">
+                  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_plugin_hooks.htm#plugin_api_hooks_ind_php" class="en">Script: index.php</a>
+                    <ul style="display: none;" class="level7">
+                      <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_ind_anyc" class="en">Filter: 'anycontent'</a></li>
+                      <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_ind_ucp" class="en">Filter: 'user_caption_params'</a></li>
+                      <li class="last"><a href="dev_plugin_hooks.htm#plugin_api_hooks_ind_pb" class="en">Filter: 'plugin_block'</a></li>
+
+                    </ul>
+                  </li>
+                  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_plugin_hooks.htm#plugin_api_hooks_di_php" class="en">Script: displayimage.php</a>
+                    <ul style="display: none;" class="level7">
+                      <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_di_fi" class="en">Filter: 'file_info'</a></li>
+                      <li class="last"><a href="dev_plugin_hooks.htm#plugin_api_hooks_di_pbc" class="en">Filter: 'post_breadcrumb'</a></li>
+                    </ul>
+
+                  </li>
+                  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_plugin_hooks.htm#plugin_api_hooks_thumb_php" class="en">Script: thumbnails.php</a>
+                    <ul style="display: none;" class="level7">
+                      <li class="last"><a href="dev_plugin_hooks.htm#plugin_api_hooks_thumb_pbc" class="en">Filter: 'post_breadcrumb'</a></li>
+                    </ul>
+                  </li>
+                  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_plugin_hooks.htm#plugin_api_hooks_func_php" class="en">Script: functions.inc.php</a>
+
+                    <ul style="display: none;" class="level7">
+                      <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_func_ghgf" class="en">Filters: 'gallery_header' and 'gallery_footer'</a></li>
+                      <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_func_td" class="en">Filter: 'thumb_data'</a></li>
+                      <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_func_th" class="en">Filter: 'template_html'</a></li>
+                      <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_func_pm" class="en">Filter: 'page_meta'</a></li>
+                      <li class="last"><a href="dev_plugin_hooks.htm#plugin_api_hooks_func_tc" class="en">Filters: 'thumb_caption' and all derivatives</a></li>
+
+                    </ul>
+                  </li>
+                  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_plugin_hooks.htm#plugin_api_hooks_th_php" class="en">Script: themes.inc.php</a>
+                    <ul style="display: none;" class="level7">
+                      <li class="last"><a href="dev_plugin_hooks.htm#plugin_api_hooks_th_fd" class="en">Filter: 'file_data'</a></li>
+                    </ul>
+                  </li>
+                  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_plugin_hooks.htm#plugin_api_hooks_um_php" class="en">Script: usermgr.php</a>
+
+                    <ul style="display: none;" class="level7">
+                      <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_um_umh" class="en">Filter: 'usermgr_header'</a></li>
+                      <li class="last"><a href="dev_plugin_hooks.htm#plugin_api_hooks_um_umf" class="en">Filter: 'usermgr_footer'</a></li>
+                    </ul>
+                  </li>
+                  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_plugin_hooks.htm#plugin_api_hooks_pm_php" class="en">Script: pluginmgr.php</a>
+                    <ul style="display: none;" class="level7">
+
+                      <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_pm_pcon" class="en">Filter: 'plugin_configure'</a></li>
+                      <li class="last"><a href="dev_plugin_hooks.htm#plugin_api_hooks_pm_pcl" class="en">Filter: 'plugin_cleanup'</a></li>
+                    </ul>
+                  </li>
+                  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_plugin_hooks.htm#plugin_api_hooks_papi_php" class="en">Script: plugin_api.inc.php</a>
+                    <ul style="display: none;" class="level7">
+                      <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_papi_ph" class="en">Filter: 'page_html'</a></li>
+
+                      <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_papi_pe" class="en">Filter: 'page_end'</a></li>
+                      <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_papi_pi" class="en">Filter: 'plugin_install'</a></li>
+                      <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_papi_pu" class="en">Filter: 'plugin_uninstall'</a></li>
+                      <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_papi_pw" class="en">Filter: 'plugin_wakeup'</a></li>
+                      <li class="last"><a href="dev_plugin_hooks.htm#plugin_api_hooks_papi_ps" class="en">Filter: 'plugin_sleep'</a></li>
+                    </ul>
+
+                  </li>
+                  <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_plugin_hooks.htm#plugin_api_hooks_init_php" class="en">Script: init.inc.php</a>
+                    <ul style="display: none;" class="level9">
+                      <li class="last"><a href="dev_plugin_hooks.htm#plugin_api_hooks_init_ps" class="en">Filter: 'page_start'</a></li>
+                    </ul>
+                  </li>
+                  <li class="expandable lastExpandable"><div class="hitarea expandable-hitarea lastExpandable-hitarea"></div><a href="dev_plugin_hooks.htm#plugin_api_hooks_picm_php" class="en">Script: picmgmt.inc.php</a>
+
+                    <ul style="display: none;" class="level9">
+                      <li class="last"><a href="dev_plugin_hooks.htm#plugin_api_hooks_picm_afd" class="en">Filter: 'add_file_data'</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="dev_plugin_hooks.htm#plugin_hooks_alphabetically" class="en">Plugin Hooks Alphabetically</a></li>
+              <li><a href="dev_plugin_hooks.htm#plugin_hooks_hooktype" class="en">Plugin Hooks by Hook Type</a></li>
+
+              <li class="expandable lastExpandable"><div class="hitarea expandable-hitarea lastExpandable-hitarea"></div><a href="dev_plugin_hooks.htm#plugin_hook_examples" class="en">Plugin Hook Examples</a>
+                <ul style="display: none;" class="level6">
+                    <li><a href="dev_plugin_hooks.htm#plugin_hook_example_upload_method" class="en">Adding an upload method</a></li>
+                    <li class="last"><a href="dev_plugin_hooks.htm#plugin_hook_example_theme_display_thumbnails" class="en">Add tags for thumbnails display</a></li>
+                </ul></li>
+            </ul>
+          </li>
+
+        </ul>
+      </li>
+      <li><a href="dev_documentation.htm" class="en">Dokumentation bearbeiten</a></li>
+      <li><a href="dev_subversion.htm" class="en">Subversion Versionskontrolle</a></li>
+      <li><a href="dev_config.htm" class="en">Einstellungs-Optionen hinzufügen</a></li>
+      <li><a href="dev_versioncheck.htm" class="en">Versioncheck</a></li>
+      <li><a href="dev_update.htm" class="en">Aktualisieren</a></li>
+
+      <li class="expandable"><div class="hitarea expandable-hitarea"></div><a href="dev_tools.htm" class="en">Von den Entwicklern empfohlene Tools</a>
+          <ul style="display: none;" class="level4">
+              <li><a href="dev_tools.htm#dev_tools_database" class="en">Datenbank bearbeiten</a></li>
+              <li><a href="dev_tools.htm#dev_tools_ftp_client" class="en">FTP-Clients</a></li>
+              <li><a href="dev_tools.htm#dev_tools_web_development" class="en">Web-Entwicklung</a></li>
+              <li><a href="dev_tools.htm#dev_tools_editor" class="en">Text-Editoren</a></li>
+
+              <li class="last"><a href="dev_tools.htm#dev_tools_picture_editors" class="en">Bildbearbeitung</a></li>
+          </ul>
+      </li>
+      <li class="expandable lastExpandable"><div class="hitarea expandable-hitarea lastExpandable-hitarea"></div><a href="dev_database.htm" class="en">Datenbank-Schema</a>
+          <ul style="display: none;" class="level4">
+              <li><a href="dev_database.htm#db_config_file" class="en">Einstellungen</a></li>
+              <li><a href="dev_database.htm#db_reference%20within_code" class="en">Datenbank-Bezüge innerhalb des Codes von Coppermine</a></li>
+
+              <li><a href="dev_database.htm#db_albums" class="en">cpg15x_albums</a></li>
+              <li><a href="dev_database.htm#db_banned" class="en">cpg15x_banned</a></li>
+              <li><a href="dev_database.htm#db_bridge" class="en">cpg15x_bridge</a></li>
+              <li><a href="dev_database.htm#db_categories" class="en">cpg15x_categories</a></li>
+              <li><a href="dev_database.htm#db_categorymap" class="en">cpg15x_categorymap</a></li>
+              <li><a href="dev_database.htm#db_comments" class="en">cpg15x_comments</a></li>
+
+              <li><a href="dev_database.htm#db_config" class="en">cpg15x_config</a></li>
+              <li><a href="dev_database.htm#db_dict" class="en">cpg15x_dict</a></li>
+              <li><a href="dev_database.htm#db_ecards" class="en">cpg15x_ecards</a></li>
+              <li><a href="dev_database.htm#db_exif" class="en">cpg15x_exif</a></li>
+              <li><a href="dev_database.htm#db_favpics" class="en">cpg15x_favpics</a></li>
+              <li><a href="dev_database.htm#db_filetypes" class="en">cpg15x_filetypes</a></li>
+
+              <li><a href="dev_database.htm#db_hit_stats" class="en">cpg15x_hit_stats</a></li>
+              <li><a href="dev_database.htm#db_languages" class="en">cpg15x_languages</a></li>
+              <li><a href="dev_database.htm#db_pictures" class="en">cpg15x_pictures</a></li>
+              <li><a href="dev_database.htm#db_plugins" class="en">cpg15x_plugins</a></li>
+              <li><a href="dev_database.htm#db_sessions" class="en">cpg15x_sessions</a></li>
+              <li><a href="dev_database.htm#db_temp_messages" class="en">cpg15x_temp_messages</a></li>
+
+              <li><a href="dev_database.htm#db_usergroups" class="en">cpg15x_usergroups</a></li>
+              <li><a href="dev_database.htm#db_users" class="en">cpg15x_users</a></li>
+              <li><a href="dev_database.htm#db_votes" class="en">cpg15x_votes</a></li>
+              <li class="last"><a href="dev_database.htm#db_vote_stats" class="en">cpg15x_vote_stats</a></li>
+          </ul>
+      </li>
+    </ul>
   </li>
 </ul>
+
 </div>
 
 <div id="doc_footer">
