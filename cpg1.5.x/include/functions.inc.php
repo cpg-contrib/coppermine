@@ -732,7 +732,7 @@ function generate_cpg_url()
 
 function load_template()
 {
-    global $THEME_DIR, $template_header, $template_footer;
+    global $THEME_DIR, $template_header, $template_footer, $LINEBREAK;
 
     $template = file_get_contents($THEME_DIR . TEMPLATE_FILE);
 

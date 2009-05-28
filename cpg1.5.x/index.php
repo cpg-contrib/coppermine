@@ -167,7 +167,7 @@ function html_albummenu($id)
             '{MODIFY}' => cpg_fetch_icon('modifyalb', 1) . $lang_album_admin_menu['modify'],
             '{EDIT_PICS}' => cpg_fetch_icon('edit', 1) . $lang_album_admin_menu['edit_pics'],
             '{FORM_TOKEN}' => $form_token,
-        	'{TIMESTAMP}' => $timestamp
+            '{TIMESTAMP}' => $timestamp
         );
 
         $template = template_eval($template_album_admin_menu, $params);
@@ -715,13 +715,13 @@ function list_albums()
     global $lang_list_albums, $cpg_show_private_album;
 
     $alb_per_page = $CONFIG['albums_per_page'];
-    //unused code {SaWey}
-    /*$maxTab = $CONFIG['max_tabs'];
-
     $album_filter = '';
+    //unused code {SaWey}
+    /*
+    $maxTab = $CONFIG['max_tabs'];
     $pic_filter = '';
     $pic_subquery = '';
-	*/
+    */
 
     if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
         $album_filter = ' ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
@@ -986,7 +986,7 @@ function list_cat_albums($cat, $catdata)
     $alb_per_page = $CONFIG['albums_per_page'];
     
     //unused code {SaWey}
-	/*$maxTab = $CONFIG['max_tabs'];
+    /*$maxTab = $CONFIG['max_tabs'];
 
     $album_filter = '';
     $pic_filter = '';
