@@ -2107,6 +2107,34 @@ Replace it with<br />
       Make sure that you fullfill the <a href="#what">minimum requirements</a> to run Coppermine. If GD is not available on your server, you could use ImageMagick. Ask your webhost if ImageMagick is available on your webserver.
     </td>
   </tr>
+  <tr>
+    <td valign="top" class="tableb">
+      <a name="no_file_uploaded"></a><a name="allow_file_uploads"></a>
+      <tt class="code">No file was uploaded ! If you have really selected a file to upload, check that the server allows file uploads...</tt><a href="#no_file_uploaded" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb">
+      File uploads are disabled in php.ini or there is a permissions issue or there is an issue with your webserver's upload mechansim.
+    </td>
+    <td valign="top" class="tableb">
+      There may be several reasons for this error message. The file you tried to upload did not &quot;reach&quot; the folder on the webserver where it is supposed to go. Check if there's a problem with HTTP uploads on your server - this feature may have been disabled or improperly configured. In <a href="faq.htm#VersionPHP">phpinfo()</a>, check that "file_uploads" is ON, "upload_max_filesize" is something like 2M and "upload_tmp_dir" is a valid directory! Make sure to review your <a href="install_permissions.htm#permissions">file/folder permissions</a> as well.<br />
+      If the server isn't yours to administer, you may have to ask your webhost for support. Here is what you should check:
+      <ul>
+	      <li>test file &quot;<strong>too large</strong>&quot;<br />
+	      If you encounter this error message in the first place, make sure that the file you test uploading with is not to large in terms of file size and dimensions. Test with a known-good, small file first. You are welcome to download one from the coppermine demo gallery and use that for testing purposes.</li>
+	      <li>&quot;<strong>file_uploads</strong>&quot; enabled<br />
+	      Go to your phpinfo page (available as <a href="admin_menu.htm#phpinfo">admin menu</a> item), search it for <tt class="code">file_uploads</tt> and make sure that it is set to &quot;on&quot;. If you are on shared webhosting, only your webhost can enable this for you.</li>
+	      <li>&quot;<strong>upload_tmp_dir</strong>&quot; needs to be set<br />
+	      On the phpinfo page, make sure that <tt class="code">upload_tmp_dir</tt> needs to be set. If you are on shared webhosting, only your webhost can set this up for you. The script (i.e. the user the webserver runs under) needs to be allowed to write to that file.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tableb tableb_alternate">
+      <a name="destination_not_writable"></a><tt class="code">Destination directory albums/userpics/XXXXX/ is not writable by the script</tt><a href="#destination_not_writable" title="Link to this section"><img src="pics/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    </td>
+    <td valign="top" class="tableb tableb_alternate">permissions on file system level are not correct</td>
+    <td valign="top" class="tableb tableb_alternate">Make sure to review your <a href="install_permissions.htm#permissions">file/folder permissions</a>. If that doesn't help, ask your webhost for support.</td>
+  </tr>
 </table>
 <a name="upload_error_messages_end"></a>
 

@@ -27,7 +27,7 @@ $lang_translation_info = array(
   'trans_name'=> 'Biskop + Mimer',
   'trans_email' => '',
   'trans_website' => '',
-  'trans_date' => '2008-09-12',
+  'trans_date' => '2009-05-30',
 );
 
 $lang_charset = 'utf-8';
@@ -66,7 +66,7 @@ $lang_meta_album_names = array(
   'random' => 'Tilfældige filer',
   'lastup' => 'Seneste filer',
   'lastalb'=> 'Sidst opdaterede albums',
-  'lastcom' => 'Seneste kommentare',
+  'lastcom' => 'Seneste kommentarer',
   'topn' => 'Mest viste',
   'toprated' => 'Mest populære',
   'lasthits' => 'Sidst viste',
@@ -98,7 +98,7 @@ $lang_errors = array(
   'no_zip' => 'Understøttelse af ZIP filer er ikke tilgængelig. Kontakt venligst administratoren af galleriet.',
   'zip_type' => 'Du har ikke tilladelse til at uploade zip filer.',
   'database_query' => 'Det opstod en fejl under søgning i databasen', //cpg1.4
-  'register_globals_on' => 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
+  'register_globals_on' => 'PHP funktionen register_globals er slået til på din server, hvilket er en dårlig ide på grund af sikkerheden. Det anbefales på det kraftigste, at slå den fra. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
 );
 
 $lang_bbcode_help_title = 'Hjælp til bbkode '; //cpg1.4
@@ -160,8 +160,8 @@ $lang_gallery_admin_menu = array(
   'users_lnk' => 'Brugere',
   'groups_title' => 'Gå til gruppe administration', //cpg1.4
   'groups_lnk' => 'Grupper',
-  'comments_title' => 'Godkend kommentare', //cpg1.4
-  'comments_lnk' => 'Kommentare',
+  'comments_title' => 'Godkend kommentarer', //cpg1.4
+  'comments_lnk' => 'Kommentarer',
   'searchnew_title' => 'Gå til massetilføjelse af filer', //cpg1.4
   'searchnew_lnk' => 'Massetilføjelse',
   'util_title' => 'Gå til admin værktøjer', //cpg1.4
@@ -275,7 +275,7 @@ $lang_display_thumbnails = array(
 );
 
 $lang_get_pic_data = array(
-  'n_comments' => '%s kommentare',
+  'n_comments' => '%s kommentarer',
   'n_views' => '%s visninger',
   'n_votes' => '(%s stemmer)',
 );
@@ -301,7 +301,7 @@ $lang_theme_selection = array(
 $lang_version_alert = array(
   'version_alert' => 'Ikke understøttet version!', //cpg1.4
   'security_alert' => 'Sikkerheds Advarsel!', //cpg1.4.3
-  'relocate_exists' => 'Fjern <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0">relocate_server.php</a> filen fra din hjemmeside!',
+  'relocate_exists' => 'Fjern <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> filen fra din hjemmeside!',
   'no_stable_version' => 'Du kører Coppermine %s (%s) som kun er til brug af erfarne brugere  - denne version kommer uden nogen form for hjælp eller garanti. Brug den på egen risiko eller nedgrader til den sidst stabile version hvis du behøver hjælp!', //cpg1.4
   'gallery_offline' => 'Galleriet er midlertidig ude af drift, og vil kun være tilgængelig for administratorer. Glem ikke at sætte det i drift igen efter at du er færdig med vedligeholdelse.', //cpg1.4
 );
@@ -393,7 +393,7 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
   'no_change' => 'Du lavede ingen ændringer!', //js-alert
   'new_album' => 'Nyt album',
   'confirm_delete1' => 'Er du sikker på du vil slette dette album?', //js-alert
-  'confirm_delete2' => '\nAlle filer og kommentare forsvinder!', //js-alert
+  'confirm_delete2' => '\nAlle filer og kommentarer forsvinder!', //js-alert
   'select_first' => 'Vælg først et album', //js-alert
   'alb_mrg' => 'Album administration',
   'my_gallery' => '* Mit galleri *',
@@ -678,7 +678,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Antal sidehenvisninger', 'max_tabs', 10, 'f=index.htm&amp;as=admin_thumbnail_tabs&amp;ae=admin_thumbnail_tabs_end'), //cpg1.4
   array('Vis billedeoverskriften (i tilføjelse til titel) under minibillede', 'caption_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_caption&amp;ae=admin_thumbnail_display_caption_end'), //cpg1.4
   array('Vis antal visninger under minibillede', 'views_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_views&amp;ae=admin_thumbnail_display_views_end'), //cpg1.4
-  array('Vis antal af kommentare under minibilledet', 'display_comment_count', 1, 'f=index.htm&amp;as=admin_thumbnail_display_comments&amp;ae=admin_thumbnail_display_comments_end'), //cpg1.4
+  array('Vis antal af kommentarer under minibilledet', 'display_comment_count', 1, 'f=index.htm&amp;as=admin_thumbnail_display_comments&amp;ae=admin_thumbnail_display_comments_end'), //cpg1.4
   array('Vis navn på person der har uploadet filen under minibillede', 'display_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_uploader&amp;ae=admin_thumbnail_display_uploader_end'), //cpg1.4
   //array('Vis navn på admin uploader under minibilledet', 'display_admin_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end'), //cpg1.4
   array('Vis fil navn under minibillede', 'display_filename', 1, 'f=index.htm&amp;as=admin_thumbnail_display_filename&amp;ae=admin_thumbnail_display_filename_end'), //cpg1.4
@@ -697,14 +697,14 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Diasshow interval i millisekunder (1 sekund = 1000 millisekunder)', 'slideshow_interval', 0, 'f=index.htm&amp;as=admin_image_comment_slideshow_interval&amp;ae=admin_image_comment_slideshow_interval_end'), //cpg1.4
 
   'Kommentar indstillinger', //cpg1.4
-  array('Filtrer bandeord i kommentare', 'filter_bad_words', 1, 'f=index.htm&amp;as=admin_image_comment_bad_words&amp;ae=admin_image_comment_bad_words_end'), //cpg1.4
-  array('Tillad smilies i kommentare', 'enable_smilies', 1, 'f=index.htm&amp;as=admin_image_comment_smilies&amp;ae=admin_image_comment_smilies_end'), //cpg1.4
-  array('Tillad flere kommentare om samme fil fra samme bruger (slår flood beskyttelse fra)', 'disable_comment_flood_protect', 1, 'f=index.htm&amp;as=admin_image_comment_flood&amp;ae=admin_image_comment_flood_end'), //cpg1.4
+  array('Filtrer bandeord i kommentarer', 'filter_bad_words', 1, 'f=index.htm&amp;as=admin_image_comment_bad_words&amp;ae=admin_image_comment_bad_words_end'), //cpg1.4
+  array('Tillad smilies i kommentarer', 'enable_smilies', 1, 'f=index.htm&amp;as=admin_image_comment_smilies&amp;ae=admin_image_comment_smilies_end'), //cpg1.4
+  array('Tillad flere kommentarer om samme fil fra samme bruger (slår flood beskyttelse fra)', 'disable_comment_flood_protect', 1, 'f=index.htm&amp;as=admin_image_comment_flood&amp;ae=admin_image_comment_flood_end'), //cpg1.4
   array('Max antal linjer i en kommentar', 'max_com_lines', 0, 'f=index.htm&amp;as=admin_image_comment_lines&amp;ae=admin_image_comment_lines_end'), //cpg1.4
   array('Maksimum længde på en kommentar', 'max_com_size', 0, 'f=index.htm&amp;as=admin_image_comment_length&amp;ae=admin_image_comment_length_end'), //cpg1.4
-  array('Informer administrator om nye kommentare via e-mail', 'email_comment_notification', 1, 'f=index.htm&amp;as=admin_image_comment_admin_notify&amp;ae=admin_image_comment_admin_notify_end'), //cpg1.4
-  array('Sortering rækkefølge af kommentare', 'comments_sort_descending', 17, 'f=index.htm&amp;as=admin_comment_sort_start&amp;ae=admin_comment_sort_end'), //cpg1.4
-  array('Foranstillet navn på anonyme forfatteres kommentare', 'comments_anon_pfx', 0, 'f=index.htm&amp;as=comments_anon_pfx&amp;ae=comments_anon_pfx_end'), //cpg1.4
+  array('Informer administrator om nye kommentarer via e-mail', 'email_comment_notification', 1, 'f=index.htm&amp;as=admin_image_comment_admin_notify&amp;ae=admin_image_comment_admin_notify_end'), //cpg1.4
+  array('Sortering rækkefølge af kommentarer', 'comments_sort_descending', 17, 'f=index.htm&amp;as=admin_comment_sort_start&amp;ae=admin_comment_sort_end'), //cpg1.4
+  array('Foranstillet navn på anonyme forfatteres kommentarer', 'comments_anon_pfx', 0, 'f=index.htm&amp;as=comments_anon_pfx&amp;ae=comments_anon_pfx_end'), //cpg1.4
 
   'Fil og minibillede indstillinger ',
   array('Kvalitet for JPEG billeder', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'), //cpg1.4
@@ -890,7 +890,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'pic_mgr' => 'Billed Manager', //cpg1.4
   'update_pic' => 'Opdatere billede \'%s\' med filnavnet \'%s\' og index \'%s\'', //cpg1.4
   'username' => 'Brugernavn', //cpg1.4
-  'anonymized_comments' => '%s kommentare anonymiseret ', //cpg1.4
+  'anonymized_comments' => '%s kommentarer anonymiseret ', //cpg1.4
   'anonymized_uploads' => '%s offentlig upload(s) anonymiseret', //cpg1.4
   'deleted_comments' => '%s kommentar slettet', //cpg1.4
   'deleted_uploads' => '%s offentlig upload(s) slettet', //cpg1.4
@@ -1132,8 +1132,8 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'reset_all_view_count' => 'Nulstil ALLE visnings tællere', //cpg1.4
   'reset_votes' => 'Nulstil afstemning',
   'reset_all_votes' => 'Nulstil ALLE stemmer', //cpg1.4
-  'del_comm' => 'Slet kommentare',
-  'del_all_comm' => 'Slet ALLE kommentare', //cpg1.4
+  'del_comm' => 'Slet kommentarer',
+  'del_all_comm' => 'Slet ALLE kommentarer', //cpg1.4
   'upl_approval' => 'Upload godkendelse', //cpg1.4
   'edit_pics' => 'Rediger filer',
   'see_next' => 'Se næste filer',
@@ -1171,7 +1171,7 @@ if (defined('FAQ_PHP')) $lang_faq_php = array(
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
   'Generelle Spørgsmål og Svar',
-  array('Hvorfor skal jeg registreres?', 'Registrering kan eller kan ikke være krævet af administratoren. Registrering giver ekstra muligheder som at uploade filer, have en liste over foretrukne, give billeder kommentare osv.', 'allow_user_registration', '1'),
+  array('Hvorfor skal jeg registreres?', 'Registrering kan eller kan ikke være krævet af administratoren. Registrering giver ekstra muligheder som at uploade filer, have en liste over foretrukne, give billeder kommentarer osv.', 'allow_user_registration', '1'),
   array('Hvordan bliver jeg registreret?', 'Gå til "Registrer" og udfyld de krævede felter (og de frivillige hvis du har lyst).<br />Hvis administratoren har slået E-mail aktivering til, vil du efter registrering modtage en e-mail på den adresse du har skrevet, som vil give dig information om hvordan du aktiverer din konto. Din konto skal aktiveres før du kan logge ind.', 'allow_user_registration', '1'), //cpg1.4
   array('Hvordan logger jeg ind?', 'Gå til "Registre", skriv dit brugernavn og og adgangskode og marker "Husk mig" så vil du være logget ind næste gang du besøger siden.<br /><b>VIGTIGT: Cookies skal være aktiveret og cookie fra denne side må ikke slettes hvis du vil bruge "Husk mig" funktionen.</b>', 'offline', 0),
   array('Hvorfor kan jeg ikke logge ind?', 'Registrerede du dig og trykkede på linket i den mail du fik tilsendt?. Linket vil aktivere din konto. For andre login problemer, kontakt administratoren.', 'offline', 0),
@@ -1186,8 +1186,8 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Hvordan opretter, omdøber eller sletter jeg et album i "Mit Galleri"?', 'Du burde allerede være i "Administrator-Tilstand"<br />Gå til "Opret/rediger Mine Albums" og tryk på "Ny". Ret "Nyt Album" til det ønskede navn.<br />Du kan også omdøbe et eksisterende album.<br />Tryk på "Godkend rettelser".', 'allow_private_albums', 0),
   array('Hvordan kan jeg vælge hvem der kan se mine albums?', 'Du burde allerede være i "Admin. tilstand"<br />Gå til "Rediger Mine Albums" på "Opdater album" baren, og vælg det album du vil redigere.<br />Her kan du ændre navn, beskrivelse, minibillede, og begrænse visning og kommentar tilladelser.<br />Tryk på "Opdater album".', 'allow_private_albums', 0),
   array('Hvordan kan jeg se andre brugeres gallerier?', 'Gå til "Album Liste" og vælg "Bruger gallerier".', 'allow_private_albums', 0),
-  array('Hvad er cookies?', 'Cookies er en tekst fil som sendes fra en hjemmesside og gemmes på din computer.<br />Cookies tillader brugeren at forlade en side og komme tilbage uden at logge ind igen og at tilpasse siden på forskellige måder.', 'offline', 0),
-  array('Hvor kan jeg hente dette program til min side?', 'Coppermine er et gratis Multimedia Galleri, udgiver under GNU licens. Det er fuld af funktioner og findes til forskellige platforme. Besøg <a href="http://coppermine-gallery.net/">Coppermine hjemmesiden</a> for at læse mere eller at hente det.', 'offline', 0),
+  array('Hvad er cookies?', 'Cookies er en tekst fil som sendes fra en hjemmeside og gemmes på din computer.<br />Cookies tillader brugeren at forlade en side og komme tilbage uden at logge ind igen og at tilpasse siden på forskellige måder.', 'offline', 0),
+  array('Hvor kan jeg hente dette program til min side?', 'Coppermine er et gratis Multimedia Galleri, udgiver under GNU licens. Det er fuld af funktioner og findes til forskellige platforme. Besøg <a href="http://coppermine.sf.net/">Coppermine hjemmesiden</a> for at læse mere eller at hente det.', 'offline', 0),
 
   'Navigering på siden',
   array('Hvad er "Albumliste"?', 'Dette vil vise dig hele galleriet med et link til hver kategori. Minibilleder kan være et link til en kategori.', 'offline', 0),
@@ -1195,7 +1195,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Hvad er forskellen mellem &quot;Admin Tilstand&quot; og &quot;Bruger Tilstand&quot;?', 'I Admin Tilstand kan brugere ændre deres galleri (såvel som andres hvis tilladelse er givet af administrator).', 'allow_private_albums', 0),
   array('Hvad er "Upload Billeder"?', 'Denne funktion giver brugeren mulighed for at uploade et billede (størrelse og type er valgt af administratoren) til et galleri som du eller administratoren har valgt.', 'allow_private_albums', 0),
   array('Hvad er "Nyeste uploads"?', 'Denne funktion viser de nyeste filer som er uploadet til siden.', 'offline', 0),
-  array('Hvad er "Nyeste kommentar"?', 'Denne funktion viser de nyeste kommentare med de tilhørende billeder.', 'offline', 0),
+  array('Hvad er "Nyeste kommentar"?', 'Denne funktion viser de nyeste kommentarer med de tilhørende billeder.', 'offline', 0),
   array('Hvad er "Mest viste"?', 'Denne funktion viser de billeder som er vist flest gange af alle brugere (uanset om de er logget ind eller ej).', 'offline', 0),
   array('Hvad er "Topkarakter"?', 'Denne funktion viser hvilket billede der har opnået højest karakter fra brugererne, og viser den gennemsnitlige karakter.<br />Hvis f.eks. fem brugere gav <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ville billedet have et gennemsnit på <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .<br />Hvis fem brugere gav billedet fra 1-5 (1,2,3,4,5) ville resuletere give et snit på <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .<br />Karakteren går fra <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (bedst) til <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (værst).', 'offline', 0),
   array('Hvad er "Mine Foretrukne"?', 'Denne funktion lader brugeren gemme sine foretrukne billeder i en cookie som gemmes på vedkommendes computer.', 'offline', 0),
@@ -1272,7 +1272,7 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-  'confirm_delete' => 'Er du sikker på du vil SLETTE dette album? \\nAlle filer og kommentare vil også blive slettet.', //js-alert
+  'confirm_delete' => 'Er du sikker på du vil SLETTE dette album? \\nAlle filer og kommentarer vil også blive slettet.', //js-alert
   'delete' => 'SLET',
   'modify' => 'EGENSKABER',
   'edit_pics' => 'REDIGER FILER',
@@ -1280,10 +1280,10 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
   'home' => 'Hjem',
-  'stat1' => '<b>[pictures]</b> filer i <b>[albums]</b> albums og <b>[cat]</b> kategorier med <b>[comments]</b> kommentare vist <b>[views]</b> gange',
+  'stat1' => '<b>[pictures]</b> filer i <b>[albums]</b> albums og <b>[cat]</b> kategorier med <b>[comments]</b> kommentarer vist <b>[views]</b> gange',
   'stat2' => '<b>[pictures]</b> filer i <b>[albums]</b> albums vist <b>[views]</b> gange',
   'xx_s_gallery' => '%s\'s Galleri',
-  'stat3' => '<b>[pictures]</b> filer i <b>[albums]</b> albums med <b>[comments]</b> kommentare vist <b>[views]</b> gange',
+  'stat3' => '<b>[pictures]</b> filer i <b>[albums]</b> albums med <b>[comments]</b> kommentarer vist <b>[views]</b> gange',
 );
 
 $lang_list_users = array(
@@ -1372,7 +1372,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'alb_perm' => 'Tilladelser for dette album',
   'can_view' => 'Album kan vises af',
   'can_upload' => 'Gæster kan oploade billeder',
-  'can_post_comments' => 'Gæster kan skrive kommentare',
+  'can_post_comments' => 'Gæster kan skrive kommentarer',
   'can_rate' => 'Gæster kan stemme på billeder',
   'user_gal' => 'Bruger Galleri',
   'no_cat' => '* Ingen kategori *',
@@ -1391,7 +1391,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'delete_files' => '%sIrreversibly%s slet alle filer i %s', //cpg1.4
   'views' => 'visninger', //cpg1.4
   'votes' => 'stemmer', //cpg1.4
-  'comments' => 'kommentare', //cpg1.4
+  'comments' => 'kommentarer', //cpg1.4
   'files' => 'filer', //cpg1.4
   'submit_reset' => 'gem ændringer', //cpg1.4
   'reset_views_confirm' => 'Jeg er sikker', //cpg1.4
@@ -1534,7 +1534,7 @@ $lang_register_php = array(
   'pass_chg_error' => 'Din adgangskode blev ikke ændret',
   'notify_admin_email_subject' => '%s - Information om registrering',
   'last_uploads' => 'Sidst uploadet fil.<br />Klik for at se alle fil der er uploaded af', //cpg1.4
-  'last_comments' => 'Seneste kommentar.<br />Klik for at se alle kommentare lavet af', //cpg1.4
+  'last_comments' => 'Seneste kommentar.<br />Klik for at se alle kommentarer lavet af', //cpg1.4
   'notify_admin_email_body' => 'En ny bruger med brugernavnet "%s" har registreret sig i dit galleri',
   'pic_count' => 'Uploadede filer', //cpg1.4
   'notify_admin_request_email_subject' => '%s - Registrerings anmodning', //cpg1.4
@@ -1586,10 +1586,10 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'title' => 'Kommentar overblik',
   'no_comment' => 'Der er ingen kommentar at vise',
   'n_comm_del' => '%s kommentar(er) slettet',
-  'n_comm_disp' => 'Antal af kommentare at vise',
+  'n_comm_disp' => 'Antal af kommentarer at vise',
   'see_prev' => 'Se foregående',
   'see_next' => 'Se næste',
-  'del_comm' => 'Slet valgte kommentare',
+  'del_comm' => 'Slet valgte kommentarer',
   'user_name' => 'Navn', //cpg1.4
   'date' => 'Dato', //cpg1.4
   'comment' => 'Kommentar', //cpg1.4
@@ -1829,8 +1829,8 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'delete' => 'Slet', //cpg1.4
   'delete_files_no' => 'behold offentlige filer (men anonymiser)', //cpg1.4
   'delete_files_yes' => 'slet også offentlige filer', //cpg1.4
-  'delete_comments_no' => 'behold kommentare (men anonymisere)', //cpg1.4
-  'delete_comments_yes' => 'slet også kommentare', //cpg1.4
+  'delete_comments_no' => 'behold kommentarer (men anonymiserer)', //cpg1.4
+  'delete_comments_yes' => 'slet også kommentarer', //cpg1.4
   'activate' => 'Aktiver', //cpg1.4
   'deactivate' => 'Deaktiver', //cpg1.4
   'reset_password' => 'Nulstil Adgangskode', //cpg1.4
@@ -1896,7 +1896,7 @@ $lang_util_desc_php = array(
 'Genskab minibilleder og mellemstore billeder', //cpg1.4
 'Sletter originale billeder og erstatter dem med mellemstor version', //cpg1.4
 'Sletter original eller mellemstore billeder for at frigøre diskplads', //cpg1.4
-'Sletter kommentare ikke tilknyttet billede', //cpg1.4
+'Sletter kommentarer ikke tilknyttet billede', //cpg1.4
 'Genindlæs fil størrelse og dimensioner (hvis du manuelt ændre billederne)', //cpg1.4
 'Nulstil tæller', //cpg1.4
 'Vis phpinfo', //cpg1.4
@@ -1953,13 +1953,13 @@ $lang_util_php = array(
   'deleting_intermediates' => 'Sletter mellemstore billeder, vent venligst...', //cpg1.4
   'searching_orphans' => 'Søger efter forældreløse billeder, vent venligst...', //cpg1.4
   'select_album' => 'Vælg album',
-  'delete_orphans' => 'Slet kommentare som ikke har et album (virker på alle albums)', //cpg1.4
-  'delete_orphans_explanation' => 'Dette vil finde og lade dig slette alle kommentare som knytter sig til filer som ikke længere findes i galleriet.<br />Tjekker alle albums.', //cpg1.4
+  'delete_orphans' => 'Slet kommentarer som ikke har et album (virker på alle albums)', //cpg1.4
+  'delete_orphans_explanation' => 'Dette vil finde og lade dig slette alle kommentarer som knytter sig til filer som ikke længere findes i galleriet.<br />Tjekker alle albums.', //cpg1.4
   'refresh_db' => 'Genindlæser informationer om fil dimensioner og størrelse', //cpg1.4
   'refresh_db_explanation' => 'Dette vil genindlæse fil dimensioner og størrelse. Brug denne hvis Diskkvoter viser forkert eller hvis du har ændret filerne manuelt.', //cpg1.4
   'reset_views' => 'Nulstil tæller til visning', //cpg1.4
   'reset_views_explanation' => 'Stiller tæller til nul på filer i valgte album.', //cpg1.4
-  'orphan_comment' => 'kommentare uden album fundet',
+  'orphan_comment' => 'kommentarer uden album fundet',
   'delete' => 'Slet',
   'delete_all' => 'Slet alle',
   'delete_all_orphans' => 'Slet alle forældreløse?', //cpg1.4
