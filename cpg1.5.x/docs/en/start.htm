@@ -33,17 +33,26 @@
 
 
 <a name="getting"></a><h1>Getting started<a href="#getting" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>Use the &quot;<strong><a href="albums.htm#albmgr">Album Manager</a></strong>&quot; (&quot;Albums&quot; link in the admin menu)  to create and order your albums. You will need at least one album in which your files can go.</p>
-<p>Use the <strong>anonymous</strong> group to define what non-registered users can and cannot do (in the <a href="groups.htm#group_cp">groups</a> panel).</p>
-<p>Use the <strong><a href="albums.htm#modif_alb_pics">properties</a></strong> of an album to modify its description and permissions.
-</p>
-<p>In order for a user to be allowed to upload a file into an album, two conditions must be met:</p>
+<p>Here's a list of issues that beginners often have issues with, so please just read this list one by one:</p>
 <ul>
-  <li> The user must be part of a <a href="groups.htm#group_cp">group</a> that can upload files.</li>
-  <li>There must be at least one album where &quot;<strong>Visitors can upload files</strong>&quot; has been set to &quot;<strong>Yes</strong>&quot;,<br /> <strong>OR</strong> <br />The user has created an album in the 'user galleries', if allowed.</li>
+	<li>Use the &quot;<strong><a href="albums.htm#albmgr">Album Manager</a></strong>&quot; (&quot;Albums&quot; link in the <a href="admin_menu.htm">admin menu</a>) to create and order your albums. You will need <strong>at least one album</strong> in which your files can go.</li>
+	<li>Use the <strong>anonymous/guest</strong> group to define what non-registered users (<abbr title="also known as">aka</abbr> <em>guests</em>) can and cannot do (in the <a href="groups.htm#group_cp">groups</a> panel).</li>
+	<li>Use the <strong><a href="albums.htm#modif_alb_pics">properties</a></strong> of an album to modify its description and permissions.	The album properties dialog is accessible by clicking on the "Porperties"-button next to a thumbnail that represents an album.</li>
+	<li>In order for a user to be allowed to upload a file into an album, <strong>two</strong> conditions must be met:
+		<ul>
+		  <li> The user must be part of a <a href="groups.htm#group_cp">group</a> that can upload files.</li>
+		  <li>There needs to be at least one album where the file can be uploaded to permissions-wise. This is the case if
+		  	<ul>
+		  		<li>There is at least one album within a public category (this can be the root category as well) where &quot;<strong>Visitors can upload files</strong>&quot; has been set to &quot;<strong>Yes</strong>&quot;,<br /> <strong>OR</strong></li>
+		  		<li>The user has created an album in the 'user galleries', if he's allowed to do so.</li>
+		  	</ul>
+		  </li>
+		</ul>
+	</li>
+	<li>The same applies to <strong>picture rating</strong> and <strong>comment posting</strong>: the group the user is in must have the general permission to rate / post comments <strong>and</strong> there needs to be at least one album where the corresponding permission-by-album has been turned to yes. Permissions by album can be set using the album properties dialog.</li>
+	<li>If you have installed the gallery script successfully but are having trouble getting it working properly you can enable the &quot;<strong><a href="configuration.htm#debug_mode">debug mode</a></strong>&quot; on the <strong>Config page</strong>. In this mode, the script outputs most of the warning/error messages produced by PHP in addition to some debug information. This can provide valuable information to understand what is wrong.</li>
+	<li>Throughout the documentations, the word "visitor" is being used for <em>any</em> person accessing a page (logged in or not logged in). "Visitor" does not equal "guest". Guests as well as registered users are visitors.</li>
 </ul>
-<p>The same applies to <strong>picture rating</strong> and <strong>comment posting</strong>.</p>
-<p>If you have installed the gallery script successfully but are having trouble getting it working properly you can enable the &quot;<strong><a href="configuration.htm#debug_mode">debug mode</a></strong>&quot; on the <strong>Config page</strong>. In this mode, the script outputs most of the warning/error messages produced by PHP in addition to some debug information. This can provide valuable information to understand what is wrong.</p>
 
 
 
