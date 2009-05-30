@@ -32,7 +32,7 @@ function cpgDocToc() {
   }
 var doc_toc = '';
 doc_toc += '<div id="toc_collapsed">\n';
-doc_toc += '<h6>Table des matières</h6>\n';
+doc_toc += '<h6><a href="toc.htm">Table des matières</a></h6>\n';
 doc_toc += 'Move your mouse here to expand\n';
 doc_toc += '</div>\n';
 doc_toc += '<div id="toc_expanded" style="display:none;">\n';
