@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-30 [A] Added toggle in config that disables the reset to default checkboxes on the config screen for performance reasons {GauGau}
 2009-05-29 [D] Added flag icons for half-translated documents {GauGau}
 2009-05-29 [D] Translated license section into German {German}
 2009-05-29 [D] Added missing documents to German documentation {GauGau}

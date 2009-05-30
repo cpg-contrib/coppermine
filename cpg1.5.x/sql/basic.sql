@@ -91,6 +91,7 @@ INSERT INTO CPG_config VALUES ('display_filename','0');
 INSERT INTO CPG_config VALUES ('display_film_strip', '1');
 INSERT INTO CPG_config VALUES ('display_pic_info', '0');
 INSERT INTO CPG_config VALUES ('display_redirection_page', '0');
+INSERT INTO CPG_config VALUES ('display_reset_boxes_in_config', '0');
 INSERT INTO CPG_config VALUES ('display_sidebar_guest', '1');
 INSERT INTO CPG_config VALUES ('display_sidebar_user', '1');
 INSERT INTO CPG_config VALUES ('display_social_bookmarks','0');

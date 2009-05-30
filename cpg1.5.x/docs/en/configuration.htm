@@ -1433,31 +1433,37 @@ All log files are written in english</p>
 <a name="admin_logging_end"></a>
 
 
-<a name="admin_misc"></a><h2>Miscellaneous settings<a href="#admin_misc" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="admin_misc"></a><h2>Maintenance settings <a href="#admin_misc" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="debug_mode"></a><h3>Enable debug mode<a href="#debug_mode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>CPG will show error messages which are normally suppressed. This is helpful in troubleshooting problems with your gallery or when asking for help on the <a href="http://coppermine-gallery.net/forum/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.</p>
 <p>Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine-gallery.net/forum/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when troubleshooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
 <p class="cpg_message_error">Do <strong>not</strong> post debug_output on the coppermine support board unless a supporter explicitely asks for it!</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Miscellaneous settings &rarr; Enable debug mode</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Maintenance settings &rarr; Enable debug mode</p>
 <hr />
 <a name="admin_misc_debug_notices"></a><h3>Display notices in debug mode<a href="#admin_misc_debug_notices" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>May be helpful to troubleshoot problems with your coppermine install - only recommended if you know a little PHP and you can understand the additional error messages this option shows. Notices being displayed don't actually mean that there is something wrong with your gallery. This option only applies if debug mode is enabled.</p>
 <p>If you enable this option, you will see notices all over your coppermine-driven pages. This does <strong>not</strong> mean that there is actually something wrong with your install. As suggested above: leave notices_display off if it doesn't mean anything to you.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Miscellaneous settings &rarr; Display notices in debug mode</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Maintenance settings &rarr; Display notices in debug mode</p>
 <a name="admin_misc_debug_notices_end"></a>
 <hr />
 <a name="debug_mode_end"></a>
 
 <a name="admin_general_offline"></a><h3>Gallery is offline<a href="#admin_general_offline" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If you have to do maintenance work on your gallery, switch it to offline mode. Only members of the admin group will be able to log in, all other users will only see &quot;Gallery is offline&quot;. Remember to switch this option off once your maintenance work is done.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Miscellaneous settings &rarr; Gallery is offline</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Maintenance settings &rarr; Gallery is offline</p>
 <a name="admin_general_offline_end"></a>
 <hr />
 <a name="admin_general_coppermine_news"></a><h3>Display news from coppermine-gallery.net<a href="#admin_general_coppermine_news" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Starting with cpg1.5.0 there is a feed from coppermine-gallery.net that is being displayed for the gallery admin (and for the gallery-admin only) on each and every coppermine page to alert him of potential security issues and upgrades. You can toggle this option on and off in Coppermine's config (default is &quot;on&quot;). It is recommended to leave it enabled to make sure your coppermine install is always up-to-date.</p>
 <p>This is meant as a service for gallery admins; you're of course welcome to disable this option at any time. Coppermine-gallery.net will not collect data from your site (although this would be technically possible to a certain extent). If you're concerned about this option, then disable it or review the code used. We (the Coppermine dev team) are not trying to spy on our users - the feed is only being used to alert you of issues related to coppermine - that's all.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Miscellaneous settings &rarr; Display news from coppermine-gallery.net</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Maintenance settings &rarr; Display news from coppermine-gallery.net</p>
 <a name="admin_general_coppermine_news_end"></a>
+<hr />
+
+<a name="admin_misc_reset_boxes"></a><h3>Display reset boxes in config<a href="#admin_misc_reset_boxes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>When enabled, there will be reset boxes all over the config screen that show if a particular value differs from default. This will allow you to quickly set the value back to default. This will however eat a lot of resources and will not work in all browsers. Recommended setting is "off", at least if you experience issues with the loading speed of the config screen.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Maintenance settings &rarr; Display reset boxes in config</p>
+<a name="admin_misc_reset_boxes_end"></a>
 
 <div id="doc_footer">
 	<div class="doc_info_wrapper">

@@ -36,6 +36,9 @@ function resetToDefault(theFieldId, fieldType, numberOfItems)
 
 function checkDefaultBox(theFieldId, fieldType, numberOfItems, warning) 
 {
+    if (js_vars.display_reset_boxes != 1 ) {
+    	return;
+    }
     // Each time a config field is being changed (onblur/onchange), this JS is being run to enable/disable the default checkbox
     if(warning != '') {
         alert(warning + ' ' + js_vars.lang_warning_dont_submit);

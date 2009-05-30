@@ -949,6 +949,9 @@ $lang_admin_php['warning_dont_submit'] = 'Si vous n\'êtes pas sur de l\'impact 
 $lang_admin_php['menu_only'] = 'uniquement dans les menus'; // cpg1.5
 $lang_admin_php['everywhere'] = 'partout'; // cpg1.5
 $lang_admin_php['manage_languages'] = 'Gérez les langues'; // cpg1.5
+$lang_admin_php['form_token_lifetime'] = 'Form token lifetime'; // cpg1.5
+$lang_admin_php['seconds'] = 'Seconds'; // cpg1.5
+$lang_admin_php['display_reset_boxes_in_config'] = 'Display reset boxes in config'; // cpg1.5
 }
 
 

@@ -949,6 +949,7 @@ $lang_admin_php['everywhere'] = 'everywhere'; // cpg1.5
 $lang_admin_php['manage_languages'] = 'Manage languages'; // cpg1.5
 $lang_admin_php['form_token_lifetime'] = 'Form token lifetime'; // cpg1.5
 $lang_admin_php['seconds'] = 'Seconds'; // cpg1.5
+$lang_admin_php['display_reset_boxes_in_config'] = 'Display reset boxes in config'; // cpg1.5
 }
 
 

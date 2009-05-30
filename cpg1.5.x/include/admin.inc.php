@@ -1554,6 +1554,12 @@ $config_data = array(
       'help_link'       => 'f=configuration.htm&amp;as=admin_general_coppermine_news&amp;ae=admin_general_coppermine_news_end',
       'end_description' => '(' . $lang_admin_php['display_coppermine_detail'] . ')',
     ),
+    'display_reset_boxes_in_config' => array(
+      'type'          => 'checkbox',
+      'default_value' => '0',
+      'help_link'     => 'f=configuration.htm&amp;as=admin_misc_reset_boxes&amp;ae=admin_misc_reset_boxes_end',
+      'end_description' => '(' . $lang_admin_php['not_recommended'] . ')',
+    ),
   ),
 );
 

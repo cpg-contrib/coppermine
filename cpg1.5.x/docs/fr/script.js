@@ -227,7 +227,7 @@ doc_toc += '          <li><a class="nolink" href="configuration.htm#admin_custom
 doc_toc += '          <li><a class="nolink" href="configuration.htm#admin_cookie">Cookie settings</a></li>\n';
 doc_toc += '          <li><a class="nolink" href="configuration.htm#admin_email">Email settings</a></li>\n';
 doc_toc += '          <li><a class="nolink" href="configuration.htm#admin_logging">Logging &amp; statistics</a></li>\n';
-doc_toc += '          <li><a class="nolink" href="configuration.htm#admin_misc">Miscellaneous settings</a></li>\n';
+doc_toc += '          <li><a class="nolink" href="configuration.htm#admin_misc">Maintenance settings</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a class="nolink" href="groups.htm">Groups</a>\n';
