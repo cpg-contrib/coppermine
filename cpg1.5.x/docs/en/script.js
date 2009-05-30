@@ -31,6 +31,11 @@ function cpgDocToc() {
 	return;
   }
 var doc_toc = '';
+doc_toc += '<div id="toc_collapsed">\n';
+doc_toc += '<h6>Table of contents</h6>\n';
+doc_toc += 'Move your mouse here to expand\n';
+doc_toc += '</div>\n';
+doc_toc += '<div id="toc_expanded" style="display:none;">\n';
 doc_toc += '<h6>Table of contents (<a href="../index.htm">documentation language selection</a>)</h6>\n';
 doc_toc += '<ul id="tree">\n';
 doc_toc += '  <li><a href="index.htm">Coppermine documentation</a>\n';
@@ -569,6 +574,7 @@ doc_toc += '      </li>\n';
 doc_toc += '    </ul>\n';
 doc_toc += '  </li>\n';
 doc_toc += '</ul>\n';
+doc_toc += '</div>\n';
 $('#toc').replaceWith('<div id="toc">' + doc_toc + '</div>');
 }
 
@@ -590,15 +596,14 @@ function cpgDocSearch() {
 		return;
 	}
 	var doc_search = '';
-	doc_search += '<br />&nbsp;<br />\n';
-	doc_search += '  <form action="http://www.google.com/cse" id="cse-search-box">\n';
-	doc_search += '    <div>\n';
+	doc_search += '  <div id="doc_search" style="display:none;">\n';
+	doc_search += '    <form action="http://www.google.com/cse" id="cse-search-box">\n';
 	doc_search += '      <input type="hidden" name="cx" value="009353514429642786404:1fg_c1k1td8" />\n';
 	doc_search += '      <input type="text" name="q" size="25" />\n';
 	doc_search += '      <input type="submit" name="sa" value="search docs" style="font-size:9px;" />\n';
-	doc_search += '    </div>\n';
-	doc_search += '  </form>\n';
-	doc_search += '  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=en"></script>\n';
+	doc_search += '    </form>\n';
+	doc_search += '    <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=en"></script>\n';
+	doc_search += '  </div>\n';
 	$('#toc').append(doc_search);
 }
 
@@ -693,4 +698,16 @@ $(document).ready(function()
     $("a.nolink").click(function(){
       return false;
     });
+    // Fade the toc in if it is needed
+	$("#toc").bind("mouseenter",function(){
+		$("#toc_collapsed").hide();
+		$("#toc_expanded").fadeIn('slow');
+		$("#doc_search").show();
+	});
+	// Fade the toc out if it isn't used
+	$("#toc").bind("mouseleave",function(){
+		$("#toc_expanded").fadeOut('slow');
+		$("#toc_collapsed").show();
+		$("#doc_search").hide();
+	});
 });
