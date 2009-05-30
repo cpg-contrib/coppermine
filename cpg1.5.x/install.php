@@ -40,6 +40,9 @@ define('STEP_DB_INIT', 8);
 define('STEP_SET_ADMIN', 9);
 define('STEP_FINALISE', 10);
 
+// Set global vars
+$LINEBREAK = "\r\n"; // For compatibility both on Windows as well as *nix
+
 // Set required versions
 $required_php_version = '4.3.0';
 $required_mysql_version = '3.23.23';
