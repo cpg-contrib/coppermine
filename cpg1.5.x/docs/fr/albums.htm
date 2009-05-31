@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Albums - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Albums: Coppermine stores files inside of albums, so you'll need at least one album for your pictures/files to be placed in. Albums can be stored in categories (but they don't HAVE to be in a category, they can just as well go into the coppermine root)." />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+  
+  Coppermine version: 1.5.1
+  $Revision: 6003 $
+  $LastChangedBy: gaugau $
+  $Date: 2009-05-27 20:18:54 +0200 (mer. 27 mai 2009) $
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<div id="toc">
+<a href="toc.htm">Table of Contents</a>
+</div>
+
+<h1>Albums</h1>
+<a name="albmgr"></a><h2>The Album Manager<a href="#albmgr" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<img src="images/albmgr.png" width="309" height="194" border="0" alt="" title="Album Manager" align="right" style="padding-left:5px;" />
+<p>Coppermine stores files inside of albums, so you'll need at least one album for your pictures/files to be placed in. Albums can be stored in categories (but they don't <em>HAVE</em> to be in a category, they can just as well go into the coppermine &quot;root&quot;).</p>
+<p>When you click on &quot;albums&quot; in the admin menu, you will see the <em>Album Manager</em>.</p>
+
+
+<a name="albmgr_create"></a><h3>Creating albums<a href="#albmgr_create" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<ul>
+<li><strong>Choose a category from the dropdown list</strong> &quot;Select category&quot; and highlight the selection where you would like your album to reside in. (or choose &quot;* No category *&quot; if the album should go into the coppermine &quot;root&quot;). If you haven't created a category yet, go to the <a href="categories.htm#cat_cp">categories control panel</a> first. Or, you can proceed with these steps to first create an album and move the album into a category later.  You can also perform this moving task by using the <a href="#album_prop">album properties</a> page.</li>
+<li><strong>To create an album, click on the &quot;New&quot; button</strong> - a new album will appear on the list, by default this album is labelled &quot;New album&quot;</li>
+<li><strong>Click on the text input field at the bottom of the screen</strong>, highlight the default name &quot;New album&quot; </li>
+<li><strong>Then type in the album name you want to use</strong></li>
+<li>(repeat steps 2 through 4 to add additional albums)</li>
+<li><strong>Click &quot;Apply modifications&quot;</strong> to submit your changes to the database. failure to do so will result in the loss of all the changes you just made.  You can always return to this panel to edit and change album names, sort them within their parent category, and/or move them to different parent categories.</li>
+<li><strong>After clicking on &quot;Apply Modification&quot;, confirm your intent in the alert box with the &quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
+</ul>
+
+<a name="albmgr_rename"></a><h3>Renaming albums<a href="#albmgr_rename" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<ul>
+<li><strong>Choose a category from the dropdown list</strong></li>
+<li><strong>Click on the album you want to change</strong></li>
+<li><strong>Click on the text input filed at the bottom of the screen</strong>, highlighting the album name</li>
+<li><strong>Type the album name you want to assign</strong></li>
+<li><strong>Click &quot;Apply modifications&quot;</strong></li>
+<li><strong>After clicking on &quot;Apply Modification&quot;, confirm your intent in the alert box with the &quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
+
+</ul>
+<a name="albmgr_order"></a><h3>Changing the album order<a href="#albmgr_order" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<ul>
+<li><strong>Choose a category from the dropdown list</strong></li>
+<li><strong>Click on the album you want to move up or down in the list</strong></li>
+<li><strong>Use the arrow buttons to move the album up or down</strong></li>
+<li><strong>Click &quot;Apply modifications&quot;</strong></li>
+<li><strong>After clicking to Apply Modification, confirm your intent in the alert box with the &quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
+
+</ul>
+<a name="albmgr_delete"></a><h3>Deleting albums<a href="#albmgr_delete" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<ul>
+<li><strong>Choose a category from the dropdown list</strong></li>
+<li><strong>Click on the album you want to delete</strong></li>
+<li><strong>Click the &quot;Delete&quot; button</strong></li>
+<li><strong>Confirm the alert box with &quot;OK&quot;</strong> (<em>Are you sure you want to delete this album ? All files and comments it contains will be lost !</em>)</li>
+<li><strong>Click &quot;Apply modifications&quot;</strong></li>
+<li><strong>After clicking to Apply Modification, confirm your intent in the alert box with the &quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
+
+</ul>
+<a name="albmgr_end"></a>
+
+
+
+<a name="modif_alb_pics"></a><h2>Modifying albums/files<a href="#modif_alb_pics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>When you are logged in as admin and haven't switched <a href="admin_menu.htm#admin_user_mode">admin controls</a> off there is a menu displayed next to each album</p>
+<p><img src="images/album_menu.png" width="288" height="116" border="0" alt="" /></p>
+<ul>
+	<li><strong>Delete</strong> allows you to delete the album and <strong>(CAUTION</strong>) all files within it.</li>
+	<li><strong><a href="#album_prop">Properties</a></strong> allows you to modify the name, description and permissions of the album</li>
+	<li><strong><a href="files.htm#edit_pics">Edit files</a></strong> allows you to modify the title/caption/keywords etc... of the files in the album</li>
+</ul>
+
+<a name="album_prop"></a><h2>Album properties<a href="#album_prop" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<img src="images/edit_album.gif" border="0" alt="" align="right" />
+<p>The "Album category" drop down list allows you to move an album from one category to another. If you set this to &quot;* No category *&quot; then the album will be displayed on your main page.</p>
+<p>Use <a href="bbcode.htm#bbcode">bbcode</a> to add links and additional formating to your  descriptions.</p>
+<p>The thumbnail option lets you select the picture that will represent the album in the album list. Do not assign a picture here if you would like the album to select images randomly.</p>
+<p>If you have set &quot;Albums can be private&quot; to YES on the <a href="configuration.htm#admin_picture_thumb_advanced_private_toggle">config page</a>, you can determine who will have permission to view the files of this album.</p>
+<p>When &quot;visitors can upload file&quot; is set to YES, it is possible for them to upload files into albums by enabling this permission.</p>
+<a name="album_prop_visitor_start"></a>
+<p><strong>Note that only visitors who are members of a <em>group</em> for which the setting &quot;Can upload pictures&quot; is set to YES.</strong> Members not in the permitted group will not be able to upload files into such an album. Non-registered users are members of the &quot;Anonymous&quot; group. </p>
+<p>The same rules as above apply for &quot;Visitors can post comments&quot; and &quot;Visitors can rate files&quot;.</p>
+<a name="album_prop_visitor_end"></a>
+<a name="album_prop_keyword_start"></a>
+<p>In 1.4.x and better the <strong><a href="keywords.htm#keywords_album">Album Keyword</a></strong> is <em>no</em> longer being used for searching purposes, but, rather, to link images from other album into another. Using this method, files/images can be displayed in various albums while the file itself need only exists in one album on your webserver.  You simply upload a file to one album as you would normally do, then assign one or more keywords to the file.</p>
+<p>The keyword function reads blank spaces between words as a 'break' and assumes that these words are separate words. If you must use phrases for your keywords, connect them with an underscore or by using the ascii space holder ctrl+Alt+0160 (NOTE: the latter option only works with latin based character sets.) Each album can only have <strong>ONE</strong> (1) keyword or keyword phrase.  All pictures residing in different albums that you would like to be displayed in this album must have the same keyword or keyword phrase in their respective keyword fields. Pictures, unlike albums can have multiple keywords or keyword phrases separated by spaces. This provides you with the option to display pictures in many albums.  For the visitor of these albums, it will appear as if the file/image had been uploaded to each album.</p>
+<a name="album_prop_keyword_end"></a>
+<a name="album_prop_password_start"></a>
+<p><strong>Album Password</strong>: you can specify an album to be password-protected (instead of relying on the "regular" group-based permissions). This way, you can even allow access for unlogged users (guests) who you provide the password to. Use this option, for example, to set up an album for your family members only by specifying a password that only they can come up with answering an additional password hint (e.g. "<em>What was the maiden name of aunt Emma?</em>"), or you could decide to send the particular password to specific friends, family or business associates by email. The optional <strong>password hint</strong> will be displayed at the password prompt, when set.</p>
+<p>Note: when setting an album password, the permission dropdown field "<em>Album can be viewed by</em>" will be switched automatically to "<em>me only</em>" - this is expected behaviour. If you change the "<em>Album can be viewed by</em>" to another selection, you must disable the album password as well.</p>
+<br clear="all" />
+<a name="album_prop_password_end"></a>
+
+
+<a name="album_prop_reset_start"></a><h3>Reset album properties<a href="#album_prop_reset_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<img src="images/modifyalb_reset.gif" width="436" height="148" border="0" alt="" />
+<p>You can reset the number of views count and total ratings in the album properties panel and even delete all pics at once in the sub-section &quot;Reset album&quot; by ticking the desired checkboxes and then submitting the form. To prevent accidental resets, you will have to place a tick on the checkbox &quot;I'm sure&quot; before changes can be submitted (the button will be greyed out (disabled) if you don't).</p>
+<p>Use these options with care: the deleting of files is irreversible, as well as the reset of views and ratings (you can only restore views and ratings by manually editing coppermine's database entries with third-party tools like <a href="http://www.phpmyadmin.net/" class="external" rel="external">phpMyAdmin</a> - not recommended).</p>
+<a name="album_prop_reset_end"></a>
+<a name="album_prop_end"></a>
+
+<a name="album_admin_user"></a><h2>Admin vs. user<a href="#album_admin_user" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Non-admin users can not create albums in public categories by default. Only the admin can create albums there. Starting with cpg1.5.x, there is an option to allow non-admin users to create albums in categories created by the admin. To accomplish this, go to the <a href="categories.htm#cat_cp">category control panel</a> and use the &quot;Allow group to create Album&quot; dropdown to specify what user group is allowed to create albums within that specific category.</p>
+<p>If a non-admin user belongs to a group that is allowed to have <a href="groups.htm#group_cp_personal">personal galleries</a> (configurable on the groups manager), he will have a reduced album manager page as well (named &quot;Create / order my albums&quot;) where he can create albums within his personal gallery (<acronym title="also known as">aka</acronym> &quot;user gallery&quot;).</p>
+<p>The admin can create albums within all categories. If you want to create a personal album as admin, choose &quot;<tt class="code">* My Gallery *</tt>&quot; as parent category for your personal album.</p>
+
+<a name="album_faq"></a><h2>Album <acronym title="Frequently Asked Questions">FAQ</acronym><a href="#album_faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+
+<a name="album_howAlbumsFolderWork"></a>
+<h3>How do <strong>albums and folders</strong> work in coppermine?<a href="#album_howAlbumsFolderWork" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<ol>
+<li>When you create an album, it is a dynamic 'virtual' album.  Coppermine doesn't create a physical folder for this album on the server's hard drive, it leaves the pictures where you put them on the server, and uses the database to know which pic belongs in which album. You can move pics from album to album in Coppermine, but it's all done in the database, the pics are never moved on the server.</li>
+<li>When you upload by html, using the 'upload' link, coppermine places the pic (and the thumb and normal size copies) in the 'userpics' directory.</li>
+<li>When you upload by ftp, you should place the pics into folders that you create within the 'albums' folder, but never in the 'userpics' folder. The 'userpics' folder is reserved for html uploads only.  You can create as many folders/sub-folders for FTP uploads as you want. (Many webhosting services will recommend that you keep the number of files per folder under 500 in order to maximize speed and certain functions. This means you can upload up to 500/3 files in each folder.) You can name these folders anything you want, but we do recommend mirroring the category/album structures that you have created, whenever possible, to facilitate ease of use and site management.</li>
+<li>When you <a href="uploading_batch-add.htm#batch_add_pics">batch-add</a> files that you have already FTP'd to your site, coppermine asks you what album you want to put the pics in, but it leaves the pics where they are on the server.</li>
+</ol>
+
+<a name="album_howMoveAlbum"></a>
+<h3>How can I <strong>move albums from one category to another</strong>?<a href="#album_howMoveAlbum" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<ul>
+<li>log in as admin</li>
+<li>create categories (using <a href="categories.htm#cat_cp">category manager</a> from admin menu)</li>
+<li>go to the index page of your gallery</li>
+<li>click "Properties" next to the album thumbnail that represents the album you want to see moved</li>
+<li>From the dropdown list &quot;Album category&quot;, choose the category the album should go to</li>
+<li>Click &quot;Update Album&quot;</li>
+</ul>
+
+<a name="album_createPublicAlbum"></a>
+<h3>How do I create an <strong>album</strong> that <strong>all users</strong> can add photos to?<a href="#album_createPublicAlbum" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>(Assuming that you have already created at least one category and/or one album where the uploaded photos should go to):
+<ul>
+	<li>Log in as admin</li>
+	<li>Confirm that you have the display of admin controls turned on</li>
+	<li>Select the Album list button</li>
+	<li>If you placed the album in a category, choose the category you created the album in</li>
+	<li>Next to the appropriate album, click on &quot;properties&quot;</li>
+	<li>Set &quot;Visitors can upload pictures&quot; to &quot;yes&quot; and click &quot;update album&quot;</li>
+	<li>Provide an upload link in your navigation menu if it's not already there (check /themes/yourtheme/theme.php)</li>
+	<li>Next, click on the Groups tab</li>
+	<li>For the group named &quot;anonymous&quot; - set the allowable space usage quota and upload rights</li>
+</ul>
+
+
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate: 2009-05-27 20:18:54 +0200 (mer. 27 mai 2009) $</span>
+		<span id="doc_revision">$Revision: 6003 $</span>
+	</div>
+</div>
+</body>
+</html>

@@ -30,7 +30,7 @@
 <div id="toc">
 <a href="toc.htm">Table of Contents</a>
 </div>
-
+<div id="doc_en_partial">Traduction partielle"</div>
 <a name="upgrade"></a><h1>Mise à Jour<a href="#upgrade" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>Merci de prendre note: comme il y a eu des changements aussi bien  dans le fichiers de Coppermine que dans la base de donnée des versions précédentes à cpg1.5.x, les utilisateurs de versions antérieurs à cpg1.5.0 doivent appliquer <strong>toutes</strong> les étapes mentionnées ci-dessous: les fichiers doivent être remplacée et le script update.php doit être éxécuté une fois.</p>
 
@@ -42,31 +42,34 @@
 
 <a name="upgrade_why_reasons"></a><h3>Raisons de publication des packages<a href="#upgrade_why_reasons" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Voici une liste des versions mineures de cpg1.5.x et la raison pour laquelle elle à été publiée. Ceci pour vous expliquer pourquoi vous devriez mettre votre galerie à jour le plus rapidement possible vers la version stable la plus récente si vous utilisez une version plus ancienne.</p>
-<table border="0" cellspacing="0" cellpadding="0" class="maintable">
-  <tr>
-    <th class="tableh1" valign="top" align="left">Package</td>
-    <th class="tableh1" valign="top" align="left">Raison de la mise à jour</td>
-    <th class="tableh1" valign="top" align="left"><span class="small">Date de publication<span></td>
-  </tr>
-  <tr>
-    <td class="tableb" valign="top">cpg1.5.1</td>
-    <td class="tableb" valign="top">
-      <ul>
-        <li>Vesion Alpha release pour les testeurs et les traducteurs. Cette version n'est pas une version publique. Elle à seulement été mise à disposition pour un groupe restreint d'utilisateurs pour des tests et pour permettre la traduction.</li>
-      </ul>
-    </td>
-    <td class="tableb" valign="top" align="right">Pas publiée à ce jourNot released yet</td>
-  </tr>
-  <tr>
-    <td class="tableb tableb_alternate" valign="top">cpg1.5.0</td>
-    <td class="tableb tableb_alternate" valign="top">
-      <ul>
-        <li>Cette version n'a jamais été publiée sous forme de package - Le numéro de version 1.5.0 a juste été réservé pour la phase initiale de développement de la série cpg1.5.x avant le début de la période de gel des modifications. Il n'y a pas de packs disponible, et il n'y en a jamais eu - seule une récupération par <a href="dev_subversion.htm#subversion">Subversion</a> est possible.</li>
-      </ul>
-    </td>
-    <td class="tableb tableb_alternate" valign="top" align="right">jamais</td>
-  </tr>
+<span class="detail_head_collapsed">Details</span>
+<div class="detail_body">
+	<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+	<tr>
+		<th class="tableh1" valign="top" align="left">Package</td>
+		<th class="tableh1" valign="top" align="left">Raison de la mise à jour</td>
+		<th class="tableh1" valign="top" align="left"><span class="small">Date de publication<span></td>
+	</tr>
+	<tr>
+		<td class="tableb" valign="top">cpg1.5.1</td>
+		<td class="tableb" valign="top">
+		<ul>
+			<li>Vesion Alpha release pour les testeurs et les traducteurs. Cette version n'est pas une version publique. Elle à seulement été mise à disposition pour un groupe restreint d'utilisateurs pour des tests et pour permettre la traduction.</li>
+		</ul>
+		</td>
+		<td class="tableb" valign="top" align="right">Pas publiée à ce jourNot released yet</td>
+	</tr>
+	<tr>
+		<td class="tableb tableb_alternate" valign="top">cpg1.5.0</td>
+		<td class="tableb tableb_alternate" valign="top">
+			<ul>
+			<li>Cette version n'a jamais été publiée sous forme de package - Le numéro de version 1.5.0 a juste été réservé pour la phase initiale de développement de la série cpg1.5.x avant le début de la période de gel des modifications. Il n'y a pas de packs disponible, et il n'y en a jamais eu - seule une récupération par <a href="dev_subversion.htm#subversion">Subversion</a> est possible.</li>
+		</ul>
+		</td>
+		<td class="tableb tableb_alternate" valign="top" align="right">jamais</td>
+	</tr>
 </table>
+</div>
 <p>Comme vous pouvez le voir, l'équipe de développement de Coppermine est constamment en train de corriger et d'améliorer le script. Chaque élément de logiciel non banal contient des bugs, il est donc non garanti que la version qui actuellement est la plus récente sera la dernière, entièrement vierge de bugs qui sera publiée dans la série cpg1.5.x. Il est absolument vital que vous fassiez une mise à jour aussitôt qu'un nouveau pack est mis à disposition.</p>
 <a name="upgrade_why_reasons_end"></a>
 
@@ -126,7 +129,31 @@
   <li>Si votre serveur tourne avec le "safe_mode" et que vous avez activé "SILLY_SAFE_MODE" dans include/config.inc.php, vous devrez aller dans la configuration de Coppermine après avoir fait toutes les étapes mentionnées ci dessus l'activation "<a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">silly safe mode</a>" , comme paramètre dans <tt class="code">include/config.inc.php</tt> n'est plus pris en compte par cpg1.5.x. Le paramétrage du "silly_safe_mode" à été remplacé par un <a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">paramètre de configuration</a>.</li>
 </ul>
 
-
+<a name="updater"></a><h2>The update script<a href="#updater" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The updater is a script that will update your database and delete leftover files from outdated versions that are no longer used in your version. It can be accessed by clicking on the corresponding link inside the admin menu or by entering the URL into the address bar of your browser.</p>
+<p class="cpg_example">You can run the updater by entering <tt class="code">http://yoursite.tld/your_coppermine_folder/update.php</tt> into your browser's address bar.</p>
+<a name="updater_what_it_does"></a><h3>What it does<a href="#updater_what_it_does" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+The updater performs three things:
+<ul>
+	<li>Check the authorization of the visitor who accesses the script</li>
+	<li>Run the mysql database queries that reside in the file <tt class="code">sql/update.sql</tt> (replacing the generic table prefix with the one you actually chose during initial install)</li>
+	<li>Delete some files that used to reside inside coppermine's core in previous versions. The script only deletes unneeded files, but it doesn't touch your custom files, so there is absolutely no reason to be alarmed.</li>
+</ul>
+<a name="updater_purpose"></a><h3>Purpose<a href="#updater_purpose" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>The updater will perform the database update for you after you manually have replaced the sql file it is using. The updater will <strong>not</strong> detect for you if there is a new version of coppermine available, nor will it download anything from the coppermine website. The level of automation is not that advanced in coppermine (yet).</p>
+<p>To find out about new versions of coppermine or maintenance releases, check the <a href="configuration.htm#admin_general_coppermine_news">news from coppermine-gallery.net</a>.</p>
+<a name="updater_authorization"></a><h3>Authorization check<a href="#updater_authorization" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>In Coppermine versions before cpg1.5.x, the update script used to be publicly accessible, e.g. everybody was able to run it. While this was good for support purposes (supporters were able to run the updater for users looking for help if it was obvious that they had not done so), there was a slight chance that this accessibility for everyone could at some stage be a security risk. That's why the dev team members decided to protect the updater from being run by any visitor who accesses it - starting with cpg1.5x you need to supply admin credentials. This can happen in four different ways:</p>
+<ul>
+	<li>If you're already logged in as admin and run the updater from the link in coppermine's admin menu, the updater should run without further prompts for authentification - it uses the "regular" cookie-driven authentification that the entire coppermine script is using</li>
+	<li>If you're not logged in as admin or if the coppermine core components no longer work without running the updater first (usually happens when upgrading major coppermine versions), you are prompted for credentials - enter the coppermine admin account details that you set up when installing coppermine in the first place</li>
+	<li>If you can not remember your standalone coppermine admin credentials, you can supply your mysql credentials - you needed them when you installed coppermine in the first place. If you have forgotten them, read them up in the file that is used to store the mysql database connection details: download <tt class="code">include/config.inc.php</tt> from your webserver to your client and then edit it with a plain text editor - you should see the mysql credentials in that file. If they have changed, your webhost should be able to help you retrieving them.</li>
+	<li>If everything else fails, there is a toggle inside the code of the update script that you can use to skip authentification - to switch that toggle, download the update script (<tt class="code">update.php</tt>) from your webserver to your client, find <tt class="code">// define('SKIP_AUTHENTICATION', true);</tt> and replace with <tt class="code">define('SKIP_AUTHENTICATION', true);</tt>. Safe your changes and upload the edited file to your webserver, overwriting the version that already resides on your server. Remember to restore the file as it was after having successfully performed the update.</li>
+</ul>
+<a name="updater_when"></a><h3>When must the updater be run?<a href="#updater_when" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>You need to run the updater every time you upgrade/update, i.e. each time the file <tt class="code">sql/update.sql</tt> is being replaced with a new version.</p>
+<p>It doesn't hurt to run the updater several times in a row, so if you're in doubt, run it again.</p>
+<a name="updater_end"></a>
 
 <a name="versioncheck"></a><h2>L'outil de vérification de version<a href="#versioncheck" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Depuis la publication de cpg1.3.2 Coppermine dispose d'un outil complémentaire de vérification de version pour vous aider à résoudre les problèmes lors des mises à jour facilement. Pour lancer le vérificateur de version, ajoutez simplement <tt class="code">versioncheck.php</tt> dans la barre d'adresse de votre navigateur après vous être identifié en tant qu'administrateur dans votre galerie Coppermine (exemple: <tt class="code">http://votresite.com/votre_repertoire_coppermine/versioncheck.php</tt>). avec la version 1.5.x, vous pouvez lancer l'utilitaire de vérification de version depuis le <a href="admin_menu.htm#admin_menu">menu administrateur</a>.</p>

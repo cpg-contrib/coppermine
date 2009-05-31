@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Themes - Coppermine Photo Gallery - Documentation &amp; Manuel</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="fr" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Coppermine est livré avec un moteur puissant qui vous permet de créer votr epropre thème, donnat à votr egalerie un aspect identique à l'ensemble de votre site. Les autres applications les appellent skins ou templates, nous les appellerons themes." />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.1
+  $Revision: 5796 $
+  $LastChangedBy: gaugau $
+  $Date: 2009-03-31 09:42:58 +0200 (mar., 31 mars 2009) $
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+  cpgDocHeader();
+</script>
+<div id="toc">
+<script type="text/javascript">
+  cpgDocToc();
+</script>
+<noscript>
+<a href="toc.htm">Table des matières </a>
+</noscript>
+</div>
+
+
+<a name="theme"></a>
+<h1>Thèmes<a href="#theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Coppermine est livré avec un moteur puissant qui vous permet de  <a href="theme_create.htm#theme_create">créer votre propre thème</a>, en donnant à votre galerie un look unique qui correspond à la présentation de l'ensemble de votre site. D'autres applications les appellent &quot;skins&quot;ou &quot;templates&quot;, nous les appelons &quot;thèmes&quot;.</p>
+<p>Il y a un nombre (en évolution constante)   <a href="theme_user-contributions.htm#theme_user-contributions">d'utilisateurs contribuant à la création de thèmes</a> qui peuvent être visualisés et téléchargés à partir du site web de Coppermine.</p>
+
+<a name="theme_builtin"></a>
+<h2>Les thèmes livrés avec Coppermine<a href="#theme_builtin" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Le package complet de Coppermine est livré avec plusieurs thèmes préfabriqués:</p>
+<ul>
+  <li><strong>Classic</strong><br />
+  <img src="../images/themes/thumb_classic.png" width="100" height="75" border="0" alt="" title="Classic" /><br />
+  Le thème par défaut avec un fond blanc et un menu horizontal.</li>
+  <li><strong>Eyeball</strong><br />
+  <img src="../images/themes/thumb_eyeball.png" width="100" height="75" border="0" alt="" title="Eyeball" /><br />
+  Un thème avec un fond sombre et un menu horizontal qui s'étend pour que l'utilisateur dispose d'une meilleure intéraction.</li>
+  <li><strong>Fruity</strong><br />
+  <img src="../images/themes/thumb_fruity.png" width="100" height="75" border="0" alt="" title="Fruity" /><br />
+  Un thème coloré avec menu vertical à gauche.</li>
+  <li><strong>Hardwired</strong><br />
+  <img src="../images/themes/thumb_hardwired.png" width="100" height="75" border="0" alt="" title="Hardwired" /><br />
+  Un thème avec un fond sombre et une petite taille de police qui fonctionne bien pour des espaces restreints et de petites résolutions. Conçu avec deux menus horizontaux.</li>
+  <li><strong>IGames</strong><br />
+  <img src="../images/themes/thumb_igames.png" width="100" height="75" border="0" alt="" title="igames" /><br />
+  Un thème sombre avec des effets 3D et un menu horizontal.</li>
+  <li><strong>Mac OX X</strong><br />
+  <img src="../images/themes/thumb_mac_ox_x.png" width="100" height="75" border="0" alt="" title="Mac OX X" /><br />
+  Un thème clair avec un menu horizontal extensible  qui ressemble à l'apparence d'un Mac.</li>
+  <li><strong>Project VII</strong><br />
+  <img src="../images/themes/thumb_project_vii.png" width="100" height="75" border="0" alt="" title="Project VII" /><br />
+  Un thème à fond blanc disposant d'un menu horizontal extensible.</li>
+  <li><strong>Rainy Day</strong><br />
+  <img src="../images/themes/thumb_rainy_day.png" width="100" height="75" border="0" alt="" title="Rainy Day" /><br />
+  Un thème à fond sombre et bords arrondis.</li>
+  <li><strong>Sample</strong><br />
+  Le thème Sample est identique au thème Classic. Il n'apparaîtra pas dans la sélection des thèmes- il est conçu comme <a href="theme_theme_php.htm#theme_sample">un modèle à copier</a> pour la création ou la modification de votre propre thème.</li>
+  <li><strong>Waterdrop</strong><br />
+  <img src="../images/themes/thumb_water_drop.png" width="100" height="75" border="0" alt="" title="Waterdrop" /><br />
+  Un thème à fond clair et un menu horizontal conventionnel. </li>
+</ul>
+
+<a name="theme_upgrading"></a>
+<h2>Mise à jour de votre thème personnalisé <a href="#theme_upgrading" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Pour mettre un jour un thème personnalisé à partir  cpg1.4.x vers la version 1.5.x, Lisez la <a href="theme_upgrade_14x-15x.htm">documentation de mise à jour des thèmes</a>.</p>
+<p>Si vous mettez à jour  cpg1.3.x vers cpg1.5.x, vous devrez procéder à la mise à jour en deux étapes: d'abord, vous devrez mettre à jour votre thème à partir de <a href="theme_upgrade_13x-14x.htm"> cpg1.3.x vers cpg1.4.x</a> et ensuite de <a href="theme_upgrade_14x-15x.htm">cpg1.4.x vers cpg1.5.x</a></p>
+<p>Vous ne devez mettre à jour votre thème personnalisé que lors d'une mise à niveau majeure entre les versions  (par exemple, de cpg1.3.x à cpg1.4.x ou de cpg1.4.x à cpg1.5.x), que d'une version majeure à l'autre, le moteur de thèmes étant sujets à changements. Quand vous faites seulement une mise à niveau mineure (par exemple, de cpg1.5.x à cpg1.5.y), vous n'avez pas à mettre à jour votre thème personnalisé. </p>
+<p>Les thèmes principaux livrés avec le package Coppermine n'ont pas besoin d'être mis à jour , comme ils seront remplacés durant la mise à niveau, ils contiendront déjà tous les changements. Toutefois: si  votre thème personnalisé est basé sur l'un des thèmes principaux (par exemple, le thème Classic), prêtez attention à d'éventuels changements. Comme suggéré ci-dessous, il est conseillé de renommer votre thème personnalisé afin de s'assurer qu'il n'est pas accidentellement écrasé lors de la mise à niveau. </p>
+<a name="theme_upgrading_end"></a>
+
+<a name="theme_files"></a>
+<h2>Contenu d'un thème<a href="#theme_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Les thèmes Coppermine sont stockés dans le répertoire &quot;themes&quot;, chaque thèmes se composent de trois fichiers principaux : </p>
+<ul>
+  <li>&quot;<strong><a href="theme_template.htm">template.html</a></strong>&quot; le modèle principal en HTML.</li>
+  <li>&quot;<strong><a href="theme_style_css.htm">style.css</a></strong>&quot; la feuille de style associée au modèle. </li>
+  <li>&quot;<strong><a href="theme_theme_php.htm">theme.php</a></strong>&quot;le fichier de thème en PHP. </li>
+</ul>
+<p>En outre , il y a habituellement un dossier nommé &quot;images&quot; qui se trouve dans le dossier themes (themes/nom_du_thèmes/images/) qui contient les images utilisées pour ce thème précis (logos, bullets, backgrounds et autres ressources graphiques nécessaires).</p>
+<a name="theme_files_end"></a>
+
+<a name="theme_engine"></a>
+<h2>Comment fonctionne le moteur de thèmes <a href="#theme_engine" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Quand une page de Coppermine est analisée , le code de base appelera des fonctions de theme. Si ces fonctions existent dans votre thèmes personnalisé, elles seront prises en compte. Si une fonction n'éxiste pas dans votre thème personnalisé, la fonction de base sera utilisée. Les fonctions de base (Le comportement du thème par défaut si vous préférez) se trouvent dans includes/themes.inc.php. Par conséquent, vous ne devez aucunement modifier includes/themes.inc.php,  sans quoi vos modifications seraient perdues lors de prochaines mises à jour. Tout ce qui pourra être accompli par l'édition d'include/themes.inc.php peut être accompli par l'édition de themes/votre_thème/theme.php si bien que tout ce qui sera défini dans votre thème peronnalisé prendra le pas sur les fonctions du thème de base. </p>
+<a name="theme_engine_end"></a>
+
+<a name="theme_whats_next"></a>
+<h2>Etape suivante ?<a href="#theme_whats_next" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Il existe, étape par étape, des instructions fournies dans la section  &quot;<a href="theme_create.htm">Création de votre thème personnalisé </a>&quot; que vous devriez lire pour plus de détails. Faites attention également aux sections qui traitent de la &quot;<a href="theme_copyright.htm">Clause de non-responsabilité des droits d'auteurs dans le pied de page </a>&quot; et la section &quot;<a href="php-content.htm">Contenu dynamique (PHP-driven)</a>&quot;.</p>
+
+
+<a name="theme_end"></a>
+
+<script type="text/javascript">
+  cpgDocFooter();
+  dateRevision(' $LastChangedDate: 2009-03-31 09:42:58 +0200 (mar., 31 mars 2009) $ ', ' $Revision: 5796 $ ');
+</script>
+
+</body>
+</html>
