@@ -3088,6 +3088,12 @@
     <hash>e05ea636acfcc66d827bda25c9bda14d</hash>
   </element>
   <element>
+    <fullpath>images/browser/flock.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>e05ea636acfcc66d827bda25c9bda14d</hash>
+  </element>
+  <element>
     <fullpath>images/browser/fpexpress.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -3148,6 +3154,12 @@
     <hash>5e3ce51b9e81baff77b632f189cfcc0f</hash>
   </element>
   <element>
+    <fullpath>images/browser/iceweasel.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>e05ea636acfcc66d827bda25c9bda14d</hash>
+  </element>
+  <element>
     <fullpath>images/browser/java.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -3158,6 +3170,12 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>f13e60b925ee6e1510d55a5bef238cd3</hash>
+  </element>
+  <element>
+    <fullpath>images/browser/kazehakase.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>e05ea636acfcc66d827bda25c9bda14d</hash>
   </element>
   <element>
     <fullpath>images/browser/kmeleon.png</fullpath>
@@ -3206,6 +3224,12 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>7d894911d134cfb36d5698764b04cac1</hash>
+  </element>
+  <element>
+    <fullpath>images/browser/minefield.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>e05ea636acfcc66d827bda25c9bda14d</hash>
   </element>
   <element>
     <fullpath>images/browser/motorola.png</fullpath>
@@ -3416,6 +3440,12 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>b3d978ed0a3ec6f3ebcf7d648b2ba554</hash>
+  </element>
+  <element>
+    <fullpath>images/browser/seamonkey.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>e05ea636acfcc66d827bda25c9bda14d</hash>
   </element>
   <element>
     <fullpath>images/browser/sharp.png</fullpath>

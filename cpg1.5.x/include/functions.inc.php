@@ -2199,6 +2199,10 @@ function cpg_determine_client()
         }
     } elseif (preg_match('#Epiphany#i', $server_agent)) {
         $browser = 'Epiphany';
+    } elseif (preg_match('#Flock#i', $server_agent)) {
+        $browser = 'Flock';
+    } elseif (preg_match('#SeaMonkey#i', $server_agent)) {
+        $browser = 'SeaMonkey';
     } elseif (preg_match('#Phoenix#i', $server_agent)) {
         $browser = 'Phoenix';
     } elseif (preg_match('#Firebird#i', $server_agent)) {
@@ -2263,7 +2267,16 @@ function cpg_determine_client()
         $browser = 'W3C';
     } elseif (preg_match('#K-Meleon#i', $server_agent)) {
         $browser = 'K-Meleon';
+    } elseif (preg_match('#Iceape#i', $server_agent)) {
+        $browser = 'Iceape';
+    } elseif (preg_match('#Iceweasel#i', $server_agent)) {
+        $browser = 'Iceweasel';
+    } elseif (preg_match('#Kazehakase#i', $server_agent)) {
+        $browser = 'Kazehakase';
+    } elseif (preg_match('#Minefield#i', $server_agent)) {
+        $browser = 'Minefield';
     }
+    // Information partially taken from http://www.useragentstring.com/
 
     //Code to get the search string if the referrer is any of the following
     $search_engines = array(
