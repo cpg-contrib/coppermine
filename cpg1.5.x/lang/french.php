@@ -69,7 +69,7 @@ $lang_meta_album_names['favpics'] = 'Photos Préférées';
 $lang_meta_album_names['datebrowse'] = 'Navigation par date'; //cpg1.5
     
 $lang_errors['access_denied'] = 'Vous n\'avez pas la permission d\'accéder à cette page.';
-$lang_errors['invalid_form_token'] = 'A valid form token could not be found.'; //cpg1.5
+$lang_errors['invalid_form_token'] = 'Une balise de formulaire valise n\'a pas pu �tre trouv�e.'; //cpg1.5
 $lang_errors['perm_denied'] = 'Vous n\'avez pas la permission d\'effectuer cette opération.';
 $lang_errors['param_missing'] = 'Script appelé sans les paramètres nécessaires.';
 $lang_errors['non_exist_ap'] = 'L\'Album/la photo demandé(e) n\'existe pas!';
@@ -339,7 +339,7 @@ $lang_get_pic_data['n_views'] = 'vu %s fois';
 $lang_get_pic_data['n_votes'] = '(%s votes)';
 
 $lang_cpg_debug_output['debug_info'] = 'Infos de débogage';
-$lang_cpg_debug_output['debug_output'] = 'Debug Output'; // cpg1.5
+$lang_cpg_debug_output['debug_output'] = 'Sortie de débogage'; // cpg1.5
 $lang_cpg_debug_output['select_all'] = 'Tout sélectionner';
 $lang_cpg_debug_output['copy_and_paste_instructions'] = 'Si vous souhaitez soumettre une demande d\'assistance dans le Forum de support de Coppermine, copier/collez ces informations de débogage dans votre message. Assurez-vous de remplacer tous les mots de passe, même codés, par \'***\' avant de poster votre message. IMPORTANT : NE POSTEZ QUE SI LE SUPPORT COPPERMINE VOUS LE DEMANDE.';
 $lang_cpg_debug_output['debug_output_explain'] = 'Note : Ceci n\'est qu\'une information, ce qui ne veut pas dire qu\'il y ait une erreur dans la Galerie.'; // cpg1.5
@@ -453,6 +453,7 @@ $lang_albmgr_php['my_gallery'] = '* Ma Galerie *';
 $lang_albmgr_php['no_category'] = '* Pas de Catégorie *';
 $lang_albmgr_php['select_category'] = 'Sélectionnez une categorie';
 $lang_albmgr_php['category_change'] = 'Si vous changez la catégorie, vos changements seront perdus!'; // cpg1.5
+$lang_albmgr_php['page_change'] = 'Si vous suivez ce lien, vos modifications seront perdues!'; // cpg1.5
 $lang_albmgr_php['cancel'] = 'Annuler'; // cpg1.5
 $lang_albmgr_php['submit_reminder'] = 'Les changements dans l\'ordre ne sont pas sauvegardés tant que vous n\'avez pas cliqué sur &quot;Appliquer les changements&quot;.'; // cpg1.5
 }
@@ -674,7 +675,7 @@ $lang_admin_php['view_logs'] = 'Voir les Logs';
 $lang_admin_php['click_expand'] = 'Cliquer sur un nom de Section pour Afficher';
 $lang_admin_php['click_collapse'] = 'Cliquer sur un nom de Section pour Réduire'; // cpg1.5
 $lang_admin_php['expand_all'] = 'Tout Afficher';
-$lang_admin_php['toggle_all'] = 'Toggle All'; // cpg1.5
+$lang_admin_php['toggle_all'] = 'Inverser tout'; // cpg1.5
 $lang_admin_php['notice1'] = '(*) Cette Configuration ne doit pas être changée si vous avez déjà des fichiers dans votre Base de Données.'; // - (relocated)
 $lang_admin_php['notice2'] = '(**) Si vous changez cette Configuration, seuls les nouveaux fichiers ajoutés seront concernés, il est donc conseillé de ne pas la modifier si vous avez déjà des fichiers. Vous pouvez cependant appliquer les modifications aux fichiers existant à l\'aide des &quot;<a href="util.php">Outils d\'Administration</a> (redimensionner les images)&quot; depuis le Menu d\'Administration.'; //- (relocated)
 $lang_admin_php['notice3'] = '(***) Tous les Logs sont écrits en Anglais.'; // - (relocated)
@@ -949,9 +950,9 @@ $lang_admin_php['warning_dont_submit'] = 'Si vous n\'êtes pas sur de l\'impact 
 $lang_admin_php['menu_only'] = 'uniquement dans les menus'; // cpg1.5
 $lang_admin_php['everywhere'] = 'partout'; // cpg1.5
 $lang_admin_php['manage_languages'] = 'Gérez les langues'; // cpg1.5
-$lang_admin_php['form_token_lifetime'] = 'Form token lifetime'; // cpg1.5
-$lang_admin_php['seconds'] = 'Seconds'; // cpg1.5
-$lang_admin_php['display_reset_boxes_in_config'] = 'Display reset boxes in config'; // cpg1.5
+$lang_admin_php['form_token_lifetime'] = 'Durée de vie des balises formulaires'; // cpg1.5
+$lang_admin_php['seconds'] = 'Secondes'; // cpg1.5
+$lang_admin_php['display_reset_boxes_in_config'] = 'Affiche les cases de remise à la valeur par défaut dans la configuration'; // cpg1.5
 }
 
 
@@ -1418,9 +1419,9 @@ if (defined('INDEX_PHP')){
   $lang_index_php['welcome'] = 'Bienvenue !';
 
   $lang_album_admin_menu['confirm_delete'] = 'Voulez-vous VRAIMENT Supprimez cet Album ? \\nToutes les photos et tous les Commentaires seront bien entendu perdus.';//js-alert
-  $lang_album_admin_menu['delete'] = 'SUPPRIMEr';
+  $lang_album_admin_menu['delete'] = 'SUPPRIMER';
   $lang_album_admin_menu['modify'] = 'PROPRIETES';
-  $lang_album_admin_menu['edit_pics'] = 'MODIFIEr LES PHOTOS';
+  $lang_album_admin_menu['edit_pics'] = 'MODIFIER LES PHOTOS';
   $lang_album_admin_menu['cat_locked'] = 'Ces Albums sont verrouillés pour les modifications'; // cpg 1.5.x
 
   $lang_list_categories['home'] = 'Accueil';
@@ -2610,8 +2611,8 @@ if (defined('CORE_PLUGIN')) {
   $lang_plugin_php['onlinestats_minute'] = 'minutes';
   $lang_plugin_php['onlinestats_remove'] = 'Effacez la table utilisée pour stocker les données du plugin ?';
   $lang_plugin_php['link_target_name'] = 'Cible du lien';
-  $lang_plugin_php['link_target_description'] = 'Changes the way external links are being opened: when this plugin is enabled, all links that contain the attribute rel="external" will open in a new window (instead of the same window).';
-  $lang_plugin_php['link_target_extra'] = 'This plugin has an impact mostly on the "Powered by Coppermine" link at the bottom of the gallery output.';
+  $lang_plugin_php['link_target_description'] = 'Change la manière dont les liens externes sont ouverts: Si ce plugin est activé, tous les liens contenant l\'atribut rel="external" seront ouverts dans une nouvelle fenêtre (au lieu de la même).';
+  $lang_plugin_php['link_target_extra'] = 'Ce plugin à surtout un impact sur le lien "Powered by Coppermine" au bas de l\'écran de la galerie.';
   $lang_plugin_php['link_target_recommendation'] = 'It is recommended not to use this plugin to avoid bossing your users around: opening links in a new window means bossing around your site visitors.';
 }
 
