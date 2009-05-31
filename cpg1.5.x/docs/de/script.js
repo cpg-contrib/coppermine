@@ -34,7 +34,7 @@ var doc_toc = '';
 doc_toc += '<div id="toc_collapsed">\n';
 doc_toc += '<h6><a href="toc.htm">Inhaltsverzeichnis</a></h6>\n';
 doc_toc += 'Bewege Deine Maus über dieses Feld\n';
-doc_toc += '<div align="center"><img src="../../images/icons/expand.png"></div>\n';
+doc_toc += '<div align="center"><img src="../../images/icons/downdown.png" border="0" width="10" height="10" alt="" /></div>\n';
 doc_toc += '</div>\n';
 doc_toc += '<div id="toc_expanded" style="display:none;">\n';
 doc_toc += '<h6>Inhaltsverzeichnis (<a href="../index.htm">Sprachauswahl</a>)</h6>\n';

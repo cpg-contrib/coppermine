@@ -34,7 +34,7 @@ var doc_toc = '';
 doc_toc += '<div id="toc_collapsed">\n';
 doc_toc += '<h6><a href="toc.htm">Table des matières</a></h6>\n';
 doc_toc += 'Passez votre souris ici pour afficher \n';
-doc_toc += '<div align="center"><img src="../../images/icons/expand.png"></div>\n';
+doc_toc += '<div align="center"><img src="../../images/icons/downdown.png" border="0" width="10" height="10" alt="" /></div>\n';
 doc_toc += '</div>\n';
 doc_toc += '<div id="toc_expanded" style="display:none;">\n';
 doc_toc += '<h6>Table des matières (<a href="../index.htm">Sélection de la langue de la documentation</a>)</h6>\n';
