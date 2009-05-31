@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-05-31 [D] Added expand arrow in the table content{Frantz}
 2009-05-31 [A] Added browser agents for stats {GauGau}
 2009-05-30 [D] Hiding table of content in docs if unused {GauGau}
 2009-05-30 [A] Added toggle in config that disables the reset to default checkboxes on the config screen for performance reasons {GauGau}
