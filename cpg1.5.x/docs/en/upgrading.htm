@@ -80,18 +80,34 @@
 
 <a name="upgrade_any"></a><h2>Steps needed to perform when upgrading Coppermine (from any version)<a href="#upgrade_any" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul>
-    <li>Download the most recent stable version existing in the download section of the <a href="http://coppermine-gallery.net/">official Coppermine homepage</a><br />
-    <span class="small">(Don't assume that you have the most recent version, especially if you have installed Coppermine using a control panel app provided by your webhost. The coppermine dev team doesn't recommend using such <a href="auto-installers.htm#auto-installers">auto-installers</a> - please download the original from <i>our</i> site)</span></li>
-    <li>Make a backup (dump) of your database<br />
-    <span class="small">(Recommended tools for creating a database dump are <a href="http://mysqldumper.de/en/" rel="external" class="external">mySqlDumper</a> or <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a> - refer to the section <a href="dev_tools.htm#dev_tools_database">Tools recommended by the devs: Database manipulation</a> for details).<br />
-    Creating a backup is not mandatory in terms of functionality, but just a precaution in case anything should go wrong. It's advisable to make frequent backups anyway.</span></li>
-    <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy as a safety precaution if anything should go wrong.<br />
-    <span class="small">Usually, you just download your entire coppermine folder to your local hard drive or any other safe backup location using your <a href="dev_tools.htm#dev_tools_ftp_client"><abbr title="File Transfer Protocol">FTP</abbr> app</a>. A fresh Coppermine package doesn't contain a config file anyway (that file has being created during install on your server), so you can't actually replace an existing config file with an empty one from the package; again, the backup is only a safety precaution.</span></li>
-    <li>Unpack the coppermine package you downloaded into a temporary folder on your local hard drive (preserving the folder structure within the package)</li>
-    <li><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories, making sure not to overwrite your anycontent.php file or the albums directory.<br />
-    <span class="small">In fact, you could upload the albums folder as well - the one that is contained in the package is empty anyway. The recommendation not to upload this folder is only meant as a pre-caution for some users who have "funny" settings for their FTP apps: some exotic FTP applications delete folders existing on the server and then re-create an empty folder on the server-side. This would of course be a disaster, as you would lose all your uploaded files in your gallery. However, the number of FTP apps that is set up in that strange way is small and therefor, it won't hurt for most to upload the albums folder as well. If you're not sure, use one of the <a href="dev_tools.htm#dev_tools_ftp_client">FTP clients recommended by the devs</a>.</span></li>
-    <li>Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. <tt class="code">http://yourdomain.tld/your_coppermine_folder/update.php</tt>). This will update your coppermine install by making all necessary changes in the database.</li>
-    <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme_upgrade_14x-15x.htm">theme-upgrade guide</a>.</li>
+    <li>
+	    <span class="detail_head_collapsed">Download the most recent stable version existing in the download section of the official Coppermine homepage</span>
+	    <div class="detail_body border1">Don't assume that you have the most recent version, especially if you have installed Coppermine using a control panel app provided by your webhost. The coppermine dev team doesn't recommend using such <a href="auto-installers.htm#auto-installers">auto-installers</a> - please download the original from the <a href="http://coppermine-gallery.net/">official Coppermine homepage</a>.<br</div>
+    </li>
+    <li>
+	    <span class="detail_head_collapsed">Make a backup (dump) of your database</span>
+	    <div class="detail_body border1">Recommended tools for creating a database dump are <a href="http://mysqldumper.de/en/" rel="external" class="external">mySqlDumper</a> or <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a> - refer to the section <a href="dev_tools.htm#dev_tools_database">Tools recommended by the devs: Database manipulation</a> for details.<br />
+	    Creating a backup is not mandatory in terms of functionality, but just a precaution in case anything should go wrong. It's advisable to make frequent backups anyway.</div>
+    </li>
+    <li>
+	    <span class="detail_head_collapsed">Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy as a safety precaution if anything should go wrong.</span>
+	    <div class="detail_body border1">Usually, you just download your entire coppermine folder to your local hard drive or any other safe backup location using your <a href="dev_tools.htm#dev_tools_ftp_client"><abbr title="File Transfer Protocol">FTP</abbr> app</a>. A fresh Coppermine package doesn't contain a config file anyway (that file has being created during install on your server), so you can't actually replace an existing config file with an empty one from the package; again, the backup is only a safety precaution.</div>
+    </li>
+    <li>
+	    Unpack the coppermine package you downloaded into a temporary folder on your local hard drive (preserving the folder structure within the package)
+    </li>
+    <li>
+	    <span class="detail_head_collapsed"><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories, making sure not to overwrite your anycontent.php file or the albums directory.</span>
+	    <div class="detail_body border1">In fact, you could upload the albums folder as well - the one that is contained in the package is empty anyway. The recommendation not to upload this folder is only meant as a pre-caution for some users who have "funny" settings for their FTP apps: some exotic FTP applications delete folders existing on the server and then re-create an empty folder on the server-side. This would of course be a disaster, as you would lose all your uploaded files in your gallery. However, the number of FTP apps that is set up in that strange way is small and therefor, it won't hurt for most to upload the albums folder as well. If you're not sure, use one of the <a href="dev_tools.htm#dev_tools_ftp_client">FTP clients recommended by the devs</a>.</div>
+    </li>
+    <li>
+	    <span class="detail_head_collapsed">Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. <tt class="code">http://yourdomain.tld/your_coppermine_folder/update.php</tt>).</span>
+	    <div class="detail_body border1">This will update your coppermine install by making all necessary changes in the database.</div>
+    </li>
+    <li>
+	    <span class="detail_head_collapsed">If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme</span>
+	    <div class="detail_body border1">Please refer to the <a href="theme_upgrade_14x-15x.htm">theme-upgrade guide</a> for details.</div>
+    </li>
 </ul>
 <p>To make this absolutely clear:</p>
 <p class="cpg_message_error">there is no such thing as a separate upgrade package - coppermine always comes as a complete package that can be used both for a fresh install as well as an upgrade.</p>
