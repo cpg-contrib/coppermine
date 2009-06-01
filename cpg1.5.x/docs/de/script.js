@@ -92,7 +92,7 @@ doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="install_screen.htm" class="en">Der Installations-Assistent</a></li>\n';
 doc_toc += '      <li><a href="auto-installers.htm" class="en">Automatische Installation</a></li>\n';
 doc_toc += '      <li><a href="install_faq.htm" class="en">Installations FAQ</a></li>\n';
-doc_toc += '      <li><a href="uninstall.htm" class="en">De-Installation</a></li>\n';
+doc_toc += '      <li><a href="uninstall.htm">De-Installation</a></li>\n';
 doc_toc += '    </ul>\n';
 doc_toc += '  </li>\n';
 doc_toc += '  <li><a href="upgrading.htm" class="en">Aktualisierung</a>\n';
