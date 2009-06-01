@@ -44,7 +44,7 @@ doc_toc += '    <ul>\n';
 doc_toc += '      <li><a href="index.htm#about">A Propos de Coppermine</a></li>\n';
 doc_toc += '      <li><a href="index.htm#about_documentation">A propos de cette Documentation</a></li>\n';
 doc_toc += '      <li><a href="index.htm#features">Fonctions</a></li>\n';
-doc_toc += '      <li><a href="quickstart.htm#about"class="en">Guide de Démarrage Rapide</a></li>\n';
+doc_toc += '      <li><a href="quickstart.htm#about">Guide de Démarrage Rapide</a></li>\n';
 doc_toc += '      <li><a href="toc.htm">Table des Matières</a></li>\n';
 doc_toc += '      <li><a href="requirements.htm">Minimum requis</a></li>\n';
 doc_toc += '      <li><a href="testing.htm">Version Alpha/Beta (Test)!</a></li>\n';
