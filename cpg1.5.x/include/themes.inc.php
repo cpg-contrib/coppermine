@@ -2802,7 +2802,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 
     $tabs_html = $display_tabs ? create_tabs($nbThumb, $page, $total_pages, $theme_thumb_tab_tmpl) : '';
 
-    if (!GALLERY_ADMIN_MODE && stripos($template_fav_thumb_view_title_row, 'admin_buttons') !== false) {
+    if (!GALLERY_ADMIN_MODE) {
         template_extract_block($template_thumb_view_title_row, 'admin_buttons');
     }
     // The sort order options are not available for meta albums

@@ -22,9 +22,18 @@ define('LOGOUT_PHP', true);
 
 require('include/init.inc.php');
 
+if ($superCage->server->testip('REMOTE_ADDR')) {
+    $ip = $superCage->server->getRaw('REMOTE_ADDR');
+} else {
+    $ip = 'Unknown';
+}
+
 if (!USER_ID) {
+    log_write("Logout attempt failed because visitor is not logged in. From IP $ip on " . localised_date(-1, $lang_date['log']), CPG_SECURITY_LOG);
     cpg_die(ERROR, $lang_logout_php['err_not_logged_in'], __FILE__, __LINE__);
 }
+
+log_write('The user ' . $USER_DATA['user_name'] . ' (user ID ' . $USER_DATA['user_id'] . ") logged out from $ip on " . localised_date(-1, $lang_date['log']), CPG_ACCESS_LOG);
 
 if (defined('UDB_INTEGRATION')) {
     $cpg_udb->logout_page();

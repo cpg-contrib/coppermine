@@ -39,13 +39,19 @@ if (USER_ID !='') {
   show_memberlist;
  }
  else {
-  $lim_user = 2;
-  cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+	$lim_user = 2;
+    if ($CONFIG['log_mode'] != 0) {
+            log_write('Denied privileged access to usermgr.php for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
+    }
+	cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
  }
 }
 else {
- $lim_user = 3;
- cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+	$lim_user = 3;
+    if ($CONFIG['log_mode'] != 0) {
+            log_write('Denied privileged access to usermgr.php for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
+    }
+	cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
 function show_memberlist()
@@ -180,7 +186,9 @@ function list_users($search = '')
 
     $user_count = $cpg_udb->get_user_count();
 
-    if (!$user_count) cpg_die(CRITICAL_ERROR, $lang_usermgr_php['err_no_users'], __FILE__, __LINE__);
+    if (!$user_count) {
+    	cpg_die(CRITICAL_ERROR, $lang_usermgr_php['err_no_users'], __FILE__, __LINE__);
+    }
 
     $user_per_page = 25;
     if ($superCage->get->keyExists('page')) {
@@ -722,7 +730,9 @@ function edit_user($user_id)
 
     $sql = "SELECT * FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$user_id'";
     $result = cpg_db_query($sql);
-    if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_usermgr_php['err_unknown_user'], __FILE__, __LINE__);
+    if (!mysql_num_rows($result)) {
+    	cpg_die(CRITICAL_ERROR, $lang_usermgr_php['err_unknown_user'], __FILE__, __LINE__);
+    }
     $user_data = mysql_fetch_array($result);
     mysql_free_result($result);
 

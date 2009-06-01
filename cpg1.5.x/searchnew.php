@@ -24,6 +24,9 @@ define('DB_INPUT_PHP', true);
 require('include/init.inc.php');
 
 if (!GALLERY_ADMIN_MODE) {
+    if ($CONFIG['log_mode'] != 0) {
+            log_write('Denied privileged access to searchnew.php for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
+    }
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 

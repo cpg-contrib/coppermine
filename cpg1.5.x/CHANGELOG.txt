@@ -25,7 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2009-06-01 [D] Translated Quickstart section in french and eleted reference to the banned user group who doesnt exist anymore in the english qickstart.htm file {Frantz}
+2009-06-01 [A] Added log entries for attempts to access pages that the current user doesn't have access to {GauGau}
+2009-06-01 [D] Translated Quickstart section in french and deleted reference to the banned user group who doesnt exist anymore in the english qickstart.htm file {Frantz}
 2009-06-01 [O] Added memory_get_usage function {GauGau}
 2009-05-31 [M] Updating French lang file {Frantz}
 2009-05-31 [D] Updating french documentation (added missing documents) {Frantz}

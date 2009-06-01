@@ -33,7 +33,10 @@ require_once('include/versioncheck.inc.php');
 
 
 if (!GALLERY_ADMIN_MODE) {
-  cpg_die($lang_common['error'], $lang_errors['access_denied'], __FILE__, __LINE__);
+    if ($CONFIG['log_mode'] != 0) {
+            log_write('Denied privileged access to versioncheck.php for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
+    }
+    cpg_die($lang_common['error'], $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
 // Sanitize the GET vars and populate the optionsArray --- start

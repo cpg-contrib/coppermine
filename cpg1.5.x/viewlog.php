@@ -38,7 +38,7 @@ function display_log_list()
                                 <tr>
                                         <td class="tableb">
                                                 {$folder_icon}&nbsp;<a href= "{$CPG_PHP_SELF}?log={$log['logname']}">{$log['logname']}</a>
-                                                &nbsp;&nbsp;&nbsp; ( <i>{$log['filesize']} KB</i> )
+                                                &nbsp;&nbsp;&nbsp; ( <em>{$log['filesize']} KB</em> )
                                         </td>
                                 </tr>
 EOT;
@@ -46,7 +46,6 @@ EOT;
             echo <<<EOT
                                 <tr>
                                         <td class="tableb" align="center">
-                                                <!--<input class="button" type="button" value="{$lang_viewlog_php['delete_all']}" name="dall" id="dall" onclick="window.location='viewlog.php?action=dall';" />-->
                                                 <button type="button" class="button" name="dall" value="{$lang_viewlog_php['delete_all']}" id="dall" onclick="window.location='viewlog.php?action=dall';">{$delete_all_icon}{$lang_viewlog_php['delete_all']}</button>
                                         </td>
                                 </tr>
@@ -58,7 +57,7 @@ EOT;
 
 function display_log($logname)
 {
-        global $lang_viewlog_php, $folder_icon, $delete_all_icon, $delete_this_icon, $view_icon;
+        global $lang_viewlog_php, $folder_icon, $delete_all_icon, $delete_this_icon, $view_icon, $LINEBREAK;
 
         echo <<<EOT
                 <tr>
@@ -70,11 +69,19 @@ function display_log($logname)
                 </tr>
                 <tr>
                         <td class="tableb">
-                                <pre>
+                                <ul>
 EOT;
+        ob_start();
         log_read($logname);
+        $log_array = explode('---' , ob_get_contents());
+        ob_end_clean();
+        foreach ($log_array as $log_entry) {
+        	if ($log_entry != '' && $log_entry != $LINEBREAK) {
+        		echo '<li>' . str_replace($LINEBREAK  , '<br />'.$LINEBREAK  , $log_entry) . '</li>' . $LINEBREAK;
+        	}
+        }
         echo <<<EOT
-                                </pre>
+                                </ul>
                         </td>
                 </tr>
                 <tr>
@@ -96,7 +103,7 @@ pageheader('Logs :: '.$log);
 if (!$USER_DATA['has_admin_access']) {
         // Write access attempt to 'security' log file
         if ($CONFIG['log_mode']) {
-                log_write('Denied privileged access to viewlog.php from user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
+                log_write('Denied privileged access to viewlog.php for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
         }
         cpg_die(CRITICAL_ERROR,$lang_errors['access_denied'], __FILE__,1);
 }

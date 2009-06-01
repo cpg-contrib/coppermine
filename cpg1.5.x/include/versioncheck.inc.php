@@ -599,13 +599,11 @@ function cpg_versioncheckCreateTextOnlyOutput($file_data_array) {
 
     // display formatted header data
     if ($displayOption_array['output'] == 'textarea') {
-      print <<< EOT
-      <script type="text/javascript">
-                document.write('<a href="javascript:HighlightAll(\'versioncheckdisplay.versioncheck_text\')" class="admin_menu">');
-                document.write("{$lang_versioncheck_php['select_all']}");
-                document.write('</a>');
-                document.write('<br />');
-      </script>
+      echo <<< EOT
+      <a href="javascript:HighlightAll('versioncheckdisplay.versioncheck_text')" class="admin_menu">
+      {$lang_versioncheck_php['select_all']}
+      </a><br />
+      
 EOT;
       print '<form name="versioncheckdisplay"><textarea name="versioncheck_text" rows="'.($file_data_count + 5).'" cols="60" class="textinput debug_text" style="width:98%;font-family:\'Courier New\',Courier,monospace;font-size:9px;">';
     }

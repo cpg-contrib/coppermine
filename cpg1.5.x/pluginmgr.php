@@ -30,7 +30,12 @@ define('CORE_PLUGIN', true);
 
 require('include/init.inc.php');
 
-if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!GALLERY_ADMIN_MODE) {
+    if ($CONFIG['log_mode'] != 0) {
+            log_write('Denied privileged access to pluginmgr.php for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
+    }
+	cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
 
 // write the plugin enable/disable change to the db
 if ($superCage->post->keyExists('update_config')) {

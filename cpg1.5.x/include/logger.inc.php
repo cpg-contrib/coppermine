@@ -51,7 +51,7 @@ function log_write( $text, $log = null ) {
 
         $fp = fopen($log,'a');
         fwrite($fp,$log_header);
-        fwrite($fp,$text.$LINEBREAK);
+        fwrite($fp,$text.$LINEBREAK.'---'.$LINEBREAK);
         fclose($fp);
 }
 
