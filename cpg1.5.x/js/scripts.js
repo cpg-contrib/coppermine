@@ -272,5 +272,5 @@ $(document).ready(function() {
       GB_show(t,this.href,470,600);
       return false;
     });
-	
+    $('.elastic').elastic();
 });

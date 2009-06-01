@@ -21,7 +21,6 @@ define('IN_COPPERMINE', true);
 define('EDITPICS_PHP', true);
 require('include/init.inc.php');
 
-js_include('js/jquery.elastic.js');
 js_include('js/edit_one_pic.js');
 
 // Define the icons

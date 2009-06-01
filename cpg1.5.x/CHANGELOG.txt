@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-06-01 [O] Added memory_get_usage function {GauGau}
 2009-05-31 [M] Updating French lang file {Frantz}
 2009-05-31 [D] Updating french documentation (added missing documents) {Frantz}
 2009-05-31 [D] Added expand arrow in the table content{Frantz}

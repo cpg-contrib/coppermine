@@ -3263,7 +3263,6 @@ function& cpg_lang_var($varname, $index = null)
 function cpg_debug_output()
 {
     global $USER, $USER_DATA, $CONFIG, $cpg_time_start, $query_stats, $queries, $lang_cpg_debug_output, $CPG_PHP_SELF, $superCage, $CPG_PLUGINS, $LINEBREAK;
-
     $time_end         = cpgGetMicroTime();
     $time             = round(($time_end - $cpg_time_start) * 1000);
     $query_count      = count($query_stats);
@@ -3295,7 +3294,7 @@ EOT;
             {$debug_phpinfo_link}{$debug_toggle_link}
             <span class="detail_body">
                 <button type="button" class="button" name="debug_output_select_all" style="display:none" id="debug_output_select_all" value="{$lang_cpg_debug_output['select_all']}" onclick="HighlightAll('debug.debugtext');">{$lang_cpg_debug_output['select_all']}</button><br />
-                <textarea  rows="10" cols="60" class="debug_text" name="debugtext">
+                <textarea  rows="10" cols="60" class="debug_text elastic" name="debugtext">
 EOT;
     echo "USER: ";
     echo $debug_underline;
@@ -3424,6 +3423,12 @@ EOT;
         echo cpg_phpinfo_conf_output("upload_max_filesize");
         echo cpg_phpinfo_conf_output("post_max_size");
         echo cpg_phpinfo_conf_output("memory_limit");
+        echo $LINEBREAK . 'Memory usage: ' . cpg_float2decimal(memory_get_usage()) . ' | ';
+        if (function_exists(memory_get_peak_usage)) {
+        	echo cpg_float2decimal(memory_get_peak_usage());
+        } else {
+        	echo 'n/a';
+        }
         echo $LINEBREAK . $debug_separate;
 
         if (ini_get('suhosin.post.max_vars')) {
@@ -3681,7 +3686,7 @@ function cpg_phpinfo_conf_output($search)
 {
     $pieces = cpg_phpinfo_conf($search);
 
-    return $pieces[0] . ' | ' . $pieces[1] . ' | ' . $pieces[2];
+    return $pieces[0] . ': ' . $pieces[1] . ' | ' . $pieces[2];
 } // function cpg_phpinfo_conf_output
 
 
@@ -5748,6 +5753,46 @@ function array_slice_preserve_keys($array, $offset, $length = null, $preserve_ke
         }
         // return
         return($result);
+    }
+}
+
+if (!function_exists('memory_get_usage')) {
+    // Only define function if it doesn't exist
+    function memory_get_usage()
+    {
+    	// All of the replacement methods assume that we can use exec, so let's test first if it isn't disabled
+    	$disabled_function = ini_get('disable_functions');
+    	if ($disabled_function != '') { // there actually are disabled functions, so let's loop through the list
+    		$disabled_function_array = explode(',', $disabled_function);
+    		$loopCounter = 0;
+    		foreach ($disabled_function_array as $disabled_value) {
+    			if (stristr($disabled_value, 'exec') != FALSE) {
+    				$loopCounter++;
+    			}
+    		}
+    		if ($loopCounter != 0) {
+    			// exec has been disabled, so we can't use any of the clever surrogates. Return nothing!
+    			return;
+    		}
+    	}
+        if (substr(PHP_OS,0,3)=='WIN') { // If we are running on Windows
+            $output = array();
+            exec( 'tasklist /FI "PID eq ' . getmypid() . '" /FO LIST', $output );
+            return preg_replace( '/[^0-9]/', '', $output[5] ) * 1024;
+        } else {
+            $pid = getmypid();
+            $output = array();
+            exec("ps -eo%mem,rss,pid | grep $pid", $output);
+            $output = explode('  ', $output[0]);
+            if ($output != '') {
+            	return $output[1] * 1024;
+            } else {
+            	unset($output);
+            	$output = array();
+            	exec("ps -o rss -p $pid", $output); 
+            	return $output[1] *1024;
+            }
+        }
     }
 }
 

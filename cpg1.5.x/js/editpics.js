@@ -33,7 +33,3 @@ function selectAll(d,box) {
         }
     }
 }
-
-$(document).ready (function() {
-	$('.elastic').elastic();
-});

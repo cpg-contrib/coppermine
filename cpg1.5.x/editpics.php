@@ -22,7 +22,6 @@ define('EDITPICS_PHP', true);
 
 require 'include/init.inc.php';
 
-js_include('js/jquery.elastic.js');
 js_include('js/editpics.js');
 
 // Define the icons
