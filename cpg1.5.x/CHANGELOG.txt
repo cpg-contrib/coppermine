@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-06-02 [A] Added config option to allow users rating their own files {eenemeenemuu}
 2009-06-02 [B] Fixed 'missing query' known issue {Nibbler}
 2009-06-02 [D] Added section to docs about debug_output {GauGau}
 2009-06-02 [D] Added URL parameter expand_all for docs to allow reference to anchors within sections that are collapsed out of the box {GauGau}

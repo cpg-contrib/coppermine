@@ -619,16 +619,6 @@ $config_data = array(
       'width'         => '2',
       'maxlength'     => '2',
     ),
-	'rate_own_files' => array(
-      'type'          => 'radio',
-      'default_value' => '0',
-      'help_link'     => 'f=configuration.htm&amp;as=admin_image_rate_own_files_start&amp;ae=admin_image_rate_own_files_end',
-      'options'       => array(
-                           $lang_common['no'],
-                           $lang_common['yes'] . ': ' . $lang_admin_php['debug_everyone'],
-                           $lang_common['yes'] . ': ' . $lang_admin_php['debug_admin'],
-                         ),
-    ),
   ),
   'comment_settings' => array(
     'filter_bad_words' => array(
@@ -1400,6 +1390,16 @@ $config_data = array(
       'type'          => 'checkbox',
       'default_value' => '0',
       'help_link'     => 'f=configuration.htm&amp;as=admin_user_enable_report&amp;ae=admin_user_enable_report_end',
+    ),
+	'rate_own_files' => array(
+      'type'          => 'radio',
+      'default_value' => '0',
+      'help_link'     => 'f=configuration.htm&amp;as=admin_user_rate_own_files_start&amp;ae=admin_user_rate_own_files_end',
+      'options'       => array(
+                           $lang_common['no'],
+                           $lang_common['yes'] . ': ' . $lang_admin_php['debug_everyone'],
+                           $lang_common['yes'] . ': ' . $lang_admin_php['debug_admin'],
+                         ),
     ),
   ),
   'custom_fields_user_profile' => array(
