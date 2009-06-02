@@ -195,8 +195,16 @@ Merci de ne pas agresser le traducteur sur le forum, mais proposez une traductio
     </li>
     <li><h4>Faites attention à la table des matières</h4>
     Une fois que vous avez terminé la traduction des fichiers que vous vouliez traduire (dans un monde idéal: tous les fichiers), regardez dans les fichiers <tt class="code">script.js</tt> et <tt class="code">toc.htm</tt>. Le premier fichier est le fichier JavaScript qui créera par la suite le menu de navigation dans toutes les pages, le deuxième est son équivalent en simple HTML (pour ceux qui ont désactivé JavaScript).<br />
-    dans script.js, descentez un peu dans le code jusqu'a ce que vous trouviez la strcture de navigation (qui commence avec la ligne <tt class="code">d = new dTree('d');</tt> - chacune des lignes suivante représente un élément de la navigation. Vous devez les traduire aussi (surtout les éléments que vous avez traduits). Bien sur, vous ne devez pas modifier les noms de fichiers (qui doivent rester en anglais), mais uniquement la partie texte. Si vous n'êtes pas sur de vous regardez dans une traduction existante comment cela a été fait.<br />
+    dans script.js, descentez un peu dans le code jusqu'a ce que vous trouviez la strcture de navigation (qui commence avec la ligne <tt class="code">var doc_toc = '';</tt> - chacune des lignes suivante représente un élément de la navigation. Vous devez les traduire aussi (surtout les éléments que vous avez traduits). Bien sur, vous ne devez pas modifier les noms de fichiers (qui doivent rester en anglais), mais uniquement la partie texte. Si vous n'êtes pas sur de vous regardez dans une traduction existante comment cela a été fait.<br />
     Il faut faire la même chose dans toc.htm, qui est la version HTML de "la table des matières"; à nouveau, ne traduisez que les étiquettes, mais pas le nom des ancres.</li>
+    <li>There are some strings inside script.js that need to be translated as well: search for
+    	<ul>
+    		<li><tt class="code">$('#docheader').text('Coppermine Photo Gallery v1.5.1: Documentation and Manual');</tt> and replace the actual text in that line (<tt class="code">Documentation and Manual</tt>) with the translation into your language</li>
+    		<li><tt class="code">overall_doc_footer += '&lt;a href="#top"&gt;Back to Top&lt;/a&gt;';</tt> and replace the actual text in that line (<tt class="code">Back to Top</tt>) with the translation into your language</li>
+    		<li><tt class="code">$('#doc_last_changed').text('About this document: ' + 'last changed on ' + lastChangeDate);</tt> and replace the actual text in that line (<tt class="code">About this document</tt> and <tt class="code">last changed on</tt>, but not <tt class="code">lastChangeDate</tt>) with the translation into your language</li>
+    		<li><tt class="code">$('#doc_revision').text(', SVN revision ' + revisionNumber);</tt> and replace the actual text in that line (<tt class="code">SVN revision</tt>) with the translation into your language. If you're not sure what a SVN revision is, leave that line alone!</li>
+    	</ul>
+    </li>
     <li><h4>Compressez votre traduction</h4>
     Enfin, lorsque votre traduction est terminée, compressez votre répertoire langue et attachez le zip dans le sujet correspondant du forum de Coppermine. Bien entendu, votre nom et l'adresse de votre site sera mentionnée dans la page des crédits, assurez vous de bien avoir donné tous les détails de ce que vous souhaitez voir apparaitre dans la liste des contributeurs.</li>
 </ul>

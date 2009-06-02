@@ -50,7 +50,7 @@ doc_toc += '      <li><a href="requirements.htm">Minimum requis</a></li>\n';
 doc_toc += '      <li><a href="testing.htm">Version Alpha/Beta (Test)!</a></li>\n';
 doc_toc += '      <li><a href="languages.htm">Langues</a>\n';
 doc_toc += '        <ul id="languages">\n';
-doc_toc += '          <li><a href="translation.htm">Guide de Traduction</a></li>\n';
+doc_toc += '          <li><a href="translation.htm" class="us_fr">Guide de Traduction</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="credits.htm">Credits</a>\n';

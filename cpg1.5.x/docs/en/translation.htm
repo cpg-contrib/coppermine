@@ -193,8 +193,16 @@ Please do not flame (berate) the original translator on the board, but provide a
     </li>
     <li><h4>Take care of the table of contents</h4>
     Once you have completed translating the files you want to translate (in an ideal world: all files), take a look at the files <tt class="code">script.js</tt> and <tt class="code">toc.htm</tt>. The former file is the JavaScript file that will later compose the menu/navigation on all pages, the later file will be the plain HTML equivalent (for those who have JavaScript disabled).<br />
-    In script.js, scroll a bit down until you find the navigational structure (starting with the line <tt class="code">d = new dTree('d');</tt> - each of the following lines is representing a navigation item. You should translate this as well (at least the stuff you have come up with). Of course, you don't have to edit the file names (they should remain in English), but only the textual representation. If you're not sure what to do, take a look at an existing translation and see how this has been done there.<br />
+    In script.js, scroll a bit down until you find the navigational structure (starting with the line <tt class="code">var doc_toc = '';</tt> - each of the following lines is representing a navigation item. You should translate this as well (at least the stuff you have come up with). Of course, you don't have to edit the file names (they should remain in English), but only the textual representation. If you're not sure what to do, take a look at an existing translation and see how this has been done there.<br />
     The similar thing applies to toc.htm, which is the HTML-driven "table of contents"; again, you should translate the labels, but not the file names nor the anchor names.</li>
+    <li>There are some strings inside script.js that need to be translated as well: search for
+    	<ul>
+    		<li><tt class="code">$('#docheader').text('Coppermine Photo Gallery v1.5.1: Documentation and Manual');</tt> and replace the actual text in that line (<tt class="code">Documentation and Manual</tt>) with the translation into your language</li>
+    		<li><tt class="code">overall_doc_footer += '&lt;a href="#top"&gt;Back to Top&lt;/a&gt;';</tt> and replace the actual text in that line (<tt class="code">Back to Top</tt>) with the translation into your language</li>
+    		<li><tt class="code">$('#doc_last_changed').text('About this document: ' + 'last changed on ' + lastChangeDate);</tt> and replace the actual text in that line (<tt class="code">About this document</tt> and <tt class="code">last changed on</tt>, but not <tt class="code">lastChangeDate</tt>) with the translation into your language</li>
+    		<li><tt class="code">$('#doc_revision').text(', SVN revision ' + revisionNumber);</tt> and replace the actual text in that line (<tt class="code">SVN revision</tt>) with the translation into your language. If you're not sure what a SVN revision is, leave that line alone!</li>
+    	</ul>
+    </li>
     <li><h4>Zip your translation</h4>
     Finally, when you're done translating, zip your custom language folder and attach the zip to a posting on the corresponding coppermine board. Of course, there will be a credit list where your name and site address will be mentioned, so make sure to provide the details you want to see go into that credit list within your posting.</li>
 </ul>
