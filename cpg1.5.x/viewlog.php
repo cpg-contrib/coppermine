@@ -37,7 +37,7 @@ function display_log_list()
                     echo <<<EOT
                                 <tr>
                                         <td class="tableb">
-                                                {$folder_icon}&nbsp;<a href= "{$CPG_PHP_SELF}?log={$log['logname']}">{$log['logname']}</a>
+                                                {$folder_icon}&nbsp;<a href= "viewlog.php?log={$log['logname']}">{$log['logname']}</a>
                                                 &nbsp;&nbsp;&nbsp; ( <em>{$log['filesize']} KB</em> )
                                         </td>
                                 </tr>
