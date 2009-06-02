@@ -63,7 +63,7 @@
 
 <ul>
     <li>Equals sign should be aligned with surrounding elements<br />
-    <div class="quote">
+    <div class="cpg_example">
         Bad example:
         <pre class="code">
 $pic_title = 'My picture';
@@ -82,7 +82,7 @@ $update_time = true;
     <li>Always put comma after last value in array declaration</li>
     <li>Always allign array double arrow in a single line and there should be a single space after the arrow (before value)</li>
     <li>Each line in an array declaration must end in a comma<br />
-    <div class="quote">
+    <div class="cpg_example">
         Bad examples:
         <pre class="code">
 $foo = array('one', 'two', 'three');
@@ -119,6 +119,23 @@ $multi = array(
         </pre>
     </div>
     </li>
+    <li>Use <tt class="code">echo</tt> instead of <tt class="code">print</tt></li>
+    <li>Use single quotes instead of double quotes
+    	<div class="cpg_example">
+    		Bad:
+    		<pre class="code">$foo_array["bla"] = "whatever";</pre>
+    		Good:
+    		<pre class="code">$foo_array['bla'] = 'whatever';</pre>
+    	</div>
+    </li>
+    <li>Don't use spaces or capitalization in associative array definitions
+    	<div class="cpg_example">
+    		Bad:
+    		<pre class="code">$bla_array['foo Bar'] = 'some string';</pre>
+    		Good:
+    		<pre class="code">$bla_array['foo_bar'] = 'some string';</pre>
+    	</div>    
+    </li>
 </ul>
 
 <a name="dev_coding_control_structures"></a><h3>Control Structures<a href="#dev_coding_control_structures" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -127,7 +144,7 @@ $multi = array(
     <li>Control statements should have one space between the control keyword and opening parenthesis, to distinguish them from function calls</li>
     <li>Always use curly braces, even in situations where they are technically optional - having them increases readability and decreases the likelihood of logic errors being introduced when new lines are added</li>
     <li>Always have a newline before an opening or closing brace<br />
-    <div class="quote">Bad example:<pre class="code">if ($foo = 'bar') { echo 'Hello world'; }</pre>Bad example:<pre class="code">if ($foo = 'bar') 
+    <div class="cpg_example">Bad example:<pre class="code">if ($foo = 'bar') { echo 'Hello world'; }</pre>Bad example:<pre class="code">if ($foo = 'bar') 
 { echo 'Hello world'; }</pre>Good example:<pre class="code">if ($foo = 'bar') { 
     echo 'Hello world'; 
 }</pre>Good example:<pre class="code">if ($foo = 'bar')
@@ -254,7 +271,10 @@ echo '&lt;p&gt;foo bar&lt;/p&gt;';
 <a name="dev_coding_html_output_images"></a><h3>Image-tags in HTML output<a href="#dev_coding_html_output_images" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <ul>
     <li>Always put an alt attribute on all image elements, even if the alt is empty</li>
+    <li>The border attribute is mandatory - if ommitted, older browsers will display a border by default</li>
+    <li>If possible (i.e. if the dimension of an image is known already), use the width and height attributes</li>
     <li>do not use title for the purpose of alt, only use it when a title is needed (like for icons)</li>
+    <li>If you need a blind gif, use the one that already comes with coppermine (<tt class="code">./images/spacer.gif</tt>) instead of coming up with a new one for your custom theme, plugin or whatever</li>
 </ul>
 
 <a name="dev_coding_html_output_links"></a><h3>Links in HTML output<a href="#dev_coding_html_output_dev_coding_html_output_links" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
