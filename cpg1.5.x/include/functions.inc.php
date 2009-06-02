@@ -3423,9 +3423,9 @@ EOT;
         echo cpg_phpinfo_conf_output("upload_max_filesize");
         echo cpg_phpinfo_conf_output("post_max_size");
         echo cpg_phpinfo_conf_output("memory_limit");
-        echo $LINEBREAK . 'Memory usage: ' . cpg_float2decimal(memory_get_usage()) . ' | ';
+        echo $LINEBREAK . 'Memory usage: ' . cpg_format_bytes(memory_get_usage()) . ' | ';
         if (function_exists(memory_get_peak_usage)) {
-        	echo cpg_float2decimal(memory_get_peak_usage());
+        	echo cpg_format_bytes(memory_get_peak_usage());
         } else {
         	echo 'n/a';
         }
