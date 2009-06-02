@@ -3413,11 +3413,6 @@ EOT;
         echo cpg_phpinfo_conf_output("include_path");
         echo cpg_phpinfo_conf_output("open_basedir");
         echo cpg_phpinfo_conf_output("allow_url_fopen");
-        echo $LINEBREAK . $debug_separate;
-
-        echo 'Resource limits';
-        echo $debug_underline;
-        echo 'Directive: Local Value | Master Value';
         echo cpg_phpinfo_conf_output("max_execution_time");
         echo cpg_phpinfo_conf_output("max_input_time");
         echo cpg_phpinfo_conf_output("upload_max_filesize");
@@ -3444,9 +3439,33 @@ EOT;
         } else {
         	echo 'n/a';
         }
-        echo $LINEBREAK . 'Page generation: ' . $time . ' ms | n/a';
-        echo $LINEBREAK . 'Page query time: ' . $total_query_time . ' ms | n/a';
-        echo $LINEBREAK . 'Page query total: ' . $query_count . ' | n/a';
+		if ($CONFIG['performance_timestamp'] == 0 || (date('Y-m-d', $CONFIG['performance_timestamp']) < date('Y-m-d'))) {
+			// The metering data in the config table are outdated, let's write fresh values
+			// Currently happens each day. To extend the metering period to a whole week, 
+			// use 'Y-m-W' for both date functions above. Use 'Y-m' to extend the period over
+			// one month and subsequently 'Y' for an entire year.
+			$CONFIG['performance_timestamp'] = time();
+			cpg_config_set('performance_timestamp', $CONFIG['performance_timestamp']);
+			$CONFIG['performance_page_generation_time'] = 0;
+			$CONFIG['performance_page_query_time'] = 0;
+			$CONFIG['performance_page_query_number'] = 0;
+		}
+		if ($CONFIG['performance_page_generation_time'] < $time) {
+			$CONFIG['performance_page_generation_time'] = $time;
+			cpg_config_set('performance_page_generation_time', $CONFIG['performance_page_generation_time']);
+		}
+		if ($CONFIG['performance_page_query_time'] < $total_query_time) {
+			$CONFIG['performance_page_query_time'] = $total_query_time;
+			cpg_config_set('performance_page_query_time', $CONFIG['performance_page_query_time']);
+		}
+		if ($CONFIG['performance_page_query_count'] < $query_count) {
+			$CONFIG['performance_page_query_count'] = $query_count;
+			cpg_config_set('performance_page_query_number', $CONFIG['performance_page_query_count']);
+		}
+		//echo $LINEBREAK . 'Timestamp: ' . $CONFIG['performance_timestamp'] . ' | ' . $performance_time . ' | ' . $today;
+        echo $LINEBREAK . 'Page generation: ' . $time . ' ms | ' .  $CONFIG['performance_page_generation_time'] . ' ms';
+        echo $LINEBREAK . 'Page query time: ' . $total_query_time . ' ms | '. $CONFIG['performance_page_query_time'] . ' ms';
+        echo $LINEBREAK . 'Page query count: ' . $query_count . ' | ' . $CONFIG['performance_page_query_count'];
         echo $LINEBREAK . $debug_separate;
 
     }

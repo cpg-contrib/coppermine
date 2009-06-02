@@ -154,7 +154,7 @@ INSERT INTO CPG_config VALUES ('offline', '0');
 INSERT INTO CPG_config VALUES ('old_style_rating', '0');
 INSERT INTO CPG_config VALUES ('orig_pfx', 'orig_');
 INSERT INTO CPG_config VALUES ('performance_page_generation_time', '0');
-INSERT INTO CPG_config VALUES ('performance_page_query_number', '0');
+INSERT INTO CPG_config VALUES ('performance_page_query_count', '0');
 INSERT INTO CPG_config VALUES ('performance_page_query_time', '0');
 INSERT INTO CPG_config VALUES ('performance_timestamp', '0');
 INSERT INTO CPG_config VALUES ('personal_album_on_registration', '0');

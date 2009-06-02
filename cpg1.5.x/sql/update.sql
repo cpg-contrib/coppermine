@@ -406,4 +406,4 @@ INSERT INTO CPG_config VALUES ('display_reset_boxes_in_config', '0');
 INSERT INTO CPG_config VALUES ('performance_timestamp', '0');
 INSERT INTO CPG_config VALUES ('performance_page_generation_time', '0');
 INSERT INTO CPG_config VALUES ('performance_page_query_time', '0');
-INSERT INTO CPG_config VALUES ('performance_page_query_number', '0');
+INSERT INTO CPG_config VALUES ('performance_page_query_count', '0');
