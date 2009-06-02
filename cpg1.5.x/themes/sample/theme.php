@@ -1821,7 +1821,7 @@ function theme_create_tabs($items, $curr_page, $total_pages, $template)
 
     // Previous page tab
     if ($curr_page != ($start - 1)) {
-        $tabs .= sprintf($template['nav_tab'], $curr_page-1, cpg_fetch_icon('left',0,$lang_create_tabs['previous']));
+        $tabs .= sprintf($template['nav_tab'], $curr_page-1, cpg_fetch_icon('tab_left',0,$lang_create_tabs['previous']));
     } else {
         // A previous tab with link is not needed.
         // If you want to show a disabled previous tab,
@@ -1874,7 +1874,7 @@ function theme_create_tabs($items, $curr_page, $total_pages, $template)
 
     // Next page tab
     if ($curr_page != $total_pages) {
-        $tabs .= sprintf($template['nav_tab'], $curr_page + 1, cpg_fetch_icon('right',0,$lang_create_tabs['next']));
+        $tabs .= sprintf($template['nav_tab'], $curr_page + 1, cpg_fetch_icon('tab_right',0,$lang_create_tabs['next']));
     } else {
         // A next tab with link is not needed.
         // If you want to show a disabled next tab,
