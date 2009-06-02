@@ -3401,7 +3401,7 @@ EOT;
         echo $debug_separate;
         echo 'Server restrictions';
         echo $debug_underline;
-        echo 'Directive | Local Value | Master Value';
+        echo 'Directive: Local Value | Master Value';
         echo cpg_phpinfo_conf_output("safe_mode");
         echo cpg_phpinfo_conf_output("safe_mode_exec_dir");
         echo cpg_phpinfo_conf_output("safe_mode_gid");
@@ -3417,33 +3417,41 @@ EOT;
 
         echo 'Resource limits';
         echo $debug_underline;
-        echo 'Directive | Local Value | Master Value';
+        echo 'Directive: Local Value | Master Value';
         echo cpg_phpinfo_conf_output("max_execution_time");
         echo cpg_phpinfo_conf_output("max_input_time");
         echo cpg_phpinfo_conf_output("upload_max_filesize");
         echo cpg_phpinfo_conf_output("post_max_size");
         echo cpg_phpinfo_conf_output("memory_limit");
+        echo $LINEBREAK . $debug_separate;
+        
+        if (ini_get('suhosin.post.max_vars')) {
+
+            echo 'Suhosin limits';
+            echo $debug_underline;
+            echo 'Directive: Local Value | Master Value';
+            echo cpg_phpinfo_conf_output("suhosin.post.max_vars");
+            echo cpg_phpinfo_conf_output("suhosin.request.max_vars");
+            echo $LINEBREAK . $debug_separate;
+        }
+        
+        echo 'Page (performance)';
+        echo $debug_underline;
+        echo 'Parameter: Current | Peak';
         echo $LINEBREAK . 'Memory usage: ' . cpg_format_bytes(memory_get_usage()) . ' | ';
         if (function_exists(memory_get_peak_usage)) {
         	echo cpg_format_bytes(memory_get_peak_usage());
         } else {
         	echo 'n/a';
         }
+        echo $LINEBREAK . 'Page generation: ' . $time . ' ms | n/a';
+        echo $LINEBREAK . 'Page query time: ' . $total_query_time . ' ms | n/a';
+        echo $LINEBREAK . 'Page query total: ' . $query_count . ' | n/a';
         echo $LINEBREAK . $debug_separate;
 
-        if (ini_get('suhosin.post.max_vars')) {
-
-            echo 'Suhosin limits';
-            echo $debug_underline;
-            echo 'Directive | Local Value | Master Value';
-            echo cpg_phpinfo_conf_output("suhosin.post.max_vars");
-            echo cpg_phpinfo_conf_output("suhosin.request.max_vars");
-            echo $LINEBREAK . $debug_separate;
-        }
     }
 
     echo <<<EOT
-Page generated in $time ms - $query_count queries in $total_query_time ms;
                 </textarea>
             </span>
         </td>

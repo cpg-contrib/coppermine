@@ -401,3 +401,9 @@ ALTER TABLE `CPG_usergroups` DROP `upload_form_config`, DROP `custom_user_upload
 ALTER TABLE `CPG_pictures` DROP INDEX `pic_aid`, ADD INDEX `pic_aid` ( `aid` , `pid` );
 
 INSERT INTO CPG_config VALUES ('display_reset_boxes_in_config', '0');
+
+# Add performance metering records
+INSERT INTO CPG_config VALUES ('performance_timestamp', '0');
+INSERT INTO CPG_config VALUES ('performance_page_generation_time', '0');
+INSERT INTO CPG_config VALUES ('performance_page_query_time', '0');
+INSERT INTO CPG_config VALUES ('performance_page_query_number', '0');
