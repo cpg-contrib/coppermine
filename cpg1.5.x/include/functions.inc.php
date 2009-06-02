@@ -182,7 +182,7 @@ function cpg_db_query($query, $link_id = 0)
 
     $query_end = cpgGetMicroTime();
 
-    if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
+    if (!isset($CONFIG['debug_mode']) || $CONFIG['debug_mode'] == 1 || $CONFIG['debug_mode'] == 2) {
         $duration      = round(($query_end - $query_start) * 1000);
         $query_stats[] = $duration;
         $queries[]     = "$query ({$duration} ms)";
