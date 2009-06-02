@@ -3439,7 +3439,7 @@ EOT;
         echo $debug_underline;
         echo 'Parameter: Current | Peak';
         echo $LINEBREAK . 'Memory usage: ' . cpg_format_bytes(memory_get_usage()) . ' | ';
-        if (function_exists(memory_get_peak_usage)) {
+        if (function_exists('memory_get_peak_usage')) {
         	echo cpg_format_bytes(memory_get_peak_usage());
         } else {
         	echo 'n/a';
