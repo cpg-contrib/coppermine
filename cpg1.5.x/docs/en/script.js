@@ -656,8 +656,19 @@ function cpgDocTranslationWarning() {
 
 $(document).ready(function()
 {
+	var $_GET = {};
+	document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+		function decode(s) {
+			return decodeURIComponent(s).replace(/\+/g, " ");
+		}
+		$_GET[decode(arguments[1])] = decode(arguments[2]);
+	});
 	//hide all elements with class detail_body
 	$(".detail_body").hide();
+	if ($_GET["expand_all"] == 1) { // Show all details and get rid of the details toggle if the GET parameter expand_all is set
+		$('.detail_body').show();
+		$('.detail_head_collapsed').replaceWith('');
+	}
 	//toggle the component with class detail_body
 	$(".detail_head_collapsed").click(function()
 	{
@@ -711,4 +722,5 @@ $(document).ready(function()
 		$("#toc_collapsed").show();
 		$("#doc_search").hide();
 	});
+	
 });
