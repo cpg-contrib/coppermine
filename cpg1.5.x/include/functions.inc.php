@@ -3448,7 +3448,7 @@ EOT;
 			cpg_config_set('performance_timestamp', $CONFIG['performance_timestamp']);
 			$CONFIG['performance_page_generation_time'] = 0;
 			$CONFIG['performance_page_query_time'] = 0;
-			$CONFIG['performance_page_query_number'] = 0;
+			$CONFIG['performance_page_query_count'] = 0;
 		}
 		if ($CONFIG['performance_page_generation_time'] < $time) {
 			$CONFIG['performance_page_generation_time'] = $time;
@@ -3460,7 +3460,7 @@ EOT;
 		}
 		if ($CONFIG['performance_page_query_count'] < $query_count) {
 			$CONFIG['performance_page_query_count'] = $query_count;
-			cpg_config_set('performance_page_query_number', $CONFIG['performance_page_query_count']);
+			cpg_config_set('performance_page_query_count', $CONFIG['performance_page_query_count']);
 		}
 		//echo $LINEBREAK . 'Timestamp: ' . $CONFIG['performance_timestamp'] . ' | ' . $performance_time . ' | ' . $today;
         echo $LINEBREAK . 'Page generation: ' . $time . ' ms | ' .  $CONFIG['performance_page_generation_time'] . ' ms';
