@@ -69,7 +69,7 @@ $lang_meta_album_names['favpics'] = 'Photos Préférées';
 $lang_meta_album_names['datebrowse'] = 'Navigation par date'; //cpg1.5
     
 $lang_errors['access_denied'] = 'Vous n\'avez pas la permission d\'accéder à cette page.';
-$lang_errors['invalid_form_token'] = 'Une balise de formulaire valise n\'a pas pu �tre trouv�e.'; //cpg1.5
+$lang_errors['invalid_form_token'] = 'Une balise de formulaire valise n\'a pas pu être trouvée.'; //cpg1.5
 $lang_errors['perm_denied'] = 'Vous n\'avez pas la permission d\'effectuer cette opération.';
 $lang_errors['param_missing'] = 'Script appelé sans les paramètres nécessaires.';
 $lang_errors['non_exist_ap'] = 'L\'Album/la photo demandé(e) n\'existe pas!';
@@ -778,6 +778,7 @@ $lang_admin_php['transparent_overlay'] =   'Insérer un recouvrement transparent
 $lang_admin_php['old_style_rating'] = 'Retour vers l\'ancien système de vote'; // cpg1.5
 $lang_admin_php['old_style_rating_extra'] = 'Celà va désactiver le nombre d\'étoiles utilisée pour le vote'; // cpg1.5
 $lang_admin_php['rating_stars_amount'] = 'Nombre d\'étoiles à Utilisez pour le vote'; // cpg1.5
+$lang_admin_php['rate_own_files'] = 'Les utilisateurs peuvent voter pour leurs propres fichiers'; // cpg1.5
 $lang_admin_php['filter_bad_words'] =   'Filtrez les mots interdits dans les Commentaires'; // cpg1.5
 $lang_admin_php['enable_smilies'] =   'Autoriser les Smileys dans les Commentaires'; // cpg1.5
 $lang_admin_php['disable_comment_flood_protect'] =   'Autoriser plusieurs Commentaires consécutifs pour une images par un même Utilisateur '; // cpg1.5
@@ -2613,7 +2614,7 @@ if (defined('CORE_PLUGIN')) {
   $lang_plugin_php['link_target_name'] = 'Cible du lien';
   $lang_plugin_php['link_target_description'] = 'Change la manière dont les liens externes sont ouverts: Si ce plugin est activé, tous les liens contenant l\'atribut rel="external" seront ouverts dans une nouvelle fenêtre (au lieu de la même).';
   $lang_plugin_php['link_target_extra'] = 'Ce plugin à surtout un impact sur le lien "Powered by Coppermine" au bas de l\'écran de la galerie.';
-  $lang_plugin_php['link_target_recommendation'] = 'It is recommended not to use this plugin to avoid bossing your users around: opening links in a new window means bossing around your site visitors.';
+  $lang_plugin_php['link_target_recommendation'] = 'Il n\'est pas recommandé d\'utilser ce plugin pour être directif avec vos visiteurs: ouvrir un lien dans une nouvelle fenêtre peut être directif pour vos visiteurs.';
 }
 
 

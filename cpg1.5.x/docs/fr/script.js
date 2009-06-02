@@ -50,7 +50,7 @@ doc_toc += '      <li><a href="requirements.htm">Minimum requis</a></li>\n';
 doc_toc += '      <li><a href="testing.htm">Version Alpha/Beta (Test)!</a></li>\n';
 doc_toc += '      <li><a href="languages.htm">Langues</a>\n';
 doc_toc += '        <ul id="languages">\n';
-doc_toc += '          <li><a href="translation.htm" class="us_fr">Guide de Traduction</a></li>\n';
+doc_toc += '          <li><a href="translation.htm">Guide de Traduction</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="credits.htm">Credits</a>\n';
@@ -619,13 +619,13 @@ function dateRevision() {
   var lastChangeDate = lastChangeDate.replace('$', '');
   var lastChangeDate = lastChangeDate.replace('LastChangedDate: ', '');
   var lastChangeDate = lastChangeDate.replace(/Date: /g, '');
-  $('#doc_last_changed').text('About this document: ' + 'last changed on ' + lastChangeDate);
+  $('#doc_last_changed').text('A propos de ce document: ' + 'Dernière modification le ' + lastChangeDate);
 
   var revisionNumber = $('#doc_revision').text();
   var revisionNumber = revisionNumber.replace('$', '');
   var revisionNumber = revisionNumber.replace('$', '');
   var revisionNumber = revisionNumber.replace(/Revision: /g, '');
-  $('#doc_revision').text(', SVN revision ' + revisionNumber);
+  $('#doc_revision').text(', révision SVN ' + revisionNumber);
 }
 
 function getUrlParameters(name)
