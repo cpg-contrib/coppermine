@@ -21,7 +21,7 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // ADDED QUICK KEYWORDS FUNCTIONALITY 8/6/2004
 
-$result = cpg_db_query("select keywords FROM {$CONFIG['TABLE_PICTURES']} WHERE keywords <> '' $ALBUM_SET");
+$result = cpg_db_query("SELECT keywords FROM {$CONFIG['TABLE_PICTURES']} WHERE keywords <> '' $ALBUM_SET");
 if (mysql_num_rows($result)) {
 
   // Grab all keywords

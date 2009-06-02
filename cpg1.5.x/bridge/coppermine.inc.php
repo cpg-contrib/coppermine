@@ -167,10 +167,10 @@ if (isset($bridge_lookup)) {
                             }
 
                             // Update guest session with user's information
-                            $sql  = "update {$this->sessionstable} set ";
-                            $sql .= "user_id={$USER_DATA['user_id']} ";
+                            $sql  = "UPDATE {$this->sessionstable} SET ";
+                            $sql .= "user_id = {$USER_DATA['user_id']} ";
                             $sql .= $remember_sql;
-                            $sql .= "where session_id = '" . md5($session_id) . "'";
+                            $sql .= "WHERE session_id = '" . md5($session_id) . "'";
                             cpg_db_query($sql, $this->link_id);
 
                             return $USER_DATA;
@@ -186,7 +186,7 @@ if (isset($bridge_lookup)) {
 
                     // Revert authenticated session to a guest session
                     $session_id = $this->session_id.$this->client_id;
-                    $sql  = "update {$this->sessionstable} set user_id = 0, remember=0 where session_id = '" . md5($session_id) . "'";
+                    $sql  = "UPDATE {$this->sessionstable} SET user_id = 0, remember = 0 WHERE session_id = '" . md5($session_id) . "'";
                     cpg_db_query($sql, $this->link_id);
             }
 
@@ -195,7 +195,7 @@ if (isset($bridge_lookup)) {
             {
                 $groups = array($user['group_id']);
 
-                $sql = "SELECT user_group_list FROM {$this->usertable} AS u WHERE {$this->field['user_id']}='{$user['id']}' and user_group_list <> '';";
+                $sql = "SELECT user_group_list FROM {$this->usertable} AS u WHERE {$this->field['user_id']}='{$user['id']}' AND user_group_list <> ''";
 
                 $result = cpg_db_query($sql, $this->link_id);
 
@@ -242,11 +242,11 @@ if (isset($bridge_lookup)) {
                 if (rand(0, 100) == 42){
                 
                     // Delete old sessions
-                    $sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0;";
+                    $sql = "DELETE FROM {$this->sessionstable} WHERE time < $session_life_time AND remember = 0";
                     cpg_db_query($sql, $this->link_id);
 
                     // Delete stale 'remember me' sessions
-                    $sql = "delete from {$this->sessionstable} where time<$rememberme_life_time;";
+                    $sql = "DELETE FROM {$this->sessionstable} WHERE time < $rememberme_life_time";
                     cpg_db_query($sql, $this->link_id);
                 }
                     
@@ -254,7 +254,7 @@ if (isset($bridge_lookup)) {
                 if ($sessioncookie) {
 
                     // Check for valid session
-                    $sql =  'select user_id, time from '.$this->sessionstable." where session_id = '" . md5($session_id) . "'";
+                    $sql =  "SELECT user_id, time FROM {$this->sessionstable} WHERE session_id = '" . md5($session_id) . "'";
                     $result = cpg_db_query($sql);
 
                     // If session exists...
@@ -266,9 +266,7 @@ if (isset($bridge_lookup)) {
                         $this->sessiontime = $row['time'];
 
                         // Check if there's a user for this session
-                        $sql =  'select user_id as id, user_password as password ';
-                        $sql .= 'from '.$this->usertable.' ';
-                        $sql .= 'where user_id='.$row['user_id'];
+                        $sql = "SELECT user_id, user_password FROM {$this->usertable} WHERE user_id = {$row['user_id']}";
                         $result = cpg_db_query($sql, $this->link_id);
 
                         // If user exists, use the current session
@@ -276,8 +274,8 @@ if (isset($bridge_lookup)) {
                             $row = mysql_fetch_assoc($result);
                             mysql_free_result($result);
 
-                            $pass = $row['password'];
-                            $id = (int) $row['id'];
+                            $pass = $row['user_password'];
+                            $id = (int) $row['user_id'];
                             $this->session_id = $sessioncookie;
 
                         // If the user doesn't exist, use default guest credentials
@@ -313,7 +311,7 @@ if (isset($bridge_lookup)) {
                     }
 
                     $session_id = $this->session_id.$this->client_id;
-                    $sql = "update {$this->sessionstable} set time='".time()."' where session_id = '" . md5($session_id) . "'";
+                    $sql = "UPDATE {$this->sessionstable} SET time = UNIX_TIMESTAMP() WHERE session_id = '" . md5($session_id) . "'";
                     cpg_db_query($sql);
             }
 
@@ -333,8 +331,7 @@ if (isset($bridge_lookup)) {
                     $this->session_id = $this->generateId();
                     $session_id = $this->session_id.$this->client_id;
 
-                    $sql =  'insert into '.$this->sessionstable.' (session_id, user_id, time, remember) values ';
-                    $sql .= '("'.md5($session_id).'", 0, "'.time().'", 0);';
+                    $sql = "INSERT INTO {$this->sessionstable} (session_id, time) VALUES ('" . md5($session_id) . "', UNIX_TIMESTAMP())";
 
                     // insert the guest session
                     cpg_db_query($sql, $this->link_id);
@@ -362,27 +359,6 @@ if (isset($bridge_lookup)) {
                     }
                     return $randnum;
             }
-
-
-            // Gets user/guest count
-            function get_session_users() {
-                    static $count = array();
-
-                    if (!$count) {
-                            // Get guest count
-                            $sql = "select count(user_id) as num_guests from {$this->sessionstable} where user_id=0;";
-                            $result = cpg_db_query($sql, $this->link_id);
-                            $count = mysql_fetch_assoc($result);
-
-                            // Get authenticated user count
-                            $sql = "select count(user_id) as num_users from {$this->sessionstable} where user_id>0;";
-                            $result = cpg_db_query($sql, $this->link_id);
-                            $count = array_merge(mysql_fetch_assoc($result), $count);
-                    }
-
-                    return $count;
-            }
-
 
             /*
              * Overidden functions !!DO NOT REMOVE OR CPG WILL NOT WORK CORRECTLY!!

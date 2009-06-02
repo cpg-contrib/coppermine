@@ -50,7 +50,7 @@ class CPGPluginAPI {
         global $CONFIG,$thisplugin,$USER_DATA,$CPG_PLUGINS,$lang_plugin_api;
 
         // Get the installed plugins from the database and sort them by execution priority
-        $sql = 'select * from '.$CONFIG['TABLE_PLUGINS'].' order by priority asc;';
+        $sql = "SELECT * FROM {$CONFIG['TABLE_PLUGINS']} ORDER BY priority";
         $result = cpg_db_query($sql);
 
         // Exit if no plugins are installed
@@ -122,9 +122,8 @@ class CPGPluginAPI {
 
         // If the plugin doesn't exist in the array get its information from the database
         if (!isset($installed_array[$plugin_folder])) {
-            $sql = 'select plugin_id from '.$CONFIG['TABLE_PLUGINS'].' where '.
-                   'path="'.$plugin_folder.'";';
-
+            
+            $sql = "SELECT plugin_id FROM {$CONFIG['TABLE_PLUGINS']} WHERE path = '$plugin_folder'";
             $result = cpg_db_query($sql);
 
             // If the plugin isn't in the database store a false value in the array
@@ -407,7 +406,7 @@ class CPGPluginAPI {
         }
 
         // Get the lowest priority level (highest number) from the database
-        $sql = 'select priority from '.$CONFIG['TABLE_PLUGINS'].' order by priority desc limit 1;';
+        $sql = "SELECT priority FROM {$CONFIG['TABLE_PLUGINS']} ORDER BY priority DESC LIMIT 1";
         $result = cpg_db_query($sql);
 
         $data = mysql_fetch_assoc($result);
@@ -441,12 +440,7 @@ class CPGPluginAPI {
 
         // If $installed is boolean then plugin was installed; Return true
         if (is_bool($installed) && $installed) {
-            $sql = 'insert into '.$CONFIG['TABLE_PLUGINS'].' '.
-                   '(name, path,priority) '.
-                   ' values '.
-                   '("'.addslashes($name).'",'.
-                   '"'.addslashes($path).'",'.
-                   $priority.');';
+            $sql = "INSERT INTO {$CONFIG['TABLE_PLUGINS']} (name, path, priority) VALUES ('" . addslashes($name) . "', '" . addslashes($path) . "', $priority)";
             $result = cpg_db_query($sql);
 
             if ($CONFIG['log_mode']) {
@@ -491,16 +485,15 @@ class CPGPluginAPI {
         $priority = $thisplugin->priority;
 
         // If plugin has an uninstall action, execute it
-        $uninstalled = CPGPluginAPI::action('plugin_uninstall',true,$plugin_id);
+        $uninstalled = CPGPluginAPI::action('plugin_uninstall', true, $plugin_id);
 
         if (is_bool($uninstalled) && $uninstalled) {
 
-            $sql = 'delete from '.$CONFIG['TABLE_PLUGINS'].' '.
-                   'where plugin_id='.$plugin_id.';';
+            $sql = "DELETE FROM {$CONFIG['TABLE_PLUGINS']} WHERE plugin_id = $plugin_id";
             $result = cpg_db_query($sql);
 
             // Shift the plugins up
-            $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' set priority=priority-1 where priority>'.$priority.';';
+            $sql = "UPDATE {$CONFIG['TABLE_PLUGINS']} SET priority = priority - 1 WHERE priority > $priority";
             $result = cpg_db_query($sql);
 
             unset($CPG_PLUGINS[$plugin_id]);
