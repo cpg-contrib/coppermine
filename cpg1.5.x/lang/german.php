@@ -773,6 +773,7 @@ $lang_admin_php['transparent_overlay'] = 'Transparente Grafik über dem tatsäch
 $lang_admin_php['old_style_rating'] = 'Zurück zum klassischen Bewertungs-System'; // cpg1.5
 $lang_admin_php['old_style_rating_extra'] = 'Dies wird die Einstellung der spezifischen Sterne-Anzahl deaktivieren'; //cpg1.5
 $lang_admin_php['rating_stars_amount'] = 'Anzahl der Sterne (Abstimmungsstufen) bei der Bewertung'; // cpg1.5
+$lang_admin_php['rate_own_files'] = 'Benutzer können ihre eigenen Dateien bewerten'; // cpg1.5
 $lang_admin_php['filter_bad_words'] = 'Schimpfwörter in Kommentaren zensieren'; // cpg1.5
 $lang_admin_php['enable_smilies'] = 'Smilies in Kommentaren erlauben'; // cpg1.5
 $lang_admin_php['disable_comment_flood_protect'] = 'Aufeinanderfolgende Kommentare eines Benutzers zu einer Datei zulassen'; // cpg1.5

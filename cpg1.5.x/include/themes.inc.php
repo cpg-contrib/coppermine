@@ -3530,7 +3530,7 @@ function theme_html_rating_box()
     $result = cpg_db_query("SELECT pic_id FROM {$CONFIG['TABLE_VOTES']} WHERE pic_id={$CURRENT_PIC_DATA['pid']} AND user_md5_id='$user_md5_id'");
 
     $user_can_vote = 'false';
-    if ($CURRENT_PIC_DATA['owner_id'] == $USER_DATA['user_id'] && $USER_DATA['user_id'] != 0) {
+    if ($CURRENT_PIC_DATA['owner_id'] == $USER_DATA['user_id'] && $USER_DATA['user_id'] != 0 && ($CONFIG['rate_own_files'] == 0 || $CONFIG['rate_own_files'] == 2 && !USER_IS_ADMIN)) {	
       //user is owner
       $rate_title = $lang_rate_pic['forbidden'];
     } elseif (!mysql_num_rows($result)) {

@@ -776,6 +776,7 @@ $lang_admin_php['transparent_overlay'] = 'Insert a transparent overlay to minimi
 $lang_admin_php['old_style_rating'] = 'Go back to old rating system'; // cpg1.5
 $lang_admin_php['old_style_rating_extra'] = 'This will disable the amount of rating stars to be used'; // cpg1.5
 $lang_admin_php['rating_stars_amount'] = 'Amount of rating stars to be used to vote'; // cpg1.5
+$lang_admin_php['rate_own_files'] = 'Users can rate their own files'; // cpg1.5
 $lang_admin_php['filter_bad_words'] = 'Filter bad words in comments'; // cpg1.5
 $lang_admin_php['enable_smilies'] = 'Allow smiles in comments'; // cpg1.5
 $lang_admin_php['disable_comment_flood_protect'] = 'Allow several consecutive comments on one file from the same user'; // cpg1.5

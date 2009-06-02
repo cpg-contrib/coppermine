@@ -407,3 +407,5 @@ INSERT INTO CPG_config VALUES ('performance_timestamp', '0');
 INSERT INTO CPG_config VALUES ('performance_page_generation_time', '0');
 INSERT INTO CPG_config VALUES ('performance_page_query_time', '0');
 INSERT INTO CPG_config VALUES ('performance_page_query_count', '0');
+
+INSERT INTO CPG_config VALUES ('rate_own_files', '0');

@@ -163,6 +163,7 @@ INSERT INTO CPG_config VALUES ('picture_table_width', '100%');
 INSERT INTO CPG_config VALUES ('picture_width', '400');
 INSERT INTO CPG_config VALUES ('purge_expired_bans', '1');
 # INSERT INTO CPG_config VALUES ('randpos_interval', '1063623637');
+INSERT INTO CPG_config VALUES ('rate_own_files', '0');
 INSERT INTO CPG_config VALUES ('rating_stars_amount', '5');
 INSERT INTO CPG_config VALUES ('read_exif_data', '0');
 INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
