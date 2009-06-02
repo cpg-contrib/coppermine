@@ -664,10 +664,10 @@ $template_thumb_view_title_row = <<<EOT
 
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
-                <td class="statlink" rowspan="2">
+                <td style="width:60%;vertical-align:top" class="statlink" rowspan="2">
                     <h2>{ALBUM_NAME}</h2>
                 </td>
-                <td class="sortorder_cell" id="sortorder_cell">
+                <td style="text-align:right;width:40%;" class="sortorder_cell" id="sortorder_cell">
                     <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
                 </td>
             </tr>
@@ -2794,7 +2794,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 
     $tabs_html = $display_tabs ? create_tabs($nbThumb, $page, $total_pages, $theme_thumb_tab_tmpl) : '';
 
-    if (!GALLERY_ADMIN_MODE && stripos($template_fav_thumb_view_title_row, 'admin_buttons') !== false) {
+    if (!GALLERY_ADMIN_MODE && stripos($template_thumb_view_title_row, 'admin_buttons') !== false) {
         template_extract_block($template_thumb_view_title_row, 'admin_buttons');
     }
     // The sort order options are not available for meta albums
@@ -4012,7 +4012,7 @@ function theme_display_fullsize_pic()
                 . '" title="'
                 . htmlspecialchars($imagedata['name'])
                 . $LINEBREAK . $lang_fullsize_popup['click_to_close']
-                . '" /></a><br />' .$LINEBREAK;
+                . '" /></a><br />' . $LINEBREAK;
 ?>
           </div>
         </td>

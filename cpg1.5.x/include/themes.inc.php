@@ -3519,7 +3519,7 @@ if (!function_exists('theme_html_rating_box')) {  //{THEMES}
 ******************************************************************************/
 function theme_html_rating_box()
 {
-    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $USER_DATA, $USER;
+    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $USER_DATA, $USER, $LINEBREAK;
     global $template_image_rating, $lang_rate_pic;
 
     if (!(USER_CAN_RATE_PICTURES && $CURRENT_ALBUM_DATA['votes'] == 'YES')) {
@@ -3747,6 +3747,7 @@ function theme_html_comments($pid)
             $ip .= ' [' . $row['msg_raw_ip'] . ']';
         }
 
+        list($timestamp, $form_token) = getFormToken();
         $params = array('{EDIT}' => &$comment_edit_box,
             '{BUTTONS}' => &$comment_buttons,
             '{IPINFO}' => &$comment_ipinfo,
