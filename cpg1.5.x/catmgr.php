@@ -137,7 +137,7 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
  **/
 function usergroup_list_box($cid)
 {
-    global $CONFIG;
+    global $CONFIG, $LINEBREAK;
     
     //get the category info from the db
     $sql = "SELECT ug.group_name AS name, ug.group_id AS id, catm.group_id AS catm_gid FROM {$CONFIG['TABLE_USERGROUPS']} AS ug LEFT JOIN {$CONFIG['TABLE_CATMAP']} AS catm ON catm.group_id = ug.group_id AND catm.cid = $cid";
@@ -263,7 +263,7 @@ EOT;
 
 function display_cat_list()
 {
-    global $CAT_LIST, $CONFIG, $lang_catmgr_php, $lang_common, $CPG_PHP_SELF;
+    global $CAT_LIST, $CONFIG, $lang_catmgr_php, $lang_common, $CPG_PHP_SELF, $LINEBREAK;
     
     $CAT_LIST3 = $CAT_LIST;
 

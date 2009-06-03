@@ -141,7 +141,7 @@ function list_groups_alb_access() //shows a list of albums each group can see. C
 
 function list_users($search = '')
 {
-    global $CONFIG, $cpg_udb, $CPG_PHP_SELF; //, $PHP_SELF;
+    global $CONFIG, $cpg_udb, $CPG_PHP_SELF, $LINEBREAK; //, $PHP_SELF;
     global $lang_usermgr_php, $lang_byte_units, $lang_date, $lang_common, $icon_array;
     global $lim_user, $number_of_columns;
     global $USER_DATA;
