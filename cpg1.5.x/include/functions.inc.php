@@ -3458,9 +3458,9 @@ EOT;
         echo 'Parameter: Current | Peak';
         echo $LINEBREAK . 'Memory usage: ' . cpg_format_bytes(memory_get_usage()) . ' | ';
         if (function_exists('memory_get_peak_usage')) {
-            echo cpg_format_bytes(memory_get_peak_usage());
+        	echo cpg_format_bytes(memory_get_peak_usage());
         } else {
-            echo 'n/a';
+        	echo 'n/a';
         }
 
         echo $LINEBREAK . 'Page generation: ' . $time . ' ms | ' .  $CONFIG['performance_page_generation_time'] . ' ms';
@@ -5494,8 +5494,7 @@ function get_cat_data()
 
 
 // Returns an html string containing albums for use in a <select> dropdown.
-// Contains no permission checks so only suitable for use on admin pages
-function album_selection_options()
+function album_selection_options($selected = 0)
 {
     global $CONFIG, $lang_common, $cpg_udb, $LINEBREAK;
     // html string of options to be returned    
@@ -5504,7 +5503,13 @@ function album_selection_options()
     $padding = 8;
     $albums = array();
     // load all albums
-    $result = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY pos");
+    
+    if (GALLERY_ADMIN_MODE) {
+        $result = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY pos");
+    } elseif (USER_ID) {
+        $result = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = " . (FIRST_USER_CAT + USER_ID) . " ORDER BY pos");
+    }
+    
     while ( ($row = mysql_fetch_assoc($result)) ) {
         $albums[$row['category']][$row['aid']] = $row['title'];
     }
@@ -5512,11 +5517,16 @@ function album_selection_options()
         // Albums in no category
         $options .= '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">' . $lang_common['albums_no_category'] . '</option>';
         foreach ($albums[0] as $aid => $title) {
-            $options .= sprintf('<option style="padding-left: %dpx" value="%d">%s</option>'.$LINEBREAK, $padding, $aid, $title);
+            $options .= sprintf('<option style="padding-left: %dpx" value="%d"%s>%s</option>'.$LINEBREAK, $padding, $aid, $aid == $selected ? ' selected="selected"' : '', $title);
         }
     }
     // Load all categories
-    $result = cpg_db_query("SELECT cid, rgt, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft");
+    if (GALLERY_ADMIN_MODE) {
+        $result = cpg_db_query("SELECT cid, rgt, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft");
+    } else {
+        $result = cpg_db_query("SELECT cid, rgt, name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = " . USER_GAL_CAT);
+    }
+    
     $cats = array();
     // Loop through all categories
     while ( ($row = mysql_fetch_assoc($result))) {
@@ -5531,16 +5541,22 @@ function album_selection_options()
         if ($row['cid'] == USER_GAL_CAT) {
             // User galleries
             $options .= '<option style="padding-left: 0px; color: black; font-weight: bold" disabled="disabled">' . $lang_common['personal_albums'] . '</option>' . $LINEBREAK;
-            $result2 = cpg_db_query("SELECT {$cpg_udb->field['user_id']} AS user_id, {$cpg_udb->field['username']} AS user_name "
-                . "FROM {$cpg_udb->usertable} ORDER BY {$cpg_udb->field['username']}");
-            $users = cpg_db_fetch_rowset($result2);
-            mysql_free_result($result2);
+
+            if (GALLERY_ADMIN_MODE) {
+                $result2 = cpg_db_query("SELECT {$cpg_udb->field['user_id']} AS user_id, {$cpg_udb->field['username']} AS user_name "
+                    . "FROM {$cpg_udb->usertable} ORDER BY {$cpg_udb->field['username']}");
+                $users = cpg_db_fetch_rowset($result2);
+                mysql_free_result($result2);
+            } else {
+                $users = array(array('user_id' => USER_ID, 'user_name' => USER_NAME));                
+            }
+            
             foreach ($users as $user) {
                 if (!empty($albums[$user['user_id'] + FIRST_USER_CAT])) {
                     $options .= '<option style="padding-left: ' . $padding . 'px; color: black; font-weight: bold" disabled="disabled">' 
                         . $user['user_name'] . '</option>' . $LINEBREAK;
                     foreach ($albums[$user['user_id'] + FIRST_USER_CAT] as $aid => $title) {
-                        $options .= sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . $LINEBREAK, $padding * 2, $aid, $title);
+                        $options .= sprintf('<option style="padding-left: %dpx" value="%d"%s>%s</option>' . $LINEBREAK, $padding * 2, $aid, $aid == $selected ? ' selected="selected"' : '', $title);
                     }
                 }
             }
@@ -5555,13 +5571,14 @@ function album_selection_options()
         $heirarchy = implode(' - ', $elements);
         // calculate padding for this level
         $p = (count($elements) - 1) * $padding;
-        // category header
-        $options .= '<option style="padding-left: '.$p.'px; color: black; font-weight: bold" disabled="disabled">' . $LINEBREAK
-            . $heirarchy . '</option>' . $LINEBREAK;
         // albums in the category
         if (!empty($albums[$row['cid']])) {
+            // category header
+            $options .= '<option style="padding-left: '.$p.'px; color: black; font-weight: bold" disabled="disabled">' . $LINEBREAK
+            . $heirarchy . '</option>' . $LINEBREAK;
+            
             foreach ($albums[$row['cid']] as $aid => $title) {
-                $options .= sprintf('<option style="padding-left: %dpx" value="%d">%s</option>' . $LINEBREAK, $p+$padding, $aid, $title);
+                $options .= sprintf('<option style="padding-left: %dpx" value="%d"%s>%s</option>' . $LINEBREAK, $p + $padding, $aid, $aid == $selected ? ' selected="selected"' : '', $title);
             }
         }
     }
@@ -5787,21 +5804,21 @@ if (!function_exists('memory_get_usage')) {
     // Only define function if it doesn't exist
     function memory_get_usage()
     {
-        // All of the replacement methods assume that we can use exec, so let's test first if it isn't disabled
-        $disabled_function = ini_get('disable_functions');
-        if ($disabled_function != '') { // there actually are disabled functions, so let's loop through the list
-            $disabled_function_array = explode(',', $disabled_function);
-            $loopCounter = 0;
-            foreach ($disabled_function_array as $disabled_value) {
-                if (stristr($disabled_value, 'exec') != FALSE) {
-                    $loopCounter++;
-                }
-            }
-            if ($loopCounter != 0) {
-                // exec has been disabled, so we can't use any of the clever surrogates. Return nothing!
-                return;
-            }
-        }
+    	// All of the replacement methods assume that we can use exec, so let's test first if it isn't disabled
+    	$disabled_function = ini_get('disable_functions');
+    	if ($disabled_function != '') { // there actually are disabled functions, so let's loop through the list
+    		$disabled_function_array = explode(',', $disabled_function);
+    		$loopCounter = 0;
+    		foreach ($disabled_function_array as $disabled_value) {
+    			if (stristr($disabled_value, 'exec') != FALSE) {
+    				$loopCounter++;
+    			}
+    		}
+    		if ($loopCounter != 0) {
+    			// exec has been disabled, so we can't use any of the clever surrogates. Return nothing!
+    			return;
+    		}
+    	}
         if (substr(PHP_OS,0,3)=='WIN') { // If we are running on Windows
             $output = array();
             exec( 'tasklist /FI "PID eq ' . getmypid() . '" /FO LIST', $output );
@@ -5812,12 +5829,12 @@ if (!function_exists('memory_get_usage')) {
             exec("ps -eo%mem,rss,pid | grep $pid", $output);
             $output = explode('  ', $output[0]);
             if ($output != '') {
-                return $output[1] * 1024;
+            	return $output[1] * 1024;
             } else {
-                unset($output);
-                $output = array();
-                exec("ps -o rss -p $pid", $output); 
-                return $output[1] *1024;
+            	unset($output);
+            	$output = array();
+            	exec("ps -o rss -p $pid", $output); 
+            	return $output[1] *1024;
             }
         }
     }
