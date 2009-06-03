@@ -3263,33 +3263,33 @@ function& cpg_lang_var($varname, $index = null)
 function cpg_debug_output()
 {
     global $USER, $USER_DATA, $CONFIG, $cpg_time_start, $query_stats, $queries, $lang_cpg_debug_output, $CPG_PHP_SELF, $superCage, $CPG_PLUGINS, $LINEBREAK;
-	if ($CONFIG['performance_timestamp'] == 0 || (date('Y-m-d', $CONFIG['performance_timestamp']) < date('Y-m-d'))) {
-		// The metering data in the config table are outdated, let's write fresh values.
-		// Currently happens each day. To extend the metering period to a whole week, 
-		// use 'Y-m-W' for both date functions above. Use 'Y-m' to extend the period over
-		// one month and subsequently 'Y' for an entire year.
-		$CONFIG['performance_timestamp'] = time();
-		cpg_config_set('performance_timestamp', $CONFIG['performance_timestamp']);
-		$CONFIG['performance_page_generation_time'] = 0;
-		$CONFIG['performance_page_query_time'] = 0;
-		$CONFIG['performance_page_query_count'] = 0;
-	}
+    if ($CONFIG['performance_timestamp'] == 0 || (date('Y-m-d', $CONFIG['performance_timestamp']) < date('Y-m-d'))) {
+        // The metering data in the config table are outdated, let's write fresh values.
+        // Currently happens each day. To extend the metering period to a whole week, 
+        // use 'Y-m-W' for both date functions above. Use 'Y-m' to extend the period over
+        // one month and subsequently 'Y' for an entire year.
+        $CONFIG['performance_timestamp'] = time();
+        cpg_config_set('performance_timestamp', $CONFIG['performance_timestamp']);
+        $CONFIG['performance_page_generation_time'] = 0;
+        $CONFIG['performance_page_query_time'] = 0;
+        $CONFIG['performance_page_query_count'] = 0;
+    }
     $time_end         = cpgGetMicroTime();
     $time             = round(($time_end - $cpg_time_start) * 1000);
-	if ($CONFIG['performance_page_generation_time'] < $time) {
-		$CONFIG['performance_page_generation_time'] = $time;
-		cpg_config_set('performance_page_generation_time', $CONFIG['performance_page_generation_time']);
-	}
+    if ($CONFIG['performance_page_generation_time'] < $time) {
+        $CONFIG['performance_page_generation_time'] = $time;
+        cpg_config_set('performance_page_generation_time', $CONFIG['performance_page_generation_time']);
+    }
     $query_count      = count($query_stats);
     $total_query_time = array_sum($query_stats);
-	if ($CONFIG['performance_page_query_time'] < $total_query_time) {
-		$CONFIG['performance_page_query_time'] = $total_query_time;
-		cpg_config_set('performance_page_query_time', $CONFIG['performance_page_query_time']);
-	}
-	if ($CONFIG['performance_page_query_count'] < $query_count) {
-		$CONFIG['performance_page_query_count'] = $query_count;
-		cpg_config_set('performance_page_query_count', $CONFIG['performance_page_query_count']);
-	}
+    if ($CONFIG['performance_page_query_time'] < $total_query_time) {
+        $CONFIG['performance_page_query_time'] = $total_query_time;
+        cpg_config_set('performance_page_query_time', $CONFIG['performance_page_query_time']);
+    }
+    if ($CONFIG['performance_page_query_count'] < $query_count) {
+        $CONFIG['performance_page_query_count'] = $query_count;
+        cpg_config_set('performance_page_query_count', $CONFIG['performance_page_query_count']);
+    }
 
     $debug_underline   = '&#0010;------------------&#0010;';
     $debug_separate    = '&#0010;==========================&#0010;';
@@ -3458,9 +3458,9 @@ EOT;
         echo 'Parameter: Current | Peak';
         echo $LINEBREAK . 'Memory usage: ' . cpg_format_bytes(memory_get_usage()) . ' | ';
         if (function_exists('memory_get_peak_usage')) {
-        	echo cpg_format_bytes(memory_get_peak_usage());
+            echo cpg_format_bytes(memory_get_peak_usage());
         } else {
-        	echo 'n/a';
+            echo 'n/a';
         }
 
         echo $LINEBREAK . 'Page generation: ' . $time . ' ms | ' .  $CONFIG['performance_page_generation_time'] . ' ms';
@@ -3525,7 +3525,7 @@ EOT;
     endtable();
     echo '</form>';
 
-} // function cpg_phpinfo_mod
+} // function cpg_debug_output
 
 
 /**
@@ -5787,21 +5787,21 @@ if (!function_exists('memory_get_usage')) {
     // Only define function if it doesn't exist
     function memory_get_usage()
     {
-    	// All of the replacement methods assume that we can use exec, so let's test first if it isn't disabled
-    	$disabled_function = ini_get('disable_functions');
-    	if ($disabled_function != '') { // there actually are disabled functions, so let's loop through the list
-    		$disabled_function_array = explode(',', $disabled_function);
-    		$loopCounter = 0;
-    		foreach ($disabled_function_array as $disabled_value) {
-    			if (stristr($disabled_value, 'exec') != FALSE) {
-    				$loopCounter++;
-    			}
-    		}
-    		if ($loopCounter != 0) {
-    			// exec has been disabled, so we can't use any of the clever surrogates. Return nothing!
-    			return;
-    		}
-    	}
+        // All of the replacement methods assume that we can use exec, so let's test first if it isn't disabled
+        $disabled_function = ini_get('disable_functions');
+        if ($disabled_function != '') { // there actually are disabled functions, so let's loop through the list
+            $disabled_function_array = explode(',', $disabled_function);
+            $loopCounter = 0;
+            foreach ($disabled_function_array as $disabled_value) {
+                if (stristr($disabled_value, 'exec') != FALSE) {
+                    $loopCounter++;
+                }
+            }
+            if ($loopCounter != 0) {
+                // exec has been disabled, so we can't use any of the clever surrogates. Return nothing!
+                return;
+            }
+        }
         if (substr(PHP_OS,0,3)=='WIN') { // If we are running on Windows
             $output = array();
             exec( 'tasklist /FI "PID eq ' . getmypid() . '" /FO LIST', $output );
@@ -5812,12 +5812,12 @@ if (!function_exists('memory_get_usage')) {
             exec("ps -eo%mem,rss,pid | grep $pid", $output);
             $output = explode('  ', $output[0]);
             if ($output != '') {
-            	return $output[1] * 1024;
+                return $output[1] * 1024;
             } else {
-            	unset($output);
-            	$output = array();
-            	exec("ps -o rss -p $pid", $output); 
-            	return $output[1] *1024;
+                unset($output);
+                $output = array();
+                exec("ps -o rss -p $pid", $output); 
+                return $output[1] *1024;
             }
         }
     }
