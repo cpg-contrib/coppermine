@@ -86,17 +86,23 @@ function log_delete( $log = null ) {
 function& getloglist($folder)
 {
     global $CONFIG;
+    
     $file_array = array();
 
     $dir = opendir($folder);
-    while (($file = readdir($dir))!==false) {
+    while (($file = readdir($dir)) !== FALSE) {
         if (is_file($folder . $file) && $file != 'log_header.inc.php') {
-                $file_array[] = array('filename'=>$file,'logname'=>str_replace('.log.php','',$file),'filesize'=>filesize($folder . $file) >> 10);
+            $file_array[$file] = array(
+                'filename' => $file,
+                'logname'  => str_replace('.log.php', '', $file),
+                'filesize' => filesize($folder . $file) >> 10,
+            );
         }
     }
     closedir($dir);
 
-    natcasesort($file_array);
+    ksort($file_array);
+    
     return $file_array;
 }
 
