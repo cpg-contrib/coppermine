@@ -139,6 +139,28 @@ right in front of the closing <tt class="code">&lt;/body&gt;</tt>-tag mustn't be
 </div>
 <p>Subsequently, if a temporary document get's permanent, the meta tag should be removed.</p>
 
+<a name="dev_documentation_detail"></a><h2>Expandable/collapsible "detail"-blocks<a href="#dev_documentation_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>As the documentation is using the jquery framwork and some little plugins for ease of use, it's possible to come up with expandable/collapsible blocks that the end user can click on to read details. This can help to maintain a clear document structure.</p>
+<p>The used technology falls back nicely if JavaScript is disabled: the block are expanded out of the box and get collapsed on page load by JavaScript - if JavaScript is disabled, the blocks stay expanded no matter what.</p>
+<p>To create such a block, you need to come up with two container elements that need to be one after the other (no tags between them):</p>
+<pre>&lt;span class="detail_head_collapsed"&gt;Details&lt;/span&gt;
+&lt;div class="detail_body border1"&gt;
+	Content that is collapsed on page load and will get expanded if the visitor clicks on the "details" container above.
+&lt;/div&gt;</pre>
+<p>You can have several of those blocks on a page. To obtain a control that can manipulate all of them, you can use</p>
+<pre>&lt;button type="button" class="button detail_expand_all" name="expandalltop" id="expandalltop" onclick="return false"&gt;
+&lt;img src="../../images/tree/plus.gif" width="9" height="9" border="0" alt="" title="Expand All" /&gt;Expand all details
+&lt;/button&gt;
+&lt;button type="button" class="button detail_collapse_all" name="collapsealltop" id="collapsealltop" style="display:none;" onclick="return false"&gt;
+&lt;img src="../../images/tree/minus.gif" width="9" height="9" border="0" alt="" title="Collapse all" /&gt;Collapse all details
+&lt;/button&gt;</pre>
+<p>You need to pay attention to anchors that you might want to use within blocks that are collapsed on page load. Let's assume you have this content on a page named <tt class="code">example.htm</tt>:</p>
+<pre>&lt;span class="detail_head_collapsed"&gt;Details&lt;/span&gt;
+&lt;div class="detail_body border1"&gt;
+	<a name="foo"></a>Some content that can be accessed using an anchor.
+&lt;/div&gt;</pre>
+<p>Such a construct will not work if accessed using a link like this: <tt class="code">&lt;a href="example.htm#foo"&gt;</tt>. That's why a GET parameter named "expand_all" has been added that will expand all collapsed blocks on a page if set to 1. Subsequently, the example link would have to be <tt class="code">&lt;a href="example.htm?expand_all=1#foo"&gt;</tt></p>
+
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
 		<span id="doc_last_changed">$LastChangedDate$</span>
