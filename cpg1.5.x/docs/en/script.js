@@ -74,7 +74,6 @@ doc_toc += '          <li><a href="copyrights.htm#copyrights_previous_versions">
 doc_toc += '          <li><a href="copyrights.htm#copyright_additional">Additional terms (license add-ons)</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="known_issues.htm">Known issues</a></li>\n';
 doc_toc += '    </ul>\n';
 doc_toc += '  </li>\n';
@@ -702,7 +701,7 @@ $(document).ready(function()
         collapsed: true,
         unique: true,
         animated: "slow",
-        persist: "location",
+        persist: "location"
     });
 	cpgDocSearch();
 	cpgDocFooter();

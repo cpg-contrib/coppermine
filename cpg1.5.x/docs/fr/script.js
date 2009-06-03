@@ -698,7 +698,7 @@ $(document).ready(function()
         collapsed: true,
         unique: true,
         animated: "slow",
-        persist: "location",
+        persist: "location"
     });
 	cpgDocSearch();
 	cpgDocFooter();
