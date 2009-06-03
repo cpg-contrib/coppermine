@@ -3263,10 +3263,33 @@ function& cpg_lang_var($varname, $index = null)
 function cpg_debug_output()
 {
     global $USER, $USER_DATA, $CONFIG, $cpg_time_start, $query_stats, $queries, $lang_cpg_debug_output, $CPG_PHP_SELF, $superCage, $CPG_PLUGINS, $LINEBREAK;
+	if ($CONFIG['performance_timestamp'] == 0 || (date('Y-m-d', $CONFIG['performance_timestamp']) < date('Y-m-d'))) {
+		// The metering data in the config table are outdated, let's write fresh values.
+		// Currently happens each day. To extend the metering period to a whole week, 
+		// use 'Y-m-W' for both date functions above. Use 'Y-m' to extend the period over
+		// one month and subsequently 'Y' for an entire year.
+		$CONFIG['performance_timestamp'] = time();
+		cpg_config_set('performance_timestamp', $CONFIG['performance_timestamp']);
+		$CONFIG['performance_page_generation_time'] = 0;
+		$CONFIG['performance_page_query_time'] = 0;
+		$CONFIG['performance_page_query_count'] = 0;
+	}
     $time_end         = cpgGetMicroTime();
     $time             = round(($time_end - $cpg_time_start) * 1000);
+	if ($CONFIG['performance_page_generation_time'] < $time) {
+		$CONFIG['performance_page_generation_time'] = $time;
+		cpg_config_set('performance_page_generation_time', $CONFIG['performance_page_generation_time']);
+	}
     $query_count      = count($query_stats);
     $total_query_time = array_sum($query_stats);
+	if ($CONFIG['performance_page_query_time'] < $total_query_time) {
+		$CONFIG['performance_page_query_time'] = $total_query_time;
+		cpg_config_set('performance_page_query_time', $CONFIG['performance_page_query_time']);
+	}
+	if ($CONFIG['performance_page_query_count'] < $query_count) {
+		$CONFIG['performance_page_query_count'] = $query_count;
+		cpg_config_set('performance_page_query_count', $CONFIG['performance_page_query_count']);
+	}
 
     $debug_underline   = '&#0010;------------------&#0010;';
     $debug_separate    = '&#0010;==========================&#0010;';
@@ -3439,30 +3462,7 @@ EOT;
         } else {
         	echo 'n/a';
         }
-		if ($CONFIG['performance_timestamp'] == 0 || (date('Y-m-d', $CONFIG['performance_timestamp']) < date('Y-m-d'))) {
-			// The metering data in the config table are outdated, let's write fresh values
-			// Currently happens each day. To extend the metering period to a whole week, 
-			// use 'Y-m-W' for both date functions above. Use 'Y-m' to extend the period over
-			// one month and subsequently 'Y' for an entire year.
-			$CONFIG['performance_timestamp'] = time();
-			cpg_config_set('performance_timestamp', $CONFIG['performance_timestamp']);
-			$CONFIG['performance_page_generation_time'] = 0;
-			$CONFIG['performance_page_query_time'] = 0;
-			$CONFIG['performance_page_query_count'] = 0;
-		}
-		if ($CONFIG['performance_page_generation_time'] < $time) {
-			$CONFIG['performance_page_generation_time'] = $time;
-			cpg_config_set('performance_page_generation_time', $CONFIG['performance_page_generation_time']);
-		}
-		if ($CONFIG['performance_page_query_time'] < $total_query_time) {
-			$CONFIG['performance_page_query_time'] = $total_query_time;
-			cpg_config_set('performance_page_query_time', $CONFIG['performance_page_query_time']);
-		}
-		if ($CONFIG['performance_page_query_count'] < $query_count) {
-			$CONFIG['performance_page_query_count'] = $query_count;
-			cpg_config_set('performance_page_query_count', $CONFIG['performance_page_query_count']);
-		}
-		//echo $LINEBREAK . 'Timestamp: ' . $CONFIG['performance_timestamp'] . ' | ' . $performance_time . ' | ' . $today;
+
         echo $LINEBREAK . 'Page generation: ' . $time . ' ms | ' .  $CONFIG['performance_page_generation_time'] . ' ms';
         echo $LINEBREAK . 'Page query time: ' . $total_query_time . ' ms | '. $CONFIG['performance_page_query_time'] . ' ms';
         echo $LINEBREAK . 'Page query count: ' . $query_count . ' | ' . $CONFIG['performance_page_query_count'];
@@ -3525,7 +3525,7 @@ EOT;
     endtable();
     echo '</form>';
 
-} // function cpg_debug_output
+} // function cpg_phpinfo_mod
 
 
 /**
