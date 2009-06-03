@@ -500,7 +500,7 @@ dt {
 }
 
 .treeview a.us_de { 
-	background-image: url(../images/flags/us_de.png);
+	background-image: url(../../images/flags/us_de.png);
 	background-repeat:no-repeat;
 	background-position:2px 2px;
 	padding: 1px 0 1px 20px; 
@@ -508,7 +508,7 @@ dt {
 }
 
 .treeview a.us_fr { 
-	background-image: url(../images/flags/us_fr.png);
+	background-image: url(../../images/flags/us_fr.png);
 	background-repeat:no-repeat;
 	background-position:2px 2px;
 	padding: 1px 0 1px 20px; 
@@ -516,7 +516,7 @@ dt {
 }
 
 .treeview a.us_gb { 
-	background-image: url(../images/flags/us_gb.png);
+	background-image: url(../../images/flags/us_gb.png);
 	background-repeat:no-repeat;
 	background-position:2px 2px;
 	padding: 1px 0 1px 20px; 

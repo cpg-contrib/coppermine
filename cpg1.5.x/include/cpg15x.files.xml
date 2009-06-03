@@ -2637,29 +2637,6 @@
     <permission>read</permission>
     <hash>60fce6c631943a45faaa25c0ba810749</hash>
   </element>
-  <element>
-    <fullpath>docs/images/flags/</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-  </element>
-  <element>
-    <fullpath>docs/images/flags/us_de.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>6289bcfba3552c9302d33284497220d5</hash>
-  </element>
-  <element>
-    <fullpath>docs/images/flags/us_fr.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>6289bcfba3552c9302d33284497220d5</hash>
-  </element>
-  <element>
-    <fullpath>docs/images/flags/us_gb.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>6289bcfba3552c9302d33284497220d5</hash>
-  </element>
    <element>
     <fullpath>docs/images/license/</fullpath>
     <status>mandatory</status>
@@ -5010,6 +4987,24 @@
     <status>optional</status>
     <permission>read</permission>
     <hash>968591e0050981be9fa94bd2597afb48</hash>
+  </element>
+  <element>
+    <fullpath>images/flags/us_de.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6289bcfba3552c9302d33284497220d5</hash>
+  </element>
+  <element>
+    <fullpath>images/flags/us_fr.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6289bcfba3552c9302d33284497220d5</hash>
+  </element>
+  <element>
+    <fullpath>images/flags/us_gb.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6289bcfba3552c9302d33284497220d5</hash>
   </element>
   <element>
     <fullpath>images/flags/uy.png</fullpath>

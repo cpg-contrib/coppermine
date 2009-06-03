@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-06-03 [O] Moved combi flags from docs to images folder {GauGau}
+2009-06-03 [D] Fixing broken documentation navigation for IE (thread ID 59772) {GauGau}
 2009-06-02 [D] Updating French doc {Frantz}
 2009-06-02 [C] Updating french lang file {Frantz}
 2009-06-02 [A] Added config option to allow users rating their own files {eenemeenemuu}
