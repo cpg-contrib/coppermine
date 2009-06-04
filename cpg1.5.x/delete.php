@@ -625,7 +625,7 @@ case 'album':
     print delete_album($aid);
 
     echo '<tr><td colspan="7" class="tablef" align="center">' . $LINEBREAK;
-    echo '<div class="admin_menu"><a href="index.php">'.$icon_array['ok'] . $lang_common['continue'].'</a></div>' . $LINEBREAK;
+    echo '<span class="admin_menu"><a href="index.php">'.$icon_array['ok'] . $lang_common['continue'].'</a></span>' . $LINEBREAK;
     echo '</td></tr>';
     endtable();
 
