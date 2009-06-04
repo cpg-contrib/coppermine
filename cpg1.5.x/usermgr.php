@@ -994,9 +994,6 @@ function update_user($user_id)
 
     cpg_db_query($sql_update);
 
-    // Update pictures' owner name
-    cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_name = '$user_name' WHERE owner_id = $user_id");
-
     // Update comments' author name
     cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_author = '$user_name' WHERE author_id = $user_id");    
 

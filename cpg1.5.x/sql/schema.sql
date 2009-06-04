@@ -242,7 +242,6 @@ CREATE TABLE CPG_pictures (
   mtime datetime NOT NULL default '0000-00-00 00:00:00' ,
   ctime int(11) NOT NULL default '0',
   owner_id int(11) NOT NULL default '0',
-  owner_name varchar(40) NOT NULL default '',
   pic_rating int(11) NOT NULL default '0',
   votes int(11) NOT NULL default '0',
   title varchar(255) NOT NULL default '',

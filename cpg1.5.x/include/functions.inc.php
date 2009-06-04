@@ -86,7 +86,7 @@ function user_get_profile()
     if ($superCage->cookie->keyExists($CONFIG['cookie_name'].'_data')) {
         $USER = @unserialize(@base64_decode($superCage->cookie->getRaw($CONFIG['cookie_name'].'_data')));
         if (isset($USER['lang'])) {
-        $USER['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
+            $USER['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
         }
     }
 
@@ -966,9 +966,7 @@ function get_private_album_set($aid_str="")
  **/
 function build_caption(&$rowset, $must_have = array(), $mode = 'files')
 {
-    global $CONFIG, $THEME_DIR;
-    global $lang_date;
-    global $lang_get_pic_data;
+    global $CONFIG, $THEME_DIR, $lang_date, $lang_get_pic_data, $cpg_udb;
 
     foreach ($rowset as $key => $row) {
 
@@ -999,8 +997,8 @@ function build_caption(&$rowset, $must_have = array(), $mode = 'files')
         }
 
         if ($CONFIG['display_uploader']) {
-            if ($row['owner_id'] && $row['owner_name']) {
-                $caption .= '<span class="thumb_title"><a href="profile.php?uid=' . $row['owner_id'] . '">' . $row['owner_name'] . '</a></span>';
+            if ($row['owner_id']) {
+                $caption .= '<span class="thumb_title"><a href="profile.php?uid=' . $row['owner_id'] . '">' . $cpg_udb->get_user_name($row['owner_id']) . '</a></span>';
             }
         }
 
@@ -1153,7 +1151,6 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         //if ($CONFIG['display_uploader']) {
             $select_column_list[] = 'r.owner_id';
-            $select_column_list[] = 'owner_name';
         //}
 
         if (GALLERY_ADMIN_MODE) {
@@ -3364,7 +3361,7 @@ EOT;
         if (strcmp('4.3.0', phpversion()) == 1) {
             $version_comment = ' - your PHP version isn\'t good enough! Minimum requirements: 4.3.0';
         } else {
-        	$version_comment = ' - OK';
+        $version_comment = ' - OK';
         }
         $table['PHP version'] = phpversion() . $version_comment;
 

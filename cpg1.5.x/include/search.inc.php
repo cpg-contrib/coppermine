@@ -29,7 +29,7 @@ $sort_array = array('na' => 'filename ASC', 'nd' => 'filename DESC', 'ta'=>'titl
 $sort_code = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
 $sort_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_array[$CONFIG['default_sort_order']];
 
-$allowed = array('title', 'caption', 'keywords', 'owner_name', 'filename', 'pic_raw_ip', 'pic_hdr_ip', 'user1', 'user2', 'user3', 'user4');
+$allowed = array('title', 'caption', 'keywords', 'filename', 'pic_raw_ip', 'pic_hdr_ip', 'user1', 'user2', 'user3', 'user4');
 
 $mb_charset = stristr($multibyte_charset, $charset);
 

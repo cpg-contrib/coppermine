@@ -248,16 +248,23 @@ class core_udb {
     // Retrieve the name of a user
     function get_user_name($uid)
     {
-        $sql = "SELECT {$this->field['username']} as user_name FROM {$this->usertable} WHERE {$this->field['user_id']} = '$uid'";
-        $result = cpg_db_query($sql, $this->link_id);
+        static $cache = array();
+        
+        if (!isset($cache[$uid])) {
+        
+            $sql = "SELECT {$this->field['username']} as user_name FROM {$this->usertable} WHERE {$this->field['user_id']} = '$uid'";
+            $result = cpg_db_query($sql, $this->link_id);
 
-        if (mysql_num_rows($result)) {
-            $row = mysql_fetch_array($result);
-            mysql_free_result($result);
-            return $row['user_name'];
-        } else {
-            return '';
+            if (mysql_num_rows($result)) {
+                $row = mysql_fetch_assoc($result);
+                mysql_free_result($result);
+                $cache[$uid] = $row['user_name'];
+            } else {
+                $cache[$uid] = '';
+            }           
         }
+
+        return $cache[$uid];
     }
     // end function get_user_name
 

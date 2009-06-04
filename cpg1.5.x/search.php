@@ -96,7 +96,7 @@ echo <<< EOT
 
                                         </tr>
                                         <tr>
-                                                <td><input type="checkbox" name="owner_name" id="owner_name" class="checkbox" /><label for="owner_name" class="clickable_option">{$lang_common['owner_name']}</label></td>
+                                                <td><input type="checkbox" name="filename" id="filename" class="checkbox" /><label for="filename" class="clickable_option">{$lang_common['filename']}</label></td>
                                                 <td align="right">
                                                                     <select name="type" class="listbox">
                                                                         <option value="AND" selected="selected">{$lang_search_php['all_words']}</option>
@@ -105,11 +105,8 @@ echo <<< EOT
                                                                     </select>
                                                 </td>
                                         </tr>
-                                        <tr>
-                                                <td><input type="checkbox" name="filename" id="filename" class="checkbox" /><label for="filename" class="clickable_option">{$lang_common['filename']}</label></td>
-                                                <td>&nbsp;</td>
-                                        </tr>
 $customs
+$ip
                                         <tr>
                                                 <td>&nbsp;</td>
                                                 <td>&nbsp;</td>
@@ -127,7 +124,6 @@ $customs
                                                 <td><input type="checkbox" name="category_title" id="category_title" class="checkbox" /><label for="category_title" class="clickable_option">{$lang_search_php['category_title']}</label></td>
                                                 <td>&nbsp;</td>
                                         </tr>
-                                                $ip
                                 </table>
                         </td>
                 </tr>

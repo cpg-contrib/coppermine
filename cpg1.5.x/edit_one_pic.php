@@ -392,8 +392,8 @@ if (!is_movie($CURRENT_PIC['filename'])) {
 }
 
 if (defined('UPLOAD_APPROVAL_MODE')) {
-    if ($CURRENT_PIC['owner_id'] && $CURRENT_PIC['owner_name']) {
-        $pic_info .= ' - <a href ="profile.php?uid='.$CURRENT_PIC['owner_id'].'" target="_blank">'.$CURRENT_PIC['owner_name'].'</a>';
+    if ($CURRENT_PIC['owner_id']) {
+        $pic_info .= ' - <a href="profile.php?uid=' . $CURRENT_PIC['owner_id'] . '">' . $cpg_udb->get_user_name($CURRENT_PIC['owner_id']) . '</a>';
     }
 }
 

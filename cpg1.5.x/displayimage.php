@@ -103,10 +103,10 @@ EOT;
 function html_picinfo()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $FAVPICS, $REFERER, $CPG_PHP_SELF;
-    global $album, $lang_picinfo, $lang_display_image_php, $lang_byte_units, $lang_common, $lang_date;
+    global $album, $lang_picinfo, $lang_display_image_php, $lang_byte_units, $lang_common, $lang_date, $cpg_udb;
 
-    if ($CURRENT_PIC_DATA['owner_id'] && $CURRENT_PIC_DATA['owner_name']) {
-        $owner_link = '<a href="profile.php?uid=' . $CURRENT_PIC_DATA['owner_id'] . '">' . $CURRENT_PIC_DATA['owner_name'] . '</a> ';
+    if ($CURRENT_PIC_DATA['owner_id']) {
+        $owner_link = '<a href="profile.php?uid=' . $CURRENT_PIC_DATA['owner_id'] . '">' . $cpg_udb->get_user_name($CURRENT_PIC_DATA['owner_id']) . '</a> ';
     } else {
         $owner_link = '';
     }

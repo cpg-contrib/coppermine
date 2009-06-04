@@ -760,7 +760,7 @@ case 'user':
 
                     } else {
 
-                        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_id = 0, owner_name = '' WHERE owner_id = '$key'");
+                        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_id = 0 WHERE owner_id = '$key'");
 
                         if ($publ_upload_counter[0] > 0) {
                             print cpg_fetch_icon('ok', 0).' ';
@@ -1223,7 +1223,7 @@ case 'user':
 
                     } else {
 
-                        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_id = 0, owner_name = '' WHERE owner_id = '$key'");
+                        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_id = 0 WHERE owner_id = '$key'");
 
                         if ($publ_upload_counter[0] > 0) {
                             print cpg_fetch_icon('ok', 0).' ';
