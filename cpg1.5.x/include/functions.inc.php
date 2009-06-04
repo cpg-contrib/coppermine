@@ -3358,23 +3358,27 @@ EOT;
 
         echo "VERSION INFO :";
         echo $debug_underline;
-        if (strcmp('4.3.0', phpversion()) == 1) {
-            $version_comment = ' - your PHP version isn\'t good enough! Minimum requirements: 4.3.0';
+		$my_php_version = substr(phpversion(),0,strpos(phpversion(), '-'));
+		if ($my_php_version == '') {
+			$my_php_version = PHP_VERSION;
+		}
+		if (version_compare($my_php_version, '4.3.0', '>=')) {
+			$version_comment = 'OK';
         } else {
-        $version_comment = ' - OK';
+			$version_comment = 'Your PHP version isn\'t good enough! Minimum requirements: 4.3.0';
         }
-        $table['PHP version'] = phpversion() . $version_comment;
+        $table[] = array('PHP version', phpversion(), $version_comment);
 
-        $mySqlVersion    = cpg_phpinfo_mysql_version();
+        $mySqlVersion = substr(cpg_phpinfo_mysql_version(),0,strpos(cpg_phpinfo_mysql_version(), '-'));
 
-        if (strcmp('3.23.23', $mySqlVersion) == 1) {
-            $version_comment = ' - your MySQL version isn\'t good enough! Minimum requirements: 3.23.23';
+        if (version_compare($mySqlVersion, '3.23.23', '>=')) {
+            $version_comment = 'OK';
         } else {
-        	$version_comment = ' - OK';
+			$version_comment = 'Your MySQL version isn\'t good enough! Minimum requirements: 3.23.23';
         }
-        $table['MySQL version'] =  $mySqlVersion . $version_comment;
+        $table[] =  array('MySQL version', $mySqlVersion, $version_comment);
 
-        $table['Coppermine version'] =  COPPERMINE_VERSION . ' (' . COPPERMINE_VERSION_STATUS . ')';
+		$table[] =  array('Coppermine version', COPPERMINE_VERSION, COPPERMINE_VERSION_STATUS);
         echo cpg_fill_string_array_with_spaces($table, ' ', 'left', 'string');
 		unset ($table);
         echo $debug_separate;
@@ -3382,40 +3386,46 @@ EOT;
         if (function_exists('gd_info') == true) {
             echo 'Module: GD';
             echo $debug_underline;
-            echo cpg_fill_string_array_with_spaces(gd_info(), ' ', 'left', 'string');
+			$gd_array = gd_info();
+			if (array_key_exists('GD Version' , $gd_array) == TRUE) {
+				$table[] = array('Exact version', ereg_replace('[[:alpha:][:space:]()]+', '', $gd_array['GD Version']));
+			}
+			foreach ($gd_array as $key => $value) {
+				$table[] = array($key,$value);
+			}
+            echo cpg_fill_string_array_with_spaces($table, ' ', 'left', 'string');
+			unset($gd_array);
+			unset($table);
             echo $debug_separate;
         } else {
-            echo cpg_phpinfo_mod_output('gd', 'text');
+            echo cpg_phpinfo_mod_output('gd', 'text', '|');
         }
 
         echo 'Key config settings';
         echo $debug_underline;
-        $table['charset'] = $CONFIG['charset'];
-        $table['allow_private_albums'] = $CONFIG['allow_private_albums'];
-        $table['cookie_name'] = $CONFIG['cookie_name'];
-        $table['cookie_path'] = $CONFIG['cookie_path'];
-        $table['ecards_more_pic_target'] = $CONFIG['ecards_more_pic_target'];
-        $table['impath'] = $CONFIG['impath'];
-        $table['lang'] = $CONFIG['lang'];
-        $table['main_page_layout'] = $CONFIG['main_page_layout'];
-        $table['main_page_layout'] = $CONFIG['main_page_layout'];
-        $table['silly_safe_mode'] = $CONFIG['silly_safe_mode'];
-        $table['smtp_host'] = $CONFIG['smtp_host'];
-        $table['theme'] = $CONFIG['theme'];
-        $table['thumb_method'] = $CONFIG['thumb_method'];
+        $table[] = array('charset', $CONFIG['charset']);
+        $table[] = array('allow_private_albums', $CONFIG['allow_private_albums']);
+        $table[] = array('cookie_name', $CONFIG['cookie_name']);
+        $table[] = array('cookie_path', $CONFIG['cookie_path']);
+        $table[] = array('ecards_more_pic_target', $CONFIG['ecards_more_pic_target']);
+        $table[] = array('impath', $CONFIG['impath']);
+        $table[] = array('lang', $CONFIG['lang']);
+        $table[] = array('main_page_layout', $CONFIG['main_page_layout']);
+        $table[] = array('silly_safe_mode', $CONFIG['silly_safe_mode']);
+        $table[] = array('smtp_host', $CONFIG['smtp_host']);
+        $table[] = array('theme', $CONFIG['theme']);
+        $table[] = array('thumb_method', $CONFIG['thumb_method']);
 		echo cpg_fill_string_array_with_spaces($table, ' ', 'left', 'string');
 		unset ($table);
         echo $debug_separate;
 
         echo 'Plugins';
         echo $debug_underline;
-        $loopCounter = 1;
         foreach ($CPG_PLUGINS as $plugin) {
-            $table[$loopCounter] = $plugin->name;
-            $table['Actions'] = implode(', ', array_keys($plugin->actions));
-            $table['Filters'] = implode(', ', array_keys($plugin->filters));
-            $table['---'.$loopCounter] = '--------------';
-            $loopCounter++;
+            $table[] = array('Name', $plugin->name);
+            $table[] = array('Actions', implode(', ', array_keys($plugin->actions)));
+            $table[] = array('Filters', implode(', ', array_keys($plugin->filters)));
+            $table[] = array('--------------');
         }
         echo cpg_fill_string_array_with_spaces($table, ' ', 'left', 'string');
 		unset ($table);
@@ -3423,48 +3433,41 @@ EOT;
         echo $debug_separate;
         echo 'Server restrictions';
         echo $debug_underline;
-        echo 'Directive: Local Value | Master Value';
-        echo cpg_phpinfo_conf_output("safe_mode");
-        echo cpg_phpinfo_conf_output("safe_mode_exec_dir");
-        echo cpg_phpinfo_conf_output("safe_mode_gid");
-        echo cpg_phpinfo_conf_output("safe_mode_include_dir");
-        echo cpg_phpinfo_conf_output("safe_mode_exec_dir");
-        echo cpg_phpinfo_conf_output("sql.safe_mode");
-        echo cpg_phpinfo_conf_output("disable_functions");
-        echo cpg_phpinfo_conf_output("file_uploads");
-        echo cpg_phpinfo_conf_output("include_path");
-        echo cpg_phpinfo_conf_output("open_basedir");
-        echo cpg_phpinfo_conf_output("allow_url_fopen");
-        echo cpg_phpinfo_conf_output("max_execution_time");
-        echo cpg_phpinfo_conf_output("max_input_time");
-        echo cpg_phpinfo_conf_output("upload_max_filesize");
-        echo cpg_phpinfo_conf_output("post_max_size");
-        echo cpg_phpinfo_conf_output("memory_limit");
+        $table[] = array('safe_mode', ini_get('safe_mode'));
+		$table[] = array('safe_mode_exec_dir', ini_get('safe_mode_exec_dir'));
+		$table[] = array('safe_mode_gid', ini_get('safe_mode_gid'));
+		$table[] = array('safe_mode_include_dir', ini_get('safe_mode_include_dir'));
+		$table[] = array('sql.safe_mode', ini_get('sql.safe_mode'));
+		$table[] = array('disable_functions', ini_get('disable_functions'));
+		$table[] = array('file_uploads', ini_get('file_uploads'));
+		$table[] = array('include_path', ini_get('include_path'));
+		$table[] = array('open_basedir', ini_get('open_basedir'));
+		$table[] = array('allow_url_fopen', ini_get('allow_url_fopen'));
+		$table[] = array('max_execution_time', ini_get('max_execution_time'));
+		$table[] = array('max_input_time', ini_get('max_input_time'));
+		$table[] = array('upload_max_filesize', ini_get('upload_max_filesize'));
+		$table[] = array('post_max_size', ini_get('post_max_size'));
+		$table[] = array('memory_limit', ini_get('memory_limit'));
+		$table[] = array('suhosin.post.max_vars', ini_get('suhosin.post.max_vars'));
+		$table[] = array('suhosin.request.max_vars', ini_get('suhosin.request.max_vars'));
+		echo cpg_fill_string_array_with_spaces($table, ' ', 'left', 'string');
+		unset ($table);
         echo $LINEBREAK . $debug_separate;
-        
-        if (ini_get('suhosin.post.max_vars')) {
-
-            echo 'Suhosin limits';
-            echo $debug_underline;
-            echo 'Directive: Local Value | Master Value';
-            echo cpg_phpinfo_conf_output("suhosin.post.max_vars");
-            echo cpg_phpinfo_conf_output("suhosin.request.max_vars");
-            echo $LINEBREAK . $debug_separate;
-        }
         
         echo 'Page (performance)';
         echo $debug_underline;
-        echo 'Parameter: Current | Peak';
-        echo $LINEBREAK . 'Memory usage: ' . cpg_format_bytes(memory_get_usage()) . ' | ';
-        if (function_exists('memory_get_peak_usage')) {
-        	echo cpg_format_bytes(memory_get_peak_usage());
+		$table[] = array('Parameter', 'Current', 'Peak');
+		if (function_exists('memory_get_peak_usage')) {
+        	$peak_memory_usage = cpg_format_bytes(memory_get_peak_usage());
         } else {
-        	echo 'n/a';
+        	$peak_memory_usage = 'n/a';
         }
-
-        echo $LINEBREAK . 'Page generation: ' . $time . ' ms | ' .  $CONFIG['performance_page_generation_time'] . ' ms';
-        echo $LINEBREAK . 'Page query time: ' . $total_query_time . ' ms | '. $CONFIG['performance_page_query_time'] . ' ms';
-        echo $LINEBREAK . 'Page query count: ' . $query_count . ' | ' . $CONFIG['performance_page_query_count'];
+		$table[] = array('Memory usage', cpg_format_bytes(memory_get_usage()), $peak_memory_usage);
+		$table[] = array('Page generation', $time . ' ms', $CONFIG['performance_page_generation_time'] . ' ms');
+		$table[] = array('Page query time', $total_query_time . ' ms', $CONFIG['performance_page_query_time'] . ' ms');
+		$table[] = array('Page query count', $query_count, $CONFIG['performance_page_query_count']);
+		echo cpg_fill_string_array_with_spaces($table, ' ', 'left', 'string');
+		unset ($table);
         echo $LINEBREAK . $debug_separate;
 
     }
@@ -3573,10 +3576,11 @@ function cpg_phpinfo_mod($search)
  *
  * @param $search
  * @param $output_type
+ * @param $separator
  * @return
  **/
 
-function cpg_phpinfo_mod_output($search,$output_type)
+function cpg_phpinfo_mod_output($search, $output_type, $separator = ' ')
 {
     // first parameter is the module name, second parameter is the way you want your output to look like: table or text
     $pieces = cpg_phpinfo_mod($search);
@@ -3596,41 +3600,32 @@ function cpg_phpinfo_mod_output($search,$output_type)
     }
 
     foreach ($pieces as $val) {
-
         if ($output_type == 'table') {
             $return .= '<tr><td>';
         }
-
         $return .= $val[0];
-
         if ($output_type == 'table') {
             $return .= '</td><td>';
-        }
-
+        } else {
+			$return .= $separator;
+		}
         if (isset($val[1])) {
             $return .= $val[1];
         }
-
         if ($output_type == 'table') {
             $return .= '</td></tr>';
         }
-
         $summ .= $val[0];
     }
-
     if (!$summ) {
-
         if ($output_type == 'table') {
             $return .= '<tr><td colspan="2">';
         }
-
         $return .= 'module doesn\'t exist';
-
         if ($output_type == 'table') {
             $return .= '</td></tr>';
         }
     }
-
     if ($output_type == 'table') {
         ob_start();
         endtable();
@@ -3639,7 +3634,6 @@ function cpg_phpinfo_mod_output($search,$output_type)
     } else {
         $return .= $debug_separate;
     }
-
     return $return;
 } // function cpg_phpinfo_mod_output
 
@@ -3658,63 +3652,6 @@ function cpg_phpinfo_mysql_version()
 
     return $version;
 } // function cpg_phpinfo_mysql_version
-
-
-/**
- * cpg_phpinfo_conf()
- *
- * @param $search
- * @return
- **/
-
-function cpg_phpinfo_conf($search)
-{
-    static $pieces = array();
-
-    if (!$pieces) {
-
-        // this could be done much better with regexpr - anyone who wants to change it: go ahead
-        $string    ='';
-        $pieces    = '';
-        $delimiter = '#cpgdelimiter#';
-        $bits      = '';
-
-        ob_start();
-        phpinfo(INFO_CONFIGURATION);
-        $string = ob_get_contents();
-        ob_end_clean();
-
-        // find out the first occurence of "</tr" and throw the superfluos stuff in front of it away
-        $string = strchr($string, '</tr>');
-        $string = str_replace('</td>', '|', $string);
-        $string = str_replace('</tr>', $delimiter, $string);
-        $string = chop(strip_tags($string));
-        $pieces = explode($delimiter, $string);
-    }
-
-    foreach ($pieces as $val) {
-        $bits = explode('|', $val);
-        if (strchr($bits[0], $search)) {
-            return $bits;
-        }
-    }
-} // function cpg_phpinfo_conf
-
-
-/**
- * cpg_phpinfo_conf_output()
- *
- * @param $search
- * @return
- **/
-
-function cpg_phpinfo_conf_output($search)
-{
-    $pieces = cpg_phpinfo_conf($search);
-
-    return $pieces[0] . ': ' . $pieces[1] . ' | ' . $pieces[2];
-} // function cpg_phpinfo_conf_output
-
 
 function cpg_config_output($key)
 {
@@ -5861,6 +5798,14 @@ function cpg_fillArrayFieldWithSpaces($text, $maxchars, $fillUpOn = 'right') {
   return $text;
 }
 
+/**
+ * cpg_fill_string_array_with_spaces
+ * 
+ * @param array $table (can be variable or array)
+ * @param string $align alignment of the cells (left or right)
+ * @param string $return_value desired return value (string or array)
+ * @return array or string
+ */
 function cpg_fill_string_array_with_spaces($table, $separator = '|', $align = 'left', $return_value = 'string') {
 	global $CONFIG, $LINEBREAK;
 	// Sanitize the parameters
@@ -5873,28 +5818,44 @@ function cpg_fill_string_array_with_spaces($table, $separator = '|', $align = 'l
 		$return_value = 'string';
 	}
 	// $table needs to be an associative array
-	$string_length_key = 0;
-	$string_length_value = 0;
+	$max_string_length = array();
+	// set default for return value
 	if ($return_value == 'array') {
 		$return = array();
 	} else {
 		$return = '';
 	}
 	// Find the longest string
-	foreach ($table as $key => $value) {
-		if (mb_strlen($key, $CONFIG['charset']) > $string_length_key) {
-			$string_length_key = mb_strlen($key, $CONFIG['charset']);
+	foreach ($table as $key) {
+		if (is_array($key) != TRUE) {
+			$key = array($key);
 		}
-		if (mb_strlen($value, $CONFIG['charset']) > $string_length_value) {
-			$string_length_value = mb_strlen($value, $CONFIG['charset']);
+		$loopCounter = 0;
+		foreach ($key as $subkey) {
+			if (mb_strlen($subkey, $CONFIG['charset']) > $max_string_length[$loopCounter]) {
+				$max_string_length[$loopCounter] = mb_strlen($subkey, $CONFIG['charset']);
+			}
+			$loopCounter++;
 		}
 	}
 	// Fill the $return array / var
 	foreach ($table as $key => $value) {
+		if (is_array($value) != TRUE) {
+			$value = array($value);
+		}
+		$loopCounter = 0;
+		$temp = '';
+		foreach ($value as $subvalue) {
+			if ($loopCounter != 0) {
+				$temp .= $separator;
+			}
+			$temp .= cpg_fillArrayFieldWithSpaces($subvalue, $max_string_length[$loopCounter], $fillUpOn) ;
+			$loopCounter++;
+		}
 		if ($return_value == 'array') {
-			$return[$key] = cpg_fillArrayFieldWithSpaces($key, $string_length_key, $fillUpOn) . $separator . cpg_fillArrayFieldWithSpaces($value, $string_length_value);
+			$return[$key] = $temp;
 		} else {
-			$return .= cpg_fillArrayFieldWithSpaces($key, $string_length_key, $fillUpOn) . $separator . cpg_fillArrayFieldWithSpaces($value, $string_length_value) . $LINEBREAK;
+			$return .= $temp . $LINEBREAK;
 		}
 	}
 	return $return;
