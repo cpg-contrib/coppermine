@@ -84,8 +84,10 @@ function user_get_profile()
      * e.g. $encoded_string_with_md5 = "asdfkhasdf987we89rfadfjhasdfklj@^@".md5("asdfkhasdf987we89rfadfjhasdfklj".$secret_salt)
      */
     if ($superCage->cookie->keyExists($CONFIG['cookie_name'].'_data')) {
-        $USER         = @unserialize(@base64_decode($superCage->cookie->getRaw($CONFIG['cookie_name'].'_data')));
+        $USER = @unserialize(@base64_decode($superCage->cookie->getRaw($CONFIG['cookie_name'].'_data')));
+        if (isset($USER['lang'])) {
         $USER['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
+        }
     }
 
     if (!isset($USER['ID']) || strlen($USER['ID']) != 32) {
