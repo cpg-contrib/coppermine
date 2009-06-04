@@ -4228,8 +4228,12 @@ EOT;
 ** Section <<<$template_sidebar>>> - END
 ******************************************************************************/
 
+
+
+/******************************************************************************
+** Section <<<adminmessages>>> - START
+******************************************************************************/
 // Function to display messages which are shown only to admin
-if (!function_exists('adminmessages')) { //{THEMES}
 function adminmessages()
 {
     global $register_globals_flag, $include_directory_writable, $lang_errors;
@@ -4248,5 +4252,7 @@ function adminmessages()
         msg_box($lang_errors['include_directory_title'], $lang_errors['include_directory_warning'], '', '', 'warning');
     }
 }
-} //{THEMES}
+/******************************************************************************
+** Section <<<adminmessages>>> - END
+******************************************************************************/
 ?>
