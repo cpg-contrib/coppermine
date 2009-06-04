@@ -31,6 +31,20 @@ function cpgGetMicroTime()
 }
 $cpg_time_start = cpgGetMicroTime();
 
+// Set a flag if register globals is on to show a warning to admin
+if (ini_get('register_globals') == '1' || strtolower(ini_get('register_globals')) == 'on') {
+    $register_globals_flag = true;
+} else {
+    $register_globals_flag = false;
+}
+
+// Set a flag if include folder is writable to show warning to admin
+if (is_writable('include')) {
+    $include_directory_writable = true;
+} else {
+    $include_directory_writable = false;
+}
+
 require_once('include/Inspekt.php');
 
 // Set $strict to false to make the superglobals available

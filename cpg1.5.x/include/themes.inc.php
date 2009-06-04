@@ -1545,6 +1545,9 @@ function pageheader($section, $meta = '')
     );
 
     echo template_eval($template_header, $template_vars);
+    
+    // Show various admin messages
+    adminmessages();
 }
 /******************************************************************************
 ** Section <<<pageheader>>> - END
@@ -1755,7 +1758,7 @@ function theme_msg_box($title, $msg_text, $css_class = 'cpg_message_info', $butt
 {
     global $template_msg_box;
 
-    if (!$button_text) {
+    if (!$button_text && stripos($template_msg_box, 'button') != false) {
         template_extract_block($template_msg_box, 'button');
     }
     $params = array(
@@ -4234,4 +4237,25 @@ EOT;
 ******************************************************************************/
 } //{THEMES}
 
+// Function to display messages which are shown only to admin
+if (!function_exists('adminmessages')) { //{THEMES}
+function adminmessages()
+{
+    global $register_globals_flag, $include_directory_writable, $lang_errors;
+    // If user is not admin (and in admin mode), then return
+    if (!GALLERY_ADMIN_MODE) {
+        return;
+    }
+    
+    // If register_globals is On, then show the warning message.
+    if ($register_globals_flag == true) {
+        msg_box($lang_errors['register_globals_title'], $lang_errors['register_globals_warning'], '', '', 'warning');
+    }
+    
+    // If include folder still have writable permission show warning
+    if ($include_directory_writable == true) {
+        msg_box($lang_errors['include_directory_title'], $lang_errors['include_directory_warning'], '', '', 'warning');
+    }
+}
+} //{THEMES}
 ?>

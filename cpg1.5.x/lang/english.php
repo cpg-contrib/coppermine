@@ -104,6 +104,10 @@ $lang_errors['critical_error'] = 'Critical error'; // cpg1.5
 $lang_errors['access_thumbnail_only'] = 'You are only allowed to view thumbnail images.'; // cpg1.5
 $lang_errors['access_intermediate_only'] = 'You are not allowed to view full-size images.'; // cpg1.5
 $lang_errors['access_none'] = 'You are not allowed to view any images.'; // cpg1.5
+$lang_errors['register_globals_title'] = 'Register Globals on!';// cpg1.5
+$lang_errors['register_globals_warning'] = 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]'; //cpg1.5
+$lang_errors['include_directory_title'] = 'Include folder writable'; // cpg1.5
+$lang_errors['include_directory_warning'] = 'The \'include\' directory is still writable which poses a security risk. You must change the directory\'s permissions to be non-writable.'; // cpg1.5
 
 $lang_bbcode_help_title = 'bbcode help';
 $lang_bbcode_help = 'You can add clickable links and some formatting to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <strong>Bold</strong></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://documentation.coppermine-gallery.net/en/images/base.gif[/img] =&gt; <img src="docs/en/images/base.gif" border="0" alt="" /></li>';
