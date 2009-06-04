@@ -1270,7 +1270,7 @@ function checkPermissions()
                     $possible_modes_left = implode(' '.$language['or'].' ',array_diff($perm,array($mode)));
                     $GLOBALS['error'] .= sprintf($language['perm_error'], $folder, $mode) . ' ' . $possible_modes_left . '.<br />';
 
-                    $temp_data .= "<tr><td>$folder</td><td><div class=\"cpg_message_error\">{$language['not_writable']}</div>v</tr>";
+                    $temp_data .= "<tr><td>$folder</td><td><div class=\"cpg_message_error\">{$language['not_writable']}</div></tr>";
                 }
             } else {
                 //close file handle and remove file
@@ -1988,13 +1988,13 @@ function cpgGetimagesize($image, $force_cpg_function = false)
         }
         return array($x, $y, $type, 'height="' . $x . '" width="' . $y . '"');
     } else {
-        $size = getimagesize($image);
+        $size = @getimagesize($image);
         if (!$size) {
             //false was returned
-            return $this->cpgGetimagesize($image, true/*force the use of custom function*/);
+            return cpgGetimagesize($image, true/*force the use of custom function*/);
         }elseif (!isset($size[0]) || !isset($size[1])) {
             //webhost possibly changed getimagesize functionality
-            return $this->cpgGetimagesize($image, true/*force the use of custom function*/);
+            return cpgGetimagesize($image, true/*force the use of custom function*/);
         }else {
             //function worked as expected, return the results
             return $size;
