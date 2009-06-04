@@ -146,12 +146,13 @@ case 'comment':
 	    }
         cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
     }
-
-    if (($CONFIG['comment_captcha'] > 0 && !USER_ID) || ($CONFIG['comment_captcha'] == 2 && USER_ID)) {
+    
+    if (($CONFIG['comment_captcha'] == 1) || ($CONFIG['comment_captcha'] == 2 && !USER_ID)) {
         if (!captcha_plugin_enabled()) {
             require("include/captcha.inc.php");
             $matches = $superCage->post->getMatched('confirmCode', '/^[a-zA-Z0-9]+$/');
-            if ($matches[0] && !PhpCaptcha::Validate($matches[0])) {
+
+            if (!$matches[0] || !PhpCaptcha::Validate($matches[0])) {
 			    if ($CONFIG['log_mode'] != 0) {
 			            log_write('Captcha authentification for comment failed for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
 			    }
