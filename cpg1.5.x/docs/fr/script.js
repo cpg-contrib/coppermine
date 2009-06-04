@@ -394,7 +394,7 @@ doc_toc += '    </ul>\n';
 doc_toc += '  </li>\n';
 doc_toc += '  <li><a  href="dev.htm"class="us_fr">Developer documentation</a>\n';
 doc_toc += '    <ul>\n';
-doc_toc += '      <li><a  href="dev_coding.htm">Coding guidelines</a></li>\n';
+doc_toc += '      <li><a  href="dev_coding.htm" class="us_fr">Coding guidelines</a></li>\n';
 doc_toc += '      <li><a  href="dev_files.htm">Adding/renaming/removing files</a></li>\n';
 doc_toc += '      <li><a  href="dev_superglobals.htm">Sanitization of Superglobals using Inspekt</a></li>\n';
 doc_toc += '      <li><a  href="dev_javascript.htm">Javascript in Coppermine</a></li>\n';
