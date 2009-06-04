@@ -111,8 +111,8 @@ if ($search_string && isset($search_params['params'])) {
         $sql .=  " AND approved = 'YES' $FORBIDDEN_SET";
 
         if ($superCage->get->keyExists('album_title')) {
-                $album_query = "SELECT * FROM `{$CONFIG['TABLE_ALBUMS']}` "
-                        ." WHERE (`title` " . implode(" $type `title` ",$albcat_terms) . ')';
+                $album_query = "SELECT aid, title, description FROM `{$CONFIG['TABLE_ALBUMS']}` AS p"
+                        ." WHERE (`title` " . implode(" $type `title` ",$albcat_terms) . ") $FORBIDDEN_SET";
                 $result = cpg_db_query($album_query);
                 if (mysql_num_rows($result) > 0) {
                         starttable('100%', $lang_meta_album_names['album_search'],2);
@@ -120,6 +120,7 @@ if ($search_string && isset($search_params['params'])) {
                                 $thumb_query = "SELECT filepath, filename, url_prefix, pwidth, pheight "
                                         ." FROM `{$CONFIG['TABLE_PICTURES']}` "
                                         ." WHERE (`aid` = '{$alb['aid']}') "
+                                        ." AND approved = 'YES' "
                                         ." ORDER BY `pid` DESC";
                                 $thumb_result = cpg_db_query($thumb_query);
                                 $thumb = mysql_fetch_assoc($thumb_result);
@@ -156,12 +157,12 @@ if ($search_string && isset($search_params['params'])) {
         }
                                               
         if ($superCage->get->keyExists('category_title')) {
-                $category_query = "SELECT * FROM `{$CONFIG['TABLE_CATEGORIES']}` WHERE (`name` " . implode(" $type `name` ",$albcat_terms) . ')';
+                $category_query = "SELECT cid, name FROM `{$CONFIG['TABLE_CATEGORIES']}` WHERE (`name` " . implode(" $type `name` ",$albcat_terms) . ')';
                 $result = cpg_db_query($category_query);
                 if (mysql_num_rows($result) > 0) {
                         starttable('100%', $lang_meta_album_names['category_search'],2);
                         while ($cat = mysql_fetch_array($result,MYSQL_ASSOC)) {
-                                $album_q = "SELECT * FROM `{$CONFIG['TABLE_ALBUMS']}` WHERE (`category` = '{$cat['cid']}') ORDER BY `aid` DESC LIMIT 1";
+                                $album_q = "SELECT aid, title FROM `{$CONFIG['TABLE_ALBUMS']}` AS p WHERE (`category` = '{$cat['cid']}') $FORBIDDEN_SET ORDER BY `aid` DESC LIMIT 1";
                                 $album_r = cpg_db_query($album_q);
                                 $album = mysql_fetch_array($album_r);
 
@@ -169,6 +170,7 @@ if ($search_string && isset($search_params['params'])) {
                                 $thumb_query = "SELECT filepath, filename, url_prefix, pwidth, pheight "
                                         ." FROM `{$CONFIG['TABLE_PICTURES']}` "
                                         ." WHERE (`aid` = '{$album['aid']}') "
+                                        ." AND approved = 'YES' "
                                         ." ORDER BY `pid` DESC";
                                 $thumb_result = cpg_db_query($thumb_query);
                                 $thumb = mysql_fetch_assoc($thumb_result);

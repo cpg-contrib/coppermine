@@ -1085,7 +1085,7 @@ function build_caption(&$rowset, $must_have = array(), $mode = 'files')
 
 function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true, $mode = '')
 {
-    global $USER, $CONFIG, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $FAVPICS, $FORBIDDEN_SET_DATA, $USER_DATA;
+    global $USER, $CONFIG, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $FAVPICS, $FORBIDDEN_SET_DATA, $FORBIDDEN_SET, $USER_DATA;
     global $cat;
     global $lang_common, $lang_meta_album_names, $lang_errors;
     global $RESTRICTEDWHERE;
