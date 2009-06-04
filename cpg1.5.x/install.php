@@ -249,6 +249,7 @@ switch($step) {
         
     case STEP_SELECT_IMG_PROC:     // Check available image processors & let user choose
         $page_title = $language['title_imp'];
+        $supported_processors = array('gd1' => 'GD1', 'gd2' => "GD2", 'im' => 'ImageMagick');
         $image_processors = checkImageProcessor();
         html_header();
         if ($error != '') {
@@ -290,7 +291,7 @@ switch($step) {
         if (!isset($selected)) {
             $content .= '<br /><br /><fieldset style="width:90%" title="GD">' . $language['no_gd'] . '</fieldset><br /><br />' . $im_not_found;
         } else {
-            $content .= '<br /><br />' . $language['installer_selected'] . ' \'' . $selected . '\'<br /><br />' . $imp_list . $im_not_found;
+            $content .= '<br /><br />' . $language['installer_selected'] . ' \'' . $supported_processors[$selected] . '\'<br /><br />' . $imp_list . $im_not_found;
         }
         
         // add IM path box
