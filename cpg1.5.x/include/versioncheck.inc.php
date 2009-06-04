@@ -87,18 +87,21 @@ function cpg_is_writable($folder){
   return $return;
 }
 
-function cpg_fillArrayFieldWithSpaces($text, $maxchars, $fillUpOn = 'right') {
-  $spaceCharsToAdd = $maxchars - strlen($text);
-  if ($spaceCharsToAdd > 0) {
-    for ($i = 1; $i <= $spaceCharsToAdd; $i++) {
-      if ($fillUpOn != 'left') {
-        $text .= ' ';
-      } else {
-        $text = ' '.$text;
-      }
-    }
-  }
-  return $text;
+if (!function_exists(cpg_fillArrayFieldWithSpaces)) {
+	function cpg_fillArrayFieldWithSpaces($text, $maxchars, $fillUpOn = 'right') {
+	  global $CONFIG;
+	  $spaceCharsToAdd = $maxchars - mb_strlen($text, $CONFIG['charset']);
+	  if ($spaceCharsToAdd > 0) {
+	    for ($i = 1; $i <= $spaceCharsToAdd; $i++) {
+	      if ($fillUpOn != 'left') {
+	        $text .= ' ';
+	      } else {
+	        $text = ' '.$text;
+	      }
+	    }
+	  }
+	  return $text;
+	}
 }
 
 function cpg_versioncheckDisplayOptions() {
