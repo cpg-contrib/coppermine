@@ -10,6 +10,7 @@
 
   ********************************************
   Coppermine version: 1.5.1
+  $HeadURL$
   $Revision$
   $LastChangedBy$
   $Date$

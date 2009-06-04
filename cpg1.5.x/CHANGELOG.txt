@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-06-04 [M] Added missing SVN header information {GauGau}
 2009-06-03 [O] Use newer album selection code for 'sort my pictures' page, reduces query count and memory usage {Nibbler}
 2009-06-03 [O] Moved combi flags from docs to images folder {GauGau}
 2009-06-03 [D] Fixing broken documentation navigation for IE (thread ID 59772) {GauGau}

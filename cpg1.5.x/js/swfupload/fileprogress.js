@@ -1,3 +1,21 @@
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2008 Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+
+  ********************************************
+  Coppermine version: 1.5.1
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
+**********************************************/
+
 /*
 	A simple class for displaying file information and progress
 	Note: This is a demonstration only and not part of SWFUpload.

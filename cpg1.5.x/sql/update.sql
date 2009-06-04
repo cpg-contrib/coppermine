@@ -10,7 +10,7 @@
 ##
 ##  ********************************************
 ##  Coppermine version: 1.5.1
-##  $Source: /cvsroot/coppermine/devel/sql/update.sql,v $
+##  $HeadURL$
 ##  $Revision$
 ##  $LastChangedBy$
 ##  $Date$

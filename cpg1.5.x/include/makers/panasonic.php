@@ -12,9 +12,9 @@
   ********************************************
   Coppermine version: 1.5.1
   $HeadURL$
-  $Revision: 4224 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-01-26 12:42:00 +0100 (Sa, 26 Jan 2008) $
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 /*
 	Exifer
