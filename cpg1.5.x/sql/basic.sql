@@ -223,6 +223,7 @@ INSERT INTO CPG_config VALUES ('watermark_transparency_featherx', '0');
 INSERT INTO CPG_config VALUES ('watermark_transparency_feathery', '0');
 INSERT INTO CPG_config VALUES ('where_put_watermark', 'southeast');
 INSERT INTO CPG_config VALUES ('which_files_to_watermark', 'both');
+INSERT INTO CPG_config VALUES ('enable_encrypted_passwords', '1');
 
 
 
