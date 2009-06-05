@@ -50,13 +50,13 @@
 
 
 <a name="dev_config_step_basiq_sql"></a><h3>Basic.sql<a href="#dev_config_step_basiq_sql" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Add the needed sql queries to sql/basic.sql for fresh installs. The config entries should exist in the same order they will be displayed on the config page. Find the line with the existing query that you want your entry to appear after and add it below.</p>
+<p>Add the needed sql queries to sql/basic.sql for fresh installs. The config entries should exist in alphabetical order.</p>
 <div class="cpg_example">
-If you want your new config option to be displayed beneath the &quot;Enable plugins&quot; entry, find <tt class="code">INSERT INTO CPG_config VALUES ('enable_plugins', '1');</tt> and add your new line beneath it.
+If your new config option is named &quot;enable_coffee_making&quot; entry, find <tt class="code">INSERT INTO CPG_config VALUES ('enable_plugins', '1');</tt> and add your new line before it.
 </div>
 
 <a name="dev_config_step_update_sql"></a><h3>Update.sql<a href="#dev_config_step_update_sql" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>To make sure your new config option is not only taken into account for fresh installs, but for updates as well, you will have to add your new query line that you already added to basic.sql to update.sql as well. The only difference is that you don't sort the entries in the same way they are supposed to appear on the config screen, but add them at the very bottom of update.sql</p>
+<p>To make sure your new config option is not only taken into account for fresh installs, but for updates as well, you will have to add your new query line that you already added to basic.sql to update.sql as well. The only difference is that you don't sort the entries as in basic.sql, but add them at the very bottom of update.sql</p>
 
 <a name="dev_config_step_array"></a><h3>Admin.inc.php<a href="#dev_config_step_array" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>As suggested above, the logic of the config entry has been moved from the language file to a separate, language-independent include file. Edit include/admin.inc.php and add a new line to the array definition there are suggested below.</p>
