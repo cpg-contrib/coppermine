@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-06-05 [B] Re-added record for encrypted passwords into basic.sql (thread ID 59916) {GauGau}
 2009-06-05 [M] Removed the include folder is_writable check and warning message (thread 59896) {Abbas}
 2009-06-05 [B] Check for default values in admin section not working correctly {SaWey}
 2009-06-04 [C] Added nicer debug_output {GauGau}

@@ -103,6 +103,7 @@ INSERT INTO CPG_config VALUES ('display_xp_publish_link', '0');
 INSERT INTO CPG_config VALUES ('ecard_flash', '0');
 INSERT INTO CPG_config VALUES ('ecards_more_pic_target', 'http://yoursite.tld/your_coppermine_folder/');
 INSERT INTO CPG_config VALUES ('email_comment_notification', '0');
+INSERT INTO CPG_config VALUES ('enable_encrypted_passwords', '1'); # Do not remove - this record IS needed to make sure that there is no double-encryption when updating
 INSERT INTO CPG_config VALUES ('enable_help', '1');
 INSERT INTO CPG_config VALUES ('enable_menu_icons', '2');
 INSERT INTO CPG_config VALUES ('enable_plugins', '1');
@@ -223,8 +224,6 @@ INSERT INTO CPG_config VALUES ('watermark_transparency_featherx', '0');
 INSERT INTO CPG_config VALUES ('watermark_transparency_feathery', '0');
 INSERT INTO CPG_config VALUES ('where_put_watermark', 'southeast');
 INSERT INTO CPG_config VALUES ('which_files_to_watermark', 'both');
-INSERT INTO CPG_config VALUES ('enable_encrypted_passwords', '1');
-
 
 
 #
