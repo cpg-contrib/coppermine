@@ -979,7 +979,7 @@ EOT;
         @chmod($uploaded_pic, octdec($CONFIG['default_file_mode'])); //silence the output in case chmod is disabled
         $CURRENT_PIC_DATA = array();
         // Create thumbnail and intermediate image and add the image into the DB
-        $result = add_picture($album, $filepath, $picture_name);
+        $result = add_picture($album, $filepath, $picture_name, 0, '', '', '', '', '', '', '', $category);
 
         if (!$result) {
             // The file could not be placed.
@@ -990,7 +990,6 @@ EOT;
             $file_placement = 'yes';
             $thumb_url = get_pic_url($CURRENT_PIC_DATA, 'thumb');
         }
-
     } else {
         // The file was not placed successfully.
         $file_placement = 'no';
