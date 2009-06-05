@@ -766,24 +766,6 @@ if (UPLOAD_APPROVAL_MODE) {
     list($pic_count) = mysql_fetch_row($result);
     mysql_free_result($result);
     
-    // Update user names for pictures
-    $sql = "SELECT pid, owner_id FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id != 0 AND owner_name = ''";
-
-    $result = cpg_db_query($sql);
-
-    while ($row = mysql_fetch_assoc($result)) {
-
-        $owner_name = $cpg_udb->get_user_name($row['owner_id']);
-
-        if ($owner_name) {
-            cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_name = '$owner_name' WHERE pid = {$row['pid']}");
-        } else {
-            cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_id = 0 WHERE pid = {$row['pid']}");
-        }
-    }
-    
-    mysql_free_result($result);
-
     if (MODERATOR_MODE) {
     
         $sql =  "SELECT * " .
