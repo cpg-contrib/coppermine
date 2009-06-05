@@ -107,43 +107,47 @@ function adminPageLoaded(){
     
     hideall();
     
-    $.each(js_vars.default_values_check.textfield, function(){
-    	var key = this.key;
-    	var warning = this.warning;
-        $('#'+this.key).change(function(){
-        	checkDefaultBox(key, 'textfield', '', warning);
-    		});
-    });
-    $.each(js_vars.default_values_check.checkbox, function(){
-    	var key = this.key;
-    	var warning = this.warning;
-        $('#'+this.key).click(function(){
-        	checkDefaultBox(key, 'checkbox', '', warning);
-    		});
-    });
-    $.each(js_vars.default_values_check.radio, function(){
-    	var key = this.key;
-    	var warning = this.warning;
-    	if($.support.cssFloat){
-    		//non IE browsers
-    		$('#'+this.key).change(function(){
-            	checkDefaultBox(key, 'radio', '', warning);
-        		});
-    	}else{
-    		$('#'+this.key).focus(function(){
-            	checkDefaultBox(key, 'radio', '', warning);
-        		});
-    		
-    	}
-    });
-    $.each(js_vars.default_values_check.select, function(){
-    	var key = this.key;
-    	var warning = this.warning;
-    	var count = this.count;
-        $('#'+this.key).change(function(){
-        	checkDefaultBox(key, 'select', '', warning, count);
-    		});
-    });
+    // Add the checkDefaultBox events only if the settings is enabled
+    if (js_vars.display_reset_boxes == 1) {
+        $.each(js_vars.default_values_check.textfield, function(){
+            var key = this.key;
+            var warning = this.warning;
+            $('#' + this.key).change(function(){
+                checkDefaultBox(key, 'textfield', '', warning);
+            });
+        });
+        $.each(js_vars.default_values_check.checkbox, function(){
+            var key = this.key;
+            var warning = this.warning;
+            $('#' + this.key).click(function(){
+                checkDefaultBox(key, 'checkbox', '', warning);
+            });
+        });
+        $.each(js_vars.default_values_check.radio, function(){
+            var key = this.key;
+            var warning = this.warning;
+            if ($.support.cssFloat) {
+                //non IE browsers
+                $('#' + this.key).change(function(){
+                    checkDefaultBox(key, 'radio', '', warning);
+                });
+            }
+            else {
+                $('#' + this.key).focus(function(){
+                    checkDefaultBox(key, 'radio', '', warning);
+                });
+                
+            }
+        });
+        $.each(js_vars.default_values_check.select, function(){
+            var key = this.key;
+            var warning = this.warning;
+            var count = this.count;
+            $('#' + this.key).change(function(){
+                checkDefaultBox(key, 'select', '', warning, count);
+            });
+        });
+    }
 }
 
 addonload('adminPageLoaded()');
