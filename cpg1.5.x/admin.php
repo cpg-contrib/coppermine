@@ -185,7 +185,7 @@ if ($superCage->post->keyExists('update_config') > 0 && $userMessage == '') {
 
 
 
-pageheader($lang_admin_php['title']);
+//pageheader($lang_admin_php['title']);
 /*
 // section to test new regex stuff - uncomment temporarily if needed
 $string = 'http://localhost/foo/';
@@ -214,10 +214,16 @@ echo '<br />';
 echo $string;
 die;
 */
+//introduced admin page to capture all output in a variable
+//so the pageheader function can be called later and the required js be added.
+$admin_page = '';
 
 if ($userMessage != '') {
+    ob_start();
     starttable('100%', cpg_fetch_icon('info', 2) . $lang_common['information'], 1);
-    echo <<< EOT
+    $admin_page .= ob_get_contents();
+    ob_end_clean();
+    $admin_page .= <<< EOT
     <tr>
         <td class="tableb">
           {$userMessage}
@@ -225,7 +231,7 @@ if ($userMessage != '') {
     </tr>
 EOT;
     endtable();
-    echo '<br />'.$LINEBREAK;
+    $admin_page .= '<br />'.$LINEBREAK;
 }
 
 $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE_VERSION_STATUS . ')';
@@ -234,9 +240,12 @@ $tabindexCounter      = 1;
 $numberOfConfigFields = count($CONFIG);
 $javascriptOutput = '';
 
-echo '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform" onsubmit="return deleteUnneededFields();">';
+$admin_page .= '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform" onsubmit="return deleteUnneededFields();">';
+ob_start();
 starttable('100%', cpg_fetch_icon('config', 2) . $lang_admin_php['title'] . ' - ' . $signature, 2);
-echo <<< EOT
+$admin_page .= ob_get_contents();
+ob_end_clean();
+$admin_page .= <<< EOT
     <tr>
         <td class="tableh2" colspan="2">
             <button type="button" class="button detail_expand_all" name="expandalltop" id="expandalltop" onclick="return false">
@@ -255,6 +264,10 @@ echo <<< EOT
     </tr>
 EOT;
 
+//array which holds all info needed to check the default state, will be passed to js
+//we don't use a custom attribute to ensure XHTML valid output
+$js_default_values = array();				
+				
 $sectionLoopCounter = 0;
 foreach ($config_data as $config_section_key => $config_section_value) { // start foreach-loop through the config sections
     if ($sectionLoopCounter/2 == floor($sectionLoopCounter/2)) {
@@ -262,7 +275,7 @@ foreach ($config_data as $config_section_key => $config_section_value) { // star
 	} else {
 		$tableRowStyle = 'tableb tableb_alternate';
 	}
-	echo <<< EOT
+	$admin_page .= <<< EOT
           <tr>
             <td class="{$tableRowStyle}" colspan="2">
                     <span class="detail_head_collapsed">
@@ -316,7 +329,7 @@ EOT;
             $value['end_description'] = '';
         }
 
-        echo <<< EOT
+        $admin_page .= <<< EOT
 
                 <tr{$visibility}>
                   <td class="{$cellStyle}" style="vertical-align:top;" width="50%">
@@ -378,37 +391,45 @@ EOT;
 
         // Different types of fields --- start
         if ($value['type'] == 'textfield') { // TEXTFIELD
-            echo '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="text" class="textinput'.$spinbuttonOption.'"'.$widthOption.$sizeOption.$maxlengthOption.'  name="'.$key.'" id="'.$key.'" value="'.htmlspecialchars($admin_data_array[$key]).'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onblur="checkDefaultBox(\''.$key.'\', \'textfield\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" />'.$readonly_message.'</span>';
+            $js_default_values['textfield'][] = array('key' => $key, 'warning' => $warningText);
+            
+            $admin_page .= '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="text" class="textinput'.$spinbuttonOption.'"'.$widthOption.$sizeOption.$maxlengthOption.'  name="'.$key.'" id="'.$key.'" value="'.htmlspecialchars($admin_data_array[$key]).'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" />'.$readonly_message.'</span>';
 
         } elseif ($value['type'] == 'password') { // PASSWORD
-            echo '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="password" class="textinput" maxlength="255"'.$widthOption.$sizeOption.$maxlengthOption.' name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onblur="checkDefaultBox(\''.$key.'\', \'password\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" />'.$readonly_message.'</span>';
+            $js_default_values['password'][] = array('key' => $key, 'warning' => $warningText);
+            
+            $admin_page .= '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="password" class="textinput" maxlength="255"'.$widthOption.$sizeOption.$maxlengthOption.' name="'.$key.'" id="'.$key.'" value="'.$admin_data_array[$key].'"'.$readonly_text.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" />'.$readonly_message.'</span>';
 
         } elseif ($value['type'] == 'checkbox') { // CHECKBOX
+            $js_default_values['checkbox'][] = array('key' => $key, 'warning' => $warningText);
+            
             $checked = '';
             if ($admin_data_array[$key] == 1) {
                 $checked = ' checked="checked"';
             }
-            echo '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="checkbox" name="'.$key.'" id="'.$key.'" value="1" class="checkbox"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onchange="checkDefaultBox(\''.$key.'\', \'checkbox\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" />'.$readonly_message.'</span>';
+            $admin_page .= '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><input type="checkbox" name="'.$key.'" id="'.$key.'" value="1" class="checkbox"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" />'.$readonly_message.'</span>';
 
         } elseif ($value['type'] == 'radio') { //RADIO
             $optionLoopCounter = 0;
-            echo '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'">'; // wrap the radio-buttons set into a container box
+            $admin_page .= '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'">'; // wrap the radio-buttons set into a container box
             foreach ($value['options'] as $option) { // loop through the options array
+                $js_default_values['radio'][] = array('key' => $key.$optionLoopCounter, 'warning' => $warningText);
+                
                 $checked = '';
                 if ($admin_data_array[$key] == $optionLoopCounter) {
                     $checked = ' checked="checked"';
                 }
-                echo '<input type="radio" name="'.$key.'" id="'.$key.$optionLoopCounter.'" value="'.$optionLoopCounter.'" class="radio"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" onfocus="checkDefaultBox(\''.$key.$optionLoopCounter.'\', \'radio\', \'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" /><label for="'.$key.$optionLoopCounter.'" class="clickable_option">'.$option.'</label>&nbsp;';
+                $admin_page .= '<input type="radio" name="'.$key.'" id="'.$key.$optionLoopCounter.'" value="'.$optionLoopCounter.'" class="radio"'.$checked.$readonly_radio.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'" /><label for="'.$key.$optionLoopCounter.'" class="clickable_option">'.$option.'</label>&nbsp;';
                 if (!empty($value['linebreak'])) {
-                    echo $value['linebreak'];
+                    $admin_page .= $value['linebreak'];
                 }
                 $optionLoopCounter++;
                 $tabindexCounter++;
             }
-            echo $readonly_message.'</span>';
+            $admin_page .= $readonly_message.'</span>';
 
         } elseif ($value['type'] == 'hidden') { //HIDDEN
-            echo '<input type="hidden"  name="'.$key.'" value="'.$admin_data_array[$key].'" />';
+            $admin_page .= '<input type="hidden"  name="'.$key.'" value="'.$admin_data_array[$key].'" />';
 
         } elseif ($value['type'] == 'select_function') { //SELECT_FUNCTION
             // not implemented (yet)
@@ -421,7 +442,7 @@ EOT;
             } else {
                 $maxSize = count($value['options']);
             }
-            echo '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'[]" id="'.$key.'" class="listbox" size="'.$maxSize.'" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" multiple="multiple" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">'.$LINEBREAK;
+            $admin_page .= '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'[]" id="'.$key.'" class="listbox" size="'.$maxSize.'" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" multiple="multiple" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">'.$LINEBREAK;
             foreach ($value['options'] as $option_value) { // loop through the options array
                 $admin_data_array[$key] = (int)$admin_data_array[$key];
                 if (array_key_exists($optionLoopCounter, $option_value_array) && ($option_value_array[$optionLoopCounter] == 1)) {
@@ -429,16 +450,18 @@ EOT;
                 } else {
                     $selected = '';
                 }
-                echo '                      <option value="'.$optionLoopCounter.'"'.$selected.'>'.ucfirst($option_value);
-                echo '</option>'.$LINEBREAK;
+                $admin_page .= '                      <option value="'.$optionLoopCounter.'"'.$selected.'>'.ucfirst($option_value);
+                $admin_page .= '</option>'.$LINEBREAK;
                 $optionLoopCounter++;
             }
-            echo '</select>'.$readonly_message.'</span><br />'.$LINEBREAK;
+            $admin_page .= '</select>'.$readonly_message.'</span><br />'.$LINEBREAK;
 
         } elseif ($value['type'] == 'select') { //SELECT
+            $js_default_values['select'][] = array('key' => $key, 'warning' => $warningText, 'count' => count($value['options']));
+            
             $optionLoopCounter = 0;
             $associativeArray  = array_is_associative($value['options']);
-            echo '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'" id="'.$key.'" class="listbox" size="1" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" onchange="checkDefaultBox(\''.$key.'\', \'select\', \''.count($value['options']).'\', \''.str_replace("'", "\'", htmlspecialchars($warningText)).'\');" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">';
+            $admin_page .= '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'" id="'.$key.'" class="listbox" size="1" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">';
             foreach ($value['options'] as $option_key => $option_value) { // loop through the options array
                 if ($associativeArray == TRUE) {
                     if ($admin_data_array[$key] == $option_key) {
@@ -446,21 +469,21 @@ EOT;
                     } else {
                         $selected = '';
                     }
-                    echo '<option value="'.$option_key.'"'.$selected.'>'.$option_value;
+                    $admin_page .= '<option value="'.$option_key.'"'.$selected.'>'.$option_value;
                 } else {
                     if ($admin_data_array[$key] == $option_value) {
                         $selected = ' selected="selected"';
                     } else {
                         $selected = '';
                     }
-                    echo '<option value="'.$option_value.'"'.$selected.'>'.ucfirst($option_value);
+                    $admin_page .= '<option value="'.$option_value.'"'.$selected.'>'.ucfirst($option_value);
                 }
-                echo '</option>';
+                $admin_page .= '</option>';
                 $optionLoopCounter++;
             }
-            echo '</select>'.$readonly_message.'</span>';
+            $admin_page .= '</select>'.$readonly_message.'</span>';
         }
-        echo '&nbsp;'.$value['end_description'];
+        $admin_page .= '&nbsp;'.$value['end_description'];
         // Different types of fields --- end
 
         $helpIcon = '';
@@ -481,7 +504,7 @@ EOT;
 	        }
         $resetCheckbox = '<span class="deleteOnSubmit">' . $resetCheckbox . '</span>';
         $resetCheckbox = str_replace("'", "\'", $resetCheckbox);
-        echo <<< EOT
+        $admin_page .= <<< EOT
                   </td>
                   <td class="{$cellStyle}" style="vertical-align:top;" width="5%">
                     <script type="text/javascript">
@@ -494,7 +517,7 @@ EOT;
                 </tr>
 EOT;
         } else { // display of reset checkboxes is enabled --- end
-        echo <<< EOT
+        $admin_page .= <<< EOT
                   </td>
                   <td class="{$cellStyle}" style="vertical-align:top;" width="5%"  colspan="2">
                     {$helpIcon}
@@ -505,7 +528,7 @@ EOT;
         $withinSectionLoopCounter++;
         $tabindexCounter++;
     }
-    echo <<< EOT
+    $admin_page .= <<< EOT
 					</table>
 				</div>
             </td>
@@ -513,6 +536,10 @@ EOT;
 EOT;
     $sectionLoopCounter++;
 } // foreach-loop through the config sections
+
+set_js_var('default_values_check', $js_default_values);
+pageheader($lang_admin_php['title']);
+echo $admin_page;
 
 $submit_icon  = cpg_fetch_icon('ok', 1);
 $factory_icon = cpg_fetch_icon('delete', 1);
