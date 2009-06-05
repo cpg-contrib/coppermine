@@ -155,7 +155,7 @@ $lang_common['album_properties'] = 'Propriétés de l\'Album'; // cpg1.5
 $lang_common['parent_category'] = 'Catégorie parente'; // cpg1.5
 $lang_common['edit_files'] = 'Editer les fichiers'; // cpg1.5
 $lang_common['thumbnail_view'] = 'Vue des Vignettes'; // cpg1.5
-$lang_common['album_manager'] = 'Créer et classer mes Albums'; // cpg1.5
+$lang_common['album_manager'] = 'Gestion des Albums'; // cpg1.5
 
 
 // ----------------------- //

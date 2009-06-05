@@ -672,7 +672,7 @@ $template_thumb_view_title_row = <<<EOT
 
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
-                <td style="width:60%;vertical-align:top" class="statlink" rowspan="2">
+                <td style="width:60%;vertical-align:top" class="statlink">
                     <h2>{ALBUM_NAME}</h2>
                 </td>
                 <td style="text-align:right;width:40%;" class="sortorder_cell" id="sortorder_cell">
@@ -680,7 +680,7 @@ $template_thumb_view_title_row = <<<EOT
                 </td>
             </tr>
             <tr>
-                <td style="text-align:right">
+                <td colspan="2" style=";text-align:right">
 <!-- BEGIN admin_buttons -->
                     <a href="modifyalb.php?album={ALBUM_ID}" class="admin_menu">{MODIFY}</a>
                     &nbsp;&nbsp;
