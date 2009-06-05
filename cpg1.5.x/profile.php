@@ -738,10 +738,11 @@ default:
 
     $quick_jump = ($user_thumb . $lastcom) ? '<table width="100%" border="0" cellspacing="5"><tr>' . $user_thumb . $lastcom . '</tr></table>' : '';
 
+    list($timestamp, $form_token) = getFormToken();
     if ($uid == USER_ID) {
         $adminLink = '<a href="profile.php?op=edit_profile" class="admin_menu">'.$lang_register_php['edit_my_profile'].'</a>';
     } elseif (GALLERY_ADMIN_MODE) {
-        $adminLink = '<a href="usermgr.php?op=edit&user_id='.$uid.'" class="admin_menu">'.sprintf($lang_register_php['edit_xs_profile'], $user_data['user_name']).'</a>';
+        $adminLink = '<a href="usermgr.php?op=edit&user_id='.$uid.'&form_token='.$form_token.'&timestamp='.$timestamp.'" class="admin_menu">'.sprintf($lang_register_php['edit_xs_profile'], $user_data['user_name']).'</a>';
     } else {
         $adminLink = '';
     }

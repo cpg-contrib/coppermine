@@ -127,11 +127,13 @@ EOT;
                 print '</a>';
             }
         }
+        
+        list($timestamp, $form_token) = getFormToken();
         $assignedGroupsHelp = cpg_display_help('f=groups.htm&amp;as=group_cp_assigned&amp;ae=group_cp_assigned_end', '450', '300');
         echo <<< EOT
                         <br />
                         {$lang_groupmgr_php['disk_quota']}: <input type="text" name="group_quota_{$group['group_id']}" value="{$group['group_quota']}" size="5" class="textinput" $disabled /> {$lang_byte_units[1]}
-                <br /><br /><a href="usermgr.php?op=group_alb_access&amp;gid={$group['group_id']}" class="admin_menu">{$lang_groupmgr_php['group_assigned_album']}</a> {$assignedGroupsHelp}
+                <br /><br /><a href="usermgr.php?op=group_alb_access&amp;gid={$group['group_id']}&amp;form_token=$form_token&amp;timestamp=$timestamp" class="admin_menu">{$lang_groupmgr_php['group_assigned_album']}</a> {$assignedGroupsHelp}
                                                                 </td>
                 <td class="$table_background" align="left" valign="top">
 EOT;
