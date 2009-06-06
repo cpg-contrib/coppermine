@@ -254,7 +254,8 @@ switch($step) {
         html_header();
         if ($error != '') {
             html_error();
-        } else {
+        } 
+        if( !($error != '' && !isset($image_processors['gd2']) && !isset($image_processors['gd1'])) ) {
             setTmpConfig('step', STEP_TEST_IMG_PROC);
         }
             $content = $language['im_packages'] . '<br /><br />';
@@ -1480,6 +1481,7 @@ function getIM()
         // execute an im command to test if it is working
         @exec($command, $exec_output, $exec_retval);
         $version = @$exec_output[0] . @$exec_output[1];
+
         if ($version != '') {
             // IM is found and working.
             // check for spaces in the path (we don't want those...)
