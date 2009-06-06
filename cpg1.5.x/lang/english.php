@@ -1320,6 +1320,7 @@ $lang_editpics_php['or'] = 'OR'; // cpg 1.5
 $lang_editpics_php['approve_pic'] = 'Approve file'; // cpg 1.5
 $lang_editpics_php['approve_all'] = 'Approve ALL files'; // cpg 1.5
 $lang_editpics_php['error_empty'] = 'Album is empty'; // cpg1.5
+$lang_editpics_php['error_approval_empty'] = 'No more pictures to approve'; // cpg1.5
 $lang_editpics_php['error_linked_only'] = 'Album only contains linked files, which you cannot edit here'; // cpg1.5
 $lang_editpics_php['note_approve_public'] = 'Files moved to a public album must be approved by an admin.'; // cpg1.5
 $lang_editpics_php['note_approve_private'] = 'Files moved to a private gallery album must be approved by an admin.' ; // cpg1.5

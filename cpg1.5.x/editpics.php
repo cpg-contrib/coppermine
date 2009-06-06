@@ -816,7 +816,7 @@ if (!mysql_num_rows($result)) {
     if ($link_count > 0) {
         cpg_die(INFORMATION, $lang_editpics_php['error_linked_only'], __FILE__, __LINE__);
     } else {
-        cpg_die(INFORMATION, $lang_editpics_php['error_empty'], __FILE__, __LINE__);
+        cpg_die(INFORMATION, (UPLOAD_APPROVAL_MODE) ? $lang_editpics_php['error_approval_empty'] : $lang_editpics_php['error_empty'], __FILE__, __LINE__);
     }
 }
 
