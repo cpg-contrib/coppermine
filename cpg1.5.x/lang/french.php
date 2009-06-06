@@ -23,10 +23,10 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 $lang_translation_info['lang_name_english'] = 'French_FR';
 $lang_translation_info['lang_name_native'] = 'Français';
 $lang_translation_info['lang_country_code'] = 'fr';
-$lang_translation_info['trans_name'] = 'Frantz and PYAP';
-$lang_translation_info['trans_email'] = 'pyap@coppermine-gallery.net';
+$lang_translation_info['trans_name'] = 'Frantz';
+$lang_translation_info['trans_email'] = 'francois.cpgtest@free.fr';
 $lang_translation_info['trans_website'] = 'http://coppermine-gallery.net/forum/index.php?board=38.0';
-$lang_translation_info['trans_date'] = '2009-01-06';
+$lang_translation_info['trans_date'] = '2009-06-06';
 
 
 $lang_charset = 'utf-8';
@@ -1319,11 +1319,12 @@ if (defined('EDITPICS_PHP')) {
   $lang_editpics_php['approve_pic'] = 'Approuver le fichier'; //cpg 1.5
   $lang_editpics_php['approve_all'] = 'Approuver TOUS les fichiers'; //cpg 1.5
   $lang_editpics_php['error_empty'] = 'l\'Album est vide'; // cpg1.5
+  $lang_editpics_php['error_approval_empty'] = 'Il n\'y a plus d\'images à approuver'; // cpg1.5
   $lang_editpics_php['error_linked_only'] = 'L\'Album ne contient que des fichiers liés que vous ne pouvez pas modifier ici'; // cpg1.5
-  $lang_editpics_php['note_approve_public'] = 'Files moved to a public album must be approved by an admin.'; // cpg1.5
-  $lang_editpics_php['note_approve_private'] = 'Files moved to a private gallery album must be approved by an admin.' ; // cpg1.5
-  $lang_editpics_php['note_edit_control'] = 'Files moved to a public album cannot be edited.'; // cpg1.5
-  $lang_editpics_php['confirm_move_control'] = 'Vous n\\\'êtes pas autorisé à modifier les fichiers dans les albums publics.\\nEtes vous sur de vouloir déplacer ce fichier vers un album public?'; // cpg1.5 //js-alert
+  $lang_editpics_php['note_approve_public'] = 'Les fichier déplacés vers un album publique doivent être approuvés par un administrateur.'; // cpg1.5
+  $lang_editpics_php['note_approve_private'] = 'Les fichiers déplacés vers un album privé doivent être approuvés par un administrateur.' ; // cpg1.5
+  $lang_editpics_php['note_edit_control'] = 'Les fichiers déplacés vers un album publique ne peuvent plus être modifiés.'; // cpg1.5
+  $lang_editpics_php['confirm_move_control'] = 'Vous n\\\'êtes pas autorisé à modifier les fichiers dans les albums publics.\\nEtes vous sur de vouloir déplacer ce fichier vers un album public ?'; // cpg1.5 //js-alert
 }
 
 // ------------------------------------------------------------------------- //
