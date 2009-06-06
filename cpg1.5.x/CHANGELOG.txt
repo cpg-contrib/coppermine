@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-06-06 [B] Fixed IM being selected in installation when it's not working {SaWey}
 2009-06-05 [C] Fixed bad displaying admin menu buttons on thumnails view with longer names as in english {Frantz}
 2009-06-05 [B] Re-added record for encrypted passwords into basic.sql (thread ID 59916) {GauGau}
 2009-06-05 [M] Removed the include folder is_writable check and warning message (thread 59896) {Abbas}

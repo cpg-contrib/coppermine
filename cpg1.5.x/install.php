@@ -277,7 +277,9 @@ switch($step) {
             $path = substr($path, 0, (strlen($path) - 7));
             $imp_list .= '<option value="im">ImageMagick</option>';
             $content .= '<strong>ImageMagick</strong> Version ' . substr($image_processors['im']['version'], 20, 7) . '(at: ' . $path .')';
-            $selected = 'im';
+            if($error == ''){
+                $selected = 'im';
+            }
             $im_not_found = '';
         } else {
             $im_not_found = '<br /><br /><fieldset style="width:90%" title="ImageMagick">' . $language['im_not_found'] .'</fieldset>';
