@@ -654,7 +654,7 @@ EOT;
                 </td>
 EOT;
     $CONFIG['enable_encrypted_passwords'] = cpg_get_config_value('enable_encrypted_passwords');
-    if ($CONFIG['enable_encrypted_passwords'] != 1) {
+    if ($CONFIG['enable_encrypted_passwords'] != '1') {
         print <<< EOT
                 <td class="{$cellStyle} updatesOK">
                     {$ok_icon}{$lang_common['ok']}
@@ -662,8 +662,8 @@ EOT;
             </tr>
 EOT;
         $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}users set user_password=md5(user_password);");
-        if ($CONFIG['enable_encrypted_passwords'] === 0) {
-            $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}config set value = 1 WHERE name = 'enable_encrypted_passwords'");
+        if ($CONFIG['enable_encrypted_passwords'] === '0') {
+            $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}config set value = '1' WHERE name = 'enable_encrypted_passwords'");
         } else {
             $result = mysql_query("INSERT INTO {$CONFIG['TABLE_PREFIX']}config ( `name` , `value` ) VALUES ('enable_encrypted_passwords', '1')");
         }
