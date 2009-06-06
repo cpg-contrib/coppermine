@@ -73,123 +73,123 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 <br />
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><a name="db_albums-aid"></a><strong>aid</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. This is the identifier of the album used throughout Coppermine.</td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top"><a name="db_albums-aid"></a><strong>aid</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Primary key. This is the identifier of the album used throughout Coppermine.</td>
+    <td valign="top">
         <a href="#db_pictures-aid">cpg15x_pictures.aid</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>title</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">The short title of the album.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>title</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">The short title of the album.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>description</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=65K chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The longer album description or caption.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>description</strong></td>
+    <td valign="top">Text (<=65K chars)</td>
+    <td valign="top">The longer album description or caption.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>visibility</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">
+    <td valign="top"><strong>visibility</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">
         <p>This corresponds to the 'album can be viewed by' option.</p>
         <p>If the value is less than 10000 the number corresponds to the group that has permission to view the album.</p>
         <p>If the value is over 10000 then the number corresponds to 10000 plus the user_id of the user that has permission to view this album (the 'me only' option).</p>
         <p>The default value of 0 means there are no restrictions (with the exception of a possible album password); the album is publicly visible.</p></td>
-    <td valign="top" class="tableb">
+    <td valign="top">
         <a href="#db_usergroups-group_id">cpg15x_usergroups.group_id</a><br />
         <a href="#db_users-user_id">cpg15x_users.user_id</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>uploads</strong></td>
-    <td valign="top" class="tableb tableb_alternate">YES / NO</td>
-    <td valign="top" class="tableb tableb_alternate">Whether uploads are permitted to this album.<p><small>Note: Group based permissions also apply.</small></p></td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>uploads</strong></td>
+    <td valign="top">YES / NO</td>
+    <td valign="top">Whether uploads are permitted to this album.<p><small>Note: Group based permissions also apply.</small></p></td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>comments</strong></td>
-    <td valign="top" class="tableb">YES / NO</td>
-    <td valign="top" class="tableb">Whether comments are permitted on files in this album.<p><small>Note: Group based permissions also apply.</small></p></td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>comments</strong></td>
+    <td valign="top">YES / NO</td>
+    <td valign="top">Whether comments are permitted on files in this album.<p><small>Note: Group based permissions also apply.</small></p></td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>votes</strong></td>
-    <td valign="top" class="tableb tableb_alternate">YES / NO</td>
-    <td valign="top" class="tableb tableb_alternate">Whether voting/rating of files is permitted in this album.<p><small>Note: Group based permissions also apply.</small></p>
+    <td valign="top"><strong>votes</strong></td>
+    <td valign="top">YES / NO</td>
+    <td valign="top">Whether voting/rating of files is permitted in this album.<p><small>Note: Group based permissions also apply.</small></p>
     <p><small>Note: do not confuse this field with the votes field in the pictures table, which is a count of the number of votes on that picture.</small></p></td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>pos</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">This is the position of the album within its parent category. Albums are sorted by position ascending then by aid. The default position is 0. This causes new albums to appear at the end of listings unless moved manually.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>pos</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">This is the position of the album within its parent category. Albums are sorted by position ascending then by aid. The default position is 0. This causes new albums to appear at the end of listings unless moved manually.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>category</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The parent category of this album. A category of 0 indicates the album is in 'no category' and is displayed on the main page directly. If the value is more than 10000 then it means the album is a user album belonging to the user with id of <strong>category</strong> - 10000.</td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top"><strong>category</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The parent category of this album. A category of 0 indicates the album is in 'no category' and is displayed on the main page directly. If the value is more than 10000 then it means the album is a user album belonging to the user with id of <strong>category</strong> - 10000.</td>
+    <td valign="top">
         <a href="#db_categories-cid">cpg15x_categories.cid</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>owner</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb"></td>
-    <td valign="top" class="tableb">
+    <td valign="top"><strong>owner</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top"></td>
+    <td valign="top">
         <a href="#db_users-user_id">cpg15x_users.user_id</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><a name="db_albums-thumb"></a><strong>thumb</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Indicates which picture is to be used as the thumbnail image for the album. If the value is 0 the last uploaded picture in that album is used. If the value is -1 a random picture from the album is selected. Otherwise, the value corresponds to the pid of the picture selected as thumbnail. If the album is empty a special icon is used to indicate this.</td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top"><a name="db_albums-thumb"></a><strong>thumb</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Indicates which picture is to be used as the thumbnail image for the album. If the value is 0 the last uploaded picture in that album is used. If the value is -1 a random picture from the album is selected. Otherwise, the value corresponds to the pid of the picture selected as thumbnail. If the album is empty a special icon is used to indicate this.</td>
+    <td valign="top">
         <a href="#db_pictures-pid">cpg15x_pictures.pid</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>keyword</strong></td>
-    <td valign="top" class="tableb">Text (<=50 chars)</td>
-    <td valign="top" class="tableb">The album keyword. Used by the 'linked files' 'feature' to display files in multiple albums. Files that contain the album keyword as one of their picture keywords will be displayed in the album. <p><small>Note: Files cannot truely be in multiple albums as a consequence of the original database design.</small></p></td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>keyword</strong></td>
+    <td valign="top">Text (<=50 chars)</td>
+    <td valign="top">The album keyword. Used by the 'linked files' 'feature' to display files in multiple albums. Files that contain the album keyword as one of their picture keywords will be displayed in the album. <p><small>Note: Files cannot truely be in multiple albums as a consequence of the original database design.</small></p></td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>alb_password</strong></td>
-    <td valign="top" class="tableb tableb_alternate">MD5 hash</td>
-    <td valign="top" class="tableb tableb_alternate">This is an MD5 hash of the album password. If this is blank then there is no album password.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>alb_password</strong></td>
+    <td valign="top">MD5 hash</td>
+    <td valign="top">This is an MD5 hash of the album password. If this is blank then there is no album password.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>alb_password_hint</strong></td>
-    <td valign="top" class="tableb">Text (<=65K chars)</td>
-    <td valign="top" class="tableb">An album hint which is displayed to users when they are asked to enter the album password.</td>
+    <td valign="top"><strong>alb_password_hint</strong></td>
+    <td valign="top">Text (<=65K chars)</td>
+    <td valign="top">An album hint which is displayed to users when they are asked to enter the album password.</td>
     <td valign="top" class="tablebe"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>moderator_group</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Specifies a group which has moderator permissions for this album. If set to 0 (the default) then no such group is specified.</td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top"><strong>moderator_group</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Specifies a group which has moderator permissions for this album. If set to 0 (the default) then no such group is specified.</td>
+    <td valign="top">
       <a href="#db_usergroups-group_id">cpg15x_usergroups.group_id</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>alb_hits</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">Counts the number of times this album has been viewed. This counter can be disabled in config. <p><small>Note: This is not a sum of the individual file view counters.</small></p></td>
+    <td valign="top"><strong>alb_hits</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Counts the number of times this album has been viewed. This counter can be disabled in config. <p><small>Note: This is not a sum of the individual file view counters.</small></p></td>
     <td valign="top" class="tablebe"></td>
   </tr>
 </table>
@@ -201,54 +201,54 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>ban_id</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. Unique identifier for a ban.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>ban_id</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Primary key. Unique identifier for a ban.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>user_id</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">The user that this ban applies to. Banned users are unable to use the gallery in any way.</td>
-    <td valign="top" class="tableb">
+    <td valign="top"><strong>user_id</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The user that this ban applies to. Banned users are unable to use the gallery in any way.</td>
+    <td valign="top">
         <a href="#db_users-user_id">cpg15x_users.user_id</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>user_name</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">A username that this ban applies to. Registrations from a banned username are refused.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>user_name</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">A username that this ban applies to. Registrations from a banned username are refused.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>email</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">An email address which this ban applies to. Registrations from a banned email address are refused.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>email</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">An email address which this ban applies to. Registrations from a banned email address are refused.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>ip_addr</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">An IP address or wildcard IP (eg. 192.168.0.%) that this ban applies to. Visitors with a matching IP address will be unable to use the gallery in any way.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>ip_addr</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">An IP address or wildcard IP (eg. 192.168.0.%) that this ban applies to. Visitors with a matching IP address will be unable to use the gallery in any way.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>expiry</strong></td>
-    <td valign="top" class="tableb">Datetime</td>
-    <td valign="top" class="tableb">The date/time that this ban is set to expire.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>expiry</strong></td>
+    <td valign="top">Datetime</td>
+    <td valign="top">The date/time that this ban is set to expire.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>brute_force</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">A counter used to track failed login attempts which may lead to an actual ban. Counts down from the config setting 'Number of failed login attempts until temporary ban' to 0.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>brute_force</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">A counter used to track failed login attempts which may lead to an actual ban. Counts down from the config setting 'Number of failed login attempts until temporary ban' to 0.</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -259,22 +259,22 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>name</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=40 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">Name of configuration setting.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>name</strong></td>
+    <td valign="top">Text (<=40 chars)</td>
+    <td valign="top">Name of configuration setting.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>value</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">Value of configuration setting.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>value</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">Value of configuration setting.</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -287,76 +287,76 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><a name="db_categories-cid"></a><strong>cid</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. Unique identifier for a category.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><a name="db_categories-cid"></a><strong>cid</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Primary key. Unique identifier for a category.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>owner_id</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb"></td>
-    <td valign="top" class="tableb">
+    <td valign="top"><strong>owner_id</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top"></td>
+    <td valign="top">
         <a href="#db_users-user_id">cpg15x_users.user_id</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>name</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">Short name of the category.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>name</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">Short name of the category.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>description</strong></td>
-    <td valign="top" class="tableb">Text (<=65k chars)</td>
-    <td valign="top" class="tableb">A longer description of the category.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>description</strong></td>
+    <td valign="top">Text (<=65k chars)</td>
+    <td valign="top">A longer description of the category.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>pos</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Position of the category. Categories are sorted by position ascending. The category manager assigns the position and all categories have a non-zero position.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>pos</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Position of the category. Categories are sorted by position ascending. The category manager assigns the position and all categories have a non-zero position.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>parent</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">The immediate parent category of this category.</td>
-    <td valign="top" class="tableb">
+    <td valign="top"><strong>parent</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The immediate parent category of this category.</td>
+    <td valign="top">
         <a href="#db_categories-cid">cpg15x_categories.cid</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><a name="db_categories-thumb"></a><strong>thumb</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The picture to be used as thumbnail for the category. If 0 then no thumbnail is displayed.</td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top"><a name="db_categories-thumb"></a><strong>thumb</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The picture to be used as thumbnail for the category. If 0 then no thumbnail is displayed.</td>
+    <td valign="top">
         <a href="#db_pictures-pid">cpg15x_pictures.pid</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>lft</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">The <strong>lft</strong> and <strong>rgt</strong> fields are used to represent the category heirarchy using the nested set model.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>lft</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The <strong>lft</strong> and <strong>rgt</strong> fields are used to represent the category heirarchy using the nested set model.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>rgt</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The <strong>lft</strong> and <strong>rgt</strong> fields are used to represent the category heirarchy using the nested set model.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>rgt</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The <strong>lft</strong> and <strong>rgt</strong> fields are used to represent the category heirarchy using the nested set model.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>depth</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">Represents the depth of the category in the heirarchy. A depth of 1 indicates a top level category.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>depth</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Represents the depth of the category in the heirarchy. A depth of 1 indicates a top level category.</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -367,24 +367,24 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>cid</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The category this permission applies to.</td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top"><strong>cid</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The category this permission applies to.</td>
+    <td valign="top">
         <a href="#db_categories-cid">cpg15x_categories.cid</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>group_id</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">The group this permission applies to.</td>
-    <td valign="top" class="tableb">
+    <td valign="top"><strong>group_id</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The group this permission applies to.</td>
+    <td valign="top">
         <a href="#db_usergroups-group_id">cpg15x_usergroups.group_id</a>
     </td>
   </tr>
@@ -397,80 +397,80 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><a name="db_comments-pid"></a><strong>pid</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The file that this comment has been made against.</td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top"><a name="db_comments-pid"></a><strong>pid</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The file that this comment has been made against.</td>
+    <td valign="top">
         <a href="#db_pictures-pid">cpg15x_pictures.pid</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>msg_id</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">Primary key. Unique identifier for a comment.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>msg_id</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Primary key. Unique identifier for a comment.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>msg_author</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=25 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The name of the user that posted the comment. This is needed mainly for anonymous commenting, however usernames of registered users are recorded here also (and must be kept up to date if a username changes).</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>msg_author</strong></td>
+    <td valign="top">Text (<=25 chars)</td>
+    <td valign="top">The name of the user that posted the comment. This is needed mainly for anonymous commenting, however usernames of registered users are recorded here also (and must be kept up to date if a username changes).</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>msg_body</strong></td>
-    <td valign="top" class="tableb">Text (<=65k chars)</td>
-    <td valign="top" class="tableb">The text of the comment that was entered.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>msg_body</strong></td>
+    <td valign="top">Text (<=65k chars)</td>
+    <td valign="top">The text of the comment that was entered.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>msg_date</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Datetime</td>
-    <td valign="top" class="tableb tableb_alternate">The date and time the comment was posted.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>msg_date</strong></td>
+    <td valign="top">Datetime</td>
+    <td valign="top">The date and time the comment was posted.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>msg_raw_ip</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">The IP of the comment poster. This IP is derived from the REMOTE_ADDR variable. If the webserver is behind a proxy this will probably be the IP of the proxy.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>msg_raw_ip</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">The IP of the comment poster. This IP is derived from the REMOTE_ADDR variable. If the webserver is behind a proxy this will probably be the IP of the proxy.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>msg_hdr_ip</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The IP of the comment poster. This IP is derived from the HTTP_CLIENT_IP or HTTP_X_FORWARDED_FOR variables. If the webserver is behind a proxy this should be the actual client IP instead of the proxy's IP. If neither variable is present this will be the same as the <strong>msg_raw_ip</strong> value.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>msg_hdr_ip</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">The IP of the comment poster. This IP is derived from the HTTP_CLIENT_IP or HTTP_X_FORWARDED_FOR variables. If the webserver is behind a proxy this should be the actual client IP instead of the proxy's IP. If neither variable is present this will be the same as the <strong>msg_raw_ip</strong> value.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>author_md5_id</strong></td>
-    <td valign="top" class="tableb">MD5 hash</td>
-    <td valign="top" class="tableb">A randomly generated unique id used to 'identify' anonymous users and allow them to edit/delete their own comments (but not those of other anonymous users). It also allows enforcement of flood protection rules against individual anonymous users. This field is empty for comments by registered users.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>author_md5_id</strong></td>
+    <td valign="top">MD5 hash</td>
+    <td valign="top">A randomly generated unique id used to 'identify' anonymous users and allow them to edit/delete their own comments (but not those of other anonymous users). It also allows enforcement of flood protection rules against individual anonymous users. This field is empty for comments by registered users.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>author_id</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The user id of the comment poster, or 0 for anonymous comments.</td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top"><strong>author_id</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The user id of the comment poster, or 0 for anonymous comments.</td>
+    <td valign="top">
         <a href="#db_users-user_id">cpg15x_users.user_id</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>approval</strong></td>
-    <td valign="top" class="tableb">YES / NO</td>
-    <td valign="top" class="tableb">Whether the comment has been approved. If comment approval is not enabled, all comments are added with <strong>approval</strong> already set to YES. Comments with <strong>approval</strong> set to NO are not displayed to normal users.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>approval</strong></td>
+    <td valign="top">YES / NO</td>
+    <td valign="top">Whether the comment has been approved. If comment approval is not enabled, all comments are added with <strong>approval</strong> already set to YES. Comments with <strong>approval</strong> set to NO are not displayed to normal users.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>spam</strong></td>
-    <td valign="top" class="tableb tableb_alternate">YES / NO</td>
-    <td valign="top" class="tableb tableb_alternate">Whether the comment has been determined to be a spam comment by akismet (if enabled).</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>spam</strong></td>
+    <td valign="top">YES / NO</td>
+    <td valign="top">Whether the comment has been determined to be a spam comment by akismet (if enabled).</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -482,22 +482,22 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>name</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=40 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">Name of configuration setting.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>name</strong></td>
+    <td valign="top">Text (<=40 chars)</td>
+    <td valign="top">Name of configuration setting.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>value</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">Value of configuration setting.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>value</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">Value of configuration setting.</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -508,22 +508,22 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>keyId</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. Used to manage the keyword dictionary.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>keyId</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Primary key. Used to manage the keyword dictionary.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>keyword</strong></td>
-    <td valign="top" class="tableb">Text (<=60 chars)</td>
-    <td valign="top" class="tableb">Unique field. The keyword itself.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>keyword</strong></td>
+    <td valign="top">Text (<=60 chars)</td>
+    <td valign="top">Unique field. The keyword itself.</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -534,58 +534,58 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>eid</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. Used purely to manage the ecard log.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>eid</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Primary key. Used purely to manage the ecard log.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>sender_name</strong></td>
-    <td valign="top" class="tableb">Text (<=50 chars)</td>
-    <td valign="top" class="tableb">The name specified as sender name on the sent ecard.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>sender_name</strong></td>
+    <td valign="top">Text (<=50 chars)</td>
+    <td valign="top">The name specified as sender name on the sent ecard.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>sender_email</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=65k chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The email address specified as sender email on the sent ecard.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>sender_email</strong></td>
+    <td valign="top">Text (<=65k chars)</td>
+    <td valign="top">The email address specified as sender email on the sent ecard.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>recipient_name</strong></td>
-    <td valign="top" class="tableb">Text (<=50 chars)</td>
-    <td valign="top" class="tableb">The name specified as recipient name on the sent ecard.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>recipient_name</strong></td>
+    <td valign="top">Text (<=50 chars)</td>
+    <td valign="top">The name specified as recipient name on the sent ecard.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>recipient_email</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=65k chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The email address specified as recipient email on the sent ecard.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>recipient_email</strong></td>
+    <td valign="top">Text (<=65k chars)</td>
+    <td valign="top">The email address specified as recipient email on the sent ecard.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>link</strong></td>
-    <td valign="top" class="tableb">Text (<=65k chars)</td>
-    <td valign="top" class="tableb">The link of the ecard. The link actually contains all details of the ecard as a base64 encoded serialized array. This is not ideal, but means ecards do not take up space in the database (unless logging is enabled) and as a consequence never expire.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>link</strong></td>
+    <td valign="top">Text (<=65k chars)</td>
+    <td valign="top">The link of the ecard. The link actually contains all details of the ecard as a base64 encoded serialized array. This is not ideal, but means ecards do not take up space in the database (unless logging is enabled) and as a consequence never expire.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>date</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Unix timestamp</td>
-    <td valign="top" class="tableb tableb_alternate">The date/time the ecard was sent.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>date</strong></td>
+    <td valign="top">Unix timestamp</td>
+    <td valign="top">The date/time the ecard was sent.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>sender_ip</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">The IP address of the ecard sender. This IP is derived from the REMOTE_ADDR variable. If the webserver is behind a proxy this will probably be the IP of the proxy.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>sender_ip</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">The IP address of the ecard sender. This IP is derived from the REMOTE_ADDR variable. If the webserver is behind a proxy this will probably be the IP of the proxy.</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -596,24 +596,24 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><a name="db_exif-pid"></a><strong>pid</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. The file that this EXIF data is from.</td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top"><a name="db_exif-pid"></a><strong>pid</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Primary key. The file that this EXIF data is from.</td>
+    <td valign="top">
         <a href="#db_pictures-pid">cpg15x_pictures.pid</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>exifData</strong></td>
-    <td valign="top" class="tableb">Text (<=65k chars)</td>
-    <td valign="top" class="tableb">The EXIF data.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>exifData</strong></td>
+    <td valign="top">Text (<=65k chars)</td>
+    <td valign="top">The EXIF data.</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -624,24 +624,24 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>user_id</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. The user whose favorites these are.</td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top"><strong>user_id</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Primary key. The user whose favorites these are.</td>
+    <td valign="top">
         <a href="#db_users-user_id">cpg15x_users.user_id</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>user_favpics</strong></td>
-    <td valign="top" class="tableb">Text (<=65k chars)</td>
-    <td valign="top" class="tableb">The favorites data - stored as a serialized array of pids.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>user_favpics</strong></td>
+    <td valign="top">Text (<=65k chars)</td>
+    <td valign="top">The favorites data - stored as a serialized array of pids.</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -652,36 +652,36 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="160px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="160px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>extension</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=7 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. The filename extension in question (lower case, without a leading dot)</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>extension</strong></td>
+    <td valign="top">Text (<=7 chars)</td>
+    <td valign="top">Primary key. The filename extension in question (lower case, without a leading dot)</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>mime</strong></td>
-    <td valign="top" class="tableb">Text (<=254 chars)</td>
-    <td valign="top" class="tableb">The mime type associated with this filename extension. For list of possible mime types see <a href="http://www.iana.org/assignments/media-types/index.html">iana.org</a> or /etc/mime.types on linux systems.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>mime</strong></td>
+    <td valign="top">Text (<=254 chars)</td>
+    <td valign="top">The mime type associated with this filename extension. For list of possible mime types see <a href="http://www.iana.org/assignments/media-types/index.html">iana.org</a> or /etc/mime.types on linux systems.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>content</strong></td>
-    <td valign="top" class="tableb tableb_alternate">audio/document/image/movie</td>
-    <td valign="top" class="tableb tableb_alternate">States how Coppermine should display the file. Images are displayed using normal &lt;img&gt; tags, audio and video files using &lt;object&gt; and &lt;embed&gt; tags and documents are simply linked to. Only filetypes that are defined as images get automatic thumbails and resized versions created.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>content</strong></td>
+    <td valign="top">audio/document/image/movie</td>
+    <td valign="top">States how Coppermine should display the file. Images are displayed using normal &lt;img&gt; tags, audio and video files using &lt;object&gt; and &lt;embed&gt; tags and documents are simply linked to. Only filetypes that are defined as images get automatic thumbails and resized versions created.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>player</strong></td>
-    <td valign="top" class="tableb">DIVX/QT/RMP/SWF/WMP</td>
-    <td valign="top" class="tableb">States which media player should be used to play files of this type. Applies only to movie and audio files. The visitor must have an appropriate plugin to be able to view the media file.
+    <td valign="top"><strong>player</strong></td>
+    <td valign="top">DIVX/QT/RMP/SWF/WMP</td>
+    <td valign="top">States which media player should be used to play files of this type. Applies only to movie and audio files. The visitor must have an appropriate plugin to be able to view the media file.
         <p><small>DIVX = DivX Player, QT = QuickTime, RMP = RealPlayer, SWF = Shockwave Flash Player, WMP = Windows Media Player</small></p>
     </td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -692,66 +692,66 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>sid</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. Used to identify this hit in the interface.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>sid</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Primary key. Used to identify this hit in the interface.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><a name="db_hit_stats-pid"></a><strong>pid</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">The file that this hit was on.</td>
-    <td valign="top" class="tableb">
+    <td valign="top"><a name="db_hit_stats-pid"></a><strong>pid</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The file that this hit was on.</td>
+    <td valign="top">
         <a href="#db_pictures-pid">cpg15x_pictures.pid</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>ip</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=20 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The IP address of the visitor. This IP is derived from the REMOTE_ADDR variable. If the webserver is behind a proxy this will probably be the IP of the proxy.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>ip</strong></td>
+    <td valign="top">Text (<=20 chars)</td>
+    <td valign="top">The IP address of the visitor. This IP is derived from the REMOTE_ADDR variable. If the webserver is behind a proxy this will probably be the IP of the proxy.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>search_phrase</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">If the visitor arrived from a search engine, the search query they entered will be stored here.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>search_phrase</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">If the visitor arrived from a search engine, the search query they entered will be stored here.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>sdate</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Unix timestamp</td>
-    <td valign="top" class="tableb tableb_alternate">The date/time of the hit.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>sdate</strong></td>
+    <td valign="top">Unix timestamp</td>
+    <td valign="top">The date/time of the hit.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>referer</strong></td>
-    <td valign="top" class="tableb">Text (<=65k chars)</td>
-    <td valign="top" class="tableb">If the visitor arrived from another page, the URL of that page (if available) will be stored here.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>referer</strong></td>
+    <td valign="top">Text (<=65k chars)</td>
+    <td valign="top">If the visitor arrived from another page, the URL of that page (if available) will be stored here.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>browser</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The web browser the visitor used (if reported by the browser, and if recognised as a known browser).</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>browser</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">The web browser the visitor used (if reported by the browser, and if recognised as a known browser).</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>os</strong></td>
-    <td valign="top" class="tableb">Text (<=50 chars)</td>
-    <td valign="top" class="tableb">The operating system the visitor used (if reported by the browser, and if recognised as a known operating system).</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>os</strong></td>
+    <td valign="top">Text (<=50 chars)</td>
+    <td valign="top">The operating system the visitor used (if reported by the browser, and if recognised as a known operating system).</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>uid</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The id of the user if logged in, 0 for anonymous visitors.</td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top"><strong>uid</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The id of the user if logged in, 0 for anonymous visitors.</td>
+    <td valign="top">
         <a href="#db_users-user_id">cpg15x_users.user_id</a>
     </td>
   </tr>
@@ -764,70 +764,70 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>lang_id</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=40 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>lang_id</strong></td>
+    <td valign="top">Text (<=40 chars)</td>
+    <td valign="top">Primary key.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>english_name</strong></td>
-    <td valign="top" class="tableb">Text (<=70 chars)</td>
-    <td valign="top" class="tableb"></td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>english_name</strong></td>
+    <td valign="top">Text (<=70 chars)</td>
+    <td valign="top"></td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>native_name</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=70 chars)</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>native_name</strong></td>
+    <td valign="top">Text (<=70 chars)</td>
+    <td valign="top"></td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>custom_name</strong></td>
-    <td valign="top" class="tableb">Text (<=70 chars)</td>
-    <td valign="top" class="tableb"></td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>custom_name</strong></td>
+    <td valign="top">Text (<=70 chars)</td>
+    <td valign="top"></td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>flag</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=15 chars)</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>flag</strong></td>
+    <td valign="top">Text (<=15 chars)</td>
+    <td valign="top"></td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>abbr</strong></td>
-    <td valign="top" class="tableb">Text (<=15 chars)</td>
-    <td valign="top" class="tableb"></td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>abbr</strong></td>
+    <td valign="top">Text (<=15 chars)</td>
+    <td valign="top"></td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>flag</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=15 chars)</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>flag</strong></td>
+    <td valign="top">Text (<=15 chars)</td>
+    <td valign="top"></td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>available</strong></td>
-    <td valign="top" class="tableb">YES / NO</td>
-    <td valign="top" class="tableb"></td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>available</strong></td>
+    <td valign="top">YES / NO</td>
+    <td valign="top"></td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>enabled</strong></td>
-    <td valign="top" class="tableb tableb_alternate">YES / NO</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>enabled</strong></td>
+    <td valign="top">YES / NO</td>
+    <td valign="top"></td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>complete</strong></td>
-    <td valign="top" class="tableb">YES / NO</td>
-    <td valign="top" class="tableb"></td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>complete</strong></td>
+    <td valign="top">YES / NO</td>
+    <td valign="top"></td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -838,172 +838,172 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><a name="db_pictures-pid"></a><strong>pid</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. Used throughout Coppermine to identify this file.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><a name="db_pictures-pid"></a><strong>pid</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Primary key. Used throughout Coppermine to identify this file.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>aid</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">Indicates which album this picture belongs to.</td>
-    <td valign="top" class="tableb">
+    <td valign="top"><strong>aid</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Indicates which album this picture belongs to.</td>
+    <td valign="top">
         <a href="#db_albums-aid">cpg15x_albums.aid</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>filepath</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The path on the filesystem to the directory containing the file. This is relative to Coppermine's <i>albums</i> directory.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>filepath</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">The path on the filesystem to the directory containing the file. This is relative to Coppermine's <i>albums</i> directory.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>filename</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">The name of the file on the filesystem. There should be no path components in this field.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>filename</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">The name of the file on the filesystem. There should be no path components in this field.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>filesize</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The size of the file in bytes.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>filesize</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The size of the file in bytes.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>total_filesize</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">The combined size of the file plus any resized or thumbnail versions of the file in bytes. This is used in quota calculations.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>total_filesize</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The combined size of the file plus any resized or thumbnail versions of the file in bytes. This is used in quota calculations.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>pwidth</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The width of the picture in pixels. If the file is a movie this is the width it will be displayed at.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>pwidth</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The width of the picture in pixels. If the file is a movie this is the width it will be displayed at.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>pheight</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">The height of the picture in pixels. If the file is a movie this is the height it will be displayed at.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>pheight</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The height of the picture in pixels. If the file is a movie this is the height it will be displayed at.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>hits</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The number of times the file has been viewed.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>hits</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The number of times the file has been viewed.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>mtime</strong></td>
-    <td valign="top" class="tableb">Datetime</td>
-    <td valign="top" class="tableb">The date/time of the most recent view of this file. Used to create the <i>last viewed</i> meta album.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>mtime</strong></td>
+    <td valign="top">Datetime</td>
+    <td valign="top">The date/time of the most recent view of this file. Used to create the <i>last viewed</i> meta album.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>ctime</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Unix timestamp</td>
-    <td valign="top" class="tableb tableb_alternate">The date/time the file was added to Coppermine.<p><small>Note: Coppermine does not use this field when sorting files by date. (It uses the pid field instead).</small></p></td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>ctime</strong></td>
+    <td valign="top">Unix timestamp</td>
+    <td valign="top">The date/time the file was added to Coppermine.<p><small>Note: Coppermine does not use this field when sorting files by date. (It uses the pid field instead).</small></p></td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>owner_id</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">The user who uploaded this file. 0 for anonymous users.</td>
-    <td valign="top" class="tableb">
+    <td valign="top"><strong>owner_id</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The user who uploaded this file. 0 for anonymous users.</td>
+    <td valign="top">
         <a href="#db_users-user_id">cpg15x_users.user_id</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>owner_name</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=40 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The name of the user who uploaded this file.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>owner_name</strong></td>
+    <td valign="top">Text (<=40 chars)</td>
+    <td valign="top">The name of the user who uploaded this file.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>pic_rating</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">The value represents the current average rating of the file. This allows Coppermine to track the average rating without having to store all ratings ever made. Divide this number by 2000 to get a rating out of 5. See <i>ratepic.php</i> for how the value is calculated.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>pic_rating</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The value represents the current average rating of the file. This allows Coppermine to track the average rating without having to store all ratings ever made. Divide this number by 2000 to get a rating out of 5. See <i>ratepic.php</i> for how the value is calculated.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>votes</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The total number of votes/ratings made on the file.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>votes</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The total number of votes/ratings made on the file.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>title</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">The short title of the file.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>title</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">The short title of the file.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>caption</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=65k chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The longer description of the file.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>caption</strong></td>
+    <td valign="top">Text (<=65k chars)</td>
+    <td valign="top">The longer description of the file.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>keywords</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">Used to tag the file with a given word or phrase. Used in searching, 'clickable keywords', and for the 'linked files' feature. The keyword separator is a configuration setting.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>keywords</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">Used to tag the file with a given word or phrase. Used in searching, 'clickable keywords', and for the 'linked files' feature. The keyword separator is a configuration setting.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>approved</strong></td>
-    <td valign="top" class="tableb tableb_alternate">YES / NO</td>
-    <td valign="top" class="tableb tableb_alternate">Whether the file has been approved by the administrator. Files that are not approved are not displayed to regular users. If approval is not enabled then the file gets a value of YES automatically.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>approved</strong></td>
+    <td valign="top">YES / NO</td>
+    <td valign="top">Whether the file has been approved by the administrator. Files that are not approved are not displayed to regular users. If approval is not enabled then the file gets a value of YES automatically.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>galleryicon</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">Indicates that this file has been selected as the thumbnail for a user gallery.</td>
-    <td valign="top" class="tableb">
+    <td valign="top"><strong>galleryicon</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Indicates that this file has been selected as the thumbnail for a user gallery.</td>
+    <td valign="top">
         <a href="#db_pictures-pid">cpg15x_pictures.pid</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>user{1,2,3,4}</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">Custom fields for image description.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>user{1,2,3,4}</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">Custom fields for image description.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>url_prefix</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">Designed as a way to allow some files to be stored in an alternate location to the <i>albums</i> directory, but this feature is not used by Coppermine itself. See the function <i>get_pic_url()</i> in <i>include/functions.inc.php</i>. Should normally be set to 0.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>url_prefix</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Designed as a way to allow some files to be stored in an alternate location to the <i>albums</i> directory, but this feature is not used by Coppermine itself. See the function <i>get_pic_url()</i> in <i>include/functions.inc.php</i>. Should normally be set to 0.</td>
+    <td valign="top"></td>
   </tr> 
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>pic_raw_ip</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The IP of the uploader. This IP is derived from the REMOTE_ADDR variable. If the webserver is behind a proxy this will probably be the IP of the proxy.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>pic_raw_ip</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">The IP of the uploader. This IP is derived from the REMOTE_ADDR variable. If the webserver is behind a proxy this will probably be the IP of the proxy.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>pic_hdr_ip</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">The IP of the uploader. This IP is derived from the HTTP_CLIENT_IP or HTTP_X_FORWARDED_FOR variables. If the webserver is behind a proxy this should be the actual client IP instead of the proxy's IP. If neither variable is present this will be the same as the <strong>pic_raw_ip</strong> value.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>pic_hdr_ip</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">The IP of the uploader. This IP is derived from the HTTP_CLIENT_IP or HTTP_X_FORWARDED_FOR variables. If the webserver is behind a proxy this should be the actual client IP instead of the proxy's IP. If neither variable is present this will be the same as the <strong>pic_raw_ip</strong> value.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>lasthit_ip</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The IP address of the last visitor to view the file. This IP is derived from the REMOTE_ADDR variable. If the webserver is behind a proxy this will probably be the IP of the proxy.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>lasthit_ip</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">The IP address of the last visitor to view the file. This IP is derived from the REMOTE_ADDR variable. If the webserver is behind a proxy this will probably be the IP of the proxy.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>position</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">The position of the file within the album. This is only taken into account if the default sort order is set to position ascending or descending in config. The positions are set using the 'sort my pictures' page.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>position</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The position of the file within the album. This is only taken into account if the default sort order is set to position ascending or descending in config. The positions are set using the 'sort my pictures' page.</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -1013,34 +1013,34 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>plugin_id</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. Simply used to manage plugins.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>plugin_id</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Primary key. Simply used to manage plugins.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>name</strong></td>
-    <td valign="top" class="tableb">Text (<=64 chars)</td>
-    <td valign="top" class="tableb">The plugin name as defined by the plugin creator.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>name</strong></td>
+    <td valign="top">Text (<=64 chars)</td>
+    <td valign="top">The plugin name as defined by the plugin creator.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>path</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=128 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The name of the plugin's folder within the <i>plugins</i> directory.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>path</strong></td>
+    <td valign="top">Text (<=128 chars)</td>
+    <td valign="top">The name of the plugin's folder within the <i>plugins</i> directory.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>priority</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">Plugins are loaded and applied in a user specified order (by priority ascending). This can help reduce problems with plugins that don't play nice with other plugins.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>priority</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Plugins are loaded and applied in a user specified order (by priority ascending). This can help reduce problems with plugins that don't play nice with other plugins.</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -1050,36 +1050,36 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>session_id</strong></td>
-    <td valign="top" class="tableb tableb_alternate">MD5 hash</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. Session identifier. This is generated the first time a visitor loads a page and is retained until it expires. The <strong>user_id</strong> associated with the session is updated if the user logs in and out.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>session_id</strong></td>
+    <td valign="top">MD5 hash</td>
+    <td valign="top">Primary key. Session identifier. This is generated the first time a visitor loads a page and is retained until it expires. The <strong>user_id</strong> associated with the session is updated if the user logs in and out.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>user_id</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">The user whose session this is. 0 for anonymous sessions.</td>
-    <td valign="top" class="tableb">
+    <td valign="top"><strong>user_id</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The user whose session this is. 0 for anonymous sessions.</td>
+    <td valign="top">
         <a href="#db_users-user_id">cpg15x_users.user_id</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>time</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Unix timestamp</td>
-    <td valign="top" class="tableb tableb_alternate">The time of the last action by the visitor. This is used to clean out expired sessions periodically.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>time</strong></td>
+    <td valign="top">Unix timestamp</td>
+    <td valign="top">The time of the last action by the visitor. This is used to clean out expired sessions periodically.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>remember</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">Whether the user selected 'remember me' at login. This extends the session timeout from the normal 1 hour to 2 weeks.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>remember</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Whether the user selected 'remember me' at login. This extends the session timeout from the normal 1 hour to 2 weeks.</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -1090,36 +1090,36 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>message_id</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=80 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. Uniquely identifies the messages.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>message_id</strong></td>
+    <td valign="top">Text (<=80 chars)</td>
+    <td valign="top">Primary key. Uniquely identifies the messages.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>user_id</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">The user the message is aimed at.</td>
-    <td valign="top" class="tableb">
+    <td valign="top"><strong>user_id</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The user the message is aimed at.</td>
+    <td valign="top">
         <a href="#db_users-user_id">cpg15x_users.user_id</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>time</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Unix timestamp</td>
-    <td valign="top" class="tableb tableb_alternate">The time of the message. This is used to clean out expired messages periodically.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>time</strong></td>
+    <td valign="top">Unix timestamp</td>
+    <td valign="top">The time of the message. This is used to clean out expired messages periodically.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>message</strong></td>
-    <td valign="top" class="tableb">Text (<=65k chars)</td>
-    <td valign="top" class="tableb">The text of the message.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>message</strong></td>
+    <td valign="top">Text (<=65k chars)</td>
+    <td valign="top">The text of the message.</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -1130,76 +1130,76 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><a name="db_usergroups-group_id"></a><strong>group_id</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. Uniquely identifies the group.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><a name="db_usergroups-group_id"></a><strong>group_id</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Primary key. Uniquely identifies the group.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>group_name</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">The name of the group.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>group_name</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">The name of the group.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>group_quota</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Maximum amount of disk space (in bytes) that users in this group are permitted to upload to their user gallery.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>group_quota</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Maximum amount of disk space (in bytes) that users in this group are permitted to upload to their user gallery.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>can_rate_pictures</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">Indicates whether or not this group has permission to vote/rate files.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>can_rate_pictures</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Indicates whether or not this group has permission to vote/rate files.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>can_send_ecards</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Indicates whether or not this group has permission to send ecards files.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>can_send_ecards</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Indicates whether or not this group has permission to send ecards files.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>can_post_comments</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">Indicates whether or not this group has permission to post comments.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>can_post_comments</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Indicates whether or not this group has permission to post comments.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>can_upload_pictures</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Indicates whether or not this group has permission to upload files to public albums.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>can_upload_pictures</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Indicates whether or not this group has permission to upload files to public albums.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>can_create_albums</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">Indicates whether or not this group has permission to upload files to their personal user gallery.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>can_create_albums</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Indicates whether or not this group has permission to upload files to their personal user gallery.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>pub_upl_need_approval</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Indicates whether or not this group must await approval for any uploads to public albums.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>pub_upl_need_approval</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Indicates whether or not this group must await approval for any uploads to public albums.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>priv_upl_need_approval</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">Indicates whether or not this group must await approval for any uploads to their personal user gallery.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>priv_upl_need_approval</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Indicates whether or not this group must await approval for any uploads to their personal user gallery.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>access_level</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Indicates what level of access the group has. 0 = no access, 1 = thumbnails only, 2 = thumbnails and intermedaite files, 3 = All</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>access_level</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Indicates what level of access the group has. 0 = no access, 1 = thumbnails only, 2 = thumbnails and intermedaite files, 3 = All</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -1210,116 +1210,116 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><a name="db_users-user_id"></a><strong>user_id</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. Uniquely identifies the user.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><a name="db_users-user_id"></a><strong>user_id</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Primary key. Uniquely identifies the user.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>user_group</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">The primary group of the user.</td>
-    <td valign="top" class="tableb">
+    <td valign="top"><strong>user_group</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The primary group of the user.</td>
+    <td valign="top">
         <a href="#db_usergroups-group_id">cpg15x_usergroups.group_id</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>user_active</strong></td>
-    <td valign="top" class="tableb tableb_alternate">YES / NO</td>
-    <td valign="top" class="tableb tableb_alternate">Indicates whether the user has completed any necessary activation/approval steps after registration.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>user_active</strong></td>
+    <td valign="top">YES / NO</td>
+    <td valign="top">Indicates whether the user has completed any necessary activation/approval steps after registration.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>user_name</strong></td>
-    <td valign="top" class="tableb">Text (<=25 chars)</td>
-    <td valign="top" class="tableb">Unique key. The name of the user.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>user_name</strong></td>
+    <td valign="top">Text (<=25 chars)</td>
+    <td valign="top">Unique key. The name of the user.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>user_password</strong></td>
-    <td valign="top" class="tableb tableb_alternate">MD5 hash</td>
-    <td valign="top" class="tableb tableb_alternate">A hash of the user's password. The password cannot be determined from the hash, so the 'forgot password' feature generates a new password.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>user_password</strong></td>
+    <td valign="top">MD5 hash</td>
+    <td valign="top">A hash of the user's password. The password cannot be determined from the hash, so the 'forgot password' feature generates a new password.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>user_lastvisit</strong></td>
-    <td valign="top" class="tableb">Datetime</td>
-    <td valign="top" class="tableb">The date/time of the last login by this user. This is only updated when the user logs in. If the user has never logged in this will be 0000-00-00 00:00:00</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>user_lastvisit</strong></td>
+    <td valign="top">Datetime</td>
+    <td valign="top">The date/time of the last login by this user. This is only updated when the user logs in. If the user has never logged in this will be 0000-00-00 00:00:00</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>user_regdate</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Datetime</td>
-    <td valign="top" class="tableb tableb_alternate">The date/time the user registered their account.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>user_regdate</strong></td>
+    <td valign="top">Datetime</td>
+    <td valign="top">The date/time the user registered their account.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>user_group_list</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">Any additional groups the user is a member of are listed here, separated with commas.</td>
-    <td valign="top" class="tableb">
+    <td valign="top"><strong>user_group_list</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">Any additional groups the user is a member of are listed here, separated with commas.</td>
+    <td valign="top">
         <a href="#db_usergroups-group_id">cpg15x_usergroups.group_id</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>user_email</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The current email address of the user.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>user_email</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">The current email address of the user.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>user_profile1</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">Custom profile field. By default this is 'Location'.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>user_profile1</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">Custom profile field. By default this is 'Location'.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>user_profile2</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">Custom profile field. By default this is 'Interests'.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>user_profile2</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">Custom profile field. By default this is 'Interests'.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>user_profile3</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">Custom profile field. By default this is 'Website'.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>user_profile3</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">Custom profile field. By default this is 'Website'.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>user_profile4</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">Custom profile field. By default this is 'Occupation'.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>user_profile4</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">Custom profile field. By default this is 'Occupation'.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>user_profile5</strong></td>
-    <td valign="top" class="tableb">Text (<=255 chars)</td>
-    <td valign="top" class="tableb">Custom profile field. By default this is unused.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>user_profile5</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">Custom profile field. By default this is unused.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>user_profile6</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=65k chars)</td>
-    <td valign="top" class="tableb tableb_alternate">Custom profile field. By default this is 'Biography'. This field is longer than the others.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>user_profile6</strong></td>
+    <td valign="top">Text (<=65k chars)</td>
+    <td valign="top">Custom profile field. By default this is 'Biography'. This field is longer than the others.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>user_actkey</strong></td>
-    <td valign="top" class="tableb">MD5 hash</td>
-    <td valign="top" class="tableb">Randomly generated key used in account activation.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>user_actkey</strong></td>
+    <td valign="top">MD5 hash</td>
+    <td valign="top">Randomly generated key used in account activation.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>user_language</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=40 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The user's language preference. Only half implemented.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>user_language</strong></td>
+    <td valign="top">Text (<=40 chars)</td>
+    <td valign="top">The user's language preference. Only half implemented.</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -1330,30 +1330,30 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>pic_id</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Composite primary key. The pid of the file the vote related to/</td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top"><strong>pic_id</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Composite primary key. The pid of the file the vote related to/</td>
+    <td valign="top">
         <a href="#db_pictures-pid">cpg15x_pictures.pid</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>user_md5_id</strong></td>
-    <td valign="top" class="tableb">MD5 hash</td>
-    <td valign="top" class="tableb">Composite primary key. A randomly generated unique id used to 'identify' anonymous users. For registered users this is the hash of the user_id.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>user_md5_id</strong></td>
+    <td valign="top">MD5 hash</td>
+    <td valign="top">Composite primary key. A randomly generated unique id used to 'identify' anonymous users. For registered users this is the hash of the user_id.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>vote_time</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Unix timestamp</td>
-    <td valign="top" class="tableb tableb_alternate">The date/time of the vote. Used when cleaning the table of old votes.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>vote_time</strong></td>
+    <td valign="top">Unix timestamp</td>
+    <td valign="top">The date/time of the vote. Used when cleaning the table of old votes.</td>
+    <td valign="top"></td>
   </tr>
 </table>
 
@@ -1364,66 +1364,66 @@ $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';</textarea>
 
 <table border="0" cellspacing="0" cellpadding="0" class="maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Field</th>
-    <th valign="top" align="left" class="tableh1" width="120px">Type</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">References</th>
+    <th valign="top" align="left">Field</th>
+    <th valign="top" align="left" width="120px">Type</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">References</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>sid</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">Primary key. Used to identify this vote in the interface.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>sid</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">Primary key. Used to identify this vote in the interface.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><a name="db_hit_stats-pid"></a><strong>pid</strong></td>
-    <td valign="top" class="tableb">Integer</td>
-    <td valign="top" class="tableb">The file that this vote was on.</td>
-    <td valign="top" class="tableb">
+    <td valign="top"><a name="db_hit_stats-pid"></a><strong>pid</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The file that this vote was on.</td>
+    <td valign="top">
         <a href="#db_pictures-pid">cpg15x_pictures.pid</a>
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>rating</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The rating given.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>rating</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The rating given.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>ip</strong></td>
-    <td valign="top" class="tableb">Text (<=20 chars)</td>
-    <td valign="top" class="tableb">The IP address of the voter. This IP is derived from the REMOTE_ADDR variable. If the webserver is behind a proxy this will probably be the IP of the proxy.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>ip</strong></td>
+    <td valign="top">Text (<=20 chars)</td>
+    <td valign="top">The IP address of the voter. This IP is derived from the REMOTE_ADDR variable. If the webserver is behind a proxy this will probably be the IP of the proxy.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>sdate</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Unix timestamp</td>
-    <td valign="top" class="tableb tableb_alternate">The date/time of the vote.</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>sdate</strong></td>
+    <td valign="top">Unix timestamp</td>
+    <td valign="top">The date/time of the vote.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>referer</strong></td>
-    <td valign="top" class="tableb">Text (<=65k chars)</td>
-    <td valign="top" class="tableb">If the voter arrived from another page, the URL of that page (if available) will be stored here.</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>referer</strong></td>
+    <td valign="top">Text (<=65k chars)</td>
+    <td valign="top">If the voter arrived from another page, the URL of that page (if available) will be stored here.</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>browser</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Text (<=255 chars)</td>
-    <td valign="top" class="tableb tableb_alternate">The web browser the voter used (if reported by the browser, and if recognised as a known browser).</td>
-    <td valign="top" class="tableb tableb_alternate"></td>
+    <td valign="top"><strong>browser</strong></td>
+    <td valign="top">Text (<=255 chars)</td>
+    <td valign="top">The web browser the voter used (if reported by the browser, and if recognised as a known browser).</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><strong>os</strong></td>
-    <td valign="top" class="tableb">Text (<=50 chars)</td>
-    <td valign="top" class="tableb">The operating system the voter used (if reported by the browser, and if recognised as a known operating system).</td>
-    <td valign="top" class="tableb"></td>
+    <td valign="top"><strong>os</strong></td>
+    <td valign="top">Text (<=50 chars)</td>
+    <td valign="top">The operating system the voter used (if reported by the browser, and if recognised as a known operating system).</td>
+    <td valign="top"></td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><strong>uid</strong></td>
-    <td valign="top" class="tableb tableb_alternate">Integer</td>
-    <td valign="top" class="tableb tableb_alternate">The id of the user if logged in, 0 for anonymous visitors.</td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top"><strong>uid</strong></td>
+    <td valign="top">Integer</td>
+    <td valign="top">The id of the user if logged in, 0 for anonymous visitors.</td>
+    <td valign="top">
         <a href="#db_users-user_id">cpg15x_users.user_id</a>
     </td>
   </tr>

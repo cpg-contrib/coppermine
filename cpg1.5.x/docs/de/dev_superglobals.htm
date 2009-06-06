@@ -112,13 +112,13 @@ require_once </span><span style="color: #DD0000">"Inspekt.php"</span><span style
 <p>Here are some real-world examples of how code used to look initially (before Inspekt was introduced) and what was changed to make it work with Inspekt.</p>
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
   <tr>
-    <th valign="top" align="left" class="tableh1">File</th>
-    <th valign="top" align="left" class="tableh1">Before implementing Inspekt</th>
-    <th valign="top" align="left" class="tableh1">After implementing Inspekt</th>
+    <th valign="top" align="left">File</th>
+    <th valign="top" align="left">Before implementing Inspekt</th>
+    <th valign="top" align="left">After implementing Inspekt</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb">albmgr.php</td>
-    <td valign="top" class="tableb">
+    <td valign="top">albmgr.php</td>
+    <td valign="top">
       <pre><span style="color: #000000"><span style="color: #0000BB">$CLEAN</span><span style="color: #007700">[</span><span style="color: #DD0000">'cat'</span><span style="color: #007700">] = isset(</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'cat'</span><span style="color: #007700">]) ? (int)(</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'cat'</span><span style="color: #007700">]) : </span><span style="color: #0000BB">0</span><span style="color: #007700">;</span></span></pre>
       [...]
       <pre><span style="color: #000000"><span style="color: #0000BB">$cat </span><span style="color: #007700">= </span><span style="color: #0000BB">$CLEAN</span><span style="color: #007700">[</span><span style="color: #DD0000">'cat'</span><span style="color: #007700">];</span></span>
@@ -128,7 +128,7 @@ require_once </span><span style="color: #DD0000">"Inspekt.php"</span><span style
 
 </pre>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <pre> </pre>
       [...]
       <pre><span style="color: #000000"><span style="color: #007700">if (</span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">keyExists</span><span style="color: #007700">(</span><span style="color: #DD0000">'cat'</span><span style="color: #007700">)) {
@@ -139,8 +139,8 @@ require_once </span><span style="color: #DD0000">"Inspekt.php"</span><span style
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">calendar.php</td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">calendar.php</td>
+    <td valign="top">
       <pre><span style="color: rgb(0, 119, 0);">if (</span><span style="color: rgb(0, 0, 187);">$_REQUEST</span><span style="color: rgb(0, 119, 0);">[</span><span style="color: rgb(221, 0, 0);">'action'</span><span style="color: rgb(0, 119, 0);">] == </span><span style="color: rgb(221, 0, 0);">'browsebydate'</span><span style="color: rgb(0, 119, 0);">) {</span>
 
 
@@ -166,7 +166,7 @@ require_once </span><span style="color: #DD0000">"Inspekt.php"</span><span style
 
       </pre>
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       <pre><span style="color: #000000"><span style="color: #007700">if (</span><span style="color: #0000BB">$matches </span><span style="color: #007700">= </span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMatched</span><span style="color: #007700">(</span><span style="color: #DD0000">'action'</span><span style="color: #007700">, </span><span style="color: #DD0000">'/^[a-z]+$/'</span><span style="color: #007700">)) {
     </span><span style="color: #0000BB">$action </span><span style="color: #007700">= </span><span style="color: #0000BB">$matches</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];
 } elseif (</span><span style="color: #0000BB">$matches </span><span style="color: #007700">= </span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">post</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMatched</span><span style="color: #007700">(</span><span style="color: #DD0000">'action'</span><span style="color: #007700">, </span><span style="color: #DD0000">'/^[a-z]+$/'</span><span style="color: #007700">)) {
@@ -194,14 +194,14 @@ if (</span><span style="color: #0000BB">$superCage</span><span style="color: #00
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">getlang.php</td>
-    <td valign="top" class="tableb">
+    <td valign="top">getlang.php</td>
+    <td valign="top">
       <pre><span style="color: #000000"><span style="color: #007700">if (isset(</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'get'</span><span style="color: #007700">])) {
      </span><span style="color: #0000BB">$file_index </span><span style="color: #007700">= (int)</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'get'</span><span style="color: #007700">];</span></span></pre>
      [...]
      <pre><span style="color: #000000"><span style="color: #007700">&lt;</span><span style="color: #0000BB">img src</span><span style="color: #007700">=</span><span style="color: #DD0000">"images/folder.gif" </span><span style="color: #0000BB">alt</span><span style="color: #007700">=</span><span style="color: #DD0000">""</span><span style="color: #007700">&gt;&amp;</span><span style="color: #0000BB">nbsp</span><span style="color: #007700">;&lt;</span><span style="color: #0000BB">a href</span><span style="color: #007700">=</span><span style="color: #DD0000">"{$_SERVER['PHP_SELF']}?get=$index"</span><span style="color: #007700">&gt;</span><span style="color: #0000BB">$file</span><span style="color: #007700">&lt;/</span><span style="color: #0000BB">a</span><span style="color: #007700">&gt;</span></span></pre>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <pre><span style="color: #000000"><span style="color: #007700">if (</span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">keyExists</span><span style="color: #007700">(</span><span style="color: #DD0000">'get'</span><span style="color: #007700">)) {
                 </span><span style="color: #0000BB">$file_index </span><span style="color: #007700">= </span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getInt</span><span style="color: #007700">(</span><span style="color: #DD0000">'get'</span><span style="color: #007700">) ;</span></span></pre>
       [...]
@@ -214,39 +214,39 @@ if (</span><span style="color: #0000BB">$superCage</span><span style="color: #00
 <p>The method <tt class="code">getMatched</tt> makes use of regular expressions that can be tricky for beginners. It would be beyond the scope of this documentation to explain how regular expressions work in detail - we just added some &quot;typical&quot; regular expressions that you can use in your own code:</p>
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
   <tr>
-    <th valign="top" align="left" class="tableh1">Regex</th>
-    <th valign="top" align="left" class="tableh1">Description</th>
-    <th valign="top" align="left" class="tableh1">Example</th>
+    <th valign="top" align="left">Regex</th>
+    <th valign="top" align="left">Description</th>
+    <th valign="top" align="left">Example</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><tt class="code">/^[0-9A-Za-z_]+$/</tt></td>
-    <td valign="top" class="tableb">Alphanumerals (numbers and latin characters) both in lower as well as upper case and the special char &quot;underscore&quot; (<tt class="code">_</tt>) will match (i.e. return TRUE)</td>
-    <td valign="top" class="tableb">'<tt class="code">foobar</tt>', '<tt class="code">fooBar</tt>', '<tt class="code">foo_bar</tt>', '<tt class="code">foobar_</tt>', '<tt class="code">2foo3bar</tt>' will match (true).<br />'<tt class="code">f&uuml;bar</tt>', '<tt class="code">foo-bar</tt>', '<tt class="code">foo bar</tt>' will not match (false)</td>
+    <td valign="top"><tt class="code">/^[0-9A-Za-z_]+$/</tt></td>
+    <td valign="top">Alphanumerals (numbers and latin characters) both in lower as well as upper case and the special char &quot;underscore&quot; (<tt class="code">_</tt>) will match (i.e. return TRUE)</td>
+    <td valign="top">'<tt class="code">foobar</tt>', '<tt class="code">fooBar</tt>', '<tt class="code">foo_bar</tt>', '<tt class="code">foobar_</tt>', '<tt class="code">2foo3bar</tt>' will match (true).<br />'<tt class="code">f&uuml;bar</tt>', '<tt class="code">foo-bar</tt>', '<tt class="code">foo bar</tt>' will not match (false)</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><tt class="code">/^[a-zA-Z0-9_\-]*$/</tt></td>
-    <td valign="top" class="tableb tableb_alternate">Alphanumerals (numbers and latin characters) both in lower as well as upper case and the special char &quot;underscore&quot; (<tt class="code">_</tt>) and the dash (<tt class="code">-</tt>) will match (i.e. return TRUE)</td>
-    <td valign="top" class="tableb tableb_alternate">'<tt class="code">foobar</tt>', '<tt class="code">fooBar</tt>', '<tt class="code">foo_bar</tt>', '<tt class="code">foobar_</tt>', '<tt class="code">2foo3bar</tt>', '<tt class="code">foo-bar</tt>' will match (true).</td>
+    <td valign="top"><tt class="code">/^[a-zA-Z0-9_\-]*$/</tt></td>
+    <td valign="top">Alphanumerals (numbers and latin characters) both in lower as well as upper case and the special char &quot;underscore&quot; (<tt class="code">_</tt>) and the dash (<tt class="code">-</tt>) will match (i.e. return TRUE)</td>
+    <td valign="top">'<tt class="code">foobar</tt>', '<tt class="code">fooBar</tt>', '<tt class="code">foo_bar</tt>', '<tt class="code">foobar_</tt>', '<tt class="code">2foo3bar</tt>', '<tt class="code">foo-bar</tt>' will match (true).</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><tt class="code">/^[a-z]*$/</tt></td>
-    <td valign="top" class="tableb">Only latin character in lowercase will match.</td>
-    <td valign="top" class="tableb">'<tt class="code">foobar</tt>' will match (true).<br />'<tt class="code">fooBar</tt>', '<tt class="code">foo5bar</tt>', '<tt class="code">foo-bar</tt>', '<tt class="code">foo bar</tt>' will not match (false)</td>
+    <td valign="top"><tt class="code">/^[a-z]*$/</tt></td>
+    <td valign="top">Only latin character in lowercase will match.</td>
+    <td valign="top">'<tt class="code">foobar</tt>' will match (true).<br />'<tt class="code">fooBar</tt>', '<tt class="code">foo5bar</tt>', '<tt class="code">foo-bar</tt>', '<tt class="code">foo bar</tt>' will not match (false)</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><tt class="code">/^[a-zA-Z0-9]*$/</tt></td>
-    <td valign="top" class="tableb tableb_alternate">Alphanumerals (numbers and latin characters) both in lower as well as upper case will match (i.e. return TRUE). However, you could use the method <tt class="code">getAlnum</tt> just as well - it will make the code more readable and easier to understand for others.</td>
-    <td valign="top" class="tableb tableb_alternate">'<tt class="code">foobar</tt>', '<tt class="code">fooBar</tt>', '<tt class="code">2foo3bar</tt>' will match (true).<br />'<tt class="code">f&uuml;bar</tt>', '<tt class="code">foo_bar</tt>', '<tt class="code">foo-bar</tt>', '<tt class="code">foo bar</tt>', '<tt class="code">foobar_</tt>' will not match (false)</td>
+    <td valign="top"><tt class="code">/^[a-zA-Z0-9]*$/</tt></td>
+    <td valign="top">Alphanumerals (numbers and latin characters) both in lower as well as upper case will match (i.e. return TRUE). However, you could use the method <tt class="code">getAlnum</tt> just as well - it will make the code more readable and easier to understand for others.</td>
+    <td valign="top">'<tt class="code">foobar</tt>', '<tt class="code">fooBar</tt>', '<tt class="code">2foo3bar</tt>' will match (true).<br />'<tt class="code">f&uuml;bar</tt>', '<tt class="code">foo_bar</tt>', '<tt class="code">foo-bar</tt>', '<tt class="code">foo bar</tt>', '<tt class="code">foobar_</tt>' will not match (false)</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb"><tt class="code">/^\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b$/</tt></td>
-    <td valign="top" class="tableb">IP addresses (v4) will match (return TRUE).</td>
-    <td valign="top" class="tableb">'<tt class="code">1.2.3.4</tt>', '<tt class="code">192.168.0.1</tt>' will match (true).<br />'<tt class="code">1.2.3</tt>', '<tt class="code">1.2.3.4.5</tt>', '<tt class="code">192.168.0.10/2</tt>', '<tt class="code">coppermine-gallery.net</tt>', '<tt class="code">192.168.0.300</tt>' will not match (false)</td>
+    <td valign="top"><tt class="code">/^\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b$/</tt></td>
+    <td valign="top">IP addresses (v4) will match (return TRUE).</td>
+    <td valign="top">'<tt class="code">1.2.3.4</tt>', '<tt class="code">192.168.0.1</tt>' will match (true).<br />'<tt class="code">1.2.3</tt>', '<tt class="code">1.2.3.4.5</tt>', '<tt class="code">192.168.0.10/2</tt>', '<tt class="code">coppermine-gallery.net</tt>', '<tt class="code">192.168.0.300</tt>' will not match (false)</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate"><tt class="code">/^([a-zA-Z0-9]((\.|\-|\_){0,1}[a-zA-Z0-9]){0,})@([a-zA-Z]((\.|\-){0,1}[a-zA-Z0-9]){0,})\.([a-zA-Z]{2,4})$/</tt></td>
-    <td valign="top" class="tableb tableb_alternate">Valid email addresses will match (i.e. return TRUE). However, this regex does not check if the domain exists nor if the <abbr title="Top Level Domain">TLD</abbr> is valid.</td>
-    <td valign="top" class="tableb tableb_alternate">'<tt class="code">john.doe@example.com</tt>', '<tt class="code">john@example.com</tt>', '<tt class="code">john-doe@some.example.com</tt>' will match (true).<br />'<tt class="code">john.doe</tt>', '<tt class="code">john.doe@</tt>', '<tt class="code">@example.com</tt>', '<tt class="code">jürgen.doe@example.com</tt>', '<tt class="code">john=doe@example.com</tt>' will not match (false)</td>
+    <td valign="top"><tt class="code">/^([a-zA-Z0-9]((\.|\-|\_){0,1}[a-zA-Z0-9]){0,})@([a-zA-Z]((\.|\-){0,1}[a-zA-Z0-9]){0,})\.([a-zA-Z]{2,4})$/</tt></td>
+    <td valign="top">Valid email addresses will match (i.e. return TRUE). However, this regex does not check if the domain exists nor if the <abbr title="Top Level Domain">TLD</abbr> is valid.</td>
+    <td valign="top">'<tt class="code">john.doe@example.com</tt>', '<tt class="code">john@example.com</tt>', '<tt class="code">john-doe@some.example.com</tt>' will match (true).<br />'<tt class="code">john.doe</tt>', '<tt class="code">john.doe@</tt>', '<tt class="code">@example.com</tt>', '<tt class="code">jürgen.doe@example.com</tt>', '<tt class="code">john=doe@example.com</tt>' will not match (false)</td>
   </tr>
 </table>
 

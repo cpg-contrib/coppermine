@@ -24,6 +24,8 @@ $(function() {
         animated: "medium",
         control:"#sidetreecontrol"
     });
+    $(".maintable tr:even").addClass("tableb");;
+	$(".maintable tr:odd").addClass("tableb_alternate");;
 })
 
 function cpgDocToc() {

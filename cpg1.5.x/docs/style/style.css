@@ -51,13 +51,17 @@ p {
     margin-bottom: 1px;
 }
 
-.tableh1 {
+.tableh1, .maintable th {
     background : #0E72A4 ;
     color : #FFFFFF;
     padding-top: 3px;
     padding-right: 10px;
     padding-bottom: 3px;
     padding-left: 10px;
+}
+
+.maintable th {
+	text-align:left;
 }
 
 .tableh2 {

@@ -95,29 +95,29 @@
 <a name="errors_messages_database"></a><h3>Database-related error messages<a href="#errors_messages_database" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
   <tr>
-    <th align="left" class="tableh1">Error message</th>
-    <th align="left" class="tableh1">Possible cause</th>
-    <th align="left" class="tableh1">Suggested fix</th>
+    <th align="left">Error message</th>
+    <th align="left">Possible cause</th>
+    <th align="left">Suggested fix</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <a name="cant_read_write_to_file"></a><tt class="code">Can't create/write to file '/tmp/#sql_45d5_0.MYI'</tt><a href="#cant_read_write_to_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       MySQL can't create a temporary file for the result set in the given temporary directory.
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       Alter the tmpdir variable to point to a writable directory.  It requires changing the tmpdir line in the my.cnf file, usually in the [mysqld] section (tmpdir = /writable/dir, where /writable/dir is a directory to which you can write).<br />Ask your webhost to make the above changes.
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       <a name="cantOpenMYI"></a><tt class="code">Can't open file: 'yourPrefix_tableName.MYI'</tt><a href="#cantOpenMYI" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       Your database table is corrupted.
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       This is not a coppermine issue, but a mySQL issue. It just may affect a database table used by Coppermine.<br />
       Use your website's Control Panel to repair the table, or use phpMyAdmin to execute this sql query: <tt class="code">REPAIR TABLE yourPrefix_tableName</tt><br />
       (Replace yourPrefix_tableName with your table name, e.g. cpg145_pictures)<br />
@@ -125,24 +125,24 @@
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <a name="mySQL_error28StorageEngine"></a><tt class="code">Got error 28 from storage engine</tt><a href="#mySQL_error28StorageEngine" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       No space left on device, i.e. the hard disk where your database resides on is full.
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       This is not a coppermine issue, but a mySQL issue. Contact your webhost or the person who is in charge of running the server where your database resides. Tell that person about the error message you get - he/she should know what to do. Basically, you have to free up some space or clean the database. Please note that you can not do this on your own when webhosted - only the server operator can perform this action.
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       <a name="mySQL_crashedTable"></a><tt class="code">Table 'yourPrefix_tableName' is marked as crashed and should be repaired</tt><a href="#mySQL_crashedTable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       Your database table is corrupted.
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       This is not a coppermine issue, but a mySQL issue. It just may affect a database table used by Coppermine.<br />
       Use your website's Control Panel to repair the table, or use phpMyAdmin to execute this sql query: <tt class="code">REPAIR TABLE yourPrefix_tableName</tt><br />
       (Replace yourPrefix_tableName with your table name, e.g. cpg145_pictures)<br />
@@ -155,95 +155,95 @@
 <p>There are a lot of people (especially PHP newbies) that post questions like <tt class="code">I get the error &quot;Parse error: parse error in XXX&quot;</tt> and don't know what to do about it. That's why I translated this list of common errors (and a solution how to fix them) from the original german article in <a href="http://www.drweb.de/" rel="external" class="external">Dr. Web</a></p>
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
   <tr>
-    <th align="left" class="tableh1">Error message</th>
-    <th align="left" class="tableh1">Possible cause</th>
-    <th align="left" class="tableh1">Suggested fix</th>
+    <th align="left">Error message</th>
+    <th align="left">Possible cause</th>
+    <th align="left">Suggested fix</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <a name="common_php_errors_parse"></a><tt class="code">Parse error: parse error in C:\Apache\htdocs\read.php on line 8</tt><a href="#common_php_errors_parse" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       This error message refers to an error in the PHP syntax.
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       You probably forgot to end a line with <tt class="code">;</tt> or you have too many brackets opened or closed (<tt class="code">{</tt>).
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       <a name="common_php_errors_unsupported_function"></a><tt class="code">Fatal error: Call to unsupported/undefined function ... in C:\Apache\htdocs\read.php on line 8</tt><a href="#common_php_errors_unsupported_function" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       This error means that the function your script was going to use isn't defined in the current PHP version with modules, or if you're using user-defined functions that your function hasn't been defined yet.
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       This is usually caused if you forgot to include the function definition.
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <a name="common_php_errors_wrong_parameter"></a><tt class="code">Warning: Wrong parameter ... for ... in C:\Apache\htdocs\read.php on line 8</tt><a href="#common_php_errors_wrong_parameter" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       You have handed over too many (or the wrong) parameters to the function.
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       If it's a built-in php-function, check the <a href="http://www.php.net/manual/en/funcref.php" rel="external" class="external"> manual; </a> to see if it's a user-defined function, then recheck your code.
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       <a name="common_php_errors_header"></a><tt class="code">Warning: Cannot add header information - header was already sent ... in C:\Apache\htdocs\read.php on line 4</tt><a href="#common_php_errors_header" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       You had some text output first (e.g. the doctype declaration or <tt class="code">&lt;html&gt;</tt>) and called the function header() afterwards.
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       This is most often the case when using cookie stuff. Remember you can not use header() twice!
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <a name="common_php_errors_overflow"></a><tt class="code">Parse error: parser stack overflow in C:\Apache\htdocs\read.php</tt><a href="#common_php_errors_overflow" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       PHP is out of memory.
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       This usually happens if you built an eternal loop, especially when using include statements.
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       <a name="common_php_errors_no_such_file"></a><tt class="code">Warning: fopen("file.txt","r+") - No such file or directory</tt><a href="#common_php_errors_no_such_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       The requested file or directory doesn't exist.
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       Check the spelling (accuracy counts here).
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <a name="common_php_errors_safe_mode"></a><tt class="code">SAFE MODE Restriction in effect. The script whose uid is XXX is not allowed to access...</tt><a href="#common_php_errors_safe_mode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       The safe mode is switched on. Some functions in the upload systems can't be used.
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       Usually your webhost has put safe mode in place (often not correctly configured). Try switching <a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">silly_safe_mode</a> on.
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       <a name="common_php_errors_bom"></a>Funny characters like <tt class="code">ï»¿</tt> shine through the output on some or all pages<a href="#common_php_errors_bom" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       A <a href="http://en.wikipedia.org/wiki/Byte_order_mark" rel="external" class="external">Byte Order Mark</a> (BOM) has crept into one of your coppermine files
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       This usually happens if you edit unicode-encoded files (which is what coppermine's core files are) with an editor that is not designed to be used to edit Unicode files. Most notoriously notepad.exe (which comes with Microsoft's Windows). The BOM might shine through on the page that you have manually edited, but it may show as well on pages that you're not aware of. Undo your edit. If you can't remember what you have edited, search for the BOM in all of your files. Emurasoft's application <a href="http://www.emurasoft.com/replall/" rel="external" class="external">Replace in files</a> is a good tool to accomplish this on Windows-driven machines.
     </td>
   </tr>

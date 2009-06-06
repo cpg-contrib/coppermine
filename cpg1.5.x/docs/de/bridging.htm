@@ -74,16 +74,16 @@
 <div class="cpg_example">
 	<table border="0" cellspacing="0" cellpadding="0" class="maintable">
 	    <tr>
-	        <td class="tableh1">This <strong>will</strong> work:</td>
-	        <td class="tableh1">This <strong title="depending on your subdomain setup">might</strong> work:</td>
-	        <td class="tableh1">This <strong class="important">won't</strong> work:</td>
+	        <td>This <strong>will</strong> work:</td>
+	        <td>This <strong title="depending on your subdomain setup">might</strong> work:</td>
+	        <td>This <strong class="important">won't</strong> work:</td>
 	    </tr>
 	    <tr>
-	        <td class="tableb">Bridge app: <tt class="code">http://yourdomain.com/board/</tt><br />
+	        <td>Bridge app: <tt class="code">http://yourdomain.com/board/</tt><br />
 	        Coppermine: <tt class="code">http://yourdomain.com/gallery/</td>
-	        <td class="tableb tableb_alternate">Bridge app: <tt class="code">http://board.yourdomain.com/</tt><br />
+	        <td>Bridge app: <tt class="code">http://board.yourdomain.com/</tt><br />
 	        Coppermine: <tt class="code">http://gallery.yourdomain.com/</tt></td>
-	        <td class="tableb">Bridge app: <tt class="code">http://yourfirstdomain.com/board/</tt><br />
+	        <td>Bridge app: <tt class="code">http://yourfirstdomain.com/board/</tt><br />
 	        Coppermine: <tt class="code">http://yourseconddomain.com/gallery/</tt></td>
 	    </tr>
 	</table>
@@ -176,54 +176,54 @@ If you have a custom-made bridge file, just copy that bridge file into coppermin
 <div class="cpg_example">
 <table border="0" cellspacing="1" cellpadding="0" class="maintable">
     <tr>
-        <th class="tableh1">Your coppermine install</th>
-        <th class="tableh1">Your bridge app install</th>
-        <th class="tableh1">Relative path</th>
+        <th>Your coppermine install</th>
+        <th>Your bridge app install</th>
+        <th>Relative path</th>
     </tr>
     <tr>
-        <td class="tableb"><tt class="code">http://example.com/gallery/</tt></td>
-        <td class="tableb"><tt class="code">http://example.com/forum/</tt></td>
-        <td class="tableb"><tt class="code">../forum/</tt></td>
+        <td><tt class="code">http://example.com/gallery/</tt></td>
+        <td><tt class="code">http://example.com/forum/</tt></td>
+        <td><tt class="code">../forum/</tt></td>
     </tr>
     <tr>
-        <td class="tableb tableb_alternate"><tt class="code">http://example.com/gallery/</tt></td>
-        <td class="tableb tableb_alternate"><tt class="code">http://example.com/community/board/</tt></td>
-        <td class="tableb tableb_alternate"><tt class="code">../community/board/</tt></td>
+        <td><tt class="code">http://example.com/gallery/</tt></td>
+        <td><tt class="code">http://example.com/community/board/</tt></td>
+        <td><tt class="code">../community/board/</tt></td>
     </tr>
     <tr>
-        <td class="tableb"><tt class="code">http://example.com/pictures/coppermine/</tt></td>
-        <td class="tableb"><tt class="code">http://example.com/bbs/</tt></td>
-        <td class="tableb"><tt class="code">../../bbs/</tt></td>
+        <td><tt class="code">http://example.com/pictures/coppermine/</tt></td>
+        <td><tt class="code">http://example.com/bbs/</tt></td>
+        <td><tt class="code">../../bbs/</tt></td>
     </tr>
     <tr>
-        <td class="tableb tableb_alternate"><tt class="code"></tt></td>
-        <td class="tableb tableb_alternate"><tt class="code"></tt></td>
-        <td class="tableb tableb_alternate"><tt class="code"></tt></td>
+        <td><tt class="code"></tt></td>
+        <td><tt class="code"></tt></td>
+        <td><tt class="code"></tt></td>
     </tr>
     <tr>
-        <td class="tableb"><tt class="code">http://example.com/gallery/</tt></td>
-        <td class="tableb"><tt class="code">http://example.com/</tt></td>
-        <td class="tableb"><tt class="code">../</tt></td>
+        <td><tt class="code">http://example.com/gallery/</tt></td>
+        <td><tt class="code">http://example.com/</tt></td>
+        <td><tt class="code">../</tt></td>
     </tr>
     <tr>
-        <td class="tableb tableb_alternate"><tt class="code">http://example.com/</tt></td>
-        <td class="tableb tableb_alternate"><tt class="code">http://example.com/forum/</tt></td>
-        <td class="tableb tableb_alternate"><tt class="code">forum/</tt></td>
+        <td><tt class="code">http://example.com/</tt></td>
+        <td><tt class="code">http://example.com/forum/</tt></td>
+        <td><tt class="code">forum/</tt></td>
     </tr>
     <tr>
-        <td class="tableb"><tt class="code">http://example.com/community/pix/</tt></td>
-        <td class="tableb"><tt class="code">http://example.com/community/</tt></td>
-        <td class="tableb"><tt class="code">../</tt></td>
+        <td><tt class="code">http://example.com/community/pix/</tt></td>
+        <td><tt class="code">http://example.com/community/</tt></td>
+        <td><tt class="code">../</tt></td>
     </tr>
     <tr>
-        <td class="tableb tableb_alternate"><tt class="code">http://example.com/some/very/complicated/folder/</tt></td>
-        <td class="tableb tableb_alternate"><tt class="code">http://example.com/</tt></td>
-        <td class="tableb tableb_alternate"><tt class="code">../../../../</tt></td>
+        <td><tt class="code">http://example.com/some/very/complicated/folder/</tt></td>
+        <td><tt class="code">http://example.com/</tt></td>
+        <td><tt class="code">../../../../</tt></td>
     </tr>
     <tr>
-        <td class="tableb"><tt class="code">http://example.com/gallery/</tt></td>
-        <td class="tableb"><tt class="code">http://example.com/community/forum/</tt></td>
-        <td class="tableb"><tt class="code">../community/forum/</tt></td>
+        <td><tt class="code">http://example.com/gallery/</tt></td>
+        <td><tt class="code">http://example.com/community/forum/</tt></td>
+        <td><tt class="code">../community/forum/</tt></td>
     </tr>
 </table>
 </div>

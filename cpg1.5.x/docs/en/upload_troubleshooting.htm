@@ -256,43 +256,43 @@
 <a name="upload_error_messages"></a><h2>Error messages<a href="#upload_error_messages" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
   <tr>
-    <th align="left" class="tableh1">Error message</th>
-    <th align="left" class="tableh1">Possible cause</th>
-    <th align="left" class="tableh1">Suggested fix</th>
+    <th align="left">Error message</th>
+    <th align="left">Possible cause</th>
+    <th align="left">Suggested fix</th>
   </tr>
   <tr>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <a name="ErrorCantMovePic"></a><tt class="code">Impossible to move <em>somepic.jpg</em> to albums/userpics/<br />
       Warning: move_uploaded_file(/tmp/<em>phpezCYKr</em>)<br />
       [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt><a href="#ErrorCantMovePic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       PHP's temporary folder is missing or doesn't have the needed permissions
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       You should contact the admin of your webhost because you usually can't change the location of the website's temporary directory for file uploads, yourself (it is part of PHP configuration) .<br />
       If the <em><a href="http://www.php.net/manual/en/ini.php#ini.list" rel="external" class="external">open_basedir</a> restriction</em> is in effect on your site then the temp directory for file uploads should be one that you can access.
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       <a name="ErrorImpossibleToMove"></a><tt class="code">Impossible to move <em>somepic.jpg</em> to albums/userpics/</tt><a href="#ErrorImpossibleToMove" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb tableb_alternate">The coppermine script doesn't have permissions on the filesystem of the server to create the thumbnail or intermediate image within the specified folder</td>
-    <td valign="top" class="tableb tableb_alternate">Apply permissions on the albums folder and everything within it as suggested in the section <a href="install_permissions.htm#permissions">Setting permissions</a>. This error message is the most frequent one, as many users tend to skip reading the permissions section. At least when getting this error message, you should read it thoroughly.</td>
+    <td valign="top">The coppermine script doesn't have permissions on the filesystem of the server to create the thumbnail or intermediate image within the specified folder</td>
+    <td valign="top">Apply permissions on the albums folder and everything within it as suggested in the section <a href="install_permissions.htm#permissions">Setting permissions</a>. This error message is the most frequent one, as many users tend to skip reading the permissions section. At least when getting this error message, you should read it thoroughly.</td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <a name="ErrorFailedToOpenDir"></a><tt class="code">Warning: opendir(./albums/edit): failed to open dir: No such file or directory</tt><a href="#ErrorFailedToOpenDir" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <ul>
         <li>'edit'-folder in your albums folder is missing</li>
         <li>'edit'-folder in your albums folder doesn't have rwx-<a href="install_permissions.htm#permissions">permissions</a></li>
         <li>Improper upgrade from cpg1.3.x</li>
       </ul>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <ul>
         <li>Make sure you have a folder named 'edit' in your albums folder.</li>
         <li>Make sure the edit directory has been chmod to 777/755.</li>
@@ -301,16 +301,16 @@
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       <a name="httpPostVars"></a><tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt><a href="#httpPostVars" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       <ul>
         <li>Outdated PHP-version on your server</li>
         <li>Improper webserver configuration</li>
       </ul>
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       Check if <a href="faq.htm#VersionPHP">your version of PHP</a> fullfills the <a href="requirements.htm#what">minimum requirements</a> for Coppermine. If your version is 4.3.0 or better, then this error is probably caused by a misconfiguration of your hosting server, and not a Coppermine issue. If the server isn't yours to configure properly (that is: if you're with a webhost), you can try this workaround (at your own risk):<br >
       Edit the file "init.inc.php" and look for<br />
       <div class="quote">$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];</div>
@@ -319,17 +319,17 @@ Replace it with<br />
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <a name="ErrorNoAlbumExisting"></a><tt class="code">Sorry there is no album where you are allowed to upload files</tt><a href="#ErrorNoAlbumExisting" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <ul>
         <li>You (as admin) haven't created any albums yet.</li>
         <li>You (as non-admin user) don't have the permission to upload to public albums</li>
         <li>You (as non-admin user) haven't created at least one album in your personal gallery</li>
       </ul>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <ul>
         <li>If you get this message when logged in as the admin of your gallery, then you need to <a href="albums.htm#albmgr_create">create at least one album</a> where files can be uploaded</li>
         <li>If you get this message when logged in as a non-admin, then you need to make sure you understand the permissions concept behind Coppermine: on the <a href="groups.htm#group_cp">groups control panel</a> the admin determines  whether users can create personal galleries (i.e. create albums inside their user gallery) or if they are allowed to upload into admin-created public albums. If the user <strong>is</strong> allowed to create personal galleries and gets this message, he must create at least one album first by clicking on &quot;Create / Order my albums&quot;. If the user is only allowed to upload to public albums (which need to be created by the admin in advance) and gets the above mentioned error message, then the admin needs to specify at least one public album where visitors are allowed to upload, using the <a href="albums.htm#album_prop">album properties</a> screen.</li>
@@ -338,13 +338,13 @@ Replace it with<br />
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       <a name="ErrorAllowedMemorySize"></a><tt class="code">Fatal error: Allowed memory size of <em>XXXXXXX</em> bytes exhausted at (null):0 (tried to allocate <em>XXXX</em> bytes) in /var/www/html/include/picmgmt.inc.php</tt><a href="#ErrorAllowedMemorySize" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       This error occurs when using GD and attempting to upload a high resoltuion image.  It's not the size of the file that matters here; it's the number of pixels that determine memory use in GD.
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       There is (at least in theory) no limit <em>in Coppermine</em> to the file size or dimensions that the script can handle. However, there is at least one limit existing on the webserver: resizing images (to create intermediate images and/or thumbnails) consumes memory and burns CPU cylces. To prevent the server from crashing, the server admin has to restrict the amount of memory that a PHP script is allowed to consume. The error message mentioned above means that the limit imposed by the server admin has been reached, i.e. the image that the script tried to process consumed to much memory.
       <ul>
         <li><strong>Alternative 1 (ideal):</strong><br />
@@ -369,59 +369,59 @@ Replace it with<br />
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <a name="ErrorExecDisabled"></a><tt class="code">Exec() has been disabled</tt><a href="#ErrorExecDisabled" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       php.ini allows the server administrator to disable certain functions. Usually this is the case if your server is running in safe_mode.
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       If the server administrator has disabled exec() you will not be able to use Image Magick.<br />
       You may try to replace exec() with passthru() in the entire core code of coppermine (not recommended) if it has not been disabled as well.  Otherwise, you can't use ImageMagick and must use GD. Change <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">Method for resizing images</a> in config accordingly.
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       <a name="ErrorNotAGdExtension"></a><tt class="code">Not a GD extension</tt><a href="#ErrorNotAGdExtension" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       The file(s) you tried to upload can not be handled using the GD ImageLibrary
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       The GD library can only handle jpeg, png and gif files, while the ImageMagick library supports additionally bmp, psd and some other (less common) file types. However, those files are not suitable for use on the internet. Details can be found in the <a href="configuration.htm#admin_picture_thumb_advanced_pic_extensions">Allowed image types</a> section in the config page of the docs.
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <a name="imagemagick127"></a><tt class="code">The file '<em>albums/userpics/10001/somepic.jpg</em>' can't be inserted in the album. Error executing ImageMagick - Return value <strong>127</strong></tt><a href="#imagemagick127" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       You haven't specified the correct <a href="configuration.htm#admin_picture_thumb_advanced_im_path">path to ImageMagick</a>, or you don't have ImageMagic at all.
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       If you're sure that you actually have ImageMagick available on your server, review <a href="configuration.htm#admin_picture_thumb_advanced_im_path">path to ImageMagick</a>. If the path appears to be correct, make sure that the coppermine script has permissions to read and execute the convert executable within the ImageMagick folder. If you're not sure, switch <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">Method for resizing images</a> from &quot;ImageMagick&quot; to &quot;GD2&quot;, then try uploading again.
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       <a name="no_gd_support"></a><tt class="code">PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed.</tt><a href="#no_gd_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       Your webserver doesn't come with support for the GD image library.
     </td>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       Make sure that you fullfill the <a href="requirements.htm#what">minimum requirements</a> to run Coppermine. If GD is not available on your server, you could use ImageMagick. Ask your webhost if ImageMagick is available on your webserver.
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb">
+    <td valign="top">
       <a name="no_file_uploaded"></a><a name="allow_file_uploads"></a>
       <tt class="code">No file was uploaded ! If you have really selected a file to upload, check that the server allows file uploads...</tt><a href="#no_file_uploaded" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       File uploads are disabled in php.ini or there is a permissions issue or there is an issue with your webserver's upload mechansim.
     </td>
-    <td valign="top" class="tableb">
+    <td valign="top">
       There may be several reasons for this error message. The file you tried to upload did not &quot;reach&quot; the folder on the webserver where it is supposed to go. Check if there's a problem with HTTP uploads on your server - this feature may have been disabled or improperly configured. In <a href="faq.htm#VersionPHP">phpinfo()</a>, check that "file_uploads" is ON, "upload_max_filesize" is something like 2M and "upload_tmp_dir" is a valid directory! Make sure to review your <a href="install_permissions.htm#permissions">file/folder permissions</a> as well.<br />
       If the server isn't yours to administer, you may have to ask your webhost for support. Here is what you should check:
       <ul>
@@ -435,11 +435,11 @@ Replace it with<br />
     </td>
   </tr>
   <tr>
-    <td valign="top" class="tableb tableb_alternate">
+    <td valign="top">
       <a name="destination_not_writable"></a><tt class="code">Destination directory albums/userpics/XXXXX/ is not writable by the script</tt><a href="#destination_not_writable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top" class="tableb tableb_alternate">permissions on file system level are not correct</td>
-    <td valign="top" class="tableb tableb_alternate">Make sure to review your <a href="install_permissions.htm#permissions">file/folder permissions</a>. If that doesn't help, ask your webhost for support.</td>
+    <td valign="top">permissions on file system level are not correct</td>
+    <td valign="top">Make sure to review your <a href="install_permissions.htm#permissions">file/folder permissions</a>. If that doesn't help, ask your webhost for support.</td>
   </tr>
 </table>
 <a name="upload_error_messages_end"></a>
