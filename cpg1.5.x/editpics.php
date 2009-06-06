@@ -60,7 +60,6 @@ if ($superCage->get->keyExists('album')) {
 }
 
 if (isset($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums']) > 0) {
-
     define('MODERATOR_MODE', 1);
     $albStr = implode(',', $USER_DATA['allowed_albums']);
     $albStr = "($albStr)";
@@ -98,6 +97,7 @@ if (EDIT_PICTURES_MODE) {
     mysql_free_result($result);
     $cat = $ALBUM_DATA['category'];
     $actual_cat = $cat;
+
     if ((!user_is_allowed() && !GALLERY_ADMIN_MODE && !MODERATOR_EDIT_MODE)) {
         cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
     }
@@ -723,7 +723,29 @@ if (GALLERY_ADMIN_MODE) {
     mysql_free_result($public_albums);
     
 } else {
-     $public_albums_list = array();
+    //$public_albums_list = array();
+     
+    $public_albums = cpg_db_query("SELECT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID."))");
+    //select albums that don't belong to a category
+    $public_albums_no_cat = cpg_db_query("SELECT aid, title, title AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0 AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID."))");
+    
+    if (mysql_num_rows($public_albums)) {
+        $public_albums_list = cpg_db_fetch_rowset($public_albums);
+    } else {
+        $public_albums_list = array();
+    }
+    
+    //do the same for non-categorized albums
+    if (mysql_num_rows($public_albums_no_cat)) {
+        $public_albums_list_no_cat = cpg_db_fetch_rowset($public_albums_no_cat);
+    } else {
+        $public_albums_list_no_cat = array();
+    }
+    
+    //merge the 2 album arrays
+    $public_albums_list = array_merge($public_albums_list, $public_albums_list_no_cat);
+    //print_r($public_albums_list_no_cat);
+    //print_r($public_albums_list);
 }
 
 //below function gets albums available for this user in $user_albums_list
@@ -792,7 +814,14 @@ if (UPLOAD_APPROVAL_MODE) {
 
     $sql = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id'";
     
-    $result = cpg_db_query($sql);
+    // If non-admin user but allowed to upload in this album, then we need to fetch only the photos uploaded by that user
+    if (defined('USER_UPLOAD_ALLOWED')) {
+        $owner_str = " AND owner_id = " . USER_ID;
+    } else {
+        $owner_str = '';
+    }
+    
+    $result = cpg_db_query($sql . $owner_str);
     
     list($pic_count) = mysql_fetch_row($result);
     mysql_free_result($result);;
@@ -800,7 +829,7 @@ if (UPLOAD_APPROVAL_MODE) {
     $sql = "SELECT p.*,a.category FROM {$CONFIG['TABLE_PICTURES']} as p " .
             " INNER JOIN {$CONFIG['TABLE_ALBUMS']} as a " .
             " ON a.aid = p.aid " .
-            " WHERE p.aid = '$album_id' " .
+            " WHERE p.aid = '$album_id' $owner_str" .
             " ORDER BY p.pid DESC LIMIT $start, $count";
             
     $result = cpg_db_query($sql);

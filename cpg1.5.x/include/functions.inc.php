@@ -4765,6 +4765,24 @@ function user_is_allowed()
     if ($cat != '') {
         $check_approve = true;
     }
+    
+    // We should also whether user has upload permission to the currenct album. but do this only if album id is set
+    if ($album_id) {
+        $public_albums = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID.")) AND aid=$album_id");
+        
+        if (count(cpg_db_fetch_rowset($public_albums))) {
+            $check_approve = true;
+            define('USER_UPLOAD_ALLOWED', 1);
+        } else {
+            //select albums that don't belong to a category
+            $public_albums_no_cat = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0 AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID.")) AND aid=$album_id");
+            
+            if (count(cpg_db_fetch_rowset($public_albums_no_cat))) {
+                $check_approve = true;
+                define('USER_UPLOAD_ALLOWED', 1);
+            }
+        }        
+    }
 
     //check if admin allows editing after closing category
     if ($CONFIG['allow_user_edit_after_cat_close'] == 0) {
