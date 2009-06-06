@@ -108,7 +108,7 @@ function adminPageLoaded(){
     hideall();
     
     // Add the checkDefaultBox events only if the settings is enabled
-    if (js_vars.display_reset_boxes == 1) {
+    if (js_vars.display_reset_boxes == '1') {
         $.each(js_vars.default_values_check.textfield, function(){
             var key = this.key;
             var warning = this.warning;
