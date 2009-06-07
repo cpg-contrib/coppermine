@@ -34,14 +34,6 @@
 
 <a name="plugin_start"></a>
 <a name="plugin"></a><h1>Plugins<a href="#plugin" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>Included in your coppermine setup are two basic plugins:</p>
-<ul>
-    <li>Sample plugin: meant for plugin-writers as an example only</li>
-    <li><s>SEF_URLS plugin: enables "Search-engine-friendly URLs" - this is an experimental plugin and should be used with caution.</s> - The SEF_URLs plugin has been removed from the package for cpg1.5.x due to the known issues that made it not ready for production use. It can be obtained from the official coppermine homepage - check the corresponding announcement thread &quot;<a href="http://coppermine-gallery.net/forum/index.php?topic=42568.0">SEF_URLs plugin for cpg1.5.x</a>&quot;</li>
-</ul>
-<p>You can find more plugins on the Coppermine Support Forum, both from Coppermine developers and from user contributions.</p>
-
-
 
 <a name="plugin_definition"></a><h2>What is a plugin?<a href="#plugin_definition" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Starting from cpg1.4.0, coppermine comes with a plugin <acronym title="Application Programming Interface">API</acronym> that enables plugin authors to modify coppermine features without hacking the core code, making upgrading easier, as modifications don't have to be re-applied every time you upgrade your coppermine version. It's recommended to use plugins instead of code modifications that require hacking the core code.</p>
@@ -57,17 +49,18 @@
 <a name="plugin_bundled"></a><h2>Plugins that ship with Coppermine<a href="#plugin_bundled" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Out of the box, Coppermine comes with some plugins that are meant to illustrate what plugins can be used for. Those plugins are by default disabled, so you (as admin) have to enable them deliberately (using the plugin manager) if you want to use them.</p>
 <p>The plugins that come bundled with the Coppermine package are not being covered by the same level of support that the core components come with. There is no guarantee that particular plugins will remain in the bundle in future releases.</p>
+<p>You can find more plugins on the board &quot;<a href="http://forum.coppermine-gallery.net/index.php/board,91.0.html">cpg1.5 plugin contributions</a>&quot; on the Coppermine Support Forum, both from Coppermine developers and from user contributions.</p>
 <ul>
-	<li>
-		<a name="plugin_bundled_onlinestats"></a><h3>Who is online? (onlinestats)<a href="#plugin_bundled_onlinestats" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-		Displays a block on each gallery page that shows users and guests actually online
-	</li>
 	<li>
 		<a name="plugin_bundled_link_target"></a><h3>Link Target (link_target)<a href="#plugin_bundled_link_target" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 		Changes the way external links are being opened: when this plugin is enabled, all links that contain the attribute rel="external" will open in a new window (instead of the same window). This has the same effect as the use of the target="_blank" attribute, but it will not render your HTML output invalid.<br />
 		This plugin has an impact mostly on the "Powered by Coppermine" link at the bottom of the gallery output. It is strongly recommended <strong>not</strong> to use the deprecated target attribute for links any longer, as suggested in the article <a href="http://www.sitepoint.com/article/standards-compliant-world/" rel="external" class="external">New-Window Links in a Standards-Compliant World</a> by Kevin Yank.<br />
 		The dev team recommends <strong>not</strong> to use this plugin: opening links in a new window means bossing around your site visitors. All of them are aware how to open a link in a new window or browser tab if they want to: you should respect their decision and leave the decision to them if they want to leave your page for good.<br />
 		We suggest to think twice before enabling this little plugin: you will lose visitors who don't like to be forced to open links in new windows, and you will confuse complete newbies.
+	</li>
+	<li>
+		<a name="plugin_bundled_onlinestats"></a><h3>Who is online? (onlinestats)<a href="#plugin_bundled_onlinestats" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		Displays a block on each gallery page that shows users and guests actually online
 	</li>
 	<li>
 		<a name="plugin_bundled_opensearch"></a><h3>OpenSearch (opensearch)<a href="#plugin_bundled_opensearch" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -85,6 +78,11 @@
 		<a name="plugin_bundled_visiblehookpoints"></a><h3>Visible HookPoints (visiblehookpoints)<a href="#plugin_bundled_visiblehookpoints" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 		Tool for plugin developers to locate plugin entry points (plugin hooks) and array information. Do not enable this plugin unless you want to start developing your own plugin.
 	</li>
+    <li>
+    	<a name="plugin_bundled_sef_url"></a><h3>SEF_URLS plugin<a href="#plugin_bundled_sef_url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    The plugin enables "Search-engine-friendly URLs" - this is an experimental plugin and should be used with caution.
+    <div class="cpg_message_error">The SEF_URLs plugin has been removed from the package for cpg1.5.x due to the known issues that made it not ready for production use. It can be obtained from the official coppermine homepage - check the corresponding announcement thread &quot;<a href="http://coppermine-gallery.net/forum/index.php?topic=42568.0">SEF_URLs plugin for cpg1.5.x</a>&quot;. Please note that the plugin goes unsupported.</div>
+    </li>
 </ul>
 <a name="plugin_bundled_end">
 
@@ -95,7 +93,7 @@
     <li><strong>Using Coppermine's navigation:</strong><br />
     Log in as admin, go to coppermine's config, expand the "General settings" section, on click "Manage plugins" next to "Enable plugins" (make sure that you have set "Enable plugins" to "Yes") if you plan using plugins.</li>
     <li><strong>Directly accessing the plugin manager</strong><br />
-    Make sure that you are logged in as admin, then directly enter the plugin manager's url in the address bar of your browser, e.g. http://yoursite.tld/your_coppermine_folder/pluginmgr.php</li>
+    Make sure that you are logged in as admin, then directly enter the plugin manager's url in the address bar of your browser, e.g. <tt class="code">http://yoursite.tld/your_coppermine_folder/pluginmgr.php</tt></li>
 </ul>
 <p>The plugin manager organizes the plugins you have in your Coppermine directory.  It is important to understand the difference between uploading plugins and installing plugins.  When you copy a plugin to the Coppermine plugins folder (using the Upload button on the plugin manager or via FTP), you have merely uploaded the plugin files.  The plugin is not installed yet.  When you install a plugin, Coppermine runs the plugin's installation routine to configure and activate the plugin so that it will be executed when people use your gallery.  To clearly show which plugins are running and which are not, the plugin manager is separated into three sections (see screen capture below):</p>
 <ul>
@@ -118,7 +116,7 @@
     </ul>
     This is the more elegant and easier method - you just use the upload control on the plugin manager page and the zip file you uploaded gets extracted from the archive and stored on the server within the proper folder. There are two pre-requisites though:
     <ul>
-        <li>PHP running on your webserver needs zip support - not all webserver have zip support enabled.</li>
+        <li>PHP running on your webserver needs zip support - not all webservers have zip support enabled.</li>
         <li>the script needs write permissions within the plugins folder.</li>
     </ul>
     If you fail to fullfil those two pre-requisites, this simple method (upload interface) won't work for you (i.e. you will get error messages when trying, or the plugin will even simply fail to work without an error message at all). If this is the case for you, it's recommended not to mess with server setup (unless you're an expert and the server is yours to administer), but just to use the second upload method described below.</li>
@@ -126,7 +124,7 @@
         <ul>
             <li>Download the plugin you need from the internet to your local hard drive (same step as above)</li>
             <li>Unpack the zip file into a folder on your hard drive (preserving the folder structure of the plugin)</li>
-            <li>Use your FTP app to upload the unpacked plugin files into the plugin folder of your coppermine install on your server, preserving the structure of the zip archive.  <div class="cpg_example">For example: if the plugin contained the folder "foobar", which held the actual plugin files, you upload the whole folder "foobar" and all of its contents into the plugins folder. The resulting folder structure on your server should be something like <tt class="code">/your_coppermine_folder/plugins/foobar/</tt></div></li>
+            <li>Use your <a href="dev_tools.htm#dev_tools_ftp_client">FTP app</a> to upload the unpacked plugin files into the plugin folder of your coppermine install on your server, preserving the structure of the zip archive.  <div class="cpg_example">For example: if the plugin contained the folder &quot;foobar&quot;, which held the actual plugin files, you upload the whole folder &quot;foobar&quot; and all of its contents into the plugins folder. The resulting folder structure on your server should be something like <tt class="code">/your_coppermine_folder/plugins/foobar/</tt></div></li>
         </ul>
     </li>
 </ul>
