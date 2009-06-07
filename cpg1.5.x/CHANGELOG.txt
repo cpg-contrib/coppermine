@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-06-07 [D] Translation Copyright section for the french doc {Frantz}
 2009-06-06 [A] Added functionality to allow use of editpics.php by non-admin users {thread 59414} {Aditya}
 2009-06-06 [C] Added new string when in upload approval mode insteas of empty album message {SaWey}
 2009-06-06 [B] Fixed IM being selected in installation when it's not working {SaWey}

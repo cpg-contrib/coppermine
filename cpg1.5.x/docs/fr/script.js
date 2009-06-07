@@ -69,7 +69,7 @@ doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="credits.htm#codebase">Codes libres utilisés</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="copyrights.htm" class="en">License &amp; Copyright</a>\n';
+doc_toc += '      <li><a href="copyrights.htm">License &amp; Copyright</a>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="known_issues.htm">Problèmes connus</a></li>\n';
 doc_toc += '    </ul>\n';
