@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Getting Started - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<title>Getting Started - Coppermine Photo Gallery - Documentation &amp; Manuel</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="language" content="en" />
+<meta name="language" content="fr" />
 <meta name="copyright" content="Coppermine dev team" />
-<meta name="description" content="Getting started" />
+<meta name="description" content="Démarage" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -13,10 +13,10 @@
   SVN version info:
 
   Coppermine version: 1.5.1
-  $HeadURL$
-  $Revision: 6003 $
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/start.htm $
+  $Revision: 6060 $
   $LastChangedBy: gaugau $
-  $Date: 2009-05-27 20:18:54 +0200 (mer. 27 mai 2009) $
+  $Date: 2009-06-04 08:19:24 +0200 (jeu. 04 juin 2009) $
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -27,54 +27,63 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation et Manuel</h1>
 <div id="toc">
-<a href="toc.htm">Table of Contents</a>
+<a href="toc.htm">Table Matières</a>
 </div>
+<div id="doc_en_partial">Traduction partielle</div>
 
-
-<a name="getting"></a><h1>Getting started<a href="#getting" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>Use the &quot;<strong><a href="albums.htm#albmgr">Album Manager</a></strong>&quot; (&quot;Albums&quot; link in the admin menu)  to create and order your albums. You will need at least one album in which your files can go.</p>
-<p>Use the <strong>anonymous</strong> group to define what non-registered users can and cannot do (in the <a href="groups.htm#group_cp">groups</a> panel).</p>
-<p>Use the <strong><a href="albums.htm#modif_alb_pics">properties</a></strong> of an album to modify its description and permissions.
-</p>
-<p>In order for a user to be allowed to upload a file into an album, two conditions must be met:</p>
+<a name="getting"></a><h1>Démarage<a href="#getting" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Voici la liste des problèmes souvent rencontrés par les débutants, lisez les donc un par un:</p>
 <ul>
-  <li> The user must be part of a <a href="groups.htm#group_cp">group</a> that can upload files.</li>
-  <li>There must be at least one album where &quot;<strong>Visitors can upload files</strong>&quot; has been set to &quot;<strong>Yes</strong>&quot;,<br /> <strong>OR</strong> <br />The user has created an album in the 'user galleries', if allowed.</li>
-</ul>
-<p>The same applies to <strong>picture rating</strong> and <strong>comment posting</strong>.</p>
-<p>If you have installed the gallery script successfully but are having trouble getting it working properly you can enable the &quot;<strong><a href="configuration.htm#debug_mode">debug mode</a></strong>&quot; on the <strong>Config page</strong>. In this mode, the script outputs most of the warning/error messages produced by PHP in addition to some debug information. This can provide valuable information to understand what is wrong.</p>
-
-
-
-<a name="getting_concepts"></a><h2>Basic concepts<a href="#getting_concepts" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Of course you're excited about Coppermine and want to get started with it right now. However, there are some basic considerations you should make up your mind about first, as some settings cannot be changed easily once your gallery has been populated with content.</p>
-<p>This section is meant as a guide once you have finished <a href="install.htm#installation">installing</a> Coppermine. Go through it carefully to avoid issues that may turn up later.</p>
-<ul>
-        <li><strong><a href="#getting_initial_configuration">Initial configuration</a></strong><br />
-        Settings you should edit immediately after finishing the install</li>
-        <li><strong><a href="#getting_structure">Category/album/file structure</a></strong><br />
-        Understand how Coppermine organizes navigation and storage of individual files</li>
-        <li><strong><a href="#getting_resizing">Resized images</a></strong><br />
-        Resized versions of your uploaded originals are being created based on the config settings</li>
-        <li><strong><a href="#getting_admin_account">Your admin account</a></strong><br />
-        Make sure to properly populate all admin details</li>
-        <li><strong><a href="#getting_check_uploads">Check uploads</a></strong><br />
-        Make sure uploading works as expected before letting in visitors</li>
-        <li><strong><a href="#getting_consider_bridging">Consider bridging</a></strong><br />
-        Bridging after you already have users might be difficult</li>
-        <li><strong><a href="#getting_interaction">What are your visitors allowed to do?</a></strong><br />
-        What level of user interaction are you going to allow?</li>
-        <li><strong><a href="#getting_design">Change your coppermine's design</a></strong><br />
-        Make your gallery blend nicely into your overall site layout</li>
-        <li><strong><a href="#getting_typical">Typical setups</a></strong><br />
-        The level of visitor interaction you plan to allow</li>
+	<li>Utilisez &quot;<strong><a href="albums.htm#albmgr">Le Gestionnaire d'Albums</a></strong>&quot; (Lien &quot;Albums&quot; dans le <a href="admin_menu.htm">menu administrateur</a>) pour créer et classer vos albums. Vous aurez besoin <strong>d'au moins un album</strong> ou vos fichiers pouront être placés.</li>
+	<li>Utilisez le groupe <strong>anonymous/guest</strong> pour définir ce que les utilisateurs non enregistrés (<abbr title="also known as">alias</abbr> <em>guests/visiteurs</em>) peuvent ou ne peuvent pas faire (dans le <a href="groups.htm#group_cp">gestionnaire des groupes</a>).</li>
+	<li>Utilisez les <strong><a href="albums.htm#modif_alb_pics">propriétése</a></strong> d'un album pour modifier ses descriptions et autorisations.	L'écran de gestion des propriétés de l'album est accessible en cliquant sur le bouton "Porpriétés"- à côté de la vignette représentant un album.</li>
+	<li>Pour que les utilisateurs puissent télécharger des fichiers dan un album, <strong>deux</strong> conditions doivent être vérifées:
+		<ul>
+		  <li>L'utilisateur doitfaire partie <a href="groups.htm#group_cp">d'un groupe</a> qui peut télécharger des fichiers.</li>
+		  <li>Il doit y avoir au moins un album ou les fichiers peuvent être téléchargés. C'est le cas si
+		  	<ul>
+		  		<li>Il y a au moins un album dans une catégorie publique (ce peut être à la racine de la galerie) où &quot;<strong>Les Visiteurs peuvent télécharger des fichiers</strong>&quot; a été paramétré sur &quot;<strong>OUI</strong>&quot;,<br /> <strong>OU</strong></li>
+		  		<li>L'utilisateur a créer un album dans la catégorie 'user galleries', s'il est autorisé à le faire.</li>
+		  	</ul>
+		  </li>
+		</ul>
+	</li>
+	<li>La même chose s'applique au <strong>vote pour les images</strong> et a <strong>l'envoi de commentaires</strong>: Le groupe auquel appartienst l'utilisateur doit avoir les droits pour voter / poster des commentaires <strong>et</strong> il doit y avoir au moins un album ou les autorisations correspondantes ont été mises à OUI. Les autorisations des albums peuvent être paramétrées en utilisant l'écran de propriétés des albums.</li>
+	<li>Si vous avez installé sans problèmes la galerie mais que vous avez des problèmes pour la faire fonctionner correctement vous pouvez activer &quot;<strong><a href="configuration.htm#debug_mode">le mode de déboguage</a></strong>&quot; dans la <strong>Page de Configuration</strong>. Dans ce mode, le script affichera la plupart des messages d'erreur ou d'alertes produits par PHP en plus de certaines informations de déboguage. Cela peut vous fournir des informations très utiles pour comprendre ce qui ne fonctionne pas.</li>
+	<li>Dans la documentation, le mot "visiteur" est utilisé pour <em>toute</em> personne qui accède à une page (identifié ou non). "Visiteur" n'est pas équivalent à "Invité/Guest". Les Invités comme les utilisateurs enregistrés sont des Visiteurs.</li>
 </ul>
 
 
 
-<a name="getting_initial_configuration"></a><h2>Initial configuration<a href="#getting_initial_configuration" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="getting_concepts"></a><h2>Concepts de Base<a href="#getting_concepts" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Bien entendu vous êtes excités par Coppermine et voulez démarer tout de suite. Néanmoins il y a quelques considérations de base que vous devez prendre en compte d'abbord, parce que certains paramétrages ne peuvent pas être changés facilement par la suite, une fois que votre galerie est remplie de contenu (fichiers et images).</p>
+<p>Cette section est faite comme un guide une fois que vous avez terminé <a href="install.htm#installation">l'installation</a> de Coppermine. Consultez la attentivement afin de vous éviter des problèmes qui pouraient survenir par la suite.</p>
+<ul>
+        <li><strong><a href="#getting_initial_configuration">Configuration Initiale</a></strong><br />
+        Paramétrages que vous devez modifier immédiatement après avoir terminé l'installation</li>
+        <li><strong><a href="#getting_structure">Structure des Categories/Album/Fichiers</a></strong><br />
+        Pour comprendre comment Coppermine organise la navigation et le stockage des fichiers individuels</li>
+        <li><strong><a href="#getting_resizing">Redimensionnement des Images</a></strong><br />
+        Une version redimmensionnées des images originales que vous avez téléchargés est crée en fonction du paramétrage dans la configuration</li>
+        <li><strong><a href="#getting_admin_account">Votre compte administrateur</a></strong><br />
+        Assurez vous d'avoir entré correctement tous les détails administrateur</li>
+        <li><strong><a href="#getting_check_uploads">Vérifiez les téléchargements</a></strong><br />
+        Assurez vous que le téléchargement fonctionne correctement avant de laisser les visiteurs accéder à votre galerie</li>
+        <li><strong><a href="#getting_consider_bridging">Considérez le problème d'intégration</a></strong><br />
+        L'intégration(Bridging) peut être difficile si vous avez déjà des utilisateurs enregistrés</li>
+        <li><strong><a href="#getting_interaction">Qu'est ce que vos visiteurs nt le droit de faire?</a></strong><br />
+        Quel niveau d'interaction allez vous laisser aux visiteurs?</li>
+        <li><strong><a href="#getting_design">Changez l'aspect de votre galerie Coppermine</a></strong><br />
+        Faites en sorte que votre galerie s'intègre parfaitement au reste de votre site</li>
+        <li><strong><a href="#getting_typical">Réglages particuliers</a></strong><br />
+        Le niveau d'interaction des visiteurs que vous souhaitez autoriser</li>
+</ul>
+
+
+
+<a name="getting_initial_configuration"></a><h2>Initial configuration<a href="#getting_initial_configuration" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>There are some settings in Coppermine's config that you should edit right after finishing install.</p>
 <p>Log in with the admin username and password you set up during install, click on the &quot;Show admin controls&quot; link if it is visible, go to the <strong>Config</strong> page and start to configure your gallery. Note that even if you are a member of the administrator group, you need to have &quot;Show admin controls&quot; enabled. In previous versions, this used to be named &quot;admin mode&quot;, but was renamed because some people thought that switching from admin mode to user mode showed them what regular users can see (which is not the case).</p>
 <ul>
@@ -84,7 +93,7 @@
 <p>There are some settings in config that cannot be changed later (if there are already files in the database) - make sure to set them up correctly in the first place. Although you might want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
 <p>Some settings have a serious <a href="performance.htm">performance</a> impact as well and should be considered thoroughly, especially when you're on cheap shared hosting or even free hosting.</p>
 
-<a name="getting_structure"></a><h2>Category, albums and file structure<a href="#getting_structure" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="getting_structure"></a><h2>Category, albums and file structure<a href="#getting_structure" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>The Coppermine Photo Gallery works in the following way:</p>
 <ul>
   <li>Files are stored in albums</li>
@@ -97,17 +106,17 @@
 <p>The administrator can create albums in any category. Non-administrative users can only create albums in the &quot;User galleries/Their_username&quot;.</p>
 <p>You can, however rename the &quot;User Galleries&quot;. To rename the &quot;<strong>User galleries</strong>&quot; category and description, simply go to your <a href="#cat_cp">category control panel</a> and change the name there (e.g. to translate the words &quot;User galleries&quot; into your language).</p>
 
-<a name="getting_resizing"></a><h2>Resized images<a href="#getting_resizing" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="getting_resizing"></a><h2>Resized images<a href="#getting_resizing" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>One of the key benefits of Coppermine is the fact that it creates thumbnails and intermediate-sized images for the original images uploaded. This happens once per image (on upload), however the process of creating resized images can be re-triggered using the <a href="admin-tools.htm#admin_tools">admin tools</a>. The resized copies of your originals are being stored in the same folder in which your original resides in - they just differ in terms of prefixes.</p>
 <p>The following resized files are generated when uploading an image:</p>
 <ul>
 	<li>
-	<a name="getting_resizing_thumbnails"></a><h3>Thumbnails<a href="#getting_resizing_thumbnails" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	<a name="getting_resizing_thumbnails"></a><h3>Thumbnails<a href="#getting_resizing_thumbnails" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	The thumbnail is being created depending on the corresponding options "<a href="configuration.htm#admin_thumb_start">Thumbnail settings</a>" in config if the file uploaded is larger in terms of dimensions than the dimensions set for the thumbnail. The thumbnails are mainly being used on the actual album thumbnail page, but as well in some other places (e.g. on the profile page or as thumbnail representation of albums and categories). The creation of thumbnails greatly improves the loading speed of your gallery - if Coppermine did not create the thumbnail and displayed the originals instead (using HTML attributes to display them in a smaller size), the thumbnail page would be terribly slow to load.<br />
 	For the dimensions of your thumbnails you have to find a good compromise: thumbnails with smaller dimensions result in smaller files sizes and therefore the thumbnail page loads very fast. The drawback of small dimensions are obvious: if you pick numbers that are too small, your visitors cannot figure out what will be shown and therefore would not care to click on the thumbnail to see the full picture. There is no ideal setting for the thumbnail size, as it greatly depends on the subject of your gallery, however you should use between 50 and 250 pixels as a rule of thumb.<br />
 	If you upload a file that is smaller in terms of dimensions than the width/height you have set up for the thumbnails in Coppermine's config, the creation of a thumbnail will be skipped and the original will be used as thumbnail representation instead. </li>
 	<li>
-	<a name="getting_resizing_intermediate"></a><h3>Intermediates<a href="#getting_resizing_intermediate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	<a name="getting_resizing_intermediate"></a><h3>Intermediates<a href="#getting_resizing_intermediate" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	The intermediate image is being created unless you have turned the option "<a href="configuration.htm#admin_picture_thumbnail_intermediate_toggle">Create intermediate pictures</a>" off or if the uploaded image is smaller or equal in terms of dimensions than the width/height you have specified for the <a href="configuration.htm#admin_picture_thumbnail_intermediate_dimension">Max width or height of an intermediate picture</a>. The intermediate image is being used mainly to be displayed on the intermediate image page (displayimage.php) that the user sees when clicking on a thumbnail. The intermediate image page can contain all types of additional information about the picture (like the uploader name, title, description, meta data etc.) and has navigation controls to allow the visitor to directly jump to the previous/next image within an album without having to go back to the thumbnail page first. Additionally, the intermediate image page contains controls for user interaction (like voting and comments if you allow this level of interaction).<br />
 	The main benefit of having an intermediate image is the fact that it is designed to fit on the screen of all  visitors, no matter what resolution they have. This will result in a seamless browsing experience for your users. It is advisable to use a "safe" value for <a href="configuration.htm#admin_picture_thumbnail_intermediate_dimension">Max width or height of an intermediate picture</a> that ensures it will fit on the screen (even with all the additional controls on that page). As the amount of space the controls need depends on the <a href="theme.htm#theme">theme</a> you use and you cannot actually be sure of the screen resolutions of your visitors, it is advisable to use dimensions for the intermediate image that are between 400 and 800 pixels.<br />
 	The creation of intermediates will also speed up the page load, especially for users with slow connections, but of course the additional intermediate images take up webspace as well. Turn the creation of intermediate images off <em>only</em> if you are short on webspace. The intermediate image is being stored in the same folder where your uploaded original resides in and is being prefixed with "normal_" out of the box.
@@ -116,7 +125,7 @@
 	</div>
 	</li>
 	<li>
-	<a name="getting_resizing_original"></a><h3>Originals<a href="#getting_resizing_original" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	<a name="getting_resizing_original"></a><h3>Originals<a href="#getting_resizing_original" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	The original picture will be displayed in a pop-up when a user clicks on the intermediate image if the original was actually larger in terms of dimensions than the intermediate image.
 	  <div class="cpg_example">
 	Let's say you have set max intermediate dimension to 400 pixels and that you allow larger files to be uploaded. Two files then get uploaded: file "first_pic.jpg" is 800 by 600 pixels, file "second_pic.jpg" is 400 by 300 pixels. If a visitor is then looking at the intermediate image display for file "first_pic.jpg", he/she can click on the intermediate image and a full-size will pop up. When he/she looks at "second_pic.jpg" embedded into the intermediate image page, clicking on the intermediate image will have no result, as showing the original in a pop-up would not make sense: the intermediate image display already displays the image in the greatest resolution that is available.
@@ -129,10 +138,10 @@
 <p>Coppermine uses image libraries (either GD or ImageMagick) that need to exist on your webserver already to actually create the resized images (see "<a href="requirements.htm#what">minimum requirements</a>"). Those libraries are not able to resize videos nor will they preserve meta data like EXIF or IPTC. That is why thumbnails and intermediate images can only be created for the image types supported by the image library you use.</p>
 <p>There can be issues with resizing huge pics, as resizing consumes resources on your webserver. Refer to the section "<a href="upload_troubleshooting.htm#upload_trouble">Upload troubleshooting</a>" of the docs if you have issues with larger files (or with getting uploads to work in the first place).</p>
 
-<a name="getting_resizing_recommended"></a><h3>Recommended resizing setups<a href="#getting_resizing_recommended" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="getting_resizing_recommended"></a><h3>Recommended resizing setups<a href="#getting_resizing_recommended" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="cpg_message_info">You need to understand that changing the resizing settings will only have an impact for the images added from that point on. Images that already existed when you changed the config sections will not automatically be resized accordingly - instead, you have to trigger a re-resizing process using the corresponding option &quot;<a href="admin-tools.htm#admin_tools_options_rebuild">Update thumbs and/or resized photos</a>&quot; from the <a href="admin-tools.htm#admin_tools">admin tools</a> and loop through all albums with the new settings in place.</div>
 
-<a name="getting_resizing_recommended_nofullsize"></a><h4>No full-size pop-ups<a href="#getting_resizing_recommended_nofullsize" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<a name="getting_resizing_recommended_nofullsize"></a><h4>No full-size pop-ups<a href="#getting_resizing_recommended_nofullsize" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>If you don't plan to use full-size pop-ups at all, i.e. if the images should always be displayed embedded into your Coppermine output, you can set up coppermine to save webspace with a setup like this.</p>
 <p>You have to understand that you need to catter for the visitors with the smallest resolution. If you expect your visitors to have a resolution of 1024 x 768 pixels or better, you should set the width of the embedded images to 800, as you will need room for whitespace and page controls as well.</p>
 <p class="cpg_example">Let's assume for this example that the max size your visitor should be able to see is 800 pixels.</p>
@@ -149,7 +158,7 @@
 </ul>
 <p>Above mentioned settings are the most efficient ones if you plan to disallow full-size pop-ups, as they safe as much file space as possible and make it impossible for visitors to get the full-sized images in larger resolutions.</p>
 
-<a name="getting_resizing_recommended_nointermediate"></a><h4>Allow full-size pop-ups with maximum space saving<a href="#getting_resizing_recommended_nointermediate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<a name="getting_resizing_recommended_nointermediate"></a><h4>Allow full-size pop-ups with maximum space saving<a href="#getting_resizing_recommended_nointermediate" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>&quot;<a href="configuration.htm#admin_picture_thumbnail_intermediate_toggle">Create intermediate pictures</a>&quot; to "no" in config will not result in a gallery where you don't have intermediate-sized images at all that are embedded into the output; instead, the full-size pic will be displayed and re-sized by HTML mechanisms instead. This option is recommended if the majority of your pics will be viewed in full-size resolution anyway: this way, the browser will already cache the image and the full-size pop-ups will open very fast.</p>
 <p>Not creating intermediate images will of course have an impact on the webspace saved: no intermediate image created will of course safe some space. However, if you're concerned about webspace consumption, you better consider limiting the &quot;<a href="configuration.htm#admin_picture_thumbnail_max_upload_dimension">Max width or height for uploaded pictures/videos</a>&quot; and enabling the resizing of images to those dimensions (option &quot;<a href="configuration.htm#admin_picture_thumbnail_auto-resize">Auto resize images that are larger than max width or height</a>&quot;) - modern digital cameras create images with enourmous dimensions and therefor huge storage space usage. Resizing those images to dimensions that make sense on the web makes sense for nearly all gallery purposes.</p>
 <div class="cpg_example">
@@ -162,7 +171,7 @@ Example setup:
 </ul>
 </div>
 
-<a name="getting_resizing_recommended_regular"></a><h4>&quot;Regular&quot; setup with moderate file space consumption<a href="#getting_resizing_recommended_regular" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<a name="getting_resizing_recommended_regular"></a><h4>&quot;Regular&quot; setup with moderate file space consumption<a href="#getting_resizing_recommended_regular" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>If you have enough web space and bandwidth and your visitors have decent bandwidth, it's recommended to enable the creation of intermediate images and allow full-size pop-ups for those users who want to see the detail.</p>
 <div class="cpg_example">
 Example setup:
@@ -174,7 +183,7 @@ Example setup:
 </ul>
 </div>
 
-<a name="getting_admin_account"></a><h2>Your admin account<a href="#getting_admin_account" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="getting_admin_account"></a><h2>Your admin account<a href="#getting_admin_account" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>It is mandatory to have your admin account configured properly and to memorize the admin account data. Coppermine even provides you with the option to retrieve a lost password, but for this, you have to configure an email address for every account. When users sign up, they have to enter an email address, so this should not be a problem. However, the admin account that you created during setup does not have an email account yet. You should go to your profile when logged in as admin and specify a valid email address for the admin there - this way, you can later request a new password if you forget it.</p>
 <p>To make this absolutely clear: there are at least two places where you must specify an email address in Coppermine:</p>
 <ul>
@@ -186,12 +195,12 @@ Example setup:
 
 
 
-<a name="getting_check_uploads"></a><h2>Check uploads<a href="#getting_check_uploads" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="getting_check_uploads"></a><h2>Check uploads<a href="#getting_check_uploads" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Before  promoting your Coppermine gallery publicly, you should make sure that uploads work as expected, as they are the most common issues users have, caused by a huge amount of factors that have to be taken into account. Review the <a href="upload_troubleshooting.htm">upload troubleshooting section</a> if you have issues.</p>
 
 
 
-<a name="getting_consider_bridging"></a><h2>Consider bridging<a href="#getting_consider_bridging" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="getting_consider_bridging"></a><h2>Consider bridging<a href="#getting_consider_bridging" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Coppermine was designed to be used as a standalone application. However, many people wanted to integrate it with another app, so starting with cpg1.1.x Coppermine came with a mechanism that allowed users to bridge Coppermine with another app in terms of user management. The main advantage is giving your site visitors a single sign-on for your overall site (e.g. both in your gallery and your forum), so they do not have to sign in twice and memorize two different logons.</p>
 <p>Bridging does <strong>not</strong> integrate Coppermine visually into your home page (you have to <a href="theme.htm#creating">create a custom theme</a> to accomplish this).</p>
 <p>You can enable (or disable) bridging at any time, but you should make up your mind on bridging when installing Coppermine in the first place, because there are some issues that have to be taken into account: if you already have users inside your coppermine database when enabling bridging, the correlation between those initial coppermine users and the "new" users from the app you bridge with gets lost. As a consequence, there will be no more correlation between things your "old" users did (uploading pic, posting comments etc.) and the "new" users from the bridge.</p>
@@ -200,20 +209,20 @@ Example setup:
 
 
 
-<a name="getting_interaction"></a><h2>What are your visitors allowed to do?<a href="#getting_interaction" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="getting_interaction"></a><h2>What are your visitors allowed to do?<a href="#getting_interaction" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Coppermine can be used for a variety or purposes: some use it to display their personal files to everyone on the internet, others want only a limited number of users to be able to access the site for viewing only and no interaction at all. A large number of webmasters want to create a community site, where users can participate by uploading files, comment on others' files and rate them.</p>
 <p>You can use Coppermine in all those setups (and a mixture of it), but you should be aware of the possibilities and limitations first:</p>
 <p>Users &quot;inherit&quot; their permissions from the group they are in. That is why many settings in Coppermine are set per group. This way, you can have several levels of permissions. Set permissions by group using the <a href="groups.htm#group_cp">group control panel</a></p>
 
 
 
-<a name="getting_design"></a><h2>Change your Coppermine gallery's design<a href="#getting_design" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="getting_design"></a><h2>Change your Coppermine gallery's design<a href="#getting_design" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>You can change some layout and design aspects (e.g. <a href="configuration.htm#admin_album_list_content">displaying random thumbnails on the index page</a>) in the corresponding <a href="configuration.htm">config</a> section. Coppermine comes with a <a href="theme.htm#theme_engine">theme engine</a> that allows you to customize the look of your gallery. You can choose one of the themes that come with Coppermine or you can download <a href="theme_user-contributions.htm#theme_user-contributions">user-contributed themes</a> from the downloads section of the Coppermine homepage. Based on the available themes you can <a href="theme_create.htm#theme_create">customize your individual theme</a> to make your site look unique and make your gallery match the overall look of your site.</p>
 
-<a name="getting_typical"></a><h2>Typical setups<a href="#getting_typical" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="getting_typical"></a><h2>Typical setups<a href="#getting_typical" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>There are a lot of configuration options built into Coppermine - use them wisely. As many users ask for a <em>typical</em> setup (although there is no such thing as <em>the</em> typical setup that fits for anybody), here are just a couple of them:</p>
 
-<a name="getting_typical_monolithic"></a><h3>Single uploader <em>without</em> user interaction (Monolithic gallery)<a href="#getting_typical_monolithic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="getting_typical_monolithic"></a><h3>Single uploader <em>without</em> user interaction (Monolithic gallery)<a href="#getting_typical_monolithic" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p><em>Only one uploader (you, the admin) and little or no user interaction</em><br />
 If you are going to be the only uploader and want little or no user interaction at all, disallow your site's visitors anything you do not want them to do. This is usually the case if you are an artist or photographer: there is no community-building behind your gallery - you just show to the public what content you have.</p>
 <ul>
@@ -225,7 +234,7 @@ If you are going to be the only uploader and want little or no user interaction 
     <li>If you do not want your visitors to <strong>send ecards</strong>, disable the sending of ecards in the groups control panel as suggested above: <span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row &quot;Guests&quot; &rarr; Permissions &rarr; Ecards = no</span></li>
     <ul>
 
-<a name="getting_typical_single_uploader_community"></a><h3>Single uploader <em>with</em> user interaction<a href="#getting_typical_single_uploader_community" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="getting_typical_single_uploader_community"></a><h3>Single uploader <em>with</em> user interaction<a href="#getting_typical_single_uploader_community" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If you are going to be the only uploader, but you want to build a community around your site, with visitor registering, posting comments etc., just turn off uploads for your users, but turn on all the other feature that you want to allow:</p>
 <ul>
     <li>
@@ -260,8 +269,8 @@ If you are going to be the only uploader and want little or no user interaction 
 
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
-		<span id="doc_last_changed">$LastChangedDate: 2009-05-27 20:18:54 +0200 (mer. 27 mai 2009) $</span>
-		<span id="doc_revision">$Revision: 6003 $</span>
+		<span id="doc_last_changed">$LastChangedDate: 2009-06-04 08:19:24 +0200 (jeu. 04 juin 2009) $</span>
+		<span id="doc_revision">$Revision: 6060 $</span>
 	</div>
 </div>
 </body>
