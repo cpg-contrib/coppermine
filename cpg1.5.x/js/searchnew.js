@@ -69,7 +69,7 @@ var qm = {
     },
     
     queuedone: function () {
-    
+        redirect('editpics.php?album=' + this.aid);
     }
 };
 
