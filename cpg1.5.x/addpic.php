@@ -66,7 +66,7 @@ $result = cpg_db_query($sql);
 
 if (mysql_num_rows($result)) {
     $status = 'DUPE';
-} elseif (add_picture($aid, $dir_name, $sane_name)) {
+} elseif (add_picture($aid, $dir_name, $sane_name) === true) {
     $status = 'OK';
 } else {
     $status = 'PB';

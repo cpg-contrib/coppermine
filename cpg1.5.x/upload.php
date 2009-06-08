@@ -981,7 +981,7 @@ EOT;
         // Create thumbnail and intermediate image and add the image into the DB
         $result = add_picture($album, $filepath, $picture_name, 0, '', '', '', '', '', '', '', $category);
 
-        if (!$result) {
+        if ($result !== true) {
             // The file could not be placed.
             $file_placement = 'no';
         } else {
@@ -1000,7 +1000,11 @@ EOT;
         echo "success-" . $thumb_url;
     } else {
         // The previous image placement failed.
-        echo "{$lang_upload_php['no_place']}";
+        if (isset($result['error'])) {
+            echo $result['error'];
+        } else {
+            echo $lang_upload_php['no_place'];
+        }
     }
 
     exit;

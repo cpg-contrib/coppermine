@@ -913,9 +913,9 @@ function process_picture()
     // Create thumbnail and internediate image and add the image into the DB
     $result = add_picture($album, $filepath, $picture_name, $position, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category);
 
-    if (!$result) {
+    if ($result !== true) {
         @unlink($uploaded_pic);
-        simple_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_insert_pic'], $uploaded_pic) . '<br /><br />' . $ERROR, __FILE__, __LINE__, true);
+        simple_die(CRITICAL_ERROR, (isset($result['error'])) ? $result['error'] : sprintf($lang_db_input_php['err_insert_pic'], $uploaded_pic) . '<br /><br />' . $ERROR, __FILE__, __LINE__, true);
     } else {
         echo ("SUCCESS");
         exit;

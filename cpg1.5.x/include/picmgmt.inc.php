@@ -129,7 +129,8 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
             }
             $msg = $lang_errors['quota_exceeded'] . '<br />&nbsp;<br />' . strtr($lang_errors['quota_exceeded_details'], array('[quota]' => ($USER_DATA['group_quota']),
                 '[space]' => ($total_space_used >> 10)));
-            cpg_die(ERROR, $msg, __FILE__, __LINE__);
+            return array('error' => $msg);
+            //cpg_die(ERROR, $msg, __FILE__, __LINE__);
         }
     }
     // Test if picture requires approval
@@ -176,7 +177,8 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
     $CURRENT_PIC_DATA['pid'] = mysql_insert_id();
     CPGPluginAPI::filter('add_file_data_success',$CURRENT_PIC_DATA);
     
-    return $result;
+    //return $result;
+    return true;
 }
 
 define("GIS_GIF", 1);
@@ -218,7 +220,8 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
     // GD can only handle JPG & PNG images
     if ($imginfo[2] != GIS_JPG && $imageinfo[2] != GIS_PNG && $CONFIG['GIF_support'] == 0) {
         $ERROR = $lang_errors['gd_file_type_err'];
-        return false;
+        //return false;
+        return array('error' => $ERROR);
     }
     // height/width
     $srcWidth = $imginfo[0];
@@ -393,13 +396,15 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
                     $ERROR .= "</span></div>";
                 }
                 @unlink($dest_file);
-                return false;
+                //return false;
+                return array('error' => $ERROR);
             }
             break;
 
         case "gd1" :
             if (!function_exists('imagecreatefromjpeg')) {
-                cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed', __FILE__, __LINE__);
+                return array('error' => 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed');
+                //cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed', __FILE__, __LINE__);
             }
             if ($imginfo[2] == GIS_JPG)
                 $src_img = imagecreatefromjpeg($src_file);
@@ -407,7 +412,8 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
                 $src_img = imagecreatefrompng($src_file);
             if (!$src_img) {
                 $ERROR = $lang_errors['invalid_image'];
-                return false;
+                //return false;
+                return array('error' => $ERROR);
             }
             $dst_img = imagecreate($destWidth, $destHeight);
             imagecopyresized($dst_img, $src_img, 0, 0, $xOffset, $yOffset, (int)$destWidth, (int)$destHeight, $srcWidth, $srcHeight);
@@ -421,10 +427,12 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
 
         case "gd2" :
             if (!function_exists('imagecreatefromjpeg')) {
-                cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed', __FILE__, __LINE__);
+                return array('error' => 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed');
+                //cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed', __FILE__, __LINE__);
             }
             if (!function_exists('imagecreatetruecolor')) {
-                cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support GD version 2.x, please switch to GD version 1.x on the admin page', __FILE__, __LINE__);
+                return array('error' => 'PHP running on your server does not support GD version 2.x, please switch to GD version 1.x on the admin page');
+                //cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support GD version 2.x, please switch to GD version 1.x on the admin page', __FILE__, __LINE__);
             }
             if ($imginfo[2] == GIS_GIF && $CONFIG['GIF_support'] == 1)
                 $src_img = imagecreatefromgif($src_file);
@@ -434,7 +442,8 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
                 $src_img = imagecreatefrompng($src_file);
             if (!$src_img) {
                 $ERROR = $lang_errors['invalid_image'];
-                return false;
+                //return false;
+                return array('error' => $ERROR);
             }
             if ($imginfo[2] == GIS_GIF)
               $dst_img = imagecreate($destWidth, $destHeight);
@@ -526,7 +535,8 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
     if ($imginfo == null) {
         $ERROR = $lang_errors['resize_failed'];
         @unlink($dest_file);
-        return false;
+        //return false;
+        return array('error' => $ERROR);
     } else {
         return true;
     }

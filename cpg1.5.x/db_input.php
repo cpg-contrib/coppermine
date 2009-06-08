@@ -663,13 +663,10 @@ case 'picture':
     // Create thumbnail and internediate image and add the image into the DB
     $result = add_picture($album, $filepath, $picture_name, 0, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category, $raw_ip, $hdr_ip, $superCage->post->getInt('width'), $superCage->post->getInt('height'));
 
-    if (!$result) {
-    
+    if ($result !== true) {
         @unlink($uploaded_pic);
-        cpg_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_insert_pic'], $uploaded_pic) . '<br /><br />' . $ERROR, __FILE__, __LINE__, true);
-
+        cpg_die(CRITICAL_ERROR, isset($result['error']) ? $result['error'] : sprintf($lang_db_input_php['err_insert_pic'], $uploaded_pic) . '<br /><br />' . $ERROR, __FILE__, __LINE__, true);
     } elseif ($PIC_NEED_APPROVAL) {
-    
         pageheader($lang_common['information']);
         msg_box($lang_common['information'], $lang_db_input_php['upload_success'], $lang_common['continue'], 'index.php');
 
@@ -677,9 +674,7 @@ case 'picture':
             include_once('include/mailer.inc.php');
             cpg_mail('admin', sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), make_clickable(sprintf($lang_db_input_php['notify_admin_email_body'], USER_NAME, $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'editpics.php?mode=upload_approval')));
         }
-
     } else {
-    
         $redirect = "displayimage.php?pid=" . mysql_insert_id($CONFIG['LINK_ID']);
         cpgRedirectPage($redirect, $lang_common['information'], $lang_db_input_php['upl_success'], 1);
     }
