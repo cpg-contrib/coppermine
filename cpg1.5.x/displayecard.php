@@ -42,6 +42,8 @@ if (!is_array($tmpData['data'])) {
         $CLEAN['data'][$key] = $value;
         if ($key == 'pid') {
             $CLEAN['data'][$key] = (int) $CLEAN['data'][$key];
+        } else {
+            $CLEAN['data'][$key] = htmlspecialchars($CLEAN['data'][$key]);
         }
     }
 }
