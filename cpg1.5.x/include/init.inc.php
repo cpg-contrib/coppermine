@@ -128,6 +128,9 @@ $mb_utf8_regex = '[\xE1-\xEF][\x80-\xBF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[
 
 require 'include/functions.inc.php';
 
+// Include logger functions
+include_once('include/logger.inc.php');
+
 // see http://php.net/mbstring for details
 if (function_exists('mb_internal_encoding')) {
     mb_internal_encoding('UTF-8');
@@ -155,7 +158,12 @@ $CONFIG['TABLE_LANGUAGE']      = $CONFIG['TABLE_PREFIX'].'languages';
 $CONFIG['TABLE_DICT']          = $CONFIG['TABLE_PREFIX'].'dict';
 
 // Connect to database
-($CONFIG['LINK_ID'] = cpg_db_connect()) || die('<strong>Coppermine critical error</strong>:<br />Unable to connect to database !<br /><br />MySQL said: <strong>' . mysql_error() . '</strong>');
+$CONFIG['LINK_ID'] = cpg_db_connect();
+
+if (!$CONFIG['LINK_ID']) {
+    log_write("Unable to connect to database: " . mysql_error(), CPG_DATABASE_LOG);
+    die('<strong>Coppermine critical error</strong>:<br />Unable to connect to database !<br /><br />MySQL said: <strong>' . mysql_error() . '</strong>');
+}
 
 // Retrieve DB stored configuration
 $result = cpg_db_query("SELECT name, value FROM {$CONFIG['TABLE_CONFIG']}");
@@ -163,6 +171,10 @@ while ( ($row = mysql_fetch_assoc($result)) ) {
     $CONFIG[$row['name']] = $row['value'];
 } // while
 mysql_free_result($result);
+
+if ($CONFIG['log_mode']) {
+    spring_cleaning('logs', CPG_DAY * 2, array('log_header.inc.php'));
+}
 
 // Record User's IP address
 $raw_ip = $superCage->server->testIp('REMOTE_ADDR') ? $superCage->server->getEscaped('REMOTE_ADDR') : '0.0.0.0';
@@ -185,9 +197,6 @@ set_js_var('site_url', rtrim($CONFIG['site_url'], '/'));
 
 // Set default language (set up by the admin) as a constant, since it might get replaced during runtime
 define('DEFAULT_LANGUAGE', $CONFIG['lang']);
-
-// Include logger functions
-include_once('include/logger.inc.php');
 
 // Check for GD GIF Create support
 if ($CONFIG['thumb_method'] == 'im' || function_exists('imagecreatefromgif')) {

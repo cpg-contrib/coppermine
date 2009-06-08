@@ -220,6 +220,8 @@ function cpg_db_error($the_error)
 {
     global $CONFIG, $lang_errors, $LINEBREAK;
 
+    log_write("$the_error the following error was encountered: $LINEBREAK" . mysql_error(), CPG_DATABASE_LOG);
+    
     if ($CONFIG['debug_mode'] === '0' || ($CONFIG['debug_mode'] === '2' && !GALLERY_ADMIN_MODE)) {
         cpg_die(CRITICAL_ERROR, $lang_errors['database_query'], __FILE__, __LINE__);
     } else {
@@ -318,7 +320,7 @@ function cpgSanitizeUserTextInput($string)
 
 function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer = false)
 {
-    global $lang_common, $lang_errors;
+    global $lang_common, $lang_errors, $CONFIG, $USER_DATA, $hdr_ip;
 
     // Three types of error levels: INFORMATION, ERROR, CRITICAL_ERROR.
     // There used to be a clumsy method for error mesages that didn't work well with i18n.
@@ -326,7 +328,17 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
     // for the error type from the language file. If that fails, use the hard-coded
     // English string.
 
-    if ($msg_code == 1) {
+    // Record access denied messages to the log
+    if ($msg_text == $lang_errors['access_denied'] && $CONFIG['log_mode'] != 0) {
+        log_write("Denied privileged access to " . basename($error_file) . " by user {$USER_DATA['user_name']} at IP $hdr_ip", CPG_SECURITY_LOG);
+    }
+    
+    // Record invalid form token messages to the log
+    if ($msg_text == $lang_errors['invalid_form_token'] && $CONFIG['log_mode'] != 0) {
+        log_write("Invalid form token encountered for " . basename($error_file) . " by user {$USER_DATA['user_name']} at IP $hdr_ip", CPG_SECURITY_LOG);
+    }    
+    
+    if ($msg_code == INFORMATION) {
         //$msg_icon = 'info'; not used anymore?
         $css_class = 'cpg_message_info';
         if ($lang_common['information'] != '') {
@@ -334,7 +346,7 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
         } else {
             $msg_string = 'Information';
         }
-    } elseif ($msg_code == 2) {
+    } elseif ($msg_code == ERROR) {
         //$msg_icon = 'warning'; not used anymore?
         $css_class = 'cpg_message_warning';
         if ($lang_errors['error'] != '') {
@@ -342,7 +354,7 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
         } else {
             $msg_string = 'Error';
         }
-    } elseif ($msg_code == 3) {
+    } elseif ($msg_code == CRITICAL_ERROR) {
         //$msg_icon = 'stop'; not used anymore?
         $css_class = 'cpg_message_error';
         if ($lang_errors['critical_error'] != '') {
@@ -5281,7 +5293,7 @@ function array_is_associative($array)
 
 function cpg_config_set($name, $value)
 {
-    global $CONFIG, $USER_DATA, $LINEBREAK;
+    global $CONFIG;
 
     //$value = addslashes($value);
 
@@ -5292,15 +5304,11 @@ function cpg_config_set($name, $value)
     $sql = "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '$name'";
     cpg_db_query($sql);
 
-    $CONFIG[$name] = $value;
-
-    if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
-
-        log_write("CONFIG UPDATE SQL: $sql" . $LINEBREAK .
-            'TIME: ' . date("F j, Y, g:i a") . $LINEBREAK .
-            'USER: ' . $USER_DATA['user_name'],
-            CPG_DATABASE_LOG);
+    if ($CONFIG['log_mode'] != 0) {
+        log_write("Setting for '$name' changed from '{$CONFIG[$name]}' to '$value' by user " . USER_NAME, CPG_CONFIG_LOG);
     }
+    
+    $CONFIG[$name] = $value;
 }
 
 function cpg_format_bytes($bytes)

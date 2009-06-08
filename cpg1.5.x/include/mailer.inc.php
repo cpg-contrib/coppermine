@@ -71,7 +71,7 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
         } else {
             $mail->SMTPAuth = false;
         }
-        
+                
     } else {
         $mail->IsMail();
     }
@@ -89,7 +89,19 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
     $mail->AltBody = $msg_body_plaintext;
     $mail->CharSet = $charset;
 
-    return $mail->Send();
+    if ($CONFIG['smtp_host'] && $CONFIG['log_mode'] == CPG_LOG_ALL) {
+        $mail->SMTPDebug = 2;
+        ob_start();
+    }
+    
+    $result = $mail->Send();
+    
+    if ($CONFIG['smtp_host'] && $CONFIG['log_mode'] == CPG_LOG_ALL) {
+        $log = ob_get_clean();
+        log_write($log, CPG_MAIL_LOG);
+    }
+    
+    return $result;
 }
 
 /*~ class.phpmailer.php

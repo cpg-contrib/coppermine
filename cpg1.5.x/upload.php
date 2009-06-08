@@ -78,9 +78,6 @@ if (!in_array($upload_form, array_keys($upload_choices))) {
 
 // Check to see if user can upload pictures.  Quit with an error if user cannot.
 if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
-    if ($CONFIG['log_mode'] != 0) {
-            log_write('Denied privileged access to upload.php for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
-    }
     cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 }
 
@@ -1003,7 +1000,7 @@ EOT;
         if (isset($result['error'])) {
             if (isset($result['halt_upload'])) {
                 echo "error|{$result['error']}|{$result['halt_upload']}";
-            } else {
+        } else {
                 echo "error|{$result['error']}|0";
             }
         } else {

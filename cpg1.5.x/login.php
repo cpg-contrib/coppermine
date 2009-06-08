@@ -48,9 +48,12 @@ if ($superCage->post->keyExists('submitted')) {
     
     if ($USER_DATA = $cpg_udb->login($superCage->post->getEscaped('username'), $superCage->post->getEscaped('password'), $superCage->post->getInt('remember_me'))) {
         //$referer=preg_replace("'&amp;'","&",$referer);
-        // Write the log entry
-        log_write("Successful login by Username: " . $superCage->post->getEscaped('username') . " from IP $ip on " . localised_date(-1, $lang_date['log']), CPG_SECURITY_LOG);
 
+        // Write the log entry
+        if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
+            log_write('The user ' . $USER_DATA['user_name'] . ' (user ID ' . $USER_DATA['user_id'] . ") logged in.", CPG_ACCESS_LOG);
+        }
+        
         // Set the language preference
         $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET user_language = '{$USER['lang']}' WHERE user_id = {$USER_DATA['user_id']}";
         $result = cpg_db_query($sql);
@@ -60,7 +63,7 @@ if ($superCage->post->keyExists('submitted')) {
         exit;
     } else {
         // Write the log entry
-        log_write("Failed login attempt with Username: " . $superCage->post->getEscaped('username') . " from IP $ip on " . localised_date(-1, $lang_date['log']), CPG_SECURITY_LOG);
+        log_write("Failed login attempt with Username: " . $superCage->post->getEscaped('username'), CPG_SECURITY_LOG);
 
         $login_failed = <<<EOT
                   <tr>

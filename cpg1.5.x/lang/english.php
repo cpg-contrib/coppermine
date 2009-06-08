@@ -388,7 +388,8 @@ $lang_get_remote_file_by_url['error_message'] = 'Error message: %s'; // cpg1.5
 
 // ------------------------------------------------------------------------- //
 // File include/mailer.inc.php
-// ------------------------------------------------------------------------- //$lang_mailer['provide_address'] = 'You must provide at least one ';
+// ------------------------------------------------------------------------- //
+$lang_mailer['provide_address'] = 'You must provide at least one ';
 $lang_mailer['mailer_not_supported'] = ' mailer is not supported.';
 $lang_mailer['execute'] = 'Could not execute: ';
 $lang_mailer['instantiate'] = 'Could not instantiate mail function.';
@@ -2523,6 +2524,7 @@ $lang_viewlog_php['delete_all'] = 'Delete All Logs';
 $lang_viewlog_php['delete_this'] = 'Delete This Log';
 $lang_viewlog_php['view_logs'] = 'View Logs';
 $lang_viewlog_php['no_logs'] = 'No logs created.';
+$lang_viewlog_php['last_updated'] = 'last update'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //

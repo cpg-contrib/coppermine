@@ -46,16 +46,10 @@ pageheader($lang_contact_php['title']);
 // determine if the visitor is allowed to access
 if (!USER_ID) { // visitor is guest
     if ($CONFIG['contact_form_guest_enable'] == 0) {
-	    if ($CONFIG['log_mode'] != 0) {
-	            log_write('Denied privileged access to contact.php for guest at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
-	    }
         cpg_die($lang_common['error'], $lang_errors['access_denied'], __FILE__, __LINE__); //guests are not allowed
     }
 } else { // visitor is a registered user
     if ($CONFIG['contact_form_registered_enable'] == 0 && !GALLERY_ADMIN_MODE) {
-	    if ($CONFIG['log_mode'] != 0) {
-	            log_write('Denied privileged access to contact.php for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
-	    }
         cpg_die($lang_common['error'], $lang_errors['access_denied'], __FILE__, __LINE__); //registered users are not allowed
     }
 }
@@ -198,10 +192,14 @@ if ($superCage->post->keyExists('submit')) {
 					}                   
         			
         if (!cpg_mail($CONFIG['gallery_admin_email'], $subject, $html_message, 'text/html', $sender_name, $sender_email, $message)) {
-            log_write("Sending an email using the contact form failed (name: $sender_name, email: $sender_email, subject: $original_subject, IP: $ip, date: " . localised_date(-1, $lang_date['log']) . ")", CPG_ERROR_LOG);
-            cpg_die($lang_cpg_die['CRITICAL_ERROR'], $lang_contact_php['failed_sending_email'], __FILE__, __LINE__);
+            if ($CONFIG['log_mode'] != CPG_NO_LOGGING) {
+                log_write("Sending an email using the contact form failed (name: $sender_name, email: $sender_email, subject: $original_subject, IP: $ip", CPG_MAIL_LOG);
+            }
+            cpg_die(ERROR, $lang_contact_php['failed_sending_email'], __FILE__, __LINE__);
         } else { // sending the email has been successfull, redirect the user
-            log_write("Sending email from contact form successful (name: $sender_name, email: $sender_email, subject: $original_subject, IP: $ip, date: " . localised_date(-1, $lang_date['log']) . ")", CPG_GLOBAL_LOG);
+            if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
+                log_write("Sending email from contact form successful (name: $sender_name, email: $sender_email, subject: $original_subject, IP: $ip", CPG_MAIL_LOG);
+            }            
             cpgRedirectPage($CONFIG['ecards_more_pic_target'].$CPG_REFERER, $lang_common['information'], $lang_contact_php['email_sent']);
         }
     } // beyond this point an error must have happened - let the visitor review his input

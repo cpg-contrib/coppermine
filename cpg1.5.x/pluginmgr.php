@@ -31,9 +31,6 @@ define('CORE_PLUGIN', true);
 require('include/init.inc.php');
 
 if (!GALLERY_ADMIN_MODE) {
-    if ($CONFIG['log_mode'] != 0) {
-            log_write('Denied privileged access to pluginmgr.php for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
-    }
 	cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
@@ -381,7 +378,7 @@ switch ($op) {
             $sql = 'UPDATE '.$CONFIG['TABLE_PLUGINS'].' SET priority=priority-1 WHERE priority>'.$priority.';';
             $result = cpg_db_query($sql);
             if ($CONFIG['log_mode']) {
-              log_write("Plugin '".$name."' uninstalled at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+              log_write("Plugin '".$name."' uninstalled", CPG_GLOBAL_LOG);
             }
           }
         }
@@ -398,7 +395,7 @@ switch ($op) {
         if (is_bool(strpos('/',$path))) {
             cpg_folder_file_delete('./plugins/'.$path);
             if ($CONFIG['log_mode']) {
-              log_write("Plugin '".$path."' deleted at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+              log_write("Plugin '".$path."' deleted", CPG_GLOBAL_LOG);
             }
         }
         break;
@@ -431,7 +428,7 @@ switch ($op) {
               $query = 'SELECT * FROM '.$CONFIG['TABLE_PLUGINS'].' WHERE plugin_id='.$plugin_id.' LIMIT 1;';
               $result = cpg_db_query($query);
               $installed_plugin = mysql_fetch_assoc($result);
-              log_write("Plugin '".$installed_plugin['name']."' moved up in plugin list at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+              log_write("Plugin '".$installed_plugin['name']."' moved up in plugin list", CPG_GLOBAL_LOG);
           }
         }
         break;
@@ -469,7 +466,7 @@ switch ($op) {
               $query = 'SELECT * FROM '.$CONFIG['TABLE_PLUGINS'].' WHERE plugin_id='.$plugin_id.' LIMIT 1;';
               $result = cpg_db_query($query);
               $installed_plugin = mysql_fetch_assoc($result);
-              log_write("Plugin '".$installed_plugin['name']."' moved down in plugin list at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+              log_write("Plugin '".$installed_plugin['name']."' moved down in plugin list", CPG_GLOBAL_LOG);
           	}
         }
         break;

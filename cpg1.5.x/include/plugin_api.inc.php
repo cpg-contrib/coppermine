@@ -89,7 +89,7 @@ class CPGPluginAPI {
 
 
                 if ($CONFIG['log_mode']) {
-                    log_write("Couldn't wake plugin '".$thisplugin->name."' at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+                    log_write("Couldn't wake plugin '" . $thisplugin->name, CPG_GLOBAL_LOG);
                 }
 
                 $thisplugin->filters = array();
@@ -372,7 +372,7 @@ class CPGPluginAPI {
             if (!CPGPluginAPI::action('plugin_sleep',true,$thisplugin->plugin_id)) {
 
                 if ($CONFIG['log_mode']) {
-                    log_write("Couldn't put plugin '".$thisplugin->name."' to sleep at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+                    log_write("Couldn't put plugin '".$thisplugin->name."' to sleep", CPG_GLOBAL_LOG);
                 }
 
                 // Couldn't put plugin to sleep...Die!
@@ -444,7 +444,7 @@ class CPGPluginAPI {
             $result = cpg_db_query($sql);
 
             if ($CONFIG['log_mode']) {
-                log_write("Plugin '".$name."' installed at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+                log_write("Plugin '".$name."' installed", CPG_GLOBAL_LOG);
             }
 
             return $installed;
@@ -499,7 +499,7 @@ class CPGPluginAPI {
             unset($CPG_PLUGINS[$plugin_id]);
 
             if ($CONFIG['log_mode']) {
-                log_write("Plugin '".$thisplugin->name."' uninstalled at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+                log_write("Plugin '".$thisplugin->name."' uninstalled", CPG_GLOBAL_LOG);
             }
 
             return true;

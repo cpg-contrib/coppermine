@@ -24,9 +24,6 @@ require('include/init.inc.php');
 require('include/mailer.inc.php');
 
 if ((!$CONFIG['report_post']==1) || (!USER_CAN_SEND_ECARDS)) {
-    if ($CONFIG['log_mode'] != 0) {
-            log_write('Denied privileged access to report_file.php for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
-    }
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 

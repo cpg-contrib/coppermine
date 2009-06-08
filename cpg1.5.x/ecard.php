@@ -25,9 +25,6 @@ require('include/init.inc.php');
 require('include/smilies.inc.php');
 
 if (!USER_CAN_SEND_ECARDS) {
-    if ($CONFIG['log_mode'] != 0) {
-            log_write('Denied privileged access to ecard.php for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
-    }
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
@@ -244,7 +241,7 @@ if ($superCage->post->keyExists('submit')) {
             
         } else {
 		    if ($CONFIG['log_mode'] != 0) {
-		    	log_write("Sending an ecard failed (sender name: $sender_name, sender email address: $sender_email, recipient name: $recipient_name, recipient email address: $recipient_email, IP: $raw_ip, date: " . localised_date(-1, $lang_date['log']) . ")", CPG_ERROR_LOG);
+		    	log_write("Sending an ecard failed (sender name: $sender_name, sender email address: $sender_email, recipient name: $recipient_name, recipient email address: $recipient_email, IP: $raw_ip", CPG_MAIL_LOG);
 		    }
             cpg_die(ERROR, $lang_ecard_php['send_failed'], __FILE__, __LINE__);
         }

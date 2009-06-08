@@ -20,11 +20,13 @@
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // Initiate defines
-define('CPG_SECURITY_LOG','security');
-define('CPG_GLOBAL_LOG','global');
-define('CPG_DATABASE_LOG','database');
-define('CPG_ACCESS_LOG','access');
-define('CPG_ERROR_LOG','error');
+define('CPG_SECURITY_LOG', 'security');
+define('CPG_GLOBAL_LOG', 'global');
+define('CPG_DATABASE_LOG', 'database');
+define('CPG_ACCESS_LOG', 'access');
+define('CPG_ERROR_LOG', 'error');
+define('CPG_CONFIG_LOG', 'config');
+define('CPG_MAIL_LOG', 'mail');
 
 define('CPG_LOG_ALL',2);
 define('CPG_LOG_NORMAL',1);
@@ -35,36 +37,49 @@ define('CPG_DAY',86400);
 define('CPG_HOUR',3600);
 
 // Writes log text to the log file
-function log_write( $text, $log = null ) {
-        global $LINEBREAK;
-        if (is_null($log)) {
-                $log = CPG_GLOBAL_LOG;
-        }
+function log_write($text, $log = null)
+{
+    global $LINEBREAK, $lang_date;
 
-        $log = 'logs/'.$log.'.log.php';
+    if (isset($CONFIG['log_mode']) && $CONFIG['log_mode'] == CPG_NO_LOGGING)  {
+        return false;
+    }
+        
+    if (is_null($log)) {
+        $log = CPG_GLOBAL_LOG;
+    }
 
-        if (!file_exists($log)) {
-                $log_header = implode('',file('logs/log_header.inc.php'));
-        } else {
-                       $log_header = '';
-        }
+    $log = 'logs/' . $log . '.log.php';
 
-        $fp = fopen($log,'a');
-        fwrite($fp,$log_header);
-        fwrite($fp,$text.$LINEBREAK.'---'.$LINEBREAK);
-        fclose($fp);
+    if (!file_exists($log)) {
+        $log_header = implode('', file('logs/log_header.inc.php'));
+    } else {
+        $log_header = '';
+    }
+
+    if (!isset($lang_date['log'])) {
+        $lang_date['log'] = '%Y-%m-%d %H:%M:%S';
+    }
+    
+    $fp = fopen($log, 'a');
+    fwrite($fp, $log_header);
+    fwrite($fp, localised_date(-1, $lang_date['log']) . ' - ' . $text . $LINEBREAK . '---' . $LINEBREAK);
+    fclose($fp);
 }
 
 
 // Reads log text from a log file
-function log_read( $log = null ) {
-        if (is_null($log)) {
-                $log = CPG_GLOBAL_LOG;
-        }
+function log_read($log = null) {
 
-        $log = 'logs/'.$log.'.log.php';
+    if (is_null($log)) {
+        $log = CPG_GLOBAL_LOG;
+    }
 
-        @include($log);
+    $log = 'logs/' . $log . '.log.php';
+    
+    $contents = file_get_contents($log);
+    
+    return substr($contents, strpos($contents, '?>') + 2);
 }
 
 
@@ -95,7 +110,8 @@ function& getloglist($folder)
             $file_array[$file] = array(
                 'filename' => $file,
                 'logname'  => str_replace('.log.php', '', $file),
-                'filesize' => filesize($folder . $file) >> 10,
+                'filesize' => filesize($folder . $file),
+                'mtime'    => filemtime($folder . $file),
             );
         }
     }
@@ -154,7 +170,4 @@ function& spring_cleaning($directory_path, $cache_time = CPG_HOUR, $exclusion_li
     return $deleted_list;
 }
 
-if ($CONFIG['log_mode']) {
-        spring_cleaning('logs', CPG_DAY*2, array('log_header.inc.php'));
-}
 ?>

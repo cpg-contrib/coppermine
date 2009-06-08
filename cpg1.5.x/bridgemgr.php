@@ -778,10 +778,7 @@ print '<br />' . $LINEBREAK;
 pagefooter();
 } // gallery admin mode --- end
 else { // not in gallery admin mode --- start
-    if ($CONFIG['bridge_enable'] != 1) { 
-    if ($CONFIG['log_mode'] != 0) {
-            log_write('Denied privileged access to bridgemgr.php for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
-    }    
+    if ($CONFIG['bridge_enable'] != 1) {    
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__); 
     }
 
