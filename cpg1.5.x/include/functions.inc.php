@@ -185,13 +185,20 @@ function cpg_db_query($query, $link_id = 0)
     $query_end = cpgGetMicroTime();
 
     if (!isset($CONFIG['debug_mode']) || $CONFIG['debug_mode'] == 1 || $CONFIG['debug_mode'] == 2) {
+        $trace = debug_backtrace();
+        $last = $trace[0];
+        $localfile = str_replace(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/' , '', $last['file']);
+        
         $duration      = round(($query_end - $query_start) * 1000);
         $query_stats[] = $duration;
-        $queries[]     = "$query ({$duration} ms)";
+        $queries[]     = "$query [$localfile:{$last['line']}] ({$duration} ms)";
     }
 
     if (!$result && !defined('UPDATE_PHP')) {
-        cpg_db_error("While executing query \"$query\" on $link_id");
+        $trace = debug_backtrace();
+        $last = $trace[0];
+        $localfile = str_replace(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') . '/' , '', $last['file']);
+        cpg_db_error("While executing query '$query' in $localfile on line {$last['line']}");
     }
 
     return $result;
