@@ -30,7 +30,7 @@ $icon_array['ok'] = cpg_fetch_icon('ok', 1);
 
 pageheader($lang_export_php['export']);
 
-if($superCage->post->keyExists('exportSubmit'))
+if($superCage->post->keyExists('exportSubmit') && $superCage->post->getInt('album'))
 {
   //Check if the form token is valid
   if(!checkFormToken()){
@@ -48,12 +48,7 @@ if($superCage->post->keyExists('exportSubmit'))
 } else {
   echo '<form action="export.php" method="POST">';
   
-  $options = '';
-  
-  $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY `title`");
-        
-  while($album = mysql_fetch_assoc($result))
-    $options .= "<option value=\"{$album['aid']}\">{$album['title']}</option>";
+  $options = album_selection_options();
 
   starttable('-1', cpg_fetch_icon('export', 2) . $lang_export_php['export'].'&nbsp;'.cpg_display_help('f=export.htm&amp;as=export&amp;ae=export_end', '600', '450'), 2);
     
@@ -74,6 +69,7 @@ if($superCage->post->keyExists('exportSubmit'))
         </td>
         <td class="tableb tableb_alternate">
             <select name="album" class="listbox">
+                <option value="0">{$lang_common['select_album']}</option>
                 $options
             </select>
         </td>
@@ -227,7 +223,7 @@ EOT;
 
 function exportThumbnailPage($album, $page, $path)
 {
-    global $CONFIG;
+    global $CONFIG, $lang_meta_album_names, $lang_thumb_view, $lang_common, $FORBIDDEN_SET_DATA;
      
     $superCage = Inspekt::makeSuperCage();
      
@@ -261,7 +257,15 @@ function exportThumbnailPage($album, $page, $path)
         $td->setAttribute('style','display:none');
       }
     }
-    
+
+    $as = $doc->getElementsByTagName('a');
+    foreach($as as $a)
+    {
+      if($a->getAttribute('class') == 'admin_menu') {
+        $a->setAttribute('style','display:none');
+      }
+    }
+        
     $contents = $doc->saveHTML();
 
     foreach($picture_r as $id => $filename)
