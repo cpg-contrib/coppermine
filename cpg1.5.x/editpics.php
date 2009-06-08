@@ -524,7 +524,7 @@ EOT;
 
 function form_alb_list_box($text, $name)
 {
-    global $CONFIG, $CURRENT_PIC;
+    global $CONFIG, $CURRENT_PIC, $LINEBREAK;
     global $user_albums_list, $public_albums_list, $row_style_class, $icon_array;
 
     $sel_album = $CURRENT_PIC['aid'];
