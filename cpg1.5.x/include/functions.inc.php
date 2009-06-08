@@ -5857,8 +5857,9 @@ function cpg_fill_string_array_with_spaces($table, $separator = '|', $align = 'l
 		}
 		$loopCounter = 0;
 		foreach ($key as $subkey) {
-			if (mb_strlen($subkey, $CONFIG['charset']) > $max_string_length[$loopCounter]) {
-				$max_string_length[$loopCounter] = mb_strlen($subkey, $CONFIG['charset']);
+		    $length = mb_strlen($subkey, $CONFIG['charset']);
+		    if (empty($max_string_length[$loopCounter]) || $length > $max_string_length[$loopCounter]) {
+				$max_string_length[$loopCounter] = $length;
 			}
 			$loopCounter++;
 		}
