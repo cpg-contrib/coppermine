@@ -5283,7 +5283,7 @@ function cpg_config_set($name, $value)
 {
     global $CONFIG, $USER_DATA, $LINEBREAK;
 
-    $value = addslashes($value);
+    //$value = addslashes($value);
 
     if ($CONFIG[$name] === $value) {
         return;
