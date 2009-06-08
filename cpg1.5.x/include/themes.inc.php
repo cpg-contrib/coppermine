@@ -3174,7 +3174,7 @@ function theme_html_picture()
         $USER['liv'] = array();
     }
     // Add 1 to hit counter
-    if (!USER_IS_ADMIN && !in_array($pid, $USER['liv']) && $superCage->cookie->keyExists($CONFIG['cookie_name'] . '_data')) {
+    if ((!USER_IS_ADMIN && $CONFIG['count_admin_hits'] == 0 || $CONFIG['count_admin_hits'] == 1) && !in_array($pid, $USER['liv']) && $superCage->cookie->keyExists($CONFIG['cookie_name'] . '_data')) {
         add_hit($pid);
         if (count($USER['liv']) > 4) array_shift($USER['liv']);
         array_push($USER['liv'], $pid);

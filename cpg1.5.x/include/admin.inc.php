@@ -1536,6 +1536,11 @@ $config_data = array(
       'default_value' => '1',
       'help_link'     => 'f=configuration.htm&amp;as=admin_count_album_hits&amp;ae=admin_count_album_hits_end',
     ),
+    'count_admin_hits' => array(
+      'type'          => 'checkbox',
+      'default_value' => '0',
+      'help_link'     => 'f=configuration.htm&amp;as=admin_count_admin_hits&amp;ae=admin_count_admin_hits_end',
+    ),
   ),
   'maintenance_settings' => array(
     'debug_mode' => array(

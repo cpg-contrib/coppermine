@@ -411,3 +411,5 @@ INSERT INTO CPG_config VALUES ('performance_page_query_count', '0');
 INSERT INTO CPG_config VALUES ('rate_own_files', '0');
 
 ALTER TABLE `CPG_pictures` DROP `owner_name`;
+
+INSERT INTO CPG_config VALUES ('count_admin_hits', '0');

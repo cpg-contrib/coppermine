@@ -917,6 +917,7 @@ $lang_admin_php['hit_details'] = 'Keep detailed hit statistics'; // cpg1.5
 $lang_admin_php['display_stats_on_index'] = 'Display statistics on index page'; // cpg1.5
 $lang_admin_php['count_file_hits'] = 'Count file views'; // cpg1.5
 $lang_admin_php['count_album_hits'] = 'Count album views'; // cpg1.5
+$lang_admin_php['count_admin_hits'] = 'Count admin views'; // cpg1.5
 $lang_admin_php['debug_mode'] = 'Enable debug mode'; // cpg1.5
 $lang_admin_php['debug_notice'] = 'Display notices in debug mode'; // cpg1.5
 $lang_admin_php['offline'] = 'Gallery is offline'; // cpg1.5

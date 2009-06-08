@@ -910,6 +910,7 @@ $lang_admin_php['hit_details'] = 'Detailierte Treffer-Statistiken aufzeichnen (B
 $lang_admin_php['display_stats_on_index'] = 'Statistiken auf index-Seite anzeigen'; // cpg1.5
 $lang_admin_php['count_file_hits'] = 'Datei-Hits zählen'; // cpg1.5
 $lang_admin_php['count_album_hits'] = 'Alben-Hits zählen'; // cpg1.5
+$lang_admin_php['count_admin_hits'] = 'Admin-Hits zählen'; // cpg1.5
 $lang_admin_php['debug_mode'] = 'Debug-Modus ein'; // cpg1.5
 $lang_admin_php['debug_notice'] = 'PHP-notices in Debug-Modus anzeigen (empfohlen: aus)'; // cpg1.5
 $lang_admin_php['offline'] = 'Galerie ist im Wartungsmodus'; // cpg1.5
