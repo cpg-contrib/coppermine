@@ -130,9 +130,15 @@ function uploadSuccess(file, serverData) {
             $('#upload_count').text(1 * $('#upload_count').text() + 1);
             addImage(js_vars.site_url + '/' + serverData.substring(8));
         } else {
+            var resArr = serverData.split('|');
             progress.setError();
             progress.setStatus(js_vars.lang_upload_swf_php.status_failed);
-            alert(serverData);
+            alert(resArr[1]);
+            
+            if (resArr[2] == 1) {
+                // Stop further uploading. Something critical happened
+                swfu.cancelQueue();
+            }
         }
         progress.toggleCancel(false);
         // If we have more than one uploads then enable to continue button

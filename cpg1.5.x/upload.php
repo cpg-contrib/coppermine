@@ -997,13 +997,17 @@ EOT;
 
     if ($file_placement == 'yes') {
         // The previous picture was placed successfully.
-        echo "success-" . $thumb_url;
+        echo "success|" . $thumb_url;
     } else {
         // The previous image placement failed.
         if (isset($result['error'])) {
-            echo $result['error'];
+            if (isset($result['halt_upload'])) {
+                echo "error|{$result['error']}|{$result['halt_upload']}";
+            } else {
+                echo "error|{$result['error']}|0";
+            }
         } else {
-            echo $lang_upload_php['no_place'];
+            echo "error|{$lang_upload_php['no_place']}|0";
         }
     }
 

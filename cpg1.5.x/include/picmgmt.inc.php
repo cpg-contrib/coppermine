@@ -64,20 +64,20 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
         }
 
         if (!file_exists($thumb)) {
-            if (!resize_image($work_image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], "false", 1))
-                return false;
+            if (($result = resize_image($work_image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], "false", 1)) !== true)
+                return $result;
         }
 
         $resize_method = $CONFIG['thumb_use'] == "ex" ? "any" : $CONFIG['thumb_use'];
 
         if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate'] && !file_exists($normal)) {
             if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'resized') {
-                if (!resize_image($work_image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $resize_method, "true")) {
-                    return false;
+                if (($result = resize_image($work_image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $resize_method, "true")) !== true) {
+                    return $result;
                 }
             } else {
-                if (!resize_image($work_image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $resize_method, "false")) {
-                    return false;
+                if (($result = resize_image($work_image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $resize_method, "false")) !== true) {
+                    return $result;
                 }
             }
         }
@@ -90,18 +90,18 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
         }
 
         if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate'] && !file_exists($normal)) {
-            if (!resize_image($image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']))
-                return false;
+            if (($result = resize_image($image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'])) !== true)
+                return $result;
         }
 
         if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original') {
-            if (!resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) {
-                return false;
+            if (($result = resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) !== true) {
+                return $result;
             }
             $imagesize = getimagesize($image);
         } elseif (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0))) {
-            if (!resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'false')) {
-                return false;
+            if (($result = resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'false')) !== true) {
+                return $result;
             }
             $imagesize = getimagesize($image);
         }
@@ -129,7 +129,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
             }
             $msg = $lang_errors['quota_exceeded'] . '<br />&nbsp;<br />' . strtr($lang_errors['quota_exceeded_details'], array('[quota]' => ($USER_DATA['group_quota']),
                 '[space]' => ($total_space_used >> 10)));
-            return array('error' => $msg);
+            return array('error' => $msg, 'halt_upload' => 1);
             //cpg_die(ERROR, $msg, __FILE__, __LINE__);
         }
     }
@@ -403,7 +403,7 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
 
         case "gd1" :
             if (!function_exists('imagecreatefromjpeg')) {
-                return array('error' => 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed');
+                return array('error' => 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed', 'halt_upload' => 1);
                 //cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed', __FILE__, __LINE__);
             }
             if ($imginfo[2] == GIS_JPG)
@@ -427,11 +427,11 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
 
         case "gd2" :
             if (!function_exists('imagecreatefromjpeg')) {
-                return array('error' => 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed');
+                return array('error' => 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed', 'halt_upload' => 1);
                 //cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed', __FILE__, __LINE__);
             }
             if (!function_exists('imagecreatetruecolor')) {
-                return array('error' => 'PHP running on your server does not support GD version 2.x, please switch to GD version 1.x on the admin page');
+                return array('error' => 'PHP running on your server does not support GD version 2.x, please switch to GD version 1.x on the admin page', 'halt_upload' => 1);
                 //cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support GD version 2.x, please switch to GD version 1.x on the admin page', __FILE__, __LINE__);
             }
             if ($imginfo[2] == GIS_GIF && $CONFIG['GIF_support'] == 1)
@@ -454,10 +454,10 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
             $fh=fopen($dest_file,'w');
             fclose($fh);
 
-                        //sharpen the thumb
-                        if ($sharpen==1 && $CONFIG['enable_unsharp']==1) {
-                        UnsharpMask($dst_img, $CONFIG['unsharp_amount'], $CONFIG['unsharp_radius'], $CONFIG['unsharp_threshold']);
-                        }
+            //sharpen the thumb
+            if ($sharpen==1 && $CONFIG['enable_unsharp']==1) {
+                UnsharpMask($dst_img, $CONFIG['unsharp_amount'], $CONFIG['unsharp_radius'], $CONFIG['unsharp_threshold']);
+            }
 
             if ($media_type != "false") {
                 //if a manual thumb gets generated we watermark the thumb with the media type
