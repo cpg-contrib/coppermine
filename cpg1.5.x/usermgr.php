@@ -862,10 +862,9 @@ EOT;
     
                     /**
                      * If the group is registered, don't show it here as all the users must be a member of this group
-                     * Also there is no point in displaying the 'Banned' group as checking banned here does not ban the user.
                      * Also remove Administrators group from secondary list as it won't give a user admin access.
                      */
-                    if ($group['group_id'] != 1 && $group['group_id'] != 2 && $group['group_id'] != 4) {
+                    if ($group['group_id'] != 1 && $group['group_id'] != 2) {
                       $checked = strpos(' ' . $user_group_list, ',' . $group['group_id'] . ',') ? 'checked' : '';
                       $group_cb .= '<input name="group_list[]" type="checkbox" value="' . $group['group_id'] . '" ' . $checked . ' />' . $group['group_name'] . '<br />' . $LINEBREAK;
                     }
