@@ -410,7 +410,7 @@ EOT;
     if (count($dir_array) > 0) {
         foreach ($dir_array as $directory) {
             //if (substr($directory,0,1) != ".") // added do not show folders with dots: gaugau 03-11-02
-            CPGscandir($dir . $directory . '/', $expic_array);
+            CPGscandir($dir . $directory . DIRECTORY_SEPARATOR, $expic_array);
         }
     }
     return $count;
@@ -538,7 +538,7 @@ EOT;
     pagefooter();
     ob_end_flush();
 //} elseif (isset($_GET['startdir'])) {
-} elseif ($superCage->get->keyExists('startdir') && $matches = $superCage->get->getMatched('startdir', '/^[0-9A-Za-z\/_-]+$/')) {
+} elseif ($superCage->get->keyExists('startdir') && $matches = $superCage->get->getMatched('startdir', '/^[0-9A-Za-z\/\\\\_-\s]+$/')) {
     $startdir = $matches[0];
     
     set_js_var('no_album_selected', $lang_search_new_php['no_album']);
@@ -562,7 +562,7 @@ EOT;
 EOT;
     $expic_array = array();
     getallpicindb($expic_array, $startdir);
-    if (CPGscandir($startdir . '/', $expic_array)) {
+    if (CPGscandir($startdir . DIRECTORY_SEPARATOR, $expic_array)) {
         echo <<<EOT
         <tr>
                 <td class="tablef">

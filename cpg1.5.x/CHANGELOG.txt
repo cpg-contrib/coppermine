@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-06-09 [B] Fixed the issues with folders with spaces and path separators in batch upload - topic 57256 {Aditya}
 2009-06-08 [A] Added file and line numbers to debug mode query list {Nibbler}
 2009-06-08 [A] Added config option to count admin views {eenemeenemuu}
 2009-06-07 [D] Translation Copyright section for the french doc {Frantz}

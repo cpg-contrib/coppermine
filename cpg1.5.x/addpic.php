@@ -53,6 +53,10 @@ $pic_file  = base64_decode($matches[0]);
 $dir_name  = dirname($pic_file) . '/';
 $file_name = basename($pic_file);
 
+// Replace the windows directory separator with /
+$dir_name = str_replace('\\\\', '/', $dir_name);
+$dir_name = str_replace('\\', '/', $dir_name);
+
 // Create the holder $picture_name by translating the file name.
 // Translate any forbidden character into an underscore.
 $sane_name = replace_forbidden($file_name);
