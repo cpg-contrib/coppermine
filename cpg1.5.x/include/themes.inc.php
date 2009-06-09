@@ -876,7 +876,7 @@ if (!isset($template_display_media)) { //{THEMES}
 $template_display_media = <<<EOT
         <tr>
                 <td align="center" class="display_media" nowrap="nowrap">
-                        <table cellspacing="2" cellpadding="0" >
+                        <table width="100%" cellspacing="2" cellpadding="0">
                                 <tr>
                                         <td align="center" style="{SLIDESHOW_STYLE}">
                                                 {IMAGE}
@@ -887,13 +887,13 @@ $template_display_media = <<<EOT
             </tr>
             <tr>
                 <td>
-                <table width="100%" cellspacing="2" cellpadding="0" class="tableb tableb_alternate">
-                                <tr>
-                                        <td align="center">
-                                                {ADMIN_MENU}
-                                        </td>
-                                </tr>
-                </table>
+                        <table width="100%" cellspacing="2" cellpadding="0" class="tableb tableb_alternate">
+                                        <tr>
+                                                <td align="center">
+                                                        {ADMIN_MENU}
+                                                </td>
+                                        </tr>
+                        </table>
 
 
 <!-- BEGIN img_desc -->
@@ -1545,7 +1545,7 @@ function pageheader($section, $meta = '')
     );
 
     echo template_eval($template_header, $template_vars);
-    
+
     // Show various admin messages
     adminmessages();
 }
@@ -3181,7 +3181,7 @@ function theme_html_picture()
     }
 
     // The weird comparision is because only picture_width is stored
-    if ($CONFIG['thumb_use']=='ht' && $CURRENT_PIC_DATA['pheight'] > $CONFIG['picture_width'] ) { 
+    if ($CONFIG['thumb_use']=='ht' && $CURRENT_PIC_DATA['pheight'] > $CONFIG['picture_width'] ) {
         $condition = true;
     } elseif ($CONFIG['thumb_use']=='wd' && $CURRENT_PIC_DATA['pwidth'] > $CONFIG['picture_width']) {
         $condition = true;
@@ -3302,7 +3302,7 @@ function theme_html_picture()
         $pic_html = CPGPluginAPI::filter('html_document', $pic_html);
     } else {
         $autostart = ($CONFIG['media_autostart']) ? ('true'):('false');
-        
+
         if ($mime_content['player'] == 'HTMLA') {
             $pic_html  = '<audio controls="true" src="' . $picture_url . '" autostart="' . $autostart . '"></audio>';
         } elseif ($mime_content['player'] == 'HTMLV') {
@@ -3339,19 +3339,19 @@ function theme_html_picture()
                                     'codebase' => '',
                                     'mime' => ''
                                    );
-                                           
+
             $player = $players[$mime_content['player']];
 
             if (!$player) {
                 $player = 'UNK';
             }
-                     
+
             $pic_html  = '<object id="'.$player['id'].'" '.$player['classid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
             $pic_html .= "<param name=\"autostart\" value=\"$autostart\" /><param name=\"src\" value=\"". $picture_url . "\" />";
             $pic_html .= '<embed '.$image_size['whole'].' src="'. $picture_url . '" autostart="'.$autostart.'" '.$player['mime'].'></embed>';
             $pic_html .= '</object><br />' . $LINEBREAK;
         }
-        
+
         //PLUGIN FILTER
         $pic_html = CPGPluginAPI::filter('html_other_media', $pic_html);
     }
@@ -3531,7 +3531,7 @@ function theme_html_rating_box()
     $result = cpg_db_query("SELECT pic_id FROM {$CONFIG['TABLE_VOTES']} WHERE pic_id={$CURRENT_PIC_DATA['pid']} AND user_md5_id='$user_md5_id'");
 
     $user_can_vote = 'false';
-    if ($CURRENT_PIC_DATA['owner_id'] == $USER_DATA['user_id'] && $USER_DATA['user_id'] != 0 && ($CONFIG['rate_own_files'] == 0 || $CONFIG['rate_own_files'] == 2 && !USER_IS_ADMIN)) {	
+    if ($CURRENT_PIC_DATA['owner_id'] == $USER_DATA['user_id'] && $USER_DATA['user_id'] != 0 && ($CONFIG['rate_own_files'] == 0 || $CONFIG['rate_own_files'] == 2 && !USER_IS_ADMIN)) {
       //user is owner
       $rate_title = $lang_rate_pic['forbidden'];
     } elseif (!mysql_num_rows($result)) {
@@ -3620,9 +3620,9 @@ function theme_html_comments($pid)
     $superCage = Inspekt::makeSuperCage();
     $template_add_your_comment = CPGPluginAPI::filter('theme_add_comment', $template_add_your_comment);
     $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_image_comments);
-    
+
     list($timestamp, $form_token) = getFormToken();
-    
+
     $html = '';
 
 //report to moderator buttons
@@ -4244,7 +4244,7 @@ function adminmessages()
     if (!GALLERY_ADMIN_MODE) {
         return;
     }
-    
+
     // If register_globals is On, then show the warning message.
     if ($register_globals_flag == true) {
         msg_box($lang_errors['register_globals_title'], $lang_errors['register_globals_warning'], '', '', 'warning');
