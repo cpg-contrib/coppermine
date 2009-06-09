@@ -3302,58 +3302,56 @@ function theme_html_picture()
         $pic_html = CPGPluginAPI::filter('html_document', $pic_html);
     } else {
         $autostart = ($CONFIG['media_autostart']) ? ('true'):('false');
-
-        $players['WMP'] = array('id' => 'MediaPlayer',
-                                'clsid' => 'classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" ',
-                                'codebase' => 'codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" ',
-                                'mime' => 'type="application/x-mplayer2" ',
-                               );
-        $players['DIVX'] = array('id' => 'DivX',
-                                'clsid' => 'classid="clsid:67DABFBF-D0AB-41fa-9C46-CC0F21721616"',
-                                'codebase' => 'codebase="http://go.divx.com/plugin/DivXBrowserPlugin.cab"',
-                                'mime' => 'type="video/divx"'
-                               );
-        $players['RMP'] = array('id' => 'RealPlayer',
-                                'clsid' => 'classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" ',
-                                'codebase' => '',
-                                'mime' => 'type="audio/x-pn-realaudio-plugin" '
-                               );
-        $players['QT']  = array('id' => 'QuickTime',
-                                'clsid' => 'classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" ',
-                                'codebase' => 'codebase="http://www.apple.com/qtactivex/qtplugin.cab" ',
-                                'mime' => 'type="video/x-quicktime" '
-                               );
-        $players['SWF'] = array('id' => 'SWFlash',
-                                'clsid' => ' classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" ',
-                                'codebase' => 'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" ',
-                                'mime' => 'type="application/x-shockwave-flash" '
-                               );
-        $players['UNK'] = array('id' => 'DefaultPlayer',
-                                'clsid' => '',
-                                'codebase' => '',
-                                'mime' => ''
-                               );
-
-        //if (isset($_COOKIE[$CONFIG['cookie_name'].'_'.$mime_content['extension'].'player'])) {
-        if ($superCage->cookie->keyExists($CONFIG['cookie_name'].'_'.$mime_content['extension'].'player')) {
-            //$user_player = $_COOKIE[$CONFIG['cookie_name'].'_'.$mime_content['extension'].'player'];
-            $user_player = $superCage->cookie->noTags($CONFIG['cookie_name'].'_'.$mime_content['extension'].'player');
+        
+        if ($mime_content['player'] == 'HTMLA') {
+            $pic_html  = '<audio controls="true" src="' . $picture_url . '" autostart="' . $autostart . '"></audio>';
+        } elseif ($mime_content['player'] == 'HTMLV') {
+            $pic_html  = '<video controls="true" src="' . $picture_url . '" autostart="' . $autostart . '"' . $image_size['whole'] . '></video>';
         } else {
-            $user_player = $mime_content['player'];
+
+            $players['WMP'] = array('id' => 'MediaPlayer',
+                                    'clsid' => 'classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" ',
+                                    'codebase' => 'codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" ',
+                                    'mime' => 'type="application/x-mplayer2" ',
+                                   );
+            $players['DIVX'] = array('id' => 'DivX',
+                                    'clsid' => 'classid="clsid:67DABFBF-D0AB-41fa-9C46-CC0F21721616"',
+                                    'codebase' => 'codebase="http://go.divx.com/plugin/DivXBrowserPlugin.cab"',
+                                    'mime' => 'type="video/divx"'
+                                   );
+            $players['RMP'] = array('id' => 'RealPlayer',
+                                    'clsid' => 'classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" ',
+                                    'codebase' => '',
+                                    'mime' => 'type="audio/x-pn-realaudio-plugin" '
+                                   );
+            $players['QT']  = array('id' => 'QuickTime',
+                                    'clsid' => 'classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" ',
+                                    'codebase' => 'codebase="http://www.apple.com/qtactivex/qtplugin.cab" ',
+                                    'mime' => 'type="video/x-quicktime" '
+                                   );
+            $players['SWF'] = array('id' => 'SWFlash',
+                                    'clsid' => ' classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" ',
+                                    'codebase' => 'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" ',
+                                    'mime' => 'type="application/x-shockwave-flash" '
+                                   );
+            $players['UNK'] = array('id' => 'DefaultPlayer',
+                                    'clsid' => '',
+                                    'codebase' => '',
+                                    'mime' => ''
+                                   );
+                                           
+            $player = $players[$mime_content['player']];
+
+            if (!$player) {
+                $player = 'UNK';
+            }
+                     
+            $pic_html  = '<object id="'.$player['id'].'" '.$player['classid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
+            $pic_html .= "<param name=\"autostart\" value=\"$autostart\" /><param name=\"src\" value=\"". $picture_url . "\" />";
+            $pic_html .= '<embed '.$image_size['whole'].' src="'. $picture_url . '" autostart="'.$autostart.'" '.$player['mime'].'></embed>';
+            $pic_html .= '</object><br />' . $LINEBREAK;
         }
-
-        // There isn't a player selected or user wants client-side control
-        if (!$user_player) {
-            $user_player = 'UNK';
-        }
-
-        $player = $players[$user_player];
-
-        $pic_html  = '<object id="'.$player['id'].'" '.$player['classid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
-        $pic_html .= "<param name=\"autostart\" value=\"$autostart\" /><param name=\"src\" value=\"". $picture_url . "\" />";
-        $pic_html .= '<embed '.$image_size['whole'].' src="'. $picture_url . '" autostart="'.$autostart.'" '.$player['mime'].'></embed>';
-        $pic_html .= '</object><br />' . $LINEBREAK;
-
+        
         //PLUGIN FILTER
         $pic_html = CPGPluginAPI::filter('html_other_media', $pic_html);
     }

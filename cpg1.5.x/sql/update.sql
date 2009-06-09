@@ -413,3 +413,7 @@ INSERT INTO CPG_config VALUES ('rate_own_files', '0');
 ALTER TABLE `CPG_pictures` DROP `owner_name`;
 
 INSERT INTO CPG_config VALUES ('count_admin_hits', '0');
+
+UPDATE CPG_filetypes SET player = 'HTMLA' WHERE extension = 'ogg' AND player = '';
+INSERT INTO CPG_filetypes VALUES ('oga', 'audio/ogg', 'audio', 'HTMLA');
+INSERT INTO CPG_filetypes VALUES ('ogv', 'video/ogg', 'movie', 'HTMLV');

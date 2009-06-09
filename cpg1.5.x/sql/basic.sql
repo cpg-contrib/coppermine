@@ -259,7 +259,10 @@ INSERT INTO CPG_filetypes VALUES ('midi', 'audio/midi', 'audio', 'WMP');
 INSERT INTO CPG_filetypes VALUES ('mid', 'audio/midi', 'audio', 'WMP');
 INSERT INTO CPG_filetypes VALUES ('wma', 'audio/x-ms-wma', 'audio', 'WMP');
 INSERT INTO CPG_filetypes VALUES ('wav', 'audio/wav', 'audio', 'WMP');
-INSERT INTO CPG_filetypes VALUES ('ogg', 'audio/ogg', 'audio', '');
+
+INSERT INTO CPG_filetypes VALUES ('ogg', 'audio/ogg', 'audio', 'HTMLA');
+INSERT INTO CPG_filetypes VALUES ('oga', 'audio/ogg', 'audio', 'HTMLA');
+INSERT INTO CPG_filetypes VALUES ('ogv', 'video/ogg', 'movie', 'HTMLV');
 
 INSERT INTO CPG_filetypes VALUES ('ram', 'audio/x-pn-realaudio', 'document', 'RMP');
 INSERT INTO CPG_filetypes VALUES ('ra', 'audio/x-realaudio', 'document', 'RMP');
