@@ -38,8 +38,15 @@ $data = @unserialize(@base64_decode($get_data));
 
 if (is_array($data)) {
 
-    // Remove HTML tags as we can't trust what we receive
-    //foreach($data as $key => $value) $data[$key] = strtr($value, $HTML_SUBST);
+    //Remove HTML tags as we can't trust what we receive
+    foreach($data as $key => $value) {
+        $data[$key] = $value;
+        if ($key == 'pid') {
+            $data[$key] = (int) $data[$key];
+        } else {
+            $data[$key] = htmlspecialchars($data[$key]);
+        }
+    }
 
     // Load template parameters
     if ($data['t'] == 'comment') {
