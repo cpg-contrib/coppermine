@@ -127,7 +127,7 @@ if ($CONFIG['user_field4_name'] != '') {
 $captionLabel = $lang_editpics_php['desc'];
 
 $keywordLabel = sprintf($lang_common['keywords_insert1'], $lang_common['keyword_separators'][$CONFIG['keyword_separator']])
-    . '<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php?id=%s\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">' . $lang_common['keywords_insert2'] .'</a>';
+    . '<br /><a href="keyword_select.php?id=%s" class="greybox">' . $lang_common['keywords_insert2'] .'</a>';
 
 if ($CONFIG['show_bbcode_help']) {
     $captionLabel .= '&nbsp;'. cpg_display_help('f=empty.html&amp;base=64&amp;h=' . urlencode(base64_encode(serialize($lang_bbcode_help_title . '&nbsp;'))) . '&amp;t=' . urlencode(base64_encode(serialize($lang_bbcode_help))), 500, 300);

@@ -49,6 +49,14 @@ $upload_choices = CPGPluginAPI::filter('upload_options',$upload_choices);
 // Default upload method set by the gallery administrator
 $upload_form = $CONFIG['upload_mechanism'];
 
+// Populate Icon array
+$icon_array = array();
+$icon_array['continue'] = cpg_fetch_icon('right', 2);
+$icon_array['ok'] = cpg_fetch_icon('ok', 0);
+$icon_array['cancel'] = cpg_fetch_icon('cancel', 2);
+$icon_array['upload'] = cpg_fetch_icon('upload', 2);
+$icon_array['info'] = cpg_fetch_icon('info', 2);
+
 // If we have "single" key in GET then we will force the upload form mechanism to single file upload
 // This acts as a fallback if js or flash is disabled
 if ($superCage->get->keyExists('single')) {
@@ -219,10 +227,10 @@ function form_alb_list_box($text, $name)
     // Create the opening of the drop down box
     echo <<<EOT
     <tr>
-        <td class="tableb" width="50">
+        <td class="tableb tableb_alternate" width="50">
             $text
         </td>
-        <td class="tableb" valign="top">
+        <td class="tableb tableb_alternate" valign="top">
             <select name="$name" class="listbox">
 
 EOT;
@@ -317,41 +325,19 @@ function form_instructions()
 {
     global $CONFIG, $lang_upload_php, $upload_form, $max_file_size, $LINEBREAK;
 
-    echo "<tr><td colspan=\"2\">";
-
-    printf ($lang_upload_php['up_instr_1'], $CONFIG['max_upl_size']);
-
-    //show allowed filetypes
-    echo "<br />{$lang_upload_php['allowed_types']}";
-    print '<br />' . $LINEBREAK;
-    printf ($lang_upload_php['allowed_img_types'], $CONFIG['allowed_img_types']);
-    print '<br />' . $LINEBREAK;
-    printf ($lang_upload_php['allowed_mov_types'], $CONFIG['allowed_mov_types']);
-    print '<br />' . $LINEBREAK;
-    printf ($lang_upload_php['allowed_snd_types'], $CONFIG['allowed_snd_types']);
-    print '<br />' . $LINEBREAK;
-    printf ($lang_upload_php['allowed_doc_types'], $CONFIG['allowed_doc_types']);
-
-    echo "<br /><br />{$lang_upload_php['up_instr_2']}";
-    echo '<noscript>
-            <div class="cpg_message_error">
-                ' . $lang_upload_php['err_js_disabled'] . '
-                <br />' . $lang_upload_php['err_alternate_method'] . '
-            </div>
-         </noscript>';
-    echo '<div id="divLoadingContent" class="cpg_message_info" style="display: none;">
-            ' . $lang_upload_php['flash_loading'] . '
-        </div>
-        <div id="divLongLoading" class="cpg_message_warning" style="display: none;">
-            ' . $lang_upload_php['err_flash_disabled'] . '
-            <br />' . $lang_upload_php['err_alternate_method'] . '
-        </div>
-        <div id="divAlternateContent" class="cpg_message_error" style="display: none;">
-            ' . $lang_upload_php['err_flash_version'] . '
-            <br />' . $lang_upload_php['err_alternate_method'] . '
-        </div>';
-    echo "</td></tr>";
-
+    echo <<< EOT
+	<tr>
+		<td colspan="2" class="tableb">
+		    <noscript>
+		            <div class="cpg_message_error">{$lang_upload_php['err_js_disabled']}<br />
+		            {$lang_upload_php['err_alternate_method']}</div>
+		    </noscript>
+		    <div id="divLoadingContent" class="cpg_message_info" style="display: none;">{$lang_upload_php['flash_loading']}</div>
+		    <div id="divLongLoading" class="cpg_message_warning" style="display: none;">{$lang_upload_php['err_flash_disabled']}<br />{$lang_upload_php['err_alternate_method']}</div>
+		    <div id="divAlternateContent" class="cpg_message_error" style="display: none;">{$lang_upload_php['err_flash_version']}<br />{$lang_upload_php['err_alternate_method']}</div>
+		   </td>
+	   </tr>
+EOT;
 }
 
 
@@ -431,41 +417,43 @@ function create_form_simple(&$data)
 // Function to create the swfupload form
 function create_form_swfupload()
 {
-    global $lang_common, $lang_upload_swf_php;
+    global $lang_common, $lang_upload_swf_php, $icon_array;
     form_alb_list_box($lang_common['album'], 'album');
-
-    $cancel_icon = cpg_fetch_icon('cancel', 0);
-    $ok_icon = cpg_fetch_icon('ok', 0);
 
     echo <<<EOT
     <tr>
-        <td colspan="2">
+        <td colspan="2" class="tableb tableb_alternate">
             <div id="upload_form">
-            <div>
-                <span id="browse_button_place_holder"></span>
-                <button id="button_cancel" onclick="swfu.cancelQueue();" disabled="disabled" class="button">
-                    {$cancel_icon}
-                    {$lang_upload_swf_php['cancel_all']}
-                </button>
-            </div>
-            <br />
-            <div class="fieldset flash" id="upload_progress">
-                <span class="legend">{$lang_upload_swf_php['upload_queue']}</span>
-            </div>
-            <div id="upload_status"><span id="upload_count">0</span> {$lang_upload_swf_php['files_uploaded']}</div>
+	            <div>
+	                <span id="browse_button_place_holder"></span>
+	                <button id="button_cancel" onclick="swfu.cancelQueue();" disabled="disabled" class="button">
+	                    {$icon_array['cancel']}
+	                    {$lang_upload_swf_php['cancel_all']}
+	                </button>
+	            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" class="tableb">
+	            <div class="fieldset flash" id="upload_progress">
+	                <span class="legend">{$lang_upload_swf_php['upload_queue']}</span>
+	            </div>
             </div>
         </td>
     </tr>
     <tr>
-        <td colspan="2">
+        <td colspan="2" class="tableb tableb_alternate">
             <button id="button_continue" class="button" onclick="return continue_upload();" style="display: none; margin-top: 5px;">
-                {$ok_icon}
+                {$icon_array['continue']}
                 {$lang_common['continue']}
             </button>
         </td>
     </tr>
     <tr>
-        <td colspan="2">
+        <td colspan="2" class="tableh2">
+	        <div id="upload_status">
+	        	<span id="upload_count">0</span> {$lang_upload_swf_php['files_uploaded']}:
+	        </div>
             <div id="uploadedThumbnails"></div>
         </td>
     </tr>
@@ -490,10 +478,10 @@ EOT;
 
 
 // The close form function creates the submit button and the closing tags.
-function close_form($button_value,$progress=0)
+function close_form($button_value,$progress=0,$icon='ok')
 {
     // Pull the language array into the function.
-    global $lang_upload_php, $THEME_DIR;
+    global $lang_upload_php, $THEME_DIR, $icon_array;
 
     // Create the submit button and close the form.
     print <<<EOT
@@ -511,7 +499,7 @@ EOT;
     }
     print '                        </span>';
     print '                        <span id="cpg_upload_button" style="display:block">';
-    print '                            <input type="submit" value="'.$button_value.'" class="button" />';
+    print '                            <button type="submit" value="'.$button_value.'" class="button" />'.$icon_array[$icon] . $button_value.'</button>';
     print '                        </span>';
     print <<<EOT
                 </td>
@@ -653,19 +641,83 @@ if (!$superCage->post->keyExists('process') && !$superCage->post->keyExists('plu
     if ($upload_form == 'html_single') {
         // For single upload form, send the request to db_input.php
         open_form('db_input.php');
+        $upload_help = cpg_display_help('f=uploading_http.htm&amp;as=upload_http_interface_html&amp;ae=upload_http_interface_html_end', '450', '300');
+    } else {
+
+    $restriction_filesize = sprintf($lang_upload_php['restriction_filesize'], '<strong>' . cpg_format_bytes($CONFIG['max_upl_size'] * 1024) . '</strong>');
+    if ($CONFIG['allowed_img_types'] != '') {
+    	$allowed_img_types = '<li>' . sprintf ($lang_upload_php['allowed_img_types'], $CONFIG['allowed_img_types']) . '</li>';
+    } else {
+    	$allowed_img_types = '';
     }
+    if ($CONFIG['allowed_mov_types'] != '') {
+    	$allowed_mov_types = '<li>' . sprintf ($lang_upload_php['allowed_mov_types'], $CONFIG['allowed_mov_types']) . '</li>';
+    } else {
+    	$allowed_mov_types = '';
+    }
+    if ($CONFIG['allowed_snd_types'] != '') {
+    	$allowed_snd_types = '<li>' . sprintf ($lang_upload_php['allowed_snd_types'], $CONFIG['allowed_snd_types']) . '</li>';
+    } else {
+    	$allowed_snd_types = '';
+    }
+    if ($CONFIG['allowed_doc_types'] != '') {
+    	$allowed_doc_types = '<li>' . sprintf ($lang_upload_php['allowed_doc_types'], $CONFIG['allowed_doc_types']) . '</li>';
+    } else {
+    	$allowed_doc_types = '';
+    }    
+    
+    	$help_page = <<< EOT
+<ul>
+	<li>{$lang_upload_php['up_instr_1']}</li>
+	<li>{$lang_upload_php['up_instr_2']}</li>
+	<li>{$lang_upload_php['up_instr_3']}</li>
+	<li>{$lang_upload_php['up_instr_4']}</li>
+	<li>{$lang_upload_php['up_instr_5']}</li>
+</ul>
+
+<h2>{$lang_upload_php['restrictions']}</h2>
+<ul>
+	<li>{$restriction_filesize}</li>
+	<li>{$lang_upload_php['restriction_zip']}</li>
+	<li>{$lang_upload_php['allowed_types']}
+		<ul>
+			{$allowed_img_types}
+			{$allowed_mov_types}
+			{$allowed_snd_types}
+			{$allowed_doc_types}
+		</ul>
+	</li>
+</ul>
+EOT;
+    	$upload_help = cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_upload_php['title']))).'&amp;t='.urlencode(base64_encode(serialize($help_page))),470,245);
+    }
+    
+    $upload_table_header = <<< EOT
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+    	<tr>
+    		<td>
+    			{$icon_array['upload']}{$lang_upload_php['title']} {$upload_help}
+    		</td>
+    		<td style="text-align:right">
+    			<span id="upload_method_selector" style="display:none">
+    				{$upload_select}
+    			</span>
+    		</td>
+    	</tr>
+    </table>
+EOT;
 
     // Open the form table.
-    starttable("100%", cpg_fetch_icon('upload',2).$lang_upload_php['title'].$upload_select, 2);
+    starttable('100%', $upload_table_header, 2);
 
     if ($upload_form == 'html_single') {
         // Declare an array containing the various upload form box definitions.
         $captionLabel = $lang_upload_php['description'];
         $keywordLabel = sprintf($lang_common['keywords_insert1'],$lang_common['keyword_separators'][$CONFIG['keyword_separator']])
-            . '<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">' . $lang_common['keywords_insert2'] .'</a>';
+            . '<br /><a href="keyword_select.php" class="greybox">' . $lang_common['keywords_insert2'] .'</a>';
         if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
         $form_array = array(
-            sprintf($lang_upload_php['max_fsize'], $CONFIG['max_upl_size']),
+            sprintf($lang_upload_php['max_fsize'], cpg_format_bytes($CONFIG['max_upl_size'] * 1024)),
             array($lang_common['album'], 'album', 2),
             array('MAX_FILE_SIZE', $max_file_size, 4),
             array($lang_upload_php['picture'], 'userpicture', 1, 1),
@@ -689,13 +741,15 @@ if (!$superCage->post->keyExists('process') && !$superCage->post->keyExists('plu
         // Create the upload form
         create_form_simple($form_array);
         // Close the form with an submit button
-        close_form($lang_upload_php['title'],1);
-        // Close the table, create footers, and flush the output buffer.
-        endtable();
+        close_form($lang_upload_php['title'],1, 'ok');
         list($timestamp, $form_token) = getFormToken(); 
         echo <<< EOT
         <input type="hidden" name="form_token" value="{$form_token}" />
         <input type="hidden" name="timestamp" value="{$timestamp}" />
+EOT;
+        // Close the table, create footers, and flush the output buffer.
+        endtable();
+        echo <<< EOT
     </form>
 EOT;
 
@@ -710,7 +764,7 @@ EOT;
 
     if ($CONFIG['display_xp_publish_link'] == 1) {
         print '<br />';
-        starttable('100%', cpg_fetch_icon('info', 2) . $lang_upload_php['alternative_upload'],1);
+        starttable('100%', $icon_array['info'] . $lang_upload_php['alternative_upload'],1);
         print <<< EOT
         <tr>
             <td class="tableb">
@@ -720,6 +774,7 @@ EOT;
         </tr>
 EOT;
         endtable();
+        echo '<br />';
     }
     pagefooter();
     ob_end_flush();

@@ -98,4 +98,5 @@ $(document).ready(function() {
         }
         window.location.href = 'upload.php?' + param;
     });
+    show_section('upload_method_selector');
 });

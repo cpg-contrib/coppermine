@@ -197,7 +197,7 @@ p {
 }
 
 
-ul {
+ul, ol {
     margin-left: 5px;
     padding: 0px;
 }
@@ -209,7 +209,10 @@ li {
     margin-bottom: 4px;
     padding: 0px;
     list-style-position: outside;
-    list-style-type: disc;
+}
+
+ul li {
+	list-style-type: disc;
 }
 
 .top_panel td {

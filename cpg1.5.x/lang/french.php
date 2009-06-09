@@ -156,6 +156,7 @@ $lang_common['parent_category'] = 'Catégorie parente'; // cpg1.5
 $lang_common['edit_files'] = 'Editer les fichiers'; // cpg1.5
 $lang_common['thumbnail_view'] = 'Vue des Vignettes'; // cpg1.5
 $lang_common['album_manager'] = 'Gestion des Albums'; // cpg1.5
+$lang_common['details'] = 'Details'; // cpg1.5
 
 
 // ----------------------- //
@@ -870,7 +871,7 @@ $lang_admin_php['thumbnail_intermediate_full'] = 'vignette, image intermédiaire
 $lang_admin_php['thumbnail_intermediate'] = 'vignette et image intermédiaire image'; // cpg1.5
 $lang_admin_php['thumbnail_only'] = 'vignette uniquement'; // cpg1.5
 $lang_admin_php['upload_mechanism'] = 'Methode de téléchargement par défaut'; // cpg1.5
-$lang_admin_php['upload_swf'] = 'Avancé - Fichiers multiples, géré par Flash (recommandé)'; // cpg1.5
+$lang_admin_php['upload_swf'] = 'Fichiers multiples, géré par Flash (recommandé)'; // cpg1.5
 $lang_admin_php['upload_single'] = 'simple - un seul fichier à la fois'; // cpg1.5
 $lang_admin_php['allow_user_upload_choice'] = 'Autoriser les Utilisateurs à choisir leur methode de téléchargement'; // cpg1.5
 $lang_admin_php['allow_duplicate_emails_addr'] =   'Autoriser deux Utilisateurs à avoir la même adresse courriel'; // cpg1.5
@@ -2147,51 +2148,56 @@ if (defined('STAT_DETAILS_PHP')) {
 // ----------------------- //
 
 if (defined('UPLOAD_PHP')) {
-  $lang_upload_php['title'] = 'Télécharger un fichier';
-  $lang_upload_php['choose_method'] = 'Choisissez la méthode de téléchargement'; // cpg1.5
-  $lang_upload_php['upload_swf']    = 'défaut - Piloté par Flash'; // cpg1.5
-  $lang_upload_php['upload_single'] = 'simple - Un seul fichier à la fois'; // cpg1.5
-  $lang_upload_php['up_instr_1'] = 'Maintenant vous devriez pouvoir télécharger vos fichiers en sélectionnant d\'abord l\'Album puis en utilisant le bouton "Parcourir" ci dessous. La taille des fichiers téléchargés sur votre serveur ne doivent pas avoir plus de %s KB chacuns. Les fichiers ZIP téléchargés resteront compressés.';
-  $lang_upload_php['up_instr_2'] = 'Lorsque vous avez téléchargé les fichiers, cliquez sur le bouton "Continuer". (Note: Le bouton n\'apparaîtra qu\'après avoir téléchargé au moins un fichier).';
-  $lang_upload_php['reg_instr_1'] = 'Action invalide pour la création du formulaire.';
-  $lang_upload_php['no_name'] = 'Nom de fichier introuvable.';
-  $lang_upload_php['no_tmp_name'] = 'Impossible de télécharger'; // cpg 1.5
-  $lang_upload_php['no_post'] = 'Fichier non téléchargé par POST.';
-  $lang_upload_php['forb_ext'] = 'Extension de fichier non autorisée.';
-  $lang_upload_php['exc_php_ini'] = 'Le poids excède celui permis par le fichier php.ini.';
-  $lang_upload_php['exc_file_size'] = 'Le poids excède celui permis par l\'Admin de la Galerie Coppermine.';
-  $lang_upload_php['partial_upload'] = 'Téléchargement partiel uniquement.';
-  $lang_upload_php['no_upload'] = 'Le téléchargement ne s\'est pas effectué.';
-  $lang_upload_php['unknown_code'] = 'Code d\'erreur de téléchargement PHP inconnu.';
-  $lang_upload_php['impossible'] = 'Impossible à déplacer.';
-  $lang_upload_php['not_image'] = 'Pas une image ou image endommagée';
-  $lang_upload_php['not_GD'] = 'N\'est pas une extension GD.';
-  $lang_upload_php['pixel_allowance'] = 'La hauteur et/ou la largeur de l\'image uploadée est plus grande que celle permise dans la configuration de la Galerie.';
-  $lang_upload_php['failure'] = 'Erreur de téléchargement';
-  $lang_upload_php['no_place'] = 'Le fichier précédent n\'a pas pu être placé.';
-  $lang_upload_php['max_fsize'] = 'Le poids maximal autorisé pour une image est de %s Ko';
-  $lang_upload_php['picture'] = 'Fichier';
-  $lang_upload_php['pic_title'] = 'Titre du fichier';
-  $lang_upload_php['description'] = 'Description du fichier';
-  $lang_upload_php['keywords_sel'] ='Choisissez un Mot-Clef';
-  $lang_upload_php['err_no_alb_uploadables'] = 'Désolé, mais il n\'existe pas d\'Album dans lequel vous ayez le droit de télécharger des photos';
-  $lang_upload_php['close'] = 'Fermez';
-  $lang_upload_php['no_keywords'] = 'Désolé, aucun Mot-Clef disponible&nbsp;!';
-  $lang_upload_php['regenerate_dictionary'] = 'Regénérer le dictionnaire';
-  $lang_upload_php['allowed_types'] = 'Vous pouvez à télécharger des fichiers avec les extensions suivantes:'; // cpg1.5
-  $lang_upload_php['allowed_img_types'] = 'Extensions d\'Image: %s'; // cpg1.5
-  $lang_upload_php['allowed_mov_types'] = 'Extensions Video: %s'; // cpg1.5
-  $lang_upload_php['allowed_doc_types'] = 'Extension de Document: %s'; // cpg1.5
-  $lang_upload_php['allowed_snd_types'] = 'Extensions Audio: %s'; // cpg1.5
-  $lang_upload_php['please_wait'] = 'Merci de patienter pendant que le script télécharge - cela peut prendre plusieurs minutes'; // cpg1.5
-  $lang_upload_php['alternative_upload'] = 'Methode de téléchargement alternative'; // cpg1.5
-  $lang_upload_php['xp_publish_promote'] = 'Si vous utilisez Windows XP/Vista, vous pouvez Utilisez l\'assitant de publication Web de Windows XP pour téléchrger des fichiers, apportant ainsi une interface Utilisateur plus simple.'; // cpg1.5
-  $lang_upload_php['more'] = 'plus'; // cpg1.5
-  $lang_upload_php['err_js_disabled'] = 'L\'interface de téléchargement Flash n\'a pas pu être chargé.  Vous devez avoir JavaScript activé pour pouvoir profiter de l\'interface de téléchargement Flash.'; // cpg1.5
-  $lang_upload_php['err_flash_disabled'] = 'L\'interface de téléchargement prends beaucoup de temps pour charger ou le chargement a échoué. Vérifiez que le plugin Flash est activé et qu\'une version fonctionnelle d\'Adobe Flash Player est installée.'; // cpg1.5
-  $lang_upload_php['err_alternate_method'] = 'A la place, vous pouvez Utilisez l\'interface de téléchargement <a href="upload.php?single=1">fichier unique</a>.'; // cpg1.5
-  $lang_upload_php['err_flash_version'] = 'L\'interface de téléchargement ne peut pas être chargé.  vous devriez installer ou mettre à jour Flash Player. Visitez le <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">site Adobe</a> pour vous procurer Flash Player.'; // cpg1.5
-  $lang_upload_php['flash_loading'] = 'L\'interface de téléchargement est en train de se charger. Veuillez patienter...'; // cpg1.5
+$lang_upload_php['title'] = 'Télécharger un fichier';
+$lang_upload_php['choose_method'] = 'Choisissez la méthode de téléchargement'; // cpg1.5
+$lang_upload_php['upload_swf']    = 'défaut - Piloté par Flash'; // cpg1.5
+$lang_upload_php['upload_single'] = 'simple - Un seul fichier à la fois'; // cpg1.5
+$lang_upload_php['up_instr_1'] = 'Maintenant vous devriez pouvoir télécharger vos fichiers en sélectionnant d\'abord l\'Album';
+$lang_upload_php['up_instr_2'] = 'Click the "Browse" button below and navigate to the file you want to upload';
+$lang_upload_php['up_instr_3'] = 'Select more files to upload by repeating step 3';
+$lang_upload_php['up_instr_4'] = 'Lorsque vous avez téléchargé les fichiers, cliquez sur le bouton "Continuer". (Note: Le bouton n\'apparaîtra qu\'après avoir téléchargé au moins un fichier).';
+$lang_upload_php['up_instr_5'] = 'You\'ll be sent to a screen where you can enter details about the uploaded files. After filling in, submit that form using the "Apply changes" button at the bottom of that form.';
+$lang_upload_php['restriction_zip'] = 'Les fichiers ZIP téléchargés resteront compressés.';
+$lang_upload_php['restriction_filesize'] = 'La taille des fichiers téléchargés sur votre serveur ne doivent pas avoir plus de %s chacuns.';  
+$lang_upload_php['reg_instr_1'] = 'Action invalide pour la création du formulaire.';
+$lang_upload_php['no_name'] = 'Nom de fichier introuvable.';
+$lang_upload_php['no_tmp_name'] = 'Impossible de télécharger'; // cpg 1.5
+$lang_upload_php['no_post'] = 'Fichier non téléchargé par POST.';
+$lang_upload_php['forb_ext'] = 'Extension de fichier non autorisée.';
+$lang_upload_php['exc_php_ini'] = 'Le poids excède celui permis par le fichier php.ini.';
+$lang_upload_php['exc_file_size'] = 'Le poids excède celui permis par l\'Admin de la Galerie Coppermine.';
+$lang_upload_php['partial_upload'] = 'Téléchargement partiel uniquement.';
+$lang_upload_php['no_upload'] = 'Le téléchargement ne s\'est pas effectué.';
+$lang_upload_php['unknown_code'] = 'Code d\'erreur de téléchargement PHP inconnu.';
+$lang_upload_php['impossible'] = 'Impossible à déplacer.';
+$lang_upload_php['not_image'] = 'Pas une image ou image endommagée';
+$lang_upload_php['not_GD'] = 'N\'est pas une extension GD.';
+$lang_upload_php['pixel_allowance'] = 'La hauteur et/ou la largeur de l\'image uploadée est plus grande que celle permise dans la configuration de la Galerie.';
+$lang_upload_php['failure'] = 'Erreur de téléchargement';
+$lang_upload_php['no_place'] = 'Le fichier précédent n\'a pas pu être placé.';
+$lang_upload_php['max_fsize'] = 'Le poids maximal autorisé pour une image est de %s';
+$lang_upload_php['picture'] = 'Fichier';
+$lang_upload_php['pic_title'] = 'Titre du fichier';
+$lang_upload_php['description'] = 'Description du fichier';
+$lang_upload_php['keywords_sel'] ='Choisissez un Mot-Clef';
+$lang_upload_php['err_no_alb_uploadables'] = 'Désolé, mais il n\'existe pas d\'Album dans lequel vous ayez le droit de télécharger des photos';
+$lang_upload_php['close'] = 'Fermez';
+$lang_upload_php['no_keywords'] = 'Désolé, aucun Mot-Clef disponible&nbsp;!';
+$lang_upload_php['regenerate_dictionary'] = 'Regénérer le dictionnaire';
+$lang_upload_php['allowed_types'] = 'Vous pouvez à télécharger des fichiers avec les extensions suivantes:'; // cpg1.5
+$lang_upload_php['allowed_img_types'] = 'Extensions d\'Image: %s'; // cpg1.5
+$lang_upload_php['allowed_mov_types'] = 'Extensions Video: %s'; // cpg1.5
+$lang_upload_php['allowed_doc_types'] = 'Extension de Document: %s'; // cpg1.5
+$lang_upload_php['allowed_snd_types'] = 'Extensions Audio: %s'; // cpg1.5
+$lang_upload_php['please_wait'] = 'Merci de patienter pendant que le script télécharge - cela peut prendre plusieurs minutes'; // cpg1.5
+$lang_upload_php['alternative_upload'] = 'Methode de téléchargement alternative'; // cpg1.5
+$lang_upload_php['xp_publish_promote'] = 'Si vous utilisez Windows XP/Vista, vous pouvez Utilisez l\'assitant de publication Web de Windows XP pour téléchrger des fichiers, apportant ainsi une interface Utilisateur plus simple.'; // cpg1.5
+$lang_upload_php['more'] = 'plus'; // cpg1.5
+$lang_upload_php['err_js_disabled'] = 'L\'interface de téléchargement Flash n\'a pas pu être chargé.  Vous devez avoir JavaScript activé pour pouvoir profiter de l\'interface de téléchargement Flash.'; // cpg1.5
+$lang_upload_php['err_flash_disabled'] = 'L\'interface de téléchargement prends beaucoup de temps pour charger ou le chargement a échoué. Vérifiez que le plugin Flash est activé et qu\'une version fonctionnelle d\'Adobe Flash Player est installée.'; // cpg1.5
+$lang_upload_php['err_alternate_method'] = 'A la place, vous pouvez Utilisez l\'interface de téléchargement <a href="upload.php?single=1">fichier unique</a>.'; // cpg1.5
+$lang_upload_php['err_flash_version'] = 'L\'interface de téléchargement ne peut pas être chargé.  vous devriez installer ou mettre à jour Flash Player. Visitez le <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">site Adobe</a> pour vous procurer Flash Player.'; // cpg1.5
+$lang_upload_php['flash_loading'] = 'L\'interface de téléchargement est en train de se charger. Veuillez patienter...'; // cpg1.5
 
 $lang_upload_swf_php['browse'] = 'Parcourir...'; //cpg1.5
 $lang_upload_swf_php['cancel_all'] = 'Annuler tous les téléchargements'; //cpg1.5

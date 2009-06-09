@@ -82,15 +82,10 @@ if ($total > 0) {
     </script>
 
     <tr>
-        <td class="tableb" align="center">
-            <select name="keyword" size="15" onchange="CM_select(this)" class="listbox">
+        <td class="tableb" align="left">
+            <select name="keyword" size="20" onchange="CM_select(this)" class="listbox">
                 $options
             </select>
-        </td>
-    </tr>
-    <tr>
-        <td class="tablef" align="center">
-            <a href="#" onclick="window.close()" class="admin_menu">{$lang_common['close']}</a>
         </td>
     </tr>
 EOT;
@@ -100,7 +95,7 @@ EOT;
     echo <<< EOT
     <tr>
         <td class="tablef" align="center">
-            <a href="#" onclick="window.close()" class="admin_menu">{$lang_upload_php['no_keywords']}</a>
+            <a href="#" onclick="parent.parent.GB_hide();" class="admin_menu">{$lang_upload_php['no_keywords']}</a>
         </td>
     </tr>
 EOT;

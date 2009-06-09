@@ -466,7 +466,7 @@ print <<<EOT
     <tr>
         <td class="tableb" style="white-space: nowrap;">
             {$icon_array['keyword']}{$keywords_insert1}<br />
-            <a href="#" onclick="return MM_openBrWindow('keyword_select.php','selectKey','width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes')">{$lang_common['keywords_insert2']}</a>
+            <a href="keyword_select.php" class="greybox">{$lang_common['keywords_insert2']}</a>
         </td>
         <td width="100%" class="tableb" valign="top">
             <input type="text" style="width: 100%" name="keywords" maxlength="255" value="{$CURRENT_PIC['keywords']}" id="keywords" class="textinput" />

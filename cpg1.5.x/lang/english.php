@@ -145,7 +145,7 @@ $lang_common['move_top'] = 'Move to top'; // cpg1.5
 $lang_common['move_bottom'] = 'Move to bottom'; // cpg1.5
 $lang_common['delete'] = 'Delete'; // cpg1.5
 $lang_common['edit'] = 'Edit'; // cpg1.5
-$lang_common['username_if_blank'] = 'Mr. X'; // cpg1.5
+$lang_common['username_if_blank'] = 'Unknown coward'; // cpg1.5
 $lang_common['albums_no_category'] = 'Albums with no category'; // cpg1.5
 $lang_common['personal_albums'] = '* Personal albums'; // cpg1.5
 $lang_common['select_album'] = 'Select Album'; // cpg1.5
@@ -160,6 +160,7 @@ $lang_common['parent_category'] = 'Parent category'; // cpg1.5
 $lang_common['edit_files'] = 'Edit files'; // cpg1.5
 $lang_common['thumbnail_view'] = 'Thumbnail view'; // cpg1.5
 $lang_common['album_manager'] = 'Album Manager'; // cpg1.5
+$lang_common['details'] = 'Details'; // cpg1.5
 
 // ------------------------------------------------------------------------- //
 // File theme.php
@@ -1862,7 +1863,7 @@ $lang_register_php['last_comments'] = 'Last comment'; // cpg1.5
 $lang_register_php['you'] = 'you'; // cpg1.5
 $lang_register_php['last_comments_detail'] = 'Click to see all comments made by %s'; // cpg1.5
 $lang_register_php['notify_admin_email_body'] = 'A new user with the username "%s" has registered in your gallery';
-$lang_register_php['pic_count'] = 'Files uploaded';
+$lang_register_php['pic_count'] = 'files uploaded';
 $lang_register_php['notify_admin_request_email_subject'] = '%s - Registration request';
 $lang_register_php['thank_you_admin_activation'] = 'Thank you.<br /><br />Your request for account activation was sent to the admin. You will receive an email if approved.';
 $lang_register_php['acct_active_admin_activation'] = 'The account is now active and an email has been sent to the user.';
@@ -2151,11 +2152,17 @@ $lang_stat_details_php['not_implemented'] = 'not implemented yet'; // cpg1.5
 
 if (defined('UPLOAD_PHP')) {
 $lang_upload_php['title'] = 'Upload file';
+$lang_upload_php['restrictions'] = 'Restrictions'; // cpg1.5
 $lang_upload_php['choose_method'] = 'Choose upload method'; // cpg1.5
-$lang_upload_php['upload_swf']    = 'default - Flash-driven'; // cpg1.5
+$lang_upload_php['upload_swf']    = 'Multiple files - Flash-driven (recommended)'; // cpg1.5
 $lang_upload_php['upload_single'] = 'simple - one file at a time'; // cpg1.5
-$lang_upload_php['up_instr_1'] = 'Now you may upload your files by first selecting the album and then using the "Browse" button below. The size of files uploaded from your client to the server should not exceed %s KB each. ZIP files uploaded will remain compressed.';
-$lang_upload_php['up_instr_2'] = 'When you have uploaded the files click the "Continue" button. (Note: The button will appear after you have uploaded at least one file).';
+$lang_upload_php['up_instr_1'] = 'Select an album from the album dropdown list';
+$lang_upload_php['up_instr_2'] = 'Click the "Browse" button below and navigate to the file you want to upload';
+$lang_upload_php['up_instr_3'] = 'Select more files to upload by repeating step 3';
+$lang_upload_php['up_instr_4'] = 'Click the "Continue" button after having all files that you want to upload (The button will appear after you have uploaded at least one file).';
+$lang_upload_php['up_instr_5'] = 'You\'ll be sent to a screen where you can enter details about the uploaded files. After filling in, submit that form using the "Apply changes" button at the bottom of that form.';
+$lang_upload_php['restriction_zip'] = 'ZIP files uploaded will remain compressed, they will not be extracted on the server.';
+$lang_upload_php['restriction_filesize'] = 'The size of files uploaded from your client to the server must not exceed %s each.';
 $lang_upload_php['reg_instr_1'] = 'Invalid action for form creation.';
 $lang_upload_php['no_name'] = 'Filename unavailable'; // cpg 1.5
 $lang_upload_php['no_tmp_name'] = 'Unable to upload'; // cpg 1.5
@@ -2172,7 +2179,7 @@ $lang_upload_php['not_GD'] = 'Not a GD extension.';
 $lang_upload_php['pixel_allowance'] = 'The height and or width of the uploaded picture is more than that allowed by the gallery config.';
 $lang_upload_php['failure'] = 'Upload Failure';
 $lang_upload_php['no_place'] = 'The previous file could not be placed.';
-$lang_upload_php['max_fsize'] = 'Maximum allowed file size is %s KB';
+$lang_upload_php['max_fsize'] = 'Maximum allowed file size is %s';
 $lang_upload_php['picture'] = 'File';
 $lang_upload_php['pic_title'] = 'File title';
 $lang_upload_php['description'] = 'File description';
@@ -2190,16 +2197,16 @@ $lang_upload_php['please_wait'] = 'Please wait while the script is uploading - t
 $lang_upload_php['alternative_upload'] = 'Alternative upload method'; // cpg1.5
 $lang_upload_php['xp_publish_promote'] = 'If you are running Windows XP/Vista, you can use the Windows XP Uploading Wizard as well to upload files, providing an easier user interface directly on the client.'; // cpg1.5
 $lang_upload_php['more'] = 'more'; // cpg1.5
-$lang_upload_php['err_js_disabled'] = 'Flash upload interface could not load.  You must have JavaScript enabled to enjoy flash upload interface.'; // cpg1.5
+$lang_upload_php['err_js_disabled'] = 'Flash upload interface could not load.  You must have JavaScript enabled to enjoy the flash upload interface.'; // cpg1.5
 $lang_upload_php['err_flash_disabled'] = 'Upload interface is taking a long time to load or the load has failed.  Please make sure that the Flash Plugin is enabled and that a working version of the Flash Player is installed.'; // cpg1.5
 $lang_upload_php['err_alternate_method'] = 'Alternately you can use the <a href="upload.php?single=1">single</a> file upload interface.'; // cpg1.5
 $lang_upload_php['err_flash_version'] = 'Upload interface could not load.  You may need to install or upgrade Flash Player. Visit the <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> to get the Flash Player.'; // cpg1.5
 $lang_upload_php['flash_loading'] = 'Upload interface is loading. Please wait a moment...'; // cpg1.5
 
 $lang_upload_swf_php['browse'] = 'Browse...'; //cpg1.5
-$lang_upload_swf_php['cancel_all'] = 'Cancel All Uploads'; //cpg1.5
+$lang_upload_swf_php['cancel_all'] = 'Cancel all uploads'; //cpg1.5
 $lang_upload_swf_php['upload_queue'] = 'Upload Queue'; //cpg1.5
-$lang_upload_swf_php['files_uploaded'] = 'Files Uploaded'; //cpg1.5
+$lang_upload_swf_php['files_uploaded'] = 'files uploaded'; //cpg1.5
 $lang_upload_swf_php['all_files'] = 'All Files'; //cpg1.5
 $lang_upload_swf_php['status_pending'] = 'Pending...'; //cpg1.5
 $lang_upload_swf_php['status_uploading'] = 'Uploading...'; //cpg1.5

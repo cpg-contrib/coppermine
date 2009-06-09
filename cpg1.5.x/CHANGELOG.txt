@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-06-09 [O] Changed keyword-insertion from list from pop-up to greybox {GauGau}
+2009-06-09 [O] Beautified upload screens by moving noise into help display {GauGau}
 2009-06-09 [B] Fixed the issues with folders with spaces and path separators in batch upload - topic 57256 {Aditya}
 2009-06-08 [A] Added file and line numbers to debug mode query list {Nibbler}
 2009-06-08 [A] Added config option to count admin views {eenemeenemuu}
