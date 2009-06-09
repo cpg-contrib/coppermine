@@ -3386,7 +3386,7 @@ EOT;
         } else {
 			$version_comment = 'Your PHP version isn\'t good enough! Minimum requirements: 4.3.0';
         }
-        $table[] = array('PHP version', phpversion(), $version_comment);
+        $table[] = array('PHP version', $my_php_version, $version_comment);
 
         $mySqlVersion = substr(cpg_phpinfo_mysql_version(),0,strpos(cpg_phpinfo_mysql_version(), '-'));
 
