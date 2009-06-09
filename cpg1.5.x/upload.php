@@ -792,19 +792,19 @@ EOT;
 } elseif ($superCage->post->keyExists('process')) {
 
     if (!$superCage->files->getRaw('/Filedata/name')) {
-        echo $lang_upload_php['no_name'];
+        echo "error|{$lang_upload_php['no_name']}|0";
         exit;
     }
 
     if (!$superCage->files->getRaw('/Filedata/tmp_name')) {
-        echo $lang_upload_php['no_tmp_name'];
+        echo "error|{$lang_upload_php['no_tmp_name']}|0";
         exit;
     }
 
     // Check to make sure the file was uploaded via POST.
     if (!is_uploaded_file($superCage->files->getRaw("/Filedata/tmp_name"))) {
         // We reject the file, and return the error.
-        echo $lang_upload_php['no_post'];
+        echo "error|{$lang_upload_php['no_post']}|0";
         exit;
     }
 
@@ -837,7 +837,7 @@ EOT;
     if ($matches[2] == '' || !is_known_filetype($matches)) {
 
         // We reject the file, and make a note of the error.
-        echo $lang_upload_php['forb_ext'];
+        echo sprintf("error|".$lang_db_input_php['err_invalid_fext'].'|0', $CONFIG['allowed_file_extensions']);
         exit;
     }
 
@@ -858,7 +858,7 @@ EOT;
         }
 
         //Make a note in the error array.
-        echo $error_message;
+        echo "error|$error_message|0";
 
         // There is no need for further tests or action, so skip the remainder of the iteration.
         exit;
@@ -889,7 +889,7 @@ EOT;
     //Now we upload the file.
     if (!(move_uploaded_file($superCage->files->getRaw("/Filedata/tmp_name"), $path_to_image))) {
         // The file upload has failed.
-        echo $lang_upload_php['impossible'];
+        echo "error|{$lang_upload_php['impossible']}|0";
         // There is no need for further tests or action, so skip the remainder of the iteration.
         exit;
     }
@@ -900,48 +900,7 @@ EOT;
     // Create a testing alias.
     $picture_alias = $matches[1].".".$matches[2];
 
-    // Check to see if the filename is consistent with that of a picture.
-    if (is_image($picture_alias)) {
-        // If it is, get the picture information
-        $imginfo = cpg_getimagesize($path_to_image);
-
-        // If cpg_getimagesize does not recognize the file as a picture, delete the picture.
-        if ($imginfo === 'FALSE') {
-            @unlink($path_to_image);
-
-            // The file upload has failed -- the image is not an image or it is corrupt.
-            echo $lang_upload_php['not_image'];
-            // There is no need for further tests or action, so skip the remainder of the iteration.
-            exit;
-
-        // JPEG and PNG only are allowed with GD. If the image is not allowed for GD,delete it.
-        } elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && $CONFIG['GIF_support'] == 0) {
-            @unlink($path_to_image);
-
-            // The file upload has failed -- the image is not allowed with GD.
-            echo $lang_upload_php['not_GD'];
-
-            // There is no need for further tests or action, so skip the remainder of the iteration.
-            exit;
-
-        // Check that picture size (in pixels) is lower than the maximum allowed. If not, delete it.
-        } elseif (max($imginfo[0], $imginfo[1]) > $CONFIG['max_upl_width_height']) {
-            if ((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) //($CONFIG['auto_resize']==1)
-            {
-                resize_image($uploaded_pic, $uploaded_pic, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
-            }
-            else
-            {
-                @unlink($path_to_image);
-                // The file upload has failed -- the image dimensions exceed the allowed amount.
-                echo $lang_upload_php['pixel_allowance'];
-
-                // There is no need for further tests or action, so skip the remainder of the iteration.
-                exit;
-            }
-        }
-    // Image is ok
-    }
+    
 
     // Check if user selected an album to upload picture to. If not, die with error.
     // added by frogfoot
@@ -949,7 +908,7 @@ EOT;
 
     // If no album was select then give an error
     if (!$album) {
-        echo $lang_db_input_php['album_not_selected'];
+        echo "error|{$lang_db_input_php['album_not_selected']}|0";
         exit;
     }
 
@@ -957,7 +916,7 @@ EOT;
     if (!GALLERY_ADMIN_MODE) {
         $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "' OR owner = '" . USER_ID . "')");
         if (mysql_num_rows($result) == 0) {
-            echo $lang_db_input_php['unknown_album'];
+            echo "error|{$lang_db_input_php['unknown_album']}|1";
             exit;
         }
         $row = mysql_fetch_array($result);
@@ -966,7 +925,7 @@ EOT;
     } else {
         $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
         if (mysql_num_rows($result) == 0) {
-            echo $lang_db_input_php['unknown_album'];
+            echo "error|{$lang_db_input_php['unknown_album']}|1";
             exit;
         }
         $row = mysql_fetch_array($result);
@@ -981,7 +940,7 @@ EOT;
         if (!is_dir($dest_dir)) {
             mkdir($dest_dir, octdec($CONFIG['default_dir_mode']));
             if (!is_dir($dest_dir)) {
-                echo sprintf($lang_db_input_php['err_mkdir'], $dest_dir);
+                echo sprintf('error|'.$lang_db_input_php['err_mkdir'].'|1', $dest_dir);
                 exit;
             }
             @chmod($dest_dir, octdec($CONFIG['default_dir_mode'])); //silence the output in case chmod is disabled
@@ -998,7 +957,7 @@ EOT;
 
     // Check that target dir is writable
     if (!is_writable($dest_dir)) {
-        echo sprintf($lang_db_input_php['dest_dir_ro'], $dest_dir);
+        echo sprintf('error|'.$lang_db_input_php['dest_dir_ro'].'|1', $dest_dir);
         exit;
     }
 
@@ -1020,7 +979,7 @@ EOT;
 
     // prevent moving the edit directory...
     if (is_dir($path_to_image)) {
-        echo $lang_upload_php['failure'] . " - '$path_to_image'";
+        echo 'error|'.$lang_upload_php['failure'] . " - '$path_to_image'|0";
         exit;
     }
 
