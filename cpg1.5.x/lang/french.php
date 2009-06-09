@@ -1073,6 +1073,9 @@ if (defined('DELETE_PHP')) {
   $lang_delete_php['add_group'] = 'Ajouter un Groupe Secondaire';
   $lang_delete_php['add_group_to_group'] = 'Ajouter l\'Utilisateur %s au Groupe %s. Il est maintenant Membre de %s comme Groupe Primaire et de %s comme Groupe Secondaire.';
   $lang_delete_php['status'] = 'Statut';
+  $lang_delete_php['updating_album'] = 'Mise à jour de la position de l\'album ';//cpg1.5
+  $lang_delete_php['position'] = ' à ';//cpg1.5 
+  $lang_delete_php['updating_pic'] = 'Mise à jour de la position de l\'image ';//cpg1.5
 }
 
 // ----------------------- //

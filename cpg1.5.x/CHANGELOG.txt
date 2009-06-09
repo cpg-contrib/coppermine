@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-06-09 [C] Replaced hard-coded lang strings with lang variables ind delete.php {Frantz}
 2009-06-09 [A] Added support for HTML5 <video> and <audio> tags {Nibbler}
 2009-06-09 [O] Changed keyword-insertion from list from pop-up to greybox {GauGau}
 2009-06-09 [O] Beautified upload screens by moving noise into help display {GauGau}

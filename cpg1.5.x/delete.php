@@ -462,7 +462,7 @@ case 'albmgr':
                     continue;
                 }
 
-                $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\"> Updating album '".$option_value."' Position to ". $rowset[$key]['pos'].'</td></tr>' . $LINEBREAK;
+                $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">".$lang_delete_php['updating_album'].$option_value.$lang_delete_php['position']. $rowset[$key]['pos'].'</td></tr>' . $LINEBREAK;
                 $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET pos = '{$rowset[$key]['pos']}' WHERE aid = '{$option_value}' $restrict LIMIT 1";
                 cpg_db_query($query);
             }
@@ -531,7 +531,7 @@ case 'picmgr':
             }
            
             //update the new position
-            $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\"> Updating picture ".$option_value." Position to ".$rowset[$key]['position'].'</td></tr>' . $LINEBREAK;
+            $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">".$lang_delete_php['updating_pic'].$option_value.$lang_delete_php['position'].$rowset[$key]['position'].'</td></tr>' . $LINEBREAK;
             $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET position = '{$rowset[$key]['position']}' WHERE pid = '{$option_value}' $restrict LIMIT 1";
             cpg_db_query($query);
         }
