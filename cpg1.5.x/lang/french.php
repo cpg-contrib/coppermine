@@ -141,7 +141,7 @@ $lang_common['move_top'] = 'En premier'; // cpg1.5
 $lang_common['move_bottom'] = 'En dernier'; // cpg1.5
 $lang_common['delete'] = 'Effacer'; // cpg1.5
 $lang_common['edit'] = 'Modifier'; // cpg1.5
-$lang_common['username_if_blank'] = 'M. XouY'; // cpg1.5
+$lang_common['username_if_blank'] = 'M. X'; // cpg1.5
 $lang_common['albums_no_category'] = 'Albums sans Catégorie'; // cpg1.5
 $lang_common['personal_albums'] = '* Album personnel'; // cpg1.5
 $lang_common['select_album'] = 'Album sélectionné'; // cpg1.5
@@ -156,7 +156,7 @@ $lang_common['parent_category'] = 'Catégorie parente'; // cpg1.5
 $lang_common['edit_files'] = 'Editer les fichiers'; // cpg1.5
 $lang_common['thumbnail_view'] = 'Vue des Vignettes'; // cpg1.5
 $lang_common['album_manager'] = 'Gestion des Albums'; // cpg1.5
-$lang_common['details'] = 'Details'; // cpg1.5
+$lang_common['details'] = 'Détails'; // cpg1.5
 
 
 // ----------------------- //
@@ -917,6 +917,7 @@ $lang_admin_php['hit_details'] =   'Enregistrer le détail des statistiques des 
 $lang_admin_php['display_stats_on_index'] =   'Afficher les statistiques sur la page d\'index'; // cpg1.5
 $lang_admin_php['count_file_hits'] = 'Compter les visualisations des Fichiers'; // cpg1.5
 $lang_admin_php['count_album_hits'] = 'Compter les visualisations des Albums'; // cpg1.5
+$lang_admin_php['count_admin_hits'] = 'Compter les visualisations par l\'administrateur'; // cpg1.5
 $lang_admin_php['debug_mode'] =   'Activer le Mode Débogage'; // cpg1.5
 $lang_admin_php['debug_notice'] =   'Afficher les avertissements dans le Mode Débogage'; // cpg1.5
 $lang_admin_php['offline'] =   'La Galerie est Hors Ligne (sauf pour l\'Admin)'; // cpg1.5
@@ -1860,7 +1861,7 @@ EOT;
   $lang_register_php['you'] = 'vous'; //cpg1.5
   $lang_register_php['last_comments_detail'] = 'Cliquer pour voir tous les comentaires de %s'; //cpg1.5
   $lang_register_php['notify_admin_email_body'] = 'Un Nouvel Utilisateur s\'est inscrit dans votre Galerie, sous le nom &quot;%s&quot;';
-  $lang_register_php['pic_count'] = 'Fichiers téléchargés';
+  $lang_register_php['pic_count'] = 'fichiers téléchargés';
   $lang_register_php['notify_admin_request_email_subject'] = '%s - Demande d\'enregistrement';
   $lang_register_php['thank_you_admin_activation'] = 'Merci.<br /><br />Votre requête d\'activation du Compte a été envoyé à l\'Administrateur. Vous recevrez un courriel si votre inscription est approuvée.';
   $lang_register_php['acct_active_admin_activation'] = 'Le Compte est maintenant actif et un courriel a été envoyé à l\'Utilisateur.';
@@ -2149,14 +2150,15 @@ if (defined('STAT_DETAILS_PHP')) {
 
 if (defined('UPLOAD_PHP')) {
 $lang_upload_php['title'] = 'Télécharger un fichier';
+$lang_upload_php['restrictions'] = 'Restrictions'; // cpg1.5
 $lang_upload_php['choose_method'] = 'Choisissez la méthode de téléchargement'; // cpg1.5
-$lang_upload_php['upload_swf']    = 'défaut - Piloté par Flash'; // cpg1.5
+$lang_upload_php['upload_swf']    = 'Fichiers multiples - interface Flash(recommandé)'; // cpg1.5
 $lang_upload_php['upload_single'] = 'simple - Un seul fichier à la fois'; // cpg1.5
-$lang_upload_php['up_instr_1'] = 'Maintenant vous devriez pouvoir télécharger vos fichiers en sélectionnant d\'abord l\'Album';
-$lang_upload_php['up_instr_2'] = 'Click the "Browse" button below and navigate to the file you want to upload';
-$lang_upload_php['up_instr_3'] = 'Select more files to upload by repeating step 3';
+$lang_upload_php['up_instr_1'] = 'Sélectionnez un albums dans la liste déroulante';
+$lang_upload_php['up_instr_2'] = 'Cliquez sur le bouton "Parcourir" ci dessous et navigez vers le fichier que vou svoullez télécharger';
+$lang_upload_php['up_instr_3'] = 'Sélectionnez d\'autres fichiers à télécharger en répétant l\'étape 3';
 $lang_upload_php['up_instr_4'] = 'Lorsque vous avez téléchargé les fichiers, cliquez sur le bouton "Continuer". (Note: Le bouton n\'apparaîtra qu\'après avoir téléchargé au moins un fichier).';
-$lang_upload_php['up_instr_5'] = 'You\'ll be sent to a screen where you can enter details about the uploaded files. After filling in, submit that form using the "Apply changes" button at the bottom of that form.';
+$lang_upload_php['up_instr_5'] = 'Vous serez dirigé vers un écran vous permettant d\'enter les détails concernant les fichiers téléchargés. Après avoir complèté le formulaire, soumettez le en utilisant le bouton "Appliquer les changements" au bas du formulaire.';
 $lang_upload_php['restriction_zip'] = 'Les fichiers ZIP téléchargés resteront compressés.';
 $lang_upload_php['restriction_filesize'] = 'La taille des fichiers téléchargés sur votre serveur ne doivent pas avoir plus de %s chacuns.';  
 $lang_upload_php['reg_instr_1'] = 'Action invalide pour la création du formulaire.';
@@ -2527,6 +2529,7 @@ if (defined('VIEWLOG_PHP')) {
   $lang_viewlog_php['delete_this'] = 'Supprimer ce log';
   $lang_viewlog_php['view_logs'] = 'Consulter les logs';
   $lang_viewlog_php['no_logs'] = 'Pas de log créé.';
+  $lang_viewlog_php['last_updated'] = 'dernière mise à jour'; // cpg1.5
 }
 
 // ----------------------- //
