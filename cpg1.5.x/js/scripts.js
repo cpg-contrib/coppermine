@@ -24,6 +24,11 @@ var KEY_CODES = {
 
 var GB_ANIMATION = true;
 
+$(function() {
+    $(".cpg_zebra tr:even").addClass("tableb");
+	$(".cpg_zebra tr:odd").addClass("tableb_alternate");
+});
+
 function MM_openBrWindow(theURL,winName,features) { //v2.0
     window.open(theURL,winName,features);
 }

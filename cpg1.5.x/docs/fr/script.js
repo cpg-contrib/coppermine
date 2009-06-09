@@ -24,9 +24,9 @@ $(function() {
         animated: "medium",
         control:"#sidetreecontrol"
     });
-    $(".maintable tr:even").addClass("tableb");;
-	$(".maintable tr:odd").addClass("tableb_alternate");;
-})
+    $(".cpg_zebra tr:even").addClass("tableb");
+	$(".cpg_zebra tr:odd").addClass("tableb_alternate");
+});
 
 function cpgDocToc() {
   if (getUrlParameters('hide_nav') == 1) {

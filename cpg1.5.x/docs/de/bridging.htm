@@ -72,7 +72,7 @@
 <a name="integrating_cookie_start"></a><h3>Authentication by cookie<a href="#integrating_cookie_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The login integration uses your bulletin board cookies, therefore it won't work if your board cookies are not visible by Coppermine. So unless you are an expert, keep things simple and install Coppermine and your bridge app on the same domain.</p>
 <div class="cpg_example">
-	<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+	<table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
 	    <tr>
 	        <td>This <strong>will</strong> work:</td>
 	        <td>This <strong title="depending on your subdomain setup">might</strong> work:</td>
@@ -174,7 +174,7 @@ If you have a custom-made bridge file, just copy that bridge file into coppermin
 <p>Relative path to your bridge app, seen from your Coppermine folder (e.g. "../forum/" if your bridge app is at http://www.yourdomain.tld/forum/ and Coppermine at http://www.yourdomain.tld/gallery/)</p>
 <p>A relative path does <strong>not</strong> start with a slash - that's the visual difference to an absolute path. You need to think on folder/sub-folder level to understand the concept of relative paths. Imagine that all folders on your webserver where the branches of a tree that was turned upside down: the root being at the top and branches going to the bottom. The relative path describes the way you need to take from a particular folder (the folder where coppermine resides in) to another folder (the folder where your bridge app resides in). The notation for relative paths contains a special way to say "one level up": that's two dots, followed by a forward slash (<tt class="code">../</tt>). This being said, let's look at some examples:</p>
 <div class="cpg_example">
-<table border="0" cellspacing="1" cellpadding="0" class="maintable">
+<table border="0" cellspacing="1" cellpadding="0" class="cpg_zebra">
     <tr>
         <th>Your coppermine install</th>
         <th>Your bridge app install</th>

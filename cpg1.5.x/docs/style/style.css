@@ -51,9 +51,31 @@ p {
     margin-bottom: 1px;
 }
 
-.tableh1, .maintable th {
+.cpg_zebra {
+    border: 1px solid #0E72A4;
+    background-color: #EFEFEF;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+table.cpg_zebra > tbody > tr.tableb > td {
+	border-right:1px solid #E4E4E4;
+	padding-left:3px;
+	padding-right:3px;
+}
+
+table.cpg_zebra > tbody > tr.tableb_alternate > td {
+	border-right:1px solid #EFEFEF;
+	padding-left:3px;
+	padding-right:3px;
+}
+
+.tableh1, .cpg_zebra th {
     background : #0E72A4 ;
     color : #FFFFFF;
+    border-right:1px solid #FFFFFF;
+    border-top:1px solid #FFFFFF;
+    border-bottom:1px solid #FFFFFF;
     padding-top: 3px;
     padding-right: 10px;
     padding-bottom: 3px;
