@@ -72,15 +72,14 @@ $(document).ready(function(){
             
             i.onload = function() {
                 
-                if(i.complete){
-                $("#show_image").attr({
+                //if(i.complete){
+                $("#showImage").attr({
                     src: i.src,
                     title: Title,
                     alt: "jQuery Logo",
-                    style: "visibility: hidden;"
-                }).fadeIn("fast");
+                    style: "display: none;"
+                }).fadeIn();
                 
-                $("#show_image").css('visibility', 'visible');
                 $("#title").html(Title);
                 /** set Pid to temp */
                 PidTemp = Pid; 
@@ -88,7 +87,7 @@ $(document).ready(function(){
             
             //now set time to loaded image.
             runSlideShow();
-            }
+            //}
         }       
     }
 
