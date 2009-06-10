@@ -201,18 +201,8 @@ EOT;
     if ($count > 0) {
 
         $row_counter  = 0;
-        $loop_counter = 0;
-        
+       
         while ( ($row = mysql_fetch_assoc($result)) ) {
-            if ($loop_counter == 0) {
-                $row_style_class = 'tableb';
-            } else {
-                $row_style_class = 'tableb tableb_alternate';
-            }
-            $loop_counter++;
-            if ($loop_counter > 1) {
-                $loop_counter = 0;
-            }
             if ($row['user_id']) {
                 $username     = get_username($row['user_id']);
                 $view_profile = '<a href="profile.php?uid=' . $row['user_id'] . '">' . cpg_fetch_icon('my_profile', 0, $lang_usermgr_php['view_profile']) . '</a>';
@@ -568,12 +558,12 @@ print <<< EOT
 <form action="{$CPG_PHP_SELF}?sort={$sort}&amp;page={$page}#ban_users" method="post" name="banlist" id="banlist" onsubmit="return checkBanFormSubmit();">
 <a name="ban_users"></a>
 EOT;
-starttable('100%', cpg_fetch_icon('ban_user', 2) . $lang_banning_php['title'] . $help_array['global'], 6);
+starttable('100%', cpg_fetch_icon('ban_user', 2) . $lang_banning_php['title'] . $help_array['global'], 6, 'cpg_zebra');
 // Output the results of the queries
 if (!empty($action_output)) {
     print <<< EOT
     <tr>
-        <td class="tableb" colspan="6">
+        <td colspan="6">
             <ul>
                 {$action_output}
             </ul>
@@ -649,10 +639,10 @@ print <<< EOT
 <form action="http://ws.arin.net/whois/" method="get" name="lookup" id="cpgform2" target="_blank">
 EOT;
 
-starttable('-2');
+starttable('-2','','','');
 print <<< EOT
     <tr>
-        <td class="tablef">
+        <td class="tableh2">
             <strong>{$lang_banning_php['lookup_ip']}</strong>{$help_array['ip_lookup']}
         </td>
         <td class="tableb">

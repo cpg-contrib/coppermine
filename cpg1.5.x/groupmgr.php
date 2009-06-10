@@ -297,12 +297,12 @@ starttable('100%', cpg_fetch_icon('groups_mgr', 2).$lang_groupmgr_php['group_man
 echo <<<EOT
 
         <tr style="white-space:nowrap">
-                <td class="tableh2"><input type="checkbox" name="checkAll" id="checkAll" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
-                <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['group_name']}</span>$help_group</td>
-                <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['permissions']}</span>$help_permissions</td>
-                <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['public_albums']}</span> $help_public</td>
-                <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['personal_gallery']}</span>$help_personal</td>
-                <td class="tableh2"><span class="statlink">{$lang_groupmgr_php['access_level']}</span>$help_access_level</td>
+                <th class="tableh2"><input type="checkbox" name="checkAll" id="checkAll" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></th>
+                <th class="tableh2"><span class="statlink">{$lang_groupmgr_php['group_name']}</span>$help_group</th>
+                <th class="tableh2"><span class="statlink">{$lang_groupmgr_php['permissions']}</span>$help_permissions</th>
+                <th class="tableh2"><span class="statlink">{$lang_groupmgr_php['public_albums']}</span> $help_public</th>
+                <th class="tableh2"><span class="statlink">{$lang_groupmgr_php['personal_gallery']}</span>$help_personal</th>
+                <th class="tableh2"><span class="statlink">{$lang_groupmgr_php['access_level']}</span>$help_access_level</th>
         </tr>
 
 EOT;
@@ -340,8 +340,11 @@ EOT;
 }
 endtable();
 list($timestamp, $form_token) = getFormToken();	
-echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
-<input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" /></form>";
+echo <<< EOT
+<input type="hidden" name="form_token" value="{$form_token}" />
+<input type="hidden" name="timestamp" value="{$timestamp}" />
+</form>
+EOT;
 pagefooter();
 ob_end_flush();
 

@@ -1988,7 +1988,7 @@ if (!function_exists('starttable')) {  //{THEMES}
 ** Section <<<starttable>>> - START
 ******************************************************************************/
 // Function to start a 'standard' table
-function starttable($width = '-1', $title = '', $title_colspan = '1')
+function starttable($width = '-1', $title = '', $title_colspan = '1', $zebra_class = '')
 {
     global $CONFIG;
 
@@ -1997,7 +1997,7 @@ function starttable($width = '-1', $title = '', $title_colspan = '1')
     echo <<<EOT
 
 <!-- Start standard table -->
-<table align="center" width="$width" cellspacing="1" cellpadding="0" class="maintable">
+<table align="center" width="$width" cellspacing="1" cellpadding="0" class="maintable $zebra_class">
 
 EOT;
     if ($title) {

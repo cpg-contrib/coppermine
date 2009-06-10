@@ -682,9 +682,9 @@ $icon = cpg_fetch_icon('cat_mgr', 2);
 
 echo <<<EOT
         <tr>
-                <td class="tableh1"><span class="statlink">{$icon}{$lang_catmgr_php['category']}</span>$help</td>
-                <td colspan="6" class="tableh1" align="center"><strong><span class="statlink">{$lang_catmgr_php['operations']}</span></strong></td>
-                <td class="tableh1" align="center"><strong><span class="statlink">{$lang_catmgr_php['move_into']}</span></strong></td>
+                <th class="tableh1"><span class="statlink">{$icon}{$lang_catmgr_php['category']}</span>$help</th>
+                <th colspan="6" class="tableh1" align="center"><strong><span class="statlink">{$lang_catmgr_php['operations']}</span></strong></th>
+                <th class="tableh1" align="center"><strong><span class="statlink">{$lang_catmgr_php['move_into']}</span></strong></th>
         </tr>
         <form method="get" action="$CPG_PHP_SELF" name="cpgform" id="cpgform">
 

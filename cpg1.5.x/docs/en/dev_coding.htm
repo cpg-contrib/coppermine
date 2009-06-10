@@ -208,7 +208,7 @@ if ($foo == $bar) {
 
 <a name="dev_coding_linebreaks"></a><h3>Line breaks<a href="#dev_coding_linebreaks" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>To echo line breaks to the HTML output, use the <a href="http://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.heredoc" rel="external" class="external">heredoc syntax</a> or use the variable <tt class="code">$LINEBREAK</tt> instead of hardcoding line breaks into the code.</p>
-<p>Remember to make the variable global inside functions.</p>
+<p>Remember to make the variable <tt class="code">$LINEBREAK</tt> global inside functions.</p>
 <div class="cpg_example">
 <p>Good:</p>
 <pre class="code">echo '&lt;h1&gt;Hello world&lt;/h1&gt;' . $LINEBREAK;

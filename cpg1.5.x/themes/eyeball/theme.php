@@ -126,7 +126,7 @@ EOT;
 }
 
 // Function to start a 'standard' table
-function starttable($width = '-1', $title = '', $title_colspan = '1')
+function starttable($width = '-1', $title = '', $title_colspan = '1', $zebra_class = '')
 {
     global $CONFIG;
     global $table_need_close;
@@ -154,14 +154,14 @@ function starttable($width = '-1', $title = '', $title_colspan = '1')
 <table align="center" width="$width" cellspacing="0" cellpadding="0">
   <tr>
    <td><img src="images/spacer.gif" width="20" height="1" border="0" alt="" /></td>
-        <td width="100%"><table width="100%" cellspacing="1" cellpadding="0" class="maintableb">
+        <td width="100%"><table width="100%" cellspacing="1" cellpadding="0" class="maintableb $zebra_class">
 
 EOT;
     } else {
         echo <<<EOT
 
 <!-- Start standard table -->
-<table align="center" width="$width" cellspacing="0" cellpadding="0" class="maintable">
+<table align="center" width="$width" cellspacing="0" cellpadding="0" class="maintable $zebra_class">
 
 EOT;
     }

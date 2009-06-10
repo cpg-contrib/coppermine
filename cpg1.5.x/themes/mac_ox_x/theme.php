@@ -149,7 +149,7 @@ EOT;
 }
 
 // Function to start a 'standard' table
-function starttable($width = '-1', $title = '', $title_colspan = '1')
+function starttable($width = '-1', $title = '', $title_colspan = '1', $zebra_class = '')
 {
     global $CONFIG;
 
@@ -175,7 +175,7 @@ function starttable($width = '-1', $title = '', $title_colspan = '1')
 <table align="center" width="$width" cellspacing="0" cellpadding="0">
   <tr>
    <td style="background-image:url(themes/mac_ox_x/images/main_table_r1_c1b.gif);" valign="top"><img name="main_table_r1_c1" src="themes/mac_ox_x/images/main_table_r1_c1.gif" border="0"  alt="" /></td>
-        <td width="100%"><table width="100%" cellspacing="1" cellpadding="0" class="maintableb">
+        <td width="100%"><table width="100%" cellspacing="1" cellpadding="0" class="maintableb $zebra_class">
 
 EOT;
     } else {
@@ -185,7 +185,7 @@ EOT;
 <table align="center" width="$width" cellspacing="0" cellpadding="0">
   <tr>
    <td style="background-image:url(themes/mac_ox_x/images/main_table_r1_c1b.gif);" valign="top"><img name="main_table_r1_c1" src="themes/mac_ox_x/images/main_table_r1_c1.gif" border="0"  alt="" /></td>
-        <td width="100%"><table width="100%" cellspacing="1" cellpadding="0" class="maintable">
+        <td width="100%"><table width="100%" cellspacing="1" cellpadding="0" class="maintable $zebra_class">
 
 EOT;
     }

@@ -121,7 +121,7 @@ pageheader($lang_albmgr_php['title']);
 
 EOT;
 
-starttable('100%', cpg_fetch_icon('alb_mgr', 2).$lang_albmgr_php['title'].'&nbsp;'.cpg_display_help('f=albums.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1);
+starttable('100%', cpg_fetch_icon('alb_mgr', 2).$lang_albmgr_php['title'].'&nbsp;'.cpg_display_help('f=albums.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1, '');
     echo <<< EOT
         <noscript>
         <tr>
@@ -227,7 +227,7 @@ if (GALLERY_ADMIN_MODE || ($cat == USER_ID + FIRST_USER_CAT)) {
     }   
     
     echo <<< EOT
-    <td style="width: 115px" id="control">
+    <td style="width: 200px" id="control">
         <a id="up_click" class="click">{$icon_array['up']}</a>
         <a id="down_click" class="click">{$icon_array['down']}</a>
         <a id="delete_album" class="click">{$icon_array['delete']}</a>
@@ -242,7 +242,7 @@ EOT;
 } else {
     //we still need to show buttons to add/edit albums
     echo <<< EOT
-    <td style="width: 115px" id="control">
+    <td style="width: 200px" id="control">
         <a id="delete_album" class="click">{$icon_array['delete']}</a>
         <a id="modify_album" class="click">{$icon_array['modifyalb']}</a>
         <a id="editfiles_album" class="click">{$icon_array['edit_files']}</a>
