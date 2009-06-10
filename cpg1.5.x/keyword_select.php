@@ -67,12 +67,12 @@ if ($total > 0) {
 
     function CM_select(f)
     {
-        new_keyword = window.document.keywordform.elements[0].value;
-        var current_keywords = window.opener.document.getElementById('keywords{$formFieldId}').value;
+        new_keyword = f.value;
+		var current_keywords = window.parent.document.getElementById('keywords{$formFieldId}').value;
         var substrings = current_keywords.split(new_keyword);
         if (substrings.length <= 1) {
                 keyword_separator = (current_keywords.length == 0) ? '' : '$keyword_separator';
-                window.opener.document.getElementById('keywords{$formFieldId}').value += keyword_separator + new_keyword;
+                window.parent.document.getElementById('keywords{$formFieldId}').value += keyword_separator + new_keyword;
         }
 
         return false;
@@ -83,7 +83,7 @@ if ($total > 0) {
 
     <tr>
         <td class="tableb" align="left">
-            <select name="keyword" size="20" onchange="CM_select(this)" class="listbox">
+            <select name="keyword" size="20" onchange="CM_select(this);" class="listbox">
                 $options
             </select>
         </td>
