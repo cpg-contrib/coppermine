@@ -22,6 +22,9 @@ define('CATMGR_PHP', true);
 
 require('include/init.inc.php');
 
+set_js_var('lang_confirm_delete', $lang_catmgr_php['confirm_delete']);
+js_include('js/catmgr.js');
+
 if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
@@ -221,10 +224,6 @@ EOT;
     
     echo <<< EOT
 
-function ChangeThumb(index)
-{
-        document.images.Thumb.src = Pic[index]
-}
 </script>
 
 EOT;
@@ -611,78 +610,69 @@ pageheader($lang_catmgr_php['manage_cat']);
 echo <<< EOT
 
 <script language="javascript" type="text/javascript">
-function confirmDel(catName)
-{
-    return confirm("{$lang_catmgr_php['confirm_delete']} (" + catName + ") ?");
-}
-
-function build(target, category)
-{
-    if (target.length > 1) {
-        return;
-    }
-    
-    pos = target.options[0];
-
-    source = document.getElementById('build_source');
-
-    var oListFragment = document.createDocumentFragment();
-
-    for (var i = 0; i < source.length; i++){
-
-        option = source.options[i];
-
-        if (option.value == category){
-
-            target.insertBefore(oListFragment, target.options[0]);
-            var oListFragment = document.createDocumentFragment();
-            target.selectedIndex = i;
-
-        } else {
-
-            child = option.cloneNode(true);
-            child.value = option.value;
-            child.text = option.text;
-
-            oListFragment.appendChild(child);
-        }
-    }
-
-    target.appendChild(oListFragment);
-
-    target.focus();
-}
-
-function setbuild(obj, cid)
-{
-    var func = function () { build(obj, cid) }
-
-    if (typeof(document.onbeforeactivate) == 'undefined') {
-        obj.onfocus = func;
-    } else {
-        obj.onbeforeactivate = func;
-    }
-}
-
-function updateParent(obj, cid)
-{
-    if (obj.options[obj.selectedIndex].value) {
-        window.location.href = 'catmgr.php?op=setparent&cid=' + cid + '&parent=' + obj.options[obj.selectedIndex].value + '&form_token={$form_token}&timestamp={$timestamp}';
-    }
-}
+	function updateParent(obj, cid)
+	{
+	    if (obj.options[obj.selectedIndex].value) {
+	        window.location.href = 'catmgr.php?op=setparent&cid=' + cid + '&parent=' + obj.options[obj.selectedIndex].value + '&form_token={$form_token}&timestamp={$timestamp}';
+	    }
+	}
 </script>
 
 EOT;
 
+starttable('100%', cpg_fetch_icon('cat_mgr', 2) . $lang_catmgr_php['category'] . '&nbsp;' . cpg_display_help('f=categories.htm&amp;as=cat_cp&amp;ae=cat_cp_end&amp;top=1', '800', '600'),1);
+
+echo <<< EOT
+	<tr>
+		<td class="tableb">
+EOT;
+
+starttable('100%');
+// configure sort category alphabetically
+$yes_selected = $CONFIG['categories_alpha_sort'] ? 'checked="checked"' : '';
+$no_selected = !$CONFIG['categories_alpha_sort'] ? 'checked="checked"' : '';
+
+$help = '&nbsp;' . cpg_display_help('f=configuration.htm&amp;as=admin_album_list_alphasort_start&amp;ae=admin_album_list_alphasort_end&amp;top=1', '600', '250');
+
+echo <<<EOT
+        <tr>
+            <td class="tablef" colspan="8">
+                        <form name="catsortconfig" action="$CPG_PHP_SELF" method="post" name="cpgform2" id="cpgform2">
+                        {$lang_catmgr_php['categories_alpha_sort']}
+                        {$help}
+                        &nbsp;&nbsp;
+                        <input type="radio" id="categories_alpha_sort1" name="categories_alpha_sort" value="1"  onclick="checkFormSubmit()" $yes_selected />
+                        <label for="categories_alpha_sort1" class="clickable_option">{$lang_common['yes']}</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="categories_alpha_sort0" name="categories_alpha_sort" value="0"  onclick="checkFormSubmit()" $no_selected />
+                        <label for="categories_alpha_sort0" class="clickable_option">{$lang_common['no']}</label>
+                        &nbsp;&nbsp;
+                        <input type="hidden" name="update_config" value="{$lang_catmgr_php['save_cfg']}" class="button" />
+                        <input type="hidden" name="form_token" value="{$form_token}" />
+                        <input type="hidden" name="timestamp" value="{$timestamp}" />
+                        </form>
+                </td>
+        </tr>
+EOT;
+endtable();
+
+echo <<< EOT
+		</td>
+	</tr>
+	<tr>
+		<td class="tableb">
+EOT;
+
+
 starttable('100%');
 
-$help = '&nbsp;' . cpg_display_help('f=categories.htm&amp;as=cat_cp&amp;ae=cat_cp_end&amp;top=1', '800', '600');
+$help = '&nbsp;' . cpg_display_help('f=categories.htm&amp;as=cat_cp_page_controls_categories&amp;ae=cat_cp_page_controls_categories_end&amp;top=1', '800', '600');
 
 $icon = cpg_fetch_icon('cat_mgr', 2);
 
 echo <<<EOT
         <tr>
-                <th class="tableh1"><span class="statlink">{$icon}{$lang_catmgr_php['category']}</span>$help</th>
+                <th class="tableh1"><span class="statlink">{$lang_catmgr_php['manage_cat']}</span>$help</th>
                 <th colspan="6" class="tableh1" align="center"><strong><span class="statlink">{$lang_catmgr_php['operations']}</span></strong></th>
                 <th class="tableh1" align="center"><strong><span class="statlink">{$lang_catmgr_php['move_into']}</span></strong></th>
         </tr>
@@ -697,48 +687,19 @@ echo <<<EOT
 
 EOT;
 
-// configure sort category alphabetically
-$yes_selected = $CONFIG['categories_alpha_sort'] ? 'checked="checked"' : '';
-$no_selected = !$CONFIG['categories_alpha_sort'] ? 'checked="checked"' : '';
-
-$help = '&nbsp;' . cpg_display_help('f=configuration.htm&amp;as=admin_album_list_alphasort_start&amp;ae=admin_album_list_alphasort_end&amp;top=1', '600', '250');
-
-echo <<<EOT
-        <script language="javascript" type="text/javascript">
-        <!--
-        function checkFormSubmit()
-        {
-            document.catsortconfig.submit()
-        }
-        -->
-        </script>
-
-<form name="catsortconfig" action="$CPG_PHP_SELF" method="post" name="cpgform2" id="cpgform2">
-        <tr>
-            <td class="tablef" colspan="8">
-                        {$lang_catmgr_php['categories_alpha_sort']}
-                        {$help}
-                        &nbsp;&nbsp;
-                        <input type="radio" id="categories_alpha_sort1" name="categories_alpha_sort" value="1"  onclick="checkFormSubmit()" $yes_selected />
-                        <label for="categories_alpha_sort1" class="clickable_option">{$lang_common['yes']}</label>
-                        &nbsp;&nbsp;
-                        <input type="radio" id="categories_alpha_sort0" name="categories_alpha_sort" value="0"  onclick="checkFormSubmit()" $no_selected />
-                        <label for="categories_alpha_sort0" class="clickable_option">{$lang_common['no']}</label>
-                        &nbsp;&nbsp;
-                        <input type="hidden" name="update_config" value="{$lang_catmgr_php['save_cfg']}" class="button" />
-                        <input type="hidden" name="form_token" value="{$form_token}" />
-                        <input type="hidden" name="timestamp" value="{$timestamp}" />
-                        
-                </td>
-        </tr>
-        </form>
-EOT;
 endtable();
 
-echo '<br />' . $LINEBREAK;
 
-starttable('100%', $lang_catmgr_php['update_create'], 2);
+echo <<< EOT
+		</td>
+	</tr>
+	<tr>
+		<td class="tableb">
+EOT;
 
+$help_update_create = '&nbsp;' . cpg_display_help('f=categories.htm&amp;as=cat_cp_page_controls_create&amp;ae=cat_cp_page_controls_create_end&amp;top=1', '800', '600');
+
+starttable('100%', $lang_catmgr_php['update_create'] . $help_update_create, 2);
 
 $lb = cat_list_box($current_category['cid'], $current_category['parent'], false);
 
@@ -746,11 +707,8 @@ $ug_lb = usergroup_list_box($current_category['cid']);
 
 $op = $current_category['cid'] ? 'updatecat' : 'createcat';
 
-$description_help = '';
+$description_help = '&nbsp;' . cpg_display_help('f=categories.htm&amp;as=cat_album_create&amp;ae=cat_album_create_end&amp;top=1', '600', '250');
 
-if ($CONFIG['show_bbcode_help']) {
-    $description_help .= '&nbsp;'. cpg_display_help('f=empty.htm&amp;base=64&amp;h=' . urlencode(base64_encode(serialize($lang_bbcode_help_title))) . '&amp;t=' . urlencode(base64_encode(serialize($lang_bbcode_help))), 470, 245);
-}
 
 $albumCreateHelp = '&nbsp;' . cpg_display_help('f=categories.htm&amp;as=cat_album_create&amp;ae=cat_album_create_end&amp;top=1', '600', '250');
 
@@ -810,6 +768,14 @@ echo <<<EOT
 EOT;
 
 endtable();
+
+echo <<< EOT
+		</td>	
+	</tr>
+EOT;
+
+endtable();
+
 pagefooter();
 
 ?>

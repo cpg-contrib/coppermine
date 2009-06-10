@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-06-11 [C] Added help icons and alternative layout to category manager {GauGau}
 2009-06-10 [A] Added parameter to starttable function to allow easy adding of alternating row colors in the future {GauGau} 
 2009-06-09 [C] Replaced hard-coded lang strings with lang variables ind delete.php {Frantz}
 2009-06-09 [A] Added support for HTML5 <video> and <audio> tags {Nibbler}

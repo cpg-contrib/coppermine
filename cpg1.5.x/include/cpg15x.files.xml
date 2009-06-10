@@ -7456,6 +7456,14 @@
     <hash>6cb0e2a75994572f8dfe0ad94972ba57</hash>
   </element>
   <element>
+    <fullpath>js/catmgr.js</fullpath>
+    <version>1.5.1</version>
+    <revision>5865</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6cb0e2a75994572f8dfe0ad94972ba57</hash>
+  </element>
+  <element>
     <fullpath>js/contact.js</fullpath>
     <version>1.5.1</version>
     <revision>5865</revision>
