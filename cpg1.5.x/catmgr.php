@@ -104,9 +104,17 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
         if ($parent['cid'] == 0) {
             $lb .= '<option value="0" selected="selected">' . $lang_catmgr_php['no_category'] . '</option>';
         } else {
+            $lb .= '<option value="0">' . $lang_catmgr_php['no_category'] . '</option>' . $LINEBREAK;
             $lb .= '<option value="' . $parent['cid'] .  '" selected="selected">' . $parent['name'] . '</option>';
         }
 
+        foreach ($CAT_LIST as $category) {
+        
+            if ($category['cid'] > 1 && $category['cid'] != $cid) {
+                $lb .= '    <option value="' . $category['cid'] . '"' . ($parent == $category['cid'] ? ' selected': '') . ">" . $category['name'] . '</option>' . $LINEBREAK;
+            }
+        }        
+        
         $lb .= '</select>';
 
     } else {
