@@ -1,0 +1,67 @@
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2009 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+
+  ********************************************
+  Coppermine version: 1.5.1
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/banning.js $
+  $Revision: 5865 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2009-04-24 22:35:11 +0200 (Fr, 24 Apr 2009) $
+**********************************************/
+
+function checkFormSubmit()
+{
+	document.catsortconfig.submit()
+}
+
+function ChangeThumb(index)
+{
+        document.images.Thumb.src = Pic[index]
+}
+
+function confirmDel(catName)
+{
+    return confirm(js_vars.lang_confirm_delete + " (" + catName + ") ?");
+}
+
+function build(target, category)
+{
+    if (target.length > 1) {
+        return;
+    }
+    pos = target.options[0];
+    source = document.getElementById('build_source');
+    var oListFragment = document.createDocumentFragment();
+    for (var i = 0; i < source.length; i++){
+        option = source.options[i];
+        if (option.value == category){
+            target.insertBefore(oListFragment, target.options[0]);
+            var oListFragment = document.createDocumentFragment();
+            target.selectedIndex = i;
+        } else {
+            child = option.cloneNode(true);
+            child.value = option.value;
+            child.text = option.text;
+            oListFragment.appendChild(child);
+        }
+    }
+    target.appendChild(oListFragment);
+    target.focus();
+}
+
+function setbuild(obj, cid)
+{
+    var func = function () { build(obj, cid) }
+    if (typeof(document.onbeforeactivate) == 'undefined') {
+        obj.onfocus = func;
+    } else {
+        obj.onbeforeactivate = func;
+    }
+}
