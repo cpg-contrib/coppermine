@@ -17,6 +17,24 @@
   $Date$
 **********************************************/
 
+/*
+    The category manager needs to be able to work with hundreds of categories
+    without hitting the PHP memory limit. The way it does this is to delay
+    populating the dropdown boxes until they are actually clicked on.
+    
+    It loads the list of categories using javascript from the main selector
+    at the bottom of the screen. All other selectors contain only the current
+    parent category until clicked on.
+    
+    This means the page is much smaller and is usable with lots of categories.
+    
+    Without this, the dropdown boxes grow exponentially as each category has the
+    option to be moved into all other categories.
+    
+    If you make major changes to this page, please test with 200-300 categories
+    nested several levels deep.
+*/
+
 define('IN_COPPERMINE', true);
 define('CATMGR_PHP', true);
 
