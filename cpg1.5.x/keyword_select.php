@@ -68,7 +68,7 @@ if ($total > 0) {
     function CM_select(f)
     {
         new_keyword = f.value;
-		var current_keywords = window.parent.document.getElementById('keywords{$formFieldId}').value;
+        var current_keywords = window.parent.document.getElementById('keywords{$formFieldId}').value;
         var substrings = current_keywords.split(new_keyword);
         if (substrings.length <= 1) {
                 keyword_separator = (current_keywords.length == 0) ? '' : '$keyword_separator';

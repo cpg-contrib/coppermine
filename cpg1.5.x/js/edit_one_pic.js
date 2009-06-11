@@ -30,6 +30,7 @@ function checkPermissions(album, html) {
     var public_need_approval   = (js_vars.public_need_approval == 1);
     var private_need_approval  = (js_vars.private_need_approval == 1);
     var users_cannot_edit_pics = (js_vars.public_can_edit_pics == 0);
+	var pic_currently_public   = (js_vars.pic_currently_public == 1);
     var note = '';
     var linebreak = html ? '<br />' : "\n";
     if (is_public) {
@@ -39,7 +40,7 @@ function checkPermissions(album, html) {
         if (users_cannot_edit_pics) {
             note += (note ? linebreak : '') + js_vars.note_edit_control;
         }
-    } else if (is_private && private_need_approval) {
+    } else if (is_private && private_need_approval && pic_currently_public) {
         note = js_vars.note_approve_private;
     }
     return note;

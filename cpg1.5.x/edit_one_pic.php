@@ -126,7 +126,7 @@ function process_post_data()
     } elseif (($new_alb['category'] < FIRST_USER_CAT) && ($aid != $pic['aid'])) {
         $approved = $USER_DATA['pub_upl_need_approval'] ? 'NO' : 'YES';
         $update .= ", approved = '{$approved}'";
-    } elseif (($new_alb['category'] > FIRST_USER_CAT) && ($aid != $pic['aid'])) {
+    } elseif (($new_alb['category'] > FIRST_USER_CAT) && ($aid != $pic['aid']) && ($pic['category'] < FIRST_USER_CAT)) {
         $approved = $USER_DATA['priv_upl_need_approval'] ? 'NO' : 'YES';
         $update .= ", approved = '{$approved}'";
     }
@@ -375,6 +375,7 @@ set_js_var('note_edit_control',     $lang_editpics_php['note_edit_control']);
 set_js_var('public_need_approval',  $USER_DATA['pub_upl_need_approval']);
 set_js_var('private_need_approval', $USER_DATA['priv_upl_need_approval']);
 set_js_var('public_can_edit_pics',  $public_can_edit_pics);
+set_js_var('pic_currently_public',  $CURRENT_PIC['category'] < FIRST_USER_CAT ? 1 : 0);
 
 pageheader($lang_editpics_php['edit_pic']);
 
