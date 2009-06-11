@@ -44,6 +44,16 @@ require_once('include/Inspekt.php');
 $strict = TRUE;
 
 $superCage = Inspekt::makeSuperCage($strict);
+// Remove any variables introduced by register_globals, if enabled
+$keysToSkip = array('keysToSkip', 'register_globals_flag', 'superCage', 'cpg_time_start', 'key');
+
+if ($register_globals_flag && is_array($GLOBALS)) {
+    foreach ($GLOBALS as $key => $value) {
+        if (!in_array($key, $keysToSkip) && isset($$key)) {
+            unset($$key);
+        }
+    }
+}
 
 // Store all reported errors in the $cpgdebugger
 require_once('include/debugger.inc.php');
