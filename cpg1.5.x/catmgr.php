@@ -117,7 +117,7 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
 
         foreach ($CAT_LIST as $category) {
         
-            if ($category['cid'] > 1) {
+            if ($category['cid'] > 1 && $category['cid'] != $cid) {
                 $lb .= '    <option value="' . $category['cid'] . '"' . ($parent == $category['cid'] ? ' selected': '') . ">" . $category['name'] . '</option>' . $LINEBREAK;
             }
         }
