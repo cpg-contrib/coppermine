@@ -3377,7 +3377,7 @@ EOT;
 
         echo "VERSION INFO :";
         echo $debug_underline;
-		$my_php_version = substr(phpversion(),0,strpos(phpversion(), '-'));
+		$my_php_version = phpversion();
 		if ($my_php_version == '') {
 			$my_php_version = PHP_VERSION;
 		}
@@ -3388,7 +3388,7 @@ EOT;
         }
         $table[] = array('PHP version', $my_php_version, $version_comment);
 
-        $mySqlVersion = substr(cpg_phpinfo_mysql_version(),0,strpos(cpg_phpinfo_mysql_version(), '-'));
+        $mySqlVersion = cpg_phpinfo_mysql_version();
 
         if (version_compare($mySqlVersion, '3.23.23', '>=')) {
             $version_comment = 'OK';
