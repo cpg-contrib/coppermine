@@ -117,7 +117,7 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
 
     if ($on_change_refresh) {
 
-        $lb = '<select name="parent" onmouseover="setbuild(this, '. (int) $parent['cid'] . ')" onchange="updateParent(this, ' . $cid . ')" class="listbox">';
+        $lb = '<select name="parent" onmouseover="setbuild(this, '. (int) $parent['cid'] . ', ' . $cid . ')" onchange="updateParent(this, ' . $cid . ')" class="listbox">';
 
         if ($parent['cid'] == 0) {
             $lb .= '<option value="0" selected="selected">' . $lang_catmgr_php['no_category'] . '</option>';

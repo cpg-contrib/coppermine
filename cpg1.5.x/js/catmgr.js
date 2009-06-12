@@ -31,7 +31,7 @@ function confirmDel(catName)
     return confirm(js_vars.lang_confirm_delete + " (" + catName + ") ?");
 }
 
-function build(target, category)
+function build(target, category, thiscat)
 {
     if (target.length > 1) {
         return;
@@ -41,7 +41,9 @@ function build(target, category)
     var oListFragment = document.createDocumentFragment();
     for (var i = 0; i < source.length; i++){
         option = source.options[i];
-        if (option.value == category){
+        if (option.value == thiscat) {
+            continue;
+        } else if (option.value == category){
             target.insertBefore(oListFragment, target.options[0]);
             var oListFragment = document.createDocumentFragment();
             target.selectedIndex = i;
@@ -56,9 +58,10 @@ function build(target, category)
     target.focus();
 }
 
-function setbuild(obj, cid)
+function setbuild(obj, cid, thiscat)
 {
-    var func = function () { build(obj, cid) }
+    var func = function () { build(obj, cid, thiscat) }
+    
     if (typeof(document.onbeforeactivate) == 'undefined') {
         obj.onfocus = func;
     } else {
