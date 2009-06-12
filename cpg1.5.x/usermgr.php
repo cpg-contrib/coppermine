@@ -211,7 +211,7 @@ function list_users($search = '')
     $lb .= $lang_usermgr_php['sort_by'].': ';
     $lb .= "<select name=\"album_listbox\" id=\"album_listbox\" class=\"listbox\" onchange=\"if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?page=$page&amp;sort='+this.options[this.selectedIndex].value;\">" . $LINEBREAK;
     foreach($sort_codes as $key => $value) {
-        $selected = ($key == $sort) ? "SELECTED" : "";
+        $selected = ($key == $sort) ? 'selected="selected"' : "";
         $lb .= '        <option value="' . $key . '" '.$selected.'>' . $lang_usermgr_php[$key] . '</option>' . $LINEBREAK;
     }
     $lb .= '</select>' . $LINEBREAK;
@@ -292,6 +292,8 @@ addonload("show_section('action')");
 </script>
 EOT;
 
+echo '<form method="post" action="delete.php" name="editForm" id="cpgform">';
+
     starttable('100%');
         if ($superCage->post->keyExists('username')) {
             $search_filter = '<td class="tableh1" align="center">'.$lang_usermgr_php['search_result'].'&laquo;'.htmlentities($superCage->post->getRaw('username')).'&raquo;</td>';
@@ -302,7 +304,7 @@ EOT;
     echo <<<EOT
         <tr>
             <td colspan="$number_of_columns" class="tableh1">
-                <form method="get" action="delete.php" name="editForm" id="cpgform">
+                
                 <input type="hidden" name="id" value="" />
                 <table border="0" cellspacing="0" cellpadding="0" width="100%">
                     <tr>
@@ -485,7 +487,7 @@ EOT;
 
         $view_profile = '<a href="profile.php?uid=' . $user['user_id'] . '">' . cpg_fetch_icon('my_profile', 0, $lang_usermgr_php['view_profile']) . '</a>';
         if ($user['pic_count']) {
-            $last_uploads = '<a href="thumbnails.php?album=lastupby&uid=' . $user['user_id'] . '">' . cpg_fetch_icon('last_uploads', 0, $lang_usermgr_php['latest_upload']) . '</a>';
+            $last_uploads = '<a href="thumbnails.php?album=lastupby&amp;uid=' . $user['user_id'] . '">' . cpg_fetch_icon('last_uploads', 0, $lang_usermgr_php['latest_upload']) . '</a>';
         } else {
             if ($lim_user == 0) {
                 $last_uploads = cpg_fetch_icon('last_uploads_disabled', 0, $lang_usermgr_php['no_latest_upload']);
@@ -503,7 +505,7 @@ EOT;
         $user['comment_num'] = $commentCount[0];
         mysql_free_result($result);
         if ($user['comment_num'] > 0) {
-            $user_comment_link = '<a href="thumbnails.php?album=lastcomby&uid=' . $user['user_id'] . '">' . cpg_fetch_icon('comment', 0, $lang_usermgr_php['last_comments'] . '('.$user['comment_num'].')') . '</a>';
+            $user_comment_link = '<a href="thumbnails.php?album=lastcomby&amp;uid=' . $user['user_id'] . '">' . cpg_fetch_icon('comment', 0, $lang_usermgr_php['last_comments'] . '('.$user['comment_num'].')') . '</a>';
         } else {
             $user_comment_link = cpg_fetch_icon('blank', 0, $lang_usermgr_php['no_last_comments']);
         }
@@ -526,7 +528,7 @@ EOT;
                     $checkbox_html = '';
                     $ban_user_link = cpg_fetch_icon('blank', 0);
                 } else {
-                    $profile_link = $CPG_PHP_SELF.'?op=edit&user_id='.$user['user_id'].'&amp;form_token=' . $form_token . '&amp;timestamp=' . $timestamp;
+                    $profile_link = $CPG_PHP_SELF.'?op=edit&amp;user_id='.$user['user_id'].'&amp;form_token=' . $form_token . '&amp;timestamp=' . $timestamp;
                     $checkbox_html = '<input name="u'.$user['user_id'].'" '.$makereadonly.'type="checkbox" value="" class="checkbox" />';
                 }
                 $profile_link = '<a href="' . $profile_link . '">' . cpg_fetch_icon('edit', 0, $lang_usermgr_php['edit_profile']) . '</a>';
@@ -577,7 +579,7 @@ EOT;
         } else {
             $search_string_default = 'value="'.$lang_usermgr_php['search'].'" onfocus="this.value=\'\'"';
         }
-            $help = cpg_display_help('f=users.htm&as=user_cp_search&ae=user_cp_search_end&top=1', '400', '150');
+            $help = cpg_display_help('f=users.htm&amp;as=user_cp_search&amp;ae=user_cp_search_end&amp;top=1', '400', '150');
             echo <<<EOT
         <tr>
                 <td class="tablef" align="center"><input type="checkbox" name="checkAll2" id="checkAll2" {$makereadonly}onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" style="display:none" /></td>
@@ -586,7 +588,7 @@ EOT;
                 <tr>
                         <td align="left">
                             <select name="action" id="action" size="1" class="listbox" {$makereadonly}onchange="return selectaction(this,'u');" style="display:none">
-                                <option value="" checked="checked">{$lang_usermgr_php['with_selected']}</option>
+                                <option value="" selected="selected">{$lang_usermgr_php['with_selected']}</option>
                                 <option value="delete">{$lang_common['delete']}</option>
                                 <option value="activate">{$lang_usermgr_php['activate']}</option>
                                 <option value="deactivate">{$lang_usermgr_php['deactivate']}</option>
@@ -637,12 +639,21 @@ EOT;
                 </table>
                 <input type="hidden" name="form_token" value="{$form_token}" />
                 <input type="hidden" name="timestamp" value="{$timestamp}" />
-                </form>
                 </td>
                 <td align="right" class="tablef">$totalCommentCount_fmt</td>
                 <td align="right" class="tablef">$totalPictureCount_fmt</td>
                 <td align="right" class="tablef">$totalSpaceCount_fmt</td>
         </tr>
+EOT;
+
+    endtable();
+    
+    echo '</form>';
+    
+    starttable('100%');
+    
+echo <<< EOT
+
         <tr>
             <td colspan="$number_of_columns" class="tablef" align="center" valign="middle">
                 <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -655,7 +666,7 @@ EOT;
                             </form>
                         </td>
                         <td class="tablef" align="center" valign="middle">
-                            <a href="{$CPG_PHP_SELF}?op=new_user&form_token={$form_token}&timestamp={$timestamp}" {$makereadonly}class="admin_menu">{$create_new_user_icon}{$lang_usermgr_php['create_new_user']}</a>
+                            <a href="{$CPG_PHP_SELF}?op=new_user&amp;form_token={$form_token}&amp;timestamp={$timestamp}" {$makereadonly}class="admin_menu">{$create_new_user_icon}{$lang_usermgr_php['create_new_user']}</a>
                             {$help_create}
                         </td>
                     </tr>
@@ -682,10 +693,12 @@ EOT;
 EOT;
     }
 
-  // Accept footer addons for the user manager
-  echo CPGPluginAPI::filter('usermgr_footer','');
+    // Accept footer addons for the user manager
+    echo CPGPluginAPI::filter('usermgr_footer','');
 
-    echo <<<EOT
+    if ($tabs) {
+        
+        echo <<<EOT
         <tr>
                 <td colspan="$number_of_columns" style="padding: 0px;">
                         <table width="100%" cellspacing="0" cellpadding="0">
@@ -697,8 +710,8 @@ EOT;
         </tr>
 
 EOT;
-
-
+    }
+    
     endtable();
 }
 
@@ -745,7 +758,7 @@ function edit_user($user_id)
 
 
     echo <<<EOT
-        <form name="cpgform3" id="cpgform3" method="post" action="{$CPG_PHP_SELF}?op=update&user_id=$user_id">
+        <form name="cpgform3" id="cpgform3" method="post" action="{$CPG_PHP_SELF}?op=update&amp;user_id=$user_id">
 
 EOT;
     starttable(500, $lang_usermgr_php['modify_user'], 2);
@@ -874,7 +887,7 @@ EOT;
                             </select><br />
                             $group_cb
                             <br />
-                            <a href="usermgr.php?op=groups_alb_access&amp;form_token={$form_token}&timestamp={$timestamp}" class="admin_menu">{$lang_usermgr_php['groups_alb_access']}</a>
+                            <a href="usermgr.php?op=groups_alb_access&amp;form_token={$form_token}&amp;timestamp={$timestamp}" class="admin_menu">{$lang_usermgr_php['groups_alb_access']}</a>
                             {$assignedGroupsHelp}
     
               </td>
