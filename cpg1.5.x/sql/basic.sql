@@ -115,7 +115,7 @@ INSERT INTO CPG_config VALUES ('enable_watermark', '0');
 INSERT INTO CPG_config VALUES ('enable_zipdownload', '0');
 INSERT INTO CPG_config VALUES ('filter_bad_words', '0');
 INSERT INTO CPG_config VALUES ('first_level', '1');
-INSERT INTO CPG_config VALUES ('forbiden_fname_char', '$/\\\\:*"\'<>|` &#@');
+INSERT INTO CPG_config VALUES ('forbiden_fname_char', '$/\\\\:*?&quot;&lt;&gt;|` &amp;\#@');
 INSERT INTO CPG_config VALUES ('fullpath', 'albums/');
 INSERT INTO CPG_config VALUES ('fullsize_padding_x', '5');
 INSERT INTO CPG_config VALUES ('fullsize_padding_y', '3');

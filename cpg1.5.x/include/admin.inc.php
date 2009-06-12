@@ -1019,7 +1019,7 @@ $config_data = array(
     ),
     'forbiden_fname_char' => array(
       'type'          => 'textfield',
-      'default_value' => '$/\\\\:*?&quot;\'&lt;&gt;|` &amp;\#@',
+      'default_value' => '$/\\\\:*?&quot;&lt;&gt;|` &amp;\#@',
       'help_link'     => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_filename_forbidden_chars&amp;ae=admin_picture_thumb_advanced_filename_forbidden_chars_end',
     ),
     'silly_safe_mode' => array(
