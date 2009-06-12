@@ -210,7 +210,7 @@ function form_alb_list_box($text, $name)
 {
     $superCage = Inspekt::makeSuperCage();
     // Pull the $CONFIG array and the GET array into the function
-    global $CONFIG, $lang_upload_php, $lang_common;
+    global $CONFIG, $lang_upload_php, $lang_common, $LINEBREAK;
 
     // Also pull the album lists into the function
     global $user_albums_list, $public_albums_list;
