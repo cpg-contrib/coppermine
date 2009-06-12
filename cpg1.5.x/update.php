@@ -541,6 +541,8 @@ function update_tables()
 
     $sql_query = remove_remarks($sql_query);
     $sql_query = split_sql_file($sql_query, ';');
+    $sql_query = array_map('trim', $sql_query);
+    
     if (function_exists('cpg_fetch_icon')) {
         $update_icon = cpg_fetch_icon('update_database', 2);
         $ok_icon = cpg_fetch_icon('ok', 2);
@@ -575,7 +577,8 @@ EOT;
         
         $loopCounter++;
         
-        echo '<tr><td width="80%" class="'.$cellStyle.'">'.$q;
+        echo '<tr>' . $LINEBREAK . '    <td width="80%" class="' . $cellStyle . '">' . $q;
+        
         /**
          * Determining if the Alter Table actually made a change
          * to properly reflect it's status on the update page.
@@ -632,10 +635,11 @@ EOT;
         }
         print '</td>'.$LINEBREAK; // end the table cell that contains the output
         if ($result && $affected) {
-            echo '<td width="20%" class="'.$cellStyle.' updatesOK">' . $ok_icon . $lang_common['ok'] . '</td>'.$LINEBREAK;
+            echo '    <td width="20%" class="'.$cellStyle.' updatesOK">' . $ok_icon . $lang_common['ok'] . '</td>'.$LINEBREAK;
         } else {
-            echo '<td width="20%" class="'.$cellStyle.' updatesFail">' . $already_done_icon . $lang_update_php['already_done'] . '</td>'.$LINEBREAK;
+            echo '    <td width="20%" class="'.$cellStyle.' updatesFail">' . $already_done_icon . $lang_update_php['already_done'] . '</td>'.$LINEBREAK;
         }
+        echo '</tr>' . $LINEBREAK;
     } // end foreach loop
     
     // Check password encryption and perform the conversion if applicable
