@@ -3373,7 +3373,7 @@ function theme_html_picture()
 ** Section <<<theme_html_img_nav_menu>>> - START
 ******************************************************************************/
 function theme_html_img_nav_menu() {
-    global $CONFIG, $CURRENT_PIC_DATA, $meta_nav, $THEME_DIR, $CPG_PHP_SELF; //$PHP_SELF,
+    global $CONFIG, $CURRENT_PIC_DATA, $meta_nav, $THEME_DIR, $CPG_PHP_SELF, $LINEBREAK; //$PHP_SELF,
     global $album, $cat, $pos, $pic_count, $pic_data, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
     $superCage = Inspekt::makeSuperCage();
