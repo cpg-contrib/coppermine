@@ -427,7 +427,7 @@ EOT;
           <td class="tableh2" valign="middle" align="center">
           </td>
           <td class="tableh2" valign="middle" align="center">
-            <input type="checkbox" name="checkAll" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
+            <input type="checkbox" name="checkAll" onclick="selectAll('cpgform2');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
           </td>
           <td class="tableh2" valign="top">
             {$lang_reviewcom_php['approval']}
@@ -617,12 +617,13 @@ echo <<<EOT
             <td class="tablef" valign="middle" align="center">
             </td>
             <td class="tablef" valign="middle" align="center">
-                <input type="checkbox" name="checkAll2" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
+                <input type="checkbox" name="checkAll2" onclick="selectAll('cpgform2');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
             </td>
-            <td colspan="5" class="tablef" valign="middle" align="left">
-                {$lang_reviewcom_php['with_selected']}: 
-                <input name="with_selected" id="do_nothing" type="radio" value="do_nothing" {$default_action_with_selected['do_nothing']} />
-                <label for="do_nothing">{$lang_reviewcom_php['do_nothing']}</label>
+            <td class="tablef" valign="middle" align="left">
+                {$lang_reviewcom_php['with_selected']}:</td> 
+            <td colspan="4" class="tablef" valign="middle" align="left"> 
+			  <input name="with_selected" id="do_nothing" type="radio" value="do_nothing" {$default_action_with_selected['do_nothing']} />
+              <label for="do_nothing">{$lang_reviewcom_php['do_nothing']}</label>
                 &nbsp;
                 <input name="with_selected" id="delete_selected" type="radio" value="delete" {$default_action_with_selected['delete']} />
                 <label for="delete_selected">{$lang_reviewcom_php['delete']}</label>
