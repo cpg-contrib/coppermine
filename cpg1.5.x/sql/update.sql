@@ -141,7 +141,7 @@ INSERT INTO CPG_config VALUES ('thumb_height', '140');
 ALTER TABLE `CPG_albums` ADD `owner` int(11)  NOT NULL DEFAULT '1' AFTER `category`;
 
 
-UPDATE `CPG_config` SET value='$$/\\\\:*?&quot;&#039;&lt;&gt;|` &amp;#@' WHERE name='forbiden_fname_char';
+UPDATE `CPG_config` SET value='$/\\\\:*?&quot;&#039;&lt;&gt;|` &amp;#@' WHERE name='forbiden_fname_char';
 
 
 ALTER TABLE `CPG_users` ADD `user_language` varchar(40) default '' NOT NULL;
