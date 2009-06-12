@@ -326,7 +326,7 @@
 
 <p>Back to the configure form: we ask the user, "Do you want to install plugin Hello, World?".  The four submit buttons are "Yes", "No", "I'm not sure", and "Simulate critical error".  Each button will trigger a different return value in the install function.  The form itself uses POST to return its data and it should be returned to the plugin manager.  The best way to define the form action is as shown:</p>
 
-<pre><span style="color: #000000"><span style="color: #007700">&lt;</span><span style="color: #0000BB">form action</span><span style="color: #007700">=</span><span style="color: #DD0000">"{$_SERVER['REQUEST_URI']}" </span><span style="color: #0000BB">method</span><span style="color: #007700">=</span><span style="color: #DD0000">"post"</span><span style="color: #007700">&gt;</span></span></pre>
+<pre>&lt;form action="{$CPG_PHP_SELF}" method="post"&gt;</pre>
 
 <p>Now let's see what the buttons do.  "Yes" triggers a return value of <em>True</em> which will cause the plugin to be installed.  "No" means that the user wants to cancel the installation of the plugin.  There is no way through the Plugin API to do so, so you need to do it yourself in your plugin code.  Our plugin code shows a good way to cancel the plugin installation: send a header pointing to the Plugin Manager and exit, as shown:</p>
 <pre><span style="color: #000000"><span style="color: #007700">(</span><span style="color: #DD0000">"Location: pluginmgr.php\n\n"</span><span style="color: #007700">);  </span><span style="color: #FF8000">// go back to plugin manager without installing the plugin
@@ -350,7 +350,89 @@
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_cleanup"></a>
 <h4>Uninstallation &amp; Clean-Up<a href="#plugin_api_tutorial_cleanup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-<p>Placeholder.  Content will be added.</p>
+<p>Use the plugin cleanup mechanism to perform a custom action when the plugin is being uninstalled.</p>
+<div class="cpg_example">
+Add something like
+<pre>$thisplugin->add_action('plugin_cleanup','coffee_maker_plugin_cleanup_function');</pre>
+at the top of <tt class="code">./plugins/coffee_maker/codebase.php</tt>. The function could simply perform some queries that delete the database changes your plugin install might have caused. The actual uninstall action is being triggered like this:
+<pre>$thisplugin->add_action('plugin_uninstall','coffee_maker_uninstall');</pre>
+Here's a more complex example function that will ask the user if the plugin settings should be kept or removed and performs the corresponding action.
+<pre>// Ask if we want to drop the table
+function coffee_maker_cleanup_function($action) {
+    global $CONFIG, $lang_plugin_coffee_maker, $lang_common, $coffee_maker_icon_array;
+	// Initialize language and icons
+	require_once './plugins/coffee_maker/init.inc.php';
+	$coffee_maker_init_array = coffee_maker_initialize();
+	$lang_plugin_coffee_maker = $coffee_maker_init_array['language']; 
+	$coffee_maker_icon_array = $coffee_maker_init_array['icon'];
+    $superCage = Inspekt::makeSuperCage();
+    $cleanup = $superCage-&gt;server-&gt;getEscaped('REQUEST_URI');
+    if ($action===1) {
+    echo &lt;&lt;&lt; EOT
+    &lt;form action="{$cleanup}" method="post"&gt;
+EOT;
+    starttable('100%', '', 2);
+    echo &lt;&lt;&lt; EOT
+            &lt;tr&gt;
+                &lt;td class="tableb"&gt;
+                    {$lang_plugin_coffee_maker['config']}
+                &lt;/td&gt;
+                &lt;td class="tableb"&gt;
+                    &lt;input type="checkbox" class="checkbox" name="drop" id="drop_yes" value="1" /&gt;
+                    &lt;label for="drop_yes" class="clickable_option"&gt;{$lang_plugin_coffee_maker['remove_settings']}&lt;/label&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+			&lt;tr&gt;
+                &lt;td class="tableb tableb_alternate"&gt;
+                    {$lang_plugin_coffee_maker['cache']}
+                &lt;/td&gt;
+                &lt;td class="tableb tableb_alternate"&gt;
+                    &lt;input type="checkbox" name="cache" id="cache" class="checkbox" value="1" checked="checked" /&gt;
+					&lt;label for="cache" class="clickable_option"&gt;{$lang_plugin_coffee_maker['empty_cache']}&lt;/label&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td class="tablef"&gt;
+				&lt;/td&gt;
+				&lt;td class="tablef"&gt;
+                    &lt;button type="submit" class="button" name="submit" value="{$lang_common['go']}"&gt;{$coffee_maker_icon_array['ok']}{$lang_common['go']}&lt;/button&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+EOT;
+	endtable();
+    echo &lt;&lt;&lt; EOT
+    &lt;/form&gt;
+EOT;
+    }
+}
+
+function coffee_maker_uninstall() {
+	global $CONFIG;
+	$superCage = Inspekt::makeSuperCage();
+	if (!$superCage-&gt;post-&gt;keyExists('submit')) {
+		return 1;
+	}
+	if ($superCage-&gt;post-&gt;keyExists('cache') && $superCage-&gt;post-&gt;getInt('cache') == 1) {
+		coffee_maker_empty_cache();
+		cpg_db_query("DROP TABLE IF EXISTS {$CONFIG['TABLE_PREFIX']}plugin_coffee_maker");
+	}
+	// Drop the database records
+	if ($superCage-&gt;post-&gt;keyExists('drop') && $superCage-&gt;post-&gt;getInt('drop') == 1) {
+		cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'plugin_coffee_maker_radius'");
+		cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'plugin_coffee_maker_maxrotation'");
+		cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'plugin_coffee_maker_bgcolor'");
+		cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'plugin_coffee_maker_borderwidth'");
+		cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'plugin_coffee_maker_bordercolor'");
+		cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'plugin_coffee_maker_thumb_pfx'");
+		cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'plugin_coffee_maker_timestamp'");
+		cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'plugin_coffee_maker_timelimit'");
+		cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'plugin_coffee_maker_admin_only'");
+		cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'plugin_coffee_maker_filetype'");
+		cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'plugin_coffee_maker_rotation_method'");
+	}
+	return true;
+}</pre>
+</div>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_linking"></a>
@@ -360,6 +442,43 @@
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_button"></a>
 <h3>Adding a Button to Coppermine<a href="#plugin_api_tutorial_button" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>There are two places where you might want to add a menu item to: to the admin menu (usually to offer a link to a plugin's config screen) or to the &quot;regular&quot; coppermine menu.</p>
+
+<a name="plugin_api_tutorial_button_admin_menu"></a><h4>Adding a Button to the admin menu<a href="#plugin_api_tutorial_button_admin_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<div class="cpg_example">
+<pre>$thisplugin->add_filter('admin_menu','coffee_maker_config_button');</pre>
+<pre>function coffee_maker_bar_config_button($admin_menu){
+    global $lang_plugin_coffee_maker, $CONFIG, $coffee_maker_icon_array;
+    if ($CONFIG['plugin_coffee_maker_config_link'] == 1) {
+	    $new_button = '&lt;div class="admin_menu admin_float"&gt;&lt;a href="index.php?file=coffee_maker/index&amp;action=configure"';
+	    $new_button .= ' title="' . $lang_plugin_coffee_maker['config'] . '"&gt;';
+	    $new_button .= $coffee_maker_icon_array['config_menu'] . $lang_plugin_coffee_maker['config'] . '&lt;/a&gt;&lt;/div&gt;';
+	    $look_for = '&lt;!-- END export --&gt;'; // This is where you determine the place in the admin menu
+	    $admin_menu = str_replace($look_for, $look_for . $new_button, $admin_menu);
+    }
+    return $admin_menu;
+}</pre>
+</div>
+
+<a name="plugin_api_tutorial_button_overall_menu"></a><h4>Adding a Button to the overall menu<a href="#plugin_api_tutorial_button_overall_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<div class="cpg_example">
+<pre>$thisplugin->add_filter('sys_menu','coffee_maker_sys_button');</pre>
+<pre>function coffee_maker_bar_sys_button($menu) {
+    global $lang_plugin_coffee_maker, $template_sys_menu_spacer, $CONFIG;
+    if ($CONFIG['plugin_coffee_maker_how'] == 4) {
+		coffee_maker_bar_language(); // Call the function that populates the language variable
+        $new_button = array();
+        $new_button[0][0] = $lang_plugin_coffee_maker['picinfo_heading'];
+        $new_button[0][1] = $lang_plugin_coffee_maker['menu'];
+        $new_button[0][2] = 'index.php?file=coffee_maker/index';
+        $new_button[0][3] = 'coffee_maker';
+        $new_button[0][4] = $template_sys_menu_spacer;
+        $new_button[0][5] = 'rel="nofolow"';
+        array_splice($menu, count($menu)-1, 0, $new_button);
+    }
+    return $menu;
+}</pre>
+</div>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_lang"></a>
@@ -440,7 +559,208 @@ $lang_plugin_coffee_maker['brew'] = 'brew';
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_globals_cpg"></a>
 <h3>Coppermine Constants<a href="#plugin_api_globals_cpg" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Placeholder.  Content will be added.</p>
+<p>Constants are being populated once. They can not be changed during runtime. You can use the coppermine constants from within your plugins.</p>
+<table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra" width="100%">
+	<tr>
+		<th class="tableh1" align="left">
+			Constant name
+		</th>
+		<th class="tableh1" align="left">
+			Defined in
+		</th>
+		<th class="tableh1" align="left">
+			Description
+		</th>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">COPPERMINE_VERSION</tt>
+		</td>
+		<td>
+			<tt class="code">include/init.inc.php</tt>
+		</td>
+		<td>
+			The version of coppermine
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">COPPERMINE_VERSION_STATUS</tt>
+		</td>
+		<td>
+			<tt class="code">include/init.inc.php</tt>
+		</td>
+		<td>
+			The status of your coppermine version (alpha, beta or stable)
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">IN_COPPERMINE</tt>
+		</td>
+		<td>
+			<tt class="code">Coppermine core files that are meant to be run directly in the browser</tt>
+		</td>
+		<td>
+			The constant makes sure that include files are not being run directly: the files that are meant to be run contain the constant definition and after that the include command. The include files don't contain the constant definition, but a conditional die. To make sure that your plugin files aren't being run directly, add the following line at the top:
+			<pre>if (!defined('IN_COPPERMINE')) {
+    die('Not in Coppermine...');
+}</pre>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">DEFAULT_LANGUAGE</tt>
+		</td>
+		<td>
+			<tt class="code">include/init.inc.php</tt>
+		</td>
+		<td>
+			Default language (set up by the admin) in config (may differ from <tt class="code">$CONFIG['lang']</tt> during runtime, as that may have been overridden.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">UDB_INTEGRATION</tt>
+		</td>
+		<td>
+			<tt class="code">include/init.inc.php</tt>
+		</td>
+		<td>
+			Name of the bridge file.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">GALLERY_ADMIN_MODE</tt>
+		</td>
+		<td>
+			<tt class="code">include/init.inc.php</tt>
+		</td>
+		<td>
+			If populated, the user is an admin and <a href="admin_menu.htm#admin_user_mode">admin-menu</a> hasn't been turned off. It's recommended to use this constant to check if the admin is logged in. Use code like this:
+			<pre>if (!GALLERY_ADMIN_MODE) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}</pre>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">USER_IS_ADMIN</tt>
+		</td>
+		<td>
+			<tt class="code">bridge/your_bridge_file.inc.php</tt> (by default: <tt class="code">bridge/udb_base.inc.php</tt>)
+		</td>
+		<td>
+			If populated, the user is an admin.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">USER_ADMIN_MODE</tt>
+		</td>
+		<td>
+			<tt class="code">include/init.inc.php</tt>
+		</td>
+		<td>
+			The &quot;user admin mode&quot; hardly is used any longer - it's a relict from cpg1.3.x and might br dropped in future versions. The definition is
+			<pre>define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !GALLERY_ADMIN_MODE);</pre>
+			so it get's populated if a user is logged in and has permission to have personal albums. The constant does not get populated if an admin is logged in.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">USER_ID</tt>
+		</td>
+		<td>
+			<tt class="code">bridge/your_bridge_file.inc.php</tt> (by default: <tt class="code">bridge/udb_base.inc.php</tt>)
+		</td>
+		<td>
+			The user ID of the logged in user - helpfull to send the user to his profile.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">USER_CAN_CREATE_ALBUMS</tt>
+		</td>
+		<td>
+			<tt class="code">bridge/your_bridge_file.inc.php</tt> (by default: <tt class="code">bridge/udb_base.inc.php</tt>)
+		</td>
+		<td>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">USER_GROUP_SET</tt>
+		</td>
+		<td>
+			<tt class="code">bridge/your_bridge_file.inc.php</tt> (by default: <tt class="code">bridge/udb_base.inc.php</tt>)
+		</td>
+		<td>
+			Contains the groups the user is a member of (as a coma-separated list).
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">THEME_HAS_MENU_ICONS</tt>
+		</td>
+		<td>
+			<tt class="code">themes/yourtheme/theme.php</tt>
+		</td>
+		<td>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">THEME_HAS_RATING_GRAPHICS</tt>
+		</td>
+		<td>
+			<tt class="code">themes/yourtheme/theme.php</tt>
+		</td>
+		<td>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">THEME_HAS_NAVBAR_GRAPHICS</tt>
+		</td>
+		<td>
+			<tt class="code">themes/yourtheme/theme.php</tt>
+		</td>
+		<td>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">THEME_HAS_FILM_STRIP_GRAPHIC</tt>
+		</td>
+		<td>
+			<tt class="code">themes/yourtheme/theme.php</tt>
+		</td>
+		<td>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">THEME_HAS_NO_SYS_MENU_BUTTONS</tt>
+		</td>
+		<td>
+			<tt class="code">themes/yourtheme/theme.php</tt>
+		</td>
+		<td>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">THEME_HAS_NO_SUB_MENU_BUTTONS</tt>
+		</td>
+		<td>
+			<tt class="code">themes/yourtheme/theme.php</tt>
+		</td>
+		<td>
+		</td>
+	</tr>
+</table>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 
