@@ -1012,7 +1012,7 @@ class Inspekt
             if (get_magic_quotes_gpc()) {
                 $value = stripslashes($value);
             }
-            return mysql_real_escape_string($value);
+            return mysql_real_escape_string(htmlspecialchars($value, ENT_QUOTES));
         } else {
             return $value;
         }
