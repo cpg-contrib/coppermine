@@ -217,6 +217,135 @@ function delete_album($aid)
     return $return;
 }
 
+function delete_user($key) {
+
+    global $CONFIG, $lang_delete_php;
+    
+    $superCage = Inspekt::makeSuperCage();
+    
+    $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".(int)$key."'");
+    
+    print '<tr>';
+    
+    if (!mysql_num_rows($result)) {
+        print '<td class="tableb">'.$lang_delete_php['err_unknown_user'].'</td>';
+    } else {
+    
+        $user_data = mysql_fetch_assoc($result);
+        
+        print '<td class="tableb">';
+        // First delete the albums
+        $result2 = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '" . (FIRST_USER_CAT + $key) . "'");
+        $user_alb_counter = 0;
+        
+        while ($album = mysql_fetch_assoc($result2)) {
+            starttable('100%');
+            print delete_album($album['aid']);
+            endtable();
+            $user_alb_counter++;
+        } // while
+        
+        mysql_free_result($result2);
+        
+        starttable('100%');
+        
+        print '<tr>';
+        
+        // Then anonymize comments posted by the user
+        $comment_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
+        $comment_counter = mysql_fetch_row($comment_result);
+        mysql_free_result($comment_result);
+    
+        print '<td class="tableb" width="25%">';
+    
+        if ($superCage->get->keyExists('delete_comments')) {
+            $delete_comments_choice = $superCage->get->getAlpha('delete_comments');
+        } elseif ($superCage->post->keyExists('delete_comments')) {
+            $delete_comments_choice = $superCage->post->getAlpha('delete_comments');
+        }
+    
+        if ($delete_comments_choice == 'yes') {
+        
+            cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
+    
+            if ($comment_counter[0] > 0) {
+                print cpg_fetch_icon('ok', 0).' ';
+            }
+    
+            printf($lang_delete_php['deleted_comments'], $comment_counter[0]);
+    
+        } else {
+    
+            cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET author_id = 0, msg_author = '' WHERE author_id = '$key'");
+    
+            if ($comment_counter[0] > 0) {
+                print cpg_fetch_icon('ok', 0).' ';
+            }
+    
+            printf($lang_delete_php['anonymized_comments'], $comment_counter[0]);
+        }
+    
+        print '</td>';
+    
+        // Do the same for pictures uploaded in public albums
+        $publ_upload_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id = '$key'");
+        $publ_upload_counter = mysql_fetch_row($publ_upload_result);
+        mysql_free_result($publ_upload_result);
+    
+        print '<td class="tableb" width="25%">';
+    
+        if ($superCage->get->keyExists('delete_files')) {
+            $delete_files_choice = $superCage->get->getAlpha('delete_files');
+        } elseif ($superCage->post->keyExists('delete_files')) {
+            $delete_files_choice = $superCage->post->getAlpha('delete_files');
+        }
+    
+        if ($delete_files_choice == 'yes') {
+    
+            cpg_db_query("DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id = '$key'");
+    
+            if ($publ_upload_counter[0] > 0) {
+                print cpg_fetch_icon('ok', 0).' ';
+            }
+    
+            printf($lang_delete_php['deleted_uploads'], $publ_upload_counter[0]);
+    
+        } else {
+    
+            cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_id = 0 WHERE owner_id = '$key'");
+    
+            if ($publ_upload_counter[0] > 0) {
+                print cpg_fetch_icon('ok', 0).' ';
+            }
+    
+            printf($lang_delete_php['anonymized_uploads'], $publ_upload_counter[0]);
+        }
+        
+        print '</td>';
+        
+        // Finally delete the user
+        cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
+    
+        // Clear any bans
+        cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE user_id = '$key'");
+    
+        // Clear any favourites
+        cpg_db_query("DELETE FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = '$key'");
+        
+        print '<td class="tableb" width="50%">';
+        print '<strong>';
+        print cpg_fetch_icon('ok', 0).' ';
+        printf($lang_delete_php['user_deleted'], '&laquo;'.$user_data['user_name'].'&raquo;');
+        print '</strong>';
+        print '</td>';
+        print '</tr>';
+        endtable();
+        print '</td>';
+    }
+    mysql_free_result($result);
+    print '</tr>';
+}
+
 /**
  * Album manager functions
  */
@@ -670,135 +799,13 @@ case 'user':
             starttable("100%", $lang_delete_php['del_user'], 6);
             
             foreach ($users_scheduled_for_action as $key) {
-            
-                $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".(int)$key."'");
-
-                print '<tr>';
-                
-                if (!mysql_num_rows($result)) {
-                    print '<td class="tableb">'.$lang_delete_php['err_unknown_user'].'</td>';
-                } else {
-                
-                    $user_data = mysql_fetch_assoc($result);
-                    
-                    print '<td class="tableb">';
-                    // First delete the albums
-                    $result2 = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '" . (FIRST_USER_CAT + $key) . "'");
-                    $user_alb_counter = 0;
-                    
-                    while ($album = mysql_fetch_assoc($result2)) {
-                        starttable('100%');
-                        print delete_album($album['aid']);
-                        endtable();
-                        $user_alb_counter++;
-                    } // while
-                    
-                    mysql_free_result($result2);
-                    
-                    starttable('100%');
-                    
-                    print '<tr>';
-                    
-                    // Then anonymize comments posted by the user
-                    $comment_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
-                    $comment_counter = mysql_fetch_row($comment_result);
-                    mysql_free_result($comment_result);
-
-                    print '<td class="tableb" width="25%">';
-
-                    if ($superCage->get->keyExists('delete_comments')) {
-                        $delete_comments_choice = $superCage->get->getAlpha('delete_comments');
-                    } elseif ($superCage->post->keyExists('delete_comments')) {
-                        $delete_comments_choice = $superCage->post->getAlpha('delete_comments');
-                    }
-
-                    if ($delete_comments_choice == 'yes') {
-                    
-                        cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
-
-                        if ($comment_counter[0] > 0) {
-                            print cpg_fetch_icon('ok', 0).' ';
-                        }
-
-                        printf($lang_delete_php['deleted_comments'], $comment_counter[0]);
-
-                    } else {
-
-                        cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET author_id = 0, msg_author = '' WHERE author_id = '$key'");
-
-                        if ($comment_counter[0] > 0) {
-                            print cpg_fetch_icon('ok', 0).' ';
-                        }
-
-                        printf($lang_delete_php['anonymized_comments'], $comment_counter[0]);
-                    }
-
-                    print '</td>';
-
-                    // Do the same for pictures uploaded in public albums
-                    $publ_upload_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id = '$key'");
-                    $publ_upload_counter = mysql_fetch_row($publ_upload_result);
-                    mysql_free_result($publ_upload_result);
-
-                    print '<td class="tableb" width="25%">';
-
-                    if ($superCage->get->keyExists('delete_files')) {
-                        $delete_files_choice = $superCage->get->getAlpha('delete_files');
-                    } elseif ($superCage->post->keyExists('delete_files')) {
-                        $delete_files_choice = $superCage->post->getAlpha('delete_files');
-                    }
-
-                    if ($delete_files_choice == 'yes') {
-
-                        cpg_db_query("DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id = '$key'");
-
-                        if ($publ_upload_counter[0] > 0) {
-                            print cpg_fetch_icon('ok', 0).' ';
-                        }
-
-                        printf($lang_delete_php['deleted_uploads'], $publ_upload_counter[0]);
-
-                    } else {
-
-                        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_id = 0 WHERE owner_id = '$key'");
-
-                        if ($publ_upload_counter[0] > 0) {
-                            print cpg_fetch_icon('ok', 0).' ';
-                        }
-
-                        printf($lang_delete_php['anonymized_uploads'], $publ_upload_counter[0]);
-                    }
-                    
-                    print '</td>';
-                    
-                    // Finally delete the user
-                    cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
-
-                    // Clear any bans
-                    cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE user_id = '$key'");
-
-                    // Clear any favourites
-                    cpg_db_query("DELETE FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = '$key'");
-
-                    // Clear any sessions
-                    cpg_db_query("DELETE FROM {$cpg_udb->sessionstable} WHERE user_id = '$key'");
-
-                    print '<td class="tableb" width="50%">';
-                    print '<strong>';
-                    print cpg_fetch_icon('ok', 0).' ';
-                    printf($lang_delete_php['user_deleted'], '&laquo;'.$user_data['user_name'].'&raquo;');
-                    print '</strong>';
-                    print '</td>';
-                    print '</tr>';
-                    endtable();
-                    print '</td>';
-                }
-                mysql_free_result($result);
-                print '</tr>';
+                delete_user($key);
             }
+            
             echo '<tr><td colspan="6" class="tablef" align="center">' . $LINEBREAK;
             echo '<a href="usermgr.php" class="admin_menu">'.$icon_array['ok'] . $lang_common['continue'].'</a>' . $LINEBREAK;
             echo '</td></tr>';
+            
             endtable();
             
             pagefooter();
@@ -1133,135 +1140,7 @@ case 'user':
                     cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
                 }
                 
-                $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
-
-                print '<tr>';
-
-                if (!mysql_num_rows($result)) {
-                    print '<td class="tableb">'.$lang_delete_php['err_unknown_user'].'</td>';
-                } else {
- 
-                    $user_data = mysql_fetch_assoc($result);
-
-                    print '<td class="tableb">';
-                    
-                    // First delete the albums
-                    $result2 = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '" . (FIRST_USER_CAT + $key) . "'");
-                    $user_alb_counter = 0;
-
-                    while ($album = mysql_fetch_assoc($result2)) {
-                        starttable('100%');
-                        print delete_album($album['aid']);
-                        endtable();
-                        $user_alb_counter++;
-                    } // while
-
-                    mysql_free_result($result2);
-
-                    starttable('100%');
-                    
-                    print '<tr>';
-
-                    // Then anonymize comments posted by the user
-                    $comment_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
-                    $comment_counter = mysql_fetch_row($comment_result);
-                    mysql_free_result($comment_result);
-
-                    print '<td class="tableb" width="25%">';
-
-                    if ($superCage->get->keyExists('delete_comments')) {
-                        $delete_comments_choice = $superCage->get->getAlpha('delete_comments');
-                    } elseif ($superCage->post->keyExists('delete_comments')) {
-                        $delete_comments_choice = $superCage->post->getAlpha('delete_comments');
-                    }
-
-                    if ($delete_comments_choice == 'yes') {
-
-                        cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
- 
-                        if ($comment_counter[0] > 0) {
-                            print cpg_fetch_icon('ok', 0).' ';
-                        }
-
-                        printf($lang_delete_php['deleted_comments'], $comment_counter[0]);
-
-                    } else {
-
-                        cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET author_id = 0, msg_author = '' WHERE author_id = '$key'");
-
-                        if ($comment_counter[0] > 0) {
-                            print cpg_fetch_icon('ok', 0).' ';
-                        }
-
-                        printf($lang_delete_php['anonymized_comments'], $comment_counter[0]);
-                    }
-                    
-                    print '</td>';
-                    
-                    // Do the same for pictures uploaded in public albums
-                    $publ_upload_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id = '$key'");
-                    $publ_upload_counter = mysql_fetch_row($publ_upload_result);
-                    mysql_free_result($publ_upload_result);
-
-                    print '<td class="tableb" width="25%">';
-
-                    if ($superCage->get->keyExists('delete_files')) {
-                        $delete_files_choice = $superCage->get->getAlpha('delete_files');
-                    } elseif ($superCage->post->keyExists('delete_files')) {
-                        $delete_files_choice = $superCage->post->getAlpha('delete_files');
-                    }
-
-                    if ($delete_files_choice == 'yes') {
-
-                        cpg_db_query("DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id = '$key'");
-
-                        if ($publ_upload_counter[0] > 0) {
-                            print cpg_fetch_icon('ok', 0).' ';
-                        }
-
-                        printf($lang_delete_php['deleted_uploads'], $publ_upload_counter[0]);
-
-                    } else {
-
-                        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_id = 0 WHERE owner_id = '$key'");
-
-                        if ($publ_upload_counter[0] > 0) {
-                            print cpg_fetch_icon('ok', 0).' ';
-                        }
-
-                        printf($lang_delete_php['anonymized_uploads'], $publ_upload_counter[0]);
-                    }
-                    
-                    print '</td>';
-                    
-                    // Finally delete the user
-                    cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
-
-                    // Clear any bans
-                    cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE user_id = '$key'");
-
-                    // Clear any favourites
-                    cpg_db_query("DELETE FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = '$key'");
-
-                    // Clear any sessions
-                    cpg_db_query("DELETE FROM {$cpg_udb->sessionstable} WHERE user_id = '$key'");
-                    
-                    print '<td class="tableb" width="50%">';
-                    print '<strong>';
-                    print cpg_fetch_icon('ok', 0).' ';
-                    printf($lang_delete_php['user_deleted'], '&laquo;'.$user_data['user_name'].'&raquo;');
-                    print '</strong>';
-                    print '</td>';
-                    print '</tr>';
-
-                    endtable();
-
-                    print '</td>';
-                }
-                
-                mysql_free_result($result);
-                
-                print '</tr>';
+                delete_user($key);
             }
             
             echo '<tr><td colspan="6" class="tablef" align="center">' . $LINEBREAK;
