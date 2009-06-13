@@ -25,7 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2009-06-09 [M] Remove image_processor.php {Nibbler}
+2009-06-13 [M] Remove image_processor.php {Nibbler}
 2009-06-12 [B] Fixed checkAll function calling who doesn't work in reviewcom.php  {Frantz}
 2009-06-11 [C] Added help icons and alternative layout to category manager {GauGau}
 2009-06-10 [A] Added parameter to starttable function to allow easy adding of alternating row colors in the future {GauGau} 
