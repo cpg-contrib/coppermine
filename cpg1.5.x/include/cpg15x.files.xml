@@ -211,14 +211,6 @@
     <hash>db5e754ebfbb9b403837f769bba0ba72</hash>
   </element>
   <element>
-    <fullpath>image_processor.php</fullpath>
-    <version>1.5.1</version>
-    <revision>5717</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>73976365ef3172d48bbd84e7397cac98</hash>
-  </element>
-  <element>
     <fullpath>index.php</fullpath>
     <version>1.5.1</version>
     <revision>5944</revision>
