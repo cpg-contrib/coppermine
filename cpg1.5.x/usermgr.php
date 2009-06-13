@@ -292,7 +292,7 @@ addonload("show_section('action')");
 </script>
 EOT;
 
-echo '<form method="post" action="delete.php" name="editForm" id="cpgform">';
+echo '<form method="get" action="delete.php" name="editForm" id="cpgform">';
 
     starttable('100%');
         if ($superCage->post->keyExists('username')) {
