@@ -3407,7 +3407,7 @@ EOT;
             echo $debug_underline;
 			$gd_array = gd_info();
 			if (array_key_exists('GD Version' , $gd_array) == TRUE) {
-				$table[] = array('Exact version', ereg_replace('[[:alpha:][:space:]()]+', '', $gd_array['GD Version']));
+				$table[] = array('Exact version', preg_replace('/[[:alpha:][:space:]()]+/', '', $gd_array['GD Version']));
 			}
 			foreach ($gd_array as $key => $value) {
 				$table[] = array($key,$value);
