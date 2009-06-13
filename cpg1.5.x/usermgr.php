@@ -612,18 +612,19 @@ EOT;
         } else {
             $sel_group = '';
         }
-        $user_group_list = ($user_data['user_group_list'] == '') ? ',' . $sel_group . ',' : ',' . $user_data['user_group_list'] . ',' . $sel_group . ',';
 
-
-        foreach($group_list as $group) {
-            print '                                  <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . '</option>' . $LINEBREAK;
+        foreach ($group_list as $group) {
+            if ($group['group_id'] != 3) {
+                print '                                  <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . '</option>' . $LINEBREAK;
+            }
         }
 
-    $help_create = '&nbsp;'.cpg_display_help('f=users.htm&amp;as=user_cp_new&amp;ae=user_cp_new_end', '600', '250');
+        $help_create = '&nbsp;'.cpg_display_help('f=users.htm&amp;as=user_cp_new&amp;ae=user_cp_new_end', '600', '250');
 
-    $create_new_user_icon = cpg_fetch_icon('add_user', 2);
-	list($timestamp, $form_token) = getFormToken();	
-    echo <<<EOT
+        $create_new_user_icon = cpg_fetch_icon('add_user', 2);
+	    list($timestamp, $form_token) = getFormToken();	
+	    
+        echo <<<EOT
                               </select>
                             <select name="delete_files" size="1" class="listbox" style="display:none">
                                 <option value="no">{$lang_usermgr_php['delete_files_no']}</option>
@@ -646,11 +647,11 @@ EOT;
         </tr>
 EOT;
 
-    endtable();
+        endtable();
     
-    echo '</form>';
+        echo '</form>';
     
-    starttable('100%');
+        starttable('100%');
     
 echo <<< EOT
 
