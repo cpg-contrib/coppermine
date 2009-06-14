@@ -198,15 +198,28 @@ function process_post_data()
             $prefixes = array('fullsize');
         }
 
+        $pic_prefix = array(
+            'thumb'    => $CONFIG['thumb_pfx'],
+            'normal'   => $CONFIG['normal_pfx'],
+            'orig'     => $CONFIG['orig_pfx'],
+            'fullsize' => '',
+        );
+        
         foreach ($prefixes as $prefix) {
 
-            $oldname = urldecode(get_pic_url($pic, $prefix));
+            $oldname = urldecode($CONFIG['fullpath'] . $pic['filepath'] . $pic_prefix[$prefix] . $pic['filename']);
             $filename = replace_forbidden($post_filename);
             $newname = str_replace($pic['filename'], $filename, $oldname);
 
             $old_mime = cpg_get_type($oldname);
             $new_mime = cpg_get_type($newname);
 
+            // Allow the admin to fix messed up filenames by skipping the file_exists checks
+            // Only the admin can be permitted this, since users could abuse this to delete
+            // files owned by other users.
+            
+            $skiprename = false;
+            
             if (($old_mime['mime'] != $new_mime['mime']) && isset($new_mime['mime'])) {
                 cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['mime_conv'], $old_mime['mime'], $new_mime['mime']), __FILE__, __LINE__);
             }
@@ -216,14 +229,22 @@ function process_post_data()
             }
 
             if (file_exists($newname)) {
-                cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['file_exists'], $newname), __FILE__, __LINE__);
+                if (GALLERY_ADMIN_MODE) {
+                    $skiprename = true;
+                } else {
+                    cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['file_exists'], $newname), __FILE__, __LINE__);
+                }
             }
 
             if (!file_exists($oldname)) {
-                cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['src_file_missing'], $oldname), __FILE__, __LINE__);
+                if (GALLERY_ADMIN_MODE) {
+                    $skiprename = true;
+                } else {
+                    cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['src_file_missing'], $oldname), __FILE__, __LINE__);
+                } 
             }
 
-            if (rename($oldname, $newname)) {
+            if ($skiprename || rename($oldname, $newname)) {
                 cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filename = '$filename' WHERE pid = '$pid' LIMIT 1");
             } else {
                 cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['rename_failed'], $oldname, $newname), __FILE__, __LINE__);
