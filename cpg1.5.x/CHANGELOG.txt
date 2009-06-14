@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-06-14 [A] Handle missing images better by displaying a placeholder image and logging the missing file {Nibbler}
 2009-06-13 [M] Remove image_processor.php {Nibbler}
 2009-06-12 [B] Fixed checkAll function calling who doesn't work in reviewcom.php  {Frantz}
 2009-06-11 [C] Added help icons and alternative layout to category manager {GauGau}

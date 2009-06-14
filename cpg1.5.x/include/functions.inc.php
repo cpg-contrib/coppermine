@@ -3183,11 +3183,27 @@ function& get_pic_url(&$pic_row, $mode, $system_pic = false)
             } // foreach $thumbpaths
         } // if is_null($filepathname)
 
-        $filepathname = path2url($filepathname);
+        if ($filepathname) {
+            $filepathname = path2url($filepathname);
+        }
     }
 
     if (is_null($filepathname)) {
-        $filepathname = $url_prefix[$pic_row['url_prefix']] . path2url($pic_row['filepath'] . $pic_prefix[$mode] . $pic_row['filename']);
+        
+        $localpath = $pic_row['filepath'] . $pic_prefix[$mode] . $pic_row['filename'];
+        
+        // Check here that the filename we are going to return exists
+        // If it doesn't exist we return a placeholder image
+        // We then log the missing file for the admin's attention
+        if (file_exists($url_prefix[$pic_row['url_prefix']] . $localpath)) {
+            $filepathname = $url_prefix[$pic_row['url_prefix']] . path2url($localpath);
+        } else {
+            $filepathname = 'images/thumbs/thumb_nopic.png';
+            $pic_row['system_icon'] = true;
+            if ($CONFIG['log_mode'] != 0) {
+                log_write("File {$url_prefix[$pic_row['url_prefix']]}$localpath is missing.");
+            }
+        }
     }
 
     // Added hack:  "&& !isset($pic_row['mode'])" thumb_data filter isn't executed for the fullsize image
