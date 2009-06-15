@@ -7172,7 +7172,7 @@
     <hash>31b08f7e327b380879804c8d1241ddd7</hash>
   </element>
   <element>
-    <fullpath>include/Inspekt.php</fullpath>
+    <fullpath>include/inspekt.php</fullpath>
     <version>1.5.1</version>
     <revision>5982</revision>
     <status>mandatory</status>
@@ -7300,12 +7300,12 @@
     <hash>9b1a8362926e64a61864f858468c9293</hash>
   </element>
   <element>
-    <fullpath>include/Inspekt/</fullpath>
+    <fullpath>include/inspekt/</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>include/Inspekt/Cage.php</fullpath>
+    <fullpath>include/inspekt/cage.php</fullpath>
     <version>1.5.1</version>
     <revision>5908</revision>
     <status>mandatory</status>
@@ -7313,7 +7313,7 @@
     <hash>57a334feab9ff9a3b3df807b97c61e6f</hash>
   </element>
   <element>
-    <fullpath>include/Inspekt/Error.php</fullpath>
+    <fullpath>include/inspekt/error.php</fullpath>
     <version>1.5.1</version>
     <revision>5575</revision>
     <status>mandatory</status>
@@ -7321,7 +7321,7 @@
     <hash>1e383010264e4e5e4c8b1ecdd8a15820</hash>
   </element>
   <element>
-    <fullpath>include/Inspekt/Filter.php</fullpath>
+    <fullpath>include/inspekt/filter.php</fullpath>
     <version>1.5.1</version>
     <revision>5575</revision>
     <status>mandatory</status>
@@ -7329,7 +7329,7 @@
     <hash>775d4f487a8fbf10e4ea320f145d00f0</hash>
   </element>
   <element>
-    <fullpath>include/Inspekt/Supercage.php</fullpath>
+    <fullpath>include/inspekt/supercage.php</fullpath>
     <version>1.5.1</version>
     <revision>5908</revision>
     <status>mandatory</status>
@@ -7337,7 +7337,7 @@
     <hash>8925df2be106c4f2951d43bfdefd5831</hash>
   </element>
   <element>
-    <fullpath>include/Inspekt/Validator.php</fullpath>
+    <fullpath>include/inspekt/validator.php</fullpath>
     <version>1.5.1</version>
     <revision>5575</revision>
     <status>mandatory</status>
