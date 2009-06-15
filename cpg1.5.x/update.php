@@ -140,7 +140,7 @@ function cpg_folder_file_delete($path, $output = '') {
 
 set_include_path(get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'include');
 
-require_once('include/Inspekt.php');
+require_once('include/inspekt.php');
 require_once('include/sql_parse.php');
 require_once('include/config.inc.php');
 require_once('include/functions.inc.php');

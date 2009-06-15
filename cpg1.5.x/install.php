@@ -65,7 +65,7 @@ if (!defined('COPPERMINE_VERSION')) { // we need to define the constant COPPERMI
 // include Inspekt for sanitization
 $incp = get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'include';
 set_include_path($incp);
-require_once "include/Inspekt.php";
+require_once "include/inspekt.php";
 $superCage = Inspekt::makeSuperCage();
 
 //load language
