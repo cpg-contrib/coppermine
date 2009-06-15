@@ -38,7 +38,7 @@ if (ini_get('register_globals') == '1' || strtolower(ini_get('register_globals')
     $register_globals_flag = false;
 }
 
-require_once('include/Inspekt.php');
+require_once('include/inspekt.php');
 
 // Set $strict to false to make the superglobals available
 $strict = TRUE;

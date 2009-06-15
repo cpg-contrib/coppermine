@@ -32,17 +32,17 @@
 /**
  * Inspekt_Error
  */
-require_once('include/Inspekt/Error.php');
+require_once('include/inspekt/error.php');
 
 /**
  * Inspekt_Cage
  */
-require_once('include/Inspekt/Cage.php');
+require_once('include/inspekt/cage.php');
 
 /**
  * Inspekt_Supercage
  */
-require_once('include/Inspekt/Supercage.php');
+require_once('include/inspekt/supercage.php');
 
 
 /**
