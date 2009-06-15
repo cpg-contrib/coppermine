@@ -52,7 +52,7 @@ $lang_date['log'] = '%B %d, %Y at %I:%M %p';
 $lang_date['scientific'] = '%Y-%m-%d %H:%M:%S';
 
 // For the word censor
-$lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'assrammer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
+$lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'assrammer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack','penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names['random'] = 'Random files';
 $lang_meta_album_names['lastup'] = 'Last additions';
@@ -80,7 +80,7 @@ $lang_errors['invalid_image'] = 'The image you have uploaded is corrupted or can
 $lang_errors['resize_failed'] = 'Unable to create thumbnail or reduced size image.';
 $lang_errors['no_img_to_display'] = 'No image to display';
 $lang_errors['non_exist_cat'] = 'The selected category does not exist';
-$lang_errors['orphan_cat'] = 'A category has a non-existing parent, run the category manager to correct the problem!';
+$lang_errors['orphan_cat'] = 'A category has a non-existent parent, run the category manager to correct the problem!';
 $lang_errors['directory_ro'] = 'Directory \'%s\' is not writable, files can\'t be deleted';
 $lang_errors['non_exist_comment'] = 'The selected comment does not exist.';
 $lang_errors['pic_in_invalid_album'] = 'File is in a non-existent album (%s)!?';
@@ -138,7 +138,7 @@ $lang_common['date'] = 'Date'; // cpg1.5
 $lang_common['help'] = 'Help'; // cpg1.5
 $lang_common['close'] = 'Close'; // cpg1.5
 $lang_common['go'] = 'go'; // cpg1.5
-$lang_common['javascript_needed'] = 'This page requires JavaScript. Please turn it on in your browser.'; // cpg1.5
+$lang_common['javascript_needed'] = 'This page requires JavaScript. Please enable JavaScript in your browser.'; // cpg1.5
 $lang_common['move_up'] = 'Move up'; // cpg1.5
 $lang_common['move_down'] = 'Move down'; // cpg1.5
 $lang_common['move_top'] = 'Move to top'; // cpg1.5
@@ -190,7 +190,7 @@ $lang_main_menu['lastup_title'] = 'Show most recent uploads';
 $lang_main_menu['lastup_lnk'] = 'Last uploads';
 $lang_main_menu['lastcom_title'] = 'Show most recent comments';
 $lang_main_menu['lastcom_lnk'] = 'Last comments';
-$lang_main_menu['mostcom_title'] = 'Show most files with most comments'; // cpg1.5
+$lang_main_menu['mostcom_title'] = 'Show files with most comments'; // cpg1.5
 $lang_main_menu['mostcom_lnk'] = 'Most commented'; // cpg1.5
 $lang_main_menu['topn_title'] = 'Show most viewed items';
 $lang_main_menu['topn_lnk'] = 'Most viewed';
@@ -315,7 +315,7 @@ $lang_img_nav_bar['go_forward_x_items'] = 'go forward %s items';
 
 $lang_rate_pic['rate_this_pic'] = 'Rate this file ';
 $lang_rate_pic['no_votes'] = '(No vote yet)';
-$lang_rate_pic['rating'] = '(current rating : %s / %s with %s votes)';
+$lang_rate_pic['rating'] = '(Current rating : %s / %s with %s votes)';
 $lang_rate_pic['rubbish'] = 'Rubbish';
 $lang_rate_pic['poor'] = 'Poor';
 $lang_rate_pic['fair'] = 'Fair';
@@ -323,7 +323,7 @@ $lang_rate_pic['good'] = 'Good';
 $lang_rate_pic['excellent'] = 'Excellent';
 $lang_rate_pic['great'] = 'Great';
 $lang_rate_pic['js_warning'] = 'Javascript must be enabled in order to vote'; // cpg1.5
-$lang_rate_pic['already_voted'] = 'You already voted for this pic.'; // cpg1.5
+$lang_rate_pic['already_voted'] = 'You have already voted for this pic.'; // cpg1.5
 $lang_rate_pic['forbidden'] = 'You cannot rate your own files.'; // cpg1.5
 $lang_rate_pic['rollover_to_rate'] = 'Rollover to rate this picture'; // cpg1.5
 
@@ -350,7 +350,7 @@ $lang_cpg_debug_output['debug_output_explain'] = 'Note: This is for information 
 $lang_cpg_debug_output['phpinfo'] = 'display phpinfo';
 $lang_cpg_debug_output['notices'] = 'Notices';
 $lang_cpg_debug_output['notices_help_admin'] = 'The notices displayed on this page appear because you (as gallery admin) deliberately enabled that feature in coppermine\'s config. They don\'t necessarilly mean that something is wrong with your gallery. In fact, they are a developer feature that only skilled coders should enable to track bugs. If notices display bothers you and/or you have no idea what those notices mean, turn the corresponding feature off in config.'; // cpg1.5
-$lang_cpg_debug_output['notices_help_non_admin'] = 'The notices-display has been deliberately enabled by the admin. It doesn\'t mean that something is wrong on your end. You can savely ignore the notices displayed here.'; // cpg1.5
+$lang_cpg_debug_output['notices_help_non_admin'] = 'The notices display has been deliberately enabled by the admin. It doesn\'t mean that something is wrong on your end. You can safely ignore the notices displayed here.'; // cpg1.5
 $lang_cpg_debug_output['show_hide'] = 'show / hide'; // cpg1.5
 
 $lang_language_selection['reset_language'] = 'Default language';
@@ -508,7 +508,7 @@ $lang_banning_php['comments_deleted'] = '%s comments made by %s have been delete
 $lang_banning_php['email_field_invalid'] = 'Enter a valid email address'; // cpg1.5
 $lang_banning_php['ip_address_field_invalid'] = 'Enter a valid IP address (x.x.x.x)'; // cpg1.5
 $lang_banning_php['expiry_field_invalid'] = 'Enter a valid expiration date (YYYY-MM-DD)'; // cpg1.5
-$lang_banning_php['form_not_submit'] = 'The form hasn\'t been submit - there are errors that you need to correct first!'; // cpg1.5
+$lang_banning_php['form_not_submit'] = 'The form hasn\'t been submited - there are errors that you need to correct first!'; // cpg1.5
 };
 
 // ------------------------------------------------------------------------- //
@@ -681,7 +681,7 @@ $lang_admin_php['click_collapse'] = 'click section name to collapse'; // cpg1.5
 $lang_admin_php['expand_all'] = 'Expand All';
 $lang_admin_php['toggle_all'] = 'Toggle All'; // cpg1.5
 $lang_admin_php['notice1'] = '(*) These settings mustn\'t be changed if you already have files in your database.';
-$lang_admin_php['notice2'] = '(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.';
+$lang_admin_php['notice2'] = '(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting is not changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.';
 $lang_admin_php['notice3'] = '(***) All log files are written in english.';
 $lang_admin_php['bbs_disabled'] = 'Function disabled when using bridging/integration';
 $lang_admin_php['auto_resize_everyone'] = 'Everyone';
@@ -949,7 +949,7 @@ $lang_admin_php['no_change_needed'] = 'No change needed, config option already i
 $lang_admin_php['enabled'] = 'enabled'; // cpg1.5
 $lang_admin_php['disabled'] = 'disabled'; // cpg1.5
 $lang_admin_php['none'] = 'none'; // cpg1.5
-$lang_admin_php['warning_change'] = 'When changing this setting, only the files that are added from that point on are affected, so it\'s advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the "admin tools (resize pictures)" utility from the admin menu.'; // cpg1.5
+$lang_admin_php['warning_change'] = 'When changing this setting, only the files that are added from that point on are affected, so it\'s advisable that this setting is not changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the "admin tools (resize pictures)" utility from the admin menu.'; // cpg1.5
 $lang_admin_php['warning_exist'] = 'These settings mustn\'t be changed if you already have files in your database.'; // cpg1.5
 $lang_admin_php['warning_dont_submit'] = 'If you are not sure about the impact that changing this setting will have, do not submit the form and review the documentation first.'; // cpg1.5 // js-alert
 $lang_admin_php['menu_only'] = 'menu only'; // cpg1.5
@@ -1457,7 +1457,7 @@ $lang_list_albums['from_category'] = ' - From Category: '; // cpg1.5
 // ------------------------------------------------------------------------- //
 
 if (defined('INSTALL_PHP')) {
-$lang_install['already_succ'] = 'The installer has already been run successfully once and is now locked.';
+$lang_install['already_succ'] = 'The installer has already been successfully run once and is now locked.';
 $lang_install['already_succ_explain'] = 'If you want to run the installer again, you first need to delete the \'include/config.inc.php\' file that was created in the directory where you put Coppermine. You can do this with any FTP program';
 $lang_install['cant_read_tmp_conf'] = 'The installer can\'t read the temporary config file %s.';
 $lang_install['cant_write_tmp_conf'] = 'The installer can\'t write the temporary config file %s.';
@@ -1467,7 +1467,7 @@ $lang_install['check_path'] = 'Check path';
 $lang_install['continue'] = 'Next step';
 $lang_install['conv_said'] = 'The convert program said:';
 $lang_install['license_info'] = 'Coppermine is a picture/multimedia gallery package that is released under GNU GPL v3. By installing, you agree to be bound to Coppermine\'s license:';
-$lang_install['cpg_info_frames'] = 'Your browser appears not to be capable to display inline frames. You can review the license within the docs folder that ships with your coppermine package.';
+$lang_install['cpg_info_frames'] = 'Your browser appears incapable of displaying inline frames. You can review the license within the docs folder that ships with your coppermine package.';
 $lang_install['license'] = 'Coppermine license agreement';
 $lang_install['create_table'] = 'Creating table \'%s\'';
 $lang_install['db_populating'] = 'Trying to insert data in the database.';
@@ -1484,7 +1484,7 @@ $lang_install['finish'] = 'Finish Installation';
 $lang_install['gd_note'] = '<strong>Important :</strong> older versions of the GD graphic library support only JPEG and PNG images. If this is the case for you, then the script will not be able to create thumbnails for GIF images.';
 $lang_install['go_to_main'] = 'Go to the main page';
 $lang_install['im_no_convert_ex'] = 'The installer found the ImageMagick \'convert\' program in \'%s\', however it can\'t be executed by the script.<br /><br />You may consider using GD instead of ImageMagick.';
-$lang_install['im_not_found'] = 'The installer tried to find ImageMagick, but could not determine it\'s existence or there was an error. <br />Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a>     \'convert\' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />If ImageMagick is installed on your system and you want to use it, <br />you need to input the full path to the \'convert\' program below. <br />On Windows the path should look like \'c:/ImageMagick/\' and should not contain any space, on Unix is it something like \'/usr/bin/X11/\'.<br /><br />If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will try to use GD2 then by default (which is what most users have). <br />You can change this later as well (in Coppermine\'s config screen), so don\'t be afraid if you\'re not sure what to enter here - leave it blank.';
+$lang_install['im_not_found'] = 'The installer tried to find ImageMagick, but could not determine it\'s existence or there was an error. <br />Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a>     \'convert\' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />If ImageMagick is installed on your system and you want to use it, <br />you need to input the full path to the \'convert\' program below. <br />On Windows the path should look like \'c:/ImageMagick/\' and should not contain any space, on Unix is it something like \'/usr/bin/X11/\'.<br /><br />If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will then try to use GD2 by default (which is what most users have). <br />You can change this later as well (in Coppermine\'s config screen), so don\'t be afraid if you\'re not sure what to enter here - leave it blank.';
 $lang_install['im_packages'] = 'Your server supports the following image package(s)';
 $lang_install['im_path'] = 'Path to ImageMagick:';
 $lang_install['im_path_space'] = 'The path to ImageMagick (\'%s\') contains at least one space. This will cause problems in the script.<br /><br />You must move ImageMagick to another directory.';
@@ -1573,7 +1573,7 @@ $lang_install['text'] = 'Write text on image';
 $lang_install['scale'] = 'Scale an image';
 $lang_install['generated_image'] = 'Generated image';
 $lang_install['reference_image'] = 'Reference image';
-$lang_install['imp_test_error'] = 'There was an error in one or more of the test, please make sure you selected the appropriate Image Processing Package and it is configured correctly!';
+$lang_install['imp_test_error'] = 'There was an error in one or more of the tests, please make sure you selected the appropriate Image Processing Package and it is configured correctly!';
 $lang_install['writable'] = 'Writable';
 $lang_install['not_writable'] = 'Not writable';
 $lang_install['not_exist'] = 'Does not exist';
