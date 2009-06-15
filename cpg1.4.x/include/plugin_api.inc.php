@@ -62,7 +62,7 @@ class CPGPluginAPI {
         register_shutdown_function('cpg_action_page_end');
 
         // Register plugin_sleep action for shutdown
-        register_shutdown_function(array('CPGPluginAPI','sleep'));
+        register_shutdown_function('pluginapi_sleep_wrapper');
 
         // Used as a failsafe to keep plugins in order
         $index = 0;
@@ -690,4 +690,9 @@ function& cpg_get_dir_list($folder) {
     natcasesort($dirs);
     return $dirs;
 }
+
+function pluginapi_sleep_wrapper() {
+    CPGPluginAPI::sleep();
+} 
+
 ?>
