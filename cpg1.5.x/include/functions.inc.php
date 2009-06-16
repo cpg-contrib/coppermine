@@ -1918,19 +1918,24 @@ function get_pic_pos($album, $pid)
     //$superCage = Inspekt::makeSuperCage();
 
     $sort_array = array(
-        'na' => 'filename <',
-        'nd' => 'filename >',
-        'ta' => 'title <',
-        'td' => 'title >',
+        //'na' => 'filename <',
+        //'nd' => 'filename >',
+        //'ta' => 'title <',
+        //'td' => 'title >',
         'da' => 'pid <',
         'dd' => 'pid >',
-        'pa' => 'position <',
-        'pd' => 'position >',
+        //'pa' => 'position <',
+        //'pd' => 'position >',
     );
 
     $sort_code  = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
-    $comp_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_array[$CONFIG['default_sort_order']];
-
+    
+    if (isset($sort_array[$sort_code])) {
+        $comp_order = $sort_array[$sort_code];
+    } else {
+        return false;   
+    }
+    
     if (count($FORBIDDEN_SET_DATA) > 0) {
         $forbidden_set_string = ' AND aid NOT IN (' . implode(', ', $FORBIDDEN_SET_DATA) . ')';
     } else {
