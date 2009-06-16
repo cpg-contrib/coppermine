@@ -80,10 +80,12 @@
 <a name="upgrade_why_changelog_end"></a>
 
 <a name="upgrade_any"></a><h2>Steps needed to perform when upgrading Coppermine (from any version)<a href="#upgrade_any" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The instructions here apply for <strong>all</strong> Coppermine udpates/upgrades, so please read them carefully.</p>
 <ul>
     <li>
 	    <span class="detail_head_collapsed">Download the most recent stable version existing in the download section of the official Coppermine homepage</span>
-	    <div class="detail_body border1">Don't assume that you have the most recent version, especially if you have installed Coppermine using a control panel app provided by your webhost. The coppermine dev team doesn't recommend using such <a href="auto-installers.htm#auto-installers">auto-installers</a> - please download the original from the <a href="http://coppermine-gallery.net/">official Coppermine homepage</a>.<br</div>
+	    <div class="detail_body border1">Don't assume that you have the most recent version, especially if you have installed Coppermine using a control panel app provided by your webhost. The coppermine dev team doesn't recommend using such <a href="auto-installers.htm#auto-installers">auto-installers</a> - please download the original from the <a href="http://coppermine-gallery.net/">official Coppermine homepage</a>.<br />
+	    If you're not sure what package to use (i.e. if there are several archive types), choose the zip archive, as Windows XP and better out of the box come with support for zip archives.</div>
     </li>
     <li>
 	    <span class="detail_head_collapsed">Make a backup (dump) of your database</span>
@@ -95,15 +97,16 @@
 	    <div class="detail_body border1">Usually, you just download your entire coppermine folder to your local hard drive or any other safe backup location using your <a href="dev_tools.htm#dev_tools_ftp_client"><abbr title="File Transfer Protocol">FTP</abbr> app</a>. A fresh Coppermine package doesn't contain a config file anyway (that file has being created during install on your server), so you can't actually replace an existing config file with an empty one from the package; again, the backup is only a safety precaution.</div>
     </li>
     <li>
-	    Unpack the coppermine package you downloaded into a temporary folder on your local hard drive (preserving the folder structure within the package)
+	    <span class="detail_head_collapsed">Unpack the coppermine package you downloaded</span>
+	    <div class="detail_body border1">Similar to fresh installs, you need to extract the packed archive into a temporary folder on your local hard drive (preserving the folder structure within the package). Most modern operating systems come with an unarchiver that is capable to extract zip archives.</div>
     </li>
     <li>
 	    <span class="detail_head_collapsed"><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories, making sure not to overwrite your anycontent.php file or the albums directory.</span>
 	    <div class="detail_body border1">In fact, you could upload the albums folder as well - the one that is contained in the package is empty anyway. The recommendation not to upload this folder is only meant as a pre-caution for some users who have "funny" settings for their FTP apps: some exotic FTP applications delete folders existing on the server and then re-create an empty folder on the server-side. This would of course be a disaster, as you would lose all your uploaded files in your gallery. However, the number of FTP apps that is set up in that strange way is small and therefor, it won't hurt for most to upload the albums folder as well. If you're not sure, use one of the <a href="dev_tools.htm#dev_tools_ftp_client">FTP clients recommended by the devs</a>.</div>
     </li>
     <li>
-	    <span class="detail_head_collapsed">Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. <tt class="code">http://yourdomain.tld/your_coppermine_folder/update.php</tt>).</span>
-	    <div class="detail_body border1">This will update your coppermine install by making all necessary changes in the database.</div>
+	    <span class="detail_head_collapsed">Run the update script</span>
+	    <div class="detail_body border1">To run the PHP-file &quot;<tt class="code">update.php</tt>&quot; (i.e. the <a href="#updater">update script</a>), just enter the <abbr title="Uniform Resource Locator">URL</abbr> into the address bar of your browser. The file &quot;<tt class="code">update.php</tt>&quot; resides in the coppermine directory, so to run it you will need to point your browser to <tt class="code">http://yourdomain.tld/your_coppermine_folder/update.php</tt> (if you have installed Coppermine into the root of your web site, you will have to run <tt class="code">http://yourdomain.tld/update.php</tt> accordingly). This will update your coppermine install by making all necessary changes in the database.</div>
     </li>
     <li>
 	    <span class="detail_head_collapsed">If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme</span>
@@ -155,6 +158,7 @@ The updater performs three things:
 	<li>Check the authorization of the visitor who accesses the script</li>
 	<li>Run the mysql database queries that reside in the file <tt class="code">sql/update.sql</tt> (replacing the generic table prefix with the one you actually chose during initial install)</li>
 	<li>Delete some files that used to reside inside coppermine's core in previous versions. The script only deletes unneeded files, but it doesn't touch your custom files, so there is absolutely no reason to be alarmed.</li>
+	<li>Convert your passwords from plain text to encrypted: in older versions of coppermine there used to be an option to allow the passwords of your users to be stored in plain text within the database. In cpg1.5.x, plain text passwords are no longer supported. Therefor (if you don't already use encrypted passwords), the passwords in your database will be encrypted by the update script.</li>
 </ul>
 <a name="updater_purpose"></a><h3>Purpose<a href="#updater_purpose" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The updater will perform the database update for you after you manually have replaced the sql file it is using. The updater will <strong>not</strong> detect for you if there is a new version of coppermine available, nor will it download anything from the coppermine website. The level of automation is not that advanced in coppermine (yet).</p>
@@ -284,6 +288,7 @@ The updater performs three things:
 
 <a name="versioncheck_expect"></a><h3>Wrong expectations<a href="#versioncheck_expect" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>To some this may sound trivial, for others it might be an important piece of information: naturally, files that you have not replaced during the upgrading process (e.g. <tt class="code">anycontent.php</tt>) will show as outdated in versioncheck's output. This is of course to be expected. It doesn't hurt if you performed the upgrade exactly as suggested, as the files you're supposed to keep during that process don't actually contain code that needs updating. As an example, <tt class="code">anycontent.php</tt> doesn't actually contain code at all (at least the file that comes with coppermine out of the box). It <em>can</em> contain custom code if you decide to use it. For details on the usage of <tt class="code">anycontent.php</tt>, refer to the section &quot;<a href="php-content.htm#php-content_anycontent">Using anycontent.php</a>&quot;.</p>
+<p>The versioncheck tool doesn't actually <em>download</em> newer file versions from the internet - it just <em>checks</em> the files you have on your server against a list of most recent files. The versioncheck tool doesn't check nor sanitize your site against hacking.</p>
 
 <a name="versioncheck_end"></a>
 

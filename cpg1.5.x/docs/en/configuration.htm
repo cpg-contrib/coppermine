@@ -895,7 +895,7 @@ Of course this message will only be displayed if you have disallowed guests to p
 If you have issues uploading pics, find out if safe_mode is enabled on your webserver by searching for it on your phpinfo page (go to admin tools -&gt; phpinfo). If safe_mode is enabled there, coppermine might be able to workaround the misconfiguration of your server if you enable coppermine's "silly safe mode" option.</p>
 <p>What "silly safe mode" does: if you enable this option, Coppermine will not try to create sub-folders for each user, but upload all files into the root of the userpics folder. There might be a slight performance impact for larger galleries, but then you probably won't be running a large gallery on a "crippled" webserver that is not configured properly.</p>
 <p>Before playing with the silly safe mode option, make sure that you have <a href="install_permissions.htm#permissions">set permissions</a> on the albums folder and everything within it as suggested.</p>
-<p>Don't change this if uploading works just fine for you.</p>
+<p>Don't change this if uploading works just fine for you. Do not enable the Coppermine setting "silly safe mode" if your webserver is not running in safe mode in the first place.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Enable "silly safe mode"</p>
 <a name="admin_picture_thumb_advanced_silly_safe_mode_end"></a>
 <hr />
