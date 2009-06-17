@@ -277,5 +277,10 @@ $(document).ready(function() {
       GB_show(t,this.href,470,600);
       return false;
     });
+	$("a.greyboxfull").click(function(){
+      var t = this.title || $(this).text() || this.href;
+      GB_show(t,this.href,700,800);
+      return false;
+    });
     $('.elastic').elastic();
 });
