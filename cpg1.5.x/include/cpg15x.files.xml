@@ -8783,6 +8783,12 @@
     <hash>c7fd5c84de9560789243b09b3832e081</hash>
   </element>
   <element>
+    <fullpath>themes/eyeball/images/loader.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>c7fd5c84de9560789243b09b3832e081</hash>
+  </element>
+  <element>
     <fullpath>themes/eyeball/images/rate_empty.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
