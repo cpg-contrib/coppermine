@@ -9062,6 +9062,12 @@
     <hash>a373116237a7f51bbc6800b0abb02f08</hash>
   </element>
   <element>
+    <fullpath>themes/fruity/images/loader.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>c7fd5c84de9560789243b09b3832e081</hash>
+  </element>
+  <element>
     <fullpath>themes/fruity/images/main_under_left.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
@@ -9365,6 +9371,12 @@
     <hash>e47bac3a09b19fe803d5205aad88bca4</hash>
   </element>
   <element>
+    <fullpath>themes/hardwired/images/loader.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>c7fd5c84de9560789243b09b3832e081</hash>
+  </element>
+  <element>
     <fullpath>themes/hardwired/images/middle-left.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
@@ -9552,6 +9564,12 @@
     <status>optional</status>
     <permission>read</permission>
     <hash>1978ad1b94b2c01992e378ecac93d8dd</hash>
+  </element>
+  <element>
+    <fullpath>themes/igames/images/loader.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>c7fd5c84de9560789243b09b3832e081</hash>
   </element>
   <element>
     <fullpath>themes/igames/images/menu_button.gif</fullpath>
@@ -9742,6 +9760,12 @@
     <status>optional</status>
     <permission>read</permission>
     <hash>8841dc11ca73f51103755888903563fe</hash>
+  </element>
+  <element>
+    <fullpath>themes/mac_ox_x/images/loader.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>c7fd5c84de9560789243b09b3832e081</hash>
   </element>
   <element>
     <fullpath>themes/mac_ox_x/images/main_table_r1_c1.gif</fullpath>
@@ -10118,6 +10142,12 @@
     <hash>8841dc11ca73f51103755888903563fe</hash>
   </element>
   <element>
+    <fullpath>themes/rainy_day/images/loader.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>c7fd5c84de9560789243b09b3832e081</hash>
+  </element>
+  <element>
     <fullpath>themes/rainy_day/images/rate_empty.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
@@ -10350,6 +10380,12 @@
     <hash>8841dc11ca73f51103755888903563fe</hash>
   </element>
   <element>
+    <fullpath>themes/sample/images/loader.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>c7fd5c84de9560789243b09b3832e081</hash>
+  </element>
+  <element>
     <fullpath>themes/sample/images/tile.gif</fullpath>
     <status>optional</status>
     <permission>read</permission>
@@ -10418,6 +10454,12 @@
     <status>optional</status>
     <permission>read</permission>
     <hash>8841dc11ca73f51103755888903563fe</hash>
+  </element>
+  <element>
+    <fullpath>themes/water_drop/images/loader.gif</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>c7fd5c84de9560789243b09b3832e081</hash>
   </element>
   <element>
     <fullpath>themes/water_drop/images/orange_carret.gif</fullpath>
