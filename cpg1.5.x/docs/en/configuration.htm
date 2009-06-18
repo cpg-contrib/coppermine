@@ -795,18 +795,30 @@ Of course this message will only be displayed if you have disallowed guests to p
 <a name="admin_contact_end"></a>
 
 <a name="admin_thumb_start"></a><h2>Thumbnail settings<a href="#admin_thumb_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="admin_picture_thumbnail_use-dimension"></a><h3>Use dimension<a href="#admin_picture_thumbnail_use-dimension" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Sets the dimension (height or width or max aspect or exact) on which the maximum pixel size limitation should apply to for the thumbnail.</p>
+<p>The options <tt class="code">width</tt> or <tt class="code">height</tt> should be pretty self-explanatory: if you specify the value <tt class="code">width</tt> for the setting &quot;Use dimension&quot;, all thumbnails will have <strong>exactly</strong> the <em>width</em> (in pixels) that you specify in the setting &quot;<a href="#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a>&quot;. Settings all thumbnails to have the same width makes the &quot;grid&quot; of thumbnails on the thumbnails page look very structured, especially when there is little space between the thumbnail rows. The same thing applies if you choose height - all thumbnails will then have the same height, which will look good particularly when looking at a row of thumbnails, e.g. on the film strip display.</p>
+<p>Choosing &quot;max aspect&quot; means that whatever will be the longer side (width for images in landscape format, height for images in portrait format) will have the dimension you specify in &quot;<a href="#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a>&quot; - the shorter side will be shorter of course, as the aspect ratio that exists for the orginal pic will be preserved as well for the thumbnail.</p>
+<p><strong>Only</strong> if you choose <tt class="code">exact</tt> as value for the setting &quot;Use dimension&quot;, the value entered into the field &quot;Height of a thumbnail&quot; will be taken into account at all: the thumbnail will then be resized to the fixed dimensions you specify for width and height. If the aspect ration of the original doesn't match the aspect ratio that results from the width and height settings for thumbnails, the thumbnail will be cropped as well. The main advantage of this setting is that all your thumbnails will have identical dimensions, which leads to a super-clean look of your thumbnails page, with the drawback of the fact that important parts of the content of the original image may not be visible on the thumbnail page because cropping has been applied. Use this option to create square thumbnails (setting width and height for the thumbnail to the same value).</p>
+<p class="cpg_message_info">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; Use dimension</p>
+<a name="admin_picture_thumbnail_use-dimension_end"></a>
+<hr />
+
 <a name="admin_picture_thumbnail_max-dimension"></a><h3>Max dimension of a thumbnail<a href="#admin_picture_thumbnail_max-dimension" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Sets the maximum allowable size in pixels for the specified dimension of your thumbnails.</p>
 <p class="cpg_message_info">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; Max dimension of a thumbnail</p>
 <a name="admin_picture_thumbnail_max-dimension_end"></a>
 <hr />
-<a name="admin_picture_thumbnail_use-dimension"></a><h3>Use dimension ( width or height or Max aspect for thumbnail )<a href="#admin_picture_thumbnail_use-dimension" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Sets the dimension (height or width) on which the maximum pixel size limitation should apply to.</p>
+
+<a name="admin_picture_thumbnail_height"></a><h3>Height of a thumbnail<a href="#admin_picture_thumbnail_height" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Only applies if you use "exact" in "Use dimension".</p>
 <p class="cpg_message_info">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; Use dimension</p>
-<a name="admin_picture_thumbnail_use-dimension_end"></a>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; Height of a thumbnail</p>
+<a name="admin_picture_thumbnail_height_end"></a>
 <hr />
+
 <a name="admin_picture_thumb_advanced_thumbs_prefix"></a><h3>The prefix for thumbnails<a href="#admin_picture_thumb_advanced_thumbs_prefix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This prefix is added to the file name of created thumbnails.</p>
 <p>These setting mustn't be changed if you already have files in your database. If you do, all reference to your existing files will become invalid.</p>

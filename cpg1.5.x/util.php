@@ -555,7 +555,6 @@ EOT;
                         <input type="hidden" name="updatetype" value="{$updatetype}" />
                         <input type="hidden" name="albumid" value="{$albumid}" />
                         <input type="hidden" name="autorefresh" value="{$autorefresh}" />
-                        <!--<input type="submit" value="{$lang_util_php['continue']}" class="button" />-->
                         <button type="submit" class="button" name="submit" id="submit" value="{$lang_util_php['continue']}">{$lang_util_php['continue']} {$icon_array['continue']}</button>
                     	<input type="hidden" name="form_token" value="{$form_token}" />
                     	<input type="hidden" name="timestamp" value="{$timestamp}" />
@@ -986,7 +985,6 @@ function refresh_db()
                             <input type="hidden" name="refresh_numpics" value="$numpics" />
                             <input type="hidden" name="refresh_startpic" value="$startpic" />
                             <input type="hidden" name="albumid" value="$albumid" />
-                            <!--<input type="submit" value="{$lang_util_php['continue']}" class="button" />-->
                             <button type="submit" class="button" name="submit" id="submit" value="{$lang_util_php['continue']}">{$lang_util_php['continue']} {$icon_array['continue']}</button>
                             <input type="hidden" name="form_token" value="{$form_token}" />
                             <input type="hidden" name="timestamp" value="{$timestamp}" />
