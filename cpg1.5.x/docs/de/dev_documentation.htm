@@ -143,6 +143,120 @@ right in front of the closing <tt class="code">&lt;/body&gt;</tt>-tag mustn't be
 </div>
 <p>Subsequently, if a temporary document get's permanent, the meta tag should be removed.</p>
 
+<a name="dev_documentation_detail"></a><h2>Expandable/collapsible "detail"-blocks<a href="#dev_documentation_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>As the documentation is using the jquery framwork and some little plugins for ease of use, it's possible to come up with expandable/collapsible blocks that the end user can click on to read details. This can help to maintain a clear document structure.</p>
+<p>The used technology falls back nicely if JavaScript is disabled: the block are expanded out of the box and get collapsed on page load by JavaScript - if JavaScript is disabled, the blocks stay expanded no matter what.</p>
+<p>To create such a block, you need to come up with two container elements that need to be one after the other (no tags between them):</p>
+<pre>&lt;span class="detail_head_collapsed"&gt;Details&lt;/span&gt;
+&lt;div class="detail_body border1"&gt;
+	Content that is collapsed on page load and will get expanded if the visitor clicks on the "details" container above.
+&lt;/div&gt;</pre>
+<p>You can have several of those blocks on a page. To obtain a control that can manipulate all of them, you can use</p>
+<pre>&lt;button type="button" class="button detail_expand_all" name="expandalltop" id="expandalltop" onclick="return false"&gt;
+&lt;img src="../../images/tree/plus.gif" width="9" height="9" border="0" alt="" title="Expand All" /&gt;Expand all details
+&lt;/button&gt;
+&lt;button type="button" class="button detail_collapse_all" name="collapsealltop" id="collapsealltop" style="display:none;" onclick="return false"&gt;
+&lt;img src="../../images/tree/minus.gif" width="9" height="9" border="0" alt="" title="Collapse all" /&gt;Collapse all details
+&lt;/button&gt;</pre>
+<p>You need to pay attention to anchors that you might want to use within blocks that are collapsed on page load. Let's assume you have this content on a page named <tt class="code">example.htm</tt>:</p>
+<pre>&lt;span class="detail_head_collapsed"&gt;Details&lt;/span&gt;
+&lt;div class="detail_body border1"&gt;
+	<a name="foo"></a>Some content that can be accessed using an anchor.
+&lt;/div&gt;</pre>
+<p>Such a construct will not work if accessed using a link like this: <tt class="code">&lt;a href="example.htm#foo"&gt;</tt>. That's why a GET parameter named "expand_all" has been added that will expand all collapsed blocks on a page if set to 1. Subsequently, the example link would have to be <tt class="code">&lt;a href="example.htm?expand_all=1#foo"&gt;</tt></p>
+
+<a name="dev_documentation_help"></a><h2>Help<a href="#dev_documentation_help" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Obviously, the content of the docs folder within coppermine is the place where the documentation is being kept. But apart from that, the docs serve as core for the help system that resides in Coppermine itself (help for the actual application, embedded into the actual application). This being said, here's how the help system currently works: from any PHP-driven file within Coppermine, the help is being populated using the function <tt class="code">cpg_display_help</tt> that is being defined in <tt class="code">include/functions.inc.php</tt>. This function creates the needed output and determines wether the gallery admin has enabled help or not.</p>
+<div class="cpg_example">The minimum code to display help would be
+<pre>$my_help =  cpg_display_help('f=empty.htm&amp;h=' .
+            urlencode('Hello world') . '&amp;t=' .
+            urlencode('This is the detailed text of the help window'), 
+            200, 100);
+echo &lt;&lt;&lt; EOT
+Foo bar {$my_help}
+EOT;</pre>
+In case the amount of of characters might get bigger we should disguise the URL a little, using this code
+<pre>$my_help =  cpg_display_help('f=empty.htm&amp;base=64&amp;h=' .
+            urlencode(base64_encode(serialize('Hello world'))) . '&amp;t=' .
+            urlencode(base64_encode(serialize('This is the detailed text of the help window'))), 
+            200, 100);
+echo &lt;&lt;&lt; EOT
+Foo bar {$my_help}
+EOT;</pre>
+should do the trick.<br />
+This is of course not a real life example, as there mustn't be hard-coded text in the code, so the result would look like this:
+<pre>$my_help =  cpg_display_help('f=empty.htm&amp;base=64&amp;h=' . 
+            urlencode(base64_encode(serialize($lang_example['hello_world']))) . '&amp;t=' . 
+            urlencode(base64_encode(serialize($lang_example['hello_world_details']))), 
+            200, 100);
+echo &lt;&lt;&lt; EOT
+{$lang_example['bla']} {$my_help}
+EOT;</pre>
+With this coding, the help text would come from the language file, so this option only applies for very short help section.
+</div>
+The second (and recommended) way to display help is by refering to the documentation - the function <tt class="code">cpg_display_help</tt> and the subsequent file <tt class="code">help.php</tt> are designed for exactly that purpose. All you have to do in your function call is refering to the file name of the documentation section that you want to refer to and the anchor tags that you refer to:
+<pre>$help = '&nbsp;' . cpg_display_help('f=your_file.htm&amp;as=foo_start&amp;ae=foo_end&amp;top=1', '600', '300');</pre>
+Would refer to the file <tt class="class">./docs/en/your_file.htm</tt> and inside that file to the section between
+<pre>&lt;a name="foo_start"&gt;&lt;/a&gt;</pre>
+and
+<pre>&lt;a name="foo_end"&gt;&lt;/a&gt;</pre>
+You don't have to take care of <abbr title="internationalization">i18n</abbr> in this case - if the end user's language preference is French and there is a file <tt class="class">./docs/fr/your_file.htm</tt>, the end user will see the content taken from that file. The english version of the docs is the default that the help function fallbacks to if there is no help available in the user's prefered language.
+
+<a name="dev_documentation_help_start_end"></a><h3>Start and end anchors needed<a href="#dev_documentation_help_start_end" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>From what has been said so far it should be obvious that every section of the documentation that could be used as help section from within the Coppermine interface needs to be wrapped into a start and end anchor tag. It's not advisable to rely on the order of sections on a documentation page to be preserved - chapters might be added or removed.</p>
+<h4>Examples</h4>
+<div class="cpg_example">
+Good example:
+<fieldset class="code"><legend>docs/en/your_file.htm</legend>
+&lt;a name="food"&gt;&lt;/a&gt;<br />
+&lt;h1&gt;Food&lt;/h1&gt;<br />
+&lt;p&gt;Here's a list of things that you can eat.&lt;/p&gt;<br />
+&lt;a name="food_fruit"&gt;&lt;/a&gt;<br />
+&lt;h2&gt;Fruit&lt;/h2&gt;<br />
+&lt;p&gt;Apples, bananas and cherries are all fruit.&lt;/p&gt;<br />
+&lt;a name="food_fruit_end"&gt;&lt;/a&gt;<br />
+&lt;a name="food_veggies"&gt;&lt;/a&gt;<br />
+&lt;h2&gt;Vegetables&lt;/h2&gt;<br />
+&lt;p&gt;Cucumber, carrots and peas are vegetables.&lt;/p&gt;<br />
+&lt;a name="food_veggies_end"&gt;&lt;/a&gt;<br />
+&lt;a name="food_end"&gt;&lt;/a&gt;</fieldset>
+<br />
+<fieldset class="code"><legend>example.php</legend>
+$help = cpg_display_help('f=your_file.htm&amp;amp;as=food_fruit&amp;amp;ae=food_fruit_end&amp;amp;top=1', '600', '300');</fieldset>
+</div>
+
+<div class="cpg_example">
+Bad example:
+<fieldset class="code"><legend>docs/en/your_file.htm</legend>
+&lt;a name="food"&gt;&lt;/a&gt;
+&lt;h1&gt;Food&lt;/h1&gt;
+&lt;p&gt;Here's a list of things that you can eat.&lt;/p&gt;
+&lt;a name="food_fruit"&gt;&lt;/a&gt;
+&lt;h2&gt;Fruit&lt;/h2&gt;
+&lt;p&gt;Apples, bananas and cherries are all fruit.&lt;/p&gt;
+&lt;a name="food_veggies"&gt;&lt;/a&gt;
+&lt;h2&gt;Vegetables&lt;/h2&gt;
+&lt;p&gt;Cucumber, carrots and peas are vegetables.&lt;/p&gt;</fieldset>
+<br />
+<fieldset class="code"><legend>example.php</legend>
+$help = cpg_display_help('f=your_file.htm&amp;amp;as=food_fruit&amp;amp;ae=food_veggies&amp;amp;top=1', '600', '300');</fieldset>
+</div>
+
+<a name="dev_documentation_heading_anchors"></a><h2>Adding anchors to headings<a href="#dev_documentation_heading_anchors" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>In the documentation for cpg1.5.x, nearly every heading (from <tt class="code">&lt;h1&gt;</tt> to <tt class="code">&lt;h6&gt;</tt>) should contain a leading anchor tag and a trailing link to that section. This way, supporters can easily spot the anchor that they need to refer to - just click on the trailing link icon in a heading and then copy the URL from the address bar and paste it into the support posting.</p>
+<p>That's why it's advisable to add anchors to all sub-sections of the documentation that could serve as online help or that a supporter might want to refer to.</p>
+<div class="cpg_example">
+<pre>&lt;a name="anchor"&gt;&lt;/a&gt;
+&lt;h2&gt;
+    Heading text
+    &lt;a href="#anchor" title="Link to this section"&gt;
+        &lt;img src="images/anchor.gif" width="15" height="9" border="0" alt="" /&gt;
+    &lt;/a&gt;
+&lt;/h2&gt;</pre>
+or (for space saving and easier search/replace actions) rolled into one line:
+<pre>&lt;a name="anchor"&gt;&lt;/a&gt;&lt;h2&gt;Heading text&lt;a href="#anchor" title="Link to this section"&gt;&lt;img src="images/anchor.gif" width="15" height="9" border="0" alt="" /&gt;&lt;/a&gt;&lt;/h2&gt;</pre>
+</div>
+
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
 		<span id="doc_last_changed">$LastChangedDate: 2009-05-28 22:19:35 +0200 (Do, 28 Mai 2009) $</span>
