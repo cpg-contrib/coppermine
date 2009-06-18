@@ -347,9 +347,9 @@ a.external {
 }
 
 .code {
-    /*font-size: 12px;*/
+    /*font-size: 1.0em;*/
     font-style: normal;
-    font-family: Fixedsys,"Courier New", Courier, monospace;
+    font-family: 'Courier New', Courier, Fixedsys, monospace;
     background-color: #E0E0E0;
 }
 
