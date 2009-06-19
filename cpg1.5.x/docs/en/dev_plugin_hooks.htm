@@ -409,7 +409,7 @@ ob_start('cpg_filter_page_html');</textarea></td>
     <td valign="top">include/plugin_api.inc.php</td>
     <td valign="top"><a name="plugin_hooks_filename_page_end"></a><strong>page_end</strong><a href="#plugin_hooks_filename_page_end" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
-    <td valign="top">executes when the script has output the page to the browser</td>
+    <td valign="top">executes when the script has output the page to the browser.<br />Note: Working directory of the script can change inside the shutdown function under some web servers, e.g. Apache.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">register_shutdown_function('cpg_action_page_end');</textarea></td>
   </tr>
   <tr>
