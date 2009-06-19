@@ -182,14 +182,7 @@ echo <<< EOT
         <link rel="stylesheet" href="css/coppermine.css" type="text/css" />
         <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" type="text/css" />
         <script src="docs/js/jquery.js" type="text/javascript"></script>
-        <script type="text/javascript">
-			$(document).ready(function()
-			{
-				$('#toc').replaceWith('');
-				$('#docheader').replaceWith('');
-				$('#doc_footer').replaceWith('');
-			});
-        </script>
+        <script src="docs/js/help.js" type="text/javascript"></script>
     </head>
     <body class="tableb">
         <div style="padding: 5px;">

@@ -799,40 +799,40 @@ Of course this message will only be displayed if you have disallowed guests to p
 <p>Sets the dimension (<em>width</em> or <em>height</em> or <em>max aspect</em> or <em>exact</em>) on which the maximum pixel size limitation should apply to for the thumbnail.</p>
 <p>The options <tt class="code">width</tt> or <tt class="code">height</tt> should be pretty self-explanatory: if you specify the value <tt class="code">width</tt> for the setting &quot;Use dimension&quot;, all thumbnails will have <strong>exactly</strong> the <em>width</em> (in pixels) that you specify in the setting &quot;<a href="#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a>&quot;. Settings all thumbnails to have the same width makes the &quot;grid&quot; of thumbnails on the thumbnails page look very structured, especially when there is little space between the thumbnail rows. The same thing applies if you choose height - all thumbnails will then have the same height, which will look good particularly when looking at a row of thumbnails, e.g. on the film strip display.</p>
 <p>Choosing &quot;max aspect&quot; means that whatever will be the longer side (width for images in landscape format, height for images in portrait format) will have the dimension you specify in &quot;<a href="#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a>&quot; - the shorter side will be shorter of course, as the aspect ratio that exists for the orginal pic will be preserved as well for the thumbnail.</p>
-<p><strong>Only</strong> if you choose <tt class="code">exact</tt> as value for the setting &quot;Use dimension&quot;, the value entered into the field &quot;<a href="#admin_picture_thumbnail_height">Height of a thumbnail</a>&quot; will be taken into account at all: the thumbnail will then be resized to the fixed dimensions you specify for width and height. If the aspect ratio of the original doesn't match the aspect ratio that results from the width and height settings for thumbnails, the thumbnail will be cropped as well. The main advantage of this setting is that all your thumbnails will have identical dimensions, which leads to a super-clean look of your thumbnails page, with the drawback of the fact that important parts of the content of the original image may not be visible on the thumbnail page because cropping has been applied. Use this option to create square thumbnails (setting width and height for the thumbnail to the same value).</p>
-<table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra" width="100%">
+<p><strong>Only</strong> if you choose <tt class="code">exact</tt> as value for the setting &quot;Use dimension&quot;, the value entered into the field &quot;<a href="configuration.htm#admin_picture_thumbnail_height">Height of a thumbnail</a>&quot; will be taken into account at all: the thumbnail will then be resized to the fixed dimensions you specify for width and height. If the aspect ratio of the original doesn't match the aspect ratio that results from the width and height settings for thumbnails, the thumbnail will be cropped as well. The main advantage of this setting is that all your thumbnails will have identical dimensions, which leads to a super-clean look of your thumbnails page, with the drawback of the fact that important parts of the content of the original image may not be visible on the thumbnail page because cropping has been applied. Use this option to create square thumbnails (setting width and height for the thumbnail to the same value).</p>
+<table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra maintable" width="100%">
   <tr>
-    <th valign="top" align="left">Option value</th>
-    <th valign="top" align="left">Explanation</th>
-	<th valign="top" align="left">Correlation</th>
-    <th valign="top" align="left">Advantages</th>
-    <th valign="top" align="left">Disadvantages</th>
+    <th valign="top" align="left" class="tableh1">Option value</th>
+    <th valign="top" align="left" class="tableh1">Explanation</th>
+	<th valign="top" align="left" class="tableh1">Correlation</th>
+    <th valign="top" align="left" class="tableh1">Advantages</th>
+    <th valign="top" align="left" class="tableh1">Disadvantages</th>
   </tr>
   <tr>
     <td valign="top"><strong>width</strong></td>
     <td valign="top">Thumbnails will have <strong>exactly</strong> the same <em>width</em> (in pixels) that you specify in the setting &quot;Max dimension of a thumbnail&quot;. The <em>height</em> may differ from thumbnail to thumbnail, as the aspect ratio of the original image is preserved for the thumbnail.</td>
-	<td valign="top"><a href="#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a></td>
+	<td valign="top"><a href="configuration.htm#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a></td>
     <td valign="top">Nice look for thumbnails aligned vertically. Predictable results for themes with fixed width (i.e. where the content defined by the <a href="theme_template.htm#theme_template_gallery">{GALLERY}</a>-token is meant to fit in a table cell or div container with fixed or limited width.</td>
     <td valign="top">Doesn't align well horizontally.</td>
   </tr>
   <tr>
     <td valign="top"><strong>height</strong></td>
     <td valign="top">Thumbnails will have <strong>exactly</strong> the same <em>height</em> (in pixels) that you specify in the setting &quot;Max dimension of a thumbnail&quot;. The <em>width</em> may differ from thumbnail to thumbnail, as the aspect ratio of the original image is preserved for the thumbnail.</td>
-	<td valign="top"><a href="#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a></td>
+	<td valign="top"><a href="configuration.htm#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a></td>
     <td valign="top">Nice look for thumbnails aligned horizontally (e.g. the <a href="#admin_image_comment_filmstrip_toggle">film strip</a>).</td>
     <td valign="top">Looks silly for extreme landscape resolutions, e.g. stitched panorama images. Doesn't align well vertically. Unpredictable results for fixed-width themes.</td>
   </tr>
   <tr>
     <td valign="top"><strong>max aspect</strong></td>
     <td valign="top">Whatever will be the longer side (<em>width</em> for images in landscape format, <em>height</em> for images in portrait format) will have the dimension you specify in &quot;Max dimension of a thumbnail&quot; - the shorter side will be shorter of course, as the aspect ratio that exists for the orginal pic will be preserved as well for the thumbnail. This is the recommended setting.</td>
-	<td valign="top"><a href="#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a></td>
+	<td valign="top"><a href="configuration.htm#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a></td>
     <td valign="top">Thumbnails will have similar files sizes. Estetically pleasant if you have a mixture of landscape and portrait images.</td>
     <td valign="top">Thumbnail rows and columns will not align. Unpredictable results for narrow themes.</td>
   </tr>
   <tr>
     <td valign="top"><strong>exact</strong></td>
     <td valign="top">Thumbnail will be resized to the fixed dimensions you specify for width and height. All thumbnails will have the same dimensions and look identical. If the aspect ratio of the original doesn't match the aspect ratio that results from the width and height settings for thumbnails, the thumbnail will be cropped as well.</td>
-	<td valign="top"><a href="#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a> <strong>and</strong> <a href="#admin_picture_thumbnail_height">Height of a thumbnail</a></td>
+	<td valign="top"><a href="configuration.htm#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a> <strong>and</strong> <a href="configuration.htm#admin_picture_thumbnail_height">Height of a thumbnail</a></td>
     <td valign="top">Clean look of your thumbnails page because thumbnails will align both vertically as well as horizontally.</td>
     <td valign="top">Parts of the content of the original image may not be visible on the thumbnail page because cropping has been applied, so your thumbnails may not attract the attention of the visitor.</td>
   </tr>
@@ -844,14 +844,14 @@ Of course this message will only be displayed if you have disallowed guests to p
 <hr />
 
 <a name="admin_picture_thumbnail_max-dimension"></a><h3>Max dimension of a thumbnail<a href="#admin_picture_thumbnail_max-dimension" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Sets the maximum allowable size in pixels for the specified dimension of your thumbnails - it depends on what you have set up in &quot;Use dimension&quot; wether the setting from &quot;Max dimension of a thumbnail&quot; will apply to the width or height or the longer side (max aspect). For details on this setting please refer to the explanations given in &quot;<a href="#admin_picture_thumbnail_use-dimension">Use dimension</a>&quot;.</p>
+<p>Sets the maximum allowable size in pixels for the specified dimension of your thumbnails - it depends on what you have set up in &quot;Use dimension&quot; wether the setting from &quot;Max dimension of a thumbnail&quot; will apply to the width or height or the longer side (max aspect). For details on this setting please refer to the explanations given in &quot;<a href="configuration.htm#admin_picture_thumbnail_use-dimension">Use dimension</a>&quot;.</p>
 <p class="cpg_message_info">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; Max dimension of a thumbnail</p>
 <a name="admin_picture_thumbnail_max-dimension_end"></a>
 <hr />
 
 <a name="admin_picture_thumbnail_height"></a><h3>Height of a thumbnail<a href="#admin_picture_thumbnail_height" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><strong>Only</strong> applies if you use "exact" in &quot;<a href="#admin_picture_thumbnail_use-dimension">Use dimension</a>&quot;. This setting is <strong>not</strong> being taken into account when &quot;<a href="#admin_picture_thumbnail_use-dimension">Use dimension</a>&quot; has been set to &quot;<em>height</em>&quot;.</p>
+<p><strong>Only</strong> applies if you use "exact" in &quot;<a href="#admin_picture_thumbnail_use-dimension">Use dimension</a>&quot;. This setting is <strong>not</strong> being taken into account when &quot;<a href="configuration.htm#admin_picture_thumbnail_use-dimension">Use dimension</a>&quot; has been set to &quot;<em>height</em>&quot;.</p>
 <p class="cpg_message_info">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; Height of a thumbnail</p>
 <a name="admin_picture_thumbnail_height_end"></a>

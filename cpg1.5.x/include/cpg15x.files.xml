@@ -2705,6 +2705,18 @@
     <permission>read</permission>
   </element>
   <element>
+    <fullpath>docs/js/help.js</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>3f81db67b7a973c8835ef5213e3b93c6</hash>
+  </element>
+  <element>
+    <fullpath>docs/js/jquery.js</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>3f81db67b7a973c8835ef5213e3b93c6</hash>
+  </element>
+  <element>
     <fullpath>docs/js/jquery.treeview.js</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
