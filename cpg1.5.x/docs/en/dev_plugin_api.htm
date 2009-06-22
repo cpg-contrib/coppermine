@@ -497,8 +497,12 @@ To refer to that file, refer to <tt class="code">index.php?file=coffee_maker/foo
     return $menu;
 }</pre>
 </div>
-
 <p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="plugin_api_tutorial_js"></a><h3>Adding JavaScript to plugins<a href="#plugin_api_tutorial_js" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>How to add JavaScript to plugins is being described in the section &quot;<a href="dev_javascript.htm#dev_javascript_include_files_plugin">How to include JavaScript files in plugins</a>&quot;.</p>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
 <a name="plugin_api_tutorial_lang"></a>
 <h3>Multi-language Support<a href="#plugin_api_tutorial_lang" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>You can make your plugins capable to be used in multiple languages. Therefor, your mustn't hard-code language strings into your plugin, but use variables instead. As you wouldn't want to introduce a load of individual language variables, you better use an array, preferably following the naming scheme <tt class="code">$lang_plugin_foldername</tt>. All that is left to do is adding a little switch into your plugin that determines the end user's language and make it use the language file if present.</p>
@@ -775,6 +779,17 @@ $lang_plugin_coffee_maker['brew'] = 'brew';
 	<tr>
 		<td>
 			<tt class="code">$CPG_PLUGINS</tt>
+		</td>
+		<td>
+			<tt class="code"></tt>
+		</td>
+		<td>
+			
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">$JS</tt>
 		</td>
 		<td>
 			<tt class="code"></tt>

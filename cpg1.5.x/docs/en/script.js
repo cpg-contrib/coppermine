@@ -537,6 +537,7 @@ doc_toc += '                  </li>  \n';
 doc_toc += '                  <li><a href="dev_plugin_api.htm#plugin_api_tutorial_linking">Linking to Custom Plugin Scripts</a></li>\n';
 doc_toc += '                  <li><a href="dev_plugin_api.htm#plugin_api_tutorial_button">Adding a Button to Coppermine</a></li>\n';
 doc_toc += '                  <li><a href="dev_plugin_api.htm#plugin_api_tutorial_lang">Multi-language Support</a></li>\n';
+doc_toc += '                  <li><a href="dev_plugin_api.htm#plugin_api_tutorial_js">Adding JavaScript to plugins</a></li>\n';
 doc_toc += '                  <li><a href="dev_plugin_api.htm#plugin_api_tutorial_distrib">Distributing Your Plugin</a></li>\n';
 doc_toc += '                  <li><a href="dev_plugin_api.htm#plugin_api_tutorial_wherenext">Where to Go from Here</a></li>\n';
 doc_toc += '                </ul>\n';
