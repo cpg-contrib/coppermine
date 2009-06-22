@@ -67,7 +67,28 @@
     </li>
 </ul>
 <p class="cpg_message_info">Giving FTP-access to other users can pose a serious security threat, this is why batch-add is only available for the coppermine gallery admin.</p>
-<p>Once files have been added to coppermine's database, make sure that you <strong>never</strong> rename or delete them via ftp - use coppermine's admin menu options to remove or rename files, instead.  Only in this way will these files be removed from both the file system <strong>and</strong> the database.</p>
+<p>Once files have been added to coppermine's database, make sure that you <strong>never</strong> rename or delete them via ftp - use coppermine's admin menu options to remove or rename files, instead. Only in this way will these files be removed from both the file system <strong>and</strong> the database.</p>
+
+<a name="batch_add_common_mistakes"></a><h2>Common mistakes<a href="#batch_add_common_mistakes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>There are some things that can go wrong when batch-adding, so here's a list to check first:</p>
+<ul>
+	<li>
+		Batch-add doesn't work as expected:
+		<ul>
+			<li>Make sure you have <strong>applied</strong> permissions on file system level</li>
+			<li>Toggle the interface: batch-add comes with two interfaces: the classic interface and the browsable interface. If you have issues with one, try the other</li>
+			<li>Avoid capitalization in folder and file names: coppermine can cope with capitalization, but it get's less likely that things don't work when using capitalization. That's why you should not use capitalization, i.e. all folders and files should be in lower-case</li>
+			<li>Avoid spaces in folder and file names. Spaces do not belong to the list of web-safe characters. Don't use them!</li>
+			<li>Don't use reserved file names: there is a number of prefixes that coppermine is using internally, so you shouldn't make sure not to use those reserved file names or prefixes. Don't use "thumb_", "normal_", "original_" in file names, as those are the default file prefixes</li>
+			<li>Don't use dots in folder names: files with leading dots are hidden files on most webserver operating systems, that's why it can be tricky to use dots. To be safe, do not use dots in folder names. Do not use leading dots in file names - in fact, file names should only contain one dot: the one that separates the file name from the file extension.</li>
+		</ul>
+		<div class="cpg_message_warning">If you have issues with batch-adding, make sure that <a href="uploading_http.htm#upload_http">http uploads</a> work as expected first. If you want to request help on batch-add issues on the coppermine support board, please refer to the guide &quot;<a href="upload_troubleshooting.htm#upload_support">Asking for support on upload issues</a>&quot; - it applies to batch-add issues just as well as any other upload method. Additionally to the suggestions made on that page, add a deep link pointing to one of the files that you're having issues with when batch-adding to your posting.</div>
+	</li>
+	<li>Files appear to be broken: make sure that you have uploaded them using the proper FTP mode</li>
+	<li>Do not rename files once they have been batch-added to coppermine's database. Of course, you mustn't rename the folders neither in which those files reside in</li>
+	<li>Do not delete files using your FTP app after having added them to coppermine using batch-add. If you want to delete files, use the coppermine user interface to delete them.</li>
+</ul>
+
 <a name="batch_add_pics_end"></a>
 
 

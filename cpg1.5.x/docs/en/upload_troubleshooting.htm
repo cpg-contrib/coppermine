@@ -98,7 +98,7 @@
 		</div>
 	</li>
 	<li>
-		<strong class="detail_head_collapsed">Click the "Browse..." button and navigate to a small, known-good jpg-file on your hard drive</strong>
+		<strong class="detail_head_collapsed">Click the "Browse..." button and navigate to a small, known-good jpg-file on your hard drive.</strong>
 		<div class="detail_body">
 			Don't assume that <em>any</em> image will work - the term "known-good" in this case means that you should use an image that already has been processed by coppermine to make sure it is a file that coppermine can handle - this can best be achieved if you download an image from the coppermine demo on the original coppermine home page.
 		</div>
@@ -120,7 +120,7 @@
 
 <p class="cpg_message_error">When asking for support on the coppermine forum, post a link to your site and a <a href="users.htm#user_cp_new">test user account</a> (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well. Do <strong>not</strong> post debug_output unless requested. If you want fast results, you should disable admin approval for the group the test user is in, so supporters can tell instantly what is wrong without needing to double-check.</p>
 <p class="cpg_message_warning">When people have issues with uploading and decide to post their question on the Coppermine support board, they usually are told to read this upload troubleshooting section. Many of them fail to do so properly, which results in frustration both for users as well as supporters. To make this absolutely clear: the above mentioned steps are absolutely <strong>mandatory</strong>, no matter what skill level you have, no matter what upload method you have troubles with. Failing to do <strong>exactly</strong> as suggested will result in your request for help being ignored. Yes, this applies to you. We mean it!</p>
-<a name="upload_support"></a><h3>Step-by-step guide when asking for support<a href="#upload_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="upload_support_step-by-step"></a><h3>Step-by-step guide when asking for support<a href="#upload_support_step-by-step" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This is a step-by-step guide that is meant to explain in a fool-proof way what settings you need to make when asking for support on the Coppermine support board.</p>
 <p>We assume that you have applied tight permission settings, so we'll go through this a bit more complicated than actually necessary on most setups: the instructions below are meant to allow upload troubleshooting for the supporter even if the rest of users of your gallery isn't allowed to upload or if you don't even allow user registration in the first place. If you know your way around, you can of course skip the steps that explain the creation of an extra group if all your registered users are allowed to upload anyway. In the end, the important thing that counts is that the supporter can go through uploading untill he/she can see what actually goes wrong during the upload stage.</p>
 <ul>
@@ -223,16 +223,16 @@
 	<li>
 		<a name="upload_support_test_for_yourself"></a><h4 class="detail_head_collapsed">Test uploading using the test user account<a href="#upload_support_test_for_yourself" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
-			You may be tempted to go ahead and ask for support now, but wait a minute: you haven't tried for yourself yet if everything works as expected yet. You wouldn't want to start a support thread and just be told &quot;do your homework first&quot; (because that's what will happen if you obviously failed to do as suggested here). Here's what you do:
+			You may be tempted to go ahead and ask for support now, but wait a minute: you haven't tried for yourself yet if everything works as expected. You wouldn't want to start a support thread and just be told &quot;do your homework first&quot; (because that's what will happen if you obviously failed to do as suggested here). Here's what you do:
 			<ul>
 				<li>Log out from Coppermine (or use another browser alternatively) if you're logged in as admin</li>
-				<li>Log in using the non-admin test user account. If logging in fails, review the test user account details while being logged in as admin.</li>
+				<li>Log in using the non-admin test user account that you created in the steps above. If logging in fails, review the test user account details while being logged in as admin.</li>
 				<li><img src="images/simple_file_upload.png" width="400" height="178" border="0" alt="" title="Simple file uploads interface" align="right" style="padding-left:5px;" />Click on &quot;Upload file&quot;. If you don't have that upload link, you have failed to set up permissions properly - review the steps above carefully.</li>
 				<li>On the upload file screen, choose the test album from the &quot;Album&quot; dropdown. If you can't select the test album, you have made a mistake when setting up the upload permissions</li>
-				<li>Click the "Browse..." button and navigate to a small, known-good jpg-file on your hard drive</li>
+				<li>Click the "Browse..." button and navigate to a small, known-good jpg-file on your hard drive. Don't assume that any image will do: when in doubt, download a test image from the coppermine demo page</li>
 				<li>Submit the form by clicking on the &quot;Upload file&quot; button</li>
 			</ul>
-			In an ideal world, everything will work as expected - your upload will succeed and you will see your uploaded image embedded into a coppermine page. If this is the case, http uploads work as expected. If this is not the case, you should get an <a href="#upload_error_messages">error message</a> that explains what went wrong. If you can't figure out what the error message means, but you were able to perform all the steps above including the last one (submitting the upload form), then please go ahead and ask for support on the coppermine support board.
+			In an ideal world, everything will work as expected - your upload will succeed and you will see your uploaded image embedded into a coppermine page. If this is the case, http uploads work as expected. If this is not the case, you should get an <a href="#upload_error_messages">error message</a> that explains what went wrong. If you can't figure out what the error message means, but you were able to perform all the steps above including the last one (submitting the upload form), then please go ahead and ask for support on the coppermine support board. You're welcome to post your support request as well if http work as expected, but you want to request help with another upload method.
 		</div>
 	</li>
 	<li>
@@ -250,6 +250,24 @@
 		</div>
 	</li>
 </ul>
+<a name="upload_support_step-by-step_end"></a>
+
+<a name="upload_support_example"></a><h3>Example support request<a href="#upload_support_example" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="cpg_example">
+	<p>This is how your support request posting could look like (make sure that you populated the stuff in red with actual content from your case):</p>
+	<div class="quote">I'm having issues when uploading on my Coppermine driven gallery <span class="important">http://example.com/my_coppermine_folder/</span><br />
+	When using http uploads and the suggested settings for upload troubleshooting in place, I get the error message<br />&nbsp;<br />
+	[code]<span class="important">The text of the error message here</span>[/code]<br />&nbsp;<br />
+	Here's the test user account data: <br />
+	&nbsp;&nbsp;&nbsp;&nbsp;Username: <span class="important">tester</span><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;Password: <span class="important">foobar</span><br />&nbsp;<br />
+	I have been using the image taken from <span class="important">http://example.com/path/to/test/file.jpg</span> as an example to test with.<br />
+	Having done as suggested in <span class="important">http://forum.coppermine-gallery.net/some_forum_thread</span> didn't work as expected: I got<br />
+	[code]<span class="important">Some other error message</span>[/code]<br />
+	when trying that. I have no idea what else to do.<br />
+	Thanks in advance for your suggestions</div>
+</div>
+<a name="upload_support_example_end"></a>
 <a name="upload_support_end"></a>
 
 
