@@ -141,7 +141,7 @@ doc_toc += '      <li><a href="start.htm#getting_check_uploads">Vérification de
 doc_toc += '      <li><a href="start.htm#getting_consider_bridging">Penser à l\'intégration</a></li>\n';
 doc_toc += '      <li><a href="start.htm#getting_interaction">Qu\'est ce que vos visiteurs sont autorisés à faire ?</a></li>\n';
 doc_toc += '      <li><a href="start.htm#getting_design">Changez l\'aspect de votre galerie Coppermine</a></li>\n';
-doc_toc += '      <li><a href="start.htm#getting_typical"class="us_fr">Réglages particuliers</a></li>\n';
+doc_toc += '      <li><a href="start.htm#getting_typical">Réglages particuliers</a></li>\n';
 doc_toc += '    </ul>\n';
 doc_toc += '  </li>\n';
 doc_toc += '  <li><a href="faq.htm"class="en">Frequently Asked Questions</a></li>\n';

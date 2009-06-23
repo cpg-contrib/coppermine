@@ -226,43 +226,43 @@ Exemple de configuration:
 <p><em>Seul un téléchargeur (vous l'administrateur) et peu pou pas d'interaction de l'utilisateur</em><br />
 Si vous êtes le seul à télécharger des images et que vous ne voulez pas ou peu d'interaction de la part des utilisateurs, désactivez tout ce que vous ne souhaitez pas permettre à vos visiteurs de faire. C'est généralement le cas si vosu êtes un artiste ou photographe: il n'y a pas de communauté crée avec la galerie - vous voulez juste montrer au public le contenu de votre site.</p>
 <ul>
-    <li>Disable new user registration in Coppermine's config (<span class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Allow new user registrations</span>). This will disable the "register" link in the navigation. Users manually going to the registration page will see a message telling them that they are not allowed to perform this operation</li>
-    <li>Disable creation of new albums for users (<span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row &quot;Registered&quot; &rarr; Personal gallery &rarr; Allowed = no</span>) in case you have not disabled the registration from the start and there are some leftover users registered.</li>
-    <li>Disallow visitors to upload by going to the groups control panel and setting &quot;Public albums upload&quot; to be not allowed: <span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row &quot;Guests&quot; &rarr; Public albums upload &rarr; Allowed = no</span>. If guests (or any user group) is disallowed to have personal galleries and to upload to public albums, the &quot;upload file&quot; link in the navigation will no longer be displayed.
-    <li>If you do not want your visitors to interact by <strong>rating</strong>, turn rating off on the groups control panel for the guests/anonymous group: <span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row &quot;Guests&quot; &rarr; Permissions &rarr; Rating = no</span>. If rating is disabled, users will not see the rating stars where they could vote.</li>
-    <li>If you do not want your visitors to post comments, turn comments off for guests: <span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row &quot;Guests&quot; &rarr; Permissions &rarr; Comments = no</span>.</li>
-    <li>If you do not want your visitors to <strong>send ecards</strong>, disable the sending of ecards in the groups control panel as suggested above: <span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row &quot;Guests&quot; &rarr; Permissions &rarr; Ecards = no</span></li>
+    <li>Désactivez l'enregistrement de nouveaux utilisateurs dans la configuration de Coppermine (<span class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Enregistrement &rarr; Autoriser les nouvelles inscriptions</span>). Cela va désactiver le lien "s'enregistrer" du menu. Les utilisateurs qui se rendraient manuellement sur la page d'enregistrement auront un message leur expliquant qu'ils ne peuvent pas faire cette opération</li>
+    <li>Désactivez la création de nouveaux albums pour les utilisateurs (<span class="navlocator" style="text-align:right;color:#0E72A4;">Groupes &rarr; ligne &quot;Registered&quot; &rarr; Galerie personnelle &rarr; Autorisé = non</span>) au cas ou vous n'aviez pas désactivé les enregistrements dès le début et qu'il reste des utilisateurs enregistrés.</li>
+    <li>N'autorisez pas les visiteurs à télécharger en allant dans le panneau de gestion des groupes et en paramétrant &quot;Téléchargement dans les Albums Publics&quot; à "non autorisé": <span class="navlocator" style="text-align:right;color:#0E72A4;">Groupes &rarr; Ligne &quot;Guests&quot; &rarr; Téléchargement dans les Albums Publics &rarr; Autorisé = non</span>. Si des visiteurs (ou un autre groupe d'utilisateur) n'est pas autorisé à avoir une galerie personnelle ni à télécharger dans les albums publics, le lien &quot;Télécharger une image&quot; du menu ne sera pas affiché.
+    <li>Si vou sne voulez pas que vos visiteurs interagissent en <strong>notant</strong>, changez le réglage de note à non dans le paneau de gestion des groupes pour le groupe  guests/anonymous: <span class="navlocator" style="text-align:right;color:#0E72A4;">Groupes &rarr; Ligne &quot;Guests&quot; &rarr; Droits &rarr; Note = non</span>. Si la notation est désactivée, le visiteur ne verra pas les étoiles de notation qui lui permetrait de noter l'image.</li>
+    <li>Si vous ne voulez pas quevos visiteurs postent des commentaires, mettez "non" pour les commentaires pour les visiteurs: <span class="navlocator" style="text-align:right;color:#0E72A4;">Groupes &rarr; Ligne &quot;Guests&quot; &rarr; Droits &rarr; Commentaires = non</span>.</li>
+    <li>Si vous ne voulez pas que vos visiteurs <strong>envoient des Ecartes</strong>, désactivez l'autorisation d'envoyer des Ecartes dans le panneau de gestion des groupes comme ci-après: <span class="navlocator" style="text-align:right;color:#0E72A4;">Groupes &rarr; Ligne &quot;Guests&quot; &rarr; Droits&rarr; Ecartes = non</span></li>
     <ul>
 
-<a name="getting_typical_single_uploader_community"></a><h3>Single uploader <em>with</em> user interaction<a href="#getting_typical_single_uploader_community" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If you are going to be the only uploader, but you want to build a community around your site, with visitor registering, posting comments etc., just turn off uploads for your users, but turn on all the other feature that you want to allow:</p>
+<a name="getting_typical_single_uploader_community"></a><h3>Téléchargeur unique <em>avec</em> Interaction des utilisateurs<a href="#getting_typical_single_uploader_community" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si vous devez être l'unique téléchargeur, mais que vous voulez créer une communauté autour devotre site avec des visiteurs enregistrésn qui postent des commentaires etc..., désactivez uniquement le téléchargement pour vos utilisateurs, mais activez toutes les autres fonctions que vous souhaitez autoriser:</p>
 <ul>
     <li>
-        Turn off all kinds of uploads for guests as well as registered users: 
+        Désactiver tous les téléchargements pour les visiteurs aussi bien que pour les utilisateurs enregistrés: 
         <ul>
-            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row &quot;Guests&quot; &rarr; Personal gallery &rarr; Allowed = no</span></li>
-            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row &quot;Registered&quot; &rarr; Personal gallery &rarr; Allowed = no</span></li>
-            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row &quot;Guests&quot; &rarr; Public albums upload &rarr; Allowed = no</span></li>
-            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row &quot;Registered&quot; &rarr; Public albums upload &rarr; Allowed = no</span></li>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groupes &rarr; Ligne &quot;Guests&quot; &rarr; Galerie personnelle &rarr; Autorisé = non</span></li>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groupes &rarr; Ligne &quot;Registered&quot; &rarr; Galerie personnelle &rarr; Autorisé = non</span></li>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groupes &rarr; Ligne &quot;Guests&quot; &rarr; Téléchargement dans les albums publics &rarr; Autorisé = non</span></li>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groupes &rarr; Ligne &quot;Registered&quot; &rarr; Téléchargement dans les albums publics &rarr; Autorisé = non</span></li>
         </ul>
     </li>
     <li>
-        To avoid comment spam you should disallow comments for guests, but allow those features for registered users:
+        Pour éviter les spams dans les commentaires, vous devriez ne pas autoriser les commentaires pour les visiteurs, mais les uatoriser pour les utilisateurs enregistrés:
         <ul>
-            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row &quot;Guests&quot; &rarr; Permissions &rarr; Comments = no</span></li>
-            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row &quot;Registered&quot; &rarr; Permissions &rarr; Comments = yes</span></li>
-            <li>To fight comment spam you should enable comment approval and/or captcha for comments.<br />
-            To enable comment approval, go to Coppermine's config and change the corresponding setting: <span class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Comments require approval</span>.<br />
-            Additionally (or alternatively), you should enable <acronym title="Completely Automated Public Turing test to tell Computers and Humans Apart">captcha</acronym> (a sort of image that displays scrambled, random letters that the visitor has to read and enter into an input field to prove that he is human and not just a silly bot script) for comments as well: <span class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Comment settings &rarr; Display Captcha (Visual Confirmation) for adding comments</span></li>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groupes &rarr; Ligne &quot;Guests&quot; &rarr; Droits &rarr; Commentaires = non</span></li>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groupes &rarr; Ligne &quot;Registered&quot; &rarr; Droits &rarr; Commentaires = oui</span></li>
+            <li>Pour lutter contr eles spams dans les commentaires vous devriez activer l'approbation des commentaires et/ou Captcha pour les commentaires.<br />
+            Pour activer l'approbation des commentaires, allez dans la configuration de Coppermine et changez les réglages suivants: <span class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Commentaires &rarr; Les Commentaires nécéssitent l'approbation de l'Administrateur </span>.<br />
+            En plus (ou à la place), vous devriez activer <acronym title="Completely Automated Public Turing test to tell Computers and Humans Apart">captcha</acronym> (une sorte d'image qui affiche des lettres alléatoires que le visiteur doit lire et entrer dans un champ afin de prouver qu'il est bien un humain et pas un fichu robot) pour les commentaires: <span class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres de commentaires &rarr; Afficher Captcha (Confirmation visuelle) pour l'ajout de commentaires</span></li>
         </ul>
     </li>
   <li>
-        Allow visitors to rate your content: you enable rating on per group level. Therefore, go to the groups control panel and allow rating for all possible groups:
+        Autoriser les visiteurs à noter votre contenu: vous activez la notation par niveau de groupe. Pour cela , allez dans le panneau de gestion des groupes et autorisez la notation pour tous les groupes possibles:
           <ul>
-            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row &quot;Guests&quot; &rarr; Permissions &rarr; Rating = yes</span></li>
-            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row &quot;Registered&quot; &rarr; Permissions &rarr; Rating = yes</span></li>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groupes &rarr; Ligne &quot;Guests&quot; &rarr; Droits &rarr; Note = oui</span></li>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groupes &rarr; Ligne &quot;Registered&quot; &rarr; Droits &rarr; Note = oui</span></li>
         </ul>
-      Please understand though that this is not all: think of those per-group settings as a general on/off switch. You can fine-tune those settings per individual album: you can allow rating in one album and deny it in another one. Go to the <a href="albums.htm#album_prop">album properties</a> of an individual album to allow/disallow ratings for this particular album.    </li>
+      Comprenez que ce n'est pas tout: pensez à ces réglages par groupes comme un commutateur général. Vous pouvez ajuster ces réglages individuellement pour chaque album: vous pouvez autoriser la notation pour un album et l'interdire pour un autre. Allez dans les <a href="albums.htm#album_prop">Propriétés des albums</a> de chaque album pour autoriser/interdire la notation pour cet album en particulier.    </li>
 </ul>
 
 
