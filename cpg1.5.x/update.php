@@ -145,7 +145,7 @@ require_once('include/sql_parse.php');
 require_once('include/config.inc.php');
 require_once('include/functions.inc.php');
 
-// The defaults values
+// The default values
 $errors = '';
 $notes  = '';
 
@@ -420,7 +420,7 @@ EOT;
 // --------------------------------- MAIN CODE ----------------------------- //
 function start_update()
 {
-    global $lang_update_php;
+    global $errors, $notes, $lang_update_php;
 
     // The updater
     //html_header($lang_update_php['title']);
@@ -452,7 +452,7 @@ function update_system_thumbs()
     } // while
     mysql_free_result($results);
 
-    // Code to rename system thumbs in images folder (except nopic.jpg and private.jpg)
+    // Code to rename system thumbs in images folder
     $old_thumb_pfx = 'thumb_';
 
     if ($old_thumb_pfx != $CONFIG['thumb_pfx']) {
@@ -468,15 +468,13 @@ function update_system_thumbs()
     // If old images for nopic.jpg and private.jpg exist, delete the new ones
     if (file_exists('images/nopic.jpg')) {
         cpg_folder_file_delete('images/thumb_nopic.jpg');
+        @rename('images/nopic.jpg', 'images/' . $CONFIG['thumb_pfx'] . 'nopic.jpg');
     }
 
     if (file_exists('images/private.jpg')) {
         cpg_folder_file_delete('images/thumb_private.jpg');
+        @rename('images/private.jpg', 'images/' . $CONFIG['thumb_pfx'] . 'private.jpg');
     }
-
-    // Rename old images to new format
-    @rename('images/nopic.jpg', 'images/' . $CONFIG['thumb_pfx'] . 'nopic.jpg');
-    @rename('images/private.jpg', 'images/' . $CONFIG['thumb_pfx'] . 'private.jpg');
 }
 
 /**
