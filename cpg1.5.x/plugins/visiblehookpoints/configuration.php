@@ -19,15 +19,18 @@
 
 $name = 'Visible HookPoints';
 $description =  <<< EOT
-Tool for plugin developers to locate plugin entry points (plugin hooks) and array information. Do not enable this plugin unless you want to start developing your own plugin.<hr />
-In some cases the output of a hookpoint is not the same as its "echo" point.  A good example of this is the 'gallery_footer'; it is processed very early and its echo point is above the doctype declaration, while the hookpoints actual  output is just above the "powered by" text at the bottom of the document.
-<ul>
-    <li>The first marker is placed in the HTML at the hookpoints "echo" point.
-    <li>If the hookpoint is an array then the marker has "_ARRAY" appended to it</li>
-    <li>If the hookpoint is not an array it has "_HTML" appended to it and the marker without any appendage is tacked onto the filtered var</li>
-    <li>In all cases a var_dump of that filtered variable is output to the source html as an html remark just below the echo point</li>
-</ul>
-There is now a statistics output showing how many times each hookpoint was called. There is also a timeline of when each hookpoint was executed relative to the scripts start time'.$LINEBREAK;
+Tool for plugin developers to locate plugin entry points (plugin hooks) and array information. Do not enable this plugin unless you want to start developing your own plugin.<br />
+<span class="detail_head_collapsed">Details</span>
+<div class="detail_body">
+    In some cases the output of a hookpoint is not the same as its "echo" point.  A good example of this is the 'gallery_footer'; it is processed very early and its echo point is above the doctype declaration, while the hookpoints actual  output is just above the "powered by" text at the bottom of the document.
+    <ul>
+        <li>The first marker is placed in the HTML at the hookpoints "echo" point.
+        <li>If the hookpoint is an array then the marker has "_ARRAY" appended to it</li>
+        <li>If the hookpoint is not an array it has "_HTML" appended to it and the marker without any appendage is tacked onto the filtered var</li>
+        <li>In all cases a var_dump of that filtered variable is output to the source html as an html remark just below the echo point</li>
+    </ul>
+    There is now a statistics output showing how many times each hookpoint was called. There is also a timeline of when each hookpoint was executed relative to the scripts start time.
+</div>
 EOT;
 $extra_info = <<<EOT
     <table border="0" cellspacing="0" cellpadding="0">
