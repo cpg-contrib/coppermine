@@ -841,7 +841,7 @@ if (UPLOAD_APPROVAL_MODE) {
 
 if (!mysql_num_rows($result)) {
 
-    // TO DO: replace these raw error messages with a page showing link to 'album properties', 'parent category'
+    // TODO: replace these raw error messages with a page showing link to 'album properties', 'parent category'
     if ($link_count > 0) {
         cpg_die(INFORMATION, $lang_editpics_php['error_linked_only'], __FILE__, __LINE__);
     } else {

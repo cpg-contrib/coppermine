@@ -211,7 +211,7 @@ switch($step) {
         $lang_versioncheck_php = $language['versioncheck'];
         
         
-        // TO DO: need to deal with connection failing and skip this step (and maybe allow a retry)
+        // TODO: need to deal with connection failing and skip this step (and maybe allow a retry)
 
         // Connect to the repository and populate the array with data from the XML file
         $file_data_array = cpgVersioncheckConnectRepository($displayOption_array);
@@ -223,7 +223,7 @@ switch($step) {
         $outputResult = cpg_versioncheckCreateHTMLOutput($file_data_array, $textFileExtensions_array, $lang_versioncheck_php, $majorVersion, $displayOption_array);
         $versioncheck_output = sprintf($lang_versioncheck_php['files_folder_processed'], $outputResult['display'], $outputResult['total'], $outputResult['error']);
 
-        // TO DO: end
+        // TODO: end
 
         html_content($versioncheck_output); 
         html_footer();
@@ -933,10 +933,10 @@ function html_admin()
 
     $admin_username = isset($config['admin_username']) ? $config['admin_username'] : '';
     $admin_password = isset($config['admin_password']) ? $config['admin_password'] : '';
-    // TO DO: check verify field in $config to see if checked against password
+    // TODO: check verify field in $config to see if checked against password
     $admin_password_verify = isset($config['admin_password']) ? $config['admin_password'] : '';
     $admin_email = isset($config['admin_email']) ? $config['admin_email'] : '';
-    // TO DO: ditto above
+    // TODO: ditto above
     $admin_email_verify = isset($config['admin_email']) ? $config['admin_email'] : '';
     echo <<<EOT
       <form action="install.php?step=$step" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">

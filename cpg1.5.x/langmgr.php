@@ -22,7 +22,7 @@ define('ADMIN_PHP', true);
 define('LANGMGR_PHP', true);
 
 /*
-To-do: make sure that the default language is not disabled
+TODO: make sure that the default language is not disabled
 */
 
 require_once('include/init.inc.php');

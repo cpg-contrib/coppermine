@@ -101,7 +101,7 @@ class imageObject {
             exec($cmd, $output, $retval);
         }
 
-        // To Do check for errors in execution etc
+        // TODO: check for errors in execution etc
         
         // Call the constructor again to repopulate the dimensions etc
         $this->imageObject($this->directory, $this->filename);
@@ -132,7 +132,7 @@ class imageObject {
             exec($cmd, $output, $retval);
         }
         
-        // To Do check for errors in execution etc
+        // TODO: check for errors in execution etc
         
         // Call the constructor again to repopulate the dimensions etc
         $this->imageObject($this->directory, $this->filename);
@@ -164,7 +164,7 @@ class imageObject {
             exec($cmd, $output, $retval);
         }
 
-        // To Do check for errors in execution etc
+        // TODO: check for errors in execution etc
         
         // Call the constructor again to repopulate the dimensions etc
         $this->imageObject($this->directory, $this->filename);

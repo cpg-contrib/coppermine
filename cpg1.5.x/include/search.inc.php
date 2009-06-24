@@ -124,7 +124,7 @@ if ($search_string && isset($search_params['params'])) {
                                         ." ORDER BY `pid` DESC";
                                 $thumb_result = cpg_db_query($thumb_query);
                                 $thumb = mysql_fetch_assoc($thumb_result);
-                                // TO DO: query above only pulls in last_pid in each album, not correct album thumb as set by user
+                                // TODO: query above only pulls in last_pid in each album, not correct album thumb as set by user
 
                                 $thumb_url = get_pic_url($thumb, 'thumb');
                                 $thumb_size = compute_img_size($thumb['pwidth'], $thumb['pheight'], $CONFIG['alb_list_thumb_size'], true, 'cat_thumb');
@@ -166,7 +166,7 @@ if ($search_string && isset($search_params['params'])) {
                                 $album_r = cpg_db_query($album_q);
                                 $album = mysql_fetch_array($album_r);
 
-                                // TO DO: This is weird.  It seems to pull in the largest aid's thumb for the category image?
+                                // TODO: This is weird.  It seems to pull in the largest aid's thumb for the category image?
                                 $thumb_query = "SELECT filepath, filename, url_prefix, pwidth, pheight "
                                         ." FROM `{$CONFIG['TABLE_PICTURES']}` "
                                         ." WHERE (`aid` = '{$album['aid']}') "

@@ -17,7 +17,7 @@
   $Date$
 **********************************************/
 
-// To-do: title tags contain hardcoded English instead of lang vars.
+// TODO: title tags contain hardcoded English instead of lang vars.
 
 define('IN_COPPERMINE', true);
 define('ALBMGR_PHP', true);

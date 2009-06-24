@@ -316,13 +316,13 @@ function initPhotoCopy($album,$directory)
   
   $superCage = Inspekt::makeSuperCage();
   
-    if (!is_dir($directory)){
-        mkdir($directory);
-        chmod($directory, octdec($CONFIG['default_dir_mode']));
-    }
-    // To-do: perform a check if the export directory has been created succsessfully and die if this has failed
+  if (!is_dir($directory)){
+    mkdir($directory);
+    chmod($directory, octdec($CONFIG['default_dir_mode']));
+  }
+  // TODO: perform a check if the export directory has been created successfully and die if this has failed
   starttable('100%', 'ID',2);
-  
+
   $pic_array = array();
   $pictures = cpg_db_query("SELECT pid,title,filename,filepath FROM {$CONFIG['TABLE_PICTURES']} WHERE `aid` = '$album'");
   while($picture = mysql_fetch_assoc($pictures))
@@ -331,8 +331,8 @@ function initPhotoCopy($album,$directory)
     $pic_array[] = $picture;
   }
   
-   endtable();
-   
+  endtable();
+
   $js_pictures = phpArrayToJS($pic_array,'pictures');
   
   echo <<< EOT
