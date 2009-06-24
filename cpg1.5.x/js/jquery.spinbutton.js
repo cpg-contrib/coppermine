@@ -10,10 +10,10 @@
 
   ********************************************
   Coppermine version: 1.5.1
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/jquery.sort.js $
-  $Revision: 5686 $
-  $LastChangedBy: pvanrompay $
-  $Date: 2009-01-15 05:15:49 +0100 (Do, 15 Jan 2009) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 /* SpinButton control

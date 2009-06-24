@@ -10,10 +10,10 @@
 
   ********************************************
   Coppermine version: 1.5.1
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/js/banning.js $
-  $Revision: 5865 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2009-04-24 22:35:11 +0200 (Fr, 24 Apr 2009) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 function checkFormSubmit()

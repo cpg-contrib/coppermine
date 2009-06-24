@@ -17,7 +17,7 @@
 **********************************************/
 
 $(document).ready(function() {
-    $('.formFieldWarning').hide();})
+    $('.formFieldWarning').hide();})
 
 function checkRegisterFormSubmit() {
     $('.formFieldWarning').hide();
