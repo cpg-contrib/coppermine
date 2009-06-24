@@ -2363,6 +2363,8 @@ $lang_update_php['start_page'] = 'If you didn\'t (or you don\'t want to check), 
 $lang_update_php['errors_encountered'] = 'The following errors were encountered and need to be corrected first'; // cpg1.5
 $lang_update_php['delete_file'] = 'Delete %s'; // cpg1.5
 $lang_update_php['could_not_delete'] = 'Could not delete due to missing permissions. Delete the file manually!'; // cpg1.5
+$lang_update_php['rename_file'] = 'Rename %s to %s'; // cpg1.5
+$lang_update_php['could_not_rename'] = 'Could not rename due to missing permissions. Rename the file manually!'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //

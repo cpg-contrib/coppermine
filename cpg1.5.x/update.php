@@ -8,7 +8,7 @@
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
-  
+
   ********************************************
   Coppermine version: 1.5.1
   $HeadURL$
@@ -30,7 +30,7 @@ if (!defined('SKIP_AUTHENTICATION')) { // try to include init.inc.php to get the
     $output = ob_get_contents();
     ob_end_flush();
     error_reporting($error_reporting); // set error reporting level back to how it used to be
-    //print $output; // For troubleshooting purposes, print $output
+    //echo $output; // For troubleshooting purposes, echo $output
 }
 session_start();
 set_magic_quotes_runtime(0);
@@ -45,96 +45,96 @@ function cpgGetMicroTime()
 
 if (!function_exists('cpg_folder_file_delete')) {
 function cpg_folder_file_delete($path, $output = '') {
-	// Perform some validity checks first
-	rtrim($path,'/'); // if the path has a trailing slash we remove it here
-	if (is_link($path)) { // We don't want to delete symlinks, so let's just return some text
-		if ($output != '') {
-			return $path . ' appears to be a symlink - we won\'t delete them for security reasons';
-		} else {
-			return;
-		}
-	}
-	if (!file_exists($path) && !is_dir($path)) {// if the path is not valid
-		if ($output != '') {
-			return 'Path ' . $path . ' does not exist';
-		} else {
-			return;
-		}
-	} elseif (!is_readable($path)) {// ... if the path is not readable
-		if ($output != '') {
-			return 'Path ' . $path . ' is not readable';
-		} else {
-			return;
-		}
-	}	
-	if (is_dir($path)) {
-		if (version_compare(PHP_VERSION, '5.0.0') < 0) {
-			$entries = array();
-			if ($handle = opendir($path)) {
-				while (false !== ($file = readdir($handle))) {
-					$entries[] = $file;
-				}
-				closedir($handle);
-			}
-		} else {
-			$entries = scandir($path);
-			if ($entries === false) {
-				$entries = array();
-			}
-		}
-		foreach ($entries as $entry) {
-			if ($entry != '.' && $entry != '..') {
-				cpg_folder_file_delete($path.'/'.$entry);
-			}
-		}
-		// Delete the folder
-		if ($output != '') {
-			$result = rmdir($path);
-		} else {
-			$result = @rmdir($path);
-		}
-		if ($output != '') {
-			if ($result == 1) {
-				// We have issued the command to delete the folder and everything
-				// appears to have gone fine, but we can not be sure if we succeeded,
-				// so we'll test if the folder still is there.
-				clearstatcache(); // We need to clear the cache before we check if the folder is still there.
-				if (is_dir($path)) {
-					return 'Couldn\'t delete folder ' . $path . '. Review permissions!';
-				} else {
-					return 'Folder deleted successfully';
-				}
-			} else {
-				return 'Couldn\'t delete folder ' . $path . '. Review permissions!';
-			}
-		} else {
-			return;
-		}
-	} else {
-		// Delete the file
-		if ($output != '') {
-			$result = unlink($path);
-		} else {
-			$result = @unlink($path);
-		}
-		if ($output != '') {
-			if ($result == 1) {
-				// We have issued the command to delete the file and everything
-				// appears to have gone fine, but we can not be sure if we succeeded,
-				// so we'll test if the file still is there.
-				clearstatcache(); // We need to clear the cache first.
-				if (file_exists($path)) {
-					return 'Couldn\'t delete file ' . $path . '. Review permissions!';
-				} else {
-					return 'File deleted successfully';
-				}
-			} else {
-				return 'Couldn\'t delete file ' . $path . '. Review permissions!';
-			}
-		} else {
-			return;
-		}
-	}
+    // Perform some validity checks first
+    rtrim($path,'/'); // if the path has a trailing slash we remove it here
+    if (is_link($path)) { // We don't want to delete symlinks, so let's just return some text
+        if ($output != '') {
+            return $path . ' appears to be a symlink - we won\'t delete them for security reasons';
+        } else {
+            return;
+        }
+    }
+    if (!file_exists($path) && !is_dir($path)) {// if the path is not valid
+        if ($output != '') {
+            return 'Path ' . $path . ' does not exist';
+        } else {
+            return;
+        }
+    } elseif (!is_readable($path)) {// ... if the path is not readable
+        if ($output != '') {
+            return 'Path ' . $path . ' is not readable';
+        } else {
+            return;
+        }
+    }
+    if (is_dir($path)) {
+        if (version_compare(PHP_VERSION, '5.0.0') < 0) {
+            $entries = array();
+            if ($handle = opendir($path)) {
+                while (false !== ($file = readdir($handle))) {
+                    $entries[] = $file;
+                }
+                closedir($handle);
+            }
+        } else {
+            $entries = scandir($path);
+            if ($entries === false) {
+                $entries = array();
+            }
+        }
+        foreach ($entries as $entry) {
+            if ($entry != '.' && $entry != '..') {
+                cpg_folder_file_delete($path.'/'.$entry);
+            }
+        }
+        // Delete the folder
+        if ($output != '') {
+            $result = rmdir($path);
+        } else {
+            $result = @rmdir($path);
+        }
+        if ($output != '') {
+            if ($result == 1) {
+                // We have issued the command to delete the folder and everything
+                // appears to have gone fine, but we can not be sure if we succeeded,
+                // so we'll test if the folder still is there.
+                clearstatcache(); // We need to clear the cache before we check if the folder is still there.
+                if (is_dir($path)) {
+                    return 'Couldn\'t delete folder ' . $path . '. Review permissions!';
+                } else {
+                    return 'Folder deleted successfully';
+                }
+            } else {
+                return 'Couldn\'t delete folder ' . $path . '. Review permissions!';
+            }
+        } else {
+            return;
+        }
+    } else {
+        // Delete the file
+        if ($output != '') {
+            $result = unlink($path);
+        } else {
+            $result = @unlink($path);
+        }
+        if ($output != '') {
+            if ($result == 1) {
+                // We have issued the command to delete the file and everything
+                // appears to have gone fine, but we can not be sure if we succeeded,
+                // so we'll test if the file still is there.
+                clearstatcache(); // We need to clear the cache first.
+                if (file_exists($path)) {
+                    return 'Couldn\'t delete file ' . $path . '. Review permissions!';
+                } else {
+                    return 'File deleted successfully';
+                }
+            } else {
+                return 'Couldn\'t delete file ' . $path . '. Review permissions!';
+            }
+        } else {
+            return;
+        }
+    }
 }
 }
 
@@ -192,9 +192,9 @@ if (!defined('SKIP_AUTHENTICATION') && defined('COPPERMINE_VERSION') && GALLERY_
 }
 
 if (!function_exists('cpg_display_help')) {
-	$help = '&nbsp;'.cpg_display_help('f=upgrading.htm&amp;as=updater&amp;ae=updater_end&amp;top=1', '650', '500');
+    $help = '&nbsp;'.cpg_display_help('f=upgrading.htm&amp;as=updater&amp;ae=updater_end&amp;top=1', '650', '500');
 } else {
-	$help = '&nbsp;<a href="docs/en/upgrading.htm#updater"><img src="images/help.gif" border="0" width="13" height="11" alt="" /></a>';
+    $help = '&nbsp;<a href="docs/en/upgrading.htm#updater"><img src="images/help.gif" border="0" width="13" height="11" alt="" /></a>';
 }
 
 // ---------------------------- AUTHENTICATION --------------------------- //
@@ -208,7 +208,7 @@ if (!defined('SKIP_AUTHENTICATION') && !$_SESSION['auth']) {
             //we could not establish an sql connection, so update can't be done (and user can't be autenticated)
             html_error($errors);
         } else {
-            //print a box for admin autentication
+            //echo a box for admin autentication
             html_auth_box('admin');
         }
     } elseif ($superCage->post->getAlpha('method') == 'admin') {
@@ -265,6 +265,7 @@ function html_header($title, $charset = 'iso8859-1')
 </head>
 <body>
 <img class="logo" src="images/coppermine-logo.png" border="0" alt="" />
+
 EOT;
     }
 }
@@ -273,15 +274,16 @@ function html_error($error_msg = '')
 {
     global $lang_update_php, $help;
 
-    print <<< EOT
+    echo <<< EOT
       <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
        <tr>
         <td class="tableh1" colspan="2"><h2>{$lang_update_php['welcome_updater']}{$help}</h2>
         </td>
        </tr>
+
 EOT;
     if ($error_msg) {
-        print <<< EOT
+        echo <<< EOT
        <tr>
         <td class="tableh2" colspan="2" align="center"><span class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</span>
         </td>
@@ -296,12 +298,14 @@ EOT;
             {$error_msg}
         </td>
        </tr>
+
 EOT;
     }
 
-    print <<< EOT
+    echo <<< EOT
        </tr>
       </table>
+
 EOT;
 }
 
@@ -310,13 +314,13 @@ function html_install_success($notes)
 {
     global $DFLT, $lang_update_php;
     //Coppermine is now upgraded and ready to roll.
-    print '&nbsp;<br />';
-    print '<div class="maintable"><h2 class="tableh1">' . $lang_update_php['update_completed'] . '</h2>';
-    print '<p class="tableh2">';
+    echo '&nbsp;<br />';
+    echo '<div class="maintable"><h2 class="tableh1">' . $lang_update_php['update_completed'] . '</h2>';
+    echo '<p class="tableh2">';
     printf($lang_update_php['check_versions'], '<a href="versioncheck.php">', '</a>');
-    print '. ';
+    echo '. ';
     printf($lang_update_php['start_page'], '<a href="index.php">', '</a>');
-    print '.</p></div>';
+    echo '.</p></div>';
 }
 
 function html_footer()
@@ -327,6 +331,7 @@ function html_footer()
         echo <<< EOT
 </body>
 </html>
+
 EOT;
     }
 }
@@ -334,7 +339,7 @@ EOT;
 function html_auth_box($method)
 {
     global $lang_update_php, $lang_common, $help;
-    
+
     $superCage = Inspekt::makeSuperCage();
 
     if ($superCage->get->keyExists('debug')) {
@@ -342,7 +347,7 @@ function html_auth_box($method)
     } else {
         $debug_mode = '';
     }
-    
+
     if (function_exists('cpg_fetch_icon')) {
         $update_icon   = cpg_fetch_icon('update_database', 2);
         $ok_icon       = cpg_fetch_icon('ok', 2);
@@ -356,7 +361,7 @@ function html_auth_box($method)
         $username_icon = '';
         $password_icon = '';
     }
-    
+
     echo <<< EOT
         <form name="cpgform" id="cpgform" method="post" action="update.php{$debug_mode}">
         <table border="0" cellspacing="0" cellpadding="0" class="maintable">
@@ -372,14 +377,14 @@ function html_auth_box($method)
             </tr>
             <tr>
                 <td class="tableh2" colspan="2">
-    
+
 EOT;
     if ($method == 'MySQL') {
         echo $lang_update_php['could_not_authenticate']. '. <a href="update.php">' . $lang_update_php['try_again'] . '</a>';
     } else {
         echo $lang_update_php['provide_admin_account'];
     }
-        
+
     echo <<< EOT
                 </td>
             </tr>
@@ -414,25 +419,43 @@ EOT;
             document.cpgform.user.focus();
             -->
         </script>
+
 EOT;
 }
 
 // --------------------------------- MAIN CODE ----------------------------- //
 function start_update()
 {
-    global $errors, $notes, $lang_update_php;
+    global $errors, $notes, $lang_update_php, $LINEBREAK;
+    global $update_icon, $ok_icon, $already_done_icon, $error_icon, $file_system_icon;
 
     // The updater
     //html_header($lang_update_php['title']);
     test_sql_connection();
-    
+
+    if (function_exists('cpg_fetch_icon')) {
+        $update_icon       = cpg_fetch_icon('update_database', 2);
+        $ok_icon           = cpg_fetch_icon('ok', 2);
+        $already_done_icon = cpg_fetch_icon('info', 2);
+        $error_icon        = cpg_fetch_icon('stop', 2);
+        $file_system_icon  = cpg_fetch_icon('hdd', 2);
+    } else {
+        $update_icon       = '';
+        $ok_icon           = '';
+        $already_done_icon = '';
+        $error_icon        = '';
+        $file_system_icon  = '';
+    }
+
     if ($errors == '') {
+        echo '        <table border="0" cellspacing="0" cellpadding="0" class="maintable">' . $LINEBREAK;
         update_tables();
-        update_system_thumbs();
+        update_files();
+        echo '        </table>' . $LINEBREAK;
     } else {
         html_error($errors);
     }
-    
+
     if ($errors == '') {
         html_install_success($notes);
         session_destroy();
@@ -442,48 +465,11 @@ function start_update()
     //html_footer();
 }
 
-function update_system_thumbs()
-{
-    global $CONFIG;
-
-    $results = mysql_query("SELECT * FROM ".$CONFIG['TABLE_PREFIX']."config;");
-    while ($row = mysql_fetch_array($results)) {
-        $CONFIG[$row['name']] = $row['value'];
-    } // while
-    mysql_free_result($results);
-
-    // Code to rename system thumbs in images folder
-    $old_thumb_pfx = 'thumb_';
-
-    if ($old_thumb_pfx != $CONFIG['thumb_pfx']) {
-        $folders = array('images/', $THEME_DIR.'images/');
-        foreach ($folders as $folder) {
-            $thumbs = cpg_get_system_thumb_list($folder);
-            foreach ($thumbs as $thumb) {
-                @rename($folder . $thumb['filename'], $folder . str_replace($old_thumb_pfx, $CONFIG['thumb_pfx'], $thumb['filename']));
-            }
-        }
-    }
-
-    // If old images for nopic.jpg and private.jpg exist, delete the new ones
-    if (file_exists('images/nopic.jpg')) {
-        cpg_folder_file_delete('images/thumb_nopic.jpg');
-        @rename('images/nopic.jpg', 'images/' . $CONFIG['thumb_pfx'] . 'nopic.jpg');
-    }
-
-    if (file_exists('images/private.jpg')) {
-        cpg_folder_file_delete('images/thumb_private.jpg');
-        @rename('images/private.jpg', 'images/' . $CONFIG['thumb_pfx'] . 'private.jpg');
-    }
-}
-
-/**
- * Return an array containing config values specified in the array
- */
+// Return an array containing config values specified in the array
 function cpg_get_config_value($config_name)
 {
     global $CONFIG;
-    
+
     $result = mysql_query("SELECT value FROM ".$CONFIG['TABLE_PREFIX']."config WHERE name='".$config_name."' LIMIT 1");
     $row = mysql_fetch_row($result);
 
@@ -516,7 +502,8 @@ function test_sql_connection()
 function update_tables()
 {
     global $errors, $CONFIG, $lang_update_php, $lang_common, $LINEBREAK, $help;
-    
+    global $update_icon, $ok_icon, $already_done_icon, $error_icon, $file_system_icon;
+
     $loopCounter = 0;
     $cellStyle = '';
     $superCage = Inspekt::makeSuperCage();
@@ -540,23 +527,8 @@ function update_tables()
     $sql_query = remove_remarks($sql_query);
     $sql_query = split_sql_file($sql_query, ';');
     $sql_query = array_map('trim', $sql_query);
-    
-    if (function_exists('cpg_fetch_icon')) {
-        $update_icon = cpg_fetch_icon('update_database', 2);
-        $ok_icon = cpg_fetch_icon('ok', 2);
-        $already_done_icon = cpg_fetch_icon('info', 2);
-        $error_icon = cpg_fetch_icon('stop', 2);
-        $file_system_icon = cpg_fetch_icon('hdd', 2);
-    } else {
-        $update_icon = '';
-        $ok_icon = '';
-        $already_done_icon = '';
-        $error_icon = '';
-        $file_system_icon = '';
-    }
 
-    print <<< EOT
-        <table border="0" cellspacing="0" cellpadding="0" class="maintable">
+    echo <<< EOT
             <tr>
                 <td class="tableh1" colspan="2">
                     {$update_icon}{$lang_update_php['performing_database_updates']}{$help}
@@ -566,29 +538,23 @@ function update_tables()
 EOT;
 
     foreach ($sql_query as $q) {
-    
-        if ($loopCounter / 2 == floor($loopCounter / 2)) {
-            $cellStyle = 'tableb';
-        } else {
-            $cellStyle = 'tableb tableb_alternate';
-        }
-        
+
+        $cellStyle = ($loopCounter / 2 == floor($loopCounter / 2)) ? 'tableb' : 'tableb tableb_alternate';
         $loopCounter++;
-        
         echo '<tr>' . $LINEBREAK . '    <td width="80%" class="' . $cellStyle . '">' . $q;
-        
+
         /**
          * Determining if the Alter Table actually made a change
          * to properly reflect it's status on the update page.
          */
         if (strpos(strtolower($q), 'alter table') !== false) {
-        
+
             $query = explode(' ', $q);
 
             $result = mysql_query("DESCRIBE " . $query[2]);
-            
+
             $description = array();
-            
+
             while ($row = mysql_fetch_row($result)) {
                 $description[] = $row;
             }
@@ -598,9 +564,9 @@ EOT;
             $warnings = mysql_query('SHOW WARNINGS');
 
             $result = mysql_query("DESCRIBE " . $query[2]);
-            
+
             $description2 = array();
-            
+
             while ($row = mysql_fetch_row($result)) {
                 $description2[] = $row;
             }
@@ -608,13 +574,13 @@ EOT;
             if ($description == $description2) {
                 $affected = 0;
             }
-            
+
         } else {
             $result = @mysql_query($q);
             $affected = mysql_affected_rows();
             $warnings = mysql_query('SHOW WARNINGS;');
         }
-        
+
         if ($superCage->get->keyExists('debug')) {
             echo '<hr />Debug output:<br />';
             if ($affected > -1) {
@@ -631,7 +597,7 @@ EOT;
                 }
             }
         }
-        print '</td>'.$LINEBREAK; // end the table cell that contains the output
+        echo '</td>'.$LINEBREAK; // end the table cell that contains the output
         if ($result && $affected) {
             echo '    <td width="20%" class="'.$cellStyle.' updatesOK">' . $ok_icon . $lang_common['ok'] . '</td>'.$LINEBREAK;
         } else {
@@ -639,29 +605,25 @@ EOT;
         }
         echo '</tr>' . $LINEBREAK;
     } // end foreach loop
-    
-    // Check password encryption and perform the conversion if applicable
-    if ($loopCounter / 2 == floor($loopCounter / 2)) {
-        $cellStyle = 'tableb';
-    } else {
-        $cellStyle = 'tableb tableb_alternate';
-    }
-    
-    $loopCounter++;
 
-    print <<< EOT
+    // Check password encryption and perform the conversion if applicable
+    $cellStyle = ($loopCounter / 2 == floor($loopCounter / 2)) ? 'tableb' : 'tableb tableb_alternate';
+    $loopCounter++;
+    echo <<< EOT
             <tr>
                 <td class="{$cellStyle}">
                     {$lang_update_php['password_encryption']}:
                 </td>
+
 EOT;
     $CONFIG['enable_encrypted_passwords'] = cpg_get_config_value('enable_encrypted_passwords');
     if ($CONFIG['enable_encrypted_passwords'] != '1') {
-        print <<< EOT
+        echo <<< EOT
                 <td class="{$cellStyle} updatesOK">
                     {$ok_icon}{$lang_common['ok']}
                 </td>
             </tr>
+
 EOT;
         $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}users set user_password=md5(user_password);");
         if ($CONFIG['enable_encrypted_passwords'] === '0') {
@@ -670,36 +632,33 @@ EOT;
             $result = mysql_query("INSERT INTO {$CONFIG['TABLE_PREFIX']}config ( `name` , `value` ) VALUES ('enable_encrypted_passwords', '1')");
         }
     } else {
-        print <<< EOT
+        echo <<< EOT
                 <td class="{$cellStyle} updatesFail">
                     {$already_done_icon}{$lang_update_php['already_done']}
                 </td>
             </tr>
+
 EOT;
     }
-    
-    // Check album password encryption and perform the conversion if applicable
-    if ($loopCounter / 2 == floor($loopCounter / 2)) {
-        $cellStyle = 'tableb';
-    } else {
-        $cellStyle = 'tableb tableb_alternate';
-    }
-    
-    $loopCounter++;
 
-    print <<< EOT
+    // Check album password encryption and perform the conversion if applicable
+    $cellStyle = ($loopCounter / 2 == floor($loopCounter / 2)) ? 'tableb' : 'tableb tableb_alternate';
+    $loopCounter++;
+    echo <<< EOT
             <tr>
                 <td class="{$cellStyle}">
                     {$lang_update_php['alb_password_encryption']}:
                 </td>
+
 EOT;
     $CONFIG['enable_encrypted_alb_passwords'] = cpg_get_config_value('enable_encrypted_alb_passwords');
     if ($CONFIG['enable_encrypted_alb_passwords'] != 1) {
-        print <<< EOT
+        echo <<< EOT
                 <td class="{$cellStyle} updatesOK">
                     {$ok_icon}{$lang_common['ok']}
                 </td>
             </tr>
+
 EOT;
         // Encrypt the album password but only for those albums which have a password assigned.
         $result = mysql_query("update {$CONFIG['TABLE_PREFIX']}albums set alb_password=md5(alb_password) WHERE alb_password IS NOT NULL AND alb_password != '';");
@@ -710,47 +669,66 @@ EOT;
             $result = mysql_query("INSERT INTO {$CONFIG['TABLE_PREFIX']}config ( `name` , `value` ) VALUES ('enable_encrypted_alb_passwords', '1')");
         }
     } else {
-        print <<< EOT
+        echo <<< EOT
                 <td class="{$cellStyle} updatesFail">
                     {$already_done_icon}{$lang_update_php['already_done']}
                 </td>
             </tr>
+
 EOT;
     }
-    
-    // Check category tree modifications 
-    if ($loopCounter / 2 == floor($loopCounter / 2)) {
-        $cellStyle = 'tableb';
-    } else {
-        $cellStyle = 'tableb tableb_alternate';
-    }
-    
-    $loopCounter++;
 
-    print <<< EOT
+    // Check category tree modifications
+    $cellStyle = ($loopCounter / 2 == floor($loopCounter / 2)) ? 'tableb' : 'tableb tableb_alternate';
+    $loopCounter++;
+    echo <<< EOT
             <tr>
                 <td class="{$cellStyle}">
                     {$lang_update_php['category_tree']}:
                 </td>
+
 EOT;
-    
+
     if (check_rebuild_tree()) {
-    
-        print <<< EOT
+        echo <<< EOT
                 <td class="{$cellStyle} updatesOK">
                     {$ok_icon}{$lang_common['ok']}
                 </td>
             </tr>
+
 EOT;
     } else {
-        print <<< EOT
+        echo <<< EOT
                 <td class="{$cellStyle} updatesFail">
                     {$already_done_icon}{$lang_update_php['already_done']}
                 </td>
             </tr>
+
 EOT;
     }
-    
+
+}
+
+function update_files()
+{
+    global $lang_update_php, $file_system_icon;
+
+    echo <<< EOT
+            <tr>
+                <td class="tableh1" colspan="2">
+                    {$file_system_icon}{$lang_update_php['performing_file_updates']}
+                </td>
+            </tr>
+
+EOT;
+    delete_files();
+    update_system_thumbs();
+}
+
+function delete_files()
+{
+    global $lang_update_php, $lang_common, $ok_icon, $already_done_icon, $error_icon;
+
     // Attempt to delete outdated files
     $delete_file_array = array(
         'config.php',
@@ -773,79 +751,172 @@ EOT;
         'docs/translation.htm',
         'docs/pics/',
         'docs/theme/',
-		'images/smiles/icon_arrow.gif',
-		'images/smiles/icon_biggrin.gif',
-		'images/smiles/icon_confused.gif',
-		'images/smiles/icon_cool.gif',
-		'images/smiles/icon_cry.gif',
-		'images/smiles/icon_eek.gif',
-		'images/smiles/icon_evil.gif',
-		'images/smiles/icon_exclaim.gif',
-		'images/smiles/icon_frown.gif',
-		'images/smiles/icon_idea.gif',
-		'images/smiles/icon_lol.gif',
-		'images/smiles/icon_mad.gif',
-		'images/smiles/icon_mrgreen.gif',
-		'images/smiles/icon_neutral.gif',
-		'images/smiles/icon_question.gif',
-		'images/smiles/icon_razz.gif',
-		'images/smiles/icon_redface.gif',
-		'images/smiles/icon_rolleyes.gif',
-		'images/smiles/icon_sad.gif',
-		'images/smiles/icon_smile.gif',
-		'images/smiles/icon_surprised.gif',
-		'images/smiles/icon_twisted.gif',
-		'images/smiles/icon_wink.gif',
+        'images/smiles/icon_arrow.gif',
+        'images/smiles/icon_biggrin.gif',
+        'images/smiles/icon_confused.gif',
+        'images/smiles/icon_cool.gif',
+        'images/smiles/icon_cry.gif',
+        'images/smiles/icon_eek.gif',
+        'images/smiles/icon_evil.gif',
+        'images/smiles/icon_exclaim.gif',
+        'images/smiles/icon_frown.gif',
+        'images/smiles/icon_idea.gif',
+        'images/smiles/icon_lol.gif',
+        'images/smiles/icon_mad.gif',
+        'images/smiles/icon_mrgreen.gif',
+        'images/smiles/icon_neutral.gif',
+        'images/smiles/icon_question.gif',
+        'images/smiles/icon_razz.gif',
+        'images/smiles/icon_redface.gif',
+        'images/smiles/icon_rolleyes.gif',
+        'images/smiles/icon_sad.gif',
+        'images/smiles/icon_smile.gif',
+        'images/smiles/icon_surprised.gif',
+        'images/smiles/icon_twisted.gif',
+        'images/smiles/icon_wink.gif',
         'include/imageObjectGD.class.php',
         'include/imageObjectIM.class.php',
     );
-    
-    print <<< EOT
-            <tr>
-                <td class="tableh1" colspan="2">
-                    {$file_system_icon}{$lang_update_php['performing_file_updates']}
-                </td>
-            </tr>
-EOT;
-    // Check if the file exists in the first place
-    foreach ($delete_file_array as $delete_file) {
-    
-        if ($loopCounter / 2 == floor($loopCounter / 2)) {
-            $cellStyle = 'tableb';
-        } else {
-            $cellStyle = 'tableb tableb_alternate';
-        }
-        
-        $delete_output = sprintf($lang_update_php['delete_file'], '&laquo;<tt>'.$delete_file.'</tt>&raquo;');
 
-        print <<< EOT
+    // Check if the file exists in the first place
+    $loopCounter = 0;
+    foreach ($delete_file_array as $delete_file) {
+        $cellStyle = ($loopCounter / 2 == floor($loopCounter / 2)) ? 'tableb' : 'tableb tableb_alternate';
+        $delete_output = sprintf($lang_update_php['delete_file'], '&laquo;<tt>'.$delete_file.'</tt>&raquo;');
+        echo <<< EOT
             <tr>
                 <td class="{$cellStyle}">
                     {$delete_output}
                 </td>
+
 EOT;
         if (!file_exists($delete_file)) {
             $result_output = $already_done_icon . $lang_update_php['already_done'];
         } else {
-            $delete_result = cpg_folder_file_delete($delete_file);
+            list($delete_result,$debug_output) = cpg_folder_file_delete($delete_file);
             if ($delete_result == TRUE ) {
                 $result_output = $ok_icon . $lang_common['ok'];
             } else {
                 $result_output = $error_icon . $lang_update_php['could_not_delete'];
             }
         }
-        
-        print <<< EOT
+        echo <<< EOT
                 <td class="{$cellStyle}">
                     {$result_output}
                 </td>
             </tr>
+
 EOT;
         $loopCounter++;
-    }
-    
-    
-    echo "</table>";
+    } // foreach $delete_file
 }
+
+function update_system_thumbs()
+{
+    global $CONFIG, $lang_update_php, $lang_common, $ok_icon, $already_done_icon, $error_icon;
+
+    $results = mysql_query("SELECT * FROM {$CONFIG['TABLE_PREFIX']}config;");
+    while ($row = mysql_fetch_array($results)) {
+        $CONFIG[$row['name']] = $row['value'];
+    } // while
+    mysql_free_result($results);
+
+    // Code to rename system thumbs in images folder
+    $default_thumb_pfx = 'thumb_';
+    if ($default_thumb_pfx != $CONFIG['thumb_pfx']) {
+        $THEME_DIR = 'themes/' . $CONFIG['theme'] . '/';
+        $folders = array('images/thumbs/', $THEME_DIR.'images/');
+        $loopCounter = 0;
+        foreach ($folders as $folder) {
+            $thumbs = cpg_get_system_thumb_list($folder);
+            foreach ($thumbs as $thumb) {
+                $cellStyle = ($loopCounter / 2 == floor($loopCounter / 2)) ? 'tableb' : 'tableb tableb_alternate';
+                $rename_file_from = $folder . $thumb['filename'];
+                $rename_file_to   = $folder . str_replace($default_thumb_pfx, $CONFIG['thumb_pfx'], $thumb['filename']);
+                $rename_output    = sprintf($lang_update_php['rename_file'], '&laquo;<tt>'.$rename_file_from.'</tt>&raquo;', '&laquo;<tt>'.$rename_file_to.'</tt>&raquo;');
+                echo <<< EOT
+            <tr>
+                <td class="{$cellStyle}">
+                    {$rename_output}
+                </td>
+
+EOT;
+                if (file_exists($rename_file_to)) {
+                    $result_output = $already_done_icon . $lang_update_php['already_done'];
+                    echo <<< EOT
+                <td class="{$cellStyle}">
+                    {$result_output}
+                </td>
+            </tr>
+
+EOT;
+                    $loopCounter++;
+                    if ($rename_file_from == $rename_file_to) {
+                        continue;
+                    }
+                    $cellStyle = ($loopCounter / 2 == floor($loopCounter / 2)) ? 'tableb' : 'tableb tableb_alternate';
+                    $delete_file = $rename_file_from;
+                    $delete_output = sprintf($lang_update_php['delete_file'], '&laquo;<tt>'.$delete_file.'</tt>&raquo;');
+                    echo <<< EOT
+            <tr>
+                <td class="{$cellStyle}">
+                    {$delete_output}
+                </td>
+
+EOT;
+                    if (!file_exists($delete_file)) {
+                        $result_output = $already_done_icon . $lang_update_php['already_done'];
+                    } else {
+                        list($delete_result,$debug_output) = cpg_folder_file_delete($delete_file);
+                        if ($delete_result == TRUE ) {
+                            $result_output = $ok_icon . $lang_common['ok'];
+                        } else {
+                            $result_output = $error_icon . $lang_update_php['could_not_delete'];
+                        }
+                    }
+                    echo <<< EOT
+                <td class="{$cellStyle}">
+                    {$result_output}
+                </td>
+            </tr>
+
+EOT;
+                    $loopCounter++;
+                    continue;
+
+                } else {
+                    $rename_result = @rename($rename_file_from, $rename_file_to);
+                    if ($rename_result == TRUE ) {
+                        $result_output = $ok_icon . $lang_common['ok'];
+                    } else {
+                        $result_output = $error_icon . $lang_update_php['could_not_rename'];
+                    }
+                }
+                echo <<< EOT
+                <td class="{$cellStyle}">
+                    {$result_output}
+                </td>
+            </tr>
+
+EOT;
+                $loopCounter++;
+            } // foreach $thumbs
+        } // foreach $folders
+    } // if different thumb_pfx
+
+    /*
+    // Unnecessary for 1.5 since these thumbs are included with the system thumbs above
+    // If old images for nopic.jpg and private.jpg exist, delete the new ones
+    if (file_exists('images/nopic.jpg')) {
+        cpg_folder_file_delete('images/thumb_nopic.jpg');
+        @rename('images/nopic.jpg', 'images/' . $CONFIG['thumb_pfx'] . 'nopic.jpg');
+    }
+    if (file_exists('images/private.jpg')) {
+        cpg_folder_file_delete('images/thumb_private.jpg');
+        @rename('images/private.jpg', 'images/' . $CONFIG['thumb_pfx'] . 'private.jpg');
+    }
+    */
+}
+
 // function definitions --- end
 ?>

@@ -2667,7 +2667,7 @@ function cpg_get_system_thumb_list($search_folder = 'images/')
     global $CONFIG;
     static $thumbs = array();
 
-    $folder = 'images/';
+    $folder = 'images/thumbs/';
 
     $thumb_pfx =& $CONFIG['thumb_pfx'];
 
@@ -2695,7 +2695,7 @@ function cpg_get_system_thumb_list($search_folder = 'images/')
 
     } else {
 
-        // Search folder is the different; check for files in the given folder
+        // Search folder is different; check for files in the given folder
         $results = array();
 
         foreach ($thumbs as $thumb) {
@@ -5592,11 +5592,12 @@ function album_selection_options($selected = 0)
 * are no particular permission-checks.
 * Contains hard-coded English language strings that are meant for debug output only.
 * @param $path full-path or relative path to folder
-* @return result of deletion
+* @return array(success(T)/failure(F), debug output)
 */
 function cpg_folder_file_delete($path) 
 {
     global $CONFIG;
+
     if ($CONFIG['debug_notice'] == 0) {
         $output = '';
     } else {
@@ -5612,22 +5613,22 @@ function cpg_folder_file_delete($path)
     rtrim($path,'/'); // if the path has a trailing slash we remove it here
     if (is_link($path)) { // We don't want to delete symlinks, so let's just return some text
         if ($output != '') {
-            return $path . ' appears to be a symlink - we won\'t delete them for security reasons';
+            return array(false,$path . ' appears to be a symlink - we won\'t delete them for security reasons');
         } else {
-            return;
+            return array(false,'');
         }
     }
     if (!file_exists($path) && !is_dir($path)) {// if the path is not valid
         if ($output != '') {
-            return 'Path ' . $path . ' does not exist';
+            return array(false,'Path ' . $path . ' does not exist');
         } else {
-            return;
+            return array(false,'');
         }
     } elseif (!is_readable($path)) {// ... if the path is not readable
         if ($output != '') {
-            return 'Path ' . $path . ' is not readable';
+            return array(false,'Path ' . $path . ' is not readable');
         } else {
-            return;
+            return array(false,'');
         }
     }   
     if (is_dir($path)) {
@@ -5656,22 +5657,26 @@ function cpg_folder_file_delete($path)
         } else {
             $result = @rmdir($path);
         }
-        if ($output != '') {
-            if ($result == 1) {
-                // We have issued the command to delete the folder and everything
-                // appears to have gone fine, but we can not be sure if we succeeded,
-                // so we'll test if the folder still is there.
-                clearstatcache(); // We need to clear the cache before we check if the folder is still there.
-                if (is_dir($path)) {
-                    return 'Couldn\'t delete folder ' . $path . '. Review permissions!';
-                } else {
-                    return 'Folder deleted successfully';
-                }
+        if ($result == 1) {
+            // We have issued the command to delete the folder and everything
+            // appears to have gone fine, but we can not be sure if we succeeded,
+            // so we'll test if the folder still is there.
+            clearstatcache(); // We need to clear the cache before we check if the folder is still there.
+            if (is_dir($path)) {
+                $debug_output = 'Couldn\'t delete folder ' . $path . '. Review permissions!';
+                $success = false;
             } else {
-                return 'Couldn\'t delete folder ' . $path . '. Review permissions!';
+                $debug_output = 'Folder deleted successfully';
+                $success = true;
             }
         } else {
-            return;
+            $debug_output = 'Couldn\'t delete folder ' . $path . '. Review permissions!';
+            $success = false;
+        }
+        if ($output != '') {
+            return array($success,$debug_output);
+        } else {
+            return array($success,'');
         }
     } else {
         // Delete the file
@@ -5680,22 +5685,26 @@ function cpg_folder_file_delete($path)
         } else {
             $result = @unlink($path);
         }
-        if ($output != '') {
-            if ($result == 1) {
-                // We have issued the command to delete the file and everything
-                // appears to have gone fine, but we can not be sure if we succeeded,
-                // so we'll test if the file still is there.
-                clearstatcache(); // We need to clear the cache first.
-                if (file_exists($path)) {
-                    return 'Couldn\'t delete file ' . $path . '. Review permissions!';
-                } else {
-                    return 'File deleted successfully';
-                }
+        if ($result == 1) {
+            // We have issued the command to delete the file and everything
+            // appears to have gone fine, but we can not be sure if we succeeded,
+            // so we'll test if the file still is there.
+            clearstatcache(); // We need to clear the cache first.
+            if (file_exists($path)) {
+                $debug_output = 'Couldn\'t delete file ' . $path . '. Review permissions!';
+                $success = false;
             } else {
-                return 'Couldn\'t delete file ' . $path . '. Review permissions!';
+                $debug_output = 'File deleted successfully';
+                $success = true;
             }
         } else {
-            return;
+            $debug_output = 'Couldn\'t delete file ' . $path . '. Review permissions!';
+            $success = false;
+        }
+        if ($output != '') {
+            return array($success,$debug_output);
+        } else {
+            return array($success,'');
         }
     }
 }// end function cpg_folder_file_delete

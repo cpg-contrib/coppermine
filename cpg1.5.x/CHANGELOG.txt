@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-06-23 [O] Organized & optimized update.php and added output rows for file updates {Paver}
+2009-06-23 [B] Corrected label on update.php for deleting files by fixing delete function return value {Paver}
 2009-06-18 [D] Added missing documentation about thumb sharpening {GauGau}
 2009-06-14 [A] Handle missing images better by displaying a placeholder image and logging the missing file {Nibbler}
 2009-06-13 [M] Remove image_processor.php {Nibbler}
