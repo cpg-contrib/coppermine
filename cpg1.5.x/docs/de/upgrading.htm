@@ -15,9 +15,9 @@
 
   Coppermine version: 1.5.1
   $HeadURL$
-  $Revision: 6003 $
-  $LastChangedBy: gaugau $
-  $Date: 2009-05-27 20:18:54 +0200 (Mi, 27 Mai 2009) $
+  $Revision$
+  $LastChangedBy$
+  $Date$
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -93,7 +93,7 @@
     <span class="small">Usually, you just download your entire coppermine folder to your local hard drive or any other safe backup location using your <a href="dev_tools.htm#dev_tools_ftp_client"><abbr title="File Transfer Protocol">FTP</abbr> app</a>. A fresh Coppermine package doesn't contain a config file anyway (that file has being created during install on your server), so you can't actually replace an existing config file with an empty one from the package; again, the backup is only a safety precaution.</span></li>
     <li>Unpack the coppermine package you downloaded into a temporary folder on your local hard drive (preserving the folder structure within the package)</li>
     <li><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories, making sure not to overwrite your anycontent.php file or the albums directory.<br />
-    <span class="small">In fact, you could upload the albums folder as well - the one that is contained in the package is empty anyway. The recommendation not to upload this folder is only meant as a pre-caution for some users who have "funny" settings for their FTP apps: some exotic FTP applications delete folders existing on the server and then re-create an empty folder on the server-side. This would of course be a disaster, as you would lose all your uploaded files in your gallery. However, the number of FTP apps that is set up in that strange way is small and therefor, it won't hurt for most to upload the albums folder as well. If you're not sure, use one of the <a href="dev_tools.htm#dev_tools_ftp_client">FTP clients recommended by the devs</a>.</span></li>
+    <span class="small">In fact, you could upload the albums folder as well - the one that is contained in the package is empty anyway. The recommendation not to upload this folder is only meant as a pre-caution for some users who have "funny" settings for their FTP apps: some exotic FTP applications delete folders existing on the server and then re-create an empty folder on the server-side. This would of course be a disaster, as you would lose all your uploaded files in your gallery. However, the number of FTP apps that is set up in that strange way is small and therefore, it won't hurt for most to upload the albums folder as well. If you're not sure, use one of the <a href="dev_tools.htm#dev_tools_ftp_client">FTP clients recommended by the devs</a>.</span></li>
     <li>Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. <tt class="code">http://yourdomain.tld/your_coppermine_folder/update.php</tt>). This will update your coppermine install by making all necessary changes in the database.</li>
     <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme_upgrade_14x-15x.htm">theme-upgrade guide</a>.</li>
 </ul>
@@ -226,7 +226,7 @@ The updater performs three things:
     If nothing is being displayed in this column, the folder/file exists on your server. If this is not the case (i.e. the folder/file does not exist on your server or is inaccessible), the column &quot;Missing&quot; will be populated with the result of this first, basic check.<br />
     Note: there are some folders/files that are mandatory to have; others are optional. Anyway, if you perform a fresh install or upgrade, you should make sure to upload all folders/files. You can then later delete some of the optional files if you want, although this doesn't save much webspace.<br />
     If a file is missing, all other steps that are next in the loop will not be performed - a missing file can't have a version number or similar. If versioncheck complains about missing files, use your FTP app to review if they are actually missing or inaccessible. If they are missing, re-upload them. If they are inaccessible, you will have to <a href="install_permissions.htm#permissions">assign the needed permissions</a>.<br />
-    Some files that existed in older versions might have gotten removed later. Those that might be a possible security issue will be displayed with the word "removed" in the "missing"-column. If you come across such a file, use your FTP-app to remove the file that versioncheck output complains about. Leaving the file where it is (ignoring the suggestion given by versioncheck) might pose a security risk and therefor is not recommended.</li>
+    Some files that existed in older versions might have gotten removed later. Those that might be a possible security issue will be displayed with the word "removed" in the "missing"-column. If you come across such a file, use your FTP-app to remove the file that versioncheck output complains about. Leaving the file where it is (ignoring the suggestion given by versioncheck) might pose a security risk and therefore is not recommended.</li>
     <li><a name="versioncheck_comparison_permissions"></a><h4>Permissions<a href="#versioncheck_comparison_permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     Displays the permissions assigned to the folder/file. For some folders, write permissions are needed, while for others read permissions are enough. If the permission level of a folder is good, the result will be displayed together with a remark (in brackets) like &quot;OK&quot; (may differ in your language). Using a script like versioncheck to actually check permissions on folders works OK, while it may or may not work very well on files. This being said, you should mostly be concerned about folders that don't have sufficient permissions. If files are being reported to have an improper set of permissions assigned, don't be to alarmed if the rest of your gallery is working just fine.<br />
     If permissions on folders need reviewing, read up the <a href="install_permissions.htm#permissions">permissions section of the docs</a> and do as suggested there.</li>
@@ -296,8 +296,8 @@ The updater performs three things:
 
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
-		<span id="doc_last_changed">$LastChangedDate: 2009-05-27 20:18:54 +0200 (Mi, 27 Mai 2009) $</span>
-		<span id="doc_revision">$Revision: 6003 $</span>
+		<span id="doc_last_changed">$LastChangedDate$</span>
+		<span id="doc_revision">$Revision$</span>
 	</div>
 </div>
 </body>

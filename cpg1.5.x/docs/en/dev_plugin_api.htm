@@ -505,10 +505,10 @@ To refer to that file, refer to <tt class="code">index.php?file=coffee_maker/foo
 
 <a name="plugin_api_tutorial_lang"></a>
 <h3>Multi-language Support<a href="#plugin_api_tutorial_lang" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>You can make your plugins capable to be used in multiple languages. Therefor, your mustn't hard-code language strings into your plugin, but use variables instead. As you wouldn't want to introduce a load of individual language variables, you better use an array, preferably following the naming scheme <tt class="code">$lang_plugin_foldername</tt>. All that is left to do is adding a little switch into your plugin that determines the end user's language and make it use the language file if present.</p>
+<p>You can make your plugins capable to be used in multiple languages. Therefore, your mustn't hard-code language strings into your plugin, but use variables instead. As you wouldn't want to introduce a load of individual language variables, you better use an array, preferably following the naming scheme <tt class="code">$lang_plugin_foldername</tt>. All that is left to do is adding a little switch into your plugin that determines the end user's language and make it use the language file if present.</p>
 <p class="cpg_example">Let's assume that the folder your plugin resides in is named <tt class="code">coffee_maker</tt> and the name is "Coffee Maker".</p>
 <p>It's advisable to move the definition of languages and other resources that you want to use globaly into a separate file. This way, you can call the function directly if needed (outside the scope of the plugin).</p>
-<div class="cpg_example">Therefor, at the very start of codebase.php, right after the starting PHP tag, insert
+<div class="cpg_example">Therefore, at the very start of codebase.php, right after the starting PHP tag, insert
 <pre>require_once "./plugins/coffee_maker/initialize.inc.php";</pre></div>
 <p>Of course you need to create the file you just refered to.</p>
 <div class="cpg_example">This is how the content of <tt class="code">initialize.inc.php</tt> should look like:

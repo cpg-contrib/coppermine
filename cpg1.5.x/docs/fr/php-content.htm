@@ -14,9 +14,9 @@
 
   Coppermine version: 1.5.1
   $HeadURL$
-  $Revision: 6003 $
-  $LastChangedBy: gaugau $
-  $Date: 2009-05-27 20:18:54 +0200 (mer. 27 mai 2009) $
+  $Revision$
+  $LastChangedBy$
+  $Date$
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -91,13 +91,13 @@ Often, you may want to display different content based on the visitor's status (
 <p class="cpg_message_info">Note: people ask frequently how to add PHP codes into template.html - the answer always is the same: you can't! It doesn't matter what file name (or extension) you use: renaming template.html to template.php won't do anything particularly usefull, even if you changed the corresponding PHP code in the core. Coppermine simply doesn't work that way: you can't have PHP directly in template.html. You have to create a custom placeholder token and actually populate that placeholder with code that you have to come up with in theme.php. This is only meant for people with intermediate PHP skills - if you don't have those skills, go with one of the methods mentioned on this page.</p>
 
 <a name="php-content_core"></a><h2>Modifying core files<a href="#php-content_core" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Core files (PHP files that come with the Coppermine package) could be modified as well to achieve custom features. However, the dev team strongly recommends to use this option only if you're absolutely sure what you're doing: although that you may not be planning to update Coppermine in the near future, an update may become mandatory. The reason is quite simple: every non-trivial piece of software contains bugs. This certainly is the case for Coppermine as well. Although we try to deliver a flawless application, there will almost certainly be bugs that will be fixed in future maintenance releases. Therefor, it will be mandatory to keep your Coppermine-install up-to-date. Updating your Coppermine install will require you to replace all core files with the new ones that come with the maintenance release. Subsequently, your custom modifications of core files would be lost, so you would have to re-apply your hacks.<br />
+<p>Core files (PHP files that come with the Coppermine package) could be modified as well to achieve custom features. However, the dev team strongly recommends to use this option only if you're absolutely sure what you're doing: although that you may not be planning to update Coppermine in the near future, an update may become mandatory. The reason is quite simple: every non-trivial piece of software contains bugs. This certainly is the case for Coppermine as well. Although we try to deliver a flawless application, there will almost certainly be bugs that will be fixed in future maintenance releases. Therefore, it will be mandatory to keep your Coppermine-install up-to-date. Updating your Coppermine install will require you to replace all core files with the new ones that come with the maintenance release. Subsequently, your custom modifications of core files would be lost, so you would have to re-apply your hacks.<br />
 This being said, you should think twice before starting to modify core files: almost all custom modifications can be accomplished by performing the recommended method to create or modify a custom theme instead of modifying core files. If you must use core file hacks, make sure to comment your modifications and to take notes of them. After upgrading, you could use a diff viewer to re-apply your custom hacks easily.</p>
 
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
-		<span id="doc_last_changed">$LastChangedDate: 2009-05-27 20:18:54 +0200 (mer. 27 mai 2009) $</span>
-		<span id="doc_revision">$Revision: 6003 $</span>
+		<span id="doc_last_changed">$LastChangedDate$</span>
+		<span id="doc_revision">$Revision$</span>
 	</div>
 </div>
 </body>

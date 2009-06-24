@@ -14,9 +14,9 @@
 
   Coppermine version: 1.5.1
   $HeadURL$
-  $Revision: 6003 $
-  $LastChangedBy: gaugau $
-  $Date: 2009-05-27 20:18:54 +0200 (mer. 27 mai 2009) $
+  $Revision$
+  $LastChangedBy$
+  $Date$
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -536,7 +536,7 @@
 &lt;/html&gt;</textarea>
 
 <a name="theme_matching_style"></a><h2>Adapting the style<a href="#theme_matching_style" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>So far, we have come up with placeholders for the mandatory placeholder tokens - now let's take a look at the style sheet (CSS). In our little example, it's quite easy to integrate the CSS that comes with the overall design into coppermine's style, as there are only a few definitions, and for ease of use they even reside embedded into the template file (inline styles). While that's a good idea for a small demonstration to make the code readable, it's usually mandatory to keep the styles in an external stylesheet file. That's why coppermine does as well. In each theme, there is a file named &quot;<tt class="code">style.css</tt>&quot; that contains all CSS. This is the case for the theme as well that we used to build our custom theme upon. Therefor, open another window of your editor and in that window edit themes/my_theme/style.css. Leave that window open - we'll need it for a while.</p>
+<p>So far, we have come up with placeholders for the mandatory placeholder tokens - now let's take a look at the style sheet (CSS). In our little example, it's quite easy to integrate the CSS that comes with the overall design into coppermine's style, as there are only a few definitions, and for ease of use they even reside embedded into the template file (inline styles). While that's a good idea for a small demonstration to make the code readable, it's usually mandatory to keep the styles in an external stylesheet file. That's why coppermine does as well. In each theme, there is a file named &quot;<tt class="code">style.css</tt>&quot; that contains all CSS. This is the case for the theme as well that we used to build our custom theme upon. Therefore, open another window of your editor and in that window edit themes/my_theme/style.css. Leave that window open - we'll need it for a while.</p>
 <p>First, however, we need to "instruct" our HTML file that there actually is an external style sheet that should be taken into account. For this, take a look at the editor window that contains <tt class="code">themes/my_theme/template_copy.html</tt>: look for <tt class="code">&gt;link rel="stylesheet" href="themes/my_theme/style.css" type="text/css" /&gt;</tt>. Copy that line into <tt class="code">themes/my_theme/template_copy.html</tt>, right after the <tt class="code">{META}</tt> placeholder token. As you can see, it doesn't contain reference just to <tt class="code">style.css</tt>, but to <tt class="code">themes/my_theme/style.css</tt>.</p>
 <p class="cpg_message_info">The reason for this "strange" path is that you have to keep in mind that the template will later be parsed when coppermine is being executed - this will happen from your root coppermine folder. That's why the paths to all resources must be seen from the root of your coppermine gallery. You will notice later that this is not only the case for the stylesheet, but for similar resources (like graphics embedded into your theme) as well.</p>
 <p>We now have instructed our custom theme to take into account the stylesheet - what's left to do is move the inline CSS from template.html into our external stylesheet file as well. In our example, this is pretty straightforward, but in real life, this could be much more complicated, since both the coppermine stylesheet as well as your overal site layout contains CSS information about particular HTML tags. Additionally, class and object names may be identical by coincidence. It's beyond the scope of this tutorial to explain all CSS details, so here is only a rough explanation: what we want to do is just cut the CSS from your overall site from template.html and paste it into style.css - we "just" need to make sure that there are no double-definitions. The only double definitions that reside in our example are those for the HTML-tag "body" - we need to look at them separately, so let's take a note of them first:</p>
@@ -653,9 +653,9 @@ need to be cut out and looked at separately. The rest doesn't exist twice, so we
   ********************************************
   Coppermine version: 1.5.1
   $Source$
-  $Revision: 6003 $
-  $LastChangedBy: gaugau $
-  $Date: 2009-05-27 20:18:54 +0200 (mer. 27 mai 2009) $
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/</pre>
 <p>there as well.</p>
 <p>As a result, this is how our two files now should look like:</p>
@@ -1602,7 +1602,7 @@ html:first-child .bookmark_list img { /* Opera */
 }</textarea>
 
 <a name="theme_matching_test1"></a><h2>Initial test<a href="#theme_matching_test1" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p><img src="tutorial/matching_theme/screenshot_missing_menu.png" border="1" width="400" height="204" alt="" align="right" />Now it's time to perform a first test, taking a look at what we have accomplished so far, so let's take a look at our gallery with our new custom skin. Therefor, upload your changes to your webserver (using your FTP app) unless you're doing this all on your local testbed. But wait: don't dive right into coppermine's config yet: let's just preview the theme for you without your site users noticing that there is a new theme that will be presented to the public soon, so let's start the gallery with a URL parameter that specifies the theme to use - as suggested in <a href="theme_create.htm#theme_create_tipps">Tipps &amp; tricks</a>, start your browser and go to the URL <tt class="code">http://yoursite.tld/coppermine/index.php?theme=my_theme</tt>.</p>
+<p><img src="tutorial/matching_theme/screenshot_missing_menu.png" border="1" width="400" height="204" alt="" align="right" />Now it's time to perform a first test, taking a look at what we have accomplished so far, so let's take a look at our gallery with our new custom skin. Therefore, upload your changes to your webserver (using your FTP app) unless you're doing this all on your local testbed. But wait: don't dive right into coppermine's config yet: let's just preview the theme for you without your site users noticing that there is a new theme that will be presented to the public soon, so let's start the gallery with a URL parameter that specifies the theme to use - as suggested in <a href="theme_create.htm#theme_create_tipps">Tipps &amp; tricks</a>, start your browser and go to the URL <tt class="code">http://yoursite.tld/coppermine/index.php?theme=my_theme</tt>.</p>
 <p>The result should be similar to what you can see at the right (at least if you followed this tutorial by the letter and experimented with the sample design first).</p>
 
 <p><abbr title="to be continued">tbc</abbr>...</p>
@@ -1611,8 +1611,8 @@ html:first-child .bookmark_list img { /* Opera */
 
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
-		<span id="doc_last_changed">$LastChangedDate: 2009-05-27 20:18:54 +0200 (mer. 27 mai 2009) $</span>
-		<span id="doc_revision">$Revision: 6003 $</span>
+		<span id="doc_last_changed">$LastChangedDate$</span>
+		<span id="doc_revision">$Revision$</span>
 	</div>
 </div>
 </body>
