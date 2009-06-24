@@ -2759,7 +2759,7 @@ if (!function_exists('theme_display_thumbnails')) {  //{THEMES}
 ******************************************************************************/
 function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb', $date='')
 {
-    global $CONFIG;
+    global $CONFIG, $CURRENT_ALBUM_DATA;
     global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view, $lang_common, $template_tab_display, $template_thumbnail_view, $lang_album_list, $lang_errors;
 
     $superCage = Inspekt::makeSuperCage();
@@ -2813,7 +2813,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         if (GALLERY_ADMIN_MODE) {
             $param = array(
                 '{ALBUM_ID}'   => $aid,
-                '{CAT_ID}'     => ($cat > 0 ? $cat : $cat),
+                '{CAT_ID}'     => ($cat > 0 ? $cat : $CURRENT_ALBUM_DATA['category']),
                 '{MODIFY}'     => cpg_fetch_icon('modifyalb', 1).$lang_common['album_properties'],
                 '{PARENT_CAT}' => cpg_fetch_icon('category', 1).$lang_common['parent_category'],
                 '{EDIT_PICS}'  => cpg_fetch_icon('edit', 1).$lang_common['edit_files'],
