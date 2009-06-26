@@ -1,4 +1,4 @@
-<?php
+de<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -3446,6 +3446,7 @@ EOT;
         echo 'Key config settings';
         echo $debug_underline;
         $table = array();
+        $table[] = array('site_url', $CONFIG['site_url']);
         $table[] = array('charset', $CONFIG['charset']);
         $table[] = array('allow_private_albums', $CONFIG['allow_private_albums']);
         $table[] = array('cookie_name', $CONFIG['cookie_name']);
