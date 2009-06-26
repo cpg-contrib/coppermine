@@ -1,4 +1,4 @@
-de<?php
+<?php
 /*************************
   Coppermine Photo Gallery
   ************************
