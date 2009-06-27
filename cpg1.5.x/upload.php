@@ -26,14 +26,11 @@ define('ADMIN_PHP', true);
 // Call basic functions, etc.
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
-js_include('js/swfupload/swfupload.js');
-js_include('js/swfupload/swfupload.swfobject.js');
-js_include('js/swfupload/swfupload.queue.js');
-js_include('js/swfupload/fileprogress.js');
-js_include('js/swfupload/handlers.js');
-js_include('js/upload.js');
-// Set the lang_upload_swf_php language array for use in js
-set_js_var('lang_upload_swf_php', $lang_upload_swf_php);
+
+// Check to see if user can upload pictures.  Quit with an error if user cannot.
+if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
+    cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+}
 
 // Globalize $CONFIG
 global $CONFIG, $USER, $lang_upload_php, $upload_form, $max_file_size;
@@ -84,10 +81,19 @@ if (!in_array($upload_form, array_keys($upload_choices))) {
     unset($USER['upload_method']);
 }
 
-// Check to see if user can upload pictures.  Quit with an error if user cannot.
-if (!USER_CAN_UPLOAD_PICTURES && !USER_CAN_CREATE_ALBUMS) {
-    cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+// If upload method is swf then only include the JS files and other code for it
+if ('swfupload' == $upload_form) {
+    js_include('js/swfupload/swfupload.js');
+    js_include('js/swfupload/swfupload.swfobject.js');
+    js_include('js/swfupload/swfupload.queue.js');
+    js_include('js/swfupload/fileprogress.js');
+    js_include('js/swfupload/handlers.js');
+    js_include('js/setup_swf_upload.js');
+    
+    // Set the lang_upload_swf_php language array for use in js
+    set_js_var('lang_upload_swf_php', $lang_upload_swf_php);
 }
+js_include('js/upload.js');
 
 //___________________________________Function Block_______________________________________
 
@@ -465,6 +471,13 @@ EOT;
 // $path --> path to the form action script
 function open_form($path)
 {
+    global $upload_form;
+    
+    $on_submit = '';
+    if ('swfupload' == $upload_form) {
+        $on_submit = 'onsubmit="cpgUploadToggleProgressBar();"';
+    }
+    
     echo <<<EOT
     <script language="javascript" type="text/javascript">
     function textCounter(field, maxlimit) {
@@ -472,7 +485,7 @@ function open_form($path)
             field.value = field.value.substring(0, maxlimit);
     }
     </script>
-    <form name="cpgform" id="cpgform" method="post" action="$path" enctype="multipart/form-data" onsubmit="cpgUploadToggleProgressBar();">
+    <form name="cpgform" id="cpgform" method="post" action="$path" enctype="multipart/form-data" $on_submit>
 EOT;
 }
 
@@ -699,7 +712,7 @@ EOT;
     			{$icon_array['upload']}{$lang_upload_php['title']} {$upload_help}
     		</td>
     		<td style="text-align:right">
-    			<span id="upload_method_selector" style="display:none">
+    			<span id="upload_method_selector">
     				{$upload_select}
     			</span>
     		</td>
