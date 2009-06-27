@@ -19,6 +19,8 @@
 var swfu;
 var button_enabled_style;
 var button_disabled_style;
+var notify_upload = false; // Flag to be used for sending notification request
+
 SWFUpload.onload = function () {
     var settings = {
         flash_url : "js/swfupload/swfupload.swf",

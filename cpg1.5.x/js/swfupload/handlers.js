@@ -124,6 +124,9 @@ function uploadSuccess(file, serverData) {
 	try {
 		var progress = new FileProgress(file, this.customSettings.progressTarget);
         if (serverData.substring(0, 7) == 'success') {
+            // We have a successful upload. Mark the flag accordingly.
+            notify_upload = true;
+            
             progress.setComplete();
             progress.setStatus(js_vars.lang_upload_swf_php.status_complete);
             // Add
@@ -204,7 +207,18 @@ function uploadError(file, errorCode, message) {
 
 function uploadComplete(file) {
 	if (this.getStats().files_queued === 0) {
+        console.log('Process Complete: '+js_vars.notify_admin);
 		document.getElementById(this.customSettings.cancelButtonId).disabled = true;
+        
+        // Send notification request only if atleast one successful upload is there
+        if (notify_upload) {
+            $.post('notifyupload.php', {
+                album: $("select[name='album']").val()
+            });
+            
+            // Rest the variable as users can again try to upload without reloading page
+            notify_upload = false;
+        }
 	}
 }
 

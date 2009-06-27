@@ -92,6 +92,8 @@ if ('swfupload' == $upload_form) {
     
     // Set the lang_upload_swf_php language array for use in js
     set_js_var('lang_upload_swf_php', $lang_upload_swf_php);
+    
+    set_js_var('notify_admin', $CONFIG['upl_notify_admin_email']);
 }
 js_include('js/upload.js');
 
