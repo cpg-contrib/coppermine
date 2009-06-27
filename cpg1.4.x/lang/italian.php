@@ -98,7 +98,7 @@ $lang_errors = array(
   'zip_type' => 'Non possiedi i permessi per caricare file ZIP.',
   'database_query' => 'Si è verificato un errore eseguendo una query al database', //cpg1.4
   'non_exist_comment' => 'Il commento selezionato non esiste', //cpg1.4
-  'register_globals_on' => 'La direttiva PHP register_globals è abilitata sul tuo server, il che non è una buona idea in termini di sicurezza. É altamente raccomandabile impostarla ad Off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">more</a>]',
+  'register_globals_on' => 'La direttiva PHP register_globals è abilitata sul tuo server, il che non è una buona idea in termini di sicurezza. É altamente raccomandabile impostarla ad Off. [<a href="http://forum.coppermine-gallery.net/index.php/topic,59569.0.html" rel="external" class="external">dettagli</a>]',
   
 );
 
@@ -378,8 +378,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODE_PHP')) $lang_mode_php = array(
-  0 => 'Lascio il modo amministratore...',
-  1 => 'Entro in modo amministratore...',
+  0 => 'Lascio la modalità amministratore...',
+  1 => 'Entro in modalità amministratore...',
 );
 
 // ------------------------------------------------------------------------- //
