@@ -26,7 +26,7 @@ var GB_ANIMATION = true;
 
 $(function() {
     $(".cpg_zebra tr:even").addClass("tableb");
-	$(".cpg_zebra tr:odd").addClass("tableb_alternate");
+	$(".cpg_zebra tr:odd").addClass("tableb tableb_alternate");
 });
 
 function MM_openBrWindow(theURL,winName,features) { //v2.0
