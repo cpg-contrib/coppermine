@@ -52,6 +52,7 @@ body {
 .treeview li { 
     margin: 0;
     padding: 3px 0pt 3px 16px;
+	list-style-type: none;
 }
 
 .treeview a.selected {
