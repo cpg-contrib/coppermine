@@ -38,7 +38,7 @@
 <h1>Frequently Asked Questions (FAQ)</h1>
 <p>With thousands of users, it's not surprising that so many of the same questions are asked on the <a href="http://coppermine-gallery.net/forum/">support forums for Coppermine Photo Gallery</a>. So, to help facilitate your website development, we've  included this basic <acronym class="tool" title="FAQ=Frequently Asked Questions">FAQ</acronym> file on common issues. Please be sure to refer to this FAQ first before posting questions on the forum. Failure to do so will, could, well ... , reflect unkindly on you and could result in some negative "<em>karma</em>."</p>
 <p>This FAQ page is the <em>second best</em> resource to understand Coppermine - it's mandatory that you read the entire <a href="index.htm">documentation</a> first that comes with your Coppermine package before asking questions.</p>
-<p>The <a href="../fr/faq.htm">FAQ are available in French</a> as well, although the French FAQ are currently based on cpg1.4.x, so not everything in it will be correct for cpg1.5.x.</p>
+
 
 
 <a name="faq_toc"></a><h2>Table of contents:<a href="#faq_toc" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
@@ -103,7 +103,7 @@ Here's a quick &quot;how to backup a database with phpMyAdmin&quot; primer:
 </ul></p><hr />
 <a name="noFullsizePopup"></a>
 <h3>The <strong>fullsize-pic doesn't pop up</strong> when clicking on the intermediate size pic. What's wrong?<a href="#noFullsizePopup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If you are certain that your original file is larger in dimensions than the settings you selected for intermediate sized pictures, there's a good chance that you over-edited your theme's template/html file: make sure that the line <tt class="code">{JAVASCRIPT}</tt> inside /themes/yourtheme/template.html is still there to make the pop-up window work...<br />
+<p>If you are certain that your original file is larger in dimensions than the settings you selected for intermediate sized pictures, there's a good chance that you over-edited your theme's template.html file: make sure that the line <tt class="code">{JAVASCRIPT}</tt> inside /themes/yourtheme/template.html is still there to make the pop-up window work...<br />
 The &lt;head&gt;-part of your template file should look like this:<br />
 <pre>&lt;head&gt;
 &lt;title&gt;{TITLE}&lt;/title&gt;
@@ -124,7 +124,7 @@ SetEnvIf Referer &quot;^$&quot; locally_linked=1
   Order Allow,Deny
   Allow from env=locally_linked
 &lt;/FilesMatch&gt;</pre>
-This will only work on linux/unix and apache servers AND only if you're allowed to use /htaccess files by your webhost or if you run your own server and &quot;mod_rewrite&quot; is enabled on your server . </p><hr />
+This will only work on linux/unix and apache servers AND only if you're allowed to use .htaccess files by your webhost or if you run your own server and &quot;mod_rewrite&quot; is enabled on your server . </p><hr />
 
 <a name="onlyregisteredcomments"></a>
 <h3>How do I allow all guests, not just registered users, to add <strong>comments</strong> to pictures?<a href="#onlyregisteredcomments" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>

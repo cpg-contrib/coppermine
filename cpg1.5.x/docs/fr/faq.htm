@@ -46,7 +46,7 @@
 			<li><a class="content" href="albums.htm#album_createPublicAlbum">Comment puis-je créer un <strong>album</strong> où  <strong>chacun</strong> peut ajouter des images></li>
 			<li><a class="content" href="#BackupDatabase">Comment puis-je <strong>Sauvegarder</strong> ma base de donnée Coppermine?</a></li>
 			<li><a class="content" href="#noFullsizePopup">Les <strong>images de grande taille ne s'affichent pas dans une fenêtre pop-up</strong> lorsque l'on clique sur les images intermédiaires. Qu'est ce qui ne va pas?</a></li>
-			<li><a class="content" href="#preventHotlinks">Cmment puis-je empecher d'autres sites de faire des liens directs vers mes images au lieu des pages de ma galerie?</a></li>
+			<li><a class="content" href="#preventHotlinks">Comment puis-je empecher d'autres sites de faire des liens directs vers mes images au lieu des pages de ma galerie?</a></li>
 			<li><a class="content" href="#onlyregisteredcomments">Comment laisser les visiteurs, pas uniquement les utilisateurs enregistrés <strong> poster des commentaires</strong> sur les images?</a></li>
 			<li><a class="content" href="#cantUploadBigPics">je <strong>ne peux pas télécharger de grosses images</strong>. Qu'est ce qui ne va pas?</a></li>
 			<li><a class="content" href="#cookie">Je ne peux pas <strong>m'identifier</strong> dans Coppermine. Qu'est ce qui ne va pas?</a></li>
@@ -101,107 +101,107 @@ Voici rapidement &quot;comment sauvegarder la base de donnée avec phpMyAdmin&qu
 <li>Sauvegardez le fichier sur votre disque dur (en fonction de la vitesse de votre connection, celà peut prendre un moment).</li>
 </ul></p><hr />
 <a name="noFullsizePopup"></a>
-<h3>The <strong>fullsize-pic doesn't pop up</strong> when clicking on the intermediate size pic. What's wrong?<a href="#noFullsizePopup" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If you are certain that your original file is larger in dimensions than the settings you selected for intermediate sized pictures, there's a good chance that you over-edited your theme's template/html file: make sure that the line <tt class="code">{JAVASCRIPT}</tt> inside /themes/yourtheme/template.html is still there to make the pop-up window work...<br />
-The &lt;head&gt;-part of your template file should look like this:<br />
+<h3>L' <strong>Image de grande taille ne s'affiche pas dans une fenêtre Pop-up</strong> lorsque l'on clique sur l'image intermédiaire. Qu'est ce qui ne va pas?<a href="#noFullsizePopup" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si vous êtes sur que l'image originale est plus grande en dimensions que le paramètre choisi pour la taille des images intermédiaires, il y a de grandes chances pour que vous ayez modifié le fichier template.html de votre thème: assurez vous que la ligne <tt class="code">{JAVASCRIPT}</tt> dans /themes/yourtheme/template.html est bien présente pour que l'ouverture de la fenêtre pop-up fonctionne...<br />
+l'entête &lt;head&gt; de votre fichier template devrair resembler à ceci:<br />
 <pre>&lt;head&gt;
 &lt;title&gt;{TITLE}&lt;/title&gt;
 &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset={CHARSET}&quot; /&gt;
 {META}
-&lt;link rel=&quot;stylesheet&quot; href=&quot;themes/your_theme_name/style.css&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;themes/nom_de_votre_theme/style.css&quot; /&gt;
 {JAVASCRIPT}
 &lt;/head&gt;</pre>
-- If you're still unsure about this, just compare your theme's template.html with the default theme that comes with coppermine .</p><hr />
+- Si vous n'êtes pas sur, comparez juste le fichier template.html de votre theme avec celui du theme par défaut livré avec Coppermine .</p><hr />
 <a name="preventHotlinks"></a>
-<h3>How can I prevent other sites from linking directly to the pictures in my gallery instead of the gallery page?<a href="#preventHotlinks" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If your webhost supports the use of .htaccess files (you will need to ask them), you can prevent &quot;hotlinking&quot; by creating an .htaccess file in the albums folder.<br />
-Open your text editor and add the following lines, then save the file as .htaccess :
-<pre>SetEnvIfNoCase Referer &quot;^http://www.yourdomian.com/&quot; locally_linked=1
-SetEnvIfNoCase Referer &quot;^http://yourdomain.com/&quot; locally_linked=1
+<h3>Comment puis-je empecher d'autres sites de faire des liens directs vers mes images au lieu des pages de ma galerie?<a href="#preventHotlinks" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si votre hébergeur permets l'utilisation de fichiers .htaccess files (vous devrez le lui demander), vous pouvez empêcher  &quot;les liens directs&quot; en créant un fichier .htaccess dans le répertoire albums.<br />
+Ouvrez votre éditeur de texte et ajoutez les lignes suivantes, puis sauvegardez le fichier en .htaccess :
+<pre>SetEnvIfNoCase Referer &quot;^http://www.votredomaine.com/&quot; locally_linked=1
+SetEnvIfNoCase Referer &quot;^http://votredomaine.com/&quot; locally_linked=1
 SetEnvIf Referer &quot;^$&quot; locally_linked=1
 &lt;FilesMatch &quot;\.(gif|png|jpe?g)$&quot;&gt;
   Order Allow,Deny
   Allow from env=locally_linked
 &lt;/FilesMatch&gt;</pre>
-This will only work on linux/unix and apache servers AND only if you're allowed to use /htaccess files by your webhost or if you run your own server and &quot;mod_rewrite&quot; is enabled on your server . </p><hr />
+Cela ne fonctionnera que sur les serveurs  linux/unix et apache servers ET uniquement si vous êtes autorisés à utiliser les fichiers .htaccess par votre hébergeur ou si vous utilisez votre propre serveur avec le &quot;mod_rewrite&quot; activé sur votre serveur. </p><hr />
 
 <a name="onlyregisteredcomments"></a>
-<h3>How do I allow all guests, not just registered users, to add <strong>comments</strong> to pictures?<a href="#onlyregisteredcomments" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<h3>Comment autoriser tous les visiteurs, à ajouter des <strong>commentaires</strong> aux images?<a href="#onlyregisteredcomments" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <ul>
-    <li>log in as admin</li>
-    <li>admin controls enabled</li>
-    <li>groups</li>
-    <li>&quot;Anonymous&quot; - &quot;Can post comments&quot; - &quot;yes&quot;</li>
-    <li>Apply modifications</li>
+    <li>identifiez vous comme administrateur</li>
+    <li>Activez les contrôles administrateurs</li>
+    <li>groupes</li>
+    <li>&quot;Anonymous&quot; - &quot;peut poster des commentaires&quot; - &quot;Oui&quot;</li>
+    <li>Appliquer les modifications</li>
 </ul>
-<p>To change the settings on a per album basis, first, complete the above steps, then:</p>
+<p>Pour changer ce réglage pour chaque album, appliquez d'abbord le réglage ci dessus puis:</p>
 <ul>
-    <li>Log in as admin</li>
-    <li>Confirm that you have admin controls enabled</li>
-    <li>In Category view, click on the album of choice</li>
-    <li>Select &quot;Properties&quot;</li>
-    <li>Set&quot;Permissions for this album&quot; - &quot;Visitors can post comments&quot; - &quot;Yes&quot;</li>
-    <li>&quot;Update album&quot;</li>
+    <li>identifiez vous comme administrateur</li>
+    <li>Assurrez vous que les contrôles administrateurs sont actifs</li>
+    <li>Dans la vue des catégories, cliquez sur l'album de votre choix</li>
+    <li>Sélectionnez &quot;Propriétés&quot;</li>
+    <li>Réglez&quot;Droits pour cet album&quot; - &quot;Les visiteurs peuvent poster des commentaires&quot; - &quot;Oui&quot;</li>
+    <li>&quot;Mettre à jour l'album&quot;</li>
 </ul>
 <hr />
 
 <a name="cantUploadBigPics"></a>
-<h3>I <strong>can't upload big pics or files</strong>. What's wrong?<a href="#cantUploadBigPics" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The max. size of uploadable pics and/or files is limited by various settings - to find out why you can't upload big picks, check the following:
+<h3>Je <strong>ne peut pas télécharger de grandes images ou fichiers</strong>. Qu'est ce qui ne va pas?<a href="#cantUploadBigPics" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>La taille maximale pour les images et/ou les fichiers téléchargeables est limitée par différents paramètres - pour trouver pourquoi vous n'arrivez pas à télécharger de grandes imagesn vérifiez ce qui suit:
 <ul>
-<li>Make sure you have enough webspace left (remember that you need space for the full size pic, the intermediate size pic and the thumbnail!)</li>
-<li>When logged in as admin check your &quot;Group&quot; settings: the groups (even the admin group!) have quota limits that can be configured there</li>
-<li>Browser time-out: the commonly-used Internet Explorer has a time-out function: if your upload isn't finished within a certain period, the browser will time-out (this applies especially to dial-up connections)</li>
-<li>There'are a maximum limits set in the PHP config of your server or webhosting server. If you're with a webhost there's very little you can do about it except ask them if they could help you out. If you're running your own server, check php.ini and look for <tt class="code">LimitRequestBody</tt> - this value (in bytes) in the max upload allowed by php/html</li>
+<li>Assurez vous d'avoir assez de place libre sur votre serveur (rappelez vous que vous devez avoir de l'espace pour les images originales, intermédiaires et les vignettes!)</li>
+<li>Identifié comme administrateur, vérifiez vos réglages de &quot;Groupes&quot; : les groupes (même le groupe administrateurs!) ont un quota d'espace limité qui peut être défini ici</li>
+<li>Le "time-out" du navigateur:  Internet Explorer à une fonction de time-out: si vos téléchargements ne sont pas terminés après un certain laps de temps, le navigateur va stopper le téléchargement (Cela vaut en particulier pour les connexions à distance)</li>
+<li>Il y a des limites maximales paramétrées dans la configuration PHP de votre serveur ou du serveur Web de votre hébergeur. Si vous êtes chez un hébergeur il n'y a pas grand chose que vous puissiez faire sauf de lui demander si il peut vous aider. Si vous fonctionnez sur votre propre serveur, vérifiez le php.ini et cherchez <tt class="code">LimitRequestBody</tt> - cette valeur (en bytes) est la valeur maximale de téléchargement autorisée par php/html</li>
 </ul></p><hr />
 <a name="cookie"></a>
-<h3>I can't <strong>login</strong> to Coppermine. What's wrong?<a href="#cookie" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This is most likely a cookie issue:
+<h3>Je n'arrive pas à <strong>m'identifier</strong> dans Coppermine. Que ce passe t'il?<a href="#cookie" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Il s'agit la plupart du temps d'un problème de cookie:
 <ul>
-<li>If you're running Internet Explorer 6, you'll have to enable the acceptance of cookies. Click on &quot;Tools&quot; - &quot;Internet Options&quot; - &quot;Privacy&quot; and add your site to the list of sites that are trusted, or set the slider to a lower level.</li>
-<li>Sometimes IE will not handle Cookies properly. Close your browser, try deleting all local cookies manually and start your browser again</li>
-<li>Check if you're running a software that interferes with acceptance of cookies like personal firewalls (ZoneAlarm, Tiny, Cookie Washer etc.) and turn them off to see if cookies are accepted then</li>
-<li>Try using another browser (like <a href="http://www.opera.com/" class="external">Opera</a>, which is rather small to download and can be removed easily). It's a generally a good idea to have some different browsers on your local machine to check if your site is displayed correctly not only in your favourite browser</li>
-<li>If you're using subdomains and the dev version of coppermine or some mod on a different subdomain (like gallery.yoursite.com and board.yoursite.com) this could also cause problems: a subdomain is a different domain (in fact foo.com and bar.com are subdomains of the <acronym class="tool" title="top level domain">tld</acronym> &quot;.com&quot;, so regarding cookies they are as different domains as bbs.yoursite.com and comics.yoursite.com). Of course you can &quot;hack some sense&quot; into the scripts, but usually bbs are hard to trick to make them more hack-proof.</li>
+<li>Si vous utilisez Internet Explorer 6, vous devez accepter les cookies. Cliquez sur &quot;Outils&quot; - &quot;Options Internet&quot; - &quot;Vie Privée&quot; et ajoutez votre site dans la liste des sites dignes de confiance ou réglez le curseur à un niveau inférieur.</li>
+<li>Parfois IE ne gère pas les cookies correctement. Fermez votre navigateur, essayez d'effacer tous vos cookies manuellement et relancez votre navigateur</li>
+<li>Vérifiez que vousn'utilisez pas un logiciel qui interfère dans l'acceptation des cookies comme les pare-feu (ZoneAlarm, Tiny, Cookie Washer etc.) et désactivez les pour voir si les cookies sont alors acceptés.</li>
+<li>Essayez d'utiliser un autre navigateur (comme <a href="http://www.opera.com/" class="external">Opera</a>, qui est particulièrement léger à télécharger et peut être désinstaller facilement). C'est généralement une bonne idée d'avoir plusieurs navigateurs installés sur votre ordinateur pour vérifier que votre site s'affiche correctement pas uniquement avec votr enavigateur préféré</li>
+<li>Si vous utilisez les sous-domaines et la version en développementd e Coppermine ou certains mods sur un autre sous domaine (comme galerie.votresite.com et forum.votresite.com) cela peut aussi causer des problèmes: un sous domaine est un autre domaine (en fait foo.com et bar.com sont des sous domaines du  <acronym class="tool" title="top level domain">tld</acronym> &quot;.com&quot;, donc au niveau des cookies, ils sont aussi différents que forum.votresite.com et comics.votresite.com). Bien entendu vous pouvez &quot;modifier en certains sens &quot; dans les scripts, mais généralement les scripts de forums sont difficiles à modifier .</li>
 </ul></p><hr />
 
 <a name="sortAlbum"></a>
-<h3>How can I change the <strong>sorting order of the albums</strong>?<a href="#sortAlbum" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>By default the albums appear in the order they were created. If you want to adjust the sorting order, do the following:
+<h3>Comment puis-je changer <strong>l'ordre de tri des albums</strong>?<a href="#sortAlbum" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Par défaut, les albums s'affichent dans l'ordre ou ils ont été crées. Si vous voulez changer cet ordre, faites ce qui suit:
 <ul>
-<li>Log in as admin;</li>
-<li>select &quot;Albums&quot; from the admin menu strip;</li>
-<li>choose the category whose albums you want to sort from the dropdown list;</li>
-<li>highlight an album by clicking on it once;</li>
-<li>then use the up and down buttons to change the position. </li>
-<li>Click &quot;apply modifications&quot;.</li>
-<li>Confirm the message &quot;Are you sure you want to make these modifications ?&quot; with &quot;OK&quot;</li>
+<li>Identifiez vous comme administrateur;</li>
+<li>sélectionnez &quot;Albums&quot; dans le menu administrateur;</li>
+<li>Choisissez la catégorie des albums que vous voulez trier dans la liste déroulante;</li>
+<li>Séléctionnez un album en cliquant dessus;</li>
+<li>Puis utilisez les flêches haut/bas pour changer de position. </li>
+<li>Cliquez sur &quot;appliquer les modifications&quot;.</li>
+<li>Validez le message &quot;êtes vous surs de vouloir faire ces modifocations ?&quot; en cliquant sur &quot;OK&quot;</li>
 </ul></p><hr />
 
 <a name="deleteIntermediates"></a>
-<h3>I don't use the <strong>intermediate pictures</strong> anymore. How can I <strong>delete</strong> them to gain disk space?<a href="#deleteIntermediates" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Why would you want to do that? Deleting the intermediate pics would disable many of the great features that make coppermine what is today. The option to send ecards, to add comments to pics, to rate pics, to display exif information, just to name a few. If you really want to save space, opt to delete your original files using the Admin Tools menu option.  Doing this will allow your users to enjoy all of coppermine's features with the exception of viewing full-sized images.  In the end, it will probably save you more space as well.  Just be sure to set your intermediate sized picture settings in CONFIG to a size that you can live with.</p>
-<p>If you really must remove the intermediate sized pics, search the mods and hacks board in the coppermine forum to learn how.</p><hr />
+<h3>Je n'utilise plus <strong>les images intermédiaires</strong>. Comment puis-je <strong>les effacer</strong> pour gagner de la place?<a href="#deleteIntermediates" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Pourquoi voulez vous faire ça ? Effacer les images intermédiaires désactiverait beaucoup des fonctions principales qui font de Coppermine ce qu'il est acctuellement. L'option d'envoi des Ecartes, l'ajout de commentaires aux images, la possibilité de noter les photos, l'affichage des données EXIF, juste pour en citer quelques unes. Si vou ssouhaitez vraiment gagner le la place, optez plutôt pour l'effacement des images originales en utilisant l'option "Utilitaires" du menu administrateur.  En faisant cela, vous permettrez à vos visiteurs de jouir de toutes les fonctions de Coppermine à l'xecption de la visualisation des images originales.  Vous gagnerz certainement plus de place en fin de compte.  Assurez vous juste de régler la taille de vos images intermédiaires dans la Configuration à une taille correcte pour vous.</p>
+<p>Si vous devez réellement effacer les images intermédiaires, cherchez les modifications et hacks sur le forum de Coppermine pour apprendre comment faire.</p><hr />
 
 
 <a name="moveGallery"></a>
-<h3>How can I <strong>move my gallery to another host</strong>?<a href="#moveGallery" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<h3>Comment puis-je <strong>déplacer ma galerie vers un autre hébergeur</strong>?<a href="#moveGallery" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <ul>
-<li>Backup your files: FTP-download your complete coppermine-folder to your hard drive</li>
-<li>use a tool like phpMyAdmin to get a dump (backup) of your mySQL database entries.</li>
-<li>verify your backup is working: check if the mySQL-dump contains all data (open the zipped dump file and use a text editor to view it)</li>
-<li>on the new server: FTP-upload your coppermine-folder to the new server</li>
-<li>CHMOD the folder /albums to 755 or 777 (depending on your server config]</li>
-<li>restore the mySQL table by running the queries of the dump files you created in step 2</li>
-<li>test-drive your coppermine gallery - you should be done</li>
+<li>Sauvegardez vos fichiers: Téléchargez par FTP l'ensemble de votre dossier Coppermine sur votre disque dur</li>
+<li>Utilisez un outils comme phpMyAdmin pour faire un dump (sauvegarde) de votre base de donnée MySQL.</li>
+<li>Vérifiez que votre sauvegarde fonctionne: vérifiez que votre mySQL-dump contient bien toutes les données (ouvrez l'archive de la sauvegarde et utilisez un éditeur de texte pour le visualiser)</li>
+<li>Sur le nouveau serveur: Téléchargez par FTP votre dossier Coppermine sur le nouveau serveur</li>
+<li>CHMODez le répertoire  /albums à 755 ou 777 (en focntion de la configuration de votre serveur)</li>
+<li>restorez les tables mySQL en lancant les requêtes de votre fichier de sauvegarde créer à l'étape 2</li>
+<li>testez votre galerie Coppermie - ça devrait être bon</li>
 </ul>
-<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+<br /><div class="totop">[<a href="#top" class="nodeco">Haut de page</a>]</div><hr />
 
 <a name="oneFileMultipleAlbums"></a>
-<h3>How do I <strong>show the same file in multiple albums</strong>?<a href="#oneFileMultipleAlbums" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The <strong>Album Keyword</strong> in <a href="http://coppermine-gallery.net/demo/cpg14x/docs/index.htm#album_prop">Album Properties</a> is used to link images from one album into another. Using this method, files/images can be displayed in various albums while the file itself need only exists in one album on your webserver.  You simply upload a file to one album as you would normally do, then assign one or more keywords to the file. The keyword function reads blank spaces between words as a 'break' and assumes that these words are separate words.  If you must use phrases for your keywords, connect them with an underscore or by using the ascii space holder ctrl+Alt+0160 (NOTE: the latter option only works with latin based character sets.)  Each album can only have ONE (1) keyword or keyword phrase.  All pictures residing in different albums that you would like to be displayed in this album must have the same keyword or keyword phrase in their respective keyword fields.  Pictures, unlike albums, can have multiple keywords or keyword phrases separated by spaces. This provides you with the option to display pictures in many albums.  For the visitor of these albums, it will appear as if the file/image had been uploaded to each. </p>
-<p>If you use album keywords to display images/files in more than one album, enabling the Config option, Show number of linked files, will display additional information for the album stats. That is, if an album doesn't only contain &quot;regular&quot; files, but files linked via the "album keyword" option as well, the number of linked files will be displayed separately like this "3 files, last one added on Oct 07, 2004<em>, 3 linked files, 6 files total</em>".</p>
-<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+<h3>Comme puis-je <strong>montrer le même fichier dans plusieurs albums</strong>?<a href="#oneFileMultipleAlbums" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Le <strong>Mot clé Album</strong> dans <a href="http://coppermine-gallery.net/demo/cpg14x/docs/index.htm#album_prop">Propriétés de l'Album</a> est utilisé pour faire un lien des images d'un album vers un autre. En utilisantcette méthode, les fichiers/images peuvent être affichés dans plusieurs albums alors que le fichier n'existe que dans un seul album de votre serveur.  Vous téléchargez simplement un fichier dans un album comme vous le faites habituellement, puis assignez un ou plusieurs mots clés au fichier. La fonction Mot clé lit les espaces entre les mots comme des séparateurs et les utilise comme des mots séparés.  Si vous devez utiliser une phrase pour vos mots clés, utilisez le caractère de soulignement ou le caractère ASCII ctrl+Alt+0160 (NOTE: la derbière option ne fonctionne qu'avec les jeux de caractères latins.)  Chaque album ne peut avoir qu'UN (1) mot clé ou phrase clé.  Toutes les images qui se trouvent dans les différents albums et que vous voulez voir afficher dans cet album doivent avoir ce même mot clé ou phrase clé dans leurs champ mots clés respectifs.  Les images, à l'inverse des albums peut avoir plusiers mots clés ou phrases clés séparés par des espaces. Celà vous donne la possibilité d'afficher les images dans plusieurs albums.  Pour les visiteurs de ces albums, il leur semblera que les images/fichiers ont été téléchargés dans chaque album. </p>
+<p>Si vous utilisez les mots clés albums pour afficher les images/fichiers dans plus qu'un album, en activant l'option de configuration, Afficher le nombre d'images liées, vous afficherez des informations suplémentaires dans les statistiques albums. C'est le cas si un album ne contient pas uniquement  des fichiers &quot;normaux&quot; , mais des fichiers liés via l'option "mots clés d'albums", le nombre de fichiers liés sera affiché séparément comme ceci "3 fichiers, dernier ajout le 07 Oct 2004<em>, 3 fichiers liés, 6 fichiers au total</em>".</p>
+<br /><div class="totop">[<a href="#top" class="nodeco">Haut de page</a>]</div><hr />
 
 <a name="hacks"></a><h2>Add-ons / Modifications / Hacks<a href="#hacks" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 
@@ -243,7 +243,7 @@ or<br />
 </ul>
 <br /></p>
 <br />
-<div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+<div class="totop">[<a href="#top" class="nodeco">Haut de page</a>]</div><hr />
 
 
 

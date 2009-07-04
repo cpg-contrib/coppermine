@@ -175,7 +175,7 @@ doc_toc += '    </ul>\n';
 doc_toc += '  </li>\n';
 doc_toc += '  <li><a href="faq.htm"class="us_fr">FAQ (Questions fréquement posées)</a>\n';
 doc_toc += '    <ul>\n';
-doc_toc += '      <li><a href="faq.htm#faq_setup"class="us_fr">réglages / Configuration</a></li>\n';
+doc_toc += '      <li><a href="faq.htm#faq_setup">réglages / Configuration</a></li>\n';
 doc_toc += '      <li><a href="faq.htm#hacks"class="en">Ajouts / Modifications / Hacks</a></li>\n';
 doc_toc += '      <li><a href="faq.htm#support_board"class="en">forum d\'aide de </a></li>\n';
 doc_toc += '    </ul>\n';
