@@ -29,8 +29,6 @@ SWFUpload.onload = function () {
         file_size_limit : "100 MB",
         file_types : "*.*", //js_vars.allowed_file_types,
         file_types_description : js_vars.lang_upload_swf_php.all_files,
-        file_upload_limit : 10,
-        file_queue_limit : 10,
         custom_settings : {
             progressTarget : "upload_progress",
             cancelButtonId : "button_cancel"
