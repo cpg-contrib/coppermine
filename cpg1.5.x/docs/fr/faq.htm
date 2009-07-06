@@ -31,7 +31,7 @@
 <div id="toc">
 <a href="toc.htm">Table des Matières</a>
 </div>
-<div id="doc_en_partial">Traduction partielle</div>
+
 <a name="faq"></a><h1>FAQ (Question fréquemment posées)<a href="#faq" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>Avec des centaines d'utilisateurs, il n'est pas surprenant qu'autant de questions identiques soient posées sur  <a href="http://coppermine-gallery.net/forum/"> le forum d'aide de Coppermine Photo Gallery</a>. C'est pourquoi, pour vous aider à faciliter le développement de votre site web, nous avons inclus cette <acronym class="tool" title="FAQ=Frequently Asked Questions">FAQ</acronym> basique avec les problèmes les plus communs. Merci de vous référer à cette FAQ en premier avant de poser des questions sur le forum. Le fait de ne pas le faire va, devrait, enfin..., risque que vous soyez quelque peu ignorés sur le forum et il en résulterait un <em>Karma</em>."</p>
 <p>Cette page de FAQ est la <em>seconde meilleure</em> resource pour comprendre Coppermine - il est impératif que vous lisiez d'abbord entièrement <a href="index.htm">la documentation</a> qui est inclue avec votre pack de Coppermine avant de poser des questions.</p>
@@ -203,43 +203,43 @@ Cela ne fonctionnera que sur les serveurs  linux/unix et apache servers ET uniqu
 <p>Si vous utilisez les mots clés albums pour afficher les images/fichiers dans plus qu'un album, en activant l'option de configuration, Afficher le nombre d'images liées, vous afficherez des informations suplémentaires dans les statistiques albums. C'est le cas si un album ne contient pas uniquement  des fichiers &quot;normaux&quot; , mais des fichiers liés via l'option "mots clés d'albums", le nombre de fichiers liés sera affiché séparément comme ceci "3 fichiers, dernier ajout le 07 Oct 2004<em>, 3 fichiers liés, 6 fichiers au total</em>".</p>
 <br /><div class="totop">[<a href="#top" class="nodeco">Haut de page</a>]</div><hr />
 
-<a name="hacks"></a><h2>Add-ons / Modifications / Hacks<a href="#hacks" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="hacks"></a><h2>Ajouts / Modifications / Hacks<a href="#hacks" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 
 
 <a name="jumpToPrivateAlbum"></a>
-<h3>How can I send a user <strong>directly to his private album</strong> once he logs in?<a href="#jumpToPrivateAlbum" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>edit<br /><tt class="code">login.php</tt><br />and search for<br />
+<h3>Comment puis-je diriger un utilisateur <strong>directement vers son album privé</strong> après qu'il se soit identifié<a href="#jumpToPrivateAlbum" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>ouvrez<br /><tt class="code">login.php</tt><br />et chechez<br />
 <tt class="code">pageheader($lang_login_php['login'],&quot;&lt;META http-equiv=\&quot;refresh\&quot; content=\&quot;3;url=$referer\&quot;&gt;&quot;);</tt><br />
-<br />and add <strong>before</strong> it<br />
+<br />et ajoutez <strong>avant</strong><br />
 <tt class="code">$referer = 'index.php?cat='.(FIRST_USER_CAT+$USER_DATA['user_id']); </tt><br /></p><hr />
 <a name="linksInCustomFields"></a>
-<h3>How do I enable clickable <strong>links in custom user fields</strong>?<a href="#linksInCustomFields" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Edit displayimage.php and change<br />
+<h3>Comment activer <strong>les lines cliquables dans les champs utilisateurs personnalisés</strong>?<a href="#linksInCustomFields" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Ouvrez displayimage.php et changez<br />
 <tt class="code">$info[$CONFIG['user_field'.$i.'_name']] = make_clickable($CURRENT_PIC_DATA['user'.$i]); </tt><br />
-into<br />
+en<br />
 <tt class="code">$info[$CONFIG['user_field'.$i.'_name']] = bb_decode($CURRENT_PIC_DATA['user'.$i]); </tt><br />&nbsp;<br />
-This will allow you to use BBCodes in the custom fields: you can then have something like<br />
-<tt class="code">[url]http://www.somesite.com/foo/bar.php?whatever=42[/url]</tt><br />
-or<br />
-<tt class="code">[url=http://www.somesite.com/foo/bar.php?whatever=42]link to some site![/url]</tt><br />in your custom user fields (the display of which, of course, has to be enabled in the config page, begin with).<br /></p><hr />
+Cela vous autorisera à utiliser les BBCodes dans les champs personnalisés: vous pourrez alors avoir quelque chose comme<br />
+<tt class="code">[url]http://www.unsite.com/foo/bar.php?quelque_chose=42[/url]</tt><br />
+ou<br />
+<tt class="code">[url=http://www.unsite.com/foo/bar.php?quelque_chose=42]lien vers un site![/url]</tt><br />dans votre champ utilisateur personnalisé (dont l'affichage doit, bien entendu, être activé dans la page de configuration.).<br /></p><hr />
 
 
 <a name="addFooterBeforePoweredBy"></a>
-<h3>How can I <strong>add</strong> some output <strong>directly before</strong> the line &quot;Powered by Coppermine&quot;?<a href="#addFooterBeforePoweredBy" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Edit /themes/yourtheme/theme.php, look for <tt class="code">echo $template_footer</tt> and add the stuff you want to output in a line <strong>before</strong> it, like <tt class="code">print '&lt;span class=&quot;footer&quot;&gt;&lt;a href=&quot;http://www.mylink.com/foo.htm&quot;&gt;My Link&lt;/a&gt;&lt;/span&gt;';</tt></p><hr />
+<h3>Comment puis-je <strong>ajouter</strong> quelque chose <strong>juste avant</strong> la ligne &quot;Powered by Coppermine&quot;?<a href="#addFooterBeforePoweredBy" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Ouvrez /themes/yourtheme/theme.php, cherchez <tt class="code">echo $template_footer</tt> et ajoutez ce que vous souhaitez afficher dans une ligne <strong>avant</strong>, comme par exemple <tt class="code">print '&lt;span class=&quot;footer&quot;&gt;&lt;a href=&quot;http://www.mon_lien.com/foo.htm&quot;&gt;Mon Lien&lt;/a&gt;&lt;/span&gt;';</tt></p><hr />
 
 <a name="renameTemplateHtml"></a>
-<h3>Can I rename template.html to template.php to include PHP code in my template?<a href="#renameTemplateHtml" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>No, this is simply not the way coppermine works; for &quot;normal&quot; pages the name of the extension tells the webserver whether the file should be parsed by the PHP interpreter. The template files within the themes folder are not being parsed this way - the extension .html was just chosen to make editing easier. You can not have PHP code in the template file, no matter how you name it - that's all there is to it!</p><hr />
+<h3>Puis-je renommer template.html en template.php pour inclure du code PHP dans mon thème?<a href="#renameTemplateHtml" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Non, ce n'est simplement pas la manière dont fonctionne Coppermine; pour les pages &quot;normales&quot; le nom de l'extension indique au serveur de quellemanière le fichier doit être interpreté par PHP. Les fichiers template du répertoire thèmes ne sont pas interpretés de cette manière - l'extension .html a juste été choisies pour permettre une modification plus facile. Vous ne pouvez pas avoir de code PHP dans le fichier template, quelle que soit son extention. Il n'y a rien à faire de plus!</p><hr />
 
 <a name="preventPictureStealing"></a>
-<h3>How can I prevent users from saving (stealing) my pictures?<a href="#preventPictureStealing" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>You can not completely prevent users from stealing your pics - that's the way the www works: if a picture is being displayed in the browser, the user already has a copy of it on his hard drive. There are however some methods to make it harder for newbie users to steal your pics:
+<h3>Comment enpècher les ustilisateurs de sauvegarder (voler) mes images?<a href="#preventPictureStealing" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Vous ne pouvez pas complêtement empêcher les utilisateur de prendre vos fichiers - C'est du à la manière dont focntionne le web: si une image est affichée par le navigateur, l'utilisateur en a de toute façon une copie sur son disque dur. Il y a malgré tout des methodes pour rendreplus difficile le vol d'images pour un débutant:
 <ul>
-    <li>Add a watermark to your images before you upload them</li>
-    <li>Apply the built-in <a href="configuration.htm#admin_watermarking">watermark</a>. Please note that applying online-watermarks will result in a high server load.</li>
-    <li>Prevent Internet Explorer to show the image toolbar when a user hovers over a pic with the mouse. Edit themes/yourtheme/template.html, find <tt class="code">&lt;meta http-equiv="Pragma" content="no-cache" /&gt;</tt> and add after it <tt class="code">&lt;meta http-equiv="imagetoolbar" content="no" /&gt;</tt></li>
-    <li>Use one of the many &quot;no right-click&quot; scripts that are available. Be adviced though that those scripts are silly in the first place, as they will only keep unexperienced users away from stealing your pics. The dev team doesn't recommend applying no-right-click scripts.</li>
+    <li>Ajoutez un filigrane sur vos images avant de les télécharger</li>
+    <li>Utilisez la fonction intégrée <a href="configuration.htm#admin_watermarking">filigrane</a>. Notez que l'utilisation de la fonction de filigrane en ligne utilise beaucoup de ressources serveur.</li>
+    <li>Enpêchez Internet Explorer d'afficher la barre d'outils images lorsque l'utilisateur passe sur l'image avec la souris. Ouvrez themes/yourtheme/template.html, trouvez <tt class="code">&lt;meta http-equiv="Pragma" content="no-cache" /&gt;</tt> et ajoutez juste après <tt class="code">&lt;meta http-equiv="imagetoolbar" content="no" /&gt;</tt></li>
+    <li>Utilisez un des nombreux scripts &quot;par de clic droit&quot; disponible. Rappelez vous que ces scripts ne sont pas très efficaces puisqu'ils ne vont écarter que les utilisateurs innexpérimentés du vol de vos images. L'équipe de développement nercommande pas l'utilisation de tels scripts.</li>
 </ul>
 <br /></p>
 <br />
@@ -248,58 +248,58 @@ or<br />
 
 
 <br />&nbsp;<br />
-<a name="support_board"></a><h2>Coppermine Support board<a href="#support_board" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-These are (alas) not-so-frequently-asked-questions on the <a href="http://forum.coppermine-gallery.net/">support board</a>. Before posting on the Support board (or, in fact, any board), please read this section:
+<a name="support_board"></a><h2>Forum d'aide de Coppermine<a href="#support_board" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+Il n'y a pas (ou peux hélas) de questions non fréqemment posées sur le <a href="http://forum.coppermine-gallery.net/">forum d'aide</a>. Avant de poster sur le forum d'aide (ou en fait sur n'importe quel forum), merci de lire cette section:
 <a name="phpNewbie"></a>
-<h3>I <strong>don't know</strong> PHP/mySQL...<a href="#phpNewbie" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>No problem with that, everyone stars as a newbie. <strong></strong>Just don't start each and every posting by stating &quot;I'm a newbie&quot;, &quot;I don't know anything about PHP&quot; etc.<br />Usually, one can acertain that from your question itself. There's no need to apologize. Most of us can still remember when we were in your shoes.</p><hr />
+<h3>Je <strong>ne connait rien à</strong> PHP/mySQL...<a href="#phpNewbie" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Pas de problèmes, chacun a commencé un jour. <strong></strong>Simplement ne commencez pas tous vos post par &quot;Je suis débutant&quot;, &quot;Je ne connais rien à PHP&quot; etc.<br />Généralement on peut le déduire de vos questions. Il n'y a pas besoin de s'excuser. La plupart d'entre nous se rappellent de l'époque ou il était à votre place.</p><hr />
 <a name="lamesupport"></a>
-<h3>I've posted my question a while ago, but <strong>nobody answers</strong>. What the...?<a href="#lamesupport" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The support board is <strong>not</strong> a hotline. Although there are many visitors to the site, only a few do actually support - on a unpaid, voluntary basis. Yes, we don't receive remuneratio for our contributions and we each have a life, a job, family and more. We are away sometimes, as well. So, please, be patient, read the docs and search the boards while you are waiting.<br />If you don't get an answer to your question:
+<h3>J'ai posté ma question il y à un moment, mais <strong>personne ne répond</strong>. Quel est le...?<a href="#lamesupport" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Le forum d'aide <strong>n'est pas</strong> une hotline. Même si il y a beaucoup de visiteurs sur le site, seulement une petite partie apportent une aide - de manière bénévole et volontaire. Eh oui, nous ne recevons aucune rétribution pour nos contributions, et nous avons tous une vie, un travail, une famille entre autre. Parfois nous sommes absents. Donc, soyez patienst, lisez la documentation et cherchez sur le forum pendant que vous attendez.<br />Si vous ne recevez aucune réponse à votre question:
 <ul>
-<li>make sure you have given us enough time to react (days, not hours!)</li>
-<li>maybe nobody knows the answer to your problem</li>
-<li>maybe your question has been asked very often</li>
-<li>maybe your posting has been rude or impolite and you're ignored for that reason</li>
-<li>maybe you requested a feature that requires a lot of coding, and none of those who are able to do it have a need for the feature</li>
+<li>assurez vous de nous avoir laissé assez de temps pour réagir (en jours , pas en heures!)</li>
+<li>peut être qye personne ne connait de solution pour votre problème</li>
+<li>peut être que votr equestion a tét posée maintes et maintes fois</li>
+<li>peut être que votre post a été un peu abrupt ou impoli et que vous avez été ignoré pour cette raison</li>
+<li>peut être que la fonction que vous souhaitez demande beaucoup de programmation et qu'aucun de ceux qui sont capables de le faire n'a besoin de cette fonction</li>
 </ul></p><hr />
 <a name="howtoask"></a>
-<h3>How should I write my <strong>question</strong>?<a href="#howtoask" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If you have a question, make sure you provide as much information as possible:
+<h3>Comment dois-je formuler ma <strong>question</strong>?<a href="#howtoask" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si vous avez une question, assurez vous de donner le plus d'informations possible:
 <ul>
-<li>a link to your gallery, with a test account ID and test account password, is most often the only way to help - provide it with your question, or even better: edit your profile on the support board and enter the url of your page there!</li>
-<li>when addressing server issues, make sure to provide information on your server (<acronym class="tool" title="operation system">OS</acronym>, server, PHP version, mySQL version, gd lib version, safe mode on/off?). Most information can be retrieved by <a href="#VersionGD">phpinfo()</a></li>
-<li>if it's a client issue, give us information at least to your client's <acronym class="tool" title="operation system">OS</acronym> and browser</li>
-<li>Give us a screenshot, if necessary</li>
-<li>use a proper subject line: state in the subject line what your question is actually about! Most supporters are reluctant to answer to a posting that has a silly subject line like &quot;I have a question&quot; or &quot;Install problem&quot; or &quot;feature request&quot; or &quot;help me pleeeeaaaase&quot;</li>
+<li>un lien vers votre galerie avec un identifiant te un mot de passe de test, est souvent le seul moyen pour pouvoir apporter de l'aide - donnez les avec votre question, ou mieux, modifiez votre profil sur le forum d'aide et entrez y l'adresse de votre galerie!</li>
+<li>pour les questions relatives au serveur, assurez vous de donner les informations sur votre serveur (<acronym class="tool" title="operation system">OS</acronym>, serveur, version PHP, version mySQL, version de la librairie GD, safe mode sur on/off?). La plupart des informations se trouvent dan le <a href="#VersionGD">phpinfo()</a></li>
+<li>si il s'agit du problème du côté client (utilisateur) donnez nous des informations à son sujet <acronym class="tool" title="operation system">OS</acronym> et navigateur</li>
+<li>donnez nosu une copie d'écran, si nécessaire</li>
+<li>utilisez un object correct pour vos messages: indiquez dans l'objet du message quel est le sujet de votre question! La plupart des personnes apportant de l'aide n'aiment pas répondre à ques posts qui ont pour objet des phrase qui n'ont pas de sens comme &quot;J'ai une question&quot; ou &quot;Problème d'installation&quot; ou &quot;demande de fonction&quot; ou &quot;de l'aiiiiide sil vous plait&quot;</li>
 </ul></p><hr />
 <a name="firstSteps"></a>
-<h3>I've run into trouble. What should I do first (<strong>before posting</strong> on the board)?<a href="#firstSteps" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<h3>Je rencontre un problème. Que dois-je faire en premier (<strong>avant de poster </strong>sur le forum)?<a href="#firstSteps" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p><ul>
-<li>read the readme that comes with the coppermine distribution</li>
-<li>read the documentation</li>
-<li>read this FAQ</li>
-<li><a href="http://coppermine-gallery.net/forum/index.php?action=search">Search</a> the support board</li>
-<li>enable debug mode (log in as admin, config, debug mode)</li>
-<li>choose the right support board: if you're running the phpnuke-port of coppermine, don't post in the support board for the standalone version and vice versa</li>
+<li>lisez le fichier readme qui se trouve dans la distribution de Coppermine</li>
+<li>lisez la documentation</li>
+<li>lisez cette FAQ</li>
+<li><a href="http://coppermine-gallery.net/forum/index.php?action=search">Cherchez</a> sur le forum</li>
+<li>activez le mode de débugage (identifiez vous comme admin, config, debug mode)</li>
+<li>chosissez la bonne section du forum: si vous utilisez un partage de Coppermine pour  phpnuke, ne postez pas dans la section de la version autonome et vice versa</li>
 </ul></p><hr />
 <a name="nonEnglishPosting"></a>
-<h3>Hey, by looking at your profile I can see you're German/French/Whatever. Can I post a question in that <strong>language</strong>?<a href="#nonEnglishPosting" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If you are posting in the English support boards, please do not post in some other language - in this way, others may benefit from your question (and the answers you receive ), too. Don't be afraid to write &quot;poor english&quot; - no one will laugh at you, and most of our visitor's first language isn't english to begin with!</p>
-<p>We have <a href="http://coppermine-gallery.net/forum/index.php?board=37.0">language-specific support boards</a> for Chinese, French, German, Italian,Persian and Spanish.</p><hr />
+<h3>Hey, en regardant votre profil je peut voir que vous êtes Allemand/Français/ou autre. Est ce que je peux poster ma question dans cette <strong>langue</strong>?<a href="#nonEnglishPosting" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si vous postez sur le forum anglophone, merci de ne pas poster dans une autre langue - de cette manière, les autres pourront aussi bénéficier de votre question (et des réponses qui lui seront apportées). N'ayez pas peur d'écrire dans &quot;u n mauvais Anglais&quot; - personne ne se moquera de vous, et la plupart de nos visiteurs ne sont pas de langue maternelle anglaise!</p>
+<p>Nous avons <a href="http://coppermine-gallery.net/forum/index.php?board=37.0">des sections avec des langues spécifiques</a> pour le Chinois, le Français, l'Allemand, l'Italien, le Persan, et l'Espagnol.</p><hr />
 <a name="emailSupport"></a>
-<h3>May I email/<acronym title="private message" class="tool">pm</acronym>/<acronym title="instant message" class="tool">im</acronym> you for <strong>support</strong>?<a href="#emailSupport" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>No you mustn't! Post your question on the <a href="http://coppermine-gallery.net/forum/">Coppermine support board</a> (publicly) - if we (the community) don't find a solution <strong>and</strong> and individual supporter has the time <strong>and</strong> the individual supporter wants to do so, the supporter willll email/pm/im <em>you</em>!<br />
+<h3>Puis-je vous envoyer un courriel/<acronym title="private message" class="tool">pm</acronym>/<acronym title="instant message" class="tool">im</acronym> pour avoir  <strong>de l'aide</strong>?<a href="#emailSupport" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Non, ne le faites pas postez votre question sur le  <a href="http://coppermine-gallery.net/forum/">forum de Coppermine</a> (publiquement) - si nous (la communauté) ne trouvons pas de solution <strong>et </strong> qu'une personne donnant de l'aide à le temps <strong>et</strong> le veut bien, il <em>vous</em> envera un courriel/pm/im <em>you</em>!<br />
 </p><hr />
 
 <a name="aboutTeam"></a>
-<h3><strong>Who</strong> are you anyway?<a href="#aboutTeam" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>We are a group of people who decided to form a team to develop Coppermine further - check the <a href="http://coppermine-gallery.net/team/">team</a> page for details...</p><hr />
+<h3><strong>Qui</strong> êtes vous en fait?<a href="#aboutTeam" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Nous sommes un groupe de personnes qui ont décidé de former une équipe pour continuer le développement de Coppermine - consultez la page <a href="http://coppermine-gallery.net/team/">team</a> pour plus de détails...</p><hr />
 
 
 <br />&nbsp;<br />
 
-<p>This FAQ is a work in progress, please contribute in the <a href="http://coppermine-gallery.net/forum/">Coppermine Photo Gallery Support Board</a> (don't contact dev team members or supporters to ask for fixes of your Coppermine install). Please report any bugs, typos etc.<br />Check the online-version of this document for updates!<br />Have fun!</p>
+<p>Cette FAQ est un travail en cours, n'hésitez pas à contribuer dans le <a href="http://coppermine-gallery.net/forum/">forum d'aide de Coppermine Photo Gallery</a> (ne contactez pas les membres de l'équipe de développement ou les personnes apportant de l'aide pour leur demander des corrections pour votre installation de Coppermine). Merci de rapporter tous le bugs, fautes de frappe etc...<br />consultez la version en ligne de cette documentation pour les mises à jour!<br />Amusez vous bien!</p>
 
 
 
