@@ -1556,7 +1556,7 @@ $lang_install['username'] = 'Username';
 $lang_install['your_admin_account'] = 'Your admin account';
 $lang_install['no_cookie'] = 'Your browser did not accept our cookie (although it was a sweet one). It is recommended to accept cookies.';
 $lang_install['no_javascript'] = 'Your browser doesn\'t seem to have Javascript enabled, it is highly recommended to enable it.';
-$lang_install['register_globals_detected'] = 'It seems your php configuration has \'register_globals\' enabled, you should disable this for security reasons.';
+$lang_install['register_globals_detected'] = 'It seems your php configuration has \'register_globals\' enabled, you should disable this for security reasons. [<a href="http://documentation.coppermine-gallery.net/en/install.htm#install_server_config_register_globals">more</a>]';
 $lang_install['version_undetected'] = 'The script could not determine the version of %s your server is using. Be sure it is at least version %s.';
 $lang_install['version_incompatible'] = 'The script detected an incompatible version (%s) of %s on your server.<br />Make sure to use a compatible version (%s or better) before continuing!';
 $lang_install['read_gif'] = 'Read/write .gif file';

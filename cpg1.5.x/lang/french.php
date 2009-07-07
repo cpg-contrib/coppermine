@@ -1554,7 +1554,7 @@ if (defined('INSTALL_PHP')) {
   $lang_install['your_admin_account'] = 'Votre compte Administrateur';
   $lang_install['no_cookie'] = 'Votre navigateur n\'accèpte pas les cookies (même si il est très sucré). Il est recommandé d\'accepter les cookies (même si ça peut faire grossir)';
   $lang_install['no_javascript'] = 'Votre navigateur semble ne pas avoir le Javascript activé, il est hautement recommandé de l\'activer.';
-  $lang_install['register_globals_detected'] = 'Il semble que votre configuration de PHP à le \'register_globals\' actif, vous devriez le désActivez pour des raisons de sécurité.';
+  $lang_install['register_globals_detected'] = 'Il semble que votre configuration de PHP à le \'register_globals\' actif, vous devriez le désActivez pour des raisons de sécurité. [<a href="http://documentation.coppermine-gallery.net/fr/install.htm#install_server_config_register_globals">plus</a>]';
   $lang_install['version_undetected'] = 'Le script ne peut pas déterminer quelle version de %s votre serveur utilise. Assurez-vous que c\'est au moins la version %s';
   $lang_install['version_incompatible'] = 'Le script a détecté une version incompatible (%s) de %s sur votre serveur.<br />Assurez-vous d\'utiliser une version compatible (%s ou plus) avant de continuer!';
   $lang_install['read_gif'] = 'Lire/Ecrire un fichier .gif';
@@ -1576,7 +1576,6 @@ if (defined('INSTALL_PHP')) {
   $lang_install['not_writable'] = 'Non Inscriptible';
   $lang_install['not_exist'] = 'N\'existe pas';
   $lang_install['old_install'] = 'Vous êtes dans le nouvel assistant d\'installation. Cliquez %sici%s pour accéder à l\'ancien écran d\'installation.'; //cpg1.5
-
 }
 
 // ----------------------- //
