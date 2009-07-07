@@ -186,7 +186,7 @@ function process() {
 }
 
 function searchnewPageLoaded() {
-    $('#submit_button').click(process);
+    $('#submit_button, #submit_button_bottom').click(process);
 }
 
 addonload('searchnewPageLoaded()');
