@@ -253,7 +253,7 @@ case 'comment':
 
         // check that the username the anonymous user entered is not being used by a registered user
         if ($cpg_udb->get_user_id($msg_author)) {
-            cpg_die($lang_common['error'], $lang_db_input_php['com_author_error'], __FILE__, __LINE__);
+            cpg_die(ERROR, $lang_db_input_php['com_author_error'], __FILE__, __LINE__);
         }
 
         // If username for comment is same as default username then display error message
