@@ -104,6 +104,8 @@ $lang_errors['critical_error'] = 'Erreur Critique'; // cpg1.5
 $lang_errors['access_thumbnail_only'] = 'Vous êtes autorisé à ne voir que les vignettes.'; // cpg1.5
 $lang_errors['access_intermediate_only'] = 'Vous n\'êtes pas autorisé à voir les images originales.'; // cpg1.5
 $lang_errors['access_none'] = 'Vous n\'êtes pas autorisé à voir les images.'; // cpg1.5
+$lang_errors['register_globals_title'] = 'Register Globals on!';// cpg1.5
+$lang_errors['register_globals_warning'] = 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off.'; //cpg1.5
 
 $lang_bbcode_help_title = 'Aide BBcode';
 $lang_bbcode_help = 'Vous pouvez ajouter des liens cliquables et formater le texte de ce champ en utilisant les balises BBcode: <li>[b]Gras[/b] =&gt; <b>Gras</b></li><li>[i]Italique[/i] =&gt; <i>Italique</i></li><li>[url=http://votresite.com/]Texte du lien[/url] =&gt; <a href="http://votresite.com">Url Text</a></li><li>[email]Utilisateur@domaine.com[/email] =&gt; <a href="mailto:Utilisateur@domaine.com">Utilisateur@domaine.com</a></li><li>[color=red]Votre texte[/color] =&gt; <span style="color:red">Votre texte</span></li><li>[img]http://documentation.coppermine-gallery.net/images/browser.png[/img]] = <img src="docs/images/browser.png" border="0" alt="" /></li>';
@@ -1739,7 +1741,7 @@ $lang_modifyalb_php['password_protect'] = 'Protéger cet Album par Mot de passe 
 // ----------------------- //
 if (defined('PHPINFO_PHP')) {
  $lang_phpinfo_php['php_info'] = 'PHP info';
-  $lang_phpinfo_php['explanation'] = 'Voici la sortie générée par la fonction <a href="http://www.php.net/phpinfo">phpinfo()</a>, affichée à l\'intérieur de Coppermine (en rognant les informations trop longues) (les résultats diffèrent selon les serveurs).';
+  $lang_phpinfo_php['explanation'] = 'Voici la sortie générée par la fonction <a href="http://www.php.net/phpinfo">phpinfo()</a>, affichée à l\'intérieur de Coppermine (les résultats diffèrent selon les serveurs).';
   $lang_phpinfo_php['no_link'] = 'Les informations reprises ici peuvent représenter un risque pour la sécurité, c\'est pourquoi cette page est sécurisée et n\'est visible que si vous êtes connecté en tant qu\'Administrateur de la Galerie. Vous ne pouvez pas poster de lien vers cette page car les autres n\'y ont pas accès et ne pourront pas l\'afficher.';
 }
 

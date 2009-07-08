@@ -4247,7 +4247,7 @@ function adminmessages()
 
     // If register_globals is On, then show the warning message.
     if ($register_globals_flag == true) {
-        msg_box($lang_errors['register_globals_title'], $lang_errors['register_globals_warning'], '', '', 'warning');
+        msg_box($lang_errors['register_globals_title'], $lang_errors['register_globals_warning'] . ' ' . cpg_display_help('f=install.htm&amp;as=install_server_config_register_globals&amp;ae=install_server_config_register_globals_end&amp;top=1', '800', '600'), '', '', 'warning');
     }
 }
 } //{THEMES}

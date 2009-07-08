@@ -102,6 +102,8 @@ $lang_errors['critical_error'] = 'Kritischer Fehler'; // cpg1.5
 $lang_errors['access_thumbnail_only'] = 'Du darfst nur Thumbnail-Bilder ansehen.'; // cpg1.5
 $lang_errors['access_intermediate_only'] = 'Du bist nicht berechtigt, Bilder in voller Größe anzusehen.'; // cpg1.5
 $lang_errors['access_none'] = 'Du bist nicht berechtigt, Bilder anzusehen.'; // cpg1.5  
+$lang_errors['register_globals_title'] = 'Register Globals on!';// cpg1.5
+$lang_errors['register_globals_warning'] = 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off.'; //cpg1.5
 
 $lang_bbcode_help_title = 'Bulletin Board code Hilfe';
 $lang_bbcode_help = 'Du kannst klickbare Links und Formatierung in diesem Feld anwenden durch die Verwendung folgender bbcode-Befehle: <li>[b]Fett[/b] =&gt; <strong>Fett</strong></li><li>[i]Kursiv[/i] =&gt; <i>Kursiv</i></li><li>[url=http://deineseite.com/]Url Text[/url] =&gt; <a href="http://deineseite.com">UrlText</a></li><li>[email]benutzer@domain.com[/email] =&gt; <a href="mailto:benutzer@domain.com">benutzer@domain.com</a></li><li>[color=red]Beispieltext[/color] =&gt; <span style="color:red">Beispieltext</span></li><li>[img]http://documentation.coppermine-gallery.net/images/browser.png[/img] => <img src="docs/images/browser.png" border="0" alt="" width="19" height="18" /></li>';
@@ -1735,7 +1737,7 @@ $lang_modifyalb_php['password_protect'] = 'Dieses Album passwort-schützen (Ankr
 // ------------------------------------------------------------------------- //
 if (defined('PHPINFO_PHP')) {
 $lang_phpinfo_php['php_info'] = 'PHP info';
-$lang_phpinfo_php['explanation'] = 'Diese Ausgabe wird durch die PHP-Funktion <a href="http://www.php.net/phpinfo">phpinfo()</a> erzeugt, und innerhalb von Coppermine angezeigt (dabei wird möglicherweise die Ausgabe einiger Felder am rechten Rand abgeschnitten).';
+$lang_phpinfo_php['explanation'] = 'Diese Ausgabe wird durch die PHP-Funktion <a href="http://www.php.net/phpinfo">phpinfo()</a> erzeugt, und innerhalb von Coppermine angezeigt.';
 $lang_phpinfo_php['no_link'] = 'Anderen Personen die phpinfo-Daten anzuzeigen, kann ein Sicherheitsrisiko sein - daher wird diese Seite nur angezeigt, wenn Du als Admin angemeldet bist. Du kannst daher anderen keinen Link auf diese Seite zukommen lassen, da ihnen der Zugriff verwehrt werden wird!';
 }
 
