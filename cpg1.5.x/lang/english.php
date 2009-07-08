@@ -161,6 +161,7 @@ $lang_common['edit_files'] = 'Edit files'; // cpg1.5
 $lang_common['thumbnail_view'] = 'Thumbnail view'; // cpg1.5
 $lang_common['album_manager'] = 'Album Manager'; // cpg1.5
 $lang_common['details'] = 'Details'; // cpg1.5
+$lang_common['more'] = 'more'; // cpg1.5
 
 // ------------------------------------------------------------------------- //
 // File theme.php
@@ -1556,7 +1557,8 @@ $lang_install['username'] = 'Username';
 $lang_install['your_admin_account'] = 'Your admin account';
 $lang_install['no_cookie'] = 'Your browser did not accept our cookie (although it was a sweet one). It is recommended to accept cookies.';
 $lang_install['no_javascript'] = 'Your browser doesn\'t seem to have Javascript enabled, it is highly recommended to enable it.';
-$lang_install['register_globals_detected'] = 'It seems your php configuration has \'register_globals\' enabled, you should disable this for security reasons. [<a href="http://documentation.coppermine-gallery.net/en/install.htm#install_server_config_register_globals">more</a>]';
+$lang_install['register_globals_detected'] = 'It seems your php configuration has \'register_globals\' enabled, you should disable this for security reasons.';
+$lang_install['more'] = 'more';
 $lang_install['version_undetected'] = 'The script could not determine the version of %s your server is using. Be sure it is at least version %s.';
 $lang_install['version_incompatible'] = 'The script detected an incompatible version (%s) of %s on your server.<br />Make sure to use a compatible version (%s or better) before continuing!';
 $lang_install['read_gif'] = 'Read/write .gif file';
@@ -2199,7 +2201,6 @@ $lang_upload_php['allowed_snd_types'] = 'Audio extensions: %s'; // cpg1.5
 $lang_upload_php['please_wait'] = 'Please wait while the script is uploading - this make take a while'; // cpg1.5
 $lang_upload_php['alternative_upload'] = 'Alternative upload method'; // cpg1.5
 $lang_upload_php['xp_publish_promote'] = 'If you are running Windows XP/Vista, you can use the Windows XP Uploading Wizard as well to upload files, providing an easier user interface directly on the client.'; // cpg1.5
-$lang_upload_php['more'] = 'more'; // cpg1.5
 $lang_upload_php['err_js_disabled'] = 'Flash upload interface could not load.  You must have JavaScript enabled to enjoy the flash upload interface.'; // cpg1.5
 $lang_upload_php['err_flash_disabled'] = 'Upload interface is taking a long time to load or the load has failed.  Please make sure that the Flash Plugin is enabled and that a working version of the Flash Player is installed.'; // cpg1.5
 $lang_upload_php['err_alternate_method'] = 'Alternately you can use the <a href="upload.php?single=1">single</a> file upload interface.'; // cpg1.5

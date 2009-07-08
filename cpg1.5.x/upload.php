@@ -784,7 +784,7 @@ EOT;
         <tr>
             <td class="tableb">
                 {$lang_upload_php['xp_publish_promote']}<br />
-                [<a href="xp_publish.php">{$lang_upload_php['more']}</a>]
+                [<a href="xp_publish.php">{$lang_common['more']}</a>]
             </td>
         </tr>
 EOT;

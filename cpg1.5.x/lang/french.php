@@ -157,6 +157,7 @@ $lang_common['edit_files'] = 'Editer les fichiers'; // cpg1.5
 $lang_common['thumbnail_view'] = 'Vue des Vignettes'; // cpg1.5
 $lang_common['album_manager'] = 'Gestion des Albums'; // cpg1.5
 $lang_common['details'] = 'Détails'; // cpg1.5
+$lang_common['more'] = 'plus'; // cpg1.5
 
 
 // ----------------------- //
@@ -1554,7 +1555,8 @@ if (defined('INSTALL_PHP')) {
   $lang_install['your_admin_account'] = 'Votre compte Administrateur';
   $lang_install['no_cookie'] = 'Votre navigateur n\'accèpte pas les cookies (même si il est très sucré). Il est recommandé d\'accepter les cookies (même si ça peut faire grossir)';
   $lang_install['no_javascript'] = 'Votre navigateur semble ne pas avoir le Javascript activé, il est hautement recommandé de l\'activer.';
-  $lang_install['register_globals_detected'] = 'Il semble que votre configuration de PHP à le \'register_globals\' actif, vous devriez le désActivez pour des raisons de sécurité. [<a href="http://documentation.coppermine-gallery.net/fr/install.htm#install_server_config_register_globals">plus</a>]';
+  $lang_install['register_globals_detected'] = 'Il semble que votre configuration de PHP à le \'register_globals\' actif, vous devriez le désActivez pour des raisons de sécurité.';
+  $lang_install['more'] = 'plus';
   $lang_install['version_undetected'] = 'Le script ne peut pas déterminer quelle version de %s votre serveur utilise. Assurez-vous que c\'est au moins la version %s';
   $lang_install['version_incompatible'] = 'Le script a détecté une version incompatible (%s) de %s sur votre serveur.<br />Assurez-vous d\'utiliser une version compatible (%s ou plus) avant de continuer!';
   $lang_install['read_gif'] = 'Lire/Ecrire un fichier .gif';
@@ -2196,7 +2198,6 @@ $lang_upload_php['allowed_snd_types'] = 'Extensions Audio: %s'; // cpg1.5
 $lang_upload_php['please_wait'] = 'Merci de patienter pendant que le script télécharge - cela peut prendre plusieurs minutes'; // cpg1.5
 $lang_upload_php['alternative_upload'] = 'Methode de téléchargement alternative'; // cpg1.5
 $lang_upload_php['xp_publish_promote'] = 'Si vous utilisez Windows XP/Vista, vous pouvez Utilisez l\'assitant de publication Web de Windows XP pour téléchrger des fichiers, apportant ainsi une interface Utilisateur plus simple.'; // cpg1.5
-$lang_upload_php['more'] = 'plus'; // cpg1.5
 $lang_upload_php['err_js_disabled'] = 'L\'interface de téléchargement Flash n\'a pas pu être chargé.  Vous devez avoir JavaScript activé pour pouvoir profiter de l\'interface de téléchargement Flash.'; // cpg1.5
 $lang_upload_php['err_flash_disabled'] = 'L\'interface de téléchargement prends beaucoup de temps pour charger ou le chargement a échoué. Vérifiez que le plugin Flash est activé et qu\'une version fonctionnelle d\'Adobe Flash Player est installée.'; // cpg1.5
 $lang_upload_php['err_alternate_method'] = 'A la place, vous pouvez Utilisez l\'interface de téléchargement <a href="upload.php?single=1">fichier unique</a>.'; // cpg1.5

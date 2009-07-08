@@ -196,7 +196,9 @@ switch($step) {
         //REGISTER_GLOBALS CHECK
         if (ini_get('register_globals')) {
             //register_globals is turned on, please turn it of.
-            $error .= $language['register_globals_detected'] . '<br /><br />';
+            $error .= $language['register_globals_detected'];
+			$error .= '[<a href="docs/en/install.htm#install_server_config_register_globals">' . $language['more'] . '</a>]';
+			$error .= '<br /><br />';
         }
         
         $page_title = $language['title_file_check'];

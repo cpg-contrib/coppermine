@@ -155,6 +155,7 @@ $lang_common['edit_files'] = 'Dateien bearbeiten'; // cpg1.5
 $lang_common['thumbnail_view'] = 'Thumbnail-Ansicht'; // cpg1.5
 $lang_common['album_manager'] = 'Alben-Verwaltung'; // cpg1.5
 $lang_common['details'] = 'Details'; // cpg1.5
+$lang_common['more'] = 'mehr'; // cpg1.5
 
 
 // ------------------------------------------------------------------------- //
@@ -1548,9 +1549,10 @@ $lang_install['username'] = 'Username';
 $lang_install['your_admin_account'] = 'Your admin account';
 $lang_install['no_cookie'] = 'Your browser did not accept our cookie (although it was a sweet one). It is recommended to accept cookies.';
 $lang_install['no_javascript'] = 'Your browser doesn\'t seem to have Javascript enabled, it is highly recommended to enable it.';
-$lang_install['register_globals_detected'] = 'It seems your php configuration has \'register_globals\' enabled, you should disable this for security reasons. [<a href="http://documentation.coppermine-gallery.net/de/install.htm#install_server_config_register_globals">more</a>]';
+$lang_install['register_globals_detected'] = 'It seems your php configuration has \'register_globals\' enabled, you should disable this for security reasons.';
 $lang_install['version_undetected'] = 'The script could not determine the version of %s your server is using. Be sure it is at least version %s';
 $lang_install['version_incompatible'] = 'The script detected an incompatible version (%s) of %s on your server.<br />Make sure to use a compatible version (%s or better) before continuing!';
+$lang_install['more'] = 'more';
 $lang_install['read_gif'] = 'Read/write .gif file';
 $lang_install['read_png'] = 'Read/write .png file';
 $lang_install['read_jpg'] = 'Read/write .jpg file';
@@ -2191,7 +2193,6 @@ $lang_upload_php['allowed_snd_types'] = 'Audio: %s'; //cpg1.5
 $lang_upload_php['please_wait'] = 'Bitte warten, während die Datei hochgeladen wird - das kann einen Moment dauern'; // cpg1.5
 $lang_upload_php['alternative_upload'] = 'Alternative Upload-Methode'; // cpg1.5
 $lang_upload_php['xp_publish_promote'] = 'Wenn Du Windows XP/Vista benutzt kannst Du auch den Windows XP Uploading Wizard benutzen um Dateien hochzuladen, der eine einfachere Benutzerschnittstelle bietet.'; // cpg1.5
-$lang_upload_php['more'] = 'mehr'; // cpg1.5
 $lang_upload_php['err_js_disabled'] = 'Die Flash-basierte Benutzerschnittstelle zum Hochladen von Bildern konnte nicht geladen werden. JavaScript muss im Browser aktiviert sein, um die Flash-basierte Schnittstelle benutzen zu können.'; // cpg1.5
 $lang_upload_php['err_flash_disabled'] = 'Die Benutzerschnittstelle zum Hochladen braucht sehr lange, um zu laden, oder der Ladevorgang ist fehlgeschlagen. Bitte stelle sicher, dass das Flash-Plugin des Browsers aktiviert ist und dass eine funktionierende Version von Flash installiert ist.'; // cpg1.5
 $lang_upload_php['err_alternate_method'] = 'Alternativ kann die <a href="upload.php?single=1">einfache</a> Benutzer-Schnittstelle zum Hochladen verwendet werden.'; // cpg1.5
