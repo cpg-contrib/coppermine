@@ -940,14 +940,6 @@
     <hash>6109d5decb2acb77357946b7ec40d61c</hash>
   </element>
   <element>
-    <fullpath>docs/de/dev_plugin_writing.htm</fullpath>
-    <version>1.5.1</version>
-    <revision>6003</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
-  </element>
-  <element>
     <fullpath>docs/de/dev_plugins.htm</fullpath>
     <version>1.5.1</version>
     <revision>6003</revision>
