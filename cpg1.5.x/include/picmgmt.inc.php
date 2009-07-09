@@ -71,7 +71,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
         $resize_method = $CONFIG['thumb_use'] == "ex" ? "any" : $CONFIG['thumb_use'];
 
         if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate'] && !file_exists($normal)) {
-            if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'resized') {
+            if ($CONFIG['enable_watermark'] == '1' && ($CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'resized')) {
                 if (($result = resize_image($work_image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $resize_method, "true")) !== true) {
                     return $result;
                 }
@@ -88,13 +88,14 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
             $resize_method = "orig";
             $max_size_size = max($imagesize[0], $imagesize[1]);
         }
-
+/*
+        // Commented out for testing purposes - see http://forum.coppermine-gallery.net/index.php/topic,60194.0.html
         if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate'] && !file_exists($normal)) {
             if (($result = resize_image($image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'])) !== true)
                 return $result;
         }
-
-        if ($CONFIG['enable_watermark'] == '1' && $CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original') {
+*/
+        if ($CONFIG['enable_watermark'] == '1' && ($CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original')) {
             if (($result = resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) !== true) {
                 return $result;
             }
