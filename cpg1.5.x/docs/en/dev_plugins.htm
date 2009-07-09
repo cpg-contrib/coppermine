@@ -68,24 +68,30 @@
 <a name="plugin_writing_preparation"></a><h2>Preparations<a href="#plugin_writing_preparation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Before starting to hack away, you should make some preparations and maybe sketch the layout of your plugin.</p>
 <ul>
-  <li><strong>Choose a name</strong><br />
+  <li>
+  <a name="plugin_writing_preparation_name"></a><h3>Choose a name<a href="#plugin_writing_preparation_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
   Your plugin needs a meaningfull, simple name. Make sure that a plugin doesn't already exist with the same name you've chosen. Then create a sub-folder within the plugin folder and name it as you see fit. Make sure to use web-safe names (only alphanumerals, all lower-case, no special chars except underscore.<br />
   For clarification: there can be only alphanumerals in a plugin's folder name. There mustn't be any dots or other special chars in it. The only exception is the underscore (_)
   <div class="cpg_example"><tt class="code">your_coppermine_folder/plugins/coffee_maker/</tt></div>
   Coming up with a folder name sounds easy, and you may be tempted to just use the name <tt class="code">my_plugin</tt> or <tt class="code">foobar</tt> to be able to start coding right away. However, you have to keep in mind that while you progress writing your plugin, the folder name will appear hard-coded into your plugin (possibly many times), so it will be hard to change it later. That's why it's advisable to come up with a good folder name in the first place: it should be descriptive, consist of two or three words and mean something initially. A folder named &quot;<tt class="code">coppermine_candy</tt>&quot; wouldn't mean much - the word "coppermine" would make no point, as the plugin already resides within coppermine, and the word "candy" would no describe what your plugin does. Better, self-explanatory names for plugins would be "rename_users", "thumbnail_dropshadow" or "backup_files". For details on a good name for your folder, please read up the section &quot;<a href="#plugin_writing_naming_conventions">Naming conventions</a>&quot;.</li>
-  <li><strong>Consider translations</strong><br />
+  <li>
+  <a name="plugin_writing_preparation_translation"></a><h3>Consider translations<a href="#plugin_writing_preparation_translation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
   Coppermine is an international project, with users from all over the world. If you should decide to contribute your custom plugin later, it would be a good idea to design it properly in the first place: keep all strings that could need translation in a separate include file and only hard-code the corresponding vars into your code.
   </li>
-  <li><strong>Consider a config screen</strong><br />
+  <li>
+  <a name="plugin_writing_preparation_config"></a><h3>Consider a config screen<a href="#plugin_writing_preparation_config" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
   If your plugin is only going to add one single feature to coppermine without anything to configure, then there's no need to provide a separate config screen for your plugin. However, if your plugin has options the end user could configure, it's a good idea to come up with a config screen for your plugin.
   </li>
-  <li><strong>Database changes</strong><br />
+  <li>
+  <a name="plugin_writing_preparation_db"></a><h3>Database changes<a href="#plugin_writing_preparation_db" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
   If your plugin needs to write to the database or even changes the structure of tables, it's almost mandatory to come up with a routine to write the needed database changes during install of the plugin. It's a good idea as well to come up with a method to undo the database changes if the user should later decide to disable/uninstall your plugin. If this is the case, you should preferably come up with a database setup screen as well.
   </li>
-  <li><strong>Support issues</strong><br />
+  <li>
+  <a name="plugin_writing_preparation_support"></a><h3>Support issues<a href="#plugin_writing_preparation_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
   For every non-trivial plugin that gets published on the coppermine home page, there will be an announcement thread on the board. It's a good idea to provide the URL of the announcement thread together with your plugin, preferably even a clickable link.
   </li>
-  <li><strong>Plugin versions</strong><br />
+  <li>
+  <a name="plugin_writing_preparation_versions"></a><h3>Plugin versions<a href="#plugin_writing_preparation_versions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
   Although you may not plan to develop your plugin even further, others may do so. Therefore, it's a good idea to provide a version number with your plugin.
   </li>
 </ul>
@@ -114,7 +120,7 @@
     <div class="cpg_example">$author = 'John Smith (aka &quot;&lt;a href="http://yoursite.tld/" rel="external" class="external"&gt;NeoIsDead&lt;/a&gt;&quot;).';</div>
     </li>
     <li><strong>$version</strong><br />
-    The version of your plugin - usually starting with 1.0 (although you're welcome to come up with any other numbering scheme as long as the difference between versions will be obvious).<br />
+    The version of your plugin - usually starting with 1.0 (although you're welcome to come up with any other numbering scheme as long as the difference between versions will be obvious). A lot of coders try to indicate the stage their code is in using the first digit of the version number. That's why many start modestly counting from zero, with the zero versions indicating alpha or beta stage. While the coppermine dev team welcomes this for entire applications we don't consider this usefull for a plugin, which is not an application of it's own, but just "lives" within the application as an add-on. That's why the Coppermine dev team recommends starting to count from one for the first digit and zero for the second digit. Using a third digit is inappropriate for nearly all plugins.<br />
     <div class="cpg_example">$version = '1.0';</div>
     </li>
     <li><strong>$extra_info</strong><br />
@@ -146,7 +152,8 @@ EOT;</div>
   </ul>
   </li>
   <li><strong>readme.txt</strong><br />
-  It's a good idea (not mandatory though) to provide a plain-text file within your plugin's folder as well (readme.txt or similar) that contains copyright and support information and basic instructions what your plugin does and how the end user can install it.</li>
+  It's a good idea (not mandatory though) to provide a plain-text file within your plugin's folder as well (readme.txt or similar) that contains copyright and support information and basic instructions what your plugin does and how the end user can install it.<br />
+  It's not a bad idea to include a changelog and license information in that readme file.</li>
 </ul>
 
 <a name="plugin_writing_naming_conventions"></a><h2>Naming conventions<a href="#plugin_writing_naming_conventions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
