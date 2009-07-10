@@ -980,6 +980,14 @@
     <hash>6109d5decb2acb77357946b7ec40d61c</hash>
   </element>
   <element>
+    <fullpath>docs/de/dev_vars.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
+  </element>
+  <element>
     <fullpath>docs/de/dev_versioncheck.htm</fullpath>
     <version>1.5.1</version>
     <revision>6003</revision>
@@ -1772,6 +1780,14 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>3351fc58ba1cf44fb2d2ceaecfae56c3</hash>
+  </element>
+  <element>
+    <fullpath>docs/de/dev_vars.htm</fullpath>
+    <version>1.5.1</version>
+    <revision>6003</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6109d5decb2acb77357946b7ec40d61c</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_versioncheck.htm</fullpath>
@@ -2611,6 +2627,12 @@
   </element>
   <element>
     <fullpath>docs/images/link.gif</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>c69e5a6cf6036eefece7c7fba80da5c9</hash>
+  </element>
+  <element>
+    <fullpath>docs/images/php.net</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>c69e5a6cf6036eefece7c7fba80da5c9</hash>

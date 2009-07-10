@@ -319,6 +319,11 @@ a.external {
     padding-right: 10px;
 }
 
+a.phpnet {
+    background: transparent url('../images/php.png') 100% 50% no-repeat;
+    padding-right: 18px;
+}
+
 .back {
     margin-top: 10px;
     font-size: 10px;

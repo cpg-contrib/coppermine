@@ -68,7 +68,7 @@
     <p>This documentation assumes a few skills &amp; knowledge you need to have before creating or modifying plugins.</p>
     <ul>
         <li><strong>Some PHP knowledge</strong><br />
-        You don't need advanced skills, but you do need to know basic syntax and how to read (and search) the <a href="http://www.php.net/docs.php"  rel="external" class="external">PHP Documentation</a>.  Classes (a.k.a. objects) are used by the Plugin API, but you don't need to know <em>a priori</em> much about classes; this documentation will teach you enough about the plugin class to use it in writing plugins.  (If you don't know what a "class" is, that's OK too, although it's a bit strange that you haven't heard of classes in any of your programming experience.  Regardless, make sure you know PHP syntax well.)  If you are an advanced programmer in another language, take a look at some PHP quick-start guides and learn enough to get going.</li>
+        You don't need advanced skills, but you do need to know basic syntax and how to read (and search) the <a href="http://www.php.net/docs.php"  rel="external" class="phpnet">PHP Documentation</a>.  Classes (a.k.a. objects) are used by the Plugin API, but you don't need to know <em>a priori</em> much about classes; this documentation will teach you enough about the plugin class to use it in writing plugins.  (If you don't know what a "class" is, that's OK too, although it's a bit strange that you haven't heard of classes in any of your programming experience.  Regardless, make sure you know PHP syntax well.)  If you are an advanced programmer in another language, take a look at some PHP quick-start guides and learn enough to get going.</li>
         <li><strong>Good working knowledge of Coppermine</strong><br />
         You don't need to know anything about the Coppermine code (yet), but you do need to be able to use Coppermine as an end-user.  You should know how to use plugins; this documentation assumes that you have read the <a href="plugins.htm">plugins section</a> of the main manual and know the user interface for installing &amp; configuring plugins.  Of course you need to have administrator access to a Coppermine gallery, but that should be obvious.</li>
         <li><strong>Basic MySQL knowledge</strong><br />
@@ -388,7 +388,7 @@ $lang_plugin_coffee_maker['plugin_description'] = 'This plugin will turn your ga
 $lang_plugin_coffee_maker['coffee_bean'] = 'coffee bean';
 $lang_plugin_coffee_maker['brew'] = 'brew';
 ?&gt;</pre></div>
-<p>Within <tt class="code">codebase.php</tt> or any other plugin file, you can then use the language strings instead of hard-coding them in. Don't forget to make them global inside functions (see <a href="http://www.php.net/manual/en/language.variables.scope.php" rel="external" class="external">PHP: variable scope</a>).</p>
+<p>Within <tt class="code">codebase.php</tt> or any other plugin file, you can then use the language strings instead of hard-coding them in. Don't forget to make them global inside functions (see <a href="http://www.php.net/manual/en/language.variables.scope.php" rel="external" class="phpnet">PHP: variable scope</a>).</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_distrib"></a>
@@ -429,19 +429,11 @@ $lang_plugin_coffee_maker['brew'] = 'brew';
 <p>Placeholder.  Content will be added.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
+
+
 <a name="plugin_api_globals"></a>
-<h2>Global Variables &amp; Constants<a href="#plugin_api_" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Placeholder.  Content will be added.</p>
-
-<a name="plugin_api_globals_system"></a>
-<h3>System Global Variables<a href="#plugin_api_globals" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Placeholder.  Content will be added.</p>
-
-<p><a class="back" href="#top">Back to top</a></p><hr />
-<a name="plugin_api_globals_cpg"></a>
-<h3>Coppermine Constants<a href="#plugin_api_globals_cpg" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Placeholder.  Content will be added.</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<h2>Global Variables &amp; Constants<a href="#plugin_api_globals" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>There is a list of global <a href="dev_vars.htm#vars_constants">variables and constants</a> used througout coppermine that can be accessed as well from within plugins.</p>
 
 
 <div id="doc_footer">

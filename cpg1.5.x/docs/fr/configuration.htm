@@ -73,7 +73,7 @@
 <a name="admin_general_home-url_end"></a>
 <hr />
 <a name="admin_general_zip-download"></a><h3>Allow ZIP-download of favorites<a href="#admin_general_zip-download" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, users of your site may download files that they previously saved into their <em>favorites</em> collection. These files are dowloaded from the user's &quot;My favorites&quot; page and saved onto their computers in a zip-file format. This option requires zlib to be installed on your server (run <a href="http://www.php.net/phpinfo" class="external">phpinfo</a> to check if this php library file exists on your server).</p>
+<p>When enabled, users of your site may download files that they previously saved into their <em>favorites</em> collection. These files are dowloaded from the user's &quot;My favorites&quot; page and saved onto their computers in a zip-file format. This option requires zlib to be installed on your server (run <a href="http://www.php.net/phpinfo" rel="external" class="phpnet">phpinfo</a> to check if this php library file exists on your server).</p>
 <p>Warning: the creation of zip-archives on the server is a resources-intensive process that can overload your server pretty fast. In fact, the same server-sided limitations that apply to uploading (e.g. memory consumption) must be taken into account as well when enabling the zip download feature. It is very likely that this feature will stop working when trying to create a zip archive out of a larger number of entries in the visitor's "my favorites" meta album.</p>
 <p>You have the options to disallow the zip-download of favorites completely or to allow it. If you choose to allow it, you can determine if you want a readme file to be included within the zip archive that explains where the archive has been downloaded from.</p>
 <p>Default (and recommended) option is "off".</p>
@@ -976,7 +976,7 @@ Of course this message will only be displayed if you have disallowed guests to p
 <a name="admin_picture_thumb_advanced_filename_forbidden_chars_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_silly_safe_mode_start"></a><a name="safe"></a><h3>Enable "silly safe mode"<a href="#admin_picture_thumb_advanced_silly_safe_mode_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>A significant number of webhosts on the Internet run PHP in <a href="http://www.php.net/phpinfo" rel="external" class="external">safe mode</a>. Coppermine runs without any problem in safe mode and with the "open basedir restriction" active, provided safe mode is properly configured. Unfortunately, on many hosts, safe mode is not configured properly.<br />
+<p>A significant number of webhosts on the Internet run PHP in <a href="http://www.php.net/phpinfo" rel="external" class="phpnet">safe mode</a>. Coppermine runs without any problem in safe mode and with the "open basedir restriction" active, provided safe mode is properly configured. Unfortunately, on many hosts, safe mode is not configured properly.<br />
 If you have issues uploading pics, find out if safe_mode is enabled on your webserver by searching for it on your phpinfo page (go to admin tools -&gt; phpinfo). If safe_mode is enabled there, coppermine might be able to workaround the misconfiguration of your server if you enable coppermine's "silly safe mode" option.</p>
 <p>What "silly safe mode" does: if you enable this option, Coppermine will not try to create sub-folders for each user, but upload all files into the root of the userpics folder. There might be a slight performance impact for larger galleries, but then you probably won't be running a large gallery on a "crippled" webserver that is not configured properly.</p>
 <p>Before playing with the silly safe mode option, make sure that you have <a href="install_permissions.htm#permissions">set permissions</a> on the albums folder and everything within it as suggested.</p>
@@ -1041,7 +1041,7 @@ OpenOffice 1.x / StarOffice 6.x: sxw/stw/sxc/stc/sxd/std/sxi/sti/sxg/sxm</p>
 <a name="admin_picture_thumb_advanced_resize_method"></a><h3>Method for resizing images<a href="#admin_picture_thumb_advanced_resize_method" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Set this to the type of image library you have on your server (must be either GD1, GD2 or ImageMagick). GD2 is the recommended setting.</p>
 <p>If you are using GD 1.x and the colors of your thumbnails or intermediate image do not display properly, then, chances are, you actually have GD2 on your server - switch this option to GD 2.x</p>
-<p>More recent distributions of PHP come pre-packaged with GD - if you're not sure what you have, set this option to GD2. You can also look at your PHP settings by pointing your browser to the phpinfo.php file in your gallery.  eg, <strong>http://www.yourgallery.com/your_cpg_folder/phpinfo.php</strong>. For more information on using PHP click on this link: <a href="http://www.php.net/phpinfo" rel="external" class="external">phpinfo</a>.</p>
+<p>More recent distributions of PHP come pre-packaged with GD - if you're not sure what you have, set this option to GD2. You can also look at your PHP settings by pointing your browser to the phpinfo.php file in your gallery.  eg, <strong>http://www.yourgallery.com/your_cpg_folder/phpinfo.php</strong>. For more information on using PHP click on this link: <a href="http://www.php.net/phpinfo" rel="external" class="phpnet">phpinfo</a>.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Method for resizing images</p>
 <a name="admin_picture_thumb_advanced_resize_method_end"></a>
 <hr />
@@ -1587,7 +1587,7 @@ All log files are written in english</p>
 		</li>
 		<li>
 			<a name="debug_mode_restrictions"></a><h5>Server restrictions<a href="configuration.htm?expand_all=1#debug_mode_restrictions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-			Values not taken from Coppermine, but from your webserver's PHP setup (configured in <a href="http://www.php.net/manual/en/configuration.file.php" rel="external" class="external">php.ini</a>). What is being displayed in this section often is usefull information for upload troubleshooting purposes.
+			Values not taken from Coppermine, but from your webserver's PHP setup (configured in <a href="http://www.php.net/manual/en/configuration.file.php" rel="external" class="phpnet">php.ini</a>). What is being displayed in this section often is usefull information for upload troubleshooting purposes.
 		</li>
 		<li>
 			<a name="debug_mode_suhosin"></a><h5>Suhosin settings<a href="configuration.htm?expand_all=1#debug_mode_suhosin" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
@@ -1600,7 +1600,7 @@ All log files are written in english</p>
 			<ul>
 				<li>
 					<a name="debug_mode_performance_memory"></a><h6>Memory usage<a href="configuration.htm?expand_all=1#debug_mode_performance_memory" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h6>
-					The amount of memory that's currently being allocated to your PHP script. May not work on all server platforms. The first column shows the result of the PHP function <a href="http://www.php.net/manual/en/function.memory-get-usage.php" rel="external" class="external">memory_get_usage</a> or a surrogate function if the original function is not available. The second column shows the output of the PHP function <a href="http://www.php.net/manual/en/function.memory-get-peak-usage.php" rel="external" class="external">memory_get_peak_usage</a> (if available), which returns the peak of memory allocated by PHP.
+					The amount of memory that's currently being allocated to your PHP script. May not work on all server platforms. The first column shows the result of the PHP function <a href="http://www.php.net/manual/en/function.memory-get-usage.php" rel="external" class="phpnet">memory_get_usage</a> or a surrogate function if the original function is not available. The second column shows the output of the PHP function <a href="http://www.php.net/manual/en/function.memory-get-peak-usage.php" rel="external" class="phpnet">memory_get_peak_usage</a> (if available), which returns the peak of memory allocated by PHP.
 				</li>
 				<li>
 					<a name="debug_mode_performance_page_generation_time"></a><h6>Page generation time<a href="configuration.htm?expand_all=1#debug_mode_performance_page_generation_time" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h6>
