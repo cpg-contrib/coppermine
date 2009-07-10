@@ -1327,6 +1327,7 @@ $lang_editpics_php['note_approve_public'] = 'Dateien, die in ein öffentliches A
 $lang_editpics_php['note_approve_private'] = 'Dateien, die in ein persönliches Album verschoben werden müssen durch einen Administrator bestätigt werden.' ; // cpg1.5
 $lang_editpics_php['note_edit_control'] = 'Dateien, die in ein öffentliches Album verschiben werden können danach nicht mehr bearbeitet werden.'; // cpg1.5
 $lang_editpics_php['confirm_move'] = 'Diese Datei wirklich verschieben?'; // cpg1.5 //js-alert
+$lang_editpics_php['success_changes'] = 'Änderungen wurden erfolgreich gespeichert'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //

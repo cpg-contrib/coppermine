@@ -400,6 +400,22 @@ set_js_var('pic_currently_public',  $CURRENT_PIC['category'] < FIRST_USER_CAT ? 
 
 pageheader($lang_editpics_php['edit_pic']);
 
+if ($superCage->post->keyExists('apply_changes')) {
+    global $lang_common, $lang_editpics_php;
+
+    starttable('100%', cpg_fetch_icon('info', 2) . $lang_common['information'], 1);
+    echo <<< EOT
+    <tr>
+        <td class="tableb">
+            <ul>
+                <li style="list-style-image:url(images/icons/ok.png)">{$lang_editpics_php['success_changes']}</li>
+            </ul>
+        </td>
+    </tr>
+EOT;
+    endtable();
+}
+
 echo <<<EOT
 <form name="editonepicform" id="cpgform_editonepic" method="post" action="edit_one_pic.php">
 <input type="hidden" name="id" value="{$CURRENT_PIC['pid']}" />

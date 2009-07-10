@@ -869,6 +869,22 @@ $mode = UPLOAD_APPROVAL_MODE ? '&amp;mode=upload_approval' : '';
 
 $cat_l = isset($actual_cat) ? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
 
+if ($superCage->post->keyExists('go')) {
+    global $lang_common, $lang_editpics_php;
+
+    starttable('100%', cpg_fetch_icon('info', 2) . $lang_common['information'], 1);
+    echo <<< EOT
+    <tr>
+        <td class="tableb">
+            <ul>
+                <li style="list-style-image:url(images/icons/ok.png)">{$lang_editpics_php['success_changes']}</li>
+            </ul>
+        </td>
+    </tr>
+EOT;
+    endtable();
+}
+
 echo <<< EOT
 <form method="post" name="editForm" id="cpgform" action="$form_target$mode">
 EOT;

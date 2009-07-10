@@ -1331,6 +1331,7 @@ $lang_editpics_php['note_approve_public'] = 'Files moved to a public album must 
 $lang_editpics_php['note_approve_private'] = 'Files moved to a private gallery album must be approved by an admin.' ; // cpg1.5
 $lang_editpics_php['note_edit_control'] = 'Files moved to a public album cannot be edited.'; // cpg1.5
 $lang_editpics_php['confirm_move'] = 'Are you sure you want to move this file?'; // cpg1.5 //js-alert
+$lang_editpics_php['success_changes'] = 'Changes successfully saved'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //

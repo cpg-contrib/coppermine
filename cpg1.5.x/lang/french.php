@@ -1333,6 +1333,7 @@ if (defined('EDITPICS_PHP')) {
   $lang_editpics_php['note_approve_private'] = 'Les fichiers déplacés vers un album privé doivent être approuvés par un administrateur.' ; // cpg1.5
   $lang_editpics_php['note_edit_control'] = 'Les fichiers déplacés vers un album publique ne peuvent plus être modifiés.'; // cpg1.5
   $lang_editpics_php['confirm_move_control'] = 'Vous n\\\'êtes pas autorisé à modifier les fichiers dans les albums publics.\\nEtes vous sur de vouloir déplacer ce fichier vers un album public ?'; // cpg1.5 //js-alert
+  $lang_editpics_php['success_changes'] = 'Changes successfully saved'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
