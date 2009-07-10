@@ -162,6 +162,7 @@ INSERT INTO CPG_config VALUES ('performance_timestamp', '0');
 INSERT INTO CPG_config VALUES ('personal_album_on_registration', '0');
 INSERT INTO CPG_config VALUES ('picinfo_movie_download_link', '1');
 INSERT INTO CPG_config VALUES ('picture_table_width', '100%');
+INSERT INTO CPG_config VALUES ('picture_use', 'thumb');
 INSERT INTO CPG_config VALUES ('picture_width', '400');
 INSERT INTO CPG_config VALUES ('purge_expired_bans', '1');
 # INSERT INTO CPG_config VALUES ('randpos_interval', '1063623637');

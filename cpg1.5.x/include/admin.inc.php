@@ -933,6 +933,19 @@ $config_data = array(
       'default_value' => '1',
       'help_link'     => 'f=configuration.htm&amp;as=admin_picture_thumbnail_intermediate_toggle&amp;ae=admin_picture_thumbnail_intermediate_toggle_end',
     ),
+    'picture_use' => array(
+      'type'                   => 'select',
+      'default_value'          => 'any',
+      'help_link'              => 'f=configuration.htm&amp;as=admin_picture_thumbnail_intermediate_use-dimension&amp;ae=admin_picture_thumbnail_intermediate_use-dimension_end',
+      'options' => array(
+                     'any' => $lang_admin_php['th_any'],
+                     'ht' => $lang_admin_php['th_ht'],
+                     'wd' => $lang_admin_php['th_wd'],
+                     'thumb' => $lang_admin_php['picture_use_thumb'],
+                     ),
+      'additional_description' => $lang_admin_php['picture_use_detail'],
+      'warning'                => $lang_admin_php['warning_change'],
+    ),
     'picture_width' => array(
       'type'            => 'textfield',
 	  'min'             => '0',

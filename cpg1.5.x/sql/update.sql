@@ -417,3 +417,5 @@ INSERT INTO CPG_config VALUES ('count_admin_hits', '0');
 UPDATE CPG_filetypes SET player = 'HTMLA' WHERE extension = 'ogg' AND player = '';
 INSERT INTO CPG_filetypes VALUES ('oga', 'audio/ogg', 'audio', 'HTMLA');
 INSERT INTO CPG_filetypes VALUES ('ogv', 'video/ogg', 'movie', 'HTMLV');
+
+INSERT INTO CPG_config VALUES ('picture_use', 'thumb');

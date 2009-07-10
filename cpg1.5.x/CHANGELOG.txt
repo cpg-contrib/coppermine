@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-07-10 [A] Added config option to determine resize dimension for intermediate pictures {eenemeenemuu}
 2009-07-10 [C] Added confirmation message after editing a file (thread 60096) {eenemeenemuu}
 2009-07-08 [O] Added additional information for register globals (thread ID60486) {GauGau}
 2009-06-23 [O] Organized & optimized update.php and added output rows for file updates {Paver}
