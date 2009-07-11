@@ -1139,7 +1139,7 @@ if (!$file) {
 
     pageheader($BREADCRUMB_TEXT ? $BREADCRUMB_TEXT : $lang_index_php['welcome']);
 
-    $elements = preg_split("|/|", $CONFIG['main_page_layout'], -1, PREG_SPLIT_NO_EMPTY);
+    $elements = explode('/', $CONFIG['main_page_layout']);
 
     /**
      * Loop through the $elements array to build the page using the parameters
@@ -1177,40 +1177,6 @@ if (!$file) {
                     flush();
                     break;
 
-                case 'random':
-                    display_thumbnails('random', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
-                    flush();
-                    break;
-
-                case 'lastup':
-                    display_thumbnails('lastup', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
-                    flush();
-                    break;
-
-                case 'lastalb':
-                    display_thumbnails('lastalb', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
-                    break;
-
-                case 'topn':
-                    display_thumbnails('topn', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
-                    flush();
-                    break;
-
-                case 'toprated':
-                    display_thumbnails('toprated', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
-                    flush();
-                    break;
-
-                case 'lastcom':
-                    display_thumbnails('lastcom', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
-                    flush();
-                    break;
-
-                case 'lasthits':
-                    display_thumbnails('lasthits', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
-                    flush();
-                    break;
-
                 case 'anycontent':
                     if ($cat == 0) {
                         ob_start();
@@ -1222,6 +1188,12 @@ if (!$file) {
                         ob_end_clean();
                         echo $anycontent;
                     }
+                    flush();
+                    break;
+                
+                default:
+                    // all meta albums caught here
+                    display_thumbnails($matches[1], $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
                     flush();
                     break;
                 }
