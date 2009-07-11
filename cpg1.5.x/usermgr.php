@@ -925,7 +925,7 @@ EOT;
         <tr>
                 <td colspan="2" class="tableb">
                         <ul>
-                        {$lang_usermgr_php['note_list']}
+                            <li>{$lang_usermgr_php['note_list']}</li>
                         </ul>
                 </td>
         </tr>

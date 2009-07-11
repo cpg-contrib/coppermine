@@ -544,9 +544,10 @@ function strings_from_language_file($string) {
         return '';
     }
     $return = str_replace($string, '', substr($blob,strpos($blob, $string),100)); // get the first 100 characters starting at $string
-    $return = str_replace('=>', '', $return); // strip the string '=>'
-    $return = str_replace(strstr($return, "',"), '', $return); // Throw everything away after and including ';
+    $return = str_replace('] = ', '', $return); // strip the string '=>'
+    $return = str_replace(strstr($return, "';"), '', $return); // Throw everything away after and including ';
     $return = ltrim(trim($return), "'"); // Trim the leading single quotes and the whitespace
+
     return $return;
 }
 ?>

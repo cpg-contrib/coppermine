@@ -7436,6 +7436,14 @@
     <permission>read</permission>
     <hash>b24a3f1c36bb3e6675b57f873579451a</hash>
   </element>
+    <element>
+    <fullpath>lang/english_gb.php</fullpath>
+    <version>1.5.1</version>
+    <revision></revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash></hash>
+  </element>
   <element>
     <fullpath>lang/german.php</fullpath>
     <version>1.5.1</version>
