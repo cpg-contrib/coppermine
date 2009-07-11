@@ -85,6 +85,14 @@ function toggleExpandCollapseButtons(action)
 }
 
 function adminPageLoaded(){
+    
+    $('a.direct_config_link').click(function(){
+        
+        var aname = $(this).attr('hash').replace('#', '');
+        var container = $('div.detail_body:has(a[name="' + aname + '"])');
+        show_section(container.attr('id'));
+    });
+    
     $('span[id^=expand_all]').click(function(){
             expand();
             show_section('expand_all_top');
