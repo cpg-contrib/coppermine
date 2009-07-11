@@ -204,7 +204,7 @@ function process_post_data()
             'orig'     => $CONFIG['orig_pfx'],
             'fullsize' => '',
         );
-        
+
         foreach ($prefixes as $prefix) {
 
             $oldname = urldecode($CONFIG['fullpath'] . $pic['filepath'] . $pic_prefix[$prefix] . $pic['filename']);
@@ -217,9 +217,9 @@ function process_post_data()
             // Allow the admin to fix messed up filenames by skipping the file_exists checks
             // Only the admin can be permitted this, since users could abuse this to delete
             // files owned by other users.
-            
+
             $skiprename = false;
-            
+
             if (($old_mime['mime'] != $new_mime['mime']) && isset($new_mime['mime'])) {
                 cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['mime_conv'], $old_mime['mime'], $new_mime['mime']), __FILE__, __LINE__);
             }
@@ -241,7 +241,7 @@ function process_post_data()
                     $skiprename = true;
                 } else {
                     cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['src_file_missing'], $oldname), __FILE__, __LINE__);
-                } 
+                }
             }
 
             if ($skiprename || rename($oldname, $newname)) {
@@ -401,8 +401,6 @@ set_js_var('pic_currently_public',  $CURRENT_PIC['category'] < FIRST_USER_CAT ? 
 pageheader($lang_editpics_php['edit_pic']);
 
 if ($superCage->post->keyExists('apply_changes')) {
-    global $lang_common, $lang_editpics_php;
-
     starttable('100%', cpg_fetch_icon('info', 2) . $lang_common['information'], 1);
     echo <<< EOT
     <tr>

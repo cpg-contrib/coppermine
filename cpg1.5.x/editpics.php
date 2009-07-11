@@ -180,14 +180,14 @@ function process_post_data()
     global $CONFIG, $user_albums_list, $lang_errors;
 
     $superCage = Inspekt::makeSuperCage();
-    
+
     //Check if the form token is valid
     if(!checkFormToken()){
         cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
     }
 
     $user_album_set = array();
-    
+
     foreach ($user_albums_list as $album) {
         $user_album_set[$album['aid']] = 1;
     }
@@ -530,7 +530,7 @@ function form_alb_list_box($text, $name)
     $sel_album = $CURRENT_PIC['aid'];
 
     $name .= $CURRENT_PIC['pid'];
-    
+
     echo <<<EOT
         <tr>
             <td class="{$row_style_class}" style="white-space: nowrap;">
@@ -561,7 +561,7 @@ function form_textarea($text, $name, $max_length)
     $value = $CURRENT_PIC[$name];
 
     $name .= $CURRENT_PIC['pid'];
-    
+
     echo <<<EOT
         <tr>
                 <td class="{$row_style_class}" valign="top" style="white-space: nowrap;">
@@ -605,19 +605,19 @@ function create_form(&$data)
     foreach ($data as $element) {
         if (is_array($element)) {
             switch ($element[2]) {
-            
+
             case 0 :
                 form_input($element[0], $element[1], $element[3]);
                 break;
-                
+
             case 1 :
                 form_alb_list_box($element[0], $element[1]);
                 break;
-                
+
             case 2 :
                 form_textarea($element[0], $element[1], $element[3]);
                 break;
-                
+
             case 3 :
                 form_pic_info($element[0]);
                 break;
@@ -641,9 +641,9 @@ function get_user_albums($user_id = '')
 
         if (MODERATOR_MODE && UPLOAD_APPROVAL_MODE || MODERATOR_EDIT_MODE) {
 
-            $user_albums = cpg_db_query("SELECT aid, title 
-                                             FROM {$CONFIG['TABLE_ALBUMS']} 
-                                             WHERE aid IN $albStr AND category > '".FIRST_USER_CAT."' OR category='".(FIRST_USER_CAT + USER_ID)."' 
+            $user_albums = cpg_db_query("SELECT aid, title
+                                             FROM {$CONFIG['TABLE_ALBUMS']}
+                                             WHERE aid IN $albStr AND category > '".FIRST_USER_CAT."' OR category='".(FIRST_USER_CAT + USER_ID)."'
                                              ORDER BY title");
 
             if (mysql_num_rows($user_albums)) {
@@ -651,9 +651,9 @@ function get_user_albums($user_id = '')
             } else {
                 $user_albums_list = array();
             }
-            
+
             mysql_free_result($user_albums);
-            
+
         } else {
 
             // Only list the albums owned by the user
@@ -670,10 +670,10 @@ function get_user_albums($user_id = '')
             if (!GALLERY_ADMIN_MODE) {
 
                 // Get public albums
-                $result2 = cpg_db_query("SELECT alb.aid AS aid, CONCAT_WS('', '(', cat.name, ') ', alb.title) AS title 
-                                             FROM {$CONFIG['TABLE_ALBUMS']} AS alb 
-                                                 INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS cat 
-                                                 ON alb.owner = '$user_id' AND alb.category = cat.cid 
+                $result2 = cpg_db_query("SELECT alb.aid AS aid, CONCAT_WS('', '(', cat.name, ') ', alb.title) AS title
+                                             FROM {$CONFIG['TABLE_ALBUMS']} AS alb
+                                                 INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS cat
+                                                 ON alb.owner = '$user_id' AND alb.category = cat.cid
                                              ORDER BY alb.category DESC, alb.pos ASC");
                 $rowset2 = cpg_db_fetch_rowset($result2);
                 mysql_free_result($result2);
@@ -707,13 +707,13 @@ if (GALLERY_ADMIN_MODE) {
         $public_albums_list = array();
     }
     mysql_free_result($public_albums);
-    
+
 } elseif (MODERATOR_MODE) {
     $public_albums = cpg_db_query("SELECT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title ".
                                        "FROM {$CONFIG['TABLE_ALBUMS']} ".
                                            "LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ".
                                            "ON cid = category ".
-                                       "WHERE aid IN $albStr AND category < '" . FIRST_USER_CAT . "' ". 
+                                       "WHERE aid IN $albStr AND category < '" . FIRST_USER_CAT . "' ".
                                        "ORDER BY cat_title");
     if (mysql_num_rows($public_albums)) {
         $public_albums_list = cpg_db_fetch_rowset($public_albums);
@@ -721,27 +721,27 @@ if (GALLERY_ADMIN_MODE) {
         $public_albums_list = array();
     }
     mysql_free_result($public_albums);
-    
+
 } else {
     //$public_albums_list = array();
-     
+
     $public_albums = cpg_db_query("SELECT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID."))");
     //select albums that don't belong to a category
     $public_albums_no_cat = cpg_db_query("SELECT aid, title, title AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0 AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID."))");
-    
+
     if (mysql_num_rows($public_albums)) {
         $public_albums_list = cpg_db_fetch_rowset($public_albums);
     } else {
         $public_albums_list = array();
     }
-    
+
     //do the same for non-categorized albums
     if (mysql_num_rows($public_albums_no_cat)) {
         $public_albums_list_no_cat = cpg_db_fetch_rowset($public_albums_no_cat);
     } else {
         $public_albums_list_no_cat = array();
     }
-    
+
     //merge the 2 album arrays
     $public_albums_list = array_merge($public_albums_list, $public_albums_list_no_cat);
     //print_r($public_albums_list_no_cat);
@@ -787,25 +787,25 @@ if (UPLOAD_APPROVAL_MODE) {
 
     list($pic_count) = mysql_fetch_row($result);
     mysql_free_result($result);
-    
+
     if (MODERATOR_MODE) {
-    
+
         $sql =  "SELECT * " .
                 " FROM {$CONFIG['TABLE_PICTURES']} " .
                 " WHERE approved = 'NO' AND aid IN $albStr " .
                 " ORDER BY pid " .
                 " LIMIT $start, $count";
     } else {
-    
+
         $sql =  "SELECT * " .
                 " FROM {$CONFIG['TABLE_PICTURES']} " .
                 " WHERE approved = 'NO' " .
                 " ORDER BY pid " .
                 " LIMIT $start, $count";
     }
-    
+
     $result = cpg_db_query($sql);
-    
+
     $form_target = $CPG_PHP_SELF . '?mode=upload_approval&amp;start=' . $start . '&amp;count=' . $count;
     $title = $lang_editpics_php['upl_approval'];
     $help = '';
@@ -813,16 +813,16 @@ if (UPLOAD_APPROVAL_MODE) {
 } else {
 
     $sql = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id'";
-    
+
     // If non-admin user but allowed to upload in this album, then we need to fetch only the photos uploaded by that user
     if (defined('USER_UPLOAD_ALLOWED')) {
         $owner_str = " AND owner_id = " . USER_ID;
     } else {
         $owner_str = '';
     }
-    
+
     $result = cpg_db_query($sql . $owner_str);
-    
+
     list($pic_count) = mysql_fetch_row($result);
     mysql_free_result($result);;
 
@@ -831,9 +831,9 @@ if (UPLOAD_APPROVAL_MODE) {
             " ON a.aid = p.aid " .
             " WHERE p.aid = '$album_id' $owner_str" .
             " ORDER BY p.pid DESC LIMIT $start, $count";
-            
+
     $result = cpg_db_query($sql);
-    
+
     $form_target = $CPG_PHP_SELF . '?album=' . $album_id . '&amp;start=' . $start . '&amp;count=' . $count;
     $title = $lang_editpics_php['edit_pics'];
     $help = '&nbsp;' . cpg_display_help('f=files.htm&amp;as=edit_pics&amp;ae=edit_pics_end&amp;top=1', '800', '500');
@@ -870,8 +870,6 @@ $mode = UPLOAD_APPROVAL_MODE ? '&amp;mode=upload_approval' : '';
 $cat_l = isset($actual_cat) ? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
 
 if ($superCage->post->keyExists('go')) {
-    global $lang_common, $lang_editpics_php;
-
     starttable('100%', cpg_fetch_icon('info', 2) . $lang_common['information'], 1);
     echo <<< EOT
     <tr>
@@ -965,7 +963,7 @@ while ($CURRENT_PIC = mysql_fetch_assoc($result)) {
     } else {
         get_user_albums(USER_ID);
     }
-    
+
     // wrap the actual block into another table
     print <<< EOT
 
@@ -995,7 +993,7 @@ echo <<<EOT
 EOT;
 
 endtable();
-list($timestamp, $form_token) = getFormToken();	
+list($timestamp, $form_token) = getFormToken();
 echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
 <input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" /></form>";
 
