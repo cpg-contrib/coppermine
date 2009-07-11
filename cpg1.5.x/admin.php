@@ -182,7 +182,9 @@ if ($superCage->post->keyExists('update_config') > 0 && $userMessage == '') {
     $userMessage = $lang_admin_php['upd_not_needed'];
 }
 
-
+// put the current date into the lang string
+$tzinfo = &$config_data['general_settings']['time_offset']['end_description'];
+$tzinfo = sprintf($tzinfo, localised_date(-1, $lang_date['comment']));
 
 //pageheader($lang_admin_php['title']);
 /*
