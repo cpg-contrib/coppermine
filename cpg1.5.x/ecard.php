@@ -118,7 +118,6 @@ if (is_flash($row['filename'])) {
     <object id="SWFlash"  classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" type="application/x-shockwave-flash" width="{$thumb_size['width']}" height="{$thumb_size['height']}">
         <param name="autostart" value="true" />
         <param name="src" value="{$markup_picname}" />
-        <embed width="{$thumb_size['width']}" height="{$thumb_size['height']}" src="{$markup_picname}" autostart="true" type="application/x-shockwave-flash" ></embed>
     </object>
 EOT;
 
@@ -341,7 +340,6 @@ if (is_flash($row['filename'])) {
             <object id="SWFlash"  classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" type="application/x-shockwave-flash" width="{$thumb_size['width']}" height="{$thumb_size['height']}">
                 <param name="autostart" value="true" />
                 <param name="src" value="{$n_picname}" />
-                <embed width="{$thumb_size['width']}" height="{$thumb_size['height']}" src="{$n_picname}" autostart="true" type="application/x-shockwave-flash" ></embed>
             </object>
 EOT;
 

@@ -89,7 +89,6 @@ if (is_array($CLEAN['data'])) {
         <object id="SWFlash" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" type="application/x-shockwave-flash" {$dimensions}>
             <param name="autostart" value="true" />
             <param name="src" value="{$CLEAN['data']['p']}" />
-            <embed {$dimensions} src="{$CLEAN['data']['p']}" autostart="true" type="application/x-shockwave-flash" ></embed>
         </object>
 EOT;
 

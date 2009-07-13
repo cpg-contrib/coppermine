@@ -3340,7 +3340,6 @@ function theme_html_picture()
 
             $pic_html  = '<object id="'.$player['id'].'" '.$player['classid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
             $pic_html .= "<param name=\"autostart\" value=\"$autostart\" /><param name=\"src\" value=\"". $picture_url . "\" />";
-            $pic_html .= '<embed '.$image_size['whole'].' src="'. $picture_url . '" autostart="'.$autostart.'" '.$player['mime'].'></embed>';
             $pic_html .= '</object><br />' . $LINEBREAK;
         }
 
