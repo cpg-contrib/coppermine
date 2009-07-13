@@ -58,7 +58,6 @@ $lang_meta_album_names['random'] = 'Random files';
 $lang_meta_album_names['lastup'] = 'Last additions';
 $lang_meta_album_names['lastalb'] = 'Last updated albums';
 $lang_meta_album_names['lastcom'] = 'Last comments';
-$lang_meta_album_names['mostcom'] = 'Most commented files'; //cpg1.5
 $lang_meta_album_names['topn'] = 'Most viewed';
 $lang_meta_album_names['toprated'] = 'Top rated';
 $lang_meta_album_names['lasthits'] = 'Last viewed';
@@ -80,24 +79,16 @@ $lang_errors['invalid_image'] = 'The image you have uploaded is corrupted or can
 $lang_errors['resize_failed'] = 'Unable to create thumbnail or reduced size image.';
 $lang_errors['no_img_to_display'] = 'No image to display';
 $lang_errors['non_exist_cat'] = 'The selected category does not exist';
-$lang_errors['orphan_cat'] = 'A category has a non-existent parent, run the category manager to correct the problem!';
 $lang_errors['directory_ro'] = 'Directory \'%s\' is not writable, files can\'t be deleted';
 $lang_errors['non_exist_comment'] = 'The selected comment does not exist.';
 $lang_errors['pic_in_invalid_album'] = 'File is in a non-existent album (%s)!?';
 $lang_errors['banned'] = 'You are currently banned from using this site.';
-$lang_errors['not_with_udb'] = 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.';
 $lang_errors['offline_title'] = 'Offline';
 $lang_errors['offline_text'] = 'Gallery is currently offline - check back soon';
 $lang_errors['ecards_empty'] = 'There are currently no ecard records to display.';
-$lang_errors['action_failed'] = 'Action failed.  Coppermine is unable to process your request.';
-$lang_errors['no_zip'] = 'The necessary libraries to process ZIP files are not available.  Please contact your Coppermine administrator.';
-$lang_errors['zip_type'] = 'You do not have permission to upload ZIP files.';
 $lang_errors['database_query'] = 'There was an error while processing a database query';
 $lang_errors['non_exist_comment'] = 'The selected comment does not exist';
-$lang_errors['page_removed_redirector'] = 'You are trying to access a page that has been removed from the Coppermine package.<br />Redirecting...'; // cpg1.5
 $lang_errors['captcha_error'] = 'The confirmation code didn\'t match'; // cpg1.5
-$lang_errors['no_data'] = 'No data returned'; // cpg1.5
-$lang_errors['no_connection'] = 'No connection to %s established.'; // cpg1.5
 $lang_errors['login_needed'] = 'You need to %sregister%s/%slogin%s to access this page'; // cpg1.5
 $lang_errors['error'] = 'Error'; // cpg1.5
 $lang_errors['critical_error'] = 'Critical error'; // cpg1.5
@@ -127,7 +118,6 @@ $lang_common['keywords_insert1'] = 'Keywords (separate with %s)'; // cpg1.5
 $lang_common['keywords_insert2'] = 'Insert from list'; // cpg1.5
 $lang_common['keyword_separator'] = 'Keyword separator'; //cpg1.5
 $lang_common['keyword_separators'] = array(' '=>'space', ','=>'comma', ';'=>'semicolon'); // cpg1.5
-$lang_common['owner_name'] = 'Owner name'; // cpg1.5
 $lang_common['filename'] = 'Filename'; // cpg1.5
 $lang_common['filesize'] = 'Filesize'; // cpg1.5
 $lang_common['album'] = 'Album'; // cpg1.5
@@ -150,15 +140,12 @@ $lang_common['select_album'] = 'Select Album'; // cpg1.5
 $lang_common['ok'] = 'OK'; // cpg1.5
 $lang_common['status'] = 'Status'; // cpg1.5
 $lang_common['apply_changes'] = 'Apply changes'; // cpg1.5
-$lang_common['reset'] = 'Reset'; // cpg1.5
 $lang_common['done'] = 'Done'; // cpg1.5
-$lang_common['show_password'] = 'Show password'; // cpg1.5
 $lang_common['album_properties'] = 'Album properties'; // cpg1.5
 $lang_common['parent_category'] = 'Parent category'; // cpg1.5
 $lang_common['edit_files'] = 'Edit files'; // cpg1.5
 $lang_common['thumbnail_view'] = 'Thumbnail view'; // cpg1.5
 $lang_common['album_manager'] = 'Album Manager'; // cpg1.5
-$lang_common['details'] = 'Details'; // cpg1.5
 $lang_common['more'] = 'more'; // cpg1.5
 
 // ------------------------------------------------------------------------- //
@@ -189,8 +176,6 @@ $lang_main_menu['lastup_title'] = 'Show most recent uploads';
 $lang_main_menu['lastup_lnk'] = 'Last uploads';
 $lang_main_menu['lastcom_title'] = 'Show most recent comments';
 $lang_main_menu['lastcom_lnk'] = 'Last comments';
-$lang_main_menu['mostcom_title'] = 'Show files with most comments'; // cpg1.5
-$lang_main_menu['mostcom_lnk'] = 'Most commented'; // cpg1.5
 $lang_main_menu['topn_title'] = 'Show most viewed items';
 $lang_main_menu['topn_lnk'] = 'Most viewed';
 $lang_main_menu['toprated_title'] = 'Show top rated items';
@@ -207,8 +192,6 @@ $lang_main_menu['contact_title'] = 'Get in contact with %s'; // cpg1.5
 $lang_main_menu['contact_lnk'] = 'Contact'; // cpg1.5
 $lang_main_menu['sidebar_title'] = 'Add a Sidebar to your browser'; // cpg1.5
 $lang_main_menu['sidebar_lnk'] = 'Sidebar'; // cpg1.5
-$lang_main_menu['main_menu'] = 'Main Menu'; // cpg1.5
-$lang_main_menu['sub_menu'] = 'Sub Menu'; // cpg1.5
 
 $lang_gallery_admin_menu['upl_app_title'] = 'Approve new uploads';
 $lang_gallery_admin_menu['upl_app_lnk'] = 'Upload approval';
@@ -228,7 +211,6 @@ $lang_gallery_admin_menu['searchnew_title'] = 'Go to the batch add process';
 $lang_gallery_admin_menu['searchnew_lnk'] = 'Batch add files';
 $lang_gallery_admin_menu['util_title'] = 'Go to the admin tools';
 $lang_gallery_admin_menu['util_lnk'] = 'Admin Tools';
-$lang_gallery_admin_menu['key_title'] = 'Go to the keyword dictionary';
 $lang_gallery_admin_menu['key_lnk'] = 'Keyword Dictionary';
 $lang_gallery_admin_menu['ban_title'] = 'Go to the banned users';
 $lang_gallery_admin_menu['ban_lnk'] = 'Ban Users';
@@ -260,7 +242,6 @@ $lang_gallery_admin_menu['shownews_lnk'] = 'Show News'; // cpg1.5
 $lang_gallery_admin_menu['shownews_title'] = 'Display the news from coppermine-gallery.net'; // cpg1.5
 $lang_gallery_admin_menu['export_lnk'] = 'Export'; // cpg1.5
 $lang_gallery_admin_menu['export_title'] = 'Export files and albums to disk'; // cpg1.5
-$lang_gallery_admin_menu['admin_menu'] = 'Admin Menu'; // cpg1.5
 
 $lang_user_admin_menu['albmgr_title'] = 'Create and order my albums';
 $lang_user_admin_menu['albmgr_lnk'] = 'Create / order my albums';
@@ -309,8 +290,6 @@ $lang_img_nav_bar['pic_pos'] = 'FILE %s/%s';
 $lang_img_nav_bar['report_title'] = 'Report this file to the administrator';
 $lang_img_nav_bar['go_album_end'] = 'Skip to end';
 $lang_img_nav_bar['go_album_start'] = 'Return to start';
-$lang_img_nav_bar['go_back_x_items'] = 'go back %s items';
-$lang_img_nav_bar['go_forward_x_items'] = 'go forward %s items';
 
 $lang_rate_pic['rate_this_pic'] = 'Rate this file ';
 $lang_rate_pic['no_votes'] = '(No vote yet)';
@@ -335,7 +314,6 @@ $lang_cpg_die['line'] = 'Line: ';
 
 $lang_display_thumbnails['dimensions'] = 'Dimensions=';
 $lang_display_thumbnails['date_added'] = 'Date added=';
-$lang_display_thumbnails['unapproved'] = 'Unapproved'; // cpg1.5
 
 $lang_get_pic_data['n_comments'] = '%s comments';
 $lang_get_pic_data['n_views'] = '%s views';
@@ -360,9 +338,6 @@ $lang_theme_selection['choose_theme'] = 'Choose a theme';
 
 $lang_social_bookmarks['bookmark_this_page'] = 'Bookmark this page'; // cpg1.5
 $lang_social_bookmarks['favorite'] = 'Add this page to your browser\'s favorites/bookmarks'; // cpg1.5 // js-alert
-$lang_social_bookmarks['send_email'] = 'Recommend this page by eMail'; // cpg1.5 // js-alert
-$lang_social_bookmarks['email_subject'] = 'Interesting page'; // cpg1.5 // js-alert
-$lang_social_bookmarks['email_body'] = 'I thought you might find this page interesting'; // cpg1.5 // js-alert
 $lang_social_bookmarks['favorite_close'] = 'This doesn\'t work with your browser.'."\n".'Please close this dialog and'."\n".'press Ctrl-D to bookmark this page.'; // cpg1.5 // js-alert
 
 $lang_version_alert['version_alert'] = 'Unsupported version!';
@@ -375,8 +350,6 @@ $lang_version_alert['hide'] = 'hide'; // cpg1.5
 $lang_create_tabs['previous'] = 'Previous'; // cpg1.5
 $lang_create_tabs['next'] = 'Next'; // cpg1.5
 $lang_create_tabs['jump_to_page'] = 'Jump to page'; // cpg1.5
-$lang_create_tabs['first'] = 'First'; // cpg1.5
-$lang_create_tabs['last'] = 'Last'; // cpg1.5
 
 $lang_get_remote_file_by_url['no_data_returned'] = 'No data returned using %s'; // cpg1.5
 $lang_get_remote_file_by_url['curl'] = 'CURL'; // cpg1.5
@@ -1078,7 +1051,7 @@ $lang_delete_php['add_group'] = 'Add secondary group';
 $lang_delete_php['add_group_to_group'] = 'Adding user %s to group %s. He\'s now member of %s as primary and of %s as secondary membergroup(s).';
 $lang_delete_php['status'] = 'Status';
 $lang_delete_php['updating_album'] = 'Updating album ';
-$lang_delete_php['position'] = ' Position to '; 
+$lang_delete_php['position'] = ' Position to ';
 $lang_delete_php['updating_pic'] = 'Updating picture ';
 }
 
@@ -2074,7 +2047,7 @@ $lang_search_new_php['notes'] = <<< EOT
         <li>If your browser timeouts, hit the reload button</li>
     </ul>
 EOT;
-// Translator note: Do not translate the %s placeholders - they are being replaced with icons 
+// Translator note: Do not translate the %s placeholders - they are being replaced with icons
 $lang_search_new_php['check_all'] = 'Check All';
 $lang_search_new_php['uncheck_all'] = 'Uncheck All';
 $lang_search_new_php['no_folders'] = 'There are no folders inside the "albums" folder yet. Make sure to create at least one custom folder within "albums" folder and ftp-upload your files there. You mustn\'t upload to the "userpics" nor "edit" folders, they are reserved for http uploads and internal purposes.';
@@ -2636,5 +2609,5 @@ $lang_plugin_php['link_target_description'] = 'Changes the way external links ar
 $lang_plugin_php['link_target_extra'] = 'This plugin has an impact mostly on the "Powered by Coppermine" link at the bottom of the gallery output.';
 $lang_plugin_php['link_target_recommendation'] = 'It is recommended not to use this plugin to avoid bossing your users around: opening links in a new window means bossing around your site visitors.';
 }
-  
+
 ?>
