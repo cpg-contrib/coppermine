@@ -379,7 +379,6 @@ $lang_mailer['signing'] = 'Signing Error: ';
 // ------------------------------------------------------------------------- //
 // File include/plugin_api.inc.php
 // ------------------------------------------------------------------------- //
-$lang_plugin_api['error_wakeup'] = 'Couldn\'t awaken plugin \'%s\'';
 $lang_plugin_api['error_install'] = 'Couldn\'t install plugin \'%s\'';
 $lang_plugin_api['error_uninstall'] = 'Couldn\'t uninstall plugin \'%s\'';
 $lang_plugin_api['error_sleep'] = 'Couldn\'t switch off plugin \'%s\''; // cpg1.5
