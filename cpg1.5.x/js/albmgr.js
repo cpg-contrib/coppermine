@@ -41,7 +41,7 @@ var Sort = {
         var form_token      = js_vars.form_token;
         var timestamp       = js_vars.timestamp;
         // get the name of the edited album value
-        var editedName = $("#edit-name").val();
+        var editedName = trim($("#edit-name").val());
         // check whether null and event to edit the album
         if(editedName.length > 0){
             $("td#edit-box").hide();
@@ -60,23 +60,27 @@ var Sort = {
                 $("#loading").hide();
             } else {
                 var error_msg = '<div class="cpg_message_validation"><h2>' + data['title'] + '</h2>' + data['description'] + '</div>';
-                $('#cpg_form_album').parents('table').before(error_msg);
+                $('#cpg_form_album').before(error_msg);
                 // empty the value
-                $("#add-name").val("");
+                $("#edit-name").val("");
                 $("#loading").hide();
             }
         });
         
+        } else {
+            $("#edit-name").val("").focus();
         }
 
         return false;
         
     },
     addAlbum: function(cat){
-        var addedName = $("#add-name").val();
+        var addedName = trim($("#add-name").val());
         var form_token = js_vars.form_token;
         var timestamp = js_vars.timestamp;
-
+        
+        $('.cpg_message_validation').hide();
+        
         // add new album check whether null and event
         if(addedName.length > 0){
             $("td#add-box").hide();
@@ -112,14 +116,14 @@ var Sort = {
                     $("#loading").hide();
                 }else{
                     var error_msg = '<div class="cpg_message_validation"><h2>' + data['title'] + '</h2>' + data['description'] + '</div>';
-                    $('#cpg_form_album').parents('table').before(error_msg);
+                    $('#cpg_form_album').before(error_msg);
                     // empty the value
                     $("#add-name").val("");
                     $("#loading").hide();
                 }
             });
         }else{
-            $("#add-name").focus();
+            $("#add-name").val('').focus();
         }
 
         return false;

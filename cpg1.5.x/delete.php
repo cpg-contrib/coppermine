@@ -19,6 +19,7 @@
 
 define('IN_COPPERMINE', true);
 define('DELETE_PHP', true);
+define('ALBMGR_PHP', true);
 
 require('include/init.inc.php');
 
@@ -488,24 +489,33 @@ case 'albmgr':
     $position = $superCage->get->getInt('position');  
     
     //get the album name
-    $get_album_name = $superCage->get->getEscaped('name');
+    $get_album_name = trim($superCage->get->getEscaped('name'));
     
     //add the new album name to database
     if ($op == 'add') {
         jsCheckFormToken();
         
         $user_id = USER_ID;
-        //add the album to database
-        $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description, owner) VALUES ('$category', '$get_album_name', 'NO', '{$position}', '', '$user_id')";
-        cpg_db_query($query);
-
-        //get the aid of added the albums
-        $getAid = mysql_insert_id($CONFIG['LINK_ID']);
-
-        $dataArray = array(
-            'message' => 'true',
-            'newAid'  => $getAid,
-        );
+        
+        if (!empty($get_album_name)) {
+            //add the album to database
+            $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description, owner) VALUES ('$category', '$get_album_name', 'NO', '{$position}', '', '$user_id')";
+            cpg_db_query($query);
+    
+            //get the aid of added the albums
+            $getAid = mysql_insert_id($CONFIG['LINK_ID']);
+    
+            $dataArray = array(
+                'message' => 'true',
+                'newAid'  => $getAid,
+            );
+        } else {
+            $dataArray = array(
+                'message' => 'false',
+                'title'  => $lang_errors['error'],
+                'description' => $lang_albmgr_php['alb_need_name']
+            );
+        }
         
         echo json_encode($dataArray);
     }
@@ -520,12 +530,20 @@ case 'albmgr':
     if ($op == 'update') {
         jsCheckFormToken();
         
-        $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title = '{$get_updated_album_name}' WHERE aid = '{$aid_updated}' $restrict LIMIT 1";
-        cpg_db_query($query);
-        
-        $dataArray = array(
-            'message' => 'true',
-        );
+        if (!empty($get_updated_album_name)) {
+            $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title = '{$get_updated_album_name}' WHERE aid = '{$aid_updated}' $restrict LIMIT 1";
+            cpg_db_query($query);
+            
+            $dataArray = array(
+                'message' => 'true',
+            );
+        } else {
+            $dataArray = array(
+                'message' => 'false',
+                'title'  => $lang_errors['error'],
+                'description' => $lang_albmgr_php['alb_need_name']
+            );
+        }
         
         echo json_encode($dataArray);
     }   
