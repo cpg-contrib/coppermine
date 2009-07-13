@@ -10,24 +10,12 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.25
+  Coppermine version: 1.4.26
   $HeadURL$
   $Revision$
   $Author$
   $Date$
 **********************************************/
-
-/**
-* Coppermine Photo Gallery 1.3.0 mode.php
-*
-* Someone please add a description
-*
-* @copyright 2002,2003 Gregory DEMAR, Coppermine Dev Team
-* @license http://www.gnu.org/licenses/gpl.html GNU General Public License V3
-* @package Coppermine
-* @version $Id$
-*/
-
 
 define('IN_COPPERMINE', true);
 define('MODE_PHP', true);

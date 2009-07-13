@@ -10,25 +10,12 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.25
+  Coppermine version: 1.4.26
   $HeadURL$
   $Revision$
   $Author$
   $Date$
 **********************************************/
-
-/**
-* Coppermine Photo Gallery 1.4.14 albmgr.php
-*
-* This file is the which allows creation of new Albumbs and editing the names of albums,
-* this is not the file which allows you to set album properties,
-* also see documentation for this file's {@relativelink ../_albmgr.php.php Free Standing Code}
-*
-* @copyright  2002-2007 Gregory DEMAR, Coppermine Dev Team
-* @license http://www.gnu.org/licenses/gpl.html GNU General Public License V3
-* @package Coppermine
-* @version $Id$
-*/
 
 /**
 * @ignore

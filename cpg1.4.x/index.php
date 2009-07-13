@@ -10,24 +10,12 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.25
+  Coppermine version: 1.4.26
   $HeadURL$
   $Revision$
   $Author$
   $Date$
 **********************************************/
-
-/**
-* Coppermine Photo Gallery 1.4.14 index.php
-*
-* This file is the main display for categories and album it also displays thumbnails,
-* also see documentation for this file's {@relativelink ../_index.php.php Free Standing Code}
-*
-* @copyright  2002-2005 Gregory DEMAR, Coppermine Dev Team
-* @license http://www.gnu.org/licenses/gpl.html GNU General Public License V3
-* @package Coppermine
-* @version $Id$
-*/
 
 /**
 * Unless this is true most things wont work - protection against direct execution of inc files

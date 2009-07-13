@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.25
+  Coppermine version: 1.4.26
   $HeadURL$
   $Revision$
   $Author$
@@ -24,7 +24,6 @@ require('include/init.inc.php');
 require('include/mailer.inc.php');
 
 if ((!$CONFIG['report_post']==1) || (!USER_CAN_SEND_ECARDS)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-//print_r(get_defined_constants());
 if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 
 function get_post_var($name, $default = '')

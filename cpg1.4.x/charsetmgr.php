@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.4.25
+  Coppermine version: 1.4.26
   $HeadURL$
   $Revision$
   $Author$
@@ -18,7 +18,6 @@
 **********************************************/
 
 define('IN_COPPERMINE', true);
-//define('DISPLAYIMAGE_PHP', true);
 require('include/init.inc.php');
 require('include/update.inc.php');
 
