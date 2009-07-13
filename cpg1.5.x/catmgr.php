@@ -522,7 +522,10 @@ case 'updatecat':
 
     if ($superCage->post->keyExists('name')) {
         $name = $superCage->post->getEscaped('name');
-    } else {
+        $name = trim($name);
+    } 
+    
+    if (empty($name)){
         $name = '&lt;???&gt;';
         break;
     }
@@ -563,7 +566,10 @@ case 'createcat':
 
     if ($superCage->post->keyExists('name')) {
         $name = $superCage->post->getEscaped('name');
-    } else {
+        $name = trim($name);
+    } 
+
+    if (empty($name)) {
         $name = '&lt;???&gt;';
         break;
     }
