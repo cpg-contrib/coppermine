@@ -134,6 +134,7 @@ EOT;
         array('input', 'user_profile5', $icon_array['blank'] . $CONFIG['user_profile5_name'], 255),
         array('textarea', 'user_profile6', $icon_array['blank'] . $CONFIG['user_profile6_name'], 255)
     );
+	$form_data = CPGPluginAPI::filter('register_form_create', $form_data);
     
     if ($CONFIG['user_registration_disclaimer'] == 2) {
         $form_data[] = array('label', $lang_register_php['term_cond']);
@@ -141,6 +142,8 @@ EOT;
     } else {
         $form_data[] = array('hidden', 'agree', 1);
     }
+	
+	
 
     $loopCounter = 0;
     
@@ -246,8 +249,9 @@ EOT;
         case 'checkbox':
           
             // added the checkbox option for possible future use. The array definition would have to look like this:
-            // array('radio', 'user_var', 'preceeding text', 'Text label', 'value'),
+            // array('checkbox', 'user_var', 'preceeding text', 'Text label', 'value', 'Number of columns'),
             // enabling this option requires changes in profile.php and usermgr.php as well
+			// Number of columns can be 1 or 2, default is 1
 
             if ($superCage->post->keyExists($element[1])) {
                 $value = $superCage->post->getAlnum($element[1]);
@@ -257,7 +261,21 @@ EOT;
             
             if ($element[3]) {
             
-                echo <<<EOT
+                if ($element[5] == 2) {
+					echo <<<EOT
+    <tr>
+        <td width="40%" class="{$row_style}">
+            {$element[2]}
+        </td>
+        <td width="60%" class="{$row_style}" valign="top">
+            <input type="checkbox" name="{$element[1]}" id="{$element[1]}" value="{$element[4]}" class="checkbox" />
+            <label for="{$element[1]}" class="clickable_option">{$element[3]}</label>
+        </td>
+    </tr>
+
+EOT;
+				} else {
+					echo <<<EOT
     <tr>
         <td class="{$row_style}" colspan="2">
             {$element[2]}
@@ -268,6 +286,7 @@ EOT;
     </tr>
 
 EOT;
+				}
             }
 
             break;
@@ -554,6 +573,8 @@ function check_user_info(&$error)
 
     $sql = "INSERT INTO {$CONFIG['TABLE_USERS']} (user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_language) VALUES (NOW(), '$active', '$act_key', '$user_name', '$encpassword', '$email', '$profile1', '$profile2', '$profile3', '$profile4', '$profile5', '$profile6', '$user_language')";
     $result = cpg_db_query($sql);
+	
+	CPGPluginAPI::filter('register_form_submit',null);
 
     if ($CONFIG['log_mode']) {
         log_write('New user "$user_name" created on ' . date("F j, Y, g:i a"), CPG_ACCESS_LOG);

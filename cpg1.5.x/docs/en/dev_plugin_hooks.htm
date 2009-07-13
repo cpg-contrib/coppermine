@@ -192,6 +192,22 @@
     <td valign="top">filters $error when CAPTCHA is enabled and allows you to override the standard CAPTCHA validation for registrations</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$error = CPGPluginAPI::filter('captcha_register_validate', $error);</textarea></td>
   </tr>
+  
+  <tr>
+    <td valign="top">register.php</td>
+    <td valign="top"><a name="plugin_hooks_register_form_create"></a><strong>register_form_create</strong><a href="#plugin_hooks_register_form_create" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Add more fields to the registration form</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$form_data = CPGPluginAPI::filter('register_form_create', $form_data);</textarea></td>
+  </tr>
+   <tr>
+    <td valign="top">register.php</td>
+    <td valign="top"><a name="plugin_hooks_register_form_submit"></a><strong>register_form_submit</strong><a href="#plugin_hooks_register_form_submit" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Perform an action corresponding to the submit registration form data</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">CPGPluginAPI::filter('register_form_submit',null);</textarea></td>
+  </tr>
+  
   <tr>
     <td valign="top">thumbnails.php</td>
     <td valign="top"><a name="plugin_hooks_thumbnails_post_breadcrumb"></a><strong>post_breadcrumb</strong><a href="#plugin_hooks_thumbnails_post_breadcrumb" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
@@ -570,6 +586,8 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
 	<li><a href="#plugin_hooks_filename_post_breadcrumb">post_breadcrumb</a> (displayimage.php)</li>
 	<li><a href="#plugin_hooks_thumbnails_post_breadcrumb">post_breadcrumb</a> (thumbnails.php)</li>
 	<li><a href="#plugin_hooks_profile_add_data">profile_add_data</a></li>
+	<li><a href="#plugin_hooks_register_form_create">register_form_create</a></li>
+	<li><a href="#plugin_hooks_register_form_submit">register_form_submit</a></li>
 	<li><a href="#plugin_hooks_filename_sub_menu">sub_menu</a></li>
 	<li><a href="#plugin_hooks_filename_sys_menu">sys_menu</a></li>
 	<li><a href="#plugin_hooks_filename_template_html">template_html</a></li>
