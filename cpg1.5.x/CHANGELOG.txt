@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-07-13 [D] Updated testing instructions as a preparation for the first release to the testers {GauGau}
 2009-07-10 [A] Added config option to determine resize dimension for intermediate pictures {eenemeenemuu}
 2009-07-10 [C] Added confirmation message after editing a file (thread 60096) {eenemeenemuu}
 2009-07-08 [O] Added additional information for register globals (thread ID60486) {GauGau}
@@ -45,7 +46,7 @@ Changelog
 2009-06-08 [A] Added config option to count admin views {eenemeenemuu}
 2009-06-07 [D] Translation Copyright section for the french doc {Frantz}
 2009-06-06 [D] Replaced hard-coded table row alternation in docs with JS-driven alternation {GauGau}
-2009-06-06 [A] Added functionality to allow use of editpics.php by non-admin users {thread 59414} {Aditya}
+2009-06-06 [A] Added functionality to allow use of editpics.php by non-admin users (thread 59414) {Aditya}
 2009-06-06 [C] Added new string when in upload approval mode insteas of empty album message {SaWey}
 2009-06-06 [B] Fixed IM being selected in installation when it's not working {SaWey}
 2009-06-05 [C] Fixed bad displaying admin menu buttons on thumnails view with longer names as in english {Frantz}
