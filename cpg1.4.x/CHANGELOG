@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-07-13 [O] Updated Italian language file (user contribution) {GauGau}
 2009-07-13 [M] Updated version count from cpg1.4.25 to cpg1.4.26 in subversion repository as a preparation for a possible future release {GauGau}
 2009-06-22 [M] Release of cpg1.4.25 {GauGau}
 2009-06-15 [B] Additional PHP 5.3 compat fix {Nibbler}
