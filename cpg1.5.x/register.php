@@ -126,14 +126,27 @@ EOT;
         array('password', 'password', $icon_array['password'] . $lang_register_php['password'], 25),
         array('password', 'password_verification', $icon_array['password'] . $lang_register_php['password_again'], 25),
         array('input', 'email', $icon_array['email'] . $lang_register_php['email'], 255),
-        array('label', $lang_register_php['optional_info']),
-        array('input', 'user_profile1', $icon_array['blank'] . $CONFIG['user_profile1_name'], 255),
-        array('input', 'user_profile2', $icon_array['blank'] . $CONFIG['user_profile2_name'], 255),
-        array('input', 'user_profile3', $icon_array['blank'] . $CONFIG['user_profile3_name'], 255),
-        array('input', 'user_profile4', $icon_array['blank'] . $CONFIG['user_profile4_name'], 255),
-        array('input', 'user_profile5', $icon_array['blank'] . $CONFIG['user_profile5_name'], 255),
-        array('textarea', 'user_profile6', $icon_array['blank'] . $CONFIG['user_profile6_name'], 255)
+        array('label', $lang_register_php['optional_info'])
     );
+    if ($CONFIG['user_profile1_name'] != '') {
+        $form_data[] = array('input', 'user_profile1', $icon_array['blank'] . $CONFIG['user_profile1_name'], 255);
+    }
+    if ($CONFIG['user_profile2_name'] != '') {
+        $form_data[] = array('input', 'user_profile2', $icon_array['blank'] . $CONFIG['user_profile2_name'], 255);
+    }
+    if ($CONFIG['user_profile3_name'] != '') {
+        $form_data[] = array('input', 'user_profile3', $icon_array['blank'] . $CONFIG['user_profile3_name'], 255);
+    }
+    if ($CONFIG['user_profile4_name'] != '') {
+        $form_data[] = array('input', 'user_profile4', $icon_array['blank'] . $CONFIG['user_profile4_name'], 255);
+    }
+    if ($CONFIG['user_profile5_name'] != '') {
+        $form_data[] = array('input', 'user_profile5', $icon_array['blank'] . $CONFIG['user_profile5_name'], 255);
+    }
+    if ($CONFIG['user_profile6_name'] != '') {
+        $form_data[] = array('textarea', 'user_profile6', $icon_array['blank'] . $CONFIG['user_profile6_name'], 255);
+    }
+
 	$form_data = CPGPluginAPI::filter('register_form_create', $form_data);
     
     if ($CONFIG['user_registration_disclaimer'] == 2) {
@@ -374,9 +387,7 @@ EOT;
     </tr>
     <tr>
         <td colspan="2" class="tablef">
-            <div class="cpg_message_validation">
                 <ul>$errors</ul>
-            </div>
         </td>
     </tr>
 
@@ -573,8 +584,9 @@ function check_user_info(&$error)
 
     $sql = "INSERT INTO {$CONFIG['TABLE_USERS']} (user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_language) VALUES (NOW(), '$active', '$act_key', '$user_name', '$encpassword', '$email', '$profile1', '$profile2', '$profile3', '$profile4', '$profile5', '$profile6', '$user_language')";
     $result = cpg_db_query($sql);
+    $created_user_id = mysql_insert_id();
 	
-	CPGPluginAPI::filter('register_form_submit',null);
+	CPGPluginAPI::filter('register_form_submit', $created_user_id, $user_name, $email);
 
     if ($CONFIG['log_mode']) {
         log_write('New user "$user_name" created on ' . date("F j, Y, g:i a"), CPG_ACCESS_LOG);
