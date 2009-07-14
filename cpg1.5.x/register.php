@@ -584,9 +584,12 @@ function check_user_info(&$error)
 
     $sql = "INSERT INTO {$CONFIG['TABLE_USERS']} (user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_language) VALUES (NOW(), '$active', '$act_key', '$user_name', '$encpassword', '$email', '$profile1', '$profile2', '$profile3', '$profile4', '$profile5', '$profile6', '$user_language')";
     $result = cpg_db_query($sql);
-    $created_user_id = mysql_insert_id();
-	
-	CPGPluginAPI::filter('register_form_submit', $created_user_id, $user_name, $email);
+    $user_array = array();
+    $user_array['user_id'] = mysql_insert_id();
+    $user_array['user_name'] = $user_name;
+    $user_array['user_email'] = $email;
+    $user_array['user_active'] = $active;
+	CPGPluginAPI::filter('register_form_submit', $user_array);
 
     if ($CONFIG['log_mode']) {
         log_write('New user "$user_name" created on ' . date("F j, Y, g:i a"), CPG_ACCESS_LOG);
@@ -718,6 +721,7 @@ if ($superCage->get->keyExists('activate')) {
 
     $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET user_active = 'YES' WHERE user_actkey = '$act_key' LIMIT 1";
     $result = cpg_db_query($sql);
+    CPGPluginAPI::filter('register_user_activation', $act_key);
 
     //after admin approves, user receives email notification
     if ($CONFIG['admin_activation'] == 1) {
