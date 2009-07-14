@@ -33,6 +33,7 @@ $icon_array = array(
     'ok'       => cpg_fetch_icon('ok', 0),
     'password' => cpg_fetch_icon('key_enter', 0),
 	'delete' => cpg_fetch_icon('delete', 0),
+	'edit' => cpg_fetch_icon('edit', 2),
 );
 
 function cpgUserPicCount($uid)
@@ -141,15 +142,27 @@ $edit_profile_form_param = array(
     array('text', 'status', cpg_fetch_icon('online', 2) . $lang_usermgr_php['status']),
     array('text', 'reg_date', cpg_fetch_icon('calendar', 2) . $lang_register_php['reg_date']),
     array('text', 'group', cpg_fetch_icon('groups_mgr', 2) . $lang_register_php['group']),
-    array('text', 'email', cpg_fetch_icon('mail', 2) . $lang_register_php['email'],255),
-    array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
-    array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
-    array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
-    array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
-    array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
-    array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255),
-    array('text', 'disk_usage', cpg_fetch_icon('disk_usage', 2) . $lang_register_php['disk_usage']),
+    array('text', 'email', cpg_fetch_icon('mail', 2) . $lang_register_php['email'],255)
 );
+if ($CONFIG['user_profile1_name'] != '') {
+    $edit_profile_form_param[] = array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255);
+}
+if ($CONFIG['user_profile2_name'] != '') {
+    $edit_profile_form_param[] = array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255);
+}
+if ($CONFIG['user_profile3_name'] != '') {
+    $edit_profile_form_param[] = array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255);
+}
+if ($CONFIG['user_profile4_name'] != '') {
+    $edit_profile_form_param[] = array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255);
+}
+if ($CONFIG['user_profile5_name'] != '') {
+    $edit_profile_form_param[] = array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255);
+}
+if ($CONFIG['user_profile6_name'] != '') {
+    $edit_profile_form_param[] = array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255);
+}
+$edit_profile_form_param[] = array('text', 'disk_usage', cpg_fetch_icon('disk_usage', 2) . $lang_register_php['disk_usage']);
 
 if ($CONFIG['allow_email_change'] == 1 || GALLERY_ADMIN_MODE) {
     $edit_profile_form_param[3][0] = 'input';
@@ -159,17 +172,29 @@ $display_profile_form_param = array(
     array('text', 'username', $lang_register_php['username']),
     array('text', 'status', $lang_usermgr_php['status']),
     array('text', 'reg_date', $lang_register_php['reg_date']),
-    array('text', 'group', $lang_register_php['group']),
-    array('text', 'user_profile1', $CONFIG['user_profile1_name']),
-    array('text', 'user_profile2', $CONFIG['user_profile2_name']),
-    array('text', 'user_profile3', $CONFIG['user_profile3_name']),
-    array('text', 'user_profile4', $CONFIG['user_profile4_name']),
-    array('text', 'user_profile5', $CONFIG['user_profile5_name']),
-    array('text', 'user_profile6', $CONFIG['user_profile6_name']),
-    array('text', 'pic_count', $lang_register_php['pic_count']),
-    array('thumb', 'user_thumb'),
-    array('text', 'admin_link', ''),
+    array('text', 'group', $lang_register_php['group'])
 );
+if ($CONFIG['user_profile1_name'] != '') {
+    $display_profile_form_param[] = array('text', 'user_profile1', $CONFIG['user_profile1_name']);
+}
+if ($CONFIG['user_profile2_name'] != '') {
+    $display_profile_form_param[] = array('text', 'user_profile2', $CONFIG['user_profile2_name']);
+}
+if ($CONFIG['user_profile3_name'] != '') {
+    $display_profile_form_param[] = array('text', 'user_profile3', $CONFIG['user_profile3_name']);
+}
+if ($CONFIG['user_profile4_name'] != '') {
+    $display_profile_form_param[] = array('text', 'user_profile4', $CONFIG['user_profile4_name']);
+}
+if ($CONFIG['user_profile5_name'] != '') {
+    $display_profile_form_param[] = array('text', 'user_profile5', $CONFIG['user_profile5_name']);
+}
+if ($CONFIG['user_profile6_name'] != '') {
+    $display_profile_form_param[] = array('text', 'user_profile6', $CONFIG['user_profile6_name']);
+}
+$display_profile_form_param[] = array('text', 'pic_count', $lang_register_php['pic_count']);
+$display_profile_form_param[] = array('thumb', 'user_thumb');
+$display_profile_form_param[] = array('text', 'admin_link', '');
 
 $change_password_form_param = array(
     array('password', 'current_pass', $lang_register_php['current_pass'], 25),
@@ -197,7 +222,7 @@ function make_form($form_param, $form_data)
         
             echo <<<EOT
     <tr>
-        <td colspan="2" class="{$cellStyle}">
+        <td colspan="2" class="{$cellStyle}" valign="top">
             <strong>{$element[1]}</strong>
         </td>
     </tr>
@@ -213,10 +238,10 @@ EOT;
             
             echo <<<EOT
     <tr>
-        <td width="40%" class="{$cellStyle}" height="25">
+        <td width="40%" class="{$cellStyle}" height="25" valign="top">
             {$element[2]}
         </td>
-        <td width="60%" class="{$cellStyle}">
+        <td width="60%" class="{$cellStyle}" valign="top" valign="top">
             {$form_data[$element[1]]}
         </td>
     </tr>
@@ -233,7 +258,7 @@ EOT;
             
                 echo <<< EOT
     <tr>
-        <td width="40%" class="{$cellStyle}"  height="25">
+        <td width="40%" class="{$cellStyle}" height="25" valign="top">
             {$element[2]}
         </td>
         <td width="60%" class="{$cellStyle}" valign="top">
@@ -255,7 +280,7 @@ EOT;
             
                 echo <<< EOT
         <tr>
-            <td width="40%" class="{$cellStyle}"  height="25">
+            <td width="40%" class="{$cellStyle}"  height="25" valign="top">
                         {$element[2]}
         </td>
         <td width="60%" class="{$cellStyle}" valign="top">
@@ -273,7 +298,7 @@ EOT;
         
             echo <<< EOT
     <tr>
-        <td width="40%" class="{$cellStyle}">
+        <td width="40%" class="{$cellStyle}" valign="top">
             {$element[2]}
         </td>
         <td width="60%" class="{$cellStyle}" valign="top">
@@ -292,7 +317,7 @@ EOT;
             
                 echo <<< EOT
     <tr>
-        <td valign="top" colspan="2" class="{$cellStyle}" align="center">
+        <td valign="top" colspan="2" class="{$cellStyle}" align="center" valign="top">
             <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                     <td align="center">
@@ -464,7 +489,7 @@ case 'edit_profile' :
 
         mysql_free_result($result);
         
-        $group_list = '<br /><i>(' . substr($group_list, 0, -2) . ')</i>';
+        $group_list = '<br /><em>(' . substr($group_list, 0, -2) . ')</em>';
     }
     
     if ($user_data['user_active'] == 'YES') {
@@ -742,7 +767,7 @@ default:
     if ($uid == USER_ID) {
         $adminLink = '<a href="profile.php?op=edit_profile" class="admin_menu">'.$lang_register_php['edit_my_profile'].'</a>';
     } elseif (GALLERY_ADMIN_MODE) {
-        $adminLink = '<a href="usermgr.php?op=edit&user_id='.$uid.'&form_token='.$form_token.'&timestamp='.$timestamp.'" class="admin_menu">'.sprintf($lang_register_php['edit_xs_profile'], $user_data['user_name']).'</a>';
+        $adminLink = '<a href="usermgr.php?op=edit&user_id='.$uid.'&form_token='.$form_token.'&timestamp='.$timestamp.'" class="admin_menu">' . $icon_array['edit'] . sprintf($lang_register_php['edit_xs_profile'], $user_data['user_name']).'</a>';
     } else {
         $adminLink = '';
     }

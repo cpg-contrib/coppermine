@@ -726,14 +726,27 @@ function edit_user($user_id)
         array('password', 'user_password', cpg_fetch_icon('key_enter', 2) . $lang_usermgr_php['password'], 25),
         array('yesno', 'user_active', cpg_fetch_icon('online', 2) . $lang_usermgr_php['user_active']),
         array('group_list', 'user_group', cpg_fetch_icon('groups_mgr', 2) . $lang_usermgr_php['user_group']),
-        array('input', 'user_email', cpg_fetch_icon('mail', 2) . $lang_usermgr_php['user_email'], 255),
-        array('input', 'user_profile1', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile1_name'], 255),
-        array('input', 'user_profile2', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile2_name'], 255),
-        array('input', 'user_profile3', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile3_name'], 255),
-        array('input', 'user_profile4', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile4_name'], 255),
-        array('input', 'user_profile5', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile5_name'], 255),
-        array('textarea', 'user_profile6', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile6_name'], 255)
+        array('input', 'user_email', cpg_fetch_icon('mail', 2) . $lang_usermgr_php['user_email'], 255)
         );
+    if ($CONFIG['user_profile1_name'] != '') {
+        $form_data[] = array('input', 'user_profile1', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile1_name'], 255);
+    }
+    if ($CONFIG['user_profile2_name'] != '') {
+        $form_data[] = array('input', 'user_profile2', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile2_name'], 255);
+    }
+    if ($CONFIG['user_profile3_name'] != '') {
+        $form_data[] = array('input', 'user_profile3', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile3_name'], 255);
+    }
+    if ($CONFIG['user_profile4_name'] != '') {
+        $form_data[] = array('input', 'user_profile4', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile4_name'], 255);
+    }
+    if ($CONFIG['user_profile5_name'] != '') {
+        $form_data[] = array('input', 'user_profile5', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile5_name'], 255);
+    }
+    if ($CONFIG['user_profile6_name'] != '') {
+        $form_data[] = array('textarea', 'user_profile6', cpg_fetch_icon('blank', 2) . $CONFIG['user_profile6_name'], 255);
+    }
+    //$form_data = CPGPluginAPI::filter('usermgr_form_list', array(0 => $form_data, 1 => $user_id);
     list($timestamp, $form_token) = getFormToken();
 
     $sql = "SELECT * FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$user_id'";
@@ -787,7 +800,7 @@ EOT;
                 $user_data[$element[1]] = $user_data[$element[1]];
                 if ($element[2]) echo <<<EOT
             <tr>
-                <td width="40%" class="{$row_style_class}">
+                <td width="40%" class="{$row_style_class}" valign="top">
                             {$element[2]}
             </td>
             <td width="60%" class="{$row_style_class}" valign="top">
@@ -805,7 +818,7 @@ EOT;
     
                if ($element[2]) echo <<<EOT
             <tr>
-                <td width="40%" class="{$row_style_class}"  height="25">
+                <td width="40%" class="{$row_style_class}" height="25" valign="top">
                             {$element[2]}
             </td>
             <td width="60%" class="{$row_style_class}" valign="top">
@@ -820,7 +833,7 @@ EOT;
             case 'password' :
                 echo <<<EOT
             <tr>
-                <td width="40%" class="{$row_style_class}">
+                <td width="40%" class="{$row_style_class}" valign="top">
                             {$element[2]}
             </td>
             <td width="60%" class="{$row_style_class}" valign="top">
@@ -839,10 +852,10 @@ EOT;
                 //$no_selected = ($value == 'NO') ? 'selected' : '';
                 echo <<< EOT
             <tr>
-                <td class="{$row_style_class}">
+                <td class="{$row_style_class}" valign="top">
                             {$element[2]}
             </td>
-                    <td class="{$row_style_class}">
+                    <td class="{$row_style_class}" valign="top">
                         <input type="radio" id="yes" name="{$element[1]}" value="YES" $yes_selected /><label for="yes" class="clickable_option">{$lang_common['yes']}</label>
                         &nbsp;&nbsp;
                         <input type="radio" id="no" name="{$element[1]}" value="NO" $no_selected /><label for="no" class="clickable_option">{$lang_common['no']}</label>
@@ -863,7 +876,7 @@ EOT;
     
                 echo <<<EOT
             <tr>
-                <td class="{$row_style_class}">
+                <td class="{$row_style_class}" valign="top">
                             {$element[2]}
             </td>
             <td class="{$row_style_class}" valign="top">
@@ -900,10 +913,10 @@ EOT;
             case 'checkbox':
                 echo <<< EOT
             <tr>
-                <td class="{$row_style_class}">
+                <td class="{$row_style_class}" valign="top">
                             <label for="send_login_data">{$element[2]}</label>
             </td>
-                    <td class="{$row_style_class}">
+                    <td class="{$row_style_class} valign="top"">
                         <input type="checkbox" id="send_login_data" name="{$element[1]}" value="YES" />
                     </td>
             </tr>
