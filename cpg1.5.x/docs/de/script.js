@@ -417,7 +417,7 @@ doc_toc += '      <li><a href="dev_superglobals.htm" class="en">Superglobals ber
 doc_toc += '      <li><a href="dev_javascript.htm" class="en">JavaScript in Coppermine</a></li>\n';
 doc_toc += '      <li><a href="dev_plugins.htm" class="en">Plugins für Coppermine schreiben</a>\n';
 doc_toc += '        <ul>\n';
-doc_toc += '          <li><a href="dev_plugin_api.htm" class="en">Plugin-Tutorial, API-Beschreibung, Globale Coppermine-Variablen</a>\n';
+doc_toc += '          <li><a href="dev_plugin_api.htm" class="en">Plugin-Tutorial, API-Beschreibung</a>\n';
 doc_toc += '            <ul>\n';
 doc_toc += '              <li><a href="dev_plugin_api.htm#plugin_api_overview" class="en">Plugin-API von Coppermine: ein Überblick</a>\n';
 doc_toc += '                <ul class="level5">\n';
