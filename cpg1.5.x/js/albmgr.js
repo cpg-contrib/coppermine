@@ -41,7 +41,7 @@ var Sort = {
         var form_token      = js_vars.form_token;
         var timestamp       = js_vars.timestamp;
         // get the name of the edited album value
-        var editedName = trim($("#edit-name").val());
+        var editedName = $.trim($("#edit-name").val());
         // check whether null and event to edit the album
         if(editedName.length > 0){
             $("td#edit-box").hide();
@@ -75,7 +75,7 @@ var Sort = {
         
     },
     addAlbum: function(cat){
-        var addedName = trim($("#add-name").val());
+        var addedName = $.trim($("#add-name").val());
         var form_token = js_vars.form_token;
         var timestamp = js_vars.timestamp;
         
