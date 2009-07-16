@@ -9,5 +9,5 @@ $CONFIG['dbname'] =                         'coppermine';        // Your mysql d
 
 
 // MySQL TABLE NAMES PREFIX
-$CONFIG['TABLE_PREFIX'] =                'cpg132_';
+$CONFIG['TABLE_PREFIX'] =                'cpg15x_';
 ?>
