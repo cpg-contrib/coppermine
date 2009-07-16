@@ -54,6 +54,23 @@
 <a name="backup_file_incremental"></a><h4>Incremental File Backup<a href="#backup_file_incremental" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>There are nifty tools available from third parties that will perform an incremental backup by FTP, i.e. they will only backup the files that are new or have changed since the last time the backup was performed. This will reduce the time needed to perform a backup dramatically, but on the other hand will make restoring after a disaster a bit trickier - you should only use that option if you know what you're doing.</p> 
 
+<a name="backup_database"></a><h3>Database Backup<a href="#backup_database" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Coppermine creates during initial install several database tables that are being used to store the content:</p>
+<ul>
+	<li>The pictures table stores the path on file system level to the content of your gallery (i.e. the images)</li>
+	<li>The config table stores your configuration</li>
+	<li>The users table stores data about your registered users (including the admin account)</li>
+	<li>...</li>
+</ul>
+<p>There are many other tables that store specific aspects of the content of your gallery - for a complete list of all tables and the structure within them, take a look at the <a href="dev_database.htm#db_intro">database schema</a>. All relevant tables of a coppermine gallery have the same prefix - the one you chose during initial install. To perform a database backup, make sure to backup <strong>all</strong> coppermine tables, i.e. all that have the prefix you chose during install. If you're not sure about the prefix, download the file include/config.inc.php with your FTP app to your client and then edit/view it using a plain text editor (notepad.exe is fine): the prefix should be named there. By default, the prefix name is <tt class="code">cpg15x_</tt>.</p>
+
+<a name="backup_database_tools"></a><h4>Database Backup Tools<a href="#backup_database_tools" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>Coppermine does <strong>not</strong> come with a database backup tool - you need to find one by yourself and use that. However, there is a list of tools the dev team recommends:</p>
+<ul>
+	<li><a href="dev_tools.htm#dev_tools_phpmyadmin">phpMyAdmin</a></li>
+	<li><a href="dev_tools.htm#dev_tools_mysqldumper">mySqlDumper</a></li>
+</ul>
+
 <p>to be continued...</p>
 
 <hr />
