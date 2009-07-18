@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Exporting - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<title>Backup &amp; Export - Coppermine Photo Gallery - Documentation &amp; Manual</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="language" content="en" />
 <meta name="copyright" content="Coppermine dev team" />
@@ -32,10 +32,107 @@
 <a href="toc.htm">Table of Contents</a>
 </div>
 
-<a name="export"></a><h1>Exporting<a href="#export" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>A new feature has been added in cpg1.5.x that will allow the admin to export the content of albums as HTML pages or as  plain images. To access the feature, choose &quot;Export&quot; from the admin menu or manually point your browser to <tt class="code">http://yoursite.tld/your_coppermine_folder/export.php</tt></p>
+<a name="backup_export"></a><h1>Backup &amp; Export<a href="#export" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>This page is meant to explain how to back up a coppermine-driven gallery and how to use the <a href="#export">export</a> tool. Those two things must not be mixed up: they are entirely different things, although the use of both tools overlap - that's why the instuctions reside on one page.</p>
 
-<a name="export_usage"></a><h2>Usage<a href="#export_usage" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="backup_export_decision"></a><h2>Decide for one method<a href="#backup_export_decision" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The decision wether you need to back up or to export depends on what you want to do with the data afterwards: backups can be used to restore your gallery somewhere in case something goes wrong (i.e. server hard-drive crash, hacking, own mistake) or if you want to move (move servers, move to another webhost, use another application). Exporting on the other hand is mainly used to get content that is currently only stored in your gallery somewhere else (e.g. your local PC) without all the clutter and additional information that is needed to maintain the gallery, i.e. if you only want the pics (or whatever content you store in your gallery).</p>
+
+<a name="backup"></a><h2>Backup<a href="#backup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Coppermine stores content both on file system level (i.e. on your webspace - that's the hard drive of your webserver) as well as on database level. Think of the database as a giant array of tables that are connected one with the other. Although the database is (technically) being stored in files as well, you can't just backup the file that represents the database. This is being caused by the way that a database works. Additionally, you usually don't have access to the file that represents the database (but don't start the wicth hunt and try to find it - you wouldn't be able to use it anyway). That's why the backup process needs to be two-fold: you need to back up your files and you need to back up your database. Only backing up one of them without the other will result in an incomplete backup that hardly can be usefull.</p>
+
+<a name="backup_file"></a><h3>File Backup<a href="#backup_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>The backup on file system level is pretty straightforward and you already should be familiar with the technology, assuming that you have installed coppermine in the way the coppermine dev team recommends: using your favorite <a href="dev_tools.htm#dev_tools_ftp_client">FTP application</a>. Do not trust buggy tools integrated into <abbr title="What You See Is What You Get">WYSIWYG</abbr> editors. Do not trust wannabe &quot;web-FTP&quot; clients: you need the real thing - a genuine FTP client. If you don't have one already, get one first before continuing.</p>
+
+<a name="backup_file_complete"></a><h4>Complete File Backup<a href="#backup_file_complete" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>The term "complete file backup" means in this case "a file backup of the entire coppermine gallery". It's advisable to perform this at least once, so you have a full backup for disaster recovery.</p>
+<p>To actually perform such a backup, create a folder on your local hard drive first. Of course you need to make sure in advance that there is enough room left on the storage device you use (your internal or external hard drive in most cases) to hold the entire gallery once the backup is done. If you're short on disk space on your client, you could burn the contents of your backup to a CD or DVD once your backup is complete and then free the precious hard drive space once you have copied everything to CD/DVD.</p>
+
+<a name="backup_file_partial"></a><h4>Partial File Backup<a href="#backup_file_partial" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>If you perform frequent backups you don't have to make a complete file backup each time, as the coppermine core code will (i.e. all the files that make coppermine work on the server) will not change from one backup to the other. That's why you can then perform a partial back, i.e. only the contents of the albums folder of coppermine that corresponds to <tt class="code">http://example.com/your_coppermine_folder/albums/</tt>. If you need to perform a restore later, you will have to restore your complete backup first and then restore your partial backup that was created later and therfor is more accurate and recent.</p>
+
+<a name="backup_file_incremental"></a><h4>Incremental File Backup<a href="#backup_file_incremental" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>There are nifty tools available from third parties that will perform an incremental backup by FTP, i.e. they will only backup the files that are new or have changed since the last time the backup was performed. This will reduce the time needed to perform a backup dramatically, but on the other hand will make restoring after a disaster a bit trickier - you should only use that option if you know what you're doing.</p> 
+
+<a name="backup_database"></a><h3>Database Backup<a href="#backup_database" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Coppermine creates during initial install several database tables that are being used to store the content:</p>
+<ul>
+	<li>The pictures table stores the path on file system level to the content of your gallery (i.e. the images)</li>
+	<li>The config table stores your configuration</li>
+	<li>The users table stores data about your registered users (including the admin account)</li>
+	<li>...</li>
+</ul>
+<p>There are many other tables that store specific aspects of the content of your gallery - for a complete list of all tables and the structure within them, take a look at the <a href="dev_database.htm#db_intro">database schema</a>. All relevant tables of a coppermine gallery have the same prefix - the one you chose during initial install. To perform a database backup, make sure to backup <strong>all</strong> coppermine tables, i.e. all that have the prefix you chose during install. If you're not sure about the prefix, download the file include/config.inc.php with your FTP app to your client and then edit/view it using a plain text editor (notepad.exe is fine): the prefix should be named there. By default, the prefix name is <tt class="code">cpg15x_</tt>.</p>
+
+<a name="backup_database_what"></a><h4>Database Backup: what needs to be backed up?<a href="#backup_database_what" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>The wording may differ, depending on the tool and it's version you use to perform the backup, you you need to know what exactly to backup.</p>
+<p>A full database backup contains both the <em>structure</em> of the database table definitions (i.e. the "instructions" needed to create the empty tables if they have been lost or need to be created on another server) as well as the data (i.e. the actual table content).</p>
+<p>The tables coppermine consists of are not equally important though:</p>
+<ul>
+    <li>The table <a href="dev_database.htm#db_hit_stats">cpg15x_hit_stats</a> can become quite large if you have enabled the feature &quot;<a href="configuration.htm#admin_logging_hitdetails">Keep detailed hit statistics</a>&quot;. Subsequently, the backup can become quite large if the contents of that table is being taken into accound during frequent backups. Escepcially when moving a coppermine install from one server to the other it might be a good idea to skip the detailed hits statistics and therefor not backup the contents of this particular table.</li>
+    <li>The table <a href="dev_database.htm#db_sessions">cpg15x_sessions</a> tracks sessions for logged in and anonymous users. It gets populated automatically if it is empty, so you don't necessarily to back it up.</li>
+    <li>The table <a href="dev_database.htm#db_temp_messages">cpg15x_temp_messages</a> is used to store messages from one page to the other - the content is very short-lived and will be purged frequently, so the table doesn't need to be preserved when performing frquent backups.</li>
+</ul>
+<p>Keep in mind though that coppermine will complain (i.e. there will be an error message) if a table is <strong>missing</strong>, so you need to create the above-mentioned tables in the first place, but they can be empty.</p>
+
+<a name="backup_database_tools"></a><h4>Database Backup Tools<a href="#backup_database_tools" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>Coppermine does <strong>not</strong> come with a database backup tool - you need to find one by yourself and use that. However, there is a list of tools the dev team recommends:</p>
+<ul>
+	<li>
+	    <a name="backup_database_tools_phpmyadmin"></a><h5>phpMyAdmin<a href="#backup_database_tools_phpmyadmin" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+	    <div class="cpg_message_info">Open-source web application for database management that can be downloaded (for free) and installed on your webserver (easy installation). It comes with multiple language support. Your webhost may even provide this tool.<br />
+	    [<a href="dev_tools.htm#dev_tools_phpmyadmin">more</a>]
+	    </div>
+	    <p>Please note that the coppermine dev team can not support you on the usage of phpMyAdmin - so here's just a <em>short summary</em> that is <strong>not</strong> meant to be a replacement for the documentation for phpMyAdmin:</p>
+	    <ul>
+	        <li>Point your browser to the URL where your copy of phpMyAdmin resides (assuming that you have successfully installed phpMyAdmin on your webspace or that your webhost is providing phpMyAdmin for you)</li>
+	        <li>If applicable (i.e. if the security settings of phpMyAdmin are configured accordingly), provide your phpMyAdmin login data if you're prompted for it</li>
+	        <li>If applicable (i.e. if you have access to <em>several</em> databases), select the database where your coppermine database tables resides in (the database you have selected when installing coppermine) from the top left frame in the phpMyAdmin interface</li>
+	        <li>In the right phpMyAdmin frame at the very top, select &quot;Export&quot; from the navigation</li>
+	        <li>On the screen &quot;View dump (schema) of database&quot;, select the tables you want to backup (by default, all tables within the selected database are selected) from the box labelled &quot;Export&quot;. If you're not sure, back up all coppermine tables, i.e. all tables that have the same table prefix that you specified when installing coppermine in the first place</li>
+	        <li>In the &quot;Export&quot; box, leave the radio button &quot;SQL&quot; selected that is already selected by default</li>
+	        <li>Make sure that the checkbox &quot;Structure&quot; is ticked</li>
+	        <li>Do <strong>not</strong> tick the checkbox &quot;Drop table&quot; - dropping means &quot;<em>deleting the table after the backup is complete</em>&quot;, which is something you almost certainly would not want to happen, as coppermine would stop working immediately and you'd have to perform a restore.</li>
+	        <li>Make sure that the checkbox &quot;Data&quot; is ticked</li>
+	        <li>It's advisable (although not mandatory) to tick the checkbox &quot;Complete inserts&quot;</li>
+	        <li>It's advisable (although not mandatory) to tick the checkbox &quot;Extended inserts&quot;</li>
+	        <li>It's advisable to tick the checkbox &quot;Save as file&quot; that will give you a file to download instead of just getting the output of the dump displayed on screen that you would then have to copy &amp; paste into a plain text file.</li>
+	        <li>If you're running into time-outs while creating the database dump, try enabling compression for the file (you can of course only use the compression format that is available on your webserver)</li>
+	    </ul>
+	    <p class="cpg_message_warning">If you're not sure, read the documentation that comes with phpMyAdmin and google for backup tutorials on the internet; the coppermine support board is <strong>not</strong> the correct place to ask for support on phpMyAdmin usage.</p>
+	</li>
+	<li>
+	    <a name="backup_database_tools_mysqldumper"></a><h5>mySqlDumper<a href="#backup_database_tools_mysqldumper" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+	    <div class="cpg_message_info">MySqlDumper is a web app that can be downloaded and installed on your webserver. It is meant to be used to create backups of your mysql databse (and eventually restore those backups). Particularly helpful if you don't have shell access to your webserver and regular mySQL backups fail due to time-outs.<br />
+	    [<a href="dev_tools.htm#dev_tools_mysqldumper">more</a>]
+	    </div>
+	</li>
+	<li>
+	    <a name="backup_database_tools_shell_mysqldump"></a><h5>mysqldump<a href="#backup_database_tools_shell_mysqldump" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+	    The tool mysqdump must not be confused with mySqlDumper or vice versa: mysqldump is a script that belongs to the mysql resources themselves that only applies (i.e. that you can only use) if you have shell access (which is rarely the case for most, webhosted users).
+	    [<a href="http://dev.mysql.com/doc/refman/5.0/en/mysqldump.html" rel="external" class="external">more</a>]
+	</li>
+	<li>
+	    <a name="backup_database_tools_shell_mysqlhotcopy"></a><h5>mysqlhotcopy<a href="#backup_database_tools_shell_mysqlhotcopy" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+	    The Perl script mysqlhotcopy belongs to the mysql resources. It is the fastest way to make a backup of the database or single tables, but it can be run only on the same machine where the database directories are located. mysqlhotcopy works only for backing up MyISAM and ARCHIVE tables. It runs on Unix and NetWare.
+	    [<a href="http://dev.mysql.com/doc/refman/5.0/en/mysqlhotcopy.html" rel="external" class="external">more</a>]
+	</li>
+</ul>
+
+<a name="backup_database_after"></a><h4>After the database backup<a href="#backup_database_after" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>After performing the manual database backup it's important to make sure that the dump you just created works as expected. Therefore, you should really try to open the dump file first and see if it not broken. Ideally, you should perform a restore on a testbed to make sure everything works as expected.</p>
+<p>There have been many users already who relied on their backup without ever having tested it once: if you never test your backup strategy, you will never know if it will enable you to perform the restore in case of a disaster. Since there are many things that can go wrong, it's really recommended to test your backup.</p>
+
+<hr />
+
+<a name="export"></a><h2>Exporting<a href="#export" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>A new feature has been added in cpg1.5.x that will allow the admin to export the content of albums as HTML pages or as  plain images. To access the feature, choose &quot;Export&quot; from the admin menu or manually point your browser to <tt class="code">http://yoursite.tld/your_coppermine_folder/export.php</tt></p>
+<p>The feature is admin-only: regular coppermine users can not access it: they will see an error message if they try.</p>
+
+<a name="export_scope"></a><h3>Scope<a href="#export_scope" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>The export feature is <strong>not</strong> a backup tool to enable you to restore your gallery if something breaks. Instead, it is basically meant as a tool for the admin to easily export content uploaded by others (i.e. your users).</p>
+
+<a name="export_usage"></a><h3>Usage<a href="#export_usage" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Using the feature is pretty straight-forward:</p>
 <ul>
 	<li>Choose the export type. Possible options are HTML-embedded files or just the images</li>
@@ -43,10 +140,12 @@
 	<li>Submit the form by hitting &quot;go&quot;</li>
 </ul>
 
-<a name="export_preparations"></a><h2>Preparations<a href="#export_preparations" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="export_preparations"></a><h3>Preparations<a href="#export_preparations" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The third option provides you with an input field to specify the folder where your exported files are supposed to reside. You have to create this folder in advance (using your FTP application) and make sure that it is writable for the script (as suggested in the <a href="install_permissions.htm">permissions section</a> of the docs).</p>
 
 <a name="export_end"></a>
+
+
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
 		<span id="doc_last_changed">$LastChangedDate$</span>
