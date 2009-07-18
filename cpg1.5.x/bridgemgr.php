@@ -198,20 +198,6 @@ function cpg_submit_button($step, $back = 'true', $columns = '3', $next = 'true'
     $return .= '            <table border="0" cellspacing="0" cellpadding="0" width="100%"><tr>'.$LINEBREAK;
     $return .= '            <td align="left">'.$LINEBREAK;
     $return .= '            <input type="hidden" name="hide_unused_fields" id="hide_unused_fields" value="1" class="checkbox" '.$checked.' onclick="toggleUnusedFields(this);" />'.$LINEBREAK;
-    $return .= '            <!--<label for="hide_unused_fields" class="clickable_option">'.$LINEBREAK;
-    $return .= '            <span class="explanation">'.$LINEBREAK;
-    $return .= '                '.$lang_bridgemgr_php['hide_unused_fields'].$LINEBREAK;
-    $return .= '            </span>'.$LINEBREAK;
-    $return .= '            </label>-->&nbsp;'.$LINEBREAK;
-    $return .= '            <script type="text/javascript">';
-    $return .= '            <!--'.$LINEBREAK;
-    $return .= '            //function toggleUnusedFields(el_name) {'.$LINEBREAK;
-    $return .= '            //var elems = el_name.getElementsById("hide_row");'.$LINEBREAK;
-    $return .= '            '.$LINEBREAK;
-    $return .= '            '.$LINEBREAK;
-    $return .= '            }'.$LINEBREAK;
-    $return .= '            -->'.$LINEBREAK;
-    $return .= '            </script>'.$LINEBREAK;
     $return .= '        </td>'.$LINEBREAK;
     $return .= '        <td align="right">'.$LINEBREAK;
     if ($back == 'true') {
@@ -353,11 +339,11 @@ if ($superCage->post->keyExists('use_post_based_groups')) {
 //print_r($posted_var); // uncomment to see the array of post vars
 
 // initialize vars
-$step = $posted_var['step'];
-if (!$step) {
+if (!empty($posted_var['step'])) {
+    $step = $posted_var['step'];
+} else {
     $step = 'choose_bbs';
 }
-
 
 $next_step = array( // this defines the order of steps
   'choose_bbs' => 'settings_path',
@@ -370,11 +356,6 @@ $previous_step = array_flip($next_step);
 
 
 pageheader($lang_bridgemgr_php['title']);
-echo <<<EOT
-<style type="text/css">
-.explanation {font-size: 80%;}
-</style>
-EOT;
 
 // print 'Current step:'.$step.', previous step:'.$previous_step[$step].', next step:'.$next_step[$step]; // debug output
 
@@ -413,11 +394,10 @@ $BRIDGE = cpg_get_bridge_db_values();
 print '<form name="'.$step.'" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post">';
 //print '<input type="hidden" name="hide_unused_fields" value="1" />';
 starttable(-1, cpg_fetch_icon('bridge_mgr', 2) . $lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['choose_bbs_app'].'&nbsp;'.cpg_display_help('f=bridging.htm&amp;as=bridge_manager_app_start&amp;ae=bridge_manager_app_end', '800', '450'),2);
-$checked[$BRIDGE['short_name']] = 'checked="checked"';
 foreach($default_bridge_data as $key => $value) {
     print '<tr>'.$LINEBREAK;
     print '    <td class="tableb">'.$LINEBREAK;
-    print '        <input type="radio" name="short_name" id="'.$key.'" class="radio" value="'.$key.'" '.$checked[$key].' />'.$LINEBREAK;
+    print '        <input type="radio" name="short_name" id="'.$key.'" class="radio" value="'.$key.'" '. ($key == $BRIDGE['short_name'] ? 'checked="checked"' : '') . ' />'.$LINEBREAK;
     print '        <label for="'.$key.'" class="clickable_option">'.$LINEBREAK;
     print '            '.$value['full_name'].$LINEBREAK;
     print '        </label>'.$LINEBREAK;

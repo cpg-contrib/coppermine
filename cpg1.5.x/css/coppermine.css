@@ -227,3 +227,7 @@ input.spin-button.down {
 	width: 50px;
 	height: 14px;
 }
+
+.explanation {
+    font-size: 80%;
+}
