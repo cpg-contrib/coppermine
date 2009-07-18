@@ -32,9 +32,9 @@ pageheader($lang_cpg_debug_output['phpinfo']);
 
 ob_start();
 phpinfo();
-$string = ob_get_contents();
-$string = strchr($string, '</style>');
-$string = str_replace('</style>','',$string);
+preg_match('#<body>(.*)</body>#s', ob_get_clean(), $matches);
+$string = $matches[1];
+
 $string = str_replace(' class="p"','',$string);
 $string = str_replace(' class="e"','',$string);
 $string = str_replace(' class="v"','',$string);
@@ -45,7 +45,6 @@ $string = str_replace(' cellpadding="3"','',$string);
 $string = str_replace('<table border="0"','<table',$string);
 $string = str_replace('<table>','<table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra" style="table-layout:fixed;width:100%">',$string);
 $string = str_replace('<td>','<td style="text-align:left;vertical-align:top">',$string);
-ob_end_clean();
 
 print '<div align="left" style="overflow:hidden;width:100%;text-align:left;">';
 starttable('100%', cpg_fetch_icon('phpinfo', 2) . $lang_phpinfo_php['php_info'], 1);
@@ -57,10 +56,8 @@ print '</td></tr>';
 endtable();
 print '<br />';
 
-
 print $string;
 print '</div>' . $LINEBREAK;
-
 
 pagefooter();
 
