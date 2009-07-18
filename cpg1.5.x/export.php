@@ -46,7 +46,7 @@ if($superCage->post->keyExists('exportSubmit') && $superCage->post->getInt('albu
 } else if ($superCage->get->keyExists('id') && $superCage->get->keyExists('dir')) { 
   copyPhoto($superCage->get->getInt('id'),$superCage->get->getEscaped('dir'));
 } else {
-  echo '<form action="export.php" method="POST">';
+  echo '<form action="export.php" method="post">';
   
   $options = album_selection_options();
 
