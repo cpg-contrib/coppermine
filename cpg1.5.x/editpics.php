@@ -976,7 +976,6 @@ EOT;
         <!-- individual file end -->
 
 EOT;
-    flush();
 } // while
 
 mysql_free_result($result);

@@ -280,14 +280,12 @@ case 'comment':
                     pageheader($lang_display_comments['comment_rejected'], "<meta http-equiv=\"refresh\" content=\"5;url=$redirect\" />");
                     msg_box($lang_db_input_php['info'], $lang_display_comments['comment_rejected'], $lang_common['continue'], $redirect);
                     pagefooter();
-                    ob_end_flush();
                     exit;
                 } else {
                     $redirect = "displayimage.php?pid=$pid";
                     pageheader($lang_db_input_php['com_added'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
                     msg_box($lang_db_input_php['info'], $lang_db_input_php['com_added'], $lang_common['continue'], $redirect);
                     pagefooter();
-                    ob_end_flush();
                     exit;
                 }
             }

@@ -581,5 +581,4 @@ EOT;
 echo '<br />' . $LINEBREAK;
 
 pagefooter();
-ob_end_flush();
 ?>

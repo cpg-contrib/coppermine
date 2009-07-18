@@ -468,7 +468,6 @@ if (USER_ID && !USER_IS_ADMIN && !$USER['am']) { // user is logged in, but is no
     pageheader($lang_common['information'], "<META http-equiv=\"refresh\" content=\"1;url=$referer\" />");
     msg_box($lang_common['information'], 'Sending you to admin mode', $lang_common['continue'], $referer);
     pagefooter();
-    ob_end_flush();
     die();
 }
 

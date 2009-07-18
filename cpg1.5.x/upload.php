@@ -762,7 +762,7 @@ EOT;
         <input type="hidden" name="form_token" value="{$form_token}" />
         <input type="hidden" name="timestamp" value="{$timestamp}" />
 EOT;
-        // Close the table, create footers, and flush the output buffer.
+        // Close the table.
         endtable();
         echo <<< EOT
     </form>
@@ -773,7 +773,7 @@ EOT;
         form_instructions();
         // Create the upload form
         create_form_swfupload();
-        // Close the table, create footers, and flush the output buffer.
+        // Close the table.
         endtable();
     }
 
@@ -792,7 +792,6 @@ EOT;
         echo '<br />';
     }
     pagefooter();
-    ob_end_flush();
 
     // The form has been displayed, so exit the script.
     exit;

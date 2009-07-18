@@ -535,7 +535,6 @@ print <<< EOT
 EOT;
 
 pagefooter();
-ob_end_flush();
 
 function strings_from_language_file($string) {
     global $blob;

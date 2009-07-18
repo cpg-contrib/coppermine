@@ -657,6 +657,5 @@ endtable();
 print '</form>' . $LINEBREAK;
 
 pagefooter();
-ob_end_flush();
 
 ?>

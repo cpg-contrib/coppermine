@@ -92,5 +92,4 @@ if (mysql_num_rows($result)) {
 
   endtable();
 }
-ob_end_flush();
 ?>

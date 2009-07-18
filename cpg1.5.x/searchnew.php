@@ -487,7 +487,6 @@ EOT;
         echo '<td class="'.$rowStyle.'" valign="middle" align="center">'.$status.'</td>' . $LINEBREAK;
         echo '</tr>' . $LINEBREAK;
         $count++;
-        flush();
     }
 
     // Eliminate the duplicate albums from the edit_album_array
@@ -536,7 +535,6 @@ EOT;
 EOT;
     endtable();
     pagefooter();
-    ob_end_flush();
 //} elseif (isset($_GET['startdir'])) {
 } elseif ($superCage->get->keyExists('startdir') && $matches = $superCage->get->getMatched('startdir', '/^[0-9A-Za-z\/\\\\_-\s]+$/')) {
     $startdir = $matches[0];
@@ -590,7 +588,6 @@ EOT;
     echo '</div>';
     print '        </form>';
     pagefooter();
-    ob_end_flush();
 } else {
     pageheader($lang_search_new_php['page_title']);
     $help = '&nbsp;'.cpg_display_help('f=uploading.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1', '600', '450');
@@ -680,7 +677,6 @@ EOT;
     endtable();
     print '        </form>';
     pagefooter();
-    ob_end_flush();
 }
 
 ?>

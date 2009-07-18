@@ -54,7 +54,6 @@ if (mysql_num_rows($result)) {
             }
         }
         mysql_free_result($result2);
-        if ($output) { flush(); }
     }
     if ($output) { endtable(); }
     mysql_free_result($result);

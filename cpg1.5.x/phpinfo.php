@@ -63,6 +63,5 @@ print '</div>' . $LINEBREAK;
 
 
 pagefooter();
-ob_end_flush();
 
 ?>

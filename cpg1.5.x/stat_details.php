@@ -744,7 +744,6 @@ EOT;
 // output the footer depending on the mode (fullscreen vs embedded) - start
     if ($mode == 'fullscreen') {
       pagefooter();
-      ob_end_flush();
     } else {
       print  <<<EOT
 </body>

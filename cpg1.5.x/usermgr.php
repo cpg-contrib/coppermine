@@ -54,7 +54,6 @@ function show_memberlist()
         pageheader($lang_usermgr_php['title']);
         list_users();
         pagefooter();
-        ob_end_flush();
 }
 
 function list_group_alb_access($group_id) {  //shows a list of albums a specific group can see. Categories are listed with albums for clarity
@@ -1050,7 +1049,6 @@ switch ($op) {
         pageheader($lang_usermgr_php['title']);
         edit_user($user_id);
         pagefooter();
-        ob_end_flush();
         break;
 
     case 'update' :
@@ -1064,7 +1062,6 @@ switch ($op) {
         pageheader($lang_usermgr_php['title']);
         list_users();
         pagefooter();
-        ob_end_flush();
         break;
 
     case 'new_user' :
@@ -1076,14 +1073,12 @@ switch ($op) {
         pageheader($lang_usermgr_php['title']);
         edit_user($user_id);
         pagefooter();
-        ob_end_flush();
         break;
 
     case 'groups_alb_access' : //show what albums user groups can see
         pageheader($lang_usermgr_php['groups_alb_access']);
         list_groups_alb_access();
         pagefooter();
-        ob_end_flush();
         break;
 
     case 'group_alb_access' : //show what albums specific group can see
@@ -1114,7 +1109,6 @@ switch ($op) {
             endtable();
         }
         pagefooter();
-        ob_end_flush();
         break;
 
     default :
@@ -1129,7 +1123,6 @@ switch ($op) {
         if (isset($search) == false) {$search = '';}
         list_users($search);
         pagefooter();
-        ob_end_flush();
         break;
 }
 

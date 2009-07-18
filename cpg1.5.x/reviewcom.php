@@ -178,7 +178,6 @@ EOT;
         cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
     }
     pagefooter();
-    ob_end_flush();
 } else { // individual approval end, mass-approval start
 
 
@@ -604,7 +603,6 @@ while ($row = mysql_fetch_array($result)) {
         </tr>
 
 EOT;
-    flush();
 }
 
 mysql_free_result($result);
@@ -708,6 +706,5 @@ EOT;
 }
 
 pagefooter();
-ob_end_flush();
 } // mass approval end
 ?>

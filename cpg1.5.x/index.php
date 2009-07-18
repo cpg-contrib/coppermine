@@ -1169,12 +1169,10 @@ if (!$file) {
                     if (isset($cat) && $cat == USER_GAL_CAT) {
                         list_users();
                     }
-                    flush();
                     break;
 
                 case 'alblist':
                     list_albums();
-                    flush();
                     break;
 
                 case 'anycontent':
@@ -1188,13 +1186,11 @@ if (!$file) {
                         ob_end_clean();
                         echo $anycontent;
                     }
-                    flush();
                     break;
                 
                 default:
                     // all meta albums caught here
                     display_thumbnails($matches[1], $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
-                    flush();
                     break;
                 }
             }

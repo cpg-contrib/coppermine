@@ -27,8 +27,7 @@ if (!defined('SKIP_AUTHENTICATION')) { // try to include init.inc.php to get the
     $error_reporting = error_reporting(E_ERROR); // silence all error reports but fatal ones
     ob_start(); // turn output buffering on - if including the regular coppermine files breaks, we can make sure that the output doesn't break the subsequent code
     include_once('include/init.inc.php');
-    $output = ob_get_contents();
-    ob_end_flush();
+    $output = ob_get_clean();
     error_reporting($error_reporting); // set error reporting level back to how it used to be
     //echo $output; // For troubleshooting purposes, echo $output
 }

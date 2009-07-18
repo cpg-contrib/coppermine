@@ -251,7 +251,6 @@ endtable();
 
 
 pagefooter();
-ob_end_flush();
 //////// install --- end
 } else {
 ////////////////////// regular sidebar code starts here ///////////////////

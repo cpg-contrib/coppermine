@@ -4538,13 +4538,11 @@ function cpgRedirectPage($targetAddress = '', $caption = '', $message = '', $cou
         pageheader($caption, "<META http-equiv=\"refresh\" content=\"1;url=$targetAddress\">");
         msg_box($caption, $message, $lang_common['continue'], $targetAddress, $type);
         pagefooter();
-        ob_end_flush();
         exit;
     } else {
         pageheader($caption, "<META http-equiv=\"refresh\" content=\"1;url=$targetAddress\">");
         msg_box($caption, $message, $lang_common['continue'], $targetAddress, $type);
         pagefooter();
-        ob_end_flush();
         exit;
     }
 } // function cpgRedirectPage
@@ -5930,13 +5928,6 @@ function cpg_fill_string_array_with_spaces($table, $separator = '|', $align = 'l
         }
     }
     return $return;
-}
-
-function cpg_flush()
-{
-    print str_repeat(' ', 4096); // force a flush;
-    flush();
-    ob_flush();
 }
 
 ?>

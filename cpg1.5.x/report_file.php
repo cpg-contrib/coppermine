@@ -200,7 +200,6 @@ if ($superCage->post->keyExists('subject') && $valid_sender_email) {
         pageheader($lang_report_php['title'], "<meta http-equiv=\"refresh\" content=\"3;url=displayimage.php?pid={$pid}\" />");
         msg_box($lang_cpg_die[INFORMATION], $lang_report_php['send_success'], $lang_common['continue'], "displayimage.php?pid={$pid}");
         pagefooter();
-        ob_end_flush();
         exit;
     } else {
         cpg_die(ERROR, $lang_report_php['send_failed'], __FILE__, __LINE__);
@@ -342,6 +341,5 @@ EOT;
 endtable();
 echo '</form>';
 pagefooter();
-ob_end_flush();
 
 ?>

@@ -37,7 +37,6 @@ if ($CONFIG['enable_zipdownload'] < 1) {
 EOT;
     endtable();
     pagefooter();
-    ob_end_flush();
 } else {
     // zipdownload allowed, go ahead...
     $filelist = array();

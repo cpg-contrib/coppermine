@@ -346,6 +346,5 @@ echo <<< EOT
 </form>
 EOT;
 pagefooter();
-ob_end_flush();
 
 ?>

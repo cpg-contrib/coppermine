@@ -804,8 +804,6 @@ EOT;
           <td class="{$cellstyle}{$important['svn']}" align="left" style="font-size:9px"><a href="{$subversionRepository}{$majorVersion}/{$file_data_values['fullpath']}"><img src="images/icons/subversion.png" width="16" height="16" border="0" alt="" title="{$lang_versioncheck_php['browse_corresponding_page_subversion']}" /></a></td>
         </tr>
 EOT;
-          flush();
-          ob_end_flush();
       }
       $loopCounter_array['display']++;
     } // only display if corrsponding option is not disabled --- end
@@ -874,11 +872,8 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
       $curl = curl_init();
       curl_setopt($curl, CURLOPT_URL, $remoteURL);
       curl_setopt($curl, CURLOPT_HEADER, 0);
-      ob_start();
-      curl_exec($curl);
-      $body = ob_get_contents();
-      ob_end_clean();
-      ob_end_flush();
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      $body = curl_exec($curl);
       $headers = curl_getinfo($curl);
       curl_close($curl);
       if (strlen($body) < $minLength ) {
