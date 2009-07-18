@@ -121,12 +121,12 @@ pageheader($lang_albmgr_php['title']);
 
 EOT;
 
-starttable('100%', cpg_fetch_icon('alb_mgr', 2).$lang_albmgr_php['title'].'&nbsp;'.cpg_display_help('f=albums.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1, '');
+starttable('100%', cpg_fetch_icon('alb_mgr', 2).$lang_albmgr_php['title'].'&nbsp;'.cpg_display_help('f=albums.htm&amp;as=albmgr&amp;ae=albmgr_end&amp;top=1', '600', '400'), 1, '');
     echo <<< EOT
         <noscript>
         <tr>
             <td colspan="2" class="tableh2">
-                {lang_common['javascript_needed']}
+                {$lang_common['javascript_needed']}
             </td>
         </tr>
         </noscript>
@@ -153,9 +153,7 @@ if (count($rowset) > 0) {
 }
 
     echo <<< EOT
-        <input type="hidden" id="sort_order" name="sort_order" value="" />
-        <input type="hidden" name="category" value="{$cat}">
-         
+             
         <td class="tableb" >
             <table class="head_album" border="0" cellspacing="0" cellpadding="0">
 EOT;
@@ -178,10 +176,12 @@ if (GALLERY_ADMIN_MODE||USER_ADMIN_MODE) {
 
 EOT;
     foreach ($CAT_LIST as $category) {
-        echo '<option value="' . $category[0] . '"' . ($cat == $category[0] ? ' selected': '') . ">" . $category[1] . '</option>' . $LINEBREAK;
+        echo '<option value="' . $category[0] . '"' . ($cat == $category[0] ? ' selected="selected"': '') . ">" . $category[1] . '</option>' . $LINEBREAK;
     }
     echo <<< EOT
                         </select>
+                        <input type="hidden" id="sort_order" name="sort_order" value="" />
+                        <input type="hidden" name="category" value="{$cat}" />
                     </td>
                 </tr>
 
@@ -235,7 +235,7 @@ if (GALLERY_ADMIN_MODE || ($cat == USER_ID + FIRST_USER_CAT)) {
         <a id="editfiles_album" class="click">{$icon_array['edit_files']}</a>
         <a id="thumbnail_album" class="click">{$icon_array['thumbnail']}</a>
         <a id="add_new_album" class="click">{$icon_array['new']}</a>
-        <img id="loading" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" />
+        <img id="loading" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" alt="" />
     </td>
 EOT;
 
@@ -248,7 +248,7 @@ EOT;
         <a id="editfiles_album" class="click">{$icon_array['edit_files']}</a>
         <a id="thumbnail_album" class="click">{$icon_array['thumbnail']}</a>
         <a id="add_new_album" class="click">{$icon_array['new']}</a>
-        <img id="loading" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" />
+        <img id="loading" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" alt="" />
     </td>
 EOT;
 }
@@ -286,6 +286,7 @@ EOT;
 EOT;
     
 endtable();
+echo '</form>';
 pagefooter();
 
 ?>
