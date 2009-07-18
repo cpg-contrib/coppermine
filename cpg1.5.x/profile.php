@@ -241,7 +241,7 @@ EOT;
         <td width="40%" class="{$cellStyle}" height="25" valign="top">
             {$element[2]}
         </td>
-        <td width="60%" class="{$cellStyle}" valign="top" valign="top">
+        <td width="60%" class="{$cellStyle}" valign="top">
             {$form_data[$element[1]]}
         </td>
     </tr>
@@ -317,7 +317,7 @@ EOT;
             
                 echo <<< EOT
     <tr>
-        <td valign="top" colspan="2" class="{$cellStyle}" align="center" valign="top">
+        <td valign="top" colspan="2" class="{$cellStyle}" align="center">
             <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                     <td align="center">
@@ -575,6 +575,7 @@ EOT;
         $lastUploadText = '<a href="thumbnails.php?album=lastupby&amp;uid='.$userID.'">'.
                         '<span class="thumb_title">'.
                         $user_thumb.
+                        '</span>'.
                         '</a>';
     } else {
         $lastUploadText = $lang_register_php['none'];
@@ -595,7 +596,7 @@ EOT;
       {$lastComByText}
     </td>
     <td align="left" valign="top" class="tableb">
-      <a href="thumbnails.php?album=lastcomby&amp;uid={$userID}"><span class="thumb_title">{$lastComArray['thumb']}</a>
+      <span class="thumb_title"><a href="thumbnails.php?album=lastcomby&amp;uid={$userID}">{$lastComArray['thumb']}</a></span>
       {$lastComDate}
       {$lastComText}
     </td>
