@@ -68,3 +68,11 @@ function setbuild(obj, cid, thiscat)
         obj.onbeforeactivate = func;
     }
 }
+
+function updateParent(obj, cid)
+{
+    if (obj.options[obj.selectedIndex].value) {
+        window.location.href = 'catmgr.php?op=setparent&cid=' + cid + '&parent=' + obj.options[obj.selectedIndex].value + '&form_token=' + js_vars.form_token + '&timestamp=' + js_vars.timestamp;
+    }
+}
+	

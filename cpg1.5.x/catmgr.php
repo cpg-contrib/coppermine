@@ -41,6 +41,12 @@ define('CATMGR_PHP', true);
 require('include/init.inc.php');
 
 set_js_var('lang_confirm_delete', $lang_catmgr_php['confirm_delete']);
+
+list($timestamp, $form_token) = getFormToken();
+
+set_js_var('form_token', $form_token);
+set_js_var('timestamp', $timestamp);
+
 js_include('js/catmgr.js');
 
 if (!GALLERY_ADMIN_MODE) {
@@ -115,9 +121,11 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
 {
     global $lang_catmgr_php, $CAT_LIST, $LINEBREAK;
 
+    $lb = '<form method="get" action="catmgr.php">';
+    
     if ($on_change_refresh) {
 
-        $lb = '<select name="parent" onmouseover="setbuild(this, '. (int) $parent['cid'] . ', ' . $cid . ')" onchange="updateParent(this, ' . $cid . ')" class="listbox">';
+        $lb .= '<select name="parent" onmouseover="setbuild(this, '. (int) $parent['cid'] . ', ' . $cid . ')" onchange="updateParent(this, ' . $cid . ')" class="listbox">';
 
         if ($parent['cid'] == 0) {
             $lb .= '<option value="0" selected="selected">' . $lang_catmgr_php['no_category'] . '</option>';
@@ -129,9 +137,9 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
 
     } else {
 
-        $lb = '<select name="parent" id="build_source" class="listbox">' . $LINEBREAK;
+        $lb .= '<select name="parent" id="build_source" class="listbox">' . $LINEBREAK;
 
-        $lb .= '    <option value="0"' . ($parent == 0 ? '" selected="selected"': '') . '>' . $lang_catmgr_php['no_category'] . '</option>' . $LINEBREAK;
+        $lb .= '    <option value="0"' . ($parent == 0 ? ' selected="selected"': '') . '>' . $lang_catmgr_php['no_category'] . '</option>' . $LINEBREAK;
 
         foreach ($CAT_LIST as $category) {
             if ($category['cid'] > 1 && $category['cid'] != $cid) {
@@ -142,6 +150,8 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
         $lb .= '</select>';
     }
 
+    $lb .= '</form>';
+    
     return $lb;
 }
 
@@ -172,7 +182,7 @@ function usergroup_list_box($cid)
     }
     
     //create listbox
-    $usergroup_listbox = '<select name="user_groups[]" class="listbox" multiple>' . $LINEBREAK;
+    $usergroup_listbox = '<select name="user_groups[]" class="listbox" multiple="multiple">' . $LINEBREAK;
     
     //loop through all groups
     foreach ($groups as $id => $values) {
@@ -324,7 +334,7 @@ function display_cat_list()
         }
 
         if ($category['cid'] != 1) {
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=deletecat&amp;cid=' . $category['cid'] . $form_token . '" onClick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . cpg_fetch_icon('delete', 0, $lang_common['delete']) . '</a></td>' . $LINEBREAK;
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=deletecat&amp;cid=' . $category['cid'] . $form_token . '" onclick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . cpg_fetch_icon('delete', 0, $lang_common['delete']) . '</a></td>' . $LINEBREAK;
         } else {
             echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . $LINEBREAK;
         }
@@ -373,7 +383,7 @@ if ($superCage->get->keyExists('op')) {
 } else {
     $op = '';
 }
-list($timestamp, $form_token) = getFormToken();
+
 
 $current_category = array(
     'cid'         => 0,
@@ -630,19 +640,6 @@ get_subcat_data(0);
 
 pageheader($lang_catmgr_php['manage_cat']);
 
-echo <<< EOT
-
-<script language="javascript" type="text/javascript">
-	function updateParent(obj, cid)
-	{
-	    if (obj.options[obj.selectedIndex].value) {
-	        window.location.href = 'catmgr.php?op=setparent&cid=' + cid + '&parent=' + obj.options[obj.selectedIndex].value + '&form_token={$form_token}&timestamp={$timestamp}';
-	    }
-	}
-</script>
-
-EOT;
-
 starttable('100%', cpg_fetch_icon('cat_mgr', 2) . $lang_catmgr_php['category'] . '&nbsp;' . cpg_display_help('f=categories.htm&amp;as=cat_cp&amp;ae=cat_cp_end&amp;top=1', '800', '600'),1);
 
 echo <<< EOT
@@ -660,7 +657,7 @@ $help = '&nbsp;' . cpg_display_help('f=configuration.htm&amp;as=admin_album_list
 echo <<<EOT
         <tr>
             <td class="tablef" colspan="8">
-                        <form name="catsortconfig" action="$CPG_PHP_SELF" method="post" name="cpgform2" id="cpgform2">
+                        <form name="catsortconfig" action="$CPG_PHP_SELF" method="post">
                         {$lang_catmgr_php['categories_alpha_sort']}
                         {$help}
                         &nbsp;&nbsp;
@@ -699,25 +696,21 @@ echo <<<EOT
                 <th colspan="6" class="tableh1" align="center"><strong><span class="statlink">{$lang_catmgr_php['operations']}</span></strong></th>
                 <th class="tableh1" align="center"><strong><span class="statlink">{$lang_catmgr_php['move_into']}</span></strong></th>
         </tr>
-        <form method="get" action="$CPG_PHP_SELF" name="cpgform" id="cpgform">
-
+        
 EOT;
 
 display_cat_list();
 
-echo <<<EOT
-        </form>
-
-EOT;
-
 endtable();
 
+$op = $current_category['cid'] ? 'updatecat' : 'createcat';
 
 echo <<< EOT
 		</td>
 	</tr>
 	<tr>
 		<td class="tableb">
+		    <form method="post" action="catmgr.php?op=$op">
 EOT;
 
 $help_update_create = '&nbsp;' . cpg_display_help('f=categories.htm&amp;as=cat_cp_page_controls_create&amp;ae=cat_cp_page_controls_create_end&amp;top=1', '800', '600');
@@ -728,16 +721,12 @@ $lb = cat_list_box($current_category['cid'], $current_category['parent'], false)
 
 $ug_lb = usergroup_list_box($current_category['cid']);
 
-$op = $current_category['cid'] ? 'updatecat' : 'createcat';
-
 $description_help = '&nbsp;' . cpg_display_help('f=categories.htm&amp;as=cat_album_create&amp;ae=cat_album_create_end&amp;top=1', '600', '250');
-
 
 $albumCreateHelp = '&nbsp;' . cpg_display_help('f=categories.htm&amp;as=cat_album_create&amp;ae=cat_album_create_end&amp;top=1', '600', '250');
 
 echo <<<EOT
-        <form method="post" action="$CPG_PHP_SELF?op=$op" name="cpgform3" id="cpgform3">
-        <input type="hidden" name="cid" value ="{$current_category['cid']}" />
+        
         <tr>
             <td width="40%" class="tableb">
                 {$lang_catmgr_php['parent_cat']}
@@ -784,8 +773,8 @@ echo <<<EOT
 				<button type="submit" class="button" name="cat_submit" value="{$lang_catmgr_php['update_create']}">{$icon_array['submit']}{$lang_catmgr_php['update_create']}</button>
             	<input type="hidden" name="form_token" value="{$form_token}" />
             	<input type="hidden" name="timestamp" value="{$timestamp}" />
+            	<input type="hidden" name="cid" value ="{$current_category['cid']}" />
 			</td>
-            </form>
         </tr>
 
 EOT;
@@ -793,6 +782,7 @@ EOT;
 endtable();
 
 echo <<< EOT
+            </form>
 		</td>	
 	</tr>
 EOT;
