@@ -73,6 +73,8 @@ case 'display':
     // Find unique keywords
     $total_array = array();
 
+    $i = 0;
+    
     while (list($keywords) = mysql_fetch_row($result)) {
     
         $array = explode($keysep, $keywords);
@@ -96,8 +98,8 @@ case 'display':
 
     <tr>            
         <td class="tableb">
-            <input type="radio" class="radio" name="keywordEdit" value="$lowercase_word" onclick="document.keywordForm.newword.value='$orig_word_label'" id="$lowercase_word" />
-            <label for="$lowercase_word" class="clickable_option" title="{$lang_common['edit']} &quot;{$orig_word}&quot;">
+            <input type="radio" class="radio" name="keywordEdit" value="$lowercase_word" onclick="document.keywordForm.newword.value='$orig_word_label'" id="keyword{$i}" />
+            <label for="keyword{$i}" class="clickable_option" title="{$lang_common['edit']} &quot;{$orig_word}&quot;">
                  $edit_icon $orig_word
             </label>
         </td>
@@ -116,6 +118,8 @@ EOT;
             if (!in_array($word, $total_array)) {
                 $total_array[] = $word;
             }
+            
+            $i++;
         }
     }
 
