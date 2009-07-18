@@ -190,7 +190,7 @@ EOT;
             </td>
 EOT;
         } else {
-            echo '<td width="3%"><img src="images/spacer.gif" width="16" height="16" /></td>';
+            echo '<td width="3%"></td>';
         }
 
         if ($thisplugin['index'] < ($plugins_count - 1)) {
@@ -201,14 +201,14 @@ EOT;
             </td>
 EOT;
         } else {
-            echo '<td width="3%"><img src="images/spacer.gif" width="16" height="16" /></td>';
+            echo '<td width="3%"></td>';
         }
 
         $confirm_function = ($CONFIG['enable_plugins'] == 1) ? 'confirmUninstall' : 'confirmRemove';
         $delete = cpg_fetch_icon('plugin_uninstall', 0);
         echo <<<EOT
             <td width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=uninstall&amp;p={$thisplugin['plugin_id']}" onClick="return {$confirm_function}('$safename')" title="{$lang_pluginmgr_php['uninstall']}">
+                <a href="pluginmgr.php?op=uninstall&amp;p={$thisplugin['plugin_id']}" onclick="return {$confirm_function}('$safename')" title="{$lang_pluginmgr_php['uninstall']}">
                     {$delete}
                 </a>
             </td>
@@ -320,13 +320,13 @@ EOT;
                 <table border="0" width="100%" cellspacing="0" cellpadding="0">
                 <tr>
                     <td width="5%" align="center" valign="top">
-                        <img src="images/spacer.gif" width="16" height="16" />
+                        
                     </td>
                     <td width="5%" align="center" valign="top">
                         {$install_button}
                     </td>
                     <td width="5%" align="center" valign="top">
-                        <a href="pluginmgr.php?op=delete&amp;p=$path" onClick="return confirmDel('$safename')" title="{$lang_common['delete']}">
+                        <a href="pluginmgr.php?op=delete&amp;p=$path" onclick="return confirmDel('$safename')" title="{$lang_common['delete']}">
                             {$delete}
                         </a>
                     </td>
@@ -337,8 +337,8 @@ EOT;
 EOT;
         }
     }
-    echo('</form>');
     endtable();
+    echo '</form>';
 }
 
 /**
