@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="{LANG_DIR}">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" />
@@ -20,37 +20,24 @@
 -->
 </head>
 <body>
-  {CUSTOM_HEADER}
-  <div id="cpg_main_block">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td>
-          <a href="index.php"><img src="themes/classic/images/coppermine-logo.png" border="0" alt="" /></a><br />
-        </td>
-        <td width="100%" align="center">
-          <h1>{GAL_NAME}</h1>
-          <h3>{GAL_DESCRIPTION}</h3><br />
-          {SYS_MENU} <br /> {SUB_MENU}
-        </td>
-      </tr>
-    </table>
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td align="center" valign="top">
-          {SOCIAL_BOOKMARKS}
-        </td>
-      </tr>
-    </table>
-    {ADMIN_MENU}
-    {MESSAGE_BLOCK}
-    <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr>
-        <td align="left" valign="top">
-          {GALLERY}
-        </td>
-      </tr>
-    </table>
-  </div>
-  {CUSTOM_FOOTER}{CREDITS}
+    {CUSTOM_HEADER}
+    <div id="cpg_main_block">
+        <a href="index.php">
+            <img id="logo" src="themes/classic/images/coppermine-logo.png" alt="Logo" />
+        </a>
+        <div id="header">
+            <h1>{GAL_NAME}</h1>
+            <h3>{GAL_DESCRIPTION}</h3>
+            <p id="sysmenu">{SYS_MENU}</p>
+            <p id="submenu">{SUB_MENU}</p>
+        </div>
+        <div class="clearer"></div>
+        {SOCIAL_BOOKMARKS}
+        {ADMIN_MENU}
+        {MESSAGE_BLOCK}
+        {GALLERY}
+    </div>
+    {CUSTOM_FOOTER}
+    {CREDITS}
 </body>
 </html>

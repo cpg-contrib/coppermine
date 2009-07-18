@@ -49,6 +49,25 @@ body {
     margin: 0px;
 }
 
+#logo {
+    float: left;
+    border: 0;
+}
+
+#header {
+    width: 70%;
+    float: right;
+    text-align: center;
+}
+
+#sysmenu {
+    margin-top: 5px;
+}
+
+.clearer {
+    clear: both;
+}
+
 table {
     font-size: 12px;
 }
@@ -672,7 +691,6 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 }
 
 #bookmarkIt { /* This is the container that wraps the entire social bookmarks button */
-    float: left; 
     border: 1px solid #0E72A4; 
     padding: 0px 3px; 
     font-size: 80%; 
@@ -681,7 +699,8 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
     margin-left:3px;
     margin-right:3px;
     margin-top:0px;
-    margin-bottom:0px; 
+    margin-bottom:0px;
+    width: 120px;
 }
 
 /** Swfupload css **/
