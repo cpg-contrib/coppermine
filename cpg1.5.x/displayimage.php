@@ -181,7 +181,7 @@ function html_picinfo()
                 . '</span>';
         } else {
             $keyword_links = '';
-            foreach (split($CONFIG['keyword_separator'],$CURRENT_PIC_DATA['keywords']) as $keyword) {
+            foreach (explode($CONFIG['keyword_separator'], $CURRENT_PIC_DATA['keywords']) as $keyword) {
                 $keyword_links .= ($keyword_links ? ' '.$CONFIG['keyword_separator'].' ' : '')
                         . '<a href="thumbnails.php?album=search&amp;search='
                         . str_replace(' ', '+', $keyword)
