@@ -956,6 +956,7 @@ $lang_admin_php['manage_languages'] = 'Sprachen verwalten'; // cpg1.5
 $lang_admin_php['form_token_lifetime'] = 'Formularschutz Bearbeitungszeit'; // cpg1.5
 $lang_admin_php['seconds'] = 'Sekunden'; // cpg1.5
 $lang_admin_php['display_reset_boxes_in_config'] = '&quot;Zurücksetzen auf Standardwerte&quot; auf Einstellungsseite anzeigen'; // cpg1.5
+$lang_admin_php['upd_not_needed'] = 'Update not needed.'; // cpg 1.5
 }
 
 

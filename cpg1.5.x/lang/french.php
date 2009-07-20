@@ -932,6 +932,7 @@ $lang_admin_php['manage_languages'] = 'Gérez les langues'; // cpg1.5
 $lang_admin_php['form_token_lifetime'] = 'Durée de vie des balises formulaires'; // cpg1.5
 $lang_admin_php['seconds'] = 'Secondes'; // cpg1.5
 $lang_admin_php['display_reset_boxes_in_config'] = 'Affiche les cases de remise à la valeur par défaut dans la configuration'; // cpg1.5
+$lang_admin_php['upd_not_needed'] = 'Update not needed.'; // cpg 1.5
 }
 
 
