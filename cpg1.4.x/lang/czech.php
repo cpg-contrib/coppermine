@@ -15,7 +15,6 @@
   $Revision$
   $Author$
   $Date$
-  Omlouvám se, pokud překlad není zcela přesný. Snaha byla.
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -28,7 +27,7 @@ $lang_translation_info = array(
   'trans_name'=> 'Pavel Kolar - PKDATA',
   'trans_email' => 'p.kolar@pkdata.cz',
   'trans_website' => 'http://www.pkdata.cz/',
-  'trans_date' => '2006-03-03',
+  'trans_date' => '2009-07-21',
 );
 
 $lang_charset = 'utf-8';
@@ -52,13 +51,13 @@ $lang_check_uncheck_all = 'označ/odoznač vše'; //cpg1.4
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
-$album_date_fmt =    '%B %d, %Y';
-$lastcom_date_fmt =  '%m/%d/%y at %H:%M';
-$lastup_date_fmt = '%B %d, %Y';
-$register_date_fmt = '%B %d, %Y';
-$lasthit_date_fmt = '%B %d, %Y at %I:%M %p';
-$comment_date_fmt =  '%B %d, %Y at %I:%M %p';
-$log_date_fmt = '%B %d, %Y at %I:%M %p'; //cpg1.4
+$album_date_fmt =    '%d. %B %Y';
+$lastcom_date_fmt =  '%d. %B %Y v %H:%M';
+$lastup_date_fmt = '%d. %B %Y';
+$register_date_fmt = '%d. %B %Y';
+$lasthit_date_fmt = '%d. %B %Y v %H:%M';
+$comment_date_fmt =  '%d. %B %Y v %H:%M';
+$log_date_fmt = '%d. %B %Y v %H:%M';
 
 // For the word censor
 $lang_bad_words = array('píča', 'hovno', '*fuck*', 'prdel', 'čůrák', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
@@ -934,7 +933,7 @@ $lang_display_image_php = array(
     'slideshow' => 'Slideshow',
     'stop_slideshow' => 'ZASTAVIT SLIDESHOW',
     'view_fs' => 'Klikněte pro zobrazení původního obrázku',
-  'edit_pic' => 'Editece souborových informací', //cpg1.4
+  'edit_pic' => 'Editace souborových informací', //cpg1.4
   'crop_pic' => 'Zastřihnout a Rotovat',
   'set_player' => 'Změna přehrávače',
 );
