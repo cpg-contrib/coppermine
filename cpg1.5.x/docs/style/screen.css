@@ -273,32 +273,6 @@ hr {
     text-align: left;
 }
 
-.navbar {
-    font-weight: bold;
-    font-size: 10px;
-    background: url(/coppermine/themes/pixel-rave-blue100/images/nav-bar-button.gif) #72a5cc no-repeat;
-    vertical-align: middle;
-    color: #A5C6DF;
-    font-family: Arial, Helvetica, sans-serif
-}
-
-a.navbar {
-    display: block;
-    vertical-align: middle;
-    width: 100px;
-    color: #A5C6DF;
-    line-height: 25px;
-    position: relative;
-    height: 25px;
-    text-align: center;
-    text-decoration: none;
-}
-
-a.navbar:hover {
-    color: #ffffff;
-    text-decoration: none;
-}
-
 a.content {
     text-decoration: none
 }
