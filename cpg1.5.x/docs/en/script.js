@@ -94,6 +94,7 @@ doc_toc += '              <li><a href="translation.htm#translation_special_issue
 doc_toc += '              <li><a href="translation.htm#translation_versions">Language versions</a></li>\n';
 doc_toc += '              <li><a href="translation.htm#translation_work_in_progress">Work in progress</a></li>\n';
 doc_toc += '              <li><a href="translation.htm#translation_initial_translation">Initial translation for release</a></li>\n';
+doc_toc += '              <li><a href="translation.htm#translation_older_language_files">Using older language files</a></li>\n';
 doc_toc += '              <li><a href="translation.htm#translation_documentation">Translating the documentation</a></li>\n';
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
