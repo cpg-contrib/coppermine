@@ -22,167 +22,51 @@ define('CALENDAR_PHP', true);
 
 require('include/init.inc.php');
 
-
 // function definitions
 
 class MyCalendar extends Calendar {
-    function getCalendarLink($month, $year) {
-        global $CPG_PHP_SELF;
-
-        $superCage = Inspekt::makeSuperCage();
-        // Redisplay the current page, but with some parameters to set the new month and year
-        // Fixed possible security hole
-        //$s = $_SERVER['PHP_SELF']; //getenv('SCRIPT_NAME');
-        if ($matches = $superCage->get->getMatched('action', '/^[a-z]+$/')) {
-            $action = $matches[0];
-        } elseif ($matches = $superCage->post->getMatched('action', '/^[a-z]+$/')) {
-            $action = $matches[0];
-        } else {
-            $action = '';
-        }
-        return "$CPG_PHP_SELF?action=$action&amp;month=$month&amp;year=$year";
+    
+    function getCalendarLink($month, $year)
+    {
+        return "calendar.php?month=$month&amp;year=$year";
     }
 
-    function getDateLink($day, $month, $year) {
-      global $CONFIG, $lang_calendar_php;
+    function getDateLink($day, $month, $year)
+    {
+        global $CONFIG, $lang_calendar_php, $FORBIDDEN_SET;
 
-      $superCage = Inspekt::makeSuperCage();
+        $date = sprintf('%d-%02d-%02d', $year, $month, $day);
+      
+        $sql = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE approved = 'YES' AND DATE(FROM_UNIXTIME(ctime)) = '$date' $FORBIDDEN_SET";
+        $result = cpg_db_query($sql);
+        list($nb_pics) = mysql_fetch_row($result);
 
-      $date=sprintf('%s-%02s-%02s',$year,$month,$day);
-      $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} AS p WHERE approved = 'YES' AND substring(from_unixtime(ctime),1,10) = '".substr($date,0,10)."' $FORBIDDEN_SET";
-      $result = cpg_db_query($query);
-      $nb_pics = mysql_result($result, 0, 0);
-
-      if ($matches = $superCage->get->getMatched('action', '/^[a-z]+$/')) {
-          $action = $matches[0];
-      } elseif ($matches = $superCage->post->getMatched('action', '/^[a-z]+$/')) {
-          $action = $matches[0];
-      } else {
-          $action = '';
-      }
-
-      if ($action == 'browsebydate') {
         if ($nb_pics) {
-          $link = '<a href="#" onclick="sendDate(\''.$month.'\', \''.$day.'\', \''.$year.'\');" class="user_thumb_infobox"  title="'. $nb_pics .' '.$lang_calendar_php['files'].'">';
+            $link = '<a href="#" onclick="sendDate(\'' . $month . '\', \'' . $day . '\', \'' . $year . '\');" class="user_thumb_infobox" title="' . $nb_pics . ' ' . $lang_calendar_php['files'] . '">';
         } else {
-          $link='';
+            $link = '';
         }
-      } else {
-        $link = "<a href=\"#\" onclick=\"sendDate('".$month."', '".$day."', '".$year."');\" class=\"user_thumb_infobox\" >";
-      }
+      
         return $link;
     }
 }
 
-if ($matches = $superCage->get->getMatched('action', '/^[a-z]+$/')) {
-    $action = $matches[0];
-} elseif ($matches = $superCage->post->getMatched('action', '/^[a-z]+$/')) {
-    $action = $matches[0];
-} else {
-    $action = '';
-}
+js_include('js/calendar.js');
 
-if ($action == 'banning' || $action == 'browsebydate')  {
-    $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
-    echo <<< EOT
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-  <head>
-    <title>{$lang_calendar_php['title']}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <link rel="stylesheet" href="css/coppermine.css" type="text/css" />
-    <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" type="text/css" />
-    <script language="javascript" type="text/javascript">
-    // get the date format
-    var calendarFormat = 'y-m-d';
-    var targetDateField = window.opener.calendarTarget;
+pageheader_mini($lang_calendar_php['title'], true);
 
-    function sendDate(month, day, year) 
-    {
-        // pad with blank zeros numbers under 10
-        month = month < 10 ? '0' + month : month;
-        day   = day   < 10 ? '0' + day   : day;
-        selectedDate = parent.calendarFormat;
-        selectedDate = selectedDate.replace(/m/, month);
-        selectedDate = selectedDate.replace(/d/, day);
-        selectedDate = selectedDate.replace(/y/, year);
+$today = getdate();
+$year = $today['year'];
+$month = $today['mon'];
 
-EOT;
-    if ($action == 'banning') {
-        echo <<< EOT
-        if (selectedDate == '-0-0') {
-            selectedDate = '';
-        }
-        targetDateField.value = selectedDate;
-        parent.window.close();
+$cal = new MyCalendar;
+$cal->setMonthNames($lang_month);
+$cal->setDayNames($lang_day_of_week);
+$cal->setStartDay(1);
 
-EOT;
-    } else {
-        echo <<< EOT
-        window.opener.location='thumbnails.php?album=datebrowse&date=' + selectedDate;
-EOT;
-    }
-    echo <<< EOT
-    }
-    </script>
-</head>
-<body>
+echo $cal->getMonthView($month, $year, false);
 
-EOT;
-
-    $today = getdate();
-
-    if ($superCage->get->testInt('month')) {
-        $month = $superCage->get->getInt('month');
-    } elseif ($superCage->post->testInt('month')) {
-        $month = $superCage->post->getInt('month');
-    } else {
-        $month = 0;
-    }
-
-    if ($superCage->get->testInt('year')) {
-        $year = $superCage->get->getInt('year');
-    } elseif ($superCage->post->testInt('year')) {
-        $year = $superCage->post->getInt('year');
-    } else {
-        $year = 0;
-    }
-
-    if ($year == 0) {
-        $year = $today['year'];
-    }
-    if ($month == 0) {
-        $month = $today['mon'];
-    }
-
-    $cal = new MyCalendar;
-    $cal->setMonthNames($lang_month);
-    $cal->setDayNames($lang_day_of_week);
-    $cal->setStartDay(1);
-    if($action == 'banning') {
-        echo $cal->getMonthView($month, $year, true);
-    } else {
-        echo $cal->getMonthView($month, $year, false);
-    }
-
-    /*
-    echo <<< EOT
-<div align="center"><a href="javascript:window.close()" class="admin_menu">{$lang_common['close']}</a>
-
-EOT;
-	*/
-    if ($action == 'banning') {
-        echo '<a href="#" onclick="sendDate(\'\', \'\', \'\');" class="admin_menu">' . $lang_calendar_php['clear_date'] . '</a></div>';
-    }
-    echo <<< EOT
-<br />
-</body>
-</html>
-
-EOT;
-}
-// end action=banning
+pagefooter_mini();
 
 
 /////////////////////////////////////////////////////////////////////////////////////////

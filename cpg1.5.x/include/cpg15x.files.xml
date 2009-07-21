@@ -7474,6 +7474,14 @@
     <hash>ab969f1aa79f25c8aae246a9be8186e8</hash>
   </element>
   <element>
+    <fullpath>js/calendar.js</fullpath>
+    <version>1.5.1</version>
+    <revision></revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash></hash>
+  </element>
+  <element>
     <fullpath>js/catmgr.js</fullpath>
     <version>1.5.1</version>
     <revision>6330</revision>

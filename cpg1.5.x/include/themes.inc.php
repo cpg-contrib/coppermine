@@ -206,7 +206,7 @@ if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
     addbutton($sub_menu_buttons,'{TOPRATED_LNK}','{TOPRATED_TITLE}','{TOPRATED_TGT}','toprated',$template_sub_menu_spacer,'rel="nofollow"');
     addbutton($sub_menu_buttons,'{FAV_LNK}','{FAV_TITLE}','{FAV_TGT}','favpics',$template_sub_menu_spacer,'rel="nofollow"');
     if ($CONFIG['browse_by_date'] != 0) {
-    addbutton($sub_menu_buttons, '{BROWSEBYDATE_LNK}', '{BROWSEBYDATE_TITLE}', '{BROWSEBYDATE_TGT}', 'brose_by_date', $template_sub_menu_spacer,'rel="nofollow"');
+    addbutton($sub_menu_buttons, '{BROWSEBYDATE_LNK}', '{BROWSEBYDATE_TITLE}', '{BROWSEBYDATE_TGT}', 'browse_by_date', $template_sub_menu_spacer, 'rel="nofollow" class="greybox"');
     }
     addbutton($sub_menu_buttons,'{SEARCH_LNK}','{SEARCH_TITLE}','{SEARCH_TGT}','search','');
   } //{THEMES}
@@ -2212,7 +2212,7 @@ function theme_main_menu($which)
         '{FAV_TGT}' => "thumbnails.php?album=favpics",
         '{FAV_TITLE}' => $lang_main_menu['fav_title'],
         '{FAV_LNK}' => $lang_main_menu['fav_lnk'],
-        '{BROWSEBYDATE_TGT}' => 'calendar.php?action=browsebydate&amp;month='.ltrim(strftime('%m'),'0').'&amp;year='.strftime('%Y').'" class="greybox',
+        '{BROWSEBYDATE_TGT}' => 'calendar.php',
         '{BROWSEBYDATE_LNK}' => $lang_main_menu['browse_by_date_lnk'],
         '{BROWSEBYDATE_TITLE}' => $lang_main_menu['browse_by_date_title'],
         '{SEARCH_TGT}' => "search.php",

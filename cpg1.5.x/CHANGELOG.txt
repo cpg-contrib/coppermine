@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-07-22 [B] Fixing 'browse by date' function (thread ID 60694) {Nibbler}
 2009-07-14 [B] Only display custom user profile fields if corresponding config option is populated {GauGau}
 2009-07-13 [D] Updated testing instructions as a preparation for the first release to the testers {GauGau}
 2009-07-10 [A] Added config option to determine resize dimension for intermediate pictures {eenemeenemuu}
