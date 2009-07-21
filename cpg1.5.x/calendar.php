@@ -56,8 +56,18 @@ js_include('js/calendar.js');
 pageheader_mini($lang_calendar_php['title'], true);
 
 $today = getdate();
-$year = $today['year'];
-$month = $today['mon'];
+
+if ($superCage->get->testInt('month')) {
+    $month = $superCage->get->getInt('month');
+} else {
+    $month = $today['mon'];
+}
+
+if ($superCage->get->testInt('year')) {
+    $year = $superCage->get->getInt('year');
+} else {
+    $year = $today['year'];
+}
 
 $cal = new MyCalendar;
 $cal->setMonthNames($lang_month);
