@@ -174,7 +174,10 @@ function cpg_versioncheckDisplayOptions() {
       </label>
     </td>
     <td class="tableb" valign="top">
-      <input type="checkbox" name="do_not_connect_to_online_repository" id="do_not_connect_to_online_repository" value="1" class="checkbox" {$optionDisplayOutput_array['do_not_connect_to_online_repository']} />({$lang_versioncheck_php['online_repository_explain']})
+      <input type="checkbox" name="do_not_connect_to_online_repository" id="do_not_connect_to_online_repository" value="1" class="checkbox" {$optionDisplayOutput_array['do_not_connect_to_online_repository']} />
+      <label for="do_not_connect_to_online_repository">
+          ({$lang_versioncheck_php['online_repository_explain']})
+      </label>
     </td>
   </tr>
   <tr>
