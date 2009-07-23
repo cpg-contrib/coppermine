@@ -840,7 +840,7 @@
     <revision>6349</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>0348541906ac255d22c9fb3ad7d34f18</hash>
+    <hash>6cd96a1bc3c9566182897b633e1314fd</hash>
   </element>
   <element>
     <fullpath>docs/de/copyrights.htm</fullpath>
@@ -1634,7 +1634,7 @@
     <revision>6349</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6411f95c248d6e8b3796c07c815a818a</hash>
+    <hash>01281d1be99dd24f2b0bae57b6598896</hash>
   </element>
   <element>
     <fullpath>docs/en/copyrights.htm</fullpath>
@@ -2090,7 +2090,7 @@
     <revision>6356</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>63836bf7cb74e7bd8240cbb7accdcc11</hash>
+    <hash>8384b660f4cc4b42f91e314de703e870</hash>
   </element>
   <element>
     <fullpath>docs/en/uploading.htm</fullpath>
@@ -2437,10 +2437,10 @@
   <element>
     <fullpath>docs/fr/script.js</fullpath>
     <version>1.5.1</version>
-    <revision>6351</revision>
+    <revision>6357</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>91333f31f14451ac9be04f8e34a1ad87</hash>
+    <hash>8b4eec2fccf3e99713af8c200e2aa339</hash>
   </element>
   <element>
     <fullpath>docs/fr/testing.htm</fullpath>
@@ -7130,7 +7130,7 @@
     <revision>6352</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>dd068ed993fd6a3164caf471b9163cd1</hash>
+    <hash>1aa375dae32b6bfe8b9503c6dc1d83c5</hash>
   </element>
   <element>
     <fullpath>include/imageObjectGD.class.php</fullpath>
@@ -7290,15 +7290,15 @@
     <revision>6346</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>72eb17232d6545ea9e6a1c06f0ae5f16</hash>
+    <hash>93e062af72f4d7e63276a1ea232d3e06</hash>
   </element>
   <element>
     <fullpath>include/versioncheck.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>6353</revision>
+    <revision>6358</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1d49dbc9d2cad208f0016049426a867a</hash>
+    <hash>9a1328e7040a77e725c282adb1319f6c</hash>
   </element>
   <element>
     <fullpath>include/zip.lib.php</fullpath>
@@ -7417,7 +7417,7 @@
     <revision>6348</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9473e16915b84e2566c27c61c6dc30ac</hash>
+    <hash>2dfe7f7ad8f014e66e28b0edf69dd25c</hash>
   </element>
   <element>
     <fullpath>lang/english_gb.php</fullpath>
@@ -10374,7 +10374,7 @@
     <revision>6346</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>263ef903f9f85f3ab29beac359389380</hash>
+    <hash>b667d96a54d4e5d76359840536cc470a</hash>
   </element>
   <element>
     <fullpath>themes/sample/images</fullpath>
