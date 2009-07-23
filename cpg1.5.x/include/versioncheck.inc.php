@@ -164,7 +164,7 @@ function cpg_versioncheckDisplayOptions() {
       </label>
     </td>
     <td class="tableb tableb_alternate" valign="top">
-      <input type="checkbox" name="no_modification_check" id="no_modification_check" value="1" class="checkbox" {$optionDisplayOutput_array['no_modification_check']} checked="checked" />
+      <input type="checkbox" name="no_modification_check" id="no_modification_check" value="1" class="checkbox" {$optionDisplayOutput_array['no_modification_check']} />
     </td>
   </tr>
   <tr>
