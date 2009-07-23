@@ -4639,22 +4639,18 @@ function cpgValidateDate($date)
 function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $minLength = '0')
 {
     global $lang_get_remote_file_by_url, $LINEBREAK;
-
     // FSOCK code snippets taken from http://jeenaparadies.net/weblog/2007/jan/get_remote_file
+    // Initialize some variables first
     $url = parse_url($remoteURL); // chop the URL into protocol, domain, port, folder, file, parameter
-
     if (!isset($url['host'])) {
         $url['host'] = '';
     }
-
     if (!isset($url['scheme'])) {
         $url['scheme'] = '';
     }
-
     if (!isset($url['port'])) {
         $url['port'] = '';
     }
-
     $body      = '';
     $headers   = '';
     $error     = '';
