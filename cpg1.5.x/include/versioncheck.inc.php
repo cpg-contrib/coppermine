@@ -164,7 +164,7 @@ function cpg_versioncheckDisplayOptions() {
       </label>
     </td>
     <td class="tableb tableb_alternate" valign="top">
-      <input type="checkbox" name="no_modification_check" id="no_modification_check" value="1" class="checkbox" {$optionDisplayOutput_array['no_modification_check']} />
+      <input type="checkbox" name="no_modification_check" id="no_modification_check" value="1" class="checkbox" {$optionDisplayOutput_array['no_modification_check']} checked="checked" />
     </td>
   </tr>
   <tr>
@@ -217,6 +217,8 @@ function cpg_versioncheckPopulateArray($file_data_array) {
     );
 
     $loopCounter = 0;
+    //print_r($file_data_array);
+    //die;
     foreach ($file_data_array as $file_data_key => $file_data_values) { // start the foreach loop
         // initialize the vars
         if (!isset($file_data_array[$file_data_key]['comment'])) {
@@ -817,8 +819,6 @@ EOT;
 
 function cpgVersioncheckConnectRepository() {
     global $displayOption_array, $majorVersion;
-    //print_r($displayOption_array);
-    //die;
     // Perform the repository lookup and xml creation --- start
     //$displayOption_array['do_not_connect_to_online_repository'] = 1;
     $remoteURL = 'http://coppermine-gallery.net/' . str_replace('.', '', $majorVersion) . '.files.xml';
@@ -826,11 +826,9 @@ function cpgVersioncheckConnectRepository() {
     $remoteConnectionFailed = '';
     if ($displayOption_array['do_not_connect_to_online_repository'] == 0) { // connect to the online repository --- start
       $result = cpgGetRemoteFileByURL($remoteURL, 'GET','','200');
-      if (strlen($result['body']) < 200) {
+      if (strlen($result['body']) < 2000) {
         $remoteConnectionFailed = 1;
         $error = $result['error'];
-        //print_r($error);
-        //print '<hr />';
       }
     } // connect to the online repository --- end
     if ($displayOption_array['do_not_connect_to_online_repository'] == 1 || $remoteConnectionFailed == 1) {
@@ -839,27 +837,19 @@ function cpgVersioncheckConnectRepository() {
     unset($result['headers']); // we should take a look the header data and error messages before dropping them. Well, later maybe ;-)
     unset($result['error']);
     $result = array_shift($result);
-    
     if (function_exists('simplexml_load_string')) {
-    
         $xml = simplexml_load_string($result);
-        
         unset($result);
-        
         $file_data_array = array();
-    
         foreach ($xml as $file) {
            $file_data_array[] = (array) $file;
         }
-   
     } else {
-    
         include_once('include/lib.xml.php');
         $xml = new Xml;
         $file_data_array = $xml->parse($result);
         $file_data_array = array_shift($file_data_array);
     }
-    
     // Perform the repository lookup and xml creation --- end
     return $file_data_array;
 }
