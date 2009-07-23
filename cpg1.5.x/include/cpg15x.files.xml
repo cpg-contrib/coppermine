@@ -59,7 +59,7 @@
   <element>
     <fullpath>calendar.php</fullpath>
     <version>1.5.1</version>
-    <revision>5982</revision>
+    <revision>6347</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>58c228f2cbcbadf49c491fbc83e36612</hash>
@@ -846,7 +846,7 @@
   <element>
     <fullpath>docs/de/configuration.htm</fullpath>
     <version>1.5.1</version>
-    <revision>6289</revision>
+    <revision>6349</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>74019a2daa57f1f3c13b1a35339776bf</hash>
@@ -1640,7 +1640,7 @@
   <element>
     <fullpath>docs/en/configuration.htm</fullpath>
     <version>1.5.1</version>
-    <revision>6308</revision>
+    <revision>6349</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>8ebb5ec0d3dd3d76c10825c5b33d4afc</hash>
@@ -2446,7 +2446,7 @@
   <element>
     <fullpath>docs/fr/script.js</fullpath>
     <version>1.5.1</version>
-    <revision>6341</revision>
+    <revision>6351</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>24dd5488ec23ff181d04dea49b5458b8</hash>
@@ -7296,7 +7296,7 @@
   <element>
     <fullpath>include/themes.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>6327</revision>
+    <revision>6346</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>bb36ff58a93219bd60bc94eff00621e9</hash>
@@ -7304,7 +7304,7 @@
   <element>
     <fullpath>include/versioncheck.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>6325</revision>
+    <revision>6353</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>b24a9e01b2cb19aca3c68006b50c8a6e</hash>
@@ -7423,7 +7423,7 @@
   <element>
     <fullpath>lang/english.php</fullpath>
     <version>1.5.1</version>
-    <revision>6340</revision>
+    <revision>6348</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>010eaf1cbcd2dae2c014b60ae7793dba</hash>
@@ -10380,7 +10380,7 @@
   <element>
     <fullpath>themes/sample/theme.php</fullpath>
     <version>1.5.1</version>
-    <revision>6327</revision>
+    <revision>6346</revision>
     <status>optional</status>
     <permission>read</permission>
     <hash>3c118094fbba4acfb5d2096a2a4342fc</hash>
