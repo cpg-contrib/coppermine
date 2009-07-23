@@ -7136,7 +7136,7 @@
   <element>
     <fullpath>include/functions.inc.php</fullpath>
     <version>1.5.1</version>
-    <revision>6325</revision>
+    <revision>6352</revision>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>7b85a0585c5faafb4dbf0d20e71f5fd2</hash>
