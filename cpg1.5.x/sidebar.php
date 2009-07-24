@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.5.1
+  Coppermine version: 1.5.2
   $HeadURL$
   $Revision$
   $LastChangedBy$

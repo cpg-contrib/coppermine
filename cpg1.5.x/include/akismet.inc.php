@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.1
+  Coppermine version: 1.5.2
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/banning.php $
   $Revision: 5268 $
   $LastChangedBy: gaugau $
