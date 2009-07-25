@@ -46,16 +46,16 @@ class cpg_udb extends core_udb {
 			$this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
 		}
 		
-		$this->multigroups = 0;
+		$this->multigroups = 1;
 		$this->group_overrride = 0;
 		
 		// Database connection settings
 		$this->db = array(
-			'name' => $config['database'],
-			'host' => $config['hostname'],
-			'user' => $config['username'],
-			'password' => $config['password'],
-			'prefix' =>$config['table_prefix']
+			'name' => $config['database']['database'],
+			'host' => $config['database']['hostname'],
+			'user' => $config['database']['username'],
+			'password' => $config['database']['password'],
+			'prefix' => $config['database']['table_prefix']
 		);
 		
 		// Board table names
@@ -102,19 +102,28 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction()
 	{
-		if (!isset($_COOKIE['sid'])) return false;
-	
+		if (!isset($_COOKIE['sid'])) {
+		    return false;
+        }
+        	
 		$this->sid = addslashes($_COOKIE['sid']);
 		
-		if (!$this->sid) return false;
+		if (!$this->sid) {
+		    return false;
+		}
 		
 		$this->ipaddress = $this->getip();
 		
-		$result = cpg_db_query("SELECT u.{$this->field['user_id']}, u.{$this->field['password']} FROM {$this->sessionstable} AS s INNER JOIN {$this->usertable} AS u ON u.uid = s.uid WHERE sid='".$this->sid."' AND ip='".$this->ipaddress."'", $this->link_id);
+		$result = cpg_db_query("SELECT u.{$this->field['user_id']}, u.{$this->field['password']}, additionalgroups, loginkey FROM {$this->sessionstable} AS s INNER JOIN {$this->usertable} AS u ON u.uid = s.uid WHERE sid='".$this->sid."' AND ip='".$this->ipaddress."'", $this->link_id);
 		
-		if (!mysql_num_rows($result)) return false;
-		
+		if (!mysql_num_rows($result)) {
+		    return false;
+        }
+        		
 		$row = mysql_fetch_row($result);
+
+        $this->logoutkey = md5(array_pop($row));
+        $this->additionalgroups = array_pop($row);        
 
 		return $row; 
 	}
@@ -124,7 +133,29 @@ class cpg_udb extends core_udb {
 	{
 		return  isset($_COOKIE['mybbuser']) ? array_map('addslashes', explode("_", $_COOKIE['mybbuser'], 2)) : false;
 	}
-	
+
+	// Get groups of which user is member
+	function get_groups($row)
+	{
+		$data = array();
+		
+		if ($this->use_post_based_groups){
+		    
+		    $data[] = $row['group_id'];
+		    
+		    $additionalgroups = explode(',', $this->additionalgroups);
+		    
+		    foreach ($additionalgroups as $g) {
+		        $data[] = $g + 100;
+		    }
+
+		} else {
+			$data[0] = (in_array($row['group_id'] - 100, $this->admingroups)) ? 1 : 2;
+		}
+		
+		return $data;
+	}
+		
 	// imported function
 	function getip() {
 
@@ -171,12 +202,12 @@ class cpg_udb extends core_udb {
 	// Logout
 	function logout_page()
 	{
-		$this->redirect('/member.php?action=logout&uid=' . USER_ID . '&sid=' . $this->sid);
+		$this->redirect('/member.php?action=logout&logoutkey=' . $this->logoutkey);
 	}
 	
 	function view_users()
 	{
-		if (!$this->use_post_based_groups) $this->redirect($this->page['editusers']);
+		$this->redirect($this->page['editusers']);
 	}
 	
 	function get_users($options = array())

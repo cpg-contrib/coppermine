@@ -494,12 +494,12 @@ $default_bridge_data['vbulletin30'] = array(
 );
 
 $default_bridge_data['mybb'] = array(
-  'full_name' => 'MyBB 1.02',
+  'full_name' => 'MyBB 1.4',
   'short_name' => 'mybb',
-  'support_url' => 'http://www.mybboard.com/',
+  'support_url' => 'http://www.mybboard.net/',
   'full_forum_url_default' => 'http://www.yoursite.com/board',
   'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/inc',
+  'relative_path_to_config_file_default' => '../board/inc/',
   'relative_path_to_config_file_used' => 'lookfor,config.php',
   'use_post_based_groups_default' => '0',
   'use_post_based_groups_used' => 'radio,1,0',
