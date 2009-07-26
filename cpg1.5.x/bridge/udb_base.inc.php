@@ -128,7 +128,7 @@ class core_udb {
 
         $USER_DATA['user_id'] = 0;
         $USER_DATA['user_name'] = 'Guest';
-        $USER_DATA['groups'][0] = $this->use_post_based_groups ? ($this->guestgroup) : 3;
+        $USER_DATA['groups'][0] = $this->use_post_based_groups ? ($this->guestgroup + 100) : 3;
         $USER_DATA['group_quota'] = 1;
         $USER_DATA['can_rate_pictures'] = 0;
         $USER_DATA['can_send_ecards'] = 0;

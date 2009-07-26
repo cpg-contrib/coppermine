@@ -106,7 +106,7 @@ if (isset($bridge_lookup)) {
             
             // Group ids - admin and guest only.
             $this->admingroups = array(2);
-            $this->guestgroup = $this->use_post_based_groups ? 3 : 3;
+            $this->guestgroup = 3;
             
             // Use a special function to collect groups for cpg groups table
             $this->group_overrride = 1;

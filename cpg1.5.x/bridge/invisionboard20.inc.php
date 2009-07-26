@@ -101,7 +101,7 @@ if (isset($bridge_lookup)) {
         
             // Group ids - admin and guest only.
             $this->admingroups = array($INFO['admin_group']);
-            $this->guestgroup  = $this->use_post_based_groups ? $INFO['guest_group'] + 100 : 3;
+            $this->guestgroup  = $INFO['guest_group'];
             
             // Connect to db
             $this->connect();

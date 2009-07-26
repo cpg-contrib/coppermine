@@ -110,7 +110,7 @@ if (isset($bridge_lookup)) {
 
                     // Group ids - admin and guest only.
                      $this->admingroups = array(1);
-                    $this->guestgroup = 3;
+                     $this->guestgroup = 0;
 
                     // Connect to db - or supply a connection id to be used instead of making own connection.
                     $this->connect();

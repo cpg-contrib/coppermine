@@ -107,7 +107,7 @@ if (isset($bridge_lookup)) {
             
             // Group ids - admin and guest only.
             $this->admingroups = array(XOOPS_GROUP_ADMIN);
-            $this->guestgroup = XOOPS_GROUP_ANONYMOUS + ($this->use_post_based_groups ? 100 : 0);
+            $this->guestgroup = XOOPS_GROUP_ANONYMOUS;
             
             // Connect to db - or supply a connection id to be used instead of making own connection.
             $this->connect($xoopsDB->conn);
