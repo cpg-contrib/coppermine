@@ -36,41 +36,40 @@ if (isset($bridge_lookup)) {
 
     require_once 'bridge/udb_base.inc.php';
 
-    if (!USE_BRIDGEMGR) {
-            require_once('../smf/Settings.php');
-            $boardurl = 'http://www.mysite.com/board';
-    } else {
-            require_once($BRIDGE['relative_path_to_config_file'] . 'Settings.php');
-    }
-
-
     class cpg_udb extends core_udb {
 
-            function cpg_udb()
-            {
-                    global $BRIDGE, $CONFIG, $boardurl, $db_prefix, $db_server, $db_name, $db_user, $db_passwd, $cookiename;
+        function cpg_udb()
+        {
+            global $BRIDGE;
 
-                    $this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
-                    $this->boardurl = $boardurl;
-                    $this->multigroups = 1;
-                    $this->group_overrride = 1;
-                          $this->cookie_name = $cookiename;
+            if (!USE_BRIDGEMGR) {
+                require_once('../smf/Settings.php');
+                $boardurl = 'http://www.mysite.com/board';
+            } else {
+                require_once($BRIDGE['relative_path_to_config_file'] . 'Settings.php');
+            }
 
-                    // Board table names
-                    $this->table = array(
-                            'users' => 'members',
-                            'groups' => 'membergroups',
-                            'sessions' => 'sessions'
-                    );
+            $this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
+            $this->boardurl = $boardurl;
+            $this->multigroups = 1;
+            $this->group_overrride = 1;
+            $this->cookie_name = $cookiename;
 
-                    // Database connection settings
-                    $this->db = array(
-                            'name' => $db_name,
-                            'host' => $db_server ? $db_server : 'localhost',
-                            'user' => $db_user,
-                            'prefix' => $db_prefix,
-                            'password' => $db_passwd
-                    );
+            // Board table names
+            $this->table = array(
+                'users'    => 'members',
+                'groups'   => 'membergroups',
+                'sessions' => 'sessions'
+            );
+
+            // Database connection settings
+            $this->db = array(
+                'name'     => $db_name,
+                'host'     => $db_server ? $db_server : 'localhost',
+                'user'     => $db_user,
+                'prefix'   => $db_prefix,
+                'password' => $db_passwd,
+            );
 
             // Derived full table names
             if (strpos($db_prefix, '.') === false) {
@@ -83,39 +82,38 @@ if (isset($bridge_lookup)) {
                 $this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
             }
 
-                    // Table field names
-                    $this->field = array(
-                            'username' => 'real_name', // name of 'username' field in users table
-                            'user_id' => 'id_member', // name of 'id' field in users table
-                            'password' => 'SHA1(CONCAT(passwd, password_salt))', // name of the password field in the users table
-                            'email' => 'email_address', // name of 'email' field in users table
-                            'regdate' => 'date_registered', // name of 'registered' field in users table
-                            'lastvisit' => 'UNIX_TIMESTAMP(last_login)', // last time user logged in
-                            'active' => 'is_activated', // is user account active?
-                            'location' => 'location', // name of 'location' field in users table
-                            'website' => 'website_url', // name of 'website' field in users table
-                            'usertbl_group_id' => 'id_group', // name of 'group id' field in users table
-                            'grouptbl_group_id' => 'id_group', // name of 'group id' field in groups table
-                            'grouptbl_group_name' => 'group_name', // name of 'group name' field in groups table
-                            'postgroup' => 'id_post_group', // post group field
-                            'additionals' => 'additional_groups', // additional groups, comma seperated
-                    );
+            // Table field names
+            $this->field = array(
+                'username' => 'real_name', // name of 'username' field in users table
+                'user_id' => 'id_member', // name of 'id' field in users table
+                'password' => 'SHA1(CONCAT(passwd, password_salt))', // name of the password field in the users table
+                'email' => 'email_address', // name of 'email' field in users table
+                'regdate' => 'date_registered', // name of 'registered' field in users table
+                'lastvisit' => 'UNIX_TIMESTAMP(last_login)', // last time user logged in
+                'active' => 'is_activated', // is user account active?
+                'location' => 'location', // name of 'location' field in users table
+                'website' => 'website_url', // name of 'website' field in users table
+                'usertbl_group_id' => 'id_post_group', // name of 'group id' field in users table
+                'grouptbl_group_id' => 'id_group', // name of 'group id' field in groups table
+                'grouptbl_group_name' => 'group_name', // name of 'group name' field in groups table
+                'postgroup' => 'id_post_group', // post group field
+                'additionals' => 'additional_groups', // additional groups, comma seperated
+            );
 
-                    // Pages to redirect to
-                    $this->page = array(
-                            'register' => '/index.php?action=register',
-                            'editusers' => '/index.php?action=mlist',
-                            'edituserprofile' => '/index.php?action=profile;u='
-                    );
+            // Pages to redirect to
+            $this->page = array(
+                'register' => '/index.php?action=register',
+                'editusers' => '/index.php?action=mlist',
+                'edituserprofile' => '/index.php?action=profile;u='
+            );
 
-                    // Group ids - admin and guest only.
-                     $this->admingroups = array(1);
-                     $this->guestgroup = 0;
+            // Group ids - admin and guest only.
+            $this->admingroups = array(1);
+            $this->guestgroup = 0;
 
-                    // Connect to db - or supply a connection id to be used instead of making own connection.
-                    $this->connect();
-            }
-
+            // Connect to db - or supply a connection id to be used instead of making own connection.
+            $this->connect();
+        }
 
         // definition of how to extract id, name, group from a session cookie
         function session_extraction()
@@ -150,20 +148,23 @@ if (isset($bridge_lookup)) {
         function get_groups($row)
         {
             $data = array();
-            
-            if ($this->use_post_based_groups) {
 
-                $data[0] = $row['group_id'] + 100;
+            $sql = "SELECT id_group, {$this->field['additionals']} AS additionals FROM {$this->usertable} WHERE {$this->field['user_id']} = {$row['id']}";
+            $result = cpg_db_query($sql, $this->link_id);
+            
+            $groupdata = mysql_fetch_assoc($result);
                 
-                $sql = "SELECT {$this->field['postgroup']} AS postgroup, {$this->field['additionals']} AS additionals FROM {$this->usertable} WHERE {$this->field['user_id']} = {$row['id']}";
-                $result = cpg_db_query($sql, $this->link_id);
+            if ($this->use_post_based_groups) {
                 
-                $groupdata = mysql_fetch_assoc($result);
+                // the group is used as master group
+                if ($groupdata['id_group']) {
+                    $data[] = $groupdata['id_group'] + 100;
+                }
                 
-                // add in post group
-                $data[] = $groupdata['postgroup'] + 100;
+                // add in post based group as first additional group
+                $data[] = $row['group_id'] + 100;
                 
-                //  now add in any additional groups
+                //  add in any additional groups
                 if ($groupdata['additionals']) {
                 
                     $additionals = explode(',', $groupdata['additionals']);
@@ -174,112 +175,112 @@ if (isset($bridge_lookup)) {
                 }
                 
             } else {
-                $data[0] = in_array($row['group_id'] , $this->admingroups) ? 1 : 2;
+                $data[0] = in_array($groupdata['id_group'] , $this->admingroups) ? 1 : 2;
             }
             
             return $data;
         }
                 
-            function collect_groups()
-            {
-                    // Use this version to exclude true post based groups
-                    //$sql ="SELECT * FROM {$this->groupstable} WHERE minposts=-1";
+        function collect_groups()
+        {
+            // Use this version to exclude true post based groups
+            //$sql ="SELECT * FROM {$this->groupstable} WHERE minposts=-1";
 
-                    // Use this version to include all SMF groups
-                    $sql ="SELECT * FROM {$this->groupstable}";
+            // Use this version to include all SMF groups
+            $sql ="SELECT * FROM {$this->groupstable}";
 
-                    $result = cpg_db_query($sql, $this->link_id);
+            $result = cpg_db_query($sql, $this->link_id);
 
-                    $udb_groups = array(3 => 'Guests');
+            $udb_groups = array(100 => 'Guests');
 
-                    while ($row = mysql_fetch_assoc($result))
-                    {
-                            $udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
-                    }
-
-                    return $udb_groups;
+            while ($row = mysql_fetch_assoc($result)) {
+                $udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
             }
 
-            function login_page()
-            {
-                    global $CONFIG;
+            return $udb_groups;
+        }
 
-                            if ($session = $this->_session_load()) {
-                                $session['old_url'] = $CONFIG['site_url'] . '?board=redirect';
-                                $this->_session_save($session);                         
-                            }
+        function login_page()
+        {
+            global $CONFIG;
 
-                    $this->redirect('/index.php?action=login');
+            if ($session = $this->_session_load()) {
+                $session['old_url'] = $CONFIG['site_url'] . '?board=redirect';
+                $this->_session_save($session);                         
             }
 
-                function _session_load() {
+            $this->redirect('/index.php?action=login');
+        }
+
+        function _session_load()
+        {
+            $superCage = Inspekt::makeSuperCage();
+
+            if ($superCage->cookie->keyExists('PHPSESSID')) {
+        
+                $session_id = $superCage->cookie->getEscaped('PHPSESSID');
+            
+                $sql = "SELECT data FROM {$this->sessionstable} WHERE session_id = '$session_id'";
+
+                $result = cpg_db_query($sql, $this->link_id);
+
+                if (mysql_num_rows($result)) {
                 
-                    $superCage = Inspekt::makeSuperCage();
+                    list($data) = mysql_fetch_row($result);
+        
+                    session_name('CPG');
+                    session_start();
 
-                    if ($superCage->cookie->keyExists('PHPSESSID')) {
-                
-                        $session_id = $superCage->cookie->getEscaped('PHPSESSID');
-                    
-                        $sql = "SELECT data FROM {$this->sessionstable} WHERE session_id = '$session_id'";
+                    session_decode($data);
 
-                        $result = cpg_db_query($sql, $this->link_id);
+                    $session = $_SESSION;
 
-                        if (mysql_num_rows($result)) {
-                        
-                            list($data) = mysql_fetch_row($result);
-                
-                            session_name('CPG');
-                            session_start();
-
-                            session_decode($data);
-
-                            $session = $_SESSION;
-
-                            return $session;
-                        }
-                    }
-                        
-                    return false;
+                    return $session;
                 }
-                
-                function _session_save($session) {
-                
-                    $superCage = Inspekt::makeSuperCage();
-
-                    if ($superCage->cookie->keyExists('PHPSESSID')) {
-                
-                        $session_id = $superCage->cookie->getEscaped('PHPSESSID');
-
-                        $_SESSION = $session;
-
-                        $data = addslashes(session_encode());
-
-                        $sql = "UPDATE {$this->sessionstable} SET data = '$data' WHERE session_id = '$session_id'";
-
-                        cpg_db_query($sql, $this->link_id);
-                    }               
-                }
-                
-                
-            function logout_page()
-            {
-                global $CONFIG;
-                
-                    if ($session = $this->_session_load()) {
-                        $sesc = $session['rand_code'];
-                        $session['logout_url'] = $CONFIG['site_url'];
-                        $this->_session_save($session); 
-                    } else {
-                        $sesc = '';
-                    }
-
-                $this->redirect('/index.php?action=logout&sesc=' . $sesc);
             }
+                
+            return false;
+        }
+            
+        function _session_save($session)
+        {
+            $superCage = Inspekt::makeSuperCage();
 
-            function view_users() {}
-            function view_profile() {}
+            if ($superCage->cookie->keyExists('PHPSESSID')) {
+        
+                $session_id = $superCage->cookie->getEscaped('PHPSESSID');
+
+                $_SESSION = $session;
+
+                $data = addslashes(session_encode());
+
+                $sql = "UPDATE {$this->sessionstable} SET data = '$data' WHERE session_id = '$session_id'";
+
+                cpg_db_query($sql, $this->link_id);
+            }               
+        }
+
+        function logout_page()
+        {
+            global $CONFIG;
+            
+            if ($session = $this->_session_load()) {
+                $session['logout_url'] = $CONFIG['site_url'];
+                $this->_session_save($session);
+                $this->redirect('/index.php?action=logout;' . $session['session_var'] . '=' . $session['session_value']);
+            } else {
+                $this->redirect('/index.php?action=logout');
+            }
+        }
+
+        function view_users()
+        {
+        }
+        
+        function view_profile()
+        {
+        }
     }
-
 
     // and go !
     $cpg_udb = new cpg_udb;
