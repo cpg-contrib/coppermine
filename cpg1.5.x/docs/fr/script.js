@@ -9,7 +9,7 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.2
+  Coppermine version: 1.5.1
   $HeadURL$
   $Revision$
   $LastChangedBy$
@@ -53,11 +53,51 @@ doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="index.htm#features">Fonctions</a></li>\n';
 doc_toc += '      <li><a href="quickstart.htm#about">Guide de Démarrage Rapide</a></li>\n';
 doc_toc += '      <li><a href="toc.htm">Table des Matières</a></li>\n';
-doc_toc += '      <li><a href="requirements.htm">Minimum requis</a></li>\n';
-doc_toc += '      <li><a href="testing.htm">Version Alpha/Beta (Test)!</a></li>\n';
+doc_toc += '      <li><a href="requirements.htm">Minimum requis</a>\n';
+doc_toc += '        <ul id="minimum_requirements">\n';
+doc_toc += '          <li><a href="requirements.htm#what_minimum">Minimum requis côté serveur</a>\n';
+doc_toc += '            <ul id="minimum_requirements_server">\n';
+doc_toc += '              <li><a href="requirements.htm#what_minimum_webserver">Serveur Web</a></li>\n';
+doc_toc += '              <li><a href="requirements.htm#what_minimum_php">support PHP</a></li>\n';
+doc_toc += '              <li><a href="requirements.htm#what_minimum_mysql">Base de donée mySQL</a></li>\n';
+doc_toc += '              <li><a href="requirements.htm#what_minimum_image_library">Librairie graphique</a></li>\n';
+doc_toc += '            </ul>\n';
+doc_toc += '          </li>\n';
+doc_toc += '          <li><a href="requirements.htm#what_minimum_self-hosting">Auto hébergement &amp; paramétrage du serveur web</a></li>\n';
+doc_toc += '          <li><a href="requirements.htm#personal">Requis personnels</a></li>\n';
+doc_toc += '          <li><a href="requirements.htm#requirements_faq">FAQ du minimum requis</a></li>\n';
+doc_toc += '        </ul>\n';
+doc_toc += '      </li>\n';
+doc_toc += '      <li><a href="testing.htm">Test (Version alpha/beta !)</a>\n';
+doc_toc += '        <ul>\n';
+doc_toc += '          <li><a href="testing.htm#testing_support">Pas d\'aide pour les versions alpha et beta</a></li>\n';
+doc_toc += '          <li><a href="testing.htm#testing_areas">Parties à regarder de manière particulièrement précise</a></li>\n';
+doc_toc += '          <li><a href="testing.htm#testing_feature_list">Listedes fonctions</a></li>\n';
+doc_toc += '          <li><a href="testing.htm#testing_report">Format des rapports</a></li>\n';
+doc_toc += '          <li><a href="testing.htm#testing_availability">Disponibilité</a></li>\n';
+doc_toc += '        </ul>\n';
+doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="languages.htm">Langues</a>\n';
 doc_toc += '        <ul id="languages">\n';
+doc_toc += '          <li><a href="languages.htm#how">Comment les langues fonctionnent dans Coppermine</a></li>\n';
 doc_toc += '          <li><a href="translation.htm">Guide de Traduction</a></li>\n';
+doc_toc += '            <ul id="translation">\n';
+doc_toc += '              <li><a href="translation.htm#translation_translators_wanted">Demande de traducteurs!</a></li>\n';
+doc_toc += '              <li><a href="translation.htm#translation_why_translate">Pourquoi traduire?</a></li>\n';
+doc_toc += '              <li><a href="translation.htm#translation_which_languages">Traduction demandées pour quels langues?</a></li>\n';
+doc_toc += '              <li><a href="translation.htm#translation_who">Qui peut traduire?</a></li>\n';
+doc_toc += '              <li><a href="translation.htm#translation_char_encoding">Encodage des caractères</a></li>\n';
+doc_toc += '              <li><a href="translation.htm#translation_editors">Editeurs &amp; Outils</a></li>\n';
+doc_toc += '              <li><a href="translation.htm#translation_full_translation">Traductions complètes uniquement</a></li>\n';
+doc_toc += '              <li><a href="translation.htm#translation_step_by_step">Pas à pas</a></li>\n';
+doc_toc += '              <li><a href="translation.htm#translation_special_issues">Problèmes particuliers</a></li>\n';
+doc_toc += '              <li><a href="translation.htm#translation_versions">Version de la langue</a></li>\n';
+doc_toc += '              <li><a href="translation.htm#translation_work_in_progress">Travail en cours</a></li>\n';
+doc_toc += '              <li><a href="translation.htm#translation_initial_translation">Traduction initiale pour la publication</a></li>\n';
+doc_toc += '              <li><a href="translation.htm#translation_older_language_files">Utilisation d\'anciens fichiers langue</a></li>\n';
+doc_toc += '              <li><a href="translation.htm#translation_documentation">Traduction de la documentation</a></li>\n';
+doc_toc += '            </ul>\n';
+doc_toc += '          </li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="credits.htm">Credits</a>\n';
@@ -219,14 +259,14 @@ doc_toc += '              <li><a href="theme_style_css.htm#theme_style_css_list"
 doc_toc += '              <li><a href="theme_style_css.htm#theme_style_css_overall">Feuilles de style additionnelles</a>\n';
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
-doc_toc += '          <li><a href="theme_theme_php.htm#theme_create_theme_php"class="us_fr">Modifier theme.php</a>\n';
+doc_toc += '          <li><a href="theme_theme_php.htm#theme_create_theme_php">Modifier theme.php</a>\n';
 doc_toc += '              <ul class="level3" id="theme_theme_php">\n';
 doc_toc += '                  <li><a href="theme_theme_php.htm#theme_php_types">Type d\'éléments</a></li>\n';
 doc_toc += '                  <li><a href="theme_theme_php.htm">Le thème sample - un thème pour copier/coller</a></li>\n';
 doc_toc += '                  <li><a href="theme_theme_php.htm#theme_php_method">Méthode</a></li>\n';
 doc_toc += '                  <li><a href="theme_theme_php.htm#theme_php_scope">Point de vue</a></li>\n';
 doc_toc += '                  <li><a href="theme_theme_php.htm#theme_php_list">Liste des  items dans theme.php</a></li>\n';
-doc_toc += '                  <li><a href="theme_examples.htm#theme_examples" class="en">Exemple de thèmes</a></li>\n';
+doc_toc += '                  <li><a href="theme_examples.htm#theme_examples">Exemple de thèmes</a></li>\n';
 doc_toc += '              </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '        </ul>\n';
@@ -852,7 +892,7 @@ $(document).ready(function()
 	cpgDocSearch();
 	cpgDocFooter();
 	dateRevision();
-	dateRevision();
+	
     $("a.nolink").click(function(){
       return false;
     });
