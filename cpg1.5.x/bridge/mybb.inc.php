@@ -21,12 +21,12 @@ if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
 if (isset($bridge_lookup)) {
     $default_bridge_data[$bridge_lookup] = array(
-        'full_name' => 'MyBB 1.02',
+        'full_name' => 'MyBB 1.4',
         'short_name' => 'mybb',
-        'support_url' => 'http://www.mybboard.com/',
+        'support_url' => 'http://www.mybboard.net/',
         'full_forum_url_default' => 'http://www.yoursite.com/board',
         'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-        'relative_path_to_config_file_default' => '../board/inc',
+        'relative_path_to_config_file_default' => '../board/inc/',
         'relative_path_to_config_file_used' => 'lookfor,config.php',
         'use_post_based_groups_default' => '0',
         'use_post_based_groups_used' => 'radio,1,0',
@@ -60,22 +60,22 @@ if (isset($bridge_lookup)) {
                 $this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
             }
             
-            $this->multigroups = 0;
+            $this->multigroups = 1;
             $this->group_overrride = 0;
             
             // Database connection settings
             $this->db = array(
-                'name' => $config['database'],
-                'host' => $config['hostname'],
-                'user' => $config['username'],
-                'password' => $config['password'],
-                'prefix' =>$config['table_prefix']
+                'name'     => $config['database']['database'],
+                'host'     => $config['database']['hostname'],
+                'user'     => $config['database']['username'],
+                'password' => $config['database']['password'],
+                'prefix'   => $config['database']['table_prefix'],
             );
             
             // Board table names
             $this->table = array(
-                'users' => 'users',
-                'groups' => 'usergroups',
+                'users'    => 'users',
+                'groups'   => 'usergroups',
                 'sessions' => 'sessions',
             );
 
@@ -100,8 +100,8 @@ if (isset($bridge_lookup)) {
             
             // Pages to redirect to
             $this->page = array(
-                'register' => '/member.php?action=register',
-                'editusers' => '/memberlist.php',
+                'register'        => '/member.php?action=register',
+                'editusers'       => '/memberlist.php',
                 'edituserprofile' => "/member.php?action=profile&uid="
             );
             
@@ -117,22 +117,31 @@ if (isset($bridge_lookup)) {
         function session_extraction()
         {
             $superCage = Inspekt::makeSuperCage();
-            //if (!isset($_COOKIE['sid'])) return false;
-            if (!$superCage->cookie->keyExists('sid')) return false;
-        
-            //$this->sid = addslashes($_COOKIE['sid']);
+
+            if (!$superCage->cookie->keyExists('sid')) {
+                return false;
+            }
+            
             $this->sid = $superCage->cookie->getEscaped('sid');
             
-            if (!$this->sid) return false;
+            if (!$this->sid) {
+                return false;
+            }
             
-            $this->ipaddress = $this->getip();
+            $result = cpg_db_query("SELECT u.{$this->field['user_id']}, u.{$this->field['password']}, additionalgroups
+                FROM {$this->sessionstable} AS s
+                INNER JOIN {$this->usertable} AS u ON u.uid = s.uid
+                WHERE sid = '" . $this->sid . "'", $this->link_id);
             
-            $result = cpg_db_query("SELECT u.{$this->field['user_id']}, u.{$this->field['password']} FROM {$this->sessionstable} AS s INNER JOIN {$this->usertable} AS u ON u.uid = s.uid WHERE sid='".$this->sid."' AND ip='".$this->ipaddress."'", $this->link_id);
-            
-            if (!mysql_num_rows($result)) return false;
-            
+            if (!mysql_num_rows($result)) {
+                return false;
+            }
+                        
             $row = mysql_fetch_row($result);
 
+            $this->additionalgroups = array_pop($row);
+            $this->logoutkey = md5($row[1]);
+            
             return $row; 
         }
         
@@ -140,41 +149,36 @@ if (isset($bridge_lookup)) {
         function cookie_extraction()
         {
             $superCage = Inspekt::makeSuperCage();
-            //return  isset($_COOKIE['mybbuser']) ? array_map('addslashes', explode("_", $_COOKIE['mybbuser'], 2)) : false;
-            return  $superCage->cookie->keyExists('mybbuser') ? array_map('addslashes', explode("_", $superCage->cookie->getRaw('mybbuser'), 2)) : false;
-        }
-        
-        // imported function
-        function getip() {
-            global $hdr_ip;
-            /*if($_SERVER['HTTP_X_FORWARDED_FOR'])
-            {
-                if(preg_match_all("#[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}#s", $_SERVER['HTTP_X_FORWARDED_FOR'], $addresses))
-                {
-                    while(list($key, $val) = each($addresses[0]))
-                    {
-                        if(!preg_match("#^(10|172\.16|192\.168)\.#", $val))
-                        {
-                            $ip = $val;
-                            break;
-                        }
-                    }
-                }
+            
+            if ($superCage->cookie->keyExists('mybbuser')) {
+                return array_map('addslashes', explode("_", $superCage->cookie->getRaw('mybbuser'), 2));
+            } else {
+                return false;
             }
-            if(!$ip)
-            {
-                if($_SERVER['HTTP_CLIENT_IP'])
-                {
-                    $ip = $_SERVER['HTTP_CLIENT_IP'];
-                }
-                else
-                {
-                    $ip = $_SERVER['REMOTE_ADDR'];
-                }
-            }*/
-            return $hdr_ip;
         }
 
+    	// Get groups of which user is member
+    	function get_groups($row)
+    	{
+    		$data = array();
+    		
+    		if ($this->use_post_based_groups) {
+    		    
+    		    $data[] = $row['group_id'] + 100;
+    		    
+    		    $additionalgroups = explode(',', $this->additionalgroups);
+    		    
+    		    foreach ($additionalgroups as $g) {
+    		        $data[] = $g + 100;
+    		    }
+    
+    		} else {
+    			$data[0] = (in_array($row['group_id'], $this->admingroups)) ? 1 : 2;
+    		}
+    		
+    		return $data;
+    	}
+	
         // definition of actions required to convert a password from user database form to cookie form
         function udb_hash_db($password)
         {
@@ -190,12 +194,12 @@ if (isset($bridge_lookup)) {
         // Logout
         function logout_page()
         {
-            $this->redirect('/member.php?action=logout&uid=' . USER_ID . '&sid=' . $this->sid);
+            $this->redirect('/member.php?action=logout&logoutkey=' . $this->logoutkey);
         }
         
         function view_users()
         {
-            if (!$this->use_post_based_groups) $this->redirect($this->page['editusers']);
+            $this->redirect($this->page['editusers']);
         }
         
         function get_users($options = array())
