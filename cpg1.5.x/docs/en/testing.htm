@@ -37,7 +37,7 @@
 <p>Thank you for taking the time to test Coppermine Photo Gallery. Please be rough on the program so that we can track down and eliminate bugs from our public release of version 1.5.x</p>
 <p>Please understand that this is still alpha/beta software that is meant to be used for testing purposes and evaluation, but not for production use. Therefore, there is currently no support for cpg1.5.x yet.</p>
 
-<p>While testing cpg1.5.2, please make certain to note any odd behavior you encounter.  This could include typographical errors, misleading instructions, or any other out-right error.  If you encounter a major error, please switch the debug mode to &quot;on&quot; in the configuration panel and copy the text from the debug window of Coppermine into your posting if a supporter or developer explicitely asks for it. This will greatly aid the development team in hunting down the problem.</p>
+<p>While testing cpg1.5.x, please make certain to note any odd behavior you encounter.  This could include typographical errors, misleading instructions, or any other out-right error.  If you encounter a major error, please switch the debug mode to &quot;on&quot; in the configuration panel and copy the text from the debug window of Coppermine into your posting if a supporter or developer explicitely asks for it. This will greatly aid the development team in hunting down the problem.</p>
 
 <a name="testing_support"></a><h2>No support for alpha and beta versions<a href="#testing_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>The coppermine group is readily supplying support on the official Coppermine forum for versions that have officially been released. However, there is no support for versions that are in alpha or beta stage, i.e. under development. Only stable releases are being supported.</p>
@@ -132,14 +132,14 @@ We have a <strong>strict</strong> &quot;one issue per thread&quot; policy on the
 <p>To give you an idea how your test report could look like, here's an example (make sure that you populated the stuff in red with actual content from your case):</p>
 <div class="cpg_example">
     <div class="quote">
-    When testing cpg1.5.<span class="important">1</span> on my testbed at <span class="important">http://example.com/my_coppermine_folder/</span> using a subversion checkout from <span class="important">2009-07-13</span> (revision <span class="important">1234</span>) I noticed that whenever <span class="important">I'm logged in as admin and click on the admin menu item &quot;export&quot; I get the error message &quot;foo bar blah&quot;</span>.<br />
+    When testing cpg1.5.<span class="important">2</span> on my testbed at <span class="important">http://example.com/my_coppermine_folder/</span> using a subversion checkout from <span class="important">2009-07-13</span> (revision <span class="important">1234</span>) I noticed that whenever <span class="important">I'm logged in as admin and click on the admin menu item &quot;export&quot; I get the error message &quot;foo bar blah&quot;</span>.<br />
     My server testbed runs on <span class="important">Ubuntu Linux 9.04</span> and <span class="important">Apache 2.2.10</span> with <span class="important">GD2</span> as image library under PHP <span class="important">5.3.0</span>. I <span class="important">don't use bridging</span> and have only tested using this the <span class="important">classic</span> theme. I have performed <span class="important">a fresh install</span>. I get the above mentioned error message no matter what browser I use (I have tested with <span class="important">IE7</span> and <span class="important">FF3.5</span> on Windows XP Home SP3 English). The default language in my browsers is set to <span class="important">English</span>.
     </div>
 </div>
 <p>Here's another example of the same test report:</p>
 <div class="cpg_example">
     <div class="quote">
-    Coppermine version: <span class="important">cpg1.5.1</span><br />
+    Coppermine version: <span class="important">cpg1.5.2</span><br />
     Testbed URL: <span class="important">http://example.com/my_coppermine_folder/</span><br />
     Server OS: <span class="important">Ubuntu Linux 9.04</span><br />
     Web Server: <span class="important">Apache 2.2.10</span><br />
@@ -159,7 +159,7 @@ We have a <strong>strict</strong> &quot;one issue per thread&quot; policy on the
 </div>
 <p>Above mentioned examples are meant to give you an idea how your report could look like - you should provide more data depending on the type of issue you report:</p>
 <ul>
-    <li>When reporting a spelling mistake, you don't have to go through all that data, as the operating system won't have an impact on the spelling, so a valid bug report that deals with a spelling mistake only could just be something like <div class="quote">Using the SVN checkout rev 1234 of <tt class="code">lang/english.php</tt> the line <tt class="code">$foo = 'Helo world';</tt> should actually read <tt class="code">$foo = 'Hello world';</tt></div> or <div class="quote">When clicking on the login link, the word "<tt class="code">Helo</tt>" on the login screen should actually be "<tt class="code">Hello</tt>". I am using the package cpg1.5.2</div></li>
+    <li>When reporting a spelling mistake, you don't have to go through all that data, as the operating system won't have an impact on the spelling, so a valid bug report that deals with a spelling mistake only could just be something like <div class="quote">Using the SVN checkout rev 1234 of <tt class="code">lang/english.php</tt> the line <tt class="code">$foo = 'Helo world';</tt> should actually read <tt class="code">$foo = 'Hello world';</tt></div> or <div class="quote">When clicking on the login link, the word "<tt class="code">Helo</tt>" on the login screen should actually be "<tt class="code">Hello</tt>". I am using the package cpg1.5.<span class="important">2</span></div></li>
     <li>When reporting a layout glitch, provide more details about your browser, your resolution etc.</li>
     <li>When reporting upload issues, make sure that you have done exactly as suggested in &quot;<a href="upload_troubleshooting.htm#upload_support">Asking for support on upload issues</a>&quot;. Wannabe-bug reports that show you haven't done as suggested there are invalid and will be ignored.</li>
 </ul>
@@ -173,8 +173,8 @@ We have a <strong>strict</strong> &quot;one issue per thread&quot; policy on the
 <p>If you think that the rules here are totally obvious, then think again: we wouldn't be writing them down if they were obvious for everyone. In fact, we used to have a hard time in the past when we were flooded with invalid test reports. That's why we needed to clarify the rules.</p>
 
 <a name="testing_availability"></a><h2>Availability<a href="#testing_availability" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p class="cpg_message_error">Warning: cpg1.5.x hasn't been released yet - only a <a href="dev_subversion.htm#dev_subversion_checking_out">svn checkout</a> is currently possible (cpg1.5.x folder).</p>
-<p>When testing alpha software (i.e. unreleased subversion checkouts), make sure that your checkout is up-to-date.</p>
+<p class="cpg_message_error">Warning: cpg1.5.x hasn't been released yet publicly - only a <a href="dev_subversion.htm#dev_subversion_checking_out">svn checkout</a> is currently possible (cpg1.5.x folder) for the general public. The only release that has been made is cpg1.5.1 that has been made available to a closed group of testers, i.e. it is not publicly accessible.</p>
+<p>When testing unreleased subversion checkouts, make sure that your checkout is up-to-date.</p>
 
 
 <div id="doc_footer">
