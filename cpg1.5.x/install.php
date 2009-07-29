@@ -441,13 +441,13 @@ switch($step) {
             } else {
                 setTmpConfig('admin_username', $superCage->post->getAlnum('admin_username'));
             }
-            $admin_password = $superCage->post->getMatched('admin_password', '/\A\w*\Z/');
-            $admin_password_verif = $superCage->post->getMatched('admin_password_verif', '/\A\w*\Z/');
-            if ($admin_password[0] != $admin_password_verif[0] || !$admin_password || $admin_password[0] == '') {
+            $admin_password = $superCage->post->getEscaped('admin_password');
+            $admin_password_verif = $superCage->post->getEscaped('admin_password_verif');
+            if ($admin_password != $admin_password_verif || $admin_password == '') {
                 // admin password not correct
                 $error .= $language['pass_err'] . '<br />';
             } else {
-                setTmpConfig('admin_password', $superCage->post->getAlnum('admin_password'));
+                setTmpConfig('admin_password', $superCage->post->getEscaped('admin_password'));
             }
             $email = $superCage->post->getMatched('admin_email', '/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i');
             $ver_email = $superCage->post->getMatched('admin_email_verif', '/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i');
