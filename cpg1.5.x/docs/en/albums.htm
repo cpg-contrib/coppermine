@@ -93,20 +93,65 @@
 </ul>
 
 <a name="album_prop"></a><h2>Album properties<a href="#album_prop" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The album properties page can be accessed by clicking on &quot;Properties&quot; item next to the thumbnail that represents a particular album.</p>
 <img src="images/edit_album.gif" border="0" alt="" align="right" />
-<p>The "Album category" drop down list allows you to move an album from one category to another. If you set this to &quot;* No category *&quot; then the album will be displayed on your main page.</p>
-<p>Use <a href="bbcode.htm#bbcode">bbcode</a> to add links and additional formating to your  descriptions.</p>
-<p>The thumbnail option lets you select the picture that will represent the album in the album list. Do not assign a picture here if you would like the album to select images randomly.</p>
+<a name="album_prop_controls"></a><h3>Controls<a href="#album_prop_controls" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<ul>
+	<li>
+		<a name="album_prop_controls_edit_files"></a><h4>Edit files<a href="#album_prop_controls_edit_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		The button &quot;Edit files&quot; will send you directly to the <a href="files.htm#edit_pics">Edit files</a> dialog that can be accessed as well from the similar button next to the thumbnail that represents an album on the index page. When clicking on this button, all changes you have applied on the album properties screen will be lost if you haven't saved them previously.
+	</li>
+	<li>
+		<a name="album_prop_controls_parent_category"></a><h4>Parent category<a href="#album_prop_controls_parent_category" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		The button &quot;Parent category&quot; will send you to the index page of the category the album resides in that you're currently editing. When clicking on this button, all changes you have applied on the album properties screen will be lost if you haven't saved them previously.
+	</li>
+	<li>
+		<a name="album_prop_controls_thumbnail_view"></a><h4>Thumbnail view<a href="#album_prop_controls_thumbnail_view" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		The button &quot;Thumbnail view&quot; will send you directly to the thumbnail overview of the album you're editing. When clicking on this button, all changes you have applied on the album properties screen will be lost if you haven't saved them previously.
+	</li>
+	<li>
+		<a name="album_prop_controls_album_dropdown"></a><h4>Choose album<a href="#album_prop_controls_album_dropdown" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		The &quot;Choose album&quot; dropdown list allows you to quickly switch to the album properties page of another album than the one you're currently editing. Use this dropwdown as a shortcut if you want to edit several album properties in a row without having to jump to the parent category first. When selecting an items from that dropwdown, you will be immediately sent to the corresponding album without the changes on the current page being saved.
+	</li>
+	<li>
+		<a name="album_prop_controls_album_title"></a><h4>Album title<a href="#album_prop_controls_album_title" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		The input field &quot;Album title&quot; can be used as an alternative to the album manager if you want to just rename the current album. The album title will be the clickable text on the index page.
+	</li>
+	<li>
+		<a name="album_prop_controls_album_category"></a><h4>Album category<a href="#album_prop_controls_album_category" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		The "Album category" drop down list allows you to move an album from one category to another. If you set this to &quot;* No category *&quot; then the album will be displayed on your main page, i.e. in your gallery root.
+	</li>
+	<li>
+		<a name="album_prop_controls_album_description"></a><h4>Album description<a href="#album_prop_controls_album_description" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		The optional input field &quot;Album description&quot; can be used to provide an explanation about what is to be found in the album. Use <a href="bbcode.htm#bbcode">bbcode</a> to add links and additional formating to your descriptions.
+	</li>
+	<li>
+		<a name="album_prop_keyword_start"></a><a name="album_prop_controls_album_keyword"></a><h4>Album keyword<a href="#album_prop_controls_album_keyword" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		In 1.4.x and better the Album Keyword is being used to link images from other album into another. Using this method, files/images can be displayed in various albums while the file itself need only exists in one album on your webserver.  You simply upload a file to one album as you would normally do, then assign one or more <a href="keywords.htm#keywords">keywords</a> to the file.<br />
+		The keyword function reads blank spaces between words as a 'break' and assumes that these words are separate words. If you must use phrases for your keywords, connect them with an underscore or by using the ASCII space holder [Ctrl]+[Alt]+[0][1][6][0] (NOTE: the latter option only works with latin based character sets.) Each album can only have <strong>ONE</strong> (1!) keyword or keyword phrase. All pictures residing in different albums that you would like to be displayed in this album must have the same keyword or keyword phrase in their respective keyword fields. Pictures, unlike albums can have multiple keywords or keyword phrases separated by spaces or another particular <a href="configuration.htm#admin_general_keyword_separator_start">keyword separator</a> that needs to be unique for your entire gallery. This provides you with the option to display pictures in many albums.  For the visitor of these albums, it will appear as if the file/image had been uploaded to each album.
+		<a name="album_prop_keyword_end"></a>
+	</li>
+	<li>
+		<a name="album_prop_controls_album_thumbnail"></a><h4>Album thumbnail<a href="#album_prop_controls_album_thumbnail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		The thumbnail option lets you select the picture that will represent the album in the album list. Do not assign a picture here if you would like the album to select images randomly. Possible options are:
+		<ul>
+			<li>The thumbnails that have been uploaded so far to this album</li>
+			<li>Last uploaded (default)</li>
+			<li>Random image</li>
+		</ul>
+	</li>
+</ul>
+
 <p>If you have set &quot;Albums can be private&quot; to YES on the <a href="configuration.htm#admin_picture_thumb_advanced_private_toggle">config page</a>, you can determine who will have permission to view the files of this album.</p>
 <p>When &quot;visitors can upload file&quot; is set to YES, it is possible for them to upload files into albums by enabling this permission.</p>
 <a name="album_prop_visitor_start"></a>
 <p><strong>Note that only visitors who are members of a <em>group</em> for which the setting &quot;Can upload pictures&quot; is set to YES.</strong> Members not in the permitted group will not be able to upload files into such an album. Non-registered users are members of the &quot;Anonymous&quot; group. </p>
 <p>The same rules as above apply for &quot;Visitors can post comments&quot; and &quot;Visitors can rate files&quot;.</p>
 <a name="album_prop_visitor_end"></a>
-<a name="album_prop_keyword_start"></a>
-<p>In 1.4.x and better the <strong><a href="keywords.htm#keywords_album">Album Keyword</a></strong> is <em>no</em> longer being used for searching purposes, but, rather, to link images from other album into another. Using this method, files/images can be displayed in various albums while the file itself need only exists in one album on your webserver.  You simply upload a file to one album as you would normally do, then assign one or more keywords to the file.</p>
-<p>The keyword function reads blank spaces between words as a 'break' and assumes that these words are separate words. If you must use phrases for your keywords, connect them with an underscore or by using the ascii space holder ctrl+Alt+0160 (NOTE: the latter option only works with latin based character sets.) Each album can only have <strong>ONE</strong> (1) keyword or keyword phrase.  All pictures residing in different albums that you would like to be displayed in this album must have the same keyword or keyword phrase in their respective keyword fields. Pictures, unlike albums can have multiple keywords or keyword phrases separated by spaces. This provides you with the option to display pictures in many albums.  For the visitor of these albums, it will appear as if the file/image had been uploaded to each album.</p>
-<a name="album_prop_keyword_end"></a>
+
+<p></p>
+<p></p>
+
 <a name="album_prop_password_start"></a>
 <p><strong>Album Password</strong>: you can specify an album to be password-protected (instead of relying on the "regular" group-based permissions). This way, you can even allow access for unlogged users (guests) who you provide the password to. Use this option, for example, to set up an album for your family members only by specifying a password that only they can come up with answering an additional password hint (e.g. "<em>What was the maiden name of aunt Emma?</em>"), or you could decide to send the particular password to specific friends, family or business associates by email. The optional <strong>password hint</strong> will be displayed at the password prompt, when set.</p>
 <p>Note: when setting an album password, the permission dropdown field "<em>Album can be viewed by</em>" will be switched automatically to "<em>me only</em>" - this is expected behaviour. If you change the "<em>Album can be viewed by</em>" to another selection, you must disable the album password as well.</p>
