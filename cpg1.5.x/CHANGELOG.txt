@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-07-29 [B] Removed unneeded <head>-section that caused 404 error for inline-help (thread ID 60847) {GauGau}
 2009-07-25 [D] Fixed reference to plugins folder (thread ID 60772) {GauGau}
 2009-07-24 [M] Updated version count from cpg1.5.1 to cpg1.5.2 to prepare the next release {GauGau}
 2009-07-24 [S] Release of cpg1.5.1 (alpha) to closed user group {GauGau}

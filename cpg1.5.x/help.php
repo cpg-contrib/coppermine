@@ -164,6 +164,7 @@ $string = str_replace('<a href="#', '<a internalAnchorLinkTempReplacement', $str
 $string = str_replace('<a href="', '<a href="docs/'.$help_lang.'/', $string);
 $string = str_replace('<a externalLinkTempReplacement', '<a href="http://', $string); // restore external links
 $string = str_replace('<a internalAnchorLinkTempReplacement', '<a href="#', $string); // restore links to anchors on this page
+$string = preg_replace('/<head>(.*)</head>/', '', $string); // Get rid of the head, as we use a head of our own
 
 if ($header != '') {
     $content = '<h1>'.$header.'</h1>';
@@ -171,7 +172,7 @@ if ($header != '') {
 } else {
     $content = '';
 }
-    
+
 echo <<< EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
