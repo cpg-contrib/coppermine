@@ -23,9 +23,6 @@ if($CONFIG['read_iptc_data'] ){
         include("include/iptc.inc.php");
 }
 
-// Increase the memory limit (will work depending on server configuration)
-@ini_set('memory_limit', '32M');
-
 // Add a picture to an album
 function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $caption = '', $keywords = '', $user1 = '', $user2 = '', $user3 = '', $user4 = '', $category = 0, $raw_ip = '', $hdr_ip = '', $iwidth = 0, $iheight = 0)
 {
