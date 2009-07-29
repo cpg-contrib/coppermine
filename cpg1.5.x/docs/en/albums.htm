@@ -140,24 +140,55 @@
 			<li>Random image</li>
 		</ul>
 	</li>
+	<li>
+	    <a name="album_prop_controls_album_can_be_viewed_by"></a><h4>Album can be viewed by<a href="#album_prop_controls_album_can_be_viewed_by" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+	    If you have set &quot;Albums can be private&quot; to YES on the <a href="configuration.htm#admin_picture_thumb_advanced_private_toggle">config page</a>, you can determine who will have permission to view the files of this album.<br />
+	    If you have specified a password in the field &quot;<a href="#album_prop_controls_album_password">Album password</a>&quot;, the dropdown list &quot;Album can be viewed by&quot; will be set to &quot;Me only&quot;. That is expected behaviour and is perfectly fine if you want password-protection enabled.
+	</li>
+	<li>
+	    <a name="album_prop_controls_password_protect"></a><h4>Password protect this album<a href="#album_prop_controls_password_protect" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+	    Tick this checkbox to enable password protection. The fields &quot;Album password&quot; and &quot;Album password hint&quot; will only be visible if the option &quot;Password protect this album&quot; has been ticked.
+	</li>
+	<li>
+	    <a name="album_prop_controls_album_password"></a><h4>Album password (New password)<a href="#album_prop_controls_album_password" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+	    The input field &quot;Album password&quot; will only be displayed if the checkbox &quot;<a href="#album_prop_controls_password_protect">Password protect this album</a>&quot; has been enabled.
+        <a name="album_prop_password_start"></a>
+        You can specify an album to be password-protected (instead of relying on the "regular" group-based permissions). This way, you can even allow access for unlogged users (guests) who you provide the password to. Use this option, for example, to set up an album for your family members only by specifying a password that only they can come up with answering an additional password hint (e.g. "<em>What was the maiden name of aunt Emma?</em>"), or you could decide to send the particular password to specific friends, family or business associates by email.<br />
+        <div class="cpg_message_warning">When setting an album password, the permission dropdown field &quot;<a href="#album_prop_controls_album_can_be_viewed_by">Album can be viewed by</a>&quot; will be switched automatically to "<em>me only</em>" - this is expected behaviour. If you change the "<em>Album can be viewed by</em>" to another selection, you must disable the album password as well.</div>
+        <a name="album_prop_password_end"></a>
+	</li>
+	<li>
+	    <a name="album_prop_controls_album_password_hint"></a><h4>Album password hint<a href="#album_prop_controls_album_password_hint" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+	    The input field &quot;Album password hint&quot; will only be displayed if the checkbox &quot;<a href="#album_prop_controls_password_protect">Password protect this album</a>&quot; has been enabled.<br />
+	    The optional <strong>album password hint</strong> will be displayed at the password prompt, when an album password is set.
+	</li>
+	<li>
+	    <a name="album_prop_controls_visitor_upload"></a><h4>Visitors can upload files<a href="#album_prop_controls_visitor_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+	    When &quot;visitors can upload file&quot; is set to YES, it is possible for them to upload files into albums.<br />
+	    <a name="album_prop_visitor_start"></a>
+	    <div class="cpg_message_info">Note that only visitors who are members of a <em>group</em> for which the setting &quot;Public albums upload allowed&quot; (groups control panel) is set to YES can actually upload to albums where the option &quot;Visitors can upload files&quot; (album properties) is enabled.</div>
+	    Visitors who are not in the permitted group will not be able to upload files into such an album. Non-registered users are members of the &quot;Anonymous&quot; group.
+	    <a name="album_prop_visitor_end"></a>
+	</li>
+	<li>
+	    <a name="album_prop_controls_can_post_comment"></a><h4>Visitors can post comments<a href="#album_prop_controls_can_post_comment" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+	    <a name="album_prop_comment_start"></a>
+	    <div class="cpg_message_info">Note that only visitors who are members of a <em>group</em> for which the setting &quot;Comments permissions&quot; (groups control panel) is set to YES can actually post comments on files in albums where the option &quot;Visitors can post comments&quot; (album properties) is enabled.</div>
+	    Visitors who are not in the permitted group will not be able to comment on files within such an album.
+	    <a name="album_prop_comment_end"></a>
+	</li>
+	<li>
+	    <a name="album_prop_controls_can_rate_files"></a><h4>Visitors can rate files<a href="#album_prop_controls_can_rate_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+	    <a name="album_prop_rate_start"></a>
+	    <div class="cpg_message_info">Note that only visitors who are members of a <em>group</em> for which the setting &quot;Rating permissions&quot; (groups control panel) is set to YES can actually rate files in albums where the option &quot;Visitors can rate files&quot; (album properties) is enabled.</div>
+	    Visitors who are not in the permitted group will not be able to rate files within such an album.
+	    <a name="album_prop_rate_end"></a>
+	</li>
+	<li>
+	    <a name="album_prop_controls_album_moderation"></a><h4>Album can be moderated by<a href="#album_prop_controls_album_moderation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+	    Choose who will be allowed to moderate the album.
+	</li>
 </ul>
-
-<p>If you have set &quot;Albums can be private&quot; to YES on the <a href="configuration.htm#admin_picture_thumb_advanced_private_toggle">config page</a>, you can determine who will have permission to view the files of this album.</p>
-<p>When &quot;visitors can upload file&quot; is set to YES, it is possible for them to upload files into albums by enabling this permission.</p>
-<a name="album_prop_visitor_start"></a>
-<p><strong>Note that only visitors who are members of a <em>group</em> for which the setting &quot;Can upload pictures&quot; is set to YES.</strong> Members not in the permitted group will not be able to upload files into such an album. Non-registered users are members of the &quot;Anonymous&quot; group. </p>
-<p>The same rules as above apply for &quot;Visitors can post comments&quot; and &quot;Visitors can rate files&quot;.</p>
-<a name="album_prop_visitor_end"></a>
-
-<p></p>
-<p></p>
-
-<a name="album_prop_password_start"></a>
-<p><strong>Album Password</strong>: you can specify an album to be password-protected (instead of relying on the "regular" group-based permissions). This way, you can even allow access for unlogged users (guests) who you provide the password to. Use this option, for example, to set up an album for your family members only by specifying a password that only they can come up with answering an additional password hint (e.g. "<em>What was the maiden name of aunt Emma?</em>"), or you could decide to send the particular password to specific friends, family or business associates by email. The optional <strong>password hint</strong> will be displayed at the password prompt, when set.</p>
-<p>Note: when setting an album password, the permission dropdown field "<em>Album can be viewed by</em>" will be switched automatically to "<em>me only</em>" - this is expected behaviour. If you change the "<em>Album can be viewed by</em>" to another selection, you must disable the album password as well.</p>
-<br clear="all" />
-<a name="album_prop_password_end"></a>
-
 
 <a name="album_prop_reset_start"></a><h3>Reset album properties<a href="#album_prop_reset_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <img src="images/modifyalb_reset.gif" width="436" height="148" border="0" alt="" />
