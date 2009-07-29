@@ -420,7 +420,7 @@ function get_subcat_data(&$cat_data, &$album_set_array)
         INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = r.aid
         $RESTRICTEDWHERE
         AND approved = 'YES'
-        AND c.depth = $CURRENT_CAT_DEPTH + 1
+        AND c.depth BETWEEN $CURRENT_CAT_DEPTH + 1 AND $CURRENT_CAT_DEPTH + {$CONFIG['subcat_level']}
         GROUP BY r.aid
         ORDER BY NULL";
 
