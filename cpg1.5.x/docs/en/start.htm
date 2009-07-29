@@ -69,6 +69,8 @@
         Resized versions of your uploaded originals are being created based on the config settings</li>
         <li><strong><a href="#getting_admin_account">Your admin account</a></strong><br />
         Make sure to properly populate all admin details</li>
+		<li><strong><a href="#getting_upload_permissions">Uploading permissions</a></strong><br />
+        You can allow or disallow your users to upload</li>
         <li><strong><a href="#getting_check_uploads">Check uploads</a></strong><br />
         Make sure uploading works as expected before letting in visitors</li>
         <li><strong><a href="#getting_consider_bridging">Consider bridging</a></strong><br />
@@ -80,7 +82,6 @@
         <li><strong><a href="#getting_typical">Typical setups</a></strong><br />
         The level of visitor interaction you plan to allow</li>
 </ul>
-
 
 
 <a name="getting_initial_configuration"></a><h2>Initial configuration<a href="#getting_initial_configuration" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
@@ -193,11 +194,81 @@ Example setup:
 </ul>
 <p>It would not hurt if those two email addresses were the same: they can be the same or they can differ. Just make sure to populate both.</p>
 
-
+<a name="getting_upload_permissions"></a><h2>Uploading permissions<a href="#getting_upload_permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>In Coppermine, the permission to upload files is being determined on group membership level. Therefor, you assign the privilege to upload on the <a href="groups.htm#group_cp">group control panel</a> per group the visitor is in. Generally speaking, there are the following possible setups (per group):</p>
+<ul>
+	<li>
+		<a name="getting_upload_permissions_no"></a><h3>No uploads possible at all<a href="#getting_upload_permissions_no" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		<ul>
+			<li>
+				Turn off all kinds of uploads on the <a href="groups.htm#group_cp">group control panel</a> for the group in question
+				<ul>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row corresponding to the group &rarr; Personal gallery &rarr; Allowed = no</span></li>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row corresponding to the group &rarr; Public albums upload &rarr; Allowed = no</span></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a name="getting_upload_permissions_public_nocreate"></a><h3>User can upload to particular albums in admin-created categories only, but can not create albums<a href="#getting_upload_permissions_public_nocreate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		<ul>
+			<li>
+				Enable public album upload on the <a href="groups.htm#group_cp">group control panel</a> for the group in question
+				<ul>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row corresponding to the group &rarr; Personal gallery &rarr; Allowed = no</span></li>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row corresponding to the group &rarr; Public albums upload &rarr; Allowed = yes</span></li>
+				</ul>
+			</li>
+			<li>
+				You will need at least one album where uploads have been allowed. Go to the <a href="albums.htm#album_prop">album properties</a> of the album in a public category that the user is meant to upload to.
+				<ul>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Album properties &rarr; Visitor can upload files = Yes</span></li>
+				</ul>
+				Repeat this if you want to allow uploads to several albums out of the box.
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a name="getting_upload_permissions_public_yescreate"></a><h3>User can upload to particular albums in admin-created categories and can create albums inside particular categories<a href="#getting_upload_permissions_public_yescreate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		<ul>
+			<li>
+				Enable public album upload on the <a href="groups.htm#group_cp">group control panel</a> for the group in question
+				<ul>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row corresponding to the group &rarr; Personal gallery &rarr; Allowed = no</span></li>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row corresponding to the group &rarr; Public albums upload &rarr; Allowed = yes</span></li>
+				</ul>
+			</li>
+			<li>
+				Go to the <a href="categories.htm#cat_cp">categories control panel</a> and determine the category (or categories) in which the user is suppossed to be able to create albums in
+				<ul>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Categories &rarr; Edit icon in the row that corresponds to the category you want to allow album creation in &rarr; Group(s) allowed to create albums in this category &rarr; Select the groups (to select multiple groups, press and hold the [Ctrl]-key)</span></li>
+				</ul>
+				By default, non-admins are not allowed to create albums in public categories, so you have to explicitely allow particular groups to create albums in a particular category.
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a name="getting_upload_permissions_personal"></a><h3>User can create personal albums within his user gallery and can upload to those albums he created<a href="#getting_upload_permissions_personal" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		When the user is allowed to upload to personal galleries, the following settings need to be applied.
+		<ul>
+			<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row corresponding to the group &rarr; Personal gallery &rarr; Allowed = yes</span></li>
+			<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row corresponding to the group &rarr; Public albums upload &rarr; Allowed = no</span></li>
+		</ul>
+		The user will then have an <a href="admin_menu.htm#user_menu_items">additional menu</a> item labelled &quot;Create / order my albums&quot; where he needs to create one album first before being able to upload (unless the config option <span class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Create user album in personal gallery on registration</span> is enabled).
+	</li>
+	<li>
+		<a name="getting_upload_permissions_combination"></a><h3>User can upload both to public and personal albums<a href="#getting_upload_permissions_combination" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		A combination both of public as well as personal album uploads is possible as well: you can determine that a user can upload both to albums in public categories as well as personal albums within his user gallery section. Subsequently, on the groups control panel the following options need to be set:
+		<ul>
+			<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row corresponding to the group &rarr; Personal gallery &rarr; Allowed = yes</span></li>
+			<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Groups &rarr; Row corresponding to the group &rarr; Public albums upload &rarr; Allowed = yes</span></li>
+		</ul>
+		The methods suggested above to allow uploads to particular albums using the album properties dialog as well as the discussed setting on the category control panel of course needs to be applied as well as suggested above.
+	</li>
+</ul>
 
 <a name="getting_check_uploads"></a><h2>Check uploads<a href="#getting_check_uploads" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Before  promoting your Coppermine gallery publicly, you should make sure that uploads work as expected, as they are the most common issues users have, caused by a huge amount of factors that have to be taken into account. Review the <a href="upload_troubleshooting.htm">upload troubleshooting section</a> if you have issues.</p>
-
+<p>Before  promoting your Coppermine gallery publicly, you should make sure that uploads work as expected, as they are the most common issues users have, caused by a huge amount of factors that have to be taken into account. Review the <a href="upload_troubleshooting.htm">upload troubleshooting section</a> if you have issues. Don't take for granted that uploads will work as expected - test thoroughly, especially if you allow your users to upload.</p>
 
 
 <a name="getting_consider_bridging"></a><h2>Consider bridging<a href="#getting_consider_bridging" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
@@ -265,7 +336,12 @@ If you are going to be the only uploader and want little or no user interaction 
       Please understand though that this is not all: think of those per-group settings as a general on/off switch. You can fine-tune those settings per individual album: you can allow rating in one album and deny it in another one. Go to the <a href="albums.htm#album_prop">album properties</a> of an individual album to allow/disallow ratings for this particular album.    </li>
 </ul>
 
-
+<a name="getting_typical_multiple_uploader_closed"></a><h3>Multiple uploaders <em>without</em> new registrations (closed group)<a href="#getting_typical_multiple_uploader_closed" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Usually this setup is used if you are going to have a comparatively low number of users who will be uploading, but a larger number of people who are suppossed to see your galery's content. This is often the case for clans, clubs or companies, where members are allowed to upload files, but the visitors of the page are just meant to browse those images without adding any new content. There is comparatively little difference to the previous setup &quot;<a href="getting_typical_single_uploader_community">Single uploader <em>with</em> user interaction</a>&quot; except for the following:</p>
+<ul>
+	<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Allow new user registrations = no</span> that will make sure that no new users register. It's up to the admin to create the needed user accounts.</li>
+	<li>The admin of course needs to set <a href="getting_upload_permissions">permissions for uploads</a> for the registered users as well</li>
+</ul>
 
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
