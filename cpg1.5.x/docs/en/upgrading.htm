@@ -52,6 +52,15 @@
 	    <th valign="top" align="left"><span class="small">Release Date</span></td>
 	  </tr>
 	  <tr>
+	    <td valign="top">cpg1.5.2</td>
+	    <td valign="top">
+	      <ul>
+	        <li>Beta release.</li>
+	      </ul>
+	    </td>
+	    <td valign="top" align="right">not released yet</td>
+	  </tr>
+	  <tr>
 	    <td valign="top">cpg1.5.1</td>
 	    <td valign="top">
 	      <ul>
@@ -303,12 +312,13 @@ The updater performs three things:
 	</ul>
 	</li>
 	<li><a name="upgrade_faq_difference_update_upgrade"></a><h3>What's the difference between <em>updating</em> and <em>upgrading</em>?<a href="#upgrade_faq_difference_update_upgrade" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	The words "update" and "upgrade" are often being used as synonyms. There is a slight difference though in the definition of the coppermine developers: <strong>upgrading</strong> usually means increasing the <em>major</em> version number, e.g. from cpg1.<em>4</em>.x to cpg1.<em>5</em>.x; while <strong>updating</strong> usually refers to <em>minor</em> version increases, e.g. maintenance releases from cpg1.5.<em>x</em> to cpg1.5.<em>y</em>.</li>
+	The words "update" and "upgrade" are often being used as synonyms. There is a slight difference though in the definition of the coppermine developers: <strong>upgrading</strong> usually means increasing the <em>major</em> version number, e.g. from cpg1.<em>4</em>.x to cpg1.<em>5</em>.x; while <strong>updating</strong> usually refers to <em>minor</em> version increases, e.g. maintenance releases from cpg1.5.<em>x</em> to cpg1.5.<em>y</em>.<br />
+	However, the usage is not that strict, so you might find places both in this document as well as other media (like the official coppermine forum) where the terms are being used the other way 'round. In fact, the words are pretty much synonyms as far as we're concerned.</li>
 </ul>
 
 <a name="downgrading"></a><h2>Downgrading from cpg1.5.x to an older version<a href="#downgrading" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>CPG1.5.x incorporates many new features (compared to older versions), so we encourage all users to upgrade. However, there may be some who want to test cpg1.5.x and decide later that they want to go back to an older version. You have to keep in mind that a full upgrade changes the overall layout of coppermine's database that includes converting the encoding to unicode. This process can't be reverted: once you have done the conversion, the only way back is to restore a complete mySQL database dump (of course you have to create this backup <strong>before</strong> you upgraded in the first place). Creating mySQL dumps (backups) is recommended anyway, so you should do so <strong>now</strong>.</p>
-<p>To make this absolutely clear: you can only downgrade if you used to have cpg1.4.x before and upgraded this version to cpg1.5.x. If you have made a <em>fresh</em> install of cpg1.5.x, you can't downgrade at all!</p>
+<p class="cpg_message_warning">To make this absolutely clear: you can <strong>only</strong> downgrade if you used to have cpg1.4.x before and upgraded this version to cpg1.5.x. If you have made a <strong>fresh</strong> install of cpg1.5.x, you <strong>can not</strong> downgrade at all!</p>
 <p>To actually perform the downgrade, replace all cpg1.5.x files on your server with the files from the older version (as if you were doing an upgrade, see above). Then restore your database dump that you must have made before upgrading. If you don't have a database dump (backup), you can't go back!</p>
 <a name="downgrading_end"></a>
 
