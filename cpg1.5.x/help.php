@@ -136,6 +136,12 @@ ob_start();
 $string = ob_get_contents();
 ob_end_clean();
 
+$string = strstr($string, '<body>'); // Get rid of the head, as we use a head of our own
+$string = str_replace('<body>', '', $string);
+$string = str_replace('</body>', '', $string);
+$string = str_replace('</html>', '', $string);
+
+
 // manipulate the string according to settings
 
 if ($anchor_start != '') {
@@ -164,7 +170,7 @@ $string = str_replace('<a href="#', '<a internalAnchorLinkTempReplacement', $str
 $string = str_replace('<a href="', '<a href="docs/'.$help_lang.'/', $string);
 $string = str_replace('<a externalLinkTempReplacement', '<a href="http://', $string); // restore external links
 $string = str_replace('<a internalAnchorLinkTempReplacement', '<a href="#', $string); // restore links to anchors on this page
-$string = preg_replace('/<head>(.*)</head>/', '', $string); // Get rid of the head, as we use a head of our own
+
 
 if ($header != '') {
     $content = '<h1>'.$header.'</h1>';
@@ -185,8 +191,8 @@ echo <<< EOT
         <script src="docs/js/jquery.js" type="text/javascript"></script>
         <script src="docs/js/help.js" type="text/javascript"></script>
     </head>
-    <body class="tableb">
-        <div style="padding: 5px;">
+    <body>
+        <div id="cpg_main_block">
             $string
             $content
             $close_link
