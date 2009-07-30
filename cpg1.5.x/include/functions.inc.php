@@ -3356,7 +3356,7 @@ EOT;
             {$debug_phpinfo_link}{$debug_toggle_link}
             <span class="detail_body">
                 <button type="button" class="button" name="debug_output_select_all" style="display:none" id="debug_output_select_all" value="{$lang_cpg_debug_output['select_all']}" onclick="HighlightAll('debug.debugtext');">{$lang_cpg_debug_output['select_all']}</button><br />
-                <textarea  rows="10" cols="60" class="debug_text elastic" name="debugtext">
+                <textarea  rows="30" cols="60" class="debug_text" name="debugtext">
 EOT;
     echo "USER: ";
     echo $debug_underline;
