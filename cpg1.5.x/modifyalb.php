@@ -41,9 +41,17 @@ if (!(GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && user_is_allowed()))) {
 
 // add footnote
 $notice1 = ' *';
-$help_can_upload = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop_visitor_start&amp;ae=album_prop_visitor_end&amp;top=1', '400', '200');
-$help_album_keywords = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop_keyword_start&amp;ae=album_prop_keyword_end&amp;top=1', '400', '200');
-$help_album_password = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop_password_start&amp;ae=album_prop_password_end&amp;top=1', '500', '250');
+$help = array();
+$help['table'] = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop&amp;ae=album_prop_end&amp;top=1', '600', '400');
+$help['related_tasks'] = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop_controls_related_tasks&amp;ae=album_prop_controls_related_tasks_end', '500', '250');
+$help['choose_album'] = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop_controls_album_dropdown&amp;ae=album_prop_controls_album_dropdown_end', '500', '250');
+$help['album_title'] = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop_controls_album_title&amp;ae=album_prop_controls_album_title_end', '500', '250');
+$help['album_category'] = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop_controls_album_category&amp;ae=album_prop_controls_album_category_end', '500', '250');
+$help['album_keywords'] = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop_controls_album_keyword&amp;ae=album_prop_controls_album_keyword_end', '500', '250');
+$help['album_thumbnail'] = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop_controls_album_thumbnail&amp;ae=album_prop_controls_album_thumbnail_end', '500', '250');
+$help['can_upload'] = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop_visitor_start&amp;ae=album_prop_visitor_end&amp', '400', '200');
+
+$help['album_password'] = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop_password_start&amp;ae=album_prop_password_end&amp', '500', '250');
 
 $captionLabel = $lang_modifyalb_php['alb_desc'];
 
@@ -59,16 +67,17 @@ if ($CONFIG['show_bbcode_help']) {
 }
 
 $data = array($lang_modifyalb_php['general_settings'],
-    array($lang_modifyalb_php['alb_title'], 'title', 0),
-    array($lang_modifyalb_php['alb_cat'], 'category', 2),
+    array($lang_modifyalb_php['alb_title'].$help['album_title'], 'title', 0),
+    array($lang_modifyalb_php['alb_cat'].$help['album_category'], 'category', 2),
     array($captionLabel, 'description', 3),
-    array($lang_modifyalb_php['alb_keyword'].$help_album_keywords, 'keyword', 0),
-    array($lang_modifyalb_php['alb_thumb'], 'thumb', 4), $lang_modifyalb_php['alb_perm'],
+    array($lang_modifyalb_php['alb_keyword'].$help['album_keywords'], 'keyword', 0),
+    array($lang_modifyalb_php['alb_thumb'], 'thumb', 4), 
+	$lang_modifyalb_php['alb_perm'],
     array($lang_modifyalb_php['can_view'], 'visibility', 5),
-    array($lang_modifyalb_php['password_protect'].$help_album_password, 'password_protect', 9),
+    array($lang_modifyalb_php['password_protect'].$help['album_password'], 'password_protect', 9),
     array($lang_modifyalb_php['alb_password'].$help_album_password, 'alb_password', 6),
     array($lang_modifyalb_php['alb_password_hint'].$help_album_password, 'alb_password_hint', 7),
-    array($lang_modifyalb_php['can_upload'].$notice1.$help_can_upload, 'uploads', 1),
+    array($lang_modifyalb_php['can_upload'].$notice1.$help['can_upload'], 'uploads', 1),
     array($lang_modifyalb_php['can_post_comments'].$notice1, 'comments', 1),
     array($lang_modifyalb_php['can_rate'].$notice1, 'votes', 1),
 );
@@ -229,7 +238,7 @@ EOT;
 
 function form_alb_thumb($text, $name)
 {
-    global $CONFIG, $ALBUM_DATA, $CLEAN, $lang_modifyalb_php, $USER_DATA, $LINEBREAK;
+    global $CONFIG, $ALBUM_DATA, $CLEAN, $lang_modifyalb_php, $USER_DATA, $LINEBREAK, $help;
 
     $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg', $USER_DATA['user_id']);
 
@@ -248,7 +257,7 @@ function form_alb_thumb($text, $name)
         echo <<< EOT
     <tr>
         <td class="tableb" valign="top">
-            $text
+            {$text}
         </td>
         <td class="tableb" valign="top">
             <em>{$lang_modifyalb_php['alb_empty']}</em>
@@ -291,7 +300,7 @@ EOT;
     echo <<< EOT
     <tr>
         <td class="tableb" valign="top">
-            $text
+            {$text}{$help['album_thumbnail']}
         </td>
         <td class="tableb" align="center">
             <img src="{$thumbs[0]}" name="Thumb" class="image" alt="$text" />
@@ -689,7 +698,7 @@ pageheader(sprintf($lang_modifyalb_php['upd_alb_n'], $ALBUM_DATA['title']));
 
 $album_lb = alb_list_box();
 
-$help = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_prop&amp;ae=album_prop_end&amp;top=1', '600', '400');
+
 
 echo <<< EOT
     <form method="post" name="modifyalbum" action="db_input.php">
@@ -697,16 +706,14 @@ echo <<< EOT
     <input type="hidden" name="aid" value="{$CLEAN['album']}" />
 EOT;
 
-starttable("100%", cpg_fetch_icon('modifyalb', 1) . $lang_modifyalb_php['update'].$help, 2);
+starttable("100%", cpg_fetch_icon('modifyalb', 1) . $lang_common['album_properties'] . ' - ' . $lang_modifyalb_php['update'].$help['table'], 2);
 
 echo <<< EOT
     <tr>
-        <td class="tableh2" colspan="2">
-            <strong>{$lang_modifyalb_php['related_tasks']}</strong>
+        <td class="tableh2">
+            <strong>{$lang_modifyalb_php['related_tasks']}</strong>{$help['related_tasks']}
         </td>
-    </tr>
-    <tr>
-        <td class="tableh2" align="center" colspan="2">
+        <td class="tableh2" align="center">
             <a href="editpics.php?album={$CLEAN['album']}" class="admin_menu">{$icon_array['edit_files']}{$lang_modifyalb_php['edit_files']}</a>
             &nbsp;&nbsp;-&nbsp;&nbsp;
             <a href="index.php?cat={$ALBUM_DATA['category']}" class="admin_menu">{$icon_array['category']}{$lang_modifyalb_php['parent_category']}</a>
@@ -715,12 +722,10 @@ echo <<< EOT
         </td>
     </tr>
     <tr>
-        <td class="tableh2" colspan="2">
-            <strong>{$lang_modifyalb_php['choose_album']}</strong>
+        <td class="tableh2">
+            <strong>{$lang_modifyalb_php['choose_album']}</strong>{$help['choose_album']}
         </td>
-    </tr>
-    <tr>
-        <td class="tableh2" align="right" colspan="2">
+        <td class="tableh2" align="right">
             $album_lb
         </td>
     </tr>
@@ -812,7 +817,7 @@ EOT;
     $translation_delete_comments = sprintf($lang_modifyalb_php['delete_comments'], '&quot;'.$ALBUM_DATA['title'].'&quot;');
     $translation_delete_files    = sprintf($lang_modifyalb_php['delete_files'], '<span style="color:red;font-weight:bold">', '</span>', '&quot;'.$ALBUM_DATA['title'].'&quot;');
 
-    starttable('100%', cpg_fetch_icon('modifyalb', 1) . $lang_modifyalb_php['reset_album'], 2);
+    starttable('100%', cpg_fetch_icon('modifyalb', 1) . $lang_common['album_properties'] . ' - ' . $lang_modifyalb_php['reset_album'], 2);
     
     echo <<< EOT
     <tr>
