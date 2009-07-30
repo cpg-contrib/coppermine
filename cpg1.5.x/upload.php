@@ -804,6 +804,29 @@ EOT;
 
 // Process the SWF upload form submission
 } elseif ($superCage->post->keyExists('process')) {
+    $error_code = $superCage->files->getInt("/Filedata/error");
+
+    // Check for upload errors
+    if (!($error_code == '0')) {
+        // PHP has detected a file upload error.
+        if ($error_code == '1') {
+            $error_message = $lang_upload_php['exc_php_ini'];
+        } elseif ($error_code == '2') {
+            $error_message = $lang_upload_php['exc_file_size'];
+        } elseif ($error_code == '3') {
+            $error_message = $lang_upload_php['partial_upload'];
+        } elseif ($error_code == '4') {
+            $error_message = $lang_upload_php['no_upload'];
+        } else {
+            $error_message = $lang_upload_php['unknown_code'];
+        }
+
+        //Make a note in the error array.
+        echo "error|$error_message|0";
+
+        // There is no need for further tests or action, so skip the remainder of the iteration.
+        exit;
+    }
 
     if (!$superCage->files->getRaw('/Filedata/name')) {
         echo "error|{$lang_upload_php['no_name']}|0";
@@ -852,29 +875,6 @@ EOT;
 
         // We reject the file, and make a note of the error.
         echo sprintf("error|".$lang_db_input_php['err_invalid_fext'].'|0', $CONFIG['allowed_file_extensions']);
-        exit;
-    }
-
-    $error_code = $superCage->files->getInt("/Filedata/error");
-    // Check for upload errors
-    if (!($error_code == '0')) {
-        // PHP has detected a file upload error.
-        if ($error_code == '1') {
-            $error_message = $lang_upload_php['exc_php_ini'];
-        } elseif ($error_code == '2') {
-            $error_message = $lang_upload_php['exc_file_size'];
-        } elseif ($error_code == '3') {
-            $error_message = $lang_upload_php['partial_upload'];
-        } elseif ($error_code == '4') {
-            $error_message = $lang_upload_php['no_upload'];
-        } else {
-            $error_message = $lang_upload_php['unknown_code'];
-        }
-
-        //Make a note in the error array.
-        echo "error|$error_message|0";
-
-        // There is no need for further tests or action, so skip the remainder of the iteration.
         exit;
     }
 

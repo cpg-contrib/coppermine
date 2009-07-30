@@ -207,7 +207,6 @@ function uploadError(file, errorCode, message) {
 
 function uploadComplete(file) {
 	if (this.getStats().files_queued === 0) {
-        console.log('Process Complete: '+js_vars.notify_admin);
 		document.getElementById(this.customSettings.cancelButtonId).disabled = true;
         
         // Send notification request only if atleast one successful upload is there
