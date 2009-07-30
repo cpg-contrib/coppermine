@@ -450,9 +450,7 @@ if ($superCage->post->keyExists('change_password') && USER_ID && UDB_INTEGRATION
 
     $title = sprintf($lang_register_php['x_s_profile'], stripslashes(USER_NAME));
     $redirect = $CPG_PHP_SELF . "?op=edit_profile";
-    pageheader($title, "<META http-equiv=\"refresh\" content=\"3;url=$redirect\">");
-    msg_box($lang_common['information'], $lang_register_php['pass_chg_success'], $lang_common['continue'], $redirect);
-    pagefooter();
+	cpgRedirectPage($redirect, $title, $lang_register_php['pass_chg_success'], 3, 'success');
     exit;
 }
 
