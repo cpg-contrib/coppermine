@@ -984,8 +984,8 @@ function update_user($user_id)
     }
     mysql_free_result($result);
 
-    if (utf_strlen($user_name) < 2) cpg_die(ERROR, $lang_register_php['err_uname_short'], __FILE__, __LINE__);
-        if ($user_password && utf_strlen($user_password) < 2) cpg_die(ERROR, $lang_register_php['err_password_short'], __FILE__, __LINE__);
+    if (utf_strlen($user_name) < 2) cpg_die(ERROR, $lang_register_php['username_warning2'], __FILE__, __LINE__);
+        if ($user_password && utf_strlen($user_password) < 2) cpg_die(ERROR, $lang_register_php['password_warning1'], __FILE__, __LINE__);
 
     if (is_array($group_list)) {
         $user_group_list = '';
