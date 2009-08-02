@@ -75,7 +75,7 @@ $lang_errors['non_exist_ap'] = 'L\'Album/la photo demandé(e) n\'existe pas!';
 $lang_errors['quota_exceeded'] = 'Quota disque dépassé.'; //cpg1.5
 $lang_errors['quota_exceeded_details'] = 'Vous avez un quota d\'espace de [quota]K, vos fichiers utilisent actuellement [space]K, l\ajout de ces fichiers vous fera dépasser ce quota.'; //cpg1.5
 $lang_errors['gd_file_type_err'] = 'L\'utilisation de &quot;GD Image Library&quot; ne vous permet d\'Utilisez que de images de type JPEG et PNG.';
-$lang_errors['invalid_image'] = 'L\'image que vous avez télégargée est corrompue ou ne peut pas être prise en charge par GD library';
+$lang_errors['invalid_image'] = 'L\'image que vous avez téléchargée est corrompue ou ne peut pas être prise en charge par GD library';
 $lang_errors['resize_failed'] = 'Impossible de créer la vignette ou l\'image réduite.';
 $lang_errors['no_img_to_display'] = 'Pas d\'image à Afficher';
 $lang_errors['non_exist_cat'] = 'La Catégorie sélectionnée n\'existe pas';
@@ -1307,7 +1307,7 @@ if (defined('EDITPICS_PHP')) {
   $lang_editpics_php['note_approve_private'] = 'Les fichiers déplacés vers un album privé doivent être approuvés par un administrateur.' ; // cpg1.5
   $lang_editpics_php['note_edit_control'] = 'Les fichiers déplacés vers un album publique ne peuvent plus être modifiés.'; // cpg1.5
   $lang_editpics_php['confirm_move_control'] = 'Vous n\\\'êtes pas autorisé à modifier les fichiers dans les albums publics.\\nEtes vous sur de vouloir déplacer ce fichier vers un album public ?'; // cpg1.5 //js-alert
-  $lang_editpics_php['success_changes'] = 'Changes successfully saved'; // cpg1.5
+  $lang_editpics_php['success_changes'] = 'Modifications sauvegardées avec succès'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
@@ -1837,7 +1837,7 @@ EOT;
   $lang_register_php['pass_chg_success'] = 'Votre Mot de Passe a été modifié';
   $lang_register_php['pass_chg_error'] = 'Votre Mot de Passe n\'a pas été modifié';
   $lang_register_php['notify_admin_email_subject'] = '%s - notification d\'inscription';
-  $lang_register_php['last_uploads'] = 'Dernier fichier télégargé.';
+  $lang_register_php['last_uploads'] = 'Dernier fichier téléchargé.';
   $lang_register_php['last_uploads_detail'] = 'Cliquer pour voir tous les téléchargements de %s'; //cpg1.5
   $lang_register_php['last_comments'] = 'Dernier Commentaire.';
   $lang_register_php['you'] = 'vous'; //cpg1.5
@@ -2016,7 +2016,7 @@ if (defined('SEARCH_PHP')){
 if (defined('SEARCHNEW_PHP')) {
   $lang_search_new_php['page_title'] = 'Rechercher les Nouvelles Photos';
   $lang_search_new_php['select_dir'] = 'Sélectionner le répertoire';
-  $lang_search_new_php['select_dir_msg'] = 'Cette fonction vous permet d\'ajouter un groupe de photos que vous avez télégargé sur votre serveur FTP.<br /><br />Sélectionnez le répertoire où vous avez télégargé vos photos';
+  $lang_search_new_php['select_dir_msg'] = 'Cette fonction vous permet d\'ajouter un groupe de photos que vous avez téléchargé sur votre serveur FTP.<br /><br />Sélectionnez le répertoire où vous avez téléchargé vos photos';
   $lang_search_new_php['no_pic_to_add'] = 'Il n\'y a pas de photo à ajouter';
   $lang_search_new_php['need_one_album'] = 'Vous avez besoin d\'au moins un Album pour effectuer cette opération';
   $lang_search_new_php['warning'] = 'Avertissement';
@@ -2156,7 +2156,7 @@ $lang_upload_php['unknown_code'] = 'Code d\'erreur de téléchargement PHP incon
 $lang_upload_php['impossible'] = 'Impossible à déplacer.';
 $lang_upload_php['not_image'] = 'Pas une image ou image endommagée';
 $lang_upload_php['not_GD'] = 'N\'est pas une extension GD.';
-$lang_upload_php['pixel_allowance'] = 'La hauteur et/ou la largeur de l\'image télégargée est plus grande que celle permise dans la configuration de la Galerie.';
+$lang_upload_php['pixel_allowance'] = 'La hauteur et/ou la largeur de l\'image téléchargée est plus grande que celle permise dans la configuration de la Galerie.';
 $lang_upload_php['failure'] = 'Erreur de téléchargement';
 $lang_upload_php['no_place'] = 'Le fichier précédent n\'a pas pu être placé.';
 $lang_upload_php['max_fsize'] = 'Le poids maximal autorisé pour une image est de %s';
