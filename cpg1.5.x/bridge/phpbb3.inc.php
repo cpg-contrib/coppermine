@@ -164,7 +164,7 @@ if (isset($bridge_lookup)) {
     		    $data[] = $this->primary_group + 100;
     		    
     		    $sql = "SELECT group_id FROM {$this->usergroupstable} WHERE user_id = {$row['id']}";
-    		    $result = cpg_db_query($sql);
+    		    $result = cpg_db_query($sql, $this->link_id);
     		    
     		    while ($group = mysql_fetch_assoc($result)) {
         		    $data[] = $group['group_id'] + 100;
@@ -197,9 +197,14 @@ if (isset($bridge_lookup)) {
        
         function view_users()
         {
+            $this->redirect($this->page['editusers']);
         }
-       
-        function view_profile()
+        
+        function get_users($options = array())
+        {
+        }
+        
+        function view_profile($uid)
         {
         }
     }
