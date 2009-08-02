@@ -23,7 +23,7 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 $lang_translation_info['lang_name_english'] = 'French_FR';
 $lang_translation_info['lang_name_native'] = 'Français';
 $lang_translation_info['lang_country_code'] = 'fr';
-$lang_translation_info['trans_name'] = 'Frantz';
+$lang_translation_info['trans_name'] = 'François Keller';
 $lang_translation_info['trans_email'] = 'francois.cpgtest@free.fr';
 $lang_translation_info['trans_website'] = 'http://coppermine-gallery.net/forum/index.php?board=38.0';
 $lang_translation_info['trans_date'] = '2009-06-06';
@@ -75,7 +75,7 @@ $lang_errors['non_exist_ap'] = 'L\'Album/la photo demandé(e) n\'existe pas!';
 $lang_errors['quota_exceeded'] = 'Quota disque dépassé.'; //cpg1.5
 $lang_errors['quota_exceeded_details'] = 'Vous avez un quota d\'espace de [quota]K, vos fichiers utilisent actuellement [space]K, l\ajout de ces fichiers vous fera dépasser ce quota.'; //cpg1.5
 $lang_errors['gd_file_type_err'] = 'L\'utilisation de &quot;GD Image Library&quot; ne vous permet d\'Utilisez que de images de type JPEG et PNG.';
-$lang_errors['invalid_image'] = 'L\'image que vous avez uploadée est corrompue ou ne peut pas être prise en charge par GD library';
+$lang_errors['invalid_image'] = 'L\'image que vous avez télégargée est corrompue ou ne peut pas être prise en charge par GD library';
 $lang_errors['resize_failed'] = 'Impossible de créer la vignette ou l\'image réduite.';
 $lang_errors['no_img_to_display'] = 'Pas d\'image à Afficher';
 $lang_errors['non_exist_cat'] = 'La Catégorie sélectionnée n\'existe pas';
@@ -1837,7 +1837,7 @@ EOT;
   $lang_register_php['pass_chg_success'] = 'Votre Mot de Passe a été modifié';
   $lang_register_php['pass_chg_error'] = 'Votre Mot de Passe n\'a pas été modifié';
   $lang_register_php['notify_admin_email_subject'] = '%s - notification d\'inscription';
-  $lang_register_php['last_uploads'] = 'Dernier fichier uploadé.';
+  $lang_register_php['last_uploads'] = 'Dernier fichier télégargé.';
   $lang_register_php['last_uploads_detail'] = 'Cliquer pour voir tous les téléchargements de %s'; //cpg1.5
   $lang_register_php['last_comments'] = 'Dernier Commentaire.';
   $lang_register_php['you'] = 'vous'; //cpg1.5
@@ -2016,7 +2016,7 @@ if (defined('SEARCH_PHP')){
 if (defined('SEARCHNEW_PHP')) {
   $lang_search_new_php['page_title'] = 'Rechercher les Nouvelles Photos';
   $lang_search_new_php['select_dir'] = 'Sélectionner le répertoire';
-  $lang_search_new_php['select_dir_msg'] = 'Cette fonction vous permet d\'ajouter un groupe de photos que vous avez uploadé sur votre serveur FTP.<br /><br />Sélectionnez le répertoire où vous avez uploadé vos photos';
+  $lang_search_new_php['select_dir_msg'] = 'Cette fonction vous permet d\'ajouter un groupe de photos que vous avez télégargé sur votre serveur FTP.<br /><br />Sélectionnez le répertoire où vous avez télégargé vos photos';
   $lang_search_new_php['no_pic_to_add'] = 'Il n\'y a pas de photo à ajouter';
   $lang_search_new_php['need_one_album'] = 'Vous avez besoin d\'au moins un Album pour effectuer cette opération';
   $lang_search_new_php['warning'] = 'Avertissement';
@@ -2156,7 +2156,7 @@ $lang_upload_php['unknown_code'] = 'Code d\'erreur de téléchargement PHP incon
 $lang_upload_php['impossible'] = 'Impossible à déplacer.';
 $lang_upload_php['not_image'] = 'Pas une image ou image endommagée';
 $lang_upload_php['not_GD'] = 'N\'est pas une extension GD.';
-$lang_upload_php['pixel_allowance'] = 'La hauteur et/ou la largeur de l\'image uploadée est plus grande que celle permise dans la configuration de la Galerie.';
+$lang_upload_php['pixel_allowance'] = 'La hauteur et/ou la largeur de l\'image télégargée est plus grande que celle permise dans la configuration de la Galerie.';
 $lang_upload_php['failure'] = 'Erreur de téléchargement';
 $lang_upload_php['no_place'] = 'Le fichier précédent n\'a pas pu être placé.';
 $lang_upload_php['max_fsize'] = 'Le poids maximal autorisé pour une image est de %s';
@@ -2491,7 +2491,7 @@ if (defined('VERSIONCHECK_PHP')) {
   $lang_versioncheck_php['on_screen'] = 'Plein écran';
   $lang_versioncheck_php['text_only'] = 'Uniquement texte';
   $lang_versioncheck_php['errors_only'] = 'Montrer uniquement les erreurs potentielles';
-  $lang_versioncheck_php['hide_images'] = 'Cche les images'; // cpg1.5
+  $lang_versioncheck_php['hide_images'] = 'Cacher les images'; // cpg1.5
   $lang_versioncheck_php['no_modification_check'] = 'Ne pas vérifier les fichiers modifiés'; // cpg1.5
   $lang_versioncheck_php['do_not_connect_to_online_repository'] = 'Ne pas se connecter au référenciel en ligne';
   $lang_versioncheck_php['online_repository_explain'] = 'uniquement recommandé si la connection échoue';
