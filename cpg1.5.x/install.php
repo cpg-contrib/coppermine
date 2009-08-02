@@ -1164,8 +1164,8 @@ function getLanguage()
     }
 
     // change default language
-    if ($lang = $superCage->post->getAlnum('lang_list')) {
-        setTmpConfig('lang', $lang);
+    if ($lang = $superCage->post->getMatched('lang_list', '/^[a-z0-9_-]+$/i')) {
+        setTmpConfig('lang', $lang[0]);
         loadTempConfig();
     } 
     if ($language == '') {
