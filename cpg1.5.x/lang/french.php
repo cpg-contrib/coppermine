@@ -1000,7 +1000,7 @@ if (defined('DB_INPUT_PHP')) {
   $lang_db_input_php['redirect_msg'] = 'Redirection en cours.<br /><br /><br />Cliquez sur \'CONTINUEZ\' si la page ne se recharge pas automatiquement';
   $lang_db_input_php['upl_success'] = 'Votre image a été correctement ajoutée';
   $lang_db_input_php['email_comment_subject'] = 'Commentaire posté sur Coppermine Photo Gallery';
-  $lang_db_input_php['email_comment_body'] = 'Quelqu\'un a posté un Commentaire dans votre Galerie. Consultez ce Commentaire à';
+  $lang_db_input_php['email_comment_body'] = 'Quelqu\'un a posté un Commentaire dans votre Galerie. Consultez ce Commentaire sur';
   $lang_db_input_php['album_not_selected'] = 'Album non sélectionné';
   $lang_db_input_php['com_author_error'] = 'Un Utilisateur enregistré utilise déjà ce Pseudonyme, connectez-vous ou utilisez en un autre';
 }
@@ -1060,18 +1060,18 @@ if (defined('DELETE_PHP')) {
 // ----------------------- //
 if (defined('DISPLAYIMAGE_PHP')){
   $lang_display_image_php['confirm_del'] = 'Voulez-vous vraiment Supprimer cette image?\\n Bien entendu les Commentaires seront également supprimés.';//js-alert
-  $lang_display_image_php['del_pic'] = 'Supprimer CETTE IMAGE';
+  $lang_display_image_php['del_pic'] = 'Supprimer cette image';
   $lang_display_image_php['size'] = '%s x %s pixels';
   $lang_display_image_php['views'] = '%s fois';
   $lang_display_image_php['slideshow'] = 'Diaporama';
-  $lang_display_image_php['stop_slideshow'] = 'ARRETEr LE DIAPORAMA';
+  $lang_display_image_php['stop_slideshow'] = 'Arreter le Diaporama';
   $lang_display_image_php['view_fs'] = 'Cliquer pour voir l\'image en taille réelle';
   $lang_display_image_php['edit_pic'] = 'Modifier la Description';
   $lang_display_image_php['crop_pic'] = 'Retoucher';
   $lang_display_image_php['set_player'] = 'Changer le lecteur';
 
   $lang_picinfo['title'] ='Informations sur l\'image';
-  $lang_picinfo['album name'] = 'Nom de l\'Album';
+  $lang_picinfo['Album name'] = 'Nom de l\'Album';
   $lang_picinfo['Rating'] = 'Note (%s votes)';
   $lang_picinfo['Date Added'] = 'Date d\'ajout';
   $lang_picinfo['Dimensions'] = 'Dimensions';
@@ -1686,7 +1686,7 @@ $lang_modifyalb_php['last_uploaded'] = 'Dernier téléchargement';
 $lang_modifyalb_php['public_alb'] = 'Tout le monde (Album public)';
 $lang_modifyalb_php['me_only'] = 'Moi seulement';
 $lang_modifyalb_php['owner_only'] = 'Le propriétaire de l\'Album (%s) seulement';
-$lang_modifyalb_php['groupp_only'] = 'Membres du Groupe \'%s\'';
+$lang_modifyalb_php['group_only'] = 'Membres du Groupe \'%s\'';
 $lang_modifyalb_php['err_no_alb_to_modify'] = 'Il n\'y a pas d\'Album modifiable dans la base.';
 $lang_modifyalb_php['update'] = 'Mettre l\'Album à jour';
 $lang_modifyalb_php['reset_album'] = 'Réinitialiser l\'Album';
