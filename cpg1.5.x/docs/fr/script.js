@@ -314,7 +314,7 @@ doc_toc += '          </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '    </ul>\n';
 doc_toc += '  </li>\n';
-doc_toc += '  <li><a href="administration.htm" class="en">Administration</a>\n';
+doc_toc += '  <li><a href="administration.htm" class="us_fr">Administration</a>\n';
 doc_toc += '    <ul>\n';
 doc_toc += '      <li><a href="admin_menu.htm" class="en">Admin menu items</a>\n';
 doc_toc += '        <ul>\n';
