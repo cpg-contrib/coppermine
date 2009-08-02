@@ -441,6 +441,10 @@ switch($step) {
             } else {
                 setTmpConfig('admin_username', $superCage->post->getAlnum('admin_username'));
             }
+            
+            // we need a db connection to use getEscaped()
+            checkSqlConnection();
+            
             $admin_password = $superCage->post->getEscaped('admin_password');
             $admin_password_verif = $superCage->post->getEscaped('admin_password_verif');
             if ($admin_password != $admin_password_verif || $admin_password == '') {
