@@ -524,12 +524,14 @@ function update_thumbs()
 
         $startpic += $numpics;
         
+        list($timestamp, $form_token) = getFormToken();
+        
         if ($autorefresh) {
             echo <<< EOT
-            <meta http-equiv="refresh" content="1; URL=util.php?numpics={$numpics}&startpic={$startpic}&albumid={$albumid}&autorefresh={$autorefresh}&action=update_thumbs&updatetype={$updatetype}#admin_tool_thumb_update">
+            <meta http-equiv="refresh" content="1; URL=util.php?numpics={$numpics}&startpic={$startpic}&albumid={$albumid}&autorefresh={$autorefresh}&action=update_thumbs&updatetype={$updatetype}&form_token={$form_token}&timestamp={$timestamp}#admin_tool_thumb_update">
 EOT;
         } else {
-            list($timestamp, $form_token) = getFormToken();	
+            	
             print <<< EOT
             <tr>
                 <td class="tablef">
