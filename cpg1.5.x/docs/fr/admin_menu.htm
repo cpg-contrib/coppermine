@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Admin Menu - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<title>Menu Administrateur- Coppermine Photo Gallery - Documentation &amp; Manuel</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="language" content="en" />
+<meta name="language" content="fr" />
 <meta name="copyright" content="Coppermine dev team" />
 <meta name="description" content="Coppermine Photo Gallery project - Coppermine is an easily set-up, fast, feature-rich photo gallery script with mySQL database, user management, private galleries, automatic thumbnail creation, ecard feature and a template system for easy customization to match the rest of a site." />
 <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -27,132 +27,132 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation et Manuel</h1>
 <div id="toc">
-<a href="toc.htm">Table of Contents</a>
+<a href="toc.htm">Table des Matières</a>
 </div>
 
-<a name="admin_menu"></a><h1>Admin menu items<a href="#admin_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<a name="admin_menu"></a><h1>Eléments du menu Administrateur<a href="#admin_menu" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 
-<a name="admin_user_mode"></a><h2>Enable / disable admin controls<a href="#admin_user_mode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>When you are logged in as an administrator, the script provides two modes of operation: Admin controls visible &amp; Admin controls disabled. You can switch between those modes by clicking on the corresponding link in the menu bar at the top of the screen.</p>
-<p>When you have the controls turned on, you can administer your gallery using the menu bar that appears as shown below:</p>
+<a name="admin_user_mode"></a><h2>Activer/Désactiver les contôles administrateurs<a href="#admin_user_mode" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Lorsque vous êtes identifiés comme administrateur, le script offre deux manières de fonctionner: Contôles Administrateurs visibles &amp; contrôles Administrateurs désactivés. Vous pouvez basculer entre ces deux modes en cliquant sur l'élément correspondat de la barre de menu en haut de la page.</p>
+<p>Lorsque vous avez activé les contrôles, vous pouvez administrer votre galerie en utilisant la barre de menu ou le menu qui apparait alors en dessus:</p>
 
-<p>When you have the admin controls turned off you are still logged in as an admin user, but the admin controls (the admin menu bar etc.) are hidden from the screen to give you a basic preview of what the page would look like for "regular users". However (as you still are logged in as admin), certain permissions and options will still look the same as if you had admin controls on; you can <strong>not</strong> use &quot;<em>Hide admin controls</em>&quot; to see what a non-admin user is actually allowed to see.  To see what a casual visitor can see and do on your site, simply log out.  To see what a registered user can see and do on your site, create a test user account (non-admin) and log in with this particular user (when doing this it is recommended that you use two different browsers, NOT  two instances of the same browser, to view your site so you can stay logged in as admin on one and view what regular users see while making changes in admin mode. You will have to refresh the non-admin mode screen to see  changes you incorporated).</p>
-<p>The controls &quot;Admin controls visible&quot; / &quot;Admin controls disabled&quot; used to be named &quot;admin mode&quot; / &quot;user mode&quot; in previous versions of coppermine. The dev team decided to rename the toggle because it was misleading for some users, as they thought that the control &quot;user mode&quot; was supposed to show the admin what the regular user could do; as suggested above, this is <strong>not</strong> the case.</p>
+<p>Lorsque vous avez désactivé les contrôles administrateurs, vous êtes toujours identifiés comme administrateur, mais les contr^les administrateurs (labarre de menu administrateur etc...) sont cachés afin de vous donner un apperçu de ce que verra "l'utilisateur normal". Toutefois (comme vous êtes toujours identifié comme administrateur), certaines options et possibilités s'afficheront de la même manière que si vous aviez activé les conrôles administrateur; vous ne pouvez <strong>pas</strong> utiliser &quot;<em>Cacher les contrôles administrateurs</em>&quot; pour voir ce qu'un non administrateur est atcuellement autorisé à voir.  Si vous voullez voir ce qu'un visiteur occasionnel peut voir et faire sur votre site, déconnectez vous simplement de votre site.  Pour voir ce que les utilisateurs enregistrés peuvent voir et faire sur votre site, créez un compte de test (non-admin) et identifiez vous avec ce compte particulier (lorsque vous faites ceci, il est recommandé d'utiliser deux navigateurs différents, PAS deux instances du même navigateur, pour voir votre site et rester connecter comme administrateur dans l'un et pour voir ce qu'un utilisateur normal voit après des changements effectués en mode administrateur. Vous devrez rafraichir l'écran non-administrateur pour voir les changements opérés).</p>
+<p>L'élément &quot;contrôles administrateurs visibles&quot; / &quot;contrôles administrateurs désactivés&quot; étaient appelés  &quot;mode administrateur&quot; / &quot;mode utilisateur&quot; dans les versions précédentes de Coppermine. L'équipe de développement à décidé de changer ces noms parce que certains utilisateurs étaient induits en erreur, pensant que &quot;le mode utilisateur&quot; était supposé montrer à l'administrateur ce que les utilisateurs réguliers pouvaient faire et voir; comme expliqué ci dessus, ce n'est <strong>pas</strong> le cas.</p>
 <p>&nbsp;</p>
-<p>The items in the admin menu should be pretty self-explanatory:</p>
+<p>Les élements du menu administrateur sont très explicites:</p>
 
-<a name="upload_approval"></a><h2>Upload approval<a href="#upload_approval" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>See all pictures that await approval by the admin (if you set admin approval as a required step on the settings in the &quot;<a href="groups.htm#group_cp">groups</a>&quot; control panel). The upload approval menu item will only be displayed if there are actual uploads that require approval. If there are no pending approvals, the menu item will be skipped to avoid the admin menu becoming too crowded.</p>
+<a name="upload_approval"></a><h2>Fichiers à Valider<a href="#upload_approval" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Voir toutes les images nécessitant l'approbation de l'administrateur (si vous avez réglé l'approbation de l'administrateur comme étape necessaire dans les réglages du panneau de gestion des &quot;<a href="groups.htm#group_cp">groupes</a>&quot; ). L'élément du menu "Fichiers à Valider" n'est affiché que si il y a des téléchargements qui nécessitent l'approbation de l'administrateur. Si il n'y a pas de tels fichiers, l'élément de menu est caché afin de ne pas surcharger le menu administrateur.</p>
 
-<a name="config"></a><h2>Config<a href="#config" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Configure the overall look of your gallery and the settings using the &quot;<a href="configuration.htm#admin">Config</a>&quot; button in the admin menu</p>
+<a name="config"></a><h2>Configuration<a href="#config" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Configurer l'aspect général de votre galerie et la paramétrer en utilisant le bouton &quot;<a href="configuration.htm#admin">Configuration</a>&quot; du menu administrateur</p>
 
-<a name="categories"></a><h2>Categories<a href="#categories" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Create/edit/delete <a href="categories.htm">categories</a></p>
+<a name="categories"></a><h2>Categories<a href="#categories" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Créer/Modifier/Effacer les <a href="categories.htm">categories</a></p>
 
-<a name="albums"></a><h2>Albums<a href="#albums" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Create/edit/delete <a href="albums.htm#albmgr">albums</a></p>
+<a name="albums"></a><h2>Albums<a href="#albums" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Créer/Modifier/Effacer les <a href="albums.htm#albmgr">albums</a></p>
 
-<a name="sort_my_pictures"></a><h2>Sort my pictures<a href="#sort_my_pictures" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Picture manager that can be used to custom-sort files within an album. By default, the thumbnail page that displays the contents of an album will be sorted by the sorting order specified in &quot;<a href="configuration.htm#admin_thumbnail_default_sortorder">Default sort order for files</a>&quot; on the config page. The &quot;sort my pictures&quot; option overrides the default sorting mechanism and displays the thumbnails in the order you specify. As this means an additional effort in the maintenance of each album, it is recommended to use the default sorting by filename  (instead of specifying a custom sort order) and naming the files appropriately before upload.</p>
-<p>Note: each user (including the admin) can use the sorting controls on the album's thumbnails display page to manually override the sorting option that was specified in coppermine's config and the "Sort my pictures" option; this final method of changing the sort order is stored locally in a cookie of the client and reverts to the config settings when this cookie is discarded.</p>
+<a name="sort_my_pictures"></a><h2>Tri des images<a href="#sort_my_pictures" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Gestionnaire d'images qui peut être utiliser pour personnaliser l'ordre des fichiers à l'intérieur des albums. Par défaut, la page des vignettes qui affiche le contenu d'un albul est trié dans l'ordre spécifié dans &quot;<a href="configuration.htm#admin_thumbnail_default_sortorder">Ordre de tri par défaut pour les fichiers</a>&quot; dans l apage de configuration. L'option &quot;Tri des images&quot; prends le dessus sur le mécanisme de tri par défaut et affiche les vignettes dans l'odre que vous aurez défini. Comme celà demande un effort supplémentaire dans la maintenance de chaque albums, il est recommandé d'utiliser le tri par nom de fichiers par défaut ( à la place de tout ordre de tri personnalisé) et de nommer de manière appropriée les fichiers avant le téléchargement.</p>
+<p>Note: chaque utilisateur (y compris l'administrateur) peut utiliser les controles de tri sur la page qui affiche les images pour prendre manuellement le dessus de l'odre de tri par défaut défini dans la configuration de Coppermine and dans l'option "Tri des images"; avec cette methode finale de changement de l'ordre des fichiers est stockée locallement dans un cookie du client et on revient à l'ordre de tri de la configuration à l'extinction de ce cookie.</p>
 
-<a name="groups"></a><h2>Groups<a href="#groups" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Create/edit/delete <a href="groups.htm#group_cp">groups</a></p>
+<a name="groups"></a><h2>Groupes<a href="#groups" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Créer/Modifier/Effacer les <a href="groups.htm#group_cp">groupes</a></p>
 
-<a name="users"></a><h2>Users<a href="#users" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Create/edit/delete <a href="users.htm#user_cp">users</a></p>
+<a name="users"></a><h2>Utilisateurs<a href="#users" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Créer/Modifier/Effacer les <a href="users.htm#user_cp">utilisateurs</a></p>
 
-<a name="ban"></a><h2>Ban Users<a href="#ban" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p><a href="banning.htm#banning">Ban</a> users based on user name, email address or IP address. Menu item not available when Coppermine is <a href="bridging.htm">bridged</a>.</p>
+<a name="ban"></a><h2>Bannir des Utilisateurs<a href="#ban" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p><a href="banning.htm#banning">Bannissement</a> d'utilisateurs basé sur le nom d'utilisateur, l'adresse couriel ou l'adresse IP. Elément de menu non disponible si la galerie est <a href="bridging.htm">bridgée</a>.</p>
 
-<a name="my_profile"></a><h2>My profile<a href="#my_profile" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Edit your own user profile (the profile of the gallery admin)</p>
+<a name="my_profile"></a><h2>Mon profil<a href="#my_profile" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Modifier votre profil utilisateur (le profil de l'administrateur de la galerie)</p>
 
-<a name="review_comments"></a><h2>Review Comments<a href="#review_comments" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>edit/approve/disapprove/delete user <a href="comments.htm#comments_review">comments</a></p>
+<a name="review_comments"></a><h2>Commentaires<a href="#review_comments" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Modifier/Approuver/Désapprouver/Effacer les <a href="comments.htm#comments_review">commentaires des utilisateurs</a></p>
 
-<a name="ecard_log"></a><h2>Display Ecards<a href="#ecard_log" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>View the ecards sent by users.</p>
-<p>You must have ecard-logging enabled in the config menu, first (by default, logging is disabled). When enabled, all ecards that are  sent are written into the database, where the Coppermine admin can view them.</p>
+<a name="ecard_log"></a><h2>eCartes Envoyées<a href="#ecard_log" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Affiche les eCartes envoyées patr les utilisateurs.</p>
+<p>Vous devez d'abord activer l'enregistrement des eCartes dans la page de configuration (par défaut, l'enregistrement est désactivé). Lorsque cette option est activée, toutes les eCartes envoyées sont enregistrées dans la base de donnée, et l'administrateur de la galerie Coppermine peut les visualiser.</p>
 <p><img src="images/ecard_log.gif" border="0" alt="" /><br />
-  You can sort the log by clicking on the arrow icons next to each heading, and you can delete single or multiple log entries (deleting the log entries will not disable the ecard recipient to view the ecard).</p>
-<p>Before switching this option on, make sure that logging such information is legal in your country. It is also advisable to notify your users that all ecards are being logged (preferrably on the registration screen).</p>
+  Vous pouvez trier les enregistrements en cliquant sur les icones de flêches à côté de chaque ligne, et vous pouvez effacer un ou plusieurs enregistrements (l'effacement de l'enregistrement n'empêchera pas le destinataire de la carte de la visualiser).</p>
+<p>Avant de basculer cette option sur on, assurez vos que l'enregistrement de telles informations sont légales dans votre pays. Il est aussi conseillé de prévenir les utilisateurs que les eCartes sont enregistrées (de préférence sur la page d'enregistrement).</p>
 <a name="ecard_log_end"></a>
 
-<a name="batch_add"></a><h2>Batch add files<a href="#batch_add" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p><a href="uploading_batch-add.htm#batch_add_pics">Batch-add files</a> to the Coppermine database that have been previously uploaded by FTP. Batch-add files does not upload files for you. You must upload files using your webhost's file manager or an FTP client software. You FTP files into folders that you create in the Coppermine albums directory.  Do not, however, create these folders in the <em>userpics</em> folder.</p>
+<a name="batch_add"></a><h2>Ajout par lot (FTP)<a href="#batch_add" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p><a href="uploading_batch-add.htm#batch_add_pics">Ajouts de fichiers par lots précédemment téléchargés par FTP, </a> dans la base de donnée de Coppermine. L'ajout de fichiers par lots ne télécharge pas les fichiers pour vous. Vous devez télécharger les fichiers en utilisant le gestionnaire de fichiers de votre hébergeur ou un client FTP. Placez par FTP les fichiers dans des répertoires que vous aurez créer dans le répertoire albums de Coppermine.  Ne créez pas ces fichiers dans le répertoire <em>userpics</em>.</p>
 
-<a name="admin_tools"></a><h2>Admin Tools (Resize Pictures)<a href="#admin_tools" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>A collection of utilities to:
+<a name="admin_tools"></a><h2>Outils Administrateurs (Redimentionnement d'images)<a href="#admin_tools" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Une collection d'utilitaires pour:
 <dl>
-          <dt>Rebuild or resize intermediate pictures and thumbnails.</dt>
-          <dt>Delete full-size pictures.</dt>
-          <dt>Delete orphaned comments.</dt>
-          <dt>Rename file titles.</dt>
-          <dt>Delete file titles.</dt>
-          <dt>View your server php info.</dt>
+          <dt>Recréer ou redimensionner les images intermédiares et les vignettes.</dt>
+          <dt>Effacer les images originales.</dt>
+          <dt>Effacer les commentaires orphelins.</dt>
+          <dt>Renommer les titres des fichiers.</dt>
+          <dt>Effacer les titres des fichiers.</dt>
+          <dt>Voir les informations php de votre serveur.</dt>
 </dl>
 </p>
-<p>Details on the tools and what you can do with them can be found on the <a href="admin-tools.htm#admin_tools">Admin Tools</a> page of this documentation.</p>
+<p>Les détails de ces outils et ce que vou spouvez faire avec se trouvent sur la page <a href="admin-tools.htm#admin_tools">Outils d'administration</a> de cette documentation.</p>
 <a name="admin_tools_end"></a>
 
-<a name="keyword_manager"></a><h2>Keyword manager<a href="#keyword_manager" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p><a href="keywords.htm#keywords_manager">Manage the keywords</a> assigned to files</p>
+<a name="keyword_manager"></a><h2>Gestionnaire de Mots clé<a href="#keyword_manager" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p><a href="keywords.htm#keywords_manager">Géger les mots clé</a> assignés aux fichiers</p>
 
-<a name="plugin_manager"></a><h2>Plugin Manager<a href="#plugin_manager" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Install / uninstall / configure <a href="plugins.htm#plugin_manager">plugins</a></p>
+<a name="plugin_manager"></a><h2>Gestionnaire de Plugins<a href="#plugin_manager" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Installer / Désintaller / Configurer <a href="plugins.htm#plugin_manager">les plugins</a></p>
 
-<a name="bridge_manager"></a><h2>Bridge Manager<a href="#bridge_manager" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Enable / disable / manage <a href="bridging.htm#integrating">bridging</a> (the integration of Coppermine with another application)</p>
+<a name="bridge_manager"></a><h2>Gestionnaire de Bridge<a href="#bridge_manager" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Activer / Désactiver / Gérer <a href="bridging.htm#integrating">le bridge> (l'intégration de Coppermine avec d'autres applications)</p>
 
-<a name="view_log"></a><h2>View log files<a href="#view_log" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>View the log files generated by Coppermine (only available if you have enabled logging)</p>
+<a name="view_log"></a><h2>Voir les fichiers log<a href="#view_log" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Voir tous les fichiers logs générés par Coppermine (uniquement disponible si vous activez l'enregistrement des logs)</p>
 
-<a name="stats"></a><h2>Overall stats<a href="#stats" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>View the overall stats of your gallery (only available if you have enabled the <a href="configuration.htm#admin_logging_votedetails">corresponding option in config</a>).</p>
-<p>Warning: keeping detailed statistics means additional database queries and subsequently a heavy load on the page. Do understand that the size of the corresponding database tables can increase <strong>dramatically</strong> if you enable this feature.</p>
-<p>You should empty the stats record table from time to time to avoid the record table getting to big. To accomplish this, check "Empty all hit stats" at the bottom of the stats page and submit the form.</p>
-<p>The stats tool is meant as a basic statistics module - if you need more details or if you are concerned about the huge database load that the stats can generate, you should look for an alternative like <a href="http://www.google.com/analytics/" rel="external" class="external">Google Analytics</a>or similar.</p>
+<a name="stats"></a><h2>Statistiques générales<a href="#stats" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Voir les statistiques générales de votre galerie (Disponible uniquement si  <a href="configuration.htm#admin_logging_votedetails">l'option correspondante</a> a été activée dans la configuration).</p>
+<p>Attention: activer les statistiques détaillées implique des requetes complémentaires de la base de donnée et augmente le temps de chargement de la page. Comprenez aussi que la taille de la table correspondante dans la base de donnée peut augmenter de manière <strong>dramatique</strong> si vous activez cette fonction.</p>
+<p>Vous devriez vider la tables des staistiques de ses enregistrements de temps entemps pour éviter qu'elle ne devienne trop grosse. Pour ce faire, cochez "Effacer toutes le statistiques de hits" au bas de la page et envoyez le formulaire.</p>
+<p>L'outils de statistiques est fait comme un module très basique de statistiques - si vous souhaitez avoir plus de détails ou si vous êtes cocerné par la trop grand charge que les statistiques peut générer à la base de donnée, vous devirez regarder du coté dun' solution alternative comme <a href="http://www.google.com/analytics/" rel="external" class="external">Google Analytics</a> ou équivalent.</p>
 
-<a name="versioncheck"></a><h2>Check versions<a href="#versioncheck" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Check the file versions of your core files to make sure you have upgraded as suggested and every file is up-to-date. Details on the usage and interpretation of the versioncheck page can be found in the corresponding section of the documentation <a href="upgrading.htm#versioncheck">Upgrading &rarr; The version check tool</a></p>
+<a name="versioncheck"></a><h2>Vérification de version<a href="#versioncheck" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Vérifie la version des fichiers de votre instllation pour s'assurer que vous avez bien mis à jour comme suggéré et que vos fichiers sont bien à jour. Des détails sur l'utilisation et l'interprétation du vérificateur de version peuvent être trouvés dans la section correspondante de la documentation <a href="upgrading.htm#versioncheck">Mise à jour &rarr; L'outil de vérification de version</a></p>
 
-<a name="update_database"></a><h2>Update database<a href="#update_database" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Perform a database update when upgrading from older versions. It does not hurt to re-run this application, so if you are not certain if your database is up-to-date, run this script.</p>
-<p>[<a href="upgrading.htm#updater">more</a>]</p>
+<a name="update_database"></a><h2>Mise à jour de la Base de donnée<a href="#update_database" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Fait une mise à jour de la base de donnée lors de la mise à jour depuis une ancienne version. Cela ne pose pas de problèmes de relancer cette application, donc si vous n'êtes pas sur que votre base de donnée soit à jour, lancer ce script.</p>
+<p>[<a href="upgrading.htm#updater">plus...</a>]</p>
 <a name="update_database_end"></a>
 
-<a name="export"></a><h2>Export<a href="#export" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p><a href="export.htm#export">Export albums</a> as HTML pages or plain images</p>
+<a name="export"></a><h2>Export<a href="#export" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p><a href="export.htm#export">Export d'albums</a> comme page HTML ou fichiers images</p>
 
-<a name="phpinfo"></a><h2>phpinfo<a href="#phpinfo" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Display information about the PHP version running on your server and the modules it is using</p>
-<p>This page can be accessed manually as well by entering phpinfo.php as file name into your browser's address bar.</p>
-<div class="cpg_example"><tt class="code">http://yourdomain.tld/your_coppermine_folder/phpinfo.php</tt></div>
-<p>The output of the phpinfo page is admin-only, so it can't be accessed by others. Subsequently, it doesn't make sense to refer to that page when requesting support. Among other things, you can determine GD support, the path to php.ini, safe mode settings, <a href="http://www.hardened-php.net/suhosin/index.html" rel="external" class="external">suhosin</a> settings e.a. on the phpinfo page. In the end, the page just executes PHP's <a href="http://www.php.net/manual/en/function.phpinfo.php" rel="external" class="phpnet">phpinfo()</a> command.</p>
+<a name="phpinfo"></a><h2>phpinfo<a href="#phpinfo" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Affiche les informations de la version de PHP utilisée sur le serveur et des modules qu'il utilise</p>
+<p>On peut accéder manuellement à cette page en entrant phpinfo.php commenom de fichier dans la barre d'adresse de votre navigateur.</p>
+<div class="cpg_example"><tt class="code">http://votresite.com/votre_repertoire_coppermine/phpinfo.php</tt></div>
+<p>La sortie de la page phpinfo n'est visible que pour l'administrateur, les autres n'y ont pas accès. Par concéquent, il n'est pas utile de se référer à cette page lors d'une demande d'aide. Parmis d'autres choses, vous pouvez voir si GD est supportén quel est le chemin d'accès du php.ini, le paramétrage du safe_mode, le paramétrage de<a href="http://www.hardened-php.net/suhosin/index.html" rel="external" class="external">suhosin</a> sur la page phpinfo. En fait, cette page ne fait qu'executer la commande PHP <a href="http://www.php.net/manual/en/function.phpinfo.php" rel="external" class="phpnet">phpinfo()</a>.</p>
 
-<a name="show_news"></a><h2>Show news<a href="#show_news" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Coppermine comes with a feature that will <a href="configuration.htm#admin_general_coppermine_news">display news from the official Coppermine home page</a> for the admin. If you choose to hide this section, you can re-enable it by clicking on the &quot;show news&quot; link from the admin menu.</p>
+<a name="show_news"></a><h2>Montrer les news<a href="#show_news" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Coppermine contient uen fonction qui <a href="configuration.htm#admin_general_coppermine_news">affiche des news de la page officelle de Coppermine</a> pour les administrateurs. Si vous choisissez de cacher cette section, vous pouvez la réactiver en cliquant sur le lien &quot;Montrer les news&quot; du menu administrateur.</p>
 
-<a name="documentation"></a><h2>Documentation<a href="#documentation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Read the online version of the Coppermine documentation (this document)</p>
+<a name="documentation"></a><h2>Documentation<a href="#documentation" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Lire la version en  ligne de cette documentation (ce document)</p>
 
 
 <hr />
 
-<a name="admin_mode_regular_users"></a><h2>Admin mode for regular users<a href="#admin_mode_regular_users" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>In previous versions of Coppermine (cpg1.4.x and older) there used to be an admin mode and user mode for &quot;regular registered&quot; users, somewhat like those for the true administrator. This feature has been removed as it was both confusing for end users and really did not serve any special purpose.</p>
+<a name="admin_mode_regular_users"></a><h2>Mode Admin pour les utilisateurs normaux<a href="#admin_mode_regular_users" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Dans les versions précédentes de Coppermine (cpg1.4.x et antérieurs) il y avait un mode administrateur et un mode utilisateur pour &quot;les utilisateurs enregistrés&quot; , quelque chose de similaire à ce qui existait pour le vrai administrateur. Cette fonction a été enlevée parce qu'elle induisait en erreur les utilisateurs et n'apportait pas de réels avantages.</p>
 
-<a name="user_menu_items"></a><h2>Admin menu items for regular users<a href="#user_menu_items" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>The user with upload permissions has the following admin options:</p>
+<a name="user_menu_items"></a><h2>Eléments d'administration pour les utilisateurs normaux<a href="#user_menu_items" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>L'utilisateur avec des droits de téléchargement a les options d'administration suivantes:</p>
 <ul>
-  <li><strong>Create / order my albums</strong><br />similar to album manager in admin mode, the user can create albums within his user gallery</li>
-  <li><strong>Modify my albums</strong><br />
-  The user can edit album title and description (similar to &quot;<a href="albums.htm#album_prop">album properties</a>&quot; for the admin, but the user cannot move his albums to other categories)</li>
-  <li><strong>My profile</strong><br />The user can edit his profile (changing passwords, edit location, interests, home page and occupation properties, view quota usage). When integrated with a bbs service, the &quot;My profile&quot; link will send the user to the bbs's profile page. </li>
+  <li><strong>Créer / Trie mes albums</strong><br /> comme le gestionnaire d'albums du mode administrateur, l'utilisateur peut créer des albums dans sa galerier personnelle</li>
+  <li><strong>Modifier mes albums</strong><br />
+  L'utilisateur peut modifier le titre et la description de l'albums (comme les &quot;<a href="albums.htm#album_prop">propriétés des albums</a>&quot; pour l'administrateur, mais l'utilisateur ne peut pas déplacer ses albums dans une autre catégorie)</li>
+  <li><strong>Mon profil</strong><br />L'utilisateur peut modifier son profil (changer le mot de passe, modifier son adresse, ses centres d'intérêts, l'adresse de son site, voir le quota d'espace utilisé). Lors de l'intégration avec un forum, le lien &quot;Mon profil&quot; enverra l'utilisateur vers la page de profil du forum. </li>
 </ul>
 
 <div id="doc_footer">
