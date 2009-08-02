@@ -78,7 +78,7 @@
 <p>Warning: the creation of zip-archives on the server is a resources-intensive process that can overload your server pretty fast. In fact, the same server-sided limitations that apply to uploading (e.g. memory consumption) must be taken into account as well when enabling the zip download feature. It is very likely that this feature will stop working when trying to create a zip archive out of a larger number of entries in the visitor's "my favorites" meta album.</p>
 <p>You have the options to disallow the zip-download of favorites completely or to allow it. If you choose to allow it, you can determine if you want a readme file to be included within the zip archive that explains where the archive has been downloaded from.</p>
 <p>Default (and recommended) option is "off".</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4Configuration &rarr; General settings &rarr; Allow ZIP-download of favorites</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Allow ZIP-download of favorites</p>
 <a name="admin_general_zip-download_end"></a>
 <hr />
 <a name="admin_general_time-offset"></a><h3>Timezone difference relative to GMT<a href="#admin_general_time-offset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -243,7 +243,7 @@ Once you have added comments or files to your gallery, you should not change the
 <p>For details on the include files, refer to the section <a href="php-content.htm#php-content_header_footer">Custom header and footer</a></p>
 <p><strong>Example</strong>: If your Coppermine install resides in http://yourdomain.tld/your_coppermine_folder/ and your include file is supposed to be http://yourdomain.tld/my_overall_navigation/my_custom_header.php, you need to specify <tt class="code">../my_overall_navigation/my_custom_header.php</tt> (the relative path to your include file, seen from the folder coppermine resides in) as &quot;Path to custom header include&quot;.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Path to custom header include</p>
-<a name="admin_theme_custom_header_path_end">
+<a name="admin_theme_custom_header_path_end"></a>
 <a name="admin_theme_custom_footer_path_start"></a><h3>Path to custom footer include<a href="#admin_theme_custom_footer_path_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Optional relative path to a custom footer file. The same remarks apply as for the custom header include path.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Themes settings &rarr; Path to custom footer include</p>
@@ -659,7 +659,7 @@ Please do not ask questions how to get an API key on the Coppermine support boar
 
 <a name="admin_comment_akismet_group"></a><h3>Apply Akismet for comments made by<a href="#admin_comment_akismet_group" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>You can specify if only the comments posted by anonymous visitors (guests) should be checked by Akismet or if all comments that get posted will be pumped through the Akismet filtering.</p>
-<p>This toggle does <strong>not</strong> determine the ability of a registered user or guest to post comments in the first place. The overall switch for that purpose resides on Coppermine's <a href="groups.htm#group_cp"groups control panel</a> instead. The config option &quot;Apply Akismet for comments made by&quot; only applies if users or guests have permission to post comments in the first place.</p>
+<p>This toggle does <strong>not</strong> determine the ability of a registered user or guest to post comments in the first place. The overall switch for that purpose resides on Coppermine's <a href="groups.htm#group_cp">groups control panel</a> instead. The config option &quot;Apply Akismet for comments made by&quot; only applies if users or guests have permission to post comments in the first place.</p>
 <p>This toggle will only be taken into account if you have entered a valid <a href="#admin_comment_akismet_api_key">Akismet API key</a> into the corresponding config field.</p>
 <p>Default value is "Everyone", which is the more restrictive setting - it usually doesn't hurt to spam-check the posting of registered users as well, since some spammers take the time to register and then drop their spam comments as registered users if you let them.</p>
 <p>The drawback of this option set to "Everyone" is a slightly increased traffic and (depending on the bandwidth of your webserver) a small penalty in the speed of comment processing - after all, the comments are being sent to a third party site first, where that remote server checks the comment and then returns information to your webserver wether a comment should pass or not. If your site is extremely busy or you have limited bandwidth on your webserver, you should set this option to "Guests only" to lighten the load.</p>
