@@ -346,7 +346,7 @@ case 'comment':
             $app = 'YES';
         }
 
-        cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval, spam) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip', 'YES', '$spam')");
+        cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip, approval, spam) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip', '$app', '$spam')");
     
         if ($CONFIG['email_comment_notification'] && !USER_IS_ADMIN ) {
             $mail_body = "<p>" . bb_decode(process_smilies($msg_body, $CONFIG['ecards_more_pic_target'])) . '</p>' . $LINEBREAK .$lang_db_input_php['email_comment_body'] . ' ' . $CONFIG['ecards_more_pic_target'] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . $redirect;
