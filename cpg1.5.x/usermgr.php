@@ -136,7 +136,7 @@ function list_users($search = '')
 {
     global $CONFIG, $cpg_udb, $CPG_PHP_SELF, $LINEBREAK; //, $PHP_SELF;
     global $lang_usermgr_php, $lang_byte_units, $lang_date, $lang_common, $icon_array;
-    global $lim_user, $number_of_columns;
+    global $lim_user, $number_of_columns, $template_tab_display;
     global $USER_DATA;
 
     $superCage = Inspekt::makeSuperCage();
@@ -168,13 +168,6 @@ function list_users($search = '')
         }
     }
 
-    $tab_tmpl = array('left_text' => '<td width="100%" align="left" valign="middle" class="tableh1" style="white-space: nowrap">' . $lang_usermgr_php['u_user_on_p_pages'] . '</td>' . $LINEBREAK,
-        'tab_header' => '',
-        'tab_trailer' => '',
-        'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . $LINEBREAK . '<td align="center" valign="middle" class="tableb">%d</td>',
-        'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . $LINEBREAK . '<td align="center" valign="middle" class="navmenu"><a href="' . $CPG_PHP_SELF . '?page=%d&amp;sort=' . $sort . '"%d</a></td>' . $LINEBREAK
-        );
-
     $makereadonly = ($CONFIG['bridge_enable']) ? 'style="display:none;" disabled="disabled" ':'';
 
     $user_count = $cpg_udb->get_user_count();
@@ -191,7 +184,10 @@ function list_users($search = '')
     }
     $lower_limit = ($page-1) * $user_per_page;
     $total_pages = ceil($user_count / $user_per_page);
-
+        
+    $tab_tmpl = $template_tab_display;
+    $tab_tmpl['page_link'] = strtr($tab_tmpl['page_link'], array('{LINK}' => 'usermgr.php?sort=' . $sort . '&amp;page=%d'));
+    $tab_tmpl['left_text'] = strtr($tab_tmpl['left_text'], array('{LEFT_TEXT}' => sprintf($lang_usermgr_php['u_user_on_p_pages'], $user_count, $total_pages)));  
 
     $users = $cpg_udb->get_users(
                                   array(
