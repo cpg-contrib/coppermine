@@ -3896,7 +3896,7 @@ function theme_slideshow($start_img,$title)
         '{LOADER_ICON_PATH}' => $prefix . 'images/loader.gif',
     );
 
-    echo "<a name=\"top_display_media\"/>";
+    echo '<a name="top_display_media"></a>';
     starttable();
     echo <<<EOT
         <noscript>
