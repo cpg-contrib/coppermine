@@ -123,14 +123,15 @@ EOT;
 
 starttable('100%', cpg_fetch_icon('alb_mgr', 2).$lang_albmgr_php['title'].'&nbsp;'.cpg_display_help('f=albums.htm&amp;as=albmgr&amp;ae=albmgr_end&amp;top=1', '600', '400'), 1, '');
     echo <<< EOT
-        <noscript>
-        <tr>
-            <td colspan="2" class="tableh2">
-                {$lang_common['javascript_needed']}
-            </td>
-        </tr>
-        </noscript>
-        <tr>
+	<noscript>
+		<tr>
+			<td class="tableh2">
+				{$lang_common['javascript_needed']}
+			</td>
+		</tr>
+	</noscript>
+	<tr>
+		<td>
 EOT;
     
 if (GALLERY_ADMIN_MODE) {
@@ -152,12 +153,6 @@ if (count($rowset) > 0) {
     }
 }
 
-    echo <<< EOT
-             
-        <td class="tableb" >
-            <table class="head_album" border="0" cellspacing="0" cellpadding="0">
-EOT;
-
 if (GALLERY_ADMIN_MODE||USER_ADMIN_MODE) {
     $CAT_LIST = array();
     $CAT_LIST[] = array(FIRST_USER_CAT + USER_ID, $lang_albmgr_php['my_gallery']);
@@ -168,52 +163,61 @@ if (GALLERY_ADMIN_MODE||USER_ADMIN_MODE) {
     alb_get_subcat_data(0, '');
 
     echo <<< EOT
-                    <tr>
-                        <td>
-                            <strong>{$lang_albmgr_php['select_category']}</strong>
-                            &nbsp;
-                            <select name="cat" class="listbox">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr>
+					<td class="tableh2">
+						<strong>{$lang_albmgr_php['select_category']}</strong>
+						&nbsp;
+						<select name="cat" class="listbox">
 
 EOT;
     foreach ($CAT_LIST as $category) {
-        echo '<option value="' . $category[0] . '"' . ($cat == $category[0] ? ' selected="selected"': '') . ">" . $category[1] . '</option>' . $LINEBREAK;
+        echo '			<option value="' . $category[0] . '"' . ($cat == $category[0] ? ' selected="selected"': '') . ">" . $category[1] . '</option>' . $LINEBREAK;
     }
     echo <<< EOT
-                        </select>
-                        <input type="hidden" id="sort_order" name="sort_order" value="" />
-                        <input type="hidden" name="category" value="{$cat}" />
-                    </td>
-                </tr>
+						</select>
+						<input type="hidden" id="sort_order" name="sort_order" value="" />
+						<input type="hidden" name="category" value="{$cat}" />
+					</td>
+				</tr>
+			</table>
 
 EOT;
 }
 
     echo <<< EOT
-        </table>
-              <div id="sort">
+		</td>
+	</tr>
+	<tr>
+		<td>	
+            <div id="sort">
 EOT;
 
 if (count($rowset) > 0) { 
 
-    echo '<table id="album_sort" cellspacing="0" cellpadding="0" border="0">';
+    echo '            	<table id="album_sort" cellspacing="0" cellpadding="0" border="0">';
 
     foreach ($rowset as $album) {
         $title = stripslashes($album['title']);
         echo <<< EOT
-        <tr id="sort-{$album['aid']}" >
-            <td class="dragHandle"></td>
-            <td class="album_text" width="96%"><span class="albumName">{$title}</span><span class="editAlbum">{$icon_array['edit']}{$lang_common['edit']}</span></td>
-        </tr>
+            	<tr id="sort-{$album['aid']}" >
+					<td class="dragHandle"></td>
+					<td class="album_text" width="96%"><span class="albumName">{$title}</span><span class="editAlbum">{$icon_array['edit']}{$lang_common['edit']}</span></td>
+				</tr>
 EOT;
     }
 
-    echo '</table>';
+    echo '			</table>';
 }
 
     echo <<< EOT
-    </div>
-    <table class="album_operate" cellspacing="0" cellpadding="0" border="0">
-        <tr>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="album_operate" cellspacing="0" cellpadding="0" border="0">
+				<tr>
       
 EOT;
 // Only show move-buttons when admin or in user's private category.
@@ -227,61 +231,64 @@ if (GALLERY_ADMIN_MODE || ($cat == USER_ID + FIRST_USER_CAT)) {
     }   
     
     echo <<< EOT
-    <td style="width: 200px" id="control">
-        <a id="up_click" class="click">{$icon_array['up']}</a>
-        <a id="down_click" class="click">{$icon_array['down']}</a>
-        <a id="delete_album" class="click">{$icon_array['delete']}</a>
-        <a id="modify_album" class="click">{$icon_array['modifyalb']}</a>
-        <a id="editfiles_album" class="click">{$icon_array['edit_files']}</a>
-        <a id="thumbnail_album" class="click">{$icon_array['thumbnail']}</a>
-        <a id="add_new_album" class="click">{$icon_array['new']}</a>
-        <img id="loading" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" alt="" />
-    </td>
+					<td style="width: 200px" id="control">
+						<a id="up_click" class="click">{$icon_array['up']}</a>
+						<a id="down_click" class="click">{$icon_array['down']}</a>
+						<a id="delete_album" class="click">{$icon_array['delete']}</a>
+						<a id="modify_album" class="click">{$icon_array['modifyalb']}</a>
+						<a id="editfiles_album" class="click">{$icon_array['edit_files']}</a>
+						<a id="thumbnail_album" class="click">{$icon_array['thumbnail']}</a>
+						<a id="add_new_album" class="click">{$icon_array['new']}</a>
+						<img id="loading" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" alt="" />
+					</td>
 EOT;
 
 } else {
     //we still need to show buttons to add/edit albums
     echo <<< EOT
-    <td style="width: 200px" id="control">
-        <a id="delete_album" class="click">{$icon_array['delete']}</a>
-        <a id="modify_album" class="click">{$icon_array['modifyalb']}</a>
-        <a id="editfiles_album" class="click">{$icon_array['edit_files']}</a>
-        <a id="thumbnail_album" class="click">{$icon_array['thumbnail']}</a>
-        <a id="add_new_album" class="click">{$icon_array['new']}</a>
-        <img id="loading" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" alt="" />
-    </td>
+					<td style="width: 200px" id="control">
+						<a id="delete_album" class="click">{$icon_array['delete']}</a>
+						<a id="modify_album" class="click">{$icon_array['modifyalb']}</a>
+						<a id="editfiles_album" class="click">{$icon_array['edit_files']}</a>
+						<a id="thumbnail_album" class="click">{$icon_array['thumbnail']}</a>
+						<a id="add_new_album" class="click">{$icon_array['new']}</a>
+						<img id="loading" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" alt="" />
+					</td>
 EOT;
 }
 
     echo <<< EOT
     
-        <td id="add-box" style="display: none;">
-            <input type="text"   id="add-name" name="add-name" size="27" maxlength="80" class="textinput" value="" onkeypress="return Sort.disableEnterKey(event)" />
-            <button type="submit" id="addEvent" class="button" name="addEvent" value="{$lang_common['ok']}">{$icon_array['ok']}{$lang_common['ok']}</button>
-            <button type="button" class="button add_cancel close" value="{$lang_albmgr_php['cancel']}">{$icon_array['cancel']}{$lang_albmgr_php['cancel']}</button>
-        </td>
-        <td id="edit-box" style="display: none;">
-            <input type="text" id="edit-name" name="edit-name" size="27" maxlength="80" class="textinput" value="" onkeypress="return Sort.disableEnterKey(event)" />
-            <button type="submit" id="updateEvent" class="button" name="updateEvent" value="{$lang_common['ok']}">{$icon_array['ok']}{$lang_common['ok']}</button>
-            <button type="button" class="button album_cancel close" value="{$lang_albmgr_php['cancel']}">{$icon_array['cancel']}{$lang_albmgr_php['cancel']}</button>
+					<td id="add-box" style="display: none;">
+						<input type="text"   id="add-name" name="add-name" size="27" maxlength="80" class="textinput" value="" onkeypress="return Sort.disableEnterKey(event)" />
+						<button type="submit" id="addEvent" class="button" name="addEvent" value="{$lang_common['ok']}">{$icon_array['ok']}{$lang_common['ok']}</button>
+						<button type="button" class="button add_cancel close" value="{$lang_albmgr_php['cancel']}">{$icon_array['cancel']}{$lang_albmgr_php['cancel']}</button>
+					</td>
+					<td id="edit-box" style="display: none;">
+						<input type="text" id="edit-name" name="edit-name" size="27" maxlength="80" class="textinput" value="" onkeypress="return Sort.disableEnterKey(event)" />
+						<button type="submit" id="updateEvent" class="button" name="updateEvent" value="{$lang_common['ok']}">{$icon_array['ok']}{$lang_common['ok']}</button>
+						<button type="button" class="button album_cancel close" value="{$lang_albmgr_php['cancel']}">{$icon_array['cancel']}{$lang_albmgr_php['cancel']}</button>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table class="album_save" style="display: none;" cellspacing="0" cellpadding="0" border="0">
+				<tr>
+					<td>
+						<button type="submit" class="button" name="apply_changes" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
+					</td>
+					<td>
+						<div class="cpg_message_warning">
+							{$lang_albmgr_php['submit_reminder']}
+						</div>
+					</td>
+				</tr>
+			</table>
         </td>
     </tr>
-</table>
-<table class="album_save" style="display: none;" cellspacing="0" cellpadding="0" border="0">
-    <tr>
-        <td>
-            <button type="submit" class="button" name="apply_changes" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
-        </td>
-        <td>
-            <div class="cpg_message_warning">
-                {$lang_albmgr_php['submit_reminder']}
-            </div>
-        </td>
-
-    </tr>
-</table>
-        </td>
-      </tr>
 
 EOT;
     
