@@ -817,7 +817,7 @@ EOT;
                             {$element[2]}
             </td>
             <td width="60%" class="{$row_style_class}" valign="top">
-                    <textarea name="{$element[1]}" rows="7" class="textinput" style="width: 100%">$value</textarea>
+                    <textarea name="{$element[1]}" rows="7" cols="40" class="textinput" style="width: 100%">$value</textarea>
                     </td>
             </tr>
     
@@ -832,7 +832,7 @@ EOT;
                             {$element[2]}
             </td>
             <td width="60%" class="{$row_style_class}" valign="top">
-                    <input type="input" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
+                    <input type="password" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
                     </td>
             </tr>
     
@@ -843,8 +843,7 @@ EOT;
                 $value = $user_data[$element[1]];
                 $yes_selected = ($value == 'YES') ? 'checked="checked"' : '';
                 $no_selected = ($value == 'NO') ? 'checked="checked"' : '';
-                //$yes_selected = ($value == 'YES') ? 'selected' : '';
-                //$no_selected = ($value == 'NO') ? 'selected' : '';
+
                 echo <<< EOT
             <tr>
                 <td class="{$row_style_class}" valign="top">
@@ -880,14 +879,13 @@ EOT;
 EOT;
                 $group_cb = '';
                 foreach($group_list as $group) {
-                    echo '                        <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . '</option>' . $LINEBREAK;
+                    echo '                        <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected="selected"' : '') . '>' . $group['group_name'] . '</option>' . $LINEBREAK;
     
                     /**
-                     * If the group is registered, don't show it here as all the users must be a member of this group
-                     * Also remove Administrators group from secondary list as it won't give a user admin access.
+                     * Only show 'real' groups; skip admin, registered, anonymous
                      */
-                    if ($group['group_id'] != 1 && $group['group_id'] != 2) {
-                      $checked = strpos(' ' . $user_group_list, ',' . $group['group_id'] . ',') ? 'checked' : '';
+                    if ($group['group_id'] > 3) {
+                      $checked = strpos(' ' . $user_group_list, ',' . $group['group_id'] . ',') ? 'checked="checked"' : '';
                       $group_cb .= '<input name="group_list[]" type="checkbox" value="' . $group['group_id'] . '" ' . $checked . ' />' . $group['group_name'] . '<br />' . $LINEBREAK;
                     }
                 }
@@ -943,12 +941,13 @@ EOT;
                 		<input type="hidden" name="form_token" value="{$form_token}" />
                 		<input type="hidden" name="timestamp" value="{$timestamp}" />
 				</td>
-                </form>
         </tr>
 
 EOT;
 
     endtable();
+    
+    echo '</form>';
 }
 
 function update_user($user_id)
