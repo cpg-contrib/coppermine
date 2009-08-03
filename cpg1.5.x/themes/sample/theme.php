@@ -1976,7 +1976,7 @@ twice before you decide to remove the tag.
 function theme_credits() {
     $return = <<< EOT
 
-<div class="footer" align="center" style="padding-top:10px;display:block;visibility:visible; font-family: Verdana,Arial,sans-serif;">Powered by <a href="http://coppermine-gallery.net/" title="Coppermine Photo Gallery" rel="external">Coppermine Photo Gallery</a></div>
+<div class="footer" align="center" style="padding:10px;display:block;visibility:visible; font-family: Verdana,Arial,sans-serif;">Powered by <a href="http://coppermine-gallery.net/" title="Coppermine Photo Gallery" rel="external">Coppermine Photo Gallery</a></div>
 EOT;
     return $return;
 }
