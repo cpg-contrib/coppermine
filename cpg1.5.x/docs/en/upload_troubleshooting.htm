@@ -470,31 +470,43 @@ Replace it with<br />
 <a name="upload_trouble_server-sided_restrictions_check"></a><h3>Things to check<a href="#upload_trouble_server-sided_restrictions_check" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If you are webhosted, you will need to consult with your webhost regarding the following settings. You can review (although not change) those settings on your <a href="admin_menu.htm#phpinfo">phpinfo page</a>.</p>
 <ol>
-  <li><strong>max_input_time</strong><br />
-  60 seconds is the default time limit for uploading files.<br />This time limit includes the time it takes for the files to upload, so if you exceed this limit, the file will not even parse, and the browser will not get a response. You can workaround this by trying to upload smaller or fewer files, or you can try uploading over broadband. The best solution, of course, is to increase the time limit to something more in line with your needs.</li>
-  <li><strong>upload_max_filesize</strong><br />
-  2MB is the default limit for individual files.</li>
-  <li><strong>post_max_size</strong><br />
-  8MB is the default limit for post requests.</li>
-  <li><strong>memory_limit</strong><br />
-  8MB is the default size.</li>
-  <li>PHP's <strong>LimitRequestBody</strong><br />
-  512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order for uploads to function properly. Coppermine may warn you if a file exceeds upload_max_filesize, but it cannot warn you if the total size of all the files exceeds the post limit or the memory limit.</li>
-  <li><strong>file_uploads</strong><br />
-  This determines whether or not PHP will allow file uploads. It must be set to &quot;On&quot;.</li>
-  <li><strong>upload_tmp_dir</strong><br />
-  This specifies the temporary directory where PHP stores uploaded files.<br />
-  The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.</li>
+  <li>
+      <a name="upload_trouble_server-sided_restrictions_check_max_input_time"></a><h4>max_input_time<a href="#upload_trouble_server-sided_restrictions_check_max_input_time" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+      60 seconds is the default time limit for uploading files.<br />This time limit includes the time it takes for the files to upload, so if you exceed this limit, the file will not even parse, and the browser will not get a response. You can workaround this by trying to upload smaller or fewer files, or you can try uploading over broadband. The best solution, of course, is to increase the time limit to something more in line with your needs.
+  </li>
+  <li>
+      <a name="upload_trouble_server-sided_restrictions_check_upload_max_filesize"></a><h4>upload_max_filesize<a href="#upload_trouble_server-sided_restrictions_check_upload_max_filesize" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+      2MB is the default limit for individual files.
+  </li>
+  <li>
+      <a name="upload_trouble_server-sided_restrictions_check_post_max_size"></a><h4>post_max_size<a href="#upload_trouble_server-sided_restrictions_check_post_max_size" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+      8MB is the default limit for post requests.
+  </li>
+  <li>
+      <a name="upload_trouble_server-sided_restrictions_check_memory_limit"></a><h4>memory_limit<a href="#upload_trouble_server-sided_restrictions_check_memory_limit" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+      8MB is the default size.
+  </li>
+  <li>
+      <a name="upload_trouble_server-sided_restrictions_check_limitlequestlody"></a><h4>LimitRequestBody<a href="#upload_trouble_server-sided_restrictions_check_limitlequestlody" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+      512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order for uploads to function properly. Coppermine may warn you if a file exceeds upload_max_filesize, but it cannot warn you if the total size of all the files exceeds the post limit or the memory limit.
+  </li>
+  <li>
+      <a name="upload_trouble_server-sided_restrictions_check_file_uploads"></a><h4>file_uploads<a href="#upload_trouble_server-sided_restrictions_check_file_uploads" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+      This determines whether or not PHP will allow file uploads. It must be set to &quot;On&quot;.
+  </li>
+  <li>
+      <a name="upload_trouble_server-sided_restrictions_check_upload_tmp_dir"></a><h4>upload_tmp_dir<a href="#upload_trouble_server-sided_restrictions_check_upload_tmp_dir" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+      This specifies the temporary directory where PHP stores uploaded files.<br />
+      The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.
+  </li>
 </ol>
 
 
-
-<p><strong>Some notes about the different types of upload mechanisms available since cpg1.3.x (or better):</strong><br />
-Multiple HTTP uploads are designed to handle a small number of files.  Therefore, they are not well suited for the uploading of large numbers of files unless you are running your own webserver or have control over the php.ini configuration.
-<br />
-If you are looking to upload more than 15 or 20 files at a time, you should consider the <a href="uploading_batch-add.htm#batch_add_pics">batch add</a> process or the <a href="uploading_xp-publisher.htm#xp_publish_upload">XP Publisher</a> utility.  Each has its own drawbacks and advantages.
-<br />
-The batch add process is fast, but it creates quite a load on the server and, as a result, you may experience timeouts causing your uploads to terminate prematurely.  XP Publisher, on the other hand, is considerably slower, but it limits the load on the server.  It also circumvents many of the pitfalls caused by limitations set in the php.ini configuration by uploading each file in the batch being uploaded as an individual post request.</p>
+<a name="upload_trouble_methods"></a><h3>Upload mechanisms/methods<a href="#upload_trouble_methods" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p><strong>Some notes about the different types of upload mechanisms available since cpg1.3.x (or better):</strong></p>
+<p>Multiple HTTP uploads are designed to handle a small number of files.  Therefore, they are not well suited for the uploading of large numbers of files unless you are running your own webserver or have control over the php.ini configuration.</p>
+<p>If you are looking to upload more than 15 or 20 files at a time, you should consider the <a href="uploading_batch-add.htm#batch_add_pics">batch add</a> process or the <a href="uploading_xp-publisher.htm#xp_publish_upload">XP Publisher</a> utility.  Each has its own drawbacks and advantages.</p>
+<p>The batch add process is fast, but it creates quite a load on the server and, as a result, you may experience timeouts causing your uploads to terminate prematurely.  XP Publisher, on the other hand, is considerably slower, but it limits the load on the server.  It also circumvents many of the pitfalls caused by limitations set in the php.ini configuration by uploading each file in the batch being uploaded as an individual post request.</p>
 <p>Other alternative upload mechanisms (like Client-based agents as JUpload or similar) may be provided as third-party contributions - you're encouraged to look at them as well, but please keep in mind that the coppermine developers can only provide limited support for third-party contributions.</p>
 <p>Keep in mind though that before trying any alternative upload mechanism, you have to make sure that the initial upload method &quot;http uploads&quot; works as expected - if it doesn't, you have to fix that first; it doesn't make sense to try alternative upload mechanisms if the core upload mechanism doesn't work.</p>
 
