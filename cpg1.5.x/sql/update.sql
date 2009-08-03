@@ -419,3 +419,6 @@ INSERT INTO CPG_filetypes VALUES ('oga', 'audio/ogg', 'audio', 'HTMLA');
 INSERT INTO CPG_filetypes VALUES ('ogv', 'video/ogg', 'movie', 'HTMLV');
 
 INSERT INTO CPG_config VALUES ('picture_use', 'thumb');
+
+ALTER TABLE CPG_comments ADD INDEX author_id (author_id);
+ALTER TABLE CPG_users ADD INDEX user_group (user_group);

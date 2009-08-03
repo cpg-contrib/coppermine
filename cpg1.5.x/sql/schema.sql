@@ -118,7 +118,8 @@ CREATE TABLE CPG_comments (
   approval enum('YES','NO') NOT NULL default 'YES',
   spam enum('YES','NO') NOT NULL default 'NO',
   PRIMARY KEY  (msg_id),
-  KEY com_pic_id (pid)
+  KEY com_pic_id (pid),
+  KEY author_id (author_id)
 ) TYPE=MyISAM COMMENT='Used to store comments made on pics';
 # --------------------------------------------------------
 
@@ -348,9 +349,9 @@ CREATE TABLE CPG_users (
   user_profile6 text NOT NULL,
   user_actkey varchar(32) NOT NULL default '',
   user_language varchar(40) NOT NULL default '',
-
   PRIMARY KEY  (user_id),
-  UNIQUE KEY user_name (user_name)
+  UNIQUE KEY user_name (user_name),
+  KEY user_group (user_group)
 ) TYPE=MyISAM COMMENT='Used to store users, not used when bridged';
 # --------------------------------------------------------
 
