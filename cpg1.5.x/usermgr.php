@@ -187,7 +187,7 @@ function list_users($search = '')
         
     $tab_tmpl = $template_tab_display;
     $tab_tmpl['page_link'] = strtr($tab_tmpl['page_link'], array('{LINK}' => 'usermgr.php?sort=' . $sort . '&amp;page=%d'));
-    $tab_tmpl['left_text'] = strtr($tab_tmpl['left_text'], array('{LEFT_TEXT}' => sprintf($lang_usermgr_php['u_user_on_p_pages'], $user_count, $total_pages)));  
+    $tab_tmpl['left_text'] = strtr($tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_usermgr_php['u_user_on_p_pages']));  
 
     $users = $cpg_udb->get_users(
                                   array(
