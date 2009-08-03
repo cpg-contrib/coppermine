@@ -955,109 +955,106 @@ if (!isset($template_image_comments)) { //{THEMES}
 // HTML template for the display of comments
 $template_image_comments = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable" border="0">
-
-        <tr>
-                <td>
-                        <table width="100%" cellpadding="0" cellspacing="0">
-                           <tr>
-                                <td class="tableh2" nowrap="nowrap">
-                                        <strong>{MSG_AUTHOR_LNK}</strong><a name="comment{MSG_ID}"></a>&nbsp;
+    <tr>
+        <td>
+            <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="tableh2" nowrap="nowrap">
+                        <strong>{MSG_AUTHOR_LNK}</strong>
+                        <a name="comment{MSG_ID}"></a>&nbsp;
 <!-- BEGIN ipinfo -->
-                                                                                 ({IP})
+                        ({IP})
 <!-- END ipinfo -->
-
-</td>
-
-
-                                <td class="tableh2" align="right" width="100%">
+                    </td>
+                    <td class="tableh2" align="right" width="100%">
 <!-- BEGIN report_comment_button -->
-     <a href="report_file.php?pid={PID}&amp;msg_id={MSG_ID}&amp;what=comment" title="{REPORT_COMMENT_TITLE}">{REPORT_COMMENT_ICON}</a>
+                        <a href="report_file.php?pid={PID}&amp;msg_id={MSG_ID}&amp;what=comment" title="{REPORT_COMMENT_TITLE}">{REPORT_COMMENT_ICON}</a>
 <!-- END report_comment_button -->
 <!-- BEGIN pending approval -->
-                                        {PENDING_APPROVAL}
+                        {PENDING_APPROVAL}
 <!-- END pending approval -->
 <!-- BEGIN buttons -->
-                                        <script type="text/javascript">
-                                          document.write('<a href="javascript:;" onclick="blocking(\'cbody{MSG_ID}\',\'\', \'block\'); blocking(\'cedit{MSG_ID}\',\'\', \'block\'); return false;" title="{EDIT_TITLE}">{EDIT_ICON}</a>');
-                                        </script>
-                                        <a href="delete.php?msg_id={MSG_ID}&amp;what=comment&amp;form_token={FORM_TOKEN}&amp;timestamp={TIMESTAMP}" onclick="return confirm('{CONFIRM_DELETE}');" title="{DELETE_TITLE}">{DELETE_ICON}</a>
+                        <script type="text/javascript">
+                            document.write('<a href="javascript:;" onclick="blocking(\'cbody{MSG_ID}\',\'\', \'block\'); blocking(\'cedit{MSG_ID}\',\'\', \'block\'); return false;" title="{EDIT_TITLE}">{EDIT_ICON}</a>');
+                        </script>
+                        <a href="delete.php?msg_id={MSG_ID}&amp;what=comment&amp;form_token={FORM_TOKEN}&amp;timestamp={TIMESTAMP}" onclick="return confirm('{CONFIRM_DELETE}');" title="{DELETE_TITLE}">{DELETE_ICON}</a>
 <!-- END buttons -->
-                                </td>
-                                <td class="tableh2" align="right" nowrap="nowrap">
-                                        <span class="comment_date">[{MSG_DATE}]</span>
-                                </td></tr>
-                        </table>
-                </td>
-        </tr>
-        <tr>
-                <td class="tableb tableb_alternate">
-                        <div id="cbody{MSG_ID}" style="display:block">
-                                {MSG_BODY}
-                        </div>
-                        <div id="cedit{MSG_ID}" style="display:none">
+                    </td>
+                    <td class="tableh2" align="right" nowrap="nowrap">
+                        <span class="comment_date">[{MSG_DATE}]</span>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableb tableb_alternate">
+            <div id="cbody{MSG_ID}" style="display:block">
+                {MSG_BODY}
+            </div>
+            <div id="cedit{MSG_ID}" style="display:none">
 <!-- BEGIN edit_box_smilies -->
-                                <form name="f{MSG_ID}" id="f{MSG_ID}" method="post" action="db_input.php">
-                                    <table width="100%" cellpadding="0" cellspacing="0">
-                                        <tr>
-                                            <td valign="top">
-                                                <!--<input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />-->
-                                                <input type="hidden" name="event" value="comment_update" />
-                                                <input type="hidden" name="msg_id" value="{MSG_ID}" />
-                                                </td>
-                                                </tr>
-                                                <tr>
-                                                <td width="80%">
-                                                        <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width: 100%;">{MSG_BODY_RAW}</textarea>
-                                                </td>
-                                                <td class="tableb tableb_alternate">
-                                                </td>
-                                                <td>
-                                                        <input type="submit" class="button" name="submit" value="{OK}" />
-                                                        <input type="hidden" name="form_token" value="{FORM_TOKEN}" />
-                                                        <input type="hidden" name="timestamp" value="{TIMESTAMP}" />
-                                                </td>
-                                                </form>
-                                        </tr>
-                                        <tr>
-                                                <td colspan="3">
-                                                    <img src="images/spacer.gif" width="1" height="2" border="0" alt="" />
-                                                    <br />
-                                                </td>
-                                        </tr>
-                                </table>
-                                {SMILIES}
+                <form name="f{MSG_ID}" id="f{MSG_ID}" method="post" action="db_input.php">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td valign="top">
+                                <input type="hidden" name="event" value="comment_update" />
+                                <input type="hidden" name="msg_id" value="{MSG_ID}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="80%">
+                                <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width: 100%;">{MSG_BODY_RAW}</textarea>
+                            </td>
+                            <td class="tableb tableb_alternate"></td>
+                            <td>
+                                <input type="submit" class="button" name="submit" value="{OK}" />
+                                <input type="hidden" name="form_token" value="{FORM_TOKEN}" />
+                                input type="hidden" name="timestamp" value="{TIMESTAMP}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <img src="images/spacer.gif" width="1" height="2" border="0" alt="" />
+                                <br />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                {SMILIES}
 <!-- END edit_box_smilies -->
 <!-- BEGIN edit_box_no_smilies -->
-                                <table width="100%" cellpadding="0" cellspacing="0">
-                                        <tr>
-                                                <form name="f{MSG_ID}" id="f{MSG_ID}" method="POST" action="db_input.php">
-                                                <input type="hidden" name="event" value="comment_update" />
-                                                <input type="hidden" name="msg_id" value="{MSG_ID}" />
-                                                <td>
-                                                <!--<input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />-->
-                                                </td>
-                                        </tr>
-                                        <tr>
-                                                <td width="100%">
-                                                        <textarea cols="40" rows="2" class="textinput" name="msg_body" style="width: 100%;">{MSG_BODY_RAW}</textarea>
-                                                </td>
-                                                <td class="tableb tableb_alternate">
-                                                </td>
-                                                <td>
-                                                        <input type="submit" class="button" name="submit" value="{OK}" />
-                                                        <input type="hidden" name="form_token" value="{FORM_TOKEN}" />
-                                                        <input type="hidden" name="timestamp" value="{TIMESTAMP}" />
-                                                </td>
-                                                </form>
-                                        </tr>
-                                        <tr>
-                                                <td colspan="3"><img src="images/spacer.gif" width="1" height="2" border="0" alt="" /><br /></td>
-                                        </tr>
-                                </table>
+                <form name="f{MSG_ID}" id="f{MSG_ID}" method="POST" action="db_input.php">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td>    
+                                <input type="hidden" name="event" value="comment_update" />
+                                <input type="hidden" name="msg_id" value="{MSG_ID}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="100%">
+                                <textarea cols="40" rows="2" class="textinput" name="msg_body" style="width: 100%;">{MSG_BODY_RAW}</textarea>
+                            </td>
+                            <td class="tableb tableb_alternate"></td>
+                            <td>
+                                <input type="submit" class="button" name="submit" value="{OK}" />
+                                <input type="hidden" name="form_token" value="{FORM_TOKEN}" />
+                                <input type="hidden" name="timestamp" value="{TIMESTAMP}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <img src="images/spacer.gif" width="1" height="2" border="0" alt="" />
+                                <br />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
 <!-- END edit_box_no_smilies -->
-                        </div>
-                </td>
-        </tr>
+            </div>
+        </td>
+    </tr>
 </table>
 EOT;
 /******************************************************************************
