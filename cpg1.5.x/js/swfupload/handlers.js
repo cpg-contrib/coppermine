@@ -285,3 +285,19 @@ function swfUploadLoadFailed() {
 	$("#divLongLoading").hide();
 	$("#divAlternateContent").show();
 }
+
+/**
+ * We are overriding core FileProgress' setError function here
+ * This was done so that progress block does not disappear when error occurs.
+ */
+FileProgress.prototype.setError = function () {
+	this.fileProgressElement.className = "progressContainer red";
+	this.fileProgressElement.childNodes[3].className = "progressBarError";
+	this.fileProgressElement.childNodes[3].style.width = "";
+
+	var oSelf = this;
+    /*
+	this.setTimer(setTimeout(function () {
+		oSelf.disappear();
+	}, 5000));*/
+};
