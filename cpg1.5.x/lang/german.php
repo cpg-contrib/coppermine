@@ -1076,8 +1076,7 @@ $lang_delete_php['add_group'] = 'Sekundäre Gruppe hinzufügen';
 $lang_delete_php['add_group_to_group'] = 'Füge Benutzer %s zu Gruppe %s hinzu. Er ist nun Mitglied von %s als primäre Gruppe und von %s als sekundäre Mitgliedergruppe(n).';
 $lang_delete_php['status'] = 'Status';
 $lang_delete_php['updating_album'] = 'Updating album ';//cpg1.5
-$lang_delete_php['position'] = ' Position to ';//cpg1.5
-$lang_delete_php['updating_pic'] = 'Updating picture ';//cpg1.5
+$lang_delete_php['moved_picture_to_position'] = 'Bild %s in Position %s verschoben'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
@@ -1751,16 +1750,13 @@ $lang_phpinfo_php['no_link'] = 'Anderen Personen die phpinfo-Daten anzuzeigen, k
 // ------------------------------------------------------------------------- //
 if (defined('PICMGR_PHP')) {
 $lang_picmgr_php['pic_mgr'] = 'Bilder verwalten';
-$lang_picmgr_php['confirm_delete1'] = 'Diese Datei wirklich löschen?';
-$lang_picmgr_php['confirm_delete2'] = 'Löschen ist dauerhaft und endgültig.';
-$lang_picmgr_php['confirm_modifs'] = 'Änderungen bestätigen';
-$lang_picmgr_php['pic_need_name'] = 'Die Datei muss einen Namen haben';
+$lang_picmgr_php['confirm_modifs'] = 'Wirklich die Änderung der Reihenfolge durchführen?'; // cpg1.5 // js-alert
 $lang_picmgr_php['no_change'] = 'Es wurden keine Änderungen vorgenommen';
 $lang_picmgr_php['no_album'] = '* Kein Album *';
 $lang_picmgr_php['explanation_header'] = 'Die benutzerdefinierte Sortierreihenfolge, die Du auf dieser Seite wählen kannst wird nur angewendet, wenn';
 $lang_picmgr_php['explanation1'] = 'der Administrator die Konfigurationsoption für "Benutzerdefinierte Sortierreihenfolde für Dateien" auf "Position absteigend" oder "Position aufsteigend" gesetzt hat (globale Einstellung für alle Benutzer, die keine andere individuelle Sortierreihenfolge gewählt haben)';
 $lang_picmgr_php['explanation2'] = 'der Benutzer als Sortierreihenfolde "Position absteigend" oder "Position aufsteigend" auf der Thumbnail-Seite gewählt hat (Einstellung pro Benutzer)';
-$lang_picmgr_php['change_album'] = 'Wenn Du das Album änderst werden Deine vorherigen Änderungen nicht in Betracht gezogen!'; // cpg1.5
+$lang_picmgr_php['change_album'] = 'Wenn Du das Album änderst werden Deine vorherigen Änderungen nicht in Betracht gezogen!'; // cpg1.5 // js-alert
 $lang_picmgr_php['submit_reminder'] = 'Die Änderungen der Sortierreihenfolge werden nicht gespeichert, bis Du auf &quot;Anwenden&quot; klickst.'; // cpg1.5
 }
 

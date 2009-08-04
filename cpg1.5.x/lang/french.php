@@ -1051,8 +1051,7 @@ if (defined('DELETE_PHP')) {
   $lang_delete_php['add_group_to_group'] = 'Ajouter l\'Utilisateur %s au Groupe %s. Il est maintenant Membre de %s comme Groupe Primaire et de %s comme Groupe Secondaire.';
   $lang_delete_php['status'] = 'Statut';
   $lang_delete_php['updating_album'] = 'Mise à jour de la position de l\'album ';//cpg1.5
-  $lang_delete_php['position'] = ' à ';//cpg1.5 
-  $lang_delete_php['updating_pic'] = 'Mise à jour de la position de l\'image ';//cpg1.5
+  $lang_delete_php['moved_picture_to_position'] = 'Moved picture %s to position %s'; // cpg1.5
 }
 
 // ----------------------- //
@@ -1726,16 +1725,13 @@ if (defined('PHPINFO_PHP')) {
 // ----------------------- //
 if (defined('PICMGR_PHP')) {
   $lang_picmgr_php['pic_mgr'] = 'Gestionnaire d\'image';
-  $lang_picmgr_php['confirm_delete1'] = 'Etes-vous sur de vouloir supprimer cette image ?';
-  $lang_picmgr_php['confirm_delete2'] = 'L\'image sera supprimée de façon permanente.';
-  $lang_picmgr_php['confirm_modifs'] = 'Voulez-vous vraiment effectuer ces modifications ?';
-  $lang_picmgr_php['pic_need_name'] = 'L\'image doit avoir un nom&nbsp;!';
+  $lang_picmgr_php['confirm_modifs'] = 'Voulez-vous vraiment effectuer ces modifications ?'; // cpg1.5 // js-alert
   $lang_picmgr_php['no_change'] = 'Vous n\'avez pas fait de changement&nbsp;!';
   $lang_picmgr_php['no_album'] = '* Pas d\'Album *';
   $lang_picmgr_php['explanation_header'] = 'L\'ordre personnalisé de tri que vous pouvez définir ne sera pris en compte que si';
   $lang_picmgr_php['explanation1'] = 'l\'Administrateur du site a défini &quot;l\'ordre de tri par défaut des images&quot; dans la Configuration en  &quot;Ordre croissant&quot; ou &quot;Ordre décroissant&quot; (configuration générale pour tous les Utilisateurs qui n\'ont pas choisi une autre option de tri de manière individuelle)';
   $lang_picmgr_php['explanation2'] = 'l\'Utilisateur a choisi &quot;Ordre croissant&quot; ou &quot;Ordre décroissant&quot; sur la page des vignettes (Choix personnel de l\'Utilisateur)';
-  $lang_picmgr_php['change_album'] = 'Si vous changez d\'album, vos modifications seront perdues!'; // cpg1.5
+  $lang_picmgr_php['change_album'] = 'Si vous changez d\'album, vos modifications seront perdues!'; // cpg1.5 // js-alert
   $lang_picmgr_php['submit_reminder'] = 'Les changements dans l\'ordre d\'affichage ne seront pas sauvegardés tant que vous n\'aurez pas cliqué sur &quot;Appliquez les changements&quot;.'; // cpg1.5
 }
 

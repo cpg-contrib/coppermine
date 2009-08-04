@@ -233,29 +233,25 @@ if (GALLERY_ADMIN_MODE || ($cat == USER_ID + FIRST_USER_CAT)) {
     }   
     
     echo <<< EOT
-						<button type="button" id="up_click" name="up_click" class="button click" value="{$lang_common['move_up']}" disabled="disabled">{$icon_array['up']}{$lang_common['move_up']}</button>
-						<button type="button" id="down_click" name="down_click" class="button click" value="{$lang_common['move_down']}" disabled="disabled">{$icon_array['down']}{$lang_common['move_down']}</button>
+						<button type="button" id="up_click" name="up_click" class="button" value="{$lang_common['move_up']}" disabled="disabled">{$icon_array['up']}{$lang_common['move_up']}</button>
+						<button type="button" id="down_click" name="down_click" class="button" value="{$lang_common['move_down']}" disabled="disabled">{$icon_array['down']}{$lang_common['move_down']}</button>
 EOT;
 
 } 
     //we still need to show buttons to add/edit albums
     echo <<< EOT
-						<button type="button" id="delete_album" name="delete_album" class="button click" value="{$lang_albmgr_php['delete_album']}" disabled="disabled">{$icon_array['delete']}{$lang_albmgr_php['delete_album']}</button>
-						<button type="button" id="modify_album" name="modify_album" class="button click" value="{$lang_common['album_properties']}" disabled="disabled">{$icon_array['modifyalb']}{$lang_common['album_properties']}</button>
-						<button type="button" id="editfiles_album" name="editfiles_album" class="button click" value="{$lang_common['edit_files']}" disabled="disabled">{$icon_array['edit_files']}{$lang_common['edit_files']}</button>
-						<button type="button" id="thumbnail_album" name="thumbnail_album" class="button click" value="{$lang_common['thumbnail_view']}" disabled="disabled">{$icon_array['thumbnail']}{$lang_common['thumbnail_view']}</button>
-						<button type="button" id="add_new_album" name="add_new_album" class="button click" value="{$lang_albmgr_php['new_album']}">{$icon_array['new']}{$lang_albmgr_php['new_album']}</button>
+						<button type="button" id="delete_album" name="delete_album" class="button" value="{$lang_albmgr_php['delete_album']}" disabled="disabled">{$icon_array['delete']}{$lang_albmgr_php['delete_album']}</button>
+						<button type="button" id="modify_album" name="modify_album" class="button" value="{$lang_common['album_properties']}" disabled="disabled">{$icon_array['modifyalb']}{$lang_common['album_properties']}</button>
+						<button type="button" id="editfiles_album" name="editfiles_album" class="button" value="{$lang_common['edit_files']}" disabled="disabled">{$icon_array['edit_files']}{$lang_common['edit_files']}</button>
+						<button type="button" id="thumbnail_album" name="thumbnail_album" class="button" value="{$lang_common['thumbnail_view']}" disabled="disabled">{$icon_array['thumbnail']}{$lang_common['thumbnail_view']}</button>
+						<button type="button" id="add_new_album" name="add_new_album" class="button" value="{$lang_albmgr_php['new_album']}">{$icon_array['new']}{$lang_albmgr_php['new_album']}</button>
 						<img id="loading" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" alt="" />
-					</td>
-					<td id="add-box" style="display: none;">
-						<input type="text"   id="add-name" name="add-name" size="27" maxlength="80" class="textinput" value="" onkeypress="return Sort.disableEnterKey(event)" />
-						<button type="submit" id="addEvent" class="button" name="addEvent" value="{$lang_common['ok']}">{$icon_array['ok']}{$lang_common['ok']}</button>
-						<button type="button" class="button add_cancel close" value="{$lang_albmgr_php['cancel']}">{$icon_array['cancel']}{$lang_albmgr_php['cancel']}</button>
-					</td>
-					<td id="edit-box" style="display: none;">
-						<input type="text" id="edit-name" name="edit-name" size="27" maxlength="80" class="textinput" value="" onkeypress="return Sort.disableEnterKey(event)" />
-						<button type="submit" id="updateEvent" class="button" name="updateEvent" value="{$lang_common['ok']}">{$icon_array['ok']}{$lang_common['ok']}</button>
-						<button type="button" class="button album_cancel close" value="{$lang_albmgr_php['cancel']}">{$icon_array['cancel']}{$lang_albmgr_php['cancel']}</button>
+						<input type="text" id="add-name" name="add-name" size="27" maxlength="80" class="textinput" value="" onkeypress="return Sort.disableEnterKey(event)" style="display: none;" />
+						<button type="submit" id="addEvent" class="button" name="addEvent" value="{$lang_common['ok']}" style="display: none;">{$icon_array['ok']}{$lang_common['ok']}</button>
+						<button type="button" id="cancelEvent" name="cancelEvent" class="button add_cancel close" value="{$lang_albmgr_php['cancel']}" style="display: none;">{$icon_array['cancel']}{$lang_albmgr_php['cancel']}</button>
+						<input type="text" id="edit-name" name="edit-name" size="27" maxlength="80" class="textinput" value="" onkeypress="return Sort.disableEnterKey(event)" style="display: none;" />
+						<button type="submit" id="updateEvent" class="button" name="updateEvent" value="{$lang_common['ok']}" style="display: none;">{$icon_array['ok']}{$lang_common['ok']}</button>
+						<button type="button" id="updateCancel" name="updateCancel" class="button album_cancel close" value="{$lang_albmgr_php['cancel']}" style="display: none;">{$icon_array['cancel']}{$lang_albmgr_php['cancel']}</button>
 					</td>
 				</tr>
 			</table>

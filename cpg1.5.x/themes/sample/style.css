@@ -116,11 +116,14 @@ ul li {
 
 .button {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 100%;
+    font-size: 85%;
     border: 1px solid #005D8C;
     background-image : url(images/button_bg.gif);
     background-position : bottom;
-	cursor:pointer ;
+	cursor:pointer;
+	padding-left:0px;
+	padding-right:0px;
+	margin-right:2px;
 }
 
 .radio {
@@ -821,34 +824,13 @@ a.progressCancel:hover {
     vertical-align: top;
 }
 
-
-/** Filmstrip styles */
-div#film { 
-    padding: 5px 0 5px 0; 
-    overflow:hidden; 
-}
-
 /**styles for photo manager*/
 table#pic_sort tr td { 
     padding: 4px;
     border-bottom: 1px solid #ccc;
 }
-a.photoUp   { 
-    cursor: pointer; 
-}
-a.photoDown { 
-    cursor: pointer; 
-}
 
 /** styles for album manager and photo album*/
-.click {
-    cursor:pointer;
-}
-
-table#album_sort {
-	width: 100%;
-	border-top: 1px solid #ccc;
-}
 table#album_sort tr td {
     padding: 3px;
     border-bottom: 1px solid #ccc;
@@ -863,56 +845,6 @@ table#album_sort tr td span.editAlbum {
 	display: none;
 	color: #FF0000;
 }
-
-table#album_sort tr td span.albumName{
-	width: 200px;
-	float: left;
-}
-table.head_album {
-	margin: 2px 0 2px 0;
-	padding-left: 15px;
-	height: 40px; 
-	width: 100%;
-	border: 1px solid #0E72A4;
-	background-color: #C2CFF1;
-
-}
-
-table.album_operate{
-	background-color:#C2CFF1;
-	border: 1px solid #0E72A4;
-	border-bottom: none;
-	width: 100%;
-}
-table.album_operate td {
-	height: 40px; 
-	border-bottom: 1px solid #0E72A4;
-}
-table.album_operate td#control{
-	padding-left: 15px;
-}
-table.album_operate td#edit-box span, table.album_operate td#add-box span {
-	vertical-align: bottom;
-}
-table.album_operate td#edit-box a , table.album_operate td#add-box a{
-	vertical-align: bottom;
-	color: #FF0000;
-	text-decoration: underline;
-	cursor: pointer;
-} 
-table.album_operate span.load{
-	margin-left: 10px;
-}
-
-table.album_save{
-	border:1px solid #FFDD99;
-	width: 100%;
-}
-table.album_save td {
-	padding: 10px 0 10px 15px;
-	float: left;
-}
-
 
 .cpg_message_info, .cpg_message_success, .cpg_message_warning, .cpg_message_error, .cpg_message_validation {
     border: 1px solid;

@@ -231,3 +231,9 @@ input.spin-button.down {
 .explanation {
     font-size: 80%;
 }
+
+/** Filmstrip styles */
+div#film { 
+	padding: 5px 0 5px 0; 
+	overflow:hidden; 
+}

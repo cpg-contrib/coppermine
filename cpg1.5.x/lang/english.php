@@ -1051,8 +1051,7 @@ $lang_delete_php['add_group'] = 'Add secondary group';
 $lang_delete_php['add_group_to_group'] = 'Adding user %s to group %s. He\'s now member of %s as primary and of %s as secondary membergroup(s).';
 $lang_delete_php['status'] = 'Status';
 $lang_delete_php['updating_album'] = 'Updating album ';
-$lang_delete_php['position'] = ' Position to ';
-$lang_delete_php['updating_pic'] = 'Updating picture ';
+$lang_delete_php['moved_picture_to_position'] = 'Moved picture %s to position %s'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
@@ -1726,16 +1725,13 @@ $lang_phpinfo_php['no_link'] = 'Having others see your phpinfo can be a security
 // ------------------------------------------------------------------------- //
 if (defined('PICMGR_PHP')) {
 $lang_picmgr_php['pic_mgr'] = 'Picture Manager';
-$lang_picmgr_php['confirm_delete1'] = 'Are you sure you want to delete this file?';
-$lang_picmgr_php['confirm_delete2'] = 'The file will be permanently deleted.';
-$lang_picmgr_php['confirm_modifs'] = 'Confirm modifications?';
-$lang_picmgr_php['pic_need_name'] = 'The file needs to have a name!';
+$lang_picmgr_php['confirm_modifs'] = 'Really perform the modifications?'; // cpg1.5 // js-alert
 $lang_picmgr_php['no_change'] = 'You did not make any change!';
 $lang_picmgr_php['no_album'] = '* No album *';
 $lang_picmgr_php['explanation_header'] = 'The custom sort order you can specify on this page will only be taken into account if';
 $lang_picmgr_php['explanation1'] = 'the admin has set the "Default sort order for files" in the config to "Position descending" or "Position ascending" (global setting for all users who haven\'t chosen another sort option individually)';
 $lang_picmgr_php['explanation2'] = 'the user has chosen "Position descending" or "Position ascending" on the thumbnail page (per user setting)';
-$lang_picmgr_php['change_album'] = 'If you change the album, your changes will be lost!'; // cpg1.5
+$lang_picmgr_php['change_album'] = 'If you change the album, your changes will be lost!'; // cpg1.5 // js-alert
 $lang_picmgr_php['submit_reminder'] = 'Sorting changes are not saved until you click &quot;Apply changes&quot;.'; // cpg1.5
 }
 

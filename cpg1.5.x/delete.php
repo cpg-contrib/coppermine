@@ -668,20 +668,20 @@ case 'picmgr':
         //get the sorted order - cast to int below
         $get_rows = $superCage->post->getRaw('picture_order');
         $sort_rows = parse_pic_list($get_rows);
+	
+		$returnOutput .= '<tr><td colspan="6"><ul>';
 
         foreach ($sort_rows as $key => $option_value) {
-        
             $option_value = (int) $option_value;
-            
             if ($option_value == $rowset[$key]['pid']) {
                 continue;
             }
-           
             //update the new position
-            $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">".$lang_delete_php['updating_pic'].$option_value.$lang_delete_php['position'].$rowset[$key]['position'].'</td></tr>' . $LINEBREAK;
+			$returnOutput .= '<li>' . sprintf($lang_delete_php['moved_picture_to_position'],$option_value, $rowset[$key]['position']) . '</li>';
             $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET position = '{$rowset[$key]['position']}' WHERE pid = '{$option_value}' $restrict LIMIT 1";
             cpg_db_query($query);
         }
+		$returnOutput .= '</ul></td></tr>' . $LINEBREAK;
     } 
             
     if ($need_caption) {

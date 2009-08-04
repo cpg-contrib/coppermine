@@ -16,14 +16,6 @@
   $Date$
 **********************************************/
 
-function activateControls() {
-    $('button#modify_album,button#editfiles_album,button#thumbnail_album').removeAttr("disabled");
-
-}
-
-function deactivateControls() {
-}
-
 // write function to get the table serialize 
 function getSerialize ()
 {
@@ -52,7 +44,9 @@ var Sort = {
         var editedName = $.trim($("#edit-name").val());
         // check whether null and event to edit the album
         if(editedName.length > 0){
-            $("td#edit-box").hide();
+			$("input#edit-name").hide();
+			$("button#updateEvent").hide();
+			$("button#updateCancel").hide();
             // loading image
             $("#loading").show();
             
@@ -91,7 +85,9 @@ var Sort = {
         
         // add new album check whether null and event
         if(addedName.length > 0){
-            $("td#add-box").hide();
+			$("input#add-name").hide();
+			$("button#addEvent").hide();
+			$("button#cancelEvent").hide();
 
             // get the position of the album
             if($("#album_sort tr").length>0){
@@ -146,7 +142,8 @@ var Sort = {
 
     // show the message
     showMessage: function(){
-        $('.album_save').fadeIn('slow');
+        $('#submit_reminder').fadeIn('slow');
+		$('#apply').show();
     },
 
     // Disable Form Submit on Enter Key Press
@@ -176,8 +173,9 @@ jQuery(document).ready(function(){
     jQuery("#pic_sort").tableDnD();
     // styles to photo list
     function addRowColorsPhoto(){
-        jQuery("#pic_sort tr:even").css("backgroundColor", "#EEE");
-        jQuery("#pic_sort tr:odd").css("backgroundColor", "#FFFFFF");
+        jQuery("#pic_sort").addClass("tableb");
+        jQuery("#pic_sort tr:even").removeClass("tableb_alternate");
+        jQuery("#pic_sort tr:odd").addClass("tableb_alternate");
     }
     addRowColorsPhoto();
     // add query to input hidden when drop the pic item
@@ -202,12 +200,13 @@ jQuery(document).ready(function(){
         // alert(selectedColor)
         $(this).css("background-color", "#E0ECFF");
         $('button#up_click, button#down_click, button#delete_album, button#modify_album, button#editfiles_album, button#thumbnail_album').removeAttr("disabled");
+		$('button#pic_up, button#pic_down').show();
         // set current selected item in the album
         photoSelectedObject = this;
     });
 
     // sort items using up and down arrows
-    $("a.photoUp").click(function(){
+    $("button#pic_up").click(function(){
         if(photoSelectedObject){
             // sort manually upwards
             jQuery.tableDnD.sortManually(-1,photoSelectedObject,'pic_sort');
@@ -219,7 +218,7 @@ jQuery(document).ready(function(){
             Sort.showMessage();
         }
     });
-    $("a.photoDown").click(function(){
+    $("button#pic_down").click(function(){
         if(photoSelectedObject){
             // sort manually downwards
             jQuery.tableDnD.sortManually(1,photoSelectedObject,'pic_sort');
@@ -294,20 +293,28 @@ jQuery(document).ready(function() {
     // If new TR object is added then input text field will ready to type album names
     $("#add_new_album").click(function(){
         // when edit box is visible then just hide to show add box
-        $("td#edit-box").hide();
-        $("td#add-box").show();
+		$("input#edit-name").hide();
+		$("button#updateEvent").hide();
+		$("button#updateCancel").hide();
+		$("input#add-name").show();
+		$("button#addEvent").show();
+		$("button#cancelEvent").show();
         $("#add-name").focus().val();
         event = 'addAlbumButton';
     });
 
     // Cancel when user doesn't want to add the album to the list
     $(".album_cancel").click(function(){
-        $("td#edit-box").hide();
+		$("input#edit-name").hide();
+		$("button#updateEvent").hide();
+		$("button#updateCancel").hide();
     });
     
     // Cancel when user doesn't want to add the album to the list
     $(".add_cancel").click(function(){
-        $("td#add-box").hide();
+		$("input#add-name").hide();
+		$("button#addEvent").hide();
+		$("button#cancelEvent").hide();
     });        
 
     // make visible the edit link when user edits the album name
@@ -327,6 +334,7 @@ jQuery(document).ready(function() {
         //alert(this);
         $(this).css("background-color", "#E0ECFF");
         $('button#up_click, button#down_click, button#delete_album, button#modify_album, button#editfiles_album, button#thumbnail_album').removeAttr("disabled");
+		$('button#pic_up, button#pic_down').show();
         // set current selected item in the album
         albumObjectSelectedTr = this;
     });
@@ -338,8 +346,12 @@ jQuery(document).ready(function() {
         object_edit     = $(this).prev().text();
         albumSelectedTr = $(this).parents("tr").attr("id");
         // first hide the add box
-        $("td#add-box").hide();
-        $("td#edit-box").show();
+		$("input#add-name").hide();
+		$("button#addEvent").hide();
+		$("button#cancelEvent").hide();
+		$("input#edit-name").show();
+		$("button#updateEvent").show();
+		$("button#updateCancel").show();
         $("#edit-name").val(object_edit).focus();
 
     });
