@@ -230,6 +230,10 @@ a:active {
     background: #E4E4E4;
 }
 
+.tableb_highlight {
+    background-color: #E0ECFF;
+}
+
 
 .tablef {
     background: #D1D7DC;
@@ -856,16 +860,6 @@ a.photoDown {
 }
 
 /** styles for album manager and photo album*/
-div#sort {  
-    margin: 0; 
-    padding: 11px ; 
-    height: 240px; 
-    overflow: auto; 
-    background: #FFF; 
-    border: 1px solid #0E72A4; 
-    border-top: none;
-    border-bottom: none;
-}
 .click {
     cursor:pointer;
 }

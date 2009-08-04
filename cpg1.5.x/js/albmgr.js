@@ -16,6 +16,14 @@
   $Date$
 **********************************************/
 
+function activateControls() {
+    $('button#modify_album,button#editfiles_album,button#thumbnail_album').removeAttr("disabled");
+
+}
+
+function deactivateControls() {
+}
+
 // write function to get the table serialize 
 function getSerialize ()
 {
@@ -131,8 +139,9 @@ var Sort = {
 
     // styles to album list
     addRowColors: function(){
-        jQuery("#album_sort tr:even").css("background-color", "#EEE");
-        jQuery("#album_sort tr:odd").css("background-color", "#FFFFFF");
+        jQuery("#album_sort").addClass("tableb");
+        jQuery("#album_sort tr:even").removeClass("tableb_alternate");
+        jQuery("#album_sort tr:odd").addClass("tableb_alternate");
     },
 
     // show the message
@@ -192,6 +201,7 @@ jQuery(document).ready(function(){
         photoselectedColor = $(this).css("background-color");
         // alert(selectedColor)
         $(this).css("background-color", "#E0ECFF");
+        $('button#up_click, button#down_click, button#delete_album, button#modify_album, button#editfiles_album, button#thumbnail_album').removeAttr("disabled");
         // set current selected item in the album
         photoSelectedObject = this;
     });
@@ -314,8 +324,9 @@ jQuery(document).ready(function() {
         $(this).addClass("selected");
         // add the selected color to variable selectedColor
         selectedColor = $(this).css("background-color");
-
+        //alert(this);
         $(this).css("background-color", "#E0ECFF");
+        $('button#up_click, button#down_click, button#delete_album, button#modify_album, button#editfiles_album, button#thumbnail_album').removeAttr("disabled");
         // set current selected item in the album
         albumObjectSelectedTr = this;
     });
@@ -373,7 +384,7 @@ jQuery(document).ready(function() {
     });
 
     // delete the selected TR object item
-    $("a#delete_album").livequery('click', function(){
+    $("button#delete_album").livequery('click', function(){
         // if there isn't a TR object selected, then can't delete
         if(!albumObjectSelectedTr){
             alert(dontDelete);
@@ -396,7 +407,7 @@ jQuery(document).ready(function() {
     }); 
 
     // album links: album properties, edit files, thumbnail view
-    $('a#modify_album,a#editfiles_album,a#thumbnail_album').livequery('click', function(){
+    $('button#modify_album,button#editfiles_album,button#thumbnail_album').livequery('click', function(){
         // if there isn't a TR object selected, then nothing to do
         if(!albumObjectSelectedTr){
             return false;

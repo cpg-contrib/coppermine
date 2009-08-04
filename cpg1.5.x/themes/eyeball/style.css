@@ -88,6 +88,10 @@ body { background-color: #000000; }
         background: #181818;
 }
 
+.tableb_highlight {
+    background-color: #E0ECFF;
+}
+
 
 /* Borders for input controls */
 .textinput, .listbox, .button, .admin_menu {        border: 1px solid #666666; }
@@ -901,16 +905,6 @@ a.photoDown {
 }
 
 /** styles for album manager and photo album*/
-div#sort {  
-    margin: 0; 
-    padding: 11px ; 
-    height: 240px; 
-    overflow: auto; 
-    background: #FFF; 
-    border: 1px solid #0E72A4; 
-    border-top: none;
-    border-bottom: none;
-}
 .click {
     cursor:pointer;
 }

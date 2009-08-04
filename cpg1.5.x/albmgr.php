@@ -34,14 +34,15 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
 $icon_array = array();
 $icon_array['ok'] = cpg_fetch_icon('ok', 1);
 $icon_array['cancel'] = cpg_fetch_icon('cancel', 1);
-$icon_array['up'] = cpg_fetch_icon('up', 0, $lang_common['move_up']);
-$icon_array['down'] = cpg_fetch_icon('down', 0, $lang_common['move_down']);
-$icon_array['new'] = cpg_fetch_icon('add', 0, $lang_albmgr_php['new_album']);
-$icon_array['delete'] = cpg_fetch_icon('delete', 0, $lang_albmgr_php['delete_album']);
+$icon_array['up'] = cpg_fetch_icon('up', 1);
+$icon_array['down'] = cpg_fetch_icon('down', 1);
+$icon_array['new'] = cpg_fetch_icon('add', 1);
+$icon_array['delete'] = cpg_fetch_icon('delete', 1);
 $icon_array['edit'] = cpg_fetch_icon('edit', 1);
-$icon_array['modifyalb'] = cpg_fetch_icon('modifyalb', 1, $lang_common['album_properties']);
-$icon_array['edit_files'] = cpg_fetch_icon('edit', 1, $lang_common['edit_files']);
-$icon_array['thumbnail'] = cpg_fetch_icon('thumbnails', 1, $lang_common['thumbnail_view']);
+$icon_array['modifyalb'] = cpg_fetch_icon('modifyalb', 1);
+$icon_array['edit_files'] = cpg_fetch_icon('edit', 1);
+$icon_array['thumbnail'] = cpg_fetch_icon('thumbnails', 1);
+$icon_array['blank'] = cpg_fetch_icon('blank', 1);
 
 
 /**
@@ -189,7 +190,7 @@ EOT;
 		</td>
 	</tr>
 	<tr>
-		<td>	
+		<td class="tableb">	
             <div id="sort">
 EOT;
 
@@ -218,6 +219,7 @@ EOT;
 		<td>
 			<table class="album_operate" cellspacing="0" cellpadding="0" border="0">
 				<tr>
+					<td id="control">
       
 EOT;
 // Only show move-buttons when admin or in user's private category.
@@ -231,34 +233,20 @@ if (GALLERY_ADMIN_MODE || ($cat == USER_ID + FIRST_USER_CAT)) {
     }   
     
     echo <<< EOT
-					<td style="width: 200px" id="control">
-						<a id="up_click" class="click">{$icon_array['up']}</a>
-						<a id="down_click" class="click">{$icon_array['down']}</a>
-						<a id="delete_album" class="click">{$icon_array['delete']}</a>
-						<a id="modify_album" class="click">{$icon_array['modifyalb']}</a>
-						<a id="editfiles_album" class="click">{$icon_array['edit_files']}</a>
-						<a id="thumbnail_album" class="click">{$icon_array['thumbnail']}</a>
-						<a id="add_new_album" class="click">{$icon_array['new']}</a>
-						<img id="loading" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" alt="" />
-					</td>
+						<button type="button" id="up_click" name="up_click" class="button click" value="{$lang_common['move_up']}" disabled="disabled">{$icon_array['up']}{$lang_common['move_up']}</button>
+						<button type="button" id="down_click" name="down_click" class="button click" value="{$lang_common['move_down']}" disabled="disabled">{$icon_array['down']}{$lang_common['move_down']}</button>
 EOT;
 
-} else {
+} 
     //we still need to show buttons to add/edit albums
     echo <<< EOT
-					<td style="width: 200px" id="control">
-						<a id="delete_album" class="click">{$icon_array['delete']}</a>
-						<a id="modify_album" class="click">{$icon_array['modifyalb']}</a>
-						<a id="editfiles_album" class="click">{$icon_array['edit_files']}</a>
-						<a id="thumbnail_album" class="click">{$icon_array['thumbnail']}</a>
-						<a id="add_new_album" class="click">{$icon_array['new']}</a>
+						<button type="button" id="delete_album" name="delete_album" class="button click" value="{$lang_albmgr_php['delete_album']}" disabled="disabled">{$icon_array['delete']}{$lang_albmgr_php['delete_album']}</button>
+						<button type="button" id="modify_album" name="modify_album" class="button click" value="{$lang_common['album_properties']}" disabled="disabled">{$icon_array['modifyalb']}{$lang_common['album_properties']}</button>
+						<button type="button" id="editfiles_album" name="editfiles_album" class="button click" value="{$lang_common['edit_files']}" disabled="disabled">{$icon_array['edit_files']}{$lang_common['edit_files']}</button>
+						<button type="button" id="thumbnail_album" name="thumbnail_album" class="button click" value="{$lang_common['thumbnail_view']}" disabled="disabled">{$icon_array['thumbnail']}{$lang_common['thumbnail_view']}</button>
+						<button type="button" id="add_new_album" name="add_new_album" class="button click" value="{$lang_albmgr_php['new_album']}">{$icon_array['new']}{$lang_albmgr_php['new_album']}</button>
 						<img id="loading" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" alt="" />
 					</td>
-EOT;
-}
-
-    echo <<< EOT
-    
 					<td id="add-box" style="display: none;">
 						<input type="text"   id="add-name" name="add-name" size="27" maxlength="80" class="textinput" value="" onkeypress="return Sort.disableEnterKey(event)" />
 						<button type="submit" id="addEvent" class="button" name="addEvent" value="{$lang_common['ok']}">{$icon_array['ok']}{$lang_common['ok']}</button>
@@ -277,10 +265,10 @@ EOT;
 		<td>
 			<table class="album_save" style="display: none;" cellspacing="0" cellpadding="0" border="0">
 				<tr>
-					<td>
+					<td style="vertical-align:middle;">
 						<button type="submit" class="button" name="apply_changes" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
 					</td>
-					<td>
+					<td style="vertical-align:middle;">
 						<div class="cpg_message_warning">
 							{$lang_albmgr_php['submit_reminder']}
 						</div>
