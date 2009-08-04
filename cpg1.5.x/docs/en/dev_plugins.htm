@@ -190,13 +190,16 @@ EOT;</div>
 			<li>All archives start with the official abbreviation "<tt class="code">cpg</tt>" to indicate that the archive is meant to be used with coppermine or is related to coppermine</li>
 			<li>The major version an archive is meant to be used with comes right after that - the minor version being replaced with an <tt class="code">x</tt>. Possible values for plugins can currently be <tt class="code">1.4.x</tt> and <tt class="code">1.5.x</tt>. The Coppermine version is being followed by an underscore</li>
 			<li>The word "plugin" to indicate that the archive contains a plugin (opposed to a theme or similar), followed by an underscore</li>
-			<li>The name of the actual plugin, preferably using the same name that has been used as folder name. The plugin name should usually consist of at least two words. Unlike the <a href="#plugin_writing_naming_conventions_folders">naming convention for folders</a>, then words in the archive name are being separated with hyphens (-) to make them distinguishable from the underscore that separates the components of the file name. In above example, where the folder name <tt class="code">coffee_maker</tt> was used, the corresponding part of the archive file name would be <tt class="code">coffee-maker</tt>.<br />
+			<li>The name of the actual plugin, preferably using the same name that has been used as folder name. The plugin name should usually consist of at least two words. Unlike the <a href="#plugin_writing_naming_conventions_folders">naming convention for folders</a>, the words in the archive name are being separated with hyphens (-) to make them distinguishable from the underscore that separates the components of the file name. In above example, where the folder name <tt class="code">coffee_maker</tt> was used, the corresponding part of the archive file name would be <tt class="code">coffee-maker</tt>.<br />
 			To separate the actual plugin name component in the file name from the rest, another underscore should be used</li>
-			<li>All plugins have versions. Even if you don't plan to create more versions after having released your initial plugin, others may want to do so. That's why you should always populate the version number inside <tt class="code">configuration.php</tt>. The same version should show through in the archive file name, with the letter "<tt class="code">v</tt>" prepended to indicate the word "version". Major and minor version numbers should be separated with dots. Coppermine itself currently features three digits for the version number. We advise plugin authors to use a two-folder version numbering scheme, where the first digit indicates the major version and the second digit indicates the minor version change (usually a maintenance release). <br />This two-digit version numbering scheme for plugins is not written in stone - plugin authors can use a three-digit notation as well if they desire.<br />
+			<li>All plugins have versions. Even if you don't plan to create more versions after having released your initial plugin, others may want to do so. That's why you should always populate the version number inside <tt class="code">configuration.php</tt>. The same version should show through in the archive file name, with the letter "<tt class="code">v</tt>" prepended to indicate the word "version". Major and minor version numbers should be separated with dots. Coppermine itself currently features three digits for the version number. We advise plugin authors to use a two-digits version numbering scheme, where the first digit indicates the major version and the second digit indicates the minor version change (usually a maintenance release). <br />This two-digit version numbering scheme for plugins is not written in stone - plugin authors can use a three-digit notation as well if they desire.<br />
 			The Coppermine dev team suggests starting the numbering at version 1.0</li>
 			<li>The extension <tt class="code">zip</tt> can of course not be edited. We strongly suggest only to use zip and not some other archive format like <tt class="code">rar</tt> or <tt class="code">7z</tt> even if those other formats may have advantages. The archive-type <tt class="code">zip</tt> is most commonly used; everybody should have a tool to extract zip files.</li>
 		</ul>
-		<div class="cpg_example"><tt class="code">cpg1.5.x_plugin_coffee-maker_v1.0.zip</tt></div>
+		<div class="cpg_example">
+			<strong>Example</strong>:<br />
+			<tt class="code">cpg1.5.x_plugin_coffee-maker_v1.0.zip</tt>
+		</div>
 	</li>
 	<li>
 		<a name="plugin_writing_naming_conventions_coding"></a><h3>Coding<a href="#plugin_writing_naming_conventions_coding" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -217,14 +220,16 @@ Plugins (or rather individual pages of a plugin) can roughly fall into two categ
 It is comparatively easy to come up with plugins that fall into the first category (creating additional pages). The second option is the more advanced and powerfull option that plugins authors can use. For this purpose, there are &quot;anchors&quot; all over coppermine's core code that allow plugin interaction with the code, the so-called &quot;<a href="dev_plugin_hooks.htm">plugin hooks</a>&quot;.
 
 <a name="plugin_writing_includes"></a><h2>Using includes<a href="#plugin_writing_includes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Files the plugin is meant to include can only contain one single dot that separates the actual filename from the php-extension!</p>
+<p>Files the plugin is meant to include on the index page of the gallery can only contain one single dot that separates the actual filename from the php-extension, as suggested in &quot;<a href="dev_plugin_api.htm#plugin_api_tutorial_linking">Linking to Custom Plugin Scripts</a>&quot;</p>
+
 
 <a name="plugin_writing_sub_sections"></a><h2>Sub-sections<a href="#plugin_writing_sub_sections" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>These plugin documents are a work-in-progress, and a to-do list. The following sub-sections exist so far that are recommended to read:</p>
 <ul>
-  <li><a href="dev_plugin_api.htm">Tutorial, Plugin API, Coppermine Global Variables &amp; Constants</a><br />The tutorial is the next logical step to follow after having read the quick start guide</li>
+  <li><a href="dev_plugin_api.htm">Tutorial, Plugin API</a><br />The tutorial is the next logical step to follow after having read the quick start guide</li>
   <li><a href="dev_plugin_hooks.htm">Reference List of Plugin Hooks</a><br />
   The reference list is meant as a source for experienced plugin writer who need to look up the names of hooks.</li>
+  <li>Global <a href="dev_vars.htm">Variables &amp; Constants</a> in Coppermine</li>
 </ul>
 
 
