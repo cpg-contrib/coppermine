@@ -74,7 +74,7 @@ $lang_errors['param_missing'] = 'Script appelé sans les paramètres nécessaire
 $lang_errors['non_exist_ap'] = 'L\'Album/la photo demandé(e) n\'existe pas!';
 $lang_errors['quota_exceeded'] = 'Quota disque dépassé.'; //cpg1.5
 $lang_errors['quota_exceeded_details'] = 'Vous avez un quota d\'espace de [quota]K, vos fichiers utilisent actuellement [space]K, l\ajout de ces fichiers vous fera dépasser ce quota.'; //cpg1.5
-$lang_errors['gd_file_type_err'] = 'L\'utilisation de &quot;GD Image Library&quot; ne vous permet d\'Utilisez que de images de type JPEG et PNG.';
+$lang_errors['gd_file_type_err'] = 'L\'utilisation de &quot;la librairie d\'images GD&quot; ne vous permet d\'Utilisez que de images de type JPEG et PNG.';
 $lang_errors['invalid_image'] = 'L\'image que vous avez téléchargée est corrompue ou ne peut pas être prise en charge par GD library';
 $lang_errors['resize_failed'] = 'Impossible de créer la vignette ou l\'image réduite.';
 $lang_errors['no_img_to_display'] = 'Pas d\'image à Afficher';
@@ -476,7 +476,7 @@ $lang_banning_php['new_ban_record_created'] = 'Un nouvel enregistrement de banis
 $lang_banning_php['ban_record_x_already_exists'] = 'Un enregistrementd e banissement existe déjà pour %s.'; // cpg1.5
 $lang_banning_php['comment_deleted'] = '%s commentaire écrit par %s a été effacé.'; // cpg1.5
 $lang_banning_php['comments_deleted'] = '%s Commentaires écrits par %s ont été effacés.'; // cpg1.5
-$lang_banning_php['email_field_invalid'] = '>Entrez une adresse courriel valide !'; // cpg1.5
+$lang_banning_php['email_field_invalid'] = 'Entrez une adresse courriel valide !'; // cpg1.5
 $lang_banning_php['ip_address_field_invalid'] = 'Entrez une adress IP valide (x.x.x.x)'; // cpg1.5
 $lang_banning_php['expiry_field_invalid'] = 'Entrez une date d\'expiration valide (JJ-MM-AAAA)'; // cpg1.5
 $lang_banning_php['form_not_submit'] = 'Le formulaire n\'a pas été envoyé - il y a des erreurs que vous devez corriger d\'abord !'; // cpg1.5
@@ -904,8 +904,8 @@ $lang_admin_php['config_setting_ok'] =   'Vos paramètres pour &laquo;%s&raquo; 
 $lang_admin_php['contact_form_settings'] =   'Paramètres du formulaire de contact'; // cpg1.5
 $lang_admin_php['contact_form_guest_enable'] =   'Afficher le formulaire de contact pour les visiteurs anonymes (guests)'; // cpg1.5
 $lang_admin_php['contact_form_registered_enable'] =   'Afficher le formulaire de contact pour les visiteurs enregistrés'; // cpg1.5
-$lang_admin_php['with_captcha'] =   'avec captcha'; // cpg1.5
-$lang_admin_php['without_captcha'] =   'sans captcha'; // cpg1.5
+$lang_admin_php['with_captcha'] =   'avec Captcha'; // cpg1.5
+$lang_admin_php['without_captcha'] =   'sans Captcha'; // cpg1.5
 $lang_admin_php['optional'] =   'optionnel'; // cpg1.5
 $lang_admin_php['mandatory'] =   'obligatoire'; // cpg1.5
 $lang_admin_php['contact_form_guest_name_field'] =   'Afficher le champ nom de l\'expéditeur pour les visiteurs anonymes'; // cpg1.5
@@ -932,7 +932,7 @@ $lang_admin_php['manage_languages'] = 'Gérez les langues'; // cpg1.5
 $lang_admin_php['form_token_lifetime'] = 'Durée de vie des balises formulaires'; // cpg1.5
 $lang_admin_php['seconds'] = 'Secondes'; // cpg1.5
 $lang_admin_php['display_reset_boxes_in_config'] = 'Affiche les cases de remise à la valeur par défaut dans la configuration'; // cpg1.5
-$lang_admin_php['upd_not_needed'] = 'Update not needed.'; // cpg 1.5
+$lang_admin_php['upd_not_needed'] = 'Pas de mise à jour nécéssaire.'; // cpg 1.5
 }
 
 
@@ -1051,7 +1051,7 @@ if (defined('DELETE_PHP')) {
   $lang_delete_php['add_group_to_group'] = 'Ajouter l\'Utilisateur %s au Groupe %s. Il est maintenant Membre de %s comme Groupe Primaire et de %s comme Groupe Secondaire.';
   $lang_delete_php['status'] = 'Statut';
   $lang_delete_php['updating_album'] = 'Mise à jour de la position de l\'album ';//cpg1.5
-  $lang_delete_php['moved_picture_to_position'] = 'Moved picture %s to position %s'; // cpg1.5
+  $lang_delete_php['moved_picture_to_position'] = 'Déplacement de l\'image %s vers la position %s'; // cpg1.5
 }
 
 // ----------------------- //
@@ -1116,13 +1116,13 @@ if (defined('DISPLAYIMAGE_PHP')){
   $lang_picinfo['ISOSetting'] = 'Paramètre ISO';
   $lang_picinfo['ColorMode'] = 'Mode de couleurs';
   $lang_picinfo['Quality'] = 'Qualité';
-  $lang_picinfo['ImageSharpening'] = 'Image Sharpening';
+  $lang_picinfo['ImageSharpening'] = 'Netteté de l\'image';
   $lang_picinfo['FocusMode'] = 'Mode de mesure de distance';
   $lang_picinfo['FlashSetting'] = 'Configuration du Flash';
   $lang_picinfo['ISOSelection' ]= 'ISO Selection';
   $lang_picinfo['ImageAdjustment'] = 'Ajustement de l\'image';
   $lang_picinfo['Adapter'] = 'Adapter';
-  $lang_picinfo['ManualFocusDistance'] = 'Manual Focus Distance';
+  $lang_picinfo['ManualFocusDistance'] = 'Distance Focale Manuelle';
   $lang_picinfo['DigitalZoom'] = 'Zoom numérique';
   $lang_picinfo['AFFocusPosition'] = 'Longueur focale';
   $lang_picinfo['Saturation'] = 'Saturation';
@@ -2036,7 +2036,7 @@ if (defined('SEARCHNEW_PHP')) {
         <li>%s: Le fichier est une copie et existe déjà dans la base de donnée</li>
         <li>%s: Le fichier n\a pas pu être ajouté, vérifiez votr configuration et les permissions du répertoire où les fichiers sont placés</li>
         <li>%s: Vous devez sélectionner d\'abord un Album</li>
-        <li>%s: Le fichier est corrompu ou innaccessible</li>
+        <li>%s: Le fichier est corrompu ou inaccessible</li>
         <li>%s: Type de fichier inconnu</li>
         <li>%s: Le fichier est catuellement une image GIF</li>
         <li>Si les icônes n\'apparaissent pas, cliquez sur le fichier corrompu pour voir le message d\'erreur généré par PHP</li>
