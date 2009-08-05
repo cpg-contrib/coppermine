@@ -2162,7 +2162,6 @@ function theme_main_menu($which)
         '{REGISTER_TGT}' => "register.php",
         '{REGISTER_TITLE}' => $lang_main_menu['register_title'],
         '{REGISTER_LNK}' => $lang_main_menu['register_lnk'],
-        '{LOGIN_TGT}' => "login.php?referer=$REFERER",
         '{LOGIN_TITLE}' => $lang_main_menu['login_title'],
         '{LOGIN_LNK}' => $lang_main_menu['login_lnk'],
         '{LOGOUT_TGT}' => "logout.php?referer=$REFERER",
@@ -2173,6 +2172,12 @@ function theme_main_menu($which)
         '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_lnk'],
         );
 
+        if ($CPG_PHP_SELF != 'login.php') {
+            $param['{LOGIN_TGT}'] = "login.php?referer=$REFERER";
+        } else {
+            $param['{LOGIN_TGT}'] = "login.php";
+        }
+        
         $sys_menu = template_eval($template_sys_menu, $param);
   } else {
 

@@ -1498,10 +1498,10 @@ if (!isset($template_vanity)) { //{THEMES}
 // Template used for Vanity Footer
 $template_vanity = <<<EOT
 <div id="vanity">
-      <a id="v_php" href="http://www.php.net/"  rel="external"></a>
-      <a id="v_mysql" href="http://www.mysql.com/"  rel="external"></a>
-      <a id="v_xhtml" href="http://validator.w3.org/check/referer"  rel="external"></a>
-      <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer"  rel="external"></a>
+      <a id="v_php" href="http://www.php.net/" rel="external"></a>
+      <a id="v_mysql" href="http://www.mysql.com/" rel="external"></a>
+      <a id="v_xhtml" href="http://validator.w3.org/check/referer" rel="external"></a>
+      <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer" rel="external"></a>
 </div>
 EOT;
 /******************************************************************************
@@ -2044,7 +2044,7 @@ if (!function_exists('theme_main_menu')) {  //{THEMES}
 ******************************************************************************/
 function theme_main_menu($which)
 {
-    global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
+    global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER, $CPG_PHP_SELF;
     global $lang_main_menu, $template_sys_menu, $template_sub_menu, $lang_gallery_admin_menu;
 
     static $sys_menu = '', $sub_menu = '';
@@ -2169,7 +2169,6 @@ function theme_main_menu($which)
         '{REGISTER_TGT}' => "register.php",
         '{REGISTER_TITLE}' => $lang_main_menu['register_title'],
         '{REGISTER_LNK}' => $lang_main_menu['register_lnk'],
-        '{LOGIN_TGT}' => "login.php?referer=$REFERER",
         '{LOGIN_TITLE}' => $lang_main_menu['login_title'],
         '{LOGIN_LNK}' => $lang_main_menu['login_lnk'],
         '{LOGOUT_TGT}' => "logout.php?referer=$REFERER",
@@ -2179,6 +2178,12 @@ function theme_main_menu($which)
         '{UPL_APP_TGT}' => "editpics.php?mode=upload_approval",
         '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_lnk'],
         );
+        
+        if ($CPG_PHP_SELF != 'login.php') {
+            $param['{LOGIN_TGT}'] = "login.php?referer=$REFERER";
+        } else {
+            $param['{LOGIN_TGT}'] = "login.php";
+        }
 
         $sys_menu = template_eval($template_sys_menu, $param);
   } else {
