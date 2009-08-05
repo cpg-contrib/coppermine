@@ -532,6 +532,8 @@ doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_error_mess
 doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions">Server-sided restrictions</a>\n';
 doc_toc += '             <ul>\n';
 doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions_check">Things to check</a></li>\n';
+doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_methods">Upload mechanisms/methods</a></li>\n';
+doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_memory_usage">Memory usage during resizing</a></li>\n';
 doc_toc += '             </ul>\n';
 doc_toc += '           </li>\n';
 doc_toc += '         </ul>\n';
