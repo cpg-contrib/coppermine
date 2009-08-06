@@ -941,3 +941,8 @@ table#album_sort tr td span.editAlbum {
   background-color: #7F7F7F;
   border: 5px solid #666666;
 }
+
+.external {
+    background: transparent url('../../images/link.gif') 100% 50% no-repeat;
+    padding-right: 10px;
+}

@@ -557,8 +557,8 @@ function bb_decode($text)
     $text = str_replace("[/u]", '</u>', $text);
 
     // [i] and [/i] for italicizing text.
-    $text = str_replace("[i]", '<i>', $text);
-    $text = str_replace("[/i]", '</i>', $text);
+    $text = str_replace("[i]", '<em>', $text);
+    $text = str_replace("[/i]", '</em>', $text);
 
     // [s] and [/s] for striking through
     $text = str_replace("[s]", '<del>', $text);
@@ -640,7 +640,7 @@ function bb_decode($text)
 */
 function check_link_type_and_replace ($pattern, $replacement, $text, $stage)
 {
-    $ext_rel = 'rel="external nofollow" ';
+    $ext_rel = 'rel="external nofollow" class="external"';
     $int_rel = '';
 
     if (preg_match($pattern, $text, $url) != 0) {

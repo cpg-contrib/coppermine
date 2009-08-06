@@ -838,6 +838,11 @@ input[disabled]{ border: 1px solid #ccc } /* FF 2 Fix */
     color: #555;
 }
 
+a.external {
+    background: transparent url('../../images/link.gif') 100% 50% no-repeat;
+    padding-right: 10px;
+}
+
 a.progressCancel {
     font-size: 0;
     display: block;
@@ -915,4 +920,9 @@ table#album_sort tr td span.editAlbum {
 #GB_window {
   background-color: #F7F37B;
   border: 5px solid #6BBE10;
+}
+
+.external {
+    background: transparent url('../../images/link.gif') 100% 50% no-repeat;
+    padding-right: 10px;
 }
