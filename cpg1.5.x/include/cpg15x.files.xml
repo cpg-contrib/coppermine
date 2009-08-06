@@ -2798,6 +2798,12 @@
     <hash>325472601571f31e1bf00674c368d335</hash>
   </element>
   <element>
+    <fullpath>images/link.gif</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>bf7f61c7648395c85315559be8f7144d</hash>
+  </element>
+  <element>
     <fullpath>images/loader.gif</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
