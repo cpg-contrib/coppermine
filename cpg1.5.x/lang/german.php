@@ -91,7 +91,6 @@ $lang_errors['action_failed'] = 'Aktion fehlgeschlagen. Coppermine konnte die ge
 $lang_errors['no_zip'] = 'Die zum Verarbeiten von ZIP-Dateien notwendigen libraries sind auf dem Server nicht verfügbar. Setze Dich mit dem Server-Admin in Verbindung.';
 $lang_errors['zip_type'] = 'Keine Berechtigung für den Upload von ZIP-Dateien.';
 $lang_errors['database_query'] = 'Beim Ausführen einer Datenbank-Abfrage ist ein Fehler aufgetreten';
-$lang_errors['non_exist_comment'] = 'Der gewählte Kommentar existiert nicht';
 $lang_errors['page_removed_redirector'] = 'You are trying to access a page that has been removed from the coppermine package.<br />Redirecting...'; //cpg1.5
 $lang_errors['captcha_error'] = 'The confirmation code didn\'t match'; //cpg1.5
 $lang_errors['no_data'] = 'Keine Daten zurückgeliefert'; //cpg1.5

@@ -80,7 +80,6 @@ $lang_errors['resize_failed'] = 'Unable to create thumbnail or reduced size imag
 $lang_errors['no_img_to_display'] = 'No image to display';
 $lang_errors['non_exist_cat'] = 'The selected category does not exist';
 $lang_errors['directory_ro'] = 'Directory \'%s\' is not writable, files can\'t be deleted';
-$lang_errors['non_exist_comment'] = 'The selected comment does not exist.';
 $lang_errors['pic_in_invalid_album'] = 'File is in a non-existent album (%s)!?';
 $lang_errors['banned'] = 'You are currently banned from using this site.';
 $lang_errors['offline_title'] = 'Offline';
@@ -241,7 +240,7 @@ $lang_gallery_admin_menu['exifmgr_title'] = 'Manage EXIF display (if correspondi
 $lang_gallery_admin_menu['shownews_lnk'] = 'Show News'; // cpg1.5
 $lang_gallery_admin_menu['shownews_title'] = 'Display the news from coppermine-gallery.net'; // cpg1.5
 $lang_gallery_admin_menu['export_lnk'] = 'Export'; // cpg1.5
-$lang_gallery_admin_menu['export_title'] = 'Export files and albums to disk'; // cpg1.5
+$lang_gallery_admin_menu['export_title'] = 'Export files and albums to a folder'; // cpg1.5
 
 $lang_user_admin_menu['albmgr_title'] = 'Create and order my albums';
 $lang_user_admin_menu['albmgr_lnk'] = 'Create / order my albums';
