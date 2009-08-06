@@ -25,7 +25,7 @@ function get_smilies_table1()
 {
     global $lang_smilies_inc_php;
 
-    return array(
+    $smilies_process = array(
         array(':!:', 'exclaim.gif', $lang_smilies_inc_php['Exclamation']),
         array(':?:', 'question.gif', $lang_smilies_inc_php['Question']),
         array(':D', 'biggrin.gif', $lang_smilies_inc_php['Very Happy']),
@@ -69,13 +69,16 @@ function get_smilies_table1()
         array(':neutral:', 'neutral.gif', $lang_smilies_inc_php['Neutral']),
         array(':mrgreen:', 'mrgreen.gif', $lang_smilies_inc_php['Mr. Green'])
         );
+
+    $smilies_process = CPGPluginAPI::filter('smilies_process',$smilies_process);
+    return $smilies_process;
 }
 
 function get_smilies_table2()
 {
     global $lang_smilies_inc_php;
 
-    return array(
+    $smilies_display = array(
         array(':lol:', 'lol.gif', $lang_smilies_inc_php['Laughing']),
         array(':-P', 'razz.gif', $lang_smilies_inc_php['Razz']),
         array(':-D', 'biggrin.gif', $lang_smilies_inc_php['Very Happy']),
@@ -95,6 +98,9 @@ function get_smilies_table2()
         array(':!:', 'exclaim.gif', $lang_smilies_inc_php['Exclamation']),
         array(':?:', 'question.gif', $lang_smilies_inc_php['Question'])
         );
+
+    $smilies_display = CPGPluginAPI::filter('smilies_display',$smilies_display);
+    return $smilies_display;
 }
 // Smilies code ... would this be better tagged on to the end of bbcode.php?
 // Probably so and I'll move it before B2

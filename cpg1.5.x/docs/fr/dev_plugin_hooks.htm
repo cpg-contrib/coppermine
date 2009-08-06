@@ -434,6 +434,14 @@ ob_start('cpg_filter_page_html');</textarea></td>
     <td valign="top"><textarea class="samplecode" style="width:100%">register_shutdown_function(array('CPGPluginAPI','sleep'));</textarea></td>
   </tr>
   <tr>
+    <td valign="top">include/smilies.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_smilies_display"></a><strong>smilies_display<br />smilies_process</strong><a href="#plugin_hooks_smilies_display" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">filters $smilies_display &amp; $smilies_process, can be used to add/remove smilies.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$smilies_display = CPGPluginAPI::filter('smilies_display',$smilies_display);<br />
+$smilies_process = CPGPluginAPI::filter('smilies_process',$smilies_process);</textarea></td>
+  </tr>
+  <tr>
     <td valign="top">include/themes.inc.php</td>
     <td valign="top"><a name="plugin_hooks_theme_add_comment"></a><strong>theme_add_comment<br />theme_edit_comment</strong><a href="#plugin_hooks_theme_add_comment" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
@@ -570,6 +578,11 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
 	<li><a href="#plugin_hooks_filename_post_breadcrumb">post_breadcrumb</a> (displayimage.php)</li>
 	<li><a href="#plugin_hooks_thumbnails_post_breadcrumb">post_breadcrumb</a> (thumbnails.php)</li>
 	<li><a href="#plugin_hooks_profile_add_data">profile_add_data</a></li>
+	<li><a href="#plugin_hooks_register_form_create">register_form_create</a></li>
+	<li><a href="#plugin_hooks_register_form_submit">register_form_submit</a></li>
+	<li><a href="#plugin_hooks_register_user_activation">register_user_activation</a></li>
+	<li><a href="#plugin_hooks_smilies_display">smilies_display</a></li>
+	<li><a href="#plugin_hooks_smilies_display">smilies_process</a></li>
 	<li><a href="#plugin_hooks_filename_sub_menu">sub_menu</a></li>
 	<li><a href="#plugin_hooks_filename_sys_menu">sys_menu</a></li>
 	<li><a href="#plugin_hooks_filename_template_html">template_html</a></li>
