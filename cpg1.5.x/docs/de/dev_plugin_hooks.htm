@@ -724,7 +724,7 @@ function </span><span style="color: #0000BB">add_admin_button</span><span style=
 }</span></span></pre><br />
 For the sys &amp; sub menus you have to take another approach:<br />
 <pre><span style="color: #000000"><span style="color: #0000BB">&lt;?php
-$thisplugin</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add_filter</span><span style="color: #007700">(</span><span style="color: #DD0000">'sub_menu'</span><span style="color: #007700">,</span><span style="color: #DD0000">'add_sub_button'</span><span style="color: #007700">);&lt;</span><span style="color: #0000BB">br </span><span style="color: #007700">/&gt;
+$thisplugin</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add_filter</span><span style="color: #007700">(</span><span style="color: #DD0000">'sub_menu'</span><span style="color: #007700">,</span><span style="color: #DD0000">'add_sub_button'</span><span style="color: #007700">);
 
 function </span><span style="color: #0000BB">add_sub_button</span><span style="color: #007700">(</span><span style="color: #0000BB">$menu</span><span style="color: #007700">) {
     </span><span style="color: #0000BB">$new_button </span><span style="color: #007700">= array();
