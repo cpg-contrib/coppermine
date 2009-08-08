@@ -316,7 +316,7 @@ doc_toc += '    </ul>\n';
 doc_toc += '  </li>\n';
 doc_toc += '  <li><a href="administration.htm" class="us_fr">Administration</a>\n';
 doc_toc += '    <ul>\n';
-doc_toc += '      <li><a href="admin_menu.htm" class="us_fr">Admin menu items</a>\n';
+doc_toc += '      <li><a href="admin_menu.htm">Eléments du menu Administrateur</a>\n';
 doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="admin_menu.htm#admin_user_mode">Activer/Désactiver les contôles administrateurs</a></li>\n';
 doc_toc += '          <li><a href="admin_menu.htm#upload_approval">Fichiers à valider</a></li>\n';
@@ -349,7 +349,7 @@ doc_toc += '          <li><a href="admin_menu.htm#admin_mode_regular_users" </a>
 doc_toc += '          <li><a href="admin_menu.htm#user_menu_items">Eléments de menu administrateur pour les utilisateurs normaux</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="banning.htm#banning" class="en">Banning</a></li>\n';
+doc_toc += '      <li><a href="banning.htm#banning" class="us_fr">Bannissement</a></li>\n';
 doc_toc += '      <li><a href="configuration.htm" class="en">Configuration</a>\n';
 doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_general">General settings</a></li>\n';
@@ -532,6 +532,8 @@ doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_error_mess
 doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions" class="en">Server-sided restrictions</a>\n';
 doc_toc += '             <ul>\n';
 doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions_check" class="en">Things to check</a></li>\n';
+doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_methods">Upload mechanisms/methods</a></li>\n';
+doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_memory_usage">Memory usage during resizing</a></li>\n';
 doc_toc += '             </ul>\n';
 doc_toc += '           </li>\n';
 doc_toc += '         </ul>\n';
