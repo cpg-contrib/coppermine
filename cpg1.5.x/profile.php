@@ -197,9 +197,9 @@ $display_profile_form_param[] = array('thumb', 'user_thumb');
 $display_profile_form_param[] = array('text', 'admin_link', '');
 
 $change_password_form_param = array(
-    array('password', 'current_pass', $lang_register_php['current_pass'], 25),
-    array('password', 'new_pass', $lang_register_php['new_pass'], 25),
-    array('password', 'new_pass_again', $lang_register_php['new_pass_again'], 25),
+    array('password', 'current_pass', $lang_register_php['current_pass']),
+    array('password', 'new_pass', $lang_register_php['new_pass']),
+    array('password', 'new_pass_again', $lang_register_php['new_pass_again']),
 );
 
 function make_form($form_param, $form_data)
@@ -302,7 +302,7 @@ EOT;
             {$element[2]}
         </td>
         <td width="60%" class="{$cellStyle}" valign="top">
-            <input type="password" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
+            <input type="password" style="width: 100%" name="{$element[1]}" value="" class="textinput" />
         </td>
     </tr>
 

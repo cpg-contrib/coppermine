@@ -123,8 +123,8 @@ EOT;
         array('label', $lang_register_php['required_info']),
         array('input', 'username', $icon_array['username'] . $lang_register_php['username'], 25),
         !empty($CONFIG['global_registration_pw']) ? array('password', 'global_registration_pw', $icon_array['password'] . $lang_register_php['global_registration_pw'], 25) : '',
-        array('password', 'password', $icon_array['password'] . $lang_register_php['password'], 25),
-        array('password', 'password_verification', $icon_array['password'] . $lang_register_php['password_again'], 25),
+        array('password', 'password', $icon_array['password'] . $lang_register_php['password']),
+        array('password', 'password_verification', $icon_array['password'] . $lang_register_php['password_again']),
         array('input', 'email', $icon_array['email'] . $lang_register_php['email'], 255),
         array('label', $lang_register_php['optional_info'])
     );
@@ -349,7 +349,7 @@ EOT;
             {$element[2]}
         </td>
         <td width="60%" class="{$row_style}" valign="top">
-            <input type="password" style="width: 100%" name="{$element[1]}" id="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
+            <input type="password" style="width: 100%" name="{$element[1]}" id="{$element[1]}" value="" class="textinput" />
             {$warning1}
             {$warning2}
         </td>
