@@ -88,7 +88,7 @@ case 'comment_update':
 
     if (!(USER_CAN_POST_COMMENTS)) {
 	    if ($CONFIG['log_mode'] != 0) {
-	            log_write('Denied privileged access to db_input.php (attempt to update a comment) for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
+	            log_write('Denied privileged access to db_input.php (attempt to update a comment) for user '.$USER_DATA['user_name'].' at ' . $hdr_ip, CPG_SECURITY_LOG);
 	    }        
         cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
     }
@@ -142,7 +142,7 @@ case 'comment':
 
     if (!(USER_CAN_POST_COMMENTS)) {
 	    if ($CONFIG['log_mode'] != 0) {
-	            log_write('Denied privileged access to db_input.php (attempt to post a comment) for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
+	            log_write('Denied privileged access to db_input.php (attempt to post a comment) for user '.$USER_DATA['user_name'].' at ' . $hdr_ip, CPG_SECURITY_LOG);
 	    }
         cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
     }
@@ -154,7 +154,7 @@ case 'comment':
 
             if (!$matches[0] || !PhpCaptcha::Validate($matches[0])) {
 			    if ($CONFIG['log_mode'] != 0) {
-			            log_write('Captcha authentification for comment failed for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
+			            log_write('Captcha authentification for comment failed for user '.$USER_DATA['user_name'].' at ' . $hdr_ip, CPG_SECURITY_LOG);
 			    }
                 cpg_die(ERROR, $lang_errors['captcha_error'], __FILE__, __LINE__);
             }
@@ -195,7 +195,7 @@ case 'comment':
             $last_com_data = mysql_fetch_assoc($result);
             if ((USER_ID && $last_com_data['author_id'] == USER_ID) || (!USER_ID && $last_com_data['author_md5_id'] == $USER['ID'])) {
 	    if ($CONFIG['log_mode'] != 0) {
-	            log_write('Attempt to comment-flood (PID: $pid) denied for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+	            log_write('Attempt to comment-flood (PID: $pid) denied for user '.$USER_DATA['user_name'].' at ' . $hdr_ip, CPG_GLOBAL_LOG);
 	    		}
                 cpg_die(ERROR, $lang_db_input_php['no_flood'], __FILE__, __LINE__);
             }
@@ -365,7 +365,7 @@ case 'album_update':
 
     if (!(user_is_allowed() || GALLERY_ADMIN_MODE)) {
 	    if ($CONFIG['log_mode'] != 0) {
-	            log_write('Denied privileged access to db_input.php (album update) for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
+	            log_write('Denied privileged access to db_input.php (album update) for user '.$USER_DATA['user_name'].' at ' . $hdr_ip, CPG_SECURITY_LOG);
 	    }
         cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
     }
@@ -442,7 +442,7 @@ case 'album_reset':
 
     if (!GALLERY_ADMIN_MODE) {
 	    if ($CONFIG['log_mode'] != 0) {
-	            log_write('Denied privileged access to db_input.php (album reset) for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
+	            log_write('Denied privileged access to db_input.php (album reset) for user '.$USER_DATA['user_name'].' at ' . $hdr_ip, CPG_SECURITY_LOG);
 	    }
         cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
     }
@@ -504,7 +504,7 @@ case 'picture':
 
     if (!USER_CAN_UPLOAD_PICTURES) {
 	    if ($CONFIG['log_mode'] != 0) {
-	            log_write('Denied privileged access to db_input.php (upload picture) for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
+	            log_write('Denied privileged access to db_input.php (upload picture) for user '.$USER_DATA['user_name'].' at ' . $hdr_ip, CPG_SECURITY_LOG);
 	    }
         cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
     }
@@ -684,7 +684,7 @@ case 'picture':
     // Unknown event
 default:
     if ($CONFIG['log_mode'] != 0) {
-            log_write('Denied privileged access to db_input.php (unknown event) for user '.$USER_DATA['user_name'].' at ' . $hdr_ip .' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
+            log_write('Denied privileged access to db_input.php (unknown event) for user '.$USER_DATA['user_name'].' at ' . $hdr_ip, CPG_SECURITY_LOG);
     }
     cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }

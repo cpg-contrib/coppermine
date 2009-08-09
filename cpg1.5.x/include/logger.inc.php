@@ -163,8 +163,8 @@ function& spring_cleaning($directory_path, $cache_time = CPG_HOUR, $exclusion_li
     closedir($directory_handle);
     // For logging purposes
     if ($CONFIG['log_mode']) {
-        for ( $i = 0; $i<count($deleted_list); $i++ ) {
-                log_write('Garbage collection deleted '.$deleted_list[$i].' at '.date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+        for ($i = 0; $i < count($deleted_list); $i++) {
+            log_write('Garbage collection deleted ' . $deleted_list[$i], CPG_GLOBAL_LOG);
         }
     }
     return $deleted_list;
