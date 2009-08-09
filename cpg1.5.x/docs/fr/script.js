@@ -349,7 +349,17 @@ doc_toc += '          <li><a href="admin_menu.htm#admin_mode_regular_users" </a>
 doc_toc += '          <li><a href="admin_menu.htm#user_menu_items">Eléments de menu administrateur pour les utilisateurs normaux</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="banning.htm#banning" class="us_fr">Bannissement</a></li>\n';
+doc_toc += '      <li><a href="banning.htm#banning">Bannissement</a>\n';
+doc_toc += '        <ul>\n';
+doc_toc += '      <li><a href="banning.htm#banning_whats_new">Quoi de neuf ?</a></li>\n';
+doc_toc += '      <li><a href="banning.htm#banning_scope">Point de Vue</a></li>\n';
+doc_toc += '      <li><a href="banning.htm#bannig_how_it_works">Comment fonctionne le bannissement</a></li>\n';
+doc_toc += '      <li><a href="banning.htm#banning_by_ip_address_no_good">Pourquoi le bannissement par adresse IP n\'est pas recommandé</a></li>\n';
+doc_toc += '      <li><a href="banning.htm#banning_page">Controles de la Page</a></li>\n';
+doc_toc += '      <li><a href="banning.htm#banning_bridged">Pas de bannissement si il y a un bridge</a></li>\n';
+doc_toc += '      <li><a href="banning.htm#banning_todo">A Faire</a></li>\n';
+doc_toc += '        </ul>\n';
+doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="configuration.htm" class="en">Configuration</a>\n';
 doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_general">General settings</a></li>\n';
