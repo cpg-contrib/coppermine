@@ -83,6 +83,12 @@ foreach ($single_approval_array as $value) {
 }
 // We have gathered enough data for a basic check - let's only perform the rest of the individual approval if everthying is OK, i.e. all previous critieria have been met.
 if ($get_data_rejected==0) { // individual approval start
+
+    //Check if the form token is valid
+    if (!checkFormToken()) {
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
+    
     pageheader($lang_reviewcom_php['title']);
 
     // Normally, we could trust this input, as only the admin should have gotten that far.
