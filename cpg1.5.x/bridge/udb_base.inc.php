@@ -330,6 +330,7 @@ class core_udb {
         } else {
             $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = $default_group_id");
             if (!mysql_num_rows($result)) {
+                $this->synchronize_groups();
                 die('<strong>Coppermine critical error</strong>:<br />The group table does not contain the Anonymous group !');
             }
             $USER_DATA = mysql_fetch_assoc($result);
