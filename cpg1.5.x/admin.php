@@ -222,9 +222,8 @@ $admin_page = '';
 if ($userMessage != '') {
     ob_start();
     starttable('100%', cpg_fetch_icon('info', 2) . $lang_common['information'], 1);
-    $admin_page .= ob_get_contents();
-    ob_end_clean();
-    $admin_page .= <<< EOT
+
+    echo <<< EOT
     <tr>
         <td class="tableb">
           {$userMessage}
@@ -232,6 +231,10 @@ if ($userMessage != '') {
     </tr>
 EOT;
     endtable();
+    
+    $admin_page .= ob_get_contents();
+    ob_end_clean();
+    
     $admin_page .= '<br />'.$LINEBREAK;
 }
 
