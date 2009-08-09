@@ -459,14 +459,3 @@ if (!USER_IS_ADMIN && $CONFIG['offline'] && !strstr($CPG_PHP_SELF, 'login')) {
     pagefooter();
     exit;
 }
-
-// kick user into user_admin_mode (needed to fix "removed user mode for users" when upgrading)
-if (USER_ID && !USER_IS_ADMIN && !$USER['am']) { // user is logged in, but is not gallery admin and not in admin mode
-    $USER['am'] = 1;
-    pageheader($lang_common['information'], "<META http-equiv=\"refresh\" content=\"1;url=$referer\" />");
-    msg_box($lang_common['information'], 'Sending you to admin mode', $lang_common['continue'], $referer);
-    pagefooter();
-    die();
-}
-
-?>
