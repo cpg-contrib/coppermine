@@ -2359,9 +2359,8 @@ function add_hit($pid)
         $time = time();
 
         //Sanitize the referer
-        //Used getRaw() method but sanitized immediately
         if ($superCage->server->keyExists('HTTP_REFERER')) {
-            $referer = addslashes(htmlentities($superCage->server->getRaw('HTTP_REFERER')));
+            $referer = $superCage->server->getEscaped('HTTP_REFERER');
         } else {
             $referer = '';
         }

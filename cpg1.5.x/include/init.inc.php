@@ -71,8 +71,6 @@ $CONFIG = array();
 
 $PHP_SELF = '';
 
-$ORIGINAL_PHP_SELF = $superCage->server->getRaw('PHP_SELF');
-
 $possibilities = array(
     'REDIRECT_URL',
     'PHP_SELF',
@@ -315,7 +313,7 @@ mysql_free_result($result);
 
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8
-if ($superCage->get->getRaw('lang') && $matches = $superCage->get->getMatched('lang', '/^[a-z0-9_-]+$/')) {
+if ($matches = $superCage->get->getMatched('lang', '/^[a-z0-9_-]+$/')) {
     $USER['lang'] = $CONFIG['lang'] = $matches[0];
 }
 

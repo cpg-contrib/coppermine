@@ -30,7 +30,6 @@ if (defined('UDB_INTEGRATION')) {
     $cpg_udb->login_page();
 }
 
-//$referer = $superCage->get->keyExists('referer') ? $superCage->get->getRaw('referer') : 'index.php';
 if (strpos($CPG_REFERER, "logout.php") !== false) {
     $CPG_REFERER = "index.php";
 }
@@ -39,12 +38,6 @@ $login_failed   = '';
 $cookie_warning = '';
 
 if ($superCage->post->keyExists('submitted')) {
-
-    if ($superCage->server->testip('REMOTE_ADDR')) {
-        $ip = $superCage->server->getRaw('REMOTE_ADDR');
-    } else {
-        $ip = 'Unknown';
-    }
     
     if ($USER_DATA = $cpg_udb->login($superCage->post->getEscaped('username'), $superCage->post->getEscaped('password'), $superCage->post->getInt('remember_me'))) {
         //$referer=preg_replace("'&amp;'","&",$referer);

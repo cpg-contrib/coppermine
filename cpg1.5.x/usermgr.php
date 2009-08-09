@@ -291,7 +291,7 @@ echo '<form method="get" action="delete.php" name="editForm" id="cpgform">';
 
     starttable('100%');
         if ($superCage->post->keyExists('username')) {
-            $search_filter = '<td class="tableh1" align="center">'.$lang_usermgr_php['search_result'].'&laquo;'.htmlentities($superCage->post->getRaw('username')).'&raquo;</td>';
+            $search_filter = '<td class="tableh1" align="center">' . $lang_usermgr_php['search_result'] . '&laquo;' . $superCage->post->getEscaped('username') . '&raquo;</td>';
         } else {
             $search_filter = '';
         }

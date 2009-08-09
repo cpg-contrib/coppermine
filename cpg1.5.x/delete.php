@@ -666,7 +666,7 @@ case 'picmgr':
             cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
         }
         //get the sorted order - cast to int below
-        $get_rows = $superCage->post->getRaw('picture_order');
+        $get_rows = $superCage->post->getEscaped('picture_order');
         $sort_rows = parse_pic_list($get_rows);
 	
 		$returnOutput .= '<tr><td colspan="6"><ul>';

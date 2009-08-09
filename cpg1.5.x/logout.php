@@ -22,12 +22,6 @@ define('LOGOUT_PHP', true);
 
 require('include/init.inc.php');
 
-if ($superCage->server->testip('REMOTE_ADDR')) {
-    $ip = $superCage->server->getRaw('REMOTE_ADDR');
-} else {
-    $ip = 'Unknown';
-}
-
 if (!USER_ID) {
     if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
         log_write("Logout attempt failed because visitor is not logged in.", CPG_SECURITY_LOG);

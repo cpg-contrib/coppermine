@@ -60,13 +60,10 @@ if ($superCage->post->keyExists('submit')) {
     // perform validity checks
     $error = 0;
 
-    /**
-     * Using getRaw() for most of the following statements
-     */
-    $user_name = $superCage->post->getRaw('sender_name');
-    $email_address = $superCage->post->getRaw('sender_email');
-    $subject = $superCage->post->getRaw('subject');
-    $message = $superCage->post->getRaw('message');
+    $user_name = $superCage->post->getEscaped('sender_name');
+    $email_address = $superCage->post->getEscaped('sender_email');
+    $subject = $superCage->post->getEscaped('subject');
+    $message = $superCage->post->getEscaped('message');
     $captcha = ($matches = $superCage->post->getMatched('captcha', '/^[a-zA-Z0-9]+$/')) ? $matches[0] : '';
 
     // sanitize user-input
