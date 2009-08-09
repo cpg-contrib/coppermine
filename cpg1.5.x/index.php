@@ -382,7 +382,7 @@ function get_subcat_data(&$cat_data, &$album_set_array)
     mysql_free_result($result);
     
     // collect album info
-    $sql = "SELECT title, r.description, keyword, category, aid, alb_hits, visibility, r.thumb
+    $sql = "SELECT title, r.description, keyword, category, aid, alb_hits, visibility, r.thumb, r.owner
         FROM {$CONFIG['TABLE_CATEGORIES']} AS c
         INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.category = c.cid
         WHERE c.depth = $CURRENT_CAT_DEPTH + 1";
@@ -408,6 +408,7 @@ function get_subcat_data(&$cat_data, &$album_set_array)
             'visibility'  => $row['visibility'],
             'thumb'       => $row['thumb'],
             'pic_count'   => 0,
+            'owner'       => $row['owner'],
         );
     } // while
 
@@ -752,7 +753,7 @@ function list_albums()
     $limit = "LIMIT " . $lower_limit . "," . ($upper_limit - $lower_limit);
 
     if (USER_ADMIN_MODE && $cat == (USER_ID + FIRST_USER_CAT)) {
-        $sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE a.owner=' . $USER_DATA['user_id'] . $album_filter . ' ORDER BY a.category DESC , a.pos ' . $limit;
+        $sql = 'SELECT a.aid, a.title, a.description, a.thumb, category, visibility, a.owner, a.keyword, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE a.owner=' . $USER_DATA['user_id'] . $album_filter . ' ORDER BY a.category DESC , a.pos ' . $limit;
         $alb_thumbs_q = cpg_db_query($sql);
         $alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
         mysql_free_result($alb_thumbs_q);
@@ -770,7 +771,7 @@ function list_albums()
             }
         }
     } else {
-        $sql = 'SELECT a.aid, a.title, a.description, a.thumb, a.keyword, category, visibility, filepath, filename, url_prefix, pwidth, pheight ' 
+        $sql = 'SELECT a.aid, a.title, a.description, a.thumb, a.keyword, category, visibility, filepath, filename, url_prefix, pwidth, pheight, a.owner ' 
             . ' FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' 
             . ' LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' 
             . ' WHERE a.category=' . $cat . $album_filter 
@@ -885,7 +886,7 @@ function list_albums()
             $alb_list[$alb_idx]['link_pic_count'] = $link_pic_count;
             $alb_list[$alb_idx]['alb_hits'] = sprintf($lang_list_albums['alb_hits'], $alb_hits);
             $alb_list[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0 ) ? sprintf(", {$lang_list_albums['n_link_pictures']},  {$lang_list_albums['total_pictures']}", $link_pic_count, $count + $link_pic_count) : "");
-            $alb_list[$alb_idx]['album_adm_menu'] = album_adm_menu($alb_thumb['aid'], $cat);
+            $alb_list[$alb_idx]['album_adm_menu'] = album_adm_menu($alb_thumb['aid'], $cat, $alb_thumb['owner']);
         } elseif ($CONFIG['show_private']) { // uncomment this else block to show private album description
             $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lang_date['lastup']) : '';
             $link_pic_count = !empty($alb_stat['link_pic_count']) ? $alb_stat['link_pic_count'] : 0;
@@ -897,7 +898,7 @@ function list_albums()
             $alb_list[$alb_idx]['link_pic_count'] = $link_pic_count;
             $alb_list[$alb_idx]['alb_hits'] = sprintf($lang_list_albums['alb_hits'], $alb_hits);
             $alb_list[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0 ) ? sprintf(", {$lang_list_albums['n_link_pictures']},   {$lang_list_albums['total_pictures']}", $link_pic_count, $count + $link_pic_count) : "");
-            $alb_list[$alb_idx]['album_adm_menu'] = album_adm_menu($alb_thumb['aid'], $cat);
+            $alb_list[$alb_idx]['album_adm_menu'] = album_adm_menu($alb_thumb['aid'], $cat, $alb_thumb['owner']);
         }
     }
 
@@ -915,7 +916,7 @@ function list_albums()
 *
 * @return html_albummenu($aid) Administration menu
 */
-function album_adm_menu($aid, $cat)
+function album_adm_menu($aid, $cat, $owner)
 {
     global $CONFIG, $USER_DATA, $lang_album_admin_menu;
 
@@ -925,12 +926,8 @@ function album_adm_menu($aid, $cat)
         if ($cat == USER_ID + FIRST_USER_CAT) {
             return html_albummenu($aid);
         }
-
-        //check if the user is the owner of the album
-        $sql = "SELECT null FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid' AND owner='" . $USER_DATA['user_id'] . "'";
-        $result = cpg_db_query($sql);
         
-        if (mysql_num_rows($result)) {
+        if ($owner == USER_ID) {
             //check if admin allows editing after closing category
             if ($CONFIG['allow_user_edit_after_cat_close'] == 0) {
                 //Disallowed -> Check if albums is in such a category
@@ -1084,7 +1081,7 @@ function list_cat_albums($cat, $catdata)
             $alb_list[$aid]['last_upl'] = $last_upload_date;
             $alb_list[$aid]['alb_hits'] = sprintf($lang_list_albums['alb_hits'], $album['alb_hits']);
             $alb_list[$aid]['album_info'] = sprintf($lang_list_albums['n_pictures'], $album['pic_count']) . ($album['pic_count'] ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0)  ? sprintf(", {$lang_list_albums['n_link_pictures']}, {$lang_list_albums['total_pictures']}", $link_pic_count, $album['pic_count'] + $link_pic_count) : "");
-            $alb_list[$aid]['album_adm_menu'] = album_adm_menu($aid, $cat);
+            $alb_list[$aid]['album_adm_menu'] = album_adm_menu($aid, $cat, $album['owner']);
         } elseif ($CONFIG['show_private']) { // show private album description
             $last_upload_date = $album['pic_count'] ? localised_date($album['last_upload'], $lang_date['lastup']) : '';
             $link_pic_count = !empty($album['link_pic_count']) ? $album['link_pic_count'] : 0;
@@ -1095,7 +1092,7 @@ function list_cat_albums($cat, $catdata)
             $alb_list[$aid]['last_upl'] = $last_upload_date;
             $alb_list[$aid]['alb_hits'] = sprintf($lang_list_albums['alb_hits'], $album['alb_hits']);
             $alb_list[$aid]['album_info'] = sprintf($lang_list_albums['n_pictures'], $album['pic_count']) . ($album['pic_count'] ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0 )? sprintf(", {$lang_list_albums['n_link_pictures']}, {$lang_list_albums['total_pictures']}", $link_pic_count, $album['pic_count'] + $link_pic_count) : "");
-            $alb_list[$aid]['album_adm_menu'] = album_adm_menu($aid, $cat);
+            $alb_list[$aid]['album_adm_menu'] = album_adm_menu($aid, $cat, $album['owner']);
         }
     }
     ob_start();
