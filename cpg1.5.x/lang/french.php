@@ -841,16 +841,16 @@ $lang_admin_php['user_registration_disclaimer'] =   'Afficher les règles de la 
 $lang_admin_php['registration_captcha'] =   'Affiche CAPTCHA (Confirmation visuelle) sur la page d\'enregistrement'; // cpg1.5
 $lang_admin_php['reg_requires_valid_email'] =   'L\'inscription nécessite une confirmation du courriel'; // cpg1.5
 $lang_admin_php['reg_notify_admin_email'] =   'Notifier l\'Administrateur par courriel lors de Nouvelles Inscriptions'; // cpg1.5
-$lang_admin_php['admin_activation'] =   'L\'Administrateur doit Activez les enregistrements'; // cpg1.5
+$lang_admin_php['admin_activation'] =   'L\'Administrateur doit Activer les enregistrements'; // cpg1.5
 $lang_admin_php['personal_album_on_registration'] =   'Créer un Album personnel pour l\'Utilisateur lors de son enregistrement'; // cpg1.5
 $lang_admin_php['allow_unlogged_access'] =   'Autoriser l\'accès aux Visiteurs non authentifiés (visiteur ou anonyme)'; // cpg1.5
 $lang_admin_php['thumbnail_intermediate_full'] = 'vignette, image intermédiaire et images originale'; // cpg1.5
 $lang_admin_php['thumbnail_intermediate'] = 'vignette et image intermédiaire image'; // cpg1.5
 $lang_admin_php['thumbnail_only'] = 'vignette uniquement'; // cpg1.5
-$lang_admin_php['upload_mechanism'] = 'Methode de téléchargement par défaut'; // cpg1.5
+$lang_admin_php['upload_mechanism'] = 'Méthode de téléchargement par défaut'; // cpg1.5
 $lang_admin_php['upload_swf'] = 'Fichiers multiples, géré par Flash (recommandé)'; // cpg1.5
 $lang_admin_php['upload_single'] = 'simple - un seul fichier à la fois'; // cpg1.5
-$lang_admin_php['allow_user_upload_choice'] = 'Autoriser les Utilisateurs à choisir leur methode de téléchargement'; // cpg1.5
+$lang_admin_php['allow_user_upload_choice'] = 'Autoriser les Utilisateurs à choisir leur méthode de téléchargement'; // cpg1.5
 $lang_admin_php['allow_duplicate_emails_addr'] =   'Autoriser deux Utilisateurs à avoir la même adresse courriel'; // cpg1.5
 $lang_admin_php['upl_notify_admin_email'] =   'Notifier l\'Administrateur lorsque des uploads nécessitent son approbation'; // cpg1.5
 $lang_admin_php['allow_memberlist'] =   'Autoriser les Utilisateurs authentifiés à visualiser la liste des membres'; // cpg1.5
@@ -1961,7 +1961,7 @@ if (defined('REVIEWCOM_PHP')) {
 if (defined('SIDEBAR_PHP')) { 
   $lang_sidebar_php['sidebar'] = 'Marque page'; // cpg1.5
   $lang_sidebar_php['install'] = 'installation'; // cpg1.5
-  $lang_sidebar_php['install_explain'] = 'Parmis les methodes d\'accès rapide aux informations du site, nous vous proposons des signets pour la plupart des navigateurs utilisés par les systèmes d\'exploitation pour accéder rapidement à une page. Vous trouverez ici les informations d\'installation et de paramétrage pour les navigateurs supportés.'; // cpg1.5
+  $lang_sidebar_php['install_explain'] = 'Parmis les méthodes d\'accès rapide aux informations du site, nous vous proposons des signets pour la plupart des navigateurs utilisés par les systèmes d\'exploitation pour accéder rapidement à une page. Vous trouverez ici les informations d\'installation et de paramétrage pour les navigateurs supportés.'; // cpg1.5
   $lang_sidebar_php['os_browser_detect'] = 'Détection de votre système d\'exploitation et de votre navigateur'; // cpg1.5
   $lang_sidebar_php['os_browser_detect_explain'] = 'Le script est en train d\'essayer de détecter la version de votre navigateur et de votre système d\'exploitation - Veuillez attendre un instant. Si l\'autodétection échoue, vous devrez %sActiver%s manuellement toutes les options possibles des volets latéraux.'; // cpg1.5
   $lang_sidebar_php['mozilla'] = 'Mozilla, Firefox, Netscape 6+, Konqueror 3.2+'; // cpg1.5
@@ -1976,7 +1976,7 @@ if (defined('SIDEBAR_PHP')) {
   $lang_sidebar_php['opera_explain'] = 'Si vous utilisez Opera, vous pouvez cliquer  %ssur ce lien pour ajouter notre marque page à votre jeuxt%s. Cochez "Montrer dans le panneaul" . Vous pouvez désinstAllez les marques page en faisant un click droit sur son onglet et en choisissant "Effacez" dans le menu contextuel.'; // cpg1.5
   $lang_sidebar_php['additional_options'] = 'Options supplémentaires'; // cpg1.5
   $lang_sidebar_php['additional_options_explain'] = 'Si vous avez un autre navigateur que ceux mentionnée plus haut, cliquez %sici%s pour afficher toutes les options possibles.'; // cpg1.5
-  $lang_sidebar_php['cannot_add_sidebar'] = 'Le Signet ne peut pas être ajouté ! Votre navigateur ne supporte pas cette methode!'; // cpg1.5 // js-alert
+  $lang_sidebar_php['cannot_add_sidebar'] = 'Le Signet ne peut pas être ajouté ! Votre navigateur ne supporte pas cette méthode!'; // cpg1.5 // js-alert
   $lang_sidebar_php['search'] = 'Chercher'; // cpg1.5
   $lang_sidebar_php['reload'] = 'Recharger'; // cpg1.5
 }
@@ -2170,7 +2170,7 @@ $lang_upload_php['allowed_mov_types'] = 'Extensions Video: %s'; // cpg1.5
 $lang_upload_php['allowed_doc_types'] = 'Extension de Document: %s'; // cpg1.5
 $lang_upload_php['allowed_snd_types'] = 'Extensions Audio: %s'; // cpg1.5
 $lang_upload_php['please_wait'] = 'Merci de patienter pendant que le script télécharge - cela peut prendre plusieurs minutes'; // cpg1.5
-$lang_upload_php['alternative_upload'] = 'Methode de téléchargement alternative'; // cpg1.5
+$lang_upload_php['alternative_upload'] = 'Méthode de téléchargement alternative'; // cpg1.5
 $lang_upload_php['xp_publish_promote'] = 'Si vous utilisez Windows XP/Vista, vous pouvez Utilisez l\'assitant de publication Web de Windows XP pour téléchrger des fichiers, apportant ainsi une interface Utilisateur plus simple.'; // cpg1.5
 $lang_upload_php['err_js_disabled'] = 'L\'interface de téléchargement Flash n\'a pas pu être chargé.  Vous devez avoir JavaScript activé pour pouvoir profiter de l\'interface de téléchargement Flash.'; // cpg1.5
 $lang_upload_php['err_flash_disabled'] = 'L\'interface de téléchargement prends beaucoup de temps pour charger ou le chargement a échoué. Vérifiez que le plugin Flash est activé et qu\'une version fonctionnelle d\'Adobe Flash Player est installée.'; // cpg1.5
