@@ -23,14 +23,14 @@ define('DB_INPUT_PHP', true);
 require('include/init.inc.php');
 require('include/mailer.inc.php');
 
-// NOTE: This script won't make any noice in any case.
+// NOTE: This script won't make any noise in any case.
 
-$category = false; // Setting cateegory to false to begin with.
+$category = false; // Setting category to false to begin with.
 
 // The script must get called as a AJAX request and with the data we are expecting
-if ($superCage->post->keyExists('album') && (int)$superCage->post->getRaw('album')) {
-    // Useing getRaw and then casting to int since the data coming in post is of string type
-    $album = (int)$superCage->post->getRaw('album');
+if ($CONFIG['upl_notify_admin_email'] && $superCage->post->keyExists('album') && $superCage->post->getInt('album')) {
+
+    $album = $superCage->post->getInt('album');
 
     if (!GALLERY_ADMIN_MODE) {
         $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "' OR owner = '" . USER_ID . "')");
@@ -63,10 +63,8 @@ if ($superCage->post->keyExists('album') && (int)$superCage->post->getRaw('album
         $PIC_NEED_APPROVAL = ($approved == 'NO');
         
         if ($PIC_NEED_APPROVAL) {
-            if ($CONFIG['upl_notify_admin_email']) {
-                include_once('include/mailer.inc.php');
-                cpg_mail('admin', sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), make_clickable(sprintf($lang_db_input_php['notify_admin_email_body'], USER_NAME, $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'editpics.php?mode=upload_approval')));
-            }
+            include_once('include/mailer.inc.php');
+            cpg_mail('admin', sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), make_clickable(sprintf($lang_db_input_php['notify_admin_email_body'], USER_NAME, $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'editpics.php?mode=upload_approval')));
         }
     }
 }
