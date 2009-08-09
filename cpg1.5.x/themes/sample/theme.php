@@ -1002,7 +1002,7 @@ $template_image_comments = <<<EOT
                             <td>
                                 <input type="submit" class="button" name="submit" value="{OK}" />
                                 <input type="hidden" name="form_token" value="{FORM_TOKEN}" />
-                                input type="hidden" name="timestamp" value="{TIMESTAMP}" />
+                                <input type="hidden" name="timestamp" value="{TIMESTAMP}" />
                             </td>
                         </tr>
                         <tr>
