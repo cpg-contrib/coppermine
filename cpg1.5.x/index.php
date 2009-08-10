@@ -254,67 +254,39 @@ function get_subcat_data(&$cat_data)
 
     $categories     = array();
     $user_galleries = array();
+         
+    // collect info about the user galleries category
+    $result = cpg_db_query("SELECT name, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = " . USER_GAL_CAT);
     
-    // collect info about the albums in the user galleries category
-    $sql = "SELECT title, description, 
-        keyword, category, aid, alb_hits, visibility
+    $row = mysql_fetch_assoc($result);
+    mysql_free_result($result);
+    
+    $user_galleries['details'] = array(
+        'name'        => $row['name'],
+        'description' => $row['description'],
+        'thumb'       => $row['thumb'],
+        'level'       => 1,
+    );
+
+    // collect stats for albums in the user galleries category
+    // all we need here is the total number of albums and pictures
+    $sql = "SELECT COUNT(DISTINCT(p.aid)) AS alb_count, COUNT(*) AS pic_count
         FROM {$CONFIG['TABLE_ALBUMS']} AS a
-        WHERE category > " . FIRST_USER_CAT;
+        INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid
+        WHERE a.category > " . FIRST_USER_CAT . "
+        AND approved = 'YES'";
+        
+    if ($FORBIDDEN_SET_DATA) {
+        $sql .= 'AND a.aid NOT IN (' . implode(', ', $FORBIDDEN_SET_DATA) . ')';
+    }
 
     $result = cpg_db_query($sql);
-
-    if (mysql_num_rows($result)) {
-
-        while ($row = mysql_fetch_assoc($result)) {
-
-            $user_galleries['subalbums'][$row['aid']] = array(
-                'aid'         => $row['aid'],
-                'title'       => $row['title'],
-                'description' => $row['description'],
-                'keyword'     => $row['keyword'],
-                'alb_hits'    => $row['alb_hits'],
-                'category'    => $row['category'],
-                'visibility'  => $row['visibility'],
-                'pic_count'   => 0,
-            );
-        } // while
-
-        mysql_free_result($result);
-         
-        // collect info about the user galleries category
-        $result = cpg_db_query("SELECT name, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = " . USER_GAL_CAT);
-        
-        $row = mysql_fetch_assoc($result);
-        mysql_free_result($result);
-        
-        $user_galleries['details'] = array(
-            'name'        => $row['name'],
-            'description' => $row['description'],
-            'thumb'       => $row['thumb'],
-            'level'       => 1,
-        );
-
-        // collect stats for albums in the user galleries category
-        // all we need here is the total number of albums and pictures
-        $sql = "SELECT COUNT(DISTINCT(p.aid)) AS alb_count, COUNT(*) AS pic_count
-            FROM {$CONFIG['TABLE_ALBUMS']} AS a
-            INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid
-            WHERE a.category > " . FIRST_USER_CAT . "
-            AND approved = 'YES'";
-            
-        if ($FORBIDDEN_SET_DATA) {
-            $sql .= 'AND a.aid NOT IN (' . implode(', ', $FORBIDDEN_SET_DATA) . ')';
-        }
-
-        $result = cpg_db_query($sql);
-        
-        $row = mysql_fetch_assoc($result);
-        mysql_free_result($result);
-        
-        $user_galleries['details']['alb_count']      = $row['alb_count'];
-        $user_galleries['subalbums'][0]['pic_count'] = $row['pic_count'];
-
-    } // if mysql_num_rows($result)
+    
+    $row = mysql_fetch_assoc($result);
+    mysql_free_result($result);
+    
+    $user_galleries['details']['alb_count']      = $row['alb_count'];
+    $user_galleries['subalbums'][0]['pic_count'] = $row['pic_count'];
     
     //TODO: optimize this for when first level album thumbs are disabled
     // all we need then is a count
@@ -458,12 +430,12 @@ function get_subcat_data(&$cat_data)
 
         if ($cid == USER_GAL_CAT) {
 
-            $link = str_repeat($ident, $level - 1) . "<a href=\"index.php?cat={$cid}\">{$cat['details']['name']}</a>";
-
-            if (!empty($categories[$cid]['subalbums'])) {
+ 
+            if ($pic_count) {
                 //ob_start();
                 //list_users(); 
                 //$users = ob_get_clean();
+                $link = str_repeat($ident, $level - 1) . "<a href=\"index.php?cat={$cid}\">{$cat['details']['name']}</a>";
                 $users         = '';
                 $cat_data[]    = array($link, str_repeat($ident, $level-1) . $cat['details']['description'], $album_count, $pic_count, 'cat_albums' => $users);
                 $HIDE_USER_CAT = 0;
