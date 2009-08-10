@@ -235,12 +235,9 @@ EOT;
  *
  * @param integer $parent Parent Category
  * @param array $cat_data
- * @param array $album_set_array
- * @param integer $level Level being displayed
- * @param string $ident String to use as indentation for Categories
  * @return void
  **/
-function get_subcat_data(&$cat_data, &$album_set_array)
+function get_subcat_data(&$cat_data)
 {
     global $CONFIG, $HIDE_USER_CAT, $cpg_show_private_album;
     global $lft, $rgt, $RESTRICTEDWHERE, $CURRENT_CAT_DEPTH, $FORBIDDEN_SET_DATA, $PAGE;
@@ -532,7 +529,7 @@ function get_subcat_data(&$cat_data, &$album_set_array)
  **/
 function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
 {
-    global $CONFIG, $ALBUM_SET, $BREADCRUMB_TEXT, $STATS_IN_ALB_LIST, $FORBIDDEN_SET;
+    global $CONFIG, $BREADCRUMB_TEXT, $STATS_IN_ALB_LIST, $FORBIDDEN_SET;
     global $HIDE_USER_CAT, $cpg_show_private_album;
     global $cat;
     global $lang_list_categories;
@@ -540,8 +537,8 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     breadcrumb($cat, $breadcrumb, $BREADCRUMB_TEXT);
     // Build the category list
     $cat_data = array();
-    $album_set_array = array();
-    get_subcat_data($cat_data, $album_set_array);
+
+    get_subcat_data($cat_data);
 
     $album_filter = '';
     $pic_filter = '';
@@ -549,27 +546,6 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
         $album_filter = ' ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
         $pic_filter = $FORBIDDEN_SET;
-    }
-    // Add the albums in the current category to the album set
-    // if ($cat) {
-    if ($cat == USER_GAL_CAT) {
-        $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category >= " . FIRST_USER_CAT . $album_filter;
-        $result = cpg_db_query($sql);
-    } else {
-        $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '$cat'" . $album_filter;
-        $result = cpg_db_query($sql);
-    } 
-    while ( ($row = mysql_fetch_assoc($result)) ) {
-        $album_set_array[] = $row['aid'];
-    } // while
-    mysql_free_result($result);
-    // }
-    if (count($album_set_array) && $cat) {
-        $current_album_set = 'AND aid IN (' . implode(', ', $album_set_array) . ')';
-        $ALBUM_SET .= $current_album_set;
-    } elseif ($cat) {
-        $current_album_set = "AND aid IN (-1) ";
-        $ALBUM_SET .= $current_album_set;
     }
     // Gather gallery statistics - start
     if ($CONFIG['display_stats_on_index'] != 0) {
