@@ -620,12 +620,12 @@ EOT;
     }
 
     $iframe_startfolder = str_replace('searchnew.php', '', __FILE__) . rtrim($CONFIG['fullpath'],'/') . $folder_sep;
-    $iframe_hide = rawurlencode('.,..,.svn,edit,Thumbs.db,.DS_Store,__MACOSX,.htaccess,'.rtrim($CONFIG['userpics'],'/'));
+    
     print '    <tr>'.$LINEBREAK;
     print '        <td class="tableb" align="center">'.$LINEBREAK;
 
     if ($CONFIG['browse_batch_add'] == 1) {
-        print '            <iframe src="minibrowser.php?startfolder='.$iframe_startfolder.'&amp;parentform=choosefolder&amp;formelementname=startdir&amp;no_popup=1&amp;limitfolder='.$iframe_startfolder.'&amp;hidefolders='.$iframe_hide.'&amp;linktarget='.$CPG_PHP_SELF.'&amp;searchnew_php=1&amp;radio=0" width="95%" height="400" name="popup_in_a_box"></iframe>'.$LINEBREAK;
+        print '            <iframe src="minibrowser.php?startfolder='.$iframe_startfolder.'&amp;parentform=choosefolder&amp;formelementname=startdir&amp;no_popup=1&amp;limitfolder='.$iframe_startfolder.'&amp;linktarget='.$CPG_PHP_SELF.'&amp;searchnew_php=1&amp;radio=0" width="95%" height="400" name="popup_in_a_box"></iframe>'.$LINEBREAK;
     } else {
         echo '<table width="100%">';
         display_dir_tree('', '');

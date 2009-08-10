@@ -69,7 +69,7 @@ if ($superCage->get->keyExists('hidefolders') && ($matches = $superCage->get->ge
     $hiddenfolders = explode(',', $hidefolders);
 } else {
     $hidefolders = '';
-    $hiddenfolders = array();
+    $hiddenfolders = array('.', '..', '.svn', 'edit', 'Thumbs.db', '.DS_Store', '__MACOSX', '.htaccess', rtrim($CONFIG['userpics'],'/'));
 }
 
 if ($superCage->get->keyExists('limitfolder') && $matches = $superCage->get->getMatched('limitfolder', $folder_regex)) {
@@ -250,7 +250,7 @@ if (($folder != '') && ($folder != $folder_sep)) {
         echo '</td>' . $newline;
         echo '<td class="tableb">' . $newline;
         echo '<img src="images/spacer.gif" width="16" height="16" border="0" alt="" align="left" />' . $newline;
-        echo '<a href="'.$CPG_PHP_SELF.'?folder='.rawurlencode($uplink).'&amp;parentform='.rawurlencode($parentform).'&amp;formelementname='.rawurlencode($formelementname).'&amp;no_popup='.$no_popup.'&amp;limitfolder='.$limitfolder.'&amp;hidefolders='.$hidefolders.'&amp;linktarget='.$linktarget.'">' . $newline;
+        echo '<a href="'.$CPG_PHP_SELF.'?folder='.rawurlencode($uplink).'&amp;parentform='.rawurlencode($parentform).'&amp;formelementname='.rawurlencode($formelementname).'&amp;no_popup='.$no_popup.'&amp;limitfolder='.$limitfolder.'&amp;linktarget='.$linktarget.'">' . $newline;
         echo '.. '.$lang_minibrowser_php['up'];
         echo '</a>' . $newline;
         echo '</td>' . $newline;
@@ -269,8 +269,8 @@ if (is_array($foldername)) {
             }
             echo '</td>' . $newline;
             echo '<td class="tableb">' . $newline;
-            // echo '<a href="'.$CPG_PHP_SELF.'?folder='.rawurlencode($folder_sep.ltrim($folder, $folder_sep).$key.$folder_sep).'&amp;parentform='.rawurlencode($parentform).'&amp;formelementname='.rawurlencode($formelementname).'&amp;no_popup='.$no_popup.'&amp;limitfolder='.$limitfolder.'&amp;hidefolders='.$hidefolders.'&amp;linktarget='.$linktarget.'">' . $newline;
-            echo '<a href="'.$CPG_PHP_SELF.'?folder='.rawurlencode($folder_prefix.ltrim($folder, $folder_sep).$key.$folder_sep).'&amp;parentform='.rawurlencode($parentform).'&amp;formelementname='.rawurlencode($formelementname).'&amp;no_popup='.$no_popup.'&amp;limitfolder='.$limitfolder.'&amp;hidefolders='.$hidefolders.'&amp;linktarget='.$linktarget.'">' . $newline;
+            // echo '<a href="'.$CPG_PHP_SELF.'?folder='.rawurlencode($folder_sep.ltrim($folder, $folder_sep).$key.$folder_sep).'&amp;parentform='.rawurlencode($parentform).'&amp;formelementname='.rawurlencode($formelementname).'&amp;no_popup='.$no_popup.'&amp;limitfolder='.$limitfolder.'&amp;linktarget='.$linktarget.'">' . $newline;
+            echo '<a href="'.$CPG_PHP_SELF.'?folder='.rawurlencode($folder_prefix.ltrim($folder, $folder_sep).$key.$folder_sep).'&amp;parentform='.rawurlencode($parentform).'&amp;formelementname='.rawurlencode($formelementname).'&amp;no_popup='.$no_popup.'&amp;limitfolder='.$limitfolder.'&amp;linktarget='.$linktarget.'">' . $newline;
             echo cpg_fetch_icon('folder', 0, $lang_minibrowser_php['folder']) . $newline;
             echo $key . $newline;
             echo '</a>' . $newline;
