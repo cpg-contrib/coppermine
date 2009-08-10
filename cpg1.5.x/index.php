@@ -574,30 +574,57 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     // Gather gallery statistics - start
     if ($CONFIG['display_stats_on_index'] != 0) {
         if ($cat == 0) {
-            $result = cpg_db_query("SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE 1 " . $album_filter);
+            $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_ALBUMS']} AS a WHERE 1 " . $album_filter);
             $nbEnr = mysql_fetch_row($result);
             $album_count = $nbEnr[0];
             mysql_free_result($result);
 
-            $sql = "SELECT count(pid) FROM {$CONFIG['TABLE_PICTURES']} as p " . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON a.aid=p.aid ' . 'WHERE 1 ' . $pic_filter . ' AND approved=\'YES\'';
+            $sql = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']}";
+
+            if ($pic_filter) {
+                $sql .= " AS p INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = p.aid WHERE approved = 'YES' $pic_filter";
+            } else {
+                $sql .= " WHERE approved = 'YES'";
+            }
+
             $result = cpg_db_query($sql);
             $nbEnr = mysql_fetch_row($result);
             $picture_count = $nbEnr[0];
             mysql_free_result($result);
 
-            $sql = "SELECT count(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c " . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON c.pid=p.pid ' . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON a.aid=p.aid ' . 'WHERE 1 ' . $pic_filter. ' AND approval=\'YES\'';
+            $sql = "SELECT COUNT(*) FROM {$CONFIG['TABLE_COMMENTS']}";
+            
+            if ($pic_filter) {
+                $sql .= " AS c INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.pid = c.pid INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = p.aid WHERE 1 $pic_filter";
+            }
+            
+            if ($CONFIG['comment_approval']) {
+                if ($pic_filter) {
+                    $sql .= " AND approval = 'YES'";
+                } else {
+                    $sql .= " WHERE approval = 'YES'";
+                }
+            }
+            
             $result = cpg_db_query($sql);
             $nbEnr = mysql_fetch_row($result);
             $comment_count = $nbEnr[0];
             mysql_free_result($result);
 
-            $sql = "SELECT count(cid) FROM {$CONFIG['TABLE_CATEGORIES']} WHERE 1";
+            $sql = "SELECT COUNT(*) FROM {$CONFIG['TABLE_CATEGORIES']}";
             $result = cpg_db_query($sql);
             $nbEnr = mysql_fetch_row($result);
             $cat_count = $nbEnr[0] - $HIDE_USER_CAT;
             mysql_free_result($result);
 
-            $sql = "SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} as p " . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON p.aid=a.aid ' . 'WHERE 1 ' . $pic_filter;
+            $sql = "SELECT SUM(hits) FROM {$CONFIG['TABLE_PICTURES']}";
+
+            if ($pic_filter) {
+                $sql .= " AS p INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = p.aid WHERE approved = 'YES' $pic_filter";
+            } else {
+                $sql .= " WHERE approved = 'YES'";
+            }
+            
             $result = cpg_db_query($sql);
             $nbEnr = mysql_fetch_row($result);
             $hit_count = (int)$nbEnr[0];
