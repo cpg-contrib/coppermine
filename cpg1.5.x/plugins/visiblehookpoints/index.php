@@ -54,13 +54,13 @@ if (!GALLERY_ADMIN_MODE) {
 
 switch ($action) {
   case 'config':
-    //if (isset($_POST['visiblehookpoints_display']) == TRUE) {
 	if ($superCage->post->keyExists('visiblehookpoints_display')) {
-      //if ($_POST['visiblehookpoints_display'] == 1) {µ
 	  if ($superCage->post->getInt('visiblehookpoints_display') == 1) {
         $value = 1;
+      } elseif ($superCage->post->getInt('visiblehookpoints_display') == 0) {
+          $value = 0;
       } else {
-        $value = 0;
+        $value = 2;
       }
       if ($value != $CONFIG['plugin_visiblehookpoints_display']) {
         $f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$value}' WHERE name = 'plugin_visiblehookpoints_display'");

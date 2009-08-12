@@ -50,5 +50,5 @@ $author = <<< EOT
 <a href="mailto:Donnoman@donovanbray.com">Donnoman</a> from <a href="http://cpg-contrib.org">cpg-contrib.org</a> (v1.x and 2.x)<br />
 Plugin config section added by <a href="http://coppermine-gallery.net/forum/index.php?action=profile;u=2">Joachim M&uuml;ller</a> (v3.0)
 EOT;
-$version='3.0';
+$version='3.1';
 ?>

@@ -17,6 +17,8 @@
   $Date$
 **********************************************/
 
+$vhp_tableHeaderCounter = 0;
+
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 $superCage = Inspekt::makeSuperCage();
 // Add an install action
@@ -28,11 +30,7 @@ $thisplugin->add_action('plugin_uninstall','visiblehookpoints_uninstall');
 // Add a configure action
 $thisplugin->add_action('plugin_configure','visiblehookpoints_configure');
 
-//$hookpoints_parameter_set = $superCage->get->getInt('hookpoints');
-//print $hookpoints_parameter_set;
-//die;
-//if (isset($_GET['hookpoints']) || $CONFIG['plugin_visiblehookpoints_display'] == 1) {
-if ($superCage->get->keyExists('hookpoints') || $CONFIG['plugin_visiblehookpoints_display'] == 1) {
+if ($superCage->get->keyExists('hookpoints') || $CONFIG['plugin_visiblehookpoints_display'] == 1 || ($CONFIG['plugin_visiblehookpoints_display'] == 2 && GALLERY_ADMIN_MODE)) {
 
 	$thisplugin->add_filter('anycontent','vhp_anycontent'); // ( anycontent page + plugin accessible content )
 	$thisplugin->add_filter('gallery_header','vhp_gallery_header'); // (shows just above the gallery)
@@ -72,39 +70,50 @@ function vhp_plugin_wakeup()
 {
         return vhp_echo_marker('plugin_wakeup',true);
 }
+
 function vhp_page_end()
 {
         return vhp_echo_marker('page_end',true);
 }
+
 function vhp_page_start() {
         return vhp_echo_marker('page_start',true);
 }
+
 function vhp_page_meta($var) {
-    $var=vhp_echo_marker('page_meta',$var);
-    $var=vhp_page_meta_dbug($var);
-        return $var;
+	global $JS, $LINEBREAK; // Don't forget to make that variable global when using from inside functions
+	$JS['includes'][] = 'plugins/visiblehookpoints/js/script.js';
+    $var = vhp_echo_marker('page_meta',$var);
+    $var = '<link rel="stylesheet" href="plugins/visiblehookpoints/css/style.css" type="text/css" />' . $LINEBREAK . $var;
+    return $var;
 }
+
 function vhp_file_data($var) {
         return vhp_echo_marker('file_data',$var);
 }
+
 function vhp_usermgr_footer($var) {
         return vhp_echo_marker('usermgr_footer',$var);
 }
+
 function vhp_anycontent($var) {
         return vhp_echo_marker('anycontent',$var);
 }
 function vhp_gallery_header($var) {
         return vhp_echo_marker('gallery_header',$var);
 }
+
 function vhp_gallery_footer($var) {
         return vhp_echo_marker('gallery_footer',$var);
 }
 function vhp_file_header($var) {
         return vhp_echo_marker('file_header',$var);
 }
+
 function vhp_file_footer($var) {
         return vhp_echo_marker('file_footer',$var);
 }
+
 function vhp_thumb_header($var) {
         return vhp_echo_marker('thumb_header',$var);
 }
@@ -114,12 +123,14 @@ function vhp_thumb_footer($var) {
 function vhp_thumb_caption($var) {
         return vhp_echo_marker('thumb_caption',$var);
 }
+
 function vhp_thumb_caption_regular($var) {
         return vhp_echo_marker('thumb_caption_regular',$var);
 }
 function vhp_thumb_caption_lastcom($var) {
         return vhp_echo_marker('thumb_caption_lastcom',$var);
 }
+
 function vhp_thumb_caption_lastcomby($var) {
         return vhp_echo_marker('thumb_caption_lastcomby',$var);
 }
@@ -129,6 +140,7 @@ function vhp_thumb_caption_lastup($var) {
 function vhp_thumb_caption_topn($var) {
         return vhp_echo_marker('thumb_caption_topn',$var);
 }
+
 function vhp_thumb_caption_toprated($var) {
         return vhp_echo_marker('thumb_caption_toprated',$var);
 }
@@ -138,6 +150,7 @@ function vhp_thumb_caption_lasthits($var) {
 function vhp_thumb_caption_random($var) {
         return vhp_echo_marker('thumb_caption_random',$var);
 }
+
 function vhp_thumb_caption_search($var) {
         return vhp_echo_marker('thumb_caption_search',$var);
 }
@@ -147,21 +160,25 @@ function vhp_thumb_caption_lastalb($var) {
 function vhp_thumb_caption_favpics($var) {
         return vhp_echo_marker('thumb_caption_favpics',$var);
 }
+
 function vhp_post_breadcrumb($var) {
         return vhp_echo_marker('post_breadcrumb',$var);
 }
 function vhp_user_caption_params($var) {
         return vhp_echo_marker('user_caption_params',$var);
 }
+
 function vhp_thumb_data($var) {
         return vhp_echo_marker('thumb_data',$var);
 }
+
 function vhp_plugin_block($var) {
         return vhp_echo_marker('plugin_block_'.$var[1],$var);
 }
 function vhp_page_html($var) {
     return vhp_echo_marker('page_html',$var);
 }
+
 function vhp_echo_marker($marker,$var)
 {
 
@@ -189,7 +206,8 @@ function vhp_plugin_sleep($var)
 
 function vhp_stat_table($title,$status)
 {
-    global $LINEBREAK;
+    global $LINEBREAK, $vhp_tableHeaderCounter;
+    $vhp_tableHeaderCounter++;
     //$column1=ceil(count($status)/3);
     $entries=ceil(count($status)/3);
 
@@ -198,12 +216,10 @@ function vhp_stat_table($title,$status)
     $columns[2]=array_slice($status,2*$entries);
 
     $html .= <<<EOT
+    <div id="vhp_head_'.$vhp_tableHeaderCounter.'" class="vhp_head" onclick="vhp_toggle_cell_parent('{$vhp_tableHeaderCounter}');">{$title}
+    </div>
+    <div id="vhp_cell_{$vhp_tableHeaderCounter}" class="vhp_cell" style="display:none">
     <table border="0" width="100%">
-        <tr>
-            <td colspan="6" align="center">
-                <h1>$title</h1>
-            </td>
-       </tr>
        <tr class="tableh1">
             <th>Name</th>
             <th>Value</th>
@@ -219,11 +235,14 @@ EOT;
             $html .= "<th class=\"tableh2\">{$columns[$column][$entry]['Variable_name']}</th>" . $LINEBREAK;
             $html .= "<td class=\"tableb\">{$columns[$column][$entry]['Value']}</td>" . $LINEBREAK;
         }
-        $html .= "</tr>" . $LINEBREAK;
+        $html .= '</tr>' . $LINEBREAK;
     }
-    $html .= "</table>" . $LINEBREAK;
+    $html .= '</table>' . $LINEBREAK;
+    $html .= '</div>' . $LINEBREAK;
+    //$html = testoutput();
     return $html;
 }
+
 function vhp_stats()
 {
     global $VHP;
@@ -239,8 +258,12 @@ function vhp_stats()
     foreach ($marks as $marker=>$count) {
           $counts[]=array('Variable_name'=>$marker,'Value'=>$count);
     }
+    $html .= '<div class="vhp_wrap">';
     $html .= vhp_stat_table('Visual Hookpoint Marker Usage Stats',$counts);
+    $html .= '</div>';
+    $html .= '<div class="vhp_wrap">';
     $html .= vhp_stat_table('Visual Hookpoint Time Chart in Seconds from CPG_TIME_START',$times);
+    $html .= '</div>';
     return $html;
 }
 
@@ -300,101 +323,6 @@ function dbug_export($var,$type='',$marker)
     return ob_get_clean();
 }
 
-function vhp_page_meta_dbug($html)
-{
-    $html .=<<<EOT
-    <script language="JavaScript">
-    /* code modified from ColdFusion's cfdump code */
-            function dBug_toggleRow(source) {
-                    target=(document.all) ? source.parentElement.cells[1] : source.parentNode.lastChild
-                    dBug_toggleTarget(target,dBug_toggleSource(source));
-            }
-
-            function dBug_toggleSource(source) {
-                    if (source.style.fontStyle=='italic') {
-                            source.style.fontStyle='normal';
-                            source.title='click to collapse';
-                            return 'open';
-                    } else {
-                            source.style.fontStyle='italic';
-                            source.title='click to expand';
-                            return 'closed';
-                    }
-            }
-
-            function dBug_toggleTarget(target,switchToState) {
-                    target.style.display=(switchToState=='open') ? '' : 'none';
-            }
-
-            function dBug_toggleTable(source) {
-                    var switchToState=dBug_toggleSource(source);
-                    if(document.all) {
-                            var table=source.parentElement.parentElement;
-                            for(var i=1;i<table.rows.length;i++) {
-                                    target=table.rows[i];
-                                    dBug_toggleTarget(target,switchToState);
-                            }
-                    }
-                    else {
-                            var table=source.parentNode.parentNode;
-                            for (var i=1;i<table.childNodes.length;i++) {
-                                    target=table.childNodes[i];
-                                    if(target.style) {
-                                            dBug_toggleTarget(target,switchToState);
-                                    }
-                            }
-                    }
-            }
-    </script>
-
-    <style type="text/css">
-            table.dBug_array,table.dBug_object,table.dBug_resource,table.dBug_resourceC,table.dBug_xml {
-                    font-family:Verdana, Arial, Helvetica, sans-serif; color:#000000; font-size:12px;
-            }
-
-            .dBug_arrayHeader,
-            .dBug_objectHeader,
-            .dBug_resourceHeader,
-            .dBug_resourceCHeader,
-            .dBug_xmlHeader
-                    { font-weight:bold; color:#FFFFFF; }
-
-            /* array */
-            body table.dBug_array {};
-            table.dBug_array { background-color:#006600;}
-            table.dBug_array td.dBug_arrayHeader { background-color:#009900;}
-            table.dBug_array td.dBug_arrayKey { background-color:#CCFFCC;}
-            table.dBug_array td { background-color:#FFFFFF;}
-
-            /* object */
-            table.dBug_object { background-color:#0000CC; }
-            table.dBug_object td { background-color:#FFFFFF; }
-            table.dBug_object td.dBug_objectHeader { background-color:#4444CC; }
-            table.dBug_object td.dBug_objectKey { background-color:#CCDDFF; }
-
-            /* resource */
-            table.dBug_resourceC { background-color:#884488; }
-            table.dBug_resourceC td { background-color:#FFFFFF; }
-            table.dBug_resourceC td.dBug_resourceCHeader { background-color:#AA66AA; }
-            table.dBug_resourceC td.dBug_resourceCKey { background-color:#FFDDFF; }
-
-            /* resource */
-            table.dBug_resource { background-color:#884488; }
-            table.dBug_resource td { background-color:#FFFFFF; }
-            table.dBug_resource td.dBug_resourceHeader { background-color:#AA66AA; }
-            table.dBug_resource td.dBug_resourceKey { background-color:#FFDDFF; }
-
-            /* xml */
-            table.dBug_xml { background-color:#888888; }
-            table.dBug_xml td { background-color:#FFFFFF; }
-            table.dBug_xml td.dBug_xmlHeader { background-color:#AAAAAA; }
-            table.dBug_xml td.dBug_xmlKey { background-color:#DDDDDD; }
-    </style>
-EOT;
-
-        return $html;
-}
-
 if (!class_exists('dBug')) {
     class dBug {
 
@@ -417,17 +345,24 @@ if (!class_exists('dBug')) {
             }
 
             //create the main table header
-            function makeTableHeader($type,$header,$colspan=2) {
-                    echo "<table cellspacing=2 cellpadding=3 class=\"dBug_".$type."\">
-                                    <tr>
-                                            <td class=\"dBug_".$type."Header\" colspan=".$colspan." style=\"cursor:hand\" onClick='dBug_toggleTable(this)'>".$header."</td>
-                                    </tr>";
+            function makeTableHeader($type, $header, $colspan = 2) {
+                    global $vhp_tableHeaderCounter, $vhp_tableCellCounter;
+                    $vhp_tableHeaderCounter++;
+                    $vhp_tableCellCounter++;
+                    echo '<div class="vhp_wrap">' . $LINEBREAK;
+                    if ($vhp_tableCellCounter == 1) {
+                        echo '<div id="vhp_head_'.$vhp_tableHeaderCounter.'" class="vhp_head dBug_'.$type.'Header" onclick="vhp_toggle_cell_parent(\''.$vhp_tableHeaderCounter.'\');">';
+                    } else {
+                        echo '<div id="vhp_head_'.$vhp_tableHeaderCounter.'" class="vhp_head dBug_'.$type.'Header" onclick="vhp_toggle_cell_child(\''.$vhp_tableHeaderCounter.'\');">';
+                    }
+                    echo $header.'</div>';
+                    echo '<div id="vhp_cell_'.$vhp_tableHeaderCounter.'" class="vhp_cell" style="display:none"><table cellspacing="2" cellpadding="3" class="dBug_'.$type.'">';
             }
 
-            //create the table row header
+            //create the table row header 
             function makeTDHeader($type,$header) {
                     echo "<tr>
-                                    <td valign=\"top\" onClick='dBug_toggleRow(this)' style=\"cursor:hand\" class=\"dBug_".$type."Key\">".$header."</td>
+                                    <td valign=\"top\" onClick=\"dBug_toggleRow(this)\" style=\"cursor:hand\" class=\"dBug_".$type."Key\">".$header."</td>
                                     <td>";
             }
 
@@ -479,21 +414,30 @@ if (!class_exists('dBug')) {
 
             //if variable is an array type
             function varIsArray($var) {
-                    global $LINEBREAK;
-                    $this->makeTableHeader("array","array");
+                    global $LINEBREAK, $vhp_tableCellCounter;
                     if(is_array($var)) {
+                            $loopCounter = 0;
                             foreach($var as $key=>$value) {
+                                    if ($loopCounter == 0) {
+                                        $this->makeTableHeader("array", $key);
+                                    }
                                     $this->makeTDHeader("array",$key);
-                                    if(in_array(gettype($value),$this->arrType))
+                                    if (in_array(gettype($value),$this->arrType))
                                             $this->checkType($value);
                                     else {
                                             $value=(trim($value)=="") ? "[empty string]" : $value;
+                                            //echo '['.$vhp_tableCellCounter.']';
                                             echo $value.'</td>' . $LINEBREAK . '</tr>' . $LINEBREAK;
                                     }
+                                    $loopCounter++;
                             }
+                    } else {
+                        $this->makeTableHeader("array","error");
+                        echo "<tr><td>".$this->error("array").$this->closeTDRow();
                     }
-                    else echo "<tr><td>".$this->error("array").$this->closeTDRow();
-                    echo "</table>";
+                    echo '</table></div>'.$LINEBREAK;
+                    echo '</div>'.$LINEBREAK;
+                    $vhp_tableCellCounter--;
             }
 
             //if variable is an object type
@@ -513,8 +457,9 @@ if (!class_exists('dBug')) {
                                     $this->makeTDHeader("object",$value);
                                     echo "[function]".$this->closeTDRow();
                             }
+                    } else {
+                        echo "<tr><td>".$this->error("object").$this->closeTDRow();
                     }
-                    else echo "<tr><td>".$this->error("object").$this->closeTDRow();
                     echo "</table>";
             }
 
@@ -696,15 +641,14 @@ if (!class_exists('dBug')) {
 function visiblehookpoints_install() {
     global $CONFIG;
 	$superCage = Inspekt::makeSuperCage();
-    //if (isset($_POST['visiblehookpoints_display']) == TRUE) {
 	if ($superCage->post->keyExists('visiblehookpoints_display')) {
         // Perform database queries
-        //if ($_POST['visiblehookpoints_display'] == 1) {
 		if ($superCage->post->getInt('visiblehookpoints_display') == 1) {
           $value = 1;
-        //} elseif ($_POST['visiblehookpoints_display'] == 0) {
 		} elseif ($superCage->post->getInt('visiblehookpoints_display') == 0) {
           $value = 0;
+        } elseif ($superCage->post->getInt('visiblehookpoints_display') == 2) {
+          $value = 2;
         } elseif (array_key_exists('plugin_visiblehookpoints_display', $CONFIG) == TRUE) {
           $value = $CONFIG['plugin_visiblehookpoints_display'];
         } else {
@@ -740,9 +684,15 @@ function visiblehookpoints_configure() {
     if ($CONFIG['plugin_visiblehookpoints_display'] == 1) {
       $invisible = '';
       $visible = 'checked="checked"';
-    } else {
+      $admin_only = '';
+    } elseif($CONFIG['plugin_visiblehookpoints_display'] == 0) {
       $invisible = 'checked="checked"';
       $visible = '';
+      $admin_only = '';
+    } else {
+      $invisible = '';
+      $visible = '';
+      $admin_only = 'checked="checked"';
     }
     $help_invisible = '&nbsp;'.cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize('Adding the hookpoint parameter manually'))).'&amp;t='.urlencode(base64_encode(serialize('Manually add the parameter &quot;hookpoint&quot; to the URL in the address bar of your browser (e.g. <tt class="code">'.$CONFIG['ecards_more_pic_target'].'index.php?hookpoint</tt>) to see the hookpoints. This option is meant for live, production galleries, where you wouldn\'t want to display the hookpoints to every site visitor.'))),470,245);
     $help_visible = '&nbsp;'.cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize('Displaying the hookpoints for everyone'))).'&amp;t='.urlencode(base64_encode(serialize('Only choose this option on your testbed server, i.e. for galleries that don\'t run in a production environment, as the hookpoints will be displayed for all gallery visitors.'))),470,245);
@@ -762,10 +712,15 @@ EOT;
                   <label for="invisible" class="clickable_option">Only visible with URL-parameter &quot;hookpoints&quot;</label>{$help_invisible}
               </tr>
               <tr>
-                <td class="tableb">
+                <td class="tableb tableb_alternate">
                   <input type="radio" name="visiblehookpoints_display" id="visible" value="1" class="radio" {$visible} />
                   <label for="visible" class="clickable_option">Visible permanently for everyone</label>{$help_visible}
               </tr>
+              <!--<tr>
+                <td class="tableb">
+                  <input type="radio" name="visiblehookpoints_display" id="admin_only" value="2" class="radio" {$admin_only} />
+                  <label for="admin_only" class="clickable_option">Only visible for the admin</label>
+              </tr>-->
               <tr>
                 <td class="tablef">
                   <input type="submit" value="Go!" class="button" />
