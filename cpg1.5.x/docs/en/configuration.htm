@@ -1368,12 +1368,15 @@ address. Recommended setting is NO. As most internet users today have more than 
 <p>To make brute force attacks (where a hostile script tries to log into coppermine as admin by running through all possible combinations of username and password automatically) less effective Coppermine temporarily bans the IP address of a possible attacker after a certain amount of failed logins. This way, the brute force attack would need way to long to try all possible combinations.</p>
 <p>With this setting you specify the maximum number of failed log-in attempts before the IP address of the user is temporarily banned.</p>
 <p>Keep in mind that this setting will definitely have an impact on your legitimate ability to log in as well: if you mis-type your password too often or if someone else has tried to brute-force your admin account, you will be banned temporarily as well. The ban will of course go away after the time set below, but during the ban phase you will be locked out from administration just as well as an attacker would be logged out.</p>
+<p>Default and recommended value is <tt class="code">5</tt>. Value can range between 1 and 20 (as 0 would mean that zero logins are allowed, which would lock you (as admin) out permanently as well.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Number of failed login attempts until temporary ban</p>
 
 <a name="admin_user_login_threshold_end"></a>
 <hr />
 <a name="admin_user_login_expiry_start"></a><h3>Duration of a temporary ban after failed logins<a href="#admin_user_login_expiry_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This value specifies the duration of the temporary ban (in minutes) after the number of failed log-in attempts specified with <a href="#admin_user_login_threshold_start">Number of failed login attempts until temporary ban</a>.</p>
+<p>The warnings posted above for <a href="#admin_user_login_threshold_start">Number of failed login attempts until temporary ban</a> applies here as well: setting this to a value that doesn't make sense will have an impact on legitimate users as well!</p>
+<p>Default is <tt class="code">10</tt> minutes. Range is between 0 (which would mean that there will be no temporary ban at all, so use this value to disable the temporary ban feature alltogether) and <tt class="code">9999</tt> minutes (which is roughly less than a week).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Duration of a temporary ban after failed logins</p>
 <a name="admin_user_login_expiry_end"></a>
 <hr />
