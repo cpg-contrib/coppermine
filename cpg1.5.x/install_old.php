@@ -449,7 +449,8 @@ function create_tables()
 
     //$PHP_SELF = $_SERVER['PHP_SELF'];
     $gallery_dir = strtr(dirname($_SERVER['PHP_SELF']), '\\', '/');
-    $gallery_url_prefix = 'http://' . $_SERVER['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
+    $protocol = isset($_SERVER['HTTPS']) ? 'https' : 'http';
+    $gallery_url_prefix = $protocol . '://' . $_SERVER['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
 
     $db_schema = "{$DFLT['sql_d']}/schema.sql";
     $db_basic = "{$DFLT['sql_d']}/basic.sql";

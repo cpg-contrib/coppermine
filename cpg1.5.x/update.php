@@ -506,17 +506,6 @@ function update_tables()
     $loopCounter = 0;
     $cellStyle = '';
     $superCage = Inspekt::makeSuperCage();
-    $possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
-    foreach ($possibilities as $test) {
-        if ($matches = $superCage->server->getMatched($test, '/([^\/]+\.php)$/')) {
-            $CPG_PHP_SELF = $matches[1];
-            break;
-        }
-    }
-    //$CPG_PHP_SELF = $_SERVER['PHP_SELF'];
-    $gallery_dir = strtr(dirname($CPG_PHP_SELF), '\\', '/');
-    //$gallery_url_prefix = 'http://' . $_SERVER['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
-    $gallery_url_prefix = 'http://' . $superCage->server->getRaw('HTTP_HOST') . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
 
     $db_update = 'sql/update.sql';
     $sql_query = fread(fopen($db_update, 'r'), filesize($db_update));

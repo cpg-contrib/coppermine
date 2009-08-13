@@ -62,7 +62,7 @@ $config_data = array(
       'type'      => 'textfield',
       'help_link' => 'f=configuration.htm&amp;as=admin_general_coppermine-url&amp;ae=admin_general_coppermine-url_end',
       'regex'     => '^'
-                     .'(http://){1,1}' // leading 'http://' is mandatory - no support for https yet
+                     .'(https?://){1,1}' // leading 'http://' or 'https://'
                      .'(([0-9a-z_!~*\'().&=+$%-]+: ){0,1}' //password, separated with a colon
                      .'[0-9a-z_!~*\'().&=+$%-]+@){0,1}' //username, separated with an @
                      .'(([0-9]{1,3}\.){3}[0-9]{1,3}' // IP- 199.194.52.184

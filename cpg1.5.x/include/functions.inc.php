@@ -681,19 +681,16 @@ function check_link_type_and_replace ($pattern, $replacement, $text, $stage)
 * Determines if a URL is local or external. FROM phpBB MOD: prime links (by Ken F. Innes IV)
 *
 * @param string $url
-* @param boolean $cpg_url
 *
 * @return boolean $is_local
 */
-function is_link_local($url, $cpg_url = false)
+function is_link_local($url)
 {
-    if ($cpg_url === false) {
-        $cpg_url = generate_cpg_url();
-    }
+    global $CONFIG;
 
     $subdomain_remove_regex = '#^(http|https)://[^/]+?\.((?:[a-z0-9-]+\.[a-z]+)|localhost/)#i';
 
-    $cpg_url = preg_replace($subdomain_remove_regex, '$1://$2', $cpg_url);
+    $cpg_url = preg_replace($subdomain_remove_regex, '$1://$2', $CONFIG['site_url']);
     $url     = preg_replace($subdomain_remove_regex, '$1://$2', $url);
 
     $is_local = (strpos($url, $cpg_url) === 0);
@@ -704,37 +701,6 @@ function is_link_local($url, $cpg_url = false)
     }
 
     return($is_local);
-}
-
-
-/**
-* generate_cpg_url()
-*
-* Generate board url (example: http://www.foo.bar/cpg) FROM PHPBB 3.0.0
-*
-* @return string $cpg_url
-*/
-function generate_cpg_url()
-{
-    $superCage   = Inspekt::makeSuperCage();
-    $server_name = $superCage->server->keyExists('server_name') ? $superCage->server->getRaw('server_name') : getenv('SERVER_NAME');
-    $server_port = $superCage->server->keyExists('server_port') ? $superCage->server->getRaw('server_port') : getenv('SERVER_PORT');
-
-    // Do not rely on cookie_secure, users seem to think that it means a secured cookie instead of an encrypted connection
-    $cookie_secure = ($superCage->server->keyExists('HTTPS') && $superCage->server->getAlpha('HTTPS') == 'on') ? 1 : 0;
-
-    $cpg_url = (($cookie_secure) ? 'https://' : 'http://') . $server_name;
-
-    if ($server_port && $cookie_secure) {
-        $cpg_url .= ':' . $server_port;
-    }
-
-    // Strip / from the end
-    if (substr($cpg_url, -1, 1) == '/') {
-        $cpg_url = substr($cpg_url, 0, -1);
-    }
-
-    return $cpg_url;
 }
 
 /**************************************************************************

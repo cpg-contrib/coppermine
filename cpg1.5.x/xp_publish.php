@@ -579,7 +579,7 @@ function send_reg_file()
     $lines[] = '"displayname"="' . $CONFIG['gallery_name'] . '"';
     $lines[] = '"description"="' . $CONFIG['gallery_description'] . '"';
     $lines[] = '"href"="' . trim($CONFIG['site_url'], '/') . '/' . $CPG_PHP_SELF . '?cmd=publish"';
-    $lines[] = '"icon"="' . "http://" . $superCage->server->getEscaped('HTTP_HOST') . '/favicon.ico"';
+    $lines[] = '"icon"="' . trim($CONFIG['site_url'], '/') . '/' . '/favicon.ico"';
     $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\InternetPhotoprinting\providers\\' . utf8_decode($CONFIG['gallery_name'] .']');
     print join($LINEBREAK, $lines);
     print $LINEBREAK;
