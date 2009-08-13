@@ -2089,6 +2089,9 @@ function theme_main_menu($which)
         if ($CONFIG['display_sidebar_user'] != 2) {
           template_extract_block($template_sys_menu, 'sidebar');
         }
+        
+        list($timestamp, $form_token) = getFormToken();
+        
     } else { // visitor is not logged in
         if ($CONFIG['contact_form_guest_enable'] == 0) {
           template_extract_block($template_sys_menu, 'contact');
@@ -2098,6 +2101,8 @@ function theme_main_menu($which)
         }
         template_extract_block($template_sys_menu, 'logout');
         template_extract_block($template_sys_menu, 'my_profile');
+        
+        $timestamp = $form_token = '';
     }
 
     if (!USER_IS_ADMIN) {
@@ -2164,7 +2169,7 @@ function theme_main_menu($which)
         '{REGISTER_LNK}' => $lang_main_menu['register_lnk'],
         '{LOGIN_TITLE}' => $lang_main_menu['login_title'],
         '{LOGIN_LNK}' => $lang_main_menu['login_lnk'],
-        '{LOGOUT_TGT}' => "logout.php?referer=$REFERER",
+        '{LOGOUT_TGT}' => "logout.php?form_token=$form_token&amp;timestamp=$timestamp&amp;referer=$REFERER",
         '{LOGOUT_TITLE}' => $lang_main_menu['logout_title'],
         '{LOGOUT_LNK}' => $lang_main_menu['logout_lnk'] . " [" . stripslashes(USER_NAME) . "]",
         '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],

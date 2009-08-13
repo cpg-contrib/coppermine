@@ -29,6 +29,10 @@ if (!USER_ID) {
     cpg_die(ERROR, $lang_logout_php['err_not_logged_in'], __FILE__, __LINE__);
 }
 
+if (!checkFormToken()) {
+    cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+}
+    
 if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
     log_write('The user ' . $USER_DATA['user_name'] . ' (user ID ' . $USER_DATA['user_id'] . ") logged out.", CPG_ACCESS_LOG);
 }
