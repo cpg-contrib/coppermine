@@ -5709,7 +5709,7 @@ function checkFormToken()
         }
         
         $token = getFormToken($received_timestamp);
-        if ($received_token == $token[1]) {
+        if ($received_token === $token[1]) {
             return true;
         } else {
             return false;
