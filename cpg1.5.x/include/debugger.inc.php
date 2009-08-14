@@ -22,7 +22,7 @@ if (!defined('E_STRICT')) {
 }
 
 if (!defined('E_DEPRECATED')) {
-    define('E_DEPRECATED', 8129); // PHP 5.3
+    define('E_DEPRECATED', 8192); // PHP 5.3
 }
 
 class cpg_debugger {
