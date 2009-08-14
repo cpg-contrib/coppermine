@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-08-14 [S] Added form token to plug-in manager {eenemeenemuu}
 2009-08-12 [O] Disallowed zero as possible value for number of login attempts option {GauGau}
 2009-08-06 [A] Added plugin hooks 'smilies_display' & 'smilies_process' {eenemeenemuu}
 2009-08-04 [B] Fixed sloppy coding in album manager {GauGau}

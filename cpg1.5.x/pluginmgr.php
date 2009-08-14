@@ -37,6 +37,11 @@ if (!GALLERY_ADMIN_MODE) {
 // write the plugin enable/disable change to the db
 if ($superCage->post->keyExists('update_config')) {
 
+    if (!checkFormToken()) {
+        global $lang_errors;
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
+
     $value = $superCage->post->getInt('enable_plugins');
     
     cpg_config_set('enable_plugins', $value);
@@ -46,6 +51,8 @@ if ($superCage->post->keyExists('update_config')) {
 
 function display_plugin_list() {
     global $CPG_PLUGINS, $lang_pluginmgr_php, $lang_plugin_php, $lang_common, $CONFIG, $CPG_PHP_SELF;
+
+    list($timestamp, $form_token) = getFormToken();
 
     $help = '&nbsp;'.cpg_display_help('f=plugins.htm&amp;as=plugin_manager&amp;ae=plugin_manager_end&amp;top=1', '800', '600');
     $help_plugin_enable = cpg_display_help('f=configuration.htm&amp;as=admin_general_enable-plugins&amp;ae=admin_general_enable-plugins_end', 400, 300);
@@ -69,6 +76,8 @@ echo <<< EOT
                     &nbsp;&nbsp;
                     <input type="radio" id="enable_plugins0" name="enable_plugins" value="0"  onclick="document.pluginenableconfig.submit();" $no_selected class="radio" /><label for="enable_plugins0" class="clickable_option">{$lang_common['no']}</label>
                     <input type="hidden" name="update_config" value="1" />
+                    <input type="hidden" name="form_token" value="{$form_token}" />
+                    <input type="hidden" name="timestamp" value="{$timestamp}" />
                 </td>
                 <td class="tableb">
                     {$help_plugin_enable}
@@ -186,7 +195,7 @@ EOT;
             $up = cpg_fetch_icon('up', 0);
             echo <<<EOT
             <td width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=moveu&amp;p={$thisplugin['plugin_id']}">{$up}</a>
+                <a href="pluginmgr.php?op=moveu&amp;p={$thisplugin['plugin_id']}&amp;form_token={$form_token}&amp;timestamp={$timestamp}">{$up}</a>
             </td>
 EOT;
         } else {
@@ -197,7 +206,7 @@ EOT;
             $down = cpg_fetch_icon('down', 0); 
             echo <<<EOT
             <td width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=moved&amp;p={$thisplugin['plugin_id']}">{$down}</a>
+                <a href="pluginmgr.php?op=moved&amp;p={$thisplugin['plugin_id']}&amp;form_token={$form_token}&amp;timestamp={$timestamp}">{$down}</a>
             </td>
 EOT;
         } else {
@@ -208,7 +217,7 @@ EOT;
         $delete = cpg_fetch_icon('plugin_uninstall', 0);
         echo <<<EOT
             <td width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=uninstall&amp;p={$thisplugin['plugin_id']}" onclick="return {$confirm_function}('$safename')" title="{$lang_pluginmgr_php['uninstall']}">
+                <a href="pluginmgr.php?op=uninstall&amp;p={$thisplugin['plugin_id']}&amp;form_token={$form_token}&amp;timestamp={$timestamp}" onclick="return {$confirm_function}('$safename')" title="{$lang_pluginmgr_php['uninstall']}">
                     {$delete}
                 </a>
             </td>
@@ -241,6 +250,8 @@ echo <<<EOT
                             </td>
                             <td align="right">
                                     <input type="file" size="40" name="plugin" class="textinput" />
+                                    <input type="hidden" name="form_token" value="{$form_token}" />
+                                    <input type="hidden" name="timestamp" value="{$timestamp}" />
                                     <input type="submit" class="button" value="{$lang_pluginmgr_php['upload']}" />
                                     {$help_upload}
                             </td>
@@ -310,7 +321,7 @@ EOT;
             }
             // remove 'true ||' below to remove install button when plugin API is disabled
             $install_button = (true || ($CONFIG['enable_plugins'] == 1)) ? 
-                '<a href="pluginmgr.php?op=install&amp;p='.$path.'" title="' . $lang_pluginmgr_php['install'] . '">' . cpg_fetch_icon('plugin_install', 0) . '</a>'
+                '<a href="pluginmgr.php?op=install&amp;p='.$path.'&amp;form_token='.$form_token.'&amp;timestamp='.$timestamp.'" title="' . $lang_pluginmgr_php['install'] . '">' . cpg_fetch_icon('plugin_install', 0) . '</a>'
                 : cpg_fetch_icon('blank', 0);
             $delete = cpg_fetch_icon('delete', 0);
             echo <<<EOT
@@ -326,7 +337,7 @@ EOT;
                         {$install_button}
                     </td>
                     <td width="5%" align="center" valign="top">
-                        <a href="pluginmgr.php?op=delete&amp;p=$path" onclick="return confirmDel('$safename')" title="{$lang_common['delete']}">
+                        <a href="pluginmgr.php?op=delete&amp;p=$path&amp;form_token={$form_token}&amp;timestamp={$timestamp}" onclick="return confirmDel('$safename')" title="{$lang_common['delete']}">
                             {$delete}
                         </a>
                     </td>
@@ -358,6 +369,9 @@ $op = @$superCage->get->getAlpha('op');
 $p = @$superCage->get->getEscaped('p');
 switch ($op) {
     case 'uninstall':
+        if (!checkFormToken()) {
+            cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+        }
         $plugin_id = $p;
         if ($CONFIG['enable_plugins'] == 1) {
           if (!is_numeric($p)) {
@@ -384,6 +398,9 @@ switch ($op) {
         }
         break;
     case 'install':
+        if (!checkFormToken()) {
+            cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+        }
         if ($CONFIG['enable_plugins']) {
           $installed = CPGPluginAPI::install($p);
         } else {
@@ -391,6 +408,9 @@ switch ($op) {
         }
         break;
     case 'delete':
+        if (!checkFormToken()) {
+            cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+        }
         $path = $p;
         if (is_bool(strpos('/',$path))) {
             cpg_folder_file_delete('./plugins/'.$path);
@@ -400,6 +420,9 @@ switch ($op) {
         }
         break;
     case 'moveu':
+        if (!checkFormToken()) {
+            cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+        }
         $name = $installed_plugin['name'];
         unset($installed_plugin);
         unset($priority);
@@ -433,6 +456,9 @@ switch ($op) {
         }
         break;
     case 'moved':
+        if (!checkFormToken()) {
+            cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+        }
         unset($installed_plugin);
         unset($priority);
         $installed_count = 0;
@@ -471,6 +497,9 @@ switch ($op) {
         }
         break;
     case 'upload':
+        if (!checkFormToken()) {
+            cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+        }
         //Using getRaw() since we need the actual name of the file uploaded by the user
         if (is_uploaded_file($superCage->files->getRaw('plugin/tmp_name'))) {
             //$file =& $_FILES['plugin'];
