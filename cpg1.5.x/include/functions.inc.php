@@ -170,18 +170,20 @@ function cpg_db_connect()
  * @return
  **/
 
-function cpg_db_query($query, $link_id = 0)
+function cpg_db_query($query, $use_link_id = 0)
 {
     global $CONFIG, $query_stats, $queries;
 
-    $query_start = cpgGetMicroTime();
-
-    if ($link_id) {
-        $result = mysql_query($query, $link_id);
+    if ($use_link_id) {
+        $link_id = $use_link_id;
     } else {
-        $result = mysql_query($query, $CONFIG['LINK_ID']);
+        $link_id = $CONFIG['LINK_ID'];
     }
 
+    $query_start = cpgGetMicroTime();
+    
+    $result = mysql_query($query, $link_id);
+    
     $query_end = cpgGetMicroTime();
 
     if (!isset($CONFIG['debug_mode']) || $CONFIG['debug_mode'] == 1 || $CONFIG['debug_mode'] == 2) {
@@ -198,7 +200,7 @@ function cpg_db_query($query, $link_id = 0)
         $trace = debug_backtrace();
         $last = $trace[0];
         $localfile = str_replace(realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . '..') . DIRECTORY_SEPARATOR , '', $last['file']);
-        cpg_db_error("While executing query '$query' in $localfile on line {$last['line']}");
+        cpg_db_error("While executing query '$query' in $localfile on line {$last['line']}", $link_id);
     }
 
     return $result;
@@ -216,16 +218,16 @@ function cpg_db_query($query, $link_id = 0)
  * @return
  **/
 
-function cpg_db_error($the_error)
+function cpg_db_error($the_error, $link_id)
 {
     global $CONFIG, $lang_errors, $LINEBREAK;
 
-    log_write("$the_error the following error was encountered: $LINEBREAK" . mysql_error(), CPG_DATABASE_LOG);
+    log_write("$the_error the following error was encountered: $LINEBREAK" . mysql_error($link_id), CPG_DATABASE_LOG);
     
     if ($CONFIG['debug_mode'] === '0' || ($CONFIG['debug_mode'] === '2' && !GALLERY_ADMIN_MODE)) {
         cpg_die(CRITICAL_ERROR, $lang_errors['database_query'], __FILE__, __LINE__);
     } else {
-        $the_error .= $LINEBREAK . $LINEBREAK . 'mySQL error: ' . mysql_error() . $LINEBREAK;
+        $the_error .= $LINEBREAK . $LINEBREAK . 'mySQL error: ' . mysql_error($link_id) . $LINEBREAK;
         $out        = "<br />" . $lang_errors['database_query'] . ".<br /><br/>
                 <form name=\"mysql\" id=\"mysql\"><textarea rows=\"8\" cols=\"60\">" . htmlspecialchars($the_error) . "</textarea></form>";
         cpg_die(CRITICAL_ERROR, $out, __FILE__, __LINE__);
