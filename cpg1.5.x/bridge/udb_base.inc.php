@@ -729,7 +729,7 @@ class core_udb {
         $sql =  "SELECT {$this->field['user_id']} AS user_id, {$this->field['password']} AS pass_hash "
             . "FROM {$this->usertable} "
             . "WHERE {$this->field['user_id']} = '$user_id'";
-        $result = cpg_db_query($sql);
+        $result = cpg_db_query($sql, $this->link_id);
         if (mysql_num_rows($result)) {
             $row = cpg_db_fetch_row($result);
             return array('user_id' => $row['user_id'], 'pass_hash' => $row['pass_hash']);
