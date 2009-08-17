@@ -247,8 +247,8 @@ case 'comment':
 
     if (!USER_ID) { // Anonymous users, we need to use META refresh to save the cookie
 
-        // check that the username the anonymous user entered is not being used by a registered user
-        if ($cpg_udb->get_user_id($msg_author)) {
+        // check that the username the anonymous user entered (including prefix for anonymous comments authors) is not being used by a registered user 
+        if ($cpg_udb->get_user_id($CONFIG['comments_anon_pfx'].$msg_author)) {
             cpg_die(ERROR, $lang_db_input_php['com_author_error'], __FILE__, __LINE__);
         }
 
