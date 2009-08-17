@@ -2844,7 +2844,8 @@
     <permission>read</permission>
     <hash>35935c946944950fd6901c934fa67a46</hash>
   </element>
-  <element>docs/fr/install_screen.htm</fullpath>
+  <element>
+    <fullpath>docs/fr/install_screen.htm</fullpath>
     <version>1.5.2</version>
     <revision>6360</revision>
     <status>mandatory</status>
