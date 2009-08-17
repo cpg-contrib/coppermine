@@ -98,8 +98,8 @@ $lang_errors['access_none'] = 'Vous n\'êtes pas autorisé à voir les images.';
 $lang_errors['register_globals_title'] = 'Register Globals on!';// cpg1.5
 $lang_errors['register_globals_warning'] = 'Le paramétre PHP register_globals est activé (sur on) sur votre serveur, ce qui est une mauvaise idée en terme de sécurité. Il esr fortement recommandé de désactiver ce paramétre (mettre sur off).'; //cpg1.5
 
-$lang_bbcode_help_title = 'Aide BBcode';
-$lang_bbcode_help = 'Vous pouvez ajouter des liens cliquables et formater le texte de ce champ en utilisant les balises BBcode: <li>[b]Gras[/b] =&gt; <b>Gras</b></li><li>[i]Italique[/i] =&gt; <i>Italique</i></li><li>[url=http://votresite.com/]Texte du lien[/url] =&gt; <a href="http://votresite.com">Url Text</a></li><li>[email]Utilisateur@domaine.com[/email] =&gt; <a href="mailto:Utilisateur@domaine.com">Utilisateur@domaine.com</a></li><li>[color=red]Votre texte[/color] =&gt; <span style="color:red">Votre texte</span></li><li>[img]http://documentation.coppermine-gallery.net/images/browser.png[/img]] = <img src="docs/images/browser.png" border="0" alt="" /></li>';
+$lang_bbcode_help_title = 'Aide BBCode';
+$lang_bbcode_help = 'Vous pouvez ajouter des liens cliquables et formater le texte de ce champ en utilisant les balises BBCode: <li>[b]Gras[/b] =&gt; <b>Gras</b></li><li>[i]Italique[/i] =&gt; <i>Italique</i></li><li>[url=http://votresite.com/]Texte du lien[/url] =&gt; <a href="http://votresite.com">Url Text</a></li><li>[email]Utilisateur@domaine.com[/email] =&gt; <a href="mailto:Utilisateur@domaine.com">Utilisateur@domaine.com</a></li><li>[color=red]Votre texte[/color] =&gt; <span style="color:red">Votre texte</span></li><li>[img]http://documentation.coppermine-gallery.net/images/browser.png[/img]] = <img src="docs/images/browser.png" border="0" alt="" /></li>';
 
 $lang_common['yes'] = 'Oui'; // cpg1.5.x
 $lang_common['no'] = 'Non'; // cpg1.5.x
@@ -700,7 +700,7 @@ $lang_admin_php['theme'] =   'Thème'; // cpg1.5
 $lang_admin_php['custom_lnk_name'] =   'Nom du lien du menu personnalisé'; // cpg1.5
 $lang_admin_php['custom_lnk_url'] =   'URL du menu personnalisé'; // cpg1.5
 $lang_admin_php['enable_menu_icons'] = 'Activer les icones de menu'; // cpg1.5
-$lang_admin_php['show_bbcode_help'] =   'Afficher l\'aide pour le bbcode'; // cpg1.5
+$lang_admin_php['show_bbcode_help'] =   'Afficher l\'aide pour le BBCode'; // cpg1.5
 $lang_admin_php['vanity_block'] =   'Afficher les boutons indiquant le respect des standards XHTML et CSS pour les thèmes conformes'; // cpg1.5
 $lang_admin_php['display_social_bookmarks'] = 'Afficher les icônes des signets sociaux'; // cpg1.5
 $lang_admin_php['highlight_multiple'] = 'Pour sélectionner plusieurs lignes, maintenez la touche [Ctrl] appuyée'; // cpg1.5

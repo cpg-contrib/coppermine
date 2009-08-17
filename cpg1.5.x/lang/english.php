@@ -97,8 +97,8 @@ $lang_errors['access_none'] = 'You are not allowed to view any images.'; // cpg1
 $lang_errors['register_globals_title'] = 'Register Globals on!';// cpg1.5
 $lang_errors['register_globals_warning'] = 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off.'; //cpg1.5
 
-$lang_bbcode_help_title = 'bbcode help';
-$lang_bbcode_help = 'You can add clickable links and some formatting to this field by using bbcode tags: <li>[b]Bold[/b] =&gt; <strong>Bold</strong></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://documentation.coppermine-gallery.net/images/browser.png[/img] =&gt; <img src="docs/images/browser.png" border="0" alt="" /></li>';
+$lang_bbcode_help_title = 'BBCode help';
+$lang_bbcode_help = 'You can add clickable links and some formatting to this field by using BBCode tags: <li>[b]Bold[/b] =&gt; <strong>Bold</strong></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://documentation.coppermine-gallery.net/images/browser.png[/img] =&gt; <img src="docs/images/browser.png" border="0" alt="" /></li>';
 
 $lang_common['yes'] = 'Yes'; // cpg1.5
 $lang_common['no'] = 'No'; // cpg1.5
@@ -699,7 +699,7 @@ $lang_admin_php['theme'] = 'Theme'; // cpg1.5
 $lang_admin_php['custom_lnk_name'] = 'Custom menu link name'; // cpg1.5
 $lang_admin_php['custom_lnk_url'] = 'Custom menu link URL'; // cpg1.5
 $lang_admin_php['enable_menu_icons'] = 'Enable menu icons'; // cpg1.5
-$lang_admin_php['show_bbcode_help'] = 'Display bbcode help'; // cpg1.5
+$lang_admin_php['show_bbcode_help'] = 'Display BBCode help'; // cpg1.5
 $lang_admin_php['vanity_block'] = 'Show the vanity block on themes that are defined as XHTML and CSS compliant'; // cpg1.5
 $lang_admin_php['display_social_bookmarks'] = 'Display social bookmarks icons'; // cpg1.5
 $lang_admin_php['highlight_multiple'] = 'To highlight multiple lines, hold the [Ctrl]-key down'; // cpg1.5

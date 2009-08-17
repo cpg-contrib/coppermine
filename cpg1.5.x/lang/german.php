@@ -104,8 +104,8 @@ $lang_errors['access_none'] = 'Du bist nicht berechtigt, Bilder anzusehen.'; // 
 $lang_errors['register_globals_title'] = 'Register Globals on!';// cpg1.5
 $lang_errors['register_globals_warning'] = 'The PHP setting register_globals is enabled on your server, which is a bad idea in terms of security. It\'s strongly recommended to turn it off.'; //cpg1.5
 
-$lang_bbcode_help_title = 'Bulletin Board code Hilfe';
-$lang_bbcode_help = 'Du kannst klickbare Links und Formatierung in diesem Feld anwenden durch die Verwendung folgender bbcode-Befehle: <li>[b]Fett[/b] =&gt; <strong>Fett</strong></li><li>[i]Kursiv[/i] =&gt; <i>Kursiv</i></li><li>[url=http://deineseite.com/]Url Text[/url] =&gt; <a href="http://deineseite.com">UrlText</a></li><li>[email]benutzer@domain.com[/email] =&gt; <a href="mailto:benutzer@domain.com">benutzer@domain.com</a></li><li>[color=red]Beispieltext[/color] =&gt; <span style="color:red">Beispieltext</span></li><li>[img]http://documentation.coppermine-gallery.net/images/browser.png[/img] => <img src="docs/images/browser.png" border="0" alt="" width="19" height="18" /></li>';
+$lang_bbcode_help_title = 'BBCode-Hilfe';
+$lang_bbcode_help = 'Du kannst klickbare Links und Formatierung in diesem Feld anwenden durch die Verwendung folgender BBCode-Befehle: <li>[b]Fett[/b] =&gt; <strong>Fett</strong></li><li>[i]Kursiv[/i] =&gt; <i>Kursiv</i></li><li>[url=http://deineseite.com/]Url Text[/url] =&gt; <a href="http://deineseite.com">UrlText</a></li><li>[email]benutzer@domain.com[/email] =&gt; <a href="mailto:benutzer@domain.com">benutzer@domain.com</a></li><li>[color=red]Beispieltext[/color] =&gt; <span style="color:red">Beispieltext</span></li><li>[img]http://documentation.coppermine-gallery.net/images/browser.png[/img] => <img src="docs/images/browser.png" border="0" alt="" width="19" height="18" /></li>';
 
 $lang_common['yes'] = 'Ja'; // cpg1.5
 $lang_common['no'] = 'Nein'; // cpg1.5
@@ -723,7 +723,7 @@ $lang_admin_php['theme'] = 'Design (Theme)'; // cpg1.5
 $lang_admin_php['custom_lnk_name'] = 'Name eines benutzerdefinierten Menü-Eintrags'; // cpg1.5
 $lang_admin_php['custom_lnk_url'] = 'URL eines benutzerdefinierten Menü-Eintrags'; // cpg1.5
 $lang_admin_php['enable_menu_icons'] = 'Menü-Icons aktivieren'; // cpg1.5
-$lang_admin_php['show_bbcode_help'] = 'bcode-Hilfe anzeigen'; // cpg1.5
+$lang_admin_php['show_bbcode_help'] = 'BBCode-Hilfe anzeigen'; // cpg1.5
 $lang_admin_php['vanity_block'] = 'Vanity Block in Designs anzeigen, die als XHTML und CSS konform definiert sind?'; // cpg1.5
 $lang_admin_php['display_social_bookmarks'] = 'Social-Bookmarks anzeigen'; // cpg1.5
 $lang_admin_php['highlight_multiple'] = 'Um mehrere Einträge zu selektieren, halte die [Strg]-Taste gedrückt'; // cpg1.5
