@@ -3374,7 +3374,19 @@
     <hash>0a72370e7772ccf1338837a08b59a357</hash>
   </element>
   <element>
+    <fullpath>docs/images/license/gpl.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>0a72370e7772ccf1338837a08b59a357</hash>
+  </element>
+  <element>
     <fullpath>docs/images/license/os.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>9bcd576e769e8b4ff076c40b45235036</hash>
+  </element>
+  <element>
+    <fullpath>docs/images/license/osi.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>9bcd576e769e8b4ff076c40b45235036</hash>

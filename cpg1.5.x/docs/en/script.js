@@ -124,6 +124,7 @@ doc_toc += '              <li><a href="copyrights.htm#copyright_additional_prese
 doc_toc += '              <li><a href="copyrights.htm#copyright_additional_marking">Marking of modified versions</a></li>\n';
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
+doc_toc += '          <li><a href="copyrights.htm#copyright_freedom">Freedom</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="known_issues.htm">Known issues</a></li>\n';
