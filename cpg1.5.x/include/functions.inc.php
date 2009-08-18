@@ -1268,6 +1268,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         $select_column_list[] = 'msg_body';
         $select_column_list[] = 'author_id';
         $select_column_list[] = 'msg_author';
+		$select_column_list[] = 'msg_id'; // needed for get_pic_pos()
 
         $select_columns = implode(', ', $select_column_list);
 
@@ -1897,13 +1898,15 @@ function get_pic_pos($album, $pid)
     );
 
     $sort_code  = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
-    
-    if (isset($sort_array[$sort_code])) {
-        $comp_order = $sort_array[$sort_code];
-    } else {
-        return false;   
+
+    if (is_numeric($album)) {
+		if (isset($sort_array[$sort_code])) {
+			$comp_order = $sort_array[$sort_code];
+		} else {
+			return false;   
+		}
     }
-    
+
     if (count($FORBIDDEN_SET_DATA) > 0) {
         $forbidden_set_string = ' AND aid NOT IN (' . implode(', ', $FORBIDDEN_SET_DATA) . ')';
     } else {
@@ -1976,8 +1979,64 @@ function get_pic_pos($album, $pid)
         return $pos;
         break;
 
-    default : // Invalid meta album
-        return FALSE;
+    case 'topn': // Most viewed files
+
+        $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
+            INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+            $RESTRICTEDWHERE
+            AND approved = 'YES'
+            AND hits > (SELECT hits FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = $pid)";
+
+            $result = cpg_db_query($query);
+
+            list($pos) = mysql_fetch_row($result);
+            mysql_free_result($result);
+
+        return $pos;
+        break;
+
+    case 'lasthits': // Last viewed files (most recently-viewed files)
+
+        $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
+            INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+            $RESTRICTEDWHERE
+            AND approved = 'YES'
+            AND mtime > (SELECT mtime FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = $pid)";
+
+            $result = cpg_db_query($query);
+
+            list($pos) = mysql_fetch_row($result);
+            mysql_free_result($result);
+
+        return $pos;
+        break;
+
+    case 'lastcom': // Latest comments
+
+	$superCage = Inspekt::makeSuperCage();
+
+	$query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
+            INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+			INNER JOIN {$CONFIG['TABLE_COMMENTS']} AS c ON c.pid = p.pid
+            $RESTRICTEDWHERE
+            AND approved = 'YES'
+            AND msg_id > ".$superCage->get->getInt('msg_id');
+
+            $result = cpg_db_query($query);
+
+            list($pos) = mysql_fetch_row($result);
+            mysql_free_result($result);
+
+        return $pos;
+        break;
+
+    default : // Invalid/custom meta album
+		$pos = CPGPluginAPI::filter('get_pic_pos_custom_meta_album', $album);
+		if (is_numeric($pos)) {
+			return $pos; // Custom meta album
+		} else {
+			return FALSE; // Invalid meta album
+		}
 
     } // switch
 } // function get_pic_pos
@@ -2587,6 +2646,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
             $thumb_list[$i]['filepath']     = $row['filepath'];
             $thumb_list[$i]['filename']     = $row['filename'];
             $thumb_list[$i]['filesize']     = $row['filesize'];
+			$thumb_list[$i]['msg_id']       = $row['msg_id']; // needed for get_pic_pos()
         }
 
         // Add a hit to album counter if it is a numeric album
