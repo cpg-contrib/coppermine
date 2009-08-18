@@ -1990,7 +1990,8 @@ function get_pic_pos($album, $pid)
             INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
             $RESTRICTEDWHERE
             AND approved = 'YES'
-            AND hits > $hits";
+            AND hits > $hits
+			OR hits = $hits AND pid > $pid";
 
             $result = cpg_db_query($query);
 
@@ -2011,7 +2012,8 @@ function get_pic_pos($album, $pid)
             INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
             $RESTRICTEDWHERE
             AND approved = 'YES'
-            AND mtime >= '$mtime'";
+            AND mtime > '$mtime'
+			OR mtime = '$mtime' AND pid > $pid";
 
             $result = cpg_db_query($query);
 
