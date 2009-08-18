@@ -115,7 +115,7 @@ Correlation between the actions that the unbridged coppermine users have perform
 
 <a name="integrating_backup_start"></a><h3>Backup<a href="#integrating_backup_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p class="cpg_message_info">It is very advisable to <a href="export.htm#backup">backup</a> both your coppermine database and your files before enabling bridging, so you can safely go back if the integration fails.</p>
-<p>In fact you're encouraged to backup your database on a regular basis\, and especially before applying code changes.</p>
+<p>In fact you're encouraged to backup your database on a regular basis, and especially before applying code changes.</p>
 <p>However, don't be afraid that bridging might cause your bridging app to malfunction: coppermine doesn't harm your forum (or the app you bridge with) at all. When enabling bridging, coppermine doesn't run write/alter queries against the bridging app's database tables nor does coppermine modify any of the files of the bridging app. The worst thing that may happen if something goes wrong is your coppermine gallery becoming inaccessible. It is completely impossible that coppermine bridging will do harm to your bridging application.</p>
 <a name="integrating_backup_end"></a>
 
@@ -228,7 +228,7 @@ If you have a custom-made bridge file, just copy that bridge file into coppermin
 <ul><li><a name="bridge_manager_path_cookie_prefix"></a><h5>Cookie prefix<a href="#bridge_manager_path_cookie_prefix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
 <p>This has to be the cookie name of the application you bridge with. Do <strong>not</strong> enter the cookie prefix of your coppermine gallery here! You can not make this setting up - you have to look it up in the documentation or settings that come with the application you're going to bridge with.</p>
 
-<p class="cpg_example">The popular BBS application "phpBB" is using the default cookie prefix <tt class="code">phpbb2mysql</tt> - this can be changed by the forum administrator, so if you're not sure what your cookie prefix is, go to the config panel of the app you bridge with and look the cookie prefix up.</p>
+<p class="cpg_example">The popular BBS application "phpBB2" is using the default cookie prefix <tt class="code">phpbb2mysql</tt> - this can be changed by the forum administrator, so if you're not sure what your cookie prefix is, go to the config panel of the app you bridge with and look the cookie prefix up.</p>
 <p>The cookie prefix must not be confused with the cookie path - they are entirely different animals. The cookie prefix (in some applications it is being called "cookie name" as well) is something on application level - something the people who designed your bridge app have come up with.</p>
 <a name="bridge_manager_path_cookie_prefix_end"></a></li></ul>
 <a name="bridge_manager_path_end"></a>
@@ -318,7 +318,8 @@ The reason for our reluctance to allow bridging to interfere with the bridging a
 <a name="integrating_individual_bridge_issues_start"></a><h2>Individual bridge issues<a href="#integrating_individual_bridge_issues_start"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>There are some additional remarks that apply to particular bridge files:</p>
 <ul>
-	<li><strong>phpBB3</strong><br />
+	<li>
+		<a name="integrating_individual_bridge_issues_phpbb3"></a><h3>phpBB3<a href="#integrating_individual_bridge_issues_phpbb3"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 		Logout redirection: to accomplish logout redirection when using the phpBB3 bridge file, you need to edit the phpbb file <tt class="code">ucp.php</tt>:<br />
 		Find<pre class="code">meta_refresh(3, append_sid("{$phpbb_root_path}index.$phpEx"));
 $message = $message . '&lt;br /&gt;&lt;br /&gt;' . sprintf($user->lang['RETURN_INDEX'], '&lt;a href="' . append_sid("{$phpbb_root_path}index.$phpEx") . '"&gt;', '&lt;/a&gt; ');</pre>and replace with<pre class?"code">meta_refresh(3, request_var('redirect', append_sid("{$phpbb_root_path}index.$phpEx")));
@@ -338,14 +339,19 @@ http://yourdomain.com/phpbb3/adm/index.php?i=groups&sid=[randomnumbersandletters
 
 In our example above, the group's ID is 64;</pre>
 <br /></li>
-	<li><strong>PunBB1.1.5</strong><br />For login/logout redirection:
+	<li>
+		<a name="integrating_individual_bridge_issues_punbb115"></a><h3>PunBB1.1.5<a href="#integrating_individual_bridge_issues_punbb115"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		For login/logout redirection:<br />
 Edit punbb's <tt class="code">login.php</tt>, find: <pre class="code">$page_title = pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang_common['Login'];</pre>and add before it<pre class="code"> $redirect_url = (isset($_GET['redir'])) ? $_GET['redir'] : $redirect_url;</pre>
 Then find: <pre class="code">redirect('index.php', $lang_login['Logout redirect']);</pre>and change to: <pre class="code">redirect(isset($_GET['redir']) ? $_GET['redir'] : 'index.php', $lang_login['Logout redirect']);</pre>
 	</li>
-	<li><strong>PunBB1.2</strong><br />For login/logout redirection:<br />
+	<li>
+		<a name="integrating_individual_bridge_issues_punbb12"></a><h3>PunBB1.2<a href="#integrating_individual_bridge_issues_punbb12"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		For login/logout redirection:<br />
 Edit punbb's <tt class="code">login.php</tt> and find: <pre class="code">$page_title = pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang_common['Login'];</pre>and add before it<pre class="code">$redirect_url = (isset($_GET['redir'])) ? $_GET['redir'] : $redirect_url;</pre>Then find<pre class="code">redirect('index.php', $lang_login['Logout redirect']);</pre>and change to<pre class="code">redirect(isset($_GET['redir']) ? $_GET['redir'] : 'index.php', $lang_login['Logout redirect']);</pre>
 	</li>
-	<li><strong>XMB</strong><br />
+	<li>
+		<a name="integrating_individual_bridge_issues_xmb"></a><h3>XMB<a href="#integrating_individual_bridge_issues_xmb"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 Cookie fix (if your board is not installed to site root): edit XMB's file <tt class="code">functions.php</tt>, find the function definition for <tt class="code">put_cookie</tt> (c. line 1414) and add<pre class="code">$path = '/';</pre>just inside the top of the function
 	</li>
 </ul>
