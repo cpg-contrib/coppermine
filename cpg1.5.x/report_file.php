@@ -72,7 +72,7 @@ $sender_email_warning = '';
 $form_action="$CPG_PHP_SELF?pid=$pid";
 
 // Get picture thumbnail url
-$result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $FORBIDDEN_SET");
+$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} p WHERE pid='$pid' $FORBIDDEN_SET");
 if (!mysql_num_rows($result)) {
     cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 }
