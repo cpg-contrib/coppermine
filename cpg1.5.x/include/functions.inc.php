@@ -1981,11 +1981,16 @@ function get_pic_pos($album, $pid)
 
     case 'topn': // Most viewed files
 
+		$query = "SELECT hits FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = $pid";
+		$result = cpg_db_query($query);
+		$hits = mysql_result($result, 0);
+		mysql_free_result($result);
+
         $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
             INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
             $RESTRICTEDWHERE
             AND approved = 'YES'
-            AND hits > (SELECT hits FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = $pid)";
+            AND hits > $hits";
 
             $result = cpg_db_query($query);
 
@@ -1997,11 +2002,16 @@ function get_pic_pos($album, $pid)
 
     case 'lasthits': // Last viewed files (most recently-viewed files)
 
+		$query = "SELECT mtime FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = $pid";
+		$result = cpg_db_query($query);
+		$mtime = mysql_result($result, 0);
+		mysql_free_result($result);
+
         $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
             INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
             $RESTRICTEDWHERE
             AND approved = 'YES'
-            AND mtime > (SELECT mtime FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = $pid)";
+            AND mtime >= '$mtime'";
 
             $result = cpg_db_query($query);
 
@@ -2013,9 +2023,9 @@ function get_pic_pos($album, $pid)
 
     case 'lastcom': // Latest comments
 
-	$superCage = Inspekt::makeSuperCage();
+		$superCage = Inspekt::makeSuperCage();
 
-	$query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
+		$query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
             INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
 			INNER JOIN {$CONFIG['TABLE_COMMENTS']} AS c ON c.pid = p.pid
             $RESTRICTEDWHERE
@@ -2031,6 +2041,7 @@ function get_pic_pos($album, $pid)
         break;
 
     default : // Invalid/custom meta album
+
 		$pos = CPGPluginAPI::filter('get_pic_pos_custom_meta_album', $album);
 		if (is_numeric($pos)) {
 			return $pos; // Custom meta album
