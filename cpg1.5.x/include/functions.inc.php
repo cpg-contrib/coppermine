@@ -1329,6 +1329,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         $select_column_list[] = 'msg_body';
         $select_column_list[] = 'author_id';
         $select_column_list[] = 'msg_author';
+        $select_column_list[] = 'msg_id'; // needed for get_pic_pos()
 
         $select_columns = implode(', ', $select_column_list);
 
@@ -1983,7 +1984,31 @@ function get_pic_pos($album, $pid)
         return $pos;
         break;
 
-    // case 'lastcomby': // Latest comments by a specific user
+    case 'lastcomby': // Latest comments by a specific user
+
+        if (isset($USER['uid'])) {
+            $uid = (int) $USER['uid'];
+        } else {
+            $uid = -1;
+        }
+
+        $superCage = Inspekt::makeSuperCage();
+
+        $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
+            INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
+            INNER JOIN {$CONFIG['TABLE_COMMENTS']} AS c ON c.pid = p.pid
+            $RESTRICTEDWHERE
+            AND approved = 'YES'
+            AND author_id = $uid
+            AND msg_id > ".$superCage->get->getInt('msg_id');
+
+            $result = cpg_db_query($query);
+
+            list($pos) = mysql_fetch_row($result);
+            mysql_free_result($result);
+
+        return $pos;
+        break;
 
     case 'lastup': // Latest (most recent) uploads
 
