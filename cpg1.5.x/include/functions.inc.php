@@ -1974,6 +1974,7 @@ function get_pic_pos($album, $pid)
             INNER JOIN {$CONFIG['TABLE_COMMENTS']} AS c ON c.pid = p.pid
             $RESTRICTEDWHERE
             AND approved = 'YES'
+            AND approval = 'YES'
             AND msg_id > ".$superCage->get->getInt('msg_id');
 
             $result = cpg_db_query($query);
@@ -1999,6 +2000,7 @@ function get_pic_pos($album, $pid)
             INNER JOIN {$CONFIG['TABLE_COMMENTS']} AS c ON c.pid = p.pid
             $RESTRICTEDWHERE
             AND approved = 'YES'
+            AND approval = 'YES'
             AND author_id = $uid
             AND msg_id > ".$superCage->get->getInt('msg_id');
 
@@ -3040,6 +3042,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
             $thumb_list[$i]['image']      = '<img src="' . $pic_url . '" class="strip_image" border="0" alt="' . $row['filename'] . '" title="' . $pic_title . '" />';
             $thumb_list[$i]['admin_menu'] = '';
             $thumb_list[$i]['pid']        = $row['pid'];
+            $thumb_list[$i]['msg_id']     = $row['msg_id']; // needed for get_pic_pos()
 
             $target = "displayimage.php?album=$album$cat_link$date_link&amp;pid={$row['pid']}$uid_link";
         }
@@ -6083,6 +6086,38 @@ function cpg_fill_string_array_with_spaces($table, $separator = '|', $align = 'l
         }
     }
     return $return;
+}
+
+
+function cpg_get_comment_page_number($msg_id) {
+    global $CONFIG;
+
+    $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id = '$msg_id'");
+    list($pid) = mysql_fetch_row($result);
+
+    if (!$pid) {
+        return false;
+    }
+
+    $result = cpg_db_query("SELECT COUNT(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'");
+    list($num) = mysql_fetch_row($result);
+    $page_count = ceil($num / $CONFIG['comments_per_page']);
+    
+    $comment_sort_order = ($CONFIG['comments_sort_descending'] == 1) ? 'ASC' : 'DESC'; // we need to count reversed
+    $result = cpg_db_query("SELECT msg_id FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order");
+    $i = 0;
+    $page = $page_count + 1;
+    while ($row = mysql_fetch_assoc($result)) {
+        if (($i++ % $CONFIG['comments_per_page']) == 0) {
+            $page--;
+        }
+        if ($row['msg_id'] == $msg_id) {
+            break;
+        }
+    }
+    mysql_free_result($result);
+
+    return $page;
 }
 
 ?>

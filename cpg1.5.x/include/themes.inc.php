@@ -2903,8 +2903,10 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     } else {
                        $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                     }
-                } elseif ($aid == 'lastcom' || $aid == 'lastcomby') { // needed for get_pic_pos()
-                    $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link&amp;msg_id={$thumb['msg_id']}#comment{$thumb['msg_id']}";
+                } elseif ($aid == 'lastcom' || $aid == 'lastcomby') {
+                    $page = cpg_get_comment_page_number($thumb['msg_id']);
+                    $page = (is_numeric($page)) ? "&amp;page=$page" : '';
+                    $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link&amp;msg_id={$thumb['msg_id']}$page#comment{$thumb['msg_id']}";
                 } else {
                     $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
                 }
@@ -3011,6 +3013,11 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 } else {
                     $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                 }
+            }
+            if ($aid == 'lastcom' || $aid == 'lastcomby') {
+                $page = cpg_get_comment_page_number($thumb['msg_id']);
+                $page = (is_numeric($page)) ? "&amp;page=$page" : '';
+                $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link&amp;msg_id={$thumb['msg_id']}$page#comment{$thumb['msg_id']}";
             } else {
                 $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link#top_display_media";
             }
@@ -3442,7 +3449,13 @@ function theme_html_img_nav_menu() {
     if ($pos > 0) {
         $prev = $pos - 1;
         //$prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev$uid_link";// Abbas - added pid in URL instead of pos
-        $prev_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link#top_display_media";
+        if ($album == 'lastcom' || $album == 'lastcomby') {
+            $page = cpg_get_comment_page_number($pic_data[$prev]['msg_id']);
+            $page = (is_numeric($page)) ? "&amp;page=$page" : '';
+            $prev_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link&amp;msg_id={$pic_data[$prev]['msg_id']}$page#comment{$pic_data[$prev]['msg_id']}";
+        } else {
+            $prev_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link#top_display_media";
+        }
         $prev_title = $lang_img_nav_bar['prev_title'];
         $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />" . $LINEBREAK;
         $prev_image = (($lang_text_dir == 'ltr') ? 'prev.png' : 'next.png');
@@ -3456,7 +3469,13 @@ function theme_html_img_nav_menu() {
     if ($pos < ($pic_count -1)) {
         $next = $pos + 1;
         //$next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next$uid_link";// Abbas - added pid in URL instead of pos
-        $next_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link#top_display_media";
+        if ($album == 'lastcom' || $album == 'lastcomby') {
+            $page = cpg_get_comment_page_number($pic_data[$next]['msg_id']);
+            $page = (is_numeric($page)) ? "&amp;page=$page" : '';
+            $next_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link&amp;msg_id={$pic_data[$next]['msg_id']}$page#comment{$pic_data[$next]['msg_id']}";
+        } else {
+            $next_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link#top_display_media";
+        }
         $next_title = $lang_img_nav_bar['next_title'];
         $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>" . $LINEBREAK;
         $next_image = (($lang_text_dir == 'ltr') ? 'next.png' : 'prev.png');
@@ -3490,7 +3509,8 @@ function theme_html_img_nav_menu() {
     $thumb_tgt = "thumbnails.php?album=$album$cat_link$date_link&amp;page=$page$uid_link";
     $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>" . $LINEBREAK;
 
-    $slideshow_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'].'#top_display_media';
+    $msg_id = ($album == 'lastcom' || $album == 'lastcomby') ? "&amp;msg_id={$pic_data[$next]['msg_id']}" : ''; // needed when viewing slideshow of meta albums lastcom/lastcomby
+    $slideshow_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link$uid_link&amp;pid=$pid$msg_id&amp;slideshow=".$CONFIG['slideshow_interval'].'#top_display_media';
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
 
