@@ -2164,8 +2164,7 @@ function get_pic_pos($album, $pid)
 
 
     default : // Invalid/custom meta album
-
-        $pos = CPGPluginAPI::filter('get_pic_pos_custom_meta_album', $album);
+        $pos = CPGPluginAPI::filter('meta_album_get_pic_pos', $album);
         if (is_numeric($pos)) {
             return $pos; // Custom meta album
         } else {
