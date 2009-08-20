@@ -1478,7 +1478,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $RESTRICTEDWHERE
                 AND approved = 'YES'
                 AND hits > 0
-                ORDER BY hits DESC, pid
+                ORDER BY hits DESC, pid ASC
                 $limit";
 
         $result = cpg_db_query($query);
@@ -1572,7 +1572,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $RESTRICTEDWHERE
                 AND approved = 'YES'
                 AND hits > 0
-                ORDER BY mtime DESC
+                ORDER BY mtime DESC, pid ASC
                 $limit";
 
         $result = cpg_db_query($query);
@@ -1814,6 +1814,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                             $RESTRICTEDWHERE
                             AND approved = 'YES'
                             AND pid IN ($favs)
+                            ORDER BY pid ASC
                             $limit";
 
             $result = cpg_db_query($query);
@@ -1999,9 +2000,9 @@ function get_pic_pos($album, $pid)
             INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
             INNER JOIN {$CONFIG['TABLE_COMMENTS']} AS c ON c.pid = p.pid
             $RESTRICTEDWHERE
+            AND author_id = $uid
             AND approved = 'YES'
             AND approval = 'YES'
-            AND author_id = $uid
             AND msg_id > ".$superCage->get->getInt('msg_id');
 
             $result = cpg_db_query($query);
@@ -2039,8 +2040,8 @@ function get_pic_pos($album, $pid)
         $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
             INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
             $RESTRICTEDWHERE
-            AND approved = 'YES'
             AND p.owner_id = $uid
+            AND approved = 'YES'
             AND pid > $pid";
 
             $result = cpg_db_query($query);
@@ -2063,7 +2064,7 @@ function get_pic_pos($album, $pid)
             $RESTRICTEDWHERE
             AND approved = 'YES'
             AND hits > $hits
-            OR hits = $hits AND pid > $pid";
+            OR hits = $hits AND pid < $pid";
 
             $result = cpg_db_query($query);
 
@@ -2084,7 +2085,6 @@ function get_pic_pos($album, $pid)
             INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
             $RESTRICTEDWHERE
             AND approved = 'YES'
-            AND p.votes >= '{$CONFIG['min_votes_for_rating']}'
             AND pic_rating > $pic_rating
             OR pic_rating = $pic_rating AND p.votes > $votes
             OR pic_rating = $pic_rating AND p.votes = $votes AND pid > $pid";
@@ -2109,7 +2109,7 @@ function get_pic_pos($album, $pid)
             $RESTRICTEDWHERE
             AND approved = 'YES'
             AND mtime > '$mtime'
-            OR mtime = '$mtime' AND pid > $pid";
+            OR mtime = '$mtime' AND pid < $pid";
 
             $result = cpg_db_query($query);
 
@@ -2130,8 +2130,8 @@ function get_pic_pos($album, $pid)
             INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
             $RESTRICTEDWHERE
             AND approved = 'YES'
-            AND pid < $pid
-            AND pid IN ($favs)";
+            AND pid IN ($favs)
+            AND pid < $pid";
 
             $result = cpg_db_query($query);
 
@@ -2151,8 +2151,8 @@ function get_pic_pos($album, $pid)
             INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
             $RESTRICTEDWHERE
             AND approved = 'YES'
-            AND pid < $pid
-            AND substring(from_unixtime(ctime),1,10) = '" . substr($date, 0, 10) . "'";
+            AND substring(from_unixtime(ctime),1,10) = '" . substr($date, 0, 10) . "'
+            AND pid < $pid";
 
             $result = cpg_db_query($query);
 
