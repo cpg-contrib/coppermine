@@ -2879,26 +2879,6 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     '{CAPTION}'    => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu'],
                 );
-            } elseif ($aid == 'random') {
-                // determine if thumbnail link targets should open in a pop-up
-                if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
-                    if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
-                       $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
-                    } elseif (USER_ID && USER_ACCESS_LEVEL <= 2) {
-                        $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['access_intermediate_only'],'','','','').'\');';
-                    } else {
-                      $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
-                    }
-                } else {
-                    $target = "displayimage.php?pid={$thumb['pid']}$uid_link";
-                }
-                $params = array(
-                    '{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}'   => $target,
-                    '{THUMB}'      => $thumb['image'],
-                    '{CAPTION}'    => $thumb['caption'],
-                    '{ADMIN_MENU}' => $thumb['admin_menu'],
-                );
             } else {
                 // determine if thumbnail link targets should open in a pop-up
                 if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
@@ -2909,6 +2889,8 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     } else {
                        $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                     }
+                } elseif ($aid == 'random') {
+                    $target = "displayimage.php?pid={$thumb['pid']}$uid_link";
                 } elseif ($aid == 'lastcom' || $aid == 'lastcomby') {
                     $page = cpg_get_comment_page_number($thumb['msg_id']);
                     $page = (is_numeric($page)) ? "&amp;page=$page" : '';
@@ -3019,8 +3001,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 } else {
                     $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                 }
-            }
-            if ($aid == 'lastcom' || $aid == 'lastcomby') {
+            } elseif ($aid == 'lastcom' || $aid == 'lastcomby') {
                 $page = cpg_get_comment_page_number($thumb['msg_id']);
                 $page = (is_numeric($page)) ? "&amp;page=$page" : '';
                 $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link&amp;msg_id={$thumb['msg_id']}$page#comment{$thumb['msg_id']}";
