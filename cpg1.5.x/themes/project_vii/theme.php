@@ -137,6 +137,12 @@ function theme_javascript_head()
 
     // Check if we have any js includes
     if (isset($JS['includes']) && count($JS['includes'])) {
+    	// Bring the jquery core library to the very top of the list 
+    	if (in_array('js/jquery-1.3.2.js', $JS['includes']) == TRUE) {
+    		$key = array_search('js/jquery-1.3.2.js', $JS['includes']);
+    		unset($JS['includes'][$key]);
+    		array_unshift($JS['includes'], 'js/jquery-1.3.2.js');
+    	}
         // Include all the file which were set using js_include() function
         foreach ($JS['includes'] as $js_file) {
             $return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . $LINEBREAK;

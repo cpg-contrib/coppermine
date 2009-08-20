@@ -5056,7 +5056,6 @@ function set_js_var($var, $val)
     $JS['vars'][$var] = $val;
 } // function set_js_var
 
-
 /**
  * Function to convert php array to json
  *
