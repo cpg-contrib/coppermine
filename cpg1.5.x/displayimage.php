@@ -367,25 +367,9 @@ if (!$superCage->get->keyExists('fullsize') && ($pos < 0 || $pid > 0)) {
         $end = get_pic_data($album, $pic_count, $album_name, $pic_count - 1, 1, false, 'pidonly');
         $pic_data[$pic_count - 1] = $end[0];
     }
-    
-} elseif (isset($pos) && is_numeric($pos)) {
-
-    //$pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
-    //We must get all the data here as well, otherwise the prev/next breaks.
-    $pic_data = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
-
-    if ($pic_count == 0) {
-        cpg_die(INFORMATION, $lang_errors['no_img_to_display'], __FILE__, __LINE__);
-    } elseif (count($pic_data) == 0 && $pos >= $pic_count) {
-        $pos = $pic_count - 1;
-        $human_pos = $pos + 1;
-        $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
-    }
-    
-    $CURRENT_PIC_DATA = $pic_data[$pos];
 }
 
-if (!$superCage->get->keyExists('fullsize') && !count($CURRENT_PIC_DATA)) {
+if (!$superCage->get->keyExists('fullsize') && !$superCage->get->keyExists('ajax_show') && !count($CURRENT_PIC_DATA)) {
     cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 }
 

@@ -3127,16 +3127,14 @@ function& display_slideshow($pos, $ajax_show = 0)
     $i = 0;
     $j = 0;
 
-    /** calculate total amount of pic a perticular album */
-    if ($ajax_show == 0) {
-        $pic_data   = get_pic_data($album, $pic_count, $album_name, -1, -1, false);
-        $Pic_length = count($pic_data);
-        set_js_var('Pic_count', $Pic_length);
-    }
-
     /** get the pic details by querying database*/
     $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
 
+    /** calculate total amount of pic a perticular album */
+    if ($ajax_show == 0) {
+        set_js_var('Pic_count', $pic_count);
+    }
+    
     foreach ($pic_data as $picture) {
 
         if ($CONFIG['thumb_use'] == 'ht' && $picture['pheight'] > $CONFIG['picture_width']) { // The wierd comparision is because only picture_width is stored
