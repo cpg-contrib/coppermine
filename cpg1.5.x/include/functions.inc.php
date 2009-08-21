@@ -2119,7 +2119,20 @@ function get_pic_pos($album, $pid)
         return $pos;
         break;
 
-    // case 'search': // Search results
+    case 'search': // Search results
+        $superCage = Inspekt::makeSuperCage();
+
+        if (isset($USER['search']['search'])) {
+            $search_string = $USER['search']['search'];
+        } else {
+            $search_string = '';
+        }
+
+        $get_pic_pos = true;
+        include('include/search.inc.php');
+
+        return $pos;
+        break;
 
     case 'favpics': // Favorite Files
 

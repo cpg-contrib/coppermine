@@ -25,7 +25,7 @@ $multibyte_charset = 'utf-8, big5, shift_jis, euc-kr, gb2312';
 
 $charset = $CONFIG['charset'] == 'language file' ? $GLOBALS['lang_charset'] : $CONFIG['charset'];
 
-$sort_array = array('na' => 'filename ASC', 'nd' => 'filename DESC', 'ta'=>'title ASC', 'td'=>'title DESC', 'da' => 'pid ASC', 'dd' => 'pid DESC', 'pa' => 'position ASC', 'pd' => 'position DESC');
+$sort_array = array('na' => 'filename ASC , pid ASC', 'nd' => 'filename DESC , pid ASC', 'ta'=>'title ASC , pid ASC', 'td'=>'title DESC , pid ASC', 'da' => 'pid ASC', 'dd' => 'pid DESC', 'pa' => 'position ASC , pid ASC', 'pd' => 'position DESC , pid ASC');
 $sort_code = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
 $sort_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_array[$CONFIG['default_sort_order']];
 
@@ -216,24 +216,59 @@ if ($search_string && isset($search_params['params'])) {
         if (!$other) {
             $sql = '0';
         }
-                                              
-                                              
-        $query = "SELECT * FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE " . $sql;
 
-        $temp = str_replace('SELECT *', 'SELECT COUNT(*)', $query);
-        $result = cpg_db_query($temp);
-        $row = mysql_fetch_row($result);
-        $count = $row[0];
 
-        $query .= " ORDER BY $sort_order $limit";
-        $result = cpg_db_query($query);
-        $rowset = cpg_db_fetch_rowset($result);
-        mysql_free_result($result);
+        if (defined('DISPLAYIMAGE_PHP') && $get_pic_pos == true) {
 
-        if ($set_caption) {
-            build_caption($rowset);
+            $sort_order_parts = explode(" ", $sort_order);
+            $criteria = $sort_order_parts[0];
+            $direction = $sort_order_parts[1];
+
+            $pid = $superCage->get->getInt('pid');
+
+            $query = "SELECT $criteria FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = $pid";
+            $result = cpg_db_query($query);
+            $criteria_pid = mysql_result($result, 0);
+            mysql_free_result($result);
+            
+            if ($direction == "ASC") {
+                $direction = "<";
+            } elseif ($direction == "DESC") {
+                $direction = ">";
+            } else {
+                $direction = "";
+            }
+
+            $sort_order = "$criteria $direction $criteria_pid OR $criteria = $criteria_pid AND pid < $pid";
+
+            $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']}
+                WHERE $sql
+                AND $sort_order";
+
+                $result = cpg_db_query($query);
+
+                list($pos) = mysql_fetch_row($result);
+                mysql_free_result($result);
+
+        } else {
+
+            $query = "SELECT * FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE " . $sql;
+
+            $temp = str_replace('SELECT *', 'SELECT COUNT(*)', $query);
+            $result = cpg_db_query($temp);
+            $row = mysql_fetch_row($result);
+            $count = $row[0];
+
+            $query .= " ORDER BY $sort_order $limit";
+            $result = cpg_db_query($query);
+            $rowset = cpg_db_fetch_rowset($result);
+            mysql_free_result($result);
+
+            if ($set_caption) {
+                build_caption($rowset);
+            }
+
         }
-
 
 }
 ?>

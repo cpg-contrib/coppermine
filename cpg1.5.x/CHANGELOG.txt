@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-08-21 [B] Fixed issue when viewing pictures of meta albums (thread 61265) {eenemeenemuu}
 2009-08-20 [B] Added function to bring jquery library to top of JavaScript includes list {GauGau}
 2009-08-14 [S] Added form token to plug-in manager {eenemeenemuu}
 2009-08-12 [O] Disallowed zero as possible value for number of login attempts option {GauGau}
