@@ -580,19 +580,19 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
 
             if (count($cat_data)) {
                 $statistics = strtr($lang_list_categories['stat1'], array(
-                    '[pictures]' => '<strong>' . $picture_count . '</strong>',
-                    '[albums]'   => '<strong>' . $album_count . '</strong>',
-                    '[cat]'      => '<strong>' . $cat_count . '</strong>',
-                    '[comments]' => '<strong>' . $comment_count . '</strong>',
-                    '[views]'    => '<strong>' . $hit_count . '</strong>',
+                    '[pictures]' => '<strong>' . cpg_float2decimal($picture_count) . '</strong>',
+                    '[albums]'   => '<strong>' . cpg_float2decimal($album_count) . '</strong>',
+                    '[cat]'      => '<strong>' . cpg_float2decimal($cat_count) . '</strong>',
+                    '[comments]' => '<strong>' . cpg_float2decimal($comment_count) . '</strong>',
+                    '[views]'    => '<strong>' . cpg_float2decimal($hit_count) . '</strong>',
                     ));
             } else {
                 $STATS_IN_ALB_LIST = true;
                 $statistics = strtr($lang_list_categories['stat3'], array(
-                    '[pictures]' => '<strong>' . $picture_count . '</strong>',
-                    '[albums]' => '<strong>' . $album_count . '</strong>',
-                    '[comments]' => '<strong>' . $comment_count . '</strong>',
-                    '[views]' => '<strong>' . $hit_count . '</strong>',
+                    '[pictures]' => '<strong>' . cpg_float2decimal($picture_count) . '</strong>',
+                    '[albums]' => '<strong>' . cpg_float2decimal($album_count) . '</strong>',
+                    '[comments]' => '<strong>' . cpg_float2decimal($comment_count) . '</strong>',
+                    '[views]' => '<strong>' . cpg_float2decimal($hit_count) . '</strong>',
                     ));
             }
         } else {

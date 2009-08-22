@@ -2533,8 +2533,8 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
                     '{CAT_THUMB}' => $category['cat_thumb'],
                     '{CAT_DESC}' => $category[1],
                     '{CAT_ALBUMS}' => $category['cat_albums'],
-                    '{ALB_COUNT}' => $category[2],
-                    '{PIC_COUNT}' => $category[3],
+                    '{ALB_COUNT}' => cpg_float2decimal($category[2]),
+                    '{PIC_COUNT}' => cpg_float2decimal($category[3]),
             );
             echo template_eval($template, $params);
         } else {
@@ -2543,8 +2543,8 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
                     '{CAT_THUMB}' => $category['cat_thumb'],
                     '{CAT_DESC}' => $category[1],
                     '{CAT_ALBUMS}' => '',
-                    '{ALB_COUNT}' => $category[2],
-                    '{PIC_COUNT}' => $category[3],
+                    '{ALB_COUNT}' => cpg_float2decimal($category[2]),
+                    '{PIC_COUNT}' => cpg_float2decimal($category[3]),
             );
             echo template_eval($template, $params);
         }
