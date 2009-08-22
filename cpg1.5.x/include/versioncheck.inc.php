@@ -832,7 +832,7 @@ function cpgVersioncheckConnectRepository() {
       }
     } // connect to the online repository --- end
     if ($displayOption_array['do_not_connect_to_online_repository'] == 1 || $remoteConnectionFailed == 1) {
-      $result = cpgGetRemoteFileByURL($localFile, 'GET','','200');
+      $result = array('body' => file_get_contents($localFile));
     }
     unset($result['headers']); // we should take a look the header data and error messages before dropping them. Well, later maybe ;-)
     unset($result['error']);
