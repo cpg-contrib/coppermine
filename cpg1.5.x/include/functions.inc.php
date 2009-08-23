@@ -5706,7 +5706,7 @@ function album_selection_options($selected = 0)
 
             if (GALLERY_ADMIN_MODE) {
                 $result2 = cpg_db_query("SELECT {$cpg_udb->field['user_id']} AS user_id, {$cpg_udb->field['username']} AS user_name "
-                    . "FROM {$cpg_udb->usertable} ORDER BY {$cpg_udb->field['username']}");
+                    . "FROM {$cpg_udb->usertable} ORDER BY {$cpg_udb->field['username']}", $cpg_udb->link_id);
                 $users = cpg_db_fetch_rowset($result2);
                 mysql_free_result($result2);
             } else {
