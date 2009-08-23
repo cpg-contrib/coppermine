@@ -63,7 +63,7 @@ starttable("100%", cpg_fetch_icon('picture_sort', 2) . $lang_picmgr_php['pic_mgr
 $aid = ($superCage->get->keyExists('aid')) ? $superCage->get->getInt('aid') : 0;
 
 if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
-	$result = cpg_db_query("SELECT aid, pid, filename, title FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY position ASC, pid");
+	$result = cpg_db_query("SELECT aid, pid, filepath, filename, title, pwidth, pheight FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY position ASC, pid");
 	$rowset = cpg_db_fetch_rowset($result);
 } else {
 	cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
@@ -120,13 +120,37 @@ EOT;
         /** create a table to sort the picture*/  
     if (count ($rowset) > 0) 
         foreach ($rowset as $picture){
-            /**get the photo name*/
-            $get_pohoto_name = $picture['title'];
-            /**check the photo name is available*/
-            if($get_pohoto_name == ''){
-                $get_pohoto_name = $picture['filename'];    
+            $picname = $CONFIG['fullpath'] . $picture['filepath'] . $picture['filename'];
+            $pic_url = urlencode($picture['filename']);
+            $pic_fname = basename($picture['filename']);
+            $pic_dirname = dirname($picname);
+            $thumb_file = dirname($picname) . '/' . $CONFIG['thumb_pfx'] . $pic_fname;
+            $img = '';
+            if (file_exists($thumb_file)) {
+                $thumb_info = cpg_getimagesize($picname);
+                $thumb_size = compute_img_size($thumb_info[0], $thumb_info[1], 48);
+                $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" alt="" title="'.$get_pohoto_name.'" />';
+            } elseif (is_image($picname)) {
+                $img = '<img src="showthumb.php?picfile=' . $pic_url . '&amp;size=48" class="thumbnail" border="0" alt="" title="'.$get_pohoto_name.'" />';
+            } else {
+                $file['filepath'] = $pic_dirname.'/';
+                $file['filename'] = $pic_fname;
+                $filepathname = get_pic_url($file,'thumb');
+                $img = '<img src="'.$filepathname.'" class="thumbnail" width="48" border="0" alt="" title="'.$get_pohoto_name.'" />';
             }
-            $lb .='<tr id=sort-'.$picture["pid"].' ><td class="dragHandle"></td><td width="96%">'.$get_pohoto_name.'</td></tr>';
+            $unique_id = uniqid(rand());
+            $lb .= <<< EOT
+            <tr id="sort-{$picture["pid"]}" >
+                <td class="dragHandle"></td>
+                <td width="90%">
+                    <strong>{$picture['title']}</strong><br />
+                    <pre><a href="javascript:;" onclick="MM_openBrWindow('{$CONFIG['site_url']}{$CONFIG['fullpath']}{$picture['filepath']}{$picture['filename']}', '{$unique_id}', 'scrollbars=yes,toolbar=no,status=no,resizable=yes,width={$picture['pwidth']},height={$picture['pheight']}');">{$CONFIG['site_url']}{$CONFIG['fullpath']}{$picture['filepath']}{$picture['filename']}</a></pre>
+            	</td>
+            	<td align="center" valign="middle" style="height:50px">
+            	    <a href="displayimage.php?pid={$picture['pid']}">{$img}</a>
+            	</td>
+            </tr>
+EOT;
             $j++;
         }
         
