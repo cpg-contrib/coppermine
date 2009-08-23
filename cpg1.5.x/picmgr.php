@@ -120,6 +120,7 @@ EOT;
         /** create a table to sort the picture*/  
     if (count ($rowset) > 0) 
         foreach ($rowset as $picture){
+            $get_photo_name = $picture['title'];
             $picname = $CONFIG['fullpath'] . $picture['filepath'] . $picture['filename'];
             $pic_url = urlencode($picture['filename']);
             $pic_fname = basename($picture['filename']);
@@ -129,14 +130,14 @@ EOT;
             if (file_exists($thumb_file)) {
                 $thumb_info = cpg_getimagesize($picname);
                 $thumb_size = compute_img_size($thumb_info[0], $thumb_info[1], 48);
-                $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" alt="" title="'.$get_pohoto_name.'" />';
+                $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" alt="" title="'.$get_photo_name.'" />';
             } elseif (is_image($picname)) {
-                $img = '<img src="showthumb.php?picfile=' . $pic_url . '&amp;size=48" class="thumbnail" border="0" alt="" title="'.$get_pohoto_name.'" />';
+                $img = '<img src="showthumb.php?picfile=' . $pic_url . '&amp;size=48" class="thumbnail" border="0" alt="" title="'.$get_photo_name.'" />';
             } else {
                 $file['filepath'] = $pic_dirname.'/';
                 $file['filename'] = $pic_fname;
                 $filepathname = get_pic_url($file,'thumb');
-                $img = '<img src="'.$filepathname.'" class="thumbnail" width="48" border="0" alt="" title="'.$get_pohoto_name.'" />';
+                $img = '<img src="'.$filepathname.'" class="thumbnail" width="48" border="0" alt="" title="'.$get_photo_name.'" />';
             }
             $unique_id = uniqid(rand());
             $lb .= <<< EOT
