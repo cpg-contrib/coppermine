@@ -677,12 +677,12 @@ function create_album()
         $category = FIRST_USER_CAT + USER_ID;
     }
 
-    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . addslashes($_POST['new_alb_name']) . "', 'NO',  '0')";
+    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description) VALUES ('$category', '" . addslashes($_POST['new_alb_name']) . "', 'NO',  '0', '')";
     cpg_db_query($query);
 
     $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $_POST['new_alb_name']),
         '{CONTINUE}' => $lang_xp_publish_php['continue'],
-        '{ALBUM_ID}' => mysql_insert_id(),
+        '{ALBUM_ID}' => mysql_insert_id($CONFIG['LINK_ID']),
         );
 
     echo template_eval($template_create_album, $params);

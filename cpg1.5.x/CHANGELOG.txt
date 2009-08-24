@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-08-25 [B] Fixed issue with creating albums in xp publisher with MySQL's strict mode enabled {Nibbler}
+2009-08-25 [B] Fixed bridge issue when creating albums in xp publisher {Nibbler}
 2009-08-23 [A] Displaying thumbnail on picture manager (thread ID 61340) {GauGau}
 2009-08-21 [B] Fixed issue when viewing pictures of meta albums (thread 61265) {eenemeenemuu}
 2009-08-20 [B] Added function to bring jquery library to top of JavaScript includes list {GauGau}

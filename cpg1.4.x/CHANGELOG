@@ -26,6 +26,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-08-25 [B] Fixed issue with creating albums in xp publisher with MySQL's strict mode enabled {Nibbler}
+2009-08-25 [B] Fixed bridge issue when creating albums in xp publisher {Nibbler}
 2009-08-12 [O] Updated German language files (added missing strings) {GauGau}
 2009-07-25 [A] Updated MyBB bridge to 1.4 {Nibbler}
 2009-07-21 [O] Updated Czech language file (user contribution) {GauGau}

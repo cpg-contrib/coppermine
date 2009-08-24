@@ -742,7 +742,7 @@ function create_album()
     }
 
 //  $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . addslashes($_POST['new_alb_name']) . "', 'NO',  '0')";
-    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . $superCage->post->getEscaped('new_alb_name') . "', 'NO',  '0')";
+    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description) VALUES ('$category', '" . $superCage->post->getEscaped('new_alb_name') . "', 'NO',  '0', '')";
     cpg_db_query($query);
 
   $new_alb_name = $superCage->post->getMatched('new_alb_name', '/^[0-9A-Za-z\/_]+$/');
@@ -750,7 +750,7 @@ function create_album()
 //  $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $_POST['new_alb_name']),
     $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $new_alb_name),
         '{CONTINUE}' => $lang_xp_publish_php['continue'],
-        '{ALBUM_ID}' => mysql_insert_id(),
+        '{ALBUM_ID}' => mysql_insert_id($CONFIG['LINK_ID']),
         );
 
     echo template_eval($template_create_album, $params);
