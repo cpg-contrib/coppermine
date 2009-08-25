@@ -43,19 +43,20 @@
 <p>Enter the name of your gallery in this text field. The name you enter will appear as the title that is displayed in the web browser's title bar and is also displayed in many of the different theme templates.</p>
 <p>Even if you have removed the corresponding token from your custom theme, you should fill this in correctly, as it will be used when sending ecards and in all kinds of emails sent from your gallery (e.g. during registration).</p>
 <p>It's mandatory to populate this field properly.</p>
-<p class="quote">Example: <tt class="code">Tim's incredible picture gallery</tt></p>
+<p class="cpg_example">Example: <tt class="code">Tim's incredible picture gallery</tt></p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Gallery name</p>
 <a name="admin_general_name_end"></a>
 <hr />
 <a name="admin_general_description"></a><h3>Gallery description<a href="#admin_general_description" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Enter a short description of your gallery in this text field. This description is also displayed in some of the theme templates just below the name of your gallery.</p>
+<p>Similar to the <a href="#admin_general_name">Gallery name</a> field, the Gallery description field needs to be populated, even if your custom theme doesn't show that tag and even if you don't want to display that tag on your site: the field mustn't be empty and it mustn't be the default.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Gallery description</p>
 <a name="admin_general_description_end"></a>
 <hr />
 <a name="admin_general_email"></a><h3>Gallery administrator email<a href="#admin_general_email" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>All emails sent by the gallery will be sent using this email address. This must be a valid email address.</p>
 <p>Coppermine will use this address as "from"-address when sending emails (e.g. during registration). It's mandatory to have this email address populated properly. If you have your own domain, it might be a good idea to use an email account that correlates to your domain name.</p>
-<p class="quote">Example: if your domain name is &quot;<tt class="code">example.com</tt>&quot;, you should create an email address named <tt class="code">gallery@example.com</tt> and use that email address in coppermine's config. Coppermine does <strong>not</strong> create that email address for you!</p>
+<p class="cpg_example">Example: if your domain name is &quot;<tt class="code">example.com</tt>&quot;, you should create an email address named <tt class="code">gallery@example.com</tt> and use that email address in coppermine's config. Coppermine does <strong>not</strong> create that email address for you!</p>
 <p>Users sometimes ask on the support board if they can use another email, e.g. one from a fremail provider like gmail, hotmail or similar. The answer is: we can't tell you if your webhost will allow you to do this. Many webhosts disallow such things for reasons of spam prevention. If you're not sure, ask your webhost for support.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Gallery administrator email</p>
 <a name="admin_general_email_end"></a>
@@ -102,7 +103,7 @@
 <a name="admin_general_keyword_separator_start"></a><h3>Keyword separator<a href="#admin_general_keyword_separator_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>For an image or a file, you can specify keywords that describe it.  Choose a character here to separate keywords.  Do not choose a character you want to include in a single keyword.  If you only want single-word keywords, you can safely choose a space.  If you want multi-word keywords, choose a different character.  The safest option is the semicolon because that is seldom used in a keyword.</p>
 <p>The default keyword separator for new installations of Coppermine 1.5 is the semicolon.  For upgrades from Coppermine 1.4 or earlier, the space is retained as the keyword separator.  You can convert the keyword separator for current keywords to another value by using the tool on the <a href="admin-tools.htm#admin_tools_options_keyword_convert">Admin Tools</a> page.</p>
-<p class="important">Warning: do not change the keyword separator on the configuration panel if you have keywords in your gallery already.  Use the "<a href="admin-tools.htm#admin_tools_options_keyword_convert">Convert keyword separator</a>" tool on the Admin Tools page to convert current keywords and set the new keyword separator at the same time.</p>
+<p class="cpg_message_warning">Warning: do not change the keyword separator on the configuration panel if you have keywords in your gallery already.  Use the "<a href="admin-tools.htm#admin_tools_options_keyword_convert">Convert keyword separator</a>" tool on the Admin Tools page to convert current keywords and set the new keyword separator at the same time.</p>
 <p>For example, if you want to have the keyword "Washington, George" as one keyword, choose a semicolon to separate keywords.  Then an appropriate set of keywords for a photograph of Mount Rushmore would be "Washington, George;mountain;South Dakota" which has 3 keywords separated by semicolons.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Enable clickable keywords in search</p>
 <a name="admin_general_keyword_separator_end"></a>
@@ -1187,7 +1188,7 @@ You can use the <a href="admin-tools.htm#admin_tools">admin tools</a> to get rid
 <a name="admin_watermarking_downsize"></a><h3>Downsize watermark if width of an picture is smaller than entered value<a href="#admin_watermarking_downsize" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>That is the 100% reference point. Resizing of the watermark is linear (0 to disable).</p>
 <p>Keep in mind that images might get uploaded by your users (if you allow uploads by others than the admin) that you might not have made up your mind about: the image uploaded may be smaller in resolution. If the dimension of the image uploaded is smaller than the dimension of your watermark file, the watermarking would get cut off and look silly. That's why this option exists: you can specify that images that are smaller than a particular size will have the watermarking applied in a resized manner, making the watermark again fit on the uploaded image. It's a good idea to set this option to the horizontal dimension of your watermarking image.</p>
-<div class="quote">Example:<br />Let's assume that your custom watermarking image has got the same dimensions as the sample one that comes with the coppermine package: 300 x 51 pixels. Subsequently, if you set the option "Downsize watermark if width of an picture is smaller than entered value" to 300, you should be fine: if someone uploads an image that is only 250 x 100 pixels, the resulting watermarked image will be 250 x 100 pixels as well, but the watermarking image will have been resized to 250 x 43 before being applied as a watermark, so it will fit on the original file that was uploaded.</div>
+<div class="cpg_example">Example:<br />Let's assume that your custom watermarking image has got the same dimensions as the sample one that comes with the coppermine package: 300 x 51 pixels. Subsequently, if you set the option "Downsize watermark if width of an picture is smaller than entered value" to 300, you should be fine: if someone uploads an image that is only 250 x 100 pixels, the resulting watermarked image will be 250 x 100 pixels as well, but the watermarking image will have been resized to 250 x 43 before being applied as a watermark, so it will fit on the original file that was uploaded.</div>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Downsize watermark if width of an picture is smaller than entered value</p>
 
 <a name="admin_watermarking_downsize_end"></a>
@@ -1500,7 +1501,7 @@ All log files are written in english</p>
    <p>of the voter.</p>
    <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.</p>
 <p class="cpg_message_info">Note: The total votes may not match if you enable details and do not reset the earlier votes.</p>
-<p class="cpg_message_warning">Warning: keeping detailed statistics means additional database queries and subsequently a heavy load on the page. You have to understand that the size of the corresponding database tables can increase <strong>dramatically</strong> if you enable this feature.</p>
+<p class="cpg_message_warning">Warning: keeping detailed statistics means additional database queries and subsequently a heavy load on the page. You have to understand that the size of the corresponding database tables can increase if you enable this feature.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Keep detailed vote statistics</p>
 <a name="admin_logging_votedetails_end"></a>
 <hr />
@@ -1521,7 +1522,7 @@ All log files are written in english</p>
 </p>
 <p class="cpg_message_info">Note: The total hits may not match if you enable details and do not reset the earlier hits.</p>
 <p class="cpg_message_warning">Warning: keeping detailed statistics means additional database queries and subsequently a <strong>heavy</strong> load on the page. You have to understand that the size of the corresponding database tables can increase <strong>dramatically</strong> if you enable this feature, so you should closely monitor the resources consumption caused by it and empty the table from time to time.</p>
-<p>Do not enable this option if you don't need it!</p>
+<p>Do not enable this option if you don't need it! If you enable it, frequently check the size of the stats table in the database (using a third party tool like <a href="dev_tools.htm#dev_tools_phpmyadmin">phpMyAdmin</a>) and the impact of the stats recording on the overall performance.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Keep detailed hit statistics</p>
 <a name="admin_logging_hitdetails_end"></a>
 <a name="admin_logging_display_stats_on_index"></a><h3>Display statistics on index page<a href="#admin_logging_display_stats_on_index" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -1546,9 +1547,12 @@ All log files are written in english</p>
 
 <a name="admin_misc"></a><h2>Maintenance settings <a href="#admin_misc" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="debug_mode"></a><h3>Enable debug mode<a href="#debug_mode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>CPG will show error messages which are normally suppressed. This is helpful in troubleshooting problems with your gallery or when asking for help on the <a href="http://coppermine-gallery.net/forum/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.</p>
+<p>Coppermine will show error messages which are normally suppressed. This is helpful in troubleshooting problems with your gallery or when asking for help on the <a href="http://coppermine-gallery.net/forum/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.</p>
 <p>Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine-gallery.net/forum/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when troubleshooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
-<p class="cpg_message_error">Do <strong>not</strong> post debug_output on the coppermine support board unless a supporter explicitely asks for it!</p>
+<p class="cpg_message_error">
+<a name="debug_mode_do_not_post_unless_requested"></a>
+    Do <strong>not</strong> post debug_output on the coppermine support board unless a supporter explicitely asks for it!<a href="#debug_mode_do_not_post_unless_requested" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+</p>
 <span class="detail_head_collapsed">Details</span>
 <div class="detail_body border1">
 	<a name="debug_mode_detail"></a><h4>Debug_output details<a href="configuration.htm?expand_all=1#debug_mode_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
@@ -1643,6 +1647,7 @@ All log files are written in english</p>
 
 <a name="admin_general_offline"></a><h3>Gallery is offline<a href="#admin_general_offline" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If you have to do maintenance work on your gallery, switch it to offline mode. Only members of the admin group will be able to log in, all other users will only see &quot;Gallery is offline&quot;. Remember to switch this option off once your maintenance work is done.</p>
+<p class="cpg_message_error">Putting your gallery into offline mode will only affect the legitimate visitors of your gallery. It will not have any effect on unwanted visitors (email harvesters, spam bots, hackers), so you mustn't believe that this is a security seal. Think of it as the putting the "closed" sign into the window of a shop. This setting will just put that sign into the window, but it will not lock the front door nor will it enable the burglar alarm.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Maintenance settings &rarr; Gallery is offline</p>
 <a name="admin_general_offline_end"></a>
 <hr />

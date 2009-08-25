@@ -18,11 +18,10 @@
 **********************************************/
 
 $name = $lang_plugin_php['link_target_name'];
-$description = $lang_plugin_php['link_target_description'];
+$description = $lang_plugin_php['link_target_description'] . '&nbsp;' . cpg_display_help('f=plugins.htm&amp;as=plugin_bundled_link_target&amp;ae=plugin_bundled_link_target_end', '400', '200');
 
 $author='Coppermine dev team';
-$version='1.0';
-
+$version='1.1';
 $install_info = $extra_info = $lang_plugin_php['link_target_extra'] . '<br />' . $lang_plugin_php['link_target_recommendation'];
 
 ?>

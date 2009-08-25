@@ -18,12 +18,12 @@
 **********************************************/
 
 $name = $lang_plugin_php['sample_config_name'];
-$description = $lang_plugin_php['sample_config_description'];
+$description = $lang_plugin_php['sample_config_description'] . '&nbsp;' . cpg_display_help('f=plugins.htm&amp;as=plugin_bundled_sample&amp;ae=plugin_bundled_sample_end', '400', '200');
 $author = 'Coppermine Development Team';
-$version = '1.3';
+$version = '1.5';
 /*
  * $extra_info is displayed with the title of a plugin that IS installed and
- * can be used to present extra information.  In this case I show a complex
+ * can be used to present extra information.  In this case we show a complex
  * example that forms a button the user can click.
  */
 $extra_info = <<<EOT
@@ -35,7 +35,7 @@ $extra_info = <<<EOT
 EOT;
 /*
  * $install_info is displayed with the title of a plugin that is NOT installed and
- * can be used to present extra information. In this case I show a complex
+ * can be used to present extra information. In this case we show a complex
  * example that forms a button the user can click.
  */
 $install_info=<<<EOT
