@@ -390,6 +390,7 @@ function output_header()
 <html dir="ltr">
 <head>
 <title>{$lang_xp_publish_php['title']}</title>
+<meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Content-Type" content="text/html; charset={$language}" />
 <style type="text/css">
 <!--

@@ -345,6 +345,7 @@ function output_header()
 <html dir="ltr">
 <head>
 <title><?php echo $lang_xp_publish_php['title'] ?></title>
+<meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
     ?>" />
 <style type="text/css">
