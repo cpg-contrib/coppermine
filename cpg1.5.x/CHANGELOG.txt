@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-08-26 [B] Fixed the issue of proper handling of php's native error during upload process (flash) {Abbas}
 2009-08-25 [B] Fixed sorting bugs in album and picture managers (thread ID 61352) {Paver}
 2009-08-25 [B] Fixed caching issues with xp publisher {Nibbler}
 2009-08-25 [B] Fixed issue with creating albums in xp publisher with MySQL's strict mode enabled {Nibbler}
