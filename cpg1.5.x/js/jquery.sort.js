@@ -133,7 +133,6 @@ jQuery.tableDnD = {
 
         var docPos    = this.getPosition(target);
         var mousePos  = this.mouseCoords(ev);
-     //   alert(mousePos.y);
         return {x:mousePos.x - docPos.x, y:mousePos.y - docPos.y};
     },
 
@@ -229,8 +228,8 @@ jQuery.tableDnD = {
     findDropTargetRow: function(draggedRow, y) {
         var rows = jQuery.tableDnD.currentTable.rows;
         for (var i=0; i<rows.length; i++) {
-            var row = rows[i];
-            var rowY    = this.getPosition(row).y;
+            var row       = rows[i];
+            var rowY      = this.getPosition(row).y;
             var rowHeight = parseInt(row.offsetHeight)/2;
             if (row.offsetHeight == 0) {
                 rowY = this.getPosition(row.firstChild).y;
@@ -240,7 +239,9 @@ jQuery.tableDnD = {
             if ((y > rowY - rowHeight) && (y < (rowY + rowHeight))) {
                 // that's the row we're over
                 // If it's the same as the current row, ignore it
-                if (row == draggedRow) {return null;}
+                if (row == draggedRow) {
+                    return null;
+                }
                 var config = jQuery.tableDnD.currentTable.tableDnDConfig;
                 if (config.onAllowDrop) {
                     if (config.onAllowDrop(draggedRow, row)) {
@@ -251,7 +252,7 @@ jQuery.tableDnD = {
                 } else {
                     // If a row has nodrop class, then don't allow dropping (inspired by John Tarr and Famic)
                     var nodrop = $(row).hasClass("nodrop");
-                    if (! nodrop) {
+                    if (!nodrop) {
                         return row;
                     } else {
                         return null;
@@ -285,70 +286,68 @@ jQuery.tableDnD = {
             }
         }
     },
+
     //**this edit by Nuwan sameera for manually sorting*/
-    sortManually: function(count,albumObjectSelectedTr,tableName){
-        
-        var table = jQuery.tableDnD.currentTable = document.getElementById(tableName);
-        
-        var downOrUp    = count;
-        if(downOrUp>0){
-            downCount = 20;
+    sortManually: function(count,selectedRow,tableName) {
+
+        jQuery.tableDnD.currentTable = document.getElementById(tableName);
+
+        var rowHeight = selectedRow.offsetHeight;
+        var downCount = 0;
+        if (count > 0) {
+            downCount = rowHeight;
         }
-        if(downOrUp<0){
-            downCount = -20;
+        if (count < 0) {
+            downCount = -rowHeight;
         }
-        var dragObj     = albumObjectSelectedTr;
+        var dragObj = selectedRow;
         jQuery.tableDnD.currentHeight = jQuery.tableDnD.getPosition(dragObj).y;
-  
-            if(jQuery.tableDnD.currentHeight){
-               jQuery.tableDnD.selectObjectY = jQuery.tableDnD.currentHeight;
-               jQuery.tableDnD.currentHeight = null;
-            }
+        if (jQuery.tableDnD.currentHeight) {
+            jQuery.tableDnD.selectObjectY = jQuery.tableDnD.currentHeight;
+            jQuery.tableDnD.currentHeight = null;
+        }
         var prevY = jQuery.tableDnD.selectObjectY;
-        var y = (jQuery.tableDnD.selectObjectY + downCount);
-            jQuery.tableDnD.selectObjectY =y;
-            
-            /**get rows*/
-            var rows = table.rows;
-            jQuery.tableDnD.firstObjectHeight = jQuery.tableDnD.getPosition(rows[0]).y;
-            /**get the last element height*/
-            jQuery.tableDnD.lastObjectHeight  = jQuery.tableDnD.getPosition(rows[(rows.length-1)]).y;
-                        
-        
-        if((jQuery.tableDnD.firstObjectHeight > jQuery.tableDnD.selectObjectY) || (jQuery.tableDnD.lastObjectHeight < jQuery.tableDnD.selectObjectY)){
+        var y     = (jQuery.tableDnD.selectObjectY + downCount);
+        jQuery.tableDnD.selectObjectY = y;
+
+        // get rows
+        var rows = jQuery.tableDnD.currentTable.rows;
+        jQuery.tableDnD.firstObjectHeight = jQuery.tableDnD.getPosition(rows[0]).y;
+        // get the last element height
+        jQuery.tableDnD.lastObjectHeight  = jQuery.tableDnD.getPosition(rows[(rows.length-1)]).y;
+
+        if((jQuery.tableDnD.firstObjectHeight > jQuery.tableDnD.selectObjectY) || (jQuery.tableDnD.lastObjectHeight < jQuery.tableDnD.selectObjectY)) {
             jQuery.tableDnD.selectObjectY = prevY;
             return false;
         }
         //auto scroll the window
         if (y != jQuery.tableDnD.oldY) {
             // work out if we're going up or down...
-                var movingDown = true;
-            if(count<1){
-                var movingDown = false;
+            var movingDown = true;
+            if (count < 1){
+                movingDown = false;
             }
-            //    jQuery.tableDnD.oldY = y;
-            // If we're over a row then move the dragged row to there so that the user sees the
             var currentRow = jQuery.tableDnD.findDropTargetRow(dragObj, y);
             if (currentRow) {
-                // TODO worry about what happens when there are multiple TBODIES
-                if (movingDown && albumObjectSelectedTr != currentRow) {
-                    albumObjectSelectedTr.parentNode.insertBefore(albumObjectSelectedTr, currentRow.nextSibling);
+                // TODO: worry about what happens when there are multiple TBODIES
+                if (movingDown && selectedRow != currentRow) {
+                    selectedRow.parentNode.insertBefore(selectedRow, currentRow.nextSibling);
                 } else if (! movingDown && jQuery.tableDnD.selectObject != currentRow) {
-                    albumObjectSelectedTr.parentNode.insertBefore(albumObjectSelectedTr, currentRow);
+                    selectedRow.parentNode.insertBefore(selectedRow, currentRow);
                 }
             }
         }
 
         return true;
     },
-    
+
     serialize: function() {
         if (jQuery.tableDnD.currentTable) {
             var result = "";
             var tableId = jQuery.tableDnD.currentTable.id;
             var rows = jQuery.tableDnD.currentTable.rows;
             for (var i=0; i<rows.length; i++) {
-    
+
                 var serializeRegexp = /[^\-]*$/;
                 var aid = (rows[i].id).match(serializeRegexp)[0];
                 result += aid+",";

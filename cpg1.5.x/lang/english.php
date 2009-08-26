@@ -1049,7 +1049,7 @@ $lang_delete_php['change_group_to_group'] = 'Changing from %s to %s';
 $lang_delete_php['add_group'] = 'Add secondary group';
 $lang_delete_php['add_group_to_group'] = 'Adding user %s to group %s. He\'s now member of %s as primary and of %s as secondary membergroup(s).';
 $lang_delete_php['status'] = 'Status';
-$lang_delete_php['updating_album'] = 'Updating album ';
+$lang_delete_php['updating_album'] = 'Updating album '; // cpg1.5
 $lang_delete_php['moved_picture_to_position'] = 'Moved picture %s to position %s'; // cpg1.5
 }
 

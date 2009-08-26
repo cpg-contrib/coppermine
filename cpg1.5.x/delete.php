@@ -404,7 +404,7 @@ function parse_pic_orig_sort_order($value)
     }
 
     return array(
-        'aid' => (int) $matches[1],
+        'pid' => (int) $matches[1],
         'pos' => (int) $matches[2],
     );
 }
@@ -473,9 +473,21 @@ case 'albmgr':
     }
 
     $returnOutput = ''; // the var that will later be shown as a result of the action performed
-
     $returnOutput .= '<table border="0" cellspacing="0" cellpadding="0" width="100%">';
-    
+
+    $sort_list_matched = $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
+    $orig_sort_order = parse_pic_list($sort_list_matched[0]);
+    foreach ($orig_sort_order as $album) {
+        $alb = parse_pic_orig_sort_order($album);
+        $sort_array[$i] = $alb['aid'];
+        if (count($alb) == 2) {
+            $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET pos = '{$alb['pos']}' WHERE aid = '{$alb['pid']}' $restrict LIMIT 1";
+            cpg_db_query($query);
+        } else {
+            cpg_die(CRITICAL_ERROR, sprintf($lang_delete_php['err_invalid_data'], $sort_list_matched[0]), __FILE__, __LINE__);
+        }
+    }
+
     //prevent sorting of the albums if not admin or in own album
     $sorted_list = $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
 
@@ -579,37 +591,36 @@ case 'albmgr':
         //redirect to the album manager
         cpgRedirectPage('albmgr.php?cat='.$category, $lang_common['information'], $returnOutput); // redirect the user
     }
-    
+
     // save sorted list here
     if ($superCage->post->keyExists('category')) {
         //get the category value
         $category = $superCage->post->getInt('category');
-        
+
         $result = cpg_db_query("SELECT aid, pos, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '{$category}' ORDER BY pos ASC");
         $rowset = cpg_db_fetch_rowset($result);  
 
-        if ($superCage->post->keyExists('sort_order')) {
+        if ($superCage->post->keyExists('album_order')) {
             //Check if the form token is valid
             if(!checkFormToken()){
                 cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
             }
             // Used to get the aid, cast to integer for query
-            $get_rows = $superCage->post->getEscaped('sort_order');
-            
+            $get_rows = $superCage->post->getEscaped('album_order');
+
             $action = '';
             $assign_position = '';
             $sucess = '';
             $sort_rows = parse_pic_list($get_rows);
 
             foreach ($sort_rows as $key => $option_value) {
-                
-                $option_value = (int) $option_value;
-                
+                $option_value = (int)$option_value;
                 if ($option_value == $rowset[$key]['aid']) {
                     continue;
                 }
-
-                $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">".$lang_delete_php['updating_album'].$option_value.$lang_delete_php['position']. $rowset[$key]['pos'].'</td></tr>' . $LINEBREAK;
+                $returnOutput .= "<tr><td colspan=\"6\" class=\"tableb\">"
+                        . $lang_delete_php['updating_album'] . $option_value . ' ' . $lang_thumb_view['position'] . ' ' . $rowset[$key]['pos']
+                        . '</td></tr>' . $LINEBREAK;
                 $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET pos = '{$rowset[$key]['pos']}' WHERE aid = '{$option_value}' $restrict LIMIT 1";
                 cpg_db_query($query);
             }
@@ -633,33 +644,26 @@ case 'picmgr':
     } else {
         $restrict = '';
     }
-
     $returnOutput = '<table border="0" cellspacing="0" cellpadding="0" width="100%">';
   
     $sort_list_matched = $superCage->post->getMatched('sort_order', '/^[0-9@,]+$/');
-
     $orig_sort_order = parse_pic_list($sort_list_matched[0]);
-
     foreach ($orig_sort_order as $picture) {
-    
-        $op = parse_pic_orig_sort_order($picture);
-       
-        $sort_array[$i] = $op['aid'];
-                    
-        if (count($op) == 2) {
-            $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET position = '{$op['pos']}' WHERE pid = '{$op['aid']}' $restrict LIMIT 1";
+        $pic = parse_pic_orig_sort_order($picture);
+        $sort_array[$i] = $pic['aid'];
+        if (count($pic) == 2) {
+            $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET position = '{$pic['pos']}' WHERE pid = '{$pic['pid']}' $restrict LIMIT 1";
             cpg_db_query($query);
         } else {
-            cpg_die(CRITICAL_ERROR, sprintf($lang_delete_php['err_invalid_data'], $sort_order_matched[0]), __FILE__, __LINE__);
+            cpg_die(CRITICAL_ERROR, sprintf($lang_delete_php['err_invalid_data'], $sort_list_matched[0]), __FILE__, __LINE__);
         }
     }
- 
+
     $album_id = $superCage->post->getInt('album_id');
-    
-    $result = cpg_db_query("SELECT aid, pid, filename, title, position FROM {$CONFIG['TABLE_PICTURES']} WHERE aid =".$album_id." ORDER BY position ASC, pid");
+    $result = cpg_db_query("SELECT aid, pid, filename, title, position FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id' ORDER BY position ASC, pid");
     $rowset = cpg_db_fetch_rowset($result);
     mysql_free_result($result);
-    
+
     if ($superCage->post->keyExists('picture_order')) {
         //Check if the form token is valid
         if(!checkFormToken()){
@@ -668,22 +672,22 @@ case 'picmgr':
         //get the sorted order - cast to int below
         $get_rows = $superCage->post->getEscaped('picture_order');
         $sort_rows = parse_pic_list($get_rows);
-	
-		$returnOutput .= '<tr><td colspan="6"><ul>';
+
+        $returnOutput .= '<tr><td colspan="6"><ul>';
 
         foreach ($sort_rows as $key => $option_value) {
-            $option_value = (int) $option_value;
+            $option_value = (int)$option_value;
             if ($option_value == $rowset[$key]['pid']) {
                 continue;
             }
             //update the new position
-			$returnOutput .= '<li>' . sprintf($lang_delete_php['moved_picture_to_position'],$option_value, $rowset[$key]['position']) . '</li>';
+            $returnOutput .= '<li>' . sprintf($lang_delete_php['moved_picture_to_position'],$option_value, $rowset[$key]['position']) . '</li>';
             $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET position = '{$rowset[$key]['position']}' WHERE pid = '{$option_value}' $restrict LIMIT 1";
             cpg_db_query($query);
         }
-		$returnOutput .= '</ul></td></tr>' . $LINEBREAK;
+        $returnOutput .= '</ul></td></tr>' . $LINEBREAK;
     } 
-            
+
     if ($need_caption) {
         ob_start();
         output_caption();
