@@ -36,7 +36,7 @@ function agreesubmit(el){
             var tempobj = checkobj.form.elements[i];
             if (tempobj.type.toLowerCase() == "submit") {
                 tempobj.disabled = !checkobj.checked;
-				tempobj.style.cursor = 'pointer';
+                tempobj.style.cursor = (checkobj.checked ? 'pointer' : 'url(' + js_vars.cursor_stop + '),text');
             }
         }
     }

@@ -31,9 +31,12 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
 }
 
 $icon_array = array();
-$icon_array['ok'] = cpg_fetch_icon('ok', 0);
-$icon_array['up'] = cpg_fetch_icon('up', 1);
-$icon_array['down'] = cpg_fetch_icon('down', 1);
+$icon_array['ok']        = cpg_fetch_icon('ok', 0);
+$icon_array['up']        = cpg_fetch_icon('up', 1);
+$icon_array['down']      = cpg_fetch_icon('down', 1);
+$icon_array['upup']      = cpg_fetch_icon('upup', 1);
+$icon_array['downdown']  = cpg_fetch_icon('downdown', 1);
+$icon_array['thumbnail'] = cpg_fetch_icon('thumbnails', 1);
 
 // set js variable to changes albums
 set_js_var('change_album', $lang_picmgr_php['change_album']);
@@ -101,6 +104,7 @@ if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
                 <option value="0">{$lang_common['select_album']}</option>
                 $options
             </select>
+            <button type="button" id="thumbnail_view1" name="thumbnail_view1" class="button thumbnail_view" style="float:right;" value="{$lang_common['thumbnail_view']}">{$icon_array['thumbnail']}{$lang_common['thumbnail_view']}</button>
         </td>
     </tr>
     <tr>
@@ -112,7 +116,7 @@ EOT;
 /** create a table to sort the picture*/  
 echo <<< EOT
             <div id="sort">
-                <table id="pic_sort" cellspacing="0" cellpadding="0" border="0">
+                <table id="pic_sort" cellspacing="0" cellpadding="0" border="0" width=100%>
 
 EOT;
 $i   =   100;
@@ -140,14 +144,15 @@ $j   =   1;
                 $img = '<img src="'.$filepathname.'" class="thumbnail" width="48" border="0" alt="" title="'.$get_photo_name.'" />';
             }
             $unique_id = uniqid(rand());
+            $pic_title = $picture['title'] ? "<strong>{$picture['title']}</strong><br />\n" : '';
             $lb .= <<< EOT
             <tr id="sort-{$picture['pid']}">
                 <td class="dragHandle"></td>
-                <td width="90%">
-                    <strong>{$picture['title']}</strong><br />
-                    <pre><a href="javascript:;" onclick="MM_openBrWindow('{$CONFIG['site_url']}{$CONFIG['fullpath']}{$picture['filepath']}{$picture['filename']}', '{$unique_id}', 'scrollbars=yes,toolbar=no,status=no,resizable=yes,width={$picture['pwidth']},height={$picture['pheight']}');">{$CONFIG['site_url']}{$CONFIG['fullpath']}{$picture['filepath']}{$picture['filename']}</a></pre>
+                <td valign="middle">
+                    $pic_title
+                    <pre class="filepath"><a href="javascript:;" onclick="MM_openBrWindow('{$CONFIG['site_url']}{$CONFIG['fullpath']}{$picture['filepath']}{$picture['filename']}', '{$unique_id}', 'scrollbars=yes,toolbar=no,status=no,resizable=yes,width={$picture['pwidth']},height={$picture['pheight']}');">{$CONFIG['fullpath']}{$picture['filepath']}{$picture['filename']}</a></pre>
                 </td>
-                <td align="center" valign="middle" style="height:50px">
+                <td valign="middle" align="right" class="pic_thumbnail">
                     <a href="displayimage.php?pid={$picture['pid']}">{$img}</a>
                 </td>
             </tr>
@@ -164,8 +169,11 @@ EOT;
     </tr>
     <tr>
         <td class="tableb">
+            <button type="button" id="pic_upup" name="pic_upup" class="button" value="{$lang_common['move_top']}" disabled="disabled">{$icon_array['upup']}{$lang_common['move_top']}</button>
             <button type="button" id="pic_up" name="pic_up" class="button" value="{$lang_common['move_up']}" disabled="disabled">{$icon_array['up']}{$lang_common['move_up']}</button>
             <button type="button" id="pic_down" name="pic_down" class="button" value="{$lang_common['move_down']}" disabled="disabled">{$icon_array['down']}{$lang_common['move_down']}</button>
+            <button type="button" id="pic_downdown" name="pic_downdown" class="button" value="{$lang_common['move_bottom']}" disabled="disabled">{$icon_array['downdown']}{$lang_common['move_bottom']}</button>
+            <button type="button" id="thumbnail_view2" name="thumbnail_view2" class="button thumbnail_view" style="float:right;" value="{$lang_common['thumbnail_view']}">{$icon_array['thumbnail']}{$lang_common['thumbnail_view']}</button>
         </td>
     </tr>
     <tr>

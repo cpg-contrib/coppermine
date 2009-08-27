@@ -17,28 +17,28 @@
 **********************************************/
 
 /* Colors used in this style sheet:
-	Hex 000000 = RBG   0,   0,   0 = black
-	Hex 5F5F5F = RBG  95,  95,  95 = light black
-	Hex BDBEBD = RBG 189, 190, 189 = dark grey
-	Hex D1D7DC = RBG 209, 215, 220 = medium grey
-	Hex CCCCCC = RBG 204, 204, 204 = medium grey
-	Hex E4E4E4 = RGB 228, 228, 228 = medium grey
-	Hex EFEFEF = RBG 239, 239, 239 = dark white
-	Hex FFFFFF = RBG 255, 255, 255 = white
-	Hex 005D8C = RBG   0,  93, 140 = dark blue
-	Hex 0033CC = RBG   0,  91, 104 = medium blue
-	Hex 0E72A4 = RBG  14, 114, 164 = light blue
-	Hex 840084 = RBG 132,   0, 132 = purple
-	Hex 00529B = RGB   0,  82, 155 = blue
-	Hex BDE5F8 = RGB 189, 229, 247 = cyan
-	Hex 4F8A10 = RGB  79, 138,  16 = dark green
-	Hex DFF2BF = RGB 223, 242, 191 = light green
-	Hex 9F6000 = RGB 159,  96,   0 = dark brown
-	Hex FEEFB3 = RGB 254, 239, 179 = light brown
-	Hex D8000C = RGB 216,   0,  12 = red
-	Hex FFBABA = RGB 255, 186, 186 = pink
-	Hex D63301 = RGB 214,  51,   1 = red
-	Hex FFCCBA = RGB 255, 204, 186 = pink
+    Hex 000000 = RBG   0,   0,   0 = black
+    Hex 5F5F5F = RBG  95,  95,  95 = light black
+    Hex BDBEBD = RBG 189, 190, 189 = dark grey
+    Hex D1D7DC = RBG 209, 215, 220 = medium grey
+    Hex CCCCCC = RBG 204, 204, 204 = medium grey
+    Hex E4E4E4 = RGB 228, 228, 228 = medium grey
+    Hex EFEFEF = RBG 239, 239, 239 = dark white
+    Hex FFFFFF = RBG 255, 255, 255 = white
+    Hex 005D8C = RBG   0,  93, 140 = dark blue
+    Hex 0033CC = RBG   0,  91, 104 = medium blue
+    Hex 0E72A4 = RBG  14, 114, 164 = light blue
+    Hex 840084 = RBG 132,   0, 132 = purple
+    Hex 00529B = RGB   0,  82, 155 = blue
+    Hex BDE5F8 = RGB 189, 229, 247 = cyan
+    Hex 4F8A10 = RGB  79, 138,  16 = dark green
+    Hex DFF2BF = RGB 223, 242, 191 = light green
+    Hex 9F6000 = RGB 159,  96,   0 = dark brown
+    Hex FEEFB3 = RGB 254, 239, 179 = light brown
+    Hex D8000C = RGB 216,   0,  12 = red
+    Hex FFBABA = RGB 255, 186, 186 = pink
+    Hex D63301 = RGB 214,  51,   1 = red
+    Hex FFCCBA = RGB 255, 204, 186 = pink
 */
 
 body {
@@ -101,6 +101,11 @@ p {
     margin: 2px 0px;
 }
 
+pre.filepath {
+    margin: 0px;
+    padding: 0px;
+}
+
 ul, ol {
     margin-left: 5px;
     padding: 0px;
@@ -115,7 +120,7 @@ li {
 }
 
 ul li {
-	list-style-type: disc;
+    list-style-type: disc;
 }
 
 .textinput {
@@ -139,10 +144,10 @@ ul li {
     border: 1px solid #005D8C;
     background-image : url(images/button_bg.gif);
     background-position : bottom;
-	cursor:pointer;
-	padding-left:0px;
-	padding-right:0px;
-	margin-right:2px;
+    cursor:pointer;
+    padding-left:0px;
+    padding-right:0px;
+    margin-right:2px;
 }
 
 .radio {
@@ -856,13 +861,13 @@ table#album_sort tr td {
 }
 
 table#album_sort tr td span.editAlbum {
-	margin-left: 100px;
-	font-size: 10px;
-	line-height: 100%;
-	text-decoration: underline;
-	cursor: pointer;
-	display: none;
-	color: #FF0000;
+    margin-left: 100px;
+    font-size: 10px;
+    line-height: 100%;
+    text-decoration: underline;
+    cursor: pointer;
+    display: none;
+    color: #FF0000;
 }
 
 .cpg_message_info, .cpg_message_success, .cpg_message_warning, .cpg_message_error, .cpg_message_validation {

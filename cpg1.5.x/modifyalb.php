@@ -60,10 +60,10 @@ $help['can_moderate'] = '&nbsp;'.cpg_display_help('f=albums.htm&amp;as=album_pro
 $icon_array = array(
     'album_properties'   => cpg_fetch_icon('modifyalb', 2),
     'thumbnail'          => cpg_fetch_icon('thumbnails', 1),
-	'album_thumbnail'    => cpg_fetch_icon('thumbnails', 2),
+    'album_thumbnail'    => cpg_fetch_icon('thumbnails', 2),
     'password'           => cpg_fetch_icon('key_enter', 2),
     'album'              => cpg_fetch_icon('alb_mgr', 2),
-	'upload'             => cpg_fetch_icon('upload', 2),
+    'upload'             => cpg_fetch_icon('upload', 2),
     'move'               => cpg_fetch_icon('move', 1),
     'title'              => cpg_fetch_icon('title', 2),
     'view'               => cpg_fetch_icon('groups_mgr', 2),
@@ -72,13 +72,13 @@ $icon_array = array(
     'views'              => cpg_fetch_icon('stats', 2),
     'ok'                 => cpg_fetch_icon('ok', 1),
     'category'           => cpg_fetch_icon('category', 1),
-	'album_category'     => cpg_fetch_icon('category', 2),
+    'album_category'     => cpg_fetch_icon('category', 2),
     'file'               => cpg_fetch_icon('file', 2),
     'comment'            => cpg_fetch_icon('comment', 2),
-	'rate'               => cpg_fetch_icon('top_rated', 2),
-	'blank'              => cpg_fetch_icon('blank', 2),
-	'edit_files'         => cpg_fetch_icon('edit', 1),
-	'stop              ' => cpg_fetch_icon('stop', 0, '', '', 'png', 1),// Only get the image path and not the embedding <img>-tag
+    'rate'               => cpg_fetch_icon('top_rated', 2),
+    'blank'              => cpg_fetch_icon('blank', 2),
+    'edit_files'         => cpg_fetch_icon('edit', 1),
+    'stop'               => cpg_fetch_icon('stop', 0, '', '', 'png', 1),  // Only get the image path and not the embedding <img>-tag
 );
 
 $captionLabel = $lang_modifyalb_php['alb_desc'];
@@ -93,7 +93,7 @@ $data = array($lang_modifyalb_php['general_settings'],
     array($icon_array['description'].$captionLabel, 'description', 3),
     array($icon_array['keyword'].$lang_modifyalb_php['alb_keyword'].$help['album_keywords'], 'keyword', 0),
     array($lang_modifyalb_php['alb_thumb'], 'thumb', 4), 
-	$lang_modifyalb_php['alb_perm'],
+    $lang_modifyalb_php['alb_perm'],
     array($icon_array['view'].$lang_modifyalb_php['can_view'].$help['album_can_be_viewed_by'], 'visibility', 5),
     array($icon_array['password'].$lang_modifyalb_php['password_protect'].$help['album_password'], 'password_protect', 9),
     array($icon_array['blank'].$lang_modifyalb_php['alb_password'], 'alb_password', 6),
@@ -323,7 +323,7 @@ EOT;
         <td valign="top">
             {$icon_array['album_thumbnail']}{$text}{$help['album_thumbnail']}
         </td>
-        <td align="center">
+        <td align="left">
             <img src="{$thumbs[0]}" name="Thumb" class="image" alt="$text" />
             <br />
 
@@ -714,6 +714,7 @@ $actual_cat = $cat;
 js_include('js/modifyalb.js');
 
 set_js_var('reset_views_confirm', $lang_modifyalb_php['reset_views_confirm']);
+set_js_var('cursor_stop', $icon_array['stop']);
 
 pageheader(sprintf($lang_modifyalb_php['upd_alb_n'], $ALBUM_DATA['title']));
 
@@ -746,7 +747,7 @@ echo <<< EOT
         <td>
             {$icon_array['album']}{$lang_modifyalb_php['choose_album']}{$help['choose_album']}
         </td>
-        <td align="right">
+        <td align="left">
             $album_lb
         </td>
     </tr>
@@ -758,7 +759,7 @@ create_form($data);
 echo <<< EOT
     <tr>
         <td colspan="2" align="left" class="tablef">
-			<a name="notice1"></a>
+            <a name="notice1"></a>
 EOT;
 
 if (GALLERY_ADMIN_MODE) {
@@ -766,7 +767,7 @@ if (GALLERY_ADMIN_MODE) {
 } else {
     printf($lang_modifyalb_php['notice1'], '', '');
 }
-list($timestamp, $form_token) = getFormToken();	
+list($timestamp, $form_token) = getFormToken(); 
 echo <<< EOT
         </td>
     </tr>
@@ -880,7 +881,7 @@ EOT;
     </tr>
     <tr>
             <td class="tablef" colspan="2" align="center" valign="bottom">
-                <button type="submit" class="button" name="reset_submit" value="{$lang_modifyalb_php['submit_reset']}" disabled="disabled" style="cursor:url({$icon_array['stop']}),text;">{$icon_array['ok']}{$lang_modifyalb_php['submit_reset']}</button>
+                <button type="submit" class="button cursor_stop" name="reset_submit" value="{$lang_modifyalb_php['submit_reset']}" disabled="disabled" style="cursor:url({$icon_array['stop']}),text;">{$icon_array['ok']}{$lang_modifyalb_php['submit_reset']}</button>
                 <input name="agreecheck" id="agreecheck" type="checkbox" onclick="agreesubmit(this)" /><label for="agreecheck" class="clickable_option">{$lang_modifyalb_php['reset_views_confirm']}</label>
             </td>
     </tr>

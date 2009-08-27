@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-08-26 [A] Added back in "move to top/bottom" to album & picture managers {Paver}
+2009-08-26 [C] Cleaned up picture manager display including toggle buttons to show/hide thumbnails {Paver}
 2009-08-26 [B] Fixed the issue of proper handling of php's native error during upload process (flash) {Abbas}
 2009-08-25 [B] Fixed sorting bugs in album and picture managers (thread ID 61352) {Paver}
 2009-08-25 [B] Fixed caching issues with xp publisher {Nibbler}

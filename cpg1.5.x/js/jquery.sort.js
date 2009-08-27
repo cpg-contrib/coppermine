@@ -24,8 +24,7 @@
  */
  
  /** 
-  *  added extra function called sortManually() this plugin
-  *  This function will handle the manual sorting in album manger and photo manager
+  *  CPG Dev Team addition: sortManually(): to handle manual sorting in album and file managers
   */
   
 jQuery.tableDnD = {
@@ -90,7 +89,7 @@ jQuery.tableDnD = {
             // We only need to add the event to the specified cells
             var cells = jQuery("td.dragHandle", table);
             cells.each(function() {
-                
+
                jQuery(this).mousedown(function(ev) {
                         jQuery.tableDnD.dragObject = this.parentNode;
                         /**select the tr object when sort manually */
@@ -288,51 +287,41 @@ jQuery.tableDnD = {
     },
 
     //**this edit by Nuwan sameera for manually sorting*/
-    sortManually: function(count,selectedRow,tableName) {
+    sortManually: function(count,moveToExtreme,selectedRow,tableName) {
 
         jQuery.tableDnD.currentTable = document.getElementById(tableName);
 
         var rowHeight = selectedRow.offsetHeight;
-        var downCount = 0;
-        if (count > 0) {
-            downCount = rowHeight;
-        }
-        if (count < 0) {
-            downCount = -rowHeight;
-        }
         var dragObj = selectedRow;
         jQuery.tableDnD.currentHeight = jQuery.tableDnD.getPosition(dragObj).y;
         if (jQuery.tableDnD.currentHeight) {
             jQuery.tableDnD.selectObjectY = jQuery.tableDnD.currentHeight;
             jQuery.tableDnD.currentHeight = null;
         }
+
         var prevY = jQuery.tableDnD.selectObjectY;
-        var y     = (jQuery.tableDnD.selectObjectY + downCount);
-        jQuery.tableDnD.selectObjectY = y;
-
-        // get rows
-        var rows = jQuery.tableDnD.currentTable.rows;
+        var y     = (jQuery.tableDnD.selectObjectY + (count>0 ? rowHeight : -rowHeight));
+        var rows  = jQuery.tableDnD.currentTable.rows;
         jQuery.tableDnD.firstObjectHeight = jQuery.tableDnD.getPosition(rows[0]).y;
-        // get the last element height
         jQuery.tableDnD.lastObjectHeight  = jQuery.tableDnD.getPosition(rows[(rows.length-1)]).y;
-
-        if((jQuery.tableDnD.firstObjectHeight > jQuery.tableDnD.selectObjectY) || (jQuery.tableDnD.lastObjectHeight < jQuery.tableDnD.selectObjectY)) {
+        if (moveToExtreme) {
+            y = (count<0 ? jQuery.tableDnD.firstObjectHeight : jQuery.tableDnD.lastObjectHeight);
+        } else if ((jQuery.tableDnD.firstObjectHeight > y) 
+                    || (jQuery.tableDnD.lastObjectHeight < y)) {
             jQuery.tableDnD.selectObjectY = prevY;
             return false;
         }
+        jQuery.tableDnD.selectObjectY = y;
         //auto scroll the window
         if (y != jQuery.tableDnD.oldY) {
             // work out if we're going up or down...
-            var movingDown = true;
-            if (count < 1){
-                movingDown = false;
-            }
+            var movingDown = (count > 0);
             var currentRow = jQuery.tableDnD.findDropTargetRow(dragObj, y);
             if (currentRow) {
                 // TODO: worry about what happens when there are multiple TBODIES
                 if (movingDown && selectedRow != currentRow) {
                     selectedRow.parentNode.insertBefore(selectedRow, currentRow.nextSibling);
-                } else if (! movingDown && jQuery.tableDnD.selectObject != currentRow) {
+                } else if (!movingDown && jQuery.tableDnD.selectObject != currentRow) {
                     selectedRow.parentNode.insertBefore(selectedRow, currentRow);
                 }
             }

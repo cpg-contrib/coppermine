@@ -32,17 +32,19 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
 }
 
 $icon_array = array();
-$icon_array['ok'] = cpg_fetch_icon('ok', 1);
-$icon_array['cancel'] = cpg_fetch_icon('cancel', 1);
-$icon_array['up'] = cpg_fetch_icon('up', 1);
-$icon_array['down'] = cpg_fetch_icon('down', 1);
-$icon_array['new'] = cpg_fetch_icon('add', 1);
-$icon_array['delete'] = cpg_fetch_icon('delete', 1);
-$icon_array['edit'] = cpg_fetch_icon('edit', 1);
-$icon_array['modifyalb'] = cpg_fetch_icon('modifyalb', 1);
+$icon_array['ok']         = cpg_fetch_icon('ok', 1);
+$icon_array['cancel']     = cpg_fetch_icon('cancel', 1);
+$icon_array['up']         = cpg_fetch_icon('up', 1);
+$icon_array['upup']       = cpg_fetch_icon('upup', 1);
+$icon_array['down']       = cpg_fetch_icon('down', 1);
+$icon_array['downdown']   = cpg_fetch_icon('downdown', 1);
+$icon_array['new']        = cpg_fetch_icon('add', 1);
+$icon_array['delete']     = cpg_fetch_icon('delete', 1);
+$icon_array['edit']       = cpg_fetch_icon('edit', 1);
+$icon_array['modifyalb']  = cpg_fetch_icon('modifyalb', 1);
 $icon_array['edit_files'] = cpg_fetch_icon('edit', 1);
-$icon_array['thumbnail'] = cpg_fetch_icon('thumbnails', 1);
-$icon_array['blank'] = cpg_fetch_icon('blank', 1);
+$icon_array['thumbnail']  = cpg_fetch_icon('thumbnails', 1);
+$icon_array['blank']      = cpg_fetch_icon('blank', 1);
 
 
 /**
@@ -234,8 +236,10 @@ if (GALLERY_ADMIN_MODE || ($cat == USER_ID + FIRST_USER_CAT)) {
     }   
     
     echo <<< EOT
+                        <button type="button" id="upup_click" name="upup_click" class="button" value="{$lang_common['move_top']}" disabled="disabled">{$icon_array['upup']}{$lang_common['move_top']}</button>
                         <button type="button" id="up_click" name="up_click" class="button" value="{$lang_common['move_up']}" disabled="disabled">{$icon_array['up']}{$lang_common['move_up']}</button>
                         <button type="button" id="down_click" name="down_click" class="button" value="{$lang_common['move_down']}" disabled="disabled">{$icon_array['down']}{$lang_common['move_down']}</button>
+                        <button type="button" id="downdown_click" name="downdown_click" class="button" value="{$lang_common['move_bottom']}" disabled="disabled">{$icon_array['downdown']}{$lang_common['move_bottom']}</button>
 EOT;
 
 } 

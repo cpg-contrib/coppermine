@@ -142,38 +142,38 @@ html:first-child .bookmark_list img { /* Opera */
 }
 
 .detail_head_collapsed, .detail_head_expanded {
-	cursor: pointer;
-	position: relative;
-	padding: 5px 10px;
-	background-repeat:no-repeat;
-	background-position:center left;
+    cursor: pointer;
+    position: relative;
+    padding: 5px 10px;
+    background-repeat:no-repeat;
+    background-position:center left;
 }
 
 .detail_head_collapsed {
-	background-image:url('../images/tree/plus.gif');
+    background-image:url('../images/tree/plus.gif');
 }
 
 .detail_head_expanded {
-	background-image:url('../images/tree/minus.gif');
+    background-image:url('../images/tree/minus.gif');
 }
 
 .detail_body {
 }
 
 input.spin-button {
-	padding-right:20px;
-	background-repeat:no-repeat;
-	background-position:100% 0%;
-	background-image:url(../images/spinbtn_updn.gif);
+    padding-right:20px;
+    background-repeat:no-repeat;
+    background-position:100% 0%;
+    background-image:url(../images/spinbtn_updn.gif);
 }
 
 input.spin-button.up {
-	cursor:pointer;
-	background-position:100% -18px;
+    cursor:pointer;
+    background-position:100% -18px;
 }
 input.spin-button.down {
-	cursor:pointer;
-	background-position:100% -36px;
+    cursor:pointer;
+    background-position:100% -36px;
 }
 
 /* Greybox used for help pop-ups */
@@ -221,11 +221,11 @@ input.spin-button.down {
 }
 
 .dragHandle {
-	background-image: url(../images/icons/move.png)  ;
-	background-position:center center;
-	background-repeat:no-repeat;
-	width: 50px;
-	height: 14px;
+    background-image: url(../images/icons/move.png)  ;
+    background-position:center center;
+    background-repeat:no-repeat;
+    width: 50px;
+    height: 14px;
 }
 
 .explanation {
@@ -234,6 +234,6 @@ input.spin-button.down {
 
 /** Filmstrip styles */
 div#film { 
-	padding: 5px 0 5px 0; 
-	overflow:hidden; 
+    padding: 5px 0 5px 0; 
+    overflow:hidden; 
 }

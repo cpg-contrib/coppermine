@@ -170,7 +170,6 @@ jQuery(document).ready(function(){
     // album changes option (whether ok or not to change the albums)
     var albumSelectOption   = true;
 
-    //jQuery("#pic_sort").tableDnD();
     // styles to photo list
     function addRowColorsPhoto(){
         jQuery("#pic_sort").addClass("tableb");
@@ -197,38 +196,30 @@ jQuery(document).ready(function(){
         $(this).addClass("selected");
         // add the selected color to variable selectedColor
         photoselectedColor = $(this).css("background-color");
-        // alert(selectedColor)
         $(this).css("background-color", "#E0ECFF");
-        // $('button#up_click, button#down_click, button#delete_album, button#modify_album, button#editfiles_album, button#thumbnail_album').removeAttr("disabled");
-        $('button#pic_up, button#pic_down').removeAttr("disabled");
-        // $('button#pic_down').hide();
+        $('button#pic_up, button#pic_down, button#pic_upup, button#pic_downdown').removeAttr("disabled");
         // set current selected item in the album
         photoSelectedObject = this;
     });
 
     // sort items using up and down arrows
-    $("button#pic_up").click(function(){
-        if(photoSelectedObject){
-            // sort manually upwards
-            jQuery.tableDnD.sortManually(-1,photoSelectedObject,'pic_sort');
-            // after one click event called to doChanges function
-            $("#picture_order").val(getSerializePic());  
-            // set to album changes don't select if you have changed
-            albumSelectOption = false;
-            // show the message to save changes
-            Sort.showMessage();
+    $("#pic_up, #pic_down, #pic_upup, #pic_downdown").click(function() {
+        if (photoSelectedObject) {
+            var id = $(this).attr('id');
+            var moveCount = (id == 'pic_up' || id == 'pic_upup' ? -1 : 1);
+            var moveToExtreme = (id == 'pic_upup' || id == 'pic_downdown');
+            jQuery.tableDnD.sortManually(moveCount,moveToExtreme,photoSelectedObject,'pic_sort');
+            $("#picture_order").val(getSerializePic());  // reflect new sort order in hidden form field
+            albumSelectOption = false;                   // require confirmation to change album without saving changes
+            Sort.showMessage();                          // show "Apply Changes" button and warning message
         }
     });
-    $("button#pic_down").click(function(){
-        if(photoSelectedObject){
-            // sort manually downwards
-            jQuery.tableDnD.sortManually(1,photoSelectedObject,'pic_sort');
-            // after one click event called to doChanges function
-            $("#picture_order").val(getSerializePic());
-            // set to album changes don't select if you have changed
-            albumSelectOption = false;
-            // show the message to save changes
-            Sort.showMessage();
+
+    $(".thumbnail_view").click(function() {
+        $(".pic_thumbnail").toggle();
+        // scroll down if user clicked the bottom thumbnail_view button
+        if ($(this).attr("id") == 'thumbnail_view2') { 
+            $('html, body').animate({ scrollTop: $("#pic_sort").attr("scrollHeight") }, 600);
         }
     });
 
@@ -334,8 +325,7 @@ jQuery(document).ready(function() {
         selectedColor = $(this).css("background-color");
         //alert(this);
         $(this).css("background-color", "#E0ECFF");
-        $('button#up_click, button#down_click, button#delete_album, button#modify_album, button#editfiles_album, button#thumbnail_album').removeAttr("disabled");
-        $('button#pic_up, button#pic_down').show();
+        $('button#upup_click, button#up_click, button#down_click, button#downdown_click, button#delete_album, button#modify_album, button#editfiles_album, button#thumbnail_album').removeAttr("disabled");
         // set current selected item in the album
         albumObjectSelectedTr = this;
     });
@@ -420,7 +410,7 @@ jQuery(document).ready(function() {
     }); 
 
     // album links: album properties, edit files, thumbnail view
-    $('button#modify_album,button#editfiles_album,button#thumbnail_album').livequery('click', function(){
+    $('button#modify_album, button#editfiles_album, button#thumbnail_album').livequery('click', function(){
         // if there isn't a TR object selected, then nothing to do
         if(!albumObjectSelectedTr){
             return false;
@@ -453,42 +443,26 @@ jQuery(document).ready(function() {
 
     }); 
 
-    // after drag and drop assign changes to the TR title
+    // after drag and drop, assign changes to the TR title
     $('#album_sort').tableDnD({
         onDrop: function(table, row) {
             $("#album_order").val(getSerialize());
-            // set to category changes don't select if you have changed
             categorySelectOption = false;    
-        }    
+        }
     });
 
-    //sort items using up and down arrows
-    $("#up_click").click(function(){
-        if(albumObjectSelectedTr){
-            // sort manually upwards
-            jQuery.tableDnD.sortManually(-1,albumObjectSelectedTr,'album_sort');
-            // after one click event called to doChanges function
-            $("#album_order").val(getSerialize());   
-            // set to category changes don't select if you have changed
-            categorySelectOption = false;
-            // show the message to save changes
-            Sort.showMessage();
+    // sort items using up, down, upup, downdown buttons
+    $("#up_click, #down_click, #upup_click, #downdown_click").click(function(){
+        if (albumObjectSelectedTr) {
+            var id = $(this).attr('id');
+            var moveCount = (id == 'up_click' || id == 'upup_click' ? -1 : 1);
+            var moveToExtreme = (id == 'upup_click' || id == 'downdown_click');
+            jQuery.tableDnD.sortManually(moveCount,moveToExtreme,albumObjectSelectedTr,'album_sort');
+            $("#album_order").val(getSerialize());  // reflect new sort order in hidden form field
+            categorySelectOption = false;           // require confirmation to change category without saving changes
+            Sort.showMessage();                     // show "Apply Changes" button and warning message
         }
     });  
-
-    //sort items using up and down arrows
-    $("#down_click").click(function(){
-        if(albumObjectSelectedTr){
-            // sort manually downwards
-            jQuery.tableDnD.sortManually(1,albumObjectSelectedTr,'album_sort');
-            // after one click event called to doChanges function
-            $("#album_order").val(getSerialize());        
-            // set to category changes don't select if you have changed
-            categorySelectOption = false; 
-            // show the message to save changes
-            Sort.showMessage();
-        }          
-    });
 
     // load the form when click the submit button
     $("#cpg_form_album").submit( "click", function () {          
