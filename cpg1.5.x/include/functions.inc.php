@@ -1054,6 +1054,47 @@ function build_caption(&$rowset, $must_have = array(), $mode = 'files')
     $rowset = CPGPluginAPI::filter('thumb_caption', $rowset);
 }
 
+/*
+    To retrieve pictures from the end of an album or meta album, it is more
+    efficient to sort from the end of the album and then reverse the result.
+    $total is the total number of files in the [meta]album
+    $offset is the position we are browsing from
+    $row_count is the desired number of pics per page
+*/
+function get_pic_data_ordering($total, $offset, $row_count)
+{
+    // Determine if we are over halfway through the album
+    if ($offset > $total / 2) {
+        
+        // If so, switch the sort direction
+        $ASC = 'DESC';
+        $DESC = 'ASC';
+        
+        // If we are on the last page, we need a partial result
+        if ($offset + $row_count > $total) {
+            $row_count = $total - $offset;
+            $offset = 0;
+        } else {
+            $offset = $total - $offset - $row_count;
+        }
+        
+        // Flag so that we know to reverse the results later
+        $flipped = true;
+        
+    } else {
+        
+        // Else, carry on as usual
+        $ASC = 'ASC';
+        $DESC = 'DESC';
+        $flipped = false;
+    }
+ 
+    // Generate the new LIMIT clause
+    $limit = "LIMIT $offset, $row_count";
+     
+    return array($ASC, $DESC, $limit, $flipped);    
+}
+
 // Retrieve the data for a picture or a set of picture
 
 /**
@@ -1079,22 +1120,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
     $superCage = Inspekt::makeSuperCage();
 
-    $sort_array = array(
-        'na' => 'filename ASC',
-        'nd' => 'filename DESC',
-        'ta' => 'title ASC',
-        'td' => 'title DESC',
-        'da' => 'pid ASC',
-        'dd' => 'pid DESC',
-        'pa' => 'position ASC',
-        'pd' => 'position DESC',
-    );
-
-    $sort_code  = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
-    $sort_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_array[$CONFIG['default_sort_order']];
-    $limit      = ($limit1 != -1) ? ' LIMIT ' . $limit1 : '';
-    $limit     .= ($limit2 != -1) ? ' ,' . $limit2 : '';
-
+    $limit = ($limit1 != -1) ? ' LIMIT ' . $limit1 : '';
+    $limit .= ($limit2 != -1) ? ' ,' . $limit2 : '';
+    
     if ($mode == 'pidonly') {
         $select_column_list = array('r.pid');
 
@@ -1200,17 +1228,38 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         } else {
             $count = $pic_count;
         }
+        
+        list($ASC, $DESC, $limit, $flipped) = get_pic_data_ordering($count, $limit1, $limit2);
 
+        $sort_array = array(
+            'na' => "filename $ASC",
+            'nd' => "filename $DESC",
+            'ta' => "title $ASC",
+            'td' => "title $DESC",
+            'da' => "pid $ASC",
+            'dd' => "pid $DESC",
+            'pa' => "position $ASC",
+            'pd' => "position $DESC",
+        );
+    
+        $sort_code  = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
+        $sort_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_array[$CONFIG['default_sort_order']];
+            
         $select_columns = implode(', ', $select_column_list);
 
-        $query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} AS r
-                    WHERE ((aid = $album $forbidden_set_string ) $keyword) $approved
-                    ORDER BY $sort_order $limit";
+        $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} AS r
+                    WHERE ((aid = $album $forbidden_set_string ) $keyword)$approved
+                    ORDER BY $sort_order
+                    $limit";
 
         $result = cpg_db_query($query);
         $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
 
+        if ($flipped) {
+            $rowset = array_reverse($rowset);
+        }
+        
         // Set picture caption
         if ($set_caption) {
             if ($CONFIG['display_thumbnail_rating'] == 1) {
@@ -1222,11 +1271,11 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         $rowset = CPGPluginAPI::filter('thumb_caption_regular', $rowset);
         return $rowset;
     }
-
+    
     $meta_album_passto = array (
-            'album' => $album,
-            'limit' => $limit,
-            'set_caption' => $set_caption,
+        'album' => $album,
+        'limit' => $limit,
+        'set_caption' => $set_caption,
     );
 
     $meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);
@@ -1264,6 +1313,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         list($count) = mysql_fetch_row($result);
         mysql_free_result($result);
 
+        list($ASC, $DESC, $limit, $flipped) = get_pic_data_ordering($count, $limit1, $limit2);
+        
         $select_column_list[] = 'UNIX_TIMESTAMP(msg_date) AS msg_date';
         $select_column_list[] = 'msg_body';
         $select_column_list[] = 'author_id';
@@ -1279,13 +1330,17 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $RESTRICTEDWHERE
                 AND r.approved = 'YES'
                 AND c.approval = 'YES'
-                ORDER BY msg_id DESC
+                ORDER BY msg_id $DESC
                 $limit";
 
         $result = cpg_db_query($query);
         $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
 
+        if ($flipped) {
+            $rowset = array_reverse($rowset);
+        }
+        
         if ($set_caption) {
             build_caption($rowset, array('msg_body', 'msg_date'));
         }
@@ -1325,6 +1380,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         list($count) = mysql_fetch_row($result);
         mysql_free_result($result);
 
+        list($ASC, $DESC, $limit, $flipped) = get_pic_data_ordering($count, $limit1, $limit2);
+        
         $select_column_list[] = 'UNIX_TIMESTAMP(msg_date) AS msg_date';
         $select_column_list[] = 'msg_body';
         $select_column_list[] = 'author_id';
@@ -1341,7 +1398,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 AND author_id = '$uid'
                 AND r.approved = 'YES'
                 AND c.approval = 'YES'
-                ORDER BY msg_id DESC
+                ORDER BY msg_id $DESC
                 $limit";
 
         $result = cpg_db_query($query);
@@ -1352,6 +1409,10 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             build_caption($rowset, array('msg_body', 'msg_date'));
         }
 
+        if ($flipped) {
+            $rowset = array_reverse($rowset);
+        }
+        
         $rowset = CPGPluginAPI::filter('thumb_caption_lastcomby', $rowset);
 
         return $rowset;
@@ -1376,6 +1437,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         list($count) = mysql_fetch_row($result);
         mysql_free_result($result);
 
+        list($ASC, $DESC, $limit, $flipped) = get_pic_data_ordering($count, $limit1, $limit2);
+
         $select_columns = implode(', ', $select_column_list);
 
         $query = "SELECT $select_columns
@@ -1383,12 +1446,16 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
                 $RESTRICTEDWHERE
                 AND approved = 'YES'
-                ORDER BY r.pid DESC $limit";
+                ORDER BY r.pid $DESC $limit";
 
         $result = cpg_db_query($query);
         $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
 
+        if ($flipped) {
+            $rowset = array_reverse($rowset);
+        }
+        
         if ($set_caption) {
             build_caption($rowset, array('ctime'));
         }
@@ -1426,6 +1493,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         list($count) = mysql_fetch_row($result);
         mysql_free_result($result);
 
+        list($ASC, $DESC, $limit, $flipped) = get_pic_data_ordering($count, $limit1, $limit2);
+        
         $select_columns = implode(', ', $select_column_list);
 
         $query = "SELECT $select_columns
@@ -1434,13 +1503,17 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $RESTRICTEDWHERE
                 AND r.owner_id = '$uid'
                 AND approved = 'YES'
-                ORDER BY pid DESC
+                ORDER BY pid $DESC
                 $limit";
 
         $result = cpg_db_query($query);
         $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
 
+        if ($flipped) {
+            $rowset = array_reverse($rowset);
+        }
+        
         if ($set_caption) {
             build_caption($rowset, array('ctime'));
         }
@@ -1470,6 +1543,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         list($count) = mysql_fetch_row($result);
         mysql_free_result($result);
 
+        list($ASC, $DESC, $limit, $flipped) = get_pic_data_ordering($count, $limit1, $limit2);
+        
         $select_columns = implode(', ', $select_column_list);
 
         $query = "SELECT $select_columns
@@ -1478,13 +1553,17 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $RESTRICTEDWHERE
                 AND approved = 'YES'
                 AND hits > 0
-                ORDER BY hits DESC, pid ASC
+                ORDER BY hits $DESC, pid $ASC
                 $limit";
 
         $result = cpg_db_query($query);
         $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
 
+        if ($flipped) {
+            $rowset = array_reverse($rowset);
+        }
+        
         if ($set_caption) {
             build_caption($rowset, array('hits'));
         }
@@ -1514,6 +1593,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         list($count) = mysql_fetch_row($result);
         mysql_free_result($result);
 
+        list($ASC, $DESC, $limit, $flipped) = get_pic_data_ordering($count, $limit1, $limit2);
+        
         $select_columns = implode(', ', $select_column_list);
 
         $query = "SELECT $select_columns
@@ -1522,13 +1603,17 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $RESTRICTEDWHERE
                 AND approved = 'YES'
                 AND r.votes >= '{$CONFIG['min_votes_for_rating']}'
-                ORDER BY pic_rating DESC, r.votes DESC, pid DESC
+                ORDER BY pic_rating $DESC, r.votes $DESC, pid $DESC
                 $limit";
 
         $result = cpg_db_query($query);
         $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
 
+        if ($flipped) {
+            $rowset = array_reverse($rowset);
+        }
+        
         if ($set_caption) {
             build_caption($rowset, array('pic_rating'));
         }
@@ -1558,6 +1643,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         list($count) = mysql_fetch_row($result);
         mysql_free_result($result);
 
+        list($ASC, $DESC, $limit, $flipped) = get_pic_data_ordering($count, $limit1, $limit2);
+        
         $select_column_list[] = 'UNIX_TIMESTAMP(mtime) AS mtime';
 
         if (GALLERY_ADMIN_MODE) {
@@ -1572,13 +1659,17 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $RESTRICTEDWHERE
                 AND approved = 'YES'
                 AND hits > 0
-                ORDER BY mtime DESC, pid ASC
+                ORDER BY mtime $DESC, pid $ASC
                 $limit";
 
         $result = cpg_db_query($query);
         $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
 
+        if ($flipped) {
+            $rowset = array_reverse($rowset);
+        }
+        
         if ($set_caption) {
             build_caption($rowset, array('mtime', 'hits'));
         }
@@ -1853,6 +1944,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         list($count) = mysql_fetch_row($result);
         mysql_free_result($result);
 
+        list($ASC, $DESC, $limit, $flipped) = get_pic_data_ordering($count, $limit1, $limit2);
+        
         $select_columns = implode(', ', $select_column_list);
 
         $query = "SELECT $select_columns
@@ -1861,13 +1954,17 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $RESTRICTEDWHERE
                 AND approved = 'YES'
                 AND substring(from_unixtime(ctime),1,10) = '" . substr($date, 0, 10) . "'
-                ORDER BY pid ASC
+                ORDER BY pid $ASC
                 $limit";
 
         $result = cpg_db_query($query);
         $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
 
+        if ($flipped) {
+            $rowset = array_reverse($rowset);
+        }
+        
         if ($set_caption) {
             build_caption($rowset, array('ctime'));
         }
