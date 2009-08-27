@@ -74,11 +74,15 @@ if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
 $i=100;
 $sort_order = '';
 
-if (count ($rowset) > 0) 
-foreach ($rowset as $picture){
-  $sort_order .= $picture['pid'].'@'.($i++).',';
+$button_hidden = '';
+if (count ($rowset) > 0) {
+    foreach ($rowset as $picture){
+        $sort_order .= $picture['pid'].'@'.($i++).',';
+    }
+} else {
+    $button_hidden = 'display:none;';
 }
-   
+
 echo <<< EOT
     <noscript>
         <tr>
@@ -104,7 +108,7 @@ if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
                 <option value="0">{$lang_common['select_album']}</option>
                 $options
             </select>
-            <button type="button" id="thumbnail_view1" name="thumbnail_view1" class="button thumbnail_view" style="float:right;" value="{$lang_common['thumbnail_view']}">{$icon_array['thumbnail']}{$lang_common['thumbnail_view']}</button>
+            <button type="button" id="thumbnail_view1" name="thumbnail_view1" class="button thumbnail_view" style="float:right;{$button_hidden}" value="{$lang_common['thumbnail_view']}">{$icon_array['thumbnail']}{$lang_common['thumbnail_view']}</button>
         </td>
     </tr>
     <tr>
@@ -122,7 +126,7 @@ EOT;
 $i   =   100;
 $lb  =   '';
 $j   =   1;
-    if (count($rowset) > 0) 
+    if (count($rowset) > 0) {
         foreach ($rowset as $picture){
             $get_photo_name = $picture['title'];
             $picname = $CONFIG['fullpath'] . $picture['filepath'] . $picture['filename'];
@@ -159,7 +163,10 @@ $j   =   1;
 EOT;
             $j++;
         }
-        
+    } else if ($aid != 0) {
+        $lb = '<tr><td>'.$lang_errors['no_img_to_display'].'</td></tr>';
+    }
+
     echo $lb;
 
     echo <<< EOT
@@ -169,16 +176,16 @@ EOT;
     </tr>
     <tr>
         <td class="tableb">
-            <button type="button" id="pic_upup" name="pic_upup" class="button" value="{$lang_common['move_top']}" disabled="disabled">{$icon_array['upup']}{$lang_common['move_top']}</button>
-            <button type="button" id="pic_up" name="pic_up" class="button" value="{$lang_common['move_up']}" disabled="disabled">{$icon_array['up']}{$lang_common['move_up']}</button>
-            <button type="button" id="pic_down" name="pic_down" class="button" value="{$lang_common['move_down']}" disabled="disabled">{$icon_array['down']}{$lang_common['move_down']}</button>
-            <button type="button" id="pic_downdown" name="pic_downdown" class="button" value="{$lang_common['move_bottom']}" disabled="disabled">{$icon_array['downdown']}{$lang_common['move_bottom']}</button>
-            <button type="button" id="thumbnail_view2" name="thumbnail_view2" class="button thumbnail_view" style="float:right;" value="{$lang_common['thumbnail_view']}">{$icon_array['thumbnail']}{$lang_common['thumbnail_view']}</button>
+            <button type="button" id="pic_upup" name="pic_upup" class="button" value="{$lang_common['move_top']}" style="{$button_hidden}" disabled="disabled">{$icon_array['upup']}{$lang_common['move_top']}</button>
+            <button type="button" id="pic_up" name="pic_up" class="button" value="{$lang_common['move_up']}" style="{$button_hidden}" disabled="disabled">{$icon_array['up']}{$lang_common['move_up']}</button>
+            <button type="button" id="pic_down" name="pic_down" class="button" value="{$lang_common['move_down']}" style="{$button_hidden}" disabled="disabled">{$icon_array['down']}{$lang_common['move_down']}</button>
+            <button type="button" id="pic_downdown" name="pic_downdown" class="button" value="{$lang_common['move_bottom']}" style="{$button_hidden}" disabled="disabled">{$icon_array['downdown']}{$lang_common['move_bottom']}</button>
+            <button type="button" id="thumbnail_view2" name="thumbnail_view2" class="button thumbnail_view" style="float:right;{$button_hidden}" value="{$lang_common['thumbnail_view']}">{$icon_array['thumbnail']}{$lang_common['thumbnail_view']}</button>
         </td>
     </tr>
     <tr>
         <td class="tableb">
-            <button type="submit" class="button" name="apply" id="apply" value="{$lang_common['apply_changes']}" style="display: none;">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
+            <button type="submit" class="button" name="apply" id="apply" value="{$lang_common['apply_changes']}" style="display:none;">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
             <div id="submit_reminder" class="cpg_message_warning" style="display: none;">
                 {$lang_picmgr_php['submit_reminder']}
             </div>
