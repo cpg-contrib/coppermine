@@ -1090,7 +1090,8 @@ function get_pic_data_ordering($total, $offset, $row_count)
     }
  
     // Generate the new LIMIT clause
-    $limit = "LIMIT $offset, $row_count";
+    $limit = ($offset != -1) ? ' LIMIT ' . $offset : '';
+    $limit .= ($row_count != -1) ? ' ,' . $row_count : '';
      
     return array($ASC, $DESC, $limit, $flipped);    
 }
