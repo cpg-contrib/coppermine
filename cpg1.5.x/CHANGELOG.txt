@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-08-28 [A] Added js function strip_tags  to strip html while showing error in js alert {Abbas}
 2009-08-26 [A] Added back in "move to top/bottom" to album & picture managers {Paver}
 2009-08-26 [C] Cleaned up picture manager display including toggle buttons to show/hide thumbnails {Paver}
 2009-08-26 [B] Fixed the issue of proper handling of php's native error during upload process (flash) {Abbas}

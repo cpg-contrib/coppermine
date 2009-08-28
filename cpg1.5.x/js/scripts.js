@@ -158,6 +158,144 @@ function sprintf () {
 }
 // end function sprintf
 
+// PHP equivalent of stript_tags. 
+// Source: http://phpjs.org
+function strip_tags (str, allowed_tags) {
+    // Strips HTML and PHP tags from a string  
+    // 
+    // version: 908.406
+    // discuss at: http://phpjs.org/functions/strip_tags
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Luke Godfrey
+    // +      input by: Pul
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Onno Marsman
+    // +      input by: Alex
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Marc Palau
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Brett Zamir (http://brett-zamir.me)
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Eric Nagel
+    // +      input by: Bobby Drake
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   bugfixed by: Tomasz Wesolowski
+    // *     example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>');
+    // *     returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
+    // *     example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>');
+    // *     returns 2: '<p>Kevin van Zonneveld</p>'
+    // *     example 3: strip_tags("<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>", "<a>");
+    // *     returns 3: '<a href='http://kevin.vanzonneveld.net'>Kevin van Zonneveld</a>'
+    // *     example 4: strip_tags('1 < 5 5 > 1');
+    // *     returns 4: '1 < 5 5 > 1'
+    var key = '', allowed = false;
+    var matches = [];
+    var allowed_array = [];
+    var allowed_tag = '';
+    var i = 0;
+    var k = '';
+    var html = '';
+    var replacer = function (search, replace, str) {
+        return str.split(search).join(replace);
+    };
+    // Build allowes tags associative array
+    if (allowed_tags) {
+        allowed_array = allowed_tags.match(/([a-zA-Z0-9]+)/gi);
+    }
+    str += '';
+    // Match tags
+    matches = str.match(/(<\/?[\S][^>]*>)/gi);
+    // Go through all HTML tags
+    for (key in matches) {
+        if (isNaN(key)) {
+            // IE7 Hack
+            continue;
+        }
+        // Save HTML tag
+        html = matches[key].toString();
+        // Is tag not in allowed list? Remove from str!
+        allowed = false;
+        // Go through all allowed tags
+        for (k in allowed_array) {
+            // Init
+            allowed_tag = allowed_array[k];
+            i = -1;
+            if (i != 0) { i = html.toLowerCase().indexOf('<'+allowed_tag+'>');}
+            if (i != 0) { i = html.toLowerCase().indexOf('<'+allowed_tag+' ');}
+            if (i != 0) { i = html.toLowerCase().indexOf('</'+allowed_tag)   ;}
+
+            // Determine
+            if (i == 0) {
+                allowed = true;
+                break;
+            }
+        }
+        if (!allowed) {
+            str = replacer(html, "", str); // Custom replace. No regexing
+        }
+    }
+    return str;
+}
+
+// Function to strip all html from given string. It replaces <br> with \n
+// This function is generally used to show error messages in js alert
+function strip_html(content) {
+    // We will first replace <br /> with \n
+    content = content.replace('<br>', '\n');
+    content = content.replace('<br />', '\n');
+    return strip_tags(content);
+}
+
+// 
+function str_replace (search, replace, subject, count) {
+    // Replaces all occurrences of search in haystack with replace  
+    // 
+    // version: 908.406
+    // discuss at: http://phpjs.org/functions/str_replace
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   improved by: Gabriel Paderni
+    // +   improved by: Philip Peterson
+    // +   improved by: Simon Willison (http://simonwillison.net)
+    // +    revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+    // +   bugfixed by: Anton Ongson
+    // +      input by: Onno Marsman
+    // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +    tweaked by: Onno Marsman
+    // +      input by: Brett Zamir (http://brett-zamir.me)
+    // +   bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +   input by: Oleg Eremeev
+    // +   improved by: Brett Zamir (http://brett-zamir.me)
+    // +   bugfixed by: Oleg Eremeev
+    // %          note 1: The count parameter must be passed as a string in order
+    // %          note 1:  to find a global variable in which the result will be given
+    // *     example 1: str_replace(' ', '.', 'Kevin van Zonneveld');
+    // *     returns 1: 'Kevin.van.Zonneveld'
+    // *     example 2: str_replace(['{name}', 'l'], ['hello', 'm'], '{name}, lars');
+    // *     returns 2: 'hemmo, mars'
+    var i = 0, j = 0, temp = '', repl = '', sl = 0, fl = 0,
+            f = [].concat(search),
+            r = [].concat(replace),
+            s = subject,
+            ra = r instanceof Array, sa = s instanceof Array;
+    s = [].concat(s);
+    if (count) {
+        this.window[count] = 0;
+    }
+
+    for (i=0, sl=s.length; i < sl; i++) {
+        if (s[i] === '') {
+            continue;
+        }
+        for (j=0, fl=f.length; j < fl; j++) {
+            temp = s[i]+'';
+            repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
+            s[i] = (temp).split(f[j]).join(repl);
+            if (count && s[i] !== temp) {
+                this.window[count] += (temp.length-s[i].length)/f[j].length;}
+        }
+    }
+    return sa ? s : s[0];
+}
 
 // This prototype is from the public domain.
 // Source: http://www.hunlock.com/blogs/Mastering_Javascript_Arrays

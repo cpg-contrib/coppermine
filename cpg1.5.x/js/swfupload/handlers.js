@@ -133,13 +133,12 @@ function uploadSuccess(file, serverData) {
             $('#upload_count').text(1 * $('#upload_count').text() + 1);
             addImage(js_vars.site_url + '/' + serverData.substring(8));
         } else {
+            progress.setError();
+            progress.setStatus(js_vars.lang_upload_swf_php.status_failed);
             // First check if we have '|' character in serverData or not
             if (serverData.indexOf('|') != -1) {
                 var resArr = serverData.split('|');
-                progress.setError();
-                progress.setStatus(js_vars.lang_upload_swf_php.status_failed);
                 alert(resArr[1]);
-                
                 if (resArr[2] == 1) {
                     // Stop further uploading. Something critical happened
                     swfu.cancelQueue();
@@ -147,7 +146,7 @@ function uploadSuccess(file, serverData) {
             } else {
                 // If there is no | character then it means something went wrong on server side
                 // Alert the returned serverData (which will usually be some php error) as it is
-                alert(serverData);
+                alert(strip_tags(serverData));
             }
         }
         progress.toggleCancel(false);
