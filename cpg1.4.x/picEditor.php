@@ -67,27 +67,29 @@ require('include/picmgmt.inc.php');
 define('IMG_DIR', $CONFIG['fullpath'].'edit/');
 
 if (isset($_GET['id'])) {
-        $pid = (int)$_GET['id'];
+    $pid = (int) $_GET['id'];
 } elseif (isset($_POST['id'])) {
-        $pid = (int)$_POST['id'];
+    $pid = (int) $_POST['id'];
 } else {
-        $pid = -1;
-        cpg_die(ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+    cpg_die(ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }
 
-// Initialize the array
-$CURRENT_PIC = array();
+if ($pid > 0) {
 
-if (!(GALLERY_ADMIN_MODE || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID)) || !USER_ID) {
+    $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
+    $CURRENT_PIC = mysql_fetch_assoc($result);
+    mysql_free_result($result);
+
+    $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '{$CURRENT_PIC['aid']}'");
+    $CURRENT_ALBUM = mysql_fetch_assoc($result);
+    mysql_free_result($result);
+        
+} else {
+    cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__); 
+}
+
+if (!(GALLERY_ADMIN_MODE || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID) || ($CURRENT_ALBUM['category'] == FIRST_USER_CAT + USER_ID)) || !USER_ID) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-}
-
-if ($pid > 0){
-
-        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
-        $CURRENT_PIC = mysql_fetch_array($result);
-        mysql_free_result($result);
-        $pic_url = get_pic_url($CURRENT_PIC,'fullsize');
 }
 
 //Garbage collection run at an probability of 25% and delete all files older than one hour
