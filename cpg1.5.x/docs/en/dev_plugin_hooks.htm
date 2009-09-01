@@ -278,6 +278,13 @@
   </tr>
   <tr>
     <td valign="top">include/functions.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_filename_picture_url"></a><strong>picture_url</strong><a href="#plugin_hooks_filename_picture_url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">filters $pic_row when get_pic_url is called... usually this is called before any html output is created so you can use this to change a lot of data</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$pic_row = CPGPluginAPI::filter('picture_url', $pic_row);</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">include/functions.inc.php</td>
     <td valign="top"><a name="plugin_hooks_filename_template_html"></a><strong>template_html</strong><a href="#plugin_hooks_filename_template_html" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters the template html</td>
@@ -387,6 +394,13 @@
     <td valign="top">Filter</td>
     <td valign="top">executed before meta albums are retrieved, giving the possibility to add or filter meta albums.<br />See below for more info.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">include/functions.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_meta_album_get_pic_pos"></a><strong>meta_album_get_pic_pos</strong><a href="#plugin_hooks_meta_album_get_pic_pos" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">determines the position of the a file within a meta album.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$pos = CPGPluginAPI::filter('meta_album_get_pic_pos', $album);</textarea></td>
   </tr>
   <tr>
     <td valign="top">include/functions.inc.php</td>
@@ -586,10 +600,12 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
 	<li><a href="#plugin_hooks_filename_html_image_reduced_overlay">html_image_reduced_overlay</a></li>
 	<li><a href="#plugin_hooks_filename_html_other_media">html_other_media</a></li>
 	<li><a href="#plugin_hooks_meta_album">meta_album</a></li>
+    <li><a href="#plugin_hooks_meta_album_get_pic_pos">meta_album_get_pic_pos</a></li>
 	<li><a href="#plugin_hooks_filename_page_end">page_end</a></li>
 	<li><a href="#plugin_hooks_filename_page_html">page_html</a></li>
 	<li><a href="#plugin_hooks_filename_page_meta">page_meta</a></li>
 	<li><a href="#plugin_hooks_filename_page_start">page_start</a></li>
+    <li><a href="#plugin_hooks_filename_picture_url">picture_url</a></li>
 	<li><a href="#plugin_hooks_filename_plugin_block">plugin_block</a></li>
 	<li><a href="#plugin_hooks_filename_plugin_cleanup">plugin_cleanup</a></li>
 	<li><a href="#plugin_hooks_filename_plugin_configure">plugin_configure</a></li>

@@ -67,7 +67,7 @@
     <th valign="top" align="left">Hook name</td>
     <th valign="top" align="left">Hook type</td>
     <th valign="top" align="left">Explanation</td>
-    <th valign="top" align="left" width="30%">Sample</td>
+    <th valign="top" align="left" width="30%">Code</td>
   </tr>
   <tr>
     <td valign="top">contact.php</td>
@@ -195,6 +195,27 @@
     <td valign="top"><textarea class="samplecode" style="width:100%">$error = CPGPluginAPI::filter('captcha_register_validate', $error);</textarea></td>
   </tr>
   <tr>
+    <td valign="top">register.php</td>
+    <td valign="top"><a name="plugin_hooks_register_form_create"></a><strong>register_form_create</strong><a href="#plugin_hooks_register_form_create" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Add more fields to the registration form</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$form_data = CPGPluginAPI::filter('register_form_create', $form_data);</textarea></td>
+  </tr>
+   <tr>
+    <td valign="top">register.php</td>
+    <td valign="top"><a name="plugin_hooks_register_form_submit"></a><strong>register_form_submit</strong><a href="#plugin_hooks_register_form_submit" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Perform an action corresponding to the submit registration form data</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">CPGPluginAPI::filter('register_form_submit', $user_array);</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">register.php</td>
+    <td valign="top"><a name="plugin_hooks_register_user_activation"></a><strong>register_user_activation</strong><a href="#plugin_hooks_register_user_activation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Perform an action when the user account is activated</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">CPGPluginAPI::filter('register_user_activation', $act_key);</textarea></td>
+  </tr>
+  <tr>
     <td valign="top">thumbnails.php</td>
     <td valign="top"><a name="plugin_hooks_thumbnails_post_breadcrumb"></a><strong>post_breadcrumb</strong><a href="#plugin_hooks_thumbnails_post_breadcrumb" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
@@ -256,6 +277,13 @@
     <td valign="top">Filter</td>
     <td valign="top">filters $pic_row when get_pic_url is called... usually this is called before any html output is created so you can use this to change a lot of data</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$pic_row = CPGPluginAPI::filter('thumb_data',$pic_row);</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">include/functions.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_filename_picture_url"></a><strong>picture_url</strong><a href="#plugin_hooks_filename_picture_url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">filters $pic_row when get_pic_url is called... usually this is called before any html output is created so you can use this to change a lot of data</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$pic_row = CPGPluginAPI::filter('picture_url', $pic_row);</textarea></td>
   </tr>
   <tr>
     <td valign="top">include/functions.inc.php</td>
@@ -371,6 +399,13 @@
   </tr>
   <tr>
     <td valign="top">include/functions.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_meta_album_get_pic_pos"></a><strong>meta_album_get_pic_pos</strong><a href="#plugin_hooks_meta_album_get_pic_pos" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">determines the position of the a file within a meta album.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$pos = CPGPluginAPI::filter('meta_album_get_pic_pos', $album);</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">include/functions.inc.php</td>
     <td valign="top"><a name="plugin_hooks_bbcode"></a><strong>bbcode</strong><a href="#plugin_hooks_bbcode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">with this hook, you can modify the comment that has been submitted and add your custom bbcodes. (Only available when a '[' has been found in the comment)</td>
@@ -411,7 +446,7 @@ ob_start('cpg_filter_page_html');</textarea></td>
     <td valign="top">include/plugin_api.inc.php</td>
     <td valign="top"><a name="plugin_hooks_filename_page_end"></a><strong>page_end</strong><a href="#plugin_hooks_filename_page_end" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
-    <td valign="top">executes when the script has output the page to the browser</td>
+    <td valign="top">executes when the script has output the page to the browser.<br />Note: Working directory of the script can change inside the shutdown function under some web servers, e.g. Apache.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">register_shutdown_function('cpg_action_page_end');</textarea></td>
   </tr>
   <tr>
@@ -567,10 +602,12 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
 	<li><a href="#plugin_hooks_filename_html_image_reduced_overlay">html_image_reduced_overlay</a></li>
 	<li><a href="#plugin_hooks_filename_html_other_media">html_other_media</a></li>
 	<li><a href="#plugin_hooks_meta_album">meta_album</a></li>
+    <li><a href="#plugin_hooks_meta_album_get_pic_pos">meta_album_get_pic_pos</a></li>
 	<li><a href="#plugin_hooks_filename_page_end">page_end</a></li>
 	<li><a href="#plugin_hooks_filename_page_html">page_html</a></li>
 	<li><a href="#plugin_hooks_filename_page_meta">page_meta</a></li>
 	<li><a href="#plugin_hooks_filename_page_start">page_start</a></li>
+    <li><a href="#plugin_hooks_filename_picture_url">picture_url</a></li>
 	<li><a href="#plugin_hooks_filename_plugin_block">plugin_block</a></li>
 	<li><a href="#plugin_hooks_filename_plugin_cleanup">plugin_cleanup</a></li>
 	<li><a href="#plugin_hooks_filename_plugin_configure">plugin_configure</a></li>
