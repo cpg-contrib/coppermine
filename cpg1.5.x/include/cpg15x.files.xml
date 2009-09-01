@@ -8858,14 +8858,6 @@
     <permission>write</permission>
   </element>
   <element>
-    <fullpath>logs/global.log.php</fullpath>
-    <version>1.5.2</version>
-    <revision>6360</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>8c5c0633fd1b88faf21bfd88000dc90e</hash>
-  </element>
-  <element>
     <fullpath>logs/log_header.inc.php</fullpath>
     <version>1.5.2</version>
     <revision>6360</revision>
