@@ -260,14 +260,14 @@
     <td valign="top"><a name="plugin_hooks_filename_gallery_header"></a><strong>gallery_header</strong><a href="#plugin_hooks_filename_gallery_header" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">shows just above the gallery, defined by {GALLERY} in template.html</td>
-    <td valign="top"><textarea class="samplecode" style="width:100%">$template_header .= CPGPluginAPI::filter('gallery_header', '');</textarea></td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$template_header = CPGPluginAPI::filter('gallery_header', $template_header);</textarea></td>
   </tr>
   <tr>
     <td valign="top">include/functions.inc.php</td>
     <td valign="top"><a name="plugin_hooks_filename_gallery_footer"></a><strong>gallery_footer</strong><a href="#plugin_hooks_filename_gallery_footer" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">shows just below the gallery, defined by {GALLERY} in template.html</td>
-    <td valign="top"><textarea class="samplecode" style="width:100%">$template_footer = CPGPluginAPI::filter('gallery_footer','').substr($template, $gallery_pos);</textarea></td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$template_footer = CPGPluginAPI::filter('gallery_footer', $template_footer);</textarea></td>
   </tr>
   <tr>
     <td valign="top">include/functions.inc.php</td>
