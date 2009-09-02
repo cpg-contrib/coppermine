@@ -769,9 +769,11 @@ function load_template()
     $template_header = substr($template, 0, $gallery_pos);
     $template_header = str_replace('{META}', '{META}' . CPGPluginAPI::filter('page_meta', ''), $template_header);
 
+    $template_footer = substr($template, $gallery_pos);
+
     // Filter gallery header and footer
-    $template_header .= CPGPluginAPI::filter('gallery_header', '');
-    $template_footer  = CPGPluginAPI::filter('gallery_footer', '') . substr($template, $gallery_pos);
+    $template_header = CPGPluginAPI::filter('gallery_header', $template_header);
+    $template_footer = CPGPluginAPI::filter('gallery_footer', $template_footer);
 
     $add_version_info = '<!--Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' (' . COPPERMINE_VERSION_STATUS . ')-->' . $LINEBREAK . '</body>';
     $template_footer  = preg_replace("#</body[^>]*>#", $add_version_info, $template_footer);
