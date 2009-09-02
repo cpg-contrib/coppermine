@@ -44,6 +44,7 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
     } else {
             $to = array($to);
     }
+    $to = CPGPluginAPI::filter('cpg_mail_to_email', $to);
 
     if ($sender_name == '') {
         $sender_name = $CONFIG['gallery_name'];
@@ -52,9 +53,11 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
     if ($sender_email == '') {
         $sender_email = $CONFIG['gallery_admin_email'];
     }
-        
+
+    $sender_email = CPGPluginAPI::filter('cpg_mail_sender_email', $sender_email);
+
     $sender_name = strtr($sender_name, array_flip($HTML_SUBST));
-        
+
     $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
 
     $mail = new cpg_PHPmailer();
@@ -71,7 +74,7 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
         } else {
             $mail->SMTPAuth = false;
         }
-                
+        
     } else {
         $mail->IsMail();
     }

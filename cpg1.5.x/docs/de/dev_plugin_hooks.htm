@@ -9,7 +9,6 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta http-equiv="imagetoolbar" content="no" />
-<meta name="robots" content="noindex" />
 <!--
   SVN version info:
 
@@ -419,6 +418,20 @@
     <td valign="top"><textarea class="samplecode" style="width:100%">CPGPluginAPI::action('page_start',null);</textarea></td>
   </tr>
   <tr>
+    <td valign="top">include/mailer.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_filename_cpg_mail_to_email"></a><strong>cpg_mail_to_email</strong><a href="#plugin_hooks_filename_cpg_mail_to_email" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Modify recipients' addresses when sending e-mails</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$to = CPGPluginAPI::filter('cpg_mail_to_email', $to);</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">include/mailer.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_filename_cpg_mail_sender_email"></a><strong>cpg_mail_sender_email</strong><a href="#plugin_hooks_filename_cpg_mail_sender_email" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Modify sender's addresses when sending e-mails</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$sender_email = CPGPluginAPI::filter('cpg_mail_sender_email', $sender_email);</textarea></td>
+  </tr>
+  <tr>
     <td valign="top">include/picmgmt.inc.php</td>
     <td valign="top"><a name="plugin_hooks_filename_add_file_data"></a><strong>add_file_data</strong><a href="#plugin_hooks_filename_add_file_data" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
@@ -591,6 +604,8 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
 	<li><a href="#plugin_hooks_captcha_contact_validate">captcha_contact_validate</a></li>
 	<li><a href="#plugin_hooks_captcha_register_print">captcha_register_print</a></li>
 	<li><a href="#plugin_hooks_captcha_register_validate">captcha_register_validate</a></li>
+    <li><a href="#plugin_hooks_filename_cpg_mail_sender_email">cpg_mail_sender_email</a></li>
+    <li><a href="#plugin_hooks_filename_cpg_mail_to_email">cpg_mail_to_email</a></li>
 	<li><a href="#plugin_hooks_filename_file_data">file_data</a></li>
 	<li><a href="#plugin_hooks_filename_file_info">file_info</a></li>
 	<li><a href="#plugin_hooks_filename_gallery_footer">gallery_footer</a></li>
