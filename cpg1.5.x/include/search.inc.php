@@ -57,7 +57,7 @@ if ($superCage->get->keyExists('album') && $superCage->get->getAlpha('album') ==
 }
 
 
-$type = $search_params['type'] == 'AND' ? " AND " : " OR ";
+$type = $search_params['type'] == 'OR' ? " OR " : " AND ";
 
 if (isset($search_params['params']['pic_raw_ip'])) $search_params['params']['pic_hdr_ip']  = $search_params['params']['pic_raw_ip'];
 
