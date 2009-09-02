@@ -65,16 +65,17 @@
 ******************************************************************************/
 // Creates buttons from a template using an array of tokens
 // this function is used in this file it needs to be declared before being called.
-function assemble_template_buttons($template_buttons,$buttons) {
+function assemble_template_buttons($template_buttons,$buttons) 
+{
     $counter=0;
     $output='';
 
     foreach ($buttons as $button)  {
-      if (isset($button[4])) {
-         $spacer=$button[4];
-      } else {
-      $spacer='';
-      }
+        if (isset($button[4])) {
+            $spacer=$button[4];
+        } else {
+            $spacer='';
+        }
 
         $params = array(
             '{SPACER}'     => $spacer,
@@ -100,8 +101,9 @@ function assemble_template_buttons($template_buttons,$buttons) {
 ******************************************************************************/
 // Creates an array of tokens to be used with function assemble_template_buttons
 // this function is used in this file it needs to be declared before being called.
-function addbutton(&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer,$href_attrib='') {
-  $menu[]=array($href_lnk,$href_title,$href_tgt,$block_id,$spacer,$href_attrib);
+function addbutton(&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer,$href_attrib='') 
+{
+    $menu[]=array($href_lnk,$href_title,$href_tgt,$block_id,$spacer,$href_attrib);
 }
 /******************************************************************************
 ** Section <<<addbutton>>> - END
@@ -179,15 +181,15 @@ EOT;
 ******************************************************************************/
 if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
 
-  // HTML template for template sub_menu spacer
+    // HTML template for template sub_menu spacer
 
-  $template_sub_menu_spacer = $template_sys_menu_spacer;
+    $template_sub_menu_spacer = $template_sys_menu_spacer;
 
-  // HTML template for template sub_menu buttons
+    // HTML template for template sub_menu buttons
 
-  $template_sub_menu_button = $template_sys_menu_button;
+    $template_sub_menu_button = $template_sys_menu_button;
 
-  // HTML template for template sub_menu buttons
+    // HTML template for template sub_menu buttons
 
     // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}{HREF_ATTRIBUTES}
     addbutton($sub_menu_buttons,'{CUSTOM_LNK_LNK}','{CUSTOM_LNK_TITLE}','{CUSTOM_LNK_TGT}','custom_link',$template_sub_menu_spacer);
@@ -198,14 +200,14 @@ if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
     addbutton($sub_menu_buttons,'{TOPRATED_LNK}','{TOPRATED_TITLE}','{TOPRATED_TGT}','toprated',$template_sub_menu_spacer,'rel="nofollow"');
     addbutton($sub_menu_buttons,'{FAV_LNK}','{FAV_TITLE}','{FAV_TGT}','favpics',$template_sub_menu_spacer,'rel="nofollow"');
     if ($CONFIG['browse_by_date'] != 0) {
-    addbutton($sub_menu_buttons, '{BROWSEBYDATE_LNK}', '{BROWSEBYDATE_TITLE}', '{BROWSEBYDATE_TGT}', 'browse_by_date', $template_sub_menu_spacer, 'rel="nofollow" class="greybox"');
+        addbutton($sub_menu_buttons, '{BROWSEBYDATE_LNK}', '{BROWSEBYDATE_TITLE}', '{BROWSEBYDATE_TGT}', 'browse_by_date', $template_sub_menu_spacer, 'rel="nofollow" class="greybox"');
     }
     addbutton($sub_menu_buttons,'{SEARCH_LNK}','{SEARCH_TITLE}','{SEARCH_TGT}','search','');
 
 
-  $sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);
-  $params = array('{BUTTONS}' => assemble_template_buttons($template_sub_menu_button,$sub_menu_buttons));
-  $template_sub_menu = template_eval($template_sub_menu,$params);
+    $sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);
+    $params = array('{BUTTONS}' => assemble_template_buttons($template_sub_menu_button,$sub_menu_buttons));
+    $template_sub_menu = template_eval($template_sub_menu,$params);
 }
 /******************************************************************************
 ** Section <<<THEME_HAS_NO_SUB_MENU_BUTTONS>>> - END
@@ -297,6 +299,7 @@ $template_gallery_admin_menu = <<<EOT
                 <div style="clear:left;">
                 </div>
               </div>
+
 EOT;
 /******************************************************************************
 ** Section <<<$template_gallery_admin_menu>>> - END
@@ -664,7 +667,7 @@ $template_thumb_view_title_row = <<<EOT
 
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
-                <td style="width:60%;vertical-align:top" class="statlink" rowspan="2">
+                <td style="width:60%;vertical-align:top" class="statlink">
                     <h2>{ALBUM_NAME}</h2>
                 </td>
                 <td style="text-align:right;width:40%;" class="sortorder_cell" id="sortorder_cell">
@@ -672,7 +675,7 @@ $template_thumb_view_title_row = <<<EOT
                 </td>
             </tr>
             <tr>
-                <td style="text-align:right">
+                <td colspan="2" style=";text-align:right">
 <!-- BEGIN admin_buttons -->
                     <a href="modifyalb.php?album={ALBUM_ID}" class="admin_menu">{MODIFY}</a>
                     &nbsp;&nbsp;
@@ -922,21 +925,47 @@ EOT;
 // HTML template for the image rating box
 $template_image_rating = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
-        <tr>
-                <td colspan="6" class="tableh2" id="voting_title"><strong>{TITLE}</strong> {VOTES}</td>
-        </tr>
-        <tr  id="rating_stars">
-            <td class="tableb" id="star_rating" ></td>
-        </tr>
+    <tr>
+        <td colspan="6" class="tableh2" id="voting_title"><strong>{TITLE}</strong> {VOTES}</td>
+    </tr>
+    <tr id="rating_stars">
+        <td class="tableb" id="star_rating"></td>
+    </tr>
     <noscript>
-        <tr>
-          <td class="tableb" colspan="6" align="center">{JS_WARNING}</td>
-        </tr>
-        </noscript>
+    <tr>
+        <td class="tableb" colspan="6" align="center">{JS_WARNING}</td>
+    </tr>
+    </noscript>
 </table>
 EOT;
 /******************************************************************************
 ** Section <<<$template_image_rating>>> - END
+******************************************************************************/
+
+
+
+/******************************************************************************
+** Section <<<$template_image_rating_oldstyle>>> - START
+******************************************************************************/
+// HTML template for the image rating box (old-style)
+$template_image_rating_oldstyle = <<<EOT
+<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
+    <tr>
+        <td colspan="6" class="tableh2" id="voting_title"><strong>{TITLE}</strong> {VOTES}</td>
+    </tr>
+    <tr id="rating_stars">
+        <td class="tableb" id="star_rating">
+            <table width="100%">
+                <tr>
+                    {RATING_IMAGES}
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+EOT;
+/******************************************************************************
+** Section <<<$template_image_rating_oldstyle>>> - END
 ******************************************************************************/
 
 
@@ -1049,7 +1078,6 @@ $template_image_comments = <<<EOT
     </tr>
 </table>
 EOT;
-
 /******************************************************************************
 ** Section <<<$template_image_comments>>> - END
 ******************************************************************************/
@@ -1491,10 +1519,10 @@ $template_tab_display = array(
 // Template used for Vanity Footer
 $template_vanity = <<<EOT
 <div id="vanity">
-      <a id="v_php" href="http://www.php.net/"  rel="external"></a>
-      <a id="v_mysql" href="http://www.mysql.com/"  rel="external"></a>
-      <a id="v_xhtml" href="http://validator.w3.org/check/referer"  rel="external"></a>
-      <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer"  rel="external"></a>
+      <a id="v_php" href="http://www.php.net/" rel="external"></a>
+      <a id="v_mysql" href="http://www.mysql.com/" rel="external"></a>
+      <a id="v_xhtml" href="http://validator.w3.org/check/referer" rel="external"></a>
+      <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer" rel="external"></a>
 </div>
 EOT;
 /******************************************************************************
@@ -1764,7 +1792,7 @@ function theme_msg_box($title, $msg_text, $css_class = 'cpg_message_info', $butt
 {
     global $template_msg_box;
 
-    if (!$button_text) {
+    if (!$button_text && stripos($template_msg_box, 'button') != false) {
         template_extract_block($template_msg_box, 'button');
     }
     $params = array(
@@ -2043,7 +2071,7 @@ EOT;
 ******************************************************************************/
 function theme_main_menu($which)
 {
-    global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
+    global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER, $CPG_PHP_SELF;
     global $lang_main_menu, $template_sys_menu, $template_sub_menu, $lang_gallery_admin_menu;
 
     static $sys_menu = '', $sub_menu = '';
@@ -2182,13 +2210,13 @@ function theme_main_menu($which)
         '{UPL_APP_TGT}' => "editpics.php?mode=upload_approval",
         '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_lnk'],
         );
-
+        
         if ($CPG_PHP_SELF != 'login.php') {
             $param['{LOGIN_TGT}'] = "login.php?referer=$REFERER";
         } else {
             $param['{LOGIN_TGT}'] = "login.php";
         }
-        
+
         $sys_menu = template_eval($template_sys_menu, $param);
   } else {
 
@@ -2872,26 +2900,6 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     '{CAPTION}'    => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu'],
                 );
-            } elseif ($aid == 'random') {
-                // determine if thumbnail link targets should open in a pop-up
-                if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
-                    if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
-                       $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
-                    } elseif (USER_ID && USER_ACCESS_LEVEL <= 2) {
-                        $target = 'javascript:;" onClick="alert(\''.sprintf($lang_errors['access_intermediate_only'],'','','','').'\');';
-                    } else {
-                      $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
-                    }
-                } else {
-                    $target = "displayimage.php?pid={$thumb['pid']}$uid_link";
-                }
-                $params = array(
-                    '{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}'   => $target,
-                    '{THUMB}'      => $thumb['image'],
-                    '{CAPTION}'    => $thumb['caption'],
-                    '{ADMIN_MENU}' => $thumb['admin_menu'],
-                );
             } else {
                 // determine if thumbnail link targets should open in a pop-up
                 if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
@@ -2902,6 +2910,12 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     } else {
                        $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                     }
+                } elseif ($aid == 'random') {
+                    $target = "displayimage.php?pid={$thumb['pid']}$uid_link";
+                } elseif ($aid == 'lastcom' || $aid == 'lastcomby') {
+                    $page = cpg_get_comment_page_number($thumb['msg_id']);
+                    $page = (is_numeric($page)) ? "&amp;page=$page" : '';
+                    $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link&amp;msg_id={$thumb['msg_id']}$page#comment{$thumb['msg_id']}";
                 } else {
                     $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
                 }
@@ -3008,6 +3022,10 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 } else {
                     $target = 'javascript:;" onClick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                 }
+            } elseif ($aid == 'lastcom' || $aid == 'lastcomby') {
+                $page = cpg_get_comment_page_number($thumb['msg_id']);
+                $page = (is_numeric($page)) ? "&amp;page=$page" : '';
+                $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link&amp;msg_id={$thumb['msg_id']}$page#comment{$thumb['msg_id']}";
             } else {
                 $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link#top_display_media";
             }
@@ -3439,7 +3457,13 @@ function theme_html_img_nav_menu() {
     if ($pos > 0) {
         $prev = $pos - 1;
         //$prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev$uid_link";// Abbas - added pid in URL instead of pos
-        $prev_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link#top_display_media";
+        if ($album == 'lastcom' || $album == 'lastcomby') {
+            $page = cpg_get_comment_page_number($pic_data[$prev]['msg_id']);
+            $page = (is_numeric($page)) ? "&amp;page=$page" : '';
+            $prev_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link&amp;msg_id={$pic_data[$prev]['msg_id']}$page#comment{$pic_data[$prev]['msg_id']}";
+        } else {
+            $prev_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link#top_display_media";
+        }
         $prev_title = $lang_img_nav_bar['prev_title'];
         $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />" . $LINEBREAK;
         $prev_image = (($lang_text_dir == 'ltr') ? 'prev.png' : 'next.png');
@@ -3453,7 +3477,13 @@ function theme_html_img_nav_menu() {
     if ($pos < ($pic_count -1)) {
         $next = $pos + 1;
         //$next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next$uid_link";// Abbas - added pid in URL instead of pos
-        $next_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link#top_display_media";
+        if ($album == 'lastcom' || $album == 'lastcomby') {
+            $page = cpg_get_comment_page_number($pic_data[$next]['msg_id']);
+            $page = (is_numeric($page)) ? "&amp;page=$page" : '';
+            $next_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link&amp;msg_id={$pic_data[$next]['msg_id']}$page#comment{$pic_data[$next]['msg_id']}";
+        } else {
+            $next_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link#top_display_media";
+        }
         $next_title = $lang_img_nav_bar['next_title'];
         $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>" . $LINEBREAK;
         $next_image = (($lang_text_dir == 'ltr') ? 'next.png' : 'prev.png');
@@ -3487,7 +3517,8 @@ function theme_html_img_nav_menu() {
     $thumb_tgt = "thumbnails.php?album=$album$cat_link$date_link&amp;page=$page$uid_link";
     $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>" . $LINEBREAK;
 
-    $slideshow_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link$uid_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'].'#top_display_media';
+    $msg_id = ($album == 'lastcom' || $album == 'lastcomby') ? "&amp;msg_id={$pic_data[$next]['msg_id']}" : ''; // needed when viewing slideshow of meta albums lastcom/lastcomby
+    $slideshow_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link$uid_link&amp;pid=$pid$msg_id&amp;slideshow=".$CONFIG['slideshow_interval'].'#top_display_media';
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
 
@@ -3536,86 +3567,94 @@ function theme_html_img_nav_menu() {
 function theme_html_rating_box()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $USER_DATA, $USER, $LINEBREAK;
-    global $template_image_rating, $lang_rate_pic;
+    global $template_image_rating, $template_image_rating_oldstyle, $lang_rate_pic;
 
     if (!(USER_CAN_RATE_PICTURES && $CURRENT_ALBUM_DATA['votes'] == 'YES')) {
-    return '';
-  } else {
-    //check if the users already voted or if this user is the owner
-    $user_md5_id = USER_ID ? md5(USER_ID) : $USER['ID'];
-    $result = cpg_db_query("SELECT pic_id FROM {$CONFIG['TABLE_VOTES']} WHERE pic_id={$CURRENT_PIC_DATA['pid']} AND user_md5_id='$user_md5_id'");
-
-    $user_can_vote = 'false';
-    if ($CURRENT_PIC_DATA['owner_id'] == $USER_DATA['user_id'] && $USER_DATA['user_id'] != 0 && ($CONFIG['rate_own_files'] == 0 || $CONFIG['rate_own_files'] == 2 && !USER_IS_ADMIN)) {
-      //user is owner
-      $rate_title = $lang_rate_pic['forbidden'];
-    } elseif (!mysql_num_rows($result)) {
-      //user hasn't voted yet, show voting things
-      $rate_title = ($CONFIG['old_style_rating']) ? $lang_rate_pic['rate_this_pic'] : $lang_rate_pic['rollover_to_rate'];
-      $user_can_vote = 'true';
+        return '';
     } else {
-      //user has voted
-      $rate_title = $lang_rate_pic['already_voted'];
+        //check if the users already voted or if this user is the owner
+        $user_md5_id = USER_ID ? md5(USER_ID) : $USER['ID'];
+        $result = cpg_db_query("SELECT pic_id FROM {$CONFIG['TABLE_VOTES']} WHERE pic_id={$CURRENT_PIC_DATA['pid']} AND user_md5_id='$user_md5_id'");
+
+        $user_can_vote = 'false';
+        if ($CURRENT_PIC_DATA['owner_id'] == $USER_DATA['user_id'] && $USER_DATA['user_id'] != 0 && ($CONFIG['rate_own_files'] == 0 || $CONFIG['rate_own_files'] == 2 && !USER_IS_ADMIN)) {
+            // user is owner
+            $rate_title = $lang_rate_pic['forbidden'];
+        } elseif (!mysql_num_rows($result)) {
+            // user hasn't voted yet, show voting things
+            $rate_title = $lang_rate_pic['rate_this_pic'];
+            $user_can_vote = 'true';
+        } else {
+            //user has voted
+            $rate_title = $lang_rate_pic['already_voted'];
+        }
+        $rating_stars_amount = ($CONFIG['old_style_rating']) ? 5 : $CONFIG['rating_stars_amount'];
+        $votes = $CURRENT_PIC_DATA['votes'] ? sprintf($lang_rate_pic['rating'], round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 1), $rating_stars_amount, $CURRENT_PIC_DATA['votes']) : $lang_rate_pic['no_votes'];
+        $pid = $CURRENT_PIC_DATA['pid'];
+
+        if (defined('THEME_HAS_RATING_GRAPHICS')) {
+            $location= $THEME_DIR;
+        } else {
+            $location= '';
+        }
+
+        $superCage = Inspekt::makeSuperCage();
+
+        $params = array(
+            '{TITLE}'      => $rate_title,
+            '{VOTES}'      => $votes,
+            '{LOCATION}'   => $location,
+            '{WIDTH}'      => $CONFIG['picture_table_width'],
+        );
+
+        if ($CONFIG['old_style_rating']) {
+            // use old-style rating
+            $start_td = '<td class="tableb" width="17%" align="center">';
+            $end_td = '</td>';
+            $empty_star = '<img style="cursor:pointer" id="' . $pid . '_0" title="0" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['rubbish'] . '" onclick="rate(this)" />';
+            $rating_images = $start_td . $empty_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
+
+            $empty_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
+            $full_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
+            $rating_images .= $start_td . $full_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
+
+            $empty_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
+            $full_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
+            $rating_images .= $start_td . $full_star . $full_star . $empty_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
+
+            $empty_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
+            $full_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
+            $rating_images .= $start_td . $full_star . $full_star . $full_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
+
+            $empty_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
+            $full_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
+            $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $empty_star . $end_td . $LINEBREAK;
+
+            $full_star = '<img style="cursor:pointer" id="' . $pid . '_5" title="5" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['great'] . '" onclick="rate(this)" />';
+            $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . $LINEBREAK;
+
+            set_js_var('stars_amount', 'fallback');
+            set_js_var('lang_rate_pic', $rate_title);
+            $params['{RATING_IMAGES}'] = $rating_images;
+            $template_rating = $template_image_rating_oldstyle;
+
+        } else {
+            //use new rating
+            set_js_var('stars_amount', $rating_stars_amount);
+            set_js_var('lang_rate_pic', $lang_rate_pic['rollover_to_rate']);
+            $params['{JS_WARNING}'] = $lang_rate_pic['js_warning'];
+            $template_rating = $template_image_rating;
+        }
+        set_js_var('rating', round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 0));
+        set_js_var('picture_id', $pid);
+        set_js_var('theme_dir', $location);
+        set_js_var('can_vote', $user_can_vote);
+        list($timestamp, $form_token) = getFormToken();
+        set_js_var('form_token', $form_token);
+        set_js_var('timestamp', $timestamp);
+
+        return template_eval($template_rating, $params);
     }
-    $rating_stars_amount = ($CONFIG['old_style_rating']) ? 5 : $CONFIG['rating_stars_amount'];
-    $votes = $CURRENT_PIC_DATA['votes'] ? sprintf($lang_rate_pic['rating'], round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 1), $rating_stars_amount, $CURRENT_PIC_DATA['votes']) : $lang_rate_pic['no_votes'];
-    $pid = $CURRENT_PIC_DATA['pid'];
-
-    if (defined('THEME_HAS_RATING_GRAPHICS')) {
-      $location= $THEME_DIR;
-    } else {
-      $location= '';
-    }
-
-    $superCage = Inspekt::makeSuperCage();
-
-    if($CONFIG['old_style_rating']){
-        //use old style rating
-        $start_td = '<td class="tableb" width="17%" align="center">';
-        $end_td = '</td>';
-        $empty_star = '<img style="cursor:pointer" id="' . $pid . '_0" title="0" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['rubbish'] . '" onclick="rate(this)" />';
-        $rating_images = $start_td . $empty_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
-
-        $empty_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
-        $full_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
-        $rating_images .= $start_td . $full_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
-
-        $empty_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
-        $full_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
-        $rating_images .= $start_td . $full_star . $full_star . $empty_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
-
-        $empty_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
-        $full_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
-        $rating_images .= $start_td . $full_star . $full_star . $full_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
-
-        $empty_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
-        $full_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
-        $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $empty_star . $end_td . $LINEBREAK;
-
-        $full_star = '<img style="cursor:pointer" id="' . $pid . '_5" title="5" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['great'] . '" onclick="rate(this)" />';
-        $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . $LINEBREAK;
-    } else {
-      //use new rating
-      set_js_var('rating', round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 0));
-      set_js_var('picture_id', $pid);
-      set_js_var('theme_dir', $location);
-      set_js_var('can_vote', $user_can_vote);
-      set_js_var('lang_rate_pic', $rate_title);
-      set_js_var('stars_amount', $rating_stars_amount);
-      list($timestamp, $form_token) = getFormToken();
-      set_js_var('form_token', $form_token);
-      set_js_var('timestamp', $timestamp);
-    }
-
-    $params = array(
-      '{TITLE}' => $rate_title,
-      '{VOTES}' => $votes,
-      '{WIDTH}' => $CONFIG['picture_table_width'],
-      '{JS_WARNING}' => $lang_rate_pic['js_warning'],
-      );
-
-    return template_eval($template_image_rating, $params);
-  }
 }
 /******************************************************************************
 ** Section <<<theme_html_rating_box>>> - END
@@ -3640,7 +3679,7 @@ function theme_html_comments($pid)
 
     $html = '';
 
-//report to moderator buttons
+    //report to moderator buttons
     if (!(($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS))) {
         template_extract_block($template_image_comments, 'report_comment_button');
     }
@@ -3964,16 +4003,15 @@ function theme_display_fullsize_pic()
     $superCage = Inspekt::makeSuperCage();
 
     if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
-      printf($lang_errors['login_needed'],'','','','');
-      die();
+        printf($lang_errors['login_needed'],'','','','');
+        die();
     } elseif (USER_ID && USER_ACCESS_LEVEL <= 2) {
-      printf($lang_errors['access_intermediate_only'],'','','','');
-      die();
+        printf($lang_errors['access_intermediate_only'],'','','','');
+        die();
     }
-    //if (isset($_GET['picfile'])) {
     if ($superCage->get->keyExists('picfile')) {
         if (!GALLERY_ADMIN_MODE) {
-          cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+            cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
         }
         //$picfile = $_GET['picfile'];
         //$picfile = $superCage->get->getPath('picfile'); // doesn't work with HTML entities
@@ -3999,35 +4037,37 @@ function theme_display_fullsize_pic()
         $row['pheight'] = 100;
     }
 
-?>
+    $charset = ($CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset']);
+    echo <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-  <head>
-  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
-  <title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
-      ?></title>
-  <style type="text/css">
-    body { margin: 0; padding: 0; background-color: gray; }
-    img { margin:0; padding:0; border:0; }
-    #content { margin:0 auto; padding:0; border:0; }
-    table { border:0; width:<?php echo $row['pwidth'] ?>px; height:<?php echo $row['pheight'] ?>px; border-collapse:collapse}
-    td { vertical-align: middle; text-align:center; }
-  </style>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=$charset" />
+        <title>{$CONFIG['gallery_name']}: {$lang_fullsize_popup['click_to_close']}</title>
+        <style type="text/css">
+            body { margin: 0; padding: 0; background-color: gray; }
+            img { margin:0; padding:0; border:0; }
+            #content { margin:0 auto; padding:0; border:0; }
+            table { border:0; width:{$row['pwidth']}px; height:{$row['pheight']}px; border-collapse:collapse}
+            td { vertical-align: middle; text-align:center; }
+        </style>
 
-  <script type="text/javascript" src="js/jquery-1.3.2.js"></script>
-  <script type="text/javascript" src="js/jquery.dimensions.pack.js"></script>
-  <script type="text/javascript" src="js/displayimage.fullsize.js"></script>
-  </head>
-  <body style="margin:0px; padding:0px; background-color: gray;">
-<?php
-  if ($CONFIG['transparent_overlay'] == 1) {
-?>
-    <table cellpadding="0" cellspacing="0" align="center" style="padding:0px;">
-      <tr>
-<?php
+        <script type="text/javascript" src="js/jquery-1.3.2.js"></script>
+        <script type="text/javascript" src="js/jquery.dimensions.pack.js"></script>
+        <script type="text/javascript" src="js/displayimage.fullsize.js"></script>
+    </head>
+    <body style="margin:0px; padding:0px; background-color: gray;">
+
+EOT;
+    if ($CONFIG['transparent_overlay'] == 1) {
+        echo <<<EOT
+        <table cellpadding="0" cellspacing="0" align="center" style="padding:0px;">
+            <tr>
+
+EOT;
         echo '<td align="center" valign="middle" background="' . htmlspecialchars($imagedata['path']) . '" ' . $imagedata['geometry'] . ' class="image">';
         echo '<div id="content">';
-        echo  '<a href="javascript: window.close()" style="border:none"><img src="images/image.gif?id='
+        echo '<a href="javascript: window.close()" style="border:none"><img src="images/image.gif?id='
                 . floor(rand()*1000+rand())
                 . '&amp;fullsize=yes" '
                 . $imagedata['geometry']
@@ -4037,17 +4077,16 @@ function theme_display_fullsize_pic()
                 . htmlspecialchars($imagedata['name'])
                 . $LINEBREAK . $lang_fullsize_popup['click_to_close']
                 . '" /></a><br />' . $LINEBREAK;
-?>
-          </div>
-        </td>
-      </tr>
-    </table>
-<?php
-  } else {
-?>
+        echo <<<EOT
+                    </div>
+                </td>
+            </tr>
+        </table>
 
-  <div id="content">
-      <?php     echo  '<a href="javascript: window.close()"><img src="'
+EOT;
+    } else {
+        echo '        <div id="content">'.$LINEBREAK;
+        echo '<a href="javascript: window.close()"><img src="'
         . htmlspecialchars($imagedata['path']) . '" '
         . $imagedata['geometry']
         . 'id="fullsize_image" alt="'
@@ -4055,16 +4094,14 @@ function theme_display_fullsize_pic()
         . '" title="'
         . htmlspecialchars($imagedata['name'])
         . $LINEBREAK . $lang_fullsize_popup['click_to_close']
-        . '" /></a><br />' . $LINEBREAK;
-       ?>
-  </div>
-<?php
-  }
-
-?>
+        . '" /></a><br />' . $LINEBREAK
+        . '        </div>'.$LINEBREAK;
+    }
+    echo <<<EOT
   </body>
 </html>
-<?php
+
+EOT;
 }
 /******************************************************************************
 ** Section <<<theme_display_fullsize_pic>>> - END
@@ -4081,10 +4118,10 @@ function theme_vanity()
     global $THEME_DIR, $template_vanity ;
 
     if (defined('THEME_HAS_VANITY_GRAPHICS')) {
-            $location= $THEME_DIR;
-        } else {
-            $location= '';
-        }
+        $location= $THEME_DIR;
+    } else {
+        $location= '';
+    }
 
     $params = array('{LOCATION}' => $location);
 
@@ -4122,67 +4159,67 @@ function theme_display_bar(
                        $textUnit = '',
                        $leftBar = 'red',
                        $rightBar = ''
-                       ) {
-
-  global $lang_errors;
-  // Validate parameters
-  if ($maxValue == 0 || $maxValue == '') {
-    //cpg_die(ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
-    $maxValue = $actualValue;
-  }
-  // Initialize some vars:
-  $return = '';
-  $cell1Width = (($maxValue != 0) ? floor(100 * $actualValue/$maxValue): 0);
-  $cell2Width = 100 - $cell1Width;
-  // compose the output string
-  //$return .= $cell1Width . '/' . $cell2Width;
-  $return .= '<table border="0" cellspacing="0" cellpadding="0" width="'.$maxBarSizeInPixels.'">';
-  $return .= '<tr>';
-  $return .= '<td width="'.$cell1Width.'%" style="';
-  if ($leftBar != '') {
-    $leftBarColor = cpgValidateColor($leftBar);
-    if ($leftBarColor != '') {
-      $return .= 'background-color:'.$leftBarColor.';';
-    } else {
-      $return .= 'background-image:url('.$leftBar.');';
+                       ) 
+{
+    global $lang_errors;
+    // Validate parameters
+    if ($maxValue == 0 || $maxValue == '') {
+        //cpg_die(ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+        $maxValue = $actualValue;
     }
-  }
-  $return .= '">';
-  $return .= '<img src="images/spacer.gif" width="1" height="16" border="0" alt="" align="left" />';
-  if ($textShadowColor != '') {
-  $textShadowColor = cpgValidateColor($textShadowColor);
-    $return .= '<div style="position:absolute;display:block;color:'.$textShadowColor.';padding-top:1px;padding-left:1px;height:16px;';
+    // Initialize some vars:
+    $return = '';
+    $cell1Width = (($maxValue != 0) ? floor(100 * $actualValue/$maxValue): 0);
+    $cell2Width = 100 - $cell1Width;
+    // compose the output string
+    //$return .= $cell1Width . '/' . $cell2Width;
+    $return .= '<table border="0" cellspacing="0" cellpadding="0" width="'.$maxBarSizeInPixels.'">';
+    $return .= '<tr>';
+    $return .= '<td width="'.$cell1Width.'%" style="';
+    if ($leftBar != '') {
+        $leftBarColor = cpgValidateColor($leftBar);
+        if ($leftBarColor != '') {
+            $return .= 'background-color:'.$leftBarColor.';';
+        } else {
+            $return .= 'background-image:url('.$leftBar.');';
+        }
+    }
+    $return .= '">';
+    $return .= '<img src="images/spacer.gif" width="1" height="16" border="0" alt="" align="left" />';
+    if ($textShadowColor != '') {
+        $textShadowColor = cpgValidateColor($textShadowColor);
+        $return .= '<div style="position:absolute;display:block;color:'.$textShadowColor.';padding-top:1px;padding-left:1px;height:16px;';
+        $return .= '">';
+        $return .= $actualValue;
+        $return .= $textUnit;
+        $return .= '</div>';
+    }
+    $return .= '<div style="position:absolute;display:block;';
+    if ($textColor != '') {
+        $textColor = cpgValidateColor($textColor);
+        $return .= 'color:'.$textColor;
+    }
     $return .= '">';
     $return .= $actualValue;
     $return .= $textUnit;
     $return .= '</div>';
-  }
-  $return .= '<div style="position:absolute;display:block;';
-  if ($textColor != '') {
-    $textColor = cpgValidateColor($textColor);
-    $return .= 'color:'.$textColor;
-  }
-  $return .= '">';
-  $return .= $actualValue;
-  $return .= $textUnit;
-  $return .= '</div>';
-  $return .= '</td>';
-  $return .= '<td width="'.$cell2Width.'%" style="';
-  if ($rightBar != '') {
-    $rightBarColor = cpgValidateColor($rightBar);
-    if ($leftBarColor != '') {
-      $return .= 'background-color:'.$rightBarColor.';';
-    } else {
-      $return .= 'background-image:url('.$rightBar.');';
+    $return .= '</td>';
+    $return .= '<td width="'.$cell2Width.'%" style="';
+    if ($rightBar != '') {
+        $rightBarColor = cpgValidateColor($rightBar);
+        if ($leftBarColor != '') {
+            $return .= 'background-color:'.$rightBarColor.';';
+        } else {
+            $return .= 'background-image:url('.$rightBar.');';
+        }
     }
-  }
-  $return .= '">';
-  $return .= '<img src="images/spacer.gif" width="1" height="16" border="0" alt="" align="left" />';
-  $return .= '</td>';
-  $return .= '</tr>';
-  $return .= '</table>';
-  //$return .= '<br /><img src="images/rating5.gif" width="400" height="60" border="0" alt="" />'; //remove after debugging
-  return $return;
+    $return .= '">';
+    $return .= '<img src="images/spacer.gif" width="1" height="16" border="0" alt="" align="left" />';
+    $return .= '</td>';
+    $return .= '</tr>';
+    $return .= '</table>';
+    //$return .= '<br /><img src="images/rating5.gif" width="400" height="60" border="0" alt="" />'; //remove after debugging
+    return $return;
 }
 /******************************************************************************
 ** Section <<<theme_display_bar>>> - END
@@ -4195,7 +4232,8 @@ function theme_display_bar(
 ******************************************************************************/
 // Creates the title tag for each page
 // For the sake of search engine friendliness, the dynamic part $section should come first
-function theme_page_title($section) {
+function theme_page_title($section) 
+{
     global $CONFIG;
     $return = strip_tags(bb_decode($section)) . ' - ' . $CONFIG['gallery_name'];
     return $return;
@@ -4271,4 +4309,5 @@ function adminmessages()
 /******************************************************************************
 ** Section <<<adminmessages>>> - END
 ******************************************************************************/
+
 ?>

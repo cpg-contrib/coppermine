@@ -41,7 +41,7 @@ $(document).ready(function() {
     if(maxItems%2==0){
         maxItems    = maxItems +1;
     }
-    /**stop, if we don't have enugh images than maxItem*/
+    /**stop, if we don't have enough images than maxItem*/
     if(NumberOfPics <= maxItems){               
         return false;
     }
@@ -231,15 +231,13 @@ function rate(obj){
         //check the data and respond upon it
         js_vars.lang_rate_pic = json_data.msg;
         if(json_data.status == 'success'){
-            //vote casted, update rating and show user
+            //vote cast, update rating and show user
             js_vars.rating = json_data.new_rating;
             js_vars.can_vote = "false";
-            $('#voting_title').html( json_data.new_rating_text );   
+            $('#voting_title').html( json_data.new_rating_text );
         }
         displayStars();
-
     });
-
 }
 
 function changeover(obj){
@@ -261,13 +259,19 @@ function changeout(obj){
 }
 
 function displayStars(){
-    if(js_vars.stars_amount != 'fallback'){
+    if(js_vars.stars_amount != 'fallback') {
         $('#star_rating').empty();
         var center = document.createElement('center');
         center.id = 'rs_center';
-        if(js_vars.can_vote){
+        if(js_vars.can_vote == 'true') {
             center.innerHTML = js_vars.lang_rate_pic + '<br />';
         }
+        center.innerHTML += buildRating();
+        $('#star_rating').append(center);
+    } else if(js_vars.can_vote == 'false') {
+        $('#star_rating').empty();
+        var center = document.createElement('center');
+        center.id = 'rs_center';
         center.innerHTML += buildRating();
         $('#star_rating').append(center);
     }
