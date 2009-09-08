@@ -939,11 +939,13 @@ $template_image_rating = <<<EOT
     <tr id="rating_stars">
         <td class="tableb" id="star_rating"></td>
     </tr>
-    <noscript>
     <tr>
-        <td class="tableb" colspan="6" align="center">{JS_WARNING}</td>
+      <td class="tableb" colspan="6" align="center">
+        <noscript>
+           {JS_WARNING}
+        </noscript>
+      </td>
     </tr>
-    </noscript>
 </table>
 EOT;
 /******************************************************************************

@@ -5079,7 +5079,7 @@ function user_is_allowed()
         $check_approve = true;
     }
     
-    // We should also whether user has upload permission to the currenct album. but do this only if album id is set
+    // We should also whether user has upload permission to the current album. but do this only if album id is set
     if ($album_id) {
         $public_albums = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID.")) AND aid=$album_id");
         
