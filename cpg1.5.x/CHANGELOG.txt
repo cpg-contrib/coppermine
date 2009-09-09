@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-09-09 [B] Fixed ?theme=xxx to reset to config theme (thread ID 61645) {Paver}
 2009-09-02 [A] Added plugin hooks 'cpg_mail_to_email' & 'cpg_mail_sender_email' {eenemeenemuu}
 2009-09-01 [B] Fixed old-style rating system and cleaned up rating system code {Paver}
 2009-09-01 [O] Removed raw HTML lines from theme_display_fullsize_pic {Paver}

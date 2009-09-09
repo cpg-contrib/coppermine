@@ -267,8 +267,8 @@ if (!GALLERY_ADMIN_MODE) {
 }
 
 // Process theme selection if present in URI or in user profile
-if ( ($matches = $superCage->get->getMatched('theme', '/^[A-Za-z0-9_]+$/')) ) {
-    $USER['theme'] = $CONFIG['theme'] = $matches[0];
+if ($matches = $superCage->get->getMatched('theme', '/^[A-Za-z0-9_]+$/')) {
+    $USER['theme'] = $matches[0];
 }
 
 if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . $USER['theme'])) {
