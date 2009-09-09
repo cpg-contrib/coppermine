@@ -203,8 +203,9 @@ $CONFIG['site_url'] =& $CONFIG['ecards_more_pic_target'];
 // Set the site_url in js_vars so that it can be used in js
 set_js_var('site_url', rtrim($CONFIG['site_url'], '/'));
 
-// Set default language (set up by the admin) as a constant, since it might get replaced during runtime
+// Set a constant for the default language and theme (in the gallery config), since it might get replaced during runtime
 define('DEFAULT_LANGUAGE', $CONFIG['lang']);
+define('DEFAULT_THEME', $CONFIG['theme']);
 
 // Check for GD GIF Create support
 if ($CONFIG['thumb_method'] == 'im' || function_exists('imagecreatefromgif')) {
@@ -266,26 +267,30 @@ if (!GALLERY_ADMIN_MODE) {
     }
 }
 
-// Process theme selection if present in URI or in user profile
+// ********************************************************
+// * Theme processing - start
+// ********************************************************
+
+$CONFIG['theme_config'] = DEFAULT_THEME;        // Save the gallery-configured setting
+
 if ($matches = $superCage->get->getMatched('theme', '/^[A-Za-z0-9_]+$/')) {
     $USER['theme'] = $matches[0];
 }
-
 if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . $USER['theme'])) {
     $CONFIG['theme'] = strtr($USER['theme'], '$/\\:*?"\'<>|`', '____________');
 } else {
     unset($USER['theme']);
 }
-
 if (!file_exists('themes/'.$CONFIG['theme'].'/theme.php')) {
     $CONFIG['theme'] = 'classic';
 }
-
 $THEME_DIR = 'themes/'.$CONFIG['theme'].'/';
+require('themes/'.$CONFIG['theme'].'/theme.php');   // Load configured theme first
+require('include/themes.inc.php');                  // All Fallback Theme Templates and Functions
 
-require('themes/'.$CONFIG['theme'].'/theme.php');
-
-require('include/themes.inc.php');  //All Fallback Theme Templates and Functions
+// ********************************************************
+// * Theme processing - end
+// ********************************************************
 
 if (defined('THEME_HAS_MENU_ICONS')) {
     $ICON_DIR = $THEME_DIR . 'images/icons/';
@@ -295,26 +300,26 @@ if (defined('THEME_HAS_MENU_ICONS')) {
 
 set_js_var('icon_dir', $ICON_DIR);
 
-// Language processing --- start
-// We load the default language file
-require('lang/english.php');
+// ********************************************************
+// * Language processing --- start
+// ********************************************************
 
+require('lang/english.php');                    // Load the default language file: 'english.php'
+$CONFIG['lang_config'] = DEFAULT_LANGUAGE;      // Save the gallery-configured setting
 $CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
 
 $enabled_languages_array = array();
 
 $result = cpg_db_query("SELECT lang_id FROM {$CONFIG['TABLE_LANGUAGE']} WHERE enabled='YES'");
-
-while ( ($row = mysql_fetch_assoc($result)) ) {
+while ($row = mysql_fetch_assoc($result)) {
     $enabled_languages_array[] = $row['lang_id'];
 }
-
 mysql_free_result($result);
 
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8
 if ($matches = $superCage->get->getMatched('lang', '/^[a-z0-9_-]+$/')) {
-    $USER['lang'] = $CONFIG['lang'] = $matches[0];
+    $USER['lang'] = $matches[0];
 }
 
 // Set the user preference to the language submit by URL parameter or by auto-detection
@@ -342,11 +347,14 @@ if ($CONFIG['lang'] != 'english') {
 }
 set_js_var('lang_close', $lang_common['close']);
 if (defined('THEME_HAS_MENU_ICONS')) {
-	set_js_var('icon_close_path', $THEME_DIR . 'images/icons/close.png');
+    set_js_var('icon_close_path', $THEME_DIR . 'images/icons/close.png');
 } else {
-	set_js_var('icon_close_path', 'images/icons/close.png');
+    set_js_var('icon_close_path', 'images/icons/close.png');
 }
-// Language processing --- end
+
+// ********************************************************
+// * Language processing --- end
+// ********************************************************
 
 // See if the fav cookie is set; else set it
 if ($superCage->cookie->keyExists($CONFIG['cookie_name'] . '_fav')) {

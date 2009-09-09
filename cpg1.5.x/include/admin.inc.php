@@ -180,7 +180,7 @@ $config_data = array(
   ),
   'language_charset_settings' => array(
     'lang' => array(
-      'type'          => 'select',
+      'type'          => 'select_config',
       'default_value' => 'english',
       'help_link'     => 'f=configuration.htm&amp;as=admin_language_language&amp;ae=admin_language_language_end',
       'options'       => cpg_get_available_languages(),
@@ -221,7 +221,7 @@ $config_data = array(
   ),
   'themes_settings' => array(
     'theme' => array(
-      'type'      => 'select',
+      'type'      => 'select_config',
       'help_link' => 'f=configuration.htm&amp;as=admin_theme_theme&amp;ae=admin_theme_theme_end',
       'options'   => form_get_foldercontent('themes/', 'folder', '', array('sample', '.svn')),
       'default_value' => 'classic',

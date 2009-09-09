@@ -126,24 +126,24 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
         } else { // no regex settings available - set validation var to successful anyway
             $regexValidation = '1';
         }
-		if ( (isset($adminDataValue['min']) || isset($adminDataValue['min']) ) && $regexValidation == '1') { // Only perform the additional validation if the regex is green so far
-			if (isset($adminDataValue['min']) && $evaluate_value < $adminDataValue['min'] ) {
-				$regexValidation = '0';
-			}
-			if (isset($adminDataValue['max']) && $evaluate_value > $adminDataValue['max'] ) {
-				$regexValidation = '0';
-			}
-		}
-		// If validation failed, set things right
-		if ($regexValidation == '0') {
-			$admin_data_array[$adminDataKey] = $evaluate_value; // replace the stuff in the form field with the improper input, so the user can see and correct his error
-			if (in_array($adminDataKey, $problemFields_array) != TRUE) {
-				$problemFields_array[] = $adminDataKey;
-			}
-			if (in_array($config_section_key, $collapseSections_array) == TRUE) {
-				unset($collapseSections_array[array_search($config_section_key, $collapseSections_array)]);
-			}
-		}
+        if ( (isset($adminDataValue['min']) || isset($adminDataValue['min']) ) && $regexValidation == '1') { // Only perform the additional validation if the regex is green so far
+            if (isset($adminDataValue['min']) && $evaluate_value < $adminDataValue['min'] ) {
+                $regexValidation = '0';
+            }
+            if (isset($adminDataValue['max']) && $evaluate_value > $adminDataValue['max'] ) {
+                $regexValidation = '0';
+            }
+        }
+        // If validation failed, set things right
+        if ($regexValidation == '0') {
+            $admin_data_array[$adminDataKey] = $evaluate_value; // replace the stuff in the form field with the improper input, so the user can see and correct his error
+            if (in_array($adminDataKey, $problemFields_array) != TRUE) {
+                $problemFields_array[] = $adminDataKey;
+            }
+            if (in_array($config_section_key, $collapseSections_array) == TRUE) {
+                unset($collapseSections_array[array_search($config_section_key, $collapseSections_array)]);
+            }
+        }
         if ($superCage->post->keyExists('update_config') && $regexValidation == '1' && $evaluate_value != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes($evaluate_value) ) {
             //  finally, all criteria have been met - let's write the updated data to the database
             
@@ -253,41 +253,41 @@ $admin_page .= <<< EOT
     <tr>
         <td class="tableh2" colspan="2">
             <button type="button" class="button detail_expand_all" name="expandalltop" id="expandalltop" onclick="return false">
-				<img src="images/tree/plus.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" />
-				{$lang_admin_php['expand_all']}
-			</button>
-			<button type="button" class="button detail_collapse_all" name="collapsealltop" id="collapsealltop" style="display:none;" onclick="return false">
-				<img src="images/tree/minus.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" />
-				{$lang_admin_php['collapse_all']}
-			</button>
-			<button type="button" class="button detail_toggle_all" name="togglealltop" id="togglealltop" onclick="return false">
-				<img src="images/tree/toggle.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['toggle_all']}" />
-				{$lang_admin_php['toggle_all']}
-			</button>
+                <img src="images/tree/plus.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" />
+                {$lang_admin_php['expand_all']}
+            </button>
+            <button type="button" class="button detail_collapse_all" name="collapsealltop" id="collapsealltop" style="display:none;" onclick="return false">
+                <img src="images/tree/minus.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" />
+                {$lang_admin_php['collapse_all']}
+            </button>
+            <button type="button" class="button detail_toggle_all" name="togglealltop" id="togglealltop" onclick="return false">
+                <img src="images/tree/toggle.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['toggle_all']}" />
+                {$lang_admin_php['toggle_all']}
+            </button>
         </td>
     </tr>
 EOT;
 
 //array which holds all info needed to check the default state, will be passed to js
 //we don't use a custom attribute to ensure XHTML valid output
-$js_default_values = array();				
-				
+$js_default_values = array();               
+                
 $sectionLoopCounter = 0;
 foreach ($config_data as $config_section_key => $config_section_value) { // start foreach-loop through the config sections
     if ($sectionLoopCounter/2 == floor($sectionLoopCounter/2)) {
-		$tableRowStyle = 'tableb';
-	} else {
-		$tableRowStyle = 'tableb tableb_alternate';
-	}
-	$admin_page .= <<< EOT
+        $tableRowStyle = 'tableb';
+    } else {
+        $tableRowStyle = 'tableb tableb_alternate';
+    }
+    $admin_page .= <<< EOT
           <tr>
             <td class="{$tableRowStyle}" colspan="2">
                     <span class="detail_head_collapsed">
-						{$lang_admin_php[$config_section_key]}
-					</span>
+                        {$lang_admin_php[$config_section_key]}
+                    </span>
 
-				<div id="section{$sectionLoopCounter}" class="detail_body">
-					<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable" border="0">
+                <div id="section{$sectionLoopCounter}" class="detail_body">
+                    <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable" border="0">
 EOT;
     $withinSectionLoopCounter = 0;
     foreach ($config_section_value as $key => $value) {
@@ -373,22 +373,22 @@ EOT;
         } else {
             $highlightFieldCSS = '';
         }
-		if (isset($value['min']) && ($value['min'] != '' || $value['max'] != '')) { // apply class spinbutton if applicable
+        if (isset($value['min']) && ($value['min'] != '' || $value['max'] != '')) { // apply class spinbutton if applicable
             $spinbuttonOption = ' spin-button';
-			$javascriptOutput .= '	$("#'.$key.'").SpinButton({';
-			if ($value['min'] != '') {
-				$javascriptOutput .= 'min: '.$value['min'];
-				if ($value['max'] != '') {
-					$javascriptOutput .= ',';
-				}
-			}
-			if ($value['max'] != '') {
-				$javascriptOutput .= 'max: '.$value['max'];
-			}
-			if (isset($value['step']) && $value['step'] != '') {
-				$javascriptOutput .= ', step: '.$value['step'];
-			}
-			$javascriptOutput .= '});' . $LINEBREAK;
+            $javascriptOutput .= '  $("#'.$key.'").SpinButton({';
+            if ($value['min'] != '') {
+                $javascriptOutput .= 'min: '.$value['min'];
+                if ($value['max'] != '') {
+                    $javascriptOutput .= ',';
+                }
+            }
+            if ($value['max'] != '') {
+                $javascriptOutput .= 'max: '.$value['max'];
+            }
+            if (isset($value['step']) && $value['step'] != '') {
+                $javascriptOutput .= ', step: '.$value['step'];
+            }
+            $javascriptOutput .= '});' . $LINEBREAK;
         } else {
             $spinbuttonOption = '';
         }
@@ -460,22 +460,23 @@ EOT;
             }
             $admin_page .= '</select>'.$readonly_message.'</span><br />'.$LINEBREAK;
 
-        } elseif ($value['type'] == 'select') { //SELECT
+        } elseif (($value['type'] == 'select') || ($value['type'] == 'select_config')) { //SELECT
             $js_default_values['select'][] = array('key' => $key, 'warning' => $warningText, 'count' => count($value['options']));
-            
+
             $optionLoopCounter = 0;
             $associativeArray  = array_is_associative($value['options']);
             $admin_page .= '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'" id="'.$key.'" class="listbox" size="1" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">';
+            $key_to_check = ($value['type'] == 'select_config' ? $key . '_config' : $key);
             foreach ($value['options'] as $option_key => $option_value) { // loop through the options array
                 if ($associativeArray == TRUE) {
-                    if ($admin_data_array[$key] == $option_key) {
+                    if ($admin_data_array[$key_to_check] == $option_key) {
                         $selected = ' selected="selected"';
                     } else {
                         $selected = '';
                     }
                     $admin_page .= '<option value="'.$option_key.'"'.$selected.'>'.$option_value;
                 } else {
-                    if ($admin_data_array[$key] == $option_value) {
+                    if ($admin_data_array[$key_to_check] == $option_value) {
                         $selected = ' selected="selected"';
                     } else {
                         $selected = '';
@@ -497,15 +498,15 @@ EOT;
         $resetCheckbox     = '';
         $defaultValueField = '';
         if ($CONFIG['display_reset_boxes_in_config'] == 1) { // display of reset checkboxes is enabled --- start
-	        if (isset($value['default_value'])) { // we have a default value
-	            if ($value['default_value'] == $admin_data_array[$key]) { // the default value equals the current config setting - hide the "reset to default" checkbox
-	                $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" checked="checked" title="'.$lang_admin_php['reset_to_default'].'" onclick="resetToDefault(\''.$key.'\', \''.$value['type'].'\', \''.($optionLoopCounter - 1).'\');" style="display:none;" />';
-	            } else {
-	                $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" title="'.$lang_admin_php['reset_to_default'].'" onclick="resetToDefault(\''.$key.'\', \''.$value['type'].'\', \''.($optionLoopCounter - 1).'\');" />';
-	            }
-	        } else { // we don't have a default value
-	            $resetCheckbox = '<input type="hidden" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$admin_data_array[$key].'"  />';
-	        }
+            if (isset($value['default_value'])) { // we have a default value
+                if ($value['default_value'] == $admin_data_array[$key]) { // the default value equals the current config setting - hide the "reset to default" checkbox
+                    $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" checked="checked" title="'.$lang_admin_php['reset_to_default'].'" onclick="resetToDefault(\''.$key.'\', \''.$value['type'].'\', \''.($optionLoopCounter - 1).'\');" style="display:none;" />';
+                } else {
+                    $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" title="'.$lang_admin_php['reset_to_default'].'" onclick="resetToDefault(\''.$key.'\', \''.$value['type'].'\', \''.($optionLoopCounter - 1).'\');" />';
+                }
+            } else { // we don't have a default value
+                $resetCheckbox = '<input type="hidden" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$admin_data_array[$key].'"  />';
+            }
         $resetCheckbox = '<span class="deleteOnSubmit">' . $resetCheckbox . '</span>';
         $resetCheckbox = str_replace("'", "\'", $resetCheckbox);
         $admin_page .= <<< EOT
@@ -533,8 +534,8 @@ EOT;
         $tabindexCounter++;
     }
     $admin_page .= <<< EOT
-					</table>
-				</div>
+                    </table>
+                </div>
             </td>
           </tr>
 EOT;
@@ -555,17 +556,17 @@ echo <<<EOT
                     <tr>
                         <td width="33%">
                             <button type="button" class="button detail_expand_all" name="expandallbottom" id="expandallbottom" onclick="return false">
-								<img src="images/tree/plus.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" />
-								{$lang_admin_php['expand_all']}
-							</button>
-							<button type="button" class="button detail_collapse_all" name="collapseallbottom" id="collapseallbottom" style="display:none;" onclick="return false">
-								<img src="images/tree/minus.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" />
-								{$lang_admin_php['collapse_all']}
-							</button>
-							<button type="button" class="button detail_toggle_all" name="toggleallbottom" id="toggleallbottom" onclick="return false">
-								<img src="images/tree/toggle.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['toggle_all']}" />
-								{$lang_admin_php['toggle_all']}
-							</button>
+                                <img src="images/tree/plus.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" />
+                                {$lang_admin_php['expand_all']}
+                            </button>
+                            <button type="button" class="button detail_collapse_all" name="collapseallbottom" id="collapseallbottom" style="display:none;" onclick="return false">
+                                <img src="images/tree/minus.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['collapse_all']}" />
+                                {$lang_admin_php['collapse_all']}
+                            </button>
+                            <button type="button" class="button detail_toggle_all" name="toggleallbottom" id="toggleallbottom" onclick="return false">
+                                <img src="images/tree/toggle.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['toggle_all']}" />
+                                {$lang_admin_php['toggle_all']}
+                            </button>
                         </td>
                         <td width="67%" align="center">
                             <button type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}">{$submit_icon}{$lang_admin_php['save_cfg']}</button>
@@ -593,12 +594,12 @@ echo <<< EOT
 EOT;
 
 if ($javascriptOutput != '') {
-	echo <<< EOT
+    echo <<< EOT
 <script type="text/javascript">
-	$(document).ready(function() {
-	
-		{$javascriptOutput}
-	});
+    $(document).ready(function() {
+    
+        {$javascriptOutput}
+    });
 </script>
 EOT;
 }
