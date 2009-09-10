@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <title>template.html - Coppermine Photo Gallery - Documentation &amp; Manual</title>
@@ -41,9 +41,9 @@
 You can move the placeholder tokens around to obtain different layouts. However, there are some limitations - refer to the explanation of the core token <a href="#theme_template_gallery">{GALLERY}</a>, which is not actually a placeholder, but rather a separator between the content served by the pageheader and pagefooter functions.</p>
 
 <a name="theme_template_important"></a><h2>Important<a href="#theme_template_important" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>There are some tokens that are optional, i.e. you can savely remove them from template.html if you don't need the feature (s) the placeholders correspond to.</p>
+<p>There are some tokens that are optional, i.e. you can safely remove them from template.html if you don't need the feature (s) the placeholders correspond to.</p>
 <p>Be careful not to delete the {JAVASCRIPT}-token - this javascript is necessary for the full-size pop-ups and other functions related to JavaScript. If you remove it, you probably won't notice the difference in the first place, but you definitely mustn't remove it or your gallery will act up.</p>
-<p>Take a look at the column "Needed?" in the list of tokens in template.html - the ones labelled as "optional" can savely be removed without any issues (except that the corresponding feature will of course not work any longer).<br />
+<p>Take a look at the column "Needed?" in the list of tokens in template.html - the ones labelled as "optional" can safely be removed without any issues (except that the corresponding feature will of course not work any longer).<br />
 A good example is the token <tt class="code">{GAL_DESCRIPTION}</tt> - it will basically just output whatever you entered as gallery description on the config page. If you don't need the description to show on each and every coppermine-driven page, then just remove the corresponding token from template.html.</p>
 
 
@@ -258,7 +258,13 @@ A good example is the token <tt class="code">{GAL_DESCRIPTION}</tt> - it will ba
     <td valign="top">Credits section defined in theme.php</td>
   </tr>
   <tr>
-    <td valign="top"><a name="theme_template_social_bookmarks"></a>{SOCIAL_BOOKMARKS}<a href="#theme_template_social_bookmarks" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+
+
+<!-- Social Bookmarks To Be Removed PL
+
+<td valign="top"><a name="theme_template_social_bookmarks"></a>{SOCIAL_BOOKMARKS}<a href="#theme_template_social_bookmarks" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+
+
     <td valign="top">
       <a name="social_bookmarks_token"></a><strong>Social bookmarks<a href="#social_bookmarks_token" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></strong><br />
       Will display the social bookmark icons if <a href="configuration.htm#social_bookmarks">the correspdonding option</a> in the config is enabled for at least one social bookmark service.
@@ -267,6 +273,10 @@ A good example is the token <tt class="code">{GAL_DESCRIPTION}</tt> - it will ba
     <td valign="top">optional</td>
     <td valign="top">Config page &gt; <a href="configuration.htm#social_bookmarks">Display social bookmarks icons</a></td>
   </tr>
+
+-->
+
+
 </table>
 
 
