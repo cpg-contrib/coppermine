@@ -74,14 +74,6 @@ form {
     padding: 0px;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {  /* Safari3/Opera9 */
-    .bookmark_list {
-        font-size: 100%;
-    }
-}
-html:first-child .bookmark_list {  /* Opera */
-    /*font-size: 80%;*/
-}
 .bookmark_list li {
     float: left;
     width: 23%;
@@ -118,7 +110,6 @@ html:first-child .bookmark_list {  /* Opera */
 .bookmark_list img {
         margin-bottom: 3px;
         vertical-align: middle;
-    }
 }
 html:first-child .bookmark_list img { /* Opera */
     margin-bottom: 3px;
@@ -192,7 +183,6 @@ input.spin-button.down {
   background-color: #000000;
   background-color: transparent;
   background-image: url(../images/spacer.gif);
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/overlay.png', sizingMethod='scale');
 }
 
 #GB_window {
@@ -217,7 +207,6 @@ input.spin-button.down {
   top: 2px;
   right: 5px;
   cursor: pointer;
-  cursor: hand;
 }
 
 .dragHandle {
