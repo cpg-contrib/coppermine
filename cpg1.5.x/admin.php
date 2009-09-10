@@ -56,42 +56,47 @@ $userMessage = ''; //The message that the will be displayed if something went wr
 $problemFields_array = array(); // we'll add field-wrapper-IDs to this array to visualize that something went wrong. Onload we'll assign the class "important" to the boxes that correspond to the array data
 
 if ($superCage->post->keyExists('restore_config')) { // user has chosen to factory-reset the config --- start
-    //first we check if the form token is valid
-    if(!checkFormToken()){
+    // first we check if the form token is valid
+    if (!checkFormToken()) {
         cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
     }
     foreach ($config_data as $section => $values) {
-    
+
         foreach ($values as $name => $value) {
 
             if (!empty($value['preserve_when_resetting'])) {
                 continue;
             }
-            
+
             if (isset($value['default_value'])) {               
                 cpg_config_set($name, $value['default_value']);
             }
         }
     }
-    
+
     cpgRedirectPage($CPG_PHP_SELF, cpg_fetch_icon('warning', 2) . $lang_common['information'], $lang_admin_php['restore_success']);
 }  // user has chosen to factory-reset the config --- end
 
 if ($superCage->post->keyExists('update_config')) {
-    //first we check if the form token is valid
-    if(!checkFormToken()){
+    // first we check if the form token is valid
+    if (!checkFormToken()) {
         cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
     }
 }
 
 foreach ($config_data as $config_section_key => $config_section_value) { // Loop through the config fields to check posted values for validity -- start
     foreach ($config_section_value as $adminDataKey => $adminDataValue) {
+        if (isset($adminDataValue['force_config']) && $adminDataValue['force_config']) {
+            if (isset($CONFIG[$adminDataKey . '_config'])) {
+                $CONFIG[$adminDataKey] = $CONFIG[$adminDataKey . '_config'];
+            }
+        }
         if ($superCage->post->keyExists('update_config')) {
             $evaluate_value = $superCage->post->getEscaped($adminDataKey);
         } else {
             $evaluate_value = $CONFIG[$adminDataKey];
         }
-        // We need to catter for the fact that checkboxes that haven't been ticked are not being submit
+        // We need to cater for the fact that checkboxes that haven't been ticked are not being submit
         if ($adminDataValue['type'] == 'checkbox' && !$evaluate_value) {
             $evaluate_value = '0';
         }
@@ -120,9 +125,9 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
             if ((isset($adminDataValue['regex']) && $adminDataValue['regex'] != '' && preg_match('#' . $adminDataValue['regex'] . '#i', $evaluate_value) == FALSE) || (isset($adminDataValue['regex_not']) && $adminDataValue['regex_not'] != '' && preg_match('#' . $adminDataValue['regex_not'] . '#i', $evaluate_value) == TRUE)) {
                 $userMessage    .= '<li style="list-style-image:url(images/icons/stop.png)">'.sprintf($lang_admin_php['config_setting_invalid'], '<a class="direct_config_link" href="#'.$adminDataKey.'">'.$lang_admin_php[$adminDataKey].'</a>').'</li>'.$LINEBREAK;
                 $regexValidation = '0';
-            } else { // regex validation succesfull -- start
+            } else { // regex validation successful -- start
                 $regexValidation = '1';
-            } // regex validation succesfull -- end
+            } // regex validation successful -- end
         } else { // no regex settings available - set validation var to successful anyway
             $regexValidation = '1';
         }
@@ -146,16 +151,16 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
         }
         if ($superCage->post->keyExists('update_config') && $regexValidation == '1' && $evaluate_value != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes($evaluate_value) ) {
             //  finally, all criteria have been met - let's write the updated data to the database
-            
+
             cpg_config_set($adminDataKey, $evaluate_value);
-            
+
             // perform special tasks -- start
 
             // Code to rename system thumbs in images folder
             $old_thumb_pfx =& $CONFIG['thumb_pfx'];
             $matches       = $superCage->post->getMatched('thumb_pfx', '/^[0-9A-Za-z_-]+$/');
             $thumb_pfx     = $matches[0];
-            
+
             if ($old_thumb_pfx != $thumb_pfx) {
                 $folders = array('images/', $THEME_DIR.'images/');
                 foreach ($folders as $folder) {
@@ -169,7 +174,7 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
             // perform special tasks -- end
             $admin_data_array[$adminDataKey] = stripslashes($evaluate_value);
             $CONFIG[$adminDataKey]           = stripslashes($evaluate_value);
-            
+
             $userMessage .= '<li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$LINEBREAK;
         }
     } // inner foreach loop -- end
@@ -270,8 +275,8 @@ EOT;
 
 //array which holds all info needed to check the default state, will be passed to js
 //we don't use a custom attribute to ensure XHTML valid output
-$js_default_values = array();               
-                
+$js_default_values = array();
+
 $sectionLoopCounter = 0;
 foreach ($config_data as $config_section_key => $config_section_value) { // start foreach-loop through the config sections
     if ($sectionLoopCounter/2 == floor($sectionLoopCounter/2)) {
@@ -291,6 +296,11 @@ foreach ($config_data as $config_section_key => $config_section_value) { // star
 EOT;
     $withinSectionLoopCounter = 0;
     foreach ($config_section_value as $key => $value) {
+        if (isset($value['force_config']) && $value['force_config']) {
+            if (isset($admin_data_array[$key.'_config'])) {
+                $admin_data_array[$key] = $admin_data_array[$key.'_config'];
+            }
+        }
         if ($withinSectionLoopCounter/2 == floor($withinSectionLoopCounter/2)) {
             $cellStyle = 'tableb ';
         } else {
@@ -460,23 +470,22 @@ EOT;
             }
             $admin_page .= '</select>'.$readonly_message.'</span><br />'.$LINEBREAK;
 
-        } elseif (($value['type'] == 'select') || ($value['type'] == 'select_config')) { //SELECT
+        } elseif ($value['type'] == 'select') { //SELECT
             $js_default_values['select'][] = array('key' => $key, 'warning' => $warningText, 'count' => count($value['options']));
 
             $optionLoopCounter = 0;
             $associativeArray  = array_is_associative($value['options']);
             $admin_page .= '<span id="'.$key.'_wrapper" class="'.$highlightFieldCSS.'"><select name="'.$key.'" id="'.$key.'" class="listbox" size="1" '.$readonly_radio.' tabindex="'.$tabindexCounter.'" title="'.str_replace("'", "\'", htmlspecialchars($warningText)).'">';
-            $key_to_check = ($value['type'] == 'select_config' ? $key . '_config' : $key);
             foreach ($value['options'] as $option_key => $option_value) { // loop through the options array
                 if ($associativeArray == TRUE) {
-                    if ($admin_data_array[$key_to_check] == $option_key) {
+                    if ($admin_data_array[$key] == $option_key) {
                         $selected = ' selected="selected"';
                     } else {
                         $selected = '';
                     }
                     $admin_page .= '<option value="'.$option_key.'"'.$selected.'>'.$option_value;
                 } else {
-                    if ($admin_data_array[$key_to_check] == $option_value) {
+                    if ($admin_data_array[$key] == $option_value) {
                         $selected = ' selected="selected"';
                     } else {
                         $selected = '';
@@ -499,17 +508,19 @@ EOT;
         $defaultValueField = '';
         if ($CONFIG['display_reset_boxes_in_config'] == 1) { // display of reset checkboxes is enabled --- start
             if (isset($value['default_value'])) { // we have a default value
-                if ($value['default_value'] == $admin_data_array[$key]) { // the default value equals the current config setting - hide the "reset to default" checkbox
+                if ($value['default_value'] == $admin_data_array[$key]) { 
+                    // the default value equals the current config setting - hide the "reset to default" checkbox
                     $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" checked="checked" title="'.$lang_admin_php['reset_to_default'].'" onclick="resetToDefault(\''.$key.'\', \''.$value['type'].'\', \''.($optionLoopCounter - 1).'\');" style="display:none;" />';
                 } else {
+                    // the current config setting is different than the default - show the "reset to default" checkbox
                     $resetCheckbox = '<input type="checkbox" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$value['default_value'].'" class="checkbox" title="'.$lang_admin_php['reset_to_default'].'" onclick="resetToDefault(\''.$key.'\', \''.$value['type'].'\', \''.($optionLoopCounter - 1).'\');" />';
                 }
             } else { // we don't have a default value
                 $resetCheckbox = '<input type="hidden" name="reset_default_'.$key.'" id="reset_default_'.$key.'" value="'.$admin_data_array[$key].'"  />';
             }
-        $resetCheckbox = '<span class="deleteOnSubmit">' . $resetCheckbox . '</span>';
-        $resetCheckbox = str_replace("'", "\'", $resetCheckbox);
-        $admin_page .= <<< EOT
+            $resetCheckbox = '<span class="deleteOnSubmit">' . $resetCheckbox . '</span>';
+            $resetCheckbox = str_replace("'", "\'", $resetCheckbox);
+            $admin_page .= <<< EOT
                   </td>
                   <td class="{$cellStyle}" style="vertical-align:top;" width="5%">
                     <script type="text/javascript">
@@ -522,7 +533,7 @@ EOT;
                 </tr>
 EOT;
         } else { // display of reset checkboxes is enabled --- end
-        $admin_page .= <<< EOT
+            $admin_page .= <<< EOT
                   </td>
                   <td class="{$cellStyle}" style="vertical-align:top;" width="5%"  colspan="2">
                     {$helpIcon}
