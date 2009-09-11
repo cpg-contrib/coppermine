@@ -149,8 +149,13 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
                 unset($collapseSections_array[array_search($config_section_key, $collapseSections_array)]);
             }
         }
-        if ($superCage->post->keyExists('update_config') && $regexValidation == '1' && $evaluate_value != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes($evaluate_value) ) {
 
+        if ( $superCage->post->keyExists('update_config') && ($regexValidation == '1') && ($evaluate_value != $CONFIG[$adminDataKey]) && ($CONFIG[$adminDataKey] !== stripslashes($evaluate_value)) ) {
+
+            // A space cannot be stored in the config table since the value field is VARCHAR, so %20 is used instead.
+            if (($adminDataKey == 'keyword_separator') && ($evaluate_value == ' ')) { 
+                $evaluate_value = '%20';
+            }
             //  finally, all criteria have been met - let's write the updated data to the database
             cpg_config_set($adminDataKey, $evaluate_value);
 

@@ -180,6 +180,11 @@ while ( ($row = mysql_fetch_assoc($result)) ) {
 } // while
 mysql_free_result($result);
 
+// A space cannot be stored in the config table since the value field is VARCHAR, so %20 is used instead.
+if ($CONFIG['keyword_separator'] == '%20') {
+    $CONFIG['keyword_separator'] = ' ';
+}
+
 if ($CONFIG['log_mode']) {
     spring_cleaning('logs', CPG_DAY * 2, array('log_header.inc.php'));
 }
