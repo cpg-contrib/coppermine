@@ -150,12 +150,11 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
             }
         }
         if ($superCage->post->keyExists('update_config') && $regexValidation == '1' && $evaluate_value != $CONFIG[$adminDataKey] && $CONFIG[$adminDataKey] !== stripslashes($evaluate_value) ) {
-            //  finally, all criteria have been met - let's write the updated data to the database
 
+            //  finally, all criteria have been met - let's write the updated data to the database
             cpg_config_set($adminDataKey, $evaluate_value);
 
             // perform special tasks -- start
-
             // Code to rename system thumbs in images folder
             $old_thumb_pfx =& $CONFIG['thumb_pfx'];
             $matches       = $superCage->post->getMatched('thumb_pfx', '/^[0-9A-Za-z_-]+$/');
@@ -172,8 +171,14 @@ foreach ($config_data as $config_section_key => $config_section_value) { // Loop
                 }
             }
             // perform special tasks -- end
+
+            // update configuration variables
             $admin_data_array[$adminDataKey] = stripslashes($evaluate_value);
             $CONFIG[$adminDataKey]           = stripslashes($evaluate_value);
+            if (isset($adminDataValue['force_config']) && $adminDataValue['force_config']) {
+                $admin_data_array[$adminDataKey . '_config'] = stripslashes($evaluate_value);
+                $CONFIG[$adminDataKey . '_config'] = stripslashes($evaluate_value);
+            }
 
             $userMessage .= '<li style="list-style-image:url(images/icons/ok.png)">'.sprintf($lang_admin_php['config_setting_ok'], $lang_admin_php[$adminDataKey]).'</li>'.$LINEBREAK;
         }
