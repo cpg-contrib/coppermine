@@ -291,10 +291,10 @@ doc_toc += '          <li><a href="theme_create.htm#theme_create_colors">Changer
 doc_toc += '          <li><a href="theme_create_matching_page_tutorial.htm#theme_matching">Créer un thème pour Coppermine qui reprend l\'aspect général de votre site</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="theme_copyright.htm" class="en">Copyright-disclaimer in footer</a>\n';
+doc_toc += '      <li><a href="theme_copyright.htm">Copyright-clause de non responsabilité dans le pied de page</a>\n';
 doc_toc += '        <ul>\n';
-doc_toc += '          <li><a href="theme_copyright.htm#theme_copyright_fair_use" class="en">Fair use</a>\n';
-doc_toc += '          <li><a href="theme_copyright.htm#theme_copyright_unfair_use" class="en">Unfair use</a>\n';
+doc_toc += '          <li><a href="theme_copyright.htm#theme_copyright_fair_use">Utilisation acceptable</a>\n';
+doc_toc += '          <li><a href="theme_copyright.htm#theme_copyright_unfair_use">Utilisation innacceptable</a>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="php-content.htm" class="en">Dynamic (PHP-driven) content</a>\n';
