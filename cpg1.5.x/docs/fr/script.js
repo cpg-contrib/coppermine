@@ -297,12 +297,12 @@ doc_toc += '          <li><a href="theme_copyright.htm#theme_copyright_fair_use"
 doc_toc += '          <li><a href="theme_copyright.htm#theme_copyright_unfair_use">Utilisation innacceptable</a>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="php-content.htm" class="en">Dynamic (PHP-driven) content</a>\n';
+doc_toc += '      <li><a href="php-content.htm" >Contenu Dynamique (piloté par PHP) </a>\n';
 doc_toc += '        <ul>\n';
-doc_toc += '          <li><a href="php-content.htm#php-content_anycontent" class="en">Using anycontent.php</a></li>\n';
-doc_toc += '          <li><a href="php-content.htm#php-content_header_footer" class="en">Custom header and footer</a></li>\n';
-doc_toc += '          <li><a href="php-content.htm#php-content_theme" class="en">Theme-based dynamic content (theme.php)</a></li>\n';
-doc_toc += '          <li><a href="php-content.htm#php-content_core" class="en">Modifying core files</a></li>\n';
+doc_toc += '          <li><a href="php-content.htm#php-content_anycontent" >Utiliser anycontent.php</a></li>\n';
+doc_toc += '          <li><a href="php-content.htm#php-content_header_footer">Haut de page et pied de page personnalisés</a></li>\n';
+doc_toc += '          <li><a href="php-content.htm#php-content_theme">Contenu dynamique basé sur le thème (theme.php)</a></li>\n';
+doc_toc += '          <li><a href="php-content.htm#php-content_core">Modifier les fichiers du noyau</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="theme_graphics.htm" class="en">Graphic resources in themes</a>\n';
