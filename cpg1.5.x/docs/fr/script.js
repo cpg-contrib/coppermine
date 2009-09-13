@@ -305,11 +305,12 @@ doc_toc += '          <li><a href="php-content.htm#php-content_theme">Contenu dy
 doc_toc += '          <li><a href="php-content.htm#php-content_core">Modifier les fichiers du noyau</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="theme_graphics.htm" class="en">Graphic resources in themes</a>\n';
-doc_toc += '          <ul class="level3" id="theme_graphics" class="en">\n';
-doc_toc += '              <li><a href="theme_graphics.htm#theme_graphics_menu_icons" class="en">Menu Icons</a></li>\n';
-doc_toc += '              <li><a href="theme_graphics.htm#theme_graphics_nav_bar" class="en">Image Navigation bar</a></li>\n';
-doc_toc += '              <li><a href="theme_graphics.htm#theme_graphics_rating" class="en">Rating images</a></li>\n';
+doc_toc += '      <li><a href="theme_graphics.htm">Ressources fraphiques dans les thèmes</a>\n';
+doc_toc += '          <ul class="level3" id="theme_graphics">\n';
+doc_toc += '              <li><a href="theme_graphics.htm#theme_graphics_menu_icons">Icones de Menu</a></li>\n';
+doc_toc += '              <li><a href="theme_graphics.htm#theme_graphics_nav_bar">Images de la barre de navigation</a></li>\n';
+doc_toc += '              <li><a href="theme_graphics.htm#theme_graphics_rating">Images de Notation</a></li>\n';
+doc_toc += '              <li><a href="theme_graphics.htm#theme_graphics_film_strip">Images du Négatif de film</a></li>\n';
 doc_toc += '          </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '    </ul>\n';
