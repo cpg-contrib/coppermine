@@ -26,7 +26,7 @@ SWFUpload.onload = function () {
         flash_url : "js/swfupload/swfupload.swf",
         upload_url: js_vars.site_url + "/upload.php",    // Relative to the SWF file
         post_params: {"process" : "1", "user" : js_vars.user},
-        file_size_limit : "100 MB",
+        file_size_limit : js_vars.max_upl_size + " KB",
         file_types : "*.*", //js_vars.allowed_file_types,
         file_types_description : js_vars.lang_upload_swf_php.all_files,
         custom_settings : {

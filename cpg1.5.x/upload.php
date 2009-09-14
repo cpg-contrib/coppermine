@@ -94,6 +94,7 @@ if ('swfupload' == $upload_form) {
     set_js_var('lang_upload_swf_php', $lang_upload_swf_php);
     
     set_js_var('notify_admin', $CONFIG['upl_notify_admin_email']);
+    set_js_var('max_upl_size', $CONFIG['max_upl_size']);
 }
 js_include('js/upload.js');
 
@@ -842,6 +843,13 @@ EOT;
     if (!is_uploaded_file($superCage->files->getRaw("/Filedata/tmp_name"))) {
         // We reject the file, and return the error.
         echo "error|{$lang_upload_php['no_post']}|0";
+        exit;
+    }
+    
+    // Check the size of the file if $max_file_size is set to greater than 0
+    if ($max_file_size && filesize($superCage->files->getRaw('/Filedata/tmp_name')) > $max_file_size) {
+        // We reject this files as file size exceeds the value set in config
+        echo "error|{$lang_upload_php['exc_file_size']}|0";
         exit;
     }
 
