@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-09-10 [O] Removed default social bookmarks option, turning feature into standalone plugin {GauGau}
 2009-09-10 [B] Fixed keyword separator of space being trimmed in config table due to VARCHAR {Paver}
 2009-09-09 [B] Fixed config panel theme & lang being overridden by user settings (thread ID 61650 & 61651) {Paver}
 2009-09-09 [B] Fixed ?theme=xxx to reset to config theme (thread ID 61645) {Paver}
