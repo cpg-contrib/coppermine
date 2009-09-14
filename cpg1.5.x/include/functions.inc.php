@@ -4602,7 +4602,7 @@ function replace_forbidden($str)
     $extension = ltrim(substr($return, strrpos($return, '.')), '.');
 
     $filenameWithoutExtension = str_replace('.' . $extension, '', $return);
-	$filenameWithoutExtension = preg_replace('/[^0-9A-Za-z~-]/', '_', $filenameWithoutExtension); // Replace white spaces and special chars
+    $filenameWithoutExtension = preg_replace('/[^0-9A-Za-z~-]/', '_', $filenameWithoutExtension); // Replace white spaces and special chars
 
     $return = str_replace('.', '_', $filenameWithoutExtension) . '.' . $extension;
 
