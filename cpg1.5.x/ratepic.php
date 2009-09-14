@@ -111,7 +111,7 @@ if (mysql_num_rows($result)) {
 mysql_free_result($result);
 
 //Test for Self-Rating
-if (!empty($user_id) && $user_id == $row['owner_id'] && !USER_IS_ADMIN) {
+if (!empty($user_id) && $user_id == $row['owner_id'] && ($CONFIG['rate_own_files'] == 0 || $CONFIG['rate_own_files'] == 2 && !USER_IS_ADMIN)) {
 
     $send_back = array(
         'status' => 'error',
