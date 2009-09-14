@@ -589,7 +589,7 @@ case 'picture':
         $picture_name = $superCage->files->getRaw("/userpicture/name");
     }
 
-    // Replace forbidden chars with underscores
+    // Replace forbidden chars (including white spaces and special chars) with underscores
     $picture_name = replace_forbidden($picture_name);
 
     // Check that the file uploaded has a valid extension
