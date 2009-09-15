@@ -168,8 +168,8 @@ function process_post_data()
     cpg_db_query($query);
 
     // rename a file
-    if ($superCage->post->keyExists('filename') && $matches = $superCage->post->getMatched('filename', '/^[0-9A-Za-z\/_.~-]+$/')) {
-        $post_filename = $matches[0];
+    if ($superCage->post->keyExists('filename')) {
+        $post_filename = $superCage->post->getEscaped('filename');
     }
 
     if ($post_filename != $pic['filename']) {
