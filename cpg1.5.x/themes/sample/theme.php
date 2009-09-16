@@ -1940,54 +1940,6 @@ function theme_create_tabs($items, $curr_page, $total_pages, $template)
 ******************************************************************************/
 
 
-
-
-/******************************************************************************
-** Section <<<theme_social_bookmark>>> - START
-******************************************************************************/
-// Function for the social bookmark icons
-function theme_social_bookmark()
-{
-    global $CONFIG, $lang_social_bookmarks, $lang_common;
-
-    $return = '';
-
-    if ($CONFIG['display_social_bookmarks']) {
-
-        $return = '';
-        $socialBookmarks_array = array('aol', 'ask', 'blinklist', 'blogmarks', 'care2', 'delicious', 'digg', 'diigo', 'dzone', 'facebook', 'fark', 'faves', 'feedmelinks', 'furl', 'google', 'hugg', 'kool', 'linkagogo', 'livejournal', 'magnolia', 'mindbody', 'misterwong', 'mixx', 'multiply', 'myspace', 'netscape', 'netvouz', 'newsvine', 'nowpublic', 'reddit', 'segnalo', 'simpy', 'slashdot', 'smarking', 'spurl', 'squidoo', 'stumbleupon', 'tailrank', 'technorati', 'thisnext', 'windows', 'yahoo', 'alltagz', 'linksilo', 'iciode', 'maodi', 'misterwongde', 'newstube', 'oneview', 'readster', 'tausendreporter', 'webbrille', 'webnews');
-        $social_bookmarks_config_array = explode ("|",$CONFIG['display_social_bookmarks']);
-        $countLoop = 0;
-        $i = 0;
-        $bookmark_list = array();
-        foreach ($socialBookmarks_array as $key) {
-            if (array_key_exists($countLoop, $social_bookmarks_config_array) && ($social_bookmarks_config_array[$countLoop] == 1)) {
-                $bookmark_list[$i] = $socialBookmarks_array[$countLoop];
-                $i++;
-            }
-            $countLoop++;
-        }
-        $close_icon = cpg_fetch_icon('close', 0, $lang_common['close']);
-        $return .= "<div id=\"bookmarkIt\">{$lang_social_bookmarks['bookmark_this_page']}<span id=\"popupClose\">{$close_icon}</span><div id=\"popupBookmark\"></div></div>";
-
-        $js_bookmark = array(
-            'display_social_bookmarks' => true,
-            'favorite_close' => str_replace("'", '&lsquo;', $lang_social_bookmarks['favorite_close']),
-            'favorite' => str_replace("'", '&lsquo;', $lang_social_bookmarks['favorite']),
-            'bookmark_list' => $bookmark_list
-        );
-        set_js_var('bookmark', $js_bookmark);
-
-    } // if display_social_bookmarks
-    return $return;
-}
-/******************************************************************************
-** Section <<<theme_social_bookmark>>> - END
-******************************************************************************/
-
-
-
-
 /******************************************************************************
 ** Section <<<theme_credits>>> - START
 ******************************************************************************/
@@ -4141,7 +4093,9 @@ function theme_vanity()
 /**
 * theme_display_bar()
 *
-* Display a bar graph.
+* Display a bar graph. 
+* For a list of possible valid color names, look up the function definition of 
+* cpgValidateColor in include/functions.inc.php
 *
 * @param float $actualValue
 * @param float $maxValue
@@ -4166,7 +4120,6 @@ function theme_display_bar(
     global $lang_errors;
     // Validate parameters
     if ($maxValue == 0 || $maxValue == '') {
-        //cpg_die(ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
         $maxValue = $actualValue;
     }
     // Initialize some vars:
@@ -4174,7 +4127,6 @@ function theme_display_bar(
     $cell1Width = (($maxValue != 0) ? floor(100 * $actualValue/$maxValue): 0);
     $cell2Width = 100 - $cell1Width;
     // compose the output string
-    //$return .= $cell1Width . '/' . $cell2Width;
     $return .= '<table border="0" cellspacing="0" cellpadding="0" width="'.$maxBarSizeInPixels.'">';
     $return .= '<tr>';
     $return .= '<td width="'.$cell1Width.'%" style="';
@@ -4220,7 +4172,6 @@ function theme_display_bar(
     $return .= '</td>';
     $return .= '</tr>';
     $return .= '</table>';
-    //$return .= '<br /><img src="images/rating5.gif" width="400" height="60" border="0" alt="" />'; //remove after debugging
     return $return;
 }
 /******************************************************************************
