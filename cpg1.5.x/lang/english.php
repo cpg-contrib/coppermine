@@ -335,10 +335,6 @@ $lang_language_selection['choose_language'] = 'Choose your language';
 $lang_theme_selection['reset_theme'] = 'Default theme';
 $lang_theme_selection['choose_theme'] = 'Choose a theme';
 
-$lang_social_bookmarks['bookmark_this_page'] = 'Bookmark this page'; // cpg1.5
-$lang_social_bookmarks['favorite'] = 'Add this page to your browser\'s favorites/bookmarks'; // cpg1.5 // js-alert
-$lang_social_bookmarks['favorite_close'] = 'This doesn\'t work with your browser.'."\n".'Please close this dialog and'."\n".'press Ctrl-D to bookmark this page.'; // cpg1.5 // js-alert
-
 $lang_version_alert['version_alert'] = 'Unsupported version!';
 $lang_version_alert['no_stable_version'] = 'You are running Coppermine %s (%s) which is only meant for very experienced users - this version comes without support nor any warranties. Use it at your own risk or downgrade to the latest stable version if you need support!';
 $lang_version_alert['gallery_offline'] = 'The gallery is currently offline and will be only visible for you as admin. Don\'t forget to switch it back online after finishing maintenance.';
@@ -701,7 +697,6 @@ $lang_admin_php['custom_lnk_url'] = 'Custom menu link URL'; // cpg1.5
 $lang_admin_php['enable_menu_icons'] = 'Enable menu icons'; // cpg1.5
 $lang_admin_php['show_bbcode_help'] = 'Display BBCode help'; // cpg1.5
 $lang_admin_php['vanity_block'] = 'Show the vanity block on themes that are defined as XHTML and CSS compliant'; // cpg1.5
-$lang_admin_php['display_social_bookmarks'] = 'Display social bookmarks icons'; // cpg1.5
 $lang_admin_php['highlight_multiple'] = 'To highlight multiple lines, hold the [Ctrl]-key down'; // cpg1.5
 $lang_admin_php['custom_header_path'] = 'Path to custom header include'; // cpg1.5
 $lang_admin_php['custom_footer_path'] = 'Path to custom footer include'; // cpg1.5

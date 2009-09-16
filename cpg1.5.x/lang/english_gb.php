@@ -37,8 +37,6 @@ $lang_main_menu['fav_lnk'] = 'My Favourites';
 
 $lang_thumb_view['zipdownload_username'] = 'This archive contains the zipped files from the favourites of %s'; // cpg1.5
 
-$lang_social_bookmarks['favorite'] = 'Add this page to your browser\'s favourites/bookmarks'; // cpg1.5 // js-alert
-
 $lang_bridgemgr_php['recovery_success_title'] = 'Authorisation successful';
 $lang_bridgemgr_php['recovery_failure_title'] = 'Authorisation failed';
 

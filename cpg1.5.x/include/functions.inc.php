@@ -752,12 +752,6 @@ function load_template()
         $template    = str_replace('{THEME_SELECT_LIST}', themeSelect('list'), $template);
     }
 
-    $gallery_pos = strpos($template, '{SOCIAL_BOOKMARKS}');
-
-    if ($gallery_pos) {
-        $template    = str_replace('{SOCIAL_BOOKMARKS}', theme_social_bookmark(), $template);
-    }
-
     $gallery_pos = strpos($template, '{GALLERY}');
 
     if (!strstr($template, '{CREDITS}')) {

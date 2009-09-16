@@ -336,10 +336,6 @@ $lang_language_selection['choose_language'] = 'Choisissez votre langue';
 $lang_theme_selection['reset_theme'] = 'Thème par défaut';
 $lang_theme_selection['choose_theme'] = 'Choisissez votre thème';
 
-$lang_social_bookmarks['bookmark_this_page'] = 'Marquez cette page'; // cpg1.5
-$lang_social_bookmarks['favorite'] = 'Ajoutez cette page dans les favoris, Bookmarks (marques-pages) de votre navigateur'; // cpg1.5 // js-alert
-$lang_social_bookmarks['favorite_close'] = 'Ceci ne fonctionne pas avec votre navigateur.'."\n".'Fermez cette boite de dialiogue et'."\n".'appuyez sur Ctrl-D pour marque cette page.'; // cpg1.5 // js-alert
-
 $lang_version_alert['version_alert'] = 'Version sans support d\'aide!';
 $lang_version_alert['no_stable_version'] = 'Vous utilisez Coppermine  %s (%s) qui s\'adresse aux Utilisateurs très expérimentés - Cette version n\'offre aucun support d\'aide. Vous pouvez l\'Utilisez, mais à vos risques et périls. Si vous êtes un nouvel Utilisateur, téléchargez la dernière version stable alors vous aurez accès au Support Copermine, si vous avez besoin d\'aide!';
 $lang_version_alert['gallery_offline'] = 'La Galerie est actuellement hors ligne et n\'est visible que par un Administrateur. N\'oubliez pas de la remettre en ligne une fois les travaux de maintenance terminés.';
@@ -702,7 +698,6 @@ $lang_admin_php['custom_lnk_url'] =   'URL du menu personnalisé'; // cpg1.5
 $lang_admin_php['enable_menu_icons'] = 'Activer les icones de menu'; // cpg1.5
 $lang_admin_php['show_bbcode_help'] =   'Afficher l\'aide pour le bbcode'; // cpg1.5
 $lang_admin_php['vanity_block'] =   'Afficher les boutons indiquant le respect des standards XHTML et CSS pour les thèmes conformes'; // cpg1.5
-$lang_admin_php['display_social_bookmarks'] = 'Afficher les icônes des signets sociaux'; // cpg1.5
 $lang_admin_php['highlight_multiple'] = 'Pour sélectionner plusieurs lignes, maintenez la touche [Ctrl] appuyée'; // cpg1.5
 $lang_admin_php['custom_header_path'] =   'Chemin pour inclure un en-tête de page personnalisé'; // cpg1.5
 $lang_admin_php['custom_footer_path'] =   'Chemin pour inclure un pied de page personnalisé'; // cpg1.5

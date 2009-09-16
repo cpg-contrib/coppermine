@@ -275,29 +275,6 @@ $config_data = array(
       'default_value' => '1',
       'help_link'     => 'f=configuration.htm&amp;as=admin_theme_bbcode&amp;ae=admin_theme_bbcode_end&amp;top=1',
     ),
-    'display_social_bookmarks' => array(
-      'type'      => 'select_multiple',
-      'default_value' => '0',
-      'help_link' => 'f=configuration.htm&amp;as=admin_social_bookmarks&amp;ae=admin_social_bookmarks_end',
-      'options'   => array(
-                       'myAOL', 
-
-                       'Ask', 'Blinklist', 'Blogmarks', 'care2', 
-                       'del.icio.us', 'Digg', 'Diigo', 'Dzone', 
-                       'Facebook', 'Fark', 'Faves', 'FeedMeLinks', 'Furl', 
-                       'Google', 'Hugg', 'Kool', 'Linkagogo', 'LiveJournal', 
-                       'Magnolia', 'MindBody', 'Mister-Wong.com', 'Mixx', 'Multiply', 'mySpace', 
-                       'Netscape', 'netvouz', 'Newsvine', 'NowPublic', 'Reddit', 
-                       'Segnalo', 'Simpy', 'Slashdot', 'Smarking', 'Spurl', 'Squidoo', 'StumbleUpon', 
-                       'TailRank', 'Technorati', 'thisnext', 'Windows Live', 'Yahoo MyWeb', 
-
-                        // German sites
-                       'Alltagz.de', 'Linksilo.de', 'Icio.de', 'Maodi.de', 
-                       'Mister-Wong.de', 'Newstube.de', 'oneview.de', 'Readster.de', 
-                       'Tausendreporter (stern)', 'Webbrille.de', 'Webnews.de',
-                     ),
-      'end_description' => '(' . $lang_admin_php['highlight_multiple'] . ')',
-    ),
     'custom_header_path' => array(
       'type'      => 'textfield',
       'default_value' => '',

@@ -3575,12 +3575,6 @@
     <hash>a71991c54b452d4faf0a6fd68a4f4d2f</hash>
   </element>
   <element>
-    <fullpath>images/bookmarks.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>e127945a240941d757a651fa5d46f971</hash>
-  </element>
-  <element>
     <fullpath>images/browse_swf.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -8592,14 +8586,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>b65e5d044437507a8a82766a7245aeb7</hash>
-  </element>
-  <element>
-    <fullpath>js/jquery.bookmark.js</fullpath>
-    <version>1.5.2</version>
-    <revision>6360</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>a65d429d562925d0726b197acf945afd</hash>
   </element>
   <element>
     <fullpath>js/jquery.cluetip.js</fullpath>

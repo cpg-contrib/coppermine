@@ -354,13 +354,6 @@ $lang_language_selection['choose_language'] = 'Wähle Sprache';
 $lang_theme_selection['reset_theme'] = 'Standard-Design';
 $lang_theme_selection['choose_theme'] = 'Wähle Design';
 
-$lang_social_bookmarks['bookmark_this_page'] = 'Lesezeichen speichern'; // cpg1.5 
-$lang_social_bookmarks['favorite'] = 'Diese Seite zu den Lesezeichen/Favoriten Deines Browsers hinzufügen'; // cpg1.5 // js-alert
-$lang_social_bookmarks['send_email'] = 'Diese Seite per eMail empfehlen'; // cpg1.5 // js-alert
-$lang_social_bookmarks['email_subject'] = 'Interessante Seite'; // cpg1.5 // js-alert
-$lang_social_bookmarks['email_body'] = 'Du könntest die folgende Seite interessant finden'; // cpg1.5 // js-alert
-$lang_social_bookmarks['favorite_close'] = 'Diese Funktion wird von Deinem Browser nicht unterstützt.'."\n".'Bitte schließe diesen Dialog und'."\n".'drücke Strg-D, um diese Seite zu den Lesezeichen hinzuzufügen.'; // cpg1.5 // js-alert
-
 $lang_version_alert['version_alert'] = 'Nicht unterstützte Version!';
 $lang_version_alert['no_stable_version'] = 'Du betreibst Coppermine version  %s (%s), das nur für erfahrene Benutzer gedacht ist - für diese Version gibt es keinen Support oder Funktions-Garantien. Benutze sie auf eigenes Risiko oder downgrade auf die aktuellste stabile Version, wenn Du Support brauchst!';
 $lang_version_alert['gallery_offline'] = 'Die Galerie ist zur Zeit im Wartungs-Modus und ist nur für Dich als Admin zugänglich. Vergiss nicht, sie wieder aus dem Wartungs-Modus in den "normalen" Modus zurück zu schalten, wenn Deine Wartungsarbeiten beendet sind.';
@@ -725,7 +718,6 @@ $lang_admin_php['custom_lnk_url'] = 'URL eines benutzerdefinierten Menü-Eintrag
 $lang_admin_php['enable_menu_icons'] = 'Menü-Icons aktivieren'; // cpg1.5
 $lang_admin_php['show_bbcode_help'] = 'BBCode-Hilfe anzeigen'; // cpg1.5
 $lang_admin_php['vanity_block'] = 'Vanity Block in Designs anzeigen, die als XHTML und CSS konform definiert sind?'; // cpg1.5
-$lang_admin_php['display_social_bookmarks'] = 'Social-Bookmarks anzeigen'; // cpg1.5
 $lang_admin_php['highlight_multiple'] = 'Um mehrere Einträge zu selektieren, halte die [Strg]-Taste gedrückt'; // cpg1.5
 $lang_admin_php['custom_header_path'] = 'Pfad zu benutzerdefiniertem header-include'; // cpg1.5
 $lang_admin_php['custom_footer_path'] = 'Pfad zu benutzerdefiniertem footer-include'; // cpg1.5
