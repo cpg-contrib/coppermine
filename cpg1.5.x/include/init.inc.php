@@ -387,22 +387,16 @@ if (USER_ID > 0) {
 // Include the jquery javascript library. Jquery will be included on all pages.
 js_include('js/jquery-1.3.2.js');
 
-// Include the bookmark JavaScript if at least one bookmarking service is selected
-if (!empty($CONFIG['display_social_bookmarks'])) {
-    js_include('js/jquery.bookmark.js');
-}
-
-// Include the elastic plugin for auto-expanding textareas if debug_mode is on
-js_include('js/jquery.elastic.js');
-
 // Include the scripts.js javascript library that contains coppermine-specific 
 // JavaScript that is being used on all pages.
 // Do not remove this line unless you really know what you're doing
 js_include('js/scripts.js');
+
+// Include the JavaScript library that takes care of the help system.
 js_include('js/jquery.greybox.js');
 
-
-
+// Include the elastic plugin for auto-expanding textareas if debug_mode is on
+js_include('js/jquery.elastic.js');
 
 // If referer is set in URL and it contains 'http' or 'script' texts then set it to 'index.php' script
 /**

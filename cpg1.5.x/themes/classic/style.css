@@ -702,19 +702,6 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
     background-color:#000000;
 }
 
-#bookmarkIt { /* This is the container that wraps the entire social bookmarks button */
-    border: 1px solid #0E72A4; 
-    padding: 0px 3px; 
-    font-size: 80%; 
-    cursor: pointer;
-    background-color: #D1D7DC;
-    margin-left:3px;
-    margin-right:3px;
-    margin-top:0px;
-    margin-bottom:0px;
-    width: 120px;
-}
-
 /** Swfupload css **/
 div.fieldset {
     border:  2px solid #0E72A4;
