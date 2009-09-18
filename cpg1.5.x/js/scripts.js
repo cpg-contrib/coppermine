@@ -385,29 +385,6 @@ $(document).ready(function() {
 		$(".detail_head_collapsed").toggleClass("detail_head_expanded");
 	});
     
-    //Add bookmarks if available
-    if(js_vars.bookmark != undefined){
-        $('#bookmarkIt').click(function() { 
-            var offset = $('#bookmarkIt').offset(); 
-            $('#popupBookmark').css('left', offset.left).css('top', offset.top + $('#bookmarkIt').height() + 2); 
-            $('#popupBookmark,#popupClose').toggle(); 
-        }); 
-        $('#popupBookmark').bookmark( 
-            {
-                compact: true, 
-                addEmail: false, 
-                addFavorite: true,
-                manualBookmark: js_vars.bookmark.favorite_close,
-                sites: js_vars.bookmark.bookmark_list,
-                icons: 'images/bookmarks.png',
-                iconSize: 16,
-                target: '_blank',
-                favoriteText: js_vars.bookmark.favorite,
-                favoriteIcon: 0
-            }
-        );
-    }
-	
 	// Greybox plugin initialization for the help system
     $("a.greybox").click(function(){
       var t = this.title || $(this).text() || this.href;
