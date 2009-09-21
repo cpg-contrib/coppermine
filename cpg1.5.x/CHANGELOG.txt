@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-09-21 [A] Added plugin filter theme_pageheader_params for pageheader manipulation purposes {GauGau}
 2009-09-14 [A] Rename special chars in file name with underscore during upload process (thread 61723) {eenemeenemuu}
 2009-09-14 [B] Fixed code to check the filesize and reject if it exceeds the max allowed by cpg config {Abbas}
 2009-09-10 [O] Removed default social bookmarks option, turning feature into standalone plugin {GauGau}

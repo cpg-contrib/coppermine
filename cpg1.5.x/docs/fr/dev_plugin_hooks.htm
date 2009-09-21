@@ -583,6 +583,13 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <td valign="top">filters $template_thumbnail_view which allows you to modify the thumbnail output or add things beneath the thumbails.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$params = CPGPluginAPI::filter('theme_display_thumbnails_params', $params);</textarea></td>
   </tr>
+  <tr>
+    <td valign="top">include/themes.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_filename_theme_pageheader_params"></a><strong>theme_pageheader_params</strong><a href="#plugin_hooks_filename_theme_pageheader_params" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">filters $template_vars for the pageheader function. Allows you to modify the entire pageheader output, e.g. page title, charset definition, meta tags.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$params = CPGPluginAPI::filter('theme_pageheader_params', $template_vars);</textarea></td>
+  </tr>
 </table>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -642,6 +649,7 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
 	<li><a href="#plugin_hooks_filename_template_html">template_html</a></li>
 	<li><a href="#plugin_hooks_theme_add_comment">theme_add_comment</a></li>
 	<li><a href="#plugin_hooks_filename_thumbnail_params">theme_display_thumbnails_params</a></li>
+	<li><a href="#plugin_hooks_filename_theme_pageheader_params">theme_pageheader_params</a></li>
 	<li><a href="#plugin_hooks_theme_add_comment">theme_edit_comment</a></li>
 	<li><a href="#plugin_hooks_filename_thumb_caption">thumb_caption</a></li>
 	<li><a href="#plugin_hooks_filename_thumb_caption_favpics">thumb_caption_favpics</a></li>
@@ -932,8 +940,6 @@ function myfunction_add_params($params)
 </div>
 <p>To add the new tags to $template_thumbnail_view in your plugin, you can override the theme template by using the 'page_start' hook.  Some users may have a theme that uses this template and in that case, your plugin documentation should list the new tags your plugin uses so the user can add these tags to their theme template.  You would also need to disable your plugin from overriding this template.  Ideally, this would be done on your plugin configuration panel.</p>
 
-
-<p><a class="back" href="#top">Back to top</a></p><hr />
 
 
 <div id="doc_footer">

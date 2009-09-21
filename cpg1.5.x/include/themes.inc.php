@@ -1571,8 +1571,9 @@ function pageheader($section, $meta = '')
         '{JAVASCRIPT}' => theme_javascript_head(),
         '{MESSAGE_BLOCK}' => theme_display_message_block(),
     );
-
-    echo template_eval($template_header, $template_vars);
+	
+	$template_vars = CPGPluginAPI::filter('theme_pageheader_params', $template_vars);
+	echo template_eval($template_header, $template_vars);
 
     // Show various admin messages
     adminmessages();
