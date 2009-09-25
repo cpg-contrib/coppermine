@@ -347,10 +347,6 @@ if (!Array.prototype.indexOf)
 }
 // end function prototype array.indexOf
 
-function bookmarks(){
-    
-}
-
 $(document).ready(function() {
     for (func in onloads) {
 		eval(onloads[func]);
