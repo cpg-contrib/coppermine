@@ -262,9 +262,11 @@ EOT;
         case 'checkbox':
           
             // added the checkbox option for possible future use. The array definition would have to look like this:
-            // array('checkbox', 'user_var', 'preceeding text', 'Text label', 'value', 'Number of columns'),
+            // array('checkbox', 'user_var', 'preceeding text', 'Text label', 'value', 'Number of columns', 'attribute'),
             // enabling this option requires changes in profile.php and usermgr.php as well
-			// Number of columns can be 1 or 2, default is 1
+			// Number of columns can be 1 or 2, default is 1.
+			// Attribute can be anything that you want to pass to the <input>-tag, e.g. the parameter 'checked="checked"'.
+			// or an event handler.
 
             if ($superCage->post->keyExists($element[1])) {
                 $value = $superCage->post->getAlnum($element[1]);
@@ -281,7 +283,7 @@ EOT;
             {$element[2]}
         </td>
         <td width="60%" class="{$row_style}" valign="top">
-            <input type="checkbox" name="{$element[1]}" id="{$element[1]}" value="{$element[4]}" class="checkbox" />
+            <input type="checkbox" name="{$element[1]}" id="{$element[1]}" value="{$element[4]}" class="checkbox" {$element[6]} />
             <label for="{$element[1]}" class="clickable_option">{$element[3]}</label>
         </td>
     </tr>
