@@ -38,13 +38,13 @@
 <p>The script displays some information on how to do the installation on the client side and how to use the Wizard. Basically you will need to download a small file created by the script that needs to be loaded into your Windows registry.</p>
 <p>If you want to allow your users to use the Windows XP Web Publishing Wizard, it's advisable to promote it by showing a link to the file somewhere on your page.</p>
 
-<a name="xp_publish_requirements"></a><h2>XP Web Publishing Wizard: Requirements<a href="#xp_publish_requirements" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="xp_publish_requirements"></a><h2>Requirements<a href="#xp_publish_requirements" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul>
 	<li>XP Publisher is a Microsoft product. It will only run on Windows XP/Vista. It will only work if the client is using the Microsoft browser &quot;Internet Explorer&quot;. Coppermine just provides a file to use the XP Publisher user interface. There is nothing that can be done to circumvent this. If you are not happy with the way the XP Publisher works or if you would like additional or different features, you will have to address Microsoft, not the Coppermine developers.</li>
 	<li>As suggested above, the registry file needs to create a key in the user's registry. There needs to be a name for that key. That's why you need to have specified a <a href="configuration.htm#admin_general_name">name for your gallery</a> and a <a href="configuration.htm#admin_general_description">gallery description</a> in Coppermine's config.</li>
 </ul>
 
-<a name="xp_publish_setup"></a><h2>XP Web Publishing Wizard: Setup<a href="#xp_publish_setup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="xp_publish_setup"></a><h2>Setup<a href="#xp_publish_setup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 Before you can use the XP Web Publishing Wizard, it needs to know the address of the your gallery.
 <ul>
 <li>Open your browser and type the following into the address box replacing "your_site.com" and "coppermine_dir" with your own Gallery address information : <tt class="code">http://your_site.com/coppermine_dir/xp_publish.php</tt></li>
@@ -58,7 +58,7 @@ Before you can use the XP Web Publishing Wizard, it needs to know the address of
 
 Above procedure needs to be done only once by users wishing to use the XP Publishing Wizard.
 
-<a name="xp_publish_upload"></a><h2>XP Web Publishing Wizard: Uploading pictures<a href="#xp_publish_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="xp_publish_upload"></a><h2>Uploading pictures<a href="#xp_publish_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>The process of uploading pictures is a matter of following a simple dialog. It takes much longer to describe the process than do it.</p>
 <ul>
 <li>Start Windows Explorer and locate the directory with your photographs and select one or more pictures for upload.</li>
@@ -79,10 +79,10 @@ Above procedure needs to be done only once by users wishing to use the XP Publis
 </ul>
 <a name="xp_publish_upload_end"></a>
 
-<a name="xp_publish_file_structure"></a><h2>XP Web Publishing Wizard: File structure<a href="#xp_publish__file_structure" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="xp_publish_file_structure"></a><h2>File structure<a href="#xp_publish__file_structure" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Many gallery admins prefer to have a physical folder and file structure within their albums folder that represents the logical category/album structure of the gallery. Using the XP Publisher, this folder/file structure can not be kept: files uploaded using the XP publishing wizard go into a folder within the albums-folder that matches a particular naming scheme: the wizard creates folders named &quot;wpw-YYYYMMDD&quot; (e.g. &quot;wpw-20081026&quot;) and uploads the files into that folder. There is no way you can circumvent or alter this behaviour, but after all you don't have to: coppermine's database keeps track of files, the human doesn't have to.</p>
 
-<a name="xp_publish_remove"></a><h2>XP Web Publishing Wizard: Removal/Uninstall<a href="#xp_publish_remove" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="xp_publish_remove"></a><h2>Removal/Uninstall<a href="#xp_publish_remove" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>If you want to remove the XP Web Publishing entry created from your gallery (e.g. because you have moved to a new domain), you have to edit the registry manually. Be carefull when doing so - messing with the registry without knowing what you do may damage your operating system.</p>
 <ul>
   <li>Click &quot;Start&quot; - &quot;Run...&quot;</li>

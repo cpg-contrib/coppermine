@@ -1540,12 +1540,6 @@
     <hash>676c12f357018029b0284e48b3042554</hash>
   </element>
   <element>
-    <fullpath>docs/de/images/exifmanager_cpg1.4.x.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>5eb58d467ebcf005fbe339f901292b4f</hash>
-  </element>
-  <element>
     <fullpath>docs/de/images/filmstrip.jpg</fullpath>
     <status>optional</status>
     <permission>read</permission>
@@ -2378,12 +2372,6 @@
     <hash>676c12f357018029b0284e48b3042554</hash>
   </element>
   <element>
-    <fullpath>docs/en/images/exifmanager_cpg1.4.x.gif</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>5eb58d467ebcf005fbe339f901292b4f</hash>
-  </element>
-  <element>
     <fullpath>docs/en/images/filmstrip.jpg</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -3194,12 +3182,6 @@
     <status>optional</status>
     <permission>read</permission>
     <hash>676c12f357018029b0284e48b3042554</hash>
-  </element>
-  <element>
-    <fullpath>docs/fr/images/exifmanager_cpg1.gif</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>5eb58d467ebcf005fbe339f901292b4f</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/modifyalb_reset.gif</fullpath>
