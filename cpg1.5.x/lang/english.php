@@ -1142,6 +1142,8 @@ $lang_picinfo['hide_details'] = 'Hide details'; // cpg1.5
 $lang_picinfo['download_URL'] = 'Direct Link';
 $lang_picinfo['movie_player'] = 'Play the file in your standard application';
 
+$lang_display_comments['comment_x_to_y_of_z'] = '%d to %d of %d'; // cpg1.5
+$lang_display_comments['page'] = 'Page'; // cpg1.5
 $lang_display_comments['edit_title'] = 'Edit this comment';
 $lang_display_comments['delete_title'] = 'Delete this comment'; // cpg1.5
 $lang_display_comments['confirm_delete'] = 'Are you sure you want to delete this comment?'; // js-alert

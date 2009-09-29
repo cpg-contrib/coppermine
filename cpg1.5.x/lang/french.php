@@ -1143,6 +1143,8 @@ if (defined('DISPLAYIMAGE_PHP')){
   $lang_picinfo['download_URL'] = 'Lien direct';
   $lang_picinfo['movie_player'] = 'Lire le fichier avec votre application standard';
 
+  $lang_display_comments['comment_x_to_y_of_z'] = '%d to %d of %d'; // cpg1.5
+  $lang_display_comments['page'] = 'Page'; // cpg1.5
   $lang_display_comments['edit_title'] = 'Modifier ce Commentaire';
   $lang_display_comments['delete_title'] = 'Effacer ce Commentaire'; // cpg1.5.x
   $lang_display_comments['confirm_delete'] = 'Etes vous sur de vouloir effacer ce Commentaire ?'; //js-alert

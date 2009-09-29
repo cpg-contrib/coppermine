@@ -1165,6 +1165,8 @@ $lang_picinfo['hide_details'] = 'Details verbergen'; // cpg1.5
 $lang_picinfo['download_URL'] = 'Direkter Download-Link';
 $lang_picinfo['movie_player'] = 'Datei in Standard-Applikation wiedergeben';
 
+$lang_display_comments['comment_x_to_y_of_z'] = '%d bis %d von %d'; // cpg1.5
+$lang_display_comments['page'] = 'Seite'; // cpg1.5
 $lang_display_comments['edit_title'] = 'Diesen Kommentar bearbeiten';
 $lang_display_comments['delete_title'] = 'Diesen Kommentar löschen'; // cpg1.5
 $lang_display_comments['confirm_delete'] = 'Willst Du diesen Kommentar wirklich löschen?'; // js-alert

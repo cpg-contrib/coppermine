@@ -3690,8 +3690,9 @@ function theme_html_comments($pid)
         echo '<br />';
         starttable();
 
-        echo '<tr><td class="tableh2"><div style="float: left">'.($start+1).' to '.min($num, $start+$limit).' of '.$num.'</div>';
-        echo '<div style="float: right">Page: ';
+        
+        echo '<tr><td class="tableh2"><div style="float: left">'.$lang_display_comments['comment'].' '.sprintf($lang_display_comments['comment_x_to_y_of_z'], ($start+1), min($num, $start+$limit), $num).'</div>';
+        echo '<div style="float: right">'.$lang_display_comments['page'].': ';
         $links = array();
 
         for ($i = 1; $i <= $max; $i++){
