@@ -2917,7 +2917,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
             }
 
             // Add 1 to album hit counter
-            if (!USER_IS_ADMIN && !in_array($album, $USER['liv_a']) && $superCage->cookie->keyExists($CONFIG['cookie_name'] . '_data')) {
+            if ((!USER_IS_ADMIN && $CONFIG['count_admin_hits'] == 0 || $CONFIG['count_admin_hits'] == 1) && !in_array($album, $USER['liv_a']) && $superCage->cookie->keyExists($CONFIG['cookie_name'] . '_data')) {
 
                 add_album_hit($album);
 
