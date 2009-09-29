@@ -2466,7 +2466,21 @@ function cpg_determine_client()
         $os = 'Unix';
     } elseif (preg_match('#iphone#i', $server_agent)) {
         $os = 'iPhone';
+    } elseif (preg_match('#Nintendo Wii#i', $server_agent)) {
+        $os = 'Nintendo Wii';
+    } elseif (preg_match('#PalmOS#i', $server_agent)) {
+        $os = 'PalmOS';
+    } elseif (preg_match('#Symbian#i', $server_agent)) {
+        $os = 'Symbian';
+    } elseif (preg_match('#PLAYSTATION 3#i', $server_agent)) {
+        $os = 'Playstation 3';
+    } elseif (preg_match('#PlayStation Portable#i', $server_agent)) {
+        $os = 'Playstation Portable';
+    } elseif (preg_match('#Playstation#i', $server_agent)) {
+        $os = 'Playstation';
     }
+    
+    
 
     $browser = 'Unknown';
     if (preg_match('#MSIE#i', $server_agent)) {
@@ -2487,6 +2501,14 @@ function cpg_determine_client()
         } else {
             $browser = 'IE';
         }
+    } elseif (preg_match('#AvantGo#i', $server_agent)) {
+        $browser = 'Avant';
+    } elseif (preg_match('#Nitro#i', $server_agent)) {
+        $browser = 'Nintendo DS';
+    } elseif (preg_match('#Nokia#i', $server_agent)) {
+        $browser = 'Nokia';
+    } elseif (preg_match('#iPhone#i', $server_agent)) {
+        $browser = 'iPhone';
     } elseif (preg_match('#Epiphany#i', $server_agent)) {
         $browser = 'Epiphany';
     } elseif (preg_match('#Flock#i', $server_agent)) {

@@ -3975,6 +3975,12 @@
     <hash>28b309c032ecac4ac5840e02c8a46a2d</hash>
   </element>
   <element>
+    <fullpath>images/browser/iphone.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>28b309c032ecac4ac5840e02c8a46a2d</hash>
+  </element>
+  <element>
     <fullpath>images/browser/java.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -4099,6 +4105,12 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>ba9f676a97202c9108c3fb06fe036832</hash>
+  </element>
+  <element>
+    <fullpath>images/browser/nds.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>28b309c032ecac4ac5840e02c8a46a2d</hash>
   </element>
   <element>
     <fullpath>images/browser/netnewswire.png</fullpath>
@@ -7111,6 +7123,36 @@
     <hash>40d4d47d56e5b9f9e836b93a15b77f26</hash>
   </element>
   <element>
+    <fullpath>images/os/palm.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>40d4d47d56e5b9f9e836b93a15b77f26</hash>
+  </element>
+  <element>
+    <fullpath>images/os/ps1.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>40d4d47d56e5b9f9e836b93a15b77f26</hash>
+  </element>
+  <element>
+    <fullpath>images/os/ps2.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>40d4d47d56e5b9f9e836b93a15b77f26</hash>
+  </element>
+  <element>
+    <fullpath>images/os/ps3.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>40d4d47d56e5b9f9e836b93a15b77f26</hash>
+  </element>
+  <element>
+    <fullpath>images/os/psp.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>40d4d47d56e5b9f9e836b93a15b77f26</hash>
+  </element>
+  <element>
     <fullpath>images/os/qnx.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -7160,6 +7202,18 @@
   </element>
   <element>
     <fullpath>images/os/webtv.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>dcc4862bc6d5c3841cc503607a00e91a</hash>
+  </element>
+  <element>
+    <fullpath>images/os/wii.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>dcc4862bc6d5c3841cc503607a00e91a</hash>
+  </element>
+  <element>
+    <fullpath>images/os/wii2.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>dcc4862bc6d5c3841cc503607a00e91a</hash>
@@ -7232,6 +7286,18 @@
   </element>
   <element>
     <fullpath>images/os/winxp.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>5be08da115089370b826ab57d6a40b47</hash>
+  </element>
+  <element>
+    <fullpath>images/os/xbox.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>5be08da115089370b826ab57d6a40b47</hash>
+  </element>
+  <element>
+    <fullpath>images/os/xbox360.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>5be08da115089370b826ab57d6a40b47</hash>
