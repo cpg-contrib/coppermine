@@ -1793,7 +1793,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 AND approved = 'YES'
                 GROUP BY r.aid";
         $result = cpg_db_query($query);
-        list($count) = mysql_fetch_row($result);
+        $count = mysql_num_rows($result);
         mysql_free_result($result);
 
         // TODO: issue with WHERE r.aid NOT IN (#), ORDER BY ctime DESC appears to be ignored
