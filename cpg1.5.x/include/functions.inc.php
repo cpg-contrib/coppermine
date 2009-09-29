@@ -1845,9 +1845,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $query = "SELECT $select_columns_files
                     FROM {$CONFIG['TABLE_PICTURES']} AS r
                     WHERE approved = 'YES'
-                    AND r.pid IN ($album_thumbs_set)
-                    ORDER BY ctime DESC
-                    $limit";
+                    AND r.pid IN ($album_thumbs_set)";
             $result = cpg_db_query($query);
             $rowset_pid = cpg_db_fetch_rowset($result);
             mysql_free_result($result);
