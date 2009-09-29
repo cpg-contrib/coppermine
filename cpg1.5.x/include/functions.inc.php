@@ -1783,7 +1783,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             }
         }
         $select_columns_files = implode(', ', $select_column_list_files);
-        $select_columns_albums = implode(', ', $select_column_list_albums);
+        $select_columns_albums = str_replace('ctime', 'MAX(ctime) AS ctime', implode(', ', $select_column_list_albums));
 
         // Keyword-linked files are not included; only native files are checked for last-updated albums
         $query = "SELECT COUNT(*)
@@ -1796,7 +1796,6 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         $count = mysql_num_rows($result);
         mysql_free_result($result);
 
-        // TODO: issue with WHERE r.aid NOT IN (#), ORDER BY ctime DESC appears to be ignored
         $query = "SELECT $select_columns_albums
                 FROM {$CONFIG['TABLE_PICTURES']} AS r
                 INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON a.aid = r.aid
