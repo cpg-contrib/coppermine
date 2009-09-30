@@ -4606,6 +4606,21 @@ function replace_forbidden($str)
     $return = str_replace($forbidden_chars[0], '_', $str);
 
     /**
+     * Transliteration
+     */
+    $replace_pairs = array(
+            'ä' => 'ae',
+            'ö' => 'oe',
+            'ü' => 'ue',
+        );
+    $return = strtr($return, $replace_pairs);
+
+    /**
+     * Replace special chars
+     */
+    $return = str_replace('%', '', rawurlencode($return));
+
+    /**
      * Fix the obscure, misdocumented "feature" in Apache that causes the server
      * to process the last "valid" extension in the filename (rar exploit): replace all
      * dots in the filename except the last one with an underscore.
@@ -4615,7 +4630,6 @@ function replace_forbidden($str)
     $extension = ltrim(substr($return, strrpos($return, '.')), '.');
 
     $filenameWithoutExtension = str_replace('.' . $extension, '', $return);
-    $filenameWithoutExtension = str_replace('%', '', rawurlencode($filenameWithoutExtension)); // Replace special chars
 
     $return = str_replace('.', '_', $filenameWithoutExtension) . '.' . $extension;
 
