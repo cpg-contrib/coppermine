@@ -315,6 +315,8 @@ Setting this to a ridiculously high value (i.e. above 100% or a pixel value high
   <li>If you want 3 rows of random files, but no last uploads at all, change <tt class="code">catlist/alblist/random,2/lastup,2</tt> to <tt class="code">catlist/alblist/random,3</tt></li>
   <li><tt class="code">anycontent/catlist/alblist/random,2/lastup,2</tt> translates to: "anycontent file contents, category list, album list, 2 rows of random pics, 2 rows of last uploads" -- and will display in the order that they are listed</li>
 </ul>
+<p>There might be plugins that add more codes that can be used in this field.</p>
+<p>You can <strong>not</strong> use a code more than once inside this field: a string like <tt class="code">breadcrumb/catlist/alblist/breadcrumb</tt> will <strong>not</strong> work as expected and may have undesired side-effects.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Album list view &rarr; The content of the main page</p>
 <a name="admin_album_list_content_end"></a>
 <hr />
