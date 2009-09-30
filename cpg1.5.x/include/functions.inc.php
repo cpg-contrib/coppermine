@@ -4615,7 +4615,7 @@ function replace_forbidden($str)
     $extension = ltrim(substr($return, strrpos($return, '.')), '.');
 
     $filenameWithoutExtension = str_replace('.' . $extension, '', $return);
-    $filenameWithoutExtension = rawurlencode($filenameWithoutExtension); // Replace special chars
+    $filenameWithoutExtension = str_replace('%', '', rawurlencode($filenameWithoutExtension)); // Replace special chars
 
     $return = str_replace('.', '_', $filenameWithoutExtension) . '.' . $extension;
 
