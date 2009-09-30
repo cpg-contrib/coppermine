@@ -26,7 +26,7 @@ var GB_ANIMATION = true;
 
 $(function() {
     $(".cpg_zebra tr:even").addClass("tableb");
-	$(".cpg_zebra tr:odd").addClass("tableb tableb_alternate");
+    $(".cpg_zebra tr:odd").addClass("tableb tableb_alternate");
 });
 
 function MM_openBrWindow(theURL,winName,features) { //v2.0
@@ -349,45 +349,45 @@ if (!Array.prototype.indexOf)
 
 $(document).ready(function() {
     for (func in onloads) {
-		eval(onloads[func]);
-	}
+        eval(onloads[func]);
+    }
 
-	//hide all elements with class detail_body
-	$(".detail_body").hide();
-	//toggle the component with class detail_body
-	$(".detail_head_collapsed").click(function()
-	{
-		$(this).toggleClass("detail_head_expanded").next(".detail_body").slideToggle(600);
-	});
-	$(".detail_expand_all").click(function()
-	{
-		$(".detail_body").slideDown(1200);
-		$(".detail_head_collapsed").toggleClass("detail_head_expanded");
-		$(".detail_expand_all").hide();
-		$(".detail_collapse_all").show();
+    //hide all elements with class detail_body
+    $(".detail_body").hide();
+    //toggle the component with class detail_body
+    $(".detail_head_collapsed").click(function()
+    {
+        $(this).toggleClass("detail_head_expanded").next(".detail_body").slideToggle(600);
+    });
+    $(".detail_expand_all").click(function()
+    {
+        $(".detail_body").slideDown(1200);
+        $(".detail_head_collapsed").addClass("detail_head_expanded");
+        $(".detail_expand_all").hide();
+        $(".detail_collapse_all").show();
 
-	});
-	$(".detail_collapse_all").click(function()
-	{
-		$(".detail_body").slideUp(1200);
-		$(".detail_head_collapsed").toggleClass("detail_head_expanded");
-		$(".detail_expand_all").show();
-		$(".detail_collapse_all").hide();
+    });
+    $(".detail_collapse_all").click(function()
+    {
+        $(".detail_body").slideUp(1200);
+        $(".detail_head_collapsed").removeClass("detail_head_expanded");
+        $(".detail_expand_all").show();
+        $(".detail_collapse_all").hide();
 
-	});
-	$(".detail_toggle_all").click(function()
-	{
-		$(".detail_body").slideToggle(600);
-		$(".detail_head_collapsed").toggleClass("detail_head_expanded");
-	});
+    });
+    $(".detail_toggle_all").click(function()
+    {
+        $(".detail_body").slideToggle(600);
+        $(".detail_head_collapsed").toggleClass("detail_head_expanded");
+    });
     
-	// Greybox plugin initialization for the help system
+    // Greybox plugin initialization for the help system
     $("a.greybox").click(function(){
       var t = this.title || $(this).text() || this.href;
       GB_show(t,this.href,470,600);
       return false;
     });
-	$("a.greyboxfull").click(function(){
+    $("a.greyboxfull").click(function(){
       var t = this.title || $(this).text() || this.href;
       GB_show(t,this.href,700,800);
       return false;

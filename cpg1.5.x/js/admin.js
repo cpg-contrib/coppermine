@@ -37,7 +37,7 @@ function resetToDefault(theFieldId, fieldType, numberOfItems)
 function checkDefaultBox(theFieldId, fieldType, numberOfItems, warning) 
 {
     if (js_vars.display_reset_boxes != '1' ) {
-    	return;
+        return;
     }
     // Each time a config field is being changed (onblur/onchange), this JS is being run to enable/disable the default checkbox
     if(warning != '') {
@@ -77,10 +77,10 @@ function deleteUnneededFields()
 function toggleExpandCollapseButtons(action) 
 {
     jQuery.each($("img[id^='expand']"), function(){
-        $(this).css('display', (action == 'collapse') ? 'block' : 'none');                            
+        $(this).css('display', (action == 'collapse') ? 'block' : 'none');
     });
     jQuery.each($("img[id^='collapse']"), function(){
-        $(this).css('display', (action == 'collapse') ? 'none' : 'block');                            
+        $(this).css('display', (action == 'collapse') ? 'none' : 'block');
     });
 }
 
@@ -99,7 +99,7 @@ function adminPageLoaded(){
             show_section('collapse_all_top');
             show_section('expand_all_bottom');
             show_section('collapse_all_bottom');
-            toggleExpandCollapseButtons('expand');                             
+            toggleExpandCollapseButtons('expand');
         });
     
     $('span[id^=collapse_all]').click(function(){
@@ -108,7 +108,7 @@ function adminPageLoaded(){
             show_section('collapse_all_top');
             show_section('expand_all_bottom');
             show_section('collapse_all_bottom');
-            toggleExpandCollapseButtons('collapse');                       
+            toggleExpandCollapseButtons('collapse');
         });
     show_section('expand_all_top');
     show_section('expand_all_bottom');
