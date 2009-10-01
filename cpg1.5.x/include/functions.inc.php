@@ -4608,12 +4608,11 @@ function replace_forbidden($str)
     /**
      * Transliteration
      */
-    $replace_pairs = array(
-            'ä' => 'ae',
-            'ö' => 'oe',
-            'ü' => 'ue',
-        );
-    $return = strtr($return, $replace_pairs);
+    require('include/transliteration/transliteration.inc');
+    function drupal_get_path($a, $b) {
+        return ('include/transliteration/');
+    }
+    $return = transliteration_process($return, '_');
 
     /**
      * Replace special chars
