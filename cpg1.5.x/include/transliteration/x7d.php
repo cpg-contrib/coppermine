@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.2
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/profile.php $
-  $Revision: 6433 $
-  $LastChangedBy: nibbler999 $
-  $Date: 2009-08-08 20:33:51 +0200 (Sa, 08 Aug 2009) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 return array(
