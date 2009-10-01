@@ -5551,7 +5551,6 @@ if (!function_exists('form_get_foldercontent')) {
 if (!function_exists('cpg_get_available_languages')) {
     function cpg_get_available_languages()
     {
-        // Work in progress - GauGau
         global $CONFIG;
         // Make sure that the language table exists in the first place -
         // return without return value if the table doesn't exist because
@@ -6251,6 +6250,28 @@ function cpg_get_comment_page_number($msg_id) {
     mysql_free_result($result);
 
     return $page;
+}
+
+/**
+ * cpg_lang_name2code
+ * 
+ * @param string $lang_name the name of a language file
+ * @return string $return language code (flag name)
+ */
+function cpg_lang_name2code($lang_name) {
+	global $CONFIG;
+	if ($lang_name != '') {
+		$result = cpg_db_query("SELECT flag, abbr FROM {$CONFIG['TABLE_LANGUAGE']} WHERE lang_id='{$lang_name}' LIMIT 1");
+		list($flag, $abbr) = mysql_fetch_row($result);
+        mysql_free_result($result);
+		if ($abbr != '') {
+			return $abbr;
+		} elseif ($flag != '') {
+			return $flag;
+		}  else {
+			return FALSE;
+		}
+	}
 }
 
 ?>
