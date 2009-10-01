@@ -1,0 +1,37 @@
+<?php
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2009 Coppermine Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+
+  ********************************************
+  Coppermine version: 1.5.2
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/profile.php $
+  $Revision: 6433 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2009-08-08 20:33:51 +0200 (Sa, 08 Aug 2009) $
+**********************************************/
+
+return array(
+  'en' => array(NULL, '!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/',
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '=', '>', '?',
+    '@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+    'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[', '\\', ']', '^', '_',
+    '`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+    'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}', '~', NULL,
+    NULL, '.', '[', ']', ',', '*', 'wo', 'a', 'i', 'u', 'e', 'o', 'ya', 'yu', 'yo', 'tu',
+    '+', 'a', 'i', 'u', 'e', 'o', 'ka', 'ki', 'ku', 'ke', 'ko', 'sa', 'si', 'su', 'se', 'so',
+    'ta', 'ti', 'tu', 'te', 'to', 'na', 'ni', 'nu', 'ne', 'no', 'ha', 'hi', 'hu', 'he', 'ho', 'ma',
+    'mi', 'mu', 'me', 'mo', 'ya', 'yu', 'yo', 'ra', 'ri', 'ru', 're', 'ro', 'wa', 'n', ':', ';',
+    '', 'g', 'gg', 'gs', 'n', 'nj', 'nh', 'd', 'dd', 'r', 'lg', 'lm', 'lb', 'ls', 'lt', 'lp',
+    'rh', 'm', 'b', 'bb', 'bs', 's', 'ss', '', 'j', 'jj', 'c', 'k', 't', 'p', 'h', NULL,
+    NULL, NULL, 'a', 'ae', 'ya', 'yae', 'eo', 'e', NULL, NULL, 'yeo', 'ye', 'o', 'wa', 'wae', 'oe',
+    NULL, NULL, 'yo', 'u', 'weo', 'we', 'wi', 'yu', NULL, NULL, 'eu', 'yi', 'i', NULL, NULL, NULL,
+    '/C', 'PS', '!', '-', '|', 'Y=', 'W=', NULL, '|', '-', '|', '-', '|', '#', 'O', NULL,
+    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{', '|', '}', '', '', '', ''),
+);

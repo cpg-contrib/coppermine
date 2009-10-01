@@ -1,0 +1,37 @@
+<?php
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2009 Coppermine Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
+
+  ********************************************
+  Coppermine version: 1.5.2
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/profile.php $
+  $Revision: 6433 $
+  $LastChangedBy: nibbler999 $
+  $Date: 2009-08-08 20:33:51 +0200 (Sa, 08 Aug 2009) $
+**********************************************/
+
+return array(
+  'en' => array('Zhong ', 'Qi ', 'Pei ', 'Yu ', 'Diao ', 'Dun ', 'Wen ', 'Yi ', 'Xin ', 'Kang ', 'Yi ', 'Ji ', 'Ai ', 'Wu ', 'Ji ', 'Fu ',
+    'Fa ', 'Xiu ', 'Jin ', 'Bei ', 'Dan ', 'Fu ', 'Tang ', 'Zhong ', 'You ', 'Huo ', 'Hui ', 'Yu ', 'Cui ', 'Chuan ', 'San ', 'Wei ',
+    'Chuan ', 'Che ', 'Ya ', 'Xian ', 'Shang ', 'Chang ', 'Lun ', 'Cang ', 'Xun ', 'Xin ', 'Wei ', 'Zhu ', NULL, 'Xuan ', 'Nu ', 'Bo ',
+    'Gu ', 'Ni ', 'Ni ', 'Xie ', 'Ban ', 'Xu ', 'Ling ', 'Zhou ', 'Shen ', 'Qu ', 'Si ', 'Beng ', 'Si ', 'Jia ', 'Pi ', 'Yi ',
+    'Si ', 'Ai ', 'Zheng ', 'Dian ', 'Han ', 'Mai ', 'Dan ', 'Zhu ', 'Bu ', 'Qu ', 'Bi ', 'Shao ', 'Ci ', 'Wei ', 'Di ', 'Zhu ',
+    'Zuo ', 'You ', 'Yang ', 'Ti ', 'Zhan ', 'He ', 'Bi ', 'Tuo ', 'She ', 'Yu ', 'Yi ', 'Fo ', 'Zuo ', 'Kou ', 'Ning ', 'Tong ',
+    'Ni ', 'Xuan ', 'Qu ', 'Yong ', 'Wa ', 'Qian ', NULL, 'Ka ', NULL, 'Pei ', 'Huai ', 'He ', 'Lao ', 'Xiang ', 'Ge ', 'Yang ',
+    'Bai ', 'Fa ', 'Ming ', 'Jia ', 'Er ', 'Bing ', 'Ji ', 'Hen ', 'Huo ', 'Gui ', 'Quan ', 'Tiao ', 'Jiao ', 'Ci ', 'Yi ', 'Shi ',
+    'Xing ', 'Shen ', 'Tuo ', 'Kan ', 'Zhi ', 'Gai ', 'Lai ', 'Yi ', 'Chi ', 'Kua ', 'Guang ', 'Li ', 'Yin ', 'Shi ', 'Mi ', 'Zhu ',
+    'Xu ', 'You ', 'An ', 'Lu ', 'Mou ', 'Er ', 'Lun ', 'Tong ', 'Cha ', 'Chi ', 'Xun ', 'Gong ', 'Zhou ', 'Yi ', 'Ru ', 'Jian ',
+    'Xia ', 'Jia ', 'Zai ', 'Lu ', 'Ko ', 'Jiao ', 'Zhen ', 'Ce ', 'Qiao ', 'Kuai ', 'Chai ', 'Ning ', 'Nong ', 'Jin ', 'Wu ', 'Hou ',
+    'Jiong ', 'Cheng ', 'Zhen ', 'Zuo ', 'Chou ', 'Qin ', 'Lu ', 'Ju ', 'Shu ', 'Ting ', 'Shen ', 'Tuo ', 'Bo ', 'Nan ', 'Hao ', 'Bian ',
+    'Tui ', 'Yu ', 'Xi ', 'Cu ', 'E ', 'Qiu ', 'Xu ', 'Kuang ', 'Ku ', 'Wu ', 'Jun ', 'Yi ', 'Fu ', 'Lang ', 'Zu ', 'Qiao ',
+    'Li ', 'Yong ', 'Hun ', 'Jing ', 'Xian ', 'San ', 'Pai ', 'Su ', 'Fu ', 'Xi ', 'Li ', 'Fu ', 'Ping ', 'Bao ', 'Yu ', 'Si ',
+    'Xia ', 'Xin ', 'Xiu ', 'Yu ', 'Ti ', 'Che ', 'Chou ', NULL, 'Yan ', 'Lia ', 'Li ', 'Lai ', NULL, 'Jian ', 'Xiu ', 'Fu ',
+    'He ', 'Ju ', 'Xiao ', 'Pai ', 'Jian ', 'Biao ', 'Chu ', 'Fei ', 'Feng ', 'Ya ', 'An ', 'Bei ', 'Yu ', 'Xin ', 'Bi ', 'Jian '),
+);
