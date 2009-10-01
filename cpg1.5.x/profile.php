@@ -141,9 +141,13 @@ $edit_profile_form_param = array(
     array('text', 'username', cpg_fetch_icon('my_profile', 2) . $lang_register_php['username']),
     array('text', 'status', cpg_fetch_icon('online', 2) . $lang_usermgr_php['status']),
     array('text', 'reg_date', cpg_fetch_icon('calendar', 2) . $lang_register_php['reg_date']),
-    array('text', 'group', cpg_fetch_icon('groups_mgr', 2) . $lang_register_php['group']),
-    array('text', 'email', cpg_fetch_icon('mail', 2) . $lang_register_php['email'],255)
+    array('text', 'group', cpg_fetch_icon('groups_mgr', 2) . $lang_register_php['group'])
 );
+if ($CONFIG['allow_email_change'] == 1 || GALLERY_ADMIN_MODE) {
+    $edit_profile_form_param[] = array('input', 'email', cpg_fetch_icon('mail', 2) . $lang_register_php['email'],255);
+} else {
+	$edit_profile_form_param[] = array('text', 'email', cpg_fetch_icon('mail', 2) . $lang_register_php['email'],255);
+}
 if ($CONFIG['user_profile1_name'] != '') {
     $edit_profile_form_param[] = array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255);
 }
@@ -164,9 +168,7 @@ if ($CONFIG['user_profile6_name'] != '') {
 }
 $edit_profile_form_param[] = array('text', 'disk_usage', cpg_fetch_icon('disk_usage', 2) . $lang_register_php['disk_usage']);
 
-if ($CONFIG['allow_email_change'] == 1 || GALLERY_ADMIN_MODE) {
-    $edit_profile_form_param[3][0] = 'input';
-} 
+
 
 $display_profile_form_param = array(
     array('text', 'username', $lang_register_php['username']),
@@ -343,13 +345,10 @@ EOT;
 function get_post_var($var)
 {
     global $lang_errors;
-    
     $superCage = Inspekt::makeSuperCage();
-
     if (!$superCage->post->keyExists($var)) {
         cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
     }
-    
     return $superCage->post->getEscaped($var);
 }
 
@@ -384,18 +383,13 @@ if ($superCage->post->keyExists('change_profile') && USER_ID && UDB_INTEGRATION 
     $error = false;
 
     if ($CONFIG['allow_email_change']) {
-
         $email = $superCage->post->getEscaped('email');
-
         if (!Inspekt::isEmail($email)) {
-        
-            $error = $lang_register_php['email_warning2'];
-            
+            $error = $lang_register_php['email_warning2'] . $email;
+			//preg_match('#' . $adminDataValue['regex'] . '#i', $evaluate_value) == FALSE
         } elseif (!$CONFIG['allow_duplicate_emails_addr']) {
-
             $sql = "SELECT null FROM {$CONFIG['TABLE_USERS']} WHERE user_email = '$email' AND user_id <> " . USER_ID;
             $result = cpg_db_query($sql);
-
             if (mysql_num_rows($result)) {
                 $error = $lang_register_php['err_duplicate_email'];
             }
@@ -404,6 +398,8 @@ if ($superCage->post->keyExists('change_profile') && USER_ID && UDB_INTEGRATION 
 
     $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET user_profile1 = '$profile1', user_profile2 = '$profile2', user_profile3 = '$profile3', user_profile4 = '$profile4', user_profile5 = '$profile5', user_profile6 = '$profile6'" . ($CONFIG['allow_email_change'] && !$error ? ", user_email = '$email'" : "") . " WHERE user_id = '" . USER_ID . "'";
     $result = cpg_db_query($sql);
+	
+	CPGPluginAPI::action('profile_submit_form', null);
 
     $title = sprintf($lang_register_php['x_s_profile'], stripslashes(USER_NAME));
 
@@ -608,6 +604,10 @@ EOT;
       {$lastUploadText}
     </td>
 </tr>
+
+EOT;
+	CPGPluginAPI::action('profile_display_form', null);
+    echo <<< EOT
 <tr>
     <td colspan="2" align="center" class="tablef">
         <button type="submit" class="button" name="change_profile" id="change_profile" value="{$lang_common['apply_changes']}">{$icon_array['ok']}{$lang_common['apply_changes']}</button>
@@ -616,7 +616,7 @@ EOT;
     </td>
 </tr>
 EOT;
-    endtable();
+	endtable();
     
     list($timestamp, $form_token) = getFormToken();	
     echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
@@ -717,6 +717,7 @@ EOT;
 </tr>
 EOT;
     endtable();
+	echo '<h1>3</h1>';
     list($timestamp, $form_token) = getFormToken();	
     echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
     <input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" /></form>";
@@ -789,11 +790,14 @@ default:
 
     $title = sprintf($lang_register_php['x_s_profile'], $user_data['user_name']);
     pageheader($title);
+	
+	// Displays the profile of any user
 
     starttable(-1, cpg_fetch_icon('my_profile', 2) . $title, 2);
     $profile_data = CPGPluginAPI::filter('profile_add_data', array ( 0 => $display_profile_form_param, 1 => $form_data ));
     make_form($display_profile_form_param, $form_data);
     endtable();
+	
 
     pagefooter();
 
