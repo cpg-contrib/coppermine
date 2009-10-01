@@ -353,7 +353,7 @@ a.phpnet {
     font-size: x-small;
 }
 
-acronym, abbr {
+acronym, abbr, span.explain  {
     border-bottom: 1px dashed blue;
 }
 
