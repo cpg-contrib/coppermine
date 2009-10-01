@@ -4608,9 +4608,11 @@ function replace_forbidden($str)
     /**
      * Transliteration
      */
-    require('include/transliteration/transliteration.inc');
-    function drupal_get_path($a, $b) {
-        return ('include/transliteration/');
+    require_once('include/transliteration/transliteration.inc');
+    if (!function_exists(drupal_get_path)) {
+        function drupal_get_path($a, $b) {
+            return ('include/transliteration/');
+        }
     }
     $return = transliteration_process($return, '_');
 
