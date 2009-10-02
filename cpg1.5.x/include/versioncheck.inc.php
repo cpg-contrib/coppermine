@@ -71,7 +71,7 @@ function cpg_get_path_and_file($string) {
 }
 
 function cpg_is_writable($folder){
-  global $LINEBREAK;
+  global $LINEBREAK, $lang_versioncheck_php;
   // Make sure that there is a trailing slash at the end of the variable $folder
   $folder = rtrim($folder, '/').'/';
   $return = 0;
@@ -80,9 +80,9 @@ function cpg_is_writable($folder){
       @fwrite($fd, $file_content);
       @fclose($fd);
       @unlink($folder.'cpgvc_tf.txt');
-      $return = 'write';
+      $return = $lang_versioncheck_php['write'];
   } else {
-      $return = 'read';
+      $return = $lang_versioncheck_php['read'];
   }
   return $return;
 }
@@ -315,10 +315,10 @@ function cpg_versioncheckPopulateArray($file_data_array) {
               $file_data_array[$file_data_key]['local_revision'] = '';
               if (is_readable($file_data_values['fullpath']) == TRUE) { // check if the folder is readable/writable --- start
                 // Sadly, is_readable doesn't really work on all server setups
-                $file_data_array[$file_data_key]['local_readwrite'] = 'read';
+                $file_data_array[$file_data_key]['local_readwrite'] = $lang_versioncheck_php['read'];
                 $file_data_array[$file_data_key]['local_readwrite'] = cpg_is_writable($file_data_array[$file_data_key]['fullpath']);
                 if (is_writable($file_data_values['fullpath']) == TRUE) {
-                  $file_data_array[$file_data_key]['local_readwrite'] = 'write';
+                  $file_data_array[$file_data_key]['local_readwrite'] = $lang_versioncheck_php['write'];
                 }
               } // check if the folder is readable/writable --- end
               // we have a folder here --- end
@@ -505,7 +505,7 @@ function cpg_versioncheckCreateXml($file_data_array) {
   print <<< EOT
   <script type="text/javascript">
             document.write('<a href="javascript:HighlightAll(\'versioncheckdisplay.versioncheck_text\')" class="admin_menu">');
-            document.write(lang_select_all);
+            document.write('{$lang_versioncheck_php['select_all']}');
             document.write('</a>');
             document.write('<br />');
   </script>

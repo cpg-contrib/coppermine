@@ -27,10 +27,10 @@
   <element>
     <fullpath>albmgr.php</fullpath>
     <version>1.5.2</version>
-    <revision>6523</revision>
+    <revision>6629</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>af646abe911a9d01ccbdea84265ab5be</hash>
+    <hash>114af5380b661b011c0fa6f051f7cbdc</hash>
   </element>
   <element>
     <fullpath>anycontent.php</fullpath>
@@ -83,10 +83,10 @@
   <element>
     <fullpath>CHANGELOG.txt</fullpath>
     <version>1.5.2</version>
-    <revision>6619</revision>
+    <revision>6629</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6e0572c5cf2f9535425e489ce0d7f8a0</hash>
+    <hash>4c86823f4b47b89b79babb22c0f9623b</hash>
   </element>
   <element>
     <fullpath>config.php</fullpath>
@@ -117,10 +117,10 @@
   <element>
     <fullpath>db_input.php</fullpath>
     <version>1.5.2</version>
-    <revision>6578</revision>
+    <revision>6641</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>399a20ce0c53095955f6e5012e9d9fed</hash>
+    <hash>a4bc43352247b4978c808b3418e333c9</hash>
   </element>
   <element>
     <fullpath>delete.php</fullpath>
@@ -172,7 +172,7 @@
     <revision>6580</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>98c48b7506d7d40bc9dfd7cd5f2d626a</hash>
+    <hash>42acc3a0560c22cfab83ed6977a2ca6f</hash>
   </element>
   <element>
     <fullpath>editpics.php</fullpath>
@@ -358,18 +358,18 @@
   <element>
     <fullpath>pic_editor.php</fullpath>
     <version>1.5.2</version>
-    <revision>6538</revision>
+    <revision>6641</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1c45f244fd97d3de2905ea1634706752</hash>
+    <hash>60d0552aac723615b6fc4dfe589153a5</hash>
   </element>
   <element>
     <fullpath>picmgr.php</fullpath>
     <version>1.5.2</version>
-    <revision>6524</revision>
+    <revision>6629</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6c460ff0d4b0523fc1e8e21e3aca223e</hash>
+    <hash>0dd0e9898e5a47e2e0c1a833324d81b9</hash>
   </element>
   <element>
     <fullpath>pluginmgr.php</fullpath>
@@ -382,10 +382,10 @@
   <element>
     <fullpath>profile.php</fullpath>
     <version>1.5.2</version>
-    <revision>6433</revision>
+    <revision>6627</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c5540024551e669f5e821a3662a7364e</hash>
+    <hash>179469ede56878fc5951dfeee8cff3ca</hash>
   </element>
   <element>
     <fullpath>ratepic.php</fullpath>
@@ -426,10 +426,10 @@
   <element>
     <fullpath>reviewcom.php</fullpath>
     <version>1.5.2</version>
-    <revision>6440</revision>
+    <revision>6629</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2b802591af4aca827501d4ff927dcd6f</hash>
+    <hash>ca0af7a4f3c93c52aa8f51bd53eacf57</hash>
   </element>
   <element>
     <fullpath>scripts.js</fullpath>
@@ -446,10 +446,10 @@
   <element>
     <fullpath>searchnew.php</fullpath>
     <version>1.5.2</version>
-    <revision>6455</revision>
+    <revision>6641</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5275a69da340829aa767819ff2f1ef97</hash>
+    <hash>98dea54754126c53ae4f3bf0aa751a10</hash>
   </element>
   <element>
     <fullpath>send_activation.php</fullpath>
@@ -470,10 +470,10 @@
   <element>
     <fullpath>sidebar.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6628</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8ee642719619135283e2fd81897d68c8</hash>
+    <hash>7093e81b01b420e4e43a708b6fd5a910</hash>
   </element>
   <element>
     <fullpath>stat_details.php</fullpath>
@@ -494,18 +494,18 @@
   <element>
     <fullpath>update.php</fullpath>
     <version>1.5.2</version>
-    <revision>6461</revision>
+    <revision>6642</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>79e8cb0ac78b3f17fc372f277f50e20f</hash>
+    <hash>1c02bd5b034c388e756146a1c050f10d</hash>
   </element>
   <element>
     <fullpath>upload.php</fullpath>
     <version>1.5.2</version>
-    <revision>6576</revision>
+    <revision>6641</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>270ac3d13c67092bdc2f62f822d8789e</hash>
+    <hash>952713899c3ed58e3171b37a5bb6337f</hash>
   </element>
   <element>
     <fullpath>usermgr.php</fullpath>
@@ -542,10 +542,10 @@
   <element>
     <fullpath>xp_publish.php</fullpath>
     <version>1.5.2</version>
-    <revision>6518</revision>
+    <revision>6641</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1888d339e3d3552b8097b5ed6327bd80</hash>
+    <hash>45653de08c6ec69a065349a840406706</hash>
   </element>
   <element>
     <fullpath>zipdownload.php</fullpath>
@@ -563,10 +563,10 @@
   <element>
     <fullpath>albums/index.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6634</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fbb2ce82a9d27cb4e7b11f6eb3c085d1</hash>
+    <hash>9bbf5c81a425de67ac0973d946de2ce6</hash>
   </element>
   <element>
     <fullpath>albums/edit/</fullpath>
@@ -575,9 +575,11 @@
   </element>
   <element>
     <fullpath>albums/edit/index.php</fullpath>
+    <version>1.5.2</version>
+    <revision>6635</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7944544c7783bded309f53a80d277d0d</hash>
+    <hash>14a9f5e69a462f597e29b5e059bbf615</hash>
   </element>
   <element>
     <fullpath>albums/edit/no_FTP-uploads_into_this_folder!.txt</fullpath>
@@ -593,10 +595,10 @@
   <element>
     <fullpath>albums/userpics/index.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6634</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ddf4d9883cdb12cd51e2fcff1bc3ca77</hash>
+    <hash>c3db5a7a8459b54d7acb9ca8e72058c5</hash>
   </element>
   <element>
     <fullpath>albums/userpics/no_FTP-uploads_into_this_folder!.txt</fullpath>
@@ -1739,10 +1741,10 @@
   <element>
     <fullpath>docs/en/credits.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6583</revision>
+    <revision>6622</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2c842f9cd18cc079f77c2743127583fa</hash>
+    <hash>8ce200c6464f93d9a253ce57b9d3c9b8</hash>
   </element>
   <element>
     <fullpath>docs/en/dev.htm</fullpath>
@@ -1931,10 +1933,10 @@
   <element>
     <fullpath>docs/en/index.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6583</revision>
+    <revision>6626</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3ce69cbf891626fc8f9b4c226daeca3d</hash>
+    <hash>b25d1339303f0d02656957491cece4ea</hash>
   </element>
   <element>
     <fullpath>docs/en/install.htm</fullpath>
@@ -2219,10 +2221,10 @@
   <element>
     <fullpath>docs/en/upload_troubleshooting.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6605</revision>
+    <revision>6624</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c62b8d4b3d5a0b2f461ddf1028456e0a</hash>
+    <hash>881163e4a5710346e3742330186bdf1b</hash>
   </element>
   <element>
     <fullpath>docs/en/users.htm</fullpath>
@@ -3524,10 +3526,10 @@
   <element>
     <fullpath>docs/style/screen.css</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6624</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f33a19cc7ad2732a2e5b06b66c7b9c12</hash>
+    <hash>fe19fef1c30882bdf1eb8662f00884e6</hash>
   </element>
   <element>
     <fullpath>docs/style/style.css</fullpath>
@@ -8210,18 +8212,18 @@
   <element>
     <fullpath>include/transliteration.inc.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6627</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1e90e1e529a47e612bc49cbdbcf7389d</hash>
+    <hash>a5c9cf8fed7341abf2ff297420f65d39</hash>
   </element>
   <element>
     <fullpath>include/functions.inc.php</fullpath>
     <version>1.5.2</version>
-    <revision>6620</revision>
+    <revision>6625</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ecf8de9142ec3378695cba906ecd1a28</hash>
+    <hash>a16a91d085a5f48634073646e59321d8</hash>
   </element>
   <element>
     <fullpath>include/imageObjectGD.class.php</fullpath>
@@ -8250,10 +8252,10 @@
   <element>
     <fullpath>include/index.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6641</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>72d12813cf0ac248423f9c0ea534baab</hash>
+    <hash>b4171fc22da9715f1fd4818b720bcbae</hash>
   </element>
   <element>
     <fullpath>include/init.inc.php</fullpath>
@@ -8378,10 +8380,10 @@
   <element>
     <fullpath>include/themes.inc.php</fullpath>
     <version>1.5.2</version>
-    <revision>6606</revision>
+    <revision>6640</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b6430a5456ca6f9cf1accfc373e03f7b</hash>
+    <hash>ea0f22820d67c8f069687f97fa8db27c</hash>
   </element>
   <element>
     <fullpath>include/versioncheck.inc.php</fullpath>
@@ -8389,7 +8391,7 @@
     <revision>6510</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f12dd6ec0dfcd1ad478d82b159bda093</hash>
+    <hash>3a3e64f59a68497ab7e72b5c632ad3bc</hash>
   </element>
   <element>
     <fullpath>include/zip.lib.php</fullpath>
@@ -8511,1436 +8513,1436 @@
     <permission>read</permission>
   </element>
   <element>
-    <fullpath>include/makers/x00.php</fullpath>
+    <fullpath>include/transliteration/x00.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>e79f72db5e62216b96eb7293c398bc0f</hash>
   </element>
   <element>
-    <fullpath>include/makers/x0a.php</fullpath>
+    <fullpath>include/transliteration/x0a.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>680d3cf347b5cf12bf18ad531587cac9</hash>
   </element>
   <element>
-    <fullpath>include/makers/x0b.php</fullpath>
+    <fullpath>include/transliteration/x0b.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>93b455d8cf1b770cdeac99e15c3bdc49</hash>
   </element>
   <element>
-    <fullpath>include/makers/x0c.php</fullpath>
+    <fullpath>include/transliteration/x0c.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>d1aaf024990ff1a47ec594a581a7a070</hash>
   </element>
   <element>
-    <fullpath>include/makers/x0d.php</fullpath>
+    <fullpath>include/transliteration/x0d.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>654f86b3eb39ce60fdbe86be24ece4a0</hash>
   </element>
   <element>
-    <fullpath>include/makers/x0e.php</fullpath>
+    <fullpath>include/transliteration/x0e.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>ab04df9458853f4e4465b971c3a4e9ce</hash>
   </element>
   <element>
-    <fullpath>include/makers/x0f.php</fullpath>
+    <fullpath>include/transliteration/x0f.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>fb3ea5ed7d820693111fb0558d0c6b56</hash>
   </element>
   <element>
-    <fullpath>include/makers/x01.php</fullpath>
+    <fullpath>include/transliteration/x01.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>b3db10453e838332eff5e04dd02872d5</hash>
   </element>
   <element>
-    <fullpath>include/makers/x1e.php</fullpath>
+    <fullpath>include/transliteration/x1e.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>8919930eeab8b577472fb4b7f4f5af64</hash>
   </element>
   <element>
-    <fullpath>include/makers/x1f.php</fullpath>
+    <fullpath>include/transliteration/x1f.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>d84966321c2eca2601a0a54eb905efde</hash>
   </element>
   <element>
-    <fullpath>include/makers/x02.php</fullpath>
+    <fullpath>include/transliteration/x02.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>627bee208ecce0be3932301b8d30be83</hash>
   </element>
   <element>
-    <fullpath>include/makers/x2e.php</fullpath>
+    <fullpath>include/transliteration/x2e.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>ed27e536cb676d2e2177b5c6223f5037</hash>
   </element>
   <element>
-    <fullpath>include/makers/x2f.php</fullpath>
+    <fullpath>include/transliteration/x2f.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>5a7d372fdbc46ae1e4eb0e5c56ac54fc</hash>
   </element>
   <element>
-    <fullpath>include/makers/x03.php</fullpath>
+    <fullpath>include/transliteration/x03.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>e97fd650e725f50af6d0f64104a41a92</hash>
   </element>
   <element>
-    <fullpath>include/makers/x04.php</fullpath>
+    <fullpath>include/transliteration/x04.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>98fe4c9c67b986e8a54bd42e1fd3bd32</hash>
   </element>
   <element>
-    <fullpath>include/makers/x4d.php</fullpath>
+    <fullpath>include/transliteration/x4d.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>de5014d1cb8b349d53dcb31f7aaf80b8</hash>
   </element>
   <element>
-    <fullpath>include/makers/x4e.php</fullpath>
+    <fullpath>include/transliteration/x4e.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>5084ec8ec762a8c6ecfc5e22cf70c50f</hash>
   </element>
   <element>
-    <fullpath>include/makers/x4f.php</fullpath>
+    <fullpath>include/transliteration/x4f.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>56f69360d22c7509b4bdc492e6907c02</hash>
   </element>
   <element>
-    <fullpath>include/makers/x05.php</fullpath>
+    <fullpath>include/transliteration/x05.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>5e0c85d6ce2aa5e0e0ce9fa19fb6ff3c</hash>
   </element>
   <element>
-    <fullpath>include/makers/x5a.php</fullpath>
+    <fullpath>include/transliteration/x5a.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>7c1ca4663e23d1879a2a2d2dd3f43f16</hash>
   </element>
   <element>
-    <fullpath>include/makers/x5b.php</fullpath>
+    <fullpath>include/transliteration/x5b.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>caab7962c4b6f2b472bdaaa7b6583600</hash>
   </element>
   <element>
-    <fullpath>include/makers/x5c.php</fullpath>
+    <fullpath>include/transliteration/x5c.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>23e9215a69ea2162733cfe2dc7a6412e</hash>
   </element>
   <element>
-    <fullpath>include/makers/x5d.php</fullpath>
+    <fullpath>include/transliteration/x5d.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>e4e30f45ace00f3d571e2b85a4214dec</hash>
   </element>
   <element>
-    <fullpath>include/makers/x5e.php</fullpath>
+    <fullpath>include/transliteration/x5e.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>b6fcdb24f398b5c68ae64da0d97b3235</hash>
   </element>
   <element>
-    <fullpath>include/makers/x5f.php</fullpath>
+    <fullpath>include/transliteration/x5f.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>d9d24aab4e29d5abaea84ce62f27a7e2</hash>
   </element>
   <element>
-    <fullpath>include/makers/x06.php</fullpath>
+    <fullpath>include/transliteration/x06.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>76fda01ba0ab4e8d588aaef09bad1f4b</hash>
   </element>
   <element>
-    <fullpath>include/makers/x6a.php</fullpath>
+    <fullpath>include/transliteration/x6a.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>ffd2b860061aad3649093b9ac802ac0e</hash>
   </element>
   <element>
-    <fullpath>include/makers/x6b.php</fullpath>
+    <fullpath>include/transliteration/x6b.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>978771e60d9cc815c8d297517c14865a</hash>
   </element>
   <element>
-    <fullpath>include/makers/x6c.php</fullpath>
+    <fullpath>include/transliteration/x6c.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>5e6a1ae44c19b371ac8b7abab2032229</hash>
   </element>
   <element>
-    <fullpath>include/makers/x6d.php</fullpath>
+    <fullpath>include/transliteration/x6d.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>bd0baa4fc62494fa3acb29d42724dcb8</hash>
   </element>
   <element>
-    <fullpath>include/makers/x6e.php</fullpath>
+    <fullpath>include/transliteration/x6e.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>ca564d33898109e9e30fb6c59c1395e7</hash>
   </element>
   <element>
-    <fullpath>include/makers/x6f.php</fullpath>
+    <fullpath>include/transliteration/x6f.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>c442181188958744ff7453acc7ff294d</hash>
   </element>
   <element>
-    <fullpath>include/makers/x07.php</fullpath>
+    <fullpath>include/transliteration/x07.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>34ca0eec06f7b7ab8ab57f25d0622450</hash>
   </element>
   <element>
-    <fullpath>include/makers/x7a.php</fullpath>
+    <fullpath>include/transliteration/x7a.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>b6220b1e3b3d3d5d986a32efdc654942</hash>
   </element>
   <element>
-    <fullpath>include/makers/x7b.php</fullpath>
+    <fullpath>include/transliteration/x7b.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>4492ba7f3dc07b7171924f991823f926</hash>
   </element>
   <element>
-    <fullpath>include/makers/x7c.php</fullpath>
+    <fullpath>include/transliteration/x7c.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>ad55eebd7c4f31fb29caed4bb4f2afb8</hash>
   </element>
   <element>
-    <fullpath>include/makers/x7d.php</fullpath>
+    <fullpath>include/transliteration/x7d.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>469bbbf5abbd15373acdfbbd1fa8cb2e</hash>
   </element>
   <element>
-    <fullpath>include/makers/x7e.php</fullpath>
+    <fullpath>include/transliteration/x7e.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>38622dca5a75ce734e2ece5b62fbb7d1</hash>
   </element>
   <element>
-    <fullpath>include/makers/x7f.php</fullpath>
+    <fullpath>include/transliteration/x7f.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>de62871c1ea31853bc5a4b906e1b02e3</hash>
   </element>
   <element>
-    <fullpath>include/makers/x8a.php</fullpath>
+    <fullpath>include/transliteration/x8a.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>e02e89f4b806f0f569fa0078f4e6d547</hash>
   </element>
   <element>
-    <fullpath>include/makers/x8b.php</fullpath>
+    <fullpath>include/transliteration/x8b.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>a3a3c78811a10c719c55ccdcd52089cc</hash>
   </element>
   <element>
-    <fullpath>include/makers/x8c.php</fullpath>
+    <fullpath>include/transliteration/x8c.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>50726a9b5b9bc4b81150de0ffec99d4e</hash>
   </element>
   <element>
-    <fullpath>include/makers/x8e.php</fullpath>
+    <fullpath>include/transliteration/x8e.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>62815ecad08b485246cd049446fef81d</hash>
   </element>
   <element>
-    <fullpath>include/makers/x8f.php</fullpath>
+    <fullpath>include/transliteration/x8f.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>7f921e4f9fb1e2a8434564ad4f591139</hash>
   </element>
   <element>
-    <fullpath>include/makers/x09.php</fullpath>
+    <fullpath>include/transliteration/x09.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>ebce379b6b5eefe2e3c4079ce7799699</hash>
   </element>
   <element>
-    <fullpath>include/makers/x9a.php</fullpath>
+    <fullpath>include/transliteration/x9a.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>540d99cd7440c241c68cf907ad5f3af5</hash>
   </element>
   <element>
-    <fullpath>include/makers/x9b.php</fullpath>
+    <fullpath>include/transliteration/x9b.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>86f325f523b3d465315a7869b7b1c8e6</hash>
   </element>
   <element>
-    <fullpath>include/makers/x9c.php</fullpath>
+    <fullpath>include/transliteration/x9c.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>46bbc61e6a6d221e8d19039172b90f68</hash>
   </element>
   <element>
-    <fullpath>include/makers/x9d.php</fullpath>
+    <fullpath>include/transliteration/x9d.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>7d9b491b5d6301bb462f566c7d49ff3c</hash>
   </element>
   <element>
-    <fullpath>include/makers/x9e.php</fullpath>
+    <fullpath>include/transliteration/x9e.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>84647f65301a0df1b09eb29044ad1019</hash>
   </element>
   <element>
-    <fullpath>include/makers/x9f.php</fullpath>
+    <fullpath>include/transliteration/x9f.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>a89388ea0fd8c28628c6942ab0a85333</hash>
   </element>
   <element>
-    <fullpath>include/makers/x10.php</fullpath>
+    <fullpath>include/transliteration/x10.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6633</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>d521e387ea543cf394bf8f27d4e70100</hash>
   </element>
   <element>
-    <fullpath>include/makers/x11.php</fullpath>
+    <fullpath>include/transliteration/x11.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6633</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>719bfe843c0be77a59bbe1619b35f71c</hash>
   </element>
   <element>
-    <fullpath>include/makers/x12.php</fullpath>
+    <fullpath>include/transliteration/x12.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6633</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>ebe0bef55c9e32530b7e776039d0ad1e</hash>
   </element>
   <element>
-    <fullpath>include/makers/x13.php</fullpath>
+    <fullpath>include/transliteration/x13.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6633</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>d9daa6a9bdc68aa8ad9b6f8394f532b5</hash>
   </element>
   <element>
-    <fullpath>include/makers/x14.php</fullpath>
+    <fullpath>include/transliteration/x14.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6633</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>e0793e99dcc0845fcab248361fed2f61</hash>
   </element>
   <element>
-    <fullpath>include/makers/x15.php</fullpath>
+    <fullpath>include/transliteration/x15.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6633</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>3cb0280aec63d62ae4bcedaad41416ea</hash>
   </element>
   <element>
-    <fullpath>include/makers/x16.php</fullpath>
+    <fullpath>include/transliteration/x16.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6633</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>abb13062a9aca90038d5fe67cf136f5b</hash>
   </element>
   <element>
-    <fullpath>include/makers/x17.php</fullpath>
+    <fullpath>include/transliteration/x17.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6636</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>ed76d1fe7efbc96d642ad21e1c74878a</hash>
   </element>
   <element>
-    <fullpath>include/makers/x18.php</fullpath>
+    <fullpath>include/transliteration/x18.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6636</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>960eb246db49acf1e5ecb77946bd72be</hash>
   </element>
   <element>
-    <fullpath>include/makers/x20.php</fullpath>
+    <fullpath>include/transliteration/x20.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6636</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>ee251fa77087545dd6c821e4907dc05e</hash>
   </element>
   <element>
-    <fullpath>include/makers/x21.php</fullpath>
+    <fullpath>include/transliteration/x21.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6636</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>67c83bb83fc767b9e6b4157532300241</hash>
   </element>
   <element>
-    <fullpath>include/makers/x22.php</fullpath>
+    <fullpath>include/transliteration/x22.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6636</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>3d7df7a6a222f1be88cab4df7829e32b</hash>
   </element>
   <element>
-    <fullpath>include/makers/x23.php</fullpath>
+    <fullpath>include/transliteration/x23.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6636</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>335f516a5480d239e33706b6cdca085b</hash>
   </element>
   <element>
-    <fullpath>include/makers/x24.php</fullpath>
+    <fullpath>include/transliteration/x24.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6636</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>407c197b2041f3867bd886c9ed26e75f</hash>
   </element>
   <element>
-    <fullpath>include/makers/x25.php</fullpath>
+    <fullpath>include/transliteration/x25.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>2f2f70b32b0a86a054b6e7c4f4e25237</hash>
   </element>
   <element>
-    <fullpath>include/makers/x26.php</fullpath>
+    <fullpath>include/transliteration/x26.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>e9a8bc5fc37763046c7b39c4cccb9c7b</hash>
   </element>
   <element>
-    <fullpath>include/makers/x27.php</fullpath>
+    <fullpath>include/transliteration/x27.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>d8ec549f6c60d7ef84904b10b45a24fa</hash>
   </element>
   <element>
-    <fullpath>include/makers/x28.php</fullpath>
+    <fullpath>include/transliteration/x28.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>f35abfdb02cb9f8a10c539e8055ff963</hash>
   </element>
   <element>
-    <fullpath>include/makers/x30.php</fullpath>
+    <fullpath>include/transliteration/x30.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>838d445936311bda8647e0f04a1c768a</hash>
   </element>
   <element>
-    <fullpath>include/makers/x31.php</fullpath>
+    <fullpath>include/transliteration/x31.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>22507b5876d04c27fa551864fbe00c3f</hash>
   </element>
   <element>
-    <fullpath>include/makers/x32.php</fullpath>
+    <fullpath>include/transliteration/x32.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>273454e590c4a74c047d23b0d02da45f</hash>
   </element>
   <element>
-    <fullpath>include/makers/x33.php</fullpath>
+    <fullpath>include/transliteration/x33.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>06d1dc0bb5a42f7373e58b374647317e</hash>
   </element>
   <element>
-    <fullpath>include/makers/x50.php</fullpath>
+    <fullpath>include/transliteration/x50.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>062dc2f61d4960a602db07798969a83b</hash>
   </element>
   <element>
-    <fullpath>include/makers/x51.php</fullpath>
+    <fullpath>include/transliteration/x51.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>6cddedcb5da8f645c2649411f6ddede4</hash>
   </element>
   <element>
-    <fullpath>include/makers/x52.php</fullpath>
+    <fullpath>include/transliteration/x52.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6638</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>704e60b57b5f84b3601dd89d78deb30a</hash>
   </element>
   <element>
-    <fullpath>include/makers/x53.php</fullpath>
+    <fullpath>include/transliteration/x53.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>15c349a4335cd4a70b5a0032ecaaa0c9</hash>
   </element>
   <element>
-    <fullpath>include/makers/x54.php</fullpath>
+    <fullpath>include/transliteration/x54.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>4b08e5eb34295b04b937a3040fd7e72c</hash>
   </element>
   <element>
-    <fullpath>include/makers/x55.php</fullpath>
+    <fullpath>include/transliteration/x55.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>10ef12db1a15f714bfee93e69d42eca9</hash>
   </element>
   <element>
-    <fullpath>include/makers/x56.php</fullpath>
+    <fullpath>include/transliteration/x56.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>956fd8c900a6516d50923f498a015ced</hash>
   </element>
   <element>
-    <fullpath>include/makers/x57.php</fullpath>
+    <fullpath>include/transliteration/x57.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>3ac192960dbbf17d138d85526bead1eb</hash>
   </element>
   <element>
-    <fullpath>include/makers/x58.php</fullpath>
+    <fullpath>include/transliteration/x58.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>fcaefe4b613d1a4ca0089d42846082fe</hash>
   </element>
   <element>
-    <fullpath>include/makers/x59.php</fullpath>
+    <fullpath>include/transliteration/x59.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>f080728309a37fafd001bcf804a68ce2</hash>
   </element>
   <element>
-    <fullpath>include/makers/x60.php</fullpath>
+    <fullpath>include/transliteration/x60.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>18a8d74539ba98175e34a2fb0172ea38</hash>
   </element>
   <element>
-    <fullpath>include/makers/x61.php</fullpath>
+    <fullpath>include/transliteration/x61.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>7ad508db7ec1115f451dbb259a8204e6</hash>
   </element>
   <element>
-    <fullpath>include/makers/x62.php</fullpath>
+    <fullpath>include/transliteration/x62.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>ef7ce7d72b4ca7034e67409b80014c5b</hash>
   </element>
   <element>
-    <fullpath>include/makers/x63.php</fullpath>
+    <fullpath>include/transliteration/x63.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>5a4235ceee2fdb448a74622f9500624a</hash>
   </element>
   <element>
-    <fullpath>include/makers/x64.php</fullpath>
+    <fullpath>include/transliteration/x64.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>9657c4f9ba79b3aa3907cdfc85bf0e19</hash>
   </element>
   <element>
-    <fullpath>include/makers/x65.php</fullpath>
+    <fullpath>include/transliteration/x65.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>3a09d23ad19f69a6622c29f68071f793</hash>
   </element>
   <element>
-    <fullpath>include/makers/x66.php</fullpath>
+    <fullpath>include/transliteration/x66.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>c7fd8c222605c7d6395f34383ffb6756</hash>
   </element>
   <element>
-    <fullpath>include/makers/x67.php</fullpath>
+    <fullpath>include/transliteration/x67.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>4c630975d3e0bbfb61f488bea60b2641</hash>
   </element>
   <element>
-    <fullpath>include/makers/x68.php</fullpath>
+    <fullpath>include/transliteration/x68.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>1971be36cbdb7e0065063a7f4a49778b</hash>
   </element>
   <element>
-    <fullpath>include/makers/x69.php</fullpath>
+    <fullpath>include/transliteration/x69.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>da1f817a5fc9caacde7ed112c2ad76b7</hash>
   </element>
   <element>
-    <fullpath>include/makers/x70.php</fullpath>
+    <fullpath>include/transliteration/x70.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>76f9d17537b7b0e8ee0510e69aac3072</hash>
   </element>
   <element>
-    <fullpath>include/makers/x71.php</fullpath>
+    <fullpath>include/transliteration/x71.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>76ef9a878a32e6aa0cae4586c7033995</hash>
   </element>
   <element>
-    <fullpath>include/makers/x72.php</fullpath>
+    <fullpath>include/transliteration/x72.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>b368507494b29e3f8addf0c7d455e173</hash>
   </element>
   <element>
-    <fullpath>include/makers/x73.php</fullpath>
+    <fullpath>include/transliteration/x73.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>b14e12fd647836e06191b8eecac6ce85</hash>
   </element>
   <element>
-    <fullpath>include/makers/x74.php</fullpath>
+    <fullpath>include/transliteration/x74.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>8b6f2a3bcea37e9d2c7c65bbbd70c734</hash>
   </element>
   <element>
-    <fullpath>include/makers/x75.php</fullpath>
+    <fullpath>include/transliteration/x75.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>68ba132499068affb2885d3b9281128e</hash>
   </element>
   <element>
-    <fullpath>include/makers/x76.php</fullpath>
+    <fullpath>include/transliteration/x76.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>fe49e25dd6e767833f63dbe50c7a1d4f</hash>
   </element>
   <element>
-    <fullpath>include/makers/x77.php</fullpath>
+    <fullpath>include/transliteration/x77.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>8d840a6d697b1b4e8314837868095a4c</hash>
   </element>
   <element>
-    <fullpath>include/makers/x78.php</fullpath>
+    <fullpath>include/transliteration/x78.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>f7bddd372a12dc355a1709b93fd0289c</hash>
   </element>
   <element>
-    <fullpath>include/makers/x79.php</fullpath>
+    <fullpath>include/transliteration/x79.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>31487ca459a13a4f9d8b89338d9d2443</hash>
   </element>
   <element>
-    <fullpath>include/makers/x80.php</fullpath>
+    <fullpath>include/transliteration/x80.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>69a41ab82c4b4d88fac6d745634e6dfa</hash>
   </element>
   <element>
-    <fullpath>include/makers/x81.php</fullpath>
+    <fullpath>include/transliteration/x81.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>cde340a13ecb6d59221b32461cab1df8</hash>
   </element>
   <element>
-    <fullpath>include/makers/x82.php</fullpath>
+    <fullpath>include/transliteration/x82.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>14875ab5f802e0e659dfc5900acd4553</hash>
   </element>
   <element>
-    <fullpath>include/makers/x83.php</fullpath>
+    <fullpath>include/transliteration/x83.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>69c1347d29722ede987d56aac8c401c5</hash>
   </element>
   <element>
-    <fullpath>include/makers/x84.php</fullpath>
+    <fullpath>include/transliteration/x84.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>5ab1f7c7d455fd566dc6a848762a2fa3</hash>
   </element>
   <element>
-    <fullpath>include/makers/x85.php</fullpath>
+    <fullpath>include/transliteration/x85.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>62605e7636d0be65dafa339d8b738db4</hash>
   </element>
   <element>
-    <fullpath>include/makers/x86.php</fullpath>
+    <fullpath>include/transliteration/x86.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>3debc056bc3e80bfa36481109f7629af</hash>
   </element>
   <element>
-    <fullpath>include/makers/x87.php</fullpath>
+    <fullpath>include/transliteration/x87.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>9640504eb964d139ab7759a7f1553ca0</hash>
   </element>
   <element>
-    <fullpath>include/makers/x88.php</fullpath>
+    <fullpath>include/transliteration/x88.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>36f34b189cbce97fb2402cfd81e2e4fd</hash>
   </element>
   <element>
-    <fullpath>include/makers/x89.php</fullpath>
+    <fullpath>include/transliteration/x89.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>deaf2379df8d049c62ced4a509167607</hash>
   </element>
   <element>
-    <fullpath>include/makers/x90.php</fullpath>
+    <fullpath>include/transliteration/x90.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>9f01db1e8bb9c288e5188a7d822bb821</hash>
   </element>
   <element>
-    <fullpath>include/makers/x91.php</fullpath>
+    <fullpath>include/transliteration/x91.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>438b7f989fb38cd7e278650f215f12a8</hash>
   </element>
   <element>
-    <fullpath>include/makers/x92.php</fullpath>
+    <fullpath>include/transliteration/x92.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>00163f80f9728e84b8f626904c9e2962</hash>
   </element>
   <element>
-    <fullpath>include/makers/x93.php</fullpath>
+    <fullpath>include/transliteration/x93.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>7aa5e7335400380980ad587a4813fb1e</hash>
   </element>
   <element>
-    <fullpath>include/makers/x94.php</fullpath>
+    <fullpath>include/transliteration/x94.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>00086c3f9377d2983d2beb6022df8aef</hash>
   </element>
   <element>
-    <fullpath>include/makers/x95.php</fullpath>
+    <fullpath>include/transliteration/x95.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>196ad0318b24b4ca7b0f106c43a17d6c</hash>
   </element>
   <element>
-    <fullpath>include/makers/x96.php</fullpath>
+    <fullpath>include/transliteration/x96.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>32b92219e360b779fd08daaee7a7ff19</hash>
   </element>
   <element>
-    <fullpath>include/makers/x97.php</fullpath>
+    <fullpath>include/transliteration/x97.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>b47d37785229bb0f7335b8666db89d34</hash>
   </element>
   <element>
-    <fullpath>include/makers/x98.php</fullpath>
+    <fullpath>include/transliteration/x98.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>74bab48a1226a480648c4b13b6ed84c5</hash>
   </element>
   <element>
-    <fullpath>include/makers/x99.php</fullpath>
+    <fullpath>include/transliteration/x99.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>8ce91928d164ba2b69ec937703b43e58</hash>
   </element>
   <element>
-    <fullpath>include/makers/xa0.php</fullpath>
+    <fullpath>include/transliteration/xa0.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>d01d87596f31a5ab20433790321dce8c</hash>
   </element>
   <element>
-    <fullpath>include/makers/xa1.php</fullpath>
+    <fullpath>include/transliteration/xa1.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>2c83bc1a36e90971248fb675019a0987</hash>
   </element>
   <element>
-    <fullpath>include/makers/xa2.php</fullpath>
+    <fullpath>include/transliteration/xa2.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>ce3c547d119101e6a659fe8d7faa7f99</hash>
   </element>
   <element>
-    <fullpath>include/makers/xa3.php</fullpath>
+    <fullpath>include/transliteration/xa3.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>2dae4e42029d3bb8d06cd519eb6f1dec</hash>
   </element>
   <element>
-    <fullpath>include/makers/xa4.php</fullpath>
+    <fullpath>include/transliteration/xa4.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>2fbc71e57cfa97dbca11346fa8e0ca06</hash>
   </element>
   <element>
-    <fullpath>include/makers/xac.php</fullpath>
+    <fullpath>include/transliteration/xac.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>bd560e13c3113718dd0096509c95d8e9</hash>
   </element>
   <element>
-    <fullpath>include/makers/xad.php</fullpath>
+    <fullpath>include/transliteration/xad.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>2c348ac1cd5a9ec60a3b8898d959a859</hash>
   </element>
   <element>
-    <fullpath>include/makers/xae.php</fullpath>
+    <fullpath>include/transliteration/xae.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>0863dba09e78f3e1a3c4291e426afe6b</hash>
   </element>
   <element>
-    <fullpath>include/makers/xaf.php</fullpath>
+    <fullpath>include/transliteration/xaf.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>c09b6a3aab5c55859f61ade72d0371b8</hash>
   </element>
   <element>
-    <fullpath>include/makers/xb0.php</fullpath>
+    <fullpath>include/transliteration/xb0.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>4f381273ffe79db8c31862267a2c01a0</hash>
   </element>
   <element>
-    <fullpath>include/makers/xb1.php</fullpath>
+    <fullpath>include/transliteration/xb1.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>a7c8c486e2cb0cc17b05bcc6da73a0c7</hash>
   </element>
   <element>
-    <fullpath>include/makers/xb2.php</fullpath>
+    <fullpath>include/transliteration/xb2.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>e73949f96a5d1f0d87877f91ec8d67e2</hash>
   </element>
   <element>
-    <fullpath>include/makers/xb3.php</fullpath>
+    <fullpath>include/transliteration/xb3.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>ac41eae57fe037a4ced6fdc507ec5b58</hash>
   </element>
   <element>
-    <fullpath>include/makers/xb4.php</fullpath>
+    <fullpath>include/transliteration/xb4.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>30220fd272cb1e7b996b93070717c4f5</hash>
   </element>
   <element>
-    <fullpath>include/makers/xb5.php</fullpath>
+    <fullpath>include/transliteration/xb5.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>f14c2eb423a1353364369c2bdcd8dbaa</hash>
   </element>
   <element>
-    <fullpath>include/makers/xb6.php</fullpath>
+    <fullpath>include/transliteration/xb6.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>e982626350bc34369fad0b3ff32e1023</hash>
   </element>
   <element>
-    <fullpath>include/makers/xb7.php</fullpath>
+    <fullpath>include/transliteration/xb7.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>f7e49082285ad68ecc0f17e90e4e3d18</hash>
   </element>
   <element>
-    <fullpath>include/makers/xb8.php</fullpath>
+    <fullpath>include/transliteration/xb8.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>c34370fbd0a75e09e56b3d3ea67287f9</hash>
   </element>
   <element>
-    <fullpath>include/makers/xb9.php</fullpath>
+    <fullpath>include/transliteration/xb9.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>58e0f4cfc23f5deabf3b156589a9bda0</hash>
   </element>
   <element>
-    <fullpath>include/makers/xba.php</fullpath>
+    <fullpath>include/transliteration/xba.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>3f33c1b7cfedf3b62ec1c7ec3df54590</hash>
   </element>
   <element>
-    <fullpath>include/makers/xbb.php</fullpath>
+    <fullpath>include/transliteration/xbb.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>981d59fac3bc7aaa30fbfc7a9de13004</hash>
   </element>
   <element>
-    <fullpath>include/makers/xbc.php</fullpath>
+    <fullpath>include/transliteration/xbc.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>41f7e49290dae1c1526dd27ca4d3cd59</hash>
   </element>
   <element>
-    <fullpath>include/makers/xbd.php</fullpath>
+    <fullpath>include/transliteration/xbd.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>dfda793aef700a426ff5fc55e8201fea</hash>
   </element>
   <element>
-    <fullpath>include/makers/xbe.php</fullpath>
+    <fullpath>include/transliteration/xbe.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>9d6dc653f9f17e39aa04e0ef5ed7690c</hash>
   </element>
   <element>
-    <fullpath>include/makers/xbf.php</fullpath>
+    <fullpath>include/transliteration/xbf.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>e8883612cd0315b2f38666cd79e35d32</hash>
   </element>
   <element>
-    <fullpath>include/makers/xc0.php</fullpath>
+    <fullpath>include/transliteration/xc0.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>184a36725131a7fb826b11b29145da27</hash>
   </element>
   <element>
-    <fullpath>include/makers/xc1.php</fullpath>
+    <fullpath>include/transliteration/xc1.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>ba7098dfe9d9c1eb11ea45bb30fc7ec4</hash>
   </element>
   <element>
-    <fullpath>include/makers/xc2.php</fullpath>
+    <fullpath>include/transliteration/xc2.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>4d201306895ad2e96de2f8eeeb3e4cbe</hash>
   </element>
   <element>
-    <fullpath>include/makers/xc3.php</fullpath>
+    <fullpath>include/transliteration/xc3.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>b3c399c69730da7ed622bcdd9353c3c6</hash>
   </element>
   <element>
-    <fullpath>include/makers/xc4.php</fullpath>
+    <fullpath>include/transliteration/xc4.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>998b662f868f72e93bc5bc86455bd221</hash>
   </element>
   <element>
-    <fullpath>include/makers/xc5.php</fullpath>
+    <fullpath>include/transliteration/xc5.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>5da362d8258e9a464380f99c1275d622</hash>
   </element>
   <element>
-    <fullpath>include/makers/xc6.php</fullpath>
+    <fullpath>include/transliteration/xc6.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>ff89618c4e2a8d2d27ce661a671c2722</hash>
   </element>
   <element>
-    <fullpath>include/makers/xc7.php</fullpath>
+    <fullpath>include/transliteration/xc7.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>30ceb5db559a6234052d4b404908f057</hash>
   </element>
   <element>
-    <fullpath>include/makers/xc8.php</fullpath>
+    <fullpath>include/transliteration/xc8.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>d5f2108bcc5873efca2aa1f38f6110fc</hash>
   </element>
   <element>
-    <fullpath>include/makers/xc9.php</fullpath>
+    <fullpath>include/transliteration/xc9.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>52c4224e26698b9409da97cfc58b872e</hash>
   </element>
   <element>
-    <fullpath>include/makers/xca.php</fullpath>
+    <fullpath>include/transliteration/xca.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>7fc17608dbcce7ec9c732353470cc96c</hash>
   </element>
   <element>
-    <fullpath>include/makers/xcb.php</fullpath>
+    <fullpath>include/transliteration/xcb.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>454d62d0fd27c8193194429849c0a40c</hash>
   </element>
   <element>
-    <fullpath>include/makers/xcc.php</fullpath>
+    <fullpath>include/transliteration/xcc.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>448f726e23a8f34ba337e8a2b8fcd02c</hash>
   </element>
   <element>
-    <fullpath>include/makers/xcd.php</fullpath>
+    <fullpath>include/transliteration/xcd.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>facf129c288ff78f5d633a26cfc29bff</hash>
   </element>
   <element>
-    <fullpath>include/makers/xce.php</fullpath>
+    <fullpath>include/transliteration/xce.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>4e8c224a4eb417f919d30b56fdefbf81</hash>
   </element>
   <element>
-    <fullpath>include/makers/xcf.php</fullpath>
+    <fullpath>include/transliteration/xcf.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>fae5db9313a76e90316891bba111d82b</hash>
   </element>
   <element>
-    <fullpath>include/makers/xd0.php</fullpath>
+    <fullpath>include/transliteration/xd0.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>18619c3f17c0616478b4304e75444558</hash>
   </element>
   <element>
-    <fullpath>include/makers/xd1.php</fullpath>
+    <fullpath>include/transliteration/xd1.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>44c8d1de282b5ed7aad34a3924dc222e</hash>
   </element>
   <element>
-    <fullpath>include/makers/xd2.php</fullpath>
+    <fullpath>include/transliteration/xd2.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>4aa8885454c378a4a43fae3349295788</hash>
   </element>
   <element>
-    <fullpath>include/makers/xd3.php</fullpath>
+    <fullpath>include/transliteration/xd3.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>6a574b634521734d925583709096cfdb</hash>
   </element>
   <element>
-    <fullpath>include/makers/xd4.php</fullpath>
+    <fullpath>include/transliteration/xd4.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>0b0dd3e65a98d77827e357d1ac114c19</hash>
   </element>
   <element>
-    <fullpath>include/makers/xd5.php</fullpath>
+    <fullpath>include/transliteration/xd5.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>c57fe1712c3254e5a1b1d8a995a47a2d</hash>
   </element>
   <element>
-    <fullpath>include/makers/xd6.php</fullpath>
+    <fullpath>include/transliteration/xd6.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>c6828fa59144bd41e37da240615ec636</hash>
   </element>
   <element>
-    <fullpath>include/makers/xd7.php</fullpath>
+    <fullpath>include/transliteration/xd7.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>30c522a5e055b420b0ba4d7bcd1e24b6</hash>
   </element>
   <element>
-    <fullpath>include/makers/xf9.php</fullpath>
+    <fullpath>include/transliteration/xf9.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>2e768af462d7b3f213e5a9889e1bc0a5</hash>
   </element>
   <element>
-    <fullpath>include/makers/xfa.php</fullpath>
+    <fullpath>include/transliteration/xfa.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>4fd71570720c33b7affc8e3c09c38be6</hash>
   </element>
   <element>
-    <fullpath>include/makers/xfb.php</fullpath>
+    <fullpath>include/transliteration/xfb.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>2996f7838b4f2e28cec8e6dfd72171f6</hash>
   </element>
   <element>
-    <fullpath>include/makers/xfc.php</fullpath>
+    <fullpath>include/transliteration/xfc.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>fb83785df60fde94a2a0fd4308bf5d1d</hash>
   </element>
   <element>
-    <fullpath>include/makers/xfd.php</fullpath>
+    <fullpath>include/transliteration/xfd.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>c4d6941dd05ec31f874536fa388dff08</hash>
   </element>
   <element>
-    <fullpath>include/makers/xfe.php</fullpath>
+    <fullpath>include/transliteration/xfe.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>8e9a0404ee863b4629b451225a78375e</hash>
   </element>
   <element>
-    <fullpath>include/makers/xff.php</fullpath>
+    <fullpath>include/transliteration/xff.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>82fd0a2d2755cc35443d65ccf56793c7</hash>
   </element>
   <element>
     <fullpath>lang</fullpath>
@@ -10227,10 +10229,10 @@
   <element>
     <fullpath>js/scripts.js</fullpath>
     <version>1.5.2</version>
-    <revision>6612</revision>
+    <revision>6629</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3e9f6dfd2788fb3010b7f29027029ff5</hash>
+    <hash>246232a9d1f41f2c777e300e86fe061b</hash>
   </element>
   <element>
     <fullpath>js/searchnew.js</fullpath>
@@ -10356,19 +10358,19 @@
   </element>
   <element>
     <fullpath>plugins/link_target/codebase.php</fullpath>
-    <version>1.5.1</version>
-    <revision>6060</revision>
+    <version>1.5.2</version>
+    <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>4374dfd39e2e92059472bc58bede68b0</hash>
+    <hash>38b46ba2d16192745f9278425e776c62</hash>
   </element>
   <element>
     <fullpath>plugins/link_target/configuration.php</fullpath>
-    <version>1.5.1</version>
-    <revision>6060</revision>
+    <version>1.5.2</version>
+    <revision>6519</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>0a2f2d1895073ca7e11697355b24c482</hash>
+    <hash>3b668ca9a1b7b1c25f9ad98952c84135</hash>
   </element>
   <element>
     <fullpath>plugins/onlinestats/</fullpath>
@@ -10377,35 +10379,35 @@
   </element>
   <element>
     <fullpath>plugins/onlinestats/codebase.php</fullpath>
-    <version>1.5.1</version>
-    <revision>5982</revision>
+    <version>1.5.2</version>
+    <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>1fac915e670ff0cf0621a2bde09ec558</hash>
+    <hash>c603b0758470fa16ad4051d50bfa1370</hash>
   </element>
   <element>
     <fullpath>plugins/onlinestats/configuration.php</fullpath>
-    <version>1.5.1</version>
-    <revision>5785</revision>
+    <version>1.5.2</version>
+    <revision>6519</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>0d260753ce4a298cd0c50266aa8ff959</hash>
+    <hash>ba656a90dbaa189f642f99fb258e7d46</hash>
   </element>
   <element>
     <fullpath>plugins/onlinestats/readme.txt</fullpath>
-    <version>1.5.1</version>
-    <revision>5785</revision>
+    <version>1.5.2</version>
+    <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>fc090487b2540e80cbf00ac336693cd3</hash>
+    <hash>390b0728b90c1b568b75c85b04ddbfd9</hash>
   </element>
   <element>
     <fullpath>plugins/onlinestats/schema.sql</fullpath>
-    <version>1.5.1</version>
-    <revision>5589</revision>
+    <version>1.5.2</version>
+    <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>7b4d8be46994d23e87195663c99d45d1</hash>
+    <hash>8b5a0cf7f2a47944c5d49590d9f845c4</hash>
   </element>
   <element>
     <fullpath>plugins/opensearch/</fullpath>
@@ -10414,19 +10416,19 @@
   </element>
   <element>
     <fullpath>plugins/opensearch/codebase.php</fullpath>
-    <version>1.5.1</version>
-    <revision>5589</revision>
+    <version>1.5.2</version>
+    <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>34ac2e720581b71cf2f7cca5d369fcf4</hash>
+    <hash>64484072276b64baec29ecfaf7a4fa9e</hash>
   </element>
   <element>
     <fullpath>plugins/opensearch/configuration.php</fullpath>
-    <version>1.5.1</version>
-    <revision>5589</revision>
+    <version>1.5.2</version>
+    <revision>6519</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>5c1bd8099b2e97e065b7c494c767c86a</hash>
+    <hash>982110a7334ab3f2a0a723dea8cc40b0</hash>
   </element>
   <element>
     <fullpath>plugins/opensearch/osd.xml</fullpath>
@@ -10461,19 +10463,19 @@
   </element>
   <element>
     <fullpath>plugins/usergal_alphatabs/codebase.php</fullpath>
-    <version>1.5.1</version>
-    <revision>5589</revision>
+    <version>1.5.2</version>
+    <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6f84e94663fc0b882cb268aa2deb0629</hash>
+    <hash>73ed367355bf95b3dac41bab9336149d</hash>
   </element>
   <element>
     <fullpath>plugins/usergal_alphatabs/configuration.php</fullpath>
-    <version>1.5.1</version>
-    <revision>5589</revision>
+    <version>1.5.2</version>
+    <revision>6519</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>c52c2934e9b59e67b2685a2157d9e77f</hash>
+    <hash>3f095ad119f46fb84c6955c0a2b9461b</hash>
   </element>
   <element>
     <fullpath>plugins/visiblehookpoints/</fullpath>
@@ -10482,27 +10484,27 @@
   </element>
   <element>
     <fullpath>plugins/visiblehookpoints/codebase.php</fullpath>
-    <version>1.5.1</version>
-    <revision>6060</revision>
+    <version>1.5.2</version>
+    <revision>6458</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>18d83a71edf9e12fe890fca136aa8344</hash>
+    <hash>cd3a48bdf914fba2bb4cbbc5c813b90f</hash>
   </element>
   <element>
     <fullpath>plugins/visiblehookpoints/configuration.php</fullpath>
-    <version>1.5.1</version>
-    <revision>6334</revision>
+    <version>1.5.2</version>
+    <revision>6519</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>46af293c20546d3dd58a78cdc1c9e390</hash>
+    <hash>a113d54b4ea33134d180c7eab2f10ae1</hash>
   </element>
   <element>
     <fullpath>plugins/visiblehookpoints/index.php</fullpath>
-    <version>1.5.1</version>
-    <revision>6060</revision>
+    <version>1.5.2</version>
+    <revision>6458</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>e6551d4e48860b67fb1d75b33a77bbcf</hash>
+    <hash>8974fc790caa7e8e2d89f2d2865525d4</hash>
   </element>
   <element>
     <fullpath>plugins/visiblehookpoints/css/</fullpath>
@@ -10511,8 +10513,11 @@
   </element>
   <element>
     <fullpath>plugins/visiblehookpoints/css/style.css</fullpath>
+    <version>1.5.2</version>
+    <revision>6458</revision>
     <status>optional</status>
     <permission>read</permission>
+    <hash>2832e0a9aa7e0f38a7738fec0a871e26</hash>
   </element>
   <element>
     <fullpath>plugins/visiblehookpoints/js</fullpath>
@@ -10521,8 +10526,11 @@
   </element>
   <element>
     <fullpath>plugins/visiblehookpoints/js/script.js</fullpath>
+    <version>1.5.2</version>
+    <revision>6458</revision>
     <status>optional</status>
     <permission>read</permission>
+    <hash>532c5dd2d088b44af854766550a815df</hash>
   </element>
   <element>
     <fullpath>sql/</fullpath>
@@ -13075,10 +13083,10 @@
   <element>
     <fullpath>themes/sample/theme.php</fullpath>
     <version>1.5.2</version>
-    <revision>6598</revision>
+    <revision>6640</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6d086ac710711975d10371116d49abce</hash>
+    <hash>6ad468dcba24bf42f1fdd873125edc9a</hash>
   </element>
   <element>
     <fullpath>themes/sample/images</fullpath>
