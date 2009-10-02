@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-10-02 [A] Added formal German language file {GauGau}
 2009-10-02 [C] Hide noscript table rows if JavaScript is enabled {eenemeenemuu}
 2009-10-01 [O] Moved transliteration library to include sub-folder {GauGau}
 2009-10-01 [A] Added transliteration library (thread ID 61723) {eenemeenemuu}

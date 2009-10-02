@@ -9982,6 +9982,14 @@
     <hash>cd7036629a9bc623d1ee59963f3a391c</hash>
   </element>
   <element>
+    <fullpath>lang/german_formal.php</fullpath>
+    <version>1.5.2</version>
+    <revision>6614</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>cd7036629a9bc623d1ee59963f3a391c</hash>
+  </element>
+  <element>
     <fullpath>js/</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
