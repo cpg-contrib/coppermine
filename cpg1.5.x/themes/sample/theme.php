@@ -3901,7 +3901,7 @@ function theme_slideshow($start_img,$title)
 
     $params = array(
         '{SLIDESHOW_STYLE}' => 'width:' .$setDimentionW. 'px; height: '.$setDimentionH.'px; position: relative;' ,
-        '{IMAGE}' => '<img id="showImage" src="' . $start_img . '" class="image" /><br />',
+        '{IMAGE}' => '<img id="showImage" src="' . $start_img . '" class="image" alt="" border="" /><br />',
         '{ADMIN_MENU}' => '',
         '{LOADER_ICON_PATH}' => $prefix . 'images/loader.gif',
     );
