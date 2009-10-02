@@ -726,6 +726,7 @@ function delete_files()
         'relocate_server.php',
         'scripts.js',
         'bridge/phpbb22.inc.php',
+		'albums/edit/index.htm',
         'docs/COPYING',
         'docs/faq.htm',
         'docs/faq_de.htm',
@@ -764,6 +765,7 @@ function delete_files()
         'images/smiles/icon_wink.gif',
         'include/imageObjectGD.class.php',
         'include/imageObjectIM.class.php',
+		'include/index.html',
     );
 
     // Check if the file exists in the first place
