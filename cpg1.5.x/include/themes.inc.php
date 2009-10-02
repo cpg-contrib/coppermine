@@ -3919,13 +3919,13 @@ function theme_slideshow($start_img,$title)
     echo '<a name="top_display_media"></a>';
     starttable();
     echo <<<EOT
-        <noscript>
         <tr>
             <td align="center" class="tableh2">
-              {$lang_common['javascript_needed']}
+              <noscript>
+                  {$lang_common['javascript_needed']}
+              </noscript>
             </td>
         </tr>
-        </noscript>
         <tr>
             <td align="center" class="navmenu" style="white-space: nowrap;">
                 <div id="title">{$title}</div>

@@ -84,13 +84,13 @@ if (count ($rowset) > 0) {
 }
 
 echo <<< EOT
-    <noscript>
         <tr>
             <td colspan="2" class="tableh2">
-                {$lang_common['javascript_needed']}
+                <noscript>
+                    {$lang_common['javascript_needed']}
+                </noscript>
             </td>
         </tr>
-    </noscript>
     <tr>
         <td class="tableh2" valign="top" >
            <input type="hidden" name="album_id" value="{$aid}" />

@@ -350,6 +350,7 @@ function get_tree_album_data($category,$dtree_parent) {
 get_tree_subcat_data(0,0);
 
 
+
 $output = <<< EOT
 <ul id="tree" class="treeview">
 <li><a href="index.php">{$CONFIG['gallery_name']}{$lang_list_categories['home']}</a>

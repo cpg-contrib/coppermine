@@ -408,13 +408,13 @@ echo <<<EOT
                     </table>
                 </td>
         </tr>
-        <noscript>
         <tr>
                 <td class="tableh2" colspan="8">
-                  {$lang_common['javascript_needed']}
+                  <noscript>
+                      {$lang_common['javascript_needed']}
+                  </noscript>
                 </td>
         </tr>
-        </noscript>
 
 EOT;
     if ($CONFIG['comment_akismet_api_key'] != '') {
