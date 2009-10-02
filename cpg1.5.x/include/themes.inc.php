@@ -939,7 +939,7 @@ $template_image_rating = <<<EOT
     <tr id="rating_stars">
         <td class="tableb" id="star_rating"></td>
     </tr>
-    <tr>
+    <tr class="noscript">
       <td class="tableb" colspan="6" align="center">
         <noscript>
            {JS_WARNING}
@@ -3919,7 +3919,7 @@ function theme_slideshow($start_img,$title)
     echo '<a name="top_display_media"></a>';
     starttable();
     echo <<<EOT
-        <tr>
+        <tr class="noscript">
             <td align="center" class="tableh2">
               <noscript>
                   {$lang_common['javascript_needed']}

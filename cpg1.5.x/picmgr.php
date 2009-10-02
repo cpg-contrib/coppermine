@@ -84,7 +84,7 @@ if (count ($rowset) > 0) {
 }
 
 echo <<< EOT
-        <tr>
+        <tr class="noscript">
             <td colspan="2" class="tableh2">
                 <noscript>
                     {$lang_common['javascript_needed']}

@@ -393,4 +393,7 @@ $(document).ready(function() {
       return false;
     });
     $('.elastic').elastic();
+
+    //hide all elements with class noscript
+    $(".noscript").hide();
 });

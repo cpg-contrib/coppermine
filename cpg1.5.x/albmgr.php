@@ -126,7 +126,7 @@ EOT;
 
 starttable('100%', cpg_fetch_icon('alb_mgr', 2).$lang_albmgr_php['title'].'&nbsp;'.cpg_display_help('f=albums.htm&amp;as=albmgr&amp;ae=albmgr_end&amp;top=1', '600', '400'), 1, '');
     echo <<< EOT
-        <tr>
+        <tr class="noscript">
             <td class="tableh2">
                 <noscript>
                     {$lang_common['javascript_needed']}

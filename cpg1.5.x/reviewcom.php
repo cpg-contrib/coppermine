@@ -408,7 +408,7 @@ echo <<<EOT
                     </table>
                 </td>
         </tr>
-        <tr>
+        <tr class="noscript">
                 <td class="tableh2" colspan="8">
                   <noscript>
                       {$lang_common['javascript_needed']}
