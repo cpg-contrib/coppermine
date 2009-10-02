@@ -973,7 +973,7 @@ if (defined('DB_INPUT_PHP')) {
   $lang_db_input_php['no_udp_needed'] = 'Aucune mise à jour n\'est nécessaire.';
   $lang_db_input_php['alb_updated'] = 'L\'Album a été mis à jour';
   $lang_db_input_php['unknown_album'] = 'L\'Album sélectionné n\'existe pas ou bien vous n\'avez pas la permission d\'uploader dans cet Album';
-  $lang_db_input_php['no_pic_uploaded'] = 'Aucune image n\'a été téléchargée&nbsp;!<br /><br />Si vous avez vraiment sélectionné une image à uploader, vérifiez que le serveur autorise le téléchargement de fichiers...';
+  $lang_db_input_php['no_pic_uploaded'] = 'Aucune image n\'a été téléchargée&nbsp;!<br />Si vous avez vraiment sélectionné une image à uploader, vérifiez que le serveur autorise le téléchargement de fichiers...';
   $lang_db_input_php['err_mkdir'] = 'Impossible de créer le répertoire %s&nbsp;!';
   $lang_db_input_php['dest_dir_ro'] = 'Le répertoire de destination (%s) ne dispose pas des droits d\'écriture nécessaires pour le script!';
   $lang_db_input_php['err_move'] = 'Impossible de déplacer %s vers %s&nbsp;!';
@@ -982,7 +982,7 @@ if (defined('DB_INPUT_PHP')) {
   $lang_db_input_php['err_invalid_img'] = 'Le fichier que vous avez téléchargé n\'est pas une image valide !';
   $lang_db_input_php['allowed_img_types'] = 'Vous ne pouvez télécharger que %s images.';
   $lang_db_input_php['err_insert_pic'] = 'Les images \'%s\' ne peuvent pas être insérées dans l\'Album ';
-  $lang_db_input_php['upload_success'] = 'Votre image a été correctement téléchargée<br /><br />Elle sera visible après validation de l\'Administrateur.';
+  $lang_db_input_php['upload_success'] = 'Votre image a été correctement téléchargée<br />Elle sera visible après validation de l\'Administrateur.';
   $lang_db_input_php['notify_admin_email_subject'] = '%s - Notification dde téléchargement';
   $lang_db_input_php['notify_admin_email_body'] = 'Une image a été téléchargée par %s. Cela nécessite votre approbation. Connectez-vous à %s';
   $lang_db_input_php['info'] = 'Information';
@@ -990,9 +990,9 @@ if (defined('DB_INPUT_PHP')) {
   $lang_db_input_php['com_updated'] = 'Commentaire modifié';  // cpg1.5.x
   $lang_db_input_php['alb_updated'] = 'Album mis à jour';
   $lang_db_input_php['err_comment_empty'] = 'Votre Commentaire est vide !';
-  $lang_db_input_php['err_invalid_fext'] = 'Seuls les fichiers avec les extensions suivantes sont autorisés : <br /><br />%s.';
-  $lang_db_input_php['no_flood'] = 'Nous sommes désolés, mais vous êtes déjà l\'Auteur du dernier Commentaire posté au sujet de cette image.<br /><br />Vous pouvez tout simplement éditer votre message précédent si vous souhaitez le modifier ou bien ajouter des informations.';
-  $lang_db_input_php['redirect_msg'] = 'Redirection en cours.<br /><br /><br />Cliquez sur \'CONTINUEZ\' si la page ne se recharge pas automatiquement';
+  $lang_db_input_php['err_invalid_fext'] = 'Seuls les fichiers avec les extensions suivantes sont autorisés : <br />%s.';
+  $lang_db_input_php['no_flood'] = 'Nous sommes désolés, mais vous êtes déjà l\'Auteur du dernier Commentaire posté au sujet de cette image.<br />Vous pouvez tout simplement éditer votre message précédent si vous souhaitez le modifier ou bien ajouter des informations.';
+  $lang_db_input_php['redirect_msg'] = 'Redirection en cours.<br /><br />Cliquez sur \'CONTINUEZ\' si la page ne se recharge pas automatiquement';
   $lang_db_input_php['upl_success'] = 'Votre image a été correctement ajoutée';
   $lang_db_input_php['email_comment_subject'] = 'Commentaire posté sur Coppermine Photo Gallery';
   $lang_db_input_php['email_comment_body'] = 'Quelqu\'un a posté un Commentaire dans votre Galerie. Consultez ce Commentaire sur';
@@ -1382,7 +1382,7 @@ if (defined('GROUPMGR_PHP')) {
   $lang_groupmgr_php['confirm_del'] = 'Attention, lorsque vous supprimez un Groupe, les Utilisateurs de ce groupe seront transférés dans le groupe d\\\'Utilisateurs \\\'Enregistré\\\'!\n\nSouhaitez-vous vraiment CONTINUEZ ?';//js-alert
   $lang_groupmgr_php['title'] = 'Gérer les Groupes d\'Utilisateurs';
   $lang_groupmgr_php['reset_to_default'] = 'Mettre le nom par défaut (%s) - recommandé&nbsp;!';
-  $lang_groupmgr_php['error_group_empty'] = 'La Table MySQL du Groupe est vide&nbsp;!<br /><br />Groupe par défaut créé, rechargez s\'il vous plait la page';
+  $lang_groupmgr_php['error_group_empty'] = 'La Table MySQL du Groupe est vide&nbsp;!<br />Groupe par défaut créé, rechargez s\'il vous plait la page';
   $lang_groupmgr_php['explain_greyed_out_title'] = 'Pourquoi cette colonne est elle grisée ?';
   $lang_groupmgr_php['explain_guests_greyed_out_text'] = 'Vous ne pouvez pas changer les propriétés de ce Groupe car vous avez choisi &quot;Non&quot; pour l\'option &quot;Autorisez l\'accès aux visiteurs non authentifiés (visiteur ou anonyme)&quot; dans la page Configuration. Les visiteurs ne peuvent donc rien faire d\'autre que se connecter; il n\'y a donc pas de règlages de Groupe pour ceux-ci.';
   $lang_groupmgr_php['group_assigned_album'] = 'Album(s) assigné(s)';
@@ -1455,11 +1455,11 @@ if (defined('INSTALL_PHP')) {
   $lang_install['finish'] = 'Terminer l\'installation';
   $lang_install['gd_note'] = '<strong>Important :</strong> les anciennes versions de la librairie graphiqueGD ne gèrent que les images JPEG et PNG . Si vous êtes dans ce cas, le script ne pourra pas créer des vignettes pour les fichiers GIF.';
   $lang_install['go_to_main'] = 'Aller à la page d\'accueil';
-  $lang_install['im_no_convert_ex'] = 'L\'installeur a trouvé l\'utilitaire  \'convert\' ImageMagick dansn \'%s\', toutefois il ne peut pas être utilisé par le script.<br /><br />Vous devriez utiliser GD à la place d\'ImageMagick.';
-  $lang_install['im_not_found'] = 'L\'installeur a essayé de trouver ImageMagick, mais n\'a pas pus vérifier son existence ou a rencontré une erreur. <br />Coppermine peut utiliser l\'utilitaire <a href="http://www.imagemagick.org/" target="_blank">d\'ImageMagick</a>  \'convert\' pour créer les vignettes. La qualité des images produites par ImageMagick est supérieure à GD1 mais équivalente à GD2.<br /><br />Si ImageMagick est installé sur votre système et que vous voulez l\'utiliser, <br />vous devez entrer le chemin complet vers l\'utilitaire \'convert\' ci-desous. <br />Sous Windows le chemin devrait ressembler à ça: \'c:/ImageMagick/\' et ne doit pas comprendre d\'espaces, sous Unix c\'est quelque chose comme \'/usr/bin/X11/\'.<br /><br />Si vous ne savez pas si vous avez ImageMagick ou pas, laissez ce champ vide - l\'installeur va essayer d\'Utilisez GD2 par défaut (c\'est la configuration de la plupart des Utilisateurs). <br />Vous pourrez changer cela plus tard (dans la page de configuration de Coppermine), n\'ayez donc aucune crainte si vous ne savez pas quoi entrer ici - laissez simplement le champ vide.';
+  $lang_install['im_no_convert_ex'] = 'L\'installeur a trouvé l\'utilitaire  \'convert\' ImageMagick dansn \'%s\', toutefois il ne peut pas être utilisé par le script.<br />Vous devriez utiliser GD à la place d\'ImageMagick.';
+  $lang_install['im_not_found'] = 'L\'installeur a essayé de trouver ImageMagick, mais n\'a pas pus vérifier son existence ou a rencontré une erreur. <br />Coppermine peut utiliser l\'utilitaire <a href="http://www.imagemagick.org/" target="_blank">d\'ImageMagick</a>  \'convert\' pour créer les vignettes. La qualité des images produites par ImageMagick est supérieure à GD1 mais équivalente à GD2.<br />Si ImageMagick est installé sur votre système et que vous voulez l\'utiliser, <br />vous devez entrer le chemin complet vers l\'utilitaire \'convert\' ci-desous. <br />Sous Windows le chemin devrait ressembler à ça: \'c:/ImageMagick/\' et ne doit pas comprendre d\'espaces, sous Unix c\'est quelque chose comme \'/usr/bin/X11/\'.<br />Si vous ne savez pas si vous avez ImageMagick ou pas, laissez ce champ vide - l\'installeur va essayer d\'Utilisez GD2 par défaut (c\'est la configuration de la plupart des Utilisateurs). <br />Vous pourrez changer cela plus tard (dans la page de configuration de Coppermine), n\'ayez donc aucune crainte si vous ne savez pas quoi entrer ici - laissez simplement le champ vide.';
   $lang_install['im_packages'] = 'Votre serveur supporte les librairies graphiques suivantes :';
   $lang_install['im_path'] = 'Chemin vers ImageMagick:';
-  $lang_install['im_path_space'] = 'Le chemin vers ImageMagick (\'%s\') contient au moins un espace. Cela va poser des problèmes dans le script.<br /><br />Vous devez déplacer ImageMagick dans un autre répertoire.';
+  $lang_install['im_path_space'] = 'Le chemin vers ImageMagick (\'%s\') contient au moins un espace. Cela va poser des problèmes dans le script.<br />Vous devez déplacer ImageMagick dans un autre répertoire.';
   $lang_install['installation'] = 'installation';
   $lang_install['installer_locked'] = 'L\'installeur est vérouillé';
   $lang_install['installer_selected'] = 'L\'installeur est sélectionné';
@@ -1501,7 +1501,7 @@ if (defined('INSTALL_PHP')) {
   $lang_install['perm_not_ok'] = 'Les autorisations de certains répertoires ne sont par correctes.<br />Changez les autorisations des répertoires ci-desous marqués "INCORRECT".'; // cpg1.5
   $lang_install['please_go_back'] = 'Merci de %scliquer ici%s pour revenir en arrière et corriger ce problème avant de continuer.';
   $lang_install['populate_db'] = 'Complétez la base de donnée';
-  $lang_install['ready_to_roll'] = '<a href="index.php">Coppermine</a> est maintenant correctement configuré et prêt à fonctionner.<br /><br /><a href="login.php">Identiez-vous</a> en utilisant les informations que vous avez données pour votre compte Administrateur.';
+  $lang_install['ready_to_roll'] = '<a href="index.php">Coppermine</a> est maintenant correctement configuré et prêt à fonctionner.<br /><a href="login.php">Identiez-vous</a> en utilisant les informations que vous avez données pour votre compte Administrateur.';
   $lang_install['sect_create_adm'] = 'Cette partie requière des informations pour créer votre compte Administrateur Coppermine. N\'utilisez que des caractères alphanumériques. Entrez et vérifiez ces données attentivement!';
   $lang_install['sect_mysql_info'] = 'Cette section demande les informations pour savoir comment se connecter à votre base de données MySQL.<br />Si vous ne savez pas comment les remplir, demandez de l\'aide à votre hébergeur.';
   $lang_install['sect_mysql_sel_db'] = 'Ici vous devez choisir quelle base de données vous voulez Utilisez pour Coppermine. <br />Si votre compte Mysql a les privilèges requis, vous pouvez créer une nouvelle base de données depusi l\'installeur ou Utilisez une base de données existante. Si vous ne voulez d\'aucune de ces deux options, vous devrez créer une base de données hors de l\'installeur Coppermine, puis revenir ici et sélectionner la nouvelle base de donnée depuis la liste déroulante. Vous pouvez aussi changer le préfixe des Tables (N\'utilisez pas de point), mais il est recommander de laisser le préfixe par défaut tel quel.';
@@ -1810,7 +1810,7 @@ EOT;
   $lang_register_php['confirm_email_subject'] = '%s - Confirmation d\'inscription';
   $lang_register_php['information'] = 'Informations';
   $lang_register_php['failed_sending_email'] = 'Le courriel de confirmation d\'inscription n\'a pas pu être envoyé!';
-  $lang_register_php['thank_you'] = 'Merci pour votre inscription.<br /><br />Un courriel contenant les informations sur l\'Activation de votre Compte vous a été envoyé à l\'adresse courriel que vous nous avez communiqué.';
+  $lang_register_php['thank_you'] = 'Merci pour votre inscription.<br />Un courriel contenant les informations sur l\'Activation de votre Compte vous a été envoyé à l\'adresse courriel que vous nous avez communiqué.';
   $lang_register_php['acct_created'] = 'Votre compte a été correctement créé. Vous pouvez maintenant vous identifier avec votre Identifiant et votre Mot de Passe';
   $lang_register_php['acct_active'] = 'Votre Compte a été activé avec succès. Vous pouvez maintenant vous identifier avec votre Identifiant et votre Mot de Passe';
   $lang_register_php['acct_already_act'] = 'Votre Compte est déjà actif !';
@@ -1838,7 +1838,7 @@ EOT;
   $lang_register_php['notify_admin_email_body'] = 'Un Nouvel Utilisateur s\'est inscrit dans votre Galerie, sous le nom &quot;%s&quot;';
   $lang_register_php['pic_count'] = 'fichiers téléchargés';
   $lang_register_php['notify_admin_request_email_subject'] = '%s - Demande d\'enregistrement';
-  $lang_register_php['thank_you_admin_activation'] = 'Merci.<br /><br />Votre requête d\'activation du Compte a été envoyé à l\'Administrateur. Vous recevrez un courriel si votre inscription est approuvée.';
+  $lang_register_php['thank_you_admin_activation'] = 'Merci.<br />Votre requête d\'activation du Compte a été envoyé à l\'Administrateur. Vous recevrez un courriel si votre inscription est approuvée.';
   $lang_register_php['acct_active_admin_activation'] = 'Le Compte est maintenant actif et un courriel a été envoyé à l\'Utilisateur.';
   $lang_register_php['notify_user_email_subject'] = '%s - Notification d\'activation';
   $lang_register_php['delete_my_account'] = 'Effacer mon Compte Utilisateur'; // cpg1.5
@@ -2009,7 +2009,7 @@ if (defined('SEARCH_PHP')){
 if (defined('SEARCHNEW_PHP')) {
   $lang_search_new_php['page_title'] = 'Rechercher les Nouvelles Photos';
   $lang_search_new_php['select_dir'] = 'Sélectionner le répertoire';
-  $lang_search_new_php['select_dir_msg'] = 'Cette fonction vous permet d\'ajouter un groupe de photos que vous avez téléchargé sur votre serveur FTP.<br /><br />Sélectionnez le répertoire où vous avez téléchargé vos photos';
+  $lang_search_new_php['select_dir_msg'] = 'Cette fonction vous permet d\'ajouter un groupe de photos que vous avez téléchargé sur votre serveur FTP.<br />Sélectionnez le répertoire où vous avez téléchargé vos photos';
   $lang_search_new_php['no_pic_to_add'] = 'Il n\'y a pas de photo à ajouter';
   $lang_search_new_php['need_one_album'] = 'Vous avez besoin d\'au moins un Album pour effectuer cette opération';
   $lang_search_new_php['warning'] = 'Avertissement';
@@ -2397,7 +2397,7 @@ if (defined('UTIL_PHP')) {
   $lang_util_php['delete_back'] = 'Effacer la copie de l\'image originale (Mod filigrane)'; // cpg1.5
   $lang_util_php['delete_back_explanation'] = 'Celà va effacer la copie de l\'image originale. <br>Vous gagnerez ainsi de la place sur votre serveur mais ne pourrez pas annuler le filigrane de votre image par la suite !!! <br>Le filigrane sera permanent après cette opération'; // cpg1.5
   $lang_util_php['finished'] = '<br />Terminer la mise à jour des Vignettes/Images!<br />'; // cpg1.5
-  $lang_util_php['autorefresh'] = ' Réactualisation automatique de la page (inutile de cliquer sur le bouton CONTINUEZ)<br /><br />'; // cpg1.5
+  $lang_util_php['autorefresh'] = ' Réactualisation automatique de la page (inutile de cliquer sur le bouton CONTINUEZ)<br />'; // cpg1.5
   $lang_util_php['refresh_db'] = 'Recharger les informations de poids et de taille';
   $lang_util_php['refresh_db_explanation'] = 'Cela va recharger les informations de poids et de taille. Utilisez cette fonction si les quotas sont incorrects ou si vous avez changé manuellement ces données.';
   $lang_util_php['reset_views'] = 'Réinitialisation du compteur de vues';
