@@ -564,7 +564,7 @@ case 'picture':
             
             chmod($dest_dir, octdec($CONFIG['default_dir_mode']));
             
-            $fp = fopen($dest_dir . '/index.html', 'w');
+            $fp = fopen($dest_dir . '/index.php', 'w');
             fwrite($fp, ' ');
             fclose($fp);
         }

@@ -238,7 +238,7 @@ function getfoldercontent($folder, &$dir_array, &$pic_array, &$expic_array)
             }
         }
         if (is_file($CONFIG['fullpath'] . $folder . $file) && !in_array($file, $pic_array)) {
-            if (strncmp($file, $CONFIG['orig_pfx'], strlen($CONFIG['orig_pfx'])) != 0 && strncmp($file, $CONFIG['thumb_pfx'], strlen($CONFIG['thumb_pfx'])) != 0 && strncmp($file, $CONFIG['normal_pfx'], strlen($CONFIG['normal_pfx'])) != 0 && $file != 'index.html') {
+            if (strncmp($file, $CONFIG['orig_pfx'], strlen($CONFIG['orig_pfx'])) != 0 && strncmp($file, $CONFIG['thumb_pfx'], strlen($CONFIG['thumb_pfx'])) != 0 && strncmp($file, $CONFIG['normal_pfx'], strlen($CONFIG['normal_pfx'])) != 0 && $file != 'index.php') {
                 $newfile = replace_forbidden($file);
                 if ($newfile != $file) {
                   //File name has been changed, let's get a unique filename and rename the existing file.

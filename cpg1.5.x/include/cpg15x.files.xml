@@ -574,7 +574,7 @@
     <permission>write</permission>
   </element>
   <element>
-    <fullpath>albums/edit/index.htm</fullpath>
+    <fullpath>albums/edit/index.php</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>7944544c7783bded309f53a80d277d0d</hash>
@@ -8248,7 +8248,7 @@
     <hash>90b597c7354d403d2f7cd6157d5d5c98</hash>
   </element>
   <element>
-    <fullpath>include/index.html</fullpath>
+    <fullpath>include/index.php</fullpath>
     <version>1.5.2</version>
     <revision>6360</revision>
     <status>mandatory</status>

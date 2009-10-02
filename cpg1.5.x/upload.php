@@ -966,7 +966,7 @@ EOT;
                 exit;
             }
             @chmod($dest_dir, octdec($CONFIG['default_dir_mode'])); //silence the output in case chmod is disabled
-            $fp = fopen($dest_dir . '/index.html', 'w');
+            $fp = fopen($dest_dir . '/index.php', 'w');
             fwrite($fp, ' ');
             fclose($fp);
         }

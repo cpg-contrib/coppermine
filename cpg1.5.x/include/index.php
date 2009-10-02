@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta http-equiv="refresh" content="0; url=../index.php">
-<title>Coppermine Photo Gallery - Userpics Folder</title>
+<title>Coppermine Photo Gallery - Include Folder</title>
 <link rel="stylesheet" href="../css/installer.css" type="text/css" />
 <link rel="shortcut icon" href="../favicon.ico" />
 <!--

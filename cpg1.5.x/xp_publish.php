@@ -826,7 +826,7 @@ function process_picture()
             mkdir($dest_dir, octdec($CONFIG['default_dir_mode']));
             if (!is_dir($dest_dir)) simple_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_mkdir'], $dest_dir), __FILE__, __LINE__, true);
             chmod($dest_dir, octdec($CONFIG['default_dir_mode']));
-            $fp = fopen($dest_dir . '/index.html', 'w');
+            $fp = fopen($dest_dir . '/index.php', 'w');
             fwrite($fp, ' ');
             fclose($fp);
         }
