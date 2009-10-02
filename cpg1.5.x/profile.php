@@ -717,7 +717,7 @@ EOT;
 </tr>
 EOT;
     endtable();
-	echo '<h1>3</h1>';
+	//echo '<h1>3</h1>';
     list($timestamp, $form_token) = getFormToken();	
     echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
     <input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" /></form>";
