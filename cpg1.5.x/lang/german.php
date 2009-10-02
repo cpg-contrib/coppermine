@@ -1449,27 +1449,27 @@ $lang_list_albums['from_categorie'] = ' - von der Kategorie: '; // cpg1.5
 // ------------------------------------------------------------------------- //
 
 if (defined('INSTALL_PHP')) {
-$lang_install['already_succ'] = 'The installer has already been run successfully once and is now locked.';
-$lang_install['already_succ_explain'] = 'If you want to run the installer again, you first need to delete the \'include/config.inc.php\' file that was created in the directory where you put Coppermine. You can do this with any FTP program';
-$lang_install['cant_read_tmp_conf'] = 'The installer can\'t read the temporary config file %s.';
-$lang_install['cant_write_tmp_conf'] = 'The installer can\'t write the temporary config file %s.';
-$lang_install['review_permissions'] = 'Please review directory permissions.';
-$lang_install['change_lang'] = 'Change Language';
-$lang_install['check_path'] = 'Check path';
-$lang_install['continue'] = 'Next step';
-$lang_install['conv_said'] = 'The convert program said:';
-$lang_install['license_info'] = 'Coppermine is a picture/multimedia gallery package that is released under GNU GPL v3. By installing, you agree to be bound to Coppermine\'s license:';
-$lang_install['cpg_info_frames'] = 'Your browser appears not to be capable to display inline frames. You can review the license within the docs folder that ships with your coppermine package.';
-$lang_install['license'] = 'Coppermine license agreement';
-$lang_install['create_table'] = 'Creating table \'%s\'';
-$lang_install['db_populating'] = 'Trying to insert data in the database.';
-$lang_install['db_alr_populated'] = 'Already inserted required data in the database.';
-$lang_install['dir_ok'] = 'Directory found';
-$lang_install['directory'] = 'Directory';
-$lang_install['email'] = 'Email address';
-$lang_install['email_no_match'] = 'Email addresses do not match or are invalid.';
-$lang_install['email_verif'] = 'Verify Email';
-$lang_install['err_cpgnuke'] = '<h1>ERROR</h1>You seem to be trying to install the standalone Coppermine into your Nuke portal.<br />This version can only be used as standalone!<br />Some server setups might display this warning even though you don\'t have a nuke portal installed - if this is the case for you, <a href="%s?continue_anyway=1">continue</a> with the install. If you are using a nuke portal, you might want to take a look into <a href=\"http://www.cpgnuke.com/\">CpgNuke</a> or use one of the (unsupported)<a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=95984\">Coppermine ports</a> - do not continue!';
+$lang_install['already_succ'] = 'Das Installations-Skript wurde bereits einmal vollständig ausgeführt und ist deshalb gesperrt.';
+$lang_install['already_succ_explain'] = 'Wenn das Installations-Skript tatsächlich erneut ausgeführt werden soll muss zuerst die Datei \'include/config.inc.php\' gelöscht werden im Coppermine-verzeichnis. DIes kann mit Hilfe eines FTP-Programms geschehen.';
+$lang_install['cant_read_tmp_conf'] = 'Das Installations-Skript kann die temporäre Konfigurationsdatei %s nicht lesen.';
+$lang_install['cant_write_tmp_conf'] = 'Das Installations-Skript kann die temporäre Konfigurationsdatei %s nicht schreiben.';
+$lang_install['review_permissions'] = 'Bitte überprüfe die Verzeichnis-Rechte.';
+$lang_install['change_lang'] = 'Sprache ändern';
+$lang_install['check_path'] = 'Pfad prüfen';
+$lang_install['continue'] = 'Nächster Schritt';
+$lang_install['conv_said'] = 'Das Programm &quot;convert&quot; gab den Rückgabewert:';
+$lang_install['license_info'] = 'Coppermine ist ein Bilder-/Multimediagalerie-Paket, das unter der GNU GPL v3 Lizenz veröffentlicht ist. Durch die Installation stimmst Du den Lizenzbedingungen von Coppermine zu:';
+$lang_install['cpg_info_frames'] = 'Dein Browser scheint nicht in der Lage zu sein, eingebettete Frames darzustellen. Du kannst die Lizenz im Ordern &quot;docs&quot; nachlesen innerhalb des Coppermine-Pakets.';
+$lang_install['license'] = 'Coppermine-Lizenzvereinbarung';
+$lang_install['create_table'] = 'Erzeuge Tabelle \'%s\'';
+$lang_install['db_populating'] = 'Versuche, Daten in die Datenbank einzufügen.';
+$lang_install['db_alr_populated'] = 'Benötigte Daten wurden bereits in Datenbank hinzugefügt.';
+$lang_install['dir_ok'] = 'Verzeichnis gefunden';
+$lang_install['directory'] = 'Verzeichnis';
+$lang_install['email'] = 'Email-Adresse';
+$lang_install['email_no_match'] = 'Die Email-Adresse stimmen nicht überein oder sind ungültig.';
+$lang_install['email_verif'] = 'Überprüfe Email-Adresse';
+$lang_install['err_cpgnuke'] = '<h1>Fehler</h1>You seem to be trying to install the standalone Coppermine into your Nuke portal.<br />This version can only be used as standalone!<br />Some server setups might display this warning even though you don\'t have a nuke portal installed - if this is the case for you, <a href="%s?continue_anyway=1">continue</a> with the install. If you are using a nuke portal, you might want to take a look into <a href=\"http://www.cpgnuke.com/\">CpgNuke</a> or use one of the (unsupported)<a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=95984\">Coppermine ports</a> - do not continue!';
 $lang_install['error'] = 'ERROR';
 $lang_install['error_need_corr'] = 'The following errors were encountered and need to be corrected first:';
 $lang_install['finish'] = 'Finish Installation';
