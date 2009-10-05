@@ -362,7 +362,7 @@ if (!class_exists('dBug')) {
             //create the table row header 
             function makeTDHeader($type,$header) {
                     echo "<tr>
-                                    <td valign=\"top\" onClick=\"dBug_toggleRow(this)\" style=\"cursor:hand\" class=\"dBug_".$type."Key\">".$header."</td>
+                                    <td valign=\"top\" onclick=\"dBug_toggleRow(this)\" style=\"cursor:hand\" class=\"dBug_".$type."Key\">".$header."</td>
                                     <td>";
             }
 

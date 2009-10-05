@@ -653,7 +653,7 @@ EOT;
 <tr>
     <td width="100%" colspan="2" class="tableb">
         <script type="text/javascript">
-            document.write('<input type="checkbox" name="confirmation" id="confirmation" value="1" class="checkbox" onClick="agreesubmit();" />');
+            document.write('<input type="checkbox" name="confirmation" id="confirmation" value="1" class="checkbox" onclick="agreesubmit();" />');
             document.write('<label for="confirmation" class="clickable_option">');
             document.write("{$lang_register_php['i_am_sure']}");
             document.write('</label>');

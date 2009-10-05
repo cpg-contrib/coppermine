@@ -329,7 +329,7 @@ EOT;
                         &nbsp;&nbsp;&nbsp;
 EOT;
     if ($custom_group_counter > 0) {
-        print '                        <button type="submit" class="button" name="del_sel" id="del_sel" value="'.$lang_groupmgr_php['del_groups'].'" onClick="return confirmDel()">'.$icon_array['delete'].$lang_groupmgr_php['del_groups'].'</button>';
+        print '                        <button type="submit" class="button" name="del_sel" id="del_sel" value="'.$lang_groupmgr_php['del_groups'].'" onclick="return confirmDel()">'.$icon_array['delete'].$lang_groupmgr_php['del_groups'].'</button>';
     }
     echo <<<EOT
                 </td>

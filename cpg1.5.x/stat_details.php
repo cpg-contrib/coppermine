@@ -408,7 +408,7 @@ EOT;
       print '  <tr>'.$LINEBREAK;
       print '    <td class="tableh2" align="center" valign="bottom">'.$LINEBREAK;
       if ($type == 'vote') {
-          print '    <input type="checkbox" name="checkAll" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$LINEBREAK;
+          print '    <input type="checkbox" name="checkAll" onclick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$LINEBREAK;
       }
       print '    </td>'.$LINEBREAK;
       foreach ($db_fields as $value) {
@@ -562,7 +562,7 @@ EOT;
       <td class="tablef" align="center" valign="top">
 EOT;
   if ($type == 'vote') {
-      print '    <input type="checkbox" name="checkAll2" onClick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$LINEBREAK;
+      print '    <input type="checkbox" name="checkAll2" onclick="selectAll(this,\'del\');" class="checkbox" title="'.$lang_common['check_uncheck_all'].'" />'.$LINEBREAK;
   }
   print <<< EOT
       </td>
