@@ -1615,12 +1615,12 @@ $lang_langmgr_php['show_details'] = 'Zeige Details';
 $lang_langmgr_php['loading'] = 'Lade';
 $lang_langmgr_php['english_missing'] = 'Die Englische Sprachdateie fehlt, obwohl sie nie vollständig entfernt werden sollte. Sie sollten sie unbedingt sofort wieder herstellen.';
 $lang_langmgr_php['enable_at_least_one'] = 'Mindestens eine Sprache muss aktiviert werden, damit die Galerie funktioniert';
-$lang_langmgr_php['enable_default'] = 'Sie haben eine Sprache als Standard gewählt, die nicht aktiviert ist. Wähle einen anderen Standard oder aktiviere die gewählte Standard-Sprache!';
-$lang_langmgr_php['available_default'] = 'Sie haben eine Standard Sprache gewählt, die nicht verfügbar ist. Wähle eine andere!';
-$lang_langmgr_php['version_does_not_match'] = 'Die Version dieser Datei stimmt nicht mit der Deiner Galerie überein. Benutze sie nur unter Vorbehalt The versiound teste sie ausgiebig!';
+$lang_langmgr_php['enable_default'] = 'Sie haben eine Sprache als Standard gewählt, die nicht aktiviert ist. Wählen Sie einen anderen Standard oder aktivieren Sie die gewählte Standard-Sprache!';
+$lang_langmgr_php['available_default'] = 'Sie haben eine Standard Sprache gewählt, die nicht verfügbar ist. Wählen Sie eine andere!';
+$lang_langmgr_php['version_does_not_match'] = 'Die Version dieser Datei stimmt nicht mit der Ihrer Galerie überein. Benutzen Sie sie nur unter Vorbehalt und testen Sie sie ausgiebig!';
 $lang_langmgr_php['no_version'] = 'Es konnte keine Versions-Information abgerufen werden. Sehr wahrscheinlich handelt wird diese Sprachdatei nicht funktionieren oder es handelt sich gar nicht um eine korrekte Sprachdatei.';
-$lang_langmgr_php['filesize'] = 'Filesize %s is implausible';
-$lang_langmgr_php['content_missing'] = 'Die Datei enthält nicht die notwendigen Daten und ist daher wharscheinlich keine funktionierende Sprachdatei.';
+$lang_langmgr_php['filesize'] = 'Dateigröße %s ist unplausibel';
+$lang_langmgr_php['content_missing'] = 'Die Datei enthält nicht die notwendigen Daten und ist daher wahrscheinlich keine funktionierende Sprachdatei.';
 $lang_langmgr_php['status'] = 'Status';
 $lang_langmgr_php['default_language'] = 'Standard-Sprache auf %s gesetzt';
 }
@@ -1630,19 +1630,19 @@ $lang_langmgr_php['default_language'] = 'Standard-Sprache auf %s gesetzt';
 // ------------------------------------------------------------------------- //
 if (defined('LOGIN_PHP')) {
 $lang_login_php['login'] = 'Anmeldung (Login)';
-$lang_login_php['enter_login_pswd'] = 'Gib Deinen Benutzernamen und Dein Passwort ein, um Dich anzumelden';
+$lang_login_php['enter_login_pswd'] = 'Geben Sie Ihren Benutzernamen und Ihr Passwort ein, um sich anzumelden';
 $lang_login_php['username'] = 'Benutzername';
 $lang_login_php['email'] = 'Email-Adresse'; // cpg1.5
 $lang_login_php['both'] = 'Benutzername / Email-Adresse'; // cpg1.5
 $lang_login_php['password'] = 'Passwort';
 $lang_login_php['remember_me'] = 'Immer angemeldet bleiben';
 $lang_login_php['welcome'] = 'Hallo %s ...';
-$lang_login_php['err_login'] = 'Konnte Dich nicht anmelden. Versuche es nochmal.';
+$lang_login_php['err_login'] = 'Konnte Sie nicht anmelden. Versuchen Sie es nochmal.';
 $lang_login_php['err_already_logged_in'] = 'Sie sind schon angemeldet!';
 $lang_login_php['forgot_password_link'] = 'Passwort vergessen';
-$lang_login_php['cookie_warning'] = 'Achtung: Dein Browser akzeptiert nicht die Cookies dieses Skripts';
+$lang_login_php['cookie_warning'] = 'Achtung: Ihr Browser akzeptiert nicht die Cookies dieses Skripts';
 $lang_login_php['send_activation_link'] = 'Aktivierungs-Link nicht erhalten?'; // cpg 1.5
-$lang_login_php['force_login'] = 'Sie müssen Dich anmelden, um diese Seite sehen zu können'; // cpg1.5
+$lang_login_php['force_login'] = 'Sie müssen sich anmelden, um diese Seite sehen zu können'; // cpg1.5
 $lang_login_php['force_login_title'] = 'Anmelden zum fortfahren'; // cpg1.5
 }
 
@@ -1651,7 +1651,7 @@ $lang_login_php['force_login_title'] = 'Anmelden zum fortfahren'; // cpg1.5
 // ------------------------------------------------------------------------- //
 if (defined('LOGOUT_PHP')) {
 $lang_logout_php['logout'] = 'Abmelden';
-$lang_logout_php['bye'] = 'Tschüss %s ...';
+$lang_logout_php['bye'] = 'Auf Wiedersehen, %s ...';
 $lang_logout_php['err_not_loged_in'] = 'Sie sind nicht angemeldet!';
 }
 
@@ -1683,7 +1683,7 @@ $lang_mode_php['news_show'] = 'Zeige News...'; // cpg1.5
 if (defined('MODIFYALB_PHP')) {
 $lang_modifyalb_php['upd_alb_n'] = 'Album %s aktualisieren';
 $lang_modifyalb_php['related_tasks'] = 'Ähnliche Aufgaben'; // cpg1.5
-$lang_modifyalb_php['choose_album'] = 'Wähle Album'; // cpg1.5
+$lang_modifyalb_php['choose_album'] = 'Wählen Sie ein Album'; // cpg1.5
 $lang_modifyalb_php['general_settings'] = 'Allgemeine Einstellungen';
 $lang_modifyalb_php['alb_title'] = 'Album Titel';
 $lang_modifyalb_php['alb_cat'] = 'Album Kategorie';
@@ -1735,7 +1735,7 @@ $lang_modifyalb_php['password_protect'] = 'Dieses Album passwort-schützen (Ankr
 if (defined('PHPINFO_PHP')) {
 $lang_phpinfo_php['php_info'] = 'PHP info';
 $lang_phpinfo_php['explanation'] = 'Diese Ausgabe wird durch die PHP-Funktion <a href="http://www.php.net/phpinfo">phpinfo()</a> erzeugt, und innerhalb von Coppermine angezeigt.';
-$lang_phpinfo_php['no_link'] = 'Anderen Personen die phpinfo-Daten anzuzeigen, kann ein Sicherheitsrisiko sein - daher wird diese Seite nur angezeigt, wenn Sie als Admin angemeldet sind. Sie können daher anderen keinen Link auf diese Seite zukommen lassen, da ihnen der Zugriff verwehrt werden wird!';
+$lang_phpinfo_php['no_link'] = 'Anderen Personen die phpinfo-Daten anzuzeigen kann ein Sicherheitsrisiko sein - daher wird diese Seite nur angezeigt, wenn Sie als Admin angemeldet sind. Sie können daher anderen keinen Link auf diese Seite zukommen lassen, da ihnen der Zugriff verwehrt werden wird!';
 }
 
 // ------------------------------------------------------------------------- //
@@ -1798,7 +1798,7 @@ $lang_rate_pic_php['forbidden'] = 'Sie können Ihre eigenen Dateien nicht bewert
 // ------------------------------------------------------------------------- //
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 $lang_register_php['disclamer'] = <<<EOT
-Obwohl die Administratoren von {SITE_NAME} versuchen werden, generell alle anstössigen Inhalte so schnell wie möglich zu löschen oder zu bearbeiten, ist es unmöglich, jeden Beitrag zu überprüfen. Daher bestätigst Du, dass alle Beiträge auf dieser Seite die Ansichten und Meinungen des Authors widerspiegeln und nicht die des Administrators oder Webmasters (außer den Beiträgen, die durch sie verfasst wurden) und sie daher dafür nicht verantwortlich gemacht werden können.<br />
+Obwohl die Administratoren von {SITE_NAME} versuchen werden, generell alle anstössigen Inhalte so schnell wie möglich zu löschen oder zu bearbeiten, ist es unmöglich, jeden Beitrag zu überprüfen. Daher bestätigen Sie, dass alle Beiträge auf dieser Seite die Ansichten und Meinungen des Authors widerspiegeln und nicht die des Administrators oder Webmasters (außer den Beiträgen, die durch sie verfasst wurden) und sie daher dafür nicht verantwortlich gemacht werden können.<br />
 <br />
 Sie stimmen zu, keine beleidigenden, obszönen, vulgären, verleumderischen, verhetzenden, drohenden, sexuell-orientierten oder sonstwie illegalen Beiträge zu verfassen. Sie stimmen zu, dass der/die Webmaster, Administrator(en) oder Moderator(en) von {SITE_NAME} das Recht haben, jeden Inhalt zu löschen oder zu ändern, bei dem sie es für richtig halten. Als Benutzer stimmen Sie zu, dass alle Informationen, die Sie oben eingetragen haben, in einer Datenbank gespeichert werden. Obwohl diese Daten ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben werden, können der Webmaster oder Administrator nicht dafür zur Verantwortung gezogen werden, wenn durch einen Angriff (Hacking) die gespeicherten Daten kompromitiert werden.<br />
 <br />
@@ -1813,10 +1813,10 @@ $lang_register_php['i_agree'] = 'ich stimme zu';
 $lang_register_php['submit'] = 'Registrieren absenden';
 $lang_register_php['err_user_exists'] = 'Der Benutzername, den Sie eingegeben haben, existiert schon, bitte wählen Sie einen anderen';
 $lang_register_php['err_global_pw'] = 'Ungültiges globales Registrierungs-Passwort'; // cpg1.5
-$lang_register_php['err_global_pass_same'] = 'Dein Passwort muss sich vom globalen Passwort unterscheiden'; // cpg1.5
+$lang_register_php['err_global_pass_same'] = 'Ihr Passwort muss sich vom globalen Passwort unterscheiden'; // cpg1.5
 $lang_register_php['err_duplicate_email'] = 'Es hat sich schon ein anderer Benutzer mit der angegebenen eMail-Adresse registriert';
 $lang_register_php['err_disclaimer'] = 'Sie müssen dem Disclaimer zustimmen'; // cpg1.5
-$lang_register_php['enter_info'] = 'Gib Registrierungs-Informationen ein';
+$lang_register_php['enter_info'] = 'Geben Sie die Registrierungs-Informationen ein';
 $lang_register_php['required_info'] = 'Pflichtfeld';
 $lang_register_php['optional_info'] = 'Optional';
 $lang_register_php['username'] = 'Benutzername';
@@ -1833,9 +1833,9 @@ $lang_register_php['confirm_email_subject'] = '%s - Registrierungs-Bestätigung'
 $lang_register_php['information'] = 'Information';
 $lang_register_php['failed_sending_email'] = 'Die Registrierungs-Bestätigung kann nicht per eMail versendet werden!';
 $lang_register_php['thank_you'] = 'Danke für Ihre Registrierung.<br />Eine eMail mit Informationen, wie Sie Ihr Benutzerkonto aktivieren können, wurde an die angegebene eMail-Adresse gesendet.';
-$lang_register_php['acct_created'] = 'Dein Benutzerkonto wurde erstellt. Sie können Dich jetzt mit Benutzername und Passwort anmelden';
-$lang_register_php['acct_active'] = 'Dein Benutzerkonto ist jetzt aktiviert. Sie können Dich jetzt mit Benutzername und Passwort anmelden';
-$lang_register_php['acct_already_act'] = 'Dein Benutzerkonto ist bereits aktiviert!';
+$lang_register_php['acct_created'] = 'Ihr Benutzerkonto wurde erstellt. Sie können sich jetzt mit Benutzername und Passwort anmelden';
+$lang_register_php['acct_active'] = 'Ihr Benutzerkonto ist jetzt aktiviert. Sie können sich jetzt mit Benutzername und Passwort anmelden';
+$lang_register_php['acct_already_act'] = 'Ihr Benutzerkonto ist bereits aktiviert!';
 $lang_register_php['acct_act_failed'] = 'Dieses Benutzerkonto kann nicht aktiviert werden!';
 $lang_register_php['err_unk_user'] = 'Der gewählte Benutzer existiert nicht!';
 $lang_register_php['x_s_profile'] = '%s\'s Benutzerprofil';
@@ -1848,16 +1848,16 @@ $lang_register_php['new_pass'] = 'neues Passwort';
 $lang_register_php['new_pass_again'] = 'neues Passwort bestätigen';
 $lang_register_php['err_curr_pass'] = 'Derzeitiges Passwort ist verkehrt';
 $lang_register_php['change_pass'] = 'Mein Passwort ändern';
-$lang_register_php['update_success'] = 'Dein Benutzerprofil wurde aktualisiert';
-$lang_register_php['pass_chg_success'] = 'Dein Passwort wurde geändert';
-$lang_register_php['pass_chg_error'] = 'Dein Passwort wurde nicht geändert';
+$lang_register_php['update_success'] = 'Ihr Benutzerprofil wurde aktualisiert';
+$lang_register_php['pass_chg_success'] = 'Ihr Passwort wurde geändert';
+$lang_register_php['pass_chg_error'] = 'Ihr Passwort wurde nicht geändert';
 $lang_register_php['notify_admin_email_subject'] = '%s - Registrierungs-Benachrichtigung';
 $lang_register_php['last_uploads'] = 'Zuletzt hochgeladene Datei'; //cpg1.5
-$lang_register_php['last_uploads_detail'] = 'Klicke hier, um all Uploads von %s zu sehen'; //cpg1.5
+$lang_register_php['last_uploads_detail'] = 'Klicken Sie hier, um alle Uploads von %s zu sehen'; //cpg1.5
 $lang_register_php['last_comments'] = 'Letzter Kommentar'; //cpg1.5
-$lang_register_php['you'] = 'Du'; //cpg1.5
-$lang_register_php['last_comments_detail'] = 'Klicke hier, um alle Kommentare von %s zu sehen'; //cpg1.5
-$lang_register_php['notify_admin_email_body'] = 'Jemand mit dem Benutzernamen "%s" hat sich in Deiner Galerie registriert';
+$lang_register_php['you'] = 'Sie'; //cpg1.5
+$lang_register_php['last_comments_detail'] = 'Klicken Sie hier, um alle Kommentare von %s zu sehen'; //cpg1.5
+$lang_register_php['notify_admin_email_body'] = 'Jemand mit dem Benutzernamen "%s" hat sich in Ihrer Galerie registriert';
 $lang_register_php['pic_count'] = 'Hochgeladene Dateien';
 $lang_register_php['notify_admin_request_email_subject'] = '%s - Registrierungsversuch';
 $lang_register_php['thank_you_admin_activation'] = 'Danke.<br />Ihre Registrierung wurde an den Administrator weitergeleitet zur Aktivierung. Nach erfolgter Aktiverung werden Sie eine eMail erhalten.';
@@ -1866,11 +1866,11 @@ $lang_register_php['notify_user_email_subject'] = '%s - Aktivierungs-Benachricht
 $lang_register_php['delete_my_account'] = 'Lösche mein Benutzer-Konto'; // cpg1.5
 $lang_register_php['warning_delete'] = 'Achtung: das Löschen des Benutzer-Kontos kann nicht rückgängig gemacht werden. Die %sDateien, die Sie hochgeladen haben%s in öffentlichen Alben und die %sKommentare%s werden nicht gelöscht, wenn Sie Ihr Konto löschen! Die Dateien, die Sie in Ihre persönlichen Alben hochgeladen haben werden jedoch gelöscht.'; // cpg1.5 // The %s-placeholders mustn't be removed, they will later be replaced by the wrappers for the links
 $lang_register_php['i_am_sure'] = 'Ja, ich will mein Konto löschen'; // cpg1.5
-$lang_register_php['really_delete'] = 'Möchten Sie wirklich Ihr Benutzer-Konto löschen?'; // cpg1.5 //JS-Alert
+$lang_register_php['really_delete'] = 'Wollen Sie wirklich Ihr Benutzer-Konto löschen?'; // cpg1.5 //JS-Alert
 $lang_register_php['edit_xs_profile'] = 'Das Profil von %s bearbeiten'; // cpg1.5
 $lang_register_php['edit_my_profile'] = 'Mein Profil bearbeiten'; // cpg1.5
 $lang_register_php['none'] = 'keine'; // cpg1.5
-$lang_register_php['user_name_banned'] = 'Der gewählte Benutzername ist nicht erlaubt. Wähle einen anderen.'; // cpg1.5
+$lang_register_php['user_name_banned'] = 'Der gewählte Benutzername ist nicht erlaubt. Wählen Sie einen anderen.'; // cpg1.5
 $lang_register_php['email_address_banned'] = 'Sie sind verbannt von dieser Seite. Sie dürfen sich nicht registrieren. Gehen Sie weg!!'; // cpg1.5
 $lang_register_php['email_warning1'] = 'Das eMail-Adressfeld darf nicht leer sein!'; // cpg1.5
 $lang_register_php['email_warning2'] = 'Das Feld "Benutzername" darf nicht leer sein!'; // cpg1.5
@@ -1885,7 +1885,7 @@ $lang_register_php['banned'] = 'Verbannt'; // cpg1.5
 $lang_register_php['confirm_email'] = <<<EOT
 Danke für Ihre Registrierung bei {SITE_NAME}
 
-Um Dein Benutzerkonto zu aktivieren, müssen Sie auf den untenstehenden Link klicken oder ihn kopieren und in der Adresszeile Deines Browsers einfügen.
+Um Ihr Benutzerkonto zu aktivieren, müssen Sie auf den untenstehenden Link klicken oder ihn kopieren und in der Adresszeile Ihres Browsers einfügen.
 <a href="{ACT_LINK}">{ACT_LINK}</a>
 
 Grüße,
@@ -1895,20 +1895,20 @@ Das Team von {SITE_NAME}
 EOT;
 
 $lang_register_approve_email = <<<EOT
-Ein neuer Benutzer hat sich mit dem Benutzernamen "{USER_NAME}" in Deiner Galerie registriert.
-Um das Benutzerkonto zu aktivieren, klicke auf den untenstehenden Link oder kopiere ihn in die Adresszeile Deines Browsers.
+Ein neuer Benutzer hat sich mit dem Benutzernamen "{USER_NAME}" in Ihrer Galerie registriert.
+Um das Benutzerkonto zu aktivieren, klicken Sie auf den untenstehenden Link oder kopieren Sie ihn in die Adresszeile Ihres Browsers.
 
 <a href="{ACT_LINK}">{ACT_LINK}</a>
 
 EOT;
 
 $lang_register_php['activated_email'] = <<<EOT
-Dein Benutzerkonto wurden genehmigt und aktiviert.
+Ihr Benutzerkonto wurden genehmigt und aktiviert.
 
-Sie können Dich jetzt auf der Seite <a href="{SITE_LINK}">{SITE_LINK}</a> mit dem Benutzernamen "{USER_NAME}" anmelden.
+Sie können sich jetzt auf der Seite <a href="{SITE_LINK}">{SITE_LINK}</a> mit dem Benutzernamen "{USER_NAME}" anmelden.
 
 
-Gruss,
+Gruß,
 
 Das {SITE_NAME} Team
 
@@ -1966,7 +1966,7 @@ $lang_reviewcom_php['akismet'] = 'Akismet'; // cpg1.5
 $lang_reviewcom_php['akismet_count'] = 'Akismet bisher %s Spam-Kommentare für Dich gefunden'; // cpg1.5
 $lang_reviewcom_php['akismet_test_result'] = 'Testergebnisse für den Akismet API Schüssel %s'; // cpg1.5
 $lang_reviewcom_php['invalid'] = 'ungültig'; // cpg1.5
-$lang_reviewcom_php['missing_gallery_url'] = 'Sie müssen eine gültige URL Deines Coppermine-Galerie Verzeichnisses in den Einstellungen angeben'; // cpg1.5
+$lang_reviewcom_php['missing_gallery_url'] = 'Sie müssen eine gültige URL Ihres Coppermine-Galerie Verzeichnisses in den Einstellungen angeben'; // cpg1.5
 $lang_reviewcom_php['unable_to_connect'] = 'Konnte mit akismet.com keine Verbindung aufbauen'; // cpg1.5
 $lang_reviewcom_php['not_found'] = 'Die Ziel-URL wurde nicht gefunden. Möglicherweise hat sich die Struktur der Akismet-Seite geändert.'; // cpg1.5
 $lang_reviewcom_php['unknown_error'] = 'Unbekannter Fehler'; // cpg1.5
@@ -1980,8 +1980,8 @@ $lang_reviewcom_php['ip_address'] = 'IP-Adresse'; // cpg1.5
 if (defined('SIDEBAR_PHP')) {
 $lang_sidebar_php['sidebar'] = 'Side-Bar'; // cpg1.5
 $lang_sidebar_php['install'] = 'Installieren'; // cpg1.5
-$lang_sidebar_php['install_explain'] = 'Unter den vielen cleveren Methoden, schnellen Zugriff auf die Informationen auf dieser Seite zuzugreifen bieten wir Sidebars für die verbreitesten Browser auf den unterschiedlichsten Betriebssystemen an, damit Sie leicht auf die Seiten zugreifen können. Hier finden Sie Installationsanweisungen für die unterstützten Browser.'; // cpg1.5
-$lang_sidebar_php['os_browser_detect'] = 'Bestimme Dein Betriebssystem und Deinen Browser'; // cpg1.5
+$lang_sidebar_php['install_explain'] = 'Unter den vielen cleveren Methoden, schnellen Zugriff auf die Informationen auf dieser Seite zu erhalten bieten wir Sidebars für die verbreitesten Browser auf den unterschiedlichsten Betriebssystemen an, damit Sie leicht auf die Seiten zugreifen können. Hier finden Sie Installationsanweisungen für die unterstützten Browser.'; // cpg1.5
+$lang_sidebar_php['os_browser_detect'] = 'Bestimmes Sie Ihr Betriebssystem und Ihren Browser'; // cpg1.5
 $lang_sidebar_php['os_browser_detect_explain'] = 'Das Skript versucht, Ihr Betriebssystem und Ihren Browser zu bestimmen - bitte warten Sie einen Augenblick. Falls diese automatische Bestimmung fehlschlägt können Sie alle möglichen Sidebar-Installationen manuell %seinblenden%s.'; // cpg1.5
 $lang_sidebar_php['mozilla'] = 'Mozilla, Firefox, Netscape 6+, Konqueror 3.2+'; // cpg1.5
 $lang_sidebar_php['mozilla_explain'] = 'Wenn Sie Mozilla 0.9.4 oder besser benuten können Sie %sunsere Sidebar zu Ihren Sidebars hinzufügen%s. Sie können die Sidebar wieder deinstallieren mit Hilfe des Dialogfelds "Sidebar anpassen" in Mozilla.'; // cpg1.5
@@ -2054,13 +2054,13 @@ $lang_search_new_php['notes'] = <<< EOT
     <ul>
         <li>%s: bedeuted, dass die Datei erfolgreich hinzugefügt wurde</li>
         <li>%s: bedeutet, dass die Datei ein Duplikat ist und schon in der Datenbank vorhanden ist</li>
-        <li>%s: bedeutet, dass die Datei nicht hinzugefügt werden konnte; überprüfe Ihre Einstellungen und die Berechtigungen der Verzeichnisse, in dem die Dateien liegen</li>
+        <li>%s: bedeutet, dass die Datei nicht hinzugefügt werden konnte; überprüfen Sie Ihre Einstellungen und die Berechtigungen der Verzeichnisse, in dem die Dateien liegen</li>
         <li>%s: bedeutet, dass Sie kein Album gewählt haben, in das die Dateien eingefügt werden können</li>
         <li>%s: bedeutet, dass die Datei kaputt oder nicht verfügbar ist</li>
         <li>%s: unbekannter Datei-Typ</li>
         <li>%s: die Datei ist eigentlich ein umbenanntes GIF</li>
         <li>Falls keines der Icons erscheint, klicke auf die nicht-funktionierenden Bilder, um die Fehlermeldungen von PHP zu sehen</li>
-        <li>Wenn Dein Browser in ein Timeout läuft, klicke auf die Aktualisieren-Schaltfläche</li>
+        <li>Wenn Ihr Browser in ein Timeout läuft, klicken Sie auf die Aktualisieren-Schaltfläche</li>
    </ul>
 EOT;
 $lang_search_new_php['check_all'] = 'alle auswählen';
@@ -2154,7 +2154,7 @@ $lang_upload_php['up_instr_3'] = 'Wählen Sie mehrere Dateien zum Hochladen aus,
 $lang_upload_php['up_instr_4'] = 'Klicke auf die "Weiter"-Schaltfläche, nachdem Sie alle gewünschten Dateien ausgewählt haben (Die Schaltfäche erscheint erst, nachdem Sie mindestens eine Datei ausgewählt haben).';
 $lang_upload_php['up_instr_5'] = 'Anschließend können Sie (falls gewünscht) in einem weiteren Formular zusätzliche Informationen zu Ihren hochgeladenen Dateien eingeben. Nach dem Ausfüllen des Formulars müssen Sie es absenden mit der Schaltfäche "Änderungen speichern" ganz unten auf der Seite.';
 $lang_upload_php['restriction_zip'] = 'ZIP-Dateien werden nicht entpackt und bleiben weiterhin gepackte ZIP-Archive - sie werden nicht entpackt.';
-$lang_upload_php['restriction_filesize'] = 'Die Größe der von Deinem Rechner auf den Server hochgeladenen Dateien sollte pro Datei nicht %s KB überschreiten.';
+$lang_upload_php['restriction_filesize'] = 'Die Größe der von Ihrem Rechner auf den Server hochgeladenen Dateien sollte pro Datei nicht %s KB überschreiten.';
 $lang_upload_php['reg_instr_1'] = 'Unzulässige Aktion bei der Formular-Erzeugung.';
 $lang_upload_php['no_name'] = 'Dateiname nicht verfügbar'; // cpg 1.5
 $lang_upload_php['no_tmp_name'] = 'Konnte Datei nicht Hochladen'; // cpg 1.5
@@ -2169,7 +2169,7 @@ $lang_upload_php['impossible'] = 'Kann nicht verschieben.';
 $lang_upload_php['not_image'] = 'kein Bild/korrupt';
 $lang_upload_php['not_GD'] = 'Keine GD-Erweiterung.';
 $lang_upload_php['pixel_allowance'] = 'maximale Bild-Abmessungen (Pixel-Größe) überschritten.';
-$lang_upload_php['add'] = 'Klicke auf \'weiter\', um die Dateien den Alben hinzuzufügen.';
+$lang_upload_php['add'] = 'Klicken Sie auf \'weiter\', um die Dateien den Alben hinzuzufügen.';
 $lang_upload_php['failure'] = 'Upload-Fehler';
 $lang_upload_php['no_place'] = 'Die vorhergehende Datei konnte nicht gesetzt werden.';
 $lang_upload_php['max_fsize'] = 'Maximal erlaubte Dateigröße ist %s';
@@ -2193,7 +2193,7 @@ $lang_upload_php['err_js_disabled'] = 'Die Flash-basierte Benutzerschnittstelle 
 $lang_upload_php['err_flash_disabled'] = 'Die Benutzerschnittstelle zum Hochladen braucht sehr lange, um zu laden, oder der Ladevorgang ist fehlgeschlagen. Bitte stelle sicher, dass das Flash-Plugin des Browsers aktiviert ist und dass eine funktionierende Version von Flash installiert ist.'; // cpg1.5
 $lang_upload_php['err_alternate_method'] = 'Alternativ kann die <a href="upload.php?single=1">einfache</a> Benutzer-Schnittstelle zum Hochladen verwendet werden.'; // cpg1.5
 $lang_upload_php['err_flash_version'] = 'Benutzer-Schnittstelle zum Hochladen konnte nicht geladen werden. Möglicherweise muss der Flash_player installiert oder aktualisiert werden. Besuche die Webseite von <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe </a>, um einen Flash-Player herunter zu laden.'; // cpg1.5
-$lang_upload_php['flash_loading'] = 'Die Benutzerschnittstelle zum Hochalden wird gerade geladen. Einen Moment bitte...'; // cpg1.5
+$lang_upload_php['flash_loading'] = 'Die Benutzerschnittstelle zum Hochladen wird gerade geladen. Einen Moment bitte...'; // cpg1.5
 $lang_upload_swf_php['browse'] = 'Durchsuchen...'; //cpg1.5
 $lang_upload_swf_php['cancel_all'] = 'Alle Uploads abbrechen'; //cpg1.5
 $lang_upload_swf_php['upload_queue'] = 'Upload-Warteschlange'; //cpg1.5
@@ -2300,7 +2300,7 @@ $lang_usermgr_php['modify'] = 'Ändern?';
 $lang_usermgr_php['group_no_access'] = 'Diese Gruppe hat keine besondern Berechtigungen';
 $lang_usermgr_php['notice'] = 'Anmerkung';
 $lang_usermgr_php['group_can_access'] = 'Album/Alben, auf das/die nur "%s" zugreifen kann';
-$lang_usermgr_php['send_login_data'] = 'Anmeldungsdaten an diesen Benutzer versenden (Passwort wird per eemail gesendet)'; //cpg1.5
+$lang_usermgr_php['send_login_data'] = 'Anmeldungsdaten an diesen Benutzer versenden (Passwort wird per email gesendet)'; //cpg1.5
 $lang_usermgr_php['send_login_email_subject'] = 'Ihre neuen Zugangsdaten'; //cpg1.5
 $lang_usermgr_php['failed_sending_email'] = 'Die eMail mit den Zugangsdaten konnte nicht versendet werden!'; //cpg1.5
 $lang_usermgr_php['view_profile'] = 'Profil anzeigen'; // cpg1.5
@@ -2313,9 +2313,9 @@ $lang_usermgr_php['status_inactive'] = 'inaktiv'; // cpg1.5
 $lang_usermgr_php['total'] = 'Summe'; // cpg1.5
 
 $lang_usermgr_php['send_login_data_email'] = <<<EOT
-Ein neues Benutzerkonto wurde für Dich erzeugt für die Seite {SITE_NAME}.
+Ein neues Benutzerkonto wurde für Sie erzeugt für die Seite {SITE_NAME}.
 
-Sie können Dich jetzt anmelden unter <a href="{SITE_LINK}">{SITE_LINK}</a> mit dem Benutzernamen "{USER_NAME}" und dem Passwort "{USER_PASS}"
+Sie können sich jetzt anmelden unter <a href="{SITE_LINK}">{SITE_LINK}</a> mit dem Benutzernamen "{USER_NAME}" und dem Passwort "{USER_PASS}"
 
 
 Mit freundlichen Grüssen,
@@ -2331,13 +2331,13 @@ EOT;
 if (defined('UPDATE_PHP')) {
 $lang_update_php['title'] = 'Updater'; // cpg1.5
 $lang_update_php['welcome_updater'] = 'Willkommen beim Coppermine-Update'; // cpg1.5
-$lang_update_php['could_not_authenticate'] = 'Konnte Dich nicht autentifizieren'; // cpg1.5
+$lang_update_php['could_not_authenticate'] = 'Konnte Sie nicht autentifizieren'; // cpg1.5
 $lang_update_php['provide_admin_account'] = 'Bitte ein Coppermine-Admin-Konto eingeben oder die mySQL-Zugangsdaten'; // cpg1.5
-$lang_update_php['try_again'] = 'Versuche es nochmal'; // cpg1.5
+$lang_update_php['try_again'] = 'Versuchen Sie es nochmal'; // cpg1.5
 $lang_update_php['mysql_connect_error'] = 'Konnte keine MySQL-Verbindung aufbauen'; // cpg1.5
 $lang_update_php['mysql_database_error'] = 'MySQL konnte die Datenbank namens %s nicht finden'; // cpg1.5
 $lang_update_php['mysql_said'] = 'MySQL sagte'; // cpg1.5
-$lang_update_php['check_config_file'] = 'Bitte überprüfe die SQL-Werte in %s'; // cpg1.5
+$lang_update_php['check_config_file'] = 'Bitte überprüfen Sie die SQL-Werte in %s'; // cpg1.5
 $lang_update_php['performing_database_updates'] = 'Führe Datenbank-Updates durch'; // cpg1.5
 $lang_update_php['performing_file_updates'] = 'Führe Datei-Updates durch'; // cpg1.5
 $lang_update_php['already_done'] = 'Bereits durchgeführt'; // cpg1.5
@@ -2475,7 +2475,7 @@ $lang_versioncheck_php['newer'] = 'neuer als %s';
 $lang_versioncheck_php['modified'] = 'verändert';
 $lang_versioncheck_php['not_modified'] = 'unverändert'; // cpg1.5
 $lang_versioncheck_php['needs_change'] = 'muss geändert werden';
-$lang_versioncheck_php['review_permissions'] = 'Überprüfe Berechtigungen';
+$lang_versioncheck_php['review_permissions'] = 'Überprüfen Sie Berechtigungen';
 $lang_versioncheck_php['inaccessible'] = 'Kann auf Datei nicht zugreifen';
 $lang_versioncheck_php['review_version'] = 'Ihre Datei ist veraltet';
 $lang_versioncheck_php['review_dev_version'] = 'Ihre Datei ist neuer als erwartet';
@@ -2538,38 +2538,38 @@ $lang_xp_publish_php['client_header'] = 'XP Web Publishing Assistent Client';  /
 $lang_xp_publish_php['requirements'] = 'Anforderungen'; // cpg1.5
 $lang_xp_publish_php['windows_xp'] = 'Windows XP / Vista'; // cpg1.5
 $lang_xp_publish_php['no_windows_xp'] = 'Sie scheinen ein anderes, nicht unterstütztes Betriebssystem zu benutzen'; // cpg1.5
-$lang_xp_publish_php['no_os_detect'] = 'Konnte Dein Betriebssystem nicht detektieren'; // cpg1.5
+$lang_xp_publish_php['no_os_detect'] = 'Konnte Ihr Betriebssystem nicht detektieren'; // cpg1.5
 $lang_xp_publish_php['requirement_http_upload'] = 'Eine funktionierende Coppermine-Installation mit funktionierenden http-Uploads'; // cpg1.5
 $lang_xp_publish_php['requirement_ie'] = 'Microsoft Internet Explorer'; // cpg1.5
-$lang_xp_publish_php['requirement_permissions'] = 'Der Galerie-Admin muss Dir die Berechtigung eingeräumt haben, Dateien hochzuladen'; // cpg1.5
+$lang_xp_publish_php['requirement_permissions'] = 'Der Galerie-Admin muss Ihnen die Berechtigung eingeräumt haben, Dateien hochzuladen'; // cpg1.5
 $lang_xp_publish_php['requirement_login'] = 'Sie müssen angemeldet sein, um Dateien hochladen zu können'; // cpg1.5
 $lang_xp_publish_php['no_ie'] = 'Sie schönen einen anderen, nicht unterstützten Browser zu benutzen'; // cpg1.5
-$lang_xp_publish_php['no_browser_detect'] = 'Konnte Deinen Browser nicht detektieren'; // cpg1.5
+$lang_xp_publish_php['no_browser_detect'] = 'Konnte Ihren Browser nicht detektieren'; // cpg1.5
 $lang_xp_publish_php['no_gallery_name'] = 'Sie müssen einen Galerie-Namen in den Einstellungen angeben'; // cpg1.5
 $lang_xp_publish_php['no_gallery_description'] = 'Sie müssen eine Galerie-Beschreibung in den Einstellungen angeben'; // cpg1.5
 $lang_xp_publish_php['howto_install'] = 'Installation'; // cpg1.5
-$lang_xp_publish_php['install_right_click'] = 'Rechts-Klicke auf %sdiesen Link%s und wähle &quot;Ziel speichern unter...&quot;'; // cpg1.5 // translator note: don't replace the %s - that placeholder token needs to go untranslated
+$lang_xp_publish_php['install_right_click'] = 'Rechts-Klicken Sie auf %sdiesen Link%s und wählen Sie &quot;Ziel speichern unter...&quot;'; // cpg1.5 // translator note: don't replace the %s - that placeholder token needs to go untranslated
 $lang_xp_publish_php['install_save'] = 'Speichern Sie die Datei auf Ihrem Rechner. Stellen Sie beim Speichern sicher, dass der vorgeschlagene Dateiname <tt>cpg_###.reg</tt> lautet (die Rauten repräsentieren einen numerischen Zeitstempel). Änderen Sie die Erweiterung falls nötig auf .reg (lassen Sie die Zahlen unverändert)'; // cpg1.5
 $lang_xp_publish_php['install_execute'] = 'Nach der Beendigung des Downloads führen Sie die Datei aus durch Doppelklicken, um den Dienst in Ihrem Web-Veröffentlichungs-Dienst zu registrieren';  // cpg1.5
 $lang_xp_publish_php['usage'] = 'Benutzung';  // cpg1.5
 $lang_xp_publish_php['select_files'] = 'Markieren Sie im Windows Explorer die Dateien, die Sie hochladen wollen'; // cpg1.5
-$lang_xp_publish_php['display_tasks'] = 'Stelle sicher, dass die Verzeichnis-Struktur im linken Teil des Explorer-Fensters NICHT angezeigt wird'; // cpg1.5
+$lang_xp_publish_php['display_tasks'] = 'Stellen Sie sicher, dass die Verzeichnis-Struktur im linken Teil des Explorer-Fensters NICHT angezeigt wird'; // cpg1.5
 $lang_xp_publish_php['publish_on_the_web'] = 'Klicke auf &quot;Im Web veröffentlichen&quot; im linken Explorer-Fenster'; // cpg1.5
 $lang_xp_publish_php['confirm_selection'] = 'Bestätige die Datei-Auswahl'; // cpg1.5
 $lang_xp_publish_php['select_service'] = 'Wähle aus der Liste der zur Verfügung stehenden Dienste den Deiner Galerie aus (er trägt den Namen der Galerie).'; // cpg1.5
 $lang_xp_publish_php['enter_login'] = 'Geben Sie Ihre Anmelde-Daten ein, falls Sie dazu aufgefordert werden'; // cpg1.5
-$lang_xp_publish_php['select_album'] = 'Wähle des Ziel-Album oder erzeuge ein neues Album'; // cpg1.5
-$lang_xp_publish_php['next'] = 'Klicke auf &quot;weiter&quot;'; // cpg1.5
-$lang_xp_publish_php['upload_starts'] = 'Der Hochlade-Vorgang Deiner gewählten Bilder sollte starten'; // cpg1.5
-$lang_xp_publish_php['upload_completed'] = 'Überprüfe nach erfolgtem Upload, ob der Vorgang erfolgreich war'; // cpg1.5
+$lang_xp_publish_php['select_album'] = 'Wählen Sie des Ziel-Album oder erzeugen Sie ein neues Album'; // cpg1.5
+$lang_xp_publish_php['next'] = 'Klicken Sie auf &quot;weiter&quot;'; // cpg1.5
+$lang_xp_publish_php['upload_starts'] = 'Der Hochlade-Vorgang Ihrer gewählten Bilder sollte starten'; // cpg1.5
+$lang_xp_publish_php['upload_completed'] = 'Überprüfen Sie nach erfolgtem Upload, ob der Vorgang erfolgreich war'; // cpg1.5
 $lang_xp_publish_php['welcome'] = 'Hallo <strong>%s</strong>,';
 $lang_xp_publish_php['need_login'] = 'Sie müssen sich per Internet Explorer erst anmelden, bevor Sie diesen Assistenten benutzen können.<p/><p>Vergessen Sie nicht, die Option "merken" zu aktivieren, wenn verfügbar.';
 $lang_xp_publish_php['no_alb'] = 'Leider gibt es kein Album, in das Sie mit diesem Assistenten Bilder hochladen dürfen.';
 $lang_xp_publish_php['upload'] = 'Bilder in ein bestehendes Album hochladen';
 $lang_xp_publish_php['create_new'] = 'Neues Album für die Bilder erzeugen';
 $lang_xp_publish_php['category'] = 'Kategorie';
-$lang_xp_publish_php['new_alb_created'] = 'Dein neues Album &quot;<strong>%s</strong>&quot; wurde erzeugt.';
-$lang_xp_publish_php['continue'] = 'Drücke &quot;weiter&quot;, um mit dem Hochladen zu beginnen';
+$lang_xp_publish_php['new_alb_created'] = 'Ihr neues Album &quot;<strong>%s</strong>&quot; wurde erzeugt.';
+$lang_xp_publish_php['continue'] = 'Drücken Sie &quot;weiter&quot;, um mit dem Hochladen zu beginnen';
 $lang_xp_publish_php['link'] = '';
 }
 
@@ -2584,16 +2584,16 @@ $lang_plugin_php['sample_config_name'] = 'Sample Plugin'; // cpg1.5
 $lang_plugin_php['sample_config_description'] = 'Dies ist ein Beispiel-Plugin. Es macht nichts wirklich nützliches - es soll nur demonstrieren, wozu Plugins genutzt werden können und wie sie programmiert werden. Wenn das Plugin aktiviert ist wird ein Besipieltext in rot angezeigt.'; // cpg1.5
 $lang_plugin_php['sample_plugin_documentation'] = 'Plugin Dokumentation'; // cpg1.5
 $lang_plugin_php['sample_plugin_support'] = 'Plugin Support'; // cpg1.5
-$lang_plugin_php['sample_install_explain'] = 'Gib den Benutzernamen (\'foo\') und das Passwort (\'bar\') ein, um das Plugin zu installieren'; // cpg1.5
+$lang_plugin_php['sample_install_explain'] = 'Geben Sie den Benutzernamen (\'foo\') und das Passwort (\'bar\') ein, um das Plugin zu installieren'; // cpg1.5
 $lang_plugin_php['sample_install_username'] = 'Benutzernamen'; // cpg1.5
 $lang_plugin_php['sample_install_password'] = 'Passwort'; // cpg1.5
 $lang_plugin_php['sample_output'] = 'Dies ist nur beispielhafter Seiteninhalt, der vom &quot;Sample Plugin&quot; zurückgeliefert wird'; // cpg1.5
 $lang_plugin_php['opensearch_config_name'] = 'OpenSearch'; // cpg1.5
-$lang_plugin_php['opensearch_config_description'] = 'Eine Implementierung von <a href="http://www.opensearch.org/" rel="external" class="external">OpenSearch</a> für Coppermine.<br />Wenn das Plugin aktiviert ist können Besucher der Seite Dein Galerie zur Suchleiste Ihres Browsers hinzufügen.'; // cpg1.5
+$lang_plugin_php['opensearch_config_description'] = 'Eine Implementierung von <a href="http://www.opensearch.org/" rel="external" class="external">OpenSearch</a> für Coppermine.<br />Wenn das Plugin aktiviert ist können Besucher der Seite Ihre Galerie zur Suchleiste Ihres Browsers hinzufügen.'; // cpg1.5
 $lang_plugin_php['opensearch_search'] = 'Durchsuche %s'; // cpg1.5
 $lang_plugin_php['opensearch_extra'] = 'Möglicherweise sollten Sie eine Erklärung auf Ihrer Seite veröffentlichen, in der erklärt wird, was dieses Plugin tut'; // cpg1.5
-$lang_plugin_php['opensearch_failed_to_open_file'] = 'Konnte Datei %s nicht öffnen - überprüfe die Berechtigungen'; // cpg1.5
-$lang_plugin_php['opensearch_failed_to_write_file'] = 'Konnte Datei %s nicht schreiben - überprüfe die Berechtigungen'; // cpg1.5
+$lang_plugin_php['opensearch_failed_to_open_file'] = 'Konnte Datei %s nicht öffnen - überprüfen Sie die Berechtigungen'; // cpg1.5
+$lang_plugin_php['opensearch_failed_to_write_file'] = 'Konnte Datei %s nicht schreiben - überprüfen Sie die Berechtigungen'; // cpg1.5
 $lang_plugin_php['opensearch_form_header'] = 'Gib hier die Details ein, die für die Beschreibungs-Datei verwendet werden sollen'; // cpg1.5
 $lang_plugin_php['opensearch_gallery_url'] = 'URL der Galerie (muss stimmen)'; // cpg1.5
 $lang_plugin_php['opensearch_display_name'] = 'Anzeigename im Browser'; // cpg1.5
