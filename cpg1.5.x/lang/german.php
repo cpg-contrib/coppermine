@@ -1619,8 +1619,8 @@ $lang_langmgr_php['enable_default'] = 'Du hast eine Sprache als Standard gewähl
 $lang_langmgr_php['available_default'] = 'Du hast eine Standard Sprache gewählt, die nicht verfügbar ist. Wähle eine andere!';
 $lang_langmgr_php['version_does_not_match'] = 'Die Version dieser Datei stimmt nicht mit der Deiner Galerie überein. Benutze sie nur unter Vorbehalt The versiound teste sie ausgiebig!';
 $lang_langmgr_php['no_version'] = 'Es konnte keine Versions-Information abgerufen werden. Sehr wahrscheinlich handelt wird diese Sprachdatei nicht funktionieren oder es handelt sich gar nicht um eine korrekte Sprachdatei.';
-$lang_langmgr_php['filesize'] = 'Filesize %s is implausible';
-$lang_langmgr_php['content_missing'] = 'Die Datei enthält nicht die notwendigen Daten und ist daher wharscheinlich keine funktionierende Sprachdatei.';
+$lang_langmgr_php['filesize'] = 'Dateigröße %s ist unplausibel';
+$lang_langmgr_php['content_missing'] = 'Die Datei enthält nicht die notwendigen Daten und ist daher wahrscheinlich keine funktionierende Sprachdatei.';
 $lang_langmgr_php['status'] = 'Status';
 $lang_langmgr_php['default_language'] = 'Standard-Sprache auf %s gesetzt';
 }
@@ -1853,7 +1853,7 @@ $lang_register_php['pass_chg_success'] = 'Dein Passwort wurde geändert';
 $lang_register_php['pass_chg_error'] = 'Dein Passwort wurde nicht geändert';
 $lang_register_php['notify_admin_email_subject'] = '%s - Registrierungs-Benachrichtigung';
 $lang_register_php['last_uploads'] = 'Zuletzt hochgeladene Datei'; //cpg1.5
-$lang_register_php['last_uploads_detail'] = 'Klicke hier, um all Uploads von %s zu sehen'; //cpg1.5
+$lang_register_php['last_uploads_detail'] = 'Klicke hier, um alle Uploads von %s zu sehen'; //cpg1.5
 $lang_register_php['last_comments'] = 'Letzter Kommentar'; //cpg1.5
 $lang_register_php['you'] = 'Du'; //cpg1.5
 $lang_register_php['last_comments_detail'] = 'Klicke hier, um alle Kommentare von %s zu sehen'; //cpg1.5
@@ -1866,7 +1866,7 @@ $lang_register_php['notify_user_email_subject'] = '%s - Aktivierungs-Benachricht
 $lang_register_php['delete_my_account'] = 'Lösche mein Benutzer-Konto'; // cpg1.5
 $lang_register_php['warning_delete'] = 'Achtung: das Löschen des Benutzer-Kontos kann nicht rückgängig gemacht werden. Die %sDateien, die Du hochgeladen hast%s in öffentlichen Alben und die %sKommentare%s werden nicht gelöscht, wenn Du Dein Konto löschst! Die Dateien, die Du in Deine persönlichen Alben hochgeladen hast werden jedoch gelöscht.'; // cpg1.5 // The %s-placeholders mustn't be removed, they will later be replaced by the wrappers for the links
 $lang_register_php['i_am_sure'] = 'Ja, ich will mein Konto löschen'; // cpg1.5
-$lang_register_php['really_delete'] = 'Möchtest Du wirklich Dein Benutzer-Konto löschen?'; // cpg1.5 //JS-Alert
+$lang_register_php['really_delete'] = 'Willst Du wirklich Dein Benutzer-Konto löschen?'; // cpg1.5 //JS-Alert
 $lang_register_php['edit_xs_profile'] = 'Das Profil von %s bearbeiten'; // cpg1.5
 $lang_register_php['edit_my_profile'] = 'Mein Profil bearbeiten'; // cpg1.5
 $lang_register_php['none'] = 'keine'; // cpg1.5
@@ -1908,7 +1908,7 @@ Dein Benutzerkonto wurden genehmigt und aktiviert.
 Du kannst Dich jetzt auf der Seite <a href="{SITE_LINK}">{SITE_LINK}</a> mit dem Benutzernamen "{USER_NAME}" anmelden.
 
 
-Gruss,
+Gruß,
 
 Das {SITE_NAME} Team
 
@@ -2193,7 +2193,7 @@ $lang_upload_php['err_js_disabled'] = 'Die Flash-basierte Benutzerschnittstelle 
 $lang_upload_php['err_flash_disabled'] = 'Die Benutzerschnittstelle zum Hochladen braucht sehr lange, um zu laden, oder der Ladevorgang ist fehlgeschlagen. Bitte stelle sicher, dass das Flash-Plugin des Browsers aktiviert ist und dass eine funktionierende Version von Flash installiert ist.'; // cpg1.5
 $lang_upload_php['err_alternate_method'] = 'Alternativ kann die <a href="upload.php?single=1">einfache</a> Benutzer-Schnittstelle zum Hochladen verwendet werden.'; // cpg1.5
 $lang_upload_php['err_flash_version'] = 'Benutzer-Schnittstelle zum Hochladen konnte nicht geladen werden. Möglicherweise muss der Flash_player installiert oder aktualisiert werden. Besuche die Webseite von <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe </a>, um einen Flash-Player herunter zu laden.'; // cpg1.5
-$lang_upload_php['flash_loading'] = 'Die Benutzerschnittstelle zum Hochalden wird gerade geladen. Einen Moment bitte...'; // cpg1.5
+$lang_upload_php['flash_loading'] = 'Die Benutzerschnittstelle zum Hochladen wird gerade geladen. Einen Moment bitte...'; // cpg1.5
 $lang_upload_swf_php['browse'] = 'Durchsuchen...'; //cpg1.5
 $lang_upload_swf_php['cancel_all'] = 'Alle Uploads abbrechen'; //cpg1.5
 $lang_upload_swf_php['upload_queue'] = 'Upload-Warteschlange'; //cpg1.5
@@ -2300,7 +2300,7 @@ $lang_usermgr_php['modify'] = 'Ändern?';
 $lang_usermgr_php['group_no_access'] = 'Diese Gruppe hat keine besondern Berechtigungen';
 $lang_usermgr_php['notice'] = 'Anmerkung';
 $lang_usermgr_php['group_can_access'] = 'Album/Alben, auf das/die nur "%s" zugreifen kann';
-$lang_usermgr_php['send_login_data'] = 'Anmeldungsdaten an diesen Benutzer versenden (Passwort wird per eemail gesendet)'; //cpg1.5
+$lang_usermgr_php['send_login_data'] = 'Anmeldungsdaten an diesen Benutzer versenden (Passwort wird per email gesendet)'; //cpg1.5
 $lang_usermgr_php['send_login_email_subject'] = 'Deine neuen Zugangsdaten'; //cpg1.5
 $lang_usermgr_php['failed_sending_email'] = 'Die eMail mit den Zugangsdaten konnte nicht versendet werden!'; //cpg1.5
 $lang_usermgr_php['view_profile'] = 'Profil anzeigen'; // cpg1.5
