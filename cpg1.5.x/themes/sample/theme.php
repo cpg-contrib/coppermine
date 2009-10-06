@@ -849,18 +849,26 @@ $template_img_navbar = <<<EOT
 <!-- BEGIN ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48"><a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}" rel="nofollow"><img src="{LOCATION}images/navbar/ecard.png"  border="0" align="middle" alt="{ECARD_TITLE}" /></a></td>
 <!-- END ecard_button -->
+<!-- BEGIN nav_start -->
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{START_TGT}" class="navmenu_pic" title="{START_TITLE}"><img src="{LOCATION}images/navbar/{START_IMAGE}" border="0" align="middle" alt="{START_TITLE}" /></a></td>
+<!-- END nav_start -->
 <!-- BEGIN nav_prev -->
                 <td align="center" valign="middle" class="navmenu" width="48"><a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/navbar/{PREV_IMAGE}" border="0" align="middle" alt="{PREV_TITLE}" /></a></td>
 <!-- END nav_prev -->
 <!-- BEGIN nav_next -->
                 <td align="center" valign="middle" class="navmenu" width="48"><a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/navbar/{NEXT_IMAGE}" border="0" align="middle" alt="{NEXT_TITLE}" /></a></td>
 <!-- END nav_next -->
+<!-- BEGIN nav_end -->
+                <td align="center" valign="middle" class="navmenu" width="48"><a href="{END_TGT}" class="navmenu_pic" title="{END_TITLE}"><img src="{LOCATION}images/navbar/{END_IMAGE}" border="0" align="middle" alt="{END_TITLE}" /></a></td>
+<!-- END nav_end -->
+
         </tr>
 
 EOT;
 /******************************************************************************
 ** Section <<<$template_img_navbar>>> - END
 ******************************************************************************/
+} //{THEMES}
 
 
 
@@ -3397,27 +3405,24 @@ function theme_html_img_nav_menu() {
     $page = ceil(($pos + 1) / ($CONFIG['thumbrows'] * $CONFIG['thumbcols']));
     $pid = $CURRENT_PIC_DATA['pid'];
 
-    $start = 0;
-
+    if ($pos > 0) {
+        $start = 0;
         //$start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$start"; // Abbas - added pid in URL instead of pos
         $start_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$start]['pid']}";
         $start_title = $lang_img_nav_bar['go_album_start'];
         $meta_nav .= "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />" . $LINEBREAK;
-        $end = $pic_count - 1;
-        //$end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$end";// Abbas - added pid in URL instead of pos
-        $end_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$end]['pid']}";
-        $end_title = $lang_img_nav_bar['go_album_end'];
-        $meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />" . $LINEBREAK;
+        $start_image = (($lang_text_dir == 'ltr') ? 'start.png' : 'end.png');
 
-    if ($pos > 0) {
         $prev = $pos - 1;
         //$prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev$uid_link";// Abbas - added pid in URL instead of pos
         if ($album == 'lastcom' || $album == 'lastcomby') {
             $page = cpg_get_comment_page_number($pic_data[$prev]['msg_id']);
             $page = (is_numeric($page)) ? "&amp;page=$page" : '';
             $prev_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link&amp;msg_id={$pic_data[$prev]['msg_id']}$page#comment{$pic_data[$prev]['msg_id']}";
+            $start_tgt .= "$uid_link&amp;msg_id={$pic_data[$start]['msg_id']}$page#comment{$pic_data[$start]['msg_id']}";
         } else {
             $prev_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$prev]['pid']}$uid_link#top_display_media";
+            $start_tgt .= "$uid_link#top_display_media";
         }
         $prev_title = $lang_img_nav_bar['prev_title'];
         $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />" . $LINEBREAK;
@@ -3427,17 +3432,29 @@ function theme_html_img_nav_menu() {
         $prev_tgt = "javascript:;";
         $prev_title = "";
         $prev_image = (($lang_text_dir == 'ltr') ? 'prev_inactive.png' : 'next_inactive.png');
+        $start_tgt = "javascript:;";
+        $start_title = "";
+        $start_image = (($lang_text_dir == 'ltr') ? 'start_inactive.png' : 'end_inactive.png');
     }
 
     if ($pos < ($pic_count -1)) {
+        $end = $pic_count - 1;
+        //$end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$end";// Abbas - added pid in URL instead of pos
+        $end_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$end]['pid']}";
+        $end_title = $lang_img_nav_bar['go_album_end'];
+        $meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />" . $LINEBREAK;
+        $end_image = (($lang_text_dir == 'ltr') ? 'end.png' : 'start.png');
+
         $next = $pos + 1;
         //$next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next$uid_link";// Abbas - added pid in URL instead of pos
         if ($album == 'lastcom' || $album == 'lastcomby') {
             $page = cpg_get_comment_page_number($pic_data[$next]['msg_id']);
             $page = (is_numeric($page)) ? "&amp;page=$page" : '';
             $next_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link&amp;msg_id={$pic_data[$next]['msg_id']}$page#comment{$pic_data[$next]['msg_id']}";
+            $end_tgt .= "$uid_link&amp;msg_id={$pic_data[$end]['msg_id']}$page#comment{$pic_data[$end]['msg_id']}";
         } else {
             $next_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link&amp;pid={$pic_data[$next]['pid']}$uid_link#top_display_media";
+            $end_tgt .= "$uid_link#top_display_media";
         }
         $next_title = $lang_img_nav_bar['next_title'];
         $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>" . $LINEBREAK;
@@ -3447,6 +3464,9 @@ function theme_html_img_nav_menu() {
         $next_tgt = "javascript:;";
         $next_title = "";
         $next_image = (($lang_text_dir == 'ltr') ? 'next_inactive.png' : 'prev_inactive.png');
+        $end_tgt = "javascript:;";
+        $end_title = "";
+        $end_image = (($lang_text_dir == 'ltr') ? 'end_inactive.png' : 'start_inactive.png');
     }
 
     if (USER_CAN_SEND_ECARDS) {
@@ -3497,12 +3517,18 @@ function theme_html_img_nav_menu() {
         '{PIC_POS}' => $pic_pos,
         '{ECARD_TGT}' => $ecard_tgt,
         '{ECARD_TITLE}' => $ecard_title,
+        '{START_TGT}' => $start_tgt,
+        '{START_TITLE}' => $start_title,
+        '{START_IMAGE}' => $start_image,
         '{PREV_TGT}' => $prev_tgt,
         '{PREV_TITLE}' => $prev_title,
         '{PREV_IMAGE}' => $prev_image,
         '{NEXT_TGT}' => $next_tgt,
         '{NEXT_TITLE}' => $next_title,
         '{NEXT_IMAGE}' => $next_image,
+        '{END_TGT}' => $end_tgt,
+        '{END_TITLE}' => $end_title,
+        '{END_IMAGE}' => $end_image,
         '{REPORT_TGT}' => $report_tgt,
         '{REPORT_TITLE}' => $lang_img_nav_bar['report_title'],
         '{LOCATION}' => $location,
@@ -3513,6 +3539,7 @@ function theme_html_img_nav_menu() {
 /******************************************************************************
 ** Section <<<theme_html_img_nav_menu>>> - END
 ******************************************************************************/
+}  //{THEMES}
 
 
 

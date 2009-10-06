@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-10-06 [A] Added navbar buttons for first/last file (thread 61335) {eenemeenemuu}
 2009-10-06 [A] Added Finnish language file (user contribution) {GauGau}
 2009-10-02 [A] Added formal German language file {GauGau}
 2009-10-02 [C] Hide noscript table rows if JavaScript is enabled {eenemeenemuu}
