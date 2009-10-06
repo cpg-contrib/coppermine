@@ -9966,6 +9966,14 @@
     <hash>5fc58db7b2936c2874fab78214563c70</hash>
   </element>
   <element>
+    <fullpath>lang/finnish.php</fullpath>
+    <version>1.5.2</version>
+    <revision>6606</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>e9e5648099d449264a11acbbb25a62a9</hash>
+  </element>
+  <element>
     <fullpath>lang/french.php</fullpath>
     <version>1.5.2</version>
     <revision>6606</revision>
