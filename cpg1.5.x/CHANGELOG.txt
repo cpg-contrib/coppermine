@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-10-07 [B] Fixed several issues with picture editor (thread ID 61789) {eenemeenemuu}
 2009-10-07 [B] Set correct owner id for personal albums during upgrade process (thread ID 61715) {eenemeenemuu}
 2009-10-07 [B] Fixed editpics permission error (thread ID 62045) {eenemeenemuu}
 2009-10-06 [A] Added navbar buttons for first/last file (thread ID 61335) {eenemeenemuu}

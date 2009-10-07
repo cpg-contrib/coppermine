@@ -315,7 +315,7 @@ $json_script = "<script type=\"text/javascript\">var js_vars = eval('($json_vars
 if ($superCage->get->keyExists('id')) {
         $get_id = $superCage->get->getInt('id');
     } else {
-        $get_int = $superCage->post->getInt('id');
+        $get_id = $superCage->post->getInt('id');
     }
 ?>
 <input type="hidden" name="id" value="<?php print ($get_id); ?>" />
