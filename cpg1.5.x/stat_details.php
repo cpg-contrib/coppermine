@@ -185,10 +185,15 @@ $icon_array['hits'] = cpg_fetch_icon('info', 1);
             $configChangesApplied = $lang_stat_details_php['upd_success'];
         }
         //if ($_GET['emptyhitstats'] == TRUE || $_GET['emptyvotestats'] == TRUE) {
-        if ($superCage->get->getEscaped('emptyhitstats') == TRUE || $superCage->get->getEscaped('emptyvotestats') == TRUE) {
+        if ($superCage->get->getEscaped('emptyhitstats') == TRUE) {
             cpg_db_query("DELETE FROM {$CONFIG['TABLE_HIT_STATS']}");
             $configChangesApplied = $lang_stat_details_php['upd_success'];
         }
+        if ($superCage->get->getEscaped('emptyvotestats') == TRUE) {
+            cpg_db_query("DELETE FROM {$CONFIG['TABLE_VOTE_STATS']}");
+            $configChangesApplied = $lang_stat_details_php['upd_success'];
+        }
+
     }
 // perform database write queries if needed - end
 
