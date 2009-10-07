@@ -422,3 +422,5 @@ INSERT INTO CPG_config VALUES ('picture_use', 'thumb');
 
 ALTER TABLE CPG_comments ADD INDEX author_id (author_id);
 ALTER TABLE CPG_users ADD INDEX user_group (user_group);
+
+UPDATE CPG_albums SET owner = category - 10000 WHERE category > 10000;
