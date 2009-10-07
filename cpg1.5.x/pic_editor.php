@@ -134,7 +134,7 @@ if ($superCage->get->getInt('id')) {
    $newimage = $CURRENT_PIC['filename'];
 }else if(!isset($newimage)){
    //$newimage = $_POST['newimage'];
-   $matches = $superCage->post->getMatched('newimage','/^[0-9A-Za-z\/_.-]+$/');
+   $matches = $superCage->post->getMatched('newimage','/^[0-9A-Za-z\/_.-~]+$/');
    $newimage = $matches[0];
 }
 
@@ -170,37 +170,37 @@ if ($superCage->get->getInt('id')) {
    //if(isset($_POST["save"])) {
    if ($superCage->post->keyExists('save')) {
 
-                $width=$imgObj->width;
+        $width=$imgObj->width;
         $height=$imgObj->height;
-                $normal = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['normal_pfx'] . $CURRENT_PIC['filename'];
-                $thumbnail = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['thumb_pfx'] . $CURRENT_PIC['filename'];
-                $filesize = @filesize($img_dir.$newimage);
+        $normal = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['normal_pfx'] . $CURRENT_PIC['filename'];
+        $thumbnail = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['thumb_pfx'] . $CURRENT_PIC['filename'];
+        $filesize = @filesize($img_dir.$newimage);
 
-          //Full image replace
-          copy($img_dir.$newimage,$CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CURRENT_PIC['filename'])   ;
+        //Full image replace
+        copy($img_dir.$newimage,$CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CURRENT_PIC['filename'])   ;
 
-          // Normal image resized and replace, use the CPG resize method instead of the object resizeImage
-          // as using the object resizeImage will make the final display of image to be a thumbnail in the editor
+        // Normal image resized and replace, use the CPG resize method instead of the object resizeImage
+        // as using the object resizeImage will make the final display of image to be a thumbnail in the editor
 
-          if (max($width, $height) > $CONFIG['picture_width'] && $CONFIG['make_intermediate']) {
-                resize_image($img_dir.$newimage, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
-          } else {
-                @unlink($normal);
-          }
+        if (max($width, $height) > $CONFIG['picture_width'] && $CONFIG['make_intermediate']) {
+            resize_image($img_dir.$newimage, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
+        } else {
+            @unlink($normal);
+        }
 
-          //thumbnail resized and replace
-               resize_image($img_dir.$newimage, $thumbnail, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
-                       $total_filesize = $filesize + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumbnail);
+        //thumbnail resized and replace
+           resize_image($img_dir.$newimage, $thumbnail, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
+                   $total_filesize = $filesize + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumbnail);
 
-          //Update the image size in the DB
-          cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']}
-                          SET pheight = $height,
-                            pwidth = $width,
-                                                        filesize = $filesize,
-                                                        total_filesize = $total_filesize
-                          WHERE pid = '$pid'");
+        //Update the image size in the DB
+        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']}
+                      SET pheight = $height,
+                        pwidth = $width,
+                                                    filesize = $filesize,
+                                                    total_filesize = $total_filesize
+                      WHERE pid = '$pid'");
 
-          $message = sprintf($lang_editpics_php['success_picture'], '<a href="#" onclick="self.close();">', '</a>');
+        $message = sprintf($lang_editpics_php['success_picture'], '<a href="#" onclick="self.close();">', '</a>');
 
    }
 
