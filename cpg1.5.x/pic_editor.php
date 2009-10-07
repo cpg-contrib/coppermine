@@ -151,7 +151,7 @@ if ($superCage->get->getInt('id')) {
           /*if ($_POST['clipval'] && $_POST['cropping']==true){
                   $imgObj = $imgObj->cropImage($_POST['clipval']);
           }*/
-          if ($superCage->post->getEscaped('clipval') && $superCage->post->getInt('cropping') == true) {
+          if ($superCage->post->getEscaped('clipval') && $superCage->post->getEscaped('cropping') == true) {
                         $imgObj = $imgObj->cropImage($superCage->post->getEscaped('clipval'));
           }
 
