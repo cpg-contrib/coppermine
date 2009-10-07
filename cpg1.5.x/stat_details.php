@@ -172,23 +172,24 @@ $icon_array['hits'] = cpg_fetch_icon('info', 1);
     }
 
 // perform database write queries if needed - start
-  if (GALLERY_ADMIN_MODE) {
-      $configChangesApplied = '';
-      $get_hit_details = $superCage->get->getInt('hit_details');
-      if ($get_hit_details != $CONFIG['hit_details'] && $superCage->get->getEscaped('go') != '') {
-         cpg_config_set('hit_details', $get_hit_details);
-          $configChangesApplied = $lang_stat_details_php['upd_success'];
-      }
-      $get_vote_details = $superCage->get->getInt('vote_details');
-      if ($get_vote_details != $CONFIG['vote_details'] && $superCage->get->getEscaped('go') != '') {
-          cpg_config_set('vote_details', $get_vote_details);
-          $configChangesApplied = $lang_stat_details_php['upd_success'];
-      }
-      //if ($_GET['emptyhitstats'] == TRUE || $_GET['emptyvotestats'] == TRUE) {
-      if ($superCage->get->getEscaped('emptyhitstats') == TRUE || $superCage->get->getEscaped('emptyvotestats') == TRUE) {
-          $configChangesApplied = $lang_stat_details_php['not_implemented'];
-      }
-  }
+    if (GALLERY_ADMIN_MODE) {
+        $configChangesApplied = '';
+        $get_hit_details = $superCage->get->getInt('hit_details');
+        if ($get_hit_details != $CONFIG['hit_details'] && $superCage->get->getEscaped('go') != '') {
+            cpg_config_set('hit_details', $get_hit_details);
+            $configChangesApplied = $lang_stat_details_php['upd_success'];
+        }
+        $get_vote_details = $superCage->get->getInt('vote_details');
+        if ($get_vote_details != $CONFIG['vote_details'] && $superCage->get->getEscaped('go') != '') {
+            cpg_config_set('vote_details', $get_vote_details);
+            $configChangesApplied = $lang_stat_details_php['upd_success'];
+        }
+        //if ($_GET['emptyhitstats'] == TRUE || $_GET['emptyvotestats'] == TRUE) {
+        if ($superCage->get->getEscaped('emptyhitstats') == TRUE || $superCage->get->getEscaped('emptyvotestats') == TRUE) {
+            cpg_db_query("DELETE FROM {$CONFIG['TABLE_HIT_STATS']}");
+            $configChangesApplied = $lang_stat_details_php['upd_success'];
+        }
+    }
 // perform database write queries if needed - end
 
 // output the header depending on the mode (fullscreen vs embedded) - start
