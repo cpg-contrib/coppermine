@@ -92,6 +92,8 @@ pre.filepath {
 
 ul, ol {
     margin-left: 5px;
+	margin-top:0px;
+	margin-bottom:0px;
     padding: 0px;
 }
 
