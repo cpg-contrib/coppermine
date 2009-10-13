@@ -3480,33 +3480,42 @@ function theme_html_img_nav_menu() {
         */
     }
 
-    //report to moderator buttons
+    // report to moderator buttons
     $report_tgt = '';
     if (($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS)) {
         $report_tgt = "report_file.php?album=$album$cat_link$date_link&amp;pid=$pid&amp;pos=$pos";
-    } else { // remove button if report toggle is off
+    } else { 
+        // remove button if report toggle is off
         template_extract_block($template_img_navbar, 'report_file_button');
-
     }
 
     $thumb_tgt = "thumbnails.php?album=$album$cat_link$date_link&amp;page=$page$uid_link";
     $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>" . $LINEBREAK;
 
-    $msg_id = ($album == 'lastcom' || $album == 'lastcomby') ? "&amp;msg_id={$pic_data[$next]['msg_id']}" : ''; // needed when viewing slideshow of meta albums lastcom/lastcomby
+    // needed when viewing slideshow of meta albums lastcom/lastcomby
+    $msg_id = ($album == 'lastcom' || $album == 'lastcomby') ? "&amp;msg_id={$pic_data[$next]['msg_id']}" : '';
+
     $slideshow_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link$uid_link&amp;pid=$pid$msg_id&amp;slideshow=".$CONFIG['slideshow_interval'].'#top_display_media';
+
+    // if set, this will override the default slideshow button to be inserted by displayimage.js
+    $slideshow_btn = '';
+    // if set, this will override the default pic_info button to be inserted by displayimage.js
+    $pic_info_btn = '';
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
 
     if (defined('THEME_HAS_NAVBAR_GRAPHICS')) {
-        $location= $THEME_DIR;
+        $location = $THEME_DIR;
     } else {
-        $location= '';
+        $location = '';
     }
-    //add javascript vars
+    // add javascript vars
     $js_buttons = array(
-        'pic_info_title' => $lang_img_nav_bar['pic_info_title'],
-        'slideshow_tgt' => $slideshow_tgt,
+        'pic_info_title'  => $lang_img_nav_bar['pic_info_title'],
+        'pic_info_btn'    => $pic_info_btn,
+        'slideshow_tgt'   => $slideshow_tgt,
         'slideshow_title' => $lang_img_nav_bar['slideshow_title'],
+        'slideshow_btn'   => $slideshow_btn,
         'loc' => $location,
     );
     set_js_var('buttons', $js_buttons);

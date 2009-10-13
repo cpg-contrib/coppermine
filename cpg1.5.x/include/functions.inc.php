@@ -2905,7 +2905,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
             $thumb_list[$i]['filepath']     = $row['filepath'];
             $thumb_list[$i]['filename']     = $row['filename'];
             $thumb_list[$i]['filesize']     = $row['filesize'];
-            $thumb_list[$i]['msg_id']       = $row['msg_id']; // needed for get_pic_pos()
+            $thumb_list[$i]['msg_id']       = isset($row['msg_id']) ? $row['msg_id'] : '';   // needed for get_pic_pos()
         }
 
         // Add a hit to album counter if it is a numeric album
@@ -3167,7 +3167,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
             $thumb_list[$i]['image']      = '<img src="' . $pic_url . '" class="strip_image" border="0" alt="' . $row['filename'] . '" title="' . $pic_title . '" />';
             $thumb_list[$i]['admin_menu'] = '';
             $thumb_list[$i]['pid']        = $row['pid'];
-            $thumb_list[$i]['msg_id']     = $row['msg_id']; // needed for get_pic_pos()
+            $thumb_list[$i]['msg_id']     = isset($row['msg_id']) ? $row['msg_id'] : ''; // needed for get_pic_pos()
 
             $target = "displayimage.php?album=$album$cat_link$date_link&amp;pid={$row['pid']}$uid_link";
         }
