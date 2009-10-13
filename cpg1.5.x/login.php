@@ -51,9 +51,16 @@ if ($superCage->post->keyExists('submitted')) {
         $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET user_language = '{$USER['lang']}' WHERE user_id = {$USER_DATA['user_id']}";
         $result = cpg_db_query($sql);
 
+        $cpg_udb->authenticate();
+        if (!$USER_DATA['has_admin_access']) {
+            unset($USER['am']);
+            user_save_profile();
+        }
+
         $redirect = ($CPG_REFERER && (strpos($CPG_REFERER, 'login.php') === false)) ? $CPG_REFERER : 'index.php';
         cpgRedirectPage($redirect, $lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']), 3, 'success');
         exit;
+
     } else {
         // Write the log entry
         log_write("Failed login attempt with Username: " . $superCage->post->getEscaped('username'), CPG_SECURITY_LOG);
