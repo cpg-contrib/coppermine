@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-10-26 [B] Updated Italian Language file {GauGau}
 2009-08-31 [B] Fixed permission check in crop/rotate wrongly denying access {Nibbler}
 2009-08-25 [B] Fixed caching issues with xp publisher {Nibbler}
 2009-08-25 [B] Fixed issue with creating albums in xp publisher with MySQL's strict mode enabled {Nibbler}
