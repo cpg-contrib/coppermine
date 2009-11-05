@@ -4895,7 +4895,7 @@ function cpgGetScriptNameParams($exception = '')
     foreach ($queryString as $val) {
         list($key, $value) = explode('=', $val);
         if (!in_array($key, $exception)) {
-            $return .= $key . "=" . $value . "&";
+            $return .= $key . "=" . $value . "&amp;";
         }
     }
 
