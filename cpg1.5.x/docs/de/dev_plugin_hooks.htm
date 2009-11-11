@@ -223,21 +223,21 @@
   </tr>
   <tr>
     <td valign="top">upload.php</td>
-    <td valign="top"><a name="plugin_hooks_filename_upload_options"></a><strong>upload_options</strong><a href="#plugin_hooks_filename_add_file_data_success" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top"><a name="plugin_hooks_filename_upload_options"></a><strong>upload_options</strong><a href="#plugin_hooks_filename_upload_options" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">modify or add upload methods which can be selected from the configuration panel or upload form (if allowed) - see <a href="#plugin_hook_example_upload_method">details and examples below</a></td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$upload_choices = CPGPluginAPI::filter('upload_options',$upload_choices);</textarea></td>
   </tr>
   <tr>
     <td valign="top">upload.php</td>
-    <td valign="top"><a name="plugin_hooks_filename_upload_form"></a><strong>upload_form</strong><a href="#plugin_hooks_filename_add_file_data_success" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top"><a name="plugin_hooks_filename_upload_form"></a><strong>upload_form</strong><a href="#plugin_hooks_filename_upload_form" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Action</td>
     <td valign="top">used to display alternate upload form - see <a href="#plugin_hook_example_upload_method">details and examples below</a></td>
     <td valign="top"><textarea class="samplecode" style="width:100%">CPGPluginAPI::action('upload_form',array($upload_form,$upload_select));</textarea></td>
   </tr>
   <tr>
     <td valign="top">upload.php</td>
-    <td valign="top"><a name="plugin_hooks_filename_upload_process"></a><strong>upload_process</strong><a href="#plugin_hooks_filename_add_file_data_success" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top"><a name="plugin_hooks_filename_upload_process"></a><strong>upload_process</strong><a href="#plugin_hooks_filename_upload_process" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Action</td>
     <td valign="top">used to processs alternate upload form - see <a href="#plugin_hook_example_upload_method">details and examples below</a></td>
     <td valign="top"><textarea class="samplecode" style="width:100%">CPGPluginAPI::action('upload_process',$upload_form);</textarea></td>
@@ -446,6 +446,13 @@
     <td valign="top"><textarea class="samplecode" style="width:100%">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data_success',$CURRENT_PIC_DATA);</textarea></td>
   </tr>
   <tr>
+    <td valign="top">include/picmgmt.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_filename_image_sharpen"></a><strong>image_sharpen</strong><a href="#plugin_hooks_filename_image_sharpen" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">called while uploading pictures. Toggles $sharpen, to e.g. enable image sharpening for intermediate pictures if thumbnail sharpening is enabled in the first place.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$sharpen = CPGPluginAPI::filter('image_sharpen', $new_size);</textarea></td>
+  </tr>
+  <tr>
     <td valign="top">include/plugin_api.inc.php</td>
     <td valign="top"><a name="plugin_hooks_filename_page_html"></a><strong>page_html</strong><a href="#plugin_hooks_filename_page_html" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
@@ -596,81 +603,82 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
 <a name="plugin_hooks_alphabetically"></a>
 <h2>Plugin Hooks Alphabetically<a href="#plugin_hooks_alphabetic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul>
-	<li><a href="#plugin_hooks_filename_add_file_data">add_file_data</a></li>
-	<li><a href="#plugin_hooks_filename_add_file_data_success">add_file_data_success</a></li>
-	<li><a href="#plugin_hooks_filename_admin_menu">admin_menu</a></li>
-	<li><a href="#plugin_hooks_filename_after_delete_file">after_delete_file</a> (delete.php)</li>
-	<li><a href="#plugin_hooks_editpics_after_delete_file">after_delete_file</a> (editpics.php)</li>
-	<li><a href="#plugin_hooks_filename_anycontent">anycontent</a></li>
-	<li><a href="#plugin_hooks_bbcode">bbcode</a></li>
-	<li><a href="#plugin_hooks_filename_before_delete_file">before_delete_file</a> (delete.php)</li>
-	<li><a href="#plugin_hooks_editpics_before_delete_file">before_delete_file</a> (editpics.php)</li>
-	<li><a href="#plugin_hooks_captcha_comment_print">captcha_comment_print</a></li>
-	<li><a href="#plugin_hooks_captcha_comment_validate">captcha_comment_validate</a></li>
-	<li><a href="#plugin_hooks_captcha_contact_print">captcha_contact_print</a></li>
-	<li><a href="#plugin_hooks_captcha_contact_validate">captcha_contact_validate</a></li>
-	<li><a href="#plugin_hooks_captcha_register_print">captcha_register_print</a></li>
-	<li><a href="#plugin_hooks_captcha_register_validate">captcha_register_validate</a></li>
+    <li><a href="#plugin_hooks_filename_add_file_data">add_file_data</a></li>
+    <li><a href="#plugin_hooks_filename_add_file_data_success">add_file_data_success</a></li>
+    <li><a href="#plugin_hooks_filename_admin_menu">admin_menu</a></li>
+    <li><a href="#plugin_hooks_filename_after_delete_file">after_delete_file</a> (delete.php)</li>
+    <li><a href="#plugin_hooks_editpics_after_delete_file">after_delete_file</a> (editpics.php)</li>
+    <li><a href="#plugin_hooks_filename_anycontent">anycontent</a></li>
+    <li><a href="#plugin_hooks_bbcode">bbcode</a></li>
+    <li><a href="#plugin_hooks_filename_before_delete_file">before_delete_file</a> (delete.php)</li>
+    <li><a href="#plugin_hooks_editpics_before_delete_file">before_delete_file</a> (editpics.php)</li>
+    <li><a href="#plugin_hooks_captcha_comment_print">captcha_comment_print</a></li>
+    <li><a href="#plugin_hooks_captcha_comment_validate">captcha_comment_validate</a></li>
+    <li><a href="#plugin_hooks_captcha_contact_print">captcha_contact_print</a></li>
+    <li><a href="#plugin_hooks_captcha_contact_validate">captcha_contact_validate</a></li>
+    <li><a href="#plugin_hooks_captcha_register_print">captcha_register_print</a></li>
+    <li><a href="#plugin_hooks_captcha_register_validate">captcha_register_validate</a></li>
     <li><a href="#plugin_hooks_filename_cpg_mail_sender_email">cpg_mail_sender_email</a></li>
     <li><a href="#plugin_hooks_filename_cpg_mail_to_email">cpg_mail_to_email</a></li>
-	<li><a href="#plugin_hooks_filename_file_data">file_data</a></li>
-	<li><a href="#plugin_hooks_filename_file_info">file_info</a></li>
-	<li><a href="#plugin_hooks_filename_gallery_footer">gallery_footer</a></li>
-	<li><a href="#plugin_hooks_filename_gallery_header">gallery_header</a></li>
-	<li><a href="#plugin_hooks_filename_html_document">html_document</a></li>
-	<li><a href="#plugin_hooks_filename_html_image">html_image</a></li>
-	<li><a href="#plugin_hooks_filename_html_image_overlay">html_image_overlay</a></li>
-	<li><a href="#plugin_hooks_filename_html_image_reduced_overlay">html_image_reduced_overlay</a></li>
-	<li><a href="#plugin_hooks_filename_html_image_reduced_overlay">html_image_reduced_overlay</a></li>
-	<li><a href="#plugin_hooks_filename_html_other_media">html_other_media</a></li>
-	<li><a href="#plugin_hooks_meta_album">meta_album</a></li>
+    <li><a href="#plugin_hooks_filename_file_data">file_data</a></li>
+    <li><a href="#plugin_hooks_filename_file_info">file_info</a></li>
+    <li><a href="#plugin_hooks_filename_gallery_footer">gallery_footer</a></li>
+    <li><a href="#plugin_hooks_filename_gallery_header">gallery_header</a></li>
+    <li><a href="#plugin_hooks_filename_html_document">html_document</a></li>
+    <li><a href="#plugin_hooks_filename_html_image">html_image</a></li>
+    <li><a href="#plugin_hooks_filename_html_image_overlay">html_image_overlay</a></li>
+    <li><a href="#plugin_hooks_filename_html_image_reduced_overlay">html_image_reduced_overlay</a></li>
+    <li><a href="#plugin_hooks_filename_html_image_reduced_overlay">html_image_reduced_overlay</a></li>
+    <li><a href="#plugin_hooks_filename_html_other_media">html_other_media</a></li>
+    <li><a href="#plugin_hooks_filename_image_sharpen">image_sharpen</a></li>
+    <li><a href="#plugin_hooks_meta_album">meta_album</a></li>
     <li><a href="#plugin_hooks_meta_album_get_pic_pos">meta_album_get_pic_pos</a></li>
-	<li><a href="#plugin_hooks_filename_page_end">page_end</a></li>
-	<li><a href="#plugin_hooks_filename_page_html">page_html</a></li>
-	<li><a href="#plugin_hooks_filename_page_meta">page_meta</a></li>
-	<li><a href="#plugin_hooks_filename_page_start">page_start</a></li>
+    <li><a href="#plugin_hooks_filename_page_end">page_end</a></li>
+    <li><a href="#plugin_hooks_filename_page_html">page_html</a></li>
+    <li><a href="#plugin_hooks_filename_page_meta">page_meta</a></li>
+    <li><a href="#plugin_hooks_filename_page_start">page_start</a></li>
     <li><a href="#plugin_hooks_filename_picture_url">picture_url</a></li>
-	<li><a href="#plugin_hooks_filename_plugin_block">plugin_block</a></li>
-	<li><a href="#plugin_hooks_filename_plugin_cleanup">plugin_cleanup</a></li>
-	<li><a href="#plugin_hooks_filename_plugin_configure">plugin_configure</a></li>
-	<li><a href="#plugin_hooks_filename_plugin_install">plugin_install</a></li>
-	<li><a href="#plugin_hooks_filename_plugin_sleep">plugin_sleep</a></li>
-	<li><a href="#plugin_hooks_filename_plugin_wakeup">plugin_wakeup</a></li>
-	<li><a href="#plugin_hooks_filename_post_breadcrumb">post_breadcrumb</a> (displayimage.php)</li>
-	<li><a href="#plugin_hooks_thumbnails_post_breadcrumb">post_breadcrumb</a> (thumbnails.php)</li>
-	<li><a href="#plugin_hooks_profile_add_data">profile_add_data</a></li>
-	<li><a href="#plugin_hooks_register_form_create">register_form_create</a></li>
-	<li><a href="#plugin_hooks_register_form_submit">register_form_submit</a></li>
-	<li><a href="#plugin_hooks_register_user_activation">register_user_activation</a></li>
-	<li><a href="#plugin_hooks_smilies_display">smilies_display</a></li>
-	<li><a href="#plugin_hooks_smilies_display">smilies_process</a></li>
-	<li><a href="#plugin_hooks_filename_sub_menu">sub_menu</a></li>
-	<li><a href="#plugin_hooks_filename_sys_menu">sys_menu</a></li>
-	<li><a href="#plugin_hooks_filename_template_html">template_html</a></li>
-	<li><a href="#plugin_hooks_theme_add_comment">theme_add_comment</a></li>
-	<li><a href="#plugin_hooks_filename_thumbnail_params">theme_display_thumbnails_params</a></li>
-	<li><a href="#plugin_hooks_filename_theme_pageheader_params">theme_pageheader_params</a></li>
-	<li><a href="#plugin_hooks_theme_add_comment">theme_edit_comment</a></li>
-	<li><a href="#plugin_hooks_filename_thumb_caption">thumb_caption</a></li>
-	<li><a href="#plugin_hooks_filename_thumb_caption_favpics">thumb_caption_favpics</a></li>
-	<li><a href="#plugin_hooks_filename_thumb_caption_lastalb">thumb_caption_lastalb</a></li>
-	<li><a href="#plugin_hooks_filename_thumb_caption_lastcom">thumb_caption_lastcom</a></li>
-	<li><a href="#plugin_hooks_filename_thumb_caption_lastcomby">thumb_caption_lastcomby</a></li>
-	<li><a href="#plugin_hooks_filename_thumb_caption_lasthits">thumb_caption_lasthits</a></li>
-	<li><a href="#plugin_hooks_filename_thumb_caption_lastup">thumb_caption_lastup</a></li>
-	<li><a href="#plugin_hooks_filename_thumb_caption_lastupby">thumb_caption_lastupby</a></li>
-	<li><a href="#plugin_hooks_filename_thumb_caption_random">thumb_caption_random</a></li>
-	<li><a href="#plugin_hooks_filename_thumb_caption_regular">thumb_caption_regular</a></li>
-	<li><a href="#plugin_hooks_filename_thumb_caption_search">thumb_caption_search</a></li>
-	<li><a href="#plugin_hooks_filename_thumb_caption_topn">thumb_caption_topn</a></li>
-	<li><a href="#plugin_hooks_filename_thumb_caption_toprated">thumb_caption_toprated</a></li>
-	<li><a href="#plugin_hooks_filename_thumb_data">thumb_data</a></li>
-	<li><a href="#plugin_hooks_filename_upload_form">upload_form</a></li>
-	<li><a href="#plugin_hooks_filename_upload_options">upload_options</a></li>
-	<li><a href="#plugin_hooks_filename_upload_process">upload_process</a></li>
-	<li><a href="#plugin_hooks_filename_user_caption_params">user_caption_params</a></li>
-	<li><a href="#plugin_hooks_filename_usermgr_footer">usermgr_footer</a></li>
-	<li><a href="#plugin_hooks_filename_usermgr_header">usermgr_header</a></li>
+    <li><a href="#plugin_hooks_filename_plugin_block">plugin_block</a></li>
+    <li><a href="#plugin_hooks_filename_plugin_cleanup">plugin_cleanup</a></li>
+    <li><a href="#plugin_hooks_filename_plugin_configure">plugin_configure</a></li>
+    <li><a href="#plugin_hooks_filename_plugin_install">plugin_install</a></li>
+    <li><a href="#plugin_hooks_filename_plugin_sleep">plugin_sleep</a></li>
+    <li><a href="#plugin_hooks_filename_plugin_wakeup">plugin_wakeup</a></li>
+    <li><a href="#plugin_hooks_filename_post_breadcrumb">post_breadcrumb</a> (displayimage.php)</li>
+    <li><a href="#plugin_hooks_thumbnails_post_breadcrumb">post_breadcrumb</a> (thumbnails.php)</li>
+    <li><a href="#plugin_hooks_profile_add_data">profile_add_data</a></li>
+    <li><a href="#plugin_hooks_register_form_create">register_form_create</a></li>
+    <li><a href="#plugin_hooks_register_form_submit">register_form_submit</a></li>
+    <li><a href="#plugin_hooks_register_user_activation">register_user_activation</a></li>
+    <li><a href="#plugin_hooks_smilies_display">smilies_display</a></li>
+    <li><a href="#plugin_hooks_smilies_display">smilies_process</a></li>
+    <li><a href="#plugin_hooks_filename_sub_menu">sub_menu</a></li>
+    <li><a href="#plugin_hooks_filename_sys_menu">sys_menu</a></li>
+    <li><a href="#plugin_hooks_filename_template_html">template_html</a></li>
+    <li><a href="#plugin_hooks_theme_add_comment">theme_add_comment</a></li>
+    <li><a href="#plugin_hooks_filename_thumbnail_params">theme_display_thumbnails_params</a></li>
+    <li><a href="#plugin_hooks_filename_theme_pageheader_params">theme_pageheader_params</a></li>
+    <li><a href="#plugin_hooks_theme_add_comment">theme_edit_comment</a></li>
+    <li><a href="#plugin_hooks_filename_thumb_caption">thumb_caption</a></li>
+    <li><a href="#plugin_hooks_filename_thumb_caption_favpics">thumb_caption_favpics</a></li>
+    <li><a href="#plugin_hooks_filename_thumb_caption_lastalb">thumb_caption_lastalb</a></li>
+    <li><a href="#plugin_hooks_filename_thumb_caption_lastcom">thumb_caption_lastcom</a></li>
+    <li><a href="#plugin_hooks_filename_thumb_caption_lastcomby">thumb_caption_lastcomby</a></li>
+    <li><a href="#plugin_hooks_filename_thumb_caption_lasthits">thumb_caption_lasthits</a></li>
+    <li><a href="#plugin_hooks_filename_thumb_caption_lastup">thumb_caption_lastup</a></li>
+    <li><a href="#plugin_hooks_filename_thumb_caption_lastupby">thumb_caption_lastupby</a></li>
+    <li><a href="#plugin_hooks_filename_thumb_caption_random">thumb_caption_random</a></li>
+    <li><a href="#plugin_hooks_filename_thumb_caption_regular">thumb_caption_regular</a></li>
+    <li><a href="#plugin_hooks_filename_thumb_caption_search">thumb_caption_search</a></li>
+    <li><a href="#plugin_hooks_filename_thumb_caption_topn">thumb_caption_topn</a></li>
+    <li><a href="#plugin_hooks_filename_thumb_caption_toprated">thumb_caption_toprated</a></li>
+    <li><a href="#plugin_hooks_filename_thumb_data">thumb_data</a></li>
+    <li><a href="#plugin_hooks_filename_upload_form">upload_form</a></li>
+    <li><a href="#plugin_hooks_filename_upload_options">upload_options</a></li>
+    <li><a href="#plugin_hooks_filename_upload_process">upload_process</a></li>
+    <li><a href="#plugin_hooks_filename_user_caption_params">user_caption_params</a></li>
+    <li><a href="#plugin_hooks_filename_usermgr_footer">usermgr_footer</a></li>
+    <li><a href="#plugin_hooks_filename_usermgr_header">usermgr_header</a></li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -943,10 +951,10 @@ function myfunction_add_params($params)
 
 
 <div id="doc_footer">
-	<div class="doc_info_wrapper">
-		<span id="doc_last_changed">$LastChangedDate$</span>
-		<span id="doc_revision">$Revision$</span>
-	</div>
+    <div class="doc_info_wrapper">
+        <span id="doc_last_changed">$LastChangedDate$</span>
+        <span id="doc_revision">$Revision$</span>
+    </div>
 </div>
 </body>
 </html>
