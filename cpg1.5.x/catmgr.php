@@ -121,8 +121,8 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
 {
     global $lang_catmgr_php, $CAT_LIST, $LINEBREAK;
 
-    $lb = '<form method="get" action="catmgr.php">';
-    
+    $lb = '';
+
     if ($on_change_refresh) {
 
         $lb .= '<select name="parent" onmouseover="setbuild(this, '. (int) $parent['cid'] . ', ' . $cid . ')" onchange="updateParent(this, ' . $cid . ')" class="listbox">';
@@ -150,8 +150,6 @@ function cat_list_box($cid, &$parent, $on_change_refresh = true)
         $lb .= '</select>';
     }
 
-    $lb .= '</form>';
-    
     return $lb;
 }
 
@@ -643,8 +641,8 @@ pageheader($lang_catmgr_php['manage_cat']);
 starttable('100%', cpg_fetch_icon('cat_mgr', 2) . $lang_catmgr_php['category'] . '&nbsp;' . cpg_display_help('f=categories.htm&amp;as=cat_cp&amp;ae=cat_cp_end&amp;top=1', '800', '600'),1);
 
 echo <<< EOT
-	<tr>
-		<td class="tableb">
+    <tr>
+        <td class="tableb">
 EOT;
 
 starttable('100%');
@@ -677,10 +675,10 @@ EOT;
 endtable();
 
 echo <<< EOT
-		</td>
-	</tr>
-	<tr>
-		<td class="tableb">
+        </td>
+    </tr>
+    <tr>
+        <td class="tableb">
 EOT;
 
 
@@ -706,11 +704,11 @@ endtable();
 $op = $current_category['cid'] ? 'updatecat' : 'createcat';
 
 echo <<< EOT
-		</td>
-	</tr>
-	<tr>
-		<td class="tableb">
-		    <form method="post" action="catmgr.php?op=$op">
+        </td>
+    </tr>
+    <tr>
+        <td class="tableb">
+            <form method="post" action="catmgr.php?op=$op">
 EOT;
 
 $help_update_create = '&nbsp;' . cpg_display_help('f=categories.htm&amp;as=cat_cp_page_controls_create&amp;ae=cat_cp_page_controls_create_end&amp;top=1', '800', '600');
@@ -770,11 +768,11 @@ if ($op == 'editcat') {
 echo <<<EOT
         <tr>
             <td colspan="2" align="center" class="tablef">
-				<button type="submit" class="button" name="cat_submit" value="{$lang_catmgr_php['update_create']}">{$icon_array['submit']}{$lang_catmgr_php['update_create']}</button>
-            	<input type="hidden" name="form_token" value="{$form_token}" />
-            	<input type="hidden" name="timestamp" value="{$timestamp}" />
-            	<input type="hidden" name="cid" value ="{$current_category['cid']}" />
-			</td>
+                <button type="submit" class="button" name="cat_submit" value="{$lang_catmgr_php['update_create']}">{$icon_array['submit']}{$lang_catmgr_php['update_create']}</button>
+                <input type="hidden" name="form_token" value="{$form_token}" />
+                <input type="hidden" name="timestamp" value="{$timestamp}" />
+                <input type="hidden" name="cid" value ="{$current_category['cid']}" />
+            </td>
         </tr>
 
 EOT;
@@ -783,8 +781,8 @@ endtable();
 
 echo <<< EOT
             </form>
-		</td>	
-	</tr>
+        </td>
+    </tr>
 EOT;
 
 endtable();
