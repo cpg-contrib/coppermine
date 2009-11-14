@@ -894,7 +894,7 @@ $lang_admin_php['debug_notice'] =   'Afficher les avertissements dans le Mode D�
 $lang_admin_php['offline'] =   'La Galerie est Hors Ligne (sauf pour l\'Admin)'; // cpg1.5
 $lang_admin_php['display_coppermine_news'] =   'Affichez les News de coppermine-gallery.net'; // cpg1.5
 $lang_admin_php['display_coppermine_detail'] =   'Sera uniquement affiché pour l\'Administrateur'; // cpg1.5
-$lang_admin_php['config_setting_invalid'] =   'La valeur que vous avez entrée pour &laquo;%s&raquo; n\est pas valide, vérifiez la.'; // cpg1.5
+$lang_admin_php['config_setting_invalid'] =   'La valeur que vous avez entrée pour &laquo;%s&raquo; n\'est pas valide, vérifiez la.'; // cpg1.5
 $lang_admin_php['config_setting_ok'] =   'Vos paramètres pour &laquo;%s&raquo; ont été sauvegardés.'; // cpg1.5
 $lang_admin_php['contact_form_settings'] =   'Paramètres du formulaire de contact'; // cpg1.5
 $lang_admin_php['contact_form_guest_enable'] =   'Afficher le formulaire de contact pour les visiteurs anonymes (guests)'; // cpg1.5
@@ -1939,7 +1939,7 @@ if (defined('REVIEWCOM_PHP')) {
   $lang_reviewcom_php['ban_and_delete'] = 'Bannir l\'Utilisateur et effacer les Commentaires'; // cpg1.5
   $lang_reviewcom_php['akismet_status'] = 'Akismet dit'; // cpg1.5
   $lang_reviewcom_php['is_spam'] = 'est un spam'; // cpg1.5
-  $lang_reviewcom_php['is_not_spam'] = 'n\est pas un spam'; // cpg1.5
+  $lang_reviewcom_php['is_not_spam'] = 'n\'est pas un spam'; // cpg1.5
   $lang_reviewcom_php['akismet'] = 'Akismet'; // cpg1.5
   $lang_reviewcom_php['akismet_count'] = 'Akismet a trouvé %s spams pour vous jusqu\'à présent'; // cpg1.5
   $lang_reviewcom_php['akismet_test_result'] = 'Résultat du test pour votre clé API Akismet %s'; // cpg1.5
@@ -2434,10 +2434,11 @@ if (defined('UTIL_PHP')) {
   $lang_util_php['no_prob_detect'] = 'Pas de problèmes détectés'; // cpg1.5
   $lang_util_php['no_prob_found'] = 'Pas de problèmes trouvés.'; // cpg1.5
   $lang_util_php['no_category'] = 'Pas de Catégorie'; // cpg1.5
-$lang_util_php['keyword_convert'] = 'Convertir le séprarteur demots clé'; // cpg1.5
-$lang_util_php['keyword_from_to'] = 'Convertir le séparateur de mots clé de %s à %s'; // cpg1.5
+$lang_util_php['keyword_convert'] = 'Convertir le séprarteur de mots clé'; // cpg1.5
+$lang_util_php['keyword_from_to'] = 'Convertir le séparateur de mots clé de %s par %s'; // cpg1.5
 $lang_util_php['keyword_set'] = 'Paramétrer le séparateur de mots clé à la nouvelle valeur'; // cpg1.5
-$lang_util_php['keyword_replace'] = 'Avant la convertion, remplacer %s par %s'; // cpg1.5
+$lang_util_php['keyword_replace_before'] = 'Avant la conversion, remplacer %s par %s'; // cpg1.5
+$lang_util_php['keyword_replace_after'] = 'Après la conversion, remplacer %s par %s'; // cpg1.5
 $lang_util_php['keyword_replace_values'] = array('_'=>'Souligné', '-'=>'tiret', '~'=>'tilde'); // cpg1.5
 $lang_util_php['keyword_explanation'] = 'Cela va convertir le séparateur de mots clé pour tous vos fichiers d\'une valeur à une autre.  Allez dans la documentation pour plus de détails.'; // cpg1.5
 }
