@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-07-24 [S] Release of cpg1.5.2 (beta) for the public {GauGau}
 2009-11-12 [B] Fixed IE category creation bug (thread ID 62441) {eenemeenemuu}
 2009-10-12 [B] Fix missing user admin buttons (thread ID 62046) {Paver}
 2009-10-12 [A] Allow theme to override default pic_info and slideshow buttons on displayimage (thread ID 61877) {Paver}

@@ -17,8 +17,8 @@
   $Date$
 **********************************************/
 
-define('COPPERMINE_VERSION', '1.5.1');
-define('COPPERMINE_VERSION_STATUS', 'alpha');
+define('COPPERMINE_VERSION', '1.5.2');
+define('COPPERMINE_VERSION_STATUS', 'beta');
 
 if (!defined('IN_COPPERMINE')) {
     die('Not in Coppermine...');

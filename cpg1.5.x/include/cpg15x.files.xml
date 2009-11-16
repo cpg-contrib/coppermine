@@ -6,7 +6,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ccebf67e0b6d7c2fdd087274a4071ae2</hash>
+    <hash>78dd3b52efb2ecd26d729c9a434bf9fa</hash>
   </element>
   <element>
     <fullpath>addpic.php</fullpath>
@@ -14,7 +14,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>af7bb487f7a8f355ecbaa5a26e5b2755</hash>
+    <hash>66de632b0ef9462670f487cc76aea776</hash>
   </element>
   <element>
     <fullpath>admin.php</fullpath>
@@ -22,7 +22,7 @@
     <revision>6566</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>583faf16f194e7404cc5a8f100b0028a</hash>
+    <hash>5658517e1e963f64c7d55b95072aab9a</hash>
   </element>
   <element>
     <fullpath>albmgr.php</fullpath>
@@ -30,7 +30,7 @@
     <revision>6629</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>114af5380b661b011c0fa6f051f7cbdc</hash>
+    <hash>59ac40da484927d26dfbbc47e47eab7b</hash>
   </element>
   <element>
     <fullpath>anycontent.php</fullpath>
@@ -38,7 +38,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>071ada537c9feaab24d5f7826723eec2</hash>
+    <hash>63b9325536d8f9e4eb9dca19a496fb70</hash>
   </element>
   <element>
     <fullpath>banning.php</fullpath>
@@ -46,7 +46,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0658a51967b6b94ca30447e5f80471c8</hash>
+    <hash>188756fa755e97b1e2039ad547027e09</hash>
   </element>
   <element>
     <fullpath>bridgemgr.php</fullpath>
@@ -54,7 +54,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d56e0095f85b2e252c7e60faf8b17243</hash>
+    <hash>2a0ecda44df4bb85884cacd82a87cfbc</hash>
   </element>
   <element>
     <fullpath>calendar.php</fullpath>
@@ -62,7 +62,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3e829a0b2c955e6db6ce3a774a9c92fa</hash>
+    <hash>b20e57e01a3e3af933c60483715768b2</hash>
   </element>
   <element>
     <fullpath>captcha.php</fullpath>
@@ -70,23 +70,23 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f519443409f99829afa852250b7bfdd7</hash>
+    <hash>b7378cb0826a368c115065460a24947c</hash>
   </element>
   <element>
     <fullpath>catmgr.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6708</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>641e18f8a24b905870ed4e6bb305f5a8</hash>
+    <hash>c0d731b1cf06432416d8860662fa1fa8</hash>
   </element>
   <element>
     <fullpath>CHANGELOG.txt</fullpath>
     <version>1.5.2</version>
-    <revision>6629</revision>
+    <revision>6708</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>4c86823f4b47b89b79babb22c0f9623b</hash>
+    <hash>2ec600815b4a4f890e0fc76a7633428c</hash>
   </element>
   <element>
     <fullpath>config.php</fullpath>
@@ -98,13 +98,13 @@
     <revision>6446</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>c5744eee700d04cf0eb5bc1020afbc1a</hash>
+    <hash>74431f310b08e420a4156840a10cf479</hash>
   </element>
   <element>
     <fullpath>COPYING.txt</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>c393a4ed8696b48235d40fe21b634c95</hash>
+    <hash>b633b800b87a649b17011178253542f8</hash>
   </element>
   <element>
     <fullpath>db_ecard.php</fullpath>
@@ -112,7 +112,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d49fb179fe23aee643772aa9f76ab3ca</hash>
+    <hash>0fc2486c7d1e489eec82b232259e80a5</hash>
   </element>
   <element>
     <fullpath>db_input.php</fullpath>
@@ -120,7 +120,7 @@
     <revision>6641</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a4bc43352247b4978c808b3418e333c9</hash>
+    <hash>67cf0804046ea252d4e97207a648a0bc</hash>
   </element>
   <element>
     <fullpath>delete.php</fullpath>
@@ -128,7 +128,7 @@
     <revision>6520</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>48233c89e5f03e1db74e1264de5f336f</hash>
+    <hash>e5f7f33cf8705f186313bcc3bc39e1d6</hash>
   </element>
   <element>
     <fullpath>displayecard.php</fullpath>
@@ -136,15 +136,15 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>bbe5c3ec3cb51109dd6ce9a8c0a73e1f</hash>
+    <hash>b4cce1e58cf46e408416f483bb563226</hash>
   </element>
   <element>
     <fullpath>displayimage.php</fullpath>
     <version>1.5.2</version>
-    <revision>6529</revision>
+    <revision>6650</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>19fed730888f05a4ce2021ff813d9991</hash>
+    <hash>d74f9a89fd9f0d6d0207874a61e2eed8</hash>
   </element>
   <element>
     <fullpath>displayreport.php</fullpath>
@@ -152,7 +152,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>809adbbdc62f9a20fd7565d6147a64cc</hash>
+    <hash>01d0e863b79a3ca70c49f8fe1a1cfb3f</hash>
   </element>
   <element>
     <fullpath>ecard.php</fullpath>
@@ -160,7 +160,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c9de372a9da92becd91b4cfb63bc994e</hash>
+    <hash>581c93cd86070f9595f25a62b360598f</hash>
   </element>
   <element>
     <fullpath>editOnePic.php</fullpath>
@@ -172,15 +172,15 @@
     <revision>6580</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>42acc3a0560c22cfab83ed6977a2ca6f</hash>
+    <hash>730d80b6764d4b28ffe0c298a1e7e692</hash>
   </element>
   <element>
     <fullpath>editpics.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6662</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a72deb90cfd56b984fa0907791e2aaa7</hash>
+    <hash>1e12ae574a1f28b852276599b8d07060</hash>
   </element>
   <element>
     <fullpath>exifmgr.php</fullpath>
@@ -188,7 +188,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ce055387d45824ddc7e95f61df55f028</hash>
+    <hash>d6316bb40fc36b10af037fc34363ffa9</hash>
   </element>
   <element>
     <fullpath>export.php</fullpath>
@@ -196,7 +196,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7f09d9d80229b33f8ce8d72804d683b1</hash>
+    <hash>3d1730e009ebb03cc0d2ef3c085c3e65</hash>
   </element>
   <element>
     <fullpath>favicon.ico</fullpath>
@@ -214,7 +214,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7053e98a1dbe54387682ca6ff3702270</hash>
+    <hash>d640170f2d153b2702c4c7e4ef3f9d0e</hash>
   </element>
   <element>
     <fullpath>getlang.php</fullpath>
@@ -222,15 +222,15 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a4b32bd6bd0eb176b83d4c61cd161853</hash>
+    <hash>3341d084f512ec88b2fec10aeb015060</hash>
   </element>
   <element>
     <fullpath>groupmgr.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6652</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f4c6d780b33d562dc023f8c40c8c5854</hash>
+    <hash>b9fb04e0bf45fe025cae3260ff551d63</hash>
   </element>
   <element>
     <fullpath>help.php</fullpath>
@@ -238,7 +238,7 @@
     <revision>6387</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>659067298176cb222e916d15ba9fd5f4</hash>
+    <hash>e981370359d44aa36fb308d687b81ed7</hash>
   </element>
   <element>
     <fullpath>index.php</fullpath>
@@ -246,15 +246,15 @@
     <revision>6509</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a7f1aa2dc63dea94b25cf0f31aaa2474</hash>
+    <hash>c83ed4e55786eba8db5957febfcf7a9a</hash>
   </element>
   <element>
     <fullpath>install.php</fullpath>
     <version>1.5.2</version>
-    <revision>6461</revision>
+    <revision>6652</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>35cc48d4255cb79898b513d58429b3f0</hash>
+    <hash>9bd61c928e72e7b7941f104d68875be2</hash>
   </element>
   <element>
     <fullpath>install_old.php</fullpath>
@@ -262,7 +262,7 @@
     <revision>6461</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a86929846350e732e26e5299d9f12ee7</hash>
+    <hash>eb701dcdc71c204525e8020676ec95fc</hash>
   </element>
   <element>
     <fullpath>keyword_create_dict.php</fullpath>
@@ -270,7 +270,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4eef966da3ac1c41c03873536b79193f</hash>
+    <hash>55324e4d449e00dadcf55a82e9cb5d48</hash>
   </element>
   <element>
     <fullpath>keyword_select.php</fullpath>
@@ -278,7 +278,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4032e5c0444b98a0c92c8a76ce08ff6d</hash>
+    <hash>c6279930e941d83947a9d2e1bb49531d</hash>
   </element>
   <element>
     <fullpath>keywordmgr.php</fullpath>
@@ -286,7 +286,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>38767c0c7d538a1da73167b45bfc4173</hash>
+    <hash>6b0d57b2852e3a1366bd51bdd64c284f</hash>
   </element>
   <element>
     <fullpath>langmgr.php</fullpath>
@@ -294,15 +294,15 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>cacdb5ec75c516b17accf7a7b6f5dcb6</hash>
+    <hash>9596b44536c061ee0859873145b2d6ae</hash>
   </element>
   <element>
     <fullpath>login.php</fullpath>
     <version>1.5.2</version>
-    <revision>6446</revision>
+    <revision>6679</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5c45655dd72afbe4b4f1fe49b1d8c162</hash>
+    <hash>f2c387811514067d29fd58a3ab547a88</hash>
   </element>
   <element>
     <fullpath>logout.php</fullpath>
@@ -310,7 +310,7 @@
     <revision>6463</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>18f0ea44b047707e82dd09a151dc9dc1</hash>
+    <hash>bd197f4aba926456be6e04c7410ec22f</hash>
   </element>
   <element>
     <fullpath>minibrowser.php</fullpath>
@@ -318,7 +318,7 @@
     <revision>6455</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c2514abc6a6209b8858997fbc53522ed</hash>
+    <hash>c1932245eeab7665da756645ff35b3b8</hash>
   </element>
   <element>
     <fullpath>mode.php</fullpath>
@@ -326,7 +326,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8346ef946a551a2344c69bf913c789c9</hash>
+    <hash>1f0da30d442617b4dc3c4fe97fe383df</hash>
   </element>
   <element>
     <fullpath>modifyalb.php</fullpath>
@@ -334,7 +334,7 @@
     <revision>6523</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>714c23414b7e4b34960f7549f346cc4d</hash>
+    <hash>61a6755e5e9db86c485eb396bb92ddd3</hash>
   </element>
   <element>
     <fullpath>notifyupload.php</fullpath>
@@ -349,7 +349,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ad767ffe2a9dbfd43aaaf3b60d43a6a5</hash>
+    <hash>87ef1a230fe74509130690a138b0c956</hash>
   </element>
   <element>
     <fullpath>picEditor.php</fullpath>
@@ -358,10 +358,10 @@
   <element>
     <fullpath>pic_editor.php</fullpath>
     <version>1.5.2</version>
-    <revision>6641</revision>
+    <revision>6669</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>60d0552aac723615b6fc4dfe589153a5</hash>
+    <hash>f58825918c7da09f5843526bbc9dc82e</hash>
   </element>
   <element>
     <fullpath>picmgr.php</fullpath>
@@ -369,7 +369,7 @@
     <revision>6629</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0dd0e9898e5a47e2e0c1a833324d81b9</hash>
+    <hash>d7ff60a22e71a9b51481e7bb0b2d22d4</hash>
   </element>
   <element>
     <fullpath>pluginmgr.php</fullpath>
@@ -377,15 +377,15 @@
     <revision>6465</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>beccc7db65b3b08451ca02854c62acc3</hash>
+    <hash>586132b5f2315e72a29aacf3521a4f49</hash>
   </element>
   <element>
     <fullpath>profile.php</fullpath>
     <version>1.5.2</version>
-    <revision>6627</revision>
+    <revision>6652</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>179469ede56878fc5951dfeee8cff3ca</hash>
+    <hash>819d265753a32459ae3c10379c5505ed</hash>
   </element>
   <element>
     <fullpath>ratepic.php</fullpath>
@@ -393,7 +393,7 @@
     <revision>6577</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fd63cf3fe3106be7376b64f88f8c3779</hash>
+    <hash>80c98f8bcd0f9873cd43d6c4fccce23f</hash>
   </element>
   <element>
     <fullpath>README.txt</fullpath>
@@ -401,7 +401,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>43d2c0ba74bbf8c8fb802f640791d999</hash>
+    <hash>ee976a173c3279ca0a066670809b033e</hash>
   </element>
   <element>
     <fullpath>register.php</fullpath>
@@ -409,7 +409,7 @@
     <revision>6603</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5091c5685302a65242d620997fdc97db</hash>
+    <hash>1dedb66a55fe855198800c395093ca5a</hash>
   </element>
   <element>
     <fullpath>relocate_server.php</fullpath>
@@ -421,7 +421,7 @@
     <revision>6483</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>556a5549ea343dbe0f72f598bf85cfd1</hash>
+    <hash>2d3b6b3669417ec1cfeb1fb33d1bed5f</hash>
   </element>
   <element>
     <fullpath>reviewcom.php</fullpath>
@@ -429,7 +429,7 @@
     <revision>6629</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ca0af7a4f3c93c52aa8f51bd53eacf57</hash>
+    <hash>d22d3445c8b97417f1161b4202867639</hash>
   </element>
   <element>
     <fullpath>scripts.js</fullpath>
@@ -441,7 +441,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>cf806f976c7566e1cdc547c1f048fca6</hash>
+    <hash>daa9a821f6168a77c18aee3f0f7535d2</hash>
   </element>
   <element>
     <fullpath>searchnew.php</fullpath>
@@ -449,7 +449,7 @@
     <revision>6641</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>98dea54754126c53ae4f3bf0aa751a10</hash>
+    <hash>0c307c83fd1bb4886f5dbf491ea98c64</hash>
   </element>
   <element>
     <fullpath>send_activation.php</fullpath>
@@ -457,7 +457,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3867c25a7887be1d6ebf939f41f0ad35</hash>
+    <hash>0315308b44166f78860ced5e9a29a33e</hash>
   </element>
   <element>
     <fullpath>showthumb.php</fullpath>
@@ -465,7 +465,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>12ec78ded80b52da5089a26882c82d4d</hash>
+    <hash>54307da249ec079f716a84639a2106ee</hash>
   </element>
   <element>
     <fullpath>sidebar.php</fullpath>
@@ -473,15 +473,15 @@
     <revision>6628</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7093e81b01b420e4e43a708b6fd5a910</hash>
+    <hash>8dd9c41b32fb01f01b3cc985dc96fc78</hash>
   </element>
   <element>
     <fullpath>stat_details.php</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6670</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>64347550f218a93f641422ad4da4c030</hash>
+    <hash>e664c9686c2bf8fa2d211353b273d8d5</hash>
   </element>
   <element>
     <fullpath>thumbnails.php</fullpath>
@@ -489,7 +489,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e4b214d303cdc03bbba7248e2b831608</hash>
+    <hash>5af3652749689c4b46f28f25da56a958</hash>
   </element>
   <element>
     <fullpath>update.php</fullpath>
@@ -497,7 +497,7 @@
     <revision>6642</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1c02bd5b034c388e756146a1c050f10d</hash>
+    <hash>84d998c023ced243c09d3881fbfc47b7</hash>
   </element>
   <element>
     <fullpath>upload.php</fullpath>
@@ -505,7 +505,7 @@
     <revision>6641</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>952713899c3ed58e3171b37a5bb6337f</hash>
+    <hash>f5e507d2afabafc7d210ce74e5e28999</hash>
   </element>
   <element>
     <fullpath>usermgr.php</fullpath>
@@ -513,7 +513,7 @@
     <revision>6446</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>946be73b87f8e97f91070cd588701e99</hash>
+    <hash>9e93554598df39f25e4c66674f070068</hash>
   </element>
   <element>
     <fullpath>util.php</fullpath>
@@ -521,7 +521,7 @@
     <revision>6398</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>36a32f7fdae10c3efaa0c2b6c04702d3</hash>
+    <hash>e36cb2f2c44a8e825e7a189176c04ddb</hash>
   </element>
   <element>
     <fullpath>versioncheck.php</fullpath>
@@ -529,7 +529,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>064c0e7f590f44e5ca2e59652438371c</hash>
+    <hash>03528d1616f33f845a7f031032c96e4e</hash>
   </element>
   <element>
     <fullpath>viewlog.php</fullpath>
@@ -537,7 +537,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>227c4e3ac7307d79347fc2a4459ce727</hash>
+    <hash>31ebba9ed243a819bae04d104d9cfaad</hash>
   </element>
   <element>
     <fullpath>xp_publish.php</fullpath>
@@ -545,7 +545,7 @@
     <revision>6641</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>45653de08c6ec69a065349a840406706</hash>
+    <hash>27e12d3563d888eb989dcf25c04bec72</hash>
   </element>
   <element>
     <fullpath>zipdownload.php</fullpath>
@@ -553,7 +553,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>cd728a3277d1465795bd8729a5da0ff1</hash>
+    <hash>0883890d1fc6aee1cfb07665e354b48c</hash>
   </element>
   <element>
     <fullpath>albums/</fullpath>
@@ -566,7 +566,7 @@
     <revision>6634</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9bbf5c81a425de67ac0973d946de2ce6</hash>
+    <hash>941f92425992a964b5bf242cec96ad45</hash>
   </element>
   <element>
     <fullpath>albums/edit/</fullpath>
@@ -579,13 +579,13 @@
     <revision>6635</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>14a9f5e69a462f597e29b5e059bbf615</hash>
+    <hash>84f470ffef8fe8b3ff9e6b1155b0efd4</hash>
   </element>
   <element>
     <fullpath>albums/edit/no_FTP-uploads_into_this_folder!.txt</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d815238e70d64b5542f98b0f95d966bd</hash>
+    <hash>6c2b09864ed59782e15e407eb60a1963</hash>
   </element>
   <element>
     <fullpath>albums/userpics</fullpath>
@@ -598,13 +598,13 @@
     <revision>6634</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c3db5a7a8459b54d7acb9ca8e72058c5</hash>
+    <hash>2bc4b298217dd76af6dfe7cebaa411b3</hash>
   </element>
   <element>
     <fullpath>albums/userpics/no_FTP-uploads_into_this_folder!.txt</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4117fc862f2a83c5414113622fdbe52b</hash>
+    <hash>ccd470b0a339596e6df305539e94a0d6</hash>
   </element>
   <element>
     <fullpath>bridge/</fullpath>
@@ -617,7 +617,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>18c29e0b527281c8c3e414db226c2fbb</hash>
+    <hash>64972fe92dd00560a07959e072268f0d</hash>
   </element>
   <element>
     <fullpath>bridge/invisionboard20.inc.php</fullpath>
@@ -625,7 +625,7 @@
     <revision>6367</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>a5a8e89d26ea40e50104e78a704a1ea2</hash>
+    <hash>f938e760710922937a3ef3687536aa14</hash>
   </element>
   <element>
     <fullpath>bridge/mambo.inc.php</fullpath>
@@ -633,7 +633,7 @@
     <revision>6367</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>2e8ebcd7d212411ece671967b748cec6</hash>
+    <hash>23f752777a9e3a824e654e69f3ccbad0</hash>
   </element>
   <element>
     <fullpath>bridge/mybb.inc.php</fullpath>
@@ -641,7 +641,7 @@
     <revision>6370</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>894319831c6b87c182839b12857cacbf</hash>
+    <hash>2b56977c35d8f5e5db2ceee62f117dfe</hash>
   </element>
   <element>
     <fullpath>bridge/phorum.inc.php</fullpath>
@@ -649,7 +649,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>637bd3c2b84418fad9393a446857a545</hash>
+    <hash>2c58f4226a1f84013e82758d039212a9</hash>
   </element>
   <element>
     <fullpath>bridge/phpbb.inc.php</fullpath>
@@ -657,7 +657,7 @@
     <revision>6367</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>06487ad0fdbca92109a4bd21148d1a2c</hash>
+    <hash>73f4aba082b18fb819a6121752af31e0</hash>
   </element>
   <element>
     <fullpath>bridge/phpbb2018.inc.php</fullpath>
@@ -665,7 +665,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>a3c07650535752f49fb20ebd1338c580</hash>
+    <hash>27493679d5386301adca171c849c6d63</hash>
   </element>
   <element>
     <fullpath>bridge/phpbb3.inc.php</fullpath>
@@ -673,7 +673,7 @@
     <revision>6397</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>9ef1681c093c1b57ba7750482df770eb</hash>
+    <hash>ae8e08d84da4fdcc21ca7e6d1d357d65</hash>
   </element>
   <element>
     <fullpath>bridge/phpbb22.inc.php</fullpath>
@@ -685,7 +685,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>75f3b49c559519811a91f334c2725dae</hash>
+    <hash>8c2db88fa4b576c4de3bb8b943abef45</hash>
   </element>
   <element>
     <fullpath>bridge/punbb12.inc.php</fullpath>
@@ -693,7 +693,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>40b057df25c8c72cdb4c4853f5ede358</hash>
+    <hash>3bd75c9aaf28fabaf895cffa9d05af9a</hash>
   </element>
   <element>
     <fullpath>bridge/smf10.inc.php</fullpath>
@@ -701,7 +701,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>f05c91e4046ea4a6c15746b14a528236</hash>
+    <hash>07fe6f745e1e29f8c433fe60ae9f3161</hash>
   </element>
   <element>
     <fullpath>bridge/smf20.inc.php</fullpath>
@@ -709,7 +709,7 @@
     <revision>6368</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>5bc8b67c13e439096ea0615c5c2c1fe0</hash>
+    <hash>98fe789be5f3a415f2cd8459053c363f</hash>
   </element>
   <element>
     <fullpath>bridge/udb_base.inc.php</fullpath>
@@ -717,7 +717,7 @@
     <revision>6468</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>46c136f538c55ba72786f6167da4c2da</hash>
+    <hash>aeb451ae8bc30a3a4e82010c795d437d</hash>
   </element>
   <element>
     <fullpath>bridge/vbulletin30.inc.php</fullpath>
@@ -725,7 +725,7 @@
     <revision>6367</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>4f5f2d16aa7d6a29b4c25fe9783a640c</hash>
+    <hash>b23754e964b5fc389947e623bf15e5a8</hash>
   </element>
   <element>
     <fullpath>bridge/xmb.inc.php</fullpath>
@@ -733,7 +733,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>e2b3d3b9928465e96fbc4f9bffcc6cbe</hash>
+    <hash>b48220598a97bd92add3df3544a66254</hash>
   </element>
   <element>
     <fullpath>bridge/xoops.inc.php</fullpath>
@@ -741,7 +741,7 @@
     <revision>6367</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>a4f16f8deeaa2fd5457ab2f91d9e9eb2</hash>
+    <hash>a546622d2f8ba4c173dfbd83d399bb47</hash>
   </element>
   <element>
     <fullpath>css/</fullpath>
@@ -754,7 +754,7 @@
     <revision>6601</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>92dde3854f2533e27f951862c7fb7002</hash>
+    <hash>965e31f9a820c857f15d095bc6e23abe</hash>
   </element>
   <element>
     <fullpath>css/date_picker.css</fullpath>
@@ -762,7 +762,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5639ad49cf04622df46bb9e5bfc6d27a</hash>
+    <hash>126c0671a003378e84cc112438c24845</hash>
   </element>
   <element>
     <fullpath>css/installer.css</fullpath>
@@ -770,7 +770,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>19819988538cec7c16fed22debf80381</hash>
+    <hash>01beeb215d00888bd249072af469021a</hash>
   </element>
   <element>
     <fullpath>css/treeview.css</fullpath>
@@ -778,7 +778,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3a963ce0097d5d6887e2b2305264120d</hash>
+    <hash>123277095bd4fa7ab327bfda28b6e47c</hash>
   </element>
   <element>
     <fullpath>docs/</fullpath>
@@ -813,7 +813,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>35935c946944950fd6901c934fa67a46</hash>
+    <hash>d7c3e81bf23de90057e7aaf1ebed9f41</hash>
   </element>
   <element>
     <fullpath>docs/index_es.htm</fullpath>
@@ -854,7 +854,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f6e25ae5ce6463dcebc98de0090dd4ed</hash>
+    <hash>26cc96dcae2ee55ffec3260f5caf04c4</hash>
   </element>
   <element>
     <fullpath>docs/de/admin-tools.htm</fullpath>
@@ -862,7 +862,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1ca62b292cfbac5eb6824ae8794b7c6b</hash>
+    <hash>c722d5c13f294348258e2bd73948086c</hash>
   </element>
   <element>
     <fullpath>docs/de/administration.htm</fullpath>
@@ -870,7 +870,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>08bc72322b274a8f802c0d33e5f42ab4</hash>
+    <hash>b7442fc30cedc79ff2ecbb6613b11f3b</hash>
   </element>
   <element>
     <fullpath>docs/de/albums.htm</fullpath>
@@ -878,7 +878,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1cedc5fe5bf40b67bb7b42ff20e75943</hash>
+    <hash>684df400c8bc273ec11777b02f5ec038</hash>
   </element>
   <element>
     <fullpath>docs/de/auto-installers.htm</fullpath>
@@ -886,7 +886,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7ff9f683c50da8c82f7997f3b6efeb0f</hash>
+    <hash>2d4f27d06524332fb7b7c76b6d8c839e</hash>
   </element>
   <element>
     <fullpath>docs/de/banning.htm</fullpath>
@@ -894,7 +894,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6450e308d1fedb48c2b56a4776b30618</hash>
+    <hash>0283e1aae42ef7b528900288fc1c5118</hash>
   </element>
   <element>
     <fullpath>docs/de/bbcode.htm</fullpath>
@@ -902,7 +902,7 @@
     <revision>6429</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>47228ad022a64e9585150e8a64e9cce0</hash>
+    <hash>77dbe9d143f3f1babc7ca8106677b770</hash>
   </element>
   <element>
     <fullpath>docs/de/bridging.htm</fullpath>
@@ -910,7 +910,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ab7e1ac7147e8136b19eea9b89d39783</hash>
+    <hash>0e347626cd5881c77252c710138fd3f9</hash>
   </element>
   <element>
     <fullpath>docs/de/categories.htm</fullpath>
@@ -918,7 +918,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6ac9d7e95026d283d2519ac264faebf1</hash>
+    <hash>b9660b2dd110f5c4304577c186156684</hash>
   </element>
   <element>
     <fullpath>docs/de/comments.htm</fullpath>
@@ -926,7 +926,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f80933ccf15c893256ebb9b80532c599</hash>
+    <hash>97e12033883a401816c92b057acf1af6</hash>
   </element>
   <element>
     <fullpath>docs/de/configuration.htm</fullpath>
@@ -934,7 +934,7 @@
     <revision>6583</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>3e99ae72edeaaa09b99e166ea1ad6ee9</hash>
+    <hash>d3b536c20e07807498337c8cd8515a14</hash>
   </element>
   <element>
     <fullpath>docs/de/copyrights.htm</fullpath>
@@ -942,15 +942,15 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>cb02887d72726e9f4fb5717fe1af6b23</hash>
+    <hash>e82e9efc201a45ea550b9ad1e1eeb0d8</hash>
   </element>
   <element>
     <fullpath>docs/de/credits.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6583</revision>
+    <revision>6653</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>f2318428a448e1fab716dfdb4b2cac9f</hash>
+    <hash>83d2e5bbf24b551d308c1feac578effe</hash>
   </element>
   <element>
     <fullpath>docs/de/dev.htm</fullpath>
@@ -958,7 +958,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ae2a13c19b11cc1a78db62c710c88b17</hash>
+    <hash>9a6b50f45d17477bbd803e844af8b745</hash>
   </element>
   <element>
     <fullpath>docs/de/dev_coding.htm</fullpath>
@@ -966,7 +966,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ab06fab448b6d22c142c07c9abf3aa47</hash>
+    <hash>c2ccc9fdbab2ba8257a73f6662ceb6a8</hash>
   </element>
   <element>
     <fullpath>docs/de/dev_config.htm</fullpath>
@@ -974,7 +974,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>394ce637a6cd92884d498b13d5543185</hash>
+    <hash>8fc844907040052a4810ae89129559f7</hash>
   </element>
   <element>
     <fullpath>docs/de/dev_database.htm</fullpath>
@@ -982,7 +982,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d8569e2a632646880513ebbbf015151a</hash>
+    <hash>b3a65d3f0edc78a7e31dcca6b367d272</hash>
   </element>
   <element>
     <fullpath>docs/de/dev_documentation.htm</fullpath>
@@ -990,7 +990,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c23a6d6eaf78707e557043893ed137a0</hash>
+    <hash>ebcdf534ab5d3c4d067c8661645f9547</hash>
   </element>
   <element>
     <fullpath>docs/de/dev_files.htm</fullpath>
@@ -998,7 +998,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2617949490156e92901f4b1c26549fb2</hash>
+    <hash>b65797a3831816de2fe3b77cb492dce5</hash>
   </element>
   <element>
     <fullpath>docs/de/dev_javascript.htm</fullpath>
@@ -1006,7 +1006,7 @@
     <revision>6363</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0c719d15d70a3f930e6612150bf6f823</hash>
+    <hash>d1dda4bf185718419c3f27bf0ba1896e</hash>
   </element>
   <element>
     <fullpath>docs/de/dev_plugin_api.htm</fullpath>
@@ -1014,15 +1014,15 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d63390592c1f9ae60a0d87ffd0b6360a</hash>
+    <hash>a2618ef575e7de7656641b9764406586</hash>
   </element>
   <element>
     <fullpath>docs/de/dev_plugin_hooks.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6598</revision>
+    <revision>6707</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d4226172801a7b94e7aaf4765c2f5593</hash>
+    <hash>37dcd6895ff0bdfc2567d069f771eb50</hash>
   </element>
   <element>
     <fullpath>docs/de/dev_plugins.htm</fullpath>
@@ -1030,7 +1030,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9a0862ab35ce30cc15fd0d5e11e9f6b2</hash>
+    <hash>afbe2a8cba191b0bd4b79d16f4b4d348</hash>
   </element>
   <element>
     <fullpath>docs/de/dev_subversion.htm</fullpath>
@@ -1038,7 +1038,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f0b2d3fe96997ce06e1cf56c2e5082c5</hash>
+    <hash>5e661cb07081953f7b9721bdd33db790</hash>
   </element>
   <element>
     <fullpath>docs/de/dev_superglobals.htm</fullpath>
@@ -1046,7 +1046,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ab5c82ca1c47d957c1389567845277a2</hash>
+    <hash>02f872105f17c7cd9a06a3fc69df36d7</hash>
   </element>
   <element>
     <fullpath>docs/de/dev_tools.htm</fullpath>
@@ -1054,7 +1054,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fc165b0ee37e98510ed0b01cab846deb</hash>
+    <hash>e45afd5a3b8bb72b5a26757afdfcd94b</hash>
   </element>
   <element>
     <fullpath>docs/de/dev_update.htm</fullpath>
@@ -1062,7 +1062,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>569ddfd6156980dbfb13304385683b0c</hash>
+    <hash>4bc98610860ace23c92fcf167a056b10</hash>
   </element>
   <element>
     <fullpath>docs/de/dev_vars.htm</fullpath>
@@ -1078,7 +1078,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8ac078393b540ceed30c903e4043e64f</hash>
+    <hash>41690e0e5427e8273263733cbeb08177</hash>
   </element>
   <element>
     <fullpath>docs/de/errors.htm</fullpath>
@@ -1086,7 +1086,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e0c69f1f0896b930d668ab0baa003b4d</hash>
+    <hash>908d518a9406cbdda65422123dec8ac2</hash>
   </element>
   <element>
     <fullpath>docs/de/exif.htm</fullpath>
@@ -1094,7 +1094,7 @@
     <revision>6605</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>cb6765b7f7933fc4a9641540d3781e77</hash>
+    <hash>7772c0bd26ceb02ae766a0afdaa11aae</hash>
   </element>
   <element>
     <fullpath>docs/de/export.htm</fullpath>
@@ -1102,7 +1102,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>60af2cfd4cc405afe3cbf0ff3dcc57ce</hash>
+    <hash>319e59dd1385bd3c03dcc0a84635d449</hash>
   </element>
   <element>
     <fullpath>docs/de/faq.htm</fullpath>
@@ -1110,7 +1110,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c65f3837e36a7288284e38d41e3b8c78</hash>
+    <hash>0fbdf6ad600b1d5fc68649a721b12514</hash>
   </element>
   <element>
     <fullpath>docs/de/files.htm</fullpath>
@@ -1118,7 +1118,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3503b056da8a39ca721ad6c7a8d71790</hash>
+    <hash>6b04aab7f34860bdd57c20f92e3ccfcd</hash>
   </element>
   <element>
     <fullpath>docs/de/groups.htm</fullpath>
@@ -1126,7 +1126,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>49c61857bbd6e3af2282ef6da3720fc7</hash>
+    <hash>d0b2c11dfb87a7d49b5c4e2db449bb4e</hash>
   </element>
   <element>
     <fullpath>docs/de/index.htm</fullpath>
@@ -1134,7 +1134,7 @@
     <revision>6583</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>da451f312b950ca3eed4d35c4b815e73</hash>
+    <hash>f0124b07736f881d8c3289bb0800ca6a</hash>
   </element>
   <element>
     <fullpath>docs/de/install.htm</fullpath>
@@ -1142,7 +1142,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fe54622f6db08bc3e1fc673bb56ed1d3</hash>
+    <hash>2aa07889845ede27e9373b9f60d85463</hash>
   </element>
   <element>
     <fullpath>docs/de/install_faq.htm</fullpath>
@@ -1150,7 +1150,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3f301be398fa7079d011fb17480621e8</hash>
+    <hash>7c09ef062b807aa4964713f92d3183ad</hash>
   </element>
   <element>
     <fullpath>docs/de/install_permissions.htm</fullpath>
@@ -1158,7 +1158,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>88858162da4ed5f418a5e608ce565813</hash>
+    <hash>e8d576b0ff6f2ead32f7636cb6c14954</hash>
   </element>
   <element>
     <fullpath>docs/de/install_screen.htm</fullpath>
@@ -1166,7 +1166,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3d259198e8051459c828675504b53461</hash>
+    <hash>52dd8a6861538fb842dd44eacaaf366a</hash>
   </element>
   <element>
     <fullpath>docs/de/keywords.htm</fullpath>
@@ -1174,7 +1174,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>21f3e017760d46ab182fbd292440049f</hash>
+    <hash>608a3094ac7332bb0d331620b3dcafea</hash>
   </element>
   <element>
     <fullpath>docs/de/known_issues.htm</fullpath>
@@ -1182,7 +1182,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>94226c0d6a01ec1ec4f72bde0ecd2490</hash>
+    <hash>24883d6b0cb02735b82a0c96b0fcac9b</hash>
   </element>
   <element>
     <fullpath>docs/de/languages.htm</fullpath>
@@ -1190,7 +1190,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>e913f1a92895518b0d8ada06034518b8</hash>
+    <hash>a6a3c31636b148a924b42fcfc795011c</hash>
   </element>
   <element>
     <fullpath>docs/de/performance.htm</fullpath>
@@ -1198,7 +1198,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a4feaf132c96f21ae9c6bdeb84854af6</hash>
+    <hash>05cf93adffa1f726945655cc316142c0</hash>
   </element>
   <element>
     <fullpath>docs/de/php-content.htm</fullpath>
@@ -1206,7 +1206,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4f731f28bf807428934cffcf859d75db</hash>
+    <hash>2568499888512ac98ff0546d25db0969</hash>
   </element>
   <element>
     <fullpath>docs/de/plugins.htm</fullpath>
@@ -1214,7 +1214,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5ddfae9fbbd99fe99958464874bc18cd</hash>
+    <hash>2ca04b7ab51952d711b3a3d48aa2692f</hash>
   </element>
   <element>
     <fullpath>docs/de/quickstart.htm</fullpath>
@@ -1222,7 +1222,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>dd79f32e65cf960a9854188b57d4bb9b</hash>
+    <hash>1d8a823e3ed13d35593960ad5babd610</hash>
   </element>
   <element>
     <fullpath>docs/de/requirements.htm</fullpath>
@@ -1230,7 +1230,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>216c3465bf8d17bfeaa52144fc38a0d7</hash>
+    <hash>8747d9057abfd214f1377227debc6868</hash>
   </element>
   <element>
     <fullpath>docs/de/script.js</fullpath>
@@ -1238,7 +1238,7 @@
     <revision>6435</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>f2b319e2649c6ec0bc011584ea72e15a</hash>
+    <hash>28eb1651503a9ad2866f4537019b9d79</hash>
   </element>
   <element>
     <fullpath>docs/de/start.htm</fullpath>
@@ -1246,7 +1246,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>51c3478c74ab1ce6c8227a376e6b96b8</hash>
+    <hash>f4fbeebe3a595f73624727d45e7a062f</hash>
   </element>
   <element>
     <fullpath>docs/de/testing.htm</fullpath>
@@ -1254,7 +1254,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>43c1a8796116b63ac7e29e03ec4bbb71</hash>
+    <hash>d34f016650ebf7860ecbf105a23e15fa</hash>
   </element>
   <element>
     <fullpath>docs/de/theme.htm</fullpath>
@@ -1262,7 +1262,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b33071cfa0d7180cfee4066f07a18d1f</hash>
+    <hash>5ab29c98582a06d41a6b0815a89df1e7</hash>
   </element>
   <element>
     <fullpath>docs/de/theme_copyright.htm</fullpath>
@@ -1270,7 +1270,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>12589efc6d3dfa7235ea5d88b0b70674</hash>
+    <hash>bee523dddd2723a4654407bd03446543</hash>
   </element>
   <element>
     <fullpath>docs/de/theme_create.htm</fullpath>
@@ -1278,7 +1278,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>da4c01b0562d05bf31993484ee827307</hash>
+    <hash>6a1e23095ea1999af6f0962215150e53</hash>
   </element>
   <element>
     <fullpath>docs/de/theme_create_matching_page_tutorial.htm</fullpath>
@@ -1286,7 +1286,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>859a15969a69b36b4a76d02b43f4e973</hash>
+    <hash>8a6a92e3b3ae1afac007eba919b7bf67</hash>
   </element>
   <element>
     <fullpath>docs/de/theme_examples.htm</fullpath>
@@ -1294,7 +1294,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7fc1b1dd4e6f66cf19c1f725e1788f3b</hash>
+    <hash>36ace445b3c3b6d8dd5e4173d20bc369</hash>
   </element>
   <element>
     <fullpath>docs/de/theme_graphics.htm</fullpath>
@@ -1302,7 +1302,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>34e1ef4b20a122f30c922743579f91f6</hash>
+    <hash>d39994ef4095bd86034b5e0b7fe215c0</hash>
   </element>
   <element>
     <fullpath>docs/de/theme_style_css.htm</fullpath>
@@ -1310,7 +1310,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a435368102927942a65e70a8b81c9f2f</hash>
+    <hash>6be4337f0daa8e0a4125875f81fc36dd</hash>
   </element>
   <element>
     <fullpath>docs/de/theme_template.htm</fullpath>
@@ -1318,7 +1318,7 @@
     <revision>6583</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5489a2c86327e03c1bcf16092ef7b6a9</hash>
+    <hash>3fb8c461c84fab145ed1127604a1995c</hash>
   </element>
   <element>
     <fullpath>docs/de/theme_theme_php.htm</fullpath>
@@ -1326,7 +1326,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>04b34ae6ecbae2cf87a1e34e3981b3f5</hash>
+    <hash>243e47c3723d9f76d743db60af6651a7</hash>
   </element>
   <element>
     <fullpath>docs/de/theme_upgrade_13x-14x.htm</fullpath>
@@ -1334,7 +1334,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>52241e8a75e79fc4437c3d5d0451e605</hash>
+    <hash>d9c968c213381e3b45d7ce510f32fc33</hash>
   </element>
   <element>
     <fullpath>docs/de/theme_upgrade_14x-15x.htm</fullpath>
@@ -1342,7 +1342,7 @@
     <revision>6583</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5a75e7d9ed86c8b5ac4e361944a00412</hash>
+    <hash>2ec0b00d558c2791a7e6db20d5eacb5b</hash>
   </element>
   <element>
     <fullpath>docs/de/theme_user-contributions.htm</fullpath>
@@ -1350,7 +1350,7 @@
     <revision>6366</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b44e0f4bd0ca9d77f991e2ce0dde2f4a</hash>
+    <hash>b63ed0e0d3f7fcd569586e7f5bd44f24</hash>
   </element>
   <element>
     <fullpath>docs/de/toc.htm</fullpath>
@@ -1358,7 +1358,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>27c50afc80f967a0c2622937fd126391</hash>
+    <hash>54af96facc08f9ed26044967d15e8267</hash>
   </element>
   <element>
     <fullpath>docs/de/translation.htm</fullpath>
@@ -1366,7 +1366,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c493ad72c80e87cccbb4c4b3ea5db698</hash>
+    <hash>1abe0f96059bb60565553bb6677a0fa2</hash>
   </element>
   <element>
     <fullpath>docs/de/uninstall.htm</fullpath>
@@ -1374,7 +1374,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>52ef00bf1c6a34583584081515bfbea6</hash>
+    <hash>31e502aea9f7423dafa8ae9b9cc565b6</hash>
   </element>
   <element>
     <fullpath>docs/de/upgrading.htm</fullpath>
@@ -1382,7 +1382,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fccd2b4a908c1c31b18aabe28392743b</hash>
+    <hash>aa4e386f6a07c089131743e35248eee8</hash>
   </element>
   <element>
     <fullpath>docs/de/upload_troubleshooting.htm</fullpath>
@@ -1390,7 +1390,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>980fecdf75734532427f1766ded68d4f</hash>
+    <hash>611e5fd3179c999533164b65635c8b9f</hash>
   </element>
   <element>
     <fullpath>docs/de/uploading.htm</fullpath>
@@ -1398,7 +1398,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>482e210d3fa7f2fb8618fd056e2251f8</hash>
+    <hash>35f053553607c60b124d82521c28f0f6</hash>
   </element>
   <element>
     <fullpath>docs/de/uploading_batch-add.htm</fullpath>
@@ -1406,7 +1406,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5df1484bb3cca1908c16ee1ef221164d</hash>
+    <hash>a9f51eb5ef37759ce77242d5b7d53ef6</hash>
   </element>
   <element>
     <fullpath>docs/de/uploading_http.htm</fullpath>
@@ -1414,7 +1414,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>734e29f86b4eb0bff66cb1d2774d609d</hash>
+    <hash>65b526c475ae091c664b03de8dd11750</hash>
   </element>
   <element>
     <fullpath>docs/de/uploading_xp-publisher.htm</fullpath>
@@ -1422,7 +1422,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>486842a50ae032037aa2689a651ea929</hash>
+    <hash>4bbbe3eccaf527288f17d1a83c924cf9</hash>
   </element>
   <element>
     <fullpath>docs/de/users.htm</fullpath>
@@ -1430,7 +1430,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ae27c1f63a3a7dc76c571d985993e615</hash>
+    <hash>fe110a6687ae144ea78c8cee97704556</hash>
   </element>
   <element>
     <fullpath>docs/de/watermarking.htm</fullpath>
@@ -1438,7 +1438,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7e56ec47eb90d693edaf0ffb08d951f7</hash>
+    <hash>ed1ef39a188f8716dc55df2f6e3300ba</hash>
   </element>
   <element>
     <fullpath>docs/de/images/</fullpath>
@@ -1648,7 +1648,7 @@
     <revision>6605</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>50571616cdf751c31be582f6c9b81702</hash>
+    <hash>5e9889af774066817e91995871d9dd39</hash>
   </element>
   <element>
     <fullpath>docs/en/administration.htm</fullpath>
@@ -1656,7 +1656,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1890740a4a8c99cf7c2abe1a5e8919eb</hash>
+    <hash>80085c4636484d5ec11115abd5f0bc48</hash>
   </element>
   <element>
     <fullpath>docs/en/admin-tools.htm</fullpath>
@@ -1664,7 +1664,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>be9034040cf94319a27b003b3253bb66</hash>
+    <hash>3bb2218fd83984d13e32824392ecea21</hash>
   </element>
   <element>
     <fullpath>docs/en/albums.htm</fullpath>
@@ -1672,7 +1672,7 @@
     <revision>6392</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>08d33c54c639d395cc7cc13d88bed7f7</hash>
+    <hash>65cfb8fbbf909c9e461436e51966fc0f</hash>
   </element>
   <element>
     <fullpath>docs/en/auto-installers.htm</fullpath>
@@ -1680,7 +1680,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a33860792d4fe6d04c55dae8019aed45</hash>
+    <hash>0eafd6ba80f7df75b5c3590ca83824cd</hash>
   </element>
   <element>
     <fullpath>docs/en/banning.htm</fullpath>
@@ -1688,7 +1688,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9e37b71862eea4e3fdd70c341221fa27</hash>
+    <hash>01787cfa3b6520f36ad546ca7323725a</hash>
   </element>
   <element>
     <fullpath>docs/en/bbcode.htm</fullpath>
@@ -1696,7 +1696,7 @@
     <revision>6605</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1499fd94ad2673c7e8eeb3d601f2ca94</hash>
+    <hash>83186b14da1f8bf6f7918ee6bad5214d</hash>
   </element>
   <element>
     <fullpath>docs/en/bridging.htm</fullpath>
@@ -1704,7 +1704,7 @@
     <revision>6484</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>cd11d509317e8da9267c858165a0e8c5</hash>
+    <hash>6ad70db97dd0a6fda339d3a871d12882</hash>
   </element>
   <element>
     <fullpath>docs/en/categories.htm</fullpath>
@@ -1712,7 +1712,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1b94d1147972a8c3dae853331735d18b</hash>
+    <hash>d1db17d24993fa7e92a841e9e977e241</hash>
   </element>
   <element>
     <fullpath>docs/en/comments.htm</fullpath>
@@ -1720,7 +1720,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d2d26707880fedcaafb3777461eaafe9</hash>
+    <hash>bea032286e86aa925f3b9e6479e500c7</hash>
   </element>
   <element>
     <fullpath>docs/en/configuration.htm</fullpath>
@@ -1728,7 +1728,7 @@
     <revision>6613</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>091c358b469de90fa0907272df24944a</hash>
+    <hash>d9841955b08ea3013bb23f4589c8e811</hash>
   </element>
   <element>
     <fullpath>docs/en/copyrights.htm</fullpath>
@@ -1736,15 +1736,15 @@
     <revision>6485</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>588011ba1723452502892f510b46a941</hash>
+    <hash>072dbc15f6050c490f498b24995f5ab9</hash>
   </element>
   <element>
     <fullpath>docs/en/credits.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6622</revision>
+    <revision>6653</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8ce200c6464f93d9a253ce57b9d3c9b8</hash>
+    <hash>76eabd51d7bfa3a4b9af2f7678dec1f1</hash>
   </element>
   <element>
     <fullpath>docs/en/dev.htm</fullpath>
@@ -1752,7 +1752,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>cbdfb2c0c88ee97aed44f18d4ce09fc7</hash>
+    <hash>f8dfe44666db6d7d96aa1e5331c0ce2f</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_coding.htm</fullpath>
@@ -1760,7 +1760,7 @@
     <revision>6442</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c0587e48831db993c5a58e1815038295</hash>
+    <hash>90f39d941c2f78c5133f0d05943e1e4a</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_config.htm</fullpath>
@@ -1768,7 +1768,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7d47f9df994e0615db6e7044cd442aab</hash>
+    <hash>12bf09211aa48a94d00cfed1cd238d2b</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_database.htm</fullpath>
@@ -1776,7 +1776,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>afdec83857ca0aab79d97610b21d2f14</hash>
+    <hash>0de37648804826cc684fee901d656e20</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_documentation.htm</fullpath>
@@ -1784,7 +1784,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>56570e4317deca407bf835be733709c0</hash>
+    <hash>e4c5fa1406f23de549b0b422c68c6145</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_files.htm</fullpath>
@@ -1792,7 +1792,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c03b0d036e1386857a9ce16802a91bc5</hash>
+    <hash>cd911d0944793593112710f55ccf7b89</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_javascript.htm</fullpath>
@@ -1800,7 +1800,7 @@
     <revision>6363</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5d3ca4e5dcbca16ae99abc320c66540a</hash>
+    <hash>00d1a004b1b64791a39f0fb924fbdff0</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_plugin_api.htm</fullpath>
@@ -1808,15 +1808,15 @@
     <revision>6498</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>667da79b62d44240a966946b47b0dbc4</hash>
+    <hash>5cb48c38571fd794733b6cc61285d781</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_plugin_hooks.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6598</revision>
+    <revision>6707</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>607187d6a4793ee2a9568a67198b7df9</hash>
+    <hash>b30bd4a88972175ba6a53a0a81b6704e</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_plugins.htm</fullpath>
@@ -1824,7 +1824,7 @@
     <revision>6419</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1b269c959da15cedda00edc5360c5fda</hash>
+    <hash>ce6711351e4b6f4a6789b52313f63cff</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_subversion.htm</fullpath>
@@ -1832,7 +1832,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a653c5fdd470d8247baaa801159e9355</hash>
+    <hash>f60f10f214434646557056aeb6c772d7</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_superglobals.htm</fullpath>
@@ -1840,7 +1840,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>205f1e910bbfe6999f07eaf4b8b81e69</hash>
+    <hash>bfef07bb81ba5f93c2f43a2f7cad6f11</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_tools.htm</fullpath>
@@ -1848,7 +1848,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5a380dc86528904e8f40eed6729dd404</hash>
+    <hash>d631de89bbab10859ac8801b1718563f</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_update.htm</fullpath>
@@ -1856,7 +1856,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7994e2a28abd53f17948b737e07fb216</hash>
+    <hash>58afeccab11781664c5ad33bb4addd1c</hash>
   </element>
   <element>
     <fullpath>docs/en/dev_vars.htm</fullpath>
@@ -1872,7 +1872,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ad687a8bc2d7db731d0f21cf54c28f97</hash>
+    <hash>d7b80096e5c51ad23ba47b0140aeb24e</hash>
   </element>
   <element>
     <fullpath>docs/en/empty.htm</fullpath>
@@ -1880,7 +1880,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>a50ab0c3aa607b94c18b7001543cfbbf</hash>
+    <hash>aed0a718c1348dae2c4be460dc9268d1</hash>
   </element>
   <element>
     <fullpath>docs/en/errors.htm</fullpath>
@@ -1888,7 +1888,7 @@
     <revision>6605</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2823332bfbbfcd25fc6dd964de98d8a7</hash>
+    <hash>10fc452598cf8d110ff6ca50c6382462</hash>
   </element>
   <element>
     <fullpath>docs/en/exif.htm</fullpath>
@@ -1896,7 +1896,7 @@
     <revision>6605</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8e86d0ef458d8af2187e6c15eaf7ce26</hash>
+    <hash>1c50ceabfe7451eae9df607407c1e2d8</hash>
   </element>
   <element>
     <fullpath>docs/en/export.htm</fullpath>
@@ -1904,7 +1904,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b8e2e9a44640196ba2ef5466d203fc8a</hash>
+    <hash>7cec61ab38d2a519a8443c206f4f4467</hash>
   </element>
   <element>
     <fullpath>docs/en/faq.htm</fullpath>
@@ -1912,7 +1912,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>45175fdbf7eb5f833bde55f17d7145c7</hash>
+    <hash>99e6c6c45f46f871ae80e31a27adcdf1</hash>
   </element>
   <element>
     <fullpath>docs/en/files.htm</fullpath>
@@ -1920,7 +1920,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7ee6686514af2bde1cf02b27ee104fc8</hash>
+    <hash>9525e03cd6ef64f98c2bd52c42708e78</hash>
   </element>
   <element>
     <fullpath>docs/en/groups.htm</fullpath>
@@ -1928,7 +1928,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>300dcf550daf81f0f327a2a6f98e6a6d</hash>
+    <hash>f112cc4ca385ae2ecd1e8b8a12dff0e0</hash>
   </element>
   <element>
     <fullpath>docs/en/index.htm</fullpath>
@@ -1936,7 +1936,7 @@
     <revision>6626</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b25d1339303f0d02656957491cece4ea</hash>
+    <hash>54ff00e44ba7907e03943f53b682c64d</hash>
   </element>
   <element>
     <fullpath>docs/en/install.htm</fullpath>
@@ -1944,7 +1944,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>bdc4dacda9735472a178cea38908b38a</hash>
+    <hash>3ca318291853261133474db4c39751f2</hash>
   </element>
   <element>
     <fullpath>docs/en/install_faq.htm</fullpath>
@@ -1952,7 +1952,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1b8e8cebfb974b3eb0d3570b3b781fcf</hash>
+    <hash>ee874d7783097ccabffa0783f3ba6376</hash>
   </element>
   <element>
     <fullpath>docs/en/install_permissions.htm</fullpath>
@@ -1960,7 +1960,7 @@
     <revision>6376</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7310f35bd1fe4bb1cf4cbfada2ee1c26</hash>
+    <hash>4547aa906e2b3fd9929b6edad6087369</hash>
   </element>
   <element>
     <fullpath>docs/en/install_screen.htm</fullpath>
@@ -1968,7 +1968,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>211dce5f9f736e350b412448e31aa6da</hash>
+    <hash>2a65df4150becae151694512332b31ad</hash>
   </element>
   <element>
     <fullpath>docs/en/keywords.htm</fullpath>
@@ -1976,7 +1976,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c25a5d381db6dd55d4c30950b835b825</hash>
+    <hash>71dbacd94b0b6d9b989c2c13e978c96c</hash>
   </element>
   <element>
     <fullpath>docs/en/known_issues.htm</fullpath>
@@ -1984,7 +1984,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>39f25145e5c4080fb548a23f97452ed0</hash>
+    <hash>70ddaa51526d236965d6d0345e23fc33</hash>
   </element>
   <element>
     <fullpath>docs/en/languages.htm</fullpath>
@@ -1992,7 +1992,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ff8c5477a61fd1b7e5adcbec81370a10</hash>
+    <hash>4b09ccea30caf8179d263ca23c61fcb3</hash>
   </element>
   <element>
     <fullpath>docs/en/performance.htm</fullpath>
@@ -2000,7 +2000,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>cd852d88d3571ca1304ca30196c5aabe</hash>
+    <hash>e6c99faeb5086a82b50864df93474568</hash>
   </element>
   <element>
     <fullpath>docs/en/php-content.htm</fullpath>
@@ -2008,7 +2008,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c73d4936f1820427892193280d0f3dcc</hash>
+    <hash>098c4a720becb3f3f84d4d2f1ebf7fb4</hash>
   </element>
   <element>
     <fullpath>docs/en/plugins.htm</fullpath>
@@ -2016,7 +2016,7 @@
     <revision>6519</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4541e5bbdff325b89fb7933601e9be9c</hash>
+    <hash>8be7f745f410678a4f4259ab1469a0f2</hash>
   </element>
   <element>
     <fullpath>docs/en/quickstart.htm</fullpath>
@@ -2024,7 +2024,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>19b66fcfd912e1680c20fc118fee4f14</hash>
+    <hash>0e6b3ad88f1e4d3f6170f2edf187f0e0</hash>
   </element>
   <element>
     <fullpath>docs/en/requirements.htm</fullpath>
@@ -2032,7 +2032,7 @@
     <revision>6432</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d0cac241859b8b11c9dd617c01afa96a</hash>
+    <hash>fd31eef63c1a7a1c2183e626a76d98f8</hash>
   </element>
   <element>
     <fullpath>docs/en/script.js</fullpath>
@@ -2040,7 +2040,7 @@
     <revision>6605</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2ba2ace76232d19fccc912298e2a8d3a</hash>
+    <hash>47bbc66f97582cce75ae8ac94747ab5b</hash>
   </element>
   <element>
     <fullpath>docs/en/start.htm</fullpath>
@@ -2048,7 +2048,7 @@
     <revision>6605</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>40b2ecb6ef8f16a9a594cf306b81a063</hash>
+    <hash>f004b0a7fc8c60a43d8252dfefaea972</hash>
   </element>
   <element>
     <fullpath>docs/en/testing.htm</fullpath>
@@ -2056,7 +2056,7 @@
     <revision>6371</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>84f111ac1307500d82a63455a3f21116</hash>
+    <hash>9996b94131d5f9da6453dc84c6c06297</hash>
   </element>
   <element>
     <fullpath>docs/en/theme.htm</fullpath>
@@ -2064,7 +2064,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>cf82ed3c0aef869d5c33100e06df9db5</hash>
+    <hash>ce8d89dcc59fe00a910a9b3148419d12</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_copyright.htm</fullpath>
@@ -2072,7 +2072,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>05552ae5eca0c8da5f8a3599f024e102</hash>
+    <hash>a00d5539f076435eefeb2b6711de0d70</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_create.htm</fullpath>
@@ -2080,7 +2080,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e014794c56c4fc1795f80b9d8f5b8ffe</hash>
+    <hash>cd82153c58be6b964b2ab758c70c4350</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_create_matching_page_tutorial.htm</fullpath>
@@ -2088,7 +2088,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>394d3dcccade9a7cf53460fe0c14c353</hash>
+    <hash>3c7eadbb7500162588688bb7aeefc493</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_examples.htm</fullpath>
@@ -2096,7 +2096,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6767ffa3d67caeb9a12249607992f5d0</hash>
+    <hash>15733b0ddad4f36f8f3b839b5215d59d</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_graphics.htm</fullpath>
@@ -2104,7 +2104,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>dc2bc58d7dffad85abe4852fbb5b13d3</hash>
+    <hash>315e7d699bce24a939c74d34e1f4e64a</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_style_css.htm</fullpath>
@@ -2112,7 +2112,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2777dd2930ce3b4a87e702b8dc636062</hash>
+    <hash>2e6802a7314a9d155fe8561f6ac71cb6</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_template.htm</fullpath>
@@ -2120,7 +2120,7 @@
     <revision>6583</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>67ccf31ad177b5c5957757b668c1334e</hash>
+    <hash>e84631f850ab7496d077bdfb3f654ca1</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_theme_php.htm</fullpath>
@@ -2128,7 +2128,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f8dbba1d809897c7dcbc1fd453cd4272</hash>
+    <hash>7f1734b785324857f9a49a20328c872b</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_upgrade_13x-14x.htm</fullpath>
@@ -2136,7 +2136,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>110d1bbab7a1560184dbefa9a0719c5f</hash>
+    <hash>f8ea62f9aa36aa2f73396445c238b325</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_upgrade_14x-15x.htm</fullpath>
@@ -2144,7 +2144,7 @@
     <revision>6583</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3022f4a8f6c13e3277221e86395a5386</hash>
+    <hash>fc2ce81d041d0fcfb09397f6766f01a3</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_user-contributions.htm</fullpath>
@@ -2152,7 +2152,7 @@
     <revision>6366</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fb3aa819c8df343da09596b4b89d8546</hash>
+    <hash>fc5977ac5884ce5821b55cc65b844bd5</hash>
   </element>
   <element>
     <fullpath>docs/en/toc.htm</fullpath>
@@ -2160,7 +2160,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>95b926ffa96d72534d48b2e00b23e5be</hash>
+    <hash>6206e0693ca211d49db72ab715464f99</hash>
   </element>
   <element>
     <fullpath>docs/en/translation.htm</fullpath>
@@ -2168,7 +2168,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a181d9baecd89a6dc04840142a780f8d</hash>
+    <hash>705ee0b381d9ddd0e8bde64a3bf2e489</hash>
   </element>
   <element>
     <fullpath>docs/en/uninstall.htm</fullpath>
@@ -2176,7 +2176,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>92a36d9bbb191e06db1ca15ec2905975</hash>
+    <hash>7e1d943f213b54cbeb8aa404f08f0f3e</hash>
   </element>
   <element>
     <fullpath>docs/en/upgrading.htm</fullpath>
@@ -2184,7 +2184,7 @@
     <revision>6476</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4b3e823eacb9b6217874a3dddd128a5c</hash>
+    <hash>794054443f7b9a49002a726238d233f5</hash>
   </element>
   <element>
     <fullpath>docs/en/uploading.htm</fullpath>
@@ -2192,7 +2192,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>bf268026e10123a3d0564ea44b1e3512</hash>
+    <hash>cfa83c2e5fc4eedeb2f419272adad697</hash>
   </element>
   <element>
     <fullpath>docs/en/uploading_batch-add.htm</fullpath>
@@ -2200,7 +2200,7 @@
     <revision>6605</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0ee22939763af1561c2c965c0107296a</hash>
+    <hash>02d16e340e3a9a6596f6f45c10cb4214</hash>
   </element>
   <element>
     <fullpath>docs/en/uploading_http.htm</fullpath>
@@ -2208,7 +2208,7 @@
     <revision>6605</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>dd5e61d78d378490ace4c9772306ac01</hash>
+    <hash>fca5cf187517625ce853960ab906a1ac</hash>
   </element>
   <element>
     <fullpath>docs/en/uploading_xp-publisher.htm</fullpath>
@@ -2216,7 +2216,7 @@
     <revision>6605</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d7c83a8fbc6327a1d2a5974c64b49f0e</hash>
+    <hash>8bf08cf8523d1c0048ddf73b0b457c48</hash>
   </element>
   <element>
     <fullpath>docs/en/upload_troubleshooting.htm</fullpath>
@@ -2224,7 +2224,7 @@
     <revision>6624</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>881163e4a5710346e3742330186bdf1b</hash>
+    <hash>e5e08fc41944ddfb1cc28da89ecc2424</hash>
   </element>
   <element>
     <fullpath>docs/en/users.htm</fullpath>
@@ -2232,7 +2232,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b34bebc8c27bfc7fbaeee0b9f72b4e42</hash>
+    <hash>a5513b2acfb8d7d5c1ed2c3a063aa1db</hash>
   </element>
   <element>
     <fullpath>docs/en/watermarking.htm</fullpath>
@@ -2240,7 +2240,7 @@
     <revision>6605</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>34953319ce51e4ab121a7066e0f8bd93</hash>
+    <hash>5cd5100d7b0c607a7c81a54ca21c738a</hash>
   </element>
   <element>
     <fullpath>docs/en/images/</fullpath>
@@ -2520,7 +2520,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c1c9c631ed3d2b4b3ea6238fe04fcc83</hash>
+    <hash>7892e4ffe766548938fbed939a991bbb</hash>
   </element>
   <element>
     <fullpath>docs/fr/admin_menu.htm</fullpath>
@@ -2528,7 +2528,7 @@
     <revision>6399</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e0e216af5f5568c2c6cfafa32eb4983e</hash>
+    <hash>617d2fe198d501d06c8b25ef90e8b09f</hash>
   </element>
   <element>
     <fullpath>docs/fr/administration.htm</fullpath>
@@ -2536,7 +2536,7 @@
     <revision>6393</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b01dfeda054e182b8d0cb233ee4d3450</hash>
+    <hash>23162bd80ea0efba1eab924c7d007be8</hash>
   </element>
   <element>
     <fullpath>docs/fr/albums.htm</fullpath>
@@ -2544,7 +2544,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9b4c3e695ecadd3264a0faa65af05ccf</hash>
+    <hash>50d70c897ba396231b7f9811eea28b1d</hash>
   </element>
   <element>
     <fullpath>docs/fr/auto-installers.htm</fullpath>
@@ -2552,7 +2552,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>0530fbb27d42e9057072fab217a7b398</hash>
+    <hash>7f792e9a36272a823df3e21607b36762</hash>
   </element>
   <element>
     <fullpath>docs/fr/banning.htm</fullpath>
@@ -2560,7 +2560,7 @@
     <revision>6435</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e33184806e173ace7b35547166e7473c</hash>
+    <hash>445a906c20e784ee2ca3a00b19d2fb48</hash>
   </element>
   <element>
     <fullpath>docs/fr/bbcode.htm</fullpath>
@@ -2568,7 +2568,7 @@
     <revision>6429</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>235895d9bc7576cab58325fa37facbd9</hash>
+    <hash>50598d2dec1bba1520873f152cf047f5</hash>
   </element>
   <element>
     <fullpath>docs/fr/bridging.htm</fullpath>
@@ -2576,7 +2576,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>94a0734fcc81b02093e9b8019c918917</hash>
+    <hash>15f219a90b19becdff9e37b3edc7a16f</hash>
   </element>
   <element>
     <fullpath>docs/fr/categories.htm</fullpath>
@@ -2584,7 +2584,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>042b5ac23fed4c2ab554f74b1a1ce33c</hash>
+    <hash>3e39d7c417b9a214c2b74335c071afd1</hash>
   </element>
   <element>
     <fullpath>docs/fr/comments.htm</fullpath>
@@ -2592,7 +2592,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0c605ec9ab9754f741dda0930627b491</hash>
+    <hash>08ff00274e881e6a83c414f60353fe71</hash>
   </element>
   <element>
     <fullpath>docs/fr/configuration.htm</fullpath>
@@ -2600,7 +2600,7 @@
     <revision>6583</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4f774d795306f025aa73e5fc6984cad2</hash>
+    <hash>8a163e4b769df3139830026e4d3a2a16</hash>
   </element>
   <element>
     <fullpath>docs/fr/copyrights.htm</fullpath>
@@ -2608,15 +2608,15 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d25bb359a9656a8e113be9633f946495</hash>
+    <hash>0a573196496ab9c6450266862c6bb0cc</hash>
   </element>
   <element>
     <fullpath>docs/fr/credits.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6583</revision>
+    <revision>6653</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>c731ef243245f87b4f1fb1fdeaf018d4</hash>
+    <hash>9230240ffa7f04458883cf9f0ee601bc</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev.htm</fullpath>
@@ -2624,7 +2624,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>105d897aa7bc390485bbc40705423ae2</hash>
+    <hash>18d47dc53f2d7a49349bc49d7bf81a1b</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev_coding.htm</fullpath>
@@ -2632,7 +2632,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>00e9dda9169b68775b05a7f68159bf54</hash>
+    <hash>30e7d40fef3b8989d651cb6d6367d9a4</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev_config.htm</fullpath>
@@ -2640,7 +2640,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f59090631d939df579da27fea0ca9c34</hash>
+    <hash>748ef8f98f36d1a0c2b481501f0eb432</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev_database.htm</fullpath>
@@ -2648,7 +2648,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>aee68e089a8be88e91f4c756d0d279df</hash>
+    <hash>3e75f5b44977c51d92809403efbc10e6</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev_documentation.htm</fullpath>
@@ -2656,7 +2656,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c04bba208bcfb758f6e74cbc797f6e0f</hash>
+    <hash>7e003ae117b5fc4fed115605bed02a8d</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev_files.htm</fullpath>
@@ -2664,7 +2664,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ac441ab62db312713e858bf5260a3f61</hash>
+    <hash>012c9ff680fc88a2048b21759dd5dacb</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev_javascript.htm</fullpath>
@@ -2672,7 +2672,7 @@
     <revision>6363</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>265ff7549be2b6ea69d7e9fee49716ed</hash>
+    <hash>d0938318a2eec813aef971b7a5654c20</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev_plugin_api.htm</fullpath>
@@ -2680,15 +2680,15 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>bdaaf35b3a7ae0697d4b95c78e52e0bf</hash>
+    <hash>467e6f7d6935dbafe14c545d37d770c6</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev_plugin_hooks.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6598</revision>
+    <revision>6707</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>45611c7839e1dee94a20d1a67afe427c</hash>
+    <hash>a925df9ea06a66c82be3f9da3daf4965</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev_plugins.htm</fullpath>
@@ -2696,7 +2696,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>54833e20e80bd811a60fd51ed107c412</hash>
+    <hash>b471b78d3a59ad96e860a159ce4fe6b1</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev_subversion.htm</fullpath>
@@ -2704,7 +2704,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>909c7d04b6a018638374e444a002227c</hash>
+    <hash>996dabd02f662dc76ae756b92516c94e</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev_superglobals.htm</fullpath>
@@ -2712,7 +2712,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0514138b3911ebb8b50dd9964e22787f</hash>
+    <hash>d7db01def4942af4bd310f2505ce6c7b</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev_tools.htm</fullpath>
@@ -2720,7 +2720,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4f5d7923926dd635eab0e0d1bd935c00</hash>
+    <hash>0fc4cdaf3cc27f1d72936834ca30e11a</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev_update.htm</fullpath>
@@ -2728,7 +2728,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6dee37513f16bda8623ddf2eddb25e76</hash>
+    <hash>32250c652547e34d0cdf0a9ee159bbc8</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev_vars.htm</fullpath>
@@ -2744,7 +2744,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>380725c990d86b6e54649802d705dac8</hash>
+    <hash>6aba700e19e7043227b67c39bfc34e6e</hash>
   </element>
   <element>
     <fullpath>docs/fr/empty.htm</fullpath>
@@ -2752,7 +2752,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b777c1c9229ffd9f95136d9f23f5ba31</hash>
+    <hash>8da4d12168f9cc306bac3a125b024281</hash>
   </element>
   <element>
     <fullpath>docs/fr/errors.htm</fullpath>
@@ -2760,7 +2760,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1163c107964d47f9a9d16c81abce7ee2</hash>
+    <hash>8e16bbffa385b76fb376ab31f9d4adb1</hash>
   </element>
   <element>
     <fullpath>docs/fr/exif.htm</fullpath>
@@ -2768,7 +2768,7 @@
     <revision>6605</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>77bd0779296747eef44f5c595b64b9cd</hash>
+    <hash>b11202407fe241763fd4c408049f36aa</hash>
   </element>
   <element>
     <fullpath>docs/fr/export.htm</fullpath>
@@ -2776,7 +2776,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>92945e9d7f5d05afaa930e07f1d73253</hash>
+    <hash>ec92ab118e2221cf1a356b2e237efe2a</hash>
   </element>
   <element>
     <fullpath>docs/fr/faq.htm</fullpath>
@@ -2784,7 +2784,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>c7eff7c36a68f9eeee951544b877c580</hash>
+    <hash>553610f6fa2736e9b76d0559490fb1be</hash>
   </element>
   <element>
     <fullpath>docs/fr/files.htm</fullpath>
@@ -2792,7 +2792,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>88ded9173598b878e66e2b78218486eb</hash>
+    <hash>21eb75d89c720247631e2d2b146304d9</hash>
   </element>
   <element>
     <fullpath>docs/fr/groups.htm</fullpath>
@@ -2800,7 +2800,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6f4d917d57ae38a2908be0423a73308a</hash>
+    <hash>209f85905f9d0a8b6e781d136cd792de</hash>
   </element>
   <element>
     <fullpath>docs/fr/index.htm</fullpath>
@@ -2808,7 +2808,7 @@
     <revision>6583</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>97e2dac43db4e711f485c9c2a8103999</hash>
+    <hash>58362b460462c0868b36159a78e3c068</hash>
   </element>
   <element>
     <fullpath>docs/fr/install.htm</fullpath>
@@ -2816,7 +2816,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>17061d173741d005f5a69fe9ab955677</hash>
+    <hash>608b60100bee2815b8f86f9047be7982</hash>
   </element>
   <element>
     <fullpath>docs/fr/install_faq.htm</fullpath>
@@ -2824,7 +2824,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5baf2829e342bbe55cb80302affe0c21</hash>
+    <hash>58cbcae32fa22d4602d18e4362aab1b7</hash>
   </element>
   <element>
     <fullpath>docs/fr/install_permissions.htm</fullpath>
@@ -2832,7 +2832,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>747978ed1b449a420c9b9005c611b8ba</hash>
+    <hash>572e8d4650858c4b6d40c00e49871c3b</hash>
   </element>
   <element>
     <fullpath>docs/fr/install_screen.htm</fullpath>
@@ -2840,7 +2840,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a0268a894a6ad5d4aad979f5c4d2e5b2</hash>
+    <hash>b2faad644a3a99d04abb709b00092116</hash>
   </element>
   <element>
     <fullpath>docs/fr/keywords.htm</fullpath>
@@ -2848,7 +2848,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>51b921dd380b05d52ad909e8323c8419</hash>
+    <hash>ea0641ce8a34085c141d6c3ee2eefb87</hash>
   </element>
   <element>
     <fullpath>docs/fr/known_issues.htm</fullpath>
@@ -2856,7 +2856,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d091e7807f180de5615b381921d19106</hash>
+    <hash>ce7cb6608f2482d5c1075bb858163fda</hash>
   </element>
   <element>
     <fullpath>docs/fr/languages.htm</fullpath>
@@ -2864,7 +2864,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>5fa5753f950710b97a8cf1a14468681e</hash>
+    <hash>1e4faf92380aaeda98cbbfed125df153</hash>
   </element>
   <element>
     <fullpath>docs/fr/performance.htm</fullpath>
@@ -2872,7 +2872,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>69377ecf62e36c7d49cad8388692f7a4</hash>
+    <hash>1747b8d83bf314729276d8633983d638</hash>
   </element>
   <element>
     <fullpath>docs/fr/php-content.htm</fullpath>
@@ -2880,7 +2880,7 @@
     <revision>6571</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4302eb097f43ea0ccdb513aed2d4573d</hash>
+    <hash>66a6abc4359c208446f3ff86baea96f2</hash>
   </element>
   <element>
     <fullpath>docs/fr/plugins.htm</fullpath>
@@ -2888,7 +2888,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0e31058a5ec3283f8e144f1f9bdbe69e</hash>
+    <hash>6d3844529361b8ba955dc692519486c2</hash>
   </element>
   <element>
     <fullpath>docs/fr/quickstart.htm</fullpath>
@@ -2896,7 +2896,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>55ca79b78b9ac9af186f0e0bba2b749c</hash>
+    <hash>62d14f35a00bd56b0d89ba35e8b5e095</hash>
   </element>
   <element>
     <fullpath>docs/fr/requirements.htm</fullpath>
@@ -2904,7 +2904,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>a6ff0cd31fe00c700bb80aa772367ddd</hash>
+    <hash>a733a700c6f531de6ee91d80896346a9</hash>
   </element>
   <element>
     <fullpath>docs/fr/script.js</fullpath>
@@ -2912,7 +2912,7 @@
     <revision>6572</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>abc8ad0b1e0bba076502e2e0638b8278</hash>
+    <hash>d4cd1f34ef8063c78098058bd19f9dc5</hash>
   </element>
   <element>
     <fullpath>docs/fr/start.htm</fullpath>
@@ -2920,7 +2920,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>96a3ffe5bbeece431191a651cf4c973c</hash>
+    <hash>86d5a40396d6151e71ea43812db9b6c7</hash>
   </element>
   <element>
     <fullpath>docs/fr/testing.htm</fullpath>
@@ -2928,7 +2928,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>d196a20df8551e180dce55a63a7c3919</hash>
+    <hash>ae39bc6790f1d45776bdc3b5f58e6c26</hash>
   </element>
   <element>
     <fullpath>docs/fr/theme.htm</fullpath>
@@ -2936,7 +2936,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b662d260c60d919718f9020e2f9fd1a8</hash>
+    <hash>0199886e5c05d28fa16ee86740a5cf07</hash>
   </element>
   <element>
     <fullpath>docs/fr/theme_copyright.htm</fullpath>
@@ -2944,7 +2944,7 @@
     <revision>6570</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9320d4c59a37c1aaba3a6259ab8ec159</hash>
+    <hash>8c3b7cbf938a5129799980ea03a6b277</hash>
   </element>
   <element>
     <fullpath>docs/fr/theme_create.htm</fullpath>
@@ -2952,7 +2952,7 @@
     <revision>6555</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e75d20434afd5f83e1007fd5bd024284</hash>
+    <hash>8a06ea5c9e075e7cd09c97e0f7b5c855</hash>
   </element>
   <element>
     <fullpath>docs/fr/theme_create_matching_page_tutorial.htm</fullpath>
@@ -2960,7 +2960,7 @@
     <revision>6569</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c3cd0509763b4e343f1dcc4c3417cc59</hash>
+    <hash>613a0df19006005fe371e277d9502821</hash>
   </element>
   <element>
     <fullpath>docs/fr/theme_examples.htm</fullpath>
@@ -2968,7 +2968,7 @@
     <revision>6366</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b328db7fd6266d2849309ab248456105</hash>
+    <hash>faa94a2575f2137bb105a62b85b4eb1b</hash>
   </element>
   <element>
     <fullpath>docs/fr/theme_graphics.htm</fullpath>
@@ -2976,7 +2976,7 @@
     <revision>6572</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1f000b74f29116fcc4229b62b1c81077</hash>
+    <hash>f5a4c38dba7a514d4c03972c50115110</hash>
   </element>
   <element>
     <fullpath>docs/fr/theme_style_css.htm</fullpath>
@@ -2984,7 +2984,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>15458e3553c949c686165f7f818c646d</hash>
+    <hash>fe7e061af25bb3167b17af1b0e5eccce</hash>
   </element>
   <element>
     <fullpath>docs/fr/theme_template.htm</fullpath>
@@ -2992,7 +2992,7 @@
     <revision>6583</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>16adbf871b4444d093785bf4684b1ffc</hash>
+    <hash>251dd95595cdfc5f4723b57d42e91985</hash>
   </element>
   <element>
     <fullpath>docs/fr/theme_theme_php.htm</fullpath>
@@ -3000,7 +3000,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a544bed1985ea3bd56ed814dae8f6bdd</hash>
+    <hash>6cf3c78e1ce569aed6d0ed43b1c7ebef</hash>
   </element>
   <element>
     <fullpath>docs/fr/theme_upgrade_13x-14x.htm</fullpath>
@@ -3008,7 +3008,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6efbcb0052b7b78ad24cf4209f813cd2</hash>
+    <hash>168b5050a8d1bc9e78916ce257efb36b</hash>
   </element>
   <element>
     <fullpath>docs/fr/theme_upgrade_14x-15x.htm</fullpath>
@@ -3016,7 +3016,7 @@
     <revision>6583</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>082d542390ec79e1ff30846c2d4db96e</hash>
+    <hash>5c5dc5011cd67d98731ae7eae384fc74</hash>
   </element>
   <element>
     <fullpath>docs/fr/theme_user-contributions.htm</fullpath>
@@ -3024,7 +3024,7 @@
     <revision>6366</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>961a85ce363f974cd6d9a74a634d1c9d</hash>
+    <hash>59a4d88c3ac260e7ae56228601663349</hash>
   </element>
   <element>
     <fullpath>docs/fr/toc.htm</fullpath>
@@ -3032,7 +3032,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>fbd9e378035945a4dc183119982fcc76</hash>
+    <hash>5aaa33dbb68b71c95bfd96093f751b3a</hash>
   </element>
   <element>
     <fullpath>docs/fr/translation.htm</fullpath>
@@ -3040,7 +3040,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>91fea239ef31bd2e4c6f668f132a98be</hash>
+    <hash>c5d4573e67f127b895a8ef44d8fa5e30</hash>
   </element>
   <element>
     <fullpath>docs/fr/uninstall.htm</fullpath>
@@ -3048,7 +3048,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0a760953a27af9d695b7b09fc4b8c8ff</hash>
+    <hash>09e8a93e947a982a716c095a0fef971e</hash>
   </element>
   <element>
     <fullpath>docs/fr/upgrading.htm</fullpath>
@@ -3056,7 +3056,7 @@
     <revision>6422</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>09d7288ec10069fcd776a4802ecff6e4</hash>
+    <hash>ae2db6960fc2e9129ca08fb637a7b662</hash>
   </element>
   <element>
     <fullpath>docs/fr/upload_troubleshooting.htm</fullpath>
@@ -3064,7 +3064,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9969bc4a44562995858aa9969622fa35</hash>
+    <hash>3f43db818840334bd952f37a34710212</hash>
   </element>
   <element>
     <fullpath>docs/fr/uploading.htm</fullpath>
@@ -3072,7 +3072,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7bcd4c3008a907cdbe5afb112c65f700</hash>
+    <hash>f2885fe5188001e3f0334a3d7484ce28</hash>
   </element>
   <element>
     <fullpath>docs/fr/uploading_batch-add.htm</fullpath>
@@ -3080,7 +3080,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>933088874ba3eb4f594cfe59a0243a2c</hash>
+    <hash>d38ea08e47ed0aa6062808778fb0c170</hash>
   </element>
   <element>
     <fullpath>docs/fr/uploading_http.htm</fullpath>
@@ -3088,7 +3088,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>852447324a70a1ac05b4fbf332957968</hash>
+    <hash>5288b135489583219bbaec9c42f47ffa</hash>
   </element>
   <element>
     <fullpath>docs/fr/uploading_xp-publisher.htm</fullpath>
@@ -3096,7 +3096,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0d4af732710c3113f65bd0a899beea5f</hash>
+    <hash>a0d8f209ba110ae7f7ed5d5015b444fb</hash>
   </element>
   <element>
     <fullpath>docs/fr/users.htm</fullpath>
@@ -3104,7 +3104,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c0813b86d6b24794d18a33dd451d0370</hash>
+    <hash>63a51220ef77048a5c36814d5fb312be</hash>
   </element>
   <element>
     <fullpath>docs/fr/watermarking.htm</fullpath>
@@ -3112,7 +3112,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>12c3d2b20348697e713786414e6d9fc5</hash>
+    <hash>1e3b913e2ac305bfc0e959a0d4a1956a</hash>
   </element>
   <element>
     <fullpath>docs/fr/images/</fullpath>
@@ -3492,7 +3492,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f6024445a8e39c54e98cd406b280fe5b</hash>
+    <hash>aaf681e6aa3787c130d024be2fc85875</hash>
   </element>
   <element>
     <fullpath>docs/js/jquery.js</fullpath>
@@ -3500,7 +3500,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>96eef4c432b1fddb1cc80c7dd36ad1d5</hash>
+    <hash>67f861798d81faeda0ef39b73cb28abe</hash>
   </element>
   <element>
     <fullpath>docs/js/jquery.treeview.js</fullpath>
@@ -3508,7 +3508,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>12336404843d43143bd680419da2af13</hash>
+    <hash>6d7847c5fe7c792383281fef98e17da6</hash>
   </element>
   <element>
     <fullpath>docs/style/</fullpath>
@@ -3521,7 +3521,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7fcc6b088611780fe4c9fcd657c4eaeb</hash>
+    <hash>d53975fc2e7873954f406e15f214d89f</hash>
   </element>
   <element>
     <fullpath>docs/style/screen.css</fullpath>
@@ -3529,7 +3529,7 @@
     <revision>6624</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fe19fef1c30882bdf1eb8662f00884e6</hash>
+    <hash>f08d57e2c2a7634d699499c85b1cf238</hash>
   </element>
   <element>
     <fullpath>docs/style/style.css</fullpath>
@@ -3537,7 +3537,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>23ba2d32f99a7123c8e21a74864e7765</hash>
+    <hash>0d8eeb30eb24559760b1e981c7cc7db5</hash>
   </element>
   <element>
     <fullpath>docs/pics/</fullpath>
@@ -7967,7 +7967,7 @@
     <fullpath>images/thumbs/thumb_z.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>366c62e5674fbd817c736e5bf020fea8</hash>
+    <hash>564655e42672a7b17ff7a1258d8ed9e1</hash>
   </element>
   <element>
     <fullpath>images/thumbs/thumb_zip.png</fullpath>
@@ -8140,7 +8140,7 @@
     <revision>6583</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d13f557e2244809268335125a0bd29d0</hash>
+    <hash>b0bb6811560ca24377a375030a017104</hash>
   </element>
   <element>
     <fullpath>include/akismet.inc.php</fullpath>
@@ -8156,7 +8156,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0ee611bf868c55f3eb45ae5f4ec4f9e4</hash>
+    <hash>5a14e9f065e3301d37bb0f3029958956</hash>
   </element>
   <element>
     <fullpath>include/captcha.inc.php</fullpath>
@@ -8164,13 +8164,13 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0d596f0342b560bd75cd587ef105b9ca</hash>
+    <hash>d95b06a65ac978ee6ef3985f263a8d8d</hash>
   </element>
   <element>
     <fullpath>include/config.inc.php.sample</fullpath>
     <status>optional</status>
     <permission>read</permission>
-    <hash>02e5a1d4bbe61e1f9ef42fa7925735e1</hash>
+    <hash>cd4e49ef5c2cb2ccd932aac97d501262</hash>
   </element>
   <element>
     <fullpath>include/cpg15x.files.xml</fullpath>
@@ -8183,7 +8183,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>18ee5d538a38c816a10b9ec820a62ac9</hash>
+    <hash>a69cdffdd3f984c6c5ece42bcd250da8</hash>
   </element>
   <element>
     <fullpath>include/debugger.inc.php</fullpath>
@@ -8191,7 +8191,7 @@
     <revision>6467</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>94472591beaad16615a32d15b297e604</hash>
+    <hash>28aefdb10af208e785a2670088e563d9</hash>
   </element>
   <element>
     <fullpath>include/exif.php</fullpath>
@@ -8199,7 +8199,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>213f1f0b03f0950a4ac2293d30cd1808</hash>
+    <hash>9fec5d1860fbee828c2e36ea0f4740d6</hash>
   </element>
   <element>
     <fullpath>include/exif_php.inc.php</fullpath>
@@ -8207,7 +8207,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1e90e1e529a47e612bc49cbdbcf7389d</hash>
+    <hash>f592222daa4ee97232aa94df7a4e5197</hash>
   </element>
   <element>
     <fullpath>include/transliteration.inc.php</fullpath>
@@ -8215,15 +8215,15 @@
     <revision>6627</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a5c9cf8fed7341abf2ff297420f65d39</hash>
+    <hash>149bac2c5c168de29cbdc69ce52f5a1e</hash>
   </element>
   <element>
     <fullpath>include/functions.inc.php</fullpath>
     <version>1.5.2</version>
-    <revision>6625</revision>
+    <revision>6689</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a16a91d085a5f48634073646e59321d8</hash>
+    <hash>56adfe4d0582fbcdc12ac818fc47645d</hash>
   </element>
   <element>
     <fullpath>include/imageObjectGD.class.php</fullpath>
@@ -8239,7 +8239,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4d09cd076ecc7b43648940b4e6d4ffad</hash>
+    <hash>f26337b369786c3a8560459851b74c71</hash>
   </element>
   <element>
     <fullpath>include/imageobject_im.class.php</fullpath>
@@ -8247,7 +8247,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>90b597c7354d403d2f7cd6157d5d5c98</hash>
+    <hash>0942514b369bff324990543bfea3eafa</hash>
   </element>
   <element>
     <fullpath>include/index.php</fullpath>
@@ -8255,15 +8255,15 @@
     <revision>6641</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b4171fc22da9715f1fd4818b720bcbae</hash>
+    <hash>6672404e8b7d0360b3c6ba163952a62f</hash>
   </element>
   <element>
     <fullpath>include/init.inc.php</fullpath>
     <version>1.5.2</version>
-    <revision>6590</revision>
+    <revision>6679</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f53657512a50ab04ee28c3724e773add</hash>
+    <hash>f4bb87402007f93c724eb67a590cf4f1</hash>
   </element>
   <element>
     <fullpath>include/iptc.inc.php</fullpath>
@@ -8271,7 +8271,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ad162ef2090a29647ede8f5cd2a914f1</hash>
+    <hash>c2fd588e849b1ee9408feb098ba726ee</hash>
   </element>
   <element>
     <fullpath>include/inspekt.php</fullpath>
@@ -8279,7 +8279,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8c6b3bebb48b8158af100ab00bd205ad</hash>
+    <hash>a02c8e1615072f33cacf1e3c175ab6bf</hash>
   </element>
   <element>
     <fullpath>include/keyword.inc.php</fullpath>
@@ -8287,7 +8287,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c10237143c8c4780bbfc331c43922334</hash>
+    <hash>ac2bfc62c9169505e700fbe8a140f511</hash>
   </element>
   <element>
     <fullpath>include/lib.xml.php</fullpath>
@@ -8295,7 +8295,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>af068e6b4549886f82de35a049d7a772</hash>
+    <hash>26af045a3d6cc896e215bbcacb02541b</hash>
   </element>
   <element>
     <fullpath>include/logger.inc.php</fullpath>
@@ -8303,7 +8303,7 @@
     <revision>6439</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7ac4966be33d681a182a0fc66c0175f5</hash>
+    <hash>131a6e8de54a1c8ec0bcf604121a3494</hash>
   </element>
   <element>
     <fullpath>include/mailer.inc.php</fullpath>
@@ -8311,7 +8311,7 @@
     <revision>6545</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>51799c949fb489bb8e5c6393905988bb</hash>
+    <hash>4202c3bf8366e0f49d673944b69d198c</hash>
   </element>
   <element>
     <fullpath>include/mb.inc.php</fullpath>
@@ -8319,15 +8319,15 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2a4783e0e78af81478431eff19358d8c</hash>
+    <hash>cd389f54fb5367349f0259e04d59e849</hash>
   </element>
   <element>
     <fullpath>include/picmgmt.inc.php</fullpath>
     <version>1.5.2</version>
-    <revision>6378</revision>
+    <revision>6707</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c2e1d204083003b9efe257796cdcd9ca</hash>
+    <hash>32166b77f10aaaa6fd392703720ec697</hash>
   </element>
   <element>
     <fullpath>include/plugin_api.inc.php</fullpath>
@@ -8335,7 +8335,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3fd22d94e5c3f10b68c18b61899e5df0</hash>
+    <hash>ffc43c1dfd36393f57fe71ca4b0ee75a</hash>
   </element>
   <element>
     <fullpath>include/search.inc.php</fullpath>
@@ -8343,7 +8343,7 @@
     <revision>6543</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>52dc83343c03134bcdae28efd2f3ca61</hash>
+    <hash>33aafa0748be39fa55351ba1e4636a6c</hash>
   </element>
   <element>
     <fullpath>include/select_lang.inc.php</fullpath>
@@ -8351,7 +8351,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e45b15ecbf0b287798be3e606b783fc5</hash>
+    <hash>238fbaaeeef8a60b03536877cf7d2706</hash>
   </element>
   <element>
     <fullpath>include/smilies.inc.php</fullpath>
@@ -8359,7 +8359,7 @@
     <revision>6428</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>50f646c09e9151d4bc1f0bb6740d2901</hash>
+    <hash>d20758a871437ab0a3ec9f7d2cf80a72</hash>
   </element>
   <element>
     <fullpath>include/sql_parse.php</fullpath>
@@ -8367,7 +8367,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ef4a1b4934ab615c8a3509a91ab77e63</hash>
+    <hash>c7b42315833403eca53a9cb1be8267cd</hash>
   </element>
   <element>
     <fullpath>include/stats.inc.php</fullpath>
@@ -8375,23 +8375,23 @@
     <revision>6607</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5fb8b74e3752d4789a63e24e5720ce38</hash>
+    <hash>e7f76b09d71e3a72f00a0828b4ef0af8</hash>
   </element>
   <element>
     <fullpath>include/themes.inc.php</fullpath>
     <version>1.5.2</version>
-    <revision>6640</revision>
+    <revision>6678</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ea0f22820d67c8f069687f97fa8db27c</hash>
+    <hash>09802a3fa1edd0388d563c74fdf78a7e</hash>
   </element>
   <element>
     <fullpath>include/versioncheck.inc.php</fullpath>
     <version>1.5.2</version>
-    <revision>6510</revision>
+    <revision>6643</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3a3e64f59a68497ab7e72b5c632ad3bc</hash>
+    <hash>9d94f3901dda4ca955214a5f6c43b0e8</hash>
   </element>
   <element>
     <fullpath>include/zip.lib.php</fullpath>
@@ -8399,7 +8399,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>01efb7a46aa5e0e19272b30b6935bda0</hash>
+    <hash>1624a72d4c8b4ad9fb23fe742834001a</hash>
   </element>
   <element>
     <fullpath>include/inspekt/</fullpath>
@@ -8412,7 +8412,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>38a93fd6fb44c0682acd150aa982f6a4</hash>
+    <hash>828dd1ac2e3c5a022e31e31cdcb9371b</hash>
   </element>
   <element>
     <fullpath>include/inspekt/error.php</fullpath>
@@ -8420,7 +8420,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>82ea6e9c6b63d35b4b58e4663e4e040c</hash>
+    <hash>4c384f6ff509f16577811668ec718ab9</hash>
   </element>
   <element>
     <fullpath>include/inspekt/filter.php</fullpath>
@@ -8428,7 +8428,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>55079fbf86cce0539fa19201259ff90f</hash>
+    <hash>71b2c860f68856d51e9c81d4d7b1e480</hash>
   </element>
   <element>
     <fullpath>include/inspekt/supercage.php</fullpath>
@@ -8436,7 +8436,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a3a6a2a86630e787edf60cb66b4bc9a2</hash>
+    <hash>230730f53849e207e99ab50e97328e03</hash>
   </element>
   <element>
     <fullpath>include/inspekt/validator.php</fullpath>
@@ -8444,7 +8444,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>114979af4fd15e12f9f2b29a38523629</hash>
+    <hash>26e9dc2abb795bd87eb0d042b12726d0</hash>
   </element>
   <element>
     <fullpath>include/makers/</fullpath>
@@ -8457,7 +8457,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3f3e96a4258cb46d04aade31eb84eb7e</hash>
+    <hash>8213fe50886d85cc78b63ad79ae0b7da</hash>
   </element>
   <element>
     <fullpath>include/makers/fujifilm.php</fullpath>
@@ -8465,7 +8465,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8d9c7dcbc4aa557e37ea1d29e017ddfa</hash>
+    <hash>03e463fc7e2a0e6d1b5f9dbc6a97aee4</hash>
   </element>
   <element>
     <fullpath>include/makers/gps.php</fullpath>
@@ -8473,7 +8473,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ee98d17080c00c8a34e5e57d6d5a420f</hash>
+    <hash>8f0ac6207429094fa9fc90b9a5452244</hash>
   </element>
   <element>
     <fullpath>include/makers/nikon.php</fullpath>
@@ -8481,7 +8481,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>467a90ace52d04d22df33f64bc69863b</hash>
+    <hash>a896a51219edb658251ce110d534b3c8</hash>
   </element>
   <element>
     <fullpath>include/makers/olympus.php</fullpath>
@@ -8489,7 +8489,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8e82417b808b0c21c0404d576f77e53c</hash>
+    <hash>da508024e7184771d7abfe43b776038d</hash>
   </element>
   <element>
     <fullpath>include/makers/panasonic.php</fullpath>
@@ -8497,7 +8497,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>87b3d862d876e270801518036654650d</hash>
+    <hash>696c3430cd34dbb2a9f2f89f65dc6099</hash>
   </element>
   <element>
     <fullpath>include/makers/sanyo.php</fullpath>
@@ -8505,7 +8505,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9300ef986ec0cd891aceffa478fbb71</hash>
+    <hash>11b907ac3beb0d481c8ccaede66d6d17</hash>
   </element>
   <element>
     <fullpath>include/transliteration/</fullpath>
@@ -8518,7 +8518,7 @@
     <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e79f72db5e62216b96eb7293c398bc0f</hash>
+    <hash>a9ab98b6770a3057dbc6a4f29a683829</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x0a.php</fullpath>
@@ -8526,7 +8526,7 @@
     <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>680d3cf347b5cf12bf18ad531587cac9</hash>
+    <hash>bd5ae13764bd615803ea12baf8168c1c</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x0b.php</fullpath>
@@ -8534,7 +8534,7 @@
     <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>93b455d8cf1b770cdeac99e15c3bdc49</hash>
+    <hash>45028608ae047de2a4dd8f12ff9210b0</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x0c.php</fullpath>
@@ -8542,7 +8542,7 @@
     <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d1aaf024990ff1a47ec594a581a7a070</hash>
+    <hash>a2b11d4be229b5564cc6688e461b86f6</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x0d.php</fullpath>
@@ -8550,7 +8550,7 @@
     <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>654f86b3eb39ce60fdbe86be24ece4a0</hash>
+    <hash>146d1bbd40facd6ce163d792aa4c66ca</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x0e.php</fullpath>
@@ -8558,7 +8558,7 @@
     <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ab04df9458853f4e4465b971c3a4e9ce</hash>
+    <hash>19796b4e443a10b2f94d89bce0a09b3d</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x0f.php</fullpath>
@@ -8566,7 +8566,7 @@
     <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fb3ea5ed7d820693111fb0558d0c6b56</hash>
+    <hash>acc01e81a59798ea1d8fb4f6090c83b8</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x01.php</fullpath>
@@ -8574,7 +8574,7 @@
     <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b3db10453e838332eff5e04dd02872d5</hash>
+    <hash>2958b6c318ea21fe74bfb98051777957</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x1e.php</fullpath>
@@ -8582,7 +8582,7 @@
     <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8919930eeab8b577472fb4b7f4f5af64</hash>
+    <hash>f608c55ed8d07ac8a0e697532fe45f6c</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x1f.php</fullpath>
@@ -8590,7 +8590,7 @@
     <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d84966321c2eca2601a0a54eb905efde</hash>
+    <hash>bc7b258e32666f5b6e5e3eba35bfb0f4</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x02.php</fullpath>
@@ -8598,7 +8598,7 @@
     <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>627bee208ecce0be3932301b8d30be83</hash>
+    <hash>815a626dd271b2865405e14410f230c1</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x2e.php</fullpath>
@@ -8606,7 +8606,7 @@
     <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ed27e536cb676d2e2177b5c6223f5037</hash>
+    <hash>38509d4a53ef3961fd7950a5694fd73b</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x2f.php</fullpath>
@@ -8614,7 +8614,7 @@
     <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5a7d372fdbc46ae1e4eb0e5c56ac54fc</hash>
+    <hash>208176ed2a72f38ae617e24a90bc37dd</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x03.php</fullpath>
@@ -8622,7 +8622,7 @@
     <revision>6631</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e97fd650e725f50af6d0f64104a41a92</hash>
+    <hash>c10cfad427eda1a86be9165055e3be2e</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x04.php</fullpath>
@@ -8630,7 +8630,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>98fe4c9c67b986e8a54bd42e1fd3bd32</hash>
+    <hash>f2c5b570337940d2d3e364639ae4d77f</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x4d.php</fullpath>
@@ -8638,7 +8638,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>de5014d1cb8b349d53dcb31f7aaf80b8</hash>
+    <hash>16c453b43fd2162a211d382ac6a8c0c1</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x4e.php</fullpath>
@@ -8646,7 +8646,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5084ec8ec762a8c6ecfc5e22cf70c50f</hash>
+    <hash>655db58523f631b92a9f79930761023d</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x4f.php</fullpath>
@@ -8654,7 +8654,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>56f69360d22c7509b4bdc492e6907c02</hash>
+    <hash>a01baa9e9fa10f1f0b6debaec58d8316</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x05.php</fullpath>
@@ -8662,7 +8662,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5e0c85d6ce2aa5e0e0ce9fa19fb6ff3c</hash>
+    <hash>acdc50e2cebb2d30224ec9eb022554ec</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x5a.php</fullpath>
@@ -8670,7 +8670,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7c1ca4663e23d1879a2a2d2dd3f43f16</hash>
+    <hash>9d620eeb021b0ebcd2466bed12af0835</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x5b.php</fullpath>
@@ -8678,7 +8678,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>caab7962c4b6f2b472bdaaa7b6583600</hash>
+    <hash>1d6e39511ed70ee62d4aa6fbe97ab918</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x5c.php</fullpath>
@@ -8686,7 +8686,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>23e9215a69ea2162733cfe2dc7a6412e</hash>
+    <hash>f0435877881f5426508a999024534b94</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x5d.php</fullpath>
@@ -8694,7 +8694,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e4e30f45ace00f3d571e2b85a4214dec</hash>
+    <hash>d856f4958cac3005797e5708209bea0b</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x5e.php</fullpath>
@@ -8702,7 +8702,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b6fcdb24f398b5c68ae64da0d97b3235</hash>
+    <hash>3e687dc80496e13678b40449b3050a2a</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x5f.php</fullpath>
@@ -8710,7 +8710,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d9d24aab4e29d5abaea84ce62f27a7e2</hash>
+    <hash>68b41c0e46bc8821d0fb722a0243a884</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x06.php</fullpath>
@@ -8718,7 +8718,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>76fda01ba0ab4e8d588aaef09bad1f4b</hash>
+    <hash>a22ad3ae1ec0e6b08fb75853b40d5530</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x6a.php</fullpath>
@@ -8726,7 +8726,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ffd2b860061aad3649093b9ac802ac0e</hash>
+    <hash>0c52d2b367d5a5674009590569d0fb68</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x6b.php</fullpath>
@@ -8734,7 +8734,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>978771e60d9cc815c8d297517c14865a</hash>
+    <hash>dbf43dc7c81d0d96611bc32363f433ac</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x6c.php</fullpath>
@@ -8742,7 +8742,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5e6a1ae44c19b371ac8b7abab2032229</hash>
+    <hash>c3377e041dc6422792e755197c0ad9ab</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x6d.php</fullpath>
@@ -8750,7 +8750,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>bd0baa4fc62494fa3acb29d42724dcb8</hash>
+    <hash>e3feeeb4a269ff5aa551d7646b046349</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x6e.php</fullpath>
@@ -8758,7 +8758,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ca564d33898109e9e30fb6c59c1395e7</hash>
+    <hash>dea3be2493f32a0a1801029baeb9f998</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x6f.php</fullpath>
@@ -8766,7 +8766,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c442181188958744ff7453acc7ff294d</hash>
+    <hash>881ab9557202e97a046165e5d65e4160</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x07.php</fullpath>
@@ -8774,7 +8774,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>34ca0eec06f7b7ab8ab57f25d0622450</hash>
+    <hash>f504b9dc91538f72b7cdf052c23de4cd</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x7a.php</fullpath>
@@ -8782,7 +8782,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b6220b1e3b3d3d5d986a32efdc654942</hash>
+    <hash>a473613385bf501ac15fe330eaab4b7c</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x7b.php</fullpath>
@@ -8790,7 +8790,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4492ba7f3dc07b7171924f991823f926</hash>
+    <hash>f04b102e6df96cb48fb9adc440ab57ce</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x7c.php</fullpath>
@@ -8798,7 +8798,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ad55eebd7c4f31fb29caed4bb4f2afb8</hash>
+    <hash>a5d3231995501a619a12f815a2aac1cd</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x7d.php</fullpath>
@@ -8806,7 +8806,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>469bbbf5abbd15373acdfbbd1fa8cb2e</hash>
+    <hash>6d6fca86f39f8413b1d3fc50805833e3</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x7e.php</fullpath>
@@ -8814,7 +8814,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>38622dca5a75ce734e2ece5b62fbb7d1</hash>
+    <hash>d22b9774a7909f299801b87f02261ce4</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x7f.php</fullpath>
@@ -8822,7 +8822,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>de62871c1ea31853bc5a4b906e1b02e3</hash>
+    <hash>cf4eab01319d002d3ace6234baee462a</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x8a.php</fullpath>
@@ -8830,7 +8830,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e02e89f4b806f0f569fa0078f4e6d547</hash>
+    <hash>52728e4df84b0b5ccafd710437c0a0f2</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x8b.php</fullpath>
@@ -8838,7 +8838,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a3a3c78811a10c719c55ccdcd52089cc</hash>
+    <hash>e237cccf4f2d899cd0aa261158274df7</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x8c.php</fullpath>
@@ -8846,7 +8846,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>50726a9b5b9bc4b81150de0ffec99d4e</hash>
+    <hash>47d57c5d19ad0da25a79caea66982abd</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x8e.php</fullpath>
@@ -8854,7 +8854,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>62815ecad08b485246cd049446fef81d</hash>
+    <hash>ebb1b3dabc1717f31052e9f2a83f248d</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x8f.php</fullpath>
@@ -8862,7 +8862,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7f921e4f9fb1e2a8434564ad4f591139</hash>
+    <hash>31ecaa90c307068f38e9446897109818</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x09.php</fullpath>
@@ -8870,7 +8870,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ebce379b6b5eefe2e3c4079ce7799699</hash>
+    <hash>d5985fb84c99d7acb20f71f7de2dd4a3</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x9a.php</fullpath>
@@ -8878,7 +8878,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>540d99cd7440c241c68cf907ad5f3af5</hash>
+    <hash>a8cdd439c6376af19a7d61c51385dd86</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x9b.php</fullpath>
@@ -8886,7 +8886,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>86f325f523b3d465315a7869b7b1c8e6</hash>
+    <hash>16ee31f117ce2231987ca9b0927e5080</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x9c.php</fullpath>
@@ -8894,7 +8894,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>46bbc61e6a6d221e8d19039172b90f68</hash>
+    <hash>7efb0ce43be5f8ee574b18084c27727a</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x9d.php</fullpath>
@@ -8902,7 +8902,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7d9b491b5d6301bb462f566c7d49ff3c</hash>
+    <hash>ff76fcc077036a4a052061b1f94738d8</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x9e.php</fullpath>
@@ -8910,7 +8910,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>84647f65301a0df1b09eb29044ad1019</hash>
+    <hash>20c7401ba3cbf42157500d5ab26ed013</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x9f.php</fullpath>
@@ -8918,7 +8918,7 @@
     <revision>6632</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a89388ea0fd8c28628c6942ab0a85333</hash>
+    <hash>8825ee91619bc903766be1eae54f0d64</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x10.php</fullpath>
@@ -8926,7 +8926,7 @@
     <revision>6633</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d521e387ea543cf394bf8f27d4e70100</hash>
+    <hash>2b7de4ab4ff9aae8f88e2f9edb2fa1f4</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x11.php</fullpath>
@@ -8934,7 +8934,7 @@
     <revision>6633</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>719bfe843c0be77a59bbe1619b35f71c</hash>
+    <hash>4bba47da855869919bb08ae07f357395</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x12.php</fullpath>
@@ -8942,7 +8942,7 @@
     <revision>6633</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ebe0bef55c9e32530b7e776039d0ad1e</hash>
+    <hash>234596ee6b5507e61dd6f88080181204</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x13.php</fullpath>
@@ -8950,7 +8950,7 @@
     <revision>6633</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d9daa6a9bdc68aa8ad9b6f8394f532b5</hash>
+    <hash>e2950f2544bb0ff0477b1cf023e05ff9</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x14.php</fullpath>
@@ -8958,7 +8958,7 @@
     <revision>6633</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e0793e99dcc0845fcab248361fed2f61</hash>
+    <hash>c11bb83ff3e9cb1b22d99f810b403f63</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x15.php</fullpath>
@@ -8966,7 +8966,7 @@
     <revision>6633</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3cb0280aec63d62ae4bcedaad41416ea</hash>
+    <hash>8a8cc892a879988ddc03f5e81515747a</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x16.php</fullpath>
@@ -8974,7 +8974,7 @@
     <revision>6633</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>abb13062a9aca90038d5fe67cf136f5b</hash>
+    <hash>e8407831c02a5fad20da7ce9feeb0df3</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x17.php</fullpath>
@@ -8982,7 +8982,7 @@
     <revision>6636</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ed76d1fe7efbc96d642ad21e1c74878a</hash>
+    <hash>c6ad8f7c99e6027878fa3b4f4df34a03</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x18.php</fullpath>
@@ -8990,7 +8990,7 @@
     <revision>6636</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>960eb246db49acf1e5ecb77946bd72be</hash>
+    <hash>5ecc17ca656b52521d7abfb7e91fd7af</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x20.php</fullpath>
@@ -8998,7 +8998,7 @@
     <revision>6636</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ee251fa77087545dd6c821e4907dc05e</hash>
+    <hash>7ee0b285a850fc06c9487758dac1f811</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x21.php</fullpath>
@@ -9006,7 +9006,7 @@
     <revision>6636</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>67c83bb83fc767b9e6b4157532300241</hash>
+    <hash>160d7ec58292a78246c9b94d9a5dcbbb</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x22.php</fullpath>
@@ -9014,7 +9014,7 @@
     <revision>6636</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3d7df7a6a222f1be88cab4df7829e32b</hash>
+    <hash>61a9d88e653364f5c03fa4982c26c514</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x23.php</fullpath>
@@ -9022,7 +9022,7 @@
     <revision>6636</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>335f516a5480d239e33706b6cdca085b</hash>
+    <hash>616632f1995ec37057c1bab0471c51d8</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x24.php</fullpath>
@@ -9030,7 +9030,7 @@
     <revision>6636</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>407c197b2041f3867bd886c9ed26e75f</hash>
+    <hash>a88d375c875223b1d29d4dd7755941ca</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x25.php</fullpath>
@@ -9038,7 +9038,7 @@
     <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2f2f70b32b0a86a054b6e7c4f4e25237</hash>
+    <hash>dd2f72a6a2bad09ba80292556e1b872c</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x26.php</fullpath>
@@ -9046,7 +9046,7 @@
     <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e9a8bc5fc37763046c7b39c4cccb9c7b</hash>
+    <hash>96ba01225993a78776f8e6411433468e</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x27.php</fullpath>
@@ -9054,7 +9054,7 @@
     <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d8ec549f6c60d7ef84904b10b45a24fa</hash>
+    <hash>f9eab1cc7bb94c59844c20f4af638569</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x28.php</fullpath>
@@ -9062,7 +9062,7 @@
     <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f35abfdb02cb9f8a10c539e8055ff963</hash>
+    <hash>d6a0972796313422e11f01044715bc1b</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x30.php</fullpath>
@@ -9070,7 +9070,7 @@
     <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>838d445936311bda8647e0f04a1c768a</hash>
+    <hash>16babbefa82cf9f61ca591d05498ee99</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x31.php</fullpath>
@@ -9078,7 +9078,7 @@
     <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>22507b5876d04c27fa551864fbe00c3f</hash>
+    <hash>6f1f18fa9686c3d6e4094752f6873b50</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x32.php</fullpath>
@@ -9086,7 +9086,7 @@
     <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>273454e590c4a74c047d23b0d02da45f</hash>
+    <hash>0bdeca196b99cd938cbe0a3b0ae35857</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x33.php</fullpath>
@@ -9094,7 +9094,7 @@
     <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>06d1dc0bb5a42f7373e58b374647317e</hash>
+    <hash>98475b5a23aee060346a9c05ceae6ade</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x50.php</fullpath>
@@ -9102,7 +9102,7 @@
     <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>062dc2f61d4960a602db07798969a83b</hash>
+    <hash>6bb1c83e24b88601cdbde8ccae92f6d0</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x51.php</fullpath>
@@ -9110,7 +9110,7 @@
     <revision>6637</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6cddedcb5da8f645c2649411f6ddede4</hash>
+    <hash>e90edf2af9c1f687a12f7aae79403439</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x52.php</fullpath>
@@ -9118,7 +9118,7 @@
     <revision>6638</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>704e60b57b5f84b3601dd89d78deb30a</hash>
+    <hash>ce54340b78772e48c723d890453303a6</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x53.php</fullpath>
@@ -9126,7 +9126,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>15c349a4335cd4a70b5a0032ecaaa0c9</hash>
+    <hash>8607a9a7c1d0cf3d31757f56072a382b</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x54.php</fullpath>
@@ -9134,7 +9134,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4b08e5eb34295b04b937a3040fd7e72c</hash>
+    <hash>b2f79225e65c5eef9a1e17ccb183ac8d</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x55.php</fullpath>
@@ -9142,7 +9142,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>10ef12db1a15f714bfee93e69d42eca9</hash>
+    <hash>567f70ff529320d8d3d4b4f864b5c1cf</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x56.php</fullpath>
@@ -9150,7 +9150,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>956fd8c900a6516d50923f498a015ced</hash>
+    <hash>32f9e19bc939ffe4ef172cec31067507</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x57.php</fullpath>
@@ -9158,7 +9158,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3ac192960dbbf17d138d85526bead1eb</hash>
+    <hash>0f1e46a2f8ce600d81aba6e1d3c69d5c</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x58.php</fullpath>
@@ -9166,7 +9166,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fcaefe4b613d1a4ca0089d42846082fe</hash>
+    <hash>71880f6af5145c78aa12dd60bd322b55</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x59.php</fullpath>
@@ -9174,7 +9174,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f080728309a37fafd001bcf804a68ce2</hash>
+    <hash>68e003ec8012c96aac27c12da1617651</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x60.php</fullpath>
@@ -9182,7 +9182,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>18a8d74539ba98175e34a2fb0172ea38</hash>
+    <hash>5e87aab487cb038473b79a7a010d253d</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x61.php</fullpath>
@@ -9190,7 +9190,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7ad508db7ec1115f451dbb259a8204e6</hash>
+    <hash>14aada96cdd456dab5baaf45e942b8f2</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x62.php</fullpath>
@@ -9198,7 +9198,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ef7ce7d72b4ca7034e67409b80014c5b</hash>
+    <hash>f889e35ccb0c4cb27c2fd92776b4b9d1</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x63.php</fullpath>
@@ -9206,7 +9206,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5a4235ceee2fdb448a74622f9500624a</hash>
+    <hash>8b2809101a179de25b676e947fcaa972</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x64.php</fullpath>
@@ -9214,7 +9214,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9657c4f9ba79b3aa3907cdfc85bf0e19</hash>
+    <hash>720fb1ad59a697b2c16f1c6982fd51fd</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x65.php</fullpath>
@@ -9222,7 +9222,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3a09d23ad19f69a6622c29f68071f793</hash>
+    <hash>4576fce751c259d077104e06185965a9</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x66.php</fullpath>
@@ -9230,7 +9230,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c7fd8c222605c7d6395f34383ffb6756</hash>
+    <hash>ac1bad53061f231a0dffc54ea441a23b</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x67.php</fullpath>
@@ -9238,7 +9238,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4c630975d3e0bbfb61f488bea60b2641</hash>
+    <hash>2e4261b88bbc61b6ad76a5b1e2402942</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x68.php</fullpath>
@@ -9246,7 +9246,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>1971be36cbdb7e0065063a7f4a49778b</hash>
+    <hash>6a114172207063504c262a4c6ad5742d</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x69.php</fullpath>
@@ -9254,7 +9254,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>da1f817a5fc9caacde7ed112c2ad76b7</hash>
+    <hash>af73d0ef518ca9c08b78dc2878e1a904</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x70.php</fullpath>
@@ -9262,7 +9262,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>76f9d17537b7b0e8ee0510e69aac3072</hash>
+    <hash>6fb4ff97398beaabab752eb504ab5c07</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x71.php</fullpath>
@@ -9270,7 +9270,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>76ef9a878a32e6aa0cae4586c7033995</hash>
+    <hash>42b147ec18dedfc1a2dc705d1ec77226</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x72.php</fullpath>
@@ -9278,7 +9278,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b368507494b29e3f8addf0c7d455e173</hash>
+    <hash>337e41ddf9a53976527527b4aef52ed6</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x73.php</fullpath>
@@ -9286,7 +9286,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b14e12fd647836e06191b8eecac6ce85</hash>
+    <hash>022f2197944cea09b9a56af45356b237</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x74.php</fullpath>
@@ -9294,7 +9294,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8b6f2a3bcea37e9d2c7c65bbbd70c734</hash>
+    <hash>f69820e935ea8e3530ccf7b9e6cd8ed3</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x75.php</fullpath>
@@ -9302,7 +9302,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>68ba132499068affb2885d3b9281128e</hash>
+    <hash>6a7438f4fa6b9a544d63baae63c43e12</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x76.php</fullpath>
@@ -9310,7 +9310,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fe49e25dd6e767833f63dbe50c7a1d4f</hash>
+    <hash>2be2bb41b822b64706669d298e5f9408</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x77.php</fullpath>
@@ -9318,7 +9318,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8d840a6d697b1b4e8314837868095a4c</hash>
+    <hash>617b8fe482b425f79c0542a63f54e2ed</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x78.php</fullpath>
@@ -9326,7 +9326,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f7bddd372a12dc355a1709b93fd0289c</hash>
+    <hash>82d38b5bce4ce0cd4cbb8ce15fda264f</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x79.php</fullpath>
@@ -9334,7 +9334,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>31487ca459a13a4f9d8b89338d9d2443</hash>
+    <hash>26401c51f2d4d13d0341e530418be984</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x80.php</fullpath>
@@ -9342,7 +9342,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>69a41ab82c4b4d88fac6d745634e6dfa</hash>
+    <hash>f5e08333ea21031154b9ff4d0677314c</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x81.php</fullpath>
@@ -9350,7 +9350,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>cde340a13ecb6d59221b32461cab1df8</hash>
+    <hash>eb76096e0974553c075953fdf6cdbf51</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x82.php</fullpath>
@@ -9358,7 +9358,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>14875ab5f802e0e659dfc5900acd4553</hash>
+    <hash>f3e36f606275334a9d50fe85b3a393f4</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x83.php</fullpath>
@@ -9366,7 +9366,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>69c1347d29722ede987d56aac8c401c5</hash>
+    <hash>b24554081c72ab74ea090f0710c1cc8d</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x84.php</fullpath>
@@ -9374,7 +9374,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5ab1f7c7d455fd566dc6a848762a2fa3</hash>
+    <hash>357792608078f1d6ba6c902af1d5bf37</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x85.php</fullpath>
@@ -9382,7 +9382,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>62605e7636d0be65dafa339d8b738db4</hash>
+    <hash>ad681cf8af2d29f3f0c3b47dc16cde69</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x86.php</fullpath>
@@ -9390,7 +9390,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3debc056bc3e80bfa36481109f7629af</hash>
+    <hash>12cc24cdceaca96a256f5a0762bfd578</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x87.php</fullpath>
@@ -9398,7 +9398,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9640504eb964d139ab7759a7f1553ca0</hash>
+    <hash>a00b3715a1705d912c47303178018827</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x88.php</fullpath>
@@ -9406,7 +9406,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>36f34b189cbce97fb2402cfd81e2e4fd</hash>
+    <hash>b4f0667c5abc9551f2686af454b52a40</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x89.php</fullpath>
@@ -9414,7 +9414,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>deaf2379df8d049c62ced4a509167607</hash>
+    <hash>db1214bdd19c96d1f33c5a7c0ed73eb6</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x90.php</fullpath>
@@ -9422,7 +9422,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9f01db1e8bb9c288e5188a7d822bb821</hash>
+    <hash>719a58e24c14892010b794a99bb1a0eb</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x91.php</fullpath>
@@ -9430,7 +9430,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>438b7f989fb38cd7e278650f215f12a8</hash>
+    <hash>8e4166fe4be7c7c203b7595db4d87787</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x92.php</fullpath>
@@ -9438,7 +9438,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>00163f80f9728e84b8f626904c9e2962</hash>
+    <hash>655cea26f34a9e9afe43048cbdd0fc93</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x93.php</fullpath>
@@ -9446,7 +9446,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7aa5e7335400380980ad587a4813fb1e</hash>
+    <hash>54145b66f5e486aecc42230f927a81b0</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x94.php</fullpath>
@@ -9454,7 +9454,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>00086c3f9377d2983d2beb6022df8aef</hash>
+    <hash>fe4e4d7c94ea34207ad0be49833b8525</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x95.php</fullpath>
@@ -9462,7 +9462,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>196ad0318b24b4ca7b0f106c43a17d6c</hash>
+    <hash>281d362050c5a1b13dbf02c91bb89f32</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x96.php</fullpath>
@@ -9470,7 +9470,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>32b92219e360b779fd08daaee7a7ff19</hash>
+    <hash>33f9dcec3ce53d18c06601d8f88afa60</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x97.php</fullpath>
@@ -9478,7 +9478,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b47d37785229bb0f7335b8666db89d34</hash>
+    <hash>56b1d03fdc37d7d6283df6f0c51b8696</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x98.php</fullpath>
@@ -9486,7 +9486,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>74bab48a1226a480648c4b13b6ed84c5</hash>
+    <hash>e3d51d1e2fa6840a6b9eca13f1d68b68</hash>
   </element>
   <element>
     <fullpath>include/transliteration/x99.php</fullpath>
@@ -9494,7 +9494,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8ce91928d164ba2b69ec937703b43e58</hash>
+    <hash>a948fc98318e06a7455f92b2e526059b</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xa0.php</fullpath>
@@ -9502,7 +9502,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d01d87596f31a5ab20433790321dce8c</hash>
+    <hash>1d863c13b4892866b47a9dfe1b28dce2</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xa1.php</fullpath>
@@ -9510,7 +9510,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2c83bc1a36e90971248fb675019a0987</hash>
+    <hash>7c7b7dafe6139ff9c7b38745e9ee877d</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xa2.php</fullpath>
@@ -9518,7 +9518,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ce3c547d119101e6a659fe8d7faa7f99</hash>
+    <hash>5d1212002ef4b30c5dd0e8225a0372e9</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xa3.php</fullpath>
@@ -9526,7 +9526,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2dae4e42029d3bb8d06cd519eb6f1dec</hash>
+    <hash>f0cd47890fa9b50e98cffc6f4ac13a93</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xa4.php</fullpath>
@@ -9534,7 +9534,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2fbc71e57cfa97dbca11346fa8e0ca06</hash>
+    <hash>44bdd3dc00e7b26c46e69658a1679018</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xac.php</fullpath>
@@ -9542,7 +9542,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>bd560e13c3113718dd0096509c95d8e9</hash>
+    <hash>d000b04a9632869d538dcc5277fd4c9c</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xad.php</fullpath>
@@ -9550,7 +9550,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2c348ac1cd5a9ec60a3b8898d959a859</hash>
+    <hash>0b25ef750e4662de7c165963b06aad51</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xae.php</fullpath>
@@ -9558,7 +9558,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0863dba09e78f3e1a3c4291e426afe6b</hash>
+    <hash>6c332ba200caa52d130680a2dcdbbc90</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xaf.php</fullpath>
@@ -9566,7 +9566,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c09b6a3aab5c55859f61ade72d0371b8</hash>
+    <hash>742b25dd4147031b497b489c49ef41bb</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xb0.php</fullpath>
@@ -9574,7 +9574,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4f381273ffe79db8c31862267a2c01a0</hash>
+    <hash>18d9cf9fa8895c21a2ad950e30d6bf88</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xb1.php</fullpath>
@@ -9582,7 +9582,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a7c8c486e2cb0cc17b05bcc6da73a0c7</hash>
+    <hash>b7435e33cb7e44ae2133bb51bc60bc03</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xb2.php</fullpath>
@@ -9590,7 +9590,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e73949f96a5d1f0d87877f91ec8d67e2</hash>
+    <hash>50ea81f4d057c076b27d6a88238b689a</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xb3.php</fullpath>
@@ -9598,7 +9598,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ac41eae57fe037a4ced6fdc507ec5b58</hash>
+    <hash>6cc723584caa0012b88269d16dc70b15</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xb4.php</fullpath>
@@ -9606,7 +9606,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>30220fd272cb1e7b996b93070717c4f5</hash>
+    <hash>5b2a290a2876e8b1c4ee5f880829befc</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xb5.php</fullpath>
@@ -9614,7 +9614,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f14c2eb423a1353364369c2bdcd8dbaa</hash>
+    <hash>e210d170a6de7c3b4017b1e8cc2f4506</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xb6.php</fullpath>
@@ -9622,7 +9622,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e982626350bc34369fad0b3ff32e1023</hash>
+    <hash>97110eaf54536ff160383355668f315c</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xb7.php</fullpath>
@@ -9630,7 +9630,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f7e49082285ad68ecc0f17e90e4e3d18</hash>
+    <hash>95b8a23a0a59b40a960c26581793b40c</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xb8.php</fullpath>
@@ -9638,7 +9638,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c34370fbd0a75e09e56b3d3ea67287f9</hash>
+    <hash>cac5f462c1c82f1bc435bb2e30051c95</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xb9.php</fullpath>
@@ -9646,7 +9646,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>58e0f4cfc23f5deabf3b156589a9bda0</hash>
+    <hash>212799b17894b70e7e6be3145b045af9</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xba.php</fullpath>
@@ -9654,7 +9654,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3f33c1b7cfedf3b62ec1c7ec3df54590</hash>
+    <hash>06c7b2619f1c0f12b4945a8189dd9f23</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xbb.php</fullpath>
@@ -9662,7 +9662,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>981d59fac3bc7aaa30fbfc7a9de13004</hash>
+    <hash>9448e8b447cc4f42f0e4d905b130bd7a</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xbc.php</fullpath>
@@ -9670,7 +9670,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>41f7e49290dae1c1526dd27ca4d3cd59</hash>
+    <hash>5078afe662d2f45ab510b5cd73251408</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xbd.php</fullpath>
@@ -9678,7 +9678,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>dfda793aef700a426ff5fc55e8201fea</hash>
+    <hash>c5ec084f717f040819c46eae3b00aea7</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xbe.php</fullpath>
@@ -9686,7 +9686,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9d6dc653f9f17e39aa04e0ef5ed7690c</hash>
+    <hash>7112ecb60d12d935a0b22fc6197946ae</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xbf.php</fullpath>
@@ -9694,7 +9694,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e8883612cd0315b2f38666cd79e35d32</hash>
+    <hash>40658a1f814db9dab6dc53a18c6fcc46</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xc0.php</fullpath>
@@ -9702,7 +9702,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>184a36725131a7fb826b11b29145da27</hash>
+    <hash>0f99a1e73873b4bc01ab4a69ebd09645</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xc1.php</fullpath>
@@ -9710,7 +9710,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ba7098dfe9d9c1eb11ea45bb30fc7ec4</hash>
+    <hash>2373999018d60e2d31e26bb7efbbf682</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xc2.php</fullpath>
@@ -9718,7 +9718,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4d201306895ad2e96de2f8eeeb3e4cbe</hash>
+    <hash>c89f1e0781d734b2934a2ba004661520</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xc3.php</fullpath>
@@ -9726,7 +9726,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b3c399c69730da7ed622bcdd9353c3c6</hash>
+    <hash>d34e753cabfccaef8bbd5d43a0084445</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xc4.php</fullpath>
@@ -9734,7 +9734,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>998b662f868f72e93bc5bc86455bd221</hash>
+    <hash>351ec04ffbc540d831cc410b3fb82e09</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xc5.php</fullpath>
@@ -9742,7 +9742,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5da362d8258e9a464380f99c1275d622</hash>
+    <hash>9813a103d27a30022a77aeec53e5b968</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xc6.php</fullpath>
@@ -9750,7 +9750,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ff89618c4e2a8d2d27ce661a671c2722</hash>
+    <hash>30091945703fdcaedc3d5cf3fb88163a</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xc7.php</fullpath>
@@ -9758,7 +9758,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>30ceb5db559a6234052d4b404908f057</hash>
+    <hash>8c50d2e4ebe8bf5cf7a006c841caf118</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xc8.php</fullpath>
@@ -9766,7 +9766,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d5f2108bcc5873efca2aa1f38f6110fc</hash>
+    <hash>63216a5d33f63d087709e1766b02e6d7</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xc9.php</fullpath>
@@ -9774,7 +9774,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>52c4224e26698b9409da97cfc58b872e</hash>
+    <hash>ad2b23d06d2ac62285e2feb00d30dd87</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xca.php</fullpath>
@@ -9782,7 +9782,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7fc17608dbcce7ec9c732353470cc96c</hash>
+    <hash>9cf2b1cdfea61b8500eca46067a14407</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xcb.php</fullpath>
@@ -9790,7 +9790,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>454d62d0fd27c8193194429849c0a40c</hash>
+    <hash>29582fb02bf10c0bf21ff8c3313d5f04</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xcc.php</fullpath>
@@ -9798,7 +9798,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>448f726e23a8f34ba337e8a2b8fcd02c</hash>
+    <hash>39c8b68b0562ad91a3eebbb86e6f5aa8</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xcd.php</fullpath>
@@ -9806,7 +9806,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>facf129c288ff78f5d633a26cfc29bff</hash>
+    <hash>985a2918f02e674ab51441d2c1e20c3d</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xce.php</fullpath>
@@ -9814,7 +9814,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4e8c224a4eb417f919d30b56fdefbf81</hash>
+    <hash>20a6e6c7ec2f2ceb8c0a30f6808b4408</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xcf.php</fullpath>
@@ -9822,7 +9822,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fae5db9313a76e90316891bba111d82b</hash>
+    <hash>9b0b460aa4104dcbe24e9f6466839dc6</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xd0.php</fullpath>
@@ -9830,7 +9830,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>18619c3f17c0616478b4304e75444558</hash>
+    <hash>5ad3cfef766302ee3d66bc7db26fecab</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xd1.php</fullpath>
@@ -9838,7 +9838,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>44c8d1de282b5ed7aad34a3924dc222e</hash>
+    <hash>63779ec7d3e29371b8a19cbebbd3a3a6</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xd2.php</fullpath>
@@ -9846,7 +9846,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4aa8885454c378a4a43fae3349295788</hash>
+    <hash>ef21179f849f95737fd513e6f6f3c934</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xd3.php</fullpath>
@@ -9854,7 +9854,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>6a574b634521734d925583709096cfdb</hash>
+    <hash>978bce69056aefad89dad52cf40d1d81</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xd4.php</fullpath>
@@ -9862,7 +9862,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0b0dd3e65a98d77827e357d1ac114c19</hash>
+    <hash>093302cbd7da573fdb16f4b1ea37d36c</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xd5.php</fullpath>
@@ -9870,7 +9870,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c57fe1712c3254e5a1b1d8a995a47a2d</hash>
+    <hash>7bb69048b99d1e45632b1ff3fff45ada</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xd6.php</fullpath>
@@ -9878,7 +9878,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c6828fa59144bd41e37da240615ec636</hash>
+    <hash>5623a962bff5606207e274c86476f2b6</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xd7.php</fullpath>
@@ -9886,7 +9886,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>30c522a5e055b420b0ba4d7bcd1e24b6</hash>
+    <hash>0a2b0919b800b5f55abd406b301fc8a5</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xf9.php</fullpath>
@@ -9894,7 +9894,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2e768af462d7b3f213e5a9889e1bc0a5</hash>
+    <hash>f614c4f842017caefeca161018e183e7</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xfa.php</fullpath>
@@ -9902,7 +9902,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>4fd71570720c33b7affc8e3c09c38be6</hash>
+    <hash>0f4c3293af7f2d2630030a5cf8eb48ac</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xfb.php</fullpath>
@@ -9910,7 +9910,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>2996f7838b4f2e28cec8e6dfd72171f6</hash>
+    <hash>9f8a8b0ed30239aef0a658ea16c42e99</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xfc.php</fullpath>
@@ -9918,7 +9918,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fb83785df60fde94a2a0fd4308bf5d1d</hash>
+    <hash>fa193b52554ba203720a1b142bcf4b6d</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xfd.php</fullpath>
@@ -9926,7 +9926,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c4d6941dd05ec31f874536fa388dff08</hash>
+    <hash>881f800ce48a66f4ac282b4e3ba99d38</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xfe.php</fullpath>
@@ -9934,7 +9934,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8e9a0404ee863b4629b451225a78375e</hash>
+    <hash>a86d5307d7318c6f819a76fd7bde654b</hash>
   </element>
   <element>
     <fullpath>include/transliteration/xff.php</fullpath>
@@ -9942,7 +9942,7 @@
     <revision>6639</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>82fd0a2d2755cc35443d65ccf56793c7</hash>
+    <hash>40d8f6dfa55e332536b9a0493e8c5e94</hash>
   </element>
   <element>
     <fullpath>lang</fullpath>
@@ -9952,10 +9952,10 @@
   <element>
     <fullpath>lang/english.php</fullpath>
     <version>1.5.2</version>
-    <revision>6606</revision>
+    <revision>6645</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>511dcd37e6085ec3ceacb4fdd635de35</hash>
+    <hash>ea3c1279aac664b04bf8cc270b8010c0</hash>
   </element>
   <element>
     <fullpath>lang/english_gb.php</fullpath>
@@ -9963,31 +9963,30 @@
     <revision>6583</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>5fc58db7b2936c2874fab78214563c70</hash>
+    <hash>0abb944bf1f278705a2afa0e4ae7d418</hash>
   </element>
   <element>
     <fullpath>lang/finnish.php</fullpath>
     <version>1.5.2</version>
-    <revision>6606</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e9e5648099d449264a11acbbb25a62a9</hash>
+    <hash>4834e6fcb26a893c00ee7dcc0c6d343e</hash>
   </element>
   <element>
     <fullpath>lang/french.php</fullpath>
     <version>1.5.2</version>
-    <revision>6606</revision>
+    <revision>6727</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e9e5648099d449264a11acbbb25a62a9</hash>
+    <hash>613d40ba61729d7c3dad33ba96150192</hash>
   </element>
   <element>
     <fullpath>lang/german.php</fullpath>
     <version>1.5.2</version>
-    <revision>6614</revision>
+    <revision>6648</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>cd7036629a9bc623d1ee59963f3a391c</hash>
+    <hash>0b541adb9e52c3b5bfdbaef00ed57768</hash>
   </element>
   <element>
     <fullpath>lang/german_formal.php</fullpath>
@@ -9995,7 +9994,7 @@
     <revision>6614</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>cd7036629a9bc623d1ee59963f3a391c</hash>
+    <hash>d48d8e3af0cdd6fd96ff18e9f8be50eb</hash>
   </element>
   <element>
     <fullpath>js/</fullpath>
@@ -10008,7 +10007,7 @@
     <revision>6612</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>565b3faa3b38fa754b9600d2260d8a1e</hash>
+    <hash>d6b8bd45247c58491d1aae26387cd395</hash>
   </element>
   <element>
     <fullpath>js/albmgr.js</fullpath>
@@ -10016,7 +10015,7 @@
     <revision>6523</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d33350540ba79701a3cedb5c7181d24f</hash>
+    <hash>c98f22fda75efcd5b18b3eda6c208b0a</hash>
   </element>
   <element>
     <fullpath>js/banning.js</fullpath>
@@ -10024,7 +10023,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3fdee43ec3fcbd30dc84891450f0fdcd</hash>
+    <hash>14ef0c8180da444d261059b774967fa7</hash>
   </element>
   <element>
     <fullpath>js/calendar.js</fullpath>
@@ -10032,7 +10031,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>019c62fbb685c283036c65eeeea6874d</hash>
+    <hash>407eb9e5e9186e10c6950412292c38e2</hash>
   </element>
   <element>
     <fullpath>js/catmgr.js</fullpath>
@@ -10040,7 +10039,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>545624f4537780519cf00a1abcc157fa</hash>
+    <hash>b2df3562e9fdcf2809b734566ce47391</hash>
   </element>
   <element>
     <fullpath>js/contact.js</fullpath>
@@ -10048,7 +10047,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>359634a2b2538a3627f8976436753b52</hash>
+    <hash>58f633f79a903b617e836ebf36be0b4f</hash>
   </element>
   <element>
     <fullpath>js/date.js</fullpath>
@@ -10056,7 +10055,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>bd55e8c7d8c1b4fd58984524aada041f</hash>
+    <hash>f50a9e635fd33022ba6c86ce31fc921c</hash>
   </element>
   <element>
     <fullpath>js/db_ecard.js</fullpath>
@@ -10064,7 +10063,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8d3fdbefe54d522a6aef7c10227680f7</hash>
+    <hash>0832fc59aaa4be8dab69dba186f9631e</hash>
   </element>
   <element>
     <fullpath>js/displayimage.fullsize.js</fullpath>
@@ -10072,15 +10071,15 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f6333fcdcbf580f9c7fe1779a196c75e</hash>
+    <hash>e89a6904fc3c0f8726a3755b86df777f</hash>
   </element>
   <element>
     <fullpath>js/displayimage.js</fullpath>
     <version>1.5.2</version>
-    <revision>6541</revision>
+    <revision>6678</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>10da7cde5fcf4db247d8471b7be0c829</hash>
+    <hash>c21dadd872a344c3f070081cb6e27458</hash>
   </element>
   <element>
     <fullpath>js/edit_one_pic.js</fullpath>
@@ -10088,7 +10087,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d2bb0f538dcf10fc7260270aa0c8935e</hash>
+    <hash>9c0fb01383053687f7467798efce5d86</hash>
   </element>
   <element>
     <fullpath>js/editpics.js</fullpath>
@@ -10096,7 +10095,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b65e5d044437507a8a82766a7245aeb7</hash>
+    <hash>45d0a2b5b54852be0b07440262372d43</hash>
   </element>
   <element>
     <fullpath>js/jquery.cluetip.js</fullpath>
@@ -10104,7 +10103,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8246ef1f00974d63f10acf6b2d6e4592</hash>
+    <hash>3f705897e9f571602d352e0f1d7f66b1</hash>
   </element>
   <element>
     <fullpath>js/jquery.datePicker.js</fullpath>
@@ -10112,7 +10111,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5193bb0661cf9c822e47f0075352c609</hash>
+    <hash>7aa68e1c5b0cf1214c05159c6816d206</hash>
   </element>
   <element>
     <fullpath>js/jquery.dimensions.pack.js</fullpath>
@@ -10120,7 +10119,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a4b8722cf0a062930c88844a8e912b18</hash>
+    <hash>487fffc229a7d41a4aea11f4c3a6f6ac</hash>
   </element>
   <element>
     <fullpath>js/jquery.elastic.js</fullpath>
@@ -10128,7 +10127,7 @@
     <revision>6384</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b7cef589da3a3b9415670f23a1359d9b</hash>
+    <hash>34ea87f9f741030246bf3b24027c2fc3</hash>
   </element>
   <element>
     <fullpath>js/jquery.greybox.js</fullpath>
@@ -10136,7 +10135,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>568c5038a8ab12d794da0dacffe862b7</hash>
+    <hash>0d6d5229e9cd4eb3f6eac489a0b1d6d9</hash>
   </element>
   <element>
     <fullpath>js/jquery.slideshow.js</fullpath>
@@ -10144,7 +10143,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>90d918c9a3b4f809f0c53d372d74dafa</hash>
+    <hash>323a95d3fb787cca002838e771214135</hash>
   </element>
   <element>
     <fullpath>js/jquery.sort.js</fullpath>
@@ -10152,7 +10151,7 @@
     <revision>6523</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>5023a2be52681228f447a58177eb3023</hash>
+    <hash>e94d7beeb5e7078e4a204cd08d548536</hash>
   </element>
   <element>
     <fullpath>js/jquery.spinbutton.js</fullpath>
@@ -10160,7 +10159,7 @@
     <revision>6612</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>28b7378fb9006ad080d05d8a538a4d04</hash>
+    <hash>c1b807e95536b1a2d91099446c2a35ca</hash>
   </element>
   <element>
     <fullpath>js/jquery.treeview.min.js</fullpath>
@@ -10168,7 +10167,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>60075f7a8a95b12f52de14a9b07e97e5</hash>
+    <hash>d49a0e005bb3f018d334f90c08d6fb07</hash>
   </element>
   <element>
     <fullpath>js/jquery-1.3.2.js</fullpath>
@@ -10176,7 +10175,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>457218485f146ae20f7232f2fa4545aa</hash>
+    <hash>da9719720cc54c66cbe8682bef3e43a7</hash>
   </element>
   <element>
     <fullpath>js/langmgr.js</fullpath>
@@ -10184,7 +10183,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0f5ce25536520cec717ec41baf6d3616</hash>
+    <hash>2b112594f0e23727ca631e83b98dfa1e</hash>
   </element>
   <element>
     <fullpath>js/link_target.js</fullpath>
@@ -10192,7 +10191,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>0b26cc4e4a7a63d0643f7f8bf39cc8ef</hash>
+    <hash>103bd62acad7b600863f48504d2de319</hash>
   </element>
   <element>
     <fullpath>js/minibrowser.js</fullpath>
@@ -10200,7 +10199,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e18a4668e0a7cf7a15ce71ca5d968528</hash>
+    <hash>f5e8809b1d54b7ea92bf11c716d74d8b</hash>
   </element>
   <element>
     <fullpath>js/modifyalb.js</fullpath>
@@ -10208,7 +10207,7 @@
     <revision>6523</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>718a63e45b23c8dd4d2bc1c52cd861f7</hash>
+    <hash>c3b3d23641e0ef22272170240f93f59d</hash>
   </element>
   <element>
     <fullpath>js/pic_editor.js</fullpath>
@@ -10216,7 +10215,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b1437ba6e614e053674d811d1038805c</hash>
+    <hash>a2eeebebe8f367eb1083c366a5dcd234</hash>
   </element>
   <element>
     <fullpath>js/profile.js</fullpath>
@@ -10224,7 +10223,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>37575e15c27c1bd77fcddf060463f0c2</hash>
+    <hash>793cf59f6d90dd4dd44cff2013afb137</hash>
   </element>
   <element>
     <fullpath>js/register.js</fullpath>
@@ -10232,7 +10231,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>c23b2617b8bb104defcd44fc4889099d</hash>
+    <hash>5a2e22294eb9e015df39596d3347749b</hash>
   </element>
   <element>
     <fullpath>js/reviewcom.js</fullpath>
@@ -10240,7 +10239,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>82bce0384b1f4a7b4240dcfbb1c147de</hash>
+    <hash>fc0c0c89cc5de000a017e4a487da29b0</hash>
   </element>
   <element>
     <fullpath>js/scripts.js</fullpath>
@@ -10248,7 +10247,7 @@
     <revision>6629</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>246232a9d1f41f2c777e300e86fe061b</hash>
+    <hash>63788bcb00385bb8d85977ab496cd806</hash>
   </element>
   <element>
     <fullpath>js/searchnew.js</fullpath>
@@ -10256,7 +10255,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>240b2c72a7d1672300f6bf44cc0913d1</hash>
+    <hash>30c208a26fbc5dc7f02ead487846ae13</hash>
   </element>
   <element>
     <fullpath>js/setup_swf_upload.js</fullpath>
@@ -10269,10 +10268,10 @@
   <element>
     <fullpath>js/thumbnails.js</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6671</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d8975ce0413f665df83e3f771cfbda08</hash>
+    <hash>175dda0b38de64c3d64728667d5254a1</hash>
   </element>
   <element>
     <fullpath>js/upload.js</fullpath>
@@ -10280,7 +10279,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>8d04fcffcd5a1d5e0c639ef6e7cfee6d</hash>
+    <hash>142efb31e565abbc5155839879b5f1eb</hash>
   </element>
   <element>
     <fullpath>js/util.js</fullpath>
@@ -10288,7 +10287,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>e2676cb933205282237e37e732a9335d</hash>
+    <hash>d56f36431b10f852a60083bf5471cee3</hash>
   </element>
   <element>
     <fullpath>js/versioncheck.js</fullpath>
@@ -10296,7 +10295,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>851ab90b9ca4da2d5f6b467543650d3c</hash>
+    <hash>1d34de1371012f0ee6b47a613fcb6ca9</hash>
   </element>
   <element>
     <fullpath>js/swfupload/</fullpath>
@@ -10309,7 +10308,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a9489451b9fb370e19f34e1dfae52c2f</hash>
+    <hash>e082e7b33712ca27801eb22f31c85e85</hash>
   </element>
   <element>
     <fullpath>js/swfupload/handlers.js</fullpath>
@@ -10317,7 +10316,7 @@
     <revision>6527</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fd129d79bfa71d18604a07b9267c2c55</hash>
+    <hash>1f81c910dad46f978b597675e66d38f3</hash>
   </element>
   <element>
     <fullpath>js/swfupload/swfupload.js</fullpath>
@@ -10325,7 +10324,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b94ce4b1227a4b570c84444bd2d4e1c9</hash>
+    <hash>2e273cfe43844193da71f011243b6b26</hash>
   </element>
   <element>
     <fullpath>js/swfupload/swfupload.swf</fullpath>
@@ -10339,7 +10338,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>44027360e25fdcc90bc566fb55e0ac2f</hash>
+    <hash>6a3e152221619760d5f6fe0280ebe836</hash>
   </element>
   <element>
     <fullpath>js/swfupload/swfupload.swfobject.js</fullpath>
@@ -10347,7 +10346,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9cfe9ea898b9a508f00d257eec72ad35</hash>
+    <hash>d569ca384ebc19f2976ea9fc65a03ebb</hash>
   </element>
   <element>
     <fullpath>logs/</fullpath>
@@ -10360,7 +10359,7 @@
     <revision>6360</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>b2fe324d01997a0515c739d926926184</hash>
+    <hash>d32ad6c195a1af6e36395135539be67d</hash>
   </element>
   <element>
     <fullpath>plugins/</fullpath>
@@ -10378,7 +10377,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>38b46ba2d16192745f9278425e776c62</hash>
+    <hash>8eb197043dc88552874849796012ab50</hash>
   </element>
   <element>
     <fullpath>plugins/link_target/configuration.php</fullpath>
@@ -10386,7 +10385,7 @@
     <revision>6519</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>3b668ca9a1b7b1c25f9ad98952c84135</hash>
+    <hash>7b05231cb630173ad3e2403b67794f57</hash>
   </element>
   <element>
     <fullpath>plugins/onlinestats/</fullpath>
@@ -10399,7 +10398,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>c603b0758470fa16ad4051d50bfa1370</hash>
+    <hash>17ad85c31864486a9322de80d4ad4f02</hash>
   </element>
   <element>
     <fullpath>plugins/onlinestats/configuration.php</fullpath>
@@ -10407,7 +10406,7 @@
     <revision>6519</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>ba656a90dbaa189f642f99fb258e7d46</hash>
+    <hash>ec02210a33a20c51320d28cbfce5a2cc</hash>
   </element>
   <element>
     <fullpath>plugins/onlinestats/readme.txt</fullpath>
@@ -10415,7 +10414,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>390b0728b90c1b568b75c85b04ddbfd9</hash>
+    <hash>4b430bb18198dd43180878c880f841a0</hash>
   </element>
   <element>
     <fullpath>plugins/onlinestats/schema.sql</fullpath>
@@ -10423,7 +10422,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>8b5a0cf7f2a47944c5d49590d9f845c4</hash>
+    <hash>debea9345939263077c764911383da19</hash>
   </element>
   <element>
     <fullpath>plugins/opensearch/</fullpath>
@@ -10436,7 +10435,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>64484072276b64baec29ecfaf7a4fa9e</hash>
+    <hash>7dcc7dea25a2155b1b0388d7d48f5382</hash>
   </element>
   <element>
     <fullpath>plugins/opensearch/configuration.php</fullpath>
@@ -10444,7 +10443,7 @@
     <revision>6519</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>982110a7334ab3f2a0a723dea8cc40b0</hash>
+    <hash>58c8073cdd387fc2c77395108c742012</hash>
   </element>
   <element>
     <fullpath>plugins/opensearch/osd.xml</fullpath>
@@ -10462,7 +10461,7 @@
     <revision>6544</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>788f80c81d35890344e19c8b50ef98bb</hash>
+    <hash>68a4421ea961a8cb6a93093d40926f26</hash>
   </element>
   <element>
     <fullpath>plugins/sample/configuration.php</fullpath>
@@ -10470,7 +10469,7 @@
     <revision>6519</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>8f20076cf860e6b4fd540565728b715b</hash>
+    <hash>cb47793342e7140226b44d1556c56b52</hash>
   </element>
   <element>
     <fullpath>plugins/usergal_alphatabs/</fullpath>
@@ -10483,7 +10482,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>73ed367355bf95b3dac41bab9336149d</hash>
+    <hash>85c6de7a234323b2c7dea73657a4e16d</hash>
   </element>
   <element>
     <fullpath>plugins/usergal_alphatabs/configuration.php</fullpath>
@@ -10491,7 +10490,7 @@
     <revision>6519</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>3f095ad119f46fb84c6955c0a2b9461b</hash>
+    <hash>6f748bdee97e69ca2723294b35552f53</hash>
   </element>
   <element>
     <fullpath>plugins/visiblehookpoints/</fullpath>
@@ -10501,10 +10500,10 @@
   <element>
     <fullpath>plugins/visiblehookpoints/codebase.php</fullpath>
     <version>1.5.2</version>
-    <revision>6458</revision>
+    <revision>6652</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>cd3a48bdf914fba2bb4cbbc5c813b90f</hash>
+    <hash>4abd03160ff438c2bf0436a6f1b389a1</hash>
   </element>
   <element>
     <fullpath>plugins/visiblehookpoints/configuration.php</fullpath>
@@ -10512,7 +10511,7 @@
     <revision>6519</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>a113d54b4ea33134d180c7eab2f10ae1</hash>
+    <hash>f3ff8e3ae85a302e874a4c44fb2aef6a</hash>
   </element>
   <element>
     <fullpath>plugins/visiblehookpoints/index.php</fullpath>
@@ -10520,7 +10519,7 @@
     <revision>6458</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>8974fc790caa7e8e2d89f2d2865525d4</hash>
+    <hash>c427163f88a36a27caaae4241fad24dc</hash>
   </element>
   <element>
     <fullpath>plugins/visiblehookpoints/css/</fullpath>
@@ -10533,7 +10532,7 @@
     <revision>6458</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>2832e0a9aa7e0f38a7738fec0a871e26</hash>
+    <hash>0e4746630c22e6e171f205ed46c75165</hash>
   </element>
   <element>
     <fullpath>plugins/visiblehookpoints/js</fullpath>
@@ -10546,7 +10545,7 @@
     <revision>6458</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>532c5dd2d088b44af854766550a815df</hash>
+    <hash>6c1515c39a8d10f9fc387c5edacbcb6e</hash>
   </element>
   <element>
     <fullpath>sql/</fullpath>
@@ -10556,10 +10555,10 @@
   <element>
     <fullpath>sql/basic.sql</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6647</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>a817a1fcf091a206f7126f1791022b44</hash>
+    <hash>7818f4610b6313c8afd56b2295be18ae</hash>
   </element>
   <element>
     <fullpath>sql/schema.sql</fullpath>
@@ -10567,15 +10566,15 @@
     <revision>6410</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d83950243aea667db826fcd0d3aaf217</hash>
+    <hash>f85c61b59c51b5885b06a96142f75718</hash>
   </element>
   <element>
     <fullpath>sql/update.sql</fullpath>
     <version>1.5.2</version>
-    <revision>6410</revision>
+    <revision>6665</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>082e07cf44b67074da4ee9b56b365bb7</hash>
+    <hash>e84563c5af08be2c15eee28a4f9e2b08</hash>
   </element>
   <element>
     <fullpath>themes/</fullpath>
@@ -10590,10 +10589,10 @@
   <element>
     <fullpath>themes/classic/style.css</fullpath>
     <version>1.5.2</version>
-    <revision>6590</revision>
+    <revision>6674</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>d04309e1e4baa978dec53cf72facfddf</hash>
+    <hash>1dd3f8779dc5e9a0a2d3dfa31fb9412f</hash>
   </element>
   <element>
     <fullpath>themes/classic/template.html</fullpath>
@@ -10601,7 +10600,7 @@
     <revision>6583</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>c47d5c4ad75b8fe9a24ed7bdda676d22</hash>
+    <hash>59dd0ed5a83d6e56404cbce7453dbc3f</hash>
   </element>
   <element>
     <fullpath>themes/classic/theme.php</fullpath>
@@ -10609,7 +10608,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>7b0ec61ad9a38a19b0d0e14d37007af7</hash>
+    <hash>12eabaf738a6f8a2d6cb1bad15fe66f1</hash>
   </element>
   <element>
     <fullpath>themes/classic/images/</fullpath>
@@ -11402,10 +11401,10 @@
   <element>
     <fullpath>themes/eyeball/style.css</fullpath>
     <version>1.5.2</version>
-    <revision>6590</revision>
+    <revision>6674</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>0064b4f69a32362c4cb516a06537e97a</hash>
+    <hash>964f7d44eba1962ba51723bb5fe426e9</hash>
   </element>
   <element>
     <fullpath>themes/eyeball/template.html</fullpath>
@@ -11413,7 +11412,7 @@
     <revision>6583</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>8234220df665ce4d971dd1d1599d0c25</hash>
+    <hash>1df303bfec46b803b6f221367f7c677c</hash>
   </element>
   <element>
     <fullpath>themes/eyeball/theme.php</fullpath>
@@ -11421,7 +11420,7 @@
     <revision>6498</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>b1bf6581d72d224d0a723a2c462c2bd7</hash>
+    <hash>e316be4b8b9768de93aacf9ec67def28</hash>
   </element>
   <element>
     <fullpath>themes/eyeball/images</fullpath>
@@ -11699,10 +11698,10 @@
   <element>
     <fullpath>themes/fruity/style.css</fullpath>
     <version>1.5.2</version>
-    <revision>6590</revision>
+    <revision>6674</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>bdece395f57550a75f73c86367c496ec</hash>
+    <hash>bfd7f3ec5750a00de2cd6c28f00a88b6</hash>
   </element>
   <element>
     <fullpath>themes/fruity/template.html</fullpath>
@@ -11710,7 +11709,7 @@
     <revision>6583</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6d8d7de90b8cccd184956263fcb6a1fd</hash>
+    <hash>5af858839d4f2b84a416adbfac3bee28</hash>
   </element>
   <element>
     <fullpath>themes/fruity/theme.php</fullpath>
@@ -11718,7 +11717,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>eb6077992a6d4eacb1f5f2600ce9ca7e</hash>
+    <hash>6b878279a3c7a6919201023a56c7e671</hash>
   </element>
   <element>
     <fullpath>themes/fruity/images</fullpath>
@@ -11936,10 +11935,10 @@
   <element>
     <fullpath>themes/hardwired/style.css</fullpath>
     <version>1.5.2</version>
-    <revision>6590</revision>
+    <revision>6674</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>2ce5239ad3c795a0a22adfaa9e323535</hash>
+    <hash>5dcede6c15f624da70e0cfa7330b160b</hash>
   </element>
   <element>
     <fullpath>themes/hardwired/template.html</fullpath>
@@ -11947,7 +11946,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>8948f6fd5f92edbee06e95a02b182a62</hash>
+    <hash>0e6fe43d6bc9dc6c9008e80ce9f18422</hash>
   </element>
   <element>
     <fullpath>themes/hardwired/theme.php</fullpath>
@@ -11955,7 +11954,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>62d52d2722ca30e949197c1ac4c0e1f3</hash>
+    <hash>3e0b697bd6cdc3dbd891c1b7b258d427</hash>
   </element>
   <element>
     <fullpath>themes/hardwired/images</fullpath>
@@ -12257,10 +12256,10 @@
   <element>
     <fullpath>themes/igames/style.css</fullpath>
     <version>1.5.2</version>
-    <revision>6590</revision>
+    <revision>6674</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6c177107b1260f2918fba65780f00c43</hash>
+    <hash>0c2c0683391c32fe1331865b73d96e36</hash>
   </element>
   <element>
     <fullpath>themes/igames/template.html</fullpath>
@@ -12268,7 +12267,7 @@
     <revision>6583</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>97d1b1e8701f850fcd9ced29d90d9770</hash>
+    <hash>06a8af151b872df9ad4ab2e28388c306</hash>
   </element>
   <element>
     <fullpath>themes/igames/theme.php</fullpath>
@@ -12276,7 +12275,7 @@
     <revision>6498</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>728cc09317088cd62e526f095a8741c2</hash>
+    <hash>06ce74fbf01f0861066a9e4534d07c0d</hash>
   </element>
   <element>
     <fullpath>themes/igames/images</fullpath>
@@ -12465,10 +12464,10 @@
   <element>
     <fullpath>themes/mac_ox_x/style.css</fullpath>
     <version>1.5.2</version>
-    <revision>6590</revision>
+    <revision>6674</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>eced9a9d28bffc07b6bb8be9eb6f94b1</hash>
+    <hash>da24e5257d5e3b55a0815b348110b9da</hash>
   </element>
   <element>
     <fullpath>themes/mac_ox_x/template.html</fullpath>
@@ -12476,7 +12475,7 @@
     <revision>6583</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>cefe65b61511b2da5df592cb77ae44cf</hash>
+    <hash>d004459986599fb788d8e450acc3b0a7</hash>
   </element>
   <element>
     <fullpath>themes/mac_ox_x/theme.php</fullpath>
@@ -12484,7 +12483,7 @@
     <revision>6498</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>7b42976cf3a78888bea69b944497d453</hash>
+    <hash>c292dab354f8f6296dacf8d8c0c50db6</hash>
   </element>
   <element>
     <fullpath>themes/mac_ox_x/images</fullpath>
@@ -12691,10 +12690,10 @@
   <element>
     <fullpath>themes/project_vii/style.css</fullpath>
     <version>1.5.2</version>
-    <revision>6590</revision>
+    <revision>6674</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>9e697c9359e5c9caadb700db6a2d17bf</hash>
+    <hash>c076d7e567f56efb3bb9323ed89cb39a</hash>
   </element>
   <element>
     <fullpath>themes/project_vii/template.html</fullpath>
@@ -12702,7 +12701,7 @@
     <revision>6583</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>0b11df4d1579fa4f11049ae4414bc61b</hash>
+    <hash>c96ccd6488fcd93f411952d65e11a2a8</hash>
   </element>
   <element>
     <fullpath>themes/project_vii/theme.php</fullpath>
@@ -12710,7 +12709,7 @@
     <revision>6498</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>b5e728bd2f1d5b0044e0ab764b6b0ba7</hash>
+    <hash>0064e9f8aff9e561a7917a0d924a07e4</hash>
   </element>
   <element>
     <fullpath>themes/project_vii/images</fullpath>
@@ -12833,10 +12832,10 @@
   <element>
     <fullpath>themes/rainy_day/style.css</fullpath>
     <version>1.5.2</version>
-    <revision>6590</revision>
+    <revision>6674</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>e21bf7c5247810ffb2ce8cb47f380957</hash>
+    <hash>ff3ffaa1bee3a5e2bf6d554ebaee9642</hash>
   </element>
   <element>
     <fullpath>themes/rainy_day/template.html</fullpath>
@@ -12844,7 +12843,7 @@
     <revision>6583</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>bb35fd1a995dbbda762943e0c9716b1d</hash>
+    <hash>12c3958a31d771ee4726311d520a199f</hash>
   </element>
   <element>
     <fullpath>themes/rainy_day/theme.php</fullpath>
@@ -12852,7 +12851,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>0bf71eca2f3af2a43b256712545e1388</hash>
+    <hash>a351eb153e6a8c982775cbbc2fc243fb</hash>
   </element>
   <element>
     <fullpath>themes/rainy_day/images</fullpath>
@@ -13083,10 +13082,10 @@
   <element>
     <fullpath>themes/sample/style.css</fullpath>
     <version>1.5.2</version>
-    <revision>6590</revision>
+    <revision>6674</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>f7dea1037cfb23794c32a3c4b77bccbe</hash>
+    <hash>99affa3f655db0cc81c0da571419cdea</hash>
   </element>
   <element>
     <fullpath>themes/sample/template.html</fullpath>
@@ -13094,15 +13093,15 @@
     <revision>6583</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>8429a9adde0fc23f54feaf0d67b13271</hash>
+    <hash>a0ff16bd88f63a1c07ca6dfd3bcfacf8</hash>
   </element>
   <element>
     <fullpath>themes/sample/theme.php</fullpath>
     <version>1.5.2</version>
-    <revision>6640</revision>
+    <revision>6678</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>6ad468dcba24bf42f1fdd873125edc9a</hash>
+    <hash>29b2d78feefa1ae99be8db814650b78f</hash>
   </element>
   <element>
     <fullpath>themes/sample/images</fullpath>
@@ -13153,10 +13152,10 @@
   <element>
     <fullpath>themes/water_drop/style.css</fullpath>
     <version>1.5.2</version>
-    <revision>6590</revision>
+    <revision>6674</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>e1dd40dcdd30b11c3025bc15223640da</hash>
+    <hash>42c1348ccbbd80368a34105ae4a7e105</hash>
   </element>
   <element>
     <fullpath>themes/water_drop/template.html</fullpath>
@@ -13164,7 +13163,7 @@
     <revision>6583</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>540f26480a484cecc9a88d731782e1e5</hash>
+    <hash>b83f4a3273f882606e92cf56aad9b587</hash>
   </element>
   <element>
     <fullpath>themes/water_drop/theme.php</fullpath>
@@ -13172,7 +13171,7 @@
     <revision>6360</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>8163216095f7cff2b7d18a1d3b5d923a</hash>
+    <hash>a9151f544f08c20eca25d395c61db5a0</hash>
   </element>
   <element>
     <fullpath>themes/water_drop/images</fullpath>

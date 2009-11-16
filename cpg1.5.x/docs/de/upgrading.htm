@@ -45,7 +45,7 @@
 <a name="upgrade_why_end"></a>
 
 <a name="upgrade_why_reasons"></a><h3>Reasons for package releases<a href="#upgrade_why_reasons" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This is a list of minor releases of cpg1.4.x and the reason why they have been released. It is meant to explain why you should upgrade as soon as possible to the most recent stable release if you are running an outdated version.</p>
+<p>This is a list of minor releases of cpg1.5.x and the reason why they have been released. It is meant to explain why you should upgrade as soon as possible to the most recent stable release if you are running an outdated version.</p>
 <span class="detail_head_collapsed">Details</span>
 <div class="detail_body">
 	<table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
@@ -55,13 +55,22 @@
 	    <th valign="top" align="left"><span class="small">Release Date</span></td>
 	  </tr>
 	  <tr>
+	    <td valign="top">cpg1.5.2</td>
+	    <td valign="top">
+	      <ul>
+	        <li>Beta release. First public release for testing and evaluation. Do not use for production! No support available yet.</li>
+	      </ul>
+	    </td>
+	    <td valign="top" align="right">2009-11-16</td>
+	  </tr>
+	  <tr>
 	    <td valign="top">cpg1.5.1</td>
 	    <td valign="top">
 	      <ul>
-	        <li>Alpha release for testers and translators. This version is not a public release - it has only been released to a closed group of users for testing and translation purposes.</li>
+	        <li>Alpha release for testers and translators. This version is not a public release - it has only been released to a closed group of users for <a href="testing.htm">testing</a> and <a href="translation.htm#translation">translation</a> purposes.</li>
 	      </ul>
 	    </td>
-	    <td valign="top" align="right">Not released yet</td>
+	    <td valign="top" align="right">2009-07-24</td>
 	  </tr>
 	  <tr>
 	    <td valign="top">cpg1.5.0</td>
@@ -83,19 +92,38 @@
 <a name="upgrade_why_changelog_end"></a>
 
 <a name="upgrade_any"></a><h2>Steps needed to perform when upgrading Coppermine (from any version)<a href="#upgrade_any" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>The instructions here apply for <strong>all</strong> Coppermine udpates/upgrades, so please read them carefully.</p>
 <ul>
-    <li>Download the most recent stable version existing in the download section of the <a href="http://coppermine-gallery.net/">official Coppermine homepage</a><br />
-    <span class="small">(Don't assume that you have the most recent version, especially if you have installed Coppermine using a control panel app provided by your webhost. The coppermine dev team doesn't recommend using such <a href="auto-installers.htm#auto-installers">auto-installers</a> - please download the original from <em>our</em> site)</span></li>
-    <li>Make a <a href="export.htm#backup_database">backup (dump) of your database</a><br />
-    <span class="small">(Recommended tools for creating a database dump are <a href="http://mysqldumper.de/en/" rel="external" class="external">mySqlDumper</a> or <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a> - refer to the section <a href="dev_tools.htm#dev_tools_database">Tools recommended by the devs: Database manipulation</a> for details).<br />
-    Creating a backup is not mandatory in terms of functionality, but just a precaution in case anything should go wrong. It's advisable to make frequent backups anyway.</span></li>
-    <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy as a safety precaution if anything should go wrong.<br />
-    <span class="small">Usually, you just download your entire coppermine folder to your local hard drive or any other safe backup location using your <a href="dev_tools.htm#dev_tools_ftp_client"><abbr title="File Transfer Protocol">FTP</abbr> app</a>. A fresh Coppermine package doesn't contain a config file anyway (that file has being created during install on your server), so you can't actually replace an existing config file with an empty one from the package; again, the backup is only a safety precaution.</span></li>
-    <li>Unpack the coppermine package you downloaded into a temporary folder on your local hard drive (preserving the folder structure within the package)</li>
-    <li><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories, making sure not to overwrite your anycontent.php file or the albums directory.<br />
-    <span class="small">In fact, you could upload the albums folder as well - the one that is contained in the package is empty anyway. The recommendation not to upload this folder is only meant as a pre-caution for some users who have "funny" settings for their FTP apps: some exotic FTP applications delete folders existing on the server and then re-create an empty folder on the server-side. This would of course be a disaster, as you would lose all your uploaded files in your gallery. However, the number of FTP apps that is set up in that strange way is small and therefore, it won't hurt for most to upload the albums folder as well. If you're not sure, use one of the <a href="dev_tools.htm#dev_tools_ftp_client">FTP clients recommended by the devs</a>.</span></li>
-    <li>Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. <tt class="code">http://yourdomain.tld/your_coppermine_folder/update.php</tt>). This will update your coppermine install by making all necessary changes in the database.</li>
-    <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme_upgrade_14x-15x.htm">theme-upgrade guide</a>.</li>
+    <li>
+	    <span class="detail_head_collapsed">Download the most recent stable version existing in the download section of the official Coppermine homepage</span>
+	    <div class="detail_body border1">Don't assume that you have the most recent version, especially if you have installed Coppermine using a control panel app provided by your webhost. The coppermine dev team doesn't recommend using such <a href="auto-installers.htm#auto-installers">auto-installers</a> - please download the original from the <a href="http://coppermine-gallery.net/">official Coppermine homepage</a>.<br />
+	    If you're not sure what package to use (i.e. if there are several archive types), choose the zip archive, as Windows XP and better out of the box come with support for zip archives.</div>
+    </li>
+    <li>
+	    <span class="detail_head_collapsed">Make a <a href="export.htm#backup_database">backup (dump) of your database</a></span>
+	    <div class="detail_body border1">Recommended tools for creating a database dump are <a href="http://mysqldumper.de/en/" rel="external" class="external">mySqlDumper</a> or <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a> - refer to the section <a href="dev_tools.htm#dev_tools_database">Tools recommended by the devs: Database manipulation</a> for details.<br />
+	    Creating a backup is not mandatory in terms of functionality, but just a precaution in case anything should go wrong. It's advisable to make frequent backups anyway.</div>
+    </li>
+    <li>
+	    <span class="detail_head_collapsed">Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy as a safety precaution if anything should go wrong.</span>
+	    <div class="detail_body border1">Usually, you just download your entire coppermine folder to your local hard drive or any other safe backup location using your <a href="dev_tools.htm#dev_tools_ftp_client"><abbr title="File Transfer Protocol">FTP</abbr> app</a>. A fresh Coppermine package doesn't contain a config file anyway (that file has being created during install on your server), so you can't actually replace an existing config file with an empty one from the package; again, the backup is only a safety precaution.</div>
+    </li>
+    <li>
+	    <span class="detail_head_collapsed">Unpack the coppermine package you downloaded</span>
+	    <div class="detail_body border1">Similar to fresh installs, you need to extract the packed archive into a temporary folder on your local hard drive (preserving the folder structure within the package). Most modern operating systems come with an unarchiver that is capable to extract zip archives.</div>
+    </li>
+    <li>
+	    <span class="detail_head_collapsed"><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories, making sure not to overwrite your anycontent.php file or the albums directory.</span>
+	    <div class="detail_body border1">In fact, you could upload the albums folder as well - the one that is contained in the package is empty anyway. The recommendation not to upload this folder is only meant as a pre-caution for some users who have "funny" settings for their FTP apps: some exotic FTP applications delete folders existing on the server and then re-create an empty folder on the server-side. This would of course be a disaster, as you would lose all your uploaded files in your gallery. However, the number of FTP apps that is set up in that strange way is small and therefore, it won't hurt for most to upload the albums folder as well. If you're not sure, use one of the <a href="dev_tools.htm#dev_tools_ftp_client">FTP clients recommended by the devs</a>.</div>
+    </li>
+    <li>
+	    <span class="detail_head_collapsed">Run the update script</span>
+	    <div class="detail_body border1">To run the PHP-file &quot;<tt class="code">update.php</tt>&quot; (i.e. the <a href="#updater">update script</a>), just enter the <abbr title="Uniform Resource Locator">URL</abbr> into the address bar of your browser. The file &quot;<tt class="code">update.php</tt>&quot; resides in the coppermine directory, so to run it you will need to point your browser to <tt class="code">http://yourdomain.tld/your_coppermine_folder/update.php</tt> (if you have installed Coppermine into the root of your web site, you will have to run <tt class="code">http://yourdomain.tld/update.php</tt> accordingly). This will update your coppermine install by making all necessary changes in the database.</div>
+    </li>
+    <li>
+	    <span class="detail_head_collapsed">If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme</span>
+	    <div class="detail_body border1">Please refer to the <a href="theme_upgrade_14x-15x.htm">theme-upgrade guide</a> for details.</div>
+    </li>
 </ul>
 <p>To make this absolutely clear:</p>
 <p class="cpg_message_error">there is no such thing as a separate upgrade package - coppermine always comes as a complete package that can be used both for a fresh install as well as an upgrade.</p>
@@ -116,18 +144,18 @@
 
 <a name="upgrade_14"></a><h3>Upgrading from cpg1.4.x to version cpg1.5.x<a href="#upgrade_14" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <ul>
+  <li>Plugins made for cpg1.4.x usually can no longer be run on cpg1.5.x, so you'll need to turn them off while you're still running cpg1.4.x (before you start upgrading). Some features that have been a plugin for cpg1.4.x went into the core of cpg1.5.x, so you may not need your plugins any longer. The safest way to make sure that plugins don't interfere is by disabling all plugins using the corresponding config option and then removing the content of the plugin folder using your FTP app. After performing the upgrade, get the plugin versions designed for cpg1.5.x and upload them, then re-enable the new plugins one by one.</li>
   <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme_upgrade_14x-15x.htm">theme-upgrade guide</a>.</li>
   <li>You can not use language files from older versions of Coppermine as primary language (the language the admin will use) - make sure you only have the language files that come with this package inside of your lang folder (delete or rename all files from older versions within the lang folder).<br />
         If you need to use a language that hasn't been translated for cpg1.5.x, you can try using the language file from cpg1.4.x, however there are certain caveats:
       <ul>
-        <li>You need to enable the <a href="configuration.htm#admin_language_fallback">language fallback</a> option in coppermine's config page if you want to use a language file from cpg1.4.x with cpg1.5.x</li>
         <li>cpg1.5.x-phrases that don't exist in your old language file will go untranslated or show in english</li>
         <li>Coppermine can't be administered using an old language file - the admin needs to use a "true" cpg1.5.x language file</li>
         <li>You're free to try using old language files, however when running into issues or error messages, switch to US-English and see if the issue goes away then. Using outdated language files goes unsupported</li>
-        <li>In cpg1.3.x, the passwords for the users used to be stored in plain text inside the database. This has been changed in cpg1.4.x - out of the box, cpg1.4.x used to store the passwords encrypted. However, there used to be an option for those who upgraded from cpg1.3.x to cpg1.4.x to skip the step of encrypting the passwords. In cpg1.5.x, the plain-text storage of passwords is no longer an option. If you're running such an old gallery that first was updated from cpg1.3.x to cpg1.4.x and now on to cpg1.5.x, the updater will automatically encrypt all the passwords of your users (including your own admin account). You don't have to mind anything specifically - the updater will do this automatically.</li>
-        <li>The option to display a FAQ page to end users (by ticking the corresponding config option) that existed in cpg1.3.x and cpg1.4.x has been removed from cpg1.5.x, because it was hardly every used and only caused additional workload for translators. If you belong to those few users who actually used the FAQ menu item in Coppermine's navigation menu, you can easily come up with a custom page that uses coppermine's header and footer and display your individual FAQ there.</li>
       </ul>
   </li>
+  <li>In cpg1.3.x, the passwords for the users used to be stored in plain text inside the database. This has been changed in cpg1.4.x - out of the box, cpg1.4.x used to store the passwords encrypted. However, there used to be an option for those who upgraded from cpg1.3.x to cpg1.4.x to skip the step of encrypting the passwords. In cpg1.5.x, the plain-text storage of passwords is no longer an option. If you're running such an old gallery that first was updated from cpg1.3.x to cpg1.4.x and now on to cpg1.5.x, the updater will automatically encrypt all the passwords of your users (including your own admin account). You don't have to mind anything specifically - the updater will do this automatically.</li>
+  <li>The option to display a FAQ page to end users (by ticking the corresponding config option) that existed in cpg1.3.x and cpg1.4.x has been removed from cpg1.5.x, because it was hardly every used and only caused additional workload for translators. If you belong to those few users who actually used the FAQ menu item in Coppermine's navigation menu, you can easily come up with a custom page that uses coppermine's header and footer and display your individual FAQ there.</li>
   <li>Delete the outdated files that came with older versions of coppermine that no longer exist in cpg1.5.x.<br />
   Again, this is just a precaution to make sure that your new gallery doesn't contain flaws from outdated versions that would allow malevolent attackers to exploit weaknesses in older versions. To find out what files need to be removed manually, take a look at the output at the bottom of the update screen (<tt class="code">http://yourdomain.tld/your_coppermine_folder/update.php</tt>) - the updater will attempt to delete the files for you, but in most server setups it won't have the permission to do so, so you will have to manually delete the files using your FTP app. Another way to find out about the files that need to be deleted is the <a href="#versioncheck">versioncheck</a> page - the files that are scheduled for removal will be displayed there as well - the versioncheck page won't attempt to delete those files though.</li>
   <li>If your webserver is running in safe_mode and you have enabled "SILLY_SAFE_MODE" in include/config.inc.php, you will have to go to coppermine's config after performing above mentioned steps and enable "<a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">silly safe mode</a>" there, as the setting in <tt class="code">include/config.inc.php</tt> is no longer being taken into account in cpg1.5.x. The silly_safe_mode setting has been turned into a <a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">config setting</a> instead.</li>
@@ -142,6 +170,7 @@ The updater performs three things:
 	<li>Check the authorization of the visitor who accesses the script</li>
 	<li>Run the mysql database queries that reside in the file <tt class="code">sql/update.sql</tt> (replacing the generic table prefix with the one you actually chose during initial install)</li>
 	<li>Delete some files that used to reside inside coppermine's core in previous versions. The script only deletes unneeded files, but it doesn't touch your custom files, so there is absolutely no reason to be alarmed.</li>
+	<li>Convert your passwords from plain text to encrypted: in older versions of coppermine there used to be an option to allow the passwords of your users to be stored in plain text within the database. In cpg1.5.x, plain text passwords are no longer supported. Therefore (if you don't already use encrypted passwords), the passwords in your database will be encrypted by the update script.</li>
 </ul>
 <a name="updater_purpose"></a><h3>Purpose<a href="#updater_purpose" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The updater will perform the database update for you after you manually have replaced the sql file it is using. The updater will <strong>not</strong> detect for you if there is a new version of coppermine available, nor will it download anything from the coppermine website. The level of automation is not that advanced in coppermine (yet).</p>
@@ -271,6 +300,7 @@ The updater performs three things:
 
 <a name="versioncheck_expect"></a><h3>Wrong expectations<a href="#versioncheck_expect" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>To some this may sound trivial, for others it might be an important piece of information: naturally, files that you have not replaced during the upgrading process (e.g. <tt class="code">anycontent.php</tt>) will show as outdated in versioncheck's output. This is of course to be expected. It doesn't hurt if you performed the upgrade exactly as suggested, as the files you're supposed to keep during that process don't actually contain code that needs updating. As an example, <tt class="code">anycontent.php</tt> doesn't actually contain code at all (at least the file that comes with coppermine out of the box). It <em>can</em> contain custom code if you decide to use it. For details on the usage of <tt class="code">anycontent.php</tt>, refer to the section &quot;<a href="php-content.htm#php-content_anycontent">Using anycontent.php</a>&quot;.</p>
+<p>The versioncheck tool doesn't actually <em>download</em> newer file versions from the internet - it just <em>checks</em> the files you have on your server against a list of most recent files. The versioncheck tool doesn't check nor sanitize your site against hacking.</p>
 
 <a name="versioncheck_end"></a>
 
@@ -285,12 +315,13 @@ The updater performs three things:
 	</ul>
 	</li>
 	<li><a name="upgrade_faq_difference_update_upgrade"></a><h3>What's the difference between <em>updating</em> and <em>upgrading</em>?<a href="#upgrade_faq_difference_update_upgrade" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	The words "update" and "upgrade" are often being used as synonyms. There is a slight difference though in the definition of the coppermine developers: <strong>upgrading</strong> usually means increasing the <em>major</em> version number, e.g. from cpg1.<em>4</em>.x to cpg1.<em>5</em>.x; while <strong>updating</strong> usually refers to <em>minor</em> version increases, e.g. maintenance releases from cpg1.5.<em>x</em> to cpg1.5.<em>y</em>.</li>
+	The words "update" and "upgrade" are often being used as synonyms. There is a slight difference though in the definition of the coppermine developers: <strong>upgrading</strong> usually means increasing the <em>major</em> version number, e.g. from cpg1.<em>4</em>.x to cpg1.<em>5</em>.x; while <strong>updating</strong> usually refers to <em>minor</em> version increases, e.g. maintenance releases from cpg1.5.<em>x</em> to cpg1.5.<em>y</em>.<br />
+	However, the usage is not that strict, so you might find places both in this document as well as other media (like the official coppermine forum) where the terms are being used the other way 'round. In fact, the words are pretty much synonyms as far as we're concerned.</li>
 </ul>
 
 <a name="downgrading"></a><h2>Downgrading from cpg1.5.x to an older version<a href="#downgrading" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>CPG1.5.x incorporates many new features (compared to older versions), so we encourage all users to upgrade. However, there may be some who want to test cpg1.5.x and decide later that they want to go back to an older version. You have to keep in mind that a full upgrade changes the overall layout of coppermine's database that includes converting the encoding to unicode. This process can't be reverted: once you have done the conversion, the only way back is to restore a complete mySQL database dump (of course you have to create this backup <strong>before</strong> you upgraded in the first place). Creating mySQL dumps (backups) is recommended anyway, so you should do so <strong>now</strong>.</p>
-<p>To make this absolutely clear: you can only downgrade if you used to have cpg1.4.x before and upgraded this version to cpg1.5.x. If you have made a <em>fresh</em> install of cpg1.5.x, you can't downgrade at all!</p>
+<p class="cpg_message_warning">To make this absolutely clear: you can <strong>only</strong> downgrade if you used to have cpg1.4.x before and upgraded this version to cpg1.5.x. If you have made a <strong>fresh</strong> install of cpg1.5.x, you <strong>can not</strong> downgrade at all!</p>
 <p>To actually perform the downgrade, replace all cpg1.5.x files on your server with the files from the older version (as if you were doing an upgrade, see above). Then restore your database dump that you must have made before upgrading. If you don't have a database dump (backup), you can't go back!</p>
 <a name="downgrading_end"></a>
 
