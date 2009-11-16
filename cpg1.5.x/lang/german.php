@@ -1067,7 +1067,7 @@ $lang_delete_php['add_group'] = 'Sekundäre Gruppe hinzufügen';
 $lang_delete_php['add_group_to_group'] = 'Füge Benutzer %s zu Gruppe %s hinzu. Er ist nun Mitglied von %s als primäre Gruppe und von %s als sekundäre Mitgliedergruppe(n).';
 $lang_delete_php['status'] = 'Status';
 $lang_delete_php['updating_album'] = 'Aktualisiere Album ';//cpg1.5
-$lang_delete_php['moved_picture_to_position'] = 'Bild %s in Position %s verschoben'; // cpg1.5
+$lang_delete_php['moved_picture_to_position'] = 'Bild %s an Position %s verschoben'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //

@@ -675,6 +675,7 @@ case 'picmgr':
 
         $returnOutput .= '<tr><td colspan="6"><ul>';
 
+        $update_count = 0;
         foreach ($sort_rows as $key => $option_value) {
             $option_value = (int)$option_value;
             if ($option_value == $rowset[$key]['pid']) {
@@ -684,6 +685,10 @@ case 'picmgr':
             $returnOutput .= '<li>' . sprintf($lang_delete_php['moved_picture_to_position'],$option_value, $rowset[$key]['position']) . '</li>';
             $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET position = '{$rowset[$key]['position']}' WHERE pid = '{$option_value}' $restrict LIMIT 1";
             cpg_db_query($query);
+            $update_count++;
+        }
+        if ($update_count == 0) {
+            $returnOutput .= '<li>' . $lang_albmgr_php['no_change'] . '</li>';
         }
         $returnOutput .= '</ul></td></tr>' . $LINEBREAK;
     } 
