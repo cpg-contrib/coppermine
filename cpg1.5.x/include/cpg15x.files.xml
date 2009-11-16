@@ -83,10 +83,10 @@
   <element>
     <fullpath>CHANGELOG.txt</fullpath>
     <version>1.5.2</version>
-    <revision>6708</revision>
+    <revision>6730</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>2ec600815b4a4f890e0fc76a7633428c</hash>
+    <hash>f98e26d2dc0d6ab8b2b44fe73dd73902</hash>
   </element>
   <element>
     <fullpath>config.php</fullpath>
@@ -810,10 +810,10 @@
   <element>
     <fullpath>docs/index.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6729</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d7c3e81bf23de90057e7aaf1ebed9f41</hash>
+    <hash>29370f5e47812e905bd0b95429ea1ca4</hash>
   </element>
   <element>
     <fullpath>docs/index_es.htm</fullpath>
@@ -1147,10 +1147,10 @@
   <element>
     <fullpath>docs/de/install_faq.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6729</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>7c09ef062b807aa4964713f92d3183ad</hash>
+    <hash>c0291a400cbf2395b96084a4c7a155c2</hash>
   </element>
   <element>
     <fullpath>docs/de/install_permissions.htm</fullpath>
@@ -1227,10 +1227,10 @@
   <element>
     <fullpath>docs/de/requirements.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6729</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>8747d9057abfd214f1377227debc6868</hash>
+    <hash>21ec62f1be26dc38e072f3fab56d5510</hash>
   </element>
   <element>
     <fullpath>docs/de/script.js</fullpath>
@@ -1251,10 +1251,10 @@
   <element>
     <fullpath>docs/de/testing.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6729</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>d34f016650ebf7860ecbf105a23e15fa</hash>
+    <hash>99b6c1ef174ffaf2c76b44b5f091a9b0</hash>
   </element>
   <element>
     <fullpath>docs/de/theme.htm</fullpath>
@@ -1379,10 +1379,10 @@
   <element>
     <fullpath>docs/de/upgrading.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6731</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>aa4e386f6a07c089131743e35248eee8</hash>
+    <hash>3a02bc87347fe8b2999b2b5e4392ccf6</hash>
   </element>
   <element>
     <fullpath>docs/de/upload_troubleshooting.htm</fullpath>
@@ -1941,18 +1941,18 @@
   <element>
     <fullpath>docs/en/install.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6731</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>3ca318291853261133474db4c39751f2</hash>
+    <hash>c2ef3e3733ae84ca0f3c46906848f02f</hash>
   </element>
   <element>
     <fullpath>docs/en/install_faq.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6729</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ee874d7783097ccabffa0783f3ba6376</hash>
+    <hash>dbda2882a7f0c79baa3f64d215240a17</hash>
   </element>
   <element>
     <fullpath>docs/en/install_permissions.htm</fullpath>
@@ -2029,10 +2029,10 @@
   <element>
     <fullpath>docs/en/requirements.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6432</revision>
+    <revision>6729</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>fd31eef63c1a7a1c2183e626a76d98f8</hash>
+    <hash>86f5d8707dfd8e3f1cfe53279f69c6b6</hash>
   </element>
   <element>
     <fullpath>docs/en/script.js</fullpath>
@@ -2053,10 +2053,10 @@
   <element>
     <fullpath>docs/en/testing.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6371</revision>
+    <revision>6729</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9996b94131d5f9da6453dc84c6c06297</hash>
+    <hash>0498c902a49bd0d29649089e96d7252d</hash>
   </element>
   <element>
     <fullpath>docs/en/theme.htm</fullpath>
@@ -2181,10 +2181,10 @@
   <element>
     <fullpath>docs/en/upgrading.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6476</revision>
+    <revision>6731</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>794054443f7b9a49002a726238d233f5</hash>
+    <hash>bfc7097ffdae90112b7e510c7ed85388</hash>
   </element>
   <element>
     <fullpath>docs/en/uploading.htm</fullpath>
@@ -2821,10 +2821,10 @@
   <element>
     <fullpath>docs/fr/install_faq.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6729</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>58cbcae32fa22d4602d18e4362aab1b7</hash>
+    <hash>33600a947934efda6a6da2bb05667f23</hash>
   </element>
   <element>
     <fullpath>docs/fr/install_permissions.htm</fullpath>
@@ -2925,10 +2925,10 @@
   <element>
     <fullpath>docs/fr/testing.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6360</revision>
+    <revision>6729</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>ae39bc6790f1d45776bdc3b5f58e6c26</hash>
+    <hash>b7422bd420a201a078a5065eb8f0fd79</hash>
   </element>
   <element>
     <fullpath>docs/fr/theme.htm</fullpath>
@@ -3053,10 +3053,10 @@
   <element>
     <fullpath>docs/fr/upgrading.htm</fullpath>
     <version>1.5.2</version>
-    <revision>6422</revision>
+    <revision>6731</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>ae2db6960fc2e9129ca08fb637a7b662</hash>
+    <hash>04fbce364b3774f180adc493230679d9</hash>
   </element>
   <element>
     <fullpath>docs/fr/upload_troubleshooting.htm</fullpath>
@@ -8260,10 +8260,10 @@
   <element>
     <fullpath>include/init.inc.php</fullpath>
     <version>1.5.2</version>
-    <revision>6679</revision>
+    <revision>6730</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>f4bb87402007f93c724eb67a590cf4f1</hash>
+    <hash>ac38c556a0e26c759f4530fef1c88a4e</hash>
   </element>
   <element>
     <fullpath>include/iptc.inc.php</fullpath>
