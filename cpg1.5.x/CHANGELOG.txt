@@ -25,7 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2009-11-16 [C] Added missing images standard themes (thread ID 62511) {eenemeenemuu}
+2009-11-16 [C] Added transparency to navbar images {GauGau}
+2009-11-16 [C] Added missing navbar images to standard themes (thread ID 62511) {eenemeenemuu}
 2009-11-16 [M] Added message if no pictures were moved in picmgr.php (thread ID 62494) {eenemeenemuu}
 2009-11-16 [S] Release of cpg1.5.2 (beta) for the public {GauGau}
 2009-11-12 [B] Fixed IE category creation bug (thread ID 62441) {eenemeenemuu}
