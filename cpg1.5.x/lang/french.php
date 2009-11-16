@@ -414,7 +414,7 @@ if (defined('ALBMGR_PHP')) {
 $lang_albmgr_php['title'] = 'Gestionnaire d\'Albums'; // cpg1.5 
 $lang_albmgr_php['alb_need_name'] = 'Les Albums doivent avoir un nom&nbsp;!';//js-alert
 $lang_albmgr_php['confirm_modifs'] = 'Voulez-vous vraiment effectuer ces modifications ?'; //js-alert
-$lang_albmgr_php['no_change'] = 'vous n\\\'avez effectué Aucun changement&nbsp;!';//js-alert
+$lang_albmgr_php['no_change'] = 'vous n\'avez effectué Aucun changement&nbsp;!';//js-alert
 $lang_albmgr_php['new_album'] = 'Nouvel Album';
 $lang_albmgr_php['delete_album'] = 'Effacez l\'Album'; // cpg1.5
 $lang_albmgr_php['confirm_delete1'] = 'Voulez vous vraiment Supprimez cet Album ?'; //js-alert
