@@ -335,17 +335,17 @@ function form_instructions()
     global $CONFIG, $lang_upload_php, $upload_form, $max_file_size, $LINEBREAK;
 
     echo <<< EOT
-	<tr>
-		<td colspan="2" class="tableb">
-		    <noscript>
-		            <div class="cpg_message_error">{$lang_upload_php['err_js_disabled']}<br />
-		            {$lang_upload_php['err_alternate_method']}</div>
-		    </noscript>
-		    <div id="divLoadingContent" class="cpg_message_info" style="display: none;">{$lang_upload_php['flash_loading']}</div>
-		    <div id="divLongLoading" class="cpg_message_warning" style="display: none;">{$lang_upload_php['err_flash_disabled']}<br />{$lang_upload_php['err_alternate_method']}</div>
-		    <div id="divAlternateContent" class="cpg_message_error" style="display: none;">{$lang_upload_php['err_flash_version']}<br />{$lang_upload_php['err_alternate_method']}</div>
-		   </td>
-	   </tr>
+    <tr>
+        <td colspan="2" class="tableb">
+            <noscript>
+                    <div class="cpg_message_error">{$lang_upload_php['err_js_disabled']}<br />
+                    {$lang_upload_php['err_alternate_method']}</div>
+            </noscript>
+            <div id="divLoadingContent" class="cpg_message_info" style="display: none;">{$lang_upload_php['flash_loading']}</div>
+            <div id="divLongLoading" class="cpg_message_warning" style="display: none;">{$lang_upload_php['err_flash_disabled']}<br />{$lang_upload_php['err_alternate_method']}</div>
+            <div id="divAlternateContent" class="cpg_message_error" style="display: none;">{$lang_upload_php['err_flash_version']}<br />{$lang_upload_php['err_alternate_method']}</div>
+           </td>
+       </tr>
 EOT;
 }
 
@@ -433,20 +433,20 @@ function create_form_swfupload()
     <tr>
         <td colspan="2" class="tableb tableb_alternate">
             <div id="upload_form">
-	            <div>
-	                <span id="browse_button_place_holder"></span>
-	                <button id="button_cancel" onclick="swfu.cancelQueue();" disabled="disabled" class="button">
-	                    {$icon_array['cancel']}
-	                    {$lang_upload_swf_php['cancel_all']}
-	                </button>
-	            </div>
+                <div>
+                    <span id="browse_button_place_holder"></span>
+                    <button id="button_cancel" onclick="swfu.cancelQueue();" disabled="disabled" class="button">
+                        {$icon_array['cancel']}
+                        {$lang_upload_swf_php['cancel_all']}
+                    </button>
+                </div>
         </td>
     </tr>
     <tr>
         <td colspan="2" class="tableb">
-	            <div class="fieldset flash" id="upload_progress">
-	                <span class="legend">{$lang_upload_swf_php['upload_queue']}</span>
-	            </div>
+                <div class="fieldset flash" id="upload_progress">
+                    <span class="legend">{$lang_upload_swf_php['upload_queue']}</span>
+                </div>
             </div>
         </td>
     </tr>
@@ -460,9 +460,9 @@ function create_form_swfupload()
     </tr>
     <tr>
         <td colspan="2" class="tableh2">
-	        <div id="upload_status">
-	        	<span id="upload_count">0</span> {$lang_upload_swf_php['files_uploaded']}:
-	        </div>
+            <div id="upload_status">
+                <span id="upload_count">0</span> {$lang_upload_swf_php['files_uploaded']}:
+            </div>
             <div id="uploadedThumbnails"></div>
         </td>
     </tr>
@@ -647,6 +647,7 @@ if (!$superCage->post->keyExists('process') && !$superCage->post->keyExists('plu
         $user_pass = $cpg_udb->get_user_pass(USER_ID);
         // Serialize and base64 encode the password
         set_js_var('user', base64_encode(serialize($user_pass)));
+        set_js_var('user_id', USER_ID);
     }
     // Do some cleanup in the edit directory.
     spring_cleaning('./'.$CONFIG['fullpath'].'edit',CPG_HOUR);
@@ -662,64 +663,64 @@ if (!$superCage->post->keyExists('process') && !$superCage->post->keyExists('plu
 
     $restriction_filesize = sprintf($lang_upload_php['restriction_filesize'], '<strong>' . cpg_format_bytes($CONFIG['max_upl_size'] * 1024) . '</strong>');
     if ($CONFIG['allowed_img_types'] != '') {
-    	$allowed_img_types = '<li>' . sprintf ($lang_upload_php['allowed_img_types'], $CONFIG['allowed_img_types']) . '</li>';
+        $allowed_img_types = '<li>' . sprintf ($lang_upload_php['allowed_img_types'], $CONFIG['allowed_img_types']) . '</li>';
     } else {
-    	$allowed_img_types = '';
+        $allowed_img_types = '';
     }
     if ($CONFIG['allowed_mov_types'] != '') {
-    	$allowed_mov_types = '<li>' . sprintf ($lang_upload_php['allowed_mov_types'], $CONFIG['allowed_mov_types']) . '</li>';
+        $allowed_mov_types = '<li>' . sprintf ($lang_upload_php['allowed_mov_types'], $CONFIG['allowed_mov_types']) . '</li>';
     } else {
-    	$allowed_mov_types = '';
+        $allowed_mov_types = '';
     }
     if ($CONFIG['allowed_snd_types'] != '') {
-    	$allowed_snd_types = '<li>' . sprintf ($lang_upload_php['allowed_snd_types'], $CONFIG['allowed_snd_types']) . '</li>';
+        $allowed_snd_types = '<li>' . sprintf ($lang_upload_php['allowed_snd_types'], $CONFIG['allowed_snd_types']) . '</li>';
     } else {
-    	$allowed_snd_types = '';
+        $allowed_snd_types = '';
     }
     if ($CONFIG['allowed_doc_types'] != '') {
-    	$allowed_doc_types = '<li>' . sprintf ($lang_upload_php['allowed_doc_types'], $CONFIG['allowed_doc_types']) . '</li>';
+        $allowed_doc_types = '<li>' . sprintf ($lang_upload_php['allowed_doc_types'], $CONFIG['allowed_doc_types']) . '</li>';
     } else {
-    	$allowed_doc_types = '';
+        $allowed_doc_types = '';
     }    
     
-    	$help_page = <<< EOT
+        $help_page = <<< EOT
 <ul>
-	<li>{$lang_upload_php['up_instr_1']}</li>
-	<li>{$lang_upload_php['up_instr_2']}</li>
-	<li>{$lang_upload_php['up_instr_3']}</li>
-	<li>{$lang_upload_php['up_instr_4']}</li>
-	<li>{$lang_upload_php['up_instr_5']}</li>
+    <li>{$lang_upload_php['up_instr_1']}</li>
+    <li>{$lang_upload_php['up_instr_2']}</li>
+    <li>{$lang_upload_php['up_instr_3']}</li>
+    <li>{$lang_upload_php['up_instr_4']}</li>
+    <li>{$lang_upload_php['up_instr_5']}</li>
 </ul>
 
 <h2>{$lang_upload_php['restrictions']}</h2>
 <ul>
-	<li>{$restriction_filesize}</li>
-	<li>{$lang_upload_php['restriction_zip']}</li>
-	<li>{$lang_upload_php['allowed_types']}
-		<ul>
-			{$allowed_img_types}
-			{$allowed_mov_types}
-			{$allowed_snd_types}
-			{$allowed_doc_types}
-		</ul>
-	</li>
+    <li>{$restriction_filesize}</li>
+    <li>{$lang_upload_php['restriction_zip']}</li>
+    <li>{$lang_upload_php['allowed_types']}
+        <ul>
+            {$allowed_img_types}
+            {$allowed_mov_types}
+            {$allowed_snd_types}
+            {$allowed_doc_types}
+        </ul>
+    </li>
 </ul>
 EOT;
-    	$upload_help = cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_upload_php['title']))).'&amp;t='.urlencode(base64_encode(serialize($help_page))),470,245);
+        $upload_help = cpg_display_help('f=empty.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_upload_php['title']))).'&amp;t='.urlencode(base64_encode(serialize($help_page))),470,245);
     }
     
     $upload_table_header = <<< EOT
     <table border="0" cellspacing="0" cellpadding="0" width="100%">
-    	<tr>
-    		<td>
-    			{$icon_array['upload']}{$lang_upload_php['title']} {$upload_help}
-    		</td>
-    		<td style="text-align:right">
-    			<span id="upload_method_selector">
-    				{$upload_select}
-    			</span>
-    		</td>
-    	</tr>
+        <tr>
+            <td>
+                {$icon_array['upload']}{$lang_upload_php['title']} {$upload_help}
+            </td>
+            <td style="text-align:right">
+                <span id="upload_method_selector">
+                    {$upload_select}
+                </span>
+            </td>
+        </tr>
     </table>
 EOT;
 
