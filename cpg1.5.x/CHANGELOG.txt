@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-11-18 [A] Added Polish language file (user contribution) {eenemeenemuu}
 2009-11-17 [B] Fixed error message after guests upload files with swf uploader (thread ID 62522) {eenemeenemuu}
 2009-11-17 [M] Added old bridge files to delete file array (thread ID 62519) {eenemeenemuu}
 2009-11-16 [C] Added transparency to navbar images {GauGau}
