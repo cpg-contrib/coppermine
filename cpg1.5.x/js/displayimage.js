@@ -90,8 +90,20 @@ $(document).ready(function() {
 
     // Bind a onclick event on element with id filmstrip_next
     $('#filmstrip_next').click(function() {
+
+        // check if animation is already in progress; if yes, do nothing
+        if (typeof stripAniInProgress != 'undefined') 
+        { if (stripAniInProgress) return true; }
+        /*{ if (stripAniInProgress) {
+          setTimeout("$('#filmstrip_next').click()" ,100);
+          return true;
+          }
+        }*/
+
         // Get the url for next set of thumbnails. This will be the href of 'next' link;
         nextPosition = nextPosition +1;
+        stripAniInProgress = 1;
+
 
         if(((NumberOfPics-1)-(picQueue-1)) <= nextPosition ) {
             $('#filmstrip_next').hide();
@@ -130,7 +142,7 @@ $(document).ready(function() {
                 tempWidth = parseInt(width) +3;
                 $('.tape').animate({
                     marginLeft: "-"+tempWidth+"px"
-                });
+                    },250,"linear",function() {stripAniInProgress = 0;} );
 
                 $('.thumb').eq(0).addClass("remove");
             });
@@ -145,7 +157,8 @@ $(document).ready(function() {
             tempWidth = parseInt(width) +3;
             $('.tape').animate({
                 marginLeft: "-"+tempWidth+"px"
-            });
+                },250,"linear",function() {stripAniInProgress = 0;} );
+            
 
             $('.thumb').eq(0).addClass("remove");
         }
@@ -154,8 +167,19 @@ $(document).ready(function() {
 
     // Bind a onclick event on element with id filmstrip_prev
     $('#filmstrip_prev').click(function() {
+        
+        // check if animation is already in progress; if yes, do nothing
+        if (typeof stripAniInProgress != 'undefined') 
+        { if (stripAniInProgress) return true; }
+        /*{ if (stripAniInProgress) {
+          setTimeout("$('#filmstrip_next').click()" ,100);
+          return true;
+          }
+        } */
+        
         // Get the url for previous set of thumbnails. This will be the href of 'previous' link
         nextPosition = nextPosition -1;
+        stripAniInProgress = 1;
 
         if(nextPosition >= ((NumberOfPics-1)-(picQueue-1))) {
             var nextPosition_to = (NumberOfPics-1)-(picQueue-1);
@@ -195,7 +219,7 @@ $(document).ready(function() {
 
                 $('.tape').animate({
                     marginLeft: "0px"
-                });
+                    },250,"linear",function() {stripAniInProgress = 0;} );
 
                 $('.thumb').eq((maxItems)).addClass("remove");
             });
@@ -211,7 +235,7 @@ $(document).ready(function() {
 
             $('.tape').animate({
                 marginLeft: "0px"
-            });
+                },250,"linear",function() {stripAniInProgress = 0;} );
 
             $('.thumb').eq(maxItems).addClass("remove");
         }
