@@ -774,7 +774,7 @@ function list_albums()
         $cross_ref[$value['aid']] = &$alb_stats[$key];
         if ($CONFIG['link_pic_count'] == 1) {
             if (!empty($value['keyword'])) {
-                $keyword = ($value['keyword'] ? "OR (keywords like '%".addslashes($value['keyword'])."%' $forbidden_set_string )" : '');
+                $keyword = ($value['keyword'] ? "AND (keywords like '%".addslashes($value['keyword'])."%' $forbidden_set_string )" : '');
                 $query = "SELECT count(pid) AS link_pic_count, max(pid) AS link_last_pid "
                         ." FROM {$CONFIG['TABLE_PICTURES']} "
                         ." WHERE ((aid != '{$value['aid']}' $forbidden_set_string) $keyword) $approved";
