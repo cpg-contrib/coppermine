@@ -72,11 +72,13 @@ $(document).ready(function() {
         link_cache[cacheIndex+i]= $("a.thumbLink").eq(i).attr("href");
     }
 
-    var prev_link = nextPosition > (picQueue-1) ? "<a id=\"filmstrip_prev\" rel=\"nofollow\" style=\"cursor: pointer;\"><img src=\"./images/icons/left.png\" border=\"0\" /></a>" : "<a id=\"filmstrip_prev\" rel=\"nofollow\" style=\"cursor: pointer;display:none\"><img src=\"./images/icons/left.png\" border=\"0\" /></a>";
-    var next_link = nextPosition < (NumberOfPics - picQueue) ? "<a id=\"filmstrip_next\" rel=\"nofollow\" style=\"cursor: pointer;\"><img src=\"./images/icons/right.png\" border=\"0\" /></a>" : "<a id=\"filmstrip_next\" rel=\"nofollow\" style=\"cursor: pointer;display:none\"><img src=\"./images/icons/right.png\" border=\"0\" /></a>";
-
-    $('td.prev_strip').html(prev_link);
-    $('td.next_strip').html(next_link);
+    // button HTML
+    $('td.prev_strip').html("<a id=\"filmstrip_prev\" rel=\"nofollow\" style=\"cursor: pointer;\"><img src=\"./images/icons/left.png\" border=\"0\" /></a>");
+    $('td.next_strip').html("<a id=\"filmstrip_next\" rel=\"nofollow\" style=\"cursor: pointer;\"><img src=\"./images/icons/right.png\" border=\"0\" /></a>");
+    
+    // hide buttons if no further pics in direction
+    if (nextPosition < (NumberOfPics - picQueue)) { $('#filmstrip_next').css( "visibility", "visible"); } else { $('#filmstrip_next').css( "visibility", "hidden"); }
+    if (nextPosition > (picQueue-1)) { $('#filmstrip_prev').css( "visibility", "visible"); } else { $('#filmstrip_prev').css( "visibility", "hidden"); }
 
     //set position if it is not zero
     if(nextPosition < $go_next) {
@@ -94,11 +96,6 @@ $(document).ready(function() {
         // check if animation is already in progress; if yes, do nothing
         if (typeof stripAniInProgress != 'undefined') 
         { if (stripAniInProgress) return true; }
-        /*{ if (stripAniInProgress) {
-          setTimeout("$('#filmstrip_next').click()" ,100);
-          return true;
-          }
-        }*/
 
         // Get the url for next set of thumbnails. This will be the href of 'next' link;
         nextPosition = nextPosition +1;
@@ -106,7 +103,7 @@ $(document).ready(function() {
 
 
         if(((NumberOfPics-1)-(picQueue-1)) <= nextPosition ) {
-            $('#filmstrip_next').hide();
+            $('#filmstrip_next').css( "visibility", "hidden"); //hide();
         }
         //assign a variable to check initial position to next
         if(nextPosition < (picQueue-1)) {
@@ -114,7 +111,7 @@ $(document).ready(function() {
         }
 
         if(nextPosition > (picQueue-1)) {
-            $('#filmstrip_prev').show();
+            $('#filmstrip_prev').css( "visibility", "visible"); // = "visible"; // show();
         }
 
         if (!url_cache[nextPosition + $go_next]) {
@@ -171,11 +168,6 @@ $(document).ready(function() {
         // check if animation is already in progress; if yes, do nothing
         if (typeof stripAniInProgress != 'undefined') 
         { if (stripAniInProgress) return true; }
-        /*{ if (stripAniInProgress) {
-          setTimeout("$('#filmstrip_next').click()" ,100);
-          return true;
-          }
-        } */
         
         // Get the url for previous set of thumbnails. This will be the href of 'previous' link
         nextPosition = nextPosition -1;
@@ -188,11 +180,11 @@ $(document).ready(function() {
         }
 
         if(nextPosition_to <= (NumberOfPics-(picQueue))) {
-            $('#filmstrip_next').show();
+            $('#filmstrip_next').css( "visibility", "visible"); //style.visibility = "visible"; // show();
         }
 
         if(nextPosition_to < (picQueue)) {
-            $('#filmstrip_prev').hide();
+            $('#filmstrip_prev').css( "visibility", "hidden");  // hide();
         }
 
         if(!url_cache[nextPosition-$go_next]) {
