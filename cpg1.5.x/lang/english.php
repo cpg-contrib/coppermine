@@ -34,7 +34,7 @@ $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Bytes, Kibibytes, Mebibytes, Gibibytes
 $lang_byte_units = array('Bytes', 'KiB', 'MiB', 'GiB');
-$lang_decimal_separator = array(',', '.');  //cpg1.5 // symbol used to separate thousands from hundreds and rounded number from  decimal place
+$lang_decimal_separator = array(',', '.'); //cpg1.5 // symbol used to separate thousands from hundreds and rounded number from decimal place
 
 // Day of weeks and months
 $lang_day_of_week = array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
@@ -256,7 +256,7 @@ $lang_cat_list['pictures'] = 'Files';
 $lang_album_list['album_on_page'] = '%d albums on %d page(s)';
 
 $lang_thumb_view['date'] = 'Date';
-  //Sort by filename and title
+//Sort by filename and title
 $lang_thumb_view['name'] = 'File Name';
 $lang_thumb_view['sort_da'] = 'Sort by date ascending';
 $lang_thumb_view['sort_dd'] = 'Sort by date descending';
@@ -394,7 +394,7 @@ $lang_smilies_inc_php['Cool'] = 'Cool';
 $lang_smilies_inc_php['Laughing'] = 'Laughing';
 $lang_smilies_inc_php['Mad'] = 'Mad';
 $lang_smilies_inc_php['Razz'] = 'Razz';
-$lang_smilies_inc_php['Embarrassed'] = 'Embarrassed';  // cpg1.5
+$lang_smilies_inc_php['Embarrassed'] = 'Embarrassed'; // cpg1.5
 $lang_smilies_inc_php['Crying or Very sad'] = 'Crying or Very sad';
 $lang_smilies_inc_php['Evil or Very Mad'] = 'Evil or Very Mad';
 $lang_smilies_inc_php['Twisted Evil'] = 'Twisted Evil';
@@ -611,7 +611,7 @@ $lang_admin_php['user_settings'] = 'User settings'; // cpg1.5
 $lang_admin_php['custom_fields_user_profile'] = 'Custom fields for user profile (leave blank if unused). Use Profile 6 for long entries, such as biographies'; // cpg1.5
 $lang_admin_php['custom_fields_image_description'] = 'Custom fields for image description (leave blank if unused)'; // cpg1.5
 $lang_admin_php['cookie_settings'] = 'Cookies settings'; // cpg1.5
-$lang_admin_php['email_settings'] = 'Email settings  (usually nothing has to be changed here; leave all fields blank when not sure)'; // cpg1.5
+$lang_admin_php['email_settings'] = 'Email settings (usually nothing has to be changed here; leave all fields blank when not sure)'; // cpg1.5
 $lang_admin_php['logging_stats'] = 'Logging and statistics'; // cpg1.5
 $lang_admin_php['maintenance_settings'] = 'Maintenance settings'; // cpg1.5
 $lang_admin_php['manage_exif'] = 'Manage EXIF display';
@@ -690,7 +690,7 @@ $lang_admin_php['display_thumbs_batch_add'] = 'Display preview thumbnails on bat
 $lang_admin_php['lang'] = 'Default language'; // cpg1.5
 $lang_admin_php['language_autodetect'] = 'Autodetect language'; // cpg1.5
 $lang_admin_php['charset'] = 'Character encoding'; // cpg1.5
-  // 'previous_next_tab'] = 'Display previous/next on tabbed pages'; // cpg1.5
+// 'previous_next_tab'] = 'Display previous/next on tabbed pages'; // cpg1.5
 $lang_admin_php['theme'] = 'Theme'; // cpg1.5
 $lang_admin_php['custom_lnk_name'] = 'Custom menu link name'; // cpg1.5
 $lang_admin_php['custom_lnk_url'] = 'Custom menu link URL'; // cpg1.5
@@ -722,7 +722,7 @@ $lang_admin_php['caption_in_thumbview'] = 'Display file caption (in addition to 
 $lang_admin_php['views_in_thumbview'] = 'Display number of views below the thumbnail'; // cpg1.5
 $lang_admin_php['display_comment_count'] = 'Display number of comments below the thumbnail'; // cpg1.5
 $lang_admin_php['display_uploader'] = 'Display uploader name below the thumbnail'; // cpg1.5
-  // 'display_admin_uploader'] = 'Display name of admin uploaders below the thumbnail'; // cpg1.5
+// 'display_admin_uploader'] = 'Display name of admin uploaders below the thumbnail'; // cpg1.5
 $lang_admin_php['display_filename'] = 'Display file name below the thumbnail'; // cpg1.5
 $lang_admin_php['display_thumbnail_rating'] = 'Display rating below the thumbnail'; // cpg1.5
 $lang_admin_php['alb_desc_thumb'] = 'Display album description'; // cpg1.5
@@ -986,7 +986,7 @@ $lang_db_input_php['notify_admin_email_subject'] = '%s - Upload notification';
 $lang_db_input_php['notify_admin_email_body'] = 'A picture has been uploaded by %s that needs your approval. Visit %s';
 $lang_db_input_php['info'] = 'Information';
 $lang_db_input_php['com_added'] = 'Comment added';
-$lang_db_input_php['com_updated'] = 'Comment updated';  // cpg1.5
+$lang_db_input_php['com_updated'] = 'Comment updated'; // cpg1.5
 $lang_db_input_php['alb_updated'] = 'Album updated';
 $lang_db_input_php['err_comment_empty'] = 'Your comment is empty!';
 $lang_db_input_php['err_invalid_fext'] = 'Only files with the following extensions are accepted : <br />%s.';
@@ -1282,7 +1282,7 @@ $lang_editpics_php['src_file_missing'] = 'Source file \'%s\' is missing.';
 $lang_editpics_php['mime_conv'] = 'Cannot convert file from \'%s\' to \'%s\'';
 $lang_editpics_php['forb_ext'] = 'Forbidden file extension.';
 $lang_editpics_php['error_editor_class'] = 'Editor class for your resize method not implemented'; // cpg 1.5
-$lang_editpics_php['error_document_size'] = 'Document has no width or height'; // cpg 1.5  // js-alert
+$lang_editpics_php['error_document_size'] = 'Document has no width or height'; // cpg 1.5 // js-alert
 $lang_editpics_php['success_picture'] = 'Picture successfully saved - you can %sclose%s this window now'; // cpg1.5 // do not translate "%s" here
 $lang_editpics_php['success_thumb'] = 'Thumbnail successfully saved - you can %sclose%s this window now'; // cpg1.5 // do not translate "%s" here
 $lang_editpics_php['rotate'] = 'Rotate'; // cpg 1.5
@@ -1383,7 +1383,7 @@ $lang_groupmgr_php['title'] = 'Manage user groups';
 $lang_groupmgr_php['reset_to_default'] = 'Reset to default name (%s) - recommended!';
 $lang_groupmgr_php['error_group_empty'] = 'Group table was empty!<br />Default groups created, please reload this page';
 $lang_groupmgr_php['explain_greyed_out_title'] = 'Why is this row grayed out?';
-$lang_groupmgr_php['explain_guests_greyed_out_text'] = 'You cannot change the properties of this group because the access level of this group is NONE.  All unlogged users (members of the group %s) can\'t do anything but login; therefore group settings don\'t apply for them.  Change the access level here or on the Gallery Configuration page under "User Settings", "Allow unlogged users access".';
+$lang_groupmgr_php['explain_guests_greyed_out_text'] = 'You cannot change the properties of this group because the access level of this group is NONE. All unlogged users (members of the group %s) can\'t do anything but login; therefore group settings don\'t apply for them. Change the access level here or on the Gallery Configuration page under "User Settings", "Allow unlogged users access".';
 $lang_groupmgr_php['group_assigned_album'] = 'assigned album(s)';
 $lang_groupmgr_php['access_level'] = 'Access level'; // cpg1.5
 $lang_groupmgr_php['thumbnail_intermediate_full'] = 'thumbnail, intermediate, and full-size image'; // cpg1.5
@@ -1631,7 +1631,7 @@ $lang_login_php['force_login_title'] = 'Login to continue'; // cpg1.5
 if (defined('LOGOUT_PHP')) {
 $lang_logout_php['logout'] = 'Logout';
 $lang_logout_php['bye'] = 'Bye bye %s ...';
-$lang_logout_php['err_not_logged_in'] = 'You are not logged in!';  // cpg1.5
+$lang_logout_php['err_not_logged_in'] = 'You are not logged in!'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
@@ -1695,7 +1695,7 @@ $lang_modifyalb_php['comments'] = 'comments';
 $lang_modifyalb_php['files'] = 'files';
 $lang_modifyalb_php['submit_reset'] = 'submit changes';
 $lang_modifyalb_php['reset_views_confirm'] = 'I\'m sure';
-$lang_modifyalb_php['notice1'] = '(*) depending on %sgroups%s settings';  //(do not translate %s!)
+$lang_modifyalb_php['notice1'] = '(*) depending on %sgroups%s settings'; //(do not translate %s!)
 $lang_modifyalb_php['can_moderate'] = 'Album can be moderated by'; // cpg 1.5
 $lang_modifyalb_php['admins_only'] = 'Admins only'; // cpg 1.5
 $lang_modifyalb_php['alb_password'] = 'Album password (New password)';
@@ -1737,7 +1737,7 @@ $lang_picmgr_php['submit_reminder'] = 'Sorting changes are not saved until you c
 // ------------------------------------------------------------------------- //
 if (defined('PLUGINMGR_PHP')){
 $lang_pluginmgr_php['confirm_uninstall'] = 'Are you sure you want to UNINSTALL this plugin?';
-$lang_pluginmgr_php['confirm_remove'] = 'NOTE: Plugin API is disabled.  Do you want to MANUALLY REMOVE this plugin, ignoring any cleanup actions?'; // cpg1.5
+$lang_pluginmgr_php['confirm_remove'] = 'NOTE: Plugin API is disabled. Do you want to MANUALLY REMOVE this plugin, ignoring any cleanup actions?'; // cpg1.5
 $lang_pluginmgr_php['confirm_delete'] = 'Are you sure you want to DELETE this plugin?';
 $lang_pluginmgr_php['pmgr'] = 'Plugin Manager';
 $lang_pluginmgr_php['explanation'] = 'Install / uninstall / manage plugins using this page.'; // cpg1.5
@@ -1963,7 +1963,7 @@ $lang_sidebar_php['os_browser_detect_explain'] = 'The script is trying to detect
 $lang_sidebar_php['mozilla'] = 'Mozilla, Firefox, Netscape 6+, Konqueror 3.2+'; // cpg1.5
 $lang_sidebar_php['mozilla_explain'] = 'If you use Mozilla 0.9.4 or later, you can %sadd our sidebar to your set%s. You can uninstall this sidebar using the "Customize Sidebar" dialog in Mozilla.'; // cpg1.5
 $lang_sidebar_php['ie_mac'] = 'Internet Explorer 5 and above on Mac OS'; // cpg1.5
-$lang_sidebar_php['ie_mac_explain'] = 'If you use Internet Explorer 5 or above on MacOS, %sopen our sidebar page%s in a  separate window. In that window, open the "Page Holder" tab on the left side of the window. Click "Add". If you want to keep it for future use, click on "Favorites" and select "Add to Page Holder Favorites".'; // cpg1.5
+$lang_sidebar_php['ie_mac_explain'] = 'If you use Internet Explorer 5 or above on MacOS, %sopen our sidebar page%s in a separate window. In that window, open the "Page Holder" tab on the left side of the window. Click "Add". If you want to keep it for future use, click on "Favorites" and select "Add to Page Holder Favorites".'; // cpg1.5
 $lang_sidebar_php['ie_win'] = 'Internet Explorer 5 and above on Windows'; // cpg1.5
 $lang_sidebar_php['ie_win_explain'] = 'If you use Internet Explorer 5 or above on Windows, you can add the Side Bar to your Links toolbar or you can add it to your favorites and clicking on it you can see our bar displayed in place of your usual search bar by right-clicking %shere%s and selecting "Add to favorites" from the context menu. This link does not install our bar as your default search bar, so no modification is made to your system.'; // cpg1.5
 $lang_sidebar_php['ie7_win'] = 'Internet Explorer 7 on Windows XP/Vista'; // cpg1.5
@@ -1979,7 +1979,7 @@ $lang_sidebar_php['reload'] = 'Reload'; // cpg1.5
 
 
 // ------------------------------------------------------------------------- //
-// File search.php                                                           //
+// File search.php
 // ------------------------------------------------------------------------- //
 if (defined('SEARCH_PHP')){
 $lang_search_php['title'] = 'Search';
@@ -2099,7 +2099,7 @@ $lang_stat_details_php['number_of_hits'] = 'Number of hits'; // cpg1.5
 $lang_stat_details_php['total'] = 'Total'; // cpg1.5
 $lang_stat_details_php['stats_by_browser'] = 'Stats by browser'; // cpg1.5
 $lang_stat_details_php['overall_stats_config'] = 'Overall stats configuration'; // cpg1.5
-$lang_stat_details_php['hit_details']  = 'Keep detailed hit statistics'; // cpg1.5
+$lang_stat_details_php['hit_details'] = 'Keep detailed hit statistics'; // cpg1.5
 $lang_stat_details_php['hit_details_explanation'] = 'Keep detailed hit statistics'; // cpg1.5
 $lang_stat_details_php['vote_details'] = 'Keep detailed voting statistics'; // cpg1.5
 $lang_stat_details_php['vote_details_explanation'] = 'Keep detailed voting statistics'; // cpg1.5
@@ -2126,7 +2126,7 @@ if (defined('UPLOAD_PHP')) {
 $lang_upload_php['title'] = 'Upload file';
 $lang_upload_php['restrictions'] = 'Restrictions'; // cpg1.5
 $lang_upload_php['choose_method'] = 'Choose upload method'; // cpg1.5
-$lang_upload_php['upload_swf']    = 'Multiple files - Flash-driven (recommended)'; // cpg1.5
+$lang_upload_php['upload_swf'] = 'Multiple files - Flash-driven (recommended)'; // cpg1.5
 $lang_upload_php['upload_single'] = 'simple - one file at a time'; // cpg1.5
 $lang_upload_php['up_instr_1'] = 'Select an album from the album dropdown list';
 $lang_upload_php['up_instr_2'] = 'Click the "Browse" button below and navigate to the file you want to upload. You can select multiple files in a single go using Ctrl+Click.';
@@ -2168,10 +2168,10 @@ $lang_upload_php['allowed_snd_types'] = 'Audio extensions: %s'; // cpg1.5
 $lang_upload_php['please_wait'] = 'Please wait while the script is uploading - this might take a while'; // cpg1.5
 $lang_upload_php['alternative_upload'] = 'Alternative upload method'; // cpg1.5
 $lang_upload_php['xp_publish_promote'] = 'If you are running Windows XP/Vista, you can use the Windows XP Uploading Wizard as well to upload files, providing an easier user interface directly on the client.'; // cpg1.5
-$lang_upload_php['err_js_disabled'] = 'Flash upload interface could not load.  You must have JavaScript enabled to enjoy the flash upload interface.'; // cpg1.5
-$lang_upload_php['err_flash_disabled'] = 'Upload interface is taking a long time to load or the load has failed.  Please make sure that the Flash Plugin is enabled and that a working version of the Flash Player is installed.'; // cpg1.5
+$lang_upload_php['err_js_disabled'] = 'Flash upload interface could not load. You must have JavaScript enabled to enjoy the flash upload interface.'; // cpg1.5
+$lang_upload_php['err_flash_disabled'] = 'Upload interface is taking a long time to load or the load has failed. Please make sure that the Flash Plugin is enabled and that a working version of the Flash Player is installed.'; // cpg1.5
 $lang_upload_php['err_alternate_method'] = 'Alternately you can use the <a href="upload.php?single=1">single</a> file upload interface.'; // cpg1.5
-$lang_upload_php['err_flash_version'] = 'Upload interface could not load.  You may need to install or upgrade Flash Player. Visit the <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> to get the Flash Player.'; // cpg1.5
+$lang_upload_php['err_flash_version'] = 'Upload interface could not load. You may need to install or upgrade Flash Player. Visit the <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> to get the Flash Player.'; // cpg1.5
 $lang_upload_php['flash_loading'] = 'Upload interface is loading. Please wait a moment...'; // cpg1.5
 
 $lang_upload_swf_php['browse'] = 'Browse...'; //cpg1.5
@@ -2193,7 +2193,7 @@ $lang_upload_swf_php['status_upload_error'] = 'Upload Error: '; //cpg1.5
 $lang_upload_swf_php['status_server_error'] = 'Server (IO) Error'; //cpg1.5
 $lang_upload_swf_php['status_security_error'] = 'Security Error'; //cpg1.5
 $lang_upload_swf_php['status_upload_limit'] = 'Upload limit exceeded.'; //cpg1.5
-$lang_upload_swf_php['status_validation_failed'] = 'Failed Validation.  Upload skipped.'; //cpg1.5
+$lang_upload_swf_php['status_validation_failed'] = 'Failed Validation. Upload skipped.'; //cpg1.5
 $lang_upload_swf_php['queue_limit'] = 'You have attempted to queue too many files.'; //cpg1.5
 $lang_upload_swf_php['upload_limit_1'] = 'You have reached the upload limit.'; //cpg1.5
 $lang_upload_swf_php['upload_limit_2'] = 'You may select up to %s file(s)'; //cpg1.5
@@ -2339,7 +2339,7 @@ $lang_update_php['could_not_rename'] = 'Could not rename due to missing permissi
 // File util.php
 // ------------------------------------------------------------------------- //
 if (defined('UTIL_PHP')) {
-$lang_util_php['title'] = 'Admin tools';  // cpg1.5
+$lang_util_php['title'] = 'Admin tools'; // cpg1.5
 $lang_util_php['file'] = 'File';
 $lang_util_php['problem'] = 'Problem';
 $lang_util_php['status'] = 'Status';
@@ -2407,15 +2407,15 @@ $lang_util_php['delete_all'] = 'Delete all';
 $lang_util_php['delete_all_orphans'] = 'Delete all orphans?';
 $lang_util_php['comment'] = 'Comment: ';
 $lang_util_php['nonexist'] = 'attached to non-existent file # ';
-$lang_util_php['delete_old'] = 'Delete files that are older than a set number of days';  // cpg1.5
-$lang_util_php['delete_old_explanation'] = 'This will delete files that are older than the number of days you specify (normal, intermediate, thumbnails). Use this feature to free up disk space.';  // cpg1.5
-$lang_util_php['delete_old_warning'] = 'Warning: the files you specify will be deleted for good without further warnings!';  // cpg1.5
-$lang_util_php['deleting_old'] = 'Deleting older images, please wait...';  // cpg1.5
-$lang_util_php['older_than'] = 'Delete files older than %s days';  // cpg1.5
-$lang_util_php['del_orig'] = 'The original file %s was successfully deleted';  // cpg1.5
-$lang_util_php['del_intermediate'] = 'The intermediate image %s was successfully deleted';  // cpg1.5
-$lang_util_php['del_thumb'] = 'The thumbnail %s was successfully deleted';  // cpg1.5
-$lang_util_php['del_error'] = 'Error deleting %s!';  // cpg1.5
+$lang_util_php['delete_old'] = 'Delete files that are older than a set number of days'; // cpg1.5
+$lang_util_php['delete_old_explanation'] = 'This will delete files that are older than the number of days you specify (normal, intermediate, thumbnails). Use this feature to free up disk space.'; // cpg1.5
+$lang_util_php['delete_old_warning'] = 'Warning: the files you specify will be deleted for good without further warnings!'; // cpg1.5
+$lang_util_php['deleting_old'] = 'Deleting older images, please wait...'; // cpg1.5
+$lang_util_php['older_than'] = 'Delete files older than %s days'; // cpg1.5
+$lang_util_php['del_orig'] = 'The original file %s was successfully deleted'; // cpg1.5
+$lang_util_php['del_intermediate'] = 'The intermediate image %s was successfully deleted'; // cpg1.5
+$lang_util_php['del_thumb'] = 'The thumbnail %s was successfully deleted'; // cpg1.5
+$lang_util_php['del_error'] = 'Error deleting %s!'; // cpg1.5
 $lang_util_php['affected_records'] = '%s affected records.'; // cpg1.5
 $lang_util_php['all_albums'] = 'All Albums'; // cpg1.5
 $lang_util_php['update_result'] = 'Update results'; // cpg1.5
@@ -2438,7 +2438,7 @@ $lang_util_php['keyword_set'] = 'Set gallery keyword separator to new value'; //
 $lang_util_php['keyword_replace_before'] = 'Before conversion, replace %s with %s'; // cpg1.5
 $lang_util_php['keyword_replace_after'] = 'After conversion, replace %s with %s'; // cpg1.5
 $lang_util_php['keyword_replace_values'] = array('_'=>'underscore', '-'=>'hyphen', '~'=>'tilde'); // cpg1.5
-$lang_util_php['keyword_explanation'] = 'This will convert the keyword separator for all your files from one value to another value.  See the help documentation for details.'; // cpg1.5
+$lang_util_php['keyword_explanation'] = 'This will convert the keyword separator for all your files from one value to another value. See the help documentation for details.'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
@@ -2512,7 +2512,7 @@ $lang_viewlog_php['last_updated'] = 'last update'; // cpg1.5
 // ------------------------------------------------------------------------- //
 if (defined('XP_PUBLISH_PHP')) {
 $lang_xp_publish_php['title'] = 'XP Web Publishing Wizard';
-$lang_xp_publish_php['client_header'] = 'XP Web Publishing Wizard Client';  // cpg1.5
+$lang_xp_publish_php['client_header'] = 'XP Web Publishing Wizard Client'; // cpg1.5
 $lang_xp_publish_php['requirements'] = 'Requirements'; // cpg1.5
 $lang_xp_publish_php['windows_xp'] = 'Windows XP / Vista'; // cpg1.5
 $lang_xp_publish_php['no_windows_xp'] = 'You appear to be running another, unsupported operating system'; // cpg1.5
@@ -2528,8 +2528,8 @@ $lang_xp_publish_php['no_gallery_description'] = 'You need to specify a gallery 
 $lang_xp_publish_php['howto_install'] = 'How to install'; // cpg1.5
 $lang_xp_publish_php['install_right_click'] = 'Right click on %sthis link%s and select &quot;save target as...&quot;'; // cpg1.5 // translator note: don't replace the %s - that placeholder token needs to go untranslated
 $lang_xp_publish_php['install_save'] = 'Save the file on your client. When saving the file, make sure that the proposed file name is <tt>cpg_###.reg</tt> (the ### represents a numerical timestamp). Change it to that name if necessary (leave the numbers)'; // cpg1.5
-$lang_xp_publish_php['install_execute'] = 'After the download has finished, execute the file by double clicking on it in order to register your server with the web publishing wizard';  // cpg1.5
-$lang_xp_publish_php['usage'] = 'Usage';  // cpg1.5
+$lang_xp_publish_php['install_execute'] = 'After the download has finished, execute the file by double clicking on it in order to register your server with the web publishing wizard'; // cpg1.5
+$lang_xp_publish_php['usage'] = 'Usage'; // cpg1.5
 $lang_xp_publish_php['select_files'] = 'In Windows Explorer, select the files you want to upload'; // cpg1.5
 $lang_xp_publish_php['display_tasks'] = 'Make sure that the folders are not being displayed in left bar of the Explorer'; // cpg1.5
 $lang_xp_publish_php['publish_on_the_web'] = 'click on &quot;Publish xxx on the web&quot; in the left pane'; // cpg1.5
