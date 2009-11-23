@@ -4037,7 +4037,7 @@ function theme_display_fullsize_pic()
     }
 
     $charset = ($CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset']);
-    echo <<<EOT
+    $fullsize_html = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
@@ -4059,14 +4059,14 @@ function theme_display_fullsize_pic()
 
 EOT;
     if ($CONFIG['transparent_overlay'] == 1) {
-        echo <<<EOT
+        $fullsize_html .= <<<EOT
         <table cellpadding="0" cellspacing="0" align="center" style="padding:0px;">
             <tr>
 
 EOT;
-        echo '<td align="center" valign="middle" background="' . htmlspecialchars($imagedata['path']) . '" ' . $imagedata['geometry'] . ' class="image">';
-        echo '<div id="content">';
-        echo '<a href="javascript: window.close()" style="border:none"><img src="images/image.gif?id='
+        $fullsize_html .=  '<td align="center" valign="middle" background="' . htmlspecialchars($imagedata['path']) . '" ' . $imagedata['geometry'] . ' class="image">';
+        $fullsize_html .=  '<div id="content">';
+        $fullsize_html .=  '<a href="javascript: window.close()" style="border:none"><img src="images/image.gif?id='
                 . floor(rand()*1000+rand())
                 . '&amp;fullsize=yes" '
                 . $imagedata['geometry']
@@ -4076,7 +4076,7 @@ EOT;
                 . htmlspecialchars($imagedata['name'])
                 . $LINEBREAK . $lang_fullsize_popup['click_to_close']
                 . '" /></a><br />' . $LINEBREAK;
-        echo <<<EOT
+        $fullsize_html .=  <<<EOT
                     </div>
                 </td>
             </tr>
@@ -4084,8 +4084,8 @@ EOT;
 
 EOT;
     } else {
-        echo '        <div id="content">'.$LINEBREAK;
-        echo '<a href="javascript: window.close()"><img src="'
+        $fullsize_html .=  '        <div id="content">'.$LINEBREAK;
+        $fullsize_html .=  '<a href="javascript: window.close()"><img src="'
         . htmlspecialchars($imagedata['path']) . '" '
         . $imagedata['geometry']
         . 'id="fullsize_image" alt="'
@@ -4096,11 +4096,14 @@ EOT;
         . '" /></a><br />' . $LINEBREAK
         . '        </div>'.$LINEBREAK;
     }
-    echo <<<EOT
+    $fullsize_html .= <<<EOT
   </body>
 </html>
 
 EOT;
+
+    $fullsize_html = CPGPluginAPI::filter('fullsize_html', $fullsize_html);
+    echo $fullsize_html;
 }
 /******************************************************************************
 ** Section <<<theme_display_fullsize_pic>>> - END
