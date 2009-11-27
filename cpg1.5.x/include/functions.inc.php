@@ -3736,7 +3736,6 @@ EOT;
         $table[] = array('allow_private_albums', $CONFIG['allow_private_albums']);
         $table[] = array('cookie_name', $CONFIG['cookie_name']);
         $table[] = array('cookie_path', $CONFIG['cookie_path']);
-        $table[] = array('ecards_more_pic_target', $CONFIG['ecards_more_pic_target']);
         $table[] = array('impath', $CONFIG['impath']);
         $table[] = array('lang', $CONFIG['lang']);
         $table[] = array('main_page_layout', $CONFIG['main_page_layout']);

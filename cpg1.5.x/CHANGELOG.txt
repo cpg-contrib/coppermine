@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-11-27 [O] Removed double entry from debug_output {GauGau}
+2009-11-27 [C] Added color attribute to expand/collapse links {GauGau}
 2009-11-23 [A] Added plugin hook 'fullsize_html' (thread ID 62592) {eenemeenemuu}
 2009-11-20 [B] Fixed linked picture count on album details {eenemeenemuu}
 2009-11-20 [C] Fixed filmstrip hopping around if prev/next buttons get hidden (thread ID 62562) {Timo}
