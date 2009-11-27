@@ -928,11 +928,15 @@ table#album_sort tr td span.editAlbum {
 }
 
 #GB_window {
-  background-color: #000000;
-  border: 5px solid #FFFFFF;
+    background-color: #000000;
+    border: 5px solid #FFFFFF;
 }
 
 .external {
     background: transparent url('../../images/link.gif') 100% 50% no-repeat;
     padding-right: 10px;
+}
+
+.detail_head_collapsed, .detail_head_expanded {
+    color: #447AC9;
 }

@@ -921,11 +921,15 @@ table#album_sort tr td span.editAlbum {
 }
 
 #GB_window {
-  background-color: #4F5864;
-  border: 5px solid #394049;
+    background-color: #4F5864;
+    border: 5px solid #394049;
 }
 
 .external {
     background: transparent url('../../images/link.gif') 100% 50% no-repeat;
     padding-right: 10px;
+}
+
+.detail_head_collapsed, .detail_head_expanded {
+    color: #8090A3;
 }

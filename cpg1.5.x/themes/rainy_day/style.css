@@ -847,11 +847,15 @@ table#album_sort tr td span.editAlbum {
 }
 
 #GB_window {
-  background-color: #C2C9D3;
-  border: 5px solid #DEDEDE;
+    background-color: #C2C9D3;
+    border: 5px solid #DEDEDE;
 }
 
 .external {
     background: transparent url('../../images/link.gif') 100% 50% no-repeat;
     padding-right: 10px;
+}
+
+.detail_head_collapsed, .detail_head_expanded {
+    color: #0033CC;
 }
