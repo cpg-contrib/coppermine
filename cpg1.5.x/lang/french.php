@@ -990,7 +990,7 @@ if (defined('DB_INPUT_PHP')) {
   $lang_db_input_php['com_updated'] = 'Commentaire modifié';  // cpg1.5.x
   $lang_db_input_php['alb_updated'] = 'Album mis à jour';
   $lang_db_input_php['err_comment_empty'] = 'Votre Commentaire est vide !';
-  $lang_db_input_php['err_invalid_fext'] = 'Seuls les fichiers avec les extensions suivantes sont autorisés : <br />%s.';
+  $lang_db_input_php['err_invalid_fext'] = 'Seuls les fichiers avec les extensions suivantes sont autorisés:'; // js-alert
   $lang_db_input_php['no_flood'] = 'Nous sommes désolés, mais vous êtes déjà l\'Auteur du dernier Commentaire posté au sujet de cette image.<br />Vous pouvez tout simplement éditer votre message précédent si vous souhaitez le modifier ou bien ajouter des informations.';
   $lang_db_input_php['redirect_msg'] = 'Redirection en cours.<br /><br />Cliquez sur \'CONTINUEZ\' si la page ne se recharge pas automatiquement';
   $lang_db_input_php['upl_success'] = 'Votre image a été correctement ajoutée';
@@ -1334,7 +1334,7 @@ if (defined('FORGOT_PASSWD_PHP')) {
   $lang_forgot_passwd_php['err_unk_user'] = 'L\'Utilisateur indiqué n\'existe pas&nbsp;!';
   $lang_forgot_passwd_php['account_verify_subject'] = '%s - Demande de nouveau Mot de Passe';
   $lang_forgot_passwd_php['passwd_reset_subject'] = '%s - Votre nouveau Mot de Passe';
-  $lang_forgot_passwd_php['account_verify_email'] = <<<EOT
+  $lang_forgot_passwd_php['account_verify_email'] = <<< EOT
 Vous avez demandé la génération d'un nouveau mot de passe. Si vous voulez qu'un nouveau mot de passe vous soit envoyé, cliquez sur le lien:
 
 <a href="{VERIFY_LINK}">{VERIFY_LINK}</a>
@@ -1346,7 +1346,7 @@ L'Administrateur du site {SITE_NAME}
 
 EOT;
 
-$lang_forgot_passwd_php['reset_email'] = <<<EOT
+$lang_forgot_passwd_php['reset_email'] = <<< EOT
 Voici le nouveau Mot de Passe que vous avez demandé :
 
 Nom d'Utilisateur :{USER_NAME}
@@ -1776,7 +1776,7 @@ if (defined('RATEPIC_PHP')) {
 // File register.php & profile.php
 // ----------------------- //
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
-$lang_register_php['disclamer'] = <<<EOT
+$lang_register_php['disclamer'] = <<< EOT
 Bien que les Administrateurs de {SITE_NAME} fassent en sorte de Supprimez ou modifier toutes les données à caractère répréhensible le plus rapidement possible, il est toutefois impossible de scruter systématiquement l'intégralité des contenus déposés par les Visiteurs ou par Utilisateurs. Vous êtes par conséquent conscient que tous les Commentaires, images ou fichiers proposés sur ce site expriment les points de vue et opinions de leurs auteurs et non ceux des Administrateurs ou du webmaster de {SITE_NAME}. (sauf, évidemment dans le cas des posts effectués par ces derniers), qui par conséquent ne pourront pas être considérés comme responsables.<br />
 <br />
 Vous acceptez de ne poster aucune donnée à caractère injurieux, obscène, vulgaire, diffamatoire, menaçant, sexuel ou tout autre contenu susceptible d\'enfreindre la loi. Vous acceptez que le Webmaster et les Modérateurs de {SITE_NAME} aient le droit de Supprimez ou modifier n'importe quel contenu, si cela leur semble opportun et en accord avec les présentes règles de bonnes conduite. En tant qu'Utilisateur, vous acceptez que toutes les informations entrées plus haut et toutes les photographies que vous publiez soient stockées dans une Base de Données. Bien que ces informations et photographies ne soient pas communiquées à des tiers sans votre consentement, le Webmaster et les Administrateurs ne peuvent en aucun cas être tenus pour responsables dans le cas de tentatives de hack qui pourraient compromettre les données ou permettre l'accès ou l'utilisation illicite de vos photographies. Dès lors que vous prenez la décision de publier sur Internet, vous rendez vos oeuvres publiques !<br />
@@ -1860,7 +1860,7 @@ EOT;
   $lang_register_php['form_not_submit'] = 'Le formulaire n\'a pas été envoyé - il y a des erreurs que vois devez corriger d\'abord!'; // cpg1.5
   $lang_register_php['banned'] = 'Banni'; // cpg1.5
 
-$lang_register_php['confirm_email'] = <<<EOT
+$lang_register_php['confirm_email'] = <<< EOT
 Merci pour votre inscription sur {SITE_NAME}.
 
 Pour Activez ce Compte avec ce Nom d'Utilisateur &quot;{USER_NAME}&quot;, vous devez cliquer sur le lien ci-dessous ou le copier dans la barre d'adresse de votre navigateur.
@@ -1872,7 +1872,7 @@ L'Administrateur de {SITE_NAME}
 
 EOT;
 
-$lang_register_approve_email = <<<EOT
+$lang_register_approve_email = <<< EOT
 Un Nouvel Utilisateur avec le pseudonyme &quot;{USER_NAME}&quot; s'est inscrit dans votre Galerie.
 Pour Activez ce Compte, vous devez cliquer sur le lien ci-dessous ou le copier et le coller dans la barre d'adresse de votre navigateur.
 
@@ -1880,7 +1880,7 @@ Pour Activez ce Compte, vous devez cliquer sur le lien ci-dessous ou le copier e
 
 EOT;
 
-$lang_register_php['activated_email'] = <<<EOT
+$lang_register_php['activated_email'] = <<< EOT
 Votre Compte a été approuvé et activé.
 
 Vous pouvez maintenant vous connecter <a href="{SITE_LINK}">{SITE_LINK}</a> en utilisant ce Nom d'Utilisateur &quot;{USER_NAME}&quot;
@@ -2291,7 +2291,7 @@ if (defined('USERMGR_PHP')) {
   $lang_usermgr_php['status_active'] = 'actif'; // cpg1.5
   $lang_usermgr_php['status_inactive'] = 'non actif'; // cpg1.5
   $lang_usermgr_php['total'] = 'Total'; // cpg1.5
-$lang_usermgr_php['send_login_data_email'] = <<<EOT
+$lang_usermgr_php['send_login_data_email'] = <<< EOT
 Votre nouveau Compte a été crée pour vous sur {SITE_NAME}.
 
 Vous pouvez maintenant vous identifier sur <a href="{SITE_LINK}">{SITE_LINK}</a> avec comme Nom d'Utilisateur "{USER_NAME}" et comme Mot de Passe  "{USER_PASS}"

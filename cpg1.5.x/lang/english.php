@@ -989,7 +989,7 @@ $lang_db_input_php['com_added'] = 'Comment added';
 $lang_db_input_php['com_updated'] = 'Comment updated'; // cpg1.5
 $lang_db_input_php['alb_updated'] = 'Album updated';
 $lang_db_input_php['err_comment_empty'] = 'Your comment is empty!';
-$lang_db_input_php['err_invalid_fext'] = 'Only files with the following extensions are accepted : <br />%s.';
+$lang_db_input_php['err_invalid_fext'] = 'Only files with the following extensions are accepted:'; // js-alert
 $lang_db_input_php['no_flood'] = 'Sorry but you are already the author of the last comment posted for this file<br />Edit the comment you have posted if you want to modify it';
 $lang_db_input_php['redirect_msg'] = 'You are being redirected.<br /><br />Click \'CONTINUE\' if the page does not refresh automatically';
 $lang_db_input_php['upl_success'] = 'Your file was successfully added';
@@ -1333,7 +1333,7 @@ $lang_forgot_passwd_php['verify_email_sent'] = 'An email has been sent to %s. Pl
 $lang_forgot_passwd_php['err_unk_user'] = 'Selected user does not exist!';
 $lang_forgot_passwd_php['account_verify_subject'] = '%s - New password request';
 $lang_forgot_passwd_php['passwd_reset_subject'] = '%s - Your new password';
-$lang_forgot_passwd_php['account_verify_email'] = <<<EOT
+$lang_forgot_passwd_php['account_verify_email'] = <<< EOT
 You have requested a new password. If you would like to proceed with having a new password sent to you, click on the following link:
 
 <a href="{VERIFY_LINK}">{VERIFY_LINK}</a>
@@ -1345,7 +1345,7 @@ The management of {SITE_NAME}
 
 EOT;
 
-$lang_forgot_passwd_php['reset_email'] = <<<EOT
+$lang_forgot_passwd_php['reset_email'] = <<< EOT
 Here is the new password you requested:
 
 Username: {USER_NAME}
@@ -1775,7 +1775,7 @@ $lang_rate_pic_php['forbidden'] = 'You cannot rate your own files.';
 // File register.php & profile.php
 // ------------------------------------------------------------------------- //
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
-$lang_register_php['disclamer'] = <<<EOT
+$lang_register_php['disclamer'] = <<< EOT
 While the administrators of {SITE_NAME} will attempt to remove or edit any generally objectionable material as quickly as possible, it is impossible to review every post. Therefore you acknowledge that all posts made to this site express the views and opinions of the author and not the administrators or webmaster (except for posts by these people) and hence will not be held liable.<br />
 <br />
 You agree not to post any abusive, obscene, vulgar, slanderous, hateful, threatening, sexually-oriented or any other material that may violate any applicable laws. You agree that the webmaster, administrator and moderators of {SITE_NAME} have the right to remove or edit any content at any time should they see fit. As a user you agree to any information you have entered above being stored in a database. While this information will not be disclosed to any third party without your consent the webmaster and administrator cannot be held responsible for any hacking attempt that may lead to the data being compromised.<br />
@@ -1859,7 +1859,7 @@ $lang_register_php['password_verification_warning1'] = 'The two passwords do not
 $lang_register_php['form_not_submit'] = 'The form hasn\'t been submit - there are errors that you need to correct first!'; // cpg1.5
 $lang_register_php['banned'] = 'Banned'; // cpg1.5
 
-$lang_register_php['confirm_email'] = <<<EOT
+$lang_register_php['confirm_email'] = <<< EOT
 Thank you for registering at {SITE_NAME}
 
 In order to activate your account with username "{USER_NAME}", you need to click on the link below or copy and paste it in your web browser.
@@ -1871,7 +1871,7 @@ The management of {SITE_NAME}
 
 EOT;
 
-$lang_register_approve_email = <<<EOT
+$lang_register_approve_email = <<< EOT
 A new user with the username "{USER_NAME}" has registered in your gallery.
 In order to activate the account, you need to click on the link below or copy and paste it in your web browser.
 
@@ -1879,7 +1879,7 @@ In order to activate the account, you need to click on the link below or copy an
 
 EOT;
 
-$lang_register_php['activated_email'] = <<<EOT
+$lang_register_php['activated_email'] = <<< EOT
 Your account has been approved and activated.
 
 You can now log in at <a href="{SITE_LINK}">{SITE_LINK}</a> using the username "{USER_NAME}"
@@ -2290,7 +2290,7 @@ $lang_usermgr_php['status'] = 'Status'; // cpg1.5
 $lang_usermgr_php['status_active'] = 'active'; // cpg1.5
 $lang_usermgr_php['status_inactive'] = 'not active'; // cpg1.5
 $lang_usermgr_php['total'] = 'Total'; // cpg1.5
-$lang_usermgr_php['send_login_data_email'] = <<<EOT
+$lang_usermgr_php['send_login_data_email'] = <<< EOT
 A new account has been created for you at {SITE_NAME}.
 
 You can now log in at <a href="{SITE_LINK}">{SITE_LINK}</a> using the username "{USER_NAME}" and password "{USER_PASS}"

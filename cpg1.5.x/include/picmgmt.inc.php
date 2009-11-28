@@ -26,7 +26,7 @@ if($CONFIG['read_iptc_data'] ){
 // Add a picture to an album
 function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $caption = '', $keywords = '', $user1 = '', $user2 = '', $user3 = '', $user4 = '', $category = 0, $raw_ip = '', $hdr_ip = '', $iwidth = 0, $iheight = 0)
 {
-    global $CONFIG, $ERROR, $USER_DATA, $PIC_NEED_APPROVAL, $CURRENT_PIC_DATA;
+    global $CONFIG, $ERROR, $USER_DATA, $PIC_NEED_APPROVAL, $CURRENT_PIC_DATA, $LINEBREAK;
     global $lang_errors, $lang_db_input_php;
 
     $image = $CONFIG['fullpath'] . $filepath . $filename;
@@ -38,7 +38,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
 
 
     if (!is_known_filetype($image)) {
-        return array('error' => sprintf($lang_db_input_php['err_invalid_fext'], $CONFIG['allowed_file_extensions']), 'halt_upload' => 0);
+        return array('error' => $lang_db_input_php['err_invalid_fext'] . ' ' . $CONFIG['allowed_file_extensions'], 'halt_upload' => 0);
     } elseif (is_image($filename)) {
         if (!file_exists($orig) && $CONFIG['enable_watermark'] == '1' && ($CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original'))  {
         // if copy of full_sized doesn't exist and if watermark enabled and if fullsized pic watermark=true -> then we need a backup

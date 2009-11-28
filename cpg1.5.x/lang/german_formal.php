@@ -1011,7 +1011,7 @@ $lang_db_input_php['com_added'] = 'Ihr Kommentar wurde hinzugefügt';
 $lang_db_input_php['com_updated'] = 'Ihr Kommentar wurde aktualisiert';  // cpg1.5
 $lang_db_input_php['alb_updated'] = 'Album aktualisiert';
 $lang_db_input_php['err_comment_empty'] = 'Ihr Kommentar enthält keine Zeichen!';
-$lang_db_input_php['err_invalid_fext'] = 'Nur Dateien mit den folgenden Erweiterungen sind zulässig: <br />%s.';
+$lang_db_input_php['err_invalid_fext'] = 'Nur Dateien mit den folgenden Erweiterungen sind zulässig:'; // js-alert
 $lang_db_input_php['no_flood'] = 'Leider Sind Sie schon der Autor des letzten Kommentars zu dieser Datei.<br />Bearbeiten Sie Ihren bestehenden Kommentar, wenn Sie ihn verändern wollen';
 $lang_db_input_php['redirect_msg'] = 'Sie werden weitergeleitet.<br />Klicken Sie \'weiter\', falls sich die Seite nicht automatisch aktualisiert';
 $lang_db_input_php['upl_success'] = 'Ihre Datei wurde erfolgreich hinzugefügt';
@@ -1354,7 +1354,7 @@ $lang_forgot_passwd_php['err_unk_user'] = 'Der gewählte Benutzer existiert nich
 $lang_forgot_passwd_php['account_verify_subject'] = '%s - Anforderung neues Passwort';
 $lang_forgot_passwd_php['passwd_reset_subject'] = '%s - Ihr neues Passwort';
 
-$lang_forgot_passwd_php['account_verify_email'] = <<<EOT
+$lang_forgot_passwd_php['account_verify_email'] = <<< EOT
 Sie haben ein neues Passwort beantragt - um dieses neue Passwort tatsächlich zu erhalten, klicke auf nachstehenden Link:
 
 <a href="{VERIFY_LINK}">{VERIFY_LINK}</a>
@@ -1366,7 +1366,7 @@ Das Team von {SITE_NAME}
 
 EOT;
 
-$lang_forgot_passwd_php['reset_email'] = <<<EOT
+$lang_forgot_passwd_php['reset_email'] = <<< EOT
 Hier ist das neue Passwort, dass Sie beantragt haben:
 
 Benutzername:{USER_NAME}
@@ -1797,7 +1797,7 @@ $lang_rate_pic_php['forbidden'] = 'Sie können Ihre eigenen Dateien nicht bewert
 // File register.php & profile.php
 // ------------------------------------------------------------------------- //
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
-$lang_register_php['disclamer'] = <<<EOT
+$lang_register_php['disclamer'] = <<< EOT
 Obwohl die Administratoren von {SITE_NAME} versuchen werden, generell alle anstössigen Inhalte so schnell wie möglich zu löschen oder zu bearbeiten, ist es unmöglich, jeden Beitrag zu überprüfen. Daher bestätigen Sie, dass alle Beiträge auf dieser Seite die Ansichten und Meinungen des Authors widerspiegeln und nicht die des Administrators oder Webmasters (außer den Beiträgen, die durch sie verfasst wurden) und sie daher dafür nicht verantwortlich gemacht werden können.<br />
 <br />
 Sie stimmen zu, keine beleidigenden, obszönen, vulgären, verleumderischen, verhetzenden, drohenden, sexuell-orientierten oder sonstwie illegalen Beiträge zu verfassen. Sie stimmen zu, dass der/die Webmaster, Administrator(en) oder Moderator(en) von {SITE_NAME} das Recht haben, jeden Inhalt zu löschen oder zu ändern, bei dem sie es für richtig halten. Als Benutzer stimmen Sie zu, dass alle Informationen, die Sie oben eingetragen haben, in einer Datenbank gespeichert werden. Obwohl diese Daten ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben werden, können der Webmaster oder Administrator nicht dafür zur Verantwortung gezogen werden, wenn durch einen Angriff (Hacking) die gespeicherten Daten kompromitiert werden.<br />
@@ -1882,7 +1882,7 @@ $lang_register_php['password_verification_warning1'] = 'Die beiden Passwortfelde
 $lang_register_php['form_not_submit'] = 'Das Formular wurde noch nicht versendet - es sind Fehler aufgetreten, die zuerst bereinigt werden müssen!'; // cpg1.5
 $lang_register_php['banned'] = 'Verbannt'; // cpg1.5
 
-$lang_register_php['confirm_email'] = <<<EOT
+$lang_register_php['confirm_email'] = <<< EOT
 Danke für Ihre Registrierung bei {SITE_NAME}
 
 Um Ihr Benutzerkonto zu aktivieren, müssen Sie auf den untenstehenden Link klicken oder ihn kopieren und in der Adresszeile Ihres Browsers einfügen.
@@ -1894,7 +1894,7 @@ Das Team von {SITE_NAME}
 
 EOT;
 
-$lang_register_approve_email = <<<EOT
+$lang_register_approve_email = <<< EOT
 Ein neuer Benutzer hat sich mit dem Benutzernamen "{USER_NAME}" in Ihrer Galerie registriert.
 Um das Benutzerkonto zu aktivieren, klicken Sie auf den untenstehenden Link oder kopieren Sie ihn in die Adresszeile Ihres Browsers.
 
@@ -1902,7 +1902,7 @@ Um das Benutzerkonto zu aktivieren, klicken Sie auf den untenstehenden Link oder
 
 EOT;
 
-$lang_register_php['activated_email'] = <<<EOT
+$lang_register_php['activated_email'] = <<< EOT
 Ihr Benutzerkonto wurden genehmigt und aktiviert.
 
 Sie können sich jetzt auf der Seite <a href="{SITE_LINK}">{SITE_LINK}</a> mit dem Benutzernamen "{USER_NAME}" anmelden.
@@ -2312,7 +2312,7 @@ $lang_usermgr_php['status_active'] = 'aktiv'; // cpg1.5
 $lang_usermgr_php['status_inactive'] = 'inaktiv'; // cpg1.5
 $lang_usermgr_php['total'] = 'Summe'; // cpg1.5
 
-$lang_usermgr_php['send_login_data_email'] = <<<EOT
+$lang_usermgr_php['send_login_data_email'] = <<< EOT
 Ein neues Benutzerkonto wurde für Sie erzeugt für die Seite {SITE_NAME}.
 
 Sie können sich jetzt anmelden unter <a href="{SITE_LINK}">{SITE_LINK}</a> mit dem Benutzernamen "{USER_NAME}" und dem Passwort "{USER_PASS}"

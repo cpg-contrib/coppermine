@@ -599,7 +599,7 @@ case 'picture':
     }
 
     if ($matches[2] == '' || !is_known_filetype($matches)) {
-        cpg_die(ERROR, sprintf($lang_db_input_php['err_invalid_fext'], $CONFIG['allowed_file_extensions']), __FILE__, __LINE__);
+        cpg_die(ERROR, $lang_db_input_php['err_invalid_fext'] . ' ' . $CONFIG['allowed_file_extensions'], __FILE__, __LINE__);
     }
 
     // Create a unique name for the uploaded file

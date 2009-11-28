@@ -989,7 +989,7 @@ $lang_db_input_php['com_added'] = 'Kommentti lisätty';
 $lang_db_input_php['com_updated'] = 'Kommentti muokattu';  // cpg1.5
 $lang_db_input_php['alb_updated'] = 'Albumi päivitetty';
 $lang_db_input_php['err_comment_empty'] = 'Kommenttisi on tyhjä!';
-$lang_db_input_php['err_invalid_fext'] = 'Vain seuraavat tiedostopäätteet ovat sallittuja: <br /><br />%s.';
+$lang_db_input_php['err_invalid_fext'] = 'Vain seuraavat tiedostopäätteet ovat sallittuja:'; // js-alert
 $lang_db_input_php['no_flood'] = 'Viimeinen kommentti tälle kuvalle on sinun.<br /><br />Muuta sitä, jos haluat tehdä lisäyksiä.';
 $lang_db_input_php['redirect_msg'] = 'Sinut uudelleenohjataan.<br /><br /><br />Klikkaa \'JATKA\' jos sivu ei päivity automaattisesti.';
 $lang_db_input_php['upl_success'] = 'Tiedostosi lisättiin onnistuneesti';
@@ -1333,7 +1333,7 @@ $lang_forgot_passwd_php['verify_email_sent'] = 'Sähköposti lähetettiin osoitt
 $lang_forgot_passwd_php['err_unk_user'] = 'Valittua käyttäjää ei löydy!';
 $lang_forgot_passwd_php['account_verify_subject'] = '%s - Uusi salasanapyyntö';
 $lang_forgot_passwd_php['passwd_reset_subject'] = '%s - Uusi salasanasi';
-$lang_forgot_passwd_php['account_verify_email'] = <<<EOT
+$lang_forgot_passwd_php['account_verify_email'] = <<< EOT
 Pyysit uutta salasanaa. Jos haluat jatkaa saadaksesi sen, klikkaa linkkiä:
 
 <a href="{VERIFY_LINK}">{VERIFY_LINK}</a>
@@ -1345,7 +1345,7 @@ Sivuston {SITE_NAME} ylläpito
 
 EOT;
 
-$lang_forgot_passwd_php['reset_email'] = <<<EOT
+$lang_forgot_passwd_php['reset_email'] = <<< EOT
 Tässä on pyytämäsi uusi salasana:
 
 Käyttäjätunnus: {USER_NAME}
@@ -1775,7 +1775,7 @@ $lang_rate_pic_php['forbidden'] = 'Et voi äänestää omia kuviasi.';
 // File register.php & profile.php
 // ------------------------------------------------------------------------- //
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
-$lang_register_php['disclamer'] = <<<EOT
+$lang_register_php['disclamer'] = <<< EOT
 Vaikka sivuston {SITE_NAME} ylläpito yrittää poistaa kaiken sopimattoman materiaalin sivustolta niin nopeasti kuin mahdollista, sen on mahdotonta tarkistaa jokaista lisäystä. Ymmärrät siis, että sivuston viestit ja kuvat ovat käyttäjien mielipiteitä ja näkemyksiä (lukuunottamatta ylläpidon lisäyksiä), eikä ylläpitoa voida asettaa niistä vastuuseen.<br />
 <br />
 Sitoudut olemaan lähettämättä mitään loukkaavaa, säädytöntä, mautonta, herjaavaa, vihamielistä, uhkaavaa, seksuaalisesti suuntautunutta tai mitään muuta materiaalia, joka voisi loukata voimassa olevia lakeja. Hyväksyt, että ylläpidolla ja moderaattoreilla on oikeus poistaa tai muuttaa mitä tahansa materiaalia miten sen parhaaksi näkevät. Käyttäjänä hyväksyt, että lähettämäsi tieto tallennetaan tietokantaan. Tietoa ei lähetetä kolmansille osapuolille ilman lupaasi, mutta ylläpito ei ole vastuussa mahdollisista tietomurroista.<br />
@@ -1859,7 +1859,7 @@ $lang_register_php['password_verification_warning1'] = 'Salasanat eivät täsmä
 $lang_register_php['form_not_submit'] = 'Lomaketta ei lähetetty - korjaa ensin siinä ilmenneet virheet!'; // cpg1.5
 $lang_register_php['banned'] = 'Bannattu'; // cpg1.5
 
-$lang_register_php['confirm_email'] = <<<EOT
+$lang_register_php['confirm_email'] = <<< EOT
 Kiitos rekisteröitymisestä {SITE_NAME} - sivustolle.
 
 Aktivoidaksesi tilisi käyttäjätunnuksella "{USER_NAME}", klikkaa alla olevaa linkkiä tai kopioi ja liitä se selaimeesi.
@@ -1871,7 +1871,7 @@ Sivuston {SITE_NAME} ylläpito
 
 EOT;
 
-$lang_register_approve_email = <<<EOT
+$lang_register_approve_email = <<< EOT
 Uusi käyttäjä nimeltä "{USER_NAME}" rekisteröityi galleriaasi.
 Aktivoidaksesi tilin, klikkaa alla olevaa linkkiä tai kopioi ja liitä se selaimeesi.
 
@@ -1879,7 +1879,7 @@ Aktivoidaksesi tilin, klikkaa alla olevaa linkkiä tai kopioi ja liitä se selai
 
 EOT;
 
-$lang_register_php['activated_email'] = <<<EOT
+$lang_register_php['activated_email'] = <<< EOT
 Tilisi on nyt hyväksytty ja aktivoitu.
 
 Voit nyt kirjautua sisään osoitteessa <a href="{SITE_LINK}">{SITE_LINK}</a> käyttäen käyttäjätunnusta "{USER_NAME}"
@@ -2290,7 +2290,7 @@ $lang_usermgr_php['status'] = 'Tila'; // cpg1.5
 $lang_usermgr_php['status_active'] = 'aktiivinen'; // cpg1.5
 $lang_usermgr_php['status_inactive'] = 'epäaktiivinen'; // cpg1.5
 $lang_usermgr_php['total'] = 'Yhteensä'; // cpg1.5
-$lang_usermgr_php['send_login_data_email'] = <<<EOT
+$lang_usermgr_php['send_login_data_email'] = <<< EOT
 Sinulle luotiin uusi tili sivustolle {SITE_NAME}.
 
 Voit kirjautua sisään osoitteessa <a href="{SITE_LINK}">{SITE_LINK}</a> käyttäen käyttäjätunnusta "{USER_NAME}" ja salasanaa "{USER_PASS}".

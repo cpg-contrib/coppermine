@@ -883,7 +883,7 @@ EOT;
     if ($matches[2] == '' || !is_known_filetype($matches)) {
 
         // We reject the file, and make a note of the error.
-        echo sprintf("error|".$lang_db_input_php['err_invalid_fext'].'|0', $CONFIG['allowed_file_extensions']);
+        echo 'error|' . $lang_db_input_php['err_invalid_fext'] . ' ' .  $CONFIG['allowed_file_extensions'] . '|0';
         exit;
     }
 
