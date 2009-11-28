@@ -62,6 +62,7 @@ You may find also find additional information there that didn't make it into thi
 
 <a name="translation_char_encoding"></a><h2>Character encoding<a href="#translation_char_encoding" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Many languages have special alphabets other than the latin set, or have additional characters (like &auml; &szlig; &agrave; &aacute; &acirc; &atilde; &aring; &aelig; &ccedil; &thorn; &eth; &oslash;). Many of these special chars have what are called <em>html equivalents</em> (e.g. <em>&amp;auml;</em> for <em>&auml;</em>), but you <strong>must not use</strong> these html equivalents of your special language characters when doing your translations, as unwanted side-effects may appear with the usage of JavaScript!</p>
+<p>No matter what encoding you use to contribute your translation, the encoding with which your translation contribution will be added to the package will be utf-8. In other words: some coppermine developer will have to transform your proprietary encoding to utf-8 before it can be used, so if you can you should use utf-8 in the first place.</p>
 
 <p>Coppermine adds a charset meta tag to the header of each ouput file to instruct the browser how to render special chars. You should add the name of the charset you're using for your translation at the very start of the language file, e.g.<pre>$lang_charset = 'iso-8859-1';</pre>. You can find a list of charsets at <a href="http://www.w3.org/International/O-charset-lang.html">http://www.w3.org/International/O-charset-lang.html</a>. Whenever possible, you shouldn't choose platform-dependant charset (e.g. <em>windows-1252</em>), but cross-platform ones (e.g. <em>iso-8859-1</em>).</p>
 <p>You'll have noticed that coppermine language files come in utf-8 encoding. You do not have to concern yourself with the creation of the utf-8 version if you have no idea how to accomplish this - the dev team will take care of that. However, your language file will finally go into the package as UTF-8 file. Subsequently, if you want to create a perfect language file, create it in utf-8 in the first place.</p>
@@ -93,39 +94,31 @@ If you need a powerfull, free editor for Windows, the dev team recommends using 
 <strong>Examples</strong>: german.php, italian.php, greek.php, brazilian_portuguese.php</li>
 <li>Edit the header info (example content is <span class="important">highlighted</span>):<br />
 <tt class="code">// info about translators and translated language</tt><br />
-<tt class="code">$lang_translation_info = array(</tt><br />
-<tt class="code">'lang_name_english' => '<span class="important">German</span>',</tt>The name of your language in English<br />
-<tt class="code">'lang_name_native' => '<span class="important">Deutsch</span>',</tt>The name of your language in your mother tongue<br />
-<tt class="code">'lang_country_code' => '<span class="important">de</span>',</tt>The country code representing your language. If your language is spoken in several countries, choose the one most people will relate to your language<br />
-<tt class="code">'trans_name'=> '<span class="important">GauGau</span>',</tt>Your name (or rather the name you would like to appear on the credits page)<br />
-<tt class="code">'trans_email' => '',</tt>If you prefer, your email address, which would normally appear on the credits page, can be left blank<br />
-<tt class="code">'trans_website' => '<span class="important">http://gaugau.de/</span>',</tt>Your website (goes to credit page). If you specify none, your profile page will be displayed instead<br />
-<tt class="code">'trans_date' => '<span class="important">2004-03-17</span>',</tt>The date you translated/last changed the language file<br />
+<tt class="code">$lang_translation_info['lang_name_english'] = '<span class="important">German</span>';</tt>The name of your language in English<br />
+<tt class="code">$lang_translation_info['lang_name_native'] = '<span class="important">Deutsch</span>';</tt>The name of your language in your mother tongue<br />
+<tt class="code">$lang_translation_info['lang_country_code'] = '<span class="important">de</span>';</tt>The country code representing your language. If your language is spoken in several countries, choose the one most people will relate to your language<br />
+<tt class="code">$lang_translation_info['trans_name'] = '<span class="important">GauGau</span>';</tt>Your name (or rather the name you would like to appear on the credits page)<br />
+<tt class="code">$lang_translation_info['trans_email'] = '';</tt>If you prefer, your email address, which would normally appear on the credits page, can be left blank<br />
+<tt class="code">$lang_translation_info['trans_website'] = '<span class="important">http://gaugau.de/</span>';</tt>Your website (goes to credit page). If you specify none, your profile page will be displayed instead<br />
+<tt class="code">$lang_translation_info['trans_date'] = '<span class="important">2009-01-27</span>';</tt>The date you translated/last changed the language file<br />
 <tt class="code">);</tt><br />
 Fill in the data you want to appear on the credits page as shown in the example above.</li>
 <li>The coppermine language file is used to dynamically replace php variables/arrays with the correct content. There are different ways those arrays are being filled - as shown in these examples (stuff that needs to be translated is <span class="important">highlighted</span>):<br />
   <ul style="list-style-type:square" type="square">
   <li>
   <tt class="code">$lang_day_of_week = array('<strong>Sun</strong>', '<strong>Mon</strong>', '<strong>Tue</strong>', '<strong>Wed</strong>', '<strong>Thu</strong>', '<strong>Fri</strong>', '<strong>Sat</strong>');</tt>A plain list of values in an array. Translate each word inside the quotes.</li>
-  <li><tt class="code">$lang_yes = '<strong>Yes</strong>';</tt></li>A value is assigned to a variable. Translate everything inside the single quotes.
-  <li><tt class="code">$lang_cat_list = array(<br />
-        'category' => '<strong>Category</strong>',</tt>An array with key =&gt; value pairs. Only translate the value, the key <strong>must</strong> be left alone!<br /><tt class="code">
+  <li><tt class="code">$lang_yes = '<strong>Yes</strong>';</tt> A value is assigned to a variable. Translate everything inside the single quotes.</li>
+  <li><tt class="code">$lang_common['keyword_separators'] = array(' '=&gt;'<strong>space</strong>', ','=&gt;'<strong>comma</strong>', ';'=&gt;'<strong>semicolon</strong>');</tt> An array with key =&gt; value pairs. Only translate the value, the key <strong>must</strong> be left alone!<br /><tt class="code">
         'albums' => '<strong>Albums</strong>',<br />
         'pictures' => '<strong>Files</strong>',<br />
 );</tt></li>
-  <li><tt class="code">if (defined('ADMIN_PHP')) $lang_admin_data = array(</tt>Cascaded/multi-dimensional arrays. Translate the very first entry in each line.<br /><tt class="code">
-        '<strong>General settings</strong>',<br />
-        array('<strong>Gallery name</strong>', 'gallery_name', 0),<br />
-        array('<strong>Gallery description</strong>', 'gallery_description', 0),<br />
-        array('<strong>Gallery administrator email</strong>', 'gallery_admin_email', 0),<br />
-        array('<strong>Target address for the \'See more pictures\' link in e-cards</strong>', 'ecards_more_pic_target', 0),<br />
-        array('<strong>Gallery is offline</strong>', 'offline', 1),<br />
-        //...</tt></li>
-        <li><tt class="code">$lang_register_disclamer = &lt;&lt;&lt;EOT<br />
-<strong>While the administrators of</strong> {SITE_NAME} <strong>will attempt to remove or [...]</strong><br />
-&lt;br /&gt;<br />
-<strong>By clicking 'I agree' below you agree to be bound by these conditions.</strong><br />
-EOT;</tt>Var definitions using the <a href="http://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.heredoc" rel="external" class="phpnet">heredoc</a> syntax: make sure to only translate the plain text, leaving everything in curled braces and all html tags intact</li>
+  <li>Cascaded/multi-dimensional arrays have been dropped from cpg1.4.x to cpg1.5.x, so you don't have to worry about them any longer.</li>
+        <li><tt class="code">$lang_forgot_passwd_php['account_verify_email'] = &lt;&lt;&lt; EOT
+<strong>You have requested a new password. If you would like to proceed with having a new password sent to you, click on the following link:</strong><br />
+<a href="{VERIFY_LINK}">{VERIFY_LINK}</a><br />
+<strong>Regards,<br />
+The management of</strong> {SITE_NAME}<br />
+EOT;</tt> Var definitions using the <a href="http://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.heredoc" rel="external" class="phpnet">heredoc</a> syntax: make sure to only translate the plain text, leaving everything in curled braces and all html tags intact</li>
   </ul>
 <p>Translate the entire language file as described - you'll find your way around in no time, even if you're not a seasoned PHP coder.</p>
 </li>
@@ -138,22 +131,26 @@ You can post the attachment as a txt file or you can put it inside of a .zip arc
 <a name="translation_special_issues"></a><h2>Special issues<a href="#translation_special_issues" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="translation_escaping"></a><h3>Escaping single quotes<a href="#translation_escaping" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>As you may have already noticed, all translation strings are contained between a pair of  single quotes or apostrophes - this is the proper method used in PHP. Therefore, if you want your translation to actually contain a single quote (apostrophe), you must &quot;instruct&quot; PHP that the apostrophe (single quote) contained in a text string is part of the string and not the end of the string. For this purpose, a backslash (<span class="important">\</span>) is used to instruct PHP that the character immediately following it is a "string" character and not part of the PHP code, itself. This is called <em>escaping</em> a character in programing languages. PHP uses the backslash (<span class="important">\</span>) to escape characters, that's why care must be taken to <strong>not</strong> do this:
-<pre>array('Target address for the 'See more pictures' link in e-cards', 'ecards_more_pic_target', 0),</pre> <p>but, to do this, instead: </p>
-<pre>array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),</pre></p>
+<p class="cpg_example">
+<tt class="code">$lang_errors['access_denied'] = 'You don't have permission to access this page.';</tt><br />
+but, to do this, instead:<br />
+<tt class="code">$lang_errors['access_denied'] = 'You don\'t have permission to access this page.';</tt>
+</p>
 <a name="translation_quotes_javascript"></a><h3>Single quotes in JavaScript (//js-alert)<a href="#translation_quotes_javascript" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Things are a bit more complicated if the output is to be used not only in plain HTML, but in JavaScript, as well.  Single quotes that appear in the HTML output of the language file must also be escaped for use in any JavaScript routine with a backslash as well.  That's why specific lines in the language file that will be used as JavaScript in Coppermine's output have been tagged with a comment at the end of the line, which reads: <tt class="code">//js-alert</tt>. If you intend to have a single quote in the final output, you'll have to add 3 backslashes in front of the single quote, as in this example: <pre>'no_change' => 'Vous n\\\'avez effectu&eacute; aucun changement !', //js-alert</pre></p>
+<p>Things are a bit more complicated if the output is to be used not only in plain HTML, but in JavaScript, as well.  Single quotes that appear in the HTML output of the language file must also be escaped for use in any JavaScript routine with a backslash as well.  That's why specific lines in the language file that will be used as JavaScript in Coppermine's output have been tagged with a comment at the end of the line, which reads: <tt class="code">//js-alert</tt>. If you intend to have a single quote in the final output, you'll have to add 3 backslashes in front of the single quote, as in this example: <pre>'no_change' => 'Vous n\\\'avez effectué aucun changement !', //js-alert</pre></p>
 <a name="translation_placeholders"></a><h3>Placeholders with " % "<a href="#translation_placeholders" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>You'll also notice that in several places of the language file, there are text that contain a percent-sign (<span class="important">%</span>), followed immediately by a letter. Those combinations must not be translated or separated - they are there intentionally and are used later as specifier arguments, or calls, for variable replacement and/or formating that needs to take place.</p>
 <p class="cpg_example">
-<tt class="code">  'rating' => '(current rating : %s / 5 with %s votes)',</tt></p>
+<tt class="code">$lang_rate_pic['rating'] = '(Current rating : %s / %s with %s votes)';</tt></p>
 
 <a name="translation_versions"></a><h2>Language versions<a href="#translation_versions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="translation_typo"></a><h3>Found a typo/spelling error?<a href="#translation_typo" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Maybe a translation for your language has already been done, but you're not happy with it: if there are bugs (spelling errors etc.), first check the <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&package_id=98540">download section</a> to see if a fixed (updated) version has already been submitted. If not, report your finding(s) on the board along with your suggestion for a fix, like this:<br />
-<em>in lang/yourlanguage.php search for</em>
-<pre>  'some_definition' => 'bar foo',</pre>
-<em>and replace with</em>
-<pre>  'some_definition' => 'foo bar',</pre>
+<p>Maybe a translation for your language has already been done, but you're not happy with it: if there are bugs (spelling errors etc.), first check the <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&package_id=98540">download section</a> to see if a fixed (updated) version has already been submitted. If not, report your finding(s) on the board along with your suggestion for a fix, like this:</p>
+<p class="cpg_example">
+<em>in lang/yourlanguage.php search for</em><br />
+<tt class="code">  $lang_example['some_definition'] = 'bar foo';</tt><br />
+<em>and replace with</em><br />
+<tt class="code">  $lang_example['some_definition'] = 'foo bar',</tt><br />
 </p>
 <a name="translation_another_translation"></a><h3>Another translation?<a href="#translation_another_translation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Everybody who knows languages knows that there is no such thing as &quot;one correct translation&quot; - there are always differences in the way we to translate expressions, or whole sentences. Maybe you feel that an existing version of your language file doesn't suit your purpose; perhaps the translator had another audience/target group in mind, or you want a more formal translation (in many languages there are signifcant difference in grammar and expression between formal and casual speech or text).<br />
