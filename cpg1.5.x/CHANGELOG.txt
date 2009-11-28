@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-11-28 [B] Fixed private album display (thread ID 62659) {Nibbler}
 2009-11-27 [O] Removed double entry from debug_output {GauGau}
 2009-11-27 [C] Added color attribute to expand/collapse links {GauGau}
 2009-11-23 [A] Added plugin hook 'fullsize_html' (thread ID 62592) {eenemeenemuu}

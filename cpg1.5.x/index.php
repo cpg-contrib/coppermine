@@ -330,7 +330,7 @@ function get_subcat_data(&$cat_data)
     
     // collect album counts for categories that are visible
     $sql = "SELECT category, COUNT(*) AS num
-        FROM {$CONFIG['TABLE_ALBUMS']}
+        FROM {$CONFIG['TABLE_ALBUMS']} AS a
         INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category
         WHERE depth BETWEEN $CURRENT_CAT_DEPTH + 1 AND $CURRENT_CAT_DEPTH + {$CONFIG['subcat_level']}";
 
@@ -339,6 +339,10 @@ function get_subcat_data(&$cat_data)
         $sql .= "\nAND lft BETWEEN $lft AND $rgt";
     }
 
+    if (!$CONFIG['show_private'] && $FORBIDDEN_SET_DATA) {
+        $sql .= ' AND a.aid NOT IN (' . implode(', ', $FORBIDDEN_SET_DATA) . ')';
+    }
+    
     // we don't care about the order
     $sql .= "\nGROUP BY category ORDER BY NULL";
 
@@ -367,6 +371,10 @@ function get_subcat_data(&$cat_data)
 
     while ( ($row = mysql_fetch_assoc($result)) ) {
 
+        if (!$CONFIG['show_private'] && in_array($row['aid'], $FORBIDDEN_SET_DATA)) {
+            continue;
+        }
+        
         $categories[$row['category']]['subalbums'][$row['aid']] = array(
             'aid'         => $row['aid'],
             'title'       => $row['title'],
