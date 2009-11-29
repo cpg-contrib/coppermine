@@ -737,7 +737,9 @@ class Inspekt_Cage
 			$key = trim($key, ISPK_ARRAY_PATH_SEPARATOR);
 			$keys = explode(ISPK_ARRAY_PATH_SEPARATOR, $key);
 			return $this->_getValueRecursive($keys, $this->_source);
-		} else {
+		} elseif (get_magic_quotes_gpc()) {
+            return stripslashes($this->_source[$key]);
+        } else {
 			return $this->_source[$key];
 		}
 	}
