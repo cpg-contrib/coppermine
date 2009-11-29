@@ -162,8 +162,10 @@ if (isset($bridge_lookup)) {
                 }
                 
                 // add in post based group as first additional group
-                $data[] = $row['group_id'] + 100;
-                
+                if ($row['group_id']) {
+                    $data[] = $row['group_id'] + 100;
+                }
+                                
                 //  add in any additional groups
                 if ($groupdata['additionals']) {
                 

@@ -65,7 +65,7 @@ class core_udb {
                         . "WHERE u.{$f['user_id']}=ug.{$f['user_id']} AND u.{$f['user_id']}='$id'";
             } else {
                 $sql = "SELECT u.{$f['user_id']} AS id, u.{$f['username']} AS username, {$f['password']} AS password, u.{$f['usertbl_group_id']} AS group_id "
-                        . "FROM {$this->usertable} AS u INNER JOIN {$this->groupstable} AS g ON u.{$f['usertbl_group_id']}=g.{$f['grouptbl_group_id']} "
+                        . "FROM {$this->usertable} AS u LEFT JOIN {$this->groupstable} AS g ON u.{$f['usertbl_group_id']}=g.{$f['grouptbl_group_id']} "
                         . "WHERE u.{$f['user_id']}='$id'";
             }
 
