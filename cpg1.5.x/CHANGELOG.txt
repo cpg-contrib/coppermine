@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-11-30 [B] Use recursive stripslashes function in Inspekt (thread ID 62532) {eenemeenemuu}
 2009-11-30 [B] Fixed navigation section of thumbnails page in eyeball theme (thread ID 62682) {eenemeenemuu}
 2009-11-28 [B] Fixed intermediate image display (thread ID 62581) {Nibbler}
 2009-11-28 [B] Fixed private album display (thread ID 62659) {Nibbler}

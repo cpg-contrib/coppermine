@@ -6258,19 +6258,19 @@ function cpg_get_comment_page_number($msg_id) {
  * @return string $return language code (flag name)
  */
 function cpg_lang_name2code($lang_name) {
-	global $CONFIG;
-	if ($lang_name != '') {
-		$result = cpg_db_query("SELECT flag, abbr FROM {$CONFIG['TABLE_LANGUAGE']} WHERE lang_id='{$lang_name}' LIMIT 1");
-		list($flag, $abbr) = mysql_fetch_row($result);
+    global $CONFIG;
+    if ($lang_name != '') {
+        $result = cpg_db_query("SELECT flag, abbr FROM {$CONFIG['TABLE_LANGUAGE']} WHERE lang_id='{$lang_name}' LIMIT 1");
+        list($flag, $abbr) = mysql_fetch_row($result);
         mysql_free_result($result);
-		if ($abbr != '') {
-			return $abbr;
-		} elseif ($flag != '') {
-			return $flag;
-		}  else {
-			return FALSE;
-		}
-	}
+        if ($abbr != '') {
+            return $abbr;
+        } elseif ($flag != '') {
+            return $flag;
+        }  else {
+            return FALSE;
+        }
+    }
 }
 
 ?>

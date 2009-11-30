@@ -738,14 +738,7 @@ class Inspekt_Cage
             $keys = explode(ISPK_ARRAY_PATH_SEPARATOR, $key);
             return $this->_getValueRecursive($keys, $this->_source);
         } elseif (get_magic_quotes_gpc()) {
-            if (is_array($this->_source[$key])) {
-                for ($i=0; $i < count($this->_source[$key]); $i++) {
-                    $this->_source[$key][$i] = stripslashes($this->_source[$key][$i]);
-                }
-                return $this->_source[$key];
-            } else {
-                return stripslashes($this->_source[$key]);
-            }
+            return stripslashes_deep($this->_source[$key]);
         } else {
             return $this->_source[$key];
         }
@@ -772,4 +765,9 @@ class Inspekt_Cage
     }
 
 
+}
+
+
+function stripslashes_deep($value) {
+    return is_array($value) ? array_map('stripslashes_deep', $value) : stripslashes($value);
 }
