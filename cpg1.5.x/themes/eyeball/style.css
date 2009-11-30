@@ -17,27 +17,27 @@
 **********************************************/
 
 /* Colors used in this style sheet:
-	Hex 000000 = RBG   0,   0,   0 = black
-	Hex 181818 = RGB  24,  24,  24 = light black
-	Hex 666666 = RBG 102, 102, 102 = light black
-	Hex 999999 = RBG 153, 153, 153 = dark grey
-	Hex BDBEBD = RBG 189, 190, 189 = medium grey
-	Hex EFEFEF = RBG 239, 239, 239 = light grey
-	Hex FFFFFF = RBG 255, 255, 255 = white
-	Hex FFC956 = RBG 255, 201,  86 = medium orange
-	Hex FFE8B7 = RBG 255, 232, 183 = light orange
-	Hex 447AC9 = RBG  68, 122, 201 = darker blue
-	Hex 0397FF = RBG   3, 151, 255 = lighter blue
-	Hex 00529B = RGB   0,  82, 155 = blue
-	Hex BDE5F8 = RGB 189, 229, 247 = cyan
-	Hex 4F8A10 = RGB  79, 138,  16 = dark green
-	Hex DFF2BF = RGB 223, 242, 191 = light green
-	Hex 9F6000 = RGB 159,  96,   0 = dark brown
-	Hex FEEFB3 = RGB 254, 239, 179 = light brown
-	Hex D8000C = RGB 216,   0,  12 = red
-	Hex FFBABA = RGB 255, 186, 186 = pink
-	Hex D63301 = RGB 214,  51,   1 = red
-	Hex FFCCBA = RGB 255, 204, 186 = pink
+    Hex 000000 = RBG   0,   0,   0 = black
+    Hex 181818 = RGB  24,  24,  24 = light black
+    Hex 666666 = RBG 102, 102, 102 = light black
+    Hex 999999 = RBG 153, 153, 153 = dark grey
+    Hex BDBEBD = RBG 189, 190, 189 = medium grey
+    Hex EFEFEF = RBG 239, 239, 239 = light grey
+    Hex FFFFFF = RBG 255, 255, 255 = white
+    Hex FFC956 = RBG 255, 201,  86 = medium orange
+    Hex FFE8B7 = RBG 255, 232, 183 = light orange
+    Hex 447AC9 = RBG  68, 122, 201 = darker blue
+    Hex 0397FF = RBG   3, 151, 255 = lighter blue
+    Hex 00529B = RGB   0,  82, 155 = blue
+    Hex BDE5F8 = RGB 189, 229, 247 = cyan
+    Hex 4F8A10 = RGB  79, 138,  16 = dark green
+    Hex DFF2BF = RGB 223, 242, 191 = light green
+    Hex 9F6000 = RGB 159,  96,   0 = dark brown
+    Hex FEEFB3 = RGB 254, 239, 179 = light brown
+    Hex D8000C = RGB 216,   0,  12 = red
+    Hex FFBABA = RGB 255, 186, 186 = pink
+    Hex D63301 = RGB 214,  51,   1 = red
+    Hex FFCCBA = RGB 255, 204, 186 = pink
 */
 
 /* Foreground color definition */
@@ -131,7 +131,7 @@ a:active .image{
 
 /* pseudo-classes for middlethumb links */
 a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlethumb,a:active .middlethumb{
-	border: 2px solid blue;
+    border: 2px solid blue;
 }
 
 .imageborder {
@@ -208,8 +208,8 @@ pre.filepath {
 
 ul, ol {
     margin-left: 5px;
-	margin-top:0px;
-	margin-bottom:0px;
+    margin-top:0px;
+    margin-bottom:0px;
     padding: 0px;
 }
 
@@ -223,7 +223,7 @@ li {
 }
 
 ul li {
-	list-style-type: disc;
+    list-style-type: disc;
 }
 
 .top_panel td {
@@ -266,10 +266,10 @@ ul li {
     background-image : url(images/button_bg.gif);
     background-position : bottom;
     height: 20px;
-	cursor:pointer;
-	padding-left:0px;
-	padding-right:0px;
-	margin-right:2px;
+    cursor:pointer;
+    padding-left:0px;
+    padding-right:0px;
+    margin-right:2px;
 }
 
 .radio {
@@ -345,11 +345,6 @@ a:hover {
     font-weight: bold;
     background-image: url(images/tableh1a_bg_middle.gif);
     background-position: bottom;
-}
-
-
-.tableh1a img {
-    display: block;
 }
 
 
@@ -543,9 +538,8 @@ a:hover {
 }
 
 .icon {
-	vertical-align:middle;
-	margin-right:1px;
-	float:left;
+    vertical-align:middle;
+    margin-right:1px;
 }
 
 .comment_date{
@@ -744,7 +738,7 @@ a:hover {
 }
 
 .filmstrip_background {
-	background-color:#000000;
+    background-color:#000000;
 }
 
 /** Swfupload css **/
@@ -885,13 +879,13 @@ table#album_sort tr td {
 }
 
 table#album_sort tr td span.editAlbum {
-	margin-left: 100px;
-	font-size: 10px;
-	line-height: 100%;
-	text-decoration: underline;
-	cursor: pointer;
-	display: none;
-	color: #FF0000;
+    margin-left: 100px;
+    font-size: 10px;
+    line-height: 100%;
+    text-decoration: underline;
+    cursor: pointer;
+    display: none;
+    color: #FF0000;
 }
 
 .cpg_message_info, .cpg_message_success, .cpg_message_warning, .cpg_message_error, .cpg_message_validation {
