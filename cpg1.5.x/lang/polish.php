@@ -11,10 +11,10 @@
 
   ********************************************
   Coppermine version: 1.5.2
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/lang/english.php $
-  $Revision: 6645 $
-  $LastChangedBy: gaugau $
-  $Date: 2009-10-02 18:37:27 +0200 (Pt, 02 paź 2009) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
