@@ -27,7 +27,7 @@
  */
 
 if (!defined('IN_COPPERMINE')) {
-	die('Not in Coppermine...');
+    die('Not in Coppermine...');
 }
 
 /**
@@ -43,76 +43,76 @@ define ('ISPK_ARRAY_PATH_SEPARATOR', '/');
  */
 class Inspekt_Cage
 {
-	/**
-	 * {@internal The raw source data.  Although tempting, NEVER EVER
-	 * EVER access the data directly using this property!  Unfortunately,
-	 * we can't deny access to this in PHP4}
-	 *
-	 * Don't try to access this.  ever.
-	 *
-	 * @var array
-	 */
-	var $_source = NULL;
+    /**
+     * {@internal The raw source data.  Although tempting, NEVER EVER
+     * EVER access the data directly using this property!  Unfortunately,
+     * we can't deny access to this in PHP4}
+     *
+     * Don't try to access this.  ever.
+     *
+     * @var array
+     */
+    var $_source = NULL;
 
 
-	/**
+    /**
      *
      * @return Inspekt_Cage
      */
-	function Inspekt_Cage() {
-		// placeholder -- we're using a factory here
-	}
+    function Inspekt_Cage() {
+        // placeholder -- we're using a factory here
+    }
 
 
 
-	/**
-	 * Takes an array and wraps it inside an object.  If $strict is not set to
+    /**
+     * Takes an array and wraps it inside an object.  If $strict is not set to
      * FALSE, the original array will be destroyed, and the data can only be
      * accessed via the object's accessor methods
-	 *
+     *
      * @param array $source
      * @param boolean $strict
      * @return Inspekt_Cage
      *
      * @static
      */
-	function Factory(&$source, $strict = TRUE) {
+    function Factory(&$source, $strict = TRUE) {
 
-		if (!is_array($source)) {
-			Inspekt_Error::raiseError('$source is not an array', E_USER_ERROR);
-		}
+        if (!is_array($source)) {
+            Inspekt_Error::raiseError('$source is not an array', E_USER_ERROR);
+        }
 
-		$cage = new Inspekt_Cage();
-		$cage->_setSource($source);
+        $cage = new Inspekt_Cage();
+        $cage->_setSource($source);
 
-		if ($strict) {
-			$source = NULL;
-		}
+        if ($strict) {
+            $source = NULL;
+        }
 
-		return $cage;
-	}
-
-
-
-
-	/**
-	 * {@internal we use this to set the data array in Factory()}
-	 *
-	 * @see Factory()
-	 * @param array $newsource
-	 */
-	function _setSource(&$newsource) {
-
-		if (!is_array($newsource)) {
-			Inspekt_Error::raiseError('$source is not an array', E_USER_ERROR);
-		}
-
-		$this->_source = $newsource;
-	}
+        return $cage;
+    }
 
 
 
-	/**
+
+    /**
+     * {@internal we use this to set the data array in Factory()}
+     *
+     * @see Factory()
+     * @param array $newsource
+     */
+    function _setSource(&$newsource) {
+
+        if (!is_array($newsource)) {
+            Inspekt_Error::raiseError('$source is not an array', E_USER_ERROR);
+        }
+
+        $this->_source = $newsource;
+    }
+
+
+
+    /**
      * Returns only the alphabetic characters in value.
      *
      * @param mixed $key
@@ -120,15 +120,15 @@ class Inspekt_Cage
      *
      * @tag filter
      */
-	function getAlpha($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		return Inspekt::getAlpha($this->_getValue($key));
-	}
+    function getAlpha($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        return Inspekt::getAlpha($this->_getValue($key));
+    }
 
-	/**
+    /**
      * Returns only the alphabetic characters and digits in value.
      *
      * @param mixed $key
@@ -136,15 +136,15 @@ class Inspekt_Cage
      *
      * @tag filter
      */
-	function getAlnum($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		return Inspekt::getAlnum($this->_getValue($key));
-	}
+    function getAlnum($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        return Inspekt::getAlnum($this->_getValue($key));
+    }
 
-	/**
+    /**
      * Returns only the digits in value. This differs from getInt().
      *
      * @param mixed $key
@@ -152,15 +152,15 @@ class Inspekt_Cage
      *
      * @tag filter
      */
-	function getDigits($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		return Inspekt::getDigits($this->_getValue($key));
-	}
+    function getDigits($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        return Inspekt::getDigits($this->_getValue($key));
+    }
 
-	/**
+    /**
      * Returns dirname(value).
      *
      * @param mixed $key
@@ -168,15 +168,15 @@ class Inspekt_Cage
      *
      * @tag filter
      */
-	function getDir($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		return Inspekt::getDir($this->_getValue($key));
-	}
+    function getDir($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        return Inspekt::getDir($this->_getValue($key));
+    }
 
-	/**
+    /**
      * Returns (int) value.
      *
      * @param mixed $key
@@ -184,15 +184,15 @@ class Inspekt_Cage
      *
      * @tag filter
      */
-	function getInt($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		return Inspekt::getInt($this->_getValue($key));
-	}
+    function getInt($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        return Inspekt::getInt($this->_getValue($key));
+    }
 
-	/**
+    /**
      * Returns realpath(value).
      *
      * @param mixed $key
@@ -200,15 +200,15 @@ class Inspekt_Cage
      *
      * @tag filter
      */
-	function getPath($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		return Inspekt::getPath($this->_getValue($key));
-	}
+    function getPath($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        return Inspekt::getPath($this->_getValue($key));
+    }
 
-	/**
+    /**
      * Returns value.
      *
      * @param string $key
@@ -216,13 +216,13 @@ class Inspekt_Cage
      *
      * @tag filter
      */
-	function getRaw($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		return $this->_getValue($key);
-	}
+    function getRaw($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        return $this->_getValue($key);
+    }
 
     /**
      * Returns the value escaped with mysql_real_escape_string.
@@ -257,7 +257,7 @@ class Inspekt_Cage
         return Inspekt::getMatched($this->_getValue($key), $pattern);
     }
 
-	/**
+    /**
      * Returns value if every character is alphabetic or a digit,
      * FALSE otherwise.
      *
@@ -266,19 +266,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testAlnum($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isAlnum($this->_getValue($key))) {
-			return $this->_getValue($key);
-		}
+    function testAlnum($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isAlnum($this->_getValue($key))) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if every character is alphabetic, FALSE
      * otherwise.
      *
@@ -287,19 +287,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testAlpha($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isAlpha($this->_getValue($key))) {
-			return $this->_getValue($key);
-		}
+    function testAlpha($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isAlpha($this->_getValue($key))) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if it is greater than or equal to $min and less
      * than or equal to $max, FALSE otherwise. If $inc is set to
      * FALSE, then the value must be strictly greater than $min and
@@ -313,19 +313,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testBetween($key, $min, $max, $inc = TRUE)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isBetween($this->_getValue($key), $min, $max, $inc)) {
-			return $this->_getValue($key);
-		}
+    function testBetween($key, $min, $max, $inc = TRUE)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isBetween($this->_getValue($key), $min, $max, $inc)) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if it is a valid credit card number format. The
      * optional second argument allows developers to indicate the
      * type.
@@ -336,19 +336,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testCcnum($key, $type = NULL)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isCcnum($this->_getValue($key), $type)) {
-			return $this->_getValue($key);
-		}
+    function testCcnum($key, $type = NULL)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isCcnum($this->_getValue($key), $type)) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns $value if it is a valid date, FALSE otherwise. The
      * date is required to be in ISO 8601 format.
      *
@@ -357,19 +357,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testDate($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isDate($this->_getValue($key))) {
-			return $this->_getValue($key);
-		}
+    function testDate($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isDate($this->_getValue($key))) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if every character is a digit, FALSE otherwise.
      * This is just like isInt(), except there is no upper limit.
      *
@@ -378,19 +378,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testDigits($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isDigits($this->_getValue($key))) {
-			return $this->_getValue($key);
-		}
+    function testDigits($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isDigits($this->_getValue($key))) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if it is a valid email format, FALSE otherwise.
      *
      * @param mixed $key
@@ -398,19 +398,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testEmail($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isEmail($this->_getValue($key))) {
-			return $this->_getValue($key);
-		}
+    function testEmail($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isEmail($this->_getValue($key))) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if it is a valid float value, FALSE otherwise.
      *
      * @param mixed $key
@@ -418,19 +418,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testFloat($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isFloat($this->_getValue($key))) {
-			return $this->_getValue($key);
-		}
+    function testFloat($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isFloat($this->_getValue($key))) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if it is greater than $min, FALSE otherwise.
      *
      * @param mixed $key
@@ -439,19 +439,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testGreaterThan($key, $min = NULL)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isGreaterThan($this->_getValue($key), $min)) {
-			return $this->_getValue($key);
-		}
+    function testGreaterThan($key, $min = NULL)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isGreaterThan($this->_getValue($key), $min)) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if it is a valid hexadecimal format, FALSE
      * otherwise.
      *
@@ -460,19 +460,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testHex($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isHex($this->_getValue($key))) {
-			return $this->_getValue($key);
-		}
+    function testHex($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isHex($this->_getValue($key))) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if it is a valid hostname, FALSE otherwise.
      * Depending upon the value of $allow, Internet domain names, IP
      * addresses, and/or local network names are considered valid.
@@ -485,19 +485,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testHostname($key, $allow = ISPK_HOST_ALLOW_ALL)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isHostname($this->_getValue($key), $allow)) {
-			return $this->_getValue($key);
-		}
+    function testHostname($key, $allow = ISPK_HOST_ALLOW_ALL)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isHostname($this->_getValue($key), $allow)) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if it is a valid integer value, FALSE otherwise.
      *
      * @param mixed $key
@@ -505,19 +505,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testInt($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isInt($this->_getValue($key))) {
-			return $this->_getValue($key);
-		}
+    function testInt($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isInt($this->_getValue($key))) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if it is a valid IP format, FALSE otherwise.
      *
      * @param mixed $key
@@ -525,19 +525,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testIp($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isIp($this->_getValue($key))) {
-			return $this->_getValue($key);
-		}
+    function testIp($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isIp($this->_getValue($key))) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if it is less than $max, FALSE otherwise.
      *
      * @param mixed $key
@@ -546,19 +546,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testLessThan($key, $max = NULL)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isLessThan($this->_getValue($key), $max)) {
-			return $this->_getValue($key);
-		}
+    function testLessThan($key, $max = NULL)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isLessThan($this->_getValue($key), $max)) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if it is one of $allowed, FALSE otherwise.
      *
      * @param mixed $key
@@ -566,19 +566,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testOneOf($key, $allowed = NULL)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isOneOf($this->_getValue($key), $allowed)) {
-			return $this->_getValue($key);
-		}
+    function testOneOf($key, $allowed = NULL)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isOneOf($this->_getValue($key), $allowed)) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if it is a valid phone number format, FALSE
      * otherwise. The optional second argument indicates the country.
      *
@@ -587,19 +587,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testPhone($key, $country = 'US')
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isPhone($this->_getValue($key), $country)) {
-			return $this->_getValue($key);
-		}
+    function testPhone($key, $country = 'US')
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isPhone($this->_getValue($key), $country)) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if it matches $pattern, FALSE otherwise. Uses
      * preg_match() for the matching.
      *
@@ -609,40 +609,40 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testRegex($key, $pattern = NULL)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isRegex($this->_getValue($key), $pattern)) {
-			return $this->_getValue($key);
-		}
+    function testRegex($key, $pattern = NULL)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isRegex($this->_getValue($key), $pattern)) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
 
-	/**
-	 * Enter description here...
-	 *
-	 * @param unknown_type $key
-	 * @return unknown
-	 *
-	 * @tag validator
-	 */
-	function testUri($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isUri($this->_getValue($key))) {
-			return $this->_getValue($key);
-		}
+    /**
+     * Enter description here...
+     *
+     * @param unknown_type $key
+     * @return unknown
+     *
+     * @tag validator
+     */
+    function testUri($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isUri($this->_getValue($key))) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value if it is a valid US ZIP, FALSE otherwise.
      *
      * @param mixed $key
@@ -650,19 +650,19 @@ class Inspekt_Cage
      *
      * @tag validator
      */
-	function testZip($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		if (Inspekt::isZip($this->_getValue($key))) {
-			return $this->_getValue($key);
-		}
+    function testZip($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        if (Inspekt::isZip($this->_getValue($key))) {
+            return $this->_getValue($key);
+        }
 
-		return FALSE;
-	}
+        return FALSE;
+    }
 
-	/**
+    /**
      * Returns value with all tags removed.
      *
      * @param mixed $key
@@ -670,15 +670,15 @@ class Inspekt_Cage
      *
      * @tag filter
      */
-	function noTags($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		return Inspekt::noTags($this->_getValue($key));
-	}
+    function noTags($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        return Inspekt::noTags($this->_getValue($key));
+    }
 
-	/**
+    /**
      * Returns basename(value).
      *
      * @param mixed $key
@@ -686,84 +686,90 @@ class Inspekt_Cage
      *
      * @tag filter
      */
-	function noPath($key)
-	{
-		if (!$this->keyExists($key)) {
-			return false;
-		}
-		return Inspekt::noPath($this->_getValue($key));
-	}
+    function noPath($key)
+    {
+        if (!$this->keyExists($key)) {
+            return false;
+        }
+        return Inspekt::noPath($this->_getValue($key));
+    }
 
-	/**
+    /**
      * Checks if a key exists
      *
      * @param mixed $key
      * @return bool
      *
      */
-	function keyExists($key)
-	{
-		if (strpos($key, ISPK_ARRAY_PATH_SEPARATOR) !== FALSE) {
-			$key = trim($key, ISPK_ARRAY_PATH_SEPARATOR);
-			$keys = explode(ISPK_ARRAY_PATH_SEPARATOR, $key);
-			return $this->_keyExistsRecursive($keys, $this->_source);
-		} else {
-			return array_key_exists($key, $this->_source);
-		}
-	}
-
-	function _keyExistsRecursive($keys, $data_array) {
-		$thiskey = current($keys);
-
-		if (is_numeric($thiskey)) { // force numeric strings to be integers
-			$thiskey = (int)$thiskey;
-		}
-
-		if ( array_key_exists($thiskey, $data_array) ) {
-			if (sizeof($keys) == 1) {
-				return true;
-			} elseif ( is_array($data_array[$thiskey]) ) {
-				unset($keys[key($keys)]);
-				return $this->_keyExistsRecursive($keys, $data_array[$thiskey]);
-			}
-		} else { // if any key DNE, return false
-			return false;
-		}
-	}
-
-
-	function _getValue($key) {
-		if (strpos($key, ISPK_ARRAY_PATH_SEPARATOR)!== FALSE) {
-			$key = trim($key, ISPK_ARRAY_PATH_SEPARATOR);
-			$keys = explode(ISPK_ARRAY_PATH_SEPARATOR, $key);
-			return $this->_getValueRecursive($keys, $this->_source);
-		} elseif (get_magic_quotes_gpc()) {
-            return stripslashes($this->_source[$key]);
+    function keyExists($key)
+    {
+        if (strpos($key, ISPK_ARRAY_PATH_SEPARATOR) !== FALSE) {
+            $key = trim($key, ISPK_ARRAY_PATH_SEPARATOR);
+            $keys = explode(ISPK_ARRAY_PATH_SEPARATOR, $key);
+            return $this->_keyExistsRecursive($keys, $this->_source);
         } else {
-			return $this->_source[$key];
-		}
-	}
+            return array_key_exists($key, $this->_source);
+        }
+    }
+
+    function _keyExistsRecursive($keys, $data_array) {
+        $thiskey = current($keys);
+
+        if (is_numeric($thiskey)) { // force numeric strings to be integers
+            $thiskey = (int)$thiskey;
+        }
+
+        if ( array_key_exists($thiskey, $data_array) ) {
+            if (sizeof($keys) == 1) {
+                return true;
+            } elseif ( is_array($data_array[$thiskey]) ) {
+                unset($keys[key($keys)]);
+                return $this->_keyExistsRecursive($keys, $data_array[$thiskey]);
+            }
+        } else { // if any key DNE, return false
+            return false;
+        }
+    }
 
 
+    function _getValue($key) {
+        if (strpos($key, ISPK_ARRAY_PATH_SEPARATOR)!== FALSE) {
+            $key = trim($key, ISPK_ARRAY_PATH_SEPARATOR);
+            $keys = explode(ISPK_ARRAY_PATH_SEPARATOR, $key);
+            return $this->_getValueRecursive($keys, $this->_source);
+        } elseif (get_magic_quotes_gpc()) {
+            if (is_array($this->_source[$key])) {
+                for ($i=0; $i < count($this->_source[$key]); $i++) {
+                    $this->_source[$key][$i] = stripslashes($this->_source[$key][$i]);
+                }
+                return $this->_source[$key];
+            } else {
+                return stripslashes($this->_source[$key]);
+            }
+        } else {
+            return $this->_source[$key];
+        }
+    }
 
-	function _getValueRecursive($keys, $data_array) {
-		$thiskey = current($keys);
 
-		if (is_numeric($thiskey)) { // force numeric strings to be integers
-			$thiskey = (int)$thiskey;
-		}
+    function _getValueRecursive($keys, $data_array) {
+        $thiskey = current($keys);
 
-		if ( array_key_exists($thiskey, $data_array) ) {
-			if (sizeof($keys) == 1) {
-				return $data_array[$thiskey];
-			} elseif ( is_array($data_array[$thiskey]) ) {
-				unset($keys[key($keys)]);
-				return $this->_getValueRecursive($keys, $data_array[$thiskey]);
-			}
-		} else { // if any key DNE, return false
-			return false;
-		}
-	}
+        if (is_numeric($thiskey)) { // force numeric strings to be integers
+            $thiskey = (int)$thiskey;
+        }
+
+        if ( array_key_exists($thiskey, $data_array) ) {
+            if (sizeof($keys) == 1) {
+                return $data_array[$thiskey];
+            } elseif ( is_array($data_array[$thiskey]) ) {
+                unset($keys[key($keys)]);
+                return $this->_getValueRecursive($keys, $data_array[$thiskey]);
+            }
+        } else { // if any key DNE, return false
+            return false;
+        }
+    }
 
 
 }
