@@ -3224,7 +3224,7 @@ function theme_html_picture()
         $image_size['reduced'] = false;
     }
 
-    list($image_size['width'], $image_size['height'], , $image_size['geom']) = cpg_getimagesize($picture_url);
+    list($image_size['width'], $image_size['height'], , $image_size['geom']) = cpg_getimagesize(urldecode($picture_url));
 
     $pic_title = '';
     $mime_content = cpg_get_type($CURRENT_PIC_DATA['filename']);
