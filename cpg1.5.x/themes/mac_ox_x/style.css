@@ -735,6 +735,14 @@ a:hover {
 	background-color:#000000;
 }
 
+.prev_strip {
+	text-align: left;
+}
+
+.next_strip{
+	text-align: right;
+}
+
 .clear_float_left {
 	clear:left;
 }

@@ -658,6 +658,14 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 	background-color:#000000;
 }
 
+.prev_strip {
+	text-align: left;
+}
+
+.next_strip{
+	text-align: right;
+}
+
 /** Swfupload css **/
 div.fieldset {
     border:  2px solid #0E72A4;
