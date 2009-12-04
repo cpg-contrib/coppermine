@@ -28,6 +28,7 @@ $(document).ready(function() {
     var album           = js_vars.album;
     var maxItems        = parseInt(js_vars.max_item);
     var width           = js_vars.thumb_width;
+    var thumb_mode      = js_vars.thumb_use;
     var cat             = parseInt(js_vars.cat);
     // Display the stars
     displayStars();
@@ -88,6 +89,12 @@ $(document).ready(function() {
     //set postion if it is at end
     if(nextPosition > (NumberOfPics-picQueue)) {
         nextPosition    = (NumberOfPics-picQueue);
+    }
+    
+    // set filmstrip height to thumb_width if thumb_use is not wd
+    if (thumb_mode != 'wd') {
+    	stripheight = parseInt(width)+10;
+      $('.tape').css("height", stripheight);
     }
 
     // Bind a onclick event on element with id filmstrip_next
