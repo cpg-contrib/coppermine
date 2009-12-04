@@ -3065,7 +3065,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
 
     /** set to variable with to javascript*/
     set_js_var('thumb_width', $thumb_width);
-    set_js_var('thumb_use', $thumb_use);
+    set_js_var('thumb_use', $CONFIG['thumb_use']);
 
     if ($CONFIG['max_film_strip_items'] % 2 == 0) {
         $max_item  = $CONFIG['max_film_strip_items'] + 1;
