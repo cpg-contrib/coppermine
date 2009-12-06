@@ -126,10 +126,6 @@ body {
         background: #666666;
 }
 
-.tableb_highlight {
-    background-color: #E0ECFF;
-}
-
 /* Borders for input controls */
 .textinput, .listbox, .button, .admin_menu  {
 	border: 1px solid #666666;
