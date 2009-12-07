@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-12-07 [C] Added loader.gif to image class (thread ID 62780) {Timo}
 2009-12-02 [C] Prev button in filmstrip wrong position in some browsers (thread ID 62710) {Timo}
 2009-11-30 [B] Use recursive stripslashes function in Inspekt (thread ID 62532) {eenemeenemuu}
 2009-11-30 [B] Fixed navigation section of thumbnails page in eyeball theme (thread ID 62682) {eenemeenemuu}

@@ -126,6 +126,7 @@ body {
 
 .image { 
 	border: 1px solid #000000; 
+  background:url(images/loader.gif) no-repeat center;
 }
 
 a:link .image { 
