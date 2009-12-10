@@ -172,7 +172,7 @@ $(document).ready(function() {
                   else
                   {
                     $('.tape').css("marginTop", '0px');
-                    var thumb = '<tr><td align="center" class="thumb" ><a style="vertical-align: middle; text-align: center; width: '+width+'px; height: '+width+'px; float: left" href="' + data['target'] + '#top_display_media"><img border="0"  class="strip_image" src="' + data['url'] + '"/></a></td></tr>';
+                    var thumb = '<tr><td align="center" class="thumb" style="vertical-align: middle;height:'+width+'px;"><a style="vertical-align: middle; text-align: center; width: '+width+'px; float: left" href="' + data['target'] + '#top_display_media"><img border="0"  class="strip_image" src="' + data['url'] + '"/></a></td></tr>';
                     $('.tape').append(thumb);
                     tempWidth = parseInt(width) +10;
                     $('.tape').animate({
@@ -203,7 +203,7 @@ $(document).ready(function() {
                     $('.remove').parents('tr:eq(0)').remove();
                   }
                   $('.tape').css("marginTop", '0px');
-                  var thumb = '<tr><td align="center"  class="thumb" ><a style="vertical-align: middle; text-align: center; width: '+width+'px; height: '+width+'px; float: left" href="' + link_cache[nextPosition + $go_next] + '#top_display_media"><img border="0"  class="strip_image" src="' + url_cache[nextPosition + $go_next] + '"/></a></td></tr>';
+                  var thumb = '<tr><td align="center"  class="thumb" style="vertical-align: middle;height:'+width+'px;"><a style="vertical-align: middle; text-align: center; width: '+width+'px; float: left" href="' + link_cache[nextPosition + $go_next] + '#top_display_media"><img border="0"  class="strip_image" src="' + url_cache[nextPosition + $go_next] + '"/></a></td></tr>';
                   $('.tape').append(thumb);
                   tempWidth = parseInt(width) +10;
                   $('.tape').animate({
