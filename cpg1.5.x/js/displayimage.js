@@ -30,6 +30,7 @@ $(document).ready(function() {
     var width           = js_vars.thumb_width;
     var thumb_mode      = js_vars.thumb_use;
     var cat             = parseInt(js_vars.cat);
+    var vertstrip       = js_vars.vertstrip;
     // Display the stars
     displayStars();
     // Display the slideshow buttons
@@ -37,7 +38,20 @@ $(document).ready(function() {
     // Display the pic info button
     printPicInfoButton();
 
-    /** The code below this is filmstrip specific **/
+   /** The code below this is filmstrip specific **/
+   // vertical or horizontal film strip
+   if (typeof vertstrip == 'undefined') {
+      striptype = 'hori';
+      leftimage = 'left.png';
+      rightimage = 'right.png';
+   } 
+   else
+   {
+      striptype = 'vert';
+      leftimage = 'up.png';
+      rightimage = 'down.png';
+   }
+
    // We need not execute the filmstrip js if there are not enough pictures in the album
     if(maxItems%2==0) {
         maxItems    = maxItems +1;
@@ -74,8 +88,8 @@ $(document).ready(function() {
     }
 
     // button HTML
-    $('td.prev_strip').html("<a id=\"filmstrip_prev\" rel=\"nofollow\" style=\"cursor: pointer;\"><img src=\"./images/icons/left.png\" border=\"0\" /></a>");
-    $('td.next_strip').html("<a id=\"filmstrip_next\" rel=\"nofollow\" style=\"cursor: pointer;\"><img src=\"./images/icons/right.png\" border=\"0\" /></a>");
+    $('td.prev_strip').html("<a id=\"filmstrip_prev\" rel=\"nofollow\" style=\"cursor: pointer;\"><img src=\"./images/icons/"+leftimage+"\" border=\"0\" /></a>");
+    $('td.next_strip').html("<a id=\"filmstrip_next\" rel=\"nofollow\" style=\"cursor: pointer;\"><img src=\"./images/icons/"+rightimage+"\" border=\"0\" /></a>");
     
     // hide buttons if no further pics in direction
     if (nextPosition < (NumberOfPics - picQueue)) { $('#filmstrip_next').css( "visibility", "visible"); } else { $('#filmstrip_next').css( "visibility", "hidden"); }
@@ -91,155 +105,225 @@ $(document).ready(function() {
         nextPosition    = (NumberOfPics-picQueue);
     }
     
-    // set filmstrip height to thumb_width if thumb_use is not wd
-    if (thumb_mode != 'wd') {
-    	stripheight = parseInt(width)+10;
-      $('.tape').css("height", stripheight);
-    }
-
-    // Bind a onclick event on element with id filmstrip_next
-    $('#filmstrip_next').click(function() {
-
-        // check if animation is already in progress; if yes, do nothing
-        if (typeof stripAniInProgress != 'undefined') 
-        { if (stripAniInProgress) return true; }
-
-        // Get the url for next set of thumbnails. This will be the href of 'next' link;
-        nextPosition = nextPosition +1;
-        stripAniInProgress = 1;
-
-
-        if(((NumberOfPics-1)-(picQueue-1)) <= nextPosition ) {
-            $('#filmstrip_next').css( "visibility", "hidden"); //hide();
-        }
-        //assign a variable to check initial position to next
-        if(nextPosition < (picQueue-1)) {
-        // nextPosition = picQueue-1;
-        }
-
-        if(nextPosition > (picQueue-1)) {
-            $('#filmstrip_prev').css( "visibility", "visible"); // = "visible"; // show();
-        }
-
-        if (!url_cache[nextPosition + $go_next]) {
-            if (!isNaN(cat)) {
-                addCat = '&cat=' + cat;
-            } else {
-                addCat = "";
-            }
-
-            var next_url = "displayimage.php?film_strip=1&album=" + album + "&ajax_call=2&pos=" + nextPosition+addCat;
-            // Send the ajax request for getting next set of filmstrip thumbnails
-            $.getJSON(next_url, function(data) {
-
-                url_cache[nextPosition+$go_next]  = data['url'];
-                link_cache[nextPosition+$go_next] = data['target'];
-
+      // set filmstrip height to thumb_width if thumb_use is not wd
+      if (thumb_mode != 'wd' && striptype == 'hori') {
+        stripheight = parseInt(width)+10;
+        $('.tape').css("height", stripheight);
+      }
+      if (striptype == 'vert')
+      {
+        $('#film').css("height", maxItems*parseInt(width));
+        $('#film').css("overflowy" , "hidden");
+      }
+          
+      // Bind an onclick event on element with id filmstrip_next
+      $('#filmstrip_next').click(function() {
+  
+          // check if animation is already in progress; if yes, do nothing
+          if (typeof stripAniInProgress != 'undefined') 
+          { if (stripAniInProgress) return true; }
+  
+          // Get the url for next set of thumbnails. This will be the href of 'next' link;
+          nextPosition = nextPosition +1;
+          stripAniInProgress = 1;
+  
+          if(((NumberOfPics-1)-(picQueue-1)) <= nextPosition ) {
+              $('#filmstrip_next').css( "visibility", "hidden");
+          }
+          //assign a variable to check initial position to next
+          if(nextPosition < (picQueue-1)) {
+          // nextPosition = picQueue-1;
+          }
+  
+          if(nextPosition > (picQueue-1)) {
+              $('#filmstrip_prev').css( "visibility", "visible"); // = "visible";
+          }
+  
+          if (!url_cache[nextPosition + $go_next]) {
+              if (!isNaN(cat)) {
+                  addCat = '&cat=' + cat;
+              } else {
+                  addCat = "";
+              }
+  
+              var next_url = "displayimage.php?film_strip=1&album=" + album + "&ajax_call=2&pos=" + nextPosition+addCat;
+              // Send the ajax request for getting next set of filmstrip thumbnails
+              $.getJSON(next_url, function(data) {
+  
+                  url_cache[nextPosition+$go_next]  = data['url'];
+                  link_cache[nextPosition+$go_next] = data['target'];
+  
+                  var itemLength = (striptype == 'hori') ? $(".tape tr > .thumb").length : $(".thumb").length;
+                  var itemsToRemove = maxItems+1;
+                  if (itemLength == itemsToRemove) {
+                      if (striptype == 'hori') $('.remove').remove();
+                      else $('.remove').parents('tr:eq(0)').remove();
+                  }
+                  if (striptype == 'hori')
+                  {
+                    $('.tape').css("marginLeft", '0px');
+                    var thumb = '<td align="center" class="thumb" ><a style="width: '+width+'px; float: left" href="' + data['target'] + '#top_display_media"><img border="0"  class="strip_image" src="' + data['url'] + '"/></a></td>';
+                    $('.tape tr').append(thumb);
+                    tempWidth = parseInt(width) +3;
+                    $('.tape').animate({
+                        marginLeft: "-"+tempWidth+"px"
+                        },250,"linear",function() {stripAniInProgress = 0;} );
+                  }
+                  else
+                  {
+                    $('.tape').css("marginTop", '0px');
+                    var thumb = '<tr><td align="center" class="thumb" ><a style="vertical-align: middle; text-align: center; width: '+width+'px; height: '+width+'px; float: left" href="' + data['target'] + '#top_display_media"><img border="0"  class="strip_image" src="' + data['url'] + '"/></a></td></tr>';
+                    $('.tape').append(thumb);
+                    tempWidth = parseInt(width) +10;
+                    $('.tape').animate({
+                        marginTop: "-"+tempWidth+"px"
+                        },250,"linear",function() {stripAniInProgress = 0;} );
+                  }
+                  $('.thumb').eq(0).addClass("remove");
+              });
+          } else {
+              if (striptype == 'hori')
+              {
                 var itemLength = $(".tape tr > .thumb").length;
-                var itemsToRemove = maxItems+1;
-                if (itemLength == itemsToRemove) {
+                if (itemLength == (maxItems+1)) {
                     $('.remove').remove();
                 }
                 $('.tape').css("marginLeft", '0px');
-                var thumb = '<td align="center" class="thumb" ><a style="width: '+width+'px; float: left" href="' + data['target'] + '#top_display_media"><img border="0"  class="strip_image" src="' + data['url'] + '"/></a></td>';
+                var thumb = '<td align="center"  class="thumb" ><a style="width: '+width+'px; float: left" href="' + link_cache[nextPosition + $go_next] + '#top_display_media"><img border="0"  class="strip_image" src="' + url_cache[nextPosition + $go_next] + '"/></a></td>';
                 $('.tape tr').append(thumb);
                 tempWidth = parseInt(width) +3;
                 $('.tape').animate({
                     marginLeft: "-"+tempWidth+"px"
                     },250,"linear",function() {stripAniInProgress = 0;} );
-
-                $('.thumb').eq(0).addClass("remove");
-            });
-        } else {
-            var itemLength = $(".tape tr > .thumb").length;
-            if (itemLength == (maxItems+1)) {
-                $('.remove').remove();
-            }
-            $('.tape').css("marginLeft", '0px');
-            var thumb = '<td align="center"  class="thumb" ><a style="width: '+width+'px; float: left" href="' + link_cache[nextPosition + $go_next] + '#top_display_media"><img border="0"  class="strip_image" src="' + url_cache[nextPosition + $go_next] + '"/></a></td>';
-            $('.tape tr').append(thumb);
-            tempWidth = parseInt(width) +3;
-            $('.tape').animate({
-                marginLeft: "-"+tempWidth+"px"
-                },250,"linear",function() {stripAniInProgress = 0;} );
-            
-
-            $('.thumb').eq(0).addClass("remove");
-        }
-    });
-
-
-    // Bind a onclick event on element with id filmstrip_prev
-    $('#filmstrip_prev').click(function() {
-        
-        // check if animation is already in progress; if yes, do nothing
-        if (typeof stripAniInProgress != 'undefined') 
-        { if (stripAniInProgress) return true; }
-        
-        // Get the url for previous set of thumbnails. This will be the href of 'previous' link
-        nextPosition = nextPosition -1;
-        stripAniInProgress = 1;
-
-        if(nextPosition >= ((NumberOfPics-1)-(picQueue-1))) {
-            var nextPosition_to = (NumberOfPics-1)-(picQueue-1);
-        } else {
-            var nextPosition_to = nextPosition;
-        }
-
-        if(nextPosition_to <= (NumberOfPics-(picQueue))) {
-            $('#filmstrip_next').css( "visibility", "visible"); //style.visibility = "visible"; // show();
-        }
-
-        if(nextPosition_to < (picQueue)) {
-            $('#filmstrip_prev').css( "visibility", "hidden");  // hide();
-        }
-
-        if(!url_cache[nextPosition-$go_next]) {
-
-            if (!isNaN(cat)) {
-                addCat = '&cat=' + cat;
-            } else {
-                addCat = "";
-            }
-
-            var prev_url = "displayimage.php?film_strip=1&album="+album+"&ajax_call=1&pos="+nextPosition+addCat;
-            $.getJSON(prev_url, function(data) {
-                url_cache[nextPosition-$go_next]  = data['url'];
-                link_cache[nextPosition-$go_next] = data['target'];
-
-                var itemLength = $(".tape tr> .thumb").length;
+              }
+              else
+                {
+                  var itemLength = $(".thumb").length;
+                  if (itemLength == (maxItems+1)) {
+                    $('.remove').parents('tr:eq(0)').remove();
+                  }
+                  $('.tape').css("marginTop", '0px');
+                  var thumb = '<tr><td align="center"  class="thumb" ><a style="vertical-align: middle; text-align: center; width: '+width+'px; height: '+width+'px; float: left" href="' + link_cache[nextPosition + $go_next] + '#top_display_media"><img border="0"  class="strip_image" src="' + url_cache[nextPosition + $go_next] + '"/></a></td></tr>';
+                  $('.tape').append(thumb);
+                  tempWidth = parseInt(width) +10;
+                  $('.tape').animate({
+                      marginTop: "-"+tempWidth+"px"
+                      },250,"linear",function() {stripAniInProgress = 0;} );
+                }
+  
+              $('.thumb').eq(0).addClass("remove");
+          }
+      });
+  
+  
+      // Bind a onclick event on element with id filmstrip_prev
+      $('#filmstrip_prev').click(function() {
+          
+          // check if animation is already in progress; if yes, do nothing
+          if (typeof stripAniInProgress != 'undefined') 
+          { if (stripAniInProgress) return true; }
+          
+          // Get the url for previous set of thumbnails. This will be the href of 'previous' link
+          nextPosition = nextPosition -1;
+          stripAniInProgress = 1;
+  
+          if(nextPosition >= ((NumberOfPics-1)-(picQueue-1))) {
+              var nextPosition_to = (NumberOfPics-1)-(picQueue-1);
+          } else {
+              var nextPosition_to = nextPosition;
+          }
+  
+          if(nextPosition_to <= (NumberOfPics-(picQueue))) {
+              $('#filmstrip_next').css( "visibility", "visible"); //style.visibility = "visible"; // show();
+          }
+  
+          if(nextPosition_to < (picQueue)) {
+              $('#filmstrip_prev').css( "visibility", "hidden");  // hide();
+          }
+  
+          if(!url_cache[nextPosition-$go_next]) {
+  
+              if (!isNaN(cat)) {
+                  addCat = '&cat=' + cat;
+              } else {
+                  addCat = "";
+              }
+  
+              var prev_url = "displayimage.php?film_strip=1&album="+album+"&ajax_call=1&pos="+nextPosition+addCat;
+              $.getJSON(prev_url, function(data) {
+                  url_cache[nextPosition-$go_next]  = data['url'];
+                  link_cache[nextPosition-$go_next] = data['target'];
+                  
+                  if (striptype == 'hori')
+                  {
+                    var itemLength = $(".tape tr> .thumb").length;
+                    if (itemLength == (maxItems+1)) {
+                        $('.remove').remove();
+                    }
+  
+                    $('.tape').css("marginLeft", '-'+width+'px');
+                    var thumb_prev = '<td align="center" class="thumb" ><a style="width: '+width+'px; float: left" href="'+data['target']+'#top_display_media"><img border="0" class="strip_image" src="'+data['url']+'"/></a></td>';
+                    $('.tape tr').prepend(thumb_prev);
+  
+                    $('.tape').animate({
+                        marginLeft: "0px"
+                        },250,"linear",function() {stripAniInProgress = 0;} );
+                  }
+                  else
+                  {
+                    var itemLength = $(".thumb").length;
+                    if (itemLength == (maxItems+1)) {
+                      $('.remove').parents('tr:eq(0)').remove();
+                    }
+  
+                    $('.tape').css("marginTop", '-'+width+'px');
+                    var thumb_prev = '<tr><td align="center" class="thumb" ><a style="vertical-align: middle; text-align: center; width: '+width+'px; height: '+width+'px; float: left" href="'+data['target']+'#top_display_media"><img border="0" class="strip_image" src="'+data['url']+'"/></a></td></tr>';
+                    $('.tape').prepend(thumb_prev);
+  
+                    $('.tape').animate({
+                        marginTop: "0px"
+                        },250,"linear",function() {stripAniInProgress = 0;} );
+                  }
+  
+                  $('.thumb').eq((maxItems)).addClass("remove");
+              });
+          } else {
+              if (striptype == 'hori')
+              {
+                var itemLength = $(".tape tr > .thumb").length;
                 if (itemLength == (maxItems+1)) {
                     $('.remove').remove();
                 }
-
+  
                 $('.tape').css("marginLeft", '-'+width+'px');
-                var thumb_prev = '<td align="center" class="thumb" ><a style="width: '+width+'px; float: left" href="'+data['target']+'#top_display_media"><img border="0" class="strip_image" src="'+data['url']+'"/></a></td>';
+                var thumb_prev = '<td align="center" class="thumb" ><a style="width: '+width+'px; float: left" href="'+link_cache[nextPosition-$go_next]+'#top_display_media"><img border="0"  class="strip_image" src="'+url_cache[nextPosition-$go_next]+'"/></a></td>';
                 $('.tape tr').prepend(thumb_prev);
-
+  
                 $('.tape').animate({
                     marginLeft: "0px"
                     },250,"linear",function() {stripAniInProgress = 0;} );
+             }
+             else
+             {
+               var itemLength = $(".thumb").length;
+               if (itemLength == (maxItems+1)) {
+                  $('.remove').parents('tr:eq(0)').remove();
+               }
+  
+               $('.tape').css("marginTop", '-'+width+'px');
+               var thumb_prev = '<tr><td align="center" class="thumb" ><a style="vertical-align: middle; text-align: center; width: '+width+'px; height: '+width+'px; float: left" href="'+link_cache[nextPosition-$go_next]+'#top_display_media"><img border="0"  class="strip_image" src="'+url_cache[nextPosition-$go_next]+'"/></a></td></tr>';
+               $('.tape').prepend(thumb_prev);
+  
+               $('.tape').animate({
+                   marginTop: "0px"
+                   },250,"linear",function() {stripAniInProgress = 0;} );
+             }
 
-                $('.thumb').eq((maxItems)).addClass("remove");
-            });
-        } else {
-            var itemLength = $(".tape tr > .thumb").length;
-            if (itemLength == (maxItems+1)) {
-                $('.remove').remove();
-            }
+              $('.thumb').eq(maxItems).addClass("remove");
+          }
 
-            $('.tape').css("marginLeft", '-'+width+'px');
-            var thumb_prev = '<td align="center" class="thumb" ><a style="width: '+width+'px; float: left" href="'+link_cache[nextPosition-$go_next]+'#top_display_media"><img border="0"  class="strip_image" src="'+url_cache[nextPosition-$go_next]+'"/></a></td>';
-            $('.tape tr').prepend(thumb_prev);
+      });
 
-            $('.tape').animate({
-                marginLeft: "0px"
-                },250,"linear",function() {stripAniInProgress = 0;} );
-
-            $('.thumb').eq(maxItems).addClass("remove");
-        }
-
-    });
 });
 
 
