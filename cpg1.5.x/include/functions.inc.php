@@ -4472,6 +4472,7 @@ function is_referer_search_engine($engine = 'google')
  **/
 function cpg_get_custom_include($path = '')
 {
+    global $CONFIG, $CPG_PHP_SELF, $REFERER, $CPG_REFERER, $LINEBREAK, $BRIDGE, $USER, $USER_DATA, $THEME_DIR, $ICON_DIR, $FAVPICS, $RESTRICTEDWHERE, $FORBIDDEN_SET_DATA, $CURRENT_ALBUM_KEYWORD, $CURRENT_CAT_DEPTH, $FORBIDDEN_SET, $CURRENT_CAT_NAME, $CPG_PLUGINS, $JS;
     $return = '';
 
     // check if path is set in config

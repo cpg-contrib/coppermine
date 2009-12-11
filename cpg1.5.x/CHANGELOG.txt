@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-12-11 [O] Added coppermine globals to custom_include function to allow usage of those variables from within the custom header or footer files {GauGau} {Timo}
 2009-12-10 [B] Added support for vertical filmstrip (thread ID 62740) {Timo}
 2009-12-07 [C] Added loader.gif to image class (thread ID 62780) {Timo}
 2009-12-02 [C] Prev button in filmstrip wrong position in some browsers (thread ID 62710) {Timo}
