@@ -434,10 +434,14 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
                 //return false;
                 return array('error' => $ERROR);
             }
-            if ($imginfo[2] == GIS_GIF)
-              $dst_img = imagecreate($destWidth, $destHeight);
-            else
-              $dst_img = imagecreatetruecolor($destWidth, $destHeight);
+            if ($imginfo[2] == GIS_GIF) {
+                $dst_img = imagecreate($destWidth, $destHeight);
+            } else {
+                $dst_img = imagecreatetruecolor($destWidth, $destHeight);
+                if ($imginfo[2] == GIS_PNG) {
+                    imagealphablending($dst_img, false);
+                }
+            }
             imagecopyresampled($dst_img, $src_img, 0, 0, $xOffset, $yOffset, (int)$destWidth, (int)$destHeight, $srcWidth, $srcHeight);
             touch($dest_file);
             $fh=fopen($dest_file,'w');
@@ -512,7 +516,12 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
                 ImageCopy($dst_img,$logoImage,$src_x,$src_y,0,0,$logoW,$logoH);
             }
 
-            imagejpeg($dst_img, $dest_file, $CONFIG['jpeg_qual']);
+            if ($imginfo[2] == GIS_PNG) {
+                imagesavealpha($dst_img, true);
+                imagepng($dst_img, $dest_file, round((100 - $CONFIG['jpeg_qual']) / 10));
+            } else {
+                imagejpeg($dst_img, $dest_file, $CONFIG['jpeg_qual']);
+            }
             imagedestroy($src_img);
             imagedestroy($dst_img);
             break;

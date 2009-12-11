@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-12-11 [B] Preserve alpha channel in png thumbnails (thread ID 62286) {eenemeenemuu}
 2009-12-11 [M] Updated version count from cpg1.5.2 to cpg1.5.3 to prepare the next release {GauGau}
 2009-12-11 [O] Added coppermine globals to custom_include function to allow usage of those variables from within the custom header or footer files {GauGau} {Timo}
 2009-12-10 [B] Added support for vertical filmstrip (thread ID 62740) {Timo}
