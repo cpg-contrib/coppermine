@@ -9,7 +9,7 @@
     as published by the Free Software Foundation.
 
     ********************************************
-    Coppermine version: 1.5.2
+    Coppermine version: 1.5.3
     $HeadURL$
     $Revision$
     $LastChangedBy$
