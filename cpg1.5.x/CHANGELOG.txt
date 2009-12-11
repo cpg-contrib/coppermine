@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-12-11 [B] Fixed typo in Polish language file {eenemeenemuu}
 2009-12-11 [B] Fixed template error with certain settings for comments and smileys (thread ID 62835) {eenemeenemuu}
 2009-12-11 [B] Preserve alpha channel in png thumbnails (thread ID 62286) {eenemeenemuu}
 2009-12-11 [M] Updated version count from cpg1.5.2 to cpg1.5.3 to prepare the next release {GauGau}
