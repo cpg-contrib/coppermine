@@ -3903,7 +3903,11 @@ function theme_html_comments($pid)
     } else { // user can not post comments
         if ($CONFIG['comment_promote_registration'] == 1 && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
           template_extract_block($template_add_your_comment, 'user_name_input');
-          template_extract_block($template_add_your_comment, 'input_box_smilies');
+          if ($CONFIG['enable_smileys'] == 1) {
+            template_extract_block($template_add_your_comment, 'input_box_smilies');
+          } else {
+            template_extract_block($template_add_your_comment, 'input_box_no_smilies');
+          }
           template_extract_block($template_add_your_comment, 'comment_captcha');
           template_extract_block($template_add_your_comment, 'smilies');
           template_extract_block($template_add_your_comment, 'submit');
