@@ -43,22 +43,24 @@ h1 {
 h2 {
     font-weight: bolder;
     font-size: 2.0em;
-    line-height: 1.3em;
-    padding-top:20px;
+    line-height: 1.2em;
+    padding-top:18px;
     padding-bottom:0px;
 }
 
 h3 {
     font-weight: bolder;
     font-size: 1.6em;
-    padding-top:20px;
+	line-height: 1.1em;
+    padding-top:16px;
     padding-bottom:0px;
 }
 
 h4 {
     font-weight: bold;
     font-size: 1.2em;
-    padding-top:20px;
+	line-height: 1.0em;
+    padding-top:12px;
     padding-bottom:0px;
     margin-bottom:0px;
 }
@@ -66,7 +68,16 @@ h4 {
 h5 {
     font-weight: bold;
     font-size: 1.0em;
-    padding-top:20px;
+	line-height: 0.9em;
+    padding-top:8px;
+    padding-bottom:0px;
+}
+
+h6 {
+    font-weight: bold;
+    font-size: 0.9em;
+	line-height: 0.9em;
+    padding-top:4px;
     padding-bottom:0px;
 }
 
