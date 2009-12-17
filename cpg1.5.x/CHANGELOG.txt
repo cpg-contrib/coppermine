@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-12-17 [B] Fixed server side 404 errors when rating is disabled (thread ID 62747) {eenemeenemuu}
 2009-12-17 [C] Fixed typo in inline CSS (thread ID 62885) {GauGau}
 2009-12-11 [D] Added announcement icon {GauGau}
 2009-12-11 [B] Fixed typo in Polish language file {eenemeenemuu}

@@ -400,8 +400,6 @@ function buildRating() {
         if(js_vars.can_vote == 'true') {
             rating_stars += '<img style="cursor:pointer" src="' + js_vars.theme_dir + 'images/' + star11 + '.gif" id="' + js_vars.picture_id + '_'+(i+1)+'"'
             rating_stars += ' title="' + (i+1) + '" onmouseout="changeout(this)" onmouseover="changeover(this)" onclick="rate(this)" />';
-        }else{
-            rating_stars += '<img src="' + js_vars.theme_dir + 'images/' + star11 + '.gif" alt="' + js_vars.rating + '" title="' + js_vars.rating + '"/>';
         }
     }
     return rating_stars;
