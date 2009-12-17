@@ -675,7 +675,7 @@ $template_thumb_view_title_row = <<<EOT
                 </td>
             </tr>
             <tr>
-                <td colspan="2" style=";text-align:right">
+                <td colspan="2" style="text-align:right;">
 <!-- BEGIN admin_buttons -->
                     <a href="modifyalb.php?album={ALBUM_ID}" class="admin_menu">{MODIFY}</a>
                     &nbsp;&nbsp;
