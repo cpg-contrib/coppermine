@@ -132,41 +132,42 @@ EOT;
       }
     }
 
-    $plugins_count = count($installed_plugins);
     $installed_count = 0;
     $loop_counter = 0;
-    foreach ($installed_plugins as $thisplugin) {
-        $installed_count++;
-        unset($extra_info);
-        unset($install_info);
-        include('./plugins/'.$thisplugin['path'].'/configuration.php');
-        $pluginPath = $thisplugin['path'];
+    if (isset($installed_plugins) == TRUE) {
+        $plugins_count = count($installed_plugins);
+        foreach ($installed_plugins as $thisplugin) {
+            $installed_count++;
+            unset($extra_info);
+            unset($install_info);
+            include('./plugins/'.$thisplugin['path'].'/configuration.php');
+            $pluginPath = $thisplugin['path'];
 
-        $safename = addslashes(str_replace('&nbsp;', '', $name));
-        if (isset($extra_info) == TRUE) {
-              $extra = $extra_info;
-            } else {
-              $extra = '';
-            }
+            $safename = addslashes(str_replace('&nbsp;', '', $name));
+            if (isset($extra_info) == TRUE) {
+                  $extra = $extra_info;
+                } else {
+                  $extra = '';
+                }
 
-        if (sizeof($thisplugin['error']) > 0) {
-            $error = $thisplugin['error']['desc'];
-            $extra = '<tr><td class="tableb" width="100%" colspan="2">'.
+            if (sizeof($thisplugin['error']) > 0) {
+                $error = $thisplugin['error']['desc'];
+                $extra = '<tr><td class="tableb" width="100%" colspan="2">'.
                      '<strong>'.$lang_common['error'].':</strong> <span style="color:red;">'.$error.'</span>'.
                      '</td></tr>'.$extra;
-        }
+            }
 
-        if ($loop_counter == 0) {
-            $row_style_class = 'tableb';
-        } else {
-            $row_style_class = 'tableb tableb_alternate';
-        }
-        $loop_counter++;
-        if ($loop_counter > 1) {
-            $loop_counter = 0;
-        }
+            if ($loop_counter == 0) {
+                $row_style_class = 'tableb';
+            } else {
+                $row_style_class = 'tableb tableb_alternate';
+            }
+            $loop_counter++;
+            if ($loop_counter > 1) {
+                $loop_counter = 0;
+            }
 
-        echo <<<EOT
+            echo <<<EOT
         <tr>
             <td width="90%" class="{$row_style_class}">
                 <table border="0" width="100%" cellspacing="0" cellpadding="0" class="maintable">
@@ -191,31 +192,31 @@ EOT;
             <table border="0" width="100%" cellspacing="0" cellpadding="0">
             <tr>
 EOT;
-        if (($thisplugin['index'] > 0) && ($plugins_count > 1)) {
-            $up = cpg_fetch_icon('up', 0);
-            echo <<<EOT
+            if (($thisplugin['index'] > 0) && ($plugins_count > 1)) {
+                $up = cpg_fetch_icon('up', 0);
+                echo <<<EOT
             <td width="3%" align="center" valign="middle">
                 <a href="pluginmgr.php?op=moveu&amp;p={$thisplugin['plugin_id']}&amp;form_token={$form_token}&amp;timestamp={$timestamp}">{$up}</a>
             </td>
 EOT;
-        } else {
-            echo '<td width="3%"></td>';
-        }
+            } else {
+                echo '<td width="3%"></td>';
+            }
 
-        if ($thisplugin['index'] < ($plugins_count - 1)) {
-            $down = cpg_fetch_icon('down', 0); 
-            echo <<<EOT
+            if ($thisplugin['index'] < ($plugins_count - 1)) {
+                $down = cpg_fetch_icon('down', 0); 
+                echo <<<EOT
             <td width="3%" align="center" valign="middle">
                 <a href="pluginmgr.php?op=moved&amp;p={$thisplugin['plugin_id']}&amp;form_token={$form_token}&amp;timestamp={$timestamp}">{$down}</a>
             </td>
 EOT;
-        } else {
-            echo '<td width="3%"></td>';
-        }
+            } else {
+                echo '<td width="3%"></td>';
+            }
 
-        $confirm_function = ($CONFIG['enable_plugins'] == 1) ? 'confirmUninstall' : 'confirmRemove';
-        $delete = cpg_fetch_icon('plugin_uninstall', 0);
-        echo <<<EOT
+            $confirm_function = ($CONFIG['enable_plugins'] == 1) ? 'confirmUninstall' : 'confirmRemove';
+            $delete = cpg_fetch_icon('plugin_uninstall', 0);
+            echo <<<EOT
             <td width="3%" align="center" valign="middle">
                 <a href="pluginmgr.php?op=uninstall&amp;p={$thisplugin['plugin_id']}&amp;form_token={$form_token}&amp;timestamp={$timestamp}" onclick="return {$confirm_function}('$safename')" title="{$lang_pluginmgr_php['uninstall']}">
                     {$delete}
@@ -227,6 +228,7 @@ EOT;
         </td>
         </tr>
 EOT;
+        }
     }
 
     if ($installed_count == 0) {
