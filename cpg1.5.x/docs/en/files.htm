@@ -108,16 +108,22 @@ Use keywords to link files to other albums (see description in the albums sectio
 	If a custom thumbnail that corresponds to a video file according to the naming scheme exists within the same folder, it will be used. Therefore, you shouldn't (and mustn't) use the http upload mechanism built into coppermine to upload the custom thumbnail, nor are you supposed to batch-add the custom thumbnail. You just FTP-upload it and that's it! We don't want it to reside in the database.</li>
 </ul>
 
-<h2>Frequently Asked Questions (FAQ):</h2>
+<a name="cust_thmb_faq"></a><h3>Custom thumbnails FAQ<a href="#cust_thmb_faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <ul>
-<li><strong>Quote</strong><br /><div class="quote">I have a video named <strong>'movie.wmv'</strong>, when I upload a thumbnail for it <strong>'thumb_movie.jpg'</strong> it replaces the thumbnails for multiple videos!!!!</div>
-Duhh. <strong>'thumb_movie.jpg'</strong> is a <em>media-specific</em> thumbnail. Rename the video and the thumbnail with something other than just <strong>'movie'</strong>.</li>
-<li><strong>Quote</strong><br /><div class="quote">I can't find my user's folder!</div>
-From within Coppermine, browse to the user's album. Look in the url of your browser and you should see the folder's name. (See screenshot for an example.)<br />
-<img src="images/user_folder_link.gif" alt=""/><br />
-Your users can upload their own thumbnails by using this trick: Create an album. Change the permissions on it so no one can view it except that specific user. Then upload the fullsized images of the thumbnails to this folder. Files outside this album will be able to use the thumbnails of these images. (See above for naming.)</li>
-<li><strong>Quote</strong><br /><div class="quote">How do I stop my users from creating their own custom thumbnails?</div>
-Currently, this is not possible.</li>
+<li>
+	<a name="cust_thmb_faq_multiple_videos"></a><h4>I have a video named <tt class="code">movie.wmv</tt>, when I upload a thumbnail for it <tt class="code">thumb_movie.jpg</tt> it replaces the thumbnails for multiple videos!<a href="#cust_thmb_faq_multiple_videos" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+	Duhh. <tt class="code">thumb_movie.jpg</tt> is a <em>media-specific</em> thumbnail. Rename the video and the thumbnail with something other than just <strong>'movie'</strong>.
+</li>
+<li>
+	<a name="cust_thmb_faq_user_folder"></a><h4>I can't find my user's folder!<a href="#cust_thmb_faq_user_folder" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+	From within Coppermine, browse to the user's album. Look in the url of your browser and you should see the folder's name. (See screenshot for an example.)<br />
+	<img src="images/user_folder_link.gif" border="0" width="387" height="152" alt="" /><br />
+	Your users can upload their own thumbnails by using this trick: Create an album. Change the permissions on it so no one can view it except that specific user. Then upload the fullsized images of the thumbnails to this folder. Files outside this album will be able to use the thumbnails of these images. (See above for naming.)
+</li>
+<li>
+	<a name="cust_thmb_faq_stop_users"></a><h4>How do I stop my users from creating their own custom thumbnails?<a href="#cust_thmb_faq_stop_users" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+	Currently, this is not possible.
+</li>
 </ul>
 
 <a name="edit_pics_end"></a>
