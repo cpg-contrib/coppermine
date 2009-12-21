@@ -33,6 +33,14 @@
 </div>
 
 <a name="install_screen_start"></a><h1>The install screen<a href="#install_screen_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+The version cpg1.5.x differs very much from previous versions as much as the install method is concerned: all coppermine versions ever have come with an installer, but in cpg1.5.x the entire install process has been overhauled: the installer now by default has got a wizard-like interface, where you take one step at a time. You're bing led through the entire install process using the wizard, which is a great improvement for beginners. However, if you are a coppermine expert and know your way around the application, you can still use the old install screen: we have bundled it with the package under the name "classic installer". Please understand that it goes unsupported though: if you have issues during install and want support, use the new installer. Questions related to the old installer will not be answered on the coppermine support board. Of course the old installer doesn't have all features that the new installer has: it doesn't create a database for you etc.<br />
+With this being said, here are your options:
+<ul>
+    <li>The <a href="#install_screen_classic">classic install screen</a></li>
+    <li>The (new) <a href="#install_screen_wizard">install wizard</a> (recommended)</li>
+</ul> 
+
+<a name="install_screen_classic"></a><h2>The classic install screen<a href="#install_screen_classic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <table border="0" cellpadding="5" cellspacing="0">
  <tr>
   <td style="border-top:1px solid #0E72A4;border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><strong>Your admin account</strong>
@@ -142,6 +150,45 @@
   <td><span class="small">After having entered all required data, click this button to submit the form</span></td>
  </tr>
 </table>
+<a name="install_screen_classic_end"></a>
+
+<a name="install_screen_wizard"></a><h2>The install wizard<a href="#install_screen_wizard" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+Starting with cpg1.5.x coppermine comes with a wizard-like installer that will lead you through the entire install process. Below are the steps of the install wizard, with one chapter per wizard step.
+
+<div class="cpg_message_info">Do <strong>not</strong> use your browser's previous/next buttons if you want to go one page back or forward inside the installer. Instead: do only use the controls built-into the installer. You'll get unpredictable results if you don't heed this advice.</div>
+
+<a name="install_screen_wizard_license"></a><h3>License agreement &amp; language selection<a href="#install_screen_wizard_license" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+On the initial screen of the wizard you will see the <a href="copyrights.htm">license</a> disclaimer that coppermine comes with. If you don't accept the license, you're not allowed to continue the install wizard. You can re-read the license at any later time (after having completed the installer) by going to this documentation and navigating to "Coppermine documentation" &rarr; "License &amp; Copyright".<br />
+Underneath the license you will find a selector that allows you to choose your prefered language during install. Usually your language will be auto-detected, so you won't have do do anything here - just click on the "Let's go" button at the very bottom of the initial screen to continue with the wizard.
+
+<a name="install_screen_wizard_checkversion"></a><h3>Installation file check<a href="#install_screen_wizard_checkversion" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+In the second stage of the installer a check is performed if the package you are about to install is actually the most recent one. This is meant to make sure that you are actually installing the most recent version of Coppermine, where all known bugs and issues have been fixed. Usually, if you have just downloaded Coppermine from the official Coppermine download at sourceforge.net you should be good. If the installer complains that you don't have the most recent version you should get the most recent version first before continuing.<br />
+Click on "next step" if all files are up to date or if you don't want to use the most recent release.
+
+<a name="install_screen_wizard_permission"></a><h3>Directory permissions check<a href="#install_screen_wizard_permission" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+Coppermine needs write permissions in some sub-folders as suggested in <a href="install_permissions.htm">Setting permissions</a>. The installer can't set those permissions for you, so you need to set them in advance. If you have done so successfully, all folders that the install wizard checks in this stage should be marked as "OK". If this is not the case for you (i.e. if the install wizard complains about missing permissions in one or more folders), just leave the browser window as it is and set permissions properly. After having done so, return to the install screen and refresh the page to see if the permission issue has been solved.<br />
+<div class="cpg_message_info">You won't be able to run the installer successfully if the permission haven't been set: the installer needs to write the configuration data you enter to a file. If the installer can't do that because of missing permissions, you will not be able to complete the install.</div>
+
+<a name="install_screen_wizard_imagelib_select"></a><h3>Image library selection<a href="#install_screen_wizard_imagelib_select" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+Coppermine needs an image library to be present on the server (see <a href="requirements.htm#what_minimum_image_library">minimum requirements &rarr; image library</a>). Currently, GD and ImageMagick are supported. In this stage of the install wizard, various checks are being performed to determine what image library you have available on your server. Usually, you can just continue to the next step if at least one library is found. If the installer complains that it couldn't find an image library, you will have to manually specify it. You can't make this up, nor will coppermine install an image library for you - it's part of the minimum requirements to have one. If you don't have one of the supported image libraries, you won't be able to use coppermine.
+
+<a name="install_screen_wizard_imagelib_test"></a><h3>Image library testing<a href="#install_screen_wizard_imagelib_test" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+In this stage, the image library you have selected in the previous step is being tested, i.e. the installer attempts to perform some operations like resizing or image creation that the coppermine script will perform as well once you have set it up. Usually, the test runs fine and you should see the generated images inside the left column. If that's the case for you, you can savely continue. If that is not the case, you might have to go one step back and choose another image library. Another possible reason for the test going wrong are missing <a href="install_permissions.htm">permissions</a>.
+
+<a name="install_screen_wizard_mysql_auth"></a><h3>MySQL user authentication<a href="#install_screen_wizard_mysql_auth" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+In this step you will be prompted for your mysql data. You can not fake the mySQL information during install, you must <strong>know</strong> it before hand, and enter the information as required. If you're not sure about the information required, ask your webhost. The coppermine support team will not be able to tell you what needs to be entered here - you will have to ask your webhost for that information.<br />
+You need to specify
+<ul>
+    <li>the mySQL <strong>hostname</strong><br />
+    <tt class="code">localhost</tt> is usually OK on most setups</li>
+    <li>the mySQL <strong>user name</strong></li>
+    <li>the mySQL <strong>password</strong></li>
+</ul>
+Underneath the input fields you will find a button to test the connection - if you click that button, a test is performed to see if the data you have entered is correct. If it is, you can continue to the next step. If it is not, you will need to review your mySQL authentification settings.
+
+<a name="install_screen_wizard_mysql_select"></a><h3>MySQL database selection<a href="#install_screen_wizard_mysql_select" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+tbc...
+
 <a name="install_screen_end"></a>
 
 <div id="doc_footer">
