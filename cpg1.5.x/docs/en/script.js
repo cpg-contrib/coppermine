@@ -407,6 +407,7 @@ doc_toc += '          <li><a href="configuration.htm#admin_cookie">Cookie settin
 doc_toc += '          <li><a href="configuration.htm#admin_email">Email settings</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_logging">Logging &amp; statistics</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_misc">Maintenance settings</a></li>\n';
+doc_toc += '          <li><a href="configuration.htm#admin_reset_entire_config">Restore factory defaults</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="groups.htm">Groups</a>\n';
