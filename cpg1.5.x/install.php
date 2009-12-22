@@ -536,6 +536,7 @@ function html_header()
 <meta http-equiv="Pragma" content="no-cache" />
 <title>Coppermine - {$language['installation']}</title>
 <link rel="stylesheet" href="css/installer.css" type="text/css" />
+<link rel="shortcut icon" href="favicon.ico" />
 </head>
 <body>
  <div align="center">

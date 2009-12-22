@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-12-22 [D] Added install screen steps for the wizard {GauGau}
 2009-12-21 [D] Added details to documentation navigation {GauGau}
 2009-12-21 [C] Fixed some minor typos in docs {GauGau}
 2009-12-17 [B] Fixed server side 404 errors when rating is disabled (thread ID 62747) {eenemeenemuu}
