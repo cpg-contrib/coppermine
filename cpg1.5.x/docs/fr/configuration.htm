@@ -1641,6 +1641,18 @@ All log files are written in english</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Miscellaneous settings &rarr; Display news from coppermine-gallery.net</p>
 <a name="admin_general_coppermine_news_end"></a>
 
+<a name="admin_misc_reset_boxes"></a><h3>Display reset boxes in config<a href="#admin_misc_reset_boxes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>When enabled, there will be reset boxes all over the config screen that show if a particular value differs from default. This will allow you to quickly set the value back to default. This will however eat a lot of resources and will not work in all browsers. Recommended setting is "off", at least if you experience issues with the loading speed of the config screen.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Maintenance settings &rarr; Display reset boxes in config</p>
+<a name="admin_misc_reset_boxes_end"></a>
+
+<a name="admin_reset_entire_config"></a><h2>Restore factory defaults<a href="#admin_reset_entire_config" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>There is a hidden option to reset the entire configuration and restore the factory defaults. You can't access that option using a button in Coppermine's user interface to make sure it isn't being tampered with lightheartedly out of curiosity. To restore the entire coppermine config to factory defaults, you need to go to the config panel and then add the parameter <tt class="code">?restore</tt> to the URL.
+<div class="cpg_example">If your gallery resides at <tt class="code">http://yoursite.tld/your_coppermine_folder/</tt>, your "regular" config panel's URL is <tt class="code">http://yoursite.tld/your_coppermine_folder/admin.php</tt>. To go to the page where you can reset your configuration to factory defaults, go to <tt class="code">http://yoursite.tld/your_coppermine_folder/admin.php?restore</tt></div>
+<p>On that "restore factory defaults" page, you need to tick the confirmation checkbox and submit the form by clicking on the button at the bottom.</p>
+<p class="cpg_message_error">Resetting the configuration can not be undone! Make sure that you understand the impact before restoring the config!</p>
+
+
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
 		<span id="doc_last_changed">$LastChangedDate$</span>
