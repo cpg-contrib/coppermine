@@ -1464,7 +1464,6 @@ if (defined('INSTALL_PHP')) {
   $lang_install['installer_locked'] = 'L\'installeur est vérouillé';
   $lang_install['installer_selected'] = 'L\'installeur est sélectionné';
   $lang_install['inv_im_path'] = 'L\'installeur ne peut pas trouver le répertoire \'%s\' que vous avez donné pour ImageMagick ou n\'a pas la permission d\'y accéder. Vérifiez que vous avez correctement entré le chemin et que vous avez accès au répertoire spécifié.';
-  $lang_install['last_step'] = 'Dernière étape...';
   $lang_install['lets_go'] = 'En avant !';
   $lang_install['mysql_create_btn'] = 'Créer';
   $lang_install['mysql_create_db'] = 'Créer une nouvelle base de donnée MySql';

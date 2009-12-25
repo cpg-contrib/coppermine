@@ -81,6 +81,13 @@ loadTempConfig();
 
 //load language
 $language = getLanguage();  // (array) holds the language
+$icon = array();
+$icon['submit'] = '<img src="images/icons/right.png" border="0" alt="" width="16" height="16" class="icon" />';
+$icon['lang'] = '<img src="images/icons/babelfish.png" border="0" alt="" width="16" height="16" class="icon" />';
+$icon['test'] = '<img src="images/icons/reload.png" border="0" alt="" width="16" height="16" class="icon" />';
+$icon['retry'] = '<img src="images/icons/left.png" border="0" alt="" width="16" height="16" class="icon" />';
+$icon['add'] = '<img src="images/icons/add.png" border="0" alt="" width="16" height="16" class="icon" />';
+
 
 // get installation step
 if ($superCage->get->keyExists('step') && is_array($config['steps_done']) 
@@ -157,10 +164,10 @@ switch($step) {
             //check if php_version is actualy a version number
             if ($php_version == '') {
                 //version could not be detected, show corresponding error
-                $error .= sprintf($language['version_undetected'], 'PHP', $required_php_version) . '<br /><br />';
+                $error .= sprintf($language['version_undetected'], 'PHP', $required_php_version) . '<br />';
             } else {
                 //user is using incompatible php version
-                $error .= sprintf($language['version_incompatible'], $php_version, 'PHP', $required_php_version) . '<br /><br />';
+                $error .= sprintf($language['version_incompatible'], $php_version, 'PHP', $required_php_version) . '<br />';
             }
         }
         //MySQL VERSION CHECK
@@ -175,21 +182,21 @@ switch($step) {
             //check if php_version is actualy a version number
             if ($mysql_version == '') {
                 //version could not be detected, show corresponding error
-                $error .= sprintf($language['version_undetected'], 'MySQL', $required_mysql_version) . '<br /><br />';
+                $error .= sprintf($language['version_undetected'], 'MySQL', $required_mysql_version) . '<br />';
             } else {
                 //user is using incompatible php version
-                $error .= sprintf($language['version_incompatible'], $mysql_version, 'MySQL', $required_mysql_version) . '<br /><br />';
+                $error .= sprintf($language['version_incompatible'], $mysql_version, 'MySQL', $required_mysql_version) . '<br />';
             }
         }
         //COOKIE CHECK
         if ($superCage->cookie->getAlpha('cpg_install_cookie_check') != 'passed') {
             //no cookie found, you're in trouble now :)
-            $error .= $language['no_cookie'] . '<br /><br />';
+            $error .= $language['no_cookie'] . '<br />';
         }
         //JAVASCRIPT CHECK
         if ($superCage->post->getAlpha('javascript_check') != 'passed' && !$config['javascript_test_passed']) {
             //javascripts seems to be disabled, send them the message...
-            $error .= $language['no_javascript'] . '<br /><br />';
+            $error .= $language['no_javascript'] . '<br />';
         } else {
             $config['javascript_test_passed'] = true;
         }
@@ -198,7 +205,7 @@ switch($step) {
             //register_globals is turned on, please turn it of.
             $error .= $language['register_globals_detected'];
 			$error .= '[<a href="docs/en/install.htm#install_server_config_register_globals">' . $language['more'] . '</a>]';
-			$error .= '<br /><br />';
+			$error .= '<br />';
         }
         
         $page_title = $language['title_file_check'];
@@ -260,8 +267,8 @@ switch($step) {
         if( !($error != '' && !isset($image_processors['gd2']) && !isset($image_processors['gd1'])) ) {
             setTmpConfig('step', STEP_TEST_IMG_PROC);
         }
-            $content = $language['im_packages'] . '<br /><br />';
-        $imp_list = '<select name="thumb_method" >';
+            $content = $language['im_packages'] . '<br />';
+        $imp_list = '<select name="thumb_method" class="listbox" size="1">';
         if (isset($image_processors['gd2'])) {
             // gd2 is avilable, add it to the list
             $imp_list .= '<option value="gd2">GD2</option>';
@@ -285,7 +292,7 @@ switch($step) {
             }
             $im_not_found = '';
         } else {
-            $im_not_found = '<br /><br /><fieldset style="width:90%" title="ImageMagick">' . $language['im_not_found'] .'</fieldset>';
+            $im_not_found = '<br /><fieldset style="width:90%" title="ImageMagick">' . $language['im_not_found'] .'</fieldset>';
         }
         // check configuration options
         if (isset($config['thumb_method'])) $selected = $config['thumb_method'];
@@ -294,9 +301,9 @@ switch($step) {
         
         // if no image library is found, tell the user so, and select gd2
         if (!isset($selected)) {
-            $content .= '<br /><br /><fieldset style="width:90%" title="GD">' . $language['no_gd'] . '</fieldset><br /><br />' . $im_not_found;
+            $content .= '<br /><fieldset style="width:90%" title="GD">' . $language['no_gd'] . '</fieldset><br />' . $im_not_found;
         } else {
-            $content .= '<br /><br />' . $language['installer_selected'] . ' \'' . $supported_processors[$selected] . '\'<br /><br />' . $imp_list . $im_not_found;
+            $content .= '<br />' . $language['installer_selected'] . ' \'' . $supported_processors[$selected] . '\'<br />' . $imp_list . $im_not_found;
         }
         
         // add IM path box
@@ -306,10 +313,11 @@ switch($step) {
         {
             $path = $config['im_path'];
         }
-        $content .= '<br /><br />' . $language['im_path'] 
-            . '<br /><input type="text" name="im_path" value="' 
-            . $path . '" /><input type="submit" name="update_im_path" value="' 
-            . $language['check_path'] . '" />';
+        $content .= '<br />' . $language['im_path'] 
+            . '<br /><input type="text" class="textinput" name="im_path" value="' 
+            . $path . '" /><button type="submit" class="button" name="update_im_path" value="' 
+            . $language['check_path'] . '">' 
+            . $icon['test'] . $language['check_path'] . '</button>';
         
         html_content($content);
         html_footer();
@@ -365,7 +373,7 @@ switch($step) {
             $config['db_user'] = $superCage->post->getRaw('db_user');
             setTmpConfig('db_password', $superCage->post->getRaw('db_password'));
             if ($error != '') {
-                $error .= '<br /><br />' . sprintf($language['please_go_back'], '<a href="install.php?step=' . ($step - 1) . '">', '</a>');
+                $error .= '<br />' . sprintf($language['please_go_back'], '<a href="install.php?step=' . ($step - 1) . '">', '</a>');
             }
         } elseif ($superCage->post->keyExists('update_create_db') 
                 && trim($superCage->post->getRaw('new_db_name')) != '') 
@@ -409,8 +417,8 @@ switch($step) {
             if ($error != '') {
                 html_error();
             }
-            $temp_data = '<tr><td><br /><br /><br />' . $language['db_alr_populated'] 
-                . '<br /><br /><br /><br /></td></tr>';
+            $temp_data = '<tr><td><br /><br />' . $language['db_alr_populated'] 
+                . '<br /><br /></td></tr>';
             html_content($language['db_populating']);
             html_footer();
             setTmpConfig('step', STEP_SET_ADMIN);
@@ -620,7 +628,7 @@ EOT;
  */
 function html_installer_locked() 
 {
-    global $language, $error;
+    global $language, $error, $icon;
     
 print <<< EOT
       <form action="index.php" style="margin:0px;padding:0px" name="cpgform" id="cpgform">
@@ -639,7 +647,7 @@ print <<< EOT
          </tr>
          <tr>
           <td colspan="2" align="center" class="tableb">
-            <input type="submit" class="button" value="{$language['go_to_main']}" />
+            <button type="submit" class="button" name="submit" value="{$language['go_to_main']}">{$language['go_to_main']}{$icon['submit']}</button>
           </td>
          </tr>
         </table>
@@ -653,7 +661,7 @@ EOT;
  */
 function html_welcome() 
 {
-    global $language, $error;
+    global $language, $error, $icon;
     
     if (!setTmpConfig('step', STEP_VERSIONCHECK)) {
         $next_step = STEP_INIT_AND_LANG;
@@ -692,7 +700,7 @@ EOT;
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2">{$language['error_need_corr']}<br /><br /><strong>{$error}</strong>
+          <td class="tableb" colspan="2">{$language['error_need_corr']}<br /><strong>{$error}</strong>
           </td>
          </tr>
 EOT;
@@ -704,12 +712,14 @@ EOT;
           </td>
          </tr>
          <tr>
-          <td class="tableb" align="center" colspan="2">{$getLangSelect}<input type="submit" name="update_lang" value="{$language['change_lang']}" />
+          <td class="tableb" align="center" colspan="2">
+              {$getLangSelect}
+              <button type="submit" class="button" name="update_lang" value="{$language['change_lang']}">{$icon['lang']}{$language['change_lang']}</button>
           </td>
          </tr>
         <tr>
           <td colspan="2" align="center" class="tableh2"><br />
-            <input type="submit" value="{$language['lets_go']}" />
+            <button type="submit" class="button" name="submit" value="{$language['lets_go']}">{$language['lets_go']}{$icon['submit']}</button>
           </td>
          </tr>
     </table>
@@ -730,14 +740,14 @@ EOT;
  */
 function html_content($content) 
 {
-    global $language, $step, $temp_data;
+    global $language, $step, $temp_data, $icon;
     
     $step_next = $step + 1;
     echo <<<EOT
       <form action="install.php?step={$step_next}" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
-          <td class="tableb" colspan="2">{$content}<br /><br /><br /></td>
+          <td class="tableb" colspan="2">{$content}<br /><br /></td>
          </tr>
 
 EOT;
@@ -747,7 +757,7 @@ EOT;
     echo <<<EOT
          <tr>
           <td colspan="2" align="center" class="tableh2"><br />
-            <input type="submit" value="{$language['continue']}" /><br /><br />
+            <button type="submit" class="button" name="submit" value="{$language['continue']}">{$language['continue']}{$icon['submit']}</button>
           </td>
          </tr>
         </table>
@@ -766,7 +776,7 @@ EOT;
  */
 function html_error($button = true) 
 {
-    global $language, $step, $error;
+    global $language, $step, $error, $icon;
     
     print <<< EOT
       <form action="install.php?step={$step}" name="cpgform" id="cpgform" method="post" style="margin:0px;padding:0px">
@@ -776,15 +786,15 @@ function html_error($button = true)
           </td>
          </tr>
          <tr>
-          <td class="tableb" colspan="2">{$language['error_need_corr']}<br /><br /><strong>{$error}</strong>
+          <td class="tableb" colspan="2">{$language['error_need_corr']}<br /><strong>{$error}</strong>
           </td>
          </tr>
 EOT;
           if ($button) {
             print <<< EOT
             <tr>
-              <td colspan="2" align="center" class="tableh2"><br />
-              <input type="submit" value="{$language['try_again']}" />
+              <td colspan="2" align="center" class="tableh2">
+                  <button type="submit" class="button" name="try_again" value="{$language['try_again']}">{$icon['retry']}{$language['try_again']}</button>
               </td>
             </tr>
 EOT;
@@ -801,7 +811,7 @@ EOT;
  */
 function html_mysql_start() 
 {
-    global $language, $step, $mysql_connected, $config;
+    global $language, $step, $mysql_connected, $config, $icon;
 
     $step_next = $step + 1;
     echo <<<EOT
@@ -809,7 +819,7 @@ function html_mysql_start()
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableb" colspan="2">
-          {$language['sect_mysql_info']}<br /><br />
+          {$language['sect_mysql_info']}<br />
           </td>
          </tr>
          <tr>
@@ -832,11 +842,11 @@ EOT;
     echo <<<EOT
          <tr>
           <td align="right">{$language['mysql_host']}</td>
-          <td><input type="text" name="db_host" value="$db_host" /></td>
+          <td><input type="text" class="textinput" name="db_host" value="$db_host" /></td>
          </tr>
          <tr>
           <td align="right">{$language['mysql_username']}</td>
-          <td><input type="text" name="db_user" value="$db_user" /></td>
+          <td><input type="text" class="textinput" name="db_user" value="$db_user" /></td>
          </tr>
          <tr>
           <td align="right">{$language['mysql_password']}</td>
@@ -844,7 +854,7 @@ EOT;
          </tr>
          <tr>
          <td colspan="2" align="center">
-            <input type="submit" name="update_check_connection" value="{$language['mysql_test_connection']}" /><br />
+            <button type="submit" class="button" name="update_check_connection" value="{$language['mysql_test_connection']}">{$icon['test']}{$language['mysql_test_connection']}</button>
           </td>
          </tr>
 
@@ -853,7 +863,7 @@ EOT;
         echo <<<EOT
         <tr>
           <td colspan="2" align="center" class="tableh2">
-            <input type="submit" value="{$language['continue']}" /><br /><br />
+            <button type="submit" class="button" name="submit" value="{$language['continue']}">{$language['continue']}{$icon['submit']}</button>
           </td>
          </tr>  
 
@@ -861,7 +871,7 @@ EOT;
     } else {
         echo <<<EOT
         <tr>
-          <td colspan="2" align="center" class="tableh2">&nbsp;<br /><br /></td>
+          <td colspan="2" align="center" class="tableh2">&nbsp;<br /></td>
         </tr>
 
 EOT;
@@ -882,12 +892,12 @@ EOT;
  */
 function html_mysql_select_db() 
 {
-    global $language, $step, $config;
+    global $language, $step, $config, $icon;
 
     $step_next = $step + 1;
     $dbs = getMysqlDbs();
     if (!$dbs) {
-        $dbs = '<input type="text" name="db_name" value="' . $config['db_name'] . '" />';
+        $dbs = '<input type="text" class="textinput" name="db_name" value="' . $config['db_name'] . '" />';
     }
     $db_prefix = isset($config['db_prefix']) ? $config['db_prefix'] : 'cpg15x_';
     echo <<<EOT
@@ -895,7 +905,7 @@ function html_mysql_select_db()
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableb" colspan="2">
-          {$language['sect_mysql_sel_db']}<br /><br />
+              {$language['sect_mysql_sel_db']}<br />
           </td>
          </tr>
          <tr>
@@ -908,18 +918,23 @@ function html_mysql_select_db()
          </tr>
          <tr>
           <td align="right">{$language['mysql_create_db']}</td>
-          <td><input type="text" name="new_db_name" /><input type="submit" name="update_create_db" value="{$language['mysql_create_btn']}" /></td>
+          <td>
+              <input type="text" class="textinput" name="new_db_name" />
+              <button type="submit" class="button" name="update_create_db" value="{$language['mysql_create_btn']}">{$icon['add']}{$language['mysql_create_btn']}</button>
+          </td>
          </tr>
          <tr>
          <td colspan="2">&nbsp;</td>
          </tr>
          <tr>
           <td align="right">{$language['mysql_tbl_pref']}</td>
-          <td><input type="text" name="db_prefix" value="$db_prefix" /></td>
+          <td>
+              <input type="text" class="textinput" name="db_prefix" value="$db_prefix" />
+          </td>
          </tr>
          <tr>
           <td colspan="2" align="center" class="tableh2">
-            <input type="submit" value="{$language['populate_db']}" /><br /><br />
+            <button type="submit" class="button" name="submit" value="{$language['populate_db']}">{$icon['submit']}{$language['populate_db']}</button>
           </td>
          </tr>
         </table>
@@ -936,7 +951,7 @@ EOT;
  */
 function html_admin() 
 {
-    global $language, $step;
+    global $language, $step, $icon;
 
     $admin_username = isset($config['admin_username']) ? $config['admin_username'] : '';
     $admin_password = isset($config['admin_password']) ? $config['admin_password'] : '';
@@ -950,7 +965,7 @@ function html_admin()
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableb" colspan="2">
-          {$language['sect_create_adm']}<br /><br />
+          {$language['sect_create_adm']}<br />
           </td>
          </tr>
          <tr>
@@ -958,7 +973,7 @@ function html_admin()
          </tr>
          <tr>
           <td align="right">{$language['username']}</td>
-          <td><input type="text" name="admin_username" value="$admin_username"  /></td>
+          <td><input type="text" class="textinput" name="admin_username" value="$admin_username"  /></td>
          </tr>
          <tr>
           <td align="right">{$language['password']}</td>
@@ -970,18 +985,18 @@ function html_admin()
          </tr>
          <tr>
           <td align="right">{$language['email']}</td>
-          <td><input type="text" name="admin_email" value="$admin_email" /></td>
+          <td><input type="text" class="textinput" name="admin_email" value="$admin_email" /></td>
          </tr>
           <tr>
           <td align="right">{$language['email_verif']}</td>
-          <td><input type="text" name="admin_email_verif" value="$admin_email_verify" /></td>
+          <td><input type="text" class="textinput" name="admin_email_verif" value="$admin_email_verify" /></td>
          </tr>
          <tr>
          <td colspan="2">&nbsp;</td>
          </tr>
          <tr>
           <td colspan="2" align="center" class="tableh2">
-            <input type="submit" value="{$language['last_step']}" /><br /><br />
+            <button type="submit" class="button" name="submit" value="{$language['continue']}">{$language['continue']}{$icon['submit']}</button>
           </td>
          </tr>
         </table>
@@ -1005,7 +1020,7 @@ function html_finish()
         <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
          <tr>
           <td class="tableb" colspan="2">
-          {$language['ready_to_roll']}<br /><br />
+          {$language['ready_to_roll']}<br />
           </td>
          </tr>
          <tr>
@@ -1013,7 +1028,7 @@ function html_finish()
          </tr>
          <tr>
           <td colspan="2" align="center" class="tableh2">
-            <input type="submit" value="{$language['finish']}" /><br /><br />
+            <input type="submit" value="{$language['finish']}" /><br />
           </td>
          </tr>
         </table>
@@ -1074,7 +1089,7 @@ function setTmpConfig($key, $value, $isarray = false)
     }
     if (!createTempConfig()) {
         // can't write temp config, set error
-        $GLOBALS['error'] .= '<br /><br />' . $language['tmp_conf_error'];
+        $GLOBALS['error'] .= '<br />' . $language['tmp_conf_error'];
         return false;
     }
     return true;
@@ -1207,7 +1222,7 @@ function getLangSelect()
     closedir($dir);
     natcasesort($available_languages);
     
-    $lang_select = '<select name="lang_list">' . $LINEBREAK;
+    $lang_select = '<select name="lang_list" class="listbox" size="1">' . $LINEBREAK;
     foreach($available_languages as $key => $language) {
         $lang_select .= "                       <option " . ((strtolower($config['lang']) == strtolower($language)) ? 'selected="selected"' : '') . " value=\"{$language}\">{$language}</option>" . $LINEBREAK;
     }
@@ -1248,7 +1263,7 @@ function checkPermissions()
         // check folder existence
         if (!is_dir($folder)) {
             $peCheck = false;
-            $GLOBALS['error'] .= sprintf($language['subdir_called'], $folder) . '<br /><br />';
+            $GLOBALS['error'] .= sprintf($language['subdir_called'], $folder) . '<br />';
             $temp_data .= "<tr><td>$folder</td><td><div class=\"cpg_message_error\">{$language['not_exist']}</div></td></tr>";
         } else {
             // try to create a file in the folder
@@ -1599,7 +1614,7 @@ function getMysqlDbs()
     // get a list of db's
     if ($db_list = @mysql_list_dbs($GLOBALS['mysql_connection'])) {
         // create dropdown box
-        $db_select = '<select name="db_name">';
+        $db_select = '<select name="db_name" class="listbox" size="1">';
         while ($row = mysql_fetch_object($db_list)) {
             $db = $row->Database;
             if (in_array($db, array('information_schema', 'mysql', 'test'))) {
@@ -1753,7 +1768,7 @@ function populateMysqlDb()
             }
         }
     }
-    $GLOBALS['temp_data'] .= '<br /><br /><br /></td></tr>';
+    $GLOBALS['temp_data'] .= '<br /><br /></td></tr>';
     return true;
 }
 
@@ -1859,7 +1874,7 @@ EOT;
         fwrite($fd, $config);
         fclose($fd);
     } else {
-        $GLOBALS['error'] = '<hr /><br />' . $language['unable_write_config'] . '<br /><br />';
+        $GLOBALS['error'] = '<hr /><br />' . $language['unable_write_config'] . '<br />';
     }
 }
 
@@ -1892,7 +1907,7 @@ function createImageTestResult($results)
             <td>{$language['reference_image']}</td>
         </tr>
     </table>
-    <br /><br />
+    <br />
 EOT;
             $tables .= $result_error_tpl;
             $GLOBALS['error'] = $language['imp_test_error'];
@@ -1920,7 +1935,7 @@ EOT;
             <td>$reference_size {$language['pixels']}</td>
         </tr>
     </table>
-    <br /><br />
+    <br />
 EOT;
             $tables .= $result_ok_tpl;
         }

@@ -1485,7 +1485,6 @@ $lang_install['installation'] = 'installation';
 $lang_install['installer_locked'] = 'The installer is locked';
 $lang_install['installer_selected'] = 'The installer selected';
 $lang_install['inv_im_path'] = 'The installer cannot find the \'%s\' directory you have specified for ImageMagick or it does not have permission to access it. Check that your typing is correct and that you have access to the specified directory.';
-$lang_install['last_step'] = 'Last Step...';
 $lang_install['lets_go'] = 'Let\'s Go!';
 $lang_install['mysql_create_btn'] = 'Create';
 $lang_install['mysql_create_db'] = 'Create new MySQL Database';

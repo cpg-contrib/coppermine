@@ -1463,7 +1463,6 @@ $lang_install['installation'] = 'asennus';
 $lang_install['installer_locked'] = 'Asentaja on lukittu';
 $lang_install['installer_selected'] = 'Asentaja valitsi';
 $lang_install['inv_im_path'] = 'Asentaja ei löydä hakemistoa \'%s\', jonka annoit ImageMagick:ille tai sinulla ei ole oikeuksia käyttää sitä. Tarkista hakemiston nimen oikeinkirjoitus ja että sinulla on pääsyoikeudet annettuun hakemistoon.';
-$lang_install['last_step'] = 'Viimeinen vaihe...';
 $lang_install['lets_go'] = 'Aloita!';
 $lang_install['mysql_create_btn'] = 'Luo';
 $lang_install['mysql_create_db'] = 'Luo uusi MySQL tietokanta';
