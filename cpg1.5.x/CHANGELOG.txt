@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-12-22 [C] Renamed install_old.php to install_classic.php {GauGau}
 2009-12-22 [B] Turned "restore factory defaults" into a hidden option to avoid issues with IE6 (thread ID 62899) {GauGau}
 2009-12-22 [D] Added install screen steps for the wizard {GauGau}
 2009-12-21 [D] Added details to documentation navigation {GauGau}

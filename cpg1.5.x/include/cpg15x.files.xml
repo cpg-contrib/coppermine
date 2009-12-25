@@ -257,7 +257,7 @@
     <hash>9bd61c928e72e7b7941f104d68875be2</hash>
   </element>
   <element>
-    <fullpath>install_old.php</fullpath>
+    <fullpath>install_classic.php</fullpath>
     <version>1.5.2</version>
     <revision>6461</revision>
     <status>mandatory</status>
