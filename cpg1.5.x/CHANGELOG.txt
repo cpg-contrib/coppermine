@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-12-25 [D] Added detailed explanations about permissions on folder level {GauGau}
 2009-12-25 [O] Removed unneeded language string {GauGau}
 2009-12-25 [C] Added coppermine style classes to installer {GauGau}
 2009-12-25 [C] Added button icons to installer {GauGau}
