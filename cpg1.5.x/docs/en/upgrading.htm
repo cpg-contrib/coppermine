@@ -52,6 +52,16 @@
 	    <th valign="top" align="left"><span class="small">Release Date</span></td>
 	  </tr>
 	  <tr>
+	    <td valign="top">cpg1.5.3</td>
+	    <td valign="top">
+	      <ul>
+	        <li>Not released yet</li>
+	        <li>Not scheduled yet</li>
+	      </ul>
+	    </td>
+	    <td valign="top" align="right">2010-??-??</td>
+	  </tr>
+	  <tr>
 	    <td valign="top">cpg1.5.2</td>
 	    <td valign="top">
 	      <ul>
@@ -100,7 +110,7 @@
     <li>
 	    <span class="detail_head_collapsed">Make a backup (dump) of your database</span>
 	    <div class="detail_body border1">Recommended tools for <a href="export.htm#backup_database">creating a database dump</a> are <a href="http://mysqldumper.de/en/" rel="external" class="external">mySqlDumper</a> or <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a> - refer to the section <a href="dev_tools.htm#dev_tools_database">Tools recommended by the devs: Database manipulation</a> for details.<br />
-	    Creating a backup is not mandatory in terms of functionality, but just a precaution in case anything should go wrong. It's advisable to make frequent backups anyway.</div>
+	    Creating a <a href="export.htm#backup">backup</a> is not mandatory in terms of functionality, but just a precaution in case anything should go wrong. It's advisable to make frequent backups anyway.</div>
     </li>
     <li>
 	    <span class="detail_head_collapsed">Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy as a safety precaution if anything should go wrong.</span>
@@ -112,7 +122,7 @@
     </li>
     <li>
 	    <span class="detail_head_collapsed"><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories, making sure not to overwrite your anycontent.php file or the albums directory.</span>
-	    <div class="detail_body border1">In fact, you could upload the albums folder as well - the one that is contained in the package is empty anyway. The recommendation not to upload this folder is only meant as a pre-caution for some users who have "funny" settings for their FTP apps: some exotic FTP applications delete folders existing on the server and then re-create an empty folder on the server-side. This would of course be a disaster, as you would lose all your uploaded files in your gallery. However, the number of FTP apps that is set up in that strange way is small and therefore, it won't hurt for most to upload the albums folder as well. If you're not sure, use one of the <a href="dev_tools.htm#dev_tools_ftp_client">FTP clients recommended by the devs</a>.</div>
+	    <div class="detail_body border1">In fact, you could upload the albums folder as well - the one that is contained in the package is empty anyway. The recommendation not to upload this folder is only meant as a pre-caution for some users who have "funny" settings for their FTP apps: some exotic FTP applications delete folders existing on the server and then re-create an empty folder on the server-side. This would of course be a disaster for all existing galleries during the upgrade process, as you would lose <em>all</em> your uploaded files in your gallery. However, the number of FTP apps that is set up in that strange way is small and therefore, it won't hurt for most to upload the albums folder as well. If you're not sure, use one of the <a href="dev_tools.htm#dev_tools_ftp_client">FTP clients recommended by the devs</a>.</div>
     </li>
     <li>
 	    <span class="detail_head_collapsed">Run the update script</span>
