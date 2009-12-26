@@ -34,8 +34,9 @@
 
 <div id="doc_en_partial">Only partial translation available</div>
 
-<a name="what"></a><h1>Was wird benötigt<a href="#what" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<a name="what"></a><h1>Was wird benötigt (Mindestvoraussetzungen)<a href="#what" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>Um Coppermine installieren zu können gibt es einige <strong>Mindestvoraussetzung</strong>, die erfüllt sein müssen:</p>
+<a name="what_minimum"></a><h2>Server-seitige Mindestvoraussetzungen<a href="#what_minimum" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul>
     <li>
 	  <a name="what_minimum_webserver"></a><h3>Ein Webserver<a href="#what_minimum_webserver" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -43,16 +44,20 @@
 	  Coppermine kann auf jedem beliebigen Webserver betrieben werden - es gibt Rückmeldungen von erfolgreichen Installationen unter <a href="http://httpd.apache.org/" rel="external" class="external">Apache</a>, <a href="http://www.microsoft.com/iis/" rel="external" class="external">Microsoft Internet Information Server</a> (IIS), <a href="http://www.roxen.com/products/webserver/" rel="external" class="external">Roxen WebServer</a>, <a href="http://www.aprelium.com/" rel="external" class="external">Abyss</a>, <a href="http://www.janaserver.de/" rel="external" class="external">JanaServer</a>, <a href="http://www.zeus.com/" rel="external" class="external">Zeus</a>. Das Coppermine Entwicklerteam empfiehlt Apache.
 	</li>
   <li><a name="what_minimum_php"></a><h3>Ein Webserver mit PHP-Unterstützung<a href="#what_minimum_php" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+  <img src="../images/php-med-trans.png" border="0" alt="" width="95" height="51" title="PHP" align="right" style="padding-left:10px" />
   PHP (Version 4.3.0 oder besser), entweder mit Unterstützung für die GD-Bibliothek einkompiliert oder mit der Berechtigung, die exec()-Funktion für ImageMagick benutzen zu dürfen (für die ausführbare Datei &quot;convert&quot;), damit Thumbnails und Bilder in Zwischengrößen erzeugt werden können. Mysql-Unterstützung muss ebenfalls in PHP einkompiliert sein.</li>
   <li><a name="what_minimum_mysql"></a><h3>Eine MySQL-Datenbank<a href="#what_minimum_mysql" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+  <img src="../images/mysql.png" border="0" alt="" width="125" height="64" title="mySQL" align="right" style="" />
   MySQL (in Version 3.23.23 oder besser) wird benötigt. MySQL 4.1 wird empfohlen, MySQL 5 wird unterstützt. The MySQL-Benutzer benötigt die Berechtigung für die Befehle CREATE, ALTER, REPLACE, SELECT, UPDATE, DELETE, INSERT innerhalb der Datenbank. Die meisten Benutzer (auf gehosteten Plattformen) haben diese Berechtigungen. Falls diese Berechtigungen nicht vorhanden sind kann in der Regel überhaupt kein vorgefertigtes Skript wie Coppermine auf dem Server betrieben werden. Bei Unsicherheiten bezüglich der Berechtigungen oder des Vorhandenseins der notwendigen Programme ist dies mit dem Webhost zu klären. Die meisten Hoster können mit Sicherheit eine Aussage treffen, ob Coppermine auf ihren Systemen betrieben werden kann oder nicht.<br />
   Eine Datenbank, die Coppermine benutzen kann muss bereits vorhanden und aufgesetzt sein - das Installationsskript legt <strong>keine</strong> Datenbank an, falls diese noch nicht besteht. In den meisten gehosteten Umgebungen ist mindestens eine Datenbank bereits vorhanden, die genutzt werden kann; ist das nicht der Fall, dann musst Du eine solche Datenbank anlegen (oder durch den Webhost anlegen lassen). Details zur Vorgehensweise sind beim Webhoster zu erfragen. Beim Anlegen der Datenbank unbedingt den Datenbanknamen, den MySQL-Benutzernamen und dessen Passwort notieren - diese Daten werden während der Installation benötigt.</li>
   <li><a name="what_minimum_image_library"></a><h3>Eine Grafik-Bibliothek:<a href="#what_minimum_image_library" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+  <img src="../images/imagemagick.png" border="0" alt="" width="130" height="54" title="ImageMagick" align="right" style="padding-left:20px" />
   Entweder GD in Version 1.x oder 2.x (PHP muss mit GD-Unterstützung kompiliert sein) oder ImageMagick werden benötigt (vgl. <a href="install_faq.htm#whatIsImageMagick">Was ist ImageMagick</a> und <a href="install_faq.htm#WhatIsGD">Was ist GD</a>).</li>
 </ul>
+<br clear="all" />
 <p class="cpg_message_success">Es ist immer eine gute Idee, den Support des Webhosts vor der Installation von Coppermine anzufragen, ob es irgendwelche bekannten Probleme im Zusammenhang mit Coppermine beim jeweiligen Webhost gibt.</p>
 
-<a name="what_minimum_self-hosting"></a><h2>Selbst-Hosting &amp; Webserver-Setup<a href="#what_minimum_self-hosting" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="what_minimum_self-hosting"></a><h2>Selbst-Hosting und Webserver-Setup<a href="#what_minimum_self-hosting" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Obwohl Coppermine auf <em>jedem</em> Webserver betrieben werden kann, der die oben genannten Mindestvoraussetzungen erfüllt kann das Coppermine Entwickler-Team keinerlei Support leisten in Sachen Webserver-Installation und Setup. Wie bereits erwöhnt sind die oben gennanten Mindestvoraussetzungen Grundbedingungen, d.h. sie müssen bereits erfüllt sein vor der Installation von Coppermine. Nimm bitte zur Kenntnis, dass das Coppermine-Team Selbst-Hosting es weder empfielt noch unterstützt es sei denn, Du bist ein bereits ein erfahrener Webserver-Administrator und kennst Dich bestens mit dem Server aus.</p>
 
 <a name="personal"></a><h2>Persönliche Voraussetzungen<a href="#personal" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>

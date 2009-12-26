@@ -136,10 +136,26 @@ doc_toc += '      <li><a href="install.htm#how">How to install the script</a></l
 doc_toc += '      <li><a href="install.htm#what">What the installer does</a></li>\n';
 doc_toc += '      <li><a href="install_permissions.htm">Setting permissions</a>\n';
 doc_toc += '        <ul>\n';
-doc_toc += '          <li><a href="install_permissions.htm#chmod">Apache on Unix/Linux (CHMOD)</a></li>\n';
-doc_toc += '          <li><a href="install_permissions.htm#apache_windows">Apache on Windows</a></li>\n';
-doc_toc += '          <li><a href="install_permissions.htm#iis">IIS on Windows</a></li>\n';
+doc_toc += '          <li><a href="install_permissions.htm#permissions_webserver">Permissions on different webserver types</a>\n';
+doc_toc += '            <ul>\n';
+doc_toc += '              <li><a href="install_permissions.htm#chmod">Apache on Unix/Linux (CHMOD)</a>\n';
+doc_toc += '                <ul>\n';
+doc_toc += '                  <li><a href="install_permissions.htm#chmod_basics">Basics</a></li>\n';
+doc_toc += '                  <li><a href="install_permissions.htm#chmod_groups">Groups in Lunix</a></li>\n';
+doc_toc += '                  <li><a href="install_permissions.htm#chmod_daemon">Webserver daemon</a></li>\n';
+doc_toc += '                  <li><a href="install_permissions.htm#chmod_binary_arithmetics">Binary arithmetics</a></li>\n';
+doc_toc += '                  <li><a href="install_permissions.htm#chmod_benefit">What good is all of this?</a></li>\n';
+doc_toc += '                  <li><a href="install_permissions.htm#chmod_ftp">FTP application</a></li>\n';
+doc_toc += '                  <li><a href="install_permissions.htm#chmod_website_control_panel">Website control panel</a></li>\n';
+doc_toc += '                  <li><a href="install_permissions.htm#chmod_shell_access">Shell access</a></li>\n';
+doc_toc += '                </ul>\n';
+doc_toc += '              </li>\n';
+doc_toc += '              <li><a href="install_permissions.htm#apache_windows">Apache on Windows</a></li>\n';
+doc_toc += '              <li><a href="install_permissions.htm#iis">IIS on Windows</a></li>\n';
+doc_toc += '            </ul>\n';
+doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="install_permissions.htm#support">Asking for support on permissions issues</a></li>\n';
+doc_toc += '          <li><a href="install_permissions.htm#permissions_folders">Permissions on folder level</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="install_screen.htm">The install screen</a></li>\n';
@@ -529,7 +545,7 @@ doc_toc += '          <li><a href="plugins.htm#plugin_bundled">Plugins that ship
 doc_toc += '            <ul>\n';
 doc_toc += '              <li><a href="plugins.htm#plugin_bundled_link_target">Link Target (link_target)</a></li>\n';
 doc_toc += '              <li><a href="plugins.htm#plugin_bundled_onlinestats">Who is online? (onlinestats)</a></li>\n';
-doc_toc += '              <li><a href="OpenSearch (opensearch)">plugins.htm#plugin_bundled_opensearch</a></li>\n';
+doc_toc += '              <li><a href="plugins.htm#plugin_bundled_opensearch">OpenSearch (opensearch)</a></li>\n';
 doc_toc += '              <li><a href="plugins.htm#plugin_bundled_sample">Sample Plugin (sample)</a></li>\n';
 doc_toc += '              <li><a href="plugins.htm#plugin_bundled_usergal_alphatabs">User Gallery Alphabetic Tabbing (usergal_alphatabs)</a></li>\n';
 doc_toc += '              <li><a href="plugins.htm#plugin_bundled_visiblehookpoints">Visible HookPoints (visiblehookpoints)</a></li>\n';
@@ -1192,7 +1208,7 @@ function cpgDocHeader() {
 	if (getUrlParameters('hide_nav') == 1) {
 		return;
 	}
-	$('#docheader').text('Coppermine Photo Gallery v1.5.1: Documentation and Manual');
+	$('#docheader').text('Coppermine Photo Gallery v1.5.3: Documentation and Manual');
 	$('#docheader').after('<br clear="all" />\n<a name="top"></a>');
 	$('#docheader').before('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />\n');
 }
