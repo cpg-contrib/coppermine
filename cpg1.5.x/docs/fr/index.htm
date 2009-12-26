@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <title>Coppermine Photo Gallery - Documentation &amp; Manuel</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="language" content="fr" />
 <meta name="copyright" content="Coppermine dev team" />
-<meta name="description" content="Coppermine Photo Gallery is an advanced, user-friendly, picture gallery script with built-in support for other multi-media/data files.  The gallery can be private, accessible to registered users only, and/or open to all visitors to your site. Users, if permitted, can upload pictures with their web browser (thumbnail and intermediate sized images are created on the fly), rate pictures, add comments and even send e-cards." />
+<meta name="description" content="Coppermine Photo Gallery est un script de galerie photo facile à utiliser supportant d'autres fichiers multimédia.  La galerie peut être privée, uniquement accessible aux membres enregistrés, et/ou ouvert à tous les visiteurs de votre site. Les utilisateurs, si vous l'avez autorisé, peuvent télécharger des images depuis leur navigateur internet (Les vignettes et les images intermédiaires sont crées à la volée), noter les images, ajouter des commentaires et même envoyer des e-cartes." />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -32,24 +32,21 @@
 <a href="toc.htm">Table des Matières</a>
 </div>
 
-
 <a name="about"></a><h1>A Propos de Coppermine<a href="#about" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 
-<p><img src="../images/php-med-trans.png" border="0" alt="" width="95" height="51" title="PHP" align="left" style="padding-right:20px" /><img src="../images/mysql.png" border="0" alt="" width="125" height="64" title="mySQL" align="right" style="" />Coppermine Photo Gallery est un script de galerie photo facile à utiliser supportant d'autres fichiers multimédia.  La galerie peut être privée, uniquement accessible aux membres enregistrés, et/ou ouvert à tous les visiteurs de votre site. Les utilisateurs, si vous l'avez autorisé, peuvent télécharger des images depuis leur navigateur internet (Les vignettes et les images intermédiaires sont crées à la volée), noter les images, ajouter des commentaires et même envoyer des e-cartes. L'administrateur du site détermine quelles fonctions citées précédemment seront accessibles par les utilisateurs enregistrée ou non enregistrés. L'administrateur peut aussi gérer la galerie et ajouter par lot un grand nombre d'images téléchargées sur le serveur par FTP.</p>
-<p><img src="../images/jquery.png" border="0" alt="" width="200" height="50" title="jQuery" align="left" style="" />Les fichiers Image sont stockés dans des albums et les albums peuvent être regroupés dans des catégories, qui elles même, peuvent elles aussi être groupées dans des catégories mêres. Le script supporte de multiples utilisateurs et offre à l'administrateur du site des outils pour gérer les permissions de chaque groupe d'utilisateur concernant la possibilité d'avoir ou pas d'albums personnels, d'envoyer des e-cartes ou d'ajouter des commentaires. Les utilisateurs peuvent aussi télécharger dans les albums publics si l'administrateur l'autorise. L'autorisation de créer des albums, de télécharger et d'effacer des fichiers est déterminée par l'administrateur du site.</p>
-<p><img src="../images/imagemagick.png" border="0" alt="" width="130" height="54" title="ImageMagick" align="right" style="" />Coppermine comporte un système optionel de sélection de theme par l'utilisateur avec de nombreux themes préinstallés. Le script supporte aussi de multiples langues et contient sa propre librairie de langues. Ces fichiers langues permettent à vos visiteurs d'y acceder avec leur langue préférée. Coppermine utilise PHP, une base de donnée MySQL, et soit la librairie graphique GD (version 1.x ou 2.x) ou ImageMagick pour générer  et conserver les informations des fichiers pour les vignettes, les images intermédiaires et les images originales. Coppermine génère le code html necessaire à l'affichage dynamique des différentes catégories, sous-catégories, albums, images intermédiaires ou originales. Cela réduit de manière drastique le nombre de fichiers et la place que votre galerie utiliserait avec un codage HTML standart. Le script d'installation (install.php) rends le démarrage facile et rapide.<br />
+<p><img src="../images/php-med-trans.png" border="0" alt="" width="95" height="51" title="PHP" align="left" style="padding-right:20px" /><img src="../images/mysql.png" border="0" alt="" width="125" height="64" title="mySQL" align="right" style="" />Coppermine Photo Gallery est un script de galerie photo facile à utiliser supportant d'autres fichiers multimédia.  La galerie peut être privée, uniquement accessible aux membres enregistrés, et/ou ouvert à tous les visiteurs de votre site. Les utilisateurs, si vous l'avez autorisé, peuvent télécharger des images depuis leur navigateur internet (Les vignettes et les images intermédiaires sont crées à la volée), noter les images, ajouter des commentaires et même envoyer des e-cartes. L'administrateur du site détermine quelles fonctions citées précédemment seront accessibles par les utilisateurs enregistrée ou non enregistrés. L'administrateur peut aussi gérer la galerie et ajouter par lot un grand nombre d'images téléchargées sur le serveur par <abbr title="File Transfer Protocol">FTP</abbr>.</p>
+<p><img src="../images/jquery.png" border="0" alt="" width="200" height="50" title="jQuery" align="left" style="padding-right:20px" /><img src="../images/imagemagick.png" border="0" alt="" width="130" height="54" title="ImageMagick" align="right" style="padding-left:20px" />Les fichiers Image sont stockés dans des albums et les albums peuvent être regroupés dans des catégories, qui elles même, peuvent elles aussi être groupées dans des catégories mêres. Le script supporte de multiples utilisateurs et offre à l'administrateur du site des outils pour gérer les permissions de chaque groupe d'utilisateur concernant la possibilité d'avoir ou pas d'albums personnels, d'envoyer des e-cartes ou d'ajouter des commentaires. Les utilisateurs peuvent aussi télécharger dans les albums publics si l'administrateur l'autorise. L'autorisation de créer des albums, de télécharger et d'effacer des fichiers est déterminée par l'administrateur du site.</p>
+<p><img src="../images/license/gpl.png" border="0" alt="" width="127" height="51" title="GNU GPL" align="left" style="padding-right:20px" /><img src="../images/license/osi.png" border="0" alt="" width="100" height="137" title="OSI approved" align="right" style="padding-left:20px" />Coppermine comporte un système optionel de sélection de theme par l'utilisateur avec de nombreux themes préinstallés. Le script supporte aussi de multiples langues et contient sa propre librairie de langues. Ces fichiers langues permettent à vos visiteurs d'y acceder avec leur langue préférée. Coppermine utilise PHP, une base de donnée MySQL, et soit la librairie graphique GD (version 1.x ou 2.x) ou ImageMagick pour générer  et conserver les informations des fichiers pour les vignettes, les images intermédiaires et les images originales. Coppermine génère le code html necessaire à l'affichage dynamique des différentes catégories, sous-catégories, albums, images intermédiaires ou originales. Cela réduit de manière drastique le nombre de fichiers et la place que votre galerie utiliserait avec un codage HTML standart. Le script d'installation (install.php) rends le démarrage facile et rapide.<br />
 Coppermine Utilise la librairie JavaScript/Ajax jquery pour une personnalisation et une utilisation plus facile pour les utilisateurs.</p>
-<a name="about_end"></a>
-
-
-
-
+<p>Coppermine est un logiciel Open Source libre et gratuit qui peut être utilisé aussi bien pour des sites personnels que commerciaux. Il est publié sous  <a href="copyrights.htm#copyright_license">license</a> GNU GPL version 3, qui a été approuvée par la <abbr title="Open Source Initiative">OSI</abbr>.
+</p><a name="about_end"></a>
 
 <a name="about_documentation"></a><h2>A Propos de cette documentation<a href="#about_documentation" title="Len vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Utilisez le menu en haut à gauche de l'écran pour naviger dans la documentation de Coppermine. Le menu est disponible dans l'ensemble de la documentation. Le menu utilise le JavaScript. Si vous avez désactivé JavaScript ou si vous ne pouvez pas l'utiliser pour quelque raison que ce soit, Utilisez le lien en haut qui vous mènera à la table des matières depuis laquelle vous pourez allez dans le chapitre de la documentation que vous souhaitez.</p>
+<p>Utilisez le menu en haut à gauche de l'écran pour naviguer dans la documentation de Coppermine. Le menu est disponible dans l'ensemble de la documentation. Le menu utilise le JavaScript. Si vous avez désactivé JavaScript ou si vous ne pouvez pas l'utiliser pour quelque raison que ce soit, Utilisez le lien en haut qui vous mènera à la table des matières depuis laquelle vous pourez allez dans le chapitre de la documentation que vous souhaitez.</p>
 <p>L'équipe de développement de Coppermine recommande fortement d'aciver JavaScript et d'utiliser un navigateur moderne (avec CSS et JavaScript suivant le standart <abbr title="Document Object Modell">DOM</abbr>) pour lire cette documentation plus facilement.</p>
 
 <a name="about_documentation_conventions"></a><h3>Convention de la Documentation<a href="#about_documentation_conventions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="about_documentation_conventions_boxes"></a><h4>Boites de textes<a href="#about_documentation_conventions_boxes" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>Voici les puces et bandeaux de cette documentation qui ont une signification spécialeThere are text boxes in this documentation that have special meanings:</p>
 <p class="cpg_example">Les <strong>Exemples</strong> qui sont destinés à illustrer les instructions données sont affichées comme ceci!</p>
 <p class="cpg_message_info">Les <strong>Informations</strong> complémentaires qui ne doivent pas être négligées sont affichées comme ceci.</p>
@@ -57,6 +54,27 @@ Coppermine Utilise la librairie JavaScript/Ajax jquery pour une personnalisation
 <p class="cpg_message_warning">Les <strong>Alertes</strong> sur les choses qui peuvent facilement aller mal si une erreur est faite sont affichées de cette façon. Il est conseillé de porter une attention particulière au texte de ces bandeaux.</p>
 <p class="cpg_message_validation">Les Choses qui peuvent mal se passer en fonction de l'interaction de l'utilisateur ou des saisies de l'utilisateur sont affichés comme ça.</p>
 <p class="cpg_message_error">Les <strong>Erreurs</strong> actuelles ou les problèmes pouvant avoir un grand impact sont affichés comme ceci. C'est la sorte de bandeau la plus importante - Son contenu est à lire très attentivement.</p>
+
+<a name="about_documentation_conventions_links"></a><h4>Liens<a href="#about_documentation_conventions_links" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>Tous les liens &quot;normaux&quot; (qui n'ont pas d'icones spéciales affichées juste après) sont des liens internes, ex. ils font référence à des sections de cette documentation et par concéquent vous permettent de naviguer à travers celle-ci. Les exeptions à cette règle sont les liens suivants:</p>
+<ul>
+    <li>
+        <a name="about_documentation_conventions_links_expandable"></a><h5>Sections déroulables/repliables<a href="#about_documentation_conventions_links_expandable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+        Il y a cetraines sections qui peuvent être déroulées ou repliées (si le Javascript est autorisé par votre navigateur) pour une lecture plus facile. Généralement les sections déroulables contiennent des détails à propos du paragraphe précédent. Les sections déroulables sont signalées avec une betite boite contenant un plus (<img src="../../images/tree/plus.gif" border="0" width="9" height="9" alt="" />) juste après lorsqu'elle peut être déroulée, et avec une boite contenant un moins (<img src="../../images/tree/minus.gif" border="0" width="9" height="9" alt="" />) si elle est déroulée. Si JavaScript est désactivé dans votre navigateur, le fait de cliquer sur l'icone n'aura aucune action.
+    </li>
+    <li>
+        <a name="about_documentation_conventions_links_external"></a><h5>Lien externes<a href="#about_documentation_conventions_links_external" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+        Les liens externes qui pointent vers une page hors de cette documentation sont suivis par une petite icone représentant une fenêtre avec une flêche à l'intérieur: <img src="../images/link.gif" border="0" width="7" height="8" alt="" />.
+    </li>
+    <li>
+        <a name="about_documentation_conventions_links_php"></a><h5>documentation PHP <a href="#about_documentation_conventions_links_php" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+        Comme Coppermine est une application écrite en php, il y a un certain nombre de références dans sa documentation à des termes techniques du language de programmation PHP. Les liens sont repérés par une petite icone PHP (<img src="../images/php.png" border="0" width="16" height="10" alt="" />) qui pointent vers la documentation officielle de PHP sur le site php.net qui contient des informations complémentaires ou des définitions du mot utilisé dans la documentation de Coppermine.
+    </li>
+    <li>
+        <a name="about_documentation_conventions_links_anchor"></a><h5>Ancres<a href="#about_documentation_conventions_links_anchor" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+        Dans chaque page de la documentation de Coppermine, vous trouverez des icones d'ancres (<img src="images/anchor.gif" width="15" height="9" border="0" alt="" />) à côté de beaucoup de têtes de chapitres. Ils sont cliquables et pointent exactement vers le paragraphe correspondant. Leur fonction est essentiellement pour une aide plus facile: si un supporter veut pointer vers une section particulière de la documentation dans son post, il/elle peut facilement faire un clic droit, "copier l'URL du lien" dans la documentation de Coppermine et coller ce lien dans son post. Pour vous, utilisateurs finaux, ces ancres peuvent être utilse si vous voullez mettre en marque page certaines sections particulières de la documentation.
+    </li>
+</ul>
 
 <a name="features"></a><h2>Fonctions<a href="#features" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Coppermine propose beaucoup de fonctions. Ci-dessous vous en trouverez une liste <em>incomplête</em> . Les nouvelles fonctions de cpg1.5.x (par rapport à cpg1.4.x) sont signalées.</p>
@@ -121,7 +139,8 @@ Coppermine Utilise la librairie JavaScript/Ajax jquery pour une personnalisation
 			<li><a href="configuration.htm#admin_general_display_thumbs_batch_add">prévisualisation des vignettes pendant le processus d'ajout par lotp</a> (optionnel)(cpg1.5.x)</li>
 			<li>Type de fichiers autorisés affichés sur l'écran de téléchargement (cpg1.5.x)</li>
 			<li>barre de progression animée sur l'écran de téléchargement pour indiquer la progression du processus de téléchargement (cpg1.5.x)</li>
-		</ul>
+			<li>Les caractère non-latins dans les noms de fichiers sont remplacés par leur translitération si possible ou par un caractère de soulignement si il n'existe pas de transliteration pour une utilisation web sécurisée au regard des connaissances des utilisateurs (cpg1.5.x)</li>		
+			</ul>
 	</li>
 	<li>
 		<strong>Affichage des images</strong><br />
@@ -231,7 +250,7 @@ Coppermine Utilise la librairie JavaScript/Ajax jquery pour une personnalisation
 		</ul>
 	</li>
 	<li>
-		<strong>Apparence</strong><br />
+		<strong>Apparence visuelle</strong><br />
 		<ul>
 			<li><a href="theme.htm">Système de templates/themes</a></li>
 			<li><a href="configuration.htm#admin_album_list_content">Séparation du bloc de navigation afin de pouvoir le placer indépendament des catégories dans le theme</a></li>
@@ -247,7 +266,9 @@ Coppermine Utilise la librairie JavaScript/Ajax jquery pour une personnalisation
 	</li>
 </ul>
 </div>
+
 <a name="about_next"></a><h2>Et maintenant?<a href="#about_next" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Il y a un certain nombre de pages de la documentation que les débutants devraient lire pour commencer:</p>
 <ul>
 	<li><a href="quickstart.htm#about">Guide de démarrage rapide</a></li>
 	<li><a href="requirements.htm">Minimum requis</a></li>
