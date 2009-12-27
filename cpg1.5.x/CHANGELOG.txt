@@ -25,6 +25,9 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-12-27 [M] Counted version number up for onlinestats from 2.3 to 2.4 {GauGau}
+2009-12-27 [C] Silenced notice in onlinestats {GauGau}
+2009-12-27 [B] Added missing config page for onlinestats {GauGau}
 2009-12-26 [D] Updated navigation of German docs {GauGau}
 2009-12-25 [D] Added detailed explanations about permissions on folder level {GauGau}
 2009-12-25 [O] Removed unneeded language string {GauGau}

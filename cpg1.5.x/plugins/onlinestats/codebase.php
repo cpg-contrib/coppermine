@@ -28,6 +28,9 @@ if (!defined('CORE_PLUGIN')) {
     define('CORE_PLUGIN', true);
 }
 
+$icon_array['ok']  = cpg_fetch_icon('ok', 2);
+$icon_array['config']  = cpg_fetch_icon('config', 2);
+
 // Add plugin_install action
 $thisplugin->add_action('plugin_install','online_install');
 
@@ -50,22 +53,32 @@ $thisplugin->add_action('plugin_configure','online_configure');
 function online_configure() {
         global $lang_plugin_php, $CONFIG, $lang_common, $lang_pluginmgr_php, $lang_admin_php, $icon_array;
         $superCage = Inspekt::makeSuperCage();
+        if (!defined('ADMIN_PHP')) {
+            defined('ADMIN_PHP');
+        }
         $action = $superCage->server->getEscaped('REQUEST_URI');
         $matches = $superCage->post->getMatched('main_page_layout', '/^[0-9a-z,\/]{1,}$/' );
         $contentOfTheMainpage_array = explode('/',$matches[0]);
         if (in_array('onlinestats', $contentOfTheMainpage_array) == TRUE){
         	// We have a winner
         }
+        
+        $icon_array['ok']  = cpg_fetch_icon('ok', 2);
+        $icon_array['config']  = cpg_fetch_icon('config', 2);
+        if (isset($CONFIG['mod_updates_duration']) != TRUE) {
+            $CONFIG['mod_updates_duration'] = 10;
+        }
+        list($timestamp, $form_token) = getFormToken();
 
         echo <<< EOT
-    <form action="{$action}" method="post">
+    <form action="{$action}" method="post" name="onlinestats_configure">
         <table border="0" cellspacing="0" cellpadding="0" width="100%">
             <tr>
                 <td class="tableb" width="50%">
                     {$lang_plugin_php['onlinestats_config_text']}
                 </td>
                 <td class="tableb" width="50%">
-                    <input size="2" type="text" name="duration" value="10" class="textinput" />
+                    <input size="2" type="text" name="duration" value="{$CONFIG['mod_updates_duration']}" class="textinput" />
                     {$lang_plugin_php['onlinestats_minute']}
                 </td>
             </tr>
@@ -82,6 +95,8 @@ function online_configure() {
                 </td>
                 <td class="tablef">
                     <button type="submit" class="button" name="submit" value="{$lang_common['go']}">{$icon_array['ok']}{$lang_common['go']}</button>
+                    <input type="hidden" name="form_token" value="{$form_token}" />
+                    <input type="hidden" name="timestamp" value="{$timestamp}" />
                 </td>
             </tr>
         </table>
@@ -94,9 +109,6 @@ function online_page_start()
         global $raw_ip, $CONFIG, $icon_array;
 
         $CONFIG['TABLE_ONLINE'] = $CONFIG['TABLE_PREFIX']."mod_online";
-        $icon_array['ok']  = cpg_fetch_icon('ok', 1);
-        $icon_array['config']  = cpg_fetch_icon('config', 1);
-
         $user_id = USER_ID;
         $user_name = USER_NAME;
 

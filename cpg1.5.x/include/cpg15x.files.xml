@@ -10415,6 +10415,14 @@
     <hash>ec02210a33a20c51320d28cbfce5a2cc</hash>
   </element>
   <element>
+    <fullpath>plugins/onlinestats/index.php</fullpath>
+    <version>1.5.2</version>
+    <revision>6519</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>ec02210a33a20c51320d28cbfce5a2cc</hash>
+  </element>
+  <element>
     <fullpath>plugins/onlinestats/readme.txt</fullpath>
     <version>1.5.2</version>
     <revision>6360</revision>
