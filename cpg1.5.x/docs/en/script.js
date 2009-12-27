@@ -872,6 +872,11 @@ doc_toc += '              <li><a href="dev_coding.htm#dev_coding_html_prefered_t
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="dev_coding.htm#dev_coding_credits">Credits for coding guidelines</a></li>\n';
+doc_toc += '          <li><a href="dev_coding.htm#dev_coding_usability">Usability</a>\n';
+doc_toc += '            <ul>\n';
+doc_toc += '              <li><a href="dev_coding.htm#dev_coding_usability_forms">Forms</a></li>\n';
+doc_toc += '            </ul>\n';
+doc_toc += '          </li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="dev_files.htm">Adding/renaming/removing files</a>\n';

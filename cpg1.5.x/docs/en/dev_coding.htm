@@ -310,6 +310,50 @@ echo '&lt;p&gt;foo bar&lt;/p&gt;';
 <a name="dev_coding_credits"></a><h2>Credits for coding guidelines<a href="#dev_coding_credits" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>The core rules on this page have been sketched by Dr. Tarique Sani as a subset of the PEAR coding guidelines. HTML output and database sections are based on a thread created by Unknown W. Brackets from <a href="http://www.simplemachines.org/" rel="external" class="external">Simplemachines</a>.</p>
 
+<hr />
+
+<a name="dev_coding_usability"></a><h2>Usability<a href="#dev_coding_usability" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+Good coding skills are important, but it's as well important to code efficiently in terms of usability.
+
+<a name="dev_coding_usability_forms"></a><h3>Forms<a href="#dev_coding_usability_forms" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="cpg_message_success">Less clicks are better.</div>
+Dropdown lists are great if there are a lot of options to choose from, but they are bad if there are only two or three options: the user needs to click on the dropdown list to find out what options exist. 
+<div class="cpg_example">
+    Instead of coming up with a select box like
+    <div class="border1">
+        <select name="some_name" size="1" class="listbox">
+          <option value="0" selected="selected">Go to first</option>
+          <option value="1">Remain where you are</option>
+          <option value="2">Jump to last</option>
+        </select>
+    </div>
+    it's more intuitive for the user to display all possible options using radio buttons:
+    <div class="border1">
+        <input type="radio" name="option" id="option0" value="0" class="radio" checked="checked" /><label for="option0" class="clickable_option">Go to first</label>
+        <input type="radio" name="option" id="option1" value="1" class="radio" /><label for="option1" class="clickable_option">Remain where you are</label>
+        <input type="radio" name="option" id="option2" value="2" class="radio" /><label for="option2" class="clickable_option">Jump to last</label>
+    </div>
+</div>
+<div class="cpg_example">
+    If you just want a toggle to switch an option on or off, use the checkbox like
+    <div class="border1">
+        <input type="checkbox" name="display_graph" id="display_graph" value="1" class="checkbox" /><label for="display_graph" class="clickable_option">Display graph</label>
+    </div>
+    instead of
+    <div class="border1">
+        Display graph: 
+        <input type="radio" name="option_display_graph" id="option_display_graph0" value="0" class="radio" checked="checked" /><label for="option_display_graph0" class="clickable_option">Yes</label>
+        <input type="radio" name="option_display_graph" id="option_display_graph1" value="1" class="radio" /><label for="option_display_graph1" class="clickable_option">No</label>
+    </div>
+    or even
+    <div class="border1">
+        <select name="bad_usage_of_select" size="1" class="listbox">
+          <option value="0" selected="selected">Display graph</option>
+          <option value="1">Do not display graph</option>
+        </select>
+    </div>
+</div>
+
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
 		<span id="doc_last_changed">$LastChangedDate$</span>
