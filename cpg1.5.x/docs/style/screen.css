@@ -535,7 +535,7 @@ dt {
 .filetree li.expandable span.folder { background: url(../../images/tree/folder-closed.gif) 0 0 no-repeat; }
 .filetree span.file { background: url(../../images/tree/file.gif) 0 0 no-repeat; }
 
-.cpg_message_info, .cpg_message_success, .cpg_message_warning, .cpg_message_error, .cpg_message_validation, .cpg_example {
+.cpg_message_info, .cpg_message_success, .cpg_message_warning, .cpg_message_error, .cpg_message_validation, .cpg_example, .cpg_code {
     border: 1px solid;
     margin: 10px 0px;
     padding:15px 10px 15px 50px;
@@ -573,6 +573,11 @@ dt {
     background-color: #FFF7E8;
     background-image: url('../images/message/example.png');
 }
+.cpg_code {
+    color: C0C0C0;
+    background-color: #E0E0E0;
+    background-image: url('../images/message/code.png');
+}
 .cpg_message_info h1 {
 	color:#00529B;
 }
@@ -590,6 +595,9 @@ dt {
 }
 .cpg_example h1 {
 	color:#915F15;
+}
+.cpg_code h1 {
+	color:#C0C0C0;
 }
 
 textarea.samplecode {

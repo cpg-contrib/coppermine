@@ -316,7 +316,7 @@ echo '&lt;p&gt;foo bar&lt;/p&gt;';
 Good coding skills are important, but it's as well important to code efficiently in terms of usability.
 
 <a name="dev_coding_usability_forms"></a><h3>Forms<a href="#dev_coding_usability_forms" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<div class="cpg_message_success">Less clicks are better.</div>
+<a name="dev_coding_usability_forms_less_clicks"></a><h4>Less clicks are better<a href="#dev_coding_usability_forms_less_clicks" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 Dropdown lists are great if there are a lot of options to choose from, but they are bad if there are only two or three options: the user needs to click on the dropdown list to find out what options exist. 
 <div class="cpg_example">
     Instead of coming up with a select box like
@@ -353,6 +353,78 @@ Dropdown lists are great if there are a lot of options to choose from, but they 
         </select>
     </div>
 </div>
+<a name="dev_coding_usability_forms_label"></a><h4>Bigger target areas for clicks<a href="#dev_coding_usability_forms_label" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+It can be comparatively hard to hit a single checkbox or radio button - that's why the HTML tag <tt class="code">&lt;label&gt;</tt> was invented: if you use it wisely, the text that corresponds to a particular option represented by a checkbox or radio button can be clicked on to toggle the checkbox / radio button.
+<table cellspacing="0" cellpadding="0" border="0" width="100%" class="maintable">
+    <tr>
+        <th class="tableh1" width="50%">
+            Bad example
+        </th>
+        <th class="tableh1" width="50%">
+            Good example
+        </th>
+    </tr>
+    <tr>
+        <td class="cpg_message_error">
+            <fieldset class="cpg_example">
+                <legend>Output</legend>
+                <input type="radio" name="option_nolabel" value="0" class="radio" checked="checked" />Go to first<br />
+                <input type="radio" name="option_nolabel" value="1" class="radio" />Remain where you are<br />
+                <input type="radio" name="option_nolabel" value="2" class="radio" />Jump to last
+            </fieldset>
+            <fieldset class="cpg_code">
+            <legend>Code</legend>
+            <div class="smallcode">&lt;input type="radio" name="option_nolabel" value="0" class="radio" checked="checked" /&gt;Go to first&lt;br /&gt;<br />
+            &lt;input type="radio" name="option_nolabel" value="1" class="radio" /&gt;Remain where you are&lt;br /&gt;<br />
+            &lt;input type="radio" name="option_nolabel" value="2" class="radio" /&gt;Jump to last</div>
+            </fieldset>
+        </td>
+        <td class="cpg_message_success">
+            <fieldset class="cpg_example">
+                <legend>Output</legend>
+                <input type="radio" name="option_label" id="option_label0" value="0" class="radio" checked="checked" /><label for="option_label0" class="clickable_option">Go to first</label><br />
+                <input type="radio" name="option_label" id="option_label1" value="1" class="radio" /><label for="option_label1" class="clickable_option">Remain where you are</label><br />
+                <input type="radio" name="option_label" id="option_label2" value="2" class="radio" /><label for="option_label2" class="clickable_option">Jump to last</label>
+            </fieldset>
+            <fieldset class="cpg_code">
+            <legend>Code</legend>
+                <div class="smallcode">&lt;input type="radio" name="option_label" id="option_label0" value="0" class="radio" checked="checked" /&gt;<br />
+&lt;label for="option_label0" class="clickable_option"&gt;Go to first&lt;/label&gt;&lt;br /&gt;<br />
+&lt;input type="radio" name="option_label" id="option_label1" value="1" class="radio" /&gt;<br />
+&lt;label for="option_label1" class="clickable_option"&gt;Remain where you are&lt;/label&gt;&lt;br /&gt;<br />
+&lt;input type="radio" name="option_label" id="option_label2" value="2" class="radio" /&gt;<br />
+&lt;label for="option_label2" class="clickable_option"&gt;Jump to last&lt;/label&gt;</div>
+            </fieldset>
+        </td>
+    </tr>
+    <tr>
+        <td class="cpg_message_error">
+            <fieldset class="cpg_example">
+                <legend>Output</legend>
+                <input type="checkbox" name="display_graph_nolabel" value="1" class="checkbox" />Display graph
+            </fieldset>
+            <fieldset class="cpg_code">
+            <legend>Code</legend>
+            <div class="smallcode">&lt;input type="checkbox" name="display_graph_nolabel" value="1" class="checkbox" /&gt;Display graph</div>
+            </fieldset>
+        </td>
+        <td class="cpg_message_success">
+            <fieldset class="cpg_example">
+                <legend>Output</legend>
+                <input type="checkbox" name="display_graph_label" id="display_graph_label" value="1" class="checkbox" /><label for="display_graph_label" class="clickable_option">Display graph</label>
+            </fieldset>
+            <fieldset class="cpg_code">
+            <legend>Code</legend>
+                <div class="smallcode">&lt;input type="checkbox" name="display_graph_label" id="display_graph_label" value="1" class="checkbox" /&gt;&lt;label for="display_graph_label" class="clickable_option"&gt;Display graph&lt;/label&gt;</div>
+            </fieldset>
+        </td>
+    </tr>
+    <tr>
+        <td class="tablef" colspan="2" align="center">Click on the words next to the radio buttons to see the difference!</td>
+    </tr>
+</table>
+
+
 
 <div id="doc_footer">
 	<div class="doc_info_wrapper">

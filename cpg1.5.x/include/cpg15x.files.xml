@@ -3387,6 +3387,12 @@
     <permission>read</permission>
   </element>
   <element>
+    <fullpath>docs/images/message/code.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>473ae224a782e9cdc4228d495b823f9a</hash>
+  </element>
+  <element>
     <fullpath>docs/images/message/error.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
