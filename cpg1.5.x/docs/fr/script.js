@@ -361,9 +361,9 @@ doc_toc += '      <li><a href="banning.htm#banning_bridged">Pas de bannissement 
 doc_toc += '      <li><a href="banning.htm#banning_todo">A Faire</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="configuration.htm" class="en">Configuration</a>\n';
+doc_toc += '      <li><a href="configuration.htm" class="us_fr">Configuration</a>\n';
 doc_toc += '        <ul>\n';
-doc_toc += '          <li><a href="configuration.htm#admin_general">General settings</a></li>\n';
+doc_toc += '          <li><a href="configuration.htm#admin_general">Paramètres généraux</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_language" class="en">Language &amp; Charset settings</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_theme" class="en">Themes settings</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_album_list" class="en">Album list view</a></li>\n';
