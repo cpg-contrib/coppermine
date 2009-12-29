@@ -762,19 +762,19 @@ CPGPluginAPI::filter('after_delete_file', $pic);</div>
 <p>This filter is a special one to add or modify meta albums</p>
 <div class="quote">$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);<br /><br />
 It works like this:<br />
-<pre><span style="color: #000000"><span style="color: #0000BB">&lt;?php
-$meta_album_passto </span><span style="color: #007700">= array (
-        </span><span style="color: #DD0000">'album' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$album</span><span style="color: #007700">,
-        </span><span style="color: #DD0000">'limit' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$limit</span><span style="color: #007700">,
-        </span><span style="color: #DD0000">'set_caption' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$set_caption</span><span style="color: #007700">,
+<pre class="cpg_code">&lt;?php
+$meta_album_passto </span>= array (
+        'album' </span>=&gt; $album</span>,
+        'limit' </span>=&gt; $limit</span>,
+        'set_caption' </span>=&gt; $set_caption</span>,
 );
 
-</span><span style="color: #0000BB">$meta_album_params </span><span style="color: #007700">= </span><span style="color: #0000BB">CPGPluginAPI</span><span style="color: #007700">::</span><span style="color: #0000BB">filter</span><span style="color: #007700">(</span><span style="color: #DD0000">'meta_album'</span><span style="color: #007700">, </span><span style="color: #0000BB">$meta_album_passto</span><span style="color: #007700">);
-if (</span><span style="color: #0000BB">$meta_album_params</span><span style="color: #007700">[</span><span style="color: #DD0000">'album_name'</span><span style="color: #007700">]) {
-        </span><span style="color: #0000BB">$album_name </span><span style="color: #007700">= </span><span style="color: #0000BB">$meta_album_params</span><span style="color: #007700">[</span><span style="color: #DD0000">'album_name'</span><span style="color: #007700">];
-        </span><span style="color: #0000BB">$count </span><span style="color: #007700">= </span><span style="color: #0000BB">$meta_album_params</span><span style="color: #007700">[</span><span style="color: #DD0000">'count'</span><span style="color: #007700">];
-        </span><span style="color: #0000BB">$rowset </span><span style="color: #007700">= </span><span style="color: #0000BB">$meta_album_params</span><span style="color: #007700">[</span><span style="color: #DD0000">'rowset'</span><span style="color: #007700">];
-        return </span><span style="color: #0000BB">$rowset</span><span style="color: #007700">;
+$meta_album_params </span>= CPGPluginAPI</span>::filter</span>('meta_album'</span>, $meta_album_passto</span>);
+if ($meta_album_params</span>['album_name'</span>]) {
+        $album_name </span>= $meta_album_params</span>['album_name'</span>];
+        $count </span>= $meta_album_params</span>['count'</span>];
+        $rowset </span>= $meta_album_params</span>['rowset'</span>];
+        return $rowset</span>;
 }</span></span></pre><br />
 A plugin needs three input variables to do its thing: <br />
 $album, $limit, $set_caption <br />
@@ -787,32 +787,32 @@ $admin_menu = CPGPluginAPI::filter('admin_menu',$html);<br />
 $sys_menu_buttons = CPGPluginAPI::filter('sys_menu',$sys_menu_buttons);<br />
 $sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);<br /><br />
 To add a button to the admin menu you can do the following:<br />
-<pre><span style="color: #000000"><span style="color: #0000BB">&lt;?php
-$thisplugin</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add_filter</span><span style="color: #007700">(</span><span style="color: #DD0000">'admin_menu'</span><span style="color: #007700">,</span><span style="color: #DD0000">'add_admin_button'</span><span style="color: #007700">);
+<pre class="cpg_code">&lt;?php
+$thisplugin</span>-&gt;add_filter</span>('admin_menu'</span>,'add_admin_button'</span>);
 
-function </span><span style="color: #0000BB">add_admin_button</span><span style="color: #007700">(</span><span style="color: #0000BB">$admin_menu</span><span style="color: #007700">){
-    </span><span style="color: #0000BB">$new_button </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;div class="admin_menu admin_float"&gt;&lt;a href="./menu_link.php" title="menu link"&gt;MENU LINK&lt;/a&gt;&lt;/div&gt;'</span><span style="color: #007700">;
-    </span><span style="color: #0000BB">$look_for </span><span style="color: #007700">= </span><span style="color: #DD0000">'&lt;!-- END export --&gt;'</span><span style="color: #007700">;
-    </span><span style="color: #0000BB">$admin_menu </span><span style="color: #007700">= </span><span style="color: #0000BB">str_replace</span><span style="color: #007700">(</span><span style="color: #0000BB">$look_for</span><span style="color: #007700">, </span><span style="color: #0000BB">$look_for </span><span style="color: #007700">. </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">, </span><span style="color: #0000BB">$admin_menu</span><span style="color: #007700">); 
+function add_admin_button</span>($admin_menu</span>){
+    $new_button </span>= '&lt;div class="admin_menu admin_float"&gt;&lt;a href="./menu_link.php" title="menu link"&gt;MENU LINK&lt;/a&gt;&lt;/div&gt;'</span>;
+    $look_for </span>= '&lt;!-- END export --&gt;'</span>;
+    $admin_menu </span>= str_replace</span>($look_for</span>, $look_for </span>. $new_button</span>, $admin_menu</span>); 
     
-    return </span><span style="color: #0000BB">$admin_menu</span><span style="color: #007700">;
+    return $admin_menu</span>;
 }</span></span></pre><br />
 For the sys &amp; sub menus you have to take another approach:<br />
-<pre><span style="color: #000000"><span style="color: #0000BB">&lt;?php
-$thisplugin</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">add_filter</span><span style="color: #007700">(</span><span style="color: #DD0000">'sub_menu'</span><span style="color: #007700">,</span><span style="color: #DD0000">'add_sub_button'</span><span style="color: #007700">);
+<pre class="cpg_code">&lt;?php
+$thisplugin</span>-&gt;add_filter</span>('sub_menu'</span>,'add_sub_button'</span>);
 
-function </span><span style="color: #0000BB">add_sub_button</span><span style="color: #007700">(</span><span style="color: #0000BB">$menu</span><span style="color: #007700">) {
-    </span><span style="color: #0000BB">$new_button </span><span style="color: #007700">= array();
-    </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #0000BB">0</span><span style="color: #007700">] = </span><span style="color: #DD0000">'MENU LINK'</span><span style="color: #007700">;
-    </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #0000BB">1</span><span style="color: #007700">] = </span><span style="color: #DD0000">'menu link'</span><span style="color: #007700">;
-    </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #0000BB">2</span><span style="color: #007700">] = </span><span style="color: #DD0000">'./menu_link.php'</span><span style="color: #007700">;
-    </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #0000BB">3</span><span style="color: #007700">] = </span><span style="color: #DD0000">'class_name'</span><span style="color: #007700">;
-    </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #0000BB">4</span><span style="color: #007700">] = </span><span style="color: #DD0000">'::'</span><span style="color: #007700">;
-    </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">][</span><span style="color: #0000BB">5</span><span style="color: #007700">] = </span><span style="color: #DD0000">'rel="nofollow"'</span><span style="color: #007700">;
+function add_sub_button</span>($menu</span>) {
+    $new_button </span>= array();
+    $new_button</span>[0</span>][0</span>] = 'MENU LINK'</span>;
+    $new_button</span>[0</span>][1</span>] = 'menu link'</span>;
+    $new_button</span>[0</span>][2</span>] = './menu_link.php'</span>;
+    $new_button</span>[0</span>][3</span>] = 'class_name'</span>;
+    $new_button</span>[0</span>][4</span>] = '::'</span>;
+    $new_button</span>[0</span>][5</span>] = 'rel="nofollow"'</span>;
 
-    </span><span style="color: #0000BB">array_splice</span><span style="color: #007700">(</span><span style="color: #0000BB">$menu</span><span style="color: #007700">, </span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">$menu</span><span style="color: #007700">)-</span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">0</span><span style="color: #007700">, </span><span style="color: #0000BB">$new_button</span><span style="color: #007700">);
+    array_splice</span>($menu</span>, count</span>($menu</span>)-1</span>, 0</span>, $new_button</span>);
 
-    return </span><span style="color: #0000BB">$menu</span><span style="color: #007700">;
+    return $menu</span>;
 }</span></span></pre>
 </div>
 <p>These four hooks can be used to add a custom CAPTCHA validation that overrides the one built into Coppermine.
@@ -830,13 +830,13 @@ $error = CPGPluginAPI::filter('captcha_register_validate', $error);
 <a name="plugin_hook_example_upload_method"></a>
 <h3>Adding an upload method<a href="#plugin_hook_example_upload_method" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>To add an upload method that administrators and users (if allowed) can use, use these 3 plugin hooks in concert:</p>
-<pre class="code">
+<pre class="cpg_code">
 $thisplugin->add_filter('upload_options','myfunction_add_upload_option');
 $thisplugin->add_action('upload_form','myfunction_display_upload_form');
 $thisplugin->add_action('upload_process','myfunction_process_upload_form');
 </pre>
 <p>All 3 hooks are called from upload.php.  The first 'upload_options' allows you to add your upload method to the dropdown list displayed on the configuration panel and on the upload page (if allowed on the configuration panel).  Here are the relevant lines from upload.php:</p>
-<pre class="code">
+<pre class="cpg_code">
 // Set up an array of choices for the upload method
 $upload_choices = array(
     'swfupload'   => $lang_upload_php['upload_swf'],
@@ -846,29 +846,26 @@ $upload_choices = array(
 $upload_choices = CPGPluginAPI::filter('upload_options',$upload_choices);
 </pre>
 <p>The key for your upload method must be a simple key (with no spaces or special characters) that can be used as a GET parameter to select your upload form.  The value that corresponds to this key is the label shown on the dropdown list.  Here's an example of a plugin function that uses this hook to add an upload choice to the dropdown box:</p>
-<div class="cpg_example">
-<pre class="code">
+<pre class="cpg_code">
 function myfunction_add_upload_option($upload_choices) 
 {
     $more_upload_choices = array('alt_upload' => 'Alternate Upload Mechanism');
     return array_merge($upload_choices, $more_upload_choices);
 }
 </pre>
-</div>
 <p>The next hook is 'upload_form' used to display the upload form for you upload method.  It is called whether or not your method is chosen, so you need to check this first, and return if your upload method is not chosen.  It is expected that you will display your upload form and then exit.  Here are the relevant lines that call this hook:</p>
-<pre class="code">
+<pre class="cpg_code">
     // Call active plugins for alternate upload forms
     CPGPluginAPI::action('upload_form',array($upload_form,$upload_select));
 </pre>
 <p>An array of 2 elements is passed with the hook call.  The first element is  $upload_form which is the choice of upload method.  The second element is a dropdown list of all the upload methods which you should display with your upload form to be consistent with the default upload forms.  In your upload form, you need to include two hidden inputs: 'method' and 'plugin_process'.  The input 'method' must match the key provided in the 'upload_options' hook function.  The input 'plugin_process' must have a value of '1' to signal upload.php that it must process your upload form.  The two required inputs are shown here:
 </p>
-<pre class="code">
+<pre class="cpg_code">
 &lt;input type="hidden" name="method" value="alt_upload" /&gt;
 &lt;input type="hidden" name="plugin_process" value="1" /&gt;
 </pre>
 <p>Here is a complete example of a plugin function that displays an upload form:</p>
-<div class="cpg_example">
-<pre class="code">
+<pre class="cpg_code">
 function myfunction_display_upload_form($upload_settings) 
 {
     list($upload_form, $upload_select) = $upload_settings;
@@ -894,15 +891,13 @@ EOT;
     exit;
 }
 </pre>
-</div>
 <p>The last plugin hook is 'upload_process' and is used to process the upload form.  As with 'upload_form', it is called whether or not your upload form is used, so you need to check this first.  Here are the relevant lines from the hook call:</p>
-<pre class="code">
+<pre class="cpg_code">
     // Call active plugins for alternate upload forms
     CPGPluginAPI::action('upload_process',$upload_form);
 </pre>
 <p>As with 'upload_form', $upload_form is the choice of upload method.  Check this for your upload method, then respond appropriately.  You should also exit once you have processed your upload form.  Here is an example plugin function:</p>
-<div class="cpg_example">
-<pre class="code">
+<pre class="cpg_code">
 function myfunction_process_upload_form($upload_form) 
 {
     if ($upload_form != 'alt_upload') {
@@ -923,19 +918,17 @@ EOT;
     exit;
 }
 </pre>
-</div>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 
 <a name="plugin_hook_example_theme_display_thumbnails"></a>
 <h3>Add tags for thumbnails display<a href="#plugin_hook_example_theme_display_thumbnails" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>To add tags that will be processed in $template_thumbnail_view in the function theme_display_thumbnails (in theme.php), use the filter hook 'theme_display_thumbnails_params':</p>
-<pre class="code">
+<pre class="cpg_code">
 $params = CPGPluginAPI::filter('theme_display_thumbnails_params', $params);
 </pre>
 <p>Here's an example of a plugin function that adds more thumbnail information that can be tagged in $template_thumbnail_view:</p>
-<div class="cpg_example">
-<pre class="code">
+<pre class="cpg_code">
 function myfunction_add_params($params) 
 {
     global $thumb;
@@ -952,7 +945,6 @@ function myfunction_add_params($params)
     return array_merge($params,$more_params);
 }
 </pre>
-</div>
 <p>To add the new tags to $template_thumbnail_view in your plugin, you can override the theme template by using the 'page_start' hook.  Some users may have a theme that uses this template and in that case, your plugin documentation should list the new tags your plugin uses so the user can add these tags to their theme template.  You would also need to disable your plugin from overriding this template.  Ideally, this would be done on your plugin configuration panel.</p>
 
 

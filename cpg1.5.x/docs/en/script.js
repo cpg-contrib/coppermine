@@ -1092,6 +1092,17 @@ doc_toc += '              <li><a href="dev_documentation.htm#dev_documentation_h
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="dev_documentation.htm#dev_documentation_heading_anchors">Adding anchors to headings</a></li>\n';
+doc_toc += '          <li><a href="dev_documentation.htm#dev_documentation_code">Code</a>\n';
+doc_toc += '            <ul>\n';
+doc_toc += '              <li><a href="dev_documentation.htm#dev_documentation_code_css_code">CSS class &quot;code&quot;</a></li>\n';
+doc_toc += '              <li><a href="dev_documentation.htm#dev_documentation_code_html_pre">HTML-tag &quot;pre&quot;</a></li>\n';
+doc_toc += '              <li><a href="dev_documentation.htm#dev_documentation_code_css_cpg_code">CSS class &quot;cpg_code&quot;</a></li>\n';
+doc_toc += '              <li><a href="dev_documentation.htm#dev_documentation_code_css_smallcode">CSS class &quot;smallcode&quot;</a></li>\n';
+doc_toc += '              <li><a href="dev_documentation.htm#dev_documentation_code_html_textarea">HTML-tag &quot;textarea&quot;</a></li>\n';
+doc_toc += '              <li><a href="dev_documentation.htm#dev_documentation_code_combining">Combining HTML tags and CSS classes</a></li>\n';
+doc_toc += '              <li><a href="dev_documentation.htm#dev_documentation_code_syntaxhighlighting">No syntax highlighting</a></li>\n';
+doc_toc += '            </ul>\n';
+doc_toc += '          </li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="dev_subversion.htm">Subversion</a>\n';

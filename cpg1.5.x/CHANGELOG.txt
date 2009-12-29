@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-12-29 [D] Undid the syntax highlighting changes from 2009-01-02 and added a section in the coding guidelines page about it {GauGau}
 2009-12-29 [D] Added usability section to coding guidelines {GauGau}
 2009-12-27 [M] Counted version number up for onlinestats from 2.3 to 2.4 {GauGau}
 2009-12-27 [C] Silenced notice in onlinestats {GauGau}
@@ -272,7 +273,7 @@ Changelog
 2009-01-04 [M] Updated header information to reflect new year {GauGau}
 2009-01-02 [C] Add lang string for i18n of udb_base.inc {Frantz}
 2009-01-02 [B] Fixed keyword_select.php not using keyword_separator setting {Paver}
-2009-01-02 [C] Color coded some of the docs for better readability {SaWey}
+2009-01-02 [D] Color coded some of the docs for better readability {SaWey}
 2008-12-31 [M] Updated bundled PHPMailer to 2.03 {Nibbler}
 2008-12-31 [B] Update names associated with pictures and comments when user name is changed {Nibbler}
 2008-12-31 [O] Removed the OK button from albmgr. Now the changes are saved on client side on blur {Abbas}

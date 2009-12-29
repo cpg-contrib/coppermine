@@ -254,6 +254,44 @@ or (for space saving and easier search/replace actions) rolled into one line:
 <pre>&lt;a name="anchor"&gt;&lt;/a&gt;&lt;h2&gt;Heading text&lt;a href="#anchor" title="Link to this section"&gt;&lt;img src="images/anchor.gif" width="15" height="9" border="0" alt="" /&gt;&lt;/a&gt;&lt;/h2&gt;</pre>
 </div>
 
+<a name="dev_documentation_code"></a><h2>Code<a href="#dev_documentation_code" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+There are several ways to display code snippets inside the docs:
+<ul>
+    <li>
+        <a name="dev_documentation_code_css_code"></a><h3>CSS class &quot;code&quot;<a href="#dev_documentation_code_css_code" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        For single words or just a few words, you can use the CSS class <strong>code</strong>, usually with a non-block tag like <tt class="code">&lt;tt&gt;</tt> or <tt class="code">&lt;span&gt;</tt>.<br />
+        Usually, single HTML tags inside the documentation are being highlighted by wrapping them into something like <tt class="code">&lt;tt class=&quot;code&quot;&gt;</tt> and <tt class="code">&lt;/tt&gt;</tt> (although the HTML tag <tt class="code">&lt;tt&gt;</tt> is considered as deprecated and will be replaced in future versions)
+        <div class="cpg_example">Example:<br /><tt class="code">foo</tt></div>
+    </li>
+    <li>
+        <a name="dev_documentation_code_html_pre"></a><h3>HTML-tag &quot;pre&quot;<a href="#dev_documentation_code_html_pre" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        For smaller sections over multiple lines, use <tt class="code">&lt;pre&gt;</tt>
+        <div class="cpg_example">Example:<br /><pre>foo</pre></div>
+    </li>
+    <li>
+        <a name="dev_documentation_code_css_cpg_code"></a><h3>CSS class &quot;cpg_code&quot;<a href="#dev_documentation_code_css_cpg_code" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        For block elements and longer passages of code, use the class <strong>cpg_code</strong> (usually in combination with the block element <tt class="code">&lt;div&gt;</tt>
+        <div class="cpg_example">Example:<br /><div class="cpg_code">foo</div></div>
+    </li>
+    <li>
+        <a name="dev_documentation_code_css_smallcode"></a><h3>CSS class &quot;smallcode&quot;<a href="#dev_documentation_code_css_smallcode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        For code samples in narrow spaces (e.g. within tables), use the class <strong>smallcode</strong>
+        <div class="cpg_example">Example:<br /><span class="smallcode">foo</span></div>
+    </li>
+    <li>
+        <a name="dev_documentation_code_html_textarea"></a><h3>HTML-tag &quot;textarea&quot;<a href="#dev_documentation_code_html_textarea" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        For sections that users might want to copy and paste from, use <tt class="code">&lt;textarea&gt;</tt>-tags
+        <div class="cpg_example">Example:<br /><textarea cols="10" rows="2">foo</textarea></div>
+    </li>
+</ul>
+
+<a name="dev_documentation_code_combining"></a><h3>Combining HTML tags and CSS classes<a href="#dev_documentation_code_combining" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+The CSS classes and HTML tags that make sense (e.g. <tt class="code">&lt;textarea&gt;</tt> and <tt class="code">smallcode</tt>) can and should of course be combined.
+<div class="cpg_example">Example:<br /><textarea cols="10" rows="2" class="smallcode">foo</textarea></div>
+
+<a name="dev_documentation_code_syntaxhighlighting"></a><h3>No syntax highlighting<a href="#dev_documentation_code_syntaxhighlighting" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p class="cpg_message_warning">For the sake of easier <abbr title="internationalisation">i18n</abbr>, you should <strong>not</strong> use syntax highlighting, as that causes too much extra work for translators!</p>
+
 
 <div id="doc_footer">
 	<div class="doc_info_wrapper">

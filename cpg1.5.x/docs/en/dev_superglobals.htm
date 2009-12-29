@@ -76,7 +76,7 @@
 <p>The guiding principle for Inspekt is to make it easier to create secure PHP applications. As such, ease of use is valued over flexibility, and verbosity is avoided when possible.</p>
 
 <a name="superglobals_sanitization_howto_using"></a><h3>Using Inspekt<a href="#superglobals_sanitization_howto_using" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<pre>// Example: creating a cage for $_POST
+<pre class="cpg_code">// Example: creating a cage for $_POST
 require_once "Inspekt.php";
 
 $cage_POST = Inspekt::makePostCage();
@@ -90,14 +90,14 @@ if ( !isset($_POST['userid']) ) {
 
 <a name="superglobals_sanitization_howto_inspekt_in_coppermine"></a><h3>Inspekt in Coppermine<a href="#superglobals_sanitization_howto_inspekt_in_coppermine" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Inspekt has been used in CPG by including it in init.inc.php file at the very beginning and creating a <strong>supercage</strong> immediately after its inclusion.</p>
-<pre>set_include_path(get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.'Inspekt');
+<pre class="cpg_code">set_include_path(get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.'Inspekt');
 echo dirname(__FILE__);
 require_once "Inspekt.php";
 
 $superCage = Inspekt::makeSuperCage();</pre>
 <p>Supercage is an aggregation of all the cages, i.e <acronym title="Environment, Get, Post, Cookie, Server">EGPCS</acronym> (the order of variable parsing). Once the supercage is created none of the EGPCS variables are available.</p>
 <p>To access a variable within a supercage we have to use the following format:</p>
-<pre>$qs = $superCage->server->getDigits('QUERY_STRING');
+<pre class="cpg_code">$qs = $superCage->server->getDigits('QUERY_STRING');
 $album = $superCage->get->getInt('album');
 $title = $superCage->post->getAlpha('title');</pre>
 <p>To get an instance of <tt class="code">$superCage</tt> inside a function use <tt class="code">$superCage = Inspekt::makeSuperCage();</tt> again. Do not use the global directive. It may be noted here that <tt class="code">makeSuperCage()</tt> creates a singleton pattern object. So calling it multiple times does not have any overheads and you can be assured of getting the very same object every time.</p>
@@ -134,71 +134,51 @@ $title = $superCage->post->getAlpha('title');</pre>
   <tr>
     <td valign="top">calendar.php</td>
     <td valign="top">
-      <pre><span style="color: rgb(0, 119, 0);">if (</span><span style="color: rgb(0, 0, 187);">$_REQUEST</span><span style="color: rgb(0, 119, 0);">[</span><span style="color: rgb(221, 0, 0);">'action'</span><span style="color: rgb(0, 119, 0);">] == </span><span style="color: rgb(221, 0, 0);">'browsebydate'</span><span style="color: rgb(0, 119, 0);">) {</span>
-
-
-
-
-
-
-      </pre>
+      <pre>if ($_REQUEST['action'] == 'browsebydate') {</pre>
       [...]
-      <pre><span style="color: #0000BB">$month </span><span style="color: #007700">= (int) </span><span style="color: #0000BB">$_REQUEST</span><span style="color: #007700">[</span><span style="color: #DD0000">'month'</span><span style="color: #007700">];
-</span><span style="color: #0000BB">$year </span><span style="color: #007700"> = (int) </span><span style="color: #0000BB">$_REQUEST</span><span style="color: #007700">[</span><span style="color: #DD0000">'year'</span><span style="color: #007700">];</span>
-
-
-
-
-
-
-
-
-
-
-
-
-      </pre>
+      <pre>$month = (int) $_REQUEST['month'];
+$year  = (int) $_REQUEST['year'];</pre>
     </td>
     <td valign="top">
-      <pre><span style="color: #000000"><span style="color: #007700">if (</span><span style="color: #0000BB">$matches </span><span style="color: #007700">= </span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMatched</span><span style="color: #007700">(</span><span style="color: #DD0000">'action'</span><span style="color: #007700">, </span><span style="color: #DD0000">'/^[a-z]+$/'</span><span style="color: #007700">)) {
-    </span><span style="color: #0000BB">$action </span><span style="color: #007700">= </span><span style="color: #0000BB">$matches</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];
-} elseif (</span><span style="color: #0000BB">$matches </span><span style="color: #007700">= </span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">post</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMatched</span><span style="color: #007700">(</span><span style="color: #DD0000">'action'</span><span style="color: #007700">, </span><span style="color: #DD0000">'/^[a-z]+$/'</span><span style="color: #007700">)) {
-    </span><span style="color: #0000BB">$action </span><span style="color: #007700">= </span><span style="color: #0000BB">$matches</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">];
+      <pre>if ($matches = $superCage-&gt;get-&gt;getMatched('action', '/^[a-z]+$/')) {
+    $action = $matches[0];
+} elseif ($matches = $superCage-&gt;post-&gt;getMatched('action', '/^[a-z]+$/')) {
+    $action = $matches[0];
 } else {
-    </span><span style="color: #0000BB">$action </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;
+    $action = '';
 }
-if (</span><span style="color: #0000BB">$action </span><span style="color: #007700">== </span><span style="color: #DD0000">'browsebydate'</span><span style="color: #007700">) {</span></span></pre>
+if ($action == 'browsebydate') {</pre>
       [...]
-      <pre><span style="color: #000000"><span style="color: #007700">if (</span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">testInt</span><span style="color: #007700">(</span><span style="color: #DD0000">'month'</span><span style="color: #007700">)) {
-        </span><span style="color: #0000BB">$month </span><span style="color: #007700">= </span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getInt</span><span style="color: #007700">(</span><span style="color: #DD0000">'month'</span><span style="color: #007700">);
-} elseif (</span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">post</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">testInt</span><span style="color: #007700">(</span><span style="color: #DD0000">'month'</span><span style="color: #007700">)) {
-    </span><span style="color: #0000BB">$month </span><span style="color: #007700">= </span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">post</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getInt</span><span style="color: #007700">(</span><span style="color: #DD0000">'month'</span><span style="color: #007700">);
+      <pre>if ($superCage-&gt;get-&gt;testInt('month')) {
+        $month = $superCage-&gt;get-&gt;getInt('month');
+} elseif ($superCage-&gt;post-&gt;testInt('month')) {
+    $month = $superCage-&gt;post-&gt;getInt('month');
 } else {
-        </span><span style="color: #0000BB">$month </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;
+        $month = 0;
 }
 
-if (</span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">testInt</span><span style="color: #007700">(</span><span style="color: #DD0000">'year'</span><span style="color: #007700">)) {
-    </span><span style="color: #0000BB">$year </span><span style="color: #007700">= </span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getInt</span><span style="color: #007700">(</span><span style="color: #DD0000">'year'</span><span style="color: #007700">);
-} elseif (</span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">post</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">testInt</span><span style="color: #007700">(</span><span style="color: #DD0000">'year'</span><span style="color: #007700">)) {
-    </span><span style="color: #0000BB">$year </span><span style="color: #007700">= </span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">post</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getInt</span><span style="color: #007700">(</span><span style="color: #DD0000">'year'</span><span style="color: #007700">);
+if ($superCage-&gt;get-&gt;testInt('year')) {
+    $year = $superCage-&gt;get-&gt;getInt('year');
+} elseif ($superCage-&gt;post-&gt;testInt('year')) {
+    $year = $superCage-&gt;post-&gt;getInt('year');
 } else {
-    </span><span style="color: #0000BB">$year </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;
-}</span></span></pre>
+    $year = 0;
+}</pre>
     </td>
   </tr>
   <tr>
     <td valign="top">getlang.php</td>
     <td valign="top">
-      <pre><span style="color: #000000"><span style="color: #007700">if (isset(</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'get'</span><span style="color: #007700">])) {
-     </span><span style="color: #0000BB">$file_index </span><span style="color: #007700">= (int)</span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'get'</span><span style="color: #007700">];</span></span></pre>
+      <pre>if (isset($_GET['get'])) {
+     $file_index = (int)$_GET['get'];</pre>
      [...]
-     <pre><span style="color: #000000"><span style="color: #007700">&lt;</span><span style="color: #0000BB">img src</span><span style="color: #007700">=</span><span style="color: #DD0000">"images/folder.gif" </span><span style="color: #0000BB">alt</span><span style="color: #007700">=</span><span style="color: #DD0000">""</span><span style="color: #007700">&gt;&amp;</span><span style="color: #0000BB">nbsp</span><span style="color: #007700">;&lt;</span><span style="color: #0000BB">a href</span><span style="color: #007700">=</span><span style="color: #DD0000">"{$_SERVER['PHP_SELF']}?get=$index"</span><span style="color: #007700">&gt;</span><span style="color: #0000BB">$file</span><span style="color: #007700">&lt;/</span><span style="color: #0000BB">a</span><span style="color: #007700">&gt;</span></span></pre>
+     <pre>&lt;img src="images/folder.gif" alt=""&gt;&amp;nbsp;&lt;a href="{$_SERVER['PHP_SELF']}?get=$index"&gt;$file&lt;/a&gt;</pre>
     </td>
     <td valign="top">
-      <pre><span style="color: #000000"><span style="color: #007700">if (</span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">keyExists</span><span style="color: #007700">(</span><span style="color: #DD0000">'get'</span><span style="color: #007700">)) {
-                </span><span style="color: #0000BB">$file_index </span><span style="color: #007700">= </span><span style="color: #0000BB">$superCage</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">get</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getInt</span><span style="color: #007700">(</span><span style="color: #DD0000">'get'</span><span style="color: #007700">) ;</span></span></pre>
+      <pre>if ($superCage-&gt;get-&gt;keyExists('get')) {
+                $file_index = $superCage-&gt;get-&gt;getInt('get') ;</pre>
       [...]
-      <pre><span style="color: #000000"><span style="color: #007700">&lt;</span><span style="color: #0000BB">img src</span><span style="color: #007700">=</span><span style="color: #DD0000">"images/folder.gif" </span><span style="color: #0000BB">alt</span><span style="color: #007700">=</span><span style="color: #DD0000">""</span><span style="color: #007700">&gt;&amp;</span><span style="color: #0000BB">nbsp</span><span style="color: #007700">;&lt;</span><span style="color: #0000BB">a href</span><span style="color: #007700">=</span><span style="color: #DD0000">"{$CPG_PHP_SELF}?get=$index"</span><span style="color: #007700">&gt;</span><span style="color: #0000BB">$file</span><span style="color: #007700">&lt;/</span><span style="color: #0000BB">a</span><span style="color: #007700">&gt;</span></span></pre>
+      <pre>&lt;img src="images/folder.gif" alt=""&gt;&amp;nbsp;&lt;a href="{$CPG_PHP_SELF}?get=$index"&gt;$file&lt;/a&gt;</pre>
     </td>
   </tr>
 </table>
@@ -259,7 +239,7 @@ if (</span><span style="color: #0000BB">$superCage</span><span style="color: #00
     <li>Blog article &quot;<a href="http://www.sanisoft.com/blog/2007/10/15/inspekt-put-a-firewall-in-your-php-applications/" rel="external" class="external">Inspekt - put a firewall in your PHP applications</a>&quot; by Dr. Tarique Sani</li>
     <li><a href="http://coppermine-gallery.net/forum/index.php?topic=47952.0" rel="external" class="external">Coppermine board: Inspekt introduction progress</a> (access restricted to dev team members)</li>
     <li><a href="http://coppermine-gallery.net/forum/index.php?topic=47980.0" rel="external" class="external">Coppermine board:
-Getting started with Inspekt for CPG</a> (access restricted to dev team members)</li>
+Getting started with Inspekt for CPG</a> (access restricted to <a href="credits.htm#developers">dev team members</a>)</li>
 </ul>
 
 <div id="doc_footer">
