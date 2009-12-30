@@ -64,32 +64,32 @@ $template_sub_menu = <<< EOT
     <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
     <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="{LASTUP_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{LASTUP_LNK}">{LASTUP_LNK}</a>
+            <a href="{LASTUP_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{LASTUP_LNK}" rel="nofollow">{LASTUP_LNK}</a>
     </td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
     <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="{LASTCOM_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{LASTCOM_LNK}">{LASTCOM_LNK}</a>
+            <a href="{LASTCOM_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{LASTCOM_LNK}" rel="nofollow">{LASTCOM_LNK}</a>
     </td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
     <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="{TOPN_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{TOPN_LNK}">{TOPN_LNK}</a>
+            <a href="{TOPN_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{TOPN_LNK}" rel="nofollow">{TOPN_LNK}</a>
     </td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
     <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="{TOPRATED_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{TOPRATED_LNK}">{TOPRATED_LNK}</a>
+            <a href="{TOPRATED_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{TOPRATED_LNK}" rel="nofollow">{TOPRATED_LNK}</a>
     </td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
     <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="{FAV_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{FAV_LNK}">{FAV_LNK}</a>
+            <a href="{FAV_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{FAV_LNK}" rel="nofollow">{FAV_LNK}</a>
     </td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
     <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="{BROWSEBYDATE_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{BROWSEBYDATE_LNK}">{BROWSEBYDATE_LNK}</a>
+            <a href="{BROWSEBYDATE_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{BROWSEBYDATE_LNK}" rel="nofollow" class="greybox">{BROWSEBYDATE_LNK}</a>
     </td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>

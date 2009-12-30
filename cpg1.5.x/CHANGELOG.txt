@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2009-12-30 [B] Added missing anchor attributes to themes which override the menus {Nibbler}
 2009-12-29 [D] Undid the syntax highlighting changes from 2009-01-02 and added a section in the coding guidelines page about it {GauGau}
 2009-12-29 [D] Added usability section to coding guidelines {GauGau}
 2009-12-27 [M] Counted version number up for onlinestats from 2.3 to 2.4 {GauGau}

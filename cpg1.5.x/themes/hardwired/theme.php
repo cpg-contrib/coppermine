@@ -165,37 +165,37 @@ $template_sub_menu = <<< EOT
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
                                         <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
-                                                <a href="{LASTUP_TGT}" title="{LASTUP_LNK}">{LASTUP_LNK}</a>
+                                                <a href="{LASTUP_TGT}" title="{LASTUP_LNK}" rel="nofollow">{LASTUP_LNK}</a>
                                         </td>
                                         <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
                                         <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
-                                                <a href="{LASTCOM_TGT}" title="{LASTCOM_LNK}">{LASTCOM_LNK}</a>
+                                                <a href="{LASTCOM_TGT}" title="{LASTCOM_LNK}" rel="nofollow">{LASTCOM_LNK}</a>
                                         </td>
                                         <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
                                         <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
                                         <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
-                                                <a href="{TOPN_TGT}" title="{TOPN_LNK}">{TOPN_LNK}</a>
+                                                <a href="{TOPN_TGT}" title="{TOPN_LNK}" rel="nofollow">{TOPN_LNK}</a>
                                         </td>
                                         <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
                                         <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
                                         <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
-                                                <a href="{TOPRATED_TGT}" title="{TOPRATED_LNK}">{TOPRATED_LNK}</a>
+                                                <a href="{TOPRATED_TGT}" title="{TOPRATED_LNK}" rel="nofollow">{TOPRATED_LNK}</a>
                                         </td>
                                         <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
                                         <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
                                         <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
-                                                <a href="{FAV_TGT}" title="{FAV_LNK}">{FAV_LNK}</a>
+                                                <a href="{FAV_TGT}" title="{FAV_LNK}" rel="nofollow">{FAV_LNK}</a>
                                         </td>
                                         <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
                                         <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
                                         <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
-                                                <a href="{BROWSEBYDATE_TGT}" title="{BROWSEBYDATE_LNK}">{BROWSEBYDATE_LNK}</a>
+                                                <a href="{BROWSEBYDATE_TGT}" title="{BROWSEBYDATE_LNK}" rel="nofollow" class="greybox">{BROWSEBYDATE_LNK}</a>
                                         </td>
                                         <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>

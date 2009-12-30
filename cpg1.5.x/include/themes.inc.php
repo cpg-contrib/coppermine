@@ -745,15 +745,11 @@ $template_thumbnail_view = <<<EOT
 <!-- END header -->
 <!-- BEGIN thumb_cell -->
         <td valign="top" class="thumbnails" width ="{CELL_WIDTH}" align="center">
-                <table width="100%" cellpadding="0" cellspacing="0">
-                        <tr>
-                                <td align="center">
+               
                                         <a href="{LINK_TGT}">{THUMB}<br /></a>
                                         {CAPTION}
                                         {ADMIN_MENU}
-                                </td>
-                        </tr>
-                </table>
+
         </td>
 <!-- END thumb_cell -->
 <!-- BEGIN empty_cell -->
