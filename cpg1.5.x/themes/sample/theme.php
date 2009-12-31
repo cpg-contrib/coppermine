@@ -433,7 +433,7 @@ $template_album_list = <<<EOT
         </tr>
         <tr>
                 <td align="center" valign="middle" class="thumbnails">
-                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" style="margin-top: 0px; margin-bottom: 0px; border: none;" alt="" /><br />
+                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px; margin-bottom: 0px; border: none;" alt="" /><br />
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
                 </td>
                 <td>

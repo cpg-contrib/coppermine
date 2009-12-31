@@ -91,7 +91,7 @@ body { background-color: #000000; }
 /* Borders for input controls */
 .textinput, .listbox, .button, .admin_menu {        border: 1px solid #666666; }
 
-.image { border: 1px solid #FFFFFF; background:url(images/loader.gif) no-repeat center;}
+.image { border: 1px solid #FFFFFF; }
 
 /* pseudo-classes for image links */
 a:link .image{

@@ -418,7 +418,6 @@ a:hover {
     border-width:1px;
     border-color: #000000;
     margin: 2px;
-    background:url(images/loader.gif) no-repeat center;
 }
 
 /* pseudo-classes for image links */
