@@ -366,7 +366,7 @@ doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_general">Paramètres généraux</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_language">Paramètres de Langue &amp; de Jeu de Caractères</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_theme">Paramètres des Thèmes</a></li>\n';
-doc_toc += '          <li><a href="configuration.htm#admin_album_list" class="en">Album list view</a></li>\n';
+doc_toc += '          <li><a href="configuration.htm#admin_album_list">Affichage de la liste des Albums </a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_thumbnail_view" class="en">Thumbnail view</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_image_comment" class="en">Image view</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_comment_start" class="en">Comment settings</a></li>\n';
