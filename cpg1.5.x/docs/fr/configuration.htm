@@ -340,103 +340,103 @@ Activer cette option aura l'avantage de permettra d'arriver à la page désirée
 <a name="admin_album_list_end"></a>
 
 
-<a name="admin_thumbnail_view"></a><h2>Thumbnail view<a href="#admin_thumbnail_view" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<a name="admin_thumbnail_columns"></a><h3>Number of columns on thumbnail page<a href="#admin_thumbnail_columns" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Default value is 4 this means that each row will show 4 thumbnails. There can be no general recommendation on the number of thumbnail columns you should use, as the optimal setting depends on your <a href="#admin_picture_thumbnail_max-dimension">thumbnail width</a> setting, the <a href="#admin_theme_theme">theme</a> you use, the <a href="#admin_album_table-width">width of the main table</a> and especially the display resolution of your site visitor.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Number of columns on thumbnail page for the album he is in.</p>
+<a name="admin_thumbnail_view"></a><h2>Affichage des vignettes <a href="#admin_thumbnail_view" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="admin_thumbnail_columns"></a><h3>Nombre de colonnes sur la page des Vignettes <a href="#admin_thumbnail_columns" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>La valeur par défaut est 4 ce qui signifie que chaque ligne affichera 4 vignettes. Il n'y a pas de recommandations générales concernant le nombre de colonnes de vignettes que vous devez utiliser, le réglage optimal dépends du paramètre <a href="#admin_picture_thumbnail_max-dimension">largeur des vignettes</a> utilisées par votre <a href="#admin_theme_theme">thème</a>, la <a href="#admin_album_table-width">largeur de la tables principale</a> et plus spécialement la résolution d'affichage des visiteurs de votre site.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Affichage des vignettes  &rarr; Nombre de colonnes sur la page des Vignettes .</p>
 <a name="admin_thumbnail_columns_end"></a>
 <hr />
-<a name="admin_thumbnail_rows"></a><h3>Number of rows on thumbnail page<a href="#admin_thumbnail_rows" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Default value is 3.</p>
-<p>If an album contains more files than the number that will fit on one thumbnail page ("<a href="#admin_thumbnail_columns">Number of columns on thumbnail page</a>" x "<a href="#admin_thumbnail_rows">Number of rows on thumbnail page</a>"), a pagination tab will be displayed that allows the visitor to jump to the next page of thumbnails.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Number of rows on thumbnail page</p>
+<a name="admin_thumbnail_rows"></a><h3>Nombre de lignes sur la page des Vignettes<a href="#admin_thumbnail_rows" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>La valeur par défaut est 3.</p>
+<p>Si un album contient plus de fichiers que le nombre de vignettes autorisées pour une seule page ("<a href="#admin_thumbnail_columns">Nombre de colonnes sur la page des vignettes</a>" x "<a href="#admin_thumbnail_rows">nombre de lignes sur la page des vignettes</a>"), une tabulation de pagination sera affichée, permettant aux visiteurs de passer d'une page de vignettes à l'autre.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Affichage des vignettes  &rarr; Nombre de lignes sur la page des Vignettes</p>
 <a name="admin_thumbnail_rows_end"></a>
 <hr />
-<a name="admin_thumbnail_tabs"></a><h3>Maximum number of tabs to display<a href="#admin_thumbnail_tabs" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><img src="images/thumbnail_tabs.jpg" border="0" width="196" height="85" alt="" title="pagination at the bottom of the page" class="img_embed_right" />When the thumbnails spread over multiple pages, tabs are displayed at the bottom of the page. This value define how many tabs will be displayed. If the number of thumbnail pages is greater than the number set for "Maximum number of tabs to display", the "neighbouring" tabs will be displayed as well as the first and last tab.</p>
+<a name="admin_thumbnail_tabs"></a><h3>Nombre maximal d'Onglets à Afficher <a href="#admin_thumbnail_tabs" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p><img src="images/thumbnail_tabs.jpg" border="0" width="196" height="85" alt="" title="pagination at the bottom of the page" class="img_embed_right" />Lorsque les vignettes se répartissent sur plusieurs pages, des onglets de pagination sont affichés en bas de page. Cette valeu définie combien d'onglets sont affichés. Si le nombre de pages de vignettes est supérieur au nombre définié pour "Nombre maximal d'Onglets à Afficher", les onglets "voisins" afficheront aussi bien les premiers que les derniers onglets.</p>
 <p>Default is 12, range is between 5 and 25.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Maximum number of tabs to display</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Affichage des vignettes  &rarr; Nombre maximal d'Onglets à Afficher </p>
 <a name="admin_thumbnail_tabs_end"></a>
 <hr />
-<a name="admin_thumbnail_tabs_dropdown"></a><h3>Show dropdown list of all pages next to tabs<a href="#admin_thumbnail_tabs_dropdown" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When the thumbnails spread over multiple pages, tabs are displayed at the bottom of the page.  This setting will display a dropdown list of all pages so that users can access any page even if the page is not listed in the tabs displayed.  To customize the display of tabs further, modify your theme's variable <tt>$template_tab_display</tt> and function <tt>theme_create_tabs</tt>.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Maximum number of tabs to display</p>
+<a name="admin_thumbnail_tabs_dropdown"></a><h3>Afficher la liste déroulante de toutes le pages après la tabulation <a href="#admin_thumbnail_tabs_dropdown" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Lorsque les vignettes se répartissent sur plusieurs pages, des onglets de pagination sont affichés en bas de page.  Ce paramètre va afficher une liste déroulante de toutes les pages, de sorte que les visiteurs puissent accéder à chaque page non listée dans la pagination affichée.  Pour personnaliser l'ffichage de la tabulation, modifiez la variable de thème <tt>$template_tab_display</tt> et la fonction <tt>theme_create_tabs</tt>.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Affichage des vignettes  &rarr; Afficher la liste déroulante de toutes le pages après la tabulation </p>
 <a name="admin_thumbnail_tabs_dropdown_end"></a>
 <hr />
-<a name="admin_thumbnail_display_caption"></a><h3>Display file caption (in addition to title) below the thumbnail<a href="#admin_thumbnail_display_caption" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles whether the file caption is displayed below each thumbnail while user is in (regular) thumbnail view.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Display file caption below the thumbnail</p>
+<a name="admin_thumbnail_display_caption"></a><h3>Afficher la légende de l'image (en plus de son titre) sous la vignette <a href="#admin_thumbnail_display_caption" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Affiche ou non la légende du fichier est affiché sous chaque vignette lorsque le visiteur est sur la page (normale) d'affichage des vignettes .</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Affichage des vignettes  &rarr; Afficher la légende de l'image (en plus de son titre) sous la vignette </p>
 <a name="admin_thumbnail_display_caption_end"></a>
 <hr />
-<a name="admin_thumbnail_display_views"></a><h3>Display number of views below the thumbnail<a href="#admin_thumbnail_display_views" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles whether the number of views is displayed below each thumbnail while user is in thumbnail view.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Display number of views below the thumbnail</p>
+<a name="admin_thumbnail_display_views"></a><h3>Afficher le nombre de ' Vues x Fois ' sous la Vignette<a href="#admin_thumbnail_display_views" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Affiche ou non le nombre de visualisation sous chaque vignette lorsque le visiteur est sur la page d'affichage des vignettes .</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Affichage des vignettes  &rarr; Afficher le nombre de ' Vues x Fois ' sous la Vignette</p>
 <a name="admin_thumbnail_display_views_end"></a>
 <hr />
-<a name="admin_thumbnail_display_comments"></a><h3>Display number of comments below the thumbnail<a href="#admin_thumbnail_display_comments" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles the display of the number of comments for below each thumbnail.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Display number of comments below the thumbnail</p>
+<a name="admin_thumbnail_display_comments"></a><h3>Afficher le nombre de Commentaires sous les Vignettes <a href="#admin_thumbnail_display_comments" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Affiche ou non le nombre de commentaires sous chaque vignette.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Affichage des vignettes  &rarr; Afficher le nombre de Commentaires sous les Vignettes </p>
 <a name="admin_thumbnail_display_comments_end"></a>
 <hr />
-<a name="admin_thumbnail_display_uploader"></a><h3>Display uploader name below the thumbnail<a href="#admin_thumbnail_display_uploader" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles the display of the name of non-admin uploaders below each thumbnail.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Display uploader name below the thumbnail</p>
+<a name="admin_thumbnail_display_uploader"></a><h3>Afficher le nom de l'Utilisateur sous la Vignette <a href="#admin_thumbnail_display_uploader" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Affiche ou non le nom de la personne qui a téléchargé le fichier (non-administrateur) sous chaque vignette.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Affichage des vignettes  &rarr; Afficher le nom de l'Utilisateur sous la Vignette </p>
 
 <a name="admin_thumbnail_display_uploader_end"></a>
 <hr />
-<a name="admin_thumbnail_display_admin_uploader"></a><h3>Display names of admin uploaders below the thumbnail<a href="#admin_thumbnail_display_admin_uploader" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles the display of admin uploader names below each thumbnail for users that have the administrators group set as thier default group.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Display names of admin uploaders below the thumbnail</p>
+<a name="admin_thumbnail_display_admin_uploader"></a><h3>Afficher le nom de l'administrateur sous les Vignettes<a href="#admin_thumbnail_display_admin_uploader" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Affiche ou non le nom de l'administareur ayant téléchargé l'image pour les utilisateurs qui ont défini le groupe administrateur comme groupe par défaut.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Affichage des vignettes  &rarr; Afficher le nom de l'administrateur sous les Vignettes</p>
 
 <a name="admin_thumbnail_display_admin_uploader_end"></a>
 <hr />
-<a name="admin_thumbnail_display_filename"></a><h3>Display the file name below the thumbnail<a href="#admin_thumbnail_display_filename" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles the display of the file name below each thumbnail.</p>
-<p>It's recommended to leave this option disabled, especially if you have no direct control over the file names (because you allow uploads by users). Better use the actual textual content (title and caption) features. If you have long file names that can not be wrapped, the file name displayed may be wider than the thumbnail, so the table cell that wraps the thumbnail and all text that relates to it may get much wider than expected, resulting in a distorted view of the table.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Display the file name below the thumbnail</p>
+<a name="admin_thumbnail_display_filename"></a><h3>Afficher le nom du fichier sous la Vignette <a href="#admin_thumbnail_display_filename" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Afficher ou non le nom du fichier sous chaque vignette.</p>
+<p>Il est recommandé de ne pas activer cette fonction, en particulier si vous n'avez pas le contrôle direct des noms de fichiers (parce que vous autorisez le téléchargement par les utilisateurs). Utilisez plutôt la fonction de contenu textuel (titre et description). Si vous avez des noms de fichiers longs qui ne peuvent pas être contenus, le nom de fichier affiché peut être plus long que la vignette, la cellule de table qui contient la vignette et l'ensemble des textes relatifs peut devenir plus grande que désiré, résultant en un affichage distordu le la table.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Affichage des vignettes  &rarr; Afficher le nom du fichier sous la Vignette </p>
 
 <a name="admin_thumbnail_display_filename_end"></a>
 <hr />
-<a name="admin_thumbnail_display_rating"></a><h3>Display rating below the thumbnail<a href="#admin_thumbnail_display_rating" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles the display of the rating results below each thumbnail.</p>
-<p>Recommended (and default) setting is &quot;off&quot;.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Display rating below the thumbnail</p>
+<a name="admin_thumbnail_display_rating"></a><h3>Afficher les votes sous la Vignette<a href="#admin_thumbnail_display_rating" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Affiche ou non le résultat des votes sosu chaque vignette.</p>
+<p>Le paramètre par défaut (recommandé) est &quot;Non&quot;.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Affichage des vignettes  &rarr; Afficher les votes sous la Vignette</p>
 
 <a name="admin_thumbnail_display_rating_end"></a>
 <hr />
 <!-- not implemented yet
 <a name="admin_thumbnail_display_description"></a><h3>Display album description<a href="#admin_thumbnail_display_description" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Toggles the display of the album description below each album thumbnail.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Display album description</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Affichage des vignettes  &rarr; Display album description</p>
 <a name="admin_thumbnail_display_description_end"></a>
 <hr />
 -->
-<a name="admin_thumbnail_to_fullsize"></a><h3>Go directly from thumbnail to full-sized image<a href="#admin_thumbnail_to_fullsize" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, this option sends the visitor directly from the thumbnail to the full-sized image pop-up, skipping the display of intermediate images.</p>
-It is <strong>not</strong> recommended to enable this option, because
+<a name="admin_thumbnail_to_fullsize"></a><h3>Aller directement de la Vignette à l'image originale (grande taille) <a href="#admin_thumbnail_to_fullsize" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Lorsqu'elle est activée, cette fonction envoie les visiteurs directement de la vignette vers la fenêtre pop-up affichant l'image à la taille originale, sans passer par l'affichage des images intermédiaires</p>
+Il n'est <strong>pas</strong> recommandé d'activer cette option parce que
 <ul>
-<li>visitors will not be able to rate</li>
-<li>visitors will not be able to comment</li>
-<li>visitors will not see additional picture information</li>
-<li>visitors will not be able to see the slideshow</li>
-<li>visitor might be annoyed because of the over-use of pop-ups</li>
-<li>visitors might not see the full-sized pic at all if they have a pop-up blocker in place and forget to disable it for your site</li>
-<li>the views counter will not increase</li>
+<li>Les visiteurs ne pourront pas voter</li>
+<li>Les visiteurs ne pourront pas faire de commentaires</li>
+<li>Les visiteurs ne verrons pas les informations complémentaires sur l'image</li>
+<li>Les visiteurs ne pourront pas utiliser le diaporama</li>
+<li>Les visiteur pourraient être contrarié en raison de la sur-utilisation de pop-ups</li>
+<li>Les visiteurs pourraient ne pas voir du tout les images originales si ils ont un bloqueur de pop-up et qu'ils ne l'ont pas désactivé pour votre site</li>
+<li>Le compteur de vue ne sera pas augmenté</li>
 </ul>
-<p>This option has been added because a lot of coppermine users have asked for it. However, the dev team does not recommend using it.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Go directly from thumbnail to full-sized image</p>
+<p>Cette option a été ajoutée à la demande de beaucoup d'utilisateurs de Coppermine. Toutefois, l'équipe de développement de Coppermine ne recommande pas son utilisation.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Affichage des vignettes  &rarr; Aller directement de la Vignette à l'image originale (grande taille) </p>
 
 <a name="admin_thumbnail_to_fullsize_end"></a>
 <hr />
-<a name="admin_thumbnail_default_sortorder"></a><h3>Default sort order for files<a href="#admin_thumbnail_default_sortorder" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option determines the default order in which thumbnails should be displayed. Your user can override this by selecting a custom sort order from the sort buttons above the albums.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Default sort order for files</p>
+<a name="admin_thumbnail_default_sortorder"></a><h3>Classement par défaut des fichiers <a href="#admin_thumbnail_default_sortorder" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Cette option détermine l'ordre d'affichage par défaut des vignettes. Vos visiteurs peuvent modifier cela en sélectionnant un ordre de tri personnalisé à partir des boutons de tri au-dessus des albums.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Affichage des vignettes  &rarr; Classement par défaut des fichiers </p>
 <a name="admin_thumbnail_default_sortorder_end"></a>
 <hr />
-<a name="admin_thumbnail_minimum_votes"></a><h3>Minimum number of votes for a file to appear in the 'top-rated' list<a href="#admin_thumbnail_minimum_votes" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Used to determine how many votes a file must receive before appearing as a &quot;top-rated file.&quot;. If a file has received less than &quot;this value&quot; of votes, it will not be displayed in the "top-rated" page. This value must be greater or equal to 1.</p>
-<p>Setting this to a high number is only recommended for busy sites with a lot of visitors. Default value is &quot;1&quot;. A higher number has the advantage that votes just by one individual won't boost up the relevance of a file to much, reducing potential rating fraud.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnail view &rarr; Minimum number of votes for a file to appear in the 'top-rated' list</p>
+<a name="admin_thumbnail_minimum_votes"></a><h3>Nombre minimun de Vote pour apparaître dans la liste 'les Mieux Notés' <a href="#admin_thumbnail_minimum_votes" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Utilisé pourdéterminer combien de votes un fichier doit recevoir avant d'apparaitre comme &quot;fichiers les mieux notés.&quot;. Si un fichier a reçu moins de votes que &quot;cette valeur&quot;, il ne sera pas affiché dans la page "Les mieux notés". Cette valeur doit être supérieure ou égale à 1.</p>
+<p>Paramétrer cette valeur à un nombre élevé n'est recommandé que pour les sites ayant une grande activité avec un grand nombre de visiteurs. La valeur par défaut est &quot;1&quot;. Un plus grand nombre a l'avantage que lesvotes issus d'un seul visiteur n'augmente pas visibilité d'un fichier, réduisant ainsi les éventuelles fraudes aux votes.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Affichage des vignettes  &rarr; Nombre minimun de Vote pour apparaître dans la liste 'les Mieux Notés' </p>
 <a name="admin_thumbnail_minimum_votes_end"></a>
 <a name="admin_thumbnail_view_end"></a>
 
