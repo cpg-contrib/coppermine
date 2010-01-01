@@ -257,7 +257,7 @@ pagefooter();
 
 global $CONFIG, $HIDE_USER_CAT, $FORBIDDEN_SET,$cpg_show_private_album;
 if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
-        $album_filter = str_replace('p.', 'a.', $FORBIDDEN_SET);
+        $album_filter = ' ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
 }
 $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category>=" . FIRST_USER_CAT . $album_filter;
 $result = cpg_db_query($sql);
