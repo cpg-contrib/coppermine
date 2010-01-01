@@ -2172,6 +2172,7 @@ function get_pic_pos($album, $pid)
             INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
             $RESTRICTEDWHERE
             AND approved = 'YES'
+            AND p.votes >= '{$CONFIG['min_votes_for_rating']}'
             AND pic_rating > $pic_rating
             OR pic_rating = $pic_rating AND p.votes > $votes
             OR pic_rating = $pic_rating AND p.votes = $votes AND pid > $pid";
