@@ -1965,10 +1965,6 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         return $rowset;
         break;
-
-    default : // Invalid meta album
-        cpg_die(ERROR, $lang_errors['non_exist_ap']." - $album", __FILE__, __LINE__);
-
     } // switch
 } // function get_pic_data
 
@@ -2935,7 +2931,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
 
         theme_display_thumbnails($thumb_list, $thumb_count, $album_name, $album, $cat, $page, $total_pages, is_numeric($album), $display_tabs, 'thumb', $date);
 
-    } else {
+    } elseif (is_numeric($album)) {
         theme_no_img_to_display($album_name);
     }
 }
