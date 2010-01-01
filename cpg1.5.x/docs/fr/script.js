@@ -368,8 +368,8 @@ doc_toc += '          <li><a href="configuration.htm#admin_language">Paramètres
 doc_toc += '          <li><a href="configuration.htm#admin_theme">Paramètres des Thèmes</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_album_list">Affichage de la liste des Albums </a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_thumbnail_view">Thumbnail view</a></li>\n';
-doc_toc += '          <li><a href="configuration.htm#admin_image_comment" class="en">Image view</a></li>\n';
-doc_toc += '          <li><a href="configuration.htm#admin_comment_start" class="en">Comment settings</a></li>\n';
+doc_toc += '          <li><a href="configuration.htm#admin_image_comment">Image view</a></li>\n';
+doc_toc += '          <li><a href="configuration.htm#admin_comment_start">Comment settings</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_contact_start" class="en">Contact form settings</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_thumb_start" class="en">Thumbnail settings</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_picture_thumbnail" class="en">File settings</a></li>\n';
