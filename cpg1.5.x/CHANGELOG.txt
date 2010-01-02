@@ -1,8 +1,8 @@
 ﻿************************
 Coppermine Photo Gallery
 ************************
-Copyright (c) 2003-2009 Coppermine Dev Team
-v1.1 originally written by Gregory DEMAR
+Copyright (c) 2003-2010 Coppermine Dev Team
+v1.0 originally written by Gregory Demar
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 3
@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-01-02 [M] Updated header information to reflect new year {GauGau}
 2009-12-30 [B] Added missing anchor attributes to themes which override the menus {Nibbler}
 2009-12-29 [D] Undid the syntax highlighting changes from 2009-01-02 and added a section in the coding guidelines page about it {GauGau}
 2009-12-29 [D] Added usability section to coding guidelines {GauGau}
