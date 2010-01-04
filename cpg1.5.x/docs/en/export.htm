@@ -36,7 +36,7 @@
 <p>This page is meant to explain how to back up a coppermine-driven gallery and how to use the <a href="#export">export</a> tool. Those two things must not be mixed up: they are entirely different things, although the use of both tools overlap - that's why the instuctions reside on one page.</p>
 
 <a name="backup_export_decision"></a><h2>Decide for one method<a href="#backup_export_decision" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>The decision wether you need to back up or to export depends on what you want to do with the data afterwards: backups can be used to restore your gallery somewhere in case something goes wrong (i.e. server hard-drive crash, hacking, own mistake) or if you want to move (move servers, move to another webhost, use another application). Exporting on the other hand is mainly used to get content that is currently only stored in your gallery somewhere else (e.g. your local PC) without all the clutter and additional information that is needed to maintain the gallery, i.e. if you only want the pics (or whatever content you store in your gallery).</p>
+<p>The decision wether you need to back up or to export depends on what you want to do with the data afterwards: backups can be used to restore your gallery somewhere in case something goes wrong (i.e. server hard-drive crash, hacking, own mistake) or if you want to <a href="#moving">move</a> (move servers, move to another webhost, use another application). Exporting on the other hand is mainly used to get content that is currently only stored in your gallery somewhere else (e.g. your local PC) without all the clutter and additional information that is needed to maintain the gallery, i.e. if you only want the pics (or whatever content you store in your gallery).</p>
 
 <a name="backup"></a><h2>Backup<a href="#backup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Coppermine stores content both on file system level (i.e. on your webspace - that's the hard drive of your webserver) as well as on database level. Think of the database as a giant array of tables that are connected one with the other. Although the database is (technically) being stored in files as well, you can't just backup the file that represents the database. This is being caused by the way that a database works. Additionally, you usually don't have access to the file that represents the database (but don't start the wicth hunt and try to find it - you wouldn't be able to use it anyway). That's why the backup process needs to be two-fold: you need to back up your files and you need to back up your database. Only backing up one of them without the other will result in an incomplete backup that hardly can be usefull.</p>
@@ -126,7 +126,7 @@
 <a name="moving"></a><h3>Moving your gallery<a href="#moving" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Your coppermine-driven gallery can be moved around on your webserver as well as from one webspace to the other. Here's how you accomplish those tasks:</p>
 
-<a name="moving_folder"></a><h3>Moving on your webserver<a href="#moving_folder" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="moving_folder"></a><h4>Moving on your webserver<a href="#moving_folder" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 Moving your gallery on your webserver (e.g. from a particular folder to the webroot or vice versa) is comparatively easy. Coppermine consists of two components:
 <ul>
     <li>Files</li>
@@ -134,7 +134,172 @@ Moving your gallery on your webserver (e.g. from a particular folder to the webr
 </ul>
 The good thing about moving your files/folders around is the fact that coppermine does not store the absolute path to a file within the database, but only a relative one: the relative path inside the albums folder). Subsequently, you can move around the folder where your coppermine gallery resides in on your server easily and you won't have to change your database records accordingly.<br />
 <p class="cpg_message_warning">Just keep in mind that you need to move the entire coppermine folder around, i.e. you must move <strong>all</strong> files and folders around and not just some of them. The folder and file structure within your coppermine folder needs to remain intact when moving it.</p>
-<tb...
+Basically there are two options for this:
+<ul>
+	<li>
+		<h5>You just rename the folder your gallery resides in</h5>
+		This is the setup that is the most easiest option. If your coppermine-driven gallery currently resides at <tt class="code">http://example.com/your_coppermine_folder/</tt> and you find that URL to hard to memorize for your visitors, you could just rename the folder <tt class="code">your_coppermine_folder</tt> to something else that is easier to memorize, e.g. <tt class="code">gallery</tt> or <tt class="code">photos</tt>. To accomplish that, you just use your favorite </a href="dev_tools.htm#dev_tools_ftp_client"><abbr title="File Transfer Protocol">FTP</abbr> application</a> and rename the folder that corresponds to <tt class="code">http://example.com/your_coppermine_folder/</tt> accordingly. All that is then left to do is described in the section <a href="#moving_config_url">Changing Coppermine's URL in config</a>.
+	</li>
+	<li>
+		<h5>You move the coppermine folder contents around</h5>
+		Unless you have shell access to your webserver, this is a three-step process: first you copy the entire content of your coppermine folder to a temporary folder on your client using your FTP application. Then you restore the content of that folder in the target directory on your server. Finally, you need to <a href="install_permissions.htm#permissions_folders">set permissions</a> for the new folder structure.
+		<div class="cpg_example">
+			Let's assume that your website is at <tt class="code">http://example.com/</tt> and your Coppermine gallery is located at <tt class="code">http://example.com/coppermine/</tt>. Let's assume that the webroot <tt class="code">http://example.com/</tt> corresponds to the absolute path <tt class="code">/home/htdocs/</tt> on the server and subsequently the gallery corresponds to the server path <tt class="code">/home/htdocs/coppermine/</tt>. Let's assume that you want to move it to a folder named &quot;<tt class="code">photos</tt>&quot; that resides within a folder named &quot;<tt class="code">multimedia</tt>&quot;. For that target folder the absolute path would be <tt class="code">/home/htdocs/multimedia/photos/</tt> and the target URL would be <tt class="code">http://example.com/multimedia/photos/</tt>.
+			<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+				<tr>
+					<th class="tableh1">
+						Step
+					</th>
+					<th class="tableh1">
+						Webserver
+					</th>
+					<th class="tableh1">
+						Direction
+					</th>
+					<th class="tableh1">
+						Client
+					</th>
+					<th class="tableh1">
+						Explanation
+					</th>
+				</tr>
+				<tr>
+					<td class="tableb">
+						1
+					</td>
+					<td class="tableb">
+						URL:<br /><tt class="code smallcode">http://example.com/coppermine/</tt><hr />
+						Absolute path:<br /><tt class="code smallcode">/home/htdocs/coppermine/</tt>
+					</td>
+					<td class="tableb" align="center">
+						&rarr;
+					</td>
+					<td class="tableb">
+						<tt class="code smallcode">c:\temp\coppermine\</tt>
+					</td>
+					<td class="tableb">
+						Use your FTP app to copy the gallery folder and everything within it into a temporary folder on your client's hard drive.
+					</td>
+				</tr>
+				<tr>
+					<td class="tableb tableb_alternate">
+						2
+					</td>
+					<td class="tableb tableb_alternate">
+						URL:<br /><tt class="code smallcode">http://example.com/multimedia/photos/</tt><hr />
+						Absolute path:<br /><tt class="code smallcode">/home/htdocs/multimedia/photos/</tt>
+					</td>
+					<td class="tableb tableb_alternate" align="center">
+						&larr;
+					</td>
+					<td class="tableb tableb_alternate">
+						<tt class="code smallcode">c:\temp\coppermine\</tt>
+					</td>
+					<td class="tableb tableb_alternate">
+						Use your FTP app to copy all content from the local temporary folder to the new target folder on the server.
+					</td>
+				</tr>
+				<tr>
+					<td class="tableb">
+						3
+					</td>
+					<td class="tableb">
+						URL:<br /><tt class="code smallcode">http://example.com/multimedia/photos/albums/</tt><hr />
+						Absolute path:<br /><tt class="code smallcode">/home/htdocs/multimedia/photos/albums/</tt>
+					</td>
+					<td class="tableb" align="center">
+						<abbr title="not applicable">n/a</abbr>
+					</td>
+					<td class="tableb">
+						-
+					</td>
+					<td class="tableb">
+						Set permissions (using your FTP app) on the albums folder that needs to be writable.
+					</td>
+				</tr>
+			</table>
+			Finally you could delete the local temporary folder where you stored your coppermine files in, but it's advisable to keep that folder instead as a backup.
+		</div>
+		What folder is the source folder and the target folder doesn't matter at all, nor does it matter how deep the coppermine folder is nested within the folder structure on your webserver. The steps needed to perform when moving coppermine from a folder to the webroot or vice versa don't differ at all: the webroot in fact just is represented by a folder on webserver file system level, and you move the content of a folder around.
+	</li>
+</ul>
+
+<a name="moving_server"></a><h4>Moving from one webserver to the other<a href="#moving_server" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>This scenario usually applies when switching from one webhost to the other. In fact you create a copy of your files (a <a href="export.htm#backup_file_complete">complete file backup</a>) and a copy of your database (complete <a href="export.htm#backup_database">database dump</a>) on the old server and restore those copies on the new server.</p>
+<p>You're encouraged to create and maintain frequent backups in case anything goes wrong, so you really should have a backup already. However, if you don't have one, you should create one <strong>now</strong>. You need to keep in mind that there might be a downtime of your site when moving from one webhost to the other. Ideally, the downtime will be neglible, but you usually won't be able to access the gallery on the old server and the gallery on the new server under the same URL at the same time. Therefore, you need to backup the old server while you still can, i.e. before your old webhosting contract expires and you no longer can access the old server to create the backup. If you don't have a backup and your webserver is no longer accessible you will be out of luck: nobody will be able to help you recover your gallery - it's absolutely mandatory to have a working backup both of your files as well as your database.</p>
+<p>Refer to the corresponding ections on this page to figure out in detail how to create the backups.</p>
+Below is a summary of the needed steps and some notes on the tricky stuff:
+<ul>
+	<li>
+		<h5>Maintenance mode</h5>
+		Tell your visitors that there will be maintenance works on your site and that there might be downtimes. If you allow visitor interaction like uploading of files or posting of comments, you better put the gallery into <a href="configuration.htm#admin_general_offline">offline mode</a> or make sure otherwise that the content of your database won't change after having created the dump.
+	</li>
+	<li>
+		<h5>Backup your files</h5>
+		FTP-download your complete coppermine-folder (including all folders and files within it) from the old server to your client's hard drive, preserving the structure of the sub-folders.
+	</li>
+	<li>
+		<h5>Create a dump of your database</h5>
+		Use a tool like phpMyAdmin or similar to <a href="#backup_database">backup your database</a>, i.e. to get a dump (backup) of your mySQL database entries. Make sure that you're not just creating a backup of your table structure - you need to backup the actual content (i.e. the individual database records) as well.
+	</li>
+	<li>
+		<h5>Verify your backup is working</h5>
+		Check if the mySQL-dump contains all data (open the zipped dump file and use a text editor to view it). Ideally, restore the entire gallery on a testbed in case you can't access the new server yet to make sure your backup is valid and working.
+	</li>
+	<li>
+		<h5>FTP-upload your coppermine-folder to the new server</h5>
+		Restore the files on the new server if you can, again preserving the exact structure of sub-folders that exists in your backup on your client.
+	</li>
+	<li>
+		<h5>Set permissions</h5>
+		Coppermine needs write permissions on some folders, so you need to <a href="install_permissions.htm#permissions_folders">set permissions</a> on the new server in the similar way you had to do when installing Coppermine in the first place on the old server. Don't forget this step, it's important!
+	</li>
+	<li>
+		<h5>Restore the database</h5>
+		Restore the mySQL table by running the queries of the dump files you created on the old server. To accomplish that, you will need the same tool on the new server (the target server) that you have used on the old server to create the backup; if you have used phpMyAdmin on the old server to create the backup you should use phpMyAdmin on the new server as well to restore the dump.
+	</li>
+	<li>
+		<h5>Edit the database settings</h5>
+		Your new webhost must have provided you with the mySQL access data (you already had to use that data to restore the dump on the new server). That mySQL data usually will differ from the mySQL data on the old webserver, so you will have to edit the file that contains those data. Use a plain text editor (notepad.exe is fine) and edit <tt class="code">include/config.inc.php</tt>: inside that file, you will find the old mySQL data that you will need to overwrite with the mySQL data for the new server.
+	</li>
+	<li>
+		<h5>Disable maintenance mode</h5>
+		If you have originally put your gallery into offline mode on the old server you have to remember to turn offline mode off on the new server. Go to coppermine's config and edit the corresponding setting.
+	</li>
+	<li>
+		<h5>Test everything thoroughly</h5>
+		Test every facet of your gallery: try to log on as regular (non-admin) user, try to use <a href="uploading_http.htm#upload_http">http uploads</a>, post a comment etc.
+	</li>
+</ul>
+
+
+
+<a name="moving_disadvantages"></a><h4>Disadvantages of renaming<a href="#moving_disadvantages" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<div class="cpg_message_warning">
+	There are several disadvantages when changing the URL of your gallery:
+	<ul>
+		<li>Bookmarks / favorites of your visitors will no longer apply</li>
+		<li>Search engine indexes will point to the old URIs. Subsequently, you will lose the ranking in those search indexes</li>
+	</ul>
+</div>
+Tim Berners-Lee (the &quot;inventor&quot; of the <abbr title="world wide web">www</abbr>) coined the motto &quot;<a href="http://www.w3.org/Provider/Style/URI" rel="external" class="external">Cool URIs don't change</a>&quot; that still applies, so you better think twice before renaming your coppermine folder once it has been established. It's better to choose a clever folder name in the first place (when initially installing Coppermine). Anyway, if you <em>must</em> change the URI of your gallery (or in fact any other URL), you should at least set up some redirector that takes care of the change: on Apache-driven servers (and provided that your webserver supports that feature), you could set up a redirection using a <tt class="code">.htaccess file</tt> with the <a href="http://httpd.apache.org/docs/1.3/mod/mod_alias.html#redirect" rel="external" class="external">redirect directive</a>.
+
+
+<a name="moving_config_url"></a><h4>Changing Coppermine's URL in config<a href="#moving_config_url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<div class="cpg_message_validation">
+	Whenever the URL of your gallery changes (i.e. after having moved your gallery around on your webserver or after renaming the folder it resided in), you have to reflect the changed URL in coppermine's config:
+</div>
+	<ul>
+		<li>Go to the new URL in your browser's address bar</li>
+		<li>Log in as admin if you're not already logged in</li>
+		<li>Go to Coppermine's <a href="configuration.htm">config panel</a></li>
+		<li>Expand &quot;<a href="configuration.htm#admin_general">General settings</a>&quot;</li>
+		<li>Enter the new URL into the field &quot;<a href="configuration.htm#admin_general_coppermine-url">URL of your coppermine gallery folder</a>&quot;</li>
+		<li>Scroll to the bottom of the config panel</li>
+		<li>Save your changes by submitting the form using the corresponding button at the bottom of the page</li>
+	</ul>
+
+
 <hr />
 
 <a name="export"></a><h2>Exporting<a href="#export" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>

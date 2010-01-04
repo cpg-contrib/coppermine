@@ -48,13 +48,13 @@
 			<li><a class="content" href="#noFullsizePopup">The <strong>fullsize-pic doesn't pop up</strong> when clicking on the intermediate size pic. What's wrong?</a></li>
 			<li><a class="content" href="#preventHotlinks">How can I prevent other sites linking directly to the pictures in my gallery instead of the gallery page?</a></li>
 			<li><a class="content" href="#onlyregisteredcomments">How do I let guests, not only registered users to put <strong>comments</strong> on pictures?</a></li>
-			<li><a class="content" href="#cantUploadBigPics">I <strong>can't upload big pics</strong>. What's wrong?</a></li>
+			<li><a class="content" href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions">I <strong>can't upload big pics</strong>. What's wrong?</a></li>
 			<li><a class="content" href="#cookie">I can't <strong>login</strong> to Coppermine. What's wrong?</a></li>
 			<li><a class="content" href="#sortAlbum">How can I change the <strong>sorting order of the albums</strong>?</a></li>
 			<li><a class="content" href="#deleteIntermediates">I don't use the <strong>intermediate pictures</strong> anymore. How can I <strong>delete</strong> them to gain disk space?</a></li>
 			<li><a class="content" href="albums#album_howAlbumsFolderWork">How do <strong>albums and folders</strong> work in coppermine?</a></li>
 			<li><a class="content" href="albums.htm#album_howMoveAlbum">How can I <strong>move albums from one category to another</strong>?</a></li>
-			<li><a class="content" href="#moveGallery">How do I <strong>move a gallery</strong>?</a></li>
+			<li><a class="content" href="export.htm#moving">How do I <strong>move a gallery</strong>?</a></li>
 			<li><a class="content" href="#oneFileMultipleAlbums">How do I <strong>show the same file in multiple albums</strong>?</a></li>
 		</ul>
 	</li>
@@ -129,15 +129,6 @@ This will only work on linux/unix and apache servers AND only if you're allowed 
 </ul>
 <hr />
 
-<a name="cantUploadBigPics"></a>
-<h3>I <strong>can't upload big pics or files</strong>. What's wrong?<a href="#cantUploadBigPics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The max. size of uploadable pics and/or files is limited by various settings - to find out why you can't upload big picks, check the following:
-<ul>
-<li>Make sure you have enough webspace left (remember that you need space for the full size pic, the intermediate size pic and the thumbnail!)</li>
-<li>When logged in as admin check your &quot;Group&quot; settings: the groups (even the admin group!) have quota limits that can be configured there</li>
-<li>Browser time-out: the commonly-used Internet Explorer has a time-out function: if your upload isn't finished within a certain period, the browser will time-out (this applies especially to dial-up connections)</li>
-<li>There'are a maximum limits set in the PHP config of your server or webhosting server. If you're with a webhost there's very little you can do about it except ask them if they could help you out. If you're running your own server, check php.ini and look for <tt class="code">LimitRequestBody</tt> - this value (in bytes) in the max upload allowed by php/html</li>
-</ul></p><hr />
 <a name="cookie"></a>
 <h3>I can't <strong>login</strong> to Coppermine. What's wrong?<a href="#cookie" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This is most likely a cookie issue:
@@ -165,21 +156,7 @@ This will only work on linux/unix and apache servers AND only if you're allowed 
 <a name="deleteIntermediates"></a>
 <h3>I don't use the <strong>intermediate pictures</strong> anymore. How can I <strong>delete</strong> them to gain disk space?<a href="#deleteIntermediates" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Why would you want to do that? Deleting the intermediate pics would disable many of the great features that make coppermine what is today. The option to send ecards, to add comments to pics, to rate pics, to display exif information, just to name a few. If you really want to save space, opt to delete your original files using the Admin Tools menu option.  Doing this will allow your users to enjoy all of coppermine's features with the exception of viewing full-sized images.  In the end, it will probably save you more space as well.  Just be sure to set your intermediate sized picture settings in CONFIG to a size that you can live with.</p>
-<p>If you really must remove the intermediate sized pics, search the mods and hacks board in the coppermine forum to learn how.</p><hr />
-
-
-<a name="moveGallery"></a>
-<h3>How can I <strong>move my gallery to another host</strong>?<a href="#moveGallery" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<ul>
-<li>Backup your files: FTP-download your complete coppermine-folder to your hard drive</li>
-<li>use a tool like phpMyAdmin to get a dump (backup) of your mySQL database entries.</li>
-<li>verify your backup is working: check if the mySQL-dump contains all data (open the zipped dump file and use a text editor to view it)</li>
-<li>on the new server: FTP-upload your coppermine-folder to the new server</li>
-<li>CHMOD the folder /albums to 755 or 777 (depending on your server config]</li>
-<li>restore the mySQL table by running the queries of the dump files you created in step 2</li>
-<li>test-drive your coppermine gallery - you should be done</li>
-</ul>
-<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+<p>If you really must remove the intermediate sized pics, take a look at the section &quot;<a href="start.htm#getting_resizing_recommended_nointermediate">Allow full-size pop-ups with maximum space saving</a>&quot;.</p><hr />
 
 <a name="oneFileMultipleAlbums"></a>
 <h3>How do I <strong>show the same file in multiple albums</strong>?<a href="#oneFileMultipleAlbums" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -210,7 +187,9 @@ or<br />
 
 <a name="addFooterBeforePoweredBy"></a>
 <h3>How can I <strong>add</strong> some output <strong>directly before</strong> the line &quot;Powered by Coppermine&quot;?<a href="#addFooterBeforePoweredBy" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Edit /themes/yourtheme/theme.php, look for <tt class="code">echo $template_footer</tt> and add the stuff you want to output in a line <strong>before</strong> it, like <tt class="code">print '&lt;span class=&quot;footer&quot;&gt;&lt;a href=&quot;http://www.mylink.com/foo.htm&quot;&gt;My Link&lt;/a&gt;&lt;/span&gt;';</tt></p><hr />
+<p>Edit /themes/yourtheme/theme.php, look for <tt class="code">echo $template_footer</tt> and add the stuff you want to output in a line <strong>before</strong> it, like <tt class="code">echo '&lt;span class=&quot;footer&quot;&gt;&lt;a href=&quot;http://www.mylink.com/foo.htm&quot;&gt;My Link&lt;/a&gt;&lt;/span&gt;';</tt></p>
+<p>Alternatively, <a href="theme_template.htm#theme_template_html">edit template.html</a> or even <a href="theme_copyright.htm">edit the credits tag</a> itself.
+<hr />
 
 <a name="renameTemplateHtml"></a>
 <h3>Can I rename template.html to template.php to include PHP code in my template?<a href="#renameTemplateHtml" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>

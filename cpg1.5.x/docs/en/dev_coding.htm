@@ -67,17 +67,13 @@
     <li>Equals sign should be aligned with surrounding elements<br />
     <div class="cpg_example">
         Bad example:
-        <pre class="code">
-$pic_title = 'My picture';
+        <pre class="cpg_code code">$pic_title = 'My picture';
 $album = 'lastup';
-$update_time = true;
-        </pre>
+$update_time = true;</pre>
         Good Example:
-        <pre class="code">
-$pic_title   = 'My picture';
+        <pre class="cpg_code code">$pic_title   = 'My picture';
 $album       = 'lastup';
-$update_time = true;
-        </pre>
+$update_time = true;</pre>
     </div>
     </li>
     <li>Array with multiple values cannot be declared on a single line. However if there is only one value then it can be declared in same line</li>
@@ -86,7 +82,7 @@ $update_time = true;
     <li>Each line in an array declaration must end in a comma<br />
     <div class="cpg_example">
         Bad examples:
-        <pre class="code">
+        <pre class="cpg_code code">
 $foo = array('one', 'two', 'three');
 
 $bar = array(
@@ -97,7 +93,7 @@ $bar = array(
 $multi = array('first' => 'one', 'second' => array('2'), 'third' => array('foo' => 'bar', 'hello' => 'world'));
         </pre>
         Good Examples:
-        <pre class="code">
+        <pre class="cpg_code code">
 $foo = array(
         'one',
         'two',
@@ -125,17 +121,17 @@ $multi = array(
     <li>Use single quotes instead of double quotes
     	<div class="cpg_example">
     		Bad:
-    		<pre class="code">$foo_array["bla"] = "whatever";</pre>
+    		<pre class="cpg_code code">$foo_array["bla"] = "whatever";</pre>
     		Good:
-    		<pre class="code">$foo_array['bla'] = 'whatever';</pre>
+    		<pre class="cpg_code code">$foo_array['bla'] = 'whatever';</pre>
     	</div>
     </li>
     <li>Don't use spaces or capitalization in associative array definitions
     	<div class="cpg_example">
     		Bad:
-    		<pre class="code">$bla_array['foo Bar'] = 'some string';</pre>
+    		<pre class="cpg_code code">$bla_array['foo Bar'] = 'some string';</pre>
     		Good:
-    		<pre class="code">$bla_array['foo_bar'] = 'some string';</pre>
+    		<pre class="cpg_code code">$bla_array['foo_bar'] = 'some string';</pre>
     	</div>    
     </li>
 </ul>
@@ -146,10 +142,10 @@ $multi = array(
     <li>Control statements should have one space between the control keyword and opening parenthesis, to distinguish them from function calls</li>
     <li>Always use curly braces, even in situations where they are technically optional - having them increases readability and decreases the likelihood of logic errors being introduced when new lines are added</li>
     <li>Always have a newline before an opening or closing brace<br />
-    <div class="cpg_example">Bad example:<pre class="code">if ($foo = 'bar') { echo 'Hello world'; }</pre>Bad example:<pre class="code">if ($foo = 'bar') 
-{ echo 'Hello world'; }</pre>Good example:<pre class="code">if ($foo = 'bar') { 
+    <div class="cpg_example">Bad example:<pre class="cpg_code code">if ($foo = 'bar') { echo 'Hello world'; }</pre>Bad example:<pre class="cpg_code code">if ($foo = 'bar') 
+{ echo 'Hello world'; }</pre>Good example:<pre class="cpg_code code">if ($foo = 'bar') { 
     echo 'Hello world'; 
-}</pre>Good example:<pre class="code">if ($foo = 'bar')
+}</pre>Good example:<pre class="cpg_code code">if ($foo = 'bar')
 { 
     echo 'Hello world'; 
 }</pre></div></li>
@@ -163,7 +159,7 @@ $multi = array(
 
 <a name="dev_coding_function_definitions"></a><h3>Function Definitions<a href="#dev_coding_function_definitions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <ul>
-    <li>Function definitions follow the "one true brace" convention:<pre class="code">&lt;?php
+    <li>Function definitions follow the "one true brace" convention:<pre class="cpg_code code">&lt;?php
     
     
 function fooFunction($arg1, $arg2 = '')
@@ -190,14 +186,14 @@ function fooFunction($arg1, $arg2 = '')
 <p>When more than one line of HTML needs to be printed, the <a href="http://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.heredoc" rel="external" class="phpnet">heredoc syntax</a> should be used instead of ending the PHP processing and starting it later.</p>
 <div class="cpg_example">
 <p>Good:</p>
-<pre class="code">// PHP content here
+<pre class="cpg_code code">// PHP content here
 if ($foo == $bar) {
 	print &lt;&lt;&lt; EOT
 	&lt;h1&gt;Hello {$bla}&lt;/h1&gt;
 EOT;
 }</pre>
 <p>Bad:</p>
-<pre class="code">// PHP content here
+<pre class="cpg_code code">// PHP content here
 if ($foo == $bar) {
 	?&gt;
 	&lt;h1&gt;Hello &lt;?php echo $bla; ?&gt;&lt;/h1&gt;
@@ -211,11 +207,11 @@ if ($foo == $bar) {
 <p>Remember to make the variable <tt class="code">$LINEBREAK</tt> global inside functions.</p>
 <div class="cpg_example">
 <p>Good:</p>
-<pre class="code">echo '&lt;h1&gt;Hello world&lt;/h1&gt;' . $LINEBREAK;
+<pre class="cpg_code code">echo '&lt;h1&gt;Hello world&lt;/h1&gt;' . $LINEBREAK;
 echo '&lt;p&gt;foo bar&lt;/p&gt;';
 }</pre>
 <p>Bad:</p>
-<pre class="code">echo "&lt;h1&gt;Hello world&lt;/h1&gt;\n";
+<pre class="cpg_code code">echo "&lt;h1&gt;Hello world&lt;/h1&gt;\n";
 echo '&lt;p&gt;foo bar&lt;/p&gt;';
 }</pre>
 </div> 
