@@ -32,7 +32,7 @@
 <a href="toc.htm">Table of Contents</a>
 </div>
 
-<a name="backup_export"></a><h1>Backup &amp; Export<a href="#export" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<a name="backup_export"></a><h1>Backup &amp; Export<a href="#backup_export" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>This page is meant to explain how to back up a coppermine-driven gallery and how to use the <a href="#export">export</a> tool. Those two things must not be mixed up: they are entirely different things, although the use of both tools overlap - that's why the instuctions reside on one page.</p>
 
 <a name="backup_export_decision"></a><h2>Decide for one method<a href="#backup_export_decision" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
@@ -123,6 +123,18 @@
 <p>After performing the manual database backup it's important to make sure that the dump you just created works as expected. Therefore, you should really try to open the dump file first and see if it not broken. Ideally, you should perform a restore on a testbed to make sure everything works as expected.</p>
 <p>There have been many users already who relied on their backup without ever having tested it once: if you never test your backup strategy, you will never know if it will enable you to perform the restore in case of a disaster. Since there are many things that can go wrong, it's really recommended to test your backup.</p>
 
+<a name="moving"></a><h3>Moving your gallery<a href="#moving" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Your coppermine-driven gallery can be moved around on your webserver as well as from one webspace to the other. Here's how you accomplish those tasks:</p>
+
+<a name="moving_folder"></a><h3>Moving on your webserver<a href="#moving_folder" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+Moving your gallery on your webserver (e.g. from a particular folder to the webroot or vice versa) is comparatively easy. Coppermine consists of two components:
+<ul>
+    <li>Files</li>
+    <li>Database records</li>
+</ul>
+The good thing about moving your files/folders around is the fact that coppermine does not store the absolute path to a file within the database, but only a relative one: the relative path inside the albums folder). Subsequently, you can move around the folder where your coppermine gallery resides in on your server easily and you won't have to change your database records accordingly.<br />
+<p class="cpg_message_warning">Just keep in mind that you need to move the entire coppermine folder around, i.e. you must move <strong>all</strong> files and folders around and not just some of them. The folder and file structure within your coppermine folder needs to remain intact when moving it.</p>
+<tb...
 <hr />
 
 <a name="export"></a><h2>Exporting<a href="#export" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>

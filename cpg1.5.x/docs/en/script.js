@@ -177,6 +177,7 @@ doc_toc += '      <li><a href="upgrading.htm#upgrade_particular">Additional acti
 doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="upgrading.htm#upgrade_10">Upgrading from versions cpg1.0,1.1,1.2.x or 1.3.x</a></li>\n';
 doc_toc += '          <li><a href="upgrading.htm#upgrade_14">Upgrading from cpg1.4.x to version cpg1.5.x</a></li>\n';
+doc_toc += '          <li><a href="upgrading.htm#upgrade_15">Upgrading from older versions of cpg1.5.x to the most recent version of cpg1.5.x</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="upgrading.htm#updater">The update script</a>\n';
@@ -226,6 +227,7 @@ doc_toc += '      <li><a href="start.htm#getting_typical">Typical setups</a>\n';
 doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="start.htm#getting_typical_monolithic">Single uploader without user interaction (Monolithic gallery)</a></li>\n';
 doc_toc += '          <li><a href="start.htm#getting_typical_single_uploader_community">Single uploader with user interaction</a></li>\n';
+doc_toc += '          <li><a href="start.htm#getting_typical_multiple_uploader_closed">Multiple uploaders without new registrations (closed group)</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '    </ul>\n';

@@ -44,7 +44,7 @@
 		<ul>
 			<li><a class="content" href="configuration.htm#admin_album_list_content">I don't want to show the <strong>last uploads</strong> and/or <strong>random pictures</strong> on the start page. How do I edit what's shown on the start page of coppermine?</a></li>
 			<li><a class="content" href="albums.htm#album_createPublicAlbum">How do I create an <strong>album</strong> that <strong>anyone</strong> can add photos to?</a></li>
-			<li><a class="content" href="#BackupDatabase">How can I <strong>backup</strong> my coppermine database?</a></li>
+			<li><a class="content" href="export.htm#backup_database">How can I <strong>backup</strong> my coppermine database?</a></li>
 			<li><a class="content" href="#noFullsizePopup">The <strong>fullsize-pic doesn't pop up</strong> when clicking on the intermediate size pic. What's wrong?</a></li>
 			<li><a class="content" href="#preventHotlinks">How can I prevent other sites linking directly to the pictures in my gallery instead of the gallery page?</a></li>
 			<li><a class="content" href="#onlyregisteredcomments">How do I let guests, not only registered users to put <strong>comments</strong> on pictures?</a></li>
@@ -84,22 +84,6 @@
 
 <a name="faq_setup"></a><h2>Setup / Configuration<a href="#faq_setup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 
-<a name="BackupDatabase"></a>
-<h3>How can I <strong>backup</strong> my coppermine database?<a href="#BackupDatabase" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Currently, there are no built-in backup solutions for coppermine available, yet. To backup your directory/file structure, you must use the good old ftp method and a tool like <a href="http://www.phpmyadmin.net/" class="external">phpMyAdmin</a> to backup your database (Many webhosts that offer mySQL also offer a pre-installed version of phpMyAdmin - if so, use that!). PhpMyAdmin is easy to install: just download the distribution, unzip it to your harddrive, edit one config file and upload it to your server. (NOTE: Some webhosts offer backup services. You should check if this service is available to you, first.)<br /><br />
-Here's a quick &quot;how to backup a database with phpMyAdmin&quot; primer:
-<ul>
-<li>Download the software if it's not available to you, install it (remember to password-protect it).</li>
-<li>Point your browser to the location you installed it on.</li>
-<li>Select the database you want to back up from the dropdown list in the left frame.</li>
-<li>In &quot;View dump (schema) of database&quot; select the table(s) you want to back up (press CTRL to select more than one table).</li>
-<li>Mark &quot;Structure and data&quot;</li>
-<li>Check &quot;Save as file&quot;</li>
-<li>Check &quot;zipped&quot;</li>
-<li><strong>DON'T</strong> check &quot;Add 'drop table'&quot; - your database will be erased, if you do.</li>
-<li>Press &quot;go&quot;</li>
-<li>Save the file on your harddisk (depending on the speed of your connection this could take a while).</li>
-</ul></p><hr />
 <a name="noFullsizePopup"></a>
 <h3>The <strong>fullsize-pic doesn't pop up</strong> when clicking on the intermediate size pic. What's wrong?<a href="#noFullsizePopup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If you are certain that your original file is larger in dimensions than the settings you selected for intermediate sized pictures, there's a good chance that you over-edited your theme's template.html file: make sure that the line <tt class="code">{JAVASCRIPT}</tt> inside /themes/yourtheme/template.html is still there to make the pop-up window work...<br />
