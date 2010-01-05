@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-01-05 [B] Fixed template error with certain settings for comments and smileys (thread ID 62835) {eenemeenemuu}
 2010-01-05 [B] Fixed display of rating stars after vote {eenemeenemuu}
 2010-01-04 [D] Minor improvements of docs {GauGau}
 2010-01-02 [M] Updated header information to reflect new year {GauGau}

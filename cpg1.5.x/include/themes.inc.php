@@ -3746,108 +3746,107 @@ function theme_html_comments($pid)
         echo '<br />';
         $html .= ($tabs = ob_get_clean());
 
-    $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, pid, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order LIMIT $start, $limit");
+        $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, pid, approval FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order LIMIT $start, $limit");
 
-    while ($row = mysql_fetch_assoc($result)) { // while-loop start
-        $user_can_edit = (GALLERY_ADMIN_MODE) || (USER_ID && USER_ID == $row['author_id'] && USER_CAN_POST_COMMENTS) || (!USER_ID && USER_CAN_POST_COMMENTS && ($USER['ID'] == $row['author_md5_id']));
-        if (($user_can_edit != '' && $CONFIG['comment_user_edit'] != 0) || (GALLERY_ADMIN_MODE)) {
-            $comment_buttons = $tmpl_comments_buttons;
-            $comment_edit_box = $tmpl_comment_edit_box;
-        } else {
-            $comment_buttons = '';
-            $comment_edit_box = '';
-        }
-        $comment_ipinfo = ($row['msg_raw_ip'] && GALLERY_ADMIN_MODE)?$tmpl_comments_ipinfo : '';
-        $hide_comment = 0;
-
-        // comment approval
-        $pending_approval = '';
-        if (USER_IS_ADMIN) {
-            //display the selector approve/disapprove
-            if ($row['approval'] == 'NO') {
-                $pending_approval = cpg_fetch_icon('comment_disapprove_disabled', 0) . '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;form_token={FORM_TOKEN}&amp;timestamp={TIMESTAMP}&amp;what=approve" title="' . $lang_display_comments['approve'] . '">' . cpg_fetch_icon('comment_approve', 0) . '</a>';
+        while ($row = mysql_fetch_assoc($result)) { // while-loop start
+            $user_can_edit = (GALLERY_ADMIN_MODE) || (USER_ID && USER_ID == $row['author_id'] && USER_CAN_POST_COMMENTS) || (!USER_ID && USER_CAN_POST_COMMENTS && ($USER['ID'] == $row['author_md5_id']));
+            if (($user_can_edit != '' && $CONFIG['comment_user_edit'] != 0) || (GALLERY_ADMIN_MODE)) {
+                $comment_buttons = $tmpl_comments_buttons;
+                $comment_edit_box = $tmpl_comment_edit_box;
             } else {
-                $pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;form_token={FORM_TOKEN}&amp;timestamp={TIMESTAMP}&amp;what=disapprove" title="' . $lang_display_comments['disapprove'] . '">' . cpg_fetch_icon('comment_disapprove', 0) . '</a>' . cpg_fetch_icon('comment_approve_disabled', 0);
+                $comment_buttons = '';
+                $comment_edit_box = '';
             }
-        } else { // user or guest is logged in - start
-            if ($row['approval'] == 'NO') { // the comment is not approved - start
-                if ($user_can_edit) { // the comment comes from the current visitor, display it with a warning that it needs admin approval
-                    $pending_approval = cpg_fetch_icon('comment_approval', 0, $lang_display_comments['pending_approval']);
-                } else { // the comment comes from someone else - don't display it at all
-                    if ($CONFIG['comment_placeholder'] == 0) {
-                        $hide_comment = 1;
-                    } else {
-                        $row['msg_author'] = $lang_display_comments['unapproved_comment'];
-                        $row['msg_body'] = $lang_display_comments['pending_approval_message'];
-                        $row['author_id'] = 0;
-                    }
+            $comment_ipinfo = ($row['msg_raw_ip'] && GALLERY_ADMIN_MODE)?$tmpl_comments_ipinfo : '';
+            $hide_comment = 0;
+
+            // comment approval
+            $pending_approval = '';
+            if (USER_IS_ADMIN) {
+                //display the selector approve/disapprove
+                if ($row['approval'] == 'NO') {
+                    $pending_approval = cpg_fetch_icon('comment_disapprove_disabled', 0) . '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;form_token={FORM_TOKEN}&amp;timestamp={TIMESTAMP}&amp;what=approve" title="' . $lang_display_comments['approve'] . '">' . cpg_fetch_icon('comment_approve', 0) . '</a>';
+                } else {
+                    $pending_approval = '<a href="reviewcom.php?pos=-{PID}&amp;msg_id={MSG_ID}&amp;form_token={FORM_TOKEN}&amp;timestamp={TIMESTAMP}&amp;what=disapprove" title="' . $lang_display_comments['disapprove'] . '">' . cpg_fetch_icon('comment_disapprove', 0) . '</a>' . cpg_fetch_icon('comment_approve_disabled', 0);
                 }
-            } // the comment is not approved - end
-        } // user or guest is logged in - end
+            } else { // user or guest is logged in - start
+                if ($row['approval'] == 'NO') { // the comment is not approved - start
+                    if ($user_can_edit) { // the comment comes from the current visitor, display it with a warning that it needs admin approval
+                        $pending_approval = cpg_fetch_icon('comment_approval', 0, $lang_display_comments['pending_approval']);
+                    } else { // the comment comes from someone else - don't display it at all
+                        if ($CONFIG['comment_placeholder'] == 0) {
+                            $hide_comment = 1;
+                        } else {
+                            $row['msg_author'] = $lang_display_comments['unapproved_comment'];
+                            $row['msg_body'] = $lang_display_comments['pending_approval_message'];
+                            $row['author_id'] = 0;
+                        }
+                    }
+                } // the comment is not approved - end
+            } // user or guest is logged in - end
 
-        if ($CONFIG['enable_smilies']) {
-            $comment_body = process_smilies(make_clickable($row['msg_body']));
-            $smilies = generate_smilies("f{$row['msg_id']}", 'msg_body');
-        } else {
-            $comment_body = make_clickable($row['msg_body']);
-            $smilies = '';
-        }
+            if ($CONFIG['enable_smilies']) {
+                $comment_body = process_smilies(make_clickable($row['msg_body']));
+                $smilies = generate_smilies("f{$row['msg_id']}", 'msg_body');
+            } else {
+                $comment_body = make_clickable($row['msg_body']);
+                $smilies = '';
+            }
 
-        // wrap the comment into italics if it isn't approved
-        if ($row['approval'] == 'NO') {
-            $comment_body = '<em>'.$comment_body.'</em>';
-            $row['msg_author'] = $row['msg_author'];
-        }
+            // wrap the comment into italics if it isn't approved
+            if ($row['approval'] == 'NO') {
+                $comment_body = '<em>'.$comment_body.'</em>';
+                $row['msg_author'] = $row['msg_author'];
+            }
 
-        $ip = $row['msg_hdr_ip'];
-        if ($row['msg_hdr_ip'] != $row['msg_raw_ip']) {
-            $ip .= ' [' . $row['msg_raw_ip'] . ']';
-        }
+            $ip = $row['msg_hdr_ip'];
+            if ($row['msg_hdr_ip'] != $row['msg_raw_ip']) {
+                $ip .= ' [' . $row['msg_raw_ip'] . ']';
+            }
 
-        list($timestamp, $form_token) = getFormToken();
-        $params = array('{EDIT}' => &$comment_edit_box,
-            '{BUTTONS}' => &$comment_buttons,
-            '{IPINFO}' => &$comment_ipinfo,
-            '{PENDING_APPROVAL}' => &$pending_approval,
-            '{FORM_TOKEN}' => $form_token,
-            '{TIMESTAMP}' => $timestamp,
-            );
+            list($timestamp, $form_token) = getFormToken();
+            $params = array('{EDIT}' => &$comment_edit_box,
+                '{BUTTONS}' => &$comment_buttons,
+                '{IPINFO}' => &$comment_ipinfo,
+                '{PENDING_APPROVAL}' => &$pending_approval,
+                '{FORM_TOKEN}' => $form_token,
+                '{TIMESTAMP}' => $timestamp,
+                );
 
-        $template = template_eval($template_image_comments, $params);
+            $template = template_eval($template_image_comments, $params);
 
-        if ($row['author_id'] == 0) {
-            $profile_lnk = stripslashes($row['msg_author']);
-        } else {
-            $profile_lnk = '<a href="profile.php?uid='.$row['author_id'].'">'.stripslashes($row['msg_author']).'</a>';
-        }
+            if ($row['author_id'] == 0) {
+                $profile_lnk = stripslashes($row['msg_author']);
+            } else {
+                $profile_lnk = '<a href="profile.php?uid='.$row['author_id'].'">'.stripslashes($row['msg_author']).'</a>';
+            }
 
-        $params = array('{MSG_AUTHOR_LNK}' => $profile_lnk,
-            '{MSG_AUTHOR}' => $row['msg_author'],
-            '{MSG_ID}' => $row['msg_id'],
-            '{PID}' => $row['pid'],
-            '{EDIT_TITLE}' => &$lang_display_comments['edit_title'],
-            '{DELETE_TITLE}' => &$lang_display_comments['delete_title'],
-            '{DELETE_ICON}' => cpg_fetch_icon('delete', 0),
-            '{EDIT_ICON}' => cpg_fetch_icon('edit', 0),
-            '{CONFIRM_DELETE}' => &$lang_display_comments['confirm_delete'],
-            '{MSG_DATE}' => localised_date($row['msg_date'], $lang_date['comment']),
-            '{MSG_BODY}' => bb_decode($comment_body),
-            '{MSG_BODY_RAW}' => $row['msg_body'],
-            '{OK}' => &$lang_common['ok'],
-            '{SMILIES}' => $smilies,
-            '{IP}' => $ip,
-            '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
-            '{REPORT_COMMENT_ICON}' => cpg_fetch_icon('report', 0),
-            '{WIDTH}' => $CONFIG['picture_table_width'],
-            '{FORM_TOKEN}' => $form_token,
-            '{TIMESTAMP}' => $timestamp,
-            );
+            $params = array('{MSG_AUTHOR_LNK}' => $profile_lnk,
+                '{MSG_AUTHOR}' => $row['msg_author'],
+                '{MSG_ID}' => $row['msg_id'],
+                '{PID}' => $row['pid'],
+                '{EDIT_TITLE}' => &$lang_display_comments['edit_title'],
+                '{DELETE_TITLE}' => &$lang_display_comments['delete_title'],
+                '{DELETE_ICON}' => cpg_fetch_icon('delete', 0),
+                '{EDIT_ICON}' => cpg_fetch_icon('edit', 0),
+                '{CONFIRM_DELETE}' => &$lang_display_comments['confirm_delete'],
+                '{MSG_DATE}' => localised_date($row['msg_date'], $lang_date['comment']),
+                '{MSG_BODY}' => bb_decode($comment_body),
+                '{MSG_BODY_RAW}' => $row['msg_body'],
+                '{OK}' => &$lang_common['ok'],
+                '{SMILIES}' => $smilies,
+                '{IP}' => $ip,
+                '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
+                '{REPORT_COMMENT_ICON}' => cpg_fetch_icon('report', 0),
+                '{WIDTH}' => $CONFIG['picture_table_width'],
+                '{FORM_TOKEN}' => $form_token,
+                '{TIMESTAMP}' => $timestamp,
+                );
 
-        if ($hide_comment != 1) {
-            $html .= template_eval($template, $params);
-        }
-    } // while-loop end
-
+            if ($hide_comment != 1) {
+                $html .= template_eval($template, $params);
+            }
+        } // while-loop end
 
         $html .= $tabs;
     }
@@ -3903,21 +3902,21 @@ function theme_html_comments($pid)
         $html .= template_eval($template_add_your_comment, $params);
     } else { // user can not post comments
         if ($CONFIG['comment_promote_registration'] == 1 && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
-          template_extract_block($template_add_your_comment, 'user_name_input');
-          if ($CONFIG['enable_smileys'] == 1) {
-            template_extract_block($template_add_your_comment, 'input_box_smilies');
-          } else {
-            template_extract_block($template_add_your_comment, 'input_box_no_smilies');
-          }
-          template_extract_block($template_add_your_comment, 'comment_captcha');
-          template_extract_block($template_add_your_comment, 'smilies');
-          template_extract_block($template_add_your_comment, 'submit');
-          $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
-              '{WIDTH}' => $CONFIG['picture_table_width'],
-              '{LOGIN_TO_COMMENT}' => sprintf($lang_display_comments['log_in_to_comment'], '<a href="login.php?referer='.$REFERER.'">', '</a>'),
-              '{HELP_ICON}' => '',
-              );
-          $html .= template_eval($template_add_your_comment, $params);
+            template_extract_block($template_add_your_comment, 'user_name_input');
+            if ($CONFIG['enable_smilies'] == 1) {
+                template_extract_block($template_add_your_comment, 'input_box_smilies');
+            } else {
+                template_extract_block($template_add_your_comment, 'input_box_no_smilies');
+            }
+            template_extract_block($template_add_your_comment, 'comment_captcha');
+            template_extract_block($template_add_your_comment, 'smilies');
+            template_extract_block($template_add_your_comment, 'submit');
+            $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
+                '{WIDTH}' => $CONFIG['picture_table_width'],
+                '{LOGIN_TO_COMMENT}' => sprintf($lang_display_comments['log_in_to_comment'], '<a href="login.php?referer='.$REFERER.'">', '</a>'),
+                '{HELP_ICON}' => '',
+                );
+            $html .= template_eval($template_add_your_comment, $params);
         }
     }
 
