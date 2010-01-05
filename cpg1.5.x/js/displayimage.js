@@ -391,6 +391,9 @@ function buildRating() {
         //default to 5 stars
         js_vars.stars_amount = 5;
     }
+    if (!js_vars.theme_dir) {
+        js_vars.theme_dir = '';
+    }
     for(i=0; i < js_vars.stars_amount; i++ ) {
         var star11 = 'rate_full';
         var star12 = 'rate_new';
@@ -400,6 +403,8 @@ function buildRating() {
         if(js_vars.can_vote == 'true') {
             rating_stars += '<img style="cursor:pointer" src="' + js_vars.theme_dir + 'images/' + star11 + '.gif" id="' + js_vars.picture_id + '_'+(i+1)+'"'
             rating_stars += ' title="' + (i+1) + '" onmouseout="changeout(this)" onmouseover="changeover(this)" onclick="rate(this)" />';
+        } else {
+            rating_stars += '<img src="' + js_vars.theme_dir + 'images/' + star11 + '.gif" alt="' + js_vars.rating + '" title="' + js_vars.rating + '"/>';
         }
     }
     return rating_stars;
