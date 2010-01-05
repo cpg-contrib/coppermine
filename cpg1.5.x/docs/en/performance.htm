@@ -211,7 +211,7 @@ The general advice is to disable any feature you don't actually make use of and 
 <ul>
     <li>
         <a name="perf_yslow_header"></a><h4>3. Add an Expires header<a href="#perf_yslow_header" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-        <pre class="code">
+        <pre class="cpg_code code">
         
 &lt;IfModule mod_expires.c&gt;
     ExpiresActive on
@@ -221,15 +221,16 @@ The general advice is to disable any feature you don't actually make use of and 
     </li>
     <li>
         <a name="perf_yslow_gzip"></a><h4>4. Gzip components<a href="#perf_yslow_gzip" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-        <pre class="code">
+        <pre class="cpg_code code">
         
 &lt;IfModule mod_deflate.c&gt;
 	AddOutputFilterByType DEFLATE application/x-javascript text/javascript text/css text/html text/xml
 &lt;/IfModule&gt;</pre>
+Coppermine doesn't work very well with output compression, as it was not built with that in mind: it jumps in and out of output buffering quite frequently, that's why it probably doesn't work very well with output compression.
     </li>    
     <li>
         <a name="perf_yslow_etag"></a><h4>13. Configure ETags<a href="#perf_yslow_etag" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-        <pre class="code">
+        <pre class="cpg_code code">
         
 FileETag none</pre>
     </li>      

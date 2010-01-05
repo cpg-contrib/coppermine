@@ -32,7 +32,10 @@
 <a href="toc.htm">Table of Contents</a>
 </div>
 
-<a name="user_cp"></a><h1>The user control panel<a href="#user_cp" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<a name="users"></a><h1>Users<a href="#users" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>In this documentation, the term "user" is used for visitors of your gallery who have registered an account and have logged in. The term "visitor" is used for all who access your gallery, both registered users as well as unregistered guests. Registration features (if visitors are allowed to register in the first place and how registration will work) can be configured in the corresponding section of the <a href="configuration.htm#admin">config panel</a>. Coppermine comes with a user management of it's own that allows you to control what <a href="groups.htm">group</a> your users are in (group membership controls permissions) unless you disable the built-in user management in favor of <a href="bridging.htm">bridging</a> Coppermine with another app. If you enable bridging, the bridging application will take over and control your users instead of Coppermine.</p>
+
+<a name="user_cp"></a><h2>The user control panel<a href="#user_cp" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>The user control panel can be found when clicking "users" from the admin menu. It is the place where you create and manage your users.</p>
 <p class="cpg_message_info">If you have enabled integration (bridging) Coppermine with another application (e.g. your favorite BBS app), Coppermine will use the member table of the application you bridged with (your BBS), so the built-in Coppermine user management will be disabled in favor of the user management that comes with the bridged application. This has been incorporated to eliminate redundancy and facilitate a seemless integration.<br />
 As a result, you will not have this user control panel; clicking the "users" link will send you to your bridge application's user management instead.</p>
@@ -40,12 +43,12 @@ As a result, you will not have this user control panel; clicking the "users" lin
 
 
 
-<a name="user_cp_page"></a><h2>Page controls<a href="#user_cp_page" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="user_cp_page"></a><h3>Page controls<a href="#user_cp_page" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <ul>
-<li>You can sort the user management display by either clicking the arrow icons (<img src="../images/ascending.gif" width="9" height="9" border="0" alt="" title="ascending" /><img src="../images/descending.gif" width="9" height="9" border="0" alt="" title="descending" />) next to each column header or by choosing the sort order from the dropdown at the top right.</li>
+<li>You can sort the user management display by either clicking the arrow icons (<img src="../../images/ascending.gif" width="9" height="9" border="0" alt="" title="ascending" /><img src="../../images/descending.gif" width="9" height="9" border="0" alt="" title="descending" />) next to each column header or by choosing the sort order from the dropdown at the top right.</li>
 <li>If you have more than 25 users, a page tab will apear at the bottom right of the screen, allowing you to go to subsequent pages of your member list</li>
 <li>Clicking on a user's name will <strong>display</strong> the profile page of the individual user (read only)</li>
-<li>The edit icon (<img src="images/edit.gif" width="16" height="16" border="0" alt="" title="edit" />) will send you to the user's profile in <strong>edit</strong> mode - you can change the password, email account and other user-related settings there</li>
+<li>The edit icon (<img src="../../images/icons/edit.png" width="16" height="16" border="0" alt="" title="edit" />) will send you to the user's profile in <strong>edit</strong> mode - you can change the password, email account and other user-related settings there</li>
 <li>If a user has uploaded any files, a link of "recent uploads" will show up next to his name. Clicking on this link will display files that have been uploaded by that user</li>
 <li>The &quot;group&quot; column displays the primary member group the user is in</li>
 <li>The column &quot;Registered on&quot; will show the date that the user account was created</li>
@@ -55,22 +58,26 @@ As a result, you will not have this user control panel; clicking the "users" lin
 <li>You can change a number of settings for several users at once by clicking the checkbox in front of the user row (use the checkbox at the very top or bottom of the page to select/unselect all users on the page) and then chosing an action to perform from the dropdown box "With selected" at the bottom left of the page. The actions you can choose from are &quot;Delete&quot;, &quot;Deactivate&quot;, &quot;Activate&quot;, &quot;Reset password&quot;, &quot;Change primary membergroup&quot; and &quot;Add secondary membergroup&quot;. The user currently logged on (you as gallery admin) has no checkbox to avoid accidental deletion or deactivation of your own admin account.</li>
 </ul>
 <a name="user_cp_page_end"></a>
-<a name="user_cp_search"></a><h2>Searching for user(s)<a href="#user_cp_search" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="user_cp_search"></a><h3>Searching for user(s)<a href="#user_cp_search" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>You can use the wildcards:  <tt class="code">*</tt> (for any <em>string</em>) and <tt class="code">?</tt> (<em>any single character</em>) or even <tt class="code">%expression%</tt>.<br />Example: searching for <tt class="code">j*</tt> will return both <tt class="code">Jack</tt> and <tt class="code">Jill</tt></p>
 <a name="user_cp_search_end"></a>
-<a name="user_cp_new"></a><h2>Creating new users<a href="#user_cp_new" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+
+<a name="user_cp_new"></a><h3>Creating new users<a href="#user_cp_new" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>To create a new user, simply click on the button "Create new user" at the bottom of the user manager and fill in the form that will come up.</p>
 <p>This does of course not apply if you have bridging enabled, as user management is being handled by the app you have bridged coppermine with. In this case, the user management screen of your bridged app should show - create a new user there.</p>
 <a name="user_cp_new_end"></a>
-<a name="user_cp_edit"></a><h2>Editing users<a href="#user_cp_edit" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+
+<a name="user_cp_edit"></a><h3>Editing users<a href="#user_cp_edit" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p><img src="images/usermgr_edit.png" width="300" height="382" border="0" alt="" align="right" />To edit the properties of a user, click the <img src="images/edit.gif" width="16" height="16" border="0" alt="" title="edit" />-button next to the user name. You will then find a page where you can modify all user profile fields the user has. This includes the option to change the password of that user. If you don't want to change a user's password, leave the password field blank.<br />
 The dropdown list determines the primary group the user is in, the checkboxes beneath it determine the secondary groups.</p>
 <p>Please note that this screen (as well as the rest of Coppermine's user management) will not be available if you have enabled <a href="bridging.htm#integrating">bridging</a>, because then the user management of the application you have bridged with (e.g. your BBS) kicks in and handles everything related to user management.</p>
-<a name="user_cp_edit_permission_by_group"></a><h3>Album permissions by group<a href="#user_cp_edit_permission_by_group" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+
+<a name="user_cp_edit_permission_by_group"></a><h4>Album permissions by group<a href="#user_cp_edit_permission_by_group" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>The link "Album permissions by group" will let you <em>display</em> what albums are assigned exclusively to members of a particular group. To make this absolutely clear: this feature does not allow you to actually <strong>assign</strong> albums to groups, it just <strong>displays</strong> those assignements. To actually assign albums to particular groups, use the <a href="albums.htm#album_prop">album properties</a> dialog of individual albums.</p>
 <a name="user_cp_edit_permission_by_group_end"></a>
 <a name="user_cp_edit_end"></a>
-<a name="user_cp_group"></a><h2>Group membership<a href="#user_cp_group" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+
+<a name="user_cp_group"></a><h3>Group membership<a href="#user_cp_group" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When creating a new user or editing an existing user, you will notice a row named &quot;User group&quot; - it determines what group(s) the user is in.<br />
 The first field (a dropdown field) determines the primary user group. It determines the status of a user. You should set it to &quot;Administrator&quot; (for users you want to assign admins powers to) or &quot;Registered&quot;.<br />
 Additional (secondary) group membership can be assigned using the checkboxes beneath the dropdown field. Here, all your custom groups (that you can create and manage using the <a href="groups.htm#group_cp">group control panel</a>) should show as well as the core groups (the ones that come with coppermine out of the box and can't be deleted). Assign additional group membership to your users here. Privileges for a particular user inherited from group membership are added: the least restrictive permissions are taken into account.</p>

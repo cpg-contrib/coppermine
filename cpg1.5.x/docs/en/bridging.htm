@@ -321,38 +321,38 @@ The reason for our reluctance to allow bridging to interfere with the bridging a
 	<li>
 		<a name="integrating_individual_bridge_issues_phpbb3"></a><h3>phpBB3<a href="#integrating_individual_bridge_issues_phpbb3"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 		Logout redirection: to accomplish logout redirection when using the phpBB3 bridge file, you need to edit the phpbb file <tt class="code">ucp.php</tt>:<br />
-		Find<pre class="code">meta_refresh(3, append_sid("{$phpbb_root_path}index.$phpEx"));
-$message = $message . '&lt;br /&gt;&lt;br /&gt;' . sprintf($user->lang['RETURN_INDEX'], '&lt;a href="' . append_sid("{$phpbb_root_path}index.$phpEx") . '"&gt;', '&lt;/a&gt; ');</pre>and replace with<pre class?"code">meta_refresh(3, request_var('redirect', append_sid("{$phpbb_root_path}index.$phpEx")));
+		Find<pre class="cpg_code code">meta_refresh(3, append_sid("{$phpbb_root_path}index.$phpEx"));
+$message = $message . '&lt;br /&gt;&lt;br /&gt;' . sprintf($user->lang['RETURN_INDEX'], '&lt;a href="' . append_sid("{$phpbb_root_path}index.$phpEx") . '"&gt;', '&lt;/a&gt; ');</pre>and replace with<pre class="cpg_code code">meta_refresh(3, request_var('redirect', append_sid("{$phpbb_root_path}index.$phpEx")));
 $message = $message . '&lt;br /&gt;&lt;br /&gt;' . sprintf($user->lang['RETURN_INDEX'], '&lt;a href="' . request_var('redirect', append_sid("{$phpbb_root_path}index.$phpEx")) . '"&gt;', '&lt;/a&gt; ');</pre>
 <p>Admin recognition for upgraded forums: if your forum has been upgraded from phpBB2 to phpBB3 you need to perform an additional step.</p>
 <p>Edit phpbb3.inc.php, find
-<pre class="code">
+<pre class="cpg_code code">
 $this-&gt;admingroups = array(5);
 </pre>
 
 Change the 5 to the admin group in phpbb3. You can find this out by doing the following
 
-<pre class="quote">
+<div class="cpg_example">
 Go to your forum, log into AdminCP; click on the tab "Users and Groups" and go to "Manage groups". you'll see all your forum groups now and next to them 3 links (Settings/Members/Delete); click on "Settings" next to the group you want to give portal admin permissions. now take a look at the address line, which should similarly to this:
 
 http://yourdomain.com/phpbb3/adm/index.php?i=groups&sid=[randomnumbersandletters]&icat=12&mode=manage&action=edit&g=64
 
-In our example above, the group's ID is 64;</pre>
+In our example above, the group's ID is 64;</div>
 <br /></li>
 	<li>
 		<a name="integrating_individual_bridge_issues_punbb115"></a><h3>PunBB1.1.5<a href="#integrating_individual_bridge_issues_punbb115"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 		For login/logout redirection:<br />
-Edit punbb's <tt class="code">login.php</tt>, find: <pre class="code">$page_title = pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang_common['Login'];</pre>and add before it<pre class="code"> $redirect_url = (isset($_GET['redir'])) ? $_GET['redir'] : $redirect_url;</pre>
-Then find: <pre class="code">redirect('index.php', $lang_login['Logout redirect']);</pre>and change to: <pre class="code">redirect(isset($_GET['redir']) ? $_GET['redir'] : 'index.php', $lang_login['Logout redirect']);</pre>
+Edit punbb's <tt class="code">login.php</tt>, find: <pre class="cpg_code code">$page_title = pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang_common['Login'];</pre>and add before it<pre class="cpg_code code"> $redirect_url = (isset($_GET['redir'])) ? $_GET['redir'] : $redirect_url;</pre>
+Then find: <pre class="cpg_code code">redirect('index.php', $lang_login['Logout redirect']);</pre>and change to: <pre class="cpg_code code">redirect(isset($_GET['redir']) ? $_GET['redir'] : 'index.php', $lang_login['Logout redirect']);</pre>
 	</li>
 	<li>
 		<a name="integrating_individual_bridge_issues_punbb12"></a><h3>PunBB1.2<a href="#integrating_individual_bridge_issues_punbb12"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 		For login/logout redirection:<br />
-Edit punbb's <tt class="code">login.php</tt> and find: <pre class="code">$page_title = pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang_common['Login'];</pre>and add before it<pre class="code">$redirect_url = (isset($_GET['redir'])) ? $_GET['redir'] : $redirect_url;</pre>Then find<pre class="code">redirect('index.php', $lang_login['Logout redirect']);</pre>and change to<pre class="code">redirect(isset($_GET['redir']) ? $_GET['redir'] : 'index.php', $lang_login['Logout redirect']);</pre>
+Edit punbb's <tt class="code">login.php</tt> and find: <pre class="cpg_code code">$page_title = pun_htmlspecialchars($pun_config['o_board_title']).' / '.$lang_common['Login'];</pre>and add before it<pre class="cpg_code code">$redirect_url = (isset($_GET['redir'])) ? $_GET['redir'] : $redirect_url;</pre>Then find<pre class="cpg_code code">redirect('index.php', $lang_login['Logout redirect']);</pre>and change to<pre class="cpg_code code">redirect(isset($_GET['redir']) ? $_GET['redir'] : 'index.php', $lang_login['Logout redirect']);</pre>
 	</li>
 	<li>
 		<a name="integrating_individual_bridge_issues_xmb"></a><h3>XMB<a href="#integrating_individual_bridge_issues_xmb"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-Cookie fix (if your board is not installed to site root): edit XMB's file <tt class="code">functions.php</tt>, find the function definition for <tt class="code">put_cookie</tt> (c. line 1414) and add<pre class="code">$path = '/';</pre>just inside the top of the function
+Cookie fix (if your board is not installed to site root): edit XMB's file <tt class="code">functions.php</tt>, find the function definition for <tt class="code">put_cookie</tt> (c. line 1414) and add<pre class="cpg_code code">$path = '/';</pre>just inside the top of the function
 	</li>
 </ul>
 <a name="integrating_individual_bridge_issues_end"></a>
@@ -373,11 +373,12 @@ Cookie fix (if your board is not installed to site root): edit XMB's file <tt cl
 <a name="integrating_subdomain_www"></a><h3>www-subdomain<a href="#integrating_subdomain_www"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Many websites can be accessed with or without the leading www-subdomain: usually, <tt class="code">http://example.tld/</tt> works just as well as <tt class="code">http://www.example.tld/</tt>. This is fine and user-friendly, but it has a drawback: a sub-domain <strong>is</strong> a different domain as far as cookies are concerned. Therefore, you need to be consistent with your use of the www-subdomain: bridging <tt class="code">http://example.tld/gallery/</tt> and <tt class="code">http://www.example.tld/bridge-app/</tt> will almost certainly cause cookie issues for you.</p>
 <p>To circumvent this, review the setup both of coppermine as well as your bridge app: make sure that in both config panels you're either using the URL with the leading www-subdomain or without it.</p>
-<p class="quote">Recomendation:<br />The leading www subdomain has been introduced in the early days of the world wide web. Technically, it is no longer needed, but many users have gotten used to specify a leading www subdomain when typing an URL. We recommend using your URL without the leading www to make it shorter to memorize. To make sure that those who type in the URL <em>with</em> the leading www, we recommend setting up a rewrite-rule in a custom .htaccess file that could look like this:<br />
+<div class="cpg_message_success"><h4>Recomendation:</h4>
+The leading www subdomain has been introduced in the early days of the world wide web. Technically, it is no longer needed, but many users have gotten used to specify a leading www subdomain when typing an URL. We recommend using your URL without the leading www to make it shorter to memorize. To make sure that those who type in the URL <em>with</em> the leading www, we recommend setting up a rewrite-rule in a custom .htaccess file that could look like this:<br />
 <textarea cols="70" rows="2" class="code" style="font-size:8pt;">RewriteEngine on
 RewriteCond %{HTTP_HOST} ^www\.yourdomain\.tld$ [NC]
 RewriteRule ^(.*) http://yourdomain.tld/$1 [R,L]</textarea><br />
-Please note though that setting up your rewrite rule is something beyond the scope of coppermine support - you should use your favorite search engine to find out details about it.</p>
+Please note though that setting up your rewrite rule is something beyond the scope of coppermine support - you should use your favorite search engine to find out details about it.</div>
 
 
 <a name="integrating_end"></a>

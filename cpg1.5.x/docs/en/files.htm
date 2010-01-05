@@ -32,7 +32,12 @@
 <a href="toc.htm">Table of Contents</a>
 </div>
 
-<h1>Files</h1>
+<a name="files"></a><h1>Files<a href="#files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>In Coppermine, uploaded files go into <a href="albums.htm">albums</a>. Albums can contain files, but not sub-albums. Albums can go into <a href="categories.htm">categories</a>. Categories can contain sub-categories and albums, but they can <strong>not</strong> contain files.</p>
+<p>Coppermine (in version 1.0) was designed in the first place to display images. Later in the development process came multimedia files (audio and video files as well as documents), that's why the term "images" was dropped in favor of "files". In some places (e.g. in table names or some places of the documentation), the term "image" might shine through through although "files" are actually meant.</p>
+<p>You might be tempted to believe that Coppermine was actually a file editor because it has the capabilities to edit (resize) and create images. However, that is only the case to a limited extent: Coppermine is not an image editor and can't be used as a replacement for such a desktop app. Instead, it's a web gallery that works good to display your files on the www.</p>
+
+
 <a name="edit_pics"></a><h2>Editing files<a href="#edit_pics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <img src="images/edit_picture.gif" border="0" alt="" />
 <p>Use this link to modify your file's title, description, keywords, and custom fields (if they are used).</p>
@@ -95,7 +100,7 @@ Use keywords to link files to other albums (see description in the albums sectio
 	<li><strong>Figure out the exact location and name of the video that you're trying to come up with a thumbnail for it</strong><br />
 	Now, this can be the most tricky part for newbies: let's assume that the video has already been uploaded to coppermine. If it was you who uploaded the movie using FTP upload plus batch-add in the first place, you should know the exact folder and file name, but for this example let's assume that one of your users has used http uploads to upload the video, so you have no idea where the actual file went to.<br />
 	Don't panic, start your browser, go to your gallery and start browsing it. Navigate to the page that embedds the video, so you can see the actual video being played within the Coppermine user interface. Now, do a right-click, show source somewhere inside the browser window. Don't do the right-click on the actual video, but into some blank space next to it. The HTML output of the page you're looking at should show up. Now search the HTML output for the term <tt class="code">class="imageborder"</tt> - this should bring you right in front of the block that we're actually looking for, so carefully scroll down a bit more (4 or 5 lines). We're looking for a block of code that looks like this:
-	<pre class="code">&lt;param name="src" value="albums/userpics/10235/myvideo.avi" /&gt;</pre>
+	<pre class="cpg_code code">&lt;param name="src" value="albums/userpics/10235/myvideo.avi" /&gt;</pre>
 	The value that is given for that parameter (<tt class="code">albums/userpics/10235/myvideo.avi</tt> in this example) is what we're looking for. It indicates in which folder the file actually resides (<tt class="code">albums/userpics/10235/</tt> in this example) and what the file name is (<tt class="code">myvideo.avi</tt> in this example). Memorize this piece of information (or just keep the source view window open, with the section we just found out highlighted) - we'll need the information in the next two steps.</li>
 	<li><strong>Rename your custom thumbnail on your desktop</strong><br />
 	Back to your desktop, we have to name our custom to match the <a href="files.htm#cust_thmb_how_naming">naming conventions</a>. For above example (and assuming that you haven't changed the thumbnail prefix in config), you have to rename the custom thumbnail on your desktop to <tt class="code">thumb_myvideo.jpg</tt>. Keep in mind that capitalization matters!</li>
