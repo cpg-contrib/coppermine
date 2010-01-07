@@ -1,4 +1,4 @@
-﻿/*************************
+/*************************
   Coppermine Photo Gallery
   ************************
   Copyright (c) 2003-2010 Coppermine Dev Team
@@ -990,6 +990,15 @@ doc_toc += '              <li><a href="dev_plugins.htm#plugin_writing_naming_con
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="dev_plugins.htm#plugin_writing_globals">Use of Superglobals</a></li>\n';
+doc_toc += '          <li><a href="dev_plugins.htm#plugin_writing_database">Database access</a>\n';
+doc_toc += '            <ul>\n';
+doc_toc += '              <li><a href="dev_plugins.htm#plugin_writing_database_direct_queries">Direct queries</a></li>\n';
+doc_toc += '              <li><a href="dev_plugins.htm#plugin_writing_database_tables_access">Accessing database tables</a></li>\n';
+doc_toc += '              <li><a href="dev_plugins.htm#plugin_writing_database_tables_create">Creating database tables</a></li>\n';
+doc_toc += '              <li><a href="dev_plugins.htm#plugin_writing_database_tables_delete">Deleting database tables</a></li>\n';
+doc_toc += '              <li><a href="dev_plugins.htm#plugin_writing_database_config">Storing your plugin\'s config values</a></li>\n';
+doc_toc += '            </ul>\n';
+doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="dev_plugins.htm#plugin_writing_types">Plugin Types</a></li>\n';
 doc_toc += '          <li><a href="dev_plugins.htm#plugin_writing_includes">Using includes</a></li>\n';
 doc_toc += '          <li><a href="dev_plugin_api.htm">Plugin Writing: Tutorial, API</a>\n';
