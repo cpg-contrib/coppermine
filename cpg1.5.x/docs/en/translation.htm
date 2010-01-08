@@ -42,7 +42,7 @@
 <ul>
 <li>To give something back to the community</li>
 <li>Because you needed the translation anyway...</li>
-<li>To see your name on the credits list</li>
+<li>To see your name on the <a href="credits.htm#translators">credits list</a></li>
 <li>To promote your services (being linked from a relevant page like the Coppermine team/credits page will increase your page rank as well)</li>
 <li>Because you're a nice person</li>
 </ul>
@@ -166,7 +166,7 @@ Please do not flame (berate) the original translator on the board, but provide a
 <p>We understand that coming up with a full translation can be quite a difficult task to accomplish, so you might be tenpted to skip the hard work and go for a solution that may seem to be easier at first sight: you might want to use a language file that was created for a previous version of coppermine (e.g. cpg1.4.x) and built on that file (instead of doing as suggested in this section of the docs and starting your work based on the current version of <tt class="code">lang/english.php</tt>).</p>
 <p>Although the &quot;lazy&quot; method may seem to be attractive, you can't use it for various reasons. To mention only a few of them:</p>
 <ul>
-    <li>The way the language file arrays are defined has changed from<pre>$lang_meta_album_names = array(
+    <li>The way the language file arrays are defined has changed from<pre class="cpg_code code">$lang_meta_album_names = array(
   'random' => 'Random files',
   'lastup' => 'Last additions',
   'lastalb'=> 'Last updated albums',
@@ -176,7 +176,7 @@ Please do not flame (berate) the original translator on the board, but provide a
   'lasthits' => 'Last viewed',
   'search' => 'Search results',
   'favpics'=> 'Favorite Files',  //cpg1.4
-);</pre>to<pre>$lang_meta_album_names['random'] = 'Random files';
+);</pre>to<pre class="cpg_code code">$lang_meta_album_names['random'] = 'Random files';
 $lang_meta_album_names['lastup'] = 'Last additions';
 $lang_meta_album_names['lastalb'] = 'Last updated albums';
 $lang_meta_album_names['lastcom'] = 'Last comments';
@@ -236,6 +236,11 @@ $lang_meta_album_names['datebrowse'] = 'Browse by date'; //cpg1.5</pre></li>
     </li>
     <li><a name="translation_documentation_steps_zip"></a><h4>Zip your translation<a href="#translation_documentation_steps_zip" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     Finally, when you're done translating, zip your custom language folder and attach the zip to a posting on the corresponding coppermine board. Of course, there will be a credit list where your name and site address will be mentioned, so make sure to provide the details you want to see go into that credit list within your posting.</li>
+</ul>
+
+<a name="translation_links"></a><h2>Further reading<a href="#translation_links" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<ul>
+	<li><a href="" rel="external" class="external">The absolute minimum every software developer absolutely, positively must know about unicode and character sets</a> by Joel Spolsky</li>
 </ul>
 
 
