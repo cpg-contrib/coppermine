@@ -695,32 +695,28 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
 
 <a name="plugin_hooks_action"></a><h3>Action<a href="#plugin_hooks_action" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The first type of hook is an action hook. Basically this allows for actions related to the plugin such as the following two hooks.</p>
-<div class="quote">CPGPluginAPI::action('plugin_configure',$installed,CPG_EXEC_NEW);<br />
-CPGPluginAPI::action('plugin_cleanup',$uninstalled,$plugin_id);</div>
+<pre class="cpg_code">CPGPluginAPI::action('plugin_configure',$installed,CPG_EXEC_NEW);
+CPGPluginAPI::action('plugin_cleanup',$uninstalled,$plugin_id);</pre>
 <p>These next two hooks are useful for running code that does not require anything to be exported.  These hooks have access to the global variables and functions inside of Coppermine.  These hooks will most likely be used to execute code that does not require an output.</p>
-<div class="quote">
-    <p>CPGPluginAPI::action('page_start',null);<br />
-        CPGPluginAPI::action('page_end',null);</p>
-</div>
+<pre class="cpg_code">CPGPluginAPI::action('page_start',null);
+CPGPluginAPI::action('page_end',null);</pre>
 <p>These two hooks provide the ability to add a custom CAPTCHA validation. The third validation function is a filter, so don't forget to provide that one as well.</p>
-<div class="quote">
-<p>CPGPluginAPI::action('captcha_comment_validate', null);<br />
-    CPGPluginAPI::action('captcha_contact_validate', null);</p>
-</div>
+<pre class="cpg_code">CPGPluginAPI::action('captcha_comment_validate', null);
+CPGPluginAPI::action('captcha_contact_validate', null);</pre>
 
 
 
 <a name="plugin_hooks_filter"></a><h3>Filter<a href="#plugin_hooks_filter" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This group of plugin hooks is designed to manipulate data that will be used.  Normally this involves adding or removing data from the variable submitted to the filter.  This data can also be simply read from the variable.</p>
 <p>This first group of filters are used in a variety of places and are each unique.</p>
-<div class="quote">$info = CPGPluginAPI::filter('file_info',$info);<br />
-$params = CPGPluginAPI::filter('user_caption_params', array('{USER_NAME}' => $user['user_name'],<br />
-$matches = CPGPluginAPI::filter('plugin_block', $matches);<br />
-$anycontent = CPGPluginAPI::filter('anycontent',ob_get_contents());<br />
-$template = CPGPluginAPI::filter('template_html',$template);<br />
-$template_header = str_replace('{META}','{META}'.CPGPluginAPI::filter('page_meta',''),$template_header);</div>
+<pre class="cpg_code">$info = CPGPluginAPI::filter('file_info',$info);
+$params = CPGPluginAPI::filter('user_caption_params', array('{USER_NAME}' => $user['user_name'],
+$matches = CPGPluginAPI::filter('plugin_block', $matches);
+$anycontent = CPGPluginAPI::filter('anycontent',ob_get_contents());
+$template = CPGPluginAPI::filter('template_html',$template);
+$template_header = str_replace('{META}','{META}'.CPGPluginAPI::filter('page_meta',''),$template_header);</pre>
 <p>This group of filters is very specific for manipulating the data of the thumbnails.  These are named according to what they modify and are extremely obvious.</p>
-<div class="quote">$rowset = CPGPluginAPI::filter('thumb_caption',$rowset);<br />
+<div class="cpg_code code">$rowset = CPGPluginAPI::filter('thumb_caption',$rowset);<br />
 $rowset = CPGPluginAPI::filter('thumb_caption_regular',$rowset);<br />
 $rowset = CPGPluginAPI::filter('thumb_caption_lastcom',$rowset);<br />
 $rowset = CPGPluginAPI::filter('thumb_caption_lastcomby',$rowset);<br />
@@ -735,88 +731,85 @@ $rowset = CPGPluginAPI::filter('thumb_caption_lastalb',$rowset);<br />
 $rowset = CPGPluginAPI::filter('thumb_caption_favpics',$rowset);<br />
 $pic_row = CPGPluginAPI::filter('thumb_data',$pic_row);</div>
 <p>These two filters are used specifically to manipulate the data of a picture.</p>
-<div class="quote">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data',$CURRENT_PIC_DATA);<br />
+<div class="cpg_code code">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data',$CURRENT_PIC_DATA);<br />
 $CURRENT_PIC_DATA = CPGPluginAPI::filter('file_data',$CURRENT_PIC_DATA);</div>
 <p>These six filters allow you to modify the output html to display media.</p>
-<div class="quote">$pic_html = CPGPluginAPI::filter('html_picture_image_reduced_overlay',$pic_html);<br />
+<div class="cpg_code code">$pic_html = CPGPluginAPI::filter('html_picture_image_reduced_overlay',$pic_html);<br />
 $pic_html = CPGPluginAPI::filter('html_picture_image_reduced',$pic_html);<br />
 $pic_html = CPGPluginAPI::filter('html_picture_image_overlay',$pic_html);<br />
 $pic_html = CPGPluginAPI::filter('html_picture_image',$pic_html);<br />
 $pic_html = CPGPluginAPI::filter('html_picture_document',$pic_html);<br />
 $pic_html = CPGPluginAPI::filter('html_picture_other_media',$pic_html);</div>
 <p>If you want to do something (like converting the video to flv, taking a backup of file to remote server etc..) after a file is uploaded then this hook can be used.</p>
-<div class="quote">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data_success',$CURRENT_PIC_DATA);</div>
+<div class="cpg_code code">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data_success',$CURRENT_PIC_DATA);</div>
 <p>The breadcrumb plugin:</p>
-<div class="quote">CPGPluginAPI::filter('post_breadcrumb',null);</div>
+<div class="cpg_code code">CPGPluginAPI::filter('post_breadcrumb',null);</div>
 <p>This plugin is very powerful because it gives access to the entire body of HTML that will be then directly returned to the user.  This filter can be used to remove parts of code or modify links for example.</p>
-<div class="quote">return CPGPluginAPI::filter('page_html',$html);</div>
+<div class="cpg_code code">return CPGPluginAPI::filter('page_html',$html);</div>
 <p>These two filters relate to headers.</p>
-<div class="quote">echo CPGPluginAPI::filter('usermgr_header','');<br />
+<div class="cpg_code code">echo CPGPluginAPI::filter('usermgr_header','');<br />
 $template_header .= CPGPluginAPI::filter('gallery_header','');</div>
 <p>These two filters relate to footers.</p>
-<div class="quote">echo CPGPluginAPI::filter('usermgr_footer','');<br />
+<div class="cpg_code code">echo CPGPluginAPI::filter('usermgr_footer','');<br />
 $template_footer = CPGPluginAPI::filter('gallery_footer','').substr($template, $gallery_pos);</div>
 <p>These two filters are meant for cleanup purposes. If there is any additional data related to a file and you want that data to be removed when a file is deleted then use these hooks.</p>
-<div class="quote">CPGPluginAPI::filter('before_delete_file', $pic);<br />
+<div class="cpg_code code">CPGPluginAPI::filter('before_delete_file', $pic);<br />
 CPGPluginAPI::filter('after_delete_file', $pic);</div>
 <p>This filter is a special one to add or modify meta albums</p>
-<div class="quote">$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);<br /><br />
-It works like this:<br />
+<div class="cpg_code code">$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);</div>
+It works like this:
 <pre class="cpg_code">&lt;?php
-$meta_album_passto </span>= array (
-        'album' </span>=&gt; $album</span>,
-        'limit' </span>=&gt; $limit</span>,
-        'set_caption' </span>=&gt; $set_caption</span>,
+$meta_album_passto = array (
+        'album' =&gt; $album,
+        'limit' =&gt; $limit,
+        'set_caption' =&gt; $set_caption,
 );
 
-$meta_album_params </span>= CPGPluginAPI</span>::filter</span>('meta_album'</span>, $meta_album_passto</span>);
-if ($meta_album_params</span>['album_name'</span>]) {
-        $album_name </span>= $meta_album_params</span>['album_name'</span>];
-        $count </span>= $meta_album_params</span>['count'</span>];
-        $rowset </span>= $meta_album_params</span>['rowset'</span>];
-        return $rowset</span>;
-}</span></span></pre><br />
-A plugin needs three input variables to do its thing: <br />
-$album, $limit, $set_caption <br />
-and it needs to modify three variables: <br />
-$album_name, $count, and $rowset (and remember that $rowset is a multi-dimensional array itself)
-</div>
+$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);
+if ($meta_album_params['album_name']) {
+        $album_name = $meta_album_params['album_name'];
+        $count = $meta_album_params['count'];
+        $rowset = $meta_album_params['rowset'];
+        return $rowset;
+}</pre><br />
+A plugin needs three input variables to do its thing: <tt class="code">$album</tt>, <tt class="code">$limit</tt>, <tt class="code">$set_caption</tt> and it needs to modify three variables: <tt class="code">$album_name</tt>, <tt class="code">$count</tt>, and <tt class="code">$rowset</tt> (and remember that <tt class="code">$rowset</tt> is a multi-dimensional array itself)
+<hr />
 <p>These filters allow you to add buttons to the different menus.</p>
-<div class="quote">
+<div class="cpg_code code">
 $admin_menu = CPGPluginAPI::filter('admin_menu',$html);<br />
 $sys_menu_buttons = CPGPluginAPI::filter('sys_menu',$sys_menu_buttons);<br />
-$sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);<br /><br />
+$sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);</div>
 To add a button to the admin menu you can do the following:<br />
 <pre class="cpg_code">&lt;?php
-$thisplugin</span>-&gt;add_filter</span>('admin_menu'</span>,'add_admin_button'</span>);
+$thisplugin-&gt;add_filter('admin_menu','add_admin_button');
 
-function add_admin_button</span>($admin_menu</span>){
-    $new_button </span>= '&lt;div class="admin_menu admin_float"&gt;&lt;a href="./menu_link.php" title="menu link"&gt;MENU LINK&lt;/a&gt;&lt;/div&gt;'</span>;
-    $look_for </span>= '&lt;!-- END export --&gt;'</span>;
-    $admin_menu </span>= str_replace</span>($look_for</span>, $look_for </span>. $new_button</span>, $admin_menu</span>); 
+function add_admin_button($admin_menu){
+    $new_button = '&lt;div class="admin_menu admin_float"&gt;&lt;a href="./menu_link.php" title="menu link"&gt;MENU LINK&lt;/a&gt;&lt;/div&gt;';
+    $look_for = '&lt;!-- END export --&gt;';
+    $admin_menu = str_replace($look_for, $look_for . $new_button, $admin_menu); 
     
-    return $admin_menu</span>;
-}</span></span></pre><br />
+    return $admin_menu;
+}</pre><br />
 For the sys &amp; sub menus you have to take another approach:<br />
 <pre class="cpg_code">&lt;?php
-$thisplugin</span>-&gt;add_filter</span>('sub_menu'</span>,'add_sub_button'</span>);
+$thisplugin-&gt;add_filter('sub_menu','add_sub_button');
 
-function add_sub_button</span>($menu</span>) {
-    $new_button </span>= array();
-    $new_button</span>[0</span>][0</span>] = 'MENU LINK'</span>;
-    $new_button</span>[0</span>][1</span>] = 'menu link'</span>;
-    $new_button</span>[0</span>][2</span>] = './menu_link.php'</span>;
-    $new_button</span>[0</span>][3</span>] = 'class_name'</span>;
-    $new_button</span>[0</span>][4</span>] = '::'</span>;
-    $new_button</span>[0</span>][5</span>] = 'rel="nofollow"'</span>;
+function add_sub_button($menu) {
+    $new_button = array();
+    $new_button[0][0] = 'MENU LINK';
+    $new_button[0][1] = 'menu link';
+    $new_button[0][2] = './menu_link.php';
+    $new_button[0][3] = 'class_name';
+    $new_button[0][4] = '::';
+    $new_button[0][5] = 'rel="nofollow"';
 
-    array_splice</span>($menu</span>, count</span>($menu</span>)-1</span>, 0</span>, $new_button</span>);
+    array_splice($menu, count($menu)-1, 0, $new_button);
 
-    return $menu</span>;
-}</span></span></pre>
-</div>
-<p>These four hooks can be used to add a custom CAPTCHA validation that overrides the one built into Coppermine.
-</p><div class="quote">
+    return $menu;
+}</pre>
+
+<p>These four hooks can be used to add a custom CAPTCHA validation that overrides the one built into Coppermine.</p>
+<div class="cpg_code code">
 $template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);<br />
 $captcha_print = CPGPluginAPI::filter('captcha_register_print',$captcha_print);<br />
 $captcha_print = CPGPluginAPI::filter('captcha_contact_print',$captcha_print);<br />

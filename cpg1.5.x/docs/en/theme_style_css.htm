@@ -37,8 +37,16 @@
 <p>The file style.css exists in every theme. It contains the Cascading Style Sheet (<abbr title="also known as">aka</abbr> "CSS") for the theme. It's beyond the scope of this document to explain the aspects of CSS for absolute beginners. The idea behind CSS is to have a separation between content (the textual output mainly) and the way the content is represented - the looks. With this being said, the style sheet controls the colors and nearly all design aspects of the output of your gallery. That's why it's worth looking at it: with only some minor changes in the style you can change the overall design of your entire gallery.</p>
 
 <a name="theme_style_css_tools"></a><h2>Tools<a href="#theme_style_css_tools" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>You will need some tools to edit the style sheet, but don't be afraid - nearly all of them are available for free. We have created a list of tools sorted by type that you're welcome to review: <a href="dev_tools.htm">Tools recommended by the devs</a>.</p>
+<p>You will need some tools to edit the style sheet, but don't be afraid - nearly all of them are available for free. We have created a list of tools sorted by type that you're welcome to review: <a href="dev_tools.htm#dev_tools_web_development">Web development tools recommended by the devs</a>. Please pay particular attention to the excellent <a href="dev_tools.htm#dev_tools_web_developer">Web Developer add-on</a> by Chris Pederick for Mozilla Firefox that is particularly helpfull:</p>
+
+<a name="theme_style_css_tools_webdev"></a><h3>Web Developer Toolbar usage<a href="#theme_style_css_tools_webdev" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+Among the many cool things that the Web Developer toolbar can do, you can use it to determine what section of the style sheet is controlling which section of the screen: after having installed the browser add-on you visit the page you want to change the looks of. Then click on "CSS" &rarr; "View style information". Your mouse cursor will then turn into a crosshair. Hover over the section of your page that you want to figure details out about. Notice the red frame that determines the borders of an element. Observe the status bar of the web developer toolbar that will display a breadcrumb trail of style classes if applicable. Click on the section you want to know details about: a window will open at the bottom of the screen that will show which class of which stylesheet file applies. 
+
+
+<a name="theme_style_css_tools_editor"></a><h3>Editor<a href="#theme_style_css_tools_editor" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>You will need a <a href="dev_tools.htm#dev_tools_editor">plain-text editor</a> (notepad.exe will do, but it's recommended to use one of the more powerfull editors from the above mentioned tools page. You should <em>not</em> use a graphical <abbr title="What You See I What You Get">WYSIWYG</abbr>-editor though unless you know you are aware of the limitations of such editors.</p>
+
+
 
 
 <a name="theme_style_css_list"></a><h2>List of classes in style.css<a href="#theme_style_css_list" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
@@ -508,16 +516,6 @@
     </td>
     <td valign="top">mandatory</td>
     <td valign="top">class</td>
-  </tr>
-<tr>
-    <td valign="top"><a name="theme_style_css_list_bookmarkIt"></a>bookmarkIt<a href="#theme_style_css_list_bookmarkIt" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
-    <td valign="top"><tt class="code">themes/yourstyle/style.css</tt></td>
-    <td valign="top">
-      
-      .
-    </td>
-    <td valign="top">mandatory</td>
-    <td valign="top">object</td>
   </tr>
   <!--
   <tr>
