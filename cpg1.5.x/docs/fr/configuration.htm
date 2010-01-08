@@ -673,120 +673,120 @@ Bien entendu, ce message n'est affiché que si vous n'avez pas autorisé les com
 
 <a name="admin_comment_end"></a>
 
-<a name="admin_contact_start"></a><h2>Contact form settings<a href="#admin_contact_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Settings that determine if the contact-form is available. Make sure that sending emails from Coppermine works in the first place before enabling the contact form.</p>
-<a name="admin_contact_guest_enable"></a><h3>Display contact form to anonymous visitors (guests)<a href="#admin_contact_guest_enable" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles wether the link to the contact form will be displayed in the menu and wether guests (visitors of your gallery who are not logged in) can use the contact form.</p>
-<p>Possible options:</p>
+<a name="admin_contact_start"></a><h2>Paramètres du formulaire de Contacts<a href="#admin_contact_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Paramètres qui déterminent si le formulaire de contact est disponible. Assurez vous d'abbord que l'envoie des courriel depuis Coppermine fonctionne avant d'activer le formulaire de contact.</p>
+<a name="admin_contact_guest_enable"></a><h3>Afficher le formulaire de contact pour les visiteurs anonymes (guests) <a href="#admin_contact_guest_enable" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Choix sur la manière dont le lien vers le formulaire de contact est affiché dans le menu et quels visiteurs (visiteurs de la galerie non identifiés) peuvent utiliser le formulmaire de contact.</p>
+<p>Options possibles:</p>
 <ul>
   <li>
-    <strong>No</strong><br />
-    (default setting).
+    <strong>Non</strong><br />
+    (paramètre par défaut).
   </li>
   <li>
-    <strong>Yes (with captcha)</strong><br />
-    (recommended setting). A captcha is a visual confirmation that the visitor has to fill in to prove that he is not a bot or malicious script.
+    <strong>Oui (avec captcha)</strong><br />
+    (paramètre recommandé). Captcha est une confirmation visuelle que l'utilisateur doit remplir pour prouver qu'il n'est pas un robot ou un script malveillant.
   </li>
   <li>
-    <strong>Yes (without captcha)</strong><br />
-    (not recommended). A captcha is a visual confirmation that the visitor has to fill in to prove that he is not a bot or malicious script. When allowing guests to send you an email using the contact form without asking them to confirm that they are humans can result in unwanted spam.
+    <strong>Oui (sans captcha)</strong><br />
+    (non recommandé). Captcha est une confirmation visuelle que l'utilisateur doit remplir pour prouver qu'il n'est pas un robot ou un script malveillant. Si vous autorisez les visiteurs à vous envoyer des courriels par le biais du formulaire de contact sans leur demander confirmation qu'ils sont bien humains peut entrainer la réception pour vous de spams non désirés.
   </li>
 </ul>
-<p>If disabled, the below options that apply to guests using the contact form will not be taken into account.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Contact form settings &rarr; Display contact form to anonymous visitors (guests)</p>
+<p>Si le formulaire de contact est désactivé, les options ci-dessus concernant les visiteurs utilisant le formulaire de contact ne sont pas prisent en compte.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres du formulaire de Contacts &rarr; Afficher le formulaire de contact pour les visiteurs anonymes (guests) </p>
 <a name="admin_contact_guest_enable_end"></a>
 <hr />
-<a name="admin_contact_guest_name_field"></a><h3>Display sender-name field for guests<a href="#admin_contact_guest_name_field" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, the visitor (guest) using the contact form will be allowed to enter his name.</p>
-<p>Possible options:</p>
+<a name="admin_contact_guest_name_field"></a><h3>Afficher le champ nom de l'expéditeur pour les visiteurs anonymes <a href="#admin_contact_guest_name_field" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si activé, le visiteur (non identifié) utilisant le formulaire de contact pourra entrer son nom.</p>
+<p>Options possibles:</p>
 <ul>
   <li>
-    <strong>No</strong><br />
-    (default setting). The field will not be displayed.
+    <strong>Non</strong><br />
+    (paramètre par défaut). Le champ n'est pas affiché.
   </li>
   <li>
-    <strong>Yes (optional)</strong><br />
-    (recommended setting). The guest using the form can fill in the name field, but he is not required to do so. If he choses not to fill in the name field and submits the form, the email will be sent anyway.
+    <strong>Oui (optionel)</strong><br />
+    (paramètre recommandé). Le visiteur utilisant le formulaire de contact peut complèter le champ nom, mais ce n'est pas obligatoir. Si il choisit de ne pas complèter ce champ, le formulaire de contact sera tout de même envoyé.
   </li>
   <li>
-    <strong>Yes (mandatory)</strong><br />
-    The guest using the contact form is required to fill in the name field. If he fails to do so and submits the form, he will be returned to the form and the email will not be sent unless he enters a name.
+    <strong>Oui (obligatoire)</strong><br />
+    Le visiteur utilisant le formulaire de contact devra obligatoirement compléter ce champ. Si il ne le fait pas, lors de la validation du formulaire, il sera renvoyé à celui-ci et le formulaire ne sera pas envoyé tant que le champ n'est pas renseigné.
   </li>
 </ul>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Contact form settings &rarr; Display sender-name field for guests</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres du formulaire de Contacts &rarr; Afficher le champ nom de l'expéditeur pour les visiteurs anonymes </p>
 <a name="admin_contact_guest_name_field_end"></a>
 <hr />
-<a name="admin_contact_guest_email_field"></a><h3>Display sender-email field for guests<a href="#admin_contact_guest_email_field" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, the visitor (guest) using the contact form will be allowed to enter his email address.</p>
-<p>Possible options:</p>
+<a name="admin_contact_guest_email_field"></a><h3>Afficher le champ adresse courriel de l'expéditeur pour les visiteurs anonymes<a href="#admin_contact_guest_email_field" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si activé, le visiteur (non identifié) utilisant le formulaire de contact pourra entrer son adresse courriel.</p>
+<p>Options possibles:</p>
 <ul>
   <li>
-    <strong>No</strong><br />
-    (default setting). The field will not be displayed.
+    <strong>Non</strong><br />
+    (paramètre par défaut). Le champ n'est pas affiché..
   </li>
   <li>
-    <strong>Yes (optional)</strong><br />
-    The guest using the form can fill in the email field, but he is not required to do so. If he choses not to fill in the email field and submits the form, the email will be sent anyway.
+    <strong>Oui (optionel)</strong><br />
+    Le visiteur utilisant le formulaire de contact peut complèter le champ adresse courriel, mais ce n'est pas obligatoir. Si il choisit de ne pas complèter ce champ, le formulaire de contact sera tout de même envoyé.
   </li>
   <li>
-    <strong>Yes (mandatory)</strong><br />
-    (recommended setting). The guest using the contact form is required to fill in the email field. If he fails to do so and submits the form, he will be returned to the form and the email will not be sent unless he enters an email address.
+    <strong>Oui (obligatoire)</strong><br />
+    (paramètre recommandé). Le visiteur utilisant le formulaire de contact devra obligatoirement compléter ce champ. Si il ne le fait pas, lors de la validation du formulaire, il sera renvoyé à celui-ci et le formulaire ne sera pas envoyé tant qu'il n'aura pas entré son adresse courriel.
   </li>
 </ul>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Contact form settings &rarr; Display sender-email field for guests</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres du formulaire de Contacts &rarr; Afficher le champ adresse courriel de l'expéditeur pour les visiteurs anonymes</p>
 <a name="admin_contact_guest_email_field_end"></a>
 <hr />
-<a name="admin_contact_registered_enable"></a><h3>Display contact form to registered users<a href="#admin_contact_registered_enable" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles wether the link to the contact form will be displayed in the menu for registered users and wether your users (visitors of your gallery who <strong>are</strong> logged in) can use the contact form.</p>
-<p>Possible options:</p>
+<a name="admin_contact_registered_enable"></a><h3>Afficher le formulaire de contact pour les visiteurs enregistrés <a href="#admin_contact_registered_enable" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Choix sur la manière dont le lien vers le formulaire de contact est affiché dans le menu et quels visiteurs (visiteurs de la galerie qui <trong>sont identifiés</strong>) peuvent utiliser le formulmaire de contact.</p>
+<p>Options possibles:</p>
 <ul>
   <li>
-    <strong>No</strong><br />
-    (default setting).
+    <strong>Non</strong><br />
+    (paramètre par défaut)
   </li>
   <li>
-    <strong>Yes (with captcha)</strong><br />
-    A captcha is a visual confirmation that the visitor has to fill in to prove that he is not a bot or malicious script.
+    <strong>Oui (avec captcha)</strong><br />
+    Captcha est une confirmation visuelle que l'utilisateur doit remplir pour prouver qu'il n'est pas un robot ou un script malveillant.
   </li>
   <li>
-    <strong>Yes (without captcha)</strong><br />
-    (recommended setting). A captcha is a visual confirmation that the visitor has to fill in to prove that he is not a bot or malicious script.
+    <strong>Oui (sans captcha)</strong><br />
+    (paramètre recommandé). Captcha est une confirmation visuelle que l'utilisateur doit remplir pour prouver qu'il n'est pas un robot ou un script malveillant.
   </li>
 </ul>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Contact form settings &rarr; Display contact form to registered users</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres du formulaire de Contacts &rarr; Afficher le formulaire de contact pour les visiteurs enregistrés </p>
 <a name="admin_contact_registered_enable_end"></a>
 <hr />
-<a name="admin_contact_subject_content"></a><h3>Subject line for emails generated by contact form<a href="#admin_contact_subject_content" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Subject line for the emails generated by the contact form. Will be put in front of the custom subject line the user can enter (if &quot;<a href="#admin_contact_subject_field">Display subject field</a>&quot; is enabled).</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Contact form settings &rarr; Subject line for emails generated by contact form </p>
+<a name="admin_contact_subject_content"></a><h3>Objet du courriel généré automatiquement par le formulaire de contact <a href="#admin_contact_subject_content" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Ligne d'objet pour les courriels générés par le formulaire de contact. Sera placé en tête de la ligne d'objet personnalisé que l'utilisateur peut renseigner (si &quot;<a href="#admin_contact_subject_field">Afficher le champ objet</a>&quot; est activé).</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres du formulaire de Contacts &rarr; Objet du courriel généré automatiquement par le formulaire de contact  </p>
 <a name="admin_contact_subject_content_end"></a>
 <hr />
 
-<a name="admin_contact_subject_field"></a><h3>Display subject field<a href="#admin_contact_subject_field" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, the visitor (guest or registered user) using the contact form will be allowed to enter a subject line.</p>
-<p>Possible options:</p>
+<a name="admin_contact_subject_field"></a><h3>Afficher le champ objet<a href="#admin_contact_subject_field" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si activé, le visiteur (identifié ou pas) utilisant le formulaire de contact pourra renseigner la ligne objet.</p>
+<p>Options possibles:</p>
 <ul>
   <li>
-    <strong>No</strong><br />
-    (default setting). The field will not be displayed.
+    <strong>Non</strong><br />
+    (Paramètre par défaut). Le champ n'est pas affiché.
   </li>
   <li>
-    <strong>Yes (optional)</strong><br />
-    (recommended setting). The visitor using the form can fill in the subject field, but he is not required to do so. If he choses not to fill in the subject field and submits the form, the email will be sent anyway.
+    <strong>Oui (optionel)</strong><br />
+    (paramètre recommandé). Le visiteur utilisant le formulaire de contact peut compléter le champ d'objet, mais ce n'est pas obligatoire. Si il choisi de ne pas remplir le champ et qu'il valide le formulaire, le courriel sera tout de même envoyé.
   </li>
   <li>
-    <strong>Yes (mandatory)</strong><br />
-    The visitor using the contact form is required to fill in the subject field. If he fails to do so and submits the form, he will be returned to the form and the email will not be sent unless he enters a subject line.
+    <strong>Oui (obligatoire)</strong><br />
+    Le visiteur doit remplir le champ objet, si il ne le fait pas, lors de la validation du formulaire, il sera renvoyé à celui-ci et le courriel ne sera pas envoyé tant qu'il ne sera pas renseigné.
   </li>
 </ul>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Contact form settings &rarr; Display subject field</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres du formulaire de Contacts &rarr; Afficher le champ objet</p>
 <a name="admin_contact_subject_field_end"></a>
 <hr />
 
-<a name="admin_contact_sender_email"></a><h3>Use the sender's email address as &quot;from&quot;-address<a href="#admin_contact_sender_email" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, the sender's email address will be used to send the email (if applicable, i.e. if a valid email exists). This is helpful in terms of comfort, as you can use your email app's reply functionality. The drawback may be issues with the emails not being delivered properly, as you can't be sure that the user has entered his actual email address. Additionally, your webserver's mail server may be configured to only allow certain email addresses in the from field. Anti-spam mechanisms may be in place that validate the domain part of the from-field and only accept emails when the domains of the mail server and the from field match. Subsequently, use this option with care and test it througly before making using it &quot;live&quot;.</p>
-<p>Recommended (fail-safe) setting is &quot;off&quot;.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Contact form settings &rarr; Use the sender's email address as &quot;from&quot;-address</p>
+<a name="admin_contact_sender_email"></a><h3>Utiliser l'adresse courriel de l'expéditeur pour l'adresse "from" du courriel <a href="#admin_contact_sender_email" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si activé, l'adresse courriel du visiteur dera utilisée pour envoyer le courriel (si possible, c'est a dire si l'adresse est valide et existe). Cela peut être très utile en therme de confort puisque vous pourrez utiliser la focntion "répondre" de votre application courriel. L'inconvénient peut être que les courriels peuvent ne pas être correctement distribués parceque vous ne pouvez pas vérifier que l'utilisateur à entré son adresse courriel actuelle. De plus, votre application courriel peut être paramétrée pour n'autoriser que certaines adresses courriel dans le champ "de". Les mecanisme anti-spams peuvent être en place, ne validant pas les  courriels provenant de certains domaines en vérifiant le champ "de" des courriels reçus. En concéquence, utilisez cette option avec précaution et testez là avant de l'utiliser en production.</p>
+<p>le paramètre recommandé (sans risque d'erreurs) est &quot;Non&quot;.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres du formulaire de Contacts &rarr; Utiliser l'adresse courriel de l'expéditeur pour l'adresse "from" du courriel </p>
 <a name="admin_contact_sender_email_end"></a>
 <hr />
 
