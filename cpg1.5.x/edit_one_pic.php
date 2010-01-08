@@ -351,11 +351,11 @@ if (!(GALLERY_ADMIN_MODE || $CURRENT_PIC['category'] == FIRST_USER_CAT + USER_ID
 }
 
 $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
-$thumb_link = 'displayimage.php?pos='.(-$CURRENT_PIC['pid']);
+$thumb_link = 'displayimage.php?pid='.$CURRENT_PIC['pid'];
 $filename = htmlspecialchars($CURRENT_PIC['filename']);
 $filepath = htmlspecialchars($CURRENT_PIC['filepath']);
 
-$THUMB_ROWSPAN = 6;
+$THUMB_ROWSPAN = 7;
 if ($CONFIG['user_field1_name'] != '') {
     $THUMB_ROWSPAN++;
 }
