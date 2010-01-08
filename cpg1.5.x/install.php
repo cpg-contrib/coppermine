@@ -447,7 +447,7 @@ switch($step) {
                 // admin username not correct
                 $error .= $language['user_err'] . '<br />';
             } else {
-                setTmpConfig('admin_username', $superCage->post->getAlnum('admin_username'));
+                setTmpConfig('admin_username', $admin_username[0]);
             }
             
             // we need a db connection to use getEscaped()
