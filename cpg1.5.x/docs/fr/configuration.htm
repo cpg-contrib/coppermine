@@ -792,109 +792,113 @@ Bien entendu, ce message n'est affiché que si vous n'avez pas autorisé les com
 
 <a name="admin_contact_end"></a>
 
-<a name="admin_thumb_start"></a><h2>Thumbnail settings<a href="#admin_thumb_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="admin_thumb_start"></a><h2>Paramètres des vignettes<a href="#admin_thumb_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 
-<a name="admin_picture_thumbnail_use-dimension"></a><h3>Use dimension<a href="#admin_picture_thumbnail_use-dimension" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Sets the dimension (<em>width</em> or <em>height</em> or <em>max aspect</em> or <em>exact</em>) on which the maximum pixel size limitation should apply to for the thumbnail.</p>
-<p>The options <tt class="code">width</tt> or <tt class="code">height</tt> should be pretty self-explanatory: if you specify the value <tt class="code">width</tt> for the setting &quot;Use dimension&quot;, all thumbnails will have <strong>exactly</strong> the <em>width</em> (in pixels) that you specify in the setting &quot;<a href="#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a>&quot;. Settings all thumbnails to have the same width makes the &quot;grid&quot; of thumbnails on the thumbnails page look very structured, especially when there is little space between the thumbnail rows. The same thing applies if you choose height - all thumbnails will then have the same height, which will look good particularly when looking at a row of thumbnails, e.g. on the film strip display.</p>
-<p>Choosing <tt class="code">max aspect</tt> means that whatever will be the longer side (width for images in landscape format, height for images in portrait format) will have the dimension you specify in &quot;<a href="#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a>&quot; - the shorter side will be shorter of course, as the aspect ratio that exists for the orginal pic will be preserved as well for the thumbnail.</p>
-<p><strong>Only</strong> if you choose <tt class="code">exact</tt> as value for the setting &quot;Use dimension&quot;, the value entered into the field &quot;<a href="configuration.htm#admin_picture_thumbnail_height">Height of a thumbnail</a>&quot; will be taken into account at all: the thumbnail will then be resized to the fixed dimensions you specify for width and height. If the aspect ratio of the original doesn't match the aspect ratio that results from the width and height settings for thumbnails, the thumbnail will be cropped as well. The main advantage of this setting is that all your thumbnails will have identical dimensions, which leads to a super-clean look of your thumbnails page, with the drawback of the fact that important parts of the content of the original image may not be visible on the thumbnail page because cropping has been applied. Use this option to create square thumbnails (setting width and height for the thumbnail to the same value).</p>
+<a name="admin_picture_thumbnail_use-dimension"></a><h3>Utiliser la dimension (largeur ou hauteur ou aspect max pour la vignette)<a href="#admin_picture_thumbnail_use-dimension" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Défini la dimension (<em>largeur</em> ou <em>hauteur</em> ou <em>aspect max</em> ou <em>exact</em>) pour  laquelle la limite maximale de taille en pixels doit s'appliquer à la vignette.</p>
+<p>Les options <tt class="code">largeur</tt> ou <tt class="code">hauteur</tt> s'expliquent d'elles même: si vous définissez la valeur <tt class="code">largeur</tt> pour le paramètre &quot;Utiliser la dimension&quot;, toutes le vignettes auront <strong>exactement</strong> la <em>largeur</em> (en pixels) que vous aurez défini dans le paramètre &quot;<a href="#admin_picture_thumbnail_max-dimension">Dimension Maximale (largeur) pour les Vignettes</a>&quot;. Définir la même largeur pour les vignettes rends l'aspect de la &quot;grille&quot; des vignettes très structurée, particulièrement lorsqu'uil y a peu de place entre les lignes de vignettes. C'est la même chose si vous choisissez hauteur - toute les vignettes auront la même hauteur, ce qui rends bien en particulier en regardant une ligne de vignettes comme dans le négatif de film.</p>
+<p>Choisir <tt class="code">aspect max</tt> signifie que quelque soit le coté le plus long (largeur pour les images au format paysage, hauteur pour celles au format portrait) elle aura la dimension définie dans &quot;<a href="#admin_picture_thumbnail_max-dimension">Diemension maximale pour les vignettes</a>&quot; - le côté le plus petit sera réduit bien entendu, pour garder le ration de l'image originale également pour les vignettes.</p>
+<p>la valeur entrée dans le champ &quot;<a href="configuration.htm#admin_picture_thumbnail_height">Hauteur de la vignette</a>&quot; ne sera prise en compte <strong>uniquement</strong> si vous choisissez <tt class="code">exact</tt> comme valeur pour le paramètre &quot;Utiliser la dimension&quot;: la vignette sera redimmensionnée aux dimensions fixes que vous aurez définies pour la largeur et la hauteur. Si le ration n'est pas le même pour l'original que pour la vignette, la vignette sera recadrée (rognée). Le plus gros avantage de ce paramètre est que toutes vos vignettes auront la même dimension, d'ou un aspect très propre sur la page des vignettes, avec l'inconvénient que l'ensemble du contenu de l'image originale ne sera pas visible dans la vignette à cause du recadrage. Utilisez cette option si vous voulez avoir des vignettes carrée (mettez les mêmes valeurs pour la largeur et la hauteur).</p>
 <table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra maintable" width="100%">
   <tr>
-    <th valign="top" align="left" class="tableh1">Option value</th>
-    <th valign="top" align="left" class="tableh1">Explanation</th>
-	<th valign="top" align="left" class="tableh1">Correlation</th>
+    <th valign="top" align="left" class="tableh1">Valeur de l'option</th>
+    <th valign="top" align="left" class="tableh1">Explications</th>
+	<th valign="top" align="left" class="tableh1">Corrélation</th>
     <th valign="top" align="left" class="tableh1">Advantages</th>
-    <th valign="top" align="left" class="tableh1">Disadvantages</th>
+    <th valign="top" align="left" class="tableh1">Désavantages</th>
   </tr>
   <tr>
-    <td valign="top"><strong>width</strong></td>
-    <td valign="top">Thumbnails will have <strong>exactly</strong> the same <em>width</em> (in pixels) that you specify in the setting &quot;Max dimension of a thumbnail&quot;. The <em>height</em> may differ from thumbnail to thumbnail, as the aspect ratio of the original image is preserved for the thumbnail.</td>
-	<td valign="top"><a href="configuration.htm#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a></td>
-    <td valign="top">Nice look for thumbnails aligned vertically. Predictable results for themes with fixed width (i.e. where the content defined by the <a href="theme_template.htm#theme_template_gallery">{GALLERY}</a>-token is meant to fit in a table cell or div container with fixed or limited width.</td>
-    <td valign="top">Doesn't align well horizontally.</td>
+    <td valign="top"><strong>Largeur</strong></td>
+    <td valign="top">La vignettes auront <strong>exactement</strong> la même <em>largeur</em> (en pixels) que celle définie dans le paramètre &quot;Dimensions maximale des vignettes&quot;. La <em>hauteur</em> peut différer d'une vignette à l'autre puisque le ration de l'image originale est préservée.</td>
+	<td valign="top"><a href="configuration.htm#admin_picture_thumbnail_max-dimension">Dimension maximale des vignettes</a></td>
+    <td valign="top">Bon rendu pour les vignettes aligées verticalement. Résultats prévisibles pour les thèmes à largeur fixe (c.a.d dont le contenu défini par le conteneur <a href="theme_template.htm#theme_template_gallery">{GALLERY}</a>-est supposé remplir une cellule de tabel ou un conteneur div avec une valeur fixe ou limitée en largeur.</td>
+    <td valign="top">Ne s'aligne pas très bien horizontalement.</td>
   </tr>
   <tr>
-    <td valign="top"><strong>height</strong></td>
-    <td valign="top">Thumbnails will have <strong>exactly</strong> the same <em>height</em> (in pixels) that you specify in the setting &quot;Max dimension of a thumbnail&quot;. The <em>width</em> may differ from thumbnail to thumbnail, as the aspect ratio of the original image is preserved for the thumbnail.</td>
-	<td valign="top"><a href="configuration.htm#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a></td>
-    <td valign="top">Nice look for thumbnails aligned horizontally (e.g. the <a href="#admin_image_comment_filmstrip_toggle">film strip</a>).</td>
-    <td valign="top">Looks silly for extreme landscape resolutions, e.g. stitched panorama images. Doesn't align well vertically. Unpredictable results for fixed-width themes.</td>
+    <td valign="top"><strong>hauteur</strong></td>
+    <td valign="top">La vignette aura <strong>exactement</strong> la même <em>hauteur</em> (en pixels) que celle définie dans le paramètre &quot;Dimensions maximale des vignettes&quot;. La <em>hauteur</em> peut différer d'une vignette à l'autre puisque le ration de l'image originale est préservée.</td>
+	<td valign="top"><a href="configuration.htm#admin_picture_thumbnail_max-dimension">Dimension maximale des vignettes</a></td>
+    <td valign="top">Bon rendu pour les vignettes alignées horizontalement (comme dans le <a href="#admin_image_comment_filmstrip_toggle">négatif</a>).</td>
+    <td valign="top">Mauvais rendu pour les images panoramiques, ex.images assemblées en panorama. Ne s'aligne pas bien verticalement. Résultats imprévisibles pour les thèmes à largeur fixe.</td>
   </tr>
   <tr>
-    <td valign="top"><strong>max aspect</strong></td>
-    <td valign="top">Whatever will be the longer side (<em>width</em> for images in landscape format, <em>height</em> for images in portrait format) will have the dimension you specify in &quot;Max dimension of a thumbnail&quot; - the shorter side will be shorter of course, as the aspect ratio that exists for the orginal pic will be preserved as well for the thumbnail. This is the recommended setting.</td>
-	<td valign="top"><a href="configuration.htm#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a></td>
-    <td valign="top">Thumbnails will have similar files sizes. Estetically pleasant if you have a mixture of landscape and portrait images.</td>
-    <td valign="top">Thumbnail rows and columns will not align. Unpredictable results for narrow themes.</td>
+    <td valign="top"><strong>Aspect max</strong></td>
+    <td valign="top">Quel que soit le plus long côté (<em>largeur</em> pour les images au format paysage, <em>hauteur</em> pour les images au format portrait) il aura la dimension définie dans &quot;Dimensions maximale des vignettes&quot; - Le plus petit côté évidemment, puisque le ration existant sur l'image originale est préservé pour les vignettes. C'est le paramétrage recommandé.</td>
+	<td valign="top"><a href="configuration.htm#admin_picture_thumbnail_max-dimension">Dimension maximale des vignettes</a></td>
+    <td valign="top">Les vignettes auront la même taille de fichier. Estétique si vous avez aussi bien des images au format portrait que paysage.</td>
+    <td valign="top">Les lignes et les colonnes de vignettes ne seront pas alignées. Résultats imprévisibles pour les thème avec une petite largeur.</td>
   </tr>
   <tr>
     <td valign="top"><strong>exact</strong></td>
-    <td valign="top">Thumbnail will be resized to the fixed dimensions you specify for width and height. All thumbnails will have the same dimensions and look identical. If the aspect ratio of the original doesn't match the aspect ratio that results from the width and height settings for thumbnails, the thumbnail will be cropped as well.</td>
-	<td valign="top"><a href="configuration.htm#admin_picture_thumbnail_max-dimension">Max dimension of a thumbnail</a> <strong>and</strong> <a href="configuration.htm#admin_picture_thumbnail_height">Height of a thumbnail</a></td>
-    <td valign="top">Clean look of your thumbnails page because thumbnails will align both vertically as well as horizontally.</td>
-    <td valign="top">Parts of the content of the original image may not be visible on the thumbnail page because cropping has been applied, so your thumbnails may not attract the attention of the visitor.</td>
+    <td valign="top">Les vignettes seront redimenssionnées aux dimensions fixes que vous aurez défini pour la largeur et la hauteur. Toutes les vignettes auront la même dimension et le même aspect. Si le ration de l'image originale n'est pas le même, la vignette sera recadrée (rognée).</td>
+	<td valign="top"><a href="configuration.htm#admin_picture_thumbnail_max-dimension">Dimensions maximales des vignettes</a> <strong>et</strong> <a href="configuration.htm#admin_picture_thumbnail_height">Hauteur des vignettes</a></td>
+    <td valign="top">Bel aspect de votre page de vignettes à cause de l'alignement vertical et horizontal.</td>
+    <td valign="top">Un partie du contenu de l'image originale peut ne pas être visible sur la page des vignettes à cause du recadrage de celles-ci, vos vignettes peuvent ne pas atirer l'attention des visiteurs.</td>
   </tr>
 </table>
 
-<p class="cpg_message_info">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; Use dimension</p>
+<p class="cpg_message_info">Lorsque vous changez ce paramètre, seuls les fichiers ajoutés après le changement seront affectés. C'est pourquoi il est préférable de ne pas changer ce paramètre après avoir ajouté des photos dans votre galerie. Vous pouvez toutefois appliquer les changements aux images existantes avec l'utilitaure &quot;Utilitaires d'Administration (redimmensionner les images)&quot; du menu administrateur.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des vignettes &rarr; Utiliser la dimension</p>
 <a name="admin_picture_thumbnail_use-dimension_end"></a>
 <hr />
 
-<a name="admin_picture_thumbnail_max-dimension"></a><h3>Max dimension of a thumbnail<a href="#admin_picture_thumbnail_max-dimension" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Sets the maximum allowable size in pixels for the specified dimension of your thumbnails - it depends on what you have set up in &quot;Use dimension&quot; wether the setting from &quot;Max dimension of a thumbnail&quot; will apply to the width or height or the longer side (max aspect).</p>
-<p>For details on this setting please refer to the explanations given in &quot;<a href="configuration.htm#admin_picture_thumbnail_use-dimension">Use dimension</a>&quot;.</p>
-<p class="cpg_message_info">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; Max dimension of a thumbnail</p>
+<a name="admin_picture_thumbnail_max-dimension"></a><h3>Dimension Maximale (largeur) pour les Vignettes<a href="#admin_picture_thumbnail_max-dimension" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Défini la taille maximale en pixels allouée pour la dimension spécifiée de la vignette - La manière dont le réglage &quot;Dimensions maximale des vignettes&quot; sera appliquée à la largeur, la hauteur ou le côté le plus grand (aspect max) dépend du réglage défini dans &quot;Utiliser la dimension&quot;.</p>
+<p>Pour plus de détails, référez vous aux explications données dans &quot;<a href="configuration.htm#admin_picture_thumbnail_use-dimension">Utiliser la dimension</a>&quot;.</p>
+<p class="cpg_message_info">Lorsque vous changez ce paramètre, seuls les fichiers ajoutés après le changement seront affectés. C'est pourquoi il est préférable de ne pas changer ce paramètre après avoir ajouté des photos dans votre galerie. Vous pouvez toutefois appliquer les changements aux images existantes avec l'utilitaure &quot;Utilitaires d'Administration (redimmensionner les images)&quot; du menu administrateur.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des vignettes &rarr; Dimension Maximale (largeur) pour les Vignettes</p>
 <a name="admin_picture_thumbnail_max-dimension_end"></a>
 <hr />
 
-<a name="admin_picture_thumbnail_height"></a><h3>Height of a thumbnail<a href="#admin_picture_thumbnail_height" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><strong>Only</strong> applies if you use "exact" in &quot;<a href="#admin_picture_thumbnail_use-dimension">Use dimension</a>&quot;. This setting is <strong>not</strong> being taken into account when &quot;<a href="configuration.htm#admin_picture_thumbnail_use-dimension">Use dimension</a>&quot; has been set to &quot;<em>height</em>&quot;.</p>
-<p>For details on this setting please refer to the explanations given in &quot;<a href="configuration.htm#admin_picture_thumbnail_use-dimension">Use dimension</a>&quot;.</p>
-<p class="cpg_message_info">When changing this setting, only files that are added after the change will be affected. Therefore, it is advisable that this setting not be changed after photos have already been added to the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; Height of a thumbnail</p>
+<a name="admin_picture_thumbnail_height"></a><h3>Hauteur des Vignettes<a href="#admin_picture_thumbnail_height" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>S'applique <strong>uniquement</strong> si vous utilisez "exact" dans &quot;<a href="#admin_picture_thumbnail_use-dimension">Utiliser les dimensions</a>&quot;. Ce paramètre <strong>n'est pas</strong> pris en compte si &quot;<a href="configuration.htm#admin_picture_thumbnail_use-dimension">Utiliser les dimensions</a>&quot; est réglé sur &quot;<em>hauteur</em>&quot;.</p>
+<p>Pour plus de détails, référez vous aux explications données dans &quot;<a href="configuration.htm#admin_picture_thumbnail_use-dimension">Utiliser la dimension</a>&quot;.</p>
+<p class="cpg_message_info">Lorsque vous changez ce paramètre, seuls les fichiers ajoutés après le changement seront affectés. C'est pourquoi il est préférable de ne pas changer ce paramètre après avoir ajouté des photos dans votre galerie. Vous pouvez toutefois appliquer les changements aux images existantes avec l'utilitaure &quot;Utilitaires d'Administration (redimmensionner les images)&quot; du menu administrateur.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des vignettes &rarr; Hauteur des Vignettes</p>
 <a name="admin_picture_thumbnail_height_end"></a>
 <hr />
 
-<a name="admin_picture_thumb_advanced_thumbs_prefix"></a><h3>The prefix for thumbnails<a href="#admin_picture_thumb_advanced_thumbs_prefix" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This prefix is added to the file name of created thumbnails.</p>
-<p>These setting mustn't be changed if you already have files in your database. If you do, all reference to your existing files will become invalid.</p>
-<p>It's recommended to leave the setting as is (<tt class="code">thumb_</tt>) if you're not absolutely sure what you're doing.</p>
-<p>This feature is deprecated in cpg1.5.x or better and can no longer be configured, since it only lead to end user confusion. If you performed a fresh install or if you have never changed this prefix, the option won't show through. Only for those who have actually changed this option and have a config setting that differs from the default prefix, the text field will show at all. If this is the case for you: you're strongly encouraged to change this back to the default value to avoid possible issues in future versions.<br />Bottom line: don't be alarmed if this option doesn't show for you - that's OK.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; The prefix for thumbnails</p>
+<a name="admin_picture_thumb_advanced_thumbs_prefix"></a><h3>Préfixe des vignettes<a href="#admin_picture_thumb_advanced_thumbs_prefix" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>C'est le préfixe ajouté au nom de la vignette lors de la création de celle-ci.</p>
+<p>Ce réglage ne doit pas être modifié si vous avez déjà des fichiers dans votre base de donnée. Si vous le faites, toutes les références aux fichiers existants ne seront plus valides.</p>
+<p>Il est recommandé de laisser ce paramètre comme il est (<tt class="code">thumb_</tt>) si vous n'êtes pas absolument surs de ce que vous faites.</p>
+<p>Cette fonction est dépréciée depuis cpg1.5.x et ne peut plus être configurée, parce quelle induisait les utilisateurs en erreur. Si vous faites une nouvelle installation, ou si vous n'avez jamais changé ce préfixe, cette option n'est pas visible. Seuls ceux qui ont changé cette option et ont une valeur différente du préfixe par défaut  verront le champ texte. Si c'est le cas pour vous, vous êtes fortement encouragé à le changer vers la valeur par défaut pour vous éviter des problèmes avec les futures versions.<br />En fin de compte: ne vous alarmez pas si cette otpion n'est pas visble pour vous, c'est normal.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des vignettes &rarr; Préfixe des vignettes</p>
 <a name="admin_picture_thumb_advanced_thumbs_prefix_end"></a>
 <hr />
 
-<a name="admin_picture_thumb_sharpening_enable"></a><h3>Thumb Sharpening: enable Unsharp Mask<a href="#admin_picture_thumb_sharpening_enable" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Unsharp masking is an image manipulation technique of increasing the acutance, or apparent sharpness, of photographic images. The "unsharp" of the name derives from the fact that the technique uses a blurred, or "unsharp", positive to create a "mask" of the original image. The unsharped mask is then combined with the negative, creating the illusion that the resulting image is sharper than the original.</p>
-<p>With this setting you toggle the creation of thumbnails on with an unsharp mask applied, i.e. you enable thumbnail sharpening. If this option is enabled, you usually get sharper-looking thumbnails. Turn the option off if the exact looks of the original need to be preserved without the improved visual effect that thumb sharpening applies. Default setting (for compatibility reasons) is "off". Recommended setting is "on".</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; Thumb Sharpening: enable Unsharp Mask</p>
+<a name="admin_picture_thumb_sharpening_enable"></a><h3>Accentuation de la netteté des Vignettes: Activez le masque d'Accentuation <a href="#admin_picture_thumb_sharpening_enable" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p class="cpg_message_warning">La traduction de cette section est approximative du fait du caractète technique traité. N'hésitez pas à nous en proposer une meilleure.</p>
+<p>Le masque de flou est une technique de manipulation d'images pour augmenter l'acutance et la netteté apparente des photos. Le "flou" dans le nom vient du fait que cette  technique utilise une version positive "floue" ou "non nette" de l'image originale pour créer un "masque". Le masque flou est combiné avec le négatif, donnant l'impression que l'image qui en résulte est plus nette que l'originale.</p>
+<p>Avec cette option, vous choisissez si vous voullez appliquer un masque d'accentuation à la création des vignettes. Si cette option est activéen vous aurez des vignettes qui paraitront plus nettes.  Désactivez cette option si l'aspect exact de l'original doit être préservé sans ajout de cet effet de netteté. Le paramètre par défaut (pour raison de compatibilité) est "Non". Réglage recommandé: "Oui".</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des vignettes &rarr; Accentuation de la netteté des Vignettes: Activez le masque d'Accentuation </p>
 <a name="admin_picture_thumb_sharpening_enable_end"></a>
 <hr />
 
-<a name="admin_picture_thumb_sharpening_amount"></a><h3>Thumb Sharpening amount<a href="#admin_picture_thumb_sharpening_amount" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The amount of sharpening that is applied, listed as a percentage, controling the magnitude of each overshoot (how much darker and how much lighter the edge borders become). This can also be thought of as how much contrast is added at the edges. It does not affect the width of the edge rims.</p>
-<p>Recommended setting (and default) is 120.</p>
-<p>This setting will only be taken into account if thumbnail sharpening is enabled in the first place.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; Thumb Sharpening amount</p>
+<a name="admin_picture_thumb_sharpening_amount"></a><h3>Quantité d'Accentuation<a href="#admin_picture_thumb_sharpening_amount" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p class="cpg_message_warning">La traduction de cette section est approximative du fait du caractète technique traité. N'hésitez pas à nous en proposer une meilleure.</p>
+<p>La quantité d'accentuation appliquée (en pourcentage), controlant la quantité pour chaque passe (de combien les bords vont être assombris et éclaircis). On peut aussi considérer qu'il s'agit du contraste ajouté aux contours. Cela n'affecte pas a taille des contours.</p>
+<p>Paramètre recommanté (et par défaut) est 120.</p>
+<p>Ce réglage n'est pris en compte que si l'accentuation le la netteté des vignette est d'abbord activée.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des vignettes &rarr; Quantité d'Accentuation</p>
 <a name="admin_picture_thumb_sharpening_amount_end"></a>
 <hr />
 
-<a name="admin_picture_thumb_sharpening_radius"></a><h3>Thumb Sharpening radius<a href="#admin_picture_thumb_sharpening_radius" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This affects the size of the edges to be enhanced or how wide the edge rims become, so a smaller radius enhances smaller-scale detail. Higher Radius values can cause halos at the edges, a detectable faint light rim around objects. Fine detail needs a smaller Radius. Radius and Amount interact; reducing one allows more of the other.</p>
-<p>Default (and recommended) setting is 0.5</p>
-<p>This setting will only be taken into account if thumbnail sharpening is enabled in the first place.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; Thumb Sharpening radius</p>
+<a name="admin_picture_thumb_sharpening_radius"></a><h3>Nombre de pixel de bord pour l'Accentuation (radius)<a href="#admin_picture_thumb_sharpening_radius" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p class="cpg_message_warning">La traduction de cette section est approximative du fait du caractète technique traité. N'hésitez pas à nous en proposer une meilleure.</p>
+<p>Affecte la taille des contours à accentuer ou quelle taille doit avoir le contour, donc un rayon plus petit accentue le contour à un eplus petite echelle. Un grand rayon peut créer un halo sur les contours, et une Higher Radius values can cause halos at the edges, une petite bordure lumineuse visible autour des objets. Les détails fins demandent un plus petit rayon. Le rayon et la quantité inter-agissent; reduire l'un permets d'augmenter l'autre.</p>
+<p>Le Paramètre par défaut (et recommandé) est 0.5</p>
+<p>Ce réglage n'est pris en compte que si l'accentuation le la netteté des vignette est d'abbord activée.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des vignettes &rarr; Nombre de pixel de bord pour l'Accentuation (radius)</p>
 <a name="admin_picture_thumb_sharpening_radius_end"></a>
 <hr />
 
-<a name="admin_picture_thumb_sharpening_threshold"></a><h3>Thumb Sharpening threshold<a href="#admin_picture_thumb_sharpening_threshold" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Controls the minimum brightness change that will be sharpened or how far apart adjacent tonal values have to be before the filter does anything. This lack of action is important to prevent smooth areas from becoming speckled. The threshold setting can be used to sharpen more pronounced edges, while leaving more subtle edges untouched. Low values should sharpen more because fewer areas are excluded. Higher threshold values exclude areas of lower contrast.</p>
-<p>Default (and recommended) setting is 3</p>
-<p>This setting will only be taken into account if thumbnail sharpening is enabled in the first place.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Thumbnails settings &rarr; Thumb Sharpening threshold</p>
+<a name="admin_picture_thumb_sharpening_threshold"></a><h3>Seuil d'Accentuation (threshold) <a href="#admin_picture_thumb_sharpening_threshold" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p class="cpg_message_warning">La traduction de cette section est approximative du fait du caractète technique traité. N'hésitez pas à nous en proposer une meilleure.</p>
+<p>Contrôle la modification de la luminosité minimale qui sera accentuée ou la distance qui doit séparer les valeurs tonales adjacentes  avant que le filtre n'ait pas d'action. L'arrêt de l'action est importante pour éviter de créer des zones lisses mouchetée. Le réglage de seuil peuvent être utilisés pour affiner les bords plus prononcée, tout en laissant intacts les bords plus subtiles. Des valeurs faibles devraient accentuer plus parce que moins de zones sont exclues. des seuils plus grands excluent les zones de faible contraste.</p>
+<p>Le paramètre par défaut (et recommandé) est 3</p>
+<p>Ce réglage n'est pris en compte que si l'accentuation le la netteté des vignette est d'abbord activée.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètre des vignettes &rarr; Seuil d'Accentuation (threshold) </p>
 <a name="admin_picture_thumb_sharpening_threshold_end"></a>
 <hr />
 <a name="admin_thumb_end"></a>
@@ -903,12 +907,12 @@ Bien entendu, ce message n'est affiché que si vous n'avez pas autorisé les com
 <a name="admin_picture_thumbnail"></a><h2>File settings<a href="#admin_picture_thumbnail" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_picture_thumbnail_jpeg_quality"></a><h3>Quality for JPEG files<a href="#admin_picture_thumbnail_jpeg_quality" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The quality used for JPEG compression when the script resizes an image. Values can range from 0 (worst) to 100 (best). By default this value is set to 80. This value can be set to 75 when using ImageMagick.<br />Do not change this setting unless you really know what you're doing. Other settings for thumbnail and intermediate pic (dimensions) may have a significant and undesireable impact on filesizes and image quality.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Quality for JPEG files</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Quality for JPEG files</p>
 <a name="admin_picture_thumbnail_jpeg_quality_end"></a>
 <hr />
 <a name="admin_picture_thumbnail_intermediate_toggle"></a><h3>Create intermediate pictures<a href="#admin_picture_thumbnail_intermediate_toggle" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>By default, whenever you upload a file, the script creates both a thumbnail of the file (file name using "thumb_" as its prefix) and an intermediate version of the file(file name using "normal_" as its prefix). If you set this option to NO, the intermediate file will not be created. This will keep Coppermine from creating intermediate-sized pics during the upload process, displaying the full-sized picture even on the intermediate-display page (resizing the full-sized image on that screen using the width and height attributes of the &lt;img&gt;-tag) to the size that you have specified for &quot;<a href="#admin_picture_thumbnail_intermediate_dimension">Max width or height of an intermediate picture</a>&quot;. Setting this option to &quot;no&quot; will save webspace but may result in increased loading times for the intermediate image display screen.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Create intermediate pictures</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Create intermediate pictures</p>
 <a name="admin_picture_thumbnail_intermediate_toggle_end"></a>
 <hr />
 <a name="admin_picture_thumbnail_intermediate_use-dimension"></a><h3>Use dimension<a href="#admin_picture_thumbnail_intermediate_use-dimension" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -923,17 +927,17 @@ Bien entendu, ce message n'est affiché que si vous n'avez pas autorisé les com
 <a name="admin_picture_thumbnail_intermediate_dimension"></a><h3>Max width or height of an intermediate picture<a href="#admin_picture_thumbnail_intermediate_dimension" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The intermediate pictures are those that appears when you click on a thumbnail. The default value is 400, it means that the intermediate picture will be created to fit inside a square of 400x400 pixels. NOTE: Currently, 33% of your users have monitors set at 800 pixels wide, another 33% have their settings at 1024 pixels, the rest have settings less than or greater than these two numbers. Therefore a setting of 600 or less would fit the screens of most users.  Keep in mind,however, that setting this size larger than 400 impacts the file size of your intermediate pictures and the time it takes to download and display on slower connections.</p>
 <p>If you disable the <a href="#admin_picture_thumbnail_intermediate_toggle">creation of intermediate images</a>, the value specified for &quot;Max width or height of an intermediate picture&quot; will still have an impact: the full-size image will then be resized using the width and height attributes of the &lt;img&gt;-tag on the intermediate image display pages (displayimage.php), resizing the full-size pic that way to fit on the page.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Max width or height of an intermediate picture</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Max width or height of an intermediate picture</p>
 <a name="admin_picture_thumbnail_intermediate_dimension_end"></a>
 <hr />
 <a name="admin_picture_thumbnail_max_upload_size"></a><h3>Max size for uploaded files (KB)<a href="#admin_picture_thumbnail_max_upload_size" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Any file with a file size larger than this value will be rejected by the coppermine script. Setting this option to a higher value than what is actually supported by your webserver will only result in "funny" webserver error messages in lieu of "regular" coppermine error messages. Therefore, it is recommended that you set this value to a size that is slightly lower or equal to the max file size that your server is set to handle. The actual size your server can handle cannot be determined by Coppermine (or any PHP script) - when in doubt, contact your webhost.</p> <p>Prior to an FTP upload of files, it is recommended that the admin use their imaging software to resize (individually or by batch processing) larger files to a more practical size. This will facilitate the FTP process and the creation of intermediate pictures and thumbnails.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Max size for uploaded files</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Max size for uploaded files</p>
 <a name="admin_picture_thumbnail_max_upload_size_end"></a>
 <hr />
 <a name="admin_picture_thumbnail_max_upload_dimension"></a><h3>Max width or height for uploaded pictures (pixels)<a href="#admin_picture_thumbnail_max_upload_dimension" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Limits the height and width dimensions of the pictures that are uploaded. Resizing large pictures requires a lot of memory and consumes CPU resources. As a result, there are usually limitations that have been set by your webserver (host) regarding the maximum uploadable file sizes - you cannot set this value to one that is higher than what is actually supported by your webserver. Contact your webhost/server if you are not sure about your site's file size limitations. (Ideally, users will resize their pictures to a more manageable size prior to attempting any uploads). Determine what you would like the maximum size for a full size pic should be (dpi and dimensions, while keeping in mind the screen size of your users) and use that as a recommended standard for FTP and user HTTP uploads. Inform your users of this recommended size constraints.)</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Max width or height for uploaded pictures</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Max width or height for uploaded pictures</p>
 <a name="admin_picture_thumbnail_max_upload_dimension_end"></a>
 <hr />
 <a name="admin_picture_thumbnail_auto-resize"></a><h3>Auto resize images that are larger than max width or height<a href="#admin_picture_thumbnail_auto-resize" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -942,19 +946,19 @@ Bien entendu, ce message n'est affiché que si vous n'avez pas autorisé les com
 <p>There are three options:</p>
 <ul><li>No - Disabled</li><li>Yes: Everyone - Enabled for all users, including the Admin during batch-add process.</li>
 <li>Yes: User only - Enabled only for regular users</li></ul>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Auto resize images that are larger than max width or height</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Auto resize images that are larger than max width or height</p>
 
 <a name="admin_picture_thumbnail_auto-resize_end"></a>
 <hr />
 <a name="admin_picture_thumbnail_fullsize_padding_x"></a><h3>Horizontal padding for full-size pop-up<a href="#admin_picture_thumbnail_fullsize_padding_x" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This setting is used to determine the width of a full-size pop-up, as most major browsers mysteriously add some padding to pics opened in a pop-up. It's recommended to leave this set to the default 5 pixels unless you know what you're doing.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Horizontal padding for full-size pop-up</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Horizontal padding for full-size pop-up</p>
 
 <a name="admin_picture_thumbnail_fullsize_padding_x_end"></a>
 <hr />
 <a name="admin_picture_thumbnail_fullsize_padding_y"></a><h3>Vertical padding for full-size pop-up<a href="#admin_picture_thumbnail_fullsize_padding_y" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This setting is used to determine the height of a full-size pop-up, as most major browsers mysteriously add some padding to pics opened in a pop-up. It's recommended to leave this set to the default 3 pixels unless you know what you're doing.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Vertical padding for full-size pop-up</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Vertical padding for full-size pop-up</p>
 
 <a name="admin_picture_thumbnail_fullsize_padding_y_end"></a>
 <a name="admin_picture_thumbnail_end"></a>
@@ -966,19 +970,19 @@ Bien entendu, ce message n'est affiché que si vous n'avez pas autorisé les com
 <p>If a user is a member of a group that can have its own gallery and this option is turned on then this user will have the permission to hide any of his/her albums from other users.</p>
 <p>This option does <strong>not</strong> determine whether users can have personal galleries at all, <strong>nor</strong> does it determine who is allowed to upload and who is not (these settings are accessible in the <a href="groups.htm#group_cp">groups manager</a>). You should only set this option to NO if you really know what you're doing (by default, it is set to YES).</p>
 <p class="cpg_message_error">Note: if you switch from 'yes' to 'no' all currently private albums will become public! Do not set this option to 'no' unless you understand what this option actually does!</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Albums can be private</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Albums can be private</p>
 <a name="admin_picture_thumb_advanced_private_toggle_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_private_icon_show"></a><h3>Show private album Icon to unlogged user<a href="#admin_picture_thumb_advanced_private_icon_show" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Toggles the display of the private album icons to unlogged users.<br />Set to 'NO', the album is completely hidden from unauthorised users.<br />Set to 'YES', the album name, description and statistics are shown, but not the thumbnails or files contained within.</p>
 <p>It is recommended to enable this option especially if you want to encourage visitors to register (this does of course only make sense if you allow registered users to see albums that guests are not allowed to see).</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Show private album Icon to unlogged user</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Show private album Icon to unlogged user</p>
 <a name="admin_picture_thumb_advanced_private_icon_show_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_filename_forbidden_chars"></a><h3>Characters forbidden in filenames<a href="#admin_picture_thumb_advanced_filename_forbidden_chars" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>When the filename of a file that is uploaded contains any one or more of these characters, the characters will be replaced with an underscore.</p>
 <p>Don't change this unless you know exactly what you are doing. Default value is <tt class="code">$/\:*?&quot;'&lt;&gt;|` &amp;#@</tt></p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Characters forbidden in filenames</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Characters forbidden in filenames</p>
 <a name="admin_picture_thumb_advanced_filename_forbidden_chars_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_silly_safe_mode_start"></a><a name="safe"></a><h3>Enable "silly safe mode"<a href="#admin_picture_thumb_advanced_silly_safe_mode_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -987,7 +991,7 @@ If you have issues uploading pics, find out if safe_mode is enabled on your webs
 <p>What "silly safe mode" does: if you enable this option, Coppermine will not try to create sub-folders for each user, but upload all files into the root of the userpics folder. There might be a slight performance impact for larger galleries, but then you probably won't be running a large gallery on a "crippled" webserver that is not configured properly.</p>
 <p>Before playing with the silly safe mode option, make sure that you have <a href="install_permissions.htm#permissions">set permissions</a> on the albums folder and everything within it as suggested.</p>
 <p>Don't change this if uploading works just fine for you. Do not enable the Coppermine setting "silly safe mode" if your webserver is not running in safe mode in the first place.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Enable "silly safe mode"</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Enable "silly safe mode"</p>
 <a name="admin_picture_thumb_advanced_silly_safe_mode_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_pic_extensions"></a><h3>Allowed image types<a href="#admin_picture_thumb_advanced_pic_extensions" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -1000,7 +1004,7 @@ If you have issues uploading pics, find out if safe_mode is enabled on your webs
   jpeg/jpg/png/gif/bmp/jpc/jp2/jpx/jb2/swc/iff/psd</li>
 </ul>
 In Coppermine versions prior to cpg1.5.0, the option &quot;ALL&quot; used to be available as well for this field - it has been removed, as it caused users to think that this actually meant &quot;all image file types that exist&quot; - this is not the case: you can only specify the file types that the image library you use actually supports.
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Allowed image types</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Allowed image types</p>
 <a name="admin_picture_thumb_advanced_pic_extensions_end"></a>
 <hr />
 <a name="admin_thumbs_advanced_movie"></a><h3>Allowed movie types<a href="#admin_thumbs_advanced_movie" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -1009,12 +1013,12 @@ In Coppermine versions prior to cpg1.5.0, the option &quot;ALL&quot; used to be 
 <p><strong>File types supported by Coppermine:</strong><br />
 asf/asx/mpg/mpeg/wmv/swf/avi/mov</p>
 <p>In Coppermine versions prior to cpg1.5.0, the option &quot;ALL&quot; used to be available as well for this field - it has been removed, as it caused users to think that this actually meant &quot;all movie file types that exist&quot;.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Allowed movie types</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Allowed movie types</p>
 <a name="admin_thumbs_advanced_movie_end"></a>
 <hr />
 <a name="admin_movie_autoplay"></a><h3>Movie Playback Autostart<a href="#admin_movie_autoplay" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If set to YES, movies will instantly start playing when loaded (has no affect on flash files, however).  Nothing will happen if the user does not have the necessary codecs installed on their computer. This option is browser-dependant, so there is no guarantee that it will work on all platforms.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Movie Playback Autostart</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Movie Playback Autostart</p>
 <a name="admin_movie_autoplay_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_audio_extensions"></a><h3>Allowed audio types<a href="#admin_picture_thumb_advanced_audio_extensions" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -1023,7 +1027,7 @@ asf/asx/mpg/mpeg/wmv/swf/avi/mov</p>
 <p><strong>File types supported by Coppermine:</strong><br />
 mp3/midi/mid/wma/wav/ogg</p>
 <p>In Coppermine versions prior to cpg1.5.0, the option &quot;ALL&quot; used to be available as well for this field - it has been removed, as it caused users to think that this actually meant &quot;all sound file types that exist&quot;.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Allowed audio types</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Allowed audio types</p>
 
 <a name="admin_picture_thumb_advanced_audio_extensions_end"></a>
 <hr />
@@ -1040,7 +1044,7 @@ OpenDocument (OpenOffice 2.x): odt/ods/odp/odg/odc/odf/odi/odm/ott/ots/otp/otg/o
 OpenOffice 1.x / StarOffice 6.x: sxw/stw/sxc/stc/sxd/std/sxi/sti/sxg/sxm</p>
 <p>For security reasons coppermine doesn't enable all document types by default. Before adding more file types, make sure that the file types are supported on your webserver.</p>
 <p>In Coppermine versions prior to cpg1.5.0, the option &quot;ALL&quot; used to be available as well for this field - it has been removed, as it caused users to think that this actually meant &quot;all document file types that exist&quot;.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Allowed document types</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Allowed document types</p>
 
 <a name="admin_picture_thumb_advanced_doc_extensions_end"></a>
 <hr />
@@ -1048,32 +1052,32 @@ OpenOffice 1.x / StarOffice 6.x: sxw/stw/sxc/stc/sxd/std/sxi/sti/sxg/sxm</p>
 <p>Set this to the type of image library you have on your server (must be either GD1, GD2 or ImageMagick). GD2 is the recommended setting.</p>
 <p>If you are using GD 1.x and the colors of your thumbnails or intermediate image do not display properly, then, chances are, you actually have GD2 on your server - switch this option to GD 2.x</p>
 <p>More recent distributions of PHP come pre-packaged with GD - if you're not sure what you have, set this option to GD2. You can also look at your PHP settings by pointing your browser to the phpinfo.php file in your gallery.  eg, <strong>http://www.yourgallery.com/your_cpg_folder/phpinfo.php</strong>. For more information on using PHP click on this link: <a href="http://www.php.net/phpinfo" rel="external" class="phpnet">phpinfo</a>.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Method for resizing images</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Method for resizing images</p>
 <a name="admin_picture_thumb_advanced_resize_method_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_im_path"></a><h3>Path to ImageMagick 'convert' utility (example /usr/bin/X11/)<a href="#admin_picture_thumb_advanced_im_path" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If you intend using ImageMagick convert utility to resize you picture, you must enter the name of the <strong>directory</strong> where the convert program is located in this line. Don't forget the trailing &quot;<tt class="code">/</tt>&quot; to close the path. This path must only indicate the <strong>directory</strong> where the convert utility is located, it should not point directly to the convert utility.</p>
 <p>If your server is running under Windows, use / and not \ to separate components of the path (eg. use C:/ImageMagick/ and not C:\ImageMagick\). This path must not contain any spaces under Windows so that it will not put ImageMagick in the "Program files" directory.</p>
 <p><strong>ImageMagick will not work properly if PHP on your server is running in SAFE mode and it is a real challenge to get it running under Windows. Please consider using GD in these cases and don't waste your time asking for support in the forum with ImageMagick installation questions. There are just too many things that can prevent ImageMagick from work properly and without physical access to your server it is extremely difficult to guess what is wrong.</strong></p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Path to ImageMagick 'convert' utility</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Path to ImageMagick 'convert' utility</p>
 <a name="admin_picture_thumb_advanced_im_path_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_im_commandline"></a><h3>Command line options for ImageMagick<a href="#admin_picture_thumb_advanced_im_commandline" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Here you can add options that will be appended to the command line when executing ImageMagick. Read the ImageMagick Convert manual to see what is available.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Command line options for ImageMagick</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Command line options for ImageMagick</p>
 <a name="admin_picture_thumb_advanced_im_commandline_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_exif"></a><h3>Read EXIF data in JPEG files<a href="#admin_picture_thumb_advanced_exif" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>With this option turned on, the script will read the EXIF data stored by digicams in JPEG files. For cpg1.x to cpg1.2.1, this option will work only if PHP was compiled with the EXIF extension. Coppermine 1.3.0 (or better) comes with built-in EXIF support even if the webserver itself doesn't have EXIF support, as it uses a <a href="http://www.offsky.com/software/exif/index.php" class="external">separate EXIF class</a>.</p>
 <p>Since cpg1.4.x there is even an <a href="exif.htm">EXIF-manager</a> available that will allow you to determine what exif fields are supposed to be displayed.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Read EXIF data in JPEG files</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Read EXIF data in JPEG files</p>
 
 <a name="admin_picture_thumb_advanced_exif_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_iptc"></a><h3>Read IPTC data in JPEG files<a href="#admin_picture_thumb_advanced_iptc" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>With this option turned on, the script will read the <a href="http://www.iptc.org/" class="external" rel="external">IPTC</a> data stored by digicams in picture files.</p>
 <p>Please note: IPTC does not support unicode encoding. Therefore, it may collide with coppermine if you use special, non-latin characters in your IPTC tags.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Read IPTC data in JPEG files</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Read IPTC data in JPEG files</p>
 
 <a name="admin_picture_thumb_advanced_iptc_end"></a>
 <hr />
@@ -1084,7 +1088,7 @@ OpenOffice 1.x / StarOffice 6.x: sxw/stw/sxc/stc/sxd/std/sxi/sti/sxg/sxm</p>
 <p>This setting mustn't be changed if you already have files in your database. If you do so, all references to your existing files will break.</p>
 <p>Default value is <tt class="code">albums/</tt></p>
 <p>Unless you really know what you are doing, do not change this setting.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; The album directory</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; The album directory</p>
 <a name="admin_picture_thumb_advanced_albums_dir_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_userpics_dir"></a><h3>The directory for user files<a href="#admin_picture_thumb_advanced_userpics_dir" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -1093,7 +1097,7 @@ OpenOffice 1.x / StarOffice 6.x: sxw/stw/sxc/stc/sxd/std/sxi/sti/sxg/sxm</p>
 <p>When you upload files by FTP, store them in a subdirectory (folder) of the "album directory" and not inside the &quot;directory for user files&quot;. </p>
 <p>This setting mustn't be changed if you already have files in your database. If you do, all reference to previously existing files will no longer be valid.</p>
 <p>Default value is <tt class="code">userpics/</tt></p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; The directory for user files</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; The directory for user files</p>
 <a name="admin_picture_thumb_advanced_userpics_dir_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_intermediate_prefix"></a><h3>The prefix for intermediate pictures<a href="#admin_picture_thumb_advanced_intermediate_prefix" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -1101,19 +1105,19 @@ OpenOffice 1.x / StarOffice 6.x: sxw/stw/sxc/stc/sxd/std/sxi/sti/sxg/sxm</p>
 <p>These setting mustn't be changed if you already have files in your database. If you do, all reference to your existing files will become invalid.</p>
 <p>Default prefix is <tt class="code">normal_</tt>.</p>
 <p>This feature is deprecated in cpg1.5.x or better and can no longer be configured, since it only lead to end user confusion. If you performed a fresh install or if you have never changed this prefix, the option won't show through. Only for those who have actually changed this option and have a config setting that differs from the default prefix, the text field will show at all. If this is the case for you: you're strongly encouraged to change this back to the default value to avoid possible issues in future versions.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; The prefix for intermediate pictures</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; The prefix for intermediate pictures</p>
 <a name="admin_picture_thumb_advanced_intermediate_prefix_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_chmod_folder"></a><h3>Default mode for directories<a href="#admin_picture_thumb_advanced_chmod_folder" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If, and only if, during the file upload or batch add process, the installer complains about the directory not having the right permissions, try setting this to <strong>0777</strong> . Failure to do so may prevent you from being able to delete directories created by the script with your FTP client should you ever decide it necessary to uninstall the coppermine script.</p>
 <p><strong>Note</strong>: setting this option doesn't CHMOD the files or folders that are being uploaded. Instead, the setting is used when coppermine, itself, creates <strong>new</strong> folders for user uploads (within the userpics directory). If you experienced problems during the initial Coppermine setup related to permissions, this option is <strong>not</strong> what you have been looking for nor should it be changed (for more information regarding CHMOD, see the <a href="install_permissions.htm#permissions">permissions</a> section of this document and the <a href="faq.htm">FAQ</a> section).</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Default mode for directories</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Default mode for directories</p>
 <a name="admin_picture_thumb_advanced_chmod_folder_end"></a>
 <hr />
 <a name="admin_picture_thumb_advanced_chmod_files"></a><h3>Default mode for files<a href="#admin_picture_thumb_advanced_chmod_files" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If, and only if, during the file upload or batch add process, the installer complains about the directory not having the right permissions, try setting this to <strong>0666</strong>.</p>
 <p><strong>Note</strong>: setting this option doesn't CHMOD the files or folders that are being uploaded. Instead, the setting is used when coppermine, itself, creates <strong>new</strong> folders for user uploads (within the userpics directory). If you experienced problems during the initial Coppermine setup related to permissions, this option is <strong>not</strong> what you have been looking for nor should it be changed (for more information regarding CHMOD, see the <a href="#permissions">permissions</a> section of this document and the <a href="faq.htm">FAQ.htm</a> document located in the DOCS folder of this installation package).</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and thumbnail settings &rarr; Default mode for files</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Picture and Paramètres des vignettes &rarr; Default mode for files</p>
 <a name="admin_picture_thumb_advanced_chmod_files_end"></a>
 <a name="admin_picture_thumb_advanced_end"></a>
 
