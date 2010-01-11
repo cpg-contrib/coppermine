@@ -90,7 +90,7 @@ function redirect(url) {
 // Function used to not allow user to enter default username as username for comment
 function notDefaultUsername(f, defaultUsername, defaultUsernameMessage) {
      // If username for comment is default username then display error message and return false
-    if (f.msg_author.value == defaultUsername) {
+    if (f.msg_author.value == defaultUsername || f.msg_author.value == '') {
         alert(defaultUsernameMessage);
         return false;
     }

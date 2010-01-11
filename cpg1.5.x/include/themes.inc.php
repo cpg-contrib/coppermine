@@ -1121,7 +1121,7 @@ $template_add_your_comment = <<<EOT
                                         {NAME}
                                 </td>
                                 <td class="tableb tableb_alternate">
-                                        <input type="text" class="textinput" name="msg_author" size="10" maxlength="20" value="{USER_NAME}" />
+                                        <input type="text" class="textinput" name="msg_author" size="10" maxlength="20" value="{USER_NAME}" onclick="if (this.value == '{DEFAULT_USERNAME}') this.value = '';" onkeyup="if (this.value == '{DEFAULT_USERNAME}') this.value = '';" />
                                 </td>
 <!-- END user_name_input -->
 <!-- BEGIN input_box_smilies -->
