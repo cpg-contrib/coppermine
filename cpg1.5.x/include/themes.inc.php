@@ -3224,13 +3224,11 @@ function theme_html_picture()
     $CURRENT_PIC_DATA['menu'] = html_picture_menu(); //((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER_ID) || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC_DATA['owner_id'] == USER_ID && USER_ID != 0) || GALLERY_ADMIN_MODE) ? html_picture_menu($pid) : '';
 
     $image_size = array();
-    
+
     if ($CONFIG['make_intermediate'] && $condition ) {
         $picture_url = get_pic_url($CURRENT_PIC_DATA, 'normal');
-        $image_size['reduced'] = true;
     } else {
         $picture_url = get_pic_url($CURRENT_PIC_DATA, 'fullsize');
-        $image_size['reduced'] = false;
     }
 
     list($image_size['width'], $image_size['height'], , $image_size['geom']) = cpg_getimagesize(urldecode($picture_url));
@@ -3259,34 +3257,44 @@ function theme_html_picture()
     }
 
     if ($mime_content['content']=='image') {
-        if (isset($image_size['reduced'])) {
+        if ($CURRENT_PIC_DATA['mode'] != 'fullsize') {
             $winsizeX = $CURRENT_PIC_DATA['pwidth'] + $CONFIG['fullsize_padding_x'];  //the +'s are the mysterious FF and IE paddings
             $winsizeY = $CURRENT_PIC_DATA['pheight'] + $CONFIG['fullsize_padding_y']; //the +'s are the mysterious FF and IE paddings
             if ($CONFIG['transparent_overlay'] == 1) {
                 $pic_html = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td background=\"" . $picture_url . "\" width=\"{$image_size['width']}\" height=\"{$image_size['height']}\" class=\"image\">";
+                $pic_html_href_close = '</a>' . $LINEBREAK;
                 if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
-                   $pic_html .= '<a href="javascript:;" onclick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');">';
+                    if ($CONFIG['allow_user_registration'] == 0) {
+                        $pic_html_href_close = '';
+                    } else {
+                        $pic_html .= '<a href="javascript:;" onclick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');">';
+                    }
                 } elseif (USER_ID && USER_ACCESS_LEVEL <= 2) {
-                   $pic_html .= '<a href="javascript:;" onclick="alert(\''.sprintf($lang_errors['access_intermediate_only'],'','','','').'\');">';
+                    $pic_html .= '<a href="javascript:;" onclick="alert(\''.sprintf($lang_errors['access_intermediate_only'],'','','','').'\');">';
                 } else {
-                  $pic_html .= "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
+                    $pic_html .= "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
                 }
                 $pic_title = $lang_display_image_php['view_fs'] . $LINEBREAK . '==============' . $LINEBREAK . $pic_title;
                 $pic_html .= "<img src=\"images/image.gif?id=".floor(rand()*1000+rand())."\" width=\"{$image_size['width']}\" height=\"{$image_size['height']}\"  border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
-                $pic_html .= '</a>' . $LINEBREAK . '</td></tr></table>';
+                $pic_html .= $pic_html_href_close . '</td></tr></table>';
                 //PLUGIN FILTER
                 $pic_html = CPGPluginAPI::filter('html_image_reduced_overlay', $pic_html);
             } else {
+                $pic_html_href_close = '</a>' . $LINEBREAK;
                 if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
-                   $pic_html = '<a href="javascript:;" onclick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');">';
+                    if ($CONFIG['allow_user_registration'] == 0) {
+                        $pic_html = $pic_html_href_close = '';
+                    } else {
+                        $pic_html = '<a href="javascript:;" onclick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');">';
+                    }
                 } elseif (USER_ID && USER_ACCESS_LEVEL <= 2) {
-                   $pic_html = '<a href="javascript:;" onclick="alert(\''.sprintf($lang_errors['access_intermediate_only'],'','','','').'\');">';
+                    $pic_html = '<a href="javascript:;" onclick="alert(\''.sprintf($lang_errors['access_intermediate_only'],'','','','').'\');">';
                 } else {
-                  $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
+                    $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
                 }
                 $pic_title = $lang_display_image_php['view_fs'] . $LINEBREAK . '==============' . $LINEBREAK . $pic_title;
                 $pic_html .= "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
-                $pic_html .= '</a>' . $LINEBREAK;
+                $pic_html .= $pic_html_href_close;
                 //PLUGIN FILTER
                 $pic_html = CPGPluginAPI::filter('html_image_reduced', $pic_html);
             }
