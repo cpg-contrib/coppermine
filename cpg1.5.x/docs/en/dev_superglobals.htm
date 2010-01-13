@@ -98,9 +98,28 @@ $superCage = Inspekt::makeSuperCage();</pre>
 <p>Supercage is an aggregation of all the cages, i.e <acronym title="Environment, Get, Post, Cookie, Server">EGPCS</acronym> (the order of variable parsing). Once the supercage is created none of the EGPCS variables are available.</p>
 <p>To access a variable within a supercage we have to use the following format:</p>
 <pre class="cpg_code">$qs = $superCage->server->getDigits('QUERY_STRING');
-$album = $superCage->get->getInt('album');
+$album_id = $superCage->get->getInt('album');
 $title = $superCage->post->getAlpha('title');</pre>
-<p>To get an instance of <tt class="code">$superCage</tt> inside a function use <tt class="code">$superCage = Inspekt::makeSuperCage();</tt> again. Do not use the global directive. It may be noted here that <tt class="code">makeSuperCage()</tt> creates a singleton pattern object. So calling it multiple times does not have any overheads and you can be assured of getting the very same object every time.</p>
+<p class="cpg_message_success">To get an instance of <tt class="code">$superCage</tt> inside a function use <tt class="code">$superCage = Inspekt::makeSuperCage();</tt> again. Do not use the global directive. It may be noted here that <tt class="code">makeSuperCage()</tt> creates a singleton pattern object. So calling it multiple times does not have any overheads and you can be assured of getting the very same object every time.</p>
+<p>In other words - you don't have to take care not to define <tt class="code">$superCage</tt> - it doesn't hurt to call it many times over. Don't bloat the code by assigning other names:</p>
+<table cellspacing="0" cellpadding="0" border="0" width="100%" class="maintable">
+    <tr>
+        <th class="tableh1" width="50%">
+            Bad example
+        </th>
+        <th class="tableh1" width="50%">
+            Good example
+        </th>
+    </tr>
+    <tr>
+        <td class="cpg_message_error code">
+			<tt class="code">$yetAnotherCage = Inspekt::makeSuperCage();</tt>
+        </td>
+        <td class="cpg_message_success">
+			<tt class="code">$superCage = Inspekt::makeSuperCage();</tt>
+        </td>
+    </tr>
+</table>
 <p>Every dev is encouraged to download the latest tarball of Inspekt and checkout the API documentation for the list of <a href="#superglobals_sanitization_inspekt_accessor_methods">available methods for accessing data from cages</a>. In addition to this, there is a bunch of test functions which will test a value of a given key against a pre-determined datatype or format.</p>
 
 <a name="superglobals_sanitization_howto_consider_methods"></a><h3>Consider the methods to use<a href="#superglobals_sanitization_howto_consider_methods" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
