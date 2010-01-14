@@ -104,7 +104,7 @@ function HighlightAll(theField) {
     tempval.select();
 }
 
-var onloads = new Array()
+var onloads = new Array();
 
 function addonload(func){
     onloads.push(func);
@@ -304,18 +304,18 @@ Array.prototype.find = function(searchStr) {
   for (i=0; i<this.length; i++) {
     if (typeof(searchStr) == 'function') {
       if (searchStr.test(this[i])) {
-        if (!returnArray) { returnArray = [] }
+        if (!returnArray) { returnArray = []; }
         returnArray.push(i);
       }
     } else {
       if (this[i]===searchStr) {
-        if (!returnArray) { returnArray = [] }
+        if (!returnArray) { returnArray = []; }
         returnArray.push(i);
       }
     }
   }
   return returnArray;
-}
+};
 // end function prototype array.find
 
 
