@@ -61,7 +61,7 @@ default:
 case 'display':
 
     $result = cpg_db_query("SELECT keywords FROM {$CONFIG['TABLE_PICTURES']}");
-    
+
     if (!mysql_num_rows($result)) {
         cpg_die(ERROR, $lang_errors['non_exist_ap']);
     }
@@ -72,11 +72,12 @@ case 'display':
     
     // Find unique keywords
     $total_array = array();
+    $lowercase_word_array = array();
 
     $i = 0;
-    
+
     while (list($keywords) = mysql_fetch_row($result)) {
-    
+
         $array = explode($keysep, $keywords);
 
         foreach ($array as $word) {
@@ -84,7 +85,7 @@ case 'display':
             if ($word == '.' || $word == '' || $word == ' ' || $word == $keysep ) {
                 continue;
             }
-        
+
             $orig_word       = $word;
             $orig_word_param = addslashes(str_replace(' ', '+', $orig_word));
             $orig_word_label = addslashes($orig_word);
@@ -93,10 +94,10 @@ case 'display':
             $confirm_delete  = sprintf($lang_keywordmgr_php['confirm_delete'], '&quot;' . $orig_word_label . '&quot;');
             $title           = sprintf($lang_keywordmgr_php['keyword_del'], '&quot;' . $orig_word . '&quot;');
             $search_link     = sprintf($lang_keywordmgr_php['keyword_test_search'], '&quot;' . $orig_word . '&quot;');
-            
+
             $word = <<<EOT
 
-    <tr>            
+    <tr>
         <td class="tableb">
             <input type="radio" class="radio" name="keywordEdit" value="$lowercase_word" onclick="document.keywordForm.newword.value='$orig_word_label'" id="keyword{$i}" />
             <label for="keyword{$i}" class="clickable_option" title="{$lang_common['edit']} &quot;{$orig_word}&quot;">
@@ -115,10 +116,11 @@ case 'display':
         </td>
     </tr>
 EOT;
-            if (!in_array($word, $total_array)) {
+            if (!in_array($lowercase_word, $lowercase_word_array)) {
                 $total_array[] = $word;
+                $lowercase_word_array[] = $lowercase_word;
             }
-            
+
             $i++;
         }
     }
@@ -130,7 +132,7 @@ EOT;
     unset($total_array);
 
     echo <<< EOT
-    
+
     <tr>
         <td colspan="5" class="tablef" align="center">
             <input type="text" name="newword" />
@@ -164,17 +166,17 @@ case 'changeword':
         $keywordEdit = addslashes($request_keywordEdit);
 
         $query = "SELECT pid, keywords FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT('$keysep', `keywords`, '$keysep') LIKE '%{$keysep}{$keywordEdit}{$keysep}%'";
-        
+
         $result = cpg_db_query($query);
 
         while (list($id, $keywords) = mysql_fetch_row($result)) {
        
             $array_new = array();
-            
+
             $array_old = explode($keysep, addslashes(trim($keywords)));
 
             foreach ($array_old as $word) {
-            
+
                 // convert old to new if it's the same word
                 if (utf_strtolower($word) == $keywordEdit) {
                     $word = addslashes($request_newword);
@@ -185,7 +187,7 @@ case 'changeword':
             }
 
             $keywords = implode($keysep, $array_new);
-            
+
             $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET keywords = '$keywords' WHERE pid = $id";
         }
     }
@@ -210,18 +212,18 @@ case 'delete':
     } elseif ($superCage->post->keyExists('remove')) {
         $remove = $superCage->post->getEscaped('remove');
     }
-    
+
     $query = "SELECT pid, keywords FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT('$keysep', keywords, '$keysep') LIKE '%{$keysep}{$remove}{$keysep}%'";
 
     $result = cpg_db_query($query);
 
     while (list($id, $keywords) = mysql_fetch_row($result)) {
-    
+
         $array_new = array();
         $array_old = explode($keysep, addslashes(trim($keywords)));
 
         foreach ($array_old as $word) {
-       
+
             // convert old to new if it's the same word
             if (utf_strtolower($word) == utf_strtolower($remove)) {
                 $word = '';
@@ -237,7 +239,7 @@ case 'delete':
     }
 
     $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET keywords = TRIM(REPLACE(keywords, '{$keysep}{$keysep}', '{$keysep}'))";
-    
+
     foreach ($newquerys as $query) {
         $result = cpg_db_query($query);
     }
