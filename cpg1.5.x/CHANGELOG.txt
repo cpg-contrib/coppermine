@@ -25,7 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2010-01-15 [B] Fixed keywords dupes in keyword manager (thread ID 63228) {eenemeenemuu}
+2010-01-16 [A] Added plugin hook 'javascript_includes' (thread ID 63185) {eenemeenemuu}
+2010-01-15 [B] Fixed keyword dupes in keyword manager (thread ID 63228) {eenemeenemuu}
 2010-01-13 [B] Better check if we currently look at a full sized picture or an intermediate sized picture (thread ID 63184) {eenemeenemuu}
 2010-01-13 [C] Display full size register notice only if registration of new users is enabled (thread ID 63184) {Timo}
 2010-01-11 [C] Better behaviour of 'Add your comment' name field. Click deletes the default text. {Timo}

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <title>Plugin Hooks - Coppermine Photo Gallery - Documentation &amp; Manual</title>
@@ -557,6 +557,13 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
   </tr>
   <tr>
     <td valign="top">include/themes.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_filename_javascript_includes"></a><strong>javascript_includes</strong><a href="#plugin_hooks_filename_javascript_includes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">filters $JS['includes'] before the js files will be added to the html output.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$JS['includes'] = CPGPluginAPI::filter('javascript_includes',$JS['includes']);</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">include/themes.inc.php</td>
     <td valign="top"><a name="plugin_hooks_filename_admin_menu"></a><strong>admin_menu</strong><a href="#plugin_hooks_filename_admin_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $admin_menu which allows to add a button to it. <br />(See below how to do that)</td>
@@ -639,6 +646,7 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <li><a href="#plugin_hooks_filename_html_image_reduced_overlay">html_image_reduced_overlay</a></li>
     <li><a href="#plugin_hooks_filename_html_other_media">html_other_media</a></li>
     <li><a href="#plugin_hooks_filename_image_sharpen">image_sharpen</a></li>
+    <li><a href="#plugin_hooks_filename_javascript_includes">javascript_includes</a></li>
     <li><a href="#plugin_hooks_meta_album">meta_album</a></li>
     <li><a href="#plugin_hooks_meta_album_get_pic_pos">meta_album_get_pic_pos</a></li>
     <li><a href="#plugin_hooks_filename_page_end">page_end</a></li>

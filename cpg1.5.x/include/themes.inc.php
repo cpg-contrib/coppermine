@@ -1579,9 +1579,9 @@ function pageheader($section, $meta = '')
         '{JAVASCRIPT}' => theme_javascript_head(),
         '{MESSAGE_BLOCK}' => theme_display_message_block(),
     );
-	
-	$template_vars = CPGPluginAPI::filter('theme_pageheader_params', $template_vars);
-	echo template_eval($template_header, $template_vars);
+    
+    $template_vars = CPGPluginAPI::filter('theme_pageheader_params', $template_vars);
+    echo template_eval($template_header, $template_vars);
 
     // Show various admin messages
     adminmessages();
@@ -1714,17 +1714,19 @@ function theme_javascript_head()
 /* ]]> */
 </script>
 
+
 EOT;
     }
 
     // Check if we have any js includes
     if (!empty($JS['includes'])) {
-    	// Bring the jquery core library to the very top of the list 
-    	if (in_array('js/jquery-1.3.2.js', $JS['includes']) == TRUE) {
-    		$key = array_search('js/jquery-1.3.2.js', $JS['includes']);
-    		unset($JS['includes'][$key]);
-    		array_unshift($JS['includes'], 'js/jquery-1.3.2.js');
-    	}
+        // Bring the jquery core library to the very top of the list 
+        if (in_array('js/jquery-1.3.2.js', $JS['includes']) == TRUE) {
+            $key = array_search('js/jquery-1.3.2.js', $JS['includes']);
+            unset($JS['includes'][$key]);
+            array_unshift($JS['includes'], 'js/jquery-1.3.2.js');
+        }
+        $JS['includes'] = CPGPluginAPI::filter('javascript_includes',$JS['includes']);
         // Include all the files which were set using js_include() function
         foreach ($JS['includes'] as $js_file) {
             $return .= js_include($js_file, true) . $LINEBREAK;
