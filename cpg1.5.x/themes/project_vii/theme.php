@@ -143,6 +143,7 @@ function theme_javascript_head()
     		unset($JS['includes'][$key]);
     		array_unshift($JS['includes'], 'js/jquery-1.3.2.js');
     	}
+        $JS['includes'] = CPGPluginAPI::filter('javascript_includes',$JS['includes']);
         // Include all the file which were set using js_include() function
         foreach ($JS['includes'] as $js_file) {
             $return .= '<script type="text/javascript" src="' . $js_file . '"></script>' . $LINEBREAK;
