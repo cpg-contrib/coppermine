@@ -673,7 +673,7 @@ case 'picture':
             cpg_mail('admin', sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), make_clickable(sprintf($lang_db_input_php['notify_admin_email_body'], USER_NAME, $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'editpics.php?mode=upload_approval')));
         }
     } else {
-        $redirect = "displayimage.php?pid=" . mysql_insert_id($CONFIG['LINK_ID']);
+        $redirect = "displayimage.php?pid=" . $CURRENT_PIC_DATA['pid'];
         cpgRedirectPage($redirect, $lang_common['information'], $lang_db_input_php['upl_success'], 1);
     }
 

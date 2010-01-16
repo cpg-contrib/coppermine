@@ -166,7 +166,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
     $result = cpg_db_query($query);
     
     // Put the pid in current_pic_data and call the plugin filter for file data success
-    $CURRENT_PIC_DATA['pid'] = mysql_insert_id();
+    $CURRENT_PIC_DATA['pid'] = mysql_insert_id($CONFIG['LINK_ID']);
     CPGPluginAPI::filter('add_file_data_success',$CURRENT_PIC_DATA);
     
     //return $result;
