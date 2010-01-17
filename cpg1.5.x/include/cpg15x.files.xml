@@ -7568,6 +7568,12 @@
     <hash>fd05a8cce4288fe78705a94552563ec2</hash>
   </element>
   <element>
+    <fullpath>images/thumbs/thumb_flv.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>fd05a8cce4288fe78705a94552563ec2</hash>
+  </element>
+  <element>
     <fullpath>images/thumbs/thumb_gz.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>

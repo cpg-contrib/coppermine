@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-01-17 [A] Added generic thumbnail for flv files to reflect t he increasing importance of that file type {GauGau}
 2010-01-17 [C] Call jump label 'top_display_media' from thumbnail view {eenemeenemuu}
 2010-01-16 [B] Redirect to the newly uploaded picture more reliably (thread ID 63270) {Nibbler}
 2010-01-16 [A] Added plugin hook 'javascript_includes' (thread ID 63185) {eenemeenemuu}
