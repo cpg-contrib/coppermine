@@ -2885,13 +2885,13 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                        $target = 'javascript:;" onclick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
                     }
                 } elseif ($aid == 'random') {
-                    $target = "displayimage.php?pid={$thumb['pid']}$uid_link";
+                    $target = "displayimage.php?pid={$thumb['pid']}$uid_link#top_display_media";
                 } elseif ($aid == 'lastcom' || $aid == 'lastcomby') {
                     $page = cpg_get_comment_page_number($thumb['msg_id']);
                     $page = (is_numeric($page)) ? "&amp;page=$page" : '';
                     $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link&amp;msg_id={$thumb['msg_id']}$page#comment{$thumb['msg_id']}";
                 } else {
-                    $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link";
+                    $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link#top_display_media";
                 }
                 $params = array(
                     '{CELL_WIDTH}' => $cell_width,
