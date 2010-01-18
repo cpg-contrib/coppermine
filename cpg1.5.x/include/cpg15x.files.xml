@@ -7299,6 +7299,12 @@
     <hash>ae3deb9be16650725801137440888174</hash>
   </element>
   <element>
+    <fullpath>images/os/win7.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>ae3deb9be16650725801137440888174</hash>
+  </element>
+  <element>
     <fullpath>images/os/winxp.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>

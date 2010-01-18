@@ -352,7 +352,7 @@ function os_browser_detection() {
        document.getElementById('no_browser_detection').style.display = 'none';
        detection_success = 1;
    }
-   if (navigator.userAgent.indexOf('Windows NT 6.0') != -1 || navigator.userAgent.indexOf('Windows NT 5.2') != -1 || navigator.userAgent.indexOf('Windows NT 5.1') != -1) {
+   if (navigator.userAgent.indexOf('Windows NT 6.1') != -1 || navigator.userAgent.indexOf('Windows NT 6.0') != -1 || navigator.userAgent.indexOf('Windows NT 5.2') != -1 || navigator.userAgent.indexOf('Windows NT 5.1') != -1) {
        document.getElementById('xp_vista').style.display = 'block';
        document.getElementById('other_os').style.display = 'none';
        document.getElementById('no_os_detection').style.display = 'none';

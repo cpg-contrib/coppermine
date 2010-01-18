@@ -197,6 +197,7 @@ $osArray = array(
                       'Windows NT' => 'winnt.png',
                       'Windows XP' => 'winxp.png',
                       'Windows Vista' => 'winvista.png',
+					  'Windows 7' => 'win7.png',
 );
 
 
