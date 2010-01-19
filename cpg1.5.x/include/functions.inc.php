@@ -3192,6 +3192,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
                 'target' => $target
              );
 
+             header("Content-Type: text/plain");
              echo json_encode($setArray);
 
         } else {
@@ -3207,6 +3208,7 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
                 'target' => 'images/stamp.png'
              );
 
+             header("Content-Type: text/plain");
              echo json_encode($setArray);
 
         } else {
@@ -3329,6 +3331,7 @@ function& display_slideshow($pos, $ajax_show = 0)
 
     /** send variable to javascript script*/
     if ($ajax_show == 1) {
+        header("Content-Type: text/plain");
         echo $dataJson;
     }
 }

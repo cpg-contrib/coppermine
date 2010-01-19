@@ -424,6 +424,7 @@ function jsCheckFormToken(){
             'description' => $lang_errors['invalid_form_token']
         );
         
+        header("Content-Type: text/plain");
         echo json_encode($dataArray);
         exit;
     }
@@ -529,6 +530,7 @@ case 'albmgr':
             );
         }
         
+        header("Content-Type: text/plain");
         echo json_encode($dataArray);
     }
     
@@ -557,6 +559,7 @@ case 'albmgr':
             );
         }
         
+        header("Content-Type: text/plain");
         echo json_encode($dataArray);
     }   
     

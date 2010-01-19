@@ -22,6 +22,8 @@ define('RATEPIC_PHP', true);
 
 require('include/init.inc.php');
 
+header("Content-Type: text/plain");
+
 // Check if required parameters are present
 if (!$superCage->get->keyExists('pic') || !$superCage->get->keyExists('rate')) {
 

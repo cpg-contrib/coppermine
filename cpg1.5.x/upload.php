@@ -806,6 +806,8 @@ EOT;
 
 // Process the SWF upload form submission
 } elseif ($superCage->post->keyExists('process')) {
+    header("Content-Type: text/plain");
+
     $error_code = $superCage->files->getInt("/Filedata/error");
 
     // Check for upload errors
