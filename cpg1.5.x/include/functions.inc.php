@@ -3297,8 +3297,8 @@ function& display_slideshow($pos, $ajax_show = 0)
         echo "Pic[0] = 'images/thumb_document.jpg'\n";
     }
 
-    // Add the hit if the user is not admin and slideshow hits are enabled in config
-    if (!GALLERY_ADMIN_MODE && $CONFIG['slideshow_hits'] != 0) {
+    // Add the hit if slideshow hits are enabled in config
+    if ((!USER_IS_ADMIN && $CONFIG['count_admin_hits'] == 0 || $CONFIG['count_admin_hits'] == 1) && $CONFIG['slideshow_hits'] != 0) {
         // Add 1 to hit counter
         if (!in_array($Pid['0'], $USER['liv']) && $superCage->cookie->keyExists($CONFIG['cookie_name'] . '_data')) {
 
