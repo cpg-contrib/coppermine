@@ -128,26 +128,36 @@ EOT;
         array('input', 'email', $icon_array['email'] . $lang_register_php['email'], 255),
         array('label', $lang_register_php['optional_info'])
     );
+    $optional_data = 0;
     if ($CONFIG['user_profile1_name'] != '') {
         $form_data[] = array('input', 'user_profile1', $icon_array['blank'] . $CONFIG['user_profile1_name'], 255);
+        $optional_data++;
     }
     if ($CONFIG['user_profile2_name'] != '') {
         $form_data[] = array('input', 'user_profile2', $icon_array['blank'] . $CONFIG['user_profile2_name'], 255);
+        $optional_data++;
     }
     if ($CONFIG['user_profile3_name'] != '') {
         $form_data[] = array('input', 'user_profile3', $icon_array['blank'] . $CONFIG['user_profile3_name'], 255);
+        $optional_data++;
     }
     if ($CONFIG['user_profile4_name'] != '') {
         $form_data[] = array('input', 'user_profile4', $icon_array['blank'] . $CONFIG['user_profile4_name'], 255);
+        $optional_data++;
     }
     if ($CONFIG['user_profile5_name'] != '') {
         $form_data[] = array('input', 'user_profile5', $icon_array['blank'] . $CONFIG['user_profile5_name'], 255);
+        $optional_data++;
     }
     if ($CONFIG['user_profile6_name'] != '') {
         $form_data[] = array('textarea', 'user_profile6', $icon_array['blank'] . $CONFIG['user_profile6_name'], 255);
+        $optional_data++;
+    }
+    if ($optional_data == 0) {
+        $form_data = array_slice($form_data, 0, count($form_data)-1);
     }
 
-	$form_data = CPGPluginAPI::filter('register_form_create', $form_data);
+    $form_data = CPGPluginAPI::filter('register_form_create', $form_data);
     
     if ($CONFIG['user_registration_disclaimer'] == 2) {
         $form_data[] = array('label', $lang_register_php['term_cond']);
@@ -155,8 +165,6 @@ EOT;
     } else {
         $form_data[] = array('hidden', 'agree', 1);
     }
-	
-	
 
     $loopCounter = 0;
     
@@ -264,9 +272,9 @@ EOT;
             // added the checkbox option for possible future use. The array definition would have to look like this:
             // array('checkbox', 'user_var', 'preceeding text', 'Text label', 'value', 'Number of columns', 'attribute'),
             // enabling this option requires changes in profile.php and usermgr.php as well
-			// Number of columns can be 1 or 2, default is 1.
-			// Attribute can be anything that you want to pass to the <input>-tag, e.g. the parameter 'checked="checked"'.
-			// or an event handler.
+            // Number of columns can be 1 or 2, default is 1.
+            // Attribute can be anything that you want to pass to the <input>-tag, e.g. the parameter 'checked="checked"'.
+            // or an event handler.
 
             if ($superCage->post->keyExists($element[1])) {
                 $value = $superCage->post->getAlnum($element[1]);
@@ -277,7 +285,7 @@ EOT;
             if ($element[3]) {
             
                 if ($element[5] == 2) {
-					echo <<<EOT
+                    echo <<<EOT
     <tr>
         <td width="40%" class="{$row_style}">
             {$element[2]}
@@ -289,8 +297,8 @@ EOT;
     </tr>
 
 EOT;
-				} else {
-					echo <<<EOT
+                } else {
+                    echo <<<EOT
     <tr>
         <td class="{$row_style}" colspan="2">
             {$element[2]}
@@ -301,7 +309,7 @@ EOT;
     </tr>
 
 EOT;
-				}
+                }
             }
 
             break;
@@ -591,7 +599,7 @@ function check_user_info(&$error)
     $user_array['user_name'] = $user_name;
     $user_array['user_email'] = $email;
     $user_array['user_active'] = $active;
-	CPGPluginAPI::filter('register_form_submit', $user_array);
+    CPGPluginAPI::filter('register_form_submit', $user_array);
 
     if ($CONFIG['log_mode']) {
         log_write('New user "$user_name" created', CPG_ACCESS_LOG);
