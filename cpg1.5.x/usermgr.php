@@ -683,7 +683,7 @@ EOT;
                 $totalPictureCount_fmt
             </td>
             <td class="tablef" align="right" valign="middle">
-                {$totalSpaceCount_fmt}&nbsp;{$lang_byte_units[1]}
+                {$totalSpaceCount_fmt}
             </td>
         </tr>
 EOT;
