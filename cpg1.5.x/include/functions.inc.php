@@ -3138,6 +3138,8 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
 
             $i++;
 
+            $pic_alt = $row['filename'];
+
             $pic_title = $lang_common['filename'] . '=' . $row['filename'] . $LINEBREAK .
                 $lang_common['filesize'] . '=' . ($row['filesize'] >> 10) . $lang_byte_units[1] . $LINEBREAK .
                 $lang_display_thumbnails['dimensions'] . $row['pwidth'] . "x" . $row['pheight'] . $LINEBREAK .
@@ -3171,6 +3173,8 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
 
             $msg_id = isset($row['msg_id']) ? '&amp;msg_id='.$row['msg_id'] : '';
             $page = isset($row['msg_id']) ? '&amp;page='.cpg_get_comment_page_number($row['msg_id']) : '';
+            $jump_label = isset($row['msg_id']) ? 'comment'.$row['msg_id'] : 'top_display_media';
+
             $target = "displayimage.php?album=$album$cat_link$date_link&amp;pid={$row['pid']}$msg_id$page$uid_link";
         }
 
@@ -3190,8 +3194,11 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
         if ($ajax_call == 2 || $ajax_call == 1) {
 
             $setArray = array(
-                'url'    => $pic_url,
-                'target' => $target
+                'url'        => $pic_url,
+                'target'     => $target,
+                'alt'        => $pic_alt,
+                'title'      => $pic_title,
+                'jump_label' => $jump_label
              );
 
              header("Content-Type: text/plain");
@@ -3206,8 +3213,11 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
         if ($ajax_call == 2 || $ajax_call == 1) {
 
             $setArray = array(
-                'url'    => 'images/stamp.png',
-                'target' => 'images/stamp.png'
+                'url'        => 'images/stamp.png',
+                'target'     => 'images/stamp.png',
+                'alt'        => 'stamp.png',
+                'title'      => '',
+                'jump_label' => 'top_display_media'
              );
 
              header("Content-Type: text/plain");
