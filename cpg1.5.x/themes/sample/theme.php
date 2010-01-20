@@ -2956,7 +2956,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 
     if ((!$template)) {
         $template = $template_film_strip;
-        $thumb_cell = template_extract_block($template, 'thumb_cell');
+        $thumb_cell = str_replace('<td', '<td align="center"', template_extract_block($template, 'thumb_cell')); // center thumbnails
         $empty_cell = template_extract_block($template, 'empty_cell');
     }
 
@@ -2975,7 +2975,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $i++;
         if ($mode == 'thumb') {
             if ($thumb['pos'] == $pos && !$superCage->get->keyExists('film_strip')) {
-                    $thumb['image'] = str_replace('class="image"', 'class="image middlethumb"', $thumb['image']);
+                $thumb['image'] = str_replace('class="image"', 'class="image middlethumb"', $thumb['image']);
             }
             // determine if thumbnail link targets should open in a pop-up
             if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
