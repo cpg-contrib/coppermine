@@ -70,7 +70,6 @@ $(document).ready(function() {
     var link_cache      = new Array(NumberOfPics);
     var alt_cache       = new Array(NumberOfPics);
     var title_cache     = new Array(NumberOfPics);
-    var jump_cache      = new Array(NumberOfPics);
     var img             = new Image();
     //checking position is zero and assign $go_next to zero
     if(nextPosition < picQueue) {
@@ -88,6 +87,8 @@ $(document).ready(function() {
     for(var i=0; i<maxItems; i++) {
         url_cache[cacheIndex+i] = $("img.strip_image").eq(i).attr("src");
         link_cache[cacheIndex+i]= $("a.thumbLink").eq(i).attr("href");
+        alt_cache[cacheIndex+i] = $("img.strip_image").eq(i).attr("alt");
+        title_cache[cacheIndex+i] = $("img.strip_image").eq(i).attr("title");
     }
 
     // button HTML
@@ -157,7 +158,6 @@ $(document).ready(function() {
                   link_cache[nextPosition+$go_next] = data['target'];
                   alt_cache[nextPosition+$go_next] = data['alt'];
                   title_cache[nextPosition+$go_next] = data['title'];
-                  jump_cache[nextPosition+$go_next] = data['jump_label'];
   
                   var itemLength = (striptype == 'hori') ? $(".tape tr > .thumb").length : $(".thumb").length;
                   var itemsToRemove = maxItems+1;
@@ -168,7 +168,7 @@ $(document).ready(function() {
                   if (striptype == 'hori')
                   {
                     $('.tape').css("marginLeft", '0px');
-                    var thumb = '<td align="center" class="thumb"><a style="width: '+width+'px; float: left" href="' + data['target'] + '#' + data['jump_label'] + '"><img border="0" title="' + data['title'] + '" alt="' + data['alt'] + '" class="strip_image" src="' + data['url'] + '"/></a></td>';
+                    var thumb = '<td align="center" class="thumb"><a style="width: '+width+'px; float: left" href="' + data['target'] + '"><img border="0" title="' + data['title'] + '" alt="' + data['alt'] + '" class="strip_image" src="' + data['url'] + '"/></a></td>';
                     $('.tape tr').append(thumb);
                     tempWidth = parseInt(width) +3;
                     $('.tape').animate({
@@ -178,7 +178,7 @@ $(document).ready(function() {
                   else
                   {
                     $('.tape').css("marginTop", '0px');
-                    var thumb = '<tr><td align="center" class="thumb" style="vertical-align: middle;height:'+width+'px;"><a style="vertical-align: middle; text-align: center; width: '+width+'px; float: left" href="' + data['target'] + '#' + data['jump_label'] + '"><img border="0" title="' + data['title'] + '" alt="' + data['alt'] + '" class="strip_image" src="' + data['url'] + '"/></a></td></tr>';
+                    var thumb = '<tr><td align="center" class="thumb" style="vertical-align: middle;height:'+width+'px;"><a style="vertical-align: middle; text-align: center; width: '+width+'px; float: left" href="' + data['target'] + '"><img border="0" title="' + data['title'] + '" alt="' + data['alt'] + '" class="strip_image" src="' + data['url'] + '"/></a></td></tr>';
                     $('.tape').append(thumb);
                     tempWidth = parseInt(width) +10;
                     $('.tape').animate({
@@ -195,7 +195,7 @@ $(document).ready(function() {
                     $('.remove').remove();
                 }
                 $('.tape').css("marginLeft", '0px');
-                var thumb = '<td align="center"  class="thumb" ><a style="width: '+width+'px; float: left" href="' + link_cache[nextPosition + $go_next] + '#' + jump_cache[nextPosition + $go_next] + '"><img border="0" title="' + title_cache[nextPosition + $go_next] + '" alt="' + alt_cache[nextPosition + $go_next] + '" class="strip_image" src="' + url_cache[nextPosition + $go_next] + '"/></a></td>';
+                var thumb = '<td align="center"  class="thumb" ><a style="width: '+width+'px; float: left" href="' + link_cache[nextPosition + $go_next] + '"><img border="0" title="' + title_cache[nextPosition + $go_next] + '" alt="' + alt_cache[nextPosition + $go_next] + '" class="strip_image" src="' + url_cache[nextPosition + $go_next] + '"/></a></td>';
                 $('.tape tr').append(thumb);
                 tempWidth = parseInt(width) +3;
                 $('.tape').animate({
@@ -209,7 +209,7 @@ $(document).ready(function() {
                     $('.remove').parents('tr:eq(0)').remove();
                   }
                   $('.tape').css("marginTop", '0px');
-                  var thumb = '<tr><td align="center"  class="thumb" style="vertical-align: middle;height:'+width+'px;"><a style="vertical-align: middle; text-align: center; width: '+width+'px; float: left" href="' + link_cache[nextPosition + $go_next] + '#' + jump_cache[nextPosition + $go_next] + '"><img border="0" title="' + title_cache[nextPosition + $go_next] + '" alt="' + alt_cache[nextPosition + $go_next] + '" class="strip_image" src="' + url_cache[nextPosition + $go_next] + '"/></a></td></tr>';
+                  var thumb = '<tr><td align="center"  class="thumb" style="vertical-align: middle;height:'+width+'px;"><a style="vertical-align: middle; text-align: center; width: '+width+'px; float: left" href="' + link_cache[nextPosition + $go_next] + '"><img border="0" title="' + title_cache[nextPosition + $go_next] + '" alt="' + alt_cache[nextPosition + $go_next] + '" class="strip_image" src="' + url_cache[nextPosition + $go_next] + '"/></a></td></tr>';
                   $('.tape').append(thumb);
                   tempWidth = parseInt(width) +10;
                   $('.tape').animate({
@@ -261,8 +261,7 @@ $(document).ready(function() {
                   link_cache[nextPosition-$go_next] = data['target'];
                   alt_cache[nextPosition-$go_next] = data['alt'];
                   title_cache[nextPosition-$go_next] = data['title'];
-                  jump_cache[nextPosition-$go_next] = data['jump_label'];
-                  
+
                   if (striptype == 'hori')
                   {
                     var itemLength = $(".tape tr> .thumb").length;
@@ -271,7 +270,7 @@ $(document).ready(function() {
                     }
   
                     $('.tape').css("marginLeft", '-'+width+'px');
-                    var thumb_prev = '<td align="center" class="thumb"><a style="width: '+width+'px; float: left" href="'+data['target']+'#' + data['jump_label'] + '"><img border="0" title="' + data['title'] + '" alt="' + data['alt'] + '" class="strip_image" src="'+data['url']+'"/></a></td>';
+                    var thumb_prev = '<td align="center" class="thumb"><a style="width: '+width+'px; float: left" href="'+data['target']+'"><img border="0" title="' + data['title'] + '" alt="' + data['alt'] + '" class="strip_image" src="'+data['url']+'"/></a></td>';
                     $('.tape tr').prepend(thumb_prev);
   
                     $('.tape').animate({
@@ -286,7 +285,7 @@ $(document).ready(function() {
                     }
   
                     $('.tape').css("marginTop", '-'+width+'px');
-                    var thumb_prev = '<tr><td align="center" class="thumb" style="vertical-align: middle;height:'+width+'px;"><a style="vertical-align: middle; text-align: center; width: '+width+'px; float: left" href="'+data['target']+'#' + data['jump_label'] + '"><img border="0" title="' + data['title'] + '" alt="' + data['alt'] + '" class="strip_image" src="'+data['url']+'"/></a></td></tr>';
+                    var thumb_prev = '<tr><td align="center" class="thumb" style="vertical-align: middle;height:'+width+'px;"><a style="vertical-align: middle; text-align: center; width: '+width+'px; float: left" href="'+data['target']+'"><img border="0" title="' + data['title'] + '" alt="' + data['alt'] + '" class="strip_image" src="'+data['url']+'"/></a></td></tr>';
                     $('.tape').prepend(thumb_prev);
   
                     $('.tape').animate({
@@ -305,7 +304,7 @@ $(document).ready(function() {
                 }
   
                 $('.tape').css("marginLeft", '-'+width+'px');
-                var thumb_prev = '<td align="center" class="thumb"><a style="width: '+width+'px; float: left" href="'+link_cache[nextPosition-$go_next]+'#' + jump_cache[nextPosition-$go_next] + '"><img border="0" title="' + title_cache[nextPosition-$go_next] + '" alt="' + alt_cache[nextPosition-$go_next] + '" class="strip_image" src="'+url_cache[nextPosition-$go_next]+'"/></a></td>';
+                var thumb_prev = '<td align="center" class="thumb"><a style="width: '+width+'px; float: left" href="'+link_cache[nextPosition-$go_next]+'"><img border="0" title="' + title_cache[nextPosition-$go_next] + '" alt="' + alt_cache[nextPosition-$go_next] + '" class="strip_image" src="'+url_cache[nextPosition-$go_next]+'"/></a></td>';
                 $('.tape tr').prepend(thumb_prev);
   
                 $('.tape').animate({
@@ -320,7 +319,7 @@ $(document).ready(function() {
                }
   
                $('.tape').css("marginTop", '-'+width+'px');
-               var thumb_prev = '<tr><td align="center" class="thumb" style="vertical-align: middle;height:'+width+'px;"><a style="vertical-align: middle; text-align: center; width: '+width+'px; float: left" href="'+link_cache[nextPosition-$go_next]+'#' + jump_cache[nextPosition-$go_next] + '"><img border="0" title="' + title_cache[nextPosition-$go_next] + '" alt="' + alt_cache[nextPosition-$go_next] + '" class="strip_image" src="'+url_cache[nextPosition-$go_next]+'"/></a></td></tr>';
+               var thumb_prev = '<tr><td align="center" class="thumb" style="vertical-align: middle;height:'+width+'px;"><a style="vertical-align: middle; text-align: center; width: '+width+'px; float: left" href="'+link_cache[nextPosition-$go_next]+'"><img border="0" title="' + title_cache[nextPosition-$go_next] + '" alt="' + alt_cache[nextPosition-$go_next] + '" class="strip_image" src="'+url_cache[nextPosition-$go_next]+'"/></a></td></tr>';
                $('.tape').prepend(thumb_prev);
   
                $('.tape').animate({

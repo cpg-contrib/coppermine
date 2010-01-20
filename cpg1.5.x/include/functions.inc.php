@@ -3173,9 +3173,9 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
 
             $msg_id = isset($row['msg_id']) ? '&amp;msg_id='.$row['msg_id'] : '';
             $page = isset($row['msg_id']) ? '&amp;page='.cpg_get_comment_page_number($row['msg_id']) : '';
-            $jump_label = isset($row['msg_id']) ? 'comment'.$row['msg_id'] : 'top_display_media';
+            $hash = isset($row['msg_id']) ? '#comment'.$row['msg_id'] : '#top_display_media';
 
-            $target = "displayimage.php?album=$album$cat_link$date_link&amp;pid={$row['pid']}$msg_id$page$uid_link";
+            $target = "displayimage.php?album=$album$cat_link$date_link&amp;pid={$row['pid']}$msg_id$page$uid_link$hash";
         }
 
         // Get the pos for next and prev links in filmstrip navigation
@@ -3198,7 +3198,6 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
                 'target'     => $target,
                 'alt'        => $pic_alt,
                 'title'      => $pic_title,
-                'jump_label' => $jump_label
              );
 
              header("Content-Type: text/plain");
@@ -3217,7 +3216,6 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
                 'target'     => 'images/stamp.png',
                 'alt'        => 'stamp.png',
                 'title'      => '',
-                'jump_label' => 'top_display_media'
              );
 
              header("Content-Type: text/plain");
