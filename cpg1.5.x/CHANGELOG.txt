@@ -25,7 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2010-01-19 [B] Fixed ajax film strip target for lastcom meta album (thread ID 63319) {eenemeenemuu}
+2010-01-20 [B] Fixed ajax film strip target for lastcom meta album (thread ID 63319) {eenemeenemuu}
 2010-01-19 [B] Set content type to 'text/plain' for plain text ajax replies to bypass faulty ad injection on some free hosters (thread ID 63119) {eenemeenemuu}
 2010-01-19 [B] Count admin hits during slideshow if enabled in config {eenemeenemuu}
 2010-01-18 [A] Added icon for Windows 7 {GauGau}

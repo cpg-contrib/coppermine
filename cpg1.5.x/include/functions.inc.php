@@ -3169,8 +3169,9 @@ function display_film_strip($album, $cat, $pos,$ajax_call)
             $thumb_list[$i]['pid']        = $row['pid'];
             $thumb_list[$i]['msg_id']     = isset($row['msg_id']) ? $row['msg_id'] : ''; // needed for get_pic_pos()
 
-			$msg_id = isset($row['msg_id']) ? '&amp;msg_id='.$row['msg_id'] : '';
-            $target = "displayimage.php?album=$album$cat_link$date_link&amp;pid={$row['pid']}$msg_id$uid_link";
+            $msg_id = isset($row['msg_id']) ? '&amp;msg_id='.$row['msg_id'] : '';
+            $page = isset($row['msg_id']) ? '&amp;page='.cpg_get_comment_page_number($row['msg_id']) : '';
+            $target = "displayimage.php?album=$album$cat_link$date_link&amp;pid={$row['pid']}$msg_id$page$uid_link";
         }
 
         // Get the pos for next and prev links in filmstrip navigation
