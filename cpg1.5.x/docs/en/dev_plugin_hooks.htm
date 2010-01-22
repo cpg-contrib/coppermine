@@ -393,7 +393,8 @@
     <td valign="top"><a name="plugin_hooks_thumb_html_title"></a><strong>thumb_html_title</strong><a href="#plugin_hooks_thumb_html_title" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">allows to modify the thumb html title using data from $row</td>
-    <td valign="top"><textarea class="samplecode" style="width:100%">$pic_title = CPGPluginAPI::filter('thumb_html_title', $row);</textarea></td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$pic_title = CPGPluginAPI::filter('thumb_html_title', array($pic_title, $row));
+$pic_title = (is_array($pic_title)) ? $pic_title[0] : $pic_title;</textarea></td>
   </tr>
   <tr>
     <td valign="top">include/functions.inc.php</td>
