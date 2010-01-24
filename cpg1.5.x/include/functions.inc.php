@@ -4164,7 +4164,7 @@ function cpg_alert_dev_version()
 
     $return = '';
 
-    if (COPPERMINE_VERSION_STATUS != 'stable') {
+    if (COPPERMINE_VERSION_STATUS != 'stable' && COPPERMINE_VERSION_STATUS != 'RC') {
         $return = <<< EOT
         <div class="cpg_message_warning">
         <h2>{$lang_version_alert['version_alert']}</h2>

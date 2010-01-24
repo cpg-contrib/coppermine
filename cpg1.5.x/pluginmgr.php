@@ -321,10 +321,40 @@ EOT;
                     </tr>
 EOT;
             }
-            // remove 'true ||' below to remove install button when plugin API is disabled
-            $install_button = (true || ($CONFIG['enable_plugins'] == 1)) ? 
-                '<a href="pluginmgr.php?op=install&amp;p='.$path.'&amp;form_token='.$form_token.'&amp;timestamp='.$timestamp.'" title="' . $lang_pluginmgr_php['install'] . '">' . cpg_fetch_icon('plugin_install', 0) . '</a>'
-                : cpg_fetch_icon('blank', 0);
+            // Take care of version requirements
+            if (isset($plugin_cpg_version['min']) == TRUE ) {
+                if (version_compare(COPPERMINE_VERSION, $plugin_cpg_version['min']) > 0){
+                    $plugin_cpg_version['min_ok'] = '1';
+                } else {
+                    $plugin_cpg_version['min_ok'] = '-1';
+                }
+            } else {
+                $plugin_cpg_version['min_ok'] = '0';
+            }
+            if (isset($plugin_cpg_version['max']) == TRUE ) {
+                if (version_compare(COPPERMINE_VERSION, $plugin_cpg_version['max']) < 0){
+                    $plugin_cpg_version['max_ok'] = '1';
+                } else {
+                    $plugin_cpg_version['max_ok'] = '-1';
+                }
+            } else {
+                $plugin_cpg_version['max_ok'] = '0';
+            }
+            if ($CONFIG['enable_plugins'] == 1) {
+                if ($plugin_cpg_version['min_ok'] > 0 && $plugin_cpg_version['max_ok'] >= 0) {
+                    $install_button = '<a href="pluginmgr.php?op=install&amp;p='.$path.'&amp;form_token='.$form_token.'&amp;timestamp='.$timestamp.'" title="' . $lang_pluginmgr_php['install'] . '">' . cpg_fetch_icon('plugin_install', 0) . '</a>';
+                } elseif ($plugin_cpg_version['min_ok'] < 0 || $plugin_cpg_version['max_ok'] < 0) {
+                    if (isset($lang_pluginmgr_php['minimum_requirements_not_met']) != TRUE ) {
+                        $lang_pluginmgr_php['minimum_requirements_not_met'] = 'Minimum requirements not met';
+                    }
+                    $install_button = '<span title="' . $lang_pluginmgr_php['minimum_requirements_not_met'] . '">' . cpg_fetch_icon('cancel', 0) . '</span>';
+                } else {
+                    $install_button = '<a href="pluginmgr.php?op=install&amp;p='.$path.'&amp;form_token='.$form_token.'&amp;timestamp='.$timestamp.'" onclick="return confirmVersionMissing(\''.$safename.'\')" title="' . $lang_pluginmgr_php['install'] . '" >' . cpg_fetch_icon('plugin_mgr', 0) . '</a>';
+                }
+            } else {
+                $install_button = cpg_fetch_icon('blank', 0);
+            }
+            unset($plugin_cpg_version);
             $delete = cpg_fetch_icon('delete', 0);
             echo <<<EOT
                 </table>
@@ -533,6 +563,10 @@ switch ($op) {
 }
 
 pageheader($lang_pluginmgr_php['pmgr']);
+if (isset($lang_pluginmgr_php['confirm_version']) != TRUE ) {
+    $lang_pluginmgr_php['confirm_version'] = 'Could not determine the version requirements for this plugin. This is usually an indicator that the plugin was not designed for your version of coppermine and might therefore crash your gallery. Continue anway (not recommended)?';
+}
+
 echo <<<EOT
 
 <script language="javascript" type="text/javascript">
@@ -549,6 +583,11 @@ function confirmRemove(text)
 function confirmDel(text)
 {
     return confirm("{$lang_pluginmgr_php['confirm_delete']} (" + text + ")");
+}
+
+function confirmVersionMissing(text)
+{
+    return confirm("{$lang_pluginmgr_php['confirm_version']} (" + text + ")");
 }
 </script>
 EOT;

@@ -17,8 +17,12 @@
   $Date$
 **********************************************/
 
-if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
-define('CORE_PLUGIN', true);
+if (!defined('IN_COPPERMINE')) {
+    die('Not in Coppermine...');
+}
+if (!defined('CORE_PLUGIN')) {
+	define('CORE_PLUGIN', true);
+}
 $superCage = Inspekt::makeSuperCage();
 
 if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_GAL_CAT){

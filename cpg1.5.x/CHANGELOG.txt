@@ -25,7 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2010-01-22 [A] Added plugin hook 'thumb_html_title' (thread ID 63321)  {timoswelt}
+2010-01-24 [A] Added check to plugin manager for version requirements (thread ID 63279) {GauGau}
+2010-01-22 [A] Added plugin hook 'thumb_html_title' (thread ID 63321) {timoswelt}
 2010-01-20 [B] Fixed display of 'optional information' header on register form (thread ID 63338) {eenemeenemuu}
 2010-01-20 [C] Centered film strip thumbnails (thread ID 63320) {eenemeenemuu}
 2010-01-20 [B] Fixed film strip jump label for lastcom meta album {eenemeenemuu}

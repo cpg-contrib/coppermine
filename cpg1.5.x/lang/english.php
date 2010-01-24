@@ -1759,6 +1759,8 @@ $lang_pluginmgr_php['install_info'] = 'Install information'; // cpg1.5
 $lang_pluginmgr_php['plugin_disabled_note'] = 'Plugin API is disabled, so that operation is not allowed.'; // cpg1.5
 $lang_pluginmgr_php['install'] = 'install'; // cpg1.5
 $lang_pluginmgr_php['uninstall'] = 'uninstall'; // cpg1.5
+$lang_pluginmgr_php['minimum_requirements_not_met'] = 'Minimum requirements not met'; // cpg1.5
+$lang_pluginmgr_php['confirm_version'] = 'Could not determine the version requirements for this plugin. This is usually an indicator that the plugin was not designed for your version of coppermine and might therefore crash your gallery. Continue anway (not recommended)?'; // cpg1.5 // js-alert
 }
 
 // ------------------------------------------------------------------------- //

@@ -1782,6 +1782,8 @@ $lang_pluginmgr_php['install_info'] = 'Installations-Information'; // cpg1.5
 $lang_pluginmgr_php['plugin_disabled_note'] = 'Die Plugin-API ist deaktiviert, daher ist diese Operation nicht erlaubt.'; // cpg1.5
 $lang_pluginmgr_php['install'] = 'installieren'; // cpg1.5
 $lang_pluginmgr_php['uninstall'] = 'deinstallieren'; // cpg1.5
+$lang_pluginmgr_php['minimum_requirements_not_met'] = 'Mindestanforderungen sind nicht erfüllt'; // cpg1.5
+$lang_pluginmgr_php['confirm_version'] = 'Versions-Mindestanforderungen für dieses Plugin konnte nicht festgestellt werden. Dies ist normalerweise ein Anzeichen dafür, dass das Plugin nicht für Deine Version von Coppermine erstellt wurde und daher möglicherweise Deine Galerie zum Absturz bringt. Trotzdem mit der Installation fortfahren (nicht empfohlen)?'; // cpg1.5 // js-alert
 }
 
 // ------------------------------------------------------------------------- //

@@ -124,6 +124,12 @@
     The version of your plugin - usually starting with 1.0 (although you're welcome to come up with any other numbering scheme as long as the difference between versions will be obvious). A lot of coders try to indicate the stage their code is in using the first digit of the version number. That's why many start modestly counting from zero, with the zero versions indicating alpha or beta stage. While the coppermine dev team welcomes this for entire applications we don't consider this usefull for a plugin, which is not an application of it's own, but just "lives" within the application as an add-on. That's why the Coppermine dev team recommends starting to count from one for the first digit and zero for the second digit. Using a third digit is inappropriate for nearly all plugins.<br />
     <div class="cpg_example">$version = '1.0';</div>
     </li>
+    <li><strong>$plugin_cpg_version</strong><br />
+    Specify the minimum coppermine version number that your plugin will work with. It is advisable to only specify the major version (i.e. <tt class="code">'1.5'</tt>) if you're not using a plugin hook that has been added to the core at a later stage.<br />
+    If you already know that limit, you can speficy a maximum version as well (although that's an optional feature).
+    <div class="cpg_example">$plugin_cpg_version = array('min' => '1.5');</div>
+    The minimum version number you specify will be compared against the constant <tt class="code">COPPERMINE_VERSION</tt> on the <a href="plugins.htm#plugin_manager_install">plugin manager</a> page for the plugins that can be installed.
+    </li>
     <li><strong>$extra_info</strong><br />
     Is displayed with the title of a plugin that is <strong>not</strong> installed and can be used to present extra information. Use it for example to present an additional link to the plugin documentation if your plugin needs detailed explanation. When using larger pieces of HTML, it's recommended to use the heredoc-syntax to define the variable to make the code better readable.<br />
     <div class="cpg_example">$extra_info = &lt;&lt;&lt;EOT<br />
