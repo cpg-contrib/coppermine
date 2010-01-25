@@ -1501,8 +1501,8 @@ $lang_install['please_go_back'] = 'Please %sclick here%s to go back and fix this
 $lang_install['populate_db'] = 'Populate database';
 $lang_install['ready_to_roll'] = '<a href="index.php">Coppermine</a> is now properly configured and ready to use.<br /><a href="login.php">Login</a> using the information you provided for your admin account.';
 $lang_install['sect_create_adm'] = 'This section requires information to create your Coppermine administration account. Use only alphanumeric characters. Enter the data carefully!';
-$lang_install['sect_mysql_info'] = 'This section requires information on how to access your mySQL database.<br />If you don\'t know how to fill them, check with your webhost support.';
-$lang_install['sect_mysql_sel_db'] = 'Here you have to choose which database you want to use for Coppermine. <br />If your mySQL account has the needed privileges, you can create a new database from within the installer or you can use an existing database. If you don\'t like both options, you will have to create a database first outside the Coppermine installer, then return here then select the new database from the dropdown box below. You can also change the table prefix (don\'t use dots though), but keeping the default prefix is recommended.';
+$lang_install['sect_mysql_info'] = 'This section requires information on how to access your MySQL database.<br />If you don\'t know how to fill them, check with your webhost support.';
+$lang_install['sect_mysql_sel_db'] = 'Here you have to choose which database you want to use for Coppermine. <br />If your MySQL account has the needed privileges, you can create a new database from within the installer or you can use an existing database. If you don\'t like both options, you will have to create a database first outside the Coppermine installer, then return here then select the new database from the dropdown box below. You can also change the table prefix (don\'t use dots though), but keeping the default prefix is recommended.';
 $lang_install['select_lang'] = 'Select default language: ';
 $lang_install['sql_file_not_found'] = 'The file \'%s\' could not be found. Check that you have uploaded all Coppermine files to your server';
 $lang_install['status'] = 'Status';
@@ -1760,7 +1760,7 @@ $lang_pluginmgr_php['plugin_disabled_note'] = 'Plugin API is disabled, so that o
 $lang_pluginmgr_php['install'] = 'install'; // cpg1.5
 $lang_pluginmgr_php['uninstall'] = 'uninstall'; // cpg1.5
 $lang_pluginmgr_php['minimum_requirements_not_met'] = 'Minimum requirements not met'; // cpg1.5
-$lang_pluginmgr_php['confirm_version'] = 'Could not determine the version requirements for this plugin. This is usually an indicator that the plugin was not designed for your version of coppermine and might therefore crash your gallery. Continue anway (not recommended)?'; // cpg1.5 // js-alert
+$lang_pluginmgr_php['confirm_version'] = 'Could not determine the version requirements for this plugin. This is usually an indicator that the plugin was not designed for your version of coppermine and might therefore crash your gallery. Continue anyway (not recommended)?'; // cpg1.5 // js-alert
 }
 
 // ------------------------------------------------------------------------- //
@@ -2311,7 +2311,7 @@ if (defined('UPDATE_PHP')) {
 $lang_update_php['title'] = 'Updater'; // cpg1.5
 $lang_update_php['welcome_updater'] = 'Welcome to Coppermine update'; // cpg1.5
 $lang_update_php['could_not_authenticate'] = 'Could not authenticate you'; // cpg1.5
-$lang_update_php['provide_admin_account'] = 'Please provide your coppermine admin account details or your mySQL account data'; // cpg1.5
+$lang_update_php['provide_admin_account'] = 'Please provide your coppermine admin account details or your MySQL account data'; // cpg1.5
 $lang_update_php['try_again'] = 'Try again'; // cpg1.5
 $lang_update_php['mysql_connect_error'] = 'Could not create a MySQL connection'; // cpg1.5
 $lang_update_php['mysql_database_error'] = 'MySQL could not locate a database called %s'; // cpg1.5
