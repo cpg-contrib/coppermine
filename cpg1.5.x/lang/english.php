@@ -1853,12 +1853,12 @@ $lang_register_php['email_address_banned'] = 'You are banned from this gallery. 
 $lang_register_php['email_warning1'] = 'The email address field mustn\'t be empty!'; // cpg1.5
 $lang_register_php['email_warning2'] = 'The email address you entered is not valid. Review!'; // cpg1.5
 $lang_register_php['username_warning1'] = 'The username field mustn\'t be empty!'; // cpg1.5
-$lang_register_php['username_warning2'] = 'Username must be at least two characters long'; // cpg1.5
+$lang_register_php['username_warning2'] = 'Username must be at least two characters long!'; // cpg1.5
 $lang_register_php['password_warning1'] = 'The password must be at least two characters long!'; // cpg1.5
-$lang_register_php['password_warning2'] = 'Username and password must be different'; // cpg1.5
-$lang_register_php['password_verification_warning1'] = 'The two passwords do not match, please enter them again'; // cpg1.5
+$lang_register_php['password_warning2'] = 'Username and password must be different!'; // cpg1.5
+$lang_register_php['password_verification_warning1'] = 'The two passwords do not match, please enter them again!'; // cpg1.5
 $lang_register_php['form_not_submit'] = 'The form hasn\'t been submit - there are errors that you need to correct first!'; // cpg1.5
-$lang_register_php['banned'] = 'Banned'; // cpg1.5
+$lang_register_php['banned'] = 'Banned!'; // cpg1.5
 
 $lang_register_php['confirm_email'] = <<< EOT
 Thank you for registering at {SITE_NAME}
@@ -2132,7 +2132,7 @@ $lang_upload_php['upload_single'] = 'simple - one file at a time'; // cpg1.5
 $lang_upload_php['up_instr_1'] = 'Select an album from the album dropdown list';
 $lang_upload_php['up_instr_2'] = 'Click the "Browse" button below and navigate to the file you want to upload. You can select multiple files in a single go using Ctrl+Click.';
 $lang_upload_php['up_instr_3'] = 'Select more files to upload by repeating step 2';
-$lang_upload_php['up_instr_4'] = 'Click the "Continue" button after having all files that you want to upload (The button will appear after you have uploaded at least one file).';
+$lang_upload_php['up_instr_4'] = 'Click the "Continue" button after having all your files have completed uploading (the button will only appear when you have uploaded at least one file).';
 $lang_upload_php['up_instr_5'] = 'You\'ll be sent to a screen where you can enter details about the uploaded files. After filling in, submit that form using the "Apply changes" button at the bottom of that form.';
 $lang_upload_php['restriction_zip'] = 'ZIP files uploaded will remain compressed, they will not be extracted on the server.';
 $lang_upload_php['restriction_filesize'] = 'The size of files uploaded from your client to the server must not exceed %s each.';
