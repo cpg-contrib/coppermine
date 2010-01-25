@@ -3293,24 +3293,29 @@ function& display_slideshow($pos, $ajax_show = 0)
             }
 
             $Pic[$i]   = htmlspecialchars($picture_url, ENT_QUOTES);
-            $Pid[$i]   = $picture['pid'];
-            $Title[$i] = $Title_get;
 
             /*if ($picture['pid'] == $pid) {
                 $j         = $i;
                 $start_img = $picture_url;
             }*/ //$j and $start_img are never used
-            $i++;
+        } else {
+            $pic_url = get_pic_url($picture, 'thumb');
+            $Pic[$i] = htmlspecialchars($pic_url);
         }
+        
+        $Pid[$i]   = $picture['pid'];
+        $Title[$i] = $Title_get;
+        
+        $i++;
     }
 
     /** set variables to jquery.slideshow.js */
     set_js_var('Time', $slideshow);
     set_js_var('Pid', $pid);
 
-    if (!$i) {
-        echo "Pic[0] = 'images/thumb_document.jpg'\n";
-    }
+    /*if (!$i) {
+        $Pic[0] = 'images/thumb_document.jpg';
+    }*/
 
     // Add the hit if slideshow hits are enabled in config
     if ((!USER_IS_ADMIN && $CONFIG['count_admin_hits'] == 0 || $CONFIG['count_admin_hits'] == 1) && $CONFIG['slideshow_hits'] != 0) {
