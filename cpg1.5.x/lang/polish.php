@@ -2395,7 +2395,7 @@ $lang_util_php['update_full'] = 'Just full sized (if an original copy is availab
 $lang_util_php['delete_back'] = 'Delete original image backup for watermarked images'; // cpg1.5
 $lang_util_php['delete_back_explanation'] = 'This will delete the backup image. You will save some disk space but not be able anymore to undo the watermark!!! After that the watermark will be permanent.'; // cpg1.5
 $lang_util_php['finished'] = '<br />Finished updating thumbs/images!<br />'; // cpg1.5
-$lang_util_php['autorefresh'] = ' Auto refresh (no need to click continue button anymore)'; // cpg1.5
+$lang_util_php['autorefresh'] = 'Auto refresh (no need to click continue button anymore)'; // cpg1.5
 $lang_util_php['refresh_db'] = 'Pobierz ponownie wymiary obrazu i rozmiar pliku.';
 $lang_util_php['refresh_db_explanation'] = 'Ta opcja pozwala odczytać ponownie informacje o rozmiarach plików. Użyj jej, jeśli zauważysz, że nieprawidłowo obliczany jest limit miejsca (np. po ręcznej edycji plików).';
 $lang_util_php['reset_views'] = 'Zeruj liczniki wyświetleń';
@@ -2581,7 +2581,7 @@ $lang_plugin_php['onlinestats_name'] = 'Kto jest online?';
 $lang_plugin_php['onlinestats_config_extra'] = 'To enable this plugin (make it actually display the onlinestats block), the string "onlinestats" (separated with a slash) has been added to "the content of the main page" in <a href="admin.php">Coppermine\'s config</a> in the section "Album list view". The setting should now look like "breadcrumb/catlist/alblist/onlinestats" or similar. To change the position of the block, move the string "onlinestats" around inside that config field.';
 $lang_plugin_php['onlinestats_config_install'] = 'The plugin runs additional queries on the database each time it is being executed, burning CPU cycles and using resources. If your Coppermine gallery is slow or has got a lot of users, you shouldn\'t use it.';
 $lang_plugin_php['onlinestats_we_have_reg_member'] = 'Mamy %s zarejestrowanego użytkownika';
-$lang_plugin_php['onlinestats_we_have_reg_members'] = ' Mamy %s zarejestrowanych użytkowników';
+$lang_plugin_php['onlinestats_we_have_reg_members'] = 'Mamy %s zarejestrowanych użytkowników';
 $lang_plugin_php['onlinestats_most_recent'] = 'Ostatnio zarejstrowany uzytkownik to: %s';
 $lang_plugin_php['onlinestats_is'] = 'Na stronie jest %s użytkownik online';
 $lang_plugin_php['onlinestats_are'] = 'Na stronie jest %s użytkowników online';

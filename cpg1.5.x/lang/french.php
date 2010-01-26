@@ -1092,7 +1092,7 @@ if (defined('DISPLAYIMAGE_PHP')){
   $lang_picinfo['MeteringMode'] = 'Mode de mesure';
   $lang_picinfo['ExposureTime'] = 'Temps d\'exposition';
   $lang_picinfo['ExposureBiasValue'] = 'Correction de l\'exposition';
-  $lang_picinfo['ImageDescription'] = ' Description de l\'image';
+  $lang_picinfo['ImageDescription'] = 'Description de l\'image';
   $lang_picinfo['Orientation'] = 'Orientation';
   $lang_picinfo['xResolution'] = 'Résolution X';
   $lang_picinfo['yResolution'] = 'Résolution Y';
@@ -2396,7 +2396,7 @@ if (defined('UTIL_PHP')) {
   $lang_util_php['delete_back'] = 'Effacer la copie de l\'image originale (Mod filigrane)'; // cpg1.5
   $lang_util_php['delete_back_explanation'] = 'Celà va effacer la copie de l\'image originale. <br>Vous gagnerez ainsi de la place sur votre serveur mais ne pourrez pas annuler le filigrane de votre image par la suite !!! <br>Le filigrane sera permanent après cette opération'; // cpg1.5
   $lang_util_php['finished'] = '<br />Terminer la mise à jour des Vignettes/Images!<br />'; // cpg1.5
-  $lang_util_php['autorefresh'] = ' Réactualisation automatique de la page (inutile de cliquer sur le bouton CONTINUEZ)<br />'; // cpg1.5
+  $lang_util_php['autorefresh'] = 'Réactualisation automatique de la page (inutile de cliquer sur le bouton CONTINUEZ)<br />'; // cpg1.5
   $lang_util_php['refresh_db'] = 'Recharger les informations de poids et de taille';
   $lang_util_php['refresh_db_explanation'] = 'Cela va recharger les informations de poids et de taille. Utilisez cette fonction si les quotas sont incorrects ou si vous avez changé manuellement ces données.';
   $lang_util_php['reset_views'] = 'Réinitialisation du compteur de vues';
@@ -2583,7 +2583,7 @@ if (defined('CORE_PLUGIN')) {
   $lang_plugin_php['onlinestats_config_extra'] = 'Pour activer ce plugin (et afficher le bloc de statistiques onlinestats), il faut ajouter la chaîne "onlinestats" (séparée par un slash \'/\') à "<a href="docs/en/configuration.htm#admin_Album_list_content">Le contenu de la page principale</a>" dans <a href="admin.php">la configuration de Coppermine</a> dans la section " Affichage de la liste des Albums ". Le paramétrage devrait ressemble à ça "breadcrumb/catlist/alblist/onlinestats" . Pour changer la position du bloc, déplacez la chaine "onlinestats" dans le champ de la configuration.';
   $lang_plugin_php['onlinestats_config_install'] = 'Ce plugin ajoute des requêtes à chaque fois ou il est exécuté, utilisant des resources supplémentaires. Si votre Galerie est lente ou si vous avez beaucoup d\'Utilisateursn vous ne devriez pas l\'Utilisez.';
   $lang_plugin_php['onlinestats_we_have_reg_member'] = 'Il y a %s visiteur enregistré';
-  $lang_plugin_php['onlinestats_we_have_reg_members'] = ' il y a %s visiteurs enregistrés';
+  $lang_plugin_php['onlinestats_we_have_reg_members'] = 'Il y a %s visiteurs enregistrés';
   $lang_plugin_php['onlinestats_most_recent'] = 'Le visiteur enregistré le plus récent est %s';
   $lang_plugin_php['onlinestats_is'] = 'Au total il y a %s visiteur en ligne';
   $lang_plugin_php['onlinestats_are'] = 'Au total il y a %s visiteurs en ligne';
@@ -2593,7 +2593,7 @@ if (defined('CORE_PLUGIN')) {
   $lang_plugin_php['onlinestats_guest'] = '%s invité';
   $lang_plugin_php['onlinestats_guests'] = '%s invités';
   $lang_plugin_php['onlinestats_record'] = 'Nombre le plus grand de visiteurs jamais en ligne: %s le %s';
-  $lang_plugin_php['onlinestats_since'] = ' Visiteurs enregistrés en ligne au cours les dernières %s minutes: %s';
+  $lang_plugin_php['onlinestats_since'] = 'Visiteurs enregistrés en ligne au cours les dernières %s minutes: %s';
   $lang_plugin_php['onlinestats_config_text'] = 'Combien de temps voulez vous laisser les visiteurs affichés comme en ligne avant de considérer qu\'ils sont partis ?';
   $lang_plugin_php['onlinestats_minute'] = 'minutes';
   $lang_plugin_php['onlinestats_remove'] = 'Effacez la table utilisée pour stocker les données du plugin ?';

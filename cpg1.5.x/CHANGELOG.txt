@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-01-26 [B] Removed unneeded spaces in translation strings (thread ID 63434) {GauGau}
 2010-01-26 [B] Changed string 'Flash Pix' to 'FlashPix' (thread ID 63425) {GauGau}
 2010-01-26 [B] Fixing translation mistake for util.php (thread ID 63417) {GauGau}
 2010-01-24 [A] Added check to plugin manager for version requirements (thread ID 63279) {GauGau}
