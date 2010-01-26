@@ -1122,7 +1122,7 @@ if (defined('DISPLAYIMAGE_PHP')){
   $lang_picinfo['AFFocusPosition'] = 'Longueur focale';
   $lang_picinfo['Saturation'] = 'Saturation';
   $lang_picinfo['NoiseReduction'] = 'Réduction du bruit';
-  $lang_picinfo['FlashPixVersion'] = 'Flash Pix Version';
+  $lang_picinfo['FlashPixVersion'] = 'FlashPix Version';
   $lang_picinfo['ExifImageWidth'] = 'Dimension X en pixels';
   $lang_picinfo['ExifImageHeight'] = 'Dimension Y en pixels';
   $lang_picinfo['ExifInteroperabilityOffset'] = 'Version d\'interopérabilité';
