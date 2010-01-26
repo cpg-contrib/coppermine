@@ -2422,7 +2422,7 @@ if (defined('UTIL_PHP')) {
   $lang_util_php['incorrect_filesize'] = 'La taille totale de l\'image est incorrecte'; // cpg1.5
   $lang_util_php['database'] = 'Base de données : '; // cpg1.5
   $lang_util_php['bytes'] = ' bytes'; // cpg1.5
-  $lang_util_php['actual'] = ' Actuel : '; // cpg1.5
+  $lang_util_php['actual'] = 'Actuel : '; // cpg1.5
   $lang_util_php['updated'] = 'Mis à jour'; // cpg1.5
   $lang_util_php['filesize_error'] = 'Impossible de trouver la taille du fichier (peut être un fichier invalide), ignore....'; // cpg1.5
   $lang_util_php['skipped'] = 'Ignoré'; // cpg1.5
