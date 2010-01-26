@@ -3286,13 +3286,7 @@ function& display_slideshow($pos, $ajax_show = 0)
                 $picture_url = get_pic_url($picture, 'fullsize');
             }
 
-            if ($picture['title']) {
-                $Title_get = $picture['title'];
-            } else {
-                $Title_get = $picture['filename'];
-            }
-
-            $Pic[$i]   = htmlspecialchars($picture_url, ENT_QUOTES);
+            $Pic[$i] = htmlspecialchars($picture_url, ENT_QUOTES);
 
             /*if ($picture['pid'] == $pid) {
                 $j         = $i;
@@ -3302,10 +3296,10 @@ function& display_slideshow($pos, $ajax_show = 0)
             $pic_url = get_pic_url($picture, 'thumb');
             $Pic[$i] = htmlspecialchars($pic_url);
         }
-        
+
         $Pid[$i]   = $picture['pid'];
-        $Title[$i] = $Title_get;
-        
+        $Title[$i] = $picture['title'] ? $picture['title'] : $picture['filename'];
+
         $i++;
     }
 

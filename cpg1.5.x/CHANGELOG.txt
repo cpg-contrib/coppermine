@@ -28,6 +28,7 @@ Changelog
 2010-01-26 [B] Removed unneeded spaces in translation strings (thread ID 63434) {GauGau}
 2010-01-26 [B] Changed string 'Flash Pix' to 'FlashPix' (thread ID 63425) {GauGau}
 2010-01-26 [B] Fixing translation mistake for util.php (thread ID 63417) {GauGau}
+2010-01-25 [B] Fixed slide show for non-images (thread ID 63316) {Aditya}
 2010-01-24 [A] Added check to plugin manager for version requirements (thread ID 63279) {GauGau}
 2010-01-22 [A] Added plugin hook 'thumb_html_title' (thread ID 63321) {timoswelt}
 2010-01-20 [B] Fixed display of 'optional information' header on register form (thread ID 63338) {eenemeenemuu}
