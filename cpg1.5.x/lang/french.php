@@ -670,7 +670,7 @@ $lang_admin_php['wm_resized'] = 'Re-dimensionné'; // cpg1.5
 $lang_admin_php['gallery_name'] =   'Nom de la Galerie'; // cpg1.5
 $lang_admin_php['gallery_description'] =   'Description de la Galerie'; // cpg1.5
 $lang_admin_php['gallery_admin_email'] =   'Adresse courriel de l\'Administrateur'; // cpg1.5
-$lang_admin_php['ecards_more_pic_target'] =   'URL du répertoire de votre Galerie coppermine'; // cpg1.5
+$lang_admin_php['ecards_more_pic_target'] =   'URL du répertoire de votre Galerie Coppermine'; // cpg1.5
 $lang_admin_php['ecards_more_pic_target_detail'] =   '(avec un slash à la fin, pas \'index.php\' ou similaire à la fin)'; // cpg1.5
 $lang_admin_php['home_target'] =   'URL de votre page d\'accueil'; // cpg1.5
 $lang_admin_php['enable_zipdownload'] =   'Autoriser le téléchargement ZIP de vos photos dans les Favoris'; // cpg1.5
@@ -1503,11 +1503,11 @@ if (defined('INSTALL_PHP')) {
   $lang_install['ready_to_roll'] = '<a href="index.php">Coppermine</a> est maintenant correctement configuré et prêt à fonctionner.<br /><a href="login.php">Identiez-vous</a> en utilisant les informations que vous avez données pour votre compte Administrateur.';
   $lang_install['sect_create_adm'] = 'Cette partie requière des informations pour créer votre compte Administrateur Coppermine. N\'utilisez que des caractères alphanumériques. Entrez et vérifiez ces données attentivement!';
   $lang_install['sect_mysql_info'] = 'Cette section demande les informations pour savoir comment se connecter à votre base de données MySQL.<br />Si vous ne savez pas comment les remplir, demandez de l\'aide à votre hébergeur.';
-  $lang_install['sect_mysql_sel_db'] = 'Ici vous devez choisir quelle base de données vous voulez Utilisez pour Coppermine. <br />Si votre compte Mysql a les privilèges requis, vous pouvez créer une nouvelle base de données depusi l\'installeur ou Utilisez une base de données existante. Si vous ne voulez d\'aucune de ces deux options, vous devrez créer une base de données hors de l\'installeur Coppermine, puis revenir ici et sélectionner la nouvelle base de donnée depuis la liste déroulante. Vous pouvez aussi changer le préfixe des Tables (N\'utilisez pas de point), mais il est recommander de laisser le préfixe par défaut tel quel.';
+  $lang_install['sect_mysql_sel_db'] = 'Ici vous devez choisir quelle base de données vous voulez Utilisez pour Coppermine.<br />Si votre compte Mysql a les privilèges requis, vous pouvez créer une nouvelle base de données depusi l\'installeur ou Utilisez une base de données existante. Si vous ne voulez d\'aucune de ces deux options, vous devrez créer une base de données hors de l\'installeur Coppermine, puis revenir ici et sélectionner la nouvelle base de donnée depuis la liste déroulante. Vous pouvez aussi changer le préfixe des Tables (N\'utilisez pas de point), mais il est recommander de laisser le préfixe par défaut tel quel.';
   $lang_install['select_lang'] = 'Sélectionner la langue par défaut: ';
-  $lang_install['sql_file_not_found'] = 'Le fichier \'%s\' n\'a pas pu être trouvé. Vérifiez que vous avez téléchargé tous les fichiers Coppermine sur votre serveur';
+  $lang_install['sql_file_not_found'] = 'Le fichier \'%s\' n\'a pas pu être trouvé. Vérifiez que vous avez téléchargé tous les fichiers Coppermine sur votre serveur.';
   $lang_install['status'] = 'Statut';
-  $lang_install['subdir_called'] = 'Un sous-répertoire nommé \'%s\' devrait normalement exister dans le répertoire où vous avez téléchargé Coppermine. <br />L\'installeur ne peut pas le trouver. Vérifiez que vous avez téléchargé tous les fichiers Coppermine sur le serveur.';
+  $lang_install['subdir_called'] = 'Un sous-répertoire nommé \'%s\' devrait normalement exister dans le répertoire où vous avez téléchargé Coppermine.<br />L\'installeur ne peut pas le trouver. Vérifiez que vous avez téléchargé tous les fichiers Coppermine sur le serveur.';
   $lang_install['title_admin'] = 'Créez l\'Adminstrateur Coppermine';
   $lang_install['title_dir_check'] = 'Vérification des autorisations des répertoires';
   $lang_install['title_file_check'] = 'Vérification des fichiers d\installation';
