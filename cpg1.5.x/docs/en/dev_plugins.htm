@@ -100,39 +100,39 @@
 <a name="plugin_writing_core_files"></a><h2>Core files<a href="#plugin_writing_core_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Every plugin contains at least two mandatory files: codebase.php and configuration.php:</p>
 <ul>
-  <li><strong>codebase.php</strong><br />
+  <li><a name="plugin_writing_core_files_codebase"></a><h3>codebase.php<a href="#plugin_writing_core_files_codebase" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
   In this file, the various actions that a plugin can execute are being defined. Think of it as the plugin's core file, where the core logic of the plugin resides in.
   </li>
-  <li><strong>configuration.php</strong><br />
+  <li><a name="plugin_writing_core_files_configuration"></a><h3>configuration.php<a href="#plugin_writing_core_files_configuration" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
   When the plugin manager is run, it scans through all sub-folders of the plugins folder and looks for a file named <tt class="code">configuration.php</tt>. If such a file exists, the information provided within this file will be displayed as a record in the list of not-installed or installed plugins.<br />
   &nbsp;<br />
   You can use these vars inside configuration.php:
   <ul>
-    <li><strong>$name</strong><br />
+    <li><a name="plugin_writing_core_files_configuration_name"></a><h4>$name<a href="#plugin_writing_core_files_configuration_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     The full name of your plugin (not only the web-safe folder name chosen initially, but a name that indicates what the plugin does).<br />
-   <div class="cpg_example">$name = 'Coffee Maker';</div>
+   <div class="cpg_code code"><strong>$name</strong> = 'Coffee Maker';</div>
     </li>
-    <li><strong>$description</strong><br />
+    <li><a name="plugin_writing_core_files_configuration_description"></a><h4>$description<a href="#plugin_writing_core_files_configuration_description" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     A short description that explains what your plugin actually does.<br />
-    <div class="cpg_example">$description = 'Turns your Coppermine gallery into a coffee machine.';</div>
+    <div class="cpg_code code"><strong>$description</strong> = 'Turns your Coppermine gallery into a coffee machine.';</div>
     </li>
-    <li><strong>$author</strong><br />
+    <li><a name="plugin_writing_core_files_configuration_author"></a><h4>$author<a href="#plugin_writing_core_files_configuration_author" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     Obviously, this is the place for your credits. You can use your real name or a nickname (or even both). You can even slightly promote your site by adding a link to it within the content of this variable.<br />
-    <div class="cpg_example">$author = 'John Smith (aka &quot;&lt;a href="http://yoursite.tld/" rel="external" class="external"&gt;NeoIsDead&lt;/a&gt;&quot;).';</div>
+    <div class="cpg_code code"><strong>$author</strong> = 'John Smith (aka &quot;&lt;a href="http://yoursite.tld/" rel="external" class="external"&gt;NeoIsDead&lt;/a&gt;&quot;).';</div>
     </li>
-    <li><strong>$version</strong><br />
+    <li><a name="plugin_writing_core_files_configuration_version"></a><h4>$version<a href="#plugin_writing_core_files_configuration_version" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     The version of your plugin - usually starting with 1.0 (although you're welcome to come up with any other numbering scheme as long as the difference between versions will be obvious). A lot of coders try to indicate the stage their code is in using the first digit of the version number. That's why many start modestly counting from zero, with the zero versions indicating alpha or beta stage. While the coppermine dev team welcomes this for entire applications we don't consider this usefull for a plugin, which is not an application of it's own, but just "lives" within the application as an add-on. That's why the Coppermine dev team recommends starting to count from one for the first digit and zero for the second digit. Using a third digit is inappropriate for nearly all plugins.<br />
-    <div class="cpg_example">$version = '1.0';</div>
+    <div class="cpg_code code"><strong>$version</strong> = '1.0';</div>
     </li>
-    <li><strong>$plugin_cpg_version</strong><br />
+    <li><a name="plugin_writing_core_files_configuration_plugin_cpg_version"></a><h4>$plugin_cpg_version<a href="#plugin_writing_core_files_configuration_plugin_cpg_version" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     Specify the minimum coppermine version number that your plugin will work with. It is advisable to only specify the major version (i.e. <tt class="code">'1.5'</tt>) if you're not using a plugin hook that has been added to the core at a later stage.<br />
     If you already know that limit, you can speficy a maximum version as well (although that's an optional feature).
-    <div class="cpg_example">$plugin_cpg_version = array('min' => '1.5');</div>
+    <div class="cpg_code code"><strong>$plugin_cpg_version</strong> = array('min' => '1.5');</div>
     The minimum version number you specify will be compared against the constant <tt class="code">COPPERMINE_VERSION</tt> on the <a href="plugins.htm#plugin_manager_install">plugin manager</a> page for the plugins that can be installed.
     </li>
-    <li><strong>$extra_info</strong><br />
+    <li><a name="plugin_writing_core_files_configuration_extra_info"></a><h4>$extra_info<a href="#plugin_writing_core_files_configuration_extra_info" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     Is displayed with the title of a plugin that is <strong>not</strong> installed and can be used to present extra information. Use it for example to present an additional link to the plugin documentation if your plugin needs detailed explanation. When using larger pieces of HTML, it's recommended to use the heredoc-syntax to define the variable to make the code better readable.<br />
-    <div class="cpg_example">$extra_info = &lt;&lt;&lt;EOT<br />
+    <div class="cpg_code code"><strong>$extra_info</strong> = &lt;&lt;&lt;EOT<br />
     &lt;table border="0" cellspacing="0" cellpadding="0"&gt;<br />
     &lt;tr&gt;<br />
         &lt;td class="admin_menu"&gt;<br />
@@ -142,9 +142,9 @@
     &lt;/table&gt;<br />
 EOT;</div>
     </li>
-    <li><strong>$install_info</strong><br />
+    <li><a name="plugin_writing_core_files_configuration_install_info"></a><h4>$install_info<a href="#plugin_writing_core_files_configuration_install_info" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     Is displayed with the title of a plugin that <strong>is</strong> installed and can be used to present extra information. When using larger pieces of HTML, it's recommended to use the heredoc-syntax to define the variable to make the code better readable.<br />
-    <div class="cpg_example">$install_info = &lt;&lt;&lt;EOT<br />
+    <div class="cpg_code code"><strong>$install_info</strong> = &lt;&lt;&lt;EOT<br />
 &lt;div class=&quot;admin_menu_wrapper&quot;&gt;<br />
     &lt;div class=&quot;admin_menu admin_float&quot;&gt;<br />
         &lt;a href=&quot;index.php?file=coffee_maker/admin&action=config&quot; title=&quot;Configuration&quot;&gt;Plugin configuration&lt;/a&gt;<br />
@@ -158,7 +158,7 @@ EOT;</div>
     </li>
   </ul>
   </li>
-  <li><strong>readme.txt</strong><br />
+  <li><a name="plugin_writing_core_files_readme"></a><h3>readme.txt<a href="#plugin_writing_core_files_readme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
   It's a good idea (not mandatory though) to provide a plain-text file within your plugin's folder as well (readme.txt or similar) that contains copyright and support information and basic instructions what your plugin does and how the end user can install it.<br />
   It's not a bad idea to include a changelog and license information in that readme file.</li>
 </ul>
