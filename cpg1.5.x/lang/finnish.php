@@ -34,7 +34,7 @@ $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Bytes, Kibibytes, Mebibytes, Gibibytes
 $lang_byte_units = array('tavua', 'kt', 'Mt', 'Gt');
-$lang_decimal_separator = array(',', '.');  //cpg1.5 // symbol used to separate thousands from hundreds and rounded number from  decimal place
+$lang_decimal_separator = array('.', ',');  //cpg1.5 // symbol used to separate thousands from hundreds and rounded number from  decimal place
 
 // Day of weeks and months
 $lang_day_of_week = array('su', 'ma', 'ti', 'ke', 'to', 'pe', 'la');
@@ -1506,7 +1506,7 @@ $lang_install['sect_mysql_sel_db'] = 'Tässä voit valita Copperminen kanssa kä
 $lang_install['select_lang'] = 'Valitse oletuskieli: ';
 $lang_install['sql_file_not_found'] = 'Tiedostoa \'%s\' ei löytynyt. Tarkista, että olet lähettänyt kaikki Copperminen tiedostot palvelimellesi.';
 $lang_install['status'] = 'Tila';
-$lang_install['subdir_called'] = 'Alahakemiston \'%s\' piätäisi normaalisti olla olemassa kansiossa, johon purit Copperminen.<br />Asentaja ei löydä kyseistä hakemistoa. Tarkista, että lähetit kaikkiCopperminen tiedostot palvelimellesi.';
+$lang_install['subdir_called'] = 'Alahakemiston \'%s\' pitäisi normaalisti olla olemassa kansiossa, johon purit Copperminen.<br />Asentaja ei löydä kyseistä hakemistoa. Tarkista, että lähetit kaikki Copperminen tiedostot palvelimellesi.';
 $lang_install['title_admin'] = 'Luo Copperminen ylläpitäjä';
 $lang_install['title_dir_check'] = 'Tarkistetaan hakemistojen oikeuksia';
 $lang_install['title_file_check'] = 'Tarkistetaan asennustiedostoja';
@@ -1759,6 +1759,8 @@ $lang_pluginmgr_php['install_info'] = 'Asennustiedot'; // cpg1.5
 $lang_pluginmgr_php['plugin_disabled_note'] = 'Toiminto ei ole sallittu, koska lisäosien API ei ole käytössä.'; // cpg1.5
 $lang_pluginmgr_php['install'] = 'asenna'; // cpg1.5
 $lang_pluginmgr_php['uninstall'] = 'poista'; // cpg1.5
+$lang_pluginmgr_php['minimum_requirements_not_met'] = 'Vähimmäisvaatimuksia ei ole saavutettu'; // cpg1.5
+$lang_pluginmgr_php['confirm_version'] = 'Tämän lisäosan versiovaatimuksia ei voitu selvittää. Tämä tarkoittta usein sitä, että lisäosaa ei ole suunniteltu Copperminen versiollesi ja että se saattaa sekoittaa galleriasi. Jatketaanko joka tapauksessa (ei suositeltua)?'; // cpg1.5 // js-alert
 }
 
 // ------------------------------------------------------------------------- //
