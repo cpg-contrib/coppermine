@@ -31,7 +31,7 @@ require('include/init.inc.php');
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 function display_plugin_list() {
-    global $CPG_PLUGINS,$lang_pluginmgr_php;
+    global $CPG_PLUGINS,$lang_pluginmgr_php, $CONFIG;
     $available_plugins = cpg_get_dir_list('./plugins/');
     starttable('100%');
 
@@ -156,20 +156,56 @@ EOT;
 
             $safename = addslashes(str_replace('&nbsp;', '', $name));
             $extra = (isset($extra_info)) ? ($extra_info):(null);
+			
+            // Take care of version requirements
+            if (isset($plugin_cpg_version['min']) == TRUE ) {
+                if (version_compare(COPPERMINE_VERSION, $plugin_cpg_version['min']) > 0){
+                    $plugin_cpg_version['min_ok'] = '1';
+                } else {
+                    $plugin_cpg_version['min_ok'] = '-1';
+                }
+            } else {
+                $plugin_cpg_version['min_ok'] = '0';
+            }
+            if (isset($plugin_cpg_version['max']) == TRUE ) {
+                if (version_compare(COPPERMINE_VERSION, $plugin_cpg_version['max']) < 0){
+                    $plugin_cpg_version['max_ok'] = '1';
+                } else {
+                    $plugin_cpg_version['max_ok'] = '-1';
+                }
+            } else {
+                $plugin_cpg_version['max_ok'] = '0';
+            }
+            if ($CONFIG['enable_plugins'] == 1) {
+                if ($plugin_cpg_version['min_ok'] > 0 && $plugin_cpg_version['max_ok'] >= 0) {
+                    $install_button = '<a href="pluginmgr.php?op=install&amp;p='.$path.'" title="' . $lang_pluginmgr_php['install'] . '"><img src="images/info.gif" border="0" width="16" height="16" alt="" /></a>';
+                } elseif ($plugin_cpg_version['min_ok'] < 0 || $plugin_cpg_version['max_ok'] < 0) {
+                    if (isset($lang_pluginmgr_php['minimum_requirements_not_met']) != TRUE ) {
+                        $lang_pluginmgr_php['minimum_requirements_not_met'] = 'Minimum requirements not met';
+						$lang_pluginmgr_php['minimum_requirements_explain'] = 'The plugin %s has not been designed for your version of Coppermine and subsequently can not be installed.';
+                    }
+                    $install_button = '<span title="' . $lang_pluginmgr_php['minimum_requirements_not_met'] . '" onclick="alert(\''.$lang_pluginmgr_php['minimum_requirements_not_met'] . '.\n' . sprintf($lang_pluginmgr_php['minimum_requirements_explain'], '&laquo;'. $safename . '&raquo;').'\');"><img src="images/red.gif" border="0" width="12" height="12" alt="" style="cursor:help;" /></span>';
+                } else {
+                    $install_button = '<a href="pluginmgr.php?op=install&amp;p='.$path.'" onclick="return confirmVersionMissing(\''.$safename.'\')" title="' . $lang_pluginmgr_php['install'] . '" ><img src="images/info.gif" border="0" width="16" height="16" alt="" /></a>';
+                }
+            } else {
+                $install_button = '';
+            }
 
+			unset($plugin_cpg_version);
             echo <<<EOT
             <tr>
             <td width="90%">
                 <table border="0" width="100%" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td class="tableh2" width="50%"><b>{$lang_pluginmgr_php['name']}</b> $name {$lang_pluginmgr_php['vers']}$version</td>
+                        <td class="tableh2" width="50%"><b>{$lang_pluginmgr_php['name']}</b>: $name {$lang_pluginmgr_php['vers']}$version</td>
                         <td class="tableh2">$extra</td>                       
                     </tr>
                     <tr>
-                        <td class="tableb" width="50%" colspan="2"><b>{$lang_pluginmgr_php['author']}</b> $author</td>
+                        <td class="tableb" width="50%" colspan="2"><b>{$lang_pluginmgr_php['author']}</b>: $author</td>
                     </tr>
                     <tr>
-                        <td class="tableb" width="50%" colspan="2"><b>{$lang_pluginmgr_php['desc']}</b> $description</td>
+                        <td class="tableb" width="50%" colspan="2"><b>{$lang_pluginmgr_php['desc']}</b>: $description</td>
                     </tr>
                     
                 </table>
@@ -181,7 +217,7 @@ EOT;
                         <img src="images/spacer.gif" width="16" height="16" />
                     </td>
                     <td width="5%" align="center" valign="top">
-                        <a href="pluginmgr.php?op=install&amp;p=$path"><img src="images/info.gif"  border="0" alt="" /></a>
+                        {$install_button}
                     </td>
                     <td width="5%" align="center" valign="top">
                         <a href="pluginmgr.php?op=delete&amp;p=$path" onClick="return confirmDel('$safename')">
@@ -310,6 +346,9 @@ switch ($op) {
 }
 
 pageheader($lang_pluginmgr_php['pmgr']);
+if (isset($lang_pluginmgr_php['confirm_version']) != TRUE ) {
+    $lang_pluginmgr_php['confirm_version'] = 'Could not determine the version requirements for this plugin. If the plugin was not designed for your version of coppermine it might crash your gallery. Continue anway?';
+}
 echo <<<EOT
 
 <script language="javascript" type="text/javascript">
@@ -321,6 +360,11 @@ function confirmUninstall(text)
 function confirmDel(text)
 {
     return confirm("{$lang_pluginmgr_php['confirm_delete']} (" + text + ") ?");
+}
+
+function confirmVersionMissing(text)
+{
+    return confirm("{$lang_pluginmgr_php['confirm_version']} (" + text + ")");
 }
 </script>
 EOT;

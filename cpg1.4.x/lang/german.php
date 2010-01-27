@@ -25,7 +25,7 @@ $lang_translation_info = array(
   'lang_name_native' => 'Deutsch', //cpg1.4
   'lang_country_code' => 'de', //cpg1.4
   'trans_name'=> 'Joachim Müller',
-  'trans_email' => 'gaugau@users.sourceforge.net',
+  'trans_email' => '',
   'trans_website' => 'http://gaugau.de/',
   'trans_date' => '2005-07-10',
 );
@@ -1454,6 +1454,9 @@ $lang_pluginmgr_php = array(
   'upload' => 'Hochladen', //cpg1.4
   'configure_plugin' => 'Plugin konfigurieren', //cpg1.4
   'cleanup_plugin' => 'Plugin bereinigen', //cpg1.4
+  'confirm_version' => 'Mindestvoraussetzungen für dieses Plugin konnten nicht bestimmt werden. Falls dieses Plugin nicht für Deine Coppermine-Version geschrieben wurde kann es möglicherweise Deine Galerie zum Absturz bringen. Trotzdem weitermachen?', //cpg1.4
+  'minimum_requirements_not_met' => 'Mindestvoraussetzungen sind nicht erfüllt', //cpg1.4  //js-alert
+  'minimum_requirements_explain' => 'Das Plugin %s wurde nicht für Deine Version von Coppermine geschrieben und kann daher auch nicht installiert werden.', //cpg1.4  //js-alert
 );
 }
 

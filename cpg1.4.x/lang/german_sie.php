@@ -1453,6 +1453,9 @@ $lang_pluginmgr_php = array(
   'upload' => 'Hochladen', //cpg1.4
   'configure_plugin' => 'Plugin konfigurieren', //cpg1.4
   'cleanup_plugin' => 'Plugin bereinigen', //cpg1.4
+  'confirm_version' => 'Mindestvoraussetzungen für dieses Plugin konnten nicht bestimmt werden. Falls dieses Plugin nicht für Ihre Coppermine-Version geschrieben wurde kann es möglicherweise Ihre Galerie zum Absturz bringen. Trotzdem weitermachen?', //cpg1.4
+  'minimum_requirements_not_met' => 'Mindestvoraussetzungen sind nicht erfüllt', //cpg1.4  //js-alert
+  'minimum_requirements_explain' => 'Das Plugin %s wurde nicht für Ihre Version von Coppermine geschrieben und kann daher auch nicht installiert werden.', //cpg1.4  //js-alert
 );
 }
 

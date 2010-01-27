@@ -1456,6 +1456,9 @@ $lang_pluginmgr_php = array(
   'upload' => 'Upload', //cpg1.4
   'configure_plugin' => 'Configure plugin', //cpg1.4
   'cleanup_plugin' => 'Cleanup plugin', //cpg1.4
+  'confirm_version' => 'Could not determine the version requirements for this plugin. If the plugin was not designed for your version of coppermine it might crash your gallery. Continue anway?', //cpg1.4
+  'minimum_requirements_not_met' => 'Minimum requirements not met', //cpg1.4  //js-alert
+  'minimum_requirements_explain' => 'The plugin %s has not been designed for your version of Coppermine and subsequently can not be installed.', //cpg1.4  //js-alert
 );
 }
 
