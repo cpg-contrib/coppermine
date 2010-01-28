@@ -2065,7 +2065,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             for ($i=0; $i < $URI_error_count; $i++) {
 
                 // Print the error ordinal, file name, and error code.
-                echo "<tr><td>{$URI_failure_array[$i]['failure_ordinal']} {$URI_failure_array[$i]['URI_name']}</td><td>{$URI_failure_array[$i]['error_code']}</td></tr>";
+                echo "<tr><td>{$URI_failure_array[$i]['failure_ordinal']} ".htmlentities($URI_failure_array[$i]['URI_name'])."</td><td>{$URI_failure_array[$i]['error_code']}</td></tr>";
 
             }
 
