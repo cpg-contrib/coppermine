@@ -122,3 +122,10 @@ table.cpg_zebra > tbody > tr.tableb_alternate > td {
     text-align:right;
 }
 
+.bold {
+    font-weight:bold;
+}
+
+.strikethrough {
+	text-decoration:line-through;
+}

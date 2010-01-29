@@ -25,8 +25,9 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-01-29 [D] Added details about subversion repository structure {GauGau}
 2010-01-29 [A] Added plugin hook 'thumb_strip_html_title' (redundant code in functions.inc.php) {timoswelt}
-2010-01-26 [C] Corrected minor issues discussed in threads 63435 and 63437 {GauGau}
+2010-01-26 [C] Corrected minor language file issues discussed in threads 63435 and 63437 {GauGau}
 2010-01-26 [B] Removed unneeded spaces in translation strings (thread ID 63434) {GauGau}
 2010-01-26 [B] Changed string 'Flash Pix' to 'FlashPix' (thread ID 63425) {GauGau}
 2010-01-26 [B] Fixing translation mistake for util.php (thread ID 63417) {GauGau}
