@@ -399,6 +399,14 @@ $pic_title = (is_array($pic_title)) ? $pic_title[0] : $pic_title;</textarea></td
   </tr>
   <tr>
     <td valign="top">include/functions.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_thumb_strip_html_title"></a><strong>thumb_strip_html_title</strong><a href="#plugin_hooks_thumb_strip_html_title" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">allows to modify the thumb html title using data from $row for filmstrip thumbs</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$pic_title = CPGPluginAPI::filter('thumb_strip_html_title', array($pic_title, $row));
+$pic_title = (is_array($pic_title)) ? $pic_title[0] : $pic_title;</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">include/functions.inc.php</td>
     <td valign="top"><a name="plugin_hooks_meta_album"></a><strong>meta_album</strong><a href="#plugin_hooks_meta_album" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">executed before meta albums are retrieved, giving the possibility to add or filter meta albums.<br />See below for more info.</td>
@@ -698,6 +706,7 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <li><a href="#plugin_hooks_filename_thumb_caption_toprated">thumb_caption_toprated</a></li>
     <li><a href="#plugin_hooks_filename_thumb_data">thumb_data</a></li>
     <li><a href="#plugin_hooks_thumb_html_title">thumb_html_title</a></li>
+    <li><a href="#plugin_hooks_thumb_strip_html_title">thumb_strip_html_title</a></li>
     <li><a href="#plugin_hooks_filename_upload_form">upload_form</a></li>
     <li><a href="#plugin_hooks_filename_upload_options">upload_options</a></li>
     <li><a href="#plugin_hooks_filename_upload_process">upload_process</a></li>
@@ -752,6 +761,7 @@ $rowset = CPGPluginAPI::filter('thumb_caption_search',$rowset);<br />
 $rowset = CPGPluginAPI::filter('thumb_caption_lastalb',$rowset);<br />
 $rowset = CPGPluginAPI::filter('thumb_caption_favpics',$rowset);<br />
 $pic_title = CPGPluginAPI::filter('thumb_html_title', $row);<br />
+$pic_title = CPGPluginAPI::filter('thumb_strip_html_title', $row);<br />
 $pic_row = CPGPluginAPI::filter('thumb_data',$pic_row);</div>
 <p>These two filters are used specifically to manipulate the data of a picture.</p>
 <div class="quote">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data',$CURRENT_PIC_DATA);<br />
