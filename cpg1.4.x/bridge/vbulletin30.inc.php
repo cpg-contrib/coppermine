@@ -122,11 +122,14 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction()
 	{
-		if (isset($_COOKIE[$this->cookie_name . 'sessionhash'])) {
-			$session_id = addslashes($_COOKIE[$this->cookie_name . 'sessionhash']);
-			
+		if (isset($_COOKIE[$this->cookie_name . '_sessionhash'])) {
+		    $session_id = addslashes($_COOKIE[$this->cookie_name . '_sessionhash']);
+		} elseif (isset($_COOKIE[$this->cookie_name . 'sessionhash'])) {
+		    $session_id = addslashes($_COOKIE[$this->cookie_name . 'sessionhash']);
+		}
+		if (isset($session_id)) {
 			$sql = "SELECT u.{$this->field['user_id']}, u.{$this->field['password']}, u.{$this->field['grouptbl_group_id']}+100 AS usergroupid FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE s.{$this->field['user_id']}=u.{$this->field['user_id']} AND s.sessionhash='$session_id'";
-			
+		
 			$result = cpg_db_query($sql, $this->link_id);
 			
 			if (mysql_num_rows($result)){
