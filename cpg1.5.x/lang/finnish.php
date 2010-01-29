@@ -2,15 +2,15 @@
 /*************************
   Coppermine Photo Gallery
   ************************
-  Copyright (c) 2003-2009 Coppermine Dev Team
-  v1.1 originally written by Gregory DEMAR
+  Copyright (c) 2003-2010 Coppermine Dev Team
+  v1.0 originally written by Gregory Demar
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 3
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.2
+  Coppermine version: 1.5.3
   $HeadURL$
   $Revision$
   $LastChangedBy$
@@ -34,7 +34,7 @@ $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Bytes, Kibibytes, Mebibytes, Gibibytes
 $lang_byte_units = array('tavua', 'kt', 'Mt', 'Gt');
-$lang_decimal_separator = array(',', '.');  //cpg1.5 // symbol used to separate thousands from hundreds and rounded number from  decimal place
+$lang_decimal_separator = array('.', ',');  //cpg1.5 // symbol used to separate thousands from hundreds and rounded number from  decimal place
 
 // Day of weeks and months
 $lang_day_of_week = array('su', 'ma', 'ti', 'ke', 'to', 'pe', 'la');
@@ -989,7 +989,7 @@ $lang_db_input_php['com_added'] = 'Kommentti lisätty';
 $lang_db_input_php['com_updated'] = 'Kommentti muokattu';  // cpg1.5
 $lang_db_input_php['alb_updated'] = 'Albumi päivitetty';
 $lang_db_input_php['err_comment_empty'] = 'Kommenttisi on tyhjä!';
-$lang_db_input_php['err_invalid_fext'] = 'Vain seuraavat tiedostopäätteet ovat sallittuja: <br /><br />%s.';
+$lang_db_input_php['err_invalid_fext'] = 'Vain seuraavat tiedostopäätteet ovat sallittuja:'; // js-alert
 $lang_db_input_php['no_flood'] = 'Viimeinen kommentti tälle kuvalle on sinun.<br /><br />Muuta sitä, jos haluat tehdä lisäyksiä.';
 $lang_db_input_php['redirect_msg'] = 'Sinut uudelleenohjataan.<br /><br /><br />Klikkaa \'JATKA\' jos sivu ei päivity automaattisesti.';
 $lang_db_input_php['upl_success'] = 'Tiedostosi lisättiin onnistuneesti';
@@ -1333,7 +1333,7 @@ $lang_forgot_passwd_php['verify_email_sent'] = 'Sähköposti lähetettiin osoitt
 $lang_forgot_passwd_php['err_unk_user'] = 'Valittua käyttäjää ei löydy!';
 $lang_forgot_passwd_php['account_verify_subject'] = '%s - Uusi salasanapyyntö';
 $lang_forgot_passwd_php['passwd_reset_subject'] = '%s - Uusi salasanasi';
-$lang_forgot_passwd_php['account_verify_email'] = <<<EOT
+$lang_forgot_passwd_php['account_verify_email'] = <<< EOT
 Pyysit uutta salasanaa. Jos haluat jatkaa saadaksesi sen, klikkaa linkkiä:
 
 <a href="{VERIFY_LINK}">{VERIFY_LINK}</a>
@@ -1345,7 +1345,7 @@ Sivuston {SITE_NAME} ylläpito
 
 EOT;
 
-$lang_forgot_passwd_php['reset_email'] = <<<EOT
+$lang_forgot_passwd_php['reset_email'] = <<< EOT
 Tässä on pyytämäsi uusi salasana:
 
 Käyttäjätunnus: {USER_NAME}
@@ -1463,7 +1463,6 @@ $lang_install['installation'] = 'asennus';
 $lang_install['installer_locked'] = 'Asentaja on lukittu';
 $lang_install['installer_selected'] = 'Asentaja valitsi';
 $lang_install['inv_im_path'] = 'Asentaja ei löydä hakemistoa \'%s\', jonka annoit ImageMagick:ille tai sinulla ei ole oikeuksia käyttää sitä. Tarkista hakemiston nimen oikeinkirjoitus ja että sinulla on pääsyoikeudet annettuun hakemistoon.';
-$lang_install['last_step'] = 'Viimeinen vaihe...';
 $lang_install['lets_go'] = 'Aloita!';
 $lang_install['mysql_create_btn'] = 'Luo';
 $lang_install['mysql_create_db'] = 'Luo uusi MySQL tietokanta';
@@ -1503,11 +1502,11 @@ $lang_install['populate_db'] = 'Luo tietokanta';
 $lang_install['ready_to_roll'] = '<a href="index.php">Coppermine</a> on nyt konfiguroitu ja on valmis käytettäväksi.<br /><br /><a href="login.php">Kirjaudu sisään</a> käyttäen antammiasi tietoja ylläpitäjän tilillesi.';
 $lang_install['sect_create_adm'] = 'Tämä osa tarvitsee tietoa luodaksesi sinulle Copperminen ylläpitäjän tilin. Käytä vain alphanumeerisia merkkejä. Syötä tiedot huolella!';
 $lang_install['sect_mysql_info'] = 'Tämä osa tarvitsee tietoa käyttääksesi MySQL tietokantaasi.<br />Jos et tiedä niitä, ota yhteyttä palveluntarjoajasi tukeen.';
-$lang_install['sect_mysql_sel_db'] = 'Tässä voit valita Copperminen kanssa käytettävän tietokannan. <br />Jos Mysql tililläsi on riittävät oikeudet, voit luoda uuden tietokannan asentajan avulla tai voit käyttää olemassa olevia tietokantoja. Jos et pidä kummastakaan vaihtoehdosta, sinun pitää ensin luoda tietokanta Copperminen asentajan ulkopuolella ja palata sitten tähän takaisin valiten juuri luomasi tietokannan listasta. voit myös vaihtaa taulun etuliitteen (älä kuitenkaan käytä pistettä), mutta oletus etuliitteen säilyttäminen on suositeltavaa.';
+$lang_install['sect_mysql_sel_db'] = 'Tässä voit valita Copperminen kanssa käytettävän tietokannan.<br />Jos Mysql tililläsi on riittävät oikeudet, voit luoda uuden tietokannan asentajan avulla tai voit käyttää olemassa olevia tietokantoja. Jos et pidä kummastakaan vaihtoehdosta, sinun pitää ensin luoda tietokanta Copperminen asentajan ulkopuolella ja palata sitten tähän takaisin valiten juuri luomasi tietokannan listasta. voit myös vaihtaa taulun etuliitteen (älä kuitenkaan käytä pistettä), mutta oletus etuliitteen säilyttäminen on suositeltavaa.';
 $lang_install['select_lang'] = 'Valitse oletuskieli: ';
 $lang_install['sql_file_not_found'] = 'Tiedostoa \'%s\' ei löytynyt. Tarkista, että olet lähettänyt kaikki Copperminen tiedostot palvelimellesi.';
 $lang_install['status'] = 'Tila';
-$lang_install['subdir_called'] = 'Alahakemiston \'%s\' piätäisi normaalisti olla olemassa kansiossa, johon purit Copperminen. <br />Asentaja ei löydä kyseistä hakemistoa. Tarkista, että lähetit kaikkiCopperminen tiedostot palvelimellesi.';
+$lang_install['subdir_called'] = 'Alahakemiston \'%s\' pitäisi normaalisti olla olemassa kansiossa, johon purit Copperminen.<br />Asentaja ei löydä kyseistä hakemistoa. Tarkista, että lähetit kaikki Copperminen tiedostot palvelimellesi.';
 $lang_install['title_admin'] = 'Luo Copperminen ylläpitäjä';
 $lang_install['title_dir_check'] = 'Tarkistetaan hakemistojen oikeuksia';
 $lang_install['title_file_check'] = 'Tarkistetaan asennustiedostoja';
@@ -1760,6 +1759,8 @@ $lang_pluginmgr_php['install_info'] = 'Asennustiedot'; // cpg1.5
 $lang_pluginmgr_php['plugin_disabled_note'] = 'Toiminto ei ole sallittu, koska lisäosien API ei ole käytössä.'; // cpg1.5
 $lang_pluginmgr_php['install'] = 'asenna'; // cpg1.5
 $lang_pluginmgr_php['uninstall'] = 'poista'; // cpg1.5
+$lang_pluginmgr_php['minimum_requirements_not_met'] = 'Vähimmäisvaatimuksia ei ole saavutettu'; // cpg1.5
+$lang_pluginmgr_php['confirm_version'] = 'Tämän lisäosan versiovaatimuksia ei voitu selvittää. Tämä tarkoittta usein sitä, että lisäosaa ei ole suunniteltu Copperminen versiollesi ja että se saattaa sekoittaa galleriasi. Jatketaanko joka tapauksessa (ei suositeltua)?'; // cpg1.5 // js-alert
 }
 
 // ------------------------------------------------------------------------- //
@@ -1775,7 +1776,7 @@ $lang_rate_pic_php['forbidden'] = 'Et voi äänestää omia kuviasi.';
 // File register.php & profile.php
 // ------------------------------------------------------------------------- //
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
-$lang_register_php['disclamer'] = <<<EOT
+$lang_register_php['disclamer'] = <<< EOT
 Vaikka sivuston {SITE_NAME} ylläpito yrittää poistaa kaiken sopimattoman materiaalin sivustolta niin nopeasti kuin mahdollista, sen on mahdotonta tarkistaa jokaista lisäystä. Ymmärrät siis, että sivuston viestit ja kuvat ovat käyttäjien mielipiteitä ja näkemyksiä (lukuunottamatta ylläpidon lisäyksiä), eikä ylläpitoa voida asettaa niistä vastuuseen.<br />
 <br />
 Sitoudut olemaan lähettämättä mitään loukkaavaa, säädytöntä, mautonta, herjaavaa, vihamielistä, uhkaavaa, seksuaalisesti suuntautunutta tai mitään muuta materiaalia, joka voisi loukata voimassa olevia lakeja. Hyväksyt, että ylläpidolla ja moderaattoreilla on oikeus poistaa tai muuttaa mitä tahansa materiaalia miten sen parhaaksi näkevät. Käyttäjänä hyväksyt, että lähettämäsi tieto tallennetaan tietokantaan. Tietoa ei lähetetä kolmansille osapuolille ilman lupaasi, mutta ylläpito ei ole vastuussa mahdollisista tietomurroista.<br />
@@ -1859,7 +1860,7 @@ $lang_register_php['password_verification_warning1'] = 'Salasanat eivät täsmä
 $lang_register_php['form_not_submit'] = 'Lomaketta ei lähetetty - korjaa ensin siinä ilmenneet virheet!'; // cpg1.5
 $lang_register_php['banned'] = 'Bannattu'; // cpg1.5
 
-$lang_register_php['confirm_email'] = <<<EOT
+$lang_register_php['confirm_email'] = <<< EOT
 Kiitos rekisteröitymisestä {SITE_NAME} - sivustolle.
 
 Aktivoidaksesi tilisi käyttäjätunnuksella "{USER_NAME}", klikkaa alla olevaa linkkiä tai kopioi ja liitä se selaimeesi.
@@ -1871,7 +1872,7 @@ Sivuston {SITE_NAME} ylläpito
 
 EOT;
 
-$lang_register_approve_email = <<<EOT
+$lang_register_approve_email = <<< EOT
 Uusi käyttäjä nimeltä "{USER_NAME}" rekisteröityi galleriaasi.
 Aktivoidaksesi tilin, klikkaa alla olevaa linkkiä tai kopioi ja liitä se selaimeesi.
 
@@ -1879,7 +1880,7 @@ Aktivoidaksesi tilin, klikkaa alla olevaa linkkiä tai kopioi ja liitä se selai
 
 EOT;
 
-$lang_register_php['activated_email'] = <<<EOT
+$lang_register_php['activated_email'] = <<< EOT
 Tilisi on nyt hyväksytty ja aktivoitu.
 
 Voit nyt kirjautua sisään osoitteessa <a href="{SITE_LINK}">{SITE_LINK}</a> käyttäen käyttäjätunnusta "{USER_NAME}"
@@ -2290,7 +2291,7 @@ $lang_usermgr_php['status'] = 'Tila'; // cpg1.5
 $lang_usermgr_php['status_active'] = 'aktiivinen'; // cpg1.5
 $lang_usermgr_php['status_inactive'] = 'epäaktiivinen'; // cpg1.5
 $lang_usermgr_php['total'] = 'Yhteensä'; // cpg1.5
-$lang_usermgr_php['send_login_data_email'] = <<<EOT
+$lang_usermgr_php['send_login_data_email'] = <<< EOT
 Sinulle luotiin uusi tili sivustolle {SITE_NAME}.
 
 Voit kirjautua sisään osoitteessa <a href="{SITE_LINK}">{SITE_LINK}</a> käyttäen käyttäjätunnusta "{USER_NAME}" ja salasanaa "{USER_PASS}".
@@ -2396,7 +2397,7 @@ $lang_util_php['update_full'] = 'Vain täysikokoinen kuva (jos alkuperäinen kuv
 $lang_util_php['delete_back'] = 'Poista alkuperäinen kuvavarmuuskopio vesileimatuista kuvista'; // cpg1.5
 $lang_util_php['delete_back_explanation'] = 'Tämä poistaa kuvavarmuuskopion. Poistaminen  säästää levytilaa, mutta et voi enään poistaa kuvista vesileimaa!!! After that the watermark will be permanent.'; // cpg1.5
 $lang_util_php['finished'] = '<br />Kuvien/thumbnailien päivitys valmis!<br />'; // cpg1.5
-$lang_util_php['autorefresh'] = ' Päivitä sivu automaattisesti (ei enään tarvetta klikata jatka -nappia)'; // cpg1.5
+$lang_util_php['autorefresh'] = 'Päivitä sivu automaattisesti (ei enään tarvetta klikata jatka -nappia)'; // cpg1.5
 $lang_util_php['refresh_db'] = 'Lataa uudelleen tiedostokoot ja kuvakokotiedot';
 $lang_util_php['refresh_db_explanation'] = 'Tämä lukee uudelleen tiedostojen koot ja kuvakoot. Käytä tätä, jos levytilan käyttölaskurit ovat väärässä tai olet muokannut kuvia manuaalisesti.';
 $lang_util_php['reset_views'] = 'Resetoi näyttökertalaskurit';
@@ -2422,7 +2423,7 @@ $lang_util_php['update_result'] = 'Päivityksen tulokset'; // cpg1.5
 $lang_util_php['incorrect_filesize'] = 'Tiedoston koko on virheellinen'; // cpg1.5
 $lang_util_php['database'] = 'Tietokanta: '; // cpg1.5
 $lang_util_php['bytes'] = ' tavua'; // cpg1.5
-$lang_util_php['actual'] = ' Nykyinen: '; // cpg1.5
+$lang_util_php['actual'] = 'Nykyinen: '; // cpg1.5
 $lang_util_php['updated'] = 'Päivitetty'; // cpg1.5
 $lang_util_php['filesize_error'] = 'Tiedostokokoa ei saatu selville (tiedosto on ehkä virheellinen), ohitetaan...'; // cpg1.5
 $lang_util_php['skipped'] = 'Ohitettu'; // cpg1.5
@@ -2582,7 +2583,7 @@ $lang_plugin_php['onlinestats_name'] = 'Kuka on paikalla?';
 $lang_plugin_php['onlinestats_config_extra'] = 'Ottaaksesi lisäosan käyttöön (jotta se näyttää tilastokentän), merkkijono "onlinestats" (erotettuna kauttaviivalla) on lisätty "etusivun sisältöön" <a href="admin.php">Copperminen asetuksissa</a> kohdassa "Albumilistaus näkymä". Asetuksen pitäisi näyttää tämän kaltaiselta: "breadcrumb/catlist/alblist/onlinestats". Muuttaaksesi kentän siajaintia, siirrä merkkijonoa "onlinestats" asetuskentän sisällä';
 $lang_plugin_php['onlinestats_config_install'] = 'Lisäosa suorittaa ylimääräisiä kyselyitä tietokantaan jokaisella sivulatauksella kasvattaen suorittimen ja muistin kulutusta. Jos Coppermine galleriasi on hidas tai jos sillä on paljon käyttäjiä, sinun tulisi poistaa lisäosa pois käytöstä.';
 $lang_plugin_php['onlinestats_we_have_reg_member'] = 'Paikalla on %s rekisteröityt käyttäjä';
-$lang_plugin_php['onlinestats_we_have_reg_members'] = ' Paikalla on %s rekisteröitynyttä käyttäjää';
+$lang_plugin_php['onlinestats_we_have_reg_members'] = 'Paikalla on %s rekisteröitynyttä käyttäjää';
 $lang_plugin_php['onlinestats_most_recent'] = 'Uusin rekisteröitynyt käyttäjä on %s';
 $lang_plugin_php['onlinestats_is'] = 'Paikalla on yhteensä %s käyttäjä';
 $lang_plugin_php['onlinestats_are'] = 'Paikalla on yhteensä %s käyttäjää';
@@ -2592,7 +2593,7 @@ $lang_plugin_php['onlinestats_reg_members'] = '%s rekisteröityttä käyttäjä�
 $lang_plugin_php['onlinestats_guest'] = '%s vieras';
 $lang_plugin_php['onlinestats_guests'] = '%s vierasta';
 $lang_plugin_php['onlinestats_record'] = 'Eniten käyttäjiä paikalla koskaan: %s (%s)';
-$lang_plugin_php['onlinestats_since'] = ' Sisäänkirjautuneet käyttäjät viimeisen %s minuutin aikana: %s';
+$lang_plugin_php['onlinestats_since'] = 'Sisäänkirjautuneet käyttäjät viimeisen %s minuutin aikana: %s';
 $lang_plugin_php['onlinestats_config_text'] = 'Kuinka kauan käyttäjää pidetään paikalla olevien listassa ennen kuin hänet katsotaan poistuneen sivustolta?';
 $lang_plugin_php['onlinestats_minute'] = 'minuuttia';
 $lang_plugin_php['onlinestats_remove'] = 'Poista taulu, jota käytettiin online datan säilytykseen?';
