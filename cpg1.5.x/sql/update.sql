@@ -424,3 +424,6 @@ ALTER TABLE CPG_comments ADD INDEX author_id (author_id);
 ALTER TABLE CPG_users ADD INDEX user_group (user_group);
 
 UPDATE CPG_albums SET owner = category - 10000 WHERE category > 10000;
+
+# Fulltext index is no longer used when searching
+ALTER TABLE CPG_pictures DROP INDEX `search`;

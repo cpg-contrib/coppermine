@@ -264,8 +264,7 @@ CREATE TABLE CPG_pictures (
   KEY pic_hits (hits),
   KEY pic_rate (pic_rating),
   KEY aid_approved (aid, approved),
-  KEY pic_aid (aid, pid),
-  FULLTEXT KEY search (title, caption, keywords, filename)
+  KEY pic_aid (aid, pid)
 ) TYPE=MyISAM COMMENT='Used to store data about individual pics';
 # --------------------------------------------------------
 
