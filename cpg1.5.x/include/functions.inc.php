@@ -2174,9 +2174,9 @@ function get_pic_pos($album, $pid)
             $RESTRICTEDWHERE
             AND approved = 'YES'
             AND p.votes >= '{$CONFIG['min_votes_for_rating']}'
-            AND pic_rating > $pic_rating
-            OR pic_rating = $pic_rating AND p.votes > $votes
-            OR pic_rating = $pic_rating AND p.votes = $votes AND pid > $pid";
+            AND (pic_rating > $pic_rating
+            OR (pic_rating = $pic_rating AND p.votes > $votes)
+            OR (pic_rating = $pic_rating AND p.votes = $votes AND pid > $pid))";
 
             $result = cpg_db_query($query);
 
