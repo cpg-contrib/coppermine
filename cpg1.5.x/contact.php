@@ -94,7 +94,7 @@ if ($superCage->post->keyExists('submit')) {
     }
     
     // check subject field
-    if ($CONFIG['contact_form_subject_field'] != 0 && $subject == '') {
+    if ($CONFIG['contact_form_subject_field'] >= 2 && $subject == '') {
         $expand_array[] = 'subject_remark';
         $error++;
     }
