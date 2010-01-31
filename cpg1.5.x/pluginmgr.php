@@ -323,7 +323,7 @@ EOT;
             }
             // Take care of version requirements
             if (isset($plugin_cpg_version['min']) == TRUE ) {
-                if (version_compare(COPPERMINE_VERSION, $plugin_cpg_version['min']) > 0){
+                if (version_compare(COPPERMINE_VERSION, $plugin_cpg_version['min']) >= 0){
                     $plugin_cpg_version['min_ok'] = '1';
                 } else {
                     $plugin_cpg_version['min_ok'] = '-1';
@@ -332,7 +332,7 @@ EOT;
                 $plugin_cpg_version['min_ok'] = '0';
             }
             if (isset($plugin_cpg_version['max']) == TRUE ) {
-                if (version_compare(COPPERMINE_VERSION, $plugin_cpg_version['max']) < 0){
+                if (version_compare(COPPERMINE_VERSION, $plugin_cpg_version['max']) <= 0){
                     $plugin_cpg_version['max_ok'] = '1';
                 } else {
                     $plugin_cpg_version['max_ok'] = '-1';

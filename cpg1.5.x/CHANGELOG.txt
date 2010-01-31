@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-01-31 [B] Corrected plugin version check not taking into account exact matches {GauGau}
 2010-01-31 [A] Added Russian language file (user contribution) {eenemeenemuu}
 2010-01-29 [D] Added details about subversion repository structure {GauGau}
 2010-01-29 [A] Added plugin hook 'thumb_strip_html_title' (redundant code in functions.inc.php) {timoswelt}
