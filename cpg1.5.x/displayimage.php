@@ -301,8 +301,6 @@ $ajax_show = $superCage->get->getInt('ajax_show');
 /** get AJAX call to run filmstrip */
 $ajax_call = $superCage->get->getInt('ajax_call');
 
-get_meta_album_set($cat);
-
 // attempt to fix topn images for keyworded albums
 if ($cat < 0) {
     $result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
@@ -312,6 +310,8 @@ if ($cat < 0) {
     }
     mysql_free_result($result);
 }
+
+get_meta_album_set($cat);
 
 if (!$superCage->get->keyExists('fullsize') && ($pos < 0 || $pid > 0)) {
 
