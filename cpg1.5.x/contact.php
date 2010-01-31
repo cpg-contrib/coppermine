@@ -110,7 +110,19 @@ if ($superCage->post->keyExists('submit')) {
     
         // compose the email
         $original_subject = $subject;
-        $subject = $CONFIG['contact_form_subject_content'] . ': '. $subject;
+        if ($subject != '') {
+            if ($CONFIG['contact_form_subject_content'] != '') {
+                $subject = $CONFIG['contact_form_subject_content'] . ': '. $subject;
+            } else {
+                $subject = $subject;
+            }
+        } else {
+            if ($CONFIG['contact_form_subject_content'] != '') {
+                $subject = $CONFIG['contact_form_subject_content'];
+            } else {
+                $subject = $lang_contact_php['title'] . ': ' . $CONFIG['site_url']; // We mustn't send an email with an empty subject line, so let's populate it with something that makes sense
+            }
+        }
         $message_header = sprintf($lang_contact_php['email_headline'], localised_date(-1, $lang_date['scientific']), $CONFIG['ecards_more_pic_target'] . $CPG_PHP_SELF, $raw_ip);
 
         if ($CONFIG['contact_form_sender_email'] == 0) {
