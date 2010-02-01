@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-02-01 [C] Added comment blocks to JS head to increase compatibility and robustness (thread ID 63555) {GauGau}
 2010-01-31 [B] Fixed error message on contact page when no subject was given and the config option was set to optional (thread ID 63541) {GauGau}
 2010-01-31 [C] Fixed cosmetical issue with missing suject lines (thread ID 63540) {GauGau}
 2010-01-31 [B] Corrected plugin version check not taking into account exact matches {GauGau}

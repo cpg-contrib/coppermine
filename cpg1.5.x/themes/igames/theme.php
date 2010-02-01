@@ -145,7 +145,14 @@ function theme_javascript_head()
         // Convert the $JS['vars'] array to json object string
         $json_vars = json_encode($JS['vars']);
         // Output the json object
-        $return .= '<script type="text/javascript">var js_vars = ' . $json_vars . ";</script>" . $LINEBREAK;
+        $return = <<< EOT
+<script type="text/javascript">
+/* <![CDATA[ */
+    var js_vars = $json_vars;
+/* ]]> */
+</script>
+
+EOT;
     }
 
     // Check if we have any js includes

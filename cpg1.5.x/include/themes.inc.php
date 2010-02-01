@@ -1714,7 +1714,6 @@ function theme_javascript_head()
 /* ]]> */
 </script>
 
-
 EOT;
     }
 
