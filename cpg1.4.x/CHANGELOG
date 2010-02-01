@@ -26,7 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2010-01-31 [M] Release of cpg1.4.26 {GauGau}
+2010-02-01 [M] Release of cpg1.4.26 {GauGau}
 2010-01-31 [B] Corrected plugin version check not taking into account exact matches {GauGau}
 2010-01-31 [O] Edited vBulletin bridge to reflect changes from vB3.x to vB4.x {GauGau}
 2010-01-27 [S] Using htmlentities to display the data back to user in case of an error while using URL upload {Aditya}

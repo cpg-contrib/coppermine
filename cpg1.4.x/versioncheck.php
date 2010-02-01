@@ -7386,7 +7386,7 @@ $return = '
 1.4.26|phpinfo.php|1.4.26|6987|mandatory|r@
 1.4.26|picEditor.php|1.4.26|6987|mandatory|r@
 1.4.26|picmgr.php|1.4.26|6987|mandatory|r@
-1.4.26|pluginmgr.php|1.4.26|7140|mandatory|r@
+1.4.26|pluginmgr.php|1.4.26|7173|mandatory|r@
 1.4.26|profile.php|1.4.26|6987|mandatory|r@
 1.4.26|ratepic.php|1.4.26|6987|mandatory|r@
 1.4.26|register.php|1.4.26|6987|mandatory|r@
@@ -7404,7 +7404,7 @@ $return = '
 1.4.26|upload.php|1.4.26|7143|mandatory|r@
 1.4.26|usermgr.php|1.4.26|6987|mandatory|r@
 1.4.26|util.php|1.4.26|6987|mandatory|r@
-1.4.26|versioncheck.php|1.4.26|7160|mandatory|r@
+1.4.26|versioncheck.php|1.4.26|7182|mandatory|r@
 1.4.26|viewlog.php|1.4.26|6987|mandatory|r@
 1.4.26|xp_publish.php|1.4.26|6987|mandatory|r@
 1.4.26|zipdownload.php|1.4.26|6987|mandatory|r@
@@ -7438,7 +7438,7 @@ $return = '
 1.4.26|docs/faq.htm|1.4.26|6301|optional|r@
 1.4.26|docs/faq_de.htm|1.4.26|6301|optional|r@
 1.4.26|docs/faq_fr.htm|1.4.26|6301|optional|r@
-1.4.26|docs/index.htm|1.4.26|7159|mandatory|r@
+1.4.26|docs/index.htm|1.4.26|7182|mandatory|r@
 1.4.26|docs/index_es.htm|1.4.26|4392|mandatory|r@
 1.4.26|docs/index_fr.htm|1.4.26|6301|mandatory|r@
 1.4.26|docs/README.html|1.4.26|6301|optional|r@
