@@ -1841,7 +1841,7 @@ EOT;
   $lang_register_php['acct_active_admin_activation'] = 'Le Compte est maintenant actif et un courriel a été envoyé à l\'Utilisateur.';
   $lang_register_php['notify_user_email_subject'] = '%s - Notification d\'activation';
   $lang_register_php['delete_my_account'] = 'Effacer mon Compte Utilisateur'; // cpg1.5
-  $lang_register_php['warning_delete'] = 'Attention : L\'effacement du compte est définitif. Les %sfichiers que vous avez placés%s dans les Albums publics et vos %sCommentaires%s ne seront pas effacés lors de la suppression de votre Compte Utilisateur !<br> Par contre, les fichiers que vous avez placés dans votre Galerie Personnelle seront effacés.'; // cpg1.5 // The %s-placeholders mustn't be removed, they will later be replaced by the wrappers for the links
+  $lang_register_php['warning_delete'] = 'Attention : L\'effacement du compte est définitif. Les %sfichiers que vous avez placés%s dans les Albums publics et %svos Commentaires%s ne seront pas effacés lors de la suppression de votre Compte Utilisateur !<br> Par contre, les fichiers que vous avez placés dans votre Galerie Personnelle seront effacés.'; // cpg1.5 // The %s-placeholders mustn't be removed, they will later be replaced by the wrappers for the links
   $lang_register_php['i_am_sure'] = 'Je suis certain de vouloir effacer mon Compte Utilisateur'; // cpg1.5
   $lang_register_php['really_delete'] = 'Voulez-vous vraiment effacer votre Compte Utilisateur ?'; // cpg1.5 //JS-Alert
   $lang_register_php['edit_xs_profile'] = 'Editer le profil de %s'; // cpg1.5
