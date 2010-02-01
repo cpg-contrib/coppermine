@@ -41,7 +41,7 @@ unset($js_contact);
 
 js_include('js/contact.js');
 
-pageheader($lang_contact_php['title']);
+
 
 // determine if the visitor is allowed to access
 if (!USER_ID) { // visitor is guest
@@ -227,7 +227,7 @@ if ($superCage->post->keyExists('submit')) {
     $captcha_remark = $lang_contact_php['captcha_field_mandatory'];
 }
 
-// the form has not been submit yet, so let's display it
+pageheader($lang_contact_php['title']);
 print '<form method="post" action="'.$CPG_PHP_SELF.'" name="contactForm" id="contactForm" onsubmit="return validateContactFormFields();">'.$LINEBREAK;
 
 starttable('100%', cpg_fetch_icon('contact', 2) . $lang_contact_php['title'], 3);
