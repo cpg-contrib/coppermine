@@ -187,20 +187,20 @@ if ($superCage->post->keyExists('submit')) {
                         '<div style="border:1px solid black">' .
                         $html_message .
                         '</div>';
-                        
+
         $message = $message_header .
                    $LINEBREAK .
                    sprintf($lang_contact_php['user_info'], $visitor_status, $text_user_name, $email_address) .
                    $LINEBREAK .
                    $message;
 
-					if ($superCage->server->testip('REMOTE_ADDR')) {
-					    $ip = $superCage->server->getRaw('REMOTE_ADDR');
-					} else {
-					    $ip = 'Unknown';
-					}                   
-        			
-        if (!cpg_mail($CONFIG['gallery_admin_email'], $subject, $html_message, 'text/html', $sender_name, $sender_email, $message)) {
+                    if ($superCage->server->testip('REMOTE_ADDR')) {
+                        $ip = $superCage->server->getRaw('REMOTE_ADDR');
+                    } else {
+                        $ip = 'Unknown';
+                    }
+
+        if (cpg_mail($CONFIG['gallery_admin_email'], $subject, $html_message, 'text/html', $sender_name, $sender_email, $message)) {
             if ($CONFIG['log_mode'] != CPG_NO_LOGGING) {
                 log_write("Sending an email using the contact form failed (name: $sender_name, email: $sender_email, subject: $original_subject, IP: $ip", CPG_MAIL_LOG);
             }
@@ -208,7 +208,17 @@ if ($superCage->post->keyExists('submit')) {
         } else { // sending the email has been successfull, redirect the user
             if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
                 log_write("Sending email from contact form successful (name: $sender_name, email: $sender_email, subject: $original_subject, IP: $ip", CPG_MAIL_LOG);
-            }            
+            }
+
+            if ( ($matches = $superCage->post->getMatched('referer', '/((\%3C)|<)[^\n]+((\%3E)|>)|(.*http.*)|(.*script.*)/i')) ) {
+                $CPG_REFERER = 'index.php';
+            } else {
+                /**
+                 * Using getRaw() since we are checking the referer in the above if condition.
+                 */
+                $CPG_REFERER = $superCage->post->getRaw('referer');
+            }
+
             cpgRedirectPage($CONFIG['ecards_more_pic_target'].$CPG_REFERER, $lang_common['information'], $lang_contact_php['email_sent']);
         }
     } // beyond this point an error must have happened - let the visitor review his input
@@ -370,6 +380,7 @@ EOT;
 print <<< EOT
     <tr>
         <td class="tableb" valign="top" align="right">
+            <input type="hidden" name="referer" value="$CPG_REFERER">
         </td>
         <td class="tableb" valign="top" colspan="2">
             <input type="submit" name="submit" value="{$lang_common['go']}" class="button" />

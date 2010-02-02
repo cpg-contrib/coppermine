@@ -2074,7 +2074,7 @@ function theme_main_menu($which)
 
     $album_l = isset($album) ? "?album=$album" : '';
     $album_12 = ($upload_allowed) ? "?album=$album" : '';
-    $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
+    $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '?cat=0');
     $cat_l2 = isset($cat) ? "&amp;cat=$cat" : '';
     $my_gallery_id = FIRST_USER_CAT + USER_ID;
 
@@ -2138,7 +2138,6 @@ function theme_main_menu($which)
         '{HOME_TGT}' => $CONFIG['home_target'],
         '{HOME_TITLE}' => $lang_main_menu['home_title'],
         '{HOME_LNK}' => $lang_main_menu['home_lnk'],
-        '{CONTACT_TGT}' => "contact.php?referer=$REFERER",
         '{CONTACT_TITLE}' => sprintf($lang_main_menu['contact_title'], $CONFIG['gallery_name']),
         '{CONTACT_LNK}' => $lang_main_menu['contact_lnk'],
         '{MY_GAL_TGT}' => "index.php?cat=$my_gallery_id",
@@ -2174,11 +2173,17 @@ function theme_main_menu($which)
         '{UPL_APP_TGT}' => "editpics.php?mode=upload_approval",
         '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_lnk'],
         );
-        
+
         if ($CPG_PHP_SELF != 'login.php') {
             $param['{LOGIN_TGT}'] = "login.php?referer=$REFERER";
         } else {
             $param['{LOGIN_TGT}'] = "login.php";
+        }
+
+        if ($CPG_PHP_SELF != 'contact.php') {
+            $param['{CONTACT_TGT}'] = "contact.php?referer=$REFERER";
+        } else {
+            $param['{CONTACT_TGT}'] = "contact.php";
         }
 
         $sys_menu = template_eval($template_sys_menu, $param);
