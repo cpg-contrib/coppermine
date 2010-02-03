@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-02-03 [C] Removed text on some buttons on album manager for space reasons (thread ID 63596) {GauGau}
 2010-02-02 [B] Fixed contact form referer (thread ID 63565) {eenemeenemuu}
 2010-02-02 [C] Added category parameter to album list link (thread ID 63530) {eenemeenemuu}
 2010-02-01 [C] Fixing contact form redirect (thread ID 63544) {GauGau}

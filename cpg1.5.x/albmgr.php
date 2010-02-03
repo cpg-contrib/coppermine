@@ -236,19 +236,21 @@ if (GALLERY_ADMIN_MODE || ($cat == USER_ID + FIRST_USER_CAT)) {
     }   
     
     echo <<< EOT
-                        <button type="button" id="upup_click" name="upup_click" class="button" value="{$lang_common['move_top']}" disabled="disabled">{$icon_array['upup']}{$lang_common['move_top']}</button>
-                        <button type="button" id="up_click" name="up_click" class="button" value="{$lang_common['move_up']}" disabled="disabled">{$icon_array['up']}{$lang_common['move_up']}</button>
-                        <button type="button" id="down_click" name="down_click" class="button" value="{$lang_common['move_down']}" disabled="disabled">{$icon_array['down']}{$lang_common['move_down']}</button>
-                        <button type="button" id="downdown_click" name="downdown_click" class="button" value="{$lang_common['move_bottom']}" disabled="disabled">{$icon_array['downdown']}{$lang_common['move_bottom']}</button>
+                        <button type="button" id="upup_click" name="upup_click" class="button" value="{$lang_common['move_top']}" disabled="disabled" title="{$lang_common['move_top']}">{$icon_array['upup']}</button>
+                        <button type="button" id="up_click" name="up_click" class="button" value="{$lang_common['move_up']}" disabled="disabled" title="{$lang_common['move_up']}">{$icon_array['up']}</button>
+                        <button type="button" id="down_click" name="down_click" class="button" value="{$lang_common['move_down']}" disabled="disabled" title="{$lang_common['move_down']}">{$icon_array['down']}</button>
+                        <button type="button" id="downdown_click" name="downdown_click" class="button" value="{$lang_common['move_bottom']}" disabled="disabled" title="{$lang_common['move_bottom']}">{$icon_array['downdown']}</button>
 EOT;
 
 } 
     //we still need to show buttons to add/edit albums
     echo <<< EOT
-                        <button type="button" id="delete_album" name="delete_album" class="button" value="{$lang_albmgr_php['delete_album']}" disabled="disabled">{$icon_array['delete']}{$lang_albmgr_php['delete_album']}</button>
+                        <button type="button" id="delete_album" name="delete_album" class="button" value="{$lang_albmgr_php['delete_album']}" disabled="disabled" title="{$lang_albmgr_php['delete_album']}">{$icon_array['delete']}</button>
+                        &nbsp;&nbsp;&nbsp;
                         <button type="button" id="modify_album" name="modify_album" class="button" value="{$lang_common['album_properties']}" disabled="disabled">{$icon_array['modifyalb']}{$lang_common['album_properties']}</button>
                         <button type="button" id="editfiles_album" name="editfiles_album" class="button" value="{$lang_common['edit_files']}" disabled="disabled">{$icon_array['edit_files']}{$lang_common['edit_files']}</button>
                         <button type="button" id="thumbnail_album" name="thumbnail_album" class="button" value="{$lang_common['thumbnail_view']}" disabled="disabled">{$icon_array['thumbnail']}{$lang_common['thumbnail_view']}</button>
+                        &nbsp;&nbsp;&nbsp;
                         <button type="button" id="add_new_album" name="add_new_album" class="button" value="{$lang_albmgr_php['new_album']}">{$icon_array['new']}{$lang_albmgr_php['new_album']}</button>
                         <img id="loading" class="icon" src="{$prefix}images/loader.gif" style="margin-left: 10px; display: none;" alt="" />
                         <input type="text" id="add-name" name="add-name" size="27" maxlength="80" class="textinput" value="" onkeypress="return Sort.disableEnterKey(event)" style="display: none;" />
