@@ -220,7 +220,7 @@ EOT;
     </tr>
     <tr>
         <td>
-            <table class="tableb album_operate" cellspacing="0" cellpadding="0" border="0">
+            <table class="tableb album_operate" cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tr>
                     <td id="control">
       
