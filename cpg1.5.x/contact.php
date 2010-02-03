@@ -200,7 +200,7 @@ if ($superCage->post->keyExists('submit')) {
                         $ip = 'Unknown';
                     }
 
-        if (cpg_mail($CONFIG['gallery_admin_email'], $subject, $html_message, 'text/html', $sender_name, $sender_email, $message)) {
+        if (!cpg_mail($CONFIG['gallery_admin_email'], $subject, $html_message, 'text/html', $sender_name, $sender_email, $message)) {
             if ($CONFIG['log_mode'] != CPG_NO_LOGGING) {
                 log_write("Sending an email using the contact form failed (name: $sender_name, email: $sender_email, subject: $original_subject, IP: $ip", CPG_MAIL_LOG);
             }
