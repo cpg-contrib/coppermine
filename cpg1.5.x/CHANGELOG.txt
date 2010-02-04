@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-02-04 [C] Added draft for new default theme (work in progress) {GauGau}
+2010-02-04 [C] Added icons for new default theme {GauGau}
 2010-02-04 [B] Fixed sidebar issue (thread ID 63620) {eenemeenemuu}
 2010-02-04 [M] Removed export feature that didn't work as expected {GauGau}
 2010-02-04 [B] Updated Russian language file (user contribution) {GauGau}

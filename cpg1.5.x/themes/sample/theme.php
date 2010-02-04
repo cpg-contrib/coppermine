@@ -667,21 +667,19 @@ $template_thumb_view_title_row = <<<EOT
                 <td style="width:60%;vertical-align:top" class="statlink">
                     <h2>{ALBUM_NAME}</h2>
                 </td>
-                <td style="text-align:right;width:40%;" class="sortorder_cell" id="sortorder_cell">
-                    <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align:right;">
+				<td style="text-align:right;">
 <!-- BEGIN admin_buttons -->
-                    <a href="modifyalb.php?album={ALBUM_ID}" class="admin_menu">{MODIFY}</a>
+                    <a href="modifyalb.php?album={ALBUM_ID}" class="admin_menu" title="{MODIFY_LNK}">{MODIFY_ICO}</a>
                     &nbsp;&nbsp;
-                    <a href="index.php?cat={CAT_ID}" class="admin_menu">{PARENT_CAT}</a>
+                    <a href="index.php?cat={CAT_ID}" class="admin_menu" title="{PARENT_CAT_LNK}">{PARENT_CAT_ICO}</a>
                     &nbsp;&nbsp;
-                    <a href="editpics.php?album={ALBUM_ID}" class="admin_menu">{EDIT_PICS}</a>
+                    <a href="editpics.php?album={ALBUM_ID}" class="admin_menu" title="{EDIT_PICS_LNK}">{EDIT_PICS_ICO}</a>
                     &nbsp;&nbsp;
-                    <a href="albmgr.php?cat={CAT_ID}" class="admin_menu">{ALBUM_MGR}</a>
+                    <a href="albmgr.php?cat={CAT_ID}" class="admin_menu" title="{ALBUM_MGR_LNK}">{ALBUM_MGR_ICO}</a>
 <!-- END admin_buttons -->
+				</td>
+                <td style="text-align:right;" class="sortorder_cell" id="sortorder_cell">
+                    <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
                 </td>
             </tr>
         </table>
@@ -2821,10 +2819,14 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             $param = array(
                 '{ALBUM_ID}'   => $aid,
                 '{CAT_ID}'     => ($cat > 0 ? $cat : $CURRENT_ALBUM_DATA['category']),
-                '{MODIFY}'     => cpg_fetch_icon('modifyalb', 1).$lang_common['album_properties'],
-                '{PARENT_CAT}' => cpg_fetch_icon('category', 1).$lang_common['parent_category'],
-                '{EDIT_PICS}'  => cpg_fetch_icon('edit', 1).$lang_common['edit_files'],
-                '{ALBUM_MGR}'  => cpg_fetch_icon('alb_mgr', 1).$lang_common['album_manager'],
+                '{MODIFY_LNK}'     => $lang_common['album_properties'],
+				'{MODIFY_ICO}'     => cpg_fetch_icon('modifyalb', 1),
+                '{PARENT_CAT_LNK}' => $lang_common['parent_category'],
+				'{PARENT_CAT_ICO}' => cpg_fetch_icon('category', 1),
+                '{EDIT_PICS_LNK}'  => $lang_common['edit_files'],
+				'{EDIT_PICS_ICO}'  => cpg_fetch_icon('edit', 1),
+                '{ALBUM_MGR_LNK}'  => $lang_common['album_manager'],
+				'{ALBUM_MGR_ICO}'  => cpg_fetch_icon('alb_mgr', 1),
             );
         } else {
             $param = array();

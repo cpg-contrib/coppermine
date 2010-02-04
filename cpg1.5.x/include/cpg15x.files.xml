@@ -6023,6 +6023,18 @@
     <hash>3c2bf211050312b42cd90b21bb0ec410</hash>
   </element>
   <element>
+    <fullpath>images/icons/admin_mode_off.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>3c2bf211050312b42cd90b21bb0ec410</hash>
+  </element>
+  <element>
+    <fullpath>images/icons/admin_mode_on.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>3c2bf211050312b42cd90b21bb0ec410</hash>
+  </element>
+  <element>
     <fullpath>images/icons/alb_mgr.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -6317,6 +6329,12 @@
     <hash>b11acaa368a9084a911d1494978cb507</hash>
   </element>
   <element>
+    <fullpath>images/icons/home.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>b11acaa368a9084a911d1494978cb507</hash>
+  </element>
+  <element>
     <fullpath>images/icons/ignore.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -6389,10 +6407,22 @@
     <hash>3f7774ed59c80da02617bd7e8b89b7d6</hash>
   </element>
   <element>
+    <fullpath>images/icons/logout.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>3f7774ed59c80da02617bd7e8b89b7d6</hash>
+  </element>
+  <element>
     <fullpath>images/icons/mail.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>86466adf6fb9c4ca5f27656327809ef0</hash>
+  </element>
+  <element>
+    <fullpath>images/icons/memberlist.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>3f7774ed59c80da02617bd7e8b89b7d6</hash>
   </element>
   <element>
     <fullpath>images/icons/modifyalb.png</fullpath>
@@ -6411,6 +6441,12 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>9bc5bac4104a66926de91757366df19e</hash>
+  </element>
+  <element>
+    <fullpath>images/icons/my_gallery.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>3f7774ed59c80da02617bd7e8b89b7d6</hash>
   </element>
   <element>
     <fullpath>images/icons/my_profile.png</fullpath>
@@ -6540,6 +6576,12 @@
   </element>
   <element>
     <fullpath>images/icons/show_table_row.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>39829031bdf4bb857ce094794edfe0bd</hash>
+  </element>
+  <element>
+    <fullpath>images/icons/sidebar.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>39829031bdf4bb857ce094794edfe0bd</hash>
@@ -10681,6 +10723,18 @@
     <hash>3c2bf211050312b42cd90b21bb0ec410</hash>
   </element>
   <element>
+    <fullpath>themes/classic/images/icons/admin_mode_off.png</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>3c2bf211050312b42cd90b21bb0ec410</hash>
+  </element>
+  <element>
+    <fullpath>themes/classic/images/icons/admin_mode_on.png</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>3c2bf211050312b42cd90b21bb0ec410</hash>
+  </element>
+  <element>
     <fullpath>themes/classic/images/icons/alb_mgr.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
@@ -10975,6 +11029,12 @@
     <hash>b11acaa368a9084a911d1494978cb507</hash>
   </element>
   <element>
+    <fullpath>themes/classic/images/icons/home.png</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>b11acaa368a9084a911d1494978cb507</hash>
+  </element>
+  <element>
     <fullpath>themes/classic/images/icons/ignore.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
@@ -11047,10 +11107,22 @@
     <hash>3f7774ed59c80da02617bd7e8b89b7d6</hash>
   </element>
   <element>
+    <fullpath>themes/classic/images/icons/logout.png</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>3f7774ed59c80da02617bd7e8b89b7d6</hash>
+  </element>
+  <element>
     <fullpath>themes/classic/images/icons/mail.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
     <hash>6b646de466698ca4fbde5c8852ddae11</hash>
+  </element>
+  <element>
+    <fullpath>themes/classic/images/icons/memberlist.png</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>3f7774ed59c80da02617bd7e8b89b7d6</hash>
   </element>
   <element>
     <fullpath>themes/classic/images/icons/modifyalb.png</fullpath>
@@ -11069,6 +11141,12 @@
     <status>optional</status>
     <permission>read</permission>
     <hash>9bc5bac4104a66926de91757366df19e</hash>
+  </element>
+  <element>
+    <fullpath>themes/classic/images/icons/my_gallery.png</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>3f7774ed59c80da02617bd7e8b89b7d6</hash>
   </element>
   <element>
     <fullpath>themes/classic/images/icons/my_profile.png</fullpath>
@@ -11198,6 +11276,12 @@
   </element>
   <element>
     <fullpath>themes/classic/images/icons/show_table_row.png</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>39829031bdf4bb857ce094794edfe0bd</hash>
+  </element>
+  <element>
+    <fullpath>themes/classic/images/icons/sidebar.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
     <hash>39829031bdf4bb857ce094794edfe0bd</hash>
