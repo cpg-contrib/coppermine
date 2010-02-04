@@ -308,8 +308,8 @@ function get_tree_album_data($category,$dtree_parent) {
         $album_filter='';
         $pic_filter='';
         if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
-                $album_filter = ' and '.str_replace('p.','a.',$FORBIDDEN_SET);
-                $pic_filter = ' and '.str_replace('p.',$CONFIG['TABLE_PICTURES'].'.',$FORBIDDEN_SET);
+                $album_filter = ' '.str_replace('p.','a.',$FORBIDDEN_SET);
+                $pic_filter = ' '.str_replace('p.',$CONFIG['TABLE_PICTURES'].'.',$FORBIDDEN_SET);
         }
         if ($category == USER_GAL_CAT) {
                 $sql = "SELECT DISTINCT user_id, user_name FROM {$CONFIG['TABLE_USERS']}, {$CONFIG['TABLE_ALBUMS']} WHERE  10000 + {$CONFIG['TABLE_USERS']}.user_id = {$CONFIG['TABLE_ALBUMS']}.category ORDER BY user_name ASC";
