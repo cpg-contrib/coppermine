@@ -239,8 +239,6 @@ $lang_gallery_admin_menu['exifmgr_lnk'] = 'Менеджер EXIF'; // cpg1.5
 $lang_gallery_admin_menu['exifmgr_title'] = 'Управление отображением EXIF (если соответствующая опция включена в конфигурации галереи).'; // cpg1.5
 $lang_gallery_admin_menu['shownews_lnk'] = 'Показать новости'; // cpg1.5
 $lang_gallery_admin_menu['shownews_title'] = 'Отображать новости с coppermine-gallery.net'; // cpg1.5
-$lang_gallery_admin_menu['export_lnk'] = 'Экспорт'; // cpg1.5
-$lang_gallery_admin_menu['export_title'] = 'Экспортировать файлы и альбомы к папку'; // cpg1.5
 
 $lang_user_admin_menu['albmgr_title'] = 'Создать и упорядочить мои альбомы';
 $lang_user_admin_menu['albmgr_lnk'] = 'Создать и упорядочить мои альбомы';
@@ -1303,18 +1301,6 @@ $lang_editpics_php['note_approve_private'] = 'Файлы, перемещаемы
 $lang_editpics_php['note_edit_control'] = 'Файлы, перемещенный в публичный альбомы не смогут быть изменены.'; // cpg1.5
 $lang_editpics_php['confirm_move'] = 'Вы уверены, что хотите переместить эти файлы?'; // cpg1.5 //js-alert
 $lang_editpics_php['success_changes'] = 'Изменения успешно сохранены'; // cpg1.5
-}
-
-// ------------------------------------------------------------------------- //
-// File export.php
-// ------------------------------------------------------------------------- //
-if (defined('EXPORT_PHP')) {
-$lang_export_php['export'] = 'Экспорт'; // cpg 1.5
-$lang_export_php['export_type'] = 'Тип экспорта:'; // cpg 1.5
-$lang_export_php['html'] = 'Отформатированный HTML'; // cpg 1.5
-$lang_export_php['images'] = 'Только изображения'; // cpg 1.5
-$lang_export_php['export_directory'] = 'Экспортировать директорию:'; // cpg 1.5
-$lang_export_php['processing'] = 'Обработка...'; // cpg 1.5
 }
 
 // ------------------------------------------------------------------------- //

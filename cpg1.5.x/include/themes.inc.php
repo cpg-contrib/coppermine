@@ -292,9 +292,6 @@ $template_gallery_admin_menu = <<<EOT
                             <!-- BEGIN update_database -->
                                 <div class="admin_menu admin_float"><a href="update.php" title="{UPDATE_DATABASE_TITLE}">{UPDATE_DATABASE_ICO}{UPDATE_DATABASE_LNK}</a></div>
                             <!-- END update_database -->
-                            <!-- BEGIN export -->
-                              <div class="admin_menu admin_float"><a href="export.php" title="{EXPORT_TITLE}">{EXPORT_ICO}{EXPORT_LNK}</a></div>
-                            <!-- END export -->
                             <!-- BEGIN php_info -->
                                 <div class="admin_menu admin_float"><a href="phpinfo.php" title="{PHPINFO_TITLE}">{PHPINFO_ICO}{PHPINFO_LNK}</a></div>
                             <!-- END php_info -->
@@ -2395,9 +2392,6 @@ function theme_admin_mode_menu()
                 '{SHOWNEWS_TITLE}' => $lang_gallery_admin_menu['shownews_title'],
                 '{SHOWNEWS_LNK}' => $lang_gallery_admin_menu['shownews_lnk'],
                 '{SHOWNEWS_ICO}' => cpg_fetch_icon('news_show', 1),
-                '{EXPORT_TITLE}' => $lang_gallery_admin_menu['export_title'],
-                '{EXPORT_LNK}' => $lang_gallery_admin_menu['export_lnk'],
-                '{EXPORT_ICO}' => cpg_fetch_icon('export', 1),
                 '{TIME_STAMP}' => date('His').trim(floor(rand(0, 1000))),
                 );
 

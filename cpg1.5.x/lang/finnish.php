@@ -239,8 +239,6 @@ $lang_gallery_admin_menu['exifmgr_lnk'] = 'EXIF -tietojen hallinta'; // cpg1.5
 $lang_gallery_admin_menu['exifmgr_title'] = 'Hallise EXIF -tietojen näyttämistä (jos tarvittava asetus on päällä)'; // cpg1.5
 $lang_gallery_admin_menu['shownews_lnk'] = 'Näytä uutiset'; // cpg1.5
 $lang_gallery_admin_menu['shownews_title'] = 'Näytä uutisia coppermine-gallery.net:istä'; // cpg1.5
-$lang_gallery_admin_menu['export_lnk'] = 'Vie'; // cpg1.5
-$lang_gallery_admin_menu['export_title'] = 'Vie tiedostoja ja albumeita toiseen kansioon'; // cpg1.5
 
 $lang_user_admin_menu['albmgr_title'] = 'Luo ja järjestele albumeita';
 $lang_user_admin_menu['albmgr_lnk'] = 'Luo ja järjestele albumeita';
@@ -1303,18 +1301,6 @@ $lang_editpics_php['note_approve_private'] = 'Omaan albumiin siirretyt tiedostot
 $lang_editpics_php['note_edit_control'] = 'Julkiseen albumiin siirrettyjä tiedostoja ei voi muokata.'; // cpg1.5
 $lang_editpics_php['confirm_move'] = 'Haluatko varmasti siirtää tämän tiedoston?'; // cpg1.5 //js-alert
 $lang_editpics_php['success_changes'] = 'Muutokset tallennettiin onnistuneesti'; // cpg1.5
-}
-
-// ------------------------------------------------------------------------- //
-// File export.php
-// ------------------------------------------------------------------------- //
-if (defined('EXPORT_PHP')) {
-$lang_export_php['export'] = 'Vie'; // cpg 1.5
-$lang_export_php['export_type'] = 'Viennin tyyppi:'; // cpg 1.5
-$lang_export_php['html'] = 'Muotoiltu HTML'; // cpg 1.5
-$lang_export_php['images'] = 'Vain kuvat'; // cpg 1.5
-$lang_export_php['export_directory'] = 'Kohde hakemisto:'; // cpg 1.5
-$lang_export_php['processing'] = 'Työskennellään...'; // cpg 1.5
 }
 
 // ------------------------------------------------------------------------- //

@@ -240,8 +240,6 @@ $lang_gallery_admin_menu['exifmgr_lnk'] = 'Gestion EXIF'; // cpg1.5.x
 $lang_gallery_admin_menu['exifmgr_title'] = 'Gérer l\'affichage des données EXIF (si l\'option correspondante est cochée dans la configuration).'; // cpg1.5.x
 $lang_gallery_admin_menu['shownews_lnk'] = 'Montrer les News'; // cpg1.5.x
 $lang_gallery_admin_menu['shownews_title'] = 'Afficher le News de coppermine-gallery.net'; // cpg1.5.x
-$lang_gallery_admin_menu['export_lnk'] = 'Export'; // cpg1.5
-$lang_gallery_admin_menu['export_title'] = 'Exportez des fichiers et des Albums vers votre disque dur'; // cpg1.5
 
 $lang_user_admin_menu['albmgr_title'] = 'Créer et classer mes Albums';
 $lang_user_admin_menu['albmgr_lnk'] = 'Créer / classer mes Albums';
@@ -1306,18 +1304,6 @@ if (defined('EDITPICS_PHP')) {
   $lang_editpics_php['success_changes'] = 'Modifications sauvegardées avec succès'; // cpg1.5
 }
 
-// ------------------------------------------------------------------------- //
-// File export.php
-// ------------------------------------------------------------------------- //
-if (defined('EXPORT_PHP')) {
-  $lang_export_php['export'] = 'Export'; //cpg 1.5
-  $lang_export_php['export_type'] = 'Type d\'Export :'; //cpg 1.5
-  $lang_export_php['html'] = 'Format HTML'; //cpg 1.5
-  $lang_export_php['images'] = 'Uniquement les Images'; //cpg 1.5
-  $lang_export_php['export_directory'] = 'Répertoire d\'Export :'; //cpg 1.5
-  $lang_export_php['processing'] = 'En cours...'; //cpg 1.5
-} 
-  
 // ----------------------- //
 // File forgot_passwd.php
 // ----------------------- //

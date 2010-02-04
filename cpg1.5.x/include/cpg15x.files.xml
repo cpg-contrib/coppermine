@@ -191,14 +191,6 @@
     <hash>d6316bb40fc36b10af037fc34363ffa9</hash>
   </element>
   <element>
-    <fullpath>export.php</fullpath>
-    <version>1.5.2</version>
-    <revision>6360</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>3d1730e009ebb03cc0d2ef3c085c3e65</hash>
-  </element>
-  <element>
     <fullpath>favicon.ico</fullpath>
     <status>optional</status>
     <permission>read</permission>
@@ -6247,12 +6239,6 @@
     <hash>0740a3d4e9b79691723de10a8067d28d</hash>
   </element>
   <element>
-    <fullpath>images/icons/export.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>c8350e581e833029d4f5aeb69012a661</hash>
-  </element>
-  <element>
     <fullpath>images/icons/favorites.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -10909,12 +10895,6 @@
     <status>optional</status>
     <permission>read</permission>
     <hash>0740a3d4e9b79691723de10a8067d28d</hash>
-  </element>
-  <element>
-    <fullpath>themes/classic/images/icons/export.png</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>c8350e581e833029d4f5aeb69012a661</hash>
   </element>
   <element>
     <fullpath>themes/classic/images/icons/favorites.png</fullpath>

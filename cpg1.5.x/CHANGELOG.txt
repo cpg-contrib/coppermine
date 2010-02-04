@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-02-04 [M] Removed export feature that didn't work as expected {GauGau}
 2010-02-04 [B] Updated Russian language file (user contribution) {GauGau}
 2010-02-03 [C] Fixed punctuation dupes in ban manager (thread ID 63594) {eenemeenemuu}
 2010-02-03 [C] Removed text on some buttons on album manager for space reasons (thread ID 63596) {GauGau}
