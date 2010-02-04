@@ -306,13 +306,13 @@ if ($superCage->post->keyExists('submit')) {
         // Plausibility control - make sure that some fool doesn't ban himself --- start
         if ($post_user_name == USER_NAME) {
             // Someone tried to ban himself by username.
-            $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_admin_ban'] . '! ' . $lang_banning_php['skipping'] . '</li>';
+            $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_admin_ban'] . ' ' . $lang_banning_php['skipping'] . '</li>';
             $post_user_name = ''; // Clear the record
         }
         if ($post_ip != '') { // Only perform the IP address check if an IP address has been submit --- start
             if ($post_ip == $REMOTE_ADDR || $post_ip == $superCage->server->getRaw("REMOTE_ADDR") || ($superCage->env->getRaw("REMOTE_ADDR") && $post_ip == $superCage->post->getRaw("REMOTE_ADDR"))) {
                 // Someone tried to ban himself by IP address.
-                $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_admin_ban'] . '! ' . $lang_banning_php['skipping'] . '</li>';
+                $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_admin_ban'] . ' ' . $lang_banning_php['skipping'] . '</li>';
                 $post_ip        = ''; // Clear the record
             }
             if ($post_ip == $SERVER_ADDR || $post_ip == $superCage->server->getRaw("SERVER_ADDR") || $post_ip == $superCage->env->getRaw("SERVER_ADDR")) {
@@ -407,18 +407,18 @@ if ($superCage->post->keyExists('submit')) {
     // Plausibility control - make sure that some fool doesn't ban himself --- start
     if ($post_user_name == USER_NAME) {
         // Someone tried to ban himself by username.
-        $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_admin_ban'] . '! ' . $lang_banning_php['skipping'] . '</li>';
+        $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_admin_ban'] . ' ' . $lang_banning_php['skipping'] . '</li>';
         $post_user_name = ''; // Clear the record
     }
     if ($post_ip != '') { // Only perform the IP address check if an IP address has been submit --- start
         if ($post_ip == $REMOTE_ADDR || $post_ip == $superCage->server->getRaw("REMOTE_ADDR") || ($superCage->env->getRaw("REMOTE_ADDR") && $post_ip == $superCage->post->getRaw("REMOTE_ADDR"))) {
             // Someone tried to ban himself by IP address.
-            $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_admin_ban'] . '! ' . $lang_banning_php['skipping'] . '</li>';
+            $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_admin_ban'] . ' ' . $lang_banning_php['skipping'] . '</li>';
             $post_ip        = ''; // Clear the record
         }
         if ($post_ip == $SERVER_ADDR || $post_ip == $superCage->server->getRaw("SERVER_ADDR") || $post_ip == $superCage->env->getRaw("SERVER_ADDR")) {
             // Someone tried to ban the server's IP address.
-            $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_server_ban'] . '! ' . $lang_banning_php['skipping'] . '</li>';
+            $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . $lang_banning_php['error_server_ban'] . ' ' . $lang_banning_php['skipping'] . '</li>';
             $post_ip        = ''; // Clear the record
         }
     } // Only perform the IP address check if an IP address has been submit --- end
@@ -426,19 +426,19 @@ if ($superCage->post->keyExists('submit')) {
     // Double record control - make sure that the record doesn't already exist in the database --- start
     if ($post_user_name != '') {
         if (mysql_num_rows(cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_BANNED']} WHERE user_name = '{$post_user_name}' AND brute_force = 0 LIMIT 1"))) {
-            $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . sprintf($lang_banning_php['ban_record_x_already_exists'], $post_user_name) . '! ' . $lang_banning_php['skipping'] . '</li>';
+            $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . sprintf($lang_banning_php['ban_record_x_already_exists'], $post_user_name) . ' ' . $lang_banning_php['skipping'] . '</li>';
             $post_user_name = '';
         }
     }
     if ($post_email != '') {
         if (mysql_num_rows(cpg_db_query("SELECT email FROM {$CONFIG['TABLE_BANNED']} WHERE email = '{$post_email}' AND brute_force = 0 LIMIT 1"))) {
-            $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . sprintf($lang_banning_php['ban_record_x_already_exists'], $post_email) . '! ' . $lang_banning_php['skipping'] . '</li>';
+            $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . sprintf($lang_banning_php['ban_record_x_already_exists'], $post_email) . ' ' . $lang_banning_php['skipping'] . '</li>';
             $post_email     = '';
         }
     }
     if ($post_ip != '') {
         if (mysql_num_rows(cpg_db_query("SELECT ip_addr FROM {$CONFIG['TABLE_BANNED']} WHERE ip_addr = '{$post_ip}' AND brute_force = 0 LIMIT 1"))) {
-            $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . sprintf($lang_banning_php['ban_record_x_already_exists'], $post_ip) . '! ' . $lang_banning_php['skipping'] . '</li>';
+            $action_output .= '<li style="list-style-image:url(images/icons/stop.png)">' . sprintf($lang_banning_php['ban_record_x_already_exists'], $post_ip) . ' ' . $lang_banning_php['skipping'] . '</li>';
             $post_ip        = '';
         }
     } 
