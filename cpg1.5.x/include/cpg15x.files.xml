@@ -10002,6 +10002,22 @@
     <permission>read</permission>
   </element>
   <element>
+    <fullpath>lang/bulgarian.php</fullpath>
+    <version>1.5.2</version>
+    <revision>6583</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>0abb944bf1f278705a2afa0e4ae7d418</hash>
+  </element>
+  <element>
+    <fullpath>lang/chinese_gb.php</fullpath>
+    <version>1.5.2</version>
+    <revision>6583</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>0abb944bf1f278705a2afa0e4ae7d418</hash>
+  </element>
+  <element>
     <fullpath>lang/english.php</fullpath>
     <version>1.5.2</version>
     <revision>6645</revision>
@@ -10047,6 +10063,22 @@
     <status>optional</status>
     <permission>read</permission>
     <hash>d48d8e3af0cdd6fd96ff18e9f8be50eb</hash>
+  </element>
+  <element>
+    <fullpath>lang/polish.php</fullpath>
+    <version>1.5.2</version>
+    <revision>6583</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>0abb944bf1f278705a2afa0e4ae7d418</hash>
+  </element>
+  <element>
+    <fullpath>lang/russian.php</fullpath>
+    <version>1.5.2</version>
+    <revision>6583</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>0abb944bf1f278705a2afa0e4ae7d418</hash>
   </element>
   <element>
     <fullpath>js/</fullpath>
