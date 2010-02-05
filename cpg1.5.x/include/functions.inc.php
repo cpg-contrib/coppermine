@@ -2226,6 +2226,11 @@ function get_pic_pos($album, $pid)
     case 'favpics': // Favorite Files
 
         global $FAVPICS;
+        
+        if (empty($FAVPICS)) {
+            return 0;
+        }
+        
         $favs = implode(', ', $FAVPICS);
     
         $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p

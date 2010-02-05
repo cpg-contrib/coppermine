@@ -239,11 +239,11 @@ if ($search_string && isset($search_params['params'])) {
                 $direction = "";
             }
 
-            $sort_order = "$criteria $direction '$criteria_pid' OR ($criteria = '$criteria_pid' AND pid < $pid)";
+            $sort_order = "$criteria $direction '$criteria_pid' OR $criteria = '$criteria_pid' AND pid < $pid";
 
             $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']}
                 WHERE $sql
-                AND $sort_order";
+                AND ($sort_order)";
 
                 $result = cpg_db_query($query);
 
