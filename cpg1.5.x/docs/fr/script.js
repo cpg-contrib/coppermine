@@ -373,8 +373,8 @@ doc_toc += '          <li><a href="configuration.htm#admin_comment_start">Param�
 doc_toc += '          <li><a href="configuration.htm#admin_contact_start">Paramètres du formulaire de Contacts</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_thumb_start">Paramètres des vignettes </a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_picture_thumbnail">Paramètres des Fichiers</a></li>\n';
-doc_toc += '          <li><a href="configuration.htm#admin_watermarking" class="en">Image watermarking</a></li>\n';
-doc_toc += '          <li><a href="configuration.htm#admin_registration" class="en">Registration</a></li>\n';
+doc_toc += '          <li><a href="configuration.htm#admin_watermarking">Filigrane d\'Images </a></li>\n';
+doc_toc += '          <li><a href="configuration.htm#admin_registration">Enregistrement </a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_user" class="en">User settings</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_custom" class="en">Custom fields for user profile</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_custom_image" class="en">Custom fields for image description</a></li>\n';

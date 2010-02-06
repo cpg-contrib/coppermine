@@ -664,12 +664,12 @@ Merci de ne pas poser de questions sur la manière de se procure une clé API su
 <a name="admin_comment_akismet_group_end"></a>
 <hr />
 
-<a name="admin_comment_promote_registration_start"></a><h3>Demander aux Visiteurs de s'identifier pour poster des Commentaires   	   	 <a href="#admin_comment_promote_registration_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="admin_comment_promote_Enregistrement _start"></a><h3>Demander aux Visiteurs de s'identifier pour poster des Commentaires   	   	 <a href="#admin_comment_promote_Enregistrement _start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Lorsquelle est activée, un texte apparait au bas de la section des commentaires pour les utilisateurs anonymes (invités) qui explique qu'ils doivent s'enregistrer pour pouvoir poster des commentaires. C'est fait pour encourager l'enregistrement, en expliquant à vos visiteurs qu'ils peuvent inter-agir plus en s'enregistrant.<br />
 Bien entendu, ce message n'est affiché que si vous n'avez pas autorisé les commentaires pour les invités auparavanr (vous faites celà dans le <a href="#group_cp">panneau de contrôle des groupes</a>). C'est pourquoi ce choix ne tiens pas compte du fait qu'il <strong>y ait</strong> actuellement un groupe d'utilisateur autorisé à poster des commentaires. Si vous n'autorisez pas les utilisateurs enregistrés à poster des commentaires, n'activez pas cette fonction.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Commentaires  &rarr; Demander aux Visiteurs de s'identifier pour poster des Commentaires   	   	 </p>
 
-<a name="admin_comment_promote_registration_end"></a>
+<a name="admin_comment_promote_Enregistrement _end"></a>
 
 <a name="admin_comment_end"></a>
 
@@ -1122,151 +1122,152 @@ OpenOffice 1.x / StarOffice 6.x: sxw/stw/sxc/stc/sxd/std/sxi/sti/sxg/sxm</p>
 <a name="admin_picture_thumb_advanced_end"></a>
 
 
-<a name="admin_watermarking"></a><h2>Image watermarking<a href="#admin_watermarking" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Starting with cpg1.5.x Coppermine comes with support for permanently watermarking pictures with the possibility to undo the watermarking. Use watermarking to protect your images against theft.</p>
-<p>Details on <a href="watermarking.htm#watermark">watermarking</a> can be found on the corresponding article in the docs.</p>
+<a name="admin_watermarking"></a><h2>Filigrane d'Images <a href="#admin_watermarking" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Depuis cpg1.5.x Coppermine contient une fonction de filigrane d'image avec la possibilité de d'annulation de ce filigrane. Utilisez la fonction de filigrane d'image pour protéger vos images contre le vol.</p>
+<p>Les détails sur <a href="watermarking.htm#watermark">le filigrane d'image</a> peuvent être trouvés dans l'article correspondant de la documentation.</p>
 <hr />
-<a name="admin_watermarking_enable"></a><h3>Watermark Image<a href="#admin_watermarking_enable" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>General toggle that determines if watermarking should be enabled or disabled. By default, it is disabled.</p>
-<p class="cpg_message_info">As watermarking actually means that each picture needs to be re-calculated during the upload stage, there may be issues with memory consumption and speed. If you experience issues with watermarking, turn it off or ask your webhost to increase server-sided settings that have an impact on watermarking.<br />
-Also keep in mind that the re-calculation of the image will result in a loss of quality.</p>
-<p>Remember as well that watermarking will not only have an impact on the quality and recources consumption (in turns of burning CPU cycles on the server), but as well in the consumption of webspace: when watermarking is enabled, coppermine will keep a safe, unmodified copy of the orginal image (prefixed with "orig_") in the same folder your watermarked file will reside and thus consume additional webspace.<br />
-You can use the <a href="admin-tools.htm#admin_tools">admin tools</a> to get rid of this copy as well, ,but you have to keep in mind then that there is not turning back in this case: if you delete the unmarked original, you can never go back or apply another watermark.</p>
-<p class="cpg_message_warning">When enabling this option, you have to understand that watermarks are not automatically being applied to all files that already exist in your gallery. When enabled, only images that get uploaded from that point on will become watermarked. If you want to apply watermarking to all the images that already existed in your coppermine gallery before you enabled watermarking, take a look at the corresponding section of the admin tools. However, before applying your new watermark permanently to all your images, perform some test uploads first to see if watermarking works as expected for you.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Watermark Image</p>
+<a name="admin_watermarking_enable"></a><h3>filigrane d'Image(Watermark)<a href="#admin_watermarking_enable" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Choix général déterminant si la fonction de Filigrane d'image doit être activée ou pas. Elle est désactivée par défaut.</p>
+<p class="cpg_message_info">Comme la mise ne place d'un filigrane implique que chaque image doit être recalculée pendant l'étape de téléchargement, il peut y avoir des problèmes de consomation de mémoire et de vitesse d'execution. Si vous rencontrez ce genre de problèmes avec le filigrane, désactivez la fonction et demandez a votre hébergeur d'augmenter du côté du serveur les paramètres qui ont un impact sur le filigrane.<br />
+Gardez aussi en mémoire que le recalcul des images ont pour concéquence une perte de qualité.</p>
+<p>Rappelez vous aussi que la mise en place d'un filigrane n'a pas qu'un impact sur la qualité et la consomation de ressources (par l'utilisation de plus de cycles du processeur du serveur), mais aussi dans la consomation d'espace web: lors de la mise ne place du filigrane, Coppermine va garder une copie propre non modifiée de l'image originale (préfixe "orig_") dans le même répertoire que celui ou est placée l'image filigranées, et celle ci utilise de l'espace web.<br />
+Vous pouvez utiliser <a href="admin-tools.htm#admin_tools">le utilitaires d'administration</a> pour effacer cette copie, mais vous devrez garder en mémoire que dans cas, il n'y a pas de case "reour en arrière": si vous effacez l'image originale sans filigrane, vous ne pourrez jamais revenir en arrière ou appliquer un autre filigrane.</p>
+<p class="cpg_message_warning">En activant cette option, vous devez comprendre que le filigrane ne sera pas appliqué automatiquement à toutes les images qui existent déjà dans votre galerie. Après l'activation, seules les images téléchargées à partir de ce moment auront un filigrane. Siv vous voulez mettre un filigrane à toutes les images déjà présentes dans votr egalerie avant l'activation de cette fonction, regardez dans la section correspondante des utilitaires d'administration. Toutefois, avant d'appliquer un filigrane permanant à toutes vos images, faites quelques tests pour vérifier que la fonction filigrane fonctionne correctement pour vous.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; filigrane d'Image &rarr; filigrane d'Image</p>
 
 <a name="admin_watermarking_enable_end"></a>
 <hr />
-<a name="admin_watermarking_custom_thumb"></a><h3>Watermark custom thumbs (movie, audio, document)<a href="#admin_watermarking_custom_thumb" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, custom thumbnails will be watermarked as well.</p>
-<p>If you don't use custom thumbnails, don't worry about this option.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Watermark custom thumbs</p>
+<a name="admin_watermarking_custom_thumb"></a><h3>Mettre un filigrane sur les vignettes personnalisées (vidéos, audio, documents)<a href="#admin_watermarking_custom_thumb" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si cette option est activée, les vignettes personnalisées seront aussi filigrannées.</p>
+<p>Si vous n'utilisez pas cette focntion, ne vous souciez pas de cette option.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; filigrane d'Image &rarr; Mettre un filigrane sur les vignettes personnalisées</p>
 
 <a name="admin_watermarking_custom_thumb_end"></a>
 <hr />
-<a name="admin_watermarking_orientation"></a><h3>Where to place the watermark<a href="#admin_watermarking_orientation" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Determines <strong>where</strong> the watermark is supposed to be displayed on each picture. Possible options are:</p>
+<a name="admin_watermarking_orientation"></a><h3>Emplacement du filigrane<a href="#admin_watermarking_orientation" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Détermine <strong>ou</strong> le filigrane doit être placé. Les options possibles sont:</p>
 <ul>
-  <li>Bottom right</li>
-  <li>Bottom left</li>
-  <li>Up right</li>
-  <li>Up left</li>
-  <li>Center</li>
+  <li>Bas droite</li>
+  <li>Bas gauche</li>
+  <li>Haut droite</li>
+  <li>Haut gauche</li>
+  <li>Centre</li>
 </ul>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Where to place the watermark</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; filigrane d'Image &rarr; Emplacement du filigrane</p>
 
 <a name="admin_watermarking_orientation_end"></a>
 <hr />
-<a name="admin_watermarking_filetype"></a><h3>Which files to watermark<a href="#admin_watermarking_filetype" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Determines which files the watermarking should be applied to. Possible options are:</p>
+<a name="admin_watermarking_filetype"></a><h3>Sur quel fichier mettre le filigrane <a href="#admin_watermarking_filetype" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Défini sur quels fichiers appliquer le filigrane. Les options possibles sont:</p>
 <ul>
-  <li>Original (full-size)</li>
-  <li>Resized (intermediate)</li>
-  <li>Both (which is default)</li>
+  <li>Originale (Grande taille)</li>
+  <li>Redimenssionnées (intérmediaires)</li>
+  <li>Les deux (par défaut)</li>
 </ul>
-<p>All three options make sense in different environments: if you want to use watermarking to encourage your users to register, you should apply the watermark to resized image (intermediate images) only and only allow registered users to access the original (full-sized) images. On the other hand, if you only want to make sure that your high-resolution full-size images are not being stolen, apply the watermark to the original only.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Which files to watermark</p>
+<p>Les trosi options ont un sens dans des environnents différents: si vous utilisez le filigrane pour encourager vos visiteurs à s'enregistrer, vous devrez appliquer le filigrane aux images recadrées (intermédiaires) uniquement, et n'autoriser l'accès aux images origonales qu'aux utilisateurs enregistrés. D'un autre côté, si vous voulez uniquement vous assurez que vos images originales en haute résolution ne soient pas volées, n'appliquez le filigrane que sur celles-ci.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Filigrane d'Image &rarr; Sur quel fichier mettre le filigrane </p>
 
 <a name="admin_watermarking_filetype_end"></a>
 <hr />
-<a name="admin_watermarking_filepath"></a><h3>Which file to use for watermark<a href="#admin_watermarking_filepath" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><img src="../../images/watermark.png" border="0" width="300" height="51" alt="" align="left" />Specify the relative path to the watermark file, seen from the root folder of your coppermine-gallery. Default value: <tt class="code">images/watermark.png</tt>. You can (and are even encouraged) to come up with a watermarking file of your own - only a standard desktop drawing application is needed, e.g. MS Paint.</p>
-<p>Coppermine only comes with a sample watermarking file that you should not apply lightheartedly, as it is only meant for testing purposes and to give you an idea how the watermarking file could look like. You have to come up with your custom watermark file and FTP-upload that file to your webserver. It's a good idea to name it accordingly, e.g. "custom_watermark.png" and upload it to the <tt class="code">images</tt> folder (<tt class="code">http://your_domain.tld/your_coppermine_folder/images/</tt>). All you then have to do is change the setting for "Which file to use for watermark" to <tt class="code">images/custom_watermark.png</tt>.</p>
-<p>Coming up with a custom watermark can be tricky: it should work well both for dark as well as light backgrounds. You have to find a good compromise: the watermarked files should be still OK to look at, while on the other hand potential image thieves should get discouraged to steal your watermarked images.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Which file to use for watermark</p>
+<a name="admin_watermarking_filepath"></a><h3>Quel fichier Utiliser pour le filigrane<a href="#admin_watermarking_filepath" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p><img src="../../images/watermark.png" border="0" width="300" height="51" alt="" align="left" />Détermine le chemin relatif au fichier filigrane, vu depuis le répertoire racine de votr egalerie Coppermine. La valeur par défaut est: <tt class="code">images/watermark.png</tt>. Vous pouvez (et êtes même encouragés) à prendre votre propre fichier filigrane- seule une application standart de dessin est nécessaire (ex: MS Paint).</p>
+<p>Coppermine inclue seulement un fichier filigranne qui ne doit pas être utilisé de manière irréfléchie, puisqu'il n'est la que pour pouvoir faire des tests et pour vous donner une idée de ce à quoi peut ressemble un fichier filigrane. Vous devrez créer votre propre fichier filigrane et le télécharger via FTP sur votre serveur. C'est une bonne idée de le nommer en fonction, ex. "filigrane_perso.png" et de le télécharger dans le répertoire <tt class="code">images</tt>  (<tt class="code">http://votre_domaine.com/votre_repertoire_Coppermine/images/</tt>). Tout ce que vous aurez à faire alors, est de changer le paramètre pour "Quel fichier Utiliser pour le filigrane" par <tt class="code">images/filigrane_perso.png</tt>.</p>
+<p>Créer un filigrane personnalisé peut devenir complexe: il doit en effet convenir à la fois aux fonds foncés qu'aux fonds clairs. Vous devrez trouver le bon compromis: le fichier filigrane devra avoir un aspect visuel correct tout en décourageant les voleurs éventuels de vos images filigranées.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Filigrane d'Image &rarr; Quel fichier Utiliser pour le filigrane</p>
 
 <a name="admin_watermarking_filepath_end"></a>
 <hr />
-<a name="admin_watermarking_transparency"></a><h3>Transparency 0-100 for entire image<a href="#admin_watermarking_transparency" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Determines the transparency level for the watermark. By setting transparency you can make your image blend nicely into the pictures you upload that get watermarked.</p>
-<p>Default is 40</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Transparency 0-100 for entire image</p>
+<a name="admin_watermarking_transparency"></a><h3>Transparence pour les images entières <a href="#admin_watermarking_transparency" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Détermine le degré de transparence pour le filigrane. en paramétrant la transparence, vous pourrez donner un aspect correct à vos images téléchargées, lors de l'application du filigrane.</p>
+<p>La valeur par défaut est 40</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Filigrane d'Image &rarr; Transparence pour les images entières </p>
 
 <a name="admin_watermarking_transparency_end"></a>
 <hr />
-<a name="admin_watermarking_downsize"></a><h3>Downsize watermark if width of an picture is smaller than entered value<a href="#admin_watermarking_downsize" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>That is the 100% reference point. Resizing of the watermark is linear (0 to disable).</p>
-<p>Keep in mind that images might get uploaded by your users (if you allow uploads by others than the admin) that you might not have made up your mind about: the image uploaded may be smaller in resolution. If the dimension of the image uploaded is smaller than the dimension of your watermark file, the watermarking would get cut off and look silly. That's why this option exists: you can specify that images that are smaller than a particular size will have the watermarking applied in a resized manner, making the watermark again fit on the uploaded image. It's a good idea to set this option to the horizontal dimension of your watermarking image.</p>
-<div class="cpg_example">Example:<br />Let's assume that your custom watermarking image has got the same dimensions as the sample one that comes with the coppermine package: 300 x 51 pixels. Subsequently, if you set the option "Downsize watermark if width of an picture is smaller than entered value" to 300, you should be fine: if someone uploads an image that is only 250 x 100 pixels, the resulting watermarked image will be 250 x 100 pixels as well, but the watermarking image will have been resized to 250 x 43 before being applied as a watermark, so it will fit on the original file that was uploaded.</div>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Downsize watermark if width of an picture is smaller than entered value</p>
+<a name="admin_watermarking_downsize"></a><h3>Réduire le filigrane si la largeur de l'image est inférieure à la valeur entrée<a href="#admin_watermarking_downsize" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>C'est le point de référence le plus important. Le redimensionnement du filigrane est linéaire (0 pour désactiver).</p>
+<p>Gardez en mémoire que les images peuvent être téléchargées par vos visiteurs (si vous autorisez le téléchargement par d'autres que par l'administrateur) ce à quoi vous n'aurez pas obligatoirement pensé: les images téléchargées peuvent être plus petites en résolution. Si la dimension de l'image téléchargée est plus petite que la dimension de votre filigrane, celui-ci sera coupé et aura un drole d'aspect. C'est la raison de la présence de cette option: vous pouvez définir que les images plus petites qu'une dimensions particulière verront le filigrane appliqué de manière à ce qu'il soit redimensionner pour correspondre à l'image téléchargée. C'est une bonne idée de paramétrer cette option à la dimension horizontale de votre image de filigrane.</p>
+<div class="cpg_example">Exemple:<br />Imaginons que votre image de filigrane ait la même dimension que celle contenue dans le pack de Coppermine: 300 x 51 pixels. Il serait en concéquence correct de paramétrer l'option "Réduire le filigrane si la largeur de l'image est inférieure à la valeur entrée" à 300: si quelqu'un télécharge une image qui ne fait que 250 x 100 pixels, il en résulte une image avec filigrane de 250 x 100 pixels elle aussi, mais l'image filigrane sera redimensionnée à 250 x 43 avant l'application du filigrane, de manière à correspondre à l'image téléchargée.</div>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Filigrane d'Image &rarr; Réduire le filigrane si la largeur de l'image est inférieure à la valeur entrée</p>
 
 <a name="admin_watermarking_downsize_end"></a>
 <hr />
-<a name="admin_watermarking_transparent_x"></a><h3>Set color transparent x<a href="#admin_watermarking_transparent_x" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option is only available if you have set the <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">method for resizing images</a> to GD2. If you have set it to GD1 or ImageMagick, this setting will not be taken into account at all. Specify the horizontal coordinate of the pixel that should represent the transparent color, seen from the left of the watermarking image.</p>
-<p>The transparency setting is particularly usefull if you use a jpeg image as watermarking file or if you don't know how to set transparency up for your watermarking image inside the desktop app where you compose your custom watermark. Your best option (to go out of harms way) will be to use a png watermarking file with transparency - in this case, this setting will not be needed.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Set color transparent x</p>
+<a name="admin_watermarking_transparent_x"></a><h3>Couleur transparente x<a href="#admin_watermarking_transparent_x" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Cette otpion n'est disponible que si vous avez paramétré <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">methode de redimensionnement des images</a> à GD2. Si vous l'avez paramétré à GD1 ou ImageMagick, ce paramètre ne sera pas pris en compte. Spécifie la coordonée horizontale du pixel qui détermine la couleur transparente, vue depuis la gauche de l'image de filigrane.</p>
+<p>Le paramétrage de transparence est particulièrement utile si vosu utilisez des images jpeg comme fichier de filigrane, ou si vous ne savez pas comment régler la transparence de votre image dans votre application qui vous a permis de créer votre image filigrane. La meilleure option (pour vous débarrasser de ce problème) est d'utiliser une image png avec transparence pour votre fichier filigrane - dans ce cas, ce paramètre n'est pas nécessaire.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Filigrane d'Image &rarr; Couleur transparente x</p>
 
 <a name="admin_watermarking_transparent_x_end"></a>
 <hr />
-<a name="admin_watermarking_transparent_y"></a><h3>Set color transparent y<a href="#admin_watermarking_transparent_y" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option is only available if you have set the <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">method for resizing images</a> to GD2. If you have set it to GD1 or ImageMagick, this setting will not be taken into account at all. Specify the vertical coordinate of the pixel that should represent the transparent color, seen from the top of the watermarking image.</p>
-<p>The transparency setting is particularly usefull if you use a jpeg image as watermarking file or if you don't know how to set transparency up for your watermarking image inside the desktop app where you compose your custom watermark. Your best option (to go out of harms way) will be to use a png watermarking file with transparency - in this case, this setting will not be needed.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Image watermarking &rarr; Set color transparent y</p>
+<a name="admin_watermarking_transparent_y"></a><h3>Couleur transparente y<a href="#admin_watermarking_transparent_y" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Cette otpion n'est disponible que si vous avez paramétré <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">methode de redimensionnement des images</a> à GD2. Si vous l'avez paramétré à GD1 ou ImageMagick, ce paramètre ne sera pas pris en compte. Spécifie la coordonée verticale du pixel qui détermine la couleur transparente, vue depuis le haut de l'image de filigrane.</p>
+<p>Le paramétrage de transparence est particulièrement utile si vosu utilisez des images jpeg comme fichier de filigrane, ou si vous ne savez pas comment régler la transparence de votre image dans votre application qui vous a permis de créer votre image filigrane. La meilleure option (pour vous débarrasser de ce problème) est d'utiliser une image png avec transparence pour votre fichier filigrane - dans ce cas, ce paramètre n'est pas nécessaire.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Filigrane d'Image &rarr; Couleur transparente y</p>
 
 <a name="admin_watermarking_transparent_y_end"></a>
 <a name="admin_watermarking_end"></a>
 <hr />
 
 
-<a name="admin_registration"></a><h2>Registration<a href="#admin_registration" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<a name="admin_allow_registration"></a><h3>Allow new user registrations<a href="#admin_allow_registration" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Defines whether new users can self-register or not. If you set this to NO, only the admin can create new users and the &quot;register&quot; link won't be displayed in the navigation.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Allow new user registrations</p>
-<a name="admin_allow_registration_end"></a>
+<a name="admin_Enregistrement "></a><h2>Enregistrement <a href="#admin_Enregistrement " title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="admin_allow_Enregistrement "></a><h3>Autoriser de Nouvelles Inscriptions<a href="#admin_allow_Enregistrement " title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Défini si les nouveaux visteurs peuvent s'enregistrer ou pas. Si vous mettez ce paramètre à NON, seul l'administrateur peut créer de nouveaux utilisateurs et le lien  &quot;s'enregistrer&quot; ne sera pas affiché dans le menu.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Enregistrement  &rarr; Autoriser de Nouvelles Inscriptions</p>
+<a name="admin_allow_Enregistrement _end"></a>
 <hr />
-<a name="admin_global_registration_pw"></a><h3>Set global password for registration<a href="#admin_global_registration_pw" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This password should be known by users who want to register. They will be asked for this password on the registration form. User will be able to set his own password while registring. User's password should be different from the global password. To disable global password, leave the field blank.</p>
-<p>This option is meant for galleries that are half-private. Example use: if you're going to take pics on a wedding, just tell the guest of the wedding party to visit your page and to user the global password set up here. As a result, visitors who have been guests of that party can actually register, but others who just came to your gallery by accident can't.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Set global password for registration</p>
-<a name="admin_global_registration_pw_end"></a>
+<a name="admin_global_Enregistrement _pw"></a><h3>Mot de Passe global pour les inscriptions  <a href="#admin_global_Enregistrement _pw" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Ce mot de passe doit être connu par les utilisateurs qui veulent s'enregistrer. Il leur sera demandé dans le forumulaire d'enregistrement. L'utilisateur pourra définir sont propre mot de passe au moment de l'enregistrement. Les mots de passe des utilisateurs doivent être différents du mot de passe global. Pour désactiver le mot de passe global, laissez le champ vide.</p>
+<p>Cette otpion est prévue pour les galeries semi-privées. Exemple d'utilisation: si vous prenez des photos d'un mariage, ne donnez le mot de passe global qu'aux participants de ce mariage, de cette manière, seuls les participants de ce mariage pouront s'enregistrer, mais ceux qui arriveront par accident ne pourront pas.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Enregistrement  &rarr; Mot de Passe global pour les inscriptions  </p>
+<a name="admin_global_Enregistrement _pw_end"></a>
 <hr />
-<a name="admin_user_registration_disclaimer"></a><h3>Display disclaimer on user registration<a href="#admin_user_registration_disclaimer" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Toggles wether users will see the disclaimer on the registration page. You have the option not to display the disclaimer at all, display it as separate page before the actual registration page or inline on the registration page.<br />
-This setting only applies if coppermine is not bridged.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Display disclaimer on user registration</p>
+<a name="admin_user_Enregistrement _disclaimer"></a><h3>Afficher les règles de la Galerie (disclaimer) lors des inscriptions <a href="#admin_user_Enregistrement _disclaimer" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Choix sur la manière dont vos visiteurs verront les règles de votre galerie sur la page d'inscription. Vous avez le choix de ne pas afficher du tout les régles, de les afficher sur une page séparée, ou de les inclure à la page d'inscription.<br />
+Cette option ne s'applique que si Coppermine n'est pas bridgé.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Enregistrement  &rarr; Afficher les règles de la Galerie (disclaimer) lors des inscriptions </p>
 
-<a name="admin_user_registration_disclaimer_end"></a>
+<a name="admin_user_Enregistrement _disclaimer_end"></a>
 <hr />
-<a name="admin_registration_captcha_start"></a><h3>Display Captcha (Visual Confirmation) on registration page<a href="#admin_registration_captcha_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>To prevent automated registration by bots (automated scripts), this toggle will display an image on the registration page with some random letters on it. The visitor who is trying to register is required to enter those letters into a textfield to prove that he's actually a human and not just some dumb bot.</p>
-<p>Note: this setting isn't being taken into account when coppermine is bridged.</p>
-<p class="cpg_message_info">Captchas will only work if <a href="install_faq.htm#WhatIsGD">GD2</a> is available on your server.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Display Captcha (Visual Confirmation) on registration page</p>
+<a name="admin_Enregistrement _captcha_start"></a><h3>Affiche CAPTCHA (Confirmation visuelle) sur la page d'enregistrement <a href="#admin_Enregistrement _captcha_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Pour empecher les enregistrements automatiques des robots (scripts automatisés), ce choix affiche une image sur la page d'inscription avec des lettres alléatoires. Le visiteur qui essaye de s'enregistrer doit saisir ces lettres dans un champ texte pour prouver qu'il est bien humain et pas un bête robot.</p>
+<p>Note: Cette option ne s'applique pas si Coppermine est bridgé.</p>
+<p class="cpg_message_info">Captcha ne fonctionne que si <a href="install_faq.htm#WhatIsGD">GD2</a> est disponible sur votre serveur.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Enregistrement  &rarr; Affiche CAPTCHA (Confirmation visuelle) sur la page d'enregistrement </p>
 
-<a name="admin_registration_captcha_end"></a>
+<a name="admin_Enregistrement _captcha_end"></a>
 <hr />
-<a name="admin_registration_verify"></a><h3>User registration requires email verification<a href="#admin_registration_verify" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If set to YES an email will be sent to the user that will contain a code to activate his account. If set to NO, user accounts become immediately active.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; User registration requires email verification</p>
-<a name="admin_registration_verify_end"></a>
+<a name="admin_Enregistrement _verify"></a><h3>L'inscription nécessite une confirmation du courriel <a href="#admin_Enregistrement _verify" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si défini à OUI, un couriel est envoyé à l'utilisateur contenant un code d'activation de son compte. Si paramétré à NON, son compte sera immédiatement actif.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Enregistrement  &rarr; L'inscription nécessite une confirmation du courriel </p>
+<a name="admin_Enregistrement _verify_end"></a>
 <hr />
-<a name="admin_registration_notify"></a><h3>Notify admin of user registration by email<a href="#admin_registration_notify" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If set to YES an email will be sent to the gallery admin when a new user registers.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Notify admin of user registration by email</p>
+<a name="admin_Enregistrement _notify"></a><h3>Notifier l'Administrateur par courriel lors de Nouvelles Inscriptions <a href="#admin_Enregistrement _notify" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si défini à OUI, un couriel est envoyé à l'administrateur lorsqu'un nouvel utilisateur s'enregistre.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Enregistrement  &rarr; Notifier l'Administrateur par courriel lors de Nouvelles Inscriptions </p>
 
-<a name="admin_registration_notify_end"></a>
+<a name="admin_Enregistrement _notify_end"></a>
 <hr />
-<a name="admin_activation"></a><h3>Admin Activation<a href="#admin_activation" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Enable admin activation. When set to yes, a gallery administrator must first activate the new registration before the user can log-in and take advantage of any registered user privileges.</p>
-<p>By default, it is set to no, so users would activate their own accounts upon registering.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Admin Activation</p>
+<a name="admin_activation"></a><h3>L'Administrateur doit Activer les enregistrements <a href="#admin_activation" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Demande l'activation par l'administrateur. Si défini à OUI un administrateur de l agalerie doit d'abbord activer le compte du nouvel inscrit avant que celui-ci puisse s'identifier et jouir des avantages des utilisateurs enregistrés.</p>
+<p>Par défaut, cette option est placée sur NON, de sorte que les utilisateurs activent leur compte depuis la page d'enrgistrement.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Enregistrement  &rarr; L'Administrateur doit Activer les enregistrements </p>
 
 <a name="admin_activation_end"></a>
 <hr />
-<a name="admin_personal_album_on_registration"></a><h3>Create user album in personal gallery on registration<a href="#admin_personal_album_on_registration" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, each user will have a personal album created during the registration process, even if your permissions for the group new users are in do not allow this (i.e. if you have <a href="#group_cp">allowed personal galleries</a> for members of the registered group disabled). Warning: usually, only a small percentage of registered users actually upload files - when this option is enabled, a lot of unneeded user galleries will be created, severely cluttering the database (which has an impact on performance). Don't enable this option if you don't know what it actually does!</p>
-<p>This option is disabled when being bridged.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Registration &rarr; Create user album in personal gallery on registration</p>
+<a name="admin_personal_album_on_Enregistrement "></a><h3>Créer un Album personnel pour l'Utilisateur lors de son enregistrement  <a href="#admin_personal_album_on_Enregistrement " title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si activé, chaque utilisateur aura son album personnel créer au moment de son inscription, même si vos droits pour le groupe des utilisateurs enregistrés ne le permet pas (ex. si vous avez désactivé <a href="#group_cp">autoriser les galeries personnelles</a> pour les membres du groupe des utilisateurs enregistrés).</p>
+<p class="cpg_message_warning"> Attention: généralement seul un petit pourcentage des utilisateurs enregistrés téléchargent des fichiers - lorsque cette option est activée, un grand nombre d'albums non nécessaire sera créer, parasitant grandement la base de donnée (avec un impact sur les performances). N'utilisez pas cette option si vous ne savez pas ce qu'elle fait actuellement!</p>
+<p>Cette option est désactivée si la galerie est bridgée.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Enregistrement  &rarr; Créer un Album personnel pour l'Utilisateur lors de son enregistrement  </p>
 
-<a name="admin_personal_album_on_registration_end"></a>
+<a name="admin_personal_album_on_Enregistrement _end"></a>
 <hr />
-<a name="admin_registration_end"></a>
+<a name="admin_Enregistrement _end"></a>
 
 
 <a name="admin_user"></a><h2>User settings<a href="#admin_user" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="admin_allow_unlogged_access"></a><h3>Allow unlogged users (guest or anonymous) access<a href="#admin_allow_unlogged_access" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When set to &quot;No&quot;, unlogged users (i.e. guests or anonymous users) can not access anything in your gallery except the login screen (and the registration screen, if you allow registrations). Completely disabling anonymous access will probably decrease your site's popularity. Use this option only if you need your gallery to be absolutely private. The recommended setting is to leave anonymous access enabled and use the more specific permissions by groups and albums settings instead.</p>
+<p>When set to &quot;No&quot;, unlogged users (i.e. guests or anonymous users) can not access anything in your gallery except the login screen (and the Enregistrement  screen, if you allow Enregistrement s). Completely disabling anonymous access will probably decrease your site's popularity. Use this option only if you need your gallery to be absolutely private. The recommended setting is to leave anonymous access enabled and use the more specific permissions by groups and albums settings instead.</p>
 <p>This option can be set to 4 different levels of access for anonymous users:</p>
 <ul>
   <li><strong>No</strong><br />
@@ -1444,7 +1445,7 @@ address. Recommended setting is NO. As most internet users today have more than 
 
 
 <a name="admin_email"></a><h2>Email settings<a href="#admin_email" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Usually nothing has to be changed here; leave all fields blank when not sure. Only if you run into problems (e.g. if ecards, registration info or notifications don't get sent) you should change these settings. Coppermine itself doesn't come with an engine to send mails, it relies on a webserver being able to do so (using the built-in mechanisms of PHP). If you're not sure what to enter, ask your webhost for support.</p>
+<p>Usually nothing has to be changed here; leave all fields blank when not sure. Only if you run into problems (e.g. if ecards, Enregistrement  info or notifications don't get sent) you should change these settings. Coppermine itself doesn't come with an engine to send mails, it relies on a webserver being able to do so (using the built-in mechanisms of PHP). If you're not sure what to enter, ask your webhost for support.</p>
 
 
 <p><strong>Using SMTP to send emails</strong>: by default the script uses the PHP built-in <strong>mail</strong> function to send emails. In some cases, the PHP built-in function can't be used.</p>
@@ -1481,7 +1482,7 @@ All log files are written in english</p>
 <a name="admin_logging_log_mode_end"></a>
 <hr />
 <a name="admin_general_log_ecards"></a><h3>Log ecards<a href="#admin_general_log_ecards" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, all ecards that are being sent are as well written into the database, where the coppermine admin can view them. Before switching this option on, make sure that logging is legal in your country. It is also advisable to notify your users that all ecards are being logged (preferrably on the registration screen).</p>
+<p>When enabled, all ecards that are being sent are as well written into the database, where the coppermine admin can view them. Before switching this option on, make sure that logging is legal in your country. It is also advisable to notify your users that all ecards are being logged (preferrably on the Enregistrement  screen).</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Log ecards</p>
 
 <a name="admin_general_log_ecards_end"></a>
