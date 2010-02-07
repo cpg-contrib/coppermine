@@ -361,7 +361,7 @@ doc_toc += '      <li><a href="banning.htm#banning_bridged">Pas de bannissement 
 doc_toc += '      <li><a href="banning.htm#banning_todo">A Faire</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="configuration.htm" class="us_fr">Configuration</a>\n';
+doc_toc += '      <li><a href="configuration.htm">Configuration</a>\n';
 doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_general">Paramètres généraux</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_language">Paramètres de Langue &amp; de Jeu de Caractères</a></li>\n';
