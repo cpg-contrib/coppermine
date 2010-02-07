@@ -522,7 +522,7 @@ doc_toc += '    </ul>\n';
 doc_toc += '  </li>\n';
 doc_toc += '  <li><a href="uploading.htm" class="us_fr">Téléchargement</a>\n';
 doc_toc += '    <ul>\n';
-doc_toc += '      <li><a href="uploading_batch-add.htm#batch_add_pics">Téléchargement des images par FTP / Ajout les images par lot</a></li>\n';
+doc_toc += '      <li><a href="uploading_batch-add.htm#batch_add_pics"class="us_fr">Téléchargement des images par FTP / Ajout les images par lot</a></li>\n';
 doc_toc += '      <li><a href="uploading_http.htm#upload_http" class="en">Uploading by HTTP</a></li>\n';
 doc_toc += '      <li><a href="uploading_xp-publisher.htm#xp" class="en">Windows XP Web Publishing Wizard</a>\n';
 doc_toc += '        <ul>\n';
