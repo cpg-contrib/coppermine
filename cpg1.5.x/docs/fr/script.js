@@ -375,7 +375,7 @@ doc_toc += '          <li><a href="configuration.htm#admin_thumb_start">Paramèt
 doc_toc += '          <li><a href="configuration.htm#admin_picture_thumbnail">Paramètres des Fichiers</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_watermarking">Filigrane d\'Images </a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_registration">Enregistrement </a></li>\n';
-doc_toc += '          <li><a href="configuration.htm#admin_user" class="en">User settings</a></li>\n';
+doc_toc += '          <li><a href="configuration.htm#admin_user">Paramètres des Utilisateurs </a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_custom" class="en">Custom fields for user profile</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_custom_image" class="en">Custom fields for image description</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_cookie" class="en">Cookie settings</a></li>\n';

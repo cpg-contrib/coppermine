@@ -1265,150 +1265,149 @@ Cette option ne s'applique que si Coppermine n'est pas bridgé.</p>
 <a name="admin_Enregistrement _end"></a>
 
 
-<a name="admin_user"></a><h2>User settings<a href="#admin_user" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<a name="admin_allow_unlogged_access"></a><h3>Allow unlogged users (guest or anonymous) access<a href="#admin_allow_unlogged_access" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When set to &quot;No&quot;, unlogged users (i.e. guests or anonymous users) can not access anything in your gallery except the login screen (and the Enregistrement  screen, if you allow Enregistrement s). Completely disabling anonymous access will probably decrease your site's popularity. Use this option only if you need your gallery to be absolutely private. The recommended setting is to leave anonymous access enabled and use the more specific permissions by groups and albums settings instead.</p>
-<p>This option can be set to 4 different levels of access for anonymous users:</p>
+<a name="admin_user"></a><h2>Paramètres des Utilisateurs <a href="#admin_user" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="admin_allow_unlogged_access"></a><h3>Autoriser l'accès aux Visiteurs non authentifiés (visiteur ou anonyme) <a href="#admin_allow_unlogged_access" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si défini à &quot;Non&quot;, les utilisateurs non identifiés (c.a.d. visiteurs ou utilisateurs anonymes) n'ont aucun accès au contenu de la galerie à l'exeption de la page d'identification (et de la page d'enregistrement si vous autorisez l'enregistrement de nouveaux utilisateurs). Interdire complêtement l'accès aux utilisateurs anonymes aura certainement un impact négatif sur la popularité de votre galerie. N'utilisez cette option que si vous voulez une galerie totalement privée. Le paramétrage recommandé est de laisser l'accès aux utilisateurs anonymes et d'utiliser plutôt les réglages spécifiques au niveau des groupes et des albums.</p>
+<p>Cette option peut être définie à 4 différents niveaux d'accès pour les utilisateurs anonymes:</p>
 <ul>
-  <li><strong>No</strong><br />
-  Non-registered users can not access at all - they will be sent to the login screen</li>
-  <li><strong>Yes: thumbnail only</strong><br />
-  Non-registered users can view the thumbnails only. If they click on them, they will be shown a little dialog box that they need to register/login to see more.</li>
-  <li><strong>Yes: thumbnail and intermediate image</strong><br />
-  Non-registered users can see everything but the full-sized image pop-ups (if you have any)</li>
-  <li><strong>Yes: thumbnail, intermediate and full-size image</strong><br />
-  Default value: non-registered users can access all sizes of images. It's recommended to leave this option enabled.</li>
+  <li><strong>Non</strong><br />
+  Le utilisateurs non identifiés n'ont aucun accès - ils seront dirigés vers la page d'enregistrement</li>
+  <li><strong>Oui: uniquement les vignettes</strong><br />
+  Les utilisateurs non identifiés ne peuvent voir que les vignettes. Sii ils cliquent sur les vignettes, une petite boite de dialogue leur indiquera qu'ils doivent s'identifier/s'enregister pour voir plus.</li>
+  <li><strong>Oui: les vignettes et les images intermédiaires</strong><br />
+  Les visiteurs non identifiés ont accès à tout sauf aux images de grandes taille (si vous en avez)</li>
+  <li><strong>Oui: vignettes, images intermédiaires et images originales de grande taille</strong><br />
+  Valeur par défaut: les visiteurs non identifiés ont accès à toutes les tailles d'images. Il est recommandé de laisser cette option activée.</li>
 </ul>
-<p>Keep in mind that search engine spiders will be treated as non-registered guests as well, so if you restrict the accessibility for guests, search engine spiders will not index whatever you hide from your guests.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow unlogged users (guest or anonymous) access</p>
+<p>Rappelez vous que les moteurs de recherches seront traités comme des visiteurs non enregistrés, donc, si vous retreignez l'accès pour vos visiteurs, les moteurs de recherche n'indexerons pas ce que vous cachez aux visiteurs.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Autoriser l'accès aux Visiteurs non authentifiés (visiteur ou anonyme) </p>
 
 <a name="admin_allow_unlogged_access_end"></a>
 <hr />
-<a name="admin_upload_mechanism"></a><h3>Default upload mechanism<a href="#admin_upload_mechanism" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Select which type of form users will use to upload files:</p>
+<a name="admin_upload_mechanism"></a><h3>Méthode de téléchargement par défaut<a href="#admin_upload_mechanism" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Choisi quel type de formulaire sera utilisé par les utilisateurs pour télécharger les images:</p>
 <ul>
-  <li><strong>Multiple files - Flash-driven (recommended)</strong><br />
-  Users can queue multiple files and a Flash-driven form will upload all the files automatically.</li>
-  <li><strong>Simple - one file at a time</strong><br />
-  Users can only select one file at a time to upload to an album.</li>
+  <li><strong>Fichiers multiples - Piloté par flash (recommandé)</strong><br />
+  Les utilisateurs peuvent placer de multiples fichiers, au travers d'un formulaire polité par flash, dans une file d'attente qui sera téléchargée automatiquement.</li>
+  <li><strong>Unique - un fichier à la fois</strong><br />
+  Les utilisateurs ne peuvent sélectionner qu'un seul fichier à la fois pour le télécharger dans un album.</li>
 </ul>
-<p>There might be other choices you can choose.  If so, these come from plugins you have installed.  The basic Coppermine options are the two listed above.  For assistance on any other upload methods, please check your plugins and their documentation.</p>
-<p>You are encouraged to use the advanced upload form unless you have problems with it.  This form uses <a href="http://www.swfupload.org/" class="external" rel="external">SWFUpload</a>, which has some <a href="http://demo.swfupload.org/Documentation/#knownissues" class="external" rel="external">known issues</a>.</p>
-<p>Since it is your users who will run into these problems, you may want to allow your users to choose the upload method themselves.  See the configuration setting "Allow users to choose the upload method".</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Default upload mechanism</p>
+<p>Il peut y avoir d'autres choix, Si c'est le cas, ils proviennent de plugins que vous aurez installés.  Les options basiques de Coppermine sont les deux listées plus haut.  Pour une aide sur d'autres methodes de téléchargement, regardez dans la documentation des plugins.</p>
+<p>Vous êtes encoragés à utiliser le formulaire à chois multiples si vous n'avez pas de problèmes avec.  Ce formulaire utilise <a href="http://www.swfupload.org/" class="external" rel="external">SWFUpload</a>, qui as certains <a href="http://demo.swfupload.org/Documentation/#knownissues" class="external" rel="external">problèmes connus</a>.</p>
+<p>Comme ce sont vos visiteurs qui rencontrerons ces problèmes, vous ne devrez laisser la possibilité de choisir eux même leur methode de téléchargement.  Regardez les paramètres de configuration "Autoriser les Utilisateurs à choisir leur méthode de téléchargement".</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Méthode de téléchargement par défaut</p>
 
 <a name="admin_upload_mechanism_end"></a>
 <hr />
-<a name="admin_allow_user_upload_choice_start"></a><h3>Allow users to choose the upload method<a href="#admin_allow_user_upload_choice" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, users can choose the upload method themselves.  This is recommended so that if some users have an issue with their web browsers or operating systems, they can choose another upload method that works better.  At the very least, they can use the simple, one file at-a-time, upload method.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Default upload mechanism</p>
+<a name="admin_allow_user_upload_choice_start"></a><h3>Autoriser les Utilisateurs à choisir leur méthode de téléchargement<a href="#admin_allow_user_upload_choice" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Lorsque cette option est activée, les utilisateurs peuvent choisire eux même leur methode de téléchargement.  C'est recommandé le laisser cette option de sorte que si certains utilisateurs rencontrent des problèmes liés à leur navigateur web ou à leur système d'exploitation, ils puissent choisir une autre methode de téléchargement qui fonctionne mieux. A la dernière extrémité, ils pourront choisir la methode de téléchargement simple, fichier par fichier.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Methode de téléchargement par défaut</p>
 
 <a name="admin_allow_user_upload_choice_end"></a>
 <hr />
-<a name="admin_allow_duplicate_emails_addr"></a><h3>Allow two users to have the same email address<a href="#admin_allow_duplicate_emails_addr" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Allow or prevent two users from registering with the same email
-address. Recommended setting is NO. As most internet users today have more than one email address, this option is being considered as deprecated and has been removed in cpg1.5.x for fresh installs. Only if you have upgraded from an older version you should be able to see this option. It's a one-way settimg though: once you disallow identical email addresses for different users, you can not re-enable that option. It's recommended to turn this option off if you have it turned on.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow two users to have the same email address</p>
+<a name="admin_allow_duplicate_emails_addr"></a><h3>Autoriser deux utilisateurs à avoir la même adresse courriel<a href="#admin_allow_duplicate_emails_addr" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Autorise ou interdit à deux utilisateurs d'avoir la même adresse courriel. Le paramètre recommandé est NON. Comme la plupart des utilisateurs d'Internet ont plusieurs adresses courriel, cette option a été consodériée comme obsolète dans  cpg1.5.x pour les nouvelles installations. Vous ne verrez cette option que si vous faites une mise à jour depuis une ancienne version. C'est une otpion à sens unique: si vous n'autorisez plus les adresses courriels pour plusieurs utilisateurs, vous ne pourrez pas réactiver cette option. Il est recommandé de désactiver cette option si elle est active.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Autoriser deux utilisateurs à avoir la même adresse couriel</p>
 <a name="admin_allow_duplicate_emails_addr_end"></a>
 <hr />
-<a name="admin_approval_notify"></a><h3>Notify admin of user upload awaiting approval<a href="#admin_approval_notify" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, the gallery admin receives an email notification of all pics that await for his/her approval (depends on the approval settings in &quot;<a href="groups.htm#group_cp">groups</a>&quot;). The email is sent to the address specified in &quot;<a href="#admin_general">General settings</a>&quot;.</p><p>This option is only recommended for websites with low or medium traffic (where users only upload every now and then).</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Notify admin of user upload awaiting approval</p>
+<a name="admin_approval_notify"></a><h3>Notifier l'Administrateur lorsque des uploads nécessitent son approbation <a href="#admin_approval_notify" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si cette option est activée, l'administrateur de la galerie reçoit un courriel de notification pour chaque image nécessitant son approbation(en fonction des paramètres d'approbation dans les paramètres des  &quot;<a href="groups.htm#group_cp">groupes</a>&quot;). Le courriel est envoyé à l'adresse définie dans &quot;<a href="#admin_general">Paramètres Généraux</a>&quot;.</p><p>Cette option n'est recommandée que pour les sites à trafic faible ou moyen (lorsque les utilisateurs téléchargent de temps en temps).</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Notifier l'Administrateur lorsque des uploads nécessitent son approbation </p>
 
 <a name="admin_approval_notify_end"></a>
 <hr />
-<a name="admin_user_memberlist"></a><h3>Allow logged in users to view memberlist<a href="#admin_user_memberlist" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, an additional menu item &quot;Memberlist&quot; is displayed in the coppermine main menu if a user is logged in, to let him see a list of all users, with stats on their last visits, uploads and quota usage.</p>
-<p>Recommended setting is 'no', especially if you're concerned about your user's privacy.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow logged in users to view memberlist</p>
+<a name="admin_user_memberlist"></a><h3>Autoriser les Utilisateurs authentifiés à visualiser la liste des membres<a href="#admin_user_memberlist" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Lorsque cette option est activée, un élément de menu supplémentaire &quot;Liste des Membres&quot; est affiché dans le menu principal de Coppermine lorsque le visiteur est identifié, pour lui permettre de visualiser la liste des membre, avec les statistiques sur leur dernière visite, leurs téléchargements, et quota d'utilisation.</p>
+<p>Le paramètre recommandé est 'NON', en particulier si vous êtes concerné par le respect de la vie privée de vos membres.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Autoriser les Utilisateurs authentifiés à visualiser la liste des membres</p>
 
 <a name="admin_user_memberlist_end"></a>
 <hr />
-<a name="admin_user_allow_email_change"></a><h3>Allow users to change their email address in profile<a href="#admin_user_allow_email_change" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This option impacts the user's profile page, it determines whether or not the user can change his/her own email address.<br />Use this option wisely, as the old email address of a user is not preserved after a change: if you allow users to change their email address, abusers may change it to a non-existing email address (e.g. after uploading some pics that go against your gallery's rules) - you would have no chance of tracking this user.</p>
-<p class="cpg_message_info">This option only applies if you use Coppermine as a standalone application; if you run Coppermine integrated with a <abbr title="Bulletin Board System">BBS</abbr>, this option will be deferred to the user profile from your bbs to manage each user's profile.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow users to change their email address in profile</p>
+<a name="admin_user_allow_email_change"></a><h3>Autoriser les Utilisateurs à changer leur adresse courriel dans leur Profil<a href="#admin_user_allow_email_change" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Cette option impacte la page de profil des membres, elle si il peut ou pas changer son adresse courriel.<br />Utilisez cette option avec précautions, l'ancienne adresse n'étant pas sauvegardée après le changement: si vous autorisez vos membre à changer leur adresse courriel, les personnes malveillantes les changeront pour des adresses innexistantes (après avoir téléchargé des images allant à l'encontre des règles de votre galerie) - vou souhaiterez peut être pouvoir suivre ces utilisateurs.</p>
+<p class="cpg_message_info">Cette otpion ne s'applique que pour les installations indépendantes; si vous utilisez Coppermine intégré à un <abbr title="Bulletin Board System">BBS/CMS</abbr>, cette option sera remplacée par la page de gestion des membre de votre BBS/CMS pour la gestion par les membres.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr;Autoriser les Utilisateurs à changer leur adresse courriel dans leur Profil</p>
 <a name="admin_user_allow_email_change_end"></a>
 <hr />
-<a name="admin_user_allow_account_delete"></a><h3>Allow users to delete their own user account<a href="#admin_user_allow_account_delete" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, users can delete their user accounts. This option has been added in cpg1.5.x because of legal requirements in some countries.</p>
-<p class="cpg_message_info">This option will not be taken into account if your gallery is bridged.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow users to delete their own user account</p>
+<a name="admin_user_allow_account_delete"></a><h3>Autoriser les Utilisateurs à effacer leur propre Compte de la Galerie CPG <a href="#admin_user_allow_account_delete" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Lorsquelle est activéen cette option permets aux membre d'effacer leur propre compte. Cette option à été ajoutée à cpf1.5.x à cause des règles légales de certains pays.</p>
+<p class="cpg_message_info">Cette option n'est pas prise en compte si la galerie est bridgée.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Autoriser les Utilisateurs à effacer leur propre Compte de la Galerie CPG </p>
 <a name="admin_user_allow_account_delete_end"></a>
 <hr />
-<a name="admin_user_editpics_public_start"></a><h3>Allow users to retain control over their pics in public galleries<a href="#admin_user_editpics_public_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, both the admin and the uploading user can edit and delete files that were uploaded to a public gallery. Of course the user must have permissions to upload to the public gallery in the first place (see the <a href="groups.htm#group_cp">groups control panel</a>) before this option will have any effect.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow users to retain control over their pics in public galleries</p>
+<a name="admin_user_editpics_public_start"></a><h3>Autoriser les Utilisateurs à garder le controle de leurs images dans les Galeries publiques <a href="#admin_user_editpics_public_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Lorsque cette option est activée, l'administrateur aussi bien que le membre ayant téléchargé, peuventt modifier et effacer les fichiers qui ont été téléchargés dans des albums publics. Bien entendu, le membre doit avoir les droits de téléchargement dans les albums publics en premier lieu (regardez le <a href="groups.htm#group_cp">panneau de controle des groupes</a>) pour que cette option ait un effet.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Autoriser les Utilisateurs à garder le controle de leurs images dans les Galeries publiques </p>
 <a name="admin_user_editpics_public_end"></a>
 <hr />
-<a name="admin_user_allow_album_move"></a><h3>Allow users to move their albums from/to allowed categories<a href="#admin_user_allow_album_move" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, users will be able to move their albums around from/to categories that the admin has allowed.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow users to move their albums from/to allowed categories</p>
+<a name="admin_user_allow_album_move"></a><h3>Autoriser l'Utilisateur à déplacer ses Albums de/vers les Catégories autorisées <a href="#admin_user_allow_album_move" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si l'option est activée, les membres peuvent déplacer leurs albums dans les catégories autorisées par l'administrateur.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Autoriser l'Utilisateur à déplacer ses Albums de/vers les Catégories autorisées </p>
 <a name="admin_user_allow_album_move_end"></a>
 <hr />
 
-<a name="admin_allow_user_edit_after_cat_close"></a><h3>Allow users to edit their albums when it is in a locked category<a href="#admin_allow_user_edit_after_cat_close" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, users will be able to edit their albums even if the admin has locked down the category the album resides in.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow users to edit their albums when it is in a locked category</p>
+<a name="admin_allow_user_edit_after_cat_close"></a><h3>Autoriser les Utilisateurs à modifer leurs Albums dans les Catégories vérouillées <a href="#admin_allow_user_edit_after_cat_close" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si l'option est activéen les membres pourront modifier leurs albums même si l'administrateur à verouillé la catégories dans laquelle se trouve l'album.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Autoriser les Utilisateurs à modifer leurs Albums dans les Catégories vérouillées </p>
 <a name="admin_allow_user_edit_after_cat_close_end"></a>
 <hr />
-<a name="admin_allow_user_album_keyword"></a><h3>Allow users to assign album keywords<a href="#admin_allow_user_album_keyword" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, users will be allowed to assign an <a href="keywords.htm#keywords_album">album keyword</a> to albums they have control over. This setting doesn't have an impact on the admin - the admin can assign and edit album keywords no matter what. If you allow users to assign album keywords, files from other albums that contain the album keyword set as individual file keyword will show up in their album as linked file.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Allow users to assign album keywords</p>
+<a name="admin_allow_user_album_keyword"></a><h3>Autoriser les Utilisateurs à assigner des mots clés aux Albums <a href="#admin_allow_user_album_keyword" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si l'option est activée, les membres pourront assigner <a href="keywords.htm#keywords_album">des mots clés d'albums</a> aux albums dont ils ont le controle. Ce paramètre n'a pas d'ipact sur l'administrateur - l'administrateur peut assigner et modifier les mots clé d'albums de toute manière. Si vous autorisez les membre à assigner des mots clé albums, des fichiers d'autres albums contenant le mot clé individuel correspondant au mot clé album seront affichés dans leurs albums en tant que fichiers liées.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Autoriser les Utilisateurs à assigner des mots clés aux Albums </p>
 <a name="admin_allow_user_album_keyword_end"></a>
 <hr />
 
 
 <a name="admin_user_login_start"></a>
-<a name="admin_user_login_method_start"></a><h3>How do you want your users to be able to login<a href="#admin_user_login_method_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>You can have your users login with their username, email address or let them choose themselves. <br />Select the option you want in the dropdown.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; How do you want your users to be able to login</p>
+<a name="admin_user_login_method_start"></a><h3>Comment souhaitez-vous que les Utilisateurs puissent s'identifier <a href="#admin_user_login_method_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Vous pouvez demander l'identification de vos membres par leur nom d'utilisateur, leur adresse courriel ou en les laissant choisir eux même. <br />Sélectionnez l'option que vous souhaitez dans la liste déroulante.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Comment souhaitez-vous que les Utilisateurs puissent s'identifier </p>
 
 <a name="admin_user_login_method_end"></a>
 <hr />
-<a name="admin_user_login_threshold_start"></a><h3>Number of failed login attempts until temporary ban (to avoid brute force attacks)<a href="#admin_user_login_threshold_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>To make brute force attacks (where a hostile script tries to log into coppermine as admin by running through all possible combinations of username and password automatically) less effective Coppermine temporarily bans the IP address of a possible attacker after a certain amount of failed logins. This way, the brute force attack would need way to long to try all possible combinations.</p>
-<p>With this setting you specify the maximum number of failed log-in attempts before the IP address of the user is temporarily banned.</p>
-<p>Keep in mind that this setting will definitely have an impact on your legitimate ability to log in as well: if you mis-type your password too often or if someone else has tried to brute-force your admin account, you will be banned temporarily as well. The ban will of course go away after the time set below, but during the ban phase you will be locked out from administration just as well as an attacker would be logged out.</p>
-<p>Default and recommended value is <tt class="code">5</tt>. Value can range between 1 and 20 (as 0 would mean that zero logins are allowed, which would lock you (as admin) out permanently as well.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Number of failed login attempts until temporary ban</p>
+<a name="admin_user_login_threshold_start"></a><h3>Nombre d'échec d'authentification avant bannissement temporaire (pour parer à une attaque brutale)<a href="#admin_user_login_threshold_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Pour rendre les attaques brutales (ou des scripts hostiles essayent de s'identifier dans Coppermine en essayant toutes le combinaisons possibles ded'identifiants/mots de passe automatiquement) moins faciles Coppermine bannis temporairement les adresse IP des possibles attaquants après un certain nombre d'echecs d'identification. De cette manière, le succès de l'attaque prendra un temps trop long pour essayer toutes les combinaisons possibles.</p>
+<p>Avec ce paramètre, vous définissez le nombre d'echecs d'identifications maximum avant le banissement temporaire de l'adresse IP de l'utilisateur.</p>
+<p>N'oubliez pas que ce paramètre aura un impact sur votre possibilité à vous identifier: si vous vous trompez trop souvent en entrant votre identifiant ou mot de passe, ou si quelqu'un a essayé trop souvent de forcer votr ecompte administrateur, vous serez aussi banni temporairement. Le bannsissement s'arrêtera bien entendu après un temps défini plus loin, mais pendant cette phase de bannissement, vous serez privé d'administration de la même manière que l'attaquant sera deconnecté.</p>
+<p>La valeur recommandée par défaut est <tt class="code">5</tt>. La valeur peut varier de 1 à 20 ( 0 signifiant que O essais sont autorisés, ce qui signifie que vous (en tant qu'administrateur) n'aurez plus la possibilité de vous identifier du tout.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Nombre d'échec d'authentification avant bannissement temporaire</p>
 
 <a name="admin_user_login_threshold_end"></a>
 <hr />
-<a name="admin_user_login_expiry_start"></a><h3>Duration of a temporary ban after failed logins<a href="#admin_user_login_expiry_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This value specifies the duration of the temporary ban (in minutes) after the number of failed log-in attempts specified with <a href="#admin_user_login_threshold_start">Number of failed login attempts until temporary ban</a>.</p>
-<p>The warnings posted above for <a href="#admin_user_login_threshold_start">Number of failed login attempts until temporary ban</a> applies here as well: setting this to a value that doesn't make sense will have an impact on legitimate users as well!</p>
-<p>Default is <tt class="code">10</tt> minutes. Range is between 0 (which would mean that there will be no temporary ban at all, so use this value to disable the temporary ban feature alltogether) and <tt class="code">9999</tt> minutes (which is roughly less than a week).</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Duration of a temporary ban after failed logins</p>
+<a name="admin_user_login_expiry_start"></a><h3>Durée du bannissement temporaire après un échec d'authentification <a href="#admin_user_login_expiry_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Cette valeur définie la durée du mannissement temporaire (en minutes) après le nombre d'échecs d'identification défini par <a href="#admin_user_login_threshold_start">Nombre d'échec d'authentification avant bannissement temporaire</a>.</p>
+<p>L'avertissement ci-dessus pour <a href="#admin_user_login_threshold_start"></a> s'applique ici aussi: définir ce paramètre à une valeur qui n'a pas de sens, aura aussi un impact pour les utilisateurs légitimes!</p>
+<p>La valeur par défaut est <tt class="code">10</tt> minutes. La fourchette est entre 0 (ce qui signifie qu'il n'y aura pas de bannissement temporaire, n'utilisez cette valeur que pour désactiver le bannissement temporaire) et <tt class="code">9999</tt> minutes (ce qui est un peu moins qu'une semaine).</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Durée du bannissement temporaire après un échec d'authentification </p>
 <a name="admin_user_login_expiry_end"></a>
 <hr />
 
 <a name="admin_user_login_end"></a>
 
-<a name="admin_user_purge_expired_bans"></a><h3>Automatically purge expired bans<a href="#admin_user_purge_expired_bans" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, ban records that have a set expiry date will be deleted as soon as the expiry date is reached. This setting will not have an impact wether the banned user will be able to log in again or not. Instead, this option is meant if you want to preserve records of users who misbehaved in the past and therefore have been banned temporarily. If you do not automatically purge those records, then the ban record will show on the <a href="admin_menu.htm#ban">ban users</a> page for the admin, together with an indicator that will show that the ban has expired.</p>
-<p>The drawback of turning this option off is the fact that the database table that contains the ban records will fill faster and the ban users page will look more cluttered. Subsequently, the ban lookup for each page will take a little longer. If you have performance issues, turn this option on, as it will purge unneeded records from the ban table.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Automatically purge expired bans</p>
+<a name="admin_user_purge_expired_bans"></a><h3>Purge automatiquement les bannissement expirés <a href="#admin_user_purge_expired_bans" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si cette option est activée, les enregistrements de bannissement dont la date est passée, seront effacés dès que la date de fin de bannissement est atteinte. Ce paramètre n'a pas d'impact si la manière dont le membre banni pourra ou non s'identifier ensuite. Cette option est prévue pour garder les enregistrements des utilisateurs qui ont echoués précédemment et qui ont de ce fait été bannis temporairement. Si vous ne purgez pas automatiquement ces enregistrements, ils seront affichés sur la page <a href="admin_menu.htm#ban">des utilisateurs bannis</a> pour l'administrateur, avec l'indication qu el ebannissement a expiré.</p>
+<p>L'inconvénient de la désactivation de cette option, est le fait que la table contenant les enregistrements de bannissement dans la base de donnée va grossir rapidement et la page d'affichage des membre bannis vas être parasitée très vite. En concéquence, la visualisation de chaque page prendra plus de temps. Si vous avez des problèmes de performances, activez cette option, puisqu'elle purgera votre table des données non nécessaires de la table.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Purge automatiquement les bannissement expirés </p>
 <a name="admin_user_purge_expired_bans_end"></a>
 <hr />
 
 
-<a name="admin_user_enable_report"></a><h3>Enable reports<a href="#admin_user_enable_report" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When set to "yes," this feature will allow users to report on uploaded files or comments to the site admin.</p>
-<p>When enabled, an additional icon will appear in the navigation bar that visitors can click on. If they do, they are being sent to a form where they can explain why they want to see a particular file reported to the admin.</p>
-<p>There is a number of pre-defined reasons for the reports (like &quot;<em>obscene</em>&quot;, &quot;<em>offensive</em>&quot;, &quot;<em>off-topic/misplaced</em>&quot;, &quot;<em>missing</em>&quot;, &quot;<em>error/cannot view</em>&quot;) that visitors can choose from and a text field where they can enter additional information.</p>
-<p>This setting is dependant on e-cards being enabled.  Only users who have permission to send e-cards in the 'groups' settings are able to send reports. The report icon is hidden from those not allowed to do so.</p>
-<p>It's advisable to enable this feature on larger, community-driven galleries that don't require admin-approval for uploaded pics, as it gives your community the chance to alert you of potential issues and keep your gallery clean.</p>
-<p>As a drawback, the feature can be abused by spammers to send emails to the admin, so it's advisable to only allow reports for registered users.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Enable reports</p>
+<a name="admin_user_enable_report"></a><h3>Activer les rapports à l'Administrateur <a href="#admin_user_enable_report" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Lorsque cette option est "oui", cette fonction autorisera les utilisateurs à faire un rapport sur les fichiers ou commentaires des fichiers téléchargés, à ladministrateur de la galerie.</p>
+<p>Lorsqu'elle est activée, une nouvelle icone cliquable apparait dans la barre de navigation. Si on clique dessus, vous êtes dirigé vers un formulaire qui permets d'expliquer pourquoi on veut notifier un fichier particulier à l'administrateur.</p>
+<p>Il y a un nombre pré-définis de raisons pour ces rapports (comme &quot;<em>obscène</em>&quot;, &quot;<em>offensant</em>&quot;, &quot;<em>hors sujet/mal placé</em>&quot;, &quot;<em>manquant</em>&quot;, &quot;<em>erreur/impossible à voir</em>&quot;) que le visiteur peut choisir et un champ texte ou il peut ajouter des détails.</p>
+<p>Ce paramètre est dépendant de l'activation des E-Cartes.  Seuls les utilisateurs ayant la permission d'envoyer des E-Cartes dans les paramètres des 'groupes' peuvent envoyer ces rapports. L'icone de rapport à l'administrateur est cachée à ceux qui n'ont pas l'autorisation de faire de rapports.</p>
+<p>Il est recommandé d'activer cette fonction sur les grosses galeries communautaires qui n enécessitent pas l'approbation de l'administrateur pour les téléchargements, permettant à votre communauté la possibilité de vous alerter de problèmes potentiels et de garder votre galerie "propre".</p>
+<p>Comme inconvénient, cette fonction peut être utilisée abusivement par des "spammeur" pour envoyer des courriels à l'administrateur, il est donc recommandé de n'autoriser les rapports uniquement aux utilisateurs enregistrés et identifiés.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Activer les rapports à l'Administrateur </p>
 
 <a name="admin_user_enable_report_end"></a>
 <hr />
 
-<a name="admin_user_rate_own_files_start"></a><h3>Users can rate their own files<a href="#admin_image_rate_own_files_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Determines if your users can rate their own files or not.  Recommended setting is "no" to make sure there is no rating war among your users who try to boost their popularity by committing rating fraud.<br />This option does not determine wether your visitors will be able to rate files at all. &quot;Users can rate their own files&quot; will only apply if rating is enabled in the first place, i.e. if the user belongs to a group that is allowed to rate/vote (you can determine the overall rating permission per group on the <a href="groups.htm#group_cp">groups control panel</a>) and if rating is enabled for the album the file is in (you can toggle the ability to rate on or off on a per-album base - use the controls on the <a href="albums.htm#album_prop">album properties</a> page to accomplish that).
+<a name="admin_user_rate_own_files_start"></a><h3>Les utilisateurs peuvent voter pour leurs propres fichiers <a href="#admin_image_rate_own_files_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Détermine si vos utilisateurs peuvent voter pourleur propre fichiers ou non. Le paramètre recommandé est "Non", afin d'éviter qu'il n'y aut des guerres de votes entre membres pour augmenter artificiellement la popularité des fichiers qu'ils ont téléchargés.<br />Cette option ne détermine pas la manière dont les membre sont autorisés à voter. &quot;Les utilisateurs peuvent voter pour leurs propres fichiers &quot; ne s'applique que si la possibilité de vote a été activé en premier lieu, c.a.d. si le membre appartient à un groupe autorisé à voter (vous pouvez définir tous les droits de votes par groupe dans le <a href="groups.htm#group_cp">panneau de controle des groupes</a>) et si le vote est activé pour l'album dans lequel est placé le fichier (vous pouvez basculer la possibilité de voter ou non album par album - utilisez les <a href="albums.htm#album_prop">propriétés des albums</a> pour faire celà).
 </p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; User settings &rarr; Users can rate their own files</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres des Utilisateurs  &rarr; Les utilisateurs peuvent voter pour leurs propres fichiers </p>
 <a name="admin_user_rate_own_files_end"></a>
 
 <hr />
