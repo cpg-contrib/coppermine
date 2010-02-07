@@ -1470,203 +1470,203 @@ Si vous laissez vide, sendmail(ou equivalent) sera utilisé pour envoyer les cou
 <a name="admin_email_end"></a>
 
 
-<a name="admin_logging"></a><h2>Logging &amp; statistics<a href="#admin_logging" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Like all logs (that record data that would get dropped if logging was disabled), the logging features of Coppermine will have a slight performance impact as well as an impact on webspace and database usage. You should make up your mind if you actually will need the logs before enabling the feature. A log is only helpful if the admin actually looks into it.</p>
-<a name="admin_logging_log_mode"></a><h3>Logging mode<a href="#admin_logging_log_mode" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Set, what kind of logging you want to enable. This feature records all changes that are done in coppermine's database, which is especially helpful if you're trying to debug or if there are various admins on a gallery.<br />
-All log files are written in english</p>
-<p>You have to understand that this option does not toggle the recording of what your site visitors do. Instead, you log particularly what <strong>admins</strong> do.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Logging mode</p>
+<a name="admin_logging"></a><h2>Logging et statistiques <a href="#admin_logging" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Comme tous les logs (qui enregistenst kes données qui seront effacées si l'enreistrement est désactivé), la fonction de logs de Coppermine a un impact significatif sur les performances ainsiq u'un impact sur l'espace disque et sur l'utilisation de la base de donnée. Vous devrez réfléchir avant d'activer cette fonction. Les logs ne sont utilse que si l'administrateur va les regarder.</p>
+<a name="admin_logging_log_mode"></a><h3>Mode d'enregistrement <a href="#admin_logging_log_mode" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>détermine quels sortes d'enregistrements vous voulez activer. Cette fonction enrgistre tous les changements effectués dans la base de donnée de Coppermine, ce uqi est particulièrement utile si vu sessayez de débugger ou si il y a plusieurs administrateurs de la galerie.<br />
+Tous les fichiers log sont écrits en anglais</p>
+<p>Vous devez comprendre que cette option ne définit pas l'enregistrement de ce que fait le visiteur de votre site. Il enregistre ce que <strong>l'administrateur</strong> fait.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging et statistiques  &rarr; Mode d'enregistrement </p>
 
 <a name="admin_logging_log_mode_end"></a>
 <hr />
-<a name="admin_general_log_ecards"></a><h3>Log ecards<a href="#admin_general_log_ecards" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, all ecards that are being sent are as well written into the database, where the coppermine admin can view them. Before switching this option on, make sure that logging is legal in your country. It is also advisable to notify your users that all ecards are being logged (preferrably on the Enregistrement  screen).</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Log ecards</p>
+<a name="admin_general_log_ecards"></a><h3>Enregistrer les envois de cartes électroniques<a href="#admin_general_log_ecards" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si activé, toutes les e-carttes qui sont envoyées sont aussi enregistrées dan sla base de donnée, ou l'administrateur pourra les voir. Avant d'activer cette option, assurez vous que ce type d'enregistrements sont autorisés dans votre pays. Il est aussi recommandé de le signaler à vos membres (de préférence sur la page d'eregistrement).</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging et statistiques  &rarr; Enregistrer les envois de cartes électroniques</p>
 
 <a name="admin_general_log_ecards_end"></a>
 <hr />
-<a name="admin_logging_votedetails"></a><h3>Keep detailed vote statistics<a href="#admin_logging_votedetails" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="admin_logging_votedetails"></a><h3>Enregistrer le détails des statistiques des Votes <a href="#admin_logging_votedetails" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>
-  Enabling this option records:</p>
+  L'activation de cette option enregistre:</p>
   <ol>
-    <li>Each vote separately</li>
-    <li>IP Address</li>
-    <li>Referer</li>
-    <li>Browser</li>
-    <li>Operating System</li>
-    <li>User ID (if logged in)</li>
+    <li>Chaque vote séparément</li>
+    <li>L'adresse IP</li>
+    <li>Le référent</li>
+    <li>Le navigateur</li>
+    <li>Le système d'exploitation</li>
+    <li>Identifiant de l'utilisateur (si identifié)</li>
   </ol>
-   <p>of the voter.</p>
-   <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.</p>
-<p class="cpg_message_info">Note: The total votes may not match if you enable details and do not reset the earlier votes.</p>
-<p class="cpg_message_warning">Warning: keeping detailed statistics means additional database queries and subsequently a heavy load on the page. You have to understand that the size of the corresponding database tables can increase if you enable this feature.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Keep detailed vote statistics</p>
+   <p>de la personne qui vote.</p>
+   <p>Comme les statistiques sont gardées par fichiers, le lien vers les statistiques sont accessibles sur la page individuelle du fichier (displayimage.php) en cliquant sur le lien dans les informations du fichier pour ouvrir une fenêtre de statistiques .</p>
+<p class="cpg_message_info">Note: Le total des votes ne correspondra pas si vous avez activé le détail et que vous n'avez pas remis à zéro les votes précédents.</p>
+<p class="cpg_message_warning">Attention: garder les statistiques détaillées signifient des requêtes supplémentaires vers la base de donnée et par concéquet une charge importante pour chque page. Vous devez comprendre que la taille des tables correspondantes peut grossir si vous activez cette fonction.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging et statistiques  &rarr; Enregistrer le détails des statistiques des Votes </p>
 <a name="admin_logging_votedetails_end"></a>
 <hr />
-<a name="admin_logging_hitdetails"></a><h3>Keep detailed hit statistics<a href="#admin_logging_hitdetails" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="admin_logging_hitdetails"></a><h3>Enregistrer le détail des statistiques des Hits<a href="#admin_logging_hitdetails" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>
-  Enabling this option records:</p>
+  L'activation de cette option enregistre:</p>
   <ol>
-    <li>Each vote separately</li>
-    <li>IP Address</li>
-    <li>Search Keyword, if the referer is Google, Yahoo! or Lycos search engines</li>
-    <li>Referer</li>
-    <li>Browser</li>
-    <li>Operating System</li>
-    <li>User ID (if logged in)</li>
+    <li>Chaque Hit séparément</li>
+    <li>L'adresse IP</li>
+    <li>Le mot clé de recherche, si le référent est Google, Yahoo! ou Lycos</li>
+    <li>Le référent</li>
+    <li>Le navigateur</li>
+    <li>Le système d'exploitation</li>
+    <li>L'iD du membre (si identifié)</li>
   </ol>
-   <p>of the visitor.</p>
-   <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.
+   <p>du visiteur.</p>
+   <p>Comme les statistiques sont gardées par fichiers, le lien vers les statistiques sont accessibles sur la page individuelle du fichier (displayimage.php) en cliquant sur le lien dans les informations du fichier pour ouvrir une fenêtre de statistiques .
 </p>
-<p class="cpg_message_info">Note: The total hits may not match if you enable details and do not reset the earlier hits.</p>
-<p class="cpg_message_warning">Warning: keeping detailed statistics means additional database queries and subsequently a <strong>heavy</strong> load on the page. You have to understand that the size of the corresponding database tables can increase <strong>dramatically</strong> if you enable this feature, so you should closely monitor the resources consumption caused by it and empty the table from time to time.</p>
-<p>Do not enable this option if you don't need it! If you enable it, frequently check the size of the stats table in the database (using a third party tool like <a href="dev_tools.htm#dev_tools_phpmyadmin">phpMyAdmin</a>) and the impact of the stats recording on the overall performance.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Keep detailed hit statistics</p>
+<p class="cpg_message_info">Note: Le total des Hits ne correspondra pas si vous avez activé le détail et que vous n'avez pas remis à zéro les Hits précédents..</p>
+<p class="cpg_message_warning">Attention: garder les statistiques détaillées signifient des requetes supplémentaire à la base de donnée et par concéquent une <strong>lourde</strong> charge de la page. Vous devez comprendre que la taille des tables correspondantes de la base de donnée peuvent grossir <strong>dramatiquement</strong> si vous activez cette fonction, vous devez donc regarder attentivement la consomation de ressources causée par cette fonction et vider la table de temps en temps.</p>
+<p>N'activez pas cette option si vous n'en avez pas besoin! Si vous l'activez vérifiez fréquemment la taille de la table stats dans la base de donnée (en utilisant un outil comme <a href="dev_tools.htm#dev_tools_phpmyadmin">phpMyAdmin</a>) ainsiq eu l'impact sur les performances générales de l'enregistrement des statistiques.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging et statistiques  &rarr; Enregistrer le détail des statistiques des Hits</p>
 <a name="admin_logging_hitdetails_end"></a>
-<a name="admin_logging_display_stats_on_index"></a><h3>Display statistics on index page<a href="#admin_logging_display_stats_on_index" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Turning this option off (&quot;No&quot;) will keep the text <tt class="code">X files in X albums and X categories with X comments viewed X times</tt> from appearing on the index pages (category and album views). Disabling this option will slightly improve performance, as the stats query that builds those numbers doesn't have to be performed. Default value is &quot;Yes&quot;, which means that the feature is enabled (&quot;On&quot;).</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Display statistics on index page</p>
+<a name="admin_logging_display_stats_on_index"></a><h3>Afficher les statistiques sur la page d'index <a href="#admin_logging_display_stats_on_index" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Désactiver cette option va enlever le texte <tt class="code">X fichiers dans X albums et X catégories avec X commentaires vus X fois</tt> de la page d'index (vue des catégories et des albums). L'affichage de cette option a peu d'impact sur les performences, puisque la requete pour afficher ces statistiques n'a pas besoin d'être envoyée. La valeur par défaut est &quot;Oui&quot;, ce qui signifie que la fonction est activée.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging et statistiques  &rarr; Afficher les statistiques sur la page d'index </p>
 <a name="admin_logging_display_stats_on_index_end"></a>
 <hr />
-<a name="admin_count_file_hits"></a><h3>Count file views<a href="#admin_count_file_hits" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Turning this option off (&quot;No&quot;) will disable counting of file views. This does not affect the display of the view counter. Disabling this option will slightly improve performance. Default value is &quot;Yes&quot;, which means that the feature is enabled (&quot;On&quot;).</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Count file views</p>
+<a name="admin_count_file_hits"></a><h3>Compter les visualisations des Fichiers <a href="#admin_count_file_hits" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Désactiver cette fonction va désactiver le comptage des visualisation des fichiers. Cela n'affecte pas l'affichage du compteur de vue. La désactivation de cette option n'a que peu d'impact sur les performances. La valeur par défaut est &quot;Oui&quot;, ce qui signifie que la fonction est activée.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging et statistiques  &rarr; Compter les visualisations des Fichiers s</p>
 <a name="admin_count_file_hits_end"></a>
-<a name="admin_count_album_hits"></a><h3>Count album views<a href="#admin_count_album_hits" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Turning this option off (&quot;No&quot;) will disable counting of album views. This does not affect the display of the view counter. Disabling this option will slightly improve performance. Default value is &quot;Yes&quot;, which means that the feature is enabled (&quot;On&quot;).</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Count album views</p>
+<a name="admin_count_album_hits"></a><h3>Compter les visualisations des Albums <a href="#admin_count_album_hits" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Désactiver cette fonction va désactiver le comptage des visualisation des albums. Cela n'affecte pas l'affichage du compteur de vue. La désactivation de cette option n'a que peu d'impact sur les performances. La valeur par défaut est &quot;Oui&quot;, ce qui signifie que la fonction est activée.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging et statistiques  &rarr; Compter les visualisations des Albums </p>
 <a name="admin_count_album_hits_end"></a>
-<a name="admin_count_admin_hits"></a><h3>Count admin views<a href="#admin_count_album_hits" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Turning this option on (&quot;Yes&quot;) will enable counting of admin views. This does not affect the display of the view counter. Default value is &quot;No&quot;, which means that the feature is disabled (&quot;Off&quot;).</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Count admin views</p>
+<a name="admin_count_admin_hits"></a><h3>Compter les visualisations par l'administrateur<a href="#admin_count_album_hits" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Activer cette fonction active le comptage des visualisation de l'administrateur. Cela n'affecte pas l'affichage du compteur de vue. La valeur par défaut est &quot;Non&quot;, ce qui signifie que la fonction est déactivée.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging et statistiques  &rarr; Compter les visualisations par l'administrateur</p>
 <a name="admin_count_admin_hits_end"></a>
 <a name="admin_logging_end"></a>
 
 
-<a name="admin_misc"></a><h2>Maintenance settings <a href="#admin_misc" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<a name="debug_mode"></a><h3>Enable debug mode<a href="#debug_mode" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Coppermine will show error messages which are normally suppressed. This is helpful in troubleshooting problems with your gallery or when asking for help on the <a href="http://coppermine-gallery.net/forum/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.</p>
-<p>Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine-gallery.net/forum/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when troubleshooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
+<a name="admin_misc"></a><h2>Paramètres de maintenance  <a href="#admin_misc" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="debug_mode"></a><h3>Activer le Mode Débogage <a href="#debug_mode" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Coppermine va afficher les messages d'erreur habituellement supprimés. C'est utile pour résoudre les problèmes avec votre galerie ou lorsque vous demandez de l'aide sur le <a href="http://coppermine-gallery.net/forum/">Forum d'aide de Coppermine</a>. Désactivez cette option si vous n'avez pas de problèmes.</p>
+<p>sélectionnez (option &quot;Tous&quot;) si vous demandez de l'aide sur le <a href="http://coppermine-gallery.net/forum/">forum d'aide de Coppermine</a>, de manière à ce que les personnes voulant vous venir en aide puisse voir les messages d'erreur eux aussi. Choisissez l'option &quot;Administrateur seulement&quot; si vous cherchez à résoudre les problèmes tout seul - la sortie de débugage ne sera visible que par vous administrateur si vous êtes identifiés en tant que tel, les utilisateurs enregistrés ou les visiteurs ne les verrons pas.</p>
 <p class="cpg_message_error">
 <a name="debug_mode_do_not_post_unless_requested"></a>
-    Do <strong>not</strong> post debug_output on the coppermine support board unless a supporter explicitely asks for it!<a href="#debug_mode_do_not_post_unless_requested" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+    Ne postez <strong>pas</strong> la sortie de debogage sur le forum d'aide de Coppermine si personne ne vous l'a expressément demandé!<a href="#debug_mode_do_not_post_unless_requested" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
 </p>
-<span class="detail_head_collapsed">Details</span>
+<span class="detail_head_collapsed">Détails</span>
 <div class="detail_body border1">
-	<a name="debug_mode_detail"></a><h4>Debug_output details<a href="configuration.htm?expand_all=1#debug_mode_detail" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-	<p class="cpg_message_info">If this sub-section is all greek to you, don't worry: this entire section is aimed at coders for reference purposes - you don't need to understand it to be able to use Coppermine.</p>
-	<p>The debug_output will appear at the bottom of your gallery's output, together with a link to your <a href="admin_menu.htm#phpinfo">phpinfo</a> output for the admin. By default, the debug_output textarea will be displayed collapsed to make sure that it doesn't interfere with the width of your page. To actually see the debug_output, click on the show/hide toggle that will expand or collapse the debug_output field.</p>
-	<p>The debug_output contains the following sub-sections:</p>
+	<a name="debug_mode_detail"></a><h4>Détails de la sortie de débogage<a href="configuration.htm?expand_all=1#debug_mode_detail" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+	<p class="cpg_message_info">Si cette sous section est du chinois pour vous, ne vous alarmez pas: cette section s'adresse au programmeurs en tant que références - vous n'avez pas besoin de la comprendre pour pouvoir faire fonctionner Coppermine.</p>
+	<p>La sortie de débogage s'affiche en bas des pages de votre galerie, avec un lien vers votre <a href="admin_menu.htm#phpinfo">phpinfo</a> pour l'administrateur. Par défaut, la sortie de débogage est repliée de manièrte à ne pas interférer avec votre page. Pour voir la sortie de débogagen cliquez sur l'intérupteur montrer/cacher pour déplier ou replier la section.</p>
+	<p>La sortie de débogae contient les sections suivantes:</p>
 	<ul>
 		<li>
-			<a name="debug_mode_user"></a><h5>USER and USER DATA<a href="configuration.htm?expand_all=1#debug_mode_user" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-			The content of the arrays <tt class="code">$USER</tt> and <tt class="code">$USER_DATA</tt> if populated at all - this shows the details of the user who is currently logged in, including the user ID, user name, group membership, the theme and language that user has chosen and the permission levels he has.
+			<a name="debug_mode_user"></a><h5>USER et USER DATA<a href="configuration.htm?expand_all=1#debug_mode_user" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+			Le contenu des tableaux <tt class="code">$USER</tt> et <tt class="code">$USER_DATA</tt> si completés - celà montre les détails de l'utilisateur actuellement connecté, incluant l'ID, le nom d'utilisateur, le groupe d'utilisateur auquel il appartient, le thème et la langue qu'il a choisi ainsi que les niveaux de droits qu'il a.
 		</li>
 		<li>
-			<a name="debug_mode_queries"></a><h5>Queries<a href="configuration.htm?expand_all=1#debug_mode_queries" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-			Shows the mySQL queries that have been run to generate the output of the page you're currently looking at
+			<a name="debug_mode_queries"></a><h5>Requêtes<a href="configuration.htm?expand_all=1#debug_mode_queries" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+			Montre les requêtes mySQL qui ont été lancées pour générer la page actuellemnt affichée.
 		</li>
 		<li>
-			<a name="debug_mode_get"></a><h5>GET parameters<a href="configuration.htm?expand_all=1#debug_mode_get" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-			The parameters that have been passed to the script using the GET method (as parameters of the URL) before the <a href="dev_superglobals.htm#superglobals_sanitization">Inspekt sanitization</a> kicked in. This equals the unsanitized output of <tt class="code">$_GET</tt>.
+			<a name="debug_mode_get"></a><h5>Paramètres GET<a href="configuration.htm?expand_all=1#debug_mode_get" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+			Les paramètres qui ont été passés en utilisant la methode GET (comme paramètre d'URL) avant  <a href="dev_superglobals.htm#superglobals_sanitization">la sécurisation Inspekt</a> . C'est l'équivalent de la sortie <tt class="code">$_GET</tt> non sécurisée.
 		</li>
 		<li>
-			<a name="debug_mode_post"></a><h5>POST parameters<a href="configuration.htm?expand_all=1#debug_mode_post" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-			The parameters that have been passed to the script using the POST method (i.e. if a form has been submit) before the <a href="dev_superglobals.htm#superglobals_sanitization">Inspekt sanitization</a> kicked in. This equals the unsanitized output of <tt class="code">$_POST</tt>.
+			<a name="debug_mode_post"></a><h5>Paramètres POST<a href="configuration.htm?expand_all=1#debug_mode_post" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+			Les paramètres qui ont été passés en utilisant la methode POST  (ex. lorsqu'un formulaire à été validé) avant <a href="dev_superglobals.htm#superglobals_sanitization">la sécurisation Inspekt</a>. C'est l'équivalent de la sortie <tt class="code">$_POST</tt> non sécurisée.
 		</li>
 		<li>
 			<a name="debug_mode_cookie"></a><h5>COOKIE<a href="configuration.htm?expand_all=1#debug_mode_cookie" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-			The content of the cookies that the script has read.
+			Le contenu du cookie que le script à lu.
 		</li>
 		<li>
-			<a name="debug_mode_versions"></a><h5>Version info<a href="configuration.htm?expand_all=1#debug_mode_versions" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-			Information about the versions of the applications used:
+			<a name="debug_mode_versions"></a><h5>Infos de version<a href="configuration.htm?expand_all=1#debug_mode_versions" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+			Informations sur les versions des applications utilisées:
 			<ul>
-				<li>The PHP version on your webserver</li>
-				<li>The mySQL version (that is the version of the database engine, not of the client API)</li>
-				<li>Your version of Coppermine</li>
+				<li>La version de PHP utilisé sur votre serveur</li>
+				<li>La version de mySQL (c'est la version du moteur de base de donnée, pas de l'API client)</li>
+				<li>Votr eversion de Coppermine</li>
 			</ul>
 		</li>
 		<li>
 			<a name="debug_mode_gd"></a><h5>Module: GD<a href="configuration.htm?expand_all=1#debug_mode_gd" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-			Details about the GD module on your webserver (if available).
+			Details sur le module GD sur votre serveur (si disponible).
 		</li>
 		<li>
-			<a name="debug_mode_config"></a><h5>Key config settings<a href="configuration.htm?expand_all=1#debug_mode_config" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-			Some of the config settings for your gallery that are helpfull for supporters.
+			<a name="debug_mode_config"></a><h5>Paramètres des clés de configuration (Key config settings)<a href="configuration.htm?expand_all=1#debug_mode_config" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+			Certains paramètres de configuration de votre galerie utils pour donner de l'aide.
 		</li>
 		<li>
 			<a name="debug_mode_plugins"></a><h5>Plugins<a href="configuration.htm?expand_all=1#debug_mode_plugins" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-			The plugins you have enabled and the actions and filters used by those plugins.
+			Les plugins activés et en action ainsi que les filtres utilisés par ces plugins.
 		</li>
 		<li>
-			<a name="debug_mode_restrictions"></a><h5>Server restrictions<a href="configuration.htm?expand_all=1#debug_mode_restrictions" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-			Values not taken from Coppermine, but from your webserver's PHP setup (configured in <a href="http://www.php.net/manual/en/configuration.file.php" rel="external" class="phpnet">php.ini</a>). What is being displayed in this section often is usefull information for upload troubleshooting purposes.
+			<a name="debug_mode_restrictions"></a><h5>Restrictions du serveur<a href="configuration.htm?expand_all=1#debug_mode_restrictions" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+			valeurs non prises dans Coppermine, mais dans les réglages du PHP de votre serveur (configuré en <a href="http://www.php.net/manual/en/configuration.file.php" rel="external" class="phpnet">php.ini</a>). ce qui est affiché ici est très souvent utile pour résoudre les problèmes de téléchargement.
 		</li>
 		<li>
-			<a name="debug_mode_suhosin"></a><h5>Suhosin settings<a href="configuration.htm?expand_all=1#debug_mode_suhosin" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-			The relevant <a href="http://www.hardened-php.net/suhosin/" rel="external" class="external">Suhosin</a> settings will be displayed when Suhosin is enabled on your server. Suhosin is a protection system designed to protect PHP applications from flaws within applications or PHP itself. Under certain circumstances, Suhosin can (if set up too restrictively) keep Coppermine from working as expected. If that's the case for you, contact the admin of your webserver (usually your webhost). Do not ask for support on the coppermine support board - Suhosin is not part of coppermine, but part of your webserver setup and therefore can not be changed on Coppermine level.
+			<a name="debug_mode_suhosin"></a><h5>Paramètres Suhosin<a href="configuration.htm?expand_all=1#debug_mode_suhosin" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+			Les paramètres <a href="http://www.hardened-php.net/suhosin/" rel="external" class="external">Suhosin</a> seront affichés si  Suhosin est activé sur votre serveur. Suhosin est un système de protection fait pour protéger les applications PHP de failles dans l'application ou dans PHP lui même. Dans certains cas, Suhosin peut (si paramétré de manière trop strict) empecher Coppermine de fonctionner correctement. Si c'est le cas pour vous, contactez l'administrateur de votre serveur web (généralement votre hébergeur). Ne demandez pas d'aide sur le forum de Coppermine - Suhosin ne fait pas partie de Coppermine, mais fait partie des réglages des votre serveur et donc ne peuvent pas être modifiés depuis Coppermine.
 		</li>
 		<li>
-			<a name="debug_mode_performance"></a><h5>Page (performance)<a href="configuration.htm?expand_all=1#debug_mode_performance" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-			The output of the page performance section will display how good coppermine did performance-wise to generate the page you're looking at. The left result column shows the current data, the right one shows the peak value. Smaller values are better in terms of performance.<br />
-			The following values are being taken into account:
+			<a name="debug_mode_performance"></a><h5>Page (performances)<a href="configuration.htm?expand_all=1#debug_mode_performance" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+			La sortie de la section des performances de la page va afficher comment Coppermine est bon, au niveau des performances de génération de la page que vous êtes en train de regarder. la colonne de résultat de gauche indique les données actuelles, la colonne de droite les valeurs maximales. Les petites valeurs sont meilleures en terme de performances.<br />
+			Les valeurs suivantes sont prisent en compte:
 			<ul>
 				<li>
-					<a name="debug_mode_performance_memory"></a><h6>Memory usage<a href="configuration.htm?expand_all=1#debug_mode_performance_memory" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h6>
-					The amount of memory that's currently being allocated to your PHP script. May not work on all server platforms. The first column shows the result of the PHP function <a href="http://www.php.net/manual/en/function.memory-get-usage.php" rel="external" class="phpnet">memory_get_usage</a> or a surrogate function if the original function is not available. The second column shows the output of the PHP function <a href="http://www.php.net/manual/en/function.memory-get-peak-usage.php" rel="external" class="phpnet">memory_get_peak_usage</a> (if available), which returns the peak of memory allocated by PHP.
+					<a name="debug_mode_performance_memory"></a><h6>Utilisation de la Mémoire<a href="configuration.htm?expand_all=1#debug_mode_performance_memory" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h6>
+					La quantité de mémoire actuellement utilisée par votre script PHP. Peut ne pas fonctioner sur toutes les plateformes. La première colonne montre le résultat de la focntion PHP <a href="http://www.php.net/manual/en/function.memory-get-usage.php" rel="external" class="phpnet">memory_get_usage</a> ou un efonction équivalente si celle ci n'est pas disponible. La seconde colonne montre la valeur de la focntion PHP <a href="http://www.php.net/manual/en/function.memory-get-peak-usage.php" rel="external" class="phpnet">memory_get_peak_usage</a> (si disponible), qui returne le maximum de la mémoire attribué par PHP.
 				</li>
 				<li>
-					<a name="debug_mode_performance_page_generation_time"></a><h6>Page generation time<a href="configuration.htm?expand_all=1#debug_mode_performance_page_generation_time" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h6>
-					The time in milliseconds it took to generate the page you're looking at is being displayed in the left column; the right column contains the peak value recorded so far today<sup><a href="#debug_mode_performance_peak">[1]</a></sup>.
+					<a name="debug_mode_performance_page_generation_time"></a><h6>Temps de génération de la Page<a href="configuration.htm?expand_all=1#debug_mode_performance_page_generation_time" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h6>
+					Le temps en millisecondes nécéssaire à l agénération de la page que vous êtes en train de regarder est affiché dans la colonne de gache; la colonne de droite montre la valeur maximale du jour<sup><a href="#debug_mode_performance_peak">[1]</a></sup>.
 				</li>
 				<li>
-					<a name="debug_mode_performance_page_query_time"></a><h6>Page query time<a href="configuration.htm?expand_all=1#debug_mode_performance_page_query_time" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h6>
-					The time in milliseconds it took to run the database queries to generate the page you're looking at is being displayed in the left column; the right column contains the peak value recorded so far today. If you experience high results here (above 1000 milliseonds) and your page load feels slow, you should consider reducing the number of queries by reducing the detail level of your coppermine-driven pages<sup><a href="configuration.htm?expand_all=1#debug_mode_performance_peak">[1]</a></sup>.
+					<a name="debug_mode_performance_page_query_time"></a><h6>Temps de requête de la page<a href="configuration.htm?expand_all=1#debug_mode_performance_page_query_time" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h6>
+					Le temps en millisecondes nécessaire aux requêtes de la base de donnée pour générer la page que vous regardez; la colonne de droite montre la valeur maximale du jour. Si vous obtenez des valeurs importantes ici (de l'ordre de 1000 millisecondes) et que vous avez l'impression que la page se charge lentement, vous devrez penser à réduitre le nombre de requêtes en réduisant le niveau de détails de vos pages Coppermine<sup><a href="configuration.htm?expand_all=1#debug_mode_performance_peak">[1]</a></sup>.
 				</li>
 				<li>
-					<a name="debug_mode_performance_page_query_total"></a><h6>Page query total<a href="configuration.htm?expand_all=1#debug_mode_performance_page_query_total" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h6>
-					The total number of database queries it took to generate the page you're looking at is being displayed in the left column; the right column contains the peak value recorded so far today. The number of queries has got a direct impact on the page query time<sup><a href="configuration.htm?expand_all=1#debug_mode_performance_peak">[1]</a></sup>.
+					<a name="debug_mode_performance_page_query_total"></a><h6>Total des requêtes de la page<a href="configuration.htm?expand_all=1#debug_mode_performance_page_query_total" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h6>
+					Le nombre total de requêtes de la base de donnée nécessaire à la génération de la page que vous regardez actuellement est affiché dans la colonne de gauche; la colonne de droite montre la valeur maximale du jour. Le nombre de requêtes à un impact direct sur le temps des requêtes de la page<sup><a href="configuration.htm?expand_all=1#debug_mode_performance_peak">[1]</a></sup>.
 				</li>
 			</ul>
-			<a name="debug_mode_performance_peak"></a>[1]: Today's peak values are being generated each time a coppermine-driven page is being run with debug_mode enabled. The recording starts from scratch each day at midnight. If you have little traffic or if you have enabled debug_mode for the admin only, the peaks that get recorded will of course be the peaks <em>you</em> generated.<a href="configuration.htm?expand_all=1#debug_mode_performance_peak" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+			<a name="debug_mode_performance_peak"></a>[1]: Les valeurs maximales sont générées à chaque fois que la galerie Coppermine fonctionne sou smode de débogage. L'enregistrement recommence à zéro chaque jour à minuit. Si vous avez peu de trafic ou que vous avez activé le mode de débogage pour l'administrateur seulement, les maximales enregistrées seront évidemment celles que <em>vous</em> avez généré.<a href="configuration.htm?expand_all=1#debug_mode_performance_peak" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
 		</li>
 	</ul>
 </div>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Maintenance settings &rarr; Enable debug mode</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres de maintenance  &rarr; Activer le mode de débogage</p>
 <hr />
-<a name="admin_misc_debug_notices"></a><h3>Display notices in debug mode<a href="#admin_misc_debug_notices" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>May be helpful to troubleshoot problems with your coppermine install - only recommended if you know a little PHP and you can understand the additional error messages this option shows. Notices being displayed don't actually mean that there is something wrong with your gallery. This option only applies if debug mode is enabled.</p>
-<p>If you enable this option, you will see notices all over your coppermine-driven pages. This does <strong>not</strong> mean that there is actually something wrong with your install. As suggested above: leave notices_display off if it doesn't mean anything to you.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Maintenance settings &rarr; Display notices in debug mode</p>
+<a name="admin_misc_debug_notices"></a><h3>Afficher les avertissements dans le Mode Débogage <a href="#admin_misc_debug_notices" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Est utile pour corriger les problèmes de votre installation Coppermine - uniquement recommandé si vous avez de petites connaissances en PHP et que vous comprenez les messages supplémentaires affichés par cette option. Les avertissements affichés ne signifient pas qu'il y a quelque chose qui ne va pas avec votre galerie. Cette option ne s'applique que si le mode de débogage est activé.</p>
+<p>Si vous activez cette option, vous verrez tous les avertissements de vos pages Coppermine. Cela ne signifie <strong>pas</strong> qu'il y a quelque chose qui va mal avec votre installation. Comme suggéré plus haut: laissez les avertissements désactivés si vous ne comprenez pas ce qu'ils veulent dire.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres de maintenance  &rarr; Afficher les avertissements dans le Mode Débogage </p>
 <a name="admin_misc_debug_notices_end"></a>
 <hr />
 <a name="debug_mode_end"></a>
 
-<a name="admin_general_offline"></a><h3>Gallery is offline<a href="#admin_general_offline" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>If you have to do maintenance work on your gallery, switch it to offline mode. Only members of the admin group will be able to log in, all other users will only see &quot;Gallery is offline&quot;. Remember to switch this option off once your maintenance work is done.</p>
-<p class="cpg_message_error">Putting your gallery into offline mode will only affect the legitimate visitors of your gallery. It will not have any effect on unwanted visitors (email harvesters, spam bots, hackers), so you mustn't believe that this is a security seal. Think of it as the putting the "closed" sign into the window of a shop. This setting will just put that sign into the window, but it will not lock the front door nor will it enable the burglar alarm.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Maintenance settings &rarr; Gallery is offline</p>
+<a name="admin_general_offline"></a><h3>La Galerie est Hors Ligne<a href="#admin_general_offline" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Si vous devez faire des travaux de maintenance sur votre galerie, passez en mode hors lige. Seuls les membres du groupe administrateur sont autorisés à s'identifier, tous les autres verront uniquement le message &quot;La Galerie est Hors Ligne&quot;. Rappelez vous de désactiver cette option une fois la maintenance terminée.</p>
+<p class="cpg_message_error">Mettre votre galerie hors ligne n'affectera que les utilisateurs légitimes de votre galerie. Il n'aura aucun effet sur les visiteurs non désirés (hackers, spammeurs etc...), vous n edevez donc pas croire que c'est une solution de sécurité. Rapprochez cela au fait que mettre un panneau "Fermé" sur la porte d'un magasin ne fait que placer un signe sur la porte, ca ne ferme pas la porte à clé n'i n'active l'alarme sonore.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres de maintenance  &rarr; La Galerie est Hors Ligne</p>
 <a name="admin_general_offline_end"></a>
 <hr />
-<a name="admin_general_coppermine_news"></a><h3>Display news from coppermine-gallery.net<a href="#admin_general_coppermine_news" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Starting with cpg1.5.0 there is a feed from coppermine-gallery.net that is being displayed for the gallery admin (and for the gallery-admin only) on each and every coppermine page to alert him of potential security issues and upgrades. You can toggle this option on and off in Coppermine's config (default is &quot;on&quot;). It is recommended to leave it enabled to make sure your coppermine install is always up-to-date.</p>
-<p>This is meant as a service for gallery admins; you're of course welcome to disable this option at any time. Coppermine-gallery.net will not collect data from your site (although this would be technically possible to a certain extent). If you're concerned about this option, then disable it or review the code used. We (the Coppermine dev team) are not trying to spy on our users - the feed is only being used to alert you of issues related to coppermine - that's all.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Maintenance settings &rarr; Display news from coppermine-gallery.net</p>
+<a name="admin_general_coppermine_news"></a><h3>Affichez les News de coppermine-gallery.net <a href="#admin_general_coppermine_news" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Depuis cpg1.5.0 il y a un flux depuis coppermine-gallery.net qui est affiché pour l'administrateur de la galerie (et uniquement pour les administrateurs) sur chacune des pages de la galerie pour l'alerter de problèmes potentiels de sécurité, ou sur la publication de mises à jour. Vous pouvez activer/desactiver cette option dans la configuration de Coppermine (par défaut c'est &quot;actif&quot;). Il est recommandé de laisser cette option active de manière a être sur d'avoir toujours une galerie à jour.</p>
+<p>C'est prévu comme un service pour l'administrateur de la galerie; vous pouvez bien entendu désactiver cette option à tout moment. Coppermine-gallery.net ne collecte aucune information de votre site (même si ce serait techniquement possible d'une certaine manière). Si vous êtes préoccupé par cette option, désactivez la ou regardez dans le code utilisé. Nous (L'équipe de développement de Coppermine) n'est pas en train d'essayer d'espionner ses utilisateurs - ce flux n'est utilisé que pour alerter les utilisateurs de problèmes relatifs à Coppermine, et rien d'autre.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres de maintenance  &rarr; Affichez les News de coppermine-gallery.net </p>
 <a name="admin_general_coppermine_news_end"></a>
 <hr />
 
-<a name="admin_misc_reset_boxes"></a><h3>Display reset boxes in config<a href="#admin_misc_reset_boxes" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>When enabled, there will be reset boxes all over the config screen that show if a particular value differs from default. This will allow you to quickly set the value back to default. This will however eat a lot of resources and will not work in all browsers. Recommended setting is "off", at least if you experience issues with the loading speed of the config screen.</p>
-<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Maintenance settings &rarr; Display reset boxes in config</p>
+<a name="admin_misc_reset_boxes"></a><h3>Affiche les cases de remise à la valeur par défaut dans la configuration <a href="#admin_misc_reset_boxes" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Lorsqu'elle est activée, il y a des cases à cocher qui sont affichées si une valeur particulière diffère de la valeur par défaut. Cela vous permettra de retourner rapidement à la valeur par défaut. Cela consomme par contre beaucoup de ressources et ne fonctionne pas avec tous les navigateurs. Le paramètre par défaut est "désactivé".</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Paramètres de maintenance  &rarr; Affiche les cases de remise à la valeur par défaut dans la configuration </p>
 <a name="admin_misc_reset_boxes_end"></a>
 
-<a name="admin_reset_entire_config"></a><h2>Restore factory defaults<a href="#admin_reset_entire_config" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>There is a hidden option to reset the entire configuration and restore the factory defaults. You can't access that option using a button in Coppermine's user interface to make sure it isn't being tampered with lightheartedly out of curiosity. To restore the entire coppermine config to factory defaults, you need to go to the config panel and then add the parameter <tt class="code">?restore</tt> to the URL.
-<div class="cpg_example">If your gallery resides at <tt class="code">http://yoursite.tld/your_coppermine_folder/</tt>, your "regular" config panel's URL is <tt class="code">http://yoursite.tld/your_coppermine_folder/admin.php</tt>. To go to the page where you can reset your configuration to factory defaults, go to <tt class="code">http://yoursite.tld/your_coppermine_folder/admin.php?restore</tt></div>
-<p>On that "restore factory defaults" page, you need to tick the confirmation checkbox and submit the form by clicking on the button at the bottom.</p>
-<p class="cpg_message_error">Resetting the configuration can not be undone! Make sure that you understand the impact before restoring the config!</p>
+<a name="admin_reset_entire_config"></a><h2>Restaure les paramètres par défaut<a href="#admin_reset_entire_config" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Il y a une focntion cachée qui restaure toute la configuration avec les paramètres par défaut. Vous ne pouvez pas y accéder par le biais d'un bouton de la configuration de Coppermine, pour éviter que vous ne l'utilisiez trop rapidement uniquement par curiosité. Pour restaurer toute la configuration de Coppermine aux valeurs par défaut, vous devrez aller dans le panneau de configuration et ajouter le paramètre <tt class="code">?restore</tt> à URL.
+<div class="cpg_example">Si votr egalerie se trouve à <tt class="code">http://votresite.com/voter_repertoire_coppermine/</tt>, l'adresse URL  "normale" de votre page de configuration est <tt class="code">http://votresite.com/votre_repertoire_coppermine/admin.php</tt>. Pour aller à la page qui peut restaurer votr econfiguration aux paramètres par défaut allez à la page <tt class="code">http://yoursite.tld/votresite.com/votre_repertoire_coppermine/admin.php?restore</tt></div>
+<p>Sur cette "page de restauration des paramètres par défaut", vous devez sélectionner la case à cocher de confirmation et cliquer sur le bouton de validation du formulaire au bas de la page.</p>
+<p class="cpg_message_error">La restauration de la configuration ne peut pas être annulée! Assurez vous de bien comprendre l'impact de cette fonction avant de restaurer la configuration!</p>
 
 <div id="doc_footer">
 	<div class="doc_info_wrapper">

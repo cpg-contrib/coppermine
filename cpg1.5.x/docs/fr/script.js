@@ -380,8 +380,8 @@ doc_toc += '          <li><a href="configuration.htm#admin_custom" >Champs perso
 doc_toc += '          <li><a href="configuration.htm#admin_custom_image">Champs personnalisés pour la description d\'images</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_cookie" >Paramètres du Cookie</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_email" >Paramètres des courriels</a></li>\n';
-doc_toc += '          <li><a href="configuration.htm#admin_logging" class="en">Logging &amp; statistics</a></li>\n';
-doc_toc += '          <li><a href="configuration.htm#admin_misc" class="en">Maintenance settings</a></li>\n';
+doc_toc += '          <li><a href="configuration.htm#admin_logging">Logging et statistiques </a></li>\n';
+doc_toc += '          <li><a href="configuration.htm#admin_misc">Paramètres de maintenance </a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="groups.htm" class="en">Groups</a>\n';
