@@ -376,10 +376,10 @@ doc_toc += '          <li><a href="configuration.htm#admin_picture_thumbnail">Pa
 doc_toc += '          <li><a href="configuration.htm#admin_watermarking">Filigrane d\'Images </a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_registration">Enregistrement </a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_user">Paramètres des Utilisateurs </a></li>\n';
-doc_toc += '          <li><a href="configuration.htm#admin_custom" class="en">Custom fields for user profile</a></li>\n';
-doc_toc += '          <li><a href="configuration.htm#admin_custom_image" class="en">Custom fields for image description</a></li>\n';
-doc_toc += '          <li><a href="configuration.htm#admin_cookie" class="en">Cookie settings</a></li>\n';
-doc_toc += '          <li><a href="configuration.htm#admin_email" class="en">Email settings</a></li>\n';
+doc_toc += '          <li><a href="configuration.htm#admin_custom" >Champs personnalisés pour le profil utilisateur</a></li>\n';
+doc_toc += '          <li><a href="configuration.htm#admin_custom_image">Champs personnalisés pour la description d\'images</a></li>\n';
+doc_toc += '          <li><a href="configuration.htm#admin_cookie" >Paramètres du Cookie</a></li>\n';
+doc_toc += '          <li><a href="configuration.htm#admin_email" >Paramètres des courriels</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_logging" class="en">Logging &amp; statistics</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_misc" class="en">Maintenance settings</a></li>\n';
 doc_toc += '        </ul>\n';
