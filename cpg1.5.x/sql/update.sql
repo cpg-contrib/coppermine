@@ -336,9 +336,16 @@ INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, avail
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, enabled, complete) VALUES ('french', 'French', 'Fran&ccedil;ais', 'fr','fr', 'YES', 'YES', 'NO');
 
 
-
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='bulgarian';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='chinese_gb';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='english_gb';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='english';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='french';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='finnish';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='german';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='german_formal';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='polish';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='russian';
 
 INSERT INTO CPG_config VALUES ('display_xp_publish_link', '0');
 

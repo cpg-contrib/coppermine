@@ -20,13 +20,13 @@
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // info about translators and translated language';
-$lang_translation_info['lang_name_english'] = 'Chinese_Simplified';
+$lang_translation_info['lang_name_english'] = 'Chinese Simplified';
 $lang_translation_info['lang_name_native'] = '中文简体';
 $lang_translation_info['lang_country_code'] = 'zh-cn';
 $lang_translation_info['trans_name'] = '艺书图';
 $lang_translation_info['trans_email'] = 'ammaya@126.com';
 $lang_translation_info['trans_website'] = 'http://aw8.org/';
-$lang_translation_info['trans_date'] = '2009-01-09';
+$lang_translation_info['trans_date'] = '2010-01-20';
 
 
 $lang_charset = 'utf-8';
