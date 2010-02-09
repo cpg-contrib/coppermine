@@ -271,11 +271,11 @@ print <<< EOT
         <th class="tableh1" colspan="2" align="left" valign="bottom">{$lang_db_ecard_php['ecard_recipient']}</th>
         <th class="tableh1" rowspan="2" align="left" valign="bottom">{$lang_db_ecard_php['ecard_date']}
             <a href="{$urlWithoutSort}sort=da">
-                <img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
+                <img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
             </a>
             &nbsp;
             <a href="{$urlWithoutSort}sort=dd">
-                <img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
+                <img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
             </a>
         </th>
         <th class="tableh1" rowspan="2" align="left" valign="bottom"></th>
@@ -283,47 +283,47 @@ print <<< EOT
     <tr>
         <th class="tableh1" align="left" valign="bottom">{$lang_db_ecard_php['ecard_name']}
             <a href="{$urlWithoutSort}sort=sna">
-                <img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
+                <img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
             </a>
             &nbsp;
             <a href="{$urlWithoutSort}sort=snd">
-                <img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
+                <img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
             </a>
         </th>
         <th class="tableh1" align="left" valign="bottom">{$lang_db_ecard_php['ecard_email']}
             <a href="{$urlWithoutSort}sort=sea">
-                <img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
+                <img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
             </a>
             &nbsp;
             <a href="{$urlWithoutSort}sort=sed">
-                <img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
+                <img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
             </a>
         </th>
         <th class="tableh1" align="left" valign="bottom">{$lang_db_ecard_php['ecard_ip']}
             <a href="{$urlWithoutSort}sort=ia">
-                <img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
+                <img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
             </a>
             &nbsp;
             <a href="{$urlWithoutSort}sort=id">
-                <img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
+                <img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
             </a>
         </th>    
         <th class="tableh1" align="left" valign="bottom">{$lang_db_ecard_php['ecard_name']}
             <a href="{$urlWithoutSort}sort=rna">
-                <img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
+                <img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
             </a>
             &nbsp;
             <a href="{$urlWithoutSort}sort=rnd">
-                <img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
+                <img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
             </a>
         </th>
         <th class="tableh1" align="left" valign="bottom">{$lang_db_ecard_php['ecard_email']}
             <a href="{$urlWithoutSort}sort=rea">
-                <img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
+                <img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_ascending']}" />
             </a>
             &nbsp;
             <a href="{$urlWithoutSort}sort=red">
-                <img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
+                <img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_db_ecard_php['ecard_descending']}" />
             </a>
         </th>
     </tr>

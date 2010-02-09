@@ -420,8 +420,8 @@ EOT;
     if ($CONFIG['comment_akismet_api_key'] != '') {
         $akismet_row_heading = <<< EOT
             {$lang_reviewcom_php['akismet']}
-            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=akismet_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['akismet_a']}" /></a>
-            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=akismet_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['akismet_d']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=akismet_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['akismet_a']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=akismet_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['akismet_d']}" /></a>
 EOT;
     } else {
         $akismet_row_heading = '';
@@ -436,31 +436,31 @@ EOT;
           </td>
           <td class="tableh2" valign="top">
             {$lang_reviewcom_php['approval']}
-            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=approval_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_a']}" /></a>
-            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=approval_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_d']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=approval_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_a']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=approval_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_d']}" /></a>
           </td>
           <td class="tableh2" valign="top">
             {$akismet_row_heading}
           </td>
           <td class="tableh2" valign="top">{$lang_reviewcom_php['user_name']}
-            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_a']}" /></a>
-            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_d']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=name_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_a']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=name_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_d']}" /></a>
           </td>
           <td class="tableh2" valign="top">{$lang_reviewcom_php['ip_address']}
-            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=ip_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['ip_a']}" /></a>
-            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=ip_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['ip_d']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=ip_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['ip_a']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=ip_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['ip_d']}" /></a>
           </td>
           <td class="tableh2" valign="top">{$lang_reviewcom_php['date']}
-            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=date_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_a']}" /></a>
-            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=date_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_d']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=date_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_a']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=date_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_d']}" /></a>
           </td>
           <td class="tableh2" valign="top">{$lang_reviewcom_php['comment']}
-            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=comment_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_a']}" /></a>
-            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=comment_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_d']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=comment_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_a']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=comment_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_d']}" /></a>
           </td>
           <td class="tableh2" valign="top">{$lang_reviewcom_php['file']}
-            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=file_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_a']}" /></a>
-            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=file_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_d']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=file_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_a']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=file_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_d']}" /></a>
           </td>
         </tr>
 

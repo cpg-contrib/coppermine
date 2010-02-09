@@ -425,10 +425,10 @@ EOT;
           print '      '.cpg_fetch_icon($icon[$value], 0, $lang_stat_details_php[$value]);
           if ($$value == 1) {
               print '<a href="#" onclick="return sortthetable(\''.$value.'\',\'asc\');">';
-              print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $value).', '.$lang_stat_details_php['ascending'].'" />';
+              print '<img src="images/ascending.png" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $value).', '.$lang_stat_details_php['ascending'].'" />';
               print '</a>';
               print '<a href="#" onclick="return sortthetable(\''.$value.'\',\'desc\');">';
-              print '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_stat_details_php[$value]).', '.$lang_stat_details_php['descending'].'" />';
+              print '<img src="images/descending.png" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_stat_details_php[$value]).', '.$lang_stat_details_php['descending'].'" />';
               print '</a>';
           }
           print $LINEBREAK;
@@ -441,10 +441,10 @@ EOT;
           print '      '.cpg_fetch_icon('file', 0, $lang_common['file']);
           if ($file == 1) {
               print '<a href="#" onclick="return sortthetable(\'file\',\'asc\');">';
-              print '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['ascending'].'" />';
+              print '<img src="images/ascending.png" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['ascending'].'" />';
               print '</a>';
               print '<a href="#" onclick="return sortthetable(\'file\',\'desc\');">';
-              print '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['descending'].'" />';
+              print '<img src="images/descending.png" width="9" height="9" border="0" alt="" title="'.sprintf($lang_stat_details_php['sort_by_xxx'], $lang_common['file']).', '.$lang_stat_details_php['descending'].'" />';
               print '</a>';
           }
           print '    </td>'.$LINEBREAK;

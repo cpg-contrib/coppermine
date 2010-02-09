@@ -119,9 +119,9 @@ foreach ($sort_codes as $sort_header => $sort_query) {
     if ($sort_query != $sort) {
         $header_output[$sort_header] = '<a href="'.$CPG_PHP_SELF.'?page='.$page.'&amp;sort='.$sort_header.'#ban_users">';
         if (ltrim(strrchr($sort_header, '_'), '_') == 'a') {
-            $header_output[$sort_header] .= '<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="'. $lang_banning_php['sort_by'] . ': ' . $sort_translation[$sort_header].'" />';
+            $header_output[$sort_header] .= '<img src="images/ascending.png" width="9" height="9" border="0" alt="" title="'. $lang_banning_php['sort_by'] . ': ' . $sort_translation[$sort_header].'" />';
         } else {
-            $header_output[$sort_header] .= '<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="'. $lang_banning_php['sort_by'] . ': ' . $sort_translation[$sort_header].'" />';
+            $header_output[$sort_header] .= '<img src="images/descending.png" width="9" height="9" border="0" alt="" title="'. $lang_banning_php['sort_by'] . ': ' . $sort_translation[$sort_header].'" />';
         }
         $header_output[$sort_header] .= '</a>';
     } else {
