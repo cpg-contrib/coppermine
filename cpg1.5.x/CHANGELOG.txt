@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-02-09 [C] Replaced all rating GIFs by PNGs {Timo}
 2010-02-05 [A] Added Chinese language file (user contribution) {eenemeenemuu}
 2010-02-04 [C] Added draft for new default theme (work in progress) {GauGau}
 2010-02-04 [C] Added icons for new default theme {GauGau}

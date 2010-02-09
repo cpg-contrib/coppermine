@@ -297,9 +297,9 @@ if ($type == 'vote' && $pid != '') { // type == vote start
         $rating_images = '';
         for($i2 = 1; $i2 <= $CONFIG['rating_stars_amount']; $i2++){
             if($i2 <= $i){
-                $rating_images .= '<img src="' . $prefix . 'images/rate_full.gif" align="left" alt=""/>';
+                $rating_images .= '<img src="' . $prefix . 'images/rate_full.png" align="left" alt=""/>';
             }else{
-                $rating_images .= '<img src="' . $prefix . 'images/rate_empty.gif" align="left" alt=""/>';
+                $rating_images .= '<img src="' . $prefix . 'images/rate_empty.png" align="left" alt=""/>';
             }
         }
         echo <<<EOT

@@ -439,7 +439,7 @@ EOT;
                             <input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" id="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_view_count']}" {$hits_reset_disabled} /><label for="reset_vcount{$CURRENT_PIC['pid']}" class="clickable_option" title="{$lang_editpics_php['reset_view_count']}">{$icon_array['reset_views']} ({$CURRENT_PIC['hits']})</label>
                     </td>
                     <td class="{$row_style_class}" width="70">
-                            <input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" id="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_votes']}" {$votes_reset_disabled} /><label for="reset_votes{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_votes']}" /> ({$CURRENT_PIC['votes']})</label>
+                            <input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" id="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['reset_votes']}" {$votes_reset_disabled} /><label for="reset_votes{$CURRENT_PIC['pid']}" class="clickable_option"><img src="images/rating.png" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_votes']}" /> ({$CURRENT_PIC['votes']})</label>
                     </td>
                     <td class="{$row_style_class}" width="40">
                             <input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" id="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox" title="{$lang_editpics_php['del_comm']}" /><label for="del_comments{$CURRENT_PIC['pid']}" class="clickable_option">{$icon_array['comment_delete']}</label>
@@ -945,7 +945,7 @@ echo <<<EOT
                             <input type="checkbox" name="reset_vcountAll" onclick="selectAll(this,'reset_vcount');" class="checkbox" id="reset_vcountAll" title="{$lang_editpics_php['reset_all_view_count']}" /><label for="reset_vcountAll" class="clickable_option">{$icon_array['reset_views_all']}</label>
                         </td>
                         <td class="tableh2" width="70">
-                            <input type="checkbox" name="reset_votesAll" onclick="selectAll(this,'reset_votes');" class="checkbox" id="reset_votesAll" title="{$lang_editpics_php['reset_all_votes']}" /><label for="reset_votesAll" class="clickable_option"><img src="images/rating.gif" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_all_votes']}" /></label>
+                            <input type="checkbox" name="reset_votesAll" onclick="selectAll(this,'reset_votes');" class="checkbox" id="reset_votesAll" title="{$lang_editpics_php['reset_all_votes']}" /><label for="reset_votesAll" class="clickable_option"><img src="images/rating.png" border="0" width="16" height="16" alt="" title="{$lang_editpics_php['reset_all_votes']}" /></label>
                         </td>
                         <td class="tableh2" width="40">
                             <input type="checkbox" name="del_commentsAll" onclick="selectAll(this,'del_comments');" class="checkbox" id="del_commentsAll" title="{$lang_editpics_php['del_all_comm']}" /><label for="del_commentsAll" class="clickable_option">{$icon_array['comment_delete_all']}</label>

@@ -3614,26 +3614,26 @@ function theme_html_rating_box()
             // use old-style rating
             $start_td = '<td class="tableb" width="17%" align="center">';
             $end_td = '</td>';
-            $empty_star = '<img style="cursor:pointer" id="' . $pid . '_0" title="0" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['rubbish'] . '" onclick="rate(this)" />';
+            $empty_star = '<img style="cursor:pointer" id="' . $pid . '_0" title="0" src="' . $location . 'images/rate_empty.png" alt="' . $lang_rate_pic['rubbish'] . '" onclick="rate(this)" />';
             $rating_images = $start_td . $empty_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
 
-            $empty_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
-            $full_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
+            $empty_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_empty.png" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
+            $full_star = '<img style="cursor:pointer" id="' . $pid . '_1" title="1" src="' . $location . 'images/rate_full.png" alt="' . $lang_rate_pic['poor'] . '" onclick="rate(this)" />';
             $rating_images .= $start_td . $full_star . $empty_star . $empty_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
 
-            $empty_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
-            $full_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
+            $empty_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_empty.png" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
+            $full_star = '<img style="cursor:pointer" id="' . $pid . '_2" title="2" src="' . $location . 'images/rate_full.png" alt="' . $lang_rate_pic['fair'] . '" onclick="rate(this)" />';
             $rating_images .= $start_td . $full_star . $full_star . $empty_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
 
-            $empty_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
-            $full_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
+            $empty_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_empty.png" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
+            $full_star = '<img style="cursor:pointer" id="' . $pid . '_3" title="3" src="' . $location . 'images/rate_full.png" alt="' . $lang_rate_pic['good'] . '" onclick="rate(this)" />';
             $rating_images .= $start_td . $full_star . $full_star . $full_star . $empty_star . $empty_star . $end_td . $LINEBREAK;
 
-            $empty_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_empty.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
-            $full_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
+            $empty_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_empty.png" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
+            $full_star = '<img style="cursor:pointer" id="' . $pid . '_4" title="4" src="' . $location . 'images/rate_full.png" alt="' . $lang_rate_pic['excellent'] . '" onclick="rate(this)" />';
             $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $empty_star . $end_td . $LINEBREAK;
 
-            $full_star = '<img style="cursor:pointer" id="' . $pid . '_5" title="5" src="' . $location . 'images/rate_full.gif" alt="' . $lang_rate_pic['great'] . '" onclick="rate(this)" />';
+            $full_star = '<img style="cursor:pointer" id="' . $pid . '_5" title="5" src="' . $location . 'images/rate_full.png" alt="' . $lang_rate_pic['great'] . '" onclick="rate(this)" />';
             $rating_images .= $start_td . $full_star . $full_star . $full_star . $full_star . $full_star . $end_td . $LINEBREAK;
 
             set_js_var('stars_amount', 'fallback');

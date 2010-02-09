@@ -161,9 +161,9 @@ function html_picinfo()
         while ($i <= $CONFIG['rating_stars_amount']) {
 
             if ($i <= $rating) {
-                $rating_images .= '<img src="' . $prefix . 'images/rate_full.gif" align="left" alt="' . $rating . '"/>';
+                $rating_images .= '<img src="' . $prefix . 'images/rate_full.png" align="left" alt="' . $rating . '"/>';
             } else {
-                $rating_images .= '<img src="' . $prefix . 'images/rate_empty.gif" align="left" alt="' . $rating . '"/>';
+                $rating_images .= '<img src="' . $prefix . 'images/rate_empty.png" align="left" alt="' . $rating . '"/>';
             }
             
             $i++;

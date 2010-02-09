@@ -1024,9 +1024,9 @@ function build_caption(&$rowset, $must_have = array(), $mode = 'files')
             for ($i = 1; $i <= $CONFIG['rating_stars_amount']; $i++) {
 
                 if ($i <= $rating) {
-                    $rating_images .= '<img src="' . $prefix . 'images/rate_full.gif" alt="' . $rating . '"/>';
+                    $rating_images .= '<img src="' . $prefix . 'images/rate_full.png" alt="' . $rating . '"/>';
                 } else {
-                    $rating_images .= '<img src="' . $prefix . 'images/rate_empty.gif" alt="' . $rating . '"/>';
+                    $rating_images .= '<img src="' . $prefix . 'images/rate_empty.png" alt="' . $rating . '"/>';
                 }
             }
 

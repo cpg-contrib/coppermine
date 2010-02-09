@@ -358,16 +358,16 @@ function rate(obj) {
 function changeover(obj) {
     var id = obj.title;
     for(i=0; i<id; i++) {
-        $('#' + js_vars.picture_id + '_' + (i+1)).attr('src', js_vars.theme_dir + 'images/rate_new.gif');
+        $('#' + js_vars.picture_id + '_' + (i+1)).attr('src', js_vars.theme_dir + 'images/rate_new.png');
     }
 }
 
 function changeout(obj) {
     var id = obj.title;
     for(i=0; i<id; i++) {
-        var img = js_vars.theme_dir + 'images/rate_full.gif';
+        var img = js_vars.theme_dir + 'images/rate_full.png';
         if(js_vars.rating <= i) {
-            img = js_vars.theme_dir + 'images/rate_empty.gif';
+            img = js_vars.theme_dir + 'images/rate_empty.png';
         }
         $('#' + js_vars.picture_id + '_' + (i+1)).attr('src', img);
     }
@@ -409,10 +409,10 @@ function buildRating() {
             star11 = star12 = 'rate_empty';
         }
         if(js_vars.can_vote == 'true') {
-            rating_stars += '<img style="cursor:pointer" src="' + js_vars.theme_dir + 'images/' + star11 + '.gif" id="' + js_vars.picture_id + '_'+(i+1)+'"'
+            rating_stars += '<img style="cursor:pointer" src="' + js_vars.theme_dir + 'images/' + star11 + '.png" id="' + js_vars.picture_id + '_'+(i+1)+'"'
             rating_stars += ' title="' + (i+1) + '" onmouseout="changeout(this)" onmouseover="changeover(this)" onclick="rate(this)" />';
         } else {
-            rating_stars += '<img src="' + js_vars.theme_dir + 'images/' + star11 + '.gif" alt="' + js_vars.rating + '" title="' + js_vars.rating + '"/>';
+            rating_stars += '<img src="' + js_vars.theme_dir + 'images/' + star11 + '.png" alt="' + js_vars.rating + '" title="' + js_vars.rating + '"/>';
         }
     }
     return rating_stars;
