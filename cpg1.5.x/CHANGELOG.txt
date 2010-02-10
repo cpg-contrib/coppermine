@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-02-10 [B] Fixed slideshow from lastcom of an album to start at correct file (threadID 63585) {Nibbler}
+2010-02-10 [B] Fixed search results leading to wrong files (threadID 63583) {Nibbler}
 2010-02-09 [C] Replaced ascending and descending GIFs by PNGs {Timo}
 2010-02-09 [C] Replaced all rating GIFs by PNGs {Timo}
 2010-02-05 [A] Added Chinese language file (user contribution) {eenemeenemuu}
