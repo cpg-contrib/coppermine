@@ -1973,7 +1973,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 function get_pic_pos($album, $pid)
 {
     global $USER, $CONFIG, $CURRENT_ALBUM_KEYWORD, $FORBIDDEN_SET_DATA, $USER_DATA;
-    global $RESTRICTEDWHERE;
+    global $RESTRICTEDWHERE, $FORBIDDEN_SET;
 
     //$superCage = Inspekt::makeSuperCage();
 
