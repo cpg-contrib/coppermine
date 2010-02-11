@@ -1981,25 +1981,30 @@ EOT;
 ** Section <<<starttable>>> - START
 ******************************************************************************/
 // Function to start a 'standard' table
-function starttable($width = '-1', $title = '', $title_colspan = '1', $zebra_class = '')
+function starttable($width = '-1', $title = '', $title_colspan = '1', $zebra_class = '', $return = false)
 {
     global $CONFIG;
 
     if ($width == '-1') $width = $CONFIG['picture_table_width'];
     if ($width == '100%') $width = $CONFIG['main_table_width'];
-    echo <<<EOT
+    $text = <<<EOT
 
 <!-- Start standard table -->
 <table align="center" width="$width" cellspacing="1" cellpadding="0" class="maintable $zebra_class">
 
 EOT;
     if ($title) {
-        echo <<<EOT
+        $text .= <<<EOT
         <tr>
                 <td class="tableh1" colspan="$title_colspan">$title</td>
         </tr>
 
 EOT;
+    }
+    if (!$return) {
+        echo $text;
+    } else {
+        return $text;
     }
 }
 /******************************************************************************
@@ -2011,13 +2016,18 @@ EOT;
 /******************************************************************************
 ** Section <<<endtable>>> - START
 ******************************************************************************/
-function endtable()
+function endtable($return = false)
 {
-    echo <<<EOT
+    $text = <<<EOT
 </table>
 <!-- End standard table -->
 
 EOT;
+    if (!$return) {
+        echo $text;
+    } else {
+        return $text;
+    }
 }
 /******************************************************************************
 ** Section <<<endtable>>> - END

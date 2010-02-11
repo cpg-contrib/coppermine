@@ -215,6 +215,13 @@
     <td valign="top"><textarea class="samplecode" style="width:100%">CPGPluginAPI::filter('register_user_activation', $act_key);</textarea></td>
   </tr>
   <tr>
+    <td valign="top">search.php</td>
+    <td valign="top"><a name="plugin_hooks_search_form"></a><strong>search_form</strong><a href="#plugin_hooks_search_form" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Add or remove content to/from the search form</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$text = CPGPluginAPI::filter('search_form', $text);</textarea></td>
+  </tr>
+  <tr>
     <td valign="top">thumbnails.php</td>
     <td valign="top"><a name="plugin_hooks_thumbnails_post_breadcrumb"></a><strong>post_breadcrumb</strong><a href="#plugin_hooks_thumbnails_post_breadcrumb" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
@@ -682,6 +689,7 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
     <li><a href="#plugin_hooks_register_form_create">register_form_create</a></li>
     <li><a href="#plugin_hooks_register_form_submit">register_form_submit</a></li>
     <li><a href="#plugin_hooks_register_user_activation">register_user_activation</a></li>
+    <li><a href="#plugin_hooks_search_form">search_form</a></li>
     <li><a href="#plugin_hooks_smilies_display">smilies_display</a></li>
     <li><a href="#plugin_hooks_smilies_display">smilies_process</a></li>
     <li><a href="#plugin_hooks_filename_sub_menu">sub_menu</a></li>

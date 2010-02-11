@@ -29,12 +29,13 @@ if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
 }
 
 pageheader($lang_search_php['title']);
-echo <<< EOT
+$text = '';
+$text .= <<< EOT
 
 <form method="get" action="thumbnails.php" name="searchcpg" id="cpgform3">
 EOT;
 
-starttable('100%', cpg_fetch_icon('search', 2) . $lang_search_php['title']);
+$text .= starttable('100%', cpg_fetch_icon('search', 2) . $lang_search_php['title'], 1, '', true);
 
 $ip = GALLERY_ADMIN_MODE ? '
         <tr>
@@ -67,7 +68,7 @@ foreach (range(1, 4) as $i) {
 EOT;
 }
 
-echo <<< EOT
+$text .= <<< EOT
         <tr>
             <td class="tableb" align="center" >
                 <input type="text" style="width: 80%" name="search" maxlength="255" value="" class="textinput" />
@@ -130,8 +131,11 @@ $ip
 EOT;
 
 
-endtable();
-echo '</form>';
+$text .= endtable(true);
+$text .= '</form>';
+
+$text = CPGPluginAPI::filter('search_form', $text);
+echo $text;
 
 if ($CONFIG['clickable_keyword_search'] != 0) {
     include('include/keyword.inc.php');
