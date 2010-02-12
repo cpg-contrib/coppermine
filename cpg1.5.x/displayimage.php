@@ -475,7 +475,8 @@ if ($superCage->get->keyExists('fullsize')) {
     if ($album != 'search') {
         $film_strip = display_film_strip($album, (isset($cat) ? $cat : 0), $pos, true);
     }
-
+    // Set the picture id for use in js
+    set_js_var('picture_id', $CURRENT_PIC_DATA['pid']);
     pageheader($album_name . '/' . $picture_title, $meta_keywords, false);
     
     // Display Breadcrumbs

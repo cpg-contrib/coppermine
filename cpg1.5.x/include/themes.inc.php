@@ -3667,7 +3667,6 @@ function theme_html_rating_box()
             $template_rating = $template_image_rating;
         }
         set_js_var('rating', round(($CURRENT_PIC_DATA['pic_rating'] / 2000) / (5/$rating_stars_amount), 0));
-        set_js_var('picture_id', $pid);
         set_js_var('theme_dir', $location);
         set_js_var('can_vote', $user_can_vote);
         list($timestamp, $form_token) = getFormToken();
