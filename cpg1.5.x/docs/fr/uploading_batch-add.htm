@@ -32,118 +32,118 @@
 <a href="toc.htm">Table des matières</a>
 </div>
 
-<div id="doc_en_partial"></div>
-<a name="batch_add_pics"></a><h1>Téléchargement des images par FTP / Ajout des images par lot<a href="#batch_add_pics" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>Le téléchargement par FTP plus l'ajout par lots est la méthode recommandée de téléchargement des fichiers pour les aministrateurs de galeries Coppermine. Seul l'administrateur peur utiliser cette méthode pourt des raisons de sécurité; les non-administrateurs nepeuvent pas utiliser cette méthode, et doivent en utiliser une autre pour télécharger des fichiers.</p>
 
-<a name="batch_add_pics_what"></a><h2>Ce ue fait l'ajout par lot<a href="#batch_add_pics_what" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="batch_add_pics"></a><h1>Téléchargement des images par FTP / Ajout des images par lot<a href="#batch_add_pics" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Le téléchargement par FTP plus l'ajout par lots est la méthode recommandée de téléchargement des fichiers pour les administrateurs de galeries Coppermine. Seul l'administrateur peur utiliser cette méthode pourt des raisons de sécurité; les non-administrateurs nepeuvent pas utiliser cette méthode, et doivent en utiliser une autre pour télécharger des fichiers.</p>
+
+<a name="batch_add_pics_what"></a><h2>Ce que fait l'ajout par lot<a href="#batch_add_pics_what" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Coppermine est une application gérée par une base de donnée. Cela signifie que les fichiers téléchargés physiquement se trouvent queque part sur l'espace web. Cela peut être n'importe ou - les noms de répertoire et de fichiers qui sont téléchargés n'ont pas besoin d'être triés d'une manière particulière. Le tri et le groupement est l'affaire d'une réflexion logique: Coppermine utilise les catégories, des sous-catégories et des albums pour organiser l'affichage des fichiers qui ont été téléchargés. Pour être capable de faire cela, Coppermien stocke les emplacements physiques des fichiers (les chemins qui mènent aus fichiers) dans la base de donnée, de même que d'autres indormations logiques (par exemple dans quel album se trouve le fichier).</p>
 <p>Lorsqu'un fichier est téléchargé par un client FTP, Coppermine ne sait pas ou il est, donc vous devrez indiquer au script l'emplacement pour lui permettre de le retenir en utilisant la base de donnée. C'est là que le processus d'ajouts par lot entre en jeu. Ce que fait le processus d'ajout par lots est: créer des copies de l'image redimensionnées (vignettes et images intermédiaires) du fichier original que vous avez téléchargé et d'ajouter cet enregistrement à la base de donnée (un enregistrement par fichier ajouté) afin de garder une trace de l'endroit sur le serveur ou le fichier se trouve. Celà dit, c'est relativement simple: <strong>Coppermine ne déplace pas les fichiers - ils restent là ou vous les avez placés</strong>.</p>
 <p>C'est la raison pour laquelle vous devrez réfléchir à l'avance de la structure de fichiers et de répertoires pour vos téléchargements FTP. Ils doivent aller dans le répertoire albums, et il est recommandé d'y créer une structure claire de répertoires et de sous répertoires.</p>
 
-<p>It is recommended that the coppermine admin use ftp to upload multiple pics/files at a time. Use your ftp software to create sub-folders within <em>your_coppermine_directory/albums/</em>, where your ftp uploads can be saved. Though not mandatory, it's always a good idea to have a folder structure within the <em>albums</em> folder that reflects or mirrors your coppermine categories and albums.</p>
-<p class="cpg_message_error">Important: do not create folders or ftp upload to the <em>userpics</em>- nor to the <em>edit</em>-folder by ftp: these folders are used by coppermine internally and must not be used for any other purpose! <strong>Folder names must not contain dots</strong>. We also highly recommend refraining from the use of any other special characters - use only a-z, numbers and <tt class="code">-</tt> (dashes) or <tt class="code">_</tt> (underscores) to fill blank spaces. Make sure to upload in binary or auto-mode.</p>
+<p>Il est trecommandé à l'administrateur d'utiliser le FTP pour ajouter de multiples images/fichiers en une seule fois. Utilisez votre application FTP pour créer des sous-répertoires dans <em>votre_repertoire_coppermine/albums/</em>, ou vos fichiers téléchargés peuvent être sauvegardés. Même si ce n'est pas obligatoire, c'est une bonne idée d'avoir une structure de répertoires dans le répertoire <em>albums</em> qui reprends ou copie les structure de vos catégories et albums de votregalerie Coppermine.</p>
+<p class="cpg_message_error">Important: ne créez pas de dossiers ou ne téléchargez pas dans les répertoires <em>userpics</em>- ou <em>edit</em>-par ftp: ces répertoires sont utilisés en interne par Coppermine et ne doivent pasêtre utilisés pour une autre raison! <strong>Les noms de dossiers ne doivent pas contenir de points</strong>. Nous recommandons aussi de proscrire l'utilisation de tout autre caractère spécial - n'utilisez que les caractères a-z, les chiffres et les <tt class="code">-</tt> (tirets) ou <tt class="code">_</tt> (soulignements) pour remplir les espaces vides. Assurez vous de télécharger en mode binaire ou auto.</p>
 
-<a name="batch_add_pics_how"></a><h2>How batch-add works<a href="#batch_add_pics_how" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Once you have uploaded your photos by ftp, click on the &quot;Batch Add Pictures&quot; button. The batch-add is performed in three steps:</p>
+<a name="batch_add_pics_how"></a><h2>Comment fonctionne l'ajout par lots<a href="#batch_add_pics_how" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Un fois que vous avez téléchargé vos photos par FTP, cliquez sur le bouton &quot;FTP =>&quot;. L'ajout par lots se fait en trois étapes:</p>
 <ul>
-    <li>find the directory under which you have uploaded your photos. Select this directory by clicking on it.<br />
+    <li>Trouvez le répertoire dans lequel vous avez téléchargé vos photos. Sélectionnez ce répertoire en cliquant dessus.<br />
     <img src="images/searchnew_1.gif" border="0" alt="" /><a name="ftp_select_dir_end"></a></li>
-    <li><a name="ftp_select_file"></a>select the photos you wish to upload (by ticking them).  New pics are automatically pre-selected, those that already are in your coppermine database are not selected. Next select the album you wish to insert them into. Click &quot;Insert Selected Pictures&quot; to start the batch-add process.<br />
+    <li><a name="ftp_select_file"></a>Sélectionnez les photos que vous voulez placer dans la galerie (en cochant la case correspondante). Les nouvelles images sont automatiquement pré-sélectionnées, celles qui sont déjà dans la base de donnée de Coppermine ne sont pas sélectionnées. Puis sélectionnez l'album dans lesuel vous voulez placer les photos. Cliquez sur  &quot;Insérer les images sélectionnées&quot; pour lancer le processus d'ajout par lots.<br />
     <img src="images/searchnew_2.gif" border="0" alt="" /><a name="ftp_select_file_end"></a></li>
-    <li><a name="ftp_show_result"></a><abbr title="Coppermine Photo Gallery">CPG</abbr> will then display the results of the batch-add (allow some time for all results to display).<br />
-    If the OK, DP, or PB 'signs' does not appear, click on the broken file image to see if any error message was produced by PHP.<br />
-    Should your browser time out, hit the reload button.
+    <li><a name="ftp_show_result"></a><abbr title="Coppermine Photo Gallery">CPG</abbr> affiche alors le résultat de l'ajout par lots (cela demande un peu de temps pour afficher les résultats).<br />
+    Si les 'signes' OK, DP, ou PB n'apparaissent pas, cliquez sur l'image de fichier btisé pour voir si un message d'erreur a été produit par PHP.<br />
+    Si vous deviez rencontrer des times out, cliquez sur le bouton de rechargement de la page.
         <ul>
-            <li><img src="../../images/batch/ok_small.png" width="16" height="16" border="0" alt="" title="OK" align="" style="" />: means that the file was successfully added</li>
-            <li><img src="../../images/batch/duplicate_small.png" width="16" height="16" border="0" alt="" title="DP" align="" style="" />: means that the file is a duplicate and is already in the database</li>
-            <li><img src="../../images/batch/folder_locked_small.png" width="16" height="16" border="0" alt="" title="PB" align="" style="" />: means that the file could not be added, check your configuration and the permission of directories where the files are located</li>
-            <li><img src="../../images/batch/back_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: means that you haven't selected an album the files should go to, hit 'back' and select an album. If you don't have an album create one first</li>
-            <li><img src="../../images/batch/file_broken_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: the file is broken or inacessible</li>
-            <li><img src="../../images/batch/unknown_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: unknown file type</li>
-            <li><img src="../../images/batch/gif_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: the file is actually a GIF image and has just been renamed (e.g. to jpg or png)</li>
+            <li><img src="../../images/batch/ok_small.png" width="16" height="16" border="0" alt="" title="OK" align="" style="" />: signifie que le fichier a été ajouté avec succès</li>
+            <li><img src="../../images/batch/duplicate_small.png" width="16" height="16" border="0" alt="" title="DP" align="" style="" />: signifie que le ficher est dupliqué et existe déjà dans la base de donnée</li>
+            <li><img src="../../images/batch/folder_locked_small.png" width="16" height="16" border="0" alt="" title="PB" align="" style="" />: signifie que le fichier n'a pas pu être ajouté, vérifiez votre configuration et les droits des répertoires ou sont placés les fichiers</li>
+            <li><img src="../../images/batch/back_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: signifie que vous n'avez pas sélectionné d'album de destination pour le fichier, cliquez sur 'retour' rt sélectionnez un album. Si vous n'avez pas encore d'albums, créez en un d'abbord</li>
+            <li><img src="../../images/batch/file_broken_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: Le fichier est corrompu ou inaccessible</li>
+            <li><img src="../../images/batch/unknown_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: type de fichier inconu</li>
+            <li><img src="../../images/batch/gif_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: le fichier est un GIF et à juste été renommé (ex. en jpg ou png)</li>
         </ul>
     <a name="ftp_show_result_end"></a>
     </li>
 </ul>
-<p class="cpg_message_info">Giving FTP-access to other users can pose a serious security threat, this is why batch-add is only available for the coppermine gallery admin.</p>
-<p>Once files have been added to coppermine's database, make sure that you <strong>never</strong> rename or delete them via ftp - use coppermine's admin menu options to remove or rename files, instead. Only in this way will these files be removed from both the file system <strong>and</strong> the database.</p>
+<p class="cpg_message_info">Donner un accès FTP à d'autre sutilisateurs peut poser de gros problèmes de sécurité, c'est pourquoi le processus d'ajout par lots n'est disponible que pour les administrateurs de votre galerie Coppemrine.</p>
+<p>Une fois que les fichiers ont été ajoutés dans votr ebase de donnée Coppermine, assurez vous  de ne <strong>jamais</strong> les renommer ou les effacer par le FTP - utilisez plutôt les options du menu administrateur de Coppermine pour effacer ou renommer les fichiers. C'est la seule manière d'effacer les fichiers à la fois du système de fichiers <strong>et</strong> de la base de donnée.</p>
 
-<a name="batch_add_common_mistakes"></a><h2>Common mistakes<a href="#batch_add_common_mistakes" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>There are some things that can go wrong when batch-adding, so here's a list to check first:</p>
+<a name="batch_add_common_mistakes"></a><h2>Erreurs classiques<a href="#batch_add_common_mistakes" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Il y a plusieurs choses qui peuvent mal se passer lors de l'ajout pas lots, voici une liste de choses à vérifier d'abbord:</p>
 <ul>
 	<li>
-		<a name="batch_add_common_mistakes_doesnt_work"></a><h3>Batch-add does not work as expected:<a href="#batch_add_common_mistakes_doesnt_work" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		<a name="batch_add_common_mistakes_doesnt_work"></a><h3>L'ajout par lots ne fonctionne pas comme prévu:<a href="#batch_add_common_mistakes_doesnt_work" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 		<ul>
 			<li>
-			    <a name="batch_add_common_mistakes_doesnt_work_permissions"></a><h4>Permissions<a href="#batch_add_common_mistakes_doesnt_work_permissions" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-			    Make sure you have <strong>applied</strong> <a href="install_permissions.htm">permissions</a> on file system level
+			    <a name="batch_add_common_mistakes_doesnt_work_permissions"></a><h4>Droits<a href="#batch_add_common_mistakes_doesnt_work_permissions" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    Assurez vous que vous avez <strong>appliqué</strong> <a href="install_permissions.htm">les droits</a> au niveau du sytème des fichiers
 			</li>
 			<li>
-			    <a name="batch_add_common_mistakes_doesnt_work_toggle"></a><h4>Toggle the interface<a href="#batch_add_common_mistakes_doesnt_work_toggle" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-			    Batch-add comes with two interfaces: the classic interface and the browsable interface. If you have issues with one, try the other
+			    <a name="batch_add_common_mistakes_doesnt_work_toggle"></a><h4>Changez d'interface<a href="#batch_add_common_mistakes_doesnt_work_toggle" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    L'ajout par lots peut avoir deux interfaces; la classique et l'interface d'exploration. Si vous avez des problèmes avec l'une, essayez l'autre
 			</li>
 			<li>
-			    <a name="batch_add_common_mistakes_doesnt_work_capitalization"></a><h4>Capitalization<a href="#batch_add_common_mistakes_doesnt_work_capitalization" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-			    Avoid capitalization in folder and file names: coppermine can cope with capitalization, but it get's less likely that things don't work when using capitalization. That's why you should not use capitalization, i.e. all folders and files should be in lower-case
+			    <a name="batch_add_common_mistakes_doesnt_work_capitalization"></a><h4>Majuscules<a href="#batch_add_common_mistakes_doesnt_work_capitalization" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    Enlevez les majuscules des noms de fichiers et de répertoires: Coppermine peut focntionner avec les majuscules, mais il eput y avoir certaines petites choses qui ne focntionnent pas avec les majuscules. C'est la raison pour laquelle vous ne devez pas utiliser de majuscules c.a.d que tous vos noms de dossiers ou de fichiers doivent être en minuscules
 			</li>
 			<li>
-			    <a name="batch_add_common_mistakes_doesnt_work_spaces"></a><h4>Spaces<a href="#batch_add_common_mistakes_doesnt_work_spaces" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-			    Avoid spaces in folder and file names. Spaces do not belong to the list of web-safe characters. Don't use them!
+			    <a name="batch_add_common_mistakes_doesnt_work_spaces"></a><h4>Espaces<a href="#batch_add_common_mistakes_doesnt_work_spaces" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    Enlevez les espaces dans les noms de fichiers et de dossiers. Les espaces ne font pas partie de la liste des caratères normaux, ne les utilisez pas!
 			</li>
 			<li>
-			    <a name="batch_add_common_mistakes_doesnt_work_special_chars"></a><h4>Special chars<a href="#batch_add_common_mistakes_doesnt_work_special_chars" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-			    File systems used in computing have been invented with latin characters only in mind. The internet and the naming scheme it uses has been invented with latin-only characters in mind. Much later developers realized their mistake and tried to allow other characters as well, but then it was too late: the technology and standards used on the web are pretty old and therefore they work best if you only use latin characters (a to z) and numbers. Special characters (like Umlauts, accented characters or characters from non-latin alphabets) do not belong to the list of web-safe characters. Don't use them!
+			    <a name="batch_add_common_mistakes_doesnt_work_special_chars"></a><h4>Caractères spéciaux<a href="#batch_add_common_mistakes_doesnt_work_special_chars" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    Les sytèmes de fichiers utilisés en informatique ont étés crées en ne tenant compte que des caractères latins. Internet et les règles de nommages qu'il utilise a été crées en n'utilisant que les caractères latins. Beaucoup plus tard, les développeurs se sont rendus compte de leur erreur et ont éssayé d'autoriser d'autre caractères, mais c'était trop tard: la techonolgie et les standarts utilisés sur le web sont très anciens, et ne fonctionnent correctement que si vous utilisez uniquement les caractères latins (a à z) et les chiffres. Les caractères spéciaux (comme les caratères accentués, les trémas ou les caratères provenant d'alphabets non latins) ne font pas partie des caractères normaux d'internet. Ne les utilisez pas!
 			</li>
 			<li>
-			    <a name="batch_add_common_mistakes_doesnt_work_forbidden_chars"></a><h4>Forbidden chars<a href="#batch_add_common_mistakes_doesnt_work_forbidden_chars" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-			    There is a config field in coppermine that let's you populate a list of <a href="configuration.htm#admin_picture_thumb_advanced_filename_forbidden_chars">characters that are forbidden in file names</a>. It's advisable not to change them (or at least not remove the characters that reside in that list out of the box), as those characters have got a special meaning. Of course you should not use those forbidden characters in folder or file names.
+			    <a name="batch_add_common_mistakes_doesnt_work_forbidden_chars"></a><h4>Caractères interdits<a href="#batch_add_common_mistakes_doesnt_work_forbidden_chars" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    Il y a une option de configuration qui vous permets de completer une liste de <a href="configuration.htm#admin_picture_thumb_advanced_filename_forbidden_chars">cacrtères interdits dans les noms de fichiers</a>. Il est recommandé de ne pas la modifier (ou en tout cas de ne pas effacer ceux qui s'y trouvent par défaut), parce que ces caractères ont une signification spéciale. Bien entendu vous ne devez pas utiliser de caractères interdits dans vos noms de fichiers ou de dossiers.
 			</li>
 			<li>
-			    <a name="batch_add_common_mistakes_doesnt_work_reserved_names"></a><h4>Reserved names<a href="#batch_add_common_mistakes_doesnt_work_reserved_names" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-			    Don't use reserved file names: there is a number of prefixes that coppermine is using internally, so you shouldn't make sure not to use those reserved file names or prefixes. Don't use "thumb_", "normal_", "original_" in file names, as those are the default file prefixes
+			    <a name="batch_add_common_mistakes_doesnt_work_reserved_names"></a><h4>Noms réservés<a href="#batch_add_common_mistakes_doesnt_work_reserved_names" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    N'utilisez pas de noms réservés: il y a un certain nombre de préfixes utilisés en interne par Coppermine, vous devez vous assure de ne pas utiliser ces noms de fichiers ou préfixes réservés. N'utilisez pas "thumb_", "normal_", "original_" dans les noms de fichiers, ce sont ceux par défaut pour les fichiers de Coppermine
 			</li>
 			<li>
-			    <a name="batch_add_common_mistakes_doesnt_work_dots"></a><h4>Dots<a href="#batch_add_common_mistakes_doesnt_work_dots" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-			    Don't use dots in folder names: files with leading dots are hidden files on most webserver operating systems, that's why it can be tricky to use dots. To be safe, do not use dots in folder names. Do not use leading dots in file names - in fact, file names should only contain one dot: the one that separates the file name from the file extension.
+			    <a name="batch_add_common_mistakes_doesnt_work_dots"></a><h4>Les points<a href="#batch_add_common_mistakes_doesnt_work_dots" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    N'utilisez pas les points dans les noms de dossiers: les fichiers commencant par un point sont des fichiers cachés sur la plupart des systèmes d'exploitations des serveurs d'hérgergement, c'est la raison pour laquelle l'utilisation des points peut s'avérer problématique. N'utilisez par de points pour le début des noms de ficheirs - en fait, les noms de fichiers ne doivent contenir qu'un seul point: celui qui sépare le nom de fichier de son extension.
 			</li>
 		</ul>
 		<div class="cpg_message_warning">
-		<a name="batch_add_common_mistakes_asking_fo_support"></a><h4>Asking for support on issues with batch-add<a href="#batch_add_common_mistakes_asking_fo_support" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-		If you have issues with batch-adding, make sure that <a href="uploading_http.htm#upload_http">http uploads</a> work as expected first. If you want to request help on batch-add issues on the coppermine support board, please refer to the guide &quot;<a href="upload_troubleshooting.htm#upload_support">Asking for support on upload issues</a>&quot; - it applies to batch-add issues just as well as any other upload method. Additionally to the suggestions made on that page, add a deep link pointing to one of the files that you're having issues with when batch-adding to your posting.
+		<a name="batch_add_common_mistakes_asking_fo_support"></a><h4>Demander le l'aide pour des problèmes d'ajout par lots<a href="#batch_add_common_mistakes_asking_fo_support" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		Si vous avez des problèmes avec l'ajout par lots, assurrez vous d'abbord que <a href="uploading_http.htm#upload_http">le téléchargement par HTTP</a> fonctionne correctement. Si vous voulez demander de l'aide pour des problèmes d'ajout par lots sur le forum d'aide de Coppermine, référez vous au guide &quot;<a href="upload_troubleshooting.htm#upload_support">Demande d'aide pour les problèmes de téléchargement</a>&quot; - il s'applique au problèmes d'ajouts par lots aussi bien qu'aux autres methodes de téléchargement. En plus des suggestions faites sur cette page, ajoutez à votre post un lien direct vers un des fichiers avec lequel vous avez des problèmes d'ajout par lots.
 		</div>
 	</li>
 	<li>
-	    <a name="batch_add_common_mistakes_broken_files"></a><h3>Files appear to be broken:<a href="#batch_add_common_mistakes_broken_files" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	    Make sure that you have uploaded them using the proper FTP mode
+	    <a name="batch_add_common_mistakes_broken_files"></a><h3>Les fichiers semblent corrompus:<a href="#batch_add_common_mistakes_broken_files" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	    Assurez vous de les avoir téléchargé en utilisant le bon mode FTP
 	</li>
 	<li>
-	    <a name="batch_add_common_mistakes_rename"></a><h3>Do not rename<a href="#batch_add_common_mistakes_rename" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	    Do not rename files once they have been batch-added to coppermine's database. Of course, you mustn't rename the folders neither in which those files reside in!
+	    <a name="batch_add_common_mistakes_rename"></a><h3>Ne les renommez pas<a href="#batch_add_common_mistakes_rename" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	    Ne renommez pas les fichiers une fois qu'ils ont été ajoutés dans la base de donnée de Coppermine. Bien entendu vous ne devez pas npn plus renommer le dossier contenant les fichiers!
 	</li>
 	<li>
-	    <a name="batch_add_common_mistakes_delete"></a><h3>Do not delete<a href="#batch_add_common_mistakes_delete" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	    Do <strong>not</strong> delete files using your FTP app after having added them to coppermine using batch-add. If you want to delete files, use the coppermine user interface to delete them.
+	    <a name="batch_add_common_mistakes_delete"></a><h3>Ne les effacez pas<a href="#batch_add_common_mistakes_delete" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	    N'effacez <strong>pas</strong> de fichiers en utilisant votre client FTP après les avoir ajoutés à Coppermine. Si vous voulez effacer des fichiers, utilisez l'interface utilisateur de Coppermine pour le faire.
 	    <br />
-	    Some users mistakenly thought that they could delete files once the batch-add process was done: that is <strong>not</strong> the case - all that batch-add does is creating the resized images (intermediate/thumb/watermark) and add a record to the database that corresponds to the file. You can <strong>not</strong> delete the file afterwards to save space. If you delete the file, you will get a broken record, which is very bad.
+	    Certains utilisateurs pensent à tord qu'ils peuvent effacer les fichiers originaux une fois l'ajout par lot effectué: ce n'est <strong>pas</strong> le cas - tout ce que fait le processus d'ajout parl lots est la création d'images redimmensionnées (intermédiaires, vignettes, filigrane) et d'ajouter un enregistrement dans la base de donnée correspondant à votre fichier. Vous ne pouvez <strong>pas</strong> effacer le fichier pour gagner de la place. Si vous effacez le fichier, vous aurez un enregistrement corrompu, ce qui n'est pas bien du tout.
 	</li>
 </ul>
 
-<a name="batch_add_sort"></a><h2>Sorting<a href="#batch_add_sort" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>The <a href="configuration.htm#admin_thumbnail_default_sortorder">Default sort order for files</a> can be set in coppermine's config. Out of the box, it is set to &quot;Name ascending&quot;, which simply is the best option for most and should therefore be preserved. Subsequently, all files that you upload using coppermine's built-in batch-add function will be sorted within the album they went into by filename. It's recommended to come up with a naming scheme for the files (that you have to apply to the files <strong>before</strong> uploading them from your client to the server) that takes into account the way the server operating file will sort the files.</p>
-Keep in mind that:
+<a name="batch_add_sort"></a><h2>Tri<a href="#batch_add_sort" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p><a href="configuration.htm#admin_thumbnail_default_sortorder">L'ordre de tri par défaut des fichiers</a> peut être paramétré dans la configuration de Coppermine. Par défaut, il est paramétré à &quot;Ascendant par nom&quot;, ce qui est simplement la meilleure option pour la plupart et doit être préservée pour celà. En concéquence, tous les fichiers qui sont utilisés par Coppermine avec la fonction d'ajout par lots sont triés dans leur album de destination par nom de fichier. Il est recommandé d'avoir un shéma de nom de fichiers (que vous devez appliquer aux fichiers <strong>avant</strong> de les télécharger sur votre serveur) qui prende en compte la manière dont le serveur va trier ces fichiers.</p>
+Gardez en mémoire que:
 <ul>
     <li>
-        <a name="batch_add_sort_capitalization"></a><h3>Capitalization matters<a href="#batch_add_sort_capitalization" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-        On most webservers there is a Unix-/Linux-driven operating system. Unlike Windows-driven operating systems, capitalization matters for sorting aspects. That's why files may be sorted in a &quot;funny&quot; way if you come from a Windows-driven background.
+        <a name="batch_add_sort_capitalization"></a><h3>Les Majuscules comptent<a href="#batch_add_sort_capitalization" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        Sur la plupart des serveurs il y a un système d'exploitation Unix-/Linux. A l'inverse des systèmes d'exploitation Windows, les majusculesnt comptent en matière de tri. C'est la raison pour laquelle les fichiers peuvent être triés de manière &quot;bizarre&quot; si vous venez du monde Windows.
     </li>
     <li>
-        <a name="batch_add_sort_numbers"></a><h3>Computers see numbers differently<a href="#batch_add_sort_numbers" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-        Computers (and the webserver your gallery runs on is a computer) perceive a list of numbers in another way humans would perceive them: leading zeros can be ommitted for a human, but not for a computer. Let's say that you have a list of 12 files that you just named using numbers, e.g. like this:
+        <a name="batch_add_sort_numbers"></a><h3>Les oridnateurs voient les nombres différemment<a href="#batch_add_sort_numbers" title="Lien vers cette section "><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        Les ordinateurs (et les serveurs sur lesquelles tournent votre galerie) percoivent une liste de nombre d'une autre manière qu eles hommes: le zero de commencement peut être oublié par l'homme, mais pas par l'ordinateur. Admettons que vous ayez une liste de 12 fichiers simplement nommés en utilisant un nombre comme ceci:
         <div class="cpg_example">
             <tt class="code">1.jpg</tt>, <tt class="code">2.jpg</tt>, <tt class="code">3.jpg</tt>, <tt class="code">4.jpg</tt>, <tt class="code">5.jpg</tt>, <tt class="code">6.jpg</tt>, <tt class="code">7.jpg</tt>, <tt class="code">8.jpg</tt>, <tt class="code">9.jpg</tt>, <tt class="code">10.jpg</tt>, <tt class="code">11.jpg</tt>, <tt class="code">12.jpg</tt><br />
         </div>
-        A human would sort them like this:
+        Un homme les triera de cette manière:
         <div class="cpg_example">
             <ul>
                 <li>1.jpg</li>
@@ -160,7 +160,7 @@ Keep in mind that:
                 <li>12.jpg</li>
             </ul>
         </div>
-        , but a computer won't: your webserver will sort them like this:
+        , mais pas l'ordinateur: votre serveur web les triera comme ça:
         <div class="cpg_example">
             <ul>
                 <li>1.jpg</li>
@@ -177,7 +177,7 @@ Keep in mind that:
                 <li>9.jpg</li>
             </ul>
         </div>
-        That's why it's advisable to fill the names with leading zeroes in the first place. For that purpose, you need to estimate the maxmimum number of files that will reside in a particular folder. That maximum determines the number of digits that your file names will need: if the max. number of files will be 99 within a folder, you can use 01 to 99. If the maximum number of files will be 200, you will have to use three digits, so your first file needs to be named 001.jpg, the second one 002.jpg and so on. Of course your file names can be alpha-numeric, so you can come up with a combination of letters and numbers, e.g. 
+        C'est pourquoi il est conseillé de mettre dans les noms de fichiers des zero en premiere place. Pour cela, vous devrez estimer le nombre maximum de fichiers qui vont aller dans ce dossier. Ce maximum détermine le nombre de chiffre nécéssaire au nom de fichier: si le nombre maximum est de 99 fichiers dans un dossier, vous pouvez utiliser 01 à 99. Si le nombre maximum de fichiers est 200, vous devrez avoir 3 chiffres, votre premier fichier devra alors s'appeler 001.jpg, le secon 002.jpg etc... Bien entendu les noms de fichiers peuvent être alphanumériques, vous pouvez donc avoir une combinaion de chiffres et de lettres comme par exemple 
         <div class="cpg_example">
             <ul>
                 <li>brussels001.jpg</li>

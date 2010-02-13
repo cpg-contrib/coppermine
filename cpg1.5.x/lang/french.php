@@ -208,7 +208,7 @@ $lang_gallery_admin_menu['groups_lnk'] = 'Groupes';
 $lang_gallery_admin_menu['comments_title'] = 'Afficher tous les Commentaires';
 $lang_gallery_admin_menu['comments_lnk'] = 'Commentaires';
 $lang_gallery_admin_menu['searchnew_title'] = 'Aller au Téléchargement par Lots (FTP)';
-$lang_gallery_admin_menu['searchnew_lnk'] = 'FTP] =';
+$lang_gallery_admin_menu['searchnew_lnk'] = 'FTP =>';
 $lang_gallery_admin_menu['util_title'] = 'Aller aux Utilitaires d\'Administration';
 $lang_gallery_admin_menu['util_lnk'] = 'Utilitaires';
 $lang_gallery_admin_menu['key_lnk'] = 'Dictionnaire de Mot-Clef';
