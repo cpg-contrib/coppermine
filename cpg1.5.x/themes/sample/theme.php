@@ -3242,11 +3242,20 @@ function theme_html_picture()
     if ($mime_content['content']=='movie' || $mime_content['content']=='audio') {
 
         if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0) {
-            $CURRENT_PIC_DATA['pwidth']  = 320; // Default width
+            $resize_method = $CONFIG['picture_use'] == "thumb" ? ($CONFIG['thumb_use'] == "ex" ? "any" : $CONFIG['thumb_use']) : $CONFIG['picture_use'];
+            if ($resize_method == 'ht') {
+                $pwidth = $CONFIG['picture_width']*4/3;
+                $pheight = $CONFIG['picture_width'];
+            } else { 
+                $pwidth = $CONFIG['picture_width'];
+                $pheight = $CONFIG['picture_width']*3/4;
+            }
+
+            $CURRENT_PIC_DATA['pwidth']  = $pwidth; // Default width
 
             // Set default height; if file is a movie
             if ($mime_content['content']=='movie') {
-                $CURRENT_PIC_DATA['pheight'] = 240; // Default height
+                $CURRENT_PIC_DATA['pheight'] = $pheight; // Default height
             }
         }
 
