@@ -3789,6 +3789,12 @@
     <hash>3c7f41744ba9c871916d17470f828b73</hash>
   </element>
   <element>
+    <fullpath>images/browser/aol.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>3c7f41744ba9c871916d17470f828b73</hash>
+  </element>
+  <element>
     <fullpath>images/browser/apt.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -3807,6 +3813,12 @@
     <hash>f32c4b6fbb45834dcaa3fef85c8c0cd0</hash>
   </element>
   <element>
+    <fullpath>images/browser/beonex.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>55e358003178daa093baf74640d3bae0</hash>
+  </element>
+  <element>
     <fullpath>images/browser/bpftp.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -3817,6 +3829,12 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>2846816a6bf2ec958605113995ae8e17</hash>
+  </element>
+  <element>
+    <fullpath>images/browser/camino.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>4a711984f63d7239ccc0ec48f014a96e</hash>
   </element>
   <element>
     <fullpath>images/browser/chimera.png</fullpath>
@@ -3831,16 +3849,16 @@
     <hash>4dea84730b930002a3ed104eaea6b0fc</hash>
   </element>
   <element>
+    <fullpath>images/browser/crazybrowser.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>4dea84730b930002a3ed104eaea6b0fc</hash>
+  </element>
+  <element>
     <fullpath>images/browser/cyberdog.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>55c6640c39313ef8d8b3f93592235fc5</hash>
-  </element>
-  <element>
-    <fullpath>images/browser/da.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>e8bce224eb269c8ce078ba4cbd2beb1c</hash>
   </element>
   <element>
     <fullpath>images/browser/dillo.png</fullpath>
@@ -3859,12 +3877,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>c407b050e6863d7c7fec3e1933bfc7fe</hash>
-  </element>
-  <element>
-    <fullpath>images/browser/encompass.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>ae43b76c00fe89756ed718b0599fdd31</hash>
   </element>
   <element>
     <fullpath>images/browser/epiphany.png</fullpath>
@@ -4095,6 +4107,12 @@
     <hash>a2868236228032b85a2bc3034c5e7473</hash>
   </element>
   <element>
+    <fullpath>images/browser/maxthon.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>580272fbb2b5704355ead6f5ca392179</hash>
+  </element>
+  <element>
     <fullpath>images/browser/multizilla.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -4293,6 +4311,12 @@
     <hash>4ba4361a43b022fba3951dd146bd3db7</hash>
   </element>
   <element>
+    <fullpath>images/browser/shiira.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>4ba4361a43b022fba3951dd146bd3db7</hash>
+  </element>
+  <element>
     <fullpath>images/browser/shrook.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
@@ -4305,13 +4329,31 @@
     <hash>2836b1293a812091b3981e77ab70cdbc</hash>
   </element>
   <element>
+    <fullpath>images/browser/sleipnir.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>2836b1293a812091b3981e77ab70cdbc</hash>
+  </element>
+  <element>
     <fullpath>images/browser/sony.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>7c3e3e3b441339a045a694e096e818fc</hash>
   </element>
   <element>
+    <fullpath>images/browser/stainless.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>cd43d15d7670ba16841779f0879a08a7</hash>
+  </element>
+  <element>
     <fullpath>images/browser/staroffice.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>cd43d15d7670ba16841779f0879a08a7</hash>
+  </element>
+  <element>
+    <fullpath>images/browser/sunrise.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>cd43d15d7670ba16841779f0879a08a7</hash>
@@ -7022,6 +7064,12 @@
   </element>
   <element>
     <fullpath>images/os/imode.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>1a6a3643c94b83dc1ed95a31c1b0ec38</hash>
+  </element>
+  <element>
+    <fullpath>images/os/inferno.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>1a6a3643c94b83dc1ed95a31c1b0ec38</hash>

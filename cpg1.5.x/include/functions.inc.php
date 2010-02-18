@@ -2480,6 +2480,10 @@ function cpg_determine_client()
         $os = 'Playstation Portable';
     } elseif (preg_match('#Playstation#i', $server_agent)) {
         $os = 'Playstation';
+    } elseif (preg_match('#Inferno#i', $server_agent)) {
+        $os = 'Inferno';
+    } elseif (preg_match('#BeOS#i', $server_agent)) {
+        $os = 'beOS';
     }
     
     
@@ -2503,8 +2507,6 @@ function cpg_determine_client()
         } else {
             $browser = 'IE';
         }
-    } elseif (preg_match('#AvantGo#i', $server_agent)) {
-        $browser = 'Avant';
     } elseif (preg_match('#Nitro#i', $server_agent)) {
         $browser = 'Nintendo DS';
     } elseif (preg_match('#Nokia#i', $server_agent)) {
@@ -2535,6 +2537,8 @@ function cpg_determine_client()
         $browser = 'Camino';
     } elseif (preg_match('#Konqueror#i', $server_agent)) {
         $browser = 'Konqueror';
+    } elseif (preg_match('#Cheshire#i', $server_agent)) {
+        $browser = 'AOL';
     } elseif (preg_match('#Safari#i', $server_agent)) {
         $browser = 'Safari';
     } elseif (preg_match('#OmniWeb#i', $server_agent)) {
@@ -2557,8 +2561,6 @@ function cpg_determine_client()
         $browser = 'Lycos Spider';
     } elseif (preg_match('#Firefly#i', $server_agent)) {
         $browser = 'Fireball Spider';
-    } elseif (preg_match('#Advanced Browser#i', $server_agent)) {
-        $browser = 'Avant';
     } elseif (preg_match('#Amiga-AWeb#i', $server_agent)) {
         $browser = 'AWeb';
     } elseif (preg_match('#Cyberdog#i', $server_agent)) {
@@ -2588,7 +2590,47 @@ function cpg_determine_client()
     } elseif (preg_match('#Kazehakase#i', $server_agent)) {
         $browser = 'Kazehakase';
     } elseif (preg_match('#Minefield#i', $server_agent)) {
-        $browser = 'Minefield';
+        $browser = 'Firefox';
+    } elseif (preg_match('#Namoroka#i', $server_agent)) {
+        $browser = 'Firefox';
+    } elseif (preg_match('#MC680x0#i', $server_agent)) {
+        $browser = 'Amiga Voyager';
+    } elseif (preg_match('#AOL #i', $server_agent)) {
+        $browser = 'AOL';
+    } elseif (preg_match('#Beonex#i', $server_agent)) {
+        $browser = 'Beonex';
+    } elseif (preg_match('#BonEcho#i', $server_agent)) {
+        $browser = 'Mozilla';
+    } elseif (preg_match('#Charon#i', $server_agent)) {
+        $browser = 'Charon';
+    } elseif (preg_match('#Chimera#i', $server_agent)) {
+        $browser = 'Chimera';
+    } elseif (preg_match('#Crazy Browser#i', $server_agent)) {
+        $browser = 'Crazy Browser';
+    } elseif (preg_match('#Fennec#i', $server_agent)) {
+        $browser = 'Firefox';
+    } elseif (preg_match('#iNet Browser#i', $server_agent)) {
+        $browser = 'iNet';
+    } elseif (preg_match('#iSonyEricsson#i', $server_agent)) {
+        $browser = 'Sony Ericsson';
+    } elseif (preg_match('#MAXTHON#i', $server_agent)) {
+        $browser = 'Maxthon';
+    } elseif (preg_match('#NCSA Mosaic#i', $server_agent)) {
+        $browser = 'Mosaic';
+    } elseif (preg_match('#NetNewsWire#i', $server_agent)) {
+        $browser = 'NetNewsWire';
+    } elseif (preg_match('#NetPositive#i', $server_agent)) {
+        $browser = 'NetPositive';
+    } elseif (preg_match('#Shiira#i', $server_agent)) {
+        $browser = 'Shiira';
+    } elseif (preg_match('#Shiretoko#i', $server_agent)) {
+        $browser = 'Firefox';
+    } elseif (preg_match('#Sleipnir#i', $server_agent)) {
+        $browser = 'Sleipnir';
+    } elseif (preg_match('#Stainless#i', $server_agent)) {
+        $browser = 'Stainless';
+    } elseif (preg_match('#Sunrise#i', $server_agent)) {
+        $browser = 'Sunrise';
     }
     // Information partially taken from http://www.useragentstring.com/
 
