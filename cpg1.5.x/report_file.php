@@ -27,7 +27,9 @@ if ((!$CONFIG['report_post']==1) || (!USER_CAN_SEND_ECARDS)) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
-//print_r(get_defined_constants());
+$icon_array['ok'] = cpg_fetch_icon('ok', 1);
+$icon_array['report'] = cpg_fetch_icon('report', 2);
+
 if ($CONFIG['enable_smilies']) {
     include("include/smilies.inc.php");
 }
@@ -206,11 +208,17 @@ if ($superCage->post->keyExists('subject') && $valid_sender_email) {
     }
 }
 
+if ($superCage->post->keyExists('submit')) {
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
+}
 pageheader($lang_report_php['title']);
 echo <<< EOT
 <form method="post" name="post" id="cpgform" action="$form_action">
 EOT;
-starttable("100%", $lang_report_php['title'], 3);
+starttable("100%", $icon_array['report'] . $lang_report_php['title'], 3);
 
 echo <<<EOT
         <tr>
@@ -253,7 +261,7 @@ echo <<<EOT
         <tr>
                 <td class="tableb" colspan="3">
                     <a href="{$CONFIG['ecards_more_pic_target']}displayimage.php?pid={$pid}">
-                    {$CONFIG['ecards_more_pic_target']}displayimage.php?pid={$pid}</a> <br />
+                    {$CONFIG['ecards_more_pic_target']}displayimage.php?pid={$pid}</a>
                 </td>
         </tr>
 <!-- BEGIN display_comment -->
@@ -333,13 +341,21 @@ echo <<<EOT
         </tr>
         <tr>
                 <td colspan="3" align="center" class="tablef">
-                        <input type="submit" class="button" value="{$lang_report_php['title']}" />
+						<button type="submit" class="button" name="submit" id="submit" value="{$lang_report_php['title']}">{$icon_array['ok']}{$lang_report_php['title']}</button>
                 </td>
         </tr>
 EOT;
 
 endtable();
-echo '</form>';
+
+list($timestamp, $form_token) = getFormToken();
+echo <<< EOT
+<input type="hidden" name="form_token" value="{$form_token}" />
+<input type="hidden" name="timestamp" value="{$timestamp}" />
+</form>
+
+EOT;
+
 pagefooter();
 
 ?>

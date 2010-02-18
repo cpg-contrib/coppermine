@@ -28,6 +28,11 @@ if (!USER_CAN_SEND_ECARDS) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
+$icon_array['ok'] = cpg_fetch_icon('ok', 1);
+$icon_array['ecard'] = cpg_fetch_icon('mail', 2);
+$icon_array['preview'] = cpg_fetch_icon('search', 1);
+$icon_array['preview_table'] = cpg_fetch_icon('search', 2);
+
 function get_post_var($name, $default = '')
 {
     $superCage = Inspekt::makeSuperCage();
@@ -230,7 +235,7 @@ if ($superCage->post->keyExists('submit')) {
         
             msg_box($lang_common['information'], $lang_ecard_php['send_success'], $lang_common['continue'], "displayimage.php?album=$album&amp;pid=$pid");
             echo '<br />';
-            starttable('100%', $lang_ecard_php['preview']);
+            starttable('100%', $icon_array['preview_table'] . $lang_ecard_php['preview']);
             echo '<tr><td>';
             echo template_eval($template_ecard, $params);
             echo '</td></tr>';
@@ -299,7 +304,7 @@ if ($superCage->post->keyExists('submit')) {
         $eccontent = $matches[1];
     }
 
-    starttable('100%', $lang_ecard_php['preview']);
+    starttable('100%', $icon_array['preview_table'] . $lang_ecard_php['preview']);
     echo '<tr><td>';
     echo $eccontent;
     echo '</td></tr>';
@@ -322,7 +327,7 @@ echo <<< EOT
 <form method="post" name="post" id="cpgform" action="{$CPG_PHP_SELF}?album=$album&amp;pid=$pid">
 EOT;
 
-starttable("100%", $lang_ecard_php['title'], 3);
+starttable("100%", $icon_array['ecard'] . $lang_ecard_php['title'], 3);
 
 echo <<<EOT
     <tr>
@@ -421,9 +426,9 @@ echo <<<EOT
     </tr>
     <tr>
         <td colspan="3" align="center" class="tablef">
-            <input type="submit" class="button" name="preview" title="{$lang_ecard_php['preview_button']}" value="{$lang_ecard_php['preview_button']}" />
+			<button type="submit" class="button" name="preview" id="preview" value="{$lang_ecard_php['preview_button']}">{$icon_array['preview']}{$lang_ecard_php['preview_button']}</button>
             &nbsp;&nbsp;
-            <input type="submit" class="button" name="submit" title="{$lang_ecard_php['submit_button']}" value="{$lang_ecard_php['submit_button']}" />
+			<button type="submit" class="button" name="submit" id="submit" value="{$lang_ecard_php['submit_button']}">{$icon_array['ok']}{$lang_ecard_php['submit_button']}</button>
         </td>
     </tr>
 EOT;
@@ -431,8 +436,12 @@ EOT;
 endtable();
 
 list($timestamp, $form_token) = getFormToken();
-echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
-<input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" /></form>";
+echo <<< EOT
+<input type="hidden" name="form_token" value="{$form_token}" />
+<input type="hidden" name="timestamp" value="{$timestamp}" />
+</form>
+
+EOT;
 
 pagefooter();
 

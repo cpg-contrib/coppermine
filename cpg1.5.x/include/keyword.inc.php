@@ -19,7 +19,9 @@
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
-// ADDED QUICK KEYWORDS FUNCTIONALITY 8/6/2004
+// ADDED QUICK KEYWORDS FUNCTIONALITY
+
+$icon_array['edit'] = cpg_fetch_icon('ok', 2);
 
 $result = cpg_db_query("SELECT keywords FROM {$CONFIG['TABLE_PICTURES']} WHERE keywords <> '' $ALBUM_SET");
 if (mysql_num_rows($result)) {
@@ -81,7 +83,7 @@ if (mysql_num_rows($result)) {
     $url = basename($CPG_PHP_SELF);
     if ($url != "keywordmgr.php"){
     echo '<tr><td class="tableb" align="center">';
-    echo '<a href="keywordmgr.php" class="admin_menu">' . $lang_search_php['edit_keywords'] . '</a>';
+    echo '<a href="keywordmgr.php" class="admin_menu">' . $icon_array['edit'] . $lang_search_php['edit_keywords'] . '</a>';
     echo "</td></tr>" ;
     }
   } else {

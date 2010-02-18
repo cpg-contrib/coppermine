@@ -27,6 +27,8 @@ if (USER_ID) {
     $USER_DATA = array_merge($USER_DATA, $cpg_udb->get_user_infos(USER_ID));
 }
 
+$icon_array['ok'] = cpg_fetch_icon('ok', 1);
+
 $js_contact['check']['one'] = (!USER_ID && $CONFIG['contact_form_guest_name_field'] == 2) ? true : false;
 $js_contact['check']['two'] = (!USER_ID) ? true : false;
 $js_contact['check']['three'] = (!USER_ID && $CONFIG['contact_form_guest_email_field'] == 2) ? true : false;
@@ -56,7 +58,10 @@ if (!USER_ID) { // visitor is guest
 
 // do the stuff here when the form has been submit
 if ($superCage->post->keyExists('submit')) {
-
+    //Check if the form token is valid
+    if(!checkFormToken()){
+        cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+    }
     // perform validity checks
     $error = 0;
 
@@ -376,14 +381,17 @@ EOT;
     print $captcha_print;
 }
 
+list($timestamp, $form_token) = getFormToken();
 // submit button
 print <<< EOT
     <tr>
         <td class="tableb" valign="top" align="right">
             <input type="hidden" name="referer" value="$CPG_REFERER">
+			<input type="hidden" name="form_token" value="{$form_token}" />
+			<input type="hidden" name="timestamp" value="{$timestamp}" />
         </td>
         <td class="tableb" valign="top" colspan="2">
-            <input type="submit" name="submit" value="{$lang_common['go']}" class="button" />
+			<button type="submit" class="button" name="submit" id="submit" value="{$lang_common['go']}">{$icon_array['ok']}{$lang_common['go']}</button>
         </td>
     </tr>
 EOT;

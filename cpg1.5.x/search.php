@@ -28,6 +28,8 @@ if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
     exit();
 }
 
+$icon_array['search'] = cpg_fetch_icon('search', 2);
+
 pageheader($lang_search_php['title']);
 $text = '';
 $text .= <<< EOT
@@ -35,7 +37,7 @@ $text .= <<< EOT
 <form method="get" action="thumbnails.php" name="searchcpg" id="cpgform3">
 EOT;
 
-$text .= starttable('100%', cpg_fetch_icon('search', 2) . $lang_search_php['title'], 1, '', true);
+$text .= starttable('100%', $icon_array['search'] . $lang_search_php['title'], 1, '', true);
 
 $ip = GALLERY_ADMIN_MODE ? '
         <tr>
@@ -70,9 +72,9 @@ EOT;
 
 $text .= <<< EOT
         <tr>
-            <td class="tableb" align="center" >
+            <td class="tableb" align="center">
                 <input type="text" style="width: 80%" name="search" maxlength="255" value="" class="textinput" />
-                <input type="submit" value="{$lang_search_php['submit_search']}" class="button" />
+				<button type="submit" class="button" name="submit" id="submit" value="{$lang_search_php['submit_search']}">{$icon_array['search']}{$lang_search_php['submit_search']}</button>
                 <input type="hidden" name="album" value="search" />
             </td>
         </tr>
@@ -80,8 +82,8 @@ $text .= <<< EOT
                         <td class="tableb">
                                 <table align="center" width="60%">
                                         <tr>
-                                                <td>{$lang_search_php['imgfields']}:</td>
-                                                <td align="center">{$lang_search_php['age']}:</td>
+                                                <td class="tableh2">{$lang_search_php['imgfields']}:</td>
+                                                <td align="center" class="tableh2">{$lang_search_php['age']}:</td>
                                         </tr>
                                         <tr>
                                                 <td><input type="checkbox" name="title" id="title" class="checkbox" checked="checked" /><label for="title" class="clickable_option">{$lang_common['title']}</label></td>
@@ -114,8 +116,8 @@ $ip
                                         </tr>
 
                                         <tr>
-                                                <td>{$lang_search_php['albcatfields']}:</td>
-                                                <td>&nbsp;</td>
+                                                <td class="tableh2">{$lang_search_php['albcatfields']}:</td>
+                                                <td class="tableh2">&nbsp;</td>
                                         </tr>
                                         <tr>
                                                 <td><input type="checkbox" name="album_title" id="album_title" class="checkbox" /><label for="album_title" class="clickable_option">{$lang_search_php['album_title']}</label></td>

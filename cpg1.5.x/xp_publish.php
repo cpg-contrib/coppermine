@@ -44,6 +44,10 @@ define('ALBMGR_PHP', true);
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
 
+if ($CONFIG['enable_menu_icons'] == 2) {
+	$icon_array['xp'] = '<img src="./images/os/winxp.png" border="0" width="16" height="16" alt="" class="icon" />';
+}
+
 // Set the log file path.
 define('LOGFILE', 'xp_publish.log');
 // ------------------------------------------------------------------------- //
@@ -229,7 +233,7 @@ function html_cat_list()
 function display_instructions()
 {
     //global $PHP_SELF;
-    global $lang_xp_publish_required, $lang_xp_publish_client, $lang_xp_publish_select, $lang_xp_publish_testing, $lang_xp_publish_notes, $lang_xp_publish_flood, $lang_xp_publish_php;
+    global $lang_xp_publish_required, $lang_xp_publish_client, $lang_xp_publish_select, $lang_xp_publish_testing, $lang_xp_publish_notes, $lang_xp_publish_flood, $lang_xp_publish_php, $icon_array;
     global $CONFIG, $lang_charset, $lang_common, $lang_errors;
 
     $publish_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp&amp;ae=xp_end', '600', '600');
@@ -240,7 +244,7 @@ function display_instructions()
     $stop_icon = cpg_fetch_icon('stop', 0);
     $warning_icon = cpg_fetch_icon('warning', 0);
     pageheader($CONFIG['gallery_name'] . ' &bull; ' . $lang_xp_publish_php['title']);
-    starttable('100%' , '<h1>'.$lang_xp_publish_php['client_header'].$publish_help.'</h1>', 1);
+    starttable('100%' , $icon_array['xp'] . $lang_xp_publish_php['client_header'] . $publish_help, 1);
     print <<< EOT
     <tr>
         <td class="tableh2">

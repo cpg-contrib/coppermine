@@ -1972,12 +1972,12 @@ if (defined('SEARCH_PHP')){
 $lang_search_php['title'] = 'Search';
 $lang_search_php['submit_search'] = 'search';
 $lang_search_php['keyword_list_title'] = 'Keyword list';
-$lang_search_php['keyword_msg'] = 'The above list is not all inclusive. It does not include words from photo titles or descriptions. Try a full-text search.';
+$lang_search_php['keyword_msg'] = 'The above list is not all inclusive. It does not include words from file titles or descriptions. Try a full-text search.';
 $lang_search_php['edit_keywords'] = 'Edit keywords';
 $lang_search_php['search in'] = 'Search in:';
 $lang_search_php['ip_address'] = 'IP address';
-$lang_search_php['imgfields'] = 'Search images';
-$lang_search_php['albcatfields'] = 'Search Albums and Categories';
+$lang_search_php['imgfields'] = 'Search files';
+$lang_search_php['albcatfields'] = 'Search albums and categories';
 $lang_search_php['age'] = 'Age';
 $lang_search_php['newer_than'] = 'Newer than';
 $lang_search_php['older_than'] = 'Older than';
@@ -1985,8 +1985,8 @@ $lang_search_php['days'] = 'days';
 $lang_search_php['all_words'] = 'Match all words (AND)';
 $lang_search_php['any_words'] = 'Match any words (OR)';
 $lang_search_php['regex'] = 'Match regular expressions';
-$lang_search_php['album_title'] = 'Album Titles';
-$lang_search_php['category_title'] = 'Category Titles';
+$lang_search_php['album_title'] = 'Album titles';
+$lang_search_php['category_title'] = 'Category titles';
 }
 
 // ------------------------------------------------------------------------- //

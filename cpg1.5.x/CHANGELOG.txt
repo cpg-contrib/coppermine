@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-02-18 [B] Added missing token checks to forms {GauGau}
+2010-02-18 [A] Added icon display to preserve the same look all over the app {GauGau}
 2010-02-14 [A] Use intermediate picture size as default video size (thread ID 63728) {eenemeenemuu}
 2010-02-11 [A] Added plugin hook 'search_form' (thread ID 63693) {eenemeenemuu}
 2010-02-11 [A] Added new parameter to functions 'starttable' and 'endtable': return or echo content {eenemeenemuu}

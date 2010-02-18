@@ -38,12 +38,20 @@ if (USER_ID) {
   }
 }
 
+$icon_array['sidebar'] = cpg_fetch_icon('sidebar', 2);
+if ($CONFIG['enable_menu_icons'] == 2) {
+	$icon_array['firefox'] = '<img src="./images/browser/mozilla.png" border="0" width="16" height="16" alt="" class="icon" />';
+	$icon_array['ie'] = '<img src="./images/browser/msie.png" border="0" width="16" height="16" alt="" class="icon" />';
+	$icon_array['ie7'] = '<img src="./images/browser/msie7.png" border="0" width="16" height="16" alt="" class="icon" />';
+	$icon_array['mac'] = '<img src="./images/os/mac.png" border="0" width="16" height="16" alt="" class="icon" />';
+	$icon_array['opera'] = '<img src="./images/browser/opera.png" border="0" width="16" height="16" alt="" class="icon" />';
+}
 
 //if ($_GET['action'] == 'install') {
 if ($superCage->get->getAlpha('action') == 'install') {
 //////// install --- start
 pageheader($lang_sidebar_php['sidebar'] . ' - ' . $lang_sidebar_php['install']);
-starttable('100%', $CONFIG['gallery_name']. ' - ' . $lang_sidebar_php['sidebar'] , 1);
+starttable('100%', $icon_array['sidebar'] . $CONFIG['gallery_name']. ' - ' . $lang_sidebar_php['sidebar'] , 1);
 
 print <<< EOT
 <tr>
@@ -71,7 +79,7 @@ print <<< EOT
 
 <div id="mozilla" style="display:none">
 EOT;
-starttable('100%', $lang_sidebar_php['mozilla'] , 1);
+starttable('100%', $icon_array['firefox'] . $lang_sidebar_php['mozilla'] , 1);
 print <<< EOT
 <tr>
 <td class="tableb">
@@ -87,7 +95,7 @@ print <<< EOT
 </div>
 <div id="ie5win" style="display:none">
 EOT;
-starttable('100%', $lang_sidebar_php['ie_win'] , 1);
+starttable('100%', $icon_array['ie'] . $lang_sidebar_php['ie_win'] , 1);
 print <<< EOT
 <tr>
   <td class="tableb">
@@ -104,14 +112,12 @@ print <<< EOT
 
 <div id="ie7win" style="display:none">
 EOT;
-starttable('100%', $lang_sidebar_php['ie7_win'] , 1);
+starttable('100%', $icon_array['ie7'] . $lang_sidebar_php['ie7_win'] , 1);
 print <<< EOT
 <tr>
   <td class="tableb">
 EOT;
  printf($lang_sidebar_php['ie7_win_explain'], '<a href="javascript:void(open(\''.$CONFIG['ecards_more_pic_target'].'sidebar.php\',\'_search\'));">', '</a>');
-//printf($lang_sidebar_php['ie_win_explain'], '<a href="javascript:'. "window.external.AddFavorite('foo.htm', '{$CONFIG['gallery_name']} - {$lang_sidebar_php['sidebar']}')" .';">', '</a>');
-//printf($lang_sidebar_php['ie_win_explain'], '<a href="javascript:window.external.AddFavorite(location.href, \''.$CONFIG['gallery_name'].' - '. $lang_sidebar_php['sidebar'].'\');">', '</a>');
 print <<< EOT
   </td>
 </tr>
@@ -123,7 +129,7 @@ print <<< EOT
 
 <div id="ie5mac" style="display:none">
 EOT;
-starttable('100%', $lang_sidebar_php['ie_mac'] , 1);
+starttable('100%', $icon_array['mac'] . $lang_sidebar_php['ie_mac'] , 1);
 print <<< EOT
 <tr>
   <td class="tableb">
@@ -139,7 +145,7 @@ print <<< EOT
 </div>
 <div id="opera" style="display:none">
 EOT;
-starttable('100%', $lang_sidebar_php['opera'] , 1);
+starttable('100%', $icon_array['opera'] . $lang_sidebar_php['opera'] , 1);
 print <<< EOT
 <tr>
   <td class="tableb">

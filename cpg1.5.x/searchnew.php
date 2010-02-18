@@ -32,6 +32,7 @@ js_include('js/searchnew.js');
 $rowCounter = 0;
 
 $icon_array['ok'] = cpg_fetch_icon('ok', 1);
+$icon_array['batch_add'] = cpg_fetch_icon('searchnew', 2);
 
 /**
  * Local functions definition
@@ -586,13 +587,13 @@ EOT;
     }
     endtable();
     echo '</div>';
-    print '        </form>';
+    echo '        </form>';
     pagefooter();
 } else {
     pageheader($lang_search_new_php['page_title']);
-    $help = '&nbsp;'.cpg_display_help('f=uploading.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1', '600', '450');
-    print '<form name="interfaceconfig" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post" style="margin:0px;padding:0px">';
-    starttable(-1, $lang_search_new_php['select_dir'].$help);
+    $help = '&nbsp;'.cpg_display_help('f=uploading_batch-add.htm&amp;as=batch_add_pics&amp;ae=batch_add_pics_end&amp;top=1', '600', '450');
+    echo '<form name="interfaceconfig" id="cpgform" action="'.$CPG_PHP_SELF.'" method="post" style="margin:0px;padding:0px">';
+    starttable(-1, $icon_array['batch_add'] . $lang_search_new_php['select_dir'].$help);
 
     // write the interface change to the db
     //if (isset($_POST['update_config'])) {
@@ -621,19 +622,19 @@ EOT;
 
     $iframe_startfolder = str_replace('searchnew.php', '', __FILE__) . rtrim($CONFIG['fullpath'],'/') . $folder_sep;
     
-    print '    <tr>'.$LINEBREAK;
-    print '        <td class="tableb" align="center">'.$LINEBREAK;
+    echo '    <tr>'.$LINEBREAK;
+    echo '        <td class="tableb" align="center">'.$LINEBREAK;
 
     if ($CONFIG['browse_batch_add'] == 1) {
-        print '            <iframe src="minibrowser.php?startfolder='.$iframe_startfolder.'&amp;parentform=choosefolder&amp;formelementname=startdir&amp;no_popup=1&amp;limitfolder='.$iframe_startfolder.'&amp;linktarget='.$CPG_PHP_SELF.'&amp;searchnew_php=1&amp;radio=0" width="95%" height="400" name="popup_in_a_box"></iframe>'.$LINEBREAK;
+        echo '            <iframe src="minibrowser.php?startfolder='.$iframe_startfolder.'&amp;parentform=choosefolder&amp;formelementname=startdir&amp;no_popup=1&amp;limitfolder='.$iframe_startfolder.'&amp;linktarget='.$CPG_PHP_SELF.'&amp;searchnew_php=1&amp;radio=0" width="95%" height="400" name="popup_in_a_box"></iframe>'.$LINEBREAK;
     } else {
         echo '<table width="100%">';
         display_dir_tree('', '');
         echo '</table>';
     }
     
-    print '        </td>'.$LINEBREAK;
-    print '    </tr>'.$LINEBREAK;
+    echo '        </td>'.$LINEBREAK;
+    echo '    </tr>'.$LINEBREAK;
 
     // configure batch-add interface (classic or browsable)
     $yes_selected = $CONFIG['browse_batch_add'] ? 'checked="checked"' : '';
@@ -675,7 +676,7 @@ EOT;
 EOT;
 
     endtable();
-    print '        </form>';
+    echo '        </form>';
     pagefooter();
 }
 
