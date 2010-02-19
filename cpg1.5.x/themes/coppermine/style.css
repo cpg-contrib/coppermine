@@ -400,7 +400,7 @@ a:active {
     color: #FFFFFF;
     font-size: 100%;
     font-weight: bold;
-    background : #0E72A4 ;
+    background : transparent url(images/main_block.png) no-repeat scroll -10px -160px;
     border-style: none;
 }
 

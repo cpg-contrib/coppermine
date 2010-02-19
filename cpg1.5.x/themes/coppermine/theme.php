@@ -32,6 +32,12 @@ $template_sys_menu = <<<EOT
 					<!-- END sidebar -->
 					</ul>
                 </li>
+<!-- BEGIN allow_memberlist -->
+									<li>
+										<a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}"><span>{MEMBERLIST_ICO}{MEMBERLIST_LNK}</span></a>
+									</li>
+					<!-- END allow_memberlist -->
+
 <!-- END home -->
 <!-- BEGIN my_gallery -->
                 <li>
