@@ -51,9 +51,10 @@
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="plugin_hooks_using"></a>
-<h2>Using Plugin Hooks<a href="#plugin_hooks_using" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<!--<h2>Using Plugin Hooks<a href="#plugin_hooks_using" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Placeholder.  Content will be added here.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
+-->
 
 <a name="plugin_hooks_filename"></a>
 <h2>Plugin Hooks by File Name<a href="#plugin_hooks_filename" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
@@ -621,6 +622,36 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
   </tr>
   <tr>
     <td valign="top">include/themes.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_filename_theme_thumbnails_wrapper_start"></a><strong>theme_thumbnails_wrapper_start</strong><a href="#plugin_hooks_filename_theme_thumbnails_wrapper_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Allows plugin authors to output content before the thumbnail table starts, which is particularly helpfull top start a &lt;form&gt;-tag.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$wrapper_start = CPGPluginAPI::filter('theme_thumbnails_wrapper_start');</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">include/themes.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_filename_theme_thumbnails_footer"></a><strong>theme_thumbnails_footer</strong><a href="#plugin_hooks_filename_theme_thumbnails_footer" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Allows plugin authors to output content after the last row of thumbnails, before the closing table tag. Can be used to add a footer row of the table</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$footer = CPGPluginAPI::filter('theme_thumbnails_footer', $footer);
+echo $footer;</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">include/themes.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_filename_theme_thumbnails_wrapper_end"></a><strong>theme_thumbnails_wrapper_end</strong><a href="#plugin_hooks_filename_theme_thumbnails_wrapper_end" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Output content after the closing tag of the thumbnail table</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$wrapper_end = CPGPluginAPI::filter('theme_thumbnails_wrapper_end');
+echo $wrapper_end;</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">include/themes.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_filename_theme_thumbnails_title"></a><strong>theme_thumbnails_title</strong><a href="#plugin_hooks_filename_theme_thumbnails_title" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">filters the $param array which allows you to modify the title row of the thumbnails table.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$params = CPGPluginAPI::filter('theme_thumbnails_title', $param);</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">include/themes.inc.php</td>
     <td valign="top"><a name="plugin_hooks_filename_theme_pageheader_params"></a><strong>theme_pageheader_params</strong><a href="#plugin_hooks_filename_theme_pageheader_params" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $template_vars for the pageheader function. Allows you to modify the entire pageheader output, e.g. page title, charset definition, meta tags.</td>
@@ -810,8 +841,12 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
                 <li class="floatleft"><a href="#plugin_hooks_filename_template_html">template_html</a></li>
                 <li class="floatleft"><a href="#plugin_hooks_theme_add_comment">theme_add_comment</a></li>
                 <li class="floatleft"><a href="#plugin_hooks_filename_thumbnail_params">theme_display_thumbnails_params</a></li>
-                <li class="floatleft"><a href="#plugin_hooks_filename_theme_pageheader_params">theme_pageheader_params</a></li>
                 <li class="floatleft"><a href="#plugin_hooks_theme_add_comment">theme_edit_comment</a></li>
+                <li class="floatleft"><a href="#plugin_hooks_filename_theme_pageheader_params">theme_pageheader_params</a></li>
+                <li class="floatleft"><a href="#plugin_hooks_filename_theme_thumbnails_footer">theme_thumbnails_footer</a></li>
+                <li class="floatleft"><a href="#plugin_hooks_filename_theme_thumbnails_title">theme_thumbnails_title</a></li>
+                <li class="floatleft"><a href="#plugin_hooks_filename_theme_thumbnails_wrapper_end">theme_thumbnails_wrapper_end</a></li>
+                <li class="floatleft"><a href="#plugin_hooks_filename_theme_thumbnails_wrapper_start">theme_thumbnails_wrapper_start</a></li>
                 <li class="floatleft"><a href="#plugin_hooks_filename_thumb_caption">thumb_caption</a></li>
                 <li class="floatleft"><a href="#plugin_hooks_filename_thumb_caption_favpics">thumb_caption_favpics</a></li>
                 <li class="floatleft"><a href="#plugin_hooks_filename_thumb_caption_lastalb">thumb_caption_lastalb</a></li>
@@ -877,7 +912,7 @@ $matches = CPGPluginAPI::filter('plugin_block', $matches);
 $anycontent = CPGPluginAPI::filter('anycontent',ob_get_contents());
 $template = CPGPluginAPI::filter('template_html',$template);
 $template_header = str_replace('{META}','{META}'.CPGPluginAPI::filter('page_meta',''),$template_header);</pre>
-<p>This group of filters is very specific for manipulating the data of the thumbnails.  These are named according to what they modify and are extremely obvious.</p>
+<p>This group of filters is very specific for manipulating the data of the thumbnails. These are named according to what they modify and are extremely obvious.</p>
 <div class="cpg_code code">$rowset = CPGPluginAPI::filter('thumb_caption',$rowset);<br />
 $rowset = CPGPluginAPI::filter('thumb_caption_regular',$rowset);<br />
 $rowset = CPGPluginAPI::filter('thumb_caption_lastcom',$rowset);<br />
@@ -893,7 +928,12 @@ $rowset = CPGPluginAPI::filter('thumb_caption_lastalb',$rowset);<br />
 $rowset = CPGPluginAPI::filter('thumb_caption_favpics',$rowset);<br />
 $pic_title = CPGPluginAPI::filter('thumb_html_title', $row);<br />
 $pic_title = CPGPluginAPI::filter('thumb_strip_html_title', $row);<br />
-$pic_row = CPGPluginAPI::filter('thumb_data',$pic_row);</div>
+$pic_row = CPGPluginAPI::filter('thumb_data',$pic_row);<br />
+$params = CPGPluginAPI::filter('theme_display_thumbnails_params', $params);<br />
+$wrapper_start = CPGPluginAPI::filter('theme_thumbnails_wrapper_start');<br />
+$footer = CPGPluginAPI::filter('theme_thumbnails_footer', $footer);<br />
+$wrapper_end = CPGPluginAPI::filter('theme_thumbnails_wrapper_end');<br />
+$params = CPGPluginAPI::filter('theme_thumbnails_title', $param);</div>
 <p>These two filters are used specifically to manipulate the data of a picture.</p>
 <div class="cpg_code code">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data',$CURRENT_PIC_DATA);<br />
 $CURRENT_PIC_DATA = CPGPluginAPI::filter('file_data',$CURRENT_PIC_DATA);</div>
@@ -1102,6 +1142,9 @@ function myfunction_add_params($params)
     return array_merge($params,$more_params);
 }
 </pre>
+<p>To manipulate the title row of the thumbnail table, use</p>
+<pre class="cpg_code">$param = CPGPluginAPI::filter('theme_thumbnails_title', $param);</pre>
+<p>This plugin hook has been added in cpg1.5.3 only - plugins that rely on the existence of this hook must set the <a href="dev_plugins.htm#plugin_writing_core_files_configuration_plugin_cpg_version">minimum requirements</a> accordingly.</p>
 <p>To add the new tags to $template_thumbnail_view in your plugin, you can override the theme template by using the 'page_start' hook.  Some users may have a theme that uses this template and in that case, your plugin documentation should list the new tags your plugin uses so the user can add these tags to their theme template.  You would also need to disable your plugin from overriding this template.  Ideally, this would be done on your plugin configuration panel.</p>
 
 

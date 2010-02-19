@@ -185,7 +185,7 @@ function hello_world_header($html) {
     return $html;
 }</pre>
 <p>Our function needs one parameter since it is attached to a filter hook (instead of an action hook), and here we name it <tt class="code">$html</tt>.  In this function, we add on the "Hello, world." text, which is tagged to be bold &amp; red for extra effect.  We need to ensure that the parameter is added-on to, <strong>not</strong> replaced, so that it plays well with other plugins who tag on to the same hook.  We place the parameter coming in on a separate line to ensure we don't forget to do this.  Finally, the function returns the modified parameter.  And that does it.</p>
-<p>So now you should know how a plugin, albeit a very basic plugin, works.  The other sections in this tutorial describe useful features to add to your plugin including installation, configuration, linking in Coppermine, <a href="#plugin_api_tutorial_lang">multi-language support</a>, and distributing your plugin as a package.  Read on and follow along.</p>
+<p>So now you should know how a plugin, albeit a very basic plugin, works.  The other sections in this tutorial describe useful features to add to your plugin including installation, configuration, linking in Coppermine, <a href="#plugin_api_tutorial_lang">multi-language support</a>, and <a href="#plugin_api_tutorial_distrib">distributing your plugin</a> as a package. Read on and follow along.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_installconfig"></a>
@@ -525,10 +525,35 @@ $lang_plugin_coffee_maker['coffee_bean'] = 'coffee bean';
 $lang_plugin_coffee_maker['brew'] = 'brew';
 ?&gt;</pre></div>
 <p>Within <tt class="code">codebase.php</tt> or any other plugin file, you can then use the language strings instead of hard-coding them in. Don't forget to make them global inside functions (see <a href="http://www.php.net/manual/en/language.variables.scope.php" rel="external" class="phpnet">PHP: variable scope</a>).</p>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="plugin_api_tutorial_config"></a>
+<h3>Adding a config section to your plugin<a href="#plugin_api_tutorial_config" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>It's advisable to have a config screen available for your plugin - nearly all plugins sooner or later need one.</p>
+<a name="plugin_api_tutorial_config_preparation"></a>
+<h4>Preparations<a href="#plugin_api_tutorial_config_preparation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>To accomplish that, create an empty file inside your plugin folder and name that <tt class="code">admin.php</tt> in analogy to the naming of coppermine's config screen. The config screen can then be accessed with the URL <tt class="code">http://yoursite.tld/your_coppermine_folder/?file=coffee_maker/admin</tt>, so it's advisable to add a link to the plugin manager that points to your config screen. To accomplish that, add the link to the string <tt class="code">$extra_info</tt> in <tt class="code">configuration.php</tt>.</p>
+<div class="cpg_example code">$extra_info .= '&lt;a href="index.php?file=coffee_maker/admin" class="admin_menu"&gt;' . $lang_plugin_coffee_maker['plugin_configuration'] . '&lt;/a&gt;';</div>
+Now let's compose the config screen for your plugin; edit <tt class="code">admin.php</tt> with a plain text editor and add
+<pre class="cpg_code code">if (!GALLERY_ADMIN_MODE) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}</pre>
+at the very start to make sure that only the admin can access the plugin's configuration screen and nobody else.<br />
+If you're using <abbr title="Internationalization">i18n</abbr>, i.e. if you are using the <a href="#plugin_api_tutorial_lang">multi-lingual</a> feature, don't forget to add your call to the language file into your config screen by adding
+<pre class="cpg_code">require_once "./plugins/coffee_maker/initialize.inc.php";</pre>
+Now it's time to add the actual functionality to your config screen. Therefore, there are five steps that we actually need to perform:
+<ul>
+    <li>Define the defaults of each config setting and what the values can be (min/max etc.)</li>
+    <li>Sanitize the data sent using the form</li>
+    <li>Write the sanitized data to the database</li>
+    <li>Populate the form options</li>
+    <li>Output the actual form</li>
+</ul>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
+
 <a name="plugin_api_tutorial_distrib"></a>
-<h3>Distributing Your Plugin<a href="#plugin_api_" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<h3>Distributing Your Plugin<a href="#plugin_api_tutorial_distrib" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If you have written a plugin that works for you, why not share it with the Coppermine community - others might find your plugin helpfull as well. If you decide to share your plugin, please do as suggested in these steps:</p>
 <ul>
 	<li>Read up the <a href="dev_plugins.htm#plugin_writing_naming_conventions">naming conventions</a> (if you haven't already done so) to make sure your plugin matches the standards</li>
@@ -555,11 +580,12 @@ $lang_plugin_coffee_maker['brew'] = 'brew';
 <p>For a detailed list of plugin hooks that you can use for your own plugins, please refer to the page <a href="dev_plugin_hooks.htm">plugin hooks</a>.  You'll find information there on how to find and use all the hooks available in Coppermine.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
+<!--
 <a name="plugin_api_plugin_class"></a>
 <h2>Plugin Class Properties &amp; Methods<a href="#plugin_api_plugin_class" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Placeholder.  Content will be added.</p>
-
 <p><a class="back" href="#top">Back to top</a></p><hr />
+-->
 
 <a name="plugin_api_globals"></a>
 <h2>Global Variables &amp; Constants<a href="#plugin_api_globals" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>

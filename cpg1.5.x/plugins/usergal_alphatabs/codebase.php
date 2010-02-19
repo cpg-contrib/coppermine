@@ -113,7 +113,9 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
             $title = $album_name;
         }
     
-    
+        $wrapper_start = CPGPluginAPI::filter('theme_thumbnails_wrapper_start');
+        echo $wrapper_start;
+        
         if ($mode == 'thumb') {
             starttable('100%', $title, $thumbcols);
         } else {
@@ -159,6 +161,7 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
         for (;($i % $thumbcols); $i++) {
             echo $empty_cell;
         }
+        $footer = CPGPluginAPI::filter('theme_thumbnails_footer', $footer);
         echo $footer;
     
         if ($display_tabs) {
@@ -169,6 +172,8 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
         }
     
         endtable();
+        $wrapper_end = CPGPluginAPI::filter('theme_thumbnails_wrapper_end');
+        echo $wrapper_end;
         echo $spacer;
     }
 

@@ -1049,7 +1049,7 @@ doc_toc += '            <ul class="level5">\n';
 doc_toc += '              <li><a href="dev_plugin_hooks.htm#plugin_hooks_target_audience">Target audience</a></li>\n';
 doc_toc += '              <li><a href="dev_plugin_hooks.htm#plugin_hooks_choosing">Choosing Plugin Hooks</a></li>\n';
 doc_toc += '              <li><a href="dev_plugin_hooks.htm#plugin_hooks_finding">Finding Plugin Hooks</a></li>\n';
-doc_toc += '              <li><a href="dev_plugin_hooks.htm#plugin_hooks_using">Using Plugin Hooks</a></li>\n';
+//doc_toc += '              <li><a href="dev_plugin_hooks.htm#plugin_hooks_using">Using Plugin Hooks</a></li>\n';
 doc_toc += '              <li><a href="dev_plugin_hooks.htm#plugin_hooks_filename">Plugin Hooks by File Name</a>\n';
 doc_toc += '                <ul class="level6">\n';
 doc_toc += '                  <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_ind_php">Script: index.php</a>\n';

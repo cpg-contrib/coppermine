@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-02-19 [A] Added plugin hooks for thumbnail table manipulation {GauGau}
 2010-02-18 [B] Added missing token checks to forms {GauGau}
 2010-02-18 [A] Added icon display to preserve the same look all over the app {GauGau}
 2010-02-14 [A] Use intermediate picture size as default video size (thread ID 63728) {eenemeenemuu}
