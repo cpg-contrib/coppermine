@@ -202,7 +202,6 @@ $osArray = array(
 	'Windows 95' => 'win95.png',
 	'Windows 98' => 'win98.png',
 	'Windows CE' => 'wince.png',
-	'Winlong' => 'winlong.png',
 	'Windows ME' => 'winme.png',
 	'Windows NT' => 'winnt.png',
 	'Windows XP' => 'winxp.png',

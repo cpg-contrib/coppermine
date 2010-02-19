@@ -7351,12 +7351,6 @@
     <hash>957176e5186a688d360c56a29aa1da66</hash>
   </element>
   <element>
-    <fullpath>images/os/winlong.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>e9dde69dba646cfeb05494b6a4bf76e9</hash>
-  </element>
-  <element>
     <fullpath>images/os/winme.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
