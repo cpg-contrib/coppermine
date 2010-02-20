@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Uploading troubleshooting - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<title>Dépannage du téléchargement - Coppermine Photo Gallery - Documentation &amp; Manuel</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="language" content="en" />
+<meta name="language" content="fr" />
 <meta name="copyright" content="Coppermine dev team" />
-<meta name="description" content="If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested here to get more detailed error messages. This applies to all upload methods, not only HTTP uploads." />
+<meta name="description" content="Si vous rencontrez des problèmes avec le téléchargement, changez temporairement les réglages de Coppermine comme expliqué ici pour voir les messages d'erreurs plus détaillés. Cela s'applique à toutes les méthodes de téléchargement, pas seulement au téléchargement par HTTP." />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -27,109 +27,112 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation et Manuel</h1>
 <div id="toc">
-<a href="toc.htm">Table of Contents</a>
+<a href="toc.htm">Table des Matières</a>
 </div>
 
+<div id="doc_en_partial"></div>
 
-<a name="upload_trouble"></a><h1>Upload troubleshooting<a href="#upload_trouble" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>If you have upload issues, read this page - entirely! The Coppermine dev team considers this page to be the most important page of the entire documentation, simply because there are many different things that can go wrong when uploading. This is caused by different webserver setups mostly.</p>
-<button type="button" class="button detail_expand_all" name="expandalltop" id="expandalltop" onclick="return false"><img src="../../images/tree/plus.gif" width="9" height="9" border="0" alt="" title="Expand All" />Expand all details</button>
-<button type="button" class="button detail_collapse_all" name="collapsealltop" id="collapsealltop" style="display:none;" onclick="return false"><img src="../../images/tree/minus.gif" width="9" height="9" border="0" alt="" title="Collapse all" />Collapse all details</button>
+<a name="upload_trouble"></a><h1>Dépannage du téléchargement<a href="#upload_trouble" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Si vous avez des problèmes de téléchargement, lisez cette page - entièrement! L'équipe de développement de Coppermine considère cette page comme la plus importante de toute la documentation, simplement parcequ'il peut y avoir plusieurs choses qui peuvent mal se passer lors du processus de téléchargement. Ces problèmes sont le plus souvent causés par de mauvais paramétrages du serveur.</p>
+<button type="button" class="button detail_expand_all" name="expandalltop" id="expandalltop" onclick="return false"><img src="../../images/tree/plus.gif" width="9" height="9" border="0" alt="" title="Expand All" /> Montrer tous les détails</button>
+<button type="button" class="button detail_collapse_all" name="collapsealltop" id="collapsealltop" style="display:none;" onclick="return false"><img src="../../images/tree/minus.gif" width="9" height="9" border="0" alt="" title="Collapse all" /> Cacher tous les détails</button>
 
-<a name="upload_trouble_permission"></a><h2>Permissions<a href="#upload_trouble_permission" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p class="cpg_message_info"><strong>First and foremost:</strong> Check your folder and file permission settings on the <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, and <tt class="code">/albums/edit</tt> directories. On <abbr title="Unix, Linux and related operating systems">*nix</abbr>-driven webservers, the folder <tt class="code">/albums</tt> and all sub-folders should usually be 777 or 755 (depending on your webserver configuration). If you don't know what we mean by <em>777</em> or <em>755</em>, you need to read up the <a href="install_permissions.htm#permissions">permission section</a> (if this doesn't help, do a Google search on <em>UNIX file permissions</em>). Windows has a similar set of file permissions. You can usually set these permissions using an <em>FTP client</em> (If you don't know what an <em>FTP client</em> is, Google for <em>FTP client</em> or take a look at the list of <a href="dev_tools.htm#dev_tools_ftp_client">recommended tools</a>).</p>
+<a name="upload_trouble_permission"></a><h2>Droits<a href="#upload_trouble_permission" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p class="cpg_message_info"><strong>En premier lieu et avant tout:</strong> Vérifiez les paramètres des droits des répertoires <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, et <tt class="code">/albums/edit</tt>. Sur les serveurs tournant sous  <abbr title="Unix, Linux and related operating systems">*nix</abbr>, le répertoire <tt class="code">/albums</tt> et tous ses sous-répertoires doivent être sur 777 ou 755 (en fonction de la configuration du serveur). Si vous ne savez pas ce que nous voulons dire par <em>777</em> ou <em>755</em>, vous devrez lire la <a href="install_permissions.htm#permissions">section concernant les droits</a> (si ça ne vous aide pas, faites une recherche Google sur <em>les droits des fichiers UNIX</em>). Windows a un système de droits similaire. Vous pouvez généralement paramétrer ces droits en utilisant un <em>client FTP</em> (Si vous ne savez pas ce qu'est un <em>client FTP</em>, faites une recherche sur Google pour <em>client FTP</em> ou jetez un oeil sur la liste des <a href="dev_tools.htm#dev_tools_ftp_client">outils recommandés</a>).</p>
 
-<p class="cpg_message_error">For those of you who skim over statements written in red letters, we will repeat to try to get your attention:<br />
-<span class="important"><strong>Yes, we are writing about something that could easily apply to you</strong></span>
+<p class="cpg_message_error">Pour ceux qui passent sur les déclarations écrites en rouge, nous allons nous répéter pour essayer d'attirer votre attention:<br />
+<span class="important"><strong>Oui, nous écrivons sur des choses qui peuvent facilement s'appliquer à vous</strong></span>
 </p>
-<p>We repeat - check/apply your permissions on the <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, and <tt class="code">/albums/edit</tt> directories.  All should usually be 777 or 755 (depending on your webserver configuration) or whatever is needed on your webserver setup to allow the coppermine script write access.</p>
-<p class="cpg_message_info">Yes, we do want you to <strong>set</strong> the permissions of each folder even if you think you have already done this. Yes, we <strong>mean</strong> it. No, just <em>checking</em> permissions (i.e. looking up what your FTP client reports permissions to be) is <strong>not</strong> enough. As we said: set/apply permissions, don't just look at them.</p>
+<p>Nous répettons  - vérifiez/appliquez les permissions aux répertoires <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, et <tt class="code">/albums/edit</tt>.  Tous devraient être sur 777 ou 755 (en fonction des paramètres de votre serveur) ou de manière à donner à Coppermine les droits d'accès en écriture.</p>
+<p class="cpg_message_info">Oui, nous voulons que vous <strong>aapliquiez</strong> ces droits pour chaque répertoire, même si vous pensez que vous l'avez déjà fait. Oui nous le <strong>voulons</strong>. Non, juste <em>vérifier</em> les droits (ex. regarder ce que votre client FTP déclare au niveau des droits)  <strong>n'est pas</strong> suffisant. Comme nous l'avons déjà dit: paramétrez/appliquez les droits, ne faites pas juste une vérificatio.</p>
 
-<a name="upload_trouble_enable_settings"></a><h2>Enable troubleshooting settings<a href="#upload_trouble_enable_settings" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed <a href="#upload_error_messages">error messages</a>. This applies to <strong>all</strong> upload methods, not only <a href="uploading_http.htm#upload_http">HTTP uploads</a>.</p>
-<span class="detail_head_collapsed">Details</span>
+<a name="upload_trouble_enable_settings"></a><h2>Activez les paramètres de dépannage<a href="#upload_trouble_enable_settings" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Si vous rencontrez des problèmes avec le processus de téléchargement de Coppermine, changez temporairement les paramètres de Coppermine comme expliqué plus bas pour avoir des <a href="#upload_error_messages">messages d'erreur</a> plus détaillés. Cela s'applique à <strong>toutes</strong> les methodes de téléchargement, pas uniquement aux <a href="uploading_http.htm#upload_http">téléchargements par HTTP</a>.</p>
+<span class="detail_head_collapsed">Détails</span>
 <div class="detail_body border1">
-	Even if you have issues with batch-adding pics (or any other uploading method), you should perform the steps mentioned below that check http uploads, as http uploads are the most basic upload method that needs to work under all circumstances.<br />
-	If you're going to request support on upload issues on the coppermine support board, you're requested to perform the steps mentioned below in detail.
+	Même si vous avez des problèmes avec l'ajout d'images par lots (ou pour toute autre méthode de téléchargement), vous devez suivre les étapes détaillées ci-après et qui vérifient les téléchargements par HTTP, parceque le téléchargement par HTTP est la méthode de téléchargement la plus basique et qu'elle doit fonctionner dans toutes les circonstances.<br />
+	Si vous êtes sur le point de demander de l'aide à propos de problèmes de téléchargement sur le forum de Coppermine, il est impératif que vous ayez suivi scrupuleusement les étapes détaillées ci-dessous.
 </div>
-<p>When troubleshooting uploads in <abbr title="Coppermine Photo Gallery">CPG</abbr> 1.5, you are advised to activate '<a href="configuration.htm#debug_mode">Debug mode</a>' in the <a href="configuration.htm">config console</a>. Changing this setting negates some of the error masking done in the multiple upload setting. This will allow you to access more detailed error messages.</p>
+<p>Pour l edépannage de problèmes de téléchargement dans <abbr title="Coppermine Photo Gallery">CPG</abbr> 1.5, il vous est demandé d'activer le '<a href="configuration.htm#debug_mode">Mode de déboguage</a>' dans  <a href="configuration.htm">la page de configuration</a>. Le changement de ce paramètre annule le masquage des erreurs lors des téléchargements multiples. Cela vous permettra d'avoir des mesages d'erreur plus détaillés.</p>
 <ul>
 	<li>
-		<strong class="detail_head_collapsed">Log in as admin</strong>
-		<div class="detail_body">Go to your coppermine page and log in as admin</div>
+		<strong class="detail_head_collapsed">Identifiez vous en tant qu'administrateur</strong>
+		<div class="detail_body">Allez sur votre galerie Coppermine et identifiez vous en tant qu'administrateur</div>
 	</li>
 	<li>
-		<strong class="detail_head_collapsed">Set &quot;Default upload method&quot; to &quot;Simple&quot;</strong>
+		<strong class="detail_head_collapsed">Paramétrez &quot;Méthode de téléchargement par défaut&quot; à &quot;Simple&quot;</strong>
 		<div class="detail_body">
 			<ul>
-				<li>Go to the <a href="configuration.htm#admin">config screen</a></li>
-				<li>Scroll to the section &quot;User settings&quot; and expand it by clicking on it</li>
-				<li>Set the <a href="configuration.htm#admin_upload_mechanism">Default upload mechanism</a> to  &quot;<em>Simple - one file at a time</em>&quot;</li>
-				<li>Scroll to the bottom of the page</li>
-				<li>Save the new settings by clicking on &quot;Save new configuration&quot;</li>
+				<li>Allez sur <a href="configuration.htm#admin">la page de configuration</a></li>
+				<li>Descendez jusqu'à la section &quot;Paramètre des Utilisateurs&quot; et développez là en cliquant dessus</li>
+				<li>Paramétrez <a href="configuration.htm#admin_upload_mechanism">Methode de téléchargement par défaut</a> à  &quot;<em>Simple - un fichier à la fois</em>&quot;</li>
+				<li>Descendez jusqu'au bas de la page</li>
+				<li>Sauvegardez les nouveaux réglages en  cliquant sur &quot;Sauvegardez la nouvelle configuration&quot;</li>
 			</ul>
 		</div>
 	</li>
 	<li>
-		<strong class="detail_head_collapsed">Enable &quot;debug mode&quot;</strong>
+		<strong class="detail_head_collapsed">Activez le &quot;mode de déboguage&quot;</strong>
 		<div class="detail_body">
 			<ul>
-				<li>Go to the <a href="configuration.htm#admin">config screen</a></li>
-				<li>Scroll to the section &quot;Maintenance settings&quot; and expand it by clicking on it</li>
-				<li>Enable debug mode for everyone by clicking on &quot;Yes: Everyone&quot; in the line &quot;Enable debug mode&quot;</li>
-				<li>Leave display of notices switched off - if the checkbox &quot;Display notices in debug mode&quot; is ticked, un-tick it (notices are only meant for developers - if you have idea what they mean, leave them off permanently)</li>
-				<li>Scroll to the bottom of the page</li>
-				<li>Save the new settings by clicking on &quot;Save new configuration&quot;</li>
+				<li>Allez à la <a href="configuration.htm#admin">page de configuration</a></li>
+				<li>Descendez à la section &quot;Paramètres de maintenance&quot; et développez là en cliquant dessus</li>
+				<li>Activez le mode de déboguage pour tout le monde en cliquant sur &quot;Oui: Tout le monde&quot; dans la ligne &quot;Activez le mode de déboguage&quot;</li>
+				<li>Laissez l'affichage des avertissements sur off - si la case à cocher &quot;Afficher les avertissements dans le mode de déboguage&quot; est cochée, décochez là (les avertissements ne sont là que vous les développeures - si vous n'avez pas idée de ce qu'ils signifient, cachez les de manière permanante)</li>
+				<li>Descendez jusqu'au bas de la page</li>
+				<li>Sauvegardez les nouveaux réglages en  cliquant sur &quot;Sauvegardez la nouvelle configuration&quot;</li>
 			</ul>
 		</div>
 	</li>
 	<li>
-		<strong class="detail_head_collapsed">Go to the http uploads page by clicking on the &quot;upload file&quot; link in the main coppermine menu</strong>
+		<strong class="detail_head_collapsed">Allez à la page de téléchargement en cliquant sur le lien &quot;télécharger un fichier&quot; dans le menu principal de Coppermine</strong>
 		<div class="detail_body">
-			The http uploads page will be available for you as admin at any time. This is not the case though for non-admin visitors of your gallery: it depends on the permissions you assign them if they will have the upload file link in the menu.
+			La page de téléchargement par HTTP vous sera accessible, à vous en tant qu'administrateur, dans tous les cas. Ce n'est pas le cas pour les visiteurs non-administrateurs de votre galerie: l'affichage du lien dans le menu dépend des droits que vous leur avez assignés .
 		</div>
 	</li>
 	<li>
-		<strong class="detail_head_collapsed">On the upload file screen, choose an album from the "Album" dropdown</strong>
+		<strong class="detail_head_collapsed">Sur la page de téléchargement de fichiers, choisissez un album depuis la liste déroulante "Album"</strong>
 		<div class="detail_body">
-			If you don't have an album you can pick from the list, you haven't created an album yet. You have to understand that you need at least one album where your upload can go to. Go to the <a href="albums.htm#albmgr">album manager</a> and create at least one album first, then try again uploading.
+			Si vous n'avez pas d'album séléctionnables dans la liste, vous n'avez pas encore créer d'albums. Vous devez comprendre que vous devez avoir au moins un album ou vous pourrez placer vos images. Allez au <a href="albums.htm#albmgr">gestionnaires d'albums</a> et créez au moins un album, puis essayez à nouveau de télécharger.
 		</div>
 	</li>
 	<li>
-		<strong class="detail_head_collapsed">Click the "Browse..." button and navigate to a small, known-good jpg-file on your hard drive</strong>
+		<strong class="detail_head_collapsed">Cliquez sur le bouton "Parcourir..." et cherchez une petite images, connue sans problèmes et au format jpg sur votre disque dur.</strong>
 		<div class="detail_body">
-			Don't assume that <em>any</em> image will work - the term "known-good" in this case means that you should use an image that already has been processed by coppermine to make sure it is a file that coppermine can handle - this can best be achieved if you download an image from the coppermine demo on the original coppermine home page.
+			Ne croyez pas que <em>n'importe quelle</em> image ira - le terme "sans problèmes" signifie dans ce cas une image qui a déjà été traitée par Coppermine, afin d'être sur que Coppermine peut l'utiliser - celà peut être réalisé facilement en téléchargeant une image de la démo de Coppermine depuis la page initiale de Coppermine.
 		</div>
 	</li>
 	<li>
-		<strong class="detail_head_collapsed">Submit the form by clicking on the "Upload file" button</strong>
+		<strong class="detail_head_collapsed">Validez le formulaire en cliquant sur le bouton "Télécharger le fichier"</strong>
 		<div class="detail_body">
-			By submitting the form you start the actual upload process - everything you did before were just preparations.
+			En validant le formulaire, vous lancez le processus de téléchargement - tout ce que vous avez fait avant n'était qu'une préparation.
 		</div>
 	</li>
 </ul>
-<p>You should try using http uploads, even if you experienced troubles using another upload method. You should get a more detailed <a href="#upload_error_messages">error message</a> if something is wrong that tells you what exactly goes wrong with your uploads. If the error message doesn't mean anything to you, <a href="http://coppermine-gallery.net/forum/index.php?action=search" rel="external" class="external">search the support board</a> for the error message you get.</p>
-<p>If you don't get an error message at all, you probably have overloaded the server with previous attempts - please review the <a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions">server-sided limitations</a> that might apply for you.
+<p>Vous devez essayer d'utiliser le téléchargement par HTTP, même si vous avez des problèmes avec une autre méthode. Vous aurez un  <a href="#upload_error_messages">message d'erreur</a> plus détaillé, si quelque chose se passe mal et vous indiquera exactement ce qui ne fonctionne pas avec votre téléchargement. Si le message d'erreur ne signifie rien pour vous,  <a href="http://coppermine-gallery.net/forum/index.php?action=search" rel="external" class="external">cherchez sur le forum d'aide </a> pour le message d'erreur que vous avez eu.</p>
+<p>Si vous n'avez pas de message d'erreur, vous avez probablement surchargé le serveur avec vos essais précédents. Merci de regarder <a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions"> les limitations côté serveur</a> qui peuvent s'appliquer à vous.
 
 
 
 
-<a name="upload_support"></a><h2>Asking for support on upload issues<a href="#upload_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="upload_support"></a><h2>Demander de l'aide pour des problèmes de téléchargement<a href="#upload_support" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 
 <p class="cpg_message_error">When asking for support on the coppermine forum, post a link to your site and a <a href="users.htm#user_cp_new">test user account</a> (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well. Do <strong>not</strong> post debug_output unless requested. If you want fast results, you should disable admin approval for the group the test user is in, so supporters can tell instantly what is wrong without needing to double-check.</p>
-<p class="cpg_message_warning">When people have issues with uploading and decide to post their question on the Coppermine support board, they usually are told to read this upload troubleshooting section. Many of them fail to do so properly, which results in frustration both for users as well as supporters. To make this absolutely clear: the above mentioned steps are absolutely <strong>mandatory</strong>, no matter what skill level you have, no matter what upload method you have troubles with. Failing to do <strong>exactly</strong> as suggested will result in your request for help being ignored. Yes, this applies to you. We mean it!</p>
-<a name="upload_support"></a><h3>Step-by-step guide when asking for support<a href="#upload_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="cpg_message_warning">When people have issues with uploading and decide to post their question on the Coppermine support board, they usually are told to read this upload troubleshooting section. Many of them fail to do so properly, which results in frustration both for users as well as supporters.<br />
+To make this absolutely clear: the above mentioned steps are absolutely <strong>mandatory</strong>, no matter what skill level you have, no matter what upload method you have troubles with. Failing to do <strong>exactly</strong> as suggested will result in your request for help being ignored. Yes, this applies to you. We mean it!</div>
+<p>Not sure what to do now? Read on:</p>
+<a name="upload_support_step-by-step"></a><h3>Step-by-step guide when asking for support<a href="#upload_support_step-by-step" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>This is a step-by-step guide that is meant to explain in a fool-proof way what settings you need to make when asking for support on the Coppermine support board.</p>
 <p>We assume that you have applied tight permission settings, so we'll go through this a bit more complicated than actually necessary on most setups: the instructions below are meant to allow upload troubleshooting for the supporter even if the rest of users of your gallery isn't allowed to upload or if you don't even allow user registration in the first place. If you know your way around, you can of course skip the steps that explain the creation of an extra group if all your registered users are allowed to upload anyway. In the end, the important thing that counts is that the supporter can go through uploading untill he/she can see what actually goes wrong during the upload stage.</p>
 <ul>
 	<li>
-		<a name="upload_support_admin_login"></a><h4 class="detail_head_collapsed">Log in as admin<a href="#upload_support_admin_login" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_admin_login"></a><h4 class="detail_head_collapsed">Log in as admin<a href="#upload_support_admin_login" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">Go to your coppermine page and log in as admin</div>
 	</li>
 	<li>
-		<a name="upload_support_create_uploader_group"></a><h4 class="detail_head_collapsed">Create uploader group<a href="#upload_support_create_uploader_group" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_create_uploader_group"></a><h4 class="detail_head_collapsed">Create uploader group<a href="#upload_support_create_uploader_group" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
 			The instructions below how to create a group only applies if you are running Coppermine in standalone mode. If you have bridged your Coppermine gallery, use your bridging application to create the uploader group.
 			<ul>
@@ -143,7 +146,7 @@
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_assign_permissions_uploader_group"></a><h4 class="detail_head_collapsed">Assign upload permissions to the uploader group<a href="#upload_support_assign_permissions_uploader_group" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_assign_permissions_uploader_group"></a><h4 class="detail_head_collapsed">Assign upload permissions to the uploader group<a href="#upload_support_assign_permissions_uploader_group" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
 			The instructions below how to assign upload permissions to a group applies both for bridged as well as for standalone galleries.
 			<ul>
@@ -155,7 +158,7 @@
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_create_test_user"></a><h4 class="detail_head_collapsed">Create a non-admin test user account<a href="#upload_support_create_test_user" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_create_test_user"></a><h4 class="detail_head_collapsed">Create a non-admin test user account<a href="#upload_support_create_test_user" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
 			The instructions below how to create a user only applies if you are running Coppermine in standalone mode. If you have bridged your Coppermine gallery, use your bridging application to create the test user account.
 			<ul>
@@ -170,7 +173,7 @@
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_create_album"></a><h4 class="detail_head_collapsed">Create an album where the uploads can go into<a href="#upload_support_create_album" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_create_album"></a><h4 class="detail_head_collapsed">Create an album where the uploads can go into<a href="#upload_support_create_album" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
 			So far, we have created a custom group that is allowed to upload to public albums, but we haven't specified into what album the upload is allowed to go to. We need to create an album first.
 			<ul>
@@ -182,7 +185,7 @@
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_album_permissions"></a><h4 class="detail_head_collapsed">Allow uploads to the test album<a href="#upload_support_album_permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_album_permissions"></a><h4 class="detail_head_collapsed">Allow uploads to the test album<a href="#upload_support_album_permissions" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
 			The album where the uploads should go to exists, but so far nobody except the admin has got permissions to upload to it. Let's allow uploads for that album.
 			<ul>
@@ -196,7 +199,7 @@
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_simple_upload_method"></a><h4 class="detail_head_collapsed">Set &quot;Default upload method&quot; to &quot;Simple&quot;<a href="#upload_support_simple_upload_method" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_simple_upload_method"></a><h4 class="detail_head_collapsed">Set &quot;Default upload method&quot; to &quot;Simple&quot;<a href="#upload_support_simple_upload_method" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
 			<ul>
 				<li>Go to the <a href="configuration.htm#admin">config screen</a></li>
@@ -208,7 +211,7 @@
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_debug_mode"></a><h4 class="detail_head_collapsed">Enable &quot;debug mode&quot;<a href="#upload_support_debug_mode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_debug_mode"></a><h4 class="detail_head_collapsed">Enable &quot;debug mode&quot;<a href="#upload_support_debug_mode" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
 			<ul>
 				<li>Go to the <a href="configuration.htm#admin">config screen</a></li>
@@ -221,22 +224,22 @@
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_test_for_yourself"></a><h4 class="detail_head_collapsed">Test uploading using the test user account<a href="#upload_support_test_for_yourself" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_test_for_yourself"></a><h4 class="detail_head_collapsed">Test uploading using the test user account<a href="#upload_support_test_for_yourself" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
-			You may be tempted to go ahead and ask for support now, but wait a minute: you haven't tried for yourself yet if everything works as expected yet. You wouldn't want to start a support thread and just be told &quot;do your homework first&quot; (because that's what will happen if you obviously failed to do as suggested here). Here's what you do:
+			You may be tempted to go ahead and ask for support now, but wait a minute: you haven't tried for yourself yet if everything works as expected. You wouldn't want to start a support thread and just be told &quot;do your homework first&quot; (because that's what will happen if you obviously failed to do as suggested here). Here's what you do:
 			<ul>
 				<li>Log out from Coppermine (or use another browser alternatively) if you're logged in as admin</li>
-				<li>Log in using the non-admin test user account. If logging in fails, review the test user account details while being logged in as admin.</li>
+				<li>Log in using the non-admin test user account that you created in the steps above. If logging in fails, review the test user account details while being logged in as admin.</li>
 				<li><img src="images/simple_file_upload.png" width="400" height="178" border="0" alt="" title="Simple file uploads interface" align="right" style="padding-left:5px;" />Click on &quot;Upload file&quot;. If you don't have that upload link, you have failed to set up permissions properly - review the steps above carefully.</li>
 				<li>On the upload file screen, choose the test album from the &quot;Album&quot; dropdown. If you can't select the test album, you have made a mistake when setting up the upload permissions</li>
-				<li>Click the "Browse..." button and navigate to a small, known-good jpg-file on your hard drive</li>
+				<li>Click the "Browse..." button and navigate to a small, known-good jpg-file on your hard drive. Don't assume that any image will do: when in doubt, download a test image from the coppermine demo page</li>
 				<li>Submit the form by clicking on the &quot;Upload file&quot; button</li>
 			</ul>
-			In an ideal world, everything will work as expected - your upload will succeed and you will see your uploaded image embedded into a coppermine page. If this is the case, http uploads work as expected. If this is not the case, you should get an <a href="#upload_error_messages">error message</a> that explains what went wrong. If you can't figure out what the error message means, but you were able to perform all the steps above including the last one (submitting the upload form), then please go ahead and ask for support on the coppermine support board.
+			In an ideal world, everything will work as expected - your upload will succeed and you will see your uploaded image embedded into a coppermine page. If this is the case, http uploads work as expected. If this is not the case, you should get an <a href="#upload_error_messages">error message</a> that explains what went wrong. If you can't figure out what the error message means, but you were able to perform all the steps above including the last one (submitting the upload form), then please go ahead and ask for support on the coppermine support board. You're welcome to post your support request as well if http work as expected, but you want to request help with another upload method.
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_post_support_request"></a><h4 class="detail_head_collapsed">Post your support request on the Coppermine support board<a href="#upload_support_post_support_request" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_post_support_request"></a><h4 class="detail_head_collapsed">Post your support request on the Coppermine support board<a href="#upload_support_post_support_request" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
 			<ul>
 				<li>Go to the <a href="http://forum.coppermine-gallery.net/" rel="external" class="external">Coppermine support board</a></li>
@@ -250,10 +253,28 @@
 		</div>
 	</li>
 </ul>
+<a name="upload_support_step-by-step_end"></a>
+
+<a name="upload_support_example"></a><h3>Example support request<a href="#upload_support_example" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="cpg_example">
+	<p>This is how your support request posting could look like (make sure that you populated the stuff in red with actual content from your case):</p>
+	<div class="quote">I'm having issues when uploading on my Coppermine driven gallery <span class="important">http://example.com/my_coppermine_folder/</span><br />
+	When using http uploads and the suggested settings for upload troubleshooting in place, I get the error message<br />&nbsp;<br />
+	[code]<span class="important">The text of the error message here</span>[/code]<br />&nbsp;<br />
+	Here's the test user account data: <br />
+	&nbsp;&nbsp;&nbsp;&nbsp;Username: <span class="important">tester</span><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;Password: <span class="important">foobar</span><br />&nbsp;<br />
+	I have been using the image taken from <span class="important">http://example.com/path/to/test/file.jpg</span> as an example to test with.<br />
+	Having done as suggested in <span class="important">http://forum.coppermine-gallery.net/some_forum_thread</span> didn't work as expected: I got<br />
+	[code]<span class="important">Some other error message</span>[/code]<br />
+	when trying that. I have no idea what else to do.<br />
+	Thanks in advance for your suggestions</div>
+</div>
+<a name="upload_support_example_end"></a>
 <a name="upload_support_end"></a>
 
 
-<a name="upload_error_messages"></a><h2>Error messages<a href="#upload_error_messages" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="upload_error_messages"></a><h2>Error messages<a href="#upload_error_messages" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
   <tr>
     <th align="left">Error message</th>
@@ -264,7 +285,7 @@
     <td valign="top">
       <a name="ErrorCantMovePic"></a><tt class="code">Impossible to move <em>somepic.jpg</em> to albums/userpics/<br />
       Warning: move_uploaded_file(/tmp/<em>phpezCYKr</em>)<br />
-      [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt><a href="#ErrorCantMovePic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt><a href="#ErrorCantMovePic" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
       PHP's temporary folder is missing or doesn't have the needed permissions
@@ -276,14 +297,14 @@
   </tr>
   <tr>
     <td valign="top">
-      <a name="ErrorImpossibleToMove"></a><tt class="code">Impossible to move <em>somepic.jpg</em> to albums/userpics/</tt><a href="#ErrorImpossibleToMove" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <a name="ErrorImpossibleToMove"></a><tt class="code">Impossible to move <em>somepic.jpg</em> to albums/userpics/</tt><a href="#ErrorImpossibleToMove" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">The coppermine script doesn't have permissions on the filesystem of the server to create the thumbnail or intermediate image within the specified folder</td>
     <td valign="top">Apply permissions on the albums folder and everything within it as suggested in the section <a href="install_permissions.htm#permissions">Setting permissions</a>. This error message is the most frequent one, as many users tend to skip reading the permissions section. At least when getting this error message, you should read it thoroughly.</td>
   </tr>
   <tr>
     <td valign="top">
-      <a name="ErrorFailedToOpenDir"></a><tt class="code">Warning: opendir(./albums/edit): failed to open dir: No such file or directory</tt><a href="#ErrorFailedToOpenDir" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <a name="ErrorFailedToOpenDir"></a><tt class="code">Warning: opendir(./albums/edit): failed to open dir: No such file or directory</tt><a href="#ErrorFailedToOpenDir" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
       <ul>
@@ -302,7 +323,7 @@
   </tr>
   <tr>
     <td valign="top">
-      <a name="httpPostVars"></a><tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt><a href="#httpPostVars" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <a name="httpPostVars"></a><tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt><a href="#httpPostVars" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
       <ul>
@@ -311,7 +332,7 @@
       </ul>
     </td>
     <td valign="top">
-      Check if <a href="faq.htm#VersionPHP">your version of PHP</a> fullfills the <a href="requirements.htm#what">minimum requirements</a> for Coppermine. If your version is 4.3.0 or better, then this error is probably caused by a misconfiguration of your hosting server, and not a Coppermine issue. If the server isn't yours to configure properly (that is: if you're with a webhost), you can try this workaround (at your own risk):<br >
+      Check if <a href="install_faq.htm#VersionPHP">your version of PHP</a> fullfills the <a href="requirements.htm#what">minimum requirements</a> for Coppermine. If your version is 4.3.0 or better, then this error is probably caused by a misconfiguration of your hosting server, and not a Coppermine issue. If the server isn't yours to configure properly (that is: if you're with a webhost), you can try this workaround (at your own risk):<br >
       Edit the file "init.inc.php" and look for<br />
       <div class="quote">$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];</div>
 Replace it with<br />
@@ -320,7 +341,7 @@ Replace it with<br />
   </tr>
   <tr>
     <td valign="top">
-      <a name="ErrorNoAlbumExisting"></a><tt class="code">Sorry there is no album where you are allowed to upload files</tt><a href="#ErrorNoAlbumExisting" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <a name="ErrorNoAlbumExisting"></a><tt class="code">Sorry there is no album where you are allowed to upload files</tt><a href="#ErrorNoAlbumExisting" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
       <ul>
@@ -339,27 +360,17 @@ Replace it with<br />
   </tr>
   <tr>
     <td valign="top">
-      <a name="ErrorAllowedMemorySize"></a><tt class="code">Fatal error: Allowed memory size of <em>XXXXXXX</em> bytes exhausted at (null):0 (tried to allocate <em>XXXX</em> bytes) in /var/www/html/include/picmgmt.inc.php</tt><a href="#ErrorAllowedMemorySize" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <a name="ErrorAllowedMemorySize"></a><tt class="code">Fatal error: Allowed memory size of <em>XXXXXXX</em> bytes exhausted at (null):0 (tried to allocate <em>XXXX</em> bytes) in /var/www/html/include/picmgmt.inc.php</tt><a href="#ErrorAllowedMemorySize" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
-      This error occurs when using GD and attempting to upload a high resoltuion image.  It's not the size of the file that matters here; it's the number of pixels that determine memory use in GD.
+      This error occurs when using GD and attempting to upload a high resoltuion image.  It's not the size of the file that matters here; it's the number of pixels that determine memory use in GD. This is not a <a href="errors.htm#errors_soft">soft error</a> triggered by Coppermine, but a <a href="errors.htm#errors_hard">hard error</a> from PHP that shines through Coppermine from PHP.
     </td>
     <td valign="top">
       There is (at least in theory) no limit <em>in Coppermine</em> to the file size or dimensions that the script can handle. However, there is at least one limit existing on the webserver: resizing images (to create intermediate images and/or thumbnails) consumes memory and burns CPU cylces. To prevent the server from crashing, the server admin has to restrict the amount of memory that a PHP script is allowed to consume. The error message mentioned above means that the limit imposed by the server admin has been reached, i.e. the image that the script tried to process consumed to much memory.
       <ul>
         <li><strong>Alternative 1 (ideal):</strong><br />
-        Increase the memory limit allocation in php.ini. You must be the server's administrator to do this. Also, .htaccess files cannot change this configuration setting, and it cannot be changed using ini_set(). First, you locate the following block in php.ini (if you actually are the server admin):<br />
-        <div class="quote"><tt>;;;;;;;;;;;;;;;;;;;<br />; Resource Limits ;<br />;;;;;;;;;;;;;;;;;;;<br />&nbsp;<br />max_execution_time = 30     ; Maximum execution time of each script, in seconds<br />max_input_time = 60        ; Maximum amount of time each script may spend parsing request data<br />memory_limit = 8M      ; Maximum amount of memory a script may consume (8MB)</tt></div>
-         Now you increase the memory limit to fit your needs. 9 to 16 MB should handle most requirements. To calculate the amount of memory an image uses, you simply multiply the pixel width and height, and then you multiply the result by the number of base colors (RGB - 3, CMYK - 4). Finally, you divide by 1048576 to get the memory usage in MB.<br />
-         Here are some common image resolutions and their memory use in GD (assuming RGB):
-         <ul>
-           <li>800 x 600 - 1.37 MB</li>
-           <li>1024 x 768 - 2.25 MB</li>
-           <li>1200 x 1600 - 5.49 MB</li>
-         </ul>
-         Remember when using the above figures that the amount of memory being used by the rest of Coppermine must be taken into account, too.<br />
-         If you are unable to change php.ini settings yourself, you can always ask your server administrator to change this for you.  However, most administrators (especially on shared webhsoting) will be reluctant to do so, as this setting will affect everyone on a shared server. A higher memory limit requires reducing the number of people who can be hosted on the same server in order to maintain server stability. This reduces profitability, etc.<br />
-         If you cannot change php.ini, you should read alternatives 2 and 3.</li>
+        Increase the memory limit allocation in php.ini as suggested in <a href="upload_troubleshooting.htm#upload_trouble_memory_usage">Memory usage during resizing</a>. 
+        If you cannot change php.ini, you should read alternatives 2 and 3.</li>
          <li><strong>Alternative 2 (sensible):</strong><br />
          Resize your images before uploading if you do not require high resolution images.  This saves upload bandwidth and time for you.</li>
          <li><strong>Alternative 3 (workaround):</strong><br />
@@ -370,7 +381,7 @@ Replace it with<br />
   </tr>
   <tr>
     <td valign="top">
-      <a name="ErrorExecDisabled"></a><tt class="code">Exec() has been disabled</tt><a href="#ErrorExecDisabled" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <a name="ErrorExecDisabled"></a><tt class="code">Exec() has been disabled</tt><a href="#ErrorExecDisabled" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
       php.ini allows the server administrator to disable certain functions. Usually this is the case if your server is running in safe_mode.
@@ -382,7 +393,7 @@ Replace it with<br />
   </tr>
   <tr>
     <td valign="top">
-      <a name="ErrorNotAGdExtension"></a><tt class="code">Not a GD extension</tt><a href="#ErrorNotAGdExtension" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <a name="ErrorNotAGdExtension"></a><tt class="code">Not a GD extension</tt><a href="#ErrorNotAGdExtension" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
       The file(s) you tried to upload can not be handled using the GD ImageLibrary
@@ -393,7 +404,7 @@ Replace it with<br />
   </tr>
   <tr>
     <td valign="top">
-      <a name="imagemagick127"></a><tt class="code">The file '<em>albums/userpics/10001/somepic.jpg</em>' can't be inserted in the album. Error executing ImageMagick - Return value <strong>127</strong></tt><a href="#imagemagick127" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <a name="imagemagick127"></a><tt class="code">The file '<em>albums/userpics/10001/somepic.jpg</em>' can't be inserted in the album. Error executing ImageMagick - Return value <strong>127</strong></tt><a href="#imagemagick127" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
       You haven't specified the correct <a href="configuration.htm#admin_picture_thumb_advanced_im_path">path to ImageMagick</a>, or you don't have ImageMagic at all.
@@ -404,7 +415,7 @@ Replace it with<br />
   </tr>
   <tr>
     <td valign="top">
-      <a name="no_gd_support"></a><tt class="code">PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed.</tt><a href="#no_gd_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <a name="no_gd_support"></a><tt class="code">PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed.</tt><a href="#no_gd_support" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
       Your webserver doesn't come with support for the GD image library.
@@ -416,7 +427,7 @@ Replace it with<br />
   <tr>
     <td valign="top">
       <a name="no_file_uploaded"></a><a name="allow_file_uploads"></a>
-      <tt class="code">No file was uploaded ! If you have really selected a file to upload, check that the server allows file uploads...</tt><a href="#no_file_uploaded" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <tt class="code">No file was uploaded ! If you have really selected a file to upload, check that the server allows file uploads...</tt><a href="#no_file_uploaded" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
       File uploads are disabled in php.ini or there is a permissions issue or there is an issue with your webserver's upload mechansim.
@@ -436,7 +447,7 @@ Replace it with<br />
   </tr>
   <tr>
     <td valign="top">
-      <a name="destination_not_writable"></a><tt class="code">Destination directory albums/userpics/XXXXX/ is not writable by the script</tt><a href="#destination_not_writable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
+      <a name="destination_not_writable"></a><tt class="code">Destination directory albums/userpics/XXXXX/ is not writable by the script</tt><a href="#destination_not_writable" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">permissions on file system level are not correct</td>
     <td valign="top">Make sure to review your <a href="install_permissions.htm#permissions">file/folder permissions</a>. If that doesn't help, ask your webhost for support.</td>
@@ -444,41 +455,168 @@ Replace it with<br />
 </table>
 <a name="upload_error_messages_end"></a>
 
-<a name="upload_trouble_server-sided_restrictions"></a><h2>Server-sided restrictions<a href="#upload_trouble_server-sided_restrictions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="upload_trouble_server-sided_restrictions"></a><h2>Server-sided restrictions<a href="#upload_trouble_server-sided_restrictions" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>All upload methods, but particularly HTTP uploads are limited by the restrictions placed upon them in PHP's configuration.</p>
-<p class="cpg_message_info">Please understand that the settings in php.ini can only be changed if the server is yours to administer (i.e. if you run a webserver of your own). If you are webhosted, you will have to ask your webhost if he's willing to change those settings for you, which usually equals allowing you to use more resources on the server. Usually, your webhost will not accept this for sheer economical reasons: granting you to use more resources will mean that he can host less presences on one shared server.</p>
-<p>Please don't ask questions on the coppermine support board what the actual settings are supposed to be or how you can change them - as suggested above: you usually won't be able to change them at all when you're webhosted.<br />If you're actually self-hosted (which is something we can not recommend at all as running and maintaining a webserver requires constant monitoring and maintenance as well as a huge amount of experience and a high skill level), don't bother to ask trivial questions like &quot;Where can I find my php.ini file&quot; - if you don't know the answer to this question, you fall into the category &quot;self-hosting not recommended due to lack of experience&quot; and will be ignored on the coppermine support board.</p>
 
-<a name="upload_trouble_server-sided_restrictions_check"></a><h3>Things to check<a href="#upload_trouble_server-sided_restrictions_check" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="upload_trouble_server-sided_restrictions_php_ini"></a><h3>The PHP configuration file php.ini<a href="#upload_trouble_server-sided_restrictions_php_ini" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="cpg_message_info">
+Please understand that the settings in php.ini can only be changed if the server is yours to administer (i.e. if you run a webserver of your own). If you are webhosted, you will have to ask your webhost if he's willing to change those settings for you, which usually equals allowing you to use more resources on the server. Usually, your webhost will <strong>not</strong> accept this for sheer economical reasons: granting you to use more resources will mean that he can host less presences on one shared server.</div>
+
+<div class="cpg_message_error">Please don't ask questions on the coppermine support board what the actual settings are supposed to be or how you can change them - as suggested above: you usually won't be able to change them at all when you're webhosted.<br />If you're actually self-hosted (which is something we can not recommend at all as running and maintaining a webserver requires constant monitoring and maintenance as well as a huge amount of experience and a high skill level), don't bother to ask trivial questions like &quot;Where can I find my php.ini file&quot; - if you don't know the answer to this question, you fall into the category &quot;self-hosting not recommended due to lack of experience&quot; and will be ignored on the coppermine support board.</div>
+
+<a name="upload_trouble_server-sided_restrictions_check"></a><h3>Things to check<a href="#upload_trouble_server-sided_restrictions_check" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If you are webhosted, you will need to consult with your webhost regarding the following settings. You can review (although not change) those settings on your <a href="admin_menu.htm#phpinfo">phpinfo page</a>.</p>
 <ol>
-  <li><strong>max_input_time</strong><br />
-  60 seconds is the default time limit for uploading files.<br />This time limit includes the time it takes for the files to upload, so if you exceed this limit, the file will not even parse, and the browser will not get a response. You can workaround this by trying to upload smaller or fewer files, or you can try uploading over broadband. The best solution, of course, is to increase the time limit to something more in line with your needs.</li>
-  <li><strong>upload_max_filesize</strong><br />
-  2MB is the default limit for individual files.</li>
-  <li><strong>post_max_size</strong><br />
-  8MB is the default limit for post requests.</li>
-  <li><strong>memory_limit</strong><br />
-  8MB is the default size.</li>
-  <li>PHP's <strong>LimitRequestBody</strong><br />
-  512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order for uploads to function properly. Coppermine may warn you if a file exceeds upload_max_filesize, but it cannot warn you if the total size of all the files exceeds the post limit or the memory limit.</li>
-  <li><strong>file_uploads</strong><br />
-  This determines whether or not PHP will allow file uploads. It must be set to &quot;On&quot;.</li>
-  <li><strong>upload_tmp_dir</strong><br />
-  This specifies the temporary directory where PHP stores uploaded files.<br />
-  The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.</li>
+  <li>
+      <a name="upload_trouble_server-sided_restrictions_check_max_input_time"></a><h4>max_input_time<a href="#upload_trouble_server-sided_restrictions_check_max_input_time" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+      60 seconds is the default time limit for uploading files.<br />This time limit includes the time it takes for the files to upload, so if you exceed this limit, the file will not even parse, and the browser will not get a response. You can workaround this by trying to upload smaller or fewer files, or you can try uploading over broadband. The best solution, of course, is to increase the time limit to something more in line with your needs.
+  </li>
+  <li>
+      <a name="upload_trouble_server-sided_restrictions_check_upload_max_filesize"></a><h4>upload_max_filesize<a href="#upload_trouble_server-sided_restrictions_check_upload_max_filesize" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+      2MB is the default limit for individual files.
+  </li>
+  <li>
+      <a name="upload_trouble_server-sided_restrictions_check_post_max_size"></a><h4>post_max_size<a href="#upload_trouble_server-sided_restrictions_check_post_max_size" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+      8MB is the default limit for post requests.
+  </li>
+  <li>
+      <a name="upload_trouble_server-sided_restrictions_check_memory_limit"></a><h4>memory_limit<a href="#upload_trouble_server-sided_restrictions_check_memory_limit" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+      8MB is the default size. Read up <a href="#upload_trouble_memory_usage">Memory usage during resizing</a> for instructions how to change this setting and circumvent the error messages related to the memory limit being reached.
+  </li>
+  <li>
+      <a name="upload_trouble_server-sided_restrictions_check_limitlequestlody"></a><h4>LimitRequestBody<a href="#upload_trouble_server-sided_restrictions_check_limitlequestlody" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+      512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order for uploads to function properly. Coppermine may warn you if a file exceeds upload_max_filesize, but it cannot warn you if the total size of all the files exceeds the post limit or the memory limit.
+  </li>
+  <li>
+      <a name="upload_trouble_server-sided_restrictions_check_file_uploads"></a><h4>file_uploads<a href="#upload_trouble_server-sided_restrictions_check_file_uploads" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+      This determines whether or not PHP will allow file uploads. It must be set to &quot;On&quot;.
+  </li>
+  <li>
+      <a name="upload_trouble_server-sided_restrictions_check_upload_tmp_dir"></a><h4>upload_tmp_dir<a href="#upload_trouble_server-sided_restrictions_check_upload_tmp_dir" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+      This specifies the temporary directory where PHP stores uploaded files.<br />
+      The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.
+  </li>
 </ol>
 
 
-
-<p><strong>Some notes about the different types of upload mechanisms available since cpg1.3.x (or better):</strong><br />
-Multiple HTTP uploads are designed to handle a small number of files.  Therefore, they are not well suited for the uploading of large numbers of files unless you are running your own webserver or have control over the php.ini configuration.
-<br />
-If you are looking to upload more than 15 or 20 files at a time, you should consider the <a href="uploading_batch-add.htm#batch_add_pics">batch add</a> process or the <a href="uploading_xp-publisher.htm#xp_publish_upload">XP Publisher</a> utility.  Each has its own drawbacks and advantages.
-<br />
-The batch add process is fast, but it creates quite a load on the server and, as a result, you may experience timeouts causing your uploads to terminate prematurely.  XP Publisher, on the other hand, is considerably slower, but it limits the load on the server.  It also circumvents many of the pitfalls caused by limitations set in the php.ini configuration by uploading each file in the batch being uploaded as an individual post request.</p>
+<a name="upload_trouble_methods"></a><h3>Upload mechanisms/methods<a href="#upload_trouble_methods" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p><strong>Some notes about the different types of upload mechanisms available since cpg1.3.x (or better):</strong></p>
+<p>Multiple HTTP uploads are designed to handle a small number of files.  Therefore, they are not well suited for the uploading of large numbers of files unless you are running your own webserver or have control over the php.ini configuration.</p>
+<p>If you are looking to upload more than 15 or 20 files at a time, you should consider the <a href="uploading_batch-add.htm#batch_add_pics">batch add</a> process or the <a href="uploading_xp-publisher.htm#xp_publish_upload">XP Publisher</a> utility.  Each has its own drawbacks and advantages.</p>
+<p>The batch add process is fast, but it creates quite a load on the server and, as a result, you may experience timeouts causing your uploads to terminate prematurely.  XP Publisher, on the other hand, is considerably slower, but it limits the load on the server.  It also circumvents many of the pitfalls caused by limitations set in the php.ini configuration by uploading each file in the batch being uploaded as an individual post request.</p>
 <p>Other alternative upload mechanisms (like Client-based agents as JUpload or similar) may be provided as third-party contributions - you're encouraged to look at them as well, but please keep in mind that the coppermine developers can only provide limited support for third-party contributions.</p>
 <p>Keep in mind though that before trying any alternative upload mechanism, you have to make sure that the initial upload method &quot;http uploads&quot; works as expected - if it doesn't, you have to fix that first; it doesn't make sense to try alternative upload mechanisms if the core upload mechanism doesn't work.</p>
+
+<a name="upload_trouble_memory_usage"></a><h3>Memory usage during resizing<a href="#upload_trouble_memory_usage" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>There is (at least in theory) no limit in Coppermine to the file size or dimensions that the script can handle. However, there is at least one limit existing on the webserver: resizing images (to create intermediate images and/or thumbnails) consumes memory and burns CPU cylces.</p>
+<p>If the resizing process is eating up too much memory, you usually get the error message <a href="upload_troubleshooting.htm#ErrorAllowedMemorySize"><tt class="code">Fatal error: Allowed memory size of XXXXXXX bytes exhausted at (null):0 (tried to allocate XXXX bytes) in /var/www/html/include/picmgmt.inc.php</tt></a> or similar.</p>
+<p>To prevent the server from crashing, the server admin has to restrict the amount of memory that a PHP script is allowed to consume. This is done using the parameter <a href="#upload_trouble_server-sided_restrictions_check_memory_limit">memory_limit</a>.</p>
+<p>You might be tempted to believe that the memory usage equals the file size an image consumes on file system level, but that's not the case: the common file format JPEG is compressed, so if the server loads a JPEG file into memory, it consumes much more RAM than it consumed on file system level.</p>
+<p class="cpg_message_success">To calculate the amount of memory an image uses, you simply multiply the pixel width and height, and then you multiply the result by the number of base colors (RGB - 3, CMYK - 4). Finally, you divide by 1,048,576 (<span title="because one megabyte is not exactly one million bytes due to the wonderfull nature of binary arithmetics" class="explain">2<sup>20</sup></span>) to get the memory usage in MB.</p>
+<p>Here are some common image resolutions and their memory use in GD (assuming RGB):</p>
+<table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
+    <tr>
+        <th>Width</th>
+        <th></th>
+        <th>Height</th>
+        <th>Memory usage</th>
+    </tr>
+    <tr>
+        <td style="text-align:right">800</td>
+        <td style="text-align:center">x</td>
+        <td style="text-align:right">600</td>
+        <td style="text-align:right">1.4 MB</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">1024</td>
+        <td style="text-align:center">x</td>
+        <td style="text-align:right">768</td>
+        <td style="text-align:right">2.3 MB</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">1280</td>
+        <td style="text-align:center">x</td>
+        <td style="text-align:right">800</td>
+        <td style="text-align:right">2.9 MB</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">1280</td>
+        <td style="text-align:center">x</td>
+        <td style="text-align:right">1024</td>
+        <td style="text-align:right">3.8 MB</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">1400</td>
+        <td style="text-align:center">x</td>
+        <td style="text-align:right">1050</td>
+        <td style="text-align:right">4.2 MB</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">1600</td>
+        <td style="text-align:center">x</td>
+        <td style="text-align:right">1200</td>
+        <td style="text-align:right">5.5 MB</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">1920</td>
+        <td style="text-align:center">x</td>
+        <td style="text-align:right">1400</td>
+        <td style="text-align:right">7.7 MB</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">2048</td>
+        <td style="text-align:center">x</td>
+        <td style="text-align:right">1536</td>
+        <td style="text-align:right">9.0 MB</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">2560</td>
+        <td style="text-align:center">x</td>
+        <td style="text-align:right">1600</td>
+        <td style="text-align:right">11.7 MB</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">2800</td>
+        <td style="text-align:center">x</td>
+        <td style="text-align:right">2100</td>
+        <td style="text-align:right">16.8 MB</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">3200</td>
+        <td style="text-align:center">x</td>
+        <td style="text-align:right">2400</td>
+        <td style="text-align:right">22.0 MB</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">4096</td>
+        <td style="text-align:center">x</td>
+        <td style="text-align:right">3072</td>
+        <td style="text-align:right">36.0 MB</td>
+    </tr>
+    <tr>
+        <td style="text-align:right">6400</td>
+        <td style="text-align:center">x</td>
+        <td style="text-align:right">4800</td>
+        <td style="text-align:right">87.9 MB</td>
+    </tr>
+</table>
+<p>Remember when using the above figures that the amount of memory being used by the rest of Coppermine must be taken into account, too.</p>
+<p>As you can see, the memory consumption of images produced by modern digital cameras can easily be too much for your webserver to cope with, even when using <a href="uploading_http.htm#upload_http_interface_html">single file uploads</a> (let alone the consumption when processing several images using <a href="uploading_batch-add.htm#batch_add_pics">batch-add</a>), so it's recommended to resize your images on your client before uploading them: if the server simply isn't capable to process the images uploaded, there's little point in blaming the script (i.e. Coppermine) or asking for support on the Coppermine support board: the Coppermine devs can not find a cure for the technology used on webservers. Use the webserver for what it has been designed to be used for; perform resources-intensive calculations (like resizing images with a high resolution) on your client.</p>
+<p>To increase the memory limit allocation in php.ini, you must be the server's administrator. Also, .htaccess files cannot change this configuration setting, and it cannot be changed using ini_set(). This being said, most coppermine users who are on shared webhosting will not be able to change this. If you actually are the server admin, here's how to increase the memory limit:<br />
+First, you locate the following block in php.ini (if you actually are the server admin):<br />
+<pre>;;;;;;;;;;;;;;;;;;;
+; Resource Limits ;
+;;;;;;;;;;;;;;;;;;;
+
+max_execution_time = 30     ; Maximum execution time of each script, in seconds
+max_input_time = 60        ; Maximum amount of time each script may spend parsing request data
+memory_limit = 8M      ; Maximum amount of memory a script may consume (8MB)</pre>
+
+<p>Now you increase the memory limit to fit your needs. 9 to 16 MB should handle most requirements.</p>
+<p></p>If you are unable to change php.ini settings yourself, you can always ask your server administrator to change this for you.  However, most administrators (especially on shared webhosting) will be reluctant to do so, as this setting will affect everyone on a shared server. A higher memory limit requires reducing the number of people who can be hosted on the same server in order to maintain server stability. This reduces profitability, etc.</p>
+
+<div class="cpg_message_error">Do <strong>not</strong> ask questions on the Coppermine support board how to configure your webserver; it's beyond the scope of the Coppermine support board to explain webserver setups. Usually (if you're on shared webhosting, which is the case for the vast majority of Coppermine users), you can't change webserver settings anyway. Only the person who actually administers the webserver (i.e. the webhost's admin) can change webserver settings.<br />
+Therefore, you better ask <strong>your webhost</strong> for support if you have issues with ressource limitations or other questions that related to webserver setup. If you're self-hosted (which is something the coppermine dev team doesn't recommend), you should read up your issue in the documentation that comes with your webserver.</div>
 
 
 <a name="upload_trouble_end"></a>

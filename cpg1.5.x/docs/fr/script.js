@@ -530,11 +530,11 @@ doc_toc += '          <li><a href="uploading_xp-publisher.htm#xp_publish_setup" 
 doc_toc += '          <li><a href="uploading_xp-publisher.htm#xp_publish_upload" class="en">XP Web Publishing Wizard: Uploading pictures</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="upload_troubleshooting.htm#upload_trouble" class="en">Upload troubleshooting</a>\n';
+doc_toc += '      <li><a href="upload_troubleshooting.htm#upload_trouble" class="us_fr">Upload troubleshooting</a>\n';
 doc_toc += '         <ul>\n';
-doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_trouble_permission" class="en">Permissions</a></li>\n';
-doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_trouble_enable_settings" class="en">Enable troubleshooting settings</a></li>\n';
-doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_support" class="en">Asking for support on upload issues</a></li>\n';
+doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_trouble_permission">Droits</a></li>\n';
+doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_trouble_enable_settings">Activer les paramètres de dépannage</a></li>\n';
+doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_support" class="us/fr">Demander de l\'aide pour des problèmes de téléchargement</a></li>\n';
 doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_error_messages" class="en">Error messages</a></li>\n';
 doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions" class="en">Server-sided restrictions</a>\n';
 doc_toc += '             <ul>\n';
