@@ -119,162 +119,162 @@
 
 <a name="upload_support"></a><h2>Demander de l'aide pour des problèmes de téléchargement<a href="#upload_support" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 
-<p class="cpg_message_error">When asking for support on the coppermine forum, post a link to your site and a <a href="users.htm#user_cp_new">test user account</a> (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well. Do <strong>not</strong> post debug_output unless requested. If you want fast results, you should disable admin approval for the group the test user is in, so supporters can tell instantly what is wrong without needing to double-check.</p>
-<div class="cpg_message_warning">When people have issues with uploading and decide to post their question on the Coppermine support board, they usually are told to read this upload troubleshooting section. Many of them fail to do so properly, which results in frustration both for users as well as supporters.<br />
-To make this absolutely clear: the above mentioned steps are absolutely <strong>mandatory</strong>, no matter what skill level you have, no matter what upload method you have troubles with. Failing to do <strong>exactly</strong> as suggested will result in your request for help being ignored. Yes, this applies to you. We mean it!</div>
-<p>Not sure what to do now? Read on:</p>
-<a name="upload_support_step-by-step"></a><h3>Step-by-step guide when asking for support<a href="#upload_support_step-by-step" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This is a step-by-step guide that is meant to explain in a fool-proof way what settings you need to make when asking for support on the Coppermine support board.</p>
-<p>We assume that you have applied tight permission settings, so we'll go through this a bit more complicated than actually necessary on most setups: the instructions below are meant to allow upload troubleshooting for the supporter even if the rest of users of your gallery isn't allowed to upload or if you don't even allow user registration in the first place. If you know your way around, you can of course skip the steps that explain the creation of an extra group if all your registered users are allowed to upload anyway. In the end, the important thing that counts is that the supporter can go through uploading untill he/she can see what actually goes wrong during the upload stage.</p>
+<p class="cpg_message_error">Lorsque vous demandez de l'aide sur le forum de Coppermine, postez un lien vers votre site et un <a href="users.htm#user_cp_new">compte utilisateur de test</a> (L'utilisateur de test ne doit pas avoir de droits d'administrateur!) avec des droits de téléchargement, et les réglages mentionnés plus haut en place - de cette manière, les suppoteurs pourront aussi voir les messages d'erreur. Ne postez <strong>pas</strong> la sortie de déboguage sans y avoir été invité. Si vous voulez avoir des résultats rapide, vous devrez désactiver l'approbation des téléchargements par l'administrateur pour le groupe d'utilisateur de l'utilisateur test, ainsi les supporteurs pourront dire instantanément ce qui ne va pas sans une double vérification.</p>
+<div class="cpg_message_warning">Lorsque des personnes ont des problèmes avec le téléchargement et décident de poster leurs questions sur le forum de Coppermine, il leur est souvent demander de lire cette section de dépannage des téléchargements. Beaucoup d'entre eux ne le font pas correctement, avec comme résultat des frustrations aussi boen du coté de l'utilisateur que du supporteur.<br />
+Pour être très clair: les étapes décrites ci-dessus sont absolument <strong>obligatoires</strong>, quelles que soient vos connaissances, quelle que soit la méthode de téléchargement qui vous pose problèmes. Ne pas faire <strong>exactement</strong> ce qui est demandé fera que vous n'obtiendrez pas d'aide. Oui celà s'applique aussi à vous. Nous vous l'assurons!</div>
+<p>Pas sur de savoir quoi faire maintenant ? Lisez la suite:</p>
+<a name="upload_support_step-by-step"></a><h3>Guide pas à pas pour une demande d'aide<a href="#upload_support_step-by-step" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Ce guide pas à pas est fait pour expliquer de manière précise et complète quels sont les paramètres que vous devez appliquer lorsque vous sollicitez un soutien sur le forum d'aide de Coppermine.</p>
+<p>Nous admettrons que vous avez appliqué les bons réglages au niveau des droits, donc nous allons reprendre de manière plus précise et compliquée que normalement nécéssaire sur la plupart des paramètres de serveur: les instructions ci-dessous sont prévues pour permettre le dépannage par les supporteurs, même si les autres utilisateurs de votre galerie ne sont pas autorisés à télécharger ou si vous avez interdit les nouvelles inscriptions. Si vous savez comment faire, vous pouvez sauter les étapes qui expliquent comment créer un nouveau groupe si tous les utiliseurs enregistrés sont autorisés à télécharger de toute façon. En fin de compte, l'important, ce qui compte, c'est que le supporteur puisse faire des téléchargements jusqu'à ce qu'il / elle puisse voir ce qui se passe réellement pendant le procesus de téléchargement.</p>
 <ul>
 	<li>
-		<a name="upload_support_admin_login"></a><h4 class="detail_head_collapsed">Log in as admin<a href="#upload_support_admin_login" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-		<div class="detail_body">Go to your coppermine page and log in as admin</div>
+		<a name="upload_support_admin_login"></a><h4 class="detail_head_collapsed">Identifiez vous en tant qu'administrateur<a href="#upload_support_admin_login" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<div class="detail_body">Allez dans votre galerie Coppermine et identifiez vous comme administrateur</div>
 	</li>
 	<li>
-		<a name="upload_support_create_uploader_group"></a><h4 class="detail_head_collapsed">Create uploader group<a href="#upload_support_create_uploader_group" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_create_uploader_group"></a><h4 class="detail_head_collapsed">Créez le groupe "téléchargeurs"<a href="#upload_support_create_uploader_group" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
-			The instructions below how to create a group only applies if you are running Coppermine in standalone mode. If you have bridged your Coppermine gallery, use your bridging application to create the uploader group.
+			Les instructions suivante pour la création d'un groupe ne s'applique que si vous utilisez Coppermine en mode indépendant. Si vous avez bridgé votre galerie Coppermine, utilisez l'application avec laquelle vous êtes brigé pour créer le groupe "téléchargeurs".
 			<ul>
-				<li>Go to the <a href="groups.htm#group_cp">group control panel</a> by clicking on the corresponding link in the <a href="admin_menu.htm#admin_menu">admin menu</a></li>
-				<li>Scroll to the bottom of the page</li>
-				<li>Click on the &quot;Create new group&quot; button</li>
-				<li>A new table row will appear at the bottom of the groups control panel table. Click into the name field and enter a name for the group that will make sense, e.g. &quot;uploaders&quot;</li>
-				<li>Scroll to the bottom of the page</li>
-				<li>Submit the form by clicking on the &quot;Apply changes&quot; button</li>
+				<li>Allez <a href="groups.htm#group_cp">dans le gestionnaire de groupes</a> en cliquant sur le lien correspondant du <a href="admin_menu.htm#admin_menu">menu administrateur</a></li>
+				<li>Descendez au bas de la page</li>
+				<li>Cliquez sur le bouton &quot;Créer un nouveau groupe&quot; </li>
+				<li>Une nouvelle ligne apparait au bas de la table du gestionnaire de groupe. Cliquez dans le champ nom et entrez un nom qui à du sens, par exemple , e.g. &quot;téléchargeurs&quot;</li>
+				<li>Descendez en bas de page</li>
+				<li>Validez le formulaire en cliquant sur le bouton &quot;Appliquer les changements&quot;</li>
 			</ul>
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_assign_permissions_uploader_group"></a><h4 class="detail_head_collapsed">Assign upload permissions to the uploader group<a href="#upload_support_assign_permissions_uploader_group" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_assign_permissions_uploader_group"></a><h4 class="detail_head_collapsed">Donnez les droits de téléchargement au groupe "téléchargeurs"<a href="#upload_support_assign_permissions_uploader_group" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
-			The instructions below how to assign upload permissions to a group applies both for bridged as well as for standalone galleries.
+			Les intructions suivantes sur la manière de donner les droits à un groupe s'appliquent aussi bien aux galeries bridgées qu'indépendantes.
 			<ul>
-				<li>Go to the <a href="groups.htm#group_cp">group control panel</a> by clicking on the corresponding link in the <a href="admin_menu.htm#admin_menu">admin menu</a></li>
-				<li>For the uploader group you created in the previous step, set the &quot;Allowed&quot; toggle to &quot;Yes&quot; in the column &quot;Public albums upload&quot;. Set the &quot;Approval&quot; toggle to &quot;No&quot; in that table cell.</li>
-				<li>Scroll to the bottom of the page</li>
-				<li>Submit the form by clicking on the &quot;Apply changes&quot; button</li>
+				<li>Alles <a href="groups.htm#group_cp">dans el gestionnaire de groupes</a> en cliquant sur le lien correspondant du <a href="admin_menu.htm#admin_menu">menu administrateur</a></li>
+				<li>Pour le groupe "téléchargeursé que vous avez créer à l'étape précédente, réglez l'option &quot;Autorisé&quot; à &quot;Ouis&quot; dans la colonne &quot;Téléchargements dans les albums publics&quot;. Paramétrez l'option &quot;Approbation&quot; sur &quot;Non&quot; dans cette celulle.</li>
+				<li>Descendez en bas de page</li>
+				<li>Validez le formulaire en cliquant sur le bouton &quot;Appliquer les changements&quot;</li>
 			</ul>
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_create_test_user"></a><h4 class="detail_head_collapsed">Create a non-admin test user account<a href="#upload_support_create_test_user" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_create_test_user"></a><h4 class="detail_head_collapsed">Créez un compte utilisateur de test non Administrateur<a href="#upload_support_create_test_user" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
-			The instructions below how to create a user only applies if you are running Coppermine in standalone mode. If you have bridged your Coppermine gallery, use your bridging application to create the test user account.
+			Les instructions suivante pour la création d'un utilisateur ne s'applique que si vous utilisez Coppermine en mode indépendant. Si vous avez bridgé votre galerie Coppermine, utilisez l'application avec laquelle vous êtes brigé pour créer le nouvel utilisateur.
 			<ul>
-				<li>Go to the <a href="users.htm#user_cp">user manager</a> by clicking on the corresponding link in the <a href="admin_menu.htm#admin_menu">admin menu</a></li>
-				<li>Scroll to the bottom of the page</li>
-				<li>Click on the &quot;Create new user&quot; button</li>
-				<li>On the following screen, enter a user name that is easy to memorize and type - we recommend something simple like &quot;tester&quot;, preferably without capitalization.</li>
-				<li>Assign an easy password - can be the same as the user name.</li>
-				<li>Assign the user to the "Uploaders" user group you created previously - make sure that for the user group dropdown field the value is &quot;Uploaders&quot; (or whatever name you chose for the custom group).</li>
-				<li>Scroll to the bottom and submit the form.</li>
+				<li>Allez <a href="users.htm#user_cp">dans le gestionnaire d'utilisateurs</a> en cliquant sur le lien correspondant du <a href="admin_menu.htm#admin_menu">menu administrateur</a></li>
+				<li>Descendez en bas de page</li>
+				<li>Cliquez sur le bouton &quot;Créer un nouvel utilisateur&quot; </li>
+				<li>Sur la page suivante, entrez un nom d'utilisateur facile à retenir et à entrer - nous recommandons quelque chose de simple comme &quot;testeur&quot;, de préférence sans majuscules.</li>
+				<li>Donnez un mot de passe facile - ce peut être le même que le nom d'utilisateur.</li>
+				<li>Asssignez cet utilisateur au groupe "téléchargeurs" que vous avez créer avant - assurez vous que la valeur du champ de la liste déroulante des groupes est bien  &quot;téléchargeurs&quot; (ou n'importe quel nom que vous avez choisi pour ce groupe suplémentaire).</li>
+				<li>Descendez en bas de page et validez le formulaire.</li>
 			</ul>
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_create_album"></a><h4 class="detail_head_collapsed">Create an album where the uploads can go into<a href="#upload_support_create_album" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_create_album"></a><h4 class="detail_head_collapsed">Créez un album dans lequel les fichiers téléchargés pourront être placés<a href="#upload_support_create_album" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
-			So far, we have created a custom group that is allowed to upload to public albums, but we haven't specified into what album the upload is allowed to go to. We need to create an album first.
+			Pour l'instant nous vaons créer un groupe spécial qui est autorisé à télécharger dans les albums publics, mais nous n'avons pas défini dans lequel ces téléchargements sont autorisés. Nous devons tout d'abbord créer cet album.
 			<ul>
-				<li>Go to the <a href="albums.htm#albmgr">album manager</a> by clicking on the corresponding link in the <a href="admin_menu.htm#admin_menu">admin menu</a></li>
-				<li>Choose a category in which the test album should be created in - pick the category using the dropdown field at the top of the album manager. For ease of use it's recommended to create the test album in the gallery root (i.e. picking &quot;* No category *&quot; from the dropdown).</li>
-				<li>Click on the &quot;New album&quot; button at the bottom of the album manager page</li>
-				<li>An input field will show. Enter the name of the new album as &quot;test album&quot; and submit the form by clicking on the OK button</li>
+				<li>Allez <a href="albums.htm#albmgr">dans le gestionnaire d'albums</a> en cliquant sur le lien correspondant du <a href="admin_menu.htm#admin_menu">menu administrateur</a></li>
+				<li>Choisissez une catégorie dans laquelle cet album test ser acréer - choisissez la catégorie dans la liste déroulante du gestionnaire d'albums. Pour plus de facilité, il est recommandé de créer l'album à la racine de la galerie (sélectionnez &quot;* Pas de Catégorie *&quot; dans la liste déroulante).</li>
+				<li>Cliquez sur le bouton &quot;Nouvel album&quot; au bas de la page du gestionnaire d'albums</li>
+				<li>Un champ de saisie s'affiche. Entrez le nom du nouvel albums comme par exemple &quot;album test&quot; et vaidez le formulaire en cliquant sur le bouton O</li>
 			</ul>
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_album_permissions"></a><h4 class="detail_head_collapsed">Allow uploads to the test album<a href="#upload_support_album_permissions" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_album_permissions"></a><h4 class="detail_head_collapsed">Autorisez le téléchargement dans l'album test<a href="#upload_support_album_permissions" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
-			The album where the uploads should go to exists, but so far nobody except the admin has got permissions to upload to it. Let's allow uploads for that album.
+			L'album dans lequel seront placés les téléchargements existe, mais pour l'isnatnt personne, à part l'administrateur, n'a le droit d'y télécharger. Autorisons le téléchargement dansr cet album.
 			<ul>
-				<li>Go to the gallery index by clicking on the &quot;Album list&quot; link in the regular gallery navigation</li>
-				<li>Navigate to the category in which you created the test album in (if you did as suggested and created the test album inside the gallery root, you should already be where you're suppossed to be, so no need for action here)</li>
-				<li>Click on the &quot;Properties&quot; button next to the empty thumbnail that represents the test album</li>
-				<li>On the <a href="albums.htm#album_prop">album properties</a> screen, set &quot;Visitors can upload files&quot; to &quot;Yes&quot;</li>
-				<li>If your gallery has heavy traffic and you don't want your site visitors to notice that there is a test album, choose &quot;Members of the 'Uploaders' group&quot; from the dropdown list &quot;Visitors can upload files&quot;</li>
-				<li>Scroll to the bottom and submit the form by clicking on the button &quot;Update album&quot;</li>
+				<li>Allez à l'index de la galerie ne cliquant sur le lien &quot;Albums&quot; du menu général de la galerie</li>
+				<li>Allez à la catégories dans laquelle vous avez créer l'abum test (si vous avez fait comme nous l'avons suggéré et créer l'album à la racine de la galerie, vous devriez être au bnn endroit, donc pas besoin de faire quoi que ce soit ici pour vous)</li>
+				<li>Cliquez sur le bouton &quot;Propriétés&quot; à côté de la vignette vide représentant l'album de test</li>
+				<li>dans la page <a href="albums.htm#album_prop">propriétés de l'album</a>, paramétrezt &quot;Les visiteurs peuvent télécharger des fichiers&quot; sur &quot;Oui&quot;</li>
+				<li>Si votre galerie à beaucoup de trafic et que vous ne voulez pas prévenir vos visiteurs qu'il y a un album test choisissez &quot;Membres du groupe 'téléchargeurs'&quot; dans la liste déroulante &quot;Les Visiteurs peuvent télécharger des fichiers&quot;</li>
+				<li>Allez en bas de page et validez le formulaire en cliquant sur le bouton &quot;Mettre à jour l'album&quot;</li>
 			</ul>
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_simple_upload_method"></a><h4 class="detail_head_collapsed">Set &quot;Default upload method&quot; to &quot;Simple&quot;<a href="#upload_support_simple_upload_method" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_simple_upload_method"></a><h4 class="detail_head_collapsed">Paramétrez &quot;Méthode de téléchargement par défaut&quot; sur &quot;Simple&quot;<a href="#upload_support_simple_upload_method" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
 			<ul>
-				<li>Go to the <a href="configuration.htm#admin">config screen</a></li>
-				<li>Scroll to the section &quot;User settings&quot; and expand it by clicking on it</li>
-				<li>Set the <a href="configuration.htm#admin_upload_mechanism">Default upload mechanism</a> to  &quot;<em>Simple - one file at a time</em>&quot;</li>
-				<li>Scroll to the bottom of the page</li>
-				<li>Save the new settings by clicking on &quot;Save new configuration&quot;</li>
+				<li>Allez à la page de <a href="configuration.htm#admin">configuration</a></li>
+				<li>Descendez à la section &quot;Paramètres des utilisateurs&quot; et déployez la en cliquant dessus</li>
+				<li>Réglez <a href="configuration.htm#admin_upload_mechanism">Methode de téléchargement par défaut</a> sur  &quot;<em>Simple - un seul fichier à la fois</em>&quot;</li>
+				<li>Descendez en bas de page</li>
+				<li>Sauvegardez les nouveaux réglages en cliquant sur &quot;Sauvegarder la nouvelle configuration&quot;</li>
 			</ul>
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_debug_mode"></a><h4 class="detail_head_collapsed">Enable &quot;debug mode&quot;<a href="#upload_support_debug_mode" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_debug_mode"></a><h4 class="detail_head_collapsed">Activez le &quot;mode de déboguage&quot;<a href="#upload_support_debug_mode" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
 			<ul>
-				<li>Go to the <a href="configuration.htm#admin">config screen</a></li>
-				<li>Scroll to the section &quot;Maintenance settings&quot; and expand it by clicking on it</li>
-				<li>Enable debug mode for everyone by clicking on &quot;Yes: Everyone&quot; in the line &quot;Enable debug mode&quot;</li>
-				<li>Leave display of notices switched off - if the checkbox &quot;Display notices in debug mode&quot; is ticked, un-tick it (notices are only meant for developers - if you have idea what they mean, leave them off permanently)</li>
-				<li>Scroll to the bottom of the page</li>
-				<li>Save the new settings by clicking on &quot;Save new configuration&quot;</li>
+				<li>Allez à la page de <a href="configuration.htm#admin">configuration</a></li>
+				<li>Descendez à la section &quot;Paramètres de maintenance&quot; et déployez la en cliquant dessus</li>
+				<li>Activez le mode de déboguage pour tout le monde en cliquant sur &quot;Oui: Tout le monde&quot; dans la ligne &quot;Activez le mode de déboguage&quot;</li>
+				<li>Laissez l'affichage des avertissement placé sur off - si la case à cochér &quot;Afficher les averticements en mode de déboguage&quot; est cochée, décochéz là (les avertissements ne s'adressent qu'aux développeurs - si vous ne savez pas ce qu'ils veulent dire, ne les affichez jamais)</li>
+				<li>Descendez en bas de page</li>
+				<li>Sauvegardez les nouveaux réglages en cliquant sur &quot;Sauvegarder la nouvelle configuration&quot;</li>
 			</ul>
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_test_for_yourself"></a><h4 class="detail_head_collapsed">Test uploading using the test user account<a href="#upload_support_test_for_yourself" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_test_for_yourself"></a><h4 class="detail_head_collapsed">Testez le téléchargement en utilisant le compte de l'utilisateur test<a href="#upload_support_test_for_yourself" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
-			You may be tempted to go ahead and ask for support now, but wait a minute: you haven't tried for yourself yet if everything works as expected. You wouldn't want to start a support thread and just be told &quot;do your homework first&quot; (because that's what will happen if you obviously failed to do as suggested here). Here's what you do:
+			Vous pouriez être tenté d'aller directement demander de l'aide, mais attendez une minute: vous n'avez pas essayé par vous même si tout fonctionne correctement maintenant. Vous n'allez pas ouvrir un sujet de demande d'aide sur le forum juste pour vous entendre dire &quot;faites d'abbord vos devoirs&quot; (parce que c'est ce qui va vous arriver si vous ne faites pas ce qui est demandé ici). Voici ce que vous devez faire:
 			<ul>
-				<li>Log out from Coppermine (or use another browser alternatively) if you're logged in as admin</li>
-				<li>Log in using the non-admin test user account that you created in the steps above. If logging in fails, review the test user account details while being logged in as admin.</li>
-				<li><img src="images/simple_file_upload.png" width="400" height="178" border="0" alt="" title="Simple file uploads interface" align="right" style="padding-left:5px;" />Click on &quot;Upload file&quot;. If you don't have that upload link, you have failed to set up permissions properly - review the steps above carefully.</li>
-				<li>On the upload file screen, choose the test album from the &quot;Album&quot; dropdown. If you can't select the test album, you have made a mistake when setting up the upload permissions</li>
-				<li>Click the "Browse..." button and navigate to a small, known-good jpg-file on your hard drive. Don't assume that any image will do: when in doubt, download a test image from the coppermine demo page</li>
-				<li>Submit the form by clicking on the &quot;Upload file&quot; button</li>
+				<li>Déconnectez vous de Coppermine (ou utilisez un autre navigateur) si vous êtes connectés en tant qu'administrateur</li>
+				<li>Identifiez vous en utilisant le compte de l'utilisateur test que vous avez crére précédemment (compte non-administrateur). Si la connection echoue,vérifiez le détail de ce compte en étant identifié en tant qu'administrateur.</li>
+				<li><img src="images/simple_file_upload.png" width="400" height="178" border="0" alt="" title="Interface de téléchargement simple" align="right" style="padding-left:5px;" />Cliquez sur lien du menu &quot;Télécharger un fichier&quot;. Si vous n'avez pas ce line de téléchargement, vous avez mal paramétré les droits - vérifiez les étapes précédentes avec attention.</li>
+				<li>Sur la page de téléchargement, choisissez l'album test dans la liste déroulante &quot;Album&quot;. Si vous ne pouvez pas sélectionner l'album test, vous avez du faire une erreur lors du paramétrage des droits</li>
+				<li>Cliquez sur le bouton "Parcourir..." et cherchez une petite image au format jpg réputée bonne sur votre disque dur. Ne croyez pas que n'importe quelle image fera l'affaire: dans le doute téléchargez une image depuis la galerie de démonstration de Coppermine</li>
+				<li>Validez le formulaire en cliquant sur le bouton &quot;Télécharger un fichier&quot;</li>
 			</ul>
-			In an ideal world, everything will work as expected - your upload will succeed and you will see your uploaded image embedded into a coppermine page. If this is the case, http uploads work as expected. If this is not the case, you should get an <a href="#upload_error_messages">error message</a> that explains what went wrong. If you can't figure out what the error message means, but you were able to perform all the steps above including the last one (submitting the upload form), then please go ahead and ask for support on the coppermine support board. You're welcome to post your support request as well if http work as expected, but you want to request help with another upload method.
+			Dans un monde idéal, tout devrait marcher comme prévu - votre téléchargement devrait se passer sans problèmes et vous devriez voir l'image téléchargée dans une page Coppermine. Si c'est le cas, le téléchargement par HTTP fonctionne correctement. Si ce n'est pas le cas, vous devriez avoir un <a href="#upload_error_messages">message d'erreur</a> qui explique ce qui ne va pas. Si vous n'arrivez pas à comprendre ce que le message d'erreur veut dire, mais que vous avez pu faire toutes les étapes précédentes, y compris la dernière (la validation du formulaire), alors, allez y demandez de l'aide sur le forum de Coppermine. Vous serez aussi les bienvenus pour demander de l'aide si le téléchargement par HTTP focntionne correctement et que vous souhaitez de l'aide pour une autre méthode de téléchargement.
 		</div>
 	</li>
 	<li>
-		<a name="upload_support_post_support_request"></a><h4 class="detail_head_collapsed">Post your support request on the Coppermine support board<a href="#upload_support_post_support_request" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		<a name="upload_support_post_support_request"></a><h4 class="detail_head_collapsed">Postez votre demande d'aide sur le forum de Coppermine<a href="#upload_support_post_support_request" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 		<div class="detail_body">
 			<ul>
-				<li>Go to the <a href="http://forum.coppermine-gallery.net/" rel="external" class="external">Coppermine support board</a></li>
-				<li>Register for a new account if you don't already have one and log in with that account on the coppermine forum.</li>
-				<li>Make sure to have read the board rules before posting (a link to the board rules can be found in the forum navigation)</li>
-				<li>Start a new thread on the support board that corresponds to your coppermine version. Since you are reading the documentation for cpg1.5.x, you are probably using that version, so you should start your thread on the sub-board that deals with that version. Posting on a board for another version is not an option and will lead to frustration only both for you as well as for the supporter. Since you have issues with uploading, you should post on the sub-board that deals with upload issues.</li>
-				<li>In your posting, make sure to post a link to your gallery. If your gallery contains adult content (mild nudity falls into this category as well), make sure to post a warning with your link</li>
-				<li>Post the test user account details (user name and password) that you have set up above</li>
-				<li>It's a good idea to show supporters that you tried for yourself before asking for support - explain what actually goes wrong, how far you got, what error message you get etc.</li>
+				<li>Allez sur le <a href="http://forum.coppermine-gallery.net/" rel="external" class="external">Forum d'aide de Coppermine</a></li>
+				<li>Créez un nouveau compte sur le forum si vous n'en avez pas déjà un et identifiez vous.</li>
+				<li>Assurez vous d'avoir bien lu les règles du forum avant de poster (il y a un lien vers les règles du forum dans le menu de celui ci)</li>
+				<li>Commencez un nouveau sujet dans le forum correspondant à votre version de coppermine. Comme vous venez de lire la documentation de cpg1.5.x, vous utilisez certainement celle-ci, vous devrez donc commencer votre nouveau sujet dans la section correspondant à cette version (ou sur le forum francophone si vous ne parlez pas ou mal l'anglais). Poster dans la section d'une autre version n'est pas une bonne idée, celà n'apportera que de l'iritation de la part des supporteurs et de vous même. Comme vous avez des problèmes avec le téléchargement, vous devriez poster dans la section qui s'y rapporte.</li>
+				<li>Dans votr emessage, asurrez vous de mettre un lien vers votre galerie. Si votre galerie à un contenu destiné aux adultes (le nu soft entre dans cette catégorie) n'oubliez pas de le signaler de manière claire avec votre lien</li>
+				<li>Postez les détails du compte de l'utilisateur test (nom d'utilisateur et mot de passe) que vous avez défini précédemment</li>
+				<li>C'est une bonne idée de montrer aux supporteurs que vous avez essayé par vous même avant de demander de l'aide - expliquez ce qui ne fonctionne pas correctement j'usqu'ou vous avez pu aller, quel message d'erreur vous avez eu etc...</li>
 			</ul>
 		</div>
 	</li>
 </ul>
 <a name="upload_support_step-by-step_end"></a>
 
-<a name="upload_support_example"></a><h3>Example support request<a href="#upload_support_example" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="upload_support_example"></a><h3>Exemple de demande d'aide<a href="#upload_support_example" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="cpg_example">
-	<p>This is how your support request posting could look like (make sure that you populated the stuff in red with actual content from your case):</p>
-	<div class="quote">I'm having issues when uploading on my Coppermine driven gallery <span class="important">http://example.com/my_coppermine_folder/</span><br />
-	When using http uploads and the suggested settings for upload troubleshooting in place, I get the error message<br />&nbsp;<br />
-	[code]<span class="important">The text of the error message here</span>[/code]<br />&nbsp;<br />
-	Here's the test user account data: <br />
-	&nbsp;&nbsp;&nbsp;&nbsp;Username: <span class="important">tester</span><br />
-	&nbsp;&nbsp;&nbsp;&nbsp;Password: <span class="important">foobar</span><br />&nbsp;<br />
-	I have been using the image taken from <span class="important">http://example.com/path/to/test/file.jpg</span> as an example to test with.<br />
-	Having done as suggested in <span class="important">http://forum.coppermine-gallery.net/some_forum_thread</span> didn't work as expected: I got<br />
-	[code]<span class="important">Some other error message</span>[/code]<br />
-	when trying that. I have no idea what else to do.<br />
-	Thanks in advance for your suggestions</div>
+	<p>Voici comment votre demande d'aide devrait se présenter (assurez vous de bien compléter les données en rouge avec vos données à vous):</p>
+	<div class="quote">J'ai un problème avec le téléchargement dans ma galerie Coppermine <span class="important">http://exemple.com/mon_repertoire_coppermine/</span><br />
+	Lors de l'utilisation du téléchargement par HTTP, avec les réglages recommandés pour le dépannage des téléchargements en place, j'ai le message d'erreur suivant<br />&nbsp;<br />
+	[code]<span class="important">Le texte de votre message d'erreur ici</span>[/code]<br />&nbsp;<br />
+	Voici les données de mon compte utilisateur test: <br />
+	&nbsp;&nbsp;&nbsp;&nbsp;Nom d'utilisateur: <span class="important">testeur</span><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;Mot de passe: <span class="important">truc</span><br />&nbsp;<br />
+	J'ai utilisé l'image prise ici <span class="important">http://exemple.com/chemin_vers_l_image/file.jpg</span> comme exemple pour les tests.<br />
+	En faisant comme indiqué dans <span class="important">http://forum.coppermine-gallery.net/un_sujet_du_forum</span> ça ne fonctionne pas comme prévu: j'ai<br />
+	[code]<span class="important">Un autr emessage d'erreur</span>[/code]<br />
+	en essayant ça. Je ne sais pas quoi faire d'autre.<br />
+	Merci par avance pour vos suggestions</div>
 </div>
 <a name="upload_support_example_end"></a>
 <a name="upload_support_end"></a>
 
 
-<a name="upload_error_messages"></a><h2>Error messages<a href="#upload_error_messages" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="upload_error_messages"></a><h2>Messages d'erreur<a href="#upload_error_messages" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
   <tr>
     <th align="left">Error message</th>
