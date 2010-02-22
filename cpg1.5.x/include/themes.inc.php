@@ -643,19 +643,20 @@ if (!isset($template_album_admin_menu)) { //{THEMES}
 ******************************************************************************/
 // HTML template for the ALBUM admin menu displayed in the album list
 $template_album_admin_menu = <<<EOT
-        <table border="0" cellpadding="0" cellspacing="1">
-                <tr>
-                        <td align="center" valign="middle" class="admin_menu">
-                                <a href="delete.php?id={ALBUM_ID}&amp;what=album&amp;form_token={FORM_TOKEN}&amp;timestamp={TIMESTAMP}" class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a>
-                        </td>
-                        <td align="center" valign="middle" class="admin_menu">
-                                <a href="modifyalb.php?album={ALBUM_ID}" class="adm_menu">{MODIFY}</a>
-                        </td>
-                        <td align="center" valign="middle" class="admin_menu">
-                                <a href="editpics.php?album={ALBUM_ID}" class="adm_menu">{EDIT_PICS}</a>
-                        </td>
-                </tr>
-        </table>
+        <div class="buttonlist align_right">
+                <ul>
+                        <li>
+                                <a href="delete.php?id={ALBUM_ID}&amp;what=album&amp;form_token={FORM_TOKEN}&amp;timestamp={TIMESTAMP}" class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');"><span>{DELETE}</span></a>
+                        </li>
+                        <li>
+                                <a href="modifyalb.php?album={ALBUM_ID}" class="adm_menu"><span>{MODIFY}</span></a>
+                        </li>
+                        <li>
+                                <a href="editpics.php?album={ALBUM_ID}" class="adm_menu"><span class="last">{EDIT_PICS}</span></a>
+                        </li>
+                </ul>
+        </div>
+        <br />
 
 EOT;
 /******************************************************************************

@@ -39,7 +39,7 @@ body {
     text-align: center;
 }
 
-#cpg_header_block_outer  {
+#cpg_logo_block_outer  {
 	background-color: #fefefe;
 	background-image: url(images/main_block.png);
 	background-repeat: no-repeat;
@@ -48,12 +48,34 @@ body {
 	padding-left: 20px;
 }
 
-#cpg_header_block_outer div.cpg_header_block_inner {
+#cpg_logo_block_outer div.cpg_logo_block_inner {
 	background-color: transparent;
 	background-image: url(images/main_block.png);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: 100% -240px;
+	display: block;
+	padding-top: 5px;
+	padding-right: 20px;
+	padding-bottom: 0pt;
+	padding-left: 0px;
+}
+
+#cpg_header_block_outer  {
+	background-color: #fefefe;
+	background-image: url(images/main_block.png);
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: 0pt -633px;
+	padding-left: 20px;
+}
+
+#cpg_header_block_outer div.cpg_header_block_inner {
+	background-color: transparent;
+	background-image: url(images/main_block.png);
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: 100% -633px;
 	display: block;
 	padding-top: 5px;
 	padding-right: 20px;
@@ -89,7 +111,7 @@ body {
 	background-image: url(images/main_block.png);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
-	background-position: 0pt -820px;
+	background-position: 0pt -1156px;
 	padding-left: 20px;
 }
 
@@ -98,7 +120,7 @@ body {
 	background-image: url(images/main_block.png);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
-	background-position: 100% -820px;
+	background-position: 100% -1156px;
 	display: block;
 	padding-top: 60px;
 	padding-right: 0pt;
@@ -425,10 +447,6 @@ a:active {
     background : #EFEFEF ;
     text-decoration: none;
     color:         #000000;
-}
-
-#admin_menu_anim {
-    background-image : url(images/button_bg_anim.gif);
 }
 
 .icon {
@@ -1014,4 +1032,61 @@ main_menu
 .dropmenu li li.additional_items
 {
 	background-color: #fff;
+}
+
+/* Styles for the standard button lists.
+------------------------------------------------------- */
+
+.buttonlist ul li a {
+	display: block;
+	font-size: 0.8em;
+	color: white;
+	background: url(images/menu_gfx.png) no-repeat 0 -30px;
+	padding: 0;
+	margin-left: 12px;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.buttonlist ul li a:hover {
+	background: url(images/menu_gfx.png) no-repeat 0 0;
+	color: #fff;
+	text-decoration: none;
+}
+
+.buttonlist ul li a span {
+	background: url(images/menu_gfx.png) no-repeat 100% -30px;
+	display: block;
+	height: 24px;
+	line-height: 20px;
+	padding: 0 8px 0 0;
+	position: relative;
+	right: -8px;
+}
+
+.buttonlist ul li a:hover span {
+	background: url(images/menu_gfx.png) no-repeat 100% 0;
+}
+
+/* the active one */
+.buttonlist ul li a.active {
+	background: url(images/menu_gfx.png) no-repeat 0 -60px;
+	color: black;
+	font-weight: bold;
+}
+
+.buttonlist ul li a.active span {
+	background: url(images/menu_gfx.png) no-repeat 100% -60px;
+}
+
+.buttonlist ul li a.active {
+	font-weight: bold;
+}
+
+.buttonlist ul li a.active:hover {
+	color: #ddf;
+}
+
+.align_top ul li a, .align_bottom ul li a {
+	margin: 0 12px 0 0;
 }

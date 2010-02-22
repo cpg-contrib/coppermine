@@ -160,3 +160,18 @@ div#film {
     padding: 5px 0 5px 0; 
     overflow:hidden; 
 }
+
+/* Styles for the standard button lists.
+------------------------------------------------------- */
+.buttonlist ul {
+	z-index: 100;
+	padding: 5px;
+	margin: 0 0.2em 0 0;
+}
+
+.buttonlist ul li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	float: left;
+}
