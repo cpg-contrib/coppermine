@@ -33,6 +33,7 @@ $icon_array['os'] = cpg_fetch_icon('client', 1);
 $icon_array['browser'] = cpg_fetch_icon('browser', 1);
 $icon_array['vote'] = cpg_fetch_icon('top_rated', 1);
 $icon_array['hits'] = cpg_fetch_icon('info', 1);
+$icon_array['ok'] = cpg_fetch_icon('ok',2);
 
 // initialize the vars - end
 
@@ -203,31 +204,31 @@ $icon_array['hits'] = cpg_fetch_icon('info', 1);
         // display a menu
         print <<< EOT
               <h1>{$icon_array['stats']}{$lang_stat_details_php['title']}</h1>
-              <div class="admin_menu_wrapper">
-                  <div class="admin_menu admin_float"><a href="#os">{$icon_array['os']}{$lang_stat_details_php['stats_by_os']}</a></div>
-                  <div class="admin_menu admin_float"><a href="#browser">{$icon_array['browser']}{$lang_stat_details_php['stats_by_browser']}</a></div>
+              <div class="buttonlist">
+				<ul>
+					<li><a href="#os"><span>{$icon_array['os']}{$lang_stat_details_php['stats_by_os']}</span></a></li>
+                    <li><a href="#browser"><span>{$icon_array['browser']}{$lang_stat_details_php['stats_by_browser']}</span></a></li>
 EOT;
         if (GALLERY_ADMIN_MODE) {
             if ($type != 'hits') {
-                print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=hits#details">'.$icon_array['hits'].$lang_stat_details_php['hits'].'</a></div>';
+                print '<li><a href="'.cpgGetScriptNameParams('type').'type=hits#details"><span>'.$icon_array['hits'].$lang_stat_details_php['hits'].'</span></a></li>';
             } else {
-                print '<div class="admin_menu admin_float"><a href="#details">'.$icon_array['hits'].$lang_stat_details_php['hits'].'</a></div>';
+                print '<li><a href="#details"><span>'.$icon_array['hits'].$lang_stat_details_php['hits'].'</span></a></li>';
             }
             if ($type != 'vote') {
-                print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=vote#details">'.$icon_array['vote'].$lang_stat_details_php['vote'].'</a></div>';
+                print '<li><a href="'.cpgGetScriptNameParams('type').'type=vote#details"><span>'.$icon_array['vote'].$lang_stat_details_php['vote'].'</span></a></li>';
             } else {
-                print '<div class="admin_menu admin_float"><a href="#details">'.$icon_array['vote'] . $lang_stat_details_php['vote'].'</a></div>';
+                print '<li><a href="#details"><span>'.$icon_array['vote'] . $lang_stat_details_php['vote'].'</span></a></li>';
             }
             if ($type != 'users') {
-                //print '<div class="admin_menu admin_float"><a href="'.cpgGetScriptNameParams('type').'type=users" title="">'.$lang_stat_details_php['users'].'</a></div>';
+                //print '<li><a href="'.cpgGetScriptNameParams('type').'type=users" title=""><span>'.$lang_stat_details_php['users'].'</span></a></li>';
             }
             if ($pid != '') {
-                print '<div class="admin_menu admin_float"><a href="displayimage.php?pid='.$pid.'">'.$lang_stat_details_php['back_to_intermediate'].'</a></div>';
+                print '<li><a href="displayimage.php?pid='.$pid.'"><span>'.$lang_stat_details_php['back_to_intermediate'].'</span></a></li>';
             }
         } // gallery_admin_mode - end
         print <<< EOT
-                  <div style="clear:left;">
-                  </div>
+                  </ul>
               </div>
 EOT;
         $statsTableWidth = '100%';
@@ -612,7 +613,7 @@ EOT;
               </select>
             </td>
             <td class="tablef" align="right">
-              <input type="submit" name="go" value="{$lang_stat_details_php['submit']}" id="detail_submit" class="button" />
+			  <button type="submit" class="button" name="go" id="detail_submit" value="{$lang_stat_details_php['submit']}">{$icon_array['ok']}{$lang_stat_details_php['submit']}</button>
             </td>
           </tr>
         </table>
@@ -726,7 +727,7 @@ EOT;
     print <<< EOT
       <tr>
         <td class="tablef" colspan="3" align="right">
-          <input type="submit" class="button" name="go" value="{$lang_stat_details_php['submit']}"  />
+		  <button type="submit" class="button" name="go" id="detail_submit" value="{$lang_stat_details_php['submit']}">{$icon_array['ok']}{$lang_stat_details_php['submit']}</button>
         </td>
       </tr>
 EOT;

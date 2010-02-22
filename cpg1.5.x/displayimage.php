@@ -87,9 +87,13 @@ function html_picture_menu()
         
         list($timestamp, $form_token) = getFormToken();
         $picmenu = <<< EOT
-    <a href="javascript:;" onclick="return MM_openBrWindow('pic_editor.php?id={$CURRENT_PIC_DATA['pid']}','Crop_Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')" class="admin_menu">{$rotate_icon}{$lang_display_image_php['crop_pic']}</a>
-    <a href="edit_one_pic.php?id={$CURRENT_PIC_DATA['pid']}&amp;what=picture" class="admin_menu">{$edit_icon}{$lang_display_image_php['edit_pic']}</a>
-    <a href="delete.php?id={$CURRENT_PIC_DATA['pid']}&amp;what=picture&amp;form_token={$form_token}&amp;timestamp={$timestamp}" class="admin_menu" onclick="return confirm('{$lang_display_image_php['confirm_del']}'); return false; ">{$delete_icon}{$lang_display_image_php['del_pic']}</a>
+    <div class="buttonlist align_right">
+		<ul>
+			<li><a href="javascript:;" onclick="return MM_openBrWindow('pic_editor.php?id={$CURRENT_PIC_DATA['pid']}','Crop_Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')"><span>{$rotate_icon}{$lang_display_image_php['crop_pic']}</span></a></li>
+			<li><a href="edit_one_pic.php?id={$CURRENT_PIC_DATA['pid']}&amp;what=picture"><span>{$edit_icon}{$lang_display_image_php['edit_pic']}</span></a></li>
+			<li><a href="delete.php?id={$CURRENT_PIC_DATA['pid']}&amp;what=picture&amp;form_token={$form_token}&amp;timestamp={$timestamp}" onclick="return confirm('{$lang_display_image_php['confirm_del']}'); return false; "><span class="last">{$delete_icon}{$lang_display_image_php['del_pic']}</span></a></li>
+		</ul>
+	</div>
 EOT;
 
     } else {

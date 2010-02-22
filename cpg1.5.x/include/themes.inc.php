@@ -673,21 +673,20 @@ $template_thumb_view_title_row = <<<EOT
 
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
-                <td style="width:60%;vertical-align:top" class="statlink">
+                <td style="vertical-align:top" class="statlink">
                     <h2>{ALBUM_NAME}</h2>
                 </td>
-				<td style="text-align:right;">
-<!-- BEGIN admin_buttons -->
-                    <a href="modifyalb.php?album={ALBUM_ID}" class="admin_menu" title="{MODIFY_LNK}">{MODIFY_ICO}</a>
-                    &nbsp;&nbsp;
-                    <a href="index.php?cat={CAT_ID}" class="admin_menu" title="{PARENT_CAT_LNK}">{PARENT_CAT_ICO}</a>
-                    &nbsp;&nbsp;
-                    <a href="editpics.php?album={ALBUM_ID}" class="admin_menu" title="{EDIT_PICS_LNK}">{EDIT_PICS_ICO}</a>
-                    &nbsp;&nbsp;
-                    <a href="albmgr.php?cat={CAT_ID}" class="admin_menu" title="{ALBUM_MGR_LNK}">{ALBUM_MGR_ICO}</a>
-<!-- END admin_buttons -->
-				</td>
                 <td style="text-align:right;" class="sortorder_cell" id="sortorder_cell">
+<!-- BEGIN admin_buttons -->
+                    <div class="buttonlist">
+						<ul>
+							<li><a href="modifyalb.php?album={ALBUM_ID}" title="{MODIFY_LNK}"><span>{MODIFY_ICO}</span></a></li>
+							<li><a href="index.php?cat={CAT_ID}" title="{PARENT_CAT_LNK}"><span>{PARENT_CAT_ICO}</span></a></li>
+							<li><a href="editpics.php?album={ALBUM_ID}" title="{EDIT_PICS_LNK}"><span>{EDIT_PICS_ICO}</span></a></li>
+							<li><a href="albmgr.php?cat={CAT_ID}" title="{ALBUM_MGR_LNK}"><span class="last">{ALBUM_MGR_ICO}</span></a></li>
+						</ul>
+					</div>
+<!-- END admin_buttons -->
                     <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
                 </td>
             </tr>

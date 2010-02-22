@@ -316,28 +316,28 @@ function display_cat_list()
         echo '                <td class="'.$row_style_class.'" width="80%"><strong>' . $category['name'] . '</strong></td>' . $LINEBREAK;
 
         if ($category['pos'] > 0 && $CONFIG['categories_alpha_sort'] != 1) {
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=movetop&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('upup', 0, $lang_common['move_top']) . '</a></td>' . $LINEBREAK;
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']-1) . '&amp;cid2=' . $category['prev'] . '&amp;pos2=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('up', 0, $lang_common['move_up']) . '</a></td>' . $LINEBREAK;
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=movetop&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']) . $form_token . '" class="rounded_menu"><span>' . cpg_fetch_icon('upup', 0, $lang_common['move_top']) . '</span></a></td>' . $LINEBREAK;
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']-1) . '&amp;cid2=' . $category['prev'] . '&amp;pos2=' . ($category['pos']) . $form_token . '" class="rounded_menu"><span>' . cpg_fetch_icon('up', 0, $lang_common['move_up']) . '</span></a></td>' . $LINEBREAK;
         } else {
             echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . $LINEBREAK;
             echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . $LINEBREAK;
         }
 
         if ($category['pos'] < $CAT_LIST[$category['parent']]['cat_count']-1  && $CONFIG['categories_alpha_sort'] != 1) {
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos'] + 1) . '&amp;cid2=' . $category['next'] . '&amp;pos2=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('down', 0, $lang_common['move_down']) . '</a></td>' . $LINEBREAK;
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=movebottom&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']) . $form_token . '">' . cpg_fetch_icon('downdown', 0, $lang_common['move_bottom']) . '</a></td>' . $LINEBREAK;
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=move&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos'] + 1) . '&amp;cid2=' . $category['next'] . '&amp;pos2=' . ($category['pos']) . $form_token . '" class="rounded_menu"><span>' . cpg_fetch_icon('down', 0, $lang_common['move_down']) . '</span></a></td>' . $LINEBREAK;
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=movebottom&amp;cid1=' . $category['cid'] . '&amp;pos1=' . ($category['pos']) . $form_token . '" class="rounded_menu"><span>' . cpg_fetch_icon('downdown', 0, $lang_common['move_bottom']) . '</span></a></td>' . $LINEBREAK;
         } else {
             echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . $LINEBREAK;
             echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . $LINEBREAK;
         }
 
         if ($category['cid'] != 1) {
-            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=deletecat&amp;cid=' . $category['cid'] . $form_token . '" onclick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . cpg_fetch_icon('delete', 0, $lang_common['delete']) . '</a></td>' . $LINEBREAK;
+            echo '                <td class="'.$row_style_class.'" width="4%"><a href="' . $CPG_PHP_SELF . '?op=deletecat&amp;cid=' . $category['cid'] . $form_token . '" onclick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')" class="rounded_menu"><span>' . cpg_fetch_icon('delete', 0, $lang_common['delete']) . '</span></a></td>' . $LINEBREAK;
         } else {
             echo '                <td class="'.$row_style_class.'" width="4%">' . '&nbsp;' . '</td>' . $LINEBREAK;
         }
 
-        echo '                <td class="'.$row_style_class.'" width="4%">' . '<a href="' . $CPG_PHP_SELF . '?op=editcat&amp;cid=' . $category['cid'] . $form_token . '">' . cpg_fetch_icon('edit', 0, $lang_common['edit']) . '</a></td>' . $LINEBREAK;
+        echo '                <td class="'.$row_style_class.'" width="4%">' . '<a href="' . $CPG_PHP_SELF . '?op=editcat&amp;cid=' . $category['cid'] . $form_token . '" class="rounded_menu"><span>' . cpg_fetch_icon('edit', 0, $lang_common['edit']) . '</span></a></td>' . $LINEBREAK;
         echo '                <td class="'.$row_style_class.'" width="4%">' . $LINEBREAK . cat_list_box($category['cid'], $CAT_LIST3[$category['parent']]) . $LINEBREAK . '</td>' . $LINEBREAK;
         echo '        </tr>' . $LINEBREAK;
     }

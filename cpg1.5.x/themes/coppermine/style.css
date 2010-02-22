@@ -22,21 +22,10 @@ body {
     font-size: 12px;
     color : Black;
     margin: 0px;
-	padding-top: 5px;
+	padding-top: 0px;
 	padding-right: 5%;
 	padding-bottom: 15px;
 	padding-left: 5%;
-}
-
-#cpg_header_block_logo {
-    float: left;
-    border: none;
-}
-
-#cpg_header_block_name {
-    width: 70%;
-    float: right;
-    text-align: center;
 }
 
 #cpg_logo_block_outer  {
@@ -59,6 +48,16 @@ body {
 	padding-right: 20px;
 	padding-bottom: 0pt;
 	padding-left: 0px;
+}
+
+#cpg_logo_block_logo {
+    float: left;
+    border: none;
+}
+
+#cpg_logo_block_name {
+    float: right;
+    text-align: center;
 }
 
 #cpg_header_block_outer  {
@@ -211,18 +210,6 @@ pre.filepath {
     vertical-align : middle;
 }
 
-.button {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 85%;
-    border: 1px solid #005D8C;
-    background-image : url(images/button_bg.gif);
-    background-position : bottom;
-    cursor:pointer;
-    padding-left:0px;
-    padding-right:0px;
-    margin-right:2px;
-}
-
 .radio {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 100%;
@@ -270,6 +257,32 @@ a:active {
     text-decoration: underline;
 }
 
+.button, .admin_menu {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: white;
+	background-color:#5A6C85;    
+	border: 1px solid #5A6C85;
+    cursor:pointer;
+    padding-left:0px;
+    padding-right:0px;
+    margin-right:2px;
+	-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.button {
+	font-size: 0.8em;
+}
+
+a.button, a.admin_menu {
+	color:white;
+	text-decoration:none;
+}
+
+a:hover.button, a:hover.admin_menu {
+	background-color: #FD9604;
+}
+
 .maintable {
     margin-top: 1px;
     margin-bottom: 1px;
@@ -312,7 +325,7 @@ a:active {
 }
 
 .tablef {
-    background: #F5F5F0;
+    background: #F0F4F7;
     padding-top: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
@@ -1044,7 +1057,6 @@ main_menu
 	background: url(images/menu_gfx.png) no-repeat 0 -30px;
 	padding: 0;
 	margin-left: 12px;
-	text-transform: uppercase;
 	cursor: pointer;
 }
 
@@ -1089,4 +1101,33 @@ main_menu
 
 .align_top ul li a, .align_bottom ul li a {
 	margin: 0 12px 0 0;
+}
+
+.rounded_menu {
+	display: block;
+	font-size: 0.8em;
+	color: white;
+	background: url(images/menu_gfx.png) no-repeat 0 -30px;
+	padding: 0;
+	cursor: pointer;
+}
+
+.rounded_menu span {
+	background: url(images/menu_gfx.png) no-repeat 100% -30px;
+	display: block;
+	height: 24px;
+	line-height: 20px;
+	padding: 0 8px 0 0;
+	position: relative;
+	right: -8px;
+}
+
+a:hover.rounded_menu  {
+	background: url(images/menu_gfx.png) no-repeat 0 0;
+	color: #fff;
+	text-decoration: none;
+}
+
+a:hover.rounded_menu span {
+	background: url(images/menu_gfx.png) no-repeat 100% 0;
 }
