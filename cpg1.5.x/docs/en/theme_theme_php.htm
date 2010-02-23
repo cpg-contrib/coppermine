@@ -150,6 +150,14 @@ where the name of the section (<tt class="code">section_name</tt> in above examp
     </td>
   </tr>
   <tr>
+    <td valign="top"><a name="theme_create_theme_filmstrip_graphics"></a>define('<strong>THEME_HAS_FILM_STRIP_GRAPHICS</strong>',1);<a href="#theme_create_theme_filmstrip_graphics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a><br />(Mind the trailing <em>S</em> that makes the only difference to the above constant <a href="#theme_create_theme_filmstrip_graphic">THEME_HAS_FILM_STRIP_GRAPHIC</a>)</td>
+    <td valign="top">constant</td>
+    <td valign="top">The location for the film strip graphics. When the constant is set, the script will be directed to the theme's images folder, i.e. themes/yourtheme/images/ and look for the film strip images (tile1.gif for the top tile and tile2.gif for the bottom tile) there. If not defined (default), the film strip images will be taken from the images-folder that resides in Coppermine's root folder.</td>
+    <td valign="top">
+    	If defined, a file named <tt class="code">tile1.gif</tt> and a file named <tt class="code">tile2.gif</tt> need to reside in the theme's images folder. [<a href="theme_graphics.htm#theme_graphics_film_strip">Details</a>]
+    </td>
+  </tr>
+  <tr>
     <td valign="top"><a name="theme_create_theme_no_sysmenu"></a>define('<strong>THEME_HAS_NO_SYS_MENU_BUTTONS</strong>',1);<a href="#theme_create_theme_no_sysmenu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">constant</td>
     <td valign="top">When present the system won't attempt to replace {BUTTONS} in the SYS_MENU template</td>
