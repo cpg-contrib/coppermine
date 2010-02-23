@@ -667,7 +667,7 @@ $template_thumb_view_title_row = <<<EOT
                 <td style="width:60%;vertical-align:top" class="statlink">
                     <h2>{ALBUM_NAME}</h2>
                 </td>
-				<td style="text-align:right;">
+                <td style="text-align:right;">
 <!-- BEGIN admin_buttons -->
                     <a href="modifyalb.php?album={ALBUM_ID}" class="admin_menu" title="{MODIFY_LNK}">{MODIFY_ICO}</a>
                     &nbsp;&nbsp;
@@ -677,7 +677,7 @@ $template_thumb_view_title_row = <<<EOT
                     &nbsp;&nbsp;
                     <a href="albmgr.php?cat={CAT_ID}" class="admin_menu" title="{ALBUM_MGR_LNK}">{ALBUM_MGR_ICO}</a>
 <!-- END admin_buttons -->
-				</td>
+                </td>
                 <td style="text-align:right;" class="sortorder_cell" id="sortorder_cell">
                     <!-- Use JavaScript to display the sorting options only to humans, but hide them from search engines to avoid double-content indexing (js/thumbnails.js) -->
                 </td>
@@ -2805,10 +2805,15 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
       $uid_link = '';
     }
 
+    $album_types = array(
+        'albums' => array('lastalb')
+    );
+    $album_types = CPGPluginAPI::filter('theme_thumbnails_album_types', $album_types);
+
     $theme_thumb_tab_tmpl = $template_tab_display;
 
     if ($mode == 'thumb') {
-        $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $aid == 'lastalb' ? $lang_album_list['album_on_page'] : $lang_thumb_view['pic_on_page']));
+        $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => in_array($aid, $album_types['albums']) ? $lang_album_list['album_on_page'] : $lang_thumb_view['pic_on_page']));
         $theme_thumb_tab_tmpl['page_link'] = strtr($theme_thumb_tab_tmpl['page_link'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $date_link . $uid_link . '&amp;page=%d'));
     } else {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
@@ -2830,13 +2835,13 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 '{ALBUM_ID}'   => $aid,
                 '{CAT_ID}'     => ($cat > 0 ? $cat : $CURRENT_ALBUM_DATA['category']),
                 '{MODIFY_LNK}'     => $lang_common['album_properties'],
-				'{MODIFY_ICO}'     => cpg_fetch_icon('modifyalb', 1),
+                '{MODIFY_ICO}'     => cpg_fetch_icon('modifyalb', 1),
                 '{PARENT_CAT_LNK}' => $lang_common['parent_category'],
-				'{PARENT_CAT_ICO}' => cpg_fetch_icon('category', 1),
+                '{PARENT_CAT_ICO}' => cpg_fetch_icon('category', 1),
                 '{EDIT_PICS_LNK}'  => $lang_common['edit_files'],
-				'{EDIT_PICS_ICO}'  => cpg_fetch_icon('edit', 1),
+                '{EDIT_PICS_ICO}'  => cpg_fetch_icon('edit', 1),
                 '{ALBUM_MGR_LNK}'  => $lang_common['album_manager'],
-				'{ALBUM_MGR_ICO}'  => cpg_fetch_icon('alb_mgr', 1),
+                '{ALBUM_MGR_ICO}'  => cpg_fetch_icon('alb_mgr', 1),
             );
         } else {
             $param = array();
@@ -2874,7 +2879,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     foreach($thumb_list as $thumb) {
         $i++;
         if ($mode == 'thumb') {
-            if ($aid == 'lastalb') {
+            if (in_array($aid, $album_types['albums'])) {
                 $params = array(
                     '{CELL_WIDTH}' => $cell_width,
                     '{LINK_TGT}'   => "thumbnails.php?album={$thumb['aid']}",
