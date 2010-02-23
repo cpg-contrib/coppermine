@@ -1114,16 +1114,16 @@ $template_add_your_comment = <<<EOT
 <!-- BEGIN input_box_smilies -->
                                 <td class="tableb tableb_alternate">
                                 {COMMENT}
-                                                                </td>
+                                </td>
                                 <td width="100%" class="tableb tableb_alternate">
                                 <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
-                                                                </td>
+                                </td>
 <!-- END input_box_smilies -->
 <!-- BEGIN input_box_no_smilies -->
                                 <td class="tableb tableb_alternate">
                                 {COMMENT}
-                                                                </td>
-                                <td width="100%" class="tableb tableb_alternate">
+                                </td>
+                                <td class="tableb tableb_alternate">
                                 <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
                                 </td>
 <!-- END input_box_no_smilies -->
@@ -1131,7 +1131,7 @@ $template_add_your_comment = <<<EOT
                                 <td class="tableb tableb_alternate">
                                 <input type="hidden" name="event" value="comment" />
                                 <input type="hidden" name="pid" value="{PIC_ID}" />
-                                <input type="submit" class="button" name="submit" value="{OK}" onclick="return notDefaultUsername(this.form, '{DEFAULT_USERNAME}', '{DEFAULT_USERNAME_MESSAGE}');" />
+                                <button type="submit" class="button" name="submit" value="{OK}"  onclick="return notDefaultUsername(this.form, '{DEFAULT_USERNAME}', '{DEFAULT_USERNAME_MESSAGE}');">{OK_ICON}{OK}</button>
                                 <input type="hidden" name="form_token" value="{FORM_TOKEN}" />
                                 <input type="hidden" name="timestamp" value="{TIMESTAMP}" />
                                 </td>
@@ -3913,6 +3913,7 @@ function theme_html_comments($pid)
             '{USER_NAME}' => $user_name,
             '{MAX_COM_LENGTH}' => $CONFIG['max_com_size'],
             '{OK}' => $lang_common['ok'],
+            '{OK_ICON}' => cpg_fetch_icon('ok', 1),
             '{DEFAULT_USERNAME}' => $lang_display_comments['your_name'],
             '{DEFAULT_USERNAME_MESSAGE}' => $lang_display_comments['default_username_message'],
             '{SMILIES}' => '',
@@ -3952,7 +3953,6 @@ function theme_html_comments($pid)
 
     return $html;
 }
-
 /******************************************************************************
 ** Section <<<theme_html_comments>>> - END
 ******************************************************************************/

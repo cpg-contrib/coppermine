@@ -1,5 +1,6 @@
 <?php
 define('THEME_HAS_PROGRESS_GRAPHICS', 1);
+define('THEME_HAS_FILM_STRIP_GRAPHICS', 1);
 
 // HTML template for template  sub menu buttons
 $template_sub_menu_button = <<<EOT
@@ -506,5 +507,44 @@ EOT;
     } else {
 	}
 }
+
+/******************************************************************************
+** Section <<<$template_film_strip>>> - START
+******************************************************************************/
+// HTML template for filmstrip display
+$template_film_strip = <<<EOT
+
+        <tr>
+          <td style="background-image: url({TILE1});background-repeat:repeat-x;"><img src="images/spacer.gif" width="1" height="28" alt="" border="0" /></td>
+        </tr>
+        <tr>
+          <td valign="bottom" class="thumbnails filmstrip_background" align="center" style="{THUMB_TD_STYLE}">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                   <td width="50%" class="prev_strip"></td>
+                     <td valign="bottom"  style="{THUMB_TD_STYLE}">
+                       <div id="film" style="{SET_WIDTH}"><table class="tape" ><tr>{THUMB_STRIP}</tr></table></div>
+                     </td>
+                   <td width="50%" align="right" class="next_strip"></td>
+                </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+         <td style="background-image: url({TILE2});background-repeat:repeat-x;"><img src="images/spacer.gif" width="1" height="28" alt="" border="0" /></td>
+        </tr>
+<!-- BEGIN thumb_cell -->
+                <td class="thumb" >
+                  <a href="{LINK_TGT}" class="thumbLink" style="{ONE_WIDTH}">{THUMB}</a>
+                </td>
+<!-- END thumb_cell -->
+<!-- BEGIN empty_cell -->
+                <td valign="top" align="center" >&nbsp;</td>
+<!-- END empty_cell -->
+
+EOT;
+/******************************************************************************
+** Section <<<$template_film_strip>>> - END
+******************************************************************************/
 
 ?>
