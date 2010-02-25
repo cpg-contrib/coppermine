@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-02-25 [A] Populate thumbnail pages dropdown list using JavaScript (thread ID 63844) {eenemeenemuu}
 2010-02-23 [A] Added plugin hook 'theme_thumbnails_album_types' {eenemeenemuu}
 2010-02-22 [C] Increased height for logo section of coppermine theme {GauGau}
 2010-02-19 [A] Added plugin hooks for thumbnail table manipulation {GauGau}
