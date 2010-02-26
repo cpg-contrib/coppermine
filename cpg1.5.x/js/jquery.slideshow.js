@@ -29,6 +29,7 @@ $(document).ready(function(){
         var album   =   js_vars.album;
         var PiCount =   js_vars.Pic_count;
         var Pid     =   js_vars.Pid;
+        var cat     =   js_vars.cat;
         var run_slideshow = js_vars.run_slideshow;
         var Title   =   "";
 
@@ -94,6 +95,13 @@ $(document).ready(function(){
     
     /** close the slide show and will load the current show imags details*/
     $("#back-to").click(function () { 
-     self.document.location = 'displayimage.php?album='+album+'&pid='+PidTemp+'#top_display_media' ;
+        if (album != 'lastcom')
+        {
+            self.document.location = 'displayimage.php?album='+album+'&pid='+PidTemp+'#top_display_media' ;
+        }
+        else
+        {
+            self.document.location = 'displayimage.php?album='+album+'&cat='+cat+'&pid='+PidTemp+'&msg_id='+js_vars.msg_id+'&page='+js_vars.page+'#top_display_media' ;
+        }
     });
 });

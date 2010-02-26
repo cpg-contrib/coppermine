@@ -3147,7 +3147,7 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
     echo $votes;
 
     $picinfo = $superCage->cookie->keyExists('picinfo') ? $superCage->cookie->getAlpha('picinfo') : ($CONFIG['display_pic_info'] ? 'block' : 'none');
-    echo $LINEBREAK . '<div id="picinfo" style="display: '.$picinfo.';">' . $LINEBREAK;
+    echo $LINEBREAK . '<div id="picinfo" style="display: '.str_replace('.gif','.png',$picinfo).';">' . $LINEBREAK;
     starttable();
     echo $pic_info;
     endtable();
@@ -3555,7 +3555,7 @@ function theme_html_img_nav_menu() {
     $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>" . $LINEBREAK;
 
     // needed when viewing slideshow of meta albums lastcom/lastcomby
-    $msg_id = ($album == 'lastcom' || $album == 'lastcomby') ? "&amp;msg_id={$pic_data[$pos]['msg_id']}" : '';
+    $msg_id = ($album == 'lastcom' || $album == 'lastcomby') ? "&amp;msg_id={$pic_data[$pos]['msg_id']}&amp;page=$page" : '';
 
     $slideshow_tgt = "$CPG_PHP_SELF?album=$album$cat_link$date_link$uid_link&amp;pid=$pid$msg_id&amp;slideshow=".$CONFIG['slideshow_interval'].'#top_display_media';
 
