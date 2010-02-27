@@ -530,13 +530,13 @@ doc_toc += '          <li><a href="uploading_xp-publisher.htm#xp_publish_setup" 
 doc_toc += '          <li><a href="uploading_xp-publisher.htm#xp_publish_upload" class="en">XP Web Publishing Wizard: Uploading pictures</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="upload_troubleshooting.htm#upload_trouble" class="us_fr">Upload troubleshooting</a>\n';
+doc_toc += '      <li><a href="upload_troubleshooting.htm#upload_trouble" class="us_fr">Dépannage du téléchargement</a>\n';
 doc_toc += '         <ul>\n';
 doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_trouble_permission">Droits</a></li>\n';
 doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_trouble_enable_settings">Activer les paramètres de dépannage</a></li>\n';
 doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_support">Demander de l\'aide pour des problèmes de téléchargement</a></li>\n';
-doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_error_messages" class="us_fr">Messages d\'erreur</a></li>\n';
-doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions" class="en">Server-sided restrictions</a>\n';
+doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_error_messages" >Messages d\'erreur</a></li>\n';
+doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions" class="us_fr">Restrictions côté serveur</a>\n';
 doc_toc += '             <ul>\n';
 doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions_check" class="en">Things to check</a></li>\n';
 doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_methods"class="en">Upload mechanisms/methods</a></li>\n';

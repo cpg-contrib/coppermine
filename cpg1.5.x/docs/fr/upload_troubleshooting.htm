@@ -277,9 +277,9 @@ Pour être très clair: les étapes décrites ci-dessus sont absolument <strong>
 <a name="upload_error_messages"></a><h2>Messages d'erreur<a href="#upload_error_messages" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
   <tr>
-    <th align="left">Error message</th>
-    <th align="left">Possible cause</th>
-    <th align="left">Suggested fix</th>
+    <th align="left">Message d'erreur</th>
+    <th align="left">Cause possible</th>
+    <th align="left">Suggestion de correction</th>
   </tr>
   <tr>
     <td valign="top">
@@ -288,19 +288,19 @@ Pour être très clair: les étapes décrites ci-dessus sont absolument <strong>
       [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt><a href="#ErrorCantMovePic" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
-      PHP's temporary folder is missing or doesn't have the needed permissions
+      Le répertoire temporaire de PHP est manquant ou n'a pas les droits nécessaires
     </td>
     <td valign="top">
-      You should contact the admin of your webhost because you usually can't change the location of the website's temporary directory for file uploads, yourself (it is part of PHP configuration) .<br />
-      If the <em><a href="http://www.php.net/manual/en/ini.php#ini.list" rel="external" class="phpnet">open_basedir</a> restriction</em> is in effect on your site then the temp directory for file uploads should be one that you can access.
+      Vous devrez contacter l'administrateur de votre hébergeur parce que vous ne pouvez généralement pas changer l'emplacement du répertoire temporaire de votre site vous même (c'est une partie de la configuration de PHP) .<br />
+      Si la <em>restriction <a href="http://www.php.net/manual/en/ini.php#ini.list" rel="external" class="phpnet">open_basedir</a></em> est effective sur votre site, alors le répertoire temporaire pour les fichiers téléchargés devrait être accessible.
     </td>
   </tr>
   <tr>
     <td valign="top">
       <a name="ErrorImpossibleToMove"></a><tt class="code">Impossible to move <em>somepic.jpg</em> to albums/userpics/</tt><a href="#ErrorImpossibleToMove" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top">The coppermine script doesn't have permissions on the filesystem of the server to create the thumbnail or intermediate image within the specified folder</td>
-    <td valign="top">Apply permissions on the albums folder and everything within it as suggested in the section <a href="install_permissions.htm#permissions">Setting permissions</a>. This error message is the most frequent one, as many users tend to skip reading the permissions section. At least when getting this error message, you should read it thoroughly.</td>
+    <td valign="top">Le script Coppermine n'a pas les droits de créer les vignettes ou les images intermédiaires dans répertoire spécifié du système de fichier du serveur</td>
+    <td valign="top">Appliquez les droits au répertoire album et à l'ensemble de son contenu comme expliqué dans la section <a href="install_permissions.htm#permissions">Paramètres des droits</a>. Ce message d'erreur est le plus fréquent, parceque beaucoup d'utilisateurs du script ont fait l'impasse sur la lecture de la section concernant les droits. En premier lieu, si vous avez ce message d'erreur, vous devriez lire cette partie de la documentation très attentivement.</td>
   </tr>
   <tr>
     <td valign="top">
@@ -308,16 +308,16 @@ Pour être très clair: les étapes décrites ci-dessus sont absolument <strong>
     </td>
     <td valign="top">
       <ul>
-        <li>'edit'-folder in your albums folder is missing</li>
-        <li>'edit'-folder in your albums folder doesn't have rwx-<a href="install_permissions.htm#permissions">permissions</a></li>
-        <li>Improper upgrade from cpg1.3.x</li>
+        <li>Le répertoire 'edit'est manquant dans le répertoire album</li>
+        <li>Le répertoire 'edit' dans le répertoire album n'a pas les <a href="install_permissions.htm#permissions">droits</a> rwx</li>
+        <li>Mauvaise mise à jour depuis cpg1.3.x</li>
       </ul>
     </td>
     <td valign="top">
       <ul>
-        <li>Make sure you have a folder named 'edit' in your albums folder.</li>
-        <li>Make sure the edit directory has been chmod to 777/755.</li>
-        <li>Make sure you have completely <a href="upgrading.htm#upgrade">upgraded</a> to Coppermine 1.5.x</li>
+        <li>Assurez vous d'avoir un dossier nommé 'edit' dans votre répertoire albums.</li>
+        <li>Assurez vous que le dossier 'edit' ait bien un CHMOD à 777/755.</li>
+        <li>Assurez vous d'avoir complêtement fais <a href="upgrading.htm#upgrade">la mise à jour</a> vers Coppermine 1.5.x</li>
       </ul>
     </td>
   </tr>
@@ -327,15 +327,15 @@ Pour être très clair: les étapes décrites ci-dessus sont absolument <strong>
     </td>
     <td valign="top">
       <ul>
-        <li>Outdated PHP-version on your server</li>
-        <li>Improper webserver configuration</li>
+        <li>Version dépassée de PHP sur votre serveur</li>
+        <li>Mauvaise configuration de votre serveur</li>
       </ul>
     </td>
     <td valign="top">
-      Check if <a href="install_faq.htm#VersionPHP">your version of PHP</a> fullfills the <a href="requirements.htm#what">minimum requirements</a> for Coppermine. If your version is 4.3.0 or better, then this error is probably caused by a misconfiguration of your hosting server, and not a Coppermine issue. If the server isn't yours to configure properly (that is: if you're with a webhost), you can try this workaround (at your own risk):<br >
-      Edit the file "init.inc.php" and look for<br />
+      Vérifiez si <a href="install_faq.htm#VersionPHP">votre version de PHP</a> à bien les <a href="requirements.htm#what">minimum requis</a> pour Coppermine. Si votre version est  4.3.0 ou plus récente, cette erreur est probablement causée par une mauvaise configuration de votre serveur d'hébergement, et n'est pas un problème lié à Coppermine. Si vous n'avez pas accès à la configuration de votre serveur (c'est à dire si vous êtes hébergé), vous pouvez essayer cette assuce (à vos risques et périls):<br >
+      Ouvrez le fichier "init.inc.php" et cherchez<br />
       <div class="quote">$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];</div>
-Replace it with<br />
+Remplacez par<br />
       <div class="quote">$PHP_SELF = $_SERVER['PHP_SELF'];</div>
     </td>
   </tr>
@@ -345,16 +345,16 @@ Replace it with<br />
     </td>
     <td valign="top">
       <ul>
-        <li>You (as admin) haven't created any albums yet.</li>
-        <li>You (as non-admin user) don't have the permission to upload to public albums</li>
-        <li>You (as non-admin user) haven't created at least one album in your personal gallery</li>
+        <li>Vous (en tant qu'administrateur) n'avez pas encore créer d'album.</li>
+        <li>Vous (en tant qu'utilisateur non administrateur) n'avez pas les droits de téléchargement dans les albums publics</li>
+        <li>Vous (en tant qu'utilisateur non administrateur) n'avez pas créer au moins un album dans votre galerie personnelle</li>
       </ul>
     </td>
     <td valign="top">
       <ul>
-        <li>If you get this message when logged in as the admin of your gallery, then you need to <a href="albums.htm#albmgr_create">create at least one album</a> where files can be uploaded</li>
-        <li>If you get this message when logged in as a non-admin, then you need to make sure you understand the permissions concept behind Coppermine: on the <a href="groups.htm#group_cp">groups control panel</a> the admin determines  whether users can create personal galleries (i.e. create albums inside their user gallery) or if they are allowed to upload into admin-created public albums. If the user <strong>is</strong> allowed to create personal galleries and gets this message, he must create at least one album first by clicking on &quot;Create / Order my albums&quot;. If the user is only allowed to upload to public albums (which need to be created by the admin in advance) and gets the above mentioned error message, then the admin needs to specify at least one public album where visitors are allowed to upload, using the <a href="albums.htm#album_prop">album properties</a> screen.</li>
-        <li>If you get this message when not logged in at all (i.e. being a guest), then you need to review the Coppermine permissions concept as well: if you want to allow guests to upload (not recommended because of potential abuse), you need to specify the general upload ability on the <a href="groups.htm#group_cp">groups control panel</a> (for the guest/anonymous group) and you will also need to modify the <a href="albums.htm#album_prop">album properties</a> screen of at least one album and allow uploads for visitors in that album.</li>
+        <li>Si vous obtenez ce message en étant identifié comme administrateur de votre galerie, vous devez alors <a href="albums.htm#albmgr_create">créer au moins un album</a> ou les fichier peuvent être téléchargés</li>
+        <li>Si vous obtenez ce message en étant identifié comme utilisateur non administrateur, vous devez vous assurer de bien avoir compris le concept des droits qui régissent Coppermine: dans le <a href="groups.htm#group_cp">gestionnaire de groupes</a> l'administrateur détermine quels utilisateurs peuvent créer leur galerie personnelles (ex: créer des albums dans leur espace personnel) ou si ils sont autorisés de télécharger dans des albums publics crées par l'administrateur. Si l'utilisateur <strong>est</strong> autorisé à créer sa galerie personnelle et obtiens ce message, il doit créer tout d'abord au moins un album en cliquant sur &quot;Créer / Gérer mes albums&quot;. Si l'utilisateur est seulement autorisé à télécharger dans les albums publics (qui doivent être créer par l'administrateur en premier) et qu'il obtient ce message d'erreur, l'administrateur doit d'abord autoriser le téléchargement dans les albums publics dans au moins un de ceux ci, en utilisant la page de <a href="albums.htm#album_prop">propriété des albums</a>.</li>
+        <li>Si vous obtenez ce message alors que vous n'êtes pas du tout identifié (en tant que visiteur par exemple), vous devrez revoir le concept des droits de Coppermine: Si vous voulez autoriser les visiteurs à télécharger (ce qui  n'est pas recommandé à cause des abus potentiels), vous devez définir les autorisations de téléchargements dans le  <a href="groups.htm#group_cp">gestionnaire de groupes</a> (pour le groupe visiteurs/anonymes) et vous devrez aussi modifier la page de <a href="albums.htm#album_prop">propriétés des albums</a> d'au moins un des albums et autoriser les téléchargements pour les visiteurs de cet album.</li>
       </ul>
     </td>
   </tr>
@@ -363,19 +363,19 @@ Replace it with<br />
       <a name="ErrorAllowedMemorySize"></a><tt class="code">Fatal error: Allowed memory size of <em>XXXXXXX</em> bytes exhausted at (null):0 (tried to allocate <em>XXXX</em> bytes) in /var/www/html/include/picmgmt.inc.php</tt><a href="#ErrorAllowedMemorySize" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
-      This error occurs when using GD and attempting to upload a high resoltuion image.  It's not the size of the file that matters here; it's the number of pixels that determine memory use in GD. This is not a <a href="errors.htm#errors_soft">soft error</a> triggered by Coppermine, but a <a href="errors.htm#errors_hard">hard error</a> from PHP that shines through Coppermine from PHP.
+      Cette erreur se produit en utilisant GD et en essayant de télécharger des images en haute résolution.  Ce n'est pas la taille du fichier qui entre en compte, mais le nombre de pixels qui détaermine la quantité de mémoire utilisée par GD. Ce n'est pas une <a href="errors.htm#errors_soft">petite erreur</a> générée par Coppermine, mais une <a href="errors.htm#errors_hard">grosse erreur</a> de PHP qui apparait au travers de Coppermine depuis PHP.
     </td>
     <td valign="top">
-      There is (at least in theory) no limit <em>in Coppermine</em> to the file size or dimensions that the script can handle. However, there is at least one limit existing on the webserver: resizing images (to create intermediate images and/or thumbnails) consumes memory and burns CPU cylces. To prevent the server from crashing, the server admin has to restrict the amount of memory that a PHP script is allowed to consume. The error message mentioned above means that the limit imposed by the server admin has been reached, i.e. the image that the script tried to process consumed to much memory.
+      Il n'y a pas (en tout cas en théorie) de limites <em>dans Coppermine</em> en ce qui concerne le poids ou les dimensions des fichiers que le sript peut gérer. Il y a néanmoins une limite existante sur votre serveur: le redimmensionnement d'images (pour créer les images intermédiaires et /ou les vignettes) consomme de la mémoire et des ressources processeur. Pour éviter le crash du serveur, l'administrateur a restreint le volume de mémoire que le script est autorisé à utiliser. Le message d'erreur mentionné plus haut indique que les limites imposées par l'administrateur du serveur sont atteintes, c'est à dire que l'image que le scipt essaye de traiter consomme trop de mémoire.
       <ul>
-        <li><strong>Alternative 1 (ideal):</strong><br />
-        Increase the memory limit allocation in php.ini as suggested in <a href="upload_troubleshooting.htm#upload_trouble_memory_usage">Memory usage during resizing</a>. 
-        If you cannot change php.ini, you should read alternatives 2 and 3.</li>
+        <li><strong>Alternative 1 (idéale):</strong><br />
+        Augmentez la limite de l'allocation de mémoire dans le php.ini comme expliqué dans <a href="upload_troubleshooting.htm#upload_trouble_memory_usage">Utilisation de la mémoire pendant le redimensionnement</a>. 
+        Si vous ne pouvez pas modifier le php.ini, vous devriez lire les alternatives 2 et 3.</li>
          <li><strong>Alternative 2 (sensible):</strong><br />
-         Resize your images before uploading if you do not require high resolution images.  This saves upload bandwidth and time for you.</li>
-         <li><strong>Alternative 3 (workaround):</strong><br />
-         You may download one of many free programs that resize images. Then resize the images to a smaller resolution (like 800 x 600) by the batch into a different folder while maintaining the same filenames.<br />
-         Upload the resized images to Coppermine.  Then use your FTP client to overwrite the images with the higher resolution images. </li>
+         Redimensionnez vos images avant de les télécharger si vous n'avez pas besoin d'images en haute résolution. Celava vous faire gagner de la bande passante en téléchargement et du temps.</li>
+         <li><strong>Alternative 3 (contourement):</strong><br />
+         Vous devrez télécharger un des nombreux progarmmes gratuits qui redimensionne les images. Puis redimensionnez les images à une résolution plus petite (comme 800 x 600) et sauvegardez les dans un autre dossier en gardant le même nom de fichier.<br />
+         Téléchargez les images redimensionnées dans Coppermine. Puis utilisez votre client FTP et remplacez les images avec celles de plus haute résolution. </li>
       </ul>
     </td>
   </tr>
@@ -384,11 +384,11 @@ Replace it with<br />
       <a name="ErrorExecDisabled"></a><tt class="code">Exec() has been disabled</tt><a href="#ErrorExecDisabled" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
-      php.ini allows the server administrator to disable certain functions. Usually this is the case if your server is running in safe_mode.
+      php.ini permets à l'administrateur du serveur de désactiver certaines focntions. Généralement c'est le cas si votre serveur utilise le safe_mode.
     </td>
     <td valign="top">
-      If the server administrator has disabled exec() you will not be able to use Image Magick.<br />
-      You may try to replace exec() with passthru() in the entire core code of coppermine (not recommended) if it has not been disabled as well.  Otherwise, you can't use ImageMagick and must use GD. Change <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">Method for resizing images</a> in config accordingly.
+      Si l'administrateur du serveur a désactivé exec() vous ne pourrez pas utiliser ImageMagik.<br />
+      Vous pouvez essayer de remplacer exec() par passthru() dans l'ensemble du code de Coppermine (non recommendé) si cette fonction n'a pas aussi été désactivée. Sinon, vous ne pourrez pas utiliser ImageMagik et devrez utiliser GD. Changez la <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">Méthode de redimensionnement des images</a> dans la configuration.
     </td>
   </tr>
   <tr>
@@ -396,10 +396,10 @@ Replace it with<br />
       <a name="ErrorNotAGdExtension"></a><tt class="code">Not a GD extension</tt><a href="#ErrorNotAGdExtension" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
-      The file(s) you tried to upload can not be handled using the GD ImageLibrary
+      Le(s) fichier(s) que vous essayez de télécharger ne peuvent pas être gérés pas GD
     </td>
     <td valign="top">
-      The GD library can only handle jpeg, png and gif files, while the ImageMagick library supports additionally bmp, psd and some other (less common) file types. However, those files are not suitable for use on the internet. Details can be found in the <a href="configuration.htm#admin_picture_thumb_advanced_pic_extensions">Allowed image types</a> section in the config page of the docs.
+      GD ne peut gérer que les fichiers jpeg, png et gif, alors qu'ImageMagick supporte en plus  bmp, psd et certains autre types de fichiers (moins communs). Toutefois, ces fichiers ne sont pas adaptés pour une utilisation sur l'Internet. Vous trouverez des détails dans la section <a href="configuration.htm#admin_picture_thumb_advanced_pic_extensions">type d'images autorisés</a> dans la page de la documention consacrée à la configuration.
     </td>
   </tr>
   <tr>
@@ -407,10 +407,10 @@ Replace it with<br />
       <a name="imagemagick127"></a><tt class="code">The file '<em>albums/userpics/10001/somepic.jpg</em>' can't be inserted in the album. Error executing ImageMagick - Return value <strong>127</strong></tt><a href="#imagemagick127" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
-      You haven't specified the correct <a href="configuration.htm#admin_picture_thumb_advanced_im_path">path to ImageMagick</a>, or you don't have ImageMagic at all.
+      Vous n'avez pas défini le bon <a href="configuration.htm#admin_picture_thumb_advanced_im_path">chemin pour ImageMagick</a>, ou ne disposez pas du tout d'ImageMagick.
     </td>
     <td valign="top">
-      If you're sure that you actually have ImageMagick available on your server, review <a href="configuration.htm#admin_picture_thumb_advanced_im_path">path to ImageMagick</a>. If the path appears to be correct, make sure that the coppermine script has permissions to read and execute the convert executable within the ImageMagick folder. If you're not sure, switch <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">Method for resizing images</a> from &quot;ImageMagick&quot; to &quot;GD2&quot;, then try uploading again.
+      Si vous êtes sur d'avoir ImageMagick sur votre serveur, regardez le <a href="configuration.htm#admin_picture_thumb_advanced_im_path">chemin pour ImageMagick</a>. Si ce chemin semble correct, assurez vous que le script Coppermine a les droits de lecture et d'execution de l'éxécutable convert dans le répertoire d'ImageMagic. Si vou sn'êtes pas sur, basculez la <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">Méthode de redimenssionnent d'image</a> de &quot;ImageMagick&quot; à &quot;GD2&quot;, puis réessayez de télécharger.
     </td>
   </tr>
   <tr>
@@ -418,10 +418,10 @@ Replace it with<br />
       <a name="no_gd_support"></a><tt class="code">PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed.</tt><a href="#no_gd_support" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
-      Your webserver doesn't come with support for the GD image library.
+      Votre serveur ne supporte pas la librairie graphique GD.
     </td>
     <td valign="top">
-      Make sure that you fullfill the <a href="requirements.htm#what">minimum requirements</a> to run Coppermine. If GD is not available on your server, you could use ImageMagick. Ask your webhost if ImageMagick is available on your webserver.
+      Vérifiez de bien remplir toutes <a href="requirements.htm#what">les conditions minimales requises</a> pour faire tourner Coppermine. Si GD n'est pas disponibles sur votre serveur, vous devrez utiliser ImageMagick. Demandez à votre hébergeur si ImageMagick est disponible sur votre serveur.
     </td>
   </tr>
   <tr>
@@ -430,18 +430,18 @@ Replace it with<br />
       <tt class="code">No file was uploaded ! If you have really selected a file to upload, check that the server allows file uploads...</tt><a href="#no_file_uploaded" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
     <td valign="top">
-      File uploads are disabled in php.ini or there is a permissions issue or there is an issue with your webserver's upload mechansim.
+      Les téléchargements de fichiers sont désactivés dans le php.ini ou il y a un problème de droits avec le mecanisme de téléchargement de votre serveur.
     </td>
     <td valign="top">
-      There may be several reasons for this error message. The file you tried to upload did not &quot;reach&quot; the folder on the webserver where it is supposed to go. Check if there's a problem with HTTP uploads on your server - this feature may have been disabled or improperly configured. In <a href="faq.htm#VersionPHP">phpinfo()</a>, check that "file_uploads" is ON, "upload_max_filesize" is something like 2M and "upload_tmp_dir" is a valid directory! Make sure to review your <a href="install_permissions.htm#permissions">file/folder permissions</a> as well.<br />
-      If the server isn't yours to administer, you may have to ask your webhost for support. Here is what you should check:
+      Il peut y avoir plusieurs raisons pour ce message d'erreur. Le fichier que vous essayez de télécharger n'a pas &quot;atteint&quot; le dossier du serveur ou il était sensé aller. Vérifiez si il y a un problème avec le téléchargement HTTP sur votre serveur - cett efonction a peut être été déactivée ou mal configurée. Dans le <a href="faq.htm#VersionPHP">phpinfo()</a>, vérifez que "file_uploads" est sur ON, "upload_max_filesize" a une valeur du genre 2M et "upload_tmp_dir" est un répertoire valide! Assurez vous de bien vérifier une fois de plus les  <a href="install_permissions.htm#permissions">droits pour vos fichiers/répertoires</a>.<br />
+      Si ce n'est pas vous qui administrez le serveur, vous devrez demander de l'aide à votre hébergeur. Voici ce que vous devez vérifier:
       <ul>
-	      <li>test file &quot;<strong>too large</strong>&quot;<br />
-	      If you encounter this error message in the first place, make sure that the file you test uploading with is not to large in terms of file size and dimensions. Test with a known-good, small file first. You are welcome to download one from the coppermine demo gallery and use that for testing purposes.</li>
-	      <li>&quot;<strong>file_uploads</strong>&quot; enabled<br />
-	      Go to your phpinfo page (available as <a href="admin_menu.htm#phpinfo">admin menu</a> item), search it for <tt class="code">file_uploads</tt> and make sure that it is set to &quot;on&quot;. If you are on shared webhosting, only your webhost can enable this for you.</li>
-	      <li>&quot;<strong>upload_tmp_dir</strong>&quot; needs to be set<br />
-	      On the phpinfo page, make sure that <tt class="code">upload_tmp_dir</tt> needs to be set. If you are on shared webhosting, only your webhost can set this up for you. The script (i.e. the user the webserver runs under) needs to be allowed to write to that file.</li>
+	      <li>fichier &quot;<strong>trop gros</strong>&quot;<br />
+	      Si vous rencontrez ce message d'erreur pour la première fois, assurez vous que le fichier que vous essayez de télécharger n'est pas trop gros en terme de taille de fichier et de dimensions. Testez avec un fichier plus petit qui est réputé fonctionner. Vous pouvez utiliser sans problème une image téléchargée de la galerie de démonstration de Coppermine pour ce test.</li>
+	      <li>&quot;<strong>file_uploads</strong>&quot; activé<br />
+	      Allez à votre page phpinfo() (accessible depuis le <a href="admin_menu.htm#phpinfo">menu administrateur</a>), cherchez <tt class="code">file_uploads</tt> et assurez vous que la valeur est bien &quot;on&quot;. Si vous êtes sur un serveur mutualisé, seul l'administrateur peut modifier cette valeur.</li>
+	      <li>&quot;<strong>upload_tmp_dir</strong>&quot; doit être défini<br />
+	      Sur la page phpinfo, assurez vous que <tt class="code">upload_tmp_dir</tt> est défini. Si vous êtes sur un serveur mutualisé, seul votr ehébergeur peut le faire pour vous. Le script (c'est à dire l'utilisateur qui utilise le serveur) doit avoir les droits en écriture dans ce fichier.</li>
       </ul>
     </td>
   </tr>
@@ -449,13 +449,13 @@ Replace it with<br />
     <td valign="top">
       <a name="destination_not_writable"></a><tt class="code">Destination directory albums/userpics/XXXXX/ is not writable by the script</tt><a href="#destination_not_writable" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a>
     </td>
-    <td valign="top">permissions on file system level are not correct</td>
-    <td valign="top">Make sure to review your <a href="install_permissions.htm#permissions">file/folder permissions</a>. If that doesn't help, ask your webhost for support.</td>
+    <td valign="top">Les droits du système de fichiers ne sont pas corrects</td>
+    <td valign="top">Vérifiez les <a href="install_permissions.htm#permissions">droits des fichiers/répertoires</a>. Si ça ne vous aide pas, demandez à votre hébergeur.</td>
   </tr>
 </table>
 <a name="upload_error_messages_end"></a>
 
-<a name="upload_trouble_server-sided_restrictions"></a><h2>Server-sided restrictions<a href="#upload_trouble_server-sided_restrictions" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="upload_trouble_server-sided_restrictions"></a><h2>Restrictions côté serveur<a href="#upload_trouble_server-sided_restrictions" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>All upload methods, but particularly HTTP uploads are limited by the restrictions placed upon them in PHP's configuration.</p>
 
 <a name="upload_trouble_server-sided_restrictions_php_ini"></a><h3>The PHP configuration file php.ini<a href="#upload_trouble_server-sided_restrictions_php_ini" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
