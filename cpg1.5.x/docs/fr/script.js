@@ -538,8 +538,8 @@ doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_support">D
 doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_error_messages" >Messages d\'erreur</a></li>\n';
 doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions" class="us_fr">Restrictions côté serveur</a>\n';
 doc_toc += '             <ul>\n';
-doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions_check" class="en">Things to check</a></li>\n';
-doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_methods"class="en">Upload mechanisms/methods</a></li>\n';
+doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions_check" >Les choses à vérifier</a></li>\n';
+doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_methods">Mécanismes/méthodes de téléchargement</a></li>\n';
 doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_memory_usage"class="en">Memory usage during resizing</a></li>\n';
 doc_toc += '             </ul>\n';
 doc_toc += '           </li>\n';
