@@ -495,7 +495,7 @@ EOT;
         echo <<<EOT
         <tr>
                 <td class="" colspan="$title_colspan">
-					<div id="cpg_starttable_outer">
+					<div class="cpg_starttable_outer">
 						<div class="cpg_starttable_inner">
 							$title
 						</div>
@@ -545,6 +545,60 @@ $template_film_strip = <<<EOT
 EOT;
 /******************************************************************************
 ** Section <<<$template_film_strip>>> - END
+******************************************************************************/
+
+/******************************************************************************
+** Section <<<$template_breadcrumb>>> - START
+******************************************************************************/
+// HTML template for the breadcrumb
+$template_breadcrumb = <<<EOT
+<!-- BEGIN breadcrumb -->
+        <tr>
+            <td colspan="3" align="left">
+    			<div class="cpg_starttable_outer">
+    				<div class="cpg_starttable_inner">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td class="statlink">
+                                    {BREADCRUMB}
+                                </td>
+                                <td class="statlink">
+                                    <img src="images/spacer" width="1" height="25" border="0" alt="" />
+                                </td>
+                            </tr>
+                        </table>
+    				</div>
+    			</div>
+            </td>
+        </tr>
+<!-- END breadcrumb -->
+<!-- BEGIN breadcrumb_user_gal -->
+        <tr>
+            <td colspan="3" align="left">
+    			<div class="cpg_starttable_outer">
+    				<div class="cpg_starttable_inner">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td class="statlink">
+                                    {BREADCRUMB}
+                                </td>
+                                <td class="statlink">
+                                    {STATISTICS}
+                                </td>
+                                <td class="statlink">
+                                    <img src="images/spacer" width="1" height="25" border="0" alt="" />
+                                </td>
+                            </tr>
+                        </table>
+    				</div>
+    			</div>
+            </td>
+        </tr>
+<!-- END breadcrumb_user_gal -->
+
+EOT;
+/******************************************************************************
+** Section <<<$template_breadcrumb>>> - END
 ******************************************************************************/
 
 ?>

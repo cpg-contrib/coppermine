@@ -127,7 +127,7 @@ body {
 	padding-left: 0pt;
 }
 
-#cpg_starttable_outer  {
+.cpg_starttable_outer  {
 	background-color: transparent;
 	background-image: url(images/main_block.png);
 	background-repeat: no-repeat;
@@ -136,7 +136,7 @@ body {
 	padding-left: 20px;
 }
 
-#cpg_starttable_outer div.cpg_starttable_inner {
+.cpg_starttable_outer div.cpg_starttable_inner {
 	background-color: transparent;
 	background-image: url(images/main_block.png);
 	background-repeat: no-repeat;
@@ -478,6 +478,8 @@ a:hover.button, a:hover.admin_menu {
     border-width:1px;
     border-color:#000000;
     margin:2px;
+	-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
 
 /* pseudo-classes for image links */
@@ -878,27 +880,34 @@ table#album_sort tr td span.editAlbum {
     padding:15px 10px 15px 50px;
     background-repeat: no-repeat;
     background-position: 10px center;
+	-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
+
 .cpg_message_info {
     color: #00529B;
     background-color: #BDE5F8;
     background-image: url('../../images/message/info.png');
 }
+
 .cpg_message_success {
     color: #4F8A10;
     background-color: #DFF2BF;
     background-image: url('../../images/message/ok.png');
 }
+
 .cpg_message_warning {
     color: #9F6000;
     background-color: #FEEFB3;
     background-image: url('../../images/message/warning.png');
 }
+
 .cpg_message_error {
     color: #D8000C;
     background-color: #FFBABA;
     background-image: url('../../images/message/stop.png');
 }
+
 .cpg_message_validation {
     color: #D63301;
     background-color: #FFCCBA;
@@ -920,44 +929,42 @@ table#album_sort tr td span.editAlbum {
 }
 
 /* Styles for the standard dropdown menus. */
-main_menu
-{
+main_menu {
 	padding: 0 0 0 0.5em;
 	float: left;
 	margin: 0;
 	width: 98%;
 }
 
-.dropmenu, .dropmenu ul
-{
+.dropmenu, .dropmenu ul {
 	list-style: none;
 	line-height: 1em;
 	padding: 0;
 	margin: 0;
 }
-.dropmenu
-{
+
+.dropmenu {
 	padding: 0 0.5em;
 }
-.dropmenu a
-{
+
+.dropmenu a {
 	display: block;
 	color: #000000;
 	text-decoration: none;
 }
-.dropmenu a span
-{
+
+.dropmenu a span {
 	display: block;
 	padding: 0 0 0 5px;
 	font-size: 0.9em;
 }
+
 /* the backgrounds first level only*/
-.dropmenu li a.firstlevel
-{
+.dropmenu li a.firstlevel {
 	margin-right: 8px;
 }
-.dropmenu li a.firstlevel span.firstlevel
-{
+
+.dropmenu li a.firstlevel span.firstlevel {
 	display: block;
 	position: relative;
 	left: -5px;
@@ -965,15 +972,15 @@ main_menu
 	height: 22px;
 	line-height: 19px;
 }
-.dropmenu li
-{
+
+.dropmenu li {
 	float: left;
 	padding: 0;
 	margin: 0;
 	position: relative;
 }
-.dropmenu li ul
-{
+
+.dropmenu li ul {
 	z-index: 90;
 	display: none;
 	position: absolute;
@@ -983,67 +990,66 @@ main_menu
 	background: url(images/menu_gfx.png) 0 -100px no-repeat;
 	padding: 7px 0 0 0;
 }
-.dropmenu li li
-{
+
+.dropmenu li li {
 	width: 19em;
 	margin: 0;
 	border-left: solid 1px #999;
 	border-right: solid 1px #999;
 }
-.dropmenu li li a span
-{
+
+.dropmenu li li a span {
 	display: block;
 	padding: 8px;
 }
-.dropmenu li ul ul
-{
+
+.dropmenu li ul ul {
 	margin: -1.8em 0 0 13em;
 }
 
 /* the active button */
-.dropmenu li a.active
-{
+.dropmenu li a.active {
 	background: url(images/menu_gfx.png) no-repeat 100% 0;
 	color: #ffffff;
 	font-weight: bold;
 }
-.dropmenu li a.active span.firstlevel
-{
+
+.dropmenu li a.active span.firstlevel {
 	background: url(images/menu_gfx.png) no-repeat 0 0;
 }
+
 /* the hover effects */
-.dropmenu li a.firstlevel:hover
-{
+.dropmenu li a.firstlevel:hover {
 	background: url(images/menu_gfx.png) no-repeat 100% -30px;
 	color: #ffffff;
 	cursor: pointer;
 	text-decoration: none;
 }
-.dropmenu li a.firstlevel:hover span.firstlevel
-{
+
+.dropmenu li a.firstlevel:hover span.firstlevel {
 	background: url(images/menu_gfx.png) no-repeat 0 -30px;
 }
+
 /* the hover effects on level2 and 3*/
-.dropmenu li li a:hover
-{
+.dropmenu li li a:hover {
 	background: #D4DBE4;
 	color: #000;
 	text-decoration: none;
 }
-.dropmenu li:hover ul ul, .dropmenu li:hover ul ul ul
-{
+
+.dropmenu li:hover ul ul, .dropmenu li:hover ul ul ul {
 	top: -999em;
 }
-.dropmenu li li:hover ul
-{
+
+.dropmenu li li:hover ul {
 	top: auto;
 }
-.dropmenu li:hover ul
-{
+
+.dropmenu li:hover ul {
 	display: block;
 }
-.dropmenu li li.additional_items
-{
+
+.dropmenu li li.additional_items {
 	background-color: #fff;
 }
 

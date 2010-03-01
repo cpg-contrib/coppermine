@@ -378,19 +378,21 @@ EOT;
 $template_breadcrumb = <<<EOT
 <!-- BEGIN breadcrumb -->
         <tr>
-                <td colspan="3" align="left" class="tableh1"><span class="statlink">{BREADCRUMB}</span></td>
+            <td colspan="3" align="left" class="tableh1">
+                <span class="statlink">{BREADCRUMB}</span>
+            </td>
         </tr>
 <!-- END breadcrumb -->
 <!-- BEGIN breadcrumb_user_gal -->
         <tr>
-                <td colspan="3" class="tableh1">
+            <td colspan="3" class="tableh1">
                 <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
+                    <tr>
                         <td align="left"><span class="statlink">{BREADCRUMB}</span></td>
                         <td align="right"><span class="statlink">{STATISTICS}</span></td>
-                </tr>
+                    </tr>
                 </table>
-                </td>
+            </td>
         </tr>
 <!-- END breadcrumb_user_gal -->
 
