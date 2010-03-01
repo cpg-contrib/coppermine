@@ -39,18 +39,21 @@ if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
+$help = array();
+$help['language_manager'] = '&nbsp;' . cpg_display_help('f=languages.htm&amp;as=language_manager&amp;ae=language_manager_end', '450', '300');
+$help['default'] = '&nbsp;' . cpg_display_help('f=languages.htm&amp;as=language_manager_columns_default&amp;ae=language_manager_columns_default_end', '450', '300');
+$help['name'] = '&nbsp;' . cpg_display_help('f=languages.htm&amp;as=language_manager_columns_name&amp;ae=language_manager_columns_name_end', '450', '300');
+$help['english'] = '&nbsp;' . cpg_display_help('f=languages.htm&amp;as=language_manager_columns_name_english&amp;ae=language_manager_columns_name_english_end', '450', '300');
+$help['native'] = '&nbsp;' . cpg_display_help('f=languages.htm&amp;as=language_manager_columns_name_native&amp;ae=language_manager_columns_name_native_end', '450', '300');
+$help['custom'] = '&nbsp;' . cpg_display_help('f=languages.htm&amp;as=language_manager_columns_name_custom&amp;ae=language_manager_columns_name_custom_end', '450', '300');
+$help['flag'] = '&nbsp;' . cpg_display_help('f=languages.htm&amp;as=language_manager_columns_flag&amp;ae=language_manager_columns_flag_end', '450', '300');
+$help['file'] = '&nbsp;' . cpg_display_help('f=languages.htm&amp;as=language_manager_columns_file&amp;ae=language_manager_columns_file_end', '450', '300');
+$help['available'] = '&nbsp;' . cpg_display_help('f=languages.htm&amp;as=language_manager_columns_file_available&amp;ae=language_manager_columns_file_available_end', '450', '300');
+$help['complete'] = '&nbsp;' . cpg_display_help('f=languages.htm&amp;as=language_manager_columns_file_complete&amp;ae=language_manager_columns_file_complete_end', '450', '300');
+$help['enabled'] = '&nbsp;' . cpg_display_help('f=languages.htm&amp;as=language_manager_columns_enabled&amp;ae=language_manager_columns_enabled_end', '450', '300');
+
 pageheader($lang_langmgr_php['title']);
 print '<form action="'.$CPG_PHP_SELF.'" method="post" name="cpgform" id="cpgform" onsubmit="return form_submit();">';
-$loader_html = '<script type="text/javascript">'.$LINEBREAK;
-$loader_html .= 'document.write(\'<span id="cpg_progress_bar">\');'.$LINEBREAK;
-if (defined('THEME_HAS_PROGRESS_GRAPHICS')) {
-    $prefix = $THEME_DIR;
-} else {
-    $prefix = '';
-}
-$loader_html .= 'document.write(\'<img src="' . $prefix . 'images/loader.gif" border="0" alt="" title="' . $lang_langmgr_php['loading'] . '" />\');'.$LINEBREAK;
-$loader_html .= 'document.write(\'</span>\');'.$LINEBREAK;
-$loader_html .= '</script>';
 $hide_icon = cpg_fetch_icon('hide_table_row', 2);
 $show_icon = cpg_fetch_icon('show_table_row', 2);
 
@@ -149,7 +152,7 @@ EOT;
 // Form has been submit --- end
 
 
-// Populate an array of available flags$flag_array = form_get_foldercontent('images/flags/', 'file', 'gif');
+// Populate an array of available flags$flag_array = form_get_foldercontent('images/flags/', 'file', 'png');
 // Populate an array of files existing inside the lang folder
 $lang_file_array = form_get_foldercontent('lang/', 'file', 'php');
 $lang_file_orphan_array = $lang_file_array;
@@ -193,7 +196,7 @@ ksort($lang_language_data);
 
 
 
-starttable('100%', cpg_fetch_icon('babelfish', 2) . $lang_langmgr_php['title'], 9);
+starttable('100%', '<h2>' . cpg_fetch_icon('babelfish', 2) . $lang_langmgr_php['title'] . $help['language_manager']. '</h2>', 9);
 print <<< EOT
     <tr>
         <td class="tableh2" colspan="6">
@@ -201,41 +204,40 @@ print <<< EOT
         <td class="tableh2" colspan="2" align="center">
             <span id="expand_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('expand');">{$show_icon}{$lang_langmgr_php['show_details']}</a></span>
             <span id="collapse_all_top" style="display:none"><a href="javascript:;" class="admin_menu" onclick="show_section('expand_all_bottom');show_section('collapse_all_bottom');show_section('expand_all_top');show_section('collapse_all_top');toggleExpandCollpaseButtons('collapse');">{$hide_icon}{$lang_langmgr_php['hide_details']}</a></span>
-            {$loader_html}
         </td>
     </tr>
     <tr>
         <th class="tableh2" rowspan="2" align="center">
-          <span class="album_stat">{$lang_langmgr_php['default']}</span>
+          <span class="album_stat">{$lang_langmgr_php['default']}</span>{$help['default']}
         </th>
         <th class="tableh2" colspan="3">
-          <span class="album_stat">{$lang_langmgr_php['language_name']}</span>
+          <span class="album_stat">{$lang_langmgr_php['language_name']}</span>{$help['name']}
         </th>
         <th class="tableh2" rowspan="2">
-          <span class="album_stat">{$lang_langmgr_php['flag']}</span>
+          <span class="album_stat">{$lang_langmgr_php['flag']}</span>{$help['flag']}
         </th>
         <th class="tableh2" colspan="2">
-          <span class="album_stat">{$lang_langmgr_php['language_file']}</span>
+          <span class="album_stat">{$lang_langmgr_php['language_file']}</span>{$help['file']}
         </th>
         <th class="tableh2" rowspan="2">
-          <span class="album_stat">{$lang_langmgr_php['enabled']}</span>
+          <span class="album_stat">{$lang_langmgr_php['enabled']}</span>{$help['enabled']}
         </th>
     </tr>
     <tr>
         <th class="tableh2">
-          <span class="album_stat">{$lang_langmgr_php['english_language_name']}</span>
+          <span class="album_stat">{$lang_langmgr_php['english_language_name']}</span>{$help['english']}
         </th>
         <th class="tableh2">
-          <span class="album_stat">{$lang_langmgr_php['native_language_name']}</span>
+          <span class="album_stat">{$lang_langmgr_php['native_language_name']}</span>{$help['native']}
         </th>
         <th class="tableh2">
-          <span class="album_stat">{$lang_langmgr_php['custom_language_name']}</span>
+          <span class="album_stat">{$lang_langmgr_php['custom_language_name']}</span>{$help['custom']}
         </th>
         <th class="tableh2">
-          <span class="album_stat">{$lang_langmgr_php['file_available']}</span>
+          <span class="album_stat">{$lang_langmgr_php['file_available']}</span>{$help['file']}
         </th>
         <th class="tableh2">
-          <span class="album_stat">{$lang_langmgr_php['complete']}</span>
+          <span class="album_stat">{$lang_langmgr_php['complete']}</span>{$help['complete']}
         </th>
     </tr>
 EOT;
@@ -485,7 +487,7 @@ EOT;
     </tr>
     <tr>
         <td class="{$cellstyle}" colspan="7">
-            <span id="translator_{$loopCounter}">
+            <span id="translator_{$loopCounter}" style="display:none;">
                 <ul style="margin:0px">
                     {$translator_output}
                     {$version_output}

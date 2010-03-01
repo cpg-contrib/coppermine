@@ -10107,6 +10107,14 @@
     <hash>d48d8e3af0cdd6fd96ff18e9f8be50eb</hash>
   </element>
   <element>
+    <fullpath>lang/greek.php</fullpath>
+    <version>1.5.2</version>
+    <revision>6614</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>d48d8e3af0cdd6fd96ff18e9f8be50eb</hash>
+  </element>
+  <element>
     <fullpath>lang/polish.php</fullpath>
     <version>1.5.2</version>
     <revision>6583</revision>

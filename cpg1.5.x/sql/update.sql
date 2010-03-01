@@ -346,6 +346,7 @@ UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='german';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='german_formal';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='polish';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='russian';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='greek';
 
 INSERT INTO CPG_config VALUES ('display_xp_publish_link', '0');
 

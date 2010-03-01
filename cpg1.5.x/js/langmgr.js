@@ -16,9 +16,8 @@
   $Date$
 **********************************************/
 
-addonload("show_section('collapse_all_top')");
-addonload("show_section('collapse_all_bottom')");
-addonload("show_section('cpg_progress_bar')");
+addonload("show_section('expand_all_top')");
+addonload("show_section('expand_all_bottom')");
 
 function cpgReplaceTextFieldValue(fieldname, value) {
 }  
