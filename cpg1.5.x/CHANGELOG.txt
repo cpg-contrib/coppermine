@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-01 [A] Added Greek language file (user contribution) {eenemeenemuu}
 2010-02-26 [B] Slideshow from lastcom of an album doesn't start at correct file (thread ID 63585) {timoswelt}
 2010-02-25 [A] Populate thumbnail pages dropdown list using JavaScript (thread ID 63844) {eenemeenemuu}
 2010-02-23 [A] Added plugin hook 'theme_thumbnails_album_types' {eenemeenemuu}
