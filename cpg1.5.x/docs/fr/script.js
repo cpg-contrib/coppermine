@@ -141,7 +141,11 @@ doc_toc += '          <li><a href="install_permissions.htm#iis">IIS sur Windows<
 doc_toc += '          <li><a href="install_permissions.htm#support">Demander de l\'aide sur les problèmes liés aux permissions</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="install_screen.htm">L\'écran d\'Installation</a></li>\n';
+doc_toc += '      <li><a href="install_screen.htm">L\'écran d\'Installation</a>';
+doc_toc += '        <ul>\n';
+doc_toc += '          <li><a href="install_screen.htm#install_screen_classic">L\'installeur classique</a></li>\n';
+doc_toc += '          <li><a href="install_screen.htm#install_screen_wizard">L\'assistant d\'installation</a></li>\n';
+doc_toc += '        </ul>\n';
 doc_toc += '      <li><a href="auto-installers.htm">Les Auto-Installeurs</a></li>\n';
 doc_toc += '      <li><a href="install_faq.htm">FAQ d\'Installation</a></li>\n';
 doc_toc += '      <li><a href="uninstall.htm">Désinstallation</a></li>\n';
