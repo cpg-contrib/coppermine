@@ -138,10 +138,12 @@ but, to do this, instead:<br />
 </p>
 <a name="translation_quotes_javascript"></a><h3>Single quotes in JavaScript (//js-alert)<a href="#translation_quotes_javascript" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Things are a bit more complicated if the output is to be used not only in plain HTML, but in JavaScript, as well.  Single quotes that appear in the HTML output of the language file must also be escaped for use in any JavaScript routine with a backslash as well.  That's why specific lines in the language file that will be used as JavaScript in Coppermine's output have been tagged with a comment at the end of the line, which reads: <tt class="code">//js-alert</tt>. If you intend to have a single quote in the final output, you'll have to add 3 backslashes in front of the single quote, as in this example: <pre>'no_change' => 'Vous n\\\'avez effectué aucun changement !', //js-alert</pre></p>
+
 <a name="translation_placeholders"></a><h3>Placeholders with " % "<a href="#translation_placeholders" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>You'll also notice that in several places of the language file, there are text that contain a percent-sign (<span class="important">%</span>), followed immediately by a letter. Those combinations must not be translated or separated - they are there intentionally and are used later as specifier arguments, or calls, for variable replacement and/or formating that needs to take place.</p>
 <p class="cpg_example">
 <tt class="code">$lang_rate_pic['rating'] = '(Current rating : %s / %s with %s votes)';</tt></p>
+<p>What actually happens is that in the code (usually using the PHP command <a href="http://www.php.net/manual/en/function.sprintf.php" rel="external" class="phpnet">sprintf</a>; refer to the <em>type specifier</em> specifications for details) there is a replacement, where the placeholder (usually <tt class="code">%s</tt>) is being replaced with some content dynamically.</p>
 
 <a name="translation_versions"></a><h2>Language versions<a href="#translation_versions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="translation_typo"></a><h3>Found a typo/spelling error?<a href="#translation_typo" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
