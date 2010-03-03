@@ -2197,7 +2197,7 @@ function theme_main_menu($which)
         '{REGISTER_TGT}' => "register.php",
         '{REGISTER_TITLE}' => $lang_main_menu['register_title'],
         '{REGISTER_LNK}' => $lang_main_menu['register_lnk'],
-		'{REGISTER_ICO}' => cpg_fetch_icon('login', 1),
+		'{REGISTER_ICO}' => cpg_fetch_icon('add_user', 1),
         '{LOGIN_TITLE}' => $lang_main_menu['login_title'],
         '{LOGIN_LNK}' => $lang_main_menu['login_lnk'],
 		'{LOGIN_ICO}' => cpg_fetch_icon('login', 1),

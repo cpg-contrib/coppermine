@@ -12,66 +12,75 @@
   Coppermine version: 1.5.3
   $HeadURL$
   $Revision$
-  $LastChangedBy$
+  $Author$
   $Date$
 **********************************************/
 
-/* Colors used in this style sheet:
-	Hex 000000 = RBG   0,   0,   0 = black
-	Hex 5F5F5F = RBG  95,  95,  95 = light black
-	Hex BDBEBD = RBG 189, 190, 189 = dark grey
-	Hex D1D7DC = RBG 209, 215, 220 = medium grey
-	Hex CCCCCC = RBG 204, 204, 204 = medium grey
-	Hex E4E4E4 = RGB 228, 228, 228 = medium grey
-	Hex EFEFEF = RBG 239, 239, 239 = dark white
-	Hex FFFFFF = RBG 255, 255, 255 = white
-	Hex 005D8C = RBG   0,  93, 140 = dark blue
-	Hex 0033CC = RBG   0,  91, 104 = medium blue
-	Hex 0E72A4 = RBG  14, 114, 164 = light blue
-	Hex 840084 = RBG 132,   0, 132 = purple
-	Hex 00529B = RGB   0,  82, 155 = blue
-	Hex BDE5F8 = RGB 189, 229, 247 = cyan
-	Hex 4F8A10 = RGB  79, 138,  16 = dark green
-	Hex DFF2BF = RGB 223, 242, 191 = light green
-	Hex 9F6000 = RGB 159,  96,   0 = dark brown
-	Hex FEEFB3 = RGB 254, 239, 179 = light brown
-	Hex D8000C = RGB 216,   0,  12 = red
-	Hex FFBABA = RGB 255, 186, 186 = pink
-	Hex D63301 = RGB 214,  51,   1 = red
-	Hex FFCCBA = RGB 255, 204, 186 = pink
-*/
+/* Colors used:                                */
+/* --------------------------------------------*/
+/* Hex 000000 = RGB   0,  0,  0 = black        */
+/* Hex 5F5F5F = RGB  95, 95, 95 = light black  */
+/* Hex BDBEBD = RGB 189,190,189 = dark grey    */
+/* Hex D1D7DC = RGB 209,215,220 = medium grey  */
+/* Hex CCD7E0 = RGB 204,215,224 = light grey   */
+/* Hex DDDDDD = RGB 221,221,221 = light grey   */
+/* Hex CBD7DE = RGB 203,215,222 = steel grey   */
+/* Hex F2F5F7 = RGB 242,245,247 = dark white   */
+/* Hex EFEFEF = RGB 239,239,239 = dark white   */
+/* Hex FFFFFF = RGB 255,255,255 = white        */
+/* Hex 000666 = RGB   0,  6,102 = dark blue    */
+/* Hex 0033CC = RBG   0, 91,104 = medium blue  */
+/* Hex 718EA5 = RGB 113,142,165 = light blue   */
+/* Hex 8AA5B5 = RGB 138,165,181 = light blue   */
+/* #00529B = RGB   0, 82,155 = blue            */
+/* #BDE5F8 = RGB 189,229,247 = cyan            */
+/* #4F8A10 = RGB  79,138, 16 = dark green      */
+/* #DFF2BF = RGB 223,242,191 = light green     */
+/* #9F6000 = RGB 159, 96,  0 = dark brown      */
+/* #FEEFB3 = RGB 254,239,179 = light brown     */
+/* #D8000C = RGB 216,  0, 12 = red             */
+/* #FFBABA = RGB 255,186,186 = pink            */
+/* #D63301 = RGB 214, 51,  1 = red             */
+/* #FFCCBA = RGB 255,204,186 = pink            */
+/* if you don't like a color, just do a search */
+/* and replace on the hex color...             */
 
 body {
-    font-family : Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    background : #CCCCCC;
-    color : Black;
+    background: url("images/bg.gif");
+    background-color: #F2F5F7;
+    font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
+    font-size : 12px;
+    color: #000666;
     margin: 0px;
 }
 
 table {
-    font-size: 12px;
+    font-size : 12px;
 }
 
 h1{
-    font-weight: bold;
-    font-size: 22px;
+    font-weight: normal;
+    font-size: 21px;
     font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
     text-decoration: none;
     line-height : 120%;
-    color : #000000;
+    color: #718EA5;
     margin: 2px;
 }
 
 h2 {
     font-family: Arial, Helvetica, sans-serif;
+    background-image : url(images/box_left_icon.gif);
+    background-repeat : no-repeat;
+    background-position : left;
+    padding-left : 18px;
     font-size: 18px;
     margin: 0px;
 }
 
 h3 {
     font-weight: normal;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
     font-size: 12px;
     margin: 2px;
 }
@@ -107,7 +116,7 @@ ul li {
 }
 
 .textinput {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
     font-size: 100%;
     border: 1px solid #D1D7DC;
     padding-right: 3px;
@@ -115,7 +124,7 @@ ul li {
 }
 
 .listbox {
-    font-family: Verdana, Arial, Arial, Helvetica, sans-serif;
+    font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
     font-size: 100%;
     border: 1px solid #D1D7DC;
     vertical-align : middle;
@@ -123,8 +132,8 @@ ul li {
 
 .button {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 85%;
-    border: 1px solid #005D8C;
+    font-size: 90%;
+    border: 1px solid #CCD7E0;
     background-image : url(images/button_bg.gif);
     background-position : bottom;
 	cursor:pointer;
@@ -134,28 +143,18 @@ ul li {
 }
 
 .radio {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
     font-size: 100%;
     vertical-align : middle;
 }
 
 .checkbox {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
     font-size: 100%;
     vertical-align : middle;
 }
 
-a:link {
-    color: #0033CC;
-    text-decoration: none;
-}
-
-a:visited {
-    color: #0033CC;
-    text-decoration: none;
-}
-
-a:focus {
+a {
     color: #0033CC;
     text-decoration: none;
 }
@@ -163,11 +162,6 @@ a:focus {
 a:hover {
     color: #0033CC;
     text-decoration: underline;
-}
-
-a:active {
-    color: #0033CC;
-    text-decoration: none;
 }
 
 .bblink a {
@@ -181,24 +175,25 @@ a:active {
 }
 
 .maintable {
-    border: 1px solid #0E72A4;
-    background-color: #EFEFEF;
+    border: 1px solid #CCD7E0;
+    background-color: #FFFFFF;
     margin-top: 1px;
     margin-bottom: 1px;
 }
 
 .tableh1 {
-    background : #0E72A4 ;
-    color : #FFFFFF;
+    font-family:  Verdana, Geneva, Arial, sans-serif;
+    background : #8AA5B5 ;
+    color: #FFFFFF;
+    font-weight:bold;
     padding-top: 3px;
     padding-right: 10px;
     padding-bottom: 3px;
     padding-left: 10px;
-    font-weight:bold;
 }
 
 .tableh2 {
-    background: #D1D7DC ;
+    background: #CBD7DE ;
     color : #000000;
     padding-top: 3px;
     padding-right: 10px;
@@ -207,7 +202,7 @@ a:active {
 }
 
 .tableb {
-    background: #EFEFEF ;
+    background: #F2F5F7 ;
     padding-top: 3px;
     padding-right: 10px;
     padding-bottom: 3px;
@@ -218,11 +213,11 @@ a:active {
 /* It is being used to accomplish alternating row colors for lists. */
 /* It's recommended to only assign another background color that slightly differs from the one defined in tableb */
 .tableb_alternate {
-    background: #E4E4E4;
+    background: #DDDDDD;
 }
 
 .tablef {
-    background: #D1D7DC;
+    background: #CBD7DE ;
     padding-top: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
@@ -230,7 +225,7 @@ a:active {
 }
 
 .catrow_noalb {
-    background: #D1D7DC ;
+    background: #CBD7DE ;
     color : #000000;
     padding-top: 3px;
     padding-right: 10px;
@@ -239,7 +234,7 @@ a:active {
 }
 
 .catrow {
-    background: #EFEFEF ;
+    background: #F2F5F7 ;
     padding-top: 3px;
     padding-right: 10px;
     padding-bottom: 3px;
@@ -247,7 +242,7 @@ a:active {
 }
 
 .album_stat {
-    font-size: 85%;
+    font-size : 85%;
     margin: 5px 0px;
 }
 
@@ -274,9 +269,10 @@ a:active {
     color: #000000;
 }
 
+
 .thumb_num_comments {
     font-weight: normal;
-    font-size: 80%;
+    font-size: 85%;
     padding: 2px;
     font-style : italic;
     display : block;
@@ -296,7 +292,7 @@ a:active {
 }
 
 .user_thumb_infobox td {
-    font-size: 80%;
+    font-size: 85%;
     margin-top: 1px;
     margin-bottom: 1px;
     text-align : center;
@@ -313,16 +309,19 @@ a:active {
 }
 
 .sortorder_cell {
-    background : #0E72A4 ;
-    color : #FFFFFF;
-    padding: 0px;
+    background : #8AA5B5 ;
+    color: #FFFFFF;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 20px;
     margin: 0px;
 }
 
 .sortorder_options {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    background : #0E72A4 ;
-    color : #FFFFFF;
+    background : #8AA5B5 ;
+    color: #FFFFFF;
     padding: 0px;
     margin: 0px;
     font-weight: normal;
@@ -331,11 +330,10 @@ a:active {
 }
 
 .navmenu {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
     color: #FFFFFF;
-    font-size: 100%;
     font-weight: bold;
-    background : #0E72A4 ;
+    background : #8AA5B5 ;
     border-style: none;
 }
 
@@ -357,26 +355,22 @@ a:active {
 }
 
 .navmenu a:hover {
-    background : #EFEFEF ;
+    background : #F2F5F7 ;
     text-decoration: none;
     color:         #000000;
 }
 
 .admin_menu {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 85%;
-    border: 1px solid #005D8C;
-    background-color:#FFFFFF;
-    background-image: url(images/button_bg.gif);
-    background-position: bottom;
-    background-repeat:repeat-x;
+    font-size: 90%;
+    border: 1px solid #CCD7E0;
+    background-image : url(images/button_bg.gif);
+    background-position : bottom;
+    background-repeat: repeat-x;
+    background-color: #FFFFFF;
     color: #000000;
     margin-top: 0px;
     margin-bottom: 0px;
-    padding-top:2px;
-    padding-bottom:2px;
-    padding-left:1px;
-    padding-right:1px;
     text-align: center;
 }
 
@@ -401,15 +395,10 @@ a:active {
     margin-top: 1px;
     margin-bottom: 1px;
     max-height:1.5em;
-    white-space:nowrap;
     display: block;
     position: relative;
+    white-space:nowrap;
     /*width:100px;*/
-}
-
-.admin_menu_wrapper {
-    width:100%;
-    white-space:normal;
 }
 
 #admin_menu_anim {
@@ -417,62 +406,62 @@ a:active {
 }
 
 .icon {
-    vertical-align:middle;
-    margin-right:1px;
+	vertical-align:middle;
+	margin-right:1px;
 }
 
 .comment_date{
     color : #5F5F5F;
-    font-size : 90%;
+    font-size: 90%;
     vertical-align : middle;
 }
 
 .image {
-    border-style:solid;
+    border-style: solid;
     border-width:1px;
-    border-color:#000000;
-    margin:2px;
+    border-color: #000000;
+    margin: 2px;
 }
 
 /* pseudo-classes for image links */
 a:link .image{
-    border-style:solid;
+    border-style: solid;
     border-width:1px;
-    border-color:#000000;
-    margin:2px;
+    border-color: #000000;
+    margin: 2px;
 }
 
 a:visited .image{
-    border-style:solid;
+    border-style: solid;
     border-width:1px;
-    border-color:#840084;
-    margin:2px;
+    border-color: #8CA6B5;
+    margin: 2px;
 }
 
 a:focus .image{
-    border-style:solid;
+    border-style: solid;
     border-width:1px;
-    border-color:#000000;
-    margin:2px;
+    border-color: #000000;
+    margin: 2px;
 }
 
 a:hover .image{
-    border-style:solid;
+    border-style: solid;
     border-width:1px;
-    border-color:#0033CC;
-    margin:2px;
+    border-color: #0033CC;
+    margin: 2px;
 }
 
 a:active .image{
-    border-style:solid;
+    border-style: solid;
     border-width:1px;
-    border-color:#000000;
-    margin:2px;
+    border-color: #000000;
+    margin: 2px;
 }
 
 /* pseudo-classes for middlethumb links */
 a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlethumb,a:active .middlethumb{
-    border: 2px solid blue;
+	border: 4px solid #CBD7DE;
 }
 
 .imageborder {
@@ -483,15 +472,15 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 }
 
 .display_media {
-    background: #EFEFEF ;
+    background: #F2F5F7 ;
     padding-top: 3px;
-    padding-right: 3px;
+    padding-right: 10px;
     padding-bottom: 3px;
-    padding-left: 3px;
+    padding-left: 10px;
 }
 
 .thumbnails {
-    background: #EFEFEF ;
+    background: #F2F5F7 ;
     padding: 5px;
 }
 
@@ -554,8 +543,9 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 }
 
 .topmenu {
+    font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
     line-height : 130%;
-    font-size: 100%;
+    font-size : 110%;
 }
 
 .topmenu a {
@@ -577,7 +567,7 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 
 .img_caption_table th {
     background: #D1D7DC ;
-    font-size: 100%;
+    font-size : 100%;
     color : #000000;
     padding-top: 4px;
     padding-right: 10px;
@@ -587,7 +577,7 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 }
 
 .img_caption_table td {
-    background: #EFEFEF ;
+    background: #F2F5F7 ;
     padding-top: 6px;
     padding-right: 10px;
     padding-bottom: 6px;
@@ -605,22 +595,21 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 
 .clickable_option {
     cursor : default;
+
 }
 
 .listbox_lang {
-    color: #000000;
-    background-color: #D1D7DC;
-    border: 1px solid #0E72A4;
+    color: #000666;
+    background-color: #F2F5F7;
+    border: 1px solid #D1D7DC;
     font-size: 80%;
     font-family: Arial, Helvetica, sans-serif;
     vertical-align : middle;
-
 }
 
 .pic_title {
-    color: #000000;
-    font-size: 120%;
-    font-family: Arial, Helvetica, sans-serif;
+    color: #000666;
+    font-size: 100%;
     font-weight:bold;
     text-align : center;
     padding-top:0px;
@@ -631,23 +620,16 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 }
 
 .pic_caption {
-    color: #000000;
+    color: #000666;
     font-size: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight:bold;
+    font-weight:normal;
     text-align : center;
     padding-top:0px;
     padding-bottom:0px;
     margin-top:0px;
     margin-bottom:0px;
     line-height:1.0em;
-}
-
-#cpg_main_block {
-    border: 1px solid #666666;
-    background-color:#FFFFFF;
-    margin:20px;
-    padding:20px;
+    background-image:none;
 }
 
 .important {
@@ -661,23 +643,15 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 }
 
 #cpgChooseLanguageWrapper {
-    float:left;
-    margin-left:3px;
-    margin-right:3px;
-    margin-top:0px;
-    margin-bottom:0px;
+	float:left;
 }
 
 #cpgChooseThemeWrapper {
-    float:left;
-    margin-left:3px;
-    margin-right:3px;
-    margin-top:0px;
-    margin-bottom:0px;
+	float:left;
 }
 
 .filmstrip_background {
-    background-color:#000000;
+	background-color:#000000;
 }
 
 .prev_strip {
@@ -699,14 +673,15 @@ div.fieldset span.legend {
     position: relative;
     padding: 3px;
     top: -30px;
-    background-color: #0E72A4;
-    color: #fff;
+    background-color: #8AA5B5;
+    color: #FFF;
+    font-weight: bold;
 }
 
 div.flash {
     width: 375px;
     margin: 10px 5px;
-    border-color: #D9E4FF;
+    border-color: #CCD7E0;
 }
 
 input[disabled]{ border: 1px solid #ccc } /* FF 2 Fix */
@@ -790,6 +765,7 @@ input[disabled]{ border: 1px solid #ccc } /* FF 2 Fix */
     font-family: Arial;
     text-align: left;
     white-space: nowrap;
+    color: #555;
 }
 
 a.progressCancel {
@@ -867,8 +843,8 @@ table#album_sort tr td span.editAlbum {
 }
 
 #GB_window {
-    background-color: #EFEFEF;
-    border: 5px solid #0E72A4;
+    background-color: #F2F5F7;
+    border: 5px solid #CCD7E0;
 }
 
 .external {

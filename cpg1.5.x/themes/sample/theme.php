@@ -58,7 +58,7 @@
 //    The entire block needs to be present like in Coppermine 1.3 themes
 //  ('THEME_HAS_NO_SUB_MENU_BUTTONS', 1) When present the system won't attempt to replace {BUTTONS} in the SUB_MENU template
 //    The entire block needs to be present like in Coppermine 1.3 themes
-
+define('THEME_HAS_PROGRESS_GRAPHICS', 1);
 
 /******************************************************************************
 ** Section <<<assemble_template_buttons>>> - START
@@ -136,7 +136,7 @@ if (!defined('THEME_HAS_NO_SYS_MENU_BUTTONS')) {
 
   // HTML template for template sys_menu spacer
 
-  $template_sys_menu_spacer ="::";
+  $template_sys_menu_spacer = '<img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />';
 
   // HTML template for template sys_menu buttons
 
