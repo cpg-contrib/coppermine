@@ -188,7 +188,7 @@ INSERT INTO CPG_config VALUES ('smtp_password', '');
 INSERT INTO CPG_config VALUES ('smtp_username', '');
 INSERT INTO CPG_config VALUES ('subcat_level', '2');
 INSERT INTO CPG_config VALUES ('tabs_dropdown', '1');
-INSERT INTO CPG_config VALUES ('theme', 'classic');
+INSERT INTO CPG_config VALUES ('theme', 'curve');
 INSERT INTO CPG_config VALUES ('theme_list', '0');
 INSERT INTO CPG_config VALUES ('thumbcols', '4');
 INSERT INTO CPG_config VALUES ('thumb_height', '128');
