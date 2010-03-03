@@ -225,7 +225,7 @@ $config_data = array(
       'type'          => 'select',
       'help_link'     => 'f=configuration.htm&amp;as=admin_theme_theme&amp;ae=admin_theme_theme_end',
       'options'       => form_get_foldercontent('themes/', 'folder', '', array('sample', '.svn')),
-      'default_value' => 'classic',
+      'default_value' => 'curve',
       'force_config'  => '1',
     ),
     'display_sidebar_user' => array(

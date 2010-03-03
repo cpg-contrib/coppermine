@@ -287,7 +287,7 @@ if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . 
     unset($USER['theme']);
 }
 if (!file_exists('themes/'.$CONFIG['theme'].'/theme.php')) {
-    $CONFIG['theme'] = 'classic';
+    $CONFIG['theme'] = 'curve';
 }
 $THEME_DIR = 'themes/'.$CONFIG['theme'].'/';
 require('themes/'.$CONFIG['theme'].'/theme.php');   // Load configured theme first
