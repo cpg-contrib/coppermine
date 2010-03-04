@@ -2925,7 +2925,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
 
                 $pic_title = CPGPluginAPI::filter('thumb_html_title', array($pic_title, $row));
                 $pic_title = (is_array($pic_title)) ? $pic_title[0] : $pic_title;
-				
+
             $pic_url = get_pic_url($row, 'thumb');
 
             if (!is_image($row['filename'])) {
@@ -2985,7 +2985,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
 
         theme_display_thumbnails($thumb_list, $thumb_count, $album_name, $album, $cat, $page, $total_pages, is_numeric($album), $display_tabs, 'thumb', $date);
 
-    } elseif (is_numeric($album)) {
+    } else {
         theme_no_img_to_display($album_name);
     }
 }

@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-04 [B] Fixed display of empty meta albums (thread ID 63939) {eenemeenemuu}
 2010-03-03 [C] Set theme "curve" as default theme {GauGau}
 2010-03-03 [M] Removed outdated core themes {GauGau}
 2010-03-01 [D] Added language manager section to docs {GauGau}
