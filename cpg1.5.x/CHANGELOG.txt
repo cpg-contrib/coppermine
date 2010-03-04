@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-04 [B] Fixed browse-by-date link in curve theme and missing extension for spacer (thread ID 63947) {GauGau}
 2010-03-04 [B] Fixed search issue when private albums are present (thread 63940) {eenemeenemuu}
 2010-03-04 [B] Fixed display of empty meta albums (thread ID 63939) {eenemeenemuu}
 2010-03-03 [C] Set theme "curve" as default theme {GauGau}

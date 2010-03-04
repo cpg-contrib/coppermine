@@ -136,7 +136,7 @@ $template_sub_menu = <<<EOT
 <!-- END favpics -->
 <!-- BEGIN browse_by_date -->
                         <li>
-                            <a href="{BROWSEBYDATE_TGT}" title="{BROWSEBYDATE_TITLE}" rel="nofollow"><span>{BROWSEBYDATE_ICO}{BROWSEBYDATE_LNK}</span></a>
+                            <a href="{BROWSEBYDATE_TGT}" title="{BROWSEBYDATE_TITLE}" rel="nofollow" class="greybox"><span>{BROWSEBYDATE_ICO}{BROWSEBYDATE_LNK}</span></a>
                         </li>
 <!-- END browse_by_date -->
                     </ul>
@@ -345,7 +345,7 @@ $template_breadcrumb = <<<EOT
                                     {BREADCRUMB}
                                 </td>
                                 <td class="statlink">
-                                    <img src="images/spacer" width="1" height="25" border="0" alt="" />
+                                    <img src="images/spacer.gif" width="1" height="25" border="0" alt="" />
                                 </td>
                             </tr>
                         </table>
@@ -368,7 +368,7 @@ $template_breadcrumb = <<<EOT
                                     {STATISTICS}
                                 </td>
                                 <td class="statlink">
-                                    <img src="images/spacer" width="1" height="25" border="0" alt="" />
+                                    <img src="images/spacer.gif" width="1" height="25" border="0" alt="" />
                                 </td>
                             </tr>
                         </table>
