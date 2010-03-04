@@ -241,7 +241,7 @@ if ($search_string && isset($search_params['params'])) {
 
             $sort_order = "$criteria $direction '$criteria_pid' OR $criteria = '$criteria_pid' AND pid < $pid";
 
-            $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']}
+            $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
                 WHERE $sql
                 AND ($sort_order)";
 
