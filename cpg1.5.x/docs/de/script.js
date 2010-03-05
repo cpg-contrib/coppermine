@@ -111,6 +111,7 @@ doc_toc += '              <li><a href="credits.htm#translators_documentation" cl
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="credits.htm#codebase" class="de">Verwendeter Open Source Code</a></li>\n';
+doc_toc += '          <li><a href="credits.htm#acknowledgements">Danksagungen</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="copyrights.htm" class="us_de">Lizenz und Copyright</a>\n';
