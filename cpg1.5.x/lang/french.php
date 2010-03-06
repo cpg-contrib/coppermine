@@ -733,8 +733,8 @@ $lang_admin_php['display_pic_info'] =   'Information des fichiers visible par d�
 $lang_admin_php['picinfo_movie_download_link'] =   'Afficher le lien de téléchargement des vidéos dans la partie information du fichier'; // cpg1.5
 $lang_admin_php['max_img_desc_length'] =   'Nombre maximun de caractères pour la description des fichiers'; // cpg1.5
 $lang_admin_php['max_com_wlength'] =   'Nombre maximun de caractères dans un mot'; // cpg1.5
-$lang_admin_php['display_film_strip'] =   'Afficher le Négatif'; // cpg1.5
-$lang_admin_php['max_film_strip_items'] =   'Nombre de Vignettes dans le Négatif'; // cpg1.5
+$lang_admin_php['display_film_strip'] =   'Afficher le Négatif de film'; // cpg1.5
+$lang_admin_php['max_film_strip_items'] =   'Nombre de Vignettes dans le Négatif de film'; // cpg1.5
 $lang_admin_php['slideshow_interval'] =   'Intervale du Diaporama en millisecondes'; // cpg1.5
 $lang_admin_php['milliseconds'] = 'millisecondes'; // cpg1.5
 $lang_admin_php['slideshow_interval_detail'] =   '(1 seconde = 1000 millisecondes)'; // cpg1.5
