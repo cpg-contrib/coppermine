@@ -1972,11 +1972,11 @@ if (defined('SEARCH_PHP')){
 $lang_search_php['title'] = 'Hae';
 $lang_search_php['submit_search'] = 'Hae';
 $lang_search_php['keyword_list_title'] = 'Tagilista';
-$lang_search_php['keyword_msg'] = 'Lista ei ole täydellinen. Se ei sisällä sanoja kuvien otsikoista tai kuvauksista. Kokeile hakua kokotekstistä.';
+$lang_search_php['keyword_msg'] = 'Lista ei ole täydellinen. Se ei sisällä sanoja tiedostojen otsikoista tai kuvauksista. Kokeile hakua kokotekstistä.';
 $lang_search_php['edit_keywords'] = 'Muokkaa hakusanoja';
 $lang_search_php['search in'] = 'Hae:';
 $lang_search_php['ip_address'] = 'IP -osoite';
-$lang_search_php['imgfields'] = 'Hae kuvia';
+$lang_search_php['imgfields'] = 'Hae tiedostoja';
 $lang_search_php['albcatfields'] = 'Hae albumeita ja kategorioita';
 $lang_search_php['age'] = 'Ikä';
 $lang_search_php['newer_than'] = 'Uudempi kuin';
