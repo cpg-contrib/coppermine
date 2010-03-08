@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-08 [B] Replacing hard-coded words in curve theme with translated variables (thread ID 63985) {GauGau}
 2010-03-06 [C] Updated Finnish language file (user contribution) {eenemeenemuu}
 2010-03-05 [C] Added minimum height attribute to curve theme to catter for gradient background needing more space{GauGau}
 2010-03-05 [M] Counted version number up as a preparation for the upcoming release {GauGau}

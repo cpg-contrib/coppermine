@@ -2274,7 +2274,7 @@ function theme_main_menu($which)
 function theme_admin_mode_menu()
 {
     global $cat;
-    global $lang_gallery_admin_menu, $lang_user_admin_menu;
+    global $lang_gallery_admin_menu, $lang_user_admin_menu, $lang_cat_list, $lang_common;
     global $template_gallery_admin_menu, $template_user_admin_menu;
     global $CONFIG;
     global $THEME_DIR;
@@ -2369,6 +2369,12 @@ function theme_admin_mode_menu()
                 '{SEARCHNEW_TITLE}' => $lang_gallery_admin_menu['searchnew_title'],
                 '{SEARCHNEW_LNK}' => $lang_gallery_admin_menu['searchnew_lnk'],
                 '{SEARCHNEW_ICO}' => cpg_fetch_icon('searchnew', 1),
+                '{FILES_TITLE}' => $lang_cat_list['pictures'],
+                '{FILES_LNK}' => $lang_cat_list['pictures'],
+                '{FILES_ICO}' => cpg_fetch_icon('searchnew', 1),
+                '{INFO_TITLE}' => $lang_common['information'],
+                '{INFO_LNK}' => $lang_common['information'],
+                '{INFO_ICO}' => cpg_fetch_icon('info', 1),
                 '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
                 '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
                 '{MY_PROF_ICO}' => cpg_fetch_icon('my_profile', 1),

@@ -154,7 +154,7 @@ EOT;
 $template_gallery_admin_menu = <<<EOT
 
                                 <li>
-                                    <a href="#" title="" class="firstlevel"><span class="firstlevel">{SEARCHNEW_ICO}Files</span></a>
+                                    <a href="#" title="{FILES_TITLE}" class="firstlevel"><span class="firstlevel">{FILES_ICO}{FILES_LNK}</span></a>
                                     <ul>
                                     <!-- BEGIN admin_approval -->
                                         <li><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}"><span>{UPL_APP_ICO}{UPL_APP_LNK}</span></a></li>
@@ -177,7 +177,7 @@ $template_gallery_admin_menu = <<<EOT
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#" title="" class="firstlevel"><span class="firstlevel">{VIEW_LOG_FILES_ICO}Information</span></a>
+                                    <a href="#" title="" class="firstlevel" title="{INFO_TITLE}"><span class="firstlevel">{INFO_ICO}{INFO_LNK}</span></a>
                                     <ul>
                                     <!-- BEGIN review_comments -->
                                         <li><a href="reviewcom.php" title="{COMMENTS_TITLE}"><span>{COMMENTS_ICO}{COMMENTS_LNK}</span></a></li>
