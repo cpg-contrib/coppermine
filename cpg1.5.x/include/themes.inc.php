@@ -648,13 +648,13 @@ $template_album_admin_menu = <<<EOT
         <div class="buttonlist align_right">
                 <ul>
                         <li>
-                                <a href="delete.php?id={ALBUM_ID}&amp;what=album&amp;form_token={FORM_TOKEN}&amp;timestamp={TIMESTAMP}" class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');"><span>{DELETE}</span></a>
+                                <a href="delete.php?id={ALBUM_ID}&amp;what=album&amp;form_token={FORM_TOKEN}&amp;timestamp={TIMESTAMP}" onclick="return confirm('{CONFIRM_DELETE}');"><span>{DELETE}</span></a>
                         </li>
                         <li>
-                                <a href="modifyalb.php?album={ALBUM_ID}" class="adm_menu"><span>{MODIFY}</span></a>
+                                <a href="modifyalb.php?album={ALBUM_ID}"><span>{MODIFY}</span></a>
                         </li>
                         <li>
-                                <a href="editpics.php?album={ALBUM_ID}" class="adm_menu"><span class="last">{EDIT_PICS}</span></a>
+                                <a href="editpics.php?album={ALBUM_ID}"><span class="last">{EDIT_PICS}</span></a>
                         </li>
                 </ul>
         </div>
