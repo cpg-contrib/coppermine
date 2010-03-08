@@ -175,3 +175,7 @@ div#film {
 	list-style: none;
 	float: left;
 }
+
+.buttonlist ul li a {
+	margin-right: 10px;
+}
