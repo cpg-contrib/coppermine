@@ -658,7 +658,7 @@ $template_album_admin_menu = <<<EOT
                         </li>
                 </ul>
         </div>
-        <br />
+        <div class="clearer"></div>
 
 EOT;
 /******************************************************************************
