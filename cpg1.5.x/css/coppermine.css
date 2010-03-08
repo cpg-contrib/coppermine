@@ -161,6 +161,10 @@ div#film {
     overflow:hidden; 
 }
 
+.clearer {
+    clear:both;
+}
+
 /* Styles for the standard button lists.
 ------------------------------------------------------- */
 .buttonlist ul {
