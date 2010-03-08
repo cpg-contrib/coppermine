@@ -154,10 +154,6 @@ body {
     margin-top: 5px;
 }
 
-.clearer {
-    clear: both;
-}
-
 table {
     font-size: 12px;
 }
@@ -1064,6 +1060,7 @@ main_menu {
 	background: url(images/menu_gfx.png) no-repeat 0 -30px;
 	padding: 0;
 	margin-left: 12px;
+	margin-right: 0px;
 	cursor: pointer;
 }
 

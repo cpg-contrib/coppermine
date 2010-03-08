@@ -486,7 +486,7 @@ a:hover {
 }
 
 
-.admin_menu {
+.admin_menu, .adm_menu {
     font-size: 90%;
     background-image: url(images/button_bg.gif);
     background-repeat: repeat-x;
@@ -496,7 +496,6 @@ a:hover {
     margin-bottom: 0px;
     text-align: center;
 }
-
 
 .admin_menu a {
     text-decoration: none;
