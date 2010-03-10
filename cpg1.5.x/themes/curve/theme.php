@@ -14,7 +14,7 @@ EOT;
 // HTML template for sys menu
 $template_sys_menu = <<<EOT
 
-
+<ul class="dropmenu">
 <!-- BEGIN home -->
                 <li>
                     <a href="{HOME_TGT}" title="{HOME_TITLE}" class="firstlevel"><span class="firstlevel">{HOME_ICO}{HOME_LNK}</span></a>
@@ -92,7 +92,7 @@ $template_sys_menu = <<<EOT
                     <a href="{LOGOUT_TGT}" title="{LOGOUT_LNK}" class="firstlevel"><span class="firstlevel">{LOGOUT_ICO}{LOGOUT_LNK}</span></a>
                 </li>
 <!-- END logout -->
-
+</ul>
 
 EOT;
 
@@ -100,6 +100,7 @@ EOT;
 // HTML template for sub menu
 $template_sub_menu = <<<EOT
 
+<ul class="dropmenu">
 <!-- BEGIN custom_link -->
                 <li>
                     <a href="{CUSTOM_LNK_TGT}" title="{CUSTOM_LNK_TITLE}" class="firstlevel"><span class="firstlevel">{CUSTOM_LNK_LNK}</span></a>
@@ -147,12 +148,13 @@ $template_sub_menu = <<<EOT
                     <a href="{SEARCH_TGT}" title="{SEARCH_LNK}" class="firstlevel"><span class="firstlevel">{SEARCH_ICO}{SEARCH_LNK}</span></a>
                 </li>
 <!-- END search -->
+</ul>
                 
 EOT;
 
 // HTML template for gallery admin menu
 $template_gallery_admin_menu = <<<EOT
-
+							<ul class="dropmenu">
                                 <li>
                                     <a href="#" title="{FILES_TITLE}" class="firstlevel"><span class="firstlevel">{FILES_ICO}{FILES_LNK}</span></a>
                                     <ul>
@@ -177,7 +179,7 @@ $template_gallery_admin_menu = <<<EOT
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#" title="" class="firstlevel" title="{INFO_TITLE}"><span class="firstlevel">{INFO_ICO}{INFO_LNK}</span></a>
+                                    <a href="#" class="firstlevel" title="{INFO_TITLE}"><span class="firstlevel">{INFO_ICO}{INFO_LNK}</span></a>
                                     <ul>
                                     <!-- BEGIN review_comments -->
                                         <li><a href="reviewcom.php" title="{COMMENTS_TITLE}"><span>{COMMENTS_ICO}{COMMENTS_LNK}</span></a></li>
@@ -243,12 +245,13 @@ $template_gallery_admin_menu = <<<EOT
                                     </ul>
                                 </li>
                             <!-- END usermgr -->
-
+							</ul>
+							
 EOT;
 
 // HTML template for user admin menu
 $template_user_admin_menu = <<<EOT
-
+							<ul class="dropmenu">
                                 <li>
 									<a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}" class="firstlevel"><span class="firstlevel">{MY_PROF_ICO}{MY_PROF_LNK}</span></a>
 									<ul>
@@ -257,6 +260,7 @@ $template_user_admin_menu = <<<EOT
 										<li><a href="picmgr.php" title="{PICTURES_TITLE}"><span>{PICTURES_ICO}{PICTURES_LNK}</span></a></li>
 									</ul>
 								</li>
+							</ul>
 
 EOT;
 
