@@ -78,6 +78,7 @@
 	<li>If the old file name already has gone into a prvious public release, you need to make sure that end users will not have an outdated, leftover copy of the file with the old name when performing an update. To accomplish this, you should edit <tt class="code">update.php</tt>, find the definition of the array <tt class="code">$delete_file_array</tt> and add the old file name to it.<br />
 	Additionally, you should edit <tt class="code">includes/cpg15x.files.xml</tt> and flag the old name with the status "remove".</li>
 	<li>If the old file name has <em>not</em> gone into a previous release, it's enough to edit <tt class="code">includes/cpg15x.files.xml</tt> and just remove the record that refers to the old file name.</li>
+	<li>You have to search through all files (both PHP files as well as HTML files inside the documentation) for references to the old file name and change the references as well.</li>
 </ul>
 
 <a name="dev_files_deleting"></a><h2>Deleting files<a href="#dev_files_deleting" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>

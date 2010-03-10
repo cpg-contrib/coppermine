@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-10 [D] Fixed broken images inside documentation that refered to rating {GauGau}
 2010-03-08 [C] Fixed missing space between album admin menu items (thread ID 63987) {GauGau}
 2010-03-08 [C] Fixed mis-alignement of album description in index view (thread ID 63990) {GauGau}
 2010-03-08 [B] Replacing hard-coded words in curve theme with translated variables (thread ID 63985) {GauGau}

@@ -23,7 +23,7 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 $lang_translation_info['lang_name_english'] = 'Bulgarian';
 $lang_translation_info['lang_name_native'] = 'Български';
 $lang_translation_info['lang_country_code'] = 'bg';
-$lang_translation_info['trans_name'] = 'Marian Trendafilov ';
+$lang_translation_info['trans_name'] = 'Marian Trendafilov';
 $lang_translation_info['trans_email'] = 'mariandtrendafilov@gmail.com';
 $lang_translation_info['trans_website'] = 'http://forum.coppermine-gallery.net/index.php?action=profile;u=50877';
 $lang_translation_info['trans_date'] = '2010-01-26';
