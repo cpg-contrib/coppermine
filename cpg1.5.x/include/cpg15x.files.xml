@@ -3273,6 +3273,12 @@
     <hash>c46df5c68a413dbb4a05558e7c3f4844</hash>
   </element>
   <element>
+    <fullpath>docs/images/gd.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>e3fe7d933e5ebd025e00f54ca70bc2a8</hash>
+  </element>
+  <element>
     <fullpath>docs/images/imagemagick.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
