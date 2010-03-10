@@ -2903,6 +2903,9 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
 
     $superCage = Inspekt::makeSuperCage();
 
+    $valid_meta_albums = array('lastcom', 'lastcomby', 'lastup', 'lastupby', 'topn', 'toprated', 'lasthits', 'random', 'search', 'lastalb', 'favpics', 'datebrowse');
+    $valid_meta_albums = CPGPluginAPI::filter('valid_meta_albums', $valid_meta_albums);
+
     $thumb_per_page = $thumbcols * $thumbrows;
     $lower_limit    = ($page - 1) * $thumb_per_page;
 
@@ -2985,7 +2988,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
 
         theme_display_thumbnails($thumb_list, $thumb_count, $album_name, $album, $cat, $page, $total_pages, is_numeric($album), $display_tabs, 'thumb', $date);
 
-    } else {
+    } elseif (is_numeric($album) || in_array($album, $valid_meta_albums)) {
         theme_no_img_to_display($album_name);
     }
 }

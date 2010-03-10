@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-10 [B] Fixed error message for invalid meta albums entered in 'content of the main page' (thread ID 63977) {eenemeenemuu}
 2010-03-10 [D] Fixed broken images inside documentation that refered to rating {GauGau}
 2010-03-08 [C] Fixed missing space between album admin menu items (thread ID 63987) {GauGau}
 2010-03-08 [C] Fixed mis-alignement of album description in index view (thread ID 63990) {GauGau}
