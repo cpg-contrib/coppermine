@@ -334,7 +334,7 @@ CREATE TABLE IF NOT EXISTS CPG_languages (
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, enabled, complete) VALUES ('english', 'English (US)', 'English (US)', 'us','en', 'YES', 'YES', 'YES');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, enabled, complete) VALUES ('german', 'German (informal)', 'Deutsch (Du)', 'de','de', 'YES', 'YES', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, enabled, complete) VALUES ('french', 'French', 'Fran&ccedil;ais', 'fr','fr', 'YES', 'YES', 'NO');
-
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, enabled, complete) VALUES ('luxembourgish', 'Luxembourgish','Lietuvi&#0353;kai','lt','', 'NO', 'NO', 'NO');
 
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='bulgarian';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='chinese_gb';
