@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-12 [M] Moved valid_meta_albums array to init.inc.php (thread ID 63977) {eenemeenemuu}
 2010-03-12 [C] Fixed comment input box width {eenemeenemuu}
 2010-03-12 [C] Curve theme menu and layout is now IE6 compatible {timoswelt}
 2010-03-12 [A] Added Luxembourgish to language variables as a preparation for the language file contribution {GauGau}

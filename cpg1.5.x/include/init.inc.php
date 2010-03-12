@@ -31,6 +31,9 @@ function cpgGetMicroTime()
 }
 $cpg_time_start = cpgGetMicroTime();
 
+// List of valid meta albums - needed for displaying 'no image to display' message
+$valid_meta_albums = array('lastcom', 'lastcomby', 'lastup', 'lastupby', 'topn', 'toprated', 'lasthits', 'random', 'search', 'lastalb', 'favpics', 'datebrowse');
+
 // Set a flag if register globals is on to show a warning to admin
 if (ini_get('register_globals') == '1' || strtolower(ini_get('register_globals')) == 'on') {
     $register_globals_flag = true;

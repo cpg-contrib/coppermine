@@ -2899,12 +2899,9 @@ function compute_img_size($width, $height, $max, $system_icon = false, $normal =
 function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $display_tabs)
 {
     global $CONFIG, $USER, $LINEBREAK;
-    global $lang_date, $lang_display_thumbnails, $lang_byte_units, $lang_common;
+    global $lang_date, $lang_display_thumbnails, $lang_byte_units, $lang_common, $valid_meta_albums;
 
     $superCage = Inspekt::makeSuperCage();
-
-    $valid_meta_albums = array('lastcom', 'lastcomby', 'lastup', 'lastupby', 'topn', 'toprated', 'lasthits', 'random', 'search', 'lastalb', 'favpics', 'datebrowse');
-    $valid_meta_albums = CPGPluginAPI::filter('valid_meta_albums', $valid_meta_albums);
 
     $thumb_per_page = $thumbcols * $thumbrows;
     $lower_limit    = ($page - 1) * $thumb_per_page;
