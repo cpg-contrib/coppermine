@@ -283,7 +283,7 @@ if (!USER_ID && $CONFIG['contact_form_guest_email_field'] != 0) {
             {$lang_contact_php['your_email']}
         </td>
         <td class="tableb">
-            <span id="name_wrapper" class="{$highlightFieldCSS}">
+            <span id="email_wrapper" class="{$highlightFieldCSS}">
                 <input type="text" class="textinput" name="sender_email" size="30" maxlength="200" value="{$email_address}" style="width:100%" />
             </span>
         </td>
@@ -311,7 +311,7 @@ if ($CONFIG['contact_form_subject_field'] != 0) {
             {$lang_contact_php['subject']}
         </td>
         <td class="tableb">
-            <span id="name_wrapper" class="{$highlightFieldCSS}">
+            <span id="subject_wrapper" class="{$highlightFieldCSS}">
                 <input type="text" class="textinput" name="subject" size="30" maxlength="200" value="{$subject}" style="width:100%" />
             </span>
         </td>
@@ -336,7 +336,7 @@ print <<< EOT
             {$lang_contact_php['your_message']}
         </td>
         <td class="tableb" valign="top" width="40%">
-            <span id="name_wrapper" class="{$highlightFieldCSS}">
+            <span id="message_wrapper" class="{$highlightFieldCSS}">
                 <textarea name="message" cols="50" rows="10" class="textinput">{$message}</textarea>
             </span>
         </td>
@@ -386,12 +386,12 @@ list($timestamp, $form_token) = getFormToken();
 print <<< EOT
     <tr>
         <td class="tableb" valign="top" align="right">
-            <input type="hidden" name="referer" value="$CPG_REFERER">
-			<input type="hidden" name="form_token" value="{$form_token}" />
-			<input type="hidden" name="timestamp" value="{$timestamp}" />
+            <input type="hidden" name="referer" value="$CPG_REFERER" />
+            <input type="hidden" name="form_token" value="{$form_token}" />
+            <input type="hidden" name="timestamp" value="{$timestamp}" />
         </td>
         <td class="tableb" valign="top" colspan="2">
-			<button type="submit" class="button" name="submit" id="submit" value="{$lang_common['go']}">{$icon_array['ok']}{$lang_common['go']}</button>
+            <button type="submit" class="button" name="submit" id="submit" value="{$lang_common['go']}">{$icon_array['ok']}{$lang_common['go']}</button>
         </td>
     </tr>
 EOT;
