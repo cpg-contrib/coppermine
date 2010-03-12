@@ -118,8 +118,8 @@ pre.filepath {
 
 ul, ol {
     margin-left: 5px;
-	margin-top:0px;
-	margin-bottom:0px;
+    margin-top:0px;
+    margin-bottom:0px;
     padding: 0px;
 }
 
@@ -132,7 +132,7 @@ li {
 }
 
 ul li {
-	list-style-type: disc;
+    list-style-type: disc;
 }
 
 .textinput {
@@ -160,10 +160,11 @@ ul li {
     border: 1px solid #404750;
     background-color : #5D6674;
     color:#cccccc;
-	cursor:pointer;
-	padding-left:0px;
-	padding-right:0px;
-	margin-right:2px;
+    cursor:pointer;
+    padding-left:0px;
+    padding-right:0px;
+    margin-right:2px;
+    white-space: nowrap;
 }
 
 .radio {
@@ -427,8 +428,8 @@ a:hover {
 }
 
 .icon {
-	vertical-align:middle;
-	margin-right:1px;
+    vertical-align:middle;
+    margin-right:1px;
 }
 
 .comment_date{
@@ -482,7 +483,7 @@ a:active .image{
 
 /* pseudo-classes for middlethumb links */
 a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlethumb,a:active .middlethumb{
-	border: 4px solid #72767C;
+    border: 4px solid #72767C;
 }
 
 .imageborder {
@@ -717,31 +718,31 @@ background-image:url(images/right-banner.gif);
 }
 
 #cpgChooseLanguageWrapper {
-	float:left;
-	margin-left:3px;
-	margin-right:3px;
+    float:left;
+    margin-left:3px;
+    margin-right:3px;
 }
 
 #cpgChooseThemeWrapper {
-	float:left;
-	margin-left:3px;
-	margin-right:3px;
+    float:left;
+    margin-left:3px;
+    margin-right:3px;
 }
 
 .hardwired_selector_wrapper {
-	text-align:center;
+    text-align:center;
 }
 
 .filmstrip_background {
-	background-color:#000000;
+    background-color:#000000;
 }
 
 .prev_strip {
-	text-align: left;
+    text-align: left;
 }
 
 .next_strip{
-	text-align: right;
+    text-align: right;
 }
 
 /** Swfupload css **/
@@ -882,13 +883,13 @@ table#album_sort tr td {
 }
 
 table#album_sort tr td span.editAlbum {
-	margin-left: 100px;
-	font-size: 10px;
-	line-height: 100%;
-	text-decoration: underline;
-	cursor: pointer;
-	display: none;
-	color: #FF0000;
+    margin-left: 100px;
+    font-size: 10px;
+    line-height: 100%;
+    text-decoration: underline;
+    cursor: pointer;
+    display: none;
+    color: #FF0000;
 }
 
 .cpg_message_info, .cpg_message_success, .cpg_message_warning, .cpg_message_error, .cpg_message_validation {

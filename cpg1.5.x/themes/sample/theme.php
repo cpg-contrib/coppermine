@@ -866,7 +866,6 @@ EOT;
 /******************************************************************************
 ** Section <<<$template_img_navbar>>> - END
 ******************************************************************************/
-} //{THEMES}
 
 
 
@@ -1126,7 +1125,7 @@ $template_add_your_comment = <<<EOT
                                 <td class="tableb tableb_alternate">
                                 {COMMENT}
                                 </td>
-                                <td class="tableb tableb_alternate">
+                                <td width="100%" class="tableb tableb_alternate">
                                 <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
                                 </td>
 <!-- END input_box_no_smilies -->
@@ -3628,7 +3627,6 @@ function theme_html_img_nav_menu() {
 /******************************************************************************
 ** Section <<<theme_html_img_nav_menu>>> - END
 ******************************************************************************/
-}  //{THEMES}
 
 
 

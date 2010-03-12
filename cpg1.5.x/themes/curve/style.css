@@ -18,36 +18,36 @@
 
 body {
     background: #E9EEF2 url(images/backdrop.png) repeat-x;
-	font-family : Verdana, Arial, Helvetica, sans-serif;
+    font-family : Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     color : Black;
     margin: 0px;
-	padding-top: 0px;
-	padding-right: 5%;
-	padding-bottom: 15px;
-	padding-left: 5%;
+    padding-top: 0px;
+    padding-right: 5%;
+    padding-bottom: 15px;
+    padding-left: 5%;
 }
 
 #cpg_logo_block_outer  {
-	background-color: #fefefe;
-	background-image: url(images/main_block.png);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: 0pt -240px;
-	padding-left: 20px;
+    background-color: #fefefe;
+    background-image: url(images/main_block.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 0pt -240px;
+    padding-left: 20px;
 }
 
 #cpg_logo_block_outer div.cpg_logo_block_inner {
-	background-color: transparent;
-	background-image: url(images/main_block.png);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: 100% -240px;
-	display: block;
-	padding-top: 5px;
-	padding-right: 20px;
-	padding-bottom: 0pt;
-	padding-left: 0px;
+    background-color: transparent;
+    background-image: url(images/main_block.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 100% -240px;
+    display: block;
+    padding-top: 5px;
+    padding-right: 20px;
+    padding-bottom: 0pt;
+    padding-left: 0px;
 }
 
 #cpg_logo_block_logo {
@@ -61,93 +61,93 @@ body {
 }
 
 #cpg_header_block_outer  {
-	background-color: #fefefe;
-	background-image: url(images/main_block.png);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: 0pt -633px;
-	padding-left: 20px;
+    background-color: #fefefe;
+    background-image: url(images/main_block.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 0pt -633px;
+    padding-left: 20px;
 }
 
 #cpg_header_block_outer div.cpg_header_block_inner {
-	background-color: transparent;
-	background-image: url(images/main_block.png);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: 100% -633px;
-	display: block;
-	padding-top: 5px;
-	padding-right: 20px;
-	padding-bottom: 0pt;
-	padding-left: 0px;
-	min-height: 95px;
+    background-color: transparent;
+    background-image: url(images/main_block.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 100% -633px;
+    display: block;
+    padding-top: 5px;
+    padding-right: 20px;
+    padding-bottom: 0pt;
+    padding-left: 0px;
+    min-height: 95px;
 }
 
 #cpg_main_block_outer  {
-	background-color: #ffffff;
-	background-image: url(images/frame_repeat.png);
-	background-repeat: repeat-y;
-	background-attachment: scroll;
-	background-position: left top;
-	padding-left: 20px;
+    background-color: #ffffff;
+    background-image: url(images/frame_repeat.png);
+    background-repeat: repeat-y;
+    background-attachment: scroll;
+    background-position: left top;
+    padding-left: 20px;
 }
 
 #cpg_main_block_outer div.cpg_main_block_inner {
-	background-color: transparent;
-	background-image: url(images/frame_repeat.png);
-	background-repeat: repeat-y;
-	background-attachment: scroll;
-	background-position: right center;
-	display: block;
-	padding-top: 0px;
-	padding-right: 20px;
-	padding-bottom: 0px;
-	padding-left: 0pt;
+    background-color: transparent;
+    background-image: url(images/frame_repeat.png);
+    background-repeat: repeat-y;
+    background-attachment: scroll;
+    background-position: right center;
+    display: block;
+    padding-top: 0px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 0pt;
 }
 
 #cpg_footer_block_outer  {
-	text-align: center;
-	background-color: transparent;
-	background-image: url(images/main_block.png);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: 0pt -1156px;
-	padding-left: 20px;
+    text-align: center;
+    background-color: transparent;
+    background-image: url(images/main_block.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 0pt -1156px;
+    padding-left: 20px;
 }
 
 #cpg_footer_block_outer div.cpg_footer_block_inner {
-	background-color: transparent;
-	background-image: url(images/main_block.png);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: 100% -1156px;
-	display: block;
-	padding-top: 60px;
-	padding-right: 0pt;
-	padding-bottom: 0pt;
-	padding-left: 0pt;
+    background-color: transparent;
+    background-image: url(images/main_block.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 100% -1156px;
+    display: block;
+    padding-top: 60px;
+    padding-right: 0pt;
+    padding-bottom: 0pt;
+    padding-left: 0pt;
 }
 
 .cpg_starttable_outer  {
-	background-color: transparent;
-	background-image: url(images/main_block.png);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: 0pt -200px;
-	padding-left: 20px;
+    background-color: transparent;
+    background-image: url(images/main_block.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 0pt -200px;
+    padding-left: 20px;
 }
 
 .cpg_starttable_outer div.cpg_starttable_inner {
-	background-color: transparent;
-	background-image: url(images/main_block.png);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: 100% -200px;
-	display: block;
-	padding-top: 3px;
-	padding-right: 0pt;
-	padding-bottom: 3px;
-	padding-left: 0pt;
+    background-color: transparent;
+    background-image: url(images/main_block.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 100% -200px;
+    display: block;
+    padding-top: 3px;
+    padding-right: 0pt;
+    padding-bottom: 3px;
+    padding-left: 0pt;
 }
 
 #sysmenu {
@@ -256,28 +256,29 @@ a:active {
 
 .button, .admin_menu {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-	color: white;
-	background-color:#5A6C85;    
-	border: 1px solid #5A6C85;
+    color: white;
+    background-color:#5A6C85;    
+    border: 1px solid #5A6C85;
     cursor:pointer;
     padding-left:0px;
     padding-right:0px;
     margin-right:2px;
-	-moz-border-radius: 5px;
+    -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }
 
 .button {
-	font-size: 0.8em;
+    font-size: 0.8em;
+    white-space: nowrap;
 }
 
 a.button, a.admin_menu {
-	color:white;
-	text-decoration:none;
+    color:white;
+    text-decoration:none;
 }
 
 a:hover.button, a:hover.admin_menu {
-	background-color: #FD9604;
+    background-color: #FD9604;
 }
 
 .maintable {
@@ -290,11 +291,11 @@ a:hover.button, a:hover.admin_menu {
     padding-right: 10px;
     padding-bottom: 3px;
     padding-left: 10px;
-	color: white;
-	font-family: arial,helvetica,sans-serif;
-	font-size: 1.1em;
-	font-weight: bold;
-	background: url(images/main_block.png) no-repeat -10px -160px;
+    color: white;
+    font-family: arial,helvetica,sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    background: url(images/main_block.png) no-repeat -10px -160px;
 }
 
 .tableh2 {
@@ -475,7 +476,7 @@ a:hover.button, a:hover.admin_menu {
     border-width:1px;
     border-color:#000000;
     margin:2px;
-	-moz-border-radius: 5px;
+    -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }
 
@@ -719,11 +720,11 @@ a:link .middlethumb,a:visited .middlethumb,a:focus .middlethumb,a:hover .middlet
 }
 
 .prev_strip {
-	text-align: left;
+    text-align: left;
 }
 
 .next_strip{
-	text-align: right;
+    text-align: right;
 }
 
 /** Swfupload css **/
@@ -877,7 +878,7 @@ table#album_sort tr td span.editAlbum {
     padding:15px 10px 15px 50px;
     background-repeat: no-repeat;
     background-position: 10px center;
-	-moz-border-radius: 5px;
+    -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }
 
@@ -927,211 +928,211 @@ table#album_sort tr td span.editAlbum {
 
 /* Styles for the standard dropdown menus. */
 main_menu {
-	padding: 0 0 0 0.5em;
-	float: left;
-	margin: 0;
-	width: 98%;
+    padding: 0 0 0 0.5em;
+    float: left;
+    margin: 0;
+    width: 98%;
 }
 
 .dropmenu, .dropmenu ul {
-	list-style: none;
-	line-height: 1em;
-	padding: 0;
-	margin: 0;
+    list-style: none;
+    line-height: 1em;
+    padding: 0;
+    margin: 0;
 }
 
 .dropmenu {
-	padding: 0 0.5em;
+    padding: 0 0.5em;
 }
 
 .dropmenu a {
-	display: block;
-	color: #000000;
-	text-decoration: none;
+    display: block;
+    color: #000000;
+    text-decoration: none;
 }
 
 .dropmenu a span {
-	display: block;
-	padding: 0 0 0 5px;
-	font-size: 0.9em;
+    display: block;
+    padding: 0 0 0 5px;
+    font-size: 0.9em;
 }
 
 /* the backgrounds first level only*/
 .dropmenu li a.firstlevel {
-	margin-right: 8px;
+    margin-right: 8px;
 }
 
 .dropmenu li a.firstlevel span.firstlevel {
-	display: block;
-	position: relative;
-	left: -5px;
-	padding-left: 5px;
-	height: 22px;
-	line-height: 19px;
+    display: block;
+    position: relative;
+    left: -5px;
+    padding-left: 5px;
+    height: 22px;
+    line-height: 19px;
 }
 
 .dropmenu li {
-	float: left;
-	padding: 0;
-	margin: 0;
-	position: relative;
+    float: left;
+    padding: 0;
+    margin: 0;
+    position: relative;
 }
 
 .dropmenu li ul {
-	z-index: 90;
-	display: none;
-	position: absolute;
-	width: 19.2em;
-	font-weight: normal;
-	border-bottom: solid 1px #999;
-	background: url(images/menu_gfx.png) 0 -100px no-repeat;
-	padding: 7px 0 0 0;
+    z-index: 90;
+    display: none;
+    position: absolute;
+    width: 19.2em;
+    font-weight: normal;
+    border-bottom: solid 1px #999;
+    background: url(images/menu_gfx.png) 0 -100px no-repeat;
+    padding: 7px 0 0 0;
 }
 
 .dropmenu li li {
-	width: 19em;
-	margin: 0;
-	border-left: solid 1px #999;
-	border-right: solid 1px #999;
+    width: 19em;
+    margin: 0;
+    border-left: solid 1px #999;
+    border-right: solid 1px #999;
 }
 
 .dropmenu li li a span {
-	display: block;
-	padding: 8px;
+    display: block;
+    padding: 8px;
 }
 
 .dropmenu li ul ul {
-	margin: -1.8em 0 0 13em;
+    margin: -1.8em 0 0 13em;
 }
 
 /* the active button */
 .dropmenu li a.active {
-	background: url(images/menu_gfx.png) no-repeat 100% 0;
-	color: #ffffff;
-	font-weight: bold;
+    background: url(images/menu_gfx.png) no-repeat 100% 0;
+    color: #ffffff;
+    font-weight: bold;
 }
 
 .dropmenu li a.active span.firstlevel {
-	background: url(images/menu_gfx.png) no-repeat 0 0;
+    background: url(images/menu_gfx.png) no-repeat 0 0;
 }
 
 /* the hover effects */
 .dropmenu li a.firstlevel:hover {
-	background: url(images/menu_gfx.png) no-repeat 100% -30px;
-	color: #ffffff;
-	cursor: pointer;
-	text-decoration: none;
+    background: url(images/menu_gfx.png) no-repeat 100% -30px;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .dropmenu li a.firstlevel:hover span.firstlevel {
-	background: url(images/menu_gfx.png) no-repeat 0 -30px;
+    background: url(images/menu_gfx.png) no-repeat 0 -30px;
 }
 
 /* the hover effects on level2 and 3*/
 .dropmenu li li a:hover {
-	background: #D4DBE4;
-	color: #000;
-	text-decoration: none;
+    background: #D4DBE4;
+    color: #000;
+    text-decoration: none;
 }
 
 .dropmenu li:hover ul ul, .dropmenu li:hover ul ul ul {
-	top: -999em;
+    top: -999em;
 }
 
 .dropmenu li li:hover ul {
-	top: auto;
+    top: auto;
 }
 
 .dropmenu li:hover ul {
-	display: block;
+    display: block;
 }
 
 .dropmenu li li.additional_items {
-	background-color: #fff;
+    background-color: #fff;
 }
 
 /* Styles for the standard button lists.
 ------------------------------------------------------- */
 
 .buttonlist ul li a {
-	display: block;
-	font-size: 0.8em;
-	color: white;
-	background: url(images/menu_gfx.png) no-repeat 0 -30px;
-	padding: 0;
-	margin-left: 12px;
-	margin-right: 0px;
-	cursor: pointer;
+    display: block;
+    font-size: 0.8em;
+    color: white;
+    background: url(images/menu_gfx.png) no-repeat 0 -30px;
+    padding: 0;
+    margin-left: 12px;
+    margin-right: 0px;
+    cursor: pointer;
 }
 
 .buttonlist ul li a:hover {
-	background: url(images/menu_gfx.png) no-repeat 0 0;
-	color: #fff;
-	text-decoration: none;
+    background: url(images/menu_gfx.png) no-repeat 0 0;
+    color: #fff;
+    text-decoration: none;
 }
 
 .buttonlist ul li a span {
-	background: url(images/menu_gfx.png) no-repeat 100% -30px;
-	display: block;
-	height: 24px;
-	line-height: 20px;
-	padding: 0 8px 0 0;
-	position: relative;
-	right: -8px;
+    background: url(images/menu_gfx.png) no-repeat 100% -30px;
+    display: block;
+    height: 24px;
+    line-height: 20px;
+    padding: 0 8px 0 0;
+    position: relative;
+    right: -8px;
 }
 
 .buttonlist ul li a:hover span {
-	background: url(images/menu_gfx.png) no-repeat 100% 0;
+    background: url(images/menu_gfx.png) no-repeat 100% 0;
 }
 
 /* the active one */
 .buttonlist ul li a.active {
-	background: url(images/menu_gfx.png) no-repeat 0 -60px;
-	color: black;
-	font-weight: bold;
+    background: url(images/menu_gfx.png) no-repeat 0 -60px;
+    color: black;
+    font-weight: bold;
 }
 
 .buttonlist ul li a.active span {
-	background: url(images/menu_gfx.png) no-repeat 100% -60px;
+    background: url(images/menu_gfx.png) no-repeat 100% -60px;
 }
 
 .buttonlist ul li a.active {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 .buttonlist ul li a.active:hover {
-	color: #ddf;
+    color: #ddf;
 }
 
 .align_top ul li a, .align_bottom ul li a {
-	margin: 0 12px 0 0;
+    margin: 0 12px 0 0;
 }
 
 .rounded_menu {
-	display: block;
-	font-size: 0.8em;
-	color: white;
-	background: url(images/menu_gfx.png) no-repeat 0 -30px;
-	padding: 0;
-	cursor: pointer;
+    display: block;
+    font-size: 0.8em;
+    color: white;
+    background: url(images/menu_gfx.png) no-repeat 0 -30px;
+    padding: 0;
+    cursor: pointer;
 }
 
 .rounded_menu span {
-	background: url(images/menu_gfx.png) no-repeat 100% -30px;
-	display: block;
-	height: 24px;
-	line-height: 20px;
-	padding: 0 8px 0 0;
-	position: relative;
-	right: -8px;
+    background: url(images/menu_gfx.png) no-repeat 100% -30px;
+    display: block;
+    height: 24px;
+    line-height: 20px;
+    padding: 0 8px 0 0;
+    position: relative;
+    right: -8px;
 }
 
 a:hover.rounded_menu  {
-	background: url(images/menu_gfx.png) no-repeat 0 0;
-	color: #fff;
-	text-decoration: none;
+    background: url(images/menu_gfx.png) no-repeat 0 0;
+    color: #fff;
+    text-decoration: none;
 }
 
 a:hover.rounded_menu span {
-	background: url(images/menu_gfx.png) no-repeat 100% 0;
+    background: url(images/menu_gfx.png) no-repeat 100% 0;
 }

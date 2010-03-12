@@ -265,6 +265,7 @@ ul li {
     padding-left:0px;
     padding-right:0px;
     margin-right:2px;
+    white-space: nowrap;
 }
 
 .radio {
@@ -736,11 +737,11 @@ a:hover {
 }
 
 .prev_strip {
-	text-align: left;
+    text-align: left;
 }
 
 .next_strip{
-	text-align: right;
+    text-align: right;
 }
 
 /** Swfupload css **/
