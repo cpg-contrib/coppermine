@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-12 [C] Curve theme menu and layout is now IE6 compatible {timoswelt}
 2010-03-12 [A] Added Luxembourgish to language variables as a preparation for the language file contribution {GauGau}
 2010-03-10 [B] Fixed validation issue with curve theme (thread ID 64041) {GauGau}
 2010-03-10 [D] Added GD logo {GauGau}
