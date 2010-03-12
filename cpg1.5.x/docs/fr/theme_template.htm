@@ -168,7 +168,32 @@ Un bon exemple est le conteneur <tt class="code">{GAL_DESCRIPTION}</tt> - Il aff
     <td valign="top"><a name="theme_template_language_select_flags"></a>{LANGUAGE_SELECT_FLAGS}<a href="#theme_template_language_select_flags" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">
       <strong>Sélecteur de Langue (drapeaux)</strong><br />
-      Affiche une ligne de drapeaux qui représentent les <a href="languages.htm">langues</a> disponibles pour l'utilisateur final.
+      Affiche une ligne de drapeaux qui représentent les <a href="languages.htm">langues</a> disponibles pour l'utilisateur final.<br />
+	  The language selector list will look like this:<br />
+		<div class="cpg_example">Choose your language: 
+		<a href="#"><img src="../../images/flags/cn.png" border="0" width="16" height="11" alt="" title="Chinese simplified / &#20013;&#25991; - &#31616;&#20307;" /></a>
+
+		<a href="#"><img src="../../images/flags/us.png" border="0" width="16" height="11" alt="" title="English (US)" /></a>
+
+		<a href="#"><img src="../../images/flags/fr.png" border="0" width="16" height="11" alt="" title="French / Français" /></a>
+
+		<a href="#"><img src="../../images/flags/de.png" border="0" width="16" height="11" alt="" title="German (informal) / Deutsch (Du)" /></a>
+
+		<a href="#"><img src="../../images/flags/lu.png" border="0" width="16" height="11" alt="" title="Luxembourgish / Lëtzebuergesch" /></a>
+
+		<a href="#"><img src="../../images/flags/reset.png" border="0" width="16" height="11" alt="" title="Default language" /></a>
+		</div>
+	  Of course (unilke this example) it will actually do something when a new selection is made: the gallery language will change.	
+	  <div class="cpg_message_info">
+	  Back in cpg1.4.x, the token used to reside in all themes that came with coppermine out of the box and there used to be an option in coppermine's config to determine wether you wanted the language selector to appear or not. With cpg1.5.x the selector has been dropped from the themes and the option from the config panel, so you explicitely have to add the token to your template.html file to see the selector. By default, Coppermine does <em>not</em> display the language selector. The reason for the decision of the coppermine dev team to drop the selector out of the box is the fact that Coppermine's built-in mechanisms to detect a visitor's prefered <a href="languages.htm#how">language</a> works so well that there is hardly ever a need to offer a language selector to your visitors. Only in the rare cases when you're convinced that your visitor's browser language probably is not the language they would prefer to see your gallery in should you provide a language selector.
+	  </div>
+	  <div class="cpg_example">This is for example the case for Luxembourg: the Grand Duchy of Luxembourg is a small country in Europe with three official languages:
+		<ul>
+			<li>French</li>
+			<li>German</li>
+			<li>Luxembourgish</li>
+		</ul>
+		With less then half a million inhabitants (and probably far less people actuall speaking Luxembourgish each day) the major browser creators don't provide a browser with Luxembourgish as prefered language. Subsequently, if your gallery catters for a Luxembourgian audience, it might make sense to add a language selector by editing <tt class="code">themes/yourtheme/template.html</tt> and adding somewhere (preferably near the top of the screen) that allows your visitors to actually see the gallery's navigation in Luxembourgish (provided that there is a language file in Luxembourgish of course).</div>	  
     </td>
     <td valign="top">aucun</td>
     <td valign="top">optionel</td>
@@ -178,7 +203,24 @@ Un bon exemple est le conteneur <tt class="code">{GAL_DESCRIPTION}</tt> - Il aff
     <td valign="top"><a name="theme_template_language_select_list"></a>{LANGUAGE_SELECT_LIST}<a href="#theme_template_language_select_list" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">
       <strong>Sélecteur de Langue (liste)</strong><br />
-      Affiche une liste déroulante des <a href="languages.htm">langues</a> disponibles pour l'utilisateur final.
+      Affiche une liste déroulante des <a href="languages.htm">langues</a> disponibles pour l'utilisateur final.<br />
+	  The language selector list will look like this:
+	  <div class="cpg_example">
+		<select name="cpgLanguageSelect">
+		<option value="bulgarian" >Bulgarian (&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;)</option>
+		<option value="chinese_gb" >Chinese simplified (&#20013;&#25991; - &#31616;&#20307;)</option>
+		<option value="english"  selected="selected">English (US)</option>
+		<option value="english_gb" >English (British)</option>
+		<option value="finnish" >Finnish (Suomea)</option>
+		<option value="french" >French (Fran&ccedil;ais)</option>
+		<option value="german">German (Deutsch)</option>
+		<option value="greek" >Greek (&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;)</option>
+		<option value="polish" >Polish (Polski)</option>
+		<option value="russian" >Russian (&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;)</option>
+		</select>
+	  </div>
+	  Of course (unilke this example) it will actually do something when a new selection is made: the gallery language will change.	
+	  <div class="cpg_message_info">It's merely a matter of taste if you use the language selector with flags or the one that displays a dropdown list of available languages, so basically what has been said above about <a href="#theme_template_language_select_flags">{LANGUAGE_SELECT_FLAGS}</a> applies to {LANGUAGE_SELECT_LIST} as well.</div>
     </td>
     <td valign="top">aucun</td>
     <td valign="top">optionel</td>
