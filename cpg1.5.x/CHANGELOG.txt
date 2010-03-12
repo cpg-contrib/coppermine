@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-12 [C] Further improved curve IE6 compatibility {timoswelt}
 2010-03-12 [M] Moved valid_meta_albums array to init.inc.php (thread ID 63977) {eenemeenemuu}
 2010-03-12 [C] Fixed comment input box width {eenemeenemuu}
 2010-03-12 [C] Curve theme menu and layout is now IE6 compatible {timoswelt}
