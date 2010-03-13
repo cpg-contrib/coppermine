@@ -78,6 +78,8 @@ if ($superCage->get->keyExists('search')) {
     foreach ($allowed as $key) {
         if ($superCage->get->keyExists($key)) {
             $USER['search']['params'][$key] = $superCage->get->getEscaped($key);
+        } else {
+            unset($USER['search']['params'][$key]);
         }
     }
     

@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-13 [B] Fixed search issue (thread ID 64087) {eenemeenemuu}
 2010-03-12 [D] Added details about language selectors to documentation {GauGau}
 2010-03-12 [C] Fixed contact form validation issues (thread ID 64074) {eenemeenemuu}
 2010-03-12 [C] Further improved curve IE6 compatibility {timoswelt}
