@@ -82,9 +82,96 @@ The dropdown list determines the primary group the user is in, the checkboxes be
 The first field (a dropdown field) determines the primary user group. It determines the status of a user. You should set it to &quot;Administrator&quot; (for users you want to assign admins powers to) or &quot;Registered&quot;.<br />
 Additional (secondary) group membership can be assigned using the checkboxes beneath the dropdown field. Here, all your custom groups (that you can create and manage using the <a href="groups.htm#group_cp">group control panel</a>) should show as well as the core groups (the ones that come with coppermine out of the box and can't be deleted). Assign additional group membership to your users here. Privileges for a particular user inherited from group membership are added: the least restrictive permissions are taken into account.</p>
 <p class="cpg_example">If you want your registered users to be capable of viewing the gallery only, and only privileged users of your custom user group "photographers" are allowed to actually upload files, make all your users members of the built-in group "registered" (by default, they already are). Only for user you want to give the privilege to upload, tick the check box "photographers" as secondary group. Then go to your groups control panel and disallow uploads for the registered group there, but allow uploads for the custom group "photographers".</p>
-<p class="cpg_message_info">Note: the button "album permission by group" beneath the checkboxes is <strong>not</strong> meant to <strong>assign</strong> album permissions, but only to <strong>check</strong> the permissions set. You can only assign particular album permissions on the <a href="albums.htm#album_prop">album properties</a> screen.<br clear="all" /></p>
+<p class="cpg_message_info">Note: the button "album permission by group" beneath the checkboxes is <strong>not</strong> meant to <strong>assign</strong> album permissions, but only to <strong>check</strong> the permissions set. You can only <em>assign</em> particular album permissions on the <a href="albums.htm#album_prop">album properties</a> screen.<br clear="all" /></p>
 <a name="user_cp_group_end"></a>
 <a name="user_cp_end"></a>
+
+<a name="lost_password"></a><h2>Lost passwords<a href="#lost_password" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+There are many passwords that you have to memorize, and there are many issues that are related to password issues. Not all of them are related to Coppermine though, so they will be discussed in brevity here. If you need to figure out details on password issues that are not related to Coppermine in itself, it's a good idea to use a search engine and/or your webhost for support.
+
+<div class="indent">
+    <a name="lost_password_cpg_user_account"></a><h3>Coppermine user account password<a href="#lost_password_cpg_user_account" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    There is no difference in this aspect between an admin and a non-admin user account: they both work the same way: you have to log in providing a user name (or an email address if you enabled the <a href="configuration.htm#admin_user_login_method_start">corresponding option in Coppermine's config</a>) and a password. If this authentification has been successfull, i.e. if Coppermine "knows" you, Coppermine will determine if your user account belongs to the <a href="groups.htm#group_cp_administrators">admin group</a> or not. Based on this group membership you will have different privileges.<br />
+    There is however a basic difference between Coppermine running in standalone mode (out of the box it runs in standalone mode) and Coppermine being <a href="bridging.htm">bridged</a> with another application:
+    <div class="indent">
+    <a name="lost_password_cpg_user_account_standalone"></a><h4>Coppermine in standalone mode<a href="#lost_password_cpg_user_account_standalone" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    The database table that Coppermine users are being stored in does <strong>not</strong> contain the actual user's password in plain text, but only an MD5-encrypted password <a href="http://en.wikipedia.org/wiki/Hash_function" rel="external" class="external">hash</a>. Think of such a hash as a checksum: in fact it's the result of a calculation: when the password is being entered on Coppermine's login screen into the form there, the browser sends the password the visitor has entered to the server. The server then calculates the hash that results out of the password the visitor has entered and finally compares the hash stored inside the database table against the has that was just calculated. If those hash values match, the password is considered to be correct and the user is authentificated, i.e. a cookie is being stored on the visitor's computer that basically says "the user with the user name XYZ has successfully authentificated". Again, no password is being stored anywhere.<br />
+    With this being said it should be obvious that you can't look the password up anywhere, simply because it isn't actually stored anywhere.<br />
+    But then, we're all human, so it might happen that you (as someone who runs a Coppermine gallery) or your users forget your password for whatever reason. That's why there is a mechanism to make sure you can log in again. Sadly, you can not just send a password reminder inside an email to the user, simply because the server is not aware of the password. That's why there is a link on Coppermine's login screen that is named &quot;I forgot my password&quot;. If a visitor clicks on it, he/she will be sent to a password reminder screen where he/she can enter his/her email address. But wait a minute! Haven't you just said that the server doesn't know the password and therefore it can't send it by email? And yes, that's true. Actually, it's a three-step process: the visitor can enter his/her email address. If a user with that email address exists in Coppermine's user table, an email is being sent to that address that basically contains a link that the recipient of the email needs to click on to verify that he actually has forgotten his/her password and wants to request a new one. This is meant as a pre-caution against vandalism to make sure nobody get's locked out because someone else requested a new password for him. The link inside the email contains a token that can not be guessed or made up: it's unique. Only if that link is actually clicked the password reminder is triggered. The server then assigns a new random password for the account that corresponds to the email address and sends that new password in another email. With that new password inisde that second email the user can log in again.<br />
+    This is a very elegant and fool-proof process once it is set up properly, but there are of course some things that can go wrong as well:
+    <ul>
+        <li>The user needs to know the email address he used to create his user account</li>
+        <li>The user needs to have access to the email address, i.e. he needs to remember the non-Coppermine password for the email account</li>
+        <li>The email address that corresponds to the user account needs to be populated in the first place, which might not be the case for the admin if he failed to provide one for his own account</li>
+        <li>The server needs to be configured properly to actually send emails</li>
+        <li>The email sent by the server might mistakenly be blocked by third-party spam filtering mechanisms</li>
+    </ul>
+    If this is the case for you, i.e. if you have forgotten Coppermine's admin account, here are some things to do:
+    <ul>
+        <li>
+            If you have access to <a href="dev_tools.htm#dev_tools_phpmyadmin">phpMyAdmin</a>, simply set a new password for your Coppermine user account. Here are the instructions that were originally posted as a user contribution on the <a href="http://forum.coppermine-gallery.net/index.php/topic,52213.0.html" rel="external" class="external">Coppermine support board</a>:
+            <div class="cpg_message_success">
+                Once you are in the phpMyAdmin you will see the databases on the left. Click on the database that belongs to coppermine. On the left you will see the tables.<br />
+                Click on the table named <tt class="code">XXX_users</tt>, where XXX is the table prefix that you have chosen when installing Coppermine in the first place (out of the box, the prefix is <tt class="code">cpg15x_</tt>, so the default table name should be <tt class="code">cpg15x_users</tt>). You must click on the icon to the left of the text or you won't get the right screen.<br />
+                If you lost your admin password look under the column titled user_id. Look for the 1. That is admin account that you have created during initial install. To the left of that column is a pencil icon (that means edit). Click on it.<br />
+                You now should have fields you can write in.<br />
+                To the right of the row called <tt class="code">user_pass</tt> is the encrypted password. Erase that and fill it with 
+                <input type="text" readonly="readonly" name="admin_password" value="21232f297a57a5a743894a0e4a801fc3" size="32" maxlength="32" class="small" />.<br />
+                That will make the password <tt class="code">admin</tt>. Do not under any circumstances leave the password field blank. Go to the bottom of the page and just above the light bulb it should say <tt class="code">Save</tt>. If it does click the <tt class="code">go</tt> button. Exit out of phpMyAdmin by going to the exit icon at the upper left corner.<br />
+                Type in the URL of your Coppermine page. Login with your user name and the password <tt class="code">admin</tt>. Once you have successfully logged in, you should of course change the password to something else instead of the phrase <tt class="code">admin</tt>. Click on "My Profile", scroll to the bottom of the page and click on "Change my password". Enter the old password (<tt class="code">admin</tt>) and your new password (you need to enter that twice) and submit the form. If all went well you will see a message that says so.<br />
+                You can do the same process for users: to access a user's profile, you log in as admin, go to the user control panel, edit the user account by clicking the edit icon next to the user's name and then enter a new password into the corresponding field.
+            </div>
+            Another alternative using phpMyAdmin without changing anything around is to use a <a href="http://en.wikipedia.org/wiki/Rainbow_table" rel="external" class="external">rainbow table</a> site and search for the password that matches to the hash that you can retrieve using phpMyAdmin.
+        </li>
+        <li>
+            If you don't have access to phpMyAdmin, you can do the following to create a new admin account:
+                <ul>
+                    <li>Use your favorite <a href="dev_tools.htm#dev_tools_editor">plain text editor</a> (notepad.exe is fine) to create a plain text file with this content:
+                                        <textarea class="samplecode" rows="10" style="width:100%">&lt;?php
+define('IN_COPPERMINE', true);
+require('include/init.inc.php');
+define('ADMIN_PHP', true);
+$sql="UPDATE `{$CONFIG['TABLE_USERS']}` SET user_name='tempadmin', user_active='YES', user_password='098f6bcd4621d373cade4e832627b4f6' WHERE user_id='1'";
+cpg_db_query($sql);
+pageheader('Create admin user');
+starttable('-1', 'Please delete this file after account creation!', 2);
+echo &lt;&lt;&lt; EOT
+    &lt;tr&gt;
+        &lt;td class="tableh2"&gt;
+            Username:
+        &lt;/td&gt;
+        &lt;td class="tableb"&gt;
+            tempadmin
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td class="tableh2"&gt;
+            Password:
+        &lt;/td&gt;
+        &lt;td class="tableb"&gt;
+            test
+        &lt;/td&gt;
+    &lt;/tr&gt;
+EOT;
+endtable();
+pagefooter();
+?&gt;</textarea>
+                    
+                    </li>
+                    <li>Name that file <tt class="code">adminpass.php</tt> and upload it to your webserver into the Coppermine root folder</tt></li>
+                    <li>Run the file in your browser by entering the URL of the file you just uploaded (something like <tt class="code">http://yourdomain.tld/your_coppermine_folder/adminpass.php</tt>) into the address bar of your browser</li>
+                    <li>Important: delete the file adminpass.php from your server - it's a great danger to your site if you don't!</li>
+                    <li>Log in with the new user that the script has created for you.</li>
+                </ul>
+        </li>
+    </ul>  
+    <a name="lost_password_cpg_user_account_bridged"></a><h4>Coppermine bridged<a href="#lost_password_cpg_user_account_bridged" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    When Coppermine is bridged, the user management of the other application that it's bridged with "takes over", so if a visitor clicks on the login link within Coppermine he is being redirected to your bridging app's login screen. After a successfull login there, he/she might be sent back to your Coppermine-driven gallery (if your bridging app supports redirection after logging in). Coppermine is only "aware" that the user has been authentificated in your bridging app; Coppermine is not aware of the user's password. Subsequently, you can't use Coppermine mechanisms to retrieve lost user account passwords when you're bridged. If your bridging app provides mechanisms to recover from password-loss, then use those mechanisms. 
+    </div>
+    <a name="lost_password_cpg_mysql"></a><h3>mySQL account password<a href="#lost_password_cpg_user_account" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    If you (or your webhost) have changed your mySQL account details (e.g. if you have assigned a new password to your mySQL account) you can reflect your changes in Coppermine by editing the file <tt class="code">include/config.inc.php</tt>.<br />
+    Please keep in mind that you can only reflect your mySQL database account changes in that file. Coppermine can not actually change the password of your mySQL account itself. If you want to do that (i.e. change your mySQL admin account password), use whatever mechanism your webhost is providing to accomplish this or ask your webhost to change it for you.
+</div>
 
 <div id="doc_footer">
 	<div class="doc_info_wrapper">

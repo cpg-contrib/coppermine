@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-15 [D] Added documentation section about forgotten passwords {GauGau}
 2010-03-14 [D] Fixed link to upgrade section (thread ID 64092) {GauGau}
 2010-03-13 [B] Fixed search issue (thread ID 64087) {eenemeenemuu}
 2010-03-12 [D] Added details about language selectors to documentation {GauGau}
