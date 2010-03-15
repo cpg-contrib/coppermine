@@ -137,21 +137,21 @@ if (isset($bridge_lookup)) {
         function session_extraction()
         {
             $superCage = Inspekt::makeSuperCage();
-            //if (isset($_COOKIE[$this->cookie_name . 'sessionhash'])) {
-            //  $session_id = addslashes($_COOKIE[$this->cookie_name . 'sessionhash']);
-            if ($superCage->cookie->keyExists($this->cookie_name . 'sessionhash')) {
-                $session_id = $superCage->cookie->getEscaped($this->cookie_name . 'sessionhash');
-                
-                $sql = "SELECT u.{$this->field['user_id']}, u.{$this->field['password']}, u.{$this->field['grouptbl_group_id']}+100 AS usergroupid FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE s.{$this->field['user_id']}=u.{$this->field['user_id']} AND s.sessionhash='$session_id'";
-                
-                $result = cpg_db_query($sql, $this->link_id);
-                
-                if (mysql_num_rows($result)){
-                    $row = mysql_fetch_array($result);
-                    return $row;
-                } else {
-                    return false;
-                }
+    		if ($superCage->cookie->keyExists($this->cookie_name . 'sessionhash')) {
+    		    $session_id = $superCage->cookie->getEscaped($this->cookie_name . 'sessionhash');
+    		} elseif ($superCage->cookie->keyExists($this->cookie_name . '_sessionhash')) {
+    		    $session_id = $superCage->cookie->getEscaped($this->cookie_name . '_sessionhash');
+    		}
+            
+            $sql = "SELECT u.{$this->field['user_id']}, u.{$this->field['password']}, u.{$this->field['grouptbl_group_id']}+100 AS usergroupid FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE s.{$this->field['user_id']}=u.{$this->field['user_id']} AND s.sessionhash='$session_id'";
+            
+            $result = cpg_db_query($sql, $this->link_id);
+            
+            if (mysql_num_rows($result)){
+                $row = mysql_fetch_array($result);
+                return $row;
+            } else {
+                return false;
             }
         }
         
