@@ -402,7 +402,7 @@ $lang_smilies_inc_php['Idea'] = 'Idea';
 $lang_smilies_inc_php['Arrow'] = 'Arrow';
 $lang_smilies_inc_php['Neutral'] = 'Neutral';
 $lang_smilies_inc_php['Mr. Green'] = 'Mr. Green';
-};
+}
 
 // ------------------------------------------------------------------------- //
 // File albmgr.php
@@ -983,7 +983,6 @@ $lang_db_input_php['upload_success'] = 'Your file was uploaded successfully.<br 
 $lang_db_input_php['notify_admin_email_subject'] = '%s - Upload notification';
 $lang_db_input_php['notify_admin_email_body'] = 'A picture has been uploaded by %s that needs your approval. Visit %s';
 $lang_db_input_php['info'] = 'Information';
-$lang_db_input_php['com_added'] = 'Comment added';
 $lang_db_input_php['com_updated'] = 'Comment updated'; // cpg1.5
 $lang_db_input_php['alb_updated'] = 'Album updated';
 $lang_db_input_php['err_comment_empty'] = 'Your comment is empty!';
