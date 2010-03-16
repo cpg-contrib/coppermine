@@ -555,7 +555,7 @@ switch ($op) {
             require_once('./include/zip.lib.php');
 
             if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
-                $zip =& new Zip();
+                $zip = new Zip();
             } else {
                 $zip =& new Zip();
             }
