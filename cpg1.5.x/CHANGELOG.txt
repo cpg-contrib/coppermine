@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-17 [C] Fixed a lot of cosmetical issues with curve theme and IE7 {timoswelt}
 2010-03-16 [B] Fixed deprecated warning message on plugin manager (thread ID 62560) {eenemeenemuu}
 2010-03-16 [O] Updated Polish language file (user contribution) {GauGau}
 2010-03-15 [D] Added documentation section about forgotten passwords {GauGau}
