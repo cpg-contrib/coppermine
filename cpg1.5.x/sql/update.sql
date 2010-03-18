@@ -152,13 +152,9 @@ ALTER TABLE `CPG_users` ADD `user_language` varchar(40) default '' NOT NULL;
 
 ALTER TABLE `CPG_users` CHANGE `user_password` `user_password` VARCHAR( 40 ) NOT NULL default '';
 
-
-
 INSERT INTO CPG_config VALUES ('login_method', 'username');
 
-
 ALTER TABLE `CPG_hit_stats` ADD `uid` INT(11) NOT NULL default '0' ;
-
 
 INSERT INTO CPG_config VALUES ('allow_unlogged_access', '3');
 
@@ -172,9 +168,7 @@ DELETE FROM CPG_config WHERE `name` = 'language_flags';
 DELETE FROM CPG_config WHERE `name` = 'language_reset';
 DELETE FROM CPG_config WHERE `name` = 'theme_list';
 DELETE FROM CPG_config WHERE `name` = 'theme_reset';
-
-
-
+DELETE FROM CPG_config WHERE `name` = 'display_social_bookmarks';
 
 
 # MySQL 5 compat fixes
@@ -293,9 +287,6 @@ INSERT INTO CPG_config VALUES ('contact_form_registered_enable', '0');
 INSERT INTO CPG_config VALUES ('contact_form_subject_content', 'Coppermine gallery contact form');
 INSERT INTO CPG_config VALUES ('contact_form_subject_field', '0');
 INSERT INTO CPG_config VALUES ('contact_form_sender_email', '1');
-
-# Social bookmarks settings
-INSERT INTO CPG_config VALUES ('display_social_bookmarks','0');
 
 # Sidebar settings
 INSERT INTO CPG_config VALUES ('display_sidebar_user', '0');
