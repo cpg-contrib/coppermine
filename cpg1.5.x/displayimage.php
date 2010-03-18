@@ -180,7 +180,7 @@ function html_picinfo()
         if ($CONFIG['keyword_separator'] == ' ') {
             $info[$lang_common['keywords']] = '<span class="alblink">' 
                 . preg_replace("/([^{$CONFIG['keyword_separator']}]+)/"
-                        , '<a href="thumbnails.php?album=search&amp;search=$1">$1</a>'
+                        , '<a href="thumbnails.php?album=search&amp;keywords=on&amp;search=$1">$1</a>'
                         , $CURRENT_PIC_DATA['keywords'])
                 . '</span>';
         } else {
