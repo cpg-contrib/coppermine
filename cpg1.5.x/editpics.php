@@ -75,7 +75,7 @@ if (isset($USER_DATA['allowed_albums']) && count($USER_DATA['allowed_albums']) >
     define('MODERATOR_EDIT_MODE', 0);
 }
 
-if (!(USER_IS_ADMIN || USER_ADMIN_MODE || MODERATOR_MODE)) {
+if (!(USER_IS_ADMIN || USER_ADMIN_MODE || MODERATOR_MODE || USER_CAN_UPLOAD_PICTURES)) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
