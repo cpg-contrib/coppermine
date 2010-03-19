@@ -39,13 +39,13 @@ if (USER_ID !='') {
   show_memberlist;
  }
  else {
-	$lim_user = 2;
-	cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+    $lim_user = 2;
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
  }
 }
 else {
-	$lim_user = 3;
-	cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+    $lim_user = 3;
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
 function show_memberlist()
@@ -173,7 +173,7 @@ function list_users($search = '')
     $user_count = $cpg_udb->get_user_count();
 
     if (!$user_count) {
-    	cpg_die(CRITICAL_ERROR, $lang_usermgr_php['err_no_users'], __FILE__, __LINE__);
+        cpg_die(CRITICAL_ERROR, $lang_usermgr_php['err_no_users'], __FILE__, __LINE__);
     }
 
     $user_per_page = 25;
@@ -299,21 +299,20 @@ echo '<form method="get" action="delete.php" name="editForm" id="cpgform">';
     echo <<<EOT
         <tr>
             <td colspan="$number_of_columns" class="tableh1">
-                
                 <input type="hidden" name="id" value="" />
                 <table border="0" cellspacing="0" cellpadding="0" width="100%">
                     <tr>
                         <td class="tableh1">
 EOT;
 if (!$lim_user) {
-    echo '<h2>'.cpg_fetch_icon('user_mgr', 2).$lang_usermgr_php['user_manager'].$help.'</h2>';
+    echo cpg_fetch_icon('user_mgr', 2).$lang_usermgr_php['user_manager'].$help;
 } else {
-    echo '<h2>'.cpg_fetch_icon('user_mgr', 2).$lang_usermgr_php['memberlist'].'</h2>';
+    echo cpg_fetch_icon('user_mgr', 2).$lang_usermgr_php['memberlist'];
 }
 echo <<<EOT
                         </td>
                         $search_filter
-                        <td class="tableh1" align="right">
+                        <td class="tableh1 sortorder_options" align="right">
                             $lb
                         </td>
                     </tr>
@@ -617,8 +616,8 @@ EOT;
         $help_create = '&nbsp;'.cpg_display_help('f=users.htm&amp;as=user_cp_new&amp;ae=user_cp_new_end', '600', '250');
 
         $create_new_user_icon = cpg_fetch_icon('add_user', 2);
-	    list($timestamp, $form_token) = getFormToken();	
-	    
+        list($timestamp, $form_token) = getFormToken();	
+        
         echo <<<EOT
                               </select>
                             <select name="delete_files" size="1" class="listbox" style="display:none">
@@ -629,7 +628,7 @@ EOT;
                                 <option value="no">{$lang_usermgr_php['delete_comments_no']}</option>
                                 <option value="yes">{$lang_usermgr_php['delete_comments_yes']}</option>
                             </select>
-							<button type="submit" class="button" name="go" value="{$lang_usermgr_php['submit']}" style="display:none">{$icon_array['ok']}{$lang_usermgr_php['submit']}</button>
+                            <button type="submit" class="button" name="go" value="{$lang_usermgr_php['submit']}" style="display:none">{$icon_array['ok']}{$lang_usermgr_php['submit']}</button>
                         </td>
                 </tr>
                 </table>
@@ -657,7 +656,7 @@ echo <<< EOT
                         <td class="tablef" align="center" valign="middle">
                             <form method="post" action="{$CPG_PHP_SELF}" name="searchUser" id="cpgform2">
                                 <input type="text" name="username" class="textinput" $search_string_default />
-								<button type="submit" class="button" name="user_search" value="{$lang_usermgr_php['search_submit']}">{$icon_array['search']}{$lang_usermgr_php['search_submit']}</button>
+                                <button type="submit" class="button" name="user_search" value="{$lang_usermgr_php['search_submit']}">{$icon_array['search']}{$lang_usermgr_php['search_submit']}</button>
                                 $help
                             </form>
                         </td>
@@ -747,7 +746,7 @@ function edit_user($user_id)
     $sql = "SELECT * FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$user_id'";
     $result = cpg_db_query($sql);
     if (!mysql_num_rows($result)) {
-    	cpg_die(CRITICAL_ERROR, $lang_usermgr_php['err_unknown_user'], __FILE__, __LINE__);
+        cpg_die(CRITICAL_ERROR, $lang_usermgr_php['err_unknown_user'], __FILE__, __LINE__);
     }
     $user_data = mysql_fetch_array($result);
     mysql_free_result($result);
@@ -937,10 +936,10 @@ EOT;
         </tr>
         <tr>
                 <td colspan="2" align="center" class="tablef">
-						<button type="submit" class="button" name="usermgr_edit_submit" value="{$lang_usermgr_php['modify_user']}">{$icon_array['ok']}{$lang_usermgr_php['modify_user']}</button>
-                		<input type="hidden" name="form_token" value="{$form_token}" />
-                		<input type="hidden" name="timestamp" value="{$timestamp}" />
-				</td>
+                        <button type="submit" class="button" name="usermgr_edit_submit" value="{$lang_usermgr_php['modify_user']}">{$icon_array['ok']}{$lang_usermgr_php['modify_user']}</button>
+                        <input type="hidden" name="form_token" value="{$form_token}" />
+                        <input type="hidden" name="timestamp" value="{$timestamp}" />
+                </td>
         </tr>
 
 EOT;
