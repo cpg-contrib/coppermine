@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-19 [B] Fixed issue when admin renames file and new file name already exists (thread ID 61956) {eenemeenemuu}
 2010-03-19 [B] Fixed error message after upload for registered users (thread ID 64117) {eenemeenemuu}
 2010-03-19 [C] Removed hard coded table header layout in user manager (thread ID 64166) {eenemeenemuu}
 2010-03-18 [O] Removed reference to oudated config setting 'display_social_bookmarks' (thread ID 64143) {GauGau}

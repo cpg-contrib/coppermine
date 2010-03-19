@@ -214,12 +214,6 @@ function process_post_data()
             $old_mime = cpg_get_type($oldname);
             $new_mime = cpg_get_type($newname);
 
-            // Allow the admin to fix messed up filenames by skipping the file_exists checks
-            // Only the admin can be permitted this, since users could abuse this to delete
-            // files owned by other users.
-
-            $skiprename = false;
-
             if (($old_mime['mime'] != $new_mime['mime']) && isset($new_mime['mime'])) {
                 cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['mime_conv'], $old_mime['mime'], $new_mime['mime']), __FILE__, __LINE__);
             }
@@ -229,22 +223,14 @@ function process_post_data()
             }
 
             if (file_exists($newname)) {
-                if (GALLERY_ADMIN_MODE) {
-                    $skiprename = true;
-                } else {
-                    cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['file_exists'], $newname), __FILE__, __LINE__);
-                }
+                cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['file_exists'], $newname), __FILE__, __LINE__);
             }
 
             if (!file_exists($oldname)) {
-                if (GALLERY_ADMIN_MODE) {
-                    $skiprename = true;
-                } else {
-                    cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['src_file_missing'], $oldname), __FILE__, __LINE__);
-                }
+                cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['src_file_missing'], $oldname), __FILE__, __LINE__);
             }
 
-            if ($skiprename || rename($oldname, $newname)) {
+            if (rename($oldname, $newname)) {
                 cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filename = '$filename' WHERE pid = '$pid' LIMIT 1");
             } else {
                 cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['rename_failed'], $oldname, $newname), __FILE__, __LINE__);
