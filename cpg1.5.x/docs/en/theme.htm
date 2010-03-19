@@ -42,7 +42,14 @@
 <ul>
   <li><strong>Curve</strong><br />
   <img src="../images/themes/thumb_curve.png" width="100" height="75" border="0" alt="" title="Curve" /><br />
-  A theme with a light background and a cascaded horizontal menu that expands using CSS only. The new default theme for cpg1.5.x that has been inspired by the new theme for <a href="http://www.simplemachines.org/" rel="external" class="external">SMF 2.0</a>.</li>
+  A theme with a light background and a cascaded horizontal menu that expands using CSS only. The new default theme for cpg1.5.x that has been inspired by the new theme for <a href="http://www.simplemachines.org/" rel="external" class="external">SMF 2.0</a>.
+  <p class="cpg_message_info">This theme currently uses workarounds to display correctly in Internet Explorer 6 and 7.<br /><strong>To remove IE6 support,</strong><br />
+    - delete <i>&lt;!-- Begin IE6 support --&gt; ... &lt;!-- End IE6 support --&gt;</i> from template.html<br />
+    - delete the file csshover3.htc from the theme folder.<br />
+    <strong>To remove support for IE7,</strong><br />
+    - delete <i>&lt;!-- Begin IE7 support --&gt; ... &lt;!-- End IE7 support --&gt;</i> from template.html<br />
+    - remove all lines with /* IE7 */ from style.css,<br />
+    - uncomment the line /* min-height: 95px; */ in style.css.</p></li>
   <li><strong>Eyeball</strong><br />
   <img src="../images/themes/thumb_eyeball.png" width="100" height="75" border="0" alt="" title="Eyeball" /><br />
   A theme with a dark background and a horizontal menu that expands for user interaction features</li>

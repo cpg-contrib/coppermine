@@ -68,7 +68,7 @@ body {
     background-attachment: scroll;
     background-position: 0pt -633px;
     padding-left: 20px;
-    padding-bottom: 1px;
+    padding-bottom: 1px;   /* IE7 */
 }
 
 #cpg_header_block_outer div.cpg_header_block_inner {
@@ -82,6 +82,7 @@ body {
     padding-right: 20px;
     padding-bottom: 0pt;
     padding-left: 0px;
+    /* min-height: 95px; */
 }
 
 #cpg_main_block_outer  {
@@ -91,8 +92,8 @@ body {
     background-attachment: scroll;
     background-position: left top;
     padding-left: 20px;
-    padding-top: 1px;
-    padding-bottom: 1px;
+    padding-top: 1px;     /* IE7 */
+    padding-bottom: 1px;  /* IE7 */
 }
 
 #cpg_main_block_outer div.cpg_main_block_inner {
@@ -157,10 +158,10 @@ body {
     margin-top: 5px;
 }
 
-.menuheight {
-    width: 1px;
-    height: 95px;
-}
+.menuheight {      /* IE7 */
+    width: 1px;    /* IE7 */
+    height: 95px;  /* IE7 */
+}                  /* IE7 */
 
 
 table {

@@ -9,12 +9,14 @@
 <link rel="stylesheet" href="css/coppermine.css" type="text/css" />
 <link rel="stylesheet" href="themes/curve/style.css" type="text/css" />
 <link rel="shortcut icon" href="favicon.ico" />
+<!-- Begin IE6 support -->
 <!--[if lt IE 7]>
 <style>
-.dropmenu li {width: 1px;} .dropmenu li a.firstlevel span.firstlevel {white-space: nowrap;} .main_menu {overflow: auto;}
 body {behavior: url(themes/curve/csshover3.htc );}
+.dropmenu li {width: 1px;} .dropmenu li a.firstlevel span.firstlevel {white-space: nowrap;} .main_menu {overflow: auto;}
 </style>
 <![endif]-->
+<!-- End IE6 support -->
 {JAVASCRIPT}
 <!--
   SVN version info:
@@ -47,7 +49,7 @@ body {behavior: url(themes/curve/csshover3.htc );}
 					{SYS_MENU}
 					{SUB_MENU}
 					{ADMIN_MENU}
-			</div><img src="images/spacer.gif" class="menuheight" alt="" />
+			</div><!-- Begin IE7 support --><img src="images/spacer.gif" class="menuheight" alt="" /><!-- End IE7 support -->
 			<div class="clearer"></div>
 			{MESSAGE_BLOCK}
 		</div>
