@@ -621,7 +621,6 @@ doc_toc += '              <li><a href="plugins.htm#plugin_manager_upload">Upload
 doc_toc += '              <li><a href="plugins.htm#plugin_manager_install">Installing a plugin</a></li>\n';
 doc_toc += '              <li><a href="plugins.htm#plugin_manager_configuration">Plugin Configuration</a></li>\n';
 doc_toc += '              <li><a href="plugins.htm#plugin_manager_uninstall">Uninstalling a plugin</a></li>\n';
-doc_toc += '              <li><a href="plugins.htm#plugin_manager_version">Plugin version check</a></li>\n';
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="plugins.htm#plugin_writing">Writing plugins</a></li>\n';
