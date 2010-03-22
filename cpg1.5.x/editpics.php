@@ -49,6 +49,8 @@ $icon_array = array(
     'delete_all'         => cpg_fetch_icon('delete', 0, $lang_editpics_php['del_all']),
     'comment_delete'     => cpg_fetch_icon('comment_disapprove', 0, $lang_editpics_php['del_comm']),
     'comment_delete_all' => cpg_fetch_icon('comment_disapprove', 0, $lang_editpics_php['del_all_comm']),
+    'edit_files'         => cpg_fetch_icon('edit', 2),
+    'continue'           => cpg_fetch_icon('right', 0),
 );
 
 if ($superCage->get->keyExists('album')) {
@@ -840,12 +842,31 @@ if (UPLOAD_APPROVAL_MODE) {
 }
 
 if (!mysql_num_rows($result)) {
-
-    // TODO: replace these raw error messages with a page showing link to 'album properties', 'parent category'
     if ($link_count > 0) {
-        cpg_die(INFORMATION, $lang_editpics_php['error_linked_only'], __FILE__, __LINE__);
+        cpg_die(INFORMATION, $lang_editpics_php['error_linked_only']);
     } else {
-        cpg_die(INFORMATION, (UPLOAD_APPROVAL_MODE) ? $lang_editpics_php['error_approval_empty'] : $lang_editpics_php['error_empty'], __FILE__, __LINE__);
+        if (UPLOAD_APPROVAL_MODE) {
+            pageheader($lang_editpics_php['error_approval_empty'], '<meta http-equiv="refresh" content="10;url=index.php" />');
+            $text_output = '<h2>' . $lang_editpics_php['error_approval_empty'] . '</h2>';
+            $text_output .= <<< EOT
+            <div class="buttonlist">
+                <ul>
+                    <li><a href="thumbnails.php?album={$album_id}"><span>{$icon_array['thumbnail_view']}{$lang_common['thumbnail_view']}</span></a></li>
+                    <li><a href="modifyalb.php?album={$album_id}"><span>{$icon_array['album_properties']}{$lang_common['album_properties']}</span></a></li>
+                    <li><a href="index.php?cat={$cat}"><span>{$icon_array['category']}{$lang_common['parent_category']}</span></a></li>
+                    <li><a href="editpics.php?album={$album_id}"><span>{$icon_array['edit_files']}{$lang_common['edit_files']}</span></a></li>
+                    <li><a href="albmgr.php?cat={$cat}"><span>{$icon_array['album']}{$lang_common['album_manager']}</span></a></li>
+                    <li><a href="index.php"><span class="last">{$icon_array['continue']}{$lang_common['continue']}</span></a></li>
+                </ul>
+            </div>
+            <br />
+EOT;
+            msg_box($lang_cpg_die[INFORMATION], $text_output, '', "index.php");
+            pagefooter();
+            exit;
+        } else {
+            cpg_die(INFORMATION, $lang_editpics_php['error_empty']);
+        }
     }
 }
 
