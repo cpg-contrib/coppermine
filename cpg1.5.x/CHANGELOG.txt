@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-22 [D] Added documentation section about plugin manager feature that checks Coppermine version of a plugin {GauGau}
 2010-03-22 [O] Removed line numbers showing through on approval screen, displaying additional related links instead (thread ID 64192) {GauGau}
 2010-03-21 [A] Added user-contributed Dutch language file (thread ID 64109) {GauGau}
 2010-03-19 [B] Fixed issue when admin renames file and new file name already exists (thread ID 61956) {eenemeenemuu}
