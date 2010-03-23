@@ -5784,7 +5784,7 @@ function is_document(&$file)
 
 function is_flash(&$file)
 {
-    return strrpos($file, '.swf');
+    return pathinfo($file, PATHINFO_EXTENSION) == 'swf';
 }
 
 function is_known_filetype($file)
