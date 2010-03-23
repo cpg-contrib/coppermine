@@ -966,7 +966,7 @@ function list_cat_albums($cat, $catdata)
     $alb_per_page = $CONFIG['albums_per_page'];
     
     //unused code {SaWey}
-    $maxTab = $CONFIG['max_tabs'];
+    /*$maxTab = $CONFIG['max_tabs'];
 
     $album_filter = '';
     $pic_filter = '';
@@ -974,7 +974,7 @@ function list_cat_albums($cat, $catdata)
     if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
         $album_filter = ' and ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
         $pic_filter = ' and ' . $FORBIDDEN_SET;
-    }
+    }*/
 
     $nbAlb = $catdata['details']['alb_count'];
 
