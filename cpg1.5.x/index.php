@@ -358,7 +358,7 @@ function get_subcat_data(&$cat_data)
     $sql = "SELECT title, r.description, keyword, category, aid, alb_hits, visibility, r.thumb, r.owner
         FROM {$CONFIG['TABLE_CATEGORIES']} AS c
         INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.category = c.cid
-        WHERE c.depth = $CURRENT_CAT_DEPTH + 1";
+        WHERE c.depth BETWEEN $CURRENT_CAT_DEPTH + 1 AND $CURRENT_CAT_DEPTH + {$CONFIG['subcat_level']}";
 
     // if we are in a cat only get info for albums in that cat
     if ($rgt) {
@@ -966,7 +966,7 @@ function list_cat_albums($cat, $catdata)
     $alb_per_page = $CONFIG['albums_per_page'];
     
     //unused code {SaWey}
-    /*$maxTab = $CONFIG['max_tabs'];
+    $maxTab = $CONFIG['max_tabs'];
 
     $album_filter = '';
     $pic_filter = '';
@@ -974,7 +974,7 @@ function list_cat_albums($cat, $catdata)
     if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
         $album_filter = ' and ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
         $pic_filter = ' and ' . $FORBIDDEN_SET;
-    }*/
+    }
 
     $nbAlb = $catdata['details']['alb_count'];
 
