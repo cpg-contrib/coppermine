@@ -364,7 +364,7 @@ $foldername = 'bridge';
 $dir = opendir($foldername);
 $existing_bridge_files = array();
 while ($file = readdir($dir)) {
-      $extension = ltrim(substr($file,strrpos($file,'.inc.php')),'.');
+      $extension = ltrim(substr($file,strpos($file,'.inc.php')),'.');
       $bridge_lookup = str_replace('.' . $extension, '', $file);
       if ($bridge_lookup != '' && $bridge_lookup != 'coppermine' && $bridge_lookup != 'udb_base') {
           //include_once $foldername . '/' . $bridge_lookup . '.inc.php';

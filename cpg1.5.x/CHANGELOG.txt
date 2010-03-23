@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-23 [B] Fixed empty list of available bridges in bridge manager when running PHP4 (thread ID 64220) {Nibbler}
 2010-03-23 [B] Fixed missing album details for albums in sub categories (thread ID 64215) {eenemeenemuu}
 2010-03-23 [M] Counted version number up from in file headers from cpg1.5.3 to cpg1.5.4 as a preparation for the next release {GauGau}
 2010-03-22 [D] Updated visual appearance of plugin version checking routine {GauGau}
