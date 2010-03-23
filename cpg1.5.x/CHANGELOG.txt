@@ -8,7 +8,7 @@ This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 3
 as published by the Free Software Foundation.
 ********************************************
-Coppermine version: 1.5.3
+Coppermine version: 1.5.4
 $HeadURL$
 $Revision$
 $Author$
@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-23 [M] Counted version number up from in file headers from cpg1.5.3 to cpg1.5.4 as a preparation for the next release {GauGau}
 2010-03-22 [D] Updated visual appearance of plugin version checking routine {GauGau}
 2010-03-22 [D] Added documentation section about plugin manager feature that checks Coppermine version of a plugin {GauGau}
 2010-03-22 [O] Removed line numbers showing through on approval screen, displaying additional related links instead (thread ID 64192) {GauGau}

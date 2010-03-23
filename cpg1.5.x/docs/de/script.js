@@ -9,7 +9,7 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.3
+  Coppermine version: 1.5.4
   $HeadURL$
   $Revision$
   $LastChangedBy$
@@ -1200,7 +1200,7 @@ function cpgDocHeader() {
 	if (getUrlParameters('hide_nav') == 1) {
 		return;
 	}
-	$('#docheader').text('Coppermine Photo Gallery v1.5.3: Dokumentation und Handbuch');
+	$('#docheader').text('Coppermine Photo Gallery v1.5.4: Dokumentation und Handbuch');
 	$('#docheader').after('<br clear="all" />\n<a name="top"></a>');
 	$('#docheader').before('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Deine Fotogalerie im Web" align="left" />\n');
 }
