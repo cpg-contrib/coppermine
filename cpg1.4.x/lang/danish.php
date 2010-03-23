@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.4.26
+  Coppermine version: 1.4.27
   $Source: /cvsroot/coppermine/stable/lang/danish.php,v $
   $Revision$
   $Author$
