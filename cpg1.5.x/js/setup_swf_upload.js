@@ -83,10 +83,6 @@ SWFUpload.onload = function () {
 }
 
 function continue_upload() {
-    if (js_vars.user_id > 0) {
-        window.location = js_vars.site_url + '/editpics.php?album=' + $("select[name='album']").val();
-    } else {
-        window.location = js_vars.site_url + '/thumbnails.php?album=' + $("select[name='album']").val();
-    }
+    window.location = js_vars.site_url + '/editpics.php?album=' + $("select[name='album']").val();
     return false;
 }

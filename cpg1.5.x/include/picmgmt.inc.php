@@ -20,13 +20,13 @@
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 if($CONFIG['read_iptc_data'] ){
-        include("include/iptc.inc.php");
+    include("include/iptc.inc.php");
 }
 
 // Add a picture to an album
 function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $caption = '', $keywords = '', $user1 = '', $user2 = '', $user3 = '', $user4 = '', $category = 0, $raw_ip = '', $hdr_ip = '', $iwidth = 0, $iheight = 0)
 {
-    global $CONFIG, $ERROR, $USER_DATA, $PIC_NEED_APPROVAL, $CURRENT_PIC_DATA, $LINEBREAK;
+    global $CONFIG, $ERROR, $USER, $USER_DATA, $PIC_NEED_APPROVAL, $CURRENT_PIC_DATA, $LINEBREAK;
     global $lang_errors, $lang_db_input_php;
 
     $image = $CONFIG['fullpath'] . $filepath . $filename;
@@ -160,9 +160,10 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
     $CURRENT_PIC_DATA['pic_raw_ip'] = $raw_ip;
     $CURRENT_PIC_DATA['pic_hdr_ip'] = $hdr_ip;
     $CURRENT_PIC_DATA['position'] = $position;
-    $CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data',$CURRENT_PIC_DATA);
+    $CURRENT_PIC_DATA['guest_token'] = USER_ID == 0 ? cpg_get_guest_token() : '';
+    $CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data', $CURRENT_PIC_DATA);
 
-    $query = "INSERT INTO {$CONFIG['TABLE_PICTURES']} (aid, filepath, filename, filesize, total_filesize, pwidth, pheight, ctime, owner_id, title, caption, keywords, approved, user1, user2, user3, user4, pic_raw_ip, pic_hdr_ip, position) VALUES ('{$CURRENT_PIC_DATA['aid']}', '" . addslashes($CURRENT_PIC_DATA['filepath']) . "', '" . addslashes($CURRENT_PIC_DATA['filename']) . "', '{$CURRENT_PIC_DATA['filesize']}', '{$CURRENT_PIC_DATA['total_filesize']}', '{$CURRENT_PIC_DATA['pwidth']}', '{$CURRENT_PIC_DATA['pheight']}', '" . time() . "', '{$CURRENT_PIC_DATA['owner_id']}','{$CURRENT_PIC_DATA['title']}', '{$CURRENT_PIC_DATA['caption']}', '{$CURRENT_PIC_DATA['keywords']}', '{$CURRENT_PIC_DATA['approved']}', '{$CURRENT_PIC_DATA['user1']}', '{$CURRENT_PIC_DATA['user2']}', '{$CURRENT_PIC_DATA['user3']}', '{$CURRENT_PIC_DATA['user4']}', '{$CURRENT_PIC_DATA['pic_raw_ip']}', '{$CURRENT_PIC_DATA['pic_hdr_ip']}', '{$CURRENT_PIC_DATA['position']}')";
+    $query = "INSERT INTO {$CONFIG['TABLE_PICTURES']} (aid, filepath, filename, filesize, total_filesize, pwidth, pheight, ctime, owner_id, title, caption, keywords, approved, user1, user2, user3, user4, pic_raw_ip, pic_hdr_ip, position, guest_token) VALUES ('{$CURRENT_PIC_DATA['aid']}', '" . addslashes($CURRENT_PIC_DATA['filepath']) . "', '" . addslashes($CURRENT_PIC_DATA['filename']) . "', '{$CURRENT_PIC_DATA['filesize']}', '{$CURRENT_PIC_DATA['total_filesize']}', '{$CURRENT_PIC_DATA['pwidth']}', '{$CURRENT_PIC_DATA['pheight']}', '" . time() . "', '{$CURRENT_PIC_DATA['owner_id']}','{$CURRENT_PIC_DATA['title']}', '{$CURRENT_PIC_DATA['caption']}', '{$CURRENT_PIC_DATA['keywords']}', '{$CURRENT_PIC_DATA['approved']}', '{$CURRENT_PIC_DATA['user1']}', '{$CURRENT_PIC_DATA['user2']}', '{$CURRENT_PIC_DATA['user3']}', '{$CURRENT_PIC_DATA['user4']}', '{$CURRENT_PIC_DATA['pic_raw_ip']}', '{$CURRENT_PIC_DATA['pic_hdr_ip']}', '{$CURRENT_PIC_DATA['position']}', '{$CURRENT_PIC_DATA['guest_token']}')";
     $result = cpg_db_query($query);
     
     // Put the pid in current_pic_data and call the plugin filter for file data success

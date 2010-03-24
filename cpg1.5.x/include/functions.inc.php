@@ -6341,4 +6341,10 @@ function cpg_lang_name2code($lang_name) {
     }
 }
 
+
+function cpg_get_guest_token() {
+    global $CONFIG, $raw_ip;
+    return md5($CONFIG['site_token'] . $raw_ip);
+}
+
 ?>

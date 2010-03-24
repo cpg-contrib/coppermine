@@ -819,6 +819,9 @@ if (UPLOAD_APPROVAL_MODE) {
     // If non-admin user but allowed to upload in this album, then we need to fetch only the photos uploaded by that user
     if (defined('USER_UPLOAD_ALLOWED')) {
         $owner_str = " AND owner_id = " . USER_ID;
+        if (USER_ID == 0) {
+            $owner_str .= " AND guest_token = '".cpg_get_guest_token()."'";
+        }
     } else {
         $owner_str = '';
     }

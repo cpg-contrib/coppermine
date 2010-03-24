@@ -426,3 +426,5 @@ UPDATE CPG_albums SET owner = category - 10000 WHERE category > 10000;
 
 # Fulltext index is no longer used when searching
 ALTER TABLE CPG_pictures DROP INDEX `search`;
+
+ALTER TABLE CPG_pictures ADD `guest_token` VARCHAR(32) DEFAULT '';

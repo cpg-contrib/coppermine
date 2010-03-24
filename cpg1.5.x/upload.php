@@ -647,7 +647,6 @@ if (!$superCage->post->keyExists('process') && !$superCage->post->keyExists('plu
         $user_pass = $cpg_udb->get_user_pass(USER_ID);
         // Serialize and base64 encode the password
         set_js_var('user', base64_encode(serialize($user_pass)));
-        set_js_var('user_id', USER_ID);
     }
     // Do some cleanup in the edit directory.
     spring_cleaning('./'.$CONFIG['fullpath'].'edit',CPG_HOUR);
