@@ -502,7 +502,7 @@ case 'albmgr':
     $position = $superCage->get->getInt('position');  
     
     //get the album name
-    $get_album_name = trim($superCage->get->getEscaped('name'));
+    $get_album_name = addslashes(trim(base64_decode($superCage->get->getEscaped('name'))));
     
     //add the new album name to database
     if ($op == 'add') {

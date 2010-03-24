@@ -26,6 +26,7 @@ require('include/init.inc.php');
 set_js_var('lang_edit', $lang_common['edit']);
 js_include('js/jquery.sort.js');
 js_include('js/albmgr.js');
+js_include('js/jquery.base64.js');
 
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);

@@ -49,7 +49,7 @@ var Sort = {
             $("button#updateCancel").hide();
             // loading image
             $("#loading").show();
-            
+
         // make ajax call to update the table
         $.getJSON("delete.php?what=albmgr&aid="+aid+"&updatedname="+editedName+"&op=update&form_token="+form_token+"&timestamp="+timestamp, function(data){
             if(data['message'] == 'true') {
@@ -68,21 +68,21 @@ var Sort = {
                 $("#loading").hide();
             }
         });
-        
+
         } else {
             $("#edit-name").val("").focus();
         }
 
         return false;
-        
+
     },
     addAlbum: function(cat){
         var addedName = $.trim($("#add-name").val());
         var form_token = js_vars.form_token;
         var timestamp = js_vars.timestamp;
-        
+
         $('.cpg_message_validation').hide();
-        
+
         // add new album check whether null and event
         if(addedName.length > 0){
             $("input#add-name").hide();
@@ -99,7 +99,7 @@ var Sort = {
             $("#loading").show();
 
             // make ajax call to add the table
-            $.getJSON("delete.php?what=albmgr&cat="+cat+"&op=add&position="+albumCount+"&name="+addedName+"&form_token="+form_token+"&timestamp="+timestamp, function(data){
+            $.getJSON("delete.php?what=albmgr&cat="+cat+"&op=add&position="+albumCount+"&name="+$.base64Encode(addedName)+"&form_token="+form_token+"&timestamp="+timestamp, function(data){
 
                 if(data['message'] == 'true'){
                     //check if we have a table already
@@ -107,7 +107,7 @@ var Sort = {
                         //create the table
                         $('div#sort').html('<table id="album_sort" cellspacing="0" cellpadding="0" border="0"></table>');
                     }
-                    
+
                     var album_tr = '<tr id="sort-'+data['newAid']+'" ><td class="dragHandle"></td><td class="album_text" width="96%"><span class="albumName">'+addedName+'</span><span class="editAlbum">'+js_vars.lang_edit+'</span></td></tr>';
                     $("#album_sort").append(album_tr);
                     // call the function to add the new TR on more action
@@ -407,7 +407,7 @@ jQuery(document).ready(function() {
             return false;
         }
 
-    }); 
+    });
 
     // album links: album properties, edit files, thumbnail view
     $('button#modify_album, button#editfiles_album, button#thumbnail_album').livequery('click', function(){
@@ -441,13 +441,13 @@ jQuery(document).ready(function() {
             window.location.href = album_link;
         }
 
-    }); 
+    });
 
     // after drag and drop, assign changes to the TR title
     $('#album_sort').tableDnD({
         onDrop: function(table, row) {
             $("#album_order").val(getSerialize());
-            categorySelectOption = false;    
+            categorySelectOption = false;
         }
     });
 
@@ -462,7 +462,7 @@ jQuery(document).ready(function() {
             categorySelectOption = false;           // require confirmation to change category without saving changes
             Sort.showMessage();                     // show "Apply Changes" button and warning message
         }
-    });  
+    });
 
     // load the form when click the submit button
     $("#cpg_form_album").submit( "click", function () {          
