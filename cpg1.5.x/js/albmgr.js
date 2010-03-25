@@ -50,8 +50,17 @@ var Sort = {
             // loading image
             $("#loading").show();
 
+        var params = {
+            what: 'albmgr',
+            op: 'update',
+            aid: aid,
+            updatedname: editedName,
+            form_token: form_token,
+            timestamp: timestamp
+        };
+            
         // make ajax call to update the table
-        $.getJSON("delete.php?what=albmgr&aid="+aid+"&updatedname="+editedName+"&op=update&form_token="+form_token+"&timestamp="+timestamp, function(data){
+        $.getJSON("delete.php", params, function(data){
             if(data['message'] == 'true') {
                 // get the DOM of change album name
                 editedObject = $('#'+albumSelectedTr).find('span.albumName');
@@ -98,8 +107,18 @@ var Sort = {
             // loading image
             $("#loading").show();
 
+            var params = {
+                what: 'albmgr',
+                op: 'add',
+                cat: cat,
+                position: albumCount,
+                name: addedName,
+                form_token: form_token,
+                timestamp: timestamp
+            };
+                
             // make ajax call to add the table
-            $.getJSON("delete.php?what=albmgr&cat="+cat+"&op=add&position="+albumCount+"&name="+$.base64Encode(addedName)+"&form_token="+form_token+"&timestamp="+timestamp, function(data){
+            $.getJSON("delete.php", params, function(data){
 
                 if(data['message'] == 'true'){
                     //check if we have a table already
