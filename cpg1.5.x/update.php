@@ -193,7 +193,7 @@ if (!defined('SKIP_AUTHENTICATION') && defined('COPPERMINE_VERSION') && GALLERY_
 if (!function_exists('cpg_display_help')) {
     $help = '&nbsp;'.cpg_display_help('f=upgrading.htm&amp;as=updater&amp;ae=updater_end&amp;top=1', '650', '500');
 } else {
-    $help = '&nbsp;<a href="docs/en/upgrading.htm#updater"><img src="images/help.gif" border="0" width="13" height="11" alt="" /></a>';
+    $help = '&nbsp;<a href="docs/en/upgrading.htm?hide_nav=1#updater" class="greybox"><img src="images/help.gif" border="0" width="13" height="11" alt="" /></a>';
 }
 
 // ---------------------------- AUTHENTICATION --------------------------- //

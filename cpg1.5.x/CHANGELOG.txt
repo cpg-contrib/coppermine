@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-25 [C] Added missing greybox class to updater help {GauGau}
 2010-03-24 [A] Added guest token. Fixes guests cannot enter file details issue (thread ID 62522) {eenemeenemuu}
 2010-03-24 [B] Fixed issue with IE and non-latin characters in album name (thread ID 64167) {eenemeenemuu}
 2010-03-24 [B] Fixed missing uniqid() parameter for users running PHP 4 (thread ID 64193) {eenemeenemuu}
