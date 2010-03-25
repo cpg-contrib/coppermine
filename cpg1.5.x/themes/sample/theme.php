@@ -4348,7 +4348,10 @@ $template_sidebar = <<<EOT
 {SIDEBAR_CONTENT}
 <form method="GET" action="thumbnails.php" target="_content">
   <input type="hidden" name="album" value="search" />
-  <input type="hidden" name="type" value="full" />
+  <input type="hidden" name="title" value="on" />
+  <input type="hidden" name="caption" value="on" />
+  <input type="hidden" name="keywords" value="on" />
+  <input type="hidden" name="filename" value="on" />
   <div id="SidebarSearchWrapper" style="margin: 1px 1px;float: left;">
     <input id="sidebarSearchField" type="text" name="search" class="textinput" />
     <button type="submit" class="button" name="sidebarSearchButton" id="sidebarSearchButton" value="{SEARCH_TITLE}">{SEARCH_ICON}</button>
