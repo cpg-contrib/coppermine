@@ -10215,13 +10215,6 @@
     <hash>78e1bfb3b64ef8faf0a0b7f8b70dccca</hash>
   </element>
   <element>
-    <fullpath>js/jquery.base64.js</fullpath>
-    <version>n/a</version>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>98eb56cdbfd5fd99183cc77fa964d3c3</hash>
-  </element>
-  <element>
     <fullpath>js/jquery.cluetip.js</fullpath>
     <version>1.5.4</version>
     <revision>7335</revision>
