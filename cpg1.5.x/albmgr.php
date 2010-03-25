@@ -35,12 +35,12 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
 $icon_array = array();
 $icon_array['ok']         = cpg_fetch_icon('ok', 1);
 $icon_array['cancel']     = cpg_fetch_icon('cancel', 1);
-$icon_array['up']         = cpg_fetch_icon('up', 1);
-$icon_array['upup']       = cpg_fetch_icon('upup', 1);
-$icon_array['down']       = cpg_fetch_icon('down', 1);
-$icon_array['downdown']   = cpg_fetch_icon('downdown', 1);
+$icon_array['up']         = cpg_fetch_icon('up', 0);
+$icon_array['upup']       = cpg_fetch_icon('upup', 0);
+$icon_array['down']       = cpg_fetch_icon('down', 0);
+$icon_array['downdown']   = cpg_fetch_icon('downdown', 0);
 $icon_array['new']        = cpg_fetch_icon('add', 1);
-$icon_array['delete']     = cpg_fetch_icon('delete', 1);
+$icon_array['delete']     = cpg_fetch_icon('delete', 0);
 $icon_array['edit']       = cpg_fetch_icon('edit', 1);
 $icon_array['modifyalb']  = cpg_fetch_icon('modifyalb', 1);
 $icon_array['edit_files'] = cpg_fetch_icon('edit', 1);

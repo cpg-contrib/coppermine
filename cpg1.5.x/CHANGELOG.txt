@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-25 [C] Always display arrow and delete icons in album manager {eenemeenemuu}
 2010-03-25 [B] Fixed sidebar search (thread ID 64247) {eenemeenemuu}
 2010-03-25 [C] Added missing greybox class to updater help {GauGau}
 2010-03-24 [A] Added guest token. Fixes guests cannot enter file details issue (thread ID 62522) {eenemeenemuu}
