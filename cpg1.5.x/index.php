@@ -990,11 +990,11 @@ function list_cat_albums($cat, $catdata)
 
         $approved = ' AND approved=\'YES\'';
         $forbidden_set_string = ((count($FORBIDDEN_SET_DATA) > 0) ? ' AND aid NOT IN (' . implode(', ', $FORBIDDEN_SET_DATA) . ')' : '');
-        $keyword = ($album['keyword'] ? "OR (keywords like '%".addslashes($album['keyword'])."%' $forbidden_set_string)" : '');
+        $keyword = ($album['keyword'] ? "AND (keywords like '%".addslashes($album['keyword'])."%' $forbidden_set_string)" : '');
         if ($CONFIG['link_pic_count'] == 1) {
 
             if (!empty($album['keyword'])) {
-                $query = "SELECT count(pid) AS link_pic_count, max(pid) AS link_last_pid "
+                echo $query = "SELECT count(pid) AS link_pic_count, max(pid) AS link_last_pid "
                         ." FROM {$CONFIG['TABLE_PICTURES']} "
                         ." WHERE ((aid != '$aid' $forbidden_set_string) $keyword) $approved";
                 $result = cpg_db_query($query);
