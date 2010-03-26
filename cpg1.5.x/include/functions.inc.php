@@ -2163,7 +2163,7 @@ function get_pic_pos($album, $pid)
         $hits = mysql_result($result, 0);
         mysql_free_result($result);
 
-        echo $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
+        $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
             INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
             $RESTRICTEDWHERE
             AND approved = 'YES'
