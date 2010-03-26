@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-26 [B] Fixed category meta album issue with linked files (thread ID 64155) {eenemeenemuu}
 2010-03-25 [B] Improved fix for IE and non-latin characters in album name (thread ID 64167) {Nibbler}
 2010-03-25 [C] Fixed validation issue with javascript generated page navigation {timoswelt}
 2010-03-25 [C] Always display arrow and delete icons in album manager {eenemeenemuu}

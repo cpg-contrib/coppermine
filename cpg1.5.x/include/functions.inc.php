@@ -53,8 +53,24 @@ function get_meta_album_set($cat)
         $CURRENT_CAT_DEPTH = 0;
     }
 
+    if (empty($CURRENT_ALBUM_KEYWORD) && $cat > 0) {
+        $result = cpg_db_query("SELECT keyword FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat");
+        if (mysql_num_rows($result) > 0) {
+            $CURRENT_ALBUM_KEYWORD = array();
+            while($row = mysql_fetch_assoc($result)) {
+                $CURRENT_ALBUM_KEYWORD[] = $row['keyword'];
+            }
+        }
+    }
+
     if (!empty($CURRENT_ALBUM_KEYWORD)) {
-        $RESTRICTEDWHERE .= " OR keywords like '%$CURRENT_ALBUM_KEYWORD%'";
+        if(is_array($CURRENT_ALBUM_KEYWORD)) {
+            foreach($CURRENT_ALBUM_KEYWORD as $keyword) {
+                $RESTRICTEDWHERE .= " OR keywords like '%$keyword%'";
+            }
+        } else {
+            $RESTRICTEDWHERE .= " OR keywords like '%$CURRENT_ALBUM_KEYWORD%'";
+        }
     }
     $RESTRICTEDWHERE .= ')';
     if ($FORBIDDEN_SET_DATA) {
@@ -2147,7 +2163,7 @@ function get_pic_pos($album, $pid)
         $hits = mysql_result($result, 0);
         mysql_free_result($result);
 
-        $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
+        echo $query = "SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} AS p
             INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
             $RESTRICTEDWHERE
             AND approved = 'YES'
