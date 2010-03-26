@@ -1120,6 +1120,7 @@ if (!$file) {
     pageheader($BREADCRUMB_TEXT ? $BREADCRUMB_TEXT : $lang_index_php['welcome']);
 
     $elements = explode('/', $CONFIG['main_page_layout']);
+    $elements = CPGPluginAPI::filter('main_page_layout', $elements);
 
     /**
      * Loop through the $elements array to build the page using the parameters
