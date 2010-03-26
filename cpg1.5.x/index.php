@@ -994,7 +994,7 @@ function list_cat_albums($cat, $catdata)
         if ($CONFIG['link_pic_count'] == 1) {
 
             if (!empty($album['keyword'])) {
-                echo $query = "SELECT count(pid) AS link_pic_count, max(pid) AS link_last_pid "
+                $query = "SELECT count(pid) AS link_pic_count, max(pid) AS link_last_pid "
                         ." FROM {$CONFIG['TABLE_PICTURES']} "
                         ." WHERE ((aid != '$aid' $forbidden_set_string) $keyword) $approved";
                 $result = cpg_db_query($query);
