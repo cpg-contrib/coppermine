@@ -45,24 +45,33 @@ function get_meta_album_set($cat)
         mysql_free_result($result);
         $RESTRICTEDWHERE = "INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS c2 ON c2.cid = category WHERE (c2.lft BETWEEN $lft AND $rgt";
 
+        if (empty($CURRENT_ALBUM_KEYWORD)) {
+            $result = cpg_db_query("SELECT cid FROM {$CONFIG['TABLE_CATEGORIES']} WHERE lft BETWEEN $lft AND $rgt");
+            $categories = array();
+            while($row = mysql_fetch_assoc($result)) {
+                $categories[] = $row['cid'];
+            }
+            mysql_free_result($result);
+            $categories = implode(', ', $categories);
+
+            $result = cpg_db_query("SELECT keyword FROM {$CONFIG['TABLE_ALBUMS']} WHERE category IN ($categories)");
+            if (mysql_num_rows($result) > 0) {
+                $CURRENT_ALBUM_KEYWORD = array();
+                while($row = mysql_fetch_assoc($result)) {
+                    if(!empty($row['keyword'])) {
+                        $CURRENT_ALBUM_KEYWORD[] = $row['keyword'];
+                    }
+                }
+            }
+            mysql_free_result($result);
+        }
+
     } elseif ($cat < 0) {
         $RESTRICTEDWHERE = "WHERE (r.aid = " . -$cat;
 
     } else {
         $RESTRICTEDWHERE   = "WHERE (1";
         $CURRENT_CAT_DEPTH = 0;
-    }
-
-    if (empty($CURRENT_ALBUM_KEYWORD) && $cat > 0) {
-        $result = cpg_db_query("SELECT keyword FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat");
-        if (mysql_num_rows($result) > 0) {
-            $CURRENT_ALBUM_KEYWORD = array();
-            while($row = mysql_fetch_assoc($result)) {
-                if(!empty($row['keyword'])) {
-                    $CURRENT_ALBUM_KEYWORD[] = $row['keyword'];
-                }
-            }
-        }
     }
 
     if (!empty($CURRENT_ALBUM_KEYWORD)) {
