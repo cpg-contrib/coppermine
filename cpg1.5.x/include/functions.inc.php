@@ -58,7 +58,9 @@ function get_meta_album_set($cat)
         if (mysql_num_rows($result) > 0) {
             $CURRENT_ALBUM_KEYWORD = array();
             while($row = mysql_fetch_assoc($result)) {
-                $CURRENT_ALBUM_KEYWORD[] = $row['keyword'];
+                if(!empty($row['keyword'])) {
+                    $CURRENT_ALBUM_KEYWORD[] = $row['keyword'];
+                }
             }
         }
     }
