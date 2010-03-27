@@ -1466,7 +1466,7 @@ If you leave this blank, sendmail (or a surrogate) will be used to send emails f
 
 
 <a name="admin_logging"></a><h2>Logging &amp; statistics<a href="#admin_logging" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Like all logs (that record data that would get dropped if logging was disabled), the logging features of Coppermine will have a slight performance impact as well as an impact on webspace and database usage. You should make up your mind if you actually will need the logs before enabling the feature. A log is only helpful if the admin actually looks into it.</p>
+<p>Like all logs (that record data that would get dropped if logging was disabled), the logging features of Coppermine will have a slight <a href="performance.htm">performance</a> impact as well as an impact on webspace and database usage. You should make up your mind if you actually will need the logs before enabling the feature. A log is only helpful if the admin actually looks into it.</p>
 <a name="admin_logging_log_mode"></a><h3>Logging mode<a href="#admin_logging_log_mode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Set, what kind of logging you want to enable. This feature records all changes that are done in coppermine's database, which is especially helpful if you're trying to debug or if there are various admins on a gallery.<br />
 All log files are written in english</p>
@@ -1493,9 +1493,10 @@ All log files are written in english</p>
     <li>User ID (if logged in)</li>
   </ol>
    <p>of the voter.</p>
-   <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.</p>
+   <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up. Alternatively, you can access the overall stats for your entire gallery by clicking on the <a href="admin_menu.htm">admin menu</a> item "<a href="admin_menu.htm#stats">Overall stats</a>", which will of course only show if you have enabled stat recording in the first place.</p>
 <p class="cpg_message_info">Note: The total votes may not match if you enable details and do not reset the earlier votes.</p>
-<p class="cpg_message_warning">Warning: keeping detailed statistics means additional database queries and subsequently a heavy load on the page. You have to understand that the size of the corresponding database tables can increase if you enable this feature.</p>
+<p class="cpg_message_warning">Warning: keeping detailed statistics means additional database queries and subsequently a heavy load on the page. You have to understand that the size of the corresponding database tables can increase if you enable this feature, which can have a serious <a href="performance.htm">performance</a> impact.</p>
+<p>This feature can be very usefull to find out about voting/rating fraud, so if voting is an important part of your gallery (i.e. if you're running a community-driven gallery where users can gain something for voting or for obtaining good votes) it's advisable to turn this feature on.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Keep detailed vote statistics</p>
 <a name="admin_logging_votedetails_end"></a>
 <hr />
@@ -1512,11 +1513,10 @@ All log files are written in english</p>
     <li>User ID (if logged in)</li>
   </ol>
    <p>of the visitor.</p>
-   <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.
-</p>
+   <p>As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up. Alternatively, you can access the overall stats for your entire gallery by clicking on the <a href="admin_menu.htm">admin menu</a> item "<a href="admin_menu.htm#stats">Overall stats</a>", which will of course only show if you have enabled stat recording in the first place.</p>
 <p class="cpg_message_info">Note: The total hits may not match if you enable details and do not reset the earlier hits.</p>
 <p class="cpg_message_warning">Warning: keeping detailed statistics means additional database queries and subsequently a <strong>heavy</strong> load on the page. You have to understand that the size of the corresponding database tables can increase <strong>dramatically</strong> if you enable this feature, so you should closely monitor the resources consumption caused by it and empty the table from time to time.</p>
-<p>Do not enable this option if you don't need it! If you enable it, frequently check the size of the stats table in the database (using a third party tool like <a href="dev_tools.htm#dev_tools_phpmyadmin">phpMyAdmin</a>) and the impact of the stats recording on the overall performance.</p>
+<p>Do not enable this option if you don't need it! If you enable it, frequently check the size of the stats table in the database (using a third party tool like <a href="dev_tools.htm#dev_tools_phpmyadmin">phpMyAdmin</a>) and the impact of the stats recording on the overall performance. Make sure that you understand the <a href="performance.htm">performance</a> impact that enabling this option has. If you need really detailed stats, you might consider implementing a third-party tool like <a href="http://www.google.com/analytics/" rel="external" class="external">Google Analytics</a>, which will in turn be less resources-consuming for your server.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Logging &amp; statistics &rarr; Keep detailed hit statistics</p>
 <a name="admin_logging_hitdetails_end"></a>
 <a name="admin_logging_display_stats_on_index"></a><h3>Display statistics on index page<a href="#admin_logging_display_stats_on_index" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -1541,7 +1541,7 @@ All log files are written in english</p>
 
 <a name="admin_misc"></a><h2>Maintenance settings <a href="#admin_misc" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <a name="debug_mode"></a><h3>Enable debug mode<a href="#debug_mode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Coppermine will show error messages which are normally suppressed. This is helpful in troubleshooting problems with your gallery or when asking for help on the <a href="http://coppermine-gallery.net/forum/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.</p>
+<p>Coppermine will show error messages which are normally suppressed. This is helpful in troubleshooting problems with your gallery or when asking for help on the <a href="http://coppermine-gallery.net/forum/">CPG Support Forums</a>. Turn this feature <strong>off</strong> if you don't experience problems.</p>
 <p>Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine-gallery.net/forum/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when troubleshooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
 <p class="cpg_message_error">
 <a name="debug_mode_do_not_post_unless_requested"></a>
@@ -1633,7 +1633,8 @@ All log files are written in english</p>
 <hr />
 <a name="admin_misc_debug_notices"></a><h3>Display notices in debug mode<a href="#admin_misc_debug_notices" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>May be helpful to troubleshoot problems with your coppermine install - only recommended if you know a little PHP and you can understand the additional error messages this option shows. Notices being displayed don't actually mean that there is something wrong with your gallery. This option only applies if debug mode is enabled.</p>
-<p>If you enable this option, you will see notices all over your coppermine-driven pages. This does <strong>not</strong> mean that there is actually something wrong with your install. As suggested above: leave notices_display off if it doesn't mean anything to you.</p>
+<p>If you enable this option, you will see notices all over your coppermine-driven pages. This does <strong>not</strong> mean that there is actually something wrong with your install. As suggested above: leave notices_display off if it doesn't mean anything to you. In fact this can be considered a dev-only feature that merely exists to help the Coppermine dev team members to troublehsoot particular issues when coding.</p>
+<p>The supporters on the Coppermine support board are not very keen to see posting where people complain that "funny output" resides on their gallery when it later turns out that the output they don't understand just is notices output, so if you have been sent here directly from a posting made by a supporter you should feel a little bit guilty for not reading first.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Maintenance settings &rarr; Display notices in debug mode</p>
 <a name="admin_misc_debug_notices_end"></a>
 <hr />
@@ -1641,13 +1642,13 @@ All log files are written in english</p>
 
 <a name="admin_general_offline"></a><h3>Gallery is offline<a href="#admin_general_offline" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>If you have to do maintenance work on your gallery, switch it to offline mode. Only members of the admin group will be able to log in, all other users will only see &quot;Gallery is offline&quot;. Remember to switch this option off once your maintenance work is done.</p>
-<p class="cpg_message_error">Putting your gallery into offline mode will only affect the legitimate visitors of your gallery. It will not have any effect on unwanted visitors (email harvesters, spam bots, hackers), so you mustn't believe that this is a security seal. Think of it as the putting the "closed" sign into the window of a shop. This setting will just put that sign into the window, but it will not lock the front door nor will it enable the burglar alarm.</p>
+<p class="cpg_message_error">Putting your gallery into offline mode will <strong>only</strong> affect the <strong>legitimate</strong> visitors of your gallery. It will <strong>not</strong> have any effect on unwanted visitors (email harvesters, spam bots, hackers), so you mustn't believe that this is a security seal. Think of it as the putting the "closed" sign into the window of a shop. This setting will just put that sign into the window, but it will not lock the front door nor will it enable the burglar alarm.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Maintenance settings &rarr; Gallery is offline</p>
 <a name="admin_general_offline_end"></a>
 <hr />
 <a name="admin_general_coppermine_news"></a><h3>Display news from coppermine-gallery.net<a href="#admin_general_coppermine_news" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Starting with cpg1.5.0 there is a feed from coppermine-gallery.net that is being displayed for the gallery admin (and for the gallery-admin only) on each and every coppermine page to alert him of potential security issues and upgrades. You can toggle this option on and off in Coppermine's config (default is &quot;on&quot;). It is recommended to leave it enabled to make sure your coppermine install is always up-to-date.</p>
-<p>This is meant as a service for gallery admins; you're of course welcome to disable this option at any time. Coppermine-gallery.net will not collect data from your site (although this would be technically possible to a certain extent). If you're concerned about this option, then disable it or review the code used. We (the Coppermine dev team) are not trying to spy on our users - the feed is only being used to alert you of issues related to coppermine - that's all.</p>
+<p>This is meant as a service for gallery admins; you're of course welcome to disable this option at any time. Coppermine-gallery.net will <strong>not</strong> collect data from your site (although this would be technically possible to a certain extent). If you're concerned about this option, then disable it or review the code used. We (the Coppermine dev team) are not trying to spy on our users - the feed is only being used to alert you of issues related to coppermine - that's all.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Maintenance settings &rarr; Display news from coppermine-gallery.net</p>
 <a name="admin_general_coppermine_news_end"></a>
 <hr />

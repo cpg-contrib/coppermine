@@ -147,8 +147,37 @@ For those who don't want to download and install a full SVN client software ther
 
 		<a name="dev_subversion_repository_structure_plugins"></a><h3>Plugins<a href="#dev_subversion_repository_structure_plugins" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 		<p>The most recent version of the <a href="plugins.htm#plugin">plugins</a> for cpg1.5.x that are being maintained in the subversion repository (not all plugins are under version management) resides in the repository structure under <tt class="code">https://coppermine.svn.sourceforge.net/svnroot/coppermine/branches/cpg1.5.x/plugins</tt>, i.e. it is available via <a href="#dev_subversion_websvn">web SVN</a> over <a href="http://coppermine.svn.sourceforge.net/viewvc/coppermine/branches/cpg1.5.x/plugins/">http://coppermine.svn.sourceforge.net/viewvc/coppermine/branches/cpg1.5.x/plugins/</a>.</p>
-		<p>When downloading a tarball archive of a particular plugin, please understand that the difference between a zip download of a plugin from the download repository and a tarball download from the subversion repository mainly lies in the structure: in the zip file, there should be a folder that you need to upload to the plugins folders of your gallery. The tarball on the other hand doesn't reside in a folder, so you have to create that folder within the plugins folder first. You can not name it as you want to: instead, you need to preserve the name that the folder has got in the subversion repository.</p>
-		<p class="cpg_example">If you are downloading a tarball from the folder <tt class="code">https://coppermine.svn.sourceforge.net/svnroot/coppermine/branches/cpg1.5.x/plugins/coffee_maker</tt>, you need to manually create a folder (using your FTP app) named <tt class="code">coffee_maker</tt> in <tt class="code">http://yoursite.tld/your_coppermine_folder/plugins/</tt>. Then, after having created <tt class="code">http://yoursite.tld/your_coppermine_folder/plugins/coffee_maker</tt> you can upload the contents of the tarball into that folder.</p>
+		<p>When <a href="#dev_subversion_download_tarball">downloading a tarball archive</a> of a particular plugin, please understand that the difference between a zip download of a plugin from the download repository and a tarball download from the subversion repository mainly lies in the structure: in the zip file, there should be a folder that you need to upload to the plugins folders of your gallery. The tarball on the other hand doesn't reside in a folder, so you have to create that folder within the plugins folder first. You can not name it as you want to: instead, you need to preserve the name that the folder has got in the subversion repository.</p>
+		<p class="cpg_example">If you are downloading a tarball from the folder <tt class="code">https://coppermine.svn.sourceforge.net/svnroot/coppermine/branches/cpg1.5.x/plugins/coffee_maker</tt>, you need to manually create a folder (using your FTP app) named <tt class="code">coffee_maker</tt> in <tt class="code">http://yoursite.tld/your_coppermine_folder/plugins/</tt>. Then, after having created <tt class="code">http://yoursite.tld/your_coppermine_folder/plugins/coffee_maker</tt> you can upload the contents of the tarball <strong>into</strong> that folder.</p>
+		<p class="cpg_message_validation">To make  this absolutely clear: you <strong>mustn't</strong> rename the folder a plugin resides in at will, and you mustn't name it as you like when using subversion checkouts. The code of the plugin usually contains hard-coded reference to the folder it resides in, so you need to strictly obey to the naming scheme. Your gallery's visitors won't notice anyway, so why should you care how the name of a particular plugin is. The naming scheme is case-sensitive (i.e. capitalization <strong>does</strong> matter).</p>
+	    Need more examples? Here are some examples from real world plugins:
+	    <table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
+	        <tr>
+	            <th valign="top" align="left">Name</th>
+	            <th valign="top" align="left">Web SVN</th>
+	            <th valign="top" align="left">Tarball download</th>
+	            <th valign="top" align="left">Folder name</th>
+	        </tr>
+	        <tr>
+	            <td>BBcode-control</td>
+	            <td class="smallcode"><a href="http://coppermine.svn.sourceforge.net/viewvc/coppermine/branches/cpg1.5.x/plugins/bbcode_control/">[...]coppermine/branches/cpg1.5.x/plugins/bbcode_control/</a></td>
+	            <td class="smallcode"><a href="http://coppermine.svn.sourceforge.net/viewvc/coppermine/branches/cpg1.5.x/plugins/bbcode_control.tar.gz?view=tar">[...]/coppermine/branches/cpg1.5.x/plugins/bbcode_control.tar.gz?view=tar</a></td>
+	            <td class="smallcode important">bbcode_control</td>
+	        </tr>
+	        <tr>
+	            <td>EnlargeIt!</td>
+	            <td class="smallcode"><a href="http://coppermine.svn.sourceforge.net/viewvc/coppermine/branches/cpg1.5.x/plugins/enlargeit/">[...]coppermine/branches/cpg1.5.x/plugins/enlargeit/</a></td>
+	            <td class="smallcode"><a href="http://coppermine.svn.sourceforge.net/viewvc/coppermine/branches/cpg1.5.x/plugins/enlargeit.tar.gz?view=tar">[...]/coppermine/branches/cpg1.5.x/plugins/enlargeit.tar.gz?view=tar</a></td>
+	            <td class="smallcode important">enlargeit</td>
+	        </tr>
+	        <tr>
+	            <td>Show all videos in flash player</td>
+	            <td class="smallcode"><a href="http://coppermine.svn.sourceforge.net/viewvc/coppermine/branches/cpg1.5.x/plugins/video2flash_ffmpeg/">[...]coppermine/branches/cpg1.5.x/plugins/video2flash_ffmpeg/</a></td>
+	            <td class="smallcode"><a href="http://coppermine.svn.sourceforge.net/viewvc/coppermine/branches/cpg1.5.x/plugins/video2flash_ffmpeg.tar.gz?view=tar">[...]/coppermine/branches/cpg1.5.x/plugins/video2flash_ffmpeg.tar.gz?view=tar</a></td>
+	            <td class="smallcode important">video2flash_ffmpeg</td>
+	        </tr>
+	    </table>
+	    You get the point, don't you? It's absolutely mandatory to put the content of the tarball you download into a sub-folder of your plugin folder that is spelled exactly in the way that the folder in the subversion repository has. 
 	</div>
 </div>
 
@@ -164,11 +193,17 @@ For those who don't want to download and install a full SVN client software ther
 
 	<a name="dev_subversion_checking_out_particular_file"></a><h3>Checking out a particular file<a href="#dev_subversion_checking_out_particular_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	<p>If you're interessted in just one particular file (e.g. a language file that didn't exist when you downloaded your coppermine package), you're welcome to use the <a href="http://coppermine.svn.sourceforge.net/viewvc/coppermine/" rel="external" class="external">webSVN interface provided by sourceforge.net</a>. Just navigate to the file you want and use the download link there.</p>
+	
+	<a name="dev_subversion_checking_out_refering"></a><h3>Refering to files downloaded from the subversion repository<a href="#dev_subversion_checking_out_refering" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	<p>If you are using a subersion checkout for whatever reason and you're posting on the Coppermine support board, do not refer to the Coppermine version number from the <a href="#dev_subversion_fileheaders">file header</a> of the file(s) that you checked out, but refer to the <a href="#dev_subversion_revision">revision number</a> instead.</p>
 </div>
 
 <a name="dev_subversion_download"></a><h2>Is there no single package that I could download instead?<a href="#dev_subversion_download" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Many end users complain that this sounds too complicated - they ask for a single file that they could download. You have to understand that there <em>are</em> packages for end users - you can get them from <a href="https://sourceforge.net/projects/coppermine/files/">the &quot;official&quot; downloads section of the project</a>: download the most recent stable release! Using subversion to check out the development version is only meant for experienced users who are eager to test the unsupported development version. Consider the effort needed to check out using subversion as a ticket that allows you to get the cutting edge of Coppermine. Bottom line: no, there is no single file that you could download instead of checking out the repository.</p>
-<p>However, starting only recently (as of 2008-08-28), SourceForge (who are hosting "our" subversion repository) have added a new feature to their web svn: you can download a tarball, which in the end is a snapshot of the current development version. You can find a link to that tarball at the very bottom of the web svn screen. For the actual cpg1.5.x-trunk, the link to that tarball would be <a href="http://coppermine.svn.sourceforge.net/viewvc/coppermine/trunk/cpg1.5.x.tar.gz?view=tar">http://coppermine.svn.sourceforge.net/viewvc/coppermine/trunk/cpg1.5.x.tar.gz?view=tar</a>. However, the notes on the <a href="testing.htm">testing section of the documentation</a> apply to that tarball just as well as for the rest of the subversion checkout: use for development and evaluation purposes only - no support given. You do not have permission to ask questions related to it on the coppermine support board.</p>
+<div class="indent">
+    <a name="dev_subversion_download_tarball"></a><h3>Download Tarball archives<a href="#dev_subversion_download_tarball" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>However, starting only recently (as of 2008-08-28), SourceForge (who are hosting "our" subversion repository) have added a new feature to their web svn: you can download a tarball, which in the end is a snapshot of the current version inside the subversion repository. You can find a link to that tarball at the very bottom of the web svn screen. For the actual cpg1.5.x-trunk, the link to that tarball would be <a href="http://coppermine.svn.sourceforge.net/viewvc/coppermine/trunk/cpg1.5.x.tar.gz?view=tar">http://coppermine.svn.sourceforge.net/viewvc/coppermine/trunk/cpg1.5.x.tar.gz?view=tar</a>. However, the notes on the <a href="testing.htm">testing section of the documentation</a> apply to that tarball just as well as for the rest of the subversion checkout: use for development and evaluation purposes only - no support given. You do not have permission to ask questions related to it on the coppermine support board.</p>
+</div>
 
 <a name="dev_subversion_dev-only"></a><h2>Developers-only<a href="#dev_subversion_dev-only" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <div class="indent">
@@ -215,7 +250,8 @@ For those who don't want to download and install a full SVN client software ther
 	
 	<a name="dev_subversion_write_access"></a><h3>Obtaining write access<a href="#dev_subversion_write_access" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	As suggested initially on this page, the subversion repository is meant as a tool for the developers to maintain their code changes. Only developers of the coppermine project who have explicitely been allowed to have subversion write access can change the files in the repository. It is not possible to assign subversion write access for particular sub-folders of the repository.<br />
-	Subsequently, when you have a contribution to make (i.e. if you improve one or more files that reside in the repository or if you have created something new that belongs into the repository in your opinion), post your suggestions on the coppermine support board. If you can't post in a sub-board where your contribution belongs to in your opinion, post it in the corresponding support board - a moderator will move your posting accordingly if applicable.
+	Subsequently, when you have a contribution to make (i.e. if you improve one or more files that reside in the repository or if you have created something new that belongs into the repository in your opinion), post your suggestions on the coppermine support board. If you can't post in a sub-board where your contribution belongs to in your opinion, post it in the corresponding support board - a moderator will move your posting accordingly if applicable.<br />
+	Subversion write access is only being granted to Coppermine dev team members. The Coppermine project manager then needs your Unix nickname name on sourceforge.net to assign subversion access for you. 
 	
 </div>
 
