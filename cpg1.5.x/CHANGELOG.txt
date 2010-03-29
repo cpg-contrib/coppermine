@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-29 [B] Removed referer from contact link if we are already on the contact page (thread ID 64288) {eenemeenemuu}
 2010-03-28 [A] Added user-contributed partially-translated Spanish language file {GauGau}
 2010-03-27 [D] Various minor documentation improvements {GauGau}
 2010-03-26 [A] Added plugin hook main_page_layout {GauGau}
