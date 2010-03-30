@@ -487,7 +487,7 @@ if ($superCage->get->keyExists('fullsize')) {
     }
     // Set the picture id for use in js
     set_js_var('picture_id', $CURRENT_PIC_DATA['pid']);
-    pageheader($album_name . '/' . $picture_title, $meta_keywords, false);
+    pageheader($album_name . ' - ' . $picture_title, $meta_keywords, false);
     
     // Display Breadcrumbs
     if ($breadcrumb && strpos($CONFIG['main_page_layout'], 'breadcrumb') !== false) {
