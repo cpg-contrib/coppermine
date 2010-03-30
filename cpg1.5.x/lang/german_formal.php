@@ -41,13 +41,13 @@ $lang_month = array('Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli'
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
-$lang_date['album'] = '%d.%B %Y';
+$lang_date['album'] = '%d. %B %Y';
 $lang_date['lastcom'] = '%d.%m.%y um %H:%M';
-$lang_date['lastup'] = '%d.%B %Y';
-$lang_date['register'] = '%d.%B %Y';
-$lang_date['lasthit'] = '%d.%B %Y um %H:%M';
-$lang_date['comment'] = '%d.%B %Y um %H:%M';
-$lang_date['log'] = '%d.%B %Y um %H:%M';
+$lang_date['lastup'] = '%d. %B %Y';
+$lang_date['register'] = '%d. %B %Y';
+$lang_date['lasthit'] = '%d. %B %Y um %H:%M';
+$lang_date['comment'] = '%d. %B %Y um %H:%M';
+$lang_date['log'] = '%d. %B %Y um %H:%M';
 $lang_date['scientific'] = '%Y-%m-%d %H:%M:%S';
 
 // For the word censor
@@ -696,7 +696,7 @@ $lang_admin_php['enable_zipdownload'] = 'ZIP-Download der Favoriten erlauben'; /
 $lang_admin_php['enable_zipdownload_no_textfile'] = 'nur die Favoriten'; // cpg1.5
 $lang_admin_php['enable_zipdownload_additional_textfile'] = 'Favoriten und Liesmich-Datei'; // cpg1.5
 $lang_admin_php['time_offset'] = 'Zeitzonen-Differenz, bezogen auf MEZ'; // cpg1.5
-$lang_admin_php['time_offset_detail'] = '(aktuelle Zeit: ' . localised_date(-1, $lang_date['comment']) . ')'; // cpg1.5
+$lang_admin_php['time_offset_detail'] = '(aktuelle Zeit: %s)'; // cpg1.5
 $lang_admin_php['enable_help'] = 'Hilfe-Icons aktivieren'; // cpg1.5
 $lang_admin_php['enable_help_description'] = 'Hilfe zum Teil nur in Englisch verfügbar'; // cpg1.5
 $lang_admin_php['clickable_keyword_search'] = 'Anklickbare Stichwörter in Suche aktivieren'; // cpg1.5
