@@ -2203,13 +2203,14 @@ function theme_main_menu($which)
         '{UPL_APP_ICO}' => cpg_fetch_icon('file_approval', 1),
         );
 
-        if ($CPG_PHP_SELF != 'login.php') {
+        if ($CPG_PHP_SELF != 'login.php' && strpos($REFERER, 'login.php') == 0) {
             $param['{LOGIN_TGT}'] .= "?referer=$REFERER";
         }
 
-        if ($CPG_PHP_SELF != 'contact.php') {
+        if ($CPG_PHP_SELF != 'contact.php' && strpos($REFERER, 'contact.php') == 0) {
             $param['{CONTACT_TGT}'] .= "?referer=$REFERER";
         }
+
         $sys_menu = template_eval($template_sys_menu, $param);
   } else {
 
