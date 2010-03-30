@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-03-30 [B] Fixed issue when clicking keyword in file information (thread ID 64209) {eenemeenemuu}
 2010-03-30 [C] Changed delimiter in page title (thread ID 64283) {eenemeenemuu}
 2010-03-30 [B] Fixed referer issue when switching between login.php and contact.php (thread ID 64288) {eenemeenemuu}
 2010-03-30 [O] Removed hard coded user_id on install.php (thread ID 64292) {eenemeenemuu}
