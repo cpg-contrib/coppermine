@@ -64,14 +64,20 @@ if ($tmpFile != 'codebase' && $tmpFile != 'configuration') {
 
 if ($file) {
     $path = './plugins/'.$file.'.php';
+    $file = false;
 
     // Don't include the codebase and credits files
     if (file_exists($path)) {
-        // Include the code from the plugin
-        include_once($path);
-        $file = true;
-    } else {
-        $file = false;
+        // Check if the plugin is installed
+        $path_parts = pathinfo($tmpFile);
+        foreach($CPG_PLUGINS as $key => $value) {
+            if ($value->fullpath == './plugins/'.$path_parts['dirname']) {
+                // Include the code from the plugin
+                include_once($path);
+                $file = true;
+                break;
+            }
+        }
     }
 } else {
     $file = false;
