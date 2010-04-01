@@ -25,7 +25,9 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2010-04-01 [C] Added class 'buttonlist' to all themes {eenemeenemuu}
+2010-04-01 [C] Added number of views to file details if detailed hit statistics are enabled (thread ID 63440) {eenemeenemuu}
+2010-04-01 [C] Added class 'buttonlist' to all core themes {eenemeenemuu}
+2010-03-31 [A] Added trailing slash check for ImageMagick path (thread ID 64333) {Nibbler}
 2010-03-31 [B] Added check if plugin is installed (thread ID 64325) {eenemeenemuu}
 2010-03-30 [B] Fixed issue when clicking keyword in file information (thread ID 64209) {eenemeenemuu}
 2010-03-30 [C] Changed delimiter in page title (thread ID 64283) {eenemeenemuu}
