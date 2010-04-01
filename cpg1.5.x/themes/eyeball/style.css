@@ -63,7 +63,7 @@ a, .bblink a, .user_thumb_infobox a  { color: #447AC9; }
 
 a:hover, .bblink a:hover, .user_thumb_infobox a:hover { color : #0397FF; }
 
-.button, .admin_menu, .admin_menu a, .admin_menu a:hover { color : #FFFFFF; }
+.button, .admin_menu, .admin_menu a, .admin_menu a:hover , .buttonlist ul li a { color : #FFFFFF; }
 
 .comment_date { color : #999999; }
 
@@ -89,7 +89,7 @@ body { background-color: #000000; }
 }
 
 /* Borders for input controls */
-.textinput, .listbox, .button, .admin_menu {        border: 1px solid #666666; }
+.textinput, .listbox, .button, .admin_menu , .buttonlist ul li a {        border: 1px solid #666666; }
 
 .image { border: 1px solid #FFFFFF; }
 
@@ -150,7 +150,7 @@ body { font-family: Arial, Helvetica, sans-serif; }
 
 .textinput, .listbox, .radio, .checkbox { font-family: Arial, Helvetica, sans-serif; }
 
-.button, .sortorder_options, { font-family: Arial, Helvetica, sans-serif; }
+.button, .sortorder_options, .buttonlist ul li a { font-family: Arial, Helvetica, sans-serif; }
 
 
 table {
@@ -256,7 +256,7 @@ ul li {
     vertical-align : middle;
 }
 
-.button {
+.button, .buttonlist ul li a {
     font-size: 90%;
     background-image : url(images/button_bg.gif);
     background-position : bottom;

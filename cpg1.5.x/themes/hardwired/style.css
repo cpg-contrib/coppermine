@@ -154,7 +154,7 @@ ul li {
     color:#cccccc;
 }
 
-.button {
+.button, .buttonlist ul li a {
     font-family: Verdana, Helvetica, sans-serif;
     font-size: 85%;
     border: 1px solid #404750;
