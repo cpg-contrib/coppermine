@@ -121,12 +121,12 @@ doc_toc += '          <li><a href="credits.htm#developers">L\'équipe de Copperm
 doc_toc += '          <li><a href="credits.htm#contributors">Contributeurs</a></li>\n';
 doc_toc += '          <li><a href="credits.htm#translators">Traducteurs</a>\n';
 doc_toc += '            <ul class="level3" id="translators">\n';
-doc_toc += '              <li><a href="credits.htm#translators_language_file" >Language files</a></li>\n';
+doc_toc += '              <li><a href="credits.htm#translators_language_file" >Fichiers langue</a></li>\n';
 doc_toc += '              <li><a href="credits.htm#translators_documentation" >Documentation</a></li>\n';
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="credits.htm#codebase">Codes libres utilisés</a></li>\n';
-doc_toc += '          <li><a href="credits.htm#acknowledgements">Acknowledgements</a></li>\n';
+doc_toc += '          <li><a href="credits.htm#acknowledgements">Remerciements</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="copyrights.htm">Licence &amp; Copyright</a>\n';
