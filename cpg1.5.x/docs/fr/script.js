@@ -816,7 +816,7 @@ doc_toc += '             </ul>\n';
 doc_toc += '           </li>\n';
 doc_toc += '           <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions">Restrictions côté serveur</a>\n';
 doc_toc += '             <ul>\n';
-doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions_php_ini">The PHP configuration file php.ini</a></li>\n';
+doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions_php_ini">Le fichier de configuration de PHP php.ini</a></li>\n';
 doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions_check" >Les choses à vérifier</a></li>\n';
 doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_methods">Mécanismes/méthodes de téléchargement</a></li>\n';
 doc_toc += '               <li><a href="upload_troubleshooting.htm#upload_trouble_memory_usage">Utilisation de la mémoire pendant le redimensionnement</a></li>\n';
