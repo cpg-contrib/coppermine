@@ -532,7 +532,7 @@ doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="albums.htm">Albums</a>\n';
 doc_toc += '        <ul>\n';
-doc_toc += '          <li><a href="albums.htm#albmgr">Le getsionnaire d\'albums</a>\n';
+doc_toc += '          <li><a href="albums.htm#albmgr">Le gestionnaire d\'albums</a>\n';
 doc_toc += '            <ul>\n';
 doc_toc += '              <li><a href="albums.htm#albmgr_create">Créer des albums</a></li>\n';
 doc_toc += '              <li><a href="albums.htm#albmgr_rename">Renommer des albums</a></li>\n';
