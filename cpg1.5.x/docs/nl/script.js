@@ -10,10 +10,10 @@
 
   ********************************************
   Coppermine version: 1.5.4
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/script.js $
-  $Revision: 7367 $
-  $LastChangedBy: gaugau $
-  $Date: 2010-03-27 09:27:17 +0100 (Sa, 27. Mär 2010) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 **********************************************/
 
 var linebreak = '\n';
