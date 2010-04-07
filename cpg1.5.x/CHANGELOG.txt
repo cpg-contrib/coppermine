@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-04-07 [D] Added credits for Dutch language contributions {GauGau}
+2010-04-07 [D] Added partial Dutch translation of documentation (user contribution) {GauGau}
 2010-04-07 [M] Added code so that debug messages of swfupload flash uploader is shown in debug output {Abbas}
 2010-04-01 [C] Added number of views to file details if detailed hit statistics are enabled (thread ID 63440) {eenemeenemuu}
 2010-04-01 [C] Added class 'buttonlist' to all core themes {eenemeenemuu}

@@ -479,14 +479,6 @@ dt {
 	display: block; 
 }
 
-.treeview a.en { 
-	background-image: url(../../images/flags/us.png);
-	background-repeat:no-repeat;
-	background-position:2px 2px;
-	padding: 1px 0 1px 20px; 
-	display: block; 
-}
-
 .treeview a.de { 
 	background-image: url(../../images/flags/de.png);
 	background-repeat:no-repeat;
@@ -495,8 +487,24 @@ dt {
 	display: block; 
 }
 
+.treeview a.en { 
+	background-image: url(../../images/flags/us.png);
+	background-repeat:no-repeat;
+	background-position:2px 2px;
+	padding: 1px 0 1px 20px; 
+	display: block; 
+}
+
 .treeview a.fr { 
 	background-image: url(../../images/flags/fr.png);
+	background-repeat:no-repeat;
+	background-position:2px 2px;
+	padding: 1px 0 1px 20px; 
+	display: block; 
+}
+
+.treeview a.nl { 
+	background-image: url(../../images/flags/nl.png);
 	background-repeat:no-repeat;
 	background-position:2px 2px;
 	padding: 1px 0 1px 20px; 
@@ -521,6 +529,14 @@ dt {
 
 .treeview a.us_gb { 
 	background-image: url(../../images/flags/us_gb.png);
+	background-repeat:no-repeat;
+	background-position:2px 2px;
+	padding: 1px 0 1px 20px; 
+	display: block; 
+}
+
+.treeview a.us_nl { 
+	background-image: url(../../images/flags/us_nl.png);
 	background-repeat:no-repeat;
 	background-position:2px 2px;
 	padding: 1px 0 1px 20px; 
