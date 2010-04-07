@@ -2231,7 +2231,7 @@ if (defined('USERMGR_PHP')) {
   $lang_usermgr_php['err_unknown_user'] = 'L\'Utilisateur sélectionné n\'existe pas!';
   $lang_usermgr_php['modify_user'] = 'Modifier l\'Utilisateur';
   $lang_usermgr_php['notes'] = 'Notes';
-  $lang_usermgr_php['note_list'] = '<li>Si vous ne souhaitez pas modifier le Mot de Passe actuel, laissez le champs &quot;Mot de Passe&quot; vide.';
+  $lang_usermgr_php['note_list'] = 'Si vous ne souhaitez pas modifier le Mot de Passe actuel, laissez le champs &quot;Mot de Passe&quot; vide.';
   $lang_usermgr_php['password'] = 'Mot de Passe';
   $lang_usermgr_php['user_active'] = 'L\'Utilisateur est actif';
   $lang_usermgr_php['user_group'] = 'Groupe de l\'Utilisateur';
@@ -2247,7 +2247,7 @@ if (defined('USERMGR_PHP')) {
   $lang_usermgr_php['user_profile4'] = '$user_profile4';
   $lang_usermgr_php['user_profile5'] = '$user_profile5';
   $lang_usermgr_php['user_profile6'] = '$user_profile6';
-  $lang_usermgr_php['latest_upload'] = 'Derniers uploads';
+  $lang_usermgr_php['latest_upload'] = 'Derniers téléchargements';
   $lang_usermgr_php['no_latest_upload'] = 'N\'a pas fait de téléchargement'; // cpg1.5
   $lang_usermgr_php['last_comments'] = 'Derniers Commentaires'; // cpg1.5
   $lang_usermgr_php['no_last_comments'] = 'N\'a pas fait de Commentaire'; // cpg1.5
