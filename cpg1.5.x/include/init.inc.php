@@ -275,6 +275,13 @@ if (!GALLERY_ADMIN_MODE) {
     }
 }
 
+// Set the debug flag to be used in js var
+if ($CONFIG['debug_mode'] == 1 || ($CONFIG['debug_mode'] == 2 && GALLERY_ADMIN_MODE)) {
+    set_js_var('debug', true);
+} else {
+    set_js_var('debug', false);
+}
+
 // ********************************************************
 // * Theme processing - start
 // ********************************************************

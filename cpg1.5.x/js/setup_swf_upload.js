@@ -33,7 +33,8 @@ SWFUpload.onload = function () {
             progressTarget : "upload_progress",
             cancelButtonId : "button_cancel"
         },
-        debug: false,
+        debug: js_vars.debug,
+        debug_handler: swfDebugHandler,
 
         // Button settings
         button_width: "130",

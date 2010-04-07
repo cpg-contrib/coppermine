@@ -292,6 +292,38 @@ function swfUploadLoadFailed() {
 	$("#divAlternateContent").show();
 }
 
+function swfDebugHandler(message) {
+    if (this.settings.debug) {
+        var exceptionMessage, exceptionValues = [];
+
+        // Check for an exception object and print it nicely
+        if (typeof message === "object" && typeof message.name === "string" && typeof message.message === "string") {
+                for (var key in message) {
+                        if (message.hasOwnProperty(key)) {
+                                exceptionValues.push(key + ": " + message[key]);
+                        }
+                }
+                exceptionMessage = exceptionValues.join("\n") || "";
+                exceptionValues = exceptionMessage.split("\n");
+                exceptionMessage = "EXCEPTION: " + exceptionValues.join("\nEXCEPTION: ");
+                swfWriteDebug(exceptionMessage);
+        } else {
+                swfWriteDebug(message);
+        }
+    }
+}
+
+function swfWriteDebug(message) {
+    var console;
+    try {
+        console = $('textarea[name=debugtext]');
+        console.append(message + "\n");
+        console.scrollTop(console.attr('scrollHeight') - console.attr('clientHeight'));
+    } catch (ex) {
+        alert("Exception: " + ex.name + " Message: " + ex.message);
+    }
+}
+
 /**
  * We are overriding core FileProgress' setError function here
  * This was done so that progress block does not disappear when error occurs.
