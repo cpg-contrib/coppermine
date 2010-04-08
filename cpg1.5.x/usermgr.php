@@ -27,6 +27,8 @@ $cpg_udb->view_users();
 
 $icon_array['ok'] = cpg_fetch_icon('ok', 1);
 $icon_array['search'] = cpg_fetch_icon('search', 1);
+$icon_array['add_user'] = cpg_fetch_icon('add_user', 2);
+$icon_array['edit'] = cpg_fetch_icon('edit', 2);
 
 if (USER_ID !='') {
  if (GALLERY_ADMIN_MODE) {
@@ -713,7 +715,7 @@ EOT;
 function edit_user($user_id)
 {
     global $CONFIG, $CPG_PHP_SELF; //, $PHP_SELF;
-    global $lang_usermgr_php, $lang_common, $icon_array;
+    global $lang_usermgr_php, $lang_common, $icon_array, $op;
 
     $form_data = array(
         array('input', 'user_name', cpg_fetch_icon('my_profile', 2) . $lang_usermgr_php['name'], 25),
@@ -769,8 +771,11 @@ function edit_user($user_id)
         <form name="cpgform3" id="cpgform3" method="post" action="{$CPG_PHP_SELF}?op=update&amp;user_id=$user_id">
 
 EOT;
-    starttable(500, $lang_usermgr_php['modify_user'], 2);
-    print <<< EOT
+    if ($op == 'new_user') {
+        starttable(500, $icon_array['add_user'] . $lang_usermgr_php['create_new_user'], 2);
+    } else {
+        starttable(500, $icon_array['edit'] . $lang_usermgr_php['modify_user'], 2);
+        echo <<< EOT
         <tr>
                 <td class="tableb">
                         {$status_icon}{$lang_usermgr_php['status']}
@@ -780,6 +785,7 @@ EOT;
                 </td>
         </tr>
 EOT;
+    }
 
     $loopCounter = 0;
     foreach ($form_data as $element) {
@@ -921,6 +927,18 @@ EOT;
         }
     }
 
+    if ($op == 'new_user') {
+    echo <<<EOT
+        <tr>
+                <td colspan="2" align="center" class="tablef">
+                        <button type="submit" class="button" name="usermgr_edit_submit" value="{$lang_usermgr_php['submit']}">{$icon_array['ok']}{$lang_usermgr_php['submit']}</button>
+                        <input type="hidden" name="form_token" value="{$form_token}" />
+                        <input type="hidden" name="timestamp" value="{$timestamp}" />
+                </td>
+        </tr>
+
+EOT;
+    } else {
     echo <<<EOT
         <tr>
                 <td colspan="2" class="tableh2">
@@ -943,7 +961,7 @@ EOT;
         </tr>
 
 EOT;
-
+    }
     endtable();
     
     echo '</form>';

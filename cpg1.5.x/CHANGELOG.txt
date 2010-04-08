@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-04-08 [C] Changed label of submit button for user creation (thread ID 64423) {GauGau}
 2010-04-07 [D] Added credits for Dutch language contributions {GauGau}
 2010-04-07 [D] Added partial Dutch translation of documentation (user contribution) {GauGau}
 2010-04-07 [M] Added code so that debug messages of swfupload flash uploader is shown in debug output {Abbas}
