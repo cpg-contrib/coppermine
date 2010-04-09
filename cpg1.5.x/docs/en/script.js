@@ -488,6 +488,7 @@ doc_toc += '          <li><a href="groups.htm#group_cp_assigned">Assigned albums
 doc_toc += '          <li><a href="groups.htm#group_cp_create">Creating custom groups</a></li>\n';
 doc_toc += '          <li><a href="groups.htm#group_cp_delete">Deleting custom groups</a></li>\n';
 doc_toc += '          <li><a href="groups.htm#group_cp_sync">Triggering synchronisation (bridged only)</a></li>\n';
+doc_toc += '          <li><a href="groups.htm#group_cp_more_than_one_group">Membership in more than one group</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="users.htm">Users</a>\n';

@@ -428,6 +428,7 @@ doc_toc += '          <li><a href="groups.htm#group_cp_assigned" class="en">Zuge
 doc_toc += '          <li><a href="groups.htm#group_cp_create" class="en">Benutzerdefinierte Gruppen erstellen</a></li>\n';
 doc_toc += '          <li><a href="groups.htm#group_cp_delete" class="en">Benutzerdefinierte Gruppen löschen</a></li>\n';
 doc_toc += '          <li><a href="groups.htm#group_cp_sync" class="en">Synchronisierung auslösen (nur bei Bridging)</a></li>\n';
+doc_toc += '          <li><a href="groups.htm#group_cp_more_than_one_group" class="en">Mitgliedschaft in mehr als einer Gruppe</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="users.htm" class="en">Benutzer</a>\n';
