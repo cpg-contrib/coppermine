@@ -10904,6 +10904,14 @@
     <permission>read</permission>
   </element>
   <element>
+    <fullpath>lang/arabic.php</fullpath>
+    <version>1.5.4</version>
+    <revision>7335</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>27f799dba042b1985060384447656cb1</hash>
+  </element>
+  <element>
     <fullpath>lang/bulgarian.php</fullpath>
     <version>1.5.4</version>
     <revision>7335</revision>
