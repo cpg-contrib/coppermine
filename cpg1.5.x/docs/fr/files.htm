@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Files - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<title>Fichiers - Coppermine Photo Gallery - Documentation &amp; manuel</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="language" content="en" />
+<meta name="language" content="fr" />
 <meta name="copyright" content="Coppermine dev team" />
-<meta name="description" content="Here, you can modify the title, description, keywords, and custom fields (if they are used) of your video files." />
+<meta name="description" content="Ici, vous pouvez modifier titre, description, mots clés et les champs personnalisés (s'ils sont utilisés) de vos fichiers vidéos." />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -27,97 +27,108 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation et manuel</h1>
 <div id="toc">
-<a href="toc.htm">Table of Contents</a>
+<a href="toc.htm">Table des matières</a>
 </div>
 
-<h1>Files</h1>
-<a name="edit_pics"></a><h2>Editing files<a href="#edit_pics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<img src="images/edit_picture.gif" border="0" alt="" />
-<p>Use this link to modify your file's title, description, keywords, and custom fields (if they are used).</p>
-<p>Use the album drop down menu in the panel to move the file between albums.
-Use keywords to link files to other albums (see description in the albums section above).</p>
+<a name="files"></a><h1>Fichiers<a href="#files" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Avec Coppermine, les <a href="files.htm">fichiers</a> téléchargés sont placés dans des <a href="albums.htm">albums</a>. Les albums peuvent contenir des fichiers, mais pas de sous-albums. Les albums peuvent aller dans d'autres catégories. Les catégories peuvent contenir des sous-catégories et des albums, mais elles ne peuvent <strong>pas</strong> contenir de fichiers.</p>
+<p>Coppermine (dans la version 1.0) a été conçu en premier lieu pour afficher des images. Plus tard dans le processus de développement sont venu des fichiers multimédia (fichiers audio et vidéo ainsi que des documents), c'est pourquoi le terme &quot;images&quot; a été abandonné au profit de &quot;fichiers&quot;. Dans certains endroits (par exemple dans les noms des tables ou dans certains endroits de la documentation), le terme &quot;image&quot; peut apparaitre à la place de  &quot;fichiers&quot;.</p>
+<p>Vous pourriez être tenté de croire que Coppermine est en fait un éditeur de fichier, car il a la capacité de modifier (redimensionner) et créer des images. Toutefois, ce n'est le cas que dans une mesure limitée: Coppermine n'est pas un éditeur d'image et ne peut être utilisé comme remplacement d'une  telle application de bureautique. C'est plutôt une galerie web qui fonctionne bien pour afficher vos fichiers sur internet.</p>
+
+
+<a name="edit_pics"></a><h2>Editer les fichiers<a href="#edit_pics" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<img src="images/edit_picture.png" border="0" alt="" />
+<p>Utilisez ce lien pour modifier le titre de votre fichier, la description, les mots clés et des champs personnalisés (s'ils sont utilisés).</p>
+<p>Utilisez le menu déroulant en face d’album dans la page afin de déplacer le fichier entre les albums.
+Utilisez des mots clefs pour lier des fichiers à d'autres albums (voir description dans la section albums ci-dessus).</p>
 
 
 
-<a name="edit_vids"></a><h2>Editing videos<a href="#edit_vids" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p><img src="images/edit_video.gif" border="0" alt="" /></p>
-<p>Here, you can modify the title, description, keywords, and custom fields (if they are used) of your video files.</p>
-<p>Use the album drop down menu to move the video to another album.</p>
-<p>Use the height and width fields to set the size of the video.</p>
-<p>Video uploads are possible beginning with cpg1.3.0 (or latter) and are included as part of the distribution package.</p>
+<a name="edit_vids"></a><h2>Editer les videos<a href="#edit_vids" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p><img src="images/edit_video.png" border="0" alt="" /></p>
+<p>Ici, vous pouvez modifier le titre, la description, les mots-clés et les champs personnalisés (s'ils sont utilisés) de vos fichiers vidéo.</p>
+<p>Utilisez le menu déroulant en face d’album dans la page afin de déplacer la vidéo  entre les albums.</p>
+<p>Utilisez les champs de hauteur et de largeur pour définir la taille de la vidéo.</p>
+<p>La possibilité de mettre des vidéos existe depuis cpg1.3.0 (et plus) et est inclue par défaut dans le pack de la distribution.</p>
 
 
-<a name="cust_thmb"></a><h2>Custom Thumbnails<a href="#cust_thmb" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p><img src="images/cust_thmb.gif" border="1" alt="" /></p>
-<a name="cust_thmb_order"></a><h3>Order of thumbnails<a href="#cust_thmb_order" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p class="cpg_message_info">Thumbnails are defined by different levels (these are: user-defined, theme-defined, global) then in the order of their type (file-specific, extension-specific, media-specific).</p>
-<p>User-defined thumbnails are stored in the folder where the parent file is located. Theme-defined thumbnails are stored in the themes 'images' folder. Global thumbnails are stored within the 'images' folder of the Coppermine root.</p>
-<p class="cpg_message_info">Thumbnails can be one of the following file types: 'gif', 'png', or 'jpg'.</p>
+<a name="cust_thmb"></a><h2>Vignettes personnalisées<a href="#cust_thmb" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p><img src="images/cust_thmb.png" border="1" alt="" /></p>
+<a name="cust_thmb_order"></a><h3>Ordre des vignettes<a href="#cust_thmb_order" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p class="cpg_message_info">Les vignettes sont définis par différents niveaux (il s'agit de: définie par l'utilisateur, de thème ou globalement) puis dans l'ordre de leur type (fichiers spécifiques, l'extension spécifique, spécifique aux médias).</p>
+<p>Les vignettes définies par l'utilisateur sont stockés dans le dossier où le fichier parent est situé. Les  vignettes thématiques définies sont stockés dans les thèmes à l’intérieur du dossier "images". Vignette global stock dans le dossier "images" de la racine de Coppermine.</p>
+<p class="cpg_message_info">Les vignettes peuvent être d'un des types de fichiers suivants: 'gif', 'png', ou 'jpg'.</p>
 
-<a name="cust_thmb_types"></a><h3>Types of thumbnails<a href="#cust_thmb_types" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p class="cpg_message_info">File-specific thumbnails must have the same base name as the file.</p>
-<p>Using the above screenshot of a video file as an example, the thumbnails for this file could be 'thumb_<strong>thailand_waterfall</strong>.gif', 'thumb_<strong>thailand_waterfall</strong>.png', or 'thumb_<strong>thailand_waterfall</strong>.jpg', and searched for by cpg in that order.</p>
-<p><span class="important">Extension-specific thumbnails are named after the extension of the file.</span> (Examples: 'thumb_wmv.jpg', 'thumb_wav.jpg'.)</p>
-<p><span class="important">The base name for media-specific thumbnails are 'thumb_movie', 'thumb_document', and 'thumb_audio'.</span> Images use file-specific thumbnails by default.</p>
+<a name="cust_thmb_types"></a><h3>Types de vignettes<a href="#cust_thmb_types" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p class="cpg_message_info">Une vignette spécifique à un fichier doit avoir le même nom que le fichier.</p>
+<p>Utilisation de la capture d'écran ci-dessus d'un fichier vidéo à titre d'exemple, l'image de ce fichier peut être &quot;thumb_</strong>Fleuron1</strong>.gif&quot;, &quot;thumb_<strong>Fleuron1</strong>.png&quot; ou &quot;thumb_<strong>Fleuron1</strong>.jpg&quot; et recherchées par CPG dans cet ordre.</p>
+<p><span class="important">L’extension des vignettes spécifiques sont nommées d'après l'extension du fichier.</span> (Exemples: 'thumb_wmv.jpg', 'thumb_wav.jpg'.)</p>
+<p><span class="important">Le nom de base pour les vignettes spécifiques aux médias est 'thumb_movie', 'thumb_document', et 'thumb_audio'.</span> Pour les fichiers de type images, c'est la vignette spécifique à chaque fichier qui est utilisée par défaut.</p>
 
-<a name="cust_thmb_upload"></a><h3>Uploading custom thumbs<a href="#cust_thmb_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>There are 2 ways to upload custom thumbnails:</p>
+<a name="cust_thmb_upload"></a><h3>Transfert de vignette personnalisée<a href="#cust_thmb_upload" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Il y a 2 façons de télécharger des vignettes personnalisées:</p>
 <ul>
-	<li><img src="images/cust_thmb_3.gif" border="1" alt="" align="right" />Have an image already uploaded then upload a video via the upload page. (or vice versa) The video will share the thumbnail of the image.<br clear="all" /></li>
-	<li><img src="images/cust_thmb_final.gif" border="1" alt="" title="Final result" align="right" />FTP upload both the video and (thumbnail or image) then <a href="uploading_batch-add.htm#batch_add_pics">batch-add</a>. If you FTP upload the thumbnail, the thumbnail will be display in the batch add page instead of the default Coppermine thumbnail. If you upload an image it will look like the above screenshot. However, when the both files are added to the database, the thumbnail of the image will be used by the video.<br clear="all" /></li>
-</ul>
-<p>Note: If the first method is used and the image later deleted, the thumbnail will also be deleted and the default Coppermine thumbnails will be displayed, instead.</p>
-<p>If a previously uploaded video is to be uploaded again, via FTP, the accompanying thumbnail must also be uploaded, via FTP, to the same folder.</p>
-<p class="cpg_message_success">Using the above instructions, a custom thumbnail can be applied to <em>any</em> file, not just videos.</p>
+	<li><img src="images/cust_thmb_3.png" border="1" alt="" align="right" />Avoir une image déjà téléchargé puis télécharger une vidéo via la page de téléchargement. (Ou vice versa) La vidéo se partagera la vignette avec l'image.<br clear="all" /></li>
+	<li><img src="images/cust_thmb_final.png" border="1" alt="" title="Final result" align="right" />Télécharger par FTP la vidéo et (vignette ou l'image), puis <a href="uploading_batch-add.htm#batch_add_pics">ajoutez par lot</a>. Si vous avez téléchargé par FTP la vignette, elle sera affichée dans le lot, puis ajouter sur dans la page au lieu de la vignette par défaut de Coppermine. Si vous téléchargez une image, elle ressemblera à la capture d'écran ci-dessus. Toutefois, lorsque les fichiers sont ajoutés à la base de données, la vignette de l'image sera utilisée par la vidéo.<br clear="all" /></li>
+	</ul>
+<p>Note: Si la première méthode est utilisée et l'image supprimé plus tard, la vignette sera également supprimé et la vignette du type de fichier par défaut de Coppermine s’affichera à la place</p>
+<p>Si une vidéo déjà envoyée doit être transféré à nouveau, via FTP, la vignette d'accompagnement doit également être transférée, via FTP, dans le même dossier.</p>
+<p class="cpg_message_success">En suivant les instructions ci-dessus, une vignette personnalisée peut être appliquée à <em>tous</em> les fichiers, pas seulement aux vidéos.</p>
 
-<a name="cust_thmb_how"></a><h3>How it works<a href="#cust_thmb_how" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>As suggested above, there are different types of thumbnails. Most users don't care for the generic thumbnail that represents a particular file type (like movies with the extension <tt class="code">.mov</tt>) - they don't want to see that generic thumbnail at all, but just a nicely looking thumbnail that blends into the generated ones for image uploads. To understand how this works, you just have to take a look at how coppermine works: file uploads go into particular folders. Coppermine "looks" into the folder where your file actually is stored in to see if there is a thumbnail that "fits" to the file, respecting the naming scheme. If it finds such a thumbnail, it will use it. If it doesn't, it will use the generic one that was designed to represent the media type.</p>
+<a name="cust_thmb_how"></a><h3>Comment ça marche ?<a href="#cust_thmb_how" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Comme indiqué plus haut, il existe différents types de vignettes. La plupart des utilisateurs ne se soucient pas de la vignette générique qui représente un type de fichier particulier (comme les films avec l'extension. <tt class="code">.mov</tt>) - ils ne veulent pas voir cette vignette générique du tout, mais juste un bel aperçu qui représente bien le contenu du fichier téléchargé. Pour comprendre comment cela fonctionne, il vous suffit de jeter un œil à la façon de fonctionner de Coppermine: les fichiers téléchargés sont placés dans des dossiers particuliers. Coppermine "regarde" dans le dossier où votre fichier est stocké pour voir s'il y a une vignette qui "s'adapte" au fichier, en respectant le schéma de nommage. S’il en trouve une, il l'utilisera. Si ce n'est pas le cas, il utilisera la vignette générique qui a été conçu pour représenter le type de média.</p>
 
-<a name="cust_thmb_how_naming"></a><h3>Naming scheme<a href="#cust_thmb_how_naming" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The naming scheme is pretty straightforward: you can specify a <a href="configuration.htm#admin_picture_thumb_advanced_thumbs_prefix">prefix for the thumbnails</a> in coppermine's config. Out of the box, this prefix is set to <tt cass="code">thumbs_</tt>, and that's fine - don't change that setting unless you really, really know what you're doing. So for now, let's assume that you haven't changed it, it is the default prefix <tt cass="code">thumbs_</tt>.</p>
-<p>Now, let's assume that you're trying to create a custom thumbnail for the file <tt class="code">myvideo.avi</tt> that resides in the folder <tt class="code">/albums/userpics/10235/</tt>. Subsequently, coppermine would look into that folder and see if there is a file named <tt class="code">thumb_myvideo.jpg</tt>. If this thumbnail file exists, it will be used as a thumbnail to represent the video. If it doesn't exist, Coppermine would use the generic one.</p>
-<p>Therefore, the naming scheme is the thumbnail prefix plus the file name of the video (without the extension) plus a dot (to separate the actual filename from the extension) plus the extension <tt class="code">jpg</tt>.</p>
-<p><strong>Capitalization matters</strong>: many users are not aware that there <em>is</em> a difference on Unix/Linux-driven computers between lower case and upper case, simply because on Windows there is no such difference. You have to keep this aspect in mind: since most webservers are Unix/Linux-driven, capitalization matters! That's why <tt class="code">thumb_myvideo.jpg</tt> and <tt class="code">thumb_myvideo.JPG</tt> are two entirely different animals. It <em>does</em> matter how you name your custom thumbnail. If the file you're trying to represent with a custom thumbnail is named <tt class="code">myVideo.avi</tt>, the custom thumbnail needs to be named <tt class="code">thumb_myVideo.jpg</tt>! Other variants with different capitalization (like <tt class="code">thumb_myVideo.JPG</tt>, <tt class="code">thumb_myvideo.jpg</tt>, <tt class="code">Thumb_myVideo.jpg</tt>, <tt class="code">thumb_myVideo.Jpg</tt> or similar) will <strong>not</strong> work as expected!</p>
+<a name="cust_thmb_how_naming"></a><h3>Schéma de nommage<a href="#cust_thmb_how_naming" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Le schéma est assez simple: vous pouvez spécifier un <a href="configuration.htm#admin_picture_thumb_advanced_thumbs_prefix">préfixe pour les vignettes</a> dans la configuration de Coppermine. Ce préfixe est  <tt cass="code">thumbs_</tt>, par défaut et c'est très bien - ne modifiez pas ce paramètre à moins de ne savoir vraiment ce que vous faites. Pour l'instant, supposons que vous ne l'avez pas changé, c'est le préfixe par défaut <tt cass="code">thumbs_</tt>.</p>
+<p>Maintenant, supposons que vous essayez de créer une vignette personnalisée pour le fichier <tt class="code">mavideo.avi</tt> qui se trouve dans le dossier <tt class="code">/albums/userpics/10235/</tt>. Par la suite, Coppermine se penchera sur ce dossier et regardera s'il y a un fichier nommé <tt class="code">thumb_mavideo.jpg</tt>. Si ce fichier existe, il sera utilisé comme une vignette pour représenter la vidéo. S’il n'existe pas, Coppermine utilisera le générique.</p>
+<p>Par conséquent, le schéma est le préfixe de la vignette plus le nom du fichier de la vidéo (sans l'extension), ainsi que d'un point (pour séparer le nom réel du fichier de l'extension) plus l'extension <tt class="code">jpg</tt>.</p>
+<p><strong>Importance des Majuscules</strong>: de nombreux utilisateurs ne savent pas qu'il y a <em>une</em> différence sur un ordinateur fonctionnant sous Unix / Linux entre les lettres minuscules et majuscules, tout simplement parce que sous Windows, il n'y a pas de différence. Il faut garder à l'esprit cet aspect: car la plupart des serveurs web sont sous  Unix / Linux, d'ou l'importance des Majuscules ! C'est pourquoi <tt class="code">thumb_mavideo.jpg</tt> et <tt class="code">thumb_maVideo.JPG</tt> sont deux choses totalement différentes <em>qu'importe</em> la façon dont vous nommez votre vignette personnalisée. Si le fichier que vous essayez de représenter avec une vignette personnalisée est nommé <tt class="code">maVideo.avi</tt>, la vignette personnalisée doit être nommé <tt class="code">thumb_maVideo.jpg</tt> ! D'autres variantes avec une capitale différents (comme <tt class="code">thumb_maVideo.JPG</tt>, <tt class="code">thumb_mavideo.jpg</tt>, <tt class="code">Thumb_maVideo.jpg</tt>, <tt class="code">thumb_maVideo.Jpg</tt> ou similaire) ne fonctionneront <strong>pas</strong> comme prévu !</p>
 
-<a name="cust_thmb_why"></a><h3>Why can't coppermine create thumbnails for my videos?<a href="#cust_thmb_why" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>All this custom thumbnail business might appear very complicated to newbies, and in fact you're right: this is a complicated process. Therefore, many users ask why this has to be so complicated. Coppermine can create thumbnails for images, so why can't it create thumbnails for videos? The reason is pretty simple: because the image libraries that Coppermine is relying on (GD or ImageMagick, see "<a href="requirements.htm#what">Minimum requirements</a>") to create thumbnails from images don't support videos. It's not that the Coppermine developers have been reluctant to come up with code that auto-creates thumbnails for videos - it's just that they <em>can't</em> because the technology that is available on your webserver can't.</p>
+<a name="cust_thmb_why"></a><h3>Pourquoi Coppermine ne créer pas de vignette pour mes vidéos ?<a href="#cust_thmb_why" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Toute cette affaire d’aperçu personnalisé peut paraître très compliquée aux débutants, et en fait vous avez raison: c'est un processus compliqué. Par conséquent, de nombreux utilisateurs se demandent pourquoi cela doit être si compliqué. Coppermine peut créer des vignettes pour les images, alors pourquoi ne pas créer des vignettes pour les vidéos ? La raison est assez simple: parce que les bibliothèques graphiques qu’utilise Coppermine (GD ou ImageMagick, voir &quot;<a href="requirements.htm#what">minimum requis</a>&quot;) pour créer des vignettes à partir d'images ne supportent pas les vidéos. Ce n'est pas que les développeurs Coppermine ont été réticents à proposer un code qui crée automatiquement les vignettes pour les vidéos - c'est juste qu'<em>ils ne peuvent pas</em> parce que la technologie qui est disponible sur votre serveur web ne le peut pas.</p>
 
-<a name="cust_thmb_step"></a><h3>Step-by-step instructions<a href="#cust_thmb_step" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Here is a step-by-step tutorial to get you going:</p>
+<a name="cust_thmb_step"></a><h3>Instructions étape par étape<a href="#cust_thmb_step" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Voici un tutoriel étape par étape pour vous permettre de continuer:</p>
 <ul>
-	<li><strong>Create the custom thumbnail on your desktop</strong><br />
-	Take a screenshot of the movie using your favorite desktop app that is capable to accomplish this, use a picture that represents the content of your video or doodle something in MS Paint: you have to create the custom thumbnail first on your desktop. We really can't help you with that, since there are so many different desktop apps available.
-	<br />Pay attention that the custom thumbnail you come up with has got the same dimensions your other thumbails have (according to the dimensions you have set for your thumbnails in coppermine's config).<br />
-	Once you're done with this, you should have a thumbnail file (as a jpg) on your desktop that has the proper dimensions. Don't upload it yet - let's do some checks first.
+	<li><strong>Créer la vignette personnalisée sur votre ordinateur</strong><br />
+	1.	Prendre une capture d'écran du film à l'aide de votre application favorite  qui est capable d'accomplir cela, utiliser une image qui représente le contenu de votre vidéo ou par exemple un  gribouillage fait avec MS Paint: vous devez créer la vignette personnalisée d'abord sur votre ordinateur. Nous ne pouvons vraiment pas vous aider avec ça, car il y a tellement d’applications différentes  disponibles.
+	<br />Veillez à ce que votre vignette personnalisée obtenue ait les mêmes dimensions que les autres vignettes (selon les dimensions que vous avez définis à l’intérieur des Paramètres des vignettes dans la configuration de Coppermine).<br />
+	Une fois que vous en avez fini avec cela, vous devez avoir une vignette (en .jpg) sur votre ordinateur qui a les dimensions appropriées. Ne pas la télécharger pour l'instant - Faisons d'abbord les premiers contrôles.
 	</li>
-	<li><strong>Figure out the exact location and name of the video that you're trying to come up with a thumbnail for it</strong><br />
-	Now, this can be the most tricky part for newbies: let's assume that the video has already been uploaded to coppermine. If it was you who uploaded the movie using FTP upload plus batch-add in the first place, you should know the exact folder and file name, but for this example let's assume that one of your users has used http uploads to upload the video, so you have no idea where the actual file went to.<br />
-	Don't panic, start your browser, go to your gallery and start browsing it. Navigate to the page that embedds the video, so you can see the actual video being played within the Coppermine user interface. Now, do a right-click, show source somewhere inside the browser window. Don't do the right-click on the actual video, but into some blank space next to it. The HTML output of the page you're looking at should show up. Now search the HTML output for the term <tt class="code">class="imageborder"</tt> - this should bring you right in front of the block that we're actually looking for, so carefully scroll down a bit more (4 or 5 lines). We're looking for a block of code that looks like this:
-	<pre class="code">&lt;param name="src" value="albums/userpics/10235/myvideo.avi" /&gt;</pre>
-	The value that is given for that parameter (<tt class="code">albums/userpics/10235/myvideo.avi</tt> in this example) is what we're looking for. It indicates in which folder the file actually resides (<tt class="code">albums/userpics/10235/</tt> in this example) and what the file name is (<tt class="code">myvideo.avi</tt> in this example). Memorize this piece of information (or just keep the source view window open, with the section we just found out highlighted) - we'll need the information in the next two steps.</li>
-	<li><strong>Rename your custom thumbnail on your desktop</strong><br />
-	Back to your desktop, we have to name our custom to match the <a href="files.htm#cust_thmb_how_naming">naming conventions</a>. For above example (and assuming that you haven't changed the thumbnail prefix in config), you have to rename the custom thumbnail on your desktop to <tt class="code">thumb_myvideo.jpg</tt>. Keep in mind that capitalization matters!</li>
-	<li><strong>Upload the custom thumb</strong><br />
-	Finally, the custom thumb is ready to be uploaded - we just have to make sure that it goes into the folder where your original video resides in. In above example, the relative folder (seen from coppermine's root folder) would be <tt class="code">albums/userpics/10235/</tt>.<br />
-	Start your favorite FTP application (like Filezilla or similar), connect to your webserver and upload your custom thumbnail from your desktop into the folder that represents the URL <tt class="code">http://yoursite.tld/your_coppermine_folder/albums/userpics/10235/</tt></li>
-	<li><strong>Done</strong><br />
-	If everything works as expected, you should be done. Make sure that it does by starting your browser once more, browse your gallery and navigate to the album view that contains the video we just created a custom thumbnail for. You should by now see the custom thumbnail instead of the generic one. If this is not the case for you immediately, make sure that you're not looking at a cached copy of the page - you better force-refresh your browser ([Ctrl]+[F5]) when looking at the thumbail page.</li>
-	<li><strong>Things that you should <em>not</em> do</strong><br />
-	If a custom thumbnail that corresponds to a video file according to the naming scheme exists within the same folder, it will be used. Therefore, you shouldn't (and mustn't) use the http upload mechanism built into coppermine to upload the custom thumbnail, nor are you supposed to batch-add the custom thumbnail. You just FTP-upload it and that's it! We don't want it to reside in the database.</li>
+	<li><strong>Trouvez l'emplacement exact ainsi que le nom de la vidéo pour laquelle vous essayez de créer une vignette personnalisée</strong><br />
+	Maintenant, c'est peut être la partie la plus délicate pour les débutants: supposons que la vidéo ait déjà été transférée dans Coppermine. Si c'est vous qui avez téléchargé le film à l'aide du FTP en faisant un ajout par lot, vous devez connaitre le dossier exact et le nom du fichier, mais pour cet exemple nous supposons que l'un de vos utilisateurs a utilisé le téléchargement HTTP pour télécharger la vidéo, si vous n'avez aucune idée où le fichier est réellement allé.<br />
+	Pas de panique, démarez votre navigateur, allez sur votre galerie et commencez à la parcourir. Allez à la page qui inclue les vidéos, de manière à voir les vidéos jouées au travers de l'interface de Coppermine. Maintenant, faites un clic droit  n'importe ou dans la fenêtre du navigateur, et demandez à voir le code source. Ne faites pas de clic droit sur la vidéo, mais sur un espace vide à côté. La sortie HTML de la page que vous êtes en train de regarder devrait s'afficher. Maintenant cherchez dans cette sortie HTML le terme <tt class="code">class="imageborder"</tt> - cela devrait vous amener juste en face du bloc que nous cherchons, déroulez doucement la page vers le bas (4 ou 5 lignes). Nous cherchons un bloc de code qui ressemble à çà:
+	<pre class="cpg_code code">&lt;param name="src" value="albums/userpics/10235/mavideo.avi" /&gt;</pre>
+	La valeur donnée pour ce paramètre (<tt class="code">albums/userpics/10235/mavideo.avi</tt> dans cet exemple) est ce que nous recherchons. elle indique dans quel dossier le fichier est actuellement placé (<tt class="code">albums/userpics/10235/</tt> dans cet exemple) et le nom du fichier est (<tt class="code">mavideo.avi</tt> dans cet exemple). Mémorisez ces informations (ou laissez la fenêtre avec le code source ouverte, avec la section que nous venons de trouver surlignée) - nous aurons besoin de ces informations dans les deux étapes suivantes.</li>
+	<li><strong>Renommez votre vignette personnalisée sur votre ordinateur</strong><br />
+	Retour à votre ordinateur, vous devez avoir votre nom personnalisé correspondant à la <a href="files.htm#cust_thmb_how_naming">convention de nommage</a>. Pour l'exemple ci-dessus (et en supposant que vous n'avez pas changé le préfixe des vignettes dans la configuration), vous devez renommer la vignette personnalisée sur votre ordinateur en <tt class="code">thumb_mavideo.jpg</tt>. Gardez à l'esprit les questions de majuscules !</li>
+	<li><strong>Envoyer la vignette personnalisée</strong><br />
+	Enfin, la vignette personnalisée est prête à être transférée - nous avons juste à faire en sorte que cela parte dans le dossier où votre vidéo originale est placée. Dans l'exemple ci-dessus, le dossier relatif (vu du dossier racine de Coppermine) serait <tt class="code">albums/userpics/10235/</tt>.<br />
+	Démarrez votre application FTP préféré (comme Filezilla ou similaire), connectez vous à votre serveur web et téléchargez votre vignette personnalisé de votre ordinateur vers le dossier qui représente l'url <tt class="code">http://votresite.com/votre_dossier_coppermine/albums/userpics/10235/</tt></li>
+	<li><strong>Pour finir</strong><br />
+	Si tout fonctionne comme prévu, çà devrait être bon. Assurez-vous en, en commençant par ouvrir votre navigateur une fois de plus, allez à la page de votre galerie et naviguez à l'album qui contient la vidéo pour laquelle nous venons de créer une vignette personnalisée. Vous devriez maintenant voir la vignette  personnalisé au lieu de la vignette générique. Si ce n'est pas immédiatement le cas pour vous, assurez-vous qu’il ne s’agit pas d’une image en cache de votre page – Vous feriez mieux de forcer le rafraîchissement de votre navigateur ([Ctrl] + [F5]) quand vous regardez la page des vignettes.</li>
+	<li><strong>Les choses que vous ne devriez pas <em>pas</em> faire</strong><br />
+	Si dans le même dossier, une vignette personnalisée correspond à un fichier vidéo selon le schéma de nommage existant, elle sera utilisée. Par conséquent, vous ne devriez pas (et ne devez pas) utiliser le mécanisme de téléchargement HTTP intégré dans Coppermine pour télécharger la vignette personnalisée, vous n’êtes pas censé ajouté par lot la vignette personnalisée. Vous venez de l’envoyer par FTP et c'est tout ! Nous ne voulons pas qu’elle réside dans la base de données.</li>
 </ul>
 
-<h2>Frequently Asked Questions (FAQ):</h2>
+<a name="cust_thmb_faq"></a><h3>FAQ pour les Vignettes personnalisées <a href="#cust_thmb_faq" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <ul>
-<li><strong>Quote</strong><br /><div class="quote">I have a video named <strong>'movie.wmv'</strong>, when I upload a thumbnail for it <strong>'thumb_movie.jpg'</strong> it replaces the thumbnails for multiple videos!!!!</div>
-Duhh. <strong>'thumb_movie.jpg'</strong> is a <em>media-specific</em> thumbnail. Rename the video and the thumbnail with something other than just <strong>'movie'</strong>.</li>
-<li><strong>Quote</strong><br /><div class="quote">I can't find my user's folder!</div>
-From within Coppermine, browse to the user's album. Look in the url of your browser and you should see the folder's name. (See screenshot for an example.)<br />
-<img src="images/user_folder_link.gif" alt=""/><br />
-Your users can upload their own thumbnails by using this trick: Create an album. Change the permissions on it so no one can view it except that specific user. Then upload the fullsized images of the thumbnails to this folder. Files outside this album will be able to use the thumbnails of these images. (See above for naming.)</li>
-<li><strong>Quote</strong><br /><div class="quote">How do I stop my users from creating their own custom thumbnails?</div>
-Currently, this is not possible.</li>
+<li>
+	<a name="cust_thmb_faq_multiple_videos"></a><h4>J'ai une vidéo de nom <tt class="code">movie.wmv</tt>, quand je télécharge pour une vignette <tt class="code">thumb_movie.jpg</tt> elle remplace les vignettes pour de multiples vidéos !<a href="#cust_thmb_faq_multiple_videos" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+	Heuu. <tt class="code">thumb_movie.jpg</tt> est une <em>vignette générique</em> à un type de média. Renommez la vidéo et la miniature avec autre chose que simplement <strong>&quot;movie&quot;</strong>.
+</li>
+<li>
+	<a name="cust_thmb_faq_user_folder"></a><h4>Je ne trouve pas mon dossier utilisateur !<a href="#cust_thmb_faq_user_folder" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+	A l'intérieur de Coppermine, accédez à l'album de l'utilisateur. Regarder dans votre navigateur URL et vous devriez voir le nom du dossier(voir capture d'écran pour un exemple).<br />
+	<img src="images/user_folder_link.png" border="0" alt="barre d'adresse" /><br />
+	Vos utilisateurs peuvent télécharger leurs propres vignettes en utilisant cette astuce: Créez un album. Modifier les autorisations pour que personne ne puisse le voir, sauf l'utilisateur spécifique. Puis télécharger les images en taille réelle dans ce dossier. Les fichiers hors de cet album seront en mesure d'utiliser les vignettes de ces images (voir ci-dessus pour la dénomination).
+</li>
+<li>
+	<a name="cust_thmb_faq_stop_users"></a><h4>Comment puis-je empêcher mes utilisateurs de créer leurs propres vignettes personnalisées ?<a href="#cust_thmb_faq_stop_users" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+	Cela n'est pas possible actuellement.
+</li>
 </ul>
 
 <a name="edit_pics_end"></a>
