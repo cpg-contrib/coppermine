@@ -11000,6 +11000,22 @@
     <hash>3247a9e27b8c008a8e08da2d80084a7f</hash>
   </element>
   <element>
+    <fullpath>lang/slovenian.php</fullpath>
+    <version>1.5.4</version>
+    <revision>7335</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>3247a9e27b8c008a8e08da2d80084a7f</hash>
+  </element>
+  <element>
+    <fullpath>lang/spanish.php</fullpath>
+    <version>1.5.4</version>
+    <revision>7335</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>3247a9e27b8c008a8e08da2d80084a7f</hash>
+  </element>
+  <element>
     <fullpath>js/</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
