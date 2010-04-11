@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-04-11 [D] Added section about adding language files to dev-only section of documentation {GauGau}
 2010-04-10 [A] Added partial Arabic translation (user contribution) {GauGau}
 2010-04-09 [D] Added clarification about quota to docs {GauGau}
 2010-04-08 [C] Changed label of submit button for user creation (thread ID 64423) {GauGau}
