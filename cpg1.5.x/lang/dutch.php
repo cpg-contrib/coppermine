@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -900,7 +900,7 @@ $lang_admin_php['with_captcha'] = 'met captcha'; // cpg1.5
 $lang_admin_php['without_captcha'] = 'zonder captcha'; // cpg1.5
 $lang_admin_php['optional'] = 'optioneel'; // cpg1.5
 $lang_admin_php['mandatory'] = 'verplicht'; // cpg1.5
-$lang_admin_php['contact_form_guest_name_field'] = 'Toon afzender naaamveld voor gasten'; // cpg1.5
+$lang_admin_php['contact_form_guest_name_field'] = 'Toon afzender naamveld voor gasten'; // cpg1.5
 $lang_admin_php['contact_form_guest_email_field'] = 'Toon afzender e-mail veld voor gasten'; // cpg1.5
 $lang_admin_php['contact_form_subject_field'] = 'Toon onderwerpveld'; // cpg1.5
 $lang_admin_php['contact_form_subject_content'] = 'Onderwerplijn voor e-mails gegenereerd door het contactformulier'; // cpg1.5
@@ -1680,7 +1680,7 @@ $lang_modifyalb_php['comments'] = 'commentaar';
 $lang_modifyalb_php['files'] = 'bestanden'; 
 $lang_modifyalb_php['submit_reset'] = 'verstuur wijzigingen';
 $lang_modifyalb_php['reset_views_confirm'] = 'Ik weet het zeker'; 
-$lang_modifyalb_php['notice1'] = '(*) afhankelijk van de %sgroups%s instellingen'; 
+$lang_modifyalb_php['notice1'] = '(*) afhankelijk van de %sgroeps%sinstellingen'; 
 $lang_modifyalb_php['can_moderate'] = 'Album kan gemodereerd worden door'; // cpg 1.5
 $lang_modifyalb_php['admins_only'] = 'Alleen beheerders'; // cpg 1.5
 $lang_modifyalb_php['alb_password'] = 'Album wachtwoord (Nieuw wachtwoord)';
