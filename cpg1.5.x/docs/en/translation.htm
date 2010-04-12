@@ -71,9 +71,12 @@ You may find also find additional information there that didn't make it into thi
 <p>In fact you can use nearly any <strong>text</strong> editor you feel comfortable with that will allow you to save your text in the ANSI format - Windows Notepad (also known as &quot;Editor&quot; in Windows 2000/XP) will do just fine.</p>
 <p>Of course, you're welcome to use a more powerfull editor and use (if you can) utf-8 as encoding.</p>
 <p>To determine whether or not your favorite text editor can correctly handle the necessary encoding, start the translation by translating only a few lines (preferrably some that contain special chars from you language), save the translation file and close it. Then try to open it with a plain text editor on your system (e.g. Notepad) - if everything displays as expected, your editor should work fine.</p>
+<p>The drawback when using one of the tools that come with the operating system Microsoft Windows out of the box is the fact that they haven't been created with Unicode (utf-8) support in mind, but mostly catter for the proprietary ANSI format that was introduced way back with MS DOS. Subseuqently, if you language is using non-latin characters you might have a hard time to test the language file in your testbed before submitting it.</p>
 <p>Recommended Tools: to see what has changed between the language files of cpg1.4.x and cpg1.5.x, we recommend using a diff viewer that can highlight the differences in both files. Windows users should opt for the great, changes in file viewer <a href="http://winmerge.org/" rel="external" class="external">WinMerge</a> (available as freeware; 3 MB, localizations available as well): You can even edit the files with this tool (352 of 1152 lines have been added or changed). All new/changed lines have a comment at the end like this one: <tt class="code">//cpg1.5.x</tt>.<br />
 If you need a powerfull, free editor for Windows, the dev team recommends using <a href="http://notepad-plus.sourceforge.net/" rel="external" class="external">Notepad++</a>.</p>
 <p>For a full list of suggestions, please review &quot;<a href="dev_tools.htm">Tools recommended by the devs</a>&quot;</p>
+<p>A text processor like MS Word is definitely <strong>not</strong> the right tool to handle a language file, as it tends to "beautify" the code within a language file, which will break the language file.</p>
+<p>If you're concerned to install yet another tool on your operating system, then don't be alarmed: many of the editors (like Notepad++) come in packages that allow you to run the editor without installation: subsequently, your operating system doesn't get slowed down or cluttered by yet another application.</p>
 
 <a name="translation_full_translation"></a><h2>Full translations only<a href="#translation_full_translation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Up until version 1.2 of coppermine we only sent out the lines that had changed in the language files from previous versions to the translators. Although this seemed to be a very easy solution and approach, we soon discovered that this method had severe drawbacks:
@@ -85,6 +88,7 @@ If you need a powerfull, free editor for Windows, the dev team recommends using 
 </ul>
 </p>
 <p>For these reasons we now provide the translators with the most recent english language file along with all existing language files of previous versions as references. Additionally we provide this guide that you are currently reading, asking them (the translators: <em>you</em> in this particular case) to translate the file in its entirety. Of course, you can (and are even encouraged to) take a look at the language files from older versions and adopt (port) the contents that are already in the old version whenever they apply.</p>
+<p>This does of course not mean that you need to provide a full translation as much as the completeness of your contribution is concerned: we understand that it's a lot of work to come up with a translation for each string in a language file, that's why it's acceptable as well if you only provide a partial translation into your language, with part of the language file remaining in English. Please make sure though to tell us that you are providing a partial translation only.</p>
 
 <a name="translation_step_by_step"></a><h2>Step by step<a href="#translation_step_by_step" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Here are the detailed steps for translating coppermine language files:</p>
@@ -113,16 +117,23 @@ Fill in the data you want to appear on the credits page as shown in the example 
         'pictures' => '<strong>Files</strong>',<br />
 );</tt></li>
   <li>Cascaded/multi-dimensional arrays have been dropped from cpg1.4.x to cpg1.5.x, so you don't have to worry about them any longer.</li>
-        <li><tt class="code">$lang_forgot_passwd_php['account_verify_email'] = &lt;&lt;&lt; EOT
-<strong>You have requested a new password. If you would like to proceed with having a new password sent to you, click on the following link:</strong><br />
-<a href="{VERIFY_LINK}">{VERIFY_LINK}</a><br />
-<strong>Regards,<br />
-The management of</strong> {SITE_NAME}<br />
-EOT;</tt> Var definitions using the <a href="http://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.heredoc" rel="external" class="phpnet">heredoc</a> syntax: make sure to only translate the plain text, leaving everything in curled braces and all html tags intact</li>
+        <li>Var definitions using the <a href="http://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.heredoc" rel="external" class="phpnet">heredoc</a> syntax:
+        <textarea class="samplecode" style="width:100%">$lang_forgot_passwd_php['account_verify_email'] = &lt;&lt;&lt; EOT
+You have requested a new password. If you would like to proceed with having a new password sent to you, click on the following link:
+
+&lt;a href="{VERIFY_LINK}"&gt;{VERIFY_LINK}&lt;/a&gt;
+
+
+Regards,
+
+The management of {SITE_NAME}
+
+EOT;</textarea>
+Make sure to only translate the plain text, leaving everything in curled braces and all html tags intact</li>
   </ul>
 <p>Translate the entire language file as described - you'll find your way around in no time, even if you're not a seasoned PHP coder.</p>
 </li>
-<li>Test your translation: upload your language file to your server and browse your gallery, adding an additional parameter <tt class="code">lang=your_language_name</tt> to the URL (e.g. <tt class="code">http://yoursite.tld/coppermine/?lang=german)</tt>. Make sure to test as many aspects as possible from the file you creaeted, especially in the creation, renaming and deleting of users,categories, albums, pictures and comments.</li>
+<li>Test your translation: upload your language file to your server and browse your gallery, adding an additional parameter <tt class="code">lang=your_language_name</tt> to the URL (e.g. <tt class="code">http://yoursite.tld/coppermine/?lang=german)</tt>. Make sure to test as many aspects as possible from the file you created, especially in the creation, renaming and deleting of users,categories, albums, pictures and comments.</li>
 <li>Proof-reading: if you can, let someone else (preferably non-tech user) test your translation as well. You might be surprised as to what they will discover...</li>
 <li>Post your language as a zipped attachment of the thread &quot;<a href="http://coppermine-gallery.net/forum/index.php?topic=44308.0">[Help wanted]: Translations for CPG1.5.x</a>&quot;.<br />
 You can post the attachment as a txt file or you can put it inside of a .zip archive, but please don't use other exotic archival formats such as .rar, .ace, etc. </li>
