@@ -423,7 +423,7 @@ $lang_albmgr_php['select_category'] = 'Izberite kategorijo';
 $lang_albmgr_php['category_change'] = 'Če spremenite kategorijo, bodo vaše spremembe izgubljene!'; // cpg1.5
 $lang_albmgr_php['page_change'] = 'Če boste sledili tej povezavi, bodo vaše spremembe izgubljene!'; // cpg1.5
 $lang_albmgr_php['cancel'] = 'Prekliči'; // cpg1.5
-$lang_albmgr_php['submit_reminder'] = 'Spremembe razvrščanja ne bodo shranjene dokler ne kliknete &quot;Uporabi spremembequot;.'; // cpg1.5
+$lang_albmgr_php['submit_reminder'] = 'Spremembe razvrščanja ne bodo shranjene dokler ne kliknete &quot;Uporabi spremembe&quot;.'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
@@ -595,7 +595,7 @@ $lang_contact_php['email_sent'] = 'Vaše e-sporočilo je bilo poslano.'; // cpg1
 if (defined('ADMIN_PHP')) {
 $lang_admin_php['title'] = 'Konfiguracija galerije';
 $lang_admin_php['general_settings'] = 'Splošne nastavitve'; // cpg1.5
-$lang_admin_php['language_charset_settings'] = 'Jetik &amp; Nastavitve kodiranja znakov'; // cpg1.5
+$lang_admin_php['language_charset_settings'] = 'Jezik &amp; Nastavitve kodiranja znakov'; // cpg1.5
 $lang_admin_php['themes_settings'] = 'Nastavitve izgleda galerije'; // cpg1.5
 $lang_admin_php['album_list_view'] = 'Prikaz seznama albumov'; // cpg1.5
 $lang_admin_php['thumbnail_view'] = 'Prikaz ikon'; // cpg1.5
@@ -1753,9 +1753,9 @@ $lang_pluginmgr_php['confirm_version'] = 'Could not determine the version requir
 // File ratepic.php
 // ------------------------------------------------------------------------- //
 if (defined('RATEPIC_PHP')) {
-$lang_rate_pic_php['already_rated'] = 'Sorry but you have already rated this file';
-$lang_rate_pic_php['rate_ok'] = 'Your vote was accepted';
-$lang_rate_pic_php['forbidden'] = 'You cannot rate your own files.';
+$lang_rate_pic_php['already_rated'] = 'Za to sliko ste že glasovali';
+$lang_rate_pic_php['rate_ok'] = 'Vaš glas je biv sprejet';
+$lang_rate_pic_php['forbidden'] = 'Ne morete glasovati za svoje slike.';
 }
 
 // ------------------------------------------------------------------------- //
@@ -1942,8 +1942,8 @@ $lang_reviewcom_php['ip_address'] = 'IP address'; // cpg1.5
 // File sidebar.php
 // ------------------------------------------------------------------------- //
 if (defined('SIDEBAR_PHP')) {
-$lang_sidebar_php['sidebar'] = 'Side Bar'; // cpg1.5
-$lang_sidebar_php['install'] = 'install'; // cpg1.5
+$lang_sidebar_php['sidebar'] = 'Stranska vrstica'; // cpg1.5
+$lang_sidebar_php['install'] = 'namesti'; // cpg1.5
 $lang_sidebar_php['install_explain'] = 'Among the many smart access methods to get to information quickly on the site, we provide sidebars for the most popular browsers used on different operating systems to access pages easily. Here you can find setup and uninstall information for the browsers supported.'; // cpg1.5
 $lang_sidebar_php['os_browser_detect'] = 'Detecting your OS and browser'; // cpg1.5
 $lang_sidebar_php['os_browser_detect_explain'] = 'The script is trying to detect your operating system and browser version - please wait a second. If auto-detection fails, you might want to %sunhide%s all possible sidebar install options manually.'; // cpg1.5
@@ -1960,8 +1960,8 @@ $lang_sidebar_php['opera_explain'] = 'If you are using Opera, you can %sclick on
 $lang_sidebar_php['additional_options'] = 'Additional options'; // cpg1.5
 $lang_sidebar_php['additional_options_explain'] = 'If you have another browser than the one mentioned above, then click %shere%s to display all possible sidebar options.'; // cpg1.5
 $lang_sidebar_php['cannot_add_sidebar'] = 'Sidebar cannot be added! Your browser does not support this method!'; // cpg1.5 // js-alert
-$lang_sidebar_php['search'] = 'Search'; // cpg1.5
-$lang_sidebar_php['reload'] = 'Reload'; // cpg1.5
+$lang_sidebar_php['search'] = 'Išči'; // cpg1.5
+$lang_sidebar_php['reload'] = 'Osveži'; // cpg1.5
 }
 
 
