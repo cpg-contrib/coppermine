@@ -4818,7 +4818,7 @@ function cpgStoreTempMessage($message)
     $message = urlencode($message);
 
     // come up with a unique message id
-    $message_id = md5(uniqid(''));
+    $message_id = md5(uniqid(mt_rand(), true));
 
     // write the message to the database
     $user_id = USER_ID;
