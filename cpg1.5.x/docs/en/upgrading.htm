@@ -113,34 +113,36 @@
 <p>The instructions here apply for <strong>all</strong> Coppermine udpates/upgrades, so please read them carefully.</p>
 <ul>
     <li>
-	    <span class="detail_head_collapsed">Make a backup (dump) of your database</span>
+	    <a name="upgrade_any_backup_db"></a><h3 class="detail_head_collapsed smaller">Make a backup (dump) of your database</h3>
 	    <div class="detail_body border1">Recommended tools for <a href="export.htm#backup_database">creating a database dump</a> are <a href="http://mysqldumper.de/en/" rel="external" class="external">mySqlDumper</a> or <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a> - refer to the section <a href="dev_tools.htm#dev_tools_database">Tools recommended by the devs: Database manipulation</a> for details.<br />
-	    Creating a <a href="export.htm#backup">backup</a> is not mandatory in terms of functionality, but just a precaution in case anything should go wrong. It's advisable to make frequent backups anyway.</div>
+	    Creating a <a href="export.htm#backup">backup</a> is not mandatory in terms of functionality, but just a precaution in case anything should go wrong. It's advisable to make frequent backups anyway.
+	    <p class="small"><a href="#upgrade_any_backup_db" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
     </li>
     <li>
-	    <span class="detail_head_collapsed">Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy as a safety precaution if anything should go wrong.</span>
-	    <div class="detail_body border1">Usually, you just download your entire coppermine folder to your local hard drive or any other safe backup location using your <a href="dev_tools.htm#dev_tools_ftp_client"><abbr title="File Transfer Protocol">FTP</abbr> app</a>. A fresh Coppermine package doesn't contain a config file anyway (that file has being created during install on your server), so you can't actually replace an existing config file with an empty one from the package; again, the backup is only a safety precaution.</div>
+	    <a name="upgrade_any_backup_config"></a><h3 class="detail_head_collapsed smaller">Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy as a safety precaution if anything should go wrong.</h3>
+	    <div class="detail_body border1">Usually, you just download your entire coppermine folder to your local hard drive or any other safe backup location using your <a href="dev_tools.htm#dev_tools_ftp_client"><abbr title="File Transfer Protocol">FTP</abbr> app</a>. A fresh Coppermine package doesn't contain a config file anyway (that file has being created during install on your server), so you can't actually replace an existing config file with an empty one from the package; again, the backup is only a safety precaution.
+	    <p class="small"><a href="#upgrade_any_backup_config" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
     </li>
     <li>
-	    <span class="detail_head_collapsed">Download the most recent stable version existing in the download section of the official Coppermine homepage</span>
+	    <a name="upgrade_any_download"></a><h3 class="detail_head_collapsed smaller">Download the most recent stable version existing in the download section of the official Coppermine homepage</h3>
 	    <div class="detail_body border1">Don't assume that you have the most recent version, especially if you have installed Coppermine using a control panel app provided by your webhost. The coppermine dev team doesn't recommend using such <a href="auto-installers.htm#auto-installers">auto-installers</a> - please download the original from the <a href="http://coppermine-gallery.net/">official Coppermine homepage</a>.<br />
-	    If you're not sure what package to use (i.e. if there are several archive types), choose the zip archive, as Windows XP and better out of the box come with support for zip archives.</div>
+	    If you're not sure what package to use (i.e. if there are several archive types), choose the zip archive, as Windows XP and better out of the box come with support for zip archives.
+	    <p class="small"><a href="#upgrade_any_download" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
     </li>
     <li>
-	    <span class="detail_head_collapsed">Unpack the coppermine package you downloaded</span>
-	    <div class="detail_body border1">Similar to fresh installs, you need to extract the packed archive into a temporary folder on your local hard drive (preserving the folder structure within the package). Most modern operating systems come with an unarchiver that is capable to extract zip archives.</div>
+	    <a name="upgrade_any_unpack"></a><h3 class="detail_head_collapsed smaller">Unpack the coppermine package you downloaded</h3>
+	    <div class="detail_body border1">Similar to fresh installs, you need to extract the packed archive into a temporary folder on your local hard drive (preserving the folder structure within the package). Most modern operating systems come with an unarchiver that is capable to extract zip archives.
+	    <p class="small"><a href="#upgrade_any_unpack" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
     </li>
     <li>
-	    <span class="detail_head_collapsed"><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories, making sure not to overwrite your anycontent.php file or the albums directory.</span>
-	    <div class="detail_body border1">In fact, you could upload the albums folder as well - the one that is contained in the package is empty anyway. The recommendation not to upload this folder is only meant as a pre-caution for some users who have "funny" settings for their FTP apps: some exotic FTP applications delete folders existing on the server and then re-create an empty folder on the server-side. This would of course be a disaster for all existing galleries during the upgrade process, as you would lose <em>all</em> your uploaded files in your gallery. However, the number of FTP apps that is set up in that strange way is small and therefore, it won't hurt for most to upload the albums folder as well. If you're not sure, use one of the <a href="dev_tools.htm#dev_tools_ftp_client">FTP clients recommended by the devs</a>.</div>
+	    <a name="upgrade_any_upload"></a><h3 class="detail_head_collapsed smaller"><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories, making sure not to overwrite your anycontent.php file or the albums directory.</h3>
+	    <div class="detail_body border1">In fact, you could upload the albums folder as well - the one that is contained in the package is empty anyway. The recommendation not to upload this folder is only meant as a pre-caution for some users who have "funny" settings for their FTP apps: some exotic FTP applications delete folders existing on the server and then re-create an empty folder on the server-side. This would of course be a disaster for all existing galleries during the upgrade process, as you would lose <em>all</em> your uploaded files in your gallery. However, the number of FTP apps that is set up in that strange way is small and therefore, it won't hurt for most to upload the albums folder as well. If you're not sure, use one of the <a href="dev_tools.htm#dev_tools_ftp_client">FTP clients recommended by the devs</a>.
+	    <p class="small"><a href="#upgrade_any_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
     </li>
     <li>
-	    <span class="detail_head_collapsed">Run the update script</span>
-	    <div class="detail_body border1">To run the PHP-file &quot;<tt class="code">update.php</tt>&quot; (i.e. the <a href="#updater">update script</a>), just enter the <abbr title="Uniform Resource Locator">URL</abbr> into the address bar of your browser. The file &quot;<tt class="code">update.php</tt>&quot; resides in the coppermine directory, so to run it you will need to point your browser to <tt class="code">http://yourdomain.tld/your_coppermine_folder/update.php</tt> (if you have installed Coppermine into the root of your web site, you will have to run <tt class="code">http://yourdomain.tld/update.php</tt> accordingly). This will update your coppermine install by making all necessary changes in the database.</div>
-    </li>
-    <li>
-	    <span class="detail_head_collapsed">If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme</span>
-	    <div class="detail_body border1">Please refer to the <a href="theme_upgrade_14x-15x.htm">theme-upgrade guide</a> for details.</div>
+	    <a name="upgrade_any_update_script"></a><h3 class="detail_head_collapsed smaller">Run the update script</h3>
+	    <div class="detail_body border1">To run the PHP-file &quot;<tt class="code">update.php</tt>&quot; (i.e. the <a href="#updater">update script</a>), just enter the <abbr title="Uniform Resource Locator">URL</abbr> into the address bar of your browser. The file &quot;<tt class="code">update.php</tt>&quot; resides in the coppermine directory, so to run it you will need to point your browser to <tt class="code">http://yourdomain.tld/your_coppermine_folder/update.php</tt> (if you have installed Coppermine into the root of your web site, you will have to run <tt class="code">http://yourdomain.tld/update.php</tt> accordingly). This will update your coppermine install by making all necessary changes in the database.
+	    <p class="small"><a href="#upgrade_any_update_script" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
     </li>
 </ul>
 <p>To make this absolutely clear:</p>
@@ -164,7 +166,7 @@
 <ul>
   <li>
       <a name="upgrade_14_plugins"></a><h4>Plugins<a href="#upgrade_14_plugins" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-      Plugins made for cpg1.4.x usually can no longer be run on cpg1.5.x, so you'll need to turn them off while you're still running cpg1.4.x (before you start upgrading). Some features that have been a plugin for cpg1.4.x went into the core of cpg1.5.x, so you may not need your plugins any longer. The safest way to make sure that plugins don't interfere is by disabling all plugins using the corresponding config option and then removing the content of the plugin folder using your FTP app. After performing the upgrade, get the plugin versions designed for cpg1.5.x and upload them, then re-enable the new plugins one by one.
+      Plugins made for cpg1.4.x usually can no longer be run on cpg1.5.x, so you'll need to turn them off while you're still running cpg1.4.x (before you start upgrading). Some features that have been a plugin for cpg1.4.x went into the core of cpg1.5.x, so you may not need your plugins any longer. The safest way to make sure that plugins don't interfere is by <a href="configuration.htm#admin_general_enable-plugins">disabling all plugins</a> using the corresponding config option and then removing the content of the plugin folder using your FTP app. After performing the upgrade, get the plugin versions designed for cpg1.5.x and upload them, then re-enable the new plugins one by one.
   </li>
   <li>
       <a name="upgrade_14_custom_theme"></a><h4>Custom theme<a href="#upgrade_14_custom_theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
@@ -269,7 +271,7 @@ The updater performs three things:
     <a name="versioncheck_options_only_show_potential_errors_end"></a>
     </li>
     <li><a name="versioncheck_options_hide_images"></a><h4>Hide images<a href="#versioncheck_options_hide_images" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-    When enabling this option, the many graphical resources that come with coppermine (i.e. all the icons and other images) are not being taken into account for display on the versioncheck page - a filter is being applied. Use this option to make the output less cluttered: images usually are not security-sensitive, so if you're only concerned about files that have an impact on security, you can savely hide the images.
+    When enabling this option, the many graphical resources that come with coppermine (i.e. all the icons and other images) are not being taken into account for display on the versioncheck page - a filter is being applied. Use this option to make the output less cluttered: images usually are not security-sensitive, so if you're only concerned about files that have an impact on security, you can safely hide the images.
     <a name="versioncheck_options_hide_images_end"></a>
     </li>
     <li><a name="versioncheck_options_no_modification_check"></a><h4>Don't check for modified files<a href="#versioncheck_options_no_modification_check" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
@@ -307,7 +309,7 @@ The updater performs three things:
     The revision of the file on your server. If it is identical to the revision indicated in the XML repository, you should see an &quot;OK&quot;. If you're running an oudated revision on your server you should get a fresh package and perform an upgrade.<br />
     Revisions are related to the versions - usually, if your version is OK, your revision should be OK as well. Only if you perform checkouts from the <a href="dev_subversion.htm#subversion">subversion repository</a>, the revisions may &quot;act up&quot;.<br />
     The same thing that applies to version numbers applies to revisions as well: only textual files can have revision numbers - folders and binary files don't have a revision number.<br />
-    Confused? You don't have to: usually, you can savely ignore revisions - if you want to find out about what revisions are being used for, read the <a href="dev_subversion.htm#dev_subversion_revision">details on the subversion</a> page.</li>
+    Confused? You don't have to: usually, you can safely ignore revisions - if you want to find out about what revisions are being used for, read the <a href="dev_subversion.htm#dev_subversion_revision">details on the subversion</a> page.</li>
     <li><a name="versioncheck_comparison_modified"></a><h4>Modified<a href="#versioncheck_comparison_modified" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     If a file is accessible and the version and revision numbers match, the versioncheck script attempts to perform a check wether the file has been modified, compared to the original that comes with the coppermine package. This check is being performed by taking into account the MD5-hashes of the original file and your copy.<br />When performing a fresh install or upgrade, there should be no modified files. If they are being displayed as modified, there are several possible reasons:
     <ul>

@@ -106,7 +106,7 @@ There are many passwords that you have to memorize, and there are many issues th
         <li>The server needs to be configured properly to actually send emails</li>
         <li>The email sent by the server might mistakenly be blocked by third-party spam filtering mechanisms</li>
     </ul>
-    If this is the case for you, i.e. if you have forgotten Coppermine's admin account, here are some things to do:
+    If this is the case for you, i.e. if you have forgotten Coppermine's admin account and you can't use the &quot;forgot password&quot; feature for whatever reason, here are some things to do:
     <ul>
         <li>
             If you have access to <a href="dev_tools.htm#dev_tools_phpmyadmin">phpMyAdmin</a>, simply set a new password for your Coppermine user account. Here are the instructions that were originally posted as a user contribution on the <a href="http://forum.coppermine-gallery.net/index.php/topic,52213.0.html" rel="external" class="external">Coppermine support board</a>:
@@ -162,6 +162,7 @@ pagefooter();
                     <li>Run the file in your browser by entering the URL of the file you just uploaded (something like <tt class="code">http://yourdomain.tld/your_coppermine_folder/adminpass.php</tt>) into the address bar of your browser</li>
                     <li>Important: delete the file adminpass.php from your server - it's a great danger to your site if you don't!</li>
                     <li>Log in with the new user that the script has created for you.</li>
+                    <li>Immediately change the password of the user account once you have logged in.</li>
                 </ul>
         </li>
     </ul>  

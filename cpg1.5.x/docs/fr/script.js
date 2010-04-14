@@ -68,7 +68,7 @@ doc_toc += '          <li><a href="requirements.htm#personal">Requis personnels<
 doc_toc += '          <li><a href="requirements.htm#requirements_faq">FAQ du minimum requis</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="testing.htm">Test (Version alpha/beta !)</a>\n';
+doc_toc += '      <li><a href="testing.htm">Test</a>\n';
 doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="testing.htm#testing_support">Pas d\'aide pour les versions alpha et beta</a></li>\n';
 doc_toc += '          <li><a href="testing.htm#testing_areas">Parties à regarder de manière particulièrement précise</a></li>\n';
@@ -1352,7 +1352,7 @@ $(document).ready(function()
 	$(".detail_body").hide();
 	if ($_GET["expand_all"] == 1) { // Show all details and get rid of the details toggle if the GET parameter expand_all is set
 		$('.detail_body').show();
-		$('.detail_head_collapsed').replaceWith('');
+		//$('.detail_head_collapsed').replaceWith('');
 	}
 	//toggle the component with class detail_body
 	$(".detail_head_collapsed").click(function()

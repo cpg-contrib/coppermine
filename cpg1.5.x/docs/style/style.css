@@ -38,6 +38,10 @@ p {
     margin-bottom:0px;
 }
 
+.smaller {
+    font-size:0.9em;
+}
+
 .smallcode {
     font-size: 0.9em;
     font-style: normal;
