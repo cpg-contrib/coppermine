@@ -1374,8 +1374,8 @@ function getUrlParameters(name)
 }
 
 function cpgDocTranslationWarning() {
-  $('#doc_en_only').replaceWith('');
-  $('#doc_en_partial').replaceWith('');
+  $('#doc_en_only').replaceWith('<div class="cpg_message_validation"><h1>Not translated yet</h1><p>This page has not been translated yet and therefore appears in English.</p><p>Translators wanted: take a look at this page - doesn\'t look too complicated, does it? If you\'re convinced that you could translate this page, please check the official Coppermine site; we\'re looking forward to your contribution.</div>');
+  $('#doc_en_partial').replaceWith('<div class="cpg_message_warning"><h1>Partial translation</h1><p>This page hasn\'t been fully translated so far and therefore partially shows in your language and partially in English.</p><p>Translators wanted: take a look at this page - doesn\'t look too complicated, does it? If you\'re convinced that you could translate this page, please check the official Coppermine site; we\'re looking forward to your contribution.</div>');
 }
 
 $(document).ready(function()
