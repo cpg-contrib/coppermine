@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Developer documentation - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<title>Documentation du développeur - Coppermine Photo Gallery - Documentation &amp; Manuel</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="language" content="en" />
+<meta name="language" content="fr" />
 <meta name="copyright" content="Coppermine dev team" />
 <meta name="description" content="This part of the documentation is not meant for end users of Coppermine, but only for developers. There is no support for this section, it comes as-is." />
 <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -27,33 +27,33 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation et Manuel</h1>
 <div id="toc">
-<a href="toc.htm">Table of Contents</a>
+<a href="toc.htm">Table des matières</a>
 </div>
 
-<div id="doc_en_only">No translation available</div>
+<a name="dev"></a><h1>Documentation du développeur<a href="#dev" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 
-<a name="dev"></a><h1>Developer documentation<a href="#dev" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<a name="dev_target_audience"></a><h2>Cible<a href="#dev_target_audience" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Cette partie de la documentation n'est pas destinée aux utilisateurs finaux, mais uniquement pour les développeurs. Il n'y a pas d'aide pour cette section, elle n'est là telle-qu'elle.</p>
 
-<a name="dev_target_audience"></a><h2>Target audience<a href="#dev_target_audience" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>This part of the documentation is not meant for end users of Coppermine, but only for developers. There is no support for this section, it comes as-is.</p>
-
-<a name="dev_toc"></a><h2>Contents<a href="#dev_toc" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>The developer documentation currently is far from complete. However, the following sections exist:</p>
+<a name="dev_toc"></a><h2>Contenu<a href="#dev_toc" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>La documentation pour les développeurs est loin d'être complête. Néanmoins voci les sections qui existent actuellement. Comme cette documentation est en constante évolution, regardez aussi la documentation en anglais qui est peut être plus complête:</p>
 <ul>
-  <li><strong><a href="dev_coding.htm">Coding guidelines</a></strong><br />A must-read for coppermine dev team members, recommended reading for (potential) contributors</li>
-  <li><strong><a href="dev_files.htm">Adding/renaming/removing files</a></strong><br />Instrcutions for developers that explain what needs to be done when creating new files within the core</li>
-  <li><strong><a href="dev_superglobals.htm">Sanitization of Superglobals using Inspekt</a></strong><br />Understand how the sanitization works and what you need to do to make superglobals work as expected</li>
-  <li><strong><a href="dev_javascript.htm">Javascript in Coppermine</a></strong><br /></li>
-  <li><strong><a href="dev_plugins.htm">Writing Plugins for Coppermine</a></strong><br />For plugin authors</li>
-  <li><strong><a href="dev_documentation.htm">Editing the documentation</a></strong><br />For developers and translators</li>
+  <li><strong><a href="dev_coding.htm">Guide de codage</a></strong><br />A lire obligatoirement pour les membres de l'équipe de développement de Coppermine, sa lecture est recommandée pour les (potentiels) contributeurs</li>
+  <li><strong><a href="dev_files.htm">Ajout/renomage/effacement de fichiers</a></strong><br />Instructions pour les développeurs epliquant ce qui doit être fait lors de la création de nouveaux fichiers dans le noyaux de Coppermine</li>
+  <li><strong><a href="dev_superglobals.htm">Sécurisation des Superglobales en utilisant Inspekt</a></strong><br />Pour comprendre comment la sécurisation fonctionne et ce que vous devez faire pour que les Superglobales fonctionnent correctement</li>
+  <li><strong><a href="dev_javascript.htm">Javascript dans Coppermine</a></strong><br /></li>
+  <li><strong><a href="dev_plugins.htm">Ecrire des Plugins pour Coppermine</a></strong><br />Pour les auteurs de Plugins</li>
+  <li><strong><a href="dev_documentation.htm">Modifier la documentation</a></strong><br />Pour les développeurs et les traducteurs</li>
   <li><strong><a href="dev_subversion.htm">Subversion</a></strong><br />Need to get the most recent SVN checkout? Go here.</li>
-  <li><strong><a href="dev_config.htm">Adding config options</a></strong><br />Developers who want to add configuration options should read this.</li>
-  <li><strong><a href="dev_versioncheck.htm">Versioncheck</a></strong><br /></li>
-  <li><strong><a href="dev_update.htm">Updating</a></strong><br /></li>
-  <li><strong><a href="dev_tools.htm">Tools recommended by the devs</a></strong><br />
-  Software tools recommended by the coppermine developers to work with Coppermine</li>
+  <li><strong><a href="dev_config.htm">Ajout d'options de configuration</a></strong><br />Les développeurs qui veulent ajouter des options de configuration doivent lire cette section.</li>
+  <li><strong><a href="dev_vars.htm">Variables & Constantes</a></strong><br />Un tour d'horizon des variables globales utilisées par Coppermine. Très utile si vous êtes un programmeur et que vous voulez comprendre comment Coppermine fonctionne pour pouvoir être en mesure d'utiliser les variables dans votre propre code (par exemple si vous êtes un auteur de plugin)</li>
+  <li><strong><a href="dev_versioncheck.htm">Vérification de version</a></strong><br /></li>
+  <li><strong><a href="dev_update.htm">Mise à jour</a></strong><br /></li>
+  <li><strong><a href="dev_tools.htm">Outils recommandés par l'équipe de développement</a></strong><br />
+  Programmes recommandés par l'équipe de développement de Coppermine pour travailler avec Coppermine</li>
+  <li><strong><a href="dev_database.htm">Structure de la base de donnée</a></strong><br />Les tables utilisées dans la base de donnée. Un tour d'horizon de ce qui est stocké et ou dans la base de donnée.</li>
 </ul>
 <br clear="all" />
 
