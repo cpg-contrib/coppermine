@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-04-15 [D] Added indentation and "to top" links on config page {GauGau}
+2010-04-15 [C] Added correct default value for ImageMagick path to reflect check for traling slash {GauGau}
 2010-04-15 [C] Corrected improper German translation {GauGau}
 2010-04-11 [A] Added partial Slovenian translation (user contribution) {GauGau}
 2010-04-11 [D] Added section about adding language files to dev-only section of documentation {GauGau}

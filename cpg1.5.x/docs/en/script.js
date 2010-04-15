@@ -1335,7 +1335,7 @@ function cpgDocSearch() {
 function cpgDocFooter() {
   var overall_doc_footer = '';
   overall_doc_footer += '</div>';
-  overall_doc_footer += '<div align="right">';
+  overall_doc_footer += '<div class="backtotop">';
   overall_doc_footer += '<a href="#top">Back to Top</a>';
   overall_doc_footer += '</div>';
   $('#doc_footer').append(overall_doc_footer);

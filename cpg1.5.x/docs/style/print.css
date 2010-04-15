@@ -528,3 +528,7 @@ acronym, abbr, span.explain  {
     font-style: normal;
     font-family: 'Courier New', Courier, Fixedsys, monospace;
 }
+
+.backtotop {
+    display:none;
+}
