@@ -125,7 +125,7 @@ INSERT INTO CPG_config VALUES ('global_registration_pw','');
 INSERT INTO CPG_config VALUES ('hit_details', '0');
 INSERT INTO CPG_config VALUES ('home_target', 'index.php');
 INSERT INTO CPG_config VALUES ('im_options', '-antialias');
-INSERT INTO CPG_config VALUES ('impath', '');
+INSERT INTO CPG_config VALUES ('impath', '/usr/bin/');
 INSERT INTO CPG_config VALUES ('jpeg_qual', '80');
 INSERT INTO CPG_config VALUES ('keep_votes_time', '30');
 INSERT INTO CPG_config VALUES ('keyword_separator', ';');
