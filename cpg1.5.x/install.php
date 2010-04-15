@@ -60,7 +60,7 @@ $CONFIG = array(
 );
 
 if (!defined('COPPERMINE_VERSION')) { // we need to define the constant COPPERMINE_VERSION that normally get's populated by include/init.inc.php, as we check the repository against that version number
-    define('COPPERMINE_VERSION', '1.5.1');
+    define('COPPERMINE_VERSION', '1.5.3');
 }
 // include Inspekt for sanitization
 $incp = get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'include';
