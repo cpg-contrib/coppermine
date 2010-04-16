@@ -24,7 +24,7 @@ var notify_upload = false; // Flag to be used for sending notification request
 SWFUpload.onload = function () {
     var settings = {
         flash_url : "js/swfupload/swfupload.swf",
-        upload_url: js_vars.site_url + "/upload.php",    // Relative to the SWF file
+        upload_url: "upload.php",    // Relative to current script
         post_params: {"process" : "1", "user" : js_vars.user},
         file_size_limit : js_vars.max_upl_size + " KB",
         file_types : "*.*", //js_vars.allowed_file_types,
