@@ -60,7 +60,34 @@ $CONFIG = array(
 );
 
 if (!defined('COPPERMINE_VERSION')) { // we need to define the constant COPPERMINE_VERSION that normally get's populated by include/init.inc.php, as we check the repository against that version number
-    define('COPPERMINE_VERSION', '1.5.3');
+    $handle = @fopen('include/init.inc.php', 'r');
+    if ($handle == FALSE) {
+        $page_title = 'Could not fopen';
+        html_header();
+        echo 'Could not read the file inlucde/init.inc.php for reading. Make sure it exists and is readable, then try again.';
+        html_footer();
+        die;
+    }
+    $found = 0;
+    while (!feof($handle) && $found != 1) {
+        $buffer = fgets($handle, 4096);
+        if (strpos($buffer, "define('COPPERMINE_VERSION', '") === FALSE) {
+            $found = 0;
+        } else {
+            $found = 1;
+            $version_number = trim(str_replace("');", '', str_replace("define('COPPERMINE_VERSION', '", '', $buffer)));
+        }
+    }
+    @fclose($handle);
+    if ($version_number != '' && version_compare($version_number, '1.5', '>') == TRUE) {
+        define('COPPERMINE_VERSION', $version_number);
+    } else {
+        $page_title = 'Could not determine version number';
+        html_header();
+        echo 'Could not extract the Coppermine version number from the file inlucde/init.inc.php. Please download a fresh copy of the Coppermine package.';
+        html_footer();
+        die;
+    }
 }
 // include Inspekt for sanitization
 $incp = get_include_path().PATH_SEPARATOR.dirname(__FILE__).PATH_SEPARATOR.dirname(__FILE__).DIRECTORY_SEPARATOR.'include';
