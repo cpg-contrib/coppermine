@@ -25,7 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2010-04-15 [D] Added developer documentation that explains packaging {GauGau}
+2010-04-19 [B] Fixed number of users when searching users on user manager (thread ID 64455) {eenemeenemuu}
+2010-04-19 [D] Added developer documentation that explains packaging {GauGau}
 2010-04-19 [C] Fixed typos in docs/*/script.js (thread ID 64510) {eenemeenemuu}
 2010-04-15 [D] Added details to docs about translation {GauGau}
 2010-04-15 [D] Added admin tools and administration section for Dutch documentation section (user contribution) {GauGau}

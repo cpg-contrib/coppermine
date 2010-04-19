@@ -172,9 +172,7 @@ function list_users($search = '')
 
     $makereadonly = ($CONFIG['bridge_enable']) ? 'style="display:none;" disabled="disabled" ':'';
 
-    $user_count = $cpg_udb->get_user_count();
-
-    if (!$user_count) {
+    if (!$cpg_udb->get_user_count()) {
         cpg_die(CRITICAL_ERROR, $lang_usermgr_php['err_no_users'], __FILE__, __LINE__);
     }
 
@@ -185,7 +183,6 @@ function list_users($search = '')
         $page = 1;
     }
     $lower_limit = ($page-1) * $user_per_page;
-    $total_pages = ceil($user_count / $user_per_page);
         
     $tab_tmpl = $template_tab_display;
     $tab_tmpl['page_link'] = strtr($tab_tmpl['page_link'], array('{LINK}' => 'usermgr.php?sort=' . $sort . '&amp;page=%d'));
@@ -199,8 +196,9 @@ function list_users($search = '')
                                         'sort' => $sort
                                        )
                                   );
+    $user_count = count($users);
 
-
+    $total_pages = ceil($user_count / $user_per_page);
 
     $tabs = create_tabs($user_count, $page, $total_pages, $tab_tmpl);
 
