@@ -13,10 +13,10 @@
   SVN version info:
 
   Coppermine version: 1.5.4
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/empty.htm $
-  $Revision: 7335 $
-  $LastChangedBy: gaugau $
-  $Date: 2010-03-23 08:38:51 +0100 (Di, 23. Mär 2010) $
+  $HeadURL$
+  $Revision$
+  $LastChangedBy$
+  $Date$
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -54,7 +54,7 @@
         <li>
             <a name="packaging_steps_loop_through_files"></a><h3>Replace version number in all files<a href="#packaging_steps_checkout" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
             You need to loop through all text files (file extensions <tt class="code">.php</tt>, <tt class="code">.css</tt>, <tt class="code">.js</tt>, <tt class="code">.txt</tt>, <tt class="code">.sql</tt>, <tt class="code">.htm</tt>) and replace the version number in the header with the version number of the new release.<br />
-            <div class="cpg_example">You will have to find <input type="text" readonly="readonly" value="Coppermine version: 1.5.X" size="25" maxlength="25" class="code" /> and replace with <input type="text" readonly="readonly" value="Coppermine version: 1.5.Y" size="25" maxlength="25" class="code" /></div>
+            <div class="cpg_example">You will have to find <input type="text" readonly="readonly" value="Coppermine version: 1.5.X" size="25" maxlength="25" class="code smaller" /> and replace with <input type="text" readonly="readonly" value="Coppermine version: 1.5.Y" size="25" maxlength="25" class="code smaller" /></div>
             To accomplish this, you will need a tool that can batch-replace in files:
             <ul>
                 <li>
@@ -133,9 +133,9 @@
         </li>
         <li>
             <a name="packaging_steps_svn_export"></a><h3>Export from subversion<a href="#packaging_steps_svn_export" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-            By now it's time to create the actual package, so you may be tempted to just zip your local working copy of the subversion repository, but that would be a very bad idea, as both your individual config file as well as all your changes (e.g. test uploads etc.) would be residing in that copy. Additionally, a lot of hidden folders and files would reside in that copy, as subversion creates a lot of those hidden files inside your local working copy.<br />
+            By now it's time to create the actual package, so you may be tempted to just zip your local working copy of the subversion repository, but that would be a very bad idea, as both your individual config file as well as all your changes (e.g. test uploads etc.) would be residing in that copy. Additionally, a lot of garbage would reside in that copy, as subversion creates a lot of hidden files inside your local working copy.<br />
             That's why you need to perform an export from the subversion repository into a new, empty folder on your client and use that from now on. This will make sure that only the files that are meant to go into the package will actually go into your package.<br />
-            How the export feature actually works depends on the subversion client you use. The example below describe the process just for some example clients:
+            How the export feature actually works depends on the subversion client you use. The list items below describe the process just for some example clients:
             <ul>
                 <li>
                     <a name="packaging_steps_rapidsvn"></a><h4>RapidSVN<a href="#packaging_steps_rapidsvn" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
@@ -143,10 +143,45 @@
                     <ul>
                         <li>In the left frame that represents the folder view, highlight the folder that represents the root of cpg1.5.x (i.e. </li>
                         <li>Click on the menu entry "Repository" - "Export..."</li>
-                        <li>In the export dialog, select the destination directory (an empty sub-folder on your desktop is fine). Make sure that as revision the "Use latest" checkbox is ticked and that the "Recursive" checkbox is ticked as well.</li>
+                        <li>In the export dialog, make sure that as revision the "Use latest" checkbox is ticked and that the "Recursive" checkbox is ticked as well.</li>
+                        <li>As Destination directory, you need to specify a folder name that <em>doesn't</em> already exist within a folder that <em>does</em> exist. This dialog is a little bit unusual, so here's a detailed example, assuming that you're on Linux and that your user name is <tt class="code">johndoe</tt>:
+                            <ul>
+                                <li>On the export dialog, click on the button with the three dots within the "Destination Directory" section that allows you to browse the folder structure</li>
+                                <li>In the sub-dialog that open, browse to the Desktop folder within your user's home folder, i.e. to <tt class="code">/home/johndoe/Desktop</tt> and hit the "OK" button. This will close the sub-dialog and populate the input field "Destination Directory" in the export dialog with the absolute path you just selected.</li>
+                                <li>Click into this input field to put your cursor into that field to the end (right after <tt class="code">/home/johndoe/Desktop</tt>) and type a slash, followed by the name of the sub-folder that you want to get created, e.g. <tt class="code">cpg15x</tt>. After you did that, the input field's content now should look similar to this: <tt class="code">/home/johndoe/Desktop/cpg15x</tt></li>
+                                <li>After having verified that everything looks as expected, click on the "OK" button of the export dialog.</li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
-            </ul>  
+                <li>
+                    <a name="packaging_steps_tortoisesvn"></a><h4>Tortoise SVN<a href="#packaging_steps_tortoisesvn" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+                    tbc
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a name="packaging_steps_create_zip"></a><h3>Create the archive<a href="#packaging_steps_create_zip" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            tbc
+        </li>
+        <li>
+            <a name="packaging_steps_upload_zip"></a><h3>Upload the archive<a href="#packaging_steps_upload_zip" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            tbc
+        </li>
+        <li>
+            Move the announcement thread from the dev-only board to the announcement board
+        </li>
+        <li>
+            Create a news article on sf.net that contains a link to the announcement thread
+        </li>
+        <li>
+            Create a news article on the start page of coppermine-gallery.net that contains a link to the announcement thread and change reference to the most recent release on that page
+        </li>
+        <li>
+            Create a news item on the forum that contains a link to the announcement thread
+        </li>
+        <li>
+            Update the demo
         </li>
     </ul>
 </div>
@@ -154,8 +189,8 @@
 
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
-		<span id="doc_last_changed">$LastChangedDate: 2010-03-23 08:38:51 +0100 (Di, 23. Mär 2010) $</span>
-		<span id="doc_revision">$Revision: 7335 $</span>
+		<span id="doc_last_changed">$LastChangedDate$</span>
+		<span id="doc_revision">$Revision$</span>
 	</div>
 </div>
 </body>
