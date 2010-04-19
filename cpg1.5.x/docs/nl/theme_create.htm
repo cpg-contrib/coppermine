@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Creating your custom theme - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<title>Creating your custom theme - Coppermine Photo Gallery - Documentatie &amp; Handleiding</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="language" content="en" />
+<meta name="language" content="nl" />
 <meta name="copyright" content="Coppermine dev team" />
-<meta name="description" content="Coppermine comes with a powerful engine that allows you to create your own theme, giving your gallery a unique look that matches the overall layout of your entire site. To make sure your custom theme does not get overwritten when upgrading, you should start with a custom theme name." />
+<meta name="description" content="Coppermine heeft een krachtig mechanisme dat u toestaat om uw eigen thema te ontwerpen, zo kunt u uw galerij een uniek uitzicht geven dat past bij de rest van uw volledige website. Om zeker te zijn dat uw eigen thema niet overschreven wordt bij een latere upgrade, kunt u best starten met het een eigen naam te geven." />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -27,73 +27,73 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.4: Documentatie en Handleiding</h1>
 <div id="toc">
 <a href="toc.htm">Inhoudstafel</a>
 </div>
-<div id="doc_en_only">No translation available</div>
 
 
 
 
-<a name="theme_create"></a><h1>Creating your custom theme<a href="#theme_create" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<a name="theme_create_rename"></a><h2>Rename your theme first<a href="#theme_create_rename" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>To create a new theme, the best solution is to use an existing one as its copy template. To do that, make a copy of the folder of the theme you want to use as a basis. Then edit the &quot;<strong>template.html</strong>&quot;, &quot;style.css&quot; and &quot;<strong>theme.php</strong>&quot; files and replace all occurences of &quot;<strong>themes/old_theme_dir</strong>&quot; with &quot;<strong>themes/new_theme_dir</strong>&quot; in order for the links to point to the correct place.<br />
-Avoid using spaces and special chars in your custom theme name - only use alphanumerals and the underscore (_).</p>
-<p>Also keep in mind that despite this file being located in the &quot;<strong>themes/your_theme_dir</strong>&quot; directory, it must be coded as if it was in the main directory of the coppermine installation. For example, in order to display an image, you must use <tt class="code">&lt;img src=&quot;<strong>themes</strong>/theme_dir/images/image.gif&quot; alt=&quot;&quot;/&gt;</tt> and not just <tt class="code">&lt;img src=&quot;images/image.gif&quot; alt=&quot;&quot;/&gt;.</tt> The same principle applies for the &quot;<strong>theme.php</strong>&quot; file.</p>
+
+<a name="theme_create"></a><h1>Ontwerpen van een eigen thema<a href="#theme_create" title="Link naar deze sectie"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<a name="theme_create_rename"></a><h2>Hernoem eerst uw thema<a href="#theme_create_rename" title="Link naar deze sectie"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Om een nieuw thema te ontwerpen, is de beste oplossing om een bestaand te kopiëren en te gebruiken als template (=sjabloon) voor uw nieuw thema. Maak hiervoor een kopie van de ganse themamap die u wilt gebruiken als basis en geef deze map ook meteen de naam van uw nieuw thema. Editeer dan de &quot;<strong>template.html</strong>&quot;, &quot;<strong>style.css</strong>&quot; en &quot;<strong>theme.php</strong>&quot; bestanden en vervang alle verwijzingen van &quot;<strong>themes/oude_thema_map</strong>&quot; met &quot;<strong>themes/nieuwe_thema_map</strong>&quot; om ervoor te zorgen dat de linken naar de juiste plaats wijzen.<br />
+Vermijd het gebruik van spaties en speciale karakters in uw nieuwe themanaam - gebruik alleen alfanumerieke tekens en de underscore (_).</p>
+<p>Houd ook altijd in gedachte dat ondanks het bestand in de map &quot;<strong>themes/uw_thema_dir</strong>&quot; zit, het gecodeerd moet worden alsof het in de hoofdmap van de Coppermine installatie zou zitten. Bij voorbeeld, om een afbeelding te tonen, moet u <tt class="code">&lt;img src=&quot;<strong>themes</strong>/thema_map/images/image.gif&quot; alt=&quot;&quot;/&gt;</tt> gebruiken en niet alleen <tt class="code">&lt;img src=&quot;images/image.gif&quot; alt=&quot;&quot;/&gt;.</tt> Het zelfde principe geldt voor het &quot;<strong>theme.php</strong>&quot; bestand.</p>
 <div class="cpg_example">
 <ul>
-  <li><strong>Create a copy</strong><br />
-  Browse the local coppermine gallery copy on your client, navigate to the themes folder (<tt class="code">your_coppermine_folder/themes/</tt>), right-click on the folder name that represents the theme you want to base your custom theme on (in this example, we will use the classic theme, so we will use <tt class="code">your_coppermine_folder/themes/classic/</tt>), select &quot;copy&quot; from the context menu. Then paste the content of the clipboard into the themes folder; a folder (named &quot;Copy of classic&quot; or similar) will turn up.</li>
-  <li><strong>Rename the folder</strong><br />
-  Right-click on the newly created folder (<tt class="code">your_coppermine_folder/themes/Copy of classic/</tt>) and select &quot; rename&quot; from the context menu. Choose a unique theme name - in this example, we will use &quot;my_theme&quot; (resulting in the folder to be renamed to <tt class="code">your_coppermine_folder/themes/my_theme/</tt>).<br />
-  Keep in mind that we will upload the theme to your webserver later - you will have to make sure to properly use capitalization: on Windows-driven clients, capitalization does not matter, so there is no difference between &quot;<tt class="code">my_theme</tt>&quot; and &quot;<tt class="code">My_theme</tt>&quot;. Most webservers are Linux-driven though, where capitalization <em>does</em> matter (there <em>is</em> a difference between &quot;<tt class="code">my_theme</tt>&quot; and &quot;<tt class="code">My_theme</tt>&quot;). To be safe it is recommended to use lower case to stay out of harms way.</li>
-  <li><strong>Edit the files to reflect the theme name</strong><br />
-  Use a plain text editor (in this example, we will use notepad.exe), open <tt class="code">your_coppermine_folder/themes/my_theme/template.html</tt>. Find &quot;<tt class="code">themes/classic</tt>&quot; and replace with &quot;<tt class="code">themes/my_theme</tt>&quot; (may exist in the file several times, so make sure to replace <em>all</em> occurrences of &quot;<tt class="code">themes/classic</tt>&quot; with &quot;<tt class="code">themes/my_theme</tt>&quot;). Save your changes. Then do the same thing for the files <tt class="code">theme.php</tt> and <tt class="code">style.css</tt>.
+  <li><strong>Maak een kopie</strong><br />
+  Blader door de lokale kopie van coppermine galerij op uw client, navigeer naar de themamap (<tt class="code">uw_coppermine_map/themes/</tt>), klik rechts op de mapnaam die het thema bevat dat u als basis wilt gebruiken en (in dit voorbeeld, willen we het curve thema gebruiken, dus gebruiken we <tt class="code">uw_coppermine_map/themes/curve/</tt>), selecteer &quot;kopiëren&quot; uit het contextmenu. Plak het daarna in de themamap (genoemd &quot;Kopie van Curvethema&quot; of gelijkaardig).</li>
+  <li><strong>Hernoem de folder</strong><br />
+  Klik rechts op de nieuw aangemaakte map (<tt class="code">uw_coppermine_map/themes/kopie van curve/</tt>) en selecteer &quot; naam wijzigen&quot; uit het contextmenu. Kies een unieke themanaam - in dit voorbeeld, gebruiken we &quot;mijn_thema&quot; (dat wordt dan de map met de naam <tt class="code">uw_coppermine_map/themes/mijn_thema/</tt>).<br />
+  Denk eraan dat we het thema later uploaden naar uw webserver - gebruik dus zeker de juiste vorm: in Windows-gestuurde clients, maakt het hoofdlettergebruik niets uit, er is dus geen verschil tussen &quot;<tt class="code">mijn_thema</tt>&quot; en &quot;<tt class="code">Mijn_thema</tt>&quot;. De meeste webservers worden echter met Linux gestuurd, waar het hoofdlettergebruik <em>wel</em> verschil uitmaakt (daar is <em>wel</em> een verschil tussen &quot;<tt class="code">mijn_thema</tt>&quot; en &quot;<tt class="code">Mijn_thema</tt>&quot;). Om op veilig te spelen is het aan te raden om altijd kleine letters te gebruiken.</li>
+  <li><strong>Editeer de bestanden om de themanaam weer te geven</strong><br />
+  Gebruik een platteteksteditor (in dit voorbeeld, gebruiken we notepad.exe), open <tt class="code">uw_coppermine_map/themes/mijn_thema/template.html</tt>. Zoek &quot;<tt class="code">themes/curve</tt>&quot; en vervang het met &quot;<tt class="code">themes/mijn_thema</tt>&quot; (kan verschillende keren in het bestand voorkomen, let er dus op dat u op <em>alle</em> plaatsen de benaming &quot;<tt class="code">themes/curve</tt>&quot; vervangt door &quot;<tt class="code">themes/mijn_thema</tt>&quot;). Save uw wijzigingen. Doe dan hetzelfde voor de bestanden <tt class="code">theme.php</tt> en <tt class="code">style.css</tt>.
   </li>
 </ul>
 </div>
-<p class="cpg_message_validation">It is <strong>strongly recommended</strong> to rename your custom theme as suggested above, even if you only plan to accomplish minor changes to a default theme that coppermine comes with. The reason is quite simple: when upgrading at a later stage, you will not run into issues (e.g. accidentally overwrite your customized theme with an updated default theme).</p>
+<p class="cpg_message_validation">Het is <strong>sterk aan te bevelen</strong> om uw aangepast thema een eigen naam te geven, zelfs als u slechts kleine veranderingen wilt aanbrengen in een standaardthema van Coppermine. De reden is heel eenvoudig: als u later een upgrade uitvoert, zult u niet in de problemen komen (bv. per ongeluk uw aangepast thema opnieuw overschrijven met een standaard thema uit de upgrade).</p>
 
-<a name="theme_create_tipps"></a><h2>Tipps &amp; tricks<a href="#theme_create_tipps" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>If you're not sure how to go about creating your own theme, you could also have a look at the download section of the coppermine homepage: there are many <a href="theme_user-contributions.htm#theme_user-contributions">user-contributed themes</a> available for download that can be previewed on the <a href="http://coppermine-gallery.net/demo/">coppermine demo page</a>.</p>
-<p>While you're in the process of creating or testing a new theme, you might not want your theme to be displayed to visitors of your site, but you (as the coppermine admin) may want to still be able to preview your theme. To do that, simply add <tt class="code">theme=your_theme_name</tt> to the url in your browser.</p>
+<a name="theme_create_tipps"></a><h2>Tipps &amp; tricks<a href="#theme_create_tipps" title="Link naar deze sectie"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Als u niet zeker bent hoe te beginnen met het creëren van uw eigen thema, kunt u ook een kijkje nemen in de downloadsectie van de Coppermine homepage: daar zijn verschillende <a href="theme_user-contributions.htm#theme_user-contributions">door gebruikers ontworpen thema's</a> beschikbaar voor download, ze kunnen ook vooraf bekeken worden op de <a href="http://coppermine-gallery.net/demo/">coppermine demo pagina</a>.</p>
+<p>Terwijl u bezig bent met de opmaak of het testen van uw nieuw thema, is het niet aangewezen dat uw bezoekers uw probeersels kunnen zien maar dat u (als de coppermine admin) wel kunt zien hoe het resultaat er zal uitzien. Dat kan door eenvoudigweg <tt class="code">theme=uw_thema_naam</tt> toe te voegen aan de url in uw browser.</p>
 <br />
 <div class="cpg_example">
 <ul>
-<li><tt class="code">http://yoursite.tld/coppermine/index.php?theme=your_theme_name</tt> will show the coppermine index page, using your theme</li>
-<li><tt class="code">http://yoursite.tld/coppermine/thumbnails.php?album=1&amp;theme=your_theme_name</tt> will show the thumbnail view of album 1, using your theme</li>
-<li><tt class="code">http://yoursite.tld/coppermine/?theme=xxx</tt> will reset your view back to the theme you chose as your <a href="configuration.htm#admin_theme_theme">default theme</a> in coppermine config</li>
+<li><tt class="code">http://uw_site.tld/coppermine/index.php?theme=uw_thema_naam</tt> toont de Coppermine indexpagina, gebruikmakend van uw thema</li>
+<li><tt class="code">http://uw_site.tld/coppermine/thumbnails.php?album=1&amp;theme=uw_thema_naam</tt> zal de thumbnailpagina tonen van album 1, gebruikmakend van uw thema</li>
+<li><tt class="code">http://uw_site.tld/coppermine/?theme=xxx</tt> zal uw beeld terugzetten op het <a href="configuration.htm#admin_theme_theme">standaardthema</a> in de coppermine configuratie</li>
 </ul>
 </div>
 
-<a name="theme_create_wysiwyg"></a><h2>Using WYSIWYG-editors<a href="#theme_create_wysiwyg" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>It is strongly recommended <strong>not</strong> to use a <acronym title="What You See Is What You Get">WYSIWYG</acronym>-editor at all to edit Coppermine files. The coppermine dev team is aware that it might seem easier for beginners to use those graphical editors. However, they have some major drawbacks:</p>
+<a name="theme_create_wysiwyg"></a><h2>Gebruik van WYSIWYG-editors<a href="#theme_create_wysiwyg" title="Link naar deze sectie"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Het is ten zeerste aan te bevelen om <strong>geen</strong> gebruik te maken van een <acronym title="Wat je ziet is wat je krijgt">WYSIWYG</acronym>-editor om Coppermine bestanden te editeren. Het coppermine dev team weet dat het gemakkelijker lijkt voor beginners om grafische editors te gebruiken. Deze programma's hebben echter veel nadelen:</p>
 <ul>
-  <li>Some editors (mostly MS Frontpage) are notorious for &quot;beautifying&quot; the code in a manner that renders embedded PHP code invalid. Subsequently, if you use a WYSIWYG-editor to edit theme.php, the file may get corrupt (i.e. un-usable)</li>
-  <li>Graphical editors tend to create deprecated, invalid, proprietary HTML. You have more control if you use a plain text editor instead.</li>
-  <li>You don't learn anything. Sooner or later, you will want to do something your precious WYSIWYG-editor isn't capable to do. Now what? You have always used the editor to do your work - you don't understand HTML. When using a plain text editor, the learning curve may be steep, but it's much more entertaining.</li>
+  <li>Sommige editors (vooral MS Frontpage) zijn bekend om de code te &quot;verfraaien&quot; op een manier die ingesloten PHP-code ongeldig maakt. Het gevolg daarvan is dat, als u met een WYSIWYG-editor bv. theme.php zou editeren, het bestand corrupt (= onbruikbaar) wordt</li>
+  <li>Grafische editors hebben de neiging om af te raden of zelfs ongeldige HTML-code te produceren. U heeft meer controle over de code als u in plaats daarvan een plattetekst-editor gebruikt.</li>
+  <li>U leert niets. Vroeg of laat wilt u iets doen waartoe uw WYSIWYG-editor niet in staat is. Wat nu? U heeft altijd het werk overgelaten aan de editor - u verstaat geen HTML-code. Wanneer u een plattetekst-editor gebruikt, kan de leercurve misschien wat trager zijn maar ze is veel effectiever en interessanter.</li>
 </ul>
-<p class="cpg_message_info">If you're not sure what editor to use, take a look at the list of editors on the page <a href="dev_tools.htm">tools recommended by the devs</a>.</p>
+<p class="cpg_message_info">Als u niet zeker bent welke editor dan wel te gebruiken is, kijk dan eens in de lijst van editors op pagina <a href="dev_tools.htm">gereedschappen aanbevolen door de ontwikkelaars</a>.</p>
 
-<a name="theme_create_template_html"></a><h2>Editing template.html<a href="#theme_create_template_html" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>The file <a href="theme_template.htm">template.html</a> is the core file of each theme: it can only contain HTML/CSS/JavaScript code (no PHP!) plus some placeholder tokens that will get replaced with content when the theme is being parsed (i.e. when the HTML output of a gallery page is being generated). Template.html determines the overall layout of your gallery pages. Use it to make your gallery match the overall look of your entire website.</p>
+<a name="theme_create_template_html"></a><h2>Het editeren van template.html<a href="#theme_create_template_html" title="Link naar deze sectie"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Het bestand <a href="theme_template.htm">template.html</a> is het hoofdbestand van ieder thema: het kan alleen HTML/CSS/JavaScript code (geen PHP!) en enkele plaatshoudercodes bevatten die later vervangen worden met de gewenste inhoud als het thema geparset wordt (geparset = wanneer de HTML-code van een galerijpagina gegenereerd wordt uit een PHP-pagina). Template.html bepaalt de algemene layout van uw galerijpagina's. Gebruik het om het uitzicht van uw galerij aan te passen aan de rest van uw website.</p>
 
-<a name="theme_create_template_favicon"></a><h3>Favicon<a href="#theme_create_template_favicon" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Coppermine comes with a <a href="http://en.wikipedia.org/wiki/Favicon" rel="external" class="external">favicon</a> file that resides in the gallery root folder. There is reference to it in all themes that come with coppermine out of the box. You're welcome to use a favicon file of your own and change the reference to it in your custom theme. To accomplish this, edit themes/your_custom_theme/template.html, find <tt class="code">&lt;link rel=&quot;shortcut icon&quot; href=&quot;favicon.ico&quot; /&gt;</tt> and edit as you see fit.</p>
-<p>Alternatively, just replace the favicon that ships with the theme you use with your custom favicon file.</p>
-
-
-
-<a name="theme_create_colors"></a><h2>Modifying colors &amp; design<a href="#theme_create_colors" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>To modify the colors, fonts, font sizes, etc... used by the script, you should edit the &quot;<strong><a href="theme_style_css.htm">style.css</a></strong>&quot; stylesheet whenever possible. For example, if you want to increase or decrease the size of the fonts you can simply modify the line with : <tt class="code">table { font-size: 12px; }</tt>. Most of the font sizes used by the script are defined as a percentage of this size.</p>
+<a name="theme_create_template_favicon"></a><h3>Favicon<a href="#theme_create_template_favicon" title="Link naar deze sectie"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Coppermine levert een favoriet icoon <a href="http://en.wikipedia.org/wiki/Favicon" rel="external" class="external">favicon.ico</a> mee dat zich in de galerijhoofdmap bevindt. Er wordt naar verwezen in alle thema's die meegeleverd zijn met Coppermine. U mag gerust een eigen favoriet-icoon aanmaken voor uw eigen galerij en er naar verwijzen in uw aangepast thema. Om dit uit te voeren, editeer themes/uw_eigen_thema/template.html, zoek naar <tt class="code">&lt;link rel=&quot;shortcut icon&quot; href=&quot;favicon.ico&quot; /&gt;</tt> en vervang het door de naam van uw eigen icoon.</p>
+<p>Als alternatief kunt u ook gewoon het originele favicon.ico vervangen door uw eigen ontwerp, dan moet u wel dezelfde naam "favicon.ico" blijven gebruiken.</p>
 
 
-<a name="theme_create_advanced"></a><h2>Advanced Steps<a href="#theme_create_advanced" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>There are some advanced steps that you should follow - they are being described in the sections 
+
+<a name="theme_create_colors"></a><h2>Kleuren aanpassen &amp; ontwerp<a href="#theme_create_colors" title="Link naar deze sectie"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Om de door het script gebruikte kleuren, fonts, fontafmetingen, enz... aan te passen, moet u de &quot;<strong><a href="theme_style_css.htm">style.css</a></strong>&quot; stylesheet editeren. Bijvoorbeeld: als u de grootte van de lettertypes wilt vergroten of verkleinen, volstaat het om de lijn met: <tt class="code">table { font-size: 12px; }</tt> aan te passen. De grootte van de meeste lettertypes die in het script gebruikt worden, worden als een percentage aangegeven van deze maat.</p>
+
+
+<a name="theme_create_advanced"></a><h2>Geavanceerde stappen<a href="#theme_create_advanced" title="Link naar deze sectie"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Er zijn enkele geavanceerde stappen die u zou moeten volgen - zij worden beschreven in de secties 
 <ul>
-	<li><a href="theme_create_matching_page_tutorial.htm#theme_matching">Creating a Coppermine theme that matches your overall site layout</a></li>
-	<li><a href="theme_theme_php.htm#theme_php">Editing theme.php</a></li>
+	<li><a href="theme_create_matching_page_tutorial.htm#theme_matching">Ontwerp een Coppermine thema dat past bij de algemene layout van uw website</a></li>
+	<li><a href="theme_theme_php.htm#theme_php">Editeren van theme.php</a></li>
 </ul>
 
 <a name="theme_create_end"></a>
