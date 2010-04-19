@@ -435,7 +435,6 @@ doc_toc += '          <li><a href="admin_menu.htm#phpinfo" class="en">phpinfo</a
 doc_toc += '          <li><a href="admin_menu.htm#show_news" class="en">Toon nieuws</a></li>\n';
 doc_toc += '          <li><a href="admin_menu.htm#documentation" class="en">Documentatie</a></li>\n';
 doc_toc += '          <li><a href="admin_menu.htm#admin_mode_regular_users" class="en">Admin mode voor regelmatige gebruikers</a></li>\n';
-//doc_toc += '          <li><a href="admin_menu.htm#admin_mode_regular_users" class="en"></a></li>\n';
 doc_toc += '          <li><a href="admin_menu.htm#user_menu_items" class="en">Admin menu-items voor regelmatige gebruikers</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
@@ -743,8 +742,7 @@ doc_toc += '    <ul>\n';
 doc_toc += '      <li><a href="uploading_batch-add.htm#batch_add_pics" class="en">Uploading pics by FTP / Batch-Add Pictures</a>\n';
 doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="uploading_batch-add.htm#batch_add_pics_what" class="en">What batch-add does</a></li>\n';
-doc_toc += '          <li><a href="uploading_batch-add.htm#batch_add_pics_how" class="en"></a></li>\n';
-doc_toc += '          <li><a href="uploading_batch-add.htm#" class="en">How batch-add works</a></li>\n';
+doc_toc += '          <li><a href="uploading_batch-add.htm#batch_add_pics_how" class="en">How batch-add works</a></li>\n';
 doc_toc += '          <li><a href="uploading_batch-add.htm#batch_add_common_mistakes" class="en">Common mistakes</a>\n';
 doc_toc += '            <ul>\n';
 doc_toc += '              <li><a href="uploading_batch-add.htm#batch_add_common_mistakes_doesnt_work" class="en">Batch-add does not work as expected</a></li>\n';

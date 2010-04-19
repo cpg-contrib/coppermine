@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-04-19 [C] Fixed typos in docs/*/script.js (thread ID 64510) {eenemeenemuu}
 2010-04-15 [D] Added details to docs about translation {GauGau}
 2010-04-15 [D] Added admin tools and administration section for Dutch documentation section (user contribution) {GauGau}
 2010-04-15 [C] Fixed version count issue in install.php (thread ID 64566) {GauGau}
