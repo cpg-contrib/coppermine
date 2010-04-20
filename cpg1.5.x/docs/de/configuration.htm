@@ -117,6 +117,13 @@ Diese Option kann auch ein- und augeschaltet werden auf den <a href="uploading.h
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Allgemeine Einstellungen &rarr; Vorschau-Thumbnails beim Batch-hinzufügen anzeigen</p>
 <a name="admin_general_display_thumbs_batch_add_end"></a>
 
+<a name="admin_general_form_token_lifetime"></a><h3>Change the lifetime of the form tokens<a href="#admin_general_form_token_lifetime" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>This option will set the lifetime of the form tokens in seconds. Don't set this value too low as it could interupt with large uploads (default is 5min). Also keep in mind that it could take some time entering a lot of data (title, description, keywords) after you uploaded several files. If you exceed the lifetime of the token, you won't be able to submit the form and all entered data is lost. That applies to all forms (and some links) in Coppermine!</p>
+<p class="cpg_message_info">Form tokens were introduced into cpg1.5.x to fight the <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" rel="external" class="external">Cross-Site Request Forgery</a> potential that existed in previous versions and that lead to the removal of the bbcode tags [img] and [url] back in cpg1.4.21<br />
+Think of the form token as an additional check of a link or a form that is performed to make sure that the link's origin hasn't been tampered with.</p>
+<p class="navlocator" style="text-align:right;color:#0E72A4;">Einstellungen &rarr; Allgemeine Einstellungen &rarr; Change the lifetime of the form tokens</p>
+<a name="admin_general_form_token_lifetime_end"></a>
+
 
 <a name="admin_language"></a><h2>Sprach- &amp; Zeichensatz-Einstellungen<a href="#admin_language" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p><img src="images/config_language.gif" width="600" height="189" border="0" alt="" align="right" />Mit diesen Einstellungen kannst Du die Sprach-/Übersetzungsoptionen von Coppermine beeinflussen. Lies unbedingt diesen Abschnitt sorgfältig durch, bevor Du Änderungen durchführst..</p>
