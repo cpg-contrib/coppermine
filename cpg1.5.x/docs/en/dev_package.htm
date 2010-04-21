@@ -162,26 +162,47 @@
         </li>
         <li>
             <a name="packaging_steps_create_zip"></a><h3>Create the archive<a href="#packaging_steps_create_zip" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-            tbc
+            Create an archive according to the <a href="dev_plugins.htm#plugin_writing_naming_conventions">naming conventions</a>, using your favorite archiver (on Windows, 7-Zip is recommended). The naming convention for package releases is pretty streightforward: it's just the abbreviation <tt class="code">cpg</tt> followed by the exact version number. Subseuqently, your archive should be named <tt class="code">cpg1.5.X.zip</tt>, where X represents the minor version number that you're about to package. Its'mandatory to come up with a  <tt class="code">zip</tt> archive, but you can come up with additional archives as well (e.g. <tt class="code">.7z</tt>, <tt class="code">.tar.gz</tt> or <tt class="code">.tar.bz2</tt>) to make things easier for users on alternative operating systems.
         </li>
         <li>
             <a name="packaging_steps_upload_zip"></a><h3>Upload the archive<a href="#packaging_steps_upload_zip" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-            tbc
+            The archive(s) created in the previous step are meant to go into the download repository at <a href="https://sourceforge.net/projects/coppermine/files/" rel="external" class="external">https://sourceforge.net/projects/coppermine/files/</a>. You will need packager privileges on the Coppermine project pages that reside on the sourceforge.net webspace. 
+            <ul>
+                <li><a href="https://sourceforge.net/account/login.php" rel="external" class="external">Log in</a> into your account on sf.net</li>
+                <li>go to the <a href="https://sourceforge.net/project/admin/explorer.php?group_id=89658" rel="external" class="external">File Manager</a></li>
+                <li>expand the folder labelled "Coppermine" and then click on the gear icon in front of the folder "Coppermine"</li>
+                <li>From the menu that will show, select "new folder" and then create a folder that corresponds to your release number, e.g. something like <tt class="code">cpg1.5.X (stable)</tt>, where X corresponds to the minor version number of the package you're about to release.</li>
+                <li>Click on the gear icon in front of the new folder you created</li>
+                <li>Choose "upload here" from the menu that pops up</li>
+                <li>Browse to your package on your client and select it for upload</li>
+                <li>After uploading has finished, move the package that used to be the most recent release before you just uploaded the new package into the folder <tt class="code">1.5.x (outdated)</tt>, using the gear icon in front of the previous release and selecting "cut" there. From the context menu of the target folder, select "paste" to complete the move. After moving the previous release, delete the orphaned folder it used to reside in</li>
+            </ul>
         </li>
         <li>
-            Move the announcement thread from the dev-only board to the announcement board
+            <a name="packaging_steps_move_announcement"></a><h3>Publish announcement thread<a href="#packaging_steps_move_announcement" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            Move the announcement thread from the dev-only board to the announcement board. You will need moderator capabilities on forum level.
         </li>
         <li>
-            Create a news article on sf.net that contains a link to the announcement thread
+            <a name="packaging_steps_sf_news"></a><h3>News item on sf.net<a href="#packaging_steps_sf_news" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            Create a news article on sf.net that contains a link to the announcement thread. To accomplish this, select, "<a href="https://sourceforge.net/news/?group_id=89658" rel="external" class="external">News</a>" from the "Develop" menu while being logged in with your sourceforge.net account. On the news page, use the "Submit" link to create a news item. The news item should contain a link to the announcement thread on the forum.
         </li>
         <li>
-            Create a news article on the start page of coppermine-gallery.net that contains a link to the announcement thread and change reference to the most recent release on that page
+            <a name="packaging_steps_forum_news"></a><h3>News item on forum<a href="#packaging_steps_forum_news" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            Create a news item on the forum that contains a link to the announcement thread. You will need the corresponding priviledge on the forum.
         </li>
         <li>
-            Create a news item on the forum that contains a link to the announcement thread
+            <a name="packaging_steps_homepage_news"></a><h3>News item on home page<a href="#packaging_steps_homepage_news" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            On the <a href="http://coppermine-gallery.net/" rel="external" class="external">Coppermine home page</a>, create a news item that contains a link to the announcement thread.
         </li>
         <li>
-            Update the demo
+            <a name="packaging_steps_embedded_news"></a><h3>News embedded into existing galleries<a href="#packaging_steps_embedded_news" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            To make users of existing galleries aware of the new release, edit <a href="http://coppermine-gallery.net/cpg15x_news.htm" rel="external" class="external">http://coppermine-gallery.net/cpg15x_news.htm</a>. This file is the source for the news item that is displayed for Coppermine admins on their galleries if the option <a href="configuration.htm#admin_general_coppermine_news">Display news from coppermine-gallery.net</a> is enabled.
+        </li>
+        <li>
+            <a name="packaging_steps_demo"></a><h3>Update the demo<a href="#packaging_steps_demo" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            Use your favorite FTP app to update the demo on the coppermine home page. You will of course need FTP access to the corresponding web space.<br />
+            Make sure not to overwrite the custom anycontent.<br />
+            Keep in mind that you need to apply changes to the JavaScript file <tt class="code">script.js</tt> inside the localizations of the docs folder - they compose the site navigation.
         </li>
     </ul>
 </div>
