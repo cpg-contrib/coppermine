@@ -376,10 +376,14 @@ Cookie fix (if your board is not installed to site root): edit XMB's file <tt cl
     <p>To circumvent this, review the setup both of coppermine as well as your bridge app: make sure that in both config panels you're either using the URL with the leading www-subdomain or without it.</p>
     <div class="cpg_message_success"><h4>Recomendation:</h4>
     The leading www subdomain has been introduced in the early days of the world wide web. Technically, it is no longer needed, but many users have gotten used to specify a leading www subdomain when typing an URL. We recommend using your URL without the leading www to make it shorter to memorize. To make sure that those who type in the URL <em>with</em> the leading www, we recommend setting up a rewrite-rule in a custom .htaccess file that could look like this:<br />
-    <textarea cols="70" rows="2" class="code" style="font-size:8pt;">RewriteEngine on
+    <textarea cols="70" rows="2" class="code smaller">RewriteEngine on
     RewriteCond %{HTTP_HOST} ^www\.yourdomain\.tld$ [NC]
     RewriteRule ^(.*) http://yourdomain.tld/$1 [R,L]</textarea><br />
-    Please note though that setting up your rewrite rule is something beyond the scope of coppermine support - you should use your favorite search engine to find out details about it.</div>
+    Replace <tt class="code">yourdomain</tt> and <tt class="code">tld</tt> in above code snippet. If your site actually resides at example.com, change the code mentioned above into something like
+    <textarea cols="70" rows="2" class="code smaller">RewriteEngine on
+    RewriteCond %{HTTP_HOST} ^www\.example\.com$ [NC]
+    RewriteRule ^(.*) http://example.com/$1 [R,L]</textarea><br />
+    <em>Please note though that setting up your rewrite rule is something beyond the scope of coppermine support - you should use your favorite search engine to find out details about it.</em></div>
 </div>
 
 <a name="integrating_end"></a>
