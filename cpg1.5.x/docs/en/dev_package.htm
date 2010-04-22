@@ -52,19 +52,19 @@
             As with all subversion operations, you need to perform a checkout to make sure that your working copy of the subversion repository is up-to-date.
         </li>
         <li>
-            <a name="packaging_steps_loop_through_files"></a><h3>Replace version number in all files<a href="#packaging_steps_checkout" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            <a name="packaging_steps_loop_through_files"></a><h3>Replace version number in all files<a href="#packaging_steps_loop_through_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
             You need to loop through all text files (file extensions <tt class="code">.php</tt>, <tt class="code">.css</tt>, <tt class="code">.js</tt>, <tt class="code">.txt</tt>, <tt class="code">.sql</tt>, <tt class="code">.htm</tt>) and replace the version number in the header with the version number of the new release.<br />
             <div class="cpg_example">You will have to find <input type="text" readonly="readonly" value="Coppermine version: 1.5.X" size="25" maxlength="25" class="code smaller" /> and replace with <input type="text" readonly="readonly" value="Coppermine version: 1.5.Y" size="25" maxlength="25" class="code smaller" /></div>
             To accomplish this, you will need a tool that can batch-replace in files:
             <ul>
                 <li>
-                    <a name="packaging_steps_loop_through_files_linux"></a><h4>Linux<a href="#packaging_steps_checkout_linux" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+                    <a name="packaging_steps_loop_through_files_linux"></a><h4>Linux<a href="#packaging_steps_loop_through_files_linux" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
                     On most posix-compliant operating systems (like Unix, Linux, BSD etc.) you should have all needed tools at hand already. Basically you loop through all files with a given extension, search for the string inside it and replace it. The command that can be run in a console could look like this:
                     <textarea class="code smaller" style="width:100%" rows="1">find /path/on/filesystem/level/to/your/working/copy/ -maxdepth 4 -name "*.php" | xargs sed -i 's/Coppermine version: 1.5.73/Coppermine version: 1.5.74/g'</textarea>
                     If you want to turn this into a shell script, don't forget the shebang at the start of the file (usually something like <tt class="code">#!/bin/sh</tt>).
                 </li>
                 <li>
-                    <a name="packaging_steps_loop_through_files_windows"></a><h4>Windows<a href="#packaging_steps_checkout_windows" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+                    <a name="packaging_steps_loop_through_files_windows"></a><h4>Windows<a href="#packaging_steps_loop_through_files_windows" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
                     On Windows-driven computers you will need an editor that is capable to replace in multiple files or a tool that is dedicated to the replacement of text in files like the freeware apps <a href="http://www.emurasoft.com/replall/" rel="external" class="external">Replace in files</a> by Emurasoft or the app <a href="http://www.markus-bader.de/MB-SearchAndReplace/index.php" rel="external" class="external">MB-Search&amp;Replace</a> by Markus Bader. Both apps are available in English as well as in German and both don't require an installation (the executable runs out of the box, even from a USB stick or similar).
                 </li>
             </ul>
@@ -183,20 +183,26 @@
             Move the announcement thread from the dev-only board to the announcement board. You will need moderator capabilities on forum level.
         </li>
         <li>
-            <a name="packaging_steps_sf_news"></a><h3>News item on sf.net<a href="#packaging_steps_sf_news" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-            Create a news article on sf.net that contains a link to the announcement thread. To accomplish this, select, "<a href="https://sourceforge.net/news/?group_id=89658" rel="external" class="external">News</a>" from the "Develop" menu while being logged in with your sourceforge.net account. On the news page, use the "Submit" link to create a news item. The news item should contain a link to the announcement thread on the forum.
-        </li>
-        <li>
-            <a name="packaging_steps_forum_news"></a><h3>News item on forum<a href="#packaging_steps_forum_news" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-            Create a news item on the forum that contains a link to the announcement thread. You will need the corresponding priviledge on the forum.
-        </li>
-        <li>
-            <a name="packaging_steps_homepage_news"></a><h3>News item on home page<a href="#packaging_steps_homepage_news" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-            On the <a href="http://coppermine-gallery.net/" rel="external" class="external">Coppermine home page</a>, create a news item that contains a link to the announcement thread.
-        </li>
-        <li>
-            <a name="packaging_steps_embedded_news"></a><h3>News embedded into existing galleries<a href="#packaging_steps_embedded_news" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-            To make users of existing galleries aware of the new release, edit <a href="http://coppermine-gallery.net/cpg15x_news.htm" rel="external" class="external">http://coppermine-gallery.net/cpg15x_news.htm</a>. This file is the source for the news item that is displayed for Coppermine admins on their galleries if the option <a href="configuration.htm#admin_general_coppermine_news">Display news from coppermine-gallery.net</a> is enabled.
+            <a name="packaging_steps_news"></a><h3>Create news items<a href="#packaging_steps_news" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            There are various news items that need to be created. They can all be filled with similar or even identical content, as they catter for different media or different ways to access the news.
+            <ul>
+                <li>
+                    <a name="packaging_steps_news_sf"></a><h4>News item on sf.net<a href="#packaging_steps_news_sf" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+                    Create a news article on sf.net that contains a link to the announcement thread. To accomplish this, select, "<a href="https://sourceforge.net/news/?group_id=89658" rel="external" class="external">News</a>" from the "Develop" menu while being logged in with your sourceforge.net account. On the news page, use the "Submit" link to create a news item. The news item should contain a link to the announcement thread on the forum.
+                </li>
+                <li>
+                    <a name="packaging_steps_news_forum"></a><h4>News item on forum<a href="#packaging_steps_news_forum" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+                    Create a news item on the forum that contains a link to the announcement thread. You will need the corresponding priviledge on the forum.
+                </li>
+                <li>
+                    <a name="packaging_steps_news_homepage"></a><h4>News item on home page<a href="#packaging_steps_news_homepage" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+                    On the <a href="http://coppermine-gallery.net/" rel="external" class="external">Coppermine home page</a>, create a news item that contains a link to the announcement thread.
+                </li>
+                <li>
+                    <a name="packaging_steps_news_embedded"></a><h4>News embedded into existing galleries<a href="#packaging_steps_news_embedded" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+                    To make users of existing galleries aware of the new release, edit <a href="http://coppermine-gallery.net/cpg15x_news.htm" rel="external" class="external">http://coppermine-gallery.net/cpg15x_news.htm</a>. This file is the source for the news item that is displayed for Coppermine admins on their galleries if the option <a href="configuration.htm#admin_general_coppermine_news">Display news from coppermine-gallery.net</a> is enabled.
+                </li>            
+            </ul>
         </li>
         <li>
             <a name="packaging_steps_demo"></a><h3>Update the demo<a href="#packaging_steps_demo" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
