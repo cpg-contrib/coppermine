@@ -239,7 +239,7 @@ $lang_img_nav_bar = array(
 $lang_rate_pic = array(
   'rate_this_pic' => 'Diese Datei bewerten',
   'no_votes' => '(noch keine Bewertung)',
-  'rating' => '- derzeitige Bewertung : %s/5 mit %s Stimme(n)',
+  'rating' => '- derzeitige Bewertung: %s/5 mit %s Stimme(n)',
   'rubbish' => 'sehr schlecht',
   'poor' => 'schlecht',
   'fair' => 'ganz OK',
@@ -267,10 +267,10 @@ $lang_cpg_die = array(
 );
 
 $lang_display_thumbnails = array(
-  'filename' => 'Dateiname : ',
-  'filesize' => 'Dateigröße : ',
-  'dimensions' => 'Abmessungen : ',
-  'date_added' => 'hinzugefügt am : ',
+  'filename' => 'Dateiname: ',
+  'filesize' => 'Dateigröße: ',
+  'dimensions' => 'Abmessungen: ',
+  'date_added' => 'hinzugefügt am: ',
 );
 
 $lang_get_pic_data = array(
@@ -1044,7 +1044,7 @@ $lang_fullsize_popup = array(
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
   'title' => 'eCard senden',
-  'invalid_email' => '<b>Achtung</b> : ungültige eMail-Adresse !',
+  'invalid_email' => '<b>Achtung</b>: ungültige eMail-Adresse !',
   'ecard_title' => 'Eine eCard von %s für Sie',
   'error_not_image' => 'Nur Bilder können als eCard verschickt werden.', //cpg1.3.0
   'view_ecard' => 'Falls diese eCard nicht korrekt angezeigt wird, klicken Sie bitte auf den folgenden Link: ',
@@ -1073,7 +1073,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 
 if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php =array(
   'title' => 'Beim Administrator melden', //cpg1.4
-  'invalid_email' => '<b>Achtung</b> : ungültige eMail-Adresse!', //cpg1.4
+  'invalid_email' => '<b>Achtung</b>: ungültige eMail-Adresse!', //cpg1.4
   'report_subject' => 'Eine Meldung von %s über die Galerie %s', //cpg1.4
   'view_report' => 'Alternativ-Link, falls diese Meldung nicht korrekt angezeigt wird', //cpg1.4
   'view_report_plaintext' => 'Kopieren Sie die folgende URL in die Adresszeile Ihres Browsers, um die Meldung anzuzeigen:', //cpg1.4
@@ -1546,7 +1546,7 @@ $lang_register_php = array(
 $lang_register_confirm_email = <<<EOT
 Danke für Ihre Registrierung bei {SITE_NAME}
 
-Ihr Benutzername ist : "{USER_NAME}"
+Ihr Benutzername ist: "{USER_NAME}"
 
 
 Um Ihr Benutzerkonto zu aktivieren, müssen Sie auf den untenstehenden Link klicken
@@ -1669,10 +1669,10 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'no_album' => 'Kein Album gewählt',
   'result_icon' => 'Klicken für Details oder zum erneut laden',  //cpg1.4
   'notes' =>  '<ul>'.
-    '<li><b>OK</b> : bedeuted, dass die Datei erfolgreich hinzugefügt wurde'.
-    '<li><b>DP</b> : bedeutet, dass die Datei ein Duplikat ist und schon in der Datenbank vorhanden ist'.
-    '<li><b>PB</b> : bedeutet, dass die Datei nicht hinzugefügt werden konnte; überprüfen Sie Ihre Einstellungen und die Berechtigungen der Verzeichnisse, in dem die Dateien liegen'.
-    '<li><b>NA</b> : bedeutet, dass Sie kein Album gewählt haben, in das die Dateien eingefügt werden sollen, klicken Sie \'<a href="javascript:history.back(1)">zurück</a>\' und wählen Sie ein Album aus. Wenn kein Album ausgewählt werden kann, dann müssen Sie erst <a href="albmgr.php">ein Album erzeugen</a>.</li>'.
+    '<li><b>OK</b>: bedeuted, dass die Datei erfolgreich hinzugefügt wurde'.
+    '<li><b>DP</b>: bedeutet, dass die Datei ein Duplikat ist und schon in der Datenbank vorhanden ist'.
+    '<li><b>PB</b>: bedeutet, dass die Datei nicht hinzugefügt werden konnte; überprüfen Sie Ihre Einstellungen und die Berechtigungen der Verzeichnisse, in dem die Dateien liegen'.
+    '<li><b>NA</b>: bedeutet, dass Sie kein Album gewählt haben, in das die Dateien eingefügt werden sollen, klicken Sie \'<a href="javascript:history.back(1)">zurück</a>\' und wählen Sie ein Album aus. Wenn kein Album ausgewählt werden kann, dann müssen Sie erst <a href="albmgr.php">ein Album erzeugen</a>.</li>'.
     '<li>Falls die OK, DP, PB \'Zeichen\' nicht erscheinen, klicken Sie auf die nicht-funktionierenden Bilder, um die Fehlermeldungen von PHP zu sehen'.
     '<li>Wenn Ihr Browser in ein Timeout läuft, klicken Sie auf die Aktualisieren-Schaltfläche'.
     '</ul>',
@@ -2086,7 +2086,7 @@ $lang_xp_publish_testing = <<<EOT
 EOT;
 
 $lang_xp_publish_notes = <<<EOT
-<h2>Anmerkungen :</h2><ul><li>Wenn der Upload-Vorgang erst einmal gestartet ist, kann der Assistent keine Fehlermeldungen anzeigen, die vom Skript generiert werden; daher kann man nicht wissen, ob ein Upload erfolgreich war oder nicht, außer durch Besuch der Coppermine-Galerie.</li><li>Wenn ein Upload fehlschlägt, aktivieren Sie den &quot;Debug-Modus&quot; in den Coppermine-Einstellungen, laden Sie ein einzelnes Bild hoch und überprüfen Sie dann die Fehlermeldungen in der
+<h2>Anmerkungen:</h2><ul><li>Wenn der Upload-Vorgang erst einmal gestartet ist, kann der Assistent keine Fehlermeldungen anzeigen, die vom Skript generiert werden; daher kann man nicht wissen, ob ein Upload erfolgreich war oder nicht, außer durch Besuch der Coppermine-Galerie.</li><li>Wenn ein Upload fehlschlägt, aktivieren Sie den &quot;Debug-Modus&quot; in den Coppermine-Einstellungen, laden Sie ein einzelnes Bild hoch und überprüfen Sie dann die Fehlermeldungen in der
 EOT;
 
 $lang_xp_publish_flood = <<<EOT
