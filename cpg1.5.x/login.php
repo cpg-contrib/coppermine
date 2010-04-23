@@ -58,7 +58,8 @@ if ($superCage->post->keyExists('submitted')) {
         }
 
         $redirect = ($CPG_REFERER && (strpos($CPG_REFERER, 'login.php') === false)) ? $CPG_REFERER : 'index.php';
-        cpgRedirectPage($redirect, $lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']), 3, 'success');
+        $pending_approvals = ($USER_DATA['has_admin_access'] && cpg_get_pending_approvals() > 0) ? '<br />'.$lang_gallery_admin_menu['upl_app_title'] : '';
+        cpgRedirectPage($redirect, $lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']).$pending_approvals, 3, 'success');
         exit;
 
     } else {
