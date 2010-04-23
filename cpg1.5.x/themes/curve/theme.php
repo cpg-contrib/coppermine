@@ -26,7 +26,7 @@ define('THEME_HAS_FILM_STRIP_GRAPHICS', 1);
 $template_sys_menu_button = $template_sub_menu_button = <<<EOT
 <!-- BEGIN {BLOCK_ID} -->
     <li>
-		<a href="{HREF_TGT}" title="{HREF_TITLE}" class="firstlevel"><span class="firstlevel">{HREF_LNK}</span></a>
+        <a href="{HREF_TGT}" title="{HREF_TITLE}" class="firstlevel"><span class="firstlevel">{HREF_LNK}</span></a>
     </li>
 <!-- END {BLOCK_ID} -->
 EOT;
@@ -38,58 +38,58 @@ $template_sys_menu = <<<EOT
 <!-- BEGIN home -->
                 <li>
                     <a href="{HOME_TGT}" title="{HOME_TITLE}" class="firstlevel"><span class="firstlevel">{HOME_ICO}{HOME_LNK}</span></a>
-					<ul>
-					<!-- BEGIN contact -->
-								<li>
-									<a href="{CONTACT_TGT}" title="{CONTACT_TITLE}"><span>{CONTACT_ICO}{CONTACT_LNK}</span></a>
-								</li>
-					<!-- END contact --> 
-					<!-- BEGIN sidebar -->
-									<li>
-										<a href="{SIDEBAR_TGT}" title="{SIDEBAR_TITLE}"><span>{SIDEBAR_ICO}{SIDEBAR_LNK}</span></a>
-									</li>
-					<!-- END sidebar -->
-					</ul>
+                    <ul>
+                    <!-- BEGIN contact -->
+                                <li>
+                                    <a href="{CONTACT_TGT}" title="{CONTACT_TITLE}"><span>{CONTACT_ICO}{CONTACT_LNK}</span></a>
+                                </li>
+                    <!-- END contact --> 
+                    <!-- BEGIN sidebar -->
+                                    <li>
+                                        <a href="{SIDEBAR_TGT}" title="{SIDEBAR_TITLE}"><span>{SIDEBAR_ICO}{SIDEBAR_LNK}</span></a>
+                                    </li>
+                    <!-- END sidebar -->
+                    </ul>
                 </li>
 <!-- BEGIN allow_memberlist -->
-									<!--
-									<li>
-										<a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}"><span>{MEMBERLIST_ICO}{MEMBERLIST_LNK}</span></a>
-									</li>
-									-->
+                                    <!--
+                                    <li>
+                                        <a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}"><span>{MEMBERLIST_ICO}{MEMBERLIST_LNK}</span></a>
+                                    </li>
+                                    -->
 <!-- END allow_memberlist -->
 
 <!-- END home -->
 <!-- BEGIN my_gallery -->
                 <li>
                     <a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}" class="firstlevel"><span class="firstlevel">{MY_GAL_ICO}{MY_GAL_LNK}</span></a>
-					<ul>
-					<!-- BEGIN my_profile -->
-									<li>
-										<a href="{MY_PROF_TGT}" title="{MY_PROF_LNK}"><span>{MY_PROF_ICO}{MY_PROF_LNK}</span></a>
-									</li>
-					<!-- END my_profile -->
-					<!-- BEGIN allow_memberlist -->
-									<li>
-										<a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}"><span>{MEMBERLIST_ICO}{MEMBERLIST_LNK}</span></a>
-									</li>
-					<!-- END allow_memberlist -->
-					<!-- BEGIN upload_approval -->
-									<li>
-										<a href="{UPL_APP_TGT}" title="{UPL_APP_TITLE}"><span>{UPL_APP_ICO}{UPL_APP_LNK}</span></a>
-									</li>
-					<!-- END upload_approval -->
-					<!-- BEGIN enter_admin_mode -->
-									<li>
-									<a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}"><span>{ADM_MODE_ICO}{ADM_MODE_LNK}</span></a>
-									</li>
-					<!-- END enter_admin_mode -->
-					<!-- BEGIN leave_admin_mode -->
-									<li>
-										<a href="{USR_MODE_TGT}" title="{USR_MODE_TITLE}"><span>{USR_MODE_ICO}{USR_MODE_LNK}</span></a>
-									</li>
-					<!-- END leave_admin_mode -->
-					</ul>
+                    <ul>
+                    <!-- BEGIN my_profile -->
+                                    <li>
+                                        <a href="{MY_PROF_TGT}" title="{MY_PROF_LNK}"><span>{MY_PROF_ICO}{MY_PROF_LNK}</span></a>
+                                    </li>
+                    <!-- END my_profile -->
+                    <!-- BEGIN allow_memberlist -->
+                                    <li>
+                                        <a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}"><span>{MEMBERLIST_ICO}{MEMBERLIST_LNK}</span></a>
+                                    </li>
+                    <!-- END allow_memberlist -->
+                    <!-- BEGIN upload_approval -->
+                                    <li>
+                                        <a href="{UPL_APP_TGT}" title="{UPL_APP_TITLE}"><span>{UPL_APP_ICO}{UPL_APP_LNK}</span></a>
+                                    </li>
+                    <!-- END upload_approval -->
+                    <!-- BEGIN enter_admin_mode -->
+                                    <li>
+                                    <a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}"><span>{ADM_MODE_ICO}{ADM_MODE_LNK}</span></a>
+                                    </li>
+                    <!-- END enter_admin_mode -->
+                    <!-- BEGIN leave_admin_mode -->
+                                    <li>
+                                        <a href="{USR_MODE_TGT}" title="{USR_MODE_TITLE}"><span>{USR_MODE_ICO}{USR_MODE_LNK}</span></a>
+                                    </li>
+                    <!-- END leave_admin_mode -->
+                    </ul>
                 </li>
 <!-- END my_gallery -->
 <!-- BEGIN upload_pic -->
@@ -174,12 +174,12 @@ EOT;
 
 // HTML template for gallery admin menu
 $template_gallery_admin_menu = <<<EOT
-							<ul class="dropmenu">
+                            <ul class="dropmenu">
                                 <li>
                                     <a href="#" title="{FILES_TITLE}" class="firstlevel"><span class="firstlevel">{FILES_ICO}{FILES_LNK}</span></a>
                                     <ul>
                                     <!-- BEGIN admin_approval -->
-                                        <li><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}"><span>{UPL_APP_ICO}{UPL_APP_LNK}</span></a></li>
+                                        <li><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}" class="admin_menu_anim"><span>{UPL_APP_ICO}{UPL_APP_LNK}</span></a></li>
                                     <!-- END admin_approval -->
                                     <!-- BEGIN catmgr -->
                                         <li><a href="catmgr.php" title="{CATEGORIES_TITLE}"><span>{CATEGORIES_ICO}{CATEGORIES_LNK}</span></a></li>
@@ -265,22 +265,22 @@ $template_gallery_admin_menu = <<<EOT
                                     </ul>
                                 </li>
                             <!-- END usermgr -->
-							</ul>
-							
+                            </ul>
+                            
 EOT;
 
 // HTML template for user admin menu
 $template_user_admin_menu = <<<EOT
-							<ul class="dropmenu">
+                            <ul class="dropmenu">
                                 <li>
-									<a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}" class="firstlevel"><span class="firstlevel">{MY_PROF_ICO}{MY_PROF_LNK}</span></a>
-									<ul>
-										<li><a href="albmgr.php" title="{ALBMGR_TITLE}"><span>{ALBUMS_ICO}{ALBMGR_LNK}</span></a></li>
-										<li><a href="modifyalb.php" title="{MODIFYALB_TITLE}"><span>{MODIFYALB_ICO}{MODIFYALB_LNK}</span></a></li>
-										<li><a href="picmgr.php" title="{PICTURES_TITLE}"><span>{PICTURES_ICO}{PICTURES_LNK}</span></a></li>
-									</ul>
-								</li>
-							</ul>
+                                    <a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}" class="firstlevel"><span class="firstlevel">{MY_PROF_ICO}{MY_PROF_LNK}</span></a>
+                                    <ul>
+                                        <li><a href="albmgr.php" title="{ALBMGR_TITLE}"><span>{ALBUMS_ICO}{ALBMGR_LNK}</span></a></li>
+                                        <li><a href="modifyalb.php" title="{MODIFYALB_TITLE}"><span>{MODIFYALB_ICO}{MODIFYALB_LNK}</span></a></li>
+                                        <li><a href="picmgr.php" title="{PICTURES_TITLE}"><span>{PICTURES_ICO}{PICTURES_LNK}</span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
 
 EOT;
 
@@ -301,17 +301,17 @@ EOT;
         echo <<<EOT
         <tr>
                 <td class="" colspan="$title_colspan">
-					<div class="cpg_starttable_outer">
-						<div class="cpg_starttable_inner">
-							$title
-						</div>
-					</div>
-				</td>
+                    <div class="cpg_starttable_outer">
+                        <div class="cpg_starttable_inner">
+                            $title
+                        </div>
+                    </div>
+                </td>
         </tr>
 
 EOT;
     } else {
-	}
+    }
 }
 
 /******************************************************************************
@@ -361,8 +361,8 @@ $template_breadcrumb = <<<EOT
 <!-- BEGIN breadcrumb -->
         <tr>
             <td colspan="3" align="left">
-    			<div class="cpg_starttable_outer">
-    				<div class="cpg_starttable_inner">
+                <div class="cpg_starttable_outer">
+                    <div class="cpg_starttable_inner">
                         <table width="100%" cellpadding="0" cellspacing="0" border="0">
                             <tr>
                                 <td class="statlink">
@@ -373,16 +373,16 @@ $template_breadcrumb = <<<EOT
                                 </td>
                             </tr>
                         </table>
-    				</div>
-    			</div>
+                    </div>
+                </div>
             </td>
         </tr>
 <!-- END breadcrumb -->
 <!-- BEGIN breadcrumb_user_gal -->
         <tr>
             <td colspan="3" align="left">
-    			<div class="cpg_starttable_outer">
-    				<div class="cpg_starttable_inner">
+                <div class="cpg_starttable_outer">
+                    <div class="cpg_starttable_inner">
                         <table width="100%" cellpadding="0" cellspacing="0" border="0">
                             <tr>
                                 <td class="statlink">
@@ -396,8 +396,8 @@ $template_breadcrumb = <<<EOT
                                 </td>
                             </tr>
                         </table>
-    				</div>
-    			</div>
+                    </div>
+                </div>
             </td>
         </tr>
 <!-- END breadcrumb_user_gal -->

@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-04-23 [C] Fixed white lines in curve theme (thread ID 64492) {eenemeenemuu}
+2010-04-23 [A] Added animation to upload approval button for curve theme (thread ID 64687) {eenemeenemuu}
 2010-04-23 [A] Added upload approval message to admin welcome message (thread ID 64687) {eenemeenemuu}
 2010-04-19 [B] Fixed number of users when searching users on user manager (thread ID 64455) {eenemeenemuu}
 2010-04-19 [D] Added developer documentation that explains packaging {GauGau}

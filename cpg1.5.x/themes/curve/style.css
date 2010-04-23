@@ -68,7 +68,6 @@ body {
     background-attachment: scroll;
     background-position: 0pt -633px;
     padding-left: 20px;
-    padding-bottom: 1px;   /* IE7 */
 }
 
 #cpg_header_block_outer div.cpg_header_block_inner {
@@ -92,8 +91,6 @@ body {
     background-attachment: scroll;
     background-position: left top;
     padding-left: 20px;
-    padding-top: 1px;     /* IE7 */
-    padding-bottom: 1px;  /* IE7 */
 }
 
 #cpg_main_block_outer div.cpg_main_block_inner {
@@ -117,6 +114,7 @@ body {
     background-attachment: scroll;
     background-position: 0pt -1156px;
     padding-left: 20px;
+
 }
 
 #cpg_footer_block_outer div.cpg_footer_block_inner {
@@ -1145,4 +1143,8 @@ a:hover.rounded_menu  {
 
 a:hover.rounded_menu span {
     background: url(images/menu_gfx.png) no-repeat 100% 0;
+}
+
+.admin_menu_anim {
+    background-image : url(images/button_bg_anim.gif);
 }
