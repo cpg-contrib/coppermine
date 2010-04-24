@@ -79,7 +79,7 @@ body {
     display: block;
     padding-top: 5px;
     padding-right: 20px;
-    padding-bottom: 0pt;
+    padding-bottom: 10px;
     padding-left: 0px;
     /* min-height: 95px; */
 }
@@ -882,7 +882,7 @@ table#album_sort tr td span.editAlbum {
 
 .cpg_message_info, .cpg_message_success, .cpg_message_warning, .cpg_message_error, .cpg_message_validation {
     border: 1px solid;
-    margin: 10px 0px;
+    margin: 10px 0px 0px;
     padding:15px 10px 15px 50px;
     background-repeat: no-repeat;
     background-position: 10px center;
