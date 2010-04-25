@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Adding/renaming/removing files - Developer documentation - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<title>Ajout/renommage/effacement de fichiers - Documentation du développeur - Coppermine Photo Gallery - Documentation &amp; Manuel</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="language" content="en" />
+<meta name="language" content="fr" />
 <meta name="copyright" content="Coppermine dev team" />
 <meta name="description" content="This part of the documentation is not meant for end users of Coppermine, but only for developers. There is no support for this section, it comes as-is." />
 <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -27,29 +27,27 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation et Manuel</h1>
 <div id="toc">
-<a href="toc.htm">Table of Contents</a>
+<a href="toc.htm">Table des Matières</a>
 </div>
+<div id="doc_en_partial"</div>
+<a name="dev_files"></a><h1>Ajout/renommage/effacement de fichiers<a href="#dev_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 
-<div id="doc_en_only">No translation available</div>
+<a name="dev_files_target_audience"></a><h2>Cible visée<a href="#dev_files_target_audience" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Cette partie de la documentation n'est pas destinée aux utilisateur finaux de Coppermine, mais uniquement aux développeurs. Il n'y a pas d'aide pour cette section, elle est disponible telle-quelle.</p>
 
-<a name="dev_files"></a><h1>Adding/renaming/removing files<a href="#dev_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<a name="dev_files_scope"></a><h2>But<a href="#dev_files_scope" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Ce document est destiné à expliquer ce qu'un développeur doit faire lors de l'ajout/de la modification/de l'effacement de fichiers vers/depuis le SVN pendant l'étape de développement.</p>
 
-<a name="dev_files_target_audience"></a><h2>Target audience<a href="#dev_files_target_audience" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>This part of the documentation is not meant for end users of Coppermine, but only for developers. There is no support for this section, it comes as-is.</p>
+<a name="dev_files_naming"></a><h2>Conventions de nommage<a href="#dev_files_naming" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Référez vous o la section &quot;<a href="dev_coding.htm#dev_coding_naming_conventions">Conventions de nommage</a>&quot; lors de l'ajout de nouveaux fichiers ou lors du renommage de fichiers existants.</p>
 
-<a name="dev_files_scope"></a><h2>Scope<a href="#dev_files_scope" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>This document is meant to explain what needs to be done by developers when adding / renaming / deleting files to/from the SVN during development stage.</p>
-
-<a name="dev_files_naming"></a><h2>Naming conventions<a href="#dev_files_naming" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Refer to the section &quot;<a href="dev_coding.htm#dev_coding_naming_conventions">Naming Conventions</a>&quot; when adding new files or renaming existing files.</p>
-
-<a name="dev_files_adding"></a><h2>Adding files<a href="#dev_files_adding" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>If a developer needs to add a new file to Coppermine's core, here's a list of things that needs to be done:</p>
+<a name="dev_files_adding"></a><h2>Ajouts de fichiers<a href="#dev_files_adding" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Si un développeur a besoin d'ajouter un nouveau fichier au noyau de Coppermine, voici la liste des choses à faire:</p>
 <ul>
-	<li>Create the file locally on your client (within the working copy of your Subversion checkout), respecting the <a href="dev_coding.htm#dev_coding_naming_conventions">naming conventions</a></li>
-	<li>If it is a non-binary (i.e. a text file), add the file header that will show that your file is part of the coppermine package. Currently, the file header for PHP files looks like this:<pre class="code">/*************************
+	<li>Créez le fichier localement sur votre ordinateur (dans une copie de travail récupérée sur le SVN), en respectant  <a href="dev_coding.htm#dev_coding_naming_conventions">les conventions de nommage</a></li>
+	<li>Si c'est un fichier non binaire (un fichier texte par exemple), ajoutez l'entête de fichier qui montrera que c'est une partie du pack Coppermine. Actuellement l'entête des fichiers PHP ressemble à ça:<pre class="code">/*************************
   Coppermine Photo Gallery
   ************************
   Copyright (c) 2003-2010 Coppermine Dev Team
@@ -65,11 +63,11 @@
   &#36;Revision&#36;
   &#36;LastChangedBy&#36;
   &#36;Date&#36;
-**********************************************/</pre>For other file types (e.g. sql files), different comment symbols might apply.</li>
-	<li>Add the file to the SVN, using the add and then the commit command of your favorite SVN client</li>
-	<li>In your SVN client, make sure that the file you have added has the needed SVN-properties. In RapidSVN (Linux-Client), do a right-click, properties and make sure that the name/value pair "svn:keywords"/"Author Date Id Revision HeadURL" exists. If it doesn't exist, create such an entry (using the "new" button on the properties dialog). This will make sure that the placeholder SVN variables within $-signs are populated properly. Take a look at existing files to see how this is done.</li>
-	<li>Add an entry for your newly-created file in <tt class="code">includes/cpg15x.files.xml</tt>. Details can be found in the section <a href="dev_versioncheck.htm#dev_versioncheck_xml">Versioncheck : XML structure</a></li>
-	<li>If applicable, come up with instructions about your file in the documentation</li>
+**********************************************/</pre>Pour les autres types de fichiers (comme les fichiers sql par exemple) différents symboles de commentaires doivent être utilisés.</li>
+	<li>Ajoutez le fichier au SVN en utilisant la commande ajouter puis la commande commettre de votre client SVN favori</li>
+	<li>Dans votr eclient SVN, assurez vous que le fichier que vous avez ajouté à les propriétés du SVN nécessaires. Dans  RapidSVN (Linux-Client), faites un clic droit, propriétés et assurez vous que la paire nom/valeur "svn:keywords"/"Author Date Id Revision HeadURL" existe. Si ce n'est pas le casn créez une telle entrée (en utilisant le bouton "new" de la boite de dialogue propriétés). Cela permettra de s'assurer que le conteneur de variables SVN avec les signes $ sont complètés correctement. Regardez un fichier existant pour voir comment c'est fait.</li>
+	<li>Ajoutez une entrée pour votre nouveau fichier dans <tt class="code">includes/cpg15x.files.xml</tt>. Des détails peuvent être trouvés dans la section <a href="dev_versioncheck.htm#dev_versioncheck_xml">Vérificateur de version : structure XML</a></li>
+	<li>Si possible ajoutez des instructions concernant votre fichier dans la documentation</li>
 </ul>
 <div class="indent">
     <a name="dev_files_adding_language"></a><h3>Language files<a href="#dev_files_adding_language" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -120,8 +118,11 @@
         <li>Make sure that there is a flag image inside the folder <tt class="code">images/flags/</tt> that represents the new language. If there is no flag available, create one if you have the skills to do so and add that file. Alternatively, assign a blank image as a flag as a temporary workaround.</li>
         <li>Add the new language file in your SVN client to the repository. You will need <a href="dev_subversion.htm#dev_subversion_write_access">write access to the subversion repository</a> in order to accomplish this.</li>
         <li>Add a line to the change log that corresponds to the new language file.</li>
+        <li>Test the language file as thoroughly as you can on your local testbed: browse the gallery as guest, registered user and admin, try to upload a file, take a look at the main views (index, thumbnail page, intermediate image).</li>
         <li>Commit your changes to the subversion repository using your subversion client.</li>
         <li>Finally reply to the thread where the user has contributed the language file, posting that you have done what you did. It might help to add a reference to the web SVN and post the revision of your commit.</li>
+        <li>If you have admin privileges on the Coppermine forum, change the language file contributor's group membership; make him member of the translator group.</li>
+        <li>If you have access to the Coppermine internet site, edit the credits file there as well to reflect the newly added translator.</li>
     </ul>
 </div>
 
