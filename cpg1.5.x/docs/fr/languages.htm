@@ -32,6 +32,8 @@
 <a href="toc.htm">Table of Contents</a>
 </div>
 
+<div id="doc_en_partial">Partial translation</div>
+
 <a name="translating"></a><h1>Langues<a href="#translating" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>Coppermine possède un fichier langue séparé ce qui rends la traduction du script beaucoup plus facile. Les fichiers langues sont stockés dans le répertoire <strong>lang </strong>. Les fichiers sont encodés en Unicode (utf-8).</p>
 <p>Si vous sélectionnez Unicode (utf-8) comme encodage par défaut dans la configuration de Coppermine, le script sera capable de sélectionner automatiquement le fichier langue correspondant à la langue configurée dans le navigateur du visiteur. Si la langue sélectionnée est disponible dans votre répertoire "lang", elle sera utilisée. Sinon, c'est le fichier langue par défaut qui sera utilisé.</p>
@@ -69,6 +71,141 @@
 
 <a name="how_scope"></a><h3>Champ d'application de l'internationalisation<a href="#how_scope" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Les fichiers de langue livrés avec Coppermine ne peuvent contenir que des chaînes pré-définies  qui composent les contrôles de votre galerie (par exemple les menus). Le passage à une autre langue n'aura aucun impact sur le contenu personnalisé qui se trouve dans la base de donnée (ex. Le nom des catégories que vous évez défini ou les informations sur les images). Coppermine n'est donc pas complêtement multilangue: il n'y a actuellement pas d'options pour avoir le contenu de Coppermine dans plus d'une langue.</p>
+
+<a name="language_manager"></a><h2>The language manager<a href="#language_manager" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Starting with cpg1.5.x coppermine comes with a language manager that you can use to fine-tune your language preferences. What the language manager basically does is adding an interface to all the language files that reside in the <tt class="code">lang </tt> folder. To access the language manager, go to coppermine's config screen, expand the section &quot;<a href="configuration.htm#admin_language">Language &amp; Charset settings</a>&quot; and click on the link named &quot;Manage languages&quot;. Alternatively, you can manually enter the URL <tt class="code">http://yoursite.tld/your_coppermine_folder/langmgr.php</tt> in to your browser's address bar.</p>
+
+	<div class="indent">
+
+<a name="language_manager_controls"></a><h3>Controls<a href="#language_manager_controls" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+Use the buttons &quot;Show details&quot; / &quot;Hide details&quot; at the top and the bottom of the page to toggle the display of the language manager between a condensed view (where only the important data is being displayed) and an advanced view (where additional information can be found).<br />
+Use the OK button at the bottom of the screen to save changes.
+
+	<a name="language_manager_columns"></a><h3>Columns<a href="#language_manager_columns" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	The language manager will display a table with several columns. Those columns have the following meaning:
+	<ul>
+		<li>
+			<a name="language_manager_columns_default"></a><h4>Default<a href="#language_manager_columns_default" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			Specify the default language for your gallery; this record is identical to the one you can pick on the config panel using the option &quot;<a href="configuration.htm#admin_language_language">Default Language</a>&quot;.<br />
+			You can only pick languages that are <a href="#language_manager_columns_enabled">enabled</a> in the first place. Those that are not enabled will be greyed out.<br />
+			The default language will be the one that is used if the visitor's prefered language could not be detected or if the visitor's prefered language doesn't exist as coppermine language file.
+			<a name="language_manager_columns_default_end"></a>
+		</li>
+		<li>
+			<a name="language_manager_columns_name"></a><h4>Language name<a href="#language_manager_columns_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			The column &quot;Language name&quot; consists of three sub-columns. Each of those columns contains a text field where you can change the default.
+			<ul>
+				<li>
+					<a name="language_manager_columns_name_english"></a><h5>English<a href="#language_manager_columns_name_english" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+					The language name in English. It's recommended not to change this record.
+				</li>
+				<li>
+					<a name="language_manager_columns_name_native"></a><h5>Native<a href="#language_manager_columns_name_native" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+					The language name in the native language, i.e. the word &quot;Français&quot; that means &quot;French&quot; in French
+				</li>
+				<li>
+					<a name="language_manager_columns_name_custom"></a><h5>Custom<a href="#language_manager_columns_name_custom" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+					If your language or the language of the majority of you visitors will be another language than English and you  have a language selector in place, you can specify the language names in your language.
+					<fieldset class="cpg_example">
+						<legend>Example</legend>
+						This is a possible example if your gallery catters for a German audience, with the language names in German entered into the custom field:
+						<table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
+							<tr>
+								<td class="tableh1">English</td>
+								<td class="tableh1">Native</td>
+								<td class="tableh1"><strong>Custom</strong></td>
+							</tr>
+							<tr>
+								<td>Bulgarian</td>
+								<td>Български</td>
+								<td><strong>Bulgarisch</strong></td>
+							</tr>
+							<tr>
+								<td>Czech</td>
+								<td>Česky</td>
+								<td><strong>Tschechisch</strong></td>
+							</tr>
+							<tr>
+								<td>English (US)</td>
+								<td>English (US)</td>
+								<td><strong>Englisch</strong></td>
+							</tr>
+							<tr>
+								<td>Finnish</td>
+								<td>Suomea</td>
+								<td><strong>Finnisch</strong></td>
+							</tr>
+							<tr>
+								<td>French</td>
+								<td>Français</td>
+								<td><strong>Französisch</strong></td>
+							</tr>
+							<tr>
+								<td>German (informal)</td>
+								<td>Deutsch (Du)</td>
+								<td><strong>Deutsch</strong></td>
+							</tr>
+							<tr>
+								<td>Greek</td>
+								<td>Ελληνικά</td>
+								<td><strong>Griechisch</strong></td>
+							</tr>
+							<tr>
+								<td>Polish</td>
+								<td>Polski</td>
+								<td><strong>Polnisch</strong></td>
+							</tr>
+							<tr>
+								<td>Russian</td>
+								<td>Русский</td>
+								<td><strong>Russisch</strong></td>
+							</tr>
+						</table>
+					</fieldset>
+					If text is entered into the &quot;Custom&quot;-column, it will take precedence over the pre-populated columns.
+					<a name="language_manager_columns_name_end"></a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a name="language_manager_columns_flag"></a><h4>Flag<a href="#language_manager_columns_flag" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			The flag column contains a dropdown field where you can specify another flag that you want to use to represent your language. The flag icon you pick will be only applicable if you enable a <a href="theme_template.htm#theme_template_language_select_flags">language selector</a> in your custom theme (which is not not recommended and off by default). Usually, the flag can be left alone if there is a clear correlation between your country and your language. 
+			<div class="cpg_example">Take German as an example: the flag of Germany represents German by default, but of course German is spoken in other countries as well, e.g. in Austria and Switzerland. So, if you're from Austria and have a language selector on your page you might want to change the flag representing German from Germany to Austria as well.</div>
+			<a name="language_manager_columns_flag_end"></a>
+		</li>
+		<li>
+			<a name="language_manager_columns_file"></a><h4>Language file<a href="#language_manager_columns_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			There are two sub-columns inside the language file column:
+			<ul>
+				<li>
+					<a name="language_manager_columns_file_available"></a><h5>Available<a href="#language_manager_columns_file_available" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+					As most other coppermine settings, the language preferences are being stored inside the database as well. 
+					<ul>
+						<li style="list-style-image:url(../../images/icons/stop.png);list-style-position:inside;">If there is only a database record for a particular language, but the corresponding language file isn't there, there will be a stop-icon in this column.</li>
+						<li style="list-style-image:url(../../images/icons/ok.png);list-style-position:inside">If there is both a database record as well as a language file, the OK-icon will be displayed</li>
+						<li style="list-style-image:url(../../images/icons/add.png);list-style-position:inside">If there is a language file, but so far there has been no database record for that file, a plus-icon will be displayed. Submit the form to create a record in the database as well.</li>
+					</ul>
+					You can only <a href="#language_manager_columns_enabled">enable</a> a language if the corresponding language file exists.
+				</li>
+				<li>
+					<a name="language_manager_columns_file_complete"></a><h5>Complete<a href="#language_manager_columns_file_complete" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+					The column &quot;Complete&quot; is a result of a detailed check of each file: 
+					<ul>
+						<li style="list-style-image:url(../../images/icons/ok.png);list-style-position:inside">If the language file has been designed for your version of coppermine, an OK-icon will be displayed in this column.</li>
+						<li style="list-style-image:url(../../images/icons/cancel.png);list-style-position:inside">Otherwise, if your language file has been designed for a pervious version of coppermine, a cancel icon will be displayed instead. This doesn't necessarily mean that you can't use a particular file - missing translations (if any) will shine through in English instead.</li>
+					</ul>
+				</li>
+			</ul>
+			<a name="language_manager_columns_file_end"></a>
+		</li>
+		<li>
+			<a name="language_manager_columns_enabled"></a><h4>Enabled<a href="#language_manager_columns_enabled" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			This is the most important column of the entire screen: here you determine if a particular language will be taken into account, i.e. if the language can be used by visitors. This is independant of the existence of a language selector: if a particular language isn't enabled, it's as if the language file didn't exist in the first place.
+			<a name="language_manager_columns_enabled_end"></a>
+		</li>
+	</ul>
+</div>
+<a name="language_manager_end"></a>
 
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
