@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -26,7 +26,7 @@ $lang_translation_info['lang_country_code'] = 'be';
 $lang_translation_info['trans_name'] = 'Albe-Espero';
 $lang_translation_info['trans_email'] = '';
 $lang_translation_info['trans_website'] = '';
-$lang_translation_info['trans_date'] = '2010-03-20';
+$lang_translation_info['trans_date'] = '2010-04-25';
 
 
 $lang_charset = 'utf-8';
@@ -488,7 +488,7 @@ $lang_bridgemgr_php['no_action_needed'] = 'In deze stap is geen actie nodig. Dru
 $lang_bridgemgr_php['reset_to_default'] = 'Terugzetten naar de standaard waarde'; 
 $lang_bridgemgr_php['choose_bbs_app'] = 'kies een programma uit om Coppermine mee te laten integreren';
 $lang_bridgemgr_php['support_url'] = 'Klik hier voor ondersteuning bij dit programma';
-$lang_bridgemgr_php['settings_path'] = 'pad(en) gebruik bij jou BBS programma';
+$lang_bridgemgr_php['settings_path'] = 'pad(en) gebruikt bij jouw BBS programma';
 $lang_bridgemgr_php['full_forum_url'] = 'Forum URL';
 $lang_bridgemgr_php['relative_path_of_forum_from_webroot'] = 'Relatief pad naar je BBS programma';
 $lang_bridgemgr_php['relative_path_to_config_file'] = 'Relatief pad naar het BBS programma configuratie bestand';
@@ -508,7 +508,7 @@ $lang_bridgemgr_php['bridge_enable_no'] = 'zet uit';
 $lang_bridgemgr_php['error_must_not_be_empty'] = 'mag niet leeg zijn';
 $lang_bridgemgr_php['error_either_be'] = 'moet of %s of %s zijn';
 $lang_bridgemgr_php['error_folder_not_exist'] = '%s bestaat niet. Corrigeer de ingegeven waarde %s';
-$lang_bridgemgr_php['error_cookie_not_readible'] = 'Coppermine kan de cookie met de naam %s niet lezen. Herstel de waarde die je hebt ingevoerd voor %s, of ga naar het BBS installatie scherm en zorg ervoor dat de cookie directory is leesbaar voor Coppermine.'; 
+$lang_bridgemgr_php['error_cookie_not_readible'] = 'Coppermine kan de cookie met de naam %s niet lezen. Herstel de waarde die je hebt ingevoerd voor %s, of ga naar het BBS installatie scherm en zorg ervoor dat de cookie map is leesbaar voor Coppermine.'; 
 $lang_bridgemgr_php['error_mandatory_field_empty'] = 'Je kunt het veld %s niet leeglaten. Vul een goede waarde in.';
 $lang_bridgemgr_php['error_no_trailing_slash'] = 'Er mag geen slash (\\) aan het einde van het veld %s staan.';
 $lang_bridgemgr_php['error_trailing_slash'] = 'Er moet een slash (\\) aan het einde van het veld %s staan.';
@@ -616,7 +616,7 @@ $lang_admin_php['manage_exif'] = 'Beheer exif weergave';
 $lang_admin_php['manage_plugins'] = 'Beheer plugins'; 
 $lang_admin_php['manage_keyword'] = 'Beheer trefwoorden';
 $lang_admin_php['restore_cfg'] = 'Standaard instellingen terugzetten';
-$lang_admin_php['restore_cfg_confirm'] = 'Do you really want to restore the entire configuration to factory defaults? This cannot be undone!'; // cpg1.5 // js-alert	
+$lang_admin_php['restore_cfg_confirm'] = 'Wil je echt de volledige configuratie terugzetten op de standaard fabrieksinstellingen? Dit kan niet meer ongedaan worden!'; // cpg1.5 // js-alert	
 $lang_admin_php['save_cfg'] = 'Bewaar nieuwe instellingen';
 $lang_admin_php['notes'] = 'Notities'; 
 $lang_admin_php['info'] = 'Informatie';
@@ -974,8 +974,8 @@ $lang_db_input_php['no_pic_uploaded'] = 'Er is geen bestand geupload !<br/><br/>
 $lang_db_input_php['err_mkdir'] = 'Creëeren van map %s niet gelukt !';
 $lang_db_input_php['dest_dir_ro'] = 'Bestemmingsmap %s is niet beschrijfbaar door het script !';
 $lang_db_input_php['err_move'] = 'Onmogelijk %s te verplaatsen naar %s !';
-$lang_db_input_php['err_fsize_too_large'] = 'Het door jou geuploade bestand is te groot (maximum toegelaten is %s x %s) !'; //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
-$lang_db_input_php['err_imgsize_too_large'] = 'Het door jou geuploade bestand is te groot (maximum toegestaan is %s KB) !'; //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
+$lang_db_input_php['err_fsize_too_large'] = 'Het door jou geüploade bestand is te groot (maximum toegelaten is %s x %s) !'; //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
+$lang_db_input_php['err_imgsize_too_large'] = 'Het door jou geüploade bestand is te groot (maximum toegestaan is %s KB) !'; //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
 $lang_db_input_php['err_invalid_img'] = 'Het bestand dat je geupload hebt, is geen geldig afbeeldingenbestand !';
 $lang_db_input_php['allowed_img_types'] = 'Je kunt aleen %s afbeeldingen uploaden.';
 $lang_db_input_php['err_insert_pic'] = 'Het bestand \'%s\' kan niet ingevoegd worden in het album.';
@@ -1042,7 +1042,7 @@ $lang_delete_php['change_group_to_group'] = 'Veranderd van %s naar %s'; //cpg1.4
 $lang_delete_php['add_group'] = 'Voeg secundaire groep toe'; //cpg1.4
 $lang_delete_php['add_group_to_group'] = 'Gebruiker %s toegevoegd aan groep %s. Hij/Zij is nu lid van de primaire groep %s en van de secundaire groep(en) %s.'; //cpg1.4
 $lang_delete_php['status'] = 'Status'; //cpg1.4
-$lang_delete_php['updating_album'] = 'Updating album '; // cpg1.5
+$lang_delete_php['updating_album'] = 'Album bijwerken'; // cpg1.5
 $lang_delete_php['moved_picture_to_position'] = 'Afbeelding %s verplaatst naar positie %s'; // cpg1.5
 }
 
@@ -1625,7 +1625,7 @@ $lang_logout_php['err_not_logged_in'] = 'Je bent niet ingelogd !';
 if (defined('MINIBROWSER_PHP')) {
 $lang_minibrowser_php['up'] = 'een niveau omhoog';
 $lang_minibrowser_php['current_path'] = 'huidig pad';
-$lang_minibrowser_php['select_directory'] = 'selecteer een nieuwe directory';
+$lang_minibrowser_php['select_directory'] = 'selecteer een nieuwe map';
 $lang_minibrowser_php['click_to_close'] = 'Klik op de afbeelding om het venster te sluiten'; 
 $lang_minibrowser_php['folder'] = 'Folder'; // cpg1.5
 }
@@ -1736,7 +1736,7 @@ $lang_pluginmgr_php['n_plugins'] = 'Niet geïnstalleerde Plugins';
 $lang_pluginmgr_php['none_installed'] = 'Geen enkele plugin geïnstalleerd'; 
 $lang_pluginmgr_php['operation'] = 'operation';
 $lang_pluginmgr_php['not_plugin_package'] = 'Het geuploade bestand is geen plugin voor Coppermine.';
-$lang_pluginmgr_php['copy_error'] = 'Er is een fout opgetreden met het kopiÃ«ren van het bestand naar de plugins directory.'; 
+$lang_pluginmgr_php['copy_error'] = 'Er is een fout opgetreden met het kopiÃ«ren van het bestand naar de plugins map.'; 
 $lang_pluginmgr_php['upload'] = 'Upload'; 
 $lang_pluginmgr_php['configure_plugin'] = 'Stel plugin in';
 $lang_pluginmgr_php['cleanup_plugin'] = 'Opschonen plugin'; 
@@ -1995,7 +1995,7 @@ $lang_search_php['category_title'] = 'Categorie titels';
 if (defined('SEARCHNEW_PHP')) {
 $lang_search_new_php['page_title'] = 'Zoek nieuwe bestanden';
 $lang_search_new_php['select_dir'] = 'Selecteer map';
-$lang_search_new_php['select_dir_msg'] = 'Deze functie stelt je in staat een aantal bestanden gelijktijdig naar je server te uploaden d.m.v. FTP.<br/><br/>Selecteer de map waar je de bestanden naar hebt geupload';
+$lang_search_new_php['select_dir_msg'] = 'Deze functie stelt je in staat een aantal bestanden gelijktijdig naar je server te uploaden d.m.v. FTP.<br/><br/>Selecteer de map waar je de bestanden in gekopieerd hebt';
 $lang_search_new_php['no_pic_to_add'] = 'Er is geen bestand om toe te voegen';
 $lang_search_new_php['need_one_album'] = 'Je hebt minimaal een album nodig om deze functie te gebruiken';
 $lang_search_new_php['warning'] = 'Waarschuwing';
@@ -2029,7 +2029,7 @@ EOT;
 
 $lang_search_new_php['check_all'] = 'Selecteer alles';
 $lang_search_new_php['uncheck_all'] = 'de-selecteer alles'; 
-$lang_search_new_php['no_folders'] = 'Er bevinden zich geen subdirectories in de "albums". Zorg ervoor dat minstens een subdirecotry is opgenomen in deze "albums" directory en ftp-upload je bestanden daarheen. Je mag geen bestanden uploaden naar de "userpics" of de "edit" directory, deze zijn gereserveerd voor Coppermine.';
+$lang_search_new_php['no_folders'] = 'Er bevinden zich geen submappen in de "albums". Zorg ervoor dat minstens een submap opgenomen is in deze "albums"-map en upload uw bestanden daarin met een FTP-programma. Je mag geen bestanden uploaden naar de "userpics"- of de "edit"-mappen, deze zijn gereserveerd voor Coppermine.';
 $lang_search_new_php['browse_batch_add'] = 'Explorer interface (aanbevolen)'; // cpg1.5
 $lang_search_new_php['display_thumbs_batch_add'] = 'Toon preview thumbnails'; // cpg1.5
 $lang_search_new_php['edit_pics'] = 'Wijzig bestanden';
@@ -2377,8 +2377,8 @@ $lang_util_php['deleting_intermediates'] = 'Bezig met het verwijderen van de mid
 $lang_util_php['searching_orphans'] = 'Zoeken naar wezen, momentje...'; 
 $lang_util_php['delete_orphans'] = 'Verwijder commentaar van niet aanwezige bestanden.';
 $lang_util_php['delete_orphans_explanation'] = 'Deze optie zorgt ervoor dat alle commentaarregels van bestanden die niet meer bestaan worden verwijderd.<br/>Kies \'Alle albums\'.'; //cpg1.4
-$lang_util_php['update_full_normal_thumb'] = 'Alles: full-sized, resized en thumbs'; // cpg1.5
-$lang_util_php['update_full_normal'] = 'Beiden: resized en full-sized (als een originele kopie beschikbaar is)'; // cpg1.5
+$lang_util_php['update_full_normal_thumb'] = 'Alles: full-sized, herschaald en thumbs'; // cpg1.5
+$lang_util_php['update_full_normal'] = 'Beiden: herschaald en full-sized (als een originele kopie beschikbaar is)'; // cpg1.5
 $lang_util_php['update_full'] = 'Alleen full-sized (als een originele kopie beschikbaar is)'; // cpg1.5
 $lang_util_php['delete_back'] = 'Verwijder de backup van de originele afbeeldingen waarvan afbeeldingen met watermerk gemaakt zijn'; // cpg1.5
 $lang_util_php['delete_back_explanation'] = 'Dit zal de backup afbeelding verwijderen. Je zal wat schijfruimte sparen maar het watermerk niet meer kunnen verwijderen!!! Hierna is het watermerk permanent.'; // cpg1.5

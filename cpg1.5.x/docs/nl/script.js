@@ -1,4 +1,4 @@
-﻿/*************************
+/*************************
   Coppermine Photo Gallery
   ************************
   Copyright (c) 2003-2010 Coppermine Dev Team
@@ -55,7 +55,7 @@ doc_toc += '      <li><a href="quickstart.htm#about" class="nl">Quick-Start gids
 doc_toc += '      <li><a href="toc.htm" class="en">Inhoudstafel</a></li>\n';
 doc_toc += '      <li><a href="requirements.htm" class="nl">Minimum vereisten</a>\n';
 doc_toc += '        <ul id="minimum_requirements">\n';
-doc_toc += '          <li><a href="requirements.htm#what_minimum" class="nl">Server-sided minimum vereisten</a>\n';
+doc_toc += '          <li><a href="requirements.htm#what_minimum" class="nl">Minimum vereisten voor de server</a>\n';
 doc_toc += '            <ul id="minimum_requirements_server">\n';
 doc_toc += '              <li><a href="requirements.htm#what_minimum_webserver" class="nl">Web server</a></li>\n';
 doc_toc += '              <li><a href="requirements.htm#what_minimum_php" class="nl">PHP support</a></li>\n';
@@ -68,7 +68,7 @@ doc_toc += '          <li><a href="requirements.htm#personal" class="nl">Persoon
 doc_toc += '          <li><a href="requirements.htm#requirements_faq" class="nl">Vereisten FAQ</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="testing.htm" class="en">Testen (alpha/beta versies!)</a>\n';
+doc_toc += '      <li><a href="testing.htm" class="en">Testen / bugrapporten</a>\n';
 doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="testing.htm#testing_support" class="en">Geen support voor alpha en beta versies</a></li>\n';
 doc_toc += '          <li><a href="testing.htm#testing_areas" class="en">Gebieden die vooral aandacht vragen</a></li>\n';
@@ -95,7 +95,7 @@ doc_toc += '              <li><a href="translation.htm#translation_versions" cla
 doc_toc += '              <li><a href="translation.htm#translation_work_in_progress" class="en">Werk in uitvoering</a></li>\n';
 doc_toc += '              <li><a href="translation.htm#translation_initial_translation" class="en">Initiële vertaling voor release</a></li>\n';
 doc_toc += '              <li><a href="translation.htm#translation_older_language_files" class="en">Gebruik van oudere taalbestanden</a></li>\n';
-doc_toc += '              <li><a href="translation.htm#translation_documentation" class="en"><Vertalen van de documentatie</a>\n';
+doc_toc += '              <li><a href="translation.htm#translation_documentation" class="en">Vertalen van de documentatie</a>\n';
 doc_toc += '                <ul>\n';
 doc_toc += '                  <li><a href="translation.htm#translation_documentation_steps" class="en">Stappen voor de vertaling van de documenten in uw taal</a>\n';
 doc_toc += '                    <ul>\n';
@@ -743,8 +743,7 @@ doc_toc += '    <ul>\n';
 doc_toc += '      <li><a href="uploading_batch-add.htm#batch_add_pics" class="en">Uploading pics by FTP / Batch-Add Pictures</a>\n';
 doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="uploading_batch-add.htm#batch_add_pics_what" class="en">What batch-add does</a></li>\n';
-doc_toc += '          <li><a href="uploading_batch-add.htm#batch_add_pics_how" class="en"></a></li>\n';
-doc_toc += '          <li><a href="uploading_batch-add.htm#" class="en">How batch-add works</a></li>\n';
+doc_toc += '          <li><a href="uploading_batch-add.htm#batch_add_pics_how" class="en">How batch-add works</a></li>\n';
 doc_toc += '          <li><a href="uploading_batch-add.htm#batch_add_common_mistakes" class="en">Common mistakes</a>\n';
 doc_toc += '            <ul>\n';
 doc_toc += '              <li><a href="uploading_batch-add.htm#batch_add_common_mistakes_doesnt_work" class="en">Batch-add does not work as expected</a></li>\n';
@@ -964,8 +963,8 @@ doc_toc += '              <li><a href="dev_config.htm#dev_config_step_update_sql
 doc_toc += '              <li><a href="dev_config.htm#dev_config_step_array" class="en">Admin.inc.php</a></li>\n';
 doc_toc += '              <li><a href="dev_config.htm#dev_config_step_language_file" class="en">Language file</a></li>\n';
 doc_toc += '              <li><a href="dev_config.htm#dev_config_step_documentation" class="en">Documentation</a></li>\n';
-doc_toc += '            </ul>\n';
-doc_toc += '          </li>\n';
+doc_toc += '        </ul>\n';
+doc_toc += '      </li>\n';
 doc_toc += '          <li><a href="dev_config.htm#dev_config_todo" class="en">To Do</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
@@ -1048,8 +1047,7 @@ doc_toc += '          <li><a href="dev_package.htm#packaging_subversion" class="
 doc_toc += '          <li><a href="dev_package.htm#packaging_steps" class="en">Steps</a>\n';
 doc_toc += '            <ul>\n';
 doc_toc += '              <li><a href="dev_package.htm#packaging_steps_checkout" class="en">Check out</a></li>\n';
-doc_toc += '              <li><a href="dev_package.htm#packaging_steps_loop_through_files" class="en"></a></li>\n';
-doc_toc += '              <li><a href="dev_package.htm#" class="en">Replace version number in all files</a>\n';
+doc_toc += '              <li><a href="dev_package.htm#packaging_steps_loop_through_files" class="en">Replace version number in all files</a>\n';
 doc_toc += '                <ul>\n';
 doc_toc += '                  <li><a href="dev_package.htm#packaging_steps_loop_through_files_linux" class="en">Linux</a></li>\n';
 doc_toc += '                  <li><a href="dev_package.htm#packaging_steps_loop_through_files_windows" class="en">Windows</a></li>\n';
@@ -1057,8 +1055,7 @@ doc_toc += '                </ul>\n';
 doc_toc += '              </li>\n';
 doc_toc += '              <li><a href="dev_package.htm#packaging_steps_bom" class="en">Remove Byte Order Marks</a></li>\n';
 doc_toc += '              <li><a href="dev_package.htm#" class="en">Prepare an announcement thread</a></li>\n';
-doc_toc += '              <li><a href="dev_package.htm#packaging_steps_write_announcement_thread" class="en"></a></li>\n';
-doc_toc += '              <li><a href="dev_package.htm#packaging_steps_docs_upgrade" class="en">Edit the upgrade section of the docs</a></li>\n';
+doc_toc += '              <li><a href="dev_package.htm#packaging_steps_write_announcement_thread" class="en">Edit the upgrade section of the docs</a></li>\n';
 doc_toc += '              <li><a href="dev_package.htm#packaging_steps_changelog" class="en">Edit the changelog</a></li>\n';
 doc_toc += '              <li><a href="dev_package.htm#packaging_steps_version_number" class="en">Edit the version number</a></li>\n';
 doc_toc += '              <li><a href="dev_package.htm#packaging_steps_svn_commit" class="en">Commit your changes</a></li>\n';
@@ -1318,7 +1315,7 @@ doc_toc += '          <li><a href="dev_subversion.htm#dev_subversion_fileheaders
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="dev_tools.htm" class="en">Tools recommended by the devs</a>\n';
-doc_toc += '          <ul>\n';
+doc_toc += '        <ul>\n';
 doc_toc += '              <li><a href="dev_tools.htm#dev_tools_database" class="en">Database manipulation</a></li>\n';
 doc_toc += '              <li><a href="dev_tools.htm#dev_tools_ftp_client" class="en">FTP clients</a></li>\n';
 doc_toc += '              <li><a href="dev_tools.htm#dev_tools_web_development" class="en">Web development</a></li>\n';
@@ -1345,6 +1342,7 @@ doc_toc += '          <li><a href="dev_versioncheck.htm#dev_versioncheck_xml" cl
 doc_toc += '          <li><a href="dev_versioncheck.htm#dev_versioncheck_todo" class="en">To do list</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
+
 doc_toc += '    </ul>\n';
 doc_toc += '  </li>\n';
 doc_toc += '</ul>\n';
@@ -1361,7 +1359,7 @@ function cpgDocHeader() {
 	}
 	$('#docheader').text('Coppermine Photo Gallery v1.5.4: Documentatie en Handleiding');
 	$('#docheader').after('<br clear="all" />\n<a name="top"></a>');
-	$('#docheader').before('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Uw Online Foto Galerij" align="left" />\n');
+	$('#docheader').before('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Uw Online Fotogalerij" align="left" />\n');
 }
 
 function cpgDocSearch() {
