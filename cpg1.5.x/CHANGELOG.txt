@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-04-07 [A] Added partial Luxembourgish language file (user contribution) {eenemeenemuu}
 2010-04-07 [A] Added partial Turkish language file (user contribution) {eenemeenemuu}
 2010-04-26 [A] Added user-contributed partially-translated Spanish language file that is more complete than the previous one (but still incomplete) {GauGau}
 2010-04-26 [D] Added language details to documentation navigation {GauGau}

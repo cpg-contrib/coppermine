@@ -11016,6 +11016,14 @@
     <hash>07723e5b49d9f1839402b6cb3d1aad7b</hash>
   </element>
   <element>
+    <fullpath>lang/luxembourgish.php</fullpath>
+    <version>1.5.4</version>
+    <revision>7335</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>07723e5b49d9f1839402b6cb3d1aad7b</hash>
+  </element>
+  <element>
     <fullpath>lang/polish.php</fullpath>
     <version>1.5.4</version>
     <revision>7335</revision>
