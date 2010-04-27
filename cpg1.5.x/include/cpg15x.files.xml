@@ -11048,6 +11048,14 @@
     <hash>1027c03def401294c4ec712ef69c0d44</hash>
   </element>
   <element>
+    <fullpath>lang/turkish.php</fullpath>
+    <version>1.5.3</version>
+    <revision>7370</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>1027c03def401294c4ec712ef69c0d44</hash>
+  </element>
+  <element>
     <fullpath>js/</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
