@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-04-28 [O] Updated language file for Castilian Spanish (user contribution) {GauGau}
+2010-04-28 [A] Added partial translation of Mexican Spanish (user contribution) {GauGau}
 2010-04-27 [B] Fixed help text issue (thread ID 64743) {eenemeenemuu}
 2010-04-27 [A] Added partial Luxembourgish language file (user contribution) {eenemeenemuu}
 2010-04-27 [A] Added partial Turkish language file (user contribution) {eenemeenemuu}

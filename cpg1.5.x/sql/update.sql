@@ -321,7 +321,8 @@ CREATE TABLE IF NOT EXISTS CPG_languages (
   PRIMARY KEY (lang_id)
 ) TYPE=MyISAM COMMENT='Contains the language file definitions';
 
-INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, enabled, complete) VALUES ('luxembourgish', 'Luxembourgish','Lietuvi&#0353;kai','lt','', 'NO', 'NO', 'NO');
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, enabled, complete) VALUES ('luxembourgish', 'Luxembourgish','Lietuvi&#0353;kai','lt','', 'YES', 'YES', 'NO');
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, enabled, complete) VALUES ('spanish_mx', 'Mexican Spanish','Espa&ntilde;ol mexicano','mx','mx', 'YES', 'YES', 'NO');
 
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='arabic';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='bulgarian';
@@ -339,6 +340,7 @@ UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='polish';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='russian';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='slovenian';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='spanish';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='spanish_es';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='turkish';
 
 INSERT INTO CPG_config VALUES ('display_xp_publish_link', '0');

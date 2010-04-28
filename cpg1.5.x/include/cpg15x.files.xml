@@ -11049,7 +11049,15 @@
   </element>
   <element>
     <fullpath>lang/spanish.php</fullpath>
-    <version>1.5.3</version>
+    <version>1.5.4</version>
+    <revision>7370</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>1027c03def401294c4ec712ef69c0d44</hash>
+  </element>
+  <element>
+    <fullpath>lang/spanish_mx.php</fullpath>
+    <version>1.5.4</version>
     <revision>7370</revision>
     <status>optional</status>
     <permission>read</permission>
@@ -11057,7 +11065,7 @@
   </element>
   <element>
     <fullpath>lang/turkish.php</fullpath>
-    <version>1.5.3</version>
+    <version>1.5.4</version>
     <revision>7370</revision>
     <status>optional</status>
     <permission>read</permission>
