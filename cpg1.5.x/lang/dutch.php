@@ -159,10 +159,10 @@ $lang_main_menu['my_gal_title'] = 'Ga naar mijn persoonlijke galerij';
 $lang_main_menu['my_gal_lnk'] = 'Mijn galerij';
 $lang_main_menu['my_prof_title'] = 'Ga naar mijn persoonlijk profiel';
 $lang_main_menu['my_prof_lnk'] = 'Mijn profiel';
-$lang_main_menu['adm_mode_title'] = 'Ga naar de beheerder-modus';
-$lang_main_menu['adm_mode_lnk'] = 'Beheerder-modus';
-$lang_main_menu['usr_mode_title'] = 'Ga naar de gebruiker-modus';
-$lang_main_menu['usr_mode_lnk'] = 'Gebruiker-modus';
+$lang_main_menu['adm_mode_title'] = 'Toon de beheerdersfuncties';
+$lang_main_menu['adm_mode_lnk'] = 'Beheerdersfuncties aan';
+$lang_main_menu['usr_mode_title'] = 'Verberg de beheerdersfuncties';
+$lang_main_menu['usr_mode_lnk'] = 'Beheerdersfuncties uit';
 $lang_main_menu['upload_pic_title'] = 'Upload een bestand in een album';
 $lang_main_menu['upload_pic_lnk'] = 'Upload bestand';
 $lang_main_menu['register_title'] = 'Creëer een account';
@@ -208,8 +208,8 @@ $lang_gallery_admin_menu['comments_title'] = 'Bekijk alle commentaren'; //cpg1.4
 $lang_gallery_admin_menu['comments_lnk'] = 'Bekijk commentaren';
 $lang_gallery_admin_menu['searchnew_title'] = 'Ga naar batch-toevoegen'; //cpg1.4
 $lang_gallery_admin_menu['searchnew_lnk'] = 'Bestanden in batch toevoegen';
-$lang_gallery_admin_menu['util_title'] = 'Ga naar de beheerdersgereedschappen'; //cpg1.4
-$lang_gallery_admin_menu['util_lnk'] = 'Beheerdersgereedschappen';
+$lang_gallery_admin_menu['util_title'] = 'Ga naar de beheerdersinstrumenten'; //cpg1.4
+$lang_gallery_admin_menu['util_lnk'] = 'Beheerdersinstrumenten';
 $lang_gallery_admin_menu['key_lnk'] = 'Trefwoorden bibliotheek'; //cpg1.4
 $lang_gallery_admin_menu['ban_title'] = 'Ga naar verbannen gebruikers'; //cpg1.4
 $lang_gallery_admin_menu['ban_lnk'] = 'Verban gebruiker';
@@ -645,7 +645,7 @@ $lang_admin_php['click_collapse'] = 'klik op de sectienaam om deze dicht te klap
 $lang_admin_php['expand_all'] = 'Alles openklappen';
 $lang_admin_php['toggle_all'] = 'Alles omswitchen'; // cpg1.5
 $lang_admin_php['notice1'] = '(*) Deze instellingen mogen niet worden aangepast als je al waardes in de gegevens hebt zitten.';
-$lang_admin_php['notice2'] = '(**) Als deze waarde wordt aangepast zullen alleen bestanden vanaf dit moment beÃ¯nvloed worden. Het is aanbevolen deze waarden niet aan te passen als er al bestanden in de database zitten. Je kunt waardes aanpassen via het &quot;<a href="util.php">beheerders gereedschappen</a> menu (afbeeldinggrootte aanpassen)&quot;.';
+$lang_admin_php['notice2'] = '(**) Als deze waarde wordt aangepast zullen alleen bestanden vanaf dit moment beÃ¯nvloed worden. Het is aanbevolen deze waarden niet aan te passen als er al bestanden in de database zitten. Je kunt waardes aanpassen via het &quot;<a href="util.php">beheerdersinstrumenten</a> menu (afbeeldingen herschalen)&quot;.';
 $lang_admin_php['notice3'] = '(***) Alle loggings zijn in het Engels.';
 $lang_admin_php['bbs_disabled'] = 'Deze functie is uitgeschakeld als het bbs is geintegreerd';
 $lang_admin_php['auto_resize_everyone'] = ' Iedereen'; 
@@ -915,7 +915,7 @@ $lang_admin_php['no_change_needed'] = 'Geen wijziging nodig, de optie staat reed
 $lang_admin_php['enabled'] = 'ingeschakeld'; // cpg1.5
 $lang_admin_php['disabled'] = 'uitgeschakeld'; // cpg1.5
 $lang_admin_php['none'] = 'geen'; // cpg1.5
-$lang_admin_php['warning_change'] = 'Als je deze instelling verandert, heeft het alleen betrekking op de bestanden die vanaf nu toegevoegd worden, het is dus aan te raden deze instelling te maken voordat er al bestanden in de galerij aanwezig zijn. Je kunt deze wijziging echter ook nog doorvoeren op de bestaande bestanden via de beheerdersgereedschappen (herschaal afbeeldingen) in het beheerdersmenu.'; // cpg1.5
+$lang_admin_php['warning_change'] = 'Als je deze instelling verandert, heeft het alleen betrekking op de bestanden die vanaf nu toegevoegd worden, het is dus aan te raden deze instelling te maken voordat er al bestanden in de galerij aanwezig zijn. Je kunt deze wijziging echter ook nog doorvoeren op de bestaande bestanden via de beheerdersinstrumenten (herschaal afbeeldingen) in het beheerdersmenu.'; // cpg1.5
 $lang_admin_php['warning_exist'] = 'Deze instellingen best niet wijzigen als er al bestanden aanwezig zijn in de databank.'; // cpg1.5
 $lang_admin_php['warning_dont_submit'] = 'Als je niet zeker bent van de impact deze instellingen zullen hebben, laat ze dan niet uitvoeren en bekijk eerst de documentatie nog eens goed.'; // cpg1.5 // js-alert
 $lang_admin_php['menu_only'] = 'alleen menu'; // cpg1.5
@@ -1361,7 +1361,7 @@ $lang_groupmgr_php['rating'] = 'Stemmen';
 $lang_groupmgr_php['ecards'] = 'e-kaarten';
 $lang_groupmgr_php['comments'] = 'Commentaren';
 $lang_groupmgr_php['allowed'] = 'Toegestaan';
-$lang_groupmgr_php['approval'] = 'Akkoord';
+$lang_groupmgr_php['approval'] = 'Goedkeuring';
 $lang_groupmgr_php['create_new_group'] = 'Maak nieuwe groep aan';
 $lang_groupmgr_php['del_groups'] = 'Verwijder de geselecteerde groep(en)';
 $lang_groupmgr_php['confirm_del'] = 'Waarschuwing: als je een groep verwijdert, zullen de gebruikers die horen bij die groep worden overgezet naar de \'Registered\' groep !\n\nWil je doorgaan ?'; //js-alert
@@ -1634,8 +1634,8 @@ $lang_minibrowser_php['folder'] = 'Folder'; // cpg1.5
 // File mode.php
 // ------------------------------------------------------------------------- //
 if (defined('MODE_PHP')) {
-$lang_mode_php[0] = 'Zet het tonen van de beheerderscontroles uit...'; // cpg1.5
-$lang_mode_php[1] = 'Zet het tonen van de beheerderscontroles aan...'; // cpg1.5
+$lang_mode_php[0] = 'De beheerdersfuncties zijn verborgen...'; // cpg1.5
+$lang_mode_php[1] = 'De beheerdersfuncties worden getoond...'; // cpg1.5
 $lang_mode_php['news_hide'] = 'Verberg nieuws...'; // cpg1.5
 $lang_mode_php['news_show'] = 'Toon nieuws...'; // cpg1.5
 }
@@ -2326,7 +2326,7 @@ $lang_update_php['could_not_rename'] = 'Kon niet hernoemen wegens gebrek aan rec
 // File util.php
 // ------------------------------------------------------------------------- //
 if (defined('UTIL_PHP')) {
-$lang_util_php['title'] = 'Beheerders gereedschappen (Pas formaat afbeeldingen aan)';
+$lang_util_php['title'] = 'Beheerdersinstrumenten (Pas formaat afbeeldingen aan)';
 $lang_util_php['file'] = 'Bestand';
 $lang_util_php['problem'] = 'Probleem'; 
 $lang_util_php['status'] = 'Status';
