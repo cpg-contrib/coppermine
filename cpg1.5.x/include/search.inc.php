@@ -50,14 +50,13 @@ if (!isset($USER['search']['params'])) {
 //}
 if ($superCage->get->keyExists('album') && $superCage->get->getAlpha('album') == 'search') {
     $search_params = $USER['search'];
-    $search_params['type'] = $superCage->get->getAlpha('type');
 } else {
     //put all original $_POST vars in $search_params, don't know if this could be used???
     $search_params = $superCage->post->_source;
 }
 
 
-$type = $search_params['type'] == 'OR' ? " OR " : " AND ";
+$type = $search_params['params']['type'] == 'OR' ? " OR " : " AND ";
 
 if (isset($search_params['params']['pic_raw_ip'])) $search_params['params']['pic_hdr_ip']  = $search_params['params']['pic_raw_ip'];
 
@@ -66,7 +65,7 @@ $sql = '';
 if ($search_string && isset($search_params['params'])) {
         $sections = array();
         $albcat_terms = array(); // For Album & Category Title Search: populated as needed
-        if ($search_params['type'] == 'regex') {
+        if ($search_params['params']['type'] == 'regex') {
                 $fields = array();
                 $search_string = preg_replace('/[^\w\+\*\?\{\,\}\|\(\)\\\^\$\[\]\:\<\>\-\.]/','',$search_string);
                 $search_string = addslashes($search_string);
