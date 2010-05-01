@@ -940,7 +940,7 @@ doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="dev_files.htm" class="us_fr">Ajout/renommage/effacement de fichiers</a\n';
+doc_toc += '      <li><a href="dev_files.htm">Ajout/renommage/effacement de fichiers</a\n';
 doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="dev_files.htm#dev_files_target_audience">Cible visée</a></li>\n';
 doc_toc += '          <li><a href="dev_files.htm#dev_files_scope">But</a></li>\n';
