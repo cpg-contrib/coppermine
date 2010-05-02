@@ -474,17 +474,18 @@ if ($superCage->get->keyExists('fullsize')) {
         $meta_keywords .= '<meta name="keywords" content="' . str_replace($CONFIG['keyword_separator'], ',', $CURRENT_PIC_DATA['keywords']) . '" />' . $LINEBREAK;
     }
 
-    // Tell robots tp ignore meta albums
+    // Tell robots to ignore meta albums
     if (!is_numeric($album)) {
         $meta_keywords .= '<meta name="robots" content="noindex, nofollow" />' . $LINEBREAK;
     }
 
     $meta_keywords .= $meta_nav;
     
-    // Display Filmstrip if the album is not search
-    if ($album != 'search') {
+    // Display Filmstrip if the album is not search -- commented out due to thread ID 64312
+    //if ($album != 'search') {
         $film_strip = display_film_strip($album, (isset($cat) ? $cat : 0), $pos, true);
-    }
+    //}
+
     // Set the picture id for use in js
     set_js_var('picture_id', $CURRENT_PIC_DATA['pid']);
     pageheader($album_name . ' - ' . $picture_title, $meta_keywords, false);
