@@ -133,7 +133,7 @@ if ($superCage->get->getInt('id')) {
    $newimage = $CURRENT_PIC['filename'];
 }else if(!isset($newimage)){
    //$newimage = $_POST['newimage'];
-   $matches = $superCage->post->getMatched('newimage','/^[0-9A-Za-z\/_.-~]+$/');
+   $matches = $superCage->post->getMatched('newimage','/^[0-9A-Za-z\/_.\-~]+$/');
    $newimage = $matches[0];
 }
 
