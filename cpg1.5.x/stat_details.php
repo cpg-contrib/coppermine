@@ -175,17 +175,18 @@ $icon_array['ok'] = cpg_fetch_icon('ok',2);
 // perform database write queries if needed - start
     if (GALLERY_ADMIN_MODE) {
         $configChangesApplied = '';
-        $get_hit_details = $superCage->get->getInt('hit_details');
-        if ($get_hit_details != $CONFIG['hit_details'] && $superCage->get->getEscaped('go') != '') {
-            cpg_config_set('hit_details', $get_hit_details);
-            $configChangesApplied = $lang_stat_details_php['upd_success'];
+        if ($superCage->get->getAlpha('mode') == 'editForm') {
+            $get_hit_details = $superCage->get->getInt('hit_details');
+            if ($get_hit_details != $CONFIG['hit_details'] && $superCage->get->getEscaped('go') != '') {
+                cpg_config_set('hit_details', $get_hit_details);
+                $configChangesApplied = $lang_stat_details_php['upd_success'];
+            }
+            $get_vote_details = $superCage->get->getInt('vote_details');
+            if ($get_vote_details != $CONFIG['vote_details'] && $superCage->get->getEscaped('go') != '') {
+                cpg_config_set('vote_details', $get_vote_details);
+                $configChangesApplied = $lang_stat_details_php['upd_success'];
+            }
         }
-        $get_vote_details = $superCage->get->getInt('vote_details');
-        if ($get_vote_details != $CONFIG['vote_details'] && $superCage->get->getEscaped('go') != '') {
-            cpg_config_set('vote_details', $get_vote_details);
-            $configChangesApplied = $lang_stat_details_php['upd_success'];
-        }
-        //if ($_GET['emptyhitstats'] == TRUE || $_GET['emptyvotestats'] == TRUE) {
         if ($superCage->get->getEscaped('emptyhitstats') == TRUE) {
             cpg_db_query("DELETE FROM {$CONFIG['TABLE_HIT_STATS']}");
             $configChangesApplied = $lang_stat_details_php['upd_success'];
@@ -205,8 +206,8 @@ $icon_array['ok'] = cpg_fetch_icon('ok',2);
         print <<< EOT
               <h1>{$icon_array['stats']}{$lang_stat_details_php['title']}</h1>
               <div class="buttonlist">
-				<ul>
-					<li><a href="#os"><span>{$icon_array['os']}{$lang_stat_details_php['stats_by_os']}</span></a></li>
+                <ul>
+                    <li><a href="#os"><span>{$icon_array['os']}{$lang_stat_details_php['stats_by_os']}</span></a></li>
                     <li><a href="#browser"><span>{$icon_array['browser']}{$lang_stat_details_php['stats_by_browser']}</span></a></li>
 EOT;
         if (GALLERY_ADMIN_MODE) {
@@ -613,7 +614,7 @@ EOT;
               </select>
             </td>
             <td class="tablef" align="right">
-			  <button type="submit" class="button" name="go" id="detail_submit" value="{$lang_stat_details_php['submit']}">{$icon_array['ok']}{$lang_stat_details_php['submit']}</button>
+              <button type="submit" class="button" name="go" id="detail_submit" value="{$lang_stat_details_php['submit']}">{$icon_array['ok']}{$lang_stat_details_php['submit']}</button>
             </td>
           </tr>
         </table>
@@ -673,6 +674,7 @@ EOT;
       <input type="hidden" name="browser" value="{$browser}" />
       <input type="hidden" name="os" value="{$os}" />
       <input type="hidden" name="page" value="{$page}" />
+      <input type="hidden" name="mode" value="{$mode}" />
 EOT;
 
     starttable('-2', $lang_stat_details_php['overall_stats_config'], 3);
@@ -727,7 +729,7 @@ EOT;
     print <<< EOT
       <tr>
         <td class="tablef" colspan="3" align="right">
-		  <button type="submit" class="button" name="go" id="detail_submit" value="{$lang_stat_details_php['submit']}">{$icon_array['ok']}{$lang_stat_details_php['submit']}</button>
+          <button type="submit" class="button" name="go" id="detail_submit" value="{$lang_stat_details_php['submit']}">{$icon_array['ok']}{$lang_stat_details_php['submit']}</button>
         </td>
       </tr>
 EOT;
