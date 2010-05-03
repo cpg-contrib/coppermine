@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Known Issues - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<title>Known Issues - Coppermine Photo Gallery - Documentatie &amp; Handleiding</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="language" content="en" />
+<meta name="language" content="nl" />
 <meta name="copyright" content="Coppermine dev team" />
-<meta name="description" content="Known Issues" />
+<meta name="description" content="Gekende problemen" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -27,34 +27,33 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.4: Documentatie en Handleiding</h1>
 <div id="toc">
 <a href="toc.htm">Inhoudstafel</a>
 </div>
-<div id="doc_en_only">No translation available</div>
 
-<a name="known_issues"></a><h1>Known Issues<a href="#known_issues" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>The following slight quirks and tiny issues are known and will hopefully be fixed in future releases.</p>
+<a name="known_issues"></a><h1>Gekende problemen<a href="#known_issues" title="Link naar deze sectie"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>De volgende lichte kronkels en kleine problemen zijn gekend en zullen hopelijk in een van de volgende versies opgelost worden.</p>
 <ul>
-        <li>The <a href="http://coppermine-gallery.net/forum/index.php?topic=1866.0">arrows used for navigation</a> from one pic to the other display in the wrong order for rtl-languages</li>
-        <li>Keyword list returns incorrect result for asian characters</li>
-        <li>Browser bug: IE displays 100%-width values incorrectly</li>
-        <li>New batch-add interface doesn't work on all server setups. Users who have issues with it should use the classic interface instead.</li>
-        <li>Page tabs in user manager don't behave in the same way as other tabs</li>
-        <li>Resizing gif/png with transparent background doesn't preserve alpha info</li>
-        <li>Wrong charset in emails sent from coppermine</li>
-        <li>Thumbnail sizes over 120px causes edit fields to run over its edge</li>
-        <li>No album thumbnails for albums that contain only pics linked by keyword</li>
-        <li>Crop/rotate doesn't work with GD1</li>
-        <li>Rotate causing distorted image for large files</li>
-        <li><tt class="code">&lt;object&gt;&lt;param&gt;&lt;/param&gt;&lt;/object&gt;</tt> construct for multimedia files doesn't validate but is needed for backwards compatibility</li>
-        <li>EXIF and IPTC information are lost when rotating</li>
-        <li>Discrepancy between Coppermine internally using utf-8 and IPTC currently one supporting iso-8859-1. Subsequently, non latin characters like accented chars or Umlauts get distorted</li>
-        <li>Album created using XP publisher despite upload failure</li>
-        <li>No category thumbnail for user galleries and categories that don't contain albums with pics in it, but only sub-categories</li>
-        <li>Film strip may change its height when navigating if thumb dimension is set to 'width'</li>
-        <li>Flash uploader (swfupload) won't work if the gallery is located in a <a href="http://forum.coppermine-gallery.net/index.php/topic,62770.0.html">password protected directory</a></li>
-		<li>Some rounded corner effects of the curve theme won't work across-browsers, but are browser-specific. They will not work in IE mainly. The browsers that can't display rounded corners will display "normal" corners.</li>
+        <li>De <a href="http://coppermine-gallery.net/forum/index.php?topic=1866.0">pijlen die voor navigatie gebruikt worden </a> om van de ene naar de andere afbeelding te gaan, worden in een verkeerde volgorde getoond bij talen die van rechts naar links geschreven worden</li>
+        <li>Trefwoordenlijst geeft een onjuist resultaat voor Aziatische tekens</li>
+        <li>Browser bug: IE toont de 100%-breedte waardes onjuist</li>
+        <li>De nieuwe interface voor inbatch-toevoegingen werkt niet bij alle server setups. Gebruikers die hiermee problemen hebben, kunnen hiervoor de klassieke interface gebruiken.</li>
+        <li>Paginatabs in gebruikersbeheer gedragen zich niet hetzelfde als andere tabs</li>
+        <li>Herschalen van gif/png met transparante achtergrond behoudt de alpha info niet</li>
+        <li>Verkeerde karakterset in e-mails die verzonden worden door Coppermine</li>
+        <li>Thumbnail-afmetingen boven de 120 px veroorzaken dat de editvelden buiten hun grenzen gaan</li>
+        <li>Geen album thumbnails voor albums die alleen afbeeldingen bevatten die gelinkt zijn door trefwoorden</li>
+        <li>Knippen/draaien werkt niet met GD1</li>
+        <li>Draaien veroorzaakt een vervormde afbeelding bij grote bestanden</li>
+        <li><tt class="code">&lt;object&gt;&lt;param&gt;&lt;/param&gt;&lt;/object&gt;</tt> constructie voor multimedia bestanden valideren niet maar zijn nodig voor neerwaartse compatibiliteit</li>
+        <li>EXIF en IPTC informatie gaat verloren bij verdraaien van afbeeldingen</li>
+        <li>Discrepantie tussen Coppermine intern gebruik van utf-8 en IPTC (momenteel alleen ondersteuning voor iso-8859-1). Bijgevolg worden de niet latin karakters als accentletters of Umlauts vervormd</li>
+        <li>Album wordt aangemaakt bij gebruik van XP publisher ondanks een uploadfout</li>
+        <li>Geen categorie-thumbnail voor gebruikersgalerijen en categorieën die geen albums bevatten met afbeeldingen in maar alleen subcategorieën</li>
+        <li>Filmstrip kan van hoogte wisselen tijdens het navigeren als de thumbafmeting op 'breedte' ingesteld is</li>
+        <li>Flash uploader (swfupload) werkt niet als de galerij zich in een <a href="http://forum.coppermine-gallery.net/index.php/topic,62770.0.html">paswoord beveiligde map</a> bevindt</li>
+		<li>Sommige ronde-hoekeffecten van het curve-thema werken niet in alle browsers maar zijn eigen aan bepaalde browsers. De browsers die de ronde hoeken niet kunnen weergeven tonen gewone rechte hoeken.</li>
 </ul>
 
 <div id="doc_footer">

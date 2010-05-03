@@ -174,7 +174,7 @@ doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="copyrights.htm#copyright_freedom" class="en">Vrijheid</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="known_issues.htm" class="en">Bekende problemen</a></li>\n';
+doc_toc += '      <li><a href="known_issues.htm" class="nl">Bekende problemen</a></li>\n';
 doc_toc += '    </ul>\n';
 doc_toc += '  </li>\n';
 doc_toc += '  <li><a href="install.htm" class="us_nl">Installatie en setup</a>\n';
