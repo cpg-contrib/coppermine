@@ -500,8 +500,10 @@ EOT;
                               }  else {
                                   print '      <span title="'.$lang_stat_details_php['guest'].'">-</span>'.$LINEBREAK;
                               }
-                          } else {
-                              print '      '.$row[$value].$LINEBREAK;
+                          } elseif ($value == 'ip') {
+							  print '      '. $row[$value] . CPGPluginAPI::filter('ip_information', $row[$value]) . $LINEBREAK;
+						  } else {
+                              print '      '. $row[$value] . $LINEBREAK;
                           }
                       }
                       print '    </td>'.$LINEBREAK;

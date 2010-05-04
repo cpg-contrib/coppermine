@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-05-03 [A] Added plugin hook to display something after an IP address {GauGau}
 2010-05-03 [D] Updated Dutch translation (user contribution) {GauGau}
 2010-05-02 [B] Fixed faulty executed database update on stat_details.php {eenemeenemuu}
 2010-05-02 [C] Fixed missing header for overall stats (thread ID 64799) {eenemeenemuu}

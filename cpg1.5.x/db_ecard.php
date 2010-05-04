@@ -338,6 +338,7 @@ $result = cpg_db_query("SELECT eid, sender_name, sender_email, recipient_name, r
 while ($line = mysql_fetch_assoc($result)) {
 
     $date = strftime($lang_date['lastcom'], $line['date']);
+	$line['ip_detail'] = CPGPluginAPI::filter('ip_information', $line['sender_ip']);
         
     echo <<< EOT
     <tr>
@@ -354,7 +355,7 @@ while ($line = mysql_fetch_assoc($result)) {
         </td>
         <td class="$tempClass">
             <span class="thumb_caption">
-                <a href="http://ws.arin.net/cgi-bin/whois.pl?queryinput={$line['sender_ip']}">{$line['sender_ip']}</a>
+                <a href="http://ws.arin.net/cgi-bin/whois.pl?queryinput={$line['sender_ip']}">{$line['sender_ip']}</a>{$line['ip_detail']}
             </span>
         </td>
         <td class="$tempClass">

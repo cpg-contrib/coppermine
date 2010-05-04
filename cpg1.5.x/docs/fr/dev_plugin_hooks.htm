@@ -70,18 +70,32 @@
     <th valign="top" align="left" width="30%">Code</td>
   </tr>
   <tr>
+    <td valign="top">banning.php</td>
+    <td valign="top"><a name="plugin_hooks_banning_ip_information"></a><strong>ip_information</strong><a href="#plugin_hooks_banning_ip_information" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Filters additional information to an IP address (empty out of the box). Use this hook to add information <em>after</em> the output of an IP address.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$row['ip_detail'] = CPGPluginAPI::filter('ip_information', $row['ip_addr']);</textarea></td>
+  </tr>
+  <tr>
     <td valign="top">contact.php</td>
     <td valign="top"><a name="plugin_hooks_captcha_contact_print"></a><strong>captcha_contact_print</strong><a href="#plugin_hooks_captcha_contact_print" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $captcha_print when CAPTCHA is enabled and allows you to override the standard CAPTCHA for the contact form.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$captcha_print = CPGPluginAPI::filter('captcha_contact_print',$captcha_print);</textarea></td>
   </tr>
-   <tr>
+  <tr>
     <td valign="top">contact.php</td>
     <td valign="top"><a name="plugin_hooks_captcha_contact_validate"></a><strong>captcha_contact_validate</strong><a href="#plugin_hooks_captcha_contact_validate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Action</td>
     <td valign="top">action when CAPTCHA is enabled and allows you to override the standard CAPTCHA validation for the contact form.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">CPGPluginAPI::action('captcha_contact_validate', null);</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">db_ecard.php</td>
+    <td valign="top"><a name="plugin_hooks_db_ecard_ip_information"></a><strong>ip_information</strong><a href="#plugin_hooks_db_ecard_ip_information" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Filters additional information to an IP address (empty out of the box). Use this hook to add information <em>after</em> the output of an IP address.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$line['ip_detail'] = CPGPluginAPI::filter('ip_information', $line['sender_ip']);</textarea></td>
   </tr>
   <tr>
     <td valign="top">db_input.php</td>
@@ -160,6 +174,13 @@
     <td valign="top"><textarea class="samplecode" style="width:100%">$matches = CPGPluginAPI::filter('plugin_block', $matches);</textarea></td>
   </tr>
   <tr>
+    <td valign="top">index.php</td>
+    <td valign="top"><a name="plugin_hooks_filename_main_page_layout"></a><strong>main_page_layout</strong><a href="#plugin_hooks_filename_main_page_layout" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Modifies page layout elements</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$elements = CPGPluginAPI::filter('main_page_layout', $elements);</textarea></td>
+  </tr>
+  <tr>
     <td valign="top">pluginmgr.php</td>
     <td valign="top"><a name="plugin_hooks_filename_plugin_configure"></a><strong>plugin_configure</strong><a href="#plugin_hooks_filename_plugin_configure" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Action</td>
@@ -216,11 +237,25 @@
     <td valign="top"><textarea class="samplecode" style="width:100%">CPGPluginAPI::filter('register_user_activation', $act_key);</textarea></td>
   </tr>
   <tr>
+    <td valign="top">reviewcom.php</td>
+    <td valign="top"><a name="plugin_hooks_reviewcom_ip_information"></a><strong>ip_information</strong><a href="#plugin_hooks_reviewcom_ip_information" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Filters additional information to an IP address (empty out of the box). Use this hook to add information <em>after</em> the output of an IP address.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$ip_address_output = $row['msg_raw_ip'] . CPGPluginAPI::filter('ip_information', $row['msg_raw_ip']);</textarea></td>
+  </tr>
+  <tr>
     <td valign="top">search.php</td>
     <td valign="top"><a name="plugin_hooks_search_form"></a><strong>search_form</strong><a href="#plugin_hooks_search_form" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">Add or remove content to/from the search form</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$text = CPGPluginAPI::filter('search_form', $text);</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">stat_details.php</td>
+    <td valign="top"><a name="plugin_hooks_stat_details_ip_information"></a><strong>ip_information</strong><a href="#plugin_hooks_stat_details_ip_information" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Filters additional information to an IP address (empty out of the box). Use this hook to add information <em>after</em> the output of an IP address.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">print '      '. $row[$value] . CPGPluginAPI::filter('ip_information', $row[$value]) . $LINEBREAK;</textarea></td>
   </tr>
   <tr>
     <td valign="top">thumbnails.php</td>
@@ -581,6 +616,13 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
   </tr>
   <tr>
     <td valign="top">include/themes.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_filename_fullsize_html"></a><strong>fullsize_html</strong><a href="#plugin_hooks_filename_fullsize_html" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">filters $fullsize_html when viewing fullsize pictures.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$fullsize_html = CPGPluginAPI::filter('fullsize_html', $fullsize_html);</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">include/themes.inc.php</td>
     <td valign="top"><a name="plugin_hooks_filename_javascript_includes"></a><strong>javascript_includes</strong><a href="#plugin_hooks_filename_javascript_includes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $JS['includes'] before the js files will be added to the html output.</td>
@@ -667,16 +709,16 @@ echo $wrapper_end;</textarea></td>
   </tr>
   <tr>
     <td valign="top">include/themes.inc.php</td>
-    <td valign="top"><a name="plugin_hooks_filename_fullsize_html"></a><strong>fullsize_html</strong><a href="#plugin_hooks_filename_fullsize_html" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top"><a name="plugin_hooks_filename_theme_ip_information"></a><strong>ip_information</strong><a href="#plugin_hooks_filename_theme_ip_information" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
-    <td valign="top">filters $fullsize_html when viewing fullsize pictures.</td>
-    <td valign="top"><textarea class="samplecode" style="width:100%">$fullsize_html = CPGPluginAPI::filter('fullsize_html', $fullsize_html);</textarea></td>
+    <td valign="top">Filters additional information to an IP address (empty out of the box). Use this hook to add information <em>after</em> the output of an IP address.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$ip = $row['msg_hdr_ip'] . CPGPluginAPI::filter('ip_information', $row['msg_hdr_ip']);</textarea></td>
   </tr>
 </table>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="plugin_hooks_alphabetically"></a>
-<h2>Plugin Hooks Alphabetically<a href="#plugin_hooks_alphabetic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<h2>Plugin Hooks Alphabetically<a href="#plugin_hooks_alphabetically" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <table border="0" cellspacing="0" cellpadding="0" width="100%"  class="cpg_zebra">
     <tr>
         <td valign="top" align="center">
@@ -754,7 +796,7 @@ echo $wrapper_end;</textarea></td>
                 <li class="floatleft"><a href="#plugin_hooks_filename_html_document">html_document</a></li>
                 <li class="floatleft"><a href="#plugin_hooks_filename_html_image">html_image</a></li>
                 <li class="floatleft"><a href="#plugin_hooks_filename_html_image_overlay">html_image_overlay</a></li>
-                <li class="floatleft"><a href="#plugin_hooks_filename_html_image_reduced_overlay">html_image_reduced_overlay</a></li>
+                <li class="floatleft"><a href="#plugin_hooks_filename_html_image_reduced">html_image_reduced</a></li>
                 <li class="floatleft"><a href="#plugin_hooks_filename_html_image_reduced_overlay">html_image_reduced_overlay</a></li>
                 <li class="floatleft"><a href="#plugin_hooks_filename_html_other_media">html_other_media</a></li>
             </ul>
@@ -767,6 +809,11 @@ echo $wrapper_end;</textarea></td>
         <td>
             <ul>
                 <li class="floatleft"><a href="#plugin_hooks_filename_image_sharpen">image_sharpen</a></li>
+				<li class="floatleft"><a href="#plugin_hooks_banning_ip_information">ip_information</a> (banning.php)</li>
+				<li class="floatleft"><a href="#plugin_hooks_db_ecard_ip_information">ip_information</a> (db_ecard.php)</li>
+				<li class="floatleft"><a href="#plugin_hooks_reviewcom_ip_information">ip_information</a> (reviewcom.php)</li>
+				<li class="floatleft"><a href="#plugin_hooks_stat_details_ip_information">ip_information</a> (stat_details.php)</li>
+				<li class="floatleft"><a href="#plugin_hooks_filename_theme_ip_information">ip_information</a> (include/themes.inc.php.php)</li>
             </ul>
         </td>
     </tr>
@@ -786,6 +833,7 @@ echo $wrapper_end;</textarea></td>
         </td>
         <td>
             <ul>
+                <li class="floatleft"><a href="#plugin_hooks_filename_main_page_layout">main_page_layout</a></li>
                 <li class="floatleft"><a href="#plugin_hooks_meta_album">meta_album</a></li>
                 <li class="floatleft"><a href="#plugin_hooks_meta_album_get_pic_pos">meta_album_get_pic_pos</a></li>
             </ul>
@@ -922,54 +970,54 @@ $anycontent = CPGPluginAPI::filter('anycontent',ob_get_contents());
 $template = CPGPluginAPI::filter('template_html',$template);
 $template_header = str_replace('{META}','{META}'.CPGPluginAPI::filter('page_meta',''),$template_header);</pre>
 <p>This group of filters is very specific for manipulating the data of the thumbnails. These are named according to what they modify and are extremely obvious.</p>
-<div class="cpg_code code">$rowset = CPGPluginAPI::filter('thumb_caption',$rowset);<br />
-$rowset = CPGPluginAPI::filter('thumb_caption_regular',$rowset);<br />
-$rowset = CPGPluginAPI::filter('thumb_caption_lastcom',$rowset);<br />
-$rowset = CPGPluginAPI::filter('thumb_caption_lastcomby',$rowset);<br />
-$rowset = CPGPluginAPI::filter('thumb_caption_lastup',$rowset);<br />
-$rowset = CPGPluginAPI::filter('thumb_caption_lastupby',$rowset);<br />
-$rowset = CPGPluginAPI::filter('thumb_caption_topn',$rowset);<br />
-$rowset = CPGPluginAPI::filter('thumb_caption_toprated',$rowset);<br />
-$rowset = CPGPluginAPI::filter('thumb_caption_lasthits',$rowset);<br />
-$rowset = CPGPluginAPI::filter('thumb_caption_random',$rowset);<br />
-$rowset = CPGPluginAPI::filter('thumb_caption_search',$rowset);<br />
-$rowset = CPGPluginAPI::filter('thumb_caption_lastalb',$rowset);<br />
-$rowset = CPGPluginAPI::filter('thumb_caption_favpics',$rowset);<br />
-$pic_title = CPGPluginAPI::filter('thumb_html_title', $row);<br />
-$pic_title = CPGPluginAPI::filter('thumb_strip_html_title', $row);<br />
-$pic_row = CPGPluginAPI::filter('thumb_data',$pic_row);<br />
-$params = CPGPluginAPI::filter('theme_display_thumbnails_params', $params);<br />
-$wrapper_start = CPGPluginAPI::filter('theme_thumbnails_wrapper_start');<br />
-$footer = CPGPluginAPI::filter('theme_thumbnails_footer', $footer);<br />
-$wrapper_end = CPGPluginAPI::filter('theme_thumbnails_wrapper_end');<br />
-$params = CPGPluginAPI::filter('theme_thumbnails_title', $param);</div>
+<div class="cpg_code code">$rowset = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumb_caption">thumb_caption</a>',$rowset);<br />
+$rowset = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumb_caption_regular">thumb_caption_regular</a>',$rowset);<br />
+$rowset = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumb_caption_lastcom">thumb_caption_lastcom</a>',$rowset);<br />
+$rowset = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumb_caption_lastcomby">thumb_caption_lastcomby</a>',$rowset);<br />
+$rowset = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumb_caption_lastup">thumb_caption_lastup</a>',$rowset);<br />
+$rowset = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumb_caption_lastupby">thumb_caption_lastupby</a>',$rowset);<br />
+$rowset = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumb_caption_topn">thumb_caption_topn</a>',$rowset);<br />
+$rowset = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumb_caption_toprated">thumb_caption_toprated</a>',$rowset);<br />
+$rowset = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumb_caption_lasthits">thumb_caption_lasthits</a>',$rowset);<br />
+$rowset = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumb_caption_random">thumb_caption_random</a>',$rowset);<br />
+$rowset = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumb_caption_search">thumb_caption_search</a>',$rowset);<br />
+$rowset = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumb_caption_lastalb">thumb_caption_lastalb</a>',$rowset);<br />
+$rowset = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumb_caption_favpics">thumb_caption_favpics</a>',$rowset);<br />
+$pic_title = CPGPluginAPI::filter('<a href="#plugin_hooks_thumb_html_title">thumb_html_title</a>', $row);<br />
+$pic_title = CPGPluginAPI::filter('<a href="#plugin_hooks_thumb_strip_html_title">thumb_strip_html_title</a>', $row);<br />
+$pic_row = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumb_data">thumb_data</a>',$pic_row);<br />
+$params = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumbnail_params">theme_display_thumbnails_params</a>', $params);<br />
+$wrapper_start = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_theme_thumbnails_wrapper_start">theme_thumbnails_wrapper_start</a>');<br />
+$footer = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_theme_thumbnails_footer">theme_thumbnails_footer</a>', $footer);<br />
+$wrapper_end = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_theme_thumbnails_wrapper_end">theme_thumbnails_wrapper_end</a>');<br />
+$params = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_theme_thumbnails_title">theme_thumbnails_title</a>', $param);</div>
 <p>These two filters are used specifically to manipulate the data of a picture.</p>
-<div class="cpg_code code">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data',$CURRENT_PIC_DATA);<br />
-$CURRENT_PIC_DATA = CPGPluginAPI::filter('file_data',$CURRENT_PIC_DATA);</div>
+<div class="cpg_code code">$CURRENT_PIC_DATA = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_add_file_data">add_file_data</a>',$CURRENT_PIC_DATA);<br />
+$CURRENT_PIC_DATA = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_file_data">file_data</a>',$CURRENT_PIC_DATA);</div>
 <p>These six filters allow you to modify the output html to display media.</p>
-<div class="cpg_code code">$pic_html = CPGPluginAPI::filter('html_picture_image_reduced_overlay',$pic_html);<br />
-$pic_html = CPGPluginAPI::filter('html_picture_image_reduced',$pic_html);<br />
-$pic_html = CPGPluginAPI::filter('html_picture_image_overlay',$pic_html);<br />
+<div class="cpg_code code">$pic_html = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_html_image_reduced_overlay">html_picture_image_reduced_overlay</a>',$pic_html);<br />
+$pic_html = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_html_image_reduced">html_picture_image_reduced</a>',$pic_html);<br />
+$pic_html = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_html_image_overlay">html_picture_image_overlay</a>',$pic_html);<br />
 $pic_html = CPGPluginAPI::filter('html_picture_image',$pic_html);<br />
 $pic_html = CPGPluginAPI::filter('html_picture_document',$pic_html);<br />
 $pic_html = CPGPluginAPI::filter('html_picture_other_media',$pic_html);</div>
 <p>If you want to do something (like converting the video to flv, taking a backup of file to remote server etc..) after a file is uploaded then this hook can be used.</p>
-<div class="cpg_code code">$CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data_success',$CURRENT_PIC_DATA);</div>
+<div class="cpg_code code">$CURRENT_PIC_DATA = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_add_file_data_success">add_file_data_success</a>',$CURRENT_PIC_DATA);</div>
 <p>The breadcrumb plugin:</p>
-<div class="cpg_code code">CPGPluginAPI::filter('post_breadcrumb',null);</div>
+<div class="cpg_code code">CPGPluginAPI::filter('<a href="#plugin_hooks_filename_post_breadcrumb">post_breadcrumb</a>',null);</div>
 <p>This plugin is very powerful because it gives access to the entire body of HTML that will be then directly returned to the user.  This filter can be used to remove parts of code or modify links for example.</p>
-<div class="cpg_code code">return CPGPluginAPI::filter('page_html',$html);</div>
+<div class="cpg_code code">return CPGPluginAPI::filter('<a href="#plugin_hooks_filename_page_html">page_html</a>',$html);</div>
 <p>These two filters relate to headers.</p>
-<div class="cpg_code code">echo CPGPluginAPI::filter('usermgr_header','');<br />
-$template_header .= CPGPluginAPI::filter('gallery_header','');</div>
+<div class="cpg_code code">echo CPGPluginAPI::filter('<a href="#plugin_hooks_filename_usermgr_header">usermgr_header</a>','');<br />
+$template_header .= CPGPluginAPI::filter('<a href="#plugin_hooks_filename_gallery_header">gallery_header</a>','');</div>
 <p>These two filters relate to footers.</p>
-<div class="cpg_code code">echo CPGPluginAPI::filter('usermgr_footer','');<br />
-$template_footer = CPGPluginAPI::filter('gallery_footer','').substr($template, $gallery_pos);</div>
+<div class="cpg_code code">echo CPGPluginAPI::filter('<a href="#plugin_hooks_filename_usermgr_footer">usermgr_footer</a>','');<br />
+$template_footer = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_gallery_footer">gallery_footer</a>','').substr($template, $gallery_pos);</div>
 <p>These two filters are meant for cleanup purposes. If there is any additional data related to a file and you want that data to be removed when a file is deleted then use these hooks.</p>
-<div class="cpg_code code">CPGPluginAPI::filter('before_delete_file', $pic);<br />
-CPGPluginAPI::filter('after_delete_file', $pic);</div>
+<div class="cpg_code code">CPGPluginAPI::filter('<a href="#plugin_hooks_filename_before_delete_file">before_delete_file</a>', $pic);<br />
+CPGPluginAPI::filter('<a href="#plugin_hooks_filename_after_delete_file">after_delete_file</a>', $pic);</div>
 <p>This filter is a special one to add or modify meta albums</p>
-<div class="cpg_code code">$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);</div>
+<div class="cpg_code code">$meta_album_params = CPGPluginAPI::filter('<a href="#plugin_hooks_meta_album">meta_album</a>', $meta_album_passto);</div>
 It works like this:
 <pre class="cpg_code">&lt;?php
 $meta_album_passto = array (
@@ -978,7 +1026,7 @@ $meta_album_passto = array (
         'set_caption' =&gt; $set_caption,
 );
 
-$meta_album_params = CPGPluginAPI::filter('meta_album', $meta_album_passto);
+$meta_album_params = CPGPluginAPI::filter('<a href="#plugin_hooks_meta_album">meta_album</a>', $meta_album_passto);
 if ($meta_album_params['album_name']) {
         $album_name = $meta_album_params['album_name'];
         $count = $meta_album_params['count'];
@@ -989,12 +1037,12 @@ A plugin needs three input variables to do its thing: <tt class="code">$album</t
 <hr />
 <p>These filters allow you to add buttons to the different menus.</p>
 <div class="cpg_code code">
-$admin_menu = CPGPluginAPI::filter('admin_menu',$html);<br />
-$sys_menu_buttons = CPGPluginAPI::filter('sys_menu',$sys_menu_buttons);<br />
-$sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);</div>
+$admin_menu = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_admin_menu">admin_menu</a>',$html);<br />
+$sys_menu_buttons = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_sys_menu">sys_menu</a>',$sys_menu_buttons);<br />
+$sub_menu_buttons = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_sub_menu">sub_menu</a>',$sub_menu_buttons);</div>
 To add a button to the admin menu you can do the following:<br />
 <pre class="cpg_code">&lt;?php
-$thisplugin-&gt;add_filter('admin_menu','add_admin_button');
+$thisplugin-&gt;add_filter('<a href="#plugin_hooks_filename_admin_menu">admin_menu</a>','add_admin_button');
 
 function add_admin_button($admin_menu){
     $new_button = '&lt;div class="admin_menu admin_float"&gt;&lt;a href="./menu_link.php" title="menu link"&gt;MENU LINK&lt;/a&gt;&lt;/div&gt;';
@@ -1023,10 +1071,20 @@ function add_sub_button($menu) {
 
 <p>These four hooks can be used to add a custom CAPTCHA validation that overrides the one built into Coppermine.</p>
 <div class="cpg_code code">
-$template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);<br />
-$captcha_print = CPGPluginAPI::filter('captcha_register_print',$captcha_print);<br />
-$captcha_print = CPGPluginAPI::filter('captcha_contact_print',$captcha_print);<br />
-$error = CPGPluginAPI::filter('captcha_register_validate', $error);
+$template_add_your_comment = CPGPluginAPI::filter('<a href="#plugin_hooks_captcha_comment_print">captcha_comment_print</a>', $template_add_your_comment);<br />
+$captcha_print = CPGPluginAPI::filter('<a href="#plugin_hooks_captcha_register_print">captcha_register_print</a>',$captcha_print);<br />
+$captcha_print = CPGPluginAPI::filter('<a href="#plugin_hooks_captcha_contact_print">captcha_contact_print</a>',$captcha_print);<br />
+$error = CPGPluginAPI::filter('<a href="#plugin_hooks_captcha_register_validate">captcha_register_validate</a>', $error);
+</div>
+
+<p>This hook can be used to modify the elements of the main page. Use it to allow differences in page layout (from home page) when visitor clicks on "Album list".</p>
+<div class="cpg_code code">
+$elements = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_main_page_layout">main_page_layout</a>', $elements);
+</div>
+
+<p>Use this hook to add information <em>after</em> the output of an IP address (only for the admin).</p>
+<div class="cpg_code code">
+$row['ip_detail'] = CPGPluginAPI::filter('<a href="#plugin_hooks_banning_ip_information">ip_information</a>', $row['ip_addr']);
 </div>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -1155,8 +1213,6 @@ function myfunction_add_params($params)
 <pre class="cpg_code">$param = CPGPluginAPI::filter('theme_thumbnails_title', $param);</pre>
 <p>This plugin hook has been added in cpg1.5.3 only - plugins that rely on the existence of this hook must set the <a href="dev_plugins.htm#plugin_writing_core_files_configuration_plugin_cpg_version">minimum requirements</a> accordingly.</p>
 <p>To add the new tags to $template_thumbnail_view in your plugin, you can override the theme template by using the 'page_start' hook.  Some users may have a theme that uses this template and in that case, your plugin documentation should list the new tags your plugin uses so the user can add these tags to their theme template.  You would also need to disable your plugin from overriding this template.  Ideally, this would be done on your plugin configuration panel.</p>
-
-
 
 
 <div id="doc_footer">

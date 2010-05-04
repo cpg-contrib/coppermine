@@ -70,18 +70,32 @@
     <th valign="top" align="left" width="30%">Code</td>
   </tr>
   <tr>
+    <td valign="top">banning.php</td>
+    <td valign="top"><a name="plugin_hooks_banning_ip_information"></a><strong>ip_information</strong><a href="#plugin_hooks_banning_ip_information" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Filters additional information to an IP address (empty out of the box). Use this hook to add information <em>after</em> the output of an IP address.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$row['ip_detail'] = CPGPluginAPI::filter('ip_information', $row['ip_addr']);</textarea></td>
+  </tr>
+  <tr>
     <td valign="top">contact.php</td>
     <td valign="top"><a name="plugin_hooks_captcha_contact_print"></a><strong>captcha_contact_print</strong><a href="#plugin_hooks_captcha_contact_print" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $captcha_print when CAPTCHA is enabled and allows you to override the standard CAPTCHA for the contact form.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$captcha_print = CPGPluginAPI::filter('captcha_contact_print',$captcha_print);</textarea></td>
   </tr>
-   <tr>
+  <tr>
     <td valign="top">contact.php</td>
     <td valign="top"><a name="plugin_hooks_captcha_contact_validate"></a><strong>captcha_contact_validate</strong><a href="#plugin_hooks_captcha_contact_validate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Action</td>
     <td valign="top">action when CAPTCHA is enabled and allows you to override the standard CAPTCHA validation for the contact form.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">CPGPluginAPI::action('captcha_contact_validate', null);</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">db_ecard.php</td>
+    <td valign="top"><a name="plugin_hooks_db_ecard_ip_information"></a><strong>ip_information</strong><a href="#plugin_hooks_db_ecard_ip_information" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Filters additional information to an IP address (empty out of the box). Use this hook to add information <em>after</em> the output of an IP address.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$line['ip_detail'] = CPGPluginAPI::filter('ip_information', $line['sender_ip']);</textarea></td>
   </tr>
   <tr>
     <td valign="top">db_input.php</td>
@@ -223,11 +237,25 @@
     <td valign="top"><textarea class="samplecode" style="width:100%">CPGPluginAPI::filter('register_user_activation', $act_key);</textarea></td>
   </tr>
   <tr>
+    <td valign="top">reviewcom.php</td>
+    <td valign="top"><a name="plugin_hooks_reviewcom_ip_information"></a><strong>ip_information</strong><a href="#plugin_hooks_reviewcom_ip_information" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Filters additional information to an IP address (empty out of the box). Use this hook to add information <em>after</em> the output of an IP address.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$ip_address_output = $row['msg_raw_ip'] . CPGPluginAPI::filter('ip_information', $row['msg_raw_ip']);</textarea></td>
+  </tr>
+  <tr>
     <td valign="top">search.php</td>
     <td valign="top"><a name="plugin_hooks_search_form"></a><strong>search_form</strong><a href="#plugin_hooks_search_form" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">Add or remove content to/from the search form</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$text = CPGPluginAPI::filter('search_form', $text);</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">stat_details.php</td>
+    <td valign="top"><a name="plugin_hooks_stat_details_ip_information"></a><strong>ip_information</strong><a href="#plugin_hooks_stat_details_ip_information" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">Filters additional information to an IP address (empty out of the box). Use this hook to add information <em>after</em> the output of an IP address.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">print '      '. $row[$value] . CPGPluginAPI::filter('ip_information', $row[$value]) . $LINEBREAK;</textarea></td>
   </tr>
   <tr>
     <td valign="top">thumbnails.php</td>
@@ -588,6 +616,13 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
   </tr>
   <tr>
     <td valign="top">include/themes.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_filename_fullsize_html"></a><strong>fullsize_html</strong><a href="#plugin_hooks_filename_fullsize_html" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">filters $fullsize_html when viewing fullsize pictures.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$fullsize_html = CPGPluginAPI::filter('fullsize_html', $fullsize_html);</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">include/themes.inc.php</td>
     <td valign="top"><a name="plugin_hooks_filename_javascript_includes"></a><strong>javascript_includes</strong><a href="#plugin_hooks_filename_javascript_includes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $JS['includes'] before the js files will be added to the html output.</td>
@@ -674,10 +709,10 @@ echo $wrapper_end;</textarea></td>
   </tr>
   <tr>
     <td valign="top">include/themes.inc.php</td>
-    <td valign="top"><a name="plugin_hooks_filename_fullsize_html"></a><strong>fullsize_html</strong><a href="#plugin_hooks_filename_fullsize_html" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top"><a name="plugin_hooks_filename_theme_ip_information"></a><strong>ip_information</strong><a href="#plugin_hooks_filename_theme_ip_information" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
-    <td valign="top">filters $fullsize_html when viewing fullsize pictures.</td>
-    <td valign="top"><textarea class="samplecode" style="width:100%">$fullsize_html = CPGPluginAPI::filter('fullsize_html', $fullsize_html);</textarea></td>
+    <td valign="top">Filters additional information to an IP address (empty out of the box). Use this hook to add information <em>after</em> the output of an IP address.</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$ip = $row['msg_hdr_ip'] . CPGPluginAPI::filter('ip_information', $row['msg_hdr_ip']);</textarea></td>
   </tr>
 </table>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -774,6 +809,11 @@ echo $wrapper_end;</textarea></td>
         <td>
             <ul>
                 <li class="floatleft"><a href="#plugin_hooks_filename_image_sharpen">image_sharpen</a></li>
+				<li class="floatleft"><a href="#plugin_hooks_banning_ip_information">ip_information</a> (banning.php)</li>
+				<li class="floatleft"><a href="#plugin_hooks_db_ecard_ip_information">ip_information</a> (db_ecard.php)</li>
+				<li class="floatleft"><a href="#plugin_hooks_reviewcom_ip_information">ip_information</a> (reviewcom.php)</li>
+				<li class="floatleft"><a href="#plugin_hooks_stat_details_ip_information">ip_information</a> (stat_details.php)</li>
+				<li class="floatleft"><a href="#plugin_hooks_filename_theme_ip_information">ip_information</a> (include/themes.inc.php.php)</li>
             </ul>
         </td>
     </tr>
@@ -1040,6 +1080,11 @@ $error = CPGPluginAPI::filter('<a href="#plugin_hooks_captcha_register_validate"
 <p>This hook can be used to modify the elements of the main page. Use it to allow differences in page layout (from home page) when visitor clicks on "Album list".</p>
 <div class="cpg_code code">
 $elements = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_main_page_layout">main_page_layout</a>', $elements);
+</div>
+
+<p>Use this hook to add information <em>after</em> the output of an IP address (only for the admin).</p>
+<div class="cpg_code code">
+$row['ip_detail'] = CPGPluginAPI::filter('<a href="#plugin_hooks_banning_ip_information">ip_information</a>', $row['ip_addr']);
 </div>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 

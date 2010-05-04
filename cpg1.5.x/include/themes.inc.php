@@ -3878,9 +3878,9 @@ function theme_html_comments($pid)
                 $row['msg_author'] = $row['msg_author'];
             }
 
-            $ip = $row['msg_hdr_ip'];
+            $ip = $row['msg_hdr_ip'] . CPGPluginAPI::filter('ip_information', $row['msg_hdr_ip']);
             if ($row['msg_hdr_ip'] != $row['msg_raw_ip']) {
-                $ip .= ' [' . $row['msg_raw_ip'] . ']';
+                $ip .= ' [' . $row['msg_raw_ip'] . CPGPluginAPI::filter('ip_information', $row['msg_raw_ip']) . ']';
             }
 
             list($timestamp, $form_token) = getFormToken();

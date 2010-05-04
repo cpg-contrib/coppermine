@@ -213,6 +213,7 @@ EOT;
                 $username     = '';
                 $view_profile = '';
             }
+			$row['ip_detail'] = CPGPluginAPI::filter('ip_information', $row['ip_addr']);
 
             $expired = '';
             if ($row['expiry']) {
@@ -243,7 +244,7 @@ EOT;
                         <div id="email_{$row['ban_id']}_warning" class="cpg_message_validation formFieldWarning" style="display:none;">{$lang_banning_php['email_field_invalid']}</div>
                     </td>
                     <td class="{$row_style_class}" valign="top">
-                        <input type="text" class="textinput ip_field" style="width: 100%" size="15" maxlength="15" name="ip_addr_{$row['ban_id']}" id="ip_addr_{$row['ban_id']}" value="{$row['ip_addr']}" />
+                        <input type="text" class="textinput ip_field" style="width: 80%" size="15" maxlength="15" name="ip_addr_{$row['ban_id']}" id="ip_addr_{$row['ban_id']}" value="{$row['ip_addr']}" />{$row['ip_detail']}
                         <div id="ip_addr_{$row['ban_id']}_warning" class="cpg_message_validation formFieldWarning" style="display:none;">{$lang_banning_php['ip_address_field_invalid']}</div>
                     </td>
                     <td class="{$row_style_class}" valign="top">

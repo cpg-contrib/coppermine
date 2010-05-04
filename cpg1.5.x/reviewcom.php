@@ -582,9 +582,9 @@ while ($row = mysql_fetch_array($result)) {
     }
     // Create the output of the IP address
     if ($row['msg_raw_ip'] == $row['msg_hdr_ip']) {
-        $ip_address_output = $row['msg_raw_ip'];
+        $ip_address_output = $row['msg_raw_ip'] . CPGPluginAPI::filter('ip_information', $row['msg_raw_ip']);
     } else {
-        $ip_address_output = $row['msg_raw_ip'] . '<br />' . $row['msg_hdr_ip'];
+        $ip_address_output = $row['msg_raw_ip'] . CPGPluginAPI::filter('ip_information', $row['msg_raw_ip']) . '<br />' . $row['msg_hdr_ip'] . CPGPluginAPI::filter('ip_information', $row['msg_hdr_ip']);
     }
     // output the table rows
     echo <<<EOT
