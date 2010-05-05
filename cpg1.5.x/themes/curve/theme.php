@@ -118,6 +118,15 @@ EOT;
 
 
 // HTML template for sub menu
+if ($CONFIG['browse_by_date'] != 0) {
+    $browsebydatebutton = <<< EOT
+                        <li>
+                            <a href="{BROWSEBYDATE_TGT}" title="{BROWSEBYDATE_TITLE}" rel="nofollow" class="greybox"><span>{BROWSEBYDATE_ICO}{BROWSEBYDATE_LNK}</span></a>
+                        </li>
+EOT;
+} else {
+    $browsebydatebutton = '';
+}
 $template_sub_menu = <<<EOT
 
 <ul class="dropmenu">
@@ -156,9 +165,7 @@ $template_sub_menu = <<<EOT
                         </li>
 <!-- END favpics -->
 <!-- BEGIN browse_by_date -->
-                        <li>
-                            <a href="{BROWSEBYDATE_TGT}" title="{BROWSEBYDATE_TITLE}" rel="nofollow" class="greybox"><span>{BROWSEBYDATE_ICO}{BROWSEBYDATE_LNK}</span></a>
-                        </li>
+                        $browsebydatebutton
 <!-- END browse_by_date -->
                     </ul>
                 </li>

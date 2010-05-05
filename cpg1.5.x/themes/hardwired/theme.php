@@ -142,6 +142,18 @@ $template_sys_menu = <<< EOT
 EOT;
 
 // HTML template for sub menu
+if ($CONFIG['browse_by_date'] != 0) {
+    $browsebydatebutton = <<< EOT
+                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
+                                                <a href="{BROWSEBYDATE_TGT}" title="{BROWSEBYDATE_LNK}" rel="nofollow" class="greybox">{BROWSEBYDATE_LNK}</a>
+                                        </td>
+EOT;
+} else {
+    $browsebydatebutton = '';
+}
 $template_sub_menu = <<< EOT
 
                         <table border="0" cellpadding="0" cellspacing="0">
@@ -191,12 +203,7 @@ $template_sub_menu = <<< EOT
                                         <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{FAV_TGT}" title="{FAV_LNK}" rel="nofollow">{FAV_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
-                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
-                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
-                                                <a href="{BROWSEBYDATE_TGT}" title="{BROWSEBYDATE_LNK}" rel="nofollow" class="greybox">{BROWSEBYDATE_LNK}</a>
-                                        </td>
+                                        $browsebydatebutton
                                         <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
                                         <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>

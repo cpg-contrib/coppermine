@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-05-05 [B] Fixed disabling of browse by date button (thread ID 64806) {eenemeenemuu}
 2010-05-03 [A] Added plugin hook to display something after an IP address {GauGau}
 2010-05-03 [D] Updated Dutch translation (user contribution) {GauGau}
 2010-05-02 [B] Fixed faulty executed database update on stat_details.php {eenemeenemuu}

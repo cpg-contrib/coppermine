@@ -28,6 +28,16 @@ define('THEME_HAS_PROGRESS_GRAPHICS', 1);
 $template_sys_menu_spacer = '|';
 
 // HTML template for template sub_menu
+if ($CONFIG['browse_by_date'] != 0) {
+    $browsebydatebutton = <<< EOT
+                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
+                                        <td style="background-image:url(themes/eyeball/images/top_menu_button.gif);">
+                                                <a href="{BROWSEBYDATE_TGT}" onmouseover="MM_showHideLayers('Menu1','','hide')" title="{BROWSEBYDATE_LNK}" rel="nofollow" class="greybox">{BROWSEBYDATE_LNK}</a>
+                                        </td>
+EOT;
+} else {
+    $browsebydatebutton = '';
+}
 $template_sub_menu = <<< EOT
                         <table cellpadding="0" cellspacing="0" border="0" class="top_menu_bttn">
                                 <tr>
@@ -65,10 +75,7 @@ $template_sub_menu = <<< EOT
                                         <td style="background-image:url(themes/eyeball/images/top_menu_button.gif);">
                                         <a href="{FAV_TGT}" onmouseover="MM_showHideLayers('Menu1','','hide')" title="{FAV_LNK}" rel="nofollow">{FAV_LNK}</a>
                                         </td>
-                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
-                                        <td style="background-image:url(themes/eyeball/images/top_menu_button.gif);">
-                                                <a href="{BROWSEBYDATE_TGT}" onmouseover="MM_showHideLayers('Menu1','','hide')" title="{BROWSEBYDATE_LNK}" rel="nofollow" class="greybox">{BROWSEBYDATE_LNK}</a>
-                                        </td>
+                                        $browsebydatebutton
                                         <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
                                          <td style="background-image:url(themes/eyeball/images/top_menu_button.gif);">
                                                 <a href="{SEARCH_TGT}" onmouseover="MM_showHideLayers('Menu1','','hide')" title="{SEARCH_LNK}">{SEARCH_LNK}</a>
