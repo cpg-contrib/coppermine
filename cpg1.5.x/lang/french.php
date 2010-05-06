@@ -1392,10 +1392,10 @@ if (defined('INDEX_PHP')){
   $lang_album_admin_menu['cat_locked'] = 'Ces Albums sont verrouillés pour les modifications'; // cpg 1.5.x
 
   $lang_list_categories['home'] = 'Accueil';
-  $lang_list_categories['stat1'] = 'Il y a <b>[pictures]</b> photos dans <b>[Albums]</b> Albums et <b>[cat]</b> Catégories avec <b>[comments]</b> Commentaires affichées <b>[views]</b> fois';
-  $lang_list_categories['stat2'] = 'Il y a <b>[pictures]</b> photos dans <b>[Albums]</b> Albums affichés <b>[views]</b> fois';
+  $lang_list_categories['stat1'] = 'Il y a <b>[pictures]</b> photos dans <b>[albums]</b> Albums et <b>[cat]</b> Catégories avec <b>[comments]</b> Commentaires affichées <b>[views]</b> fois';
+  $lang_list_categories['stat2'] = 'Il y a <b>[pictures]</b> photos dans <b>[albums]</b> Albums affichés <b>[views]</b> fois';
   $lang_list_categories['xx_s_gallery'] = '%s\'s Galerie';
-  $lang_list_categories['stat3'] = 'Il y a <b>[pictures]</b> photos dans <b>[Albums]</b> Albums avec <b>[comments]</b> Commentaires affichées <b>[views]</b> fois';
+  $lang_list_categories['stat3'] = 'Il y a <b>[pictures]</b> photos dans <b>[albums]</b> Albums avec <b>[comments]</b> Commentaires affichées <b>[views]</b> fois';
 
   $lang_list_users['user_list'] = 'Liste d\'Utilisateurs';
   $lang_list_users['no_user_gal'] = 'Il n\'y a pas de nouvelle Galerie d\'Utilisateurs';
