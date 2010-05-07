@@ -1320,10 +1320,10 @@ Saludos,
 
 Los administradores de {SITE_NAME} 
 
-EOT; 
+EOT;
 
 $lang_forgot_passwd_php['reset_email'] = <<< EOT
-Aquí esta las contraseñas que solicito:
+Aquí esta la contraseña que solicitó:
 
 Usuario   : {USER_NAME} 
 Contraseña: {PASSWORD} 
@@ -1335,7 +1335,7 @@ Saludos,
 
 Los administradores de {SITE_NAME} 
 
-EOT; 
+EOT;
 } 
 
 // ------------------------------------------------------------------------- //
@@ -1755,7 +1755,7 @@ Usted acuerda no añadir ningún material abusivo, obsceno, vulgar, escandaloso,
 Este sitio utiliza cookies para almacenar la información en su ordenador. Estas cookies sirven para mejorar la navegación en este sitio. La dirección de email se utiliza solamente para confirmar sus detalles y contraseña del registro.<br />
 <br />
 Pulsando 'estoy de acuerdo' expresas tu conformidad con estas condiciones.
-EOT; 
+EOT;
 $lang_register_php['page_title'] = 'Registro de nuevo usuario';
 $lang_register_php['term_cond'] = 'Términos y condiciones';
 $lang_register_php['i_agree'] = 'estoy de acuerdo';
@@ -1845,7 +1845,7 @@ Saludos.
 
 Los administradores de {SITE_NAME} 
 
-EOT; 
+EOT;
 
 $lang_register_approve_email = <<< EOT
 Se ha registrado un nuevo usuario de nombre "{USER_NAME}" en tu galería.
@@ -1853,7 +1853,7 @@ Para terminar de activar la cuenta, debes pulsar sobre el enlace que aparece deb
 
 <a href="{ACT_LINK}">{ACT_LINK}</a>
 
-EOT; 
+EOT;
 
 $lang_register_php['activated_email'] = <<< EOT
 Se ha aprobado y activado tu cuenta.
@@ -1865,7 +1865,7 @@ Saludos.
 
 Los administradores de {SITE_NAME} 
 
-EOT; 
+EOT;
 } 
 
 // ------------------------------------------------------------------------- //
@@ -2014,7 +2014,7 @@ $lang_search_new_php['notes'] = <<< EOT
         <li>Si los iconos no aparecen, pulsa sobre el icono de archivo no cargado para ver el error producido por PHP</li>
         <li>Si el navegador produce un timeout, pulsa el icono de Actualizar</li>
     </ul> 
-EOT; 
+EOT;
 // Translator note: Do not translate the %s placeholders - they are being replaced with icons
 $lang_search_new_php['check_all'] = 'Marcar todos';
 $lang_search_new_php['uncheck_all'] = 'Desmarcar todos';
@@ -2274,7 +2274,7 @@ Saludos,
 
 Los gestores de {SITE_NAME} 
 
-EOT; 
+EOT;
 } 
 
 // ------------------------------------------------------------------------- //
