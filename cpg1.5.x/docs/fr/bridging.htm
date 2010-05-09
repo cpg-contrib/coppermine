@@ -62,71 +62,71 @@
 
 <a name="integrating_bridge_end"></a>
 
-<a name="integrating_prerequisites_start"></a><h2>Pre-requistes<a href="#integrating_prerequisites_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="integrating_prerequisites_start"></a><h2>Pré-requis<a href="#integrating_prerequisites_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 
 
-<a name="integrating_cookie_start"></a><h3>Authentication by cookie<a href="#integrating_cookie_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The login integration uses your bulletin board cookies, therefore it won't work if your board cookies are not visible by Coppermine. So unless you are an expert, keep things simple and install Coppermine and your bridge app on the same domain.</p>
+<a name="integrating_cookie_start"></a><h3>Autentification par cookie<a href="#integrating_cookie_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>L'intégration de l'identification utilise le cookie de votre application de forum, toutefois, cela ne focntionnera pas si les cookies de votre forum ne sont pas visibles par Coppermine. Donc, si vous n'êtes pas un expert, faites les choses simplement et installez Coppermine et votre application à bridger sur le même domaine.</p>
 <div class="cpg_example">
 	<table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
 	    <tr>
-	        <td>This <strong>will</strong> work:</td>
-	        <td>This <strong title="depending on your subdomain setup">might</strong> work:</td>
-	        <td>This <strong class="important">won't</strong> work:</td>
+	        <td>Cela <strong>va</strong> fonctionner:</td>
+	        <td>Cela <strong title="depending on your subdomain setup">peut</strong> fonctionner:</td>
+	        <td>Cela <strong class="important">ne va pas</strong> fonctionner:</td>
 	    </tr>
 	    <tr>
-	        <td>Bridge app: <tt class="code">http://yourdomain.com/board/</tt><br />
-	        Coppermine: <tt class="code">http://yourdomain.com/gallery/</td>
-	        <td>Bridge app: <tt class="code">http://board.yourdomain.com/</tt><br />
-	        Coppermine: <tt class="code">http://gallery.yourdomain.com/</tt></td>
-	        <td>Bridge app: <tt class="code">http://yourfirstdomain.com/board/</tt><br />
-	        Coppermine: <tt class="code">http://yourseconddomain.com/gallery/</tt></td>
+	        <td>Application bridgée: <tt class="code">http://votredomaine.com/forum/</tt><br />
+	        Coppermine: <tt class="code">http://votredomaine.com/galerie/</td>
+	        <td>Application bridgée: <tt class="code">http://forum.votredomaine.com/</tt><br />
+	        Coppermine: <tt class="code">http://galerie.votredomaine.com/</tt></td>
+	        <td>Application bridgée: <tt class="code">http://votrepremierdomaine.com/forum/</tt><br />
+	        Coppermine: <tt class="code">http://votreseconddomaine.com/galerie/</tt></td>
 	    </tr>
 	</table>
 </div>
-<p>The cookie path in the forum's configuration should be set to '/' where this option is available.</p>
-<p class="cpg_message_warning">The cookie names of your bridge app and coppermine must <strong>not</strong> be the same - they <strong>must</strong> differ!</p>
-<p>Some bridging apps have an option to enable sub-domain independant cookies that you should enable if you own the entire domain.</p>
-<p>Some bridging apps use a cookie path by default that will make the cookie only available for the bridging app itself and not for other apps that reside in different folders on the webserver. If this is the case for you, you have to review your bridging app's config first and make sure that it is set to allow the cookie from the bridging app to be read by coppermine.</p>
+<p>Le chemin du cookie dans la configuration du forum devrait être '/' là ou l'option est disponible.</p>
+<p class="cpg_message_warning">Les noms de cookie de votre application bridgée et de Coppermine <strong>ne doivent pas</strong> être les mêmes - ils <strong>doivent</strong> être différents!</p>
+<p>Certaines applications bridgées ont une option pour activer les cookies indépendants des sous-doamines. Vous devez activer cette option si vous possédez l'nesemble du domaine.</p>
+<p>Certaines applications bridgées utilisent un chemin de cookie par défaut qui ne rend le cookie disponible que pour l'application elle même, et pas pour les applications se trouvant dans un autre répertoire du serveur. Si c'est le cas pour vous, vous devrez revoir la configuration de votre application bridgée d'abbord pour vous assurer que le cookie de votre application bridgée est bien visible par Coppermine.</p>
 <p class="cpg_example">
-In SMF 1.1.x, the setting is named &quot;local storage of cookies&quot;. When enabled, the cookies issued by SMF will be accessible only for the forum and not for other apps. Therefore, when bridging Coppermine with SMF, you have to go to SMF's admin panel first and turn local storage of cookies off. In SMF, that option can be found under "Admin" &rarr; "Server Settings" &rarr; "Feature configuration" &rarr; "Enable local storage of cookies".<br />
-For other bridging apps, the setting may be named differently and may reside in a different navigation structure, but the result should be the same: the cookie issued by the bridging app should be stored in a way that makes it accessible for other apps on the same domain.</p>
-<p>In many recent BBS apps you can specify lwhether you want to handle authentication of users by cookie or by session. If you want to bridge, you have to make sure that the app you bridge with is using cookies as authentication method - coppermine doesn't work with session-driven authentication!</p>
+Dans SMF 1.1.x, l'option est appelée &quot;stockage local des cookies&quot;. Si elle est activée, les cookies issus de SMF ne seront accessible que pour le forum et pas par les autres applications. C'est pourquoi, lors de l'établissement d'une passerelle entre Coppermine et SMF, vous devrez aller dans le panneau de configuration de SMF et de désactiver l'option stockage local des cookies. Dans SMF cette option peut être trouvée sous "Administrateur" &rarr; "paramètres du serveur" &rarr; "Options de configuration" &rarr; "Activer le stockage local des cookies".<br />
+Pour d'autres apllications bridgeables, l'option peut être nommée différemment et peut se trouver sous une autre structure de navigation, mais le résultat reste le même: le cookie gébéré par l'appication bridgée doit être stocké de manière à ce qu'il soit accessible par les autres applications dans le même domaine.</p>
+<p>Dans la plupart des applications BBS récentes, vous pouvez déterminer si vous voulez gérer l'autentification des utilisateurs par cookie ou par session. Si vous voulez établir une passerelle, vous devez vous assurer que l'application avec laquelle vous voulez établir une passerelle, utilise les cookies comme methode d'autentifictaion - Coppermine ne fornctionne pas avec les autentifications gérées par les sessions!</p>
 <a name="integrating_cookie_end"></a>
 
-<a name="integrating_standalone_start"></a><h3>Standalone version first<a href="#integrating_standalone_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>To avoid confusion, make sure to set up both coppermine and your bridge app as standalone first. Make sure they both run correctly without integration. Test all features of coppermine (like upload, registration etc.) when Coppermine is installed, before you even start integration.</p>
+<a name="integrating_standalone_start"></a><h3>Version autonome d'abbord<a href="#integrating_standalone_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Pour éviter les confusions, assurez vous de paramétrer les deux applications (Coppermine et l'application bridgée) de manière autonome d'abbord. Assurez vous que les deux fonctionnent correctement, sans l'intégration. Testez toutes les focntions de Coppermine (comme le téléchargement, l'enregistrelent etc...) une fos que Coppermine est installé, avant de commencer la mise en place de la passerelle.</p>
 <a name="integrating_standalone_end"></a>
 
-<a name="integrating_users_start"></a><h3>Coppermine users, groups and pics uploaded by users are lost when integrating<a href="#integrating_users_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p class="cpg_message_warning"><span class="important">Warning:</span> If you already have users and custom groups in your coppermine database when you enable bridging, be aware that they will be lost. If your coppermine users have already created private albums and uploaded pics to them, they will be lost as well!</p>
-<p><strong>Detailed explanation:</strong><br />
-As most community applications, coppermine stores everything that users (including the admin) do (like uploading pics, posting comments, rating files) inside the database. The reference to each user action is being kept using a unique user ID. The correlation between the user actions and the corresponding user profile is being kept by storing the user ID within each record in the database that determines the user action.<br />
-When bridging is enabled, coppermine's user management is being dropped in favor of the user management that comes with the application you bridge with. Subsequently, the user IDs from your bridging app (that differ from Coppermine's user IDs) are being taken into account.</p>
+<a name="integrating_users_start"></a><h3>Les utilisateurs, groupes et images téléchargées par les utilisateurs de Coppermine sont perdus lors de l'intégration<a href="#integrating_users_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p class="cpg_message_warning"><span class="important">Attention:</span> Si vous avez déjà des utilisateurs et des groupes personnalisés dans votre base de donnée de Coppermine lorsque vous activez l'intégration, soyez attentifs au fait qu'ils seront perdus? Si vous utilisateurs de Coppermine ont crées des albums privés et y ont téléchargés des fichiers, ils seront eux aussi perdus!</p>
+<p><strong>Explication détaillée:</strong><br />
+Comme la plupart des applications utilisant une communautén Coppermine stocke tout ce que font les utilisateurs (y compris l'administrateur) comme le téléchargement de fichiers, les commentaires, les votes, dans la base de donnée. La référence à chaque action faite par un utilisateur est défini par un IDentifiant utilisateur unique. La corrélation entre les actions de l'utilisateur et le profil utilisateur correspondat est faite par le biais d'un IDentifiant unique dans chaque enregistrement de la base de donnée qui défini les actions des utilisateurs.<br />
+Lorsque la passerelle est établie, la gestion des utilisateurs de Coppermine est remplacée par celle de l'application avec laquelle la passerelle est établie. en conséquencen l'IDentifiant de l'utilisateur de l'application bridgée (qui est différent de celui de Coppermine) est pris en compte.</p>
 <div class="cpg_example">
-Coppermine-user &quot;Bill&quot; has got the coppermine user ID &quot;3&quot;. He used to upload several pics that went into the folder /albums/userpics/10003/. The URL of his personal gallery used to be http://yoursite.tld/your_coppermine_folder/index.php?cat=10003.<br /> In the BBS application, the user &quot;Linus&quot; has got the user ID &quot;3&quot;.<br />
-After enabling bridging, the URL http://yoursite.tld/your_coppermine_folder/index.php?cat=10003 points to the personal gallery of the user &quot;Linus&quot;. All pics that Bill used to upload appear to be owned by Linus.
+L'utilisateur de Coppermine &quot;Pierre&quot; a pour IDentifiant utilisateur Coppermine &quot;3&quot;. Il l'a utilisé pour télécharger plusieurs fichiers qui ont été placés dans le répertoire /albums/userpics/10003/. L'URL de cette galerie personnelle est http://votresite.com/votre_repertoire_coppermine/index.php?cat=10003.<br /> Dans l'application BBS l'utilisateur  &quot;Paul&quot; a eu l'identifiant &quot;3&quot;.<br />
+Après l'activation de la passerelle, l'URL After enabling bridging, the URL http://votresite.com/votre_repertoire_coppermine/index.php?cat=10003 pointera vers la galerie personelle de l'utilisateur &quot;Paul&quot;. Toutes les images que Pierre avait téléchargées apparaissent comme ayant été téléchargées par Paul.
 </div>
-<p><strong>Summary:</strong><br />
-Correlation between the actions that the unbridged coppermine users have performed and the &quot;new&quot; accounts from the app you bridged with is lost. Subsequently, you don't actually lose files that have been uploaded previously, but they appear to have been uploaded by a different user.</p>
+<p><strong>Conclusion:</strong><br />
+La corrélation entre les actions faites par les utilisateurs de Coppermine non bridgé et les &quot;nouveaux&quot; comptes de l'application avec laquelle vous avez créer la passerelle sont perdus. En concéquencen vous n'avez actuellement pas perdus de fichiers qui ont été téléchargés auparavent, mais ils apparaissent comme ayant été téléchargés par un autre utilisateur.</p>
 
 <a name="integrating_users_end"></a>
 
-<a name="integrating_backup_start"></a><h3>Backup<a href="#integrating_backup_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p class="cpg_message_info">It is very advisable to <a href="export.htm#backup">backup</a> both your coppermine database and your files before enabling bridging, so you can safely go back if the integration fails.</p>
-<p>In fact you're encouraged to backup your database on a regular basis, and especially before applying code changes.</p>
-<p>However, don't be afraid that bridging might cause your bridging app to malfunction: coppermine doesn't harm your forum (or the app you bridge with) at all. When enabling bridging, coppermine doesn't run write/alter queries against the bridging app's database tables nor does coppermine modify any of the files of the bridging app. The worst thing that may happen if something goes wrong is your coppermine gallery becoming inaccessible. It is completely impossible that coppermine bridging will do harm to your bridging application.</p>
+<a name="integrating_backup_start"></a><h3>Sauvegarde<a href="#integrating_backup_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p class="cpg_message_info">Il est particulièrement recommandé de <a href="export.htm#backup">sauvegarder</a> aussi bien votre base de donnée Coppermine qye vos fichiers avant d'activer la passerelle, de sorte à pouvoir revenir en arrière si l'intégration devait mal se passer.</p>
+<p>En fait, vous êtes encouragés à sauvegarder votre base de donnée régulièrement, et plus particulièrement avant de faire des changements dans le code.</p>
+<p>Cependant, ne vous alarmez pas des disfonctionnement de votre forum qui pouraient être causés par la passerelle: Coppermine n'affecte pas votre forum (ni aucune autre application). Lors de la mise en place de la passerelle, Coppermine ne lance aucune requête en écriture/modification dans la base de donnée de l'application bridgée, tout comme Coppermine ne modifie aucun fichier de l'application bridgée? La pire chose qui puisse arriver si quelque chose se passait mal, serait que votre galerie Coppermine soit innaccessible. Il est tout à fait impossible que la passerelle Coppermine affecte l'application bridgée.</p>
 <a name="integrating_backup_end"></a>
 
 
 <a name="integrating_prerequisites_end"></a>
 
-<a name="integrating_steps_start"></a><h2>Integration steps<a href="#integrating_steps_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>From cpg1.4.x on you can use the <a href="#bridge_manager_start">Bridge Manager</a> that will provide a wizard-like interface to enable/disable bridging.</p>
+<a name="integrating_steps_start"></a><h2>Etapes de l'intégration<a href="#integrating_steps_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Depusi cpg1.4.x vous pouvez utiliser <a href="#bridge_manager_start">le gestionnaire de bridge</a> qui propose une interface sous forme d'assistant pour activer/désactiver la passerelle.</p>
 
 
-<a name="bridge_manager_start"></a><h3>Using the bridge manager<a href="#bridge_manager_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The bridge manager is a new feature in cpg1.4, it is not available in older versions. Instead of manually editing coppermine code files, you can enable/disable bridging in your browser, using a wizard-like user interface. To start the bridge manager, log in as admin, choose &quot;Bridge Manager&quot; from the admin menu.</p>
+<a name="bridge_manager_start"></a><h3>Utilisation du gestionnaire de bridge<a href="#bridge_manager_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Le gestionnaire de bridge est une nouvelle fonction de cpg1.4, il n'était pas disponible dans les versions précédentes. Au lieu de modifier manuelement le code de Coppermine, vous pouvez activer/désctiver la passerelle depuis votre navigateur, en utilisant une interface sous forme d'assistant. Pour démarer le gerstionnaire de bridge, identifiez vous comme administrateur choisissez &quot;Gestionnairede bridge&quot; dans le menu administrateur.</p>
 <p><img src="images/bridge_01_start.gif" width="429" height="72" border="0" alt="" align="right" />If you run the bridge manager for the first time, there will only be one button that lets you actually start the wizard (if you return to the bridge manager later, you will also find a switch to enable/disable bridging) click it.</p>
 <p class="cpg_message_info">Note: with each step in the wizard, some information is being written to the coppermine database. Unlike other wizards (mostly on your local machine), the bridge manager doesn't have a &quot;cancel&quot; button! Once you have enabled bridging and everything is working fine, you shouldn't change any values just out of curiosity, as they will get written to the database, which might result in a bridging that used to work not working any more after &quot;playing&quot; with it.<br clear="all" /></p>
 <p class="quote"><em>Side-note</em><br />
