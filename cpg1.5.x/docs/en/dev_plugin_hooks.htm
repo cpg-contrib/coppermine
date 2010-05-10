@@ -557,7 +557,7 @@ ob_start('cpg_filter_page_html');</textarea></td>
 $smilies_process = CPGPluginAPI::filter('smilies_process',$smilies_process);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_theme_add_comment"></a><strong>theme_add_comment<br />theme_edit_comment</strong><a href="#plugin_hooks_theme_add_comment" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $template_add_your_comment &amp; $template_image_comments, can be used to display extra data when comments are displayed (like bbcode buttons).</td>
@@ -565,112 +565,112 @@ $smilies_process = CPGPluginAPI::filter('smilies_process',$smilies_process);</te
 $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_image_comments);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_file_data"></a><strong>file_data</strong><a href="#plugin_hooks_filename_file_data" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $pic_row when get_pic_url is called... usually this is called before any html is created so you can use this to change a lot of data</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$CURRENT_PIC_DATA = CPGPluginAPI::filter('file_data',$CURRENT_PIC_DATA);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_html_image_reduced_overlay"></a><strong>html_image_reduced_overlay</strong><a href="#plugin_hooks_filename_html_image_reduced_overlay" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $pic_html when the html to display a reduced image with transparant overlay is created. </td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$pic_html = CPGPluginAPI::filter('html_image_reduced_overlay',$pic_html);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_html_image_reduced"></a><strong>html_image_reduced</strong><a href="#plugin_hooks_filename_html_image_reduced" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $pic_html when the html to display a reduced image is created.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$pic_html = CPGPluginAPI::filter('html_image_reduced',$pic_html);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_html_image_overlay"></a><strong>html_image_overlay</strong><a href="#plugin_hooks_filename_html_image_overlay" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $pic_html when the html to display an image with transparant overlay is created.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$pic_html = CPGPluginAPI::filter('html_image_overlay',$pic_html);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_html_image"></a><strong>html_image</strong><a href="#plugin_hooks_filename_html_image" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $pic_html when the html to display an image is created.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$pic_html = CPGPluginAPI::filter('html_image',$pic_html);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_html_document"></a><strong>html_document</strong><a href="#plugin_hooks_filename_html_document" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $pic_html when the html to display a document is created.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$pic_html = CPGPluginAPI::filter('html_document',$pic_html);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_html_other_media"></a><strong>html_other_media</strong><a href="#plugin_hooks_filename_html_other_media" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $pic_html when the html to display other media (video, flash, ...) is created.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$pic_html = CPGPluginAPI::filter('html_other_media',$pic_html);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_fullsize_html"></a><strong>fullsize_html</strong><a href="#plugin_hooks_filename_fullsize_html" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $fullsize_html when viewing fullsize pictures.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$fullsize_html = CPGPluginAPI::filter('fullsize_html', $fullsize_html);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_javascript_includes"></a><strong>javascript_includes</strong><a href="#plugin_hooks_filename_javascript_includes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $JS['includes'] before the js files will be added to the html output.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$JS['includes'] = CPGPluginAPI::filter('javascript_includes',$JS['includes']);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_admin_menu"></a><strong>admin_menu</strong><a href="#plugin_hooks_filename_admin_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $admin_menu which allows to add a button to it. <br />(See below how to do that)</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$admin_menu = CPGPluginAPI::filter('admin_menu',$html);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_sys_menu"></a><strong>sys_menu</strong><a href="#plugin_hooks_filename_sys_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $sys_menu_buttons which allows to add a button to it. <br />(See below how to do that)</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$sys_menu_buttons = CPGPluginAPI::filter('sys_menu',$sys_menu_buttons);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_sub_menu"></a><strong>sub_menu</strong><a href="#plugin_hooks_filename_sub_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $sub_menu_buttons which allows to add a button to it. <br />(See below how to do that)</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$sub_menu_buttons = CPGPluginAPI::filter('sub_menu',$sub_menu_buttons);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_captcha_comment_print"></a><strong>captcha_comment_print</strong><a href="#plugin_hooks_captcha_comment_print" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $template_add_your_comment when CAPTCHA is enabled and allows you to override the standard CAPTCHA for comments</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$template_add_your_comment = CPGPluginAPI::filter('captcha_comment_print', $template_add_your_comment);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_thumbnail_params"></a><strong>theme_display_thumbnails_params</strong><a href="#plugin_hooks_filename_thumbnail_params" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $template_thumbnail_view which allows you to modify the thumbnail output or add things beneath the thumbails.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$params = CPGPluginAPI::filter('theme_display_thumbnails_params', $params);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_theme_thumbnails_wrapper_start"></a><strong>theme_thumbnails_wrapper_start</strong><a href="#plugin_hooks_filename_theme_thumbnails_wrapper_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">Allows plugin authors to output content before the thumbnail table starts, which is particularly helpfull top start a &lt;form&gt;-tag.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$wrapper_start = CPGPluginAPI::filter('theme_thumbnails_wrapper_start');</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_theme_thumbnails_footer"></a><strong>theme_thumbnails_footer</strong><a href="#plugin_hooks_filename_theme_thumbnails_footer" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">Allows plugin authors to output content after the last row of thumbnails, before the closing table tag. Can be used to add a footer row of the table</td>
@@ -678,7 +678,7 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
 echo $footer;</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_theme_thumbnails_wrapper_end"></a><strong>theme_thumbnails_wrapper_end</strong><a href="#plugin_hooks_filename_theme_thumbnails_wrapper_end" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">Output content after the closing tag of the thumbnail table</td>
@@ -686,28 +686,28 @@ echo $footer;</textarea></td>
 echo $wrapper_end;</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_theme_thumbnails_title"></a><strong>theme_thumbnails_title</strong><a href="#plugin_hooks_filename_theme_thumbnails_title" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters the $param array which allows you to modify the title row of the thumbnails table.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$params = CPGPluginAPI::filter('theme_thumbnails_title', $param);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_theme_thumbnails_album_types"></a><strong>theme_thumbnails_album_types</strong><a href="#plugin_hooks_theme_thumbnails_album_types" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters the $album_types array which allows you to add new 'album' types. Useful for custom meta albums that don't link to files, but to thumbnail pages.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$album_types = CPGPluginAPI::filter('theme_thumbnails_album_types', $album_types);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_theme_pageheader_params"></a><strong>theme_pageheader_params</strong><a href="#plugin_hooks_filename_theme_pageheader_params" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">filters $template_vars for the pageheader function. Allows you to modify the entire pageheader output, e.g. page title, charset definition, meta tags.</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$params = CPGPluginAPI::filter('theme_pageheader_params', $template_vars);</textarea></td>
   </tr>
   <tr>
-    <td valign="top">include/themes.inc.php</td>
+    <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_theme_ip_information"></a><strong>ip_information</strong><a href="#plugin_hooks_filename_theme_ip_information" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">Filters additional information to an IP address (empty out of the box). Use this hook to add information <em>after</em> the output of an IP address.</td>

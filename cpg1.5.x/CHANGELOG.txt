@@ -25,6 +25,9 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-05-10 [D] Added navigation sub-items to theme creation tutorial {GauGau}
+2010-05-10 [D] Added clarification about editing include/themes.inc.php {GauGau}
+2010-05-10 [A] Added klingon flag for a possible future language file {GauGau}
 2010-05-05 [B] Fixed disabling of browse by date button (thread ID 64806) {eenemeenemuu}
 2010-05-03 [A] Added plugin hook to display something after an IP address {GauGau}
 2010-05-03 [D] Updated Dutch translation (user contribution) {GauGau}
