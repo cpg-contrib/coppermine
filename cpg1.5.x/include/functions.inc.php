@@ -781,12 +781,23 @@ function load_template()
 
     $gallery_pos = strpos($template, '{GALLERY}');
 
+	// Failsafe-option if JAVASCRIPT-token is missing from custom theme
+	if (!strstr($template, '{JAVASCRIPT}')) {
+		if (stristr('</head>') != FALSE) {
+			$template = str_replace('</head>', '{JAVASCRIPT}' . $LINEBREAK . '</head>', $template);
+		} elseif (stristr('<head>') != FALSE) {
+			$template = str_replace('<head>',  '<head>' . $LINEBREAK .'{JAVASCRIPT}', $template);
+		} elseif (stristr('</title>') != FALSE) {
+			$template = str_replace('</title>', '{JAVASCRIPT}' . $LINEBREAK . '</title>', $template);
+		}
+    }
+
     if (!strstr($template, '{CREDITS}')) {
         $template = str_replace('{GALLERY}', '{CREDITS}', $template);
     } else {
         $template = str_replace('{GALLERY}', '', $template);
     }
-
+	
     $template_header = substr($template, 0, $gallery_pos);
     $template_header = str_replace('{META}', '{META}' . CPGPluginAPI::filter('page_meta', ''), $template_header);
 
