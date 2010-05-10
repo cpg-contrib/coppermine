@@ -782,13 +782,13 @@ function load_template()
     $gallery_pos = strpos($template, '{GALLERY}');
 
     // Failsafe-option if JAVASCRIPT-token is missing from custom theme
-    if (!strstr($template, '{JAVASCRIPT}')) {
+    if (strpos($template, '{JAVASCRIPT}') === FALSE) {
         if (stripos($template, '</head>') !== FALSE) {
-            $template = str_replace('</head>', '{JAVASCRIPT}' . $LINEBREAK . '</head>', $template);
+            $template = str_ireplace('</head>', '{JAVASCRIPT}' . $LINEBREAK . '</head>', $template);
         } elseif (stripos($template, '<head>') !== FALSE) {
-            $template = str_replace('<head>',  '<head>' . $LINEBREAK .'{JAVASCRIPT}', $template);
+            $template = str_ireplace('<head>',  '<head>' . $LINEBREAK .'{JAVASCRIPT}', $template);
         } elseif (stripos($template, '</title>') !== FALSE) {
-            $template = str_replace('</title>', '</title>' . '{JAVASCRIPT}' . $LINEBREAK, $template);
+            $template = str_ireplace('</title>', '</title>' . $LINEBREAK . '{JAVASCRIPT}', $template);
         }
     }
 
@@ -797,7 +797,7 @@ function load_template()
     } else {
         $template = str_replace('{GALLERY}', '', $template);
     }
-    
+
     $template_header = substr($template, 0, $gallery_pos);
     $template_header = str_replace('{META}', '{META}' . CPGPluginAPI::filter('page_meta', ''), $template_header);
 
@@ -1127,7 +1127,7 @@ function get_pic_data_ordering($total, $offset, $row_count)
     $limit = ($offset != -1) ? ' LIMIT ' . $offset : '';
     $limit .= ($row_count != -1) ? ' ,' . $row_count : '';
      
-    return array($ASC, $DESC, $limit, $flipped);    
+    return array($ASC, $DESC, $limit, $flipped);
 }
 
 // Retrieve the data for a picture or a set of picture
@@ -2736,7 +2736,7 @@ function add_hit($pid)
             $referer = '';
         }
 
-        $hitUserId = USER_ID;        
+        $hitUserId = USER_ID;
 
         // Insert the record in database
         $query = "INSERT INTO {$CONFIG['TABLE_HIT_STATS']} SET"
@@ -5061,7 +5061,7 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $remoteURL);
         curl_setopt($curl, CURLOPT_HEADER, 0);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);        
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $body = curl_exec($curl);
         $headers = curl_getinfo($curl);
         curl_close($curl);
@@ -5861,7 +5861,7 @@ function get_cat_data()
     if (GALLERY_ADMIN_MODE) {
         $sql = "SELECT rgt, cid, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft ASC"; 
     } else {
-        $sql = "SELECT rgt, cid, name FROM {$CONFIG['TABLE_CATEGORIES']} NATURAL JOIN {$CONFIG['TABLE_CATMAP']} WHERE group_id IN (" . implode(', ', $USER_DATA['groups']) . ") ORDER BY lft ASC";             
+        $sql = "SELECT rgt, cid, name FROM {$CONFIG['TABLE_CATEGORIES']} NATURAL JOIN {$CONFIG['TABLE_CATMAP']} WHERE group_id IN (" . implode(', ', $USER_DATA['groups']) . ") ORDER BY lft ASC";
     }
     $result = cpg_db_query($sql);
     if (mysql_num_rows($result) > 0) {
@@ -5938,7 +5938,7 @@ function album_selection_options($selected = 0)
                 $users = cpg_db_fetch_rowset($result2);
                 mysql_free_result($result2);
             } else {
-                $users = array(array('user_id' => USER_ID, 'user_name' => USER_NAME));                
+                $users = array(array('user_id' => USER_ID, 'user_name' => USER_NAME));
             }
             
             foreach ($users as $user) {
