@@ -25,6 +25,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-05-10 [A] Fixed check for missing JAVASCRIPT token (thread ID 63279) {eenemeenemuu}
+2010-05-10 [A] Added check for missing JAVASCRIPT token (thread ID 63279) {GauGau}
 2010-05-10 [D] Added navigation sub-items to theme creation tutorial {GauGau}
 2010-05-10 [D] Added clarification about editing include/themes.inc.php {GauGau}
 2010-05-10 [A] Added klingon flag for a possible future language file {GauGau}
