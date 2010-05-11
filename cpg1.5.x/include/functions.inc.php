@@ -5861,7 +5861,7 @@ function get_cat_data()
     if (GALLERY_ADMIN_MODE) {
         $sql = "SELECT rgt, cid, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft ASC"; 
     } else {
-        $sql = "SELECT rgt, cid, name FROM {$CONFIG['TABLE_CATEGORIES']} NATURAL JOIN {$CONFIG['TABLE_CATMAP']} WHERE group_id IN (" . implode(', ', $USER_DATA['groups']) . ") ORDER BY lft ASC";
+        $sql = "SELECT rgt, c.cid, name FROM {$CONFIG['TABLE_CATEGORIES']} AS c NATURAL JOIN {$CONFIG['TABLE_CATMAP']} WHERE group_id IN (" . implode(', ', $USER_DATA['groups']) . ") ORDER BY lft ASC";
     }
     $result = cpg_db_query($sql);
     if (mysql_num_rows($result) > 0) {
