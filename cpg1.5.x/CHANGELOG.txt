@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-05-11 [D] Started Spanish translation of documentation (user contribution) {GauGau}
 2010-05-11 [B] Fixed ambiguous column name (thread ID 64809) {eenemeenemuu}
 2010-05-10 [A] Fixed check for missing JAVASCRIPT token (thread ID 63279) {eenemeenemuu}
 2010-05-10 [A] Added check for missing JAVASCRIPT token (thread ID 63279) {GauGau}
