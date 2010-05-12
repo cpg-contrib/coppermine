@@ -231,8 +231,8 @@ switch($step) {
         if (ini_get('register_globals')) {
             //register_globals is turned on, please turn it of.
             $error .= $language['register_globals_detected'];
-			$error .= '[<a href="docs/en/install.htm#install_server_config_register_globals">' . $language['more'] . '</a>]';
-			$error .= '<br />';
+            $error .= '[<a href="docs/en/install.htm#install_server_config_register_globals">' . $language['more'] . '</a>]';
+            $error .= '<br />';
         }
         
         $page_title = $language['title_file_check'];
@@ -1251,7 +1251,7 @@ function getLangSelect()
     
     $lang_select = '<select name="lang_list" class="listbox" size="1">' . $LINEBREAK;
     foreach($available_languages as $key => $language) {
-        $lang_select .= "                       <option " . ((strtolower($config['lang']) == strtolower($language)) ? 'selected="selected"' : '') . " value=\"{$language}\">{$language}</option>" . $LINEBREAK;
+        $lang_select .= "                       <option " . ((strtolower($config['lang']) == strtolower($language)) ? 'selected="selected"' : '') . " value=\"" . strtolower($language). "\">{$language}</option>" . $LINEBREAK;
     }
     $lang_select .= '               </select>';
     
