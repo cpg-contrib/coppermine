@@ -1274,8 +1274,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             'td' => "title $DESC",
             'da' => "pid $ASC",
             'dd' => "pid $DESC",
-            'pa' => "position $ASC",
-            'pd' => "position $DESC",
+            'pa' => "position $ASC, pid $ASC",
+            'pd' => "position $DESC, pid $DESC",
         );
     
         $sort_code  = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
