@@ -66,105 +66,111 @@
 
 <a name="theme_examples_content"></a><h2>Additional content<a href="#theme_examples_content" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>This section is meant to how to add additional content to particular places of Coppermine's output. Most users want to display adverts as additional content, like Google's adsense or Adbrite (as seen on Yahoo and ebay).</p>
-<p>As examples, we will only add a short sentence like "your custom content" or similar. You can replace that of course with any HTML/JavaScript as you see fit. This documentation will not cover how to actually add the HTM markup for those ad-programs nor will it explain how that works. There are much better places on the web to get an impression how those advert technlogies aork and how to implement the basics.</p>
+<p>As examples, we will only add a short sentence like "your custom content" or similar. You can replace that of course with any HTML/JavaScript as you see fit. This documentation will not cover how to actually add the HTM markup for those ad-programs nor will it explain how that works. There are much better places on the web to get an impression how those advert technlogies work and how to implement the basics.</p>
+
+<div class="indent">
 
 <a name="theme_examples_content_thumbnail"></a><h3>Additional content on the thumbnail page<a href="#theme_examples_content_thumbnail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Modifications that will have an impact on the display of the thumbnail pages.</p> 
 
-<a name="theme_examples_content_thumbnail_extra_row"></a><h4>Extra row between thumbnail rows<a href="#theme_examples_content_thumbnail_extra_row" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-<p class="cpg_message_info">This modification will modify the separator between the table rows that compose the thumbnail screen: a row will be added where you can add textual content or a horizontal banner ad.</p>
-Edit themes/yourtheme/theme.php using a plain-text editor, find <tt class="code">$template_thumbnail_view</tt> and modify as suggested below. If <tt class="code">$template_thumbnail_view</tt> doesn't exist in your custom theme, copy that section from the sample theme first.<br />
-Inside the variable definition for <tt class="code">$template_thumbnail_view</tt>, find
-<pre class="cpg_code">&lt;!-- BEGIN row_separator --&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-&lt;!-- END row_separator --&gt;</pre>
-and replace with
-<pre class="cpg_code">&lt;!-- BEGIN row_separator --&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td colspan="{$CONFIG['thumbcols']}"&gt;
-                your custom content
+<div class="indent">
+    <a name="theme_examples_content_thumbnail_extra_row"></a><h4>Extra row between thumbnail rows<a href="#theme_examples_content_thumbnail_extra_row" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <p class="cpg_message_info">This modification will modify the separator between the table rows that compose the thumbnail screen: a row will be added where you can add textual content or a horizontal banner ad.</p>
+    Edit themes/yourtheme/theme.php using a plain-text editor, find <tt class="code">$template_thumbnail_view</tt> and modify as suggested below. If <tt class="code">$template_thumbnail_view</tt> doesn't exist in your custom theme, copy that section from the sample theme first.<br />
+    Inside the variable definition for <tt class="code">$template_thumbnail_view</tt>, find
+    <pre class="cpg_code">&lt;!-- BEGIN row_separator --&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+    &lt;!-- END row_separator --&gt;</pre>
+    and replace with
+    <pre class="cpg_code">&lt;!-- BEGIN row_separator --&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td colspan="{$CONFIG['thumbcols']}"&gt;
+                    your custom content
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+    &lt;!-- END row_separator --&gt;</pre>
+    
+    <a name="theme_examples_content_thumbnail_cell"></a><h4>Extra table cell on each thumbnail page<a href="#theme_examples_content_thumbnail_cell" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <p>This is a more advanced mod that will require more editing. What it does though is more subtle: it doesn't add an entire row or column to the thumbnail page, but replaces one of the thumbnails on each thumbnail page with a cell with your custom content (e.g. your advert).</p>
+    Edit themes/yourtheme/theme.php using a plain-text editor, find <tt class="code">$template_thumbnail_view</tt> and modify as suggested below. If <tt class="code">$template_thumbnail_view</tt> doesn't exist in your custom theme, copy that section from the sample theme first.<br />
+    In the variable definition for <tt class="code">$template_thumbnail_view</tt>, find
+    <pre class="cpg_code">&lt;!-- END spacer --&gt;</pre>
+    and add after it (into a new line of it's own)
+    <pre class="cpg_code">&lt;!-- BEGIN advert --&gt;
+            &lt;td valign="top" class="thumbnails" width ="{CELL_WIDTH}" align="center"&gt;
+                    &lt;table width="100%" cellpadding="0" cellspacing="0"&gt;
+                            &lt;tr&gt;
+                                    &lt;td align="center"&gt;
+    									Your custom content here
+                                    &lt;/td&gt;
+                            &lt;/tr&gt;
+                    &lt;/table&gt;
             &lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-&lt;!-- END row_separator --&gt;</pre>
-
-<a name="theme_examples_content_thumbnail_cell"></a><h4>Extra table cell on each thumbnail page<a href="#theme_examples_content_thumbnail_cell" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-<p>This is a more advanced mod that will require more editing. What it does though is more subtle: it doesn't add an entire row or column to the thumbnail page, but replaces one of the thumbnails on each thumbnail page with a cell with your custom content (e.g. your advert).</p>
-Edit themes/yourtheme/theme.php using a plain-text editor, find <tt class="code">$template_thumbnail_view</tt> and modify as suggested below. If <tt class="code">$template_thumbnail_view</tt> doesn't exist in your custom theme, copy that section from the sample theme first.<br />
-In the variable definition for <tt class="code">$template_thumbnail_view</tt>, find
-<pre class="cpg_code">&lt;!-- END spacer --&gt;</pre>
-and add after it (into a new line of it's own)
-<pre class="cpg_code">&lt;!-- BEGIN advert --&gt;
-        &lt;td valign="top" class="thumbnails" width ="{CELL_WIDTH}" align="center"&gt;
-                &lt;table width="100%" cellpadding="0" cellspacing="0"&gt;
-                        &lt;tr&gt;
-                                &lt;td align="center"&gt;
-									Your custom content here
-                                &lt;/td&gt;
-                        &lt;/tr&gt;
-                &lt;/table&gt;
-        &lt;/td&gt;
-&lt;!-- END advert --&gt;</pre>
-Next, you'll need to edit the function definition for the function named <tt class="code">theme_display_thumbnails</tt>. In themes/yourtheme/theme.php, find <tt class="code">function theme_display_thumbnails</tt> and modify as suggested below. If that particular section doesn't exist in your custom theme, copy the function definition from the sample theme. To accomplish that, copy everything starting at (and including)
-<pre class="cpg_code">/******************************************************************************
-** Section &lt;&lt;&lt;theme_display_thumbnails&gt;&gt;&gt; - START
-******************************************************************************/</pre>
-untill (and including)
-<pre class="cpg_code">/******************************************************************************
-** Section &lt;&lt;&lt;theme_display_thumbnails&gt;&gt;&gt; - END
-******************************************************************************/</pre>
-into a new line before <tt class="code">?&gt;</tt> of themes/yourtheme/theme.php<br />
-In that function definition, find
-<pre class="cpg_code">    static $spacer = '';</pre>
-and add into a new line after it
-<pre class="cpg_code">    static $advert = '';</pre><br />
-Next, find
-<pre class="cpg_code">        $spacer = template_extract_block($template_thumbnail_view, 'spacer');</pre>
-and add after it into a new line 
-<pre class="cpg_code">        $advert = template_extract_block($template_thumbnail_view, 'advert');</pre><br />
-After that, find
-<pre class="cpg_code">    $thumbcols = $CONFIG['thumbcols'];</pre>
-and add after that into a new line
-<pre class="cpg_code">    $thumbrows = $CONFIG['thumbrows'];</pre><br />
-Now, find
-<pre class="cpg_code">    foreach($thumb_list as $thumb) {</pre>
-and add <strong>before</strong> it in a line of it's own
-<pre class="cpg_code">    // Start modification "random table cell ad"
-    $number_of_thumbs = count($thumb_list);
-    $advert_position = rand(0,$number_of_thumbs-1);</pre><br />
-Scroll down and find
-<pre class="cpg_code">        echo template_eval($thumb_cell, $params);</pre>
-and <strong>replace</strong> that line with
-<pre class="cpg_code">        // Add the advert cell 
-        if (defined('DISPLAY_ADS_FOR_META_ALBUMS') || is_numeric($aid) == TRUE) {
-        	$display_advert = 1;
-        } else {
-        	$display_advert = 0;
-        }
-        if ($i == $advert_position && $mode == 'thumb' && $display_advert == 1) {
-	        if ($number_of_thumbs < $thumbcols * $thumbrows) { // We have room to display
-	                                                           // the extra advert cell
-	        	//print_r($thumb_list);
-	        	$thumb_list[($number_of_thumbs+1)] = $thumb;
-	        	echo template_eval($advert, $params);
-		    } else { // We do not have room for the extra advert cell, 
-		             // so we'll have to replace one (i.e. drop the 
-		             // content of the thumb that should usually reside 
-		             // here without the ad)
-		    	echo template_eval($advert, $params);
-		    }
-        } else {
-        	echo template_eval($thumb_cell, $params);
-        }</pre><br />
-<!-- Taken from http://forum.coppermine-gallery.net/index.php/topic,58008.0.html -->
-<p>You have to make sure to apply this mod thoroughly. It's advisable to back up your custom theme.php first in case anything should go wrong, so that you can safely go back just in case.</p>
+    &lt;!-- END advert --&gt;</pre>
+    Next, you'll need to edit the function definition for the function named <tt class="code">theme_display_thumbnails</tt>. In themes/yourtheme/theme.php, find <tt class="code">function theme_display_thumbnails</tt> and modify as suggested below. If that particular section doesn't exist in your custom theme, copy the function definition from the sample theme. To accomplish that, copy everything starting at (and including)
+    <pre class="cpg_code">/******************************************************************************
+    ** Section &lt;&lt;&lt;theme_display_thumbnails&gt;&gt;&gt; - START
+    ******************************************************************************/</pre>
+    untill (and including)
+    <pre class="cpg_code">/******************************************************************************
+    ** Section &lt;&lt;&lt;theme_display_thumbnails&gt;&gt;&gt; - END
+    ******************************************************************************/</pre>
+    into a new line before <tt class="code">?&gt;</tt> of themes/yourtheme/theme.php<br />
+    In that function definition, find
+    <pre class="cpg_code">    static $spacer = '';</pre>
+    and add into a new line after it
+    <pre class="cpg_code">    static $advert = '';</pre><br />
+    Next, find
+    <pre class="cpg_code">        $spacer = template_extract_block($template_thumbnail_view, 'spacer');</pre>
+    and add after it into a new line 
+    <pre class="cpg_code">        $advert = template_extract_block($template_thumbnail_view, 'advert');</pre><br />
+    After that, find
+    <pre class="cpg_code">    $thumbcols = $CONFIG['thumbcols'];</pre>
+    and add after that into a new line
+    <pre class="cpg_code">    $thumbrows = $CONFIG['thumbrows'];</pre><br />
+    Now, find
+    <pre class="cpg_code">    foreach($thumb_list as $thumb) {</pre>
+    and add <strong>before</strong> it in a line of it's own
+    <pre class="cpg_code">    // Start modification "random table cell ad"
+        $number_of_thumbs = count($thumb_list);
+        $advert_position = rand(0,$number_of_thumbs-1);</pre><br />
+    Scroll down and find
+    <pre class="cpg_code">        echo template_eval($thumb_cell, $params);</pre>
+    and <strong>replace</strong> that line with
+    <pre class="cpg_code">        // Add the advert cell 
+            if (defined('DISPLAY_ADS_FOR_META_ALBUMS') || is_numeric($aid) == TRUE) {
+            	$display_advert = 1;
+            } else {
+            	$display_advert = 0;
+            }
+            if ($i == $advert_position && $mode == 'thumb' && $display_advert == 1) {
+    	        if ($number_of_thumbs < $thumbcols * $thumbrows) { // We have room to display
+    	                                                           // the extra advert cell
+    	        	//print_r($thumb_list);
+    	        	$thumb_list[($number_of_thumbs+1)] = $thumb;
+    	        	echo template_eval($advert, $params);
+    		    } else { // We do not have room for the extra advert cell, 
+    		             // so we'll have to replace one (i.e. drop the 
+    		             // content of the thumb that should usually reside 
+    		             // here without the ad)
+    		    	echo template_eval($advert, $params);
+    		    }
+            } else {
+            	echo template_eval($thumb_cell, $params);
+            }</pre><br />
+    <!-- Taken from http://forum.coppermine-gallery.net/index.php/topic,58008.0.html -->
+    <p>You have to make sure to apply this mod thoroughly. It's advisable to back up your custom theme.php first in case anything should go wrong, so that you can safely go back just in case.</p>
+</div>
 
 <hr />
 
 <a name="theme_examples_content_displayimage"></a><h3>Additional content on the intermediate-image pages (displayimage.php)<a href="#theme_examples_content_displayimage" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The output of displayimage.php - the page that shows the intermediate-sized image embedded into your site's layout is the page that your visitors will pay most attention to, as you managed to attract their attention on previous pages, so they decided to click on a thumbnail that sent them to the intermediate imaghe view. On this page, you can display adverts easily and you will almost certainly get a good click-through-rate, but you need to pay attention: the site already contains a lot of information - cluttering it more with even more content can be dangerous, as the visitor might feel overwhelmed and leave.</p>
+
+<div class="indent">
 
 <a name="theme_examples_content_displayimage_image"></a><h4>Directly next to the intermediate image<a href="#theme_examples_content_displayimage_image" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>The instructions apply for all extra content that should be applied <em>above</em>, <em>below</em> or next to (at the <em>right</em> or <em>left</em>) of your actual intermediate image that is embedded into the page. Keep in mind though that the place at the right or left may already be small, depending on the screen resolution of your visitor and the size of your intermediate image, so it's advisable to add your extra content at the top or bottom rather.</p>
@@ -217,6 +223,8 @@ EOT;
     echo template_eval($template, $params);
     endtable();
     echo '&lt;/div&gt;';</pre>
+    
+</div>
 
 <hr />
 
@@ -244,7 +252,7 @@ Edit it as you see fit - you will have to increase the variable's value by the a
 to
 <pre class="cpg_code">            $winsizeX = $CURRENT_PIC_DATA['pwidth'] + $CONFIG['fullsize_padding_x'];  //the +'s are the mysterious FF and IE paddings
             $winsizeY = $CURRENT_PIC_DATA['pheight'] + $CONFIG['fullsize_padding_y'] + 200; //the +'s are the mysterious FF and IE paddings</pre>
-
+</div>
 
 <div id="doc_footer">
 	<div class="doc_info_wrapper">

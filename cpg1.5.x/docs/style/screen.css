@@ -495,6 +495,14 @@ dt {
 	display: block; 
 }
 
+.treeview a.es { 
+	background-image: url(../../images/flags/es.png);
+	background-repeat:no-repeat;
+	background-position:2px 2px;
+	padding: 1px 0 1px 20px; 
+	display: block; 
+}
+
 .treeview a.fr { 
 	background-image: url(../../images/flags/fr.png);
 	background-repeat:no-repeat;
@@ -513,6 +521,14 @@ dt {
 
 .treeview a.us_de { 
 	background-image: url(../../images/flags/us_de.png);
+	background-repeat:no-repeat;
+	background-position:2px 2px;
+	padding: 1px 0 1px 20px; 
+	display: block; 
+}
+
+.treeview a.us_es { 
+	background-image: url(../../images/flags/us_es.png);
 	background-repeat:no-repeat;
 	background-position:2px 2px;
 	padding: 1px 0 1px 20px; 
