@@ -135,7 +135,7 @@ Si vous avez créer un fichier de passerelle personnalisé, copiez simlement ce 
 
 
 <a name="bridge_manager_app_start"></a><h4>Choisissez l'application avec laquelle vous voulez établir une passerelle<a href="#bridge_manager_app_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-<p><img src="images/bridge_02_app.png" width="600" height="340" border="0" alt="" align="right" />Dans la première étape de l'assistant &quot;choisissez l'application avec laquelle vous voulez établir une passerelle avec Coppermine&quot;, vous devez choisir l'application que vous voulez avec Coppermine. Notez que vous <strong>devez</strong> avoir cette application installée sur votre serveur, elle doit être correctement configurée et doit être opérationnelle. N'utilisez pas le gestionnaire de bridge si vous avez juste <em>planifié</em> l'intégration de coppermine avec une autre application plus tard.</p>
+<p><img src="images/bridge_02_app.png" width="800" height="340" border="0" alt="" align="right" />Dans la première étape de l'assistant &quot;choisissez l'application avec laquelle vous voulez établir une passerelle avec Coppermine&quot;, vous devez choisir l'application que vous voulez avec Coppermine. Notez que vous <strong>devez</strong> avoir cette application installée sur votre serveur, elle doit être correctement configurée et doit être opérationnelle. N'utilisez pas le gestionnaire de bridge si vous avez juste <em>planifié</em> l'intégration de coppermine avec une autre application plus tard.</p>
 <p>Choisissez un des fichier bridge disponible</p>
 
 <p>Cliquez sur &quot;suivant&quot;</p>
@@ -163,31 +163,31 @@ Si vous avez créer un fichier de passerelle personnalisé, copiez simlement ce 
 </div>
 <p>Vous devez comprendre que ce paramètre  <strong>n'est pas</strong> le chemin absolu d'un système de fichier sur votre serveur web, mais juste le chemin absolu vu depuis la racine de votre site.</p>
 
-<p class="cpg_example">On file system level of your web-server, the absolute path your webroot might be something like <tt class="code">/var/www/your_account_name/public_html/</tt>. Subsequently, the app you bridge with might reside in an absolute path on file system level like this: <tt class="code">/var/www/your_account_name/public_html/forum/</tt>. Your coppermine gallery might reside in an absolute path on file system level that looks like this: <tt class="code">/var/www/your_account_name/public_html/gallery/</tt>. However, it's the webroot folder that matters in this aspect - coppermine doesn't dig deeper on file system level and doesn't take the absolute paths into account that you might be using with other applications or to include files - it just uses the path seen from the webroot (the stuff that can be accessed directly in the browser). Hence, in this example the absolute path seen from the webroot would be <tt class="code">/forum/</tt> - nothing more, nothing less.</p>
+<p class="cpg_example">Dans le système de fichier de votre serveur, le chemin absolu vers la racine de votre site devrait être quelque chose comme <tt class="code">/var/www/votre_nom_de_compte/public_html/</tt>. En concéquence, l'application avec laquelle vous voulez établir une passerelle doit se trouver dans un chemin absolut du système de fichier de votre serveur comme ceci: <tt class="code">/var/www/votre_nom_de_compte/public_html/forum/</tt>. Votre galerie Coppermine devrait se trouver dans le chemin absolu comme ceci: <tt class="code">/var/www/votre_nom_de_compte/public_html/galerie/</tt>. Toutefois, c'est le répertoire racine qui importe à ce stade - Coppermine ne va pas ploger dans le système de fichier et ne prend pas en compte le chemin absolu que vous devez utiliser avec d'autres applications ou pour inclure des fichiers - il utilise juste le chemin vu depuis la racine (cequi peut être directement accessible depuis le navigateur). Donc, pour cet exemple, le chemin absolu vu depuis la racine de votre site devrait être <tt class="code">/forum/</tt> - ni plus ni moins.</p>
 <a name="bridge_manager_path_relative_path_of_forum_from_webroot_end"></a></li></ul>
-<ul><li><a name="bridge_manager_path_relative_path_to_config_file"></a><h5>Relative path to your bridge app's config file<a href="#bridge_manager_path_relative_path_to_config_file" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-<p>Relative path to your bridge app, seen from your Coppermine folder (e.g. "../forum/" if your bridge app is at http://www.yourdomain.tld/forum/ and Coppermine at http://www.yourdomain.tld/gallery/)</p>
-<p>A relative path does <strong>not</strong> start with a slash - that's the visual difference to an absolute path. You need to think on folder/sub-folder level to understand the concept of relative paths. Imagine that all folders on your webserver where the branches of a tree that was turned upside down: the root being at the top and branches going to the bottom. The relative path describes the way you need to take from a particular folder (the folder where coppermine resides in) to another folder (the folder where your bridge app resides in). The notation for relative paths contains a special way to say "one level up": that's two dots, followed by a forward slash (<tt class="code">../</tt>). This being said, let's look at some examples:</p>
+<ul><li><a name="bridge_manager_path_relative_path_to_config_file"></a><h5>Chemin relatif vers le fichier de configuration de l'application bridgée<a href="#bridge_manager_path_relative_path_to_config_file" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+<p>C'est le chemin relatif vers l'application avec laquelle vous voulez établir une passerelle, vu depuis le répertoire de Coppermine (exemple "../forum/" si votre application bridgée se trouve à l'adresse http://www.votredomaine.com/forum/ et Coppermine à http://www.votredomaine.com/gallery/)</p>
+<p>Un chemin relatif <strong>ne doit pas</strong> commencer avec un slash - c'est la différence visuelle d'un chemin absolu. Vous devez penser en niveau de répertoire/sous-répertoire pour comprendre le concept de chemin relatif. Imaginez que tous les répertoires de votre serveur sont les branches d'un arbre dont qui sont tournées vers le bas: les racines étant en haut et les branches allant vers le sol. Le chemin relatif décrit la route que vous devez faire depuis un répertoire particulier (le répertoire dans lequel se trouve Coppermine) vers un autre répertoire (le répertoire ou se trouve l'application bridgée). La manière d'écrire un chelin relatif contient une manière spéciale de dire "un niveau plus haut": ce sont deux points suivis par un slash (<tt class="code">../</tt>). Ceci dit, regardez les quelques exemples ci-dessous:</p>
 <div class="cpg_example">
 <table border="0" cellspacing="1" cellpadding="0" class="cpg_zebra">
     <tr>
-        <th>Your coppermine install</th>
-        <th>Your bridge app install</th>
-        <th>Relative path</th>
+        <th>Votre installation Coppermine</th>
+        <th>L'installation de l'appliaction bridgée</th>
+        <th>Chemin relatif</th>
     </tr>
     <tr>
-        <td><tt class="code">http://example.com/gallery/</tt></td>
-        <td><tt class="code">http://example.com/forum/</tt></td>
+        <td><tt class="code">http://exemple.com/galerie/</tt></td>
+        <td><tt class="code">http://exemple.com/forum/</tt></td>
         <td><tt class="code">../forum/</tt></td>
     </tr>
     <tr>
-        <td><tt class="code">http://example.com/gallery/</tt></td>
-        <td><tt class="code">http://example.com/community/board/</tt></td>
-        <td><tt class="code">../community/board/</tt></td>
+        <td><tt class="code">http://exemple.com/galerie/</tt></td>
+        <td><tt class="code">http://exemple.com/communaute/forum/</tt></td>
+        <td><tt class="code">../communaute/forum/</tt></td>
     </tr>
     <tr>
-        <td><tt class="code">http://example.com/pictures/coppermine/</tt></td>
-        <td><tt class="code">http://example.com/bbs/</tt></td>
+        <td><tt class="code">http://exemple.com/images/coppermine/</tt></td>
+        <td><tt class="code">http://exemple.com/bbs/</tt></td>
         <td><tt class="code">../../bbs/</tt></td>
     </tr>
     <tr>
@@ -196,60 +196,60 @@ Si vous avez créer un fichier de passerelle personnalisé, copiez simlement ce 
         <td><tt class="code"></tt></td>
     </tr>
     <tr>
-        <td><tt class="code">http://example.com/gallery/</tt></td>
+        <td><tt class="code">http://exemple.com/galerie/</tt></td>
         <td><tt class="code">http://example.com/</tt></td>
         <td><tt class="code">../</tt></td>
     </tr>
     <tr>
-        <td><tt class="code">http://example.com/</tt></td>
-        <td><tt class="code">http://example.com/forum/</tt></td>
+        <td><tt class="code">http://exemple.com/</tt></td>
+        <td><tt class="code">http://exemple.com/forum/</tt></td>
         <td><tt class="code">forum/</tt></td>
     </tr>
     <tr>
-        <td><tt class="code">http://example.com/community/pix/</tt></td>
-        <td><tt class="code">http://example.com/community/</tt></td>
+        <td><tt class="code">http://exemple.com/communaute/images/</tt></td>
+        <td><tt class="code">http://exemple.com/communaute/</tt></td>
         <td><tt class="code">../</tt></td>
     </tr>
     <tr>
-        <td><tt class="code">http://example.com/some/very/complicated/folder/</tt></td>
-        <td><tt class="code">http://example.com/</tt></td>
+        <td><tt class="code">http://exemple.com/un/repertoire/tres/complique/</tt></td>
+        <td><tt class="code">http://exemple.com/</tt></td>
         <td><tt class="code">../../../../</tt></td>
     </tr>
     <tr>
-        <td><tt class="code">http://example.com/gallery/</tt></td>
-        <td><tt class="code">http://example.com/community/forum/</tt></td>
-        <td><tt class="code">../community/forum/</tt></td>
+        <td><tt class="code">http://exemple.com/galerie/</tt></td>
+        <td><tt class="code">http://exemple.com/communaute/forum/</tt></td>
+        <td><tt class="code">../communaute/forum/</tt></td>
     </tr>
 </table>
 </div>
 <a name="bridge_manager_path_relative_path_to_config_file_end"></a></li></ul>
-<ul><li><a name="bridge_manager_path_cookie_prefix"></a><h5>Cookie prefix<a href="#bridge_manager_path_cookie_prefix" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-<p>This has to be the cookie name of the application you bridge with. Do <strong>not</strong> enter the cookie prefix of your coppermine gallery here! You can not make this setting up - you have to look it up in the documentation or settings that come with the application you're going to bridge with.</p>
+<ul><li><a name="bridge_manager_path_cookie_prefix"></a><h5>Préfixe de cookie<a href="#bridge_manager_path_cookie_prefix" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+<p>Ce doit être le nom du cookie de l'application avec laquelle vous souhaitez établir la passerelle. <strong>N'entrez pas</strong> le préfixe de cookie de votre galerie Coppermine ici! Vous ne pouvez pas le définir vous-même - vous devez regarder la documentation ou les réglages de l'application avec laquelle vous voulez établir la passerelle.</p>
 
-<p class="cpg_example">The popular BBS application "phpBB2" is using the default cookie prefix <tt class="code">phpbb2mysql</tt> - this can be changed by the forum administrator, so if you're not sure what your cookie prefix is, go to the config panel of the app you bridge with and look the cookie prefix up.</p>
-<p>The cookie prefix must not be confused with the cookie path - they are entirely different animals. The cookie prefix (in some applications it is being called "cookie name" as well) is something on application level - something the people who designed your bridge app have come up with.</p>
+<p class="cpg_example">L'aplication populaire "phpBB2" utilise le préfixe de cookie par défaut <tt class="code">phpbb2mysql</tt> - il peut être modifié par l'administrateur du forum, donc, si vous n'êtes pas sur de votre préfixe de cookie, allez dans la panneau de configuration du forum et cherchez le préfixe du cookie qui s'y trouve.</p>
+<p>Le préfixe de cookie ne doit pas être confondu avec le chemin du cookie - ce sont deux choses très différentes. Le préfixe de cookie (dans certaines applications est appelé "nom du cookie") fait partie intégrante de l'apllication - quelque chose que les développeurs de l'apllication ont défini.</p>
 <a name="bridge_manager_path_cookie_prefix_end"></a></li></ul>
 <a name="bridge_manager_path_end"></a>
 
-<a name="bridge_manager_specific_start"></a><h4>Bridge app-specific settings<a href="#bridge_manager_specific_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<a name="bridge_manager_specific_start"></a><h4>Paramètres spécifiques des applications bridgées<a href="#bridge_manager_specific_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 
-<ul><li><a name="bridge_manager_specific_groups"></a><h5>Use bridge app custom groups?<a href="#bridge_manager_specific_groups" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-<p>Should Coppermine import the special groups that exist in your bridge app? If you select no, then Coppermine will use the standard groups it comes with (Administrator, Registered and Anonymous) which makes administration easier. If you enable this option by selecting yes, you will have a more granular permissions management in coppermine and you can assign permissions in coppermine based on the membership within custom groups of your bridge app. You can change this setting later as well.</p>
+<ul><li><a name="bridge_manager_specific_groups"></a><h5>Utiliser les groupes personnalisés de l'application bridgée?<a href="#bridge_manager_specific_groups" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+<p>Est ce que Coppermine doit importer les groupes spéciaux qui existent dans votre application bridgée? Si vous sélectionnez Non, Coppermine utilisera uniquement les groupes standards (Administrateur, Enregistré et Anonyme) ce qui rendra l'administration plus facile. Si vous activez cette option en sélectionnant Oui, vous aurez une gestion des droits plus fine dans Coppermine et pourrez définir les droits dans Coppermine en vous appuyant sur les groupes personnalisés de votre application bridgée. Vous pouvez changer ce paramètre plus tard.</p>
 <a name="bridge_manager_use_post_based_groups_end"></a></li></ul>
 
 <a name="bridge_manager_specific_end"></a>
 
-<a name="bridge_manager_enable_start"></a><h4>Enable/disable bridging<a href="#bridge_manager_enable_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-<p>This is the last step of the bridge manager - it summarizes up the settings you have made in previous steps - you can enable or disable integration here. By default, integration is set to &quot;disabled&quot; after the bridge manager has been run for the first time. You should only enable integration if you're sure your bridge app is set up correctly. Click the &quot;Finish&quot; button in any case to finally write to the database, even if you choose to keep the current settings (leaving integration &quot;disabled&quot;).</p>
+<a name="bridge_manager_enable_start"></a><h4>Activer/désactiver la passerelle<a href="#bridge_manager_enable_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>C'est la dernière étape du gestionnaire de bridge - il résume les paramètres que vous avez défini dans les étapes précédentes - vous pouvez activer/désctiver l'intégration ici. Par défaut, l'intégration est paramétrée sur &quot;désactivé&quot; une fois que le gestionnaire d'intégration a été lancé pour la première fois. Vous ne devez activer l'intégration que si vous êtes sur que l'apllication avec laquelle vous voulez établir la passerelle est paramétrée corrcetement. Cliquez sur le bouton &quot;Terminer&quot; dans tous les cas pour finalement écrire dans la base de donnée, même si vous choisissez de garder les paramètres actuels (laisser l'intégration &quot;désactivée&quot;).</p>
 <ul>
-<li><strong>Enable integration/bridging with XXX</strong></li>
+<li><strong>Activer l'intégration/bridger avec XXX</strong></li>
 </ul>
 <a name="bridge_manager_enable_end"></a>
 
 <a name="bridge_manager_end"></a>
 
-<a name="bridge_manager_recover_start"></a><h2>Recover from failed bridging<a href="#bridge_manager_recover_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>If you have provided improper settings using the bridge manager, your integration might fail, resulting (in the worst case) in a stituation where bridging is enabled, but you can not log in as admin to switch it off again (e.g. if you provided improper cookie settings that stops authentication from working). For this situation a recovery setting was built into the bridge manager: if you are not logged in as coppermine admin (in fact: not logged in at all) and you access the URL of your bridge manager (http://yourdomain.tld/your_coppermine_folder/bridgemgr.php) by entering it manually into the address bar of your browser, you are prompted to enter your admin account details - use the admin account you used to install coppermine with in the first place (the standalone admin account). This will not log you in, but switch integration off, so you can fix improper bridging settings then. To avoid others trying to guess your admin account details, there's a login threshold that rises every time you enter wrong credentials, so enter your admin account details with care.</p>
+<a name="bridge_manager_recover_start"></a><h2>Restauration après une erreur d'intégration<a href="#bridge_manager_recover_start" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Si vous avez donné de mauvais réglages lors de l'utilisation de l'assistat d'intégration, votre intégrateur peut échouer, avec pour résultat (dan sla plupart des cas) dans une situation ou l'intégration est activée, mais ou vous ne pouvez pas vous identifier pour la désactiver à nouveau (exemple si vous entrez un mauvais paramètre de cookie qui empêche le focntionnement de l'autentification). Pour parer à cette situation, un paramètre de restauration a été inclu dans le gestionnaire d'intégration: si vous n'êtes pas identifié comme administrateur dans Coppermine (en fait si vous n'êtes pas identifié du tout) et que vous accédez à l'URL du gestionnaire d'intégration depuis votre navigateur (http://votredomaine.com/votrerepertoirecoppermine/bridgemgr.php) en entrant cette adresse manuellement dans la barre d'adresse de votr enavigateur, il vous est demandé d'entrer vos paramètres de compte d'administrateur (identifiant et mot de passe) - utilisez les paramètres que vous avez définis lors de l'installation de Coppermine (identifiants administrateurs pour une vesion autonome). Cela ne va pas vous udentifier, mais va désactiver l'intégration, vous permettant de corriger les mauvais réglages. Pour éviter que d'autres essayent de trouver vos identifiants administrateurs ici, il y a un temps d'attente entre chaque essai qui augmente à chaque fois, faites donc attention lorsque vous entrez vos identifiants administrateurs.</p>
 
 <a name="bridge_manager_recover_end"></a>
 
