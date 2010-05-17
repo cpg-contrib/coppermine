@@ -10,7 +10,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.5.4
+  Coppermine version: 1.5.3
   $HeadURL$
   $Revision$
   $LastChangedBy$
@@ -235,195 +235,196 @@ $lang_gallery_admin_menu['pictures_title'] = 'Resimlerin albümlerdeki sıralama
 $lang_gallery_admin_menu['pictures_lnk'] = 'Resimlerimi sırala';
 $lang_gallery_admin_menu['documentation_lnk'] = 'Belgeleme';
 $lang_gallery_admin_menu['documentation_title'] = 'Coppermine kılavuzu';
-$lang_gallery_admin_menu['phpinfo_lnk'] = 'phpinfo'; // cpg1.5
-$lang_gallery_admin_menu['phpinfo_title'] = 'Beinhaltet technische Informationen über Ihren Server. Sie werden möglicherweise nach diesen Informationen gefragt, wenn Sie eine Support-Anfrage stellen.'; // cpg1.5
-$lang_gallery_admin_menu['update_database_lnk'] = 'Datenbank aktualisieren'; // cpg1.5
-$lang_gallery_admin_menu['update_database_title'] = 'Wenn Sie Coppermine-Dateien ersetzt haben, eine Modifikation oder ein Upgrade von einer frühreren Version von Coppermine durchgeführt haben, lassen Sie diese Datenbank-Aktualisierung einmal laufen, um die möglicherweise notwendigen Änderungen an der Datenbank durchzuführen bzw. fehlende Tabellen zu erzeugen.'; // cpg1.5
-$lang_gallery_admin_menu['view_log_files_lnk'] = 'Log-Dateien anzeigen'; // cpg1.5
-$lang_gallery_admin_menu['view_log_files_title'] = 'Coppermine kann verschiedene Benutzer-Aktionen protokollieren. Diese Protokolle können hier angesehen werden, wenn die Aufzeichnung von Log-Dateien in den Coppermine-Einstellungen aktiviert wurde.'; // cpg1.5
-$lang_gallery_admin_menu['check_versions_lnk'] = 'Versions-Check'; // cpg1.5
-$lang_gallery_admin_menu['check_versions_title'] = 'Überprüfen Sie die Versionen Ihrer Dateien, um herauszufinden, ob alle Dateien bei einem Update korrekt ersetzt wurden, oder ob die Coppermine-Dateien nach der Veröffentlichung eines Pakets aktualisiert wurden.'; // cpg1.5
-$lang_gallery_admin_menu['bridgemgr_lnk'] = 'Bridge-Assistent'; // cpg1.5
-$lang_gallery_admin_menu['bridgemgr_title'] = 'Assistent zur Integration der Benutzerverwaltung von Coppermine mit einer anderen Applikation (z.B. einem Forum) - sogenanntes Bridging.'; // cpg1.5
-$lang_gallery_admin_menu['pluginmgr_lnk'] = 'Plugins'; // cpg1.5
-$lang_gallery_admin_menu['pluginmgr_title'] = 'Plugins verwalten'; // cpg1.5
-$lang_gallery_admin_menu['overall_stats_lnk'] = 'Gesamt-Statistik'; // cpg1.5
-$lang_gallery_admin_menu['overall_stats_title'] = 'Trefferstatistiken nach Browser und Betriebssystem anzeigen (wenn entsprechende Option in den Einstellungen aktiviert sind).'; // cpg1.5
-$lang_gallery_admin_menu['keywordmgr_lnk'] = 'Schlagworte'; // cpg1.5
-$lang_gallery_admin_menu['keywordmgr_title'] = 'Schlagworte verwalten (falls die entsprechende Option in den Einstellungen aktiviert wurde).'; // cpg1.5
+$lang_gallery_admin_menu['phpinfo_lnk'] = 'PHP bilgilerini göster'; // cpg1.5
+$lang_gallery_admin_menu['phpinfo_title'] = 'Sunucu hakkında teknik bilgiler içeriyor. Eğer bir destek talebinde bulunursanız bu bilgi istenebilir.'; // cpg1.5
+$lang_gallery_admin_menu['update_database_lnk'] = 'Veritabanı güncelleme'; // cpg1.5
+$lang_gallery_admin_menu['update_database_title'] = 'Eğer Coppermine dosyalarında değişiklik veya bir eklenti yâda eski bir Coppermine sürümünde yükseltme yapmışsanız, veritabanında muhtemelen gerekli değişiklikleri gerçekleştirmek yâda eksik tabloları oluşturmak için, veritabanı yükseltmeyi çalıştırınız.'; // cpg1.5
+$lang_gallery_admin_menu['view_log_files_lnk'] = 'Log dosyaları göster'; // cpg1.5
+$lang_gallery_admin_menu['view_log_files_title'] = 'Coppermine çeşitli kullanıcı eylemlerini izleyebilir. Bu protokoller burada görülebilir, eğer log dosyalarının kaydı coppermine ayarlarında aktifleştirilmişse.'; // cpg1.5
+$lang_gallery_admin_menu['check_versions_lnk'] = 'Sürüm kontrolü'; // cpg1.5
+$lang_gallery_admin_menu['check_versions_title'] = 'Tüm dosyaların bir yükseltme sırasında yenilendiğini veya Coppermine dosyalarının bir paketin yayımlanmasından sonra güncellendiğini öğrenmek için dosyalarınızın sürümlerini kontrol edin.'; // cpg1.5
+$lang_gallery_admin_menu['bridgemgr_lnk'] = 'Köprü asistanı'; // cpg1.5
+$lang_gallery_admin_menu['bridgemgr_title'] = 'Başka bir uygulama ile Coppermine kullanıcı yönetimi entegrasyon asistanı.(örneğin bir forum) - köprü olarak adlandırılan.'; // cpg1.5
+$lang_gallery_admin_menu['pluginmgr_lnk'] = 'Eklentiler'; // cpg1.5
+$lang_gallery_admin_menu['pluginmgr_title'] = 'Eklentileri yönet'; // cpg1.5
+$lang_gallery_admin_menu['overall_stats_lnk'] = 'Genel İstatistikler'; // cpg1.5
+$lang_gallery_admin_menu['overall_stats_title'] = 'Tarayıcınız ve işletim sisteminiz için sonuç istatistikleri (uygun seçenek ayarlarda etkinse).'; // cpg1.5
+$lang_gallery_admin_menu['keywordmgr_lnk'] = 'Anahtar kelimeler'; // cpg1.5
+$lang_gallery_admin_menu['keywordmgr_title'] = 'Anahtar kelimeleri yönet (uygun seçenek ayarlarda etkinse).'; // cpg1.5
 $lang_gallery_admin_menu['exifmgr_lnk'] = 'EXIF'; // cpg1.5
-$lang_gallery_admin_menu['exifmgr_title'] = 'EXIF-Anzeige verwalten (falls die entsprechende Option in den Einstellungen aktiviert wurde).'; // cpg1.5
-$lang_gallery_admin_menu['shownews_lnk'] = 'News anzeigen'; // cpg1.5
-$lang_gallery_admin_menu['shownews_title'] = 'Neueste Nachrichten von coppermine-gallery.net anzeigen'; // cpg1.5
-$lang_gallery_admin_menu['admin_menu'] = 'Admin-Menü'; // cpg1.5
+$lang_gallery_admin_menu['exifmgr_title'] = 'EXIF görünümü yönet (uygun seçenek ayarlarda etkinse).'; // cpg1.5
+$lang_gallery_admin_menu['shownews_lnk'] = 'Haberleri göster'; // cpg1.5
+$lang_gallery_admin_menu['shownews_title'] = 'coppermine-gallery.net son haberleri göster'; // cpg1.5
+$lang_gallery_admin_menu['admin_menu'] = 'Yönetici Menüsü'; // cpg1.5
 
-$lang_user_admin_menu['albmgr_title'] = 'Meine Alben erzeugen/anordnen';
-$lang_user_admin_menu['albmgr_lnk'] = 'Alben erzeugen/anordnen';
-$lang_user_admin_menu['modifyalb_title'] = 'Meine Alben bearbeiten';
-$lang_user_admin_menu['modifyalb_lnk'] = 'Meine Alben bearbeiten';
-$lang_user_admin_menu['my_prof_title'] = 'Zu meinem persönlichen Profil gehen';
-$lang_user_admin_menu['my_prof_lnk'] = 'Mein Profil';
+$lang_user_admin_menu['albmgr_title'] = 'Albüm oluştur/düzenle';
+$lang_user_admin_menu['albmgr_lnk'] = 'Albüm oluştur/düzenle';
+$lang_user_admin_menu['modifyalb_title'] = 'Albüm seçenekleri';
+$lang_user_admin_menu['modifyalb_lnk'] = 'Albüm seçenekleri';
+$lang_user_admin_menu['my_prof_title'] = 'Kişisel Profilim';
+$lang_user_admin_menu['my_prof_lnk'] = 'Kişisel Profilim';
 
-$lang_cat_list['category'] = 'Kategorie';
-$lang_cat_list['albums'] = 'Alben';
-$lang_cat_list['pictures'] = 'Dateien';
+$lang_cat_list['category'] = 'Kategori';
+$lang_cat_list['albums'] = 'Albümler';
+$lang_cat_list['pictures'] = 'Dosyalar';
 
-$lang_album_list['album_on_page'] = '%d Alben auf %d Seite(n)';
+$lang_album_list['album_on_page'] = '%d albüm var %d sayfada';
 
-$lang_thumb_view['date'] = 'Datum';
+$lang_thumb_view['date'] = 'Tarih';
   //Sort by filename and title
-$lang_thumb_view['name'] = 'Dateiname';
-$lang_thumb_view['sort_da'] = 'Aufsteigend nach Datum sortieren';
-$lang_thumb_view['sort_dd'] = 'Absteigend nach Datum sortieren';
-$lang_thumb_view['sort_na'] = 'Aufsteigend nach Name sortieren';
-$lang_thumb_view['sort_nd'] = 'Absteigend nach Name sortieren';
-$lang_thumb_view['sort_ta'] = 'Aufsteigend nach Titel sortieren';
-$lang_thumb_view['sort_td'] = 'Absteigend nach Titel sortieren';
-$lang_thumb_view['position'] = 'Position';
-$lang_thumb_view['sort_pa'] = 'Aufsteigend nach Position sortieren';
-$lang_thumb_view['sort_pd'] = 'Absteigend nach Position sortieren';
-$lang_thumb_view['download_zip'] = 'Als ZIP-Datei herunterladen';
-$lang_thumb_view['pic_on_page'] = '%d Dateien auf %d Seite(n)';
-$lang_thumb_view['user_on_page'] = '%d Benutzer auf %d Seite(n)';
-$lang_thumb_view['enter_alb_pass'] = 'Geben Sie das Passwort für das Album ein';
-$lang_thumb_view['invalid_pass'] = 'Ungültiges Passwort';
-$lang_thumb_view['pass'] = 'Passwort';
-$lang_thumb_view['submit'] = 'Absenden';
-$lang_thumb_view['zipdownload_copyright'] = 'Bitte respektieren Sie die Urheberrechte - benutzen Sie die heruntergeladenen Dateien nur so, wie vom Eigentümer der Galerie vorgesehen'; // cpg1.5
-$lang_thumb_view['zipdownload_username'] = 'Dieses Archiv enthält die gepackten Dateien der Favoriten von %s'; // cpg1.5
+$lang_thumb_view['name'] = 'Dosya adı';
+$lang_thumb_view['sort_da'] = 'Tarihe göre ARTAN sırala';
+$lang_thumb_view['sort_dd'] = 'Tarihe göre AZALAN sırala';
+$lang_thumb_view['sort_na'] = 'Ada göre ARTAN sırala';
+$lang_thumb_view['sort_nd'] = 'Ada göre AZALAN sırala';
+$lang_thumb_view['sort_ta'] = 'Konuya göre ARTAN sırala';
+$lang_thumb_view['sort_td'] = 'Konuya göre AZALAN sırala';
+$lang_thumb_view['position'] = 'Konum';
+$lang_thumb_view['sort_pa'] = 'Pozisyona göre ARTAN sırala';
+$lang_thumb_view['sort_pd'] = 'Pozisyona göre AZALAN sırala';
+$lang_thumb_view['download_zip'] = 'Zip dosyası olarak indir';
+$lang_thumb_view['pic_on_page'] = '%d resim var %d sayfada';
+$lang_thumb_view['user_on_page'] = '%d kullanıcı var %d sayfada';
+$lang_thumb_view['enter_alb_pass'] = 'Albüm için şifrenizi girin';
+$lang_thumb_view['invalid_pass'] = 'Yanlış şifre';
+$lang_thumb_view['pass'] = 'Şifre';
+$lang_thumb_view['submit'] = 'Tamam';
+$lang_thumb_view['zipdownload_copyright'] = 'Lütfen telif haklarına saygılı olunuz - indirilen dosyalar sadece galeri sahibi tarafından öngörülen şekilde kullanın'; // cpg1.5
+$lang_thumb_view['zipdownload_username'] = 'Bu arşiv sonraki kullanıcının paketlenmiş favorilerinin dosyalarını içerir:  %s'; // cpg1.5
 
-$lang_img_nav_bar['thumb_title'] = 'zurück zur Thumbnail-Seite';
-$lang_img_nav_bar['pic_info_title'] = 'Dateiinformationen anzeigen/verbergen';
-$lang_img_nav_bar['slideshow_title'] = 'Diashow';
-$lang_img_nav_bar['ecard_title'] = 'Bild als eCard versenden';
-$lang_img_nav_bar['ecard_disabled'] = 'eCards sind deaktiviert';
-$lang_img_nav_bar['ecard_disabled_msg'] = 'Sie haben nicht das Recht, eCards zu versenden';
-$lang_img_nav_bar['prev_title'] = 'vorherige Datei anzeigen';
-$lang_img_nav_bar['next_title'] = 'nächste Datei anzeigen';
-$lang_img_nav_bar['pic_pos'] = 'Datei %s/%s';
-$lang_img_nav_bar['report_title'] = 'Diese Datei dem Administrator melden';
-$lang_img_nav_bar['go_album_end'] = 'Zum Ende gehen';
-$lang_img_nav_bar['go_album_start'] = 'Zum Anfang zurückkehren';
-$lang_img_nav_bar['go_back_x_items'] = '%s Einträge zurück gehen';
-$lang_img_nav_bar['go_forward_x_items'] = '%s Einträge weiter gehen';
+$lang_img_nav_bar['thumb_title'] = 'Küçük resim sayfasına dön';
+$lang_img_nav_bar['pic_info_title'] = 'Resim özelliklerini göster/sakla';
+$lang_img_nav_bar['slideshow_title'] = 'Ard arda (slide) gösterim';
+$lang_img_nav_bar['ecard_title'] = 'Resmi bir e-kartpostal olarak yolla';
+$lang_img_nav_bar['ecard_disabled'] = 'e-kartpostal özelliği etkin değil';
+$lang_img_nav_bar['ecard_disabled_msg'] = 'e-kartpostal yollama izniniz yok';
+$lang_img_nav_bar['prev_title'] = 'Önceki dosyaya bak';
+$lang_img_nav_bar['next_title'] = 'Sonraki dosyaya bak';
+$lang_img_nav_bar['pic_pos'] = 'Dosya %s/%s';
+$lang_img_nav_bar['report_title'] = 'Bu dosyayı yöneticiye bildir';
+$lang_img_nav_bar['go_album_end'] = 'Sona git';
+$lang_img_nav_bar['go_album_start'] = 'Başa dön';
+$lang_img_nav_bar['go_back_x_items'] = ' %s dosya dön';
+$lang_img_nav_bar['go_forward_x_items'] = ' %s dosya ileri git';
 
-$lang_rate_pic['rate_this_pic'] = 'Diese Datei bewerten';
-$lang_rate_pic['no_votes'] = '(noch keine Bewertung)';
-$lang_rate_pic['rating'] = '- derzeitige Bewertung : %s/%s mit %s Stimme(n)';
-$lang_rate_pic['rubbish'] = 'sehr schlecht';
-$lang_rate_pic['poor'] = 'schlecht';
-$lang_rate_pic['fair'] = 'ganz okay';
-$lang_rate_pic['good'] = 'gut';
-$lang_rate_pic['excellent'] = 'sehr gut';
-$lang_rate_pic['great'] = 'super';
-$lang_rate_pic['js_warning'] = 'JavaScript muss aktiviert sein, um Abstimmen zu können'; // cpg1.5
-$lang_rate_pic['already_voted'] = 'Sie haben schon für diese Datei abgestimmt.'; // cpg1.5
-$lang_rate_pic['forbidden'] = 'Sie können Ihre eigenen Dateien nicht bewerten.'; // cpg1.5
-$lang_rate_pic['rollover_to_rate'] = 'Halten Sie die Maus über die Bewertung, um Ihre Stimme abzugeben'; // cpg1.5
+$lang_rate_pic['rate_this_pic'] = 'Bu dosyayı puanla';
+$lang_rate_pic['no_votes'] = '(Puanlama henüz yok)';
+$lang_rate_pic['rating'] = '(Güncel Beğeni Oranı : %s / 5 etkiyen %s oy';
+$lang_rate_pic['rubbish'] = 'Berbat';
+$lang_rate_pic['poor'] = 'Değersiz';
+$lang_rate_pic['fair'] = 'İdare Eder';
+$lang_rate_pic['good'] = 'İyi';
+$lang_rate_pic['excellent'] = 'Çok İyi';
+$lang_rate_pic['great'] = 'Mükemmel';
+$lang_rate_pic['js_warning'] = 'JavaScript oylamak için etkin olmalıdır'; // cpg1.5
+$lang_rate_pic['already_voted'] = 'Zaten bu dosyayı oyladınız.'; // cpg1.5
+$lang_rate_pic['forbidden'] = 'Kendi dosyalarınızı oylayamazsınız.'; // cpg1.5
+$lang_rate_pic['rollover_to_rate'] = 'Oyunuzu vermek için, farenin okunu puanlamanın üzerine getirin'; // cpg1.5
 
 // ------------------------------------------------------------------------- //
 // File include/functions.inc.php
 // ------------------------------------------------------------------------- //
-$lang_cpg_die['file'] = 'Datei: ';
-$lang_cpg_die['line'] = 'Zeile: ';
+$lang_cpg_die['file'] = 'Dosya: ';
+$lang_cpg_die['line'] = 'Satır: ';
 
-$lang_display_thumbnails['dimensions'] = 'Abmessungen: ';
-$lang_display_thumbnails['date_added'] = 'hinzugefügt am: ';
-$lang_display_thumbnails['unapproved'] = 'Unbestätigt'; // cpg1.5
+$lang_display_thumbnails['dimensions'] = 'Boyutlar: ';
+$lang_display_thumbnails['date_added'] = 'Eklenen tarih: ';
+$lang_display_thumbnails['unapproved'] = 'Doğrulanmamış'; // cpg1.5
 
-$lang_get_pic_data['n_comments'] = '%s Kommentar(e)';
-$lang_get_pic_data['n_views'] = '%s x angesehen';
-$lang_get_pic_data['n_votes'] = '(%s Bewertungen)';
+$lang_get_pic_data['n_comments'] = '%s yorum yapıldı';
+$lang_get_pic_data['n_views'] = '%s kez bakıldı';
+$lang_get_pic_data['n_votes'] = '(%s oy verildi)';
 
-$lang_cpg_debug_output['debug_info'] = 'Debug-Info';
-$lang_cpg_debug_output['debug_output'] = 'Debug-Ausgabe'; // cpg1.5
-$lang_cpg_debug_output['select_all'] = 'Alles markieren';
-$lang_cpg_debug_output['copy_and_paste_instructions'] = 'Wenn Sie Hilfe im Coppermine-Forum suchen wollen, sollten Sie diese Debug-Ausgabe in Ihren Beitrag im Forum kopieren, wenn ein Supporter ausdrücklich danach verlangt (und NUR dann)! Ersetzen Sie eventuell vorhandene Passwörter in den Queries durch ***.';
-$lang_cpg_debug_output['debug_output_explain'] = 'Anmerkung: Diese Ausgabe erfolgt nur zur Information und bedeutet nicht, dass ein Fehler in der Galerie vorliegt.'; // cpg1.5
-$lang_cpg_debug_output['phpinfo'] = 'phpinfo anzeigen';
-$lang_cpg_debug_output['notices'] = 'PHP-Notizen (notices)';
-$lang_cpg_debug_output['notices_help_admin'] = 'Die Notizen, die nachfolgend angezeigt werden erscheinen nur, weil Sie (als Galerie-Admin) diese Funktion in den Einstellungen aktiviert haben. Sie bedeuten nicht, dass etwas mit Ihrer Galerie nicht stimmt. Sie sind eine Entwickler-Funktion, die nur von erfahrenen Programmierern eingeschaltet werden sollte, um Fehlern auf die Schliche zu kommen. Wenn die Anzeige der Notizen Sie stört und/oder Sie keine Ahnung haben, wozu sie gut sind, dann sollten Sie die entsprechende Option in den Einstellungen abschalten.'; // cpg1.5
-$lang_cpg_debug_output['notices_help_non_admin'] = 'Die Notizen, die nachfolgend angezeigt werden erscheinen nur, weil der Admin diese Funktion in den Einstellungen aktiviert hat. Sie bedeuten nicht, dass etwas von Ihrer Seite her nicht stimmt. Die angezeigten Notizen können problemlos ignoriert werden.'; // cpg1.5
-$lang_cpg_debug_output['show_hide'] = 'anzeigen / verbergen'; // cpg1.5
+$lang_cpg_debug_output['debug_info'] = 'Hata ayıklama bilgisi';
+$lang_cpg_debug_output['debug_output'] = 'Hata ayıklama çıkışı'; // cpg1.5
+$lang_cpg_debug_output['select_all'] = 'Tümünü seç';
+$lang_cpg_debug_output['copy_and_paste_instructions'] = 'Eğer Coppermine den yardım talebinde bulunacaksanız, hata ayıklama çıkışını kopyala yapıştır ile gönderiniz, yalnız bir destekçi bunu açıkça talep ederse (SADECE bu durumda)! Sorgularda varolan şifreleri *** ile değiştirin.';
 
-$lang_language_selection['reset_language'] = 'Standard-Sprache';
-$lang_language_selection['choose_language'] = 'Wähle Sprache';
+$lang_cpg_debug_output['debug_output_explain'] = 'Not: Bu hata ayıklama çıkışı sadece bilgi içindir ve galeride bir hata olduğu anlamına gelmez.'; // cpg1.5
+$lang_cpg_debug_output['phpinfo'] = 'PHP bilgilerini göster';
+$lang_cpg_debug_output['notices'] = 'PHP notları (notices)';
+$lang_cpg_debug_output['notices_help_admin'] = 'Aşağıdaki görünür notlar, sadece sizin (galeri yöneticisi olarak) bu özelliği ayarlar bölümünde aktif hale getirdiğiniz için görünüyor. Bunların galerinizde herhangi bir hata olduğu anlamına gelmez. Yalnızca deneyimli programcılar tarafından hataları akıllıca almak için açık olması gereken bir geliştirici işlevidir. Eğer gösterilen notlar sizi rahatsız ediyor yâda bunların ne ise yaradığını bilmiyorsanız, ilgili seçeneği ayarlar bölümünde kapatın.'; // cpg1.5
+$lang_cpg_debug_output['notices_help_non_admin'] = 'Aşağıdaki görünür notlar, sadece galeri yöneticisi bu özelliği ayarlar bölümünde aktif hale getirdiği için görünüyor. Bunların galeride herhangi bir hata olduğu anlamına gelmez. Gösterilen notlar sorunsuz göz ardı edilebilir.'; // cpg1.5
+$lang_cpg_debug_output['show_hide'] = 'göster / sakla'; // cpg1.5
 
-$lang_theme_selection['reset_theme'] = 'Standard-Design';
-$lang_theme_selection['choose_theme'] = 'Wähle Design';
+$lang_language_selection['reset_language'] = 'Varsayılan dil';
+$lang_language_selection['choose_language'] = 'Dil seçin';
 
-$lang_version_alert['version_alert'] = 'Nicht unterstützte Version!';
-$lang_version_alert['no_stable_version'] = 'Sie betreiben Coppermine version %s (%s), das nur für erfahrene Benutzer gedacht ist - für diese Version gibt es keinen Support oder Funktions-Garantien. Benutzen Sie sie auf eigenes Risiko oder downgraden Sie auf die aktuellste stabile Version, wenn Sie Support brauchen!';
-$lang_version_alert['gallery_offline'] = 'Die Galerie ist zur Zeit im Wartungs-Modus und ist nur für Sie als Admin zugänglich. Vergessen Sie nicht, sie wieder aus dem Wartungs-Modus in den "normalen" Modus zurück zu schalten, wenn Ihre Wartungsarbeiten beendet sind.';
-$lang_version_alert['coppermine_news'] = 'News von coppermine-gallery.net'; //cpg1.5
-$lang_version_alert['no_iframe'] = 'Dein Browser kann keine eingebetteten Frames darstellen'; //cpg1.5
-$lang_version_alert['hide'] = 'verbergen'; //cpg1.5
+$lang_theme_selection['reset_theme'] = 'Varsayılan tema';
+$lang_theme_selection['choose_theme'] = 'Tema seçiniz';
 
-$lang_create_tabs['previous'] = 'vorherige'; //cpg1.5
-$lang_create_tabs['next'] = 'nächste'; //cpg1.5
-$lang_create_tabs['jump_to_page'] = 'Gehe zu Seite'; // cpg1.5
-$lang_create_tabs['first'] = 'Erste'; // cpg1.5
-$lang_create_tabs['last'] = 'Letzte'; // cpg1.5
+$lang_version_alert['version_alert'] = 'Desteksiz sürüm!';
+$lang_version_alert['no_stable_version'] = 'Kullandıgınız Coppermine sürümü %s (%s). Bu sürüm sadece deneyimli kullanıcılar içindir - bu sürüme herhangi bir teknik destek verilmemektedir. Kullanmak tamamen kendi risikonuzda olup. Desteklenen çalışır sürümler için önceki sürümleri kullanınız!';
+$lang_version_alert['gallery_offline'] = 'Galeri şu anda kapalı ve sadece admin tarafından görülebilmektedir. Ayarları bitirdikten sonra tekrar açmayı unutmayınız.';
+$lang_version_alert['coppermine_news'] = 'coppermine-gallery.net den haberler'; //cpg1.5
+$lang_version_alert['no_iframe'] = 'Tarayıcınız çerçeveleri desteklemiyor'; //cpg1.5
+$lang_version_alert['hide'] = 'sakla'; //cpg1.5
 
-$lang_get_remote_file_by_url['no_data_returned'] = 'Es wurden keine Daten zurückgeliefert mit %s'; //cpg1.5
+$lang_create_tabs['previous'] = 'önceki'; //cpg1.5
+$lang_create_tabs['next'] = 'sonraki'; //cpg1.5
+$lang_create_tabs['jump_to_page'] = 'Sayfaya git'; // cpg1.5
+$lang_create_tabs['first'] = 'Birinci'; // cpg1.5
+$lang_create_tabs['last'] = 'Sonuncu'; // cpg1.5
+
+$lang_get_remote_file_by_url['no_data_returned'] = '%s ile veri iade edilmedi'; //cpg1.5
 $lang_get_remote_file_by_url['curl'] = 'CURL'; //cpg1.5
-$lang_get_remote_file_by_url['fsockopen'] = 'Socket-Verbindung (FSOCKOPEN)'; //cpg1.5
+$lang_get_remote_file_by_url['fsockopen'] = 'Soket bağlantısı (FSOCKOPEN)'; //cpg1.5
 $lang_get_remote_file_by_url['fopen'] = 'fopen'; //cpg1.5
-$lang_get_remote_file_by_url['curl_not_available'] = 'Curl ist auf Ihrem Server nicht verfügbar'; //cpg1.5
-$lang_get_remote_file_by_url['error_number'] = 'Fehler Nummer: %s'; //cpg1.5
-$lang_get_remote_file_by_url['error_message'] = 'Fehler: %s'; //cpg1.5
+$lang_get_remote_file_by_url['curl_not_available'] = 'Curl sunucunuzda mevcut değil'; //cpg1.5
+$lang_get_remote_file_by_url['error_number'] = 'Hata numarası: %s'; //cpg1.5
+$lang_get_remote_file_by_url['error_message'] = 'Hata: %s'; //cpg1.5
 
 // ------------------------------------------------------------------------- //
 // File include/mailer.inc.php
 // ------------------------------------------------------------------------- //
-$lang_mailer['provide_address'] = 'Mindestens eine muss angegeben werden ';
-$lang_mailer['mailer_not_supported'] = ' mailer wird nicht unterstützt.';
-$lang_mailer['execute'] = 'Konnte nicht ausführen: ';
-$lang_mailer['instantiate'] = 'Konnte Mail-Funktion nicht etablieren.';
-$lang_mailer['authenticate'] = 'SMTP-Fehler: Konnte nicht authentifizieren.';
-$lang_mailer['from_failed'] = 'Die folgende Von-Adresse schlug fehl: ';
-$lang_mailer['recipients_failed'] = 'SMTP-Fehler: die folgende ';
-$lang_mailer['data_not_accepted'] = 'SMTP-Fehler: Daten nicht akzeptiert.';
-$lang_mailer['connect_host'] = 'SMTP-Fehler: Konnte nicht mit SMTP-Host verbinden.';
-$lang_mailer['file_access'] = 'Konnte auf Datei nicht zugreifen: ';
-$lang_mailer['file_open'] = 'Datei-Fehler: konnte Datei nicht öffnen: ';
-$lang_mailer['encoding'] = 'Unbekannte Kodierung: ';
-$lang_mailer['signing'] = 'Signing Error: ';
+$lang_mailer['provide_address'] = 'En az bir tane belirtilmelidir ';
+$lang_mailer['mailer_not_supported'] = ' mailer desteklenmemektedir.';
+$lang_mailer['execute'] = 'Çalıştıramadı: ';
+$lang_mailer['instantiate'] = 'Mail fonksiyonunu kuramadı.';
+$lang_mailer['authenticate'] = 'SMTP hatası: Doğrulama yapılamadı.';
+$lang_mailer['from_failed'] = 'Sonraki adres başarısız oldu: ';
+$lang_mailer['recipients_failed'] = 'SMTP hatası: sonraki ';
+$lang_mailer['data_not_accepted'] = 'SMTP hatası: Veriler kabul edilmedi.';
+$lang_mailer['connect_host'] = 'SMTP hatası: SMTP hosta bağlanılamıyor.';
+$lang_mailer['file_access'] = 'Dosyaya erişilemiyor: ';
+$lang_mailer['file_open'] = 'Dosya hatası: dosya açılamadı: ';
+$lang_mailer['encoding'] = 'Bilinmeyen kodlama: ';
+$lang_mailer['signing'] = 'İmza hatası: ';
 
 // ------------------------------------------------------------------------- //
 // File include/plugin_api.inc.php
 // ------------------------------------------------------------------------- //
-$lang_plugin_api['error_wakeup'] = 'Konnte das Plugin \'%s\' nicht aktivieren';
-$lang_plugin_api['error_install'] = 'Konnte das Plugin \'%s\' nicht installieren';
-$lang_plugin_api['error_uninstall'] = 'Konnte das Plugin \'%s\' nicht de-installieren';
-$lang_plugin_api['error_sleep'] = 'Konnte das Plugin \'%s\' nicht de-aktivieren.';
+$lang_plugin_api['error_wakeup'] = 'Bu \'%s\' eklentiyi aktifleştiremedi';
+$lang_plugin_api['error_install'] = 'Bu \'%s\' eklentiyi kuramadı';
+$lang_plugin_api['error_uninstall'] = 'Bu \'%s\' eklentiyi kaldıramadı';
+$lang_plugin_api['error_sleep'] = 'Bu \'%s\' eklentiyi pasifleştiremedi.';
 
 // ------------------------------------------------------------------------- //
 // File include/smilies.inc.php
 // ------------------------------------------------------------------------- //
 if (defined('SMILIES_PHP')) {
-$lang_smilies_inc_php['Exclamation'] = 'Ausruf';
-$lang_smilies_inc_php['Question'] = 'Frage';
-$lang_smilies_inc_php['Very Happy'] = 'sehr glücklich';
-$lang_smilies_inc_php['Smile'] = 'lachen';
-$lang_smilies_inc_php['Sad'] = 'traurig';
-$lang_smilies_inc_php['Surprised'] = 'überrascht';
-$lang_smilies_inc_php['Shocked'] = 'schockiert';
-$lang_smilies_inc_php['Confused'] = 'verwirrt';
-$lang_smilies_inc_php['Cool'] = 'cool';
-$lang_smilies_inc_php['Laughing'] = 'lachend';
-$lang_smilies_inc_php['Mad'] = 'wütend';
-$lang_smilies_inc_php['Razz'] = 'scheu';
-$lang_smilies_inc_php['Embarrassed'] = 'schüchtern';
-$lang_smilies_inc_php['Crying or Very sad'] = 'traurig';
-$lang_smilies_inc_php['Evil or Very Mad'] = 'böse';
-$lang_smilies_inc_php['Twisted Evil'] = 'verschlagen';
-$lang_smilies_inc_php['Rolling Eyes'] = 'na ja';
-$lang_smilies_inc_php['Wink'] = 'zwinker';
-$lang_smilies_inc_php['Idea'] = 'Idee';
-$lang_smilies_inc_php['Arrow'] = 'Pfeil';
-$lang_smilies_inc_php['Neutral'] = 'neutral';
-$lang_smilies_inc_php['Mr. Green'] = 'Mr. Green';
+$lang_smilies_inc_php['Exclamation'] = 'Ünlem';
+$lang_smilies_inc_php['Question'] = 'Soru';
+$lang_smilies_inc_php['Very Happy'] = 'Çok mutlu';
+$lang_smilies_inc_php['Smile'] = 'Gülümsiyen';
+$lang_smilies_inc_php['Sad'] = 'Üzgün';
+$lang_smilies_inc_php['Surprised'] = 'Şaşırmış';
+$lang_smilies_inc_php['Shocked'] = 'Şok olmuş';
+$lang_smilies_inc_php['Confused'] = 'Kafası karışık';
+$lang_smilies_inc_php['Cool'] = 'Cool';
+$lang_smilies_inc_php['Laughing'] = 'Gülen';
+$lang_smilies_inc_php['Mad'] = 'Deli';
+$lang_smilies_inc_php['Razz'] = 'Utangaç';
+$lang_smilies_inc_php['Embarrassed'] = 'Utanmış';
+$lang_smilies_inc_php['Crying or Very sad'] = 'Çok üzgün veya ağlama';
+$lang_smilies_inc_php['Evil or Very Mad'] = 'Şeytan veye manyak';
+$lang_smilies_inc_php['Twisted Evil'] = 'Sapıtmış şeytan';
+$lang_smilies_inc_php['Rolling Eyes'] = 'Gözü dönmüş';
+$lang_smilies_inc_php['Wink'] = 'Gözkırpan';
+$lang_smilies_inc_php['Idea'] = 'Ampül fikirli';
+$lang_smilies_inc_php['Arrow'] = 'Ok';
+$lang_smilies_inc_php['Neutral'] = 'Doğal';
+$lang_smilies_inc_php['Mr. Green'] = 'Bay yeşil';
 }
 
 // ------------------------------------------------------------------------- //
