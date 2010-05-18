@@ -133,3 +133,10 @@ table.cpg_zebra > tbody > tr.tableb_alternate > td {
 .strikethrough {
 	text-decoration:line-through;
 }
+.valign_top {
+    vertical-align:top !important;
+}
+
+.nopadding {
+    padding:0px !important;
+}

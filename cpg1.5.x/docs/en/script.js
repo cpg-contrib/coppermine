@@ -787,6 +787,7 @@ doc_toc += '            <ul>\n';
 doc_toc += '              <li><a href="errors.htm#errors_messages_database">Database-related error messages</a></li>\n';
 doc_toc += '              <li><a href="errors.htm#commonPHPerrors">Common PHP errors</a></li>\n';
 doc_toc += '              <li><a href="errors.htm#errors_messages_upload">Upload-related error messages</a></li>\n';
+doc_toc += '              <li><a href="errors.htm#errors_messages_apache">Apache server response codes</a></li>\n';
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '        </ul>\n';
