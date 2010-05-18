@@ -258,240 +258,284 @@
     <a name="errors_messages_upload"></a><h3>Upload-related error messages<a href="#errors_messages_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
     <p>There is an entire sub-section dedicated to <a href="upload_troubleshooting.htm#upload_error_messages">upload-related error messages</a> on the <a href="upload_troubleshooting.htm#upload_trouble">upload troubleshooting</a> page.</p>
     
-    <a name="errors_messages_apache"></a><h3>Apache server response codes<a href="#errors_messages_apache" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    Most internet sites are driven by Apache webservers, that's why the Apache server response codes are quite well known. Most web surfers are familiar with the dreaded <quote>404 not found</quote> and <quote>500 internal server error</quote> messages. In most cases, those errors are not related to Coppermine in itself. Below is a list of apache webserver response codes and an explanation of those codes. Please understand that a response code in itself doesn not mean that there is something wrong - most codes are silent, i.e. an end user doesn't see them, as they are part of the handshake between the server and the client.
-    <p class="cpg_message_info">Please understand that this section of the docs goes unsupported on the Coppermine support board - if you need more details on the apache webserver response codes, read up the excellent <a href="http://httpd.apache.org/docs/" rel="external" class="external">apache documentation</a>.</p>
+    <a name="errors_messages_webserver"></a><h3>Webserver response codes<a href="#errors_messages_webserver" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    Most internet sites are driven by Apache webservers, that's why the term &quot;Apache server response codes&quot; is quite well known as well. Most web surfers are familiar with the dreaded <em>404 not found</em> and <em>500 internal server error</em> messages. In most cases, those errors are not related to Coppermine in itself. Below is a list of apache webserver response codes and an explanation of those codes. Please understand that a response code in itself doesn not mean that there is something wrong - most codes are silent, i.e. an end user doesn't see them, as they are part of the handshake between the server and the client.
+    <p class="cpg_message_info">Please understand that this section of the docs goes unsupported on the Coppermine support board - if you need more details on the apache webserver response codes, read up the excellent <a href="http://httpd.apache.org/docs/" rel="external" class="external">apache documentation</a> or the <a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes" rel="external" class="external">Wikipedia list of HTTP status codes</a>.</p>
     <table border="0" cellspacing="0" cellpadding="0" width="100%" class="cpg_zebra">
         <tr>
             <th class="valign_top">Response code</th>
             <th class="valign_top">Category</th>
+			<th class="valign_top">Visibility</th>
             <th class="valign_top">Explanation</th>
-            <th class="valign_top">Resolution</th>
+            <th class="valign_top">Suggested fix</th>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_100"></a><h4 class="nopadding">100<a href="#errors_messages_apache_100" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Successful Server response</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_100"></a><h4 class="nopadding">100 Continue<a href="#errors_messages_webserver_100" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Successful Server response</td>
+			<td class="valign_top">silent</td>
             <td class="valign_top">The request has been completed and the rest of the process can continue.</td>
-            <td class="valign_top">Nothing - this is a silent Response Code that signifies that a request has been received and is currently being processed.</td>
+            <td class="valign_top">-</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_101"></a><h4 class="nopadding">101<a href="#errors_messages_apache_101" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Successful Server response</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_101"></a><h4 class="nopadding">101 Switching Protocols<a href="#errors_messages_webserver_101" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Successful Server response</td>
+			<td class="valign_top">silent</td>
             <td class="valign_top">The user's request to switch protocols (like from FTP to HTTP) was accepted.</td>
-            <td class="valign_top">Nothing - is a silent response code. Shouldn't show when using Coppermine anyway.</td>
+            <td class="valign_top">-</td>
+        </tr>
+		<tr>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_102"></a><h4 class="nopadding">102 Processing<a href="#errors_messages_webserver_102" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Successful Server response</td>
+			<td class="valign_top">silent</td>
+            <td class="valign_top">As a WebDAV request may contain many sub-requests involving file operations, it may take a long time to complete the request. This code indicates that the server has received and is processing the request, but no response is available yet.</td>
+            <td class="valign_top">-</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_200"></a><h4 class="nopadding">200 OK<a href="#errors_messages_apache_200" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Successful Client Request</td>
-            <td class="valign_top">Ok — the file which the client requested is available for transfer. This is the response code you want to see all of your users receiving.</td>
-            <td class="valign_top">Nothing</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_200"></a><h4 class="nopadding">200 OK<a href="#errors_messages_webserver_200" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Successful Client Request</td>
+			<td class="valign_top">silent</td>
+            <td class="valign_top">The file which the client requested is available for transfer. This is the response code you want to see all of your users receiving.</td>
+            <td class="valign_top">-</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_201"></a><h4 class="nopadding">201 Created<a href="#errors_messages_apache_201" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Successful Client Request</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_201"></a><h4 class="nopadding">201 Created<a href="#errors_messages_webserver_201" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Successful Client Request</td>
+			<td class="valign_top">silent</td>
             <td class="valign_top">When new pages are created by posted form data or by a CGI process, this is confirmation that it worked.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">-</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_202"></a><h4 class="nopadding">202 Accepted<a href="#errors_messages_apache_202" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Successful Client Request</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_202"></a><h4 class="nopadding">202 Accepted<a href="#errors_messages_webserver_202" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Successful Client Request</td>
+			<td class="valign_top">silent</td>
             <td class="valign_top">The client's request was accepted, though not yet processed.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_203"></a><h4 class="nopadding">203 Non-Authorative Information<a href="#errors_messages_apache_203" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Successful Client Request</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_203"></a><h4 class="nopadding">203 Non-Authorative Information<a href="#errors_messages_webserver_203" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Successful Client Request</td>
+			<td class="valign_top">silent</td>
             <td class="valign_top">The information contained in the entity header is not from the original site, but from a third party server.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">-</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_204"></a><h4 class="nopadding">204 No Content<a href="#errors_messages_apache_204" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Successful Client Request</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_204"></a><h4 class="nopadding">204 No Content<a href="#errors_messages_webserver_204" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Successful Client Request</td>
+			<td class="valign_top">silent</td>
             <td class="valign_top">If you click a link which has no target URL, this response is elicited by the server. It's silent and doesn't warn the user about anything.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">-</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_205"></a><h4 class="nopadding">205 Reset Content<a href="#errors_messages_apache_205" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Successful Client Request</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_205"></a><h4 class="nopadding">205 Reset Content<a href="#errors_messages_webserver_205" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Successful Client Request</td>
+			<td class="valign_top">silent</td>
             <td class="valign_top">This allows the server to reset any content returned by a CGI.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">-</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_206"></a><h4 class="nopadding">206 Partial Content<a href="#errors_messages_apache_206" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Successful Client Request</td>
-            <td class="valign_top">Partial content — the requested file wasn't downloaded entirely. This is returned when the user presses the stop button before a page is loaded, for example.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_206"></a><h4 class="nopadding">206 Partial Content<a href="#errors_messages_webserver_206" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Successful Client Request</td>
+			<td class="valign_top">silent</td>
+            <td class="valign_top">The requested file wasn't downloaded entirely. This is returned when the user presses the stop button before a page is loaded, for example.</td>
+            <td class="valign_top">-</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_300"></a><h4 class="nopadding">300 Multiple Choices<a href="#errors_messages_apache_300" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_300"></a><h4 class="nopadding">300 Multiple Choices<a href="#errors_messages_webserver_300" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">silent</td>
             <td class="valign_top">A redirection is occurring from the original request: the requested address refers to more than one file. Depending on how the server is configured, you get an error or a choice of which page you want.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">-</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_301"></a><h4 class="nopadding">301 Moved Permanently<a href="#errors_messages_apache_301" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_301"></a><h4 class="nopadding">301 Moved Permanently<a href="#errors_messages_webserver_301" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top">Client Request Redirected</td>
+			<td class="valign_top">silent</td>
             <td class="valign_top">A redirection is occurring from the original request: Moved Permanently — if the server is set up properly it will automatically redirect the reader to the new location of the file.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">-</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_302"></a><h4 class="nopadding">302 Moved Temporarily<a href="#errors_messages_apache_302" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_302"></a><h4 class="nopadding">302 Moved Temporarily<a href="#errors_messages_webserver_302" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top">Client Request Redirected</td>
+			<td class="valign_top">silent</td>
             <td class="valign_top">A redirection is occurring from the original request: Found — page has been moved temporarily, and the new URL is available. You should be sent there by the server.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">-</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_303"></a><h4 class="nopadding">303 See Other<a href="#errors_messages_apache_303" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_303"></a><h4 class="nopadding">303 See Other<a href="#errors_messages_webserver_303" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top">Client Request Redirected</td>
+			<td class="valign_top">silent</td>
             <td class="valign_top">A redirection is occurring from the original request: This is a "see other" SRC. Data is somewhere else and the GET method is used to retrieve it.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">-</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_304"></a><h4 class="nopadding">304 Not Modified<a href="#errors_messages_apache_304" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_304"></a><h4 class="nopadding">304 Not Modified<a href="#errors_messages_webserver_304" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top">Client Request Redirected</td>
+			<td class="valign_top">silent</td>
             <td class="valign_top">A redirection is occurring from the original request: Not Modified — if the request header includes an 'if modified since' parameter, this code will be returned if the file has not changed since that date. Search engine robots may generate a lot of these.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">-</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_305"></a><h4 class="nopadding">305 Use Proxy<a href="#errors_messages_apache_305" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_305"></a><h4 class="nopadding">305 Use Proxy<a href="#errors_messages_webserver_305" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top">Client Request Redirected</td>
+			<td class="valign_top">silent</td>
             <td class="valign_top"></td>
-            <td class="valign_top"></td>
+            <td class="valign_top">-</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_400"></a><h4 class="nopadding">400 Bad Request<a href="#errors_messages_apache_400" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
-            <td class="valign_top">Bad Request — there is a syntax error in the request, and it is denied.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_400"></a><h4 class="nopadding">400 Bad Request<a href="#errors_messages_webserver_400" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
+            <td class="valign_top">There is a syntax error in the request, and it is denied.</td>
+            <td class="valign_top">This should hardly ever happen, as the error message means that there is something wrong</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_401"></a><h4 class="nopadding">401 Authorization Required<a href="#errors_messages_apache_401" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_401"></a><h4 class="nopadding">401 Authorization Required<a href="#errors_messages_webserver_401" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">The request header did not contain the necessary authentication codes, and the client is denied access.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_402"></a><h4 class="nopadding">402 Payment Required<a href="#errors_messages_apache_402" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_402"></a><h4 class="nopadding">402 Payment Required<a href="#errors_messages_webserver_402" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">Payment is required. This code is not yet in operation.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_403"></a><h4 class="nopadding">403 Forbidden<a href="#errors_messages_apache_403" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
-            <td class="valign_top">Forbidden — the client is not allowed to see a certain file. This is also returned at times when the server doesn't want any more visitors.</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_403"></a><h4 class="nopadding">403 Forbidden<a href="#errors_messages_webserver_403" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
+            <td class="valign_top">The client is not allowed to see a certain file. This is also returned at times when the server doesn't want any more visitors.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_404"></a><h4 class="nopadding">404 Not Found<a href="#errors_messages_apache_404" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_404"></a><h4 class="nopadding">404 Not Found<a href="#errors_messages_webserver_404" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">Document not found — the requested file was not found on the server. Possibly because it was deleted, or never existed before. Often caused by misspellings of URLs.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_405"></a><h4 class="nopadding">405 Method Not Allowed<a href="#errors_messages_apache_405" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_405"></a><h4 class="nopadding">405 Method Not Allowed<a href="#errors_messages_webserver_405" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">The method you are using to access the file is not allowed.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_406"></a><h4 class="nopadding">406 Not Acceptable (encoding)<a href="#errors_messages_apache_406" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_406"></a><h4 class="nopadding">406 Not Acceptable (encoding)<a href="#errors_messages_webserver_406" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">The requested file exists but cannot be used as the client system doesn't understand the format the file is configured for.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_407"></a><h4 class="nopadding">407 Proxy Authentication Required<a href="#errors_messages_apache_407" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_407"></a><h4 class="nopadding">407 Proxy Authentication Required<a href="#errors_messages_webserver_407" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">The request must be authorised before it can take place.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_408"></a><h4 class="nopadding">408 Request Timed Out<a href="#errors_messages_apache_408" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
-            <td class="valign_top">Request Timeout — the server took longer than its allowed time to process the request. Often caused by heavy net traffic.</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_408"></a><h4 class="nopadding">408 Request Timed Out<a href="#errors_messages_webserver_408" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
+            <td class="valign_top">The server took longer than its allowed time to process the request. Often caused by heavy net traffic.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_409"></a><h4 class="nopadding">409 Conflicting Request<a href="#errors_messages_apache_409" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_409"></a><h4 class="nopadding">409 Conflicting Request<a href="#errors_messages_webserver_409" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">Too many concurrent requests for a single file.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_410"></a><h4 class="nopadding">410 Gone<a href="#errors_messages_apache_410" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_410"></a><h4 class="nopadding">410 Gone<a href="#errors_messages_webserver_410" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">The file used to be in this position, but is there no longer.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_411"></a><h4 class="nopadding">411 Content Length Required<a href="#errors_messages_apache_411" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_411"></a><h4 class="nopadding">411 Content Length Required<a href="#errors_messages_webserver_411" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">The request is missing its Content-Length header.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_412"></a><h4 class="nopadding">412 Precondition Failed<a href="#errors_messages_apache_412" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_412"></a><h4 class="nopadding">412 Precondition Failed<a href="#errors_messages_webserver_412" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">A certain configuration is required for this file to be delivered, but the client has not set this up.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_413"></a><h4 class="nopadding">413 Request Entity Too Long<a href="#errors_messages_apache_413" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_413"></a><h4 class="nopadding">413 Request Entity Too Long<a href="#errors_messages_webserver_413" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">The requested file was too big to process.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_414"></a><h4 class="nopadding">414 Request URI Too Long<a href="#errors_messages_apache_414" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_414"></a><h4 class="nopadding">414 Request URI Too Long<a href="#errors_messages_webserver_414" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">The address you entered was overly long for the server.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_415"></a><h4 class="nopadding">415 Unsupported Media Type<a href="#errors_messages_apache_415" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Client Request Error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_415"></a><h4 class="nopadding">415 Unsupported Media Type<a href="#errors_messages_webserver_415" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">The filetype of the request is unsupported.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_500"></a><h4 class="nopadding">500 Internal Server Error<a href="#errors_messages_apache_500" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Server error</td>
-            <td class="valign_top">Internal Server Error — nasty response that is usually caused by a problem in the code when a CGI program is run, or if the code runs into a limitation imposed by the server-configuration.</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_500"></a><h4 class="nopadding">500 Internal Server Error<a href="#errors_messages_webserver_500" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Server error</td>
+			<td class="valign_top">visible</td>
+            <td class="valign_top">Nasty response that is usually caused by a problem in the code when a CGI program is run, or if the code runs into a limitation imposed by the server-configuration.</td>
             <td class="valign_top">If you can, you should review the server's error log (not Coppermine's log!) for details what actually went wrong. Usually, when webhosted (i.e. if the server is not yours to administer), you don't have access to those logs, so you better ask your webhost for support.</td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_501"></a><h4 class="nopadding">501 Not Implemented<a href="#errors_messages_apache_501" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Server error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_501"></a><h4 class="nopadding">501 Not Implemented<a href="#errors_messages_webserver_501" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Server error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">The request cannot be carried out by the server.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_502"></a><h4 class="nopadding">502 Bad Gateway<a href="#errors_messages_apache_502" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Server error</td>
-            <td class="valign_top">Bad Gateway — the server you're trying to reach is sending back errors.</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_502"></a><h4 class="nopadding">502 Bad Gateway<a href="#errors_messages_webserver_502" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Server error</td>
+			<td class="valign_top">visible</td>
+            <td class="valign_top">The server you're trying to reach is sending back errors.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_503"></a><h4 class="nopadding">503 Service Unavailable<a href="#errors_messages_apache_503" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Server error</td>
-            <td class="valign_top">Temporarily Unavailable — the service or file that is being requested is not currently available.</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_503"></a><h4 class="nopadding">503 Service Unavailable<a href="#errors_messages_webserver_503" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Server error</td>
+			<td class="valign_top">visible</td>
+            <td class="valign_top">The service or file that is being requested is not currently available.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_504"></a><h4 class="nopadding">504 Gateway Timeout<a href="#errors_messages_apache_504" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Server error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_504"></a><h4 class="nopadding">504 Gateway Timeout<a href="#errors_messages_webserver_504" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Server error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">The gateway has timed out. Like the 408 timeout error, but this one occurs at the gateway of the server.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
-            <td class="valign_top"><a name="errors_messages_apache_505"></a><h4 class="nopadding">505 HTTP Version Not Supported<a href="#errors_messages_apache_505" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top">Server error</td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_505"></a><h4 class="nopadding">505 HTTP Version Not Supported<a href="#errors_messages_webserver_505" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Server error</td>
+			<td class="valign_top">visible</td>
             <td class="valign_top">The HTTP protocol you are asking for is not supported.</td>
             <td class="valign_top"></td>
         </tr>
     </table> 
-
 </div>
 
 <div id="doc_footer">

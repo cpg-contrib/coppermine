@@ -140,3 +140,7 @@ table.cpg_zebra > tbody > tr.tableb_alternate > td {
 .nopadding {
     padding:0px !important;
 }
+
+.no_linebreak {
+	white-space:pre;
+}
