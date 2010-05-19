@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Upgrading - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<title>Upgrading - Coppermine Photo Gallery - Documentación y Manuales</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="language" content="en" />
+<meta name="language" content="es" />
 <meta name="copyright" content="Coppermine dev team" />
-<meta name="description" content="Steps needed to perform when upgrading Coppermine" />
+<meta name="description" content="Pasos necesarios para actualizar Coppermine" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -27,38 +27,47 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentación y Manuales</h1>
 <div id="toc">
-<a href="toc.htm">Table of Contents</a>
+<a href="toc.htm">Tabla de contenidos</a>
 </div>
 
-<div id="doc_en_only">No translation available</div>
-
-<a name="upgrade"></a><h1>Upgrading<a href="#upgrade" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>Please note: as there have been changes both in the coppermine files and the database from previous versions to cpg1.5.x, users of older versions than cpg1.5.0 will have to apply <strong>all</strong> steps mentioned below: both the files have to be replaced and the update.php script has to be run once.</p>
+<a name="upgrade"></a><h1>Actualizar<a href="#upgrade" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Ten en cuenta: como se han producido cambios tanto en los archivos de Coppermine como en la base de datos en la versión cpg1.5.x, los usuarios de versiones anteriores a cpg1.5.0 tendrán que aplicar <strong>todos</strong> los pasos mencionados a continuación: tienes que sustituir los archivos y has de ejecutar el script update.php una vez.</p>
 <div class="indent">
 
-    <a name="upgrade_why"></a><h2>Why upgrade?<a href="#upgrade_why" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-    <p>There are major and minor releases of Coppermine. Major releases have so far been cpg1.0, cpg1.1, cpg1.2.x, cpg1.3.x and cpg1.4.x. The next major release will be cpg1.5.x (which currently is in the dev pipeline - no scheduled release date yet) -  you're just reading the preliminary docs for cpg1.5.x. Minor releases (the third number in the version numbering scheme) represent updates, also known as &quot;maintenance releases&quot;. Major releases contain new features (compared to the previous major release), minor releases do not contain new features, but only bug fixes and slight improvements (like additional language files).</p>
-    <p>To understand the release policy of the coppermine dev team you have to understand how bugs are being fixed: we maintain a repository where the core code of each major release is being constantly being improved. Major and minor bugs that are reported on the coppermine support board are being fixed in that repository. Once a new package is being bundled, all fixes that have been made in that repository go into the new maintenance release.</p>
-    <p>There is a good reason for every new maintenance release: they are usually being packaged when a new bug or vulnerability is being discovered that is relevant in terms of security. As suggested above, there are several minor bugfixes that go into each new release as well, not only the one major bug or vulnerability that lead to the maintenance release. Therefore, it will not be enough to just fix the single vulnerability that has been the initial reason for a new package to be released. Instead, always upgrade to the most recent stable release as soon as it has been announced.</p>
+    <a name="upgrade_why"></a><h2>¿Por qué actualizar?<a href="#upgrade_why" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>Hay versiones 'mayores' y 'menores' de Coppermine. 
+    	Las versiones principales han sido hasta ahora cpg1.0, cpg1.1, cpg1.2.x, cpg1.3.x y cpg1.4.x. 
+    	La próxima versión 'mayor' o actualización será cpg1.5.x (actualmente se encuentra en fase de desarrollo y no hay fecha prevista de salida) - estás leyendo los documentos preliminares. 
+    	Los lanzamientos de menor importancia (el tercer número, según el esquema de la versión), también llamados &quot;revisiones&quot; o &quot;versiones de mantenimiento&quot;, representan actualizaciones. 
+    	Una nueva versión tiene nuevas características (en comparación con la versión anterior), y las versiones de mantenimiento llevan correcciones de errores y pequeñas mejoras (como archivos de idioma nuevos).</p>
+
+    <p>Para entender la política de difusión del equipo de desarrollo Coppermine tienes que entender cómo se solucionan los problemas: mantenemos un repositorio en el que el núcleo de código de cada versión importante se perfecciona continuamente. 
+    	Los errores que se reportan en el foro de soporte de Coppermine, grandes y pequeños, se arreglan y guardan en dicho repositorio. 
+    	Una vez que se manda hacer un paquete todas las correcciones que se han hecho entran en la nueva versión de mantenimiento.</p>
+    <p>Hay una buena razón para sacar una nueva versión de mantenimiento: por lo general arreglan un error crítico o una vulnerabilidad de seguridad. 
+    	Como ya se ha dicho hay otros errores menores que entran en cada nueva versión, no sólo el error crítico o la vulnerabilidad que condujo a la liberación del paquete. 
+    	Por lo tanto, no arreglará sólo la vulnerabilidad que ha sido el motivo inicial para liberar este paquete. 
+    	Por eso siempre interesa actualizar a la versión estable más reciente tan pronto como se anuncia.</p>
 
     <div class="indent">
-        <a name="upgrade_why_reasons"></a><h3>Reasons for package releases<a href="#upgrade_why_reasons" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-        <p>This is a list of minor releases of cpg1.5.x and the reason why they have been released. It is meant to explain why you should upgrade as soon as possible to the most recent stable release if you are running an outdated version.</p>
-        <span class="detail_head_collapsed">Details</span>
+        <a name="upgrade_why_reasons"></a><h3>Motivos para sacar paquetes de actualización<a href="#upgrade_why_reasons" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>Esta es la lista de lanzamientos de menor importancia de cpg1.5.x y la razón por la que han salido. 
+        	Tiene el propósito de explicar por qué deberías actualizar lo antes posible la versión estable más reciente, si estás ejecutando una versión antigua.</p>
+        <span class="detail_head_collapsed">Detalles</span>
         <div class="detail_body">
         	<table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
         	  <tr>
-        	    <th valign="top" align="left">Package</td>
-        	    <th valign="top" align="left">Reason for release</td>
-        	    <th valign="top" align="left"><span class="small">Release Date</span></td>
+        	    <th valign="top" align="left">Paquete</td>
+        	    <th valign="top" align="left">Razón de la liberación</td>
+        	    <th valign="top" align="left"><span class="small">Fecha</span></td>
         	  </tr>
         	  <tr>
         	    <td valign="top">cpg1.5.4</td>
         	    <td valign="top">
         	      <ul>
-        	        <li>Not released yet</li>
+        	        <li>No ha salido</li>
         			<!--<li><a href="http://forum.coppermine-gallery.net/index.php/topic,63951.0.html">Announcement thread</a></li>-->
         	      </ul>
         	    </td>
@@ -68,8 +77,8 @@
         	    <td valign="top">cpg1.5.3</td>
         	    <td valign="top">
         	      <ul>
-        	        <li>Release candidate</li>
-        			<li><a href="http://forum.coppermine-gallery.net/index.php/topic,63951.0.html">Announcement thread</a></li>
+        	        <li>Candidata (Release candidate)</li>
+        			<li><a href="http://forum.coppermine-gallery.net/index.php/topic,63951.0.html">Anuncio en el foro</a></li>
         	      </ul>
         	    </td>
         	    <td valign="top" align="right">2010-03-05</td>
@@ -78,8 +87,8 @@
         	    <td valign="top">cpg1.5.2</td>
         	    <td valign="top">
         	      <ul>
-        	        <li>Beta release. First public release for testing and evaluation. Do not use for production! No support available yet.</li>
-        	        <li><a href="http://forum.coppermine-gallery.net/index.php/topic,62505.0.html">Announcement thread</a></li>
+        	        <li>Versión beta. Primera versión pública de evaluación y pruebas. !No la uses en un entorno de producción! ¡No hay soporte!</li>
+        	        <li><a href="http://forum.coppermine-gallery.net/index.php/topic,62505.0.html">Anuncio en el foro</a></li>
         	      </ul>
         	    </td>
         	    <td valign="top" align="right">2009-11-16</td>
@@ -88,7 +97,7 @@
         	    <td valign="top">cpg1.5.1</td>
         	    <td valign="top">
         	      <ul>
-        	        <li>Alpha release for testers and translators. This version is not a public release - it has only been released to a closed group of users for <a href="testing.htm">testing</a> and <a href="translation.htm#translation">translation</a> purposes.</li>
+        	        <li>Versión alfa para probadores y traductores. Esta versión no se sacó al público - sólo se puso a disposición de un grupo cerrado de usuarios para <a href="testing.htm">pruebas</a> y <a href="translation.htm#translation">traducción</a>.</li>
         	      </ul>
         	    </td>
         	    <td valign="top" align="right">2009-07-24</td>
@@ -97,145 +106,213 @@
         	    <td valign="top">cpg1.5.0</td>
         	    <td valign="top">
         	      <ul>
-        	        <li>This version was never released as a package - the version number 1.5.0 was just reserved for the initial development stage of the cpg1.5.x series before the feature freeze stage started. There is no package available, nor has there ever been one - only <a href="dev_subversion.htm#subversion">Subversion</a> checkouts have been possible.</li>
+        	        <li>Esta versión nunca fue lanzada como tal - el número 1.5.0 era una necesidad inicial del desarrollo de la serie 1.5.x antes de que se establecieran las características.
+        	        	No hay paquete disponible, ni tampoco ha habido nunca - sólo se sacaban 'checkouts' de <a href="dev_subversion.htm#subversion">sub-versiones</a> desde el repositorio.</li>
         	      </ul>
         	    </td>
         	    <td valign="top" align="right">Never</td>
         	  </tr>
         	</table>
         </div>
-        <p>As you can see, the coppermine dev team is constantly fixing and improving coppermine. Every non-trivial piece of software contains bugs, so there is no guarantee that the version that currently is the most recent one will be the final, ultimately bug-free version to be released in the cpg1.5.x series. It is absolutely vital that you perform regular updates as soon as new packages are being released.</p>
+        <p>Como puedes ver, el equipo de desarrollo está constantemente arreglando los errores y mejorando Coppermine. 
+        	Todo software no trivial contiene errores, por lo que no hay garantía de que la versión que actualmente es la más reciente sea la versión final que se publicará en la serie cpg1.5.x. 
+        	Es absolutamente vital que actualizaces tan pronto como sean liberados los nuevos paquetes.</p>
         <a name="upgrade_why_reasons_end"></a>
         
-        <a name="upgrade_why_changelog"></a><h3>Changelog<a href="#upgrade_why_changelog" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-        <p>Details on the changes that went into a release can be found in the changelog that comes with each package. The changelog file can be found in the root directory of the coppermine package. The changelog contains more information on additional languages and the time and date of the fix as well.</p>
-        <p>The changelog is a plain-text file that can be read using a simple editor - on Windows-driven machines, notepad.exe is fine.</p>
+        <a name="upgrade_why_changelog"></a><h3>Log de cambios (Changelog)<a href="#upgrade_why_changelog" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>Los detalles sobre los cambios que entraron en un paquete se puede encontrar en el fichero de cambios (changelog) que viene en él. 
+        	Puedes encontrarlo en el directorio raíz del paquete de Coppermine. 
+        	Tiene la información sobre idiomas adicionales y la fecha y hora de la solución de problemas.</p>
+        <p>Es un archivo de texto sin formato que se puede leer con cualquier editor - en Windows es suficiente el Bloc de notas.</p>
         <a name="upgrade_why_changelog_end"></a>
     </div><a name="upgrade_why_end"></a>
     
-    <a name="upgrade_any"></a><h2>Steps needed to perform when upgrading Coppermine (from any version)<a href="#upgrade_any" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-    <p>The instructions here apply for <strong>all</strong> Coppermine udpates/upgrades, so please read them carefully.</p>
+    <a name="upgrade_any"></a><h2>Pasos necesarios para subir la versión de Coppermine (para cualquier versión)<a href="#upgrade_any" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>Las siguientes instrucciones se aplican a <strong>todas</strong> las versiones y revisiones de Coppermine, así que por favor léelas atentamente.</p>
     <ul>
         <li>
-    	    <a name="upgrade_any_backup_db"></a><h3 class="detail_head_collapsed smaller">Make a backup (dump) of your database</h3>
-    	    <div class="detail_body border1">Recommended tools for <a href="export.htm#backup_database">creating a database dump</a> are <a href="http://mysqldumper.de/en/" rel="external" class="external">mySqlDumper</a> or <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a> - refer to the section <a href="dev_tools.htm#dev_tools_database">Tools recommended by the devs: Database manipulation</a> for details.<br />
-    	    Creating a <a href="export.htm#backup">backup</a> is not mandatory in terms of functionality, but just a precaution in case anything should go wrong. It's advisable to make frequent backups anyway.
+    	    <a name="upgrade_any_backup_db"></a><h3 class="detail_head_collapsed smaller">Haz una copia de seguridad (volcado) de la base de datos</h3>
+    	    <div class="detail_body border1"><a href="http://mysqldumper.de/en/" rel="external" class="external">mySqlDumper</a> o <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a> son dos herramientas recomendadas para <a href="export.htm#backup_database">volcar la base de datos</a>. Consulta la sección <a href="dev_tools.htm#dev_tools_database">Herramientas recomendadas por los desarrolladores: gestión de bases de datos</a> para saber más.<br />
+    	    Esta <a href="export.htm#backup">copia de seguridad</a> no es obligatoria para la que actualización vaya bien, sino una precaución en caso de que algo vaya mal. Es recomendable hacer frecuentemente copias de seguridad, de todos modos.
     	    <p class="small"><a href="#upgrade_any_backup_db" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
         </li>
         <li>
-    	    <a name="upgrade_any_backup_config"></a><h3 class="detail_head_collapsed smaller">Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy as a safety precaution if anything should go wrong.</h3>
-    	    <div class="detail_body border1">Usually, you just download your entire coppermine folder to your local hard drive or any other safe backup location using your <a href="dev_tools.htm#dev_tools_ftp_client"><abbr title="File Transfer Protocol">FTP</abbr> app</a>. A fresh Coppermine package doesn't contain a config file anyway (that file has being created during install on your server), so you can't actually replace an existing config file with an empty one from the package; again, the backup is only a safety precaution.
+    	    <a name="upgrade_any_backup_config"></a><h3 class="detail_head_collapsed smaller">Copia los archivos include/config.inc.php, anycontent.php y el directorio &quot;albums&quot; como medida de seguridad por si algo sale mal.</h3>
+    	    <div class="detail_body border1">
+    	    	Por lo general, sólo tienes que descargar toda la carpeta de Coppermine a tu disco duro local o cualquier otro lugar donde tengas tus copias de seguridad, por ejemplo utilizando una <a href="dev_tools.htm#dev_tools_ftp_client"> aplicación<abbr title="File Transfer Protocol">FTP</abbr></a>.
+    	    	Los paquetes de Coppermine no tienen el archivo de configuración (este archivo se crea durante la instalación en el servidor), por lo que en realidad no se perderá el existente: es sólo una medida de seguridad.
     	    <p class="small"><a href="#upgrade_any_backup_config" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
         </li>
         <li>
-    	    <a name="upgrade_any_download"></a><h3 class="detail_head_collapsed smaller">Download the most recent stable version existing in the download section of the official Coppermine homepage</h3>
-    	    <div class="detail_body border1">Don't assume that you have the most recent version, especially if you have installed Coppermine using a control panel app provided by your webhost. The coppermine dev team doesn't recommend using such <a href="auto-installers.htm#auto-installers">auto-installers</a> - please download the original from the <a href="http://coppermine-gallery.net/">official Coppermine homepage</a>.<br />
-    	    If you're not sure what package to use (i.e. if there are several archive types), choose the zip archive, as Windows XP and better out of the box come with support for zip archives.
+    	    <a name="upgrade_any_download"></a><h3 class="detail_head_collapsed smaller">Bájate la versión estable más reciente en la sección de descargas de la página oficial de Coppermine</h3>
+    	    <div class="detail_body border1">
+    	    	No asumas que tienes la versión más reciente, especialmente si instalas Coppermine utilizando una aplicación de panel de control que te proporciona tu proveedor de alojamiento Web.
+    	    	Desde el equipo de desarrollo de Coppermine no recomendamos el uso de tales <a href="auto-installers.htm#auto-installers">auto-instaladores</a> - por favor descarga el original de <a href="http://coppermine-gallery.net/">la página oficial de Coppermine.</a>.<br />
+    	    	Si no estás seguro de qué paquete usar (es decir, si hay varios tipos de archivo), selecciona el archivo zip, ya que desde Windows XP en adelante vienen con soporte para archivos zip integrado en el explorador.
     	    <p class="small"><a href="#upgrade_any_download" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
         </li>
         <li>
-    	    <a name="upgrade_any_unpack"></a><h3 class="detail_head_collapsed smaller">Unpack the coppermine package you downloaded</h3>
-    	    <div class="detail_body border1">Similar to fresh installs, you need to extract the packed archive into a temporary folder on your local hard drive (preserving the folder structure within the package). Most modern operating systems come with an unarchiver that is capable to extract zip archives.
+    	    <a name="upgrade_any_unpack"></a><h3 class="detail_head_collapsed smaller">Descomprime el paquete descargado</h3>
+    	    <div class="detail_body border1">
+    	    	Igual que en las instalaciones nuevas, es necesario descomprimir el archivo en una carpeta temporal en su disco duro local (conservando la estructura de carpetas). 
+    	    	La mayoría de los sistemas operativos modernos vienen con una aplicación capaz de extraer archivos zip.
     	    <p class="small"><a href="#upgrade_any_unpack" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
         </li>
         <li>
-    	    <a name="upgrade_any_upload"></a><h3 class="detail_head_collapsed smaller"><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories, making sure not to overwrite your anycontent.php file or the albums directory.</h3>
-    	    <div class="detail_body border1">In fact, you could upload the albums folder as well - the one that is contained in the package is empty anyway. The recommendation not to upload this folder is only meant as a pre-caution for some users who have "funny" settings for their FTP apps: some exotic FTP applications delete folders existing on the server and then re-create an empty folder on the server-side. This would of course be a disaster for all existing galleries during the upgrade process, as you would lose <em>all</em> your uploaded files in your gallery. However, the number of FTP apps that is set up in that strange way is small and therefore, it won't hurt for most to upload the albums folder as well. If you're not sure, use one of the <a href="dev_tools.htm#dev_tools_ftp_client">FTP clients recommended by the devs</a>.
+    	    <a name="upgrade_any_upload"></a><h3 class="detail_head_collapsed smaller">Carga todos los archivos y directorios nuevos <strong>a excepción del directorio &quot;albums&quot;</strong>, asegurándote de no sobreescribir el archivo anycontent.php o el directorio &quot;albums&quot;.</h3>
+    	    <div class="detail_body border1">
+    	    	De hecho, se podría cargar la carpeta albums también - en el paquete que has descargado está vacía. 
+Pero remarcamos la recomendación de no subir esta carpeta por precaución porque algunos usuarios tienen configuraciones "graciosas" en sus aplicaciones FTP: algunas aplicaciones FTP borran las carpetas existentes en el servidor y luego las vuelven a crear vacías en el servidor. 
+Por supuesto, que te pase esto en la actualización será un desastre para todas las galerías que tengas, porque perderás <em>todos</em> los archivos cargados en la galería. 
+Sin embargo, el número de aplicaciones FTP que está configurado de esa manera extraña es pequeño y por lo tanto, a la mayoría no le pasará nada si sube también esta carpeta. 
+Si no estás seguro, utiliza uno de los <a href="dev_tools.htm#dev_tools_ftp_client">clientes FTP recomendado por los desarrolladores</a>.
     	    <p class="small"><a href="#upgrade_any_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
         </li>
         <li>
-    	    <a name="upgrade_any_update_script"></a><h3 class="detail_head_collapsed smaller">Run the update script</h3>
-    	    <div class="detail_body border1">To run the PHP-file &quot;<tt class="code">update.php</tt>&quot; (i.e. the <a href="#updater">update script</a>), just enter the <abbr title="Uniform Resource Locator">URL</abbr> into the address bar of your browser. The file &quot;<tt class="code">update.php</tt>&quot; resides in the coppermine directory, so to run it you will need to point your browser to <tt class="code">http://yourdomain.tld/your_coppermine_folder/update.php</tt> (if you have installed Coppermine into the root of your web site, you will have to run <tt class="code">http://yourdomain.tld/update.php</tt> accordingly). This will update your coppermine install by making all necessary changes in the database.
+    	    <a name="upgrade_any_update_script"></a><h3 class="detail_head_collapsed smaller">Ejecuta el script de actualización</h3>
+    	    <div class="detail_body border1">
+    	    	Para ejecutar el archivo PHP &quot;<tt class="code">update.php</tt>&quot; (es decir, <a href="#updater">el script de actualización</a>), basta con escribir la <abbr title="Uniform Resource Locator">URL</abbr> en la barra de direcciones del navegador. 
+    	    	El archivo &quot;<tt class="code">update.php</tt>&quot; está en el directorio de Coppermine, por lo que para ejecutarlo tendrás que apuntar el navegador a <tt class="code">http://tudominio.tld/tu_carpeta_coppermine/update.php</tt> 
+    	    	(si has instalado Coppermine en la raíz del sitio Web, tendrás que ejecutar <tt class="code">http://tudominio.tld/update.php</tt>, claro)
+    	    	Esto actualizará la instalación de Coppermine haciendo todos los cambios necesarios en la base de datos.
     	    <p class="small"><a href="#upgrade_any_update_script" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
         </li>
     </ul>
-    <p>To make this absolutely clear:</p>
-    <p class="cpg_message_error">there is no such thing as a separate upgrade package - coppermine always comes as a complete package that can be used both for a fresh install as well as an upgrade.</p>
+    <p>Para dejarlo absolutamente claro:</p>
+    <p class="cpg_message_error">no hay un paquete de actualización independiente - Coppermine siempre es un paquete completo que se puede utilizar tanto para una nueva instalación como para una actualización.</p>
     
     
     
     
     
-    <a name="upgrade_particular"></a><h2>Additional actions for updating from particular versions<a href="#upgrade_particular" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-    <p>Depending on the version you're updating from, there are additional actions you need to perform:</p>
+    <a name="upgrade_particular"></a><h2>Acciones adicionales para algunas versiones<a href="#upgrade_particular" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>Dependiendo de la versión que estés actualizando hay otras acciones que debes realizar:</p>
     
         <div class="indent">
-        <a name="upgrade_10"></a><a name="upgrade_12"></a><h3>Upgrading from version cpg1.0, cpg1.1, cpg1.2.x or cpg1.3.x to cpg1.5.x<a href="#upgrade_10" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <a name="upgrade_10"></a><a name="upgrade_12"></a><h3>Actualizar desde las versiones cpg1.0,1.1,1.2.x or 1.3.x a cpg1.5.x<a href="#upgrade_10" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
         
-        <p>Support for a direct upgrade from cpg1.0, cpg1.1, cpg1.2.x or cpg1.3.x to cpg1.5.x has been dropped - if you still have such an ancient version running, you will have to upgrade in a two-step-process (from your version to cpg1.4.x and then on to cpg1.5.x)</p>
+        <p>No se sporta la actualización directa de cpg1.0, cpg1.1, cpg1.2.x o cpg1.3.x a cpg1.5.x - si todavía tienes una versión tan antigua, tendrás que actualizar en dos fases (desde su versión a cpg1.4.x y luego a cpg1.5.x)</p>
         
         
-        
-        <a name="upgrade_14"></a><h3>Upgrading from cpg1.4.x to version cpg1.5.x<a href="#upgrade_14" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <a name="upgrade_14"></a><h3>Actualizar desde cpg1.4.x a cpg1.5.x<a href="#upgrade_14" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
         <ul>
           <li>
               <a name="upgrade_14_plugins"></a><h4>Plugins<a href="#upgrade_14_plugins" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-              Plugins made for cpg1.4.x usually can no longer be run on cpg1.5.x, so you'll need to turn them off while you're still running cpg1.4.x (before you start upgrading). Some features that have been a plugin for cpg1.4.x went into the core of cpg1.5.x, so you may not need your plugins any longer. The safest way to make sure that plugins don't interfere is by <a href="configuration.htm#admin_general_enable-plugins">disabling all plugins</a> using the corresponding config option and then removing the content of the plugin folder using your FTP app. After performing the upgrade, get the plugin versions designed for cpg1.5.x and upload them, then re-enable the new plugins one by one.
+              Los plugins creados para cpg1.4.x por lo general no se pueden ejecutar en cpg1.5.x, así que los tendrás que desactivar mientras está aún en marcha la versión 1.4.x (antes de iniciar la actualización).
+              Algunas de las características que han sido un complemento en un plugin para cpg1.4.x entraron en el núcleo de cpg1.5.x, por lo que puede que no necesites los plugins. 
+              La manera más segura para cerciorarse de que no interfieran es <a href="configuration.htm#admin_general_enable-plugins">desactivando todos los plugins</a mediante la opción de configuración correspondiente y retirar el contenido de la carpeta plugin con una aplicación FTP. 
+              Después de realizar la actualización, consigue las versiones diseñadas para cpg1.5.x y súbelas a continuación, y entonces activa los nuevos plugins uno por uno.Plugins made for cpg1.4.x usually can no longer be run on cpg1.5.x, so you'll need to turn them off while you're still running cpg1.4.x (before you start upgrading). 
           </li>
           <li>
-              <a name="upgrade_14_custom_theme"></a><h4>Custom theme<a href="#upgrade_14_custom_theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-              If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme_upgrade_14x-15x.htm">theme-upgrade guide</a>. Please note that some themes that used to come with previous versions of Coppermine have been dropped in cpg1.5.x. Those dropped themes are available as separate downloads though.
+              <a name="upgrade_14_custom_theme"></a><h4>Temas personalizados<a href="#upgrade_14_custom_theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              Si has creado un tema personalizado, aplica los cambios que se introdujeron en la estructura de los temas al tuyo - mira en la <a href="theme_upgrade_14x-15x.htm">guía de actualizaciones de temas</a>.
+              Por favor, ten en cuenta que algunos de los temas que venían con Coppermine ya no están en el paquete cpg1.5.x.
+              Sin embargo están disponibles como descargas separadas.
           </li>
           <li>
-              <a name="upgrade_14_language_files"></a><h4>Language files<a href="#upgrade_14_language_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-              You can not use language files from older versions of Coppermine as primary language (the language the admin will use) - make sure you only have the language files that come with this package inside of your lang folder (delete or rename all files from older versions within the lang folder).<br />
-              If you need to use a language that hasn't been translated for cpg1.5.x, you can try using the language file from cpg1.4.x, however there are certain caveats:
+              <a name="upgrade_14_language_files"></a><h4>Archivos de idioma<a href="#upgrade_14_language_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              No puedes utilizar los archivos de idioma de las versiones anteriores de Coppermine como primer idioma (el idioma que usarás como administrador) - asegúrate de que sólo tienes los archivos de idioma que vienen con este paquete dentro de la carpeta lang (borra o renombra todos los archivos de versiones anteriores dentro de la carpeta lang).<br />
+              Si necesitas utilizar un idioma para el que no se ha traducido cpg1.5.x, puedes intentar usar el archivo de idioma de cpg1.4.x. Sin embargo debes tener ciertas precauciones:
               <ul>
-                <li>cpg1.5.x-phrases that don't exist in your old language file will go untranslated or show in english</li>
-                <li>Coppermine can't be administered using an old language file - the admin needs to use a "true" cpg1.5.x language file</li>
-                <li>You're free to try using old language files, however when running into issues or error messages, switch to US-English and see if the issue goes away then. Using outdated language files goes unsupported</li>
+                <li>Las frases de cpg1.5.x que no existen en el antiguo archivo de idioma continuarán sin traducir o se mostrarán en inglés</li>
+                <li>No puedes administrar Coppermine usando un archivo de idioma antiguo - el administrador tiene que utilizar un archivo de idioma específico para cpg1.5.x</li>
+                <li>Eres libre de intentar usar los archivos antiguos de idiomas; sin embargo cuando se produzcan problemas o mensajes de error, cambia a inglés de Estados Unidos (US-English) y comprueba si el problema desaparece. No pidas soporte del uso de archivos obsoletos de idioma.</li>
               </ul>
           </li>
           <li>
-              <a name="upgrade_14_password_encryption"></a><h4>Password encryption<a href="#upgrade_14_password_encryption" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-              In cpg1.3.x, the passwords for the users used to be stored in plain text inside the database. This has been changed in cpg1.4.x - out of the box, cpg1.4.x used to store the passwords encrypted. However, there used to be an option for those who upgraded from cpg1.3.x to cpg1.4.x to skip the step of encrypting the passwords. In cpg1.5.x, the plain-text storage of passwords is no longer an option. If you're running such an old gallery that first was updated from cpg1.3.x to cpg1.4.x and now on to cpg1.5.x, the updater will automatically encrypt all the passwords of your users (including your own admin account). You don't have to mind anything specifically - the updater will do this automatically.
+              <a name="upgrade_14_password_encryption"></a><h4>Cifrado de contraseñas<a href="#upgrade_14_password_encryption" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              En cpg1.3.x, las contraseñas de los usuarios se almacenaban como texto plano dentro de la base de datos. 
+              Esto cambió en cpg1.4.x - a partir de esta versión se cifran las contraseñas antes de almacenarlas. 
+              Sin embargo, había una opción para aquellos que actualizaron desde cpg1.3.x a cpg1.4.x en que se permitía saltarse el paso de encriptar las contraseñas. 
+              En cpg1.5.x, el almacenamiento de las contraseñas como texto ya no es una opción. 
+              Si estás utilizando una galería que actualizaste desde cpg1.3.x a cpg1.4.x y ahora actualizas a cpg1.5.x, el proceso de actualización automáticamente cifrará todas las contraseñas de los usuarios (incluido la propia cuenta de administrador). 
+              No tienes que hacer nada al respecto - el programa de actualización lo hará automáticamente.
           </li>
           <li>
-              <a name="upgrade_14_faq"></a><h4>Display FAQ<a href="#upgrade_14_faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-              The option to display a FAQ page to end users (by ticking the corresponding config option) that existed in cpg1.3.x and cpg1.4.x has been removed from cpg1.5.x, because it was hardly every used and only caused additional workload for translators. If you belong to those few users who actually used the FAQ menu item in Coppermine's navigation menu, you can easily come up with a custom page that uses coppermine's header and footer and display your individual FAQ there.
+              <a name="upgrade_14_faq"></a><h4>Mostrar FAQ<a href="#upgrade_14_faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              La opción para mostrar una página de preguntas frecuentes a los usuarios finales (marcando la opción de configuración correspondiente) que existía en cpg1.3.x y cpg1.4.x se ha eliminado de cpg1.5.x, porque casi no se usaba y sólo añadía carga de trabajo adicional a los traductores. 
+              Si eres de los pocos que utilizan las FAQ en el menú de navegación Coppermine, puedes crear fácilmente una página personalizada con el encabezado y el pie de Coppermine y mostrar tus propias FAQ en ella.
           </li>
           <li>
-              <a name="upgrade_14_outdated_files"></a><h4>Outdated files<a href="#upgrade_14_outdated_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-              Delete the outdated files that came with older versions of coppermine that no longer exist in cpg1.5.x.<br />
-              Again, this is just a precaution to make sure that your new gallery doesn't contain flaws from outdated versions that would allow malevolent attackers to exploit weaknesses in older versions. To find out what files need to be removed manually, take a look at the output at the bottom of the update screen (<tt class="code">http://yourdomain.tld/your_coppermine_folder/update.php</tt>) - the updater will attempt to delete the files for you, but in most server setups it won't have the permission to do so, so you will have to manually delete the files using your FTP app. Another way to find out about the files that need to be deleted is the <a href="#versioncheck">versioncheck</a> page - the files that are scheduled for removal will be displayed there as well - the versioncheck page won't attempt to delete those files though.
+              <a name="upgrade_14_outdated_files"></a><h4>Archivos obsoletos<a href="#upgrade_14_outdated_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              Elimina los archivos obsoletos de las versiones anteriores de Coppermine que ya no existen en cpg1.5.x.<br />
+              Es sobre todo una precaución para asegurarte de que tu galería no contiene errores de versiones no actualizadas que permitirían a un atacante explotar las debilidades en las versiones anteriores. 
+              Para saber qué archivos hay que eliminar manualmente, echa un vistazo a la salida en la parte inferior de la pantalla de actualización <tt class="code">(http://tudominio.tld/tu_carpeta_coppermine/update.php</tt>) - el programa de actualización intentará borrar los archivos por tí, pero en la mayoría de configuraciones del servidor Web no tiene permiso para hacerlo, así que tendrás que eliminar manualmente los archivos mediante una aplicación FTP. 
+              Otra forma de averiguar los archivos que deben ser borrados es la página de <a href="#versioncheck">comprobación de versión (versioncheck)</a> - los archivos programados para el borrado salen allí también - pero la comprobación de versiones no intenta eliminar estos archivos.
           </li>
           <li>
-              <a name="upgrade_14_safe_mode"></a><h4>Safe mode<a href="#upgrade_14_safe_mode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-              If your webserver is running in safe_mode and you have enabled "SILLY_SAFE_MODE" in include/config.inc.php, you will have to go to coppermine's config after performing above mentioned steps and enable "<a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">silly safe mode</a>" there, as the setting in <tt class="code">include/config.inc.php</tt> is no longer being taken into account in cpg1.5.x. The silly_safe_mode setting has been turned into a <a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">config setting</a> instead.
+              <a name="upgrade_14_safe_mode"></a><h4>Modo seguro<a href="#upgrade_14_safe_mode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              Si tu servidor web se ejecuta en modo seguro y has habilitado "SILLY_SAFE_MODE" en el fichero include/config.inc.php, tendrás que ir a la configuración de 
+              Coppermine después de realizar los pasos mencionados y permitir "<a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">silly safe mode</a>" 
+              allí, porque la entrada en <tt class="code">include/config.inc.php</tt> ya no se tendrá en 
+              cuenta en cpg1.5.x. El ajuste "silly_safe_mode" ha pasado a ser una <a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">opción de configuración</a>. 
           </li>
         </ul>
         
-        <a name="upgrade_15"></a><h3>Upgrading from older versions of cpg1.5.x to the most recent version of  cpg1.5.x<a href="#upgrade_15" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-        <p>There are no additional steps to follow when upgrading from an older version of cpg1.5.x to the most recent version of that family. Just performing the basic instructions discussed above in <a href="#upgrade_any">Steps needed to perform when upgrading Coppermine (from any version)</a> will be enough.</p>
+        <a name="upgrade_15"></a><h3>Actualizar desde versiones cpg1.5.x to a la más reciente<a href="#upgrade_15" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>
+        	No hay ningún paso extra que debas seguir cuando actualizas de una versión anterior de cpg1.5.x a la versión más reciente de esa familia. 
+Basta seguir las instrucciones descritas anteriormente en <a href="#upgrade_any">pasos necesarios para realizar al actualizar Coppermine (de cualquier versión)</a>.
     </div><a name="upgrade_particular_end"></a>
+        </p>
     
-    <a name="updater"></a><h2>The update script<a href="#updater" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-    <p>The updater is a script that will update your database and delete leftover files from outdated versions that are no longer used in your version. It can be accessed by clicking on the corresponding link inside the admin menu or by entering the URL into the address bar of your browser.</p>
-    <p class="cpg_example">You can run the updater by entering <tt class="code">http://yoursite.tld/your_coppermine_folder/update.php</tt> into your browser's address bar.</p>
+    <a name="updater"></a><h2>El script de actualización<a href="#updater" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>
+    	Es un archivo que contiene un conjunto de instrucciones (script) que actualizarán la base de datos y eliminará los archivos sobrantes de versiones obsoletas que ya no se utilizan en esta versión.
+    	Se puede acceder desde el enlace correspondiente dentro del menú de administración o escribiendo la URL en el navegador.</p>
+    	<p class="cpg_example">Se puede ejecutar escribiendo <tt class="code">http:////tudominio.tld/tu_carpeta_coppermine/update.php.</tt> en la barra de direcciones del navegador.</p>
+    		
     <div class="indent">
-            <a name="updater_what_it_does"></a><h3>What it does<a href="#updater_what_it_does" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-            The updater performs three things:
+            <a name="updater_what_it_does"></a><h3>Qué hace<a href="#updater_what_it_does" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            La actualización lleva a cabo tres acciones:
             <ul>
-            	<li>Check the authorization of the visitor who accesses the script</li>
-            	<li>Run the mysql database queries that reside in the file <tt class="code">sql/update.sql</tt> (replacing the generic table prefix with the one you actually chose during initial install)</li>
-            	<li>Delete some files that used to reside inside coppermine's core in previous versions. The script only deletes unneeded files, but it doesn't touch your custom files, so there is absolutely no reason to be alarmed.</li>
-            	<li>Convert your passwords from plain text to encrypted: in older versions of coppermine there used to be an option to allow the passwords of your users to be stored in plain text within the database. In cpg1.5.x, plain text passwords are no longer supported. Therefore (if you don't already use encrypted passwords), the passwords in your database will be encrypted by the update script.</li>
+            	<li>Comprueba la autorización de quien accede a este script</li>
+            	<li>Ejecuta las consultas en la base de datos mysql que están en el archivo <tt class="code">sql/update.sql</tt> (sustituyendo el prefijo genérico del nombre de la tabla por el que elegiste en la instalación inicial)</li>
+            	<li>Elimina algunos archivos que estaban en Coppermine en las versiones anteriores. Sólo se eliminan archivos innecesarios y no afecta a tus archivos personalizados, por lo que no hay razón para preocuparse.</li>
+            	<li>Convierte las contraseñas de texto plano, cifrándolas: en versiones anteriores de Coppermine había una opción para permitir que las 
+            		contraseñas de los usuarios se almacenaran como texto en la base de datos. En cpg1.5.x no se admite esa posibilidad. 
+            		Por lo tanto (si no estás usando ya las contraseñas encriptadas), las contraseñas guardadas en la base de datos serán codificadas durante la actualización.</li>
             </ul>
-            <a name="updater_purpose"></a><h3>Purpose<a href="#updater_purpose" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-            <p>The updater will perform the database update for you after you manually have replaced the sql file it is using. The updater will <strong>not</strong> detect for you if there is a new version of coppermine available, nor will it download anything from the coppermine website. The level of automation is not that advanced in coppermine (yet).</p>
-            <p>To find out about new versions of coppermine or maintenance releases, check the <a href="configuration.htm#admin_general_coppermine_news">news from coppermine-gallery.net</a>.</p>
-            <a name="updater_authorization"></a><h3>Authorization check<a href="#updater_authorization" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-            <p>In Coppermine versions before cpg1.5.x, the update script used to be publicly accessible, e.g. everybody was able to run it. While this was good for support purposes (supporters were able to run the updater for users looking for help if it was obvious that they had not done so), there was a slight chance that this accessibility for everyone could at some stage be a security risk. That's why the dev team members decided to protect the updater from being run by any visitor who accesses it - starting with cpg1.5x you need to supply admin credentials. This can happen in four different ways:</p>
+            <a name="updater_purpose"></a><h3>Propósito<a href="#updater_purpose" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            <p>El proceso realizará la actualización de base de datos por tí después de haber reemplazado manualmente el archivo sql. 
+            	La actualización <strong>no</strong> detectará si hay disponible una nueva versión de Coppermine, ni descargará nada desde el sitio web de Coppermine. 
+            	El nivel de automatización no es tan avanzado (aún).</p>
+            <p>
+            	Para conocer las nuevas versiones de Coppermine o saber si hay actualizaciones de mantenimiento, consulta las <a href="configuration.htm#admin_general_coppermine_news">Novedades en coppermine-gallery.net</a>.</p>
+            <a name="updater_authorization"></a><h3>Permisos de ejecución<a href="#updater_authorization" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            <p>
+            	El script de actualización solía estar accesible públicamente en las versiones de Coppermine anteriores a cpg1.5.x , esto es, todo el mundo era capaz de ejecutarlo. 
+            	Si bien esto era bueno para dar soporte (cualquiera era capaz de ejecutar la actualización cuando un usuario pedía ayuda, si era obvio que no lo había hecho), cabía una pequeña posibilidad de que en algún momento pudiera ser un riesgo para la seguridad. 
+            	Por eso los miembros del equipo de desarrollo decidieron proteger este script, y que no pudiera ser ejecutado por cualquier visitante - a partir de cpg1.5x hay que proporcionar credenciales de administrador. 
+            	Hay cuatro maneras diferentes:
+            	</p>
             <ul>
-            	<li>If you're already logged in as admin and run the updater from the link in coppermine's admin menu, the updater should run without further prompts for authentification - it uses the "regular" cookie-driven authentification that the entire coppermine script is using</li>
-            	<li>If you're not logged in as admin or if the coppermine core components no longer work without running the updater first (usually happens when upgrading major coppermine versions), you are prompted for credentials - enter the coppermine admin account details that you set up when installing coppermine in the first place</li>
-            	<li>If you can not remember your standalone coppermine admin credentials, you can supply your mysql credentials - you needed them when you installed coppermine in the first place. If you have forgotten them, read them up in the file that is used to store the mysql database connection details: download <tt class="code">include/config.inc.php</tt> from your webserver to your client and then edit it with a plain text editor - you should see the mysql credentials in that file. If they have changed, your webhost should be able to help you retrieving them.</li>
-            	<li>If everything else fails, there is a toggle inside the code of the update script that you can use to skip authentification - to switch that toggle, download the update script (<tt class="code">update.php</tt>) from your webserver to your client, find <tt class="code">// define('SKIP_AUTHENTICATION', true);</tt> and replace with <tt class="code">define('SKIP_AUTHENTICATION', true);</tt>. Safe your changes and upload the edited file to your webserver, overwriting the version that already resides on your server. Remember to restore the file as it was after having successfully performed the update.</li>
+            	<li>Si ya has iniciado sesión como administrador y ejecutas el programa de actualización desde el vínculo en el menú de administración de Coppermine se debe ejecutar sin más - usa la autenticación "normal" por cookies que utiliza toda la galería Coppermine
+            	</li>
+            	<li>Si no estás conectado como administrador, o si llamas a los componentes básicos de Coppermine antes de haber ejecutado este script (por lo general cuando actualizas versiones 'mayores' de Coppermine) te pedirá las credenciales - introduce los detalles de la cuenta de administrador que configuraste la primera vez que instalaste
+            	</li>
+            	<li>Si has olvidado en tercer lugar puedes dar tus credenciales en mySQL, también los que usaste al hacer la primera instalación. 
+            		Si tampoco te acuerdas descarga <tt class="code">include/config.inc.php</tt> de tu servidor web y edítalo: allí deben estar. 
+            		Si han cambiado, el equipo de soporte de tu servidor web debe ser capaz de ayudarte a recuperarlas.
+            	</li>
+            	<li>Por último, si todo falla, hay una alternantiva para saltarte la autenticación: descarga el archivo (<tt class="code">update.php</tt>) de tu servidor web, 
+            		encuentra  la línea que dice <tt class="code">// define('SKIP_AUTHENTICATION', true);</tt>, y sustituyela por <tt class="code">define('SKIP_AUTHENTICATION', true);</tt>. 
+            		Guarda los cambios y sube el fichero a tu servidor web, sobreescribiendo el que existe en el servidor.
+            		Recuerda restaurar el archivo, tal como estaba, después de haber realizado la actualización con éxito. 
+            	</li>
             </ul>
-            <a name="updater_when"></a><h3>When must the updater be run?<a href="#updater_when" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-            <p>You need to run the updater every time you upgrade/update, i.e. each time the file <tt class="code">sql/update.sql</tt> is being replaced with a new version.</p>
-            <p>It doesn't hurt to run the updater several times in a row, so if you're in doubt, run it again.</p>
+            <a name="updater_when"></a><h3>¿Cuándo hay que ejecutar la actualización?<a href="#updater_when" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            <p>
+            	Tienes que ejecutar el programa de actualización cada vez que cambies la versión o 
+            	la sub-versión de mantenimiento, es decir, cada vez que se cambie el archivo <tt class="code">sql/update.sql</tt>.
+            </p>
+            <p>
+            	No importa ejecutar el script de actualización varias veces, así que si dudas vuelve a ejecutar.
+            </p>
         </div><a name="updater_end"></a>
+        
+        
+        
         
     <a name="versioncheck"></a><h2>The version check tool<a href="#versioncheck" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
     <p>Since the release of cpg1.3.2 Coppermine comes with an additional version checking tool to help you resolve issues with upgrades and updates easily. To launch the versioncheck, simply add <tt>versioncheck.php</tt> to your browser's address bar after being logged into coppermine as admin (example: <tt>http://yourdomain.tld/your_coppermine_folder/versioncheck.php</tt>). With version 1.5.x, you can run the versioncheck utility from the <a href="admin_menu.htm#admin_menu">Admin menu</a>.</p>
@@ -255,10 +332,7 @@
         
         <a name="versioncheck_first_run"></a><h3>First run<a href="#versioncheck_first_run" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
         <p>When run for the first time, you will see the <a href"versioncheck_options_start">option</a> screen first. For a start, default options should be OK, so just submit the form. The script will then determine the coppermine version you're currently running, an try to look up the XML file on the coppermine repository that corresponds to your version. If successfull, it will compare all files that exist on your server against the most recent files that are recommended to use (trying to obtain that data from the repository). Subsequently, you should see a list of folders and files that are supposed to exist on your server and an explanation if the file versions you have are the most recent. For details how to interpret the output, read on.</p>
-        
-        
-        
-        
+
         <a name="versioncheck_options_start"></a><h3>Options<a href="#versioncheck_options_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
         <img src="images/versioncheck_options.png" alt="" border="0" width="386" height="120" title="Options for the version check screen" align="right" />
         <p>There is a small number of options available on the versioncheck page that should be pretty self-explanatory:</p>
