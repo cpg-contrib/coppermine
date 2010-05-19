@@ -174,6 +174,7 @@ INSERT INTO CPG_config VALUES ('registration_captcha', '0');
 INSERT INTO CPG_config VALUES ('reg_notify_admin_email', '0');
 INSERT INTO CPG_config VALUES ('reg_requires_valid_email', '1');
 INSERT INTO CPG_config VALUES ('report_post', '0');
+INSERT INTO CPG_config VALUES ('session_cleanup', '0');
 INSERT INTO CPG_config VALUES ('show_bbcode_help', '1');
 INSERT INTO CPG_config VALUES ('show_private', '0');
 INSERT INTO CPG_config VALUES ('show_which_exif', '|0|0|0|0|0|0|0|0|1|0|1|1|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|1|0|0|0|1|1|0|0|0|0|1|0|0|0|1|0|0|1|1|0|0|0|0|0|1|0|1|1');

@@ -162,8 +162,12 @@ if (isset($bridge_lookup)) {
                             // If this is a 'remember me' login set the remember field to true
                             if ($remember) {
                                     $remember_sql = ",remember = '1' ";
+                                    // Change cookie life time to 2 weeks
+                                    setcookie( $this->client_id, $this->session_id, time() + (CPG_WEEK*2), $CONFIG['cookie_path'] );
                             } else {
                                     $remember_sql = '';
+                                    // Kill the cookie when closing the browser
+                                    setcookie( $this->client_id, $this->session_id, 0, $CONFIG['cookie_path'] );
                             }
 
                             // Update guest session with user's information
@@ -238,9 +242,9 @@ if (isset($bridge_lookup)) {
                 // Lifetime of normal session is 1 hour
                 $session_life_time = time()-CPG_HOUR;
 
-                // only clean up old sessions sometimes
-                if (rand(0, 100) == 42){
-                
+                // Clean up old sessions every 5 minutes at maximum
+                if ($CONFIG['session_cleanup'] < time() - 300) {
+
                     // Delete old sessions
                     $sql = "DELETE FROM {$this->sessionstable} WHERE time < $session_life_time AND remember = 0";
                     cpg_db_query($sql, $this->link_id);
@@ -248,8 +252,12 @@ if (isset($bridge_lookup)) {
                     // Delete stale 'remember me' sessions
                     $sql = "DELETE FROM {$this->sessionstable} WHERE time < $rememberme_life_time";
                     cpg_db_query($sql, $this->link_id);
-                }
                     
+                    // Update database entry
+                    $sql = "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = UNIX_TIMESTAMP() WHERE name = 'session_cleanup'";
+                    cpg_db_query($sql, $this->link_id);
+                }
+
                 // Check for valid session if session_cookie_value exists
                 if ($sessioncookie) {
 

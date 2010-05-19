@@ -434,3 +434,5 @@ UPDATE CPG_albums SET owner = category - 10000 WHERE category > 10000;
 ALTER TABLE CPG_pictures DROP INDEX `search`;
 
 ALTER TABLE CPG_pictures ADD `guest_token` VARCHAR(32) DEFAULT '';
+
+INSERT INTO CPG_config VALUES ('session_cleanup', '0');
