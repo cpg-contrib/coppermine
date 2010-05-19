@@ -284,7 +284,7 @@
             <td class="valign_top no_linebreak"><a name="errors_messages_webserver_403"></a><h4 class="nopadding">403 Forbidden<a href="#errors_messages_webserver_403" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top  no_linebreak">Client Request Error</td>
             <td class="valign_top">The request was a legal request, but the server is refusing to respond to it, i.e. the client is not allowed to see a certain file. This is also returned at times when the server doesn't want any more visitors.</td>
-            <td class="valign_top">This error usually is an indicator for <a href="install_permissions.htm">permissions</a> on file system level not applied correctly. Other possible reasons can be permission restrictions imposed by a custom .htaccess-file. In rare cases, this error can be caused as well by ownership issues (CHOWN), which can usually only be resolved by the webserver administrator, i.e. the webhost on shared webhosting accounts.</td>
+            <td class="valign_top">This error usually is an indicator for <a href="install_permissions.htm">permissions</a> on file system level not applied correctly. Other possible reasons can be permission restrictions imposed by a custom <tt class="code">.htaccess</tt>-file. In rare cases, this error can be caused as well by ownership issues (CHOWN), which can usually only be resolved by the webserver administrator, i.e. the webhost on shared webhosting accounts.</td>
         </tr>
         <tr>
             <td class="valign_top no_linebreak"><a name="errors_messages_webserver_404"></a><h4 class="nopadding">404 Not Found<a href="#errors_messages_webserver_404" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
@@ -295,32 +295,26 @@
         <tr>
             <td class="valign_top no_linebreak"><a name="errors_messages_webserver_405"></a><h4 class="nopadding">405 Method Not Allowed<a href="#errors_messages_webserver_405" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top  no_linebreak">Client Request Error</td>
-            <td class="valign_top">The method you are using to access the file is not allowed.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">The method you are using to access the file is not allowed. Examples: using GET on a form which requires data to be presented via POST, or using PUT on a read-only resource.</td>
+            <td class="valign_top">This error should not apply for stable Coppermine releases, as all forms that exist in the core code have been tested thoroughly. If it does exist for you though and you think that the reason lies in Coppermine's core code, please report back on the Coppermine support board.</td>
         </tr>
         <tr>
             <td class="valign_top no_linebreak"><a name="errors_messages_webserver_406"></a><h4 class="nopadding">406 Not Acceptable (encoding)<a href="#errors_messages_webserver_406" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top  no_linebreak">Client Request Error</td>
-            <td class="valign_top">The requested file exists but cannot be used as the client system doesn't understand the format the file is configured for. Examples: using GET on a form which requires data to be presented via POST, or using PUT on a read-only resource.</td>
-            <td class="valign_top">This error should not apply for stable Coppermine releases. If it does, please report back on the Coppermine support board.</td>
-        </tr>
-        <tr>
-            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_407"></a><h4 class="nopadding">407 Proxy Authentication Required<a href="#errors_messages_webserver_407" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top  no_linebreak">Client Request Error</td>
-            <td class="valign_top">The request must be authorised before it can take place.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">The requested resource is only capable of generating content not acceptable according to the Accept headers sent in the request, i.e. the requested file exists but cannot be used as the client system doesn't understand the format the file is configured for.</td>
+            <td class="valign_top">This error should not apply for stable Coppermine releases.</td>
         </tr>
         <tr>
             <td class="valign_top no_linebreak"><a name="errors_messages_webserver_408"></a><h4 class="nopadding">408 Request Timed Out<a href="#errors_messages_webserver_408" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top  no_linebreak">Client Request Error</td>
-            <td class="valign_top">The server took longer than its allowed time to process the request. Often caused by heavy net traffic.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">he server timed out waiting for the request.[2] According to W3 HTTP specifications: &quot;<em>The client did not produce a request within the time that the server was prepared to wait. The client may repeat the request without modifications at any later time.</em>&quot; In other words: the server took longer than it's allowed time to process the request.</td>
+            <td class="valign_top">This is often caused by heavy net traffic. Try again later. If this happens frequently, consider upgrading your webhosting contract or moving to a better webhost.</td>
         </tr>
         <tr>
-            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_409"></a><h4 class="nopadding">409 Conflicting Request<a href="#errors_messages_webserver_409" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_409"></a><h4 class="nopadding">409 Conflict<a href="#errors_messages_webserver_409" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top  no_linebreak">Client Request Error</td>
-            <td class="valign_top">Too many concurrent requests for a single file.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">Indicates that the request could not be processed because of conflict in the request. Can be an indicator for too many concurrent requests for a single file.</td>
+            <td class="valign_top"><abbr title="not applicable">n/a</abbr></td>
         </tr>
         <tr>
             <td class="valign_top no_linebreak"><a name="errors_messages_webserver_410"></a><h4 class="nopadding">410 Gone<a href="#errors_messages_webserver_410" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
