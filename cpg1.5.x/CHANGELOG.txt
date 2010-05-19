@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-05-19 [A] Added partial Czech translation (user contribution) {GauGau}
 2010-05-11 [D] Added apache server response codes {GauGau}
 2010-05-12 [B] Fixed language issue during installation (thread ID 64829) {eenemeenemuu}
 2010-05-12 [B] Fixed dupes when ordering by position (thread ID 64919) {eenemeenemuu}

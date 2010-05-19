@@ -327,6 +327,7 @@ INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, avail
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='arabic';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='bulgarian';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='chinese_gb';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='czech';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='dutch';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='english';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='english_gb';
