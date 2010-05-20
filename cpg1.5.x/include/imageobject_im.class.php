@@ -74,7 +74,11 @@ class imageObject {
         $superCage = Inspekt::makeSuperCage();
          
         $cliparray = split(",",$clipval);
-        
+
+        foreach($cliparray as $value) {
+            if (!is_numeric($value)) return $this;
+        }
+
         $clip_top = $cliparray[0];
         $clip_right = $cliparray[1];
         $clip_bottom = $cliparray[2];
