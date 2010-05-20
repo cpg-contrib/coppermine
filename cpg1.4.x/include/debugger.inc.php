@@ -128,8 +128,8 @@ function cpg_error_handler($errno, $errmsg, $filename, $linenum, $vars='') {
     global $cpgdebugger;
     $cpgdebugger->handler($errno, $errmsg, $filename, $linenum, $vars);
 }
-define('CAN_MOD_INI', !ereg('ini_set', ini_get('disable_functions')));
+define('CAN_MOD_INI', strpos(ini_get('disable_functions'), 'ini_set') === FALSE);
 
 error_reporting(E_ALL);
-$cpgdebugger =& new cpg_debugger();
+$cpgdebugger = new cpg_debugger();
 $cpgdebugger->start();

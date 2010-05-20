@@ -1,7 +1,7 @@
 ************************
 Coppermine Photo Gallery
 ************************
-Copyright (c) 2003-2008 Coppermine Dev Team
+Copyright (c) 2003-2010 Coppermine Dev Team
 v1.1 originally written by Gregory DEMAR
 
 This program is free software; you can redistribute it and/or modify
@@ -26,6 +26,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-05-20 [B] Fixed error message that complains about ereg being deprecated in include/debugger.inc.php for most recent PHP versions (thread ID 63200) {GauGau}
 2010-05-20 [S] Fixed potential XSS issues (thread ID 64734) {eenemeenemuu)
 2010-03-23 [M] Updated version count from cpg1.4.26 to cpg1.4.27 in subversion repository as a preparation for a possible future release {GauGau}
 2010-02-01 [M] Release of cpg1.4.26 {GauGau}
