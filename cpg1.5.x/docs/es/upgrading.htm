@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Upgrading - Coppermine Photo Gallery - Documentación y Manuales</title>
+<title>Actualizar - Coppermine Photo Gallery - Documentación y Manuales</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="language" content="es" />
 <meta name="copyright" content="Coppermine dev team" />
@@ -314,150 +314,353 @@ Basta seguir las instrucciones descritas anteriormente en <a href="#upgrade_any"
         
         
         
-    <a name="versioncheck"></a><h2>The version check tool<a href="#versioncheck" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-    <p>Since the release of cpg1.3.2 Coppermine comes with an additional version checking tool to help you resolve issues with upgrades and updates easily. To launch the versioncheck, simply add <tt>versioncheck.php</tt> to your browser's address bar after being logged into coppermine as admin (example: <tt>http://yourdomain.tld/your_coppermine_folder/versioncheck.php</tt>). With version 1.5.x, you can run the versioncheck utility from the <a href="admin_menu.htm#admin_menu">Admin menu</a>.</p>
-    <p class="cpg_message_info">The versioncheck tool does <strong>not</strong> perform an actual update: it does not download newer versions of coppermine for you, nor does it install any fixes - it just is meant to make you aware of newer versions and help you to determine wether you performed an upgrade correctly.</p>
-    
+    <a name="versioncheck"></a><h2>Herramienta de comprobación de versiones (versioncheck)<a href="#versioncheck" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>
+    	Desde el lanzamiento de cpg1.3.2 Coppermine viene con una herramienta adicional para comprobar los archivos y verificar que pertenecen a la versión de que se trate, para ayudar a resolver más fácilmente los problemas relacionados con las mejoras y actualizaciones. 
+    	Para lanzarla tienes que añadir <tt>versioncheck.php</tt> a la dirección de la galería en el navegador después de entrar en Coppermine como administrador (por ejemplo: <tt>http://tudominio.tld/tu_carpeta_coppermine/versioncheck.php</tt>). 
+    	Con la versión 1.5.x puedes ejecutar la utilidad versioncheck desde el <a href="admin_menu.htm#admin_menu">menú de administración</a>.
+    </p>
+    <p class="cpg_message_info">
+    	La herramienta versioncheck <strong>no</strong> actualiza, ni descarga las nuevas versiones de Coppermine por ti, ni instala ningún parche - sólo te informa acerca de las versiones más recientes y te ayuda a determinar si la actualización ha sido correcta.
+    </p>
     <div class="indent">
     
-        <a name="versioncheck_description_start"></a><h3>What it does<a href="#versioncheck_description_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-        <p>The script &quot;versioncheck&quot; is meant for two purposes:</p>
+        <a name="versioncheck_description_start"></a><h3>Qué hace<a href="#versioncheck_description_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>La secuencia de comandos "versioncheck" tiene dos propósitos:</p>
         <ul>
-        	<li>If you have upgraded from a previous version, you should perform versioncheck to see if your upgrade worked as expected</li>
-        	<li>Use versioncheck to make sure that your coppermine version is up-to-date</li>
+        	<li>Si has actualizado desde una versión anterior, debes ejecutar versioncheck para ver si la actualización funcionó como se esperaba</li>
+        	<li>También te ayuda a asegurarte que la versión de Coppermine está al día y no hay versiones posteriores.</li>
         </ul>
-        <p>This script goes through the files on your webserver and tries to determine if the local file versions on your webserver are the identical to the ones at the repository of http://coppermine-gallery.net. Files that do not match are displayed and are the files you should update as well.</p>
-        <p>Compared to previous versions, the versioncheck page has been re-designed for cpg1.5.x both in terms of visuals as well as functionality.</p>
+        <p>
+        	Este script comprueba los archivos de tu servidor web y trata de determinar si las versiones de archivos son idénticos a los que hay en el repositorio de http://coppermine-gallery.net.
+        	Resalta los archivos que no coinciden y que debes actualizar también.
+        </p>
+        <p>La página versioncheck ha sido rediseñada para cpg1.5.x tanto en apariencia como en funcionalidad, en comparación con versiones anteriores.</p>
         <a name="versioncheck_description_end"></a>
         
-        <a name="versioncheck_first_run"></a><h3>First run<a href="#versioncheck_first_run" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-        <p>When run for the first time, you will see the <a href"versioncheck_options_start">option</a> screen first. For a start, default options should be OK, so just submit the form. The script will then determine the coppermine version you're currently running, an try to look up the XML file on the coppermine repository that corresponds to your version. If successfull, it will compare all files that exist on your server against the most recent files that are recommended to use (trying to obtain that data from the repository). Subsequently, you should see a list of folders and files that are supposed to exist on your server and an explanation if the file versions you have are the most recent. For details how to interpret the output, read on.</p>
+        <a name="versioncheck_first_run"></a><h3>Primera ejecución<a href="#versioncheck_first_run" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>
+        	When run for the first time, you will see the <a href"versioncheck_options_start">option</a> screen first. 
+        	For a start, default options should be OK, so just submit the form. 
+        	The script will then determine the coppermine version you're currently running, an try to look up the XML file on the coppermine repository that 
+        	corresponds to your version. 
+        	If successfull, it will compare all files that exist on your server against the most recent files that are recommended to use 
+        	(trying to obtain that data from the repository). 
+        	Subsequently, you should see a list of folders and files that are supposed to exist on your server and an explanation if the file versions you have 
+        	are the most recent. 
+        	For details how to interpret the output, read on.
+        	
+        	Cuando se ejecuta por primera vez verás la primera pantalla de <a href"versioncheck_options_start">opciones</a>. 
+        	Para empezar, las opciones por defecto deberían bastar, así que pulsa el botón de enviar. 
+        	La secuencia de comandos determinará la versión de Coppermine que esté actualmente en ejecución e intentará buscar el archivo XML en el repositorio de Coppermine que corresponde a su versión. 
+        	Si tiene éxito comparará todos los archivos en tu servidor con los archivos en el repositorio más recientes y/o recomendados (tratará de conseguir esos datos del repositorio, claro). 
+        	Posteriormente deberías ver una lista de carpetas y archivos que se supone que existen en tu servidor y una explicación sobre si las versiones de archivo que tienes son las más recientes. 
+        	Sigue leyendo para conocer más detalle de cómo interpretar la salida.
+        </p>
 
-        <a name="versioncheck_options_start"></a><h3>Options<a href="#versioncheck_options_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-        <img src="images/versioncheck_options.png" alt="" border="0" width="386" height="120" title="Options for the version check screen" align="right" />
-        <p>There is a small number of options available on the versioncheck page that should be pretty self-explanatory:</p>
+        <a name="versioncheck_options_start"></a><h3>Opciones<a href="#versioncheck_options_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <img src="images/versioncheck_options.png" alt="" border="0" width="386" height="120" title="Opciones en la pantalla de versioncheck" align="right" />
+        <p>El pequeño número de opciones en la página versioncheck deberían ser bastante auto-explicativas:</p>
         <ul>
-            <li><a name="versioncheck_options_display_output"></a><h4>Display output<a href="#versioncheck_options_display_output" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-            Determines wether the full output with formatting is used, or only a reduced plain-text output
+            <li><a name="versioncheck_options_display_output"></a><h4>Salida<a href="#versioncheck_options_display_output" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Determina si se usa la salida completa o sólo una versión de texto plano reducida
             <ul>
-                <li><em>Full-screen</em><br />
-                Use this by default. It will display as much detail as possible and has a nicer layout</li>
-                <li><em>Text-only</em><br />
-                If a supporter <em>asks</em> you to post your versioncheck-output, switch to this options, so you can easily copy the output and paste it into your posting on the coppermine support board. Only do so if a supporter explicitely asks for it! Another potential use for the text-only output is resources-consumption: if you suffer from time-outs, try using the plain-text option, as it consumes slightly less resources.</li>
+                <li><em>Salida completa</em><br />
+                Es recomendable que uses esta opción por defecto. 
+                Mostrará el mayor detalle posible y tiene un diseño más agradable.
+                </li>
+                <li><em>Sólo texto</em><br />
+                Si desde el foro de soporte <em>te solicitan</em> la salida de versioncheck activa esta opción para que puedas copiar y pegar fácilmente el resultado en tu respuesta. 
+                ¡Pero sólo cuando te lo pidan en el foro! 
+                Otro uso posible es disminuir el consumo de recursos: si sufres timeouts, prueba usando la opción de texto, que consume menos. 
+                </li>
+                	
             </ul>
             <a name="versioncheck_options_display_output_end"></a>
             </li>
-            <li><a name="versioncheck_options_only_show_potential_errors"></a><h4>Only show potential errors<a href="#versioncheck_options_only_show_potential_errors" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-            If you have no idea what all the output is supposed to mean or if a supporter asks for it, you might want to tick this option to only display the folders/files that have issues.
+            <li><a name="versioncheck_options_only_show_potential_errors"></a><h4>Mostrar sólo los posibles errores<a href="#versioncheck_options_only_show_potential_errors" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            	Si no tienes mucha idea de lo que significa la salida entera, o si te lo piden desde soporte, puedes marcar esta opción para mostrar 
+            	sólo las carpetas y archivos que tienen problemas.
             <a name="versioncheck_options_only_show_potential_errors_end"></a>
             </li>
-            <li><a name="versioncheck_options_hide_images"></a><h4>Hide images<a href="#versioncheck_options_hide_images" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-            When enabling this option, the many graphical resources that come with coppermine (i.e. all the icons and other images) are not being taken into account for display on the versioncheck page - a filter is being applied. Use this option to make the output less cluttered: images usually are not security-sensitive, so if you're only concerned about files that have an impact on security, you can safely hide the images.
+            <li><a name="versioncheck_options_hide_images"></a><h4>No comprobar imágenes<a href="#versioncheck_options_hide_images" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Al habilitar esta opción se aplica un filtro que deja de aplicar la comprobación a los recursos gráficos (es decir, todos los iconos y otras imágenes).
+            Utiliza esta opción para hacer la salida menos saturada: las imágenes por lo general no tienen que ver con la seguridad, así que puedes quitar las imágenes si estás preocupado 
+            sólo por los archivos relacionados con la seguridad.
             <a name="versioncheck_options_hide_images_end"></a>
             </li>
-            <li><a name="versioncheck_options_no_modification_check"></a><h4>Don't check for modified files<a href="#versioncheck_options_no_modification_check" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-            This filter will hide the column "<a href="#versioncheck_comparison_modified">modified</a>" from being displayed and will result in a slightly less cluttered output. The check for modified files will not be performed when the script is being run. Only enable this option if you have performance issues with the script or if all your files are being reported as modified.
+            <li><a name="versioncheck_options_no_modification_check"></a><h4>Don't check for modified files No buscar los archivos modificados<a href="#versioncheck_options_no_modification_check" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Este filtro oculta la columna "<a href="#versioncheck_comparison_modified">modificado</a>" y se traducirá en una salida algo menos cargada. 
+            No se llevará a cabo la verificación de los archivos modificados. 
+            Habilita esta opción sólo si tienes problemas de rendimiento de la secuencia de comandos o si todos los archivos se muestran como modificados.
             <a name="versioncheck_options_no_modification_check_end"></a>
             </li>
-            <li><a name="versioncheck_options_no_connect_online_repository"></a><h4>Do not connect to the online repository<a href="#versioncheck_options_no_connect_online_repository" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-            If you check this option, the versioncheck script will not attempt to connect to the online repository and use the local XML file instead. Only use this option if connecting to the online repository doesn't work for you (e.g. if you're on an intranet and your server doesn't have internet access). The main drawback of not connecting to the online repository is the fact that you won't know about possible updates and most recent releases, so you better find the cause for your inability to connect to the online repository.<br />
-            During the development stage (between releases), the online repository usually is not being updated frequently, so only if you're using <a href="dev_subversion.htm#subversion">SVN checkouts</a> (i.e. if you're a developer), you should tick this option.
+            <li><a name="versioncheck_options_no_connect_online_repository"></a><h4>No conectar al repositorio<a href="#versioncheck_options_no_connect_online_repository" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Si marcas esta opción versioncheck no intentará conectar con el repositorio en línea y en su lugar utilizará el archivo XML local. 
+            Usa esta opción únicamente si la conexión al repositorio no funciona (por ejemplo, si estás en una intranet y no tienes acceso a Internet). 
+            El principal inconveniente de no conectar al repositorio es que no sabrás acerca de posibles actualizaciones y versiones más recientes, 
+            así que es mejor encontrar la causa de que no conectes con el repositorio.
+            <br />
+            Durante la fase de desarrollo (entre lanzamientos de versiones), el repositorio no se actualiza con frecuencia en general, por lo que sólo si estás usando 
+            <a href="dev_subversion.htm#subversion">'checkouts' de SVN</a> (es decir, si eres un desarrollador) deberás marcar esta opción. 
             <a name="versioncheck_options_no_connect_online_repository_end"></a>
             </li>
         </ul>
-        <p>The options screen lets you configure the versioncheck, or rather what is being displayed. The options aren't saved anywhere, so you will have to adjust them each time you run versioncheck. The default options should be OK for most users - only change them if you have good reasons to do so.</p>
+        <p>
+        	La pantalla de opciones te permite configurar versioncheck, o mejor dicho lo que se muestra. 
+        	Las opciones que escojas no se guardan, así que tendrás que elegir cada vez que se ejecuta versioncheck. 
+        	Las opciones por defecto deberían valer para la mayoría de los usuarios - cámbialas solo cuando tengas buenas razones.
+        </p>
         <a name="versioncheck_options_end"></a>
         
          
-        <a name="versioncheck_comparison_start"></a><h3>Version comparison<a href="#versioncheck_comparison_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <a name="versioncheck_comparison_start"></a><h3>Salida de la comprobación<a href="#versioncheck_comparison_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
         <img src="images/versioncheck_output.png" border="0" width="400" height="191" alt="" title="Output generated by version check" align="right" />
-        <p>There is a lot of information packed into a small space. Here's an example of a possible output and what the output means:</p>
+        <p>
+        	Hay una gran cantidad de información en un espacio muy pequeño. He aquí un ejemplo de una posible salida y lo que significa:
+        </p>
         <ul>
-            <li><a name="versioncheck_comparison_path"></a><h4>Path<a href="#versioncheck_comparison_path" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-            The folder- and file name</li>
-            <li><a name="versioncheck_comparison_missing"></a><h4>Missing<a href="#versioncheck_comparison_missing" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-            If nothing is being displayed in this column, the folder/file exists on your server. If this is not the case (i.e. the folder/file does not exist on your server or is inaccessible), the column &quot;Missing&quot; will be populated with the result of this first, basic check.<br />
-            Note: there are some folders/files that are mandatory to have; others are optional. Anyway, if you perform a fresh install or upgrade, you should make sure to upload all folders/files. You can then later delete some of the optional files if you want, although this doesn't save much webspace.<br />
-            If a file is missing, all other steps that are next in the loop will not be performed - a missing file can't have a version number or similar. If versioncheck complains about missing files, use your FTP app to review if they are actually missing or inaccessible. If they are missing, re-upload them. If they are inaccessible, you will have to <a href="install_permissions.htm#permissions">assign the needed permissions</a>.<br />
-            Some files that existed in older versions might have gotten removed later. Those that might be a possible security issue will be displayed with the word "removed" in the "missing"-column. If you come across such a file, use your FTP-app to remove the file that versioncheck output complains about. Leaving the file where it is (ignoring the suggestion given by versioncheck) might pose a security risk and therefore is not recommended.</li>
-            <li><a name="versioncheck_comparison_permissions"></a><h4>Permissions<a href="#versioncheck_comparison_permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-            Displays the permissions assigned to the folder/file. For some folders, write permissions are needed, while for others read permissions are enough. If the permission level of a folder is good, the result will be displayed together with a remark (in brackets) like &quot;OK&quot; (may differ in your language). Using a script like versioncheck to actually check permissions on folders works OK, while it may or may not work very well on files. This being said, you should mostly be concerned about folders that don't have sufficient permissions. If files are being reported to have an improper set of permissions assigned, don't be to alarmed if the rest of your gallery is working just fine.<br />
-            If permissions on folders need reviewing, read up the <a href="install_permissions.htm#permissions">permissions section of the docs</a> and do as suggested there.</li>
-            <li><a name="versioncheck_comparison_version"></a><h4>Version<a href="#versioncheck_comparison_version" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-            The version of the file on your server. If it is identical to the version indicated in the repository, you should see an &quot;OK&quot;. If you're running an oudated version on your server you should get a fresh package and perform an upgrade.<br />
-            Note: folders don't have version numbers, nor do binary files (like graphics) have one, that's why the column &quot;Version&quot; displays &quot;<acronym title="not applicable">n/a</acronym>&quot; for folders and binary files. Only files that contain textual content can have a version number, so don't be alarmed by the many &quot;n/a (OK)&quot;-messages.</li>
-            <li><a name="versioncheck_comparison_revision"></a><h4>Revision<a href="#versioncheck_comparison_revision" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-            The revision of the file on your server. If it is identical to the revision indicated in the XML repository, you should see an &quot;OK&quot;. If you're running an oudated revision on your server you should get a fresh package and perform an upgrade.<br />
-            Revisions are related to the versions - usually, if your version is OK, your revision should be OK as well. Only if you perform checkouts from the <a href="dev_subversion.htm#subversion">subversion repository</a>, the revisions may &quot;act up&quot;.<br />
-            The same thing that applies to version numbers applies to revisions as well: only textual files can have revision numbers - folders and binary files don't have a revision number.<br />
-            Confused? You don't have to: usually, you can safely ignore revisions - if you want to find out about what revisions are being used for, read the <a href="dev_subversion.htm#dev_subversion_revision">details on the subversion</a> page.</li>
-            <li><a name="versioncheck_comparison_modified"></a><h4>Modified<a href="#versioncheck_comparison_modified" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-            If a file is accessible and the version and revision numbers match, the versioncheck script attempts to perform a check wether the file has been modified, compared to the original that comes with the coppermine package. This check is being performed by taking into account the MD5-hashes of the original file and your copy.<br />When performing a fresh install or upgrade, there should be no modified files. If they are being displayed as modified, there are several possible reasons:
-            <ul>
-                <li>You <strong>deliberately</strong> modified the file (e.g. by applying a custom modification to it). In this case, it's OK to ignore the warning in the &quot;Modified&quot;-column and continue</li>
-                <li>Your file has not been transfered fully to the webserver. If this is the case, try to re-upload the file from your client to the server. If this doesn't help, your package might have gotten corrupt. Re-download a fresh one from the coppermine download section, un-archive it and re-upload the file. Make sure that your FTP app is configured to actually overwrite existing files</li>
-                <li>You have used an improper FTP-mode to transfer the file to your webserver. Using FTP apps, you can transfer files in binary or ASCII-mode. Most up-to-date FTP clients have a feature that will automatically select the proper FTP-mode for each file. If this is not the case, try the manual appoach and explicitely specify the FTP-mode for your file uploads.</li>
-                <li>Your webhost is injecting code into each file. Many free webspace providers (so-called &quot;freehosts&quot;) do this to inject advertisments into your files. There's little you can do then except signing up with paid webhosting or ignoring the &quot;Modified&quot;-warning and hoping that things will work anyway.</li>
-            </ul>
-            The output of the column "modified" can be filtered by enabling the option <a href="#versioncheck_options_no_modification_check">Don't check for modified files</a>. This will result in a slightly increased performance of the versioncheck script.
+            <li><a name="versioncheck_comparison_path"></a><h4>Ruta<a href="#versioncheck_comparison_path" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            La carpeta y el nombre del archivo
             </li>
-            <li><a name="versioncheck_comparison_comment"></a><h4>Comment<a href="#versioncheck_comparison_comment" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-            The comment-column contains a short recommendation about what is supposedly wrong and what you should do to fix this. No comments usually means that everything is OK.</li>
-            <li><a name="versioncheck_comparison_repository_link"></a><h4>Repository link<a href="#versioncheck_comparison_repository_link" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-            The link to the SVN repository (web SVN) is meant as an additional feature for power-users and developers. Read the <a href="dev_subversion.htm#subversion">subversion repository</a> instructions to find out more. If everything is fine, you don't have to worry about the link anyway.</li>
+            <li><a name="versioncheck_comparison_missing"></a><h4>no existe<a href="#versioncheck_comparison_missing" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Si no hay nada en esta columna, la carpeta/archivo existe en el servidor. 
+            Si no es el caso (es decir, la carpeta/archivo no existe en el servidor o es inaccesible), la columna de &quot;no existe&quot; 
+            tendrá el resultado de este primer examen básico.
+            <br />
+            Nota: hay algunas carpetas y archivos que son obligatorios, mientras que otros son opcionales. 
+            De todos modos, si estás haciendo una instalación o una actualización, debes asegurarte de subir todas las carpetas y archivos. 
+            Puedes eliminar después algunos de los archivos opcionales si quieres, aunque esto ahorra poco espacio.
+            <br />
+            Si falta un archivo todas las demás comprobaciones no se llevarán a cabo - no se puede saber la versión de un archivo que falta, y similares. 
+            Si versioncheck se queja sobre archivos desaparecidos usa tu aplicación FTP para revisar si no existen o están pero son inaccesibles. 
+            Si no están  vuelve a cargarlos. 
+            Si no se puede acceder a ellos tendrás que <a href="install_permissions.htm#permissions">revisar los permisos apropiados</a>. 
+            <br />
+            Algunos archivos de las versiones anteriores se habrán dejado de usar (y por tanto no irán en el paquete) . 
+            Los que pudieran ser un problema de seguridad aparecerán con la palabra "borrar" en la columna "no existe". 
+            Si te encuentras con un archivo así usa la aplicación FTP para eliminar el archivo del que se queja versioncheck. 
+            Dejar el archivo donde está (haciendo caso omiso de la sugerencia de versioncheck) puede suponer un riesgo para la seguridad y por lo tanto no es recomendable.
+            </li>
+            
+            <li><a name="versioncheck_comparison_permissions"></a><h4>Permisos<a href="#versioncheck_comparison_permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Displays the permissions assigned to the folder/file. 
+            For some folders, write permissions are needed, while for others read permissions are enough. 
+            If the permission level of a folder is good, the result will be displayed together with a remark (in brackets) like &quot;OK&quot; (may differ in your language). 
+            Using a script like versioncheck to actually check permissions on folders works OK, while it may or may not work very well on files. 
+            This being said, you should mostly be concerned about folders that don't have sufficient permissions. 
+            If files are being reported to have an improper set of permissions assigned, don't be to alarmed if the rest of your gallery is working just fine.
+            
+            Muestra los permisos asignados a la carpeta/archivo. 
+            Para algunas carpetas son necesarios permisos de escritura, mientras que para otras basta permiso de lectura. 
+            Si el nivel de permisos de una carpeta es suficiente, el resultado saldrá junto con un comentario (entre paréntesis) como "OK" (puede variar en tu idioma). 
+            El uso de un script (como versioncheck) para comprobar los permisos en carpetas funciona bien, pero puede o no funcionar con los ficheros. 
+            Dicho esto, deberías preocuparte sobre todo de las carpetas que no tengan permisos suficientes. 
+            Si te informa de permisos incorrectos de los archivos no te alarmes si el resto de su galería está funcionando bien.
+
+            <br />
+            Si es necesario revisar los permisos de las carpetas lee la sección de <a href="install_permissions.htm#permissions">permisos</a> en la documentación y haz lo que se sugiere allí.
+            </li>
+
+            <li><a name="versioncheck_comparison_version"></a><h4>Versión<a href="#versioncheck_comparison_version" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            	La versión del archivo en el servidor. 
+            	Si es idéntica a la versión indicada en el repositorio, deberías ver un &quot;OK&quot;. 
+            	Si utilizas una versión antigua en tu servidor deberías conseguir un paquete nuevo y hacer una actualización.
+            <br />
+            Nota: ni las carpetas ni los archivos binarios (como gráficos) tienen números de versión, por lo que la columna "Versión" muestra &quot;<acronym title="not applicable">n/a</acronym>&quot; para las carpetas y archivos binarios. 
+            Solo los archivos cuyo contenido sea texto pueden tener número de versión, así que no te alarmes por los muchos mensajes &quot;n/a (OK)&quot; que aparezcan.
+            </li>
+
+            <li><a name="versioncheck_comparison_revision"></a><h4>Revisión<a href="#versioncheck_comparison_revision" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            La revisión del archivo en tu servidor. 
+            Si ésta es idéntica a la revisión indicada en el repositorio XML, deberías ver un &quot;OK&quot;. 
+            Si utilizas una versión antigua en tu servidor deberías conseguir un paquete nuevo y hacer una actualización.
+            <br />
+            Las revisiones están relacionadas con las versiones - por lo general, si la versión está bien, la revisión debería estar bien. 
+            Sólo en el caso de saques los archivos desde el repositorio (hagas <a href="dev_subversion.htm#subversion">checkout desde el repositorio</a>), las revisiones pueden ser más nuevas.
+            Lo mismo que se aplica a los números de versión se aplica a las revisiones: sólo los archivos de texto pueden tener números de revisión - las carpetas y los archivos binarios no tienen un número de revisión.
+            <br />
+            ¿Dudas? 
+            No tienes porqué: por lo general, puedes ignorar de forma segura las revisiones - si usted quiere saber más acerca las revisiones, 
+            lee la información en la <a href="dev_subversion.htm#dev_subversion_revision">página de subversiónes</a>.
+            </li>
+
+            <li><a name="versioncheck_comparison_modified"></a><h4>Modificado<a href="#versioncheck_comparison_modified" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Si un archivo está accesible y los números de versión y de revisión cuadran, el script versioncheck intenta comprobar si el archivo se ha modificado, 
+            en comparación con el original que viene con el paquete de Coppermine. 
+            Esta comprobación se realiza con los valores hash MD5 del fichero original y tu copia.
+            <br />
+            Cuando se realiza una instalación nueva o una actualización no debe haber archivos modificados. 
+            Si salen como modificados hay varias posibles razones:
+            <ul>
+                <li>
+                	Has modificado <strong>deliberadamente</strong> el archivo (por ejemplo, aplicando una modificación personalizada). 
+                	En ese caso puedes hacer caso omiso de la advertencia en la la columna &quot;Modificado&quot;
+                </li>
+                <li>
+                	El archivo no se ha transferido correctamente al servidor web. 
+                	Si este es el caso, intenta volver a cargar el archivo al servidor. 
+                	Si con esto no se resuelve el problema, el paquete que has conseguido podría estar corrupto. 
+                	Vuelve a descargar uno de la sección de descarga de Coppermine, desempaqueta y/o descomprime y vuelve a cargar el archivo. 
+                	Asegúrate de que la aplicación FTP está configurada para sobrescribir los archivos existentes
+                </li>
+                <li>
+                	Has usado FTP en modo inadecuado para transferir el archivo al servidor web. 
+                	En las aplicaciones de FTP puedes transferir archivos en modo ASCII o binarios. 
+                	La mayoría de clientes FTP modernos seleccionan automáticamente el modo apropiado de FTP para cada archivo. 
+                	Si no es el caso, intenta ponerlo a mano y especifica explícitamente el modo de FTP para la carga de archivos.
+                </li>
+                <li>
+                	Tu servidor web está inyectando código en cada archivo. 
+                	Muchos proveedores de espacio web gratuito (los llamados "freehosts") hacen esto para poner anuncios en tus ficheros. 
+                	No puedes hacer mucho, excepto pagar un servicio de hosting o ignorar la alerta de la columna &quot;Modificado&quot; y esperar que las cosas funcionen de todos modos. 
+                </li>
+            </ul>
+            Puedes filtrar la salida de la columna "Modificado" activando la opción <a href="#versioncheck_options_no_modification_check">No comprobar los ficheros modificados</a>. 
+            De paso mejorará ligeramente el rendimiento de versioncheck.
+            </li>
+            <li><a name="versioncheck_comparison_comment"></a><h4>Comentario<a href="#versioncheck_comparison_comment" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            La columna de comentario tiene una recomendación acerca de lo que supuestamente está mal y lo que debes hacer para solucionar el problema. 
+            Que no haya comentarios significa por lo general que todo está bien.
+            </li>
+            <li><a name="versioncheck_comparison_repository_link"></a><h4>Enlace al repositorio<a href="#versioncheck_comparison_repository_link" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            El enlace al repositorio SVN (SVN web) se añade como funcionalidad adicional para los usuarios avanzados y los desarrolladores. 
+            Lea las instrucciones del <a href="dev_subversion.htm#subversion">repositorio de subversiones</a> para obtener más información. 
+            Si todo va bien no tienes que preocuparte por el enlace. 
+            </li>
         </ul>
         <a name="versioncheck_comparison_end"></a>
         
-        <a name="versioncheck_problems"></a><h3>Things that could go wrong using versioncheck<a href="#versioncheck_problems" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-        <p>As the actions performed by the versioncheck script are complex, there are several things that can go wrong, depending on your webserver setup:</p>
+        <a name="versioncheck_problems"></a><h3>Qué podría salir mal usando versioncheck<a href="#versioncheck_problems" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>Como las acciones realizadas por el script versioncheck son complejas, hay varias cosas que pueden salir mal, dependiendo de la configuración de tu servidor web:</p>
         <ul>
-            <li><strong>No connection to the online XML repository</strong><br />
-            If your server resides behind a proxy or a web filter that requires authentication or doesn't have internet connection at all (e.g. on a company's intranet), the versioncheck script may not be able to connect to the online XML repository. Use the corresponding option to keep the script from trying. The caveats mentioned in the options section applies.</li>
-            <li>I get a white page, or a page without actual content<br />
-            The script probably times out, as it consumes huge resources. You'll have to live without versioncheck then on your server setup, unless the server is yours to configure, so you can assign more memory and execution time to the script.</li>
-            <li>I get an error message<br />
-            Error messages like <tt class="code">Fatal error: Maximum execution time of 60 seconds exceeded in /path/to/webroot/coppermine_folder/include/versioncheck.inc.php on line 276</tt> are an indicator for the script consuming too many resources on your server. Try disabling some output options. If this doesn't help, you simply can not run the versioncheck script on your server.
+            <li><strong>No hay conexión con el repositorio XML</strong><br />
+            Si tu servidor está tras un proxy o un filtro web que necesite autenticación, o no dispones de conexión a Internet (p. ej en la intranet de una empresa), versioncheck puede no ser capaz de conectar con el repositorio.
+            Marca la opción correspondiente para que versioncheck siga con su trabajo. 
+            Ten en cuenta las advertencias mencionadas en la sección de opciones.
+            </li>
+            <li>
+            	Obtengo una página en blanco o una página vacía
+            	<br />
+            	La secuencia de comandos se pasa de tiempo y da un timeout, ya que consume enormes recursos. 
+            	Vas a tener que conformarte sin versioncheck durante la configuración de tu servidor, a menos que el servidor sea tuyo y le puedas asignar 
+            	más memoria y más tiempo de ejecución al script.
+
+            </li>
+            <li>Me aparece un mensaje de error<br />
+            	Los mensajes de error como <tt class="code">Error fatal: se superó el tiempo de ejecución máximo de 60 segundos /ruta/al/directorio/raíz/carpeta_coppermine/include/versioncheck.inc.php en la línea xxx</tt> también son un indicador de que el scripto consume muchos recursos. 
+            	Prueba a desactivar algunas opciones de salida. 
+            	Si sigue sin funcionar simplemente no puedes ejecutar el script versioncheck en tu servidor. 
             </li>
         </ul>
-        <p>Versioncheck is being provided as a courtesy to end users. As there are several factors that have an impact on it, it may or may not work on your server setup. If the versioncheck tool does nothing at all, this is probably the case for you - you don't have to be alarmed in this case: just make sure to keep your coppermine install up-to-date, preferably by enabling the config option "<a href="configuration.htm#admin_general_coppermine_news">Display news from coppermine-gallery.net</a>". Only if individual issues are being reported by the version check tool (i.e. only if <em>some</em> lines contain a remark in the comments column), you should be alarmed and take a closer look.</p>
+        <p>
+        	Como hay varios factores que influyen en su comportamiento puede que trabaje correctamente en tu servidor, o puede que no. 
+        	Si versioncheck no hace nada, es probablemente tu caso - pero no tienes por qué alarmarte: sólo asegúrete de mantener la instalación de Coppermine al día, 
+        	preferiblemente activando la opción de configuración "<a href="configuration.htm#admin_general_coppermine_news">Mostrar noticias de coppermine-gallery.net</a>". 
+        	Sólo si la herramienta te dice que hay problemas (es decir, sólo si <em>algunas</em> líneas contienen un comentario en la columna de comentarios), debes preocuparte y mirar más detenidamente.
+        </p>
         <a name="versioncheck_problems_end"></a>
         
-        <a name="versioncheck_expect"></a><h3>Wrong expectations<a href="#versioncheck_expect" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-        <p>To some this may sound trivial, for others it might be an important piece of information: naturally, files that you have not replaced during the upgrading process (e.g. <tt class="code">anycontent.php</tt>) will show as outdated in versioncheck's output. This is of course to be expected. It doesn't hurt if you performed the upgrade exactly as suggested, as the files you're supposed to keep during that process don't actually contain code that needs updating. As an example, <tt class="code">anycontent.php</tt> doesn't actually contain code at all (at least the file that comes with coppermine out of the box). It <em>can</em> contain custom code if you decide to use it. For details on the usage of <tt class="code">anycontent.php</tt>, refer to the section &quot;<a href="php-content.htm#php-content_anycontent">Using anycontent.php</a>&quot;.</p>
-        <p>The versioncheck tool doesn't actually <em>download</em> newer file versions from the internet - it just <em>checks</em> the files you have on your server against a list of most recent files. The versioncheck tool doesn't check nor sanitize your site against hacking.</p>
+        <a name="versioncheck_expect"></a><h3>Falsas expectativas<a href="#versioncheck_expect" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>
+        	Para algunos esto puede sonar trivial, para otros puede ser un dato importante: naturalmente, los archivos que no has reemplazado durante el proceso de actualización 
+        	(<tt class="code">anycontent.php</tt>, por ejemplo) se marcarán como obsoletos en la salida de versioncheck. 
+        	Por supuesto era de esperar. 
+        	No pasa nada si has realizado la actualización tal y como se ha indicado, porque los archivos que se supone que se mantienen durante el proceso en realidad no 
+        	contienen código que necesite ser actualizado. 
+        	A modo de ejemplo, <tt class="code">anycontent.php</tt> en realidad no contiene código en absoluto (al menos el archivo que viene con Coppermine). 
+        	<em>Puede</em> tener código personalizado si decides usarlo. 
+        	Para obtener más información sobre el uso de <tt class="code">anycontent.php</tt>, consulta la sección 
+        	&quot;<a href="php-content.htm#php-content_anycontent">Uso de anycontent.php</a>&quot;.
+        </p>
+        <p>
+        	La herramienta versioncheck en realidad <em>no descarga</em> las versiones de archivos de Internet - sólo <em>comprueba</em> los que tienes en tu servidor contra una lista de los más recientes. 
+        	La herramienta versioncheck no comprueba ni arregla tu sitio contra la piratería informática.
+        </p>
         
     </div><a name="versioncheck_end"></a>
     
     
-    <a name="upgrade_faq"></a><h2>Upgrading FAQ<a href="#upgrade_faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <a name="upgrade_faq"></a><h2>FAQ de la actualización<a href="#upgrade_faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
     <ul>
-    	<li><a name="upgrade_faq_new_releases_alert"></a><h3>How do I find out about new Coppermine releases?<a href="#upgrade_faq_new_releases_alert" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    	There are various tools that allow you to stay up to date and make sure that you don't miss a release:
+    	<li><a name="upgrade_faq_new_releases_alert"></a><h3>¿Cómo me informo sobre las nuevas versiones de Coppermine?<a href="#upgrade_faq_new_releases_alert" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    	Hay varias herramientas que te permiten estar al día y asegurarte de que no te pierdas ninguna versión:
     	<ul>
-    		<li>Leave the config setting &quot;<a href="configuration.htm#admin_general_coppermine_news">Display news from coppermine-gallery.net</a>&quot; enabled: this feature will alert you about news concerning releases and security issues on your coppermine-driven gallery. The news are only visible for you as admin, so your end users won't even notice.</li>
-    		<li>Subscribe to the package on the sf.net project pages</li>
-    		<li>Subscribe to the <a href="http://forum.coppermine-gallery.net/index.php/board,58.0.html" rel="external" class=" external">announcements board</a> (by clicking on "notify" when being logged in). You will then get an email whenever a new posting is made on the announcement board.</li>
+    		<li>
+    			Deja la configuración del ajuste &quot;<a href="configuration.htm#admin_general_coppermine_news">Mostrar mensajes de noticias coppermine-gallery.net</a>" 
+    			habilitada: te alertará sobre las novedades y los problemas de seguridad en Coppermine. 
+    			Las noticias solamente están para tí, como administrador, por lo que los usuarios finales no se darán cuenta.
+    		</li>
+    		<li>
+    			Suscríbete al paquete en las páginas del proyecto sf.net
+    		</li>
+    		<li>
+    			Subscribe to the <a href="http://forum.coppermine-gallery.net/index.php/board,58.0.html" rel="external" class=" external">announcements board</a> 
+    			(by clicking on "notify" when being logged in). You will then get an email whenever a new posting is made on the announcement board.
+    			Suscríbete al <a href="http://forum.coppermine-gallery.net/index.php/board,58.0.html" rel="external" class=" external">tablón de anuncios</a> (pulsando en "notificar" una vez validado). 
+    			A partir de entonces recibirás un correo cada vez que haya un anuncio nuevo. 
+    		</li>
     	</ul>
     	</li>
-    	<li><a name="upgrade_faq_difference_update_upgrade"></a><h3>What's the difference between <em>updating</em> and <em>upgrading</em>?<a href="#upgrade_faq_difference_update_upgrade" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    	The words "update" and "upgrade" are often being used as synonyms. There is a slight difference though in the definition of the coppermine developers: <strong>upgrading</strong> usually means increasing the <em>major</em> version number, e.g. from cpg1.<em>4</em>.x to cpg1.<em>5</em>.x; while <strong>updating</strong> usually refers to <em>minor</em> version increases, e.g. maintenance releases from cpg1.5.<em>x</em> to cpg1.5.<em>y</em>.<br />
-    	However, the usage is not that strict, so you might find places both in this document as well as other media (like the official coppermine forum) where the terms are being used the other way 'round. In fact, the words are pretty much synonyms as far as we're concerned.</li>
+    	<li><a name="upgrade_faq_difference_update_upgrade"></a><h3>¿Cuál es la diferencia entre la <em>actualización</em> y la <em>mejora</em>?<a href="#upgrade_faq_difference_update_upgrade" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    	The words "update" and "upgrade" are often being used as synonyms. 
+    	There is a slight difference though in the definition of the coppermine developers: 
+    	<strong>upgrading</strong> usually means increasing the <em>major</em> version number, e.g. from cpg1.<em>4</em>.x to cpg1.<em>5</em>.x; 
+    	while <strong>updating</strong> usually refers to <em>minor</em> version increases, e.g. maintenance releases from cpg1.5.<em>x</em> to cpg1.5.<em>y</em>.
+
+    	Las expresiones "actualizar" (update) y "subir de versión" (upgrade) a menudo se utilizan como sinónimos. 
+    	Pero hay una ligera diferencia en la definición que usan los desarrolladores de Coppermine: la <strong>mejora</strong> por lo general significa incrementar 
+    	el número principal de versión, por ejemplo, de cpg1.<em>4</em>.X a cpg1.<em>5</em>.X, mientras que la <strong>actualización</strong> se refiere generalmente a los cambios de 
+    	<em>menor</em> importancia en la versión, por ejemplo, las versiones de mantenimiento de cpg1.5.<em>x</em> a cpg1.5.<em>y</em>.
+    	<br />
+    	El uso coloquial no es tan estricto, sin embargo, por lo que puedes encontrar tanto en este documento como en sitios (como el foro oficial de Coppermine) que los términos se usan indistintamente. 
+    	De hecho, las palabras son casi sinónimos por lo que respecta a nosotros.</li>
     	<li>
-    	    <a name="upgrade_faq_what_version"></a><h3>How do I find out what version of Coppermine I have?<a href="#upgrade_faq_what_version" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    	    There are several ways to determine what version of Coppermine you are running:
+    	    <a name="upgrade_faq_what_version"></a><h3>¿Cómo puedo saber qué versión de Coppermine tengo?<a href="#upgrade_faq_what_version" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    	    Hay varias formas de determinar qué versión de Coppermine estás ejecutando:
     	    <ul>
-    	        <li>If you can log in to your Coppermine gallery using your admin account, go to the config panel of Coppermine: the exact version will be displayed in the table header</li>
-    	        <li>Take a look at the output of any coppermine-driven page using your regular browser (usually by right-clicking on a blank section and choosing "Show source-code" or similar from the context menu). Scroll down to the bottom of the output (right before the closing body tag) - you should see a comment line there that will display the exact Coppermine version</li>
-    	        <li>Use a plain text editor to open a local copy of any PHP core file of Coppermine - in the file header you should see both an exact Coppermine version as well as the subversion revision number. This is the case as well for several other files that come with Coppermine.</li>
+    	        <li>
+    	        	Si puedes iniciar sesión en tu galería Coppermine la cuenta de administrador, ve al panel de configuración de Coppermine: la versión exacta aparece en el encabezado de la tabla
+    	        </li>
+    	        <li>
+    	        	Echa un vistazo al código fuente de cualquier página de Coppermine (por lo general, pulsa el botón derecho en una trozo en blanco y elige "Ver código fuente" o algo similar en el menú contextual). 
+    	        	Desplázate hasta la parte inferior de la salida en el código fuente (justo antes de la etiqueta de cierre del 'body') - deberías encontrar una línea de comentario con la versión exacta de Coppermine
+    	        </li>
+    	        <li>
+    	        	Usa un editor de texto plano para abrir una copia local de cualquier archivo del archivo PHP de Coppermine - en el encabezado del archivo debes ver tanto la versión exacta de Coppermine, como el número de revisión de la subversión. 
+    	        	En otros ficheros que vienen con Coppermine verás lo mismo. 
+    	        </li>
     	    </ul>
     	</li>
     </ul>
 </div><a name="upgrade_end"></a>
 
-<a name="downgrading"></a><h2>Downgrading from cpg1.5.x to an older version<a href="#downgrading" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>CPG1.5.x incorporates many new features (compared to older versions), so we encourage all users to upgrade. However, there may be some who want to test cpg1.5.x and decide later that they want to go back to an older version. You have to keep in mind that a full upgrade changes the overall layout of coppermine's database that includes converting the encoding to unicode. This process can't be reverted: once you have done the conversion, the only way back is to restore a complete mySQL database dump (of course you have to create this backup <strong>before</strong> you upgraded in the first place). Creating mySQL dumps (backups) is recommended anyway, so you should do so <strong>now</strong>.</p>
-<p class="cpg_message_warning">To make this absolutely clear: you can <strong>only</strong> downgrade if you used to have cpg1.4.x before and upgraded this version to cpg1.5.x. If you have made a <strong>fresh</strong> install of cpg1.5.x, you <strong>can not</strong> downgrade at all!</p>
-<p>To actually perform the downgrade, replace all cpg1.5.x files on your server with the files from the older version (as if you were doing an upgrade, see above). Then restore your database dump that you must have made before upgrading. If you don't have a database dump (backup), you can't go back!</p>
+<a name="downgrading"></a><h2>Volver desde cpg1.5.x a una versión anterior<a href="#downgrading" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>
+	CPG1.5.x incorporates many new features (compared to older versions), so we encourage all users to upgrade. 
+	However, there may be some who want to test cpg1.5.x and decide later that they want to go back to an older version. 
+	You have to keep in mind that a full upgrade changes the overall layout of coppermine's database that includes converting the encoding to unicode. 
+	This process can't be reverted: once you have done the conversion, the only way back is to restore a complete mySQL database dump 
+	(of course you have to create this backup <strong>before</strong> you upgraded in the first place). 
+	Creating mySQL dumps (backups) is recommended anyway, so you should do so <strong>now</strong>.
+
+	CPG1.5.x incorpora muchas características nuevas (en comparación con versiones anteriores), así que animamos a todos los usuarios a actualizar. 
+	Sin embargo, puede haber alguien que quiera probar cpg1.5.x y más tarde decida que quiere volver a una versión anterior. 
+	Hay que tener en cuenta que una actualización completa modifica la base de datos de coppermine, incluyendo la conversión de la codificación a Unicode. 
+	Este proceso tiene vuelta atrás: una vez terminada la conversión, la única forma de volver atrás es restaurar un volcado completo de la base de datos mySQL (por supuesto tienes que crear esta copia de seguridad lo primero antes de actualizar). 
+	Se recomienda de todos modos hacer copias de seguridad de mySQL, por lo que deberías hacerlo ahora mismo.
+
+</p>
+<p class="cpg_message_warning">
+	Para dejarlo claro: <strong>sólo</strong> se puede volver a versiones anteriores si tenías cpg1.4.x y actualizaste a cpg1.5.x. 
+	¡Si has realizado una instalación nueva de cpg1.5.x, no hay manera de rebajar la versión a 1.4.x!
+</p>
+
+<p>
+	Para hacer la vuelta atrás cambia todas los archivos de la versión 1.5.x con los archivos de la versión anterior (como si fueras a hacer una actualización, ver más arriba). 
+	A continuación, restaura el volcado de base de datos que debes haber hecho antes de actualizar. 
+	Si no tienes una copia de seguridad de la base de datos (un backup, un volcado, un dump), no se puede volver atrás! 
+</p>
 <a name="downgrading_end"></a>
 
 <div id="doc_footer">
