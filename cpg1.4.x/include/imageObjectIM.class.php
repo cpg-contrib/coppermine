@@ -60,21 +60,25 @@ class imageObject{
 
          function cropImage(&$clipval)
          {
-             global $CONFIG;
-                                 $cliparray = split(",",$clipval);
-             $clip_top = $cliparray[0];
-             $clip_right = $cliparray[1];
-             $clip_bottom = $cliparray[2];
-             $clip_left = $cliparray[3];
+            global $CONFIG;
 
-             $new_w = $clip_right - $clip_left;
-             $new_h = $clip_bottom - $clip_top;
+            $cliparray = split(",",$clipval);
 
+            foreach($cliparray as $value) {
+                if (!is_numeric($value)) return $this;
+            }
 
-             $imgFile = escapeshellarg("$this->directory$this->filename");
+            $clip_top = $cliparray[0];
+            $clip_right = $cliparray[1];
+            $clip_bottom = $cliparray[2];
+            $clip_left = $cliparray[3];
 
+            $new_w = $clip_right - $clip_left;
+            $new_h = $clip_bottom - $clip_top;
 
-             $output = array();
+            $imgFile = escapeshellarg("$this->directory$this->filename");
+
+            $output = array();
 
             /*
             * Hack for working with ImageMagick on WIndows even if IM is installed in C:\Program Files.

@@ -24,7 +24,7 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
 
 $redirect = "index.php";
 $message = <<< EOT
-You are trying to access a file that has been removed from the coppermine package for security reasons (details can be read on the Coppermine support board announcement thread "<a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" rel="external" class="external">Remove relocate_server.php file from your website</a>").<br />
+You are trying to access a file that has been removed from the Coppermine package for security reasons (details can be read on the Coppermine support board announcement thread "<a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" rel="external" class="external">Remove relocate_server.php file from your website</a>").<br />
 You are now being redirected to your gallery's start page.
 EOT;
 pageheader($lang_info, "<meta http-equiv=\"refresh\" content=\"120;url=$redirect\" />");
