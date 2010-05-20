@@ -195,6 +195,7 @@ doc_toc += '                  <li><a href="install_permissions.htm#chmod_benefit
 doc_toc += '                  <li><a href="install_permissions.htm#chmod_ftp">FTP application</a></li>\n';
 doc_toc += '                  <li><a href="install_permissions.htm#chmod_website_control_panel">Website control panel</a></li>\n';
 doc_toc += '                  <li><a href="install_permissions.htm#chmod_shell_access">Shell access</a></li>\n';
+doc_toc += '                  <li><a href="install_permissions.htm#chmod_chown" class="en">Ownership (CHOWN)</a></li>\n';
 doc_toc += '                </ul>\n';
 doc_toc += '              </li>\n';
 doc_toc += '              <li><a href="install_permissions.htm#apache_windows">Apache sur Windows</a></li>\n';

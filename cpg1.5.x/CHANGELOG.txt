@@ -25,6 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-05-20 [D] Added ownership section to permissions page. Added webserver response codes to errors page. {GauGau}
 2010-05-19 [O] Revised session handling (thread ID 65012) {eenemeenemuu}
 2010-05-19 [A] Added partial Czech translation (user contribution) {GauGau}
 2010-05-11 [D] Added apache server response codes {GauGau}

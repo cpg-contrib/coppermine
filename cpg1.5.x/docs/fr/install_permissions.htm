@@ -126,6 +126,10 @@ Certains hébergeurs ne vous donnent pas la possibilité d'accéder à votre sit
 <li><strong>Accès Shell</strong><br />
 Si vous avez un accès shell à votre serveur vous pouvez appliquer la commande <a href="http://www.die.net/doc/linux/man/man1/chmod.1.html" rel="external" class="external">CHMOD</a> native à vos fichiers et répertoires. Allez dans le répertoire contenant les fichiers Coppermine avec votre accès shell, puis appliquez les permissions au répertoires "albums" et "includes" ainsi qu'à l'ensemble de leurs contenu. Comme expliqué plus haut, l'utilisateur utilisé par le "diablotin" apache a besoin d'accès en écriture, vous devrez donc utiliser un CHMOD de 777 ou 755, en fonction de la configuration du serveur.
 </li>
+<li>
+<a name="chmod_chown"></a><h4>Ownership (CHOWN)<a href="#chmod_chown" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+In rare cases you might run into permission issues that can't be solved by setting permissions using the CHMOD command - instead, you need to change the ownership of folder/files using the CHOWN command that only applies on Posix-compliant operating systems. Issues related to ownership usually happen if the user the FTP upload runs under differs from the user the webserver runs under. The tricky thing is that there is no control built into your FTP application to review or change ownership. Therefore, if the server isn't yours to administer and you don't have shell access, you're stuck and will have to ask your webhost for support.
+</li>
 </ul>
 <a name="chmod_end"></a>
 

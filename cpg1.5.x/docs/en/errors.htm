@@ -319,74 +319,69 @@
         <tr>
             <td class="valign_top no_linebreak"><a name="errors_messages_webserver_410"></a><h4 class="nopadding">410 Gone<a href="#errors_messages_webserver_410" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top  no_linebreak">Client Request Error</td>
-            <td class="valign_top">The file used to be in this position, but is there no longer.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">The file used to be in this position, but is there no longer. This response code indicates that the resource requested is no longer available and will <strong>not</strong> be available again. This should be used when a resource has been <strong>intentionally</strong> removed; however, it is not necessary to return this code - a <em>404 Not Found</em> can be issued instead. Upon receiving a 410 status code, the client should not request the resource again in the future. Clients such as search engines should remove the resource from their indexes.</td>
+            <td class="valign_top"><abbr title="not applicable">n/a</abbr></td>
         </tr>
         <tr>
-            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_411"></a><h4 class="nopadding">411 Content Length Required<a href="#errors_messages_webserver_411" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_411"></a><h4 class="nopadding">411 Length Required<a href="#errors_messages_webserver_411" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top  no_linebreak">Client Request Error</td>
             <td class="valign_top">The request is missing its Content-Length header.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top"><abbr title="not applicable">n/a</abbr></td>
         </tr>
         <tr>
             <td class="valign_top no_linebreak"><a name="errors_messages_webserver_412"></a><h4 class="nopadding">412 Precondition Failed<a href="#errors_messages_webserver_412" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top  no_linebreak">Client Request Error</td>
             <td class="valign_top">A certain configuration is required for this file to be delivered, but the client has not set this up.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top"><abbr title="not applicable">n/a</abbr></td>
         </tr>
         <tr>
             <td class="valign_top no_linebreak"><a name="errors_messages_webserver_413"></a><h4 class="nopadding">413 Request Entity Too Long<a href="#errors_messages_webserver_413" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top  no_linebreak">Client Request Error</td>
-            <td class="valign_top">The requested file was too big to process.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">The requested file was too big to process, i.e. the request is larger than the server is willing or able to process.</td>
+            <td class="valign_top">If this happens for a Coppermine page, review your webserver's setup. If the server isn't yours to administer (i.e. if you're webhosted), ask your webhost for support.</td>
         </tr>
         <tr>
             <td class="valign_top no_linebreak"><a name="errors_messages_webserver_414"></a><h4 class="nopadding">414 Request URI Too Long<a href="#errors_messages_webserver_414" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top  no_linebreak">Client Request Error</td>
-            <td class="valign_top">The address you entered was overly long for the server.</td>
+            <td class="valign_top">The <abbr title="Uniform Resource Identifier">URI</abbr> provided was too long for the server to process.</td>
             <td class="valign_top"></td>
         </tr>
         <tr>
             <td class="valign_top no_linebreak"><a name="errors_messages_webserver_415"></a><h4 class="nopadding">415 Unsupported Media Type<a href="#errors_messages_webserver_415" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top  no_linebreak">Client Request Error</td>
-            <td class="valign_top">The filetype of the request is unsupported.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">The filetype of the request is unsupported. Example: the client uploads an image as <tt class="code">image/svg+xml</tt>, but the server requires that images use a different format.</td>
+            <td class="valign_top">If this happens for a Coppermine page, review your webserver's setup. If the server isn't yours to administer (i.e. if you're webhosted), ask your webhost for support.</td>
+        </tr>
+        <tr>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_450"></a><h4 class="nopadding">450 Blocked by Windows Parental Controls<a href="#errors_messages_webserver_450" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top  no_linebreak">Client Request Error</td>
+            <td class="valign_top">A Microsoft extension. This error is given when Windows Parental Controls are turned on and are blocking access to the given webpage.</td>
+            <td class="valign_top"><abbr title="not applicable">n/a</abbr></td>
         </tr>
         <tr>
             <td class="valign_top no_linebreak"><a name="errors_messages_webserver_500"></a><h4 class="nopadding">500 Internal Server Error<a href="#errors_messages_webserver_500" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top  no_linebreak">Server error</td>
             <td class="valign_top">Nasty response that is usually caused by a problem in the code when a CGI program is run, or if the code runs into a limitation imposed by the server-configuration.</td>
-            <td class="valign_top">If you can, you should review the server's error log (not Coppermine's log!) for details what actually went wrong. Usually, when webhosted (i.e. if the server is not yours to administer), you don't have access to those logs, so you better ask your webhost for support.</td>
+            <td class="valign_top">If you can, you should review the server's error log (not Coppermine's log!) for details what actually went wrong. Usually, when webhosted (i.e. if the server is not yours to administer), you don't have access to those logs, so you better ask your webhost for support.<br />
+            Usually, this message shows for Coppermine-driven pages if you run into server-sided limitation as far as the memory consumption is concerned, i.e. if you fed the script a bite that is too big to chew. In 90% of all cases, this happens when trying to process an image that is too big in terms of resolution.</td>
         </tr>
         <tr>
             <td class="valign_top no_linebreak"><a name="errors_messages_webserver_501"></a><h4 class="nopadding">501 Not Implemented<a href="#errors_messages_webserver_501" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top  no_linebreak">Server error</td>
             <td class="valign_top">The request cannot be carried out by the server.</td>
-            <td class="valign_top"></td>
-        </tr>
-        <tr>
-            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_502"></a><h4 class="nopadding">502 Bad Gateway<a href="#errors_messages_webserver_502" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top  no_linebreak">Server error</td>
-            <td class="valign_top">The server you're trying to reach is sending back errors.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">If this happens for a Coppermine page, review your webserver's setup. If the server isn't yours to administer (i.e. if you're webhosted), ask your webhost for support.</td>
         </tr>
         <tr>
             <td class="valign_top no_linebreak"><a name="errors_messages_webserver_503"></a><h4 class="nopadding">503 Service Unavailable<a href="#errors_messages_webserver_503" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top  no_linebreak">Server error</td>
-            <td class="valign_top">The service or file that is being requested is not currently available.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">The service or file that is being requested is not currently available, i.e the entire server is currently unavailable (because it is overloaded or down for maintenance). Generally, this is a temporary state.</td>
+            <td class="valign_top">Ask your webhost for support if this error message is displayed permanently.</td>
         </tr>
         <tr>
-            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_504"></a><h4 class="nopadding">504 Gateway Timeout<a href="#errors_messages_webserver_504" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
+            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_509"></a><h4 class="nopadding">509 Bandwidth Limit Exceeded<a href="#errors_messages_webserver_509" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
             <td class="valign_top  no_linebreak">Server error</td>
-            <td class="valign_top">The gateway has timed out. Like the 408 timeout error, but this one occurs at the gateway of the server.</td>
-            <td class="valign_top"></td>
-        </tr>
-        <tr>
-            <td class="valign_top no_linebreak"><a name="errors_messages_webserver_505"></a><h4 class="nopadding">505 HTTP Version Not Supported<a href="#errors_messages_webserver_505" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4></td>
-            <td class="valign_top  no_linebreak">Server error</td>
-            <td class="valign_top">The HTTP protocol you are asking for is not supported.</td>
-            <td class="valign_top"></td>
+            <td class="valign_top">This status code, while used by many servers, is not specified in any RFCs. Apache bw/limited extension.</td>
+            <td class="valign_top">Ask your webhost for support!</td>
         </tr>
     </table> 
 </div>
