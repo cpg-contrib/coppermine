@@ -144,3 +144,13 @@ table.cpg_zebra > tbody > tr.tableb_alternate > td {
 .no_linebreak {
 	white-space:pre;
 }
+
+.thumb_right {
+    margin-left:5px;
+    float:right;
+}
+
+.thumb_left {
+    margin-right:5px;
+    float:left;
+}
