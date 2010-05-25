@@ -722,6 +722,7 @@ function delete_files()
         'config.php',
         'editOnePic.php',
         'faq.php',
+        'image_processor.php',
         'picEditor.php',
         'relocate_server.php',
         'scripts.js',

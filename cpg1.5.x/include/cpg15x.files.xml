@@ -233,6 +233,10 @@
     <hash>a0364dade5b7938dd94e55d63c1537bb</hash>
   </element>
   <element>
+    <fullpath>image_processor.php</fullpath>
+    <status>remove</status>
+  </element>
+  <element>
     <fullpath>index.php</fullpath>
     <version>1.5.4</version>
     <revision>7382</revision>
