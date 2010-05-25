@@ -74,7 +74,7 @@ $lang_meta_album_names['datebrowse'] = 'Búsqueda por fecha'; //cpg1.5
 
 
 $lang_errors['access_denied'] = 'No tienes permiso para acceder a esta página';
-$lang_errors['invalid_form_token'] = 'No hay un \'form token\' válido'; //cpg1.5
+$lang_errors['invalid_form_token'] = 'No hay un testigo de formulario (\'form token\') válido - probablemente has tardado demasiado'; //cpg1.5
 $lang_errors['perm_denied'] = 'No tienes permiso para realizar esta operación.';
 $lang_errors['param_missing'] = 'Llamada al script sin los parámetros requeridos.';
 $lang_errors['non_exist_ap'] = '¡El álbum o el fichero no existen!';
@@ -298,7 +298,7 @@ $lang_rate_pic['excellent'] = 'Excelente';
 $lang_rate_pic['great'] = 'Genial';
 $lang_rate_pic['js_warning'] = 'Tienes que habilitar Javascript para poder votar'; // cpg1.5
 $lang_rate_pic['already_voted'] = 'Ya has votado este archivo.'; // cpg1.5
-$lang_rate_pic['forbidden'] = 'No puedes votar tus propios archivoss'; // cpg1.5
+$lang_rate_pic['forbidden'] = 'No puedes votar tus propios archivos'; // cpg1.5
 $lang_rate_pic['rollover_to_rate'] = 'Mueve el cursor sobre la imagen de las estrellas para votar'; // cpg1.5
 
 // ------------------------------------------------------------------------- //
@@ -675,12 +675,13 @@ $lang_admin_php['time_offset'] = 'Zona horaria respecto a GMT'; // cpg1.5
 $lang_admin_php['time_offset_detail'] = '(Hora actual: %s)'; // cpg1.5
 $lang_admin_php['enable_help'] = 'Habilitar iconos de ayuda'; // cpg1.5
 $lang_admin_php['enable_help_description'] = 'ayuda parcialmente en inglés '; // cpg1.5
-$lang_admin_php['clickable_keyword_search'] = 'Permitir palabras clave \'clickables\' en la búsqueda'; // cpg1.5
+//$lang_admin_php['clickable_keyword_search'] = 'Mostrar palabras clave \'clickables\' en la búsqueda'; // cpg1.5
+$lang_admin_php['clickable_keyword_search'] = 'Mostrar la nube de palabras clave en la página de búsqueda'; // cpg1.5
 $lang_admin_php['keyword_separator'] = 'Separador de palabras clave'; // cpg1.5
 $lang_admin_php['keyword_convert'] = 'Convertir el separador de palabras clave'; // cpg1.5
-$lang_admin_php['enable_plugins'] = 'Habilitar plugins'; // cpg1.5
+$lang_admin_php['enable_plugins'] = 'Activar plugins'; // cpg1.5
 $lang_admin_php['purge_expired_bans'] = 'Purgar expulsiones caducadas automáticamente'; // cpg1.5
-$lang_admin_php['browse_batch_add'] = 'Interfase navegable para añadir imágenes por lotes'; // cpg1.5
+$lang_admin_php['browse_batch_add'] = 'Interfaz navegable para añadir imágenes por lotes'; // cpg1.5
 $lang_admin_php['batch_proc_limit'] = 'Procesos concurrentes para añadir imágenes por lotes'; // cpg1.5
 $lang_admin_php['display_thumbs_batch_add'] = 'Mostrar miniaturas cuando se añaden imágenes por lotes'; // cpg1.5
 $lang_admin_php['lang'] = 'Idioma por defecto'; // cpg1.5
@@ -919,7 +920,7 @@ $lang_admin_php['warning_dont_submit'] = 'Si no estás seguro del impacto que te
 $lang_admin_php['menu_only'] = 'sólo en el menú'; // cpg1.5
 $lang_admin_php['everywhere'] = 'en todas partes'; // cpg1.5
 $lang_admin_php['manage_languages'] = 'Gestionar idiomas'; // cpg1.5
-$lang_admin_php['form_token_lifetime'] = 'Caducidad del \'form token\''; // cpg1.5
+$lang_admin_php['form_token_lifetime'] = 'Caducidad del testigo de formulario (\'form token\')'; // cpg1.5
 $lang_admin_php['seconds'] = 'Segundos'; // cpg1.5
 $lang_admin_php['display_reset_boxes_in_config'] = 'Mostrar cajas de \'Reestablecer\' en la configuración'; // cpg1.5
 $lang_admin_php['upd_not_needed'] = 'No se necesita actualizar.'; // cpg 1.5
@@ -1237,7 +1238,7 @@ $lang_editpics_php['unapproved'] = 'No aprobada'; // cpg 1.5
 $lang_editpics_php['new_keyword'] = 'Nueva palabra clave';
 $lang_editpics_php['new_keywords'] = 'No se han encontrado palabras clave';
 $lang_editpics_php['existing_keyword'] = 'Palabra clave ya existente';
-$lang_editpics_php['pic_info_str'] = '%s &veces; %s - %s KB - %s vistas - %s votos';
+$lang_editpics_php['pic_info_str'] = '%sx%s - %s KB - %s visitas - %s votos';
 $lang_editpics_php['approve'] = 'Aprobar fichero';
 $lang_editpics_php['postpone_app'] = 'Posponer aprobación';
 $lang_editpics_php['del_pic'] = 'Borrar fichero';
@@ -1640,7 +1641,7 @@ $lang_modifyalb_php['alb_keyword'] = 'Palabras clave del álbum';
 $lang_modifyalb_php['alb_thumb'] = 'Miniatura del álbum';
 $lang_modifyalb_php['alb_perm'] = 'Permisos para este álbum';
 $lang_modifyalb_php['can_view'] = 'Este álbum puede ser visto por';
-$lang_modifyalb_php['can_upload'] = 'Los visitantes pueden añadir archivoss';
+$lang_modifyalb_php['can_upload'] = 'Los visitantes pueden añadir archivos';
 $lang_modifyalb_php['can_post_comments'] = 'Los visitantes pueden añadir comentarios';
 $lang_modifyalb_php['can_rate'] = 'Los visitantes pueden valorar los archivos';
 $lang_modifyalb_php['user_gal'] = 'Galería del usuario';
@@ -1674,7 +1675,7 @@ $lang_modifyalb_php['edit_files'] = 'Editar ficheros';
 $lang_modifyalb_php['parent_category'] = 'Categoría padre';
 $lang_modifyalb_php['thumbnail_view'] = 'Vista de miniaturas';
 $lang_modifyalb_php['random_image'] = 'Imagen al azar'; // cpg 1.5
-$lang_modifyalb_php['password_protect'] = 'Proteger este álbum con contrasela (Marcar para \'si\')'; //cpg1.5
+$lang_modifyalb_php['password_protect'] = 'Proteger este álbum con contraseña (marcar para \'si\')'; //cpg1.5
 } 
 
 // ------------------------------------------------------------------------- //

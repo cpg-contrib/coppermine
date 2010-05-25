@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Configuration - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<title>Configuration - Coppermine Photo Gallery - Documentación y Manuales</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="language" content="en" />
+<meta name="language" content="es" />
 <meta name="copyright" content="Coppermine dev team" />
-<meta name="description" content="The gallery configuration page is where you will configure the most important parts of your Coppermine-driven gallery." />
+<meta name="description" content="Las partes más importantes de tu instancia de Coppermine se ajustan en la página de la configuración de la galería." />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -27,121 +27,292 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentación y Manuales</h1>
 <div id="toc">
-<a href="toc.htm">Table of Contents</a>
+<a href="toc.htm">Tabla de contenidos</a>
 </div>
 
-<div id="doc_en_only">No translation available</div>
+<a name="admin"></a><h1>Página de configuración de la galería<a href="#admin" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>
+	Aquí es donde podrás configurar las partes más importantes de tu galería Coppermine. 
+	Algunos ajustes tienen un impacto en los archivos que cargas - la modificación de esas opciones después de haber añadido un gran número de archivos en tu 
+	galería puede ser una tarea difícil o imponer modificaciones posteriores que te lleven tiempo.
+	Por esta razón es importante que pases tiempo configurando Coppermine en las primeras etapas del desarrollo de tu galería para conseguir esos ajustes exactamente 
+	de la manera que deseas, antes de cargar muchas fotos o de abrir la galería para el público en general.
+</p>
+<p>
+	La mayoría de los campos de opciones de configuración tienen una casilla de verificación en el lado derecho que le permite restablecer esa opción al valor 
+	predeterminado (o más bien: recomendado). 
+	Esta checkbox sólo será visible si el valor es diferente del predeterminado o si no hay un valor por defecto particular (por ejemplo no se propone una dirección 
+	de correo del administrador, ya que esto depende exclusivamente de la configuración de tu servidor) y si has habilitado la opción 
+	&quot;<a href="#admin_misc_reset_boxes">Mostrar cajas de 'Reestablecer' en la configuración</a>&quot.
 
-<a name="admin"></a><h1>The gallery configuration page<a href="#admin" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>This is where you will configure the most important parts of your coppermine gallery. Some settings have an impact on the files you upload - changing those options after you have alreaded added a large number of files in your gallery can be a difficult undertaking. For this reason, it is important that you spend time with your coppermine setup at the early stages of gallery development to get those settings exactly the way you want them, before actually uploading too many pics or listing the gallery to the general public.</p>
-<p>Most config option fields have a checkbox at the very right that allows you to reset that option to the default (or rather: recommended) option. This checkbox will only be displayed if your setting differs from the default or if there is no particular default setting (there can for example not be a default admin email address, as this entirely depends on your server setup) and if you have enabled the config option &quot;<a href="#admin_misc_reset_boxes">Display reset boxes in config</a>&quot;.</p>
-<p>Please note that the config page does not contain all coppermine options - some options are being assigned per group, so you will find them on the <a href="groups.htm#group_cp">groups control panel</a>.</p>
+</p>
+<p>
+	Ten en cuenta que la página de configuración no tiene todas las opciones de Coppermine - 
+	algunas se asignan por grupo de usuarios, por lo que las encontrarás en el <a href="groups.htm#group_cp">panel de control de grupos</a>.
+</p>
 
 
-<a name="admin_general"></a><h2>General settings<a href="#admin_general" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<a name="admin_general"></a><h2>Configuración general<a href="#admin_general" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <div class="indent">
-    <a name="admin_general_name"></a><h3>Gallery name<a href="#admin_general_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>Enter the name of your gallery in this text field. The name you enter will appear as the title that is displayed in the web browser's title bar and is also displayed in many of the different theme templates.</p>
-    <p>Even if you have removed the corresponding token from your custom theme, you should fill this in correctly, as it will be used when sending ecards and in all kinds of emails sent from your gallery (e.g. during registration).</p>
-    <p>It's mandatory to populate this field properly.</p>
-    <p class="cpg_example">Example: <tt class="code">Tim's incredible picture gallery</tt></p>
-    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Gallery name</p>
+    <a name="admin_general_name"></a><h3>Nombre de la galería<a href="#admin_general_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>
+    	Introduce el nombre de tu galería en este campo de texto. 
+    	El nombre que escribas aparecerá como el título de tu página (barra de título del navegador web) y también se muestra en muchas de las plantillas de los temas.
+
+    </p>
+    <p>
+    	Incluso si lo quitas en tu tema personalizado debes poner un valor, ya que se utilizará en el envío de postales y en todo tipo de correos electrónicos desde tu galería (por ejemplo, durante el registro).
+    </p>
+    <p>
+    	Es obligatorio rellenar este campo adecuadamente.
+    </p>
+    <p class="cpg_example">Ejemplo: <tt class="code">la increíble galería de fotos de Timoteo</tt></p>
+    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuración &rarr; Configuración general &rarr; Nombre de la galería</p>
     <a name="admin_general_name_end"></a>
     <hr />
-    <a name="admin_general_description"></a><h3>Gallery description<a href="#admin_general_description" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>Enter a short description of your gallery in this text field. This description is also displayed in some of the theme templates just below the name of your gallery.</p>
-    <p>Similar to the <a href="#admin_general_name">Gallery name</a> field, the Gallery description field needs to be populated, even if your custom theme doesn't show that tag and even if you don't want to display that tag on your site: the field mustn't be empty and it mustn't be the default.</p>
-    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Gallery description</p>
+    <a name="admin_general_description"></a><h3>Descripción de la galería<a href="#admin_general_description" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>
+    	Escribe una breve descripción de tu galería en este campo de texto. 
+    	Esta descripción también aparece en algunas de las plantillas de tema justo debajo del nombre de tu galería.
+    </p>
+    <p>
+    	Al igual que el campo de <a href="#admin_general_name">Nombre de la galería</a>, es necesario rellenar la descripción de la galería aunque el tema personalizado no muestre esa etiqueta 
+    	e incluso si no deseas mostrar esa etiqueta en tu sitio Web: el campo no debe estar vacío y no debe ser el predeterminado.
+    </p>
+    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuración &rarr; Configuración general &rarr; Descripción de la galería</p>
     <a name="admin_general_description_end"></a>
     <hr />
-    <a name="admin_general_email"></a><h3>Gallery administrator email<a href="#admin_general_email" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>All emails sent by the gallery will be sent using this email address. This must be a valid email address.</p>
-    <p>Coppermine will use this address as "from"-address when sending emails (e.g. during registration). It's mandatory to have this email address populated properly. If you have your own domain, it might be a good idea to use an email account that correlates to your domain name.</p>
-    <p class="cpg_example">Example: if your domain name is &quot;<tt class="code">example.com</tt>&quot;, you should create an email address named <tt class="code">gallery@example.com</tt> and use that email address in coppermine's config. Coppermine does <strong>not</strong> create that email address for you!</p>
-    <p>Users sometimes ask on the support board if they can use another email, e.g. one from a freemail provider like GoogleMail, Hotmail or similar. The answer is: we can't tell you if your webhost will allow you to do this. Many webhosts disallow such things for reasons of spam prevention. Just keep in mind what the email address will be used for: the webserver will use that email address to send emails from. If you're not sure, ask your webhost for support.</p>
-    <p class="cpg_message_info">This email address must not be confused with the email address that correlates to the email address of the gallery administrator's user account. Those email addresses <em>can</em> be identical, but they don't necessarilly have to.</p>
-    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Gallery administrator email</p>
+    <a name="admin_general_email"></a><h3>Correo del administrador de la galería<a href="#admin_general_email" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>
+    	Todos los correos electrónicos enviados por la galería tendrán como remitente esta dirección de correo electrónico. 
+    	Debe ser una dirección de correo válida. 
+    </p>
+    <p>
+    	Coppermine usará esta dirección en el campo "De:" en los correos electrónicos (por ejemplo, durante el registro de nuevos usuarios). 
+    	Es obligatorio tener esta dirección de correo electrónico rellena adecuadamente. 
+    	Si tienes tu propio dominio podría ser una buena idea usar una cuenta de correo electrónico relacionada con él.
+    </p>
+    <p class="cpg_example">
+    	Ejemplo: si el nombre de tu dominio es &quot;<tt class="code">ejemplo.com</tt>&quot;, es buena idea crear una dirección de correo 
+    	<tt class="code">galleria@ejemplo.com</tt> y usarla en la configuración de Coppermine. 
+    	¡Coppermine <strong>no</strong> crea esa cuenta de correo!
+    </p>
+    <p>
+    	Los usuarios a veces preguntan en el foro de soporte si se puede utilizar otro correo electrónico, por ejemplo, uno de un proveedor gratuíto como Gmail, Hotmail o similar. 
+    	La respuesta es: no podemos saber si tu servicio de alojamiento web te permitirá hacer esto. 
+    	Muchos no lo permiten para prevenir el spam. 
+    	Recuerda para qué se usará esta dirección de correo: el servidor web mandará los correos desde esa cuenta. 
+    	Si no estás seguro, consulta con tu proveedor de hosting.
+    </p>
+    <p class="cpg_message_info">
+    	No confundas esta dirección de correo con la del administrador de la galería. 
+    	<em>Pueden</em> ser la misma, pero no tiene porqué.
+    </p>
+    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuración &rarr; Configuración general &rarr; Correo del administrador de la galería</p>
     <a name="admin_general_email_end"></a>
     <hr />
-    <a name="admin_general_coppermine-url"></a><h3>URL of your coppermine gallery folder<a href="#admin_general_coppermine-url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>This is the URL where a user will be directed to when s/he clicks on the &quot;See more pictures&quot; link in an e-card. This <em>must</em> be the URL to the root of your coppermine installation followed by a forward slash (just the path to your coppermine folder, e.g. <em>http://yourdomain.tld/coppermine/</em>). Do not specify a specific file (such as index.php) or subfolder within the coppermine gallery in this field.</p>
-    <p>In previous versions of Coppermine, this field was called &quot;Target address for the 'See more pictures' link in e-cards&quot;, but as this url is now being used for other functions in coppermine, it has been changed, appropriately.</p>
-    <p class="cpg_message_warning">It is absolutely mandatory that you enter the gallery URL setting properly - if you don't, you will almost certainly experience "funny" behaviours of your gallery.</p>
-    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; URL of your coppermine gallery folder</p>
+    <a name="admin_general_coppermine-url"></a><h3>URL de tu carpeta de la galería Coppermine<a href="#admin_general_coppermine-url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>
+    	Esta es la dirección a la que se dirige un usuario cuando pulsa en el enlace &quot;Ver más imágenes&quot; de las postales. 
+    	<em>Debe</em> ser la dirección URL de tu instalación de Coppermine seguido por una barra diagonal (sólo la ruta de acceso a la carpeta de Coppermine, 
+    	por ejemplo, <em>http://tudominio.tld/Coppermine/</em>). 
+    	No especifiques un archivo específico (por ejemplo, index.php) o una subcarpeta dentro de la galería Coppermine en este campo.
+    </p>
+    <p>
+    	En versiones anteriores de Coppermine este campo se llamaba &quot;Dirección de destino del enlace 'Ver más imágenes' en las postales&quot;, 
+    	pero como esta URL se usa ahora para más cosas se ha cambiado acorde a su nueva función.
+    </p>
+    <p class="cpg_message_warning">
+    	Es absolutamente necesario que escribas la dirección URL correcta - si no lo haces, es casi seguro que verás comportamientos "divertidos" en tu galería.
+    </p>
+    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuración &rarr; Configuración general &rarr; URL de tu carpeta de la galería</p>
     <a name="admin_general_coppermine-url_end"></a>
     <hr />
-    <a name="admin_general_home-url"></a><h3>URL of your home page<a href="#admin_general_home-url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>This is the URL where a user will be directed when he clicks on the &quot;Home&quot; button in the main menu.</p>
-    <p>You can use &quot;/&quot; for the root of your domain, &quot;index.php&quot; for your gallery's default starting page, or any other valid URL. By default this is "index.php".</p>
-    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; URL of your home page</p>
+    <a name="admin_general_home-url"></a><h3>URL de la página principal<a href="#admin_general_home-url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>
+    	This is the URL where a user will be directed when he clicks on the &quot;Home&quot; button in the main menu.
+    	Esta es la dirección a la que van los usuarios cuando pulsan en el botón &quot;Inicio&quot; en el menú principal.
+    </p>
+    <p>
+    	Puedes utilizar &quot;/&quot;  al ser la raíz de tu dominio, una página por defecto como &quot;index.php&quot; para acceder a la galería, o cualquier otra dirección URL válida. 
+    	Por defecto es &quot;index.php&quot;.
+    </p>
+    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuración &rarr; Configuración general &rarr; URL de la página principal</p>
     <a name="admin_general_home-url_end"></a>
     <hr />
-    <a name="admin_general_zip-download"></a><h3>Allow ZIP-download of favorites<a href="#admin_general_zip-download" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>When enabled, users of your site may download files that they previously saved into their <em>favorites</em> collection. These files are dowloaded from the user's &quot;My favorites&quot; page and saved onto their computers in a zip-file format. This option requires zlib to be installed on your server (run <a href="http://www.php.net/phpinfo" rel="external" class="phpnet">phpinfo</a> to check if this php library file exists on your server).</p>
-    <p>Warning: the creation of zip-archives on the server is a resources-intensive process that can overload your server pretty fast. In fact, the same server-sided limitations that apply to uploading (e.g. memory consumption) must be taken into account as well when enabling the zip download feature. It is very likely that this feature will stop working when trying to create a zip archive out of a larger number of entries in the visitor's "my favorites" meta album.</p>
-    <p>You have the options to disallow the zip-download of favorites completely or to allow it. If you choose to allow it, you can determine if you want a readme file to be included within the zip archive that explains where the archive has been downloaded from.</p>
-    <p>Default (and recommended) option is "off".</p>
-    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Allow ZIP-download of favorites</p>
+    <a name="admin_general_zip-download"></a><h3>Permitir descarga ZIP de los favoritos<a href="#admin_general_zip-download" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>
+    	Si se activa, los usuarios de tu sitio web podrán descargar los archivos que previamente hayan guardado en su colección de <em>favoritos</em>. 
+    	Estos archivos se descargan de la página &quot;Mis favoritos&quot; del usuario en formato zip. 
+    	Esta opción necesita que la librería zlib esté instalada en el servidor (ejecuta <a href="http://www.php.net/phpinfo" rel="external" class="phpnet">phpinfo</a> 
+    	para comprobar si existe en el servidor).
+    </p>
+    <p>
+    	Advertencia: la creación de archivos zip es un proceso que consume muchos recursos en el servidor, y puede sobrecargarlo con rapidez. 
+    	De hecho, se deben tener en cuenta las mismas limitaciones que se aplican a la carga (por ejemplo, el consumo de memoria) al activar esta función de descarga zip. 
+    	Es muy probable que esta característica no funcione al intentar crear un archivo zip de un gran número de entradas en el meta-álbum &quot;Mis favoritos&quot; del visitante.
+    </p>
+    <p>
+    	Las opciones son no permitir descargar los favoritos como zip o permitirlo completamente. 
+    	Si decides permitirlo, se puede escoger si deseas incluir un archivo 'leeme' en el archivo zip que explique que el archivo ha sido descargado de tu galería.
+    </p>
+    <p>
+    	La opción predeterminada (y recomendada) es no permitir (&quot;off&quot;).
+    </p>
+    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuración &rarr; Configuración general &rarr; Permitir descarga ZIP de los favoritos</p>
     <a name="admin_general_zip-download_end"></a>
     <hr />
-    <a name="admin_general_time-offset"></a><h3>Timezone difference relative to GMT<a href="#admin_general_time-offset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>Specify the time zone difference between your local time and the time zone your webserver is in. This value will be used to adjust time stamps in ecards and other places.</p>
-    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Timezone difference relative to GMT</p>
+    <a name="admin_general_time-offset"></a><h3>Diferencia horaria con GMT<a href="#admin_general_time-offset" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>
+    	Especifica la diferencia entre la hora local y la zona horaria de tu servidor web. 
+    	Este valor se utiliza, entre otros sitios, en las postales.
+    </p>
+    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuración &rarr; Configuración general &rarr; Diferencia horaria con GMT</p>
     <a name="admin_general_time-offset_end"></a>
     <hr />
-    <a name="admin_general_help"></a><h3>Enable help-icons<a href="#admin_general_help" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>Enables the display of help icons in various sections of the coppermine admin pages. When enabled, make sure you have also uploaded the "docs" folder into your coppermine folder on your webserver.</p>
-    <p>If you choose to set this to &quot;Yes: everyone&quot;, logged in (registered) users will be able to see the help icons in strategic locations as well, e.g. when creating a user gallery.</p>
-    <p>As the help text is based on the documentation that comes with coppermine, it is not available in all languages. If the native language of your user(s) is not among the number of translated documentations, it is advisable to set this option to &quot;Yes: admin only&quot; to avoid confusion among your users.</p>
-    <p class="cpg_message_success">It is <strong>strongly</strong> recommended that you do <strong>not</strong> disable the help icons altogether: even though you feel that you know your way around in your Coppermine install, the help icons might help you with the functions of a new or unfamiliar option later.</p>
-    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Enable help-icons</p>
+    <a name="admin_general_help"></a><h3>Habilitar iconos de ayuda<a href="#admin_general_help" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>
+    	Permite la visualización de los iconos de ayuda en diversas secciones de la página de administración de Coppermine. 
+    	Cuando está activada asegúrate de que también has subido la carpeta &quot;docs&quot; en la carpeta de Coppermine a tu servidor web.
+    </p>
+    <p>
+    	Si decides poner &quot;Sí: todos&quot;, los usuarios validados (registrados y que hayan entrado) también podrán ver los iconos de ayuda en lugares estratégicos, 
+    	por ejemplo, al crear una galería de usuario.
+    </p>
+    <p>
+    	Como el texto de ayuda se basa en la documentación que viene con Coppermine, no está disponible en todos los idiomas. 
+    	Si el idioma nativo de tu(s) usuario(s) no se está entre la documentación traducida, es recomendable establecer esta opción a &quot;Si: sólo administrador&quot; 
+    	para evitar confundirles.
+    </p>
+    <p class="cpg_message_success">
+    	Se recomienda <strong>encarecidamente</strong> que no deshabilites los iconos de ayuda por completo: aún si crees que conoces bien tu instalación de Coppermine, 
+    	los iconos de ayuda te pueden ayudar con las funciones de una opción nueva, o una que que no conozcas porque no sueles usar.
+    </p>
+    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuración &rarr; Configuración general &rarr; Habilitar iconos de ayuda</p>
     <a name="admin_general_help_end"></a>
     <hr />
-    <a name="admin_general_keywords_start"></a><h3>Enable clickable keywords in search<a href="#admin_general_keywords_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>When enabled, a list of all keywords entered in the &quot;<a href="files.htm#edit_pics">Edit files</a>&quot; page will appear at the bottom of the search page, with each keyword being a clickable search link. Enabling this option is recommended only if you have a small number of keywords in use (e.g. less than 100) - it will provide your users with some ideas as to what they could be searching for in your gallery (in addition to the standard full-text search). Please note that enabling this option for a large list of keywords (e.g. thousands of keywords) can slow down the search page considerably and may be confusing for new users and visitors to your site.</p>
-    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Enable clickable keywords in search</p>
+    <a name="admin_general_keywords_start"></a><h3>Mostrar la nube de palabras clave en la página de búsqueda<a href="#admin_general_keywords_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>
+    	Cuando se activa, aparecerá una lista de todas las palabras clave introducidas en el campo &quot;Palabras clave&quot; de la página 
+    	&quot;<a href="files.htm#edit_pics">Editar archivos</a>&quot; en la parte inferior de la página de búsqueda, con cada palabra clave como un enlace en el que pulsar. 
+    	Sólo se recomienda activar esta opción si tienes un número pequeño de palabras clave (por ejemplo, menos de 100) - ofrecerá a tus usuarios algunas ideas sobre lo que podrían estar buscando en la galería (además de la búsqueda normal). 
+    	Ten en cuenta que activar esta opción para muchas palabras clave (por ejemplo, miles) puede ralentizar considerablemente la página de búsqueda y puede confundir a los usuarios y visitantes nuevos de su sitio.
+    </p>
+    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuración &rarr; Configuración general &rarr; Mostrar la nube de palabras clave en la página de búsqueda</p>
     <a name="admin_general_keywords_end"></a>
     <hr />
-    <a name="admin_general_keyword_separator_start"></a><h3>Keyword separator<a href="#admin_general_keyword_separator_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>For an image or a file, you can specify keywords that describe it.  Choose a character here to separate keywords.  Do not choose a character you want to include in a single keyword.  If you only want single-word keywords, you can safely choose a space.  If you want multi-word keywords, choose a different character.  The safest option is the semicolon because that is seldom used in a keyword.</p>
-    <p>The default keyword separator for new installations of Coppermine 1.5 is the semicolon.  For upgrades from Coppermine 1.4 or earlier, the space is retained as the keyword separator.  You can convert the keyword separator for current keywords to another value by using the tool on the <a href="admin-tools.htm#admin_tools_options_keyword_convert">Admin Tools</a> page.</p>
-    <p class="cpg_message_warning">Warning: do not change the keyword separator on the configuration panel if you have keywords in your gallery already.  Use the "<a href="admin-tools.htm#admin_tools_options_keyword_convert">Convert keyword separator</a>" tool on the Admin Tools page to convert current keywords and set the new keyword separator at the same time.</p>
-    <p>For example, if you want to have the keyword "Washington, George" as one keyword, choose a semicolon to separate keywords.  Then an appropriate set of keywords for a photograph of Mount Rushmore would be "Washington, George;mountain;South Dakota" which has 3 keywords separated by semicolons.</p>
-    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Enable clickable keywords in search</p>
+    <a name="admin_general_keyword_separator_start"></a><h3>Separador de palabras clave<a href="#admin_general_keyword_separator_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>
+    	Para cada imagen o archivo puedes especificar palabras clave que lo caracterizan. 
+    	Aquí eliges qué carácter separará las palabras clave cuando escribas varias. 
+    	No elijas uno que vayas a incluir en una palabra clave. 
+    	Si sólo tendrás palabras clave de una sola palabra puedes elegir un espacio. 
+    	Pero si deseas que tus palabras clave tengan varias palabras, elige un carácter diferente. 
+    	La opción más segura es el punto y coma porque rara vez se utiliza en una palabra clave.
+    </p>
+    <p>
+    	El separador de palabras clave por defecto para las instalaciones nuevas de Coppermine 1.5 es el punto y coma. 
+    	Para las actualizaciones de Coppermine 1.4 o anteriores se mantiene el espacio. 
+    	Puedes convertir este separador de palabras clave para las que ya tengas creadas antes por otro valor mediante la entrada en la página de 
+    	<a href="admin-tools.htm#admin_tools_options_keyword_convert">Herramientas de administración</a>.
+    </p>
+    <p class="cpg_message_warning">
+    	Advertencia: no cambies el separador de palabras clave en el panel de configuración si ya tienes palabras clave en tu galería. 
+    	Utiliza la opción &quot;<a href="admin-tools.htm#admin_tools_options_keyword_convert">Convertir separador de palabras clave</a>&quot; en la página de herramientas 
+    	de administración para convertir las palabras clave actuales y configura el separador de nueva palabra clave al mismo tiempo.
+    </p>
+    <p>
+    	Por ejemplo, si quieres tener la palabra clave &quot;George Washington&quot; como una palabra clave única, selecciona un punto y coma como separador. 
+    	A continuación, un conjunto adecuado de las palabras clave de una fotografía del Monte Rushmore sería "George Washington;montaña;Dakota del Sur", que tiene 3 palabras clave separadas por punto y coma.
+    </p>
+    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuración &rarr; Configuración general &rarr; Separador de palabras clave</p>
     <a name="admin_general_keyword_separator_end"></a>
     <hr />
-    <a name="admin_general_enable-plugins"></a><h3>Enable plugins<a href="#admin_general_enable-plugins" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>Enable or disable <a href="plugins.htm#plugin">plugins</a>, with a link to the <a href="plugins.htm#plugin_manager">plugin manager</a>. This feature allows advanced copperminers to create plug-ins that can control the way coppermine looks and behaves without modifying the inherent code of the script itself. There are many exciting, user-contributed, plug-ins available on the Coppermine forum.  More details can be found in the <a href="plugins.htm#plugin_start">plugins section of this documentation</a>.  Since plugins add on to the core Coppermine system, if you are having problems, try to disable all plugins using this setting to see if a plugin may be at fault.  If so, you can then enable all plugins here, then uninstall or install one plugin at a time in the <a href="plugins.htm#plugin_manager">plugin manager</a> to figure out which one is at fault.</p>
-    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Enable plugins</p>
+    <a name="admin_general_enable-plugins"></a><h3>Activar plugins<a href="#admin_general_enable-plugins" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>
+    	Activa o desactiva los <a href="plugins.htm#plugin">plugins</a>, con un enlace al <a href="plugins.htm#plugin_manager">gestor de plugins</a>. 
+    	Esta característica permite a los usuarios avanzados crear plug-ins que pueden modificar la manera en que Coppermine se ve y se comporta sin modificar el código interno de la aplicación. 
+    	Hay muchos plug-ins aportados por los usuarios e interesantes disponibles en el foro de Coppermine. 
+    	Puedes encontrar más detalles en la <a href="plugins.htm#plugin_start">sección de plugins de la documentación</a>. 
+    	Como los plugins se añaden al núcleo de Coppermine, si tienes problemas prueba a desactivar todos los plugins utilizando esta opción para ver si un plugin en particular puede tener la culpa. 
+    	Si es así, puedes entonces activar todos los plugins aquí, y a continuación instalar o desinstalar los plugins 
+    	de uno en uno en el <a href="plugins.htm#plugin_manager">gestor de plugins</a> para averiguar cuál de ellos es la fuente del problema.
+    </p>
+    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuración &rarr; Configuración general &rarr; Activar plugins</p>
     <a name="admin_general_enable-plugins_end"></a>
     <hr />
     
-    <a name="admin_general_browsable_batch_add"></a><h3>Browsable batch-add interface<a href="#admin_general_browsable_batch_add" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>When <a href="uploading_batch-add.htm#batch_add_pics">batch-adding</a> files (that you have uploaded using a <acronym title="File Transfer Protocol">FTP</acronym> before) to your gallery, you have the option to switch between a browsable list, where you can scroll through the directory structure in your <tt class="code">albums</tt>-folder, or to display the whole directory structure at once. Enable this option if you have a larger structure of directories and subdirectories you want to browse through (this requires your browser to be capable of displaying <a href="http://www.w3schools.com/tags/tag_iframe.asp" class="external" rel="external">iframes</a>). Set this option to &quot;No&quot; (disabled) if you want to use the &quot;classic&quot; coppermine interface that shows a complete list of the structure at once.<br />
-    Should you have difficulties using one, try the other. You can toggle between these options on the <a href="uploading_batch-add.htm#batch_add_pics">batch-add</a> page as well.</p>
-    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Browsable batch-add interface</p>
+    <a name="admin_general_browsable_batch_add"></a><h3>Interfaz navegable para añadir imágenes por lotes<a href="#admin_general_browsable_batch_add" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>
+    	Cuando <a href="uploading_batch-add.htm#batch_add_pics">añadas ficheros por lotes</a> a la galería 
+    	(que habrás subido antes a tu servidor mediante <acronym title="File Transfer Protocol">FTP</acronym>), 
+    	tienes la opción de cambiar entre una lista navegable, donde podrás desplazarte a través de la estructura de directorios en la carpeta <tt class="code">albums</tt> 
+    	o mostrar la estructura del directorio completo. 
+    	Activa esta opción si tienes una estructura más amplia de directorios y subdirectorios a través de la que deseas navegar 
+    	(es necesario que tu navegador sea capaz de mostrar <a href="http://www.w3schools.com/tags/tag_iframe.asp" class="external" rel="external">iframes</a>). 
+    	Pon esta opción a &quot;No&quot; (desactivado) si deseas usar el interfaz "clásico" de Coppermine que muestra una lista completa de la estructura de una vez.
+    <br />
+    	Si tienes dificultades con una prueba con la otra. 
+    	Puedes alternar entre estas opciones también en la página de <a href="uploading_batch-add.htm#batch_add_pics">agregar por lotes</a>.
+    </p>
+    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuración &rarr; Configuración general &rarr; Interfaz navegable para añadir imágenes por lotes</p>
     <a name="admin_general_browsable_batch_add_end"></a>
     
-    <a name="admin_general_batch_proc_limit"></a><h3>Process concurrency for batch-add interface<a href="#admin_general_batch_proc_limit" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>When <a href="uploading_batch-add.htm#batch_add_pics">batch-adding</a> files (that you have uploaded using a <acronym title="File Transfer Protocol">FTP</acronym> before) to your gallery, Coppermine will process multiple images at the same time. This makes the process a lot faster, and avoids timeouts commonly associated with long running scripts. This setting specifies the maximum number of images Coppermine should process concurrently. To force images to be processed one by one you can set this to 1. If you have a powerful dedicated sever then you can set this to match the number of processing cores available. The default of 2 should strike a good balance between speed and processor usage.</p>
-    <p>In versions of Coppermine prior to 1.5 this option was not available, and the number of images processed at the same time depended on server and browser settings that were not easily controlled by a gallery administrator.</p>
-    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Process concurrency for batch-add interface</p>
+    <a name="admin_general_batch_proc_limit"></a><h3>Procesos concurrentes para añadir imágenes por lotes<a href="#admin_general_batch_proc_limit" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>
+    	Cuando <a href="uploading_batch-add.htm#batch_add_pics">añadas ficheros por lotes</a> a la galería 
+    	(que habrás subido antes a tu servidor mediante <acronym title="File Transfer Protocol">FTP</acronym>), 
+    	Coppermine puede procesar varias imágenes al mismo tiempo. 
+    	El proceso es mucho más rápido, y evita timeouts asociados por lo general a las ejecuciones de scripts que se van de tiempo. 
+    	Este ajuste especifica el número máximo de imágenes que Coppermine debe procesar a la vez. 
+    	Para obligar a que las imágenes se procesen una por una puedes establecer este valor a 1. 
+    	Si tienes un servidor potente y dedicado entonces puedes definirlo para que coincida con el número de procesadores disponibles. 
+    	El valor predeterminado de 2 debería ser un buen equilibrio entre velocidad y uso del procesador.
+    </p>
+    <p>
+    	En las versiones de Coppermine antes de 1.5 esta opción no estaba disponible, y el número de imágenes procesadas al mismo tiempo dependía de los 
+    	ajustes del servidor y del navegador que no estaban bajo control del administrador de la galería.
+
+    </p>
+    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuración &rarr; Configuración general &rarr; Procesos concurrentes para añadir imágenes por lotes</p>
     <a name="admin_general_batch_proc_limit_end"></a>
     
-    <a name="admin_general_display_thumbs_batch_add"></a><h3>Display preview thumbnails on batch-add interface<a href="#admin_general_display_thumbs_batch_add" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>When enabled, preview thumbnails are being displayed on the batch-add screen. The preview thumbnails are good to figure out what files to actually add to an album when <a href="uploading_batch-add.htm#batch_add_pics">batch-adding</a> files. If you always add all files within a folder to an album anyway, it's safe to turn this feature off, which will lead to faster page loads of the batch-add screen. This feature will not save webspace nor does it have an impact on the thumbnail creation - it just gives more information on the batch-add screen, that's all.<br />
-    You can toggle between these options (enabled or disabled) on the <a href="uploading_batch-add.htm#batch_add_pics">batch-add</a> page as well.</p>
-    <p>When starting with your gallery, you should leave this option enabled until you're convinced that batch-adding works as expected. You can then turn this option off. If you later discover that something goes wrong with your uploads, re-enable this feature once more.</p>
-    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Display preview thumbnails on batch-add interface</p>
+    <a name="admin_general_display_thumbs_batch_add"></a><h3>Mostrar miniaturas cuando se añaden imágenes por lotes<a href="#admin_general_display_thumbs_batch_add" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>
+    	Cuando está habilitado las miniaturas de vista previa se muestran en la página de agregar por lotes. 
+    	La vista previa de miniaturas es buena para tener idea de qué archivos se van a añadir en realidad a un álbum al <a href="uploading_batch-add.htm#batch_add_pics">procesar por lotes</a>. 
+    	Si siempre añades todos los archivos dentro de una carpeta a un álbum, es seguro desactivar esta función, que ayudará a cargar más rápido la página. 
+    	Esta característica no ahorra espacio web ni tiene un impacto en la creación de miniaturas - sólo da más información al cargar, eso es todo.
+    <br />
+    	Puedes alternar entre estas opciones también en la página de <a href="uploading_batch-add.htm#batch_add_pics">agregar por lotes</a>.
+    </p>
+    <p>
+    	Al empezar a trabajar con tu galería deberías dejar esta opción activada hasta que estés convencido de que la adición de lotes funciona como se espera. 
+    	A continuación puedes desactivar esta opción. 
+    	Si más tarde descubres que algo va mal con la carga vuelve a habilitar esta función.
+    </p>
+    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuración &rarr; Configuración general &rarr; Mostrar miniaturas cuando se añaden imágenes por lotes</p>
     <a name="admin_general_display_thumbs_batch_add_end"></a>
     
-    <a name="admin_general_form_token_lifetime"></a><h3>Change the lifetime of the form tokens<a href="#admin_general_form_token_lifetime" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <p>This option will set the lifetime of the form tokens in seconds. Don't set this value too low as it could interupt with large uploads (default is 5min). Also keep in mind that it could take some time entering a lot of data (title, description, keywords) after you uploaded several files. If you exceed the lifetime of the token, you won't be able to submit the form and all entered data is lost. That applies to all forms (and some links) in Coppermine!</p>
-    <p class="cpg_message_info">Form tokens were introduced into cpg1.5.x to fight the <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" rel="external" class="external">Cross-Site Request Forgery</a> potential that existed in previous versions and that lead to the removal of the bbcode tags [img] and [url] back in cpg1.4.21<br />
-    Think of the form token as an additional check of a link or a form that is performed to make sure that the link's origin hasn't been tampered with.</p>
-    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; General settings &rarr; Change the lifetime of the form tokens</p>
+    <a name="admin_general_form_token_lifetime"></a><h3>Caducidad del testigo de formulario (\'form token\')<a href="#admin_general_form_token_lifetime" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>
+    	Esta opción establece la caducidad de los testigos en los formularios (form tokens) en segundos. 
+    	No establezcas este valor demasiado bajo, ya que podría interrumpir cargas masivas (por defecto es 5 minutos - 900 segundos). 
+    	También ten en cuenta que podrías tardar algún tiempo introduciendo una gran cantidad de datos (título, descripción, palabras clave) 
+    	después de que hayas subido varios archivos, y si excedes el tiempo de vida del testigo no podrás enviar el formulario y todos los datos introducidos se pierden. 
+    	¡Se aplica en todos los formularios (y algunos enlaces) en Coppermine!
+    </p>
+    <p class="cpg_message_info">
+    	Los testigos de los formularios se introdujeron en cpg1.5.x para luchar contra la amenaza 
+    	<a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" rel="external" class="external">Cross-Site Request Forgery</a> 
+    	(en castellano: <a href="http://es.wikipedia.org/wiki/Cross_Site_Request_Forgery" rel="external" class="external">falsificación de petición en sitios cruzados</a>)
+    	que existía en versiones anteriores, y que condujeron a la eliminación de las etiquetas BBCode [img] y [url] en el paquete cpg1.4.21
+    <br />
+    	Piensa en los testigos de los formularios como un control adicional de los enlaces o los formularios que se realiza para asegurarse de que el origen del vínculo no ha sido manipulado.
+    </p>
+    <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuración &rarr; Configuración general &rarr; Caducidad del testigo de formulario (\'form token\')</p>
     <a name="admin_general_form_token_lifetime_end"></a>
 </div>
 <div class="backtotop"><a href="#top">Back to top</a></div>
