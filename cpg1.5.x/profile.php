@@ -506,7 +506,7 @@ case 'edit_profile' :
         $group_quota_separator = '/';
     }
     
-    if (!GALLERY_ADMIN_MODE) {
+    if ($group_quota > 0) {
         $disk_usage = ceil($disk_usage/1024);
         $disk_usage_output = theme_display_bar($disk_usage, $group_quota, 300, '', '', $group_quota_separator . $group_quota . $lang_byte_units[1], 'red', 'green');
     } else {
