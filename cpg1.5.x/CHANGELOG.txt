@@ -25,7 +25,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2010-05-26 [B] Fixed display for (un)limited quota {eenemeenemuu}
+2010-05-26 [B] Fixed display for regular users if they have no quota {eenemeenemuu}
 2010-05-26 [B] Fixed quota display for regular users (thread ID 64452) {eenemeenemuu}
 2010-05-26 [D] Added section about creating svn tags to documentation (thread ID 38932) {eenemeenemuu}
 2010-05-25 [B] Porting the security fix that lead to the release of cpg1.4.27 for cpg1.5.x (making sure that image_processor.php doesn't exist) {GauGau}
