@@ -1182,6 +1182,12 @@ doc_toc += '                  <li><a href="dev_package.htm#packaging_steps_rapid
 doc_toc += '                  <li><a href="dev_package.htm#packaging_steps_tortoisesvn">Tortoise SVN</a></li>\n';
 doc_toc += '                </ul>\n';
 doc_toc += '              </li>\n';
+doc_toc += '              <li><a href="dev_package.htm#packaging_steps_create_tag">Create a tag in subversion</a>\n';
+doc_toc += '                <ul>\n';
+doc_toc += '                  <li><a href="dev_package.htm#packaging_steps_create_tag_rapidsvn">RapidSVN</a></li>\n';
+doc_toc += '                  <li><a href="dev_package.htm#packaging_steps_create_tag_tortoisesvn">Tortoise SVN</a></li>\n';
+doc_toc += '                </ul>\n';
+doc_toc += '              </li>\n';
 doc_toc += '              <li><a href="dev_package.htm#packaging_steps_create_zip">Create the archive</a></li>\n';
 doc_toc += '              <li><a href="dev_package.htm#packaging_steps_upload_zip">Upload the archive</a></li>\n';
 doc_toc += '              <li><a href="dev_package.htm#packaging_steps_move_announcement">Publish announcement thread</a></li>\n';

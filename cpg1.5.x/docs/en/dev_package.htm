@@ -141,7 +141,7 @@
                     <a name="packaging_steps_rapidsvn"></a><h4>RapidSVN<a href="#packaging_steps_rapidsvn" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
                     The subversion client <a href="http://rapidsvn.tigris.org/" rel="external" class="external">RapidSVN</a> is available for many platforms (Linux, Windows, Mac OS/X, Solaris, etc.) and in many languages (English, German, French, Italian, Portuguese, Russian, Ukrainian, Simplified Chinese, Japanese). The Coppermine dev team recommends it as graphical client on Linux-driven systems.
                     <ul>
-                        <li>In the left frame that represents the folder view, highlight the folder that represents the root of cpg1.5.x (i.e. </li>
+                        <li>In the left frame that represents the folder view, highlight the folder that represents the root of cpg1.5.x</li>
                         <li>Click on the menu entry "Repository" - "Export..."</li>
                         <li>In the export dialog, make sure that as revision the "Use latest" checkbox is ticked and that the "Recursive" checkbox is ticked as well.</li>
                         <li>As Destination directory, you need to specify a folder name that <em>doesn't</em> already exist within a folder that <em>does</em> exist. This dialog is a little bit unusual, so here's a detailed example, assuming that you're on Linux and that your user name is <tt class="code">johndoe</tt>:
@@ -156,13 +156,37 @@
                 </li>
                 <li>
                     <a name="packaging_steps_tortoisesvn"></a><h4>Tortoise SVN<a href="#packaging_steps_tortoisesvn" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+                    <ul>
+                        <li>In the left frame that represents the folder view, highlight the folder that represents the root of cpg1.5.x</li>
+                        <li>Click on the menu entry "TortoiseSVN" - "Export..."</li>
+                        <li>In the export dialog, make sure that you <strong>uncheck</strong> "Export unversioned files too" and "Omit externals".</li>
+                        <li>Select the destination directory and click on the "OK" button.</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a name="packaging_steps_create_tag"></a><h3>Create a tag in subversion<a href="#packaging_steps_create_tag" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            Create a tag using your svn application. The target directory name will be the abbreviation <tt class="code">cpg</tt> followed by the exact version number. So the target URL will be <tt class="code">https://coppermine.svn.sourceforge.net/svnroot/coppermine/tags/cpg1.5.X</tt>, where X represents the minor version number that you're about to tag.
+            <ul>
+                <li>
+                    <a name="packaging_steps_create_tag_rapidsvn"></a><h4>RapidSVN<a href="#packaging_steps_create_tag_rapidsvn" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
                     tbc
+                </li>
+                <li>
+                    <a name="packaging_steps_create_tag_tortoisesvn"></a><h4>Tortoise SVN<a href="#packaging_steps_create_tag_tortoisesvn" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+                    <ul>
+                        <li>In the left frame that represents the folder view, highlight the folder that represents the root of cpg1.5.x</li>
+                        <li>Click on the menu entry "TortoiseSVN" - "Branch/tag..."</li>
+                        <li>In the copy dialog, modify the "To URL" accordingly (see above).</li>
+                        <li>Select "Working copy" as source and click on the "OK" button.</li>
+                    </ul>
                 </li>
             </ul>
         </li>
         <li>
             <a name="packaging_steps_create_zip"></a><h3>Create the archive<a href="#packaging_steps_create_zip" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-            Create an archive according to the <a href="dev_plugins.htm#plugin_writing_naming_conventions">naming conventions</a>, using your favorite archiver (on Windows, 7-Zip is recommended). The naming convention for package releases is pretty streightforward: it's just the abbreviation <tt class="code">cpg</tt> followed by the exact version number. Subseuqently, your archive should be named <tt class="code">cpg1.5.X.zip</tt>, where X represents the minor version number that you're about to package. Its'mandatory to come up with a  <tt class="code">zip</tt> archive, but you can come up with additional archives as well (e.g. <tt class="code">.7z</tt>, <tt class="code">.tar.gz</tt> or <tt class="code">.tar.bz2</tt>) to make things easier for users on alternative operating systems.
+            Create an archive according to the <a href="dev_plugins.htm#plugin_writing_naming_conventions">naming conventions</a>, using your favorite archiver (on Windows, 7-Zip is recommended). The naming convention for package releases is pretty straightforward: it's just the abbreviation <tt class="code">cpg</tt> followed by the exact version number. Subseuqently, your archive should be named <tt class="code">cpg1.5.X.zip</tt>, where X represents the minor version number that you're about to package. Its'mandatory to come up with a  <tt class="code">zip</tt> archive, but you can come up with additional archives as well (e.g. <tt class="code">.7z</tt>, <tt class="code">.tar.gz</tt> or <tt class="code">.tar.bz2</tt>) to make things easier for users on alternative operating systems.
         </li>
         <li>
             <a name="packaging_steps_upload_zip"></a><h3>Upload the archive<a href="#packaging_steps_upload_zip" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
