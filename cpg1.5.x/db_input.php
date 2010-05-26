@@ -38,6 +38,9 @@ function check_comment(&$str)
     // convert some entities
     $str = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;', '&nbsp;', '&#39;'), array('&', '"', '<', '>', ' ', "'"), $str);
 
+    // if '<' is no start of a tag (e.g. a lower than + equal), convert it to entity to prevent strip_tags() to clip the comment wrongly
+    $str = preg_replace("/<([0-9<>=])/", '&lt;\\1', $str);
+
     // strip tags and cut to max allowed length
     $str = trim(substr(strip_tags($str), 0, $CONFIG['max_com_size']));
 
