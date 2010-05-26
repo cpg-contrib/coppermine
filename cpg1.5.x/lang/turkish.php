@@ -13,8 +13,6 @@
   Coppermine version: 1.5.3
   $HeadURL$
   $Revision$
-  $LastChangedBy$
-  $Date$
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}

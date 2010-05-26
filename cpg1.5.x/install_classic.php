@@ -13,8 +13,6 @@
   Coppermine version: 1.5.4
   $HeadURL$
   $Revision$
-  $LastChangedBy$
-  $Date$
 **********************************************/
 
 // Check if standalone is installed in a portal like phpNuke

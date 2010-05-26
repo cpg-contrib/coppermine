@@ -13,8 +13,6 @@
   Coppermine version: 1.5.4
   $HeadURL$
   $Revision$
-  $LastChangedBy$
-  $Date$
   ********************************************
   This theme has had redundant CORE items removed
 **********************************************/

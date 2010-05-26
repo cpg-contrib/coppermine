@@ -12,8 +12,6 @@
   Coppermine version: 1.5.4
   $HeadURL$
   $Revision$
-  $Author$
-  $Date$
 **********************************************/
 
 CPG - Coppermine Photo Gallery Quick-Start Guide

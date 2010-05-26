@@ -13,8 +13,6 @@
   Coppermine version: 1.5.4
   $HeadURL$
   $Revision$
-  $LastChangedBy$
-  $Date$
 **********************************************/
 
 // Todo list (stuff the hasn't been implemented yet):

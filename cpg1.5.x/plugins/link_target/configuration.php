@@ -13,8 +13,6 @@
   Coppermine version: 1.5.4
   $HeadURL$
   $Revision$
-  $LastChangedBy$
-  $Date$
 **********************************************/
 
 $name = $lang_plugin_php['link_target_name'];

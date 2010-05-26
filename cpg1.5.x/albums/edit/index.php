@@ -12,7 +12,7 @@
   Coppermine version: 1.5.4
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/include/index.php $
   $Revision$
-  $LastChangedBy$
+  $LastChangedBy: gaugau $
   $Date$
 -->
 </head>

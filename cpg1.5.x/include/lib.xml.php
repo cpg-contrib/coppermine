@@ -13,8 +13,7 @@
   Coppermine version: 1.5.4
   $HeadURL$
   $Revision$
-  $LastChangedBy$
-  $Date$
+
   ********************************************
   Code below has been taken from lib.xml.php and slightly modified for use with coppermine
   Orginal: http://www.phpclasses.org/browse/file/17412.html

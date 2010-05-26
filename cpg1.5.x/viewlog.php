@@ -13,8 +13,6 @@
   Coppermine version: 1.5.4
   $HeadURL$
   $Revision$
-  $LastChangedBy$
-  $Date$
 **********************************************/
 
 define('IN_COPPERMINE',1);

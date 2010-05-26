@@ -16,8 +16,6 @@
   Coppermine version: 1.5.4
   $HeadURL$
   $Revision$
-  $LastChangedBy$
-  $Date$
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -64,8 +62,6 @@
   Coppermine version: 1.5.4
   &#36;HeadURL&#36;
   &#36;Revision&#36;
-  &#36;LastChangedBy&#36;
-  &#36;Date&#36;
 **********************************************/</pre>For other file types (e.g. sql files), different comment symbols might apply.</li>
 	<li>Add the file to the SVN, using the add and then the commit command of your favorite SVN client</li>
 	<li>In your SVN client, make sure that the file you have added has the needed SVN-properties. In RapidSVN (Linux-Client), do a right-click, properties and make sure that the name/value pair "svn:keywords"/"Author Date Id Revision HeadURL" exists. If it doesn't exist, create such an entry (using the "new" button on the properties dialog). This will make sure that the placeholder SVN variables within $-signs are populated properly. Take a look at existing files to see how this is done.</li>

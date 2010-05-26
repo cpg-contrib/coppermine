@@ -13,30 +13,9 @@
   Coppermine version: 1.5.4
   $HeadURL$
   $Revision$
-  $LastChangedBy$
-  $Date$
 **********************************************/
 
-/**
-* Coppermine Photo Gallery addfav.php
-*
-* This file does the needful when add to fav links are clicked, if the user is logged in then
-* the favs are stored in the database else the favs are stored in a local cookie, the favs in
-* database take precedence over the cookie favs
-*
-* @copyright 2002-2006 Gregory DEMAR, Coppermine Dev Team
-* @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
-* @package Coppermine
-* @version $Id$
-*/
-
-/**
-* @ignore
-*/
 define('IN_COPPERMINE', true);
-/**
-* @ignore
-*/
 define('RATEPIC_PHP', true);
 
 require('include/init.inc.php');

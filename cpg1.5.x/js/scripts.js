@@ -12,8 +12,6 @@
     Coppermine version: 1.5.4
     $HeadURL$
     $Revision$
-    $LastChangedBy$
-    $Date$
 **********************************************/
 
 // Object to hold javascript keyCodes for various keys

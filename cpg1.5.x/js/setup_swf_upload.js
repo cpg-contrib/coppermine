@@ -11,9 +11,7 @@
   ********************************************
   Coppermine version: 1.5.4
   $HeadURL$
-  $Revision: 6120 $
-  $LastChangedBy: gaugau $
-  $Date: 2009-06-09 11:34:53 +0530 (Tue, 09 Jun 2009) $
+  $Revision$
 **********************************************/
 
 var swfu;

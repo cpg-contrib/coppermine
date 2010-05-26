@@ -13,8 +13,7 @@
   Coppermine version: 1.5.4
   $HeadURL$
   $Revision$
-  $LastChangedBy$
-  $Date$
+
 **********************************************/
 
 global $thisplugin;                     // Stores the current plugin being processed

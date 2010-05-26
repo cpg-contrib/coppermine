@@ -12,8 +12,6 @@
 ##  Coppermine version: 1.5.4
 ##  $HeadURL$
 ##  $Revision$
-##  $LastChangedBy$
-##  $Date$
 ##  ********************************************
 
 CREATE TABLE IF NOT EXISTS `CPG_mod_online` (

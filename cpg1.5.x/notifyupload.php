@@ -11,10 +11,8 @@
 
   ********************************************
   Coppermine version: 1.5.4
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/notifyupload.php $
+  $HeadURL$
   $Revision$
-  $LastChangedBy$
-  $Date: 2009-06-24 07:29:38 +0530 (Wed, 24 Jun 2009) $
 **********************************************/
 
 define('IN_COPPERMINE', true);

@@ -11,10 +11,8 @@
 
   ********************************************
   Coppermine version: 1.5.4
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/banning.php $
-  $Revision: 5268 $
-  $LastChangedBy: gaugau $
-  $Date: 2008-11-20 09:01:57 +0100 (Do, 20 Nov 2008) $
+  $HeadURL$
+  $Revision$
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
