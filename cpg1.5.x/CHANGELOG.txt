@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-05-27 [B] Fixed blank names when batch adding secondary user group with usermgr.php (thread ID 64410) {eenemeenemuu}
 2010-05-27 [B] Fixed sorting categories alphabetically (thread ID 64477) {eenemeenemuu}
 2010-05-27 [C] Changed table headers of usermgr.php and reviewcom.php (thread ID 64166) {eenemeenemuu}
 2010-05-27 [C] Changed table header of groupmgr.php (thread ID 64407) {eenemeenemuu}

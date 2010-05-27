@@ -1093,10 +1093,10 @@ case 'user':
                         continue;
                     }
                     
-                    $user_data = mysql_fetch_assoc($result_user);
+                    $user_group_data = mysql_fetch_assoc($result_user);
                     mysql_free_result($result_user);
                     
-                    $user_group = explode(',', $user_data['user_group_list']);
+                    $user_group = explode(',', $user_group_data['user_group_list']);
                     
                     $new_group = $superCage->get->getInt('group');
                     
