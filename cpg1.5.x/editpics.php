@@ -86,6 +86,13 @@ if (UPLOAD_APPROVAL_MODE && !GALLERY_ADMIN_MODE && !MODERATOR_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
+// Remove outdated guest tokens every 12 hours at maximum
+if ($CONFIG['guest_token_cleanup'] < time() - 12*60*60) {
+    $guest_token_lifetime = 24*60*60; // 24 hours
+    cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET guest_token = '' WHERE ctime < UNIX_TIMESTAMP() - {$guest_token_lifetime}");
+    cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = UNIX_TIMESTAMP() WHERE name = 'guest_token_cleanup'");
+}
+
 if (EDIT_PICTURES_MODE) {
     $query = "SELECT title, category, keyword FROM {$CONFIG['TABLE_ALBUMS']} "
             ." WHERE aid = '$album_id'";

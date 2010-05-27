@@ -434,3 +434,4 @@ ALTER TABLE CPG_pictures DROP INDEX `search`;
 ALTER TABLE CPG_pictures ADD `guest_token` VARCHAR(32) DEFAULT '';
 
 INSERT INTO CPG_config VALUES ('session_cleanup', '0');
+INSERT INTO CPG_config VALUES ('guest_token_cleanup', '0');
