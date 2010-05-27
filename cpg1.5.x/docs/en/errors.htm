@@ -112,7 +112,7 @@
           MySQL can't create a temporary file for the result set in the given temporary directory.
         </td>
         <td valign="top">
-          Alter the tmpdir variable to point to a writable directory.  It requires changing the tmpdir line in the my.cnf file, usually in the [mysqld] section (tmpdir = /writable/dir, where /writable/dir is a directory to which you can write).<br />Ask your webhost to make the above changes.
+          Alter the tmpdir variable to point to a writable directory. It requires changing the tmpdir line in the my.cnf file, usually in the [mysqld] section (tmpdir = /writable/dir, where /writable/dir is a directory to which you can write).<br />Ask your webhost to make the above changes, as only the administrator of the server where the mySQL database runs on can perform this operation.
         </td>
       </tr>
       <tr>
@@ -155,6 +155,7 @@
         </td>
       </tr>
     </table>
+    <p>For a complete list of mySQL error messages shining through Coppermine's output, refer to <a href="http://dev.mysql.com/doc/refman/5.1/en/error-messages-server.html" rel="external" class="external">MySQL 5.1 Reference Manual &rarr; B Errors, Error Codes, and Common Problems &rarr; B.3 Server Error Codes and Messages</a>.</p>
     
     <a name="common_php_errors"></a><h3>Common PHP errors<a href="#commonPHPerrors" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
     <p>There are a lot of people (especially PHP newbies) that post questions like <tt class="code">I get the error &quot;Parse error: parse error in XXX&quot;</tt> and don't know what to do about it. That's why I translated this list of common errors (and a solution how to fix them) from the original german article in <a href="http://www.drweb.de/" rel="external" class="external">Dr. Web</a></p>
