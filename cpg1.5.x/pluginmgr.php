@@ -180,10 +180,16 @@ EOT;
                         <td class="tableb tableb_alternate" valign="top">{$lang_pluginmgr_php['desc']}</td>
                         <td class="tableb tableb_alternate" valign="top">$description</td>
                     </tr>
+EOT;
+            if ($extra != '') {
+              echo <<<EOT
                     <tr>
                         <td class="tableb" width="20%" valign="top">{$lang_pluginmgr_php['extra']}:</td>
                         <td class="tableb" valign="top">{$extra}</td>
                     </tr>
+EOT;
+            }
+            echo <<<EOT
                 </table>
             </td>
             <td class="{$row_style_class}" valign="top">
