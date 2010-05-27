@@ -287,41 +287,37 @@ EOT;
 
 echo '<form method="get" action="delete.php" name="editForm" id="cpgform">';
 
-    starttable('100%');
-        if ($superCage->post->keyExists('username')) {
-            $search_filter = '<td class="tableh1" align="center">' . $lang_usermgr_php['search_result'] . '&laquo;' . $superCage->post->getEscaped('username') . '&raquo;</td>';
-        } else {
-            $search_filter = '';
-        }
-        $help = '&nbsp;'.cpg_display_help('f=users.htm&amp;as=user_cp&amp;ae=user_cp_end&amp;top=1', '650', '500');
-    echo <<<EOT
-        <tr>
-            <td colspan="$number_of_columns" class="tableh1">
+    if ($superCage->post->keyExists('username')) {
+        $search_filter = '<td align="center">' . $lang_usermgr_php['search_result'] . $superCage->post->getEscaped('username') . '</td>';
+    } else {
+        $search_filter = '';
+    }
+    $help = '&nbsp;'.cpg_display_help('f=users.htm&amp;as=user_cp&amp;ae=user_cp_end&amp;top=1', '650', '500');
+    $usermgr_table_header = <<<EOT
                 <input type="hidden" name="id" value="" />
                 <table border="0" cellspacing="0" cellpadding="0" width="100%">
                     <tr>
-                        <td class="tableh1">
+                        <td>
 EOT;
 if (!$lim_user) {
-    echo cpg_fetch_icon('user_mgr', 2).$lang_usermgr_php['user_manager'].$help;
+    $usermgr_table_header .= cpg_fetch_icon('user_mgr', 2).$lang_usermgr_php['user_manager'].$help;
 } else {
-    echo cpg_fetch_icon('user_mgr', 2).$lang_usermgr_php['memberlist'];
+    $usermgr_table_header .= cpg_fetch_icon('user_mgr', 2).$lang_usermgr_php['memberlist'];
 }
-echo <<<EOT
+$usermgr_table_header .= <<<EOT
                         </td>
                         $search_filter
-                        <td class="tableh1 sortorder_options" align="right">
+                        <td class="sortorder_options" align="right">
                             $lb
                         </td>
                     </tr>
                 </table>
-            </td>
-        </tr>
 EOT;
 
-  // Accept header addons
-  echo CPGPluginAPI::filter('usermgr_header','');
+    starttable('100%', $usermgr_table_header, $number_of_columns);
 
+    // Accept header addons
+    echo CPGPluginAPI::filter('usermgr_header','');
 
     if (!$lim_user) {
      echo <<< EOT
@@ -339,7 +335,7 @@ EOT;
                     <span class="statlink">{$lang_usermgr_php['status']}</span>
                 </td>
                 <td class="tableh1">
-                    <a href="groupmgr.php" class="statlink">{$lang_usermgr_php['group']}</a>
+                    <span class="statlink"><a href="groupmgr.php" class="statlink">{$lang_usermgr_php['group']}</a></span>
                     <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_a']}" /></a>
                     <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_d']}" /></a>
                 </td>

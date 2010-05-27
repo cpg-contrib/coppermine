@@ -356,65 +356,63 @@ if ($flag_conf_change != '') {
 
 
 if ($msg_txt != '') {
-// make up the table header
-starttable('100%', $lang_common['status'], 9);
+    starttable('100%', $lang_common['status'], 9);
     echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="9" align="left">
                         <ul>
-$msg_txt
+                            $msg_txt
                         </ul>
                 </td>
         </tr>
-
 EOT;
-} else {
-starttable('100%');
+    endtable();
 }
 
 $help_approval_only = '&nbsp;'.cpg_display_help('f=configuration.htm&amp;as=admin_comment_display_comment_approval_only_start&amp;ae=admin_comment_display_comment_approval_only_end&amp;top=1', '600', '400');
 $help = '&nbsp;'.cpg_display_help('f=comments.htm&amp;as=comments_review&amp;ae=comments_review_end&amp;top=1', '800', '400');
 $icon = cpg_fetch_icon('comment_approval',2);
-echo <<<EOT
-        <tr>
-                <td class="tableh1" colspan="9">
-                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                        <tr>
-                            <td class="tableh1">
-                                {$icon}{$lang_reviewcom_php['title']}
-                                {$help}
-                            </td>
-                            <td class="tableh1 sortorder_options" align="center">
-                                <input type="checkbox" name="approval_only" id="approval_only" class="checkbox" title="{$lang_reviewcom_php['only_approval']}" {$comment_approval_only_checked} value="1" />
-                                <label for="approval_only" class="clickable_option">{$lang_reviewcom_php['only_approval']}</label>
-                                {$help_approval_only}
-                            </td>
-                            <td class="tableh1" align="center">
-                                {$prev_link}
-                                {$next_link}
-                            </td>
-                            <td class="tableh1 sortorder_options" align="right">
-                                {$lang_reviewcom_php['n_comm_disp']}
-                                <select onchange="if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?start=$start&amp;count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
-                                        <option value="25">25</option>
-                                        <option value="50" $s50>50</option>
-                                        <option value="75" $s75>75</option>
-                                        <option value="100" $s100>100</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-        </tr>
-        <tr class="noscript">
-                <td class="tableh2" colspan="8">
-                  <noscript>
-                      {$lang_common['javascript_needed']}
-                  </noscript>
-                </td>
-        </tr>
-
+$reviewcom_table_header = <<<EOT
+            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                <tr>
+                    <td>
+                        {$icon}{$lang_reviewcom_php['title']}
+                        {$help}
+                    </td>
+                    <td class="sortorder_options" align="center">
+                        <input type="checkbox" name="approval_only" id="approval_only" class="checkbox" title="{$lang_reviewcom_php['only_approval']}" {$comment_approval_only_checked} value="1" />
+                        <label for="approval_only" class="clickable_option">{$lang_reviewcom_php['only_approval']}</label>
+                        {$help_approval_only}
+                    </td>
+                    <td align="center">
+                        {$prev_link}
+                        {$next_link}
+                    </td>
+                    <td class="sortorder_options" align="right">
+                        {$lang_reviewcom_php['n_comm_disp']}
+                        <select onchange="if(this.options[this.selectedIndex].value) window.location.href='{$CPG_PHP_SELF}?start=$start&amp;count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
+                                <option value="25">25</option>
+                                <option value="50" $s50>50</option>
+                                <option value="75" $s75>75</option>
+                                <option value="100" $s100>100</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
 EOT;
+
+starttable('100%', $reviewcom_table_header, 9);
+
+echo <<< EOT
+        <tr class="noscript">
+            <td class="tableh2" colspan="9">
+                <noscript>
+                    {$lang_common['javascript_needed']}
+                </noscript>
+            </td>
+        </tr>
+EOT;
+
     if ($CONFIG['comment_akismet_api_key'] != '') {
         $akismet_row_heading = <<< EOT
             {$lang_reviewcom_php['akismet']}
@@ -433,35 +431,35 @@ EOT;
             <input type="checkbox" name="checkAll" onclick="selectAll('cpgform2');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
           </td>
           <td class="tableh1 sortorder_options" valign="middle" align="center">
-			{$lang_reviewcom_php['approval']}
-			<a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=approval_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_a']}" /></a>
-			<a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=approval_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_d']}" /></a>
+            {$lang_reviewcom_php['approval']}
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=approval_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_a']}" /></a>
+            <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=approval_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['approval_d']}" /></a>
           </td>
           <td class="tableh1 sortorder_options" valign="middle" align="center">
             {$akismet_row_heading}
           </td>
           <td class="tableh1 sortorder_options" valign="middle" align="center">
-			{$lang_reviewcom_php['user_name']}
+            {$lang_reviewcom_php['user_name']}
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=name_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_a']}" /></a>
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=name_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_d']}" /></a>
           </td>
           <td class="tableh1 sortorder_options" valign="middle" align="center">
-			{$lang_reviewcom_php['ip_address']}
+            {$lang_reviewcom_php['ip_address']}
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=ip_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['ip_a']}" /></a>
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=ip_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['ip_d']}" /></a>
           </td>
           <td class="tableh1 sortorder_options" valign="middle" align="center">
-			{$lang_reviewcom_php['date']}
+            {$lang_reviewcom_php['date']}
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=date_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_a']}" /></a>
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=date_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_d']}" /></a>
           </td>
           <td class="tableh1 sortorder_options" valign="middle" align="center">
-			{$lang_reviewcom_php['comment']}
+            {$lang_reviewcom_php['comment']}
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=comment_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_a']}" /></a>
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=comment_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_d']}" /></a>
           </td>
           <td class="tableh1 sortorder_options" valign="middle" align="center">
-			{$lang_reviewcom_php['file']}
+            {$lang_reviewcom_php['file']}
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=file_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_a']}" /></a>
             <a href="{$CPG_PHP_SELF}?start=$start&amp;count=$count&amp;sort=file_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_d']}" /></a>
           </td>
@@ -629,7 +627,7 @@ echo <<<EOT
             <td class="tablef" valign="middle" align="left">
                 {$lang_reviewcom_php['with_selected']}:</td> 
             <td colspan="4" class="tablef" valign="middle" align="left"> 
-			  <input name="with_selected" id="do_nothing" type="radio" value="do_nothing" {$default_action_with_selected['do_nothing']} />
+              <input name="with_selected" id="do_nothing" type="radio" value="do_nothing" {$default_action_with_selected['do_nothing']} />
               <label for="do_nothing">{$lang_reviewcom_php['do_nothing']}</label>
                 &nbsp;
                 <input name="with_selected" id="delete_selected" type="radio" value="delete" {$default_action_with_selected['delete']} />
