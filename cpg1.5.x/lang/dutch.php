@@ -265,12 +265,12 @@ $lang_thumb_view['sort_pa'] = 'Sorteer op positie oplopend';
 $lang_thumb_view['sort_pd'] = 'Sorteer op positie aflopend'; 
 $lang_thumb_view['download_zip'] = 'Download als Zipbestand';
 $lang_thumb_view['pic_on_page'] = '%d bestanden op %d pagina(s)';
-$lang_thumb_view['user_on_page'] = '%d users op %d pagina(s)';
+$lang_thumb_view['user_on_page'] = '%d gebruikers op %d pagina(s)';
 $lang_thumb_view['enter_alb_pass'] = 'Geef album wachtwoord';
 $lang_thumb_view['invalid_pass'] = 'Ongeldig wachtwoord';
 $lang_thumb_view['pass'] = 'Wachtwoord';
 $lang_thumb_view['submit'] = 'Verzenden';
-$lang_thumb_view['zipdownload_copyright'] = 'Respecteer de copyrights - gebruik bestanden die je gedownload hebt alleen voor doeleinden waarvoor de eigenaar van de gallerij ze bestemd heeft'; // cpg1.5
+$lang_thumb_view['zipdownload_copyright'] = 'Respecteer de copyrights - gebruik bestanden die je gedownload hebt alleen voor doeleinden waarvoor de eigenaar van de galerij ze bestemd heeft'; // cpg1.5
 $lang_thumb_view['zipdownload_username'] = 'Dit archief bevat de gezipte bestanden van de favorieten van %s'; // cpg1.5
 
 $lang_img_nav_bar['thumb_title'] = 'Terug naar de verkleinde afbeeldingspagina';
@@ -333,7 +333,7 @@ $lang_theme_selection['choose_theme'] = 'Kies een thema';
 
 $lang_version_alert['version_alert'] = 'Niet ondersteunde versie!'; //cpg1.4
 $lang_version_alert['no_stable_version'] = 'Je draait Coppermine  %s (%s). Deze is niet bedoeld voor beginnende gebruikers - deze versie wordt niet ondersteund en is zonder enige garantie op een goede werking. Gebruik deze versie is voor eigen risico of download de laatste stabiele versie als je toch ondersteuning wilt hebben!';
-$lang_version_alert['gallery_offline'] = 'Deze gallerij is momenteel niet beschikbaar anders dan door de beheerder. Vergeet niet weer terug te schakelen naar de online versie als het onderhoud is gedaan.';
+$lang_version_alert['gallery_offline'] = 'Deze galerij is momenteel niet beschikbaar anders dan door de beheerder. Vergeet niet weer terug te schakelen naar de online versie als het onderhoud is gedaan.';
 $lang_version_alert['coppermine_news'] = 'Nieuws van coppermine-gallery.net'; // cpg1.5
 $lang_version_alert['no_iframe'] = 'Jouw browser kan geen inline frames weergeven'; // cpg1.5
 $lang_version_alert['hide'] = 'verberg'; // cpg1.5
@@ -1184,7 +1184,7 @@ $lang_ecard_php['rcpt_name'] = 'Naam geadresseerde';
 $lang_ecard_php['rcpt_email'] = 'E-mailadres geadresseerde';
 $lang_ecard_php['greetings'] = 'Onderwerp'; //cpg1.4
 $lang_ecard_php['message'] = 'Bericht'; //cpg1.4
-$lang_ecard_php['ecards_footer'] = 'Gestuurd door %s vanaf IP adres %s om %s (Gallerij tijd)'; //cpg1.4
+$lang_ecard_php['ecards_footer'] = 'Gestuurd door %s vanaf IP adres %s om %s (Galerij tijd)'; //cpg1.4
 $lang_ecard_php['preview'] = 'Voorbeeldweergave van de e-kaart'; //cpg1.4
 $lang_ecard_php['preview_button'] = 'Voorbeeldweergave'; //cpg1.4
 $lang_ecard_php['submit_button'] = 'E-kaart versturen'; //cpg1.4
@@ -1201,7 +1201,7 @@ $lang_report_php['invalid_email'] = '<b>Waarschuwing</b> : Ongeldig e-mailadres!
 $lang_report_php['report_subject'] = 'Een klacht van %s over galerij %s'; //cpg1.4
 $lang_report_php['view_report'] = 'Alternatieve link als deze klacht niet goed zichtbaar is'; //cpg1.4
 $lang_report_php['view_report_plaintext'] = 'Om de klacht te bekijken, knip en plak deze URL in de webbrowser:'; //cpg1.4
-$lang_report_php['view_more_pics'] = 'Gallerij'; //cpg1.4
+$lang_report_php['view_more_pics'] = 'Galerij'; //cpg1.4
 $lang_report_php['send_success'] = 'Je klacht is verzonden'; //cpg1.4
 $lang_report_php['send_failed'] = 'Sorry, de server kan je klacht niet verzenden...'; //cpg1.4
 $lang_report_php['from'] = 'Van'; //cpg1.4
@@ -1213,7 +1213,7 @@ $lang_report_php['subject'] = 'Onderwerp'; //cpg1.4
 $lang_report_php['comment_field_name'] = 'Klacht over commentaar van "%s"'; //cpg1.4
 $lang_report_php['reason'] = 'Reden'; //cpg1.4
 $lang_report_php['message'] = 'Bericht'; //cpg1.4
-$lang_report_php['report_footer'] = 'Verstuurd door %s van IP adres %s om %s (Gallerij tijd)'; //cpg1.4
+$lang_report_php['report_footer'] = 'Verstuurd door %s van IP adres %s om %s (Galerij tijd)'; //cpg1.4
 $lang_report_php['obscene'] = 'obseen'; //cpg1.4
 $lang_report_php['offensive'] = 'aanstootgevend'; //cpg1.4
 $lang_report_php['misplaced'] = 'niet relevant/misplaatst'; //cpg1.4
@@ -1544,7 +1544,7 @@ $lang_keywordmgr_php['title'] = 'Beheer trefwoorden';
 $lang_keywordmgr_php['search'] = 'Zoek';
 $lang_keywordmgr_php['keyword_test_search'] = 'Zoeken naar %s in een nieuw venster';
 $lang_keywordmgr_php['keyword_del'] = 'Verwijder het trefwoord %s';
-$lang_keywordmgr_php['confirm_delete'] = 'Weet je zeker dat je het trefwoord %s wilt verwijderen van de hele gallerij?';  // js-alert
+$lang_keywordmgr_php['confirm_delete'] = 'Weet je zeker dat je het trefwoord %s wilt verwijderen van de hele galerij?';  // js-alert
 $lang_keywordmgr_php['change_keyword'] = 'Wijzig trefwoord';
 }
 
@@ -1601,7 +1601,7 @@ $lang_login_php['welcome'] = 'Welkom %s ...';
 $lang_login_php['err_login'] = '*** Kan niet inloggen. Probeer het nogmaals ***';
 $lang_login_php['err_already_logged_in'] = 'Je bent al ingelogd !';
 $lang_login_php['forgot_password_link'] = 'Wachtwoord vergeten'; 
-$lang_login_php['cookie_warning'] = 'Waarschuwing: je browser ondersteund geen cookies';
+$lang_login_php['cookie_warning'] = 'Waarschuwing: je browser ondersteunt geen cookies';
 $lang_login_php['send_activation_link'] = 'Heb je de activatielink gemist?';
 $lang_login_php['force_login'] = 'Je moet inloggen om deze pagina te bekijken'; // cpg1.5
 $lang_login_php['force_login_title'] = 'Login om verder te gaan'; // cpg1.5
@@ -1711,7 +1711,7 @@ $lang_picmgr_php['explanation_header'] = 'De eigen sorteervolgorde op deze pagin
 $lang_picmgr_php['explanation1'] = 'de beheerder heeft ingesteld dat de "Standaard sorteervolgorder voor bestanden" in de instellingen is gezet op "Positie oplopend" of "Positie aflopend" (algemene instelling voor alle gebruikers die geen andere sortering hebben ingesteld)'; 
 $lang_picmgr_php['explanation2'] = 'de gebruiker heeft gekozen voor "Positie oplopend" of "Positie aflopend" op the thumbnails pagina (gebruikersinstelling)';
 $lang_picmgr_php['change_album'] = 'Als je dit album wijzigt, gaan jouw veranderingen verloren!'; // cpg1.5 // js-alert
-$lang_picmgr_php['submit_reminder'] = 'De sorteeraanpassing worden niet opgeslagen voordat je klikt op &quot;Bevestigen&quot;.'; // cpg1.5
+$lang_picmgr_php['submit_reminder'] = 'De sorteeraanpassingen worden niet opgeslagen voordat je klikt op &quot;Bevestigen&quot;.'; // cpg1.5
 }
 
 
@@ -1807,7 +1807,7 @@ $lang_register_php['disk_usage'] = 'Disk gebruik';
 $lang_register_php['change_pass'] = 'Verander wachtwoord';
 $lang_register_php['current_pass'] = 'Huidig wachtwoord';
 $lang_register_php['new_pass'] = 'Nieuw wacthwoord';
-$lang_register_php['new_pass_again'] = 'Nogmaal nieuw wachtwoord';
+$lang_register_php['new_pass_again'] = 'Nogmaals nieuw wachtwoord';
 $lang_register_php['err_curr_pass'] = 'Huidige wachtwoord is niet juist';
 $lang_register_php['change_pass'] = 'Verander mijn wachtwoord';
 $lang_register_php['update_success'] = 'Je profiel is aangepast';
@@ -1857,7 +1857,7 @@ De beheerder van {SITE_NAME}
 EOT;
 
 $lang_register_php['approve_email'] = <<<EOT
-Een nieuwe gebruiker met de gebruikersnaam "{USER_NAME}" heeft zich geregistreerd in jouw gallerij.
+Een nieuwe gebruiker met de gebruikersnaam "{USER_NAME}" heeft zich geregistreerd in jouw galerij.
 Om je account te kunnen activeren moet je op de link hieronder klikken of kopieer en plak het in je webbrowser.
 
 <a href="{ACT_LINK}">{ACT_LINK}</a>
@@ -2506,7 +2506,7 @@ $lang_xp_publish_php['requirement_http_upload'] = 'Een werkende installatie van 
 $lang_xp_publish_php['requirement_ie'] = 'Microsoft Internet Explorer'; // cpg1.5
 $lang_xp_publish_php['requirement_permissions'] = 'De beheerder van de galerij moet jou toelating geven om op te laden'; // cpg1.5
 $lang_xp_publish_php['requirement_login'] = 'Je moet ingelogd zijn om te kunnen opladen'; // cpg1.5
-$lang_xp_publish_php['no_ie'] = 'Je schijnt een andere nietondersteunde browser te gebruiken'; // cpg1.5
+$lang_xp_publish_php['no_ie'] = 'Je schijnt een andere, niet ondersteunde, browser te gebruiken'; // cpg1.5
 $lang_xp_publish_php['no_browser_detect'] = 'Kon jouw browser niet detecteren'; // cpg1.5
 $lang_xp_publish_php['no_gallery_name'] = 'Je moet een galerijnaam specificeren in de configuratie'; // cpg1.5
 $lang_xp_publish_php['no_gallery_description'] = 'Je moet een galerijbeschrijving specificeren in de configuratie'; // cpg1.5
