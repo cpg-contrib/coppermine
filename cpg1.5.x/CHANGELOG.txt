@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-05-27 [C] Changed table header groupmgr.php (thread ID 64407) {eenemeenemuu}
 2010-05-26 [B] Fixed clipping of comments (thread ID 64662) {eenemeenemuu}
 2010-05-26 [B] Fixed display for regular users if they have no quota {eenemeenemuu}
 2010-05-26 [B] Fixed quota display for regular users (thread ID 64452) {eenemeenemuu}
