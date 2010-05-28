@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <title>Utilitaires d'Administration - Coppermine Photo Gallery - Documentation &amp; manuel</title>
@@ -16,7 +16,7 @@
   $HeadURL$
   $Revision$
 
-  $Date$
+
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -32,33 +32,33 @@
 <a href="toc.htm">Table des matières</a>
 </div>
 
-<a name="admin_tools"></a><h1>Utilitaires d'Administration<a href="#admin_tools" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p><img src="images/admin-tools.png" border="0" width="400" height="194" alt="" align="right" />Avec les outils d'administration, vous pouvez effectuer des opérations pour des albums individuels (ou pour tous les albums de votre galerie). Les outils d'administration contiennent divers petits utilitaires - la plupart d'entre eux étant utilisés pour le contrôle des images dans les albums.</p>
+<a name="admin_tools"></a><h1>Utilitaires d'administration<a href="#admin_tools" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p><img src="images/admin-tools.png" border="0" width="350" height="194" alt="" align="right" />Avec les outils d'administration, vous pouvez effectuer des opérations pour des albums individuels (ou pour tous les albums de votre galerie). Les outils d'administration contiennent divers petits utilitaires - la plupart d'entre eux étant utilisés pour le contrôle des images dans les albums.</p>
 
 <a name="admin_tools_options"></a><h2>Outils disponibles<a href="#admin_tools_options" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Une collection d'utilitaires pour:</p>
 <ul>
-	<li><a href="#admin_tools_options_rebuild">Mettre à jour les Vignettes et/ou les photos redimensionnées</a></li>
+	<li><a href="#admin_tools_options_rebuild">ettre à jour les vignettes et/ou les photos redimensionnées</a></li>
 	<li><a href="#admin_tools_options_filename_filetitle">Nom du fichier &rarr; Titre de l'image</a></li>
 	<li><a href="#admin_tools_options_delete_titles">Supprimer le titre des photos</a></li>
 	<li><a href="#admin_tools_options_delete_original">Supprimer les photos dans leur taille d'origine</a></li>
 	<li><a href="#admin_tools_options_intermediate">Supprimer les images intermédiaires</a></li>
 	<li><a href="#admin_tools_options_delete_older_files">Effacer les fichiers plus anciens qu'un nombre de jours déterminé</a></li>
-	<li><a href="#admin_tools_options_delete_comments">Supprimer les Commentaires orphelins (fonctionne pour tous les Albums)</a></li>
+	<li><a href="#admin_tools_options_delete_comments">Supprimer les commentaires orphelins (fonctionne pour tous les albums)</a></li>
 	<li><a href="#admin_tools_options_delete_original_backup">Effacer la copie de l'image originale (Mod filigrane)</a></li>
 	<li><a href="#admin_tools_options_reload_dimensions">Recharger les informations de poids et de taille</a></li>
 	<li><a href="#admin_tools_options_reset_views">Réinitialisation du compteur de vues</a></li>
-	<li><a href="#admin_tools_options_keyword_convert">Convertir le séparteur de mots clé</a></li>
+	<li><a href="#admin_tools_options_keyword_convert">Convertir le séparteur de mots-clés</a></li>
 </ul>
 <hr />
 
-<a name="admin_tools_options_rebuild"></a><h3>Mettre à jour les Vignettes et/ou les photos redimensionnées<a href="#admin_tools_options_rebuild" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="admin_tools_options_rebuild"></a><h3>Mettre à jour les vignettes et/ou les photos redimensionnées<a href="#admin_tools_options_rebuild" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p><img src="images/admin-tools_resize.png" border="0" width="350" height="113" alt="" border="0" align="left" />Utilisez cette option si vous avez changé les paramètres pour les vignettes ou les images intermédiaires dans la configuration, ou si vous dû remplacer des versions corrompues.</p>
 <p>Sélectionnez cette option pour cette action, puis choisissez ce qui devrait être mis à jour, la vignette, l'image intermédiaires, les deux.</p>
 <p>Cette fonction utilise beaucoup de ressources sur votre serveur, donc si vous rencontrez des problèmes de délai d'attente, essayez de réduire le nombre d'images traitées par clic, (25 est la valeur par défaut).</p>
   
 <a name="admin_tools_options_filename_filetitle"></a><h3>Nom du fichier &rarr; Titre de l'image<a href="#admin_tools_options_filename_filetitle" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><img src="images/admin-tools_filename.png" border="0" width="350" height="" alt="" align="left" />Création par lot de titres basés sur les noms des fichiers ou sur la date de téléchargement. Choisissez d'abbord comment le nom de fichier doit être utilisé comme titre de fichier. Cochez l'option &quot;N'appliquer que pour les fichiers dont le titre est vide&quot; (coché par défaut) pour être sur de ne pas remplacer des titres de fichier existants. Les titres de fichiers sont importants en terme  de convivialité avec les moteurs de recherche, vous devires doncs appliquer les noms manuellement si vous le pouvez (en utilisant l'option &quot;edit files&quot; pour chaque album) et n'utiliser l'option semi-automatique des outils d'administration que si vous n'avez pas d'autre moyens de le faire.</p>
+<p><img src="images/admin-tools_filename.png" border="0" width="350" height="" alt="" align="left" />Création par lot de titres basés sur les noms des fichiers ou sur la date de téléchargement. Choisissez d'abord comment le nom de fichier doit être utilisé comme titre de fichier. Cochez l'option &quot;Appliquer uniquement aux fichiers sans titres&quot; (coché par défaut) pour être sûr de ne pas remplacer des titres de fichier existants. Les titres de fichiers sont importants en terme de convivialité avec les moteurs de recherche, vous devrez donc appliquer les noms manuellement si vous le pouvez (en utilisant l'option &quot;Editer les fichiers&quot; dans chaque album) et n'utiliser l'option semi-automatique des outils d'administration que si vous n'avez pas d'autre moyens de le faire.</p>
 
 <a name="admin_tools_options_delete_titles"></a><h3>Supprimer le titre des photos<a href="#admin_tools_options_delete_titles" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Utilisez cette fonction pour effacer les titres des fichiers d'un ou plusieurs albums. Il n'y aura pas de demande de confirmation supplémentaire, cette option est donc à utiliser avec précaution.</p>
@@ -66,17 +66,17 @@
 <a name="admin_tools_options_delete_original"></a><h3>Supprimer les photos dans leur taille d'origine<a href="#admin_tools_options_delete_original" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Utilisez cette fonction pour gagner de l'espace dans votre espace web.<br />
 Lorsqu'elle est sélectionnée, Coppermine contrôles pour voir si une image intermédiaire existe, et si c'est le cas, alors le script supprime l'image à la taille originale, puis renomme les images  intermédiaires. S’il n'existe pas d’images intermédiaires, Coppermine laisse l'image l'originale en place.</p>
-<p>Cette option n'a de sens que si vous avez initialement &quot;coché&quot; l’option &quot;Créer des images intermédiaires&quot; et si la résolution maximale des fichiers téléchargés est à une valeur différente de la résolution maximale des images intermédiaires. Si vous vous avez changé d'avis plus tard et a décidé de ne pas garder l'original en taille réelle et de ne garder que la copie intermédiaire redimensionnée, cette option permet de parcourir vos fichiers par lots et supprimer les originaux.</p>
-<p>Pour une explication détaillée sur les concepts des diverses résolutions, référez-vous s'il vous plaît, à la section &quot;<a href="start.htm#Images redimensionnées">Démarrage &rarr; Images redimensionnées</a>&quot; de la documentation.</p>
+<p>Cette option n'a de sens que si vous avez initialement &quot;coché&quot; l’option &quot;Créer des images intermédiaires&quot; et si la résolution maximale des fichiers téléchargés est à une valeur différente de la résolution maximale des images intermédiaires. Si vous avez changé d'avis plus tard et que vous avez décidé de ne pas garder l'original en taille réelle et de ne garder que la copie intermédiaire redimensionnée, cette option permet de parcourir vos fichiers par lots et supprimer les originaux.</p>
+<p>Pour une explication détaillée sur les concepts des diverses résolutions, référez-vous s'il vous plaît, à la section &quot;<a href="start.htm#getting_resizing">Démarrage &rarr; Images redimensionnées</a>&quot; de la documentation.</p>
 
 <a name="admin_tools_options_intermediate"></a><h3>Supprimer les images intermédiaires<a href="#admin_tools_options_intermediate" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Ceci supprimera les images intermédiaires des images (normales).<br />
-Utilisez cette fonction pour libérer de l'espace disque si vous avez désactivé &quot;Créer des images intermédiaires&quot; dans la configuration après l'ajout d'images.</p>
+Utilisez cette fonction pour libérer de l'espace disque si vous avez désactivé 'Créer des images intermédiaires' dans la configuration après l'ajout d'images.</p>
 
 <a name="admin_tools_options_delete_older_files"></a><h3>Effacer les fichiers plus anciens qu'un nombre de jours déterminé<a href="#admin_tools_options_delete_older_files" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><img src="images/admin-tools_delete-older.png" border="0" width="350" height="51" alt="" align="left" />Ceci va supprimer les fichiers (normaux, intermédiaires, vignettes) qui sont plus vieux que le nombre de jours que vous indiquez. Utilisez cette fonction pour gagner de l'espace disque. Attention: les fichiers spécifiez seront supprimés définitvement, sans avertissements supplémentaires !</p>
+<p><img src="images/admin-tools_delete-older.png" border="0" width="350" height="51" alt="" align="left" />Ceci va supprimer les fichiers (normaux, intermédiaires, vignettes) qui sont plus vieux que le nombre de jours que vous indiquez. Utilisez cette fonction pour gagner de l'espace disque. Attention: les fichiers spécifiez seront supprimés définitivement, sans avertissements supplémentaires !</p>
 
-<a name="admin_tools_options_delete_comments"></a><h3>Supprimer les Commentaires orphelins (fonctionne pour tous les Albums)<a href="#admin_tools_options_delete_comments" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="admin_tools_options_delete_comments"></a><h3>Supprimer les commentaires orphelins (fonctionne pour tous les albums)<a href="#admin_tools_options_delete_comments" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Parfois, lorsque les images ont été supprimées, des commentaires qui y sont associés restent dans la base de données. Utilisez cette option pour les supprimer entièrement de la base de données.</p>
 <p>Cela vérifie dans tous les albums, peu importe ce que vous avez sélectionné dans le menu déroulant "Album sélectionné".</p>
 
@@ -85,18 +85,18 @@ Utilisez cette fonction pour libérer de l'espace disque si vous avez désactiv�
 
 <a name="admin_tools_options_reload_dimensions"></a><h3>Recharger les informations de poids et de taille<a href="#admin_tools_options_reload_dimensions" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p><img src="images/admin-tools_reload-dimensions.png" border="0" width="350" height="69" alt="" align="left" />Cette option est utile si vous avez remplacé une image particulière manuellement (en utilisant votre client FTP ou un plugin) et donc nécessite de modifier les paramètres des dimensions stockées dans la base de données de l'ancienne vers la nouvelle image.</p>
-<pVous pouvez spécifier le nombre d'images traitées - Réduisez cette valeur si vous rencontrez de délais d'attente.</p>
+<p>Vous pouvez spécifier le nombre d'images traitées - Réduisez cette valeur si vous rencontrez de délais d'attente.</p>
 
 <a name="admin_tools_options_reset_views"></a><h3>Réinitialisation du compteur de vues<a href="#admin_tools_options_reset_views" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Met à zero le compteur de vue de l'ensemble des fichiers de l'Album sélectionné.</p>
 
-<a name="admin_tools_options_keyword_convert"></a><h3>Convertir le séprarteur de mots clé<a href="#admin_tools_options_keyword_convert" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><img src="images/admin-tools_convert-keyword-separator.png" border="0" width="400" height="100" alt="" align="left" />Cette option vous permet de convertir le <a href="configuration.htm#Séparateur de mots-clés">Séparateur de mots-clés</a> pour tous vos fichiers d'une valeur vers une autre valeur. Vous devrez également vérifier que &quot;l’ensemble des séparateurs de mots-clés de votre galerie ont la nouvelle valeur&quot; si celle-ci ne fonctionne plus correctement après la conversion du  séparateur de mots-clés. Avant la conversion, vous pouvez vite remplacer le nouveau séparateur de mots-clés avec un autre caractère de sorte que vos mots clés actuels restent intacts. Vous pouvez également remplacer un caractère après la conversion. Ceci est utile si vous avez utilisé le caractère de soulignement dans Coppermine 1.4.x et antérieures et que vous souhaitez le convertir en espaces après avoir converti votre séparateur de mot clé pour un point-virgule. Par exemple pour un remplacement avant-conversion, &quot;Dakota du Sud;montagne&quot; représente 2 mots-clés avec un point virgule comme séparateur. Convertir le point-virgule à un espace pourrait produire &quot;Dakota du Sud montagne&quot; ce qui représente 4 mots-clés. Si vous convertissez les espaces en caractère de soulignement dans un premier temps, vous obtenez &quot;Dakota_du_Sud montagne&quot; ce qui maintient intact vos 2 mots-clés originaux.</p>
+<a name="admin_tools_options_keyword_convert"></a><h3>Convertir le séparteur de mots-clés<a href="#admin_tools_options_keyword_convert" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p><img src="images/admin-tools_convert-keyword-separator.png" border="0" width="350" height="82" alt="" align="left" />Cette option vous permet de convertir le <a href="configuration.htm#admin_general_keyword_separator_start">séparateur de mots-clés</a> pour tous vos fichiers d'une valeur vers une autre valeur. Vous devrez également vérifier que &quot;l’ensemble des séparateurs de mots-clés de votre galerie ont la nouvelle valeur&quot; si celle-ci ne fonctionne plus correctement après la conversion du  séparateur de mots-clés. Avant la conversion, vous pouvez vite remplacer le nouveau séparateur de mots-clés avec un autre caractère de sorte que vos mots-clés actuels restent intacts. Vous pouvez également remplacer un caractère après la conversion. Ceci est utile si vous avez utilisé le caractère de soulignement dans Coppermine 1.4.x et antérieures et que vous souhaitez le convertir en espaces après avoir converti votre séparateur de mots-clés pour un point-virgule. Par exemple pour un remplacement avant-conversion, &quot;Dakota du Sud;montagne&quot; représente 2 mots-clés avec un point virgule comme séparateur. Convertir le point-virgule à un espace pourrait produire &quot;Dakota du Sud montagne&quot; ce qui représente 4 mots-clés. Si vous convertissez les espaces en caractère de soulignement dans un premier temps, vous obtenez &quot;Dakota_du_Sud montagne&quot; ce qui maintient intact vos 2 mots-clés originaux.</p>
 
 <hr />
 
 <a name="admin_tools_usage"></a><h2>Fonctionnement<a href="#admin_tools_usage" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Sur le premier écran de l’utilitaires d'administration, vous pouvez sélectionner l'outil que vous voulez utiliser et l’album auquel il devra être appliqué. Après la validation du formulaire, l'outil sélectionné est exécuté.</p>
+<p>Sur le premier écran de l’utilitaire d'administration, vous pouvez sélectionner l'outil que vous voulez utiliser et l’album auquel il devra être appliqué. Après la validation du formulaire, l'outil sélectionné est exécuté..</p>
 <ol>
 	<li>(1) Sélectionnez l'action que vous souhaitez effectuer en cliquant sur le bouton à côté de l’outil que vous désirez.</li>
 	<li>(2) Sélectionnez une option qui s'applique à l'action que vous avez choisie.</li>

@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <title>Categories - Coppermine Photo Gallery - Documentation &amp; manuel</title>
@@ -16,7 +16,7 @@
   $HeadURL$
   $Revision$
 
-  $Date$
+
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -45,15 +45,15 @@
 <p>Le panneau de configuration des catégories se compose de trois sections: la section ordre de tri tout en haut, la section <a href="#cat_cp_page_controls_categories">Gérer les catégories</a> au milieu, où vous pouvez modifier l'ordre de vos catégories,  les déplacer, et la dernière section &quot;Mettre à jour / créer la catégorie&quot; en bas, où vous spécifiez le nom et la description d'une catégorie.</p>
 
 <a name="cat_cp_page_controls_sort"></a><h4>La section du haut &quot;Classement des catégories par ordre alphabétique&quot;<a href="#cat_cp_page_controls_sort" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-<p>Vous pouvez spécifier comment vous voulez que vos catégories soient triées dans Coppermine: par ordre alphabétique (au lieu d’un ordre personnalisé) mettez en face de &quot;<a href="configuration.htm#admin_album_list_alphasort_start">Classement des Catégories par ordre alphabétique</a> le paramètre à &quot;Oui&quot;. Ce paramètre est disponible dans la <a href="configuration.htm">configuration</a> de Coppermine et le gestionnaire de catégories. Si vous activez le tri alphabétique, les flèches monter et descendre qui normalement, vous permettent de trier manuellement les catégories disparaissent. Désactivez cette fonction si vous souhaitez organiser vos catégories dans un autre ordre.</p>
+<p>Vous pouvez spécifier comment vous voulez que vos catégories soient triées dans Coppermine: par ordre alphabétique (au lieu d’un ordre personnalisé) mettez en face de &quot;<a href="configuration.htm#admin_album_list_alphasort_start">Classement des catégories par ordre alphabétique</a> le paramètre à &quot;Oui&quot;. Ce paramètre est disponible dans la <a href="configuration.htm">configuration</a> de Coppermine et le gestionnaire de catégories. Si vous activez le tri alphabétique, les flèches monter et descendre qui normalement, vous permettent de trier manuellement les catégories disparaissent. Désactivez cette fonction si vous souhaitez organiser vos catégories dans un autre ordre.</p>
 <p>Nous vous recommandons de mettre &quot;Non&quot;.</p>
 
-<a name="cat_cp_page_controls_categories"></a><h4>Section du milieu &quot;Gérez les catégories&quot;<a href="#cat_cp_page_controls_categories" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<a name="cat_cp_page_controls_categories"></a><h4>Section du milieu &quot;Gérer les catégories&quot;<a href="#cat_cp_page_controls_categories" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 
 <ul>
-	<li>Ce <img src="../images/edit.png" border="0" width="16" height="16" alt="" title="edit" /> bouton vous permet d'éditer titre, description et catégorie mère d'une catégorie existante. En cliquant sur cette icône, les données de la catégorie que vous souhaitez éditer ou modifier seront visibles, une fois le formulaire completé, validez le en cliquant sur le bouton du bas &quot;<a href="cat_cp_page_controls_create">Mettre à jour / créer la catégorie</a>&quot;</li>
+	<li>Ce <img src="../images/edit.png" border="0" width="16" height="16" alt="" title="edit" /> bouton vous permet d'éditer titre, description et catégorie mère d'une catégorie existante. En cliquant sur cette icône, les données de la catégorie que vous souhaitez éditer ou modifier seront visibles, une fois le formulaire complété, validez le en cliquant sur le bouton du bas &quot;<a href="cat_cp_page_controls_create">Mettre à jour / créer la catégorie</a>&quot;</li>
 	<li>Ce <img src="../images/delete.png" border="0" width="16" height="16" alt="" title="delete" /> bouton vous permet de supprimer une catégorie. La suppression d'une catégorie ne supprime pas les albums et fichiers qu'elle contient. Au lieu de cela, ils sont déplacés vers la catégorie &quot;mère&quot;, si c’est est une sous-catégorie qui est supprimé ou à la racine de la liste des catégories si c’est est une catégorie parente qui est supprimé.</li>
-	<li>Ceci <img src="../images/up.png" border="0" width="16" height="16" alt="" title="up" /> et cela<img src="../images/down.png" border="0" width="16" height="16" alt="" title="down" /> vous permettent de commander l’ordre de vos catégories. Ils seront désactivés si vous mettez l'option &quot;<a href="#cat_cp_page_controls_sort">Classement des Catégories par ordre alphabétique</a>&quot; à &quot;Oui&quot;.</li>
+	<li>Ceci <img src="../images/up.png" border="0" width="16" height="16" alt="" title="up" /> et cela<img src="../images/down.png" border="0" width="16" height="16" alt="" title="down" /> vous permettent de commander l’ordre de vos catégories. Ils seront désactivés si vous mettez l'option &quot;<a href="#cat_cp_page_controls_sort">Classement des catégories par ordre alphabétique</a>&quot; à &quot;Oui&quot;.</li>
 	<li>Le &quot;<strong>Déplacer dans</strong>&quot; contient des listes déroulantes vous permettent de changer le parent d'une catégorie spécifique.</li>
 </ul>
 <a name="cat_cp_page_controls_categories_end"></a>
@@ -69,7 +69,7 @@
 	</li>
 	<li>
 		<a name="cat_album_create"></a><h5>Groupe(s) autorisé(s) à créer des albums dans cette catégorie<a href="#cat_album_create" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-		Dans les versions antérieures de Coppermine cpg1.5.x, seul l'administrateur était autorisé à créer des albums dans les galeries publics (c’était à l’administrateur de les créés) catégories. A partir de cpg1.5.x, cela a changé: par défaut, les utilisateurs non-administrateur ne peuvent pas créer des albums, mais l'administrateur peut décider de leur permettre la création d’albums. Ceci peut être paramétré par catégorie et par groupe d'utilisateurs, afin que vous puissiez permettre à vos utilisateurs de créer des albums dans la catégorie &quot;A&quot;, mais pas pour créer des albums dans la catégorie &quot;B&quot;. C'est pourquoi il y a une zone de liste supplémentaire dans le panneau de configuration des catégories, nommée &quot;Groupe(s) autorisé(s) à créer des Albums dans cette Catégorie&quot;, où vous (en tant qu'administrateur) pouvez préciser les groupes que vous souhaitez autoriser. Le groupe administrateur n'est pas listé ici,  car l'administrateur peut créer de toute façon des albums et n'a pas besoin d'autorisations spécifiques.<br />
+		Dans les versions antérieures de Coppermine cpg1.5.x, seul l'administrateur était autorisé à créer des albums dans les galeries publics (c’était à l’administrateur de les créés) catégories. A partir de cpg1.5.x, cela a changé: par défaut, les utilisateurs non-administrateur ne peuvent pas créer des albums, mais l'administrateur peut décider de leur permettre la création d’albums. Ceci peut être paramétré par catégorie et par groupe d'utilisateurs, afin que vous puissiez permettre à vos utilisateurs de créer des albums dans la catégorie &quot;A&quot;, mais pas pour créer des albums dans la catégorie &quot;B&quot;. C'est pourquoi il y a une zone de liste supplémentaire dans le panneau de configuration des catégories, nommée &quot;Groupe(s) autorisé(s) à créer des albums dans cette catégorie&quot;, où vous (en tant qu'administrateur) pouvez préciser les groupes que vous souhaitez autoriser. Le groupe administrateur n'est pas listé ici,  car l'administrateur peut créer de toute façon des albums et n'a pas besoin d'autorisations spécifiques.<br />
 		Choisissez dans la catégorie que vous modifiez, un ou plusieurs groupes dans la liste, pour permettre à ces groupes de créer des albums. Pour sélectionner plusieurs groupes, maintenez la touche [Ctrl] enfoncée et cliquez sur les groupes. Pour désélectionner <em>tous</em> les groupes, utilisez la touche [Ctrl] puis cliquez sur le dernier groupe sélectionné.
 		<a name="cat_album_create_end"></a>
 	</li>
@@ -80,7 +80,7 @@
 	</li>
 	<li>
 		<a name="cat_description"></a><h5>Description de la Catégorie<a href="#cat_description" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-		La description de la catégorie que vous êtes en train d'éditer. La description sera visible sur la page d'index. Vous pouvez utiliser les <a href="bbcode.htm">bbcodes</a> dans votre description de la catégorie.
+		La description de la catégorie que vous êtes en train d'éditer. La description sera visible sur la page d'index. Vous pouvez utiliser les <a href="bbcode.htm">BBCodes</a> dans votre description de la catégorie.
 		<a name="cat_description_end"></a>
 	</li>
 	<li>
