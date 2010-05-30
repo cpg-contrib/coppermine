@@ -128,7 +128,7 @@ CREATE TABLE CPG_config (
   name varchar(40) NOT NULL default '',
   value varchar(255) NOT NULL default '',
   PRIMARY KEY  (name)
-) TYPE=MyISAM COMMENT='Used to store the configuration options';
+  ) TYPE=MyISAM COMMENT='Used to store the configuration options';
 # --------------------------------------------------------
 
 
@@ -262,7 +262,8 @@ CREATE TABLE CPG_pictures (
   KEY pic_hits (hits),
   KEY pic_rate (pic_rating),
   KEY aid_approved (aid, approved),
-  KEY pic_aid (aid, pid)
+  KEY pic_aid (aid, pid),
+  guest_token varchar(32) default ''
 ) TYPE=MyISAM COMMENT='Used to store data about individual pics';
 # --------------------------------------------------------
 
@@ -379,3 +380,4 @@ CREATE TABLE CPG_vote_stats (
   PRIMARY KEY  (`sid`)
 ) TYPE=MyISAM COMMENT='Detailed stats about votes, only used when enabled';
 # --------------------------------------------------------
+
