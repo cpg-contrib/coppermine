@@ -35,28 +35,29 @@
 <a name="known_issues"></a><h1>Problèmes connus<a href="#known_issues" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>Les légères bizarreries et petits problèmes suivants sont connus et on peut espérer qu'ils seront corrigés dans les prochaines versions.</p>
 <ul>
-        <li>Les <a href="http://coppermine-gallery.net/forum/index.php?topic=1866.0">flêches utilisées pour la navigation</a>  d'une image à une autre s'affichent dans le mauvais ordre pour les langues au format rtl (lecture de droite à gauche)</li>
-        <li>La liste des mots clé renvoie un résultat incorrect pour les caractère asiatiques</li>
-        <li>Bug lié au navigateur: IE n'affiche pas correctement les largeurs de valeur 100%</li>
-        <li>La nouvelle interface de téléchargement par lots ne fonctionne pas avec toutes les configurations de serveurs. Les utilisateurs qui ont des problèmes avec cette fonction doivent utiliser l'interface classique à la place de la nouvelle.</li>
-        <li>Requête manquante dans la sortie de débuggage: La valeur de $CONFIG['debug_mode'] n'est pas fixée avant la première requête pour la table de configuration</li>
-        <li>Les onglets de page dans le Gestionnaire des utilisateurs ne se comportent pas de la même manière que les autres onglets</li>
-        <li>Le redimmentionnement des gif/png avec un fond transparent ne préservent pas les infos alpha</li>
-        <li>Carractères incorrects dans les courriels envoyés depuis Coppermine</li>
-        <li>Lat taille des vignettes supérieure à 120px cause un débordement du champs de texte au desus du cadre</li>
-        <li>Pas de vignettes d'albums pour les albums qui ne contiennent que des images liées par mots clés</li>
-        <li>Le recadrage et la rotation ne fonctionnent pas avec GD1</li>
-        <li>La rotation cause des distortions d'images pour les grands fichiers</li>
-        <li>la constrction<tt class="code">&lt;object&gt;&lt;param&gt;&lt;/param&gt;&lt;/object&gt;</tt> pour les fichiers multimédia n'est pas valide mais est necessaire pour une compatibilité ascendante</li>
-        <li>Les informations EXIF et IPTC sont perdues avec la rotation</li>
-        <li>Discrepancy between Coppermine internally using utf-8 and IPTC currently one supporting iso-8859-1. Subsequently, non latin characters like accented chars or Umlauts get distorted</li>
-        <li>Le groupe d'utilisateur "Banned" ne fonctionne pas comme souhaité</li>
-        <li>Les albums sont crées en utilisant  XP publisher même en cas d'erreur de téléchargement</li>
-        <li>Pas de vignette de catégorie pour les galeries utilisateurs ni pour les catégories qui ne contiennet pas d'albums avec des images mais uniquement des sous-catégories</li>
-        <li>Film strip may change its height when navigating if thumb dimension is set to 'width'</li>
-        <li>Flash uploader (swfupload) won't work if the gallery is located in a <a href="http://forum.coppermine-gallery.net/index.php/topic,62770.0.html">password protected directory</a></li>
-		<li>Some rounded corner effects of the curve theme won't work across-browsers, but are browser-specific. They will not work in IE mainly. The browsers that can't display rounded corners will display "normal" corners.</li>
-		<li>Album moderator feature not clearly documented and therefore disabled (<a href="http://forum.coppermine-gallery.net/index.php/topic,64408.0.html">thread</a>)</li>
+	<li>Les <a href="http://coppermine-gallery.net/forum/index.php?topic=1866.0">flêches utilisées pour la navigation</a>  d'une image à une autre s'affichent dans le mauvais ordre pour les langues au format rtl (lecture de droite à gauche)</li>
+	<li>La liste des mots clé renvoie un résultat incorrect pour les caractère asiatiques</li>
+	<li>Bug lié au navigateur: IE n'affiche pas correctement les largeurs de valeur 100%</li>
+	<li>La nouvelle interface de téléchargement par lots ne fonctionne pas avec toutes les configurations de serveurs. Les utilisateurs qui ont des problèmes avec cette fonction doivent utiliser l'interface classique à la place de la nouvelle.</li>
+	<li>Requête manquante dans la sortie de débuggage: La valeur de $CONFIG['debug_mode'] n'est pas fixée avant la première requête pour la table de configuration</li>
+	<li>Les onglets de page dans le Gestionnaire des utilisateurs ne se comportent pas de la même manière que les autres onglets</li>
+	<li>Le redimmentionnement des gif/png avec un fond transparent ne préservent pas les infos alpha</li>
+	<li>Carractères incorrects dans les courriels envoyés depuis Coppermine</li>
+	<li>Lat taille des vignettes supérieure à 120px cause un débordement du champs de texte au desus du cadre</li>
+	<li>Pas de vignettes d'albums pour les albums qui ne contiennent que des images liées par mots clés</li>
+	<li>Le recadrage et la rotation ne fonctionnent pas avec GD1</li>
+	<li>La rotation cause des distortions d'images pour les grands fichiers</li>
+	<li>la constrction<tt class="code">&lt;object&gt;&lt;param&gt;&lt;/param&gt;&lt;/object&gt;</tt> pour les fichiers multimédia n'est pas valide mais est necessaire pour une compatibilité ascendante</li>
+	<li>Les informations EXIF et IPTC sont perdues avec la rotation</li>
+	<li>Discrepancy between Coppermine internally using utf-8 and IPTC currently one supporting iso-8859-1. Subsequently, non latin characters like accented chars or Umlauts get distorted</li>
+	<li>Le groupe d'utilisateur "Banned" ne fonctionne pas comme souhaité</li>
+	<li>Les albums sont crées en utilisant  XP publisher même en cas d'erreur de téléchargement</li>
+	<li>Pas de vignette de catégorie pour les galeries utilisateurs ni pour les catégories qui ne contiennet pas d'albums avec des images mais uniquement des sous-catégories</li>
+	<li>Film strip may change its height when navigating if thumb dimension is set to 'width'</li>
+	<li>Flash uploader (swfupload) won't work if the gallery is located in a <a href="http://forum.coppermine-gallery.net/index.php/topic,62770.0.html">password protected directory</a></li>
+	<li>Some rounded corner effects of the curve theme won't work across-browsers, but are browser-specific. They will not work in IE mainly. The browsers that can't display rounded corners will display "normal" corners.</li>
+	<li>Album moderator feature not clearly documented and therefore disabled (<a href="http://forum.coppermine-gallery.net/index.php/topic,64408.0.html">thread</a>)</li>
+	<li>Category thumbnails appear larger than expected if thumb aspect is set to "exact" for the thumbnail setting &quot;<a href="configuration.htm#admin_picture_thumbnail_use-dimension">Use dimension</a>&quot; (<a href="http://forum.coppermine-gallery.net/index.php/topic,56147.0.html">thread</a>)</li>
 </ul>
 
 <div id="doc_footer">
