@@ -420,7 +420,7 @@ case 'album_update':
 
     if (GALLERY_ADMIN_MODE) {
         $moderator_group = $superCage->post->getInt('moderator_group');
-        $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title = '$title', description = '$description', category = $category, thumb = $thumb, uploads = '$uploads', comments = '$comments', votes = '$votes', visibility = $visibility, alb_password = '$password', alb_password_hint = '$password_hint', keyword = '$keyword', moderator_group = $moderator_group WHERE aid = $aid";
+        $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title = '$title', description = '$description', category = $category, thumb = $thumb, uploads = '$uploads', comments = '$comments', votes = '$votes', visibility = $visibility, alb_password = '$password', alb_password_hint = '$password_hint', keyword = '$keyword', moderator_group = '$moderator_group' WHERE aid = $aid";
     } else {
         $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title = '$title', description = '$description', category = $category, thumb = $thumb, comments = '$comments', votes = '$votes', visibility = $visibility, alb_password = '$password', alb_password_hint = '$password_hint', keyword = '$keyword' WHERE aid = $aid";
     }
