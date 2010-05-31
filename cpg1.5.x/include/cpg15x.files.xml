@@ -12214,7 +12214,15 @@
   </element>
   <element>
     <fullpath>lang/turkish.php</fullpath>
-    <version>1.5.3</version>
+    <version>1.5.4</version>
+    <revision>7537</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>7e8f02adb0e3c551aef42fa4bf58ea20</hash>
+  </element>
+  <element>
+    <fullpath>lang/ukrainian.php</fullpath>
+    <version>1.5.4</version>
     <revision>7537</revision>
     <status>optional</status>
     <permission>read</permission>
