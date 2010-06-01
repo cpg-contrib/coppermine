@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-01 [B] Moved profile button for curve theme (thread ID 65204) {eenemeenemuu}
 2010-05-31 [A] Added Ukrainian language file (user contribution) {GauGau}
 2010-05-27 [A] Remove outdated guest_tokens (thread ID 62522) {eenemeenemuu}
 2010-05-27 [M] Hid album moderation drop down box on modifyalb.php (thread ID 64408) {eenemeenemuu}

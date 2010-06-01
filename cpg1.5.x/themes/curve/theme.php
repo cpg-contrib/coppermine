@@ -47,6 +47,11 @@ $template_sys_menu = <<<EOT
                                         <a href="{SIDEBAR_TGT}" title="{SIDEBAR_TITLE}"><span>{SIDEBAR_ICO}{SIDEBAR_LNK}</span></a>
                                     </li>
                     <!-- END sidebar -->
+                    <!-- BEGIN my_profile -->
+                                    <li>
+                                        <a href="{MY_PROF_TGT}" title="{MY_PROF_LNK}"><span>{MY_PROF_ICO}{MY_PROF_LNK}</span></a>
+                                    </li>
+                    <!-- END my_profile -->
                     </ul>
                 </li>
 <!-- BEGIN allow_memberlist -->
@@ -62,11 +67,6 @@ $template_sys_menu = <<<EOT
                 <li>
                     <a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}" class="firstlevel"><span class="firstlevel">{MY_GAL_ICO}{MY_GAL_LNK}</span></a>
                     <ul>
-                    <!-- BEGIN my_profile -->
-                                    <li>
-                                        <a href="{MY_PROF_TGT}" title="{MY_PROF_LNK}"><span>{MY_PROF_ICO}{MY_PROF_LNK}</span></a>
-                                    </li>
-                    <!-- END my_profile -->
                     <!-- BEGIN allow_memberlist -->
                                     <li>
                                         <a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}"><span>{MEMBERLIST_ICO}{MEMBERLIST_LNK}</span></a>
