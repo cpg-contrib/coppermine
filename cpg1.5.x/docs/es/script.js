@@ -52,9 +52,9 @@ doc_toc += '      <li><a href="index.htm#features" class="es">Características</
 doc_toc += '      <li><a href="quickstart.htm#about" class="en">Guía rápida</a></li>\n';
 doc_toc += '      <li><a href="toc.htm" class="en">Tabla de contenidos</a></li>\n';
 doc_toc += '      <li><a href="requirements.htm" class="en">Requisitos mínimos</a>\n';
-doc_toc += '        <ul id="minimum_requirements" class="en">\n';
+doc_toc += '        <ul class="en">\n';
 doc_toc += '          <li><a href="requirements.htm#what_minimum" class="en">Requisitos mínimos del servidor</a>\n';
-doc_toc += '            <ul id="minimum_requirements_server" class="en">\n';
+doc_toc += '            <ul class="en">\n';
 doc_toc += '              <li><a href="requirements.htm#what_minimum_webserver" class="en">Servidor Web</a></li>\n';
 doc_toc += '              <li><a href="requirements.htm#what_minimum_php" class="en">Soporte de PHP</a></li>\n';
 doc_toc += '              <li><a href="requirements.htm#what_minimum_mysql" class="en">Base de datos mySQL</a></li>\n';
@@ -76,7 +76,7 @@ doc_toc += '          <li><a href="testing.htm#testing_availability" class="en">
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="languages.htm" class="en">Idiomas</a>\n';
-doc_toc += '        <ul id="languages" class="en">\n';
+doc_toc += '        <ul class="en">\n';
 doc_toc += '          <li><a href="languages.htm#how" class="en">Cómo funcionan los idiomas en Coppermine</a>\n';
 doc_toc += '            <ul>\n';
 doc_toc += '              <li><a href="languages.htm#how_remove_language">Quitar un idioma en particular</a></li>\n';
@@ -110,7 +110,7 @@ doc_toc += '              </li>\n';
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="translation.htm" class="en">Guía de traducción</a>\n';
-doc_toc += '            <ul id="translation" class="en">\n';
+doc_toc += '            <ul class="en">\n';
 doc_toc += '              <li><a href="translation.htm#translation_translators_wanted" class="en">¡Se necesitan traductores!</a></li>\n';
 doc_toc += '              <li><a href="translation.htm#translation_why_translate" class="en">¿Por qué traducir?</a></li>\n';
 doc_toc += '              <li><a href="translation.htm#translation_which_languages" class="en">De qué idiomas se necesitan traducciones?</a></li>\n';
@@ -1453,7 +1453,7 @@ doc_toc += '    </ul>\n';
 doc_toc += '  </li>\n';
 doc_toc += '</ul>\n';
 doc_toc += '</div>\n';
-$('#toc').replaceWith('<div id="toc" class="en" class="en" class="en">' + doc_toc + '</div>');
+$('#toc').replaceWith('<div id="toc" class="en" class="en">' + doc_toc + '</div>');
 }
 
 
@@ -1463,8 +1463,8 @@ function cpgDocHeader() {
 	if (getUrlParameters('hide_nav') == 1) {
 		return;
 	}
-	$('#docheader').text('Coppermine Photo Gallery v1.5.3: Documentación');
-	$('#docheader').after('<br clear="all" />\n<a name="top" class="en" class="en" class="en"></a>');
+	$('#docheader').text('Coppermine Photo Gallery v1.5.4: Documentación');
+	$('#docheader').after('<br clear="all" />\n<a name="top" class="en" class="en"></a>');
 	$('#docheader').before('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />\n');
 }
 
@@ -1474,13 +1474,13 @@ function cpgDocSearch() {
 		return;
 	}
 	var doc_search = '';
-	doc_search += '  <div id="doc_search" style="display:none;" class="en" class="en" class="en">\n';
-	doc_search += '    <form action="http://www.google.com/cse" id="cse-search-box" class="en" class="en" class="en">\n';
+	doc_search += '  <div id="doc_search" style="display:none;" class="en" class="en">\n';
+	doc_search += '    <form action="http://www.google.com/cse" id="cse-search-box" class="en" class="en">\n';
 	doc_search += '      <input type="hidden" name="cx" value="009353514429642786404:8ndxnr03bcg" />\n';
 	doc_search += '      <input type="text" name="q" size="25" />\n';
 	doc_search += '      <input type="submit" name="sa" value="Buscar" style="font-size:9px;" />\n';
 	doc_search += '    </form>\n';
-	doc_search += '    <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=es" class="en" class="en" class="en"></script>\n';
+	doc_search += '    <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=es" class="en" class="en"></script>\n';
 	doc_search += '  </div>\n';
 	$('#toc').append(doc_search);
 }
@@ -1488,8 +1488,8 @@ function cpgDocSearch() {
 function cpgDocFooter() {
   var overall_doc_footer = '';
   overall_doc_footer += '</div>';
-  overall_doc_footer += '<div align="right" class="en" class="en" class="en">';
-  overall_doc_footer += '<a href="#top" class="en" class="en" class="en">Back to Top</a>';
+  overall_doc_footer += '<div align="right" class="en" class="en">';
+  overall_doc_footer += '<a href="#top" class="en" class="en">Back to Top</a>';
   overall_doc_footer += '</div>';
   $('#doc_footer').append(overall_doc_footer);
 }
@@ -1527,8 +1527,8 @@ function getUrlParameters(name)
 }
 
 function cpgDocTranslationWarning() {
-  $('#doc_en_only').replaceWith('<div class="cpg_message_validation" class="en" class="en" class="en"><h1>Pendiente de traducir</h1><p>No se ha traducido aún y por tanto se muestra en inglés.</p><p>Se necesitan traductores: si crees que podrías traducir esta página ¿por qué no te ofreces como voluntario en el sitio oficial de Coppermine?. Esperamos agradecidos tu contribución.</div>');
-  $('#doc_en_partial').replaceWith('<div class="cpg_message_warning" class="en" class="en" class="en"><h1>Traducido parcialmente</h1><p>No se ha traducido del todo y por tanto se muestra parte en castallano y parte en inglés.</p><p>Se necesitan traductores: si crees que podrías traducir esta página ¿por qué no te ofreces como voluntario en el sitio oficial de Coppermine?. Esperamos agradecidos tu contribución.</div>');
+  $('#doc_en_only').replaceWith('<div class="cpg_message_validation" class="en" class="en"><h1>Pendiente de traducir</h1><p>No se ha traducido aún y por tanto se muestra en inglés.</p><p>Se necesitan traductores: si crees que podrías traducir esta página ¿por qué no te ofreces como voluntario en el sitio oficial de Coppermine?. Esperamos agradecidos tu contribución.</div>');
+  $('#doc_en_partial').replaceWith('<div class="cpg_message_warning" class="en" class="en"><h1>Traducido parcialmente</h1><p>No se ha traducido del todo y por tanto se muestra parte en castallano y parte en inglés.</p><p>Se necesitan traductores: si crees que podrías traducir esta página ¿por qué no te ofreces como voluntario en el sitio oficial de Coppermine?. Esperamos agradecidos tu contribución.</div>');
 }
 
 $(document).ready(function()

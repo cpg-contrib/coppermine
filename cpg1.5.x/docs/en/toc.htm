@@ -41,7 +41,7 @@
 </script>
 <a href="../index.htm">Documentation Language Selection</a>
 <ul id="toc_overall">
-  <li><a class="selected" href="index.htm">Coppermine documentation</a>
+  <li><a href="index.htm" class="selected">Coppermine documentation</a>
     <ul>
       <li><a href="index.htm#about">About Coppermine</a></li>
       <li><a href="index.htm#about_documentation">About the documentation</a>
@@ -53,9 +53,9 @@
       <li><a href="quickstart.htm#about">Quick-Start guide</a></li>
       <li><a href="toc.htm">Table of contents</a></li>
       <li><a href="requirements.htm">Minimum requirements</a>
-        <ul id="minimum_requirements">
+        <ul>
           <li><a href="requirements.htm#what_minimum">Server-sided minimum requirements</a>
-            <ul id="minimum_requirements_server">
+            <ul>
               <li><a href="requirements.htm#what_minimum_webserver">Web server</a></li>
               <li><a href="requirements.htm#what_minimum_php">PHP support</a></li>
               <li><a href="requirements.htm#what_minimum_mysql">mySQL database</a></li>
@@ -67,7 +67,7 @@
           <li><a href="requirements.htm#requirements_faq">Requirements FAQ</a></li>
         </ul>
       </li>
-      <li><a href="testing.htm">Testing (alpha/beta versions!)</a>
+      <li><a href="testing.htm">Testing / bug reports</a>
         <ul>
           <li><a href="testing.htm#testing_support">No support for alpha and beta versions</a></li>
           <li><a href="testing.htm#testing_areas">Areas to be particularly mindful of</a></li>
@@ -77,10 +77,41 @@
         </ul>
       </li>
       <li><a href="languages.htm">Languages</a>
-        <ul id="languages">
-          <li><a href="languages.htm#how">How languages work in Coppermine</a></li>
+        <ul>
+          <li><a href="languages.htm#how">How languages work in Coppermine</a>
+            <ul>
+              <li><a href="languages.htm#how_remove_language">Get rid of a particular language</a></li>
+              <li><a href="languages.htm#how_language_fallback">Language fallback</a></li>
+              <li><a href="languages.htm#how_scope">Scope of internationalization</a></li>
+            </ul>
+          </li>
+          <li><a href="languages.htm#language_manager">The language manager</a>
+            <ul>
+              <li><a href="languages.htm#language_manager_controls">Controls</a></li>
+              <li><a href="languages.htm#language_manager_columns">Columns</a>
+                <ul>
+                  <li><a href="languages.htm#language_manager_columns_default">Default</a></li>
+                  <li><a href="languages.htm#language_manager_columns_name">Language name</a>
+                    <ul>
+                      <li><a href="languages.htm#language_manager_columns_name_english">English</a>
+                      </li><li><a href="languages.htm#language_manager_columns_name_native">Native</a>
+                      </li><li><a href="languages.htm#language_manager_columns_name_custom">Custom</a>
+                    </li></ul>
+                  </li>
+                  <li><a href="languages.htm#language_manager_columns_flag">Flag</a></li>
+                  <li><a href="languages.htm#language_manager_columns_file">Language file</a>
+                    <ul>
+                      <li><a href="languages.htm#language_manager_columns_file_available">Available</a>
+                      </li><li><a href="languages.htm#language_manager_columns_file_complete">Complete</a>
+                    </li></ul>
+                  </li>
+                  <li><a href="languages.htm#language_manager_columns_file">Enabled</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
           <li><a href="translation.htm">Translation guide</a>
-            <ul id="translation">
+            <ul>
               <li><a href="translation.htm#translation_translators_wanted">Translators wanted!</a></li>
               <li><a href="translation.htm#translation_why_translate">Why translate?</a></li>
               <li><a href="translation.htm#translation_which_languages">Translations for which languages are needed?</a></li>
@@ -94,7 +125,22 @@
               <li><a href="translation.htm#translation_work_in_progress">Work in progress</a></li>
               <li><a href="translation.htm#translation_initial_translation">Initial translation for release</a></li>
               <li><a href="translation.htm#translation_older_language_files">Using older language files</a></li>
-              <li><a href="translation.htm#translation_documentation">Translating the documentation</a></li>
+              <li><a href="translation.htm#translation_documentation">Translating the documentation</a>
+                <ul>
+                  <li><a href="translation.htm#translation_documentation_steps">Steps for translating the docs into your language</a>
+                    <ul>
+                      <li><a href="translation.htm#translation_documentation_steps_not_exist">Make sure that the translation doesn't already exist</a></li>
+                      <li><a href="translation.htm#translation_documentation_steps_structure">Create the structure</a></li>
+                      <li><a href="translation.htm#translation_documentation_steps_copy_core">Copy the core language files</a></li>
+                      <li><a href="translation.htm#translation_documentation_steps_start_translating">Start translating</a></li>
+                      <li><a href="translation.htm#translation_documentation_steps_attention">Areas to pay attention to</a></li>
+                      <li><a href="translation.htm#translation_documentation_steps_toc">Take care of the table of contents</a></li>
+                      <li><a href="translation.htm#translation_documentation_steps_zip">Zip your translation</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="translation.htm#translation_links">Further reading</a></li>
             </ul>
           </li>
         </ul>
@@ -104,12 +150,13 @@
           <li><a href="credits.htm#developers">Coppermine team</a></li>
           <li><a href="credits.htm#contributors">Contributors</a></li>
           <li><a href="credits.htm#translators">Translators</a>
-            <ul class="level3" id="translators">
+            <ul>
               <li><a href="credits.htm#translators_language_file">Language files</a></li>
               <li><a href="credits.htm#translators_documentation">Documentation</a></li>
             </ul>
           </li>
           <li><a href="credits.htm#codebase">Free code used</a></li>
+          <li><a href="credits.htm#acknowledgements">Acknowledgements</a></li>
         </ul>
       </li>
       <li><a href="copyrights.htm">License &amp; Copyright</a>
@@ -118,7 +165,7 @@
           <li><a href="copyrights.htm#copyright_license">License</a></li>
           <li><a href="copyrights.htm#copyrights_previous_versions">Previous versions</a></li>
           <li><a href="copyrights.htm#copyright_additional">Additional terms (license add-ons)</a>
-            <ul class="level3" id="additional_terms">
+            <ul>
               <li><a href="copyrights.htm#copyright_additional_preservation">Preservation of author attributions</a></li>
               <li><a href="copyrights.htm#copyright_additional_marking">Marking of modified versions</a></li>
             </ul>
@@ -133,12 +180,35 @@
     <ul>
       <li><a href="install.htm#how">How to install the script</a></li>
       <li><a href="install.htm#what">What the installer does</a></li>
+      <li><a href="install.htm#install_related">Related information</a></li>
+      <li><a href="install.htm#install_server_config">Server configuration</a>
+        <ul>
+          <li><a href="install.htm#install_server_config_register_globals">register_globals</a></li>
+        </ul>
+      </li>
       <li><a href="install_permissions.htm">Setting permissions</a>
         <ul>
-          <li><a href="install_permissions.htm#chmod">Apache on Unix/Linux (CHMOD)</a></li>
-          <li><a href="install_permissions.htm#apache_windows">Apache on Windows</a></li>
-          <li><a href="install_permissions.htm#iis">IIS on Windows</a></li>
+          <li><a href="install_permissions.htm#permissions_webserver">Permissions on different webserver types</a>
+            <ul>
+              <li><a href="install_permissions.htm#chmod">Apache on Unix/Linux (CHMOD)</a>
+                <ul>
+                  <li><a href="install_permissions.htm#chmod_basics">Basics</a></li>
+                  <li><a href="install_permissions.htm#chmod_groups">Groups in Lunix</a></li>
+                  <li><a href="install_permissions.htm#chmod_daemon">Webserver daemon</a></li>
+                  <li><a href="install_permissions.htm#chmod_binary_arithmetics">Binary arithmetics</a></li>
+                  <li><a href="install_permissions.htm#chmod_benefit">What good is all of this?</a></li>
+                  <li><a href="install_permissions.htm#chmod_ftp">FTP application</a></li>
+                  <li><a href="install_permissions.htm#chmod_website_control_panel">Website control panel</a></li>
+                  <li><a href="install_permissions.htm#chmod_shell_access">Shell access</a></li>
+                  <li><a href="install_permissions.htm#chmod_chown">Ownership (CHOWN)</a></li>
+                </ul>
+              </li>
+              <li><a href="install_permissions.htm#apache_windows">Apache on Windows</a></li>
+              <li><a href="install_permissions.htm#iis">IIS on Windows</a></li>
+            </ul>
+          </li>
           <li><a href="install_permissions.htm#support">Asking for support on permissions issues</a></li>
+          <li><a href="install_permissions.htm#permissions_folders">Permissions on folder level</a></li>
         </ul>
       </li>
       <li><a href="install_screen.htm#install_screen_start">The install screen</a>
@@ -164,12 +234,21 @@
       <li><a href="upgrading.htm#upgrade_particular">Additional actions for updating from particular versions</a>
         <ul>
           <li><a href="upgrading.htm#upgrade_10">Upgrading from versions cpg1.0,1.1,1.2.x or 1.3.x</a></li>
-          <li><a href="upgrading.htm#upgrade_14">Upgrading from cpg1.4.x to version cpg1.5.x</a></li>
-          <li><a href="upgrading.htm#upgrade_15">Upgrading from older versions of cpg1.5.x to the most recent version of cpg1.5.x</a></li>
+          <li><a href="upgrading.htm#upgrade_14">Upgrading from cpg1.4.x to version cpg1.5.x</a>
+              <ul>
+                  <li><a href="upgrading.htm#upgrade_14_plugins">Plugins</a></li>
+                  <li><a href="upgrading.htm#upgrade_14_custom_theme">Custom theme</a></li>
+                  <li><a href="upgrading.htm#upgrade_14_language_files">Language files</a></li>
+                  <li><a href="upgrading.htm#upgrade_14_password_encryption">Password encryption</a></li>
+                  <li><a href="upgrading.htm#upgrade_14_faq">Display FAQ</a></li>
+                  <li><a href="upgrading.htm#upgrade_14_outdated_files">Outdated files</a></li>
+                  <li><a href="upgrading.htm#upgrade_14_safe_mode">Safe mode</a></li>
+              </ul>
+          </li><li><a href="upgrading.htm#upgrade_15">Upgrading from older versions of cpg1.5.x to the most recent version of cpg1.5.x</a></li>
         </ul>
       </li>
       <li><a href="upgrading.htm#updater">The update script</a>
-          <ul class="level3" id="updater">
+          <ul>
               <li><a href="upgrading.htm#updater_what_it_does">What it does</a></li>
               <li><a href="upgrading.htm#updater_purpose">Purpose</a></li>
               <li><a href="upgrading.htm#updater_authorization">Authorization check</a></li>
@@ -179,8 +258,30 @@
       <li><a href="upgrading.htm#versioncheck">The version check tool</a>
         <ul>
           <li><a href="upgrading.htm#versioncheck_description_start">What it does</a></li>
-          <li><a href="upgrading.htm#versioncheck_options_start">Options</a></li>
-          <li><a href="upgrading.htm#versioncheck_comparison_start">Version comparison</a></li>
+          <li><a href="upgrading.htm#versioncheck_first_run">First run</a></li>
+          <li><a href="upgrading.htm#versioncheck_options_start">Options</a>
+              <ul>
+                  <li><a href="upgrading.htm#versioncheck_options_display_output">Display output</a></li>
+                  <li><a href="upgrading.htm#versioncheck_options_only_show_potential_errors">Only show potential errors</a></li>
+                  <li><a href="upgrading.htm#versioncheck_options_hide_images">Hide images</a></li>
+                  <li><a href="upgrading.htm#versioncheck_options_no_modification_check">Don't check for modified files</a></li>
+                  <li><a href="upgrading.htm#versioncheck_options_no_connect_online_repository">Do not connect to the online repository</a></li>
+              </ul>
+          </li>
+          <li><a href="upgrading.htm#versioncheck_comparison_start">Version comparison</a>
+              <ul>
+                  <li><a href="upgrading.htm#versioncheck_comparison_path">Path</a></li>
+                  <li><a href="upgrading.htm#versioncheck_comparison_missing">Missing</a></li>
+                  <li><a href="upgrading.htm#versioncheck_comparison_permissions">Permissions</a></li>
+                  <li><a href="upgrading.htm#versioncheck_comparison_version">Version</a></li>
+                  <li><a href="upgrading.htm#versioncheck_comparison_revision">Revision</a></li>
+                  <li><a href="upgrading.htm#versioncheck_comparison_modified">Modified</a></li>
+                  <li><a href="upgrading.htm#versioncheck_comparison_comment">Comment</a></li>
+                  <li><a href="upgrading.htm#versioncheck_comparison_repository_link">Repository link</a></li>
+              </ul>
+          </li>
+          <li><a href="upgrading.htm#versioncheck_problems">Things that could go wrong using versioncheck</a></li>
+          <li><a href="upgrading.htm#versioncheck_expect">Wrong expectations</a></li>
         </ul>
       </li>
       <li><a href="upgrading.htm#upgrade_faq">Upgrading FAQ</a></li>
@@ -253,7 +354,7 @@
       <li><a href="theme.htm#theme_files">Content of a theme</a>
         <ul>
           <li><a href="theme_template.htm#theme_template_html">Editing template.html</a>
-              <ul class="level3" id="theme_template_html">
+              <ul>
                   <li><a href="theme_template.htm#theme_template_token">Template tokens</a></li>
                   <li><a href="theme_template.htm#theme_template_important">Important</a></li>
                   <li><a href="theme_template.htm#theme_template_token_list">List of tokens in template.html</a></li>
@@ -262,12 +363,17 @@
           <li><a href="theme_style_css.htm#theme_style_css">Editing style.css</a>
             <ul>
               <li><a href="theme_style_css.htm#theme_style_css_tools">Tools</a>
-              </li><li><a href="theme_style_css.htm#theme_style_css_list">List of classes in style.css</a>
-              </li><li><a href="theme_style_css.htm#theme_style_css_overall">Additional stylesheet</a>
-            </li></ul>
+                <ul>
+                  <li><a href="theme_style_css.htm#theme_style_css_tools_webdev">Web Developer Toolbar usage</a></li>
+                  <li><a href="theme_style_css.htm#theme_style_css_tools_editor">Editor</a></li>
+                </ul>
+              </li>
+              <li><a href="theme_style_css.htm#theme_style_css_list">List of classes in style.css</a></li>
+              <li><a href="theme_style_css.htm#theme_style_css_overall">Additional stylesheet</a></li>
+            </ul>
           </li>
           <li><a href="theme_theme_php.htm#theme_create_theme_php">Editing theme.php</a>
-              <ul class="level3" id="theme_theme_php">
+              <ul>
                   <li><a href="theme_theme_php.htm#theme_php_types">Item types</a></li>
                   <li><a href="theme_theme_php.htm">The sample theme - a template to copy from</a></li>
                   <li><a href="theme_theme_php.htm#theme_php_method">Method</a></li>
@@ -294,6 +400,7 @@
                       </li>
                     </ul>
                   </li>
+                  <li><a href="theme_theme_php.htm#theme_php_summary">Summary</a></li>
               </ul>
           </li>
         </ul>
@@ -315,7 +422,23 @@
           <li><a href="theme_create.htm#theme_create_tipps">Tipps &amp; tricks</a></li>
           <li><a href="theme_create.htm#theme_create_wysiwyg">Using WYSIWYG-editors</a></li>
           <li><a href="theme_create.htm#theme_create_colors">Modifying colors</a></li>
-          <li><a href="theme_create_matching_page_tutorial.htm#theme_matching">Creating a Coppermine theme that matches your overall site layout</a></li>
+          <li><a href="theme_create_matching_page_tutorial.htm#theme_matching">Creating a Coppermine theme that matches your overall site layout</a>
+            <ul>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_intro">Introduction</a></li>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_pre-requisites">Pre-requisites</a>
+                <ul>
+                  <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_pre-requisites_tools">Tools</a></li>
+                  <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_pre-requisites_skills">Skills</a></li>
+                </ul>
+              </li>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_examples">Example</a></li>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_pick_similar">Pick a similar theme first</a></li>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_start">Start editing your theme</a></li>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_placeholder_replace">Replace the content from the sample with placeholder tokens</a></li>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_style">Adapting the style</a></li>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_test1">Initial test</a></li>
+            </ul>
+          </li>
           <li><a href="theme_template.htm#theme_template_html">Editing template.html</a>
             <ul>
               <li><a href="theme_template.htm#theme_template_token">Template tokens</a></li>
@@ -341,6 +464,28 @@
           </li>
         </ul>
       </li>
+      <li><a href="theme_examples.htm#theme_examples">Theme examples</a>
+        <ul>
+          <li><a href="theme_examples.htm#theme_examples_summary">Summary</a></li>
+          <li><a href="theme_examples.htm#theme_examples_content">Additional content</a>
+            <ul>
+              <li><a href="theme_examples.htm#theme_examples_content_thumbnail">Additional content on the thumbnail page</a>
+                <ul>
+                  <li><a href="theme_examples.htm#theme_examples_content_thumbnail_extra_row">Extra row between thumbnail rows</a></li>
+                  <li><a href="theme_examples.htm#theme_examples_content_thumbnail_cell">Extra table cell on each thumbnail page</a></li>
+                </ul>
+              </li>
+              <li><a href="theme_examples.htm#theme_examples_content_displayimage">Additional content on the intermediate-image pages (displayimage.php)</a>
+                <ul>
+                  <li><a href="theme_examples.htm#theme_examples_content_displayimage_image">Directly next to the intermediate image</a></li>
+                  <li><a href="theme_examples.htm#theme_examples_content_displayimage_filmstrip">Directly next to the film strip</a></li>
+                </ul>
+              </li>
+              <li><a href="theme_examples.htm#theme_examples_content_fullsize">Additional content on the full-size pop-up</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
       <li><a href="theme_copyright.htm">Copyright-disclaimer in footer</a>
         <ul>
           <li><a href="theme_copyright.htm#theme_copyright_fair_use">Fair use</a>
@@ -356,7 +501,7 @@
         </ul>
       </li>
       <li><a href="theme_graphics.htm">Graphic resources in themes</a>
-          <ul class="level3" id="theme_graphics">
+          <ul>
               <li><a href="theme_graphics.htm#theme_graphics_menu_icons">Menu Icons</a></li>
               <li><a href="theme_graphics.htm#theme_graphics_nav_bar">Image Navigation bar</a></li>
               <li><a href="theme_graphics.htm#theme_graphics_rating">Rating images</a></li>
@@ -388,28 +533,26 @@
           <li><a href="admin_menu.htm#plugin_manager">Plugin Manager</a></li>
           <li><a href="admin_menu.htm#bridge_manager">Bridge Manager</a></li>
           <li><a href="admin_menu.htm#view_log">View log files</a></li>
-          <li><a href="admin_menu.htm#">Overall stats</a></li>
-          <li><a href="admin_menu.htm#stats"></a></li>
+          <li><a href="admin_menu.htm#stats">Overall stats</a></li>
           <li><a href="admin_menu.htm#versioncheck">Check versions</a></li>
           <li><a href="admin_menu.htm#update_database">Update database</a></li>
           <li><a href="admin_menu.htm#export">Export</a></li>
           <li><a href="admin_menu.htm#phpinfo">phpinfo</a></li>
           <li><a href="admin_menu.htm#show_news">Show news</a></li>
           <li><a href="admin_menu.htm#documentation">Documentation</a></li>
-          <li><a href="admin_menu.htm#">Admin mode for regular users</a></li>
-          <li><a href="admin_menu.htm#admin_mode_regular_users"></a></li>
+          <li><a href="admin_menu.htm#admin_mode_regular_users">Admin mode for regular users</a></li>
           <li><a href="admin_menu.htm#user_menu_items">Admin menu items for regular users</a></li>
         </ul>
       </li>
       <li><a href="banning.htm#banning">Banning</a>
         <ul>
-			<li><a href="banning.htm#banning_whats_new">What's new?</a></li>
-			<li><a href="banning.htm#banning_scope">Scope</a></li>
-			<li><a href="banning.htm#bannig_how_it_works">How banning works</a></li>
-			<li><a href="banning.htm#banning_by_ip_address_no_good">Why banning by IP address is not recommended</a></li>
-			<li><a href="banning.htm#banning_page">Page controls</a></li>
-			<li><a href="banning.htm#banning_bridged">No banning when bridged</a></li>
-			<li><a href="banning.htm#banning_todo">To do</a></li>
+          <li><a href="banning.htm#banning_whats_new">What's new?</a></li>
+          <li><a href="banning.htm#banning_scope">Scope</a></li>
+          <li><a href="banning.htm#bannig_how_it_works">How banning works</a></li>
+          <li><a href="banning.htm#banning_by_ip_address_no_good">Why banning by IP address is not recommended</a></li>
+          <li><a href="banning.htm#banning_page">Page controls</a></li>
+          <li><a href="banning.htm#banning_bridged">No banning when bridged</a></li>
+          <li><a href="banning.htm#banning_todo">To do</a></li>
         </ul>
       </li>
       <li><a href="configuration.htm">Configuration</a>
@@ -450,16 +593,31 @@
           <li><a href="groups.htm#group_cp_create">Creating custom groups</a></li>
           <li><a href="groups.htm#group_cp_delete">Deleting custom groups</a></li>
           <li><a href="groups.htm#group_cp_sync">Triggering synchronisation (bridged only)</a></li>
+          <li><a href="groups.htm#group_cp_more_than_one_group">Membership in more than one group</a></li>
         </ul>
       </li>
       <li><a href="users.htm">Users</a>
         <ul>
-          <li><a href="users.htm#user_cp">The user control panel</a></li>
-          <li><a href="users.htm#user_cp_page">Page controls</a></li>
-          <li><a href="users.htm#user_cp_search">Searching for user(s)</a></li>
-          <li><a href="users.htm#user_cp_new">Creating new users</a></li>
-          <li><a href="users.htm#user_cp_edit">Editing users</a></li>
-          <li><a href="users.htm#user_cp_group">Group membership</a></li>
+          <li><a href="users.htm#user_cp">The user control panel</a>
+            <ul>
+              <li><a href="users.htm#user_cp_page">Page controls</a></li>
+              <li><a href="users.htm#user_cp_search">Searching for user(s)</a></li>
+              <li><a href="users.htm#user_cp_new">Creating new users</a></li>
+              <li><a href="users.htm#user_cp_edit">Editing users</a></li>
+              <li><a href="users.htm#user_cp_group">Group membership</a></li>
+            </ul>
+          </li>
+          <li><a href="users.htm#lost_password">Lost passwords</a>
+            <ul>
+              <li><a href="users.htm#lost_password_cpg_user_account">Coppermine user account password</a>
+                <ul>
+                  <li><a href="users.htm#lost_password_cpg_user_account_standalone">Coppermine in standalone mode</a></li>
+                  <li><a href="users.htm#lost_password_cpg_user_account_bridged">Coppermine bridged</a></li>
+                </ul>
+              </li>
+              <li><a href="users.htm#lost_password_cpg_user_account">mySQL account password</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li><a href="categories.htm">Categories</a>
@@ -541,7 +699,6 @@
           <li><a href="exif.htm#exif_what">What is EXIF</a></li>
           <li><a href="exif.htm#exif_makers">Different flavors</a></li>
           <li><a href="exif.htm#exif_how_it_works">How it works</a></li>
-
           <li><a href="exif.htm#exif_image_libraries">No exif support on the server</a></li>
           <li><a href="exif.htm#exif_limitations">Limitations</a></li>
           <li><a href="exif.htm#exif_manager">EXIF manager</a></li>
@@ -556,7 +713,7 @@
             <ul>
               <li><a href="plugins.htm#plugin_bundled_link_target">Link Target (link_target)</a></li>
               <li><a href="plugins.htm#plugin_bundled_onlinestats">Who is online? (onlinestats)</a></li>
-              <li><a href="OpenSearch%20%28opensearch%29">plugins.htm#plugin_bundled_opensearch</a></li>
+              <li><a href="plugins.htm#plugin_bundled_opensearch">OpenSearch (opensearch)</a></li>
               <li><a href="plugins.htm#plugin_bundled_sample">Sample Plugin (sample)</a></li>
               <li><a href="plugins.htm#plugin_bundled_usergal_alphatabs">User Gallery Alphabetic Tabbing (usergal_alphatabs)</a></li>
               <li><a href="plugins.htm#plugin_bundled_visiblehookpoints">Visible HookPoints (visiblehookpoints)</a></li>
@@ -636,14 +793,14 @@
               <li><a href="errors.htm#errors_messages_database">Database-related error messages</a></li>
               <li><a href="errors.htm#commonPHPerrors">Common PHP errors</a></li>
               <li><a href="errors.htm#errors_messages_upload">Upload-related error messages</a></li>
+              <li><a href="errors.htm#errors_messages_webserver">Webserver response codes</a></li>
             </ul>
           </li>
         </ul>
       </li>
-      <li><a href="export.htm#backup_export">Backup &amp; Export</a>
+      <li><a href="export.htm#backup_move">Backup &amp; Moving</a>
         <ul>
-          <li><a href="export.htm#backup_export_decision">Decide for one method</a></li>
-          <li><a href="export.htm#backup">Backup</a>
+          <li><a href="export.htm#backup">Backing up your gallery</a>
             <ul>
               <li><a href="export.htm#backup_file">File Backup</a>
                 <ul>
@@ -666,21 +823,14 @@
                   <li><a href="export.htm#backup_database_after">After the database backup</a></li>
                 </ul>
               </li>
-			  <li><a href="export.htm#moving">Moving your gallery</a>
-                <ul>
-                  <li><a href="export.htm#moving_folder">Moving on your webserver</a></li>
-                  <li><a href="export.htm#moving_server">Moving from one webserver to the other</a></li>
-                  <li><a href="export.htm#moving_disadvantages">Disadvantages of renaming</a></li>
-                  <li><a href="export.htm#moving_config_url">Changing Coppermine's URL in config</a></li>
-                </ul>
-			  </li>
             </ul>
           </li>
-          <li><a href="export.htm#export">Exporting</a>
+          <li><a href="export.htm#moving">Moving your gallery</a>
             <ul>
-              <li><a href="export.htm#export_scope">Scope</a></li>
-              <li><a href="export.htm#export_usage">Usage</a></li>
-              <li><a href="export.htm#export_preparations">Preparations</a></li>
+              <li><a href="export.htm#moving_folder">Moving on your webserver</a></li>
+              <li><a href="export.htm#moving_server">Moving from one webserver to the other</a></li>
+              <li><a href="export.htm#moving_disadvantages">Disadvantages of renaming</a></li>
+              <li><a href="export.htm#moving_config_url">Changing Coppermine's URL in config</a></li>
             </ul>
           </li>
         </ul>
@@ -704,8 +854,7 @@
       <li><a href="uploading_batch-add.htm#batch_add_pics">Uploading pics by FTP / Batch-Add Pictures</a>
         <ul>
           <li><a href="uploading_batch-add.htm#batch_add_pics_what">What batch-add does</a></li>
-          <li><a href="uploading_batch-add.htm#batch_add_pics_how"></a></li>
-          <li><a href="uploading_batch-add.htm#">How batch-add works</a></li>
+          <li><a href="uploading_batch-add.htm#batch_add_pics_how">How batch-add works</a></li>
           <li><a href="uploading_batch-add.htm#batch_add_common_mistakes">Common mistakes</a>
             <ul>
               <li><a href="uploading_batch-add.htm#batch_add_common_mistakes_doesnt_work">Batch-add does not work as expected</a></li>
@@ -861,11 +1010,26 @@
   </li>
   <li><a href="dev.htm">Developer documentation</a>
     <ul>
+      <li><a href="dev_files.htm">Adding/renaming/removing files</a>
+        <ul>
+          <li><a href="dev_files.htm#dev_files_target_audience">Target audience</a></li>
+          <li><a href="dev_files.htm#dev_files_scope">Scope</a></li>
+          <li><a href="dev_files.htm#dev_files_naming">Naming conventions</a></li>
+          <li><a href="dev_files.htm#dev_files_adding">Adding files</a>
+            <ul>
+              <li><a href="dev_files.htm#dev_files_adding_language">Language files</a></li>
+            </ul>
+          </li>
+          <li><a href="dev_files.htm#dev_files_renaming">Renaming files</a></li>
+          <li><a href="dev_files.htm#dev_files_deleting">Deleting files</a></li>
+        </ul>
+      </li>
       <li><a href="dev_coding.htm">Coding guidelines</a>
         <ul>
           <li><a href="dev_coding.htm#dev_coding_target_audience">Target audience</a></li>
           <li><a href="dev_coding.htm#dev_coding_scope">Scope</a></li>
           <li><a href="dev_coding.htm#dev_coding_indentation">Indentation</a></li>
+          <li><a href="dev_coding_encoding">Encoding</a></li>
           <li><a href="dev_coding.htm#dev_coding_general">General guidelines</a></li>
           <li><a href="dev_coding.htm#dev_coding_php">PHP code</a>
             <ul>
@@ -891,38 +1055,86 @@
             </ul>
           </li>
           <li><a href="dev_coding.htm#dev_coding_credits">Credits for coding guidelines</a></li>
-        </ul>
-      </li>
-      <li><a href="dev_files.htm">Adding/renaming/removing files</a>
-        <ul>
-          <li><a href="dev_files.htm#dev_files_target_audience">Target audience</a></li>
-          <li><a href="dev_files.htm#dev_files_scope">Scope</a></li>
-          <li><a href="dev_files.htm#dev_files_naming">Naming conventions</a></li>
-          <li><a href="dev_files.htm#dev_files_adding">Adding files</a></li>
-          <li><a href="dev_files.htm#dev_files_renaming">Renaming files</a></li>
-          <li><a href="dev_files.htm#dev_files_deleting">Deleting files</a></li>
-        </ul>
-      </li>
-      <li><a href="dev_superglobals.htm">Sanitization of Superglobals using Inspekt</a>
-        <ul>
-          <li><a href="dev_superglobals.htm#superglobals_sanitization_target_audience">Target audience</a></li>
-          <li><a href="dev_superglobals.htm#superglobals_sanitization_whats_new">What's new?</a></li>
-          <li><a href="dev_superglobals.htm#superglobals_sanitization_reason">Reason</a></li>
-          <li><a href="dev_superglobals.htm#superglobals_sanitization_about_inspekt">What Inspekt does</a>
+          <li><a href="dev_coding.htm#dev_coding_usability">Usability</a>
             <ul>
-              <li><a href="dev_superglobals.htm#superglobals_sanitization_inspekt_accessor_methods">Inspekt accessor methods</a></li>
+              <li><a href="dev_coding.htm#dev_coding_usability_forms">Forms</a></li>
             </ul>
           </li>
-          <li><a href="dev_superglobals.htm#superglobals_sanitization_howto">How to use Inspekt with Coppermine Photo Gallery</a>
+        </ul>
+      </li>
+      <li><a href="dev_config.htm">Config options</a>
+        <ul>
+          <li><a href="dev_config.htm#dev_config_add_target_audience">Target audience</a></li>
+          <li><a href="dev_config.htm#dev_config_history">History</a></li>
+          <li><a href="dev_config.htm#dev_config_new_features">New features</a></li>
+          <li><a href="dev_config.htm#dev_config_step_by_step">Step by Step</a>
             <ul>
-              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_using">Using Inspekt</a></li>
-              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_inspekt_in_coppermine">Inspekt in Coppermine</a></li>
-              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_consider_methods">Consider the methods to use</a></li>
-              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_examples">Examples</a></li>
-              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_regex">Regular Expressions</a></li>
+              <li><a href="dev_config.htm#dev_config_step_basiq_sql">Basic.sql</a></li>
+              <li><a href="dev_config.htm#dev_config_step_update_sql">Update.sql</a></li>
+              <li><a href="dev_config.htm#dev_config_step_array">Admin.inc.php</a></li>
+              <li><a href="dev_config.htm#dev_config_step_language_file">Language file</a></li>
+              <li><a href="dev_config.htm#dev_config_step_documentation">Documentation</a></li>
             </ul>
           </li>
-          <li><a href="dev_superglobals.htm#superglobals_sanitization_links">Links</a></li>
+          <li><a href="dev_config.htm#dev_config_todo">To Do</a></li>
+        </ul>
+      </li>
+      <li><a href="dev_database.htm">Database schema</a>
+          <ul>
+              <li><a href="dev_database.htm#db_config_file">Configuration file</a></li>
+              <li><a href="dev_database.htm#db_reference%20within_code">Database reference within coppermine code</a></li>
+              <li><a href="dev_database.htm#db_albums">cpg15x_albums</a></li>
+              <li><a href="dev_database.htm#db_banned">cpg15x_banned</a></li>
+              <li><a href="dev_database.htm#db_bridge">cpg15x_bridge</a></li>
+              <li><a href="dev_database.htm#db_categories">cpg15x_categories</a></li>
+              <li><a href="dev_database.htm#db_categorymap">cpg15x_categorymap</a></li>
+              <li><a href="dev_database.htm#db_comments">cpg15x_comments</a></li>
+              <li><a href="dev_database.htm#db_config">cpg15x_config</a></li>
+              <li><a href="dev_database.htm#db_dict">cpg15x_dict</a></li>
+              <li><a href="dev_database.htm#db_ecards">cpg15x_ecards</a></li>
+              <li><a href="dev_database.htm#db_exif">cpg15x_exif</a></li>
+              <li><a href="dev_database.htm#db_favpics">cpg15x_favpics</a></li>
+              <li><a href="dev_database.htm#db_filetypes">cpg15x_filetypes</a></li>
+              <li><a href="dev_database.htm#db_hit_stats">cpg15x_hit_stats</a></li>
+              <li><a href="dev_database.htm#db_languages">cpg15x_languages</a></li>
+              <li><a href="dev_database.htm#db_pictures">cpg15x_pictures</a></li>
+              <li><a href="dev_database.htm#db_plugins">cpg15x_plugins</a></li>
+              <li><a href="dev_database.htm#db_sessions">cpg15x_sessions</a></li>
+              <li><a href="dev_database.htm#db_temp_messages">cpg15x_temp_messages</a></li>
+              <li><a href="dev_database.htm#db_usergroups">cpg15x_usergroups</a></li>
+              <li><a href="dev_database.htm#db_users">cpg15x_users</a></li>
+              <li><a href="dev_database.htm#db_votes">cpg15x_votes</a></li>
+              <li><a href="dev_database.htm#db_vote_stats">cpg15x_vote_stats</a></li>
+          </ul>
+      </li>
+      <li><a href="dev_documentation.htm">Editing the documentation</a>
+        <ul>
+          <li><a href="dev_documentation.htm#dev_documentation_target_audience">Target audience</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_edit_existing">Edit existing documents</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_add">Add new documents</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_move">Moving content from one document to the other</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_hidden_feature">Hidden features</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_database_structure">Database structure</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_header_block">Header &amp; footer blocks</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_i18n">Documentation internationalization</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_detail">Expandable/collapsible "detail"-blocks</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_help">Help</a>
+            <ul>
+              <li><a href="dev_documentation.htm#dev_documentation_help_start_end">Start and end anchors needed</a></li>
+            </ul>
+          </li>
+          <li><a href="dev_documentation.htm#dev_documentation_heading_anchors">Adding anchors to headings</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_code">Code</a>
+            <ul>
+              <li><a href="dev_documentation.htm#dev_documentation_code_css_code">CSS class "code"</a></li>
+              <li><a href="dev_documentation.htm#dev_documentation_code_html_pre">HTML-tag "pre"</a></li>
+              <li><a href="dev_documentation.htm#dev_documentation_code_css_cpg_code">CSS class "cpg_code"</a></li>
+              <li><a href="dev_documentation.htm#dev_documentation_code_css_smallcode">CSS class "smallcode"</a></li>
+              <li><a href="dev_documentation.htm#dev_documentation_code_html_textarea">HTML-tag "textarea"</a></li>
+              <li><a href="dev_documentation.htm#dev_documentation_code_combining">Combining HTML tags and CSS classes</a></li>
+              <li><a href="dev_documentation.htm#dev_documentation_code_syntaxhighlighting">No syntax highlighting</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li><a href="dev_javascript.htm">Javascript in Coppermine</a>
@@ -937,6 +1149,62 @@
           </li>
           <li><a href="dev_javascript.htm#dev_javascript_php_vars">How to pass PHP variables to included javascript</a></li>
           <li><a href="dev_javascript.htm#dev_javascript_autostart">Autostart JavaScript</a></li>
+        </ul>
+      </li>
+      <li><a href="dev_package.htm#packaging">Packaging a new release</a>
+        <ul>
+          <li><a href="dev_package.htm#packaging_target_audience">Target audience</a></li>
+          <li><a href="dev_package.htm#packaging_subversion">Subversion repository</a></li>
+          <li><a href="dev_package.htm#packaging_steps">Steps</a>
+            <ul>
+              <li><a href="dev_package.htm#packaging_steps_checkout">Check out</a></li>
+              <li><a href="dev_package.htm#packaging_steps_loop_through_files"></a></li>
+              <li><a href="dev_package.htm#">Replace version number in all files</a>
+                <ul>
+                  <li><a href="dev_package.htm#packaging_steps_loop_through_files_linux">Linux</a></li>
+                  <li><a href="dev_package.htm#packaging_steps_loop_through_files_windows">Windows</a></li>
+                </ul>
+              </li>
+              <li><a href="dev_package.htm#packaging_steps_bom">Remove Byte Order Marks</a></li>
+              <li><a href="dev_package.htm#">Prepare an announcement thread</a></li>
+              <li><a href="dev_package.htm#packaging_steps_write_announcement_thread"></a></li>
+              <li><a href="dev_package.htm#packaging_steps_docs_upgrade">Edit the upgrade section of the docs</a></li>
+              <li><a href="dev_package.htm#packaging_steps_changelog">Edit the changelog</a></li>
+              <li><a href="dev_package.htm#packaging_steps_version_number">Edit the version number</a></li>
+              <li><a href="dev_package.htm#packaging_steps_svn_commit">Commit your changes</a></li>
+              <li><a href="dev_package.htm#packaging_steps_versioncheck">Update the versioncheck data</a>
+                <ul>
+                  <li><a href="dev_package.htm#packaging_steps_versioncheck_complete">Completeness</a></li>
+                  <li><a href="dev_package.htm#packaging_steps_versioncheck_update">Update revision numbers and hashes</a></li>
+                </ul>
+              </li>
+              <li><a href="dev_package.htm#packaging_steps_xml_webspace">Update cpg15x.files.xml on the Coppermine home page</a></li>
+              <li><a href="dev_package.htm#packaging_steps_svn_export">Export from subversion</a>
+                <ul>
+                  <li><a href="dev_package.htm#packaging_steps_rapidsvn">RapidSVN</a></li>
+                  <li><a href="dev_package.htm#packaging_steps_tortoisesvn">Tortoise SVN</a></li>
+                </ul>
+              </li>
+              <li><a href="dev_package.htm#packaging_steps_create_tag">Create a tag in subversion</a>
+                <ul>
+                  <li><a href="dev_package.htm#packaging_steps_create_tag_rapidsvn">RapidSVN</a></li>
+                  <li><a href="dev_package.htm#packaging_steps_create_tag_tortoisesvn">Tortoise SVN</a></li>
+                </ul>
+              </li>
+              <li><a href="dev_package.htm#packaging_steps_create_zip">Create the archive</a></li>
+              <li><a href="dev_package.htm#packaging_steps_upload_zip">Upload the archive</a></li>
+              <li><a href="dev_package.htm#packaging_steps_move_announcement">Publish announcement thread</a></li>
+              <li><a href="dev_package.htm#packaging_steps_news">Create news items</a>
+                <ul>
+                  <li><a href="dev_package.htm#packaging_steps_news_sf">News item on sf.net</a></li>
+                  <li><a href="dev_package.htm#packaging_steps_news_forum">News item on forum</a></li>
+                  <li><a href="dev_package.htm#packaging_steps_news_homepage">News item on home page</a></li>
+                  <li><a href="dev_package.htm#packaging_steps_news_embedded">News embedded into existing galleries</a></li>
+                </ul>
+              </li>
+              <li><a href="dev_package.htm#packaging_steps_demo">Update the demo</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li><a href="dev_plugins.htm">Plugin Writing for Coppermine</a>
@@ -969,6 +1237,15 @@
             </ul>
           </li>
           <li><a href="dev_plugins.htm#plugin_writing_globals">Use of Superglobals</a></li>
+          <li><a href="dev_plugins.htm#plugin_writing_database">Database access</a>
+            <ul>
+              <li><a href="dev_plugins.htm#plugin_writing_database_direct_queries">Direct queries</a></li>
+              <li><a href="dev_plugins.htm#plugin_writing_database_tables_access">Accessing database tables</a></li>
+              <li><a href="dev_plugins.htm#plugin_writing_database_tables_create">Creating database tables</a></li>
+              <li><a href="dev_plugins.htm#plugin_writing_database_tables_delete">Deleting database tables</a></li>
+              <li><a href="dev_plugins.htm#plugin_writing_database_config">Storing your plugin's config values</a></li>
+            </ul>
+          </li>
           <li><a href="dev_plugins.htm#plugin_writing_types">Plugin Types</a></li>
           <li><a href="dev_plugins.htm#plugin_writing_includes">Using includes</a></li>
           <li><a href="dev_plugin_api.htm">Plugin Writing: Tutorial, API</a>
@@ -977,10 +1254,10 @@
               <li><a href="dev_plugin_api.htm#plugin_api_overview_skills">Required Skills &amp; Knowledge</a></li>
               <li><a href="dev_plugin_api.htm#plugin_api_overview_tools">Recommended Software &amp; Support Forums</a></li>
               <li><a href="dev_plugin_api.htm#plugin_api_tutorial">"Hello, world" Plugin Tutorial</a>
-                <ul class="level5">
+                <ul>
                   <li><a href="dev_plugin_api.htm#plugin_api_tutorial_first">My First Plugin</a></li>
                   <li><a href="dev_plugin_api.htm#plugin_api_tutorial_installconfig">Installation, Configuration, and Clean-Up</a>
-                    <ul class="level5">
+                    <ul>
                       <li><a href="dev_plugin_api.htm#plugin_api_tutorial_installsimple">Installation with Simple Configuration</a></li>
                       <li><a href="dev_plugin_api.htm#plugin_api_tutorial_install">Installation with Configuration Parameters</a></li>
                       <li><a href="dev_plugin_api.htm#plugin_api_tutorial_config">Configuration during Operation</a></li>
@@ -1005,33 +1282,32 @@
             </ul>
           </li>
           <li><a href="dev_plugin_hooks.htm">Reference list of plugin hooks </a>
-            <ul class="level5">
+            <ul>
               <li><a href="dev_plugin_hooks.htm#plugin_hooks_target_audience">Target audience</a></li>
               <li><a href="dev_plugin_hooks.htm#plugin_hooks_choosing">Choosing Plugin Hooks</a></li>
               <li><a href="dev_plugin_hooks.htm#plugin_hooks_finding">Finding Plugin Hooks</a></li>
-              <li><a href="dev_plugin_hooks.htm#plugin_hooks_using">Using Plugin Hooks</a></li>
               <li><a href="dev_plugin_hooks.htm#plugin_hooks_filename">Plugin Hooks by File Name</a>
-                <ul class="level6">
+                <ul>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_ind_php">Script: index.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_ind_anyc">Filter: 'anycontent'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_ind_ucp">Filter: 'user_caption_params'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_ind_pb">Filter: 'plugin_block'</a></li>
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_di_php">Script: displayimage.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_di_fi">Filter: 'file_info'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_di_pbc">Filter: 'post_breadcrumb'</a></li>
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_thumb_php">Script: thumbnails.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_thumb_pbc">Filter: 'post_breadcrumb'</a></li>
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_func_php">Script: functions.inc.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_func_ghgf">Filters: 'gallery_header' and 'gallery_footer'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_func_td">Filter: 'thumb_data'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_func_th">Filter: 'template_html'</a></li>
@@ -1040,24 +1316,24 @@
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_th_php">Script: themes.inc.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_th_fd">Filter: 'file_data'</a></li>
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_um_php">Script: usermgr.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_um_umh">Filter: 'usermgr_header'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_um_umf">Filter: 'usermgr_footer'</a></li>
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_pm_php">Script: pluginmgr.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_pm_pcon">Filter: 'plugin_configure'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_pm_pcl">Filter: 'plugin_cleanup'</a></li>
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_papi_php">Script: plugin_api.inc.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_papi_ph">Filter: 'page_html'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_papi_pe">Filter: 'page_end'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_papi_pi">Filter: 'plugin_install'</a></li>
@@ -1067,12 +1343,12 @@
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_init_php">Script: init.inc.php</a>
-                    <ul class="level9">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_init_ps">Filter: 'page_start'</a></li>
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_picm_php">Script: picmgmt.inc.php</a>
-                    <ul class="level9">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_picm_afd">Filter: 'add_file_data'</a></li>
                     </ul>
                   </li>
@@ -1081,7 +1357,7 @@
               <li><a href="dev_plugin_hooks.htm#plugin_hooks_alphabetically">Plugin Hooks Alphabetically</a></li>
               <li><a href="dev_plugin_hooks.htm#plugin_hooks_hooktype">Plugin Hooks by Hook Type</a></li>
               <li><a href="dev_plugin_hooks.htm#plugin_hook_examples">Plugin Hook Examples</a>
-                <ul class="level6">
+                <ul>
                     <li><a href="dev_plugin_hooks.htm#plugin_hook_example_upload_method">Adding an upload method</a></li>
                     <li><a href="dev_plugin_hooks.htm#plugin_hook_example_theme_display_thumbnails">Add tags for thumbnails display</a></li>
                 </ul></li>
@@ -1089,23 +1365,26 @@
           </li>
         </ul>
       </li>
-      <li><a href="dev_documentation.htm">Editing the documentation</a>
+      <li><a href="dev_superglobals.htm">Sanitization of Superglobals using Inspekt</a>
         <ul>
-          <li><a href="dev_documentation.htm#dev_documentation_target_audience">Target audience</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_edit_existing">Edit existing documents</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_add">Add new documents</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_move">Moving content from one document to the other</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_hidden_feature">Hidden features</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_database_structure">Database structure</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_header_block">Header &amp; footer blocks</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_i18n">Documentation internationalization</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_detail">Expandable/collapsible "detail"-blocks</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_help">Help</a>
+          <li><a href="dev_superglobals.htm#superglobals_sanitization_target_audience">Target audience</a></li>
+          <li><a href="dev_superglobals.htm#superglobals_sanitization_whats_new">What's new?</a></li>
+          <li><a href="dev_superglobals.htm#superglobals_sanitization_reason">Reason</a></li>
+          <li><a href="dev_superglobals.htm#superglobals_sanitization_about_inspekt">What Inspekt does</a>
             <ul>
-              <li><a href="dev_documentation.htm#dev_documentation_help_start_end">Start and end anchors needed</a></li>
+              <li><a href="dev_superglobals.htm#superglobals_sanitization_inspekt_accessor_methods">Inspekt accessor methods</a></li>
             </ul>
           </li>
-          <li><a href="dev_documentation.htm#dev_documentation_heading_anchors">Adding anchors to headings</a></li>
+          <li><a href="dev_superglobals.htm#superglobals_sanitization_howto">How to use Inspekt with Coppermine Photo Gallery</a>
+            <ul>
+              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_using">Using Inspekt</a></li>
+              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_inspekt_in_coppermine">Inspekt in Coppermine</a></li>
+              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_consider_methods">Consider the methods to use</a></li>
+              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_examples">Examples</a></li>
+              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_regex">Regular Expressions</a></li>
+            </ul>
+          </li>
+          <li><a href="dev_superglobals.htm#superglobals_sanitization_links">Links</a></li>
         </ul>
       </li>
       <li><a href="dev_subversion.htm">Subversion</a>
@@ -1115,20 +1394,32 @@
           <li><a href="dev_subversion.htm#dev_subversion_definition">What is subversion?</a></li>
           <li><a href="dev_subversion.htm#dev_subversion_hosting">Where is the subversion repository hosted?</a></li>
           <li><a href="dev_subversion.htm#dev_subversion_software">Recommended software</a></li>
-          <li><a href="dev_subversion.htm#dev_subversion_repository_structure">Repository structure</a></li>
+          <li><a href="dev_subversion.htm#dev_subversion_websvn">Alternative access using Web SVN</a></li>
+          <li><a href="dev_subversion.htm#dev_subversion_repository_structure">Repository structure</a>
+            <ul>
+              <li><a href="dev_subversion.htm#dev_subversion_repository_structure_trunk">Coppermine core files</a></li>
+              <li><a href="dev_subversion.htm#dev_subversion_repository_structure_plugins">Plugins</a></li>
+            </ul>
+          </li>
           <li><a href="dev_subversion.htm#dev_subversion_checking_out">Checking out</a>
             <ul>
               <li><a href="dev_subversion.htm#dev_subversion_checking_out_entire">Checking out the entire repository</a></li>
               <li><a href="dev_subversion.htm#dev_subversion_checking_out_particular_package">Checking out a particular Package</a></li>
               <li><a href="dev_subversion.htm#dev_subversion_checking_out_particular_file">Checking out a particular file</a></li>
+              <li><a href="dev_subversion.htm#dev_subversion_checking_out_refering">Refering to files downloaded from the subversion repository</a></li>
             </ul>
           </li>
-          <li><a href="dev_subversion.htm#dev_subversion_download">Is there no single package that I could download instead?</a></li>
+          <li><a href="dev_subversion.htm#dev_subversion_download">Is there no single package that I could download instead?</a>
+            <ul>
+              <li><a href="dev_subversion.htm#dev_subversion_download_tarball">Download Tarball archives</a></li>
+            </ul>
+          </li>
           <li><a href="dev_subversion.htm#dev_subversion_dev-only">Developers-only</a>
             <ul>
               <li><a href="dev_subversion.htm#dev_subversion_checkout_checkin">Check out before checking in</a></li>
               <li><a href="dev_subversion.htm#dev_subversion_commit">Committing your code</a></li>
               <li><a href="dev_subversion.htm#dev_subversion_changelog">Changelog</a></li>
+              <li><a href="dev_subversion.htm#dev_subversion_write_access">Obtaining write access</a></li>
             </ul>
           </li>
           <li><a href="dev_subversion.htm#dev_subversion_step-by-step">Step by step</a>
@@ -1138,27 +1429,26 @@
             </ul>
           </li>
           <li><a href="dev_subversion.htm#dev_subversion_revision">Revisions</a></li>
+          <li><a href="dev_subversion.htm#dev_subversion_fileheaders">Subversion file headers</a></li>
         </ul>
       </li>
-      <li><a href="dev_config.htm">Adding config options</a>
+      <li><a href="dev_tools.htm">Tools recommended by the devs</a>
+          <ul>
+              <li><a href="dev_tools.htm#dev_tools_database">Database manipulation</a></li>
+              <li><a href="dev_tools.htm#dev_tools_ftp_client">FTP clients</a></li>
+              <li><a href="dev_tools.htm#dev_tools_web_development">Web development</a></li>
+              <li><a href="dev_tools.htm#dev_tools_editor">Text editors</a></li>
+              <li><a href="dev_tools.htm#dev_tools_picture_editors">Picture Editors</a></li>
+          </ul>
+      </li>
+      <li><a href="dev_update.htm">Updating</a>
         <ul>
-          <li><a href="dev_config.htm#dev_config_add_target_audience">Target audience</a></li>
-          <li><a href="dev_config.htm#dev_config_history">History</a></li>
-          <li><a href="dev_config.htm#dev_config_new_features">New features</a></li>
-          <li><a href="dev_config.htm#dev_config_step_by_step">Step by Step</a>
-            <ul>
-              <li><a href="dev_config.htm#dev_config_step_basiq_sql">Basic.sql</a></li>
-              <li><a href="dev_config.htm#dev_config_step_update_sql">Update.sql</a></li>
-              <li><a href="dev_config.htm#dev_config_step_array">Admin.inc.php</a></li>
-              <li><a href="dev_config.htm#dev_config_step_language_file">Language file</a></li>
-              <li><a href="dev_config.htm#dev_config_step_documentation">Documentation</a></li>
-            </ul>
-          </li>
-          <li><a href="dev_config.htm#dev_config_todo">To Do</a></li>
+          <li><a href="dev_update.htm#dev_update_target_audience">Target audience</a></li>
+          <li><a href="dev_update.htm#dev_update_hidden_feature">Hidden feature</a></li>
         </ul>
       </li>
       <li><a href="dev_vars.htm#vars_constants">Variables &amp; Constants</a>
-        <ul class="level5">
+        <ul>
           <li><a href="dev_vars.htm#vars_constants_system">System Global Variables</a></li>
           <li><a href="dev_vars.htm#vars_constants_constants">Coppermine Constants</a></li>
         </ul>
@@ -1169,49 +1459,6 @@
           <li><a href="dev_versioncheck.htm#dev_versioncheck_xml">XML structure</a></li>
           <li><a href="dev_versioncheck.htm#dev_versioncheck_todo">To do list</a></li>
         </ul>
-      </li>
-      <li><a href="dev_update.htm">Updating</a>
-        <ul>
-          <li><a href="dev_update.htm#dev_update_target_audience">Target audience</a></li>
-          <li><a href="dev_update.htm#dev_update_hidden_feature">Hidden feature</a></li>
-        </ul>
-      </li>
-      <li><a href="dev_tools.htm">Tools recommended by the devs</a>
-          <ul class="level4">
-              <li><a href="dev_tools.htm#dev_tools_database">Database manipulation</a></li>
-              <li><a href="dev_tools.htm#dev_tools_ftp_client">FTP clients</a></li>
-              <li><a href="dev_tools.htm#dev_tools_web_development">Web development</a></li>
-              <li><a href="dev_tools.htm#dev_tools_editor">Text editors</a></li>
-              <li><a href="dev_tools.htm#dev_tools_picture_editors">Picture Editors</a></li>
-          </ul>
-      </li>
-      <li><a href="dev_database.htm">Database schema</a>
-          <ul class="level4">
-              <li><a href="dev_database.htm#db_config_file">Configuration file</a></li>
-              <li><a href="dev_database.htm#db_reference%20within_code">Database reference within coppermine code</a></li>
-              <li><a href="dev_database.htm#db_albums">cpg15x_albums</a></li>
-              <li><a href="dev_database.htm#db_banned">cpg15x_banned</a></li>
-              <li><a href="dev_database.htm#db_bridge">cpg15x_bridge</a></li>
-              <li><a href="dev_database.htm#db_categories">cpg15x_categories</a></li>
-              <li><a href="dev_database.htm#db_categorymap">cpg15x_categorymap</a></li>
-              <li><a href="dev_database.htm#db_comments">cpg15x_comments</a></li>
-              <li><a href="dev_database.htm#db_config">cpg15x_config</a></li>
-              <li><a href="dev_database.htm#db_dict">cpg15x_dict</a></li>
-              <li><a href="dev_database.htm#db_ecards">cpg15x_ecards</a></li>
-              <li><a href="dev_database.htm#db_exif">cpg15x_exif</a></li>
-              <li><a href="dev_database.htm#db_favpics">cpg15x_favpics</a></li>
-              <li><a href="dev_database.htm#db_filetypes">cpg15x_filetypes</a></li>
-              <li><a href="dev_database.htm#db_hit_stats">cpg15x_hit_stats</a></li>
-              <li><a href="dev_database.htm#db_languages">cpg15x_languages</a></li>
-              <li><a href="dev_database.htm#db_pictures">cpg15x_pictures</a></li>
-              <li><a href="dev_database.htm#db_plugins">cpg15x_plugins</a></li>
-              <li><a href="dev_database.htm#db_sessions">cpg15x_sessions</a></li>
-              <li><a href="dev_database.htm#db_temp_messages">cpg15x_temp_messages</a></li>
-              <li><a href="dev_database.htm#db_usergroups">cpg15x_usergroups</a></li>
-              <li><a href="dev_database.htm#db_users">cpg15x_users</a></li>
-              <li><a href="dev_database.htm#db_votes">cpg15x_votes</a></li>
-              <li><a href="dev_database.htm#db_vote_stats">cpg15x_vote_stats</a></li>
-          </ul>
       </li>
     </ul>
   </li>

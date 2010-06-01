@@ -23,8 +23,8 @@ $lang_translation_info['lang_name_native'] = 'Українська';
 $lang_translation_info['lang_country_code'] = 'ua';
 $lang_translation_info['trans_name'] = 'Neolo';
 $lang_translation_info['trans_email'] = 'admin@nlight.org.ua';
-$lang_translation_info['trans_website'] = 'http://nlight.org.ua';
-$lang_translation_info['trans_date'] = '2010-05-29';
+$lang_translation_info['trans_website'] = 'http://nlight.org.ua/';
+$lang_translation_info['trans_date'] = '2010-05-31';
 
 
 $lang_charset = 'utf-8';

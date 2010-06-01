@@ -23,6 +23,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-02 [M] Release of cpg1.5.4 as initial stable release for the public {GauGau}
+2010-06-01 [M] Preparing the release of cpg1.5.4 {GauGau}
 2010-06-01 [B] Fixed issue when selecting IM on installation (thread ID 65185) {eenemeenemuu}
 2010-06-01 [B] Moved profile button for curve theme (thread ID 65204) {eenemeenemuu}
 2010-05-31 [A] Added Ukrainian language file (user contribution) {GauGau}

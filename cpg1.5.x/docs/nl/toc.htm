@@ -41,60 +41,106 @@
 </script>
 <a href="../index.htm">Documentation Language Selection</a>
 <ul id="toc_overall">
-  <li><a class="selected" href="index.htm">Coppermine documentation</a>
+  <li><a href="index.htm" class="selected">Coppermine documentatie</a>
     <ul>
-      <li><a href="index.htm#about">About Coppermine</a></li>
-      <li><a href="index.htm#about_documentation">About the documentation</a>
+      <li><a href="index.htm#about">Over Coppermine</a></li>
+      <li><a href="index.htm#about_documentation">Over de documentatie</a>
         <ul>
-          <li><a href="index.htm#about_documentation_conventions">Documentation Conventions</a></li>
+          <li><a href="index.htm#about_documentation_conventions">Documentatie Conventies</a></li>
         </ul>
       </li>
-      <li><a href="index.htm#features">Features</a></li>
-      <li><a href="quickstart.htm#about">Quick-Start guide</a></li>
-      <li><a href="toc.htm">Table of contents</a></li>
-      <li><a href="requirements.htm">Minimum requirements</a>
-        <ul id="minimum_requirements">
-          <li><a href="requirements.htm#what_minimum">Server-sided minimum requirements</a>
-            <ul id="minimum_requirements_server">
+      <li><a href="index.htm#features">Functies</a></li>
+      <li><a href="quickstart.htm#about">Quick-Start gids</a></li>
+      <li><a href="toc.htm">Inhoudstafel</a></li>
+      <li><a href="requirements.htm">Minimum vereisten</a>
+        <ul>
+          <li><a href="requirements.htm#what_minimum">Server-sided minimum vereisten</a>
+            <ul>
               <li><a href="requirements.htm#what_minimum_webserver">Web server</a></li>
               <li><a href="requirements.htm#what_minimum_php">PHP support</a></li>
               <li><a href="requirements.htm#what_minimum_mysql">mySQL database</a></li>
-              <li><a href="requirements.htm#what_minimum_image_library">Image library</a></li>
+              <li><a href="requirements.htm#what_minimum_image_library">Afbeeldingen bibliotheek</a></li>
             </ul>
           </li>
           <li><a href="requirements.htm#what_minimum_self-hosting">Self-Hosting &amp; Webserver Setup</a></li>
-          <li><a href="requirements.htm#personal">Personal requirements</a></li>
-          <li><a href="requirements.htm#requirements_faq">Requirements FAQ</a></li>
+          <li><a href="requirements.htm#personal">Persoonlijke vereisten</a></li>
+          <li><a href="requirements.htm#requirements_faq">Vereisten FAQ</a></li>
         </ul>
       </li>
-      <li><a href="testing.htm">Testing (alpha/beta versions!)</a>
+      <li><a href="testing.htm">Testen / bugrapporten</a>
         <ul>
-          <li><a href="testing.htm#testing_support">No support for alpha and beta versions</a></li>
-          <li><a href="testing.htm#testing_areas">Areas to be particularly mindful of</a></li>
-          <li><a href="testing.htm#testing_feature_list">Feature list</a></li>
-          <li><a href="testing.htm#testing_report">The report format</a></li>
-          <li><a href="testing.htm#testing_availability">Availability</a></li>
+          <li><a href="testing.htm#testing_support">Geen support voor alpha en beta versies</a></li>
+          <li><a href="testing.htm#testing_areas">Gebieden die vooral aandacht vragen</a></li>
+          <li><a href="testing.htm#testing_feature_list">Functielijst</a></li>
+          <li><a href="testing.htm#testing_report">Het rapport formaat</a></li>
+          <li><a href="testing.htm#testing_availability">Beschikbaarheid</a></li>
         </ul>
       </li>
-      <li><a href="languages.htm">Languages</a>
-        <ul id="languages">
-          <li><a href="languages.htm#how">How languages work in Coppermine</a></li>
-          <li><a href="translation.htm">Translation guide</a>
-            <ul id="translation">
-              <li><a href="translation.htm#translation_translators_wanted">Translators wanted!</a></li>
-              <li><a href="translation.htm#translation_why_translate">Why translate?</a></li>
-              <li><a href="translation.htm#translation_which_languages">Translations for which languages are needed?</a></li>
-              <li><a href="translation.htm#translation_who">Who can translate?</a></li>
-              <li><a href="translation.htm#translation_char_encoding">Character encoding</a></li>
+      <li><a href="languages.htm">Talen</a>
+        <ul>
+          <li><a href="languages.htm#how">Hoe talen werken in Coppermine</a>
+            <ul>
+              <li><a href="languages.htm#how_remove_language">Get rid of a particular language</a></li>
+              <li><a href="languages.htm#how_language_fallback">Language fallback</a></li>
+              <li><a href="languages.htm#how_scope">Scope of internationalization</a></li>
+            </ul>
+          </li>
+          <li><a href="languages.htm#language_manager">The language manager</a>
+            <ul>
+              <li><a href="languages.htm#language_manager_controls">Controls</a></li>
+              <li><a href="languages.htm#language_manager_columns">Columns</a>
+                <ul>
+                  <li><a href="languages.htm#language_manager_columns_default">Default</a></li>
+                  <li><a href="languages.htm#language_manager_columns_name">Language name</a>
+                    <ul>
+                      <li><a href="languages.htm#language_manager_columns_name_english">English</a>
+                      </li><li><a href="languages.htm#language_manager_columns_name_native">Native</a>
+                      </li><li><a href="languages.htm#language_manager_columns_name_custom">Custom</a>
+                    </li></ul>
+                  </li>
+                  <li><a href="languages.htm#language_manager_columns_flag">Flag</a></li>
+                  <li><a href="languages.htm#language_manager_columns_file">Language file</a>
+                    <ul>
+                      <li><a href="languages.htm#language_manager_columns_file_available">Available</a>
+                      </li><li><a href="languages.htm#language_manager_columns_file_complete">Complete</a>
+                    </li></ul>
+                  </li>
+                  <li><a href="languages.htm#language_manager_columns_file">Enabled</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="translation.htm">Vertaalgids</a>
+            <ul>
+              <li><a href="translation.htm#translation_translators_wanted">Vertalers gevraagd!</a></li>
+              <li><a href="translation.htm#translation_why_translate">Waarom vertalen?</a></li>
+              <li><a href="translation.htm#translation_which_languages">Voor welke talen zijn vertalingen nodig?</a></li>
+              <li><a href="translation.htm#translation_who">Wie kan vertalen?</a></li>
+              <li><a href="translation.htm#translation_char_encoding">Karakter codering</a></li>
               <li><a href="translation.htm#translation_editors">Editors &amp; Tools</a></li>
-              <li><a href="translation.htm#translation_full_translation">Full translations only</a></li>
-              <li><a href="translation.htm#translation_step_by_step">Step by step</a></li>
-              <li><a href="translation.htm#translation_special_issues">Special issues</a></li>
-              <li><a href="translation.htm#translation_versions">Language versions</a></li>
-              <li><a href="translation.htm#translation_work_in_progress">Work in progress</a></li>
-              <li><a href="translation.htm#translation_initial_translation">Initial translation for release</a></li>
-              <li><a href="translation.htm#translation_older_language_files">Using older language files</a></li>
-              <li><a href="translation.htm#translation_documentation">Translating the documentation</a></li>
+              <li><a href="translation.htm#translation_full_translation">Alleen volledige vertalingen</a></li>
+              <li><a href="translation.htm#translation_step_by_step">Stap voor stap</a></li>
+              <li><a href="translation.htm#translation_special_issues">Speciale problemen</a></li>
+              <li><a href="translation.htm#translation_versions">Taalversies</a></li>
+              <li><a href="translation.htm#translation_work_in_progress">Werk in uitvoering</a></li>
+              <li><a href="translation.htm#translation_initial_translation">Initiële vertaling voor release</a></li>
+              <li><a href="translation.htm#translation_older_language_files">Gebruik van oudere taalbestanden</a></li>
+              <li><a href="translation.htm#translation_documentation">Vertalen van de documentatie</a>
+                <ul>
+                  <li><a href="translation.htm#translation_documentation_steps">Stappen voor de vertaling van de documenten in uw taal</a>
+                    <ul>
+                      <li><a href="translation.htm#translation_documentation_steps_not_exist">Verzeker er u van dat de vertaling nog niet bestaat</a></li>
+                      <li><a href="translation.htm#translation_documentation_steps_structure">Maak de structuur</a></li>
+                      <li><a href="translation.htm#translation_documentation_steps_copy_core">Kopieer de core taalbestanden</a></li>
+                      <li><a href="translation.htm#translation_documentation_steps_start_translating">Start de vertaling</a></li>
+                      <li><a href="translation.htm#translation_documentation_steps_attention">Gebieden die aandacht vragen</a></li>
+                      <li><a href="translation.htm#translation_documentation_steps_toc">Pas op met de inhoudstafel</a></li>
+                      <li><a href="translation.htm#translation_documentation_steps_zip">Zip uw vertaling</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="translation.htm#translation_links">Lees verder</a></li>
             </ul>
           </li>
         </ul>
@@ -102,490 +148,563 @@
       <li><a href="credits.htm">Credits</a>
         <ul>
           <li><a href="credits.htm#developers">Coppermine team</a></li>
-          <li><a href="credits.htm#contributors">Contributors</a></li>
-          <li><a href="credits.htm#translators">Translators</a>
-            <ul class="level3" id="translators">
-              <li><a href="credits.htm#translators_language_file">Language files</a></li>
-              <li><a href="credits.htm#translators_documentation">Documentation</a></li>
+          <li><a href="credits.htm#contributors">Medewerkers</a></li>
+          <li><a href="credits.htm#translators">Vertalers</a>
+            <ul>
+              <li><a href="credits.htm#translators_language_file">Taalbestanden</a></li>
+              <li><a href="credits.htm#translators_documentation">Documentatie</a></li>
             </ul>
           </li>
-          <li><a href="credits.htm#codebase">Free code used</a></li>
+          <li><a href="credits.htm#codebase">Gratis code gebruikt</a></li>
+          <li><a href="credits.htm#acknowledgements">Erkenningen</a></li>
         </ul>
       </li>
-      <li><a href="copyrights.htm">License &amp; Copyright</a>
+      <li><a href="copyrights.htm">Licentie &amp; Copyright</a>
         <ul>
           <li><a href="copyrights.htm#copyright_copyright">Copyrights</a></li>
-          <li><a href="copyrights.htm#copyright_license">License</a></li>
-          <li><a href="copyrights.htm#copyrights_previous_versions">Previous versions</a></li>
-          <li><a href="copyrights.htm#copyright_additional">Additional terms (license add-ons)</a>
-            <ul class="level3" id="additional_terms">
-              <li><a href="copyrights.htm#copyright_additional_preservation">Preservation of author attributions</a></li>
-              <li><a href="copyrights.htm#copyright_additional_marking">Marking of modified versions</a></li>
+          <li><a href="copyrights.htm#copyright_license">Licentie</a></li>
+          <li><a href="copyrights.htm#copyrights_previous_versions">Vorige versies</a></li>
+          <li><a href="copyrights.htm#copyright_additional">Bijkomende voorwaarden (license add-ons)</a>
+            <ul>
+              <li><a href="copyrights.htm#copyright_additional_preservation">Behoud van toeschrijvingen aan auteurs</a></li>
+              <li><a href="copyrights.htm#copyright_additional_marking">Markeren van aangepaste versies</a></li>
             </ul>
           </li>
-          <li><a href="copyrights.htm#copyright_freedom">Freedom</a></li>
+          <li><a href="copyrights.htm#copyright_freedom">Vrijheid</a></li>
         </ul>
       </li>
-      <li><a href="known_issues.htm">Known issues</a></li>
+      <li><a href="known_issues.htm">Bekende problemen</a></li>
     </ul>
   </li>
-  <li><a href="install.htm">Installation and setup</a>
+  <li><a href="install.htm">Installatie en setup</a>
     <ul>
-      <li><a href="install.htm#how">How to install the script</a></li>
-      <li><a href="install.htm#what">What the installer does</a></li>
-      <li><a href="install_permissions.htm">Setting permissions</a>
+      <li><a href="install.htm#how">Hoe het script installeren</a></li>
+      <li><a href="install.htm#what">Wat doet de installer</a></li>
+      <li><a href="install_permissions.htm">Instellen van rechten</a>
         <ul>
-          <li><a href="install_permissions.htm#chmod">Apache on Unix/Linux (CHMOD)</a></li>
-          <li><a href="install_permissions.htm#apache_windows">Apache on Windows</a></li>
-          <li><a href="install_permissions.htm#iis">IIS on Windows</a></li>
-          <li><a href="install_permissions.htm#support">Asking for support on permissions issues</a></li>
+          <li><a href="install_permissions.htm#permissions_webserver">Rechten op verschillende webserver types</a>
+            <ul>
+              <li><a href="install_permissions.htm#chmod">Apache op Unix/Linux (CHMOD)</a>
+                <ul>
+                  <li><a href="install_permissions.htm#chmod_basics">Basics</a></li>
+                  <li><a href="install_permissions.htm#chmod_groups">Groepen in Lunix</a></li>
+                  <li><a href="install_permissions.htm#chmod_daemon">Webserver daemon</a></li>
+                  <li><a href="install_permissions.htm#chmod_binary_arithmetics">Binaire berekeningen</a></li>
+                  <li><a href="install_permissions.htm#chmod_benefit">Waarvoor is dit alles goed?</a></li>
+                  <li><a href="install_permissions.htm#chmod_ftp">FTP applicatie</a></li>
+                  <li><a href="install_permissions.htm#chmod_website_control_panel">Website control panel</a></li>
+                  <li><a href="install_permissions.htm#chmod_shell_access">Shell access</a></li>
+                  <li><a href="install_permissions.htm#chmod_chown">Ownership (CHOWN)</a></li>
+                </ul>
+              </li>
+              <li><a href="install_permissions.htm#apache_windows">Apache op Windows</a></li>
+              <li><a href="install_permissions.htm#iis">IIS op Windows</a></li>
+            </ul>
+          </li>
+          <li><a href="install_permissions.htm#support">Support vragen voor problemen met rechten</a></li>
+          <li><a href="install_permissions.htm#permissions_folders">Rechten op mapniveau</a></li>
         </ul>
       </li>
-      <li><a href="install_screen.htm#install_screen_start">The install screen</a>
+      <li><a href="install_screen.htm#install_screen_start">Het installatie scherm</a>
         <ul>
-          <li><a href="install_screen.htm#install_screen_classic">The classic install screen</a></li>
-          <li><a href="install_screen.htm#install_screen_wizard">The install wizard</a></li>
+          <li><a href="install_screen.htm#install_screen_classic">Het klassieke installatiescherm</a></li>
+          <li><a href="install_screen.htm#install_screen_wizard">De installatie wizard</a></li>
         </ul>
       </li>
       <li><a href="auto-installers.htm">Auto-Installers</a></li>
-      <li><a href="install_faq.htm">Installation FAQ</a></li>
+      <li><a href="install_faq.htm">Installatie FAQ</a></li>
       <li><a href="uninstall.htm">Uninstall</a></li>
     </ul>
   </li>
-  <li><a href="upgrading.htm">Upgrading</a>
+  <li><a href="upgrading.htm">Upgraden</a>
     <ul>
-      <li><a href="upgrading.htm#upgrade_why">Why upgrade?</a>
+      <li><a href="upgrading.htm#upgrade_why">Waarom upgrade?</a>
           <ul>
-              <li><a href="upgrading.htm#upgrade_why_reasons">Reasons for package releases</a></li>
+              <li><a href="upgrading.htm#upgrade_why_reasons">Redenen voor  pakketrelease</a></li>
               <li><a href="upgrading.htm#upgrade_why_changelog">Changelog</a></li>
           </ul>
       </li>
-      <li><a href="upgrading.htm#upgrade_any">Steps needed to perform when upgrading Coppermine (from any version)</a></li>
-      <li><a href="upgrading.htm#upgrade_particular">Additional actions for updating from particular versions</a>
+      <li><a href="upgrading.htm#upgrade_any">Stappen nodig om Coppermine te upgraden (van gelijk welke versie)</a></li>
+      <li><a href="upgrading.htm#upgrade_particular">Bijkomende handelingen voor een update van bepaalde versies</a>
         <ul>
-          <li><a href="upgrading.htm#upgrade_10">Upgrading from versions cpg1.0,1.1,1.2.x or 1.3.x</a></li>
-          <li><a href="upgrading.htm#upgrade_14">Upgrading from cpg1.4.x to version cpg1.5.x</a></li>
-          <li><a href="upgrading.htm#upgrade_15">Upgrading from older versions of cpg1.5.x to the most recent version of cpg1.5.x</a></li>
+          <li><a href="upgrading.htm#upgrade_10">Upgrade van versies cpg1.0,1.1,1.2.x of 1.3.x</a></li>
+          <li><a href="upgrading.htm#upgrade_14">Upgrade van cpg1.4.x naar versie cpg1.5.x</a></li>
+          <li><a href="upgrading.htm#upgrade_15">Upgrade van oudere versies dan cpg1.5.x naar de meest recente versie van cpg1.5.x</a></li>
         </ul>
       </li>
-      <li><a href="upgrading.htm#updater">The update script</a>
-          <ul class="level3" id="updater">
-              <li><a href="upgrading.htm#updater_what_it_does">What it does</a></li>
-              <li><a href="upgrading.htm#updater_purpose">Purpose</a></li>
-              <li><a href="upgrading.htm#updater_authorization">Authorization check</a></li>
-              <li><a href="upgrading.htm#updater_when">When must the updater be run?</a></li>
+      <li><a href="upgrading.htm#updater">Het update script</a>
+          <ul>
+              <li><a href="upgrading.htm#updater_what_it_does">Wat doet het</a></li>
+              <li><a href="upgrading.htm#updater_purpose">Doel</a></li>
+              <li><a href="upgrading.htm#updater_authorization">Autorisatie controle</a></li>
+              <li><a href="upgrading.htm#updater_when">Wanneer moet de updater uitgevoerd worden?</a></li>
           </ul>
       </li>
-      <li><a href="upgrading.htm#versioncheck">The version check tool</a>
+      <li><a href="upgrading.htm#versioncheck">Versiecontrole</a>
         <ul>
-          <li><a href="upgrading.htm#versioncheck_description_start">What it does</a></li>
-          <li><a href="upgrading.htm#versioncheck_options_start">Options</a></li>
-          <li><a href="upgrading.htm#versioncheck_comparison_start">Version comparison</a></li>
+          <li><a href="upgrading.htm#versioncheck_description_start">Wat doet het</a></li>
+          <li><a href="upgrading.htm#versioncheck_options_start">Opties</a></li>
+          <li><a href="upgrading.htm#versioncheck_comparison_start">Versie vergelijking</a></li>
         </ul>
       </li>
-      <li><a href="upgrading.htm#upgrade_faq">Upgrading FAQ</a></li>
-      <li><a href="upgrading.htm#downgrading">Downgrading from cpg1.5.x to an older version</a></li>
+      <li><a href="upgrading.htm#upgrade_faq">Upgrade FAQ</a></li>
+      <li><a href="upgrading.htm#downgrading">Downgrade van cpg1.5.x naar een oudere versie</a></li>
     </ul>
   </li>
-  <li><a href="start.htm">Getting Started</a>
+  <li><a href="start.htm">Starten</a>
     <ul>
-      <li><a href="start.htm#getting_concepts">Basic concepts</a></li>
-      <li><a href="start.htm#getting_initial_configuration">Initial configuration</a></li>
-      <li><a href="start.htm#getting_structure">Category/album/file structure</a></li>
-      <li><a href="start.htm#getting_resizing">Resized images</a>
+      <li><a href="start.htm#getting_concepts">Basis concepten</a></li>
+      <li><a href="start.htm#getting_initial_configuration">Initiele configuratie</a></li>
+      <li><a href="start.htm#getting_structure">Categorie/album/bestandsstructuur</a></li>
+      <li><a href="start.htm#getting_resizing">Verkleinde afbeeldingen</a>
         <ul>
           <li><a href="start.htm#getting_resizing_thumbnails">Thumbnails</a></li>
-          <li><a href="start.htm#getting_resizing_intermediate">Intermediates</a></li>
-          <li><a href="start.htm#getting_resizing_original">Originals</a></li>
-          <li><a href="start.htm#getting_resizing_recommended">Recommended resizing setups</a>
+          <li><a href="start.htm#getting_resizing_intermediate">Tussenformaten</a></li>
+          <li><a href="start.htm#getting_resizing_original">Originelen</a></li>
+          <li><a href="start.htm#getting_resizing_recommended">Aanbevolen verklein setups</a>
             <ul>
-              <li><a href="start.htm#getting_resizing_recommended_nofullsize">No full-size pop-ups</a></li>
-              <li><a href="start.htm#getting_resizing_recommended_nointermediate">Allow full-size pop-ups with maximum space saving</a></li>
-              <li><a href="start.htm#getting_resizing_recommended_regular">"Regular" setup with moderate file space consumption</a></li>
+              <li><a href="start.htm#getting_resizing_recommended_nofullsize">Geen full-size pop-ups</a></li>
+              <li><a href="start.htm#getting_resizing_recommended_nointermediate">Laat full-size pop-ups met maximum ruimtebesparing toe</a></li>
+              <li><a href="start.htm#getting_resizing_recommended_regular">"Normale" setup met bescheiden gebruik van bestandsruimte</a></li>
             </ul>
           </li>
         </ul>
       </li>
-      <li><a href="start.htm#getting_admin_account">Your admin account</a></li>
+      <li><a href="start.htm#getting_admin_account">Uw admin account</a></li>
       <li><a href="start.htm#getting_check_uploads">Check uploads</a></li>
-      <li><a href="start.htm#getting_consider_bridging">Consider bridging</a></li>
-      <li><a href="start.htm#getting_interaction">What are your visitors allowed to do?</a></li>
-      <li><a href="start.htm#getting_design">Change your coppermine's design</a></li>
-      <li><a href="start.htm#getting_typical">Typical setups</a>
+      <li><a href="start.htm#getting_consider_bridging">Overweeg bridging</a></li>
+      <li><a href="start.htm#getting_interaction">Wat mogen uw gebruikers doen?</a></li>
+      <li><a href="start.htm#getting_design">Verander het ontwerp van uw coppermine</a></li>
+      <li><a href="start.htm#getting_typical">Typische setups</a>
         <ul>
-          <li><a href="start.htm#getting_typical_monolithic">Single uploader without user interaction (Monolithic gallery)</a></li>
-          <li><a href="start.htm#getting_typical_single_uploader_community">Single uploader with user interaction</a></li>
-          <li><a href="start.htm#getting_typical_multiple_uploader_closed">Multiple uploaders without new registrations (closed group)</a></li>
+          <li><a href="start.htm#getting_typical_monolithic">Enige uploader zonder gebruikers tussenkomst (Monolithic gallery)</a></li>
+          <li><a href="start.htm#getting_typical_single_uploader_community">Enige uploader met gebruikerstussenkomst</a></li>
+          <li><a href="start.htm#getting_typical_multiple_uploader_closed">Meerdere uploaders zonder nieuwe registraties (gesloten groep)</a></li>
         </ul>
       </li>
     </ul>
   </li>
   <li><a href="faq.htm">Frequently Asked Questions</a>
     <ul>
-      <li><a href="faq.htm#faq_setup">Setup / Configuration</a></li>
-      <li><a href="faq.htm#hacks">Add-ons / Modifications / Hacks</a></li>
+      <li><a href="faq.htm#faq_setup">Setup / Configuratie</a></li>
+      <li><a href="faq.htm#hacks">Add-ons / Modificaties / Hacks</a></li>
       <li><a href="faq.htm#support_board">Coppermine Support board</a></li>
     </ul>
   </li>
-  <li><a href="theme.htm">Themes</a>
+  <li><a href="theme.htm">Thema's</a>
     <ul>
-      <li><a href="theme.htm#theme_builtin">Themes that come with Coppermine</a></li>
-      <li><a href="theme.htm#theme_upgrading">Upgrading your custom theme</a>
+      <li><a href="theme.htm#theme_builtin">Thema's die meekomen met Coppermine</a></li>
+      <li><a href="theme.htm#theme_upgrading">Upgrade van uw aangepast thema</a>
       <ul>
-        <li><a href="theme_upgrade_14x-15x.htm">Converting cpg1.4.x themes to cpg1.5.x</a>
+        <li><a href="theme_upgrade_14x-15x.htm">Converteren van cpg1.4.x thema's naar cpg1.5.x</a>
           <ul>
             <li><a href="theme_upgrade_14x-15x.htm#style">Edit style.css</a></li>
             <li><a href="theme_upgrade_14x-15x.htm#template">Edit template.html</a></li>
             <li><a href="theme_upgrade_14x-15x.htm#theme">Edit theme.php</a></li>
-            <li><a href="theme_upgrade_14x-15x.htm#validation">Validation Methodology</a></li>
+            <li><a href="theme_upgrade_14x-15x.htm#validation">Validatie Methodologie</a></li>
           </ul>
         </li>
-        <li><a href="theme_upgrade_13x-14x.htm">Converting cpg1.3.x themes to cpg1.4.x</a>
+        <li><a href="theme_upgrade_13x-14x.htm">Converteren van cpg1.3.x thema's naar cpg1.4.x</a>
           <ul>
             <li><a href="theme_upgrade_13x-14x.htm#style">Edit style.css</a></li>
             <li><a href="theme_upgrade_13x-14x.htm#template">Edit template.html</a></li>
             <li><a href="theme_upgrade_13x-14x.htm#theme">Edit theme.php</a></li>
-            <li><a href="theme_upgrade_13x-14x.htm#validation">Validation Methodology</a></li>
+            <li><a href="theme_upgrade_13x-14x.htm#validation">Validatie Methodologie</a></li>
           </ul>
         </li>
       </ul>
       </li>
-      <li><a href="theme.htm#theme_files">Content of a theme</a>
+      <li><a href="theme.htm#theme_files">Thema-inhoud</a>
         <ul>
-          <li><a href="theme_template.htm#theme_template_html">Editing template.html</a>
-              <ul class="level3" id="theme_template_html">
+          <li><a href="theme_template.htm#theme_template_html">Editeren van template.html</a>
+              <ul>
                   <li><a href="theme_template.htm#theme_template_token">Template tokens</a></li>
-                  <li><a href="theme_template.htm#theme_template_important">Important</a></li>
-                  <li><a href="theme_template.htm#theme_template_token_list">List of tokens in template.html</a></li>
+                  <li><a href="theme_template.htm#theme_template_important">Belangrijk</a></li>
+                  <li><a href="theme_template.htm#theme_template_token_list">Lijst van tokens in template.html</a></li>
               </ul>
           </li>
-          <li><a href="theme_style_css.htm#theme_style_css">Editing style.css</a>
+          <li><a href="theme_style_css.htm#theme_style_css">Editeren van style.css</a>
             <ul>
-              <li><a href="theme_style_css.htm#theme_style_css_tools">Tools</a>
-              </li><li><a href="theme_style_css.htm#theme_style_css_list">List of classes in style.css</a>
-              </li><li><a href="theme_style_css.htm#theme_style_css_overall">Additional stylesheet</a>
-            </li></ul>
+              <li><a href="theme_style_css.htm#theme_style_css_tools">Instrumenten</a>
+                <ul>
+                  <li><a href="theme_style_css.htm#theme_style_css_tools_webdev">Gebruik van Web Developer toolbar</a></li>
+                  <li><a href="theme_style_css.htm#theme_style_css_tools_editor">Editor</a></li>
+                </ul>
+              </li>
+              <li><a href="theme_style_css.htm#theme_style_css_list">Lijst van classes in style.css</a></li>
+              <li><a href="theme_style_css.htm#theme_style_css_overall">Aanvullende  stylesheet</a></li>
+            </ul>
           </li>
           <li><a href="theme_theme_php.htm#theme_create_theme_php">Editing theme.php</a>
-              <ul class="level3" id="theme_theme_php">
+              <ul>
                   <li><a href="theme_theme_php.htm#theme_php_types">Item types</a></li>
-                  <li><a href="theme_theme_php.htm">The sample theme - a template to copy from</a></li>
-                  <li><a href="theme_theme_php.htm#theme_php_method">Method</a></li>
+                  <li><a href="theme_theme_php.htm">Het voorbeeldthema - een template om van te kopiëren</a></li>
+                  <li><a href="theme_theme_php.htm#theme_php_method">Methode</a></li>
                   <li><a href="theme_theme_php.htm#theme_php_scope">Scope</a></li>
-                  <li><a href="theme_theme_php.htm#theme_php_list">List of items in theme.php</a></li>
-                  <li><a href="theme_examples.htm#theme_examples">Theme Examples</a>
+                  <li><a href="theme_theme_php.htm#theme_php_list">Lijst van items in theme.php</a></li>
+                  <li><a href="theme_examples.htm#theme_examples">Thema voorbeelden</a>
                     <ul>
-                      <li><a href="theme_examples.htm#theme_examples_content">Additional content</a>
+                      <li><a href="theme_examples.htm#theme_examples_content">Aanvullende  inhoud</a>
                         <ul>
-                          <li><a href="theme_examples.htm#theme_examples_content_thumbnail">Additional content on the thumbnail page</a>
+                          <li><a href="theme_examples.htm#theme_examples_content_thumbnail">Aanvullende inhoud op de thumbnail pagina</a>
                             <ul>
-                              <li><a href="theme_examples.htm#theme_examples_content_thumbnail_extra_row">Extra row between thumbnail rows</a></li>
-                              <li><a href="theme_examples.htm#theme_examples_content_thumbnail_cell">Extra table cell on each thumbnail page</a></li>
+                              <li><a href="theme_examples.htm#theme_examples_content_thumbnail_extra_row">Extra rij tussen thumbnailrijen</a></li>
+                              <li><a href="theme_examples.htm#theme_examples_content_thumbnail_cell">Extra tabelcel op iedere thumbnailpagina</a></li>
                             </ul>
                           </li>
-                          <li><a href="theme_examples.htm#theme_examples_content_displayimage">Additional content on the intermediate-image pages</a>
+                          <li><a href="theme_examples.htm#theme_examples_content_displayimage">Aanvullende inhoud op de intermediate-image pagian's</a>
                             <ul>
-                              <li><a href="theme_examples.htm#theme_examples_content_displayimage_image">Directly next to the intermediate image</a></li>
-                              <li><a href="theme_examples.htm#theme_examples_content_displayimage_filmstrip">Directly next to the film strip</a></li>
+                              <li><a href="theme_examples.htm#theme_examples_content_displayimage_image">Dadelijk volgend op de intermediate image</a></li>
+                              <li><a href="theme_examples.htm#theme_examples_content_displayimage_filmstrip">Dadelijk volgend op de filmstrip</a></li>
                             </ul>
                           </li>
-                          <li><a href="theme_examples.htm#theme_examples_content_fullsize">Additional content on the full-size pop-up</a></li>
+                          <li><a href="theme_examples.htm#theme_examples_content_fullsize">Aanvullende inhoud op de full-size pop-up</a></li>
                         </ul>
                       </li>
                     </ul>
                   </li>
+                  <li><a href="theme_theme_php.htm#theme_php_summary">Samenvatting</a></li>
               </ul>
           </li>
         </ul>
       </li>
-      <li><a href="theme.htm#theme_engine">How the theme engine works</a></li>
-      <li><a href="theme_user-contributions.htm#theme_user-contributions">User-contributed themes</a>
+      <li><a href="theme.htm#theme_engine">Hoe het themasysteem werkt</a></li>
+      <li><a href="theme_user-contributions.htm#theme_user-contributions">Gebruiker-ontworpen thema's</a>
         <ul>
-          <li><a href="theme_user-contributions.htm#theme_user-contributions_preview">Preview user-contributed themes</a></li>
-          <li><a href="theme_user-contributions.htm#theme_user-contributions_download">Download user-contributed themes</a></li>
-          <li><a href="theme_user-contributions.htm#theme_user-contributions_install">Installing user-contributed themes</a></li>
-          <li><a href="theme_user-contributions.htm#theme_user-contributions_copyrights">Copyrights of user-contributed themes</a></li>
-          <li><a href="theme_user-contributions.htm#theme_user-contributions_support">Asking for support on user-contributed themes</a></li>
-          <li><a href="theme_user-contributions.htm#theme_user-contributions_contributing">Contributing your own theme</a></li>
+          <li><a href="theme_user-contributions.htm#theme_user-contributions_preview">Bekijk gebruiker-ontworpen thema's</a></li>
+          <li><a href="theme_user-contributions.htm#theme_user-contributions_download">Download gebruiker-ontworpen thema's</a></li>
+          <li><a href="theme_user-contributions.htm#theme_user-contributions_install">Installeer gebruiker-ontworpen thema's</a></li>
+          <li><a href="theme_user-contributions.htm#theme_user-contributions_copyrights">Copyrights van gebruiker-ontworpen thema's</a></li>
+          <li><a href="theme_user-contributions.htm#theme_user-contributions_support">Vraag naar support voor  gebruiker-ontworpen thema's</a></li>
+          <li><a href="theme_user-contributions.htm#theme_user-contributions_contributing">Ontwerp uw eigen thema</a></li>
         </ul>
       </li>
       <li><a href="theme_create.htm#theme_create">Creating your custom theme</a>
         <ul>
           <li><a href="theme_create.htm#theme_create_rename">Rename your theme first</a></li>
-          <li><a href="theme_create.htm#theme_create_tipps">Tipps &amp; tricks</a></li>
-          <li><a href="theme_create.htm#theme_create_wysiwyg">Using WYSIWYG-editors</a></li>
-          <li><a href="theme_create.htm#theme_create_colors">Modifying colors</a></li>
-          <li><a href="theme_create_matching_page_tutorial.htm#theme_matching">Creating a Coppermine theme that matches your overall site layout</a></li>
-          <li><a href="theme_template.htm#theme_template_html">Editing template.html</a>
+          <li><a href="theme_create.htm#theme_create_tipps">Tips &amp; tricks</a></li>
+          <li><a href="theme_create.htm#theme_create_wysiwyg">Gebruik van WYSIWYG-editors</a></li>
+          <li><a href="theme_create.htm#theme_create_colors">Aanpassen van kleuren</a></li>
+          <li><a href="theme_create_matching_page_tutorial.htm#theme_matching">Ontwerpen van een  Coppermine thema dat past bij de layout van uw website</a>
+            <ul>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_intro">Introduction</a></li>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_pre-requisites">Pre-requisites</a>
+                <ul>
+                  <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_pre-requisites_tools">Tools</a></li>
+                  <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_pre-requisites_skills">Skills</a></li>
+                </ul>
+              </li>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_examples">Example</a></li>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_pick_similar">Pick a similar theme first</a></li>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_start">Start editing your theme</a></li>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_placeholder_replace">Replace the content from the sample with placeholder tokens</a></li>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_style">Adapting the style</a></li>
+              <li><a href="theme_create_matching_page_tutorial.htm#theme_matching_test1">Initial test</a></li>
+            </ul>
+          </li>
+          <li><a href="theme_template.htm#theme_template_html">Editeren van template.html</a>
             <ul>
               <li><a href="theme_template.htm#theme_template_token">Template tokens</a></li>
-              <li><a href="theme_template.htm#theme_template_important">Important</a></li>
-              <li><a href="theme_template.htm#theme_template_token_list">List of tokens in template.html</a></li>
+              <li><a href="theme_template.htm#theme_template_important">Belangrijk</a></li>
+              <li><a href="theme_template.htm#theme_template_token_list">Lijst van tokens in template.html</a></li>
             </ul>
           </li>
           <li><a href="theme_theme_php.htm#theme_php">Editing theme.php</a>
             <ul>
               <li><a href="theme_theme_php.htm#theme_php_types">Item types</a></li>
-              <li><a href="theme_theme_php.htm#theme_sample">The sample theme - a template to copy from</a></li>
-              <li><a href="theme_theme_php.htm#theme_php_method">Method</a></li>
+              <li><a href="theme_theme_php.htm#theme_sample">Het voorbeeld thema - een template om van te kopiëren</a></li>
+              <li><a href="theme_theme_php.htm#theme_php_method">Methode</a></li>
               <li><a href="theme_theme_php.htm#theme_php_scope">Scope</a></li>
-              <li><a href="theme_theme_php.htm#theme_php_list">List of items in theme.php</a></li>
+              <li><a href="theme_theme_php.htm#theme_php_list">Lijst van items in theme.php</a></li>
             </ul>
           </li>
-          <li><a href="theme_style_css.htm#theme_style_css">Editing style.css</a>
+          <li><a href="theme_style_css.htm#theme_style_css">Editeren van style.css</a>
             <ul>
               <li><a href="theme_style_css.htm#theme_style_css_tools">Tools</a></li>
-              <li><a href="theme_style_css.htm#theme_style_css_list">List of classes in style.css</a></li>
-              <li><a href="theme_style_css.htm#theme_style_css_overall">Additional stylesheet</a></li>
+              <li><a href="theme_style_css.htm#theme_style_css_list">Lijst van classes in style.css</a></li>
+              <li><a href="theme_style_css.htm#theme_style_css_overall">Aanvullende stylesheet</a></li>
             </ul>
           </li>
         </ul>
       </li>
-      <li><a href="theme_copyright.htm">Copyright-disclaimer in footer</a>
+      <li><a href="theme_examples.htm#theme_examples">Theme examples</a>
+        <ul>
+          <li><a href="theme_examples.htm#theme_examples_summary">Summary</a></li>
+          <li><a href="theme_examples.htm#theme_examples_content">Additional content</a>
+            <ul>
+              <li><a href="theme_examples.htm#theme_examples_content_thumbnail">Additional content on the thumbnail page</a>
+                <ul>
+                  <li><a href="theme_examples.htm#theme_examples_content_thumbnail_extra_row">Extra row between thumbnail rows</a></li>
+                  <li><a href="theme_examples.htm#theme_examples_content_thumbnail_cell">Extra table cell on each thumbnail page</a></li>
+                </ul>
+              </li>
+              <li><a href="theme_examples.htm#theme_examples_content_displayimage">Additional content on the intermediate-image pages (displayimage.php)</a>
+                <ul>
+                  <li><a href="theme_examples.htm#theme_examples_content_displayimage_image">Directly next to the intermediate image</a></li>
+                  <li><a href="theme_examples.htm#theme_examples_content_displayimage_filmstrip">Directly next to the film strip</a></li>
+                </ul>
+              </li>
+              <li><a href="theme_examples.htm#theme_examples_content_fullsize">Additional content on the full-size pop-up</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="theme_copyright.htm">Copyright-disclaimer in voettekst</a>
         <ul>
           <li><a href="theme_copyright.htm#theme_copyright_fair_use">Fair use</a>
           </li><li><a href="theme_copyright.htm#theme_copyright_unfair_use">Unfair use</a>
         </li></ul>
       </li>
-      <li><a href="php-content.htm">Dynamic (PHP-driven) content</a>
+      <li><a href="php-content.htm">Dynamic (PHP-driven) inhoud</a>
         <ul>
-          <li><a href="php-content.htm#php-content_anycontent">Using anycontent.php</a></li>
-          <li><a href="php-content.htm#php-content_header_footer">Custom header and footer</a></li>
-          <li><a href="php-content.htm#php-content_theme">Theme-based dynamic content (theme.php)</a></li>
-          <li><a href="php-content.htm#php-content_core">Modifying core files</a></li>
+          <li><a href="php-content.htm#php-content_anycontent">Gebruik van anycontent.php</a></li>
+          <li><a href="php-content.htm#php-content_header_footer">Aanpassen van kop- en voettekst</a></li>
+          <li><a href="php-content.htm#php-content_theme">Thema-gebaseerde dynamische inhoud (theme.php)</a></li>
+          <li><a href="php-content.htm#php-content_core">Aanpassen van core-bestanden</a></li>
         </ul>
       </li>
-      <li><a href="theme_graphics.htm">Graphic resources in themes</a>
-          <ul class="level3" id="theme_graphics">
-              <li><a href="theme_graphics.htm#theme_graphics_menu_icons">Menu Icons</a></li>
-              <li><a href="theme_graphics.htm#theme_graphics_nav_bar">Image Navigation bar</a></li>
-              <li><a href="theme_graphics.htm#theme_graphics_rating">Rating images</a></li>
+      <li><a href="theme_graphics.htm">Graphic resources in thema's</a>
+          <ul>
+              <li><a href="theme_graphics.htm#theme_graphics_menu_icons">Menu Icoontjes</a></li>
+              <li><a href="theme_graphics.htm#theme_graphics_nav_bar">Beeld Navigatiebalk</a></li>
+              <li><a href="theme_graphics.htm#theme_graphics_rating">Beoordelen van afbeeldingen</a></li>
               <li><a href="theme_graphics.htm#theme_graphics_film_strip">Film Strip graphics</a></li>
-              <li><a href="theme_graphics.htm#theme_graphics_progress">Progress image (loader)</a></li>
+              <li><a href="theme_graphics.htm#theme_graphics_progress">Vordering van beeld (lader)</a></li>
           </ul>
       </li>
     </ul>
   </li>
-  <li><a href="administration.htm">Administration</a>
+  <li><a href="administration.htm">Beheer</a>
     <ul>
-      <li><a href="admin_menu.htm">Admin menu items</a>
+      <li><a href="admin_menu.htm">Admin menu-items</a>
         <ul>
-          <li><a href="admin_menu.htm#admin_user_mode">Enable / disable admin controls</a></li>
-          <li><a href="admin_menu.htm#upload_approval">Upload approval</a></li>
-          <li><a href="admin_menu.htm#config">Config</a></li>
-          <li><a href="admin_menu.htm#categories">Categories</a></li>
+          <li><a href="admin_menu.htm#admin_user_mode">In-/ uitschakelen van beheerdersfunctie</a></li>
+          <li><a href="admin_menu.htm#upload_approval">Upload goedkeuring</a></li>
+          <li><a href="admin_menu.htm#config">Configuratie</a></li>
+          <li><a href="admin_menu.htm#categories">Categorieën</a></li>
           <li><a href="admin_menu.htm#albums">Albums</a></li>
-          <li><a href="admin_menu.htm#sort_my_pictures">Sort my pictures</a></li>
-          <li><a href="admin_menu.htm#groups">Groups</a></li>
-          <li><a href="admin_menu.htm#users">Users</a></li>
-          <li><a href="admin_menu.htm#ban">Ban Users</a></li>
-          <li><a href="admin_menu.htm#my_profile">My profile</a></li>
-          <li><a href="admin_menu.htm#review_comments">Review Comments</a></li>
-          <li><a href="admin_menu.htm#ecard_log">Display Ecards</a></li>
-          <li><a href="admin_menu.htm#batch_add">Batch add files</a></li>
-          <li><a href="admin_menu.htm#admin_tools">Admin Tools (Resize Pictures)</a></li>
-          <li><a href="admin_menu.htm#keyword_manager">Keyword manager</a></li>
+          <li><a href="admin_menu.htm#sort_my_pictures">Sorteer mijn foto's</a></li>
+          <li><a href="admin_menu.htm#groups">Groepen</a></li>
+          <li><a href="admin_menu.htm#users">Gebruikers</a></li>
+          <li><a href="admin_menu.htm#ban">Ban Gebruikers</a></li>
+          <li><a href="admin_menu.htm#my_profile">Mijn profiel</a></li>
+          <li><a href="admin_menu.htm#review_comments">Bespreek Commentaren</a></li>
+          <li><a href="admin_menu.htm#ecard_log">Toon E-kaarten</a></li>
+          <li><a href="admin_menu.htm#batch_add">Bestanden toevoegen in Batch</a></li>
+          <li><a href="admin_menu.htm#admin_tools">Admin Instrumenten (Herschalen Foto's)</a></li>
+          <li><a href="admin_menu.htm#keyword_manager">Trefwoord manager</a></li>
           <li><a href="admin_menu.htm#plugin_manager">Plugin Manager</a></li>
           <li><a href="admin_menu.htm#bridge_manager">Bridge Manager</a></li>
-          <li><a href="admin_menu.htm#view_log">View log files</a></li>
-          <li><a href="admin_menu.htm#">Overall stats</a></li>
-          <li><a href="admin_menu.htm#stats"></a></li>
-          <li><a href="admin_menu.htm#versioncheck">Check versions</a></li>
+          <li><a href="admin_menu.htm#view_log">Bekijk logbestanden</a></li>
+          <li><a href="admin_menu.htm#stats">Algemene statistiek</a></li>
+          <li><a href="admin_menu.htm#versioncheck">Controleer versies</a></li>
           <li><a href="admin_menu.htm#update_database">Update database</a></li>
           <li><a href="admin_menu.htm#export">Export</a></li>
-          <li><a href="admin_menu.htm#phpinfo">phpinfo</a></li>
-          <li><a href="admin_menu.htm#show_news">Show news</a></li>
-          <li><a href="admin_menu.htm#documentation">Documentation</a></li>
-          <li><a href="admin_menu.htm#">Admin mode for regular users</a></li>
-          <li><a href="admin_menu.htm#admin_mode_regular_users"></a></li>
-          <li><a href="admin_menu.htm#user_menu_items">Admin menu items for regular users</a></li>
+          <li><a href="admin_menu.htm#phpinfo">PHP-info</a></li>
+          <li><a href="admin_menu.htm#show_news">Toon nieuws</a></li>
+          <li><a href="admin_menu.htm#documentation">Documentatie</a></li>
+          <li><a href="admin_menu.htm#admin_mode_regular_users">Admin modus voor gewone gebruikers</a></li>
+          <li><a href="admin_menu.htm#user_menu_items">Admin menu-items voor gewone gebruikers</a></li>
         </ul>
       </li>
       <li><a href="banning.htm#banning">Banning</a>
         <ul>
-			<li><a href="banning.htm#banning_whats_new">What's new?</a></li>
-			<li><a href="banning.htm#banning_scope">Scope</a></li>
-			<li><a href="banning.htm#bannig_how_it_works">How banning works</a></li>
-			<li><a href="banning.htm#banning_by_ip_address_no_good">Why banning by IP address is not recommended</a></li>
-			<li><a href="banning.htm#banning_page">Page controls</a></li>
-			<li><a href="banning.htm#banning_bridged">No banning when bridged</a></li>
-			<li><a href="banning.htm#banning_todo">To do</a></li>
+          <li><a href="banning.htm#banning_whats_new">Wat is nieuw?</a></li>
+          <li><a href="banning.htm#banning_scope">Scope</a></li>
+          <li><a href="banning.htm#bannig_how_it_works">Hoe werkt verbanning</a></li>
+          <li><a href="banning.htm#banning_by_ip_address_no_good">Waarom is verbannen via IP-adres niet aanbevolen</a></li>
+          <li><a href="banning.htm#banning_page">Pagina controles</a></li>
+          <li><a href="banning.htm#banning_bridged">Geen verbanning indien gebridged</a></li>
+          <li><a href="banning.htm#banning_todo">Te doen</a></li>
         </ul>
       </li>
-      <li><a href="configuration.htm">Configuration</a>
+      <li><a href="configuration.htm">Configuratie</a>
         <ul>
-          <li><a href="configuration.htm#admin_general">General settings</a></li>
-          <li><a href="configuration.htm#admin_language">Language &amp; Charset settings</a></li>
-          <li><a href="configuration.htm#admin_theme">Themes settings</a></li>
-          <li><a href="configuration.htm#admin_album_list">Album list view</a></li>
-          <li><a href="configuration.htm#admin_thumbnail_view">Thumbnail view</a></li>
-          <li><a href="configuration.htm#admin_image_comment">Image view</a></li>
-          <li><a href="configuration.htm#admin_comment_start">Comment settings</a></li>
-          <li><a href="configuration.htm#admin_contact_start">Contact form settings</a></li>
-          <li><a href="configuration.htm#admin_thumb_start">Thumbnail settings</a></li>
-          <li><a href="configuration.htm#admin_picture_thumbnail">File settings</a></li>
-          <li><a href="configuration.htm#admin_watermarking">Image watermarking</a></li>
-          <li><a href="configuration.htm#admin_registration">Registration</a></li>
-          <li><a href="configuration.htm#admin_user">User settings</a></li>
-          <li><a href="configuration.htm#admin_custom">Custom fields for user profile</a></li>
-          <li><a href="configuration.htm#admin_custom_image">Custom fields for image description</a></li>
-          <li><a href="configuration.htm#admin_cookie">Cookie settings</a></li>
-          <li><a href="configuration.htm#admin_email">Email settings</a></li>
-          <li><a href="configuration.htm#admin_logging">Logging &amp; statistics</a></li>
-          <li><a href="configuration.htm#admin_misc">Maintenance settings</a></li>
-          <li><a href="configuration.htm#admin_reset_entire_config">Restore factory defaults</a></li>
+          <li><a href="configuration.htm#admin_general">Algemene instellingen</a></li>
+          <li><a href="configuration.htm#admin_language">Taal &amp; Karakterset instellingen</a></li>
+          <li><a href="configuration.htm#admin_theme">Thema instellingen</a></li>
+          <li><a href="configuration.htm#admin_album_list">Albumlijst overzicht</a></li>
+          <li><a href="configuration.htm#admin_thumbnail_view">Thumbnail overzicht</a></li>
+          <li><a href="configuration.htm#admin_image_comment">Foto overzicht</a></li>
+          <li><a href="configuration.htm#admin_comment_start">Commentaar instellingen</a></li>
+          <li><a href="configuration.htm#admin_contact_start">Contactformulier instellingen</a></li>
+          <li><a href="configuration.htm#admin_thumb_start">Thumbnail instellingen</a></li>
+          <li><a href="configuration.htm#admin_picture_thumbnail">Bestands instellingen</a></li>
+          <li><a href="configuration.htm#admin_watermarking">Foto watermerken</a></li>
+          <li><a href="configuration.htm#admin_registration">Registratie</a></li>
+          <li><a href="configuration.htm#admin_user">Gebruikers instellingen</a></li>
+          <li><a href="configuration.htm#admin_custom">Aangepaste velden voor gebruikersprofiel</a></li>
+          <li><a href="configuration.htm#admin_custom_image">Aangepaste velden voor beeldomschrijvingen</a></li>
+          <li><a href="configuration.htm#admin_cookie">Cookie instellingen</a></li>
+          <li><a href="configuration.htm#admin_email">E-mail instellingen</a></li>
+          <li><a href="configuration.htm#admin_logging">Logging &amp; statistieken</a></li>
+          <li><a href="configuration.htm#admin_misc">Onderhouds instellingen</a></li>
+          <li><a href="configuration.htm#admin_reset_entire_config">Herstel standaardinstellingen </a></li>
         </ul>
       </li>
-      <li><a href="groups.htm">Groups</a>
+      <li><a href="groups.htm">Groepen</a>
         <ul>
-          <li><a href="groups.htm#group_cp">The group control panel</a></li>
-          <li><a href="groups.htm#group_cp_names">Group names</a></li>
-          <li><a href="groups.htm#group_cp_types">Group types</a></li>
+          <li><a href="groups.htm#group_cp">Het groepscontrolepaneel</a></li>
+          <li><a href="groups.htm#group_cp_names">Groepsnamen</a></li>
+          <li><a href="groups.htm#group_cp_types">Groepstypes</a></li>
           <li><a href="groups.htm#group_cp_quota">Quota</a></li>
-          <li><a href="groups.htm#group_cp_permissions">Group permissions (Rating/Ecards/Comments)</a></li>
-          <li><a href="groups.htm#group_cp_public">Public albums upload</a></li>
-          <li><a href="groups.htm#group_cp_personal">Personal gallery</a></li>
-          <li><a href="groups.htm#group_cp_upload_method">Upload method</a></li>
-          <li><a href="groups.htm#group_cp_assigned">Assigned albums</a></li>
-          <li><a href="groups.htm#group_cp_create">Creating custom groups</a></li>
-          <li><a href="groups.htm#group_cp_delete">Deleting custom groups</a></li>
-          <li><a href="groups.htm#group_cp_sync">Triggering synchronisation (bridged only)</a></li>
+          <li><a href="groups.htm#group_cp_permissions">Groepsrechten (Beoordeling/E-kaarten/Commentaren)</a></li>
+          <li><a href="groups.htm#group_cp_public">Publieke albums upload</a></li>
+          <li><a href="groups.htm#group_cp_personal">Persoonlijke galerij</a></li>
+          <li><a href="groups.htm#group_cp_upload_method">Upload methode</a></li>
+          <li><a href="groups.htm#group_cp_assigned">Toegewezen albums</a></li>
+          <li><a href="groups.htm#group_cp_create">Aanmaken van aangepaste groepen</a></li>
+          <li><a href="groups.htm#group_cp_delete">Wissen van aangepaste groepen</a></li>
+          <li><a href="groups.htm#group_cp_sync">Triggering synchronisatie (bridged only)</a></li>
         </ul>
       </li>
-      <li><a href="users.htm">Users</a>
+      <li><a href="users.htm">Gebruikers</a>
         <ul>
-          <li><a href="users.htm#user_cp">The user control panel</a></li>
-          <li><a href="users.htm#user_cp_page">Page controls</a></li>
-          <li><a href="users.htm#user_cp_search">Searching for user(s)</a></li>
-          <li><a href="users.htm#user_cp_new">Creating new users</a></li>
-          <li><a href="users.htm#user_cp_edit">Editing users</a></li>
-          <li><a href="users.htm#user_cp_group">Group membership</a></li>
-        </ul>
-      </li>
-      <li><a href="categories.htm">Categories</a>
-        <ul>
-          <li><a href="categories.htm#cat_cp">The categories control panel</a>
+          <li><a href="users.htm#user_cp">Het gebruikers controlepaneel</a>
             <ul>
-              <li><a href="categories.htm#cat_cp_page_controls">Page controls</a>
+              <li><a href="users.htm#user_cp_page">Pagina controles</a></li>
+              <li><a href="users.htm#user_cp_search">Zoeken naar gebruiker(s)</a></li>
+              <li><a href="users.htm#user_cp_new">Aanmaken nieuwe gebruiker(s)</a></li>
+              <li><a href="users.htm#user_cp_edit">Aanpassen gebruiker</a></li>
+              <li><a href="users.htm#user_cp_group">Groepslidmaatschap</a></li>
+            </ul>
+          </li>
+          <li><a href="users.htm#lost_password">Verloren paswoorden</a>
+            <ul>
+              <li><a href="users.htm#lost_password_cpg_user_account">Coppermine gebruikersaccount paswoord</a>
                 <ul>
-                  <li><a href="categories.htm#cat_cp_page_controls_sort">Top box "Sort categories alphabetically"</a></li>
-                  <li><a href="categories.htm#cat_cp_page_controls_categories">Middle box "Manage Categories"</a></li>
-                  <li><a href="categories.htm#cat_cp_page_controls_create">Bottom box "Update/Create category"</a></li>
+                  <li><a href="users.htm#lost_password_cpg_user_account_standalone">Coppermine in standalone modus</a></li>
+                  <li><a href="users.htm#lost_password_cpg_user_account_bridged">Coppermine bridged</a></li>
+                </ul>
+              </li>
+              <li><a href="users.htm#lost_password_cpg_user_account">mySQL account paswoord</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="categories.htm">Categorieën</a>
+        <ul>
+          <li><a href="categories.htm#cat_cp">Het categorie controlepaneel</a>
+            <ul>
+              <li><a href="categories.htm#cat_cp_page_controls">Pagina controles</a>
+                <ul>
+                  <li><a href="categories.htm#cat_cp_page_controls_sort">Topbox "Sorteer  categorieën alfabetisch"</a></li>
+                  <li><a href="categories.htm#cat_cp_page_controls_categories">Middelbox "Beheer Categorieën"</a></li>
+                  <li><a href="categories.htm#cat_cp_page_controls_create">Bodembox "Update/Creëer categorie"</a></li>
                 </ul>
               </li>
             </ul>
           </li>
-          <li><a href="categories.htm#cat_user_galleries">Special category "User galleries"</a></li>
+          <li><a href="categories.htm#cat_user_galleries">Speciale categorie "Gebruikersgalerijen"</a></li>
         </ul>
       </li>
       <li><a href="albums.htm">Albums</a>
         <ul>
-          <li><a href="albums.htm#albmgr">The Album Manager</a>
+          <li><a href="albums.htm#albmgr">De Album Manager</a>
             <ul>
-              <li><a href="albums.htm#albmgr_create">Creating albums</a></li>
-              <li><a href="albums.htm#albmgr_rename">Renaming albums</a></li>
-              <li><a href="albums.htm#albmgr_order">Changing the album order</a></li>
-              <li><a href="albums.htm#albmgr_delete">Deleting albums</a></li>
+              <li><a href="albums.htm#albmgr_create">Albums aanmaken</a></li>
+              <li><a href="albums.htm#albmgr_rename">Albums hernoemen</a></li>
+              <li><a href="albums.htm#albmgr_order">Albums volgorde veranderen</a></li>
+              <li><a href="albums.htm#albmgr_delete">Albums wissen</a></li>
             </ul>
           </li>
-          <li><a href="albums.htm#modif_alb_pics">Modifying albums/files</a></li>
-          <li><a href="albums.htm#album_prop">Album properties</a>
+          <li><a href="albums.htm#modif_alb_pics">Aanpassen van albums/bestanden</a></li>
+          <li><a href="albums.htm#album_prop">Albumeigenschappen</a>
             <ul>
-              <li><a href="albums.htm#album_prop_reset_start">Reset album properties</a></li>
+              <li><a href="albums.htm#album_prop_reset_start">Herstel albumeigenschappen</a></li>
             </ul>
           </li>
-          <li><a href="albums.htm#album_admin_user">Admin vs. user</a></li>
+          <li><a href="albums.htm#album_admin_user">Admin vs. gebruiker</a></li>
           <li><a href="albums.htm#album_faq">Album FAQ</a></li>
         </ul>
       </li>
-      <li><a href="files.htm">Files</a>
+      <li><a href="files.htm">Bestanden</a>
         <ul>
-          <li><a href="files.htm#edit_pics">Editing files</a></li>
-          <li><a href="files.htm#edit_vids">Editing videos</a></li>
-          <li><a href="files.htm#cust_thmb">Custom Thumbnails</a>
+          <li><a href="files.htm#edit_pics">Editeren van bestanden</a></li>
+          <li><a href="files.htm#edit_vids">Editeren van videos</a></li>
+          <li><a href="files.htm#cust_thmb">Aanpassen Thumbnails</a>
             <ul>
-              <li><a href="files.htm#cust_thmb_order">Order of thumbnails</a></li>
-              <li><a href="files.htm#cust_thmb_types">Types of thumbnails</a></li>
-              <li><a href="files.htm#cust_thmb_upload">Uploading custom thumbs</a></li>
-              <li><a href="files.htm#cust_thmb_how">How it works</a></li>
-              <li><a href="files.htm#cust_thmb_how_naming">Naming scheme</a></li>
-              <li><a href="files.htm#cust_thmb_why">Why can't coppermine create thumbnails for my videos?</a></li>
-              <li><a href="files.htm#cust_thmb_step">Step-by-step instructions</a></li>
-              <li><a href="files.htm#cust_thmb_faq">Custom thumbnails FAQ</a></li>
+              <li><a href="files.htm#cust_thmb_order">Volgorde van thumbnails</a></li>
+              <li><a href="files.htm#cust_thmb_types">Types van thumbnails</a></li>
+              <li><a href="files.htm#cust_thmb_upload">Uploading aangepaste thumbs</a></li>
+              <li><a href="files.htm#cust_thmb_how">Hoe het werkt</a></li>
+              <li><a href="files.htm#cust_thmb_how_naming">Schema Naamgeving</a></li>
+              <li><a href="files.htm#cust_thmb_why">Waarom kan Coppermine geen thumbnails aanmaken voor mijn video's?</a></li>
+              <li><a href="files.htm#cust_thmb_step">Stap-voor-stap instructies</a></li>
+              <li><a href="files.htm#cust_thmb_faq">Aanpassen van thumbnails FAQ</a></li>
             </ul>
           </li>
         </ul>
       </li>
-      <li><a href="keywords.htm">Keywords</a>
+      <li><a href="keywords.htm">Trefwoorden</a>
         <ul>
-          <li><a href="keywords.htm#keywords_assign">Assigning keywords</a>
+          <li><a href="keywords.htm#keywords_assign">Trefwoorden toewijzen</a>
             <ul>
-              <li><a href="keywords.htm#keywords_assign_separator">Keyword separator or keyword delimiter</a></li>
-              <li><a href="keywords.htm#keywords_assign_edit">Editing/adding keywords</a></li>
-              <li><a href="keywords.htm#keywords_manager">Keywords manager</a></li>
+              <li><a href="keywords.htm#keywords_assign_separator">Trefwoord scheidingsteken</a></li>
+              <li><a href="keywords.htm#keywords_assign_edit">Editeren/toevoegen trefwoorden</a></li>
+              <li><a href="keywords.htm#keywords_manager">Trefwoord manager</a></li>
             </ul>
           </li>
-          <li><a href="keywords.htm#keywords_album">Album keywords</a></li>
+          <li><a href="keywords.htm#keywords_album">Album trefwoorden</a></li>
         </ul>
       </li>
       <li><a href="bbcode.htm">bbCode</a>
         <ul>
-          <li><a href="bbcode.htm#bbcode_purpose">Purpose</a></li>
-          <li><a href="bbcode.htm#bbcode_available">Available bbcode tags</a></li>
-          <li><a href="bbcode.htm#bbcode_dangers">Dangers</a></li>
-          <li><a href="bbcode.htm#bbcode_control">More control</a></li>
+          <li><a href="bbcode.htm#bbcode_purpose">Doel</a></li>
+          <li><a href="bbcode.htm#bbcode_available">Beschikbare bbcode tags</a></li>
+          <li><a href="bbcode.htm#bbcode_dangers">Gevaren</a></li>
+          <li><a href="bbcode.htm#bbcode_control">Meer controle</a></li>
         </ul>
       </li>
       <li><a href="exif.htm">Exif data</a>
         <ul>
-          <li><a href="exif.htm#exif_what">What is EXIF</a></li>
-          <li><a href="exif.htm#exif_makers">Different flavors</a></li>
-          <li><a href="exif.htm#exif_how_it_works">How it works</a></li>
-
-          <li><a href="exif.htm#exif_image_libraries">No exif support on the server</a></li>
-          <li><a href="exif.htm#exif_limitations">Limitations</a></li>
+          <li><a href="exif.htm#exif_what">Wat is EXIF</a></li>
+          <li><a href="exif.htm#exif_makers">Verschillende smaken</a></li>
+          <li><a href="exif.htm#exif_how_it_works">Hoe het werkt</a></li>
+          <li><a href="exif.htm#exif_image_libraries">Geen exif support op de server</a></li>
+          <li><a href="exif.htm#exif_limitations">Beperkingen</a></li>
           <li><a href="exif.htm#exif_manager">EXIF manager</a></li>
         </ul>
       </li>
       <li><a href="plugins.htm">Plugins</a>
         <ul>
-          <li><a href="plugins.htm#plugin_definition">What is a plugin?</a></li>
-          <li><a href="plugins.htm#plugin_api">The Plugin API</a></li>
-          <li><a href="plugins.htm#plugin_obtain">Where to get Plugins from?</a></li>
-          <li><a href="plugins.htm#plugin_bundled">Plugins that ship with Coppermine</a>
+          <li><a href="plugins.htm#plugin_definition">Wat is een plugin?</a></li>
+          <li><a href="plugins.htm#plugin_api">De Plugin API</a></li>
+          <li><a href="plugins.htm#plugin_obtain">Waar vinden we Plugins?</a></li>
+          <li><a href="plugins.htm#plugin_bundled">Plugins in pakket van Coppermine</a>
             <ul>
               <li><a href="plugins.htm#plugin_bundled_link_target">Link Target (link_target)</a></li>
-              <li><a href="plugins.htm#plugin_bundled_onlinestats">Who is online? (onlinestats)</a></li>
-              <li><a href="OpenSearch%20%28opensearch%29">plugins.htm#plugin_bundled_opensearch</a></li>
+              <li><a href="plugins.htm#plugin_bundled_onlinestats">Wie is online? (onlinestats)</a></li>
+              <li><a href="plugins.htm#plugin_bundled_opensearch">OpenSearch (opensearch)</a></li>
               <li><a href="plugins.htm#plugin_bundled_sample">Sample Plugin (sample)</a></li>
-              <li><a href="plugins.htm#plugin_bundled_usergal_alphatabs">User Gallery Alphabetic Tabbing (usergal_alphatabs)</a></li>
+              <li><a href="plugins.htm#plugin_bundled_usergal_alphatabs">Gebruikers alfabetische  Galerijtabs (usergal_alphatabs)</a></li>
               <li><a href="plugins.htm#plugin_bundled_visiblehookpoints">Visible HookPoints (visiblehookpoints)</a></li>
               <li><a href="plugins.htm#plugin_bundled_sef_url">SEF_URLS plugin</a></li>
             </ul>
           </li>
-          <li><a href="plugins.htm#plugin_manager">The Plugin Manager</a>
+          <li><a href="plugins.htm#plugin_manager">De Plugin Manager</a>
             <ul>
-              <li><a href="plugins.htm#plugin_manager_upload">Uploading a plugin</a></li>
-              <li><a href="plugins.htm#plugin_manager_install">Installing a plugin</a></li>
-              <li><a href="plugins.htm#plugin_manager_configuration">Plugin Configuration</a></li>
-              <li><a href="plugins.htm#plugin_manager_uninstall">Uninstalling a plugin</a></li>
+              <li><a href="plugins.htm#plugin_manager_upload">Plugin Uploaden</a></li>
+              <li><a href="plugins.htm#plugin_manager_install">Plugin Installeren</a></li>
+              <li><a href="plugins.htm#plugin_manager_configuration">Plugin Configuratie</a></li>
+              <li><a href="plugins.htm#plugin_manager_uninstall">Plugin de-installeren</a></li>
             </ul>
           </li>
-          <li><a href="plugins.htm#plugin_writing">Writing plugins</a></li>
+          <li><a href="plugins.htm#plugin_writing">Plugins schrijven</a></li>
         </ul>
       </li>
       <li><a href="performance.htm#perf_tips">Performance</a>
         <ul>
-          <li><a href="performance.htm#perf_config">Configuration settings</a>
+          <li><a href="performance.htm#perf_config">Configuratie instellingen</a>
             <ul>
-              <li><a href="performance.htm#perf_config_general">General</a></li>
+              <li><a href="performance.htm#perf_config_general">Algemeen</a></li>
               <li><a href="performance.htm#perf_config_spikes">Spiking</a></li>
             </ul>
           </li>
-          <li><a href="performance.htm#perf_server">Server settings</a>
+          <li><a href="performance.htm#perf_server">Server instellingen</a>
             <ul>
-              <li><a href="performance.htm#perf_config_spikes">PHP settings</a></li>
-              <li><a href="performance.htm#perf_server_mysql">MySQL settings</a></li>
+              <li><a href="performance.htm#perf_config_spikes">PHP instellingen</a></li>
+              <li><a href="performance.htm#perf_server_mysql">MySQL instellingen</a></li>
             </ul>
           </li>
           <li><a href="performance.htm#perf_tools">Third party tools</a>
@@ -595,21 +714,21 @@
           </li>
         </ul>
       </li>
-      <li><a href="admin-tools.htm#admin_tools">Admin Tools</a>
+      <li><a href="admin-tools.htm#admin_tools">Beheerdersinstrumenten</a>
         <ul>
-          <li><a href="admin-tools.htm#admin_tools_options">Available Tools</a>
+          <li><a href="admin-tools.htm#admin_tools_options">Beschikbare opties</a>
             <ul>
-              <li><a href="admin-tools.htm#admin_tools_options_rebuild">Update thumbs and/or resized photos</a></li>
-              <li><a href="admin-tools.htm#admin_tools_options_filename_filetitle">Filename → File title</a></li>
-              <li><a href="admin-tools.htm#admin_tools_options_delete_titles">Delete file titles</a></li>
-              <li><a href="admin-tools.htm#admin_tools_options_delete_original">Delete original size photos</a></li>
-              <li><a href="admin-tools.htm#admin_tools_options_intermediate">Delete intermediate pictures</a></li>
-              <li><a href="admin-tools.htm#admin_tools_options_delete_older_files">Delete files that are older than a set number of days</a></li>
-              <li><a href="admin-tools.htm#admin_tools_options_delete_comments">Delete comments on missing files</a></li>
-              <li><a href="admin-tools.htm#admin_tools_options_delete_original_backup">Delete original image backup (watermark mod)</a></li>
-              <li><a href="admin-tools.htm#admin_tools_options_reload_dimensions">Reload file dimensions and size information</a></li>
-              <li><a href="admin-tools.htm#admin_tools_options_reset_views">Reset view counters</a></li>
-              <li><a href="admin-tools.htm#admin_tools_options_keyword_convert">Convert keyword separator</a></li>
+              <li><a href="admin-tools.htm#admin_tools_options_rebuild">Update thumbs en/of verkleinde foto's</a></li>
+              <li><a href="admin-tools.htm#admin_tools_options_filename_filetitle">Bestandsnaam→ Bestandstitel</a></li>
+              <li><a href="admin-tools.htm#admin_tools_options_delete_titles">Wis bestandstitels</a></li>
+              <li><a href="admin-tools.htm#admin_tools_options_delete_original">Wis foto's met originele grootte</a></li>
+              <li><a href="admin-tools.htm#admin_tools_options_intermediate">Wis middelgrote foto's </a></li>
+              <li><a href="admin-tools.htm#admin_tools_options_delete_older_files">Wis bestanden die ouder zijn dan een ingesteld aantal dagen</a></li>
+              <li><a href="admin-tools.htm#admin_tools_options_delete_comments">Wis commentaren van ontbrekende bestanden</a></li>
+              <li><a href="admin-tools.htm#admin_tools_options_delete_original_backup">Wis originele imageback-up (watermerk modus)</a></li>
+              <li><a href="admin-tools.htm#admin_tools_options_reload_dimensions">Herlaad bestandsafmetingen en afbeeldingsgrootte</a></li>
+              <li><a href="admin-tools.htm#admin_tools_options_reset_views">Reset de 'Bekeken' tellers</a></li>
+              <li><a href="admin-tools.htm#admin_tools_options_keyword_convert">Converteer trefwoord scheidingsteken</a></li>
             </ul>
           </li>
           <li><a href="admin-tools.htm#admin_tools_usage">Usage</a></li>
@@ -640,10 +759,9 @@
           </li>
         </ul>
       </li>
-      <li><a href="export.htm#backup_export">Backup &amp; Export</a>
+      <li><a href="export.htm#backup_move">Backup &amp; Moving</a>
         <ul>
-          <li><a href="export.htm#backup_export_decision">Decide for one method</a></li>
-          <li><a href="export.htm#backup">Backup</a>
+          <li><a href="export.htm#backup">Backing up your gallery</a>
             <ul>
               <li><a href="export.htm#backup_file">File Backup</a>
                 <ul>
@@ -666,21 +784,14 @@
                   <li><a href="export.htm#backup_database_after">After the database backup</a></li>
                 </ul>
               </li>
-			  <li><a href="export.htm#moving">Moving your gallery</a>
-                <ul>
-                  <li><a href="export.htm#moving_folder">Moving on your webserver</a></li>
-                  <li><a href="export.htm#moving_server">Moving from one webserver to the other</a></li>
-                  <li><a href="export.htm#moving_disadvantages">Disadvantages of renaming</a></li>
-                  <li><a href="export.htm#moving_config_url">Changing Coppermine's URL in config</a></li>
-                </ul>
-			  </li>
             </ul>
           </li>
-          <li><a href="export.htm#export">Exporting</a>
+          <li><a href="export.htm#moving">Moving your gallery</a>
             <ul>
-              <li><a href="export.htm#export_scope">Scope</a></li>
-              <li><a href="export.htm#export_usage">Usage</a></li>
-              <li><a href="export.htm#export_preparations">Preparations</a></li>
+              <li><a href="export.htm#moving_folder">Moving on your webserver</a></li>
+              <li><a href="export.htm#moving_server">Moving from one webserver to the other</a></li>
+              <li><a href="export.htm#moving_disadvantages">Disadvantages of renaming</a></li>
+              <li><a href="export.htm#moving_config_url">Changing Coppermine's URL in config</a></li>
             </ul>
           </li>
         </ul>
@@ -704,8 +815,7 @@
       <li><a href="uploading_batch-add.htm#batch_add_pics">Uploading pics by FTP / Batch-Add Pictures</a>
         <ul>
           <li><a href="uploading_batch-add.htm#batch_add_pics_what">What batch-add does</a></li>
-          <li><a href="uploading_batch-add.htm#batch_add_pics_how"></a></li>
-          <li><a href="uploading_batch-add.htm#">How batch-add works</a></li>
+          <li><a href="uploading_batch-add.htm#batch_add_pics_how">How batch-add works</a></li>
           <li><a href="uploading_batch-add.htm#batch_add_common_mistakes">Common mistakes</a>
             <ul>
               <li><a href="uploading_batch-add.htm#batch_add_common_mistakes_doesnt_work">Batch-add does not work as expected</a></li>
@@ -861,11 +971,26 @@
   </li>
   <li><a href="dev.htm">Developer documentation</a>
     <ul>
+      <li><a href="dev_files.htm">Adding/renaming/removing files</a>
+        <ul>
+          <li><a href="dev_files.htm#dev_files_target_audience">Target audience</a></li>
+          <li><a href="dev_files.htm#dev_files_scope">Scope</a></li>
+          <li><a href="dev_files.htm#dev_files_naming">Naming conventions</a></li>
+          <li><a href="dev_files.htm#dev_files_adding">Adding files</a>
+            <ul>
+              <li><a href="dev_files.htm#dev_files_adding_language">Language files</a></li>
+            </ul>
+          </li>
+          <li><a href="dev_files.htm#dev_files_renaming">Renaming files</a></li>
+          <li><a href="dev_files.htm#dev_files_deleting">Deleting files</a></li>
+        </ul>
+      </li>
       <li><a href="dev_coding.htm">Coding guidelines</a>
         <ul>
           <li><a href="dev_coding.htm#dev_coding_target_audience">Target audience</a></li>
           <li><a href="dev_coding.htm#dev_coding_scope">Scope</a></li>
           <li><a href="dev_coding.htm#dev_coding_indentation">Indentation</a></li>
+          <li><a href="dev_coding_encoding">Encoding</a></li>
           <li><a href="dev_coding.htm#dev_coding_general">General guidelines</a></li>
           <li><a href="dev_coding.htm#dev_coding_php">PHP code</a>
             <ul>
@@ -891,38 +1016,86 @@
             </ul>
           </li>
           <li><a href="dev_coding.htm#dev_coding_credits">Credits for coding guidelines</a></li>
-        </ul>
-      </li>
-      <li><a href="dev_files.htm">Adding/renaming/removing files</a>
-        <ul>
-          <li><a href="dev_files.htm#dev_files_target_audience">Target audience</a></li>
-          <li><a href="dev_files.htm#dev_files_scope">Scope</a></li>
-          <li><a href="dev_files.htm#dev_files_naming">Naming conventions</a></li>
-          <li><a href="dev_files.htm#dev_files_adding">Adding files</a></li>
-          <li><a href="dev_files.htm#dev_files_renaming">Renaming files</a></li>
-          <li><a href="dev_files.htm#dev_files_deleting">Deleting files</a></li>
-        </ul>
-      </li>
-      <li><a href="dev_superglobals.htm">Sanitization of Superglobals using Inspekt</a>
-        <ul>
-          <li><a href="dev_superglobals.htm#superglobals_sanitization_target_audience">Target audience</a></li>
-          <li><a href="dev_superglobals.htm#superglobals_sanitization_whats_new">What's new?</a></li>
-          <li><a href="dev_superglobals.htm#superglobals_sanitization_reason">Reason</a></li>
-          <li><a href="dev_superglobals.htm#superglobals_sanitization_about_inspekt">What Inspekt does</a>
+          <li><a href="dev_coding.htm#dev_coding_usability">Usability</a>
             <ul>
-              <li><a href="dev_superglobals.htm#superglobals_sanitization_inspekt_accessor_methods">Inspekt accessor methods</a></li>
+              <li><a href="dev_coding.htm#dev_coding_usability_forms">Forms</a></li>
             </ul>
           </li>
-          <li><a href="dev_superglobals.htm#superglobals_sanitization_howto">How to use Inspekt with Coppermine Photo Gallery</a>
+        </ul>
+      </li>
+      <li><a href="dev_config.htm">Config options</a>
+        <ul>
+          <li><a href="dev_config.htm#dev_config_add_target_audience">Target audience</a></li>
+          <li><a href="dev_config.htm#dev_config_history">History</a></li>
+          <li><a href="dev_config.htm#dev_config_new_features">New features</a></li>
+          <li><a href="dev_config.htm#dev_config_step_by_step">Step by Step</a>
             <ul>
-              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_using">Using Inspekt</a></li>
-              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_inspekt_in_coppermine">Inspekt in Coppermine</a></li>
-              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_consider_methods">Consider the methods to use</a></li>
-              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_examples">Examples</a></li>
-              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_regex">Regular Expressions</a></li>
+              <li><a href="dev_config.htm#dev_config_step_basiq_sql">Basic.sql</a></li>
+              <li><a href="dev_config.htm#dev_config_step_update_sql">Update.sql</a></li>
+              <li><a href="dev_config.htm#dev_config_step_array">Admin.inc.php</a></li>
+              <li><a href="dev_config.htm#dev_config_step_language_file">Language file</a></li>
+              <li><a href="dev_config.htm#dev_config_step_documentation">Documentation</a></li>
             </ul>
           </li>
-          <li><a href="dev_superglobals.htm#superglobals_sanitization_links">Links</a></li>
+          <li><a href="dev_config.htm#dev_config_todo">To Do</a></li>
+        </ul>
+      </li>
+      <li><a href="dev_database.htm">Database schema</a>
+          <ul>
+              <li><a href="dev_database.htm#db_config_file">Configuration file</a></li>
+              <li><a href="dev_database.htm#db_reference%20within_code">Database reference within coppermine code</a></li>
+              <li><a href="dev_database.htm#db_albums">cpg15x_albums</a></li>
+              <li><a href="dev_database.htm#db_banned">cpg15x_banned</a></li>
+              <li><a href="dev_database.htm#db_bridge">cpg15x_bridge</a></li>
+              <li><a href="dev_database.htm#db_categories">cpg15x_categories</a></li>
+              <li><a href="dev_database.htm#db_categorymap">cpg15x_categorymap</a></li>
+              <li><a href="dev_database.htm#db_comments">cpg15x_comments</a></li>
+              <li><a href="dev_database.htm#db_config">cpg15x_config</a></li>
+              <li><a href="dev_database.htm#db_dict">cpg15x_dict</a></li>
+              <li><a href="dev_database.htm#db_ecards">cpg15x_ecards</a></li>
+              <li><a href="dev_database.htm#db_exif">cpg15x_exif</a></li>
+              <li><a href="dev_database.htm#db_favpics">cpg15x_favpics</a></li>
+              <li><a href="dev_database.htm#db_filetypes">cpg15x_filetypes</a></li>
+              <li><a href="dev_database.htm#db_hit_stats">cpg15x_hit_stats</a></li>
+              <li><a href="dev_database.htm#db_languages">cpg15x_languages</a></li>
+              <li><a href="dev_database.htm#db_pictures">cpg15x_pictures</a></li>
+              <li><a href="dev_database.htm#db_plugins">cpg15x_plugins</a></li>
+              <li><a href="dev_database.htm#db_sessions">cpg15x_sessions</a></li>
+              <li><a href="dev_database.htm#db_temp_messages">cpg15x_temp_messages</a></li>
+              <li><a href="dev_database.htm#db_usergroups">cpg15x_usergroups</a></li>
+              <li><a href="dev_database.htm#db_users">cpg15x_users</a></li>
+              <li><a href="dev_database.htm#db_votes">cpg15x_votes</a></li>
+              <li><a href="dev_database.htm#db_vote_stats">cpg15x_vote_stats</a></li>
+          </ul>
+      </li>
+      <li><a href="dev_documentation.htm">Editing the documentation</a>
+        <ul>
+          <li><a href="dev_documentation.htm#dev_documentation_target_audience">Target audience</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_edit_existing">Edit existing documents</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_add">Add new documents</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_move">Moving content from one document to the other</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_hidden_feature">Hidden features</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_database_structure">Database structure</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_header_block">Header &amp; footer blocks</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_i18n">Documentation internationalization</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_detail">Expandable/collapsible "detail"-blocks</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_help">Help</a>
+            <ul>
+              <li><a href="dev_documentation.htm#dev_documentation_help_start_end">Start and end anchors needed</a></li>
+            </ul>
+          </li>
+          <li><a href="dev_documentation.htm#dev_documentation_heading_anchors">Adding anchors to headings</a></li>
+          <li><a href="dev_documentation.htm#dev_documentation_code">Code</a>
+            <ul>
+              <li><a href="dev_documentation.htm#dev_documentation_code_css_code">CSS class "code"</a></li>
+              <li><a href="dev_documentation.htm#dev_documentation_code_html_pre">HTML-tag "pre"</a></li>
+              <li><a href="dev_documentation.htm#dev_documentation_code_css_cpg_code">CSS class "cpg_code"</a></li>
+              <li><a href="dev_documentation.htm#dev_documentation_code_css_smallcode">CSS class "smallcode"</a></li>
+              <li><a href="dev_documentation.htm#dev_documentation_code_html_textarea">HTML-tag "textarea"</a></li>
+              <li><a href="dev_documentation.htm#dev_documentation_code_combining">Combining HTML tags and CSS classes</a></li>
+              <li><a href="dev_documentation.htm#dev_documentation_code_syntaxhighlighting">No syntax highlighting</a></li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li><a href="dev_javascript.htm">Javascript in Coppermine</a>
@@ -937,6 +1110,54 @@
           </li>
           <li><a href="dev_javascript.htm#dev_javascript_php_vars">How to pass PHP variables to included javascript</a></li>
           <li><a href="dev_javascript.htm#dev_javascript_autostart">Autostart JavaScript</a></li>
+        </ul>
+      </li>
+      <li><a href="dev_package.htm#packaging">Packaging a new release</a>
+        <ul>
+          <li><a href="dev_package.htm#packaging_target_audience">Target audience</a></li>
+          <li><a href="dev_package.htm#packaging_subversion">Subversion repository</a></li>
+          <li><a href="dev_package.htm#packaging_steps">Steps</a>
+            <ul>
+              <li><a href="dev_package.htm#packaging_steps_checkout">Check out</a></li>
+              <li><a href="dev_package.htm#packaging_steps_loop_through_files">Replace version number in all files</a>
+                <ul>
+                  <li><a href="dev_package.htm#packaging_steps_loop_through_files_linux">Linux</a></li>
+                  <li><a href="dev_package.htm#packaging_steps_loop_through_files_windows">Windows</a></li>
+                </ul>
+              </li>
+              <li><a href="dev_package.htm#packaging_steps_bom">Remove Byte Order Marks</a></li>
+              <li><a href="dev_package.htm#">Prepare an announcement thread</a></li>
+              <li><a href="dev_package.htm#packaging_steps_write_announcement_thread">Edit the upgrade section of the docs</a></li>
+              <li><a href="dev_package.htm#packaging_steps_changelog">Edit the changelog</a></li>
+              <li><a href="dev_package.htm#packaging_steps_version_number">Edit the version number</a></li>
+              <li><a href="dev_package.htm#packaging_steps_svn_commit">Commit your changes</a></li>
+              <li><a href="dev_package.htm#packaging_steps_versioncheck">Update the versioncheck data</a>
+                <ul>
+                  <li><a href="dev_package.htm#packaging_steps_versioncheck_complete">Completeness</a></li>
+                  <li><a href="dev_package.htm#packaging_steps_versioncheck_update">Update revision numbers and hashes</a></li>
+                </ul>
+              </li>
+              <li><a href="dev_package.htm#packaging_steps_xml_webspace">Update cpg15x.files.xml on the Coppermine home page</a></li>
+              <li><a href="dev_package.htm#packaging_steps_svn_export">Export from subversion</a>
+                <ul>
+                  <li><a href="dev_package.htm#packaging_steps_rapidsvn">RapidSVN</a></li>
+                  <li><a href="dev_package.htm#packaging_steps_tortoisesvn">Tortoise SVN</a></li>
+                </ul>
+              </li>
+              <li><a href="dev_package.htm#packaging_steps_create_zip">Create the archive</a></li>
+              <li><a href="dev_package.htm#packaging_steps_upload_zip">Upload the archive</a></li>
+              <li><a href="dev_package.htm#packaging_steps_move_announcement">Publish announcement thread</a></li>
+              <li><a href="dev_package.htm#packaging_steps_news">Create news items</a>
+                <ul>
+                  <li><a href="dev_package.htm#packaging_steps_news_sf">News item on sf.net</a></li>
+                  <li><a href="dev_package.htm#packaging_steps_news_forum">News item on forum</a></li>
+                  <li><a href="dev_package.htm#packaging_steps_news_homepage">News item on home page</a></li>
+                  <li><a href="dev_package.htm#packaging_steps_news_embedded">News embedded into existing galleries</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="dev_package.htm#packaging_steps_demo">Update the demo</a></li>
         </ul>
       </li>
       <li><a href="dev_plugins.htm">Plugin Writing for Coppermine</a>
@@ -969,6 +1190,15 @@
             </ul>
           </li>
           <li><a href="dev_plugins.htm#plugin_writing_globals">Use of Superglobals</a></li>
+          <li><a href="dev_plugins.htm#plugin_writing_database">Database access</a>
+            <ul>
+              <li><a href="dev_plugins.htm#plugin_writing_database_direct_queries">Direct queries</a></li>
+              <li><a href="dev_plugins.htm#plugin_writing_database_tables_access">Accessing database tables</a></li>
+              <li><a href="dev_plugins.htm#plugin_writing_database_tables_create">Creating database tables</a></li>
+              <li><a href="dev_plugins.htm#plugin_writing_database_tables_delete">Deleting database tables</a></li>
+              <li><a href="dev_plugins.htm#plugin_writing_database_config">Storing your plugin's config values</a></li>
+            </ul>
+          </li>
           <li><a href="dev_plugins.htm#plugin_writing_types">Plugin Types</a></li>
           <li><a href="dev_plugins.htm#plugin_writing_includes">Using includes</a></li>
           <li><a href="dev_plugin_api.htm">Plugin Writing: Tutorial, API</a>
@@ -977,10 +1207,10 @@
               <li><a href="dev_plugin_api.htm#plugin_api_overview_skills">Required Skills &amp; Knowledge</a></li>
               <li><a href="dev_plugin_api.htm#plugin_api_overview_tools">Recommended Software &amp; Support Forums</a></li>
               <li><a href="dev_plugin_api.htm#plugin_api_tutorial">"Hello, world" Plugin Tutorial</a>
-                <ul class="level5">
+                <ul>
                   <li><a href="dev_plugin_api.htm#plugin_api_tutorial_first">My First Plugin</a></li>
                   <li><a href="dev_plugin_api.htm#plugin_api_tutorial_installconfig">Installation, Configuration, and Clean-Up</a>
-                    <ul class="level5">
+                    <ul>
                       <li><a href="dev_plugin_api.htm#plugin_api_tutorial_installsimple">Installation with Simple Configuration</a></li>
                       <li><a href="dev_plugin_api.htm#plugin_api_tutorial_install">Installation with Configuration Parameters</a></li>
                       <li><a href="dev_plugin_api.htm#plugin_api_tutorial_config">Configuration during Operation</a></li>
@@ -1005,33 +1235,32 @@
             </ul>
           </li>
           <li><a href="dev_plugin_hooks.htm">Reference list of plugin hooks </a>
-            <ul class="level5">
+            <ul>
               <li><a href="dev_plugin_hooks.htm#plugin_hooks_target_audience">Target audience</a></li>
               <li><a href="dev_plugin_hooks.htm#plugin_hooks_choosing">Choosing Plugin Hooks</a></li>
               <li><a href="dev_plugin_hooks.htm#plugin_hooks_finding">Finding Plugin Hooks</a></li>
-              <li><a href="dev_plugin_hooks.htm#plugin_hooks_using">Using Plugin Hooks</a></li>
               <li><a href="dev_plugin_hooks.htm#plugin_hooks_filename">Plugin Hooks by File Name</a>
-                <ul class="level6">
+                <ul>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_ind_php">Script: index.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_ind_anyc">Filter: 'anycontent'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_ind_ucp">Filter: 'user_caption_params'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_ind_pb">Filter: 'plugin_block'</a></li>
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_di_php">Script: displayimage.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_di_fi">Filter: 'file_info'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_di_pbc">Filter: 'post_breadcrumb'</a></li>
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_thumb_php">Script: thumbnails.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_thumb_pbc">Filter: 'post_breadcrumb'</a></li>
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_func_php">Script: functions.inc.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_func_ghgf">Filters: 'gallery_header' and 'gallery_footer'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_func_td">Filter: 'thumb_data'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_func_th">Filter: 'template_html'</a></li>
@@ -1040,24 +1269,24 @@
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_th_php">Script: themes.inc.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_th_fd">Filter: 'file_data'</a></li>
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_um_php">Script: usermgr.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_um_umh">Filter: 'usermgr_header'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_um_umf">Filter: 'usermgr_footer'</a></li>
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_pm_php">Script: pluginmgr.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_pm_pcon">Filter: 'plugin_configure'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_pm_pcl">Filter: 'plugin_cleanup'</a></li>
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_papi_php">Script: plugin_api.inc.php</a>
-                    <ul class="level7">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_papi_ph">Filter: 'page_html'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_papi_pe">Filter: 'page_end'</a></li>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_papi_pi">Filter: 'plugin_install'</a></li>
@@ -1067,12 +1296,12 @@
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_init_php">Script: init.inc.php</a>
-                    <ul class="level9">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_init_ps">Filter: 'page_start'</a></li>
                     </ul>
                   </li>
                   <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_picm_php">Script: picmgmt.inc.php</a>
-                    <ul class="level9">
+                    <ul>
                       <li><a href="dev_plugin_hooks.htm#plugin_api_hooks_picm_afd">Filter: 'add_file_data'</a></li>
                     </ul>
                   </li>
@@ -1081,7 +1310,7 @@
               <li><a href="dev_plugin_hooks.htm#plugin_hooks_alphabetically">Plugin Hooks Alphabetically</a></li>
               <li><a href="dev_plugin_hooks.htm#plugin_hooks_hooktype">Plugin Hooks by Hook Type</a></li>
               <li><a href="dev_plugin_hooks.htm#plugin_hook_examples">Plugin Hook Examples</a>
-                <ul class="level6">
+                <ul>
                     <li><a href="dev_plugin_hooks.htm#plugin_hook_example_upload_method">Adding an upload method</a></li>
                     <li><a href="dev_plugin_hooks.htm#plugin_hook_example_theme_display_thumbnails">Add tags for thumbnails display</a></li>
                 </ul></li>
@@ -1089,23 +1318,26 @@
           </li>
         </ul>
       </li>
-      <li><a href="dev_documentation.htm">Editing the documentation</a>
+      <li><a href="dev_superglobals.htm">Sanitization of Superglobals using Inspekt</a>
         <ul>
-          <li><a href="dev_documentation.htm#dev_documentation_target_audience">Target audience</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_edit_existing">Edit existing documents</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_add">Add new documents</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_move">Moving content from one document to the other</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_hidden_feature">Hidden features</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_database_structure">Database structure</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_header_block">Header &amp; footer blocks</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_i18n">Documentation internationalization</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_detail">Expandable/collapsible "detail"-blocks</a></li>
-          <li><a href="dev_documentation.htm#dev_documentation_help">Help</a>
+          <li><a href="dev_superglobals.htm#superglobals_sanitization_target_audience">Target audience</a></li>
+          <li><a href="dev_superglobals.htm#superglobals_sanitization_whats_new">What's new?</a></li>
+          <li><a href="dev_superglobals.htm#superglobals_sanitization_reason">Reason</a></li>
+          <li><a href="dev_superglobals.htm#superglobals_sanitization_about_inspekt">What Inspekt does</a>
             <ul>
-              <li><a href="dev_documentation.htm#dev_documentation_help_start_end">Start and end anchors needed</a></li>
+              <li><a href="dev_superglobals.htm#superglobals_sanitization_inspekt_accessor_methods">Inspekt accessor methods</a></li>
             </ul>
           </li>
-          <li><a href="dev_documentation.htm#dev_documentation_heading_anchors">Adding anchors to headings</a></li>
+          <li><a href="dev_superglobals.htm#superglobals_sanitization_howto">How to use Inspekt with Coppermine Photo Gallery</a>
+            <ul>
+              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_using">Using Inspekt</a></li>
+              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_inspekt_in_coppermine">Inspekt in Coppermine</a></li>
+              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_consider_methods">Consider the methods to use</a></li>
+              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_examples">Examples</a></li>
+              <li><a href="dev_superglobals.htm#superglobals_sanitization_howto_regex">Regular Expressions</a></li>
+            </ul>
+          </li>
+          <li><a href="dev_superglobals.htm#superglobals_sanitization_links">Links</a></li>
         </ul>
       </li>
       <li><a href="dev_subversion.htm">Subversion</a>
@@ -1115,20 +1347,32 @@
           <li><a href="dev_subversion.htm#dev_subversion_definition">What is subversion?</a></li>
           <li><a href="dev_subversion.htm#dev_subversion_hosting">Where is the subversion repository hosted?</a></li>
           <li><a href="dev_subversion.htm#dev_subversion_software">Recommended software</a></li>
-          <li><a href="dev_subversion.htm#dev_subversion_repository_structure">Repository structure</a></li>
+          <li><a href="dev_subversion.htm#dev_subversion_websvn">Alternative access using Web SVN</a></li>
+          <li><a href="dev_subversion.htm#dev_subversion_repository_structure">Repository structure</a>
+            <ul>
+              <li><a href="dev_subversion.htm#dev_subversion_repository_structure_trunk">Coppermine core files</a></li>
+              <li><a href="dev_subversion.htm#dev_subversion_repository_structure_plugins">Plugins</a></li>
+            </ul>
+          </li>
           <li><a href="dev_subversion.htm#dev_subversion_checking_out">Checking out</a>
             <ul>
               <li><a href="dev_subversion.htm#dev_subversion_checking_out_entire">Checking out the entire repository</a></li>
               <li><a href="dev_subversion.htm#dev_subversion_checking_out_particular_package">Checking out a particular Package</a></li>
               <li><a href="dev_subversion.htm#dev_subversion_checking_out_particular_file">Checking out a particular file</a></li>
+              <li><a href="dev_subversion.htm#dev_subversion_checking_out_refering">Refering to files downloaded from the subversion repository</a></li>
             </ul>
           </li>
-          <li><a href="dev_subversion.htm#dev_subversion_download">Is there no single package that I could download instead?</a></li>
+          <li><a href="dev_subversion.htm#dev_subversion_download">Is there no single package that I could download instead?</a>
+            <ul>
+              <li><a href="dev_subversion.htm#dev_subversion_download_tarball">Download Tarball archives</a></li>
+            </ul>
+          </li>
           <li><a href="dev_subversion.htm#dev_subversion_dev-only">Developers-only</a>
             <ul>
               <li><a href="dev_subversion.htm#dev_subversion_checkout_checkin">Check out before checking in</a></li>
               <li><a href="dev_subversion.htm#dev_subversion_commit">Committing your code</a></li>
               <li><a href="dev_subversion.htm#dev_subversion_changelog">Changelog</a></li>
+              <li><a href="dev_subversion.htm#dev_subversion_write_access">Obtaining write access</a></li>
             </ul>
           </li>
           <li><a href="dev_subversion.htm#dev_subversion_step-by-step">Step by step</a>
@@ -1138,27 +1382,26 @@
             </ul>
           </li>
           <li><a href="dev_subversion.htm#dev_subversion_revision">Revisions</a></li>
+          <li><a href="dev_subversion.htm#dev_subversion_fileheaders">Subversion file headers</a></li>
         </ul>
       </li>
-      <li><a href="dev_config.htm">Adding config options</a>
+      <li><a href="dev_tools.htm">Tools recommended by the devs</a>
+          <ul>
+              <li><a href="dev_tools.htm#dev_tools_database">Database manipulation</a></li>
+              <li><a href="dev_tools.htm#dev_tools_ftp_client">FTP clients</a></li>
+              <li><a href="dev_tools.htm#dev_tools_web_development">Web development</a></li>
+              <li><a href="dev_tools.htm#dev_tools_editor">Text editors</a></li>
+              <li><a href="dev_tools.htm#dev_tools_picture_editors">Picture Editors</a></li>
+          </ul>
+      </li>
+      <li><a href="dev_update.htm">Updating</a>
         <ul>
-          <li><a href="dev_config.htm#dev_config_add_target_audience">Target audience</a></li>
-          <li><a href="dev_config.htm#dev_config_history">History</a></li>
-          <li><a href="dev_config.htm#dev_config_new_features">New features</a></li>
-          <li><a href="dev_config.htm#dev_config_step_by_step">Step by Step</a>
-            <ul>
-              <li><a href="dev_config.htm#dev_config_step_basiq_sql">Basic.sql</a></li>
-              <li><a href="dev_config.htm#dev_config_step_update_sql">Update.sql</a></li>
-              <li><a href="dev_config.htm#dev_config_step_array">Admin.inc.php</a></li>
-              <li><a href="dev_config.htm#dev_config_step_language_file">Language file</a></li>
-              <li><a href="dev_config.htm#dev_config_step_documentation">Documentation</a></li>
-            </ul>
-          </li>
-          <li><a href="dev_config.htm#dev_config_todo">To Do</a></li>
+          <li><a href="dev_update.htm#dev_update_target_audience">Doelpubliek</a></li>
+          <li><a href="dev_update.htm#dev_update_hidden_feature">Verborgen functie</a></li>
         </ul>
       </li>
       <li><a href="dev_vars.htm#vars_constants">Variables &amp; Constants</a>
-        <ul class="level5">
+        <ul>
           <li><a href="dev_vars.htm#vars_constants_system">System Global Variables</a></li>
           <li><a href="dev_vars.htm#vars_constants_constants">Coppermine Constants</a></li>
         </ul>
@@ -1169,49 +1412,6 @@
           <li><a href="dev_versioncheck.htm#dev_versioncheck_xml">XML structure</a></li>
           <li><a href="dev_versioncheck.htm#dev_versioncheck_todo">To do list</a></li>
         </ul>
-      </li>
-      <li><a href="dev_update.htm">Updating</a>
-        <ul>
-          <li><a href="dev_update.htm#dev_update_target_audience">Target audience</a></li>
-          <li><a href="dev_update.htm#dev_update_hidden_feature">Hidden feature</a></li>
-        </ul>
-      </li>
-      <li><a href="dev_tools.htm">Tools recommended by the devs</a>
-          <ul class="level4">
-              <li><a href="dev_tools.htm#dev_tools_database">Database manipulation</a></li>
-              <li><a href="dev_tools.htm#dev_tools_ftp_client">FTP clients</a></li>
-              <li><a href="dev_tools.htm#dev_tools_web_development">Web development</a></li>
-              <li><a href="dev_tools.htm#dev_tools_editor">Text editors</a></li>
-              <li><a href="dev_tools.htm#dev_tools_picture_editors">Picture Editors</a></li>
-          </ul>
-      </li>
-      <li><a href="dev_database.htm">Database schema</a>
-          <ul class="level4">
-              <li><a href="dev_database.htm#db_config_file">Configuration file</a></li>
-              <li><a href="dev_database.htm#db_reference%20within_code">Database reference within coppermine code</a></li>
-              <li><a href="dev_database.htm#db_albums">cpg15x_albums</a></li>
-              <li><a href="dev_database.htm#db_banned">cpg15x_banned</a></li>
-              <li><a href="dev_database.htm#db_bridge">cpg15x_bridge</a></li>
-              <li><a href="dev_database.htm#db_categories">cpg15x_categories</a></li>
-              <li><a href="dev_database.htm#db_categorymap">cpg15x_categorymap</a></li>
-              <li><a href="dev_database.htm#db_comments">cpg15x_comments</a></li>
-              <li><a href="dev_database.htm#db_config">cpg15x_config</a></li>
-              <li><a href="dev_database.htm#db_dict">cpg15x_dict</a></li>
-              <li><a href="dev_database.htm#db_ecards">cpg15x_ecards</a></li>
-              <li><a href="dev_database.htm#db_exif">cpg15x_exif</a></li>
-              <li><a href="dev_database.htm#db_favpics">cpg15x_favpics</a></li>
-              <li><a href="dev_database.htm#db_filetypes">cpg15x_filetypes</a></li>
-              <li><a href="dev_database.htm#db_hit_stats">cpg15x_hit_stats</a></li>
-              <li><a href="dev_database.htm#db_languages">cpg15x_languages</a></li>
-              <li><a href="dev_database.htm#db_pictures">cpg15x_pictures</a></li>
-              <li><a href="dev_database.htm#db_plugins">cpg15x_plugins</a></li>
-              <li><a href="dev_database.htm#db_sessions">cpg15x_sessions</a></li>
-              <li><a href="dev_database.htm#db_temp_messages">cpg15x_temp_messages</a></li>
-              <li><a href="dev_database.htm#db_usergroups">cpg15x_usergroups</a></li>
-              <li><a href="dev_database.htm#db_users">cpg15x_users</a></li>
-              <li><a href="dev_database.htm#db_votes">cpg15x_votes</a></li>
-              <li><a href="dev_database.htm#db_vote_stats">cpg15x_vote_stats</a></li>
-          </ul>
       </li>
     </ul>
   </li>

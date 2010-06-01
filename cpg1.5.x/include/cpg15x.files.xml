@@ -2873,14 +2873,6 @@
     <hash>38962488014205f118562eb932eb5987</hash>
   </element>
   <element>
-    <fullpath>docs/es/empty.htm</fullpath>
-    <version>1.5.4</version>
-    <revision>7534</revision>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>0401591bf84ba4b7601c1f32e5717e68</hash>
-  </element>
-  <element>
     <fullpath>docs/es/errors.htm</fullpath>
     <version>1.5.4</version>
     <revision>7527</revision>
@@ -3751,14 +3743,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>d48de8adc23bc5c6291109a81a3cbe70</hash>
-  </element>
-  <element>
-    <fullpath>docs/fr/empty.htm</fullpath>
-    <version>1.5.4</version>
-    <revision>7335</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>7af4958d6a52da6df1a9160563866f28</hash>
   </element>
   <element>
     <fullpath>docs/fr/errors.htm</fullpath>
@@ -4753,14 +4737,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>c7098b4dedcdcd14cb09da6b5dff9440</hash>
-  </element>
-  <element>
-    <fullpath>docs/nl/empty.htm</fullpath>
-    <version>1.5.4</version>
-    <revision>7400</revision>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>9c539bf9593cd4db765386e28860408b</hash>
   </element>
   <element>
     <fullpath>docs/nl/errors.htm</fullpath>

@@ -15,8 +15,8 @@
   $Revision$
 **********************************************/
 
-define('COPPERMINE_VERSION', '1.5.3');
-define('COPPERMINE_VERSION_STATUS', 'RC');
+define('COPPERMINE_VERSION', '1.5.4');
+define('COPPERMINE_VERSION_STATUS', 'Stable');
 
 if (!defined('IN_COPPERMINE')) {
     die('Not in Coppermine...');
