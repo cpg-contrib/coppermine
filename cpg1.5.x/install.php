@@ -164,7 +164,12 @@ if ($superCage->post->keyExists('im_path') &&
     $superCage->post->getPath('im_path') != 
             (dirname($superCage->server->getPath('SCRIPT_FILENAME') . DIRECTORY_SEPARATOR))) 
 {
-    setTmpConfig('im_path', $superCage->post->getPath('im_path'));
+    $im_path = $superCage->post->getPath('im_path');
+    $im_path = str_replace('\\', '/', $im_path);
+    if (!preg_match('|[/\\\\]\Z|', $im_path)) {
+        $im_path .= '/';
+    }
+    setTmpConfig('im_path', $im_path);
 }
 
 switch($step) {
