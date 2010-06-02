@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-02 [B] Fixed ip address dupes on stat_details.php (thread ID 65230) {eenemeenemuu}
 2010-06-02 [B] Extended lang_byte_units array for some language files (thread ID 65231) {eenemeenemuu}
 2010-06-02 [B] Fixed broken link (thread ID 65226) {eenemeenemuu}
 2010-06-02 [M] Release of cpg1.5.4 as initial stable release for the public {GauGau}

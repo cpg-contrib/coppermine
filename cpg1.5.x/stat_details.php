@@ -397,7 +397,7 @@ EOT;
           $start = 0;
       }
 
-      $query = $query = "SELECT {$queryTable}.* $querySelect
+      $query = "SELECT {$queryTable}.* $querySelect
                          FROM $queryTable $queryFrom
                          WHERE $queryWhere
                          ORDER BY $sort $dir
@@ -499,8 +499,8 @@ EOT;
                                   print '      <span title="'.$lang_stat_details_php['guest'].'">-</span>'.$LINEBREAK;
                               }
                           } elseif ($value == 'ip') {
-							  print '      '. $row[$value] . CPGPluginAPI::filter('ip_information', $row[$value]) . $LINEBREAK;
-						  } else {
+                              print '      '. CPGPluginAPI::filter('ip_information', $row[$value]) . $LINEBREAK;
+                          } else {
                               print '      '. $row[$value] . $LINEBREAK;
                           }
                       }
