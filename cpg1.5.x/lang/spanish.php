@@ -30,7 +30,7 @@ $lang_charset = 'utf-8';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 
-// shortcuts for Bytes, Kibibytes, Mebibytes, Gigibytes
+// shortcuts for Bytes, Kibibytes, Mebibytes, Gibibytes
 $lang_byte_units = array('Bytes', 'Kb', 'Mb', 'Gb');
 $lang_decimal_separator = array('.', ','); //cpg1.5 // symbol used to separate thousands from hundreds and rounded number from decimal place
 
