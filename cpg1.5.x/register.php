@@ -600,7 +600,7 @@ function check_user_info(&$error)
     CPGPluginAPI::filter('register_form_submit', $user_array);
 
     if ($CONFIG['log_mode']) {
-        log_write('New user "$user_name" created', CPG_ACCESS_LOG);
+        log_write('New user "'.$user_name.'" created', CPG_ACCESS_LOG);
     }
     
     // Create a personal album if corresponding option is enabled
