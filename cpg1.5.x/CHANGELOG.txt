@@ -24,6 +24,7 @@ Changelog
 *********************************************
 
 2010-06-04 [M] Release of cpg1.5.6 {GauGau}
+2010-06-03 [B] Fixed ip address dupes at various places (thread ID 65294) {eenemeenemuu}
 2010-06-03 [B] Fixed issue when creating users (thread ID 64457) {eenemeenemuu}
 2010-06-03 [B] Fixed issue when uploading plugins to windows driven galleries {eenemeenemuu}
 2010-06-03 [B] Fixed typo that caused the display of the 'not supported version' message box (thread ID 65224) {eenemeenemuu}
