@@ -9,7 +9,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.5.4
+  Coppermine version: 1.5.6
   $HeadURL$
   $Revision$
 **********************************************/
@@ -125,6 +125,11 @@ doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="credits.htm#codebase" class="de">Verwendeter Open Source Code</a></li>\n';
 doc_toc += '          <li><a href="credits.htm#acknowledgements" class="en">Danksagungen</a></li>\n';
+doc_toc += '            <ul>\n';
+doc_toc += '              <li><a href="credits.htm#acknowledgements_thanks" class="en">Many Thanks</a></li>\n';
+doc_toc += '            </ul>\n';
+doc_toc += '          </li>\n';
+doc_toc += '        </ul>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="copyrights.htm" class="us_de">Lizenz und Copyright</a>\n';
@@ -1364,7 +1369,7 @@ function cpgDocHeader() {
 	if (getUrlParameters('hide_nav') == 1) {
 		return;
 	}
-	$('#docheader').text('Coppermine Photo Gallery v1.5.4: Dokumentation und Handbuch');
+	$('#docheader').text('Coppermine Photo Gallery v1.5.6: Dokumentation und Handbuch');
 	$('#docheader').after('<br clear="all" />\n<a name="top" class="en"></a>');
 	$('#docheader').before('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Deine Fotogalerie im Web" align="left" />\n');
 }

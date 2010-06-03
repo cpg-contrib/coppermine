@@ -9,7 +9,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.5.4
+  Coppermine version: 1.5.6
   $HeadURL$
   $Revision$
 **********************************************/
@@ -155,7 +155,12 @@ doc_toc += '              <li><a href="credits.htm#translators_documentation" cl
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="credits.htm#codebase" class="nl">Gratis code gebruikt</a></li>\n';
-doc_toc += '          <li><a href="credits.htm#acknowledgements" class="nl">Erkenningen</a></li>\n';
+doc_toc += '          <li><a href="credits.htm#acknowledgements" class="nl">Erkenningen</a>\n';
+doc_toc += '            <ul>\n';
+doc_toc += '              <li><a href="credits.htm#acknowledgements_thanks" class="en">Many Thanks</a></li>\n';
+doc_toc += '            </ul>\n';
+doc_toc += '          </li>\n';
+doc_toc += '        </ul>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="copyrights.htm" class="en">Licentie &amp; Copyright</a>\n';
@@ -1427,7 +1432,7 @@ function cpgDocHeader() {
 	if (getUrlParameters('hide_nav') == 1) {
 		return;
 	}
-	$('#docheader').text('Coppermine Photo Gallery v1.5.4: Documentatie en Handleiding');
+	$('#docheader').text('Coppermine Photo Gallery v1.5.6: Documentatie en Handleiding');
 	$('#docheader').after('<br clear="all" />\n<a name="top"></a>');
 	$('#docheader').before('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Uw Online Fotogalerij" align="left" />\n');
 }
