@@ -29,7 +29,7 @@ define('CORE_PLUGIN', true);
 require('include/init.inc.php');
 
 if (!GALLERY_ADMIN_MODE) {
-	cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
 // write the plugin enable/disable change to the db
@@ -529,7 +529,7 @@ switch ($op) {
               $result = cpg_db_query($query);
               $installed_plugin = mysql_fetch_assoc($result);
               log_write("Plugin '".$installed_plugin['name']."' moved down in plugin list", CPG_GLOBAL_LOG);
-          	}
+            }
         }
         break;
     case 'upload':
@@ -552,7 +552,7 @@ switch ($op) {
                 umask($mask);
             }
 
-            if (!move_uploaded_file($file['tmp_name'],'./plugins/receive/'.$file['name'])) {
+            if (!move_uploaded_file($superCage->files->getRaw('plugin/tmp_name'),'./plugins/receive/'.$file['name'])) {
                 cpg_die(CRITICAL_ERROR,$lang_pluginmgr_php['copy_error'],__FILE__,__LINE__);
             }
 

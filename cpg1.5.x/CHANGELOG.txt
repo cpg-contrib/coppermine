@@ -23,6 +23,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-03 [B] Fixed issue when uploading plugins to windows driven galleries {eenemeenemuu}
+2010-06-03 [B] Fixed typo that caused the display of the 'not supported version' message box (thread ID 65224) {eenemeenemuu}
 2010-06-03 [O] Updated Czech language file (user contribution) {eenemeenemuu}
 2010-06-02 [B] Fixed ip address dupes on stat_details.php (thread ID 65230) {eenemeenemuu}
 2010-06-02 [B] Extended lang_byte_units array for some language files (thread ID 65231) {eenemeenemuu}
