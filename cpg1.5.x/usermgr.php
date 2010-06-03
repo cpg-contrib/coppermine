@@ -737,27 +737,28 @@ function edit_user($user_id)
     //$form_data = CPGPluginAPI::filter('usermgr_form_list', array(0 => $form_data, 1 => $user_id);
     list($timestamp, $form_token) = getFormToken();
 
-    $sql = "SELECT * FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$user_id'";
-    $result = cpg_db_query($sql);
-    if (!mysql_num_rows($result)) {
-        cpg_die(CRITICAL_ERROR, $lang_usermgr_php['err_unknown_user'], __FILE__, __LINE__);
-    }
-    $user_data = mysql_fetch_array($result);
-    mysql_free_result($result);
+    if ($user_id != 'new_user') {
+        $sql = "SELECT * FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$user_id'";
+        $result = cpg_db_query($sql);
+        if (!mysql_num_rows($result)) {
+            cpg_die(CRITICAL_ERROR, $lang_usermgr_php['err_unknown_user'], __FILE__, __LINE__);
+        }
+        $user_data = mysql_fetch_array($result);
+        mysql_free_result($result);
 
-    // If this is a new user then add a checkbox for 'send login data to user' option
-    if ($user_data['user_name'] == '') {
+        if (mysql_num_rows(cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_BANNED']} WHERE user_name = '" . $user_data['user_name'] . "' AND brute_force=0 LIMIT 1"))){
+            $user_status = $lang_usermgr_php['user_is_banned'];
+        } elseif ($user_data['user_active'] == 'YES') {
+            $user_status = $lang_usermgr_php['status_active'];
+        } else {
+            $user_status = $lang_usermgr_php['status_inactive'];
+        }
+    } else {
+        // If this is a new user then add a checkbox for 'send login data to user' option
         $form_data[] = array('checkbox', 'send_login_data', $lang_usermgr_php['send_login_data']);
     }
-    if (mysql_num_rows(cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_BANNED']} WHERE user_name = '" . $user_data['user_name'] . "' AND brute_force=0 LIMIT 1"))){
-        $user_status = $lang_usermgr_php['user_is_banned'];
-    } elseif ($user_data['user_active'] == 'YES') {
-        $user_status = $lang_usermgr_php['status_active'];
-    } else {
-        $user_status = $lang_usermgr_php['status_inactive'];
-    }
-    $status_icon = cpg_fetch_icon('online', 2);
 
+    $status_icon = cpg_fetch_icon('online', 2);
 
     echo <<<EOT
         <form name="cpgform3" id="cpgform3" method="post" action="{$CPG_PHP_SELF}?op=update&amp;user_id=$user_id">
@@ -838,7 +839,7 @@ EOT;
     
             case 'yesno' :
                 $value = $user_data[$element[1]];
-                $yes_selected = ($value == 'YES') ? 'checked="checked"' : '';
+                $yes_selected = ($value == 'YES' || $op == 'new_user') ? 'checked="checked"' : '';
                 $no_selected = ($value == 'NO') ? 'checked="checked"' : '';
 
                 echo <<< EOT
@@ -876,7 +877,7 @@ EOT;
 EOT;
                 $group_cb = '';
                 foreach($group_list as $group) {
-                    echo '                        <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected="selected"' : '') . '>' . $group['group_name'] . '</option>' . $LINEBREAK;
+                    echo '                        <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group || ($op == 'new_user' && $group['group_id'] == 2) ? ' selected="selected"' : '') . '>' . $group['group_name'] . '</option>' . $LINEBREAK;
     
                     /**
                      * Only show 'real' groups; skip admin, registered, anonymous
@@ -961,8 +962,13 @@ EOT;
 
 function update_user($user_id)
 {
-    global $CONFIG; //, $PHP_SELF;
+    global $CONFIG;
     global $lang_usermgr_php, $lang_register_php, $icon_array;
+
+    if ($user_id == 'new_user') {
+        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERS']} (user_regdate) VALUES (NOW())");
+        $user_id = mysql_insert_id();
+    }
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -1069,13 +1075,8 @@ switch ($op) {
         break;
 
     case 'new_user' :
-        $cpg_udb->edit_users();
-        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERS']}(user_regdate, user_active, user_profile6) VALUES (NOW(), 'YES', '')");
-
-        $user_id = mysql_insert_id();
-
         pageheader($lang_usermgr_php['title']);
-        edit_user($user_id);
+        edit_user('new_user');
         pagefooter();
         break;
 
