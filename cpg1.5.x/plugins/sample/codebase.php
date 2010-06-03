@@ -18,7 +18,7 @@
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 if (!defined('CORE_PLUGIN')) {
-	define('CORE_PLUGIN', true);
+    define('CORE_PLUGIN', true);
 }
 
 // Add an install action
@@ -48,9 +48,9 @@ function sample_block_mgr($block) {
 // Install function
 // Checks if uid is 'foo' and pwd is 'bar'; If so, then install the plugin
 function sample_install() {
-	
-	// Create the super cage
-	$superCage = Inspekt::makeSuperCage();
+    
+    // Create the super cage
+    $superCage = Inspekt::makeSuperCage();
     // Install
     if ($superCage->post->getAlpha('uid')=='foo' && $superCage->post->getAlpha('pwd') == 'bar') {
 
@@ -66,40 +66,40 @@ function sample_install() {
 // Configure function
 // Displays the form
 function sample_configure() {
-	global $lang_plugin_php, $lang_common;
-	// Create the super cage
-	$superCage = Inspekt::makeSuperCage();
+    global $lang_plugin_php, $lang_common;
+    // Create the super cage
+    $superCage = Inspekt::makeSuperCage();
 
+    echo '<form name="cpgform" id="cpgform" action="'.$superCage->server->getEscaped('REQUEST_URI').'" method="post">';
     echo <<< EOT
-    <form name="cpgform" id="cpgform" action="{$superCage->server->getEscaped('REQUEST_URI')}" method="post">
-            <table border="0" cellspacing="0" cellpadding="0" width="100%">
-              <tr>
-                <td class="tableh2" colspan="2">
-                  <h3>{$lang_plugin_php['sample_install_explain']}</h3>
-                </td>
-              </tr>
-              <tr>
-                <td class="tableb" align="right">
-                  {$lang_plugin_php['sample_install_username']}:
-                </td>
-                <td class="tableb">
-                  <input type="text" name="uid" class="textinput" style="width:100%" />
-                </td>
-              </tr>
-              <tr>
-                <td class="tableb tableb_alternate" align="right">
-                  {$lang_plugin_php['sample_install_password']}:
-                </td>
-                <td class="tableb tableb_alternate">
-                  <input type="password" name="pwd" class="textinput" style="width:100%" />
-                </td>
-              </tr>
-              <tr>
-                <td class="tablef" colspan="2">
-                  <input type="submit" value="{$lang_common['go']}" class="button" />
-                </td>
-              </tr>
-            </table>
+        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td class="tableh2" colspan="2">
+              <h3>{$lang_plugin_php['sample_install_explain']}</h3>
+            </td>
+          </tr>
+          <tr>
+            <td class="tableb" align="right">
+              {$lang_plugin_php['sample_install_username']}:
+            </td>
+            <td class="tableb">
+              <input type="text" name="uid" class="textinput" style="width:100%" />
+            </td>
+          </tr>
+          <tr>
+            <td class="tableb tableb_alternate" align="right">
+              {$lang_plugin_php['sample_install_password']}:
+            </td>
+            <td class="tableb tableb_alternate">
+              <input type="password" name="pwd" class="textinput" style="width:100%" />
+            </td>
+          </tr>
+          <tr>
+            <td class="tablef" colspan="2">
+              <input type="submit" value="{$lang_common['go']}" class="button" />
+            </td>
+          </tr>
+        </table>
     </form>
 EOT;
 }
