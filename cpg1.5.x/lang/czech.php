@@ -24,7 +24,7 @@ $lang_translation_info['lang_country_code'] = 'cz';
 $lang_translation_info['trans_name'] = 'KoubaX Team - Petr Koubovsky, Michal Simice, Adam Cechura, ...';
 $lang_translation_info['trans_email'] = 'koubax@koubax.cz';
 $lang_translation_info['trans_website'] = 'http://www.koubax.cz/';
-$lang_translation_info['trans_date'] = '2010-05-15';
+$lang_translation_info['trans_date'] = '2010-06-03';
 
 
 $lang_charset = 'utf-8';
@@ -213,7 +213,7 @@ $lang_gallery_admin_menu['util_lnk'] = 'Administrátorské nástroje';
 $lang_gallery_admin_menu['key_title'] = 'Správce klíčových slov';
 $lang_gallery_admin_menu['key_lnk'] = 'Správce klíčových slov';
 $lang_gallery_admin_menu['ban_title'] = 'Přejít na blokace';
-$lang_gallery_admin_menu['ban_lnk'] = 'Ban';
+$lang_gallery_admin_menu['ban_lnk'] = 'BAN';
 $lang_gallery_admin_menu['db_ecard_title'] = 'Zobrazit pohlednice';
 $lang_gallery_admin_menu['db_ecard_lnk'] = 'Zobrazit pohlednice';
 $lang_gallery_admin_menu['pictures_title'] = 'Setřídit obrázky';
@@ -805,14 +805,14 @@ $lang_admin_php['fullsize_padding_x'] = 'Horizontální okraj pro celoobrazovkov
 $lang_admin_php['fullsize_padding_y'] = 'Vertikální okraj pro celoobrazovkové pop-up okno'; // cpg1.5 
 $lang_admin_php['allow_private_albums'] = 'Galerie může být soukromá'; // cpg1.5
 $lang_admin_php['allow_private_albums_note'] = '(Poznámka: jestliže změníte \'Ano\' na \'Ne\' jakákoliv současná soukromá galerie se stane veřejnou.)'; // cpg1.5
-$lang_admin_php['show_private'] = 'Ukaž ikomu soukromé galerie nepřihlášenému uživateli'; // cpg1.5
+$lang_admin_php['show_private'] = 'Ukaž ikonu soukromé galerie nepřihlášenému uživateli'; // cpg1.5
 $lang_admin_php['forbiden_fname_char'] = 'Zakázané znaky v názvech souborů'; // cpg1.5
 $lang_admin_php['silly_safe_mode'] = 'Povolit &quot;silly safe mode&quot;'; // cpg1.5 
 $lang_admin_php['allowed_img_types'] = 'Povolené typy obrázků'; // cpg1.5
 $lang_admin_php['allowed_mov_types'] = 'Povolené typy videí'; // cpg1.5
 $lang_admin_php['media_autostart'] = 'Automatický start přehrávání videa'; // cpg1.5
 $lang_admin_php['allowed_snd_types'] = 'Povolené typy zvukových souborů'; // cpg1.5
-$lang_admin_php['allowed_doc_types'] = 'Povolené typy dokumeentů'; // cpg1.5
+$lang_admin_php['allowed_doc_types'] = 'Povolené typy dokumentů'; // cpg1.5
 $lang_admin_php['thumb_method'] = 'Metoda změny obrázků'; // cpg1.5
 $lang_admin_php['impath'] = 'Cesta k ImageMagick \'convert\' utility'; // cpg1.5
 $lang_admin_php['impath_example'] = '(například /usr/bin/)'; // cpg1.5
@@ -831,7 +831,7 @@ $lang_admin_php['which_files_to_watermark'] = 'Které soubory označit vodoznake
 $lang_admin_php['watermark_file'] = 'Jaký soubor použít jako vodoznak'; // cpg1.5 
 $lang_admin_php['watermark_transparency'] = 'Průhlednost pro celý obraz'; // cpg1.5 
 $lang_admin_php['zero_2_hundred'] = '0-100'; // cpg1.5
-$lang_admin_php['reduce_watermark'] = 'Změnšit vodoznak pokud je šířka obrázku meníš než zadaná hodnota. That is the 100% reference point. Změna velikosti vodoznaku je přímá (0 - zakázat)'; // cpg1.5 repair
+$lang_admin_php['reduce_watermark'] = 'Změnšit vodoznak pokud je šířka obrázku menší než zadaná hodnota. That is the 100% reference point. Změna velikosti vodoznaku je přímá (0 - zakázat)'; // cpg1.5 repair
 $lang_admin_php['watermark_transparency_featherx'] = 'Nastavit barevnou průhlednost x'; // cpg1.5
 $lang_admin_php['watermark_transparency_feathery'] = 'Nastavit barevnou průhlednost y'; // cpg1.5
 $lang_admin_php['gd2_only'] = 'Pouze GD2'; // cpg1.5 
@@ -919,17 +919,17 @@ $lang_admin_php['display_sidebar_user'] = 'Sidebar pro registrované uživatele'
 $lang_admin_php['display_sidebar_guest'] = 'Sidebar pro návštěvníky (guest)'; // cpg1.5 
 $lang_admin_php['do_not_change'] = 'Neměňtě tohle pokud si nejste OPRAVDU jisti co děláte!'; // cpg1.5
 $lang_admin_php['reset_to_default'] = 'Nastavit výchozí'; // cpg1.5
-$lang_admin_php['no_change_needed'] = 'No change needed, config option already is set to default'; // cpg1.5 repair
-$lang_admin_php['enabled'] = 'enabled'; // cpg1.5 repair povoleno 
-$lang_admin_php['disabled'] = 'disabled'; // cpg1.5 repair zakázáno
+$lang_admin_php['no_change_needed'] = 'Žádná změna není potřeba, konfigurace volby je nastavena na základní'; // cpg1.5 repair No change needed, config option already is set to default
+$lang_admin_php['enabled'] = 'enabled'; // cpg1.5 repair povolený 
+$lang_admin_php['disabled'] = 'disabled'; // cpg1.5 repair zakázáný
 $lang_admin_php['none'] = 'none'; // cpg1.5 repair nic žádné 
 $lang_admin_php['warning_change'] = 'Změna tohoto nastavení, bude mít vliv pouze na následně přidané soubory, takže není doporučeno tuto změnu dělat pokud již jsou v galerii nějaké soubory. Můžete však použít změny v souborech které již jsou v galerii použitím "Administrátorské nástroje (změna velikosti obrázků)" v administrátorském menu.'; // cpg1.5 
-$lang_admin_php['warning_exist'] = 'Tyto nastavení nesmí být změněno jestliže již se nacházejí soubory v databázi.'; // cpg1.5
+$lang_admin_php['warning_exist'] = 'Toto nastavení nesmí být změněno, pokud se již nacházejí soubory v databázi.'; // cpg1.5 
 $lang_admin_php['warning_dont_submit'] = 'Pokud si nejste jistí o následcích těchto změn nepotvrzujte tento formulář a nejdříve si pročtěte dokumentaci.'; // cpg1.5 // js-alert
 $lang_admin_php['menu_only'] = 'pouze menu'; // cpg1.5 
 $lang_admin_php['everywhere'] = 'všude'; // cpg1.5 
 $lang_admin_php['manage_languages'] = 'Spravovat jazyky'; // cpg1.5
-$lang_admin_php['form_token_lifetime'] = 'Form token lifetime'; // cpg1.5 repair muset dát do CZ .. dělá to při uploudování souborů časový limit tpro nahrání obrázků ;-) 
+$lang_admin_php['form_token_lifetime'] = 'Form token lifetime'; // cpg1.5 repair muset dát do CZ .. dělá to při uploudování souborů časový limit pro nahrání obrázků ;-) 
 $lang_admin_php['seconds'] = 'sekund'; // cpg1.5
 $lang_admin_php['display_reset_boxes_in_config'] = 'Zobrazit &quot;klikátko&quot; pro nastavení základní hodnoty pro každou položku v konfiguraci copperminee'; // cpg1.5 
 $lang_admin_php['upd_not_needed'] = 'Aktualizace není potřeba'; // cpg 1.5
@@ -1147,7 +1147,7 @@ $lang_picinfo['success'] = 'Informace byly úspěšně aktualizovány.';
 $lang_picinfo['show_details'] = 'Zobrazit detaily'; // cpg1.5
 $lang_picinfo['hide_details'] = 'Skrýt detaily'; // cpg1.5
 $lang_picinfo['download_URL'] = 'Direct Link'; //repair
-$lang_picinfo['movie_player'] = 'Play the file in your standard application'; //repair
+$lang_picinfo['movie_player'] = 'Přehrávat soubor ve Vaší standartní aplikaci.'; 
 
 $lang_display_comments['edit_title'] = 'Upravit tento komentář';
 $lang_display_comments['delete_title'] = 'SMAZAT tento komentář'; // cpg1.5
@@ -1157,14 +1157,14 @@ $lang_display_comments['name'] = 'Jméno';
 $lang_display_comments['comment'] = 'Komentář';
 $lang_display_comments['your_name'] = 'Anonym';
 $lang_display_comments['report_comment_title'] = 'Pošli tento komentář administrátorovi';
-$lang_display_comments['pending_approval'] = 'Comment will be visible after admin approval'; // cpg1.5 repair
-$lang_display_comments['unapproved_comment'] = 'Unapproved comment'; // cpg1.5 repair
+$lang_display_comments['pending_approval'] = 'Komentář bude viiditelný až po schválení adminem'; // cpg1.5
+$lang_display_comments['unapproved_comment'] = 'Neschválený komentář'; // cpg1.5
 $lang_display_comments['pending_approval_message'] = 'Someone has posted a comment here. It will be visible after admin approval.'; // cpg1.5 repair
-$lang_display_comments['approve'] = 'Approve comment'; // cpg1.5 repair
-$lang_display_comments['disapprove'] = 'Mark comment unapproved'; // cpg1.5 repair
-$lang_display_comments['log_in_to_comment'] = 'Anonymous comments are not allowed here. %sLog in%s to post your comment'; // cpg1.5 repair// do not translate the %s placeholders - they will be used as wrappers for the link (<a>)
-$lang_display_comments['default_username_message'] = 'Please provide your name for comment'; // cpg1.5 repair
-$lang_display_comments['comment_rejected'] = 'Your comment has been rejected'; // cpg1.5 repair
+$lang_display_comments['approve'] = 'Schválit komentář'; // cpg1.5
+$lang_display_comments['disapprove'] = 'Označit komentář jako neschválený'; // cpg1.5
+$lang_display_comments['log_in_to_comment'] = 'Anonymní komentáře zde nejsou povoleny. %sLog in%s pro přidání komentáře.'; // cpg1.5 do not translate the %s placeholders - they will be used as wrappers for the link (<a>)
+$lang_display_comments['default_username_message'] = 'Prosím poskytněte Vaše jméno pro komentář'; // cpg1.5
+$lang_display_comments['comment_rejected'] = 'Váš komeentář byl zamítnut'; // cpg1.5
 
 $lang_fullsize_popup['click_to_close'] = 'Klikni na obrázek pro zavření okna';
 $lang_fullsize_popup['close_window'] = 'zavřít okno'; // cpg1.5
@@ -1181,7 +1181,7 @@ $lang_ecard_php['ecard_title'] = 'Pohlednice ze serveru %s pro vás/tebe';
 $lang_ecard_php['error_not_image'] = 'Pouze obrázky mohou být poslány jako pohlednice.'; // cpg1.5
 $lang_ecard_php['error_not_image_flash'] = 'Pouze obrázky a flash soubory mohou být poslány jako pohlednice.'; // cpg1.5
 $lang_ecard_php['view_ecard'] = 'Pokud se pohlednice nezobrazila klikni na odkaz';
-$lang_ecard_php['view_ecard_plaintext'] = 'To view the ecard, copy and paste this url into your browser\'s address bar:'; //repair
+$lang_ecard_php['view_ecard_plaintext'] = 'Pro zobrazení pohlednice zkopírujte a vložte tento odkaz do Vašeho prohlížeče';
 $lang_ecard_php['view_more_pics'] = 'Klikni pro více obrázků!';
 $lang_ecard_php['send_success'] = 'Vaše pohlednice byla odeslána';
 $lang_ecard_php['send_failed'] = 'Omlouváme se, ale server nebyl schopen odeslat Vaší pohlednici zkuste to znovu za chvíli...';
@@ -1197,7 +1197,7 @@ $lang_ecard_php['ecards_footer'] = 'Odesláno od %s z IP %s v %s (čas serveru)'
 $lang_ecard_php['preview'] = 'Náhled pohlednice';
 $lang_ecard_php['preview_button'] = 'Náhled';
 $lang_ecard_php['submit_button'] = 'Poslat pohlednici';
-$lang_ecard_php['preview_view_ecard'] = 'This will be the alternative link to the ecard once it has been generated. It won\'t work for previews.'; //repair Toto je alternativní odkaz pro pohlednici. Nefunguje jako náhled.
+$lang_ecard_php['preview_view_ecard'] = 'Toto je alternativní odkaz pro pohlednici. Nefunguje jako náhled.';  
 }
 
 // ------------------------------------------------------------------------- //
@@ -1236,7 +1236,7 @@ $lang_report_php['go_comment'] = 'Jdi na komentář';
 $lang_report_php['view_comment'] = 'Zobraz plný report s komentářem';
 $lang_report_php['type_file'] = 'soubor';
 $lang_report_php['type_comment'] = 'komentář';
-$lang_report_php['invalid_data'] = 'The data for the report you are trying to access has been corrupted by your mail client. Check the link is complete.'; //repair
+$lang_report_php['invalid_data'] = 'Data ze zprávy ke které se snažíte dostat byla poškozena Vaším emailovým klientem. Zkontrolujte prosím, zda je odkaz úplný.'; //repair 
 }
 
 // ------------------------------------------------------------------------- //
@@ -1287,9 +1287,9 @@ $lang_editpics_php['src_file_missing'] = 'Zdrojový soubor \'%s\' chybí.';
 $lang_editpics_php['mime_conv'] = 'Nemohu konvertovat soubor \'%s\' do \'%s\'';
 $lang_editpics_php['forb_ext'] = 'Zakázaná souborová přípona.';
 $lang_editpics_php['error_editor_class'] = 'Editor class for your resize method not implemented'; // cpg 1.5 repair
-$lang_editpics_php['error_document_size'] = 'Document has no width or height'; // cpg 1.5 // js-alert repair
-$lang_editpics_php['success_picture'] = 'Picture successfully saved - you can %sclose%s this window now'; // cpg1.5 // do not translate "%s" here repair
-$lang_editpics_php['success_thumb'] = 'Thumbnail successfully saved - you can %sclose%s this window now'; // cpg1.5 // do not translate "%s" here repair
+$lang_editpics_php['error_document_size'] = 'Document nemá šířku nebo výšku'; // cpg 1.5 // js-alert
+$lang_editpics_php['success_picture'] = 'Obrázek úspěšně uložen - můžete %sclose%s nyní toto okno'; // cpg1.5 // do not translate "%s" here
+$lang_editpics_php['success_thumb'] = 'Náhled úspěšně uložen - můžete %sclose%s nyní toto okno'; // cpg1.5 // do not translate "%s" here
 $lang_editpics_php['rotate'] = 'Otočit'; // cpg 1.5 
 $lang_editpics_php['mirror'] = 'Zrcadlově'; // cpg 1.5 
 $lang_editpics_php['scale'] = 'Měřítko'; // cpg 1.5 
@@ -1305,9 +1305,9 @@ $lang_editpics_php['error_approval_empty'] = 'Žádné další obrázky ke schv�
 $lang_editpics_php['error_linked_only'] = 'Album only contains linked files, which you cannot edit here'; // cpg1.5 repair
 $lang_editpics_php['note_approve_public'] = 'Files moved to a public album must be approved by an admin.'; // cpg1.5 repair
 $lang_editpics_php['note_approve_private'] = 'Files moved to a private gallery album must be approved by an admin.' ; // cpg1.5 repair
-$lang_editpics_php['note_edit_control'] = 'Files moved to a public album cannot be edited.'; // cpg1.5 repair
-$lang_editpics_php['confirm_move'] = 'Are you sure you want to move this file?'; // cpg1.5 //js-alert repair
-$lang_editpics_php['success_changes'] = 'Changes successfully saved'; // cpg1.5 repair
+$lang_editpics_php['note_edit_control'] = 'Files moved to a public album cannot be edited.'; // cpg1.5 repair Přesunuté soubory do veřejného alba nebudou moci být editovány
+$lang_editpics_php['confirm_move'] = 'Jste si jist(a), že chcete přesunout tento soubor?'; // cpg1.5 //js-alert
+$lang_editpics_php['success_changes'] = 'Změny úspěšně uloženy'; // cpg1.5 
 }
 
 // ------------------------------------------------------------------------- //
@@ -1356,7 +1356,7 @@ Zde je vámi vyžádané nové heslo:
 Uživatel: {USER_NAME}
 Heslo: {PASSWORD}
 
-Jdi na <a href="{SITE_LINK}">{SITE_LINK}</a> to log in.
+Jdi na <a href="{SITE_LINK}">{SITE_LINK}</a> pro přihlášení.
 
 
 S pozdravem,
@@ -1386,7 +1386,7 @@ $lang_groupmgr_php['del_groups'] = 'Smazat vybranou skupinu(y)';
 $lang_groupmgr_php['confirm_del'] = 'Pokud smažete tuto skupinu všichni uživatelé, patřící do této skupiny budou přesunuti do skupiny \'Registered\' !\n\nPřejete si pokračovat?'; // js-alert
 $lang_groupmgr_php['title'] = 'Spravovat uživatelské skupiny';
 $lang_groupmgr_php['reset_to_default'] = 'Resetovat na přednastavené jméno (%s) - doporučeno!';
-$lang_groupmgr_php['error_group_empty'] = 'Group table was empty!<br /><br />Default groups created, please reload this page'; //repair ukážu kde je
+$lang_groupmgr_php['error_group_empty'] = 'Tabulka skupin je prázdná!<br /><br />Základní skupiny vytvořeny, prosím obnovte stránku.'; 
 $lang_groupmgr_php['explain_greyed_out_title'] = 'Proč je tato řádka šedá?'; //
 $lang_groupmgr_php['explain_guests_greyed_out_text'] = 'You cannot change the properties of this group because the access level of this group is NONE. All unlogged users (members of the group %s) can\'t do anything but login; therefore group settings don\'t apply for them. Change the access level here or on the Gallery Configuration page under "User Settings", "Allow unlogged users access".'; //repair
 $lang_groupmgr_php['group_assigned_album'] = 'Připojená alba';
@@ -1429,133 +1429,133 @@ $lang_list_albums['from_category'] = ' - Z Kategorie: '; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
-// File install.php //repair all
+// File install.php 
 // ------------------------------------------------------------------------- //
 
 if (defined('INSTALL_PHP')) {
-$lang_install['already_succ'] = 'The installer has already been successfully run once and is now locked.';
-$lang_install['already_succ_explain'] = 'If you want to run the installer again, you first need to delete the \'include/config.inc.php\' file that was created in the directory where you put Coppermine. You can do this with any FTP program';
-$lang_install['cant_read_tmp_conf'] = 'The installer can\'t read the temporary config file %s.';
-$lang_install['cant_write_tmp_conf'] = 'The installer can\'t write the temporary config file %s.';
-$lang_install['review_permissions'] = 'Please review directory permissions.';
-$lang_install['change_lang'] = 'Change language';
-$lang_install['check_path'] = 'Check path';
-$lang_install['continue'] = 'Next step';
-$lang_install['conv_said'] = 'The convert program said:';
-$lang_install['license_info'] = 'Coppermine is a picture/multimedia gallery package that is released under GNU GPL v3. By installing, you agree to be bound to Coppermine\'s license:';
-$lang_install['cpg_info_frames'] = 'Your browser appears incapable of displaying inline frames. You can review the license within the docs folder that ships with your Coppermine package.';
-$lang_install['license'] = 'Coppermine license agreement';
-$lang_install['create_table'] = 'Creating table \'%s\'';
-$lang_install['db_populating'] = 'Trying to insert data in the database.';
-$lang_install['db_alr_populated'] = 'Already inserted required data in the database.';
-$lang_install['dir_ok'] = 'Directory found';
-$lang_install['directory'] = 'Directory';
-$lang_install['email'] = 'Email address';
-$lang_install['email_no_match'] = 'Email addresses do not match or are invalid.';
-$lang_install['email_verif'] = 'Verify email';
-$lang_install['err_cpgnuke'] = '<h1>ERROR</h1>You seem to be trying to install the standalone Coppermine into your Nuke portal.<br />This version can only be used as standalone!<br />Some server setups might display this warning even though you don\'t have a nuke portal installed - if this is the case for you, <a href="%s?continue_anyway=1">continue</a> with the install. If you are using a nuke portal, you might want to take a look into <a href=\"http://www.cpgnuke.com/\">CpgNuke</a> or use one of the (unsupported)<a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=95984\">Coppermine ports</a> - do not continue!';
-$lang_install['error'] = 'ERROR';
-$lang_install['error_need_corr'] = 'The following errors were encountered and need to be corrected first:';
-$lang_install['finish'] = 'Finish installation';
-$lang_install['gd_note'] = '<strong>Important :</strong> older versions of the GD graphic library support only JPEG and PNG images. If this is the case for you, then the script will not be able to create thumbnails for GIF images.';
-$lang_install['go_to_main'] = 'Go to the main page';
-$lang_install['im_no_convert_ex'] = 'The installer found the ImageMagick \'convert\' program in \'%s\', however it can\'t be executed by the script.<br /><br />You may consider using GD instead of ImageMagick.';
-$lang_install['im_not_found'] = 'The installer tried to find ImageMagick, but could not determine its existence or there was an error. <br />Coppermine can use the <a href="http://www.imagemagick.org/">ImageMagick</a> \'convert\' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />If ImageMagick is installed on your system and you want to use it, <br />you need to input the full path to the \'convert\' program below. <br />On Windows the path should look something like \'c:/ImageMagick/\' and should not contain any space, on Unix is it something like \'/usr/bin/\'.<br /><br />If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will then try to use GD2 by default (which is what most users have). <br />You can change this later as well (in Coppermine\'s config screen), so don\'t be afraid if you\'re not sure what to enter here - leave it blank.';
-$lang_install['im_packages'] = 'Your server supports the following image package(s)';
-$lang_install['im_path'] = 'Path to ImageMagick:';
-$lang_install['im_path_space'] = 'The path to ImageMagick (\'%s\') contains at least one space. This will cause problems in the script.<br /><br />You must move ImageMagick to another directory.';
-$lang_install['installation'] = 'installation';
-$lang_install['installer_locked'] = 'The installer is locked';
-$lang_install['installer_selected'] = 'The installer selected';
-$lang_install['inv_im_path'] = 'The installer cannot find the \'%s\' directory you have specified for ImageMagick or it does not have permission to access it. Check that your typing is correct and that you have access to the specified directory.';
-$lang_install['last_step'] = 'Last Step...';
-$lang_install['lets_go'] = 'Let\'s Go!';
-$lang_install['mysql_create_btn'] = 'Create';
-$lang_install['mysql_create_db'] = 'Create new MySQL database';
-$lang_install['mysql_db_name'] = 'MySQL database name';
-$lang_install['mysql_error'] = 'MySQL error: ';
-$lang_install['mysql_host'] = 'MySQL host<br />(localhost is usually OK)';
-$lang_install['mysql_username'] = 'MySQL username'; // cpg1.5
-$lang_install['mysql_password'] = 'MySQL password'; // cpg1.5
-$lang_install['mysql_no_create_db'] = 'Could not create MySQL database.';
-$lang_install['mysql_no_sel_dbs'] = 'Could not retrieve available MySQL databases';
-$lang_install['mysql_succ'] = 'Successful connection with database';
-$lang_install['mysql_tbl_pref'] = 'MySQL table prefix';
-$lang_install['mysql_test_connection'] = 'Test connection';
-$lang_install['mysql_wrong_db'] = 'MySQL could not locate a database called \'%s\' please check the value entered for this';
-$lang_install['n_a'] = 'N/A';
-$lang_install['no_admin_email'] = 'You have to enter an admin email address';
-$lang_install['no_admin_password'] = 'You have to enter an admin password';
-$lang_install['no_admin_username'] = 'You have to enter an admin username';
-$lang_install['no_dir'] = 'Directory not available';
-$lang_install['no_gd'] = 'Your installation of PHP does not seem to include the \'GD\' graphic library extension and you have not indicated that you want to use ImageMagick. Coppermine has been configured to use GD2 because the automatic GD detection sometimes fails. If GD is installed on your system, the script should work else you will need to install ImageMagick.';
-$lang_install['no_mysql_conn'] = 'Could not create a MySQL connection, please check the MySQL details entered';
-$lang_install['no_mysql_support'] = 'PHP does not have MySQL support enabled.';
-$lang_install['no_thumb_method'] = 'You have to choose an image manipulation application (GD/IM)';
-$lang_install['nok'] = 'Not OK';
-$lang_install['not_here_yet'] = 'Nothing here yet, please click %shere%s to go back.';
-$lang_install['ok'] = 'OK';
-$lang_install['on_q'] = 'on query';
-$lang_install['or'] = 'or';
-$lang_install['pass_err'] = 'Passwords don\'t match, you used illegal characters or didn\'t provide one.';
-$lang_install['password'] = 'Password';
-$lang_install['password_verif'] = 'Verify Password';
-$lang_install['perm_error'] = 'The permissions of \'%s\' are set to %s, please set them to';
-$lang_install['perm_ok'] = 'The permissions on certain directories have been checked, and seem to be ok. <br />Please proceed to the next step.';
-$lang_install['perm_not_ok'] = 'The permissions on certain directories are not set correctly.<br />Please change the permissions of the directories below that are marked "Not OK".'; // cpg1.5
-$lang_install['please_go_back'] = 'Please %sclick here%s to go back and fix this problem before proceeding.';
-$lang_install['populate_db'] = 'Populate database';
-$lang_install['ready_to_roll'] = '<a href="index.php">Coppermine</a> is now properly configured and ready to use.<br /><br /><a href="login.php">Login</a> using the information you provided for your admin account.';
-$lang_install['sect_create_adm'] = 'This section requires information to create your Coppermine administration account. Use only alphanumeric characters. Enter the data carefully!';
-$lang_install['sect_mysql_info'] = 'This section requires information on how to access your MySQL database.<br />If you don\'t know how to fill them, check with your webhost support.';
-$lang_install['sect_mysql_sel_db'] = 'Here you have to choose which database you want to use for Coppermine. <br />If your Mysql account has the needed privileges, you can create a new database from within the installer or you can use an existing database. If you don\'t like both options, you will have to create a database first outside the Coppermine installer, then return here then select the new database from the dropdown box below. You can also change the table prefix (Don\'t use dots though), but keeping the default prefix is recommended.';
-$lang_install['select_lang'] = 'Select default language: ';
-$lang_install['sql_file_not_found'] = 'The file \'%s\' could not be found. Check that you have uploaded all Coppermine files to your server';
-$lang_install['status'] = 'Status';
-$lang_install['subdir_called'] = 'A subdirectory called \'%s\' should normally exist in the directory where you uploaded Coppermine. <br />The installer can\'t find this directory. Check that you have uploaded all Coppermine files to your server.';
-$lang_install['title_admin'] = 'Create Coppermine Administrator';
-$lang_install['title_dir_check'] = 'Checking Directory Permissions';
-$lang_install['title_file_check'] = 'Checking Installation Files';
-$lang_install['title_finished'] = 'Installation Completed';
-$lang_install['title_imp'] = 'Image Package Selection';
-$lang_install['title_imp_test'] = 'Testing Image Package';
-$lang_install['title_mysql_db_sel'] = 'MySQL Database Selection';
-$lang_install['title_mysql_pop'] = 'Creating Database Structure';
-$lang_install['title_mysql_user'] = 'MySQL User Authentication';
-$lang_install['title_welcome'] = 'Welcome to Coppermine installation';
-$lang_install['tmp_conf_error'] = 'Unable to write the temporary config file - make sure the \'include\' folder is writable for the script.';
-$lang_install['tmp_conf_ser_err'] = 'A serious error occurred in the installer, try reloading your page or start over by removing the \'include/config.tmp\' file.';
-$lang_install['try_again'] = 'Try again!';
-$lang_install['unable_write_config'] = 'Unable to write config file';
-$lang_install['user_err'] = 'Admin username must contain only alphanumeric characters and can\'t be empty.';
-$lang_install['username'] = 'Username';
-$lang_install['your_admin_account'] = 'Your admin account';
-$lang_install['no_cookie'] = 'Your browser did not accept our cookie. It is recommended to accept cookies.';
-$lang_install['no_javascript'] = 'Your browser doesn\'t seem to have Javascript enabled - it is highly recommended to enable it.';
-$lang_install['register_globals_detected'] = 'It seems your PHP configuration has \'register_globals\' enabled - you should disable this for security reasons.';
-$lang_install['more'] = 'more';
-$lang_install['version_undetected'] = 'The script could not determine the version of %s your server is using. Be sure it is at least version %s.';
-$lang_install['version_incompatible'] = 'The script detected an incompatible version (%s) of %s on your server.<br />Make sure to use a compatible version (%s or better) before continuing!';
+$lang_install['already_succ'] = 'The installer has already been successfully run once and is now locked.'; //repair
+$lang_install['already_succ_explain'] = 'If you want to run the installer again, you first need to delete the \'include/config.inc.php\' file that was created in the directory where you put Coppermine. You can do this with any FTP program'; //repair
+$lang_install['cant_read_tmp_conf'] = 'The installer can\'t read the temporary config file %s.'; //repair
+$lang_install['cant_write_tmp_conf'] = 'The installer can\'t write the temporary config file %s.'; //repair
+$lang_install['review_permissions'] = 'Please review directory permissions.'; //repair
+$lang_install['change_lang'] = 'Change language'; //repair
+$lang_install['check_path'] = 'Check path'; //repair
+$lang_install['continue'] = 'Next step'; //repair
+$lang_install['conv_said'] = 'The convert program said:'; //repair
+$lang_install['license_info'] = 'Coppermine is a picture/multimedia gallery package that is released under GNU GPL v3. By installing, you agree to be bound to Coppermine\'s license:'; //repair
+$lang_install['cpg_info_frames'] = 'Your browser appears incapable of displaying inline frames. You can review the license within the docs folder that ships with your Coppermine package.'; //repair
+$lang_install['license'] = 'Coppermine license agreement'; //repair
+$lang_install['create_table'] = 'Creating table \'%s\''; //repair
+$lang_install['db_populating'] = 'Trying to insert data in the database.'; //repair
+$lang_install['db_alr_populated'] = 'Already inserted required data in the database.'; //repair
+$lang_install['dir_ok'] = 'Directory found'; //repair
+$lang_install['directory'] = 'Directory'; //repair
+$lang_install['email'] = 'Email address'; //repair
+$lang_install['email_no_match'] = 'Email addresses do not match or are invalid.'; //repair
+$lang_install['email_verif'] = 'Verify email'; //repair
+$lang_install['err_cpgnuke'] = '<h1>ERROR</h1>You seem to be trying to install the standalone Coppermine into your Nuke portal.<br />This version can only be used as standalone!<br />Some server setups might display this warning even though you don\'t have a nuke portal installed - if this is the case for you, <a href="%s?continue_anyway=1">continue</a> with the install. If you are using a nuke portal, you might want to take a look into <a href=\"http://www.cpgnuke.com/\">CpgNuke</a> or use one of the (unsupported)<a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=95984\">Coppermine ports</a> - do not continue!'; //repair
+$lang_install['error'] = 'CHYBA'; 
+$lang_install['error_need_corr'] = 'The following errors were encountered and need to be corrected first:'; //repair
+$lang_install['finish'] = 'Finish installation'; //repair
+$lang_install['gd_note'] = '<strong>Important :</strong> older versions of the GD graphic library support only JPEG and PNG images. If this is the case for you, then the script will not be able to create thumbnails for GIF images.'; //repair
+$lang_install['go_to_main'] = 'Přejít na hlavní stránku'; 
+$lang_install['im_no_convert_ex'] = 'The installer found the ImageMagick \'convert\' program in \'%s\', however it can\'t be executed by the script.<br /><br />You may consider using GD instead of ImageMagick.'; //repair
+$lang_install['im_not_found'] = 'The installer tried to find ImageMagick, but could not determine its existence or there was an error. <br />Coppermine can use the <a href="http://www.imagemagick.org/">ImageMagick</a> \'convert\' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />If ImageMagick is installed on your system and you want to use it, <br />you need to input the full path to the \'convert\' program below. <br />On Windows the path should look something like \'c:/ImageMagick/\' and should not contain any space, on Unix is it something like \'/usr/bin/\'.<br /><br />If you have no idea wether you have ImageMagick or not, leave this field empty - the installer will then try to use GD2 by default (which is what most users have). <br />You can change this later as well (in Coppermine\'s config screen), so don\'t be afraid if you\'re not sure what to enter here - leave it blank.'; //repair
+$lang_install['im_packages'] = 'Your server supports the following image package(s)'; //repair
+$lang_install['im_path'] = 'Path to ImageMagick:'; //repair
+$lang_install['im_path_space'] = 'The path to ImageMagick (\'%s\') contains at least one space. This will cause problems in the script.<br /><br />You must move ImageMagick to another directory.'; //repair
+$lang_install['installation'] = 'installation'; //repair
+$lang_install['installer_locked'] = 'The installer is locked'; //repair
+$lang_install['installer_selected'] = 'The installer selected'; //repair
+$lang_install['inv_im_path'] = 'The installer cannot find the \'%s\' directory you have specified for ImageMagick or it does not have permission to access it. Check that your typing is correct and that you have access to the specified directory.'; //repair
+$lang_install['last_step'] = 'Poslední krok...'; 
+$lang_install['lets_go'] = 'Let\'s Go!'; //repair
+$lang_install['mysql_create_btn'] = 'Vytvořit'; 
+$lang_install['mysql_create_db'] = 'Vytvořit novou MySQL databázi'; 
+$lang_install['mysql_db_name'] = 'Jméno MySQL databáze'; 
+$lang_install['mysql_error'] = 'MySQL chyba: '; 
+$lang_install['mysql_host'] = 'MySQL host<br />(localhost is usually OK)'; //repair
+$lang_install['mysql_username'] = 'MySQL jméno'; // cpg1.5
+$lang_install['mysql_password'] = 'MySQL heslo'; // cpg1.5
+$lang_install['mysql_no_create_db'] = 'Nelze vytvořit MySQL databazi.'; 
+$lang_install['mysql_no_sel_dbs'] = 'Could not retrieve available MySQL databases'; //repair
+$lang_install['mysql_succ'] = 'Successful connection with database'; //repair
+$lang_install['mysql_tbl_pref'] = 'prefix MySQL tabulky'; 
+$lang_install['mysql_test_connection'] = 'Test spojení'; 
+$lang_install['mysql_wrong_db'] = 'MySQL could not locate a database called \'%s\' please check the value entered for this'; //repair
+$lang_install['n_a'] = 'N/A'; //repair
+$lang_install['no_admin_email'] = 'Vložte prosím emailovou adresu na admina'; 
+$lang_install['no_admin_password'] = 'Vložte prosím admin heslo'; 
+$lang_install['no_admin_username'] = 'Vložte prosím admin jméno'; 
+$lang_install['no_dir'] = 'Adresář není dostupný'; 
+$lang_install['no_gd'] = 'Your installation of PHP does not seem to include the \'GD\' graphic library extension and you have not indicated that you want to use ImageMagick. Coppermine has been configured to use GD2 because the automatic GD detection sometimes fails. If GD is installed on your system, the script should work else you will need to install ImageMagick.'; //repair
+$lang_install['no_mysql_conn'] = 'Nelze vytvořit MySQL spojení, prosím zkontrolujte vložené údaje k MySQL'; 
+$lang_install['no_mysql_support'] = 'PHP does not have MySQL support enabled.'; //repair
+$lang_install['no_thumb_method'] = 'You have to choose an image manipulation application (GD/IM)'; //repair
+$lang_install['nok'] = 'Není OK'; 
+$lang_install['not_here_yet'] = 'Nothing here yet, please click %shere%s to go back.'; //repair Nelze zde, prisím klikni zde pro návrat
+$lang_install['ok'] = 'OK'; 
+$lang_install['on_q'] = 'on query'; //repair
+$lang_install['or'] = 'nebo'; 
+$lang_install['pass_err'] = 'Passwords don\'t match, you used illegal characters or didn\'t provide one.'; //repair 
+$lang_install['password'] = 'Heslo'; 
+$lang_install['password_verif'] = 'Ověření hesla'; 
+$lang_install['perm_error'] = 'The permissions of \'%s\' are set to %s, please set them to'; //repair 
+$lang_install['perm_ok'] = 'The permissions on certain directories have been checked, and seem to be ok. <br />Please proceed to the next step.'; //repair 
+$lang_install['perm_not_ok'] = 'The permissions on certain directories are not set correctly.<br />Please change the permissions of the directories below that are marked "Not OK".'; // cpg1.5 //repair 
+$lang_install['please_go_back'] = 'Please %sclick here%s to go back and fix this problem before proceeding.'; //repair 
+$lang_install['populate_db'] = 'Populate database'; //repair 
+$lang_install['ready_to_roll'] = '<a href="index.php">Coppermine</a> is now properly configured and ready to use.<br /><br /><a href="login.php">Login</a> using the information you provided for your admin account.'; //repair
+$lang_install['sect_create_adm'] = 'This section requires information to create your Coppermine administration account. Use only alphanumeric characters. Enter the data carefully!'; //repair
+$lang_install['sect_mysql_info'] = 'This section requires information on how to access your MySQL database.<br />If you don\'t know how to fill them, check with your webhost support.'; //repair
+$lang_install['sect_mysql_sel_db'] = 'Here you have to choose which database you want to use for Coppermine. <br />If your Mysql account has the needed privileges, you can create a new database from within the installer or you can use an existing database. If you don\'t like both options, you will have to create a database first outside the Coppermine installer, then return here then select the new database from the dropdown box below. You can also change the table prefix (Don\'t use dots though), but keeping the default prefix is recommended.'; //repair 
+$lang_install['select_lang'] = 'Vyberte základní jazyk: '; 
+$lang_install['sql_file_not_found'] = 'The file \'%s\' could not be found. Check that you have uploaded all Coppermine files to your server'; //repair Soubor nebyl nalezen. Prosím zkontrolujte zda jste nahráli všechny Coppermine soubory na Váš server.
+$lang_install['status'] = 'Status'; //repair
+$lang_install['subdir_called'] = 'A subdirectory called \'%s\' should normally exist in the directory where you uploaded Coppermine. <br />The installer can\'t find this directory. Check that you have uploaded all Coppermine files to your server.'; //repair
+$lang_install['title_admin'] = 'Create Coppermine Administrator'; //repair
+$lang_install['title_dir_check'] = 'Checking Directory Permissions'; //repair
+$lang_install['title_file_check'] = 'Checking Installation Files'; //repair 
+$lang_install['title_finished'] = 'Instalace kompletní'; 
+$lang_install['title_imp'] = 'Image Package Selection'; //repair
+$lang_install['title_imp_test'] = 'Testing Image Package'; //repair
+$lang_install['title_mysql_db_sel'] = 'MySQL Database Selection'; //repair
+$lang_install['title_mysql_pop'] = 'Creating Database Structure'; //repair
+$lang_install['title_mysql_user'] = 'MySQL User Authentication'; //repair
+$lang_install['title_welcome'] = 'Vítejte v Coppermine instalaci'; 
+$lang_install['tmp_conf_error'] = 'Unable to write the temporary config file - make sure the \'include\' folder is writable for the script.'; //repair
+$lang_install['tmp_conf_ser_err'] = 'A serious error occurred in the installer, try reloading your page or start over by removing the \'include/config.tmp\' file.'; //repair
+$lang_install['try_again'] = 'Pokuste se znovu!'; 
+$lang_install['unable_write_config'] = 'Unable to write config file'; //repair Nelze zapsat konfigurační soubor 
+$lang_install['user_err'] = 'Admin jméno musí obsahovat pouze alfanumerické znaky a nesmí být prázdné.'; 
+$lang_install['username'] = 'Jméno'; 
+$lang_install['your_admin_account'] = 'Váš admin účet'; 
+$lang_install['no_cookie'] = 'Your browser did not accept our cookie. It is recommended to accept cookies.'; //repair
+$lang_install['no_javascript'] = 'Your browser doesn\'t seem to have Javascript enabled - it is highly recommended to enable it.'; //repair
+$lang_install['register_globals_detected'] = 'It seems your PHP configuration has \'register_globals\' enabled - you should disable this for security reasons.'; //repair
+$lang_install['more'] = 'více'; 
+$lang_install['version_undetected'] = 'The script could not determine the version of %s your server is using. Be sure it is at least version %s.'; //repair
+$lang_install['version_incompatible'] = 'The script detected an incompatible version (%s) of %s on your server.<br />Make sure to use a compatible version (%s or better) before continuing!'; //repair
 
-$lang_install['read_gif'] = 'Read/write .gif file';
-$lang_install['read_png'] = 'Read/write .png file';
-$lang_install['read_jpg'] = 'Read/write .jpg file';
-$lang_install['write_error'] = 'Could not write generated image to disk.';
-$lang_install['read_error'] = 'Could not read the source image.';
-$lang_install['combine_error'] = 'Could not combine the source images';
-$lang_install['text_error'] = 'Could not add text to the source image';
-$lang_install['scale_error'] = 'Could not scale the source image';
-$lang_install['pixels'] = 'pixels';
-$lang_install['combine'] = 'Combine 2 images';
-$lang_install['text'] = 'Write text on image';
-$lang_install['scale'] = 'Scale an image';
-$lang_install['generated_image'] = 'Generated image';
-$lang_install['reference_image'] = 'Reference image';
-$lang_install['imp_test_error'] = 'There was an error in one or more of the tests, please make sure you selected the appropriate Image Processing Package and it is configured correctly!';
-$lang_install['writable'] = 'Writable';
-$lang_install['not_writable'] = 'Not writable';
-$lang_install['not_exist'] = 'Does not exist';
-$lang_install['old_install'] = 'This is the new install wizard. Click %shere%s for the classic install screen.'; //cpg1.5
+$lang_install['read_gif'] = 'Read/write .gif file'; //repair
+$lang_install['read_png'] = 'Read/write .png file'; //repair
+$lang_install['read_jpg'] = 'Read/write .jpg file'; //repair
+$lang_install['write_error'] = 'Could not write generated image to disk.'; //repair
+$lang_install['read_error'] = 'Could not read the source image.'; //repair
+$lang_install['combine_error'] = 'Could not combine the source images'; //repair
+$lang_install['text_error'] = 'Could not add text to the source image'; //repair
+$lang_install['scale_error'] = 'Could not scale the source image'; //repair
+$lang_install['pixels'] = 'pixelů'; 
+$lang_install['combine'] = 'Combine 2 images'; //repair
+$lang_install['text'] = 'Write text on image'; //repair Zapsat text na/do obrázku
+$lang_install['scale'] = 'Scale an image'; //repair
+$lang_install['generated_image'] = 'Generated image'; //repair
+$lang_install['reference_image'] = 'Reference image'; //repair
+$lang_install['imp_test_error'] = 'There was an error in one or more of the tests, please make sure you selected the appropriate Image Processing Package and it is configured correctly!'; //repair
+$lang_install['writable'] = 'Zapisovatelný';  
+$lang_install['not_writable'] = 'Nezapisovatelný'; 
+$lang_install['not_exist'] = 'Does not exist'; //repair
+$lang_install['old_install'] = 'This is the new install wizard. Click %shere%s for the classic install screen.'; //cpg1.5 //repair
 
 }
 
@@ -1587,12 +1587,12 @@ $lang_langmgr_php['enabled'] = 'Povoleno';
 $lang_langmgr_php['complete'] = 'Kompletní';
 $lang_langmgr_php['default'] = 'Výchozí';
 $lang_langmgr_php['missing'] = 'chybějící';
-$lang_langmgr_php['broken'] = 'appears to be broken or inaccessible'; //repair
-$lang_langmgr_php['exists_in_db_and_file'] = 'exists in database and as file'; //repair existuje v databázi a jako soubor
-$lang_langmgr_php['exists_as_file_only'] = 'exists as file only'; //repair existuje pouze jako soubor
+$lang_langmgr_php['broken'] = 'se zdá být rozbité nebo nedostupné'; 
+$lang_langmgr_php['exists_in_db_and_file'] = 'existuje v databázi a jako soubor'; 
+$lang_langmgr_php['exists_as_file_only'] = 'existuje pouze jako soubor'; 
 $lang_langmgr_php['pick_a_flag'] = 'Pick one'; //repair
 $lang_langmgr_php['replace_x_with_y'] = 'Replace %s with %s'; //repair
-$lang_langmgr_php['tanslator_information'] = 'Translator information'; //repair
+$lang_langmgr_php['tanslator_information'] = 'Informace o překladateli'; 
 $lang_langmgr_php['cpg_version'] = 'Coppermine verze'; 
 $lang_langmgr_php['hide_details'] = 'Skrýt detaily'; 
 $lang_langmgr_php['show_details'] = 'Zobrazit detaily';
@@ -1603,7 +1603,7 @@ $lang_langmgr_php['enable_default'] = 'You chose a default language that is not 
 $lang_langmgr_php['available_default'] = 'You chose a default language that is not even available. Pick another default language!'; //repair
 $lang_langmgr_php['version_does_not_match'] = 'The version of this file does not match your coppermine version. Use with caution and test thoroughly!'; //repair
 $lang_langmgr_php['no_version'] = 'No version information could be retrieved. It\'s very likely that this language file doesn\'t work at all or isn\'t an actual language file.'; //repair
-$lang_langmgr_php['filesize'] = 'Filesize %s is implausible'; //repair
+$lang_langmgr_php['filesize'] = 'Filesize %s is implausible'; //repair Velikost souboru %s je nepravděpodobná/nepřijatelná 
 $lang_langmgr_php['content_missing'] = 'The file doesn\'t seem to contain the needed data, so it\'s probably not a valid language file.'; //repair
 $lang_langmgr_php['status'] = 'Status'; //repair
 $lang_langmgr_php['default_language'] = 'Výchozí jazyk nastaven na %s';
@@ -1620,7 +1620,7 @@ $lang_login_php['email'] = 'Emailová adresa'; // cpg1.5
 $lang_login_php['both'] = 'Jméno / Emailová adresa'; // cpg1.5
 $lang_login_php['password'] = 'Heslo';
 $lang_login_php['remember_me'] = 'Pamatuj si mě';
-$lang_login_php['welcome'] = 'Vítej %s ...';
+$lang_login_php['welcome'] = 'Vítáme Vás %s ...';
 $lang_login_php['err_login'] = 'Chyba při přihlášení. Poskuste se znovu';
 $lang_login_php['err_already_logged_in'] = 'Již jste přihlášen!';
 $lang_login_php['forgot_password_link'] = 'Zapomněl jsem své heslo';
@@ -1694,15 +1694,15 @@ $lang_modifyalb_php['reset_album'] = 'Reset alba';
 $lang_modifyalb_php['reset_views'] = 'Reset počítadel zobrazení na &quot;0&quot; v %s';
 $lang_modifyalb_php['reset_rating'] = 'Reset hodnocení pro všechny soubory v %s';
 $lang_modifyalb_php['delete_comments'] = 'Vymaž všechny komentáře vytvořené v %s';
-$lang_modifyalb_php['delete_files'] = '%sIrreversibly%s delete all files in %s'; //repair
+$lang_modifyalb_php['delete_files'] = '%sTrvale%s odstranit všechny soubory v %s';
 $lang_modifyalb_php['views'] = 'zobrazení';
 $lang_modifyalb_php['votes'] = 'hlasů';
 $lang_modifyalb_php['comments'] = 'komentářů';
 $lang_modifyalb_php['files'] = 'souborů';
 $lang_modifyalb_php['submit_reset'] = 'potvrdit změny';
 $lang_modifyalb_php['reset_views_confirm'] = 'Jsem si jist';
-$lang_modifyalb_php['notice1'] = '(*) depending on %sgroups%s settings'; //(do not translate %s!) //repair
-$lang_modifyalb_php['can_moderate'] = 'Album can be moderated by'; // cpg 1.5 //repair
+$lang_modifyalb_php['notice1'] = '(*) v závislosti na nastavení %sskupin%s '; //(do not translate %s!) 
+$lang_modifyalb_php['can_moderate'] = 'Album mohou moderovat'; // cpg 1.5 
 $lang_modifyalb_php['admins_only'] = 'Pouze Administrátoři'; // cpg 1.5
 $lang_modifyalb_php['alb_password'] = 'Heslo alba (Nové heslo)';
 $lang_modifyalb_php['alb_password_hint'] = 'Nápověda pro heslo alba'; 
@@ -1710,7 +1710,7 @@ $lang_modifyalb_php['edit_files'] = 'Editace souborů';
 $lang_modifyalb_php['parent_category'] = 'Nadřazená kategorie';
 $lang_modifyalb_php['thumbnail_view'] = 'Zobraz náhledy';
 $lang_modifyalb_php['random_image'] = 'Náhodný obrázek'; // cpg 1.5
-$lang_modifyalb_php['password_protect'] = 'Password protect this album (Tick for yes)'; //cpg1.5 //repair
+$lang_modifyalb_php['password_protect'] = 'Chránit album heslem (Označ pro ano)'; //cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
@@ -1765,8 +1765,8 @@ $lang_pluginmgr_php['upload'] = 'Nahrát';
 $lang_pluginmgr_php['configure_plugin'] = 'Konfigurovat doplňek';
 $lang_pluginmgr_php['cleanup_plugin'] = 'Vyčistit doplňek';
 $lang_pluginmgr_php['extra'] = 'Extra'; // cpg1.5
-$lang_pluginmgr_php['install_info'] = 'Install information'; // cpg1.5 repair
-$lang_pluginmgr_php['plugin_disabled_note'] = 'Plugin API is disabled, so that operation is not allowed.'; // cpg1.5 repair
+$lang_pluginmgr_php['install_info'] = 'Instalační informace'; // cpg1.5 
+$lang_pluginmgr_php['plugin_disabled_note'] = 'Doplněk API is zakázán, takže operace není povolená.'; // cpg1.5
 $lang_pluginmgr_php['install'] = 'nainstalovat'; // cpg1.5
 $lang_pluginmgr_php['uninstall'] = 'odinstalovat'; // cpg1.5
 }
@@ -1785,13 +1785,14 @@ $lang_rate_pic_php['forbidden'] = 'Nemůžete hodnotit naše obrázky.';
 // ------------------------------------------------------------------------- //
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 $lang_register_php['disclamer'] = <<<EOT
-While the administrators of {SITE_NAME} will attempt to remove or edit any generally objectionable material as quickly as possible, it is impossible to review every post. Therefore you acknowledge that all posts made to this site express the views and opinions of the author and not the administrators or webmaster (except for posts by these people) and hence will not be held liable.<br />
+Administrátoři serveru {SITE_NAME} potažmo této galerie si vyhrazují právo zásahu do obsahu galerie např. komentáře, mazání obrázků případně úprava (pokud porušují pravidla galerie nebo dobré mravy). Pokud budou obrázky nahrané uživetelem porušovat zákon(y) budou ihned po zjištění jejich umístění na serveru smazány. Administrátoři/provozovatelé této galerie se distancují od
+případného závadného obsahu nahraného na server uživateli. Vlastníkem dat v galerii jsou jejich autoři. Administrátoři předpokládají, že na server jsou umísťované uživateli pouze obrázky k nímž vlastní uživatel autorská práva.<br />
 <br />
-You agree not to post any abusive, obscene, vulgar, slanderous, hateful, threatening, sexually-oriented or any other material that may violate any applicable laws. You agree that the webmaster, administrator and moderators of {SITE_NAME} have the right to remove or edit any content at any time should they see fit. As a user you agree to any information you have entered above being stored in a database. While this information will not be disclosed to any third party without your consent the webmaster and administrator cannot be held responsible for any hacking attempt that may lead to the data being compromised.<br />
+Pokud souhlasíte, že nebudete posílat jakýkoliv závadný materiál jako vulgární a obscéní obrázky/komentáře, jakýkoliv materiál vzbuzující nenávist, rasismus, nebo jiný materiál porušující zákony. Souhlasíte, že administrátoři, provozovatelé a moderátoři {SITE_NAME} mají právo smazat případně upravit jakýkoliv materiál kdykoliv to uznají za vhodné. Vložené informace budou uložené na serveru a v databázi a nebudou poskytnuty žádné třetí straně bez vašeho souhlasu. Administátoři/povozovatelé serveru však nejsou ani nebudou ručit za data na serveru uložená pokud dojde k jakémukoliv útoku na sever.<br />
 <br />
-This site uses cookies to store information on your local computer. These cookies serve only to improve your viewing pleasure. The email address is used only for confirming your registration details and password.<br />
+Tyto stránky využívají k uložení uživatelských dat cookies. Cookies slouží pouze pro zvýšení konfortu při používání této aplikace. Emailová adresa slouží jen pro potvrzení vašich údajů a poslání hesla.<br />
 <br />
-By clicking 'I agree' below you agree to be bound by these conditions.
+Kliknutím na 'Souhlasím' souhlasíte z výše uvedenými pravidly..
 EOT;
 $lang_register_php['page_title'] = 'Registrace nového uživatele';
 $lang_register_php['term_cond'] = 'Podmínky a pravidla';
@@ -1799,9 +1800,9 @@ $lang_register_php['i_agree'] = 'Souhlasím';
 $lang_register_php['submit'] = 'Poslat registraci';
 $lang_register_php['err_user_exists'] = 'Zadané uživatelské jméno již existuje vyberte si prosím jiné';
 $lang_register_php['err_global_pw'] = 'Neplatné globální heslo pro registraci'; // cpg1.5
-$lang_register_php['err_global_pass_same'] = 'Your password should be different from the global password'; // cpg1.5 repair
+$lang_register_php['err_global_pass_same'] = 'Your password should be different from the global password'; // cpg1.5 repair Vaše heslo se neschoduje s globálním heslem
 $lang_register_php['err_duplicate_email'] = 'Jiný uživatel se zaregistroval se zadaným emailem. Email musí být jedinečný';
-$lang_register_php['err_disclaimer'] = 'You need to agree to the disclaimer'; // cpg1.5 repair
+$lang_register_php['err_disclaimer'] = 'Musíte souhlasit s uvedenými pravidly'; // cpg1.5
 $lang_register_php['enter_info'] = 'Zadané registrační informace';
 $lang_register_php['required_info'] = 'Vyžadované informace';
 $lang_register_php['optional_info'] = 'Volitelné informace';
@@ -1837,47 +1838,47 @@ $lang_register_php['change_pass'] = 'Změnit moje heslo';
 $lang_register_php['update_success'] = 'Váš profil byl aktualizován';
 $lang_register_php['pass_chg_success'] = 'Vaše heslo bylo změněno';
 $lang_register_php['pass_chg_error'] = 'Vaše heslo nebylo změněno';
-$lang_register_php['notify_admin_email_subject'] = '%s - Registration notification'; //repair kua co to je?
-$lang_register_php['last_uploads'] = 'Last uploaded file'; // cpg1.5 repair
-$lang_register_php['last_uploads_detail'] = 'Click to see all uploads by %s'; // cpg1.5 repair
-$lang_register_php['last_comments'] = 'Last comment'; // cpg1.5 repair
-$lang_register_php['you'] = 'you'; // cpg1.5 repair
-$lang_register_php['last_comments_detail'] = 'Click to see all comments made by %s'; // cpg1.5 repair
+$lang_register_php['notify_admin_email_subject'] = '%s - Oznámení registrace'; 
+$lang_register_php['last_uploads'] = 'Poslední nahraný soubor'; // cpg1.5
+$lang_register_php['last_uploads_detail'] = 'Klikni pro zobrazení všech nahraní od uživatele %s'; // cpg1.5 
+$lang_register_php['last_comments'] = 'Poslední komentář'; // cpg1.5
+$lang_register_php['you'] = 'Vy'; // cpg1.5
+$lang_register_php['last_comments_detail'] = 'Klikni pro zobrazení všech komentářů od uživatele %s'; // cpg1.5
 $lang_register_php['notify_admin_email_body'] = 'Nový uživatel se jménem "%s" se registroval ve vaší galerii';
 $lang_register_php['pic_count'] = 'nahraných souborů';
-$lang_register_php['notify_admin_request_email_subject'] = '%s - Registration request'; //repair Potřebná registrace
+$lang_register_php['notify_admin_request_email_subject'] = '%s - Registration request'; //repair Zádost registrace 
 $lang_register_php['thank_you_admin_activation'] = 'Děkujeme.<br /><br />Vaše žádost o aktivaci konta byla zaslána administrátorovi. Bude vám zaslán mail po jejím potvrzení.';
 $lang_register_php['acct_active_admin_activation'] = 'Konto je nyní aktivní a mail byl odeslán uživateli.';
-$lang_register_php['notify_user_email_subject'] = '%s - Activation notification'; //repair Aktivační poznámka
+$lang_register_php['notify_user_email_subject'] = '%s - Activation notification'; //repair Aktivační poznámka??
 $lang_register_php['delete_my_account'] = 'SMAZAT můj účet'; // cpg1.5
 $lang_register_php['warning_delete'] = 'Warning: deleting your account cannot be undone. The %sfiles you uploaded%s into public albums and your %scomments%s do not get deleted when deleting your user account! However, the files you uploaded into your personal gallery will be deleted.'; // cpg1.5 repair // The %s-placeholders mustn't be removed, they will later be replaced by the wrappers for the links
-$lang_register_php['i_am_sure'] = 'I\'m sure that I want to delete my user account'; // cpg1.5 repair Jsem si jisttý, že chci!
-$lang_register_php['really_delete'] = 'Do you really want to delete your user account?'; // cpg1.5 repair // js-alert
+$lang_register_php['i_am_sure'] = 'Jsem si jist(a), že chci smazat svůj uživatelský účet'; // cpg1.5 
+$lang_register_php['really_delete'] = 'Jste si jist(a), že chcete SMAZAT Váš uživatelský účet?'; // cpg1.5 // js-alert
 $lang_register_php['edit_xs_profile'] = 'Upravit profil %s'; // cpg1.5 
 $lang_register_php['edit_my_profile'] = 'Upravit můj profil'; // cpg1.5 
 $lang_register_php['none'] = 'žádný'; // cpg1.5 repair
 $lang_register_php['user_name_banned'] = 'The username you have chosen is not allowed/banned. Choose another user name'; // cpg1.5 repair
 $lang_register_php['email_address_banned'] = 'You are banned from this gallery. You are not allowed to re-register. Go away!'; // cpg1.5 repair
-$lang_register_php['email_warning1'] = 'The email address field mustn\'t be empty!'; // cpg1.5 repair
-$lang_register_php['email_warning2'] = 'The email address you entered is not valid. Review!'; // cpg1.5 repair
-$lang_register_php['username_warning1'] = 'The username field mustn\'t be empty!'; // cpg1.5 repair
-$lang_register_php['username_warning2'] = 'Username must be at least two characters long'; // cpg1.5 repair
-$lang_register_php['password_warning1'] = 'The password must be at least two characters long!'; // cpg1.5 repair
-$lang_register_php['password_warning2'] = 'Username and password must be different'; // cpg1.5 repair
-$lang_register_php['password_verification_warning1'] = 'The two passwords do not match, please enter them again'; // cpg1.5 repair
+$lang_register_php['email_warning1'] = 'Emailová adresa nesmí být prázdná!'; // cpg1.5 
+$lang_register_php['email_warning2'] = 'Vámi zadaná emailová adresa není platná. Prosím překontrolujte!'; // cpg1.5
+$lang_register_php['username_warning1'] = 'Uživatelské jméno nesmí být prázdné!'; // cpg1.5
+$lang_register_php['username_warning2'] = 'Uživatelské jméno musí mít alespoň dva znaky!'; // cpg1.5 
+$lang_register_php['password_warning1'] = 'Heslo musí mít alespoň dva znaky!'; // cpg1.5 
+$lang_register_php['password_warning2'] = 'Uživatelské jméno a heslo nesmí být stejné'; // cpg1.5
+$lang_register_php['password_verification_warning1'] = 'The two passwords do not match, please enter them again'; // cpg1.5 repair Hesla se neschodují, prosím vložte je znovu
 $lang_register_php['form_not_submit'] = 'The form hasn\'t been submit - there are errors that you need to correct first!'; // cpg1.5 repair
 $lang_register_php['banned'] = 'Banned'; // cpg1.5 repair
 
 $lang_register_php['confirm_email'] = <<<EOT
-Thank you for registering at {SITE_NAME}
+Děkujeme za registraci na {SITE_NAME}
 
 In order to activate your account with username "{USER_NAME}", you need to click on the link below or copy and paste it in your web browser.
 <a href="{ACT_LINK}">{ACT_LINK}</a>
 
 
-Regards,
+S pozdravem,
 
-The management of {SITE_NAME}
+Správce {SITE_NAME}
 
 EOT;
 
@@ -1895,9 +1896,9 @@ Your account has been approved and activated.
 You can now log in at <a href="{SITE_LINK}">{SITE_LINK}</a> using the username "{USER_NAME}"
 
 
-Regards,
+S pozdravem,
 
-The management of {SITE_NAME}
+Správce {SITE_NAME}
 
 EOT;
 }
@@ -1921,43 +1922,43 @@ $lang_reviewcom_php['name_a'] = 'Uživatelské jméno vzestupně';
 $lang_reviewcom_php['name_d'] = 'Uživatelské jméno sestupně';
 $lang_reviewcom_php['date_a'] = 'Datum vzestupně';
 $lang_reviewcom_php['date_d'] = 'Datum sestupně';
-$lang_reviewcom_php['comment_a'] = 'Komentáře vzestupně';
-$lang_reviewcom_php['comment_d'] = 'Komentáře sestupně';
+$lang_reviewcom_php['comment_a'] = 'Komentář vzestupně';
+$lang_reviewcom_php['comment_d'] = 'Komentář sestupně';
 $lang_reviewcom_php['file_a'] = 'Soubor vzestupně';
 $lang_reviewcom_php['file_d'] = 'Soubor sestupně';
 $lang_reviewcom_php['approval_a'] = 'Schválení vzestupně'; // cpg1.5 
 $lang_reviewcom_php['approval_d'] = 'Schválení sestupně'; // cpg1.5 
 $lang_reviewcom_php['ip_a'] = 'IP adresa vzestupně'; // cpg1.5
 $lang_reviewcom_php['ip_d'] = 'IP adresa sestupně'; // cpg1.5
-$lang_reviewcom_php['akismet_a'] = 'Akismet rating (valid comments at the bottom)'; // cpg1.5 repair
-$lang_reviewcom_php['akismet_d'] = 'Akismet rating (valid comments at the top)'; // cpg1.5 repair
-$lang_reviewcom_php['n_comm_appr'] = '%s approved comment(s)'; // cpg1.5 repair
-$lang_reviewcom_php['n_comm_unappr'] = '%s unapproved comment(s)'; // cpg1.5 repair
+$lang_reviewcom_php['akismet_a'] = 'Akismet hodnocení (platné komentáře at the bottom)'; // cpg1.5 repair
+$lang_reviewcom_php['akismet_d'] = 'Akismet hodnocení (platné komentáře at the top)'; // cpg1.5 repair 
+$lang_reviewcom_php['n_comm_appr'] = '%s schválený(ch) komentář(ů)'; // cpg1.5 
+$lang_reviewcom_php['n_comm_unappr'] = '%s neschválený(ch) komentář(ů)'; // cpg1.5 
 $lang_reviewcom_php['configuration_changed'] = 'Approval config changed'; // cpg1.5 repair
-$lang_reviewcom_php['only_approval'] = 'only display comments needing approval'; // cpg1.5 repair
+$lang_reviewcom_php['only_approval'] = 'zobrazit pouze komentáře čekající na schválení'; // cpg1.5
 $lang_reviewcom_php['approval'] = 'Schváleno'; // cpg1.5 
 $lang_reviewcom_php['save_changes'] = 'Uložit změny'; // cpg1.5
-$lang_reviewcom_php['n_confirm_delete'] = 'Do you really want to delete the selected comment(s)?'; // cpg1.5 repair
-$lang_reviewcom_php['with_selected'] = 'With selected'; // cpg1.5 repair
-$lang_reviewcom_php['delete'] = 'smazat'; // cpg1.5 repair
-$lang_reviewcom_php['approve'] = 'schválit'; // cpg1.5 repair
-$lang_reviewcom_php['disapprove'] = 'označit neschválené'; // cpg1.5 
-$lang_reviewcom_php['do_nothing'] = 'nedělat nic'; // cpg1.5 repair
+$lang_reviewcom_php['n_confirm_delete'] = 'Opravdu si přejete smazat vybraný(é) komentář(e)?'; // cpg1.5 
+$lang_reviewcom_php['with_selected'] = 'S vybranými'; // cpg1.5
+$lang_reviewcom_php['delete'] = 'smazat'; // cpg1.5 
+$lang_reviewcom_php['approve'] = 'schválit'; // cpg1.5 
+$lang_reviewcom_php['disapprove'] = 'označit jako neschválené'; // cpg1.5 
+$lang_reviewcom_php['do_nothing'] = 'nedělat nic'; // cpg1.5 
 $lang_reviewcom_php['comment_approved'] = 'Komentář schválen'; // cpg1.5 
-$lang_reviewcom_php['comment_unapproved'] = 'Comment marked unapproved'; // cpg1.5 repair
-$lang_reviewcom_php['ban_and_delete'] = 'Ban user and delete comment(s)'; // cpg1.5 repair
-$lang_reviewcom_php['akismet_status'] = 'Akismet said'; // cpg1.5 repair
-$lang_reviewcom_php['is_spam'] = 'is spam'; // cpg1.5 repair
+$lang_reviewcom_php['comment_unapproved'] = 'Komentář označen jako neschválený'; // cpg1.5 repair Comment marked unapproved 
+$lang_reviewcom_php['ban_and_delete'] = 'Zabanovat uživatele a smazat komentář(e)'; // cpg1.5 
+$lang_reviewcom_php['akismet_status'] = 'Akismet rozhodl'; // cpg1.5
+$lang_reviewcom_php['is_spam'] = 'je spam'; // cpg1.5
 $lang_reviewcom_php['is_not_spam'] = 'není spam'; // cpg1.5 
-$lang_reviewcom_php['akismet'] = 'Akismet'; // cpg1.5 repair
+$lang_reviewcom_php['akismet'] = 'Akismet'; // cpg1.5 
 $lang_reviewcom_php['akismet_count'] = 'Akismet has found %s spam messages for you until now'; // cpg1.5 repair
 $lang_reviewcom_php['akismet_test_result'] = 'Test result for your Akismet API key %s'; // cpg1.5 repair
-$lang_reviewcom_php['invalid'] = 'invalid'; // cpg1.5 repair
+$lang_reviewcom_php['invalid'] = 'neplatné'; // cpg1.5 repair neplatný??
 $lang_reviewcom_php['missing_gallery_url'] = 'You need to specify a gallery URL in Coppermine\'s config'; // cpg1.5 repair
-$lang_reviewcom_php['unable_to_connect'] = 'Unable to connect to akismet.com'; // cpg1.5 repair
+$lang_reviewcom_php['unable_to_connect'] = 'Nelze se připojit k akismet.com'; // cpg1.5
 $lang_reviewcom_php['not_found'] = 'The target URL was not found. Maybe the site structure of akismet.com has changed.'; // cpg1.5 repair
 $lang_reviewcom_php['unknown_error'] = 'Neznámá chyba'; // cpg1.5
-$lang_reviewcom_php['error_message'] = 'The error message returned was'; // cpg1.5repair 
+$lang_reviewcom_php['error_message'] = 'The error message returned was'; // cpg1.5 repair 
 $lang_reviewcom_php['ip_address'] = 'IP adresa'; // cpg1.5
 }
 
@@ -1982,7 +1983,7 @@ $lang_sidebar_php['opera'] = 'Opera 6 and above'; // cpg1.5
 $lang_sidebar_php['opera_explain'] = 'If you are using Opera, you can %sclick on this link to add our sidebar to your set%s. Tick "Show in panel" then. You can uninstall the sidebar by right clicking on it\'s tab and choosing "Delete" from the context menu.'; // cpg1.5
 $lang_sidebar_php['additional_options'] = 'Additional options'; // cpg1.5
 $lang_sidebar_php['additional_options_explain'] = 'If you have another browser than the one mentioned above, then click %shere%s to display all possible sidebar options.'; // cpg1.5
-$lang_sidebar_php['cannot_add_sidebar'] = 'Sidebar cannot be added! Your browser does not support this method!'; // cpg1.5 // js-alert
+$lang_sidebar_php['cannot_add_sidebar'] = 'Sidebar nelze přidat! Váš prohlížeč nepodporuje tuto metodu!'; // cpg1.5 // js-alert
 $lang_sidebar_php['search'] = 'Search'; // cpg1.5
 $lang_sidebar_php['reload'] = 'Reload'; // cpg1.5
 }
@@ -2041,38 +2042,38 @@ $lang_search_new_php['notes'] = <<< EOT
         <li>%s: soubor byl úspěšně přidán</li>
         <li>%s: zdvojení!, tento soubor již existuje</li>
         <li>%s: tento obrázek nelze přidat, skontrolujte konfiguraci případně přístupová práva</li>
-        <li>%s: you need to select an album first</li>
-        <li>%s: the file is broken or inacessible</li>
-        <li>%s: unknown file type</li>
-        <li>%s: the file is actually a GIF image</li>
+        <li>%s: nejprve vyberte album</li>
+        <li>%s: soubor je poškozen nebo nedostupný</li>
+        <li>%s: neznámý souborový typ</li>
+        <li>%s: soubor je actually GIF obrázek repair</li>
         <li>If the icons do not appear click on the broken file to see any error message produced by PHP</li>
-        <li>If your browser timeouts, hit the reload button</li>
+        <li>Pokud vyprší timeout prohlížeče, klikněte na obnovovací tlačítko</li>
     </ul>
 EOT;
 // Translator note: Do not translate the %s placeholders - they are being replaced with icons
 $lang_search_new_php['check_all'] = 'Označ Vše';
 $lang_search_new_php['uncheck_all'] = 'Odznač Vše';
 $lang_search_new_php['no_folders'] = 'There are no folders inside the "albums" folder yet. Make sure to create at least one custom folder within "albums" folder and ftp-upload your files there. You mustn\'t upload to the "userpics" nor "edit" folders, they are reserved for http uploads and internal purposes.'; //repair
-$lang_search_new_php['browse_batch_add'] = 'Browsable interface'; // cpg1.5 repair
+$lang_search_new_php['browse_batch_add'] = 'Procházející rozhrají'; // cpg1.5
 $lang_search_new_php['display_thumbs_batch_add'] = 'Display preview thumbnails'; // cpg1.5 repair
 $lang_search_new_php['edit_pics'] = 'Editovat soubory';
 $lang_search_new_php['edit_properties'] = 'Vlastnosti alba';
 $lang_search_new_php['view_thumbs'] = 'Zobraz náhledy';
-$lang_search_new_php['add_more_folder'] = 'Batch-add more files from the folder %s'; // cpg1.5 repair
+$lang_search_new_php['add_more_folder'] = 'Batch-add více souborů ze složky %s'; // cpg1.5 repair
 }
 
 // ------------------------------------------------------------------------- //
-//File send_activation.php reapir all
+//File send_activation.php
 // ------------------------------------------------------------------------- //
 if (defined('SEND_ACTIVATION_PHP')) {
-$lang_send_activation_php['err_already_logged_in'] = 'You are already logged in!'; // cpg1.5
-$lang_send_activation_php['activation_not_required'] = 'This website does not require activation by email'; // cpg1.5
-$lang_send_activation_php['err_unk_user'] = 'Selected user does not exist!'; // cpg1.5
-$lang_send_activation_php['resend_act_link'] = 'Resend activation link'; // cpg1.5
-$lang_send_activation_php['enter_email'] = 'Enter your email address'; // cpg1.5
+$lang_send_activation_php['err_already_logged_in'] = 'Jste již přihlášen!'; // cpg1.5
+$lang_send_activation_php['activation_not_required'] = 'This website does not require activation by email'; // cpg1.5 repair
+$lang_send_activation_php['err_unk_user'] = 'Vybraný uživatel neexistuje!'; // cpg1.5 
+$lang_send_activation_php['resend_act_link'] = 'Přeposlat aktivační odkaz'; // cpg1.5 
+$lang_send_activation_php['enter_email'] = 'Vložte Vaši emailovou adresu'; // cpg1.5 
 $lang_send_activation_php['submit'] = 'Potvrdit'; // cpg1.5
-$lang_send_activation_php['failed_sending_email'] = 'Failed to send email with activation link'; // cpg1.5
-$lang_send_activation_php['activation_email_sent'] = 'An email with activation link sent to %s. Please check your email to complete the process'; // cpg1.5
+$lang_send_activation_php['failed_sending_email'] = 'Chyba při zasílání emailu s aktivačním odkazem'; // cpg1.5 
+$lang_send_activation_php['activation_email_sent'] = 'An email with activation link sent to %s. Please check your email to complete the process'; // cpg1.5 repair
 }
 
 // ------------------------------------------------------------------------- //
@@ -2122,7 +2123,7 @@ $lang_stat_details_php['upd_success'] = 'Coppermine konfugurace byla aktualizov�
 $lang_stat_details_php['votes'] = 'hlasy'; // cpg1.5
 $lang_stat_details_php['reset_votes_individual'] = 'Smazat vybraný(é) hlas(y)'; // cpg1.5
 $lang_stat_details_php['reset_votes_individual_confirm'] = 'Are you sure that you want to delete the selected votes? This cannot be undone!'; // cpg1.5 repair
-$lang_stat_details_php['back_to_intermediate'] = 'Back to intermediate file view'; // cpg1.5 repair
+$lang_stat_details_php['back_to_intermediate'] = 'Zpět na zobrazení středních souborů'; // cpg1.5
 $lang_stat_details_php['records_on_page'] = '%s záznamů na %s stránce(kách)'; // cpg1.5 
 $lang_stat_details_php['guest'] = 'Návštěvník'; // cpg1.5
 $lang_stat_details_php['not_implemented'] = 'not implemented yet'; // cpg1.5 repair
@@ -2134,10 +2135,10 @@ $lang_stat_details_php['not_implemented'] = 'not implemented yet'; // cpg1.5 rep
 
 if (defined('UPLOAD_PHP')) {
 $lang_upload_php['title'] = 'Náhraní souboru(ů)';
-$lang_upload_php['restrictions'] = 'Restrictions'; // cpg1.5 repair
+$lang_upload_php['restrictions'] = 'Omezení'; // cpg1.5
 $lang_upload_php['choose_method'] = 'Zvol metodu nahrávání'; // cpg1.5
-$lang_upload_php['upload_swf']    = 'Multiple files - Flash-driven (recommended)'; // cpg1.5 repair
-$lang_upload_php['upload_single'] = 'simple - one file at a time'; // cpg1.5 repair
+$lang_upload_php['upload_swf']    = 'rozšířená - více souborů, Flash-driven (doporučeno)'; // cpg1.5
+$lang_upload_php['upload_single'] = 'jednoduchá - po jednom souboru'; // cpg1.5
 $lang_upload_php['up_instr_1'] = 'Select an album from the album dropdown list'; //repair
 $lang_upload_php['up_instr_2'] = 'Click the "Browse" button below and navigate to the file you want to upload. You can select multiple files in a single go using Ctrl+Click.'; //repair
 $lang_upload_php['up_instr_3'] = 'Select more files to upload by repeating step 2'; //repair
@@ -2152,7 +2153,7 @@ $lang_upload_php['no_post'] = 'File not uploaded by POST.';  //repair
 $lang_upload_php['forb_ext'] = 'Forbidden file extension.'; //repair
 $lang_upload_php['exc_php_ini'] = 'Překročena velikost souboru povolená v php.ini.'; 
 $lang_upload_php['exc_file_size'] = 'Exceeded filesize permitted by CPG.'; //repair
-$lang_upload_php['partial_upload'] = 'Pouze částečný upload.'; //repair
+$lang_upload_php['partial_upload'] = 'Pouze částečný upload.'; 
 $lang_upload_php['no_upload'] = 'No upload occurred.'; //repair
 $lang_upload_php['unknown_code'] = 'Unknown PHP upload error code.'; //repair
 $lang_upload_php['impossible'] = 'Impossible to move.'; //repair
@@ -2168,7 +2169,7 @@ $lang_upload_php['description'] = 'Popisek';
 $lang_upload_php['keywords_sel'] = 'Vybrat klíčová slova';
 $lang_upload_php['err_no_alb_uploadables'] = 'Sorry there is no album where you are allowed to upload files'; //repair
 $lang_upload_php['close'] = 'Close'; //repair
-$lang_upload_php['no_keywords'] = 'Sorry, no keywords available!'; //repair
+$lang_upload_php['no_keywords'] = 'Sorry, nejsou dostupná klíčová slova!'; 
 $lang_upload_php['regenerate_dictionary'] = 'Obnovit slovník'; 
 $lang_upload_php['allowed_types'] = 'You are allowed to upload files with the following extensions:'; // cpg1.5 repair
 $lang_upload_php['allowed_img_types'] = 'Image extensions: %s'; // cpg1.5 repair
@@ -2181,21 +2182,21 @@ $lang_upload_php['xp_publish_promote'] = 'If you are running Windows XP/Vista, y
 $lang_upload_php['err_js_disabled'] = 'Flash upload interface could not load. You must have JavaScript enabled to enjoy the flash upload interface.'; // cpg1.5 repair
 $lang_upload_php['err_flash_disabled'] = 'Upload interface is taking a long time to load or the load has failed. Please make sure that the Flash Plugin is enabled and that a working version of the Flash Player is installed.'; // cpg1.5 repair
 $lang_upload_php['err_alternate_method'] = 'Alternately you can use the <a href="upload.php?single=1">single</a> file upload interface.'; // cpg1.5 repair
-$lang_upload_php['err_flash_version'] = 'Upload interface could not load. You may need to install or upgrade Flash Player. Visit the <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> to get the Flash Player.'; // cpg1.5 repair
-$lang_upload_php['flash_loading'] = 'Upload interface is loading. Please wait a moment...'; // cpg1.5 repair Nahrávací rozhraní se připravuje. Prosím počkejte chvíli ...
+$lang_upload_php['err_flash_version'] = 'Nahrávací rozhraní se nebylo načteno. Potřebujete nainstalovat nebo vylepšit(upgrade) Flash Player. Navštivte <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> pro získáníFlash Playeru.'; // cpg1.5
+$lang_upload_php['flash_loading'] = 'Nahrávací rozhraní se připravuje. Prosím počkejte chvíli ...'; // cpg1.5
 
-$lang_upload_swf_php['browse'] = 'Browse...'; //cpg1.5 repair ALL
-$lang_upload_swf_php['cancel_all'] = 'Cancel all uploads'; //cpg1.5 
-$lang_upload_swf_php['upload_queue'] = 'Upload Queue'; //cpg1.5 
+$lang_upload_swf_php['browse'] = 'Procházet...'; //cpg1.5 repair ALL
+$lang_upload_swf_php['cancel_all'] = 'Zrušit všechny uploady'; //cpg1.5 
+$lang_upload_swf_php['upload_queue'] = 'Fronta nahrávání'; //cpg1.5 
 $lang_upload_swf_php['files_uploaded'] = 'soubor(ů) nahrán(o)'; //cpg1.5 
-$lang_upload_swf_php['all_files'] = 'All Files'; //cpg1.5 
+$lang_upload_swf_php['all_files'] = 'Všechny soubory'; //cpg1.5 
 $lang_upload_swf_php['status_pending'] = 'Pending...'; //cpg1.5 
 $lang_upload_swf_php['status_uploading'] = 'Uploading...'; //cpg1.5 
 $lang_upload_swf_php['status_complete'] = 'Complete.'; //cpg1.5 
 $lang_upload_swf_php['status_cancelled'] = 'Cancelled.'; //cpg1.5
 $lang_upload_swf_php['status_stopped'] = 'Stopped.'; //cpg1.5
 $lang_upload_swf_php['status_failed'] = 'Upload Failed.'; //cpg1.5
-$lang_upload_swf_php['status_too_big'] = 'File is too big.'; //cpg1.5
+$lang_upload_swf_php['status_too_big'] = 'Soubor je příliž velký.'; //cpg1.5
 $lang_upload_swf_php['status_zero_byte'] = 'Cannot upload Zero Byte files.'; //cpg1.5
 $lang_upload_swf_php['status_invalid_type'] = 'Invalid File Type.'; //cpg1.5
 $lang_upload_swf_php['status_unhandled'] = 'Unhandled Error'; //cpg1.5
@@ -2228,18 +2229,18 @@ $lang_usermgr_php['disku_d'] = 'Využití disku sestupně';
 $lang_usermgr_php['lv_a'] = 'Poslední návštěva vzestupně';
 $lang_usermgr_php['lv_d'] = 'Poslední návštěva sestupně';
 $lang_usermgr_php['sort_by'] = 'Řadit uživatele podle';
-$lang_usermgr_php['err_no_users'] = 'User table is empty!'; //repair
+$lang_usermgr_php['err_no_users'] = 'Uživatelská tabulka je prázdná!'; 
 $lang_usermgr_php['err_edit_self'] = 'You can\'t edit your own profile, use the \'My profile\' link for that'; //repair
-$lang_usermgr_php['with_selected'] = 'With selected:'; //repair
+$lang_usermgr_php['with_selected'] = 'S vybranými:'; //repair
 $lang_usermgr_php['delete_files_no'] = 'keep public files (but anonymize)'; //repair
 $lang_usermgr_php['delete_files_yes'] = 'delete public files as well'; //repair
 $lang_usermgr_php['delete_comments_no'] = 'keep comments (but anonymize)'; //repair
 $lang_usermgr_php['delete_comments_yes'] = 'delete comments as well'; //repair
-$lang_usermgr_php['activate'] = 'Activate'; //repair
-$lang_usermgr_php['deactivate'] = 'Deactivate'; //repair
-$lang_usermgr_php['reset_password'] = 'Reset Password'; //repair
-$lang_usermgr_php['change_primary_membergroup'] = 'Change primary membergroup'; //repair
-$lang_usermgr_php['add_secondary_membergroup'] = 'Add secondary membergroup'; //repair
+$lang_usermgr_php['activate'] = 'Aktivovat'; 
+$lang_usermgr_php['deactivate'] = 'Deaktivovat'; 
+$lang_usermgr_php['reset_password'] = 'Nulovat heslo'; 
+$lang_usermgr_php['change_primary_membergroup'] = 'Změnit primární skupinu'; 
+$lang_usermgr_php['add_secondary_membergroup'] = 'Přidat sekundární skupinu'; 
 $lang_usermgr_php['name'] = 'Jméno'; 
 $lang_usermgr_php['group'] = 'Skupina';
 $lang_usermgr_php['inactive'] = 'Inactive'; //repair
@@ -2250,9 +2251,9 @@ $lang_usermgr_php['disk_space_quota'] = 'Kvóta'; // cpg1.5
 $lang_usermgr_php['registered_on'] = 'Registrováno';
 $lang_usermgr_php['last_visit'] = 'Poslední návštěva';
 $lang_usermgr_php['u_user_on_p_pages'] = 'Uživatelů: %d na %d stránce(kách)';
-$lang_usermgr_php['confirm_del'] = 'Jste si jist(a), že chcete VYMAZAT tohoto uživatele?\\nAll his/her files and albums will also be deleted.'; // js-alert //repair
+$lang_usermgr_php['confirm_del'] = 'Jste si jist(a), že chcete VYMAZAT tohoto uživatele?\\nVšechny její/jeho soubory a alba budou vymazány.'; // js-alert 
 $lang_usermgr_php['mail'] = 'MAIL';
-$lang_usermgr_php['err_unknown_user'] = 'Selected user does not exist!'; //repair
+$lang_usermgr_php['err_unknown_user'] = 'Vybraný uživatel neexistuje!'; 
 $lang_usermgr_php['modify_user'] = 'Změnit uživatele';
 $lang_usermgr_php['notes'] = 'Poznámky'; 
 $lang_usermgr_php['note_list'] = 'If you don\'t want to change the current password, leave the "password" field blank'; //repair
@@ -2271,10 +2272,10 @@ $lang_usermgr_php['user_profile3'] = '$user_profile3'; //don't change
 $lang_usermgr_php['user_profile4'] = '$user_profile4'; //don't change
 $lang_usermgr_php['user_profile5'] = '$user_profile5'; //don't change
 $lang_usermgr_php['user_profile6'] = '$user_profile6'; //don't change
-$lang_usermgr_php['latest_upload'] = 'Recent uploads'; //repair
-$lang_usermgr_php['no_latest_upload'] = 'Has not uploaded any files'; // cpg1.5 repair
+$lang_usermgr_php['latest_upload'] = 'Poslední uploady'; 
+$lang_usermgr_php['no_latest_upload'] = 'Has not uploaded any files'; // cpg1.5 repair Nemá uploadované žádné soubory
 $lang_usermgr_php['last_comments'] = 'Poslední komentáře'; // cpg1.5
-$lang_usermgr_php['no_last_comments'] = 'Has not made any comments'; // cpg1.5 repair
+$lang_usermgr_php['no_last_comments'] = 'Has not made any comments'; // cpg1.5 repair Nemá vytvořené žádné komentáře
 $lang_usermgr_php['comments'] = 'Komentáře'; // cpg1.5 
 $lang_usermgr_php['never'] = 'nikdy';
 $lang_usermgr_php['search'] = 'User search'; //repair
@@ -2282,13 +2283,13 @@ $lang_usermgr_php['submit'] = 'Potvrdit';
 $lang_usermgr_php['search_submit'] = 'Potvrdit!';
 $lang_usermgr_php['search_result'] = 'Search results for: '; //repair Výsledky hledání:
 $lang_usermgr_php['alert_no_selection'] = 'You have to select at least one user first!'; // repair js-alert
-$lang_usermgr_php['select_group'] = 'Select group'; //repair
+$lang_usermgr_php['select_group'] = 'Vybrat skupinu'; 
 $lang_usermgr_php['groups_alb_access'] = 'Album permissions by group'; //repair
 $lang_usermgr_php['category'] = 'Kategorie';
-$lang_usermgr_php['modify'] = 'Modify?'; //repair
+$lang_usermgr_php['modify'] = 'Změnit?'; 
 $lang_usermgr_php['group_no_access'] = 'Tato skupina nemá speciální přístup'; 
-$lang_usermgr_php['notice'] = 'Notice'; //repair a co je note? 
-$lang_usermgr_php['group_can_access'] = 'Album(s) that only "%s" can access'; //repair
+$lang_usermgr_php['notice'] = 'Notice'; //repair  
+$lang_usermgr_php['group_can_access'] = 'Album(a) that only "%s" can access'; //repair
 $lang_usermgr_php['send_login_data'] = 'Send login data to this user (Password will be sent via email)'; // cpg1.5 repair
 $lang_usermgr_php['send_login_email_subject'] = 'Your new account information'; // cpg1.5 repair
 $lang_usermgr_php['failed_sending_email'] = 'The login data email can\'t be sent!'; // cpg1.5 repair
@@ -2318,7 +2319,7 @@ EOT;
 // ------------------------------------------------------------------------- //
 if (defined('UPDATE_PHP')) {
 $lang_update_php['title'] = 'Updater'; // cpg1.5
-$lang_update_php['welcome_updater'] = 'Welcome to Coppermine update'; // cpg1.5
+$lang_update_php['welcome_updater'] = 'Vítejte v Coppermine updatu'; // cpg1.5
 $lang_update_php['could_not_authenticate'] = 'Could not authenticate you'; // cpg1.5
 $lang_update_php['provide_admin_account'] = 'Please provide your coppermine admin account details or your MySQL account data'; // cpg1.5
 $lang_update_php['try_again'] = 'Try again'; // cpg1.5
@@ -2335,13 +2336,13 @@ $lang_update_php['category_tree'] = 'Category tree'; // cpg1.5
 $lang_update_php['authentication_needed'] = 'Authentication needed'; // cpg1.5
 $lang_update_php['username'] = 'Username'; // cpg1.5
 $lang_update_php['password'] = 'Password'; // cpg1.5
-$lang_update_php['update_completed'] = 'Update completed'; // cpg1.5
+$lang_update_php['update_completed'] = 'Update dokončen'; // cpg1.5
 $lang_update_php['check_versions'] = 'It\'s recommended to %scheck your file versions%s if you just upgraded from an older version of Coppermine'; // cpg1.5 // Leave the %s untouched when translating - it wraps the link
 $lang_update_php['start_page'] = 'If you didn\'t (or you don\'t want to check), you can go to %syour gallery\'s start page%s'; // cpg1.5 // Leave the %s untouched when translating - it wraps the link
 $lang_update_php['errors_encountered'] = 'The following errors were encountered and need to be corrected first'; // cpg1.5
-$lang_update_php['delete_file'] = 'Delete %s'; // cpg1.5
+$lang_update_php['delete_file'] = 'Smazáno %s'; // cpg1.5
 $lang_update_php['could_not_delete'] = 'Could not delete due to missing permissions. Delete the file manually!'; // cpg1.5
-$lang_update_php['rename_file'] = 'Rename %s to %s'; // cpg1.5
+$lang_update_php['rename_file'] = 'Přejmenováno %s na %s'; // cpg1.5
 $lang_update_php['could_not_rename'] = 'Could not rename due to missing permissions. Rename the file manually!'; // cpg1.5
 }
 
@@ -2456,25 +2457,25 @@ $lang_util_php['keyword_explanation'] = 'This will convert the keyword separator
 // ------------------------------------------------------------------------- //
 if (defined('VERSIONCHECK_PHP')) {
 $lang_versioncheck_php['title'] = 'Versioncheck';
-$lang_versioncheck_php['versioncheck_output'] = 'Versioncheck output';
-$lang_versioncheck_php['file'] = 'file';
-$lang_versioncheck_php['folder'] = 'folder';
-$lang_versioncheck_php['outdated'] = 'older than %s';
-$lang_versioncheck_php['newer'] = 'newer than %s';
+$lang_versioncheck_php['versioncheck_output'] = 'Versioncheck výstup';
+$lang_versioncheck_php['file'] = 'soubor';
+$lang_versioncheck_php['folder'] = 'složka';
+$lang_versioncheck_php['outdated'] = 'starší než %s';
+$lang_versioncheck_php['newer'] = 'novější než %s';
 $lang_versioncheck_php['modified'] = 'modified';
 $lang_versioncheck_php['not_modified'] = 'unmodified'; // cpg1.5
 $lang_versioncheck_php['needs_change'] = 'needs change';
 $lang_versioncheck_php['review_permissions'] = 'Review Permissions';
 $lang_versioncheck_php['inaccessible'] = 'File is inaccessible';
-$lang_versioncheck_php['review_version'] = 'Your file is outdated';
-$lang_versioncheck_php['review_dev_version'] = 'Your file is newer than anticipated';
+$lang_versioncheck_php['review_version'] = 'Váš soubor je zastaralý';
+$lang_versioncheck_php['review_dev_version'] = 'Váš soubor je novější než předpokládaný';
 $lang_versioncheck_php['review_modified'] = 'File may be corrupt (or you have deliberately edited it)';
-$lang_versioncheck_php['review_missing'] = '%s missing or inaccessible';
-$lang_versioncheck_php['existing'] = 'existing';
+$lang_versioncheck_php['review_missing'] = '%s chybí nebo nedostupný';
+$lang_versioncheck_php['existing'] = 'existuje';
 $lang_versioncheck_php['review_removed_existing'] = 'The file must be removed for security reasons';
 $lang_versioncheck_php['counter'] = 'Counter';
-$lang_versioncheck_php['type'] = 'Type';
-$lang_versioncheck_php['path'] = 'Path';
+$lang_versioncheck_php['type'] = 'Typ';
+$lang_versioncheck_php['path'] = 'Cesta';
 $lang_versioncheck_php['missing'] = 'Missing';
 $lang_versioncheck_php['permissions'] = 'Permissions';
 $lang_versioncheck_php['version'] = 'Version';
