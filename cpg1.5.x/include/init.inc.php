@@ -16,7 +16,7 @@
 **********************************************/
 
 define('COPPERMINE_VERSION', '1.5.4');
-define('COPPERMINE_VERSION_STATUS', 'Stable');
+define('COPPERMINE_VERSION_STATUS', 'stable');
 
 if (!defined('IN_COPPERMINE')) {
     die('Not in Coppermine...');
