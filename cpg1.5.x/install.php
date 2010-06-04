@@ -1757,7 +1757,9 @@ function populateMysqlDb()
 
     // Set configuration values for image package
     $sql_query .= "REPLACE INTO CPG_config VALUES ('thumb_method', '{$config['thumb_method']}');\n";
-    $sql_query .= "REPLACE INTO CPG_config VALUES ('impath', '{$config['im_path']}');\n";
+    if ($config['im_path']) {
+        $sql_query .= "REPLACE INTO CPG_config VALUES ('impath', '{$config['im_path']}');\n";
+    }
     $sql_query .= "REPLACE INTO CPG_config VALUES ('ecards_more_pic_target', '$gallery_url_prefix');\n";
 
     // Enable silly_safe_mode if test has shown it is not configured properly
