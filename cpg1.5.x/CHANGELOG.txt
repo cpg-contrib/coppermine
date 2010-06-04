@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-04 [A] Differentiate user registrations and admin user creations in access log file (thread ID 65298) {eenemeenemuu}
 2010-06-04 [M] Release of cpg1.5.6 {GauGau}
 2010-06-04 [M] Removed cpg1.3.x theme upgrade guide, as a direct upgrade from cpg1.3.x to cpg1.5.x no longer is supported {GauGau}
 2010-06-03 [B] Fixed log file entry on user registration/creation (thread ID 65290) {eenemeenemuu}

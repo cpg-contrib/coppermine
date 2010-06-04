@@ -965,11 +965,6 @@ function update_user($user_id)
     global $CONFIG;
     global $lang_usermgr_php, $lang_register_php, $icon_array;
 
-    if ($user_id == 'new_user') {
-        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERS']} (user_regdate) VALUES (NOW())");
-        $user_id = mysql_insert_id();
-    }
-
     $superCage = Inspekt::makeSuperCage();
 
     $user_name = $superCage->post->getEscaped('user_name');
@@ -984,6 +979,12 @@ function update_user($user_id)
     $user_active = $superCage->post->getAlpha('user_active');
     $user_group = $superCage->post->getInt('user_group');
     $group_list = $superCage->post->keyExists('group_list') ? $superCage->post->getInt('group_list') : '';
+
+    if ($user_id == 'new_user') {
+        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERS']} (user_regdate) VALUES (NOW())");
+        $user_id = mysql_insert_id();
+        log_write('New user "'.$user_name.'" created', CPG_ACCESS_LOG);
+    }
 
     $sql = "SELECT user_id FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '$user_name' AND user_id != $user_id";
     $result = cpg_db_query($sql);
