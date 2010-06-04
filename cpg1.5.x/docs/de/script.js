@@ -124,12 +124,11 @@ doc_toc += '              <li><a href="credits.htm#translators_documentation" cl
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="credits.htm#codebase" class="de">Verwendeter Open Source Code</a></li>\n';
-doc_toc += '          <li><a href="credits.htm#acknowledgements" class="en">Danksagungen</a></li>\n';
+doc_toc += '          <li><a href="credits.htm#acknowledgements" class="en">Danksagungen</a>\n';
 doc_toc += '            <ul>\n';
 doc_toc += '              <li><a href="credits.htm#acknowledgements_thanks" class="en">Many Thanks</a></li>\n';
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
-doc_toc += '        </ul>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="copyrights.htm" class="us_de">Lizenz und Copyright</a>\n';
@@ -263,14 +262,6 @@ doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#style" class="en"
 doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#template" class="en">Bearbeite template.html</a></li>\n';
 doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme" class="en">Bearbeite theme.php</a></li>\n';
 doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#validation" class="en">Validierung</a></li>\n';
-doc_toc += '          </ul>\n';
-doc_toc += '        </li>\n';
-doc_toc += '        <li><a href="theme_upgrade_13x-14x.htm" class="en">Konvertierung von cpg1.3.x-Themes auf cpg1.4.x</a>\n';
-doc_toc += '          <ul>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#style" class="en">Edit style.css</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#template" class="en">Edit template.html</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#theme" class="en">Edit theme.php</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#validation" class="en">Validation Methodology</a></li>\n';
 doc_toc += '          </ul>\n';
 doc_toc += '        </li>\n';
 doc_toc += '      </ul>\n';

@@ -1334,14 +1334,6 @@
     <hash>c8e2f4ad5d2cd96a3ff1791c2826774f</hash>
   </element>
   <element>
-    <fullpath>docs/de/theme_upgrade_13x-14x.htm</fullpath>
-    <version>1.5.4</version>
-    <revision>7577</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>90252e505565a81b8da840b352f3e63a</hash>
-  </element>
-  <element>
     <fullpath>docs/de/theme_upgrade_14x-15x.htm</fullpath>
     <version>1.5.4</version>
     <revision>7605</revision>
@@ -2176,14 +2168,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>2161cb78ef78d5b57616b780e21577b5</hash>
-  </element>
-  <element>
-    <fullpath>docs/en/theme_upgrade_13x-14x.htm</fullpath>
-    <version>1.5.4</version>
-    <revision>7577</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>0a37d6de8c41c337ccfd8f4a20e6852d</hash>
   </element>
   <element>
     <fullpath>docs/en/theme_upgrade_14x-15x.htm</fullpath>
@@ -3122,14 +3106,6 @@
     <hash>7a183253c742b2fd7e21a77212a5c4b6</hash>
   </element>
   <element>
-    <fullpath>docs/es/theme_upgrade_13x-14x.htm</fullpath>
-    <version>1.5.4</version>
-    <revision>7577</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>5f3e79ef993356030d76306a02615770</hash>
-  </element>
-  <element>
     <fullpath>docs/es/theme_upgrade_14x-15x.htm</fullpath>
     <version>1.5.4</version>
     <revision>7605</revision>
@@ -3992,14 +3968,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>6e56a8266660ab64fb14d0b22c926c0b</hash>
-  </element>
-  <element>
-    <fullpath>docs/fr/theme_upgrade_13x-14x.htm</fullpath>
-    <version>1.5.4</version>
-    <revision>7577</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>da7d6c8b184a86c5146179fcd8f7e75e</hash>
   </element>
   <element>
     <fullpath>docs/fr/theme_upgrade_14x-15x.htm</fullpath>
@@ -4986,14 +4954,6 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>a25fdf8ea421cde3bb594b94a8baf626</hash>
-  </element>
-  <element>
-    <fullpath>docs/nl/theme_upgrade_13x-14x.htm</fullpath>
-    <version>1.5.4</version>
-    <revision>7577</revision>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>4f2162c002d4cff96fe19a50ceb71e82</hash>
   </element>
   <element>
     <fullpath>docs/nl/theme_upgrade_14x-15x.htm</fullpath>

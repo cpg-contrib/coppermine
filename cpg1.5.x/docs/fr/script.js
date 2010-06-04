@@ -161,7 +161,6 @@ doc_toc += '              <li><a href="credits.htm#acknowledgements_thanks" clas
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '        </ul>\n';
-doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="copyrights.htm">Licence &amp; Copyright</a>\n';
 doc_toc += '        <ul>\n';
@@ -343,14 +342,6 @@ doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#style">Modifier s
 doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#template">Modifier template.html</a></li>\n';
 doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme">Modifier theme.php</a></li>\n';
 doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#validation">Méthode de validation</a></li>\n';
-doc_toc += '          </ul>\n';
-doc_toc += '        </li>\n';
-doc_toc += '        <li><a href="theme_upgrade_13x-14x.htm">Convertir un thème cpg1.3.x pour cpg1.4.x</a>\n';
-doc_toc += '          <ul>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#style">Modifier style.css</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#template">Modifier template.html</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#theme">Modifier theme.php</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#validation">Méthode de validation</a></li>\n';
 doc_toc += '          </ul>\n';
 doc_toc += '        </li>\n';
 doc_toc += '      </ul>\n';

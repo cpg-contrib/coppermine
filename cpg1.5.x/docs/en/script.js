@@ -344,14 +344,6 @@ doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme">Edit theme
 doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#validation">Validation Methodology</a></li>\n';
 doc_toc += '          </ul>\n';
 doc_toc += '        </li>\n';
-doc_toc += '        <li><a href="theme_upgrade_13x-14x.htm">Converting cpg1.3.x themes to cpg1.4.x</a>\n';
-doc_toc += '          <ul>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#style">Edit style.css</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#template">Edit template.html</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#theme">Edit theme.php</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#validation">Validation Methodology</a></li>\n';
-doc_toc += '          </ul>\n';
-doc_toc += '        </li>\n';
 doc_toc += '      </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="theme.htm#theme_files">Content of a theme</a>\n';

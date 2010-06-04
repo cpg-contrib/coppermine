@@ -161,7 +161,6 @@ doc_toc += '              <li><a href="credits.htm#acknowledgements_thanks" clas
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '        </ul>\n';
-doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="copyrights.htm" class="en">Licentie &amp; Copyright</a>\n';
 doc_toc += '        <ul>\n';
@@ -306,14 +305,6 @@ doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#style" class="en"
 doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#template" class="en">Edit template.html</a></li>\n';
 doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme" class="en">Edit theme.php</a></li>\n';
 doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#validation" class="en">Validatie Methodologie</a></li>\n';
-doc_toc += '          </ul>\n';
-doc_toc += '        </li>\n';
-doc_toc += '        <li><a href="theme_upgrade_13x-14x.htm" class="en">Converteren van cpg1.3.x thema\'s naar cpg1.4.x</a>\n';
-doc_toc += '          <ul>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#style" class="en">Edit style.css</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#template" class="en">Edit template.html</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#theme" class="en">Edit theme.php</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_13x-14x.htm#validation" class="en">Validatie Methodologie</a></li>\n';
 doc_toc += '          </ul>\n';
 doc_toc += '        </li>\n';
 doc_toc += '      </ul>\n';
