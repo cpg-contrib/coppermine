@@ -83,10 +83,10 @@
   <element>
     <fullpath>CHANGELOG.txt</fullpath>
     <version>1.5.6</version>
-    <revision>7627</revision>
+    <revision>7628</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>f5c5e28beda2be016e02c0234814aa4b</hash>
+    <hash>107a2a011cd3b5434c34e5f20ed71afc</hash>
   </element>
   <element>
     <fullpath>config.php</fullpath>
