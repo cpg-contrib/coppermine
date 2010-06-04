@@ -24,6 +24,7 @@ Changelog
 *********************************************
 
 2010-06-04 [M] Release of cpg1.5.6 {GauGau}
+2010-06-04 [B] Fixed query for album moderation group (thread ID 65312) {eenemeenemuu}
 2010-06-04 [B] Fixed config value for path to ImageMagick when selecting GD during intallation (thread ID 65177) {eenemeenemuu}
 2010-06-04 [A] Differentiate user registrations and admin user creations in access log file (thread ID 65298) {eenemeenemuu}
 2010-06-04 [M] Removed cpg1.3.x theme upgrade guide, as a direct upgrade from cpg1.3.x to cpg1.5.x no longer is supported {GauGau}

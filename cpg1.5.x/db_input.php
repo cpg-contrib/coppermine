@@ -418,12 +418,15 @@ case 'album_update':
         cpg_die(ERROR, $lang_db_input_php['alb_need_title'], __FILE__, __LINE__);
     }
 
+    $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title = '$title', description = '$description', category = $category, thumb = $thumb, comments = '$comments', votes = '$votes', visibility = $visibility, alb_password = '$password', alb_password_hint = '$password_hint', keyword = '$keyword'";
     if (GALLERY_ADMIN_MODE) {
+        /* TODO: re-enable and test feature when it's clear how it should work (see http://forum.coppermine-gallery.net/index.php/topic,64408.0.html)
         $moderator_group = $superCage->post->getInt('moderator_group');
-        $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title = '$title', description = '$description', category = $category, thumb = $thumb, uploads = '$uploads', comments = '$comments', votes = '$votes', visibility = $visibility, alb_password = '$password', alb_password_hint = '$password_hint', keyword = '$keyword', moderator_group = '$moderator_group' WHERE aid = $aid";
-    } else {
-        $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title = '$title', description = '$description', category = $category, thumb = $thumb, comments = '$comments', votes = '$votes', visibility = $visibility, alb_password = '$password', alb_password_hint = '$password_hint', keyword = '$keyword' WHERE aid = $aid";
+        $query .= ", moderator_group = '$moderator_group'";
+        */
+        $query .= ", uploads = '$uploads'";
     }
+    $query .= " WHERE aid = $aid";
 
     cpg_db_query($query);
 
