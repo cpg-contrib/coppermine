@@ -62,14 +62,6 @@ $template_sys_menu = <<< EOT
                                         </td>
                                         <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /></td>
 <!-- END allow_memberlist -->
-<!-- BEGIN upload_approval -->
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
-                                        <td><img name="buttonleft" src="themes/hardwired/images/buttonleftmemb.gif" width="17" height="25" border="0" alt="" /></td>
-                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
-                                                <a href="{UPL_APP_TGT}" title="{UPL_APP_TITLE}">{UPL_APP_LNK}</a>
-                                        </td>
-                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /></td>
-<!-- END upload_approval -->
 <!-- BEGIN my_profile -->
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
                                         <td><img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" alt="" /></td>

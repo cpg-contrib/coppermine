@@ -72,11 +72,6 @@ $template_sys_menu = <<<EOT
                                         <a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}"><span>{MEMBERLIST_ICO}{MEMBERLIST_LNK}</span></a>
                                     </li>
                     <!-- END allow_memberlist -->
-                    <!-- BEGIN upload_approval -->
-                                    <li>
-                                        <a href="{UPL_APP_TGT}" title="{UPL_APP_TITLE}"><span>{UPL_APP_ICO}{UPL_APP_LNK}</span></a>
-                                    </li>
-                    <!-- END upload_approval -->
                     <!-- BEGIN enter_admin_mode -->
                                     <li>
                                     <a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}"><span>{ADM_MODE_ICO}{ADM_MODE_LNK}</span></a>
