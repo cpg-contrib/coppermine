@@ -70,7 +70,7 @@ $lang_errors['invalid_form_token'] = 'Kelvollista lomaketunnusta ei löydetty.';
 $lang_errors['perm_denied'] = 'Ei oikeuksia kyseisen toiminnon suorittamiseen.';
 $lang_errors['param_missing'] = 'Skriptiä kutsuttu ilman vaadittavia parametrejä.';
 $lang_errors['non_exist_ap'] = 'Valittua albumia/kuvaa ei löydy!';
-$lang_errors['quota_exceeded'] = 'Levytila ylitetty.'; //cpg1.5
+$lang_errors['quota_exceeded'] = 'Sallittu levytila ylitetty.'; //cpg1.5
 $lang_errors['quota_exceeded_details'] = 'Sinulla on levytilaa [quota]k, tiedostosi käyttävät tällä hetkellä [space]k, jolloin tiedoston lisääminen ylittäisi sinulle sallitun levytilan.'; //cpg1.5
 $lang_errors['gd_file_type_err'] = 'Kun käytät GD -kirjastoa, sallitut tiedostomuodot ovat JPEG ja PNG.';
 $lang_errors['invalid_image'] = 'Kuvasi on korruptoitunut tai sitä ei voi käsitellä GD -kirjastolla.';
@@ -86,7 +86,7 @@ $lang_errors['ecards_empty'] = 'Tällä hetkellä ei ole e-kortteja.';
 $lang_errors['database_query'] = 'Tietokantakyselyn käsittely epäonnistui.';
 $lang_errors['non_exist_comment'] = 'Valittua kommenttia ei löydy.';
 $lang_errors['captcha_error'] = 'Vahvistuskoodi ei täsmää.'; // cpg1.5
-$lang_errors['login_needed'] = 'Sinun tulee %srekisteröytyä%s tai %skirjautua sisään%s päästäksesi tälle sivulle.'; // cpg1.5
+$lang_errors['login_needed'] = 'Sinun tulee %srekisteröityä%s tai %skirjautua sisään%s päästäksesi tälle sivulle.'; // cpg1.5
 $lang_errors['error'] = 'Virhe'; // cpg1.5
 $lang_errors['critical_error'] = 'Kriittinen virhe'; // cpg1.5
 $lang_errors['access_thumbnail_only'] = 'Sinulla on oikeus nähdä ainoastaan pienoiskuvia.'; // cpg1.5
@@ -107,7 +107,7 @@ $lang_common['error'] = 'Virhe'; // cpg1.5
 $lang_common['check_uncheck_all'] = 'valitse kaikki/poista valinta kaikista'; // cpg1.5
 $lang_common['confirm'] = 'Vahvistus'; // cpg1.5
 $lang_common['captcha_help_title'] = 'Visuaalinen vahvistus'; // cpg1.5
-$lang_common['captcha_help'] = 'Roskapostin välttämiseksi sinun tulee vahvistaa, että olet ihminen etkä botti, joka syöttää tekstiä.<br />Kirjainkoolla ei ole väliä, voit käyttää pieniä kirjaimia.'; // cpg1.5
+$lang_common['captcha_help'] = 'Roskapostin välttämiseksi sinun tulee vahvistaa, että olet ihminen etkä botti, joka syöttää tekstiä.<br />Kirjainkoolla ei ole väliä; voit käyttää pieniä kirjaimia.'; // cpg1.5
 $lang_common['title'] = 'Otsikko'; // cpg1.5
 $lang_common['caption'] = 'Kuvateksti'; // cpg1.5
 $lang_common['keywords'] = 'Avainsanat'; // cpg1.5
@@ -208,7 +208,7 @@ $lang_gallery_admin_menu['searchnew_title'] = 'Lisää kerralla tiedostoja suora
 $lang_gallery_admin_menu['searchnew_lnk'] = 'Tiedostojen lisäys';
 $lang_gallery_admin_menu['util_title'] = 'Ylläpitotyökaluihin';
 $lang_gallery_admin_menu['util_lnk'] = 'Ylläpitotyökalut';
-$lang_gallery_admin_menu['key_lnk'] = 'Tagiluetteloon';
+$lang_gallery_admin_menu['key_lnk'] = 'Avainsanojen luettelo';
 $lang_gallery_admin_menu['ban_title'] = 'Bannattujen käyttäjien lista';
 $lang_gallery_admin_menu['ban_lnk'] = 'Bannatut';
 $lang_gallery_admin_menu['db_ecard_title'] = 'Tarkista e-kortit';
@@ -222,19 +222,19 @@ $lang_gallery_admin_menu['phpinfo_title'] = 'Sisältää teknistä tietoa palvel
 $lang_gallery_admin_menu['update_database_lnk'] = 'Päivitä tietokanta'; // cpg1.5
 $lang_gallery_admin_menu['update_database_title'] = 'Päivitä tietokantasi, jos olet korvannut Coppermine -tiedostoja, lisännyt muutoksen tai päivittänyt vanhemmasta Coppermine asennuksesta. Tämä lisää tarvittavat taulut tai arvot Coppermine tietokantaasi.'; // cpg1.5
 $lang_gallery_admin_menu['view_log_files_lnk'] = 'Näytä lokitiedotot'; // cpg1.5
-$lang_gallery_admin_menu['view_log_files_title'] = 'Coppermine voi pitää kirjaa monista käyttäjien toimista. Voit selata kyseistä lokia, jos olet ottanut käyttöön lokituksen Copperminen asetuksista'; // cpg1.5
+$lang_gallery_admin_menu['view_log_files_title'] = 'Coppermine voi pitää kirjaa monista käyttäjien toimista. Voit selata kyseistä lokia, jos olet ottanut käyttöön lokituksen Copperminen asetuksista.'; // cpg1.5
 $lang_gallery_admin_menu['check_versions_lnk'] = 'Tarkista versiot'; // cpg1.5
 $lang_gallery_admin_menu['check_versions_title'] = 'Tarkista tiedostojen versiot tietääksesi, että olet korvannut kaikki tiedostot päivityksen jälkeen tai jos Copperminen lähdetiedostoja on päivitetty julkaisun jälkeen.'; // cpg1.5
 $lang_gallery_admin_menu['bridgemgr_lnk'] = 'Integroinnin hallinta'; // cpg1.5
-$lang_gallery_admin_menu['bridgemgr_title'] = 'Ota käyttöön tai poista käytöstä Copperminen integrointi toisen ohjelman kanssa (kuten foorumisi)'; // cpg1.5
+$lang_gallery_admin_menu['bridgemgr_title'] = 'Ota käyttöön tai poista käytöstä Copperminen integrointi toisen ohjelman kanssa (kuten foorumisi).'; // cpg1.5
 $lang_gallery_admin_menu['pluginmgr_lnk'] = 'Lisäosien hallinta'; // cpg1.5
 $lang_gallery_admin_menu['pluginmgr_title'] = 'Lisäosien hallinta'; // cpg1.5
 $lang_gallery_admin_menu['overall_stats_lnk'] = 'Yleiset tilastot'; // cpg1.5
-$lang_gallery_admin_menu['overall_stats_title'] = 'Näytä tilastoja vierailijan selaimesta ja käyttöjärjestelmästä (jos tarvittavat asetukset ovat päällä)'; // cpg1.5
+$lang_gallery_admin_menu['overall_stats_title'] = 'Näytä tilastoja vierailijan selaimesta ja käyttöjärjestelmästä (jos tarvittavat asetukset ovat päällä).'; // cpg1.5
 $lang_gallery_admin_menu['keywordmgr_lnk'] = 'Avainsanojen hallinta'; // cpg1.5
-$lang_gallery_admin_menu['keywordmgr_title'] = 'Hallitse avainsanoja (jos tarvittava asetus on päällä)'; // cpg1.5
+$lang_gallery_admin_menu['keywordmgr_title'] = 'Hallitse avainsanoja (jos tarvittava asetus on päällä).'; // cpg1.5
 $lang_gallery_admin_menu['exifmgr_lnk'] = 'EXIF-tietojen hallinta'; // cpg1.5
-$lang_gallery_admin_menu['exifmgr_title'] = 'Hallise EXIF-tietojen näyttämistä (jos tarvittava asetus on päällä)'; // cpg1.5
+$lang_gallery_admin_menu['exifmgr_title'] = 'Hallise EXIF-tietojen näyttämistä (jos tarvittava asetus on päällä).'; // cpg1.5
 $lang_gallery_admin_menu['shownews_lnk'] = 'Näytä uutiset'; // cpg1.5
 $lang_gallery_admin_menu['shownews_title'] = 'Näytä uutisia coppermine-gallery.net:istä'; // cpg1.5
 
@@ -252,7 +252,7 @@ $lang_cat_list['pictures'] = 'Tiedostot';
 $lang_album_list['album_on_page'] = '%d albumia %d sivulla';
 
 $lang_thumb_view['date'] = 'Päivämäärä';
-  //Sort by filename and title
+ //Sort by filename and title
 $lang_thumb_view['name'] = 'Tiedostonimi';
 $lang_thumb_view['sort_da'] = 'Järjestä päivämäärän mukaan nousevasti';
 $lang_thumb_view['sort_dd'] = 'Järjestä päivämäärän mukaan laskevasti';
@@ -344,7 +344,7 @@ $lang_create_tabs['jump_to_page'] = 'Siirry seuraavalle sivulle'; // cpg1.5
 
 $lang_get_remote_file_by_url['no_data_returned'] = 'Dataa ei saatu haettua käyttäen %s:ia'; // cpg1.5
 $lang_get_remote_file_by_url['curl'] = 'CURL'; // cpg1.5
-$lang_get_remote_file_by_url['fsockopen'] = 'Socket -yhteys (FSOCKOPEN)'; // cpg1.5
+$lang_get_remote_file_by_url['fsockopen'] = 'Socket-yhteys (FSOCKOPEN)'; // cpg1.5
 $lang_get_remote_file_by_url['fopen'] = 'fopen'; // cpg1.5
 $lang_get_remote_file_by_url['curl_not_available'] = 'Curl ei ole saatavilla palvelimellasi'; // cpg1.5
 $lang_get_remote_file_by_url['error_number'] = 'Virhenumero: %s'; // cpg1.5
@@ -453,9 +453,9 @@ $lang_banning_php['current'] = 'nykyinen'; // cpg1.5
 $lang_banning_php['all'] = 'kaikki'; // cpg1.5
 $lang_banning_php['none'] = 'ei mitään'; // cpg1.5
 $lang_banning_php['view'] = 'näytä'; // cpg1.5
-$lang_banning_php['ban_id'] = 'Bannaus ID'; // cpg1.5
+$lang_banning_php['ban_id'] = 'Bannaus-ID'; // cpg1.5
 $lang_banning_php['existing_bans'] = 'Nykyiset bannaukset'; // cpg1.5
-$lang_banning_php['no_banning_when_bridged'] = 'You are currently running your gallery bridged to another application. Use that bridge application\'s banning mechanism instead of the one built into Coppermine. Coppermine\'s built-in bridging mechanisms hardly apply when bridged.'; // cpg1.5
+$lang_banning_php['no_banning_when_bridged'] = 'Galleriasi on integroitu toiseen sovellukseen. Käytä integroidun sovelluksen bannien hallintaa Copperminen oman bannihallinnan sijasta. Copperminen omalla bannihallinnalla ei ole vaikutusta integrointitilassa.'; // cpg1.5
 $lang_banning_php['records_on_page'] = '%d osumaa %d sivulla'; // cpg1.5
 $lang_banning_php['ascending'] = 'nouseva'; // cpg1.5
 $lang_banning_php['descending'] = 'laskeva'; // cpg1.5
@@ -477,7 +477,7 @@ $lang_banning_php['form_not_submit'] = 'Lomaketta ei lähetetty - siinä on virh
 // File bridgemgr.php
 // ------------------------------------------------------------------------- //
 if (defined('BRIDGEMGR_PHP')) {
-$lang_bridgemgr_php['title'] = 'Integrointi velho';
+$lang_bridgemgr_php['title'] = 'Integrointivelho';
 $lang_bridgemgr_php['back'] = 'takaisin';
 $lang_bridgemgr_php['next'] = 'seuraava';
 $lang_bridgemgr_php['start_wizard'] = 'Aloita integrointi';
@@ -773,7 +773,7 @@ $lang_admin_php['thumb_width'] = 'Thumbnailin enimmäiskoko (leveys, jos käytä
 $lang_admin_php['thumb_use'] = 'Käytä kokoa'; // cpg1.5
 $lang_admin_php['thumb_use_detail'] = '(thumbnailin leveyttä, korkeutta tai pisintä sivua)'; // cpg1.5
 $lang_admin_php['thumb_height'] = 'Thumbnailin korkeus'; // cpg1.5
-$lang_admin_php['thumb_height_detail'] = '(käytetään vain jos &quot;tarkka&quot; on käytössä&quot;Käytä koko&quot;:sa)'; // cpg1.5
+$lang_admin_php['thumb_height_detail'] = '(käytetään vain jos &quot;tarkka&quot; on käytössä&quot;Käytä koko&quot;:ssa)'; // cpg1.5
 $lang_admin_php['movie_audio_document'] = 'video, ääni, dokumentti'; // cpg1.5
 $lang_admin_php['thumb_pfx'] = 'Etuliite thumbnaileille'; // cpg1.5
 $lang_admin_php['enable_unsharp'] = 'Thumbnailin terävöitys: ota käyttöön epäterävä (unsharp) maski'; // cpg1.5
@@ -981,7 +981,6 @@ $lang_db_input_php['upload_success'] = 'Tiedostosi lisättiin onnistuneesti.<br 
 $lang_db_input_php['notify_admin_email_subject'] = '%s - lisäsi tiedoston';
 $lang_db_input_php['notify_admin_email_body'] = '%s lisäsi kuvan, joka tarvitsee hyväksyntäsi. Käy osoitteessa %s';
 $lang_db_input_php['info'] = 'Info';
-$lang_db_input_php['com_added'] = 'Kommentti lisätty';
 $lang_db_input_php['com_updated'] = 'Kommentti muokattu';  // cpg1.5
 $lang_db_input_php['alb_updated'] = 'Albumi päivitetty';
 $lang_db_input_php['err_comment_empty'] = 'Kommenttisi on tyhjä!';
@@ -989,7 +988,7 @@ $lang_db_input_php['err_invalid_fext'] = 'Vain seuraavat tiedostopäätteet ovat
 $lang_db_input_php['no_flood'] = 'Viimeinen kommentti tälle kuvalle on sinun.<br /><br />Muuta sitä, jos haluat tehdä lisäyksiä.';
 $lang_db_input_php['redirect_msg'] = 'Sinut uudelleenohjataan.<br /><br /><br />Klikkaa \'JATKA\' jos sivu ei päivity automaattisesti.';
 $lang_db_input_php['upl_success'] = 'Tiedostosi lisättiin onnistuneesti';
-$lang_db_input_php['email_comment_subject'] = 'Comment posted on Coppermine Photo Gallery';
+$lang_db_input_php['email_comment_subject'] = 'Coppermine galleriaan on lisätty kommentti';
 $lang_db_input_php['email_comment_body'] = 'Joku lisäsi galleriaasi kommentin. Katso se täältä';
 $lang_db_input_php['album_not_selected'] = 'Albumia ei valittu';
 $lang_db_input_php['com_author_error'] = 'Tämä käyttäjätunnus on jo rekisteröity. Kirjaudu sisään tai valitse toinen nimi.';
@@ -1153,7 +1152,7 @@ $lang_display_comments['unapproved_comment'] = 'Hyväksymätän kommentti'; // c
 $lang_display_comments['pending_approval_message'] = 'Joku on kirjoittanut tähän kommentin. Se tulee näkyviin, kun ylläpitäjä hyväksyy sen.'; // cpg1.5
 $lang_display_comments['approve'] = 'Hyväksy kommentti'; // cpg1.5
 $lang_display_comments['disapprove'] = 'Merkkaa kommentti hylätyksi'; // cpg1.5
-$lang_display_comments['log_in_to_comment'] = 'Anonyymejä kommentteja ei sallita.%sLog in%s kirjoittaaksesi kommenttisi'; // cpg1.5 // do not translate the %s placeholders - they will be used as wrappers for the link (<a>)
+$lang_display_comments['log_in_to_comment'] = 'Anonyymejä kommentteja ei sallita. %sKirjaudu sisään%s kirjoittaaksesi kommenttisi.'; // cpg1.5 // do not translate the %s placeholders - they will be used as wrappers for the link (<a>)
 $lang_display_comments['default_username_message'] = 'Ole hyvä ja anna nimesi kommenttia varten'; // cpg1.5
 $lang_display_comments['comment_rejected'] = 'Kommenttisi hylättiin'; // cpg1.5
 
@@ -1180,7 +1179,7 @@ $lang_ecard_php['from'] = 'Lähettäjä';
 $lang_ecard_php['your_name'] = 'Nimesi';
 $lang_ecard_php['your_email'] = 'Sähköpostiosoitteesi';
 $lang_ecard_php['to'] = 'Vastaanottaja';
-$lang_ecard_php['rcpt_name'] = 'Vastaanottajan nim';
+$lang_ecard_php['rcpt_name'] = 'Vastaanottajan nimi';
 $lang_ecard_php['rcpt_email'] = 'Vastaanottajan sähköpostiosoite';
 $lang_ecard_php['greetings'] = 'Otsikko';
 $lang_ecard_php['message'] = 'Viesti';
@@ -1279,8 +1278,8 @@ $lang_editpics_php['mime_conv'] = 'Tiedostoa \'%s\' ei voitu konvertoida tiedost
 $lang_editpics_php['forb_ext'] = 'Kielletty tiedostopääte.';
 $lang_editpics_php['error_editor_class'] = 'Muokkain ei tue käyttämääsi kuvankäsittely tapaa.'; // cpg 1.5
 $lang_editpics_php['error_document_size'] = 'Dokumentillä ei ole leveyttä tai korkeutta'; // cpg 1.5  // js-alert
-$lang_editpics_php['success_picture'] = 'Kuva tallennettiin onnistuneesti - voit nyt %sclose%s tämän ikkunan'; // cpg1.5 // do not translate "%s" here
-$lang_editpics_php['success_thumb'] = 'Thumbnail tallennettiin onnistuneesti - voit nyt %sclose%s tämän ikkunan'; // cpg1.5 // do not translate "%s" here
+$lang_editpics_php['success_picture'] = 'Kuva tallennettiin onnistuneesti - voit nyt %ssulkea%s tämän ikkunan'; // cpg1.5 // do not translate "%s" here
+$lang_editpics_php['success_thumb'] = 'Thumbnail tallennettiin onnistuneesti - voit nyt %ssulkea%s tämän ikkunan'; // cpg1.5 // do not translate "%s" here
 $lang_editpics_php['rotate'] = 'Kierrä'; // cpg 1.5
 $lang_editpics_php['mirror'] = 'Peilaa'; // cpg 1.5
 $lang_editpics_php['scale'] = 'Skaalaa'; // cpg 1.5
@@ -1318,7 +1317,7 @@ $lang_forgot_passwd_php['err_unk_user'] = 'Valittua käyttäjää ei löydy!';
 $lang_forgot_passwd_php['account_verify_subject'] = '%s - Uusi salasanapyyntö';
 $lang_forgot_passwd_php['passwd_reset_subject'] = '%s - Uusi salasanasi';
 $lang_forgot_passwd_php['account_verify_email'] = <<< EOT
-Pyysit uutta salasanaa. Jos haluat jatkaa saadaksesi sen, klikkaa linkkiä:
+Olet pyytänyt uutta salasanaa. Jos haluat jatkaa saadaksesi sen, klikkaa linkkiä:
 
 <a href="{VERIFY_LINK}">{VERIFY_LINK}</a>
 
@@ -1382,7 +1381,7 @@ $lang_groupmgr_php['none'] = 'ei mitään'; // cpg1.5
 if (defined('INDEX_PHP')){
 $lang_index_php['welcome'] = 'Tervetuloa!';
 
-$lang_album_admin_menu['confirm_delete'] = 'Haluatko varmasti poistaa tämän albumin? \\nKaikki kuvat ja kommentit poistetaan samalla.'; // js-alert
+$lang_album_admin_menu['confirm_delete'] = 'Haluatko varmasti POISTAA tämän albumin? \\nKaikki kuvat ja kommentit poistetaan samalla.'; // js-alert
 $lang_album_admin_menu['delete'] = 'Poista';
 $lang_album_admin_menu['modify'] = 'Ominaisuudet';
 $lang_album_admin_menu['edit_pics'] = 'Muokkaa tiedostoja';
@@ -1579,7 +1578,7 @@ $lang_langmgr_php['enable_at_least_one'] = 'Sinun tarvitsee ottaa vähintään y
 $lang_langmgr_php['enable_default'] = 'Valitsit oletuskieleksi kielen, jota ei ole otettu käyttöön. Valitse toinen oletuskieli tai ota valitsemasi kieli käyttöön!';
 $lang_langmgr_php['available_default'] = 'Valitsit oletuskieleksi kielen, jota ei ole edes saatavilla. Valitse toinen oletuskieli!';
 $lang_langmgr_php['version_does_not_match'] = 'Tiedoston versio ei täsmää Copperminen kanssa. Käytä sitä varoen ja testaa se huolella!';
-$lang_langmgr_php['no_version'] = 'Versioinformaatiota ei voit hakea. Se johtuu todennäköisesti siitä, että kielitiedosto ei toimi ollenkaan tai se ei ole kielitiedosto.';
+$lang_langmgr_php['no_version'] = 'Versioinformaatiota ei voitu hakea. Se johtuu todennäköisesti siitä, että kielitiedosto ei toimi ollenkaan tai se ei ole kielitiedosto.';
 $lang_langmgr_php['filesize'] = 'Tiedostokoko %s on epäuskottava';
 $lang_langmgr_php['content_missing'] = 'Tiedosto ei näyttäisi sisältävän tarvittavaa dataaa,joten se ei ole todennäköisesti kelvollinen.';
 $lang_langmgr_php['status'] = 'Tila';
@@ -1591,7 +1590,7 @@ $lang_langmgr_php['default_language'] = 'Oletuskieleksi asetettiin %s';
 // ------------------------------------------------------------------------- //
 if (defined('LOGIN_PHP')) {
 $lang_login_php['login'] = 'Kirjaudu sisään';
-$lang_login_php['enter_login_pswd'] = 'Syötä käyttäjätunnukssesi ja salasanasi kirjautuaksesi';
+$lang_login_php['enter_login_pswd'] = 'Syötä käyttäjätunnuksesi ja salasanasi kirjautuaksesi';
 $lang_login_php['username'] = 'Käyttäjätunnus';
 $lang_login_php['email'] = 'Sähköpostiosoite'; // cpg1.5
 $lang_login_php['both'] = 'Käyttäjätunnus tai sähköpostiosoite'; // cpg1.5
@@ -1603,8 +1602,8 @@ $lang_login_php['err_already_logged_in'] = 'Olet jo kirjautunut sisään!';
 $lang_login_php['forgot_password_link'] = 'Unohdin salasanani';
 $lang_login_php['cookie_warning'] = 'Varoitus! Selaimesi ei hyväksy evästeitä';
 $lang_login_php['send_activation_link'] = 'Etkö saanut aktivointilinkkiäsi?';
-$lang_login_php['force_login'] = 'Sinun on kirjauduttava sisään nähdäksesi tämän sivun sisällön'; // cpg1.5
-$lang_login_php['force_login_title'] = 'Kirjaudu sissään jatkaaksesi'; // cpg1.5
+$lang_login_php['force_login'] = 'Sinun on kirjauduttava sisään nähdäksesi tämän sivun sisältö'; // cpg1.5
+$lang_login_php['force_login_title'] = 'Kirjaudu sisään jatkaaksesi'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
@@ -1921,7 +1920,7 @@ $lang_reviewcom_php['do_nothing'] = 'älä tee mitään'; // cpg1.5
 $lang_reviewcom_php['comment_approved'] = 'Kommentti hyväksytty'; // cpg1.5
 $lang_reviewcom_php['comment_unapproved'] = 'Kommentti merkattu hylätyksi'; // cpg1.5
 $lang_reviewcom_php['ban_and_delete'] = 'Bannaa käyttäjä ja poista kommentit'; // cpg1.5
-$lang_reviewcom_php['akismet_status'] = 'Akismet sanoi'; // cpg1.5
+$lang_reviewcom_php['akismet_status'] = 'Akismet ilmoitti'; // cpg1.5
 $lang_reviewcom_php['is_spam'] = 'on roskapostia'; // cpg1.5
 $lang_reviewcom_php['is_not_spam'] = 'ei ole roskapostia'; // cpg1.5
 $lang_reviewcom_php['akismet'] = 'Akismet'; // cpg1.5
@@ -2047,7 +2046,7 @@ $lang_send_activation_php['resend_act_link'] = 'Lähetä aktivointilinkki uudell
 $lang_send_activation_php['enter_email'] = 'Syötä sähköpostiosoitteesi'; // cpg1.5
 $lang_send_activation_php['submit'] = 'Lähetä'; // cpg1.5
 $lang_send_activation_php['failed_sending_email'] = 'Aktivointilinkin sisältävän sähköpostin lähetttäminen epäonnistui'; // cpg1.5
-$lang_send_activation_php['activation_email_sent'] = 'Aktivointilinkin sisältävä sähköpostilähetettiin %s:lle. Tarkista sähköpostisi jatkaaksesi'; // cpg1.5
+$lang_send_activation_php['activation_email_sent'] = 'Aktivointilinkin sisältävä sähköposti lähetettiin %s:lle. Tarkista sähköpostisi jatkaaksesi.'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
@@ -2082,7 +2081,7 @@ $lang_stat_details_php['overall_stats'] = 'Yleiset tilastot'; // cpg1.5
 $lang_stat_details_php['stats_by_os'] = 'Tilastot käyttöjärjestelmän mukaan'; // cpg1.5
 $lang_stat_details_php['number_of_hits'] = 'Katselukertojen määrä'; // cpg1.5
 $lang_stat_details_php['total'] = 'Yhteensä'; // cpg1.5
-$lang_stat_details_php['stats_by_browser'] = 'Tilastot  selaimen mukaan'; // cpg1.5
+$lang_stat_details_php['stats_by_browser'] = 'Tilastot selaimen mukaan'; // cpg1.5
 $lang_stat_details_php['overall_stats_config'] = 'Yleisten tilastojen asetukset'; // cpg1.5
 $lang_stat_details_php['hit_details']  = 'Pidä yksytyiskohtaisia katselukertatilastoja'; // cpg1.5
 $lang_stat_details_php['hit_details_explanation'] = 'Pidä yksytyiskohtaisia katselukertatilastoja'; // cpg1.5
@@ -2276,7 +2275,7 @@ $lang_usermgr_php['status_active'] = 'aktiivinen'; // cpg1.5
 $lang_usermgr_php['status_inactive'] = 'epäaktiivinen'; // cpg1.5
 $lang_usermgr_php['total'] = 'Yhteensä'; // cpg1.5
 $lang_usermgr_php['send_login_data_email'] = <<< EOT
-Sinulle luotiin uusi tili sivustolle {SITE_NAME}.
+Sinulle on luotu uusi tili sivustolle {SITE_NAME}.
 
 Voit kirjautua sisään osoitteessa <a href="{SITE_LINK}">{SITE_LINK}</a> käyttäen käyttäjätunnusta "{USER_NAME}" ja salasanaa "{USER_PASS}".
 
