@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="language" content="en" />
 <meta name="copyright" content="Coppermine dev team" />
-<meta name="description" content="Starting from cpg1.4.0, coppermine comes with a plugin API that enables plugin authors to modify coppermine features without hacking the core code, making upgrading easier, as modifications don't have to be re-applied every time you upgrade your coppermine version. It's recommended to use plugins instead of code modifications that require hacking the core code." />
+<meta name="description" content="Starting from cpg1.4.0, Coppermine comes with a plugin API that enables plugin authors to modify Coppermine features without hacking the core code, making upgrading easier, as modifications don't have to be re-applied every time you upgrade your Coppermine version. It's recommended to use plugins instead of code modifications that require hacking the core code." />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -34,14 +34,14 @@
 <a name="plugin"></a><h1>Plugins<a href="#plugin" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 
 <a name="plugin_definition"></a><h2>What is a plugin?<a href="#plugin_definition" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Starting from cpg1.4.0, coppermine comes with a plugin <acronym title="Application Programming Interface">API</acronym> that enables plugin authors to modify coppermine features without hacking the core code, making upgrading easier, as modifications don't have to be re-applied every time you upgrade your coppermine version. It's recommended to use plugins instead of code modifications that require hacking the core code.</p>
+<p>Starting from cpg1.4.0, Coppermine comes with a plugin <acronym title="Application Programming Interface">API</acronym> that enables plugin authors to modify Coppermine features without hacking the core code, making upgrading easier, as modifications don't have to be re-applied every time you upgrade your Coppermine version. It's recommended to use plugins instead of code modifications that require hacking the core code.</p>
 <a name="plugin_definition_end"></a>
 <a name="plugin_api"></a><h2>The Plugin API<a href="#plugin_api" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>The plugin API consists of several "hooks" all over the core code of coppermine that allows plugin authors to interact with coppermine functions, overriding or adding features. There are limitations to what can be done using a plugin, as the number of hooks is limited. As a result, not every change of coppermine behaviour that could be accomplished by hacking the core code is possible to achieve using the plugin API. However, using a plugin is more elegant and usually much easier to install and get running (at least for the end user) than a crude core code hack. Installing and configuring a plugin doesn't require the coppermine admin to mess with the source code - you simply upload the plugin, install it, configure it and you're done. If the plugin has been coded as suggested and is mature enough, it should come with a configuration screen that makes editing source code irrelevant.</p>
+<p>The plugin API consists of several "hooks" all over the core code of Coppermine that allows plugin authors to interact with Coppermine functions, overriding or adding features. There are limitations to what can be done using a plugin, as the number of hooks is limited. As a result, not every change of Coppermine behaviour that could be accomplished by hacking the core code is possible to achieve using the plugin API. However, using a plugin is more elegant and usually much easier to install and get running (at least for the end user) than a crude core code hack. Installing and configuring a plugin doesn't require the Coppermine admin to mess with the source code - you simply upload the plugin, install it, configure it and you're done. If the plugin has been coded as suggested and is mature enough, it should come with a configuration screen that makes editing source code irrelevant.</p>
 <a name="plugin_api_end"></a>
 
 <a name="plugin_obtain"></a><h2>Where to get Plugins from?<a href="#plugin_obtain" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>As suggested above, the plugin API provides developers an interface to come up with feature enhancements of Coppermine that they can distribute on whatever channels they prefer. All plugins that the coppermine development team is aware of (and that are being released under a suitable license) are available on the <a href="http://coppermine-gallery.net/plugins.php?cpg_version=5" rel="external" class="external">official coppermine page</a>.</p>
+<p>As suggested above, the plugin API provides developers an interface to come up with feature enhancements of Coppermine that they can distribute on whatever channels they prefer. All plugins that the Coppermine development team is aware of (and that are being released under a suitable license) are available on the <a href="http://coppermine-gallery.net/plugins.php?cpg_version=5" rel="external" class="external">official Coppermine page</a>.</p>
 <p>Additionally, many plugins that the Coppermine developers are aware of or plugins that they have created themselves are being stored in the subversion (SVN) repository (&rarr; <a href="dev_subversion.htm#dev_subversion_definition">What is subversion?</a>). This way, developers can work on the code of the plugins in the team, where each team member can contribute. In fact, subversion is meant to make sure that none of the edits and improvements made get lost accidentally. So, if you want the bleeding edge, the most recent version of a plugin, you're welcome to <a href="dev_subversion.htm#dev_subversion_checking_out">check out</a> the subversion repository as well. You have to understand though that the usage of subversion itself goes unsupported on the Coppermine support board, so you mustn't ask questions there about SVN. If you decide to use the SVN version of a plugin, make sure to have read the section <a href="dev_subversion.htm#dev_subversion_repository_structure_plugins">Checking out plugins</a>.</p>
 <a name="plugin_obtain_end">
 
@@ -78,7 +78,7 @@
 	<li>
 		<a name="plugin_bundled_opensearch"></a><h3>OpenSearch (opensearch)<a href="#plugin_bundled_opensearch" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 		An implementation of OpenSearch for Coppermine. When enabled, visitors can add the gallery to their browser's search bar.<br />
-		What the plugin actually does is adding the corresponding meta tag to the header of your coppermine-driven pages and creating the needed XML file that describes your gallery, based on what you have specified for &quot;<a href="configuration.htm#admin_general_name">Gallery name</a>&quot; and &quot;<a href="configuration.htm#admin_general_description">Gallery description</a>&quot; in Coppermine's config.
+		What the plugin actually does is adding the corresponding meta tag to the header of your Coppermine-driven pages and creating the needed XML file that describes your gallery, based on what you have specified for &quot;<a href="configuration.htm#admin_general_name">Gallery name</a>&quot; and &quot;<a href="configuration.htm#admin_general_description">Gallery description</a>&quot; in Coppermine's config.
 		<a name="plugin_bundled_opensearch_end"></a>
 	</li>
 	<li>
@@ -107,7 +107,7 @@
     <li>
     	<a name="plugin_bundled_sef_url"></a><h3>SEF_URLS plugin<a href="#plugin_bundled_sef_url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
     The plugin enables "Search-engine-friendly URLs" - this is an experimental plugin and should be used with caution.
-    <div class="cpg_message_error">The SEF_URLs plugin has been removed from the package for cpg1.5.x due to the known issues that made it not ready for production use. It can be obtained from the official coppermine homepage - check the corresponding announcement thread &quot;<a href="http://coppermine-gallery.net/forum/index.php?topic=42568.0">SEF_URLs plugin for cpg1.5.x</a>&quot;. Please note that the plugin goes unsupported, so please don't ask questions about it.</div>
+    <div class="cpg_message_error">The SEF_URLs plugin has been removed from the package for cpg1.5.x due to the known issues that made it not ready for production use. It can be obtained from the official Coppermine homepage - check the corresponding announcement thread &quot;<a href="http://coppermine-gallery.net/forum/index.php?topic=42568.0">SEF_URLs plugin for cpg1.5.x</a>&quot;. Please note that the plugin goes unsupported, so please don't ask questions about it.</div>
     <a name="plugin_bundled_sef_url"></a>
     </li>
 </ul>
@@ -115,25 +115,25 @@
 
 <a name="plugin_manager"></a><h2>The Plugin Manager<a href="#plugin_manager" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <div class="indent">
-	<img src="images/plugin_manager.gif" border="0" alt="Coppermine Plugin Manager" align="right" style="padding-left:5px"/>
+	<img src="images/plugin_manager.png" border="0" alt="Coppermine Plugin Manager" align="right" style="padding-left:5px"/>
 	<p>The plugin manager is the central place from where you upload, install, configure and remove plugins. It can be acceessed in two ways:</p>
 	<ul>
 		<li>
 			<a name="plugin_manager_cpg_navigation"></a><h3>Using Coppermine's navigation<a href="#plugin_manager_cpg_navigation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-			Log in as admin, go to coppermine's config, expand the "General settings" section, on click "Manage plugins" next to "Enable plugins" (make sure that you have set "Enable plugins" to "Yes") if you plan using plugins.
+			Click on the admin menu item &quot;Plugin manager&quot; when you're logged in as admin. Alternatively, log in as admin, go to Coppermine's config, expand the "General settings" section and click on the link &quot;Manage plugins&quot; next to the &quot;<a href="configuration.htm#admin_general_enable-plugins">Enable plugins</a>&quot; option if you plan on using plugins.
 		</li>
 		<li>
 			<a name="plugin_manager_direct_access"></a><h3>Directly accessing the plugin manager<a href="#plugin_manager_direct_access" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 			Make sure that you are logged in as admin, then directly enter the plugin manager's url in the address bar of your browser, e.g. <tt class="code">http://yoursite.tld/your_coppermine_folder/pluginmgr.php</tt>
 		</li>
 	</ul>
-	<p>The plugin manager organizes the plugins you have in your Coppermine directory.  It is important to understand the difference between uploading plugins and installing plugins.  When you copy a plugin to the Coppermine plugins folder (using the Upload button on the plugin manager or via FTP), you have merely uploaded the plugin files.  The plugin is not installed yet.  When you install a plugin, Coppermine runs the plugin's installation routine to configure and activate the plugin so that it will be executed when people use your gallery.  To clearly show which plugins are running and which are not, the plugin manager is separated into three sections (see screen capture below):</p>
+	<p>The plugin manager organizes the plugins you have in your Coppermine directory.  It is important to understand the difference between uploading plugins and installing plugins.  When you copy a plugin to the Coppermine plugins folder (using the Upload button on the plugin manager or via FTP), you have merely uploaded the plugin files.  The plugin is not installed yet.  When you install a plugin, Coppermine runs the plugin's installation routine to configure and activate the plugin so that it will be executed when people use your gallery.  To clearly show which plugins are running and which are not, the plugin manager is separated into three sections (see screen shot above):</p>
 	<ul>
 		<li>an overall toggle that enables/disables the use of plugins (upper section; can be changed on the <a href="configuration.htm#admin_general_enable-plugins">config page</a> as well)</li>
 		<li>the plugins that are installed and running (middle section)</li>
 		<li>the plugins that exist within the plugins folder of your server's hard drive but have not been installed and therefore are not running in your Coppermine gallery (lower section)</li>
 	</ul>
-	<p>By default, coppermine comes with some sample or code plugins (none of them are enabled by default though), additional plugins can be found on the corresponding section of coppermine's forum.</p>
+	<p>By default, Coppermine comes with some sample or code plugins (none of them are enabled by default though), additional plugins can be found on the corresponding section of Coppermine's forum.</p>
 
 
 	<a name="plugin_manager_upload"></a><h3>Uploading a plugin<a href="#plugin_manager_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -141,9 +141,9 @@
 		Unless you're going to code your own plugins, they usually come packaged up already, compressed into a zip file. There are two options how to upload a plugin:
 		<ul>
 			<li>
-				<a name="plugin_manager_upload_interface"></a><h4>Method 1: Using the upload interface on coppermine's plugin manager page<a href="#plugin_manager_upload_interface" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+				<a name="plugin_manager_upload_interface"></a><h4>Method 1: Using the upload interface on Coppermine's plugin manager page<a href="#plugin_manager_upload_interface" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 				<ul>
-					<li>Download the plugin you need from the internet (usually the <a href="http://coppermine-gallery.net/" rel="external" class="external">coppermine page</a>) to your local hard drive</li>
+					<li>Download the plugin you need from the internet (usually the <a href="http://coppermine-gallery.net/" rel="external" class="external">Coppermine page</a>) to your local hard drive</li>
 					<li>Click the "browse" button on the plugin manager page</li>
 					<li>Navigate to the plugin zip file you just have downloaded to your local PC's hard drive</li>
 					<li>Click "upload"</li>
@@ -160,7 +160,7 @@
 				<ul>
 					<li>Download the plugin you need from the internet to your local hard drive (same step as above)</li>
 					<li>Unpack the zip file into a folder on your hard drive (preserving the folder structure of the plugin)</li>
-					<li>Use your <a href="dev_tools.htm#dev_tools_ftp_client">FTP app</a> to upload the unpacked plugin files into the plugin folder of your coppermine install on your server, preserving the structure of the zip archive.  <div class="cpg_example">For example: if the plugin contained the folder &quot;foobar&quot;, which held the actual plugin files, you upload the whole folder &quot;foobar&quot; and all of its contents into the plugins folder. The resulting folder structure on your server should be something like <tt class="code">/your_coppermine_folder/plugins/foobar/</tt></div></li>
+					<li>Use your <a href="dev_tools.htm#dev_tools_ftp_client">FTP app</a> to upload the unpacked plugin files into the plugin folder of your Coppermine install on your server, preserving the structure of the zip archive.  <div class="cpg_example">For example: if the plugin contained the folder &quot;foobar&quot;, which held the actual plugin files, you upload the whole folder &quot;foobar&quot; and all of its contents into the plugins folder. The resulting folder structure on your server should be something like <tt class="code">/your_coppermine_folder/plugins/foobar/</tt></div></li>
 				</ul>
 			</li>
 		</ul>
@@ -170,7 +170,7 @@
 
 	<a name="plugin_manager_install"></a><h3>Installing a plugin<a href="#plugin_manager_install" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	<div class="indent">
-		<p>Installing a plugin is fairly straightforward - just click on the <img src="../../images/icons/plugin_install.png" width="16" height="16" border="0" alt="install" />-icon next to the plugin. The install will enable the plugin to be executed when coppermine is being run (depending on the plugin's purpose). Some plugins come with a configuration screen that will be executed right after the install - if this is the case, configure it accordingly.</p>
+		<p>Installing a plugin is fairly straightforward - just click on the <img src="../../images/icons/plugin_install.png" width="16" height="16" border="0" alt="install" />-icon next to the plugin. The install will enable the plugin to be executed when Coppermine is being run (depending on the plugin's purpose). Some plugins come with a configuration screen that will be executed right after the install - if this is the case, configure it accordingly.</p>
 		<p>A check routine tries to determine if a plugin has been designed for your version of Coppermine.</p>
 		<ul>
 			<li>If the check succeeds, the install plugin icon with a tick mark will be displayed: <img src="../../images/icons/plugin_install.png" width="16" height="16" border="0" alt="" />.<br />
@@ -186,7 +186,7 @@
 						<li>If you're a <strong>plugin writer</strong>, read up the details in <a href="dev_plugins.htm#plugin_writing_core_files_configuration_plugin_cpg_version">Plugin Writing for Coppermine &rarr; Core files &rarr; configuration.php &rarr; $plugin_cpg_version</a>.</p>
 						<li>If you're just a <strong>plugin user</strong> and not a plugin author, you don't need to read up those details - you should just be aware of the mechanisms used: there is no guarantee that the author of the plugin has added the Coppermine version requirements settings to the plugin's core code. If that piece of data hasn't been added this does not mean that the plugin is badly written or  something like this: when you're attempting to install such a plugin, you will get a message that says <quote class="code">Could not determine the version requirements for this plugin. This is usually an indicator that the plugin was not designed for your version of Coppermine and might therefore crash your gallery. Continue anyway (not recommended)?</quote>. Please understand that this message does <strong>not</strong> mean that the plugin itself is at fault. It basically means that you as a gallery admin have to make sure that the plugin you're about to install has actually been designed for the Coppermine version that you are using. To do so, review the readme file that might come with the plugin and review the announcement thread of the plugin.</li>
 					</ul>
-					<p>Please do <strong>not</strong> post questions on the Coppermine support board like &quot;<em>I got warned that the plugins version cannot be determined. Shall I continue to install or not?</em>&quot;: you should be able to see for yourself if the versions match. If they don't or you can't determine the version, install the plugin at your own risk. The message means exactly what it says: that the version can't be determined, that's all. It doesn't say &quot;<em>don't use the plugin</em>&quot;. It just says &quot;<em>hey, I'm not sure if the plugin you're about to install matches the version of coppermine</em>&quot;. The message just means that you (as a human) have to check because the machine can't. So you check: what version of the plugin are you trying to install? If the plugin has been designed for your version of Coppermine, you're fine to go ahead and install the plugin even if the warning shows up.</p>
+					<p>Please do <strong>not</strong> post questions on the Coppermine support board like &quot;<em>I got warned that the plugins version cannot be determined. Shall I continue to install or not?</em>&quot;: you should be able to see for yourself if the versions match. If they don't or you can't determine the version, install the plugin at your own risk. The message means exactly what it says: that the version can't be determined, that's all. It doesn't say &quot;<em>don't use the plugin</em>&quot;. It just says &quot;<em>hey, I'm not sure if the plugin you're about to install matches the version of Coppermine</em>&quot;. The message just means that you (as a human) have to check because the machine can't. So you check: what version of the plugin are you trying to install? If the plugin has been designed for your version of Coppermine, you're fine to go ahead and install the plugin even if the warning shows up.</p>
 					<p>Ideally, the number of plugins that don't contain the Coppermine version requirements settings should decrease in the future.</p>
 				</div>
 			</li>
@@ -203,7 +203,7 @@
 	<a name="plugin_manager_uninstall"></a><h3>Uninstalling a plugin<a href="#plugin_manager_uninstall" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	<div class="indent">
 		<p>Executing a plugin might be consuming resources or not work as expected, so you might want to uninstall a plugin at some time (maybe because you just tried it out and it doesn't work as expected for you). It's recommended not to just delete the plugin's subfolder using your FTP app (because the plugin might have applied database changes that need to be undone). Instead, you should go to the plugin manager and click on the <img src="../../images/icons/plugin_uninstall.png" width="16" height="16" border="0" alt="" title="uninstall" />-icon next to an active (installed) plugin. The plugin then should get uninstalled and turn up in the list "Plugins Not installed". It's safe to leave the sources of an unneeded plugin on the server, so there should be no need to delete the plugin right after uninstall, however you may as well delete it, especially if you're short on webspace and the plugin eats up a lot of space.</p>
-		<p>To finally delete an inactive plugin from your server's plugin folder, click the <img src="../../images/icons/delete.png" width="16" height="16" border="0" alt="" title="delete" />-icon next to a plugin that is in the list "Plugins Not installed". If the script fails to delete a plugin this way (because of lacking permissions to do so on file/folder level), you can use your FTP app to delete the particular plugin's sub-folder within coppermine's "plugins" folder (deleting manually). As with all delete operations, you should make a local <a href="export.htm#backup">backup</a> before deleting if you're not absolutely sure what you're doing.</p>
+		<p>To finally delete an inactive plugin from your server's plugin folder, click the <img src="../../images/icons/delete.png" width="16" height="16" border="0" alt="" title="delete" />-icon next to a plugin that is in the list "Plugins Not installed". If the script fails to delete a plugin this way (because of lacking permissions to do so on file/folder level), you can use your FTP app to delete the particular plugin's sub-folder within Coppermine's "plugins" folder (deleting manually). As with all delete operations, you should make a local <a href="export.htm#backup">backup</a> before deleting if you're not absolutely sure what you're doing.</p>
 	</div>
 	<a name="plugin_manager_uninstall_end"></a>
 
@@ -211,8 +211,8 @@
 <a name="plugin_manager_end"></a>
 
 <a name="plugin_writing"></a><h2>Writing plugins<a href="#plugin_writing" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>There's some documentation available for plugin authors, so the best method to learn how plugins work is by looking at the source code. Examine the code of the plugins that come with coppermine, or take a look at some that are available for download from the <a href="http://coppermine-gallery.net/forum/index.php?board=66.0" rel="external" class="external">plugin contributions sub-board</a> on the coppermine web page.</p>
-<p>If you accomplished writing a plugin, we ask you to share it with the coppermine community by posting it on the appropriate board (this is of course not mandatory, but we'd appreciate to see your contribution). We would welcome contributions to the <a href="dev_plugin_api.htm">plugin API documentation</a> and the <a href="dev_plugin_hooks.htm">reference list of plugin hooks</a> as well, or other related documentation.</p>
+<p>There's some documentation available for plugin authors, so the best method to learn how plugins work is by looking at the source code. Examine the code of the plugins that come with Coppermine, or take a look at some that are available for download from the <a href="http://coppermine-gallery.net/forum/index.php?board=66.0" rel="external" class="external">plugin contributions sub-board</a> on the Coppermine web page.</p>
+<p>If you accomplished writing a plugin, we ask you to share it with the Coppermine community by posting it on the appropriate board (this is of course not mandatory, but we'd appreciate to see your contribution). We would welcome contributions to the <a href="dev_plugin_api.htm">plugin API documentation</a> and the <a href="dev_plugin_hooks.htm">reference list of plugin hooks</a> as well, or other related documentation.</p>
 <p>Although it is not mandatory (technically speaking) to add instructions to a plugin, it is being recommended that you include a readme file with your plugin that explains what it does and how to use it.</p>
 <p>We ask plugin authors as well to keep <acronym title="i18n = internationalization">i18n</acronym> in mind: not everybody will be using the language you used. Therefore, it's always a good idea to keep possible translations in mind when designing your plugin.</p>
 <p>Please refer to the <a href="dev_plugins.htm">Plugin Writing</a> section for details.</p>

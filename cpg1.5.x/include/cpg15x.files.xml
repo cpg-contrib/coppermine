@@ -1575,7 +1575,7 @@
     <hash>73df75188ec6d379aa10b6fe2212753f</hash>
   </element>
   <element>
-    <fullpath>docs/de/images/plugin_manager.gif</fullpath>
+    <fullpath>docs/de/images/plugin_manager.png</fullpath>
     <status>optional</status>
     <permission>read</permission>
     <hash>205839b91e0c2a7a90cc9c39a59a0d07</hash>
@@ -2507,7 +2507,7 @@
     <hash>4c387ab224ac9a39a24b4fdfa4f95d97</hash>
   </element>
   <element>
-    <fullpath>docs/en/images/plugin_manager.gif</fullpath>
+    <fullpath>docs/en/images/plugin_manager.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>205839b91e0c2a7a90cc9c39a59a0d07</hash>
@@ -3371,7 +3371,7 @@
     <hash>4c387ab224ac9a39a24b4fdfa4f95d97</hash>
   </element>
   <element>
-    <fullpath>docs/es/images/plugin_manager.gif</fullpath>
+    <fullpath>docs/es/images/plugin_manager.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>205839b91e0c2a7a90cc9c39a59a0d07</hash>
@@ -5221,7 +5221,7 @@
     <hash>a7bc9482ddc8fc9e74d8682f8473094d</hash>
   </element>
   <element>
-    <fullpath>docs/nl/images/plugin_manager.gif</fullpath>
+    <fullpath>docs/nl/images/plugin_manager.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>94fc70a1bfac40170f1e49fad2c6ec30</hash>
