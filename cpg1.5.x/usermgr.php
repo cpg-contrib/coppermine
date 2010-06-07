@@ -170,11 +170,19 @@ function list_users($search = '')
 
     $makereadonly = ($CONFIG['bridge_enable']) ? 'style="display:none;" disabled="disabled" ':'';
 
-    if (!$cpg_udb->get_user_count()) {
+    $user_count = $cpg_udb->get_user_count();
+
+    if (!$user_count) {
         cpg_die(CRITICAL_ERROR, $lang_usermgr_php['err_no_users'], __FILE__, __LINE__);
     }
 
     $user_per_page = 25;
+
+    if ($superCage->post->keyExists('user_search')) {
+        // As pagination for user search doesn't work, increase the user limit per page (TODO)
+        $user_per_page = 200;
+    }
+
     if ($superCage->get->keyExists('page')) {
         $page = $superCage->get->getInt('page');
     } else {
@@ -194,7 +202,10 @@ function list_users($search = '')
                                         'sort' => $sort
                                        )
                                   );
-    $user_count = count($users);
+
+    if ($superCage->post->keyExists('user_search')) {
+        $user_count = count($users);
+    }
 
     $total_pages = ceil($user_count / $user_per_page);
 
