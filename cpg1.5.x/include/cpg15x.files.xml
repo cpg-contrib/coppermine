@@ -12102,6 +12102,13 @@
     <hash>cf8befc8ee5b7a8d70aa7d3b65d66e14</hash>
   </element>
   <element>
+    <fullpath>lang/hungarian.php</fullpath>
+    <version>1.5.7</version>
+    <revision>7620</revision>
+    <status>optional</status>
+    <permission>read</permission>
+  </element>
+  <element>
     <fullpath>lang/luxembourgish.php</fullpath>
     <version>1.5.6</version>
     <revision>7620</revision>
