@@ -9,7 +9,7 @@
 <link rel="shortcut icon" href="../favicon.ico" />
 <!--
   SVN version info:
-  Coppermine version: 1.5.6
+  Coppermine version: 1.5.7
   $HeadURL$
   $Revision$
   $LastChangedBy: gaugau $

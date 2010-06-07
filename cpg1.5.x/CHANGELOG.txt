@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-07 [M] Counted version count up in SVN repository from cpg1.5.6 to cpg1.5.7 {GauGau}
 2010-06-07 [B] Fixed pagination for user manager (thread ID 65365) {eenemeenemuu}
 2010-06-06 [O] Updated Finnish language file (user contribution) {eenemeenemuu}
 2010-06-04 [M] Release of cpg1.5.6 {GauGau}
