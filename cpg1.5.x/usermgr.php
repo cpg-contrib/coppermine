@@ -177,21 +177,29 @@ function list_users($search = '')
     }
 
     $user_per_page = 25;
-
-    if ($superCage->post->keyExists('user_search')) {
-        // As pagination for user search doesn't work, increase the user limit per page (TODO)
-        $user_per_page = 200;
-    }
-
     if ($superCage->get->keyExists('page')) {
         $page = $superCage->get->getInt('page');
     } else {
         $page = 1;
     }
     $lower_limit = ($page-1) * $user_per_page;
-        
+    
+    if ($search) {
+        $username = '&amp;username='.$search;
+
+        $users_search = $cpg_udb->get_users(
+                                  array(
+                                        'users_per_page' => $user_count,
+                                        'lower_limit' => 0,
+                                        'search' => $search,
+                                        'sort' => $sort
+                                       )
+                                  );
+        $user_count = count($users_search);
+    }
+
     $tab_tmpl = $template_tab_display;
-    $tab_tmpl['page_link'] = strtr($tab_tmpl['page_link'], array('{LINK}' => 'usermgr.php?sort=' . $sort . '&amp;page=%d'));
+    $tab_tmpl['page_link'] = strtr($tab_tmpl['page_link'], array('{LINK}' => 'usermgr.php?sort=' . $sort . '&amp;page=%d'.$username));
     $tab_tmpl['left_text'] = strtr($tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_usermgr_php['u_user_on_p_pages']));  
 
     $users = $cpg_udb->get_users(
@@ -202,10 +210,6 @@ function list_users($search = '')
                                         'sort' => $sort
                                        )
                                   );
-
-    if ($superCage->post->keyExists('user_search')) {
-        $user_count = count($users);
-    }
 
     $total_pages = ceil($user_count / $user_per_page);
 
@@ -339,39 +343,39 @@ EOT;
                 </td>
                 <td class="tableh1" colspan="2">
                     <span class="statlink">{$lang_usermgr_php['name']}</span>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_a$username"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_d$username"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
                 </td>
                 <td class="tableh1" align="center">
                     <span class="statlink">{$lang_usermgr_php['status']}</span>
                 </td>
                 <td class="tableh1">
                     <span class="statlink"><a href="groupmgr.php" class="statlink">{$lang_usermgr_php['group']}</a></span>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_a']}" /></a>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_d']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_a$username"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_d$username"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_d']}" /></a>
                 </td>
                 <td class="tableh1">
                     <span class="statlink">{$lang_usermgr_php['registered_on']}</span>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_a']}" /></a>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_d']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_a$username"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_d$username"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_d']}" /></a>
                 </td>
                 <td class="tableh1">
                     <span class="statlink">{$lang_usermgr_php['last_visit']}</span>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_a']}" /></a>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_d']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_a$username"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_d$username"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_d']}" /></a>
                 </td>
                 <td class="tableh1" align="center">
                     <span class="statlink">{$lang_usermgr_php['comments']}</span>
                 </td>
                 <td class="tableh1" align="center">
                     <span class="statlink">{$lang_usermgr_php['pictures']}</span>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_a']}" /></a>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_d']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_a$username"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_d$username"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_d']}" /></a>
                 </td>
                 <td class="tableh1" align="center">
                     <span class="statlink">{$lang_usermgr_php['disk_space_used']}/{$lang_usermgr_php['disk_space_quota']}</span>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_a']}" /></a>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_d']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_a$username"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_d$username"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_d']}" /></a>
                 </td>
         </tr>
 EOT;
@@ -382,38 +386,38 @@ EOT;
         <tr>
                 <td class="tableh1" colspan="2">
                     <span class="statlink">{$lang_usermgr_php['name']}</span>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_a$username"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=name_d$username"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
                 </td>
                 <td class="tableh1" align="center">
                     <span class="statlink">{$lang_usermgr_php['status']}</span>
                 </td>
                 <td class="tableh1"><span class="statlink">{$lang_usermgr_php['group']}</span>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_a']}" /></a>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_d']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_a$username"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=group_d$username"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_d']}" /></a>
                 </td>
                 <td class="tableh1">
                     <span class="statlink">{$lang_usermgr_php['registered_on']}</span>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_a']}" /></a>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_d']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_a$username"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=reg_d$username"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_d']}" /></a>
                 </td>
                 <td class="tableh1">
                     <span class="statlink">{$lang_usermgr_php['last_visit']}</span>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_a']}" /></a>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_d']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_a$username"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=lv_d$username"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_d']}" /></a>
                 </td>
                 <td class="tableh1" align="center">
                     <span class="statlink">{$lang_usermgr_php['comments']}</span>
                 </td>
                 <td class="tableh1" align="center">
                     <span class="statlink">{$lang_usermgr_php['pictures']}</span>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_a']}" /></a>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_d']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_a$username"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=pic_d$username"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_d']}" /></a>
                 </td>
                 <td class="tableh1" align="center">
                     <span class="statlink">{$lang_usermgr_php['disk_space_used']}/{$lang_usermgr_php['disk_space_quota']}</span>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_a"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_a']}" /></a>
-                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_d"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_d']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_a$username"><img src="images/ascending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_a']}" /></a>
+                    <a href="{$CPG_PHP_SELF}?page=$page&amp;sort=disku_d$username"><img src="images/descending.png" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_d']}" /></a>
                 </td>
         </tr>
 EOT;
@@ -573,8 +577,8 @@ EOT;
     //mysql_free_result($result);
 
     if (!$lim_user) {
-        if ($superCage->post->keyExists('username')) {
-            $search_string_default = 'value="'.$superCage->post->getEscaped('username').'"';
+        if ($search) {
+            $search_string_default = 'value="'.$search.'"';
         } else {
             $search_string_default = 'value="'.$lang_usermgr_php['search'].'" onfocus="this.value=\'\'"';
         }
@@ -1132,8 +1136,8 @@ switch ($op) {
         cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '' LIMIT 1");
 
         pageheader($lang_usermgr_php['title']);
-        if ($superCage->post->keyExists('username')) {
-                $name = $superCage->post->getEscaped('username');
+        if ($superCage->post->keyExists('username') || $superCage->get->keyExists('username')) {
+                $name = $superCage->post->keyExists('username') ? $superCage->post->getEscaped('username'): $superCage->get->getEscaped('username');
                 $wildcards = array("*" => "%", "?" => "_");
                 $search = strtr($name, $wildcards);
         }
