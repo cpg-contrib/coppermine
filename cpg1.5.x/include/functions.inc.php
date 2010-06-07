@@ -6383,4 +6383,23 @@ function cpg_get_guest_token() {
     return md5($CONFIG['site_token'] . $raw_ip);
 }
 
+/**
+ * str_ireplace
+ * 
+ * PHP4-replacement, taken from the user comments at http://theserverpages.com/php/manual/en/function.str-ireplace.php
+ */
+if (!function_exists('str_ireplace')) {
+	function str_ireplace($search, $replace, $subject) {
+		if (is_array($search)) {
+			foreach ($search as $word) {
+				$words[] = "/" . $word . "/i";
+			}
+		}
+		else {
+			$words = "/" . $search . "/i";
+		}
+		return preg_replace($words, $replace, $subject);
+	}
+}
+
 ?>
