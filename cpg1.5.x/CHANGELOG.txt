@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-10 [B] Fixed HTML validation issue for german lang files - replaced & by &amp; {Timo}
 2010-06-07 [D] Updated plugin manager documentation (thread ID 65379) {GauGau}
 2010-06-07 [A] Added Hungarian language file (user contribution) {GauGau}
 2010-06-07 [M] Counted version count up in SVN repository from cpg1.5.6 to cpg1.5.7 {GauGau}
