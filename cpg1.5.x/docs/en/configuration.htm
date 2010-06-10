@@ -1451,7 +1451,11 @@
 <a name="admin_custom"></a><h2>Custom fields for user profile<a href="#admin_custom" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Leave blank if unused. Use Profile 6 for long entries, such as biographies</p>
 <p>These fields are displayed within the &quot;user profile&quot; area. They will appear only if you assign a name to the field. As instructed in the heading, use field 6 for long entries, such as biographies, or if you want to include the use of bb code.</p>
-<p>You can also use field 6 for avatars.  To show an avatar in the profile, it should be entered in bbcode, for example to show 'avatar.gif', which is located in your images folder, use the code <tt class="code">[img]http://www.yoursite.com/images/avatar.gif[/img]</tt></p>
+<p>You can also use field 6 for avatars.  To show an avatar in the profile, it should be entered in bbcode. Determine the full URL of the image you want to use as an avatar and wrap that URL into the bbcode tags for images.</p>
+<div class="cpg_example">If you want to use the file <tt class="code">avatar.png</tt> that is stored in a sub-folder of your web root that is named <tt class="code">images</tt>, the full URL would be something like <tt class="code">http://www.example.com/images/avatar.png</tt>. Subsequently, you'd have to insert
+<pre class="cpg_code code">[img]http://www.example.com/images/avatar.png[/img]</pre>
+into the field number 6.
+</div>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Custom fields for user profile</p>
 <a name="admin_custom_end"></a>
 
