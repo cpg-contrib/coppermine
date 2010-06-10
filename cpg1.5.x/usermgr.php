@@ -996,7 +996,7 @@ function update_user($user_id)
     $group_list = $superCage->post->keyExists('group_list') ? $superCage->post->getInt('group_list') : '';
 
     if ($user_id == 'new_user') {
-        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERS']} (user_regdate) VALUES (NOW())");
+        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERS']} (user_regdate, user_profile6) VALUES (NOW(), '')");
         $user_id = mysql_insert_id();
         log_write('New user "'.$user_name.'" created', CPG_ACCESS_LOG);
     }

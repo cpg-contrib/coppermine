@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-10 [B] Added default value for 'user_profile6' during user creation (thread ID 65451) {eenemeenemuu}
 2010-06-10 [B] Fixed HTML validation issue for german lang files - replaced & by &amp; {Timo}
 2010-06-07 [D] Updated plugin manager documentation (thread ID 65379) {GauGau}
 2010-06-07 [A] Added Hungarian language file (user contribution) {GauGau}
