@@ -326,6 +326,7 @@ UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='arabic';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='bulgarian';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='chinese_gb';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='czech';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='danish';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='dutch';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='english';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='english_gb';

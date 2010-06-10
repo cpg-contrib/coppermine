@@ -12046,6 +12046,22 @@
     <hash>316b9777b7722f70d0dcb7d9aa48d0ea</hash>
   </element>
   <element>
+    <fullpath>lang/danish.php</fullpath>
+    <version>1.5.6</version>
+    <revision>7620</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>316b9777b7722f70d0dcb7d9aa48d0ea</hash>
+  </element>
+  <element>
+    <fullpath>lang/dutch.php</fullpath>
+    <version>1.5.6</version>
+    <revision>7620</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>316b9777b7722f70d0dcb7d9aa48d0ea</hash>
+  </element>
+  <element>
     <fullpath>lang/english.php</fullpath>
     <version>1.5.6</version>
     <revision>7622</revision>
