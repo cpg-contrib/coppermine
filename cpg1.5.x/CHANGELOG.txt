@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-11 [B] Fixed timeout issue when fetching remote files (thread ID 65424) {eenemeenemuu}
 2010-06-11 [B] Fixed thumb sharpening (thread ID 65398) {eenemeenemuu}
 2010-06-11 [A] Place new comments form accordingly to sort order of comments (thread ID 65461) {eenemeenemuu}
 2010-06-10 [A] Added Danish language file (user contribution) {eenemeenemuu}

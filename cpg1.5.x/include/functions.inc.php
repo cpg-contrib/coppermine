@@ -5053,6 +5053,7 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
     $body      = '';
     $headers   = '';
     $error     = '';
+    $timeout   = 3;
 
     // Let's try CURL first
     if (function_exists('curl_init')) { // don't bother to try curl if it isn't there in the first place
@@ -5060,6 +5061,7 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
         curl_setopt($curl, CURLOPT_URL, $remoteURL);
         curl_setopt($curl, CURLOPT_HEADER, 0);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, $timeout);
         $body = curl_exec($curl);
         $headers = curl_getinfo($curl);
         curl_close($curl);
@@ -5076,7 +5078,7 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
     }
     // Now let's try FSOCKOPEN
     if ($url['host'] != '') {
-        $fp = @fsockopen($url['host'], (!empty($url['port']) ? (int)$url['port'] : 80), $errno, $errstr, 30);
+        $fp = @fsockopen($url['host'], (!empty($url['port']) ? (int)$url['port'] : 80), $errno, $errstr, $timeout);
         if ($fp) { // fsockopen file handle success - start
             $path   = (!empty($url['path']) ? $url['path'] : "/").(!empty($url['query']) ? "?".$url['query'] : "");
             $header = $LINEBREAK . 'Host: '.$url['host'];
@@ -5142,6 +5144,8 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
     } else {
         $port = '';
     }
+
+    @ini_set('default_socket_timeout', $timeout);
     $handle = @fopen($protocol . $url['host'] . $port . $url['path'], 'r');
     if ($handle) {
         while (!feof($handle)) {
