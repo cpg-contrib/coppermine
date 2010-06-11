@@ -3971,13 +3971,17 @@ function theme_html_comments($pid)
             );
 
         if ($CONFIG['enable_smilies']) {
-                        $params['{SMILIES}'] = generate_smilies();
-                } else {
-                        template_extract_block($template_add_your_comment, 'smilies');
-                }
+            $params['{SMILIES}'] = generate_smilies();
+        } else {
+            template_extract_block($template_add_your_comment, 'smilies');
+        }
 
         template_extract_block($template_add_your_comment, 'login_to_comment');
-        $html .= template_eval($template_add_your_comment, $params);
+        if ($CONFIG['comments_sort_descending'] == 1) {
+            $html = '<br />'.template_eval($template_add_your_comment, $params).$html;
+        } else {
+            $html .= template_eval($template_add_your_comment, $params);
+        }
     } else { // user can not post comments
         if ($CONFIG['comment_promote_registration'] == 1 && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
             template_extract_block($template_add_your_comment, 'user_name_input');
@@ -3994,7 +3998,11 @@ function theme_html_comments($pid)
                 '{LOGIN_TO_COMMENT}' => sprintf($lang_display_comments['log_in_to_comment'], '<a href="login.php?referer='.$REFERER.'">', '</a>'),
                 '{HELP_ICON}' => '',
                 );
-            $html .= template_eval($template_add_your_comment, $params);
+            if ($CONFIG['comments_sort_descending'] == 1) {
+                $html = '<br />'.template_eval($template_add_your_comment, $params).$html;
+            } else {
+                $html .= template_eval($template_add_your_comment, $params);
+            }
         }
     }
 

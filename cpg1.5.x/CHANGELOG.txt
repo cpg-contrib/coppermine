@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-11 [A] Place new comments form accordingly to sort order of comments (thread ID 65461) {eenemeenemuu}
 2010-06-10 [A] Added Danish language file (user contribution) {eenemeenemuu}
 2010-06-10 [B] Added default value for 'user_profile6' during user creation (thread ID 65451) {eenemeenemuu}
 2010-06-10 [B] Fixed HTML validation issue for german lang files - replaced & by &amp; {Timo}
