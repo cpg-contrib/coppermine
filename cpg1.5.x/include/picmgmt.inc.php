@@ -201,7 +201,8 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
     global $CONFIG, $ERROR;
     global $lang_errors;
 
-    $sharpen = CPGPluginAPI::filter('image_sharpen', $new_size);
+    $sharpen = CPGPluginAPI::filter('image_sharpen', array($sharpen, $new_size));
+    $sharpen = $sharpen[0];
 
     //Make Cage
     $superCage = Inspekt::makeSuperCage();
@@ -325,10 +326,10 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use, $wa
              * Hack for working with ImageMagick on Windows even if IM is installed in C:\Program Files.
              * By Aditya Mooley <aditya@sanisoft.com>
              */
-                        if ($sharpen==1 && $CONFIG['enable_unsharp']==1) {
-                        $unsharp_mask = " -unsharp ".$CONFIG['unsharp_radius']."x".sqrt($CONFIG['unsharp_radius'])."+".($CONFIG['unsharp_amount']/100)."+".($CONFIG['unsharp_threshold']/100)." ";
-                         }
-                        else $unsharp_mask = "";
+            if ($sharpen==1 && $CONFIG['enable_unsharp']==1) {
+            $unsharp_mask = " -unsharp ".$CONFIG['unsharp_radius']."x".sqrt($CONFIG['unsharp_radius'])."+".($CONFIG['unsharp_amount']/100)."+".($CONFIG['unsharp_threshold']/100)." ";
+             }
+            else $unsharp_mask = "";
 
             if ($superCage->env->getMatched('OS', '/win/i')) {
                 $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$CONFIG['jpeg_qual']} {$CONFIG['im_options']} ".$resize_commands." ".$unsharp_mask." ".str_replace("\\","/" ,$src_file )." ".str_replace("\\","/" ,$im_dest_file );
