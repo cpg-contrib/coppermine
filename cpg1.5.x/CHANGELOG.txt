@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-12 [O] Updated Hungarian language file (user contribution) {eenemeenemuu}
 2010-06-11 [B] Fixed pre-population of user name on comments form (thread ID 65293) {eenemeenemuu}
 2010-06-11 [B] Fixed timeout issue when fetching remote files (thread ID 65424) {eenemeenemuu}
 2010-06-11 [B] Fixed thumb sharpening (thread ID 65398) {eenemeenemuu}
