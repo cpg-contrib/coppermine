@@ -24,23 +24,17 @@ $lang_translation_info['lang_country_code'] = 'dk';
 $lang_translation_info['trans_name'] = 'Tomas C. Jensen';
 $lang_translation_info['trans_email'] = 'tcj@tomas.dk';
 $lang_translation_info['trans_website'] = 'http://forum.coppermine-gallery.net/index.php?action=profile;u=81069';
-$lang_translation_info['trans_date'] = '2010-06-09';
-
+$lang_translation_info['trans_date'] = '2010-06-12';
 
 $lang_charset = 'utf-8';
-$lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
-
-// shortcuts for Bytes, Kibibytes, Mebibytes, Gibibytes
-$lang_byte_units = array('Bytes', 'KiB', 'MiB', 'GiB');
+$lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
+// shortcuts for Bytes, Kibibytes, Mebibytes, Gibibytes$lang_byte_units = array('Bytes', 'KiB', 'MiB', 'GiB');
 $lang_decimal_separator = array('.', ','); //cpg1.5 // symbol used to separate thousands from hundreds and rounded number from decimal place
 
-// Day of weeks and months
-$lang_day_of_week = array('Søn', 'Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør');
+// Day of weeks and months$lang_day_of_week = array('Søn', 'Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør');
 $lang_month = array('Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec');
 
-// The various date formats
-// See http://www.php.net/manual/en/function.strftime.php to define the variable below
-$lang_date['album'] = '%d %B, %Y';
+// The various date formats// See http://www.php.net/manual/en/function.strftime.php to define the variable below$lang_date['album'] = '%d %B, %Y';
 $lang_date['lastcom'] = '%d/%m/%y at %H:%M';
 $lang_date['lastup'] = '%d %B, %Y';
 $lang_date['register'] = '%B %d, %Y';
@@ -64,15 +58,11 @@ $lang_meta_album_names['album_search'] = 'Album søge resultater';
 $lang_meta_album_names['category_search'] = 'Kategori søge resultater';
 $lang_meta_album_names['favpics'] = 'Favorit filer';
 $lang_meta_album_names['datebrowse'] = 'Gennemse efter dato'; //cpg1.5
-
 $lang_errors['access_denied'] = 'Du har ikke tilladelse til at se denne side.';
-$lang_errors['invalid_form_token'] = 'Der kunne ikke findes et gyldigt \'token\' for skemaet.'; //cpg1.5
-$lang_errors['perm_denied'] = 'Do har ikke tilladelse til at udføre operationen.';
+$lang_errors['invalid_form_token'] = 'Der kunne ikke findes et gyldigt \'token\' for skemaet.'; //cpg1.5$lang_errors['perm_denied'] = 'Do har ikke tilladelse til at udføre operationen.';
 $lang_errors['param_missing'] = 'Script kaldt uden nødvendig(e) parameter.';
 $lang_errors['non_exist_ap'] = 'Det valgte album/fil findes ikke!';
-$lang_errors['quota_exceeded'] = 'Disk kvota overskredet.'; //cpg1.5
-$lang_errors['quota_exceeded_details'] = 'Du har [quota]K diskplads, dine filer bruger [space]K, tilføjelse af dette vil overskide din kvota.'; //cpg1.5
-$lang_errors['gd_file_type_err'] = 'Ved brug af GD billedbiblioteket, kan du kun bruge JPEG og PNG typer.';
+$lang_errors['quota_exceeded'] = 'Disk kvota overskredet.'; //cpg1.5$lang_errors['quota_exceeded_details'] = 'Du har [quota]K diskplads, dine filer bruger [space]K, tilføjelse af dette vil overskide din kvota.'; //cpg1.5$lang_errors['gd_file_type_err'] = 'Ved brug af GD billedbiblioteket, kan du kun bruge JPEG og PNG typer.';
 $lang_errors['invalid_image'] = 'Det uploadede billede er ødelagt eller kan ikke håndteres af GD.';
 $lang_errors['resize_failed'] = 'Kan ikke oprette thumpnail eller reduceret størrelse.';
 $lang_errors['no_img_to_display'] = 'Der kan ikke vise noget billede';
@@ -85,71 +75,12 @@ $lang_errors['offline_text'] = 'Galleriet er i øjeblikket offline - Tjek igen s
 $lang_errors['ecards_empty'] = 'Der kan i øjeblikket ingen e-kort der kan vises.';
 $lang_errors['database_query'] = 'Der opstod en fejl under en database forespørgsel';
 $lang_errors['non_exist_comment'] = 'Den valgte kommentarer findes ikke';
-$lang_errors['captcha_error'] = 'Bekræftigelses koden passede ikke'; // cpg1.5
-$lang_errors['login_needed'] = 'Du skal %sregister%s/%slogin%s for at få adgang til denne side'; // cpg1.5
-$lang_errors['error'] = 'Fejl'; // cpg1.5
-$lang_errors['critical_error'] = 'Kritisk fejl'; // cpg1.5
-$lang_errors['access_thumbnail_only'] = 'Du har kun lov at se thumbnail billeder.'; // cpg1.5
-$lang_errors['access_intermediate_only'] = 'Du har ikke lov at se billeder i fuld størrelse.'; // cpg1.5
-$lang_errors['access_none'] = 'Du har ikke lov at se nogen billeder.'; // cpg1.5
-$lang_errors['register_globals_title'] = 'Register Globals on!';// cpg1.5
-$lang_errors['register_globals_warning'] = 'PHP indstillingen register_globals er slået til på din server, hvilket er en dårlig ide med hensyn til sikkerhed. Det er STÆRKT tilrådeligt at slå den fra.'; //cpg1.5
-
+$lang_errors['captcha_error'] = 'Bekræftigelses koden passede ikke'; // cpg1.5$lang_errors['login_needed'] = 'Du skal %sregister%s/%slogin%s for at få adgang til denne side'; // cpg1.5$lang_errors['error'] = 'Fejl'; // cpg1.5$lang_errors['critical_error'] = 'Kritisk fejl'; // cpg1.5$lang_errors['access_thumbnail_only'] = 'Du har kun lov at se thumbnail billeder.'; // cpg1.5$lang_errors['access_intermediate_only'] = 'Du har ikke lov at se billeder i fuld størrelse.'; // cpg1.5$lang_errors['access_none'] = 'Du har ikke lov at se nogen billeder.'; // cpg1.5$lang_errors['register_globals_title'] = 'Register Globals on!';// cpg1.5$lang_errors['register_globals_warning'] = 'PHP indstillingen register_globals er slået til på din server, hvilket er en dårlig ide med hensyn til sikkerhed. Det er STÆRKT tilrådeligt at slå den fra.'; //cpg1.5
 $lang_bbcode_help_title = 'BBCode hjælp';
 $lang_bbcode_help = 'Du kan tilføje klikbare links og noget formattering ved hjælp af BBCode: <li>[b]Fremhæv[/b] =&gt; <strong>Fremhæv</strong></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://dinside.com/]Url Text[/url] =&gt; <a href="http://dinside.com">Url Tekst</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]noget tekst[/color] =&gt; <span style="color:red">noget tekst</span></li><li>[img]http://documentation.coppermine-gallery.net/images/browser.png[/img] =&gt; <img src="docs/images/browser.png" border="0" alt="" /></li>';
 
-$lang_common['yes'] = 'Ja'; // cpg1.5
-$lang_common['no'] = 'Nej'; // cpg1.5
-$lang_common['back'] = 'Tilbage'; // cpg1.5
-$lang_common['continue'] = 'Fortsæt'; // cpg1.5
-$lang_common['information'] = 'Information'; // cpg1.5
-$lang_common['error'] = 'Fejl'; // cpg1.5
-$lang_common['check_uncheck_all'] = 'maker/afmarker alt'; // cpg1.5
-$lang_common['confirm'] = 'Bekræftelse'; // cpg1.5
-$lang_common['captcha_help_title'] = 'Visuel bekræftigelse (captcha)'; // cpg1.5
-$lang_common['captcha_help'] = 'For at undgå spam, skal du at du er et menneske og ikke bare et bot script ved at skrive den viste tekst.<br />Du kan bruge både store og små bogstaver. D.V.S. du kan bare skive med små..'; // cpg1.5
-$lang_common['title'] = 'Titel'; // cpg1.5
-$lang_common['caption'] = 'Beskrivelse'; // cpg1.5
-$lang_common['keywords'] = 'Nøgleord'; // cpg1.5
-$lang_common['keywords_insert1'] = 'Nøgleord (adskilt med %s)'; // cpg1.5
-$lang_common['keywords_insert2'] = 'Indsæt fra liste'; // cpg1.5
-$lang_common['keyword_separator'] = 'Nøgleords separator'; //cpg1.5
-$lang_common['keyword_separators'] = array(' '=>'mellemrum', ','=>'komma', ';'=>'semikolon'); // cpg1.5
-$lang_common['filename'] = 'Filnavn'; // cpg1.5
-$lang_common['filesize'] = 'Filstørrelse'; // cpg1.5
-$lang_common['album'] = 'Album'; // cpg1.5
-$lang_common['file'] = 'Fil'; // cpg1.5
-$lang_common['date'] = 'Dato'; // cpg1.5
-$lang_common['help'] = 'Hjælp'; // cpg1.5
-$lang_common['close'] = 'Luk'; // cpg1.5
-$lang_common['go'] = 'go'; // cpg1.5
-$lang_common['javascript_needed'] = 'Denne side bruger JavaScript. Slå JavaScript til i din browser.'; // cpg1.5
-$lang_common['move_up'] = 'Flyt up'; // cpg1.5
-$lang_common['move_down'] = 'Flyt ned'; // cpg1.5
-$lang_common['move_top'] = 'Flyt til toppen'; // cpg1.5
-$lang_common['move_bottom'] = 'Flyt til bunden'; // cpg1.5
-$lang_common['delete'] = 'Slet'; // cpg1.5
-$lang_common['edit'] = 'Ret'; // cpg1.5
-$lang_common['username_if_blank'] = 'Ukendt bruger'; // cpg1.5
-$lang_common['albums_no_category'] = 'Albums uden kategori'; // cpg1.5
-$lang_common['personal_albums'] = '* Personlige albums'; // cpg1.5
-$lang_common['select_album'] = 'Vælg Album'; // cpg1.5
-$lang_common['ok'] = 'OK'; // cpg1.5
-$lang_common['status'] = 'Status'; // cpg1.5
-$lang_common['apply_changes'] = 'Tilføj ændringer'; // cpg1.5
-$lang_common['done'] = 'Udført'; // cpg1.5
-$lang_common['album_properties'] = 'Album egenskaber'; // cpg1.5
-$lang_common['parent_category'] = 'Forældre kategori'; // cpg1.5
-$lang_common['edit_files'] = 'Ret filer'; // cpg1.5
-$lang_common['thumbnail_view'] = 'Thumbnail oversigt'; // cpg1.5
-$lang_common['album_manager'] = 'Album Manager'; // cpg1.5
-$lang_common['more'] = 'mere'; // cpg1.5
-
-// ------------------------------------------------------------------------- //
-// File theme.php
-// ------------------------------------------------------------------------- //
-
-$lang_main_menu['home_title'] = 'Gå til hjemmeside';
+$lang_common['yes'] = 'Ja'; // cpg1.5$lang_common['no'] = 'Nej'; // cpg1.5$lang_common['back'] = 'Tilbage'; // cpg1.5$lang_common['continue'] = 'Fortsæt'; // cpg1.5$lang_common['information'] = 'Information'; // cpg1.5$lang_common['error'] = 'Fejl'; // cpg1.5$lang_common['check_uncheck_all'] = 'maker/afmarker alt'; // cpg1.5$lang_common['confirm'] = 'Bekræftelse'; // cpg1.5$lang_common['captcha_help_title'] = 'Visuel bekræftigelse (captcha)'; // cpg1.5$lang_common['captcha_help'] = 'For at undgå spam, skal du at du er et menneske og ikke bare et bot script ved at skrive den viste tekst.<br />Du kan bruge både store og små bogstaver. D.V.S. du kan bare skive med små..'; // cpg1.5$lang_common['title'] = 'Titel'; // cpg1.5$lang_common['caption'] = 'Beskrivelse'; // cpg1.5$lang_common['keywords'] = 'Nøgleord'; // cpg1.5$lang_common['keywords_insert1'] = 'Nøgleord (adskilt med %s)'; // cpg1.5$lang_common['keywords_insert2'] = 'Indsæt fra liste'; // cpg1.5$lang_common['keyword_separator'] = 'Nøgleords separator'; //cpg1.5$lang_common['keyword_separators'] = array(' '=>'mellemrum', ','=>'komma', ';'=>'semikolon'); // cpg1.5$lang_common['filename'] = 'Filnavn'; // cpg1.5$lang_common['filesize'] = 'Filstørrelse'; // cpg1.5$lang_common['album'] = 'Album'; // cpg1.5$lang_common['file'] = 'Fil'; // cpg1.5$lang_common['date'] = 'Dato'; // cpg1.5$lang_common['help'] = 'Hjælp'; // cpg1.5$lang_common['close'] = 'Luk'; // cpg1.5$lang_common['go'] = 'go'; // cpg1.5$lang_common['javascript_needed'] = 'Denne side bruger JavaScript. Slå JavaScript til i din browser.'; // cpg1.5$lang_common['move_up'] = 'Flyt up'; // cpg1.5$lang_common['move_down'] = 'Flyt ned'; // cpg1.5$lang_common['move_top'] = 'Flyt til toppen'; // cpg1.5$lang_common['move_bottom'] = 'Flyt til bunden'; // cpg1.5$lang_common['delete'] = 'Slet'; // cpg1.5$lang_common['edit'] = 'Ret'; // cpg1.5$lang_common['username_if_blank'] = 'Ukendt bruger'; // cpg1.5$lang_common['albums_no_category'] = 'Albums uden kategori'; // cpg1.5$lang_common['personal_albums'] = '* Personlige albums'; // cpg1.5$lang_common['select_album'] = 'Vælg Album'; // cpg1.5$lang_common['ok'] = 'OK'; // cpg1.5$lang_common['status'] = 'Status'; // cpg1.5$lang_common['apply_changes'] = 'Tilføj ændringer'; // cpg1.5$lang_common['done'] = 'Udført'; // cpg1.5$lang_common['album_properties'] = 'Album egenskaber'; // cpg1.5$lang_common['parent_category'] = 'Forældre kategori'; // cpg1.5$lang_common['edit_files'] = 'Ret filer'; // cpg1.5$lang_common['thumbnail_view'] = 'Thumbnail oversigt'; // cpg1.5$lang_common['album_manager'] = 'Album Manager'; // cpg1.5$lang_common['more'] = 'mere'; // cpg1.5
+// ------------------------------------------------------------------------- //// File theme.php// ------------------------------------------------------------------------- //$lang_main_menu['home_title'] = 'Gå til hjemmeside';
 $lang_main_menu['home_lnk'] = 'Hjem';
 $lang_main_menu['alb_list_title'] = 'Gå til albumlisten';
 $lang_main_menu['alb_list_lnk'] = 'Album liste';
@@ -157,11 +88,7 @@ $lang_main_menu['my_gal_title'] = 'Gå til mit personlige galleri';
 $lang_main_menu['my_gal_lnk'] = 'Mit galleri';
 $lang_main_menu['my_prof_title'] = 'Gå til min personlige profil';
 $lang_main_menu['my_prof_lnk'] = 'Min profil';
-$lang_main_menu['adm_mode_title'] = 'Vis admin værktøjer'; // cpg1.5
-$lang_main_menu['adm_mode_lnk'] = 'Vis admin værktøjer'; // cpg1.5
-$lang_main_menu['usr_mode_title'] = 'Fjern visning af admin værktøjer'; // cpg1.5
-$lang_main_menu['usr_mode_lnk'] = 'Skjul admin værktøjer'; // cpg1.5
-$lang_main_menu['upload_pic_title'] = 'Upload en fil ind i et album';
+$lang_main_menu['adm_mode_title'] = 'Vis admin værktøjer'; // cpg1.5$lang_main_menu['adm_mode_lnk'] = 'Vis admin værktøjer'; // cpg1.5$lang_main_menu['usr_mode_title'] = 'Fjern visning af admin værktøjer'; // cpg1.5$lang_main_menu['usr_mode_lnk'] = 'Skjul admin værktøjer'; // cpg1.5$lang_main_menu['upload_pic_title'] = 'Upload en fil ind i et album';
 $lang_main_menu['upload_pic_lnk'] = 'Upload fil';
 $lang_main_menu['register_title'] = 'Opret en bruger';
 $lang_main_menu['register_lnk'] = 'Registrer';
@@ -183,13 +110,7 @@ $lang_main_menu['fav_title'] = 'Gå til mine favoriter';
 $lang_main_menu['fav_lnk'] = 'Mine Favoriter';
 $lang_main_menu['memberlist_title'] = 'Vis medlemsliste';
 $lang_main_menu['memberlist_lnk'] = 'Medlemsliste';
-$lang_main_menu['browse_by_date_lnk'] = 'Efter dato'; // cpg1.5
-$lang_main_menu['browse_by_date_title'] = 'Vis efter uploaddato'; // cpg1.5
-$lang_main_menu['contact_title'] = 'Kom i kontakt med %s'; // cpg1.5
-$lang_main_menu['contact_lnk'] = 'Kontakt'; // cpg1.5
-$lang_main_menu['sidebar_title'] = 'Tilføj en Sidebar til din browser'; // cpg1.5
-$lang_main_menu['sidebar_lnk'] = 'Sidebar'; // cpg1.5
-
+$lang_main_menu['browse_by_date_lnk'] = 'Efter dato'; // cpg1.5$lang_main_menu['browse_by_date_title'] = 'Vis efter uploaddato'; // cpg1.5$lang_main_menu['contact_title'] = 'Kom i kontakt med %s'; // cpg1.5$lang_main_menu['contact_lnk'] = 'Kontakt'; // cpg1.5$lang_main_menu['sidebar_title'] = 'Tilføj en Sidebar til din browser'; // cpg1.5$lang_main_menu['sidebar_lnk'] = 'Sidebar'; // cpg1.5
 $lang_gallery_admin_menu['upl_app_title'] = 'Godkend nye';
 $lang_gallery_admin_menu['upl_app_lnk'] = 'Upload godkendelse';
 $lang_gallery_admin_menu['admin_title'] = 'Gå til konfigurering';
@@ -217,27 +138,7 @@ $lang_gallery_admin_menu['pictures_title'] = 'Sorter mine billeder';
 $lang_gallery_admin_menu['pictures_lnk'] = 'Sorter mine billeder';
 $lang_gallery_admin_menu['documentation_lnk'] = 'Dokumentation';
 $lang_gallery_admin_menu['documentation_title'] = 'Coppermine manual';
-$lang_gallery_admin_menu['phpinfo_lnk'] = 'phpinfo'; // cpg1.5
-$lang_gallery_admin_menu['phpinfo_title'] = 'Indeholder teknisk information om din server. Du kan blive bedt om information hvis du skal bruge support.'; // cpg1.5
-$lang_gallery_admin_menu['update_database_lnk'] = 'Opdater database'; // cpg1.5
-$lang_gallery_admin_menu['update_database_title'] = 'Hvis du har erstattet Coppermine filer, tilføjet en modifikation eller opgraderet fra en tidligere version af Coppermine, vær sikker på at køre database opdateringen en gang. Dette vil oprette de nødvendige tabeller og/eller konfig værdier i din Coppermine database.'; // cpg1.5
-$lang_gallery_admin_menu['view_log_files_lnk'] = 'Vis log filer'; // cpg1.5
-$lang_gallery_admin_menu['view_log_files_title'] = 'Coppermine kan holde øje med forskellige operationer udført af brugere. Du kan gennemse disse logs hvis du har slået logging til i Coppermine konfiguration.'; // cpg1.5
-$lang_gallery_admin_menu['check_versions_lnk'] = 'Check versioner'; // cpg1.5
-$lang_gallery_admin_menu['check_versions_title'] = 'Check dine fil versionerfor at finde ud af om du har erstattet alle efter en opgradering, eller om Coppermine kilde filer er blevet opdateret efter frigivelsen af en pakke.'; // cpg1.5
-$lang_gallery_admin_menu['bridgemgr_lnk'] = 'Bridge Manager'; // cpg1.5
-$lang_gallery_admin_menu['bridgemgr_title'] = 'Slå integration(bridging) til/fra af Coppermine med anden applikation (f.eks. din BBS).'; // cpg1.5
-$lang_gallery_admin_menu['pluginmgr_lnk'] = 'Plugin Manager'; // cpg1.5
-$lang_gallery_admin_menu['pluginmgr_title'] = 'Plugin manager'; // cpg1.5
-$lang_gallery_admin_menu['overall_stats_lnk'] = 'Grundlæggende statistikker'; // cpg1.5
-$lang_gallery_admin_menu['overall_stats_title'] = 'Se Grundlæggende statistikker efter browser og operativ system (hvis funktionerne er slået til i konfig).'; // cpg1.5
-$lang_gallery_admin_menu['keywordmgr_lnk'] = 'Nøgleords manager'; // cpg1.5
-$lang_gallery_admin_menu['keywordmgr_title'] = 'Manage nøgleord (hvis funktionerne er slået til i konfig).'; // cpg1.5
-$lang_gallery_admin_menu['exifmgr_lnk'] = 'EXIF manager'; // cpg1.5
-$lang_gallery_admin_menu['exifmgr_title'] = 'Manage EXIF visning (hvis funktionerne er slået til i konfig).'; // cpg1.5
-$lang_gallery_admin_menu['shownews_lnk'] = 'Vis Nyheder'; // cpg1.5
-$lang_gallery_admin_menu['shownews_title'] = 'Vis nyheder fra coppermine-gallery.net'; // cpg1.5
-
+$lang_gallery_admin_menu['phpinfo_lnk'] = 'phpinfo'; // cpg1.5$lang_gallery_admin_menu['phpinfo_title'] = 'Indeholder teknisk information om din server. Du kan blive bedt om information hvis du skal bruge support.'; // cpg1.5$lang_gallery_admin_menu['update_database_lnk'] = 'Opdater database'; // cpg1.5$lang_gallery_admin_menu['update_database_title'] = 'Hvis du har erstattet Coppermine filer, tilføjet en modifikation eller opgraderet fra en tidligere version af Coppermine, vær sikker på at køre database opdateringen en gang. Dette vil oprette de nødvendige tabeller og/eller konfig værdier i din Coppermine database.'; // cpg1.5$lang_gallery_admin_menu['view_log_files_lnk'] = 'Vis log filer'; // cpg1.5$lang_gallery_admin_menu['view_log_files_title'] = 'Coppermine kan holde øje med forskellige operationer udført af brugere. Du kan gennemse disse logs hvis du har slået logging til i Coppermine konfiguration.'; // cpg1.5$lang_gallery_admin_menu['check_versions_lnk'] = 'Check versioner'; // cpg1.5$lang_gallery_admin_menu['check_versions_title'] = 'Check dine fil versionerfor at finde ud af om du har erstattet alle efter en opgradering, eller om Coppermine kilde filer er blevet opdateret efter frigivelsen af en pakke.'; // cpg1.5$lang_gallery_admin_menu['bridgemgr_lnk'] = 'Bridge Manager'; // cpg1.5$lang_gallery_admin_menu['bridgemgr_title'] = 'Slå integration(bridging) til/fra af Coppermine med anden applikation (f.eks. din BBS).'; // cpg1.5$lang_gallery_admin_menu['pluginmgr_lnk'] = 'Plugin Manager'; // cpg1.5$lang_gallery_admin_menu['pluginmgr_title'] = 'Plugin manager'; // cpg1.5$lang_gallery_admin_menu['overall_stats_lnk'] = 'Grundlæggende statistikker'; // cpg1.5$lang_gallery_admin_menu['overall_stats_title'] = 'Se Grundlæggende statistikker efter browser og operativ system (hvis funktionerne er slået til i konfig).'; // cpg1.5$lang_gallery_admin_menu['keywordmgr_lnk'] = 'Nøgleords manager'; // cpg1.5$lang_gallery_admin_menu['keywordmgr_title'] = 'Manage nøgleord (hvis funktionerne er slået til i konfig).'; // cpg1.5$lang_gallery_admin_menu['exifmgr_lnk'] = 'EXIF manager'; // cpg1.5$lang_gallery_admin_menu['exifmgr_title'] = 'Manage EXIF visning (hvis funktionerne er slået til i konfig).'; // cpg1.5$lang_gallery_admin_menu['shownews_lnk'] = 'Vis Nyheder'; // cpg1.5$lang_gallery_admin_menu['shownews_title'] = 'Vis nyheder fra coppermine-gallery.net'; // cpg1.5
 $lang_user_admin_menu['albmgr_title'] = 'Opret og sorter albums';
 $lang_user_admin_menu['albmgr_lnk'] = 'Opert/sorter mine albums';
 $lang_user_admin_menu['modifyalb_title'] = 'Gå til ændre mine albums';
@@ -270,16 +171,14 @@ $lang_thumb_view['enter_alb_pass'] = 'Indtast Album Kodeord';
 $lang_thumb_view['invalid_pass'] = 'Forkert Kodeord';
 $lang_thumb_view['pass'] = 'Kodeord';
 $lang_thumb_view['submit'] = 'Send';
-$lang_thumb_view['zipdownload_copyright'] = 'Overhold copyrights - brug kun filer som ejeren af dette galleri har godkendt'; // cpg1.5
-$lang_thumb_view['zipdownload_username'] = 'Dette arkiv indeholder zippede filer fra favoritter fra %s'; // cpg1.5
+$lang_thumb_view['zipdownload_copyright'] = 'Overhold copyrights - brug kun filer som ejeren af dette galleri har godkendt'; // cpg1.5$lang_thumb_view['zipdownload_username'] = 'Dette arkiv indeholder zippede filer fra favoritter fra %s'; // cpg1.5
 
 $lang_img_nav_bar['thumb_title'] = 'Returner til thumbnail siden';
 $lang_img_nav_bar['pic_info_title'] = 'Vis/skjul fil information';
 $lang_img_nav_bar['slideshow_title'] = 'Diasfremvisning';
 $lang_img_nav_bar['ecard_title'] = 'Send denne fil som et e-kort';
 $lang_img_nav_bar['ecard_disabled'] = 'e-kort er slået fra';
-$lang_img_nav_bar['ecard_disabled_msg'] = 'Du har ikke rettigheder til at sende e-kort'; // js-alert
-$lang_img_nav_bar['prev_title'] = 'Se foregående fil';
+$lang_img_nav_bar['ecard_disabled_msg'] = 'Du har ikke rettigheder til at sende e-kort'; // js-alert$lang_img_nav_bar['prev_title'] = 'Se foregående fil';
 $lang_img_nav_bar['next_title'] = 'Se næste fil';
 $lang_img_nav_bar['pic_pos'] = 'FIL %s/%s';
 $lang_img_nav_bar['report_title'] = 'Rapporter denne fil til administratoren';
@@ -295,16 +194,8 @@ $lang_rate_pic['fair'] = 'Middel';
 $lang_rate_pic['good'] = 'God';
 $lang_rate_pic['excellent'] = 'Rigtig god';
 $lang_rate_pic['great'] = 'Fantastisk';
-$lang_rate_pic['js_warning'] = 'JavaScript skal være slået til for at du kan stemme'; // cpg1.5
-$lang_rate_pic['already_voted'] = 'Du har allerede afgivet stemme for dette billede.'; // cpg1.5
-$lang_rate_pic['forbidden'] = 'Du kan ikke stemme på egne filer.'; // cpg1.5
-$lang_rate_pic['rollover_to_rate'] = 'Træ over for at give karakter til billedet'; // cpg1.5
-
-// ------------------------------------------------------------------------- //
-// File include/functions.inc.php
-// ------------------------------------------------------------------------- //
-
-$lang_cpg_die['file'] = 'Fil: ';
+$lang_rate_pic['js_warning'] = 'JavaScript skal være slået til for at du kan stemme'; // cpg1.5$lang_rate_pic['already_voted'] = 'Du har allerede afgivet stemme for dette billede.'; // cpg1.5$lang_rate_pic['forbidden'] = 'Du kan ikke stemme på egne filer.'; // cpg1.5$lang_rate_pic['rollover_to_rate'] = 'Træ over for at give karakter til billedet'; // cpg1.5
+// ------------------------------------------------------------------------- //// File include/functions.inc.php// ------------------------------------------------------------------------- //$lang_cpg_die['file'] = 'Fil: ';
 $lang_cpg_die['line'] = 'Linie: ';
 
 $lang_display_thumbnails['dimensions'] = 'Dimensioner=';
@@ -315,16 +206,10 @@ $lang_get_pic_data['n_views'] = '%s visninger';
 $lang_get_pic_data['n_votes'] = '(%s stemmer)';
 
 $lang_cpg_debug_output['debug_info'] = 'Debug Info';
-$lang_cpg_debug_output['debug_output'] = 'Debug Output'; // cpg1.5
-$lang_cpg_debug_output['select_all'] = 'Vælg Alt';
-$lang_cpg_debug_output['copy_and_paste_instructions'] = 'Hvis du vil spørge om hjælp på Coppermine support board, klip-og-klister denne debug udskrift i din henvendelse når du bliver forespurgt, sammmen med den fejlbesked du fik (hvis der var nogen). Vedhæft kun debug_output til support board hvis en supporter  beder om det! Udskift evt. forekomster af kodeord i teksten med *** før afsendelse.'; // cpg1.5
-$lang_cpg_debug_output['debug_output_explain'] = 'Note: Dette er kun information og betyder ikke at der er en fejl i galleriet.'; // cpg1.5
-$lang_cpg_debug_output['phpinfo'] = 'Vis phpinfo';
+$lang_cpg_debug_output['debug_output'] = 'Debug Output'; // cpg1.5$lang_cpg_debug_output['select_all'] = 'Vælg Alt';
+$lang_cpg_debug_output['copy_and_paste_instructions'] = 'Hvis du vil spørge om hjælp på Coppermine support board, klip-og-klister denne debug udskrift i din henvendelse når du bliver forespurgt, sammmen med den fejlbesked du fik (hvis der var nogen). Vedhæft kun debug_output til support board hvis en supporter  beder om det! Udskift evt. forekomster af kodeord i teksten med *** før afsendelse.'; // cpg1.5$lang_cpg_debug_output['debug_output_explain'] = 'Note: Dette er kun information og betyder ikke at der er en fejl i galleriet.'; // cpg1.5$lang_cpg_debug_output['phpinfo'] = 'Vis phpinfo';
 $lang_cpg_debug_output['notices'] = 'Notitser';
-$lang_cpg_debug_output['notices_help_admin'] = 'Denne notits vist på denne side, optræder kun fordi du (som galleri admin) har slået denne funktion til i Coppermine\'s konfiguration. De betyder nødvendigvis ikke, at der er noget galt med dit galleri. Faktisk er det en funktion som kun erfarne programmører bruger for at finde fejl. Hvis visning af notitser plager dig og/eller du ikke aner, hvad de betyder, slå funktionen fra i konfig.'; // cpg1.5
-$lang_cpg_debug_output['notices_help_non_admin'] = 'Denne notits er slået til af admin. Det betyder ikke, at der er en fejl i din ende. Du kan roligt ignorere denne notits og hvad der står i den.'; // cpg1.5
-$lang_cpg_debug_output['show_hide'] = 'vis / skjul'; // cpg1.5
-
+$lang_cpg_debug_output['notices_help_admin'] = 'Denne notits vist på denne side, optræder kun fordi du (som galleri admin) har slået denne funktion til i Coppermine\'s konfiguration. De betyder nødvendigvis ikke, at der er noget galt med dit galleri. Faktisk er det en funktion som kun erfarne programmører bruger for at finde fejl. Hvis visning af notitser plager dig og/eller du ikke aner, hvad de betyder, slå funktionen fra i konfig.'; // cpg1.5$lang_cpg_debug_output['notices_help_non_admin'] = 'Denne notits er slået til af admin. Det betyder ikke, at der er en fejl i din ende. Du kan roligt ignorere denne notits og hvad der står i den.'; // cpg1.5$lang_cpg_debug_output['show_hide'] = 'vis / skjul'; // cpg1.5
 $lang_language_selection['reset_language'] = 'Default sprog';
 $lang_language_selection['choose_language'] = 'Vælg dit sprog';
 
@@ -335,25 +220,10 @@ $lang_version_alert['version_alert'] = 'Usupporteret version!';
 $lang_version_alert['no_stable_version'] = 'Du bruger Coppermine %s (%s) som kun er bestemt for meget erfarne brugere - denne version er uden support eller nogen garantier. Det er din egen risiko at bruge den eller nedgrader til seneste stabile version hvis du skal have support!';
 $lang_version_alert['gallery_offline'] = 'Galleriet er i øjeblikket offline og kan kun ses af dig som admin. Glem ikke at sætte tilbage til online efter vedligehold er afsluttet.';
 $lang_version_alert['coppermine_news'] = 'Nyheder from coppermine-gallery.net'; // cpg1.5
-$lang_version_alert['no_iframe'] = 'Din browser kan ikke vise inline frames'; // cpg1.5
-$lang_version_alert['hide'] = 'skjul'; // cpg1.5
-
-$lang_create_tabs['previous'] = 'forrige'; // cpg1.5
-$lang_create_tabs['next'] = 'Næste'; // cpg1.5
-$lang_create_tabs['jump_to_page'] = 'Hop til side'; // cpg1.5
-
-$lang_get_remote_file_by_url['no_data_returned'] = 'Returnerede ingen data ved brug af %s'; // cpg1.5
-$lang_get_remote_file_by_url['curl'] = 'CURL'; // cpg1.5
-$lang_get_remote_file_by_url['fsockopen'] = 'Socket connection (FSOCKOPEN)'; // cpg1.5
-$lang_get_remote_file_by_url['fopen'] = 'fopen'; // cpg1.5
-$lang_get_remote_file_by_url['curl_not_available'] = 'Curl is not available on your server'; // cpg1.5
-$lang_get_remote_file_by_url['error_number'] = 'Error number: %s'; // cpg1.5
-$lang_get_remote_file_by_url['error_message'] = 'Error message: %s'; // cpg1.5
-
-// ------------------------------------------------------------------------- //
-// File include/mailer.inc.php
-// ------------------------------------------------------------------------- //
-$lang_mailer['provide_address'] = 'Du skal give mindst en ';
+$lang_version_alert['no_iframe'] = 'Din browser kan ikke vise inline frames'; // cpg1.5$lang_version_alert['hide'] = 'skjul'; // cpg1.5
+$lang_create_tabs['previous'] = 'forrige'; // cpg1.5$lang_create_tabs['next'] = 'Næste'; // cpg1.5$lang_create_tabs['jump_to_page'] = 'Hop til side'; // cpg1.5
+$lang_get_remote_file_by_url['no_data_returned'] = 'Returnerede ingen data ved brug af %s'; // cpg1.5$lang_get_remote_file_by_url['curl'] = 'CURL'; // cpg1.5$lang_get_remote_file_by_url['fsockopen'] = 'Socket connection (FSOCKOPEN)'; // cpg1.5$lang_get_remote_file_by_url['fopen'] = 'fopen'; // cpg1.5$lang_get_remote_file_by_url['curl_not_available'] = 'Curl is not available on your server'; // cpg1.5$lang_get_remote_file_by_url['error_number'] = 'Error number: %s'; // cpg1.5$lang_get_remote_file_by_url['error_message'] = 'Error message: %s'; // cpg1.5
+// ------------------------------------------------------------------------- //// File include/mailer.inc.php// ------------------------------------------------------------------------- //$lang_mailer['provide_address'] = 'Du skal give mindst en ';
 $lang_mailer['mailer_not_supported'] = ' mailer is not supported.';
 $lang_mailer['execute'] = 'Could not execute: ';
 $lang_mailer['instantiate'] = 'Could not instantiate mail function.';
@@ -367,10 +237,7 @@ $lang_mailer['file_open'] = 'File Error: Could not open file: ';
 $lang_mailer['encoding'] = 'Unknown encoding: ';
 $lang_mailer['signing'] = 'Signing Error: ';
 
-// ------------------------------------------------------------------------- //
-// File include/plugin_api.inc.php
-// ------------------------------------------------------------------------- //
-$lang_plugin_api['error_install'] = 'Kunne ikke indstallere plugin \'%s\'';
+// ------------------------------------------------------------------------- //// File include/plugin_api.inc.php// ------------------------------------------------------------------------- //$lang_plugin_api['error_install'] = 'Kunne ikke indstallere plugin \'%s\'';
 $lang_plugin_api['error_uninstall'] = 'Kunne ikke fjerne plugin \'%s\'';
 $lang_plugin_api['error_sleep'] = 'Kunne ikke slå plugin \'%s\' fra'; // cpg1.5
 
@@ -390,8 +257,7 @@ $lang_smilies_inc_php['Cool'] = 'Cool';
 $lang_smilies_inc_php['Laughing'] = 'Griner';
 $lang_smilies_inc_php['Mad'] = 'Gal';
 $lang_smilies_inc_php['Razz'] = 'Razz';
-$lang_smilies_inc_php['Embarrassed'] = 'Flov'; // cpg1.5
-$lang_smilies_inc_php['Crying or Very sad'] = 'Græder - eller meget ked';
+$lang_smilies_inc_php['Embarrassed'] = 'Flov'; // cpg1.5$lang_smilies_inc_php['Crying or Very sad'] = 'Græder - eller meget ked';
 $lang_smilies_inc_php['Evil or Very Mad'] = 'Ond eller meget gal';
 $lang_smilies_inc_php['Twisted Evil'] = 'Rablende gal';
 $lang_smilies_inc_php['Rolling Eyes'] = 'Ruller med øjne';
@@ -402,42 +268,19 @@ $lang_smilies_inc_php['Neutral'] = 'Neutral';
 $lang_smilies_inc_php['Mr. Green'] = 'Mr. Green';
 }
 
-// ------------------------------------------------------------------------- //
-// File albmgr.php
-// ------------------------------------------------------------------------- //
-if (defined('ALBMGR_PHP')) {
-$lang_albmgr_php['title'] = 'Album Manager'; // cpg1.5
-$lang_albmgr_php['alb_need_name'] = 'Albums skal have et navn!'; // js-alert
-$lang_albmgr_php['confirm_modifs'] = 'Er du sikker på du vil lave disse ændringer?'; // js-alert
-$lang_albmgr_php['no_change'] = 'Du lavede ingen ændringer!'; // js-alert
-$lang_albmgr_php['new_album'] = 'Nyt album';
-$lang_albmgr_php['delete_album'] = 'Slet album'; // cpg1.5
-$lang_albmgr_php['confirm_delete1'] = 'Er du sikker på du vil slette dette album?'; // js-alert
-$lang_albmgr_php['confirm_delete2'] = 'Alle filer og kommentare det indeholder vil blive tabt!'; // js-alert
-$lang_albmgr_php['select_first'] = 'Vælg et album først'; // js-alert
-$lang_albmgr_php['my_gallery'] = '* Mit galleri *';
+// ------------------------------------------------------------------------- //// File albmgr.php// ------------------------------------------------------------------------- //if (defined('ALBMGR_PHP')) {
+$lang_albmgr_php['title'] = 'Album Manager'; // cpg1.5$lang_albmgr_php['alb_need_name'] = 'Albums skal have et navn!'; // js-alert$lang_albmgr_php['confirm_modifs'] = 'Er du sikker på du vil lave disse ændringer?'; // js-alert$lang_albmgr_php['no_change'] = 'Du lavede ingen ændringer!'; // js-alert$lang_albmgr_php['new_album'] = 'Nyt album';
+$lang_albmgr_php['delete_album'] = 'Slet album'; // cpg1.5$lang_albmgr_php['confirm_delete1'] = 'Er du sikker på du vil slette dette album?'; // js-alert$lang_albmgr_php['confirm_delete2'] = 'Alle filer og kommentare det indeholder vil blive tabt!'; // js-alert$lang_albmgr_php['select_first'] = 'Vælg et album først'; // js-alert$lang_albmgr_php['my_gallery'] = '* Mit galleri *';
 $lang_albmgr_php['no_category'] = '* Ingen kategori *';
 $lang_albmgr_php['select_category'] = 'Vælg kategori';
-$lang_albmgr_php['category_change'] = 'Hvis du ændrer kategori, dine ændringer vil være tabte!'; // cpg1.5
-$lang_albmgr_php['page_change'] = 'Hvis du følger dette link, alle dine ændringer vil være tabte!'; // cpg1.5
-$lang_albmgr_php['cancel'] = 'Afbryd'; // cpg1.5
-$lang_albmgr_php['submit_reminder'] = 'Sorterings ændringer er ikke gemt før du klikker &quot;Tilføj ændringer&quot;.'; // cpg1.5
-}
+$lang_albmgr_php['category_change'] = 'Hvis du ændrer kategori, dine ændringer vil være tabte!'; // cpg1.5$lang_albmgr_php['page_change'] = 'Hvis du følger dette link, alle dine ændringer vil være tabte!'; // cpg1.5$lang_albmgr_php['cancel'] = 'Afbryd'; // cpg1.5$lang_albmgr_php['submit_reminder'] = 'Sorterings ændringer er ikke gemt før du klikker &quot;Tilføj ændringer&quot;.'; // cpg1.5}
 
-// ------------------------------------------------------------------------- //
-// File banning.php
-// ------------------------------------------------------------------------- //
-
-if (defined('BANNING_PHP')) {
+// ------------------------------------------------------------------------- //// File banning.php// ------------------------------------------------------------------------- //if (defined('BANNING_PHP')) {
 $lang_banning_php['title'] = 'Bloker brugere';
 $lang_banning_php['user_name'] = 'Bruger navn';
 $lang_banning_php['user_account'] = 'Bruger konto';
-$lang_banning_php['email_address'] = 'Email Adresse'; // cpg1.5
-$lang_banning_php['ip_address'] = 'IP Adresse';
-$lang_banning_php['expires'] = 'Udløber'; // cpg1.5
-$lang_banning_php['expiry_date'] = 'Udløbsdato'; // cpg1.5
-$lang_banning_php['expired'] = 'Udløbet'; // cpg1.5
-$lang_banning_php['edit_ban'] = 'Gem ængringer';
+$lang_banning_php['email_address'] = 'Email Adresse'; // cpg1.5$lang_banning_php['ip_address'] = 'IP Adresse';
+$lang_banning_php['expires'] = 'Udløber'; // cpg1.5$lang_banning_php['expiry_date'] = 'Udløbsdato'; // cpg1.5$lang_banning_php['expired'] = 'Udløbet'; // cpg1.5$lang_banning_php['edit_ban'] = 'Gem ængringer';
 $lang_banning_php['add_new'] = 'Tilføj ny blokering';
 $lang_banning_php['add_ban'] = 'Tilføj';
 $lang_banning_php['error_user'] = 'Kan ikke finde bruger';
@@ -445,38 +288,11 @@ $lang_banning_php['error_specify'] = 'Du skal angive enten bruger navn eller ip 
 $lang_banning_php['error_ban_id'] = 'Forkert blokerings ID!';
 $lang_banning_php['error_admin_ban'] = 'Du kan ikke blokere dig selv!';
 $lang_banning_php['error_server_ban'] = 'Du var ved at blokkere din egen server? Tsk tsk, cannot do that...';
-$lang_banning_php['skipping'] = 'Springer over denne kommando.'; // cpg1.5
-$lang_banning_php['lookup_ip'] = 'IP Address Lookup';
+$lang_banning_php['skipping'] = 'Springer over denne kommando.'; // cpg1.5$lang_banning_php['lookup_ip'] = 'IP Address Lookup';
 $lang_banning_php['select_date'] = 'vælg dato';
-$lang_banning_php['delete_comments'] = 'Slet kommentarer'; // cpg1.5
-$lang_banning_php['current'] = 'nuværende'; // cpg1.5
-$lang_banning_php['all'] = 'alle'; // cpg1.5
-$lang_banning_php['none'] = 'ingen'; // cpg1.5
-$lang_banning_php['view'] = 'se'; // cpg1.5
-$lang_banning_php['ban_id'] = 'Blokerings ID'; // cpg1.5
-$lang_banning_php['existing_bans'] = 'Eksisterende blokeringer'; // cpg1.5
-$lang_banning_php['no_banning_when_bridged'] = 'Du har integreret dit galleri med en anden applikation. Brug den integrerede applikations mekanisme istedet for Coppermine\'. Coppermine\'s blokerings mekanismer virker sjældent når den er integreret.'; // cpg1.5
-$lang_banning_php['records_on_page'] = '%d poster på %d side(r)'; // cpg1.5
-$lang_banning_php['ascending'] = 'stigende'; // cpg1.5
-$lang_banning_php['descending'] = 'faldende'; // cpg1.5
-$lang_banning_php['sort_by'] = 'Sorter efter'; // cpg1.5
-$lang_banning_php['sorted_by'] = 'sorteret efter'; // cpg1.5
-$lang_banning_php['ban_record_x_updated'] = 'Bloker post %s er blevet opdateret'; // cpg1.5
-$lang_banning_php['ban_record_x_deleted'] = 'Bloker post %s er blevet slettet'; // cpg1.5
-$lang_banning_php['new_ban_record_created'] = 'Ny bloker post er oprettet'; // cpg1.5
-$lang_banning_php['ban_record_x_already_exists'] = 'Bloker post for %s findes allerede!'; // cpg1.5
-$lang_banning_php['comment_deleted'] = '%s kommentar oprettet af %s er blevet slettet'; // cpg1.5
-$lang_banning_php['comments_deleted'] = '%s kommentarer oprettet af %s her blevet slettet'; // cpg1.5
-$lang_banning_php['email_field_invalid'] = 'Indtast en gyldig email adresse'; // cpg1.5
-$lang_banning_php['ip_address_field_invalid'] = 'Indtast en gyldig ip-adresse (x.x.x.x)'; // cpg1.5
-$lang_banning_php['expiry_field_invalid'] = 'Indtast en gyldig udløbsdato (YYYY-MM-DD)'; // cpg1.5
-$lang_banning_php['form_not_submit'] = 'Formularen er ikke blevet sendt - Der er fejl som du skal rette først!'; // cpg1.5
-};
+$lang_banning_php['delete_comments'] = 'Slet kommentarer'; // cpg1.5$lang_banning_php['current'] = 'nuværende'; // cpg1.5$lang_banning_php['all'] = 'alle'; // cpg1.5$lang_banning_php['none'] = 'ingen'; // cpg1.5$lang_banning_php['view'] = 'se'; // cpg1.5$lang_banning_php['ban_id'] = 'Blokerings ID'; // cpg1.5$lang_banning_php['existing_bans'] = 'Eksisterende blokeringer'; // cpg1.5$lang_banning_php['no_banning_when_bridged'] = 'Du har integreret dit galleri med en anden applikation. Brug den integrerede applikations mekanisme istedet for Coppermine\'. Coppermine\'s blokerings mekanismer virker sjældent når den er integreret.'; // cpg1.5$lang_banning_php['records_on_page'] = '%d poster på %d side(r)'; // cpg1.5$lang_banning_php['ascending'] = 'stigende'; // cpg1.5$lang_banning_php['descending'] = 'faldende'; // cpg1.5$lang_banning_php['sort_by'] = 'Sorter efter'; // cpg1.5$lang_banning_php['sorted_by'] = 'sorteret efter'; // cpg1.5$lang_banning_php['ban_record_x_updated'] = 'Bloker post %s er blevet opdateret'; // cpg1.5$lang_banning_php['ban_record_x_deleted'] = 'Bloker post %s er blevet slettet'; // cpg1.5$lang_banning_php['new_ban_record_created'] = 'Ny bloker post er oprettet'; // cpg1.5$lang_banning_php['ban_record_x_already_exists'] = 'Bloker post for %s findes allerede!'; // cpg1.5$lang_banning_php['comment_deleted'] = '%s kommentar oprettet af %s er blevet slettet'; // cpg1.5$lang_banning_php['comments_deleted'] = '%s kommentarer oprettet af %s her blevet slettet'; // cpg1.5$lang_banning_php['email_field_invalid'] = 'Indtast en gyldig email adresse'; // cpg1.5$lang_banning_php['ip_address_field_invalid'] = 'Indtast en gyldig ip-adresse (x.x.x.x)'; // cpg1.5$lang_banning_php['expiry_field_invalid'] = 'Indtast en gyldig udløbsdato (YYYY-MM-DD)'; // cpg1.5$lang_banning_php['form_not_submit'] = 'Formularen er ikke blevet sendt - Der er fejl som du skal rette først!'; // cpg1.5};
 
-// ------------------------------------------------------------------------- //
-// File bridgemgr.php
-// ------------------------------------------------------------------------- //
-if (defined('BRIDGEMGR_PHP')) {
+// ------------------------------------------------------------------------- //// File bridgemgr.php// ------------------------------------------------------------------------- //if (defined('BRIDGEMGR_PHP')) {
 $lang_bridgemgr_php['title'] = 'Integration guide';
 $lang_bridgemgr_php['back'] = 'tilbage';
 $lang_bridgemgr_php['next'] = 'næste';
@@ -530,26 +346,17 @@ $lang_bridgemgr_php['wait'] = 'vent';
 $lang_bridgemgr_php['browse'] = 'gennemse';
 }
 
-// ------------------------------------------------------------------------- //
-// File calendar.php
-// ------------------------------------------------------------------------- //
-if (defined('CALENDAR_PHP')) {
+// ------------------------------------------------------------------------- //// File calendar.php// ------------------------------------------------------------------------- //if (defined('CALENDAR_PHP')) {
 $lang_calendar_php['title'] = 'Kalender';
 $lang_calendar_php['clear_date'] = 'ryd dato';
-$lang_calendar_php['files'] = 'filer'; // cpg1.5
-}
+$lang_calendar_php['files'] = 'filer'; // cpg1.5}
 
-// ------------------------------------------------------------------------- //
-// File catmgr.php
-// ------------------------------------------------------------------------- //
-if (defined('CATMGR_PHP')) {
+// ------------------------------------------------------------------------- //// File catmgr.php// ------------------------------------------------------------------------- //if (defined('CATMGR_PHP')) {
 $lang_catmgr_php['miss_param'] = 'Parameters required for \'%s\' operation not supplied!';
 $lang_catmgr_php['unknown_cat'] = 'Selected category does not exist in database';
 $lang_catmgr_php['usergal_cat_ro'] = 'User galleries category can\'t be deleted!';
 $lang_catmgr_php['manage_cat'] = 'Manage categories';
-$lang_catmgr_php['confirm_delete'] = 'Are you sure you want to DELETE this category'; // js-alert
-$lang_catmgr_php['category'] = 'Categories'; // cpg1.5
-$lang_catmgr_php['operations'] = 'Operations';
+$lang_catmgr_php['confirm_delete'] = 'Are you sure you want to DELETE this category'; // js-alert$lang_catmgr_php['category'] = 'Categories'; // cpg1.5$lang_catmgr_php['operations'] = 'Operations';
 $lang_catmgr_php['move_into'] = 'Move into';
 $lang_catmgr_php['update_create'] = 'Update/Create category';
 $lang_catmgr_php['parent_cat'] = 'Parent category';
@@ -558,64 +365,19 @@ $lang_catmgr_php['cat_thumb'] = 'Category thumbnail';
 $lang_catmgr_php['cat_desc'] = 'Category description';
 $lang_catmgr_php['categories_alpha_sort'] = 'Sort categories alphabetically (instead of custom sort order)';
 $lang_catmgr_php['save_cfg'] = 'Save configuration';
-$lang_catmgr_php['no_category'] = '* No category *'; // cpg1.5
-$lang_catmgr_php['group_create_alb'] = 'Group(s) allowed to create albums in this category'; // cpg1.5
-}
+$lang_catmgr_php['no_category'] = '* No category *'; // cpg1.5$lang_catmgr_php['group_create_alb'] = 'Group(s) allowed to create albums in this category'; // cpg1.5}
 
-// ------------------------------------------------------------------------- //
-// File contact.php
-// ------------------------------------------------------------------------- //
-if (defined('CONTACT_PHP')) {
-$lang_contact_php['title'] = 'Kontakt'; // cpg1.5
-$lang_contact_php['your_name'] = 'Dit navn'; // cpg1.5
-$lang_contact_php['your_email'] = 'Din email adresse'; // cpg1.5
-$lang_contact_php['subject'] = 'Emne'; // cpg1.5
-$lang_contact_php['your_message'] = 'Din besked'; // cpg1.5
-$lang_contact_php['name_field_mandatory'] = 'Indtast dit navn'; // cpg1.5 // js-alert
-$lang_contact_php['name_field_invalid'] = 'Indtast dit rigtige navn'; // cpg1.5 // js-alert
-$lang_contact_php['email_field_mandatory'] = 'Indtast din email adresse'; // cpg1.5 // js-alert
-$lang_contact_php['email_field_invalid'] = 'Indtast en gyldig email adresse'; // cpg1.5 // js-alert
-$lang_contact_php['subject_field_mandatory'] = 'Indtast et meningsfyldt emne'; // cpg1.5 // js-alert
-$lang_contact_php['message_field_mandatory'] = 'Indtast din besked'; // cpg1.5 // js-alert
-$lang_contact_php['confirmation'] = 'Bekræftigelse'; // cpg1.5
-$lang_contact_php['email_headline'] = 'Denne email blev sendt %s fra kontakt formularen på %s fra ip-adresse %s'; // cpg1.5
-$lang_contact_php['registered_user'] = 'registreret bruger'; // cpg1.5
-$lang_contact_php['guest'] = 'gæst'; // cpg1.5
-$lang_contact_php['unknown'] = 'ukendt'; // cpg1.5
-$lang_contact_php['user_info'] = '%s kaldet %s med email adresse %s skrev:'; // cpg1.5
-$lang_contact_php['failed_sending_email'] = 'Kunne ikke sende email. Prøv igen senere.'; // cpg1.5
-$lang_contact_php['email_sent'] = 'Din email er blevet sendt.'; // cpg1.5
-}
+// ------------------------------------------------------------------------- //// File contact.php// ------------------------------------------------------------------------- //if (defined('CONTACT_PHP')) {
+$lang_contact_php['title'] = 'Kontakt'; // cpg1.5$lang_contact_php['your_name'] = 'Dit navn'; // cpg1.5$lang_contact_php['your_email'] = 'Din email adresse'; // cpg1.5$lang_contact_php['subject'] = 'Emne'; // cpg1.5$lang_contact_php['your_message'] = 'Din besked'; // cpg1.5$lang_contact_php['name_field_mandatory'] = 'Indtast dit navn'; // cpg1.5 // js-alert$lang_contact_php['name_field_invalid'] = 'Indtast dit rigtige navn'; // cpg1.5 // js-alert$lang_contact_php['email_field_mandatory'] = 'Indtast din email adresse'; // cpg1.5 // js-alert$lang_contact_php['email_field_invalid'] = 'Indtast en gyldig email adresse'; // cpg1.5 // js-alert$lang_contact_php['subject_field_mandatory'] = 'Indtast et meningsfyldt emne'; // cpg1.5 // js-alert$lang_contact_php['message_field_mandatory'] = 'Indtast din besked'; // cpg1.5 // js-alert$lang_contact_php['confirmation'] = 'Bekræftigelse'; // cpg1.5$lang_contact_php['email_headline'] = 'Denne email blev sendt %s fra kontakt formularen på %s fra ip-adresse %s'; // cpg1.5$lang_contact_php['registered_user'] = 'registreret bruger'; // cpg1.5$lang_contact_php['guest'] = 'gæst'; // cpg1.5$lang_contact_php['unknown'] = 'ukendt'; // cpg1.5$lang_contact_php['user_info'] = '%s kaldet %s med email adresse %s skrev:'; // cpg1.5$lang_contact_php['failed_sending_email'] = 'Kunne ikke sende email. Prøv igen senere.'; // cpg1.5$lang_contact_php['email_sent'] = 'Din email er blevet sendt.'; // cpg1.5}
 
-// ------------------------------------------------------------------------- //
-// File admin.php
-// ------------------------------------------------------------------------- //
+// ------------------------------------------------------------------------- //// File admin.php// ------------------------------------------------------------------------- //
 if (defined('ADMIN_PHP')) {
 $lang_admin_php['title'] = 'Galleri konfiguration';
-$lang_admin_php['general_settings'] = 'Generelle indstillinger'; // cpg1.5
-$lang_admin_php['language_charset_settings'] = 'Sprog og tegnsæt indstillinger'; // cpg1.5
-$lang_admin_php['themes_settings'] = 'Tema indstillinger'; // cpg1.5
-$lang_admin_php['album_list_view'] = 'Album liste indstillinger'; // cpg1.5
-$lang_admin_php['thumbnail_view'] = 'Thumbnail indstillinger'; // cpg1.5
-$lang_admin_php['image_view'] = 'Billede visnings indstillinger'; // cpg1.5
-$lang_admin_php['comment_settings'] = 'Kommentar indstillinger'; // cpg1.5
-$lang_admin_php['thumbnail_settings'] = 'Thumbnails indstillinger'; // cpg1.5
-$lang_admin_php['file_settings'] = 'Fil indstillinger'; // cpg1.5
-$lang_admin_php['image_watermarking'] = 'Billede vandmærkning'; // cpg1.5
-$lang_admin_php['registration'] = 'Registrering'; // cpg1.5
-$lang_admin_php['user_settings'] = 'Bruger indstillinger'; // cpg1.5
-$lang_admin_php['custom_fields_user_profile'] = 'Tilpassede felter for brugerprofil (blank hvis ubrugt). Brug profil 6 for lange tekster, såsom biografier'; // cpg1.5
-$lang_admin_php['custom_fields_image_description'] = 'Tilpassede felter for billedbeskrivelser (blank hvis ubrugt)'; // cpg1.5
-$lang_admin_php['cookie_settings'] = 'Cookies indstillinger'; // cpg1.5
-$lang_admin_php['email_settings'] = 'Email instillinger (normalt skal der ikke laves ændringer her; Efterlad alle felter blanke, hvis du er usikker)'; // cpg1.5
-$lang_admin_php['logging_stats'] = 'Logning og statistikker'; // cpg1.5
-$lang_admin_php['maintenance_settings'] = 'Vedligeholdelses indstillinger'; // cpg1.5
-$lang_admin_php['manage_exif'] = 'Indstil EXIF visning';
+$lang_admin_php['general_settings'] = 'Generelle indstillinger'; // cpg1.5$lang_admin_php['language_charset_settings'] = 'Sprog og tegnsæt indstillinger'; // cpg1.5$lang_admin_php['themes_settings'] = 'Tema indstillinger'; // cpg1.5$lang_admin_php['album_list_view'] = 'Album liste indstillinger'; // cpg1.5$lang_admin_php['thumbnail_view'] = 'Thumbnail indstillinger'; // cpg1.5$lang_admin_php['image_view'] = 'Billede visnings indstillinger'; // cpg1.5$lang_admin_php['comment_settings'] = 'Kommentar indstillinger'; // cpg1.5$lang_admin_php['thumbnail_settings'] = 'Thumbnails indstillinger'; // cpg1.5$lang_admin_php['file_settings'] = 'Fil indstillinger'; // cpg1.5$lang_admin_php['image_watermarking'] = 'Billede vandmærkning'; // cpg1.5$lang_admin_php['registration'] = 'Registrering'; // cpg1.5$lang_admin_php['user_settings'] = 'Bruger indstillinger'; // cpg1.5$lang_admin_php['custom_fields_user_profile'] = 'Tilpassede felter for brugerprofil (blank hvis ubrugt). Brug profil 6 for lange tekster, såsom biografier'; // cpg1.5$lang_admin_php['custom_fields_image_description'] = 'Tilpassede felter for billedbeskrivelser (blank hvis ubrugt)'; // cpg1.5$lang_admin_php['cookie_settings'] = 'Cookies indstillinger'; // cpg1.5$lang_admin_php['email_settings'] = 'Email instillinger (normalt skal der ikke laves ændringer her; Efterlad alle felter blanke, hvis du er usikker)'; // cpg1.5$lang_admin_php['logging_stats'] = 'Logning og statistikker'; // cpg1.5$lang_admin_php['maintenance_settings'] = 'Vedligeholdelses indstillinger'; // cpg1.5$lang_admin_php['manage_exif'] = 'Indstil EXIF visning';
 $lang_admin_php['manage_plugins'] = 'Indstil plugins';
 $lang_admin_php['manage_keyword'] = 'Indstil nøgleord';
 $lang_admin_php['restore_cfg'] = 'Genskab fabriksindstillinger';
-$lang_admin_php['restore_cfg_confirm'] = 'Vil du virkelig genskabe hele konfigurationen til fabriksinstillinger? Dette kan ikke laves om!'; // cpg1.5 // js-alert
-$lang_admin_php['save_cfg'] = 'Gem ny konfiguration';
+$lang_admin_php['restore_cfg_confirm'] = 'Vil du virkelig genskabe hele konfigurationen til fabriksinstillinger? Dette kan ikke laves om!'; // cpg1.5 // js-alert$lang_admin_php['save_cfg'] = 'Gem ny konfiguration';
 $lang_admin_php['notes'] = 'Noter';
 $lang_admin_php['info'] = 'Information';
 $lang_admin_php['upd_success'] = 'Coppermine konfigurationen er opdateret';
@@ -631,18 +393,15 @@ $lang_admin_php['pos_d'] = 'Position faldende';
 $lang_admin_php['th_any'] = 'Max Aspekt';
 $lang_admin_php['th_ht'] = 'Højde';
 $lang_admin_php['th_wd'] = 'Bredde';
-$lang_admin_php['th_ex'] = 'Eksakt'; // cpg1.5
-$lang_admin_php['debug_everyone'] = 'Alle';
+$lang_admin_php['th_ex'] = 'Eksakt'; // cpg1.5$lang_admin_php['debug_everyone'] = 'Alle';
 $lang_admin_php['debug_admin'] = 'Kun admin';
 $lang_admin_php['no_logs'] = 'Off';
 $lang_admin_php['log_normal'] = 'Normal';
 $lang_admin_php['log_all'] = 'Alle';
 $lang_admin_php['view_logs'] = 'Vis alle logger';
 $lang_admin_php['click_expand'] = 'Klik på sektion for at ekspandere';
-$lang_admin_php['click_collapse'] = 'Klik på sektion for at kollapse'; // cpg1.5
-$lang_admin_php['expand_all'] = 'Ekspander alle';
-$lang_admin_php['toggle_all'] = 'Skift alle'; // cpg1.5
-$lang_admin_php['notice1'] = '(*) Disse instillinger må ikke ændres, hvis du allerede har filer i databasen.';
+$lang_admin_php['click_collapse'] = 'Klik på sektion for at kollapse'; // cpg1.5$lang_admin_php['expand_all'] = 'Ekspander alle';
+$lang_admin_php['toggle_all'] = 'Skift alle'; // cpg1.5$lang_admin_php['notice1'] = '(*) Disse instillinger må ikke ændres, hvis du allerede har filer i databasen.';
 $lang_admin_php['notice2'] = '(**) Når denne indstilling ændres, berører det kun filer der er tilføjet herefter, så det er ikke tilrådeligt at ændre på denne instilling, når der allered er filer i galleriet. Du kan dog tilføje ændringerne til eksisterende filer med &quot;<a href="util.php">admin værktøjet</a> (ændre billedstørrelse)&quot; værktøjet fra admin menuen.';
 $lang_admin_php['notice3'] = '(***) Alle logfiler er skrevet på engelsk.';
 $lang_admin_php['bbs_disabled'] = 'Funktion slået fra når der anvendes integration';
@@ -650,44 +409,7 @@ $lang_admin_php['auto_resize_everyone'] = 'Alle';
 $lang_admin_php['auto_resize_user'] = 'Kun bruger';
 $lang_admin_php['ascending'] = 'stigende';
 $lang_admin_php['descending'] = 'faldende';
-$lang_admin_php['collapse_all'] = 'Kollaps alt'; // cpg1.5
-$lang_admin_php['separate_page'] = 'på en seperat side'; // cpg1.5
-$lang_admin_php['inline'] = 'inline'; // cpg1.5
-$lang_admin_php['guests_only'] = 'Kun gæster'; // cpg1.5
-$lang_admin_php['wm_bottomright'] = 'Bunden til højre'; // cpg1.5
-$lang_admin_php['wm_bottomleft'] = 'Bunden til venstre'; // cpg1.5
-$lang_admin_php['wm_topleft'] = 'Top til venstre'; // cpg1.5
-$lang_admin_php['wm_topright'] = 'Top til højre'; // cpg1.5
-$lang_admin_php['wm_center'] = 'Center'; // cpg1.5
-$lang_admin_php['wm_both'] = 'Begge'; // cpg1.5
-$lang_admin_php['wm_original'] = 'Original'; // cpg1.5
-$lang_admin_php['wm_resized'] = 'Størrelse ændret'; // cpg1.5
-$lang_admin_php['gallery_name'] = 'Galleri navn'; // cpg1.5
-$lang_admin_php['gallery_description'] = 'Galleri beskrivelse'; // cpg1.5
-$lang_admin_php['gallery_admin_email'] = 'Galleri administrator email'; // cpg1.5
-$lang_admin_php['ecards_more_pic_target'] = 'URL til din Coppermine galleri mappe'; // cpg1.5
-$lang_admin_php['ecards_more_pic_target_detail'] = '(med en efterfølgende skråstreg, ikke \'index.php\' eller lign. i enden)'; // cpg1.5
-$lang_admin_php['home_target'] = 'URL for din hjemmeside'; // cpg1.5
-$lang_admin_php['enable_zipdownload'] = 'Tillad ZIP-download af favoritter'; // cpg1.5
-$lang_admin_php['enable_zipdownload_no_textfile'] = 'Kun favoritter'; // cpg1.5
-$lang_admin_php['enable_zipdownload_additional_textfile'] = 'favoritter og readme fil'; // cpg1.5
-$lang_admin_php['time_offset'] = 'Tidzone forskel relativ til GMT'; // cpg1.5
-$lang_admin_php['time_offset_detail'] = '(nuværende tid: %s)'; // cpg1.5
-$lang_admin_php['enable_help'] = 'Slå hjælpe-ikoner til'; // cpg1.5
-$lang_admin_php['enable_help_description'] = 'Hjælp kun delvist tilgængeligt på engelsk'; // cpg1.5
-$lang_admin_php['clickable_keyword_search'] = 'Slå klikbare nøgleord til i søgning'; // cpg1.5
-$lang_admin_php['keyword_separator'] = 'Nøgleordsadskiller'; // cpg1.5
-$lang_admin_php['keyword_convert'] = 'Konvert nøgleordsadskiller'; // cpg1.5
-$lang_admin_php['enable_plugins'] = 'Slå plugins til'; // cpg1.5
-$lang_admin_php['purge_expired_bans'] = 'Slet automatisk udløbne blokering'; // cpg1.5
-$lang_admin_php['browse_batch_add'] = 'Browsable batch-add interface'; // cpg1.5
-$lang_admin_php['batch_proc_limit'] = 'Process concurrency for batch-add interface'; // cpg1.5
-$lang_admin_php['display_thumbs_batch_add'] = 'Vis små thumbnails på batch-add interface'; // cpg1.5
-$lang_admin_php['lang'] = 'Default sprog'; // cpg1.5
-$lang_admin_php['language_autodetect'] = 'Autodetekt sprog'; // cpg1.5
-$lang_admin_php['charset'] = 'Tegnsæt kodning'; // cpg1.5
-// 'previous_next_tab'] = 'Display previous/next on tabbed pages'; // cpg1.5
-$lang_admin_php['theme'] = 'Tema'; // cpg1.5
+$lang_admin_php['collapse_all'] = 'Kollaps alt'; // cpg1.5$lang_admin_php['separate_page'] = 'på en seperat side'; // cpg1.5$lang_admin_php['inline'] = 'inline'; // cpg1.5$lang_admin_php['guests_only'] = 'Kun gæster'; // cpg1.5$lang_admin_php['wm_bottomright'] = 'Bunden til højre'; // cpg1.5$lang_admin_php['wm_bottomleft'] = 'Bunden til venstre'; // cpg1.5$lang_admin_php['wm_topleft'] = 'Top til venstre'; // cpg1.5$lang_admin_php['wm_topright'] = 'Top til højre'; // cpg1.5$lang_admin_php['wm_center'] = 'Center'; // cpg1.5$lang_admin_php['wm_both'] = 'Begge'; // cpg1.5$lang_admin_php['wm_original'] = 'Original'; // cpg1.5$lang_admin_php['wm_resized'] = 'Størrelse ændret'; // cpg1.5$lang_admin_php['gallery_name'] = 'Galleri navn'; // cpg1.5$lang_admin_php['gallery_description'] = 'Galleri beskrivelse'; // cpg1.5$lang_admin_php['gallery_admin_email'] = 'Galleri administrator email'; // cpg1.5$lang_admin_php['ecards_more_pic_target'] = 'URL til din Coppermine galleri mappe'; // cpg1.5$lang_admin_php['ecards_more_pic_target_detail'] = '(med en efterfølgende skråstreg, ikke \'index.php\' eller lign. i enden)'; // cpg1.5$lang_admin_php['home_target'] = 'URL for din hjemmeside'; // cpg1.5$lang_admin_php['enable_zipdownload'] = 'Tillad ZIP-download af favoritter'; // cpg1.5$lang_admin_php['enable_zipdownload_no_textfile'] = 'Kun favoritter'; // cpg1.5$lang_admin_php['enable_zipdownload_additional_textfile'] = 'favoritter og readme fil'; // cpg1.5$lang_admin_php['time_offset'] = 'Tidzone forskel relativ til GMT'; // cpg1.5$lang_admin_php['time_offset_detail'] = '(nuværende tid: %s)'; // cpg1.5$lang_admin_php['enable_help'] = 'Slå hjælpe-ikoner til'; // cpg1.5$lang_admin_php['enable_help_description'] = 'Hjælp kun delvist tilgængeligt på engelsk'; // cpg1.5$lang_admin_php['clickable_keyword_search'] = 'Slå klikbare nøgleord til i søgning'; // cpg1.5$lang_admin_php['keyword_separator'] = 'Nøgleordsadskiller'; // cpg1.5$lang_admin_php['keyword_convert'] = 'Konvert nøgleordsadskiller'; // cpg1.5$lang_admin_php['enable_plugins'] = 'Slå plugins til'; // cpg1.5$lang_admin_php['purge_expired_bans'] = 'Slet automatisk udløbne blokering'; // cpg1.5$lang_admin_php['browse_batch_add'] = 'Browsable batch-add interface'; // cpg1.5$lang_admin_php['batch_proc_limit'] = 'Process concurrency for batch-add interface'; // cpg1.5$lang_admin_php['display_thumbs_batch_add'] = 'Vis små thumbnails på batch-add interface'; // cpg1.5$lang_admin_php['lang'] = 'Default sprog'; // cpg1.5$lang_admin_php['language_autodetect'] = 'Autodetekt sprog'; // cpg1.5$lang_admin_php['charset'] = 'Tegnsæt kodning'; // cpg1.5// 'previous_next_tab'] = 'Display previous/next on tabbed pages'; // cpg1.5$lang_admin_php['theme'] = 'Tema'; // cpg1.5
 $lang_admin_php['custom_lnk_name'] = 'Tilpasset menu link navn'; // cpg1.5
 $lang_admin_php['custom_lnk_url'] = 'Tilpasset menu link URL'; // cpg1.5
 $lang_admin_php['enable_menu_icons'] = 'Slå menu ikoner til'; // cpg1.5
@@ -2186,103 +1908,103 @@ $lang_upload_swf_php['upload_limit_2'] = 'You may select up to %s file(s)'; //cp
 // File usermgr.php
 // ------------------------------------------------------------------------- //
 if (defined('USERMGR_PHP')) {
-$lang_usermgr_php['memberlist'] = 'Memberlist';
-$lang_usermgr_php['user_manager'] = 'User manager';
-$lang_usermgr_php['title'] = 'Manage users';
-$lang_usermgr_php['name_a'] = 'Name ascending';
-$lang_usermgr_php['name_d'] = 'Name descending';
-$lang_usermgr_php['group_a'] = 'Group ascending';
-$lang_usermgr_php['group_d'] = 'Group descending';
-$lang_usermgr_php['reg_a'] = 'Reg date ascending';
-$lang_usermgr_php['reg_d'] = 'Reg date descending';
-$lang_usermgr_php['pic_a'] = 'File count ascending';
-$lang_usermgr_php['pic_d'] = 'File count descending';
-$lang_usermgr_php['disku_a'] = 'Disk usage ascending';
-$lang_usermgr_php['disku_d'] = 'Disk usage descending';
-$lang_usermgr_php['lv_a'] = 'Last visit ascending';
-$lang_usermgr_php['lv_d'] = 'Last visit descending';
-$lang_usermgr_php['sort_by'] = 'Sort users by';
-$lang_usermgr_php['err_no_users'] = 'User table is empty!';
-$lang_usermgr_php['err_edit_self'] = 'You can\'t edit your own profile, use the \'My profile\' link for that';
-$lang_usermgr_php['with_selected'] = 'With selected:';
-$lang_usermgr_php['delete_files_no'] = 'keep public files (but anonymize)';
-$lang_usermgr_php['delete_files_yes'] = 'delete public files as well';
-$lang_usermgr_php['delete_comments_no'] = 'keep comments (but anonymize)';
-$lang_usermgr_php['delete_comments_yes'] = 'delete comments as well';
-$lang_usermgr_php['activate'] = 'Activate';
-$lang_usermgr_php['deactivate'] = 'Deactivate';
-$lang_usermgr_php['reset_password'] = 'Reset Password';
-$lang_usermgr_php['change_primary_membergroup'] = 'Change primary membergroup';
-$lang_usermgr_php['add_secondary_membergroup'] = 'Add secondary membergroup';
-$lang_usermgr_php['name'] = 'User name';
-$lang_usermgr_php['group'] = 'Group';
-$lang_usermgr_php['inactive'] = 'Inactive';
-$lang_usermgr_php['operations'] = 'Operations';
-$lang_usermgr_php['pictures'] = 'Files';
-$lang_usermgr_php['disk_space_used'] = 'Space used';
-$lang_usermgr_php['disk_space_quota'] = 'Quota'; // cpg1.5
-$lang_usermgr_php['registered_on'] = 'Registration';
-$lang_usermgr_php['last_visit'] = 'Last visit';
-$lang_usermgr_php['u_user_on_p_pages'] = '%d users on %d page(s)';
-$lang_usermgr_php['confirm_del'] = 'Are you sure you want to DELETE this user?\\nAll his/her files and albums will also be deleted.'; // js-alert
-$lang_usermgr_php['mail'] = 'MAIL';
-$lang_usermgr_php['err_unknown_user'] = 'Selected user does not exist!';
-$lang_usermgr_php['modify_user'] = 'Modify user';
-$lang_usermgr_php['notes'] = 'Notes';
-$lang_usermgr_php['note_list'] = 'If you don\'t want to change the current password, leave the "password" field blank';
-$lang_usermgr_php['password'] = 'Password';
-$lang_usermgr_php['user_active'] = 'User is active';
-$lang_usermgr_php['user_group'] = 'User group';
-$lang_usermgr_php['user_email'] = 'User email';
-$lang_usermgr_php['user_web_site'] = 'User web site';
-$lang_usermgr_php['create_new_user'] = 'Create new user';
-$lang_usermgr_php['user_location'] = 'User location';
-$lang_usermgr_php['user_interests'] = 'User interests';
-$lang_usermgr_php['user_occupation'] = 'User occupation';
+$lang_usermgr_php['memberlist'] = 'Medlemsliste';
+$lang_usermgr_php['user_manager'] = 'Bruger administrator';
+$lang_usermgr_php['title'] = 'Administrerer bruger';
+$lang_usermgr_php['name_a'] = 'Navn stigende';
+$lang_usermgr_php['name_d'] = 'Navn faldende';
+$lang_usermgr_php['group_a'] = 'Gruppe stigende';
+$lang_usermgr_php['group_d'] = 'Gruppe faldende';
+$lang_usermgr_php['reg_a'] = 'Reg dato stigende';
+$lang_usermgr_php['reg_d'] = 'Reg dato faldende';
+$lang_usermgr_php['pic_a'] = 'Fil tæller stigende';
+$lang_usermgr_php['pic_d'] = 'Fil tæller faldende';
+$lang_usermgr_php['disku_a'] = 'Disk forbrug stigende';
+$lang_usermgr_php['disku_d'] = 'Disk forbrug faldende';
+$lang_usermgr_php['lv_a'] = 'Sidste besøg stigende';
+$lang_usermgr_php['lv_d'] = 'Sidste besøg faldende';
+$lang_usermgr_php['sort_by'] = 'Sortere bruger efter';
+$lang_usermgr_php['err_no_users'] = 'Bruger tabel er tom!';
+$lang_usermgr_php['err_edit_self'] = 'Du kan ikke redigere din egen profil, brug \'Min profil\' link til det';
+$lang_usermgr_php['with_selected'] = 'Det valgte:';
+$lang_usermgr_php['delete_files_no'] = 'Behold offentlige filer (men anonymisere)';
+$lang_usermgr_php['delete_files_yes'] = 'slet også offentlige filer';
+$lang_usermgr_php['delete_comments_no'] = 'Behold kommentarer (men anonymisere)';
+$lang_usermgr_php['delete_comments_yes'] = 'slet også kommentarer';
+$lang_usermgr_php['activate'] = 'Aktivere';
+$lang_usermgr_php['deactivate'] = 'Deaktivere';
+$lang_usermgr_php['reset_password'] = 'Nulstil kodeord';
+$lang_usermgr_php['change_primary_membergroup'] = 'Ændre primær medlemsgruppe';
+$lang_usermgr_php['add_secondary_membergroup'] = 'Tilføj sekundær medlemsgruppe';
+$lang_usermgr_php['name'] = 'Brugernavn';
+$lang_usermgr_php['group'] = 'Gruppe';
+$lang_usermgr_php['inactive'] = 'Inaktiv';
+$lang_usermgr_php['operations'] = 'Handlinger';
+$lang_usermgr_php['pictures'] = 'Filer';
+$lang_usermgr_php['disk_space_used'] = 'Plads brugt';
+$lang_usermgr_php['disk_space_quota'] = 'Kvota'; // cpg1.5
+$lang_usermgr_php['registered_on'] = 'Registreret den';
+$lang_usermgr_php['last_visit'] = 'sidste besøg';
+$lang_usermgr_php['u_user_on_p_pages'] = '%d bruger på %d side(r)';
+$lang_usermgr_php['confirm_del'] = 'Er du sikker på at du vil SLETTE denne bruger?\\nAlle hans/hendes filer og albums vil blive slettet.'; // js-alert
+$lang_usermgr_php['mail'] = 'POST';
+$lang_usermgr_php['err_unknown_user'] = 'Valgte bruger findes ikke!';
+$lang_usermgr_php['modify_user'] = 'Ændre bruger';
+$lang_usermgr_php['notes'] = 'Noter';
+$lang_usermgr_php['note_list'] = 'Hvis du ikke vil ændre det nuværende kodeord, lad feltet "kodeord" forblive blank';
+$lang_usermgr_php['password'] = 'Kodeord';
+$lang_usermgr_php['user_active'] = 'Bruger er aktiv';
+$lang_usermgr_php['user_group'] = 'Bruger gruppe';
+$lang_usermgr_php['user_email'] = 'Bruger email';
+$lang_usermgr_php['user_web_site'] = 'Bruger web side';
+$lang_usermgr_php['create_new_user'] = 'Oprette nu bruger';
+$lang_usermgr_php['user_location'] = 'Bruger placering';
+$lang_usermgr_php['user_interests'] = 'Brugers interesser';
+$lang_usermgr_php['user_occupation'] = 'Brugers beskæftigelse';
 $lang_usermgr_php['user_profile1'] = '$user_profile1';
 $lang_usermgr_php['user_profile2'] = '$user_profile2';
 $lang_usermgr_php['user_profile3'] = '$user_profile3';
 $lang_usermgr_php['user_profile4'] = '$user_profile4';
 $lang_usermgr_php['user_profile5'] = '$user_profile5';
 $lang_usermgr_php['user_profile6'] = '$user_profile6';
-$lang_usermgr_php['latest_upload'] = 'Recent uploads';
-$lang_usermgr_php['no_latest_upload'] = 'Has not uploaded any files'; // cpg1.5
-$lang_usermgr_php['last_comments'] = 'Last comments'; // cpg1.5
-$lang_usermgr_php['no_last_comments'] = 'Has not made any comments'; // cpg1.5
-$lang_usermgr_php['comments'] = 'Comments'; // cpg1.5
-$lang_usermgr_php['never'] = 'never';
-$lang_usermgr_php['search'] = 'User search';
-$lang_usermgr_php['submit'] = 'Submit';
-$lang_usermgr_php['search_submit'] = 'Go!';
-$lang_usermgr_php['search_result'] = 'Search results for: ';
-$lang_usermgr_php['alert_no_selection'] = 'You have to select at least one user first!'; // js-alert
-$lang_usermgr_php['select_group'] = 'Select group';
-$lang_usermgr_php['groups_alb_access'] = 'Album permissions by group';
-$lang_usermgr_php['category'] = 'Category';
-$lang_usermgr_php['modify'] = 'Modify?';
-$lang_usermgr_php['group_no_access'] = 'This group has no special access';
-$lang_usermgr_php['notice'] = 'Notice';
-$lang_usermgr_php['group_can_access'] = 'Album(s) that only "%s" can access';
-$lang_usermgr_php['send_login_data'] = 'Send login data to this user (Password will be sent via email)'; // cpg1.5
-$lang_usermgr_php['send_login_email_subject'] = 'Your new account information'; // cpg1.5
-$lang_usermgr_php['failed_sending_email'] = 'The login data email can\'t be sent!'; // cpg1.5
-$lang_usermgr_php['view_profile'] = 'View profile'; // cpg1.5
-$lang_usermgr_php['edit_profile'] = 'Edit profile'; // cpg1.5
-$lang_usermgr_php['ban_user'] = 'Ban user'; // cpg1.5
-$lang_usermgr_php['user_is_banned'] = 'User is banned'; // cpg1.5
+$lang_usermgr_php['latest_upload'] = 'Seneste uploads';
+$lang_usermgr_php['no_latest_upload'] = 'Har ikke uploaded nogle filer'; // cpg1.5
+$lang_usermgr_php['last_comments'] = 'Senest kommentar'; // cpg1.5
+$lang_usermgr_php['no_last_comments'] = 'Har ikke lavet nogle kommentarer'; // cpg1.5
+$lang_usermgr_php['comments'] = 'Kommentarer'; // cpg1.5
+$lang_usermgr_php['never'] = 'aldrig';
+$lang_usermgr_php['search'] = 'Bruger søgning';
+$lang_usermgr_php['submit'] = 'Send';
+$lang_usermgr_php['search_submit'] = 'OK!';
+$lang_usermgr_php['search_result'] = 'Søge resultat for: ';
+$lang_usermgr_php['alert_no_selection'] = 'Du skal vælge mindst en bruger først!'; // js-alert
+$lang_usermgr_php['select_group'] = 'Vælg gruppe';
+$lang_usermgr_php['groups_alb_access'] = 'Album rettigheder per gruppe';
+$lang_usermgr_php['category'] = 'Kategori';
+$lang_usermgr_php['modify'] = 'Ændre?';
+$lang_usermgr_php['group_no_access'] = 'Denne gruppe af ingen speciel adgang';
+$lang_usermgr_php['notice'] = 'Notits';
+$lang_usermgr_php['group_can_access'] = 'Album(s) der kun "%s" har adgang';
+$lang_usermgr_php['send_login_data'] = 'Send login data til denne bruger (Kodeord vil blive sendt via email)'; // cpg1.5
+$lang_usermgr_php['send_login_email_subject'] = 'Din nye konto information'; // cpg1.5
+$lang_usermgr_php['failed_sending_email'] = 'Login data email kan ikke sendes!'; // cpg1.5
+$lang_usermgr_php['view_profile'] = 'Vis profil'; // cpg1.5
+$lang_usermgr_php['edit_profile'] = 'Redigere profil'; // cpg1.5
+$lang_usermgr_php['ban_user'] = 'Frys bruger'; // cpg1.5
+$lang_usermgr_php['user_is_banned'] = 'Bruger er frosset'; // cpg1.5
 $lang_usermgr_php['status'] = 'Status'; // cpg1.5
-$lang_usermgr_php['status_active'] = 'active'; // cpg1.5
-$lang_usermgr_php['status_inactive'] = 'not active'; // cpg1.5
+$lang_usermgr_php['status_active'] = 'aktiv'; // cpg1.5
+$lang_usermgr_php['status_inactive'] = 'ikke aktiv'; // cpg1.5
 $lang_usermgr_php['total'] = 'Total'; // cpg1.5
 $lang_usermgr_php['send_login_data_email'] = <<< EOT
-A new account has been created for you at {SITE_NAME}.
+En ny konto er blevet oprettet på {SITE_NAME}.
 
-You can now log in at <a href="{SITE_LINK}">{SITE_LINK}</a> using the username "{USER_NAME}" and password "{USER_PASS}"
+Du kan nu logge in her <a href="{SITE_LINK}">{SITE_LINK}</a> ved og bruge dit brugernavn "{USER_NAME}" og kodeord "{USER_PASS}"
 
 
-Regards,
+Mvh,
 
-The management of {SITE_NAME}
+Adminitrator af {SITE_NAME}
 
 EOT;
 }
@@ -2291,32 +2013,32 @@ EOT;
 // File update.php
 // ------------------------------------------------------------------------- //
 if (defined('UPDATE_PHP')) {
-$lang_update_php['title'] = 'Updater'; // cpg1.5
-$lang_update_php['welcome_updater'] = 'Welcome to Coppermine update'; // cpg1.5
-$lang_update_php['could_not_authenticate'] = 'Could not authenticate you'; // cpg1.5
-$lang_update_php['provide_admin_account'] = 'Please provide your Coppermine admin account details or your MySQL account data'; // cpg1.5
-$lang_update_php['try_again'] = 'Try again'; // cpg1.5
-$lang_update_php['mysql_connect_error'] = 'Could not create a MySQL connection'; // cpg1.5
-$lang_update_php['mysql_database_error'] = 'MySQL could not locate a database called %s'; // cpg1.5
-$lang_update_php['mysql_said'] = 'MySQL said'; // cpg1.5
-$lang_update_php['check_config_file'] = 'Please check the MySQL details in %s'; // cpg1.5
-$lang_update_php['performing_database_updates'] = 'Performing Database Updates'; // cpg1.5
-$lang_update_php['performing_file_updates'] = 'Performing File Updates'; // cpg1.5
-$lang_update_php['already_done'] = 'Already Done'; // cpg1.5
-$lang_update_php['password_encryption'] = 'Encryption of passwords'; // cpg1.5
-$lang_update_php['alb_password_encryption'] = 'Encryption of album passwords'; // cpg1.5
-$lang_update_php['category_tree'] = 'Category tree'; // cpg1.5
-$lang_update_php['authentication_needed'] = 'Authentication needed'; // cpg1.5
-$lang_update_php['username'] = 'Username'; // cpg1.5
-$lang_update_php['password'] = 'Password'; // cpg1.5
-$lang_update_php['update_completed'] = 'Update completed'; // cpg1.5
-$lang_update_php['check_versions'] = 'It\'s recommended to %scheck your file versions%s if you just upgraded from an older version of Coppermine'; // cpg1.5 // Leave the %s untouched when translating - it wraps the link
-$lang_update_php['start_page'] = 'If you didn\'t (or you don\'t want to check), you can go to %syour gallery\'s start page%s'; // cpg1.5 // Leave the %s untouched when translating - it wraps the link
-$lang_update_php['errors_encountered'] = 'The following errors were encountered and need to be corrected first'; // cpg1.5
-$lang_update_php['delete_file'] = 'Delete %s'; // cpg1.5
-$lang_update_php['could_not_delete'] = 'Could not delete due to missing permissions. Delete the file manually!'; // cpg1.5
+$lang_update_php['title'] = 'Opdatere'; // cpg1.5
+$lang_update_php['welcome_updater'] = 'Velkommen til Copppermine opdatering'; // cpg1.5
+$lang_update_php['could_not_authenticate'] = 'Kunne ikke Autorisere dig'; // cpg1.5
+$lang_update_php['provide_admin_account'] = 'Venligst oplys din Coppermine admin konto eller din MySQL konto data'; // cpg1.5
+$lang_update_php['try_again'] = 'Prøv igen'; // cpg1.5
+$lang_update_php['mysql_connect_error'] = 'Kunne ikke oprette en MySQL forbindelse'; // cpg1.5
+$lang_update_php['mysql_database_error'] = 'MySQL kunne ikke finde en database kaldet %s'; // cpg1.5
+$lang_update_php['mysql_said'] = 'MySQL sagde'; // cpg1.5
+$lang_update_php['check_config_file'] = 'Check venligst MySQL detaljerne i %s'; // cpg1.5
+$lang_update_php['performing_database_updates'] = 'Udfører Database opdateringer'; // cpg1.5
+$lang_update_php['performing_file_updates'] = 'Udfører fil opdateringer'; // cpg1.5
+$lang_update_php['already_done'] = 'Allerede udført'; // cpg1.5
+$lang_update_php['password_encryption'] = 'Kryptering af kodeord'; // cpg1.5
+$lang_update_php['alb_password_encryption'] = 'Kryptering af album kodeord'; // cpg1.5
+$lang_update_php['category_tree'] = 'Katagori træ'; // cpg1.5
+$lang_update_php['authentication_needed'] = 'Godkendelse nødvendig'; // cpg1.5
+$lang_update_php['username'] = 'Brugernavn'; // cpg1.5
+$lang_update_php['password'] = 'Kodeord'; // cpg1.5
+$lang_update_php['update_completed'] = 'Opdatering udført'; // cpg1.5
+$lang_update_php['check_versions'] = 'Det anbefales %scheck your file versions%s Hvis du lige har opgraderet fra en ældre version af Coppermine'; // cpg1.5 // Leave the %s untouched when translating - it wraps the link
+$lang_update_php['start_page'] = 'Hvis du ikke (eller du ikke ønsker at checke), kan du gå til %syour gallery\'s start page%s'; // cpg1.5 // Leave the %s untouched when translating - it wraps the link
+$lang_update_php['errors_encountered'] = 'Følgende fejl blev opdaget og skal rettes først'; // cpg1.5
+$lang_update_php['delete_file'] = 'Slet %s'; // cpg1.5
+$lang_update_php['could_not_delete'] = 'Kunne ikke slette pga manglende rettigheder. Slet filerne manuelt!'; // cpg1.5
 $lang_update_php['rename_file'] = 'Rename %s to %s'; // cpg1.5
-$lang_update_php['could_not_rename'] = 'Could not rename due to missing permissions. Rename the file manually!'; // cpg1.5
+$lang_update_php['could_not_rename'] = 'Kunne ikke omdøbe pga manglende rettigheder. Omdøb filerne manuelt!'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
@@ -2324,105 +2046,105 @@ $lang_update_php['could_not_rename'] = 'Could not rename due to missing permissi
 // ------------------------------------------------------------------------- //
 if (defined('UTIL_PHP')) {
 $lang_util_php['title'] = 'Admin tools'; // cpg1.5
-$lang_util_php['file'] = 'File';
+$lang_util_php['file'] = 'Fil';
 $lang_util_php['problem'] = 'Problem';
 $lang_util_php['status'] = 'Status';
-$lang_util_php['title_set_to'] = 'title set to';
-$lang_util_php['submit_form'] = 'submit';
-$lang_util_php['titles_updated'] = '%s Titles Updated.'; // cpg1.5
-$lang_util_php['updated_successfully'] = 'updated successfully'; // cpg1.5
-$lang_util_php['error_create'] = 'ERROR creating';
-$lang_util_php['continue'] = 'Process more files'; // cpg1.5
-$lang_util_php['main_success'] = 'The file %s was successfully used as main file';
-$lang_util_php['error_rename'] = 'Error renaming %s to %s';
-$lang_util_php['error_not_found'] = 'The file %s was not found';
-$lang_util_php['back'] = 'back to Admin tools start'; // cpg1.5
-$lang_util_php['thumbs_wait'] = 'Updating thumbnails and/or resized images, please wait...';
-$lang_util_php['thumbs_continue_wait'] = 'Continuing to update thumbnails and/or resized images...';
-$lang_util_php['titles_wait'] = 'Updating titles, please wait...';
-$lang_util_php['delete_wait'] = 'Deleting titles, please wait...';
-$lang_util_php['replace_wait'] = 'Deleting originals and replacing them with resized images, please wait..';
-$lang_util_php['update'] = 'Update thumbs and/or resized photos';
-$lang_util_php['update_what'] = 'What should be updated';
-$lang_util_php['update_thumb'] = 'Only thumbnails';
-$lang_util_php['update_pic'] = 'Only resized pictures';
-$lang_util_php['update_both'] = 'Both thumbnails and resized pictures';
-$lang_util_php['update_number'] = 'Number of processed images per click';
-$lang_util_php['update_option'] = '(Try setting this option lower if you experience timeout problems)';
-$lang_util_php['update_missing'] = 'Only update missing files'; // cpg1.5
-$lang_util_php['filename_title'] = 'Filename &rArr; File title';
-$lang_util_php['filename_how'] = 'How should the file title be modified';
-$lang_util_php['filename_remove'] = 'Remove extension (.jpg or other) and replace _ (underscores) with spaces'; // cpg1.5
-$lang_util_php['filename_euro'] = 'Change 2003_11_23_13_20_20.jpg to 23/11/2003 13:20';
-$lang_util_php['filename_us'] = 'Change 2003_11_23_13_20_20.jpg to 11/23/2003 13:20';
-$lang_util_php['filename_time'] = 'Change 2003_11_23_13_20_20.jpg to 13:20';
-$lang_util_php['notitle'] = 'Apply only for files with empty titles'; // cpg1.5
-$lang_util_php['delete_title'] = 'Delete file titles';
-$lang_util_php['delete_title_explanation'] = 'This will remove all titles on files in the album you specify.';
-$lang_util_php['delete_original'] = 'Delete original size photos';
-$lang_util_php['delete_original_explanation'] = 'This will remove the full sized pictures.';
-$lang_util_php['delete_intermediate'] = 'Delete intermediate pictures';
-$lang_util_php['delete_intermediate_explanation1'] = 'This will delete intermediate (normal) pictures.'; // cpg1.5
-$lang_util_php['delete_intermediate_explanation2'] = 'Use this to free up disk space if you have disabled \'Create intermediate pictures\' in config after adding pictures.'; // cpg1.5
-$lang_util_php['delete_intermediate_check'] = 'The config option \'Create intermediate pictures\' is currently %s.'; // cpg1.5
-$lang_util_php['no_image'] = '%s has been skipped because it is not an image.'; // cpg1.5
-$lang_util_php['enabled'] = 'enabled'; // cpg1.5
-$lang_util_php['disabled'] = 'disabled'; // cpg1.5
-$lang_util_php['delete_replace'] = 'Deletes the original images replacing them with the sized versions';
-$lang_util_php['titles_deleted'] = 'All titles in specified album removed';
-$lang_util_php['deleting_intermediates'] = 'Deleting intermediate images, please wait...';
-$lang_util_php['searching_orphans'] = 'Searching for orphans, please wait...';
-$lang_util_php['delete_orphans'] = 'Delete comments on missing files';
-$lang_util_php['delete_orphans_explanation'] = 'This will identify and allow you to delete any comments associated with files no longer in the gallery.<br />Checks all albums.';
-$lang_util_php['update_full_normal_thumb'] = 'Everything: full-sized, resized and thumbs'; // cpg1.5
-$lang_util_php['update_full_normal'] = 'Both resized and full sized (if an original copy is available)'; // cpg1.5
-$lang_util_php['update_full'] = 'Just full sized (if an original copy is available)'; // cpg1.5
-$lang_util_php['delete_back'] = 'Delete original image backup for watermarked images'; // cpg1.5
-$lang_util_php['delete_back_explanation'] = 'This will delete the backup image. You will save some disk space but not be able anymore to undo the watermark!!! After that the watermark will be permanent.'; // cpg1.5
-$lang_util_php['finished'] = '<br />Finished updating thumbs/images!<br />'; // cpg1.5
-$lang_util_php['autorefresh'] = 'Auto refresh (no need to click continue button anymore)'; // cpg1.5
-$lang_util_php['refresh_db'] = 'Reload file dimensions and size information.';
-$lang_util_php['refresh_db_explanation'] = 'This will re-read file sizes and dimensions. Use this if quota\'s are incorrect or you have changed the files manually.';
-$lang_util_php['reset_views'] = 'Reset view counters';
-$lang_util_php['reset_views_explanation'] = 'Sets all file view counts to zero in the album specified.';
-$lang_util_php['reset_success'] = 'Reset successful'; // cpg1.5
-$lang_util_php['orphan_comment'] = 'orphan comments found';
-$lang_util_php['delete_all'] = 'Delete all';
-$lang_util_php['delete_all_orphans'] = 'Delete all orphans?';
-$lang_util_php['comment'] = 'Comment: ';
-$lang_util_php['nonexist'] = 'attached to non-existent file # ';
-$lang_util_php['delete_old'] = 'Delete files that are older than a set number of days'; // cpg1.5
-$lang_util_php['delete_old_explanation'] = 'This will delete files that are older than the number of days you specify (full-size, intermediate, thumbnails). Use this feature to free up disk space.'; // cpg1.5
-$lang_util_php['delete_old_warning'] = 'Warning: the files you specify will be deleted for good without further warnings!'; // cpg1.5
-$lang_util_php['deleting_old'] = 'Deleting older images, please wait...'; // cpg1.5
-$lang_util_php['older_than'] = 'Delete files older than %s days'; // cpg1.5
-$lang_util_php['del_orig'] = 'The original file %s was successfully deleted'; // cpg1.5
-$lang_util_php['del_intermediate'] = 'The intermediate image %s was successfully deleted'; // cpg1.5
-$lang_util_php['del_thumb'] = 'The thumbnail %s was successfully deleted'; // cpg1.5
-$lang_util_php['del_error'] = 'Error deleting %s!'; // cpg1.5
-$lang_util_php['affected_records'] = '%s affected records.'; // cpg1.5
-$lang_util_php['all_albums'] = 'All Albums'; // cpg1.5
-$lang_util_php['update_result'] = 'Update results'; // cpg1.5
-$lang_util_php['incorrect_filesize'] = 'Total filesize is incorrect'; // cpg1.5
+$lang_util_php['title_set_to'] = 'Titel sat til';
+$lang_util_php['submit_form'] = 'Gem';
+$lang_util_php['titles_updated'] = '%s Titel opdateeret.'; // cpg1.5
+$lang_util_php['updated_successfully'] = 'opdateret korrekt'; // cpg1.5
+$lang_util_php['error_create'] = 'FEJL oprettelse';
+$lang_util_php['continue'] = 'behandler flere filer'; // cpg1.5
+$lang_util_php['main_success'] = 'Filen %s blev korrekt brugt som primær fil';
+$lang_util_php['error_rename'] = 'Fejl omdøbning %s til %s';
+$lang_util_php['error_not_found'] = 'Filen %s blev ikke fundet';
+$lang_util_php['back'] = 'tilbage til Admin værktøj start'; // cpg1.5
+$lang_util_php['thumbs_wait'] = 'Opdaterere minibilleder og /eller ændre størrelsen af billederne, vent venligst...';
+$lang_util_php['thumbs_continue_wait'] = 'Fortsætter med at opdatere minibilleder og/eller ændre størrelsen af billederne...';
+$lang_util_php['titles_wait'] = 'Opdatere titler, vent venligst...';
+$lang_util_php['delete_wait'] = 'Sletter titler, vent venligst...';
+$lang_util_php['replace_wait'] = 'Sletter originalerne og erstatter dem med med ændret billeder, vent venligst..';
+$lang_util_php['update'] = 'Opdatere thumbs og/eller ændret billeder';
+$lang_util_php['update_what'] = 'Hvad skal opdateres';
+$lang_util_php['update_thumb'] = 'Kun minibilleder';
+$lang_util_php['update_pic'] = 'Kun ændret billeder';
+$lang_util_php['update_both'] = 'Både minibilleder og ændret billeder';
+$lang_util_php['update_number'] = 'Antal af udført billeder per klink';
+$lang_util_php['update_option'] = '(Prøv og sætte denne mulighed lavere hvis der er timeout problemer)';
+$lang_util_php['update_missing'] = 'Kun opdatere manglende filer'; // cpg1.5
+$lang_util_php['filename_title'] = 'Filnavn &rArr; Fil titel';
+$lang_util_php['filename_how'] = 'Hvordan skal filnavn ændres';
+$lang_util_php['filename_remove'] = 'Fjern endelsen (.jpg eller andet) og erstat _ (underscores) with mellemrum'; // cpg1.5
+$lang_util_php['filename_euro'] = 'Ændre 2003_11_23_13_20_20.jpg til 23/11/2003 13:20';
+$lang_util_php['filename_us'] = 'Ændre 2003_11_23_13_20_20.jpg til 11/23/2003 13:20';
+$lang_util_php['filename_time'] = 'Ændre 2003_11_23_13_20_20.jpg til 13:20';
+$lang_util_php['notitle'] = 'Gælder kun for filer med blanke navne'; // cpg1.5
+$lang_util_php['delete_title'] = 'Slet fil navne';
+$lang_util_php['delete_title_explanation'] = 'Dette vil slette alle filnavne i angivet albumfolder.';
+$lang_util_php['delete_original'] = 'Slet original størrelse billeder';
+$lang_util_php['delete_original_explanation'] = 'Dette vil fjene fuld størrelse billeder.';
+$lang_util_php['delete_intermediate'] = 'Sletter Mellemstore billeder';
+$lang_util_php['delete_intermediate_explanation1'] = 'Dette vil slette Mellemstore (normal) billeder.'; // cpg1.5
+$lang_util_php['delete_intermediate_explanation2'] = 'Brug dette til at frigive diskplads hvis du har deaktiveret \'Opret Mellemstore billeder\' i config after tilføjet billeder.'; // cpg1.5
+$lang_util_php['delete_intermediate_check'] = 'Config option \'Opret Mellemstore billeder\' er lige nu %s.'; // cpg1.5
+$lang_util_php['no_image'] = '%s er droppet da det ikke er et billed.'; // cpg1.5
+$lang_util_php['enabled'] = 'aktiveret'; // cpg1.5
+$lang_util_php['disabled'] = 'deaktiveret'; // cpg1.5
+$lang_util_php['delete_replace'] = 'Sletter det original billed og erstater dem med en ændret version';
+$lang_util_php['titles_deleted'] = 'Alle titler i valgte album slettet';
+$lang_util_php['deleting_intermediates'] = 'Sletter Mellemstore billeder, vent venligst...';
+$lang_util_php['searching_orphans'] = 'Søger efter  forældreløse billeder, vent venligst...';
+$lang_util_php['delete_orphans'] = 'Sletter kommentarer på manglende filer';
+$lang_util_php['delete_orphans_explanation'] = 'Dette vil finde og lade dig slette alle kommentare som knytter sig til filer som ikke længere findes i galleriet.<br />Tjekker alle albums.';
+$lang_util_php['update_full_normal_thumb'] = 'Alt: fuld-størrelse, ændret og minibilleder'; // cpg1.5
+$lang_util_php['update_full_normal'] = 'Både ændret og fuld størrelse (hvis en original version er findes)'; // cpg1.5
+$lang_util_php['update_full'] = 'Kun fuld størrelse (hvis en original kopi findes)'; // cpg1.5
+$lang_util_php['delete_back'] = 'Slet original billed backup af vandmærke billeder'; // cpg1.5
+$lang_util_php['delete_back_explanation'] = 'Dette vil slette backup filen. Du vil spare nogen diskplads men kan ikke længere ændre vandmærket!!! Derefter er vandmærket permanent.'; // cpg1.5
+$lang_util_php['finished'] = '<br /> Færdig med opdateringen af minibilleder/billederne!<br />'; // cpg1.5
+$lang_util_php['autorefresh'] = 'Auto opdatering (ingen grund til og klikke næste mere)'; // cpg1.5
+$lang_util_php['refresh_db'] = 'Genindlæs fil dimensioner og størrelse.';
+$lang_util_php['refresh_db_explanation'] = 'Dette vil genindlæse fil størrelse og dimensioner. Brug denne hvis forbruget er forkert eller filerne er ændret manuelt.';
+$lang_util_php['reset_views'] = 'Nulstil vist tæller';
+$lang_util_php['reset_views_explanation'] = 'Sæt alle fil visninger tæller til nul i valgte album.';
+$lang_util_php['reset_success'] = 'Nulstil udført'; // cpg1.5
+$lang_util_php['orphan_comment'] = 'Forældreløs kommentarer fundet';
+$lang_util_php['delete_all'] = 'Slet alle';
+$lang_util_php['delete_all_orphans'] = 'Slette alle forældreløse?';
+$lang_util_php['comment'] = 'Kommentar: ';
+$lang_util_php['nonexist'] = 'Vedhæftet til ikke-eksisterende fil # ';
+$lang_util_php['delete_old'] = 'Slet filer der er ældre end et bestemt antal dage'; // cpg1.5
+$lang_util_php['delete_old_explanation'] = 'Dette vil slette filer der er ældre end det antal dage du har angivet (Fuld størrelse, Mellemstørrelse, ministørrelse). Brug denne feature til og frigive diskplads.'; // cpg1.5
+$lang_util_php['delete_old_warning'] = 'Advarsel: Filerne du har angivet bliver slettet permanent uden yderligere advarsel!'; // cpg1.5
+$lang_util_php['deleting_old'] = 'Sletter gamle billeder, vent venligst...'; // cpg1.5
+$lang_util_php['older_than'] = 'Sletter billeder ældre end %s dage'; // cpg1.5
+$lang_util_php['del_orig'] = 'Den originale fil %s er hermed slettet'; // cpg1.5
+$lang_util_php['del_intermediate'] = 'Mellemstørrelse billeder %s er hermed slettet'; // cpg1.5
+$lang_util_php['del_thumb'] = 'Ministørrelse billederne %s er hermed slettet'; // cpg1.5
+$lang_util_php['del_error'] = 'fejl under sletning %s!'; // cpg1.5
+$lang_util_php['affected_records'] = '%s påvirket records.'; // cpg1.5
+$lang_util_php['all_albums'] = 'Alle Albums'; // cpg1.5
+$lang_util_php['update_result'] = 'Opdaterings resultat'; // cpg1.5
+$lang_util_php['incorrect_filesize'] = 'Total filstørrelse er forkert'; // cpg1.5
 $lang_util_php['database'] = 'Database: '; // cpg1.5
 $lang_util_php['bytes'] = ' bytes'; // cpg1.5
-$lang_util_php['actual'] = 'Actual: '; // cpg1.5
-$lang_util_php['updated'] = 'Updated'; // cpg1.5
-$lang_util_php['filesize_error'] = 'Could not obtain file size (may be invalid file), skipping....'; // cpg1.5
-$lang_util_php['skipped'] = 'Skipped'; // cpg1.5
-$lang_util_php['incorrect_dimension'] = 'Dimensions are incorrect'; // cpg1.5
-$lang_util_php['dimension_error'] = 'Could not obtain dimension info, skipping....'; // cpg1.5
-$lang_util_php['cannot_fix'] = 'Cannot fix'; // cpg1.5
-$lang_util_php['fullpic_error'] = 'File %s does not exist!'; // cpg1.5
-$lang_util_php['no_prob_detect'] = 'No problems detected'; // cpg1.5
-$lang_util_php['no_prob_found'] = 'No problems were found.'; // cpg1.5
-$lang_util_php['keyword_convert'] = 'Convert keyword separator'; // cpg1.5
-$lang_util_php['keyword_from_to'] = 'Convert keyword separator from %s to %s'; // cpg1.5
-$lang_util_php['keyword_set'] = 'Set gallery keyword separator to new value'; // cpg1.5
-$lang_util_php['keyword_replace_before'] = 'Before conversion, replace %s with %s'; // cpg1.5
-$lang_util_php['keyword_replace_after'] = 'After conversion, replace %s with %s'; // cpg1.5
+$lang_util_php['actual'] = 'Aktuel: '; // cpg1.5
+$lang_util_php['updated'] = 'Opdateret'; // cpg1.5
+$lang_util_php['filesize_error'] = 'Kunne ikke finde filstørrelsen (Måske en indvalid fil), Droppes....'; // cpg1.5
+$lang_util_php['skipped'] = 'Droppet'; // cpg1.5
+$lang_util_php['incorrect_dimension'] = 'Dimensionerne er forkerte'; // cpg1.5
+$lang_util_php['dimension_error'] = 'Kunne ikke læse dimensions info, droppes...'; // cpg1.5
+$lang_util_php['cannot_fix'] = 'Kan ikke rettes'; // cpg1.5
+$lang_util_php['fullpic_error'] = 'Fil %s findes ikke!'; // cpg1.5
+$lang_util_php['no_prob_detect'] = 'Ingen problemer fundet'; // cpg1.5
+$lang_util_php['no_prob_found'] = 'Ingen problemer fundet.'; // cpg1.5
+$lang_util_php['keyword_convert'] = 'Konvertere keyword separator'; // cpg1.5
+$lang_util_php['keyword_from_to'] = 'Konvertere keyword separator fra %s til %s'; // cpg1.5
+$lang_util_php['keyword_set'] = 'Sæt galleri keyword separator til ny værdi'; // cpg1.5
+$lang_util_php['keyword_replace_before'] = 'Før konvertering, udskift %s med %s'; // cpg1.5
+$lang_util_php['keyword_replace_after'] = 'Efter konvertering, udskift %s med %s'; // cpg1.5
 $lang_util_php['keyword_replace_values'] = array('_'=>'underscore', '-'=>'hyphen', '~'=>'tilde'); // cpg1.5
-$lang_util_php['keyword_explanation'] = 'This will convert the keyword separator for all your files from one value to another value. See the help documentation for details.'; // cpg1.5
+$lang_util_php['keyword_explanation'] = 'Dette vil konvertere keyword separator for alle dine filer fra en værdi til en anden. Se hjælp dokumentationen for nærmere detaljer.'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
@@ -2431,52 +2153,52 @@ $lang_util_php['keyword_explanation'] = 'This will convert the keyword separator
 if (defined('VERSIONCHECK_PHP')) {
 $lang_versioncheck_php['title'] = 'Versioncheck';
 $lang_versioncheck_php['versioncheck_output'] = 'Versioncheck output';
-$lang_versioncheck_php['file'] = 'file';
+$lang_versioncheck_php['file'] = 'fil';
 $lang_versioncheck_php['folder'] = 'folder';
-$lang_versioncheck_php['outdated'] = 'older than %s';
-$lang_versioncheck_php['newer'] = 'newer than %s';
-$lang_versioncheck_php['modified'] = 'modified';
-$lang_versioncheck_php['not_modified'] = 'unmodified'; // cpg1.5
-$lang_versioncheck_php['needs_change'] = 'needs change';
-$lang_versioncheck_php['review_permissions'] = 'Review Permissions';
-$lang_versioncheck_php['inaccessible'] = 'File is inaccessible';
-$lang_versioncheck_php['review_version'] = 'Your file is outdated';
-$lang_versioncheck_php['review_dev_version'] = 'Your file is newer than anticipated';
-$lang_versioncheck_php['review_modified'] = 'File may be corrupt (or you have deliberately edited it)';
-$lang_versioncheck_php['review_missing'] = '%s missing or inaccessible';
-$lang_versioncheck_php['existing'] = 'existing';
-$lang_versioncheck_php['review_removed_existing'] = 'The file must be removed for security reasons';
-$lang_versioncheck_php['counter'] = 'Counter';
+$lang_versioncheck_php['outdated'] = 'ældre end %s';
+$lang_versioncheck_php['newer'] = 'nyere end %s';
+$lang_versioncheck_php['modified'] = 'ændret';
+$lang_versioncheck_php['not_modified'] = 'uændret'; // cpg1.5
+$lang_versioncheck_php['needs_change'] = 'kræver ændring';
+$lang_versioncheck_php['review_permissions'] = 'set rettighederne';
+$lang_versioncheck_php['inaccessible'] = 'Fil er utilgængelig';
+$lang_versioncheck_php['review_version'] = 'Din fil for gammel';
+$lang_versioncheck_php['review_dev_version'] = 'Din fil er nye end forventet';
+$lang_versioncheck_php['review_modified'] = 'Fil er måske korrupt (eller du har med vilje ændret den)';
+$lang_versioncheck_php['review_missing'] = '%s mangler eller utilgængelig';
+$lang_versioncheck_php['existing'] = 'eksisterende';
+$lang_versioncheck_php['review_removed_existing'] = 'Filen skal fjernes af sikkerhedsårsager';
+$lang_versioncheck_php['counter'] = 'Tæller';
 $lang_versioncheck_php['type'] = 'Type';
-$lang_versioncheck_php['path'] = 'Path';
-$lang_versioncheck_php['missing'] = 'Missing';
-$lang_versioncheck_php['permissions'] = 'Permissions';
+$lang_versioncheck_php['path'] = 'Sti';
+$lang_versioncheck_php['missing'] = 'Mangler';
+$lang_versioncheck_php['permissions'] = 'Rettigheder';
 $lang_versioncheck_php['version'] = 'Version';
 $lang_versioncheck_php['revision'] = 'Revision';
-$lang_versioncheck_php['modified'] = 'Modified';
-$lang_versioncheck_php['comment'] = 'Comment';
-$lang_versioncheck_php['help'] = 'Help';
+$lang_versioncheck_php['modified'] = 'Ændret';
+$lang_versioncheck_php['comment'] = 'Kommentar';
+$lang_versioncheck_php['help'] = 'Hjælp';
 $lang_versioncheck_php['repository_link'] = 'Repository link';
-$lang_versioncheck_php['browse_corresponding_page_subversion'] = 'Browse page corresponding to this file in the project\'s subversion repository';
-$lang_versioncheck_php['mandatory'] = 'mandatory';
-$lang_versioncheck_php['mandatory_missing'] = 'Mandatory file is missing'; // cpg1.5
+$lang_versioncheck_php['browse_corresponding_page_subversion'] = 'Vis side svarende til denne fil i projektets subversion repository';
+$lang_versioncheck_php['mandatory'] = 'Krævet';
+$lang_versioncheck_php['mandatory_missing'] = 'Krævet fil mangler'; // cpg1.5
 $lang_versioncheck_php['optional'] = 'optional';
-$lang_versioncheck_php['removed'] = 'removed'; // cpg1.5
-$lang_versioncheck_php['options'] = 'Options';
-$lang_versioncheck_php['display_output'] = 'Display output';
-$lang_versioncheck_php['on_screen'] = 'Full Screen';
-$lang_versioncheck_php['text_only'] = 'Text-only';
-$lang_versioncheck_php['errors_only'] = 'Only show potential errors';
-$lang_versioncheck_php['hide_images'] = 'Hide images'; // cpg1.5
-$lang_versioncheck_php['no_modification_check'] = 'Don\'t check for modified files'; // cpg1.5
-$lang_versioncheck_php['do_not_connect_to_online_repository'] = 'Do not connect to the online repository';
-$lang_versioncheck_php['online_repository_explain'] = 'only recommended if connection fails';
-$lang_versioncheck_php['submit'] = 'submit / refresh';
-$lang_versioncheck_php['select_all'] = 'Select All'; // js-alert
-$lang_versioncheck_php['files_folder_processed'] = 'Displaying %s items of %s folders/files processed with %s potential issues';
-$lang_versioncheck_php['read'] = 'Read'; // cpg1.5
-$lang_versioncheck_php['write'] = 'Write'; // cpg1.5
-$lang_versioncheck_php['warning'] = 'Warning'; // cpg1.5
+$lang_versioncheck_php['removed'] = 'fjernet'; // cpg1.5
+$lang_versioncheck_php['options'] = 'Option';
+$lang_versioncheck_php['display_output'] = 'Vis output';
+$lang_versioncheck_php['on_screen'] = 'Fuld Skærm';
+$lang_versioncheck_php['text_only'] = 'Kun Tekst';
+$lang_versioncheck_php['errors_only'] = 'Vi kun potentielle fejl';
+$lang_versioncheck_php['hide_images'] = 'Skjul billeder'; // cpg1.5
+$lang_versioncheck_php['no_modification_check'] = 'Check ikke for modificerede filer'; // cpg1.5
+$lang_versioncheck_php['do_not_connect_to_online_repository'] = 'Forbind ikke til online repository';
+$lang_versioncheck_php['online_repository_explain'] = 'Kun anbefalet hvis forbindelsen fejler';
+$lang_versioncheck_php['submit'] = 'Tilføj / opdatere';
+$lang_versioncheck_php['select_all'] = 'Vælg alle'; // js-alert
+$lang_versioncheck_php['files_folder_processed'] = 'Vis %s indhold af %s folder/filer med %s potentiel problem';
+$lang_versioncheck_php['read'] = 'Læs'; // cpg1.5
+$lang_versioncheck_php['write'] = 'Skriv'; // cpg1.5
+$lang_versioncheck_php['warning'] = 'Advarsel'; // cpg1.5
 $lang_versioncheck_php['not_applicable'] = 'n/a'; // cpg1.5
 }
 
@@ -2484,11 +2206,11 @@ $lang_versioncheck_php['not_applicable'] = 'n/a'; // cpg1.5
 // File view_log.php
 // ------------------------------------------------------------------------- //
 if (defined('VIEWLOG_PHP')) {
-$lang_viewlog_php['delete_all'] = 'Delete All Logs';
-$lang_viewlog_php['delete_this'] = 'Delete This Log';
-$lang_viewlog_php['view_logs'] = 'View Logs';
-$lang_viewlog_php['no_logs'] = 'No logs created.';
-$lang_viewlog_php['last_updated'] = 'last update'; // cpg1.5
+$lang_viewlog_php['delete_all'] = 'Slette alle Logs';
+$lang_viewlog_php['delete_this'] = 'Slette denne Log';
+$lang_viewlog_php['view_logs'] = 'Vis Logs';
+$lang_viewlog_php['no_logs'] = 'Ingen logs oprettet.';
+$lang_viewlog_php['last_updated'] = 'Senest update'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
@@ -2496,42 +2218,42 @@ $lang_viewlog_php['last_updated'] = 'last update'; // cpg1.5
 // ------------------------------------------------------------------------- //
 if (defined('XP_PUBLISH_PHP')) {
 $lang_xp_publish_php['title'] = 'XP Web Publishing Wizard';
-$lang_xp_publish_php['client_header'] = 'XP Web Publishing Wizard Client'; // cpg1.5
-$lang_xp_publish_php['requirements'] = 'Requirements'; // cpg1.5
+$lang_xp_publish_php['client_header'] = 'XP Web Publishing Wizard Klient'; // cpg1.5
+$lang_xp_publish_php['requirements'] = 'Krav'; // cpg1.5
 $lang_xp_publish_php['windows_xp'] = 'Windows XP / Vista'; // cpg1.5
-$lang_xp_publish_php['no_windows_xp'] = 'You appear to be running another, unsupported operating system'; // cpg1.5
-$lang_xp_publish_php['no_os_detect'] = 'Could not detect your operating system'; // cpg1.5
-$lang_xp_publish_php['requirement_http_upload'] = 'A working installation of Coppermine on which the http upload function works properly'; // cpg1.5
+$lang_xp_publish_php['no_windows_xp'] = 'Det ser ud til at du bruger et ikke supporteret styresystem'; // cpg1.5
+$lang_xp_publish_php['no_os_detect'] = 'Kunne ikke genkende dit styresystem'; // cpg1.5
+$lang_xp_publish_php['requirement_http_upload'] = 'En fungerende installation af Coppermine hvor http upload funktion virker korrekt'; // cpg1.5
 $lang_xp_publish_php['requirement_ie'] = 'Microsoft Internet Explorer'; // cpg1.5
-$lang_xp_publish_php['requirement_permissions'] = 'The administrator of the gallery must have granted you permission to upload'; // cpg1.5
-$lang_xp_publish_php['requirement_login'] = 'You need to be logged in to upload'; // cpg1.5
-$lang_xp_publish_php['no_ie'] = 'You appear to be using another, unsupported browser'; // cpg1.5
-$lang_xp_publish_php['no_browser_detect'] = 'Could not detect your browser'; // cpg1.5
-$lang_xp_publish_php['no_gallery_name'] = 'You need to specify a gallery name in config'; // cpg1.5
-$lang_xp_publish_php['no_gallery_description'] = 'You need to specify a gallery description in config'; // cpg1.5
-$lang_xp_publish_php['howto_install'] = 'How to install'; // cpg1.5
-$lang_xp_publish_php['install_right_click'] = 'Right click on %sthis link%s and select &quot;save target as...&quot;'; // cpg1.5 // translator note: don't replace the %s - that placeholder token needs to go untranslated
-$lang_xp_publish_php['install_save'] = 'Save the file on your client. When saving the file, make sure that the proposed file name is <tt>cpg_###.reg</tt> (the ### represents a numerical timestamp). Change it to that name if necessary (leave the numbers)'; // cpg1.5
-$lang_xp_publish_php['install_execute'] = 'After the download has finished, execute the file by double clicking on it in order to register your server with the web publishing wizard'; // cpg1.5
-$lang_xp_publish_php['usage'] = 'Usage'; // cpg1.5
-$lang_xp_publish_php['select_files'] = 'In Windows Explorer, select the files you want to upload'; // cpg1.5
-$lang_xp_publish_php['display_tasks'] = 'Make sure that the folders are not being displayed in left bar of the Explorer'; // cpg1.5
-$lang_xp_publish_php['publish_on_the_web'] = 'click on &quot;Publish xxx on the web&quot; in the left pane'; // cpg1.5
-$lang_xp_publish_php['confirm_selection'] = 'Confirm your file selection'; // cpg1.5
-$lang_xp_publish_php['select_service'] = 'In the list of services that appear, select the one for your photo gallery (it has the name of your gallery)'; // cpg1.5
-$lang_xp_publish_php['enter_login'] = 'Enter your login information if required'; // cpg1.5
-$lang_xp_publish_php['select_album'] = 'Select the target album for your pictures or create a new one'; // cpg1.5
-$lang_xp_publish_php['next'] = 'Click on &quot;next&quot;'; // cpg1.5
-$lang_xp_publish_php['upload_starts'] = 'The upload of your pictures should start'; // cpg1.5
-$lang_xp_publish_php['upload_completed'] = 'When it is completed, check your gallery to see if pictures have been properly added'; // cpg1.5
-$lang_xp_publish_php['welcome'] = 'Welcome <strong>%s</strong>,';
-$lang_xp_publish_php['need_login'] = 'You need to login to the gallery using Internet Explorer before you can use this wizard.<p/><p>When you login don\'t forget to select the &quot;remember me&quot; option if it is present.';
-$lang_xp_publish_php['no_alb'] = 'Sorry but there is no album where you are allowed to upload pictures with this wizard.';
-$lang_xp_publish_php['upload'] = 'Upload your pictures into an existing album';
-$lang_xp_publish_php['create_new'] = 'Create a new album for your pictures';
-$lang_xp_publish_php['category'] = 'Category';
-$lang_xp_publish_php['new_alb_created'] = 'Your new album &quot;<strong>%s</strong>&quot; was created.';
-$lang_xp_publish_php['continue'] = 'Press &quot;Next&quot; to start to upload your pictures';
+$lang_xp_publish_php['requirement_permissions'] = 'Kræver at Administratoren af galleriet giver dig ret upload rettigheder'; // cpg1.5
+$lang_xp_publish_php['requirement_login'] = 'Kræver du er logget ind for at upload filer'; // cpg1.5
+$lang_xp_publish_php['no_ie'] = 'Det ser ud til, at du bruger en usupporterede browser'; // cpg1.5
+$lang_xp_publish_php['no_browser_detect'] = 'Kunne ikke genkende din browser'; // cpg1.5
+$lang_xp_publish_php['no_gallery_name'] = 'Du mangler og angive et galleri navn i config'; // cpg1.5
+$lang_xp_publish_php['no_gallery_description'] = 'Du mangler og angive en galleri forklaring i config'; // cpg1.5
+$lang_xp_publish_php['howto_install'] = 'Installere sådan'; // cpg1.5
+$lang_xp_publish_php['install_right_click'] = 'Højre klik på %sthis link%s og vælg &quot;gem som...&quot;'; // cpg1.5 // translator note: don't replace the %s - that placeholder token needs to go untranslated
+$lang_xp_publish_php['install_save'] = 'Gem filen på din maskine. Når du gemmer filen, så huske at det foreslåede fil navn er <tt>cpg_###.reg</tt> (hvor ### angiver et numerisk tidskode). Skift til dette navn om nødvendigt (Behold numrene)'; // cpg1.5
+$lang_xp_publish_php['install_execute'] = 'Efter download er afsluttet, kør filen ved og dobbelt klikke på den for og registere din server med web publishing wizard'; // cpg1.5
+$lang_xp_publish_php['usage'] = 'brug'; // cpg1.5
+$lang_xp_publish_php['select_files'] = 'I Windows Explorer, vælg de filer du vil upload'; // cpg1.5
+$lang_xp_publish_php['display_tasks'] = 'Værd sikker på, at folderen ikke vises i venstre side af stifinder'; // cpg1.5
+$lang_xp_publish_php['publish_on_the_web'] = 'Klik på &quot;Udgiv xxx på websiden &quot; i venstre side'; // cpg1.5
+$lang_xp_publish_php['confirm_selection'] = 'Bekræft dit fil valg'; // cpg1.5
+$lang_xp_publish_php['select_service'] = 'I listen af services, vælg dit Foto galleri (Det har dit galleri navn)'; // cpg1.5
+$lang_xp_publish_php['enter_login'] = 'Indtast dine login oplysninger hvis krævet'; // cpg1.5
+$lang_xp_publish_php['select_album'] = 'Vælg modtage album for dine billeder eller lav et nyt'; // cpg1.5
+$lang_xp_publish_php['next'] = 'Klik på &quot;næste&quot;'; // cpg1.5
+$lang_xp_publish_php['upload_starts'] = 'Upload af dine filer skulle starte nu'; // cpg1.5
+$lang_xp_publish_php['upload_completed'] = 'Når det er færdig, check dit galleri for og se om alle billeder er korrekt tilføjet'; // cpg1.5
+$lang_xp_publish_php['welcome'] = 'Velkommen <strong>%s</strong>,';
+$lang_xp_publish_php['need_login'] = 'Du skal logge ind i galleriet med Internet Explorer før du kan bruge denne wizard.<p/><p>Når du logger ind så glem ikke og vælg &quot;husk mig&quot; option hvis muligt.';
+$lang_xp_publish_php['no_alb'] = 'Beklager der er ikke nogen album hvor du kan opload dine billeder med denne wizard.';
+$lang_xp_publish_php['upload'] = 'Upload dine billeder til en eksisterende album';
+$lang_xp_publish_php['create_new'] = 'Opret et nyt album til dine billeder';
+$lang_xp_publish_php['category'] = 'Katagori';
+$lang_xp_publish_php['new_alb_created'] = 'Dit nye album &quot;<strong>%s</strong>&quot; blev oprettet.';
+$lang_xp_publish_php['continue'] = 'Tryk &quot;Næste&quot; for at starte upload af dine billeder';
 $lang_xp_publish_php['link'] = '';
 }
 
@@ -2539,51 +2261,51 @@ $lang_xp_publish_php['link'] = '';
 // Core plugins
 // ------------------------------------------------------------------------- //
 if (defined('CORE_PLUGIN')) {
-$lang_plugin_php['usergal_alphatabs_config_name'] = 'User Gallery Alphabetic Tabbing'; // cpg1.5
-$lang_plugin_php['usergal_alphatabs_config_description'] = 'What it does: displays tabs from A to Z at the top of user galleries that visitors can click on to directly jump to a page that displays all user galleries of the users who\'s username starts with that letter. Plugin only recommended to be used if you have a really large number of user galleries.'; // cpg1.5
-$lang_plugin_php['usergal_alphatabs_jump_by_username'] = 'Jump by username'; // cpg1.5
-$lang_plugin_php['sample_config_name'] = 'Sample Plugin'; // cpg1.5
-$lang_plugin_php['sample_config_description'] = 'This is a sample plugin. It will not do anything particular useful - it is just meant to demonstrate what plugins can do and how to code them. When enabled, it will display some sample text in red.'; // cpg1.5
-$lang_plugin_php['sample_plugin_documentation'] = 'Plugin Documentation'; // cpg1.5
+$lang_plugin_php['usergal_alphatabs_config_name'] = 'Bruger Galleri Alfabetisk Faneblads opdelt'; // cpg1.5
+$lang_plugin_php['usergal_alphatabs_config_description'] = 'Hvad det gør: Viser  faner fra A til Z i toppen af Bruger galleriet hvor besøgende kan klikke og hoppe direkt til en side som viser alle bruger gallerier der starter med dette bogstav. Plugin kun anbefalet og bruge hvis du har mange bruger gallerier.'; // cpg1.5
+$lang_plugin_php['usergal_alphatabs_jump_by_username'] = 'Hop til brugernavn'; // cpg1.5
+$lang_plugin_php['sample_config_name'] = 'Prøve Plugin'; // cpg1.5
+$lang_plugin_php['sample_config_description'] = 'Dette er et prøve plugin. Det vil ikke lave noget specielt - er kun ment som en demonstration af hvad plugins kan og hvordan at kode dem. Når enabled, vil det vise nogle prøve teksti rød.'; // cpg1.5
+$lang_plugin_php['sample_plugin_documentation'] = 'Plugin Dokumentation'; // cpg1.5
 $lang_plugin_php['sample_plugin_support'] = 'Plugin Support'; // cpg1.5
-$lang_plugin_php['sample_install_explain'] = 'Enter the username (\'foo\') and password (\'bar\') to install'; // cpg1.5
-$lang_plugin_php['sample_install_username'] = 'Username'; // cpg1.5
-$lang_plugin_php['sample_install_password'] = 'Password'; // cpg1.5
-$lang_plugin_php['sample_output'] = 'This is sample data returned from the sample plugin'; // cpg1.5
+$lang_plugin_php['sample_install_explain'] = 'Indtast brugernavn (\'foo\') og kodeord (\'bar\') for at installere'; // cpg1.5
+$lang_plugin_php['sample_install_username'] = 'Brugernavn'; // cpg1.5
+$lang_plugin_php['sample_install_password'] = 'Kodeord'; // cpg1.5
+$lang_plugin_php['sample_output'] = 'Disse prøve data vist fra prøve plugin'; // cpg1.5
 $lang_plugin_php['opensearch_config_name'] = 'OpenSearch'; // cpg1.5
-$lang_plugin_php['opensearch_config_description'] = 'An implementation of <a href="http://www.opensearch.org/" rel="external" class="external">OpenSearch</a> for Coppermine.<br />When enabled, visitors can add your gallery to their browser\'s search bar.'; // cpg1.5
-$lang_plugin_php['opensearch_search'] = 'Search %s'; // cpg1.5
-$lang_plugin_php['opensearch_extra'] = 'You may want to add some text to your site that explains what this plugin does'; // cpg1.5
-$lang_plugin_php['opensearch_failed_to_open_file'] = 'Failed to open file %s - check permissions'; // cpg1.5
-$lang_plugin_php['opensearch_failed_to_write_file'] = 'Failed to write to file %s - check permissions'; // cpg1.5
-$lang_plugin_php['opensearch_form_header'] = 'Enter the details to be used for the description file'; // cpg1.5
-$lang_plugin_php['opensearch_gallery_url'] = 'Gallery URL (must be correct)'; // cpg1.5
-$lang_plugin_php['opensearch_display_name'] = 'Name as displayed in browser'; // cpg1.5
-$lang_plugin_php['opensearch_description'] = 'Description'; // cpg1.5
-$lang_plugin_php['opensearch_character_limit'] = '%s character limit'; // cpg1.5
-$lang_plugin_php['onlinestats_description'] = 'Display a block on each gallery page that shows users and guests actually online.';
-$lang_plugin_php['onlinestats_name'] = 'Who is online?';
-$lang_plugin_php['onlinestats_config_extra'] = 'To enable this plugin (make it actually display the onlinestats block), the string "onlinestats" (separated with a slash) has been added to "the content of the main page" in <a href="admin.php">Coppermine\'s config</a> in the section "Album list view". The setting should now look like "breadcrumb/catlist/alblist/onlinestats" or similar. To change the position of the block, move the string "onlinestats" around inside that config field.';
-$lang_plugin_php['onlinestats_config_install'] = 'The plugin runs additional queries on the database each time it is being executed, burning CPU cycles and using resources. If your Coppermine gallery is slow or has got a lot of users, you shouldn\'t use it.';
-$lang_plugin_php['onlinestats_we_have_reg_member'] = 'There is %s registered user';
-$lang_plugin_php['onlinestats_we_have_reg_members'] = ' There are %s registered users';
-$lang_plugin_php['onlinestats_most_recent'] = 'The newest registered user is %s';
-$lang_plugin_php['onlinestats_is'] = 'In total there is %s visitor online';
-$lang_plugin_php['onlinestats_are'] = 'In total there are %s visitors online';
-$lang_plugin_php['onlinestats_and'] = 'and';
-$lang_plugin_php['onlinestats_reg_member'] = '%s registered user';
-$lang_plugin_php['onlinestats_reg_members'] = '%s registered users';
-$lang_plugin_php['onlinestats_guest'] = '%s guest';
-$lang_plugin_php['onlinestats_guests'] = '%s guests';
-$lang_plugin_php['onlinestats_record'] = 'Most users ever online: %s on %s';
-$lang_plugin_php['onlinestats_since'] = 'Registered users who have been online in the past %s minutes: %s';
-$lang_plugin_php['onlinestats_config_text'] = 'How long do you want to keep users listed as online for before they are assumed to have gone?';
-$lang_plugin_php['onlinestats_minute'] = 'minutes';
-$lang_plugin_php['onlinestats_remove'] = 'Remove the table that was used to store online data?';
+$lang_plugin_php['opensearch_config_description'] = 'En implementering af <a href="http://www.opensearch.org/" rel="external" class="external">OpenSearch</a> for Coppermine.<br />Når enabled, besøgende kan tilføje dit galleri til deres browser\'s search bar.'; // cpg1.5
+$lang_plugin_php['opensearch_search'] = 'Søg %s'; // cpg1.5
+$lang_plugin_php['opensearch_extra'] = 'Du ønsker måske og tilføje en tekst til dit site som forklarer hvad dette plugin gør'; // cpg1.5
+$lang_plugin_php['opensearch_failed_to_open_file'] = 'Kan ikke åbne filen %s - check rettigheder'; // cpg1.5
+$lang_plugin_php['opensearch_failed_to_write_file'] = 'Kan ikke skrive til filen %s - check rettigheder'; // cpg1.5
+$lang_plugin_php['opensearch_form_header'] = 'Indtast detaljer til brug i beskrivelsesfilen'; // cpg1.5
+$lang_plugin_php['opensearch_gallery_url'] = 'Galleri URL (Skal være korrekt)'; // cpg1.5
+$lang_plugin_php['opensearch_display_name'] = 'Navn som vist i browseren'; // cpg1.5
+$lang_plugin_php['opensearch_description'] = 'Beskrivelse'; // cpg1.5
+$lang_plugin_php['opensearch_character_limit'] = '%s Bogstavsbegrænsning'; // cpg1.5
+$lang_plugin_php['onlinestats_description'] = 'Tilføj en blok på hver galleri side der viser hvilke bruger og gæster der er online.';
+$lang_plugin_php['onlinestats_name'] = 'Hvem er online?';
+$lang_plugin_php['onlinestats_config_extra'] = 'For at enable dette plugin (Får det til og vise onlinestats blokken), the string "onlinestats" (adskildt a et slash) er tilføjet til "indholdet af hovedsiden" i <a href="admin.php">Coppermine\'s config</a> i sektionen "Vis Albums ". Settings skulle nu ligne "breadcrumb/catlist/alblist/onlinestats" eller lignende. For at ændre position af blokken, flyt strengen "onlinestats" rundt inde i config feltet.';
+$lang_plugin_php['onlinestats_config_install'] = 'Dette plugin kører ekstra forespørgsler til databsen hver gang det bliver afviklet, og bruger CPU ressourcer. Hvis dit Coppermine gallery er langsom eller har mange bruger, skulle du ikke bruge det.';
+$lang_plugin_php['onlinestats_we_have_reg_member'] = 'Der er %s registreret bruger';
+$lang_plugin_php['onlinestats_we_have_reg_members'] = ' Der er %s registrerede brugere';
+$lang_plugin_php['onlinestats_most_recent'] = 'Seneste registreret bruger er %s';
+$lang_plugin_php['onlinestats_is'] = 'I alt er der %s besøg online';
+$lang_plugin_php['onlinestats_are'] = 'I alt er der %s besøgende online';
+$lang_plugin_php['onlinestats_and'] = 'og';
+$lang_plugin_php['onlinestats_reg_member'] = '%s registreret bruger';
+$lang_plugin_php['onlinestats_reg_members'] = '%s registrerede brugere';
+$lang_plugin_php['onlinestats_guest'] = '%s gæst';
+$lang_plugin_php['onlinestats_guests'] = '%s gæster';
+$lang_plugin_php['onlinestats_record'] = 'Højst antal bruger online: %s på %s';
+$lang_plugin_php['onlinestats_since'] = 'Registrerede brugere der har været online de sidste %s minuter: %s';
+$lang_plugin_php['onlinestats_config_text'] = 'Hvor længe ønsker du at beholde brugere listet online før de skal betragtes som værende væk igen?';
+$lang_plugin_php['onlinestats_minute'] = 'minuter';
+$lang_plugin_php['onlinestats_remove'] = 'Fjern tabel der var brugt til at gemme online data?';
 $lang_plugin_php['link_target_name'] = 'Link target';
-$lang_plugin_php['link_target_description'] = 'Changes the way external links are being opened: when this plugin is enabled, all links that contain the attribute rel="external" will open in a new window (instead of the same window).';
-$lang_plugin_php['link_target_extra'] = 'This plugin has an impact mostly on the "Powered by Coppermine" link at the bottom of the gallery output.';
-$lang_plugin_php['link_target_recommendation'] = 'It is recommended not to use this plugin to avoid bossing your users around: opening links in a new window means bossing around your site visitors.';
+$lang_plugin_php['link_target_description'] = 'Ændre måden eksterne links åbnes: Når dette plugin er enabled, alle links der indeholder attributen rel="external" vil åbne i et nyt vindue (istedet for i samme vindue).';
+$lang_plugin_php['link_target_extra'] = 'Dette plugin påvirker for det meste "Powered by Coppermine" linket i bunden af galleri siden.';
+$lang_plugin_php['link_target_recommendation'] = 'Det anbefales ikke og bruge dette plugin for at genere dine brugere: Åbne links i nye vinduer genere dine brugere.';
 }
 
 ?>
