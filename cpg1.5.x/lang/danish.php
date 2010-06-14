@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -1388,19 +1388,19 @@ $lang_album_admin_menu['edit_pics'] = 'Ret filer';
 $lang_album_admin_menu['cat_locked'] = 'Dette album er låst for rettelser'; // cpg1.5.x
 
 $lang_list_categories['home'] = 'Hjem';
-$lang_list_categories['stat1'] = '[pictures] files in [albums] albums and [cat] categories with [comments] comments viewed [views] times'; // do not translate the stuff in square brackets
-$lang_list_categories['stat2'] = '[pictures] files in [albums] albums viewed [views] times'; // do not translate the stuff in square brackets
-$lang_list_categories['xx_s_gallery'] = '%s\'s Gallery';
-$lang_list_categories['stat3'] = '[pictures] files in [albums] albums with [comments] comments viewed [views] times'; // do not translate the stuff in square brackets
+$lang_list_categories['stat1'] = '[pictures] filer i [albums] albums og [cat] kategorier med [comments] kommentarer vist [views] gange'; // do not translate the stuff in square brackets
+$lang_list_categories['stat2'] = '[pictures] filer i [albums] albums set [views] gange'; // do not translate the stuff in square brackets
+$lang_list_categories['xx_s_gallery'] = '%s\'s Galleri';
+$lang_list_categories['stat3'] = '[pictures] filer i [albums] albums med [comments] kommentarer vist [views] gange'; // do not translate the stuff in square brackets
 
 $lang_list_users['user_list'] = 'Bruger liste';
 $lang_list_users['no_user_gal'] = 'Der er ikke nogen bruger gallerier';
-$lang_list_users['n_albums'] = '%s album(er)';
+$lang_list_users['n_albums'] = '%s album(s)';
 $lang_list_users['n_pics'] = '%s file(r)';
 
 $lang_list_albums['n_pictures'] = '%s filer';
 $lang_list_albums['last_added'] = ', sidste lagt på %s';
-$lang_list_albums['n_link_pictures'] = '%s linked filer';
+$lang_list_albums['n_link_pictures'] = '%s linkede filer';
 $lang_list_albums['total_pictures'] = '%s filer total';
 $lang_list_albums['alb_hits'] = 'Album sat %s gange'; // cpg1.5
 $lang_list_albums['from_category'] = ' - Fra Kategori: '; // cpg1.5
@@ -1942,7 +1942,7 @@ if (defined('SIDEBAR_PHP')) {
 $lang_sidebar_php['sidebar'] = 'Side Bar'; // cpg1.5
 $lang_sidebar_php['install'] = 'installere'; // cpg1.5
 $lang_sidebar_php['install_explain'] = 'Blandt mange af de smarte måder og finde informationer på siden, tilbydes der en sidebar til de mest populære browser på forskellige operativ systemer for at tilgå siden let. her kan du finde installations og afinstallerings information for de supportede browsers.'; // cpg1.5
-$lang_sidebar_php['os_browser_detect'] = 'Detecting your OS and browser'; // cpg1.5
+$lang_sidebar_php['os_browser_detect'] = 'Detekterer dit OS og din browser'; // cpg1.5
 $lang_sidebar_php['os_browser_detect_explain'] = 'Systemet forsøger og afgøres hvilket operativ system og browser du bruger - vent venligst et øjeblik. Hvis auto-detektion fejler, kan du blive nød til og %sunhide%s alle mulige sidebarer og installere manuelt.'; // cpg1.5
 $lang_sidebar_php['mozilla'] = 'Mozilla, Firefox, Netscape 6+, Konqueror 3.2+'; // cpg1.5
 $lang_sidebar_php['mozilla_explain'] = 'Hvis du bruger 0.9.4 eller senere, kan du %stilføje vores sidebar%s. Du kan afinstallere sidebaren ved og bruge "Tilpas Sidebar" dialogen i Mozilla.'; // cpg1.5
@@ -2158,7 +2158,7 @@ $lang_upload_php['err_alternate_method'] = 'Alternativt kan du bruge <a href="up
 $lang_upload_php['err_flash_version'] = 'Upload mulighed kunne indlæses. Du mangler måske og installere eller opgradere din Flash Player. Besøg <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> for at hente en Flash Player.'; // cpg1.5
 $lang_upload_php['flash_loading'] = 'Upload mulighedindlæses. Vent venligst...'; // cpg1.5
 
-$lang_upload_swf_php['browse'] = 'Browse...'; //cpg1.5
+$lang_upload_swf_php['browse'] = 'Gennemse...'; //cpg1.5
 $lang_upload_swf_php['cancel_all'] = 'Stop alle uploads'; //cpg1.5
 $lang_upload_swf_php['upload_queue'] = 'Upload kø'; //cpg1.5
 $lang_upload_swf_php['files_uploaded'] = 'filer uploaded'; //cpg1.5
@@ -2310,12 +2310,12 @@ $lang_update_php['authentication_needed'] = 'Godkendelse nødvendig'; // cpg1.5
 $lang_update_php['username'] = 'Brugernavn'; // cpg1.5
 $lang_update_php['password'] = 'Kodeord'; // cpg1.5
 $lang_update_php['update_completed'] = 'Opdatering udført'; // cpg1.5
-$lang_update_php['check_versions'] = 'Det anbefales %scheck your file versions%s Hvis du lige har opgraderet fra en ældre version af Coppermine'; // cpg1.5 // Leave the %s untouched when translating - it wraps the link
-$lang_update_php['start_page'] = 'Hvis du ikke (eller du ikke ønsker at checke), kan du gå til %syour gallery\'s start page%s'; // cpg1.5 // Leave the %s untouched when translating - it wraps the link
+$lang_update_php['check_versions'] = 'Det anbefales %stjek dine fil versioner%s Hvis du lige har opgraderet fra en ældre version af Coppermine'; // cpg1.5 // Leave the %s untouched when translating - it wraps the link
+$lang_update_php['start_page'] = 'Hvis du ikke (eller du ikke ønsker at checke), kan du gå til %sdit galleri\'s start page%s'; // cpg1.5 // Leave the %s untouched when translating - it wraps the link
 $lang_update_php['errors_encountered'] = 'Følgende fejl blev opdaget og skal rettes først'; // cpg1.5
 $lang_update_php['delete_file'] = 'Slet %s'; // cpg1.5
 $lang_update_php['could_not_delete'] = 'Kunne ikke slette pga manglende rettigheder. Slet filerne manuelt!'; // cpg1.5
-$lang_update_php['rename_file'] = 'Rename %s to %s'; // cpg1.5
+$lang_update_php['rename_file'] = 'Omdøb %s til %s'; // cpg1.5
 $lang_update_php['could_not_rename'] = 'Kunne ikke omdøbe pga manglende rettigheder. Omdøb filerne manuelt!'; // cpg1.5
 }
 
@@ -2323,7 +2323,7 @@ $lang_update_php['could_not_rename'] = 'Kunne ikke omdøbe pga manglende rettigh
 // File util.php
 // ------------------------------------------------------------------------- //
 if (defined('UTIL_PHP')) {
-$lang_util_php['title'] = 'Admin tools'; // cpg1.5
+$lang_util_php['title'] = 'Admin værktøjer'; // cpg1.5
 $lang_util_php['file'] = 'Fil';
 $lang_util_php['problem'] = 'Problem';
 $lang_util_php['status'] = 'Status';
@@ -2364,7 +2364,7 @@ $lang_util_php['delete_original_explanation'] = 'Dette vil fjene fuld størrelse
 $lang_util_php['delete_intermediate'] = 'Sletter Mellemstore billeder';
 $lang_util_php['delete_intermediate_explanation1'] = 'Dette vil slette Mellemstore (normal) billeder.'; // cpg1.5
 $lang_util_php['delete_intermediate_explanation2'] = 'Brug dette til at frigive diskplads hvis du har deaktiveret \'Opret Mellemstore billeder\' i config after tilføjet billeder.'; // cpg1.5
-$lang_util_php['delete_intermediate_check'] = 'Config option \'Opret Mellemstore billeder\' er lige nu %s.'; // cpg1.5
+$lang_util_php['delete_intermediate_check'] = 'Konfig option \'Opret Mellemstore billeder\' er lige nu %s.'; // cpg1.5
 $lang_util_php['no_image'] = '%s er droppet da det ikke er et billed.'; // cpg1.5
 $lang_util_php['enabled'] = 'aktiveret'; // cpg1.5
 $lang_util_php['disabled'] = 'deaktiveret'; // cpg1.5
