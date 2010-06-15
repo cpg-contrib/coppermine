@@ -47,11 +47,8 @@
     <li><a class="content" href="#enableIMonWindows">Comment <strong>activer ImageMagick</strong> sur mon serveur Windows?</a></li>
     <li><a class="content" href="#InstallSteps">Quelles sont les <strong>étapes </strong> pour faire fonctionner Coppermine?</a></li>
     <li><a class="content" href="#installIMwhenHosted">Comment pui-je <strong>installer ImageMagick ou GD</strong>?</a></li>
-    <li><a class="content" href="#imagecreatefromjpeg">Lors de l'installation j'ai <strong>l'erreur</strong> <tt class="code">Fatal error: Call to undefined function: imagecreatefromjpeg() in /include/picmgmt.inc.php on line 168</tt>. Qu'est ce que cela signifie?</a></li>
-    <li><a class="content" href="#mkdirPermissionDenied">Lors de l'installation j'ai <strong>l'erreur</strong> <tt class="code">Warning: mkdir(dummy) [function.mkdir]: Permission denied in /your/path/to/coppermine/install.php on line 126</tt>. Qu'est ce que cela signifie?</a></li>
+    <li><a class="content" href="#installFTP_mode">What <strong>FTP mode</strong> should I use?</a></li>
 </ul>
-
-
 
 <a name="MinimumRequirements"></a>
 <h2>Quels sont les <strong>minimum requis</strong> pour l'utilisation  de Coppermine 1.5.x ?<a href="#MinimumRequirements" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
@@ -141,25 +138,11 @@ Pour plus de détails, lisez <a href="install_permissions.htm#permissions">la se
 <p>Vous ne pouvez <a href="#enableIMonWindows">installer ImageMagic ou GD que si vous faites tourner otre propre serveur</a> ou si vous avez au moins un accès shell à votre serveur. Si votre site est hébergé chez un hébergeur vous pouvez uniquement contacter votre hébergeur et lui demander de l'installer pour vous. Si il refuse, choisissez un autre hébergeur ou utilisez GD à la place.<br /></p>
 <hr />
 
-
-<a name="imagecreatefromjpeg"></a>
-<h3>Lors de l'Installation j'ai <strong>l'erreur</strong> <tt class="code">Fatal error: Call to undefined function: imagecreatefromjpeg() in /include/picmgmt.inc.php on line 168</tt>. Qu'est ce que ca signifie ?<a href="#imagecreatefromjpeg" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Cette erreur signifie que la version PHP installée sur votre serveur ne supporte pas la librairie graphique GD1/GD2 .<br />
-Si vous savez qu'ImageMagick est installé sur votre serveur, vous pouvez essayer de l'utiliser à la place. Sinon, vous devrez trouver un autre hébergeur, ou convaincre le votre d'intaller GD1/GD2 (La librairie graphique GD ets maintenant un composant standart de PHP et devrait normalement être installé et disponible). Coppermine ne feut pas fonctionner sans GD ou ImageMagik</p><hr />
-
-<a name="mkdirPermissionDenied"></a>
-<h3>Lors de l'Installation j'ai <strong>l'erreur</strong> <tt class="code">Warning: mkdir(dummy) [function.mkdir]: Permission denied in /your/path/to/coppermine/install.php on line 126</tt>. Qu'est ce que ca signifie ?<a href="#mkdirPermissionDenied" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Le script doit avoir les droits pour créer et effacer des fichiers.
-<ul>
-<li>Su les serveurs Unix/linux:<br />Faites un CHMOD à 755 (rwxr-xr-x) pour le répertoire Coppermine (et tous ses sous-répertoires. Pour plus de détails sur le CHMOD: regardez dans  <a href="http://www.google.com/search?q=chmod+tutorial" class="external">cet excellent tutoriel</a></li>
-<li>Sur Windows/IIS:<br />Vérifiez que l'utilisateur utilisé par le serveur pour lancer les scripts PHP (habituellement appelé IUSR) a les droit ssuffisant pour lire, executer, modifier, effacer dans le répertoire de Coppermine. Pour savoir comment, demandez votre hébergeur ou lisez la documentation de votr eserveur si vous faites tourner votre propre serveur.
-</li>
-<li>Sur Windows/Apache:<br />Vérifiez le compte utilisé par Apache et configuirez les <em>droits</em> dans le sytsème de fichiers.
-</li>
-</ul>
-Pour plus de détails, lisez la <a href="install_permissions.htm#permissions">section sur les droits et permissions</a>.</p>
-<hr />
-
+<a name="installFTP_mode"></a>
+<h3>What <strong>FTP mode</strong> should I use?</h3>
+<p>File Transfer Protocol (FTP) is used to exchange and manipulate files over a computer network. An FTP client may connect to an FTP server to manipulate files on that server.</p>
+<p>There are two different transfer modes in <abbr title="File Transfer Protocol">FTP</abbr>.</p>
+<p>All images (.jpg, .gif, .png etc) should be uploaded as binary, all files that contain text (php, htm, css, js etc.) in ASCII mode. Most FTP clients have an "auto" mode that will use the proper mode for each file; if your FTP client has "Auto", use it. This mode is particularly usefull then installing Coppermine as the package contains a mixture of file type. If your client does not have an "Auto" mode then switch to "Binary". For more information consult the manual for your <a href="dev_tools.htm#dev_tools_ftp_client">FTP client</a> or read up <a href="http://en.wikipedia.org/wiki/File_Transfer_Protocol" rel="external" class="external">the Wikipedia article on FTP</a>.</p>
 
 <div id="doc_footer">
 	<div class="doc_info_wrapper">

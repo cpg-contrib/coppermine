@@ -47,8 +47,6 @@
     <li><a class="content" href="#enableIMonWindows">How do I <strong>enable ImageMagick</strong> on my Windows server?</a></li>
     <li><a class="content" href="#InstallSteps">What are the <strong>steps</strong> to get Coppermine running?</a></li>
     <li><a class="content" href="#installIMwhenHosted">How can I <strong>install ImageMagick or GD</strong>?</a></li>
-    <li><a class="content" href="#imagecreatefromjpeg">When installing I get the <strong>error</strong> <tt class="code">Fatal error: Call to undefined function: imagecreatefromjpeg() in /include/picmgmt.inc.php on line 168</tt>. What does that mean?</a></li>
-    <li><a class="content" href="#mkdirPermissionDenied">When installing I get the <strong>error</strong> <tt class="code">Warning: mkdir(dummy) [function.mkdir]: Permission denied in /your/path/to/coppermine/install.php on line 126</tt>. What does that mean?</a></li>
     <li><a class="content" href="#installFTP_mode">What <strong>FTP mode</strong> should I use?</a></li>
 </ul>
 
@@ -140,24 +138,6 @@ For details, read the <a href="install_permissions.htm#permissions">permission s
 <a name="installIMwhenHosted"></a>
 <h2>How can I <strong>install ImageMagick or GD</strong>?<a href="#installIMwhenHosted" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>You can only <a href="#enableIMonWindows">install ImageMagic or GD if you're running your own server</a> or if you have at least shell access to your webserver. If your site is being hosted by a webhost you can only contact your webhost and ask them to install it for you. If they refuse choose another webhost or use GD instead.<br /></p>
-<hr />
-
-<a name="imagecreatefromjpeg"></a>
-<h3>When installing I get the <strong>error</strong> <tt class="code">Fatal error: Call to undefined function: imagecreatefromjpeg() in /include/picmgmt.inc.php on line 168</tt>. What does that mean?<a href="#imagecreatefromjpeg" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>This error means that the version of PHP installed on your server does not support the GD1/GD2 image library.<br />
-If you know that the ImageMagick suite is installed on your server, you could try using it instead. Otherwise, you will have to find another webhost or convince your existing webhost to have GD1/GD2 installed (the GD image library is now a standard component of PHP and should normally be installed and available, de facto). Coppermine won't run without gd or image magick.</p><hr />
-
-<a name="mkdirPermissionDenied"></a>
-<h3>When installing I get the <strong>error</strong> <tt class="code">Warning: mkdir(dummy) [function.mkdir]: Permission denied in /your/path/to/coppermine/install.php on line 126</tt>. What does that mean?<a href="#mkdirPermissionDenied" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>The script must have the right to create and delete files.
-<ul>
-<li>on *nix/linux-webservers:<br />chmod the coppermine directory (and all subdirectories) to 755 (rwxr-xr-x). To find more about chmod: check some of these <a href="http://www.google.com/search?q=chmod+tutorial" class="external">fine chmod tutorials</a></li>
-<li>on Windows/IIS:<br />Check if the user the webserver runs the php-scripts under (usually called IUSR) has sufficient rights to read, execute, change, delete in the Coppermine folder. To find out how, ask your webhost or read the server manual, if you're running your own server.
-</li>
-<li>on Windows/Apache:<br />Check the account Apache runs under and set the <em>rights</em> in the file-system.
-</li>
-</ul>
-For details, read the <a href="install_permissions.htm#permissions">permission section</a>.</p>
 <hr />
 
 <a name="installFTP_mode"></a>
