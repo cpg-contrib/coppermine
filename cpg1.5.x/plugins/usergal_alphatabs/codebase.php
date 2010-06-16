@@ -20,7 +20,7 @@ if (!defined('IN_COPPERMINE')) {
     die('Not in Coppermine...');
 }
 if (!defined('CORE_PLUGIN')) {
-	define('CORE_PLUGIN', true);
+    define('CORE_PLUGIN', true);
 }
 $superCage = Inspekt::makeSuperCage();
 
@@ -40,13 +40,14 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
         echo '</tr>';
         endtable();
     }
-    
-    function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb')
+
+    function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb', $date='')
     {
-        global $CONFIG;
-        global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view, $template_tab_display, $template_thumbnail_view, $lang_album_list;
+        global $CONFIG, $CURRENT_ALBUM_DATA;
+        global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view, $lang_common, $template_tab_display, $template_thumbnail_view, $lang_album_list, $lang_errors;
+
         $superCage = Inspekt::makeSuperCage();
-    
+
         static $header = '';
         static $thumb_cell = '';
         static $empty_cell = '';
@@ -54,7 +55,7 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
         static $footer = '';
         static $tabs = '';
         static $spacer = '';
-    
+
         if ($header == '') {
             $thumb_cell = template_extract_block($template_thumbnail_view, 'thumb_cell');
             $tabs = template_extract_block($template_thumbnail_view, 'tabs');
@@ -64,14 +65,25 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
             $footer = template_extract_block($template_thumbnail_view, 'footer');
             $spacer = template_extract_block($template_thumbnail_view, 'spacer');
         }
-    
+
         $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
-    
+        $date_link = $date=='' ? '' : '&amp;date=' . $date;
+        if ($superCage->get->getInt('uid')) {
+          $uid_link = '&amp;uid=' . $superCage->get->getInt('uid');
+        } else {
+          $uid_link = '';
+        }
+
+        $album_types = array(
+            'albums' => array('lastalb')
+        );
+        $album_types = CPGPluginAPI::filter('theme_thumbnails_album_types', $album_types);
+
         $theme_thumb_tab_tmpl = $template_tab_display;
-    
+
         if ($mode == 'thumb') {
-            $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $aid == 'lastalb' ? $lang_album_list['album_on_page'] : $lang_thumb_view['pic_on_page']));
-            $theme_thumb_tab_tmpl['page_link'] = strtr($theme_thumb_tab_tmpl['page_link'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&amp;page=%d'));
+            $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => in_array($aid, $album_types['albums']) ? $lang_album_list['album_on_page'] : $lang_thumb_view['pic_on_page']));
+            $theme_thumb_tab_tmpl['page_link'] = strtr($theme_thumb_tab_tmpl['page_link'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . $date_link . $uid_link . '&amp;page=%d'));
         } else {
             // start of modified section
             $pl =  $superCage->get->getAlpha('letter') ? ('&amp;letter=' . $superCage->get->getAlpha('letter')) : '';
@@ -79,97 +91,141 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
             $theme_thumb_tab_tmpl['page_link'] = strtr($theme_thumb_tab_tmpl['page_link'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d' . $pl));
             // end of modified section
         }
-    
+
         $thumbcols = $CONFIG['thumbcols'];
         $cell_width = ceil(100 / $CONFIG['thumbcols']) . '%';
-    
+
         $tabs_html = $display_tabs ? create_tabs($nbThumb, $page, $total_pages, $theme_thumb_tab_tmpl) : '';
+
+        if (!GALLERY_ADMIN_MODE && stripos($template_thumb_view_title_row, 'admin_buttons') !== false) {
+            template_extract_block($template_thumb_view_title_row, 'admin_buttons');
+        }
         // The sort order options are not available for meta albums
         if ($sort_options) {
-            $param = array('{ALBUM_NAME}' => $album_name,
-                '{AID}' => $aid,
-                '{PAGE}' => $page,
-                '{NAME}' => $lang_thumb_view['name'],
-                '{TITLE}' => $lang_thumb_view['title'],
-                '{DATE}' => $lang_thumb_view['date'],
-                '{SORT_TA}' => $lang_thumb_view['sort_ta'],
-                '{SORT_TD}' => $lang_thumb_view['sort_td'],
-                '{SORT_NA}' => $lang_thumb_view['sort_na'],
-                '{SORT_ND}' => $lang_thumb_view['sort_nd'],
-                '{SORT_DA}' => $lang_thumb_view['sort_da'],
-                '{SORT_DD}' => $lang_thumb_view['sort_dd'],
-                '{POSITION}' => $lang_thumb_view['position'],
-                '{SORT_PA}' => $lang_thumb_view['sort_pa'],
-                '{SORT_PD}' => $lang_thumb_view['sort_pd'],
+            if (GALLERY_ADMIN_MODE) {
+                $param = array(
+                    '{ALBUM_ID}'   => $aid,
+                    '{CAT_ID}'     => ($cat > 0 ? $cat : $CURRENT_ALBUM_DATA['category']),
+                    '{MODIFY_LNK}'     => $lang_common['album_properties'],
+                    '{MODIFY_ICO}'     => cpg_fetch_icon('modifyalb', 1),
+                    '{PARENT_CAT_LNK}' => $lang_common['parent_category'],
+                    '{PARENT_CAT_ICO}' => cpg_fetch_icon('category', 1),
+                    '{EDIT_PICS_LNK}'  => $lang_common['edit_files'],
+                    '{EDIT_PICS_ICO}'  => cpg_fetch_icon('edit', 1),
+                    '{ALBUM_MGR_LNK}'  => $lang_common['album_manager'],
+                    '{ALBUM_MGR_ICO}'  => cpg_fetch_icon('alb_mgr', 1),
                 );
+            } else {
+                $param = array();
+            }
+            $param['{ALBUM_NAME}'] = $album_name;
+            // Plugin Filter: allow plugin to modify or add tags to process
+            $param = CPGPluginAPI::filter('theme_thumbnails_title', $param);
             $title = template_eval($template_thumb_view_title_row, $param);
-        } else if ($aid == 'favpics' && $CONFIG['enable_zipdownload'] == 1) { //Lots of stuff can be added here later
-           $param = array('{ALBUM_NAME}' => $album_name,
-                                 '{DOWNLOAD_ZIP}'=>$lang_thumb_view['download_zip']
-                                   );
-           $title = template_eval($template_fav_thumb_view_title_row, $param);
-        }else{
+        } elseif ($aid == 'favpics' && $CONFIG['enable_zipdownload'] > 0) { //Lots of stuff can be added here later
+            $param = array(
+                '{ALBUM_ID}'   => $aid,
+                '{ALBUM_NAME}' => $album_name,
+                '{DOWNLOAD_ZIP}' => cpg_fetch_icon ('zip', 2) . $lang_thumb_view['download_zip'],
+            );
+            // Plugin Filter: allow plugin to modify or add tags to process
+            $param = CPGPluginAPI::filter('theme_thumbnails_title', $param);        
+            $title = template_eval($template_fav_thumb_view_title_row, $param);
+        } else {
             $title = $album_name;
         }
-    
+        
         $wrapper_start = CPGPluginAPI::filter('theme_thumbnails_wrapper_start');
         echo $wrapper_start;
-        
+
         if ($mode == 'thumb') {
             starttable('100%', $title, $thumbcols);
         } else {
             makejumpbox();
             starttable('100%');
         }
-    
+
         echo $header;
-    
+
         $i = 0;
+        global $thumb;  // make $thumb accessible to plugins
         foreach($thumb_list as $thumb) {
             $i++;
             if ($mode == 'thumb') {
-                if ($aid == 'lastalb') {
-                    $params = array('{CELL_WIDTH}' => $cell_width,
-                        '{LINK_TGT}' => "thumbnails.php?album={$thumb['aid']}",
-                        '{THUMB}' => $thumb['image'],
-                        '{CAPTION}' => $thumb['caption'],
-                        '{ADMIN_MENU}' => $thumb['admin_menu']
-                        );
-                } else {
-                    $params = array('{CELL_WIDTH}' => $cell_width,
-                        '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
-                        '{THUMB}' => $thumb['image'],
-                        '{CAPTION}' => $thumb['caption'],
-                        '{ADMIN_MENU}' => $thumb['admin_menu']
-                        );
-                }
-            } else {
-                $params = array('{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}' => "index.php?cat={$thumb['cat']}",
-                    '{THUMB}' => $thumb['image'],
-                    '{CAPTION}' => $thumb['caption'],
-                    '{ADMIN_MENU}' => ''
+                if (in_array($aid, $album_types['albums'])) {
+                    $params = array(
+                        '{CELL_WIDTH}' => $cell_width,
+                        '{LINK_TGT}'   => "thumbnails.php?album={$thumb['aid']}",
+                        '{THUMB}'      => $thumb['image'],
+                        '{CAPTION}'    => $thumb['caption'],
+                        '{ADMIN_MENU}' => $thumb['admin_menu'],
                     );
+                } else {
+                    // determine if thumbnail link targets should open in a pop-up
+                    if ($CONFIG['thumbnail_to_fullsize'] == 1) { // code for full-size pop-up
+                        if (!USER_ID && $CONFIG['allow_unlogged_access'] <= 2) {
+                           $target = 'javascript:;" onclick="alert(\''.sprintf($lang_errors['login_needed'],'','','','').'\');';
+                        } elseif (USER_ID && USER_ACCESS_LEVEL <= 2) {
+                            $target = 'javascript:;" onclick="alert(\''.sprintf($lang_errors['access_intermediate_only'],'','','','').'\');';
+                        } else {
+                           $target = 'javascript:;" onclick="MM_openBrWindow(\'displayimage.php?pid=' . $thumb['pid'] . '&fullsize=1\',\'' . uniqid(rand()) . '\',\'scrollbars=yes,toolbar=no,status=no,resizable=yes,width=' . ((int)$thumb['pwidth']+(int)$CONFIG['fullsize_padding_x']) .  ',height=' .   ((int)$thumb['pheight']+(int)$CONFIG['fullsize_padding_y']). '\');';
+                        }
+                    } elseif ($aid == 'random') {
+                        $target = "displayimage.php?pid={$thumb['pid']}$uid_link#top_display_media";
+                    } elseif ($aid == 'lastcom' || $aid == 'lastcomby') {
+                        $page = cpg_get_comment_page_number($thumb['msg_id']);
+                        $page = (is_numeric($page)) ? "&amp;page=$page" : '';
+                        $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link&amp;msg_id={$thumb['msg_id']}$page#comment{$thumb['msg_id']}";
+                    } else {
+                        $target = "displayimage.php?album=$aid$cat_link$date_link&amp;pid={$thumb['pid']}$uid_link#top_display_media";
+                    }
+                    $params = array(
+                        '{CELL_WIDTH}' => $cell_width,
+                        '{LINK_TGT}'   => $target,
+                        '{THUMB}'      => $thumb['image'],
+                        '{CAPTION}'    => $thumb['caption'],
+                        '{ADMIN_MENU}' => $thumb['admin_menu'],
+                    );
+                }
+
+            } else {  // mode != 'thumb'
+
+                // Used for mode = 'user' from list_users() in index.php
+                $params = array(
+                    '{CELL_WIDTH}' => $cell_width,
+                    '{LINK_TGT}'   => "index.php?cat={$thumb['cat']}",
+                    '{THUMB}'      => $thumb['image'],
+                    '{CAPTION}'    => $thumb['caption'],
+                    '{ADMIN_MENU}' => '',
+                );
+
             }
+
+            // Plugin Filter: allow plugin to modify or add tags to process
+            $params = CPGPluginAPI::filter('theme_display_thumbnails_params', $params);
             echo template_eval($thumb_cell, $params);
-    
+
             if ((($i % $thumbcols) == 0) && ($i < count($thumb_list))) {
                 echo $row_separator;
             }
-        }
+        } // foreach $thumb
+
+        unset($thumb);  // unset $thumb to avoid conflicting with global
+
         for (;($i % $thumbcols); $i++) {
             echo $empty_cell;
         }
-        $footer = CPGPluginAPI::filter('theme_thumbnails_footer', $footer);
+        $footer = CPGPluginAPI::filter('theme_thumbnails_footer', $footer); 
         echo $footer;
-    
+
         if ($display_tabs) {
-            $params = array('{THUMB_COLS}' => $thumbcols,
-                '{TABS}' => $tabs_html
-                );
+            $params = array(
+                '{THUMB_COLS}' => $thumbcols,
+                '{TABS}'       => $tabs_html,
+            );
             echo template_eval($tabs, $params);
         }
-    
+
         endtable();
         $wrapper_end = CPGPluginAPI::filter('theme_thumbnails_wrapper_end');
         echo $wrapper_end;
