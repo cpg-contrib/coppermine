@@ -195,8 +195,8 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
         $f =& $this->field;
 
         if ($FORBIDDEN_SET != "") {
-            $forbidden_with_icon = "AND ($FORBIDDEN_SET or p.galleryicon=p.pid)";
-            $forbidden = "AND ($FORBIDDEN_SET)";
+            $forbidden_with_icon = "AND (1 $FORBIDDEN_SET or p.galleryicon=p.pid)";
+            $forbidden = "AND (1 $FORBIDDEN_SET)";
         } else {
             $forbidden_with_icon = "";
             $forbidden = "";
