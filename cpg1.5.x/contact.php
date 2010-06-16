@@ -66,7 +66,7 @@ if ($superCage->post->keyExists('submit')) {
     $user_name = $superCage->post->getEscaped('sender_name');
     $email_address = $superCage->post->getEscaped('sender_email');
     $subject = $superCage->post->getEscaped('subject');
-    $message = $superCage->post->getEscaped('message');
+    $message = addslashes(htmlspecialchars($superCage->post->getRaw('message')));
     $captcha = ($matches = $superCage->post->getMatched('captcha', '/^[a-zA-Z0-9]+$/')) ? $matches[0] : '';
 
     // sanitize user-input
@@ -190,6 +190,7 @@ if ($superCage->post->keyExists('submit')) {
                         '<div style="border:1px solid black">' .
                         $html_message .
                         '</div>';
+        $html_message = nl2br($html_message);
 
         $message = $message_header .
                    $LINEBREAK .
