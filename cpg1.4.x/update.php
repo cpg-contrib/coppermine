@@ -147,7 +147,7 @@ function update_tables()
     $sql_query = split_sql_file($sql_query, ';');
 
     ?>
-        <h2>Performing Database Updates<h2>
+        <h2>Performing Database Updates</h2>
         <table class="maintable">
 
     <?php
