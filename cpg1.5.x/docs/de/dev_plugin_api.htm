@@ -115,19 +115,18 @@
 /**************************************************
   Coppermine Plugin - Hello, World
   *************************************************
-  Copyright (c) 2009 &lt;-InsertNameHere-&gt;
+  Copyright (c) 2010 &lt;-InsertNameHere-&gt;
   *************************************************
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 3 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
 ***************************************************/
 
 $name='Hello, World';
-$description='Plugin API Tutorial - 2.1 My First Plugin';
-
+$description='Plugin API Tutorial - My First Plugin';
 $author='Tutorial';
 $version='2.1';
+$plugin_cpg_version = array('min' => '1.5');
 ?&gt;
 </pre>
 <p>The beginning part is a comment block of course.  We suggest you use such a block at the beginning of each of your plugin files.  The first text line tells people this is a Coppermine Plugin and lists the name of your plugin.  The next text line has a copyright message with your name (real name or username used on the Coppermine forum).  The next text block  gives the GPL message that Coppermine uses and is recommended for your code as well.  This comment block is not strictly required for your plugin to work.  That being said, it is important for organization and clarity, so please make sure to add it to each of your plugin files.</p>
@@ -136,7 +135,11 @@ $version='2.1';
     <li><tt class="code">$name</tt> gives the name of your plugin which will be shown on the plugin manager page.  You can use any string here; you are not limited to the short name rules you picked earlier.</li>
     <li><tt class="code">$description</tt> gives a phrase or sentence or paragraph that describes your plugin.  This will be shown on the plugin manager page underneath the plugin's name.  You can use any text here; it's recommended to keep the description succinct so it's clear what your plugin does without using too many words.</li>
     <li><tt class="code">$author</tt> gives the author or authors of your plugin (if you collaborated with others on the creation or modification of the plugin).  Use whatever credits you want to give here.  This is also shown on the plugin manager page.</li>
-    <li><tt class="code">$version</tt> gives the version number (or letter) of your plugin.  You can use whatever version numbering you want.  Most people use 1.0 for the first release of a plugin that works (sub-1.0 could be used for trial releases if you are not sure it will work in all cases).  Then you can use tenths or hundredths for follow-up minor revisions, e.g. 1.01, 1.02, etc. or 1.1, 1.2, etc.  Feel free to put the tag "beta" in the version variable if desired, however with the fact that most plugins are fairly simple, it's probably not necessary to do so.  If you find a bug in a version, fix it, and release another revision.  In any case, you can put whatever text you like to describe your plugin's current version.  </li>
+    <li><tt class="code">$version</tt> gives the version number (or letter) of your plugin.  You can use whatever version numbering you want.  Most people use 1.0 for the first release of a plugin that works (sub-1.0 could be used for trial releases if you are not sure it will work in all cases).  Then you can use tenths or hundredths for follow-up minor revisions, e.g. 1.01, 1.02, etc. or 1.1, 1.2, etc.  Feel free to put the tag "beta" in the version variable if desired, however with the fact that most plugins are fairly simple, it's probably not necessary to do so.  If you find a bug in a version, fix it, and release another revision.  In any case, you can put whatever text you like to describe your plugin's current version.</li>
+    <li><tt class="code">$plugin_cpg_version</tt> defines an array that allows you to specify the minimum and maximum Coppermine version for your plugin. It has been added in cpg1.5.x to make sure that users don't accidentally install plugins that haven't been designed for their version of Coppermine.<br />
+    Currently, two array keys are being processed: 'min' and 'max'. Against both, a version comparison will be performed using the function <a href="http://www.php.net/manual/en/function.version-compare.php" rel="external" class="phpnet">version_compare</a>.
+    <div class="cpg_example">Specifying <tt class="code">$plugin_cpg_version = array('min' => '1.5');</tt> will apply for all Coppermine versions, including both cpg1.5.0 as well as cpg1.5.23, but will fail for cpg1.4.27. Specifying <tt class="code">$plugin_cpg_version = array('min' => '1.5.3');</tt> will apply for all Coppermine versions equal or better than cpg1.5.3, so it will not apply for cpg1.5.0, but it will apply for cpg1.5.23. Only specify a minor version if a particular plugin hook was introduced in the Coppermine version you refer to.</div>
+    </li>
 </ul>
 <p><strong>Now create your code file in the "hello_world" folder, with contents as shown (and read &amp; execute permissions):</strong></p>
 <p class="filename">codebase.php</p>

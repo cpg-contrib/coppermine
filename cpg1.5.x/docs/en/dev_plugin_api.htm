@@ -113,19 +113,18 @@
 /**************************************************
   Coppermine Plugin - Hello, World
   *************************************************
-  Copyright (c) 2009 &lt;-InsertNameHere-&gt;
+  Copyright (c) 2010 &lt;-InsertNameHere-&gt;
   *************************************************
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 3 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
 ***************************************************/
 
 $name='Hello, World';
-$description='Plugin API Tutorial - 2.1 My First Plugin';
-
+$description='Plugin API Tutorial - My First Plugin';
 $author='Tutorial';
 $version='2.1';
+$plugin_cpg_version = array('min' => '1.5');
 ?&gt;
 </pre>
 <p>The beginning part is a comment block of course.  We suggest you use such a block at the beginning of each of your plugin files.  The first text line tells people this is a Coppermine Plugin and lists the name of your plugin.  The next text line has a copyright message with your name (real name or username used on the Coppermine forum).  The next text block  gives the GPL message that Coppermine uses and is recommended for your code as well.  This comment block is not strictly required for your plugin to work.  That being said, it is important for organization and clarity, so please make sure to add it to each of your plugin files.</p>
@@ -134,7 +133,11 @@ $version='2.1';
     <li><tt class="code">$name</tt> gives the name of your plugin which will be shown on the plugin manager page.  You can use any string here; you are not limited to the short name rules you picked earlier.</li>
     <li><tt class="code">$description</tt> gives a phrase or sentence or paragraph that describes your plugin.  This will be shown on the plugin manager page underneath the plugin's name.  You can use any text here; it's recommended to keep the description succinct so it's clear what your plugin does without using too many words.</li>
     <li><tt class="code">$author</tt> gives the author or authors of your plugin (if you collaborated with others on the creation or modification of the plugin).  Use whatever credits you want to give here.  This is also shown on the plugin manager page.</li>
-    <li><tt class="code">$version</tt> gives the version number (or letter) of your plugin.  You can use whatever version numbering you want.  Most people use 1.0 for the first release of a plugin that works (sub-1.0 could be used for trial releases if you are not sure it will work in all cases).  Then you can use tenths or hundredths for follow-up minor revisions, e.g. 1.01, 1.02, etc. or 1.1, 1.2, etc.  Feel free to put the tag "beta" in the version variable if desired, however with the fact that most plugins are fairly simple, it's probably not necessary to do so.  If you find a bug in a version, fix it, and release another revision.  In any case, you can put whatever text you like to describe your plugin's current version.  </li>
+    <li><tt class="code">$version</tt> gives the version number (or letter) of your plugin.  You can use whatever version numbering you want.  Most people use 1.0 for the first release of a plugin that works (sub-1.0 could be used for trial releases if you are not sure it will work in all cases).  Then you can use tenths or hundredths for follow-up minor revisions, e.g. 1.01, 1.02, etc. or 1.1, 1.2, etc.  Feel free to put the tag "beta" in the version variable if desired, however with the fact that most plugins are fairly simple, it's probably not necessary to do so.  If you find a bug in a version, fix it, and release another revision.  In any case, you can put whatever text you like to describe your plugin's current version.</li>
+    <li><tt class="code">$plugin_cpg_version</tt> defines an array that allows you to specify the minimum and maximum Coppermine version for your plugin. It has been added in cpg1.5.x to make sure that users don't accidentally install plugins that haven't been designed for their version of Coppermine.<br />
+    Currently, two array keys are being processed: 'min' and 'max'. Against both, a version comparison will be performed using the function <a href="http://www.php.net/manual/en/function.version-compare.php" rel="external" class="phpnet">version_compare</a>.
+    <div class="cpg_example">Specifying <tt class="code">$plugin_cpg_version = array('min' => '1.5');</tt> will apply for all Coppermine versions, including both cpg1.5.0 as well as cpg1.5.23, but will fail for cpg1.4.27. Specifying <tt class="code">$plugin_cpg_version = array('min' => '1.5.3');</tt> will apply for all Coppermine versions equal or better than cpg1.5.3, so it will not apply for cpg1.5.0, but it will apply for cpg1.5.23. Only specify a minor version if a particular plugin hook was introduced in the Coppermine version you refer to.</div>
+    </li>
 </ul>
 <p><strong>Now create your code file in the "hello_world" folder, with contents as shown (and read &amp; execute permissions):</strong></p>
 <p class="filename">codebase.php</p>
@@ -142,12 +145,11 @@ $version='2.1';
 /**************************************************
   Coppermine Plugin - Hello, World
   *************************************************
-  Copyright (c) 2009 &lt;-InsertNameHere-&gt;
+  Copyright (c) 2010 &lt;-InsertNameHere-&gt;
   *************************************************
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 3 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
 ***************************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -203,12 +205,11 @@ function hello_world_header($html) {
 /**************************************************
   Coppermine Plugin - Hello, World
   *************************************************
-  Copyright (c) 2009 &lt;-InsertNameHere-&gt;
+  Copyright (c) 2010 &lt;-InsertNameHere-&gt;
   *************************************************
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+  it under the terms of the GNU General Public License version 3
+  as published by the Free Software Foundation.
 ***************************************************/
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
@@ -543,11 +544,122 @@ If you're using <abbr title="Internationalization">i18n</abbr>, i.e. if you are 
 Now it's time to add the actual functionality to your config screen. Therefore, there are five steps that we actually need to perform:
 <ul>
     <li>Define the defaults of each config setting and what the values can be (min/max etc.)</li>
-    <li>Sanitize the data sent using the form</li>
-    <li>Write the sanitized data to the database</li>
+    <li>Sanitize the data sent using the form and write them to the database</li>
     <li>Populate the form options</li>
     <li>Output the actual form</li>
 </ul>
+<p>Here's a default config page with only one config option that is first split into chunks to comment them:</p>
+
+<a name="plugin_api_tutorial_config_header"></a><h4>Header<a href="#plugin_api_tutorial_config_header" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+As suggested above, in the header you just need to make the preparations, e.g. include the language file and make sure that only the gallery admin can access the config page. To accomplish this, use this piece of code:
+<pre class="cpg_code code">if (!GALLERY_ADMIN_MODE) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
+require_once "./plugins/coffee_maker/initialize.inc.php";</pre>
+
+<a name="plugin_api_tutorial_config_defaults"></a><h4>Defaults<a href="#plugin_api_tutorial_config_defaults" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+Let's populate the variables that we need later. If you plan to beautify your config options using icons, define them now, using this code:
+<pre class="cpg_code code">$plugin_coffee_maker_icon['submit'] = cpg_fetch_icon('ok', 1);</pre>
+We'll need to specify as well what variables you'll be using inside the form and what type they are:
+<pre class="cpg_code code">$sanitization_array = array(
+    'plugin_coffee_maker_width' => array('type' => 'int', 'min' => '10', 'max' => '32'),
+    'plugin_coffee_maker_height' => array('type' => 'int', 'min' => '0', 'max' => '100'),
+    'plugin_coffee_maker_enabled' => array('type' => 'checkbox', 'min' => '0', 'max' => '1'),
+);</pre>
+This looks more complicated than it actually is: the keys of the array <em>$sanitization_array</em> (i.e. 'plugin_coffee_maker_width') needs to correspond to the name of the form field. It's advisable to respect the naming scheme, i.e. to name your form fields as suggested in this example, using the word "plugin", followed by an underscore, followed by the plugin folder name, followed by another underscore, followed by a short description of the actual purpose of the field. Keep in mind though that there is a limitation in the overall number of characters allowed here: the names we assign here will later be used as well when coming up with the database records. We'll use the config table to store our plugin values, so we need to respect the maximum of 40 characters for the name of the config field. If you need to use abbreviations, choose them wisely to be able to identify your stuff later.<br />
+The values for the key 'type' can be 'int', 'checkbox', 'raw' or 'array'. Depending on that value, there are different keys available. The following table should explain what can be done:
+<table border="0" cellspacing="0" cellpadding="0" width="100%" class="cpg_zebra">
+    <tr>
+        <td valign="top">type</td>
+        <td valign="top">Explanation</td>
+        <td valign="top">Usage (range)</td>
+        <td valign="top">Parameters</td>
+    </tr>
+    <tr>
+        <td valign="top">int</td>
+        <td valign="top"></td>
+        <td valign="top"></td>
+        <td valign="top"></td>
+    </tr>
+    <tr>
+        <td valign="top">checkbox</td>
+        <td valign="top"></td>
+        <td valign="top"></td>
+        <td valign="top"></td>
+    </tr>
+    <tr>
+        <td valign="top">raw</td>
+        <td valign="top"></td>
+        <td valign="top"></td>
+        <td valign="top"></td>
+    </tr>
+    <tr>
+        <td valign="top">array</td>
+        <td valign="top"></td>
+        <td valign="top"></td>
+        <td valign="top"></td>
+    </tr>
+</table>
+tbc...
+
+<a name="plugin_api_tutorial_config_sanitize"></a><h4>Sanitize form data &amp; write to database<a href="#plugin_api_tutorial_config_sanitize" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+We only need to sanitize the form data if the form has actually been submit, so we'll wrap the next section between <tt class="code">if ($superCage->post->keyExists('submit')) {</tt> and the closing curly bracket <tt class="code">}</tt> that is needed to close the if construct. You will be able to re-use the piece of code in each and every plugin - it has been designed for that purpose. Use this piece of code:
+<pre class="cpg_code code">    // get sanitized POST parameters    if ($superCage->post->keyExists('submit')) {
+        //Check if the form token is valid        if(!checkFormToken()){
+            cpg_die(ERROR, $lang_errors['invalid_form_token'], __FILE__, __LINE__);
+        }
+        $config_changes_counter = 0;
+      foreach ($sanitization_array as $san_key => $san_value) {
+          if (isset($CONFIG[$san_key]) == TRUE) { // only loop if config value is set --- start              if ($san_value['type'] == 'checkbox') { // type is checkbox --- start                if ($superCage->post->getInt($san_key) == $san_value['max'] && $CONFIG[$san_key] != $san_value['max']) {
+                    $CONFIG[$san_key] = $san_value['max'];
+                    cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value='{$CONFIG[$san_key]}' WHERE name='$san_key'");
+                    $config_changes_counter++;
+                } elseif($superCage->post->getInt($san_key) == $san_value['min'] && $CONFIG[$san_key] != $san_value['min']) {
+                    $CONFIG[$san_key] = $san_value['min'];
+                    cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value='{$CONFIG[$san_key]}' WHERE name='$san_key'");
+                    $config_changes_counter++;
+                } elseif($superCage->post->keyExists($san_key) != TRUE && $CONFIG[$san_key] != '0') {
+                    $CONFIG[$san_key] = 0;
+                    cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value='{$CONFIG[$san_key]}' WHERE name='$san_key'");
+                    $config_changes_counter++;
+                }
+              } // type is checkbox --- end              if ($san_value['type'] == 'int') { // type is integer --- start                  if ($superCage->post->getInt($san_key) <= $san_value['max'] && $superCage->post->getInt($san_key) >= $san_value['min'] && $superCage->post->getInt($san_key) != $CONFIG[$san_key]) {
+                      $CONFIG[$san_key] = $superCage->post->getInt($san_key);
+                      cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value='{$CONFIG[$san_key]}' WHERE name='$san_key'");
+                      $config_changes_counter++;
+                  }
+              } // type is integer --- end              if ($san_value['type'] == 'raw') { // type is raw --- start                  if (isset($san_value['regex_ok']) == TRUE && preg_match($san_value['regex_ok'], $superCage->post->getRaw($san_key)) && $superCage->post->getRaw($san_key) != $CONFIG[$san_key]) {
+                      $CONFIG[$san_key] = $superCage->post->getRaw($san_key);
+                      if ($superCage->post->getRaw($san_key) == 'none') {
+                        $CONFIG[$san_key] = '';
+                      }
+                      cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value='{$CONFIG[$san_key]}' WHERE name='$san_key'");
+                      $config_changes_counter++;
+                  }
+              } // type is raw --- end              if ($san_value['type'] == 'array') { // type is array --- start                                $evaluate_value = $superCage->post->getRaw($san_key);
+                  if (is_array($evaluate_value) && isset($san_value['regex_ok']) == TRUE && isset($san_value['delimiter']) == TRUE) {
+                      $temp = '';
+                      for ($i = 0; $i <= count($evaluate_value); $i++) {
+                          if (preg_match($san_value['regex_ok'], $evaluate_value[$i])) {
+                              $temp .= $evaluate_value[$i] . $san_value['delimiter'];
+                          }
+                      }
+                      unset($evaluate_value);
+                      $evaluate_value = rtrim($temp, $san_value['delimiter']);
+                      unset($temp);
+                  }
+                  if ($evaluate_value != $CONFIG[$san_key]) {
+                      $CONFIG[$san_key] = $evaluate_value;
+                      cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value='{$CONFIG[$san_key]}' WHERE name='$san_key'");
+                      $config_changes_counter++;
+                  }
+              } // type is array --- end          } // only loop if config value is set --- end      }
+    }</pre>
+
+<a name="plugin_api_tutorial_config_options"></a><h4>Populate form options<a href="#plugin_api_tutorial_config_options" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+
+
+<a name="plugin_api_tutorial_config_form"></a><h4>Output the form<a href="#plugin_api_tutorial_config_form" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
