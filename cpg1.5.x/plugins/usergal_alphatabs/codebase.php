@@ -258,7 +258,26 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
             $forbidden = "";
         }
 
-        $users_per_page = $CONFIG["thumbcols"] * $CONFIG["thumbrows"];
+        // Get the total number of users with albums
+        $sql  = "SELECT NULL ";
+        $sql .= "FROM {$CONFIG[\'TABLE_ALBUMS\']} AS p ";
+        $sql .= " INNER JOIN {$CONFIG[\'TABLE_PICTURES\']} AS pics ON pics.aid = p.aid ";
+        $sql .= " INNER JOIN {$CONFIG[\'TABLE_USERS\']} AS u ON p.owner = u.user_id ";
+        $sql .= "WHERE ( category > " . FIRST_USER_CAT . " $forbidden) ";
+        if ($l = $getLetter) $sql .= "AND {$f[\'username\']} LIKE \'$l%\' ";
+        $sql .= "GROUP BY category;";
+        $result = cpg_db_query($sql);
+        $user_count = mysql_num_rows($result);
+
+        if ($user_count == 0) {
+            return false;
+        }
+
+        mysql_free_result($result);
+
+        $users_per_page = $CONFIG[\'thumbcols\'] * $CONFIG[\'thumbrows\'];
+        $totalPages = ceil($user_count / $users_per_page);
+        if ($PAGE > $totalPages) $PAGE = 1;
         $lower_limit = ($PAGE-1) * $users_per_page;
 
         if ($this->can_join_tables){
@@ -276,7 +295,7 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
             if ($l = $getLetter) $sql .= "AND {$f[\'username\']} LIKE \'$l%\' ";
             $sql .= "GROUP BY category ";
             $sql .= "ORDER BY category ";
-            //$sql .= "LIMIT $lower_limit, $users_per_page ";
+            $sql .= "LIMIT $lower_limit, $users_per_page ";
     
     
             $result = cpg_db_query($sql);
@@ -296,7 +315,7 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
             $sql .= "INNER JOIN {$CONFIG[\'TABLE_PICTURES\']} AS p ON p.aid = a.aid ";
             $sql .= "WHERE ((isnull(approved) or approved=\"YES\") ";
             $sql .= "AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon GROUP BY category ";
-            //$sql .= "LIMIT $lower_limit, $users_per_page ";
+            $sql .= "LIMIT $lower_limit, $users_per_page ";
     
             $result = cpg_db_query($sql);
             
@@ -311,7 +330,7 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
             
             // This query collects an array of user_id -> username mappings for the user ids collected above 
             $sql = "SELECT {$this->field[\'user_id\']} AS user_id, {$this->field[\'username\']} AS user_name FROM {$this->usertable} WHERE {$this->field[\'user_id\']} IN ($userlist)";
-            if ($l = $getLetter) $sql .= " AND {$f[\'username\']} LIKE \'$l%\' ";           
+            if ($l = $getLetter) $sql .= " AND {$f[\'username\']} LIKE \'$l%\' ";
             $result = cpg_db_query($sql, $this->link_id);
         
             $userdata = array();
@@ -343,10 +362,6 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
             
             mysql_free_result($result);
         }
-        
-        $user_count = count($users);
-        $totalPages = ceil($user_count / $users_per_page);
-        if ($PAGE > $totalPages) $PAGE = 1;
 
         return $users;
     }
