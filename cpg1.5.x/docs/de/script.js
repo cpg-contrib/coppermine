@@ -258,10 +258,10 @@ doc_toc += '      <li><a href="theme.htm#theme_upgrading" class="en">Aktualisier
 doc_toc += '      <ul>\n';
 doc_toc += '        <li><a href="theme_upgrade_14x-15x.htm" class="en">Konvertierung von cpg1.4.x-Themes auf cpg1.5.x</a>\n';
 doc_toc += '          <ul>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#style" class="en">Bearbeite style.css</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#template" class="en">Bearbeite template.html</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme" class="en">Bearbeite theme.php</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#validation" class="en">Validierung</a></li>\n';
+doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_style" class="en">Bearbeite style.css</a></li>\n';
+doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_template" class="en">Bearbeite template.html</a></li>\n';
+doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_theme" class="en">Bearbeite theme.php</a></li>\n';
+doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_validation" class="en">Validierung</a></li>\n';
 doc_toc += '          </ul>\n';
 doc_toc += '        </li>\n';
 doc_toc += '      </ul>\n';

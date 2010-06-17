@@ -301,10 +301,10 @@ doc_toc += '      <li><a href="theme.htm#theme_upgrading" class="nl">Upgrade van
 doc_toc += '      <ul>\n';
 doc_toc += '        <li><a href="theme_upgrade_14x-15x.htm" class="en">Converteren van cpg1.4.x thema\'s naar cpg1.5.x</a>\n';
 doc_toc += '          <ul>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#style" class="en">Edit style.css</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#template" class="en">Edit template.html</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme" class="en">Edit theme.php</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#validation" class="en">Validatie Methodologie</a></li>\n';
+doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_style" class="en">Edit style.css</a></li>\n';
+doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_template" class="en">Edit template.html</a></li>\n';
+doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_theme" class="en">Edit theme.php</a></li>\n';
+doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_validation" class="en">Validatie Methodologie</a></li>\n';
 doc_toc += '          </ul>\n';
 doc_toc += '        </li>\n';
 doc_toc += '      </ul>\n';

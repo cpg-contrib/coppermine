@@ -338,10 +338,10 @@ doc_toc += '      <li><a href="theme.htm#theme_upgrading">Mise à jour de votre 
 doc_toc += '      <ul>\n';
 doc_toc += '        <li><a href="theme_upgrade_14x-15x.htm">Convertir un thème cpg1.4.x pour cpg1.5.x</a>\n';
 doc_toc += '          <ul>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#style">Modifier style.css</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#template">Modifier template.html</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme">Modifier theme.php</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#validation">Méthode de validation</a></li>\n';
+doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_style">Modifier style.css</a></li>\n';
+doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_template">Modifier template.html</a></li>\n';
+doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_theme">Modifier theme.php</a></li>\n';
+doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_validation">Méthode de validation</a></li>\n';
 doc_toc += '          </ul>\n';
 doc_toc += '        </li>\n';
 doc_toc += '      </ul>\n';
