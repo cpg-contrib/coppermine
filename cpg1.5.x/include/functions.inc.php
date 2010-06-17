@@ -5879,6 +5879,15 @@ function get_cat_data()
             $ident = str_repeat('&nbsp;&nbsp;&nbsp;', count($right));
             $right[] = $subcat['rgt']; 
             $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
+            // add user categories
+            if ($subcat['cid'] == 1 && GALLERY_ADMIN_MODE) {
+                global $cpg_udb;
+                $result2 = cpg_db_query("SELECT {$cpg_udb->field['user_id']} AS user_id, {$cpg_udb->field['username']} AS user_name FROM {$cpg_udb->usertable} ORDER BY user_name");
+                $rowset2 = cpg_db_fetch_rowset($result2);
+                foreach ($rowset2 as $user) {
+                    $CAT_LIST[] = array(FIRST_USER_CAT + $user['user_id'], '&nbsp;&nbsp;&nbsp;' . $user['user_name']);
+                }
+            }
         }
     }
 }
