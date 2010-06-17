@@ -56,7 +56,10 @@ function alb_get_subcat_data($parent, $ident = '')
     global $CONFIG, $CAT_LIST, $USER_DATA;
 
     // select cats where the users can change the albums
-    $group_id = $USER_DATA['group_id']; 
+    foreach ($USER_DATA['groups'] as $group) {
+        $groups .= "group_id = '$group' OR ";
+    }
+    $groups .= "0";
 
     $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
 
@@ -64,7 +67,7 @@ function alb_get_subcat_data($parent, $ident = '')
         $rowset = cpg_db_fetch_rowset($result);
         foreach ($rowset as $subcat) {
             if (!GALLERY_ADMIN_MODE) {
-                $check_group = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_CATMAP']} WHERE group_id = '$group_id' AND cid=".$subcat['cid']);
+                $check_group = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_CATMAP']} WHERE ($groups) AND cid = ".$subcat['cid']);
                 $check_group_rowset = cpg_db_fetch_rowset($check_group);
                 if ($check_group_rowset) {
                     $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);

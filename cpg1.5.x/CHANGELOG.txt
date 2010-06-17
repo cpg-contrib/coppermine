@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-17 [B] Fixed category permissions for secondary user groups (thread ID 65551) {eenemeenemuu}
 2010-06-17 [B] Fixed issue when editing user albums (thread ID 65542) {eenemeenemuu}
 2010-06-17 [B] Fixed issues with usergal_alphatabs plugin (thread ID 65473 & 65547) {eenemeenemuu}
 2010-06-16 [C] Fixed line breaks in contact form emails {eenemeenemuu}
