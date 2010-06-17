@@ -650,14 +650,6 @@ case 'picture':
             cpg_die(ERROR, $lang_errors['gd_file_type_err'], __FILE__, __LINE__, true);
             
             // Check that picture size (in pixels) is lower than the maximum allowed
-        } elseif (max($imginfo[0], $imginfo[1]) > $CONFIG['max_upl_width_height']) {
-        
-            if ((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) {
-                resize_image($uploaded_pic, $uploaded_pic, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
-            } else {
-                @unlink($uploaded_pic);
-                cpg_die(ERROR, sprintf($lang_db_input_php['err_fsize_too_large'], $CONFIG['max_upl_width_height'], $CONFIG['max_upl_width_height']), __FILE__, __LINE__);
-            }
         } // Image is ok
     }
 

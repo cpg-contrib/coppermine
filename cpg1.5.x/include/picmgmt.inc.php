@@ -38,8 +38,21 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
     if (!is_known_filetype($image)) {
         return array('error' => $lang_db_input_php['err_invalid_fext'] . ' ' . $CONFIG['allowed_file_extensions'], 'halt_upload' => 0);
     } elseif (is_image($filename)) {
+
+        $imagesize = cpg_getimagesize($image);
+
+        // resize picture if it's bigger than the max width or height for uploaded pictures 
+        if (max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) {
+            if ((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) {
+                resize_image($image, $image, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
+            } else {
+                @unlink($uploaded_pic);
+                cpg_die(ERROR, sprintf($lang_db_input_php['err_fsize_too_large'], $CONFIG['max_upl_width_height'], $CONFIG['max_upl_width_height']), __FILE__, __LINE__);
+            }
+        }
+
+        // create backup of full sized picture if watermark is enabled for full sized pictures
         if (!file_exists($orig) && $CONFIG['enable_watermark'] == '1' && ($CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original'))  {
-        // if copy of full_sized doesn't exist and if watermark enabled and if fullsized pic watermark=true -> then we need a backup
             if (!copy($image, $orig)) {
                 return false;
             } else {
@@ -47,37 +60,42 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
             }
         }
 
-        $imagesize = getimagesize($image);
-
         if ($CONFIG['read_iptc_data']) {
-           $iptc = get_IPTC($image);
-           if (is_array($iptc) && !$title && !$caption && !$keywords) {  //if any of those 3 are filled out we don't want to override them, they may be blank on purpose.
-               $title = (isset($iptc['Title'])) ? $iptc['Title'] : $title;
-               $caption = (isset($iptc['Caption'])) ? $iptc['Caption'] : $caption;
-               $keywords = (isset($iptc['Keywords'])) ? implode($CONFIG['keyword_separator'], $iptc['Keywords']) : $keywords;
-           }
+            // read IPTC data
+            $iptc = get_IPTC($image);
+            if (is_array($iptc) && !$title && !$caption && !$keywords) {  //if any of those 3 are filled out we don't want to override them, they may be blank on purpose.
+                $title = (isset($iptc['Title'])) ? $iptc['Title'] : $title;
+                $caption = (isset($iptc['Caption'])) ? $iptc['Caption'] : $caption;
+                $keywords = (isset($iptc['Keywords'])) ? implode($CONFIG['keyword_separator'], $iptc['Keywords']) : $keywords;
+            }
         }
 
         if (!file_exists($thumb)) {
-            if (($result = resize_image($work_image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], "false", 1)) !== true)
+            // create thumbnail
+            if (($result = resize_image($work_image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'], "false", 1)) !== true) {
                 return $result;
+            }
         }
 
+        // determine resize method for intermediate and full sized pictures
         $resize_method = $CONFIG['picture_use'] == "thumb" ? ($CONFIG['thumb_use'] == "ex" ? "any" : $CONFIG['thumb_use']) : $CONFIG['picture_use'];
 
         if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate'] && !file_exists($normal)) {
             if ($CONFIG['enable_watermark'] == '1' && ($CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'resized')) {
+                // create intermediate sized picture with watermark
                 if (($result = resize_image($work_image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $resize_method, "true")) !== true) {
                     return $result;
                 }
             } else {
+                // create intermediate sized picture without watermark
                 if (($result = resize_image($work_image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $resize_method, "false")) !== true) {
                     return $result;
                 }
             }
         }
 
-        if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) { //$CONFIG['auto_resize']==1
+        // determine max dimension for full sized picture
+        if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) {
             $max_size_size = $CONFIG['max_upl_width_height'];
         } else {
             $resize_method = "orig";
@@ -85,11 +103,13 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
         }
 
         if ($CONFIG['enable_watermark'] == '1' && ($CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original')) {
+            // watermark picture (and maybe resize it, too)
             if (($result = resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) !== true) {
                 return $result;
             }
             $imagesize = getimagesize($image);
         } elseif (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0))) {
+            // resize full sized picture
             if (($result = resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'false')) !== true) {
                 return $result;
             }
