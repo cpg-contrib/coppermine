@@ -3408,8 +3408,9 @@ function theme_html_picture()
                                    );
             $players['SWF'] = array('id' => 'SWFlash',
                                     'clsid' => ' classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" ',
-                                    'codebase' => 'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" ',
-                                    'mime' => 'type="application/x-shockwave-flash" '
+                                    'codebase' => '',
+                                    'mime' => 'type="application/x-shockwave-flash" ',
+                                    'data' => 'data="'.$picture_url.'" '
                                    );
             $players['UNK'] = array('id' => 'DefaultPlayer',
                                     'clsid' => '',
@@ -3423,7 +3424,7 @@ function theme_html_picture()
                 $player = 'UNK';
             }
 
-            $pic_html  = '<object id="'.$player['id'].'" '.$player['classid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
+            $pic_html  = '<object id="'.$player['id'].'" '.$player['data'].$player['classid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
             $pic_html .= "<param name=\"autostart\" value=\"$autostart\" /><param name=\"src\" value=\"". $picture_url . "\" />";
             $pic_html .= '</object><br />' . $LINEBREAK;
         }
