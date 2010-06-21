@@ -120,6 +120,8 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
         $imagesize[1] = $iheight;
     }
 
+    clearstatcache();
+    
     $image_filesize = filesize($image);
     $total_filesize = is_image($filename) ? ($image_filesize + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumb)) : ($image_filesize);
 
