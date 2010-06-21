@@ -73,7 +73,7 @@ $config_data = array(
                      .'|' // allows either IP or domain or localhost
                      .'(localhost)' // allow localhost
                      .')' // end of domain / IP address
-                     .'(:[0-9]{1,4}){0,1}' // port number- :80
+                     .'(:[0-9]{1,5}){0,1}' // port number- :80
                      .'[/]{1,1}' // trailing slash after domain-part of URL
                      .'('
                      .'([0-9a-zA-Z_!~.()-])+/{1}'

@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-21 [B] Allow higher port numbers for the site url config setting {Nibbler}
 2010-06-18 [B] Fixed display of swf files in Firefox (thread ID 63624) {eenemeenemuu}
 2010-06-17 [B] Fixed resizing of watermark backup images (thread ID 65531) {eenemeenemuu}
 2010-06-17 [B] Fixed category permissions for secondary user groups (thread ID 65551) {eenemeenemuu}
