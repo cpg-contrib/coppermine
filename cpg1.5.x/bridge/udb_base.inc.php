@@ -435,11 +435,11 @@ class core_udb {
     // Query used to list users
     function list_users_query(&$user_count)
     {
-        global $CONFIG, $FORBIDDEN_SET, $PAGE;
+        global $CONFIG, $FORBIDDEN_SET, $PAGE, $cpg_show_private_album;
 
         $f =& $this->field;
 
-        if ($FORBIDDEN_SET != "") {
+        if (!$cpg_show_private_album && $FORBIDDEN_SET != "") {
             // $forbidden_with_icon = "$FORBIDDEN_SET or p.galleryicon=p.pid";
             $forbidden_with_icon = "$FORBIDDEN_SET";
             $forbidden = "$FORBIDDEN_SET";

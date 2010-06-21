@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-21 [B] Fixed album visibility issue with user galleries (thread ID 65543) {Nibbler}
 2010-06-21 [B] Changed fix for category alpha sorting {Nibbler}
 2010-06-21 [B] Fixed a critical error with the most viewed meta album {Nibbler}
 2010-06-21 [O] Updated French language file (improvement and corrections){Frantz}
