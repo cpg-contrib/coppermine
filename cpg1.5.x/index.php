@@ -306,11 +306,7 @@ function get_subcat_data(&$cat_data)
         $sql .= "\nAND lft BETWEEN $lft AND $rgt";
     }
 
-    if ($CONFIG['categories_alpha_sort'] == 1) {
-        $sql .= "\nORDER BY name";
-    } else {
-        $sql .= "\nORDER BY c.lft";
-    }
+    $sql .= "\nORDER BY c.lft";
 
     $result = cpg_db_query($sql);
 

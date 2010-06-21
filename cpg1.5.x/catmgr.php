@@ -367,6 +367,8 @@ if ($superCage->post->keyExists('update_config')) {
     $value = $superCage->post->getInt('categories_alpha_sort');
     
     cpg_config_set('categories_alpha_sort', $value);
+    
+    rebuild_tree();
 }
 
 if ($superCage->get->keyExists('op')) {
