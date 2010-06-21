@@ -2187,8 +2187,8 @@ function get_pic_pos($album, $pid)
             INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS r ON r.aid = p.aid
             $RESTRICTEDWHERE
             AND approved = 'YES'
-            AND hits > $hits
-            OR hits = $hits AND pid < $pid";
+            AND (hits > $hits
+            OR hits = $hits AND pid < $pid)";
 
             $result = cpg_db_query($query);
 
