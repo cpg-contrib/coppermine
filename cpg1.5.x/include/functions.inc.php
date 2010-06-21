@@ -5859,7 +5859,8 @@ function captcha_plugin_enabled()
 
 function get_cat_data()
 {
-    global $CONFIG, $CAT_LIST, $USER_DATA;
+    global $CONFIG, $CAT_LIST, $USER_DATA, $cpg_udb;
+    
     if (GALLERY_ADMIN_MODE) {
         $sql = "SELECT rgt, cid, name FROM {$CONFIG['TABLE_CATEGORIES']} ORDER BY lft ASC"; 
     } else {
@@ -5882,7 +5883,7 @@ function get_cat_data()
             // add user categories
             if ($subcat['cid'] == 1 && GALLERY_ADMIN_MODE) {
                 global $cpg_udb;
-                $result2 = cpg_db_query("SELECT {$cpg_udb->field['user_id']} AS user_id, {$cpg_udb->field['username']} AS user_name FROM {$cpg_udb->usertable} ORDER BY user_name");
+                $result2 = cpg_db_query("SELECT {$cpg_udb->field['user_id']} AS user_id, {$cpg_udb->field['username']} AS user_name FROM {$cpg_udb->usertable} ORDER BY user_name", $cpg_udb->link_id);
                 $rowset2 = cpg_db_fetch_rowset($result2);
                 foreach ($rowset2 as $user) {
                     $CAT_LIST[] = array(FIRST_USER_CAT + $user['user_id'], '&nbsp;&nbsp;&nbsp;' . $user['user_name']);
