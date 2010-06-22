@@ -353,7 +353,7 @@ INSERT INTO CPG_usergroups VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 3)
 # Dumping data for table `CPG_categories`
 #
 
-INSERT INTO CPG_categories (cid, name, description) VALUES (1, 'User galleries', 'This category contains albums that belong to Coppermine users.');
+INSERT INTO CPG_categories (cid, name, description, lft, rgt, depth) VALUES (1, 'User galleries', 'This category contains albums that belong to Coppermine users.', 1, 2, 1);
 
 
 #
