@@ -1866,6 +1866,14 @@
     <hash>b66a2964d7708d2f7e5c96479ea4bbe1</hash>
   </element>
   <element>
+    <fullpath>docs/en/dev_plugin_steps.htm</fullpath>
+    <version>1.5.6</version>
+    <revision>7620</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>b66a2964d7708d2f7e5c96479ea4bbe1</hash>
+  </element>
+  <element>
     <fullpath>docs/en/dev_subversion.htm</fullpath>
     <version>1.5.6</version>
     <revision>7620</revision>

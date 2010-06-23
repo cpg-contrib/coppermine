@@ -1276,7 +1276,9 @@ doc_toc += '              <li><a href="dev_plugin_api.htm#plugin_api_plugin_clas
 doc_toc += '              <li><a href="dev_plugin_api.htm#plugin_api_globals">Global Variables &amp; Constants</a></li>\n';
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
-doc_toc += '          <li><a href="dev_plugin_hooks.htm">Reference list of plugin hooks </a>\n';
+doc_toc += '          <li><a href="dev_plugin_steps.htm">Creating plugins: step by step</a>\n';
+doc_toc += '          </li>\n';
+doc_toc += '          <li><a href="dev_plugin_hooks.htm">Reference list of plugin hooks</a>\n';
 doc_toc += '            <ul>\n';
 doc_toc += '              <li><a href="dev_plugin_hooks.htm#plugin_hooks_target_audience">Target audience</a></li>\n';
 doc_toc += '              <li><a href="dev_plugin_hooks.htm#plugin_hooks_choosing">Choosing Plugin Hooks</a></li>\n';
