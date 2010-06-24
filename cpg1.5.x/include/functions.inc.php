@@ -6403,17 +6403,41 @@ function cpg_get_guest_token() {
  * PHP4-replacement, taken from the user comments at http://theserverpages.com/php/manual/en/function.str-ireplace.php
  */
 if (!function_exists('str_ireplace')) {
-	function str_ireplace($search, $replace, $subject) {
-		if (is_array($search)) {
-			foreach ($search as $word) {
-				$words[] = "/" . $word . "/i";
-			}
-		}
-		else {
-			$words = "/" . $search . "/i";
-		}
-		return preg_replace($words, $replace, $subject);
-	}
+    function str_ireplace($search, $replace, $subject) {
+        if (is_array($search)) {
+            foreach ($search as $word) {
+                $words[] = "/" . $word . "/i";
+            }
+        }
+        else {
+            $words = "/" . $search . "/i";
+        }
+        return preg_replace($words, $replace, $subject);
+    }
+}
+
+
+// Check if a an album is password protected album and the user has access rights to that album
+function cpg_pw_protected_album_access($aid) {
+    global $CONFIG, $FORBIDDEN_SET_DATA;
+
+    // Check if the user has already access to the album
+    if (!in_array($aid, $FORBIDDEN_SET_DATA)) {
+        return -1;
+    }
+
+    // Fetch all password protected albums
+    $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE alb_password != ''");
+    while($row = mysql_fetch_assoc($result)) {
+        $aid_w_pw[] = $row['aid'];
+    }
+
+    // Check if the user has access to the password protected album if he knows the correct password
+    if (!in_array($aid, array_diff($FORBIDDEN_SET_DATA, $aid_w_pw))) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 ?>

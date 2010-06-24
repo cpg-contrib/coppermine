@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-24 [A] Show password prompt if user tries to access file in password protected album directly {eenemeenemuu}
 2010-06-24 [A] Added Brazilian language file (user contribution) {eenemeenemuu}
 2010-06-24 [B] Fixed uploading to password protected albums in public categories (thread ID 65677) {eenemeenemuu}
 2010-06-22 [B] Changed default values for user galleries category (thread ID 65543) {eenemeenemuu}

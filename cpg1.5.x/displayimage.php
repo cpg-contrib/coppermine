@@ -324,7 +324,14 @@ if (!$superCage->get->keyExists('fullsize') && ($pos < 0 || $pid > 0)) {
         $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE pid='$pid' $FORBIDDEN_SET LIMIT 1");
 
         if (mysql_num_rows($result) == 0) {
-            cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+            // show password prompt if the file is in a password protected album and the user has access rights to that album
+            $aid = mysql_result(cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1"), 0);
+            if (cpg_pw_protected_album_access($aid) === 1) {
+                $redirect = "thumbnails.php?album=".$aid;
+                header("Location: $redirect");
+            } else {
+                cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+            }
         }
 
         $row = mysql_fetch_assoc($result);
