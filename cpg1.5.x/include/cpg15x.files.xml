@@ -12038,6 +12038,14 @@
     <hash>c2f72c7c75416627ea770e57250085e5</hash>
   </element>
   <element>
+    <fullpath>lang/brazilian_portuguese.php</fullpath>
+    <version>1.5.6</version>
+    <revision>7620</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>1e5547927c851f5162fe197c6abc37d1</hash>
+  </element>
+  <element>
     <fullpath>lang/bulgarian.php</fullpath>
     <version>1.5.6</version>
     <revision>7620</revision>
