@@ -5209,10 +5209,10 @@ function user_is_allowed()
     if ($cat != '') {
         $check_approve = true;
     }
-    
+
     // We should also whether user has upload permission to the current album. but do this only if album id is set
     if ($album_id) {
-        $public_albums = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.")) OR (owner=".USER_ID.")) AND aid=$album_id");
+        $public_albums = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET." OR alb_password != '')) OR (owner=".USER_ID.")) AND aid=$album_id");
         
         if (count(cpg_db_fetch_rowset($public_albums))) {
             $check_approve = true;
@@ -6423,7 +6423,7 @@ function cpg_pw_protected_album_access($aid) {
 
     // Check if the user has already access to the album
     if (!in_array($aid, $FORBIDDEN_SET_DATA)) {
-        return -1;
+        return 2;
     }
 
     // Fetch all password protected albums
