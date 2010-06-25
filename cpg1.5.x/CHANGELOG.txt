@@ -8,7 +8,7 @@ This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 3
 as published by the Free Software Foundation.
 ********************************************
-Coppermine version: 1.5.6
+Coppermine version: 1.5.7
 $HeadURL$
 $Revision$
 *********************************************
@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-25 [B] Added language table population section to update script to stop cpg1.4.x upgrades seing only Luxemburgish and Mexican as available langauges {GauGau}
 2010-06-25 [O] Updated Turkish language file (user contribution) {eenemeenemuu}
 2010-06-24 [A] Show password prompt if user tries to access file in password protected album directly {eenemeenemuu}
 2010-06-24 [A] Added Brazilian language file (user contribution) {eenemeenemuu}

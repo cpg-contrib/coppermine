@@ -10,7 +10,7 @@
  as published by the Free Software Foundation.
 
  ********************************************
- Coppermine version: 1.5.6
+ Coppermine version: 1.5.7
  $HeadURL$
  $Revision$
 **********************************************/
@@ -24,8 +24,7 @@ $lang_translation_info['lang_country_code'] = 'fr';
 $lang_translation_info['trans_name'] = 'François Keller';
 $lang_translation_info['trans_email'] = 'francois.cpgtest@free.fr';
 $lang_translation_info['trans_website'] = 'http://coppermine-gallery.net/forum/index.php?board=38.0';
-$lang_translation_info['trans_date'] = '2009-06-06';
-
+$lang_translation_info['trans_date'] = '2010-06-25';
 
 $lang_charset = 'utf-8';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
