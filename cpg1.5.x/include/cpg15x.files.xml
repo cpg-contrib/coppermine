@@ -2521,6 +2521,18 @@
     <hash>205839b91e0c2a7a90cc9c39a59a0d07</hash>
   </element>
   <element>
+    <fullpath>docs/en/images/replace_in_files1.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>205839b91e0c2a7a90cc9c39a59a0d07</hash>
+  </element>
+  <element>
+    <fullpath>docs/en/images/replace_in_files2.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>205839b91e0c2a7a90cc9c39a59a0d07</hash>
+  </element>
+  <element>
     <fullpath>docs/en/images/review_comments.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>

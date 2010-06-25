@@ -19,10 +19,17 @@
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="stylesheet" type="text/css" href="../js/fullsize/fullsize.css" media="screen" />
 <link rel="shortcut icon" href="../favicon.ico" />
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script src="../js/jquery.treeview.js" type="text/javascript"></script>
 <script src="script.js" type="text/javascript"></script>
+<script src="../js/fullsize/jquery.fullsize.minified.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function(){
+		$("img").fullsize();
+	});
+</script>
 </head>
 <body>
 <h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
@@ -32,6 +39,87 @@
 
 <a name="steps"></a><h1>Creating plugins: step by step<a href="#steps" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 This page is meant to give plugin authors step-by-step directions how to create a plugin. It assumes that you have read <a href="dev_plugins.htm#plugin_writing">Plugin writing for Coppermine</a> as an introduction.
+
+<div class="indent">
+	<a name="steps_template_plugin"></a><h2>Getting started with the plugin template<a href="#steps_template_plugin" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+	The Coppermine developers understand that it might be asked a bit much to come up with a working plugin from scratch, that's why we're providing an empty plugin template that you can use to start coming up with a plugin of your own. You will find the plugin template as an attachment inside the docs folder, so these are the steps to get you going:
+	<div class="indent">
+		<a name="steps_extract_template"></a><h3>1. Extract the plugin template<a href="#steps_extract_template" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		As suggested above, the plugin template comes as an attachment inside the documentation folder, so you can simply download it by clicking <a href="tutorial/cpg1.5.x_plugin_template_v1.0.zip">here</a>. After downloading, extract the content of the archive into a temporary folder. As an example, we'll assume that you have extracted it to <tt class="filename">c:\temp\</tt>, so you should have a sub-folder <tt class="filename">c:\temp\template\</tt>
+		<a name="steps_pick_name"></a><h3>2. Choose a name<a href="#steps_pick_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		Pick a name for your plugin. It's mandatory <strong>not</strong> to skip this step - you mustn't leave the name "template". Please refer to <a href="dev_plugins.htm#plugin_writing_preparation_name">Choose a name</a> for details. It's important that your plugin name is meaningfull and doesn't contain to many characters (consider 20 characters as a maximum). As an example, we'll assume that our plugin will brew coffee, that's why we'll refer to it on this page as <tt class="code">coffee_maker</tt>.
+		<a name="steps_rename_folder"></a><h3>3. Rename the folder<a href="#steps_rename_folder" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		Rename the plugin template inside the temporary folder from <tt class="filename">c:\temp\template\</tt> to the name you have chosen as a short name for your plugin (e.g. <tt class="filename">c:\temp\coffee_maker\</tt> in our example here)
+		<a name="steps_rename_file_content"></a><h3>4. Rename the placeholders inside the files<a href="#steps_rename_file_content" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		The plugin template contains several PHP-files already. In this step you have to loop through <strong>all</strong> those files and replace the placeholder word <tt class="code">template</tt> with the name you have chosen (e.g. <tt class="code">coffee_maker</tt> in our example). To accomplish this it's advisable to use an editor that can replace a string in various files at once; both tools that are capable to loop through all files within a particular folder (see <a href="dev_package.htm#packaging_steps_loop_through_files">Replace version number in all files</a>) as well as advanced <a href="dev_tools.htm#dev_tools_editor">plain text editors</a> like Notepad++ can do this.<br />
+		Don't forget the english language file inside the lang-subfolder ( <tt class="filename">c:\temp\coffee_maker\lang\english.php</tt>).
+		<div class="cpg_example">
+			
+			<table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
+				<tr>
+					<th valign="top" class="tableh1" colspan="2">
+						The screenshots show the dialogs in Notepad++ as examples. Click on the thumbnails to enlarge the screenshots.<br />
+					</th>
+				</tr>
+				<tr>
+					<td valign="top">
+						<img src="images/replace_in_files1.png" border="0" width="143" height="120" alt="" longdesc="images/replace_in_files1.png" />
+					</td>
+					<td valign="top">
+						<img src="images/replace_in_files2.png" border="0" width="181" height="120" alt="" longdesc="images/replace_in_files2.png" />
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">
+						The first screenshot above shows the dialog with all relevant files opened inside the editor. Click on the button "Replace in all open Documents" to perform the replacement.
+					</td>
+					<td valign="top">
+						The screenshot at the right shows another possible option in Notepad++, where you can perform a replace operation on particular files within a given folder. This is the most elegant and recommended solution for bigger replacement operations.
+					</td>
+				</tr>
+			</table><br />
+			Please note that the above screenshots have been added as examples. Coppermine is not afiliated with Notepad++, nor do we support that particular application. However, we recommend it!
+		</div>
+		<a name="steps_copy_to_target"></a><h3>5. Copy the new plugin folder to the target<a href="#steps_copy_to_target" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		Inside your temporary folder ( <tt class="filename">c:\temp\</tt>) you should by now have a unique plugin based on the plugin template that is ready to be modified further by you. If you want to test it right away, copy your new custom plugin to the plugin folder of your Coppermine gallery (as suggested in <a href="plugins.htm#plugin_manager_upload_ftp">the "regular" plugin documentation</a>). As your custom plugin doesn't do anything yet (remember: the plugin template is just an empty shell to get you going easily), you will probably want to edit your plugin further, so you should copy it to the plugin folder of your testbed (if you have one) and continue there.
+		<div class="cpg_example">For the sake of this article we'll assume that your local testbed or the mirror that corresponds to the files on your webserver resides at <tt class="filename">c:\mysite\</tt>. Therefore, the plugin folder would be <tt class="filename">c:\mysite\plugins\</tt> and the example plugin that we will refer to in this article will reside in <tt class="filename">c:\mysite\plugins\coffee_maker\</tt>.</div>
+		<br clear="all" />&nbsp;<br clear="all" />
+	</div>
+	
+	<a name="steps_config"></a><h2>Creating a config record for your plugin<a href="#steps_config" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+	This section is assuming you have done as suggested above: that you're using the plugin template and that you have renamed both the plugin folder as well as all placeholders labelled "template" with the short name of your plugin. In this example, we'll asume the plugin name to be <tt class="code">coffee_maker</tt>. How the code of the config screen is composed is being explained in <a href="dev_plugin_api.htm#plugin_api_tutorial_config">Adding a config section to your plugin</a> in case you want to figure out what actually happens on the config screen. However, that it's not really necessary to read that section up - you should get away with just following the steps below.<br />
+	For our example plugin we'll assume that you only will have a handfull of config settings, so we'll use Coppermine's already existing config table and populate that with additional records to store our custom plugin config settings as well.
+	<div class="indent">
+		<a name="steps_config_option_type"></a><h3>1. Decide for an option type<a href="#steps_config_option_type" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		First, you need to determine of what type the config option will be:
+		<ul>
+			<li>Checkbox</li>
+			<li>Radio button</li>
+			<li>Dropdown (option list) with one selectable item</li>
+			<li>Dropdown (option list) with multiple selectable items</li>
+			<li>Text input field (one line)</li>
+			<li>Text input field (multiple lines, <abbr title="also known as">aka</abbr> textarea)</li>
+		</ul>
+		Depending on this decision you will need different language strings and you will need to apply different piece of code for the actual config screen. For now, just decide on one option and keep that in mind throughout the rest of the process. If you assistance in making up your mind, it's recommended to take a look at the paragraph about <a href="dev_coding.htm#dev_coding_usability_forms">forms</a> within the <a href="dev_coding.htm#dev_coding_usability">usability section</a> of the <a href="dev_coding.htm#dev_coding">coding guidelines</a> for Coppermine.
+		<div class="cpg_example">For the sake of brevity, we will use a checkbox in the example boxes below</div>
+		<a name="steps_config_name"></a><h3>2. Choose a record name<a href="#steps_config_name" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		Choose a short yet meaningfull name for your config option. Avoid cryptic abbreviations, only use lowercase alphanumerals and the underscore.
+		<div class="cpg_example">If your plugin's name is <tt class="code">coffee_maker</tt> and your config option is meant to toggle an option that determines if the coffee will be served with or without sugar, we could be calling the option simply <tt class="code">sugar</tt>. However, that may lead to misunderstandings or double definitions, that's why it's advisable to prefix the name of the config record with the words <tt class="code">plugin</tt> followed by the plugin's short name <tt class="code">coffee_maker</tt>. Finally, let's separate the words with underscores for better readability, so the option's record name would be <tt class="code">plugin_coffee_maker_sugar</tt>, which is what we'll use in the following examples.</div>
+		<div class="cpg_message_info">Keep in mind that the overall length of the record name mustn't exceed 40 characters! If you need longer names, you can not use Coppermine's config table to store your records in - you will have to create a table of your own.</div>
+		<a name="steps_config_install"></a><h3>3. Create the record during plugin install<a href="#steps_config_install" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		During the install of the plugin we need to perform the database query once to create the needed record. To accomplish that, edit the codebase file that contains the actual plugin code (e.g. <tt class="filename">c:\mysite\plugins\coffee_maker\codebase.php</tt>) with a plain text editor, find <tt class="code">// Add the config options for the plugin</tt> within the function that determines the additionmal actions during the install of your custom plugin. Below that (into a line of it's own), enter
+		<pre class="cpg_code code">cpg_db_query("INSERT IGNORE INTO {$CONFIG['TABLE_CONFIG']} (`name`, `value`) VALUES ('<span style="color:orange;font-weight:bolder;" title="Replace this with the record name you have come up with in the previous step">plugin_coffee_maker_sugar</span>', '<span style="color:red;font-weight:bolder;" title="Replace this with the default value for your config option">0</span>')");</pre>
+		In the line above you of course have to edit the section <span style="color:orange;font-weight:bolder;">highlighted in orange</span> - that section needs to correspond to the config record name that you have chosen in the previous step. Additionally, you have to determine the default value of the config option (<span style="color:red;font-weight:bolder;">highlighted in red</span> in the line above).
+		<a name="steps_config_uninstall"></a><h3>4. Create the uninstall query<a href="#steps_config_uninstall" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		You have to make sure that your plugin doesn't leave needless config records behind if it should get uninstalled in the future, that's why you need to come up with a query that will delete the config record, similar to the step above where you created the config record. To accomplish that, edit the codebase file that contains the actual plugin code (e.g. <tt class="filename">c:\mysite\plugins\coffee_maker\codebase.php</tt>) with a plain text editor, find <tt class="code">// Delete the plugin config records</tt> within the function that determines the additionmal actions during the uninstall of your custom plugin. Below that (into a line of it's own), enter
+		<pre class="cpg_code code">cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = '<span style="color:orange;font-weight:bolder;" title="Replace this with the record name you have come up with previously">plugin_coffee_maker_sugar</span>'");</pre>
+		In the line above you of course have to edit the section <span style="color:orange;font-weight:bolder;">highlighted in orange</span> in a similar manner as for the install - that section needs to correspond to the config record name that you have chosen when you decided for a plugin record name.
+		<a name="steps_config_defaults"></a><h3>5. Specify the scope of your config record<a href="#steps_config_defaults" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		As suggested in <a href="dev_plugin_api.htm#plugin_api_tutorial_config_defaults">tutorial section that explains how to add config options</a> you need to determine on the page that actually composes the config page () for your plugin what the scope of your config option will be, i.e. what config field type you have determined above and what the minimum and maximum value will be.
+		<a name="steps_config_"></a><h3><a href="#steps_config_" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	</div>
+</div>
+
 <hr />
 Currently, this page is a work in progress, so there isn't much here yet. Please come back later. <br />
 Joachim
