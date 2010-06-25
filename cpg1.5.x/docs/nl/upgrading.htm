@@ -74,6 +74,13 @@
         	    <td valign="top" align="right">2010-06-04</td>
         	  </tr>
         	  <tr>
+        	    <td valign="top">cpg1.5.5</td>
+        	    <td valign="top">
+        	      This package was never released. In fact it never existed.
+        	    </td>
+        	    <td valign="top" align="right">-</td>
+        	  </tr>
+        	  <tr>
         	    <td valign="top">cpg1.5.4</td>
         	    <td valign="top">
         	      <ul>
@@ -193,7 +200,7 @@
           </li>
           <li>
               <a name="upgrade_14_custom_theme"></a><h4>Custom theme<a href="#upgrade_14_custom_theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-              If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme_upgrade_14x-15x.htm">theme-upgrade guide</a>.
+              If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme_upgrade_14x-15x.htm">theme-upgrade guide</a>. Please note that some themes that used to come with previous versions of Coppermine have been dropped in cpg1.5.x. Those dropped themes are available as separate downloads though.
           </li>
           <li>
               <a name="upgrade_14_language_files"></a><h4>Language files<a href="#upgrade_14_language_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
@@ -226,6 +233,10 @@
               <a name="upgrade_14_uri_upload"></a><h4>URI upload removed<a href="#upgrade_14_uri_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
               The <abbr title="Uniform Resource Identifier">URI</abbr> upload feature has been removed from cpg1.4.x to cpg1.5.x, as it wasn't actually doing what many users thought that it would do: when using URI uploads people expected the file to remain at the URI that they entered into the upload form and not be transfered to the webspace where their Coppermine gallery resided on. Subsequently, they thought that they could safe webspace. This was a misconception and in fact just wishfull thinking: using URI uploads in cpg1.4.x, the file actually was uploaded to the Coppermine webspace no matter what.<br />
               Therefore, the actual feature "URI upload" was removed in cpg1.5.x. However (depending on the operating system of your client) you can (ab)use the regular http upload form to accomplish a similar thing in cpg1.5.x: when entering the URL of a file accepted by Coppermine into the http upload form, the file will get downloaded to your client's temporary folder and then a regular http upload from your client to your server will be performed. This is not actually a feature built into coppermine, but rather a feature of your <abbr title="operating system">OS</abbr>/browser and therefore it goes unsupported. However, there is no action required when performing the upgrade - this paragraph is just meant to inform you that the feature was dropped. 
+          </li>
+          <li>
+              <a name="upgrade_14_new_features"></a><h4>Configure new features<a href="#upgrade_14_new_features" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              In comparison to cpg1.4.x, the new version cpg1.5.x comes with a load of new features. Some of them are enabled by default after performing the upgrade, which might not be what you want. Therefore, it's advisable that you (at least cursorily) read up the <a href="index.htm#features">features list</a> and check the <a href="configuration.htm#admin">config panel</a> and the <a href="http://localhost/~gaugau/cpg15x/docs/en/groups.htm#group_cp">groups control panel</a> for the changes there. The way that Coppermine handles languages has been changed as well, that's why you need to visit the <a href="languages.htm#language_manager">language manager</a> at least once after the upgrade and configure language support there.
           </li>
         </ul>
         
