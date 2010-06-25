@@ -48,7 +48,7 @@ doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="index.htm#about_documentation_conventions" class="en">Konventionen</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="index.htm#features" class="en">Features</a></li>\n';
+doc_toc += '      <li><a href="index.htm?expand_all=1#features" class="en">Features</a></li>\n';
 doc_toc += '      <li><a href="quickstart.htm#about" class="en">Schnellstart-Assistent</a></li>\n';
 doc_toc += '      <li><a href="toc.htm" class="en">Inhaltsverzeichnis</a></li>\n';
 doc_toc += '      <li><a href="requirements.htm" class="us_de">Mindestvoraussetzung</a>\n';

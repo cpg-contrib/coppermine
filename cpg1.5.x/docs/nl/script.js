@@ -48,7 +48,7 @@ doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="index.htm#about_documentation_conventions" class="nl">Documentatie Conventies</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="index.htm#features" class="nl">Functies</a></li>\n';
+doc_toc += '      <li><a href="index.htm?expand_all=1#features" class="nl">Functies</a></li>\n';
 doc_toc += '      <li><a href="quickstart.htm#about" class="nl">Quick-Start gids</a></li>\n';
 doc_toc += '      <li><a href="toc.htm" class="en">Inhoudstafel</a></li>\n';
 doc_toc += '      <li><a href="requirements.htm" class="nl">Minimum vereisten</a>\n';

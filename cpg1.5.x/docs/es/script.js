@@ -48,7 +48,7 @@ doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="index.htm#about_documentation_conventions" class="es">Convenciones de la documentación</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="index.htm#features" class="es">Características</a></li>\n';
+doc_toc += '      <li><a href="index.htm?expand_all=1#features" class="es">Características</a></li>\n';
 doc_toc += '      <li><a href="quickstart.htm#about" class="en">Guía rápida</a></li>\n';
 doc_toc += '      <li><a href="toc.htm" class="en">Tabla de contenidos</a></li>\n';
 doc_toc += '      <li><a href="requirements.htm" class="en">Requisitos mínimos</a>\n';
