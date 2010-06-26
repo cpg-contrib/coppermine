@@ -38,25 +38,28 @@
 
     <a name="plugin_api_overview_who"></a><h2>Intended Audience<a href="#plugin_api_overview_who" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
     <p>Here's a list of who should and who should not (or doesn't need to) read this documentation.  The categories overlap in many places, so make sure to read the entire list.  Find yourself in the list and then decide whether you should read on.</p>
-    <div id="ulgreen" class="cpg_message_success">
-    <a name="plugin_api_overview_who_yes"></a><h3>People who <em>should</em> read this documentation:<a href="#plugin_api_overview_who_yes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <ul type="square">
-        <li>Anyone who wants to write plugins to customize Coppermine</li>
-        <li>Current Coppermine coders who want to convert their hacks &amp; mods to plugins</li>
-        <li>Anyone who wants to add in features or modify a current plugin</li>
-        <li>Coders who want to start customizing Coppermine but do not know where to start</li>
-    </ul>
+    <div class="indent">
+        <div id="ulgreen" class="cpg_message_success">
+        <a name="plugin_api_overview_who_yes"></a><h3>People who <em>should</em> read this documentation:<a href="#plugin_api_overview_who_yes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <ul type="square">
+            <li>Anyone who wants to write plugins to customize Coppermine</li>
+            <li>Current Coppermine coders who want to convert their hacks &amp; mods to plugins</li>
+            <li>Anyone who wants to add in features or modify a current plugin</li>
+            <li>Coders who want to start customizing Coppermine but do not know where to start</li>
+        </ul>
+        </div>
+        <div id="ulred" class="cpg_message_validation">
+        <a name="plugin_api_overview_who_no"></a><h3>People who do <em>not</em> need to read this documentation:<a href="#plugin_api_overview_who_no" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <ul>
+            <li>Anyone learning Coppermine for the first time - the <a href="index.htm">main manual</a> is all you need at first</li>
+            <li>Anyone who wants to download &amp; use plugins - you can use many plugins without knowing what they do internally</li>
+        </ul>
+        </div>
+        <p class="cpg_message_info">People interested in using plugins but who do not need to modify them or write their own should read the main documentation instead - <a href="plugins.htm">the plugins section</a> describes everything you need to know.</p>
     </div>
-    <div id="ulred" class="cpg_message_validation">
-    <a name="plugin_api_overview_who_no"></a><h3>People who do <em>not</em> need to read this documentation:<a href="#plugin_api_overview_who_no" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-    <ul>
-        <li>Anyone learning Coppermine for the first time - the <a href="index.htm">main manual</a> is all you need at first</li>
-        <li>Anyone who wants to download &amp; use plugins - you can use many plugins without knowing what they do internally</li>
-    </ul>
-    </div>
-    <p class="cpg_message_info">People interested in using plugins but who do not need to modify them or write their own should read the main documentation instead - <a href="plugins.htm">the plugins section</a> describes everything you need to know.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
+
     <a name="plugin_api_overview_skills"></a>
     <h2>Required Skills &amp; Knowledge<a href="#plugin_api_overview_skills" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
     <p>This documentation assumes a few skills &amp; knowledge you need to have before creating or modifying plugins.</p>
@@ -96,6 +99,7 @@
 <a name="plugin_api_tutorial"></a>
 <h2>"Hello, world" Plugin Tutorial<a href="#plugin_api_tutorial" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Here we go.  We are going to write a simple plugin and learn how to implement a number of useful features.</p>
+<div class="indent">
 
 <a name="plugin_api_tutorial_first"></a>
 <h3>My First Plugin<a href="#plugin_api_tutorial_first" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -191,12 +195,15 @@ function hello_world_header($html) {
 <p>Our function needs one parameter since it is attached to a filter hook (instead of an action hook), and here we name it <tt class="code">$html</tt>.  In this function, we add on the "Hello, world." text, which is tagged to be bold &amp; red for extra effect.  We need to ensure that the parameter is added-on to, <strong>not</strong> replaced, so that it plays well with other plugins who tag on to the same hook.  We place the parameter coming in on a separate line to ensure we don't forget to do this.  Finally, the function returns the modified parameter.  And that does it.</p>
 <p>So now you should know how a plugin, albeit a very basic plugin, works.  The other sections in this tutorial describe useful features to add to your plugin including installation, configuration, linking in Coppermine, <a href="#plugin_api_tutorial_lang">multi-language support</a>, and <a href="#plugin_api_tutorial_distrib">distributing your plugin</a> as a package. Read on and follow along.</p>
 
+
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_installconfig"></a>
 <h3>Installation, Configuration, and Clean-Up<a href="#plugin_api_tutorial_installconfig" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The tutorial plugin so far merely outputs text via a particular hook.  During the installation of the plugin, nothing special is done besides registering the plugin with Coppermine.  The only configuration parameters are the identification ones in <tt class="filename">configuration.php</tt>.  It's fairly easy to imagine additional installation steps and configuration parameters that would be useful in a real-world plugin.  This section teaches you how to add such installation and configuration features to the tutorial plugin.</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
+
+<div class="indent">
 <a name="plugin_api_tutorial_installsimple"></a>
 <h4>Installation with Simple Configuration<a href="#plugin_api_tutorial_installsimple" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>First, we're going to add a very simple installation step, so you can see how the plugin installation can be customized to do whatever you like to do when the plugin is installed.  If your plugin needs to create a custom table that it will use during operation, this section will describe where to add such a installation step.  This simple installation is simple in that it can only be used for "hands-off" installation, where the user is not involved in customizing the installation.  In this section, the user will merely confirm the installation and that's it.  The next sections will expand on this to provide more complicated installation steps.  This section is important because you need to know exactly how the Coppermine Plugin API calls your installation and configuration functions and that is best described with a very simple installation procedure.</p>
@@ -439,6 +446,7 @@ function coffee_maker_uninstall() {
 	return true;
 }</textarea>
 </div>
+</div>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="plugin_api_tutorial_linking"></a>
@@ -460,6 +468,7 @@ To refer to that file, refer to <tt class="code">index.php?file=coffee_maker/foo
 <h3>Adding a Button to Coppermine<a href="#plugin_api_tutorial_button" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>There are two places where you might want to add a menu item to: to the admin menu (usually to offer a link to a plugin's config screen) or to the &quot;regular&quot; coppermine menu.</p>
 
+<div class="indent">
 <a name="plugin_api_tutorial_button_admin_menu"></a><h4>Adding a Button to the admin menu<a href="#plugin_api_tutorial_button_admin_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <div class="cpg_example">
 <pre class="cpg_code">$thisplugin->add_filter('admin_menu','coffee_maker_config_button');</pre>
@@ -494,6 +503,7 @@ To refer to that file, refer to <tt class="code">index.php?file=coffee_maker/foo
     }
     return $menu;
 }</pre>
+</div>
 </div>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -591,22 +601,7 @@ The values for the key 'type' can be 'int', 'checkbox', 'raw' or 'array'. Depend
     <tr>
         <td valign="top">raw</td>
         <td valign="top">Use this for text input fields where you expect other content than integers - you can sanitize the input further using the parameter for this field.</td>
-        <td valign="top">'regex_ok' -> regular expression that the submit data needs to match against.
-            <div class="cpg_example">
-                Examples:<br />
-                <ul>
-                    <li><tt class="code">/^[a-z]+$/</tt> will match lower-case letters</li>
-                    <li><tt class="code">/^[+-]?([0-9]{1,2})*\.?[0-9]+$/</tt> will match both positive as well as negative decimals</li>
-                    <li><tt class="code">/^([0-9]{1,3}){1}([%]{0,1})$/</tt> will allow you to enter integers between 0 and 999 with or without a trailing percent sign, which can be helpfull if you want to allow dimensions (for HTML/CSS attributes) in pixels or percent</li>
-                    <li><tt class="code">/^[0-9a-z]+$/</tt> will match lower-case alpha-numerals</li>
-                    <li><tt class="code">/^[0-9A-A]+$/</tt> will match upper-case alpha-numerals</li>
-                    <li><tt class="code">/^[0-9A-Za-z]+$/</tt> will match alpha-numerals (case-insensitive)</li>
-                    <li><tt class="code">/^[0-9A-Za-z]{3,6}$/</tt> will match alpha-numerals (case-insensitive) with a minimum of 3 characters and a maximum of 6</li>
-                    <li><tt class="code">/^[a-z_]+$/</tt> will match lower case letters and an underscore, e.g. strings like 'foo' or 'foo_bar'</li>
-                    <li><tt class="code"></tt> will match</li>
-                    <li><tt class="code">/^#(?:(?:[a-f\d]{3}){1,2})$/i</tt> will match valid color codes from #000000 to #FFFFFF</li>
-                </ul>
-            </div>
+        <td valign="top">'regex_ok' -> <a href="dev_superglobals.htm#superglobals_sanitization_howto_regex">regular expression</a> that the submit data needs to match against.
         </td>
     </tr>
     <tr>
@@ -731,6 +726,7 @@ Still feeling a bit confused and dizzy? Don't worry, here's something you can us
 </div>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
+</div>
 
 <a name="plugin_api_tutorial_distrib"></a>
 <h3>Distributing your plugin<a href="#plugin_api_tutorial_distrib" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -770,6 +766,7 @@ Still feeling a bit confused and dizzy? Don't worry, here's something you can us
 <a name="plugin_api_globals"></a>
 <h2>Global Variables &amp; Constants<a href="#plugin_api_globals" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>There is a list of global <a href="dev_vars.htm#vars_constants">variables and constants</a> used througout coppermine that can be accessed as well from within plugins.</p>
+
 
 
 

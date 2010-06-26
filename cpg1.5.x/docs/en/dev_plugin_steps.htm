@@ -97,7 +97,8 @@ This page is meant to give plugin authors step-by-step directions how to create 
 			<li>Radio button</li>
 			<li>Dropdown (option list) with one selectable item</li>
 			<li>Dropdown (option list) with multiple selectable items</li>
-			<li>Text input field (one line)</li>
+			<li>Text input field (one line) for numerical input (integers)</li>
+			<li>Text input field (one line) for input of any kind of text (not just numbers)</li>
 			<li>Text input field (multiple lines, <abbr title="also known as">aka</abbr> textarea)</li>
 		</ul>
 		Depending on this decision you will need different language strings and you will need to apply different piece of code for the actual config screen. For now, just decide on one option and keep that in mind throughout the rest of the process. If you assistance in making up your mind, it's recommended to take a look at the paragraph about <a href="dev_coding.htm#dev_coding_usability_forms">forms</a> within the <a href="dev_coding.htm#dev_coding_usability">usability section</a> of the <a href="dev_coding.htm#dev_coding">coding guidelines</a> for Coppermine.
@@ -115,13 +116,95 @@ This page is meant to give plugin authors step-by-step directions how to create 
 		<pre class="cpg_code code">cpg_db_query("DELETE FROM {$CONFIG['TABLE_CONFIG']} WHERE name = '<span style="color:orange;font-weight:bolder;" title="Replace this with the record name you have come up with previously">plugin_coffee_maker_sugar</span>'");</pre>
 		In the line above you of course have to edit the section <span style="color:orange;font-weight:bolder;">highlighted in orange</span> in a similar manner as for the install - that section needs to correspond to the config record name that you have chosen when you decided for a plugin record name.
 		<a name="steps_config_defaults"></a><h3>5. Specify the scope of your config record<a href="#steps_config_defaults" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-		As suggested in <a href="dev_plugin_api.htm#plugin_api_tutorial_config_defaults">tutorial section that explains how to add config options</a> you need to determine on the page that actually composes the config page () for your plugin what the scope of your config option will be, i.e. what config field type you have determined above and what the minimum and maximum value will be.
+		As suggested in <a href="dev_plugin_api.htm#plugin_api_tutorial_config_defaults">tutorial section that explains how to add config options</a> you need to determine on the page that actually composes the config page (<tt class="filename">c:\mysite\plugins\coffee_maker\admin.php</tt>) for your plugin what the scope of your config option will be, i.e. what config field type you have determined above and what the minimum and maximum value will be. To accomplish this, edit the file <tt class="filename">admin.php</tt> in your custom plugin folder (not the file admin.php in Coppermine's root folder; that file has only been named in analogy) with a plain text editor. Find <tt class="code">  $sanitization_array = array(</tt> and add below (in a line of it's own)
+		<pre class="cpg_code code">'<span style="color:orange;font-weight:bolder;" title="Replace this with the record name you have come up with previously">plugin_coffee_maker_sugar</span>' => array(<span style="color:red;font-weight:bolder;">'type' => 'checkbox', 'min' => '0', 'max' => '1'</span>),</pre>
+		Again, you need of course to edit the section <span style="color:orange;font-weight:bolder;">highlighted in orange</span> in the line above in a similar manner as for the install and the other sections above - that section needs to correspond to the config record name that you have chosen when you decided for a plugin record name.<br />
+		Additionally, you have to determine the scope of the config option using the section <span style="color:red;font-weight:bolder;">highlighted in red</span> in the line above. The table below explains what you need to replace depending on your choice of option type in the initial step &quot;<a href="#steps_config_option_type">Decide for an option type</a>&quot;. This is basically the same table as in <a href="dev_plugin_api.htm#plugin_api_tutorial_config">Adding a config section to your plugin</a>
+    <table border="0" cellspacing="0" cellpadding="0" width="100%" class="cpg_zebra">
+        <tr>
+            <th valign="top">option type</th>
+            <th valign="top">scope</th>
+            <th valign="top">Usage (range)</th>
+            <th valign="top">Parameters</th>
+            <th valign="top">Example</th>
+        </tr>
+        <tr>
+            <td valign="top">
+                <ul>
+                    <li>Checkbox</li>
+                    <li>Radio button</li>
+                    <li>Dropdown (option list) with one selectable item</li>
+                </ul>
+            </td>
+            <td valign="top">checkbox</td>
+            <td valign="top">Radio buttons and checkboxes with the values of the individual fields set to integers. The difference lies in the way that browsers handle empty checkboxes: if a checkbox is not ticked, there is no data submit with the form, just as if the checkbox wasn't there in the first place. This can cause issues if you explicitely empty a checkbox. The type 'int' can't handle this, but the type 'checkbox' can.</td>
+            <td valign="top">
+                <ul>
+                    <li>'min' -> minimum value</li>
+                    <li>'max' -> maximum value</li>
+                </ul>
+            </td>
+            <td valign="top"><pre class="smallcode">'plugin_coffee_maker_sugar' => 
+array('type' => 'checkbox', 'min' => '0', 'max' => '1'),</pre></td>
+        </tr>
+        <tr>
+            <td valign="top">
+                <ul>
+                    <li>Text input field (one line) for numerical input (integers)</li>
+                </ul>
+            </td>
+            <td valign="top">int</td>
+            <td valign="top">Text input fields where only integers are allowed</td>
+            <td valign="top">
+                <ul>
+                    <li>'min' -> minimum value</li>
+                    <li>'max' -> maximum value</li>
+                </ul>
+            </td>
+            <td valign="top"><pre class="smallcode">'plugin_coffee_maker_lumps' => 
+array('type' => 'int', 'min' => '0', 'max' => '9'),</pre></td>
+        </tr>
+        <tr>
+            <td valign="top">
+                <ul>
+                    <li>Text input field (one line) for input of any kind of text (not just numbers)</li>
+                    <li>Text input field (multiple lines, aka  textarea)</li>
+                </ul>
+            </td>
+            <td valign="top">raw</td>
+            <td valign="top">Use this for text input fields where you expect other content than integers - you can sanitize the input further using the parameter for this field.</td>
+            <td valign="top">
+                <ul>
+                    <li>'regex_ok' -> <a href="dev_superglobals.htm#superglobals_sanitization_howto_regex">regular expression</a> that the submit data needs to match against</li>
+                </ul>                
+            </td>
+            <td valign="top"><pre class="smallcode">'plugin_coffee_maker_customer_name' => 
+array('type' => 'raw', 'regex' => '/^[A-Za-z ]+$/'),</pre></td>
+        </tr>
+        <tr>
+            <td valign="top">
+                <ul>
+                    <li>Dropdown (option list) with multiple selectable items</li>
+                </ul>
+            </td>
+            <td valign="top">array</td>
+            <td valign="top">Use this for an array of possible results that comes from one field, separated with a particular delimiter</td>
+            <td valign="top">
+                <ul>
+                    <li>'regex_ok' -> <a href="dev_superglobals.htm#superglobals_sanitization_howto_regex">regular expression</a> that the submit data needs to match against, similar to the examples given above for the type 'regex'</li>
+                    <li>'delimiter' -> character that is being used to delimit one array element from the other inside the string, e.g. a slash</li>
+                </ul>
+            </td>
+            <td valign="top"><pre class="smallcode">'plugin_coffee_maker_ingredients' => 
+array('type' => 'array', 'regex' => '/^[A-Za-z ]+$/', 'delimiter' => '|'),</pre></td>
+        </tr>
+    </table>
 		<a name="steps_config_"></a><h3><a href="#steps_config_" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	</div>
 </div>
 
 <hr />
-Currently, this page is a work in progress, so there isn't much here yet. Please come back later. <br />
+Currently, this page is a work in progress, that's why it's incomplete. Please come back later. <br />
 Joachim
 
 

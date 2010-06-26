@@ -1145,7 +1145,7 @@ doc_toc += '                  <li><a href="dev_plugin_api.htm#plugin_api_tutoria
 doc_toc += '                    <ul>\n';
 doc_toc += '                      <li><a href="dev_plugin_api.htm#plugin_api_tutorial_installsimple" class="en">Installation with Simple Configuration</a></li>\n';
 doc_toc += '                      <li><a href="dev_plugin_api.htm#plugin_api_tutorial_install" class="en">Installation with Configuration Parameters</a></li>\n';
-doc_toc += '                      <li><a href="dev_plugin_api.htm#plugin_api_tutorial_config" class="en">Configuration during Operation</a></li>\n';
+doc_toc += '                      <li><a href="dev_plugin_api.htm#plugin_api_tutorial_config" class="en">Adding a config section to your plugin</a></li>\n';
 doc_toc += '                      <li><a href="dev_plugin_api.htm#plugin_api_tutorial_cleanup" class="en">Uninstallation &amp; Clean-Up</a></li>\n';
 doc_toc += '                    </ul>\n';
 doc_toc += '                  </li>  \n';
