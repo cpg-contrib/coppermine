@@ -24,7 +24,7 @@ $lang_translation_info['lang_country_code'] = 'hu';
 $lang_translation_info['trans_name'] = 'Halasi Miklós';
 $lang_translation_info['trans_email'] = '';
 $lang_translation_info['trans_website'] = 'http://www.acegem.hu/';
-$lang_translation_info['trans_date'] = '2010-06-06';
+$lang_translation_info['trans_date'] = '2010-06-28';
 
 
 $lang_charset = 'utf-8';
@@ -155,8 +155,8 @@ $lang_main_menu['alb_list_title'] = 'Ugrás az Albumlistára';
 $lang_main_menu['alb_list_lnk'] = 'Albumlista';
 $lang_main_menu['my_gal_title'] = 'Ugrás a személyes képtárba';
 $lang_main_menu['my_gal_lnk'] = 'Személyes képtáram';
-$lang_main_menu['my_prof_title'] = 'Ugrás a profilomhoz';
-$lang_main_menu['my_prof_lnk'] = 'Profilom';
+$lang_main_menu['my_prof_title'] = 'Ugrás az adataimhoz';
+$lang_main_menu['my_prof_lnk'] = 'Adataim';
 $lang_main_menu['adm_mode_title'] = 'Admin vezérlők megjelenítése'; // cpg1.5
 $lang_main_menu['adm_mode_lnk'] = 'Admin vezérlők megjelenítése'; // cpg1.5
 $lang_main_menu['usr_mode_title'] = 'Admin vezérlők letiltása'; // cpg1.5
@@ -242,8 +242,8 @@ $lang_user_admin_menu['albmgr_title'] = 'Albumaim készítése vagy rendezése';
 $lang_user_admin_menu['albmgr_lnk'] = 'Albumaim készítése / rendezése';
 $lang_user_admin_menu['modifyalb_title'] = 'Ugrás az albummódosításra';
 $lang_user_admin_menu['modifyalb_lnk'] = 'Albumom módosítása';
-$lang_user_admin_menu['my_prof_title'] = 'Ugrás a profilomra';
-$lang_user_admin_menu['my_prof_lnk'] = 'Profilom';
+$lang_user_admin_menu['my_prof_title'] = 'Ugrás az adataimhoz';
+$lang_user_admin_menu['my_prof_lnk'] = 'Adataim';
 
 $lang_cat_list['category'] = 'Kategória';
 $lang_cat_list['albums'] = 'Albumok';
@@ -484,7 +484,7 @@ $lang_bridgemgr_php['start_wizard'] = 'Átkötés kezelő indítása';
 $lang_bridgemgr_php['finish'] = 'Befejezés';
 $lang_bridgemgr_php['no_action_needed'] = 'Ennél a lépésnél nincs más feladatod, kattints a \'tovább\' gombra a folytatáshoz.';
 $lang_bridgemgr_php['reset_to_default'] = 'Beállítás alapértelmezettre';
-$lang_bridgemgr_php['choose_bbs_app'] = 'Válassz alkalmazást, amit szeretnél összekötni a Coppermine-nal';
+$lang_bridgemgr_php['choose_bbs_app'] = 'Válassz alkalmazást, amit összekötsz a Coppermine-nal';
 $lang_bridgemgr_php['support_url'] = 'Támogatási információk';
 $lang_bridgemgr_php['settings_path'] = 'az átkötéshez használt másik program útvonala';
 $lang_bridgemgr_php['full_forum_url'] = 'Az átkötéshez használt alkalmazás webcíme';
@@ -495,10 +495,10 @@ $lang_bridgemgr_php['special_settings'] = 'átkötendő alkalmazás speciális p
 $lang_bridgemgr_php['use_post_based_groups'] = 'Használsz átkötést speciális csoportokhoz?';
 $lang_bridgemgr_php['use_post_based_groups_yes'] = 'igen';
 $lang_bridgemgr_php['use_post_based_groups_no'] = 'nem';
-$lang_bridgemgr_php['error_title'] = 'You need to correct these errors before you can continue. Go to the previous screen.';
-$lang_bridgemgr_php['error_specify_bbs'] = 'You have to specify what application you want to bridge your Coppermine install with.';
+$lang_bridgemgr_php['error_title'] = 'Háritsd el a hibát, mielött tovább lépnél. Menj vissza az elöző képernyőre!';
+$lang_bridgemgr_php['error_specify_bbs'] = 'Meg kell adnod melyik programmal akarod összekötni a Coppermine-t';
 $lang_bridgemgr_php['finalize'] = 'átkötés engedélyezése/letiltása';
-$lang_bridgemgr_php['finalize_explanation'] = 'So far, the settings you specified have been written into the database, but bridge app integration hasn\'t been enabled. You can switch integration on/off later at any time. Make sure to remember the admin username and password from standalone Coppermine, you might need it later to be able to make any changes. If anything goes wrong, go to %s and disable bridging there, using your standalone (unbridged) admin account (usually the one you set up during Coppermine install).';
+$lang_bridgemgr_php['finalize_explanation'] = 'Tehát a megadott beállítások rögzítve lettek az adatbázisban, de az átkötés nincs engedélyezve. Az integrációt bármikor ki/be lehet kapcsolni. Jegyezd meg a rendszergazda nevét és jelszavát, mert szükség lehet rá a késöbbi változtatásokhoz. Ha bármi hiba adódik, akkor menj ide %s, és tiltsd le az integrációt, használd a telepítéskor megadott felhasználó nevet és jelszót.';
 $lang_bridgemgr_php['your_bridge_settings'] = 'Átkötés beállításaid';
 $lang_bridgemgr_php['title_enable'] = 'Átkötés emgedélyezése ehhez: %s';
 $lang_bridgemgr_php['bridge_enable_yes'] = 'engedélyezés';
@@ -506,26 +506,26 @@ $lang_bridgemgr_php['bridge_enable_no'] = 'letiltás';
 $lang_bridgemgr_php['error_must_not_be_empty'] = 'ne legyen üres';
 $lang_bridgemgr_php['error_either_be'] = 'csak legyen ez: %s vagy %s';
 $lang_bridgemgr_php['error_folder_not_exist'] = '%s nem létezik. A helyes érték, amit beírtál: %s';
-$lang_bridgemgr_php['error_cookie_not_readible'] = 'Coppermine can\'t read a cookie named %s. Correct the value you entered for %s, or go to your bridge app administration panel and make sure that the cookie path is readable for Coppermine.';
+$lang_bridgemgr_php['error_cookie_not_readible'] = 'A Coppermine nem tudja olvasni a %s nevű sütit. Add meg a helyes adatokat %s számára , vagy menj a fórum adminisztrációs felületére és ellenőrizd, hogy a süti útvonala olvasható a Coppermin számára.';
 $lang_bridgemgr_php['error_mandatory_field_empty'] = 'Ezt a mezőt nem hagyhatod üresen: %s - töltsd ki megfelelően.';
 $lang_bridgemgr_php['error_no_trailing_slash'] = 'Nincs perjel ebben a mezőben: %s.';
 $lang_bridgemgr_php['error_trailing_slash'] = 'Legyen egy perjel ebben a mezőben %s.';
 $lang_bridgemgr_php['error_prefix_and_table'] = '%s és ';
 $lang_bridgemgr_php['recovery_title'] = 'Átkötés kezelő: vészvisszaállítás';
-$lang_bridgemgr_php['recovery_explanation'] = 'If you came here to administer the bridging of your Coppermine gallery, you have to log in first as admin. If you cannot log in because bridging doesn\'t work as expected, you can disable bridging with this page. Entering your username and password will not log you in, it will only disable bridging. Refer to the documentation for details.';
+$lang_bridgemgr_php['recovery_explanation'] = 'Ha adminisztrálni akkarod a Coppermine képtár fórum integrációját, először rendszergazdaként kell bejelentkezni. Ha nem sikerül bejelentkezned, mert nem működik megfelelően a kötés, akkor ezen az oldalon ki tudod kapcsolni az integrációt. A megadott felhasználónévvel és jelszóval nem lépsz be, csak kikapcsolod az integrációt. További infóért nézd meg a dokumentációt.';
 $lang_bridgemgr_php['username'] = 'Felhasználónév';
 $lang_bridgemgr_php['password'] = 'Jelszó';
 $lang_bridgemgr_php['disable_submit'] = 'küldés';
 $lang_bridgemgr_php['recovery_success_title'] = 'Azonosítás megtörtént';
-$lang_bridgemgr_php['recovery_success_content'] = 'You have successfully disabled bridging. Your Coppermine install runs now in standalone mode.';
-$lang_bridgemgr_php['recovery_success_advice_login'] = 'Log in as admin to edit your bridge settings and/or enable bridging again.';
+$lang_bridgemgr_php['recovery_success_content'] = 'Sikerült kikapcsolni az integrációt. A képtár most önálló szerver módban van.';
+$lang_bridgemgr_php['recovery_success_advice_login'] = 'Jelentkezz be rendszergazdaként, hogy megváltoztasd a kötés beállításokat és(vagy) engedélyezd újra az integrációt';
 $lang_bridgemgr_php['goto_login'] = 'Vissza a belépő oldalra';
 $lang_bridgemgr_php['goto_bridgemgr'] = 'Vissza az Átkötés kezelőhöz';
 $lang_bridgemgr_php['recovery_failure_title'] = 'Azonosítás sikertelen';
-$lang_bridgemgr_php['recovery_failure_content'] = 'You supplied the wrong credentials. You will have to supply the admin account data of the standalone version (usually the account you set up during Coppermine install).';
+$lang_bridgemgr_php['recovery_failure_content'] = 'Rossz azonosító adatok. Az önálló szerver változat rendszergazda adatait kell megadni (általában a telepítéskor megadott adatok).';
 $lang_bridgemgr_php['try_again'] = 'próbáld újra';
 $lang_bridgemgr_php['recovery_wait_title'] = 'Hátralévő idő';
-$lang_bridgemgr_php['recovery_wait_content'] = 'For security reasons this script does not allow failed logons in short succession, so you will have to wait a bit until you\'re allowed to try to authenticate.';
+$lang_bridgemgr_php['recovery_wait_content'] = 'Biztonsági okokból a script nem enged több probálkozást egymás után, tehát várnod kell egy keveset, míg újra megpróbálhatod az azonosítást.';
 $lang_bridgemgr_php['wait'] = 'várj';
 $lang_bridgemgr_php['browse'] = 'tallózás';
 }
@@ -1137,7 +1137,7 @@ $lang_picinfo['hide_details'] = 'Részletek elrejtése'; // cpg1.5
 $lang_picinfo['download_URL'] = 'Letöltési cím';
 $lang_picinfo['movie_player'] = 'Lejátszás a saját gépen és lejátszóval (válaszd a Futtatást)';
 
-$lang_display_comments['comment_x_to_y_of_z'] = '%d to %d of %d'; // cpg1.5
+$lang_display_comments['comment_x_to_y_of_z'] = '%d írt ide: %d, erről: %d'; // cpg1.5
 $lang_display_comments['page'] = 'Oldal'; // cpg1.5
 $lang_display_comments['edit_title'] = 'Hozzászólás szerkesztése';
 $lang_display_comments['delete_title'] = 'Hozzászólás törlése'; // cpg1.5
@@ -1260,7 +1260,7 @@ $lang_editpics_php['edit_pic'] = 'Fájl szerkesztése'; // cpg 1.5
 $lang_editpics_php['see_next'] = 'Következő fájlok';
 $lang_editpics_php['see_prev'] = 'Előző fájlok';
 $lang_editpics_php['n_pic'] = '%s fájl';
-$lang_editpics_php['n_of_pic_to_disp'] = 'Fájl oldalanként';
+$lang_editpics_php['n_of_pic_to_disp'] = 'Fájlok oldalanként';
 $lang_editpics_php['crop_title'] = 'Coppermine képszerkesztő';
 $lang_editpics_php['preview'] = 'Megtekintés';
 $lang_editpics_php['save'] = 'Kép mentése';
@@ -1760,118 +1760,121 @@ $lang_rate_pic_php['forbidden'] = 'You cannot rate your own files.';
 // ------------------------------------------------------------------------- //
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 $lang_register_php['disclamer'] = <<< EOT
-While the administrators of {SITE_NAME} will attempt to remove or edit any generally objectionable material as quickly as possible, it is impossible to review every post. Therefore you acknowledge that all posts made to this site express the views and opinions of the author and not the administrators or webmaster (except for posts by these people) and hence will not be held liable.<br />
+Noha a(z) {SITE_NAME} adminisztrátorai mindent megtesznek, hogy minél hamarabb eltávolítsák vagy töröljék a képtárból az általánosan kifogásolható anyagokat, lehetetlen, hogy minden egyes hozzászólást és képet átnézzenek. Ebből adódóan elfogadom, hogy a képtárban található összes hozzászólás és kép a szerző nézeteit tükrözi, és nem az adminisztrátorok, vagy a webmester álláspontját - így ők nem vállalnak felelősséget a hozzászólások és képek tartalmáért.<br />
 <br />
-You agree not to post any abusive, obscene, vulgar, slanderous, hateful, threatening, sexually-oriented or any other material that may violate any applicable laws. You agree that the webmaster, administrator and moderators of {SITE_NAME} have the right to remove or edit any content at any time should they see fit. As a user you agree to any information you have entered above being stored in a database. While this information will not be disclosed to any third party without your consent the webmaster and administrator cannot be held responsible for any hacking attempt that may lead to the data being compromised.<br />
+Beleegyezek, hogy nem küldök sértegető, obszcén, vulgáris, rágalmazó, gyűlöletkeltő, támadó anyagot vagy bármely más olyan tartalmat, mely törvényt sért. Sem olyan anyagot, mely ellentétes az általános közízléssel, mivel ez egy nyilvános képtár. A fentiek megsértése azonnali és végleges törlést von maga után.<br />
+Elfogadom, hogy a képtár webmesterének, az adminisztrátornak  jogában áll eltávolítani, szerkeszteni a hozzászólásaimat, vagy törölni az általam felrakott képeket, amennyiben úgy ítéli meg, hogy ez szükséges. Mint felhasználó, elfogadom, hogy néhány, általam megadott információ tárolásra kerül a képtár adatbázisában. Ezek az adatok semmilyen módon nem kerülnek ki egy harmadik félhez, de az adminisztrátorok sem tudnak felelősséget vállalni, amennyiben az adatokat harmadik fél törvénytelen eszközökkel szerzi meg (például a képtár feltörésével).
 <br />
-This site uses cookies to store information on your local computer. These cookies serve only to improve your viewing pleasure. The email address is used only for confirming your registration details and password.<br />
+A Képtár "cookie"-kat (sütiket) használ, hogy adatokat tároljon a felhasználó számítógépén, de egyik sem tartalmaz személyes adatokat, melyek a regisztrációnál kerültek megadásra: a sütik pusztán technikai szempontból szükségesek (például ezek segítségével jegyzi meg a böngésző az egyéni beállításokat). A megadott email cím csak a regisztráció (és új jelszó) érvényesítésénél kerül felhasználásra.<br />
 <br />
-By clicking 'I agree' below you agree to be bound by these conditions.
+Az 'Elfogadom'-ra kattintva elfogadom a fenti feltételeket.
 EOT;
-$lang_register_php['page_title'] = 'User registration';
-$lang_register_php['term_cond'] = 'Terms and conditions';
-$lang_register_php['i_agree'] = 'I agree';
-$lang_register_php['submit'] = 'Submit registration';
-$lang_register_php['err_user_exists'] = 'The username you have entered already exists, please choose a different one';
-$lang_register_php['err_global_pw'] = 'Invalid global registration password'; // cpg1.5
-$lang_register_php['err_global_pass_same'] = 'Your password should be different from the global password'; // cpg1.5
-$lang_register_php['err_duplicate_email'] = 'Another user has already registered with the email address you entered';
-$lang_register_php['err_disclaimer'] = 'You need to agree to the disclaimer'; // cpg1.5
-$lang_register_php['enter_info'] = 'Input registration information';
-$lang_register_php['required_info'] = 'Required information';
-$lang_register_php['optional_info'] = 'Optional information';
-$lang_register_php['username'] = 'Username';
-$lang_register_php['password'] = 'Password';
-$lang_register_php['password_again'] = 'Re-enter password';
-$lang_register_php['global_registration_pw'] = 'Global registration password'; // cpg1.5
+$lang_register_php['page_title'] = 'Felhasználó regisztráció';
+$lang_register_php['term_cond'] = 'Felhasználói szabályzat';
+$lang_register_php['i_agree'] = 'Elfogadom';
+$lang_register_php['submit'] = 'Regisztráció elfogadása';
+$lang_register_php['err_user_exists'] = 'A megadott felhasználónév már létezik, válassz egy másikat!';
+$lang_register_php['err_global_pw'] = 'A regisztráláshoz szükséges jelszó nem megfelelő'; // cpg1.5
+$lang_register_php['err_global_pass_same'] = 'A jelszavad nem lehet azonos a regisztráláshoz szükséges jelszóval'; // cpg1.5
+$lang_register_php['err_duplicate_email'] = 'A megadott email címmel már valaki regisztrálta magát';
+$lang_register_php['err_disclaimer'] = 'El kell fogadnod a feltételeket'; // cpg1.5
+$lang_register_php['enter_info'] = 'Add meg a regisztrációs adatokat';
+$lang_register_php['required_info'] = 'Kötelező adat';
+$lang_register_php['optional_info'] = 'Nem kötelező adat';
+$lang_register_php['username'] = 'Felhasználónév';
+$lang_register_php['password'] = 'Jelszó';
+$lang_register_php['password_again'] = 'Jelszó újra';
+$lang_register_php['global_registration_pw'] = 'Regisztráláshoz szükséges jelszó'; // cpg1.5
 $lang_register_php['email'] = 'Email';
-$lang_register_php['location'] = 'Location';
-$lang_register_php['interests'] = 'Interests';
-$lang_register_php['website'] = 'Home page';
-$lang_register_php['occupation'] = 'Occupation';
-$lang_register_php['error'] = 'ERROR';
-$lang_register_php['confirm_email_subject'] = '%s - Registration confirmation';
-$lang_register_php['information'] = 'Information';
-$lang_register_php['failed_sending_email'] = 'The registration confirmation email can\'t be send!';
-$lang_register_php['thank_you'] = 'Thank you for registering.<br />An email with information on how to activate your account was sent to the email address you provided.';
-$lang_register_php['acct_created'] = 'Your account has been created and you can now login with your username and password';
-$lang_register_php['acct_active'] = 'Your account is now active and you can login with your username and password';
-$lang_register_php['acct_already_act'] = 'Account is already active!';
-$lang_register_php['acct_act_failed'] = 'This account can\'t be activated!';
-$lang_register_php['err_unk_user'] = 'Selected user does not exist!';
-$lang_register_php['x_s_profile'] = '%s\'s profile';
-$lang_register_php['group'] = 'Group';
-$lang_register_php['reg_date'] = 'Joined';
-$lang_register_php['disk_usage'] = 'Disk usage';
-$lang_register_php['change_pass'] = 'Change password';
-$lang_register_php['current_pass'] = 'Current password';
-$lang_register_php['new_pass'] = 'New password';
-$lang_register_php['new_pass_again'] = 'New password again';
-$lang_register_php['err_curr_pass'] = 'Current password is incorrect';
-$lang_register_php['change_pass'] = 'Change my password';
-$lang_register_php['update_success'] = 'Your profile was updated';
-$lang_register_php['pass_chg_success'] = 'Your password was changed';
-$lang_register_php['pass_chg_error'] = 'Your password was not changed';
-$lang_register_php['notify_admin_email_subject'] = '%s - Registration notification';
-$lang_register_php['last_uploads'] = 'Last uploaded file'; // cpg1.5
-$lang_register_php['last_uploads_detail'] = 'Click to see all uploads by %s'; // cpg1.5
-$lang_register_php['last_comments'] = 'Last comment'; // cpg1.5
-$lang_register_php['you'] = 'you'; // cpg1.5
-$lang_register_php['last_comments_detail'] = 'Click to see all comments made by %s'; // cpg1.5
-$lang_register_php['notify_admin_email_body'] = 'A new user with the username "%s" has registered in your gallery';
-$lang_register_php['pic_count'] = 'files uploaded';
-$lang_register_php['notify_admin_request_email_subject'] = '%s - Registration request';
-$lang_register_php['thank_you_admin_activation'] = 'Thank you.<br />Your request for account activation was sent to the admin. You will receive an email if approved.';
-$lang_register_php['acct_active_admin_activation'] = 'The account is now active and an email has been sent to the user.';
-$lang_register_php['notify_user_email_subject'] = '%s - Activation notification';
-$lang_register_php['delete_my_account'] = 'Delete my user account'; // cpg1.5
-$lang_register_php['warning_delete'] = 'Warning: deleting your account cannot be undone. The %sfiles you uploaded%s into public albums and %syour comments%s do not get deleted when deleting your user account! However, the files you uploaded into your personal gallery will be deleted.'; // cpg1.5 // The %s-placeholders mustn't be removed, they will later be replaced by the wrappers for the links
-$lang_register_php['i_am_sure'] = 'I\'m sure that I want to delete my user account'; // cpg1.5
-$lang_register_php['really_delete'] = 'Do you really want to delete your user account?'; // cpg1.5 // js-alert
-$lang_register_php['edit_xs_profile'] = 'Edit the profile of %s'; // cpg1.5
-$lang_register_php['edit_my_profile'] = 'Edit my profile'; // cpg1.5
-$lang_register_php['none'] = 'none'; // cpg1.5
-$lang_register_php['user_name_banned'] = 'The username you have chosen is not allowed/banned. Choose another user name'; // cpg1.5
-$lang_register_php['email_address_banned'] = 'You are banned from this gallery. You are not allowed to re-register. Go away!'; // cpg1.5
-$lang_register_php['email_warning1'] = 'The email address field mustn\'t be empty!'; // cpg1.5
-$lang_register_php['email_warning2'] = 'The email address you entered is not valid. Review!'; // cpg1.5
-$lang_register_php['username_warning1'] = 'The username field mustn\'t be empty!'; // cpg1.5
-$lang_register_php['username_warning2'] = 'Username must be at least two characters long!'; // cpg1.5
-$lang_register_php['password_warning1'] = 'The password must be at least two characters long!'; // cpg1.5
-$lang_register_php['password_warning2'] = 'Username and password must be different!'; // cpg1.5
-$lang_register_php['password_verification_warning1'] = 'The two passwords do not match, please enter them again!'; // cpg1.5
-$lang_register_php['form_not_submit'] = 'The form hasn\'t been submit - there are errors that you need to correct first!'; // cpg1.5
-$lang_register_php['banned'] = 'Banned!'; // cpg1.5
+$lang_register_php['location'] = 'Helység';
+$lang_register_php['interests'] = 'Érdeklődési kör';
+$lang_register_php['website'] = 'Honlap';
+$lang_register_php['occupation'] = 'Foglalkozás';
+$lang_register_php['error'] = 'HIBA';
+$lang_register_php['confirm_email_subject'] = '%s - Regisztráció megerősítése';
+$lang_register_php['information'] = 'Információ';
+$lang_register_php['failed_sending_email'] = 'A regisztráció megerősítéséhez szükséges email nem lett elküldve!';
+$lang_register_php['thank_you'] = 'Köszönjük a regisztrációt!<br />Egy emailt küldtünk a megadott címre, melyben további információk találhatók a felhasználói azonosító aktiválásáról. Ha nem találná, kérjük, nézze meg a levélszemétben is!';
+$lang_register_php['acct_created'] = 'A hozzáférés elkészült, kérjük, lépjen be a felhasználónevével és jelszavával.';
+$lang_register_php['acct_active'] = 'A hozzáférés aktiválva lett, kérjük, lépjen be a felhasználónevével és jelszavával.';
+$lang_register_php['acct_already_act'] = 'A hozzáférés már aktiválva van!';
+$lang_register_php['acct_act_failed'] = 'Ez a hozzáférés nem aktiválható!';
+$lang_register_php['err_unk_user'] = 'A kiválasztott felhasználó nem létezik!';
+$lang_register_php['x_s_profile'] = '%s adatlapja';
+$lang_register_php['group'] = 'Csoport';
+$lang_register_php['reg_date'] = 'Csatlakozott';
+$lang_register_php['disk_usage'] = 'Lemezhasználat';
+$lang_register_php['change_pass'] = 'Jelszó módosítása';
+$lang_register_php['current_pass'] = 'Jelenlegi jelszó';
+$lang_register_php['new_pass'] = 'Új jelszó';
+$lang_register_php['new_pass_again'] = 'Új jelszó ismét';
+$lang_register_php['err_curr_pass'] = 'A jelenlegi jelszó nem megfelelő';
+$lang_register_php['change_pass'] = 'Jelszavam módosítása';
+$lang_register_php['update_success'] = 'Az adatlapod frissült';
+$lang_register_php['pass_chg_success'] = 'A jelszavad megváltozott';
+$lang_register_php['pass_chg_error'] = 'A jelszavad nem változott meg';
+$lang_register_php['notify_admin_email_subject'] = '%s - Regisztrációs figyelmeztetés';
+$lang_register_php['last_uploads'] = 'Legutóbb feltöltött fájlok'; // cpg1.5
+$lang_register_php['last_uploads_detail'] = '(Kattints ide, hogy megnézd a feltöltéseit: %s)'; // cpg1.5
+$lang_register_php['last_comments'] = 'Legutóbb írt hozzászólások'; // cpg1.5
+$lang_register_php['you'] = 'saját magam'; // cpg1.5
+$lang_register_php['last_comments_detail'] = '(Kattints ide, hogy megtekintsd a hozzászólásait: %s)'; // cpg1.5
+$lang_register_php['notify_admin_email_body'] = 'Egy új felhasználó, "%s" regisztrált a képtáradba';
+$lang_register_php['pic_count'] = 'Feltöltött képek száma';
+$lang_register_php['notify_admin_request_email_subject'] = '%s - Regisztrációs kérelem';
+$lang_register_php['thank_you_admin_activation'] = 'Köszönjük!<br />A kérelmedről értesítettük az adminisztrátort. Amikor engedélyezi a hozzáférésed, egy emailt kapsz majd. Időnként nézd meg a levélszemetet is!';
+$lang_register_php['acct_active_admin_activation'] = 'A hozzáférés aktiválva, egy emailt küldtünk a felhasználónak.';
+$lang_register_php['notify_user_email_subject'] = '%s - Aktiválás emlékeztető';
+$lang_register_php['delete_my_account'] = 'Hozzáférésem törlése'; // cpg1.5
+$lang_register_php['warning_delete'] = 'Figyelem: a hozzáférés törlése nem visszavonható! A %sfeltöltött fájljaid%s nyilvános albumba kerülnek és a %shozzászólásaid%s nem lesznek törölve! A személyes galériádba feltöltött állományok törlésre kerülnek (ha volt ilyen)!'; // cpg1.5 // The %s-placeholders mustn't be removed, they will later be replaced by the wrappers for the links
+$lang_register_php['i_am_sure'] = 'Biztos vagyok a döntésemben és törölni akarom a hozzáférésem'; // cpg1.5
+$lang_register_php['really_delete'] = 'Valóban törlöd a hozzáférésed?'; // cpg1.5 // js-alert
+$lang_register_php['edit_xs_profile'] = '%s adatainak szerkesztése'; // cpg1.5
+$lang_register_php['edit_my_profile'] = 'Adataim szerkesztése'; // cpg1.5
+$lang_register_php['none'] = 'nincs'; // cpg1.5
+$lang_register_php['user_name_banned'] = 'A kiválasztott felhasználónév tiltott. Válassz másik nevet'; // cpg1.5
+$lang_register_php['email_address_banned'] = 'Kizártunk erről a helyről. Nem engedélyezzük, hogy újra regisztrálj. Viszlát!'; // cpg1.5
+$lang_register_php['email_warning1'] = 'Az email mező nem lehet üres!'; // cpg1.5
+$lang_register_php['email_warning2'] = 'Az email cím nem valódi. Ellenőrizd!'; // cpg1.5
+$lang_register_php['username_warning1'] = 'A felhasználónév mező nem lehet üres!'; // cpg1.5
+$lang_register_php['username_warning2'] = 'A felhasználónév legalább két betű hosszú legyen (inkább több)!'; // cpg1.5
+$lang_register_php['password_warning1'] = 'A jelszó legalább két karakter hosszú legyen (inkább több)!'; // cpg1.5
+$lang_register_php['password_warning2'] = 'A felhasználónév és jelszó nem lehet azonos!'; // cpg1.5
+$lang_register_php['password_verification_warning1'] = 'Az általad megadott két jelszó nem azonos, írd be mindkettőt újra!'; // cpg1.5
+$lang_register_php['form_not_submit'] = 'Az űrlap kitöltése hiányos - nézd át a hibákat, hogy mi a probléma!'; // cpg1.5
+$lang_register_php['banned'] = 'Kizárva!'; // cpg1.5
 
 $lang_register_php['confirm_email'] = <<< EOT
-Thank you for registering at {SITE_NAME}
+Köszönjük, hogy regisztráltál hozzánk: {SITE_NAME}
 
-In order to activate your account with username "{USER_NAME}", you need to click on the link below or copy and paste it in your web browser.
+A felhasználóneved "{USER_NAME}" akkor használhatod belépésre, ha az alábbi aktiváló linkre kattintasz, vagy vágólappal bemásolod a böngésződ címsorába:
 <a href="{ACT_LINK}">{ACT_LINK}</a>
 
-Regards,
+Üdvözlettel:
 
-The management of {SITE_NAME}
+{SITE_NAME} oldal üzemeltetői
 
 EOT;
 
 $lang_register_approve_email = <<< EOT
-A new user with the username "{USER_NAME}" has registered in your gallery.
-In order to activate the account, you need to click on the link below or copy and paste it in your web browser.
+Egy új felhasználó regisztrált a képtáradba a következő névvel: "{USER_NAME}"
+Ahhoz, hogy aktiválhasd ezt a hozzáférést, kattints az alábbi linkre, vagy másold be a böngésződ címsorába:
 
 <a href="{ACT_LINK}">{ACT_LINK}</a>
 
 EOT;
 
 $lang_register_php['activated_email'] = <<< EOT
-Your account has been approved and activated.
+A hozzáférésed elfogadtuk és aktiváltuk.
 
-You can now log in at <a href="{SITE_LINK}">{SITE_LINK}</a> using the username "{USER_NAME}"
+Most már beléphetsz ide: <a href="{SITE_LINK}">{SITE_LINK}</a>
+
+A belépéshez használd ezt a felhasználónevet: "{USER_NAME}"
 
 
-Regards,
+Üdvözlettel:
 
-The management of {SITE_NAME}
+{SITE_NAME} oldal üzemeltetői
 
 EOT;
 }
@@ -2187,102 +2190,105 @@ $lang_upload_swf_php['upload_limit_2'] = 'Maximimum ennyi fájlt választhatsz k
 // ------------------------------------------------------------------------- //
 if (defined('USERMGR_PHP')) {
 $lang_usermgr_php['memberlist'] = 'Taglista';
-$lang_usermgr_php['user_manager'] = 'User manager';
-$lang_usermgr_php['title'] = 'Manage users';
-$lang_usermgr_php['name_a'] = 'Name ascending';
-$lang_usermgr_php['name_d'] = 'Name descending';
-$lang_usermgr_php['group_a'] = 'Group ascending';
-$lang_usermgr_php['group_d'] = 'Group descending';
-$lang_usermgr_php['reg_a'] = 'Reg date ascending';
-$lang_usermgr_php['reg_d'] = 'Reg date descending';
-$lang_usermgr_php['pic_a'] = 'File count ascending';
-$lang_usermgr_php['pic_d'] = 'File count descending';
-$lang_usermgr_php['disku_a'] = 'Disk usage ascending';
-$lang_usermgr_php['disku_d'] = 'Disk usage descending';
-$lang_usermgr_php['lv_a'] = 'Last visit ascending';
-$lang_usermgr_php['lv_d'] = 'Last visit descending';
-$lang_usermgr_php['sort_by'] = 'Sort users by';
-$lang_usermgr_php['err_no_users'] = 'User table is empty!';
-$lang_usermgr_php['err_edit_self'] = 'You can\'t edit your own profile, use the \'My profile\' link for that';
-$lang_usermgr_php['with_selected'] = 'With selected:';
-$lang_usermgr_php['delete_files_no'] = 'keep public files (but anonymize)';
-$lang_usermgr_php['delete_files_yes'] = 'delete public files as well';
-$lang_usermgr_php['delete_comments_no'] = 'keep comments (but anonymize)';
-$lang_usermgr_php['delete_comments_yes'] = 'delete comments as well';
-$lang_usermgr_php['activate'] = 'Activate';
-$lang_usermgr_php['deactivate'] = 'Deactivate';
-$lang_usermgr_php['reset_password'] = 'Reset Password';
-$lang_usermgr_php['change_primary_membergroup'] = 'Change primary membergroup';
-$lang_usermgr_php['add_secondary_membergroup'] = 'Add secondary membergroup';
-$lang_usermgr_php['name'] = 'User name';
-$lang_usermgr_php['group'] = 'Group';
-$lang_usermgr_php['inactive'] = 'Inactive';
-$lang_usermgr_php['operations'] = 'Operations';
-$lang_usermgr_php['pictures'] = 'Files';
-$lang_usermgr_php['disk_space_used'] = 'Space used';
-$lang_usermgr_php['disk_space_quota'] = 'Quota'; // cpg1.5
-$lang_usermgr_php['registered_on'] = 'Registration';
-$lang_usermgr_php['last_visit'] = 'Last visit';
-$lang_usermgr_php['u_user_on_p_pages'] = '%d users on %d page(s)';
-$lang_usermgr_php['confirm_del'] = 'Are you sure you want to DELETE this user?\\nAll his/her files and albums will also be deleted.'; // js-alert
-$lang_usermgr_php['mail'] = 'MAIL';
-$lang_usermgr_php['err_unknown_user'] = 'Selected user does not exist!';
-$lang_usermgr_php['modify_user'] = 'Modify user';
-$lang_usermgr_php['notes'] = 'Notes';
-$lang_usermgr_php['note_list'] = 'If you don\'t want to change the current password, leave the "password" field blank';
-$lang_usermgr_php['password'] = 'Password';
-$lang_usermgr_php['user_active'] = 'User is active';
-$lang_usermgr_php['user_group'] = 'User group';
-$lang_usermgr_php['user_email'] = 'User email';
-$lang_usermgr_php['user_web_site'] = 'User web site';
-$lang_usermgr_php['create_new_user'] = 'Create new user';
-$lang_usermgr_php['user_location'] = 'User location';
-$lang_usermgr_php['user_interests'] = 'User interests';
-$lang_usermgr_php['user_occupation'] = 'User occupation';
+$lang_usermgr_php['user_manager'] = 'Felhasználó-kezelő';
+$lang_usermgr_php['title'] = 'Felhasználók kezelése';
+$lang_usermgr_php['name_a'] = 'Név szerint növekvő';
+$lang_usermgr_php['name_d'] = 'Név szerint csökkenő';
+$lang_usermgr_php['group_a'] = 'Csoport szerint növekvő';
+$lang_usermgr_php['group_d'] = 'Csoport szerint csökkenő';
+$lang_usermgr_php['reg_a'] = 'Regisztrálás dátuma szerint növekvő';
+$lang_usermgr_php['reg_d'] = 'Regisztrálás dátuma szerint csökkenő';
+$lang_usermgr_php['pic_a'] = 'Fájlmennyiség szerint növekvő';
+$lang_usermgr_php['pic_d'] = 'Fájlmennyiség szerint csökkenő';
+$lang_usermgr_php['disku_a'] = 'Lemezhasználat szerint növekvő';
+$lang_usermgr_php['disku_d'] = 'Lemezhasználat szerint csökkenő';
+$lang_usermgr_php['lv_a'] = 'Utolsó látogatás szerint növekvő';
+$lang_usermgr_php['lv_d'] = 'Utolsó látogatás szerint csökkenő';
+$lang_usermgr_php['sort_by'] = 'Felhasználók rendezése';
+$lang_usermgr_php['err_no_users'] = 'A felhasználótábla üres!';
+$lang_usermgr_php['err_edit_self'] = 'Nem szerkesztheted a saját adatlapod, használd az \'Adataim\' hivatkozást';
+$lang_usermgr_php['with_selected'] = 'Kiválasztva:';
+$lang_usermgr_php['delete_files_no'] = 'Nyilvános fájlok megtartása (névtelenül)';
+$lang_usermgr_php['delete_files_yes'] = 'Nyilvános fájlok törlése';
+$lang_usermgr_php['delete_comments_no'] = 'Hozzászólások megtartása (névtelenül)';
+$lang_usermgr_php['delete_comments_yes'] = 'Minden hozzászólás törlése';
+$lang_usermgr_php['activate'] = 'Aktiválás';
+$lang_usermgr_php['deactivate'] = 'Inaktiválás';
+$lang_usermgr_php['reset_password'] = 'Jelszó alaphelyzetbe állítása';
+$lang_usermgr_php['change_primary_membergroup'] = 'Elsődleges csoport váltása';
+$lang_usermgr_php['add_secondary_membergroup'] = 'Másodlagos csoport hozzáadása';
+$lang_usermgr_php['name'] = 'Felhasználónév';
+$lang_usermgr_php['group'] = 'Csoport';
+$lang_usermgr_php['inactive'] = 'Inaktív';
+$lang_usermgr_php['operations'] = 'Műveletek';
+$lang_usermgr_php['pictures'] = 'Fájlok';
+$lang_usermgr_php['disk_space_used'] = 'Lemezhasználat';
+$lang_usermgr_php['disk_space_quota'] = 'Limit'; // cpg1.5
+$lang_usermgr_php['registered_on'] = 'Regisztráció';
+$lang_usermgr_php['last_visit'] = 'Utolsó látogatás';
+$lang_usermgr_php['u_user_on_p_pages'] = 'Összesen %d felhasználó - %d oldalon';
+$lang_usermgr_php['confirm_del'] = 'Biztos, hogy TÖLÖD ezt a felhasználót?\\nMinden fájlja és albuma törölve lesz!'; // js-alert
+$lang_usermgr_php['mail'] = 'LEVÉL';
+$lang_usermgr_php['err_unknown_user'] = 'A kiválasztott felhasználó nem létezik!';
+$lang_usermgr_php['modify_user'] = 'Felhasználó módosítása';
+$lang_usermgr_php['notes'] = 'Megjegyzések';
+$lang_usermgr_php['note_list'] = 'Ha nem szeretnél jelszót módosítani, akkor hagyd üresen!';
+$lang_usermgr_php['password'] = 'Jelszó';
+$lang_usermgr_php['user_active'] = 'A felhasználó aktiválva legyen?';
+$lang_usermgr_php['user_group'] = 'Felhasználó csoportja';
+$lang_usermgr_php['user_email'] = 'Felhasználó emailje';
+$lang_usermgr_php['user_web_site'] = 'Felhasználó weboldala';
+$lang_usermgr_php['create_new_user'] = 'Új felhasználó létrehozása';
+$lang_usermgr_php['user_location'] = 'Felhasználó helysége';
+$lang_usermgr_php['user_interests'] = 'Felhasználó érdeklődési köre';
+$lang_usermgr_php['user_occupation'] = 'Felhasználó munkahelye';
 $lang_usermgr_php['user_profile1'] = '$user_profile1';
 $lang_usermgr_php['user_profile2'] = '$user_profile2';
 $lang_usermgr_php['user_profile3'] = '$user_profile3';
 $lang_usermgr_php['user_profile4'] = '$user_profile4';
 $lang_usermgr_php['user_profile5'] = '$user_profile5';
 $lang_usermgr_php['user_profile6'] = '$user_profile6';
-$lang_usermgr_php['latest_upload'] = 'Recent uploads';
-$lang_usermgr_php['no_latest_upload'] = 'Has not uploaded any files'; // cpg1.5
-$lang_usermgr_php['last_comments'] = 'Last comments'; // cpg1.5
-$lang_usermgr_php['no_last_comments'] = 'Has not made any comments'; // cpg1.5
-$lang_usermgr_php['comments'] = 'Comments'; // cpg1.5
-$lang_usermgr_php['never'] = 'never';
-$lang_usermgr_php['search'] = 'User search';
-$lang_usermgr_php['submit'] = 'Submit';
-$lang_usermgr_php['search_submit'] = 'Go!';
-$lang_usermgr_php['search_result'] = 'Search results for: ';
-$lang_usermgr_php['alert_no_selection'] = 'You have to select at least one user first!'; // js-alert
-$lang_usermgr_php['select_group'] = 'Select group';
-$lang_usermgr_php['groups_alb_access'] = 'Album permissions by group';
-$lang_usermgr_php['category'] = 'Category';
-$lang_usermgr_php['modify'] = 'Modify?';
-$lang_usermgr_php['group_no_access'] = 'This group has no special access';
-$lang_usermgr_php['notice'] = 'Notice';
-$lang_usermgr_php['group_can_access'] = 'Album(s) that only "%s" can access';
-$lang_usermgr_php['send_login_data'] = 'Send login data to this user (Password will be sent via email)'; // cpg1.5
-$lang_usermgr_php['send_login_email_subject'] = 'Your new account information'; // cpg1.5
-$lang_usermgr_php['failed_sending_email'] = 'The login data email can\'t be sent!'; // cpg1.5
-$lang_usermgr_php['view_profile'] = 'View profile'; // cpg1.5
-$lang_usermgr_php['edit_profile'] = 'Edit profile'; // cpg1.5
-$lang_usermgr_php['ban_user'] = 'Ban user'; // cpg1.5
-$lang_usermgr_php['user_is_banned'] = 'User is banned'; // cpg1.5
-$lang_usermgr_php['status'] = 'Status'; // cpg1.5
-$lang_usermgr_php['status_active'] = 'active'; // cpg1.5
-$lang_usermgr_php['status_inactive'] = 'not active'; // cpg1.5
-$lang_usermgr_php['total'] = 'Total'; // cpg1.5
+$lang_usermgr_php['latest_upload'] = 'Legutóbbi feltöltések';
+$lang_usermgr_php['no_latest_upload'] = 'Még nem töltött fel fájlt'; // cpg1.5
+$lang_usermgr_php['last_comments'] = 'Legutóbbi hozzászólások'; // cpg1.5
+$lang_usermgr_php['no_last_comments'] = 'Még nem szólt hozzá'; // cpg1.5
+$lang_usermgr_php['comments'] = 'Hozzászólások'; // cpg1.5
+$lang_usermgr_php['never'] = 'soha';
+$lang_usermgr_php['search'] = 'Felhasználó keresése';
+$lang_usermgr_php['submit'] = 'Elfogad';
+$lang_usermgr_php['search_submit'] = 'Tovább!';
+$lang_usermgr_php['search_result'] = 'Keresés eredménye: ';
+$lang_usermgr_php['alert_no_selection'] = 'Legalább egy felhasználót válassz ki!'; // js-alert
+$lang_usermgr_php['select_group'] = 'Csoport kiválasztása';
+$lang_usermgr_php['groups_alb_access'] = 'Csoport album jogosultságai';
+$lang_usermgr_php['category'] = 'Kategória';
+$lang_usermgr_php['modify'] = 'Módosítod?';
+$lang_usermgr_php['group_no_access'] = 'Ennek a csoportnak nincsenek speciális jogosultságai';
+$lang_usermgr_php['notice'] = 'Értesítés';
+$lang_usermgr_php['group_can_access'] = 'Az albumhoz csak "%s" férhet hozzá';
+$lang_usermgr_php['send_login_data'] = 'A belépési adatok elküldése emailben (A jelszó is küldésre kerül!)'; // cpg1.5
+$lang_usermgr_php['send_login_email_subject'] = 'Új hozzáférésed adatai'; // cpg1.5
+$lang_usermgr_php['failed_sending_email'] = 'A belépési információk nem kerültek elküldésre!'; // cpg1.5
+$lang_usermgr_php['view_profile'] = 'Adatlap megtekintése'; // cpg1.5
+$lang_usermgr_php['edit_profile'] = 'Adatlap szerkesztése'; // cpg1.5
+$lang_usermgr_php['ban_user'] = 'Felhasználó kitiltása'; // cpg1.5
+$lang_usermgr_php['user_is_banned'] = 'A felhasználót kitiltottuk'; // cpg1.5
+$lang_usermgr_php['status'] = 'Állapot'; // cpg1.5
+$lang_usermgr_php['status_active'] = 'Aktiválva'; // cpg1.5
+$lang_usermgr_php['status_inactive'] = 'Nincs aktiválva'; // cpg1.5
+$lang_usermgr_php['total'] = 'Összesen'; // cpg1.5
 $lang_usermgr_php['send_login_data_email'] = <<< EOT
-A new account has been created for you at {SITE_NAME}.
+Egy új hozzáférést készítettünk számodra a weboldalunkhoz: {SITE_NAME}.
 
-You can now log in at <a href="{SITE_LINK}">{SITE_LINK}</a> using the username "{USER_NAME}" and password "{USER_PASS}"
+Most már beléphetsz ezen a linken: <a href="{SITE_LINK}">{SITE_LINK}</a>
+
+Használd ezt a felhasználónevet: {USER_NAME}
+és ezt a jelszót: {USER_PASS}
 
 
-Regards,
+Üdvözlettel:
 
-The management of {SITE_NAME}
+{SITE_NAME} oldal üzemeltetői
 
 EOT;
 }
