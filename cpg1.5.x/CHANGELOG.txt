@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-06-29 [B] Fixed error message for non existing categories (thread ID 65763) {eenemeenemuu}
 2010-06-26 [B] Replaced wrong link in update.php (thread ID 65714) {GauGau}
 2010-06-25 [B] Added language table population section to update script to stop cpg1.4.x upgrades seing only Luxemburgish and Mexican as available langauges {GauGau}
 2010-06-25 [O] Updated Turkish language file (user contribution) {eenemeenemuu}

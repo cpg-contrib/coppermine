@@ -870,7 +870,7 @@ function get_private_album_set($aid_str="")
         return;
     }
 
-    global $CONFIG, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA;
+    global $CONFIG, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA, $lang_errors;;
 
     $superCage = Inspekt::makeSuperCage();
 
@@ -940,7 +940,9 @@ function get_private_album_set($aid_str="")
             //list($rgt, $lft, $CURRENT_CAT_DEPTH) = mysql_fetch_row($result); 
             
             $result = cpg_db_query("SELECT rgt, lft FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = $cat LIMIT 1");
-
+            if (mysql_num_rows($result) == 0) {
+                cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
+            }
             list($rgt, $lft) = mysql_fetch_row($result);
             mysql_free_result($result);
 
