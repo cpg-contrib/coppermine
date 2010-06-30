@@ -4294,7 +4294,7 @@ EOT;
                     <td class="tableb" colspan="2">
 EOT;
         // Try to retrieve the news directly
-        $result = cpgGetRemoteFileByURL('http://coppermine-gallery.net/cpg15x_news.htm', 'GET', '', '200');
+        //$result = cpgGetRemoteFileByURL('http://coppermine-gallery.net/cpg15x_news.htm', 'GET', '', '200'); // disabled, see http://forum.coppermine-gallery.net/index.php/topic,65424.msg325573.html#msg325573
 
         if (strlen($result['body']) < 200) { // retrieving the file failed - let's display it in an iframe then
             print <<< EOT
