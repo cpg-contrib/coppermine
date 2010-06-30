@@ -180,6 +180,10 @@ function cpg_db_connect()
         return false;
     }
 
+    if ($CONFIG['dbcharset']) {
+        mysql_query("SET NAMES '{$CONFIG['dbcharset']}'", $result);
+    }
+
     return $result;
 }
 
