@@ -280,35 +280,39 @@ Below is a list of error messages that are quite frequent. Please review this se
 
 <div class="indent">
 
-<a name="upload_error_messages_cant_move"></a><a name="ErrorCantMovePic"><h3><tt class="code">Impossible to move <em>X</em> to <em>Y</em> - failed to create stream: Operation not permitted</tt><a href="#upload_error_messages_cant_move" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="upload_error_messages_cant_move"></a><a name="ErrorCantMovePic"></a><h3>Error message: <em>failed to create stream: Operation not permitted</em><a href="#upload_error_messages_cant_move" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="indent">
     <a name="upload_error_messages_cant_move_detail"></a><h4>Detailed error message<a href="#upload_error_messages_cant_move_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-    <pre class="code">Impossible to move <em>somepic.jpg</em> to albums/userpics/
-Warning: move_uploaded_file(/tmp/<em>phpezCYKr</em>)
+    <pre class="code">Impossible to move <span style="color:blue;">somepic.jpg</span> to albums/userpics/
+Warning: move_uploaded_file(/tmp/<span style="color:blue;">phpezCYKr</span>)
 [function.move-uploaded-file]: failed to create stream: Operation not permitted</pre>
+    <p class="smaller">The error message above of course will differ slightly from one setup to the other. The dynamic sections of the error message (that may differ) are <span style="color:blue;">highlighted in blue</span> in the example, opposed to the static (unchangeable) parts of the error message that is printed in black.</p>
     <a name="upload_error_messages_cant_move_cause"></a><h4>Possible cause<a href="#upload_error_messages_cant_move_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-    PHP's temporary folder is missing or doesn't have the needed permissions
+    PHP's temporary folder is missing or doesn't have the needed permissions.
     <a name="upload_error_messages_cant_move_fix"></a><h4>Suggested fix<a href="#upload_error_messages_cant_move_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     You should contact the admin of your webhost because you usually can't change the location of the website's temporary directory for file uploads, yourself (it is part of PHP configuration) .<br />
       If the <em><a href="http://www.php.net/manual/en/ini.php#ini.list" rel="external" class="phpnet">open_basedir</a> restriction</em> is in effect on your site then the temp directory for file uploads should be one that you can access.
 </div>
 
-<a name="upload_error_messages_impossible_to_move"></a><a name="ErrorImpossibleToMove"></a><h3><tt class="code">Impossible to move <em>X</em> to <em>Y</em></tt><a href="#upload_error_messages_impossible_to_move" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="upload_error_messages_impossible_to_move"></a><a name="ErrorImpossibleToMove"></a><h3><em>Impossible to move X to Y</em><a href="#upload_error_messages_impossible_to_move" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="indent">
     <a name="upload_error_messages_impossible_to_move_detail"></a><h4>Detailed error message<a href="#upload_error_messages_impossible_to_move_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-    <pre class="code">Impossible to move <em>somepic.jpg</em> to <em>albums/userpics/some_folder/</em></pre>
+    <pre class="code">Impossible to move <span style="color:blue;">somepic.jpg</span> to <span style="color:blue;">albums/userpics/XXXXX/</span></pre>
+    <p class="smaller">The error message above of course will differ slightly from one setup to the other. The dynamic sections of the error message (that may differ) are <span style="color:blue;">highlighted in blue</span> in the example, opposed to the static (unchangeable) parts of the error message that is printed in black.</p>
     <a name="upload_error_messages_impossible_to_move_cause"></a><h4>Possible cause<a href="#upload_error_messages_impossible_to_move_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     The coppermine script doesn't have permissions on the filesystem of the server to create the thumbnail or intermediate image within the specified folder
     <a name="upload_error_messages_impossible_to_move_fix"></a><h4>Suggested fix<a href="#upload_error_messages_impossible_to_move_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     Apply permissions on the albums folder and everything within it as suggested in the section <a href="install_permissions.htm#permissions">Setting permissions</a>. This error message is the most frequent one, as many users tend to skip reading the permissions section. At least when getting this error message, you should read it thoroughly.
 </div>
 
-<a name="upload_error_messages_failed_to_open_dir"></a><a name="ErrorFailedToOpenDir"></a><h3><tt class="code">Warning: opendir(./albums/edit): failed to open dir: No such file or directory</tt><a href="#upload_error_messages_failed_to_open_dir" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="upload_error_messages_failed_to_open_dir"></a><a name="ErrorFailedToOpenDir"></a><h3>Error message: <em>failed to open dir: No such file or directory</em><a href="#upload_error_messages_failed_to_open_dir" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="indent">
+    <a name="upload_error_messages_failed_to_open_dir_detail"></a><h4>Detailed error message<a href="#upload_error_messages_failed_to_open_dir_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">Warning: opendir(./albums/edit): failed to open dir: No such file or directory</pre>
     <a name="upload_error_messages_failed_to_open_dir_cause"></a><h4>Possible cause<a href="#upload_error_messages_failed_to_open_dir_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     <ul>
-        <li>'edit'-folder in your albums folder is missing</li>
-        <li>'edit'-folder in your albums folder doesn't have rwx-<a href="install_permissions.htm#permissions">permissions</a></li>
+        <li>'<tt class="filename">edit</tt>'-folder in your albums folder is missing</li>
+        <li>'<tt class="filename">edit</tt>'-folder in your albums folder doesn't have rwx-<a href="install_permissions.htm#permissions">permissions</a></li>
         <li>Improper upgrade from a previous version of Coppermine</li>
     </ul>
     <a name="upload_error_messages_failed_to_open_dir_fix"></a><h4>Suggested fix<a href="#upload_error_messages_failed_to_open_dir_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
@@ -319,8 +323,10 @@ Warning: move_uploaded_file(/tmp/<em>phpezCYKr</em>)
     </ul>
 </div>
 
-<a name="upload_error_messages_no_album"></a><a name="ErrorNoAlbumExisting"></a><h3><tt class="code">Sorry there is no album where you are allowed to upload files</tt><a href="#upload_error_messages_no_album" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="upload_error_messages_no_album"></a><a name="ErrorNoAlbumExisting"></a><h3>Error message: <em>Sorry there is no album where you are allowed to upload files</em><a href="#upload_error_messages_no_album" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="indent">
+    <a name="upload_error_messages_no_album_detail"></a><h4>Detailed error message<a href="#upload_error_messages_no_album_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">Sorry there is no album where you are allowed to upload files</pre>
     <a name="upload_error_messages_no_album_cause"></a><h4>Possible cause<a href="#upload_error_messages_no_album_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     <ul>
         <li>You (as admin) haven't created any albums yet.</li>
@@ -328,6 +334,7 @@ Warning: move_uploaded_file(/tmp/<em>phpezCYKr</em>)
         <li>You (as non-admin user) haven't created at least one album in your personal gallery</li>
     </ul>
     <a name="upload_error_messages_no_album_fix"></a><h4>Suggested fix<a href="#upload_error_messages_no_album_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    This error message is a <a href="errors.htm#errors_soft">soft error</a>, i.e. it's something that is related to your Coppermine setup and means that you haven't done something that you should have done.
     <ul>
         <li>If you get this message when logged in as the admin of your gallery, then you need to <a href="albums.htm#albmgr_create">create at least one album</a> where files can be uploaded</li>
         <li>If you get this message when logged in as a non-admin, then you need to make sure you understand the permissions concept behind Coppermine: on the <a href="groups.htm#group_cp">groups control panel</a> the admin determines  whether users can create personal galleries (i.e. create albums inside their user gallery) or if they are allowed to upload into admin-created public albums. If the user <strong>is</strong> allowed to create personal galleries and gets this message, he must create at least one album first by clicking on &quot;Create / Order my albums&quot;. If the user is only allowed to upload to public albums (which need to be created by the admin in advance) and gets the above mentioned error message, then the admin needs to specify at least one public album where visitors are allowed to upload, using the <a href="albums.htm#album_prop">album properties</a> screen.</li>
@@ -335,13 +342,14 @@ Warning: move_uploaded_file(/tmp/<em>phpezCYKr</em>)
     </ul>
 </div>
 
-<a name="upload_error_messages_allowed_memory_size"></a><a name="ErrorAllowedMemorySize"></a><h3><tt class="code">Fatal error: Allowed memory size of <em>X</em> bytes exhausted</tt><a href="#upload_error_messages_allowed_memory_size" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="upload_error_messages_allowed_memory_size"></a><a name="ErrorAllowedMemorySize"></a><h3>Error message: <em>Allowed memory size of X bytes exhausted</em><a href="#upload_error_messages_allowed_memory_size" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="indent">
     <a name="upload_error_messages_allowed_memory_size_detail"></a><h4>Detailed error message<a href="#upload_error_messages_allowed_memory_size_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-    <pre class="code">Fatal error: Allowed memory size of <em>XXXXXXX</em> bytes exhausted at (null):0 (tried to allocate <em>XXXX</em> bytes) in /var/www/html/include/picmgmt.inc.php</pre>
+    <pre class="code">Fatal error: Allowed memory size of <span style="color:blue;">XXXXXXX</span> bytes exhausted at (null):0 (tried to allocate <span style="color:blue;">XXXX</span> bytes) in <span style="color:blue;">/var/www/html/include/picmgmt.inc.php</span></pre>
+    <p class="smaller">The error message above of course will differ slightly from one setup to the other. The dynamic sections of the error message (that may differ) are <span style="color:blue;">highlighted in blue</span> in the example, opposed to the static (unchangeable) parts of the error message that is printed in black.</p>
     <a name="upload_error_messages_allowed_memory_size_cause"></a><h4>Possible cause<a href="#upload_error_messages_allowed_memory_size_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     This error occurs when using GD and attempting to upload a high resoltuion image.  It's not the size of the file that matters here; it's the number of pixels that determine memory use in GD. This is not a <a href="errors.htm#errors_soft">soft error</a> triggered by Coppermine, but a <a href="errors.htm#errors_hard">hard error</a> from PHP that shines through Coppermine from PHP.
-    <a name="upload_error_messages_allowed_memory_size_fix"></a><h4>Suggested fix<a href="#upload_error_messages_allowed_memory_size_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <a name="upload_error_messages_allowed_memory_size_fix"></a><h4>Suggested fixes<a href="#upload_error_messages_allowed_memory_size_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     There is (at least in theory) no limit <em>in Coppermine</em> to the file size or dimensions that the script can handle. However, there is at least one limit existing on the webserver: resizing images (to create intermediate images and/or thumbnails) consumes memory and burns CPU cylces. To prevent the server from crashing, the server admin has to restrict the amount of memory that a PHP script is allowed to consume. The error message mentioned above means that the limit imposed by the server admin has been reached, i.e. the image that the script tried to process consumed to much memory.
     <ul>
         <li><strong>Alternative 1 (ideal):</strong><br />
@@ -355,43 +363,52 @@ Warning: move_uploaded_file(/tmp/<em>phpezCYKr</em>)
     </ul>
 </div>
 
-<a name="upload_error_messages_exec_disabled"></a><a name="ErrorExecDisabled"></a><h3><tt class="code">Exec() has been disabled</tt><a href="#upload_error_messages_exec_disabled" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="upload_error_messages_exec_disabled"></a><a name="ErrorExecDisabled"></a><h3>Error message: <em>Exec() has been disabled</em><a href="#upload_error_messages_exec_disabled" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="indent">
+    <a name="upload_error_messages_exec_disabled_detail"></a><h4>Detailed error message<a href="#upload_error_messages_exec_disabled_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">Exec() has been disabled</pre>
     <a name="upload_error_messages_exec_disabled_cause"></a><h4>Possible cause<a href="#upload_error_messages_exec_disabled_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-    php.ini allows the server administrator to disable certain functions. Usually this is the case if your server is running in safe_mode.
+    php.ini allows the server administrator to disable certain functions. Usually this is the case if your server is running in safe_mode. This is not a <a href="errors.htm#errors_soft">soft error</a> triggered by Coppermine, but a <a href="errors.htm#errors_hard">hard error</a> from PHP that shines through Coppermine from PHP.
     <a name="upload_error_messages_exec_disabled_fix"></a><h4>Suggested fix<a href="#upload_error_messages_exec_disabled_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     If the server administrator has disabled exec() you will not be able to use Image Magick.<br />
     You may try to replace exec() with passthru() in the entire core code of coppermine (not recommended) if it has not been disabled as well.  Otherwise, you can't use ImageMagick and must use GD. Change <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">Method for resizing images</a> in config accordingly.
 </div>
 
-<a name="upload_error_messages_not_gd_extension"></a><a name="ErrorNotAGdExtension"></a><h3><tt class="code">Not a GD extension</tt><a href="#upload_error_messages_not_gd_extension" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="upload_error_messages_not_gd_extension"></a><a name="ErrorNotAGdExtension"></a><h3>Error message: <em>Not a GD extension</em><a href="#upload_error_messages_not_gd_extension" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="indent">
+    <a name="upload_error_messages_not_gd_extension_detail"></a><h4>Detailed error message<a href="#upload_error_messages_not_gd_extension_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">Not a GD extension</pre>
     <a name="upload_error_messages_not_gd_extension_cause"></a><h4>Possible cause<a href="#upload_error_messages_not_gd_extension_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     The file(s) you tried to upload can not be handled using the GD ImageLibrary
     <a name="upload_error_messages_not_gd_extension_fix"></a><h4>Suggested fix<a href="#upload_error_messages_not_gd_extension_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     The GD library can only handle jpeg, png and gif files, while the ImageMagick library supports additionally bmp, psd and some other (less common) file types. However, those files are not suitable for use on the internet. Details can be found in the <a href="configuration.htm#admin_picture_thumb_advanced_pic_extensions">Allowed image types</a> section in the config page of the docs.
 </div>
 
-<a name="upload_error_messages_imagemagick127"></a><a name="imagemagick127"></a><h3><tt class="code">Error executing ImageMagick - Return value 127</tt><a href="#upload_error_messages_imagemagick127" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="upload_error_messages_imagemagick127"></a><a name="imagemagick127"></a><h3>Error message: <em>Error executing ImageMagick - Return value 127</em><a href="#upload_error_messages_imagemagick127" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="indent">
     <a name="upload_error_messages_imagemagick127_detail"></a><h4>Detailed error message<a href="#upload_error_messages_imagemagick127_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-    <pre class="code">The file '<em>albums/userpics/10001/somepic.jpg</em>' can't be inserted in the album. Error executing ImageMagick - Return value <strong>127</strong></pre>
+    <pre class="code">The file '<span style="color:blue;">albums/userpics/10001/somepic.jpg</span>' can't be inserted in the album. Error executing ImageMagick - Return value <strong>127</strong></pre>
+    <p class="smaller">The error message above of course will differ slightly from one setup to the other. The dynamic sections of the error message (that may differ) are <span style="color:blue;">highlighted in blue</span> in the example, opposed to the static (unchangeable) parts of the error message that is printed in black.</p>
     <a name="upload_error_messages_imagemagick127_cause"></a><h4>Possible cause<a href="#upload_error_messages_imagemagick127_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-    You haven't specified the correct <a href="configuration.htm#admin_picture_thumb_advanced_im_path">path to ImageMagick</a>, or you don't have ImageMagic at all.
+    You haven't specified the correct <a href="configuration.htm#admin_picture_thumb_advanced_im_path">path to ImageMagick</a>, or you don't have ImageMagic at all. The first sentence of the error message is a <a href="errors.htm#errors_soft">soft error</a> triggered by Coppermine, but the second sentence is a <a href="errors.htm#errors_hard">hard error</a> from PHP that shines through Coppermine from PHP, with the important bit being the last sentence <tt class="code">Return value <strong>127</strong></tt>.
     <a name="upload_error_messages_imagemagick127_fix"></a><h4>Suggested fix<a href="#upload_error_messages_imagemagick127_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     If you're sure that you actually have ImageMagick available on your server, review <a href="configuration.htm#admin_picture_thumb_advanced_im_path">path to ImageMagick</a>. If the path appears to be correct, make sure that the coppermine script has permissions to read and execute the convert executable within the ImageMagick folder. If you're not sure, switch <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">Method for resizing images</a> from &quot;ImageMagick&quot; to &quot;GD2&quot;, then try uploading again.
 </div>
 
-<a name="upload_error_messages_no_gd_support"></a><a name="no_gd_support"></a><h3><tt class="code">PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed.</tt><a href="#upload_error_messages_no_gd_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="upload_error_messages_no_gd_support"></a><a name="no_gd_support"></a><h3>Error message: <em>PHP running on your server does not support the GD image library</em><a href="#upload_error_messages_no_gd_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="indent">
+    <a name="upload_error_messages_no_gd_support_detail"></a><h4>Detailed error message<a href="#upload_error_messages_no_gd_support_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed.</pre>
     <a name="upload_error_messages_no_gd_support_cause"></a><h4>Possible cause<a href="#upload_error_messages_no_gd_support_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     Your webserver doesn't come with support for the GD image library.
     <a name="upload_error_messages_no_gd_support_fix"></a><h4>Suggested fix<a href="#upload_error_messages_no_gd_support_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     Make sure that you fullfill the <a href="requirements.htm#what">minimum requirements</a> to run Coppermine. If GD is not available on your server, you could use ImageMagick. Ask your webhost if ImageMagick is available on your webserver.
 </div>
 
-<a name="upload_error_messages_no_file_uploaded"></a><a name="no_file_uploaded"></a><h3><tt class="code">No file was uploaded ! If you have really selected a file to upload, check that the server allows file uploads...</tt><a href="#upload_error_messages_no_file_uploaded" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="upload_error_messages_no_file_uploaded"></a><a name="no_file_uploaded"></a><h3>Error message: <em>No file was uploaded !</em><a href="#upload_error_messages_no_file_uploaded" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="indent">
+    <a name="upload_error_messages_no_file_uploaded_detail"></a><h4>Detailed error message<a href="#upload_error_messages_no_file_uploaded_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">No file was uploaded ! If you have really selected a file to upload, check that the server allows file uploads...</pre>
     <a name="upload_error_messages_no_file_uploaded_cause"></a><h4>Possible cause<a href="#upload_error_messages_no_file_uploaded_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     File uploads are disabled in php.ini or there is a permissions issue or there is an issue with your webserver's upload mechansim.
     <a name="upload_error_messages_no_file_uploaded_fix"></a><h4>Suggested fix<a href="#upload_error_messages_no_file_uploaded_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
@@ -407,10 +424,13 @@ Warning: move_uploaded_file(/tmp/<em>phpezCYKr</em>)
     </ul>
 </div>
 
-<a name="upload_error_messages_destination_not_writable"></a><a name="destination_not_writable"></a><h3><tt class="code">Destination directory <em>albums/userpics/XXXXX/</em> is not writable by the script</tt><a href="#upload_error_messages_destination_not_writable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="upload_error_messages_destination_not_writable"></a><a name="destination_not_writable"></a><h3>Error message: <em>Destination directory <em>X</em> is not writable by the script</em><a href="#upload_error_messages_destination_not_writable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="indent">
+    <a name="upload_error_messages_destination_not_writable_detail"></a><h4>Detailed error message<a href="#upload_error_messages_destination_not_writable_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">Destination directory <span style="color:blue;">albums/userpics/XXXXX/</span> is not writable by the script</pre>
+    <p class="smaller">The error message above of course will differ slightly from one setup to the other. The dynamic sections of the error message (that may differ) are <span style="color:blue;">highlighted in blue</span> in the example, opposed to the static (unchangeable) parts of the error message that is printed in black.</p>
     <a name="upload_error_messages_destination_not_writable_cause"></a><h4>Possible cause<a href="#upload_error_messages_destination_not_writable_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-    permissions on file system level are not correct
+    Permissions on file system level are not correct. In fact that's what the <a href="#upload_trouble_permission">rant on permissions at the top of this page</a> is about...
     <a name="upload_error_messages_destination_not_writable_fix"></a><h4>Suggested fix<a href="#upload_error_messages_destination_not_writable_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     Make sure to review your <a href="install_permissions.htm#permissions">file/folder permissions</a>. If that doesn't help, ask your webhost for support.
 </div>
@@ -482,88 +502,140 @@ Warning: move_uploaded_file(/tmp/<em>phpezCYKr</em>)
     <p>Here are some common image resolutions and their memory use in GD (assuming RGB):</p>
     <table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
         <tr>
-            <th>Width</th>
+            <th>Screen resolution name</th>
+			<th>Width</th>
             <th></th>
             <th>Height</th>
             <th>Memory usage</th>
+			<th>Aspect ratio</th>
         </tr>
         <tr>
-            <td style="text-align:right">800</td>
+            <td style="text-align:left"><abbr title="Quarter Video Graphics Array">QVGA</abbr></td>
+			<td style="text-align:right">320</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">240</td>
+            <td style="text-align:right">0.2 MB</td>
+			<td style="text-align:center">4 : 3</td>
+        </tr>
+		<tr>
+            <td style="text-align:left"><abbr title="Video Graphics Array">VGA</abbr></td>
+			<td style="text-align:right">640</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">480</td>
+            <td style="text-align:right">0.9 MB</td>
+			<td style="text-align:center">4 : 3</td>
+        </tr>
+		<tr>
+            <td style="text-align:left"><abbr title="Super Video Graphics Array">SVGA</abbr></td>
+			<td style="text-align:right">800</td>
             <td style="text-align:center">x</td>
             <td style="text-align:right">600</td>
             <td style="text-align:right">1.4 MB</td>
+			<td style="text-align:center">4 : 3</td>
         </tr>
         <tr>
-            <td style="text-align:right">1024</td>
+            <td style="text-align:left"><abbr title="Extended Graphics Array">XGA</abbr></td>
+			<td style="text-align:right">1024</td>
             <td style="text-align:center">x</td>
             <td style="text-align:right">768</td>
             <td style="text-align:right">2.3 MB</td>
+			<td style="text-align:center">4 : 3</td>
         </tr>
         <tr>
-            <td style="text-align:right">1280</td>
+            <td style="text-align:left"><abbr title="Wide Extended Graphics Array">WXGA</abbr></td>
+			<td style="text-align:right">1280</td>
             <td style="text-align:center">x</td>
             <td style="text-align:right">800</td>
             <td style="text-align:right">2.9 MB</td>
+			<td style="text-align:center">16 : 10</td>
         </tr>
         <tr>
-            <td style="text-align:right">1280</td>
+            <td style="text-align:left"><abbr title="Super Extended Graphics Array">SXGA</abbr></td>
+			<td style="text-align:right">1280</td>
             <td style="text-align:center">x</td>
             <td style="text-align:right">1024</td>
             <td style="text-align:right">3.8 MB</td>
+			<td style="text-align:center">4 : 3</td>
         </tr>
         <tr>
-            <td style="text-align:right">1400</td>
+            <td style="text-align:left"><abbr title="Super Extended Graphics Array Plus">SXGA+</abbr></td>
+			<td style="text-align:right">1400</td>
             <td style="text-align:center">x</td>
             <td style="text-align:right">1050</td>
             <td style="text-align:right">4.2 MB</td>
+			<td style="text-align:center">4 : 3</td>
         </tr>
         <tr>
-            <td style="text-align:right">1600</td>
+            <td style="text-align:left"><abbr title="Ultra Extended Graphics Array">UXGA</abbr></td>
+			<td style="text-align:right">1600</td>
             <td style="text-align:center">x</td>
             <td style="text-align:right">1200</td>
             <td style="text-align:right">5.5 MB</td>
+			<td style="text-align:center">4 : 3</td>
         </tr>
         <tr>
-            <td style="text-align:right">1920</td>
+            <td style="text-align:left"><abbr title="Wide Ultra Extended Graphics Array">WUXGA</abbr></td>
+			<td style="text-align:right">1920</td>
             <td style="text-align:center">x</td>
-            <td style="text-align:right">1400</td>
-            <td style="text-align:right">7.7 MB</td>
+            <td style="text-align:right">1200</td>
+            <td style="text-align:right">6.5 MB</td>
+			<td style="text-align:center">16 : 10</td>
         </tr>
         <tr>
-            <td style="text-align:right">2048</td>
+            <td style="text-align:left"><abbr title="Quad Extended Graphics Array">QXGA</abbr></td>
+			<td style="text-align:right">2048</td>
             <td style="text-align:center">x</td>
             <td style="text-align:right">1536</td>
             <td style="text-align:right">9.0 MB</td>
+			<td style="text-align:center">4 : 3</td>
         </tr>
         <tr>
-            <td style="text-align:right">2560</td>
+            <td style="text-align:left"><abbr title="Wide Quad Extended Graphics Array">WQXGA</abbr></td>
+			<td style="text-align:right">2560</td>
             <td style="text-align:center">x</td>
             <td style="text-align:right">1600</td>
             <td style="text-align:right">11.7 MB</td>
+			<td style="text-align:center">16 : 10</td>
         </tr>
         <tr>
-            <td style="text-align:right">2800</td>
-            <td style="text-align:center">x</td>
-            <td style="text-align:right">2100</td>
-            <td style="text-align:right">16.8 MB</td>
-        </tr>
-        <tr>
-            <td style="text-align:right">3200</td>
+            <td style="text-align:left"><abbr title="Quad Ultra Extended Graphics Array">QUXGA</abbr></td>
+			<td style="text-align:right">3200</td>
             <td style="text-align:center">x</td>
             <td style="text-align:right">2400</td>
             <td style="text-align:right">22.0 MB</td>
+			<td style="text-align:center">4 : 3</td>
         </tr>
         <tr>
-            <td style="text-align:right">4096</td>
+            <td style="text-align:left"><abbr title="Quad Extended Graphics Array">QXGA</abbr></td>
+			<td style="text-align:right">4096</td>
             <td style="text-align:center">x</td>
             <td style="text-align:right">3072</td>
             <td style="text-align:right">36.0 MB</td>
+			<td style="text-align:center">4 : 3</td>
         </tr>
         <tr>
-            <td style="text-align:right">6400</td>
+            <td style="text-align:left"><abbr title="Hexadecatuple Ultra Extended Graphics Array">HUXGA</abbr></td>
+			<td style="text-align:right">6400</td>
             <td style="text-align:center">x</td>
             <td style="text-align:right">4800</td>
             <td style="text-align:right">87.9 MB</td>
+			<td style="text-align:center">4 : 3</td>
+        </tr>
+		<tr>
+            <td style="text-align:left"><abbr title="Ultra High Definition Television">UHDTV</abbr></td>
+			<td style="text-align:right">7680</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">4320</td>
+            <td style="text-align:right">94.9 MB</td>
+			<td style="text-align:center">16 : 9</td>
+        </tr>
+		<tr>
+            <td style="text-align:left"><abbr title="Wide Hexadecatuple Ultra Extended Graphics Array">WHUXGA</abbr></td>
+			<td style="text-align:right">7680</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">4800</td>
+            <td style="text-align:right">105.5 MB</td>
+			<td style="text-align:center">16 : 10</td>
         </tr>
     </table>
     <p>Remember when using the above figures that the amount of memory being used by the rest of Coppermine must be taken into account, too.</p>
