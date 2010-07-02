@@ -608,6 +608,21 @@ dt {
     background-color: #E0E0E0;
     background-image: url('../images/message/code.png');
 }
+.cpg_summary {
+    font-size:0.9em;
+	border: 1px solid;
+    margin: 10px 0px;
+    /*padding:5px 10px 5px 50px;*/
+	padding:5px 10px 5px 10px;
+    /*background-repeat: no-repeat;*/
+    /*background-position: 10px center;*/
+    color: #FF2B9C;
+    background-color: #FFDEEF;
+    /*background-image: url('../images/message/switch.png');*/
+	text-align:right;
+	float:right;
+	width:400px;
+}
 .cpg_message_info h1 {
 	color:#00529B;
 }

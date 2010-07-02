@@ -4442,6 +4442,12 @@
     <hash>29c8d4f3b0f3d95408760c26cd468ffa</hash>
   </element>
   <element>
+    <fullpath>docs/images/message/switch.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>29c8d4f3b0f3d95408760c26cd468ffa</hash>
+  </element>
+  <element>
     <fullpath>docs/images/message/warning.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>

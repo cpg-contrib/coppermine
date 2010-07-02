@@ -164,8 +164,8 @@ $config_data = array(
     ),
     'form_token_lifetime' => array(
       'type'            => 'textfield',
-      'min'             => '0',
-      'max'             => '999999',
+      'min'             => '30',
+      'max'             => '604800',
       'step'            => '10',
       'default_value'   => '900',
       'help_link'       => 'f=configuration.htm&amp;as=admin_general_form_token_lifetime&amp;ae=admin_general_form_token_lifetime_end',
@@ -553,7 +553,7 @@ $config_data = array(
     'slideshow_interval' => array(
       'type'            => 'textfield',
       'min'             => '0',
-      'max'             => '999999',
+      'max'             => '900000',
       'step'            => '10',
       'default_value'   => '5000',
       'help_link'       => 'f=configuration.htm&amp;as=admin_image_comment_slideshow_interval&amp;ae=admin_image_comment_slideshow_interval_end',
