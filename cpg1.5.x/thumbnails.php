@@ -181,6 +181,9 @@ if (isset($CURRENT_ALBUM_DATA)) {
     $section = $CURRENT_ALBUM_DATA['title'];
 } elseif (isset($album) && array_key_exists($album, $lang_meta_album_names)) {
     $section = $lang_meta_album_names[$album];
+    if ($album == 'search' && isset($USER['search']['search'])) {
+        $section .= ' - "' . strip_tags($USER['search']['search']) . '"';
+    }
 } else {
     $section = '';
 }
