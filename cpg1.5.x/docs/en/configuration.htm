@@ -30,9 +30,6 @@
 <a href="toc.htm">Table of Contents</a>
 </div>
 
-<p class="cpg_summary">This page is currently a work in progress - I'm currently adding a block to each config option on this page that is meant to contain details about defaults, boundaries, name etc. Since this can't be accomplished in one single session I have commited it half-finished. Please ignore the pink boxes for now. Joachim Müller</p>
-<br clear="all" style="clear:both;" />
-
 <a name="admin"></a><h1>The gallery configuration page<a href="#admin" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>This is where you will configure the most important parts of your coppermine gallery. Some settings have an impact on the files you upload - changing those options after you have alreaded added a large number of files in your gallery can be a difficult undertaking. For this reason, it is important that you spend time with your coppermine setup at the early stages of gallery development to get those settings exactly the way you want them, before actually uploading too many pics or listing the gallery to the general public.</p>
 <p>Most config option fields have a checkbox at the very right that allows you to reset that option to the default (or rather: recommended) option. This checkbox will only be displayed if your setting differs from the default or if there is no particular default setting (there can for example not be a default admin email address, as this entirely depends on your server setup) and if you have enabled the config option &quot;<a href="#admin_misc_reset_boxes">Display reset boxes in config</a>&quot;.</p>
@@ -999,8 +996,8 @@
 	<div class="cpg_summary">
 		Default value: <input type="text" size="5" maxlength="5" class="textinput" value="512" /><br />
 		Recommended value: <input type="text" size="5" maxlength="5" class="textinput" value="512" /><br />
-		Minimum: <input type="text" size="5" maxlength="5" class="textinput" value="1" />
-		Maximum: <input type="text" size="5" maxlength="5" class="textinput" value="99999" />
+		Minimum: <input type="text" size="5" maxlength="5" class="textinput" value="1" /><br />
+		Maximum: <input type="text" size="5" maxlength="5" class="textinput" value="99999" /><br />
 		Database record name: <tt class="code">max_com_size</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Comment settings &rarr; Maximum length of a comment
 	</div>
@@ -1012,8 +1009,8 @@
 	<div class="cpg_summary">
 		Default value: <input type="text" size="3" maxlength="3" class="textinput" value="38" /><br />
 		Recommended value: <input type="text" size="3" maxlength="3" class="textinput" value="38" /><br />
-		Minimum: <input type="text" size="3" maxlength="3" class="textinput" value="0" />
-		Maximum: <input type="text" size="3" maxlength="3" class="textinput" value="999" />
+		Minimum: <input type="text" size="3" maxlength="3" class="textinput" value="0" /><br />
+		Maximum: <input type="text" size="3" maxlength="3" class="textinput" value="999" /><br />
 		Database record name: <tt class="code">max_com_wlength</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Comment settings &rarr; Max number of characters in a word
 	</div>
@@ -1073,9 +1070,9 @@
     <br clear="all" style="clear:both;" />
     <a name="admin_comment_approval"></a><h3>Comments require approval<a href="#admin_comment_approval" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	<div class="cpg_summary">
-		<!-- Default value: <br /> -->
-		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Default value: <input type="radio" class="radio" checked="checked" id="comment_approval" /><label for="comment_approval" class="clickable_option">No</label><br />
+		Recommended value: <input type="radio" class="radio" checked="checked" id="comment_approval_r" /><label for="comment_approval_r" class="clickable_option">Yes: Everyone</label><br />
+		Database record name: <tt class="code">comment_approval</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Comment settings &rarr; Comments require approval
 	</div>
     <p>By default, comments don't require approval and are visible instantly. To fight the problem of comment spamming, you can require admin approval of comments posted by users. Comments will then not be visible instantly, but only after admin approval on the review comments screen. If you don't allow comments at all, this setting won't apply, so you can leave it as-is.</p>
@@ -1090,15 +1087,13 @@
     <li>Comment approval does <em>not</em> determine wether a visitor can post comments or not - it only determines instant visibility vs. need of admin approval</li>
     <li>When turning this option from on to off, this will only have an impact on the comments made from that point on. Older comments that haven't been approved by the admin yet still aren't being displayed.</li>
     </ul>
-
-    
     <a name="admin_comment_approval_end"></a>
     <br clear="all" style="clear:both;" />
     <a name="admin_comment_display_comment_approval_only_start"></a><h3>Only display comments needing approval on the &quot;Review Comments&quot; page<a href="#admin_comment_display_comment_approval_only_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	<div class="cpg_summary">
-		<!-- Default value: <br /> -->
-		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		<input type="checkbox" disabled="disabled" class="checkbox" /><br />
+		Recommended value: <input type="checkbox" disabled="disabled" class="checkbox" checked="checked" /><br />
+		Database record name: <tt class="code">display_comment_approval_only</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Comment settings &rarr; Only display comments needing approval on the &quot;Review Comments&quot; page
 	</div>
     <p>With this toggle you can determine if the admin will see only the comments that actually need approval on the &quot;Review Comments&quot; page. You can toggle this option in config or on the actual &quot;Review Comments&quot; page - it won't hurt to toggle this setting frequently when reviewing comments.</p>
@@ -1111,7 +1106,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">comment_placeholder</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Comment settings &rarr; Display placeholder text to end users for comments waiting for admin approval
 	</div>
     <p>When enabled, the non-admin end user will see a placeholder text saying <tt class="code">Someone has posted a comment here. It will be visible after admin approval.</tt> instead of the comment. When disabled, the comment that needs approval will be completely invisible for the end user.</p>
@@ -1125,7 +1120,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">comment_user_edit</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Comment settings &rarr; Allow users to edit their comments
 	</div>
     <p>When enabled, users are allowed to edit or delete their comments after submitting them.</p>
@@ -1139,7 +1134,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">comment_captcha</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Comment settings &rarr; Display Captcha (Visual Confirmation) for adding comments
 	</div>
     <p>To prevent spam comments being posted by bots (automated scripts), this toggle will display an image next to the comment field with some random letters on it. The visitor is required to enter those letters into a textfield to prove that he's actually a human and not just some dumb bot that drops spam. It's recommended to enable Captchas for anonymous comments (guests who are not logged in).</p>
@@ -1153,7 +1148,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">comment_akismet_api_key</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Comment settings &rarr; Akismet API key
 	</div>
     <p>Another method to fight comment spam is the option to filter all comments posted using Akismet. To use this feature, you need a valid Akismet API key. To get such a key, you need to sign up (for free) for small/non-profit pages on the <a href="http://wordpress.com/api-keys/" rel="external" class="external">Wordpress page</a> to obtain an API key. If you plan to use Akismet on a commercial page, you need to purchase a professional API key on <a href="http://akismet.com/commercial/" rel="external" class="external">akismet.com/commercial/</a><br />
@@ -1171,7 +1166,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">comment_akismet_enable</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Comment settings &rarr; Akismet Options
 	</div>
     <p>These options will only be taken into account if you have entered a valid <a href="#admin_comment_akismet_api_key">Akismet API key</a> into the corresponding config field. It determines what should be done if Akismet rejects a comment as spam? Here's what the options do:</p>
@@ -1194,7 +1189,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">comment_akismet_group</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Comment settings &rarr; Apply Akismet for comments made by
 	</div>
     <p>You can specify if only the comments posted by anonymous visitors (guests) should be checked by Akismet or if all comments that get posted will be pumped through the Akismet filtering.</p>
@@ -1210,7 +1205,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">comment_promote_registration</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Comment settings &rarr; Ask guests to log in to post comments
 	</div>
     <p>When enabled, an explanation will appear at the bottom of the comment section for anonymous users (guests) that explains that they need to log in if they want to post comments. This is meant to promote registration, to explain to your site's visitors that they could interact even more if they registered.<br />
@@ -1228,7 +1223,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">contact_form_guest_enable</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Contact form settings &rarr; Display contact form to anonymous visitors (guests)
 	</div>
     <p>Toggles wether the link to the contact form will be displayed in the menu and wether guests (visitors of your gallery who are not logged in) can use the contact form.</p>
@@ -1255,7 +1250,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">contact_form_guest_name_field</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Contact form settings &rarr; Display sender-name field for guests
 	</div>
     <p>When enabled, the visitor (guest) using the contact form will be allowed to enter his name.</p>
@@ -1281,7 +1276,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">contact_form_guest_email_field</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Contact form settings &rarr; Display sender-email field for guests
 	</div>
     <p>When enabled, the visitor (guest) using the contact form will be allowed to enter his email address.</p>
@@ -1307,7 +1302,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">contact_form_registered_enable</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Contact form settings &rarr; Display contact form to registered users
 	</div>
     <p>Toggles wether the link to the contact form will be displayed in the menu for registered users and wether your users (visitors of your gallery who <strong>are</strong> logged in) can use the contact form.</p>
@@ -1333,7 +1328,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">contact_form_subject_content</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Contact form settings &rarr; Subject line for emails generated by contact form
 	</div>
     <p>Subject line for the emails generated by the contact form. Will be put in front of the custom subject line the user can enter (if &quot;<a href="#admin_contact_subject_field">Display subject field</a>&quot; is enabled).</p>
@@ -1345,7 +1340,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">contact_form_subject_field</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Contact form settings &rarr; Display subject field
 	</div>
     <p>When enabled, the visitor (guest or registered user) using the contact form will be allowed to enter a subject line.</p>
@@ -1372,7 +1367,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">contact_form_sender_email</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Contact form settings &rarr; Use the sender's email address as &quot;from&quot;-address
 	</div>
     <p>When enabled, the sender's email address will be used to send the email (if applicable, i.e. if a valid email exists). This is helpful in terms of comfort, as you can use your email app's reply functionality. The drawback may be issues with the emails not being delivered properly, as you can't be sure that the user has entered his actual email address. Additionally, your webserver's mail server may be configured to only allow certain email addresses in the from field. Anti-spam mechanisms may be in place that validate the domain part of the from-field and only accept emails when the domains of the mail server and the from field match. Subsequently, use this option with care and test it througly before making using it &quot;live&quot;.</p>
@@ -1390,7 +1385,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">thumb_use</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Thumbnails settings &rarr; Use dimension
 	</div>
 	<p>Sets the dimension (<em>width</em> or <em>height</em> or <em>max aspect</em> or <em>exact</em>) on which the maximum pixel size limitation should apply to for the thumbnail.</p>
@@ -1444,7 +1439,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">thumb_width</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Thumbnails settings &rarr; Max dimension of a thumbnail
 	</div>
     <p>Sets the maximum allowable size in pixels for the specified dimension of your thumbnails - it depends on what you have set up in &quot;Use dimension&quot; wether the setting from &quot;Max dimension of a thumbnail&quot; will apply to the width or height or the longer side (max aspect).</p>
@@ -1458,7 +1453,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">thumb_height</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Thumbnails settings &rarr; Height of a thumbnail
 	</div>
     <p><strong>Only</strong> applies if you use "exact" in &quot;<a href="#admin_picture_thumbnail_use-dimension">Use dimension</a>&quot;. This setting is <strong>not</strong> being taken into account when &quot;<a href="configuration.htm#admin_picture_thumbnail_use-dimension">Use dimension</a>&quot; has been set to &quot;<em>height</em>&quot;.</p>
@@ -1472,7 +1467,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">thumb_pfx</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Thumbnails settings &rarr; The prefix for thumbnails
 	</div>
     <p>This prefix is added to the file name of created thumbnails.</p>
@@ -1487,7 +1482,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">enable_unsharp</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Thumbnails settings &rarr; Thumb Sharpening: enable Unsharp Mask
 	</div>
     <p>Unsharp masking is an image manipulation technique of increasing the acutance, or apparent sharpness, of photographic images. The "unsharp" of the name derives from the fact that the technique uses a blurred, or "unsharp", positive to create a "mask" of the original image. The unsharped mask is then combined with the negative, creating the illusion that the resulting image is sharper than the original.</p>
@@ -1500,7 +1495,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">unsharp_amount</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Thumbnails settings &rarr; Thumb Sharpening amount
 	</div>
     <p>The amount of sharpening that is applied, listed as a percentage, controling the magnitude of each overshoot (how much darker and how much lighter the edge borders become). This can also be thought of as how much contrast is added at the edges. It does not affect the width of the edge rims.</p>
@@ -1514,7 +1509,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">unsharp_radius</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Thumbnails settings &rarr; Thumb Sharpening radius
 	</div>
     <p>This affects the size of the edges to be enhanced or how wide the edge rims become, so a smaller radius enhances smaller-scale detail. Higher Radius values can cause halos at the edges, a detectable faint light rim around objects. Fine detail needs a smaller Radius. Radius and Amount interact; reducing one allows more of the other.</p>
@@ -1528,7 +1523,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">unsharp_threshold</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Thumbnails settings &rarr; Thumb Sharpening threshold
 	</div>
     <p>Controls the minimum brightness change that will be sharpened or how far apart adjacent tonal values have to be before the filter does anything. This lack of action is important to prevent smooth areas from becoming speckled. The threshold setting can be used to sharpen more pronounced edges, while leaving more subtle edges untouched. Low values should sharpen more because fewer areas are excluded. Higher threshold values exclude areas of lower contrast.</p>
@@ -1547,7 +1542,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">jpeg_qual</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Quality for JPEG files
 	</div>
     <p>The quality used for JPEG compression when the script resizes an image. Values can range from 0 (worst) to 100 (best). By default this value is set to 80. This value can be set to 75 when using ImageMagick.<br />Do not change this setting unless you really know what you're doing. Other settings for thumbnail and intermediate pic (dimensions) may have a significant and undesireable impact on filesizes and image quality.</p>
@@ -1558,7 +1553,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">make_intermediate</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Create intermediate pictures
 	</div>
     <p>By default, whenever you upload a file, the script creates both a thumbnail of the file (file name using "thumb_" as its prefix) and an intermediate version of the file(file name using "normal_" as its prefix). If you set this option to NO, the intermediate file will not be created. This will keep Coppermine from creating intermediate-sized pics during the upload process, displaying the full-sized picture even on the intermediate-display page (resizing the full-sized image on that screen using the width and height attributes of the &lt;img&gt;-tag) to the size that you have specified for &quot;<a href="#admin_picture_thumbnail_intermediate_dimension">Max width or height of an intermediate picture</a>&quot;. Setting this option to &quot;no&quot; will save webspace but may result in increased loading times for the intermediate image display screen.</p>
@@ -1570,7 +1565,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">picture_use</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Thumbnails settings &rarr; Use dimension
 	</div>
     <p>Sets the dimension (<em>width</em> or <em>height</em> or <em>max aspect</em> or <em>like thumbnail</em>) on which the maximum pixel size limitation should apply to for the intermediate picture.</p>
@@ -1585,7 +1580,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">picture_width</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Configuration &rarr; Picture and thumbnail settings &rarr; Max width or height of an intermediate picture
 	</div>
     <p>The intermediate pictures are those that appears when you click on a thumbnail. The default value is 400, it means that the intermediate picture will be created to fit inside a square of 400x400 pixels. NOTE: Currently, 33% of your users have monitors set at 800 pixels wide, another 33% have their settings at 1024 pixels, the rest have settings less than or greater than these two numbers. Therefore a setting of 600 or less would fit the screens of most users.  Keep in mind,however, that setting this size larger than 400 impacts the file size of your intermediate pictures and the time it takes to download and display on slower connections.</p>
@@ -1597,7 +1592,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">max_upl_size</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Configuration &rarr; Picture and thumbnail settings &rarr; Max size for uploaded files
 	</div>
     <p>Any file with a file size larger than this value will be rejected by the coppermine script. Setting this option to a higher value than what is actually supported by your webserver will only result in "funny" webserver error messages in lieu of "regular" coppermine error messages. Therefore, it is recommended that you set this value to a size that is slightly lower or equal to the max file size that your server is set to handle. The actual size your server can handle cannot be determined by Coppermine (or any PHP script) - when in doubt, contact your webhost.</p> <p>Prior to an FTP upload of files, it is recommended that the admin use their imaging software to resize (individually or by batch processing) larger files to a more practical size. This will facilitate the FTP process and the creation of intermediate pictures and thumbnails.</p>
@@ -1608,7 +1603,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">max_upl_width_height</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Max width or height for uploaded pictures
 	</div>
     <p>Limits the height and width dimensions of the pictures that are uploaded. Resizing large pictures requires a lot of memory and consumes CPU resources. As a result, there are usually limitations that have been set by your webserver (host) regarding the maximum uploadable file sizes - you cannot set this value to one that is higher than what is actually supported by your webserver. Contact your webhost/server if you are not sure about your site's file size limitations. (Ideally, users will resize their pictures to a more manageable size prior to attempting any uploads). Determine what you would like the maximum size for a full size pic should be (dpi and dimensions, while keeping in mind the screen size of your users) and use that as a recommended standard for FTP and user HTTP uploads. Inform your users of this recommended size constraints.)</p>
@@ -1619,7 +1614,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">auto_resize</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Auto resize images that are larger than max width or height
 	</div>
     <p>During the upload process, if images are larger than the maximum width or height allowed they will automatically be resized to the maximum allowable size. Users with especially large files should be advised to resize their pictures outside of coppermine before uploading as this process also consumes considerable resources when processed online.</p>
@@ -1635,7 +1630,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">fullsize_padding_x</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Horizontal padding for full-size pop-up
 	</div>
     <p>This setting is used to determine the width of a full-size pop-up, as most major browsers mysteriously add some padding to pics opened in a pop-up. It's recommended to leave this set to the default 5 pixels unless you know what you're doing.</p>
@@ -1647,7 +1642,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">fullsize_padding_y</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Vertical padding for full-size pop-up
 	</div>
     <p>This setting is used to determine the height of a full-size pop-up, as most major browsers mysteriously add some padding to pics opened in a pop-up. It's recommended to leave this set to the default 3 pixels unless you know what you're doing.</p>
@@ -1662,7 +1657,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">allow_private_albums</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Albums can be private
 	</div>
     <p>If set to YES then your gallery can contain albums that are visible only to users that belong to a specified group. This is ideal for creating albums that contain files that you want accessible to only a select group of people.  You could also create a userID and password and inform specific users/customers of the ID and password needed to view these files. </p>
@@ -1676,7 +1671,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">show_private</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Show private album Icon to unlogged user
 	</div>
 	<p>Toggles the display of the private album icons to unlogged users.<br />Set to 'NO', the album is completely hidden from unauthorised users.<br />Set to 'YES', the album name, description and statistics are shown, but not the thumbnails or files contained within.</p>
@@ -1688,7 +1683,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">forbiden_fname_char</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Characters forbidden in filenames
 	</div>
     <p>When the filename of a file that is uploaded contains any one or more of these characters, the characters will be replaced with an underscore.</p>
@@ -1700,7 +1695,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">silly_safe_mode</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Enable "silly safe mode"
 	</div>
     <p>A significant number of webhosts on the Internet run PHP in <a href="http://www.php.net/phpinfo" rel="external" class="phpnet">safe mode</a>. Coppermine runs without any problem in safe mode and with the "open basedir restriction" active, provided safe mode is properly configured. Unfortunately, on many hosts, safe mode is not configured properly.<br />
@@ -1715,7 +1710,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">allowed_img_types</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Allowed image types
 	</div>
     <p>Enter the allowed image file types that your image library (GD or ImageMagick) is capable of handling to be allowed as uploads and content in your gallery. Restrict the allowed file types to certain types only by entering a slash-separated list of extensions, e.g. <tt class="code">jpg/bmp/tif</tt> (only possible if you use ImageMagick) or <tt class="code">jpg/png</tt> (possible both for Image Magick as well as GD).</p>
@@ -1734,7 +1729,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">allowed_mov_types</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Allowed movie types
 	</div>
     <p>Specify the allowed movie file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wmv/avi/mov</tt>.</p>
@@ -1749,7 +1744,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">media_autostart</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Movie Playback Autostart
 	</div>
     <p>If set to YES, movies will instantly start playing when loaded (has no affect on flash files, however).  Nothing will happen if the user does not have the necessary codecs installed on their computer. This option is browser-dependant, so there is no guarantee that it will work on all platforms.</p>
@@ -1760,7 +1755,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">allowed_snd_types</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Allowed audio types
 	</div>
     <p>Specify the allowable audio file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wav/mp3/wma</tt>.</p>
@@ -1776,7 +1771,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">allowed_doc_types</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Allowed document types
 	</div>
     <p>Specify the allowable document file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">txt/pdf</tt>.</p>
@@ -1799,7 +1794,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">thumb_method</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Method for resizing images
 	</div>
     <p><img src="../images/gd.png" border="0" alt="" width="148" height="93" title="GD" align="right" style="padding-left:20px" />Set this to the type of image library you have on your server (must be either GD1, GD2 or ImageMagick). GD2 is the recommended setting.</p>
@@ -1812,7 +1807,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">impath</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Path to ImageMagick's &quot;convert&quot; executable
 	</div>
     <p><img src="../images/imagemagick.png" border="0" alt="" width="130" height="54" title="ImageMagick" align="right" style="padding-left:20px" />If you intend using ImageMagick's convert executable to resize your pictures, you must enter the <em>absolute path</em> to the name of the <strong>directory</strong> where the convert program is located in this line. Don't forget the trailing &quot;<tt class="code">/</tt>&quot; to close the path. This path must only indicate the <strong>directory</strong> where the convert executable is located, it should not point directly to the convert executable itself.</p>
@@ -1835,7 +1830,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">im_options</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Command line options for ImageMagick
 	</div>
     <p>Here you can add options that will be appended to the command line when executing ImageMagick. Read the ImageMagick Convert manual to see what is available.</p>
@@ -1846,7 +1841,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">read_exif_data</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Read EXIF data in JPEG files
 	</div>
     <p>With this option turned on, the script will read the EXIF data stored by digicams in JPEG files. For cpg1.x to cpg1.2.1, this option will work only if PHP was compiled with the EXIF extension. Coppermine 1.3.0 (or better) comes with built-in EXIF support even if the webserver itself doesn't have EXIF support, as it uses a <a href="http://www.offsky.com/software/exif/index.php" class="external">separate EXIF class</a>.</p>
@@ -1859,7 +1854,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">read_iptc_data</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Read IPTC data in JPEG files
 	</div>
     <p>With this option turned on, the script will read the <a href="http://www.iptc.org/" class="external" rel="external">IPTC</a> data stored by digicams in picture files.</p>
@@ -1872,7 +1867,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">fullpath</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; The album directory
 	</div>
     <p>This is the base directory for your "Image Store". The path is relative to the main directory of the script. </p>
@@ -1888,7 +1883,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">userpics</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Configuration &rarr; Picture and thumbnail settings &rarr; The directory for user files
 	</div>
     <p>This is the directory where files uploaded using the web interface (URL/URI) are stored. This directory is a subdirectory of the album directory. It's recommended that you leave this setting as is. Should you decide to change it, keep in mind that the folder must exist within the albums folder and the path should be relative to it.</p>
@@ -1903,7 +1898,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">normal_pfx</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; The prefix for intermediate pictures
 	</div>
     <p>This prefix is added to the file name of created pictures.</p>
@@ -1917,7 +1912,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">default_dir_mode</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Default mode for directories
 	</div>
     <p>If, and only if, during the file upload or batch add process, the installer complains about the directory not having the right permissions, try setting this to <strong>0777</strong> . Failure to do so may prevent you from being able to delete directories created by the script with your FTP client should you ever decide it necessary to uninstall the coppermine script.</p>
@@ -1929,7 +1924,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">default_file_mode</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Picture and thumbnail settings &rarr; Default mode for files
 	</div>
     <p>If, and only if, during the file upload or batch add process, the installer complains about the directory not having the right permissions, try setting this to <strong>0666</strong>.</p>
@@ -1949,7 +1944,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">enable_watermark</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Image watermarking &rarr; Watermark Image
 	</div>
     <p>General toggle that determines if watermarking should be enabled or disabled. By default, it is disabled.</p>
@@ -1966,7 +1961,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">enable_thumb_watermark</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Configuration &rarr; Image watermarking &rarr; Watermark custom thumbs
 	</div>
     <p>When enabled, custom thumbnails will be watermarked as well.</p>
@@ -1979,7 +1974,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">where_put_watermark</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Image watermarking &rarr; Where to place the watermark
 	</div>
     <p>Determines <strong>where</strong> the watermark is supposed to be displayed on each picture. Possible options are:</p>
@@ -1998,7 +1993,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">which_files_to_watermark</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Image watermarking &rarr; Which files to watermark
 	</div>
     <p>Determines which files the watermarking should be applied to. Possible options are:</p>
@@ -2016,7 +2011,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">watermark_file</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Image watermarking &rarr; Which file to use for watermark
 	</div>
     <p><img src="../../images/watermark.png" border="0" width="300" height="51" alt="" align="left" style="margin-right:20px;" />Specify the relative path to the watermark file, seen from the root folder of your coppermine-gallery. Default value: <tt class="code">images/watermark.png</tt>. You can (and are even encouraged) to come up with a watermarking file of your own - only a standard desktop drawing application is needed, e.g. MS Paint.</p>
@@ -2030,7 +2025,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">watermark_transparency</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Image watermarking &rarr; Transparency 0-100 for entire image
 	</div>
     <p>Determines the transparency level for the watermark. By setting transparency you can make your image blend nicely into the pictures you upload that get watermarked.</p>
@@ -2043,7 +2038,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">reduce_watermark</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Image watermarking &rarr; Downsize watermark if width of an picture is smaller than entered value
 	</div>
     <p>That is the 100% reference point. Resizing of the watermark is linear (0 to disable).</p>
@@ -2057,7 +2052,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">watermark_transparency_featherx</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Image watermarking &rarr; Set color transparent x
 	</div>
     <p>This option is only available if you have set the <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">method for resizing images</a> to GD2. If you have set it to GD1 or ImageMagick, this setting will not be taken into account at all. Specify the horizontal coordinate of the pixel that should represent the transparent color, seen from the left of the watermarking image.</p>
@@ -2070,7 +2065,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">watermark_transparency_feathery</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Image watermarking &rarr; Set color transparent y
 	</div>
     <p>This option is only available if you have set the <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">method for resizing images</a> to GD2. If you have set it to GD1 or ImageMagick, this setting will not be taken into account at all. Specify the vertical coordinate of the pixel that should represent the transparent color, seen from the top of the watermarking image.</p>
@@ -2089,7 +2084,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">allow_user_registration</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Registration &rarr; Allow new user registrations
 	</div>
     <p>Defines whether new users can self-register or not. If you set this to NO, only the admin can create new users and the &quot;register&quot; link won't be displayed in the navigation.</p>
@@ -2100,7 +2095,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">global_registration_pw</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Registration &rarr; Set global password for registration
 	</div>
     <p>This password should be known by users who want to register. They will be asked for this password on the registration form. User will be able to set his own password while registring. User's password should be different from the global password. To disable global password, leave the field blank.</p>
@@ -2112,7 +2107,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">user_registration_disclaimer</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Registration &rarr; Display disclaimer on user registration
 	</div>
     <p>Toggles wether users will see the disclaimer on the registration page. You have the option not to display the disclaimer at all, display it as separate page before the actual registration page or inline on the registration page.<br />
@@ -2125,7 +2120,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">registration_captcha</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Registration &rarr; Display Captcha (Visual Confirmation) on registration page
 	</div>
     <p>To prevent automated registration by bots (automated scripts), this toggle will display an image on the registration page with some random letters on it. The visitor who is trying to register is required to enter those letters into a textfield to prove that he's actually a human and not just some dumb bot.</p>
@@ -2139,7 +2134,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">reg_requires_valid_email</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Registration &rarr; User registration requires email verification
 	</div>
     <p>If set to YES an email will be sent to the user that will contain a code to activate his account. If set to NO, user accounts become immediately active.</p>
@@ -2150,7 +2145,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">reg_notify_admin_email</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Registration &rarr; Notify admin of user registration by email
 	</div>
     <p>If set to YES an email will be sent to the gallery admin when a new user registers.</p>
@@ -2162,7 +2157,7 @@
 	<div class="cpg_summary">
 		Default value: 0<br />
 		<!-- Recommended value: <br /> -->
-		Database record name: admin_activation<br />
+		Database record name: <tt class="code">admin_activation</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Registration &rarr; Admin Activation
 	</div>
     <p>Enable admin activation. When set to yes, a gallery administrator must first activate the new registration before the user can log-in and take advantage of any registered user privileges.</p>
@@ -2175,7 +2170,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">personal_album_on_registration</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Registration &rarr; Create user album in personal gallery on registration
 	</div>
     <p>When enabled, each user will have a personal album created during the registration process, even if your permissions for the group new users are in do not allow this (i.e. if you have <a href="#group_cp">allowed personal galleries</a> for members of the registered group disabled). Warning: usually, only a small percentage of registered users actually upload files - when this option is enabled, a lot of unneeded user galleries will be created, severely cluttering the database (which has an impact on performance). Don't enable this option if you don't know what it actually does!</p>
@@ -2193,7 +2188,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">allow_unlogged_access</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Allow unlogged users (guest or anonymous) access
 	</div>
     <p>When set to &quot;No&quot;, unlogged users (i.e. guests or anonymous users) can not access anything in your gallery except the login screen (and the registration screen, if you allow registrations). Completely disabling anonymous access will probably decrease your site's popularity. Use this option only if you need your gallery to be absolutely private. The recommended setting is to leave anonymous access enabled and use the more specific permissions by groups and albums settings instead.</p>
@@ -2217,7 +2212,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">upload_mechanism</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Default upload mechanism
 	</div>
     <p>Select which type of form users will use to upload files:</p>
@@ -2239,7 +2234,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">allow_user_upload_choice</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Default upload mechanism
 	</div>
     <p>When enabled, users can choose the upload method themselves.  This is recommended so that if some users have an issue with their web browsers or operating systems, they can choose another upload method that works better.  At the very least, they can use the simple, one file at-a-time, upload method.</p>
@@ -2251,7 +2246,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">allow_duplicate_emails_addr</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Allow two users to have the same email address
 	</div>
     <p>Allow or prevent two users from registering with the same email
@@ -2263,7 +2258,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">upl_notify_admin_email</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Notify admin of user upload awaiting approval
 	</div>
     <p>When enabled, the gallery admin receives an email notification of all pics that await for his/her approval (depends on the approval settings in &quot;<a href="groups.htm#group_cp">groups</a>&quot;). The email is sent to the address specified in &quot;<a href="#admin_general">General settings</a>&quot;.</p><p>This option is only recommended for websites with low or medium traffic (where users only upload every now and then).</p>
@@ -2275,7 +2270,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">allow_memberlist</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Allow logged in users to view memberlist
 	</div>
     <p>When enabled, an additional menu item &quot;Memberlist&quot; is displayed in the coppermine main menu if a user is logged in, to let him see a list of all users, with stats on their last visits, uploads and quota usage.</p>
@@ -2288,7 +2283,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">allow_email_change</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Allow users to change their email address in profile
 	</div>
     <p>This option impacts the user's profile page, it determines whether or not the user can change his/her own email address.<br />Use this option wisely, as the old email address of a user is not preserved after a change: if you allow users to change their email address, abusers may change it to a non-existing email address (e.g. after uploading some pics that go against your gallery's rules) - you would have no chance of tracking this user.</p>
@@ -2300,7 +2295,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">allow_user_account_delete</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Allow users to delete their own user account
 	</div>
     <p>When enabled, users can delete their user accounts. This option has been added in cpg1.5.x because of legal requirements in some countries.</p>
@@ -2312,7 +2307,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">users_can_edit_pics</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Allow users to retain control over their pics in public galleries
 	</div>
     <p>When enabled, both the admin and the uploading user can edit and delete files that were uploaded to a public gallery. Of course the user must have permissions to upload to the public gallery in the first place (see the <a href="groups.htm#group_cp">groups control panel</a>) before this option will have any effect.</p>
@@ -2323,7 +2318,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">allow_user_move_album</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Allow users to move their albums from/to allowed categories
 	</div>
     <p>When enabled, users will be able to move their albums around from/to categories that the admin has allowed.</p>
@@ -2335,7 +2330,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">allow_user_edit_after_cat_close</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Allow users to edit their albums when it is in a locked category
 	</div>
     <p>When enabled, users will be able to edit their albums even if the admin has locked down the category the album resides in.</p>
@@ -2346,7 +2341,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">allow_user_album_keyword</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Allow users to assign album keywords
 	</div>
     <p>When enabled, users will be allowed to assign an <a href="keywords.htm#keywords_album">album keyword</a> to albums they have control over. This setting doesn't have an impact on the admin - the admin can assign and edit album keywords no matter what. If you allow users to assign album keywords, files from other albums that contain the album keyword set as individual file keyword will show up in their album as linked file.</p>
@@ -2360,7 +2355,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">login_method</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; How do you want your users to be able to login
 	</div>
     <p>You can have your users login with their username, email address or let them choose themselves. <br />Select the option you want in the dropdown.</p>
@@ -2372,7 +2367,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">login_threshold</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Number of failed login attempts until temporary ban
 	</div>
     <p>To make brute force attacks (where a hostile script tries to log into coppermine as admin by running through all possible combinations of username and password automatically) less effective Coppermine temporarily bans the IP address of a possible attacker after a certain amount of failed logins. This way, the brute force attack would need way to long to try all possible combinations.</p>
@@ -2387,7 +2382,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">login_expiry</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Duration of a temporary ban after failed logins
 	</div>
     <p>This value specifies the duration of the temporary ban (in minutes) after the number of failed log-in attempts specified with <a href="#admin_user_login_threshold_start">Number of failed login attempts until temporary ban</a>.</p>
@@ -2403,7 +2398,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">purge_expired_bans</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Automatically purge expired bans
 	</div>
     <p>When enabled, ban records that have a set expiry date will be deleted as soon as the expiry date is reached. This setting will not have an impact wether the banned user will be able to log in again or not. Instead, this option is meant if you want to preserve records of users who misbehaved in the past and therefore have been banned temporarily. If you do not automatically purge those records, then the ban record will show on the <a href="admin_menu.htm#ban">ban users</a> page for the admin, together with an indicator that will show that the ban has expired.</p>
@@ -2417,7 +2412,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">report_post</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Enable reports
 	</div>
     <p>When set to "yes," this feature will allow users to report on uploaded files or comments to the site admin.</p>
@@ -2435,7 +2430,7 @@
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">rate_own_files</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: User settings &rarr; Users can rate their own files
 	</div>
     <p>Determines if your users can rate their own files or not.  Recommended setting is "no" to make sure there is no rating war among your users who try to boost their popularity by committing rating fraud.<br />This option does not determine wether your visitors will be able to rate files at all. &quot;Users can rate their own files&quot; will only apply if rating is enabled in the first place, i.e. if the user belongs to a group that is allowed to rate/vote (you can determine the overall rating permission per group on the <a href="groups.htm#group_cp">groups control panel</a>) and if rating is enabled for the album the file is in (you can toggle the ability to rate on or off on a per-album base - use the controls on the <a href="albums.htm#album_prop">album properties</a> page to accomplish that).
@@ -2448,6 +2443,12 @@
 
 
 <a name="admin_custom"></a><h2>Custom fields for user profile<a href="#admin_custom" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+	<div class="cpg_summary">
+		<!-- Default value: <br /> -->
+		<!-- Recommended value: <br /> -->
+		Database record name: <tt class="code">user_profile1_name</tt>...<tt class="code">user_profile6_name</tt><br />
+		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Custom fields for user profile
+	</div>
 <p>Leave blank if unused. Use Profile 6 for long entries, such as biographies</p>
 <p>These fields are displayed within the &quot;user profile&quot; area. They will appear only if you assign a name to the field. As instructed in the heading, use field 6 for long entries, such as biographies, or if you want to include the use of bb code.</p>
 <p>You can also use field 6 for avatars.  To show an avatar in the profile, it should be entered in bbcode. Determine the full URL of the image you want to use as an avatar and wrap that URL into the bbcode tags for images.</p>
@@ -2460,6 +2461,12 @@ into the field number 6.
 
 
 <a name="admin_custom_image"></a><h2>Custom fields for image description<a href="#admin_custom_image" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+	<div class="cpg_summary">
+		<!-- Default value: <br /> -->
+		<!-- Recommended value: <br /> -->
+		Database record name: <tt class="code">user_field1_name</tt>...<tt class="code">user_field4_name</tt><br />
+		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Custom fields for image description
+	</div>
 <p>Leave blank if unused.</p>
 <p>These fields are displayed within the &quot;file information&quot; area. They will appear only if you give them a name.</p>
 <p class="navlocator" style="text-align:right;color:#0E72A4;">Configuration &rarr; Custom fields for image description</p>
@@ -2472,7 +2479,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">cookie_settings</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Cookie settings &rarr; Name of the cookie used by coppermine
 	</div>
     <p>Default value is something like &quot;cpg15x&quot;. Even if you have multiple instances of the script running on the same server you can keep the default value.</p>
@@ -2484,7 +2491,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">cookie_path</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Cookie settings &rarr; Path of the cookie used by the script
 	</div>
     <p>Default value is "/". Don't change this unless you know what you are doing. This may prevent you from logging in.</p>
@@ -2507,7 +2514,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">smtp_host</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Email settings &rarr; SMTP Host
 	</div>
     <p>The hostname of the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server<br />
@@ -2520,7 +2527,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">smtp_username</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Email settings &rarr; SMTP Username
 	</div>
     <p>The username needed to authenticate on the SMTP server (this is <strong>not</strong> your coppermine admin username).</p>
@@ -2531,7 +2538,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">smtp_password</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Email settings &rarr; SMTP Password
 	</div>
     <p>The password that goes with above mentioned username (<strong>not</strong> identical to your coppermine admin password).</p>
@@ -2547,7 +2554,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">log_mode</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Logging &amp; statistics &rarr; Logging mode
 	</div>
     <p>Set, what kind of logging you want to enable. This feature records all changes that are done in coppermine's database, which is especially helpful if you're trying to debug or if there are various admins on a gallery.<br />
@@ -2561,7 +2568,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">log_ecards</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Logging &amp; statistics &rarr; Log ecards
 	</div>
     <p>When enabled, all ecards that are being sent are as well written into the database, where the coppermine admin can view them. Before switching this option on, make sure that logging is legal in your country. It is also advisable to notify your users that all ecards are being logged (preferrably on the registration screen).</p>
@@ -2573,7 +2580,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">vote_details</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Logging &amp; statistics &rarr; Keep detailed vote statistics
 	</div>
     <p>
@@ -2598,7 +2605,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">hit_details</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Logging &amp; statistics &rarr; Keep detailed hit statistics
 	</div>
     <p>
@@ -2623,7 +2630,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">display_stats_on_index</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Logging &amp; statistics &rarr; Display statistics on index page
 	</div>
     <p>Turning this option off (&quot;No&quot;) will keep the text <tt class="code">X files in X albums and X categories with X comments viewed X times</tt> from appearing on the index pages (category and album views). Disabling this option will slightly improve performance, as the stats query that builds those numbers doesn't have to be performed. Default value is &quot;Yes&quot;, which means that the feature is enabled (&quot;On&quot;).</p>
@@ -2634,7 +2641,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">count_file_hits</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Logging &amp; statistics &rarr; Count file views
 	</div>
     <p>Turning this option off (&quot;No&quot;) will disable counting of file views. This does not affect the display of the view counter. Disabling this option will slightly improve performance. Default value is &quot;Yes&quot;, which means that the feature is enabled (&quot;On&quot;).</p>
@@ -2644,7 +2651,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">count_album_hits</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Logging &amp; statistics &rarr; Count album views
 	</div>
     <p>Turning this option off (&quot;No&quot;) will disable counting of album views. This does not affect the display of the view counter. Disabling this option will slightly improve performance. Default value is &quot;Yes&quot;, which means that the feature is enabled (&quot;On&quot;).</p>
@@ -2654,7 +2661,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">count_admin_hits</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Logging &amp; statistics &rarr; Count admin views
 	</div>
     <p>Turning this option on (&quot;Yes&quot;) will enable counting of admin views. This does not affect the display of the view counter. Default value is &quot;No&quot;, which means that the feature is disabled (&quot;Off&quot;).</p>
@@ -2671,7 +2678,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">debug_mode</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Maintenance settings &rarr; Enable debug mode
 	</div>
     <p>Coppermine will show error messages which are normally suppressed. This is helpful in troubleshooting problems with your gallery or when asking for help on the <a href="http://coppermine-gallery.net/forum/">CPG Support Forums</a>. Turn this feature <strong>off</strong> if you don't experience problems.</p>
@@ -2768,7 +2775,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">debug_notice</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Maintenance settings &rarr; Display notices in debug mode
 	</div>
     <p>May be helpful to troubleshoot problems with your coppermine install - only recommended if you know a little PHP and you can understand the additional error messages this option shows. Notices being displayed don't actually mean that there is something wrong with your gallery. This option only applies if debug mode is enabled.</p>
@@ -2783,7 +2790,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">offline</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Maintenance settings &rarr; Gallery is offline
 	</div>
     <p>If you have to do maintenance work on your gallery, switch it to offline mode. Only members of the admin group will be able to log in, all other users will only see &quot;Gallery is offline&quot;. Remember to switch this option off once your maintenance work is done.</p>
@@ -2795,7 +2802,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">display_coppermine_news</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Maintenance settings &rarr; Display news from coppermine-gallery.net
 	</div>
     <p>Starting with cpg1.5.0 there is a feed from coppermine-gallery.net that is being displayed for the gallery admin (and for the gallery-admin only) on each and every coppermine page to alert him of potential security issues and upgrades. You can toggle this option on and off in Coppermine's config (default is &quot;on&quot;). It is recommended to leave it enabled to make sure your coppermine install is always up-to-date.</p>
@@ -2808,7 +2815,7 @@ into the field number 6.
 	<div class="cpg_summary">
 		<!-- Default value: <br /> -->
 		<!-- Recommended value: <br /> -->
-		<!-- Database record name: <tt class="code"></tt><br /> -->
+		Database record name: <tt class="code">display_reset_boxes_in_config</tt><br />
 		<img src="../../images/icons/config.png" border="0" width="12" height="12"  alt="" class="icon" title="Configuration" />: Maintenance settings &rarr; Display reset boxes in config
 	</div>
     <p>When enabled, there will be reset boxes all over the config screen that show if a particular value differs from default. This will allow you to quickly set the value back to default. This will however eat a lot of resources and will not work in all browsers. Recommended setting is "off", at least if you experience issues with the loading speed of the config screen.</p>
