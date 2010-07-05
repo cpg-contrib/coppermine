@@ -663,9 +663,9 @@ $template_image_comments = CPGPluginAPI::filter('theme_edit_comment', $template_
   <tr>
     <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_theme_thumbnails_wrapper_start"></a><strong>theme_thumbnails_wrapper_start</strong><a href="#plugin_hooks_filename_theme_thumbnails_wrapper_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
-    <td valign="top">Filter</td>
+    <td valign="top">Action</td>
     <td valign="top">Allows plugin authors to output content before the thumbnail table starts, which is particularly helpfull top start a &lt;form&gt;-tag.</td>
-    <td valign="top"><textarea class="samplecode" style="width:100%">$wrapper_start = CPGPluginAPI::filter('theme_thumbnails_wrapper_start');</textarea></td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">CPGPluginAPI::action('theme_thumbnails_wrapper_start', null);</textarea></td>
   </tr>
   <tr>
     <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
@@ -678,10 +678,9 @@ echo $footer;</textarea></td>
   <tr>
     <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
     <td valign="top"><a name="plugin_hooks_filename_theme_thumbnails_wrapper_end"></a><strong>theme_thumbnails_wrapper_end</strong><a href="#plugin_hooks_filename_theme_thumbnails_wrapper_end" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
-    <td valign="top">Filter</td>
+    <td valign="top">Action</td>
     <td valign="top">Output content after the closing tag of the thumbnail table</td>
-    <td valign="top"><textarea class="samplecode" style="width:100%">$wrapper_end = CPGPluginAPI::filter('theme_thumbnails_wrapper_end');
-echo $wrapper_end;</textarea></td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">CPGPluginAPI::action('theme_thumbnails_wrapper_end', null);</textarea></td>
   </tr>
   <tr>
     <td valign="top">include/themes.inc.php<br />themes/xxx/theme.php</td>
@@ -806,11 +805,11 @@ echo $wrapper_end;</textarea></td>
         <td>
             <ul>
                 <li class="floatleft"><a href="#plugin_hooks_filename_image_sharpen">image_sharpen</a></li>
-				<li class="floatleft"><a href="#plugin_hooks_banning_ip_information">ip_information</a> (banning.php)</li>
-				<li class="floatleft"><a href="#plugin_hooks_db_ecard_ip_information">ip_information</a> (db_ecard.php)</li>
-				<li class="floatleft"><a href="#plugin_hooks_reviewcom_ip_information">ip_information</a> (reviewcom.php)</li>
-				<li class="floatleft"><a href="#plugin_hooks_stat_details_ip_information">ip_information</a> (stat_details.php)</li>
-				<li class="floatleft"><a href="#plugin_hooks_filename_theme_ip_information">ip_information</a> (include/themes.inc.php.php)</li>
+                <li class="floatleft"><a href="#plugin_hooks_banning_ip_information">ip_information</a> (banning.php)</li>
+                <li class="floatleft"><a href="#plugin_hooks_db_ecard_ip_information">ip_information</a> (db_ecard.php)</li>
+                <li class="floatleft"><a href="#plugin_hooks_reviewcom_ip_information">ip_information</a> (reviewcom.php)</li>
+                <li class="floatleft"><a href="#plugin_hooks_stat_details_ip_information">ip_information</a> (stat_details.php)</li>
+                <li class="floatleft"><a href="#plugin_hooks_filename_theme_ip_information">ip_information</a> (include/themes.inc.php.php)</li>
             </ul>
         </td>
     </tr>
@@ -954,7 +953,9 @@ CPGPluginAPI::action('page_end',null);</pre>
 <p>These two hooks provide the ability to add a custom CAPTCHA validation. The third validation function is a filter, so don't forget to provide that one as well.</p>
 <pre class="cpg_code">CPGPluginAPI::action('captcha_comment_validate', null);
 CPGPluginAPI::action('captcha_contact_validate', null);</pre>
-
+<p> These two hooks allow plugin authors to output content before the thumbnail table starts and right after the closing tag of the thumbnail table.</p>
+<pre class="cpg_code">CPGPluginAPI::action('theme_thumbnails_wrapper_start', null);
+CPGPluginAPI::action('theme_thumbnails_wrapper_end', null);</pre>
 
 
 <a name="plugin_hooks_filter"></a><h3>Filter<a href="#plugin_hooks_filter" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -984,9 +985,7 @@ $pic_title = CPGPluginAPI::filter('<a href="#plugin_hooks_thumb_html_title">thum
 $pic_title = CPGPluginAPI::filter('<a href="#plugin_hooks_thumb_strip_html_title">thumb_strip_html_title</a>', $row);<br />
 $pic_row = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumb_data">thumb_data</a>',$pic_row);<br />
 $params = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_thumbnail_params">theme_display_thumbnails_params</a>', $params);<br />
-$wrapper_start = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_theme_thumbnails_wrapper_start">theme_thumbnails_wrapper_start</a>');<br />
 $footer = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_theme_thumbnails_footer">theme_thumbnails_footer</a>', $footer);<br />
-$wrapper_end = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_theme_thumbnails_wrapper_end">theme_thumbnails_wrapper_end</a>');<br />
 $params = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_theme_thumbnails_title">theme_thumbnails_title</a>', $param);</div>
 <p>These two filters are used specifically to manipulate the data of a picture.</p>
 <div class="cpg_code code">$CURRENT_PIC_DATA = CPGPluginAPI::filter('<a href="#plugin_hooks_filename_add_file_data">add_file_data</a>',$CURRENT_PIC_DATA);<br />

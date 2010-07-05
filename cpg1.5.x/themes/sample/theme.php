@@ -2896,9 +2896,8 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     } else {
         $title = $album_name;
     }
-    
-    $wrapper_start = CPGPluginAPI::filter('theme_thumbnails_wrapper_start');
-    echo $wrapper_start;
+
+    CPGPluginAPI::action('theme_thumbnails_wrapper_start', null);
 
     if ($mode == 'thumb') {
         starttable('100%', $title, $thumbcols);
@@ -2988,8 +2987,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
 
     endtable();
-    $wrapper_end = CPGPluginAPI::filter('theme_thumbnails_wrapper_end');
-    echo $wrapper_end;
+    CPGPluginAPI::action('theme_thumbnails_wrapper_end', null);
     echo $spacer;
 }
 /******************************************************************************

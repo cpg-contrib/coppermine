@@ -134,9 +134,8 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
         } else {
             $title = $album_name;
         }
-        
-        $wrapper_start = CPGPluginAPI::filter('theme_thumbnails_wrapper_start');
-        echo $wrapper_start;
+
+        CPGPluginAPI::action('theme_thumbnails_wrapper_start', null);
 
         if ($mode == 'thumb') {
             starttable('100%', $title, $thumbcols);
@@ -227,8 +226,7 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
         }
 
         endtable();
-        $wrapper_end = CPGPluginAPI::filter('theme_thumbnails_wrapper_end');
-        echo $wrapper_end;
+        CPGPluginAPI::action('theme_thumbnails_wrapper_end', null);
         echo $spacer;
     }
 
