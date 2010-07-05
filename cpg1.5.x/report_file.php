@@ -36,7 +36,7 @@ function get_post_var($name, $default = '')
 {
     $superCage = Inspekt::makeSuperCage();
     if ($superCage->post->keyExists($name)) {
-        return get_magic_quotes_gpc() ? stripslashes($superCage->post->noTags($name)) : $superCage->post->noTags($name);
+        return get_magic_quotes_gpc() ? stripslashes_deep($superCage->post->noTags($name)) : $superCage->post->noTags($name);
     } else {
         return $default;
     }
