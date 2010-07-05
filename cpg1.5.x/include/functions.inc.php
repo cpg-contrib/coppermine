@@ -73,6 +73,7 @@ function get_meta_album_set($cat)
     }
 
     if (!empty($CURRENT_ALBUM_KEYWORD)) {
+        $RESTRICTEDWHERE .= ") AND (1";
         if(is_array($CURRENT_ALBUM_KEYWORD)) {
             foreach($CURRENT_ALBUM_KEYWORD as $keyword) {
                 $RESTRICTEDWHERE .= " OR keywords like '%$keyword%'";
