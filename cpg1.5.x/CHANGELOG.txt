@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-07-05 [A] Added Japanese language file (user contribution) {GauGau}
 2010-07-02 [D] Adding boxes to config documentation for defaults, max, min, recomended and record name (work in progress) {GauGau}
 2010-06-30 [B] Display Coppermine news always in an iframe (thread ID 65424) {eenemeenemuu}
 2010-06-29 [B] Fixed error message for non existing categories (thread ID 65763) {eenemeenemuu}
