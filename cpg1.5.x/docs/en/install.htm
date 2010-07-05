@@ -15,7 +15,6 @@
   Coppermine version: 1.5.7
   $HeadURL$
   $Revision$
-
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -35,70 +34,65 @@
 <div class="indent">
 
 <a name="how"></a><h2>How to install the script<a href="#how" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<ul>
-  <li>
-	  <a name="how_minimum"></a><h3>Minimum requirements<a href="#how_minimum" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	  <p>Make sure that you fullfill the <a href="requirements.htm#what_minimum">minimum requirements</a> to run Coppermine on your webserver.</p>
-  </li>
-  <li>
-	  <a name="how_unpack"></a><h3>Unpack the archive preserving the directory structure<a href="#how_unpack" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	  <p>You can (and should) rename the coppermine folder, but not the files or folders within.</p>
-	  <div>
-		  <span class="detail_head_collapsed">Details</span>
-		  <div class="detail_body border1">
-			  <p>You need an application that can unpack an archive like <a href="http://www.7-zip.org/" rel="external" class="external">7-Zip</a> if your <abbr title="Operating Systems">OS</abbr> doesn't support unpacking out of the box (Windows XP or better comes with support for zip files; most Desktop Linux distributions come with corresponding clients like File Roller as well). In some Packing/Unpacking Applications like WinZip there is a toggle that allows the end user to specify if the folder structure within the archive should be kept intact or if all files contained in the archive should be unpacked into one flat folder without sub-folders. For Coppermine, the option that preserves the folder structure must be enabled.</p>
-			  <p class="cpg_example">A good place to unpack your copy of the Coppermine package to is the Desktop or another temporary folder. In this explanation, we'll assume that you have unpacked the archive on the Desktop.</p>
-			  <p>After unpacking, you should have a folder on your desktop named <tt class="code">cpg15x</tt>. You are welcome (and encouraged) to change the name of this folder to something that makes more sense for usage on the internet, but make sure to use a web-safe name: don't use special characters except the dash (<tt class="code">-</tt>) and the underscore (<tt class="code">_</tt>), don't use spaces, don't use accented characters, Umlauts or any other special characters. Avoid capitalization if possible. In fact, you should use latin alphanumerals only (<tt class="code">a</tt> to <tt class="code">z</tt> and <tt class="code">0</tt> to <tt class="code">9</tt>). This recommendation does not only apply for the Coppermine folder, but any folder or file you upload to a web-server.</p>
-			  <div class="cpg_example">
-				  Here's a list of good names for the folder:
-				  <ul>
-				  	<li><tt class="code">gallery</tt></li>
-				  	<li><tt class="code">pictures</tt></li>
-				  	<li><tt class="code">images</tt></li>
-				  	<li><tt class="code">multimedia</tt></li>
-				  	<li><tt class="code">galerie</tt> (if the majority of users speaks German, as the German word for <em>gallery</em> is <em>Galerie</em> with one middle <tt class="code">L</tt>)</li>
-				  </ul>
-			  </div>
-			  The folder name you pick here will later correspond to the URL of your gallery, so it's advisable to pick a name that is easy to memorize. You get a small extra bonus in terms of search engine friendliness if you choose a descriptive name like <tt class="code">gallery</tt>. Don't be to concerned about which name to pick for the folder that coppermine will reside in: you can always change the name of the folder at a later stage.
+
+<div class="indent">
+
+  <a name="how_minimum"></a><h3>Minimum requirements<a href="#how_minimum" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+  <p>Make sure that you fullfill the <a href="requirements.htm#what_minimum">minimum requirements</a> to run Coppermine on your webserver.</p>
+
+  <a name="how_unpack"></a><h3>Unpack the archive preserving the directory structure<a href="#how_unpack" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+  <p>You can (and should) rename the coppermine folder, but not the files or folders within.</p>
+  <div>
+	  <span class="detail_head_collapsed">Details</span>
+	  <div class="detail_body border1">
+		  <p>You need an application that can unpack an archive like <a href="http://www.7-zip.org/" rel="external" class="external">7-Zip</a> if your <abbr title="Operating Systems">OS</abbr> doesn't support unpacking out of the box (Windows XP or better comes with support for zip files; most Desktop Linux distributions come with corresponding clients like File Roller as well). In some Packing/Unpacking Applications like WinZip there is a toggle that allows the end user to specify if the folder structure within the archive should be kept intact or if all files contained in the archive should be unpacked into one flat folder without sub-folders. For Coppermine, the option that preserves the folder structure must be enabled.</p>
+		  <p class="cpg_example">A good place to unpack your copy of the Coppermine package to is the Desktop or another temporary folder. In this explanation, we'll assume that you have unpacked the archive on the Desktop.</p>
+		  <p>After unpacking, you should have a folder on your desktop named <tt class="code">cpg15x</tt>. You are welcome (and encouraged) to change the name of this folder to something that makes more sense for usage on the internet, but make sure to use a web-safe name: don't use special characters except the dash (<tt class="code">-</tt>) and the underscore (<tt class="code">_</tt>), don't use spaces, don't use accented characters, Umlauts or any other special characters. Avoid capitalization if possible. In fact, you should use latin alphanumerals only (<tt class="code">a</tt> to <tt class="code">z</tt> and <tt class="code">0</tt> to <tt class="code">9</tt>). This recommendation does not only apply for the Coppermine folder, but any folder or file you upload to a web-server.</p>
+		  <div class="cpg_example">
+			  Here's a list of good names for the folder:
+			  <ul>
+			  	<li><tt class="code">gallery</tt></li>
+			  	<li><tt class="code">pictures</tt></li>
+			  	<li><tt class="code">images</tt></li>
+			  	<li><tt class="code">multimedia</tt></li>
+			  	<li><tt class="code">galerie</tt> (if the majority of users speaks German, as the German word for <em>gallery</em> is <em>Galerie</em> with one middle <tt class="code">L</tt>)</li>
+			  </ul>
 		  </div>
+		  The folder name you pick here will later correspond to the URL of your gallery, so it's advisable to pick a name that is easy to memorize. You get a small extra bonus in terms of search engine friendliness if you choose a descriptive name like <tt class="code">gallery</tt>. Don't be to concerned about which name to pick for the folder that coppermine will reside in: you can always change the name of the folder at a later stage.
 	  </div>
-  </li>
-  <li>
-	  <a name="how_upload"></a><h3>Upload all files onto your webserver<a href="#how_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	  It's mandatory to upload <strong>all</strong> folders and files that come with the Coppermine package to the webserver.<br />
-	  <span class="detail_head_collapsed">Details</span>
-	  <div class="detail_body border1">
-	  	<p>Use your FTP client application to upload the folder you unpacked in the first step to your webserver. Do <strong>not</strong> use browser add-ons or any other crutch to upload the files, but use a real FTP app. Do <strong>not</strong> trust uploaders that often come with <abbr title="What You See Is What You Get">WYSIWYG</abbr>-editors like MS Frontpage or Dreamweaver, as those built-in uploaders tend to "beautify" the code files, crippling them that way. Those editors and the tools they come with are OK for other purposes, but they often cause issues when used with pre-made scripts like Coppermine, that's why the Coppermine dev team strongly recommends not to use such WYSIWYG-editors at all. If you don't have an FTP app yet, take a look at the list of <a href="dev_tools.htm#dev_tools_ftp_client">tools recommended by the Coppermine developers</a>. Do not use crap like WebFTP applications: while those applications are fine for a casual upload when you're away from your home and don't have access to a computer you have full control over, WebFTP is not OK to be used to install a package like Coppermine because of the limitations built-into such applications.</p>
-	  	<p>To use your FTP application, you will of course need to know the FTP details for your webspace. If you're not sure about those details, ask your webhost for support.</p>
-	  	<p>Make sure to use the correct <a href="install_faq.htm#installFTP_mode">FTP mode</a> when uploading.</p>
-	  	<p>If you plan to make Coppermine your primary application that shows on your site's start page, you don't necessarilly have to put the Coppermine files into a separate folder: you can savely upload the content of the Coppermine package into the webroot of your server,</p>
-	  </div>
-  </li>
-  <li>
-	  <a name="how_permissions"></a><h3>Set permissions on the "<em>albums</em>" and "<em>include</em>" folders in your Coppermine directory<a href="#how_permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	  Set permissions on file system level for the Coppermine script. Coppermine needs write access for some folders within the Coppermine folder. Setting permissions can sometimes be hard for newbies, that's why a separate section of the documentation has been created that explains <a href="install_permissions.htm#permissions">permissions in detail</a>.<br />
-	  Usually, you have to apply the CHMOD command, setting the permissions to 755 (or 777, depending on your server config).
-	  <div class="cpg_message_warning">This step is very important and must not be overlooked!</div>
-  </li>
-  <li>
-	  <a name="how_database_info"></a><h3>Ensure you have correct information about your database<a href="#how_database_info" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	  You need to <em>know</em> the database name as well as the details of a MySQL user account with which Coppermine should connect to the database. The database and the username must already exist, and the user must have access to the relevant database. Coppermine will not create the database for you, but it will create the tables in the database during installation, there is no need for you to add any tables yourself.<br />
-	  <span class="detail_head_collapsed">Details</span>
-	  <div class="detail_body border1">
-	  	If no database exists for your website, you will need to create one, or have one created for you by your webhost. Your webhost can best provide you with instructions on how to go about doing this.  For installation purposes, you will need to know the path of the database server that you will be using with Coppermine and details of the MySQL user account through which Coppermine will connect to the server. You must have the database server path (usually 'localhost'), your MySQL username, MySQL password, and MySQL database name prior to installing Coppermine. The user installing Coppermine must have all relevant access rights to this database.<br />
-	If you are using a newly created database, there is no need for you to manually add any tables. Coppermine will create the necessary tables in the database during installation process.
-	  </div>
-  </li>
-  <li>
-	  <a name="how_run"></a><h3>Run the install script on your server<a href="#how_run" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	  Type the following URL into the address bar of your web browser: <tt class="code">http://your_server/coppermine_dir/install.php</tt> (<em>your_server</em> = your website, <em>coppermine_dir</em> = the folder in which you uploaded your Coppermine files.) Follow the online instructions on the <a href="install_screen.htm">install screen</a> inserting the necessary information as requested.
-	  <br />
-	  <span class="detail_head_collapsed">Example</span>
-	  <div class="detail_body cpg_example">
-	  	If your website is <tt class="code">example.com</tt> and the name of your Coppermine folder was "<tt class="code">gallery</tt>", the address you would have to type is is <tt class="code">http://example.com/gallery/install.php</tt>
-	  </div>
-  </li>
-</ul>
+  </div>
+
+  <a name="how_upload"></a><h3>Upload all files onto your webserver<a href="#how_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+  It's mandatory to upload <strong>all</strong> folders and files that come with the Coppermine package to the webserver.<br />
+  <span class="detail_head_collapsed">Details</span>
+  <div class="detail_body border1">
+  	<p>Use your FTP client application to upload the folder you unpacked in the first step to your webserver. Do <strong>not</strong> use browser add-ons or any other crutch to upload the files, but use a real FTP app. Do <strong>not</strong> trust uploaders that often come with <abbr title="What You See Is What You Get">WYSIWYG</abbr>-editors like MS Frontpage or Dreamweaver, as those built-in uploaders tend to "beautify" the code files, crippling them that way. Those editors and the tools they come with are OK for other purposes, but they often cause issues when used with pre-made scripts like Coppermine, that's why the Coppermine dev team strongly recommends not to use such WYSIWYG-editors at all. If you don't have an FTP app yet, take a look at the list of <a href="dev_tools.htm#dev_tools_ftp_client">tools recommended by the Coppermine developers</a>. Do not use crap like WebFTP applications: while those applications are fine for a casual upload when you're away from your home and don't have access to a computer you have full control over, WebFTP is not OK to be used to install a package like Coppermine because of the limitations built-into such applications.</p>
+  	<p>To use your FTP application, you will of course need to know the FTP details for your webspace. If you're not sure about those details, ask your webhost for support.</p>
+  	<p>Make sure to use the correct <a href="install_faq.htm#installFTP_mode">FTP mode</a> when uploading.</p>
+  	<p>If you plan to make Coppermine your primary application that shows on your site's start page, you don't necessarilly have to put the Coppermine files into a separate folder: you can savely upload the content of the Coppermine package into the webroot of your server,</p>
+  </div>
+
+  <a name="how_permissions"></a><h3>Set permissions on the "<em>albums</em>" and "<em>include</em>" folders in your Coppermine directory<a href="#how_permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+  Set permissions on file system level for the Coppermine script. Coppermine needs write access for some folders within the Coppermine folder. Setting permissions can sometimes be hard for newbies, that's why a separate section of the documentation has been created that explains <a href="install_permissions.htm#permissions">permissions in detail</a>.<br />
+  Usually, you have to apply the CHMOD command, setting the permissions to 755 (or 777, depending on your server config).
+  <div class="cpg_message_warning">This step is very important and must not be overlooked!</div>
+
+  <a name="how_database_info"></a><h3>Ensure you have correct information about your database<a href="#how_database_info" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+  You need to <em>know</em> the database name as well as the details of a MySQL user account with which Coppermine should connect to the database. The database and the username must already exist, and the user must have access to the relevant database. Coppermine will not create the database for you, but it will create the tables in the database during installation, there is no need for you to add any tables yourself.<br />
+  <span class="detail_head_collapsed">Details</span>
+  <div class="detail_body border1">
+  	If no database exists for your website, you will need to create one, or have one created for you by your webhost. Your webhost can best provide you with instructions on how to go about doing this.  For installation purposes, you will need to know the path of the database server that you will be using with Coppermine and details of the MySQL user account through which Coppermine will connect to the server. You must have the database server path (usually 'localhost'), your MySQL username, MySQL password, and MySQL database name prior to installing Coppermine. The user installing Coppermine must have all relevant access rights to this database.<br />
+If you are using a newly created database, there is no need for you to manually add any tables. Coppermine will create the necessary tables in the database during installation process.
+  </div>
+
+  <a name="how_run"></a><h3>Run the install script on your server<a href="#how_run" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+  Type the following URL into the address bar of your web browser: <tt class="code">http://your_server/coppermine_dir/install.php</tt> (<em>your_server</em> = your website, <em>coppermine_dir</em> = the folder in which you uploaded your Coppermine files.) Follow the online instructions on the <a href="install_screen.htm">install screen</a> inserting the necessary information as requested.
+  <br />
+  <span class="detail_head_collapsed">Example</span>
+  <div class="detail_body cpg_example">
+  	If your website is <tt class="code">example.com</tt> and the name of your Coppermine folder was "<tt class="code">gallery</tt>", the address you would have to type is is <tt class="code">http://example.com/gallery/install.php</tt>
+  </div>
+</div>
 
 <a name="what"></a><h2>What the installer does<a href="#what" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>After performing some basic checks, the installer creates the needed database tables for you and fills them with default values. It creates the file include/config.inc.php within the coppermine folder on your server that stores the database details you entered during install. If you should change your mysql database details later (i.e. if you change the password of your mysql user account or if you migrate your gallery to another server), you will need to edit include/config.inc.php manually to reflect the changes. The file include/config.inc.php also keeps the install script from being run twice: if the installer is run, a check is performed wether the config file exists - if yes, the installer will stop and redirect the user to the index page.</p>

@@ -214,7 +214,14 @@ doc_toc += '          <li><a href="install_screen.htm#install_screen_classic" cl
 doc_toc += '          <li><a href="install_screen.htm#install_screen_wizard" class="en">De installatie wizard</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="auto-installers.htm" class="en">Auto-Installers</a></li>\n';
+doc_toc += '      <li><a href="auto-installers.htm" class="en">Auto-Installers</a>\n';
+doc_toc += '        <ul>\n';
+doc_toc += '          <li><a href="auto-installers.htm#definition" class="en">What are auto-installers?</a></li>\n';
+doc_toc += '          <li><a href="auto-installers.htm#sad_story" class="en">The sad story</a></li>\n';
+doc_toc += '          <li><a href="auto-installers.htm#" class="en">Why not use auto-installers</a></li>\n';
+doc_toc += '          <li><a href="auto-installers.htm#no_support" class="en">No support</a></li>\n';
+doc_toc += '        </ul>\n';
+doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="install_faq.htm" class="en">Installatie FAQ</a></li>\n';
 doc_toc += '      <li><a href="uninstall.htm" class="nl">Uninstall</a></li>\n';
 doc_toc += '    </ul>\n';

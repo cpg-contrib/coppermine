@@ -220,7 +220,14 @@ doc_toc += '          <li><a href="install_screen.htm#install_screen_classic">Th
 doc_toc += '          <li><a href="install_screen.htm#install_screen_wizard">The install wizard</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="auto-installers.htm">Auto-Installers</a></li>\n';
+doc_toc += '      <li><a href="auto-installers.htm">Auto-Installers</a>\n';
+doc_toc += '        <ul>\n';
+doc_toc += '          <li><a href="auto-installers.htm#definition">What are auto-installers?</a></li>\n';
+doc_toc += '          <li><a href="auto-installers.htm#sad_story">The sad story</a></li>\n';
+doc_toc += '          <li><a href="auto-installers.htm#">Why not use auto-installers</a></li>\n';
+doc_toc += '          <li><a href="auto-installers.htm#no_support">No support</a></li>\n';
+doc_toc += '        </ul>\n';
+doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="install_faq.htm">Installation FAQ</a></li>\n';
 doc_toc += '      <li><a href="uninstall.htm">Uninstall</a></li>\n';
 doc_toc += '    </ul>\n';

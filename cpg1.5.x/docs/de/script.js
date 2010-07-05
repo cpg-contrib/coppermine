@@ -173,7 +173,14 @@ doc_toc += '          <li><a href="install_permissions.htm#support" class="en">U
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="install_screen.htm" class="en">Der Installations-Assistent</a></li>\n';
-doc_toc += '      <li><a href="auto-installers.htm" class="en">Automatische Installation</a></li>\n';
+doc_toc += '      <li><a href="auto-installers.htm" class="en">Automatische Installation</a>\n';
+doc_toc += '        <ul>\n';
+doc_toc += '          <li><a href="auto-installers.htm#definition" class="en">What are auto-installers?</a></li>\n';
+doc_toc += '          <li><a href="auto-installers.htm#sad_story" class="en">The sad story</a></li>\n';
+doc_toc += '          <li><a href="auto-installers.htm#" class="en">Why not use auto-installers</a></li>\n';
+doc_toc += '          <li><a href="auto-installers.htm#no_support" class="en">No support</a></li>\n';
+doc_toc += '        </ul>\n';
+doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="install_faq.htm" class="en">Installations FAQ</a></li>\n';
 doc_toc += '      <li><a href="uninstall.htm" class="de">De-Installation</a></li>\n';
 doc_toc += '    </ul>\n';
