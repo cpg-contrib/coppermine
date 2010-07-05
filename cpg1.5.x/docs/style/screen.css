@@ -680,4 +680,5 @@ textarea.samplecode {
 .backtotop {
     text-align:right;
     margin-top:20px;
+	clear:both;
 }

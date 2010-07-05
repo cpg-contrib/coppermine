@@ -534,6 +534,7 @@ doc_toc += '          <li><a href="configuration.htm#admin_cookie" class="en">Co
 doc_toc += '          <li><a href="configuration.htm#admin_email" class="en">E-mail instellingen</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_logging" class="en">Logging &amp; statistieken</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_misc" class="en">Onderhouds instellingen</a></li>\n';
+doc_toc += '          <li><a href="configuration.htm#admin_config_usage" class="en">Usage of this page</a></li>\n';
 doc_toc += '          <li><a href="configuration.htm#admin_reset_entire_config" class="en">Herstel standaardinstellingen </a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';

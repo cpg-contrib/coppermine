@@ -164,6 +164,16 @@ table.cpg_zebra > tbody > tr.tableb_alternate > td {
     padding-left: 3px;
 }
 
+.numberinput {
+    font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
+    font-size: 100%;
+    border: 1px solid #D1D7DC;
+	background-color: #FFFFFF;
+    padding-right: 3px;
+    padding-left: 3px;
+	text-align:right;
+}
+
 .checkbox {
     font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
     font-size: 100%;
