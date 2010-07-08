@@ -288,7 +288,7 @@ $lang_img_nav_bar['go_album_start'] = 'Retourner au début';
 
 $lang_rate_pic['rate_this_pic'] = 'Noter cette image ';
 $lang_rate_pic['no_votes'] = '(pas encore de note)';
-$lang_rate_pic['rating'] = '(note actuelle : %s / 10 pour %s votes)'; 
+$lang_rate_pic['rating'] = '(note actuelle : %s / %s pour %s votes)'; 
 $lang_rate_pic['rubbish'] = 'Très mauvais';
 $lang_rate_pic['poor'] = 'Mauvais';
 $lang_rate_pic['fair'] = 'Moyen';
