@@ -476,6 +476,8 @@ case 'album_reset':
         }
         
         cpg_db_query("DELETE FROM v USING {$CONFIG['TABLE_VOTE_STATS']} AS v INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.pid = v.pid WHERE p.aid = $aid");
+        
+        cpg_db_query("DELETE FROM v USING {$CONFIG['TABLE_VOTES']} AS v INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.pid = v.pic_id WHERE p.aid = $aid");
 
     } // if reset_rating end
 
