@@ -23,7 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2010-07-09 [B] Fixed issue when resetting rating on all files of an album (thread ID 65896) {eenemeenemuu}
+2010-07-09 [B] Fixed issue when reset file ratings (thread ID 65896) {eenemeenemuu}
 2010-07-05 [B] Fixed empty values for 'reason' in 'report to administrator' email (thread ID 65752) {eenemeenemuu}
 2010-07-05 [B] Fixed category view when albums with keywords are present (thread ID 64155) {eenemeenemuu}
 2010-07-05 [B] Changed type of plugin hooks 'theme_thumbnails_wrapper_start/end' from 'filter' to 'action' and adjusted English documentation accordingly (thread ID 58734) {eenemeenemuu}

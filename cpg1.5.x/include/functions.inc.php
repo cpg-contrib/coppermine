@@ -4783,13 +4783,14 @@ function resetDetailVotes($pid)
         if (!count($pid)) {
             return;
         } else {
-            $clause = "pid IN (".implode(',', $pid).")";
+            $clause = " IN (".implode(',', $pid).")";
         }
     } else {
-        $clause = "pid = '$pid'";
+        $clause = " = '$pid'";
     }
 
-    cpg_db_query("DELETE FROM {$CONFIG['TABLE_VOTE_STATS']} WHERE $clause");
+    cpg_db_query("DELETE FROM {$CONFIG['TABLE_VOTE_STATS']} WHERE pid $clause");
+    cpg_db_query("DELETE FROM {$CONFIG['TABLE_VOTES']} WHERE pic_id $clause");
 } // function resetDetailVotes
 
 
