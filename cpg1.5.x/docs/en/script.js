@@ -1301,6 +1301,17 @@ doc_toc += '                  <li><a href="dev_plugin_steps.htm#steps_config_nam
 doc_toc += '                  <li><a href="dev_plugin_steps.htm#steps_config_install">3. Create the record during plugin install</a></li>\n';
 doc_toc += '                  <li><a href="dev_plugin_steps.htm#steps_config_uninstall">4. Create the uninstall query</a></li>\n';
 doc_toc += '                  <li><a href="dev_plugin_steps.htm#steps_config_defaults">5. Specify the scope of your config record</a></li>\n';
+doc_toc += '                  <li><a href="dev_plugin_steps.htm#steps_config_form_options">6. Populate form options</a></li>\n';
+doc_toc += '                  <li><a href="dev_plugin_steps.htm#steps_config_rows">7. Output the form elements (rows)</a>\n';
+doc_toc += '                    <ul>\n';
+doc_toc += '                      <li><a href="dev_plugin_steps.htm#steps_config_rows_checkbox">a. Checkbox</a></li>\n';
+doc_toc += '                      <li><a href="dev_plugin_steps.htm#steps_config_rows_radio">b. Radio button</a></li>\n';
+doc_toc += '                      <li><a href="dev_plugin_steps.htm#steps_config_rows_dropdown">c. Dropdown (select/option list)</a></li>\n';
+doc_toc += '                      <li><a href="dev_plugin_steps.htm#steps_config_rows_textinput">d. Text input field (one line), both for numerical input (integers) as well as any other textual input</a></li>\n';
+doc_toc += '                      <li><a href="dev_plugin_steps.htm#steps_config_rows_textarea">e. Text input field (multiple lines, aka textarea)</a></li>\n';
+doc_toc += '                    </ul>\n';
+doc_toc += '                  </li>\n';
+doc_toc += '                  <li><a href="dev_plugin_steps.htm#steps_config_language">8. Create the needed translation strings</a></li>\n';
 doc_toc += '                </ul>\n';
 doc_toc += '              </li>\n';
 doc_toc += '            </ul>\n';

@@ -1038,6 +1038,14 @@
     <hash>bb4bfd06a0e08cb5e97db03c7c24b515</hash>
   </element>
   <element>
+    <fullpath>docs/de/dev_plugin_steps.htm</fullpath>
+    <version>1.5.7</version>
+    <revision>7620</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>b66a2964d7708d2f7e5c96479ea4bbe1</hash>
+  </element>
+  <element>
     <fullpath>docs/de/dev_subversion.htm</fullpath>
     <version>1.5.6</version>
     <revision>7620</revision>
@@ -1867,7 +1875,7 @@
   </element>
   <element>
     <fullpath>docs/en/dev_plugin_steps.htm</fullpath>
-    <version>1.5.6</version>
+    <version>1.5.7</version>
     <revision>7620</revision>
     <status>mandatory</status>
     <permission>read</permission>
@@ -2830,6 +2838,14 @@
     <hash>41b5e219924058d0886a446cdbcf6f8d</hash>
   </element>
   <element>
+    <fullpath>docs/es/dev_plugin_steps.htm</fullpath>
+    <version>1.5.7</version>
+    <revision>7620</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>b66a2964d7708d2f7e5c96479ea4bbe1</hash>
+  </element>
+  <element>
     <fullpath>docs/es/dev_subversion.htm</fullpath>
     <version>1.5.6</version>
     <revision>7620</revision>
@@ -3692,6 +3708,14 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>cc845221fcbd18270c56876e200627f9</hash>
+  </element>
+  <element>
+    <fullpath>docs/fr/dev_plugin_steps.htm</fullpath>
+    <version>1.5.7</version>
+    <revision>7620</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>b66a2964d7708d2f7e5c96479ea4bbe1</hash>
   </element>
   <element>
     <fullpath>docs/fr/dev_subversion.htm</fullpath>
@@ -4684,6 +4708,14 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>c6d929ac33397b6149155e69c4c202c6</hash>
+  </element>
+  <element>
+    <fullpath>docs/nl/dev_plugin_steps.htm</fullpath>
+    <version>1.5.7</version>
+    <revision>7620</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>b66a2964d7708d2f7e5c96479ea4bbe1</hash>
   </element>
   <element>
     <fullpath>docs/nl/dev_subversion.htm</fullpath>
