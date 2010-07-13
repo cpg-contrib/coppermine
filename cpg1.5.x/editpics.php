@@ -824,8 +824,14 @@ if (UPLOAD_APPROVAL_MODE) {
     // If non-admin user but allowed to upload in this album, then we need to fetch only the photos uploaded by that user
     if (defined('USER_UPLOAD_ALLOWED')) {
         $owner_str = " AND owner_id = " . USER_ID;
+        // If user is a guest, check if it's the same guest
         if (USER_ID == 0) {
             $owner_str .= " AND guest_token = '".cpg_get_guest_token()."'";
+        }
+        // If users don't retain control over their pics in public galleries, show only the most recent uploads
+        if ($CONFIG['users_can_edit_pics'] == 0) {
+            $user_edit_pics_lifetime = $CONFIG['form_token_lifetime'] * 5;
+            $owner_str .= " AND ctime > '".(time() - $user_edit_pics_lifetime)."'";
         }
     } else {
         $owner_str = '';
