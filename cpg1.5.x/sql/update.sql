@@ -508,3 +508,5 @@ ALTER TABLE CPG_pictures ADD `guest_token` VARCHAR(32) DEFAULT '';
 
 INSERT INTO CPG_config VALUES ('session_cleanup', '0');
 INSERT INTO CPG_config VALUES ('guest_token_cleanup', '0');
+
+INSERT INTO CPG_config VALUES ('allow_guests_enter_file_details', '0');

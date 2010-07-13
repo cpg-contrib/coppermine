@@ -24,6 +24,7 @@ INSERT INTO CPG_config VALUES ('alb_list_thumb_size', '50');
 INSERT INTO CPG_config VALUES ('album_list_cols', '2');
 INSERT INTO CPG_config VALUES ('albums_per_page', '12');
 INSERT INTO CPG_config VALUES ('allow_duplicate_emails_addr', '0');
+INSERT INTO CPG_config VALUES ('allow_guests_enter_file_details', '0');
 INSERT INTO CPG_config VALUES ('allowed_doc_types', 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/mdb');
 INSERT INTO CPG_config VALUES ('allowed_img_types', 'jpeg/jpg/png/gif');
 INSERT INTO CPG_config VALUES ('allowed_mov_types', 'asf/asx/mpg/mpeg/wmv/swf/avi/mov');
