@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-07-13 [B] Fixed error message when regular users try to delete their albums in public categories {eenemeenemuu}
 2010-07-13 [M] Re-organizing zip archives inside docs folder {GauGau}
 2010-07-12 [D] Adding documentation about plugin config options {GauGau}
 2010-07-09 [B] Fixed issue when reset file ratings (thread ID 65896) {eenemeenemuu}

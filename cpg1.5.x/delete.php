@@ -165,7 +165,7 @@ function delete_album($aid)
 
     $return = '';
 
-    $query = "SELECT title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid ='$aid'";
+    $query = "SELECT title, category, owner FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid ='$aid'";
     $result = cpg_db_query($query);
 
     if (!mysql_num_rows($result)) {
@@ -177,7 +177,7 @@ function delete_album($aid)
     mysql_free_result($result);
     
     if (!GALLERY_ADMIN_MODE) {
-        if ($album_data['category'] != FIRST_USER_CAT + USER_ID) {
+        if ($album_data['category'] != FIRST_USER_CAT + USER_ID && $album_data['owner'] != USER_ID) {
             cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
         }
     }

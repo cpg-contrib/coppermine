@@ -121,13 +121,14 @@ function html_albummenu2($id)
      * This is done here for simplicity.
      */
     $template_album_moderator_menu = <<<EOT
-        <table border="0" cellpadding="0" cellspacing="1">
-                <tr>
-                        <td align="center" valign="middle" class="admin_menu">
-                                <a href="editpics.php?album={ALBUM_ID}" class="adm_menu">{EDIT_PICS}</a>
-                        </td>
-                </tr>
-        </table>
+        <div class="buttonlist align_right">
+                <ul>
+                        <li>
+                                <a href="editpics.php?album={ALBUM_ID}"><span class="last">{EDIT_PICS}</span></a>
+                        </li>
+                </ul>
+        </div>
+        <div class="clearer"></div>
 EOT;
 
 
@@ -201,25 +202,29 @@ function html_albummenu3($id)
      * This is done here for simplicity.
      */
     $template_album_admin_no_pic_edit_menu = <<<EOT
-        <table border="0" cellpadding="0" cellspacing="1">
-                <tr>
-                        <td align="center" valign="middle" class="admin_menu">
-                                <a href="delete.php?id={ALBUM_ID}&amp;what=album"  class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a>
-                        </td>
-                        <td align="center" valign="middle" class="admin_menu">
-                                <a href="modifyalb.php?album={ALBUM_ID}"  class="adm_menu">{MODIFY}</a>
-                        </td>
-                </tr>
-        </table>
+        <div class="buttonlist align_right">
+                <ul>
+                        <li>
+                                <a href="delete.php?id={ALBUM_ID}&amp;what=album&amp;form_token={FORM_TOKEN}&amp;timestamp={TIMESTAMP}" onclick="return confirm('{CONFIRM_DELETE}');"><span>{DELETE}</span></a>
+                        </li>
+                        <li>
+                                <a href="modifyalb.php?album={ALBUM_ID}"><span>{MODIFY}</span></a>
+                        </li>
+                </ul>
+        </div>
+        <div class="clearer"></div>
 EOT;
   
     static $template = '';
 
     if ($template == '') {
+        list($timestamp, $form_token) = getFormToken();
         $params = array(
             '{CONFIRM_DELETE}' => $lang_album_admin_menu['confirm_delete'],
             '{DELETE}' => cpg_fetch_icon('delete', 1) . $lang_album_admin_menu['delete'],
             '{MODIFY}' => cpg_fetch_icon('modifyalb', 1) . $lang_album_admin_menu['modify'],
+            '{FORM_TOKEN}' => $form_token,
+            '{TIMESTAMP}' => $timestamp
         );
 
         $template = template_eval($template_album_admin_no_pic_edit_menu, $params);
