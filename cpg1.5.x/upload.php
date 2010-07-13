@@ -736,24 +736,26 @@ EOT;
             sprintf($lang_upload_php['max_fsize'], cpg_format_bytes($CONFIG['max_upl_size'] * 1024)),
             array($lang_common['album'], 'album', 2),
             array('MAX_FILE_SIZE', $max_file_size, 4),
-            array($lang_upload_php['picture'], 'userpicture', 1, 1),
-            array($lang_upload_php['pic_title'], 'title', 0, 255, 1),
-            array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length']),
-            array($keywordLabel, 'keywords', 0, 255, 1),
-            array('event', 'picture', 4)
+            array($lang_upload_php['picture'], 'userpicture', 1, 1)
         );
-        if(!empty($CONFIG['user_field1_name'])) {
-            $form_array[] = array($CONFIG['user_field1_name'], 'user1', 0, 255, 1);
+        if (USER_ID > 0 || $CONFIG['allow_guests_enter_file_details'] == 1) {
+            $form_array[] = array($lang_upload_php['pic_title'], 'title', 0, 255, 1);
+            $form_array[] = array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length']);
+            $form_array[] = array($keywordLabel, 'keywords', 0, 255, 1);
+            if(!empty($CONFIG['user_field1_name'])) {
+                $form_array[] = array($CONFIG['user_field1_name'], 'user1', 0, 255, 1);
+            }
+            if(!empty($CONFIG['user_field2_name'])) {
+                $form_array[] = array($CONFIG['user_field2_name'], 'user2', 0, 255, 1);
+            }
+            if(!empty($CONFIG['user_field3_name'])) {
+                $form_array[] = array($CONFIG['user_field3_name'], 'user3', 0, 255, 1);
+            }
+            if(!empty($CONFIG['user_field4_name'])) {
+                $form_array[] = array($CONFIG['user_field4_name'], 'user4', 0, 255, 1);
+            }
         }
-        if(!empty($CONFIG['user_field2_name'])) {
-            $form_array[] = array($CONFIG['user_field2_name'], 'user2', 0, 255, 1);
-        }
-        if(!empty($CONFIG['user_field3_name'])) {
-            $form_array[] = array($CONFIG['user_field3_name'], 'user3', 0, 255, 1);
-        }
-        if(!empty($CONFIG['user_field4_name'])) {
-            $form_array[] = array($CONFIG['user_field4_name'], 'user4', 0, 255, 1);
-        }
+        $form_array[] = array('event', 'picture', 4);
         // Create the upload form
         create_form_simple($form_array);
         // Close the form with an submit button
