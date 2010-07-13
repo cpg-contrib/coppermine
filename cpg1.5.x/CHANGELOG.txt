@@ -24,6 +24,7 @@ Changelog
 *********************************************
 
 2010-07-13 [B] Fixed possibility for users to edit their files in public galleries if disabled in config (thread ID 65693) {eenemeenemuu}
+2010-07-13 [A] Disable the possibility for guests to enter file details by default (thread ID 62522) {eenemeenemuu}
 2010-07-13 [B] Fixed error message when regular users try to delete their albums in public categories {eenemeenemuu}
 2010-07-13 [M] Re-organizing zip archives inside docs folder {GauGau}
 2010-07-12 [D] Adding documentation about plugin config options {GauGau}
