@@ -82,6 +82,10 @@ SWFUpload.onload = function () {
 }
 
 function continue_upload() {
-    window.location = js_vars.site_url + '/editpics.php?album=' + $("select[name='album']").val();
+    if (js_vars.user_id > 0 || js_vars.allow_guests_enter_file_details == 1) {
+        window.location = js_vars.site_url + '/editpics.php?album=' + $("select[name='album']").val();
+    } else {
+        window.location = js_vars.site_url + '/thumbnails.php?album=' + $("select[name='album']").val();
+    }
     return false;
 }
