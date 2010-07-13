@@ -1649,32 +1649,23 @@
   </element>
   <element>
     <fullpath>docs/de/tutorial/cpg1.5_plugin_hello_world_2-1.zip</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>8b28c9585ec0c09af08209f1007ae27c</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/de/tutorial/cpg1.5_plugin_hello_world_2-2-1.zip</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>1449599403aaa36a3b031109d83b7a39</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/de/tutorial/matching_theme/</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/de/tutorial/matching_theme/index.htm</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>5bfbfcfe5960ca116725759405a7ac7f</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/de/tutorial/matching_theme/screenshot_missing_menu.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>56bff793e48edd5b649a3aa6b36e8e9e</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/en/</fullpath>
@@ -2613,32 +2604,23 @@
   </element>
   <element>
     <fullpath>docs/en/tutorial/cpg1.5_plugin_hello_world_2-1.zip</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>8b28c9585ec0c09af08209f1007ae27c</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/en/tutorial/cpg1.5_plugin_hello_world_2-2-1.zip</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>1449599403aaa36a3b031109d83b7a39</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/en/tutorial/matching_theme/</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/en/tutorial/matching_theme/index.htm</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>5bfbfcfe5960ca116725759405a7ac7f</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/en/tutorial/matching_theme/screenshot_missing_menu.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>56bff793e48edd5b649a3aa6b36e8e9e</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/es/</fullpath>
@@ -3485,26 +3467,19 @@
   </element>
   <element>
     <fullpath>docs/es/tutorial/cpg1.5_plugin_hello_world_2-1.zip</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>8b28c9585ec0c09af08209f1007ae27c</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/es/tutorial/cpg1.5_plugin_hello_world_2-2-1.zip</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>1449599403aaa36a3b031109d83b7a39</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/es/tutorial/matching_theme/</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/es/tutorial/matching_theme/index.htm</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>5bfbfcfe5960ca116725759405a7ac7f</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/es/tutorial/matching_theme/screenshot_missing_menu.png</fullpath>
@@ -4231,32 +4206,23 @@
   </element>
   <element>
     <fullpath>docs/fr/tutorial/cpg1.5_plugin_hello_world_2-1.zip</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>8b28c9585ec0c09af08209f1007ae27c</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/fr/tutorial/cpg1.5_plugin_hello_world_2-2-1.zip</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>1449599403aaa36a3b031109d83b7a39</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/fr/tutorial/matching_theme/</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
+    <status>remove</status>
   </element>
   <element>
-    <fullpath>docs/en/tutorial/matching_theme/index.htm</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>5bfbfcfe5960ca116725759405a7ac7f</hash>
+    <fullpath>docs/fr/tutorial/matching_theme/index.htm</fullpath>
+    <status>remove</status>
   </element>
   <element>
-    <fullpath>docs/en/tutorial/matching_theme/screenshot_missing_menu.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>56bff793e48edd5b649a3aa6b36e8e9e</hash>
+    <fullpath>docs/fr/tutorial/matching_theme/screenshot_missing_menu.png</fullpath>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/images/</fullpath>
@@ -4355,6 +4321,12 @@
   </element>
   <element>
     <fullpath>docs/images/php.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>4acc14704fd5bd20d2670f493beb046c</hash>
+  </element>
+  <element>
+    <fullpath>docs/images/screenshot_missing_menu.png</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
     <hash>4acc14704fd5bd20d2670f493beb046c</hash>
@@ -5357,32 +5329,23 @@
   </element>
   <element>
     <fullpath>docs/nl/tutorial/cpg1.5_plugin_hello_world_2-1.zip</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>8b28c9585ec0c09af08209f1007ae27c</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/nl/tutorial/cpg1.5_plugin_hello_world_2-2-1.zip</fullpath>
-    <status>optional</status>
-    <permission>read</permission>
-    <hash>1449599403aaa36a3b031109d83b7a39</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/nl/tutorial/matching_theme/</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/nl/tutorial/matching_theme/index.htm</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>5bfbfcfe5960ca116725759405a7ac7f</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/nl/tutorial/matching_theme/screenshot_missing_menu.png</fullpath>
-    <status>mandatory</status>
-    <permission>read</permission>
-    <hash>56bff793e48edd5b649a3aa6b36e8e9e</hash>
+    <status>remove</status>
   </element>
   <element>
     <fullpath>docs/js/</fullpath>
@@ -5573,6 +5536,18 @@
     <status>mandatory</status>
     <permission>read</permission>
     <hash>b03598825918a90ba279b1f4d4f16a7f</hash>
+  </element>
+  <element>
+    <fullpath>docs/tutorial/cpg1.5_plugin_hello-world_v2.1.zip</fullpath>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>8b28c9585ec0c09af08209f1007ae27c</hash>
+  </element>
+  <element>
+    <fullpath>docs/tutorial/matching_theme.htm</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>5bfbfcfe5960ca116725759405a7ac7f</hash>
   </element>
   <element>
     <fullpath>images/</fullpath>
