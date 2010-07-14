@@ -111,7 +111,7 @@ $lang_common['captcha_help'] = 'Pour éviter le Spam, vous devez saisir le texte
 $lang_common['title'] = 'Titre';
 $lang_common['caption'] = 'Légende';
 $lang_common['keywords'] = 'Mots-clés';
-$lang_common['keywords_insert1'] = 'mots-clés (séparés par un point-virgule)';
+$lang_common['keywords_insert1'] = 'Mots-clés (séparés par un(e) %s)';
 $lang_common['keywords_insert2'] = 'Insérer depuis une liste';
 $lang_common['keyword_separator'] = 'Séparateur de mots-clés';
 $lang_common['keyword_separators'] = array(' '=>'espace', ','=>'virgule', ';'=>'point-virgule');
@@ -2417,8 +2417,8 @@ if (defined('UTIL_PHP')) {
  $lang_util_php['no_prob_found'] = 'Pas de problèmes trouvés.';
  $lang_util_php['no_category'] = 'Pas de catégorie';
 $lang_util_php['keyword_convert'] = 'Convertir le séparateur de mots-clés';
-$lang_util_php['keyword_from_to'] = 'Convertir le séparateur de mots-clés de %s par %s';
-$lang_util_php['keyword_set'] = 'Paramétrer le séparateur de mots clé à la nouvelle valeur';
+$lang_util_php['keyword_from_to'] = 'Convertir le séparateur de mots-clés %s en %s';
+$lang_util_php['keyword_set'] = 'Paramétrer le séparateur de mots-clés à la nouvelle valeur';
 $lang_util_php['keyword_replace_before'] = 'Avant la conversion, remplacer %s par %s';
 $lang_util_php['keyword_replace_after'] = 'Après la conversion, remplacer %s par %s';
 $lang_util_php['keyword_replace_values'] = array('_'=>'Souligné', '-'=>'tiret', '~'=>'tilde');
