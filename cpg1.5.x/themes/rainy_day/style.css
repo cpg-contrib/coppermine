@@ -849,6 +849,18 @@ table#album_sort tr td span.editAlbum {
     background-image: url('../../images/message/error.png');
 }
 
+.cpg_summary {
+    font-size:0.9em;
+	border: 1px solid;
+    margin: 10px 0px;
+	padding:5px 10px 5px 10px;
+    color: #FF2B9C;
+    background-color: #FFDEEF;
+	text-align:right;
+	float:right;
+	width:400px;
+}
+
 #GB_window {
     background-color: #C2C9D3;
     border: 5px solid #DEDEDE;

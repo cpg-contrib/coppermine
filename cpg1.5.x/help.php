@@ -163,12 +163,14 @@ if ($anchor_end != '') {
 
 // Fix path for some tags
 $string = str_replace('<img src="pics/', '<img src="docs/'.$help_lang.'/images/', $string);
+$string = str_replace('<img src="../images/icons/', '<img relativeImagesIconsDir', $string);
 $string = str_replace('images/', 'docs/'.$help_lang.'/images/', $string);
+$string = str_replace('<img relativeImagesIconsDir', '<img src="docs/images/icons/', $string);
 $string = str_replace('<a href="http://', '<a externalLinkTempReplacement', $string); // get external links out of the way
 $string = str_replace('<a href="#', '<a internalAnchorLinkTempReplacement', $string); // get links to anchors on this page out of the way
 $string = str_replace('<a href="', '<a href="docs/'.$help_lang.'/', $string);
 $string = str_replace('<a externalLinkTempReplacement', '<a href="http://', $string); // restore external links
-$string = str_replace('<a internalAnchorLinkTempReplacement', '<a href="#', $string); // restore links to anchors on this page
+$string = str_replace('<a internalAnchorLinkTempReplacement', '<a href="' . 'docs/'.$help_lang.'/'.$file . '#', $string); // restore links to anchors on this page
 
 
 if ($header != '') {
@@ -185,7 +187,7 @@ echo <<< EOT
     <head>
         <title>{$lang_common['help']}</title>
         $meta_charset
-        <link rel="stylesheet" href="css/coppermine.css" type="text/css" />
+        <link rel="stylesheet" href="css/coppermine.cs" type="text/css" />
         <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" type="text/css" />
         <script src="docs/js/jquery.js" type="text/javascript"></script>
         <script src="docs/js/help.js" type="text/javascript"></script>

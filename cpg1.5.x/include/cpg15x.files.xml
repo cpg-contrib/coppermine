@@ -4350,9 +4350,20 @@
     <hash>60fce6c631943a45faaa25c0ba810749</hash>
   </element>
   <element>
+    <fullpath>docs/images/icons/</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+  </element>
+  <element>
     <fullpath>docs/images/license/</fullpath>
     <status>mandatory</status>
     <permission>read</permission>
+  </element>
+  <element>
+    <fullpath>docs/images/icons/config.png</fullpath>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>6289bcfba3552c9302d33284497220d5</hash>
   </element>
   <element>
     <fullpath>docs/images/license/cc.png</fullpath>
