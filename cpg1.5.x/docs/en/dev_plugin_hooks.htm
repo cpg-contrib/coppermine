@@ -462,6 +462,13 @@ $pic_title = (is_array($pic_title)) ? $pic_title[0] : $pic_title;</textarea></td
   </tr>
   <tr>
     <td valign="top">include/functions.inc.php</td>
+    <td valign="top"><a name="plugin_hooks_token_criteria"></a><strong>token_criteria</strong><a href="#plugin_hooks_token_criteria" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
+    <td valign="top">Filter</td>
+    <td valign="top">allows to modify the token criteria array. You can add new criteria or remove existing criteria if you don't want to use them to create the token</td>
+    <td valign="top"><textarea class="samplecode" style="width:100%">$token_criteria_array = CPGPluginAPI::filter('token_criteria', $token_criteria_array);</textarea></td>
+  </tr>
+  <tr>
+    <td valign="top">include/functions.inc.php</td>
     <td valign="top"><a name="plugin_hooks_bbcode"></a><strong>bbcode</strong><a href="#plugin_hooks_bbcode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
     <td valign="top">with this hook, you can modify the comment that has been submitted and add your custom bbcodes. (Only available when a '[' has been found in the comment)</td>
@@ -478,14 +485,14 @@ $pic_title = (is_array($pic_title)) ? $pic_title[0] : $pic_title;</textarea></td
     <td valign="top">include/mailer.inc.php</td>
     <td valign="top"><a name="plugin_hooks_filename_cpg_mail_to_email"></a><strong>cpg_mail_to_email</strong><a href="#plugin_hooks_filename_cpg_mail_to_email" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
-    <td valign="top">Modify recipients' addresses when sending e-mails</td>
+    <td valign="top">modify recipients' addresses when sending e-mails</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$to = CPGPluginAPI::filter('cpg_mail_to_email', $to);</textarea></td>
   </tr>
   <tr>
     <td valign="top">include/mailer.inc.php</td>
     <td valign="top"><a name="plugin_hooks_filename_cpg_mail_sender_email"></a><strong>cpg_mail_sender_email</strong><a href="#plugin_hooks_filename_cpg_mail_sender_email" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></td>
     <td valign="top">Filter</td>
-    <td valign="top">Modify sender's addresses when sending e-mails</td>
+    <td valign="top">modify sender's addresses when sending e-mails</td>
     <td valign="top"><textarea class="samplecode" style="width:100%">$sender_email = CPGPluginAPI::filter('cpg_mail_sender_email', $sender_email);</textarea></td>
   </tr>
   <tr>
@@ -917,6 +924,7 @@ echo $footer;</textarea></td>
                 <li class="floatleft"><a href="#plugin_hooks_filename_thumb_data">thumb_data</a></li>
                 <li class="floatleft"><a href="#plugin_hooks_thumb_html_title">thumb_html_title</a></li>
                 <li class="floatleft"><a href="#plugin_hooks_thumb_strip_html_title">thumb_strip_html_title</a></li>
+                <li class="floatleft"><a href="#plugin_hooks_token_criteria">token_criteria</a></li>
             </ul>
         </td>
     </tr>

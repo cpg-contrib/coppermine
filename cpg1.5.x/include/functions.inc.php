@@ -6137,8 +6137,24 @@ function getFormToken($timestamp = null)
     if($timestamp == null){
         $timestamp = time();
     }
-    
-    $token = md5(USER_ID . $raw_ip . $superCage->server->getRaw('HTTP_USER_AGENT') . $CONFIG['site_token'] . $timestamp);
+
+    $token_criteria_array = array(
+        'user_id'   => USER_ID,
+        'ip_addr'   => $raw_ip,
+        'browser'   => $superCage->server->getRaw('HTTP_USER_AGENT'),
+        'site_tkn'  => $CONFIG['site_token'],
+        'timestamp' => $timestamp
+    );
+
+    $token_criteria_array = CPGPluginAPI::filter('token_criteria', $token_criteria_array);
+
+    $token_string = '';
+    foreach($token_criteria_array as $value) {
+        $token_string .= $value;
+    }
+
+    $token = md5($token_string);
+
     return array($timestamp, $token);
 }
 
