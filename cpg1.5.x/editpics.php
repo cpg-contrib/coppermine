@@ -328,6 +328,24 @@ function process_post_data()
 
             $files = array($dir . $file, $dir . $CONFIG['normal_pfx'] . $file, $dir . $CONFIG['orig_pfx'] . $file, $dir . $CONFIG['thumb_pfx'] . $file);
 
+            // Check for custom thumbnails for non-images
+            if (!is_image($file)) {
+                $mime_content = cpg_get_type($file);
+                $file_base_name = str_replace('.' . $mime_content['extension'], '', basename($file));
+
+                foreach (array('.gif','.png','.jpg') as $thumb_extension) {
+                    if (file_exists($dir . $CONFIG['thumb_pfx'] . $file_base_name . $thumb_extension)) {
+                        // Thumbnail found, check if it's the only file using that thumbnail
+                        $count = mysql_result(cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE filepath = '{$pic['filepath']}' AND filename LIKE '{$file_base_name}.%'"), 0);
+                        if ($count == 1) {
+                            unset($files[count($files)-1]);
+                            $files[] = $dir . $CONFIG['thumb_pfx'] . $file_base_name . $thumb_extension;
+                            break;
+                        }
+                    }
+                }
+            }
+
             foreach ($files as $currFile) {
                 if (is_file($currFile)) {
                     @unlink($currFile);

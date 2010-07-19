@@ -23,8 +23,9 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
-2010-07-19 [O] While renaming files, check if there will be no conflicts before doing anything {eenemeenemuu}
+2010-07-19 [A] While deleting non-images, delete the corresponding custom thumbnail if exists {eenemeenemuu}
 2010-07-19 [A] While renaming non-images, rename the corresponding custom thumbnail if exists {eenemeenemuu}
+2010-07-19 [O] While renaming files, check if there will be no conflicts before doing anything {eenemeenemuu}
 2010-07-16 [A] Added plugin hook 'token_criteria' {eenemeenemuu}
 2010-07-16 [C] Fixed missing CSS class cpg_summary and icon replacement leading to broken output of help boxes on config screen (thread IDs 65994 and 65996) {GauGau}
 2010-07-13 [B] Fixed possibility for users to edit their files in public galleries if disabled in config (thread ID 65693) {eenemeenemuu}
