@@ -194,6 +194,24 @@ function process_post_data()
 
         if (!is_image($pic['filename'])) {
             $prefixes = array('fullsize');
+
+            // Check for custom thumbnails
+            $mime_content_old = cpg_get_type($pic['filename']);
+            $mime_content_new = cpg_get_type(replace_forbidden($post_filename));
+
+            $file_base_name_old = str_replace('.' . $mime_content_old['extension'], '', basename($pic['filename']));
+
+            foreach (array('.gif','.png','.jpg') as $thumb_extension) {
+                if (file_exists($CONFIG['fullpath'] . $pic['filepath'] . $CONFIG['thumb_pfx'] . $file_base_name_old . $thumb_extension)) {
+                    // Thumbnail found, check if it's the only file using that thumbnail
+                    $count = mysql_result(cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE filepath = '{$pic['filepath']}' AND filename LIKE '{$file_base_name_old}.%'"), 0);
+                    if ($count == 1) {
+                        $prefixes[] = 'thumb';
+                        $custom_thumb = TRUE;
+                        break;
+                    }
+                }
+            }
         }
 
         $pic_prefix = array(
@@ -203,11 +221,18 @@ function process_post_data()
             'fullsize' => '',
         );
 
+        $files_to_rename = array();
+
         foreach ($prefixes as $prefix) {
 
             $oldname = urldecode($CONFIG['fullpath'] . $pic['filepath'] . $pic_prefix[$prefix] . $pic['filename']);
             $filename = replace_forbidden($post_filename);
             $newname = str_replace($pic['filename'], $filename, $oldname);
+
+            if ($custom_thumb == TRUE && $prefix == 'thumb') {
+                $oldname = str_replace('.' . $mime_content_old['extension'], $thumb_extension, $oldname);
+                $newname = str_replace('.' . $mime_content_new['extension'], $thumb_extension, $newname);
+            }
 
             $old_mime = cpg_get_type($oldname);
             $new_mime = cpg_get_type($newname);
@@ -228,10 +253,21 @@ function process_post_data()
                 cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['src_file_missing'], $oldname), __FILE__, __LINE__);
             }
 
-            if (rename($oldname, $newname)) {
-                cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filename = '$filename' WHERE pid = '$pid' LIMIT 1");
-            } else {
-                cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['rename_failed'], $oldname, $newname), __FILE__, __LINE__);
+            // Check if there will be no conflicts before doing anything
+            $files_to_rename[] = array(
+                'oldname'   => $oldname,
+                'filename'  => $filename,
+                'newname'   => $newname
+            );
+        }
+
+        if (count($files_to_rename) > 0) {
+            foreach ($files_to_rename as $file) {
+                if (rename($file['oldname'], $file['newname'])) {
+                    cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filename = '{$file['filename']}' WHERE pid = '$pid' LIMIT 1");
+                } else {
+                    cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['rename_failed'], $oldname, $newname), __FILE__, __LINE__);
+                }
             }
         }
     }
