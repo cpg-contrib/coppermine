@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-07-21 [A] Added Slovak language file (user contribution) {eenemeenemuu}
 2010-07-19 [A] While deleting non-images, delete the corresponding custom thumbnail if exists {eenemeenemuu}
 2010-07-19 [A] While renaming non-images, rename the corresponding custom thumbnail if exists {eenemeenemuu}
 2010-07-19 [O] While renaming files, check if there will be no conflicts before doing anything {eenemeenemuu}
