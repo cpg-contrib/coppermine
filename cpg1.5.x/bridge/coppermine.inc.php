@@ -319,6 +319,11 @@ if (isset($bridge_lookup)) {
                     $session_id = $this->session_id.$this->client_id;
                     $sql = "UPDATE {$this->sessionstable} SET time = UNIX_TIMESTAMP() WHERE session_id = '" . md5($session_id) . "'";
                     cpg_db_query($sql);
+
+                    if (USER_ID > 0) {
+                        $sql = "UPDATE {$this->usertable} SET user_lastvisit = NOW() WHERE user_id = '".USER_ID."'";
+                        cpg_db_query($sql);
+                    }
             }
 
 

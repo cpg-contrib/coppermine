@@ -15,8 +15,6 @@
   Coppermine version: 1.5.7
   $HeadURL$
   $Revision$
-
-  $Date$
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -52,7 +50,7 @@ Par conséquent, vous n'aurez pas ce panneau de gestion d’utilisateurs en cliq
 <li>Si un utilisateur a ajouté dernièrement des fichiers, l’icône à côté de son nom passera de gris (<img src="../../images/icons/last_uploads_disabled.png" width="16" height="16" border="0" alt="" title="pas encore d'images téléchargées" />) à vert (<img src="../../images/icons/last_uploads.png" width="16" height="16" border="0" alt="" title="derniers téléchargements" />). En cliquant dessus, cela affichera les fichiers qui ont été envoyés par cet utilisateur.</li>
 <li>La colonne &quot;Groupe&quot; affiche le groupe principal dont l'utilisateur est membre.</li>
 <li>La colonne &quot;Enregistré le&quot; indique la date à laquelle le compte de l’utilisateur a été créé</li>
-<li>La colonne &quot;Dernière visite&quot; indique la date de la dernière connexion de l'utilisateur. <br />Note: si l'utilisateur a coché la case &quot;se rappeler de moi&quot; sur le page d'identification, il n'aura pas à s'identifier à chaque visite, donc cette date n'est pas précises.</li>
+<li>La colonne &quot;Dernière visite&quot; indique la date de la dernière visite de l'utilisateur</li>
 <li>La colonne &quot;Fichiers&quot; indique le nombre de fichiers que l'utilisateur a téléchargé à ce jour (y compris ceux qui sont en attente d'approbation de la part de l’administrateur)</li>
 <li>La colonne &quot;Espace utilisé/Espace alloué&quot; indique la quantité d'espace qui est attribué en vert et en rouge celle que l'utilisateur a déjà utilisé. L'espace alloué que l'utilisateur est autorisé à avoir (&quot;quota&quot;) dépend du groupe de l'utilisateur - vous définissez ce paramètre dans le panneau de configuration des <a href="groups.htm#group_cp">groupes</a>.</li>
 <li>Vous pouvez modifier un certain nombre de paramètres pour plusieurs utilisateurs à la fois, en cochant la case en à côté de chaque noms d’utilisateurs (utiliser la case tout en haut ou tout en bas de la page pour sélectionner / désélectionner tous les utilisateurs de la page), puis choisissez une action à effectuer dans la liste déroulante &quot;Sélectionner&quot; en bas à gauche de la page. Les actions que vous pouvez choisir sont &quot;Effacer&quot;, &quot;Activer&quot;, &quot;Désactiver&quot;, &quot;Changer le mot de passe&quot;, &quot;Changer de groupe principal&quot; et &quot;Ajouter un groupe secondaire&quot;. L'utilisateur actuellement connecté (vous en tant qu'administrateur de Coppermine) n'a pas de case à cocher à côté de son nom pour éviter, la suppression accidentelle ou à la désactivation de votre propre compte administrateur.</li>
@@ -91,44 +89,44 @@ L’appartenance à un groupe complémentaire (secondaire) peut être assignée 
 Il y a de nombreux mots de passe que vous devez mémoriser, et il ya de nombreuses questions qui sont liées aux mots de passe. Toutes ne s'appliquent pas à Coppermine, nous n'en parlerons donc que brièvement ici. Si vous avez besoin de plus de détails sur les questions de mots de passe qui ne sont pas liés à Coppermine,  c'est une bonne idée d'utiliser un moteur de recherche et / ou l’aide à votre hébergeur.
 
 <div class="indent">
-	<a name="lost_password_cpg_user_account"></a><h3>Mot de passe de compte d'utilisateur de Coppermine<a href="#lost_password_cpg_user_account" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	Il n'y a pas de différence entre un administrateur et un compte d'utilisateur non-administrateur: ils fonctionnent tous les deux de la même façon: vous devez vous connecter en fournissant un nom d'utilisateur (ou une adresse e-mail si vous avez activé l'option correspondante dans la <a href="configuration.htm#admin_user_login_method_start">configuration de Coppermine</a>) et un mot de passe. Si cette authentification a été réussie, c'est à dire si Coppermine vous "connait", cela lui permettra de déterminer si votre compte d'utilisateur appartient au <a href="groups.htm#group_cp_administrators">groupe administrateur</a> ou non. Sur la base de cette appartenance à un groupe, vous aurez différents privilèges.<br />
-	Il ya cependant une différence fondamentale entre Coppermine fonctionnant en mode autonome (classique) et Coppermine fonctionnant via une <a href="bridging.htm">passerelle</a> avec une autre application:
-	<div class="indent">
-	<a name="lost_password_cpg_user_account_standalone"></a><h4>Coppermine en mode autonome<a href="#lost_password_cpg_user_account_standalone" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-	Les tables de la base de données des utilisateurs de Coppermine ne contiennent <strong>pas</strong> le mot de passe utilisateur réel en texte brut, mais seulement un <a href="http://fr.wikipedia.org/wiki/Fonction_de_hachage" rel="external" class="external">hachage</a> MD5 encrypté. Voyez ce hachage comme une somme de contrôle: en fait c'est le résultat d'un calcul: lorsque le mot de passe est inscrit sur l'écran de connexion de Coppermine, le navigateur envoie le mot de passe que le visiteur a entré, vers le serveur. Le serveur calcule ensuite la valeur de hachage qui  résulte du mot de passe entré par le visiteur et compare enfin, la valeur de hachage stockées dans la table de base de données a celle qui vient d'être calculée. Si ces valeurs de hachage sont égales, le mot de passe est considéré comme correct et l'utilisateur est authentifié, c'est à dire qu'un cookie est stocké sur l'ordinateur du visiteur qui dit en gros "L'utilisateur avec le nom d'utilisateur XYZ à réussi l’authentification". Encore une fois, aucun mot de passe n’est stocké nulle part.<br />
-	Cela étant dit, il devrait être évident que vous ne pouvez pas voir le mot de passe n'importe où, simplement parce qu'il n'est pas réellement stocké quelque part.<br />
-	Mais alors, nous sommes tous humains, donc il se peut que vous (en tant que propriétaire d'une galerie Coppermine) ou vos utilisateurs oublient leur mot de passe pour une raison quelconque. C'est pourquoi il existe un mécanisme pour s'assurer que vous puissiez vous connecter à nouveau. Malheureusement, vous ne pouvez pas envoyer un rappel de mot de passe à l'intérieur d’un e-mail à l'utilisateur, tout simplement parce que le serveur n'a pas connaissance du mot de passe. C'est pourquoi il existe un lien sur l'écran de connexion de Coppermine qui est nommé "J'ai oublié mon mot de passe". Si un visiteur clique dessus, il / elle sera envoyée à un écran de rappel de mot de passe où il / elle peut entrer son adresse e-mail. Mais attendez une minute! N'avez-vous pas simplement dit que le serveur ne connaît pas le mot de passe et donc il ne peut pas l'envoyer par e-mail ? Et oui, c'est vrai. En fait, c'est un processus en trois étapes: le visiteur peut entrer son adresse e-mail. Si un utilisateur avec cette adresse email existe dans la table users de Coppermine, un email est envoyé à cette adresse qui contient essentiellement un lien que le destinataire de l'email doit cliquer pour vérifier qu'il a effectivement oublié son mot de passe et veut en demander un nouveau. Ceci est conçu comme une mise en garde contre le vandalisme, pour s'assurer que personne ne vous bloque  en ayant demandé un nouveau mot de passe pour lui. Le lien à l'intérieur du courriel contient un symbole qui ne peut pas être devinés ou composé: il est unique. Ce n'est que si ce lien est effectivement cliqué que le rappel de mot de passe est déclenché. Le serveur attribue alors un nouveau mot de passe aléatoire pour le compte qui correspond à l'adresse e-mail et envoie ce nouveau mot de passe dans un autre e-mail. Avec ce nouveau mot de passe qui est dans le second e-mail, l'utilisateur peut se connecter de nouveau.<br />
-	Il s'agit d'un processus très élégant et à toute épreuve une fois qu'il est correctement configuré, mais il y a bien sûr certaines choses qui peuvent mal se passer:
-	<ul>
-		<li>L'utilisateur doit connaître l'adresse e-mail, qui lui a permi de créer son compte utilisateur</li>
-		<li>L'utilisateur doit avoir accès à l'adresse e-mail, et il a besoin de se rappeler le mot de passe (pas de Coppermine) pour le compte e-mail</li>
-		<li>L'adresse e-mail qui correspond au compte d'utilisateur doit être remplie en premier lieu, ce qui pourraient ne pas être le cas pour l'administrateur s'il a omis d’en fournir une pour son propre compte</li>
-		<li>Le serveur doit être configuré correctement pour pouvoir envoyer des courriels</li>
-		<li>Le courriel envoyé par le serveur peut être bloqué par erreur par des  mécanismes de filtrage de type anti-spam</li>
-	</ul>
-	Si tel est le cas en ce qui vous concerne, c'est-à-dire, si vous avez oublié votre mot de passe de compte administrateur de Coppermine, voici les choses à faire:
-	<ul>
-		<li>
-			Si vous avez accès à <a href="dev_tools.htm#dev_tools_phpmyadmin">phpMyAdmin</a>, il suffit de définir un nouveau mot de passe pour votre compte d'utilisateur de Coppermine. Voici les instructions qui ont été initialement publié en tant que contribution d’utilisateurs sur le <a href="http://forum.coppermine-gallery.net/index.php/topic,52213.0.html" rel="external" class="external">forum d'aide de Coppermine</a>:
-			<div class="cpg_message_success">
-				Une fois que vous êtes dans le phpMyAdmin, vous verrez les bases de données sur la gauche. Cliquez sur la base de données de Coppermine. Sur la gauche vous pourrez voir les tables.<br />
-				Cliquez sur la table nommée <tt class="code">XXX_users</tt>, où XXX est le préfixe de table que vous avez choisi lors de l'installation de Coppermine initiale (d’origine, le préfixe est <tt class="code">cpg15x_</tt>, de sorte que le nom de la table par défaut doit être <tt class="code">cpg15x_users</tt>). Puis cliquez sur l'icône à gauche du texte sinon  vous ne verrez pas le contenu  de la table à droite de l'écran.<br />
-				Si vous avez perdu votre mot de passe d’administrateur regardez la colonne intitulée user_id. Recherchez le 1. C'est compte administrateur que vous avez créé lors de l'installation initiale. A la gauche de cette colonne il y a une icône représentant crayon (c'est à dire modifier). Cliquez sur ce lien.<br />
-				Vous devriez avoir maintenant des champs, dans lesquels vous pouvez écrire.<br />
-				A la droite de la ligne <tt class="code">user_password</tt> se trouve le mot de passe crypté. Effacer le et remplacer par 
-				<input type="text" readonly="readonly" name="admin_password" value="21232f297a57a5a743894a0e4a801fc3" size="32" maxlength="32" class="small" />.<br />
-				Que fera le mot de passe <tt class="code">admin</tt>. Ne laissez en aucun cas le champ mot de passe vide. Allez au bas de la page et cliquez sur <tt class="code">Exécuter</tt> en <tt class="code">sauvegardant</tt>. Vous pouvez maintenant sortir de phpMyAdmin en allant à l'icône de la sortie dans le coin supérieur gauche.<br />
-				Tapez l'URL de votre page de Coppermine. Connectez-vous avec votre nom d'utilisateur et le mot de passe <tt class="code">admin</tt>. Une fois que vous êtes connecté avec succès, vous devez bien entendu modifier le mot de passe pour mettre autre chose que <tt class="code">admin</tt>. Cliquez sur &quot;Mon profil&quot;, allez vers le bas de la page et cliquez sur &quot;Changer mon mot de passe&quot;. Entrez dans &quot;Mot de Passe actuel&quot; <tt class="code">admin</tt> puis votre nouveau mot de passe (vous devez l’entrer deux fois) et validez le formulaire. Si tout va bien, vous verrez un message qui le dit: &quot;Votre Mot de Passe a été modifié&quot;.<br />
-				Vous pouvez faire le même processus pour les utilisateurs: Pour accéder au profil d'un utilisateur, vous ouvrez une session en tant qu'administrateur. Allez dans le panneau de gestion des utilisateurs, modifier le compte d'un utilisateur en cliquant sur l'icône d'édition (<img src="../../images/icons/edit.png" width="16" height="16" border="0" alt="" title="edition" />) à côté du nom de l'utilisateur, puis entrer un nouveau mot de passe dans le champ correspondant.
-			</div>
-			Une autre alternative utilisant phpMyAdmin sans rien changer est d'utiliser un site avec une <a href="http://fr.wikipedia.org/wiki/Table_arc-en-ciel" rel="external" class="external">table arc-en-ciel</a> et de chercher le mot de passe qui correspond au hachage que vous vous trouvez dans phpMyAdmin.
-		</li>
-		<li>
-			Si vous n'avez pas accès à phpMyAdmin, vous pouvez procéder comme suit pour créer un nouveau compte administrateur:
-				<ul>
-					<li>Utilisez votre <a href="dev_tools.htm#dev_tools_editor">éditeur de texte</a> favori (<a href="http://notepad-plus.sourceforge.net" rel="external" class="external">notepad++</a> est très bien) afin de créer un fichier texte avec ce contenu:
-										<textarea class="samplecode" rows="10" style="width:100%">&lt;?php
+    <a name="lost_password_cpg_user_account"></a><h3>Mot de passe de compte d'utilisateur de Coppermine<a href="#lost_password_cpg_user_account" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    Il n'y a pas de différence entre un administrateur et un compte d'utilisateur non-administrateur: ils fonctionnent tous les deux de la même façon: vous devez vous connecter en fournissant un nom d'utilisateur (ou une adresse e-mail si vous avez activé l'option correspondante dans la <a href="configuration.htm#admin_user_login_method_start">configuration de Coppermine</a>) et un mot de passe. Si cette authentification a été réussie, c'est à dire si Coppermine vous "connait", cela lui permettra de déterminer si votre compte d'utilisateur appartient au <a href="groups.htm#group_cp_administrators">groupe administrateur</a> ou non. Sur la base de cette appartenance à un groupe, vous aurez différents privilèges.<br />
+    Il ya cependant une différence fondamentale entre Coppermine fonctionnant en mode autonome (classique) et Coppermine fonctionnant via une <a href="bridging.htm">passerelle</a> avec une autre application:
+    <div class="indent">
+    <a name="lost_password_cpg_user_account_standalone"></a><h4>Coppermine en mode autonome<a href="#lost_password_cpg_user_account_standalone" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Les tables de la base de données des utilisateurs de Coppermine ne contiennent <strong>pas</strong> le mot de passe utilisateur réel en texte brut, mais seulement un <a href="http://fr.wikipedia.org/wiki/Fonction_de_hachage" rel="external" class="external">hachage</a> MD5 encrypté. Voyez ce hachage comme une somme de contrôle: en fait c'est le résultat d'un calcul: lorsque le mot de passe est inscrit sur l'écran de connexion de Coppermine, le navigateur envoie le mot de passe que le visiteur a entré, vers le serveur. Le serveur calcule ensuite la valeur de hachage qui  résulte du mot de passe entré par le visiteur et compare enfin, la valeur de hachage stockées dans la table de base de données a celle qui vient d'être calculée. Si ces valeurs de hachage sont égales, le mot de passe est considéré comme correct et l'utilisateur est authentifié, c'est à dire qu'un cookie est stocké sur l'ordinateur du visiteur qui dit en gros "L'utilisateur avec le nom d'utilisateur XYZ à réussi l’authentification". Encore une fois, aucun mot de passe n’est stocké nulle part.<br />
+    Cela étant dit, il devrait être évident que vous ne pouvez pas voir le mot de passe n'importe où, simplement parce qu'il n'est pas réellement stocké quelque part.<br />
+    Mais alors, nous sommes tous humains, donc il se peut que vous (en tant que propriétaire d'une galerie Coppermine) ou vos utilisateurs oublient leur mot de passe pour une raison quelconque. C'est pourquoi il existe un mécanisme pour s'assurer que vous puissiez vous connecter à nouveau. Malheureusement, vous ne pouvez pas envoyer un rappel de mot de passe à l'intérieur d’un e-mail à l'utilisateur, tout simplement parce que le serveur n'a pas connaissance du mot de passe. C'est pourquoi il existe un lien sur l'écran de connexion de Coppermine qui est nommé "J'ai oublié mon mot de passe". Si un visiteur clique dessus, il / elle sera envoyée à un écran de rappel de mot de passe où il / elle peut entrer son adresse e-mail. Mais attendez une minute! N'avez-vous pas simplement dit que le serveur ne connaît pas le mot de passe et donc il ne peut pas l'envoyer par e-mail ? Et oui, c'est vrai. En fait, c'est un processus en trois étapes: le visiteur peut entrer son adresse e-mail. Si un utilisateur avec cette adresse email existe dans la table users de Coppermine, un email est envoyé à cette adresse qui contient essentiellement un lien que le destinataire de l'email doit cliquer pour vérifier qu'il a effectivement oublié son mot de passe et veut en demander un nouveau. Ceci est conçu comme une mise en garde contre le vandalisme, pour s'assurer que personne ne vous bloque  en ayant demandé un nouveau mot de passe pour lui. Le lien à l'intérieur du courriel contient un symbole qui ne peut pas être devinés ou composé: il est unique. Ce n'est que si ce lien est effectivement cliqué que le rappel de mot de passe est déclenché. Le serveur attribue alors un nouveau mot de passe aléatoire pour le compte qui correspond à l'adresse e-mail et envoie ce nouveau mot de passe dans un autre e-mail. Avec ce nouveau mot de passe qui est dans le second e-mail, l'utilisateur peut se connecter de nouveau.<br />
+    Il s'agit d'un processus très élégant et à toute épreuve une fois qu'il est correctement configuré, mais il y a bien sûr certaines choses qui peuvent mal se passer:
+    <ul>
+        <li>L'utilisateur doit connaître l'adresse e-mail, qui lui a permi de créer son compte utilisateur</li>
+        <li>L'utilisateur doit avoir accès à l'adresse e-mail, et il a besoin de se rappeler le mot de passe (pas de Coppermine) pour le compte e-mail</li>
+        <li>L'adresse e-mail qui correspond au compte d'utilisateur doit être remplie en premier lieu, ce qui pourraient ne pas être le cas pour l'administrateur s'il a omis d’en fournir une pour son propre compte</li>
+        <li>Le serveur doit être configuré correctement pour pouvoir envoyer des courriels</li>
+        <li>Le courriel envoyé par le serveur peut être bloqué par erreur par des  mécanismes de filtrage de type anti-spam</li>
+    </ul>
+    Si tel est le cas en ce qui vous concerne, c'est-à-dire, si vous avez oublié votre mot de passe de compte administrateur de Coppermine, voici les choses à faire:
+    <ul>
+        <li>
+            Si vous avez accès à <a href="dev_tools.htm#dev_tools_phpmyadmin">phpMyAdmin</a>, il suffit de définir un nouveau mot de passe pour votre compte d'utilisateur de Coppermine. Voici les instructions qui ont été initialement publié en tant que contribution d’utilisateurs sur le <a href="http://forum.coppermine-gallery.net/index.php/topic,52213.0.html" rel="external" class="external">forum d'aide de Coppermine</a>:
+            <div class="cpg_message_success">
+                Une fois que vous êtes dans le phpMyAdmin, vous verrez les bases de données sur la gauche. Cliquez sur la base de données de Coppermine. Sur la gauche vous pourrez voir les tables.<br />
+                Cliquez sur la table nommée <tt class="code">XXX_users</tt>, où XXX est le préfixe de table que vous avez choisi lors de l'installation de Coppermine initiale (d’origine, le préfixe est <tt class="code">cpg15x_</tt>, de sorte que le nom de la table par défaut doit être <tt class="code">cpg15x_users</tt>). Puis cliquez sur l'icône à gauche du texte sinon  vous ne verrez pas le contenu  de la table à droite de l'écran.<br />
+                Si vous avez perdu votre mot de passe d’administrateur regardez la colonne intitulée user_id. Recherchez le 1. C'est compte administrateur que vous avez créé lors de l'installation initiale. A la gauche de cette colonne il y a une icône représentant crayon (c'est à dire modifier). Cliquez sur ce lien.<br />
+                Vous devriez avoir maintenant des champs, dans lesquels vous pouvez écrire.<br />
+                A la droite de la ligne <tt class="code">user_password</tt> se trouve le mot de passe crypté. Effacer le et remplacer par 
+                <input type="text" readonly="readonly" name="admin_password" value="21232f297a57a5a743894a0e4a801fc3" size="32" maxlength="32" class="small" />.<br />
+                Que fera le mot de passe <tt class="code">admin</tt>. Ne laissez en aucun cas le champ mot de passe vide. Allez au bas de la page et cliquez sur <tt class="code">Exécuter</tt> en <tt class="code">sauvegardant</tt>. Vous pouvez maintenant sortir de phpMyAdmin en allant à l'icône de la sortie dans le coin supérieur gauche.<br />
+                Tapez l'URL de votre page de Coppermine. Connectez-vous avec votre nom d'utilisateur et le mot de passe <tt class="code">admin</tt>. Une fois que vous êtes connecté avec succès, vous devez bien entendu modifier le mot de passe pour mettre autre chose que <tt class="code">admin</tt>. Cliquez sur &quot;Mon profil&quot;, allez vers le bas de la page et cliquez sur &quot;Changer mon mot de passe&quot;. Entrez dans &quot;Mot de Passe actuel&quot; <tt class="code">admin</tt> puis votre nouveau mot de passe (vous devez l’entrer deux fois) et validez le formulaire. Si tout va bien, vous verrez un message qui le dit: &quot;Votre Mot de Passe a été modifié&quot;.<br />
+                Vous pouvez faire le même processus pour les utilisateurs: Pour accéder au profil d'un utilisateur, vous ouvrez une session en tant qu'administrateur. Allez dans le panneau de gestion des utilisateurs, modifier le compte d'un utilisateur en cliquant sur l'icône d'édition (<img src="../../images/icons/edit.png" width="16" height="16" border="0" alt="" title="edition" />) à côté du nom de l'utilisateur, puis entrer un nouveau mot de passe dans le champ correspondant.
+            </div>
+            Une autre alternative utilisant phpMyAdmin sans rien changer est d'utiliser un site avec une <a href="http://fr.wikipedia.org/wiki/Table_arc-en-ciel" rel="external" class="external">table arc-en-ciel</a> et de chercher le mot de passe qui correspond au hachage que vous vous trouvez dans phpMyAdmin.
+        </li>
+        <li>
+            Si vous n'avez pas accès à phpMyAdmin, vous pouvez procéder comme suit pour créer un nouveau compte administrateur:
+                <ul>
+                    <li>Utilisez votre <a href="dev_tools.htm#dev_tools_editor">éditeur de texte</a> favori (<a href="http://notepad-plus.sourceforge.net" rel="external" class="external">notepad++</a> est très bien) afin de créer un fichier texte avec ce contenu:
+                                        <textarea class="samplecode" rows="10" style="width:100%">&lt;?php
 define('IN_COPPERMINE', true);
 require('include/init.inc.php');
 define('ADMIN_PHP', true);
@@ -137,49 +135,49 @@ cpg_db_query($sql);
 pageheader('Create admin user');
 starttable('-1', 'Please delete this file after account creation!', 2);
 echo &lt;&lt;&lt; EOT
-	&lt;tr&gt;
-		&lt;td class="tableh2"&gt;
-			Username:
-		&lt;/td&gt;
-		&lt;td class="tableb"&gt;
-			tempadmin
-		&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td class="tableh2"&gt;
-			Password:
-		&lt;/td&gt;
-		&lt;td class="tableb"&gt;
-			test
-		&lt;/td&gt;
-	&lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td class="tableh2"&gt;
+            Username:
+        &lt;/td&gt;
+        &lt;td class="tableb"&gt;
+            tempadmin
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td class="tableh2"&gt;
+            Password:
+        &lt;/td&gt;
+        &lt;td class="tableb"&gt;
+            test
+        &lt;/td&gt;
+    &lt;/tr&gt;
 EOT;
 endtable();
 pagefooter();
 ?&gt;</textarea>
                     
-					</li>
-					<li>Nommez le fichier <tt class="code">adminpass.php</tt> et téléchargez le sur votre serveur web à la racine du dossier de Coppermine</tt></li>
-					<li>Exécutez le fichier dans votre navigateur en entrant l'URL du fichier que vous venez de télécharger (quelque chose comme <tt class="code">http://votredomaine.fr/le_dossier_de_coppermine/adminpass.php</tt>) dans la barre d'adresse de votre navigateur</li>
-					<li>Important: supprimer le fichier adminpass.php de votre serveur une fois l’opération fini - c'est un grand danger pour votre site si vous ne le faite pas !</li>
-					<li>Connectez-vous avec le nouvel utilisateur que le script a créé pour vous.</li>
-				</ul>
-		</li>
-	</ul>  
-	<a name="lost_password_cpg_user_account_bridged"></a><h4>Coppermine et les passerelles<a href="#lost_password_cpg_user_account_bridged" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-	Lorsque Coppermine fonctionne avec une passerelle (bridge), la gestion des utilisateurs de l'application  de la passerelle "prend le relais", donc si un visiteur clique sur le lien Connexion dans Coppermine, il est redirigé vers l’écran de connexion de transition de l’application de la passerelle. Après une connexion réussie, il / elle risque d'être renvoyé dans votre galerie Coppermine (si votre application prend en charge la redirection de transition après la connexion). Coppermine est seulement «conscient» que l'utilisateur a été authentifié dans votre application de transition; Coppermine n'est pas au courant du mot de passe de l'utilisateur. Par la suite, vous ne pouvez pas utiliser les mécanismes de Coppermine pour récupérer les mots de passe perdus pour les comptes d'utilisateurs lorsque vous êtes avec une passerelle. Si votre application fournit des mécanismes permettant de retouver votre mot de passe, utiliser ses mécanismes.
-	</div>
-	<a name="lost_password_cpg_mysql"></a><h3>Mot de passe mySQL<a href="#lost_password_cpg_user_account" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	
-	Si vous (ou votre hébergeur) changez des détails de votre compte mySQL (par exemple, si vous avez attribué un nouveau mot de passe à votre compte mySQL), vous devez tenir compte de vos modifications dans Coppermine en éditant le fichier <tt class="code">include/config.inc.php</tt>.<br />
-	S'il vous plaît garder à l'esprit que vous ne pouvez que refléter les changements de votre base de données mySQL dans ce fichier. Coppermine ne peut pas vraiment changer le mot de passe de votre compte MySQL lui-même. Si vous voulez faire ce changement (c'est à dire votre mot de passe MySQL compte administrateur), utiliser n'importe quel mécanisme que votre hébergeur fournit pour accomplir ou demandez à votre hébergeur de le changer pour vous.
+                    </li>
+                    <li>Nommez le fichier <tt class="code">adminpass.php</tt> et téléchargez le sur votre serveur web à la racine du dossier de Coppermine</tt></li>
+                    <li>Exécutez le fichier dans votre navigateur en entrant l'URL du fichier que vous venez de télécharger (quelque chose comme <tt class="code">http://votredomaine.fr/le_dossier_de_coppermine/adminpass.php</tt>) dans la barre d'adresse de votre navigateur</li>
+                    <li>Important: supprimer le fichier adminpass.php de votre serveur une fois l’opération fini - c'est un grand danger pour votre site si vous ne le faite pas !</li>
+                    <li>Connectez-vous avec le nouvel utilisateur que le script a créé pour vous.</li>
+                </ul>
+        </li>
+    </ul>  
+    <a name="lost_password_cpg_user_account_bridged"></a><h4>Coppermine et les passerelles<a href="#lost_password_cpg_user_account_bridged" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Lorsque Coppermine fonctionne avec une passerelle (bridge), la gestion des utilisateurs de l'application  de la passerelle "prend le relais", donc si un visiteur clique sur le lien Connexion dans Coppermine, il est redirigé vers l’écran de connexion de transition de l’application de la passerelle. Après une connexion réussie, il / elle risque d'être renvoyé dans votre galerie Coppermine (si votre application prend en charge la redirection de transition après la connexion). Coppermine est seulement «conscient» que l'utilisateur a été authentifié dans votre application de transition; Coppermine n'est pas au courant du mot de passe de l'utilisateur. Par la suite, vous ne pouvez pas utiliser les mécanismes de Coppermine pour récupérer les mots de passe perdus pour les comptes d'utilisateurs lorsque vous êtes avec une passerelle. Si votre application fournit des mécanismes permettant de retouver votre mot de passe, utiliser ses mécanismes.
+    </div>
+    <a name="lost_password_cpg_mysql"></a><h3>Mot de passe mySQL<a href="#lost_password_cpg_user_account" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    
+    Si vous (ou votre hébergeur) changez des détails de votre compte mySQL (par exemple, si vous avez attribué un nouveau mot de passe à votre compte mySQL), vous devez tenir compte de vos modifications dans Coppermine en éditant le fichier <tt class="code">include/config.inc.php</tt>.<br />
+    S'il vous plaît garder à l'esprit que vous ne pouvez que refléter les changements de votre base de données mySQL dans ce fichier. Coppermine ne peut pas vraiment changer le mot de passe de votre compte MySQL lui-même. Si vous voulez faire ce changement (c'est à dire votre mot de passe MySQL compte administrateur), utiliser n'importe quel mécanisme que votre hébergeur fournit pour accomplir ou demandez à votre hébergeur de le changer pour vous.
 </div>
 
 <div id="doc_footer">
-	<div class="doc_info_wrapper">
-		<span id="doc_last_changed">$LastChangedDate$</span>
-		<span id="doc_revision">$Revision$</span>
-	</div>
+    <div class="doc_info_wrapper">
+        <span id="doc_last_changed">$LastChangedDate$</span>
+        <span id="doc_revision">$Revision$</span>
+    </div>
 </div>
 </body>
 </html>
