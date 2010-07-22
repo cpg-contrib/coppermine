@@ -12141,6 +12141,14 @@
     <hash>56636415b372b8a4e0c95082ba515af0</hash>
   </element>
   <element>
+    <fullpath>lang/estonian.php</fullpath>
+    <version>1.5.6</version>
+    <revision>7620</revision>
+    <status>mandatory</status>
+    <permission>read</permission>
+    <hash>d01adda1e48b6ac511a737c918022e1e</hash>
+  </element>
+  <element>
     <fullpath>lang/finnish.php</fullpath>
     <version>1.5.6</version>
     <revision>7620</revision>

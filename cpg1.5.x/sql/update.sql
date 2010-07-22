@@ -337,7 +337,7 @@ INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, avail
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('dutch', 'Dutch','Nederlands','nl','nl', 'YES', 'NO', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('english', 'English (US)', 'English (US)', 'us','en', 'YES', 'YES');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('english_gb', 'English (British)','English (British)','gb','en', 'YES', 'NO');
-INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('estonian', 'Estonian','Eesti','ee','ee', 'NO', 'NO');
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('estonian', 'Estonian','Eesti','ee','ee', 'YES', 'YES');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('filipino', 'Filipino Tagalog','','ph','', 'NO', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('finnish', 'Finnish','Suomea','fi','', 'YES', 'YES');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('french', 'French','Fran&ccedil;ais','fr','fr', 'YES', 'YES');
@@ -396,6 +396,8 @@ UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='danish';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='dutch';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='english';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='english_gb';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='estonian';
+UPDATE CPG_languages SET `complete` = 'YES' WHERE `lang_id`='estonian';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='finnish';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='french';
 UPDATE CPG_languages SET `complete` = 'YES' WHERE `lang_id`='french';
