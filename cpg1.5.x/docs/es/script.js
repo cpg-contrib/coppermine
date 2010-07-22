@@ -1499,7 +1499,7 @@ function cpgDocHeader() {
 	if (getUrlParameters('hide_nav') == 1) {
 		return;
 	}
-	$('#docheader').text('Coppermine Photo Gallery v1.5.6: Documentación');
+	$('#docheader').text('Coppermine Photo Gallery v1.5.7: Documentación');
 	$('#docheader').after('<br clear="all" />\n<a name="top" class="en" class="en"></a>');
 	$('#docheader').before('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />\n');
 }

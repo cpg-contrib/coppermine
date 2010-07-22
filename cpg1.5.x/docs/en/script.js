@@ -377,7 +377,7 @@ doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="theme_theme_php.htm#theme_create_theme_php">Editing theme.php</a>\n';
 doc_toc += '              <ul>\n';
 doc_toc += '                  <li><a href="theme_theme_php.htm#theme_php_types">Item types</a></li>\n';
-doc_toc += '                  <li><a href="theme_theme_php.htm">The sample theme - a template to copy from</a></li>\n';
+doc_toc += '                  <li><a href="theme_theme_php.htm#theme_sample">The sample theme - a template to copy from</a></li>\n';
 doc_toc += '                  <li><a href="theme_theme_php.htm#theme_php_method">Method</a></li>\n';
 doc_toc += '                  <li><a href="theme_theme_php.htm#theme_php_scope">Scope</a></li>\n';
 doc_toc += '                  <li><a href="theme_theme_php.htm#theme_php_list">List of items in theme.php</a></li>\n';
@@ -1510,7 +1510,7 @@ function cpgDocHeader() {
 	if (getUrlParameters('hide_nav') == 1) {
 		return;
 	}
-	$('#docheader').text('Coppermine Photo Gallery v1.5.6: Documentation and Manual');
+	$('#docheader').text('Coppermine Photo Gallery v1.5.7: Documentation and Manual');
 	$('#docheader').after('<br clear="all" />\n<a name="top"></a>');
 	$('#docheader').before('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />\n');
 }
