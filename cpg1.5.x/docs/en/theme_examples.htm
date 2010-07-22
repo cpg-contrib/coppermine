@@ -35,11 +35,11 @@
 <p>This page contains a summary of modification examples that frequently are being requested on the Coppermine support board. The wording differs as well as the extra items that users want to add. Most users are looking for information how to add adverts (like Google's adsense) in particular places.</p>
 <p>We assume that you have read and understood the basics about themes in Coppermine: by now, you should know that</p>
 <ul>
-	<li>static content that is meant to display on all Coppermine-driven pages should reside in <a href="theme_template.htm">template.html</a></li>
-	<li>style changes can be accomplished in style.css</li>
+	<li>static content that is meant to display on <strong>all</strong> Coppermine-driven pages should reside in <a href="theme_template.htm">template.html</a></li>
+	<li>style changes (changing colors, looks of borders, margin width etc.) can be accomplished in style.css</li>
 	<li>sections of theme.php that need editing can be found in the <a href="theme_theme_php.htm#theme_sample">sample theme</a></li>
 </ul>
-<p class="cpg_message_success">This page will only explain what sections of theme.php need editing to accomplish particular extra features. You need to read up <strong>how</strong> to copy those sections first.</p>
+<p class="cpg_message_success">This page will only explain what sections of theme.php need editing to accomplish particular extra features. You need to read up <strong>how</strong> to copy those sections first. If you're not familiar with this, read up <a href="theme_theme_php.htm#theme_sample">The sample theme - a template to copy from</a>; this entire page assumes that you have read and understood that section.</p>
 
 <a name="theme_examples_summary"></a><h2>Summary<a href="#theme_examples_summary" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul>
@@ -250,6 +250,25 @@ Edit it as you see fit - you will have to increase the variable's value by the a
 to
 <pre class="cpg_code">            $winsizeX = $CURRENT_PIC_DATA['pwidth'] + $CONFIG['fullsize_padding_x'];  //the +'s are the mysterious FF and IE paddings
             $winsizeY = $CURRENT_PIC_DATA['pheight'] + $CONFIG['fullsize_padding_y'] + 200; //the +'s are the mysterious FF and IE paddings</pre>
+            
+    <a name="theme_examples_content_menu"></a><h3>Additional menu items<a href="#theme_examples_content_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    This section explains how to add more menu items to your custom menu. If you only need one extra menu item (not two or three of them), your best option is to use the config options &quot;<a href="configuration.htm#admin_theme_custom_lnk_name">Custom menu link name</a>&quot;/&quot;<a href="configuration.htm#admin_language_custom_lnk_url">Custom menu link URL</a>&quot;, as that method doesn't require you to edit files and is therefore less complicated. If you're happy to have just <em>one</em> extra menu item, there's no need to read on on this page - instead, follow the links above that explain the config options. If you're <a href="dev_plugins.htm">writing a plugin</a> of your own and not a custom theme, you should read up &quot;<a href="dev_plugin_api.htm#plugin_api_tutorial_button">Adding a Button to Coppermine</a>&quot;, as the method to add a menu item using a plugin differs from the method to add a menu items when designing a theme of your own.<br />
+    You're still reading on, so this means you need more custom menu items or you need more granular control over your menu items.<br />
+    The way Coppermine creates menu items in cpg1.5.x is in a sort-of in-between-state: both the classic way that Coppermine menu items were created in previous versions before cpg1.5.x is supported as well as more advanced methods that allow dynamic, expanding menus. That's why the method to add new menu items differs depending on what type of menu creation technique your custom theme is using, i.e. on what core theme it is based upon. There are plans to change this again in future versions, but for now, we'll have to live with what is there.<br />
+    The sections underneath seem to be very long, but don't be afraid: you don't have to read and understand all of it, but only the stuff that applies for your theme, as this section actually is separated into different sub-sections that explain how menus work for different types of themes.<br />
+    To be enable you to understand what we'll be talking about below, you need to understand that there are the following menus types in Coppermine:
+    <ul>
+        <li><strong>Classic structure</strong>:<br />
+        Separate <a href="admin_menu.htm#admin_menu">admin menu</a> (with links that point to <a href="configuration.htm">config panel</a>, <a href="categories.htm#cat_cp">categories control panel</a>, <a href="users.htm#user_cp">user management</a>, <a href="groups.htm#group_cp">groups control panel</a> etc.), sys-menu (containing links to the home, contact form, sidebar, file upload, login/logout etc.) and sub-menu (containing links to the album list, last uploads, last comments, most viewed, top rated favorites, search etc.)<br />
+        Typically, all themes that come with the Coppermine package except the new curve theme are designed that way</li>
+        <li><strong>Nested structure</strong>:<br />
+        Expanding, nested menu structure that rolls all of the possible menu items into one single menu and re-organizing the position of menu items. Currently, only the curve theme and some user contributed themes that are based on curve are designed that way.</li>
+    </ul>
+    <div class="indent">
+        <a name="theme_examples_content_menu"></a><h4>Entire menu structure defined in one block<a href="#theme_examples_content_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+        <abbr title="to be continued">tbc</abbr>...
+    </div> 
+            
 </div>
 
 <div id="doc_footer">
