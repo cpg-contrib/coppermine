@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-07-22 [B] Fixed ecard if no intermediate picture is present (thread ID 66161) {eenemeenemuu}
 2010-07-22 [A] Added Estonian language file (user contribution) {eenemeenemuu}
 2010-07-21 [B] Update 'last visit' time if it's a 'remember me' session (thread ID 66145) {eenemeenemuu}
 2010-07-21 [A] Added Slovak language file (user contribution) {eenemeenemuu}

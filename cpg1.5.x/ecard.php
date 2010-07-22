@@ -80,7 +80,7 @@ $row = mysql_fetch_assoc($result);
 $thumb_pic_url = get_pic_url($row, 'thumb');
 $normal_pic_url = get_pic_url($row, 'normal');
 
-if (!file_exists($normal_pic_url)) {
+if (strpos($normal_pic_url, 'thumb_nopic.png') > 0) {
     $normal_pic_url = get_pic_url($row, 'fullsize');
 }
 
