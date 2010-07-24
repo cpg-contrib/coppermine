@@ -513,3 +513,6 @@ INSERT INTO CPG_config VALUES ('session_cleanup', '0');
 INSERT INTO CPG_config VALUES ('guest_token_cleanup', '0');
 
 INSERT INTO CPG_config VALUES ('allow_guests_enter_file_details', '0');
+
+# The following line has to be removed when the moderator group feature will be re-enabled!
+UPDATE CPG_albums SET moderator_group = 0;
