@@ -342,6 +342,11 @@ a.phpnet {
     background-color: #E0E0E0;
 }
 
+.filename {
+    font-style: normal;
+    font-family: 'Courier New', Courier, Fixedsys, monospace;
+}
+
 .border1 {
     border-right: #999999 1px solid;
     padding-right: 5px;
