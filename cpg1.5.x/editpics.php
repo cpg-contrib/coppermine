@@ -79,6 +79,10 @@ if (!(USER_IS_ADMIN || USER_ADMIN_MODE || MODERATOR_MODE || USER_CAN_UPLOAD_PICT
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
+if (USER_ID == 0 && $CONFIG['allow_guests_enter_file_details'] == 0) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
+
 define('UPLOAD_APPROVAL_MODE', $superCage->get->keyExists('mode'));
 define('EDIT_PICTURES_MODE', !$superCage->get->keyExists('mode'));
 
