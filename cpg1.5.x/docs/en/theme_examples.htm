@@ -79,7 +79,7 @@
 <div class="indent">
     <a name="theme_examples_content_thumbnail_extra_row"></a><h4>Extra row between thumbnail rows<a href="#theme_examples_content_thumbnail_extra_row" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     <p class="cpg_message_info">This modification will modify the separator between the table rows that compose the thumbnail screen: a row will be added where you can add textual content or a horizontal banner ad.</p>
-    Edit themes/yourtheme/theme.php using a plain-text editor, find <tt class="code">$template_thumbnail_view</tt> and modify as suggested below. If <tt class="code">$template_thumbnail_view</tt> doesn't exist in your custom theme, copy that section from the sample theme first.<br />
+    Edit <tt class="filename">themes/yourtheme/theme.php</tt> using a <a href="dev_tools.htm#dev_tools_editor">plain-text editor</a>, find <tt class="code">$template_thumbnail_view</tt> and modify as suggested below. If <tt class="code">$template_thumbnail_view</tt> doesn't exist in your custom theme, copy that section from the sample theme first.<br />
     Inside the variable definition for <tt class="code">$template_thumbnail_view</tt>, find
     <pre class="cpg_code">&lt;!-- BEGIN row_separator --&gt;
             &lt;/tr&gt;
@@ -98,7 +98,7 @@
     
     <a name="theme_examples_content_thumbnail_cell"></a><h4>Extra table cell on each thumbnail page<a href="#theme_examples_content_thumbnail_cell" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     <p>This is a more advanced mod that will require more editing. What it does though is more subtle: it doesn't add an entire row or column to the thumbnail page, but replaces one of the thumbnails on each thumbnail page with a cell with your custom content (e.g. your advert).</p>
-    Edit themes/yourtheme/theme.php using a plain-text editor, find <tt class="code">$template_thumbnail_view</tt> and modify as suggested below. If <tt class="code">$template_thumbnail_view</tt> doesn't exist in your custom theme, copy that section from the sample theme first.<br />
+    Edit <tt class="filename">themes/yourtheme/theme.php</tt> using a <a href="dev_tools.htm#dev_tools_editor">plain-text editor</a>, find <tt class="code">$template_thumbnail_view</tt> and modify as suggested below. If <tt class="code">$template_thumbnail_view</tt> doesn't exist in your custom theme, copy that section from the sample theme first.<br />
     In the variable definition for <tt class="code">$template_thumbnail_view</tt>, find
     <pre class="cpg_code">&lt;!-- END spacer --&gt;</pre>
     and add after it (into a new line of it's own)
@@ -113,7 +113,7 @@
                     &lt;/table&gt;
             &lt;/td&gt;
     &lt;!-- END advert --&gt;</pre>
-    Next, you'll need to edit the function definition for the function named <tt class="code">theme_display_thumbnails</tt>. In themes/yourtheme/theme.php, find <tt class="code">function theme_display_thumbnails</tt> and modify as suggested below. If that particular section doesn't exist in your custom theme, copy the function definition from the sample theme. To accomplish that, copy everything starting at (and including)
+    Next, you'll need to edit the function definition for the function named <tt class="code">theme_display_thumbnails</tt>. In <tt class="filename">themes/yourtheme/theme.php</tt>, find <tt class="code">function theme_display_thumbnails</tt> and modify as suggested below. If that particular section doesn't exist in your custom theme, copy the function definition from the sample theme. To accomplish that, copy everything starting at (and including)
     <pre class="cpg_code">/******************************************************************************
     ** Section &lt;&lt;&lt;theme_display_thumbnails&gt;&gt;&gt; - START
     ******************************************************************************/</pre>
@@ -121,7 +121,7 @@
     <pre class="cpg_code">/******************************************************************************
     ** Section &lt;&lt;&lt;theme_display_thumbnails&gt;&gt;&gt; - END
     ******************************************************************************/</pre>
-    into a new line before <tt class="code">?&gt;</tt> of themes/yourtheme/theme.php<br />
+    into a new line before <tt class="code">?&gt;</tt> of <tt class="filename">themes/yourtheme/theme.php</tt><br />
     In that function definition, find
     <pre class="cpg_code">    static $spacer = '';</pre>
     and add into a new line after it
@@ -177,7 +177,7 @@
 
 <a name="theme_examples_content_displayimage_image"></a><h4>Directly next to the intermediate image<a href="#theme_examples_content_displayimage_image" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>The instructions apply for all extra content that should be applied <em>above</em>, <em>below</em> or next to (at the <em>right</em> or <em>left</em>) of your actual intermediate image that is embedded into the page. Keep in mind though that the place at the right or left may already be small, depending on the screen resolution of your visitor and the size of your intermediate image, so it's advisable to add your extra content at the top or bottom rather.</p>
-Edit <tt class="code">themes/yourtheme/theme.php</tt>, find the variable definition for <tt class="code">$template_display_media</tt> and edit as suggested below. If that definition doesn't exist in your custom theme, copy it first from the sample theme, then edit accordingly.<br />
+Edit <tt class="filename">themes/yourtheme/theme.php</tt>, find the variable definition for <tt class="code">$template_display_media</tt> and edit as suggested below. If that definition doesn't exist in your custom theme, copy it first from the sample theme, then edit accordingly.<br />
 The section that needs changing is the table that wraps the template token <tt class="code">{IMAGE}</tt>, so you need to edit
 <pre class="cpg_code">           &lt;tr&gt;
                 &lt;td align="center" class="display_media" nowrap="nowrap"&gt;
@@ -210,7 +210,7 @@ Just modify the inner table as you see fit. To add some content at the bottom, y
 
 <a name="theme_examples_content_displayimage_filmstrip"></a><h4>Directly next to the film strip<a href="#theme_examples_content_displayimage_filmstrip" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
 <p>The instructions apply for all extra content that should be applied <em>above</em> or <em>below</em> of your film strip that is displayed on the page if the corresponding option "<a href="configuration.htm#admin_image_comment_filmstrip_toggle">Show film strip</a>" is enabled in Coppermine's config.</p>
-Edit <tt class="code">themes/yourtheme/theme.php</tt>, find the function definition for <tt class="code">theme_display_film_strip</tt> and edit as suggested below. If that definition doesn't exist in your custom theme, copy it first from the sample theme, then edit accordingly.<br />
+Edit <tt class="filename">themes/yourtheme/theme.php</tt>, find the function definition for <tt class="code">theme_display_film_strip</tt> and edit as suggested below. If that definition doesn't exist in your custom theme, copy it first from the sample theme, then edit accordingly.<br />
 The section that needs changing is at the end where the template is finally evaluated. Find
 <pre class="cpg_code">    echo '&lt;div id="filmstrip"&gt;';
     starttable($CONFIG['picture_table_width']);
@@ -234,7 +234,7 @@ EOT;
 <a name="theme_examples_content_fullsize"></a><h3>Additional content on the full-size pop-up<a href="#theme_examples_content_fullsize" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>The pop-up that shows up if you click on the intermediate image can contain additional content (e.g. adverts) as well. However, you need to make up your mind if there will be enough space on the screen of your site visitors to ad even more content. In other words: only display additional content on the full-size pop-up if your full-size images have a resolution that is smaller than your visitor's minimum monitor resolution. Since you can't tell for sure what size they will have, you can still consider 800 x 600 pixels to be the minimum. Remember as well that with smartphones and other mobile devices that have internet acccess recently you can't even be sure that there will be resolutions that are even smaller.</p>
 <p>If you must have an advert on the fullsize pop-up, make sure to use a text advert only and not a banner. This being said as a warning, here's how to add custom content to the full-size pop-up:</p>
-Edit <tt class="code">themes/yourtheme/theme.php</tt>, find
+Edit <tt class="filename">themes/yourtheme/theme.php</tt>, find
 <pre class="cpg_code">// Display the full size image
 function theme_display_fullsize_pic()</pre>
 and edit that function definition as suggested below. If this piece of code doesn't exist in your custom theme, copy the function definition from the sample theme, starting at
@@ -245,7 +245,7 @@ and edit that function definition as suggested below. If this piece of code does
 ** Section &lt;&lt;&lt;theme_display_fullsize_pic&gt;&gt;&gt; - END
 ******************************************************************************/</pre>
 To add the Adsense code or any other custom content, add it as you see fit in the HTML section of above mentioned code, e.g. right after the closing tag of the div container.<br />
-In this particular case, you'll have to circumvent another issue: the window size of the full-size pic is being calculated based on the dimensions of the pic. Therefore, if you add content to the window, you'll have to make sure that the dimensions of the window increase by the space the advert "eats up". The dimensions of the window are being calculated in the function <tt class="code">function theme_html_picture()</tt>. The same method used above applies: search your custom theme (themes/yourtheme/theme.php) for that function definition. If it exists there, edit it as suggested below. If it doesn't, copy the function defintion from themes/sample/theme.php into a new line before <tt class="code">?&gt;</tt> of themes/yourtheme/theme.php.<br />
+In this particular case, you'll have to circumvent another issue: the window size of the full-size pic is being calculated based on the dimensions of the pic. Therefore, if you add content to the window, you'll have to make sure that the dimensions of the window increase by the space the advert "eats up". The dimensions of the window are being calculated in the function <tt class="code">function theme_html_picture()</tt>. The same method used above applies: search your custom theme (<tt class="filename">themes/yourtheme/theme.php</tt>) for that function definition. If it exists there, edit it as suggested below. If it doesn't, copy the function defintion from themes/sample/theme.php into a new line before <tt class="code">?&gt;</tt> of <tt class="filename">themes/yourtheme/theme.php</tt>.<br />
 The piece of code that actually needs editing is
 <pre class="cpg_code">            $winsizeX = $CURRENT_PIC_DATA['pwidth'] + $CONFIG['fullsize_padding_x'];  //the +'s are the mysterious FF and IE paddings
             $winsizeY = $CURRENT_PIC_DATA['pheight'] + $CONFIG['fullsize_padding_y']; //the +'s are the mysterious FF and IE paddings</pre>
@@ -271,7 +271,204 @@ to
     </ul>
     <div class="indent">
         <a name="theme_examples_content_menu"></a><h4>Entire menu structure defined in one block<a href="#theme_examples_content_menu" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-        A typical example for the entire menu structure defined in one variable block is the theme &quot;<a href="theme.htm#theme_builtin_hardwired">Hardwired</a>&quot;.
+        A typical example for the entire menu structure defined in one variable block is the theme &quot;<a href="theme.htm#theme_builtin_hardwired">Hardwired</a>&quot;. To figure out wether your custom theme is using the same technique, open <tt class="filename">themes/yourtheme/theme.php</tt> with a <a href="dev_tools.htm#dev_tools_editor">plain-text editor</a> and find the line that starts with <tt class="code">$template_sys_menu =</tt> for the sys menu and/or <tt class="code">$template_sub_menu =</tt> for the sub menu. Determine what menu you want to edit - in this example, we'll be talking about the sys menu, but everything that will be said here will apply for the sub menu as well.<br />
+        Inside the sys menu, take a look at the content of the definition: if your custom theme falls into the category &quot;Entire menu structure defined in one block&quot;, then you should find one or more lines of code inside the sys menu that corresponds to each menu item that currently exists in your custom menu when looking at your gallery's output. For the hardwired theme, the code looks like this:
+        <textarea class="samplecode" style="width:100%" rows="10">// HTML template for sys menu
+$template_sys_menu = &lt;&lt;&lt; EOT
+
+                        &lt;table border="0" cellpadding="0" cellspacing="0"&gt;
+                                &lt;tr&gt;
+&lt;!-- BEGIN home --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonlefthome" src="themes/hardwired/images/buttonlefthome.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{HOME_TGT}" title="{HOME_TITLE}"&gt;{HOME_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END home --&gt;
+&lt;!-- BEGIN contact --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleftcontact" src="themes/hardwired/images/buttonleftcontact.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{CONTACT_TGT}" title="{CONTACT_TITLE}"&gt;{CONTACT_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END contact --&gt;
+&lt;!-- BEGIN my_gallery --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleftmy" src="themes/hardwired/images/buttonleftmy.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}"&gt;{MY_GAL_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END my_gallery --&gt;
+&lt;!-- BEGIN allow_memberlist --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft" src="themes/hardwired/images/buttonleftmemb.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}"&gt;{MEMBERLIST_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END allow_memberlist --&gt;
+&lt;!-- BEGIN my_profile --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{MY_PROF_TGT}" title="{MY_PROF_LNK}"&gt;{MY_PROF_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END my_profile --&gt;
+&lt;!-- BEGIN enter_admin_mode --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleftad" src="themes/hardwired/images/buttonleftad.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}"&gt;{ADM_MODE_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END enter_admin_mode --&gt;
+&lt;!-- BEGIN leave_admin_mode --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleftad" src="themes/hardwired/images/buttonleftad.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{USR_MODE_TGT}" title="{USR_MODE_TITLE}"&gt;{USR_MODE_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+&lt;!-- END leave_admin_mode --&gt;
+&lt;!-- BEGIN sidebar --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleftad" src="themes/hardwired/images/buttonleftmemb.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{SIDEBAR_TGT}" title="{SIDEBAR_TITLE}"&gt;{SIDEBAR_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+&lt;!-- END sidebar --&gt;
+&lt;!-- BEGIN upload_pic --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleftup" src="themes/hardwired/images/buttonleftup.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                       &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{UPL_PIC_TGT}" title="{UPL_PIC_TITLE}"&gt;{UPL_PIC_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END upload_pic --&gt;
+&lt;!-- BEGIN register --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{REGISTER_TGT}" title="{REGISTER_TITLE}"&gt;{REGISTER_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END register --&gt;
+&lt;!-- BEGIN login --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                       &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{LOGIN_TGT}" title="{LOGIN_LNK}"&gt;{LOGIN_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /&gt;&lt;/td&gt;
+&lt;!-- END login --&gt;
+&lt;!-- BEGIN logout --&gt;
+                                        &lt;td&gt;&lt;img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonleftout" src="themes/hardwired/images/buttonleftout.gif" width="17" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+                                        &lt;td style="background: url(themes/hardwired/images/buttoncenter.gif);"&gt;
+                                                &lt;a href="{LOGOUT_TGT}" title="{LOGOUT_LNK}"&gt;{LOGOUT_LNK}&lt;/a&gt;
+                                        &lt;/td&gt;
+                                        &lt;td&gt;&lt;img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" alt="" /&gt;&lt;/td&gt;
+&lt;!-- END logout --&gt;
+                                &lt;/tr&gt;
+                        &lt;/table&gt;
+
+EOT;</textarea>
+        , but it could just as well look like this for another theme:
+        <textarea class="samplecode" style="width:100%" rows="10">// HTML template for sys menu$template_sys_menu = &lt;&lt;&lt; EOT
+
+                        &lt;ul&gt;
+    &lt;!-- BEGIN home --&gt;
+                            &lt;li&gt;
+                                    &lt;a href="{HOME_TGT}" title="{HOME_TITLE}"&gt;{HOME_LNK}&lt;/a&gt;
+                            &lt;/li&gt;
+    &lt;!-- END home --&gt;
+    &lt;!-- BEGIN contact --&gt;
+                            &lt;li&gt;
+                                    &lt;a href="{CONTACT_TGT}" title="{CONTACT_TITLE}"&gt;{CONTACT_LNK}&lt;/a&gt;
+                            &lt;/li&gt;
+    &lt;!-- END contact --&gt;
+    &lt;!-- BEGIN my_gallery --&gt;
+                            &lt;li&gt;
+                                    &lt;a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}"&gt;{MY_GAL_LNK}&lt;/a&gt;
+                            &lt;/li&gt;
+    &lt;!-- END my_gallery --&gt;
+    &lt;!-- BEGIN allow_memberlist --&gt;
+                            &lt;li&gt;
+                                    &lt;a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}"&gt;{MEMBERLIST_LNK}&lt;/a&gt;
+                            &lt;/li&gt;
+    &lt;!-- END allow_memberlist --&gt;
+    &lt;!-- BEGIN my_profile --&gt;
+                            &lt;li&gt;
+                                    &lt;a href="{MY_PROF_TGT}" title="{MY_PROF_LNK}"&gt;{MY_PROF_LNK}&lt;/a&gt;
+                            &lt;/li&gt;
+    &lt;!-- END my_profile --&gt;
+    &lt;!-- BEGIN enter_admin_mode --&gt;
+                            &lt;li&gt;
+                                    &lt;a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}"&gt;{ADM_MODE_LNK}&lt;/a&gt;
+                            &lt;/li&gt;
+    &lt;!-- END enter_admin_mode --&gt;
+    &lt;!-- BEGIN leave_admin_mode --&gt;
+                            &lt;li&gt;
+                                    &lt;a href="{USR_MODE_TGT}" title="{USR_MODE_TITLE}"&gt;{USR_MODE_LNK}&lt;/a&gt;
+                            &lt;/li&gt;
+    &lt;!-- END leave_admin_mode --&gt;
+    &lt;!-- BEGIN sidebar --&gt;
+                            &lt;li&gt;
+                                    &lt;a href="{SIDEBAR_TGT}" title="{SIDEBAR_TITLE}"&gt;{SIDEBAR_LNK}&lt;/a&gt;
+                            &lt;/li&gt;
+    &lt;!-- END sidebar --&gt;
+    &lt;!-- BEGIN upload_pic --&gt;
+                            &lt;li&gt;
+                                    &lt;a href="{UPL_PIC_TGT}" title="{UPL_PIC_TITLE}"&gt;{UPL_PIC_LNK}&lt;/a&gt;
+                            &lt;/li&gt;
+    &lt;!-- END upload_pic --&gt;
+    &lt;!-- BEGIN register --&gt;
+                            &lt;li&gt;
+                                    &lt;a href="{REGISTER_TGT}" title="{REGISTER_TITLE}"&gt;{REGISTER_LNK}&lt;/a&gt;
+                            &lt;/li&gt;
+    &lt;!-- END register --&gt;
+    &lt;!-- BEGIN login --&gt;
+                            &lt;li&gt;
+                                    &lt;a href="{LOGIN_TGT}" title="{LOGIN_LNK}"&gt;{LOGIN_LNK}&lt;/a&gt;
+                            &lt;/li&gt;
+    &lt;!-- END login --&gt;
+    &lt;!-- BEGIN logout --&gt;
+                            &lt;li&gt;
+                                    &lt;a href="{LOGOUT_TGT}" title="{LOGOUT_LNK}"&gt;{LOGOUT_LNK}&lt;/a&gt;
+                            &lt;/li&gt;
+    &lt;!-- END logout --&gt;
+                        &lt;/ul&gt;
+EOT;</textarea>
+(which is what we'll use in this example for brevity).<br />
+        As you can see, each menu item is wrapped into a comment construct like <pre class="cpg_code code">&lt;!-- BEGIN menu_item_name --&gt;</pre>and
+        <pre class="cpg_code code">&lt;!-- END menu_item_name --&gt;</pre>
+        Although this looks like straightforward HTML comments that won't display in the browser, they are there for a reason: with them, Coppermine determines if a particular menu item should be processed. The Coppermine script itself (which is written in PHP and therefore isn't "blind" as far as HTML comments are concerned) is searching for those comment blocks (with the keywords being <tt class="code">BEGIN</tt> and <tt class="code">END</tt> followed by the menu item name, which is a keyword as well in this process). Inside each code block that corresponds to a menu item you can see placeholder tokens as well in curly braces that will be replaced with actual content when the menu is actually processed - more on that later.<br />
+        With this being said: if you plan to remove a particular menu item, only remove the the HTML markup between the comments, but leave the comments around them intact; if you plan to remove the home button for example (which is something you wouldn't want to do in "real life"), find
+        <pre class="cpg_code code">&lt;!-- BEGIN home --&gt;
+                            &lt;li&gt;
+                                    &lt;a href="{HOME_TGT}" title="{HOME_TITLE}"&gt;{HOME_LNK}&lt;/a&gt;
+                            &lt;/li&gt;
+&lt;!-- END home --&gt;</pre>
+        and replace with
+        <pre class="cpg_code code">&lt;!-- BEGIN home --&gt;
+&lt;!-- END home --&gt;</pre>
+        To actually add a menu item of your own, you will have to add a custom block of code into the right spot, i.e. you have to place it correctly as far as nesting is concerned: it needs to reside between two existing menu item and not inside them. In other words, the code for your custom menu item needs to reside <em>after</em> a comment line that <em>ends</em> a menu item record (e.g. <tt class="code">&lt;!-- END contact --&gt;</tt>) and <em>before</em> another code line that starts the next menu item record (e.g. <tt class="code">&lt;!-- BEGIN my_gallery --&gt;</tt>).
+        In our example, we want to add a link to the menu that points to our forum. The menu item is meant to show up between the <a href="configuration.htm#admin_contact_start">contact form</a> link and the next menu item. To accomplish this, find
+        <pre class="cpg_code code">    &lt;!-- END contact --&gt;</pre>
+        and add after it (into a line of it's own)
+        <pre class="cpg_code code">    &lt;!-- BEGIN custom_forum_link --&gt;
+                            &lt;li&gt;
+                                    &lt;a href="../forum/" title="go to the forum"&gt;Forum&lt;/a&gt;
+                            &lt;/li&gt;
+    &lt;!-- END custom_forum_link --&gt;</pre> 
+        Save your changes and upload them from your local copy to your webserver if applicable - you should see the changes immediately. If you're happy with what you got, you can stop reading on - you just figured out how to add a custom menu item to your theme.<br />
+        If you want more features (i.e. if the link is not meant to show up no matter what, but only if a certain condition applies, e.g. if the visitor is logged in) or if you want to fully internationalize the link to catter for visitors from different countried with different languages, read on - we'll try to explain how to accomplish all that.<br />
+        In order to understand what is going on, we'll have to take another look &quot;under the hood&quot; of Coppermine to see how it works: the "regular" menu items contain (as suggested above) placeholder tokens that get populated somewhere else.                                  
         <br /><abbr title="to be continued">tbc</abbr>...
     </div> 
             
