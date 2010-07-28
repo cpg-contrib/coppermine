@@ -6140,8 +6140,6 @@ function getFormToken($timestamp = null)
 
     $token_criteria_array = array(
         'user_id'   => USER_ID,
-        'ip_addr'   => $raw_ip,
-        'browser'   => $superCage->server->getRaw('HTTP_USER_AGENT'),
         'site_tkn'  => $CONFIG['site_token'],
         'timestamp' => $timestamp
     );
