@@ -57,7 +57,7 @@ $show_icon = cpg_fetch_icon('show_table_row', 2);
 
 // Form has been submit --- start
 if ($superCage->post->keyExists('submit')) {
-    $posted_lang_id_array = $superCage->post->getAlnum('lang_id');
+    $posted_lang_id_array = $superCage->post->getEscaped('lang_id'); 
     foreach ($posted_lang_id_array as $posted_lang_id) {
         // Create the query
         if ($superCage->post->getAlpha('new_'.$posted_lang_id) == 'YES') {
@@ -119,7 +119,7 @@ if ($superCage->post->keyExists('submit')) {
         $query = '';
     } // foreach loop end
     // Now let's set the default language // DEFAULT_LANGUAGE
-    $submit_default_id = $superCage->post->getAlpha('is_default');
+    $submit_default_id = $superCage->post->getEscaped('is_default');
     if ($submit_default_id != DEFAULT_LANGUAGE) { // only write the change if the submit default language differs from the current default language
         // Check if the "new" default language is enabled in the first place
         if ($superCage->post->getAlpha('enable_'.$submit_default_id) == 'YES') {
