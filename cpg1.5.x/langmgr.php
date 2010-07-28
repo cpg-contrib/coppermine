@@ -123,13 +123,13 @@ if ($superCage->post->keyExists('submit')) {
     if ($submit_default_id != DEFAULT_LANGUAGE) { // only write the change if the submit default language differs from the current default language
         // Check if the "new" default language is enabled in the first place
         if ($superCage->post->getAlpha('enable_'.$submit_default_id) == 'YES') {
+            $CONFIG['lang'] = $CONFIG['lang_config'];
             cpg_config_set('lang', $submit_default_id);
             $CONFIG['default_lang'] = $submit_default_id;
             $query_output .= sprintf($query_output_ok, sprintf($lang_langmgr_php['default_language'], $submit_default_id));
         } else {
             $query_output .= sprintf($query_output_error, $lang_langmgr_php['enable_default']);
         }
-        $query_output .= sprintf($query_output_error, 'Setting the default language doesn\'t work as expected yet. This file is still work in progress.<br />Joachim');
     }
     // Output status messages if applicable
     if ($query_output != '') {

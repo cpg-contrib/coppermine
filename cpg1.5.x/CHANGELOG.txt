@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-07-28 [B] Fixed setting default language with language manager (thread ID 66276) {eenemeenemuu}
 2010-07-28 [M] Changed form token generation - removed trouble maker parameters (thread ID 65918) {eenemeenemuu}
 2010-07-28 [B] Fixed language manager issue for language files with underscore (thread ID 66274) {eenemeenemuu}
 2010-07-24 [B] Set moderator group to '0' for all albums to avoid problems for people who used that feature before it was dropped (thread ID 66118) {eenemeenemuu}
