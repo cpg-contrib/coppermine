@@ -9,7 +9,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.5.7
+  Coppermine version: 1.5.8
   $HeadURL$
   $Revision$
 **********************************************/
@@ -23,13 +23,13 @@ $(function() {
         control:"#sidetreecontrol"
     });
     $(".cpg_zebra tr:even").addClass("tableb");
-	$(".cpg_zebra tr:odd").addClass("tableb_alternate");
+    $(".cpg_zebra tr:odd").addClass("tableb_alternate");
 });
 
 function cpgDocToc() {
   if (getUrlParameters('hide_nav') == 1) {
-  	$('#toc').replaceWith('');
-	return;
+    $('#toc').replaceWith('');
+    return;
   }
 var doc_toc = '';
 doc_toc += '<div id="toc_collapsed" class="en">\n';
@@ -1504,30 +1504,30 @@ $('#toc').replaceWith('<div id="toc" class="en" class="en">' + doc_toc + '</div>
 
 
 function cpgDocHeader() {
-	// Only display the header if the docs are not included
-	if (getUrlParameters('hide_nav') == 1) {
-		return;
-	}
-	$('#docheader').text('Coppermine Photo Gallery v1.5.7: Documentación');
-	$('#docheader').after('<br clear="all" />\n<a name="top" class="en" class="en"></a>');
-	$('#docheader').before('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />\n');
+    // Only display the header if the docs are not included
+    if (getUrlParameters('hide_nav') == 1) {
+        return;
+    }
+    $('#docheader').text('Coppermine Photo Gallery v1.5.8: Documentación');
+    $('#docheader').after('<br clear="all" />\n<a name="top" class="en" class="en"></a>');
+    $('#docheader').before('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />\n');
 }
 
 function cpgDocSearch() {
-	// Only display the header if the docs are not included
-	if (getUrlParameters('hide_nav') == 1) {
-		return;
-	}
-	var doc_search = '';
-	doc_search += '  <div id="doc_search" style="display:none;" class="en" class="en">\n';
-	doc_search += '    <form action="http://www.google.com/cse" id="cse-search-box" class="en" class="en">\n';
-	doc_search += '      <input type="hidden" name="cx" value="009353514429642786404:8ndxnr03bcg" />\n';
-	doc_search += '      <input type="text" name="q" size="25" />\n';
-	doc_search += '      <input type="submit" name="sa" value="Buscar" style="font-size:9px;" />\n';
-	doc_search += '    </form>\n';
-	doc_search += '    <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=es" class="en" class="en"></script>\n';
-	doc_search += '  </div>\n';
-	$('#toc').append(doc_search);
+    // Only display the header if the docs are not included
+    if (getUrlParameters('hide_nav') == 1) {
+        return;
+    }
+    var doc_search = '';
+    doc_search += '  <div id="doc_search" style="display:none;" class="en" class="en">\n';
+    doc_search += '    <form action="http://www.google.com/cse" id="cse-search-box" class="en" class="en">\n';
+    doc_search += '      <input type="hidden" name="cx" value="009353514429642786404:8ndxnr03bcg" />\n';
+    doc_search += '      <input type="text" name="q" size="25" />\n';
+    doc_search += '      <input type="submit" name="sa" value="Buscar" style="font-size:9px;" />\n';
+    doc_search += '    </form>\n';
+    doc_search += '    <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=es" class="en" class="en"></script>\n';
+    doc_search += '  </div>\n';
+    $('#toc').append(doc_search);
 }
 
 function cpgDocFooter() {
@@ -1578,71 +1578,71 @@ function cpgDocTranslationWarning() {
 
 $(document).ready(function()
 {
-	var $_GET = {};
-	document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
-		function decode(s) {
-			return decodeURIComponent(s).replace(/\+/g, " ");
-		}
-		$_GET[decode(arguments[1])] = decode(arguments[2]);
-	});
-	//hide all elements with class detail_body
-	$(".detail_body").hide();
-	if ($_GET["expand_all"] == 1) { // Show all details and get rid of the details toggle if the GET parameter expand_all is set
-		$('.detail_body').show();
-		$('.detail_head_collapsed').replaceWith('');
-	}
-	//toggle the component with class detail_body
-	$(".detail_head_collapsed").click(function()
-	{
-		$(this).toggleClass("detail_head_expanded").next(".detail_body").slideToggle(600);
-	});
-	$(".detail_expand_all").click(function()
-	{
-		$(".detail_body").slideDown(1200);
-		$(".detail_head_collapsed").toggleClass("detail_head_expanded");
-		$(".detail_expand_all").hide();
-		$(".detail_collapse_all").show();
+    var $_GET = {};
+    document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+        function decode(s) {
+            return decodeURIComponent(s).replace(/\+/g, " ");
+        }
+        $_GET[decode(arguments[1])] = decode(arguments[2]);
+    });
+    //hide all elements with class detail_body
+    $(".detail_body").hide();
+    if ($_GET["expand_all"] == 1) { // Show all details and get rid of the details toggle if the GET parameter expand_all is set
+        $('.detail_body').show();
+        $('.detail_head_collapsed').replaceWith('');
+    }
+    //toggle the component with class detail_body
+    $(".detail_head_collapsed").click(function()
+    {
+        $(this).toggleClass("detail_head_expanded").next(".detail_body").slideToggle(600);
+    });
+    $(".detail_expand_all").click(function()
+    {
+        $(".detail_body").slideDown(1200);
+        $(".detail_head_collapsed").toggleClass("detail_head_expanded");
+        $(".detail_expand_all").hide();
+        $(".detail_collapse_all").show();
 
-	});
-	$(".detail_collapse_all").click(function()
-	{
-		$(".detail_body").slideUp(1200);
-		$(".detail_head_collapsed").toggleClass("detail_head_expanded");
-		$(".detail_expand_all").show();
-		$(".detail_collapse_all").hide();
+    });
+    $(".detail_collapse_all").click(function()
+    {
+        $(".detail_body").slideUp(1200);
+        $(".detail_head_collapsed").toggleClass("detail_head_expanded");
+        $(".detail_expand_all").show();
+        $(".detail_collapse_all").hide();
 
-	});
-	$(".detail_toggle_all").click(function()
-	{
-		$(".detail_body").slideToggle(600);
-		$(".detail_head_collapsed").toggleClass("detail_head_expanded");
-	});
-	cpgDocHeader();
-	cpgDocTranslationWarning();
-	cpgDocToc();
-	$("#tree").treeview({
+    });
+    $(".detail_toggle_all").click(function()
+    {
+        $(".detail_body").slideToggle(600);
+        $(".detail_head_collapsed").toggleClass("detail_head_expanded");
+    });
+    cpgDocHeader();
+    cpgDocTranslationWarning();
+    cpgDocToc();
+    $("#tree").treeview({
         collapsed: true,
         unique: true,
         animated: "slow",
         persist: "location"
     });
-	cpgDocSearch();
-	cpgDocFooter();
-	dateRevision();
+    cpgDocSearch();
+    cpgDocFooter();
+    dateRevision();
     $("a.nolink").click(function(){
       return false;
     });
     // Fade the toc in if it is needed
-	$("#toc").bind("mouseenter",function(){
-		$("#toc_collapsed").hide();
-		$("#toc_expanded").fadeIn('slow');
-		$("#doc_search").show();
-	});
-	// Fade the toc out if it isn't used
-	$("#toc").bind("mouseleave",function(){
-		$("#toc_expanded").fadeOut('slow');
-		$("#toc_collapsed").show();
-		$("#doc_search").hide();
-	});
-	
+    $("#toc").bind("mouseenter",function(){
+        $("#toc_collapsed").hide();
+        $("#toc_expanded").fadeIn('slow');
+        $("#doc_search").show();
+    });
+    // Fade the toc out if it isn't used
+    $("#toc").bind("mouseleave",function(){
+        $("#toc_expanded").fadeOut('slow');
+        $("#toc_collapsed").show();
+        $("#doc_search").hide();
+    });
+    
 });

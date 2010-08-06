@@ -8,7 +8,7 @@ This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 3
 as published by the Free Software Foundation.
 ********************************************
-Coppermine version: 1.5.7
+Coppermine version: 1.5.8
 $HeadURL$
 $Revision$
 *********************************************
@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-08-06 [M] Release of cpg1.5.8 {eenemeenemuu}
 2010-07-28 [B] Fixed setting default language with language manager (thread ID 66276) {eenemeenemuu}
 2010-07-28 [M] Changed form token generation - removed trouble maker parameters (thread ID 65918) {eenemeenemuu}
 2010-07-28 [B] Fixed language manager issue for language files with underscore (thread ID 66274) {eenemeenemuu}
