@@ -11,7 +11,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
 
