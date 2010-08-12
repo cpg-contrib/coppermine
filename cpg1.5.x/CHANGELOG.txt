@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-08-12 [B] Fixed admin email address validation (thread ID 66512) {eenemeenemuu}
 2010-08-12 [B] Added charsetmgr.php to the delete files array (thread ID 66490) {eenemeenemuu}
 2010-08-12 [B] Fixed lower case user name issue with plugin usergal_alphatabs (thread ID 66485) {eenemeenemuu}
 2010-08-12 [B] Fixed issue with plugin usergal_alphatabs when bridged (thread ID 66340) {eenemeenemuu}
