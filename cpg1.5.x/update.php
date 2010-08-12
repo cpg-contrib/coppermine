@@ -1,3 +1,4 @@
+
 <?php
 /*************************
   Coppermine Photo Gallery
@@ -717,6 +718,7 @@ function delete_files()
 
     // Attempt to delete outdated files
     $delete_file_array = array(
+        'charsetmgr.php',
         'config.php',
         'editOnePic.php',
         'faq.php',
