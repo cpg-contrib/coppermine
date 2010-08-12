@@ -260,7 +260,7 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
         $sql  = "SELECT NULL ";
         $sql .= "FROM {$CONFIG[\'TABLE_ALBUMS\']} AS p ";
         $sql .= " INNER JOIN {$CONFIG[\'TABLE_PICTURES\']} AS pics ON pics.aid = p.aid ";
-        $sql .= " INNER JOIN {$CONFIG[\'TABLE_USERS\']} AS u ON p.owner = u.user_id ";
+        $sql .= " INNER JOIN ".$this->usertable." AS u ON p.owner = u.user_id ";
         $sql .= "WHERE ( category > " . FIRST_USER_CAT . " $forbidden) ";
         if ($l = $getLetter) $sql .= "AND {$f[\'username\']} LIKE \'$l%\' ";
         $sql .= "GROUP BY category;";
