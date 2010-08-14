@@ -2181,11 +2181,11 @@ $lang_upload_swf_php['queue_limit'] = 'Vous avez placé trop de fichiers dans la
 $lang_upload_swf_php['upload_limit_1'] = 'Vous avez atteint la limite de téléchargement.';
 $lang_upload_swf_php['upload_limit_2'] = 'Vous devriez sélectionner un maximum de %s fichier (s)';
 }
-// ----------------------- //
+// ------------------------------------------------------------------------- //
 // File usermgr.php
-// ----------------------- //
+// ------------------------------------------------------------------------- //
 if (defined('USERMGR_PHP')) {
- $lang_usermgr_php['memberlist'] = 'Liste des membres';
+$lang_usermgr_php['memberlist'] = 'Liste des membres';
  $lang_usermgr_php['user_manager'] = 'Gestion utilisateurs';
  $lang_usermgr_php['title'] = 'Gérer les utilisateurs';
  $lang_usermgr_php['name_a'] = 'Nom ascendant';
@@ -2222,7 +2222,7 @@ if (defined('USERMGR_PHP')) {
  $lang_usermgr_php['disk_space_quota'] = 'Espace alloué';
  $lang_usermgr_php['registered_on'] = 'Enregistré le';
  $lang_usermgr_php['last_visit'] = 'Dernière visite';
- $lang_usermgr_php['u_user_on_p_pages'] = '%d utilisateur (s) sur %d page (s)';
+$lang_usermgr_php['u_user_on_p_pages'] = '%d utilisateur (s) sur %d page (s)';
  $lang_usermgr_php['confirm_del'] = 'Voulez-vous vraiment supprimer cet utilisateur?\\nToutes ses photos et albums seront également supprimés.'; 
  $lang_usermgr_php['mail'] = 'MAIL';
  $lang_usermgr_php['err_unknown_user'] = 'L\'utilisateur sélectionné n\'existe pas';
@@ -2244,23 +2244,23 @@ if (defined('USERMGR_PHP')) {
  $lang_usermgr_php['user_profile4'] = '$user_profile4';
  $lang_usermgr_php['user_profile5'] = '$user_profile5';
  $lang_usermgr_php['user_profile6'] = '$user_profile6';
- $lang_usermgr_php['latest_upload'] = 'Derniers téléchargements';
- $lang_usermgr_php['no_latest_upload'] = 'N\'a pas fait de téléchargement';
- $lang_usermgr_php['last_comments'] = 'Derniers commentaires';
- $lang_usermgr_php['no_last_comments'] = 'N\'a pas fait de commentaire';
- $lang_usermgr_php['comments'] = 'Commentaires';
- $lang_usermgr_php['never'] = 'jamais';
- $lang_usermgr_php['search'] = 'Chercher un utilisateur';
- $lang_usermgr_php['submit'] = 'Soumettre';
- $lang_usermgr_php['search_submit'] = 'Valider ';
- $lang_usermgr_php['search_result'] = 'Résultat de recherche pour : ';
- $lang_usermgr_php['alert_no_selection'] = 'vous devez d\'abord sélectionner un utilisateur'; 
- $lang_usermgr_php['select_group'] = 'Sélectionner un groupe';
- $lang_usermgr_php['groups_alb_access'] = 'Droits sur les albums pour le groupe';
- $lang_usermgr_php['category'] = 'Catégorie';
- $lang_usermgr_php['modify'] = 'Modifier ?';
- $lang_usermgr_php['group_no_access'] = 'Ce groupe n\'a pas d\'accès spécial';
- $lang_usermgr_php['notice'] = 'Attention';
+$lang_usermgr_php['latest_upload'] = 'Derniers téléchargements';
+$lang_usermgr_php['no_latest_upload'] = 'N\'a téléchargé aucun fichier'; // cpg1.5
+$lang_usermgr_php['last_comments'] = 'Derniers commentaires'; // cpg1.5
+$lang_usermgr_php['no_last_comments'] = 'N\'a fait aucun commentaire'; // cpg1.5
+$lang_usermgr_php['comments'] = 'Commentaires'; // cpg1.5
+$lang_usermgr_php['never'] = 'jamais';
+$lang_usermgr_php['search'] = 'Rechercher un utilisateur';
+$lang_usermgr_php['submit'] = 'Valider';
+$lang_usermgr_php['search_submit'] = 'C\'est parti!';
+$lang_usermgr_php['search_result'] = 'Résultat de la recherche pour: ';
+$lang_usermgr_php['alert_no_selection'] = 'Vous devez sélectionner au moins un utilisateur!'; // js-alert
+$lang_usermgr_php['select_group'] = 'Sélectionnez le groupe';
+$lang_usermgr_php['groups_alb_access'] = 'Droits des albums pour le groupe';
+$lang_usermgr_php['category'] = 'Categorie';
+$lang_usermgr_php['modify'] = 'Modifier?';
+$lang_usermgr_php['group_no_access'] = 'Ce groupe n\'a pas d\'accès spécial';
+$lang_usermgr_php['notice'] = 'Attention';
  $lang_usermgr_php['group_can_access'] = 'Accès réservé au groupe &quot;%s&quot;';
  $lang_usermgr_php['send_login_data'] = 'Envoyer les paramètres d\'identification à cet utilisateur (le mot de passe sera envoyé par courriel)';
  $lang_usermgr_php['send_login_email_subject'] = 'Vos nouveaux paramètres d\'identification pour votre compte';
