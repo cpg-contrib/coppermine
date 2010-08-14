@@ -108,7 +108,7 @@ case 'display':
             </a>
         </td>
         <td class="tableb">
-            <a href="thumbnails.php?album=search&amp;search=$orig_word_param" target="_blank">
+            <a href="thumbnails.php?album=search&amp;keywords=on&amp;search=$orig_word_param" target="_blank">
                 $search_icon $search_link
             </a>
         </td>
