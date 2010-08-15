@@ -1457,7 +1457,7 @@ if (defined('INSTALL_PHP')) {
  $lang_install['mysql_password'] = 'Mot de passe MySQL';
  $lang_install['mysql_no_create_db'] = 'La base de donnée MySql ne peut pas être créer.';
  $lang_install['mysql_no_sel_dbs'] = 'Impossible de récupérer les bases de données MySQL disponible';
- $lang_install['mysql_succ'] = 'Succès de la connexion avec la base de donnée';
+ $lang_install['mysql_succ'] = 'Succès de la connexion avec la base de données';
  $lang_install['mysql_tbl_pref'] = 'Préfixe des tables MySQL';
  $lang_install['mysql_test_connection'] = 'Test de connexion';
  $lang_install['mysql_wrong_db'] = 'MySQL ne trouve pas la base de donnée nommée \'%s\'. Vérifiez le nom que vous avez entré pour cela';
@@ -2430,7 +2430,7 @@ $lang_util_php['keyword_explanation'] = 'Cela va convertir le séparateur de mot
 // ----------------------- //
 if (defined('VERSIONCHECK_PHP')) {
  $lang_versioncheck_php['title'] = 'Vérification de version';
- $lang_versioncheck_php['versioncheck_output'] = 'Sortie du vérificateur de versionVersioncheck output';
+ $lang_versioncheck_php['versioncheck_output'] = 'Sortie du vérificateur de version';
  $lang_versioncheck_php['file'] = 'fichier';
  $lang_versioncheck_php['folder'] = 'répertoire';
  $lang_versioncheck_php['outdated'] = 'plus ancien que %s';
