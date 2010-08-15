@@ -12,9 +12,11 @@
 <!--
   SVN version info:
 
-  Coppermine version: 1.5.9
+  Coppermine version: 1.5.8
   $HeadURL$
   $Revision$
+  
+  
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -48,7 +50,7 @@
 			  <li><a href="index.htm#about_documentation_conventions">Conventions de la documentation</a></li>
 			</ul>
 		  </li>
-		  <li><a href="index.htm#features">Fonctions</a></li>
+		  <li><a href="index.htm?expand_all=1#features">Fonctions</a></li>
 		  <li><a href="quickstart.htm#about">Guide de démarrage rapide</a></li>
 		  <li><a href="toc.htm">Table des matières</a></li>
 		  <li><a href="requirements.htm">Minimum requis</a>
@@ -191,32 +193,32 @@
 		  </li>
 		  <li><a href="install_permissions.htm">Configurer les permissions</a>
 			<ul>
-			  <li><a href="install_permissions.htm#permissions_webserver">Permissions on different webserver types</a>
+			  <li><a href="install_permissions.htm#permissions_webserver">Permissions sur les types de serveur web différents</a>
 				<ul>
 				  <li><a href="install_permissions.htm#chmod">Apache sur Unix/Linux (CHMOD)</a>
 					<ul>
-					  <li><a href="install_permissions.htm#chmod_basics">Base</a></li>
+					  <li><a href="install_permissions.htm#chmod_basics">Notions de base</a></li>
 					  <li><a href="install_permissions.htm#chmod_groups">Groupes dans Lunix</a></li>
-					  <li><a href="install_permissions.htm#chmod_daemon">Services sur les serveurs Web</a></li>
+					  <li><a href="install_permissions.htm#chmod_daemon">"Diablotins" des serveurs Web</a></li>
 					  <li><a href="install_permissions.htm#chmod_binary_arithmetics">Arithmétique binaire</a></li>
-					  <li><a href="install_permissions.htm#chmod_benefit">Ce qu'il y a de bien avec ça?</a></li>
+					  <li><a href="install_permissions.htm#chmod_benefit">A quoi bon tout cela ?</a></li>
 					  <li><a href="install_permissions.htm#chmod_ftp">Application FTP</a></li>
-					  <li><a href="install_permissions.htm#chmod_website_control_panel">Panneau de controles des sites</a></li>
+					  <li><a href="install_permissions.htm#chmod_website_control_panel">Panneau de contrôle de l'hébergement</a></li>
 					  <li><a href="install_permissions.htm#chmod_shell_access">Accès Shell</a></li>
-					  <li><a href="install_permissions.htm#chmod_chown">Problèmes de Propriétés (CHOWN)</a></li>
+					  <li><a href="install_permissions.htm#chmod_chown">Ownership (CHOWN)</a></li>
 					</ul>
 				  </li>
 				  <li><a href="install_permissions.htm#apache_windows">Apache sur Windows</a></li>
 				  <li><a href="install_permissions.htm#iis">IIS sur Windows</a></li>
 				</ul>
 			  </li>
-			  <li><a href="install_permissions.htm#support">Demander de l'aide sur les problèmes liés aux permissions</a></li>
-			  <li><a href="install_permissions.htm#permissions_folders">Droits au niveau du sytème de fichiers</a></li>
+			  <li><a href="install_permissions.htm#support">Demander de l'aide à propose de problèmes liés aux permissions</a></li>
+			  <li><a href="install_permissions.htm#permissions_folders">Permissions, sur le niveau des dossiers</a></li>
 			</ul>
 		  </li>
 		  <li><a href="install_screen.htm#install_screen_start">L'écran d'installation</a>
 			<ul>
-			  <li><a href="install_screen.htm#install_screen_classic">L'installeur classique</a></li>
+			  <li><a href="install_screen.htm#install_screen_classic">L'installateur classique</a></li>
 			  <li><a href="install_screen.htm#install_screen_wizard">L'assistant d'installation</a></li>
 			</ul>
 		  </li>
@@ -340,22 +342,32 @@
 	  </li>
 	  <li><a href="theme.htm">Thèmes</a>
 		<ul>
-		  <li><a href="theme.htm#theme_builtin">Thèmes livrés avec Coppermine</a></li>
+            <li><a href="theme.htm#theme_builtin">Thèmes livrés avec Coppermine</a>
+                <ul>
+                    <li><a href="theme.htm#theme_builtin_curve">Curve</a></li>
+                    <li><a href="theme.htm#theme_builtin_eyeball">Eyeball</a></li>
+                    <li><a href="theme.htm#theme_builtin_hardwired">Hardwired</a></li>
+                    <li><a href="theme.htm#theme_builtin_rainy_day">Rainy Day</a></li>
+                    <li><a href="theme.htm#theme_builtin_sample">Sample</a></li>
+                    <li><a href="theme.htm#theme_builtin_waterdrop">Waterdrop</a></li>
+                </ul>
+            </li>
+		    <li><a href="theme.htm#theme_builtin">Thèmes livrés avec Coppermine</a></li>
 		  <li><a href="theme.htm#theme_upgrading">Mise à jour de votre thème personnalisé</a>
 		  <ul>
 			<li><a href="theme_upgrade_14x-15x.htm">Convertir un thème cpg1.4.x pour cpg1.5.x</a>
 			  <ul>
-				<li><a href="theme_upgrade_14x-15x.htm#style">Modifier style.css</a></li>
-				<li><a href="theme_upgrade_14x-15x.htm#template">Modifier template.html</a></li>
-				<li><a href="theme_upgrade_14x-15x.htm#theme">Modifier theme.php</a></li>
-				<li><a href="theme_upgrade_14x-15x.htm#validation">Méthode de validation</a></li>
+				<li><a href="theme_upgrade_14x-15x.htm#theme_convert_style">Modifier style.css</a></li>
+				<li><a href="theme_upgrade_14x-15x.htm#theme_convert_template">Modifier template.html</a></li>
+				<li><a href="theme_upgrade_14x-15x.htm#theme_convert_theme">Modifier theme.php</a></li>
+				<li><a href="theme_upgrade_14x-15x.htm#theme_convert_validation">Méthode de validation</a></li>
 			  </ul>
 			</li>
 		  </ul>
 		  </li>
 		  <li><a href="theme.htm#theme_files">Contenu d'un thème</a>
 			<ul>
-			  <li><a href="theme_template.htm#theme_template_html">Modifier  template.html</a>
+			  <li><a href="theme_template.htm#theme_template_html">Modifier template.html</a>
 				  <ul>
 					  <li><a href="theme_template.htm#theme_template_token">Conteneurs (tokens) du thème</a></li>
 					  <li><a href="theme_template.htm#theme_template_important">Important</a></li>
@@ -377,17 +389,17 @@
 			  <li><a href="theme_theme_php.htm#theme_create_theme_php">Modifier theme.php</a>
 				  <ul>
 					  <li><a href="theme_theme_php.htm#theme_php_types">Type d'éléments</a></li>
-					  <li><a href="theme_theme_php.htm">Le thème sample - un thème pour copier/coller</a></li>
+					  <li><a href="theme_theme_php.htm#theme_sample">Le thème sample - un thème pour copier/coller</a></li>
 					  <li><a href="theme_theme_php.htm#theme_php_method">Méthode</a></li>
 					  <li><a href="theme_theme_php.htm#theme_php_scope">Point de vue</a></li>
-					  <li><a href="theme_theme_php.htm#theme_php_list">Liste des  items dans theme.php</a></li>
+					  <li><a href="theme_theme_php.htm#theme_php_list">Liste des items dans theme.php</a></li>
 					  <li><a href="theme_examples.htm#theme_examples">Exemple de thèmes</a>
 						<ul>
 						  <li><a href="theme_examples.htm#theme_examples_content">Contenu additionnel</a>
 							<ul>
 							  <li><a href="theme_examples.htm#theme_examples_content_thumbnail">Contenu additionnel sur la page des vignettes</a>
 								<ul>
-								  <li><a href="theme_examples.htm#theme_examples_content_thumbnail_extra_row">Nouvelle colonne entre les colonnes de vignettes</a></li>
+								  <li><a href="theme_examples.htm#theme_examples_content_thumbnail_extra_row">Nouvelle ligne entre les lignes de vignettes</a></li>
 								  <li><a href="theme_examples.htm#theme_examples_content_thumbnail_cell">Nouvelle celulle de table sur chaque page de vignette</a></li>
 								</ul>
 							  </li>
@@ -398,10 +410,15 @@
 								</ul>
 							  </li>
 							  <li><a href="theme_examples.htm#theme_examples_content_fullsize">Contenu aditionnel de la fenêtre pop-up des images originales</a></li>
-							</ul>
-						  </li>
-						</ul>
-					  </li>
+                              <li><a href="theme_examples.htm#theme_examples_content_menu">Additional menu items</a>
+                                <ul>
+                                    <li><a href="theme_examples.htm#theme_examples_content_menu">Entire menu structure defined in one block</a></li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
 					  <li><a href="theme_theme_php.htm#theme_php_summary">Conclusions</a></li>
 				  </ul>
 			  </li>
@@ -466,28 +483,28 @@
 			  </li>
 			</ul>
 		  </li>
-		  <li><a href="theme_examples.htm#theme_examples">Theme examples</a>
-			<ul>
-			  <li><a href="theme_examples.htm#theme_examples_summary">Summary</a></li>
-			  <li><a href="theme_examples.htm#theme_examples_content">Additional content</a>
-				<ul>
-				  <li><a href="theme_examples.htm#theme_examples_content_thumbnail">Additional content on the thumbnail page</a>
-					<ul>
-					  <li><a href="theme_examples.htm#theme_examples_content_thumbnail_extra_row">Extra row between thumbnail rows</a></li>
-					  <li><a href="theme_examples.htm#theme_examples_content_thumbnail_cell">Extra table cell on each thumbnail page</a></li>
-					</ul>
-				  </li>
-				  <li><a href="theme_examples.htm#theme_examples_content_displayimage">Additional content on the intermediate-image pages (displayimage.php)</a>
-					<ul>
-					  <li><a href="theme_examples.htm#theme_examples_content_displayimage_image">Directly next to the intermediate image</a></li>
-					  <li><a href="theme_examples.htm#theme_examples_content_displayimage_filmstrip">Directly next to the film strip</a></li>
-					</ul>
-				  </li>
-				  <li><a href="theme_examples.htm#theme_examples_content_fullsize">Additional content on the full-size pop-up</a></li>
-				</ul>
-			  </li>
-			</ul>
-		  </li>
+            <li><a href="theme_examples.htm#theme_examples">Exemples de thèmes</a>
+                <ul>
+                    <li><a href="theme_examples.htm#theme_examples_summary">Sommaire</a></li>
+                    <li><a href="theme_examples.htm#theme_examples_content">Contenu additionnel</a>
+                        <ul>
+                            <li><a href="theme_examples.htm#theme_examples_content_thumbnail">Contenu additionnel sur la page des vignettes</a>
+                                <ul>
+                                    <li><a href="theme_examples.htm#theme_examples_content_thumbnail_extra_row">Nouvelle ligne entre les lignes des vignettes</a></li>
+                                    <li><a href="theme_examples.htm#theme_examples_content_thumbnail_cell">Nouvelle cellule de table sur chaque page de vignettes</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="theme_examples.htm#theme_examples_content_displayimage">Contenu additionnel sur la page des images intermédiaires (displayimage.php)</a>
+                                <ul>
+                                    <li><a href="theme_examples.htm#theme_examples_content_displayimage_image">Directement après les images intermédiaires</a></li>
+                                    <li><a href="theme_examples.htm#theme_examples_content_displayimage_filmstrip">Directement à côté du négatif de film</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="theme_examples.htm#theme_examples_content_fullsize">Contenu additionel sur la fenêtre pop-up des images originales</a></li>
+				        </ul>
+			        </li>
+			    </ul>
+		    </li>
 		  <li><a href="theme_copyright.htm">Copyright-clause de non responsabilité dans le pied de page</a>
 			<ul>
 			  <li><a href="theme_copyright.htm#theme_copyright_fair_use">Utilisation acceptable</a>

@@ -9,7 +9,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.5.9
+  Coppermine version: 1.5.8
   $HeadURL$
   $Revision$
 **********************************************/
@@ -23,13 +23,13 @@ $(function() {
         control:"#sidetreecontrol"
     });
     $(".cpg_zebra tr:even").addClass("tableb");
-    $(".cpg_zebra tr:odd").addClass("tableb_alternate");
+	$(".cpg_zebra tr:odd").addClass("tableb_alternate");
 });
 
 function cpgDocToc() {
   if (getUrlParameters('hide_nav') == 1) {
-    $('#toc').replaceWith('');
-    return;
+  	$('#toc').replaceWith('');
+	return;
   }
 var doc_toc = '';
 doc_toc += '<div id="toc_collapsed">\n';
@@ -191,32 +191,32 @@ doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="install_permissions.htm">Configurer les permissions</a>\n';
 doc_toc += '        <ul>\n';
-doc_toc += '          <li><a href="install_permissions.htm#permissions_webserver">Permissions on different webserver types</a>\n';
+doc_toc += '          <li><a href="install_permissions.htm#permissions_webserver">Permissions sur les types de serveur web différents</a>\n';
 doc_toc += '            <ul>\n';
 doc_toc += '              <li><a href="install_permissions.htm#chmod">Apache sur Unix/Linux (CHMOD)</a>\n';
 doc_toc += '                <ul>\n';
-doc_toc += '                  <li><a href="install_permissions.htm#chmod_basics">Base</a></li>\n';
+doc_toc += '                  <li><a href="install_permissions.htm#chmod_basics">Notions de base</a></li>\n';
 doc_toc += '                  <li><a href="install_permissions.htm#chmod_groups">Groupes dans Lunix</a></li>\n';
-doc_toc += '                  <li><a href="install_permissions.htm#chmod_daemon">Services sur les serveurs Web</a></li>\n';
+doc_toc += '                  <li><a href="install_permissions.htm#chmod_daemon">"Diablotins" des serveurs Web</a></li>\n';
 doc_toc += '                  <li><a href="install_permissions.htm#chmod_binary_arithmetics">Arithmétique binaire</a></li>\n';
-doc_toc += '                  <li><a href="install_permissions.htm#chmod_benefit">Ce qu\'il y a de bien avec ça?</a></li>\n';
+doc_toc += '                  <li><a href="install_permissions.htm#chmod_benefit">A quoi bon tout cela ?</a></li>\n';
 doc_toc += '                  <li><a href="install_permissions.htm#chmod_ftp">Application FTP</a></li>\n';
-doc_toc += '                  <li><a href="install_permissions.htm#chmod_website_control_panel">Panneau de controles des sites</a></li>\n';
+doc_toc += '                  <li><a href="install_permissions.htm#chmod_website_control_panel">Panneau de contrôle de l\'hébergement</a></li>\n';
 doc_toc += '                  <li><a href="install_permissions.htm#chmod_shell_access">Accès Shell</a></li>\n';
-doc_toc += '                  <li><a href="install_permissions.htm#chmod_chown">Problèmes de Propriétés (CHOWN)</a></li>\n';
+doc_toc += '                  <li><a href="install_permissions.htm#chmod_chown">Ownership (CHOWN)</a></li>\n';
 doc_toc += '                </ul>\n';
 doc_toc += '              </li>\n';
 doc_toc += '              <li><a href="install_permissions.htm#apache_windows">Apache sur Windows</a></li>\n';
 doc_toc += '              <li><a href="install_permissions.htm#iis">IIS sur Windows</a></li>\n';
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
-doc_toc += '          <li><a href="install_permissions.htm#support">Demander de l\'aide sur les problèmes liés aux permissions</a></li>\n';
-doc_toc += '          <li><a href="install_permissions.htm#permissions_folders">Droits au niveau du sytème de fichiers</a></li>\n';
+doc_toc += '          <li><a href="install_permissions.htm#support">Demander de l\'aide à propose de problèmes liés aux permissions</a></li>\n';
+doc_toc += '          <li><a href="install_permissions.htm#permissions_folders">Permissions, sur le niveau des dossiers</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="install_screen.htm#install_screen_start">L\'écran d\'installation</a>\n';
 doc_toc += '        <ul>\n';
-doc_toc += '          <li><a href="install_screen.htm#install_screen_classic">L\'installeur classique</a></li>\n';
+doc_toc += '          <li><a href="install_screen.htm#install_screen_classic">L\'installateur classique</a></li>\n';
 doc_toc += '          <li><a href="install_screen.htm#install_screen_wizard">L\'assistant d\'installation</a></li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
@@ -351,20 +351,20 @@ doc_toc += '          <li><a href="theme.htm#theme_builtin_waterdrop">Waterdrop<
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="theme.htm#theme_upgrading">Mise à jour de votre thème personnalisé</a>\n';
-doc_toc += '      <ul>\n';
-doc_toc += '        <li><a href="theme_upgrade_14x-15x.htm">Convertir un thème cpg1.4.x pour cpg1.5.x</a>\n';
-doc_toc += '          <ul>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_style">Modifier style.css</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_template">Modifier template.html</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_theme">Modifier theme.php</a></li>\n';
-doc_toc += '            <li><a href="theme_upgrade_14x-15x.htm#theme_convert_validation">Méthode de validation</a></li>\n';
-doc_toc += '          </ul>\n';
-doc_toc += '        </li>\n';
-doc_toc += '      </ul>\n';
+doc_toc += '        <ul>\n';
+doc_toc += '          <li><a href="theme_upgrade_14x-15x.htm">Convertir un thème cpg1.4.x pour cpg1.5.x</a>\n';
+doc_toc += '            <ul>\n';
+doc_toc += '              <li><a href="theme_upgrade_14x-15x.htm#theme_convert_style">Modifier style.css</a></li>\n';
+doc_toc += '              <li><a href="theme_upgrade_14x-15x.htm#theme_convert_template">Modifier template.html</a></li>\n';
+doc_toc += '              <li><a href="theme_upgrade_14x-15x.htm#theme_convert_theme">Modifier theme.php</a></li>\n';
+doc_toc += '              <li><a href="theme_upgrade_14x-15x.htm#theme_convert_validation">Méthode de validation</a></li>\n';
+doc_toc += '            </ul>\n';
+doc_toc += '          </li>\n';
+doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
 doc_toc += '      <li><a href="theme.htm#theme_files">Contenu d\'un thème</a>\n';
 doc_toc += '        <ul>\n';
-doc_toc += '          <li><a href="theme_template.htm#theme_template_html">Modifier  template.html</a>\n';
+doc_toc += '          <li><a href="theme_template.htm#theme_template_html">Modifier template.html</a>\n';
 doc_toc += '              <ul>\n';
 doc_toc += '                  <li><a href="theme_template.htm#theme_template_token">Conteneurs (tokens) du thème</a></li>\n';
 doc_toc += '                  <li><a href="theme_template.htm#theme_template_important">Important</a></li>\n';
@@ -386,17 +386,17 @@ doc_toc += '          </li>\n';
 doc_toc += '          <li><a href="theme_theme_php.htm#theme_create_theme_php">Modifier theme.php</a>\n';
 doc_toc += '              <ul>\n';
 doc_toc += '                  <li><a href="theme_theme_php.htm#theme_php_types">Type d\'éléments</a></li>\n';
-doc_toc += '                  <li><a href="theme_theme_php.htm">Le thème sample - un thème pour copier/coller</a></li>\n';
+doc_toc += '                  <li><a href="theme_theme_php.htm#theme_sample">Le thème sample - un thème pour copier/coller</a></li>\n';
 doc_toc += '                  <li><a href="theme_theme_php.htm#theme_php_method">Méthode</a></li>\n';
 doc_toc += '                  <li><a href="theme_theme_php.htm#theme_php_scope">Point de vue</a></li>\n';
-doc_toc += '                  <li><a href="theme_theme_php.htm#theme_php_list">Liste des  items dans theme.php</a></li>\n';
+doc_toc += '                  <li><a href="theme_theme_php.htm#theme_php_list">Liste des items dans theme.php</a></li>\n';
 doc_toc += '                  <li><a href="theme_examples.htm#theme_examples">Exemple de thèmes</a>\n';
 doc_toc += '                    <ul>\n';
 doc_toc += '                      <li><a href="theme_examples.htm#theme_examples_content">Contenu additionnel</a>\n';
 doc_toc += '                        <ul>\n';
 doc_toc += '                          <li><a href="theme_examples.htm#theme_examples_content_thumbnail">Contenu additionnel sur la page des vignettes</a>\n';
 doc_toc += '                            <ul>\n';
-doc_toc += '                              <li><a href="theme_examples.htm#theme_examples_content_thumbnail_extra_row">Nouvelle colonne entre les colonnes de vignettes</a></li>\n';
+doc_toc += '                              <li><a href="theme_examples.htm#theme_examples_content_thumbnail_extra_row">Nouvelle ligne entre les lignes de vignettes</a></li>\n';
 doc_toc += '                              <li><a href="theme_examples.htm#theme_examples_content_thumbnail_cell">Nouvelle celulle de table sur chaque page de vignette</a></li>\n';
 doc_toc += '                            </ul>\n';
 doc_toc += '                          </li>\n';
@@ -407,6 +407,11 @@ doc_toc += '                              <li><a href="theme_examples.htm#theme_
 doc_toc += '                            </ul>\n';
 doc_toc += '                          </li>\n';
 doc_toc += '                          <li><a href="theme_examples.htm#theme_examples_content_fullsize">Contenu aditionnel de la fenêtre pop-up des images originales</a></li>\n';
+doc_toc += '                          <li><a href="theme_examples.htm#theme_examples_content_menu">Additional menu items</a>\n';
+doc_toc += '                            <ul>\n';
+doc_toc += '                              <li><a href="theme_examples.htm#theme_examples_content_menu">Entire menu structure defined in one block</a></li>\n';
+doc_toc += '                            </ul>\n';
+doc_toc += '                          </li>\n';
 doc_toc += '                        </ul>\n';
 doc_toc += '                      </li>\n';
 doc_toc += '                    </ul>\n';
@@ -1515,30 +1520,30 @@ $('#toc').replaceWith('<div id="toc">' + doc_toc + '</div>');
 
 
 function cpgDocHeader() {
-    // Only display the header if the docs are not included
-    if (getUrlParameters('hide_nav') == 1) {
-        return;
-    }
-    $('#docheader').text('Coppermine Photo Gallery v1.5.9: Documentation and Manual');
-    $('#docheader').after('<br clear="all" />\n<a name="top"></a>');
-    $('#docheader').before('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />\n');
+	// Only display the header if the docs are not included
+	if (getUrlParameters('hide_nav') == 1) {
+		return;
+	}
+	$('#docheader').text('Coppermine Photo Gallery v1.5.8: Documentation and Manual');
+	$('#docheader').after('<br clear="all" />\n<a name="top"></a>');
+	$('#docheader').before('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />\n');
 }
 
 function cpgDocSearch() {
-    // Only display the header if the docs are not included
-    if (getUrlParameters('hide_nav') == 1) {
-        return;
-    }
-    var doc_search = '';
-    doc_search += '  <div id="doc_search" style="display:none;">\n';
-    doc_search += '    <form action="http://www.google.com/cse" id="cse-search-box">\n';
-    doc_search += '      <input type="hidden" name="cx" value="009353514429642786404:keefjtiy3lo" />\n';
-    doc_search += '      <input type="text" name="q" size="25" />\n';
-    doc_search += '      <input type="submit" name="sa" value="search docs" style="font-size:9px;" />\n';
-    doc_search += '    </form>\n';
-    doc_search += '    <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=en"></script>\n';
-    doc_search += '  </div>\n';
-    $('#toc').append(doc_search);
+	// Only display the header if the docs are not included
+	if (getUrlParameters('hide_nav') == 1) {
+		return;
+	}
+	var doc_search = '';
+	doc_search += '  <div id="doc_search" style="display:none;">\n';
+	doc_search += '    <form action="http://www.google.com/cse" id="cse-search-box">\n';
+	doc_search += '      <input type="hidden" name="cx" value="009353514429642786404:keefjtiy3lo" />\n';
+	doc_search += '      <input type="text" name="q" size="25" />\n';
+	doc_search += '      <input type="submit" name="sa" value="search docs" style="font-size:9px;" />\n';
+	doc_search += '    </form>\n';
+	doc_search += '    <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=en"></script>\n';
+	doc_search += '  </div>\n';
+	$('#toc').append(doc_search);
 }
 
 function cpgDocFooter() {
@@ -1589,71 +1594,71 @@ function cpgDocTranslationWarning() {
 
 $(document).ready(function()
 {
-    var $_GET = {};
-    document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
-        function decode(s) {
-            return decodeURIComponent(s).replace(/\+/g, " ");
-        }
-        $_GET[decode(arguments[1])] = decode(arguments[2]);
-    });
-    //hide all elements with class detail_body
-    $(".detail_body").hide();
-    if ($_GET["expand_all"] == 1) { // Show all details and get rid of the details toggle if the GET parameter expand_all is set
-        $('.detail_body').show();
-        //$('.detail_head_collapsed').replaceWith('');
-    }
-    //toggle the component with class detail_body
-    $(".detail_head_collapsed").click(function()
-    {
-        $(this).toggleClass("detail_head_expanded").next(".detail_body").slideToggle(600);
-    });
-    $(".detail_expand_all").click(function()
-    {
-        $(".detail_body").slideDown(1200);
-        $(".detail_head_collapsed").toggleClass("detail_head_expanded");
-        $(".detail_expand_all").hide();
-        $(".detail_collapse_all").show();
+	var $_GET = {};
+	document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+		function decode(s) {
+			return decodeURIComponent(s).replace(/\+/g, " ");
+		}
+		$_GET[decode(arguments[1])] = decode(arguments[2]);
+	});
+	//hide all elements with class detail_body
+	$(".detail_body").hide();
+	if ($_GET["expand_all"] == 1) { // Show all details and get rid of the details toggle if the GET parameter expand_all is set
+		$('.detail_body').show();
+		//$('.detail_head_collapsed').replaceWith('');
+	}
+	//toggle the component with class detail_body
+	$(".detail_head_collapsed").click(function()
+	{
+		$(this).toggleClass("detail_head_expanded").next(".detail_body").slideToggle(600);
+	});
+	$(".detail_expand_all").click(function()
+	{
+		$(".detail_body").slideDown(1200);
+		$(".detail_head_collapsed").toggleClass("detail_head_expanded");
+		$(".detail_expand_all").hide();
+		$(".detail_collapse_all").show();
 
-    });
-    $(".detail_collapse_all").click(function()
-    {
-        $(".detail_body").slideUp(1200);
-        $(".detail_head_collapsed").toggleClass("detail_head_expanded");
-        $(".detail_expand_all").show();
-        $(".detail_collapse_all").hide();
+	});
+	$(".detail_collapse_all").click(function()
+	{
+		$(".detail_body").slideUp(1200);
+		$(".detail_head_collapsed").toggleClass("detail_head_expanded");
+		$(".detail_expand_all").show();
+		$(".detail_collapse_all").hide();
 
-    });
-    $(".detail_toggle_all").click(function()
-    {
-        $(".detail_body").slideToggle(600);
-        $(".detail_head_collapsed").toggleClass("detail_head_expanded");
-    });
-    cpgDocHeader();
-    cpgDocTranslationWarning();
-    cpgDocToc();
-    $("#tree").treeview({
+	});
+	$(".detail_toggle_all").click(function()
+	{
+		$(".detail_body").slideToggle(600);
+		$(".detail_head_collapsed").toggleClass("detail_head_expanded");
+	});
+	cpgDocHeader();
+	cpgDocTranslationWarning();
+	cpgDocToc();
+	$("#tree").treeview({
         collapsed: true,
         unique: true,
         animated: "slow",
         persist: "location"
     });
-    cpgDocSearch();
-    cpgDocFooter();
-    dateRevision();
+	cpgDocSearch();
+	cpgDocFooter();
+	dateRevision();
     $("a.nolink").click(function(){
       return false;
     });
     // Fade the toc in if it is needed
-    $("#toc").bind("mouseenter",function(){
-        $("#toc_collapsed").hide();
-        $("#toc_expanded").fadeIn('slow');
-        $("#doc_search").show();
-    });
-    // Fade the toc out if it isn't used
-    $("#toc").bind("mouseleave",function(){
-        $("#toc_expanded").fadeOut('slow');
-        $("#toc_collapsed").show();
-        $("#doc_search").hide();
-    });
-    
+	$("#toc").bind("mouseenter",function(){
+		$("#toc_collapsed").hide();
+		$("#toc_expanded").fadeIn('slow');
+		$("#doc_search").show();
+	});
+	// Fade the toc out if it isn't used
+	$("#toc").bind("mouseleave",function(){
+		$("#toc_expanded").fadeOut('slow');
+		$("#toc_collapsed").show();
+		$("#doc_search").hide();
+	});
+	
 });
