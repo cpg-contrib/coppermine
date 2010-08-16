@@ -349,7 +349,7 @@ INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, avail
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('hebrew', 'Hebrew','&#1506;&#1489;&#1512;&#1497;&#1514;','il','', 'NO', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('hindi', 'Hindi','&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;','in','', 'NO', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('hungarian', 'Hungarian','Magyarul','hu','', 'YES', 'NO');
-INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('icelandic', 'Icelandic','','is','', 'NO', 'NO');
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('icelandic', 'Icelandic','','is','', 'YES', 'YES');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('indonesian', 'Indonesian','Bahasa Indonesia','id','', 'NO', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('italian', 'Italian','Italiano','it','it', 'YES', 'YES');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('japanese', 'Japanese','&#26085;&#26412;&#35486;','jp','jp', 'YES', 'YES');
@@ -405,6 +405,8 @@ UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='german';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='german_formal';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='greek';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='hungarian';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='icelandic';
+UPDATE CPG_languages SET `complete` = 'YES' WHERE `lang_id`='icelandic';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='italian';
 UPDATE CPG_languages SET `complete` = 'YES' WHERE `lang_id`='italian';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='japanese';

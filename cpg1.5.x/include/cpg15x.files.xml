@@ -12190,6 +12190,14 @@
     <hash>5b6b7db37bc1a29250e85b2612ed031e</hash>
   </element>
   <element>
+    <fullpath>lang/icelandic.php</fullpath>
+    <version>1.5.9</version>
+    <revision>7805</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>5b6b7db37bc1a29250e85b2612ed031e</hash>
+  </element>
+  <element>
     <fullpath>lang/italian.php</fullpath>
     <version>1.5.9</version>
     <revision>7805</revision>

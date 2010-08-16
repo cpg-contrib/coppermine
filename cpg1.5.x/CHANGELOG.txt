@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-08-16 [A] Added Icelandic language file (user contribution) {eenemeenemuu}
 2010-08-16 [A] Added Italian language file (user contribution) {eenemeenemuu}
 2010-08-16 [A] Added partial Swedish language file (user contribution) {GauGau}
 2010-08-14 [B] Fixed search feature in the keyword manager (thread 66550) {Frantz}
