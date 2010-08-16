@@ -12254,6 +12254,14 @@
     <hash>ea81887bd46fe5e5fe241eb9877ce5d2</hash>
   </element>
   <element>
+    <fullpath>lang/swedish.php</fullpath>
+    <version>1.5.9</version>
+    <revision>7805</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>db08216a8612f89e21048736a4a98e96</hash>
+  </element>
+  <element>
     <fullpath>lang/turkish.php</fullpath>
     <version>1.5.9</version>
     <revision>7805</revision>

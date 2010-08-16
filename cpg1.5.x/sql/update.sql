@@ -376,7 +376,7 @@ INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, avail
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('slovenian', 'Slovenian','Slovensko','si','', 'YES', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('spanish', 'Spanish','Espa&ntilde;ol','es','es', 'YES', 'YES');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('spanish_mx', 'Mexican Spanish','Espa&ntilde;ol mexicano','mx','mx', 'YES', 'NO');
-INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('swedish', 'Swedish','Svenska','se','', 'NO', 'NO');
+INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('swedish', 'Swedish','Svenska','se','', 'YES', 'YES');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('thai', 'Thai','&#3652;&#3607;&#3618;','th','', 'NO', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('turkish', 'Turkish','T&uuml;rk&ccedil;e','tr','', 'YES', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('tigrinya', 'Tigrinya','','er','', 'NO', 'NO');
@@ -415,6 +415,7 @@ UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='slovenian';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='spanish';
 UPDATE CPG_languages SET `complete` = 'YES' WHERE `lang_id`='spanish';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='spanish_mx';
+UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='swedish';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='turkish';
 UPDATE CPG_languages SET `available` = 'YES' WHERE `lang_id`='ukrainian';
 UPDATE CPG_languages SET `complete` = 'YES' WHERE `lang_id`='ukrainian';
