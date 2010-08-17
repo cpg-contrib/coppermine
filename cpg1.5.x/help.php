@@ -187,7 +187,7 @@ echo <<< EOT
     <head>
         <title>{$lang_common['help']}</title>
         $meta_charset
-        <link rel="stylesheet" href="css/coppermine.cs" type="text/css" />
+        <link rel="stylesheet" href="css/coppermine.css" type="text/css" />
         <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" type="text/css" />
         <script src="docs/js/jquery.js" type="text/javascript"></script>
         <script src="docs/js/help.js" type="text/javascript"></script>
