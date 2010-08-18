@@ -1856,7 +1856,7 @@ De beheerder van {SITE_NAME}
 
 EOT;
 
-$lang_register_php['approve_email'] = <<<EOT
+$lang_register_approve_email = <<< EOT
 Een nieuwe gebruiker met de gebruikersnaam "{USER_NAME}" heeft zich geregistreerd in jouw galerij.
 Om je account te kunnen activeren moet je op de link hieronder klikken of kopieer en plak het in je webbrowser.
 
