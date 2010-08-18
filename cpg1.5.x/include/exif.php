@@ -459,7 +459,7 @@ function formatData($type,$tag,$intel,$data) {
         } else if ($tag == '8822') { // ExposureProgram
             if ($data == 1)         $data = 'Manual';
             else if ($data == 2)    $data = 'Program';
-            else if ($data == 3)    $data = 'Aperature Priority';
+            else if ($data == 3)    $data = 'Aperture Priority';
             else if ($data == 4)    $data = 'Shutter Priority';
             else if ($data == 5)    $data = 'Program Creative';
             else if ($data == 6)    $data = 'Program Action';
