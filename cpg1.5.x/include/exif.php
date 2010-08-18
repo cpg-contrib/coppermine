@@ -463,7 +463,7 @@ function formatData($type,$tag,$intel,$data) {
             else if ($data == 4)    $data = 'Shutter Priority';
             else if ($data == 5)    $data = 'Program Creative';
             else if ($data == 6)    $data = 'Program Action';
-            else if ($data == 7)    $data = 'Portrat';
+            else if ($data == 7)    $data = 'Portrait';
             else if ($data == 8)    $data = 'Landscape';
             else                    $data = 'Unknown: '.$data;
             
