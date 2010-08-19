@@ -471,7 +471,7 @@ $lang_banning_php['email_field_invalid'] = 'Enter a valid email address'; // cpg
 $lang_banning_php['ip_address_field_invalid'] = 'Enter a valid IP address (x.x.x.x)'; // cpg1.5
 $lang_banning_php['expiry_field_invalid'] = 'Enter a valid expiration date (YYYY-MM-DD)'; // cpg1.5
 $lang_banning_php['form_not_submit'] = 'The form hasn\'t been submitted - there are errors that you need to correct first!'; // cpg1.5
-};
+}
 
 // ------------------------------------------------------------------------- //
 // File bridgemgr.php
