@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-08-19 [B] Added language fallback to function cpg_get_default_lang_var (thread ID 66513) {eenemeenemuu}
 2010-08-16 [A] Added Icelandic language file (user contribution) {eenemeenemuu}
 2010-08-16 [A] Added Italian language file (user contribution) {eenemeenemuu}
 2010-08-16 [A] Added partial Swedish language file (user contribution) {GauGau}

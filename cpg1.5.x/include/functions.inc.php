@@ -3649,6 +3649,7 @@ function& cpg_get_default_lang_var($language_var_name, $override_language = null
         $language = $override_language;
     }
 
+    include('lang/english.php');
     include('lang/'.$language.'.php');
 
     return $$language_var_name;
