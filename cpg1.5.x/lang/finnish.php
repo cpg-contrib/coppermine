@@ -471,7 +471,7 @@ $lang_banning_php['email_field_invalid'] = 'Syötä kelvollinen sähköpostiosoi
 $lang_banning_php['ip_address_field_invalid'] = 'Syötä kelvollinen IP -osoite (x.x.x.x)'; // cpg1.5
 $lang_banning_php['expiry_field_invalid'] = 'Syötä kelvollinen vanhenemisaika (VVVV-KK-PP)'; // cpg1.5
 $lang_banning_php['form_not_submit'] = 'Lomaketta ei lähetetty - siinä on virheitä, jotka pitää korjata ensin!'; // cpg1.5
-};
+}
 
 // ------------------------------------------------------------------------- //
 // File bridgemgr.php
@@ -769,11 +769,11 @@ $lang_admin_php['comment_akismet_api_key'] = 'Akismetin API -avain (API key)'; /
 $lang_admin_php['comment_akismet_api_key_description'] = 'Jätä tyhjäksi poistaaksesi Akismetin käytöstä'; // cpg1.5
 $lang_admin_php['comment_akismet_group'] = 'Käytä Akismet:iä kommenteille, jotka kirjoitti'; // cpg1.5
 $lang_admin_php['comment_promote_registration'] = 'Pyydä vierasta kirjautumaan sisään lähettääkseen kommentteja'; // cpg1.5
-$lang_admin_php['thumb_width'] = 'Thumbnailin enimmäiskoko (leveys, jos käytät "Tarkka" -valintaa "Käytä kokoa":ssa)'; // cpg1.5
+$lang_admin_php['thumb_width'] = 'Thumbnailin enimmäiskoko (leveys, jos käytät "Tarkka" -valintaa asetuksessa "Käytä kokoa")'; // cpg1.5
 $lang_admin_php['thumb_use'] = 'Käytä kokoa'; // cpg1.5
 $lang_admin_php['thumb_use_detail'] = '(thumbnailin leveyttä, korkeutta tai pisintä sivua)'; // cpg1.5
 $lang_admin_php['thumb_height'] = 'Thumbnailin korkeus'; // cpg1.5
-$lang_admin_php['thumb_height_detail'] = '(käytetään vain jos &quot;tarkka&quot; on käytössä&quot;Käytä koko&quot;:ssa)'; // cpg1.5
+$lang_admin_php['thumb_height_detail'] = '(käytetään vain jos asetus &quot;tarkka&quot; on käytössä&quot;Käytä kokoa&quot;:ssa)'; // cpg1.5
 $lang_admin_php['movie_audio_document'] = 'video, ääni, dokumentti'; // cpg1.5
 $lang_admin_php['thumb_pfx'] = 'Etuliite thumbnaileille'; // cpg1.5
 $lang_admin_php['enable_unsharp'] = 'Thumbnailin terävöitys: ota käyttöön epäterävä (unsharp) maski'; // cpg1.5
@@ -1069,7 +1069,7 @@ $lang_picinfo['Make'] = 'Valmistaja';
 $lang_picinfo['Model'] = 'Malli';
 $lang_picinfo['DateTime'] = 'Aika';
 $lang_picinfo['ISOSpeedRatings'] = 'ISO';
-$lang_picinfo['MaxApertureValue'] = 'Suurin aukonkoko';
+$lang_picinfo['MaxApertureValue'] = 'Suurin aukon koko';
 $lang_picinfo['FocalLength'] = 'Polttoväli';
 $lang_picinfo['Comment'] = 'Kommentti';
 $lang_picinfo['addFav'] = 'Lisää suosikkeihin';
@@ -1969,7 +1969,7 @@ if (defined('SEARCH_PHP')){
 $lang_search_php['title'] = 'Hae';
 $lang_search_php['submit_search'] = 'Hae';
 $lang_search_php['keyword_list_title'] = 'Avainsanalista';
-$lang_search_php['keyword_msg'] = 'Lista ei ole täydellinen. Se ei sisällä sanoja tiedostojen otsikoista tai kuvauksista. Kokeile hakua kokotekstistä.';
+$lang_search_php['keyword_msg'] = 'Lista ei ole täydellinen. Se ei sisällä sanoja tiedostojen otsikoista tai kuvauksista. Kokeile hakua koko tekstistä.';
 $lang_search_php['edit_keywords'] = 'Muokkaa avainsanoja';
 $lang_search_php['search in'] = 'Hae:';
 $lang_search_php['ip_address'] = 'IP-osoite';
