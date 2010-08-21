@@ -1,7 +1,7 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Problèmes connus - Coppermine Photo Gallery - Documentation &amp; Manuel</title>
+<title>Problèmes connus - Coppermine Photo Gallery - Documentation &amp; manuel</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="language" content="fr" />
 <meta name="copyright" content="Coppermine dev team" />
@@ -25,38 +25,36 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation et manuel</h1>
 <div id="toc">
-<a href="toc.htm">Table of Contents</a>
+<a href="toc.htm">Table des matières</a>
 </div>
 
 <a name="known_issues"></a><h1>Problèmes connus<a href="#known_issues" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>Les légères bizarreries et petits problèmes suivants sont connus et on peut espérer qu'ils seront corrigés dans les prochaines versions.</p>
 <ul>
-    <li>Les <a href="http://coppermine-gallery.net/forum/index.php?topic=1866.0">flêches utilisées pour la navigation</a>  d'une image à une autre s'affichent dans le mauvais ordre pour les langues au format rtl (lecture de droite à gauche)</li>
-    <li>La liste des mots clé renvoie un résultat incorrect pour les caractère asiatiques</li>
+    <li>Les <a href="http://coppermine-gallery.net/forum/index.php?topic=1866.0">flèches utilisées pour la navigation</a> d'une image à une autre s'affichent dans le mauvais ordre pour les langues au format rtl (lecture de droite à gauche).</li>
+    <li>La liste des mots-clés renvoie un résultat incorrect pour les caractères asiatiques.</li>
     <li>Bug lié au navigateur: IE n'affiche pas correctement les largeurs de valeur 100%</li>
     <li>La nouvelle interface de téléchargement par lots ne fonctionne pas avec toutes les configurations de serveurs. Les utilisateurs qui ont des problèmes avec cette fonction doivent utiliser l'interface classique à la place de la nouvelle.</li>
-    <li>Requête manquante dans la sortie de débuggage: La valeur de $CONFIG['debug_mode'] n'est pas fixée avant la première requête pour la table de configuration</li>
     <li>Les onglets de page dans le Gestionnaire des utilisateurs ne se comportent pas de la même manière que les autres onglets</li>
-    <li>Le redimmentionnement des gif/png avec un fond transparent ne préservent pas les infos alpha</li>
-    <li>Carractères incorrects dans les courriels envoyés depuis Coppermine</li>
-    <li>Lat taille des vignettes supérieure à 120px cause un débordement du champs de texte au desus du cadre</li>
-    <li>Pas de vignettes d'albums pour les albums qui ne contiennent que des images liées par mots clés</li>
+    <li>Le redimensionnement des gif/png avec un fond transparent ne préservent pas les infos alpha</li>
+    <li>Caractères incorrects dans les courriels envoyés depuis Coppermine</li>
+    <li>La taille des vignettes supérieure à 120px cause un débordement du champ de texte au dessus du cadre</li>
+    <li>Pas de vignettes d'albums pour les albums qui ne contiennent que des images liées par mots-clés</li>
     <li>Le recadrage et la rotation ne fonctionnent pas avec GD1</li>
-    <li>La rotation cause des distortions d'images pour les grands fichiers</li>
-    <li>la constrction<tt class="code">&lt;object&gt;&lt;param&gt;&lt;/param&gt;&lt;/object&gt;</tt> pour les fichiers multimédia n'est pas valide mais est necessaire pour une compatibilité ascendante</li>
+    <li>La rotation cause des distorsions d'images pour les grands fichiers</li>
+    <li>La construction <tt class="code">&lt;object&gt;&lt;param&gt;&lt;/param&gt;&lt;/object&gt;</tt> pour les fichiers multimédia n'est pas valide mais est nécessaire pour une compatibilité ascendante</li>
     <li>Les informations EXIF et IPTC sont perdues avec la rotation</li>
-    <li>Discrepancy between Coppermine internally using utf-8 and IPTC currently one supporting iso-8859-1. Subsequently, non latin characters like accented chars or Umlauts get distorted</li>
-    <li>Le groupe d'utilisateur "Banned" ne fonctionne pas comme souhaité</li>
-    <li>Les albums sont crées en utilisant  XP publisher même en cas d'erreur de téléchargement</li>
-    <li>Pas de vignette de catégorie pour les galeries utilisateurs ni pour les catégories qui ne contiennet pas d'albums avec des images mais uniquement des sous-catégories</li>
-    <li>Film strip may change its height when navigating if thumb dimension is set to 'width'</li>
-    <li>Flash uploader (swfupload) won't work if the gallery is located in a <a href="http://forum.coppermine-gallery.net/index.php/topic,62770.0.html">password protected directory</a></li>
-    <li>Some rounded corner effects of the curve theme won't work across-browsers, but are browser-specific. They will not work in IE mainly. The browsers that can't display rounded corners will display "normal" corners.</li>
-    <li>Album moderator feature not clearly documented and therefore disabled (<a href="http://forum.coppermine-gallery.net/index.php/topic,64408.0.html">thread</a>)</li>
-    <li>Category thumbnails appear larger than expected if thumb aspect is set to "exact" for the thumbnail setting &quot;<a href="configuration.htm#admin_picture_thumbnail_use-dimension">Use dimension</a>&quot; (<a href="http://forum.coppermine-gallery.net/index.php/topic,56147.0.html">thread</a>)</li>
-    <li>If you allow guests to upload files to your gallery, they won't be able to add file details. This feature has been disabled as it's not possible to identify the user without fail (see <a href="http://forum.coppermine-gallery.net/index.php/topic,62522.msg323512.html#msg323512">thread</a>). Additionally it may attract spammers to add textual content to your gallery. If you want to enable that feature anyway, find Coppermine's configuration table in the database and change the value of <tt class="code">allow_guests_enter_file_details</tt> to '1'.</li>
+    <li>Divergence entre Coppermine en interne en utilisant UTF-8 et IPTC utilisant iso-8859-1. En concéquence, les caractères non latins comme les caractères accentués et les trémas sont déformés</li>
+    <li>Les albums sont crées en utilisant XP Publisher même en cas d'erreur de téléchargement</li>
+    <li>Pas de vignette de catégorie pour les galeries utilisateurs ni pour les catégories qui ne contiennent pas d'albums avec des images mais uniquement des sous-catégories</li>
+    <li>Le négatif de film peut changer sa hauteur lors de la navigation si la dimension de la vignette est positionnée à 'width'</li>
+    <li>Le téléchargement par Flash (swfupload) ne fonctionnera pas si la galerie est située dans un <a href="http://forum.coppermine-gallery.net/index.php/topic,62770.0.html">répertoire protégé par mot de passe</a></li>
+    <li>Certains effets de coin arrondi du thème curve ne fonctionneront pas dans les navigateurs, mais c’est  spécifique aux navigateurs. Ils ne fonctionneront principalement pas dans IE. Les navigateurs qui ne peuvent pas afficher des coins arrondis afficheront des coins "normaux".</li>
+    <li>La fonction de modérateur d’album n’est pas clairement documentée et par conséquent désactivée (<a href="http://forum.coppermine-gallery.net/index.php/topic,64408.0.html">sujet</a>)</li>
+    <li>Les vignettes présentent dans les catégories sont plus grande que prévu si l’affichage des vignettes est réglé sur "exact" dans paramètres des vignettes &quot;<a href="configuration.htm#admin_picture_thumbnail_use-dimension">Utiliser la dimension</a>&quot; (<a href="http://forum.coppermine-gallery.net/index.php/topic,56147.0.html">sujet</a>)</li>
+    <li>Si vous permettez aux membres de télécharger des fichiers dans votre galerie, ils ne seront pas en mesure d'ajouter des renseignements aux fichiers. Cette fonctionnalité a été désactivée car il n'est pas possible d'identifier l'utilisateur à coup sûr (voir le <a href="http://forum.coppermine-gallery.net/index.php/topic,62522.msg323512.html#msg323512">sujet</a>). De plus, cela peut attirer les spammeurs pour ajouter du contenu textuel dans votre galerie. Si vous souhaitez activer cette fonctionnalité quand même, trouver la table de configuration de Coppermine dans la base de données et modifier la valeur de <tt class="code">allow_guests_enter_file_details</tt> à '1'.</li>
 </ul>
 
 <div id="doc_footer">
