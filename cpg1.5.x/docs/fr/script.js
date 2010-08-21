@@ -9,7 +9,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
 **********************************************/
@@ -61,7 +61,7 @@ doc_toc += '              <li><a href="requirements.htm#what_minimum_mysql">Base
 doc_toc += '              <li><a href="requirements.htm#what_minimum_image_library">Librairie graphique</a></li>\n';
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
-doc_toc += '          <li><a href="requirements.htm#what_minimum_self-hosting">Auto hébergement &amp; paramétrage du serveur web</a></li>\n';
+doc_toc += '          <li><a href="requirements.htm#what_minimum_self-hosting">Auto-hébergement &amp; paramétrage du serveur web</a></li>\n';
 doc_toc += '          <li><a href="requirements.htm#personal">Requis personnels</a></li>\n';
 doc_toc += '          <li><a href="requirements.htm#requirements_faq">FAQ du minimum requis</a></li>\n';
 doc_toc += '        </ul>\n';
@@ -728,11 +728,11 @@ doc_toc += '          <li><a href="plugins.htm#plugin_api">L\'API plugin</a></li
 doc_toc += '          <li><a href="plugins.htm#plugin_obtain">Ou truver des plugins?</a></li>\n';
 doc_toc += '          <li><a href="plugins.htm#plugin_bundled">Plugins fournis avec Coppermine</a>\n';
 doc_toc += '            <ul>\n';
-doc_toc += '              <li><a href="plugins.htm#plugin_bundled_link_target">Link Target (link_target)</a></li>\n';
-doc_toc += '              <li><a href="plugins.htm#plugin_bundled_onlinestats">Who is online? (onlinestats)</a></li>\n';
+doc_toc += '              <li><a href="plugins.htm#plugin_bundled_link_target">Cible du lien (link_target)</a></li>\n';
+doc_toc += '              <li><a href="plugins.htm#plugin_bundled_onlinestats">Qui est en ligne ? (onlinestats)</a></li>\n';
 doc_toc += '              <li><a href="plugins.htm#plugin_bundled_opensearch">OpenSearch (opensearch)</a></li>\n';
 doc_toc += '              <li><a href="plugins.htm#plugin_bundled_sample">Sample Plugin (sample)</a></li>\n';
-doc_toc += '              <li><a href="plugins.htm#plugin_bundled_usergal_alphatabs">User Gallery Alphabetic Tabbing (usergal_alphatabs)</a></li>\n';
+doc_toc += '              <li><a href="plugins.htm#plugin_bundled_usergal_alphatabs">User Gallery Alphabetic Tabbing (Onglets alphabétiques pour les galeries utilisateurs) (usergal_alphatabs)</a></li>\n';
 doc_toc += '              <li><a href="plugins.htm#plugin_bundled_visiblehookpoints">Visible HookPoints (visiblehookpoints)</a></li>\n';
 doc_toc += '              <li><a href="plugins.htm#plugin_bundled_sef_url">SEF_URLS plugin</a></li>\n';
 doc_toc += '            </ul>\n';
@@ -1524,7 +1524,7 @@ function cpgDocHeader() {
 	if (getUrlParameters('hide_nav') == 1) {
 		return;
 	}
-	$('#docheader').text('Coppermine Photo Gallery v1.5.8: Documentation and Manual');
+	$('#docheader').text('Coppermine Photo Gallery v1.5.9: Documentation and Manual');
 	$('#docheader').after('<br clear="all" />\n<a name="top"></a>');
 	$('#docheader').before('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />\n');
 }
