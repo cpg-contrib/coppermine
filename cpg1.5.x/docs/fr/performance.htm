@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Performance - Coppermine Photo Gallery - Documentation &amp; manuel</title>
+<title>Performances - Coppermine Photo Gallery - Documentation &amp; manuel</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="language" content="fr" />
 <meta name="copyright" content="Coppermine dev team" />
@@ -15,8 +15,6 @@
   Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
-
-  $Date$
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -58,14 +56,14 @@ Le conseil général est de désactiver toute fonctionnalité dont vous n'avez p
     </li>
     <li>
     	<a name="perf_config_general_content_of_the_mainpage"></a><h4><a href="configuration.htm#admin_album_list_content">Le contenu de la page principale</a><a href="#perf_config_general_content_of_the_mainpage" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-    	Paramétrez la de manière simple de sorte que votre page d'index se charge rapidement. Evitez d'utiliser le bloc <em>random</em> (photos aléatoires) sur le grandes galeries. Le bloc "lastalb" (derniers albums mis à jour) peut devenir très lent sur les grosses galeries, en particulier si vous avez paramétré la vignette dalbum sur "aléatoire" ou "dernier téléchagement" pour la plupart des albums.
+    	Paramétrez-la de manière simple de sorte que votre page d'index se charge rapidement. Evitez d'utiliser le bloc <em>random</em> (photos aléatoires) sur les grandes galeries. Le bloc "lastalb" (derniers albums mis à jour) peut devenir très lent sur les grosses galeries, en particulier si vous avez paramétré la vignette d'album sur "aléatoire" ou "dernier téléchargement" pour la plupart des albums.
     </li>
     <li>
     	<a name="perf_config_general_linked_files"></a><h4><a href="configuration.htm#admin_album_linked_files_start">Afficher le nombre de fichiers liés</a><a href="#perf_config_general_linked_files" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     	Cela nécessite une requête supplémentaire à la base de données par album qui s'affiche sur la page d'index - désactivez cette fonction si elle ne vous est pas nécessaire.
     </li>
     <li>
-    <a name="perf_config_general_album_keywords"></a><h4><a href="configuration.htm#admin_allow_user_album_keyword">Autoriser les Utilisateurs à assigner des mots clés aux Albums</a><a href="#perf_config_general_album_keywords" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <a name="perf_config_general_album_keywords"></a><h4><a href="configuration.htm#admin_allow_user_album_keyword">Autoriser les utilisateurs à assigner des mots-clés aux albums</a><a href="#perf_config_general_album_keywords" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     La fonctionnalité des <em>fichiers liés</em> ne convient pas aux très grandes galeries.
     </li>
     <li>
@@ -92,7 +90,7 @@ Le conseil général est de désactiver toute fonctionnalité dont vous n'avez p
     	La désactivation de cette option permettra d'éviter les requêtes coûteuses en ressources pour l’affichage des statistiques sur la page d'index.
     </li>
     <li>
-    	<a name="perf_config_general_vote_stats"></a><h4><a href="configuration.htm#admin_logging_votedetails">Enregistrer le détails des statistiques des Votes </a><a href="#perf_config_general_vote_stats" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    	<a name="perf_config_general_vote_stats"></a><h4><a href="configuration.htm#admin_logging_votedetails">Enregistrer le détail des statistiques des votes </a><a href="#perf_config_general_vote_stats" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     	La désactivation de cette option aidera à garder une petite base de données.
     </li>
     <li>
@@ -100,19 +98,19 @@ Le conseil général est de désactiver toute fonctionnalité dont vous n'avez p
     La désactivation de cette option aidera à garder une petite base de données. Si vous activez cette fonction, votre base de données va augmenter considérablement si votre galerie est visitée par de nombreuses personnes. Plutôt que de permettre les statistiques des Hits vous devriez envisager de mettre en œuvre un outil de statistique complet, comme <a href="http://www.google.com/analytics/" rel="external" class="external">Google Analytics</a> qui peut être facilement intégrés dans votre galerie Coppermine.
     </li>
     <li>
-    	<a name="perf_config_general_count_file_views"></a><h4><a href="configuration.htm#admin_count_file_hits">Compter la visualisation des Fichiers</a> / <a href="configuration.htm#admin_count_album_hits">Compter la visualisation des albums</a><a href="#perf_config_general_count_file_views" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    	<a name="perf_config_general_count_file_views"></a><h4><a href="configuration.htm#admin_count_file_hits">Compter la visualisation des fichiers</a> / <a href="configuration.htm#admin_count_album_hits">Compter la visualisation des albums</a><a href="#perf_config_general_count_file_views" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     	La désactivation signifiera, moins d’écritures dans les tables des photos et albums, ce qui aide le cache concernant les requêtes MySQL à être plus efficace.
     </li>
     <li>
-    	<a name="perf_config_general_debug_mode"></a><h4><a href="configuration.htm#debug_mode">Activer le Mode Débogage</a><a href="#perf_config_general_debug_mode" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-    	Le mode de débogage, augmente les temps de chargement suite aux informations complémentaires, qu’il doit afficher. Sauf si vous êtes effectivement en train de débogger votre galerie, gardez cette option désactivée.
+    	<a name="perf_config_general_debug_mode"></a><h4><a href="configuration.htm#debug_mode">Activer le mode débogage</a><a href="#perf_config_general_debug_mode" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    	Le mode de débogage, augmente les temps de chargement suite aux informations complémentaires, qu’il doit afficher. Sauf si vous êtes effectivement en train de débugger votre galerie, gardez cette option désactivée.
     </li>
     <li>
     	<a name="perf_config_general_news"></a><h4><a href="configuration.htm#admin_general_coppermine_news">Affichez les News de coppermine-gallery.net</a><a href="#perf_config_general_news" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     	Cela provoque un léger retard d’affichage le temps que les nouvelles soient récupérées. Elles ne s'affichent que pour l'administrateur, afin que les visiteurs de votre site ne remarquent pas de différences. Il est recommandé de garder l’option activé, mais si vous êtes un fou de vitesse, désactivez là.
     </li>
     <li>
-    	<a name="perf_config_general_album_properties"></a><h4><a href="albums.htm#album_prop">Propriétés de l'Album</a>: vignette de l'Album<a href="#perf_config_general_album_properties" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    	<a name="perf_config_general_album_properties"></a><h4><a href="albums.htm#album_prop">Propriétés de l'album</a>: vignette de l'album<a href="#perf_config_general_album_properties" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     	Choisir &quot;Dernier téléchargement&quot; ou &quot;Image aléatoire&quot; pour une vignette d’album, ajoute des requêtes supplémentaires pour chaque album affiché sur une page. Choisissez une image spécifique pour éviter ces requêtes.
     </li>
 </ul>
@@ -123,12 +121,12 @@ Le conseil général est de désactiver toute fonctionnalité dont vous n'avez p
 
 <ul>
     <li>
-    	<a name="perf_config_spikes_zip_download"></a><h4>Permettre le téléchargement ZIP des favorits<a href="#perf_config_spikes_zip_download" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    	<a name="perf_config_spikes_zip_download"></a><h4>Autoriser le téléchargement ZIP de vos photos dans les favoris<a href="#perf_config_spikes_zip_download" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     	Créer des fichiers zip sur le serveur exige beaucoup de ressources.
     </li>
     <li>
     	<a name="perf_config_spikes_clickable_keywords"></a><h4>Activer les mots cliquables lors d'une recherche<a href="#perf_config_spikes_clickable_keywords" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-    	Le chargement de la liste des mots clé cliquables peut prendre du temps si vous en avez beaucoup.
+    	Le chargement de la liste des mots-clés cliquables peut prendre du temps si vous en avez beaucoup.
     </li>
     <li>
     	<a name="perf_config_spikes_batch_add_process"></a><h4>Simultanéité des processus dans l'interface d'ajout par lot<a href="#perf_config_spikes_batch_add_process" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
@@ -202,7 +200,7 @@ Le conseil général est de désactiver toute fonctionnalité dont vous n'avez p
 </ul>
 
 <a name="perf_tools"></a><h2>Outils tiers <a href="#perf_tools" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-<p>Il ya un certain nombre d'outils tiers qui peuvent vous aider à améliorer les performances de votre galerie. S'il vous plaît, notez que le Groupe de Coppermine n'est lié à aucun de ces outils et nous n'apportons pas de support concernant ces outils.</p>
+<p>Il y a un certain nombre d'outils tiers qui peuvent vous aider à améliorer les performances de votre galerie. S'il vous plaît, notez que le Groupe de Coppermine n'est lié à aucun de ces outils et nous n'apportons pas de support concernant ces outils.</p>
 
 <a name="perf_yslow"></a><h3>YSlow<a href="#perf_yslow" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>YSlow analyse les pages web et vous explique pourquoi elles sont lentes en se basant sur <a href="http://developer.yahoo.com/performance/index.html#rules" rel="external" class="external">des règles de haute performance de sites internet</a>. YSlow est un <a href="https://addons.mozilla.org/en-US/firefox/addon/5369" rel="external" class="external">plugin de Firefox</a> intégré au populaire outil de développement web <a href="http://www.getfirebug.com/" rel="external" class="external">Firebug</a>.</p>
@@ -227,7 +225,7 @@ Le conseil général est de désactiver toute fonctionnalité dont vous n'avez p
 &lt;IfModule mod_deflate.c&gt;
 	AddOutputFilterByType DEFLATE application/x-javascript text/javascript text/css text/html text/xml
 &lt;/IfModule&gt;</pre>
-Coppermine ne fonctionne pas très bien pour la, compression les fichiers avant de les envoyer au navigateur, car il ne s'est pas faite dans cet esprit: il saute dans et hors de la sortie du tampon assez souvent, c'est pourquoi il ne fonctionnera probablement pas très bien avec la compression des fichiers avant de les envoyer au navigateur.
+Coppermine ne fonctionne pas très bien pour la compression les fichiers avant de les envoyer au navigateur, car il ne s'est pas conçu dans cet esprit: il passe alternativement "dans et hors" de la sortie du tampon assez souvent, c'est pourquoi il ne fonctionnera probablement pas très bien avec la compression des fichiers avant de les envoyer au navigateur.
     </li>    
     <li>
         <a name="perf_yslow_etag"></a><h4>13. Configurer les ETags<a href="#perf_yslow_etag" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
