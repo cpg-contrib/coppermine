@@ -234,7 +234,7 @@
         </li>
         <li>
             <a name="upgrade_any_unpack"></a><h3 class="detail_head_collapsed smaller">Unpack the coppermine package you downloaded</h3>
-            <div class="detail_body border1">Similar to fresh installs, you need to extract the packed archive into a temporary folder on your local hard drive (preserving the folder structure within the package). Most modern operating systems come with an unarchiver that is capable to extract zip archives.
+            <div class="detail_body border1">Similar to fresh installs, you need to extract the packed archive into a temporary folder on your local hard drive (preserving the folder structure within the package). Most modern operating systems come with an unarchiver that is capable to extract zip archives. If you don't have one, the Coppermine devs recommend using <a href="http://7-zip.org/" rel="external" class="external">7-Zip</a>.
             <p class="small"><a href="#upgrade_any_unpack" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
         </li>
         <li>
@@ -269,7 +269,7 @@
         <ul>
           <li>
               <a name="upgrade_14_plugins"></a><h4>Plugins<a href="#upgrade_14_plugins" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-              Plugins made for cpg1.4.x usually can no longer be run on cpg1.5.x, so you'll need to turn them off while you're still running cpg1.4.x (before you start upgrading). Some features that have been a plugin for cpg1.4.x went into the core of cpg1.5.x, so you may not need your plugins any longer. The safest way to make sure that plugins don't interfere is by <a href="configuration.htm#admin_general_enable-plugins">disabling all plugins</a> using the corresponding config option and then removing the content of the plugin folder using your FTP app. After performing the upgrade, get the plugin versions designed for cpg1.5.x and upload them, then re-enable the new plugins one by one.
+              Plugins made for cpg1.4.x usually can no longer be run on cpg1.5.x, so you'll need to <strong>turn them off</strong> while you're still running cpg1.4.x (<strong>before</strong> you start upgrading). Some features that have been a plugin for cpg1.4.x went into the core of cpg1.5.x, so you may not need your plugins any longer. The safest way to make sure that plugins don't interfere is by <a href="configuration.htm#admin_general_enable-plugins">disabling all plugins</a> using the corresponding config option and then removing the content of the plugin folder using your FTP app. After performing the upgrade, get the plugin versions designed for cpg1.5.x and upload them, then re-enable the new plugins one by one.
           </li>
           <li>
               <a name="upgrade_14_custom_theme"></a><h4>Custom theme<a href="#upgrade_14_custom_theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
@@ -284,6 +284,8 @@
                 <li>Coppermine can't be administered using an old language file - the admin needs to use a "true" cpg1.5.x language file</li>
                 <li>You're free to try using old language files, however when running into issues or error messages, switch to US-English and see if the issue goes away then. Using outdated language files goes unsupported</li>
               </ul>
+              Ideally, you should just delete all files from cpg1.4.x inside the <tt class="filename">lang</tt>-folder (the folder that correlates to <tt class="filename">http://yoursite.tld/your_coppermine_folder/lang/</tt>) before performing the update, which will make sure that only language files that have been designed for cpg1.5.x will actually reside inside the language folder.<br />
+              After completing the update you should visit the new language manager and enable/disable the languages that you actually need or the ones you do not need. The language manager can be accessed by going to Coppermine's config, expanding the section "Language & Charset settings" and then clicking on the link labelled "Manage languages". Alternatively, you can directly go to <tt class="filename">http://yoursite.tld/your_coppermine_folder/langmgr.php</tt> in your browser's address bar.
           </li>
           <li>
               <a name="upgrade_14_password_encryption"></a><h4>Password encryption<a href="#upgrade_14_password_encryption" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
