@@ -113,7 +113,9 @@ class core_udb {
         define('USER_CAN_RATE_PICTURES', (int)$USER_DATA['can_rate_pictures']);
         define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
-        define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
+        define('USER_CAN_CREATE_ALBUMS', ((int)$USER_DATA['can_create_albums'] || (int)$USER_DATA['can_create_public_albums']));
+        define('USER_CAN_CREATE_PRIVATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
+        define('USER_CAN_CREATE_PUBLIC_ALBUMS', (int)$USER_DATA['can_create_public_albums']);
         define('USER_ACCESS_LEVEL', (int)$USER_DATA['access_level']);
 
         $this->session_update();
@@ -322,7 +324,7 @@ class core_udb {
 
         if (mysql_num_rows($result)) {
             $USER_DATA = mysql_fetch_assoc($result);
-            $result = cpg_db_query("SELECT group_name FROM  {$CONFIG['TABLE_USERGROUPS']} WHERE group_id= " . $pri_group);
+            $result = cpg_db_query("SELECT group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id= " . $pri_group);
             $temp_arr = mysql_fetch_assoc($result);
             $USER_DATA["group_name"] = $temp_arr["group_name"];
         } else {
@@ -332,6 +334,14 @@ class core_udb {
                 die('<strong>Coppermine critical error</strong>:<br />The group table does not contain the Anonymous group !');
             }
             $USER_DATA = mysql_fetch_assoc($result);
+        }
+        mysql_free_result($result);
+
+        $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_CATMAP']} WHERE group_id in (" .  implode(",", $groups). ")");
+        if (mysql_result($result, 0) > 0) {
+            $USER_DATA['can_create_public_albums'] = 1;
+        } else {
+            $USER_DATA['can_create_public_albums'] = 0;
         }
         mysql_free_result($result);
 

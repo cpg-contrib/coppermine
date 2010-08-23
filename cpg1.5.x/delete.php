@@ -476,8 +476,12 @@ case 'albmgr':
         $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
         
-        //add allowed categories to the restriction     
-        $restrict = "AND (category = '" . (FIRST_USER_CAT + USER_ID) . "'";
+        //add allowed categories to the restriction
+        if (USER_CAN_CREATE_PRIVATE_ALBUMS) {
+            $restrict = "AND (category = '" . (FIRST_USER_CAT + USER_ID) . "'";
+        } else {
+            $restrict = "AND (0";
+        }
         
         foreach ($rowset as $key => $value) {
             $restrict .= " OR category = '" . $value['cid'] . "'";

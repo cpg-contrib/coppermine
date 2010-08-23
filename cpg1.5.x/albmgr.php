@@ -108,10 +108,17 @@ if ($cat == 1) {
     $cat = 0;
 }
 if (!GALLERY_ADMIN_MODE && USER_ADMIN_MODE) {
-    // only list the albums owned by the user
     if ($cat == 0) {
-        $cat = USER_ID + FIRST_USER_CAT;
+        if (USER_CAN_CREATE_PRIVATE_ALBUMS) {
+            $cat = USER_ID + FIRST_USER_CAT;
+        } else {
+            // user is only allowed to create public albums - get first category the user is allowed to create albums in
+            $result = cpg_db_query("SELECT cm.cid FROM {$CONFIG['TABLE_CATMAP']} AS cm INNER JOIN {$CONFIG['TABLE_CATEGORIES']} AS c ON cm.cid = c.cid WHERE cm.group_id in (" .  implode(",", $USER_DATA['groups']). ") ORDER BY pos LIMIT 1");
+            $cat = mysql_result($result, 0);
+            mysql_free_result($result);
+        }
     }
+    // only list the albums owned by the user
     $user_id = USER_ID;
 }
 // set the cat value
@@ -157,9 +164,11 @@ if (count($rowset) > 0) {
     }
 }
 
-if (GALLERY_ADMIN_MODE||USER_ADMIN_MODE) {
+if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
     $CAT_LIST = array();
-    $CAT_LIST[] = array(FIRST_USER_CAT + USER_ID, $lang_albmgr_php['my_gallery']);
+    if (USER_CAN_CREATE_PRIVATE_ALBUMS) {
+        $CAT_LIST[] = array(FIRST_USER_CAT + USER_ID, $lang_albmgr_php['my_gallery']);
+    }
     //only add 'no category' when user is admin
     if (GALLERY_ADMIN_MODE) {
         $CAT_LIST[] = array(0, $lang_albmgr_php['no_category']);

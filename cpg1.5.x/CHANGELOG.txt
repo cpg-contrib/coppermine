@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-08-23 [B] Fixed album manager issue when users aren't allowed to create private albums (thread ID 66325) {eenemeenemuu}
 2010-08-23 [B] Added code that makes sure mb_strlen actually exists when called (thread ID 66674) {GauGau}
 2010-08-20 [B] Updated default value of transparent_overlay in configuration.htm (thread ID 66660) {eenemeenemuu}
 2010-08-20 [O] Updated Finnish language file (user contribution) {eenemeenemuu}
