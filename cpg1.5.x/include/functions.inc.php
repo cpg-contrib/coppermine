@@ -6283,6 +6283,9 @@ if (!function_exists('memory_get_usage')) {
 
 function cpg_fillArrayFieldWithSpaces($text, $maxchars, $fillUpOn = 'right') {
   global $CONFIG;
+  if (!function_exists('mb_strlen')) {
+      require 'include/mb.inc.php';
+  }
   $spaceCharsToAdd = $maxchars - mb_strlen($text, $CONFIG['charset']);
   if ($spaceCharsToAdd > 0) {
     for ($i = 1; $i <= $spaceCharsToAdd; $i++) {
@@ -6306,6 +6309,10 @@ function cpg_fillArrayFieldWithSpaces($text, $maxchars, $fillUpOn = 'right') {
  */
 function cpg_fill_string_array_with_spaces($table, $separator = '|', $align = 'left', $return_value = 'string') {
     global $CONFIG, $LINEBREAK;
+    // Populate the needed function
+    if (!function_exists('mb_strlen')) {
+        require 'include/mb.inc.php';
+    }
     // Sanitize the parameters
     if ($align == 'right') {
         $fillUpOn = 'left';

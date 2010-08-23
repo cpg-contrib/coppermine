@@ -89,6 +89,9 @@ function cpg_is_writable($folder){
 if (!function_exists(cpg_fillArrayFieldWithSpaces)) {
 	function cpg_fillArrayFieldWithSpaces($text, $maxchars, $fillUpOn = 'right') {
 	  global $CONFIG;
+      if (!function_exists('mb_strlen')) {
+          require 'include/mb.inc.php';
+      }
 	  $spaceCharsToAdd = $maxchars - mb_strlen($text, $CONFIG['charset']);
 	  if ($spaceCharsToAdd > 0) {
 	    for ($i = 1; $i <= $spaceCharsToAdd; $i++) {

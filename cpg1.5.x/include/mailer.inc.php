@@ -1429,6 +1429,9 @@ class cpg_PHPMailer {
    * @return string
    */
   function Base64EncodeWrapMB($str) {
+    if (!function_exists('mb_strlen')) {
+        require 'include/mb.inc.php';
+    }
     $start = "=?".$this->CharSet."?B?";
     $end = "?=";
     $encoded = "";
