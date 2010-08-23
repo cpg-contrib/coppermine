@@ -18,8 +18,8 @@
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // info about translators and translated language
-$lang_translation_info['lang_name_english'] = 'Icelandic ';
-$lang_translation_info['lang_name_native'] = 'Íslenska ';
+$lang_translation_info['lang_name_english'] = 'Icelandic';
+$lang_translation_info['lang_name_native'] = 'Íslenska';
 $lang_translation_info['lang_country_code'] = 'is';
 $lang_translation_info['trans_name'] = 'Jon Ketilsson';
 $lang_translation_info['trans_email'] = 'jonket@nutima.net';
