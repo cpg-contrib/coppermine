@@ -1055,7 +1055,7 @@ if (defined('DISPLAYIMAGE_PHP')){
  $lang_display_image_php['slideshow'] = 'Diaporama';
  $lang_display_image_php['stop_slideshow'] = 'Arrêter le diaporama';
  $lang_display_image_php['view_fs'] = 'Cliquer pour voir l\'image en taille réelle';
- $lang_display_image_php['edit_pic'] = 'Modifier la description';
+ $lang_display_image_php['edit_pic'] = 'Modifier les informations du fichier';
  $lang_display_image_php['crop_pic'] = 'Retoucher';
  $lang_display_image_php['set_player'] = 'Changer le lecteur';
 
