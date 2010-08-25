@@ -18,13 +18,13 @@
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // info about translators and translated language
-$lang_translation_info['lang_name_english'] = 'Icelandic';
-$lang_translation_info['lang_name_native'] = 'Íslenska';
+$lang_translation_info['lang_name_english'] = 'Icelandic ';
+$lang_translation_info['lang_name_native'] = 'Íslenska ';
 $lang_translation_info['lang_country_code'] = 'is';
 $lang_translation_info['trans_name'] = 'Jon Ketilsson';
 $lang_translation_info['trans_email'] = 'jonket@nutima.net';
 $lang_translation_info['trans_website'] = 'http://nutima.net/';
-$lang_translation_info['trans_date'] = '2010-05-22';
+$lang_translation_info['trans_date'] = '2010-08-23';
 
 
 $lang_charset = 'utf-8';
@@ -50,7 +50,7 @@ $lang_date['log'] = '%d. %B, %Y kl. %H:%M ';
 $lang_date['scientific'] = '%Y-%m-%d %H:%M:%S ';
 
 // For the word censor
-$lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'assrammer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack','penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
+$lang_bad_words = array('*fuck*', 'rassgat', 'asshole','assramer', 'assrammer', 'bitch*', 'c0ck', 'clits', 'snípur','Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'tittling','phuck', 'poop', 'pussy', 'píka','scrotum', 'shit', 'slut', 'mella','titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*', 'hóra',);
 
 $lang_meta_album_names['random'] = 'Myndir af tilviljun';
 $lang_meta_album_names['lastup'] = 'Nýjustu viðbætur';
@@ -78,25 +78,25 @@ $lang_errors['resize_failed'] = 'Ekki hægt að búa til smámynd eða minnka my
 $lang_errors['no_img_to_display'] = 'Enga mynd að sýna';
 $lang_errors['non_exist_cat'] = 'Valinn flokkur er ekki til';
 $lang_errors['directory_ro'] = 'Ekki hægt að skrifa í möppu \'%s\', og því ekki hægt að eyða skrám';
-$lang_errors['pic_in_invalid_album'] = 'File is in a non-existent album (%s)!?';
-$lang_errors['banned'] = 'Þér er ekki heimilað að nota þenna vef núna.';
+$lang_errors['pic_in_invalid_album'] = 'Skrá er í myndasafni sem er ekki til(%s)!?';
+$lang_errors['banned'] = 'Þér er ekki heimilt að nota þennan vef núna.';
 $lang_errors['offline_title'] = 'Aftengt';
 $lang_errors['offline_text'] = 'Myndasafnið er aftengt sem stendur - reyndu aftur fljótlega';
 $lang_errors['ecards_empty'] = 'Það er engin póstkort að sýna sem stendur.';
 $lang_errors['database_query'] = 'Það kom upp villa við fyrirspurn í gagnagrunn';
 $lang_errors['non_exist_comment'] = 'Umbeðið ummæli er ekki til';
 $lang_errors['captcha_error'] = 'Staðfestingarkóðinn er ekki réttur'; // cpg1.5
-$lang_errors['login_needed'] = 'Þú verður að %sregister%s/%slogin%s til að sjá þessa síðu'; // cpg1.5
+$lang_errors['login_needed'] = 'Þú verður að %snýskrá%s/%sinnskrá%s þig til að sjá þessa síðu'; // cpg1.5
 $lang_errors['error'] = 'Villa'; // cpg1.5
 $lang_errors['critical_error'] = 'Alvarleg villa'; // cpg1.5
 $lang_errors['access_thumbnail_only'] = 'Þér er einungis heimilað að skoða smámyndir.'; // cpg1.5
 $lang_errors['access_intermediate_only'] = 'Þér er ekki heimilað að sjá myndir í fullri stærð.'; // cpg1.5
 $lang_errors['access_none'] = 'Þér er ekki heimilað að sjá neinar myndir.'; // cpg1.5
 $lang_errors['register_globals_title'] = 'Register Globals er á!';// cpg1.5
-$lang_errors['register_globals_warning'] = 'PHP gildið register_globals er virkjað á vefþjóninum þínum, sem er slæm hugmynd vegna öryggis. Það er ráðlagat að afvirkja það.'; //cpg1.5
+$lang_errors['register_globals_warning'] = 'PHP gildið register_globals er virkt á vefþjóninum þínum, sem er slæm hugmynd vegna öryggis. Það er ráðlagat að afvirkja það.'; //cpg1.5
 
 $lang_bbcode_help_title = 'BBkóða hjálp';
-$lang_bbcode_help = 'Þú getur bætt við smellanlegum krækjum og formun við þetta svæði með því að nota BBKóða tags: <li>[b]Bold[/b] =&gt; <strong>Bold</strong></li><li>[i]Italic[/i] =&gt; <i>Italic</i></li><li>[url=http://yoursite.com/]Url Text[/url] =&gt; <a href="http://yoursite.com">Url Text</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]some text[/color] =&gt; <span style="color:red">some text</span></li><li>[img]http://documentation.coppermine-gallery.net/images/browser.png[/img] =&gt; <img src="docs/images/browser.png" border="0" alt="" /></li>';
+$lang_bbcode_help = 'Þú getur bætt við smellanlegum krækjum og formun við þetta svæði með því að nota BBKóða merkingar: <li>[b]Breiðletrað[/b] =&gt; <strong>Breiðletrað</strong></li><li>[i]Skáletrað[/i] =&gt; <i>Skáletrað</i></li><li>[url=http://yoursite.com/]Texti slóðar[/url] =&gt; <a href="http://yoursite.com">Texti slóðar</a></li><li>[email]user@domain.com[/email] =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li><li>[color=red]einhver texti[/color] =&gt; <span style="color:red">einhver texti</span></li><li>[img]http://documentation.coppermine-gallery.net/images/browser.png[/img] =&gt; <img src="docs/images/browser.png" border="0" alt="" /></li>';
 
 $lang_common['yes'] = 'Já'; // cpg1.5
 $lang_common['no'] = 'Nei'; // cpg1.5
@@ -136,7 +136,7 @@ $lang_common['personal_albums'] = '* Einka myndasöfn'; // cpg1.5
 $lang_common['select_album'] = 'Velja myndasafn'; // cpg1.5
 $lang_common['ok'] = 'OK'; // cpg1.5
 $lang_common['status'] = 'Staða'; // cpg1.5
-$lang_common['apply_changes'] = 'Virkja breytingar'; // cpg1.5
+$lang_common['apply_changes'] = 'Vista breytingar'; // cpg1.5
 $lang_common['done'] = 'Lokið'; // cpg1.5
 $lang_common['album_properties'] = 'Eiginleikar myndasafns'; // cpg1.5
 $lang_common['parent_category'] = 'Efri flokkur'; // cpg1.5
@@ -378,9 +378,9 @@ $lang_plugin_api['error_sleep'] = 'Gat ekki slökkt á viðbót \'%s\''; // cpg1
 // File include/smilies.inc.php
 // ------------------------------------------------------------------------- //
 if (defined('SMILIES_PHP')) {
-$lang_smilies_inc_php['Exclamation'] = 'Exclamation';
+$lang_smilies_inc_php['Exclamation'] = 'Upphrópun';
 $lang_smilies_inc_php['Question'] = 'Spurning';
-$lang_smilies_inc_php['Very Happy'] = 'Mjög glaðaur';
+$lang_smilies_inc_php['Very Happy'] = 'Mjög glaður';
 $lang_smilies_inc_php['Smile'] = 'Bros';
 $lang_smilies_inc_php['Sad'] = 'Hryggur';
 $lang_smilies_inc_php['Surprised'] = 'Hissa';
@@ -421,7 +421,7 @@ $lang_albmgr_php['select_category'] = 'Veldu flokk';
 $lang_albmgr_php['category_change'] = 'Ef þú breytir flokknum, þá glatast breytingarnar!'; // cpg1.5
 $lang_albmgr_php['page_change'] = 'Ef þú ferð á þessa slóð, þá glatast breytingarnar!'; // cpg1.5
 $lang_albmgr_php['cancel'] = 'Hætta við'; // cpg1.5
-$lang_albmgr_php['submit_reminder'] = 'Breytingar með röðun eru ekki vistaðar fyrr en smellt er á &quot;Virkja breytingar&quot;.'; // cpg1.5
+$lang_albmgr_php['submit_reminder'] = 'Breytingar með röðun eru ekki vistaðar fyrr en smellt er á &quot;Vista breytingar&quot;.'; // cpg1.5
 }
 
 // ------------------------------------------------------------------------- //
@@ -650,7 +650,7 @@ $lang_admin_php['auto_resize_everyone'] = 'Allir';
 $lang_admin_php['auto_resize_user'] = 'Aðeins notandi';
 $lang_admin_php['ascending'] = 'hækkandi';
 $lang_admin_php['descending'] = 'lækkandi';
-$lang_admin_php['collapse_all'] = 'Fella saman allt'; // cpg1.5
+$lang_admin_php['collapse_all'] = 'Fella allt saman'; // cpg1.5
 $lang_admin_php['separate_page'] = 'á aðskyldri síðu'; // cpg1.5
 $lang_admin_php['inline'] = 'í línu'; // cpg1.5
 $lang_admin_php['guests_only'] = 'Aðeins gestir'; // cpg1.5
@@ -681,8 +681,8 @@ $lang_admin_php['keyword_convert'] = 'Breyta stikkorðsaðskiljar'; // cpg1.5
 $lang_admin_php['enable_plugins'] = 'Virkja viðbætur'; // cpg1.5
 $lang_admin_php['purge_expired_bans'] = 'Eyða sjálfvirkt útrunnum bönnum'; // cpg1.5
 $lang_admin_php['browse_batch_add'] = 'Skoðanlegt handvirkt viðmót'; // cpg1.5
-$lang_admin_php['batch_proc_limit'] = 'Aðferð endurtekninga fyrir handvirkt upphalsviðmót'; // cpg1.5
-$lang_admin_php['display_thumbs_batch_add'] = 'Sýna smámyndir í handvirku upphalsviðmóti'; // cpg1.5
+$lang_admin_php['batch_proc_limit'] = 'Aðferð endurtekninga fyrir handvirkt innsendingarviðmót'; // cpg1.5
+$lang_admin_php['display_thumbs_batch_add'] = 'Sýna smámyndir í handvirku innsendingarviðmóti'; // cpg1.5
 $lang_admin_php['lang'] = 'Sjálfgefið tungumál'; // cpg1.5
 $lang_admin_php['language_autodetect'] = 'Skynja tungumál sjálfvirkt'; // cpg1.5
 $lang_admin_php['charset'] = 'Stafasett'; // cpg1.5
@@ -698,7 +698,7 @@ $lang_admin_php['custom_header_path'] = 'Slóð í sérgerðan haus á síðu'; 
 $lang_admin_php['custom_footer_path'] = 'Slóð í sérgerðan fót á síðu'; // cpg1.5
 $lang_admin_php['browse_by_date'] = 'Virkja skoðun eftir dagsetningu'; // cpg1.5
 $lang_admin_php['display_redirection_page'] = 'Sýna tilvísunarsíður (redirection pages)'; // cpg1.5
-$lang_admin_php['display_xp_publish_link'] = 'Vísa á notkun XP Publisher með því að birta slóð þess á upphalsíðu'; // cpg1.5
+$lang_admin_php['display_xp_publish_link'] = 'Vísa á notkun XP Publisher með því að birta slóð þess á innsendingarsíðu'; // cpg1.5
 $lang_admin_php['main_table_width'] = 'Breidd aðaltöflu (síðu)'; // cpg1.5
 $lang_admin_php['pixels_or_percent'] = 'pixlar eða %'; // cpg1.5
 $lang_admin_php['subcat_level'] = 'Fjöldi þrepa í flokkum sem á að sýna'; // cpg1.5
@@ -1022,9 +1022,9 @@ $lang_delete_php['pic_mgr'] = 'Myndstjóri';
 $lang_delete_php['update_pic'] = 'Uppfæri mynd \'%s\' með skrárnafni \'%s\' og index \'%s\'';
 $lang_delete_php['username'] = 'Notandanafn';
 $lang_delete_php['anonymized_comments'] = '%s ummæli(um) gerð nafnlaus';
-$lang_delete_php['anonymized_uploads'] = '%s almennt(um) upphal(upphöl) gert(gerð) nafnlaus';
+$lang_delete_php['anonymized_uploads'] = '%s almenn(um) innsending(um) gerð nafnlaust';
 $lang_delete_php['deleted_comments'] = '%s ummæli(um) eytt';
-$lang_delete_php['deleted_uploads'] = '%s almennu(m) upphali(upphölum) eytt';
+$lang_delete_php['deleted_uploads'] = '%s almennri(um) innsendingu(m) eytt';
 $lang_delete_php['user_deleted'] = 'notanda %s eytt';
 $lang_delete_php['activate_user'] = 'Virkja notanda';
 $lang_delete_php['user_already_active'] = 'Aðgangur er þegar virkur';
@@ -1152,7 +1152,7 @@ $lang_display_comments['unapproved_comment'] = 'Ósamþykkt ummæli'; // cpg1.5
 $lang_display_comments['pending_approval_message'] = 'Einhver hefur sett inn ummæli hér. Það verður sýnilegt eftir samþykki stjórnanda.'; // cpg1.5
 $lang_display_comments['approve'] = 'Samþykkja ummæli'; // cpg1.5
 $lang_display_comments['disapprove'] = 'Merkja ummæli ósamþykkt'; // cpg1.5
-$lang_display_comments['log_in_to_comment'] = 'Anonymous comments are not allowed here. %sLog in%s to post your comment'; // cpg1.5 // do not translate the %s placeholders - they will be used as wrappers for the link (<a>)
+$lang_display_comments['log_in_to_comment'] = 'Nafnlaus ummæli eru ekki leyfð hér. %sSkráðu þig inn%s til að skilja eftir ummæli'; // cpg1.5 // do not translate the %s placeholders - they will be used as wrappers for the link (<a>)
 $lang_display_comments['default_username_message'] = 'Vinsamlegast gefðu upp nafnið þitt fyrir ummæli'; // cpg1.5
 $lang_display_comments['comment_rejected'] = 'Ummæli hefur verið hafnað'; // cpg1.5
 
@@ -1254,7 +1254,7 @@ $lang_editpics_php['reset_votes'] = 'Endursstilla atkvæði';
 $lang_editpics_php['reset_all_votes'] = 'Endurstilla ÖLL atkvæði';
 $lang_editpics_php['del_comm'] = 'Eyða ummælum';
 $lang_editpics_php['del_all_comm'] = 'Eyða ÖLLUM ummmælum';
-$lang_editpics_php['upl_approval'] = 'Samþykki upphals';
+$lang_editpics_php['upl_approval'] = 'Samþykki innsendingar';
 $lang_editpics_php['edit_pics'] = 'Breyta skrám';
 $lang_editpics_php['edit_pic'] = 'Breyta skrá'; // cpg 1.5
 $lang_editpics_php['see_next'] = 'Sjá næstu skrár';
@@ -1351,7 +1351,7 @@ if (defined('GROUPMGR_PHP')) {
 $lang_groupmgr_php['group_manager'] = 'Stjórnun hópa'; // cpg1.5.x
 $lang_groupmgr_php['group_name'] = 'Hópur';
 $lang_groupmgr_php['permissions'] = 'Heimildir';
-$lang_groupmgr_php['public_albums'] = 'Upphal í almennt safn';
+$lang_groupmgr_php['public_albums'] = 'Innsending í almennt safn';
 $lang_groupmgr_php['personal_gallery'] = 'Einkamyndasafn';
 $lang_groupmgr_php['disk_quota'] = 'Stærð svæðis';
 $lang_groupmgr_php['rating'] = 'Að meta';
@@ -1412,9 +1412,9 @@ $lang_list_albums['from_category'] = ' - Úr flokk: '; // cpg1.5
 
 if (defined('INSTALL_PHP')) {
 $lang_install['already_succ'] = 'Uppsetningin hefur þegar verið keyrð einu sinni og er nú læst.';
-$lang_install['already_succ_explain'] = 'Ef þú villt keyra uppsetninguna aftur, þá verður þú að eyða fyrst \'include/config.inc.php\' skránni sem var búin til í möppunni þar sem þú staðsettir Coppermine. Þú getur gert það með hvaða FTP forriti sem er';
-$lang_install['cant_read_tmp_conf'] = 'Uppsetningin getur ekki lesið tímabundnu config skrána %s.';
-$lang_install['cant_write_tmp_conf'] = 'Uppsetningin getur ekki skrifað tímabundnu config skrána %s.';
+$lang_install['already_succ_explain'] = 'Ef þú vilt keyra uppsetninguna aftur, þá verður þú að eyða fyrst \'include/config.inc.php\' skránni sem var búin til í möppunni þar sem þú staðsettir Coppermine. Þú getur gert það með hvaða FTP forriti sem er';
+$lang_install['cant_read_tmp_conf'] = 'Uppsetningin getur ekki lesið tímabundnu "config" skrána %s.';
+$lang_install['cant_write_tmp_conf'] = 'Uppsetningin getur ekki skrifað tímabundnu "config" skrána %s.';
 $lang_install['review_permissions'] = 'Vinsamlegast endurskoðið heimildir á möppum.';
 $lang_install['change_lang'] = 'Breyta tungumáli';
 $lang_install['check_path'] = 'Athuga slóð';
@@ -1468,9 +1468,9 @@ $lang_install['no_dir'] = 'Mappa ekki tiltæk';
 $lang_install['no_gd'] = 'Uppsetningin þín á PHP virðist ekki innhalda \'GD graphic library extension\' og þú hefur ekki sýnt að þú viljir nota ImageMagick. Coppermine hefur verið stillt til að nota GD2 því sjálfvirk GD skynjun virkar stundum ekki. Ef GD er uppsett í kerfinu þínu, þá á það að virka, annars þarf að setja upp ImageMagick.';
 $lang_install['no_mysql_conn'] = 'Gat ekki komið á MySQL tegingu, vinsamlegast athugaðu innslegnar MySQL upplýsingar';
 $lang_install['no_mysql_support'] = 'PHP er ekki með MySQL stuðning virkjaðan.';
-$lang_install['no_thumb_method'] = 'You have to choose an image manipulation application (GD/IM)';
+$lang_install['no_thumb_method'] = 'Þú verður að velja myndbreytiforrit (GD/IM)';
 $lang_install['nok'] = 'Ekki í lagi';
-$lang_install['not_here_yet'] = 'Ekkert hér ennþá, vinsamlegast smellt %shér%s til að fara til baka.';
+$lang_install['not_here_yet'] = 'Ekkert hér ennþá, vinsamlegast smelltu %shér%s til að fara til baka.';
 $lang_install['ok'] = 'Allt í lagi';
 $lang_install['on_q'] = 'á fyrirspurn';
 $lang_install['or'] = 'eða';
@@ -1481,8 +1481,8 @@ $lang_install['perm_error'] = 'Heimildir \'%s\' eru settar sem %s, vinsamlegast 
 $lang_install['perm_ok'] = 'Heimildir á ákveðnum möppum hafa verið athugaðar, og virðast vera í lagi. <br />Vinsamlegast haldið áfram í næsta skref.';
 $lang_install['perm_not_ok'] = 'Heimildir á ákveðnum möppum eru ekki réttar.<br />Vinsamlegast breytið heimildunum mappanna hér fyrir neða sem eru merktar "Ekki í lagi".'; // cpg1.5
 $lang_install['please_go_back'] = 'Vinsamlegast %ssmellið hér%s til að fara til baka og lagfæra þess villu áður en haldið er áfram.';
-$lang_install['populate_db'] = 'Populate database';
-$lang_install['ready_to_roll'] = '<a href="index.php">Coppermine</a> is now properly configured and ready to use.<br /><a href="login.php">Login</a> using the information you provided for your admin account.';
+$lang_install['populate_db'] = 'Setja gögn í gagnagrunn';
+$lang_install['ready_to_roll'] = '<a href="index.php">Coppermine</a> er nú rétt uppsett og tilbúið til notkunar.<br /><a href="login.php">Skráðu þig inn</a> með því að nota upplýsingarnar sem þú gafst upp sem aðgang stjórnanda.';
 $lang_install['sect_create_adm'] = 'Hér þarf að setja inn upplýsingar til að búa til aðgang stjórnanda Coppermine. Notið aðeins bókstafi(ekki íslenska séstafi). Settu inn gildin vandlega!';
 $lang_install['sect_mysql_info'] = 'Hér þarf að setja inn upplýsingar til að tengjast MySQL gagnagrunninum.<br />Ef þú veist ekki hvernig þú átt að fylla það út, hafðu þá samband við hýsingaraðila til að fá réttar upplýsingar.';
 $lang_install['sect_mysql_sel_db'] = 'Hér verður þú að velja hvaða gagnagrunn þú vilt nota fyrir Coppermine.<br />Ef MySQL aðgangurinn þinn hefur þær heimildir sem til þarf , þá getur þú búið til nýjan gagnagrunn frá uppsetningunni eða notað gagnagrunn sem er til fyrir. Ef þér líkar hvorug lausnin, verður þú fyrst að búa til gagnagrunn óháð Coppermine uppsetningu, síðan koma til baka og velja nýja gagnagrunninn úr uppflettiglugganum hér fyrir neðan. Þú getur einnig breytt töfluforskeytinu (ekki nota punkta samt), en að halda sjálfgefnu töfluforskeyti er ráðlegt.';
@@ -1500,8 +1500,8 @@ $lang_install['title_mysql_db_sel'] = 'Val MySQL gagnagrunns';
 $lang_install['title_mysql_pop'] = 'Býr til gagngrunnsuppbyggingu';
 $lang_install['title_mysql_user'] = 'Auðkenning MySQL notanda';
 $lang_install['title_welcome'] = 'Velkomin(n) í uppsetningu Coppermine';
-$lang_install['tmp_conf_error'] = 'Unable to write the temporary config file - make sure the \'include\' folder is writable for the script.';
-$lang_install['tmp_conf_ser_err'] = 'A serious error occurred in the installer, try reloading your page or start over by removing the \'include/config.tmp\' file.';
+$lang_install['tmp_conf_error'] = 'Gat ekki skrifað vinnuskrá fyrir stillingar - vertu viss um að \'include\' mappan sé skrifanleg.';
+$lang_install['tmp_conf_ser_err'] = 'Alvarleg villa kom upp á í uppsetningu, reyndu að endurnýja síðuna eða byrjaðu aftur með því að eyða \'include/config.tmp\' skránni.';
 $lang_install['try_again'] = 'Reyna aftur!';
 $lang_install['unable_write_config'] = 'Get ekki skrifað \'config file\'';
 $lang_install['user_err'] = 'Notandanafn stjórnanda má aðeins innihalda bókstafi og má ekki vera autt (ráðlegt að nota ekki séríslenska stafi).';
@@ -1531,7 +1531,7 @@ $lang_install['imp_test_error'] = 'Það var villa í einni eða fleiri prófunu
 $lang_install['writable'] = 'Skrifanlegt';
 $lang_install['not_writable'] = 'Ekki skrifanlegt';
 $lang_install['not_exist'] = 'Er ekki til';
-$lang_install['old_install'] = 'Þetta er nýji uppsetningarhamurinn. Smellið %shér%s til að fara í sígildan uppsetningarskjá.'; //cpg1.5
+$lang_install['old_install'] = 'Þetta er nýji uppsetningarhamurinn. Smellið %shér%s til að fara í sígildan uppsetningarskjá (hann er á ensku).'; //cpg1.5
 
 }
 
@@ -1694,8 +1694,8 @@ $lang_modifyalb_php['password_protect'] = 'Vernda þetta myndasafn með lykilor�
 // ------------------------------------------------------------------------- //
 if (defined('PHPINFO_PHP')) {
 $lang_phpinfo_php['php_info'] = 'PHP info';
-$lang_phpinfo_php['explanation'] = 'This is the output generated by the PHP function <a href="http://www.php.net/phpinfo">phpinfo()</a>, displayed within Coppermine.';
-$lang_phpinfo_php['no_link'] = 'Having others see your phpinfo can be a security risk, that\'s why this page is only visible when you\'re logged in as admin. You cannot post a link to this page for others, they will be denied access.';
+$lang_phpinfo_php['explanation'] = 'Þetta eru upplýsingarnar sem PHP aðgerðin <a href="http://www.php.net/phpinfo">phpinfo()</a>, sýndi innan Coppermine.';
+$lang_phpinfo_php['no_link'] = 'Það að aðrir geti séð phpinfo hjá þér getur verið varasamt öryggislega, því er þessi síða aðeins sjáanleg þegar stjórnandi er skráður inn. Það er ekki hægt að senda slóð á þessa síðu, aðgang verður neitað.';
 }
 
 // ------------------------------------------------------------------------- //
@@ -1709,7 +1709,7 @@ $lang_picmgr_php['no_album'] = '* Ekkert myndasafn *';
 $lang_picmgr_php['explanation_header'] = 'Sérsniðin röðun sem þú getur skilgreint á þessari síðu mun einungis vera notuð ef';
 $lang_picmgr_php['explanation1'] = 'stjórnandinn hefur sett "Sjálfgefna röðunreglu fyrir skrárs" í stillingum í "Staðsetning lækkandi" eða "Staðsetning hækkandi" (almennar stillingar fyrir alla notendur sem hafa ekki valið gerð röðunar sérstaklega)';
 $lang_picmgr_php['explanation2'] = 'notandinn hefur valið "Staðsetning lækkandi" eðaor "Staðsetning hækkandi" á smámyndasíðu (í stillingum notanda)';
-$lang_picmgr_php['change_album'] = 'Ef þú breyttir um myndasafn, þá tapast breytingar þínar!'; // cpg1.5 // js-alert
+$lang_picmgr_php['change_album'] = 'Ef þú breytir um myndasafn, þá tapast breytingarnar þínar!'; // cpg1.5 // js-alert
 $lang_picmgr_php['submit_reminder'] = 'Breytingar á röðun eru ekki vistaðar fyrr en þú smellir á &quot;Vista breytingar&quot;.'; // cpg1.5
 }
 
@@ -1732,7 +1732,7 @@ $lang_pluginmgr_php['i_plugins'] = 'Virkar viðbætur';
 $lang_pluginmgr_php['n_plugins'] = 'Óvirkar viðbætur';
 $lang_pluginmgr_php['none_installed'] = 'Engar virkar';
 $lang_pluginmgr_php['operation'] = 'Aðgerð';
-$lang_pluginmgr_php['not_plugin_package'] = 'Upphlaðin skrá er ekk viðbótarpakki.';
+$lang_pluginmgr_php['not_plugin_package'] = 'Upphlaðin skrá er ekki viðbótarpakki.';
 $lang_pluginmgr_php['copy_error'] = 'Það gekk ekki að flytja pakkann í viðbótarmöppuna.';
 $lang_pluginmgr_php['upload'] = 'Hlaða inn';
 $lang_pluginmgr_php['configure_plugin'] = 'Stilla viðbót';
@@ -1778,7 +1778,7 @@ $lang_register_php['err_user_exists'] = 'Þetta notandanafn er nú þegar í not
 $lang_register_php['err_global_pw'] = 'Ógilt almennt nýskráningarlykilorð'; // cpg1.5
 $lang_register_php['err_global_pass_same'] = 'Lykilorðið þitt ætti að vera öðruvísi en almenna lykilorðið'; // cpg1.5
 $lang_register_php['err_duplicate_email'] = 'Annar notandi hefur nú þegar skráð sig með þessu netfangi';
-$lang_register_php['err_disclaimer'] = 'Þú verður að smþykkja skilmálana'; // cpg1.5
+$lang_register_php['err_disclaimer'] = 'Þú verður að samþykkja skilmálana'; // cpg1.5
 $lang_register_php['enter_info'] = 'Sláðu inn upplýsingar fyrir nýskráningu';
 $lang_register_php['required_info'] = 'Skilyrtar upplýsingar';
 $lang_register_php['optional_info'] = 'Aukalegar upplýsingar';
@@ -1804,7 +1804,7 @@ $lang_register_php['err_unk_user'] = 'Valinn notandi er ekki til!';
 $lang_register_php['x_s_profile'] = 'Upplýsingar um %s';
 $lang_register_php['group'] = 'Hópur';
 $lang_register_php['reg_date'] = 'Skráður';
-$lang_register_php['disk_usage'] = 'Diskanotkun';
+$lang_register_php['disk_usage'] = 'Disknotkun';
 $lang_register_php['change_pass'] = 'Breyta lykilorði';
 $lang_register_php['current_pass'] = 'Nýverandi lykilorð';
 $lang_register_php['new_pass'] = 'Nýtt lykilorð';
@@ -1816,7 +1816,7 @@ $lang_register_php['pass_chg_success'] = 'Lykilorðinu hefur verið breytt';
 $lang_register_php['pass_chg_error'] = 'Lykilorðinu hefur ekki verið breytt';
 $lang_register_php['notify_admin_email_subject'] = '%s - Tilkynning um nýskráningu';
 $lang_register_php['last_uploads'] = 'Síðasta skrá innsend'; // cpg1.5
-$lang_register_php['last_uploads_detail'] = 'Smellið til að sjá öll upphöl hjá %s'; // cpg1.5
+$lang_register_php['last_uploads_detail'] = 'Smellið til að sjá allar innsendingar hjá %s'; // cpg1.5
 $lang_register_php['last_comments'] = 'Síðustu ummæli'; // cpg1.5
 $lang_register_php['you'] = 'you'; // cpg1.5
 $lang_register_php['last_comments_detail'] = 'Smellið til að sjá öll ummæli frá %s'; // cpg1.5
@@ -1897,43 +1897,43 @@ $lang_reviewcom_php['name_a'] = 'Notandanafn hækkandi';
 $lang_reviewcom_php['name_d'] = 'Notandanafn lækkandi';
 $lang_reviewcom_php['date_a'] = 'Date hækkandi';
 $lang_reviewcom_php['date_d'] = 'Date lækkandi';
-$lang_reviewcom_php['comment_a'] = 'Comment message hækkandi';
-$lang_reviewcom_php['comment_d'] = 'Comment message lækkandi';
-$lang_reviewcom_php['file_a'] = 'File hækkandi';
-$lang_reviewcom_php['file_d'] = 'File lækkandi';
-$lang_reviewcom_php['approval_a'] = 'Approval hækkandi'; // cpg1.5
-$lang_reviewcom_php['approval_d'] = 'Approval lækkandi'; // cpg1.5
-$lang_reviewcom_php['ip_a'] = 'IP address hækkandi'; // cpg1.5
-$lang_reviewcom_php['ip_d'] = 'IP address lækkandi'; // cpg1.5
-$lang_reviewcom_php['akismet_a'] = 'Akismet rating (valid comments at the bottom)'; // cpg1.5
-$lang_reviewcom_php['akismet_d'] = 'Akismet rating (valid comments at the top)'; // cpg1.5
-$lang_reviewcom_php['n_comm_appr'] = '%s approved comment(s)'; // cpg1.5
-$lang_reviewcom_php['n_comm_unappr'] = '%s unapproved comment(s)'; // cpg1.5
-$lang_reviewcom_php['configuration_changed'] = 'Approval config changed'; // cpg1.5
-$lang_reviewcom_php['only_approval'] = 'only display comments needing approval'; // cpg1.5
-$lang_reviewcom_php['approval'] = 'Approved'; // cpg1.5
-$lang_reviewcom_php['save_changes'] = 'Save changes'; // cpg1.5
-$lang_reviewcom_php['n_confirm_delete'] = 'Do you really want to delete the selected comment(s)?'; // cpg1.5
-$lang_reviewcom_php['with_selected'] = 'With selected'; // cpg1.5
-$lang_reviewcom_php['delete'] = 'delete'; // cpg1.5
-$lang_reviewcom_php['approve'] = 'approve'; // cpg1.5
-$lang_reviewcom_php['disapprove'] = 'mark unapproved'; // cpg1.5
-$lang_reviewcom_php['do_nothing'] = 'do nothing'; // cpg1.5
-$lang_reviewcom_php['comment_approved'] = 'Comment approved'; // cpg1.5
-$lang_reviewcom_php['comment_unapproved'] = 'Comment marked unapproved'; // cpg1.5
-$lang_reviewcom_php['ban_and_delete'] = 'Ban user and delete comment(s)'; // cpg1.5
-$lang_reviewcom_php['akismet_status'] = 'Akismet said'; // cpg1.5
-$lang_reviewcom_php['is_spam'] = 'is spam'; // cpg1.5
-$lang_reviewcom_php['is_not_spam'] = 'is not spam'; // cpg1.5
+$lang_reviewcom_php['comment_a'] = 'Skilaboð ummæla hækkandi';
+$lang_reviewcom_php['comment_d'] = 'Skilaboð ummæla lækkandi';
+$lang_reviewcom_php['file_a'] = 'Skrár hækkandi';
+$lang_reviewcom_php['file_d'] = 'Skrár lækkandi';
+$lang_reviewcom_php['approval_a'] = 'Samþykki hækkandi'; // cpg1.5
+$lang_reviewcom_php['approval_d'] = 'Samþykki lækkandi'; // cpg1.5
+$lang_reviewcom_php['ip_a'] = 'IP tölu hækkandi'; // cpg1.5
+$lang_reviewcom_php['ip_d'] = 'IP tölu lækkandi'; // cpg1.5
+$lang_reviewcom_php['akismet_a'] = 'Akismet stigagjöf (gild ummæli neðst)'; // cpg1.5
+$lang_reviewcom_php['akismet_d'] = 'Akismet stigagjöf (gild ummæli efst)'; // cpg1.5
+$lang_reviewcom_php['n_comm_appr'] = '%s samþykkt ummæli)'; // cpg1.5
+$lang_reviewcom_php['n_comm_unappr'] = '%s ósamþykkt ummæli'; // cpg1.5
+$lang_reviewcom_php['configuration_changed'] = 'Stillingum samþykkis breytt'; // cpg1.5
+$lang_reviewcom_php['only_approval'] = 'aðeins sýna ummæli sem þurfa samþykkis'; // cpg1.5
+$lang_reviewcom_php['approval'] = 'Samþykkt'; // cpg1.5
+$lang_reviewcom_php['save_changes'] = 'Vista breytingar'; // cpg1.5
+$lang_reviewcom_php['n_confirm_delete'] = 'Viltu virkilega eyða völdum ummælum?'; // cpg1.5
+$lang_reviewcom_php['with_selected'] = 'Með valið'; // cpg1.5
+$lang_reviewcom_php['delete'] = 'eyða'; // cpg1.5
+$lang_reviewcom_php['approve'] = 'samþykkja'; // cpg1.5
+$lang_reviewcom_php['disapprove'] = 'merkja ósamþykki'; // cpg1.5
+$lang_reviewcom_php['do_nothing'] = 'gera ekkert'; // cpg1.5
+$lang_reviewcom_php['comment_approved'] = 'Ummæli samþykkt'; // cpg1.5
+$lang_reviewcom_php['comment_unapproved'] = 'Ummæli merkt ósamþykkt'; // cpg1.5
+$lang_reviewcom_php['ban_and_delete'] = 'Banna notanda og eyða ummæli(um)'; // cpg1.5
+$lang_reviewcom_php['akismet_status'] = 'Akismet sagði'; // cpg1.5
+$lang_reviewcom_php['is_spam'] = 'er rusl'; // cpg1.5
+$lang_reviewcom_php['is_not_spam'] = 'er ekki rusl'; // cpg1.5
 $lang_reviewcom_php['akismet'] = 'Akismet'; // cpg1.5
-$lang_reviewcom_php['akismet_count'] = 'Akismet has found %s spam messages for you until now'; // cpg1.5
-$lang_reviewcom_php['akismet_test_result'] = 'Test result for your Akismet API key %s'; // cpg1.5
-$lang_reviewcom_php['invalid'] = 'invalid'; // cpg1.5
-$lang_reviewcom_php['missing_gallery_url'] = 'You need to specify a gallery URL in Coppermine\'s config'; // cpg1.5
-$lang_reviewcom_php['unable_to_connect'] = 'Unable to connect to akismet.com'; // cpg1.5
-$lang_reviewcom_php['not_found'] = 'The target URL was not found. Maybe the site structure of akismet.com has changed.'; // cpg1.5
-$lang_reviewcom_php['unknown_error'] = 'Unknown error'; // cpg1.5
-$lang_reviewcom_php['error_message'] = 'The error message returned was'; // cpg1.5
+$lang_reviewcom_php['akismet_count'] = 'Akismet hefur fundið %s rusl skilaboð fyrir þig hingað til'; // cpg1.5
+$lang_reviewcom_php['akismet_test_result'] = 'Niðurstaða prófunar fyrir API lykilinn þinn %s'; // cpg1.5
+$lang_reviewcom_php['invalid'] = 'ógilt'; // cpg1.5
+$lang_reviewcom_php['missing_gallery_url'] = 'Þú verður að tilgreina slóð myndasafnsins í stillingum Coppermine'; // cpg1.5
+$lang_reviewcom_php['unable_to_connect'] = 'Gat ekki tengst akismet.com'; // cpg1.5
+$lang_reviewcom_php['not_found'] = 'Slóðin fannst ekki. Kannski hefur uppbygging vefs akismet.com breyst.'; // cpg1.5
+$lang_reviewcom_php['unknown_error'] = 'Óþekkt villa'; // cpg1.5
+$lang_reviewcom_php['error_message'] = 'Villuskilaboðin eru'; // cpg1.5
 $lang_reviewcom_php['ip_address'] = 'IP tala'; // cpg1.5
 }
 
@@ -1943,22 +1943,22 @@ $lang_reviewcom_php['ip_address'] = 'IP tala'; // cpg1.5
 if (defined('SIDEBAR_PHP')) {
 $lang_sidebar_php['sidebar'] = 'Hliðarstika'; // cpg1.5
 $lang_sidebar_php['install'] = 'setja inn'; // cpg1.5
-$lang_sidebar_php['install_explain'] = 'Among the many smart access methods to get to information quickly on the site, we provide sidebars for the most popular browsers used on different operating systems to access pages easily. Here you can find setup and uninstall information for the browsers supported.'; // cpg1.5
-$lang_sidebar_php['os_browser_detect'] = 'Detecting your OS and browser'; // cpg1.5
-$lang_sidebar_php['os_browser_detect_explain'] = 'The script is trying to detect your operating system and browser version - vinsamlegast bíðið smástund. If auto-detection fails, you might want to %sunhide%s all possible sidebar install options manually.'; // cpg1.5
+$lang_sidebar_php['install_explain'] = 'Meðal margra sniðugra leiða til að nálgast upplýsingar fljótlega á vefnum, er hægt að nota hliðarstikur í vinsælustu vöfrunum og hinum ýmsu stýrikerfum til að sjá síður auðveldlega. Hér getur þú séð upplýsingar um hvernig á að setja þær inn eða taka út fyrir studda vafra.'; // cpg1.5
+$lang_sidebar_php['os_browser_detect'] = 'Skynja stýrikerfið þitt og vafra'; // cpg1.5
+$lang_sidebar_php['os_browser_detect_explain'] = 'Aðgerðin er að reyna að skynja útgáfur stýrikerfisins þíns og vafrans - vinsamlegast bíðið smástund. Ef sú aðgerð virkar ekki, gætir þú prófað að %ssýna%s alla möguleika handvirkrar innsetningar á hliðarstiku.'; // cpg1.5
 $lang_sidebar_php['mozilla'] = 'Mozilla, Firefox, Netscape 6+, Konqueror 3.2+'; // cpg1.5
-$lang_sidebar_php['mozilla_explain'] = 'If you use Mozilla 0.9.4 or later, you can %sadd our sidebar to your set%s. You can uninstall this sidebar using the "Customize Sidebar" dialog in Mozilla.'; // cpg1.5
-$lang_sidebar_php['ie_mac'] = 'Internet Explorer 5 and above on Mac OS'; // cpg1.5
-$lang_sidebar_php['ie_mac_explain'] = 'If you use Internet Explorer 5 or above on MacOS, %sopen our sidebar page%s in a separate window. In that window, open the "Page Holder" tab on the left side of the window. Click "Add". If you want to keep it for future use, click on "Favorites" and select "Add to Page Holder Favorites".'; // cpg1.5
-$lang_sidebar_php['ie_win'] = 'Internet Explorer 5 and above on Windows'; // cpg1.5
-$lang_sidebar_php['ie_win_explain'] = 'If you use Internet Explorer 5 or above on Windows, you can add the Side Bar to your Links toolbar or you can add it to your favorites and clicking on it you can see our bar displayed in place of your usual search bar by right-clicking %shere%s and selecting "Add to favorites" from the context menu. This link does not install our bar as your default search bar, so no modification is made to your system.'; // cpg1.5
-$lang_sidebar_php['ie7_win'] = 'Internet Explorer 7 on Windows XP/Vista'; // cpg1.5
-$lang_sidebar_php['ie7_win_explain'] = 'If you use Internet Explorer 7 on Windows, you can add a navigation pop-up to your Links toolbar or you can add it to your favorites and clicking on it you can see our bar displayed as a pop-up window by right-clicking %shere%s and selecting "Add to favorites" from the context menu. In previous versions of IE, it was possible to add an actual side bar, but in IE7 you cannot accomplish this without applying complicated registry hacks. It is ráðlegt to use another browser if you want to use an actual sidebar.'; // cpg1.5
-$lang_sidebar_php['opera'] = 'Opera 6 and above'; // cpg1.5
-$lang_sidebar_php['opera_explain'] = 'If you are using Opera, you can %sclick on this link to add our sidebar to your set%s. Tick "Show in panel" then. You can uninstall the sidebar by right clicking on it\'s tab and choosing "Eyða" from the context menu.'; // cpg1.5
+$lang_sidebar_php['mozilla_explain'] = 'Ef þú notar Mozilla 0.9.4 eða síðari útgáfu, getur þú %sbætt við hliðarstiku%s. Þú getur tekið út þess hliðarstiku með því að nota "Customize Sidebar" hlutann í Mozilla.'; // cpg1.5
+$lang_sidebar_php['ie_mac'] = 'Internet Explorer 5 eða síðari útgáfur á Mac OS'; // cpg1.5
+$lang_sidebar_php['ie_mac_explain'] = 'Ef þú notar Internet Explorer 5 eða síðari útgáfu á MacOS, %sopna síðu hliðarstiku%s í öðrum glugga. Í þeim glugga, opnaðu "Page Holder" flipann vinstra meginn í glugganum. Smelltu "Add". Ef þú vilt nota það áfram, smelltu á "Favorites" og veldu "Add to Page Holder Favorites".'; // cpg1.5
+$lang_sidebar_php['ie_win'] = 'Internet Explorer 5 eða síðari útgáfur á Windows'; // cpg1.5
+$lang_sidebar_php['ie_win_explain'] = 'Ef þú notar Internet Explorer 5 eða síðari útgáfur á Windows, getur þú bætt hliðarstiku við í "Links toolbar" eða þú getur bætt því við í uppáhöldin og með því að smella á það þá getur þú séð hliðarstikuna í stað venjulega leitargluggans með því að hægri smella %shérna%s og velja "Add to favorites" frá flettiglugganum. Þessi hlekkur setur ekki stikuna okkar sem sjálfgefna leitarstiku, og því engar breytingar gerðar á kerfinu þínu.'; // cpg1.5
+$lang_sidebar_php['ie7_win'] = 'Internet Explorer 7 á Windows XP/Vista'; // cpg1.5
+$lang_sidebar_php['ie7_win_explain'] = 'Ef þú notar Internet Explorer 7 á Windows, getur þú bætt leiðsögu sprettiglugga við í "Links toolbar" eða þú getur bætt henni við uppáhöldin og með því að hægri smella þá sérðu stikuna sem sprettiglugga með því að hægri smella %shér%s og velja "Add to favorites" frá sprettiglugga. Í fyrri útgáfum IE, var hægt að bæta við raunverulegri hliðarstiku, en í IE7 er þetta ekki hægt nema með flóknum breytingum á stillingum stýrikerfis. Það er ráðlegt að nota annan vafra ef þú vilt nota raunverulega hliðarstiku.'; // cpg1.5
+$lang_sidebar_php['opera'] = 'Opera 6 eða síðari útgáfu'; // cpg1.5
+$lang_sidebar_php['opera_explain'] = 'Ef þú notar Opera, getur þú %ssmellt hér á þennan hlekk til að bæta við hliðarstiku%s. Hakaðu síðan við  "Show in panel". Þú getur tekið hliðarstikuna út með því að hægri smella á flipann og velja "Eyða" í sprettiglugganum.'; // cpg1.5
 $lang_sidebar_php['additional_options'] = 'Auka valmöguleikar'; // cpg1.5
-$lang_sidebar_php['additional_options_explain'] = 'If you have another browser than the one mentioned above, then click %shere%s to display all possible sidebar options.'; // cpg1.5
-$lang_sidebar_php['cannot_add_sidebar'] = 'Sidebar cannot be added! Your browser does not support this method!'; // cpg1.5 // js-alert
+$lang_sidebar_php['additional_options_explain'] = 'Ef þú ert með annan vafra en þann sem er nefndur hér fyrir ofan, smelltu þá %shér%s til að sýna alla möguleika hliðarstiku.'; // cpg1.5
+$lang_sidebar_php['cannot_add_sidebar'] = 'Ekki hægt að bæta hliðarstiku við! Vafrinn þinn styður ekki þessa aðferð!'; // cpg1.5 // js-alert
 $lang_sidebar_php['search'] = 'Leita'; // cpg1.5
 $lang_sidebar_php['reload'] = 'Endurhlaða'; // cpg1.5
 }
@@ -1998,7 +1998,7 @@ $lang_search_new_php['select_dir_msg'] = 'Þessi aðgerð leyfir þér að bæta
 $lang_search_new_php['no_pic_to_add'] = 'Það er engri skrá að bæta við';
 $lang_search_new_php['need_one_album'] = 'Þú þarft í það minnsta eitt myndasafn til að nota þessa aðgerð';
 $lang_search_new_php['warning'] = 'Viðvörun';
-$lang_search_new_php['change_perm'] = 'the script can\'t write in this directory, you need to change its mode to 755 or 777 before trying to add the files!';
+$lang_search_new_php['change_perm'] = 'aðgerðin getur ekki skrifað í þessa möppu, þú verður að breyta heimildum í 755 eða 777 áður en reynt er að bæta við skrám!';
 $lang_search_new_php['target_album'] = '<strong>Settu skrár &quot;</strong>%s<strong>&quot; í </strong>%s';
 $lang_search_new_php['folder'] = 'Mappa';
 $lang_search_new_php['image'] = 'skrá';
@@ -2028,7 +2028,7 @@ EOT;
 // Translator note: Do not translate the %s placeholders - they are being replaced with icons
 $lang_search_new_php['check_all'] = 'Merkja allt';
 $lang_search_new_php['uncheck_all'] = 'Afmerkja allt';
-$lang_search_new_php['no_folders'] = 'Það eru engar möppur í "albums" möppunni ennþá. Vertu viss um að búa til að minnsta kosti eina möppu í "albums" möppunni og sendu skrárnar með ftp þangað. Þú mátt ekki setja myndir í "userpics" eða "edit" möppurnar, þær eru fráteknar fyrir http upphal og innri notkun.';
+$lang_search_new_php['no_folders'] = 'Það eru engar möppur í "albums" möppunni ennþá. Vertu viss um að búa til að minnsta kosti eina möppu í "albums" möppunni og sendu skrárnar með ftp þangað. Þú mátt ekki setja myndir í "userpics" eða "edit" möppurnar, þær eru fráteknar fyrir http innsendingu og innri notkun.';
 $lang_search_new_php['browse_batch_add'] = 'Rýnilegt viðmót'; // cpg1.5
 $lang_search_new_php['display_thumbs_batch_add'] = 'Sýna smámynd forskoðunar'; // cpg1.5
 $lang_search_new_php['edit_pics'] = 'Breyta skrám';
@@ -2119,22 +2119,22 @@ $lang_upload_php['up_instr_2'] = 'Smellið á "Finna" takkann fyrir neðan og fi
 $lang_upload_php['up_instr_3'] = 'Veljið fleiri skrár til að hlaða inn með því að velja skref 2';
 $lang_upload_php['up_instr_4'] = 'Smellið á "Halda áfram" takkann eftir að allar skrárna hafa hlaðist inn (takkinn birtist aðeins þegar þú hefur hlaðið inn að einni skrá hið minnsta).';
 $lang_upload_php['up_instr_5'] = 'Þér verður vísað á skjámyndþar sem þú getur sett inn nánari upplýsingar um innsendar skrár. Eftir útfyllingu, sendu inn formið með því að smella á "Vista breytingar" takkann neðst á forminu.';
-$lang_upload_php['restriction_zip'] = 'Upphalaðar ZIP skrár verða áfram samþjappaðar, þeim verður ekki þysjað út á netþjóninum.';
+$lang_upload_php['restriction_zip'] = 'Innsendar ZIP skrár verða áfram samþjappaðar, þeim verður ekki þysjað út á netþjóninum.';
 $lang_upload_php['restriction_filesize'] = 'Hámarksstærð hverrar skrár sem má senda inn má ekki fara yfir %s.';
 $lang_upload_php['reg_instr_1'] = 'Ekki rétt aðgerð til að búa til form.';
 $lang_upload_php['no_name'] = 'Skrárnafn óaðgengilegt'; // cpg 1.5
-$lang_upload_php['no_tmp_name'] = 'Upphal gekk ekki'; // cpg 1.5
+$lang_upload_php['no_tmp_name'] = 'Innsending gekk ekki'; // cpg 1.5
 $lang_upload_php['no_post'] = 'Skrá ekki hlaðið inn með POST.';
 $lang_upload_php['forb_ext'] = 'Ekki leyfileg skrárending.';
 $lang_upload_php['exc_php_ini'] = 'Farið fram úr leyfilegri skrárstærð í php.ini.';
 $lang_upload_php['exc_file_size'] = 'Farið fram úr leyfilegri skrárstærð af CPG.';
-$lang_upload_php['partial_upload'] = 'Aðeins upphal að hluta.';
-$lang_upload_php['no_upload'] = 'Ekkert upphal framkvæmt.';
-$lang_upload_php['unknown_code'] = 'Óþekkt PHP upphals villumelding.';
+$lang_upload_php['partial_upload'] = 'Aðeins innsending að hluta.';
+$lang_upload_php['no_upload'] = 'Innsending ekki framkvæmd.';
+$lang_upload_php['unknown_code'] = 'Óþekkt PHP villumelding innsendingar.';
 $lang_upload_php['impossible'] = 'Ekki hægt að færa.';
 $lang_upload_php['not_image'] = 'Ekki mynd/skemmt';
 $lang_upload_php['not_GD'] = 'Ekki GD skrárending.';
-$lang_upload_php['pixel_allowance'] = 'Hæð og/eða breidd innsendrar myndar er meiri en leyft í stillingum myndasafns.';
+$lang_upload_php['pixel_allowance'] = 'Hæð og/eða breidd innsendrar myndar er meiri en leyfð er í stillingum myndasafns.';
 $lang_upload_php['failure'] = 'Mistókst að hlað inn';
 $lang_upload_php['no_place'] = 'Ekki hægt að staðsetja fyrri skrá.';
 $lang_upload_php['max_fsize'] = 'Hámarksstærð skrá er %s';
@@ -2151,18 +2151,18 @@ $lang_upload_php['allowed_img_types'] = 'Skrárgerð mynda: %s'; // cpg1.5
 $lang_upload_php['allowed_mov_types'] = 'Skrárgerð myndbanda: %s'; // cpg1.5
 $lang_upload_php['allowed_doc_types'] = 'Skrárgerð skjala: %s'; // cpg1.5
 $lang_upload_php['allowed_snd_types'] = 'Skrárgerð hljóðs: %s'; // cpg1.5
-$lang_upload_php['please_wait'] = 'Vinsamlegast bíðið meðan á upphali stendur - gæti tekið smá stund'; // cpg1.5
-$lang_upload_php['alternative_upload'] = 'Önnur upphalsaðferð'; // cpg1.5
+$lang_upload_php['please_wait'] = 'Vinsamlegast bíðið meðan á innsendingu stendur - gæti tekið smá stund'; // cpg1.5
+$lang_upload_php['alternative_upload'] = 'Önnur innsendingaraðferð'; // cpg1.5
 $lang_upload_php['xp_publish_promote'] = 'Ef þú keyrir á XP/Vista, getur þú einnig notað Windows XP Uploading Wizard til að hlaða inn skrám, því þar er notendavænna viðmót á eigin vél.'; // cpg1.5
-$lang_upload_php['err_js_disabled'] = 'Flash upphalshamur gat ekki hlaðist inn. Þú verður að hafa JavaScript virkt til að geta notið þess.'; // cpg1.5
-$lang_upload_php['err_flash_disabled'] = 'Upphlashamur er of lengi að hlaðast inn eða virkar ekki. Vertu viss um að \'Flash Plugin\' sé virkt og að nýjasta útgáfa af \'Flash Player\' sé til staðaris.'; // cpg1.5
+$lang_upload_php['err_js_disabled'] = 'Flash innsendingarhamur gat ekki hlaðist inn. Þú verður að hafa JavaScript virkt til að geta notið þess.'; // cpg1.5
+$lang_upload_php['err_flash_disabled'] = 'Innsendingarhamur er of lengi að hlaðast inn eða virkar ekki. Vertu viss um að \'Flash Plugin\' sé virkt og að nýjasta útgáfa af \'Flash Player\' sé til staðaris.'; // cpg1.5
 $lang_upload_php['err_alternate_method'] = 'Þú getur einnig notað <a href="upload.php?single=1">ein í einu</a> skrárham.'; // cpg1.5
-$lang_upload_php['err_flash_version'] = 'Flash upphalshamur gat ekki hlaðist inn. Þú gætir þurft að setja inn eða uppfæra \'Flash Player\'. Farðu á <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> til að fá \'Flash Player\'.'; // cpg1.5
-$lang_upload_php['flash_loading'] = 'Upphalshamur er að hlaðast inn. Vinsamlegast bíðið...'; // cpg1.5
+$lang_upload_php['err_flash_version'] = 'Flash innsendingarhamur gat ekki hlaðist inn. Þú gætir þurft að setja inn eða uppfæra \'Flash Player\'. Farðu á <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash">Adobe website</a> til að fá \'Flash Player\'.'; // cpg1.5
+$lang_upload_php['flash_loading'] = 'innsendingarhamur er að hlaðast inn. Vinsamlegast bíðið...'; // cpg1.5
 
 $lang_upload_swf_php['browse'] = 'Finna...'; //cpg1.5
-$lang_upload_swf_php['cancel_all'] = 'Hætta við öll upphöl'; //cpg1.5
-$lang_upload_swf_php['upload_queue'] = 'Biðröð upphala'; //cpg1.5
+$lang_upload_swf_php['cancel_all'] = 'Hætta við öll innsendingu'; //cpg1.5
+$lang_upload_swf_php['upload_queue'] = 'Biðröð innsendinga'; //cpg1.5
 $lang_upload_swf_php['files_uploaded'] = 'skrám hlaðið inn'; //cpg1.5
 $lang_upload_swf_php['all_files'] = 'Allar skrár'; //cpg1.5
 $lang_upload_swf_php['status_pending'] = 'Bíður...'; //cpg1.5
@@ -2170,16 +2170,16 @@ $lang_upload_swf_php['status_uploading'] = 'Hleður inn...'; //cpg1.5
 $lang_upload_swf_php['status_complete'] = 'Búið.'; //cpg1.5
 $lang_upload_swf_php['status_cancelled'] = 'Hætt við.'; //cpg1.5
 $lang_upload_swf_php['status_stopped'] = 'Stöðvað.'; //cpg1.5
-$lang_upload_swf_php['status_failed'] = 'Upphal gekk ekki.'; //cpg1.5
+$lang_upload_swf_php['status_failed'] = 'Innsending gekk ekki.'; //cpg1.5
 $lang_upload_swf_php['status_too_big'] = 'Skrá er of stór.'; //cpg1.5
 $lang_upload_swf_php['status_zero_byte'] = 'Ekki hægt að hlaða inn tómum skrám.'; //cpg1.5
 $lang_upload_swf_php['status_invalid_type'] = 'Ekki leyfð skrárgerð.'; //cpg1.5
 $lang_upload_swf_php['status_unhandled'] = 'Óviðráðanleg villa'; //cpg1.5
-$lang_upload_swf_php['status_upload_error'] = 'Upphalsvilla: '; //cpg1.5
+$lang_upload_swf_php['status_upload_error'] = 'Innsendingarvilla: '; //cpg1.5
 $lang_upload_swf_php['status_server_error'] = 'Netþjóns (IO) villa'; //cpg1.5
 $lang_upload_swf_php['status_security_error'] = 'Öryggisvilla'; //cpg1.5
 $lang_upload_swf_php['status_upload_limit'] = 'Farið fram úr hámarksmagni.'; //cpg1.5
-$lang_upload_swf_php['status_validation_failed'] = 'Mistókst að sannreyna. Upphali sleppt.'; //cpg1.5
+$lang_upload_swf_php['status_validation_failed'] = 'Mistókst að sannreyna. Innsendingu sleppt.'; //cpg1.5
 $lang_upload_swf_php['queue_limit'] = 'Þú reyndir að setja of margar skrár í biðröð.'; //cpg1.5
 $lang_upload_swf_php['upload_limit_1'] = 'Þú hefur náð hámarksmagni.'; //cpg1.5
 $lang_upload_swf_php['upload_limit_2'] = 'Þú getur valið allt að %s skrá(r)'; //cpg1.5
