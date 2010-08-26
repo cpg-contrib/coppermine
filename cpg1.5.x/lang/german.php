@@ -2008,6 +2008,7 @@ $lang_search_php['days'] = 'Tage(e)';
 $lang_search_php['all_words'] = 'mit allen Wörtern (UND)';
 $lang_search_php['any_words'] = 'mit irgendeinem der Wörter (ODER)';
 $lang_search_php['regex'] = 'Nach regulärem Ausdruck suchen';
+$lang_search_php['album_title'] = 'Alben-Titel';
 $lang_search_php['category_title'] = 'Kategorie-Titel';
 }
 
