@@ -23,6 +23,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-08-30 [B] Fixed issue where users can edit public albums (thread ID 66380) {eenemeenemuu}
+2010-08-30 [B] Fixed lower case user name issue with plugin usergal_alphatabs (thread ID 66485) {eenemeenemuu}
 2010-08-23 [B] Fixed album manager issue when users aren't allowed to create private albums (thread ID 66325) {eenemeenemuu}
 2010-08-23 [B] Added code that makes sure mb_strlen actually exists when called (thread ID 66674) {GauGau}
 2010-08-20 [B] Updated default value of transparent_overlay in configuration.htm (thread ID 66660) {eenemeenemuu}
@@ -35,7 +37,6 @@ Changelog
 2010-08-14 [B] Corrected French lang file to fix the non showing dropdown in the user manager (thread ID 66524) {Frantz}
 2010-08-12 [B] Fixed admin email address validation (thread ID 66512) {eenemeenemuu}
 2010-08-12 [B] Added charsetmgr.php to the delete files array (thread ID 66490) {eenemeenemuu}
-2010-08-12 [B] Fixed lower case user name issue with plugin usergal_alphatabs (thread ID 66485) {eenemeenemuu}
 2010-08-12 [B] Fixed issue with plugin usergal_alphatabs when bridged (thread ID 66340) {eenemeenemuu}
 2010-08-10 [M] Counted version count up in SVN repository from cpg1.5.8 to cpg1.5.9 {eenemeenemuu}
 2010-08-09 [B] Fixed default page when comments are sorted in descending order (thread ID 66441) {Nibbler}

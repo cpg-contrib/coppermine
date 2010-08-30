@@ -26,7 +26,7 @@ if ($superCage->get->keyExists('album')) {
     $CLEAN['album'] = 0;
 }
 
-if (!(GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && user_is_allowed()))) {
+if (!(GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && user_is_allowed(false)))) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 

@@ -5181,7 +5181,7 @@ function cpgGetRemoteFileByURL($remoteURL, $method = "GET", $redirect = 10, $min
  *
  * @return boolean $check_approve
  */
-function user_is_allowed()
+function user_is_allowed($include_upload_permissions = true)
 {
     if (GALLERY_ADMIN_MODE) {
         return true;
@@ -5220,7 +5220,7 @@ function user_is_allowed()
     }
 
     // We should also whether user has upload permission to the current album. but do this only if album id is set
-    if ($album_id) {
+    if ($album_id && $include_upload_permissions) {
         $public_albums = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} INNER JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " AND ((uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET." OR alb_password != '')) OR (owner=".USER_ID.")) AND aid=$album_id");
         
         if (count(cpg_db_fetch_rowset($public_albums))) {
