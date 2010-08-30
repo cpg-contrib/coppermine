@@ -181,7 +181,7 @@ function cpg_db_connect()
         return false;
     }
 
-    if ($CONFIG['dbcharset']) {
+    if (isset($CONFIG['dbcharset'])) {
         mysql_query("SET NAMES '{$CONFIG['dbcharset']}'", $result);
     }
 
