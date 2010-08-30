@@ -290,7 +290,7 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
             $sql .= "INNER JOIN {$this->usertable} as u on u.{$f[\'user_id\']} = a.category - " . FIRST_USER_CAT . " ";
             $sql .= "INNER JOIN {$CONFIG[\'TABLE_PICTURES\']} AS p ON p.aid = a.aid ";
             $sql .= "WHERE ((isnull(approved) or approved=\'YES\') AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon ";
-            if ($l = $getLetter) $sql .= "AND {$f[\'username\']} LIKE \'$l%\' ";
+            if ($l = $getLetter) $sql .= "AND UPPER({$f[\'username\']}) LIKE \'$l%\' ";
             $sql .= "GROUP BY category ";
             $sql .= "ORDER BY category ";
             $sql .= "LIMIT $lower_limit, $users_per_page ";
@@ -328,7 +328,7 @@ if ($superCage->get->keyExists('cat') && $superCage->get->getInt('cat') == USER_
             
             // This query collects an array of user_id -> username mappings for the user ids collected above 
             $sql = "SELECT {$this->field[\'user_id\']} AS user_id, {$this->field[\'username\']} AS user_name FROM {$this->usertable} WHERE {$this->field[\'user_id\']} IN ($userlist)";
-            if ($l = $getLetter) $sql .= " AND {$f[\'username\']} LIKE \'$l%\' ";
+            if ($l = $getLetter) $sql .= " AND UPPER({$f[\'username\']}) LIKE \'$l%\' ";
             $result = cpg_db_query($sql, $this->link_id);
         
             $userdata = array();
