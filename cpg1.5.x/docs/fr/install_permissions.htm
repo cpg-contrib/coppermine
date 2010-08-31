@@ -12,7 +12,7 @@
 <!--
   SVN version info:
 
-  Coppermine version: 1.5.7
+  Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
 
@@ -259,7 +259,7 @@ En outre, Coppermine a besoins <em>d'accès en écriture</em> sur un certain nom
 <p>En outre, des autorisations d'<strong>écriture</strong> sont nécessaires pour:</p>
 <ul>
     <li>Le répertoire <tt class="code">albums</tt>-et tout ce qu'il contient. <br />
-    Ne confondez pas le répertoire (dans le système de fichiers) nommé <tt class="code">albums</tt> avec le terme logique et organisationnel &quot;album&quot; au niveau de la base de données: même si les deux mots ont le même son et si il <em>peut</em> y avoir un lien entre les fichiers du système de fichiers et les fichiers au niveau de la base de données, ces deux mots ne doivent pas être confondus ou mélangés. <a href="albums.htm">Les Albums</a> au niveau de la base de donnéesn sont des conteneurs logiques. Le répertoire <tt class="code">albums</tt> du système de fichiers est un conteneur physique.</li>
+    Ne confondez pas le répertoire (dans le système de fichiers) nommé <tt class="code">albums</tt> avec le terme logique et organisationnel &quot;album&quot; au niveau de la base de données: même si les deux mots ont le même son et s'il <em>peut</em> y avoir un lien entre les fichiers du système de fichiers et les fichiers au niveau de la base de données, ces deux mots ne doivent pas être confondus ou mélangés. <a href="albums.htm">Les albums</a> au niveau de la base de données sont des conteneurs logiques. Le répertoire <tt class="code">albums</tt> du système de fichiers est un conteneur physique.</li>
     <li>Le répertoire <tt class="code">include</tt> doit être inscriptible pendant l'installation de Coppermine; l'intalleur va devoir écrire dans un fichier nommé <tt class="code">config.inc.php</tt> dans le répertoire <tt class="code">include</tt> ou seront stockées toutes les informations nécessaires à au script de la galerie pour établir une connection à la base de données. Ces éléments d'informations doivent être stockés au niveau du système de fichiers - tous les autres paramètres de Coppermine sont stockés dans la base de données, une fois la connection établie correctement par le script</li>
     <li>Le répertoire <tt class="code">logs</tt> doit être inscriptible si vous activez <a href="configuration.htm#admin_logging">l'enregistrement dans la configuration de Coppermine</a>.</li>
     <li>Le répertoire <tt class="code">plugins</tt> doit être inscriptible si vous voulez utiliser des <a href="plugins.htm">plugins</a> et si vous voulez les télécharger en utilisant la fonction de téléchargement HTTP inclue dans le <a href="plugins.htm#plugin_manager">gestionnaire de plugins</a>.</li>
