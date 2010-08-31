@@ -149,7 +149,7 @@ function html_picinfo()
         }
         
         if ($CONFIG['vote_details'] == 1) {
-            $stat_link = "stat_details.php?type=vote&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&rating=1&referer=0&browser=0&os=0&uid=1";
+            $stat_link = "stat_details.php?type=vote&amp;pid={$CURRENT_PIC_DATA['pid']}&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;rating=1&amp;referer=0&amp;browser=0&amp;os=0&amp;uid=1";
             $detailsLink_votes = '(<a href="' . $stat_link . '" class="greybox">' . $lang_picinfo['show_details'] . '</a>)';
         } else {
             $detailsLink_votes = '';
@@ -210,7 +210,7 @@ function html_picinfo()
     $info[$lang_picinfo['Displayed']] = sprintf($lang_display_image_php['views'], $CURRENT_PIC_DATA['hits']);
 
     if ($CURRENT_PIC_DATA['hits'] && $CONFIG['hit_details'] && GALLERY_ADMIN_MODE) {
-        $stat_link = "stat_details.php?type=hits&pid={$CURRENT_PIC_DATA['pid']}&sort=sdate&dir=&sdate=1&ip=1&search_phrase=0&referer=0&browser=1&os=1";
+        $stat_link = "stat_details.php?type=hits&amp;pid={$CURRENT_PIC_DATA['pid']}&amp;sort=sdate&amp;dir=&amp;sdate=1&amp;ip=1&amp;search_phrase=0&amp;referer=0&amp;browser=1&amp;os=1";
         $info[$lang_picinfo['Displayed']] .= ' (<a href="' . $stat_link . '" class="greybox">' . $lang_picinfo['show_details'] . '</a>)';
     }
 
