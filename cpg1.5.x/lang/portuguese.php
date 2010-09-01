@@ -11,8 +11,8 @@
 
   ********************************************
   Coppermine version: 1.5.9
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/lang/english.php $
-  $Revision: 7837 $
+  $HeadURL$
+  $Revision$
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
