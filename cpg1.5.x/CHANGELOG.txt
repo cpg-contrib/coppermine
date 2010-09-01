@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-09-01 [A] Added partial Portuguese language file (user contribution) {eenemeenemuu}
 2010-08-31 [C] HTML validation (thread ID 66448) {eenemeenemuu}
 2010-08-30 [B] Fixed issue where users can edit public albums (thread ID 66380) {eenemeenemuu}
 2010-08-30 [B] Fixed lower case user name issue with plugin usergal_alphatabs (thread ID 66485) {eenemeenemuu}

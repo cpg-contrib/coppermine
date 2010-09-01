@@ -12230,6 +12230,14 @@
     <hash>92045d3fc6d1a9371d389fe3d6d49d09</hash>
   </element>
   <element>
+    <fullpath>lang/portuguese.php</fullpath>
+    <version>1.5.9</version>
+    <revision>7805</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>92045d3fc6d1a9371d389fe3d6d49d09</hash>
+  </element>
+  <element>
     <fullpath>lang/russian.php</fullpath>
     <version>1.5.9</version>
     <revision>7805</revision>
