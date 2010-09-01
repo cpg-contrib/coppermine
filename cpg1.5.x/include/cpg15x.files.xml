@@ -12094,6 +12094,14 @@
     <hash>c3f94497af0df1843433436db059f51d</hash>
   </element>
   <element>
+    <fullpath>lang/catalan.php</fullpath>
+    <version>1.5.9</version>
+    <revision>7805</revision>
+    <status>optional</status>
+    <permission>read</permission>
+    <hash>c3f94497af0df1843433436db059f51d</hash>
+  </element>
+  <element>
     <fullpath>lang/chinese_gb.php</fullpath>
     <version>1.5.9</version>
     <revision>7805</revision>

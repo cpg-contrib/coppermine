@@ -24,7 +24,7 @@ $lang_translation_info['lang_country_code'] = 'pt';
 $lang_translation_info['trans_name'] = 'Pedro Ferreira';
 $lang_translation_info['trans_email'] = 'pedro.m.ferreira@gmail.com';
 $lang_translation_info['trans_website'] = '';
-$lang_translation_info['trans_date'] = '30-08-2010';
+$lang_translation_info['trans_date'] = '2010-08-30';
 
 
 $lang_charset = 'utf-8';
