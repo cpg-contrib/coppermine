@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-09-01 [B] Fixed template error if guests are allowed to create public albums {eenemeenemuu}
 2010-09-01 [A] Added partial Catalan language file (user contribution) {eenemeenemuu}
 2010-09-01 [A] Added partial Portuguese language file (user contribution) {eenemeenemuu}
 2010-08-31 [C] HTML validation (thread ID 66448) {eenemeenemuu}

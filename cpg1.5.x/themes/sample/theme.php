@@ -2130,7 +2130,7 @@ function theme_main_menu($which)
         template_extract_block($template_sys_menu, 'my_gallery');
     }
 
-    if (USER_CAN_CREATE_ALBUMS) {
+    if (USER_CAN_CREATE_ALBUMS && USER_ID) { // block 'my_profile' has already been removed for guests
         template_extract_block($template_sys_menu, 'my_profile');
     }
 
