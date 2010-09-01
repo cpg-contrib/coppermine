@@ -289,7 +289,7 @@ if ($CONFIG['debug_mode'] == 1 || ($CONFIG['debug_mode'] == 2 && GALLERY_ADMIN_M
 
 $CONFIG['theme_config'] = DEFAULT_THEME;        // Save the gallery-configured setting
 
-if ($matches = $superCage->get->getMatched('theme', '/^[A-Za-z0-9_]+$/')) {
+if ($matches = $superCage->get->getMatched('theme', '/^[A-Za-z0-9_-]+$/')) {
     $USER['theme'] = $matches[0];
 }
 if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . $USER['theme'])) {
