@@ -30,8 +30,8 @@ $cpg_udb->view_profile($superCage->get->getInt('uid'));
 $icon_array = array(
     'ok'       => cpg_fetch_icon('ok', 0),
     'password' => cpg_fetch_icon('key_enter', 0),
-	'delete' => cpg_fetch_icon('delete', 0),
-	'edit' => cpg_fetch_icon('edit', 2),
+    'delete' => cpg_fetch_icon('delete', 0),
+    'edit' => cpg_fetch_icon('edit', 2),
 );
 
 function cpgUserPicCount($uid)
@@ -144,7 +144,7 @@ $edit_profile_form_param = array(
 if ($CONFIG['allow_email_change'] == 1 || GALLERY_ADMIN_MODE) {
     $edit_profile_form_param[] = array('input', 'email', cpg_fetch_icon('mail', 2) . $lang_register_php['email'],255);
 } else {
-	$edit_profile_form_param[] = array('text', 'email', cpg_fetch_icon('mail', 2) . $lang_register_php['email'],255);
+    $edit_profile_form_param[] = array('text', 'email', cpg_fetch_icon('mail', 2) . $lang_register_php['email'],255);
 }
 if ($CONFIG['user_profile1_name'] != '') {
     $edit_profile_form_param[] = array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255);
@@ -380,11 +380,11 @@ if ($superCage->post->keyExists('change_profile') && USER_ID && UDB_INTEGRATION 
 
     $error = false;
 
-    if ($CONFIG['allow_email_change']) {
+    if ($CONFIG['allow_email_change'] || GALLERY_ADMIN_MODE) {
         $email = $superCage->post->getEscaped('email');
         if (!Inspekt::isEmail($email)) {
             $error = $lang_register_php['email_warning2'] . $email;
-			//preg_match('#' . $adminDataValue['regex'] . '#i', $evaluate_value) == FALSE
+            //preg_match('#' . $adminDataValue['regex'] . '#i', $evaluate_value) == FALSE
         } elseif (!$CONFIG['allow_duplicate_emails_addr']) {
             $sql = "SELECT null FROM {$CONFIG['TABLE_USERS']} WHERE user_email = '$email' AND user_id <> " . USER_ID;
             $result = cpg_db_query($sql);
@@ -394,10 +394,10 @@ if ($superCage->post->keyExists('change_profile') && USER_ID && UDB_INTEGRATION 
         }
     }
 
-    $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET user_profile1 = '$profile1', user_profile2 = '$profile2', user_profile3 = '$profile3', user_profile4 = '$profile4', user_profile5 = '$profile5', user_profile6 = '$profile6'" . ($CONFIG['allow_email_change'] && !$error ? ", user_email = '$email'" : "") . " WHERE user_id = '" . USER_ID . "'";
+    $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET user_profile1 = '$profile1', user_profile2 = '$profile2', user_profile3 = '$profile3', user_profile4 = '$profile4', user_profile5 = '$profile5', user_profile6 = '$profile6'" . (($CONFIG['allow_email_change'] || GALLERY_ADMIN_MODE) && !$error ? ", user_email = '$email'" : "") . " WHERE user_id = '" . USER_ID . "'";
     $result = cpg_db_query($sql);
-	
-	CPGPluginAPI::action('profile_submit_form', null);
+    
+    CPGPluginAPI::action('profile_submit_form', null);
 
     $title = sprintf($lang_register_php['x_s_profile'], stripslashes(USER_NAME));
 
@@ -444,7 +444,7 @@ if ($superCage->post->keyExists('change_password') && USER_ID && UDB_INTEGRATION
 
     $title = sprintf($lang_register_php['x_s_profile'], stripslashes(USER_NAME));
     $redirect = $CPG_PHP_SELF . "?op=edit_profile";
-	cpgRedirectPage($redirect, $title, $lang_register_php['pass_chg_success'], 3, 'success');
+    cpgRedirectPage($redirect, $title, $lang_register_php['pass_chg_success'], 3, 'success');
     exit;
 }
 
@@ -605,7 +605,7 @@ EOT;
 </tr>
 
 EOT;
-	CPGPluginAPI::action('profile_display_form', null);
+    CPGPluginAPI::action('profile_display_form', null);
     echo <<< EOT
 <tr>
     <td colspan="2" align="center" class="tablef">
@@ -615,7 +615,7 @@ EOT;
     </td>
 </tr>
 EOT;
-	endtable();
+    endtable();
     
     list($timestamp, $form_token) = getFormToken();	
     echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
@@ -671,7 +671,7 @@ EOT;
         </script>
         <noscript>
         <input type="submit" name="delete_submit" id="delete_submit" value="{$lang_register_php['delete_my_account']}" class="button" />
-		<button type="submit" class="button" name="delete_submit" id="delete_submit" value="{$lang_register_php['delete_my_account']}">{$icon_array['delete']}{$lang_register_php['delete_my_account']}</button>
+        <button type="submit" class="button" name="delete_submit" id="delete_submit" value="{$lang_register_php['delete_my_account']}">{$icon_array['delete']}{$lang_register_php['delete_my_account']}</button>
         </noscript>
     </td>
 </tr>
@@ -716,7 +716,7 @@ EOT;
 </tr>
 EOT;
     endtable();
-	//echo '<h1>3</h1>';
+    //echo '<h1>3</h1>';
     list($timestamp, $form_token) = getFormToken();	
     echo "<input type=\"hidden\" name=\"form_token\" value=\"{$form_token}\" />
     <input type=\"hidden\" name=\"timestamp\" value=\"{$timestamp}\" /></form>";
@@ -789,14 +789,14 @@ default:
 
     $title = sprintf($lang_register_php['x_s_profile'], $user_data['user_name']);
     pageheader($title);
-	
-	// Displays the profile of any user
+    
+    // Displays the profile of any user
 
     starttable(-1, cpg_fetch_icon('my_profile', 2) . $title, 2);
     $profile_data = CPGPluginAPI::filter('profile_add_data', array ( 0 => $display_profile_form_param, 1 => $form_data ));
     make_form($display_profile_form_param, $form_data);
     endtable();
-	
+    
 
     pagefooter();
 
