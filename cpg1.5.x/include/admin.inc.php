@@ -1021,14 +1021,14 @@ $config_data = array(
       'type'          => 'textfield',
       'default_value' => 'jpeg/jpg/png/gif',
       'help_link'     => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_pic_extensions&amp;ae=admin_picture_thumb_advanced_pic_extensions_end',
-      'regex'         => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$',
+      'regex'         => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$|^$',
       'regex_not'     => '^ALL$',
     ),
     'allowed_mov_types' => array(
       'type'          => 'textfield',
       'default_value' => 'asf/asx/mpg/mpeg/wmv/swf/avi/mov',
       'help_link'     => 'f=configuration.htm&amp;as=admin_thumbs_advanced_movie&amp;ae=admin_thumbs_advanced_movie_end',
-      'regex'         => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$',
+      'regex'         => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$|^$',
       'regex_not'     => '^ALL$',
     ),
     'media_autostart' => array(
@@ -1040,14 +1040,14 @@ $config_data = array(
       'type'          => 'textfield',
       'default_value' => 'mp3/midi/mid/wma/wav/ogg',
       'help_link'     => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_audio_extensions&amp;ae=admin_picture_thumb_advanced_audio_extensions_end',
-      'regex'         => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$',
+      'regex'         => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$|^$',
       'regex_not'     => '^ALL$',
     ),
     'allowed_doc_types' => array(
       'type'          => 'textfield',
       'default_value' => 'doc/txt/rtf/pdf/xls/pps/ppt/zip/gz/mdb',
       'help_link'     => 'f=configuration.htm&amp;as=admin_picture_thumb_advanced_doc_extensions&amp;ae=admin_picture_thumb_advanced_doc_extensions_end',
-      'regex'         => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$',
+      'regex'         => '^(([a-z0-9]{1,}){1}([/]{1,1})){0,}([a-z0-9]{1,}){1}$|^$',
       'regex_not'     => '^ALL$',
     ),
     'thumb_method' => array(
