@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-09-03 [B] Fixed issue when regular users try to upload to self-created public albums with simple upload form (thread ID 66903) {eenemeenemuu}
 2010-09-02 [B] Allow admin to change email address (thread ID 66881) {eenemeenemuu}
 2010-09-01 [B] Fixed template error if guests are allowed to create public albums {eenemeenemuu}
 2010-09-01 [A] Added partial Catalan language file (user contribution) {eenemeenemuu}

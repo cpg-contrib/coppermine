@@ -242,9 +242,9 @@ if ($superCage->post->keyExists('submit')) {
             exit;
             
         } else {
-		    if ($CONFIG['log_mode'] != 0) {
-		    	log_write("Sending an ecard failed (sender name: $sender_name, sender email address: $sender_email, recipient name: $recipient_name, recipient email address: $recipient_email, IP: $raw_ip", CPG_MAIL_LOG);
-		    }
+            if ($CONFIG['log_mode'] != 0) {
+                log_write("Sending an ecard failed (sender name: $sender_name, sender email address: $sender_email, recipient name: $recipient_name, recipient email address: $recipient_email, IP: $raw_ip", CPG_MAIL_LOG);
+            }
             cpg_die(ERROR, $lang_ecard_php['send_failed'], __FILE__, __LINE__);
         }
     }
@@ -424,9 +424,9 @@ echo <<<EOT
     </tr>
     <tr>
         <td colspan="3" align="center" class="tablef">
-			<button type="submit" class="button" name="preview" id="preview" value="{$lang_ecard_php['preview_button']}">{$icon_array['preview']}{$lang_ecard_php['preview_button']}</button>
+            <button type="submit" class="button" name="preview" id="preview" value="{$lang_ecard_php['preview_button']}">{$icon_array['preview']}{$lang_ecard_php['preview_button']}</button>
             &nbsp;&nbsp;
-			<button type="submit" class="button" name="submit" id="submit" value="{$lang_ecard_php['submit_button']}">{$icon_array['ok']}{$lang_ecard_php['submit_button']}</button>
+            <button type="submit" class="button" name="submit" id="submit" value="{$lang_ecard_php['submit_button']}">{$icon_array['ok']}{$lang_ecard_php['submit_button']}</button>
         </td>
     </tr>
 EOT;
