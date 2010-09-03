@@ -3431,7 +3431,7 @@ function theme_html_picture()
                 $player = 'UNK';
             }
 
-            $pic_html  = '<object id="'.$player['id'].'" '.$player['data'].$player['classid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
+            $pic_html  = '<object id="'.$player['id'].'" '.$player['data'].$player['clsid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
             $pic_html .= "<param name=\"autostart\" value=\"$autostart\" /><param name=\"src\" value=\"". $picture_url . "\" />";
             $pic_html .= '</object><br />' . $LINEBREAK;
         }
