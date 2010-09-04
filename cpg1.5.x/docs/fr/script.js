@@ -502,7 +502,7 @@ doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '        </ul>\n';
 doc_toc += '      </li>\n';
-doc_toc += '      <li><a href="theme_copyright.htm">Copyright-clause de non responsabilité dans le pied de page</a>\n';
+doc_toc += '      <li><a href="theme_copyright.htm">Affichage des droits d\'auteurs et clause de non responsabilité dans le pied de page</a>\n';
 doc_toc += '        <ul>\n';
 doc_toc += '          <li><a href="theme_copyright.htm#theme_copyright_fair_use">Utilisation acceptable</a>\n';
 doc_toc += '          <li><a href="theme_copyright.htm#theme_copyright_unfair_use">Utilisation inacceptable</a>\n';
