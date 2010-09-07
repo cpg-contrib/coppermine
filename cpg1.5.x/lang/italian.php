@@ -11,8 +11,8 @@
 
   ********************************************
   Coppermine version: 1.5.9
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/lang/english.php $
-  $Revision: 7805 $
+  $HeadURL$
+  $Revision$
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -1677,7 +1677,7 @@ $lang_modifyalb_php['comments'] = 'commenti';
 $lang_modifyalb_php['files'] = 'immagini';
 $lang_modifyalb_php['submit_reset'] = 'invia modifiche';
 $lang_modifyalb_php['reset_views_confirm'] = 'Sono sicuro';
-$lang_modifyalb_php['notice1'] = '(*) dipende dalle impostazioni dei %sgruppi%s'; //(do not translate %sgroups%s!)
+$lang_modifyalb_php['notice1'] = '(*) dipende dalle impostazioni dei %sgruppi%s'; // do not translate the %s placeholders
 $lang_modifyalb_php['can_moderate'] = 'L\'album pu&ograve essere moderato da'; // cpg 1.5
 $lang_modifyalb_php['admins_only'] = 'Solo gli amministratori'; // cpg 1.5
 $lang_modifyalb_php['alb_password'] = 'Password dell\'album (Nuova password)';

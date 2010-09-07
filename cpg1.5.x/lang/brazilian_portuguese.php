@@ -14,7 +14,7 @@
   $HeadURL$
   $Revision$
   $LastChangedBy: gaugau $
-  $Date$
+  $Date: 2010-08-10 12:53:32 +0200 (Di, 10 Aug 2010) $
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -1680,7 +1680,7 @@ $lang_modifyalb_php['comments'] = 'comments';
 $lang_modifyalb_php['files'] = 'files';
 $lang_modifyalb_php['submit_reset'] = 'submit changes';
 $lang_modifyalb_php['reset_views_confirm'] = 'I\'m sure';
-$lang_modifyalb_php['notice1'] = '(*) depending on %sgroups%s settings'; //(do not translate %s!)
+$lang_modifyalb_php['notice1'] = '(*) depending on %sgroups%s settings'; // do not translate the %s placeholders
 $lang_modifyalb_php['can_moderate'] = 'Album can be moderated by'; // cpg 1.5
 $lang_modifyalb_php['admins_only'] = 'Admins only'; // cpg 1.5
 $lang_modifyalb_php['alb_password'] = 'Album password (New password)';

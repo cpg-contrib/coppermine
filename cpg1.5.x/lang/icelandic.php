@@ -11,8 +11,8 @@
 
   ********************************************
   Coppermine version: 1.5.9
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/lang/english.php $
-  $Revision: 7805 $
+  $HeadURL$
+  $Revision$
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
@@ -1677,7 +1677,7 @@ $lang_modifyalb_php['comments'] = 'ummæli';
 $lang_modifyalb_php['files'] = 'skrá(r)';
 $lang_modifyalb_php['submit_reset'] = 'senda inn breytingar';
 $lang_modifyalb_php['reset_views_confirm'] = 'Ég er viss';
-$lang_modifyalb_php['notice1'] = '(*) fer eftir stillingum %shópa%s'; //(do not translate %s!)
+$lang_modifyalb_php['notice1'] = '(*) fer eftir stillingum %shópa%s'; // do not translate the %s placeholders
 $lang_modifyalb_php['can_moderate'] = 'Myndasafni getur verið breytt af'; // cpg 1.5
 $lang_modifyalb_php['admins_only'] = 'Aðeins stjórnendum'; // cpg 1.5
 $lang_modifyalb_php['alb_password'] = 'Lykilorð myndasafns (Nýtt lykilorð)';
