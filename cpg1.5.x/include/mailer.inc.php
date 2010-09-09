@@ -90,7 +90,8 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
     $mail->Body = $msg_body;
     $mail->AltBody = $msg_body_plaintext;
     $mail->CharSet = $charset;
-
+    $mail->Sender = $CONFIG['gallery_admin_email'];
+    
     if ($CONFIG['smtp_host'] && $CONFIG['log_mode'] == CPG_LOG_ALL) {
         $mail->SMTPDebug = 2;
         ob_start();
@@ -575,11 +576,11 @@ class cpg_PHPMailer {
     }
 
     $toArr = split(',', $to);
-
-    $params = sprintf("-oi -f %s", $this->Sender);
-    if ($this->Sender != '' && strlen(ini_get('safe_mode')) < 1) {
+    
+    if ($this->Sender != '' && strtolower(ini_get('safe_mode')) != 'on') {
       $old_from = ini_get('sendmail_from');
       ini_set('sendmail_from', $this->Sender);
+      $params = sprintf("-oi -f %s", $this->Sender);
       if ($this->SingleTo === true && count($toArr) > 1) {
         foreach ($toArr as $key => $val) {
           $rt = @mail($val, $this->EncodeHeader($this->SecureHeader($this->Subject)), $body, $header, $params);
@@ -587,18 +588,15 @@ class cpg_PHPMailer {
       } else {
         $rt = @mail($to, $this->EncodeHeader($this->SecureHeader($this->Subject)), $body, $header, $params);
       }
+      ini_set('sendmail_from', $old_from);
     } else {
       if ($this->SingleTo === true && count($toArr) > 1) {
         foreach ($toArr as $key => $val) {
-          $rt = @mail($val, $this->EncodeHeader($this->SecureHeader($this->Subject)), $body, $header, $params);
+          $rt = @mail($val, $this->EncodeHeader($this->SecureHeader($this->Subject)), $body, $header);
         }
       } else {
         $rt = @mail($to, $this->EncodeHeader($this->SecureHeader($this->Subject)), $body, $header);
       }
-    }
-
-    if (isset($old_from)) {
-      ini_set('sendmail_from', $old_from);
     }
 
     if(!$rt) {

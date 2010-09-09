@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-09-10 [B] Fixed setting email sender address {Nibbler}
 2010-09-03 [B] Updated regex to fix error message for blank 'allowed file types' values (thread ID 66289) {eenemeenemuu}
 2010-09-03 [B] Fixed missing classid attribute causing videos not to play (thread ID 66477 & 66393) {eenemeenemuu}
 2010-09-03 [B] Fixed issue when regular users try to upload to self-created public albums with simple upload form (thread ID 66903) {eenemeenemuu}
