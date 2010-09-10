@@ -30,9 +30,9 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
     $image = $CONFIG['fullpath'] . $filepath . $filename;
     $normal = $CONFIG['fullpath'] . $filepath . $CONFIG['normal_pfx'] . $filename;
     $thumb = $CONFIG['fullpath'] . $filepath . $CONFIG['thumb_pfx'] . $filename;
-    $orig = $CONFIG['fullpath'] . $filepath . $CONFIG['orig_pfx'] . $filename;#########
-    // $mini = $CONFIG['fullpath'] . $filepath . $CONFIG['mini_pfx'] . $filename;#########
-    $work_image = $image;#########
+    $orig = $CONFIG['fullpath'] . $filepath . $CONFIG['orig_pfx'] . $filename;
+    // $mini = $CONFIG['fullpath'] . $filepath . $CONFIG['mini_pfx'] . $filename;
+    $work_image = $image;
 
 
     if (!is_known_filetype($image)) {
@@ -44,7 +44,8 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
         // resize picture if it's bigger than the max width or height for uploaded pictures 
         if (max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) {
             if ((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) {
-                resize_image($image, $image, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
+                resize_image($image, $image, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], 'any', 'false'); // hard-coded 'any' according to configuration string 'Max width or height for uploaded pictures'
+                $imagesize = cpg_getimagesize($image);
             } else {
                 @unlink($uploaded_pic);
                 cpg_die(ERROR, sprintf($lang_db_input_php['err_fsize_too_large'], $CONFIG['max_upl_width_height'], $CONFIG['max_upl_width_height']), __FILE__, __LINE__);
@@ -77,7 +78,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
             }
         }
 
-        // determine resize method for intermediate and full sized pictures
+        // determine resize method for intermediate sized pictures
         $resize_method = $CONFIG['picture_use'] == "thumb" ? ($CONFIG['thumb_use'] == "ex" ? "any" : $CONFIG['thumb_use']) : $CONFIG['picture_use'];
 
         if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate'] && !file_exists($normal)) {
@@ -94,26 +95,11 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
             }
         }
 
-        // determine max dimension for full sized picture
-        if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) {
-            $max_size_size = $CONFIG['max_upl_width_height'];
-        } else {
-            $resize_method = "orig";
-            $max_size_size = max($imagesize[0], $imagesize[1]);
-        }
-
+        // watermark full sized picture
         if ($CONFIG['enable_watermark'] == '1' && ($CONFIG['which_files_to_watermark'] == 'both' || $CONFIG['which_files_to_watermark'] == 'original')) {
-            // watermark picture (and maybe resize it, too)
-            if (($result = resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'true')) !== true) {
+            if (($result = resize_image($work_image, $image, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], 'any', 'true')) !== true) {
                 return $result;
             }
-            $imagesize = getimagesize($image);
-        } elseif (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0))) {
-            // resize full sized picture
-            if (($result = resize_image($work_image, $image, $max_size_size, $CONFIG['thumb_method'], $resize_method, 'false')) !== true) {
-                return $result;
-            }
-            $imagesize = getimagesize($image);
         }
     } else {
         $imagesize[0] = $iwidth;
