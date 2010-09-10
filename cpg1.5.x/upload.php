@@ -659,28 +659,33 @@ if (!$superCage->post->keyExists('process') && !$superCage->post->keyExists('plu
         open_form('db_input.php');
         $upload_help = cpg_display_help('f=uploading_http.htm&amp;as=upload_http_interface_html&amp;ae=upload_http_interface_html_end', '450', '300');
     } else {
+        if ($USER_DATA['pub_upl_need_approval'] == 1 || $USER_DATA['priv_upl_need_approval'] == 1) {
+            echo '<div id="admin_approval" style="display: none;">';
+            msg_box($lang_common['information'], $lang_db_input_php['upload_success']);
+            echo '</div>';
+        }
 
-    $restriction_filesize = sprintf($lang_upload_php['restriction_filesize'], '<strong>' . cpg_format_bytes($CONFIG['max_upl_size'] * 1024) . '</strong>');
-    if ($CONFIG['allowed_img_types'] != '') {
-        $allowed_img_types = '<li>' . sprintf ($lang_upload_php['allowed_img_types'], $CONFIG['allowed_img_types']) . '</li>';
-    } else {
-        $allowed_img_types = '';
-    }
-    if ($CONFIG['allowed_mov_types'] != '') {
-        $allowed_mov_types = '<li>' . sprintf ($lang_upload_php['allowed_mov_types'], $CONFIG['allowed_mov_types']) . '</li>';
-    } else {
-        $allowed_mov_types = '';
-    }
-    if ($CONFIG['allowed_snd_types'] != '') {
-        $allowed_snd_types = '<li>' . sprintf ($lang_upload_php['allowed_snd_types'], $CONFIG['allowed_snd_types']) . '</li>';
-    } else {
-        $allowed_snd_types = '';
-    }
-    if ($CONFIG['allowed_doc_types'] != '') {
-        $allowed_doc_types = '<li>' . sprintf ($lang_upload_php['allowed_doc_types'], $CONFIG['allowed_doc_types']) . '</li>';
-    } else {
-        $allowed_doc_types = '';
-    }    
+        $restriction_filesize = sprintf($lang_upload_php['restriction_filesize'], '<strong>' . cpg_format_bytes($CONFIG['max_upl_size'] * 1024) . '</strong>');
+        if ($CONFIG['allowed_img_types'] != '') {
+            $allowed_img_types = '<li>' . sprintf ($lang_upload_php['allowed_img_types'], $CONFIG['allowed_img_types']) . '</li>';
+        } else {
+            $allowed_img_types = '';
+        }
+        if ($CONFIG['allowed_mov_types'] != '') {
+            $allowed_mov_types = '<li>' . sprintf ($lang_upload_php['allowed_mov_types'], $CONFIG['allowed_mov_types']) . '</li>';
+        } else {
+            $allowed_mov_types = '';
+        }
+        if ($CONFIG['allowed_snd_types'] != '') {
+            $allowed_snd_types = '<li>' . sprintf ($lang_upload_php['allowed_snd_types'], $CONFIG['allowed_snd_types']) . '</li>';
+        } else {
+            $allowed_snd_types = '';
+        }
+        if ($CONFIG['allowed_doc_types'] != '') {
+            $allowed_doc_types = '<li>' . sprintf ($lang_upload_php['allowed_doc_types'], $CONFIG['allowed_doc_types']) . '</li>';
+        } else {
+            $allowed_doc_types = '';
+        }
     
         $help_page = <<< EOT
 <ul>
@@ -1038,7 +1043,7 @@ EOT;
 
     if ($file_placement == 'yes') {
         // The previous picture was placed successfully.
-        echo "success|" . $thumb_url;
+        echo "success". ($PIC_NEED_APPROVAL ? '1' : '0') . "|" . $thumb_url;
     } else {
         // The previous image placement failed.
         if (isset($result['error'])) {
