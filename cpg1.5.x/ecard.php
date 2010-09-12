@@ -85,7 +85,7 @@ if (strpos($normal_pic_url, 'thumb_nopic.png') > 0) {
 }
 
 $pic_title = $row['title'];
-$pic_caption = $row['caption']);
+$pic_caption = $row['caption'];
 
 if (!is_image($row['filename'])) {
 
