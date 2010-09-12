@@ -111,7 +111,7 @@ EOT;
         '{VIEW_MORE_LNK}'  => $lang_ecard_php['view_more_pics'],
         '{PID}'            => $CLEAN['data']['pid'],
         '{PIC_TITLE}'      => $CLEAN['data']['pt'],
-        '{PIC_CAPTION}'    => $CLEAN['data']['pc'],
+        '{PIC_CAPTION}'    => bb_decode($CLEAN['data']['pc']),
         '{PIC_MARKUP}'     => $pic_markup,
     );
     

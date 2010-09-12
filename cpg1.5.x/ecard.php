@@ -85,7 +85,7 @@ if (strpos($normal_pic_url, 'thumb_nopic.png') > 0) {
 }
 
 $pic_title = $row['title'];
-$pic_caption = bb_decode($row['caption']);
+$pic_caption = $row['caption']);
 
 if (!is_image($row['filename'])) {
 
@@ -203,7 +203,7 @@ if ($superCage->post->keyExists('submit')) {
             '{VIEW_MORE_LNK}'            => $lang_ecard_php['view_more_pics'],
             '{PID}'                      => $pid,
             '{PIC_TITLE}'                => $pic_title,
-            '{PIC_CAPTION}'              => $pic_caption,
+            '{PIC_CAPTION}'              => bb_decode($pic_caption),
             '{PIC_MARKUP}'               => $pic_markup,
         );
     
@@ -292,7 +292,7 @@ if ($superCage->post->keyExists('submit')) {
         '{VIEW_MORE_LNK}'  => $lang_ecard_php['view_more_pics'],
         '{PID}'            => $pid,
         '{PIC_TITLE}'      => $pic_title,
-        '{PIC_CAPTION}'    => $pic_caption,
+        '{PIC_CAPTION}'    => bb_decode($pic_caption),
         '{PIC_MARKUP}'     => $pic_markup,
     );
 
