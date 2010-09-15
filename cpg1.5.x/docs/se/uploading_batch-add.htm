@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Uppladdning via batch - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Uppladdning med hjälp av FTP-uppladdningar plus batch-uppladdningar" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.8
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/uploading_batch-add.htm $
+  $Revision: 7805 $
+
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Dokumentation och Manual</h1>
+<div id="toc">
+<a href="toc.htm">Innehållsförteckning</a>
+</div>
+
+
+<a name="batch_add_pics"></a><h1>Ladda upp filer med FTP / Batch-uppladda filer<a href="#batch_add_pics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>FTP-uppladdningar och batch-uppladdningar är en för administratören av galleriet rekommenderad metod för att ladda upp filer. Av säkerhetsskäl kan bara administratören göra detta; icke-administratör kan inte använda den här funktionen och behöver använda en av de andra metoderna för att ladda upp filer.</p>
+
+<a name="batch_add_pics_what"></a><h2>Vad batch-uppladdning gör<a href="#batch_add_pics_what" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Coppermine är en databasdriven applikation. Det betyder att filer som blir uppladdade fysiskt befinner sig någonstans i webbutrymmet. Det kan vara var som helst - mapp och filnamn för filerna som laddas upp behöver inte nödvändigtvis vara sorterade på något särskilt sätt. Sorteringen och grupperingen är logisk dock: Coppermine använder kategorier, underkategorier och album för att organisera visningen av filerna som laddades upp. För att kunna göra det lagrar Coppermine filernas fysiska plats (den sökväg som leder till filerna) i databasen och även en del annan logisk information (till exempel i vilket album filen finns).</p>
+<p>När en fil blir uppladdad med hjälp av en FTP applikation "vet" inte Coppermine var den är, så du måste tala om platsen för scriptet så att det kan minnas den genom att lagra den i databasen. Det är batch-uppladdningsprocessen kommer in. Vad batch-uppladdningen faktiskt är: skapar skalade (storleksförändrade) kopior (miniatyr- och medelstora bilder) av originalfilerna du laddade upp och skriver sedan poster i databasen (en post för varje fil du laddar upp) för att kunna spåra var på serverns hårddisk filen faktiskt finns. Med det sagt borde det vara ganska självklart: <strong>Coppermine flyttar inte runt filer - de stannar på den plats dit du laddade upp dem</strong>.</p>
+<p>Därför bör du i förväg bestämma den struktur för mappar och filer som du tänker använda för uppladdning av filer. Dom behöver hamna i mappen "albums", och det är tillrådigt att skapa en smart struktur av mappar och undermappar där.</p>
+
+<p>Det rekommenderas att administratören använder FTP för att ladda upp flera bilder/filer åt gången. Använd din FTP programvara för att ska undermappar inom mappen <em>your_coppermine_directory/albums/</em>, dit dina FTP-uppladdningar kan sparas. Även om det inte är obligatoriskt, så är det en bra idé att ha en mappstruktur inom mappen <em>albums</em> som efterliknar eller speglar de album och kategorier du har i Coppermine.</p>
+<p class="cpg_message_error">Viktigt: skapa inte mappar i eller ftp-uppladdningar till mapparna <em>userpics</em>- eller <em>edit</em> via ftp: dessa mappar används internt av Coppermine och får inte användas för några andra ändamål! <strong>Mappnamn får inte innehålla punkter</strong>. Vi rekommenderar också bestämd att du avhåller dig ifrån att använda några andra specialtecken - använd bara a-z, siffror och <tt class="code">-</tt> (streck) eller <tt class="code">_</tt> (understrykningstecken) för att fylla ut blanka utrymmen. Kontrollera att du laddar upp i binary eller auto-mode.</p>
+
+<a name="batch_add_pics_how"></a><h2>Hur batch-uppladdning fungerar<a href="#batch_add_pics_how" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Efter det att du laddat upp dina filer med FTP, klick på &quot;Batch-uppladda filer &quot; knappen. Batchuppladdningen sker i tre steg:</p>
+<ul>
+    <li>hitta den katalog dit du laddade upp dina filer. Välj denna katalog genom att klicka på den.<br />
+    <img src="images/searchnew_1.gif" border="0" alt="" /><a name="ftp_select_dir_end"></a></li>
+    <li><a name="ftp_select_file"></a>markera de filer du vill ladda upp (genom att bocka för dem). Nya filer är automatiskt förbockade, de som redan finns i din databas är inte förbockade. Markera sedan det album dit du vill lägga dina filer. Klicka på &quot;Lägg till markerade filer&quot; för att starta uppladdningsprocessen.<br />
+    <img src="images/searchnew_2.gif" border="0" alt="" /><a name="ftp_select_file_end"></a></li>
+    <li><a name="ftp_show_result"></a><abbr title="Coppermine Photo Gallery">CPG</abbr> kommer sedan att visa resultatet av uppladdningen (vänta tills alla resultat hunnit visas).<br />
+    Om tecknen OK, DP, or PB 'signs' inte syns, klickan på bilden för bruten fil för att se om några felmeddelanden producerades av PHP.<br />
+    Om din webbläsare skulle få time-out, klicka på knappen för att ladda om.
+        <ul>
+            <li><img src="../../images/batch/ok_small.png" width="16" height="16" border="0" alt="" title="OK" align="" style="" />: betyder att filen lagts till framgångsrikt</li>
+            <li><img src="../../images/batch/duplicate_small.png" width="16" height="16" border="0" alt="" title="DP" align="" style="" />: betyder att filen är en dubblett och att den redan finns i databasen</li>
+            <li><img src="../../images/batch/folder_locked_small.png" width="16" height="16" border="0" alt="" title="PB" align="" style="" />: betyder att filen inte kunde läggas till, kontrollera din konfiguration och de behörigheter som satts på den katalog där filerna finns</li>
+            <li><img src="../../images/batch/back_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: betyder att du inte valt ett album att lägga till filerna i, klicka på 'backa' och välj ett album. skapa ett album om du inte redan har ett</li>
+            <li><img src="../../images/batch/file_broken_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: filen är skadad eller går inte att komma åt</li>
+            <li><img src="../../images/batch/unknown_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: okänd filtyp</li>
+            <li><img src="../../images/batch/gif_small.png" width="16" height="16" border="0" alt="" title="NA" align="" style="" />: filen är faktiskt en GIF bild och har bara döpts om (t.ex. från jpg till png)</li>
+        </ul>
+    <a name="ftp_show_result_end"></a>
+    </li>
+</ul>
+<p class="cpg_message_info">Att ge FTP-behörighet till andra användare kan bli ett allvarligt hot mot säkerheten, det är därför som batch-uppladdning bara finns tillgängligt för galleriets administratör.</p>
+<p>Efter det att filer har lagts till i Coppermine's databas, säkerställ att du <strong>aldrig</strong> ska döpa om eller radera dem via FTP - använd istället alternativen i Coppermine's administrationsmeny för att radera eller döpa om filer. Bara på så sätt blir filerna raderade både från filsystemet <strong>och</strong> från databasen.</p>
+
+<a name="batch_add_common_mistakes"></a><h2>Vanliga misstag<a href="#batch_add_common_mistakes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Det finns en del som kan bli fel med batch-uppladdning, så här är en lista på vad du bör kontrollera först:</p>
+<ul>
+	<li>
+		<a name="batch_add_common_mistakes_doesnt_work"></a><h3>Batch-uppladdning fungerar inte som förväntat:<a href="#batch_add_common_mistakes_doesnt_work" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		<ul>
+			<li>
+			    <a name="batch_add_common_mistakes_doesnt_work_permissions"></a><h4>Behörigheter<a href="#batch_add_common_mistakes_doesnt_work_permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    Säkerställ att du har <strong>beviljat</strong> <a href="install_permissions.htm">behörigheter</a> på filsystemsnivå
+			</li>
+			<li>
+			    <a name="batch_add_common_mistakes_doesnt_work_toggle"></a><h4>Växla gränssnitt<a href="#batch_add_common_mistakes_doesnt_work_toggle" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    Batch-uppladdning kommer med två olika gränssnitt: ett klassiskt gränssnitt och ett bläddringsbart gränssnitt. Om du har problem med det ena, prova det andra
+			</li>
+			<li>
+			    <a name="batch_add_common_mistakes_doesnt_work_capitalization"></a><h4>Versaler<a href="#batch_add_common_mistakes_doesnt_work_capitalization" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    Undvik versaler i namn för mappar och filer: Coppermine kan hantera versaler, men det blir mindre troligt att allt fungerar när dessa används. Därför bör du inte använda versaler, alla mappar och alla filer bör namnges med små bokstäver, gemener
+			</li>
+			<li>
+			    <a name="batch_add_common_mistakes_doesnt_work_spaces"></a><h4>Mellanslag<a href="#batch_add_common_mistakes_doesnt_work_spaces" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    Undvik mellanslag i namn för mappar och filer. Mellanslag hör inte hemma i listan på webb-säkra tecken. Använd dem inte! vill du ha en avgränsare, använd understrykningstecken istället!
+			</li>
+			<li>
+			    <a name="batch_add_common_mistakes_doesnt_work_special_chars"></a><h4>Specialtecken<a href="#batch_add_common_mistakes_doesnt_work_special_chars" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    Filsystem i datorvärlden uppfanns med tanke bara på latinska tecken. Internet och det namnsystem det använder uppfanns med tanke bara på latinska tecken. Mycket senare upptäckte utvecklarna sitt misstag och försökte att tillåta andra tecken också, men då var det för sent: den teknologi och den standard som används på webben är ganska gammal och fungerar bäst om du bara använder latinska tecken (a till z) och siffror. Specialtecken (tecken med accent eller tecken från icke-latinska alfabet) är inte med på listan över webbsäkra tecken Använd dom inte!
+			</li>
+			<li>
+			    <a name="batch_add_common_mistakes_doesnt_work_forbidden_chars"></a><h4>Förbjudna tecken<a href="#batch_add_common_mistakes_doesnt_work_forbidden_chars" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    Det finns ett fält i Coppermines konfiguration som låter dig fylla i en lista med <a href="configuration.htm#admin_picture_thumb_advanced_filename_forbidden_chars">tecken som är förbjudna i filnamn</a>. Ändra inte på dessa (eller ta åtminstone inte bort de som finns i rutan), eftersom dessa tecken har en speciell betydelse. Naturligtvis bör du inte använda dessa förbjudna tecken i mapp- eller filnamn.
+			</li>
+			<li>
+			    <a name="batch_add_common_mistakes_doesnt_work_reserved_names"></a><h4>Reserverade namn<a href="#batch_add_common_mistakes_doesnt_work_reserved_names" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    Använd inte reserverade filnamn: det finns ett antal prefix som coppermine använder internt, så du bör försäkra dig om att du inte använder dessa reserverade filnamn eller prefix. Använd inte "thumb_", "normal_", "original_" i filnamn, eftersom dessa är standard filprefix
+			</li>
+			<li>
+			    <a name="batch_add_common_mistakes_doesnt_work_dots"></a><h4>Punkter<a href="#batch_add_common_mistakes_doesnt_work_dots" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+			    Använd inte punkter i mappnamn: filer med inledande punkt är dolda filer på de flesta webbservrars operativsystem, därför kan det vara knepigt att använda punkter. För att vara på den säkra sidan, använd inte punkter i mappnamn. Använd inte inledande punkter i filnamn heller - filnamn ska faktiskt bara innehålla en enda punkt: den som avgränsar mellan filnamnet och filändelsen.
+			</li>
+		</ul>
+		<div class="cpg_message_warning">
+		<a name="batch_add_common_mistakes_asking_fo_support"></a><h4>Be om support om batch-uppladdningsfrågor<a href="#batch_add_common_mistakes_asking_fo_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+		Om du har problem med batch-uppladdning, kontrollera först att <a href="uploading_http.htm#upload_http">http uppladdningar</a> fungerar som förväntat. Om du vill be om hjälp med batch-uppladdning på Coppermine support board, se guiden &quot;<a href="upload_troubleshooting.htm#upload_support">Be om support angående uppladdningsfrågor</a>&quot; - det gäller både batch-uppladdningsfrågor såväl som andra uppladdningsmetoder. Utöver de förslag som finns på den sidan, lägg till en länk till den fil som du har problem med till ditt inlägg på forumet.
+		</div>
+	</li>
+	<li>
+	    <a name="batch_add_common_mistakes_broken_files"></a><h3>Filer förfaller vara skadade:<a href="#batch_add_common_mistakes_broken_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	    Kontrollera att du använt rätt FTP läge (mode) när du laddade upp dem
+	</li>
+	<li>
+	    <a name="batch_add_common_mistakes_rename"></a><h3>Döp inte om<a href="#batch_add_common_mistakes_rename" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	    Döp inte om filer som har batch-uppladdats till Coppermines databas. Naturligtvis får du inte heller döpa om mappar som dessa filer ligger i!
+	</li>
+	<li>
+	    <a name="batch_add_common_mistakes_delete"></a><h3>Radera inte<a href="#batch_add_common_mistakes_delete" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	    Radera <strong>inte</strong> filer med hjälp av din FTP applikation efter det att du adderat dem till coppermine med hjälp av batch-uppladdning. Om du vill radera filer, använd Coppermines gränssnitt för att göra det.
+	    <br />
+	    En del användare trodde av misstag att de kunde rader filer så snart batch-uppladdningen var klar: så är <strong>inte</strong> fallet - allt som batch-uppladdningen gör är att skapa skalade bilder (medelstora/miniatyrer/vattenstämplade) och addera poster till databasen som motsvarar filerna. Du kan <strong>inte</strong> radera filen efteråt för att spara diskutrymme. Om du raderar filen får du en bruten post, vilket är mycket illa.
+	</li>
+</ul>
+
+<a name="batch_add_sort"></a><h2>Sortera<a href="#batch_add_sort" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Inställningen <a href="configuration.htm#admin_thumbnail_default_sortorder">Standardsorteringsordning för filer</a> kan ställas in i Coppermines konfiguration. Som standard är det inställt på &quot;Namn stigande&quot;, vilket helt enkelt är det bästa alternativet för de flesta och det bör därför få vara kvar. Följaktligen, alla filer som du laddar upp med hjälp av Coppermine's inbyggda batch-uppladdningsfunktion kommer att sorteras i det album dom hamnar i ordning efter filens namn. Det rekommenderas att du tänker ut en plan för hur filerna ska namnges (som du ger filerna <strong>innan</strong> du laddar upp dem från din dator till servern) som tar hänsyn till hur filerna kommer att sorteras på servern.</p>
+Tänk på att:
+<ul>
+    <li>
+        <a name="batch_add_sort_capitalization"></a><h3>Versal frågor<a href="#batch_add_sort_capitalization" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+       De flesta webbservrar har ett Unix-/Linux-baserat operativsystem. Olikt Windows-baserade operativsystem, har versaler betydelse vad gäller sortering. Det är därför filer kan bli sorterade på ett &quot;konstigt&quot; sätt om du har en Windows-baserad bakgrund.
+    </li>
+    <li>
+        <a name="batch_add_sort_numbers"></a><h3>Datorer ser siffror olika<a href="#batch_add_sort_numbers" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        Datorer (och den webbserver som du kör ditt galleri på är en dator) uppfattar en lista på siffror på ett annat sätt än vad en människa skulle: inledande nollor kan utelämnas för en människa men inte för en dator. Låt oss säga att du har en lista på 12 filer som du just har döpt med användning av siffror, t.ex. så här:
+        <div class="cpg_example">
+            <tt class="code">1.jpg</tt>, <tt class="code">2.jpg</tt>, <tt class="code">3.jpg</tt>, <tt class="code">4.jpg</tt>, <tt class="code">5.jpg</tt>, <tt class="code">6.jpg</tt>, <tt class="code">7.jpg</tt>, <tt class="code">8.jpg</tt>, <tt class="code">9.jpg</tt>, <tt class="code">10.jpg</tt>, <tt class="code">11.jpg</tt>, <tt class="code">12.jpg</tt><br />
+        </div>
+        En människa skulle sortera dem så här:
+        <div class="cpg_example">
+            <ul>
+                <li>1.jpg</li>
+                <li>2.jpg</li>
+                <li>3.jpg</li>
+                <li>4.jpg</li>
+                <li>5.jpg</li>
+                <li>6.jpg</li>
+                <li>7.jpg</li>
+                <li>8.jpg</li>
+                <li>9.jpg</li>
+                <li>10.jpg</li>
+                <li>11.jpg</li>
+                <li>12.jpg</li>
+            </ul>
+        </div>
+        , men det gör inte en dator: din webbserver kommer att sortera dem så här:
+        <div class="cpg_example">
+            <ul>
+                <li>1.jpg</li>
+                <li>10.jpg</li>
+                <li>11.jpg</li>
+                <li>12.jpg</li>
+                <li>2.jpg</li>
+                <li>3.jpg</li>
+                <li>4.jpg</li>
+                <li>5.jpg</li>
+                <li>6.jpg</li>
+                <li>7.jpg</li>
+                <li>8.jpg</li>
+                <li>9.jpg</li>
+            </ul>
+        </div>
+        Därför bör du i så fall fylla i en inledande nolla i namnet. Med anledning av det bör du uppskatta det maximala antalet filer som kan finnas i en mapp. Detta maximala tal bestämmer hur många tecken ditt filnamn behöver: om det maximala antalet filer blir 99 inom en mapp, kan du använda 01 till 99. Om det maximala antalet filer blir 200, kommer du att behöva tre tecken, din första fil kommer att döpas till 001.jpg, din andra 002.jpg och så vidare. Naturligtvis kan dina filnamn vara alfanumeriska, så du kan tänka ut en kombination av bokstäver och siffror, t.ex.
+        <div class="cpg_example">
+            <ul>
+                <li>brussels001.jpg</li>
+                <li>brussels002.jpg</li>
+                <li>brussels003.jpg</li>
+                <li>brussels004.jpg</li>
+                <li>brussels005.jpg</li>
+                <li>brussels006.jpg</li>
+                <li>brussels007.jpg</li>
+                <li>brussels008.jpg</li>
+                <li>brussels009.jpg</li>
+                <li>brussels010.jpg</li>
+                <li>brussels011.jpg</li>
+                <li>brussels012.jpg</li>
+            </ul>
+        </div>
+    </li>
+</ul>
+
+
+
+<a name="batch_add_pics_end"></a>
+
+
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate: 2010-08-06 11:59:36 +0200 (Fr, 06 Aug 2010) $</span>
+		<span id="doc_revision">$Revision: 7805 $</span>
+	</div>
+</div>
+</body>
+</html>

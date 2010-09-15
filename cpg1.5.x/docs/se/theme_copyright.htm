@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Ta bort Copyright-text i sidfoten - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="I tidigare versioner av Coppermine så var textraden Powered by Coppermine förvrängd för att göra det svårt för icke-kodare att ta bort. Anledningen till detta var ett ytterligare licens-tillägg som inte tillät användaren att ändra på raden. Utvecklingsteamet har granskat denna policy för cpg1.5.x och bestämt att användarna HAR rätt att i juridisk mening ändra eller ta bort raden" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.8
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/theme_copyright.htm $
+  $Revision: 7805 $
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Dokumentation och Manual</h1>
+<div id="toc">
+<a href="toc.htm">Innehållsförteckning</a>
+</div>
+
+
+
+<a name="theme_copyright"></a><h1>Ta bort Copyright-text i sidfoten<a href="#theme_copyright" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>I tidigare versioner av Coppermine så var textraden "Powered by Coppermine" förvrängd för att göra det svårt för icke-kodare att ta bort. Anledningen till detta var ett ytterligare licens-tillägg som inte tillät användaren att ändra på raden. Utvecklingsteamet har granskat denna policy för cpg1.5.x och bestämt att användarna <strong>har</strong> i juridisk mening tillåtelse att ändra eller ta bort raden - för mer detaljer, se avsnittet <a href="copyrights.htm">Copyright &amp; Upphovsrätt</a> i dokumentationen.</p>
+<div class="cpg_message_error"><strong>MEN</strong>: Coppermines utvecklingsteam har istället en bestämd forum-policy för support: support kommer <strong>bara</strong> att ges för gallerier som klart visar texten "Powered by Coppermine" från början. Att lägga till raden senare bara för att vi talat om för dig att du ska behålla den gills inte - du kommer ändå inte att få någon support.</div>
+<p>Innan du tar bort textraden, tänk också på detta: Coppermine är en fri programvara, utvecklingsteamet <strong>ber</strong> dig att behålla sidfoten intakt. Vi är övertygade om att du ska ära den som äras bör. Dessutom är sidfoten tänkt att göra Coppermine känt, med "Powered by Coppermine"-texten får andra möjligheten att också skaffa sig ett galleri. Så snälla: tänk efter två gånger innan du tar bort texten. </p>
+<p>Med detta sagt, så här kan du ändra på textraden: för att ändra plats där texten visas, redigera <tt class="code">themes/ditt_tema/template.html</tt> och flytta runt platshållaren <tt class="code">{CREDITS}</tt>. Om du raderar den från themes/ditt_tema/template.html, kommer standardtexten ändå att visas. Eftersom den genereras av Coppermine's sidfotsfunktion, behöver den synas under <tt class="code">{GALLERY}</tt>-symbolen. För att ändra på innehållet i texten, redigera <tt class="code">themes/ditt_tema/theme.php</tt> och redigera funktionen <tt class="code">theme_credits</tt> som du vill. Om den här funktionen inte finns i ditt anpassade tema, kopiera den först från exempeltemat. För att faktiskt radera sidfoten "Powered by Coppermine" helt och hållet, ändra bara funktionen till att inte skriva något.</p>
+
+<div class="indent">
+
+    <a name="theme_copyright_fair_use"></a><h2>Just användning<a href="#theme_copyright_fair_use" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>Istället för att ta bort referensen till Coppermines webbsida helt och hållet, vill vi att du redigerar funktionen i ditt anpassade tema och att lägger till den information som du vill visa. Här är en del exempel på vad Coppermines utvecklingsteam tycker är just användning:</p>
+    <div class="cpg_example">
+    <ul>
+    	<li><div class="footer" align="left" style="padding-top:10px;display:block;visibility:visible; font-family: Verdana,Arial,sans-serif;"><a href="http://coppermine-gallery.net/">Powered by Coppermine</a>, allt innehåll av Sven Svensson</div></li>
+    	<li><div class="footer" align="left" style="padding-top:10px;display:block;visibility:visible; font-family: Verdana,Arial,sans-serif;"><a href="http://coppermine-gallery.net/">Powered by Coppermine</a>, foto &copy; 2004 - 2010 av <a href="http://example.com/">Sven Svensson</a></div></li>
+    	<li><div class="footer" align="left" style="padding-top:10px;display:block;visibility:visible; font-family: Verdana,Arial,sans-serif;"><a href="http://coppermine-gallery.net/">Powered by Coppermine</a>, publicerat för <a href="http://example.com/">KanonFina Portalen</a> av Sven Svensson.</li>
+    	<li><div class="footer" align="left" style="padding-top:10px;display:block;visibility:visible; font-family: Verdana,Arial,sans-serif;"><a href="http://coppermine-gallery.net/">Powered by Coppermine</a>, tema designad av <a href="http://example.com/">Sven Svensson</a></div></li>
+    	<li><div class="footer" align="left" style="padding-top:10px;display:block;visibility:visible; font-family: Verdana,Arial,sans-serif;"><a href="http://example.com/">KanonFina-Galleri</a> &copy; 2010 av Sven Svensson, <a href="http://coppermine-gallery.net/">Powered by Coppermine</a></div></li>
+    </ul>
+    </div>
+    <p>Naturligtvis är en blandning av dessa texter OK också.</p>
+    <a name="theme_copyright_end"></a>
+    
+    <a name="theme_copyright_unfair_use"></a><h2>Ojust användning<a href="#theme_copyright_unfair_use" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>De regler som beskrivs ovan borde vara både rimliga och lätta att respektera, men det har förekommit försök av tredje-part att bryta mot Coppermines upphovsrätt: särskilt en tysk webbsida försökte att bygga upp en Community genom att erbjuda Coppermines programpaket för nedladdning med bara en liten skillnad i jämförelse med originalet: texten "Powered by Coppermine" nederst pekade inte längre på den Coppermines officiella webbsida (<a href="http://coppermine-gallery.net/" rel="external" class="external">coppermine-gallery.net</a>), utan på deras. Vi överlåter till er att bedöma om det är just eller inte.</p>
+    <p>Det här avsnittet av dokumentationen är inte avsedd för slutanvändare, utan för de som vill ompaketera, distribuera, märka om eller ändra Coppermine på något annat sätt och göra dessa ändringar tillgängliga för andra.</p>
+    <p>Här är en förklaring på vad Coppermines utvecklingsteam tycker är <strong>ojust</strong> användning:</p> 
+    <ul>
+    	<li>Försök att märka om upphovsrättsraden "Powered by Coppermine" så att den pekar på någon annan webbsida än originalet.</li>
+    	<li>Försök att missleda användare om Coppermines ursprung och upphovsrätt.<br />
+    	<span class="small">Bara genom att ägna några timmar åt mindre modifieringar ger dig inte rätten att ändra upphovsrättstexten och sedan distribuera programmet vidare.</span></li>
+    </ul>
+    <p>Notera skillnaden mellan <em>just</em> och <em>ojust</em> användning: slutanvändare (eg. ägarna av enskilda gallerier på en webbsida) har tillåtelse att ändra på upphovsrätts-raden för att göra sina besökare uppmärksamma på copyright, äganderätt etc. Re-distributing av Coppermine (porting) är tillåtet och uppmuntras också, men redigeringen av upphovsrättsraden måste motiveras av den mängd arbete som ägnats åt porten, och redigeringen får inte förleda mottagaren av ändringen om källkodens ursprung.</p>
+    <p>För de som planerar att distribuera en omarbetad kopia av Coppermine: läs avsnittet om licens för mer detaljer om att <a href="copyrights.htm#copyright_additional_preservation">bevara angivande av författare</a> inom koden: medan det är tillåtet att ta bort "Powered by Coppermine" från att visas på sidor genererade av Coppermine-baserade webbsidor, är det obligatoriskt att bevara upphovsrätten inom koden, även om du distribuerar den i omarbetad version. Det är emellertid viktigt att du gör andra medvetna om att din modifierade version av Coppermine skiljer sig från originalet, så läs på om <a href="copyrights.htm#copyright_additional_marking">Märkning av modifierade versioner</a> också.</p>
+
+</div>
+
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate: 2010-08-06 11:59:36 +0200 (Fr, 06 Aug 2010) $</span>
+		<span id="doc_revision">$Revision: 7805 $</span>
+	</div>
+</div>
+</body>
+</html>

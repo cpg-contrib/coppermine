@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Install - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="se" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Installation och Setup - Hur man installerar programmet" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="noindex" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.8
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/de/install.htm $
+  $Revision: 7805 $
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Dokumentation och Manual</h1>
+<div id="toc">
+<a href="toc.htm">Innehållsförteckning</a>
+</div>
+
+<a name="installation"></a><h1>Installation och Setup<a href="#installation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<div class="indent">
+
+<a name="how"></a><h2>Hur man installerar programmet<a href="#how" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<ul>
+  <li>
+	  <a name="how_minimum"></a><h3>Minimikrav<a href="#how_minimum" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	  <p>Se till att du uppfyller <a href="requirements.htm#what_minimum">minimikraven</a> för att köra Coppermine på din webbserver.</p>
+  </li>
+  <li>
+	  <a name="how_unpack"></a><h3>Packa upp arkivet och behåll katalogstrukturen<a href="#how_unpack" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	  <p>Du kan (och bör) döpa om coppermine mappen, men inte filerna och mapparna i den.</p>
+	  <div>
+		  <span class="detail_head_collapsed">Detaljer</span>
+		  <div class="detail_body border1">
+			  <p>Du behöver en programvara som kan packa upp arkivet, t.ex. <a href="http://www.7-zip.org/" rel="external" class="external">7-Zip</a>. Om inte ditt <abbr title="Operating Systems">OS</abbr> stöder uppackning (Windows XP eller högre har support för zip filer; de flesta Linux distributioner kommer också med motsvarande som File Roller). I en del packning/Uppackningsprogram som WinZip finns det en möjlighet för användaren att välja om katalogstrukturen inom arkivet ska bibehållas intakt eller om alla filer som arkivet innehåller ska packas upp till en mapp utan undermappar. För Coppermine måste du välja att bibehålla katalogstrukturen.</p>
+			  <p class="cpg_example">Ett bra ställe att packa upp din kopia av Coppermine är Skrivbordet eller en temporär mapp. I den här beskrivningen förutsätter vi att du packat upp arkivet till skrivbordet.</p>
+			  <p>Efter att du packat upp, bör du ha en mapp på ditt skrivbord som heter <tt class="code">cpg15x</tt>. Du kan (och bör) ändra namnet till något vettigare för användning på internet, men säkerställ att du använder ett namn som är webbsäkert: använd inte specialtecken utom bindestreck (<tt class="code">-</tt>) och understrykningstecken (<tt class="code">_</tt>), använd inte mellanslag, tecken med apostrof eller andra specialtecken. Undvik versaler om möjligt. I själva verket bör du endast använda latinska alfanumeriska tecken (<tt class="code">a</tt> till <tt class="code">z</tt> och <tt class="code">0</tt> till <tt class="code">9</tt>). Denna rekommendation gäller inte bara Coppermine mappen, utan alla mappar och filer som du laddar upp till webb-servern.</p>
+			  <div class="cpg_example">
+				  Här är en förteckning på bra namn på mappen:
+				  <ul>
+				  	<li><tt class="code">galleri</tt></li>
+				  	<li><tt class="code">bilder</tt></li>
+				  	<li><tt class="code">foton</tt></li>
+				  	<li><tt class="code">multimedia</tt></li>
+				  </ul>
+			  </div>
+			  Det namn som du väljer kommer senare att bli sökväg till ditt galleri, så det gäller att välja ett namn som är lätt att komma ihåg. Du får en liten extrabonus vad gäller sökmotorvänlighet om du väljer ett beskrivande namn som <tt class="code">galleri</tt>. Bekymra dig inte om vilket namn du väljer för den mapp som Coppermine kommer läggas i: du kan alltid ändra namn på mappen senare.
+		  </div>
+	  </div>
+  </li>
+  <li>
+	  <a name="how_upload"></a><h3>Ladda upp alla filer till din webbserver<a href="#how_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	  Det är obligatoriskt att ladda upp <strong>alla</strong> mappar och filer som ingår i Coppermine paketet till din webbserver.<br />
+	  <span class="detail_head_collapsed">Detaljer</span>
+	  <div class="detail_body border1">
+	  	<p>Använd din FTP programvara för att ladda upp mappen som du packade upp Coppermine i till din webbserver. Använd <strong>inte</strong> tilläggskomponenter till webbläsaren eller andra stöd för att ladda upp filerna, utan använd ett riktigt FTP program. Använd <strong>inte</strong> uppladdningmetoder som kommer med <abbr title="What You See Is What You Get">WYSIWYG</abbr>-editorer som MS Frontpage eller Dreamweaver, eftersom dessa uppladdare har en tendens att försköna kodfilerna, och skadar dem på så sätt. Dessa editorer och de verktyg som de innehåller är OK att använda för andra syften, men de skapar ofta problem för färdiggjorda scripts som Coppermine, därför rekommenderar Coppermines utvecklingsteam starkt att inte använda sådana WYSIWYG-editorer alls. Om du inte har någon FTP applikation ännu, se förteckningen på <a href="dev_tools.htm#dev_tools_ftp_client">verktyg som rekommenderas av Coppermines utvecklare</a>.</p>
+	  	<p>För att kunna använda din FTP applikation, måste du förstås veta en del FTP detaljer om din hemsida. Om du inte är säker på dessa detaljer, fråga supporten till ditt webbhotell.</p>
+	  	<p>Kontrollera att du använder rätt <a href="install_faq.htm#installFTP_mode">FTP mode</a> när du laddar upp.</p>
+	  	<p>Om du tänker använda Coppermine som din primära applikation som visas på första sidan på din hemsida, så måste du inte nödvändigtvis lägga Coppermines filer i en separat mapp: då kan du tryggt ladda upp innehållet i Coppermine paketet direkt på roten på din server.</p>
+	  </div>
+  </li>
+  <li>
+	  <a name="how_permissions"></a><h3>Sätt behörigheter på "<em>albums</em>" och "<em>include</em>" mapparna i din Coppermine mapp<a href="#how_permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	  Ange behörigheter på filsystemsnivå för Coppermine scriptet. Coppermine behöver skrivbehörigheter för en del undermappar i Coppermine mappen. Att sätta behörigheter kan ibland vara svårt för den som är ovan, därför finns ett separat avsnitt i dokumentationen som förklarar <a href="install_permissions.htm#permissions">detta i detalj</a>.<br />
+	  Vanligtvis måste du använda kommandot CHMOD för att sätta behörigheter till 755 (eller 777, beroende på din serverkonfiguration).
+	  <div class="cpg_message_warning">Detta steg är mycket viktigt och får inte förbises!</div>
+  </li>
+  <li>
+	  <a name="how_database_info"></a><h3>Kontrollera att du har rätt uppgifter om din databas<a href="#how_database_info" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	  Du måste <em>veta</em> namnet på databasen så väl som detaljer om det MySQL användarkonto som Coppermine behöver använda för att ansluta till databasen. Databasen och användarnamnet måste redan finnas, och användaren måste ha behörighet till relevant databas. Coppermine kommer inte att skapa databasen åt dig, men det kommer att skapa tabeller i databasen under installationen, du behöver inte lägga till tabellerna själv.<br />
+	  <span class="detail_head_collapsed">Detaljer</span>
+	  <div class="detail_body border1">
+	  	Om det inte finns någon databas för din hemsida, måste du skapa en eller få supporten för ditt webbhotell att skapa en. Ditt webbhotell är de som är bäst lämpade att ge dig instruktioner om hur du ska göra för att åstadkomma detta.  För installationen behöver du veta sökvägen till den databasserver som du kommer att använda med Coppermine och detaljer om ditt MySQL användarkonto som Coppermine kommer att ansluta till servern med. Du måste ha sökvägen till databasservern (vanligtvis 'localhost'), ditt MySQL användarnamn, MySQL lösenord, och MySQL databasnamn före installationen av Coppermine. Användaren som intallerar Coppermine måste ha alla relevanta behörigheter till denna databas.<br />
+	Om du använder en nyligen skapad databas, finns det ingen anledning för dig att manuellt lägga till några tabeller. Coppermine kommer att skapa de nödvändiga tabellerna i databasen under installation.
+	  </div>
+  </li>
+  <li>
+	  <a name="how_run"></a><h3>Kör installationen på din server<a href="#how_run" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	  Skriv följande URL i adressfältet i webbläsaren: <tt class="code">http://din_server/coppermine_dir/install.php</tt> (<em>din_server</em> = din hemsida, <em>coppermine_dir</em> = den mapp dit du laddade upp dina Coppermine filer.) Följ instruktionerna på <a href="install_screen.htm">installationsskärmen</a> och ange på begäran nödvändiga uppgifter.
+	  <br />
+	  <span class="detail_head_collapsed">Exempel</span>
+	  <div class="detail_body cpg_example">
+	  	Om din hemsida heter <tt class="code">exempel.se</tt> och namnet på din Coppermine mapp är "<tt class="code">galleri</tt>", så är adressen du ska skriva in <tt class="code">http://exempel.se/galleri/install.php</tt>
+	  </div>
+  </li>
+</ul>
+
+<a name="what"></a><h2>Vad installationsprogrammet gör<a href="#what" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Efter att ha utfört vissa grundläggande kontroller skapar installationsprogrammet de nödvändiga databastabellerna år dig och fyller dem med standardvärden. Den skapar filen include/config.inc.php i Coppermine mappen på den server som innehåller de databasdetaljer som du angav under installationen. Om du skulle ändra dina mysql databasdetaljer senare (t.ex. om du ändrar lösenord på ditt mysql användarkonto eller om du flyttar ditt galleri till en annan server), kommer du att behöva redigera include/config.inc.php manuellt för att återspegla förändringarna. Filen include/config.inc.php förhindrar också att installationsprogrammet körs två gånger: om installationsprogrammet körs, kontrollerar det om config filen redan finns - och om det gör det stannar programmet och omdirigerar användaren till index sidan.</p>
+
+<a name="install_related"></a><h2>Relaterad information<a href="#install_related" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Det finns lite ytterligare information som är relaterad till installering:</p>
+<ul>
+    <li><strong><a href="auto-installers.htm">Auto-Installerare</a> (som Fantastico)</strong><br />
+    Ta reda på vad det är för fel på dom, varför du inte ska använda dem och vad du kan göra om du har använt en sådan.</li>
+    <li><strong><a href="install_faq.htm">Installation FAQ</a></strong><br />
+    Vanliga frågor om installering av Coppermine. Läs först innan du frågar!</li>
+    <li><strong><a href="uninstall.htm">Avinstallera</a></strong><br />
+    Även om vi är övertygade om att Coppermine är det rätta för alla, kan det hända att du vill avinstallera (av någon anledning) - här är instruktioner om hur du i så fall gör.</li>
+    <li><strong><a href="start.htm">Komma igång</a> (första steg efter installationen)</strong><br />
+    Så du har lyckats installera Coppermine? Bra gjort - här är lite mer information som bör få ditt Coppermine galleri konfigurerat och fyllt med innehåll på nolltid.
+</ul>
+<a name="install_related_end"></a>
+
+<a name="install_server_config"></a><h2>Server configuration<a href="#install_server_config" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>När du installerar Coppermine, kan det hända att du får problem som inte är direkt relaterat till, utan med hur webbserver är uppsatt. Därför kan det här avsnittet av dokumentationen bara ge dig ungefärlig överblick över problem med webbserver inställningar. Vi kan bara ge rekommendationer, men det är inte i första hand Coppermine supportens sak att faktiskt ge råd om hur en webbserver ska konfigureras. Alltså: om du har problem med webbserverinställningen, be supporten för ditt webbhotell om hjälp istället för att ställa frågor till Coppermine supporten.</p>
+<a name="install_server_config_register_globals"></a><h3>register_globals<a href="#install_server_config_register_globals" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>I äldre version av PHP, är standardinställningen för <a href="http://www.php.net/manual/en/security.globals.php" rel="external" class="phpnet">register_globals</a> "on", vilket fick till följd att många PHP kodare skrev säkerhetsmässigt slarvig kod (helt enkelt för att de inte var medvetna om farorna). Som ett resultat av det brukade det finnas många script som var beroende av att server variabeln "register_globals" var satt på. Eftersom många ondsinta attacker mot script utförs som är beroende av att register_globals är på, är till tillrådigt att sätta av den i PHP inställningarna på din webbserver. I nyare versioner av PHP, är standardinställningen "off". Ditt webbhotell kan emellertid ändå ha aktiverat register_globals för att göra det möjligt att köra gamla script som är beroende av att register_globals är på.</p>
+<p class="cpg_message_success">För att göra detta fullständigt klart: Coppermine behöver <strong>inte</strong> ha register_globals=on, utan kan köras med både register_globals on eller off. Det är bara säkerhetaspekten av att denna variabel är på som vi vill göra användaren uppmärksam på. Om din webbserver har register_globals satt på, kommer installationsprogrammet att varna dig om detta, men det kommer att fortsätta ändå.</p>
+<a name="install_server_config_register_globals_end"></a>
+<a name="install_server_config_end"></a>
+
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate: 2010-08-06 11:59:36 +0200 (Fr, 06 Aug 2010) $</span>
+		<span id="doc_revision">$Revision: 7805 $</span>
+	</div>
+</div>
+</body>
+</html>
