@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-09-16 [B] Fixed registration process if both email verification and admin activation enabled (thread ID 67095) {eenemeenemuu}
 2010-09-12 [B] Fixed display of unprocessed bbcode markup in ecard display {Nibbler}
 2010-09-10 [O] Optimized picture resizing and watermarking procedure {eenemeenemuu}
 2010-09-10 [B] Fixed exif issue when auto resizing is enabled and watermarking is disabled (thread ID 66994) {eenemeenemuu}

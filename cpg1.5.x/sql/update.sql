@@ -523,3 +523,5 @@ INSERT INTO CPG_config VALUES ('allow_guests_enter_file_details', '0');
 
 # The following line has to be removed when the moderator group feature will be re-enabled!
 UPDATE CPG_albums SET moderator_group = 0;
+
+ALTER TABLE CPG_users ADD user_email_valid enum('YES','') NOT NULL default '';

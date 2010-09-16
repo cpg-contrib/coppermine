@@ -1796,7 +1796,7 @@ EOT;
 $lang_register_php['page_title'] = 'Benutzer-Registrierung';
 $lang_register_php['term_cond'] = 'Nutzungsbedingungen';
 $lang_register_php['i_agree'] = 'ich stimme zu';
-$lang_register_php['submit'] = 'Registrieren absenden';
+$lang_register_php['submit'] = 'Registrierung absenden';
 $lang_register_php['err_user_exists'] = 'Der Benutzername, den Du eingegeben hast, existiert schon, bitte wähle einen anderen';
 $lang_register_php['err_global_pw'] = 'Ungültiges globales Registrierungs-Passwort'; // cpg1.5
 $lang_register_php['err_global_pass_same'] = 'Dein Passwort muss sich vom globalen Passwort unterscheiden'; // cpg1.5
