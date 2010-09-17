@@ -847,7 +847,7 @@ doc_toc += '            <ul>\n';
 doc_toc += '              <li><a href="export.htm#moving_folder">Flytta på din webbserver</a></li>\n';
 doc_toc += '              <li><a href="export.htm#moving_server">Flytta från en webbserver till en annan</a></li>\n';
 doc_toc += '              <li><a href="export.htm#moving_disadvantages">Nackdelar med att döpa om</a></li>\n';
-doc_toc += '              <li><a href="export.htm#moving_config_url">Ändra Coppermine's URL i konfigurationen</a></li>\n';
+doc_toc += '              <li><a href="export.htm#moving_config_url">Ändra Coppermine\'s URL i konfigurationen</a></li>\n';
 doc_toc += '            </ul>\n';
 doc_toc += '          </li>\n';
 doc_toc += '        </ul>\n';
