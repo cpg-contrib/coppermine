@@ -784,8 +784,6 @@ function load_template()
         $template    = str_replace('{THEME_SELECT_LIST}', themeSelect('list'), $template);
     }
 
-    $gallery_pos = strpos($template, '{GALLERY}');
-
     // Failsafe-option if JAVASCRIPT-token is missing from custom theme
     if (strpos($template, '{JAVASCRIPT}') === FALSE) {
         if (stripos($template, '</head>') !== FALSE) {
@@ -796,6 +794,8 @@ function load_template()
             $template = str_ireplace('</title>', '</title>' . $LINEBREAK . '{JAVASCRIPT}', $template);
         }
     }
+
+    $gallery_pos = strpos($template, '{GALLERY}');
 
     if (!strstr($template, '{CREDITS}')) {
         $template = str_replace('{GALLERY}', '{CREDITS}', $template);
