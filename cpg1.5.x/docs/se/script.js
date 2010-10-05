@@ -9,7 +9,7 @@
   as published by the Free Software Foundation.
   
   ********************************************
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/script.js $
   $Revision: 7805 $
 **********************************************/
@@ -1524,7 +1524,7 @@ function cpgDocHeader() {
     if (getUrlParameters('hide_nav') == 1) {
         return;
     }
-    $('#docheader').text('Coppermine Photo Gallery v1.5.8: Dokumentation och Manual');
+    $('#docheader').text('Coppermine Photo Gallery v1.5.9: Dokumentation och Manual');
     $('#docheader').after('<br clear="all" />\n<a name="top"></a>');
     $('#docheader').before('<img src="../images/coppermine-logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" align="left" />\n');
 }
@@ -1537,7 +1537,7 @@ function cpgDocSearch() {
     var doc_search = '';
     doc_search += '  <div id="doc_search" style="display:none;">\n';
     doc_search += '    <form action="http://www.google.com/cse" id="cse-search-box">\n';
-    doc_search += '      <input type="hidden" name="cx" value="009353514429642786404:keefjtiy3lo" />\n';
+    doc_search += '      <input type="hidden" name="cx" value="009353514429642786404:grsrdpjjnqm " />\n';
     doc_search += '      <input type="text" name="q" size="25" />\n';
     doc_search += '      <input type="submit" name="sa" value="search docs" style="font-size:9px;" />\n';
     doc_search += '    </form>\n';

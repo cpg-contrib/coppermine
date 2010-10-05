@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <title>Install - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
@@ -12,8 +12,7 @@
 <meta name="robots" content="noindex" />
 <!--
   SVN version info:
-
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/de/install.htm $
   $Revision: 7805 $
 -->
@@ -30,10 +29,8 @@
 <div id="toc">
 <a href="toc.htm">Innehållsförteckning</a>
 </div>
-
 <a name="installation"></a><h1>Installation och Setup<a href="#installation" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <div class="indent">
-
 <a name="how"></a><h2>Hur man installerar programmet<a href="#how" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul>
   <li>
@@ -74,7 +71,7 @@
 	  </div>
   </li>
   <li>
-	  <a name="how_permissions"></a><h3>Sätt behörigheter på "<em>albums</em>" och "<em>include</em>" mapparna i din Coppermine mapp<a href="#how_permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	  <a name="how_permissions"></a><h3>Sätt behörigheter på &quot;<em>albums</em>&quot; och &quot;<em>include</em>&quot; mapparna i din Coppermine mapp<a href="#how_permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	  Ange behörigheter på filsystemsnivå för Coppermine scriptet. Coppermine behöver skrivbehörigheter för en del undermappar i Coppermine mappen. Att sätta behörigheter kan ibland vara svårt för den som är ovan, därför finns ett separat avsnitt i dokumentationen som förklarar <a href="install_permissions.htm#permissions">detta i detalj</a>.<br />
 	  Vanligtvis måste du använda kommandot CHMOD för att sätta behörigheter till 755 (eller 777, beroende på din serverkonfiguration).
 	  <div class="cpg_message_warning">Detta steg är mycket viktigt och får inte förbises!</div>
@@ -94,14 +91,12 @@
 	  <br />
 	  <span class="detail_head_collapsed">Exempel</span>
 	  <div class="detail_body cpg_example">
-	  	Om din hemsida heter <tt class="code">exempel.se</tt> och namnet på din Coppermine mapp är "<tt class="code">galleri</tt>", så är adressen du ska skriva in <tt class="code">http://exempel.se/galleri/install.php</tt>
+	  	Om din hemsida heter <tt class="code">exempel.se</tt> och namnet på din Coppermine mapp är <tt class="code">galleri</tt>, så är adressen du ska skriva in <tt class="code">http://exempel.se/galleri/install.php</tt>
 	  </div>
   </li>
 </ul>
-
 <a name="what"></a><h2>Vad installationsprogrammet gör<a href="#what" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Efter att ha utfört vissa grundläggande kontroller skapar installationsprogrammet de nödvändiga databastabellerna år dig och fyller dem med standardvärden. Den skapar filen include/config.inc.php i Coppermine mappen på den server som innehåller de databasdetaljer som du angav under installationen. Om du skulle ändra dina mysql databasdetaljer senare (t.ex. om du ändrar lösenord på ditt mysql användarkonto eller om du flyttar ditt galleri till en annan server), kommer du att behöva redigera include/config.inc.php manuellt för att återspegla förändringarna. Filen include/config.inc.php förhindrar också att installationsprogrammet körs två gånger: om installationsprogrammet körs, kontrollerar det om config filen redan finns - och om det gör det stannar programmet och omdirigerar användaren till index sidan.</p>
-
 <a name="install_related"></a><h2>Relaterad information<a href="#install_related" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Det finns lite ytterligare information som är relaterad till installering:</p>
 <ul>
@@ -112,23 +107,22 @@
     <li><strong><a href="uninstall.htm">Avinstallera</a></strong><br />
     Även om vi är övertygade om att Coppermine är det rätta för alla, kan det hända att du vill avinstallera (av någon anledning) - här är instruktioner om hur du i så fall gör.</li>
     <li><strong><a href="start.htm">Komma igång</a> (första steg efter installationen)</strong><br />
-    Så du har lyckats installera Coppermine? Bra gjort - här är lite mer information som bör få ditt Coppermine galleri konfigurerat och fyllt med innehåll på nolltid.
+    Så du har lyckats installera Coppermine? Bra gjort - här är lite mer information som bör få ditt Coppermine galleri konfigurerat och fyllt med innehåll på nolltid.</li>
 </ul>
 <a name="install_related_end"></a>
-
 <a name="install_server_config"></a><h2>Server configuration<a href="#install_server_config" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>När du installerar Coppermine, kan det hända att du får problem som inte är direkt relaterat till, utan med hur webbserver är uppsatt. Därför kan det här avsnittet av dokumentationen bara ge dig ungefärlig överblick över problem med webbserver inställningar. Vi kan bara ge rekommendationer, men det är inte i första hand Coppermine supportens sak att faktiskt ge råd om hur en webbserver ska konfigureras. Alltså: om du har problem med webbserverinställningen, be supporten för ditt webbhotell om hjälp istället för att ställa frågor till Coppermine supporten.</p>
 <a name="install_server_config_register_globals"></a><h3>register_globals<a href="#install_server_config_register_globals" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>I äldre version av PHP, är standardinställningen för <a href="http://www.php.net/manual/en/security.globals.php" rel="external" class="phpnet">register_globals</a> "on", vilket fick till följd att många PHP kodare skrev säkerhetsmässigt slarvig kod (helt enkelt för att de inte var medvetna om farorna). Som ett resultat av det brukade det finnas många script som var beroende av att server variabeln "register_globals" var satt på. Eftersom många ondsinta attacker mot script utförs som är beroende av att register_globals är på, är till tillrådigt att sätta av den i PHP inställningarna på din webbserver. I nyare versioner av PHP, är standardinställningen "off". Ditt webbhotell kan emellertid ändå ha aktiverat register_globals för att göra det möjligt att köra gamla script som är beroende av att register_globals är på.</p>
+<p>I äldre version av PHP, är standardinställningen för <a href="http://www.php.net/manual/en/security.globals.php" rel="external" class="phpnet">register_globals</a> &quot;on&quot;, vilket fick till följd att många PHP kodare skrev säkerhetsmässigt slarvig kod (helt enkelt för att de inte var medvetna om farorna). Som ett resultat av det brukade det finnas många script som var beroende av att server variabeln &quot;register_globals&quot; var satt på. Eftersom många ondsinta attacker mot script utförs som är beroende av att register_globals är på, är till tillrådigt att sätta av den i PHP inställningarna på din webbserver. I nyare versioner av PHP, är standardinställningen &quot;off&quot;. Ditt webbhotell kan emellertid ändå ha aktiverat register_globals för att göra det möjligt att köra gamla script som är beroende av att register_globals är på.</p>
 <p class="cpg_message_success">För att göra detta fullständigt klart: Coppermine behöver <strong>inte</strong> ha register_globals=on, utan kan köras med både register_globals on eller off. Det är bara säkerhetaspekten av att denna variabel är på som vi vill göra användaren uppmärksam på. Om din webbserver har register_globals satt på, kommer installationsprogrammet att varna dig om detta, men det kommer att fortsätta ändå.</p>
 <a name="install_server_config_register_globals_end"></a>
 <a name="install_server_config_end"></a>
-
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
 		<span id="doc_last_changed">$LastChangedDate: 2010-08-06 11:59:36 +0200 (Fr, 06 Aug 2010) $</span>
 		<span id="doc_revision">$Revision: 7805 $</span>
 	</div>
+</div>
 </div>
 </body>
 </html>

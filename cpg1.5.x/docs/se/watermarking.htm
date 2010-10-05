@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <title>Vattenstämpling - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
@@ -11,11 +11,9 @@
 <meta http-equiv="imagetoolbar" content="no" />
 <!--
   SVN version info:
-
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/watermarking.htm $
   $Revision: 7805 $
-
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -30,20 +28,18 @@
 <div id="toc">
 <a href="toc.htm">Innehållsförteckning</a>
 </div>
-
 <a name="watermark"></a><h1>Vattenstämpling<a href="#watermark" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>Vattenstämpling är ett konfigurationsalternativ i Coppermine som kan aktiveras om det behövs. Som standard är det inaktiverat. Inställning finns i 
 <a href="configuration.htm#admin_watermarking">Konfiguration &rarr; Vattenstämpla bild</a>.</p>
-<p>Vattenstämpling fungerar både med ImageMagick och GD2. <a href="configuration.htm#admin_watermarking_enable">Vattenstämplingsbilden</a> bör vara en .png fil. Du kan göra dess bakgrund transparent. Du måste ange den absoluta eller relative sökvägen till vattenstämplingsbilden i konfigurationen. Förinställt finns en exempelfil i Coppermines mapp "images". Du bör se denna testfil när du aktiverar vattenstämpling och laddar upp en bild.</p>
+<p>Vattenstämpling fungerar både med ImageMagick och GD2. <a href="configuration.htm#admin_watermarking_enable">Vattenstämplingsbilden</a> bör vara en .png fil. Du kan göra dess bakgrund transparent. Du måste ange den absoluta eller relative sökvägen till vattenstämplingsbilden i konfigurationen. Förinställt finns en exempelfil i Coppermines mapp &quot;images&quot;. Du bör se denna testfil när du aktiverar vattenstämpling och laddar upp en bild.</p>
 <p><a href="configuration.htm#admin_watermarking_transparency">Transparens inställningarna</a> i konfigurationen kommer att göra hela vattenstämpeln transparent mot bildens bakgrund (ImageMagick endast).</p>
 <p>Det finns en ny praktisk funktion, att automatiskt skala ner en vattenstämpelsbild när den uppladdade bilden är mindre än den bredd du satt (<a href="configuration.htm#admin_watermarking_downsize">Skala ner vattenstämpeln om bredden på en bild är mindre än angivet värde</a>). Detta är 100% referenspunkt. Skalning av vattenstämpeln är linjäar (0 för att inaktivera)).</p>
 <p class="cpg_example">Om du anger t.ex. 1024 (som Stramm, skaparen av vattenstämpelsfunktionen, gjorde på <a href="http://stramm.st.funpic.org/displayimage.php?pos=-96" rel="external" class="external">demo sidan</a> för sin modpack för cpg1.4.x där vattenstämpel först introducerades), då är 100% referens en bild med bredd av 1024px eller större. Om du laddar upp bilder större än 1024px kommer inte vattenstämpeln inte skalas utan läggs över bilden med sin fulla storlek. Om du låter Coppermine skapa en medelstor bild med bredden 400 pixlar, så kommer vattenstämpel att skalas ner till 39% av sin originalstorlek. Om fullstorleken är 512px, så kommer vattenstämpeln att ha 50% av sin originalstorlek. Naturligtvis kräver det här CPU. Det fungerar utmärkt tillsammans med <a href="configuration.htm#admin_picture_thumbnail_auto-resize">Skala om bilder automatistk som är större än maximal bredd eller höjd</a> (sätt det till samma som du använde för 100% referens... i exemplet 1024). På så sätt kommer vattenstämpeln alltid att passa perfekt på dina bilder.</p>
-<p>För att kunna ångra vattenstämpel inatkivera vattenstämpeln genom att ändra inställningen i <a href="configuration.htm#admin_watermarking_enable">Vattenstämpla bild</a> till "no" och använd <a href="admin-tools.htm#admin_tools">administratörsverktyget</a> för att skapa om dina filer.</p>
+<p>För att kunna ångra vattenstämpel inatkivera vattenstämpeln genom att ändra inställningen i <a href="configuration.htm#admin_watermarking_enable">Vattenstämpla bild</a> till &quot;no&quot; och använd <a href="admin-tools.htm#admin_tools">administratörsverktyget</a> för att skapa om dina filer.</p>
 <p>Om du använder GD2, så har inställningen för transparens ingen funktion. Om du vill att vattenstämpeln ska vara transparent emot bakgrunden, minska lagertransparensen för din vattennstämpelsbild i ditt bildbehandlingsprogram till exempelvis 50 (som för exempel-vattenstämpelbilden)...</p>
-
 <a name="watermark_alternatives"></a><h2>Alternativ<a href="#watermark_alternatives" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>I en idealvärld skulle alla respektera varandras rättigheter och inte försöka stjäla bilder. Men som världen inte är en idealvärld och på det sätt som webbläsare fungerar (du ser faktiskt inte internet i realtid, utan din webbläsare ladddar ner allt före den visar något för dig) så är det förstås lätt för andra att stjäla dina bilder. Detta är en av anledningarna till varför vattenstämpeln uppfanns: du kan märka dina bilder med en vattenstämpel och därmed tillåta dina användare att se dina bilder, men de som stjäl dem får leva med att stämpeln syns och kan därför inte hävda att dom äger bilderna.</p>
-<p>Det är en tunn linje mellan att försäkra sig om att din upphovsrätt respekteras och irritera dina besökare: om en vattenstämpel är nära kanten på en bild, kan en tjuv komma undan med stölden bara genom att skala bilden för att klippa bort kanten. Om vattenstämpeln är för stor eller för mycket "i vägen", kommer den att distrahera för mycket och dina besöker lämnar din sida.</p>
+<p>Det är en tunn linje mellan att försäkra sig om att din upphovsrätt respekteras och irritera dina besökare: om en vattenstämpel är nära kanten på en bild, kan en tjuv komma undan med stölden bara genom att skala bilden för att klippa bort kanten. Om vattenstämpeln är för stor eller för mycket &quot;i vägen&quot;, kommer den att distrahera för mycket och dina besöker lämnar din sida.</p>
 <p>Därför har användare begärt andra sätt att skydda sig mot bildstöld - här är några av dessa mekanismer:</p>
 <ul>
 	<li><a name="watermark_alternatives_no_right_click"></a><h3>Inaktivera innehållsmenyn<a href="#watermark_alternatives_no_right_click" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -51,17 +47,14 @@
 	<li><a name="watermark_alternatives_registered_only"></a><h3>Bara visa ditt dyrbara innehåll för legitima besökare<a href="#watermark_alternatives_registered_only" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 	Inaktivera möjligheten för gäster att se ditt galleri, eller tillåt dem att se bara lågupplösta bilder (miniatyrbilder). Du kommer att tappa besökare, så det här är bara ett alternativ om du har innehåll av absolut högsta klass.</li>
 	<li><a name="watermark_alternatives_overlay"></a><h3>Visa en överlappning<a href="#watermark_alternatives_overlay" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-	Det här lilla tricket kan lura många bildtjuvar (nybörjare för det mesta): du kan helt enkelt visa en transparent bild på varje faktisk bild - om "tjuven" försöker att högerklicka och spara bilden, så är det bara den transparenta (tomma) överläggsbilden som sparas. Coppermine har det alternativet: aktivera <a href="configuration.htm#admin_image_transparent_overlay_start">Lägg en transparent överlappning för att minimera bildstöld</a> i konfigurationen.</li>
+	Det här lilla tricket kan lura många bildtjuvar (nybörjare för det mesta): du kan helt enkelt visa en transparent bild på varje faktisk bild - om &quot;tjuven&quot; försöker att högerklicka och spara bilden, så är det bara den transparenta (tomma) överläggsbilden som sparas. Coppermine har det alternativet: aktivera <a href="configuration.htm#admin_image_transparent_overlay_start">Lägg en transparent överlappning för att minimera bildstöld</a> i konfigurationen.</li>
 </ul>
-
 <a name="watermark_client_sided"></a><h2>Klient-sidig vattenstämpling<a href="#watermark_client_sided" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Vattenstämpling på servern är en resurskrävande process som kan slöa ner din webbserver och göra att du får problem med ditt webbhotell eftersom dom blir bekymrade över den höga resursanvändningen. Dessutom kan en användare som hittar i Coppermine räkna ut sökvägen till den fullstora originalbilden som inte är vattenstämplad och stjäla den.</p>
 <p>Det enda som kan fixa det permanent är klient-sidig vattenstämpling. Med andra ord: lägg till en permanent vattenstämpel på dina bilder på din egen dator före du laddar upp dem till servern. Behåll det ostämplade originalet bara på din dator och inte i servern.</p>
 <p>Det finns många verktyg som kan lägga till vattenstämpel på dina bilder i din dator, och en del kan till och med åstadkomma det i en batch, t.ex. gratisverktyget <a href="http://www.picture-shark.com/" rel="external" class="external">Picture Shark</a>.</p>
-
 <br clear="all" />
 <a name="exif_end"></a>
-
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
 		<span id="doc_last_changed">$LastChangedDate: 2010-08-06 11:59:36 +0200 (Fr, 06 Aug 2010) $</span>

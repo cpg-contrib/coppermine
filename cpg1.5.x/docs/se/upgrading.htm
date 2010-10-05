@@ -1,0 +1,475 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Uppgradering - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Nödvändiga steg för att uppdatera Coppermine" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+  Coppermine version: 1.5.9
+  $HeadURL$
+  $Revision$
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Dokumentation och Manual</h1>
+<div id="toc">
+<a href="toc.htm">Innehållsförteckning</a>
+</div>
+<div id="doc_en_partial">Endast delvis översatt</div>
+<a name="upgrade"></a><h1>Uppgradering<a href="#upgrade" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Notera: eftersom det skett förändringar både i Coppermines filer och i databasen jämfört med versioner före cpg1.5.x, så måste användare av versioner äldre än cpg1.5.0 utföra <strong>alla</strong> steg som nämns nedan: både filerna måste ersättas och scriptet update.php script måste köras.</p>
+<div class="indent">
+    <a name="upgrade_why"></a><h2>Varför uppgradera?<a href="#upgrade_why" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>Det finns större och mindre uppdateringar (releaser) av Coppermine. Större releaser har hittills varit cpg1.0, cpg1.1, cpg1.2.x, cpg1.3.x, cpg1.4.x och cpg1.5.x. Nästa större release kommer att bli cpg1.6.x (som för närvarande är under utveckling - ingen release-datum är bestämt ännu) - du läser för närvarande dokumentationen för cpg1.5.x. Mindre releaser (den tredje siffran i versionsnumreringen) representerar uppdateringar, även kallat &quot;underhålls-releaser&quot;. Större releaser innehåller nya funktioner (jämfört med tidigare större releaser), mindre releaser innehåller inte nya funktioner, utan bara felrättningar och mindre förbättringar (som tillagda språkfiler).</p>
+    <p>För att förstå den release-policy som utvecklingsteamet av Coppermine har så måste du förstå hur fel rättas: vi underhåller ett repositorium (lagringsplats på nätet) där källkoden för varje större release ständigt förbättras. Större och mindre fel som rapporteras på Coppermines supportforum rättas i repositoriet. När ett nytt paket sätts ihop, kommer alla rättningar som gjorts i repositoriet att ingå i den nya underhålls-releasen.</p>
+    <p>Det finns en god anledning för varje ny underhållsrelease: dom paketeras vanligtvis när ett nytt fel eller en ny sårbarhet upptäcks som är relevant säkerhetsmässigt. Som ovan sagt finns det åtskilliga mindre felrättningar som inkluderas i varje ny release också, inte bara den stora som föranledde underhållsreleasen. Därför är det inte tillräckligt att bara rätta den enskilda sårbarheten som var anledningen till att det nya paketet släpptes. Uppgradera istället till den senaste stabila releasen så snart denna släppts.</p>
+    <div class="indent">
+        <a name="upgrade_why_reasons"></a><h3>Anledningar för paket-releaser<a href="#upgrade_why_reasons" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>Här är en lista på mindre releaser av cpg1.5.x och anledningen till att de släpptes. Listan är menad att förklara varför du bör uppgradera så snart det är möjligt till senast stabila release om du kör en föråldrad version.</p>
+        <span class="detail_head_collapsed">Detaljer</span>
+        <div class="detail_body">
+            <table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
+              <tr>
+                <th valign="top" align="left">Paket</th>
+                <th valign="top" align="left">Anledning för release</th>
+                <th valign="top" align="left"><span class="small">Release Datum</span></th>
+              </tr>
+              <tr>
+                <td valign="top">cpg1.5.8</td>
+                <td valign="top">
+                  <ul>
+                    <li>Maintenance release (stable)</li>
+                    <li><a href="http://forum.coppermine-gallery.net/index.php/topic,66417.0.html">Announcement thread</a></li>
+                    <li>Fixed setting default language with language manager (<a href="http://forum.coppermine-gallery.net/index.php/topic,66276.0.html">thread</a>)</li>
+                    <li>Changed form token generation - removed trouble maker parameters (<a href="http://forum.coppermine-gallery.net/index.php/topic,65918.0.html">thread</a>)</li>
+                    <li>Fixed language manager issue for language files with underscore (<a href="http://forum.coppermine-gallery.net/index.php/topic,66274.0.html">thread</a>)</li>
+                    <li>Set moderator group to '0' for all albums to avoid problems for people who used that feature before it was dropped (<a href="http://forum.coppermine-gallery.net/index.php/topic,66118.0.html">thread</a>)</li>
+                    <li>Fixed ecard if no intermediate picture is present (<a href="http://forum.coppermine-gallery.net/index.php/topic,66161.0.html">thread</a>)</li>
+                    <li>Added Estonian language file (user contribution)</li>
+                    <li>Update 'last visit' time if it's a 'remember me' session (<a href="http://forum.coppermine-gallery.net/index.php/topic,66145.0.html">thread</a>)</li>
+                    <li>Added Slovak language file (user contribution)</li>
+                    <li>While deleting non-images, delete the corresponding custom thumbnail if exists</li>
+                    <li>While renaming non-images, rename the corresponding custom thumbnail if exists</li>
+                    <li>While renaming files, check if there will be no conflicts before doing anything</li>
+                    <li>Added plugin hook 'token_criteria'</li>
+                    <li>Fixed missing CSS class cpg_summary and icon replacement leading to broken output of help boxes on config screen (<a href="http://forum.coppermine-gallery.net/index.php/topic,65994.0.html">thread</a> & <a href="http://forum.coppermine-gallery.net/index.php/topic,65996.0.html">thread</a>)</li>
+                    <li>Fixed possibility for users to edit their files in public galleries if disabled in config (<a href="http://forum.coppermine-gallery.net/index.php/topic,65693.0.html">thread</a>)</li>
+                    <li>Disable the possibility for guests to enter file details by default (<a href="http://forum.coppermine-gallery.net/index.php/topic,62522.0.html">thread</a>)</li>
+                    <li>Fixed error message when regular users try to delete their albums in public categories</li>
+                    <li>Re-organizing zip archives inside docs folder</li>
+                    <li>Adding documentation about plugin config options</li>
+                    <li>Fixed issue when reset file ratings (<a href="http://forum.coppermine-gallery.net/index.php/topic,65896.0.html">thread</a>)</li>
+                    <li>Fixed empty values for 'reason' in 'report to administrator' email (<a href="http://forum.coppermine-gallery.net/index.php/topic,65752.0.html">thread</a>)</li>
+                    <li>Fixed category view when albums with keywords are present (<a href="http://forum.coppermine-gallery.net/index.php/topic,64155.0.html">thread</a>)</li>
+                    <li>Changed type of plugin hooks 'theme_thumbnails_wrapper_start/end' from 'filter' to 'action' and adjusted English documentation accordingly (<a href="http://forum.coppermine-gallery.net/index.php/topic,58734.0.html">thread</a>)</li>
+                    <li>Added search terms to the title of the thumbnails page (<a href="http://forum.coppermine-gallery.net/index.php/topic,65840.0.html">thread</a>)</li>
+                    <li>Added Japanese language file (user contribution)</li>
+                    <li>Adding boxes to config documentation for defaults, max, min, recomended and record name</li>
+                    <li>Display Coppermine news always in an iframe (<a href="http://forum.coppermine-gallery.net/index.php/topic,65424.0.html">thread</a>)</li>
+                    <li>Fixed error message for non existing categories (<a href="http://forum.coppermine-gallery.net/index.php/topic,65763.0.html">thread</a>)</li>
+                    <li>Replaced wrong link in update.php (<a href="http://forum.coppermine-gallery.net/index.php/topic,65714.0.html">thread</a>)</li>
+                    <li>Added language table population section to update script to stop cpg1.4.x upgrades seing only Luxemburgish and Mexican as available langauges</li>
+                    <li>Updated Turkish language file (user contribution)</li>
+                    <li>Show password prompt if user tries to access file in password protected album directly</li>
+                    <li>Added Brazilian language file (user contribution)</li>
+                    <li>Fixed uploading to password protected albums in public categories (<a href="http://forum.coppermine-gallery.net/index.php/topic,65677.0.html">thread</a>)</li>
+                    <li>Changed default values for user galleries category (<a href="http://forum.coppermine-gallery.net/index.php/topic,65543.0.html">thread</a>)</li>
+                    <li>Fixed album visibility issue with user galleries (<a href="http://forum.coppermine-gallery.net/index.php/topic,65543.0.html">thread</a>)</li>
+                    <li>Changed fix for category alpha sorting</li>
+                    <li>Fixed a critical error with the most viewed meta album</li>
+                    <li>Updated French language file (improvement and corrections)</li>
+                    <li>Allow higher port numbers for the site url config setting</li>
+                    <li>Fixed display of swf files in Firefox (<a href="http://forum.coppermine-gallery.net/index.php/topic,63624.0.html">thread</a>)</li>
+                    <li>Fixed resizing of watermark backup images (<a href="http://forum.coppermine-gallery.net/index.php/topic,65531.0.html">thread</a>)</li>
+                    <li>Fixed category permissions for secondary user groups (<a href="http://forum.coppermine-gallery.net/index.php/topic,65551.0.html">thread</a>)</li>
+                    <li>Fixed issue when editing user albums (<a href="http://forum.coppermine-gallery.net/index.php/topic,65542.0.html">thread</a>)</li>
+                    <li>Fixed issues with usergal_alphatabs plugin (<a href="http://forum.coppermine-gallery.net/index.php/topic,65473.0.html">thread</a> & <a href="http://forum.coppermine-gallery.net/index.php/topic,65547.0.html">thread</a>)</li>
+                    <li>Fixed line breaks in contact form emails</li>
+                    <li>Removed outdated FAQ items</li>
+                    <li>Updated Hungarian language file (user contribution)</li>
+                    <li>Fixed pre-population of user name on comments form (<a href="http://forum.coppermine-gallery.net/index.php/topic,65293.0.html">thread</a>)</li>
+                    <li>Fixed timeout issue when fetching remote files (<a href="http://forum.coppermine-gallery.net/index.php/topic,65424.0.html">thread</a>)</li>
+                    <li>Fixed thumb sharpening (<a href="http://forum.coppermine-gallery.net/index.php/topic,65398.0.html">thread</a>)</li>
+                    <li>Place new comments form accordingly to sort order of comments (<a href="http://forum.coppermine-gallery.net/index.php/topic,65461.0.html">thread</a>)</li>
+                    <li>Added Danish language file (user contribution)</li>
+                    <li>Added default value for 'user_profile6' during user creation (<a href="http://forum.coppermine-gallery.net/index.php/topic,65451.0.html">thread</a>)</li>
+                    <li>Fixed HTML validation issue for german lang files - replaced & by &amp;amp;</li>
+                    <li>Updated plugin manager documentation (<a href="http://forum.coppermine-gallery.net/index.php/topic,65379.0.html">thread</a>)</li>
+                    <li>Added Hungarian language file (user contribution)</li>
+                    <li>Fixed pagination for user manager (<a href="http://forum.coppermine-gallery.net/index.php/topic,65365.0.html">thread</a>)</li>
+                    <li>Updated Finnish language file (user contribution)</li>
+                  </ul>
+                </td>
+                <td valign="top" align="right">2010-08-06</td>
+              </tr>
+              <tr>
+                <td valign="top">cpg1.5.7</td>
+                <td valign="top">
+                  Detta paket släpptes aldrig, det har faktiskt aldrig funnits.
+                </td>
+                <td valign="top" align="right">-</td>
+              </tr>
+              <tr>
+                <td valign="top">cpg1.5.6</td>
+                <td valign="top">
+                  <ul>
+                    <li>Maintenance release (stable)</li>
+                    <li><a href="http://forum.coppermine-gallery.net/index.php/topic,65278.0.html">Announcement thread</a></li>
+                    <li>Fixed broken link (<a href="http://forum.coppermine-gallery.net/index.php/topic,65226.0.html">thread</a>)</li>
+                    <li>Extended lang_byte_units array for some language files (<a href="http://forum.coppermine-gallery.net/index.php/topic,65231.0.html">thread</a>)</li>
+                    <li>Fixed ip address duplicates in stat_details.php (<a href="http://forum.coppermine-gallery.net/index.php/topic,65230.0.html">thread</a>)</li>
+                    <li>Updated Czech language file (user contribution)</li>
+                    <li class="important">Fixed typo that caused the display of the 'not supported version' message box (<a href="http://forum.coppermine-gallery.net/index.php/topic,65224.0.html">thread</a>)</li>
+                    <li>Fixed issue when uploading plugins to Windows-driven galleries</li>
+                    <li>Removed cpg1.3.x theme upgrade guide, as a direct upgrade from cpg1.3.x to cpg1.5.x no longer is supported</li>
+                    <li>Create different log entries for user registrations and admin user creations in access log file (<a href="http://forum.coppermine-gallery.net/index.php/topic,65298.0.html">thread</a>)</li>
+                    <li>Fixed config value for path to ImageMagick when selecting GD during intallation (<a href="http://forum.coppermine-gallery.net/index.php/topic,65177.0.html">thread</a>)</li>
+                    <li>Fixed query for album moderation group (<a href="http://forum.coppermine-gallery.net/index.php/topic,65312.0.html">thread</a>)</li>
+                    <li>Fixed display of upload approval button (<a href="http://forum.coppermine-gallery.net/index.php/topic,65314.0.html">thread</a>)</li>
+                  </ul>
+                </td>
+                <td valign="top" align="right">2010-06-04</td>
+              </tr>
+              <tr>
+                <td valign="top">cpg1.5.5</td>
+                <td valign="top">
+                  Detta paket släpptes aldrig, det har faktiskt aldrig funnits.
+                </td>
+                <td valign="top" align="right">-</td>
+              </tr>
+              <tr>
+                <td valign="top">cpg1.5.4</td>
+                <td valign="top">
+                  <ul>
+                    <li>Stable release</li>
+                    <li><a href="http://forum.coppermine-gallery.net/index.php/topic,65216.0.html">Announcement thread</a></li>
+                  </ul>
+                </td>
+                <td valign="top" align="right">2010-06-02</td>
+              </tr>
+              <tr>
+                <td valign="top">cpg1.5.3</td>
+                <td valign="top">
+                  <ul>
+                    <li>Release candidate</li>
+                    <li><a href="http://forum.coppermine-gallery.net/index.php/topic,63951.0.html">Announcement thread</a></li>
+                  </ul>
+                </td>
+                <td valign="top" align="right">2010-03-05</td>
+              </tr>
+              <tr>
+                <td valign="top">cpg1.5.2</td>
+                <td valign="top">
+                  <ul>
+                    <li>Beta release. First public release for testing and evaluation. Do not use for production! No support available yet.</li>
+                    <li><a href="http://forum.coppermine-gallery.net/index.php/topic,62505.0.html">Announcement thread</a></li>
+                  </ul>
+                </td>
+                <td valign="top" align="right">2009-11-16</td>
+              </tr>
+              <tr>
+                <td valign="top">cpg1.5.1</td>
+                <td valign="top">
+                  <ul>
+                    <li>Alpha release for testers and translators. This version is not a public release - it has only been released to a closed group of users for <a href="testing.htm">testing</a> and <a href="translation.htm#translation">translation</a> purposes.</li>
+                  </ul>
+                </td>
+                <td valign="top" align="right">2009-07-24</td>
+              </tr>
+              <tr>
+                <td valign="top">cpg1.5.0</td>
+                <td valign="top">
+                  <ul>
+                    <li>This version was never released as a package - the version number 1.5.0 was just reserved for the initial development stage of the cpg1.5.x series before the feature freeze stage started. There is no package available, nor has there ever been one - only <a href="dev_subversion.htm#subversion">Subversion</a> checkouts have been possible.</li>
+                  </ul>
+                </td>
+                <td valign="top" align="right">Never</td>
+              </tr>
+            </table>
+        </div>
+        <p>Som du ser rättar och förbättrar Coppermines utvecklingsteam ständigt programvaran. Varje mer komplicerad programvara innehåller fel, så det finns ingen garanti att den version a cpg1.5.x serien som är den nuvarande också kommer att bli den sista, slutgiltiga och felfria versionen. Det är mycket viktigt att du gör uppdateringar så snart som nya paket släpps.</p>
+        <a name="upgrade_why_reasons_end"></a>
+        
+        <a name="upgrade_why_changelog"></a><h3>Ändrings-logg<a href="#upgrade_why_changelog" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>Detaljer om de förändringar som ingår i release kan hittas i ändringsloggen som kommer med i varje paket. Ändringsloggfilen kan hittas i rot-katalogen i Copperminepaketet. Ändringsloggen innehåller mer information om ytterligare språk och datum och tid när rättningen gjordes.</p>
+        <p>Ändringsloggen är en ren textfil som kan läsas med ett enkelt redigeringsprogram - på Windows-baserade maskiner duger notepad.exe bra.</p>
+        <a name="upgrade_why_changelog_end"></a>
+    </div><a name="upgrade_why_end"></a>
+    
+    <a name="upgrade_any"></a><h2>Nödvändiga steg att utföra vid uppgradering av Coppermine (från någon version)<a href="#upgrade_any" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>Instruktionerna här gäller för <strong>alla</strong> uppdateringar/uppgraderingar av Coppermine, så läs dem noga.</p>
+    <ul>
+        <li>
+            <a name="upgrade_any_backup_db"></a><h3 class="detail_head_collapsed smaller">Gör en backup (säkerhetskopia/dump) av din databas</h3>
+            <div class="detail_body border1">Rekommenderade verktyg för att <a href="export.htm#backup_database">skapa en database dump</a> är <a href="http://mysqldumper.de/en/" rel="external" class="external">mySqlDumper</a> or <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a> - se avsnittet <a href="dev_tools.htm#dev_tools_database">Verktyg som rekommenderas av utvecklingsteamet: Databas manipulation</a> för mer information.<br />
+            Att skapa en <a href="export.htm#backup">backup</a> är inte obligatoriskt vad gäller funktionaliteten, utan bara en säkerhetsåtgärd om något skulle gå på tok. Det är hur som helst tillrådigt att göra backuper ofta
+            <p class="small"><a href="#upgrade_any_backup_db" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
+        </li>
+        <li>
+            <a name="upgrade_any_backup_config"></a><h3 class="detail_head_collapsed smaller">Säkerhetskopiera din include/config.inc.php fil, din anycontent.php fil och din mapp &quot;albums&quot; som en säkerhetsåtgärd om något skulle bli fel.</h3>
+            <div class="detail_body border1">Vanligtvis kan du bara ladda ner hela din Coppermine-mapp till din lokala hårddisk eller på någon annan säker plats med hjälp av din <a href="dev_tools.htm#dev_tools_ftp_client"><abbr title="File Transfer Protocol">FTP</abbr> applikation</a>. Ett nytt Coppermine paket innehåller inte en config fil ändå (den filen skapades under installationen på din server), så du kan inte ersätta en existerande config fil med en tom från paketet; igen, backupen är bara en säkerhetsåtgärd.
+            <p class="small"><a href="#upgrade_any_backup_config" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
+        </li>
+        <li>
+            <a name="upgrade_any_download"></a><h3 class="detail_head_collapsed smaller">Ladda ner den senast stabila versionen som finns på nedladdnings-avsnittet (download section) på Coppermines officiella hemsida</h3>
+            <div class="detail_body border1">Förutsätt inte att du har den senaste versionen, speciellt inte om du installerade Coppermine med hjälp av kontrollpanelen som tillhandahållits av ditt webbhotell. Coppermines utvecklingsteam rekommenderar inte användningen av sådana <a href="auto-installers.htm#auto-installers">auto-installerare</a> - utan ladda ner originalet från <a href="http://coppermine-gallery.net/">Coppermines officiella hemsida</a>.<br />
+            Om du inte är säker på vilket paket du ska använda (t.ex om det finns flera arkivtyper), välj zip arkivet, eftersom Windows XP eller bättre som har stöd för zip arkiv.
+            <p class="small"><a href="#upgrade_any_download" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
+        </li>
+        <li>
+            <a name="upgrade_any_unpack"></a><h3 class="detail_head_collapsed smaller">Packa upp det Copperminepaket som du laddade ner</h3>
+            <div class="detail_body border1">Som med nya installationer behöver du packa upp det packade arkivet till en temporär mapp på din hårddisk (och bevara mappstrukturen inom paketet). De flesta moderna operativsystem har packningsprogramvara som kan packa upp zip arkiv. Om du inte har en sådan rekommenderar Coppermines utvecklingsteam att du använder <a href="http://7-zip.org/" rel="external" class="external">7-Zip</a>.
+            <p class="small"><a href="#upgrade_any_unpack" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
+        </li>
+        <li>
+            <a name="upgrade_any_upload"></a><h3 class="detail_head_collapsed smaller"><strong>Med undantag för mappen &quot;albums&quot; </strong>, ladda upp alla nya filer och mappar, och säkerställ att du inte skriver över din anycontent.php fil eller din albums mapp.</h3>
+            <div class="detail_body border1">Du skulle faktiskt kunna ladda upp mappen albums också - den som finns i paketet är i alla fall tom. Rekommendationen att inte ladda upp denna mapp är bara menad som en säkerhetsåtgärd för de användare som har &quot;märklig&quot; inställning i sin FTP applikation: en del exotiska FTP applikationer raderar mappar som finns på servern och skapar sedan om dem tomma. Detta skulle förstås vara en katastrof för alla existerande gallerier under installationsprocessen, eftersom du skulle förlora <em>alla</em> dina uppladda filer i ditt galleri. Hur som helst, det antal FTP applikationer som har denna märkliga inställning är få och därför skadar det inte i de flesta fall att ladda upp mappen albums också. Om du är osäker, använd en av de <a href="dev_tools.htm#dev_tools_ftp_client">FTP clienter som rekommenderas av utvecklingsteamet</a>.
+            <p class="small"><a href="#upgrade_any_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
+        </li>
+        <li>
+            <a name="upgrade_any_update_script"></a><h3 class="detail_head_collapsed smaller">Kör installationsscriptet</h3>
+            <div class="detail_body border1">För att köra PHP-filen &quot;<tt class="code">update.php</tt>&quot; (eg. <a href="#updater">uppdateringsprogrammet</a>), skriv bara in dess <abbr title="Uniform Resource Locator">URL</abbr> i adressfältet på din webbläsare. Filen &quot;<tt class="code">update.php</tt>&quot; finns i Coppermine mappen, så för att köra den pekar du in din webbläsare på adressen <tt class="code">http://din_sida.se/din_coppermine_mapp/update.php</tt> (om du har installerat Coppermine i rotmappen på din webbsida så måste du följaktligen ange <tt class="code">http://din_sida.se/update.php</tt>). Detta kommer att uppdatera din Coppermineinstallation genom att göra alla nödvändiga förändringar i databasen.
+            <p class="small"><a href="#upgrade_any_update_script" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></p></div>
+        </li>
+    </ul>
+    <p>För att göra detta fullständigt klart:</p>
+    <p class="cpg_message_error">det finns ingenting sådant som ett separat uppgraderingspaket - Coppermine kommer alltid som ett komplett paket som kan användas för såväl nyinstallation som uppgradering.</p>
+    <a name="upgrade_particular"></a><h2>Ytterligare steg för att uppdatera från vissa versioner<a href="#upgrade_particular" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>Beroende på den version som du uppdaterar ifrån, så finns det en del ytterligare saker som du måste göra:</p>
+         <div class="indent">
+        <a name="upgrade_10"></a><a name="upgrade_12"></a><h3>Uppgradera från version cpg1.0, cpg1.1, cpg1.2.x eller cpg1.3.x till cpg1.5.x<a href="#upgrade_10" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+         <p>Support föe en direkt uppgradering från cpg1.0, cpg1.1, cpg1.2.x eller cpg1.3.x till cpg1.5.x har tagits bort - om du fortfarande kör en sådan stenåldersversion, måste du uppgradera i två steg (från din version till cpg1.4.x och sedan till cpg1.5.x)</p>
+  <a name="upgrade_14"></a><h3>Uppgradera från version cpg1.4.x till cpg1.5.x<a href="#upgrade_14" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <ul>
+          <li>
+              <a name="upgrade_14_plugins"></a><h4>Insticksmoduler (Plugins)<a href="#upgrade_14_plugins" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              Insticksmoduler som gjorts för cpg1.4.x fungerar vanligtvis inte på cpg1.5.x, så du behöver <strong>inaktivera dem</strong> medan du fortfarande kör cpg1.4.x (<strong>före</strong> du startar uppgraderingen). En del funktioner som var en insticksmodul i cpg1.4.x blev en del av källkoden för cpg1.5.x, så det kan hända att du inte längre behöver insticksmodulen. Det säkraste sättet att veta att insticksmodulen inte stör är genom att <a href="configuration.htm#admin_general_enable-plugins">inaktivera alla insticksmoduler</a> med hjälp av motsvarande konfigurationsalternativ och sedan radera innehållet i insticksmodulens mapp med hjälp av din FTP applikation. Efter att uppgraderingen gjorts, hämta de versioner av insticksmodulerna som gjorts för cpg1.5.x och aktivera dessa en och en.
+          </li>
+          <li>
+              <a name="upgrade_14_custom_theme"></a><h4>Anpassade tema<a href="#upgrade_14_custom_theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              Om du har gjort ett anpassat tema, tillämpa de ändringar som gjorts i temastrukturen i ditt anpassade tema - se <a href="theme_upgrade_14x-15x.htm">tema - uppgraderingsguide</a>. Notera att en del teman som brukade komma med i tidigare versioner av Coppermine har slopats i cpg1.5.x. Dessa slopade teman finns nu som separata nedladdningar.
+          </li>
+          <li>
+              <a name="upgrade_14_language_files"></a><h4>Språkfiler<a href="#upgrade_14_language_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              Du kan inte använda språkfiler från äldre versioner av Coppermine som primärt språk (det språk som administratören kommer att använda) - säkerställ att du bara har de språkfiler som ingår i paketet i din lang-mapp (radera aller döp om alla filer från äldre versioner inom lang-mappen).<br />
+              Om du behöver använda ett språk som inte översatts för cpg1.5.x, kan du pröva att använda språkfilen från cpg1.4.x, men det finns en del invändningar:
+              <ul>
+                <li>cpg1.5.x-fraser som inte finns i din gamla språkfil kommer att inte att bli översatta eller visas på engelska</li>
+                <li>Coppermine kan inte administreras med hjälp av en gammal språkfil - administratören måste använda en &quot;riktig&quot; cpg1.5.x språkfil</li>
+                <li>Du får försöka att använda en gammal språkfil, men om du skulle få problem eller felmeddelanden, växla till US-English för att se om problemet försvinner. Det ges ingen support för användning av gamla språkfiler</li>
+              </ul>
+              Helst skulle du bara radera alla filer från cpg1.4.x som finns i <tt class="filename">lang</tt>-mappen (den mapp som motsvarar <tt class="filename">http://din_sida.se/din_coppermine_mapp/lang/</tt>) före du gör en uppdatering, det skulle säkerställa att bara språkfiler som gjorts för cpg1.5.x finns med i språkmapp.<br />
+              Efter att du slutfört uppdateringen så bör du besöka den nya språkhanteraren och aktivera/inaktivera se språk som du behöver respektive inte behöver. Språkhanteraren kan du hitta på Coppermine's konfigurationspanel, utöka avsnittet &quot;Inställningar för Språk & Teckenuppsättning&quot; och sedan klicka på länken med namn &quot;Hantera språk&quot;. Alternativt kan du gå direkt till adressen <tt class="filename">http://din_sida.se/din_coppermine_mapp/langmgr.php</tt> i din webbläsare.
+          </li>
+          <li>
+              <a name="upgrade_14_password_encryption"></a><h4>Lösenordskryptering<a href="#upgrade_14_password_encryption" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              I cpg1.3.x, brukade lösenord lagras i vanligt textformat i databasen. Detta ändrades i cpg1.4.x - där lagrades lösenord krypterade. Det brukade finnas ett alternativ för de som uppgraderade från cpg1.3.x till cpg1.4.x att kunna hoppa över steget att kryptera lösenord. I cpg1.5.x är det inte längre möjligt att lagra lösenord som ren text. Om du kör ett sådant gammal galleri som först uppdaterades från cpg1.3.x till cpg1.4.x och nu till cpg1.5.x,så kommer uppgraderingsprogrammet automatiskt att kryptera alla dina användares lösenord (inklusive ditt eget administratörskonto). Du behöver inte tänkta på något särskilt - uppgraderingsprogrammet kommer att göra detta automatiskt.
+          </li>
+          <li>
+              <a name="upgrade_14_faq"></a><h4>Visa FAQ<a href="#upgrade_14_faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              Alternativet att visa en FAQ sida för slutanvändarna (genom att klicka på motsvarande konfigurationsalternativ) som fanns i cpg1.3.x och cpg1.4.x har tagits bort från cpg1.5.x, eftersom det sällan användes och bara orsakade ytterliga belastning för översättarna. Om du är en av dessa få användare som använde menyn FAQ i Coppermine's navigationsmeny, så kan du lätt hitta på en anpassad sida som använder Coppermine's sidhuvud och sidfot och visa dina individuella FAQ där.
+          </li>
+          <li>
+              <a name="upgrade_14_outdated_files"></a><h4>Föråldrade filer<a href="#upgrade_14_outdated_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              Radera de föråldrade filer som fanns med i äldre versioner aav Coppermine och som inte längre finns med i cpg1.5.x.<br />
+              Igen, så är det här bara en säkerhetsåtgärd för att säkerställa att ditt nya galleri inte innehåller brister från föråldrade versioner som kan underlätta för illasinnade attackerare som utnyttjar svagheter i äldre versioner. För att ta reda på vilka filer du behöver ta bort manuellt, se nederst på uppdateringsskärmbilden (<tt class="code">http://din_sida.se/din_coppermine_mapp/update.php</tt>) - uppdateringsprogrammet kommer att försöka radera filerna åt dig, med de flesta serverinställningar ger inte behörighet till detta, så du måste själv manuellt radera filerna med hjälp av din FTP applikation. Ett annat sätt att ta reda på vilka filer som behöver raderas är med <a href="#versioncheck">versionskontroll</a> sidan - filerna som ska raderas visas där också - sidan versionskontroll kommer dock inte att försöka att radera dessa filer.
+          </li>
+          <li>
+              <a name="upgrade_14_safe_mode"></a><h4>Safe mode<a href="#upgrade_14_safe_mode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              Om din server körs i safe_mode och du har aktiverat &quot;SILLY_SAFE_MODE&quot; i include/config.inc.php, så måste du i Coppermines konfiguration efter att du gjort ovanstående steg aktivera &quot;<a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">silly safe mode</a>&quot; där, eftersom inställningen i <tt class="code">include/config.inc.php</tt> inte längre tas hänsyn till i cpg1.5.x. Inställningen silly_safe_mode setting har gjorts om till en <a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">konfigurationsinställning</a> istället.
+          </li>
+          <li>
+              <a name="upgrade_14_uri_upload"></a><h4>URI uppladdning har tagits bort<a href="#upgrade_14_uri_upload" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              Funktionen <abbr title="Uniform Resource Identifier">URI</abbr> uppladdning har tagits bort från cpg1.4.x till cpg1.5.x, eftersom det faktiskt inte gjorde det som många användare trodde det gjorde: med URI uppladdning trodde många människor att filen stannade kvar på den URI som de angav i uppladdningsformuläret och att de inte överfördes till det webbutrymme där deras Coppermine galleri fanns. Följaktligen trodde de att de kunde spara diskutrymmet på servern. Detta var ett missförstånd och bara ett önsketänkande: att använda URI uppladdningar i cpg1.4.x, gjorde att filen faktiskt laddas upp till Coppermines webbutrymmet oavsett.<br />
+              Därför blev funktionen &quot;URI uppladdningar&quot; borttagen från cpg1.5.x. Emellertid (beroende på din klients operativsystem) så kan du använda/missbruka det vanliga http uppladdningsformuläret för att åstadkomma något liknande i cpg1.5.x: när du anger en URL till en fil som accepteras av Coppermine i uppladdningsformuläret för http, så kommer filen att laddas ner till din klients temporära mapp och sedan kommer en reguljär http uppladdning från din klient till din server att ske. Detta är inte en funktion som är inbyggd i Coppermine, utan snarare en funktion från ditt <abbr title="operating system">OS</abbr>/webbläsare och därför är det inte supportat. Du behöver emellertid inte göra något under uppgraderingen - det här stycket är bara för att informera dig om att funktionen tagits bort. 
+          </li>
+          <li>
+              <a name="upgrade_14_new_features"></a><h4>Konfigurera nya funktioner<a href="#upgrade_14_new_features" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+              Jämfört med cpg1.4.x, kommer den nya versionen cpg1.5.x med massor av nya funktioner. En del av dem aktiveras automatiskt vid uppgraderingen, och det kanske du inte vill. Därför bör du (av nyfikenhet åtminstone) läsa <a href="index.htm#features">listan funktioner</a> och kontrollera <a href="configuration.htm#admin">konfigurationspanelen</a> och <a href="groups.htm#group_cp">kontrollpanelen för grupper</a> för att se vilka förändringar som gjorts. Det sätt som Coppermine hanterar språk har också ändrats, därför bör du besöka <a href="languages.htm#language_manager">språkhanteraren</a> åtminstone en gång efter uppgraderingen och konfigurera språkstödet där.
+          </li>
+        </ul>
+        <a name="upgrade_15"></a><h3>Uppgradera från äldre versioner av cpg1.5.x till den senaste versionen av cpg1.5.x<a href="#upgrade_15" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>Det finns ingenting ytterligare att göra för att uppgradera från en äldre version av cpg1.5.x till den senaste versionen av samma familj. Att utföra de grundläggande instruktionerna som beskrivits ovan i <a href="#upgrade_any">Steg nödvändiga för att uppgradera Coppermine (från någon version)</a> räcker.</p>
+    </div><a name="upgrade_particular_end"></a>
+    
+    <a name="updater"></a><h2>Uppdateringsprogrammet<a href="#updater" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>Uppdateringsprogrammet är ett script som kommer att uppdatera din databas och radera överblivna filer från föråldrade versioner som inte längre används i den nya versionen. Du kan komma åt den genom att klicka på motsvarande länk i administratörsmenyn eller genom att ange sökvägen (URL) i adressfältet på din webbläsare.</p>
+    <p class="cpg_example">Du kan köra uppdateringsprogrammet genom att ange <tt class="code">http://din_sida.se/din_coppermine_mapp/update.php</tt> i din webbläsares adressfält.</p>
+    <div class="indent">
+            <a name="updater_what_it_does"></a><h3>Vad det gör<a href="#updater_what_it_does" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            Uppdateringsprogrammet utför tre saker:
+            <ul>
+                <li>Kontrollerar behörigheten för den besökare som kör scriptet</li>
+                <li>Kör de mysql databasfrågor som finns i filen <tt class="code">sql/update.sql</tt> (ersätter det generella tabellprefixet med det du valde under installationen)</li>
+                <li>Raderar en del filer som brukade finnas med i Coppermines kärna i föregående versioner. Script raderar bara filer som inte behövs, men det rör inte anpassade filer så det finns ingen anledning till oro.</li>
+                <li>Byter ut dina lösenord från ren text till krypterat: i äldre version av Coppermine brukade det finnas ett alternativ som gjorde det möjligt för användare att lagra sina lösenord som ren text i databasen. I cpg1.5.x är det inte längre tillåtet att ha lösenord som ren text, och därför (om du inte redan använder krypterade lösenord), kommer lösenorden att krypteras av uppdateringsscriptet.</li>
+            </ul>
+            <a name="updater_purpose"></a><h3>Syfte<a href="#updater_purpose" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            <p>Uppdateringsprogrammet kommer att utför uppdateringen av databasen åt dig efter det att du manuellt ersatt den sql fil som det använder. Uppdateringsprogrammet kommer <strong>inte</strong> att upptäcka åt dig om det finns en nyare version av Coppermine tillgänglig och inte heller kommer det att ladda ner någonting från Coppermines hemsida. Automatiseringsnivån i Coppermine är inte avancerad (ännu).</p>
+            <p>För att se om det finns nya versioner eller underhållsreleaser, se <a href="configuration.htm#admin_general_coppermine_news">nyheter från coppermine-gallery.net</a>.</p>
+            <a name="updater_authorization"></a><h3>Behörighetskontroll<a href="#updater_authorization" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            <p>I Coppermine versioner före cpg1.5.x, brukade uppdateringsprogrammet vara offentligt åtkomligt, d.v.s. alla kunde köra det. Medan detta var bra för supportändamål (supportrar kunde köra uppdateringsprogrammet för användare som behövde hjälp om det var uppenbart att dom inte gjort detta), så fanns det en liten risk att denna åtkomlighet för alla i något steg kunde innebära en säkerhetsrisk. Därför beslutade utvecklingsteamet att skydda uppdateringsprogrammet från att kunna köras av vem som än hade åtkomst till det - från och med cpg1.5x måste du ange administratörsuppgifter. Det kan du göra på fyra olika sätt:</p>
+            <ul>
+                <li>Om du redan är inloggad som administratör och kör uppdateringsprogrammet från länken i Coppermines administratörsmeny, så kommer uppdateringsprogrammet att köras utan att fler autentiseringar krävs - det använder samma &quot;vanliga&quot; cookie-baserade autentisering som hela Coppermines scriptet använder</li>
+                <li>Om di inte är inloggad som administratör eller om kärndelarna av Coppermine inte längre fungerar utan att man först kör uppdateringsprogrammet (händer vanligtvis när man göra större uppgraderingar av versioner), så kommer du att uppmanas att ange dina referenser - ange de uppgifter från administratörskontot som du satte upp när du först installerade Coppermine</li>
+                <li>Om du inte kan komma ihåg dina administratörsuppgifter, så kan du ange de för din mysql - du behövde dem när du först installerade Coppermine. Om du glömt dem, slå upp dem i den fil som används för att lagra mysql databasens anslutningsdetaljer: ladda ner <tt class="code">include/config.inc.php</tt> från din webbserver till din PC och redigera den senare med en ren text-editoritor - du bör se mysql uppgifterna i den filen. Om de har ändrats, borde ditt webbhotell kunna hjälpa dig att få reda på dem.</li>
+                <li>Om allt annat misslyckas, finns den en växel i uppdateringsscriptet du kan använda för att hoppa över autentiseringen - för att ändra på växeln: ladda ner uppdateringsscriptet (<tt class="code">update.php</tt>) från din webbserver till din klient, hitta <tt class="code">// define('SKIP_AUTHENTICATION', true);</tt> aoch ersätt detta med <tt class="code">define('SKIP_AUTHENTICATION', true);</tt>. Spara ändringarna och ladda upp den redigerade filen till din webbserver och skriv över den som redan finns där. Kom ihåg att återställa filen som den var efter det att du lyckats med uppgraderingen.</li>
+            </ul>
+            <a name="updater_when"></a><h3>När måste uppdateringsprogrammet köras?<a href="#updater_when" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            <p>Du måste köra uppdateringsprogrammet varje gång du uppdaterar/uppgraderar, eg. varje gång som filen <tt class="code">sql/update.sql</tt> ersätts med en ny version.</p>
+            <p>Det skadar inte att köra uppdateringsprogrammet flera gånger, så om du är tveksam kan du köra det igen.</p>
+        </div><a name="updater_end"></a>
+        <a name="versioncheck"></a><h2>Versionskontrollverktyget<a href="#versioncheck" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>Efter release cpg1.3.2 har Coppermine ett versionskontrollverktyg som hjälper dig att lättare lösa frågor om uppgraderingar och uppdateringar. För att köra versionskontrollen, lägg bara till <tt>versioncheck.php</tt> till adressen i din webbläsare efter att du loggat in som administratör (exempel: <tt>http://din_sida.se/din_coppermine_mapp/versioncheck.php</tt>). I om med 1.5.x, kan du köra versionskontrollfunktionen från <a href="admin_menu.htm#admin_menu">administratörsmenyn</a>.</p>
+    <p class="cpg_message_info">Versionskontrollverktyget utför <strong>inte</strong> någon faktisk uppdatering: det laddar inte ner nyare versioner av Coppermine åt dig och inte heller installerar det några programrättningar - det är bara till för att göra dig uppmärksam på om det finns nyare versioner och på om du redan uppgraderat korrekt.</p>
+        <div class="indent">
+            <a name="versioncheck_description_start"></a><h3>Vad det gör<a href="#versioncheck_description_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>Programmet &quot;versionskontroll&quot; är tänkt för två ändamål:</p>
+        <ul>
+            <li>Om du uppgraderat från en tidigare version, bör du göra en versionskontroll för att se att din uppgradering fungerat som förväntat</li>
+            <li>Använd versionskontrollen för att försäkra dig om att din version av Coppermine är aktuell</li>
+        </ul>
+        <p>Programmet går igenom filerna på din webbserver och försöker att bestämma om dessa är identiska med de som finns i repositoriet på http://coppermine-gallery.net. Filer som inte matchar visas och dessa är de filer du också borde uppdatera.</p>
+        <p>Jämfört med tidigare versioner har versionskontrollsidan gjorts om för cpg1.5.x både visuellt och funktionsmässigt.</p>
+        <a name="versioncheck_description_end"></a>
+        <a name="versioncheck_first_run"></a><h3>Första körningen<a href="#versioncheck_first_run" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>Vid första körningen kommer du att se <a href"versioncheck_options_start">alternativ</a> skärmen först. Från början borde standardalternativen vara OK, så skicka bara formuläret. Programmet kommer då att bestämma vilken Coppermine version du för närvarande använder, och kommer att söka om den XML fil på Coppermines repositorium som motsvarar din version. Om det lyckas kommer den att jämför alla filer som finns på din server med de senaste som det rekommenderas att använda (försöker att få dessa data från repositoriet). Följaktligen bör du se en lista med mappar och filer som borde finnas på din server och en förklaring om de filversioner som du har är de senaste. För detaljer om hur du ska tolka informationen, läs vidare.</p>
+        <a name="versioncheck_options_start"></a><h3>Alternativ<a href="#versioncheck_options_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <img src="images/versioncheck_options.png" alt="" border="0" width="386" height="120" title="Options for the version check screen" align="right" />
+        <p>Det finns ett litet antal alternativ på versionskontrollsidan, som borde vara ganska självförklarande:</p>
+        <ul>
+            <li><a name="versioncheck_options_display_output"></a><h4>Visa utdata<a href="#versioncheck_options_display_output" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Bestämmer om all utdata med formattering ska användas, eller om bara en reducerad utdata i ren text. 
+            <ul>
+                <li><em>Full-skärm</em><br />
+                Använd det här som standard. Det kommer att visa så många detaljer som möjligt och har en snyggare layout</li>
+                <li><em>Text-bara</em><br />
+                Om en supporter <em>ber</em> dig att skicka utdata från din versionskontroll, byt till detta alternativ så att du lättare kan kopiera och klistra in det i ditt inlägg på Coppermines support forum. Gör detta bara om en supporter uttryckligen begär det! En annan tänkbar användning för utdata i text bara är resursanvändning: om du får time-out, försök att använda ren-text alternativet eftersom det använder något mindre resurser.</li>
+            </ul>
+            <a name="versioncheck_options_display_output_end"></a>
+            </li>
+            <li><a name="versioncheck_options_only_show_potential_errors"></a><h4>Visa bara eventuella fel<a href="#versioncheck_options_only_show_potential_errors" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Om du inte har någon aning om vad utdatat betyder eller om en supporter ber om det, kan du vilja sätta det här alternativet till att bara visa de mappar/filer som har problem.
+            <a name="versioncheck_options_only_show_potential_errors_end"></a>
+            </li>
+            <li><a name="versioncheck_options_hide_images"></a><h4>Dölj bilder<a href="#versioncheck_options_hide_images" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            När du aktiverar det här alternativet kommer alla grafiska resurser som kommer med coppermine (eg. alla ikoner eller andra bilder) inte att tas hänsyn till för visning på versionskontrollsidan - ett filter tillämpas. Använd det här alternativet för att göra utdata mindre rörigt: bilder är vanligtvis inte säkerhetskänsliga så om du bara är bekymrad över filer som har påverkan på säkerhet, kan du utan problem dölja bilderna.
+            <a name="versioncheck_options_hide_images_end"></a>
+            </li>
+            <li><a name="versioncheck_options_no_modification_check"></a><h4>Kontrollera inte ändrade filer<a href="#versioncheck_options_no_modification_check" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Detta filer kommer att dölja kolumnen &quot;<a href="#versioncheck_comparison_modified">ändrad</a>&quot; från att visas och det resulterar i en något mindre rörigt utdata. Kontroll efter ändrade filer kommer inte att göras när programmet körs. Aktivera det här alternativet bara om du har prestandaproblem eller om alla dina filer rapporteras som ändrade.
+            <a name="versioncheck_options_no_modification_check_end"></a>
+            </li>
+            <li><a name="versioncheck_options_no_connect_online_repository"></a><h4>Anslut inte till repositoriet<a href="#versioncheck_options_no_connect_online_repository" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Om du bockar för det här alternativet kommer inte programmet att försöka att ansluta till repositoriet och kommer då att använda den lokala XML filen istället. Använd bara det här alternativet om anslutning till repositoriet inte fungerar för dig (t.ex. om du är på ett intranet, eller om din server inte har tillgång till internet). Den stora nackdelen av att inte ansluta till repositoriet online är att du inte kommer att bli medveten om möjliga uppdateringar och senaste releaser, så du bör försöka hitta ett sätt att ansluta.<br />
+            Under utvecklingen (mellan releaser), är repositoriet online vanligtvis inte uppdateras så ofta, så bara om du använder <a href="dev_subversion.htm#subversion">SVN checkouts</a> (eg. du är en utvecklare), bör du bocka för det här alternativet.
+            <a name="versioncheck_options_no_connect_online_repository_end"></a>
+            </li>
+        </ul>
+        <p>Alternativskärmen låter dig konfigurera versionskontrollen, eller snarare det som visas. Alternativen sparas ingenstans, så du måste justera dem varje gång du kör versionskontrollen. Standardalternativen borde vara OK för de flesta användare - ändra dem bara om du har en bra anledning att göra det.</p>
+        <a name="versioncheck_options_end"></a>
+        <a name="versioncheck_comparison_start"></a><h3>Versionsjämförelse<a href="#versioncheck_comparison_start" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <img src="images/versioncheck_output.png" border="0" width="400" height="191" alt="" title="Output generated by version check" align="right" />
+        <p>Det finns mycket information som visas på liten yta. Här är en del exempel på möjlig utdata och vad det betyder:</p>
+        <ul>
+            <li><a name="versioncheck_comparison_path"></a><h4>Sökväg<a href="#versioncheck_comparison_path" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Mapp- och filnamn</li>
+            <li><a name="versioncheck_comparison_missing"></a><h4>Saknas<a href="#versioncheck_comparison_missing" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Om inget visas i den här kolumnen finns mappen/filen på din server. Om så inte är fallet (mappen/filen finns inte på din server eller går inte att komma åt), så kommer kolumnen &quot;Saknas&quot; att fyllas med resultatet av denna första, grundläggande kontroll.<br />
+            Notera: det finns en del mappar/filer som det är obligatoriskt att ha; andra är frivilliga. Om du gör en ny installation eller en uppgradering, ska du försäkra dig om att du laddar upp alla mappar och filer. Du kan senare radera en del av de frivilliga filerna om du vill men det sparar inte mycket diskutrymme.<br />
+            Om en fil saknas kommer alla efterföljande steg inte att utföras - en saknad fil kan inte ha ett versionsnummer eller liknande. Om versionskontrollen klagar över saknade filer, använd din FTP applikation för att avgöra om de faktiskt saknas eller om de är oåtkomliga. Om de saknas, ladda upp dem igen. Om de är oåtkomliga måste du <a href="install_permissions.htm#permissions">sätta nödvändiga behörigheter på dem</a>.<br />
+            En del filer som fanns i äldre version kan ha blivit borttagna senare. De som kan utgöra en säkerhetsrisk kommer att visas med ordet &quot;borttagen&quot; i kolumnen &quot;saknas&quot;. Om du stöter på en sådan fil, använd din FTP-applikation för att radera filen versionskontrollen klagar över. Att lämna kvar filen där den är (strunta i förslaget som versionskontrollen ger) kan utgöra en säkerhetsrisk och rekommenderas därför inte.</li>
+            <li><a name="versioncheck_comparison_permissions"></a><h4>Behörigheter<a href="#versioncheck_comparison_permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Visar satta behörigheter för mappar och filer. För en del mappar behövs skrivbehörighet medan det för andra räcker med läsbehörighet. Om nivån på behörigheter för en mapp är bra, kommer resultatet att visas tillsammans med en anmärkning (inom hakparenteser) som &quot;OK&quot; (kan skilja sig på ditt språk). Att använda ett script som versionskontroll för att kontrollera behörigheter på mappar fungerar bra, medan det kan eller inte kan fungera bra på filer. Därför bör du i huvudsak bekymra dig för mappar dom inte har tillräcklig behörighet. Om det rapporteras att filer inte har rätt behörigheter, var inte alltför oroad om det är så att resten av ditt galleri fungerar bra.<br />
+            Om behörigheter på mappar behöver granskas, läs på i avsnittet <a href="install_permissions.htm#permissions">behörigheter i dokumentationen</a> och gör som det föreslås där.</li>
+            <li><a name="versioncheck_comparison_version"></a><h4>Version<a href="#versioncheck_comparison_version" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Filens version på din server. Om den är identiskt med den version som indikeras på repositoriet, bör du se ett &quot;OK&quot;. Om du kör en föråldrad version på din server bör du hämta en nytt releasepaket och uppgradera.<br />
+            Notera: mappar har inte versionsummer, det har inte heller binära filer (som grafik), det är därför som kolumnen &quot;Version&quot; visar &quot;<acronym title="not applicable">n/a</acronym>&quot; (not/applicable=inte/tillämpligt) för mappar och binära filer. Bara filer som har textinnehåll kan ha ett versionsnummer, så bli inte skrämd av  många &quot;n/a (OK)&quot;-meddelanden.</li>
+            <li><a name="versioncheck_comparison_revision"></a><h4>Revision<a href="#versioncheck_comparison_revision" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Revisionen av filen på din server. Om det är identisk med den som indikeras av XML repositoriet, bör du se ett &quot;OK&quot;. Om du kör en föråldrad version på din server bör du hämta en nytt releasepaket och uppgradera.<br />
+            Revisioner är relaterade till versioner - om din version är OK är vanligtvis din revision det också. Bara om du gör checkouts från <a href="dev_subversion.htm#subversion">subversion repository</a>, kan revisionerna &quot;börja krångla&quot;.<br />
+            Samma sak som gäller versioner gäller också för revisioner: bara textfiler kan ha revisionsnummer - mappar och binära filer har det inte.<br />
+            förvirrad? Det behöver du inte vara: vanligtvis kan du utan vidare strunta i revisioner - om du vill veta vad revisioner används till, läs sidan <a href="dev_subversion.htm#dev_subversion_revision">detaljer om subversioner</a>.</li>
+            <li><a name="versioncheck_comparison_modified"></a><h4>Ändrad<a href="#versioncheck_comparison_modified" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Om en fil är tillgänglig och versions- och revisionsnumret matchar, kommer versionskontrollprogrammet att försöka göra en kontroll för att se om filen har ändrats jämfört med originalfilen som kommer med i Coppermine paketet. Denna kontroll utförs genom att ta hänsyn till MD5-hashes av originalfilen och din kopia.<br />Vid en ny installation eller en uppgradering bör det inte finnas några ändrade filer. Om de visas som ändrade kan det vara av flera anledningar:
+            <ul>
+                <li>Du har <strong>avsiktligt</strong> ändrat filen (t.ex. genom att göra en anpassning i den). I så fall är det OK att strunta i varningen i kolumnen &quot;Ändrad&quot; och fortsätta</li>
+                <li>Din fil har inte skickats i sin helhet till webbservern. Om så är fallet, försök att ladda upp den på nytt från din lokala dator till webbservern. Om detta inte hjälper, kan ditt paket ha blivit skadat. Ladda ner en fräsch kopia från Coppermines nedladdningssida, packa upp den och ladda om filen. Säkerställ att din FTP applikation är konfigurerad så att den faktiskt skriver över befintliga filer.</li>
+                <li>Du har använd ett felaktigt FTP-FTP-mode för att ladda upp filerna till din webbserver. Med FTP applikationer kan du transportera filer i binärt eller ASCII-mode. De flesta moderna FTP klienter har en funktion som automatiskt väljer rätt FTP-mode för varje fil. Om så inte är fallet, försök att manuellt ange FTP-mode för dina filuppladdningar.</li>
+                <li>Ditt webbhotell lägger till koder i varje fil. Många gratis webbhotell (s.k. &quot;freehosts&quot;) gör så för att lägga till reklam i dina filer. Det finns lite du då kan göra utom att anlita ett betalt webbhotell eller strunta i varningen i kolumnen &quot;Ändrad&quot; och hoppas på att allt fungerar ändå.</li>
+            </ul>
+            Utdatat i kolumnen &quot;Ändrad&quot; kan filterar genom att aktivera alternativet <a href="#versioncheck_options_no_modification_check">Kontrollera inte ändrade filer</a>. Detta kommer att resultera i något ökad prestanda för versionskontrollprogrammet.
+            </li>
+            <li><a name="versioncheck_comparison_comment"></a><h4>Kommentar<a href="#versioncheck_comparison_comment" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Kommentarkolumnen innehåll rekommendationer om vad som kan vara fel och vad du kan göra för att åtgärda det. Inga kommentarer betyder vanligtvis att ingenting är fel.</li>
+            <li><a name="versioncheck_comparison_repository_link"></a><h4>Repositorielänk<a href="#versioncheck_comparison_repository_link" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Länken till SVN repositoriet (web SVN) är en extra funktion för power-användare och utvecklare. Läs <a href="dev_subversion.htm#subversion">subversion repository</a> instruktionerna för att få veta mer. Om allt fungerar bra behöver du inte bry dig om den här länken.</li>
+        </ul>
+        <a name="versioncheck_comparison_end"></a>
+        <a name="versioncheck_problems"></a><h3>Saker som kan bli fel när man kör versionskontroll<a href="#versioncheck_problems" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>Eftersom de åtgärder som görs när versionskontrollen körs är komplicerade, finns det ett antal saker som kan gå fel beroende på hur din webbserver är uppsatt:</p>
+        <ul>
+            <li><strong>Ingen anslutning till XML repositoriet online</strong><br />
+            Om din server befinner sig bakom en proxy eller ett webbfilter som kräver autentisering eller som inte har tillgång till internet alls (t.ex. ett företags intranet), kan versionskontrollen kanske inte ansluta till XML repositoriet online. Använd motsvarande alternativ för att förhindra att programmet försöker ansluta. Samma invändningar som ovan gäller.</li>
+            <li>Jag får en vit sida, eller en sida utan innehåll<br />
+            Programmet får antagligen time out, eftersom det kräver enorma resurser. Du får då klara dig utan versionskontroll på din server om det inte är så att du själv kan konfigurera den, så att du kan tilldela mer minne och körningstid för programmet.</li>
+            <li>Jag får ett felmeddelande<br />
+            Felmeddelanden som <tt class="code">Kritiskt fel: Maximal körningstid om 60 sekunder överskriden i /path/to/webroot/coppermine_folder/include/versioncheck.inc.php på rad 276</tt> är en indikation på att programmet använder för mycket resurser på din server. Försök att inaktivera en del utdata-alternativ. Om detta inte hjälper kan du helt enkelt inte köra versionskontroll på din server.
+            </li>
+        </ul>
+        <p>Verktyget versionskontroll tillhandahålls för att tillmötesgå slutanvändaren. Eftersom det finns ett antal faktorer som kan påverka den, kan det hända att det inte fungerar på din webbserver. Om versionskontrollen inte gör någonting alls gäller det förmodligen dig - det är inget du behöver oroa dig över: var bara noga med att hålla din Coppermine installation aktuell, företrädelsevis med att aktivera konfigurationsalternativet &quot;<a href="configuration.htm#admin_general_coppermine_news">Visa nyheter från coppermine-gallery.net</a>&quot;. Bara om enskilda problem rapporteras av versionskontrollverktyget (eg. bara om <em>några</em> rader innehåller en anmärkning i kommentarskolumnen), behöver du orolig och ta dig en närmare titt.</p>
+        <a name="versioncheck_problems_end"></a>
+        <a name="versioncheck_expect"></a><h3>Fel förväntningar<a href="#versioncheck_expect" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>För en del kan det här verka trivialt, medan det för andra är viktig information: naturligtvis är det så att filer som du inte har ersatt under uppgraderingsprocessen (t.ex. <tt class="code">anycontent.php</tt>) kommer att se föråldrade ut i utdatat från versionskontrollen. Det är förstås vad som kan förväntas. Det skadar inte om du gjorde uppgraderingen exakt som beskrivits, eftersom de filer du skulle behålla under processen inte innehåller någon kod som behöver uppdateras. Som exempel, <tt class="code">anycontent.php</tt> innehåller ingen kod alls (åtminstone int den som kommer med i Coppermine). Den <em>kan</em> innehålla anpassad kod om du bestämmer dig för att använda den. För mer information om användningen av <tt class="code">anycontent.php</tt>, se avsnittet &quot;<a href="php-content.htm#php-content_anycontent">Använda anycontent.php</a>&quot;.</p>
+        <p>Versionskontrollverktyget gör ingen <em>nedladdning</em> av nyare filversioner från internet - det bara <em>kontrollerar</em> filerna du har på din server jämfört med en lista på senaste filer. Versionskontrollverktyget kontrollerar inte eller rensar din sida från hackers.</p>
+    </div><a name="versioncheck_end"></a>
+    <a name="upgrade_faq"></a><h2>Uppgradering FAQ<a href="#upgrade_faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <ul>
+        <li><a name="upgrade_faq_new_releases_alert"></a><h3>Hur får jag veta om nya Coppermine releaser?<a href="#upgrade_faq_new_releases_alert" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        Det finns ett antal verktyg som hjälper dig att hålla dig informerad och undviker att du missar en release:
+        <ul>
+            <li>Lämna kvar konfigurationsinställningen &quot;<a href="configuration.htm#admin_general_coppermine_news">Visa nyheter från coppermine-gallery.net</a>&quot; aktiverad: denna funktion kommer att göra dig uppmärksam på nyheter angående releaser och säkerhetsfrågor. Nyheterna syns bara för dig som administratör, dina slutanvändare kommer inte att märka någonting.</li>
+            <li>Prenumerera på paketet på sf.net projektsidor</li>
+            <li>Prenumerera på <a href="http://forum.coppermine-gallery.net/index.php/board,58.0.html" rel="external" class=" external">anslagstavlan</a> (genom att klicka på &quot;avisera&quot; när du är inloggad). Du får ett e-postmeddelande varje gång ett nytt inlägg görs på anslagstavlan.</li>
+        </ul>
+        </li>
+        <li><a name="upgrade_faq_difference_update_upgrade"></a><h3>Vad är skillnaden mellan <em>uppdatering</em> och <em>uppgradering</em>?<a href="#upgrade_faq_difference_update_upgrade" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        Orden &quot;uppdatering&quot; och &quot;uppgradering&quot; används ofta synonymt. Det är en liten skillnad i definitionen från Coppermines utvecklingsteam: <strong>uppgradering</strong> betyder vanligtvis en utökning av <em>större</em> versionsnummer, t.ex. från cpg1.<em>4</em>.x till cpg1.<em>5</em>.x; medan <strong>uppdatering</strong> vanligtvis refererar till <em>mindre</em> version höjningar, eg. underhållsreleaser från cpg1.5.<em>x</em> till cpg1.5.<em>y</em>.<br />
+        Användningen är dock inte strikt, så då kan hitta ställen både i dokumentationen och i andra media (som Coppermines officiella forum) där terminologin är den motsatta. Orden är praktiskt taget synonyma så vitt det berör oss.</li>
+        <li>
+            <a name="upgrade_faq_what_version"></a><h3>Hur vet jag vilken version av Coppermine jag har?<a href="#upgrade_faq_what_version" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+            Det finns flera sätt att avgöra vilken version av Coppermine du har:
+            <ul>
+                <li>Om du kan logga in på ditt Coppermine galleri med ditt användarkonto, gå till konfigurationspanelen: versionen visas i sidhuvudet.</li>
+                <li>Ta en titt på utdatat på vilken som helst Coppermine-baserad sida med din vanliga webbläsare (genom att högerklicka på ett blankt avsnitt eller genom att välja &quot;Visa källa&quot; eller liknande från Visa-menyn). Bläddra ner till slutet av sidan (strax före sluttaggen för body &quot;</body>&quot;) - du bör kunna se en kommentarrad där som visar Coppermine versionen</li>
+                <li>Använd en ren-text editor för att öppna en lokal kopia av någon av Coppermines PHP källfiler - i filrubriken borde du se både en exakt Coppermine-version och subversionens revisionsnummer. Så är fallet också med åtskilliga andra filer som kommer med Coppermine.</li>
+            </ul>
+        </li>
+    </ul>
+</div><a name="upgrade_end"></a>
+<a name="downgrading"></a><h2>Nedgradera från cpg1.5.x till en äldre version<a href="#downgrading" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>CPG1.5.x innehåller många nya funktioner (jämfört med äldre versioner), så vi uppmuntrar våra användare att uppgradera. Det kan finnas de som vill testa cpg1.5.x och senare bestämmer sig för att de vill gå tillbaka till en äldre version. Du måste tänkta på att en full uppgradering ändrar det övergripande utseendet på Coppermines databas som även inkluderar en konvertering av kodningen till unicode. Denna process kan inte ångras: när du en gång gjort konverteringen, är den enda vägen tillbaka att återställa en komplett mySQL databas dump (du måste förstås skapa denna backup <strong>före</strong> du uppgraderar överhuvudtaget). Att skapa mySQL dumps (backuper) rekommenderas ändå, så du bör göra det <strong>nu</strong>.</p>
+<p class="cpg_message_warning">För att göra detta absolut klart: du kan <strong>bara</strong> nedgradera om du brukade ha cpg1.4.x förut och uppgraderade till denna version av cpg1.5.x. Om du har en <strong>ny</strong> installation av cpg1.5.x, <strong>kan du inte</strong> nedgradera alls!</p>
+<p>För att faktiskt utföra nedgraderingen, ersätt alla cpg1.5.x filer på din server med filer från en äldre version (som om du gjorde en uppgradering, se ovan). Läs sedan tillbaka den säkerhetskopia som du måste ha gjort av databasen före uppgraderingen. Om du inte har någon databas dump kan du inte backa!</p>
+<a name="downgrading_end"></a>
+<div id="doc_footer">
+    <div class="doc_info_wrapper">
+        <span id="doc_last_changed">$LastChangedDate$</span>
+        <span id="doc_revision">$Revision$</span>
+    </div>
+</div>
+</body>
+</html>

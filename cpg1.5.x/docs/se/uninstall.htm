@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <title>Avinstallering - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
@@ -12,10 +12,9 @@
 <!--
   SVN version info:
   -----------------
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/uninstall.htm $
   $Revision: 7805 $
-
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -30,13 +29,12 @@
 <div id="toc">
 <a href="toc.htm">Innehållsförteckning</a>
 </div>
-
 <a name="uninstall"></a><h1>Avinstallering<a href="#uninstall" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>Om du inte längre vill ha ditt Coppermine galleri och vill göra dig av med det, behöver du göra två saker:</p>
 <ul>
   <li><strong>Radera databastabellerna</strong><br />
   <img src="images/phpmyadmin_tables.png" border="0" width="500" height="233" alt="" /><br />
-  Använd ett tredjepartsverktyg som <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a> för att radera alla coppermine tabeller (se skärmbild). Du kan avgöra vilka tabeller du behöver ta bort genom att titta på tabellens prefix: alla coppermine-tabeller använder det tabellprefix som du valde när du körde installation för första gången. Om du inte är säker på vad du gör, gör en <a href="export.htm#backup_database">backup</a> (database dump) före du slutgiltigt raderar tabellerna. Som standard är tabellprefixet <tt class="code">cpg15x_</tt> (men kan vara annorlunda om du valde ett annat prefix under installationen). När du använder phpMyAdmin, bocka för alla coppermine-tabeller, bläddra sedan till slutet av sidan och välj "drop" från rullgardinsmenyn märkt "with selected". Bekräfta säkerhetsdialogen med ja, "yes".<br />
+  Använd ett tredjepartsverktyg som <a href="http://phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a> för att radera alla coppermine tabeller (se skärmbild). Du kan avgöra vilka tabeller du behöver ta bort genom att titta på tabellens prefix: alla coppermine-tabeller använder det tabellprefix som du valde när du körde installation för första gången. Om du inte är säker på vad du gör, gör en <a href="export.htm#backup_database">backup</a> (database dump) före du slutgiltigt raderar tabellerna. Som standard är tabellprefixet <tt class="code">cpg15x_</tt> (men kan vara annorlunda om du valde ett annat prefix under installationen). När du använder phpMyAdmin, bocka för alla coppermine-tabeller, bläddra sedan till slutet av sidan och välj &quot;drop&quot; från rullgardinsmenyn märkt &quot;with selected&quot;. Bekräfta säkerhetsdialogen med ja, &quot;yes&quot;.<br />
 Alternativt (om du inte har phpMyAdmin tillgängligt), skapa en PHP fil (med hjälp av en ren-text editor som notepad.exe) med detta innehåll:
 <pre>&lt;?php
 // add the mysql connection stuff here
@@ -47,13 +45,12 @@ DROP TABLE `cpg15x_albums`, `cpg15x_banned`, `cpg15x_bridge`, `cpg15x_categories
 `cpg15x_sessions`, `cpg15x_temp_data`, `cpg15x_temp_messages`, `cpg15x_usergroups`, 
 `cpg15x_users`, `cpg15x_votes`, `cpg15x_vote_stats`;
 ?&gt;</pre>
-spara filen som "droptables.php" och ladda upp den (med hjälp av din FTP applikation) till den mapp där ditt coppermine galleri finns. Kör sedan filen du just laddade upp i din webbläsare genom att gå till URL <tt class="code">http://din_hemsida.se/din_gallerimapp/droptables.php</tt>
+spara filen som &quot;droptables.php&quot; och ladda upp den (med hjälp av din FTP applikation) till den mapp där ditt coppermine galleri finns. Kör sedan filen du just laddade upp i din webbläsare genom att gå till URL <tt class="code">http://din_hemsida.se/din_gallerimapp/droptables.php</tt>
   </li>
   <li><strong>Radera filerna</strong><br />
   Använd din FTP applikation för att radera den mapp dit du installerade coppermine galleriet.
   </li>
 </ul>
-
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
 		<span id="doc_last_changed">$LastChangedDate: 2010-08-06 11:59:36 +0200 (Fr, 06 Aug 2010) $</span>

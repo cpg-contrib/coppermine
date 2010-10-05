@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Administratörsverktyg - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Coppermine Photo Gallery project - Coppermine är ett lättanvänt, snabbt och funktionsrikt galleri script med mySQL databas, användarhantering, privata gallerier, automatiskt skapande av miniatyrbilder, e-kortfunktion och ett mallsystem för att lätt anpassa galleriet för att matcha resten av webbsidan." />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.9
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/admin-tools.htm $
+  $Revision: 7805 $
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Dokumentation och Manual</h1>
+<div id="toc">
+<a href="toc.htm">Innehållsförteckning</a>
+</div>
+<a name="admin_tools"></a><h1>Administratörsverktyg<a href="#admin_tools" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p><img src="images/admin-tools.png" border="0" width="350" height="194" alt="" align="right" />Med administratörsverktygen kan du utföra saker för ett individuellt album (eller för alla album i ditt galleri). Administratörsverktygen innehåller flera mindra verktyg - de flesta av dem används för att hantera bilder i album.</p>
+<a name="admin_tools_options"></a><h2>Tillgängliga verktyg<a href="#admin_tools_options" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>En samling av verktyg för att:</p>
+<ul>
+	<li><a href="#admin_tools_options_rebuild">Uppdatera miniatyrbilder och/eller skala bilder</a></li>
+	<li><a href="#admin_tools_options_filename_filetitle">Filnamn &rarr; Filtitel</a></li>
+	<li><a href="#admin_tools_options_delete_titles">Radera filtitlar</a></li>
+	<li><a href="#admin_tools_options_delete_original">Radera originalstora bilder</a></li>
+	<li><a href="#admin_tools_options_intermediate">Radera medelstora bilder</a></li>
+	<li><a href="#admin_tools_options_delete_older_files">Radera filer som är äldre än ett visst antal dagar</a></li>
+	<li><a href="#admin_tools_options_delete_comments">Radera kommentarer för saknade filer</a></li>
+	<li><a href="#admin_tools_options_delete_original_backup">Radera backuper av originalbilder (vattenstämplade)</a></li>
+	<li><a href="#admin_tools_options_reload_dimensions">Ladda om fildimensioner och storleksinformation</a></li>
+	<li><a href="#admin_tools_options_reset_views">Nollställ visningsräknare</a></li>
+	<li><a href="#admin_tools_options_keyword_convert">Byta nyckelordsavgränsare</a></li>
+</ul>
+<hr />
+<a name="admin_tools_options_rebuild"></a><h3>Uppdatera miniatyrbilder och/eller skala bilder<a href="#admin_tools_options_rebuild" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p><img src="images/admin-tools_resize.png" border="0" width="350" height="113" alt="" border="0" align="left" />Använd det här om du ändrat inställning för miniatyrbilder eller medelstora bilder i konfigurationen, eller om du måste ersätta skadade versioner.</p>
+<p>Välj radioknappen för det här, välj sedan att beräkna om miniatyrbilder, medelstora bilder eller båda.</p>
+<p>Det här använder mycket serverresurser så om du råkar ut för time-out problem, ställ om den till att hantera mindre batchar (25 är för närvarande satt som standard).</p>
+<a name="admin_tools_options_filename_filetitle"></a><h3>Filnamn &rarr; Filtitel<a href="#admin_tools_options_filename_filetitle" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p><img src="images/admin-tools_filename.png" border="0" width="350" height="" alt="" align="left" />Mass-skapa filtitlar baserade på filnamn eller uppladdningsdatum. Välj först hur filnamnet ska användas som titel. Bocka för alternativet &quot;Tillämpa endast för filer som saknar titlar&quot; (förbockat som standard) för att säkerställa att du inte skriver över befintliga titlar. Filtitlar är viktiga för att underlätta för sökmotorer, så du bör sätta namn manuellt om du kan (använd funktionen &quot;redigera filer&quot; för det specifika albumet) och använd den automatiska lösningen från administratörsmenyn bara om det inte finns annat sätt att ange filtitlar till filer i ditt galleri.</p>
+<a name="admin_tools_options_delete_titles"></a><h3>Radera filtitlar<a href="#admin_tools_options_delete_titles" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Använd det här för att ta bort filtitlar från ett eller flera album. Det kommer inga bekräftelsemeddelanden eller varningar, så använd det här försiktigt.</p>
+<a name="admin_tools_options_delete_original"></a><h3>Radera originalstora bilder<a href="#admin_tools_options_delete_original" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Använd det här för att friställa utrymme på webbserverns hårddisk.<br />
+När du väljer det här kontrollerar Coppermine om det finns en medelstor bild skapad, och om det gör det raderas den fullstora bilden, och sedan döps den medelstora om. Om det inte finns någon medelstor bild, lämnar Coppermine kvar originalbilden oförändrad.</p>
+<p>Det här alternativet har bara betydelse om du från början satte resolutionen för den medelstora bilden olikt mot originalbilden, och att du aktiverade skapanden av den medelstora bilden. Om du senare ändrade dig och bestämde dig för att inte behålla det fullstora originalet så kan du använda den här funktionen för söka igenom dina filer och radera alla original på en gång.</p>
+<p>För en mer detaljerad beskrivning av konceptet med att behålla olika resolutioner, se avsnittet &quot;<a href="start.htm#getting_resizing">komma igång &rarr; start.htm#getting_resizing</a>&quot; i dokumentationen.</p>
+<a name="admin_tools_options_intermediate"></a><h3>Radera medelstora bilder<a href="#admin_tools_options_intermediate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Detta kommer att radera medelstora (normala) bilder.<br />
+Använd det här för att friställa diskutrymme om du har inaktiverat 'Skapa medelstora bilder' i konfigurationen efter det att bilder lagts till i galleriet.</p>
+<a name="admin_tools_options_delete_older_files"></a><h3>Radera filer som är äldre än ett visst antal dagar<a href="#admin_tools_options_delete_older_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p><img src="images/admin-tools_delete-older.png" border="0" width="350" height="51" alt="" align="left" />Detta kommer att radera filer som är äldre än det antal dagar som du specificerar (miniatyr- medelstora- och fullstora bilder). Använd den här funktionen för att friställa diskutrymme. Varning: de filer du specificerar kommer att raderas permanent utan några fler varningar!</p>
+<a name="admin_tools_options_delete_comments"></a><h3>Radera kommentarer för saknade filer<a href="#admin_tools_options_delete_comments" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Ibland när filer har raderats, finns fortfarande deras eventuella kommentarer kvar i databasen. Använd det här för att helt radera dessa från databasen.</p>
+<p>Alla album påverkas, oavsett vad du valde i listrutan för album.</p>
+<a name="admin_tools_options_delete_original_backup"></a><h3>Radera backuper av originalbilder (vattenstämplade)<a href="#admin_tools_options_delete_original_backup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Har endast betydelse om du har aktiverat vattenstämpling. Det här kommer att radera backupbilderna. Du kommer att spara diskutrymme, men du kommer inte längre att kunna ångra vattenstämpeln!!! Efter det här blir vattenstämpeln permanent.</p>
+<a name="admin_tools_options_reload_dimensions"></a><h3>Ladda om fildimensioner och storleksinformation<a href="#admin_tools_options_reload_dimensions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p><img src="images/admin-tools_reload-dimensions.png" border="0" width="350" height="69" alt="" align="left" />Den här funktionen är särskilt användbar om du har ersatt en specifik fil manuellt (med hjälp av din FTP applikation eller en insticksmodul) och du behöver ändra de dimensioner som lagrats i databasen från inställningen för dem gamla filen.</p>
+<p>Du kan specificera antal bilder att processa - minska värdet om du får time-out.</p>
+<a name="admin_tools_options_reset_views"></a><h3>Nollställ visningsräknare<a href="#admin_tools_options_reset_views" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Nollställer alla visningsräkningar i det album du väljer.</p>
+<a name="admin_tools_options_keyword_convert"></a><h3>Byta nyckelordsavgränsare<a href="#admin_tools_options_keyword_convert" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p><img src="images/admin-tools_convert-keyword-separator.png" border="0" width="350" height="82" alt="" align="left" />Det här kommer att byta ut <a href="configuration.htm#admin_general_keyword_separator_start">nyckelordsavgränsare </a> i alla dina filer från ett värde till ett annat. Du bör också kontrollera &quot;Sätt nyckelord för galleri till ett nytt värde&quot; så att galleriet fungerar korrekt efter nyckelordsavgränsaren bytts ut. Före bytet så kan du ersätta ditt snart-nya-avgränsare mot ett annat tecken så att dina nuvarande nyckelord bevaras intakta. Du kan också ersätta ett tecken efter ändringen. Detta är användbart om du använde understrykningstecken i Coppermine 1.4 och tidigare och du vill byta ut dessa mot blanktecken efter du bytt ut din avgränsare mot semikolon. Exempel: Före bytet, &quot;South Dakota;mountain&quot; har 2 nyckelord med semikolon som avgränsare. Om du byter ut semikolon mot blanktecken kommer resultatet att bli &quot;South Dakota mountain&quot; som har 3 nyckelord.  Om du byter ut blanktecken mot understrykningstecken först, så får du resultatet &quot;South_Dakota mountain&quot; som behåller dina två nyckelord intakta.</p>
+<hr />
+<a name="admin_tools_usage"></a><h2>Användning<a href="#admin_tools_usage" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>På administratörsverktygens första panel så kan du välja vilket verktyg du vill använda och vilket album de ska användas för. Efter du skickat formuläret körs det aktuella verktyget.</p>
+<ol>
+	<li>(1) Välj den funktion du vill ha genom att klicka på radioknappen bredvid motsvarande tabellrubrik</li>
+	<li>(2) Välj ett val som berör den funktion du valt</li>
+	<li>(3) Välj det album du vill att funktionen du valde i steg 1 ska användas på nederst på bilden. Du kan specificera &quot;alla album&quot; också</li>
+	<li>(4) Skicka formuläret</li>
+</ol>
+<a name="admin_tools_usage_end"></a>
+<a name="admin_tools_end"></a>
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate: 2010-08-06 11:59:36 +0200 (Fr, 06 Aug 2010) $</span>
+		<span id="doc_revision">$Revision: 7805 $</span>
+	</div>
+</div>
+</body>
+</html>

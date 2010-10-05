@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <title>Ofta ställda frågor/Frequently Asked Questions (FAQ) - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
@@ -11,11 +11,9 @@
 <meta http-equiv="imagetoolbar" content="no" />
 <!--
   SVN version info:
-
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/faq.htm $
   $Revision: 7805 $
-
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -30,13 +28,9 @@
 <div id="toc">
 <a href="toc.htm">Innehållsförteckning</a>
 </div>
-
 <a name="faq"></a><h1>Ofta ställda frågor/Frequently Asked Questions (FAQ)<a href="#faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
-<p>Med tusentals användare är det inte så konstigt att samma frågor ofta ställs på <a href="http://coppermine-gallery.net/forum/">supportforumet för Coppermine Photo Gallery</a>. Så för att underlätta för dig när du utvecklar din webbplats, har vi tagit med den här <acronym class="tool" title="FAQ=Frequently Asked Questions">FAQ</acronym> filen med vanliga frågor om vanliga problem. Kom ihåg att läsa det här först innan du ställer frågor på supportforumet. Om du inte gör det så kan det, ja alltså... , återspeglas ogynnsamt på dig och resultera i du får lite negativ "<em>karma</em>."</p>
+<p>Med tusentals användare är det inte så konstigt att samma frågor ofta ställs på <a href="http://coppermine-gallery.net/forum/">supportforumet för Coppermine Photo Gallery</a>. Så för att underlätta för dig när du utvecklar din webbplats, har vi tagit med den här <acronym class="tool" title="FAQ=Frequently Asked Questions">FAQ</acronym> filen med vanliga frågor om vanliga problem. Kom ihåg att läsa det här först innan du ställer frågor på supportforumet. Om du inte gör det så kan det, ja alltså... , återspeglas ogynnsamt på dig och resultera i du får lite negativ &quot;<em>karma</em>.&quot;</p>
 <p>Den här FAQ sidan är den <em>näst bästa</em> resursen för att förstå Coppermine - det är obligatoriskt att du läser hela <a href="index.htm">dokumentationen</a> som kommer i Coppermines programpaket innan du ställer frågor till supporten.</p>
-
-
-
 <a name="faq_toc"></a><h2>Innehållsförteckning:<a href="#faq_toc" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <ul>
 	<li><h3><a href="#faq_setup">Setup / Konfiguration</a></h3>
@@ -67,7 +61,6 @@
 			<li><a class="content" href="#preventPictureStealing">Hur kan jag förhindra att användare sparar (stjäl) mina bilder?</a></li>
 		</ul>
 	</li>
-	
 	<li><h3><a href="#support_board">Coppermine Support</a></h3>
 		<ul>
 			<li><a class="content" href="#phpNewbie">Jag <strong>kan inte</strong> PHP/mySQL...</a></li>
@@ -75,18 +68,16 @@
 			<li><a class="content" href="#howtoask">Hur bör jag formulera min <strong>fråga</strong>?</a></li>
 			<li><a class="content" href="#firstSteps">Jag har fått problem. Vad bör jag göra först, (<strong>innan jag frågar</strong> supporten)?</a></li>
 			<li><a class="content" href="#nonEnglishPosting">Genom att se din profil, ser jag att du är tysk/fransk/annan nationalitet. Kan jag skriva en fråga på det <strong>språket</strong>?</a></li>
-			<li><a class="content" href="#emailSupport">Kan jag e-posta/ </<acronym title="private message" class="tool">pm</acronym>/<acronym title="instant message" class="tool">im</acronym> dig för <strong>support</strong>?</a></li>
+			<li><a class="content" href="#emailSupport">Kan jag e-posta dig privat för att få <strong>support</strong>?</a></li>
 			<li><a class="content" href="#aboutTeam"><strong>Vem</strong> är du, förresten?</a></li>
 		</ul>
 	</li>
 </ul>
-
 <a name="faq_setup"></a><h2>Setup / Konfiguration<a href="#faq_setup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-
 <a name="noFullsizePopup"></a>
 <h3>Den <strong>fullstora bilden visas inte</strong> när man klickar på den medelstora bilden. Vad är det för fel?<a href="#noFullsizePopup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Om du är säker på att din originalbild är större än de dimensioner som du satte för den medelstora bilden, är risken stor att du har över-redigerat ditt temas template.html fil: försäkra dig om att raden <tt class="code">{JAVASCRIPT}</tt> inne i /themes/ditt_tema/template.html fortfarande är där för att möjliggöra att pop-up fönster fungerar...<br />
-&lt;Head&gt;-delen av din template fil bör se ut så här:<br />
+&lt;Head&gt;-delen av din template fil bör se ut så här:</p><br />
 <pre>&lt;head&gt;
 &lt;title&gt;{TITLE}&lt;/title&gt;
 &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset={CHARSET}&quot; /&gt;
@@ -98,7 +89,7 @@ Om du är osäker på det här, jämför bara ditt temas template.html med det s
 <a name="preventHotlinks"></a>
 <h3>Hur kan jag förhindra att andra webbplatser länkar direkt till mina bilder istället för till mitt galleri?<a href="#preventHotlinks" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Om ditt webbhotell sponsrar användningen av .htaccess filer (du får fråga dom), så kan du förhindra &quot;hotlinking&quot; genom att skapa en .htaccess fil i mappen för album.<br />
-Öppna ditt textredigeringsprogram och lägg till följande rader, spara sedan filen som .htaccess :
+Öppna ditt textredigeringsprogram och lägg till följande rader, spara sedan filen som .htaccess :</p>
 <pre>SetEnvIfNoCase Referer &quot;^http://www.din_hemsida.com/&quot; locally_linked=1
 SetEnvIfNoCase Referer &quot;^http://din_hemsida.com/&quot; locally_linked=1
 SetEnvIf Referer &quot;^$&quot; locally_linked=1
@@ -107,7 +98,6 @@ SetEnvIf Referer &quot;^$&quot; locally_linked=1
   Allow from env=locally_linked
 &lt;/FilesMatch&gt;</pre>
 Det här fungerar bara på linux/unix och apache servers OCH bara om du har behörighet från ditt webbhotell att använda .htaccess filer eller om du har din egen server och &quot;mod_rewrite&quot; är aktiverat där. </p><hr />
-
 <a name="onlyregisteredcomments"></a>
 <h3>Hur låter jag gäster och inte bara registrerade användare lägga till <strong>kommentarer</strong> till filerna?<a href="#onlyregisteredcomments" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <ul>
@@ -127,10 +117,9 @@ Det här fungerar bara på linux/unix och apache servers OCH bara om du har beh�
     <li>&quot;Uppdatera album&quot;</li>
 </ul>
 <hr />
-
 <a name="cookie"></a>
 <h3>Jag kan inte <strong>logga in</strong> i Coppermine. Vad är det för fel?<a href="#cookie" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Det här är troligtvis ett cookie-problem:
+<p>Det här är troligtvis ett cookie-problem:</p>
 <ul>
 <li>Om du kör Internet Explorer 6, måste du tillåta cookies. Klicka på &quot;Verktyg&quot; - &quot;Internet alternativ&quot; - &quot;Privacy&quot; och lägg till länken till din hemsida till listan av betrodda sidor, eller sätt reglaget till en lägre nivå.</li>
 <li>Ibland hanterar inte IE cookies som det ska. Stäng din webbläsare, försök att radera alla lokala cookies manuellt och starta din webbläsare igen</li>
@@ -138,10 +127,9 @@ Det här fungerar bara på linux/unix och apache servers OCH bara om du har beh�
 <li>Försök använda en annan webbläsare (som <a href="http://www.opera.com/" class="external">Opera</a> som är ganska liten att ladda ner och som kan lätt kan tas bort). Det är generellt en bra idé att ha ytterligare en webbläsare på din lokala dator för att kunna se att din sida visas korrekt inte bara på den webbläsare du gillar bäst.</li>
 <li>Om du använder en subdomän och utvecklingsversionen av Coppermine eller någon annan variant av subdomän (som galleri.din_hemsida.com eller board.din_hemsida.com) så kan detta också orsaka problem: en subdomän är en annan domän (faktiskt så är foo.com och bar.com subdomäner till <acronym class="tool" title="top level domain">tld</acronym> &quot;.com&quot;, så vad gäller cookies så är de lika skilda domäner som bbs.din_hemsida.com och comics.din_hemsida.com). Naturligtvis kan du försöka att &quot;hacka lite vett&quot; i scriptet, men vanligtvis är bbs, för att vara hack-säkra, svåra att lura.</li>
 </ul></p><hr />
-
 <a name="sortAlbum"></a>
 <h3>Hur kan jag ändra <strong>sorteringsordningen för album</strong>?<a href="#sortAlbum" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Som standard visas alla album i den ordning dom skapades. Om du vill ändra sorteringsordning kan du göra så här:
+<p>Som standard visas alla album i den ordning dom skapades. Om du vill ändra sorteringsordning kan du göra så här:</p>
 <ul>
 <li>Logga in som admininistratör;</li>
 <li>Välj &quot;Album&quot; från administratörsmenyn;</li>
@@ -151,21 +139,16 @@ Det här fungerar bara på linux/unix och apache servers OCH bara om du har beh�
 <li>Klicka &quot;utför ändringarna&quot;.</li>
 <li>Bekräfta meddelandet &quot;Är du säker på att du vill göra dessa ändringar ?&quot; med &quot;OK&quot;</li>
 </ul></p><hr />
-
 <a name="deleteIntermediates"></a>
 <h3>Jag använder inte <strong>medelstora bilder</strong> längre. Hur kan jag <strong>radera</strong> dom för att friställa diskutrymme?<a href="#deleteIntermediates" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Varför skulle du vilja göra det? Att radera medelstora bilder gör att du mister många bra funktioner som gör Coppermine till vad det är idag. Funktionen att skicka e-kort, lägga till kommentarer till bilder, betygsätta bilder, visa exif information, bara för att nämna några. Om du verkligen vill spara utrymme, överväg istället att radera dina originalfiler med administratörsverktygets menyalternativ. Då får dina användare förmånen att använda alla coppermine's funktioner med undantag bara för att dom inte kan se bilder i fullstorlek. Dessutom sparar det sannolikt mer utrymme också. Kontrollera bara att du sätter en storlek i konfigurationen på medelstora bilder till ett värde som du kan leva med.</p>
 <p>Om du absolut vill radera medelstora bilder, se avsnittet &quot;<a href="start.htm#getting_resizing_recommended_nointermediate">Tillåt fullstora pop-ups med maximal utrymmesbesparing</a>&quot;.</p><hr />
-
 <a name="oneFileMultipleAlbums"></a>
 <h3>Hur gör jag för att <strong>visa samma bild i flera album</strong>?<a href="#oneFileMultipleAlbums" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p><strong>Albumnyckelord</strong> i <a href="http://coppermine-gallery.net/demo/cpg14x/docs/index.htm#album_prop">Album egenskaper</a> används för att länka en bild från ett album till ett annat. Om du använder den här metoden kan filer/bilder visas i flera olika album medan filen självt bara behöver finnas i ett album på din webbserver. Ladda bara uppfilen till ett album på vanligt sätt, och sätt sedan ett eller flera nyckelord till filen. Nyckelordsfunktionen läser blanka tecken mellan ord som 'avgränsare' och antar att de ord är separata nyckelord. Om du måste använda fraser som nyckelord, sammanbind dem med ett understrykningstecken eller genom att använda ascii platshållaren ctrl+Alt+0160 (NOTERA: det senare fungerar bara för latinbaserade teckenuppsättningar.) Varje album kan endast ha ETT (1) nyckelord eller nyckelordsfras. Alla bilder i övriga album som du vill visa i aktuellt album måste ha samma nyckelord eller nyckelordsfras i deras respektive nyckelordsfält. Bilder, till skillnad från album, kan ha flera nyckelord och nyckelordsfraser som avgränsas av blanktecken. Det här möjliggör för dig att visa bilder i många album. För besökare till dessa album kommer det att se ut som om bilderna har laddats upp i vart och ett album. </p>
-<p>Om du använder albumnyckelord för att visa bilder/filer i fler än ett album, aktivera konfigurationsalternativet, &quotVisa antalet länkade filer&quot, som kommer att visa ytterligare statistikinformation om albumet. Det betyder att för album som inte bara innehåller &quot;normala&quot; filer utan också länkade filer, så kommer antalet länkade filer att visas separat så här "3 filer, senast adderade 07 Okt 2004<em>, 3 länkade filer, 6 filer totalt</em>".</p>
+<p>Om du använder albumnyckelord för att visa bilder/filer i fler än ett album, aktivera konfigurationsalternativet, &quot;Visa antalet länkade filer&quot;, som kommer att visa ytterligare statistikinformation om albumet. Det betyder att för album som inte bara innehåller &quot;normala&quot; filer utan också länkade filer, så kommer antalet länkade filer att visas separat så här &quot;3 filer, senast adderade 07 Okt 2004<em>, 3 länkade filer, 6 filer totalt</em>&quot;.</p>
 <br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
-
 <a name="hacks"></a><h2>Add-ons / Modifieringar / Hacks<a href="#hacks" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
-
-
 <a name="jumpToPrivateAlbum"></a>
 <h3>Hur kan jag skicka en användare <strong>direkt till hans/hennes privata album</strong> så snart han/hon loggat in?<a href="#jumpToPrivateAlbum" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Redigera<br /><tt class="code">login.php</tt><br />och sök efter<br />
@@ -182,33 +165,26 @@ Detta kommer att tillåta dig att använda BBCodes i anpassade fält: du kan då
 <tt class="code">[url]http://www.somesite.com/foo/bar.php?whatever=42[/url]</tt><br />
 eller<br />
 <tt class="code">[url=http://www.somesite.com/foo/bar.php?whatever=42]länk till någon sida![/url]</tt><br />i dina användaranpassade fält (visning av bredd måste, förstås, aktiveras på konfigurationssidan, till att börja med).<br /></p><hr />
-
-
 <a name="addFooterBeforePoweredBy"></a>
 <h3>Hur gör jag för att <strong>lägga till</strong> något <strong>direkt före</strong> raden &quot;Powered by Coppermine&quot;?<a href="#addFooterBeforePoweredBy" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Redigera /themes/ditt_tema/theme.php, sök efter <tt class="code">echo $template_footer</tt> och lägg till det du vill ha i en rad <strong>före</strong> det, som <tt class="code">echo '&lt;span class=&quot;footer&quot;&gt;&lt;a href=&quot;http://www.mylink.com/foo.htm&quot;&gt;My Link&lt;/a&gt;&lt;/span&gt;';</tt></p>
-<p>Alternativt, <a href="theme_template.htm#theme_template_html">redigera template.html</a> eller till och med <a href="theme_copyright.htm"> redigera credits taggen</a> självt.
+<p>Redigera /themes/ditt_tema/theme.php, sök efter <tt class=&quot;code&quot;>echo $template_footer</tt> och lägg till det du vill ha i en rad <strong>före</strong> det, som <tt class=&quot;code&quot;>echo '&lt;span class=&quot;footer&quot;&gt;&lt;a href=&quot;http://www.mylink.com/foo.htm&quot;&gt;My Link&lt;/a&gt;&lt;/span&gt;';</tt></p>
+<p>Alternativt, <a href="theme_template.htm#theme_template_html">redigera template.html</a> eller till och med <a href="theme_copyright.htm"> redigera credits taggen</a> självt.</p>
 <hr />
-
 <a name="renameTemplateHtml"></a>
 <h3>Kan jag <strong>döpa om template.html till template.php</strong> för att inkludera <strong>PHP kod</strong> i min mall?<a href="#renameTemplateHtml" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Nej, det är helt enkelt inte så som Coppermine fungerar; för &quot;normala&quot; sidor så talar namnet på ändelsen om för webbservern om filen ska analyseras av PHP tolken. Template filen i tema-mappen analyseras inte på det sättet - ändelsen .html valdes bara för att göra redigering lättare. Du kan inte ha PHP kod i template-filen oavsett hur du döper den - det går helt enkelt inte!</p><hr />
-
 <a name="preventPictureStealing"></a>
 <h3>Hur kan jag förhindra att användare sparar (stjäl) mina bilder?<a href="#preventPictureStealing" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Du kan inte helt förhindra användare från att stjäla dina bilder - det är så internet fungerar: om en bild visas i en webbläsare så har användaren redan en kopia av den på sin hårddisk. Det finns emellertid några metoder som gör det svårare för en nybörjare att stjäla dina bilder:
+<p>Du kan inte helt förhindra användare från att stjäla dina bilder - det är så internet fungerar: om en bild visas i en webbläsare så har användaren redan en kopia av den på sin hårddisk. Det finns emellertid några metoder som gör det svårare för en nybörjare att stjäla dina bilder:</p>
 <ul>
     <li>Lägg till en vattenstämpel på bilden innan du laddar upp den</li>
     <li>Tillämpa den inbyggda <a href="configuration.htm#admin_watermarking">vattenstämpeln</a>. Tänk på att tillämpa vattenstämpling online resulterar i en hög belastning på servern.</li>
-    <li>Förhindra Internet Explorer från att visa bildverktyspanelen när en användare för musen över en bild. Redigera themes/ditt_tema/template.html, hitta <tt class="code">&lt;meta http-equiv="Pragma" content="no-cache" /&gt;</tt> och lägg efter det till <tt class="code">&lt;meta http-equiv="imagetoolbar" content="no" /&gt;</tt></li>
+    <li>Förhindra Internet Explorer från att visa bildverktyspanelen när en användare för musen över en bild. Redigera themes/ditt_tema/template.html, hitta <tt class=&quot;code&quot;>&lt;meta http-equiv=&quot;Pragma&quot; content=&quot;no-cache&quot; /&gt;</tt> och lägg efter det till <tt class=&quot;code&quot;>&lt;meta http-equiv=&quot;imagetoolbar&quot; content=&quot;no&quot; /&gt;</tt></li>
     <li>Använd någon av de många &quot;ingen högerklickning&quot; script som finns. Tänk då på att sådana script är i huvudsak fåniga, eftersom dom bara förhindrar oerfarna användare från att stjäla dina bilder. Utvecklingsteamet rekommenderar inte att du använder sådana script.</li>
 </ul>
 <br /></p>
 <br />
 <div class="totop">[<a href="#top" class="nodeco">Till toppen</a>]</div><hr />
-
-
-
 <br />&nbsp;<br />
 <a name="support_board"></a><h2>Coppermine Support<a href="#support_board" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 Dessa är (tyvärr) inte-så-ofta-ställda-frågor på <a href="http://forum.coppermine-gallery.net/">Coppermine supporten</a>. Före du ställer en fråga till supporten vänligen läs igenom detta avsnitt:
@@ -217,7 +193,7 @@ Dessa är (tyvärr) inte-så-ofta-ställda-frågor på <a href="http://forum.cop
 <p>Inga problem, alla är nybörjare i början. <strong></strong>Börja bara inte var och varannan fråga med &quot;Jag är en nybörjare&quot;, &quot;Jag kan inget om PHP&quot; etc.<br />Vanligtvis förstår man det av själva frågan. Det finns ingen anledning att be om ursäkt. De flesta av oss minns hur det var att vara i dina skor.</p><hr />
 <a name="lamesupport"></a>
 <h3>Jag skrev min fråga för ett bra tag sedan men <strong>ingen svarar</strong>. Vad i...?<a href="#lamesupport" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Supporten är <strong>inte</strong> en hotline. Även om sidan har många besökare så ägnar sig bara några få åt support - och det på en obetald och frivillig basis. Vi får inte betalt för det vi bidrar med, och vi har alla ett liv, ett jobb, en familj och mer än så. Vi kan vara borta ibland också. Så snälla, ha tålamod, läs dokumentationen och sök i forumet medan du väntar.<br />Om du inte får ett svar på din fråga:
+<p>Supporten är <strong>inte</strong> en hotline. Även om sidan har många besökare så ägnar sig bara några få åt support - och det på en obetald och frivillig basis. Vi får inte betalt för det vi bidrar med, och vi har alla ett liv, ett jobb, en familj och mer än så. Vi kan vara borta ibland också. Så snälla, ha tålamod, läs dokumentationen och sök i forumet medan du väntar.<br />Om du inte får ett svar på din fråga:</p>
 <ul>
 <li>ge oss tillräckligt med tid att svara (dagar, inte timmar!)</li>
 <li>kanske någon annan känner till svaret på ditt problem</li>
@@ -227,7 +203,7 @@ Dessa är (tyvärr) inte-så-ofta-ställda-frågor på <a href="http://forum.cop
 </ul></p><hr />
 <a name="howtoask"></a>
 <h3>Hur bör jag formulera min <strong>fråga</strong>?<a href="#howtoask" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Om du har en fråga, se till att du ger så mycket information som du kan:
+<p>Om du har en fråga, se till att du ger så mycket information som du kan:</p>
 <ul>
 <li>en länk till ditt galleri, men ett testkonto och ett testlösenord, det är ofta det enda sättet som vi kan hjälpa till - ange det tillsammans med din fråga, eller ännu bättre: redigera din profil på supportforumet och skriv in sökvägen till din hemsida där!</li>
 <li>när det gäller serverfrågor, tillhandahåll information om din server (<acronym class="tool" title="operation system">OS</acronym>, server, PHP version, mySQL version, gd lib version, safe mode on/off?). Den mesta informationen kan hämtas från <a href="#VersionGD">phpinfo()</a></li>
@@ -237,7 +213,7 @@ Dessa är (tyvärr) inte-så-ofta-ställda-frågor på <a href="http://forum.cop
 </ul></p><hr />
 <a name="firstSteps"></a>
 <h3>Jag har fått problem. Vad bör jag göra först, (<strong>innan jag frågar</strong> supporten)?<a href="#firstSteps" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p><ul>
+<ul>
 <li>läs filen readme som följer med i Coppermines programpaket</li>
 <li>läs dokumentationen</li>
 <li>läs denna FAQ</li>
@@ -250,23 +226,14 @@ Dessa är (tyvärr) inte-så-ofta-ställda-frågor på <a href="http://forum.cop
 <p>Om du skriver i ett engelskt support forum, så skriv inte i något annat språk än engelska - på så sätt kan även andra dra fördel av din fråga (av svaret som du får). Var inte rädd för att skriva &quot;dålig engelska&quot; - ingen kommer att skratta åt dig och många besökare har inte engelska som första språk i alla fall!</p>
 <p>Vi har <a href="http://coppermine-gallery.net/forum/index.php?board=37.0">språkspecifika supportforum</a> för kinesiska, franska, tyska, italienska, persiska och spanska.</p><hr />
 <a name="emailSupport"></a>
-<h3>Kan jag e-posta </<acronym title="private message" class="tool">pm</acronym>/<acronym title="instant message" class="tool">im</acronym> dig för <strong>support</strong>?<a href="#emailSupport" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<h3>Kan jag e-posta dig förprivat för <strong>support</strong>?<a href="#emailSupport" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Nej det får du inte! Skriv din fråga på <a href="http://coppermine-gallery.net/forum/">Coppermine support forum</a> (offentligt) - om vi inte hittar en lösning <strong>och</strong> den individuella supportern har tid <strong>och</strong> den individuella supportern vill, så kan den supportern e-posta/pm/im <em>dig</em>!<br />
 </p><hr />
-
 <a name="aboutTeam"></a>
 <h3><strong>Vem</strong> är du, förresten?<a href="#aboutTeam" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Vi är en grupp människor som bestämde oss för att bilda ett team för att utveckla Coppermine vidare - läs <a href="http://coppermine-gallery.net/team/">team</a> sidan för mer information...</p><hr />
-
-
 <br />&nbsp;<br />
-
 <p>Denna FAQ är ett arbete under utveckling, bidra gärna i <a href="http://coppermine-gallery.net/forum/">Coppermine Photo Gallery Support Board</a> (kontakta inte utvecklingsteamets medarbetare eller supportrar för att få problem med din Coppermine installtion fixade). Rapportera gärna alla programfel, skrivfel etc.<br />Kontrollera online-versionen av den här dokumentationen för uppdateringar!<br />Ha det så kul!</p>
-
-
-
-
-
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
 		<span id="doc_last_changed">$LastChangedDate: 2010-08-06 11:59:36 +0200 (Fr, 06 Aug 2010) $</span>

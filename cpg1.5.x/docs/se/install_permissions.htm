@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Behörigheter - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Any PHP script that is supposed to be run on a webserver needs read and execute permissions on the server. Subsequently, all Coppermine-files need this permission" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.9
+  $HeadURL$
+  $Revision$
+
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Dokumentation och Manual</h1>
+<div id="toc">
+<a href="toc.htm">Innehållsförteckning</a>
+</div>
+<a name="permissions"></a><h1>Sätta behörigheter<a href="#permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Alla PHP script som är tänkta att köras på en webbserver behöver <em>läs</em> och <em>exekvera</em> rättigheter på servern. Följaktligen behöver alla Coppermine-filer dessa behörigheter.<br />
+Dessutom behöver Coppermine <em>skriv åtkomst</em> till ett antal filer och mappar på webbservern för att åstadkomma följande:</p>
+<ul>
+<li>under installationer behöver Coppermine skapa och skriva till filen &quot;config.inc.php&quot; i &quot;include&quot; mappen för att kunna lagra nödvändiga mySQL access data för att kunna köra Coppermine och förhindra att installationsprogrammet körs en andra gång efter en lyckad installation.</li>
+<li>när http uppladdningar används, behöver Coppermine skriva de filer som ska laddas upp till en undermapp som du och dina användare skapar i Coppermines mapp <em>albums</em> </li>
+<li>oavsett uppladdningsmetod, kommer Coppermine att skapa miniatyrbilder och medelstora bilder (om du har konfigurerat Coppermine för det) och lagra dem också i en undermapp till mappen &quot;albums&quot; </li>
+<li>Om du tänkt aktivera <a href="configuration.htm#admin_logging">loggning</a> i något skede, behöver scriptet skrivbehörighet till mappen &quot;logs&quot;</li>
+<li>Mappen &quot;plugin&quot; behöver få skrivrättigheter också om du vill använda möjligheten till komprimerade uppladdningar i <a href="plugins.htm#plugin_manager_upload">Hantera insticksmoduler</a></li>
+</ul>
+<p>Som standar är filer och mappar på en webbserver inte skrivbara, så du behöver troligtvis ändra behörigheterna före installationen, av ovan nämnda skäl. Det är verkligen obligatoriskt att du sätter/ändrar (CHMOD) behörigheter - annars får du problem förr eller senare.</p>
+<p>För att kunna sätta behörigheterna rätt behöver du förstå hur de fungerar: det finns <em><strong>r</strong>ead (läs)</em>, <em><strong>w</strong>rite (skriv)</em> och <em>e<strong>x</strong>ecute (exekvera)</em> behörigheter (förkortat med <strong>rwx</strong>) för varje mapp och fil. Behörigheterna till en huvudmapp kan ärvas till mapparna och filerna i den men det är möjligt att göra inställningar så att behörigheterna inte ärvs till underliggande mappar och där i liggande filer.</p>
+<p class="cpg_message_validation"><strong>Om du inte kan gissa hur du sätter behörigheterna korrekt, fråga supporten på ditt webbhotell.</strong> Det är ingen mening med att be om hjälp angående detta på Coppermines supportforum - vi kan inte berätta för dig vilken nivå av behörigheter man behöver sätta på just din webbserver. Bara ditt webbhotell kan svara på den frågan.</p>
+<a name="permissions_webserver"></a><h2>Behörigheter på olika typer av webbservrar<a href="#permissions_webserver" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Det finns skillnader mellan olika operativsystem som används på webbservrar. Därför finns det flera olika tillvägagångssätt. Eftersom Coppermine har gjorts för att köras på många olika webbserveruppsättningar, har vi lagt till lite generella instruktioner. Det som har lite mer kännedom tycker kanske att dessa instruktioner är lite väl generaliserade och saknar en del detaljer.</p>
+<p class="cpg_message_info">Notera: det är inte din lokala dator som har betydelse behörighetsmässigt utan snarare det operativsystem som används på din webbserver. Om du inte är säker på vilket operativsystem som körs på din webbserver, försök med CHMOD instruktionerna först - de flesta webbservrar kör en version av Unix/Linux.</p>
+<p>Här en sammanfattning på hur behörigheter fungerar på en del webbservrar:</p>
+<div class="indent">
+    <a name="chmod"></a><h3>Apache på Unix/Linux (CHMOD)<a href="#chmod" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <ul>
+        <li>
+            <a name="chmod_basics"></a><h4>Basics<a href="#chmod_basics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            De finns olika inriktningar av Unix/Linux - men alla fungerar på ett liknande sätt. Vad gäller uppbyggnaden, används ordet &quot;Lunix&quot; för både Unix och Linux derivater. &quot;Read&quot; behörigheter sätts på filer som inte aktivt körs, utan bara används, t.ex. text- eller raka html filer. &quot;Write&quot; behörigheter behövs för att kunna dynamiskt skapa filer, ändra eller radera dem. &quot;Execute&quot; behörigheter behövs för att kunna köra körbara filer, t.ex. scriptfiler som PHP. För att rätt kunna tjäna webbsidor som är php-drivna, är de grundläggande behörigheter som krävs därför &quot;read&quot; och &quot;execute&quot; (förkortat som r-x).<br />
+            Möjliga behörighetsinställningar är:
+              <ul>
+              <li><tt class="code">r--</tt> ... läs endast</li>
+              <li><tt class="code">r-x</tt> ... läs och exekvera</li>
+              <li><tt class="code">rwx</tt> ... läs, skriv och exekvera</li>
+              </ul>
+            Fler kombinationer är tekniskt möjliga (som -wx, --x ellerr -w-), men de är ganska meningslösa som en webbserverinställning och vi förbiser dem i detta dokument.
+        </li>
+        <li>
+            <a name="chmod_groups"></a><h4>Grupper i <abbr title="Unix or Linux derivates">Lunix</abbr><a href="#chmod_groups" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            <abbr title="Unix or Linux derivates">Lunix</abbr> använder ett set av tre-gruppsbehörigheter, var och en kan beviljad oberoende av de andra. Dessa är: <em>owner (ägare)</em>, <em>group (grupp)</em> och <em>world (värld)</em>. Med hjälp av detta set, kan du diktera om en användare som äger en fil har behörighet att ändra eller radera den (skrivbehörigheter) medan andra användare bara kan läsa/se och möjligen exekvera filen. På din server är behörighetsinställningarna för dessa tre möjliga grupper skrivna i en enda rad (i ordningen &quot;owner&quot;, &quot;group&quot;, &quot;world&quot;). <br />
+            <div class="cpg_example">
+              <ul>
+                  <li><tt class="code">rwxrwxrwx</tt> ... läs, skriv och exekverings (rwx) rättigheter för alla tre grupper</li>
+                  <li><tt class="code">rwxr-xr-x</tt> ... rwx rättigheter för ägaren, r-x rättigheter för alla andra</li>
+                  <li><tt class="code">r-xr-xr-x</tt> ... läs och exekveringsrättigheter för alla grupper, endast</li>
+              </ul>
+            </div>
+        </li>
+        <li>
+            <a name="chmod_daemon"></a><h4>Webserver daemon<a href="#chmod_daemon" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Även om du (som ägare till filerna på din server och den som har kontroll över rättigheterna) kan komma åt en fil (t.ex. med hjälp av din <abbr title="File Transfer Protocol">FTP</abbr> <abbr title="application = program = software">app</abbr>), kanske Coppermine scriptet inte kan göra det. Detta orsakas ofta av ett visst inställningsalternativ för servrar: services (i <abbr title="Unix or Linux derivates">Lunix</abbr> som ofta kallas för &quot;daemons&quot;) kan köras under en viss användare som är skilt från den användare som har åtkomst till filerna. På många sådana servrar, körs webbserverns (apache) service under användaren &quot;nobody&quot;. PÅ så sätt kan servern skydda sig mot hacker-attacker. Därför fungerar det inte att sätta behörigheterna på servern till &quot;owner&quot; bara, du måste sätta behörigheter för både &quot;group&quot; och &quot;world&quot; (åtminstone för den grupp som webserver daemon är i).
+        </li>
+        <li>
+            <a name="chmod_binary_arithmetics"></a><h4>Binär aritmetik<a href="#chmod_binary_arithmetics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Som du ser kan behörigheter vara antingen &quot;på&quot; eller &quot;av&quot;, &quot;on&quot; eller &quot;off&quot; - det motsvarar de två olika status en databit kan ha i binär aritmetik (och därför i hela datavärlden).
+            Som vi har tre typer av behörigheter (read, write, execute), behöver vi tre bits för att kunna sätta behörigheter. Den högsta biten är &quot;<em><strong>r</strong>ead</em>&quot; bit - decimal &quot;4&quot; används för att representera det. Den mittersta biten &quot;<em><strong>w</strong>rite</em>&quot; har tilldelats en decimal &quot;2&quot;, och den lägsta biten &quot;<em>e<strong>x</strong>ecute</em>&quot; representeras av decimal &quot;1&quot;.
+            Det kan först vara lite svårt att förstå, speciellt om du inte haft att göra med binär aritmetik förut. Om du vill lära dig mer, googla på det. Det är lättare att förstå om du ser på några exempel:
+            <div class="cpg_example">
+            	<div class="floatleft">
+                	<table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
+                    	<tr>
+                    	    <th>behörighet</th>
+                    	    <th>bit värde</th>
+                    	    <th>set?</th>
+                    	    <th>värde</th>
+                    	</tr>
+                    	<tr>
+                    	    <td>read</td>
+                    	    <td>4</td>
+                    	    <td><input type="checkbox" checked="checked" onclick="javascript:this.checked=true"/></td>
+                    	    <td>4</td>
+                    	</tr>
+                    	<tr>
+                    	    <td>write</td>
+                    	    <td>2</td>
+                    	    <td><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td>
+                    	    <td>2</td>
+                    	</tr>
+                    	<tr>
+                    	    <td>execute</td>
+                    	    <td>1</td>
+                    	    <td><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td>
+                    	    <td>1</td>
+                    	</tr>
+                    	<tr>
+                    	    <td colspan="3" class="tablef">total (resulterar i byte värde)</td>
+                    	    <td class="tablef">7</td>
+                    	</tr>
+                	</table>
+                	</div>
+                	<div class="floatleft">
+                    	<table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
+                        	<tr>
+                        	    <th>behörighet</th>
+                        	    <th>bit värde</th>
+                        	    <th>set?</th>
+                        	    <th>värde</th>
+                        	</tr>
+                        	<tr>
+                        	    <td>read</td>
+                        	    <td>4</td>
+                        	    <td><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td>
+                        	    <td>4</td>
+                        	</tr>
+                        	<tr>
+                        	    <td>write</td>
+                        	    <td>2</td>
+                        	    <td><input type="checkbox" onclick="javascript:this.checked=false" /></td>
+                        	    <td>-</td>
+                        	</tr>
+                        	<tr>
+                        	    <td>execute</td>
+                        	    <td>1</td>
+                        	    <td><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td>
+                        	    <td>1</td>
+                        	</tr>
+                        	<tr>
+                        	    <td colspan="3" class="tablef">total (resulterar i byte värde)</td>
+                        	    <td class="tablef">5</td>
+                        	</tr>
+                    	</table>
+                	</div>
+                	<div class="floatleft">
+                    	<table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
+                        	<tr>
+                        	    <th>behörighet</th>
+                        	    <th>bit värde</th>
+                        	    <th>set?</th>
+                        	    <th>värde</th>
+                        	</tr>
+                        	<tr>
+                        	    <td>read</td>
+                        	    <td>4</td>
+                        	    <td><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td>
+                        	    <td>4</td>
+                        	</tr>
+                        	<tr>
+                        	    <td>write</td>
+                        	    <td>2</td>
+                        	    <td><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td>
+                        	    <td>2</td>
+                        	</tr>
+                        	<tr>
+                        	    <td>execute</td>
+                        	    <td>1</td>
+                        	    <td><input type="checkbox" onclick="javascript:this.checked=false" /></td>
+                        	    <td>-</td>
+                        	</tr>
+                        	<tr>
+                        	    <td colspan="3" class="tablef">total (resulterar i byte värde)</td>
+                        	    <td class="tablef">6</td>
+                        	</tr>
+                    	</table>
+            	</div>
+            	<div style="clear:left"></div>
+            </div>
+        </li>
+        <li>
+            <a name="chmod_benefit"></a><h4>Vad är det för bra med allt det här?<a href="#chmod_benefit" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Istället för att behöva komma ihåg och skriva <tt class="code">rwxrwxrwx</tt> för varje fil och mapp i din installation kan du skriva <tt class="code">777</tt> istället. Detsamma gäller för <tt class="code">rwxr-xr-x</tt>, du kan skriva <tt class="code">755</tt>, istället.
+        </li>
+        <li>
+            <a name="chmod_ftp"></a><h4>FTP applikation<a href="#chmod_ftp" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Att sätta behörigheter med hjälp av en FTP applikation är det alternativ som gäller för de flesta användare som har webbhotell. Beroende på den FTP app du använder, kommer gränssnittet att skilja sig åt något: en del applikationer tillåter dig att använda numren (777 eller755) i CHMOD kommandot, medan andra tillhandahåller en kryssruta där du kan bocka av behörigheterna separat för varje grupp. Mer avancerade FTP applikationer kan även tillhandahålla båda dessa sätt. Eftersom den här dokumentationen inte kan täcka alla individuella FTP applikationer som finns, kan den exakta metoden skilja sig från den du har.<br />
+            Din FTP applikation har troligtvis två fönster, en som visar dina lokala filer och en som visar filerna som finns på din server. I fönstret som visar filerna på servern, navigera till den mapp som dina Copperminefiler finns i. Markera mappen &quot;albums&quot; som finns i den mappen. Från innehållsmenyn (höger-klicka!), välj &quot;egenskaper&quot; (kan kallas för &quot;chmod&quot; eller liknande också). Behörighetsdialogen kommer då att visas. Välj behörigheter enligt ovan (777 eller 755, beroende på din server setup). Om du har en kryssruta som möjliggör att sätta behörigheter för alla undermappar och filer, bocka för det. Om du inte har det, gör det inget. Klicka sedan &quot;OK&quot; på dialogrutan för att behörigheterna ska sättas. Tänk på att din FTP app kanske inte kan se vilka behörigheter som redan <strong>är</strong> beviljade, så du bör inte lita på den information som visas i dialogrutan: även om det verkar som om behörigheterna redan finns kan det vara så att det inte är sant, du bör sätta rätta behörigheter oavsett.<br />
+            Efter att du beviljat behörigheter för din &quot;albums&quot; mapp gör detsamma för mappen &quot;include&quot; som finns i din Coppermine mapp.<br />
+            För en lista på rekommenderade FTP applikationer, se <a href="dev.htm#dev">Developer documentation</a> &rarr; <a href="dev_tools.htm#dev_tools">Tools recommended by the devs</a> &rarr; <a href="dev_tools.htm#dev_tools_ftp_client">FTP clients</a>.
+        </li>
+        <li>
+            <a name="chmod_website_control_panel"></a><h4>Website kontrollpanel<a href="#chmod_website_control_panel" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            En del webbhotell kanske inte ger dig möjlighet att komma åt din sida med FTP, eller så tillåter de inte din FTP klient att köra CHMOD kommandot. Om så är fallet, har du troligtvis ett gränssnitt för serverinställningar (t.ex. cpanel) för att kunna sätta behörigheter på mappar och filer. Det spelar  så fall ingen roll, metoden för att sätta behörigheter skiljer sig inte åt från det som beskrivs i avsnittet 'FTP applikation" ovan: navigera till mappen &quot;album&quot; och sätt nödvändiga behörigheter så att din webbserver får åtkomst till alla filer och mappar inom mappen &quot;albums&quot;. Gör samma sak för mappen &quot;include&quot;.
+        </li>
+        <li>
+            <a name="chmod_shell_access"></a><h4>Shell access<a href="#chmod_shell_access" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            Om du har shell access till din, kan du köra ditt inbyggda <a href="http://www.die.net/doc/linux/man/man1/chmod.1.html" rel="external" class="external">CHMOD</a> kommando på dina filer och mappar. Gå till din Coppermine mapp med hjälp av din shell access, sätt behörigheterna till mapparna &quot;albums&quot; och &quot;include&quot; och allting i dem. Som förklarats ovan behöver användaren som apache daemon körs under skrivbehörighet, så du bör sätta CHMOD till 777 eller 755, beroende på din serverinställning.
+        </li>
+        <li>
+            <a name="chmod_chown"></a><h4>Ägarskap (CHOWN)<a href="#chmod_chown" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+            I unika fall kan det hända att du får behörighetsproblem som inte kan lösas genom att sätta behörigheterna med kommandot CHMOD - istället måste du ändra ägare till dina mappar/filer med det CHOWN kommando som bara gäller på Posix-kompatibla operativsystem. Problem med ägarskap händer vanligtvis när användaren som FTP uppladdningen körs med skiljer sig åt från den användare som webbservern körs under. Det knepiga är att det inte finns någon inbyggd funktion i din FTP applikation för att kunna se eller ändra ägare. Om det inte är din server att administrera, och du inte har shell access, har du kört fast och måste be ditt webbhotell om support.
+        </li>
+    </ul>
+    <a name="chmod_end"></a>
+    <a name="apache_windows"></a><h3>Apache på Windows<a href="#apache_windows" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>Du måste förstå att det finns inget sådant som CHMOD på ett Windows operativsystem - detta kommando finns bara på en Unix/Linux, även om din FTP applikation visar ett CHMOD alternativ. Om du försöker använda CHMOD på Windows, kommer kommandot bara att ignoreras och ingenting händer. Men det finns behörigheter på Windows också.</p>
+    <p>Apache webserver service körs under en specifik användare - om du har full behörighet till servern, se på services control för att ta reda på vilken det är. Om du inte kan det, be ditt webbhotell.</p>
+    <p>Som en tillfällig lösning, sätt behörigheterna på mapp- och filnivå som föreslås i avsnittet <a href="#iis">IIS på Windows</a>, men inte för IUSR (som bara finns på IIS), utan för alla &quot;everyone&quot;. Att tillåta alla att ha läs, skriv och exekveringsrättigheter kan vara en säkerhetsrisk, så det rekommenderas inte alls.</p>
+    <a name="apache_windows_end"></a>
+    <a name="iis"></a><h3>IIS på Windows<a href="#iis" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>Förutsättningar: du behöver alla administratörsrättigheter på din server för att kunna göra det här. Om du inte har din egen webbserver, har ditt webbhotell troligtvis satt upp ett webb-baserat gränssnitt för att låta dig ändra behörigheter. Om du inte vet, fråga ditt webbhotell.</p>
+    <p>Dialogrutan kan skilja sig åt beroende på vilken Windowsversion du har:</p>
+    <ul>
+    <li>Starta Windows Explorer på din webbläsare och navigera till din Coppermine mapp</li>
+    <li>högerklicka på den mapp som du vill ändra behörigheter för </li>
+    <li>Välj &quot;Properties&quot;</li>
+    <li>På dialogrutan för egenskaper, klicka på fliken &quot;Security&quot;</li>
+    <li>Markera användaren &quot;Internet guest account (hostname\IUSR_hostname)&quot;. Om det inte redan finns, använd &quot;Add...&quot; förr att lägga till denna specifika användare</li>
+    <li>Bocka för &quot;Allow&quot; i kryssrutan för &quot;Write&quot;-behörighet</li>
+    <li>Klicka på knappen &quot;Advanced&quot;</li>
+    <li>Barar för att säkerställa att skrivrättigheterna ärvs ner till alla mappar och filer inom den mapp du redigerar, bocka för kryssrutan &quot;Reset permissions on all child objects and enable propagation of inheritable permissions&quot;</li>
+    <li>klicka på &quot;OK&quot;</li>
+    <li>svara, på bekräftelserutan som frågar om alla behörigheter ska ersättas, med &quot;Yes&quot;</li>
+    <li>beroende på antal underobjekt och hastigheten på ditt system, vänta tills alla behörigheter har ändrats och statusfönstret stängs.</li>
+    <li>Klicka på &quot;OK&quot; för att stänga dialogrutan för behörigheter</li>
+    </ul>
+    <p>Du måste förstå att det finns inget sådant som CHMOD på ett Windows operativsystem - detta kommando finns bara på en Unix/Linux, även om din FTP applikation visar ett CHMOD alternativ. Om du försöker använda CHMOD på Windows, kommer kommandot bara att ignoreras och ingenting händer. Men det finns behörigheter på Windows också.</p>
+    <a name="iis_end"></a>
+</div>
+<a name="support"></a><h2>Be om hjälp med behörighetsproblem<a href="#support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p class="cpg_message_info">De flesta användare med Windows bakgrund (eller som inte har någon aning om hur behörigheter fungerar) ställer ofta frågor på supportforumet &quot;<em>Varför måste det vara så komplicerat? Varför skapar ni inte bara ett script som hanterar alla dessa komplicerade behörigheter åt mig?</em>&quot;. Svaret är helt enkelt: <strong>därför att vi inte kan</strong>.</p>
+<p>Coppermine har gjorts för att fungera på ett antal olika plattformar och operativsystem. De behörigheter du behöver sätta är är en del av hur operativsystemet på din webbserver fungerar - de är inte en del av Coppermine självt. Ett script kan inte sätta behörigheter till sig självt om det inte har behörigheter att göra det.</p>
+<p class="cpg_example">Tänk på det som om det hade samma struktur som en armé: en soldat som har låg rang kan inte befordrasig själv till general; bara en officer med högre rang kan befordra soldater med lägre rang. De skulle aldrig befordradem till generaler heller, utan bara ge dem den rang de behöver för att kunna göra sitt jobb (t.ex. befordradem från vanlig menig till korpral).</p>
+<p>Eftersom webbservrar är olika, kan vi inte ge dig en enkel, lättbegriplig instruktion som &quot;CHMOD allting till 755 så är du klar sedan&quot;. Även om det skulle vara fallet för många som har delat webbhotell kanske det inte gäller dig. På en del servrar kanske det inte räcker. På en del andra kan det vara en säkerhetsrisk. På en del andra kanske det inte går alls eftersom det inte finns något sådant kommando där. </p>
+<p>En del supportrar svarar motvilligt på samma frågor om behörigheter som ställs om och om igen. Om du ställer frågor relaterade till behörigheter på Coppermines supportforum, och det tydligt framgår att du inte läst dokumentationen (åtminstone den dels som behandlar behörigheter), får du förmodligen ett snarstucket svar eller inget alls. Tänk gärna två gånger och läs dokumentationen noggrant. Det finns bara lite andra kan göra för att hjälpa dig med detta. Om du verkligen kör fast är det bättre att du ber ditt webbhotell om hjälp.</p>
+<a name="support_end"></a>
+<a name="permissions_folders"></a><h2>Behörigheter på mappnivå<a href="#permissions_folders" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Som ovan sagts, behöver Coppermine olika nivåer på behörigheter på en del av sina undermappar. Alla mappar och filer inom Coppermine mappen behöver vara läsbara och behöver exekveringsrättigheter också. </p>
+<p>Dessutom behövs, <strong>skriv</strong> rättigheter för:</p>
+<ul>
+    <li>Mappen <tt class="code">"albums"</tt> och allting i den. <br />
+    Blanda inte ihop mappen (på filsystemsnivå) som heter <tt class="code">"albums"</tt> med den logiska, organisatoriska termen &quot;album&quot; på databasnivå: även om både termerna låter likadan och även om det <em>kan</em> finnas ett förhållande på filsystemsnivå och filer på databasnivå, får dessa termer inte blandas ihop. <a href="albums.htm">Album</a> på databasnivå är logiska behållare. Mappen <tt class="code">"albums"</tt> på filsystemsnivå är fysiska behållare.</li>
+    <li>Mappen <tt class="code">&quot;include&quot;</tt> måste vara skrivbar under installationen av Coppermine; installationsprogrammet kommer att försöka att lägga till en fil som heter <tt class="code">config.inc.php</tt> till mappen <tt class="code">&quot;include&quot;</tt> där all information lagras som galleriscriptet behöver för att upprätta en anslutning till databasen. Den informationen behöver lagras på filsystemsnivå - alla andra coppermineinställningar lagras på databasnivå så snart scriptet lyckats ansluta till databasen.</li>
+    <li>Mappen <tt class="code">&quot;logs&quot;</tt> måste vara skrivbar om du aktiverar <a href="configuration.htm#admin_logging">loggning i Coppermine's konfiguration</a>.</li>
+    <li>Mappen <tt class="code">&quot;plugins&quot;</tt> måste vara skrivbar om du vill använda <a href="plugins.htm">insticksmoduler</a> och om du vill ladda upp dem med hjälp av http uppladdningsfunktionen som finns inbyggd i <a href="plugins.htm#plugin_manager">insticksmodulshanteraren</a>.</li>
+</ul>
+<!--
+<a name="permissions_faq"></a><h3>Permission FAQ<a href="#permissions_faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+tbc
+-->
+<a href="permissions_end"></a>
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate$</span>
+		<span id="doc_revision">$Revision$</span>
+	</div>
+</div>
+</body>
+</html>

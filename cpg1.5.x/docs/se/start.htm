@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Komma igång - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Komma igång" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.9
+  $HeadURL$
+  $Revision$
+
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Dokumentation och Manual</h1>
+<div id="toc">
+<a href="toc.htm">Innehållsförteckning</a>
+</div>
+<a name="getting"></a><h1>Komma igång<a href="#getting" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Här är en lista med saker som nybörjare ofta har problem med, så läs igenom punkterna en och en:</p>
+<ul>
+	<li>Använd &quot;<strong><a href="albums.htm#albmgr">Hantera Album</a></strong>&quot; (&quot;Album&quot; länken i <a href="admin_menu.htm">administratörsmenyn</a>) för att skapa och ordna dina album. Du behöver <strong>minst ett album</strong> dit dina filer kan hamna.</li>
+	<li>Använd gruppen <strong>anonyma/gäster</strong> för att definiera vad oregistrerade användare (<abbr title="also known as">alias</abbr> <em>gäster</em>) ska och inte ska kunna göra (i panelen för <a href="groups.htm#group_cp">grupper</a>).</li>
+	<li>Använd <strong><a href="albums.htm#modif_alb_pics">egenskapers</a></strong> för ett album för att ändra dess beskrivning och behörigheter. Dialogrutan &quot;albumegenskaper&quot; kommer du till genom att klicka på &quot;Egenskaper&quot;-knappen vid sidan om miniatyrbilden som representerar ett album.</li>
+	<li>För att en användare ska kunna ladda upp filer till ett album, måste <strong>två</strong> villkor vara uppfyllda:
+		<ul>
+		  <li>Användaren måste tillhöra en <a href="groups.htm#group_cp">grupp</a> som kan ladda upp filer.</li>
+		  <li>Det måste finnas minst ett album dit filerna behörighetsmässigt kan laddas upp. Detta är fallet om
+		  	<ul>
+		  		<li>Det finns minst ett album i en publik kategori (det kan vara en rot-kategori) dit &quot;<strong>Besökare kan ladda upp filer</strong>&quot; har satts till &quot;<strong>Ja</strong>&quot;,<br /> <strong>ELLER</strong></li>
+		  		<li>Användaren har skapat ett album i 'användargallerier', om han/hon har tillåtelse att göra det.</li>
+		  	</ul>
+		  </li>
+		</ul>
+	</li>
+	<li>Samma sak gäller <strong>sätta betyg på bilder</strong> och <strong>skriva kommentarer</strong>: gruppen som användaren tillhör måste ha behörighet att rösta/skriva kommentarer <strong>och</strong> det måste finnas minst ett album motsvarande behörighet-till-album har aktiverats. Behörighet till album kan sättas med hjälp av dialogrutan för albumegenskaper.</li>
+	<li>Om du har lyckats installera galleriprogrammet men har problem med att få det att fungera korrekt kan du aktivera &quot;<strong><a href="configuration.htm#debug_mode">debug läge</a></strong>&quot; på <strong>konfigurationssidan</strong>. I detta läge skriver scriptet de flesta varningar/felmeddelanden som PHP producerar och dessutom en del felsökningsinformation. Detta kan vara värdefullt för att förstå vad det är för fel.</li>
+	<li>Genom hela dokumentationen används ordet &quot;besökare&quot; för <em>varje</em> person som kommer till din sida (inloggad eller inte). &quot;Besökare&quot; är inte bara detsamma som &quot;gäst&quot;. Både gäster och registrerade användare är besökare.</li>
+</ul>
+<a name="getting_concepts"></a><h2>Grundläggande koncept<a href="#getting_concepts" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Naturligtvis tycker du Coppermine är spännande och vill börja på en gång. Men det är en del grundläggande överväganden som du behöver göra först, som en del inställningar som inte är lätt ändrade efter det att galleriet fått ett innehåll.</p>
+<p>Det här avsnittet är tänkt att hjälpa dig efter att du slutfört <a href="install.htm#installation">installationen</a> av Coppermine. 
+Gå igenom det noggrant för att undvika problem som annars kan dyka upp senare.</p>
+<ul>
+        <li><strong><a href="#getting_initial_configuration">Första konfiguration</a></strong><br />
+        Inställningar du bör göra omedelbart efter det att installationen är slutförd</li>
+        <li><strong><a href="#getting_structure">Kategori-/album-/filstruktur</a></strong><br />
+        Förstå hur Coppermine organiserar navigation och lagring av individuella filer</li>
+        <li><strong><a href="#getting_resizing">Skala bilder</a></strong><br />
+        Omskalade versioner (andra storlekar) av dina uppladdade original skapas beroende på konfigurationsinställningarna</li>
+        <li><strong><a href="#getting_admin_account">Ditt användarkonto</a></strong><br />
+        Säkerställ att du fyller i alla administratörsdetaljer</li>
+		<li><strong><a href="#getting_upload_permissions">Uppladdningsbehörigheters</a></strong><br />
+        Du kan bestämma om dina användare får eller inte får ladda upp filer</li>
+        <li><strong><a href="#getting_check_uploads">Kontrollera uppladdningar</a></strong><br />
+        säkerställa att uppladdning fungerar innan du öppnar sidan för besökare</li>
+        <li><strong><a href="#getting_consider_bridging">Överväg länkning</a></strong><br />
+        Att länka efter det att du har användare kan bli svårt</li>
+        <li><strong><a href="#getting_interaction">Vad har dina besökare tillåtelse att göra?</a></strong><br />
+        Vilken nivå av användarpåverkan vill du tillåta?</li>
+        <li><strong><a href="#getting_design">Ändra utseende på ditt Coppermine galleri</a></strong><br />
+        Få ditt galleri att smälta in med resten av sin webbsida</li>
+        <li><strong><a href="#getting_typical">Typiska inställningar</a></strong><br />
+        Den nivå på användarpåverkan som du tänker tillåta</li>
+</ul>
+<a name="getting_initial_configuration"></a><h2>Första konfiguration<a href="#getting_initial_configuration" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Det finns en del inställningar som du bör göra i konfigurationen direkt efter du slutfört installationen.</p>
+<p>Logga in med administratörens användarnamn och lösenord (det du satte upp under installationen), klicka på länken &quot;Visa administratörskontroller&quot; om den syns, gå till sidan <strong>Konfiguration</strong> page och börja konfigurera ditt galleri. Notera att även om du är en medlem av gruppen administratörer, så måste du ha &quot;Visa administratörskontroller&quot; aktiverat. I tidigare versioner brukade det kallas &quot;administratörsläge&quot;, men det ändrades eftersom en del trodde att om man växlade från administratörsläge till användarläge så kunde de se samma saker som en användare kunde se (vilket inte var sant).</p>
+<ul>
+  <li><a href="configuration.htm#admin_general_email">Galleriets administratörs epost</a></li>
+  <li><a href="configuration.htm#admin_general_coppermine-url">URL till din gallerimapp</a></li>
+</ul>
+<p>Det finns en del inställningar i konfigurationen som inte kan ändras senare (om det redan finns filer i databasen) - var säker på att du ställer in dem rätt från början. Även om du vill börja använda Coppermine omedelbart så är det tillrådigt att konfigurera dessa inställningar (markerade med en asterisk &quot;*&quot;) ordentligt från allra första början.</p>
+<p>En del inställningar har också allvarlig påverkan på <a href="performance.htm">prestanda</a> och bör övervägas noggrant, särskilt om du är på ett billigt eller kanske till och med gratis webbhotell.</p>
+<a name="getting_structure"></a><h2>Kategori-/album-/filstruktur<a href="#getting_structure" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Coppermine Photo Gallery fungerar på följande sätt:</p>
+<ul>
+  <li>Filer lagras i album</li>
+  <li>Album organiseras i kategorier</li>
+  <li>Kategorier kan struktureras (i underkategorier)</li>
+</ul>
+<p>Om du inte har tänka ha många album, är det troligt att du inte behöver använda kategorier. Om det gäller dig, skapa inga kategorier. Då kommer alla dina album automatiskt att hamna på galleriet första sida.</p>
+<p>Det finns emellertid en speciell kategori som heter &quot;<strong>Användargallerier</strong>&quot;. Denna kategori kan inte tas bort. Om en användare tillhör gruppen &quot;kan ha ett personligt galleri&quot; och detta är satt till JA, kommer han/hon att ha rättighet att skapa sina egna album och hans/hennes galleri kommer att bli en underkategori till &quot;Användargallerier&quot;. Denna länk är inte synlig för besökare till din sida om du inte tillåter användare att ladda upp bilder eller skapa egna album. </p>
+<p>Administratören kan skapa album i vilken kategori som helst. Användare som inte är administratörer kan bara skapa album i &quot;User galleries/deras_anvandarnamn&quot;.</p>
+<p>Du kan emellertid döpa om &quot;Användargallerier&quot;. för att döpa om kategorin &quot;<strong>Användargallerier</strong>&quot; och dess beskrivning, gå till din <a href="#cat_cp">kontrollpanel för kategorier</a> och ändra namnet där (t.ex. för att översätta orden &quot;User galleries&quot; till ditt eget språk).</p>
+<a name="getting_resizing"></a><h2>Skala bilder<a href="#getting_resizing" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Ett av de stora fördelarna med Coppermine är att det automatiskt skapar miniatyrbilder och medelstora bilder för varje uppladdat original. Detta händer en gång per bild (vid uppladdning), men processen att skala bilder kan köras om med hjälp av <a href="admin-tools.htm#admin_tools">administratörsverktyg</a>. De omskalade kopiorna av dina original lagras i samma mapp som dina original - de har bara andra prefix till sina namn.</p>
+<p>Följande skalade filer skapas när du laddar upp en bild:</p>
+<ul>
+	<li>
+	<a name="getting_resizing_thumbnails"></a><h3>Miniatyrbilder<a href="#getting_resizing_thumbnails" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	Miniatyrbilden skapas beroende på vad som angetts i &quot;<a href="configuration.htm#admin_thumb_start">Inställningar för miniatyrbilder</a>&quot; i konfigurationen, om filen som laddas upp är större än de dimensioner som bestämts för en miniatyrbild. Miniatyrbilder används vanligtvis på miniatyrbildssidan för album, men också på en del andra ställen (t.ex. på profilsidan eller som en miniatyrbild som representerar album och kategorier). Skapandet av miniatyrbilder förbättrar väsentligt uppladdningshastigheten för din sida - om Coppermine inte skapade miniatyrbilder utan visade originalbilden istället (med hjälp av HTML attribut för att visa dem i mindre storlek), skulle miniatyrbildssidan bli ohyggligt långsam.<br />
+	Som dimensioner för dina miniatyrbilder får du hitta en bra kompromiss: miniatyrer med mindre dimensioner resulterar i mindre filstorlek och därför laddas miniatyrbildssidan upp mycket fort. Nackdelen med små dimensioner är uppenbar: om du väljer för smått värde kan dina besökare inte se vad den föreställer och de kommer då inte att bry sig om att klicka på bilden för att se den fullstora bilden. Det finns inget idealvärde för miniatyrbildsstorlek, eftersom det mycket beror på syftet med ditt galleri, men du kan använda mellan 50 och 250 pixlar som en generell regel.<br />
+	Om du laddar upp en fil som är mindre än den bredd/höjd som du har satt upp, kommer ingen miniatyrbild att skapas utan originalbilden används som miniatyrbild istället. </li>
+	<li>
+	<a name="getting_resizing_intermediate"></a><h3>Medelstora bilder<a href="#getting_resizing_intermediate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	Den medelstora bilden skapas om du inte har inaktiverat &quot;<a href="configuration.htm#admin_picture_thumbnail_intermediate_toggle">Skapa medelstora bilder</a>&quot; eller om den uppladdade bilden är mindre än eller lika med den höjd/bredd du har angett för medelstora bilder i <a href="configuration.htm#admin_picture_thumbnail_intermediate_dimension">Max bredd eller höjd på en medelstor bild</a>. Den medelstora bilden används oftast för att visas på sidan för medelstora bilder (displayimage.php) som användaren ser när han/hon klickar på en miniatyrbild. Denna sida kan innehåll alla typer av ytterligare information om bilden (som uppladdaren namn, titel, beskrivning, meta data etc.) och har navigationskontroller som tillåter användaren att direkt hoppa till föregående/nästa bild inom ett album utan att behöva gå tillbaka till miniatyrbildssidan först. Dessutom innehåller sidan för medelstora bilder verktyg som gör att användaren kan vara med och delta (som att rösta och skriva kommentarer om du tillåter det).<br />
+	Den stora fördelen med att ha en medelstor bild är att den har designats för att passa på skärmen för alla besökare, oavsett vilken resolution de har. Detta resulterar i en störningsfri bläddringsupplevelse för dina besökare. Det är tillrådigt att använda ett &quot;säkert&quot; värde för <a href="configuration.htm#admin_picture_thumbnail_intermediate_dimension">Max bredd eller höjd på en medelstor bild</a> som gör att den passar på skärmen (även med alla ytterligare kontroller synliga på sidan). Eftersom det utrymme som kontrollerna kräver beror på det <a href="theme.htm#theme">tema</a> du använder och du inte säkert kan veta vad dina besökare har för skärmresolution, råder vi dig att använda en dimension som är mellan 400 och 800 pixlar. <br />
+	Skapandet av medelstora bilder snabbar också upp hastigheten som det tar att ladda upp din sida, särskilt för användare med långsam anslutning, men naturligtvis utnyttjar även ytterligare medelstora bilder också webbutrymme. Stäng av skapandet av medelstora bilder <em>bara</em> om du har ont om diskutrymme på din sida. Medelstora bilder lagras i samma mapp som dina originalbilder och har prefixet &quot;normal_&quot;.
+	<div class="cpg_example">
+		Låt oss anta att du har satt maximala dimensioner för medelstora bilder till 400 pixlar. Du (eller någon av de användare du tillåter att ladda upp filer) laddar upp en bild som heter &quot;minbild.jpg&quot; som är 800 pixelar bred och 600 pixlar hög. En medelstor bild kommer då att, under uppladdningsprocessen, skapas som heter &quot;normal_minbild.jpg&quot; och ha resolutionerna 400 x 300. En annan bild laddas sedan upp och heter &quot;foobar.jpg&quot; och som är 1024 x 768 pixlar: igen så skapas en medelstor bild som heter &quot;normal_foobar.jpg&quot; och som kommer att bli 400 x 300 pixlar stor. En tredje bild laddas upp och heter &quot;storbild.jpg&quot; med dimensionen 1280 x 800 pixlar. Den medelstora bilden heter då (&quot;normal_storbild.jpg&quot;) och blir 400 x 250 pixlar. Du ser att dimensionen på den tredje medelstora bilden i det här exemplet skiljer sig åt från de andra två. Det beror på att den process som skapar den medelstora bilden tar hänsyn till bildförhållandet i originalbilden. Dina besökare kommer emellertid när de bläddrar det album som innehåller våra tre exempelbilder att alltid se en inbäddad bild som är 400 pixlar bred, så att sidans kontrollera alltid förblir synliga oavsett, utan att en horisontell bläddringslist visas i webbläsarens fönster som tvingar besökaren att bläddra i onödan.
+	</div>
+	</li>
+	<li>
+	<a name="getting_resizing_original"></a><h3>Original<a href="#getting_resizing_original" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+	Originalbilden visas i ett eget fönster när användaren klickar på den medelstora bilden om originalbilden faktiskt är större än den medelstora bilden.
+	  <div class="cpg_example">
+	Låt oss anta att du har satt dimensionen för medelstora bilder till 400 pixlar och att du tillåter att större bilder laddas upp. Sedan laddas två filer upp: filen &quot;first_pic.jpg&quot; är 800 x 600 pixlar, filen &quot;second_pic.jpg&quot; är 400 x 300 pixlar. Om en besökare sedan ser på den medelstora bilden för filen &quot;first_pic.jpg&quot;, kan han/hon klicka på den och se en fullstor bild. När han/hon klickar på &quot;second_pic.jpg&quot; kommer det inte att få något resultat eftersom det inte skulle vara någon mening att visa en fullstor bild: den medelstora bilden som visas är den största bilden som finns.
+	</div>
+	Du <em>kan</em> tala om för Coppermine att aldrig skala om originalbilder som laddas upp, och därmed (åtminstone i teorin) bevara den i originalskick, men det medför stora nackdelar: moderna digitalkameror är kapabla att skapa bilder som har större dimensioner än vad som ryms på en skärmbild, och därmed kommer det att tvinga dina besökare är bläddra i sid- och höjdled om de vill se på bilden. Dessutom kommer jättestora bilder att förbruka mycket webbutrymme och resultera i en långsammare laddning av sidan, speciellt om de har långsammare anslutningar.<br />
+	Därför har Coppermine en funktion för att skala om originalbilden såväl som att ladda upp till en vissa högsta dimension - det rekommenderas bestämt att använda det här alternativet både för administratören uppladdningar såväl som vanliga användaruppladdningar. Alternativet finns i Coppermines konfiguration och heter <a href="configuration.htm#admin_picture_thumbnail_auto-resize">Automatiskt skala om bilder som är större än maximal bredd eller höjdt</a>. Rekommenderade värden är en intervall mellan 800 och 1200 pixlar. I dokumentationen hänvisar vi också till dessa bilder som &quot;original&quot; även om Coppermine ursprungligen skalade om dem också under uppladdningen. Tekniskt sett är de inte längre original utan omskalade (storleksförändrade) kopior, men eftersom funktionen lades till långt efter den första versionen av Coppermine, refererar dokumentation till dem som original. Originalen lagras utan prefix och får det namn som uppladdaren använde. Filnamnet förändras bara om det innehåller ett förbjudet, inte webbsäkert tecken som finns specificerat i konfigurationsalternativet <a href="configuration.htm#admin_picture_thumb_advanced_filename_forbidden_chars">Tecken förbjudna i filnamn</a>.<br />
+	<!--With watermarking becoming a core feature in cpg1.5.x, there is another possible file that can be created: if you choose to enable server-sided watermarking, the unmarked original of the file can be kept as a safe copy - if you enable the corresponding watermarking option.-->
+	</li>
+</ul>
+<p>Coppermine använder bildbibliotek (antingen GD eller ImageMagick) som måste finnas på din webbserver för att omskalade bilder ska kunna skapas (se &quot;<a href="requirements.htm#what">minimikrav</a>&quot;). Dessa bibliotek kan inte skala om video, och inte heller kan de bevara meta data som EXIF eller IPTC. Därför kan miniatyrbilder och medelstora bilder bara skapas för bildtyper som stöds av det bildbibliotek som du använder.</p>
+<p>Det kan bli problem med att skala jättestora bilder, eftersom omskalning kräver resurser av din webbserver. Läs i avsnittet &quot;<a href="upload_troubleshooting.htm#upload_trouble">Felsökning vid uppladdning</a>&quot; i dokumentationen om du har problem med större filer (eller för att få uppladdning att fungera överhuvud taget).</p>
+<a name="getting_resizing_recommended"></a><h3>Rekommenderad inställning på skalning<a href="#getting_resizing_recommended" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="cpg_message_success">Du behöver förstå att ändring av inställningarna för skalning bara påverkar de bilder som du laddar upp från och med det att ändringen gjordes. Bilder som redan finns när du ändrade i konfigurationen kommer <strong>inte</strong> att skalas om automatiskt - istället måste du trigga en omskalningsprocess med hjälp av konfigurationsalternativet &quot;<a href="admin-tools.htm#admin_tools_options_rebuild">Uppdatera miniatyrbilder och/eller omskalade bilder</a>&quot; från <a href="admin-tools.htm#admin_tools">administratyrsverktygen</a> och köra igenom alla album med de nya inställningarna på plats.</div>
+<a name="getting_resizing_recommended_nofullsize"></a><h4>Inga fullstora pop-ups<a href="#getting_resizing_recommended_nofullsize" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>Om du inte alls tänker visa fullstora pop-ups d.v.s. om dina bilder alltid ska visas inbäddade i de sidor Coppermine visar, kan du spara webbutrymme om du ställer in Coppermine på detta sätt.</p>
+<p>Du måste förstå att du även behöver ta hand om besökare som har den minsta skärmresolutionen. Om du förväntar dig att dina besökare har en skärmresolution om 1024 x 768 pixlar eller bättre, så bör du sätta bredden på dina inbäddade bilder till 800, eftersom du behöver lite fritt utrymme över på din sida för dina kontroller också.</p>
+<p class="cpg_example">Låt oss för det här exemplet anta att den maximala storlek som din besökare kan se är 800 pixlar.</p>
+<p>Gå till Coppermines konfiguration och <strong>sätt</strong>:</p>
+<ul>
+	<li>&quot;<a href="configuration.htm#admin_picture_thumbnail_intermediate_toggle">Skapa medelstora bilder</a>&quot; till &quot;nej&quot;<br />
+	På så sätt kommer fullstora bilder att användas på bilden för medelstora bilder också.</li>
+    <li>&quot;<a href="configuration.htm#admin_picture_thumbnail_intermediate_dimension">Max bredd eller höjd på en medelstor bild/video</a>&quot; till &quot;800&quot;<br />
+	Det här tar hand om den resolution som du kommer att se på den inbäddade bilden på sidan</li>
+    <li>&quot;<a href="configuration.htm#admin_picture_thumbnail_max_upload_dimension">Max bredd eller höjd på uppladdade bilder/video</a>&quot; to &quot;800&quot;<br />
+	Detta leder till ett felmeddelande om en användare skulle försöka att ladda upp en fil med större resolution om du sätter nästa alternativ &quot;Skala automatiskt om bilder som är större än maximal bredd eller höjd&quot; till &quot;Nej&quot;. Men om du sätter denna inställning till &quot;Ja&quot; kommer alla uppladdade bilder att skalas om till det värde du satt i &quot;Max bredd eller höjd för uppladdade bilder/video (pixlar)&quot;</li>
+    <li>&quot;<a href="configuration.htm#admin_picture_thumbnail_auto-resize">Skala automatiskt om bilder som är större än maximal bredd eller höjd</a>&quot; till &quot;Ja:Alla&quot;<br />
+	Som vi föreslagit ovan bör du sätta detta värde till &quot;Ja&quot; för att inte dina användare ska få ett felmeddelande när de laddar upp filer som är större än vad de borde. Coppermine kommer då att skala om dem på servern om det behövs.</li>
+</ul>
+<p>Ovan nämnda inställningar är mest effektiva om du inte tänker tillåter fullstora pop-ups, eftersom de sparar så mycket utrymme som det är möjligt gör det omöjligt för besökare att få fullstora bilder i större bildupplösningar.</p>
+<a name="getting_resizing_recommended_nointermediate"></a><h4>Tillåt full-stora pop-ups med maximal utrymmesbesparing<a href="#getting_resizing_recommended_nointermediate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>Att sätta &quot;<a href="configuration.htm#admin_picture_thumbnail_intermediate_toggle">Skapa medelstore bilder</a>&quot; till &quot;nej&quot; i konfigurationen resulterar i ett galleri där du inte har medelstora bilder alls; utan istället kommer den fullstora bilden att visas och skalas om med HTML mekanism. Detta rekommenderas om majoriteten av dina bilder kommer att visas högupplösta i alla fall: på så sätt kommer webbläsaren att läsa in den fullstora bilden i förväg och den visas därför snabbare.</p>
+<p>Att inte skapa medelstora bilder kommer förstås att ha en inverkan på det utnyttjade webbutrymmet: du kommer att spara plats. Om du är bekymrad över förbrukningen av webbutrymme bör du överväga att begränsa &quot;<a href="configuration.htm#admin_picture_thumbnail_max_upload_dimension">Max bredd eller höjd på uppladdade bilder/video</a>&quot; och aktivera omskalning av bilder till dessa dimensioner (alternativet &quot;<a href="configuration.htm#admin_picture_thumbnail_auto-resize">Automatiskt skala om bilder som är större än maximal bredd eller höjd</a>&quot;) - moderna digitalkameror skapar bilder med enorma dimensioner och utnyttjar därför enormt mycket utrymme. Att skala om dessa bilder till dimensioner som är vettiga på webben är därför något som är förståndigt att göra för nästan alla gallerier.</p>
+<div class="cpg_example">
+Exempel på inställning:
+<ul>
+	<li>Konfigurationsinställning &quot;<a href="configuration.htm#admin_picture_thumbnail_intermediate_toggle">Skapa medelstora bilder</a>&quot; &rarr; &quot;no&quot;</li>
+    <li>Konfigurationsinställning &quot;<a href="configuration.htm#admin_picture_thumbnail_intermediate_dimension">Max bredd eller höjd på en medelstor bild/video>&quot; &rarr; &quot;600&quot;</li>
+    <li>Konfigurationsinställning &quot;<a href="configuration.htm#admin_picture_thumbnail_max_upload_dimension">Max bredd eller höjd för uppladdade bilder/video</a>&quot; &rarr; &quot;1280&quot;</li>
+    <li>Konfigurationsinställning &quot;<a href="configuration.htm#admin_picture_thumbnail_auto-resize">Automatiskt skala om bilder som är större än max bredd eller höjd</a>&quot; &rarr; &quot;Ja:Alla&quot;</li>
+</ul>
+</div>
+<a name="getting_resizing_recommended_regular"></a><h4>&quot;Vanlig&quot; inställning där filerna tar lagom mycket utrymme<a href="#getting_resizing_recommended_regular" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+<p>Om du har tillräckligt med webbutrymme och bandbredd och dina besökare har anständig bandbredd, rekommenderas det att du aktiverar skapandet av medelstora bilder och tillåter fullstora pop-ups för de användare som vill se detaljerna.</p>
+<div class="cpg_example">
+Exempel på inställning:
+<ul>
+	<li>Konfigurationsinställning &quot;<a href="configuration.htm#admin_picture_thumbnail_intermediate_toggle">Skapa medelstora bilder</a>&quot; &rarr; &quot;ja&quot;</li>
+    <li>Konfigurationsinställning &quot;<a href="configuration.htm#admin_picture_thumbnail_intermediate_dimension">Max bredd eller höjd på en medelstor bild/video</a>&quot; &rarr; &quot;800&quot;</li>
+    <li>Konfigurationsinställning &quot;<a href="configuration.htm#admin_picture_thumbnail_max_upload_dimension">Max bredd eller höjd för uppladdade bilder/video</a>&quot; &rarr; &quot;1600&quot;</li>
+    <li>Konfigurationsinställning &quot;<a href="configuration.htm#admin_picture_thumbnail_auto-resize">Automatiskt skala om bilder som är större än max bredd eller höjd</a>&quot; &rarr; &quot;Ja:Alla&quot;</li>
+</ul>
+</div>
+<a name="getting_admin_account"></a><h2>Ditt administratörskonto<a href="#getting_admin_account" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Det är obligatoriskt att konfigurera ditt administratörskonto korrekt och att memorera administratörsdetaljerna. Coppermine tillhandahåller till och med ett alternativ för att återskapa ett glömt lösenord, men för det behöver du konfigurera en e-postadress för varje konto. När användare registrerar sig måste de ange en e-postadress, så det borde inte vara några problem. Administratörskontot som du skapar under installation har emellertid ingen e-postadress ännu. Du bör gå till din profil när du är inloggad som administratör och ange en giltig e-postadress för administratören där - på så sätt kan du senare begära ett nytt lösenord om du skulle glömma det.</p>
+<p>För att göra detta absolut klart: det finns åtminstone två ställen i Coppermine där du måste ange en e-postadress:</p>
+<ul>
+    <li>Det första stället är i konfigurationsalternativet &quot;<a href="configuration.htm#admin_general_email">E-postadress till galleriets administratör</a>&quot;. Coppermine kommer att använda denna adress som en &quot;från&quot;-adress när e-post skickas (t.ex. under registrering). Det är obligatoriskt att fylla i den här adressen ordentligt. Om du har en egen domän, kan det vara en bra ide att använda ett e-postkonto som stämmer överens med ditt domännamn.</br>
+    <div class="cpg_example">Om ditt domännamn är &quot;exempel.com&quot;, kan du skapa en e-postadress som heter galleri@exempel.com och använda den e-postadressen i konfigurationen. Coppermine skapar <strong>inte</strong> den e-postadressen åt dig!</div></li>
+    <li>Den andra platsen är profilen för ditt administratörskonto: du bör sätta upp en e-postadress för det kontot också. Detta kan vara vilken typ av e-postadress som helst - förutsatt att det är en som du har tillgång till.</li>
+</ul>
+<p>Det skadar inte om dessa båda adresser är likadana: de kan vara lika eller olika, se bara till att fylla i båda.</p>
+<a name="getting_upload_permissions"></a><h2>Uppladdningsbehörigheter<a href="#getting_upload_permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>I Coppermine, bestäms behörigheten att ladda upp filer på gruppmedlemsskapsnivå. Därför tilldelar du rätten att ladda upp per grupp som besökaren tillhör på <a href="groups.htm#group_cp">kontrollpanelen för grupper</a>. Generellt sett är följande inställningar möjliga (per grupp):</p>
+<ul>
+	<li>
+		<a name="getting_upload_permissions_no"></a><h3>Inga uppladdningar alls är möjliga<a href="#getting_upload_permissions_no" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		<ul>
+			<li>
+				Stäng av alla typer av uppladdningar på <a href="groups.htm#group_cp">kontrollpanelen för grupper</a> för gruppen ifråga
+				<ul>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad motsvarande gruppen &rarr; Personligt galleri &rarr; Tillåtet = nej</span></li>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad motsvarande gruppen &rarr; Uppladdning till publikt album &rarr; Tillåtet = nej</span></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a name="getting_upload_permissions_public_nocreate"></a><h3>Användaren kan ladda upp till vissa album i kategorier som administratören skapat, men kan inte skapa album<a href="#getting_upload_permissions_public_nocreate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		<ul>
+			<li>
+				Aktiva uppladdning till publika album på <a href="groups.htm#group_cp">kontrollpanelen för grupper</a> för gruppen ifråga
+				<ul>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad motsvarande gruppen &rarr; Personligt galleri &rarr; Tillåtet = nej</span></li>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad motsvarande gruppen &rarr; Uppladdning till publikt album &rarr; Tillåtet = ja</span></li>
+				</ul>
+			</li>
+			<li>
+				Du behöver minst ett album dit det är tillåtet att ladda upp filer. Gå till <a href="albums.htm#album_prop">albumegenskaper</a> för albumet i den publika kategorin som det är meningen att användaren ska ladda upp filer till.
+				<ul>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Album egenskaper &rarr; Besökare kan ladda upp filer = Ja</span></li>
+				</ul>
+				Repetera detta om du vill tillåta uppladdning till fler album.
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a name="getting_upload_permissions_public_yescreate"></a><h3>Användaren kan ladda upp till vissa album i kategorier som administratören och kan även skapa album inom vissa kategorier<a href="#getting_upload_permissions_public_yescreate" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		<ul>
+			<li>
+				Aktivera uppladdning till publika album på <a href="groups.htm#group_cp">kontrollpanelen för grupper</a> för gruppen ifråga
+				<ul>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad motsvarande gruppen &rarr; Personligt galleri &rarr; Tillåtet = nej</span></li>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad motsvarande gruppen &rarr; Uppladdning till publikt album &rarr; Tillåtet = ja</span></li>
+				</ul>
+			</li>
+			<li>
+				Gå till <a href="categories.htm#cat_cp">kontrollpanelen för kategorier</a> och bestäm den kategori (eller de kategorier) som användaren ska kunna skapa album i
+				<ul>
+					<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Kategorier &rarr; Redigeringsikon i raden som motsvarar den kategori som du vill tillåta att album skapas i &rarr; Grupp(er) som tillåts att skapa album i denna kategori &rarr; Välj grupper (för att välja flera, tryck och håll nere [Ctrl]-tangenten)</span></li>
+				</ul>
+				Som standard kan vanliga användare (som inte är administratörer) inte skapa album i publika kategorier, så du måste uttryckligen tillåta vissa grupper att skapa album i vissa kategorier.
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a name="getting_upload_permissions_personal"></a><h3>Användare kan skapa personliga album in hans/hennes galleri och kan ladda upp filer till de album han/hon skapat<a href="#getting_upload_permissions_personal" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		När användare tillåts ladda upp till personliga gallerier, måste följande inställningar göras.
+		<ul>
+			<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad motsvarande gruppen &rarr; Personligt galleri &rarr; Tillåtet = ja</span></li>
+			<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad motsvarande gruppen &rarr; Uppladdning till publikt album &rarr; Tillåtet = nej</span></li>
+		</ul>
+		Användaren får då <a href="admin_menu.htm#user_menu_items">ytterligare en menypunkt</a> som heter &quot;Skapa/ordna mina album&quot; där han/hon först måste skapa ett album innan uppladdning kan ske (om inte konfigurationsalternativet <span class="navlocator" style="text-align:right;color:#0E72A4;">Konfiguration &rarr; Registrering &rarr; Skapa användaralbum i personliga gallerier vid registrering</span> är aktiverat).
+	</li>
+	<li>
+		<a name="getting_upload_permissions_combination"></a><h3>Användaren kan ladda upp till både publika och personliga album<a href="#getting_upload_permissions_combination" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+		En kombination av både publika och personliga album är också möjlig: du kan bestämma att användaren får ladda upp både i album med en publik kategori såväl som personliga album inom hans/hennes galleri. Följaktligen behöver då följande inställningar göra på kontrollpanelen för grupper:
+		<ul>
+			<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad motsvarande gruppen &rarr; Personligt galleri &rarr; Tillåtet = ja</span></li>
+			<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad motsvarande gruppen &rarr; Uppladdning till publikt album &rarr; Tillåtet = ja</span></li>
+		</ul>
+		
+	</li>
+</ul>
+<a name="getting_check_uploads"></a><h2>Kontrollera uppladdningar<a href="#getting_check_uploads" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Innan du släpper ditt galleri till allmänheten bör du kontrollera att uppladdningar fungerar som förväntat eftersom det är det vanligaste problem som användarna stöter på och som orsakas av en stor mängd faktorer som man behöver ta hänsyn till. Granska avsnittet <a href="upload_troubleshooting.htm">felsökning vid uppladdning</a> om du har problem. Ta inte för givet att uppladdning kommer att fungera - testa grundligt, särskilt om du tänker tillåta att användare laddar upp.</p>
+<a name="getting_consider_bridging"></a><h2>Överväg länkning<a href="#getting_consider_bridging" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Coppermine gjordes ursprungligen för att vara en fristående applikation. Det var emellertid många som ville integrera det med andra <abbr title="application">applikationer</abbr>, så med början från cpg1.1.x kom Coppermine med en mekanism som tillåter användare att länka Coppermine med en annan applikation vad gäller hanteringen av användare. Den största fördelen är att  användarna på din sida bara behöver logga in en gång på hela din webbsida (t.ex. både i ditt galleri och ditt forum på samma gång), så de behöver inte logga in två gånger och memorera två lösenord.</p>
+<p class="cpg_message_success">Länkning integrerar <strong>inte</strong> Coppermine visuellt med resten av din hemsida (du måste <a href="theme.htm#creating">skapa ett anpassat tema</a> för att åstadkomma det). Allt som länkning gör är att logisk integrera Coppermine och den länkade applikationen vad gäller användarehanteringen och inloggningsprocessen.</p>
+<p>Du kan aktivera (eller inaktivera) länkning när som helst, men du bör bestämma dig angående länkning när du först installerar Coppermine, eftersom det är en del saker du behöver ta hänsyn till: om du redan har användare i din databas när du aktiverar länkning, har du ingen samstämmighet mellan dessa användare och de &quot;nya&quot; användarna i den applikation som du länkar till. Som en konsekvens av det är det ingen samstämmighet mellan de saker dina &quot;gamla&quot; användare gjorde (laddat upp bilder, skrivit kommentarer etc.) och det de &quot;nya&quot; användarna gjorde.</p>
+<p>För att kringgå dessa framtida problem, bör du bestämma dig redan när Coppermine installeras: vill du att användarna ska vara med och delta? Tänker du erbjuda en anslagstavla senare (eller någon annan applikation som håller redan på användare)? Om ditt svar är &quot;ja&quot;, eller &quot;kanske&quot;, så bör du aktivera länkning före du publicerar ditt galleri och tillåter användare att komma in.</p>
+<p>Läs mer i avsnittet <a href="bridging.htm#integrating">länkning</a> i dokumentationen.</p>
+<a name="getting_interaction"></a><h2>Vad har dina användare tillåtelse att göra?<a href="#getting_interaction" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Coppermine kan användas för olika ändamål: en del använder det för att visa sina personliga filer för all på internet, andra vill att bara ett begränsat antal användare ska kunna komma åt sidan och bara kunna se på den utan att kunna göra annat. Ett stort antal webmasters vill skapa en Community sida, där användare kan delta med att ladda upp filer, kommentera andras filer och betygsätta dem.</p>
+<p>Du kan använda Coppermine på alla dessa sätt (eller en blandning av dem), men du bör vara medveten om möjligheterna och begränsningarna först:</p>
+<p>Användare &quot;ärver&quot; sina behörigheter från den grupp som de tillhör. Det är därför som många inställningar i Coppermine görs per grupp. På så sätt kan du ha flera olika nivåer av behörigheter. Sätt behörigheter per grupp med hjälp <a href="groups.htm#group_cp">kontrollpanelen för grupper.</a></p>
+<a name="getting_design"></a><h2>Ändra på hur ditt Coppermine galleri ser ut<a href="#getting_design" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Du kan ändra en del på hur sidan ser ut (d.v.s. <a href="configuration.htm#admin_album_list_content">visa slumpmässiga miniatyrbilder på första sidan</a>) i motsvarande avsnitt av <a href="configuration.htm">konfigurationen</a>. Coppermine har en <a href="theme.htm#theme_engine">temamotor</a> som tillåter dig att anpassa utseendet på ditt galleri. Du kan välja ett av de teman som kommer med Coppermine eller så kan du ladda ner <a href="theme_user-contributions.htm#theme_user-contributions">teman som användare bidragit med</a> från avsnittet om nedladdning (downloads) på Coppermine hemsida. Baserat på befintliga tema kan du <a href="theme_create.htm#theme_create">anpassa ditt individuella tema</a> för att få ditt galleri att bli unikt och matcha resten av din hemsida.</p>
+<a name="getting_typical"></a><h2>Typiska inställningar<a href="#getting_typical" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Det finns många inbyggda konfigurationsalternativ i Coppermine - använd dem förståndigt. Eftersom många användare frågar efter en <em>typisk</em> installation (även om det inte finns någon typisk installation som passar alla), här är en del av dem:</p>
+<a name="getting_typical_monolithic"></a><h3>En uppladdare <em>utan</em> användares påverkan (Monolitiskt galleri)<a href="#getting_typical_monolithic" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p><em>Bara en uppladdare (du, som administratör) och liten eller ingen påverkan från användare</em><br />
+Om du tänker vara den enda som ska kunna ladda upp och du vill ha lite eller ingen påverkan från användare, inaktivera möjligheten för din sidas besökare allt du inte vill att de ska kunna gör. Detta är vanligtvis fallet om du är en konstnär eller en fotograf: du vill bara visa allmänheten vad du har gjort.</p>
+<ul>
+    <li>Inaktivera ny användarregistrering i konfigurationen (<span class="navlocator" style="text-align:right;color:#0E72A4;">konfiguration &rarr; Registrering &rarr; Tillåt registrering av nya användare</span>). Detta kommer att inaktivera &quot;registrerings&quot;-länken i navigationen. Användare som manuellt går till registreringssidan kommer att se ett meddelande som talar om för dem att de inte tillåts utföra denna åtgärd.</li>
+    <li>Inaktivera skapandet av nya album för användare (<span class="navlocator" style="text-align:right;color:#0E72A4;">Grupper &rarr;Rad &quot;Registrerade&quot; &rarr; Personligt galleri &rarr; Tillåtet = nej</span>) om du inte inaktiverat möjligheten att användare kan registrera sig från början och det finns några överblivna registrerade användare kvar.</li>
+    <li>Neka besökare tillåtelse att ladda upp genom att gå till kontrollpanelen för grupper och ändra inställningen &quot;Uppladdning till publikt album&quot; till att inte tillåtas: <span class="navlocator" style="text-align:right;color:#0E72A4;">Grupper &rarr; Rad &quot;Gäst&quot; &rarr; Uppladdning till publikt album &rarr; Tillåtet = nej</span>. Om gäster (eller någon användargrupp) inte tillåts att ha personliga gallerier och ladda upp till publika album, kommer länken &quot;ladda upp fil&quot; inte längre att synas på bilden.
+    <li>Om du inte vill att dina besöka ska kunna delta genom att <strong>betygsätta</strong>, stäng av den möjligheten i kontrollpanelen för grupper för gruppen gäster/anonyma användare: <span class="navlocator" style="text-align:right;color:#0E72A4;">Grupper &rarr; Rad &quot;Gäst&quot; &rarr; Behörigheter &rarr; Betygsättning = nej</span>. Om betygsättning är inaktiverat kommer användare inte att kunna se betygsstjärnor där de annars skulle kunna rösta.</li>
+    <li>Om du inte vill att dina besöka ska kunna skriva kommentarer, stäng av den funktionen för gäster: <span class="navlocator" style="text-align:right;color:#0E72A4;">Grupper &rarr; Rad &quot;Gäst&quot; &rarr; Behörigheter &rarr; Kommentarer = nej</span>.</li>
+    <li>Om du inte vill att dina besöka ska kunna <strong>skicka e-kort</strong>, inaktivera möjligheten på kontrollpanelen för grupper: <span class="navlocator" style="text-align:right;color:#0E72A4;">Grupper &rarr; Rad &quot;Gäst&quot; &rarr; Behörigheter &rarr; E-kort = nej</span></li>
+    <ul>
+<a name="getting_typical_single_uploader_community"></a><h3>En uppladdare <em>med</em> användares påverkan<a href="#getting_typical_single_uploader_community" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Om du ska vara den enda uppladdaren, men du vill ha en Community på din sida, med användarregistrering, kommentarinlägg etc., stäng bara av uppladdning för användare, men sätt på alla andra funktioner som du vill tillåta:</p>
+<ul>
+    <li>
+        Stäng av alla typer av uppladdningar för gäster och registrerade användare: 
+        <ul>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad &quot;Gäster&quot; &rarr; Personligt galleri &rarr; Tillåtet = nej</span></li>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad &quot;Registrerade&quot; &rarr; Personligt galleri &rarr; Tillåtet = nej</span></li>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad &quot;Gäster&quot; &rarr; Uppladdning till publikt album &rarr; Tillåtet = nej</span></li>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad &quot;Registrerade&quot; &rarr; Uppladdning till publikt album &rarr; Tillåtet = nej</span></li>
+        </ul>
+    </li>
+    <li>
+        För att undvika kommentarsspam bör du inte tillåta kommentarer för gäster, men tillåta det för registrerade användare:
+        <ul>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad &quot;Gäster&quot; &rarr; Behörigheter &rarr; Kommentarer = nej</span></li>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad &quot;Registrerade&quot; &rarr; Behörigheter &rarr; Kommentarer = ja</span></li>
+            <li>För att bekämpa spam bör du aktivera godkännande av kommentarer och/eller captcha för kommentarer.<br />
+            För att aktivera godkännande av kommentarer, gå till konfigurationen och ändra motsvarande inställning: <span class="navlocator" style="text-align:right;color:#0E72A4;">Konfiguration &rarr; Inställningar för kommentarer &rarr; Kommentarer kräver godkännande</span>.<br />
+            Förutom det (eller enbart), så bör du aktivera <acronym title="Completely Automated Public Turing test to tell Computers and Humans Apart">captcha</acronym> (en sorts bild som visar förvrängda, slumpmässiga bokstäver som en besökare måste läsa och skriva av i ett registreringsfält för att bevisa att han/hon är en människa och inte en spamrobot: <span class="navlocator" style="text-align:right;color:#0E72A4;">Konfiguration &rarr; Inställningar för kommentarer &rarr; Visa Captcha (Visuell bekräftelse) för att lägga till kommentarer</span></li>
+        </ul>
+    </li>
+  <li>
+        Tillåt användare att betygsätta ditt innehåll: du aktiverar betygssättning på gruppnivå. Gå därför till kontrollpanelen för grupper och tillåt betygssättning för alla grupper du vill:
+          <ul>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad&quot;Gäster&quot; &rarr; Behörigheter &rarr; Betygssättning = ja</span></li>
+            <li><span class="navlocator" style="text-align:right;color:#0E72A4;">Grupp &rarr; Rad &quot;Registrerade&quot; &rarr; Behörigheter &rarr; Betygssättning =ja</span></li>
+        </ul>
+      Tänk dock på att det är inte allt: tänk på dessa per-grupp inställningar som en på/av knapp. Du kan fininställa detta per individuellt album: du kan tillåta betygsättning på ett album men inte tillåta det på ett annat. Gå till <a href="albums.htm#album_prop">album egenskaper</a> för ett individuellt album för att tillåta/inte tillåta betygssättning för just detta album.    </li>
+</ul>
+<a name="getting_typical_multiple_uploader_closed"></a><h3>Flera uppladdare <em>utan</em> nya registreringar (stängd grupp)<a href="#getting_typical_multiple_uploader_closed" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Vanligtvis används denna inställning om du tänker ha en jämförelsevis litet antal användare som ska ladda upp, men ett större antal användare som ska kunna se på innehållet i ditt galleri. Så är ofta fallet för klaner, klubbar och företag, dit medlemmar kan ladda upp filer men besökare på sidan bara kan bläddra bland bilderna utan att kunna lägga till nytt innehåll. Det är jämförelsevis liten skillnad mot föregående inställning &quot;<a href="#getting_typical_single_uploader_community">En uppladdare <em>med</em> användares påverkan</a>&quot; utom i följande fall:</p>
+<ul>
+	<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Konfiguration &rarr; Registrering &rarr; Tillåt registrering av nya användare = nej</span> det kommer att göra att inga nya användare kan registrera sig. Det är upp till administratören att skapa nödvändiga användarkonton.</li>
+	<li>Administratören behöver förstås sätta <a href="#getting_upload_permissions">behörigheter för uppladdning</a> för registrerade användare också</li>
+</ul>
+<a name="getting_typical_multiple_uploader_open"></a><h3>Flera uppladda med nya registreringar<a href="#getting_typical_multiple_uploader_open" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Med den här inställningen går vi igenom en uppsättning som kan verka lite förvirrande till en början, men som är något som många galleriadministratörer vill åstadkomma ett galleri där alla kan registrera sig och där användare också kan ladda upp filer.</p>
+<p>The text in the English version is incomplete, and therefore not translated...
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate$</span>
+		<span id="doc_revision">$Revision$</span>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,629 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Felsökning för uppladdning - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Om du har problem under Coppermines uppladdningsprocess, ändra tillfälligt dina coppermine-inställningar som beskrivs här för att få mer detaljerade felmeddelanden. Detta gäller alla uppladdningsmetoder, inte bara HTTP uppladdningar." />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+  Coppermine version: 1.5.9
+  $HeadURL$
+  $Revision$
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Dokumentation och Manual</h1>
+<div id="toc">
+<a href="toc.htm">Innehållsförteckning</a>
+</div>
+<a name="upload_trouble"></a><h1>Felsökning för uppladdning<a href="#upload_trouble" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Om du har uppladdningsproblem, läs denna sida - alltihop! Coppermines utvecklingsteam anser att denna sida är den viktigaste sidan i hela dokumentationen, helt enkelt för att så många olika saker kan gå fel vid uppladdningen. Detta orsakas för det mesta av olika webbservrars inställningar.</p>
+<button type="button" class="button detail_expand_all" name="expandalltop" id="expandalltop" onclick="return false"><img src="../../images/tree/plus.gif" width="9" height="9" border="0" alt="" title="Expand All" />Utöka alla detaljer</button>
+<button type="button" class="button detail_collapse_all" name="collapsealltop" id="collapsealltop" style="display:none;" onclick="return false"><img src="../../images/tree/minus.gif" width="9" height="9" border="0" alt="" title="Collapse all" />Dölj alla detaljer</button>
+<a name="upload_trouble_permission"></a><h2>Behörigheter<a href="#upload_trouble_permission" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p class="cpg_message_info"><strong>Först och främst:</strong> Kontrollera inställningarna för behörigheterna för mapparna och filerna i mapparna <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, och <tt class="code">/albums/edit</tt>. På <abbr title="Unix, Linux and related operating systems">*nix</abbr>-drivna webbservrar, ska mappen <tt class="code">/albums</tt> och alla undermappar ha behörighet 777 eller 755 (beroende på din webbservers konfiguration). Om du inte vet vad vi menar med <em>777</em> och <em>755</em>, så behöver du läsa på i <a href="install_permissions.htm#permissions">avsnittet behörigheter</a> (om inte det hjälper, gör en Google sökning på <em>UNIX file permissions</em>). Windows har en liknande uppsättning filbehörigheter. Vanligtvis kan du sätta behörigheterna med användning av en <em>FTP klient</em> (Om du inte vet vad en <em>FTP klient</em> är, Googla på <em>FTP client</em> eller se på listan på <a href="dev_tools.htm#dev_tools_ftp_client">rekommenderade verktyg</a>).</p>
+<p class="cpg_message_error">För de utav er som brukar skumma över det som står skrivet med röda bokstäver, så upprepar vi oss för att få din uppmärksamhet:<br />
+<span class="important"><strong>Ja, vi skriver om något som mycket väl kan angå just dig</strong></span>
+</p>
+<p>Vi repeterar - kontrollera/sätt dina behörigheter på mapparna <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, och <tt class="code">/albums/edit</tt>. Alla ska vanligtvis vara 777 eller 755 (beroende av hur din webbserver är uppsatt) eller det som nu behövs sätta supp på din webbserver för att tillått att Coppermine scriptet får behörighet.</p>
+<p class="cpg_message_info">Ja, vi vill att du <strong>sätter</strong> behörigheterna på varje mapp även om du tror att du redan har denna har det. Jas, vi <strong>menar</strong> det. Nej, att bara <em>kontrollera</em> behörigheterna (slå upp vad din FTP-klient rapporterar att behörigheterna är) är <strong>inte</strong> tillräckligt. Som sagt: sätt behörigheterna, titta inte bara på dem.</p>
+<a name="upload_trouble_enable_settings"></a><h2>Aktivera inställningar för felsökning<a href="#upload_trouble_enable_settings" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Om du får problem under Coppermines uppladdningsprocess, ändra tillfälligt dina inställningar som vi föreslår nedan för att få en mer detaljerade <a href="#upload_error_messages">felmeddelanden</a>. Detta gäller för <strong>alla</strong> uppladdningsmetoder, inte bara <a href="uploading_http.htm#upload_http">HTTP uppladdningar</a>.</p>
+<span class="detail_head_collapsed">Detaljer</span>
+<div class="detail_body border1">
+	Även om du har problem med batch-uppladdning av filer (eller med någon annan uppladdningsmetod), så bör du utföra nedanstående steg för att kontrollera http uppladdningar, eftersom http uppladdningar en den mest grundläggande funktionen som måste fungera under alla förhållanden.<br />
+	Om du tänker begära support för uppladdningsproblem hos Coppermines supportforum, så krävs det av dig att du utför nedanstående steg i detalj.
+</div>
+<p>När felsökning laddas upp i <abbr title="Coppermine Photo Gallery">CPG</abbr> 1.5, så råder vi dig att aktivera '<a href="configuration.htm#debug_mode">Debug läge</a>' i <a href="configuration.htm">konfigurationspanelen</a>. Detta ger dig tillgång till mer detaljerade felmeddelanden.</p>
+<ul>
+	<li>
+		<strong class="detail_head_collapsed">Logga in som administratör</strong>
+		<div class="detail_body">Gå till din Coppermine sida och logga in som administratör</div>
+	</li>
+	<li>
+		<strong class="detail_head_collapsed">Sätt &quot;Standaruppladdningsmetod&quot; till &quot;Enkel (simple)&quot;</strong>
+		<div class="detail_body">
+			<ul>
+				<li>Gå till <a href="configuration.htm#admin">konfigurationspanelen</a></li>
+				<li>Bläddra till avsnittet &quot;Användarinställningar&quot; och utöka den genom att klicka på den</li>
+				<li>Sätt <a href="configuration.htm#admin_upload_mechanism">Standaruppladdningsmetod</a> till  &quot;<em>Enkel (simple) - en fil åt gången</em>&quot;</li>
+				<li>Bläddra ner till slutet av sidan</li>
+				<li>Spara de nya inställningarna genom att klicka på &quot;Spara ny konfiguration&quot;</li>
+			</ul>
+		</div>
+	</li>
+	<li>
+		<strong class="detail_head_collapsed">Akitvera &quot;debug läge&quot;</strong>
+		<div class="detail_body">
+			<ul>
+				<li>Gå till <a href="configuration.htm#admin">konfigurationspanelen</a></li>
+				<li>Bläddra till avsnittet &quot;Inställningar för underhåll&quot; och utöka den genom att klicka på den</li>
+				<li>Aktivera debug-läge för alla genom att klicka på &quot;Ja: Alla&quot; på raden &quot;Aktivera debug läge&quot;</li>
+				<li>Lämna visning av notiser inaktiverat - om bockrutan &quot;Visa notiser i debug läge&quot; är förbockad, bockad av den (notiser är bara till för utvecklare - om du tror dig veta vad de betyder, lämna dem avbockade permanent)</li>
+				<li>Bläddra till slutet av sidan</li>
+				<li>Spara de nya inställningarna genom att klicka på &quot;Spara ny konfiguration&quot;</li>
+			</ul>
+		</div>
+	</li>
+	<li>
+		<strong class="detail_head_collapsed">Gå till sidan för http uppladdningar genom att klicka på &quot;ladda upp fil&quot; länken på Coppermines huvudmeny</strong>
+		<div class="detail_body">
+			Sidan för http uppladdningar är tillgänglig när som helst för dig som administratör. Så är dock inte fallet för icke-administratörer som besöker ditt galleri: det beror på vilka behörigheter du tilldelar dem om de ska se länken eller inte.
+		</div>
+	</li>
+	<li>
+		<strong class="detail_head_collapsed">På uppladdningsbilden, välj ett album från listrutan &quot;Album&quot;</strong>
+		<div class="detail_body">
+			Om du inte har något album att välja från listan, beror det på att du inte skapat något album ännu. Du måste ha minst ett album dit du kan ladda upp dina filer. Gå till <a href="albums.htm#albmgr">album hanteraren</a> och skapa minst ett album, och försök sedan att ladda upp igen.
+		</div>
+	</li>
+	<li>
+		<strong class="detail_head_collapsed">Klicka på &quot;Bläddra...&quot; knappen och navigera till en liten jpg-fil som du vet är bra på din hårddisk.</strong>
+		<div class="detail_body">
+			Anta inte att <em>vilken som helst</em> bild fungerar - välj en bild som redan processats av Coppermine så att du säkert vet att Coppermine kan hantera den - detta görs bäst genom att du väljer en bild som ingår i Coppermines demo på Coppermines hemsida.
+		</div>
+	</li>
+	<li>
+		<strong class="detail_head_collapsed">Skicka formuläret genom att klicka på knappen &quot;Ladda upp fil&quot;</strong>
+		<div class="detail_body">
+			Genom att skicka formuläret startar du den faktiska uppladdningsprocessen - allt du gjorde före dess var bara förberedelser.
+		</div>
+	</li>
+</ul>
+<p>Du bör försöka att använda http uppladdning, även om det var en annan uppladdningsmetod som du hade problem med. Du bör få mer detaljerade <a href="#upload_error_messages">felmeddelanden</a> om någon går fel som talar om för dig exakt vad det är för problem med dina uppladdningar. Om felmeddelandet inte säger dig något, <a href="http://coppermine-gallery.net/forum/index.php?action=search" rel="external" class="external">sök på supportforumet</a> efter det felmeddelande du fick.</p>
+<p>Om du inte får något felmeddelande alls har du antagligen överbelastad servern med tidigare försök - läs om <a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions">begränsningar på server-sidan</a> som kanske gäller dig.
+<a name="upload_support"></a><h2>Be om support för uppladdningsproblem<a href="#upload_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p class="cpg_message_error">När du ber om support från Coppermines supportforum, ange en länk till din sida och ett <a href="users.htm#user_cp_new">test användarkonto</a> (testanvändaren får inte tillhöra administratörsgruppen!) som har uppladdningsrättigheter, med ovan nämnda inställningar på plats - på så sätt kan supportern också se felmeddelandena. Skicka <strong>inte</strong> med någon debug_output i inlägget om du inte blir ombedd att göra det. Om du vill ha resultat snabbt, bör du inaktivera administratörsgodkännande för den grupp som testanvändaren tillhör, så att supportern omedelbart kan tala om vad det är för fel utan att behöva dubbelkolla.</p>
+<div class="cpg_message_warning">När folk har problem med uppladdning och bestämmer sig för att fråga via ett inlägg på Coppermines supportforum, får de ofta veta att de ska läsa avsnittet om felsökning för uppladdning. Många gör inte det ordentligt, och det orsakar irritation både för användaren och supporten.<br />
+För att göra det absolut klart: ovanstående steg är absolut <strong>obligatoriska</strong>, oavsett vilka färdigheter du har och oavsett vilken uppladdningsmetod du har problem med. Att underlåta att göra <strong>exakt</strong> det som supporten föreslår innebär att din begöran om hjälp ignoreras. Ja, det gäller dig. Ja, vi menar det!</div>
+<p>Inte säker på vad du ska göra nu? Läs vidare:</p>
+<div class="indent">
+    <a name="upload_support_step-by-step"></a><h3>Steg-för-steg guide när du ber om support<a href="?expand_all=1#upload_support_step-by-step" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>Detta är en steg-för-steg guide som är tänkt att förklara på ett vattentätt sätt vilka inställningar du behöver göra när du ber om support på Coppermines support forum.</p>
+    <p>Vi antar att du har satt strikta behörigheter, så vi går igenom det här lite mer komplicerat än vad som faktiskt är nödvändigt för de flesta installationer: instruktionerna nedan är tänkta att tillåta uppladdning av felsökning för supportern även om resten av användarna i ditt galleri inte har tillåtelse att ladda upp eller om du inte tillåter användarregistrering överhuvud taget. Om du kan systemet, kan du strunta i steget som förklarar hur man skapar en extra grupp om alla dina användare i alla fall har tillåtelse att ladda upp. Poängen är att supporten ska kunna gå igenom uppladdningen tills han/hon kan se vad som faktiskt går fel under uppladdningsstadiet.</p>
+    <ul>
+    	<li>
+    		<a name="upload_support_admin_login"></a><h4 class="detail_head_collapsed">Logga in som administratör<a href="?expand_all=1#upload_support_admin_login" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    		<div class="detail_body">Gå till din Coppermine sida och logga in som administratör</div>
+    	</li>
+    	<li>
+    		<a name="upload_support_create_uploader_group"></a><h4 class="detail_head_collapsed">´Skapa grupp för uppladdning<a href="?expand_all=1#upload_support_create_uploader_group" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    		<div class="detail_body">
+    			Instruktionerna nedan om hur du skapar en grupp gäller bara om du kör Coppermine i fristående läge. Om du har länkat ditt Coppermine galleri, använd den applikation du länkat till för att skapa gruppen.
+    			<ul>
+    				<li>Gå till <a href="groups.htm#group_cp">kontrollpanelen för grupper</a> genom att klicka på motsvarande länk i <a href="admin_menu.htm#admin_menu">administratörsmenyn</a></li>
+    				<li>Bläddra till slutet av sidan</li>
+    				<li>Klicka på knappen &quot;Skapa ny grupp&quot; </li>
+    				<li>En ny tabellrad kommer att synas i slutet av kontrollpanelen för gruppen. Klicka i namnfältet och ange ett vettigt namn för gruppen, t.ex. &quot;uppladdare&quot;</li>
+    				<li>Bläddra till slutet av sidan</li>
+    				<li>Skicka formuläret genom att klicka på knappen &quot;Utför ändringar&quot; </li>
+    			</ul>
+    		</div>
+    	</li>
+    	<li>
+    		<a name="upload_support_assign_permissions_uploader_group"></a><h4 class="detail_head_collapsed">Bevilja uppladdningsbehörighet till uppladdningsgruppen<a href="?expand_all=1#upload_support_assign_permissions_uploader_group" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    		<div class="detail_body">
+    			Instruktionerna nedan om hur man sätter behörighet till en grupp gäller både för fristående och länkade gallerier.
+    			<ul>
+    				<li>Gå till <a href="groups.htm#group_cp">kontrollpanelen för gruppen</a> genom att klicka på motsvarande länk i <a href="admin_menu.htm#admin_menu">administratörsmenyn</a></li>
+    				<li>För uppladdningsgruppen som du skapade i föregående steg, sätt växeln &quot;Tillåtet&quot; till &quot;Jas&quot; i kolumnen &quot;Uppladdning av publika album&quot;. Sätt växeln &quot;Godkännande&quot; till &quot;Nej&quot; i den tabellcellen.</li>
+    				<li>Bläddra till slutet av sidan</li>
+    				<li>Skicka formuläret genom att klicka på knappen &quot;Utför ändringar&quot; </li>
+    			</ul>
+    		</div>
+    	</li>
+    	<li>
+    		<a name="upload_support_create_test_user"></a><h4 class="detail_head_collapsed">Skapa ett testanvändarkonto som inte är administratör<a href="?expand_all=1#upload_support_create_test_user" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    		<div class="detail_body">
+    			Instruktionerna nedan om hur man skapar en användare gäller bara om du kör Coppermine i fristående läge. Om du har länkat Coppermine till en annan applikation, använd den för att skapa testanvändarkontot.
+    			<ul>
+    				<li>Gå till <a href="users.htm#user_cp">användarhanteraren</a> genom att klicka på motsvarande länk i <a href="admin_menu.htm#admin_menu">administratörsmenyn</a></li>
+    				<li>Bläddra till slutet av sidan</li>
+    				<li>Klicka på knappen &quot;Skapa ny användare&quot; </li>
+    				<li>På följande bild, ange ett användarnamn som är lätt att komma ihåg och skriva - vi rekommenderar något enkelt som &quot;test&quot;, helst utan stora bokstäver.</li>
+    				<li>Sätt ett enkelt lösenord - kan vara detsamma som användarnamnet.</li>
+    				<li>Tilldela användaren den grupp &quot;Uppladdare&quot; som du skapade förut - säkerställ att listrutan för användargruppen har värdet &quot;Uppladdare&quot; (eller det namn som du valde för den gruppen).</li>
+    				<li>Bläddra till slutet och skicka formuläret.</li>
+    			</ul>
+    		</div>
+    	</li>
+    	<li>
+    		<a name="upload_support_create_album"></a><h4 class="detail_head_collapsed">Skapa ett album dit de uppladdade filerna kan hamna<a href="?expand_all=1#upload_support_create_album" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    		<div class="detail_body">
+    			Så här långt har vi skapat en anpassad grupp som har behörighet att ladda ner filer till publika album, men vi har inte sagt vilket album uppladdningen får gå till. Vi måste skapa ett album först.
+    			<ul>
+    				<li>Gå till <a href="albums.htm#albmgr">albumhanteraren</a> genom att klicka på motsvarande länk i <a href="admin_menu.htm#admin_menu">administratörsmenyn</a></li>
+    				<li>Välj en kategori som testalbumet ska skapas i - välj kategori genom att använda listrutan överst på albumhanteraren. För enkelhetens skull rekommenderar vi att du skapar testalbumet i galleriets rot-mapp (välj &quot;* Ingen kategori *&quot; från listrutan).</li>
+    				<li>Klicka på knappen &quot;Nytt album&quot; i slutet på sidan</li>
+    				<li>Ett registreringsfält visas. Ange namnet på det nya albumet som &quot;test album&quot; och skicka formuläret genom att klicka på knappen OK </li>
+    			</ul>
+    		</div>
+    	</li>
+    	<li>
+    		<a name="upload_support_album_permissions"></a><h4 class="detail_head_collapsed">Tillåt uppladdningar till test albumet<a href="?expand_all=1#upload_support_album_permissions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    		<div class="detail_body">
+    			Nu finns albumet dit uppladdningarna ska gå, men ännu har ingen utom administratören tillåtelse att ladda upp filer dit. Låt oss tillåta uppladdningar till albumet.
+    			<ul>
+    				<li>Gå till galleriet index genom att klicka på länken &quot;Album lista&quot; i den vanliga gallerinavigationen</li>
+    				<li>Navigera till den kategori som du skapade testalbumet i (om du gjorde som vi föreslog och skapade testalbumet i galleriets rot, bör du redan befinna dig där du ska vara, så då behöver du inte göra något här)</li>
+    				<li>Klicka på knappen &quot;Egenskaper&quot; vid sidan om den tomma miniatyrbilen som representerar testalbumet</li>
+    				<li>På sidan <a href="albums.htm#album_prop">album egenskaper</a> sätt &quot;Besökare kan ladda upp filer&quot; till &quot;Ja&quot;</li>
+    				<li>Om ditt galleri har mycket trafik och du inte vill att dina besökare ska se att det finns ett testalbum, välj &quot;Medlemmar i gruppen 'Uppladdare' &quot; från listrutan &quot;Besökare kan ladda upp filer&quot;</li>
+    				<li>Bläddra till slutet och skicka formuläret genom att klicka på knappen &quot;Uppdatera album&quot;</li>
+    			</ul>
+    		</div>
+    	</li>
+    	<li>
+    		<a name="upload_support_simple_upload_method"></a><h4 class="detail_head_collapsed">Sätt &quot;Standard uppladdningsmetod&quot; till &quot;Enkel&quot;<a href="?expand_all=1#upload_support_simple_upload_method" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    		<div class="detail_body">
+    			<ul>
+    				<li>Gå till <a href="configuration.htm#admin">konfigurationspanelen</a></li>
+    				<li>Bläddra till avsnittet &quot;Användarinställningar&quot; och utöka alla genom att klicka på det</li>
+    				<li>Sätt <a href="configuration.htm#admin_upload_mechanism">Standarduppladdningsmetod</a> till &quot;<em>Enkel - en fil åt gången</em>&quot;</li>
+    				<li>Bläddra till slutet av sidan</li>
+    				<li>Spara de nya inställningarna genom att klicka på &quot;Spara ny konfiguration&quot;</li>
+    			</ul>
+    		</div>
+    	</li>
+    	<li>
+    		<a name="upload_support_debug_mode"></a><h4 class="detail_head_collapsed">Aktivera &quot;debug läge&quot;<a href="?expand_all=1#upload_support_debug_mode" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    		<div class="detail_body">
+    			<ul>
+    				<li>Gå till <a href="configuration.htm#admin">konfigurationspanelen</a></li>
+    				<li>Bläddra till avsnittet &quot;Inställningar för underhåll&quot; och utöka alla genom att klicka på det</li>
+    				<li>Aktivera debug läge för alla genom att klicka på &quot;Ja: Alla&quot; på raden &quot;Aktivera debug läge&quot;</li>
+    				<li>Lämna visning av notiser avstängt - om kryssrutan &quot;Visa notiser i debug läge&quot; är förbockad, bocka av den (notiser är bara tänkta för utvecklare - om du inte har en aning om vad de betyder, utelämna dem permanent)</li>
+    				<li>Bläddra till slutet av sidan</li>
+    				<li>Spara de nya inställningarna genom att klicka på &quot;Spara ny konfiguration&quot;</li>
+    			</ul>
+    		</div>
+    	</li>
+    	<li>
+    		<a name="upload_support_test_for_yourself"></a><h4 class="detail_head_collapsed">Testa uppladdningen genom att använda det nya testanvändarkontot<a href="?expand_all=1#upload_support_test_for_yourself" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    		<div class="detail_body">
+    			Du kan frestas att gå vidare genom att be om support redan nu, men vänta ett ögonblick: du har inte provat själv ännu att allt fungerar som förväntat. Du vill inte påbörja en supportförfrågan för att bara bli tillsagd att &quot;gör din hemläxa först&quot; (för det är vad som kommer att hända om du inte har gjort som vi föreslår här). Så här gör du:
+    			<ul>
+    				<li>Logga ut från Coppermine (eller använd en annan webbläsare paralellt) om du är inloggad som administratör</li>
+    				<li>Logga in genom att använda det testanvändarkonto som du skapade tidigare. Om det misslyckas kontrollera uppgifterna för testanvändarkontot när du är inloggad som administratör.</li>
+    				<li><img src="images/simple_file_upload.png" width="400" height="178" border="0" alt="" title="Simple file uploads interface" align="right" style="padding-left:5px;" />Klicka på &quot;Ladda upp fil&quot;. Om du inte har någon uppladdningslänk så har du inte satt behörigheterna rätt - gå igenom ovanstående steg noggrant.</li>
+    				<li>På bilden för filuppladdning, välj testalbumet från listrutan &quot;Album&quot;. Om du inte kan välja testalbumet, så har du gjort ett misstag när du satte upp uppladdningsbehörigheterna</li>
+    				<li>Klicka på knappen &quot;Bläddra...&quot; och navigera till en liten men bra jpg-fil på din hårddisk. Anta inte att vilken som helst bild duger: om du är tveksam, ladda ner en testbild från Coppermines demo sida</li>
+    				<li>Skicka formuläret genom att klicka på knappen &quot;Ladda upp fil&quot;</li>
+    			</ul>
+    			I den bästa av världar fungerar allt som förväntat - din uppladdning kommer att fungera och du kommer att se din uppladdade bild inbäddad i Coppermine sidan. Om så är fallet, kommer http-uppladdningar att fungera. Om inte, så bör du få ett <a href="#upload_error_messages">felmeddelande</a> som förklarar vad det är för fel. Om du inte kan förstå vad felmeddelandet betyder, men du kunde utföra alla ovanstående steg inklusive det sista (skicka uppladdningsformuläret), så kan du gå vidare och be om hjälp på Coppermines supportforum . Du är välkommen att be om hjälp också om http-uppladdning fungerar men du behöver hjälp med en annan uppladdningsmetod.
+    		</div>
+    	</li>
+    	<li>
+    		<a name="upload_support_post_support_request"></a><h4 class="detail_head_collapsed">Be om hjälp på Coppermines support forum<a href="?expand_all=1#upload_support_post_support_request" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    		<div class="detail_body">
+    			<ul>
+    				<li>Gå till <a href="http://forum.coppermine-gallery.net/" rel="external" class="external">Coppermines supportforum</a></li>
+    				<li>Registrera ett nytt konto om du inte redan har ett och logga med med det kontot på Coppermines supportforum.</li>
+    				<li>Säkerställ att du läst forumets regler innan du gör ett inlägg (en länk till reglerna finns i forumets navigation)</li>
+    				<li>Starta en ny tråd på det supportforum som hör ihop med din version av Coppermine. Eftersom du läser dokumentationen för cpg1.5.x, använder du troligtvis den versionen så du bör skapa din tråd på underavdelningen som hanterar den versionen. Att göra ett inlägg på en annan version än den man använder duger inte och skapar irritation både för dig och supporten. Eftersom du har problem med uppladdning så bör du göra ditt inlägg i det forum som hanterar uppladdningsfrågor.</li>
+    				<li>Kom ihåg att bifoga en länk till ditt galleri i ditt inlägg. Om ditt galleri har innehåll för vuxna (lite naket går under den kategorin också), lägg med en varning till din länk</li>
+    				<li>Ange det detaljer om ditt testanvändarkonto (användarnamn och lösenord) som du satte innan</li>
+    				<li>Det är en bra ide att visa supporten att du hör försökt först själv innan du bad om hjälp - förklara vad som faktiskt blev fel, hur långt du kom, vilket felmeddelande du fick osv.</li>
+    			</ul>
+    		</div>
+    	</li>
+    </ul>
+    <a name="upload_support_step-by-step_end"></a>
+    <a name="upload_support_example"></a><h3>Exempel på begäran om support<a href="#upload_support_example" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <div class="cpg_example">
+    	<p>Det här är hur en begäran om support kan se ut (byt ut det röda med det som gäller i just ditt fall):</p>
+    	<div class="quote">Jag har problem när jag laddar upp till mitt Coppermine-galleri <span class="important">http://example.com/my_coppermine_folder/</span><br />
+    	När jag använder http uppladdning och har de föreslagna inställningarna för felsökning med uppladdning på plats, så får jag felmeddelande<br />&nbsp;<br />
+    	[code]<span class="important">Felmeddelandets text här</span>[/code]<br />&nbsp;<br />
+    	Här är testanvändarens kontodetaljer: <br />
+    	&nbsp;&nbsp;&nbsp;&nbsp;Användarnamn: <span class="important">test</span><br />
+    	&nbsp;&nbsp;&nbsp;&nbsp;lösenord: <span class="important">foobar</span><br />&nbsp;<br />
+    	Jag har använt bilden från <span class="important">http://example.com/path/to/test/file.jpg</span> att testa med.<br />
+    	Efter att ha gjort som det föreslagits i <span class="important">http://forum.coppermine-gallery.net/some_forum_thread</span> gick det inte som förväntat: Jag fick<br />
+    	[code]<span class="important">Ett annat felmeddelande</span>[/code]<br />
+    	när jag provade det. Jag har ingen aning om vad jag annars kan göra.<br />
+    	I förväg tack för alla förslag</div>
+    </div>
+    <a name="upload_support_example_end"></a>
+</div>
+<a name="upload_support_end"></a>
+<a name="upload_error_messages"></a><h2>Felmeddelanden<a href="#upload_error_messages" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+Nedan är en lista på felmeddelanden som är ganska vanliga. Granska det här avsnittet noga om det felmeddelande du fick vid uppladdning finns nämnt här. Om det finns, försök göra som det föreslås.
+<div class="indent">
+<a name="upload_error_messages_cant_move"></a><a name="ErrorCantMovePic"></a><h3>Felmeddelande: <em>failed to create stream: Operation not permitted</em><a href="#upload_error_messages_cant_move" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="indent">
+    <a name="upload_error_messages_cant_move_detail"></a><h4>Detaljerat felmeddelande<a href="#upload_error_messages_cant_move_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">Impossible to move <span style="color:blue;">somepic.jpg</span> to albums/userpics/
+Warning: move_uploaded_file(/tmp/<span style="color:blue;">phpezCYKr</span>)
+[function.move-uploaded-file]: failed to create stream: Operation not permitted</pre>
+    <p class="smaller">Felmeddelandet ovan varierar något mellan olika installationer. De dynamiska delarna av felmeddelandet (som kan variera) är <span style="color:blue;">markerat med blått</span> i exemplet, till skillnad från de statiska (oföränderliga) delarna av felmeddelandet som är i svart.</p>
+    <a name="upload_error_messages_cant_move_cause"></a><h4>Trolig anledning<a href="#upload_error_messages_cant_move_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    PHP's temporära mapp saknas eller har inte rätt behörigheter.
+    <a name="upload_error_messages_cant_move_fix"></a><h4>Föreslagen lösning<a href="#upload_error_messages_cant_move_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Du bör kontakta supporten för ditt webbhotell eftersom du vanligtvis inte själv kan ändra platsen för din webbsida temporära mapp för filuppladdningar (det är en del av PHP konfigurationen) .<br />
+      Om <em><a href="http://www.php.net/manual/en/ini.php#ini.list" rel="external" class="phpnet">open_basedir</a> begränsningar</em> är aktiverat på din sida så bör den temporära mappen för filuppladdningar vara en som du har åtkomst till.
+</div>
+<a name="upload_error_messages_impossible_to_move"></a><a name="ErrorImpossibleToMove"></a><h3><em>Impossible to move X to Y</em><a href="#upload_error_messages_impossible_to_move" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="indent">
+    <a name="upload_error_messages_impossible_to_move_detail"></a><h4>Detaljerat felmeddelande<a href="#upload_error_messages_impossible_to_move_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">Impossible to move <span style="color:blue;">somepic.jpg</span> to <span style="color:blue;">albums/userpics/XXXXX/</span></pre>
+    <p class="smaller">Felmeddelandet ovan varierar något mellan olika installationer. De dynamiska delarna av felmeddelandet (som kan variera) är <span style="color:blue;">markerat med blått</span> i exemplet, till skillnad från de statiska (oföränderliga) delarna av felmeddelandet som är i svart.</p>
+    <a name="upload_error_messages_impossible_to_move_cause"></a><h4>Trolig anledning<a href="#upload_error_messages_impossible_to_move_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Coppermine scriptet har inte behörigheter till filsystemet på servern som skapar miniatyrbilder eller medelstora bilder i den specifika mappen
+    <a name="upload_error_messages_impossible_to_move_fix"></a><h4>Föreslagen lösning<a href="#upload_error_messages_impossible_to_move_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Sätt behörigheter på mappen albums och allt i den som det föreslagits i avsnittet <a href="install_permissions.htm#permissions">Sätta behörigheter</a>. Detta felmeddelande är det allra vanligaste eftersom många användare hoppar över att läsa behörighetsavsnittet. Nu om inte förr bör du läsa avsnittet noggrant.
+</div>
+<a name="upload_error_messages_failed_to_open_dir"></a><a name="ErrorFailedToOpenDir"></a><h3>Felmeddelande: <em>failed to open dir: No such file or directory</em><a href="#upload_error_messages_failed_to_open_dir" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="indent">
+    <a name="upload_error_messages_failed_to_open_dir_detail"></a><h4>Detaljerat felmeddelande<a href="#upload_error_messages_failed_to_open_dir_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">Warning: opendir(./albums/edit): failed to open dir: No such file or directory</pre>
+    <a name="upload_error_messages_failed_to_open_dir_cause"></a><h4>Trolig anledning<a href="#upload_error_messages_failed_to_open_dir_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <ul>
+        <li>'<tt class="filename">edit</tt>'-mappen i din mapp albums saknas</li>
+        <li>'<tt class="filename">edit</tt>'-mappen i din mapp albums har inte rwx-<a href="install_permissions.htm#permissions">behörigheter</a></li>
+        <li>Felaktig uppgradering från en tidigare version av Coppermine</li>
+    </ul>
+    <a name="upload_error_messages_failed_to_open_dir_fix"></a><h4>Föreslagen lösning<a href="#upload_error_messages_failed_to_open_dir_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+        <ul>
+        <li>Säkerställ att du har en mapp med namn '<tt class="filename">edit</tt>' i mappen albums.</li>
+        <li>Säkerställ att mappen edit har fått behörigheterna ändrade med kommando CHMOD till 777/755 (eller snarare: att du har satt behörigheter enligt vad som står i avsnittet <a href="install_permissions.htm">Sätta behörigheter</a>)</li>
+        <li>Säkerställ att du helt och hållet har <a href="upgrading.htm#upgrade">uppgraderat</a> Coppermine 1.5.x</li>
+    </ul>
+</div>
+<a name="upload_error_messages_no_album"></a><a name="ErrorNoAlbumExisting"></a><h3>Felmeddelande: <em>Sorry there is no album where you are allowed to upload files</em><a href="#upload_error_messages_no_album" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="indent">
+    <a name="upload_error_messages_no_album_detail"></a><h4>Detaljerat felmeddelande<a href="#upload_error_messages_no_album_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">Tyvärr finns det inget album dit du får ladda upp filer</pre>
+    <a name="upload_error_messages_no_album_cause"></a><h4>Trolig anledning<a href="#upload_error_messages_no_album_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <ul>
+        <li>Du (som administratör) har inte skapat något album ännu.</li>
+        <li>Du (som vanlig användare) har inte behörighet att ladda upp till publika album</li>
+        <li>Du (som vanlig användare) har inte skapat minst ett album i ditt personliga galleri</li>
+    </ul>
+    <a name="upload_error_messages_no_album_fix"></a><h4>Föreslagen lösning<a href="#upload_error_messages_no_album_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Detta felmeddelande är ett <a href="errors.htm#errors_soft">mjukt fel</a>, d.v.s. det har att göra med din inställning av Coppermine och att du inte gjort det du borde ha gjort.
+    <ul>
+        <li>Om du får det här meddelandet när du är inloggad som administratör, så behöver du <a href="albums.htm#albmgr_create">skapa minst ett album</a> dit filer kan laddas upp</li>
+        <li>Om du får det här meddelandet när du är inloggad som en vanlig användare, behöver du förstå behörighetskonceptet bakom Coppermine: på <a href="groups.htm#group_cp">kontrollpanelen för grupper</a> bestämmer administratören om användare kan skapa personliga gallerier (d.v.s. skapa album inom sitt användargalleri) eller om de har behörighet att ladda upp till publika album skapade av administratören. Om användaren <strong>är</strong> behörig att skapa personliga gallerier och får detta felmeddelande, måste han/hon skapa minst ett album först genom att klicka på &quot;Skapa / Ordna mina album&quot;. Om användaren bara får ladda upp till publika album (som administratören måste skapa i förväg) och får det här felmeddelandet, så måste administratören ange minst ett publikt album dit besökare kan ladda upp filer, med hjälp av panelen <a href="albums.htm#album_prop">album egenskaper</a>.</li>
+        <li>Om du får det här meddelandet när du inte är inloggad alls (du är en gäst), behöver du också granska Coppermines behörighetskoncept: om du vill tillåta gäster att ladda upp (rekommenderas inte på grund av risken för missbruk), så behöver du specificera din generella uppladdningsmöjlighet på <a href="groups.htm#group_cp">kontrollpanelen för grupper</a> (för gruppen gäster/anonyma) och du behöver också ändra i bilden <a href="albums.htm#album_prop">album egenskaper</a> på åtminstone ett album och tillåta uppladdning för besökare i det albumet.</li>
+    </ul>
+</div>
+<a name="upload_error_messages_allowed_memory_size"></a><a name="ErrorAllowedMemorySize"></a><h3>Felmeddelande: <em>Allowed memory size of X bytes exhausted</em><a href="#upload_error_messages_allowed_memory_size" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="indent">
+    <a name="upload_error_messages_allowed_memory_size_detail"></a><h4>Detaljerat felmeddelande<a href="#upload_error_messages_allowed_memory_size_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">Fatal error: Allowed memory size of <span style="color:blue;">XXXXXXX</span> bytes exhausted at (null):0 (tried to allocate <span style="color:blue;">XXXX</span> bytes) in <span style="color:blue;">/var/www/html/include/picmgmt.inc.php</span></pre>
+    <p class="smaller">Felmeddelandet ovan varierar något mellan olika installationer. Den dynamiska delen av felmeddelandet (som kan skilja sig åt) är <span style="color:blue;">markerat med blått</span> i exemplet, till skillnad från det statiska (oföränderliga) delarna av felmeddelandet som är i svart.</p>
+    <a name="upload_error_messages_allowed_memory_size_cause"></a><h4>Trolig anledning<a href="#upload_error_messages_allowed_memory_size_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Detta felmeddelande uppträder vid användning av GD och när man försöker ladda upp en högupplöst bild. Det är inte filens storlek som har betydelse här; det är antalet pixlar som bestämmer minnesåtgången i GD. Detta är inte ett <a href="errors.htm#errors_soft">mjukt fel</a> som härrör från Coppermine, utan ett <a href="errors.htm#errors_hard">hårt fel</a> från PHP som återspeglas i Coppermine.
+    <a name="upload_error_messages_allowed_memory_size_fix"></a><h4>Föreslagen lösning<a href="#upload_error_messages_allowed_memory_size_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Det finns (åtminstone i teorin) ingen begränsning <em>i Coppermine</em> vad gäller filstorlek eller dimensioner som scriptet kan hantera. Det finns emellertid åtminstone en begränsning på webbservern: omskalning av bilder (för att skapa medelstora bilder och/eller miniatyrbilder) förbrukar minne och bränner CPU cykler. För att förhindra att servern kraschar, har serveradministratören begränsat mängden av minne som PHP scriptet kan använda. Felmeddelandet ovan betyder att mängden minne har överskridits, d.v.s. den bild som scriptet försöker att ladda upp förbrukar för mycket minne.
+    <ul>
+        <li><strong>Alternativ 1 (bäst):</strong><br />
+        Utöka den mängd minne som kan allokeras i php.ini som det föreslås i avsnittet <a href="upload_troubleshooting.htm#upload_trouble_memory_usage">Minnesanvändning under omskalning</a>. 
+        Om du inte kan ändra php.ini, bör du läsa alternativ 2 och 3.</li>
+         <li><strong>Alternativ 2 (förståndigt):</strong><br />
+         Skala om dina bilder före du laddar upp dem om du inte kräver högupplösta bilder. Detta spara både bandbredd och tid åt dig.</li>
+         <li><strong>Alternativ 3 (nödlösning):</strong><br />
+         Du kan ladda ner ett av de många gratisprogram som skalar om bilder. Skala sedan om bilderna till en mindre upplösning (som 800 x 600) genom en batch till en annan mapp och behåll samma filnamn.<br />
+         Ladda upp de omskalade bilderna till Coppermine. Använd sedan din FTP klient för att skriva över bilderna med den högre upplösningen. </li>
+    </ul>
+</div>
+<a name="upload_error_messages_exec_disabled"></a><a name="ErrorExecDisabled"></a><h3>Felmeddelande: <em>Exec() has been disabled</em><a href="#upload_error_messages_exec_disabled" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="indent">
+    <a name="upload_error_messages_exec_disabled_detail"></a><h4>Detaljerat felmeddelande<a href="#upload_error_messages_exec_disabled_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">Exec() har inaktiverats</pre>
+    <a name="upload_error_messages_exec_disabled_cause"></a><h4>Trolig anledning<a href="#upload_error_messages_exec_disabled_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    php.ini tillåter serveradministratören att inaktivera vissa funktioner. Så är vanligtvis fallet om din server körs i safe_mode. Detta är inte ett <a href="errors.htm#errors_soft">mjukt fel</a> som härrör från Coppermine, utan ett <a href="errors.htm#errors_hard">hårt fel</a> från PHP som återspeglas i Coppermine.
+    <a name="upload_error_messages_exec_disabled_fix"></a><h4>Föreslagen lösning<a href="#upload_error_messages_exec_disabled_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Om serveradministratören har inaktiverat exec() kommer du inte att kunna använda Image Magick.<br />
+    Du kan försöka att ersätta exec() med passthru() i hela Coppermines källkod (rekommenderas inte) om inte detta också har inaktiverats. Annars kan du inte använda ImageMagick utan måste använda GD. Ändra <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">Metod för att skala om bilder</a> i konfigurationen i enlighet därmed.
+</div>
+<a name="upload_error_messages_not_gd_extension"></a><a name="ErrorNotAGdExtension"></a><h3>Felmeddelande: <em>Not a GD extension</em><a href="#upload_error_messages_not_gd_extension" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="indent">
+    <a name="upload_error_messages_not_gd_extension_detail"></a><h4>Detaljerat felmeddelande<a href="#upload_error_messages_not_gd_extension_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">Inte en GD ändelse</pre>
+    <a name="upload_error_messages_not_gd_extension_cause"></a><h4>Trolig anledning<a href="#upload_error_messages_not_gd_extension_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Filen(filerna) du försökte att ladda upp kan inte hanteras med GD ImageLibrary
+    <a name="upload_error_messages_not_gd_extension_fix"></a><h4>Föreslagen lösning<a href="#upload_error_messages_not_gd_extension_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    GD biblioteket kan bara hantera jpeg, png och gif filer, medan ImageMagick biblioteket dessutom stöder bmp, psd och en del andra (mindre vanliga) filtyper. Dessa är emellertid inte lämpliga att använda på internet. Mer detaljer finns i avsnittet <a href="configuration.htm#admin_picture_thumb_advanced_pic_extensions">Tillåtna bildtyper</a> om konfiguration i dokumentationen.
+</div>
+<a name="upload_error_messages_imagemagick127"></a><a name="imagemagick127"></a><h3>Felmeddelande: <em>Error executing ImageMagick - Return value 127</em><a href="#upload_error_messages_imagemagick127" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="indent">
+    <a name="upload_error_messages_imagemagick127_detail"></a><h4>Detaljerat felmeddelande<a href="#upload_error_messages_imagemagick127_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">Filen '<span style="color:blue;">albums/userpics/10001/somepic.jpg</span>' kan inte läggas till i albumet. Fel vid körning av ImageMagick - Return value <strong>127</strong></pre>
+    <p class="smaller">Felmeddelandet ovan varierar något mellan olika installationer. De dynamiska delarna av felmeddelandet (som kan variera) är <span style="color:blue;">markerat med blått</span> i exemplet, till skillnad från de statiska (oföränderliga) delarna av felmeddelandet som är i svart.</p>
+    <a name="upload_error_messages_imagemagick127_cause"></a><h4>Trolig anledning<a href="#upload_error_messages_imagemagick127_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Du har inte angett rätt <a href="configuration.htm#admin_picture_thumb_advanced_im_path">sökväg till ImageMagick</a>, eller så har du inget ImageMagic alls. Den första meningen i felmeddelandet är ett <a href="errors.htm#errors_soft">mjukt fel</a> från Coppermine, men den andra meningen är ett <a href="errors.htm#errors_hard">hårt fel</a> från PHP som återspeglas i Coppermine, där den sista meningen är den viktiga <tt class="code">Return value <strong>127</strong></tt>.
+    <a name="upload_error_messages_imagemagick127_fix"></a><h4>Föreslagen lösning<a href="#upload_error_messages_imagemagick127_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Om du inte är säker på om du har tillgång till ImageMagick på din server, granska <a href="configuration.htm#admin_picture_thumb_advanced_im_path">sökväg till ImageMagick</a>. Om sökvägen förefaller att vara riktig, säkerställ att Coppermine scriptet har behörighet att läsa och köra konverteringsprogrammet i mappen för ImageMagick. Om du inte är säker, ändra <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">Metod för skalning av bilder</a> från &quot;ImageMagick&quot; till &quot;GD2&quot;, och försök sedan att ladda upp på nytt.
+</div>
+<a name="upload_error_messages_no_gd_support"></a><a name="no_gd_support"></a><h3>Felmeddelande: <em>PHP running on your server does not support the GD image library</em><a href="#upload_error_messages_no_gd_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="indent">
+    <a name="upload_error_messages_no_gd_support_detail"></a><h4>Detaljerat felmeddelande<a href="#upload_error_messages_no_gd_support_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">PHP som körs på din server stöder inte GD bildbibliotek, kontrollera med ditt webbhotell om ImageMagick är isntallerat.</pre>
+    <a name="upload_error_messages_no_gd_support_cause"></a><h4>Trolig anledning<a href="#upload_error_messages_no_gd_support_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Din webbserver har inte stöd för GD bildbibliotek.
+    <a name="upload_error_messages_no_gd_support_fix"></a><h4>Föreslagen lösning<a href="#upload_error_messages_no_gd_support_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Säkerställ att du uppfyller <a href="requirements.htm#what">minimikraven</a> för att köra Coppermine. Om GD inte finns på din server så kan du använda ImageMagick. Fråga ditt webbhotell om ImageMagick finns på din webbserver.
+</div>
+<a name="upload_error_messages_no_file_uploaded"></a><a name="no_file_uploaded"></a><h3>Felmeddelande: <em>No file was uploaded !</em><a href="#upload_error_messages_no_file_uploaded" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="indent">
+    <a name="upload_error_messages_no_file_uploaded_detail"></a><h4>Detaljerat felmeddelande<a href="#upload_error_messages_no_file_uploaded_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">Ingen fil laddades upp! Om du verkligen hade valt en fil att ladda upp, kolla att servern tillåter filuppladdningar...</pre>
+    <a name="upload_error_messages_no_file_uploaded_cause"></a><h4>Trolig anledning<a href="#upload_error_messages_no_file_uploaded_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Filuppladdningar har inaktiverats i php.ini eller så finns det ett behörighetsproblem eller så är det ett problem med din webbservers uppladdningsmekanism.
+    <a name="upload_error_messages_no_file_uploaded_fix"></a><h4>Föreslagen lösning<a href="#upload_error_messages_no_file_uploaded_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Det kan finnas ett antal orsaker till det här felmeddelandet. Filen du försökte att ladda upp &quot;nådde inte&quot; den mapp på webbservern dit den skulle. Kontrollera om det är ett problem med HTTP uppladdningar på din server - denna funktion kan ha inaktiverats eller konfigurerats felaktigt. I <a href="faq.htm#VersionPHP">phpinfo()</a>, kontrollera att &quot;file_uploads&quot; är ON, &quot;upload_max_filesize&quot; är något i stil med 2M och &quot;upload_tmp_dir&quot; är en giltig mapp! Granska också behörighetsinställningarna på dina <a href="install_permissions.htm#permissions">filer/mappar</a>.<br />
+    Om servern inte är din att administrera måste du kanske be om hjälp från supporten för ditt webbhotell. Det här är vad du borde kontrollera:
+    <ul>
+        <li>test file &quot;<strong>too large</strong>&quot;<br />
+        Om du får det här felmeddelandet, kontrollera att den fil du testar uppladdning med inte är för stor vad gäller filstorlek eller dimensioner. Testa med en liten fil du vet fungerar först. Du kan ladda ner en från Coppermines demo galleri och använda den för teständamål.</li>
+        <li>&quot;<strong>file_uploads</strong>&quot; enabled<br />
+        Gå till din phpinfo sida (finns på <a href="admin_menu.htm#phpinfo">administratörsmenyn</a>), sök i den efter <tt class="code">file_uploads</tt> och säkerställ att den är satt till &quot;on&quot;. Om du är på en delat webbhotell så kan bara de aktivera det här åt dig.</li>
+        <li>&quot;<strong>upload_tmp_dir</strong>&quot; needs to be set<br />
+        På phpinfo sidan, säkerställ att <tt class="code">upload_tmp_dir</tt> är rätt inställd. Om du är på en delat webbhotell så kan bara de aktivera det här åt dig. Scriptet (eller användaren som webbservern körs med) måste vara behörig att skriv till den filen.</li>
+    </ul>
+</div>
+<a name="upload_error_messages_destination_not_writable"></a><a name="destination_not_writable"></a><h3>Felmeddelande: <em>Destination directory <em>X</em> is not writable by the script</em><a href="#upload_error_messages_destination_not_writable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<div class="indent">
+    <a name="upload_error_messages_destination_not_writable_detail"></a><h4>Detaljerat felmeddelande<a href="#upload_error_messages_destination_not_writable_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    <pre class="code">Scriptet kan inte skriva till destinationsmappen <span style="color:blue;">albums/userpics/XXXXX/</span> </pre>
+    <p class="smaller">Felmeddelandet ovan varierar något mellan olika installationer. De dynamiska delarna av felmeddelandet (som kan variera) är <span style="color:blue;">markerat med blått</span> i exemplet, till skillnad från de statiska (oföränderliga) delarna av felmeddelandet som är i svart.</p>
+    <a name="upload_error_messages_destination_not_writable_cause"></a><h4>Trolig anledning<a href="#upload_error_messages_destination_not_writable_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Behörigheterna på filsystemsnivå är inte rätt inställda. Det är faktiskt vad <a href="#upload_trouble_permission">tjatet om behörighet överst på den här sidan</a> handlar om...
+    <a name="upload_error_messages_destination_not_writable_fix"></a><h4>Föreslagen lösning<a href="#upload_error_messages_destination_not_writable_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+    Granska behörigheterna för dina <a href="install_permissions.htm#permissions">filer/mappar</a>. Om inte det hjälper, be supporten för ditt webbhotell om hjälp.
+</div>
+</div>
+<a name="upload_error_messages_end"></a>
+<a name="upload_trouble_server-sided_restrictions"></a><h2>Begränsningar på server-sidan <a href="#upload_trouble_server-sided_restrictions" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Alla uppladdningsmetoder, och särskilt HTTP uppladdningar är föremål för begränsningar i konfigurationen av PHP.</p>
+<div class="indent">
+    <a name="upload_trouble_server-sided_restrictions_php_ini"></a><h3>PHP konfigurationsfilen php.ini<a href="#upload_trouble_server-sided_restrictions_php_ini" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <div class="cpg_message_info">
+    Inställningarna i php.ini kan bara ändras av dig om servern är din att administrera (d.v.s. om du har en egen webbserver). Om du har ett webbhotell, måste du fråga supporten för webbhotellet om de kan göra förändringarna åt dig vilket vanligtvis innebär att du tillåts använda mer resurser på servern. Vanligtvis kommer ditt webbhotell <strong>inte</strong> att acceptera detta av rent ekonomiska orsaker: att tillåta dig att använda mer resurser innebär färre resurser för dom att tilldela andra.</div>
+    <div class="cpg_message_error">Ställ inga frågor på supportforumet om vad dessa inställningar ska vara eller hur du kan förändra dem - som redan sagts kan du vanligtvis inte ändra dem alls om du har ett webbhotell.<br />Om du har din <a href="requirements.htm#what_minimum_self-hosting">egen webbserver</a> (vilket vi inte alls kan rekommendera eftersom köra och underhålla en webbserver kräver konstant monitorering och underhåll och dessutom ett stort mått av kunskaper och erfarenheter), bry dig inte om att ställa triviala frågor som &quot;Var kan jag hitta min php.ini fil&quot; - om du inte vet svaret på den frågan så tillhör du kategorin &quot;egen webbserver rekommenderas inte på grund av brist på erfarenhet&quot; och du kommer inte att få svar från Coppermines supportforum.</div>
+    <a name="upload_trouble_server-sided_restrictions_check"></a><h3>Saker att kontrollera<a href="#upload_trouble_server-sided_restrictions_check" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>Om du har ett webbhotell, så måste du konsultera supporten för webbhotellet angående följande inställningar. Du kan granska (men inte ändra) dessa inställningar på din <a href="admin_menu.htm#phpinfo">phpinfo sida</a>.</p>
+    <ol>
+      <li>
+          <a name="upload_trouble_server-sided_restrictions_check_max_input_time"></a><h4>max_input_time<a href="#upload_trouble_server-sided_restrictions_check_max_input_time" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+          60 sekunder är standard för den tidsgräns som gäller för att ladda upp filer.<br />I denna tidsgräns ingår den tid det tar för filerna att ladda upp, så om du överskrider den gränsen så kommer filen inte att analyseras och webbservern kommer inte att få något svar. Du kan komma runt det med att försöka ladda upp mindre och färre filer, eller så kan du försöka ladda upp via bredband. Den bästa lösningen, förstås, är att utöka tidsgränsen till något mer i samstämmighet med dina behov.
+      </li>
+      <li>
+          <a name="upload_trouble_server-sided_restrictions_check_upload_max_filesize"></a><h4>upload_max_filesize<a href="#upload_trouble_server-sided_restrictions_check_upload_max_filesize" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+          2MB är standard filstorlek för individuella filer.
+      </li>
+      <li>
+          <a name="upload_trouble_server-sided_restrictions_check_post_max_size"></a><h4>post_max_size<a href="#upload_trouble_server-sided_restrictions_check_post_max_size" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+          8MB är standard för en begäran om inlägg.
+      </li>
+      <li>
+          <a name="upload_trouble_server-sided_restrictions_check_memory_limit"></a><h4>memory_limit<a href="#upload_trouble_server-sided_restrictions_check_memory_limit" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+          8MB är standardstorlek för minne. Läs på om <a href="#upload_trouble_memory_usage">Minnesanvänding under skalning</a> för instruktioner om hur du ändrar denna inställning och kringgår felmeddelanden relaterade till att minnesgränsen nåtts.
+      </li>
+      <li>
+          <a name="upload_trouble_server-sided_restrictions_check_limitlequestlody"></a><h4>LimitRequestBody<a href="#upload_trouble_server-sided_restrictions_check_limitlequestlody" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+          512KB är standardgräns. (i huvudsak ett problem på Redhat/Apache system. Finns i /etc/http/conf.d)<br />Generellt, upload_max_filesize &lt; post_max_size &lt; memory_limit för att uppladdningar ska fungera korrekt. Coppermine kan varna dig om en fil överskrider upload_max_filesize, men den kan inte varna dig om den totala storleken för alla filer överskrider postgränsen eller minnesgränsen.
+      </li>
+      <li>
+          <a name="upload_trouble_server-sided_restrictions_check_file_uploads"></a><h4>file_uploads<a href="#upload_trouble_server-sided_restrictions_check_file_uploads" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+          Detta bestämmer om PHP ska tillåta uppladdningar eller inte. Det måste vara inställt på &quot;On&quot;.
+      </li>
+      <li>
+          <a name="upload_trouble_server-sided_restrictions_check_upload_tmp_dir"></a><h4>upload_tmp_dir<a href="#upload_trouble_server-sided_restrictions_check_upload_tmp_dir" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+          Detta anger den temporära mapp dit PHP lagrar uppladdade filer.<br />
+          Det vanligaste problemet med den här inställningen är en open_basedir varning. I den här situationen har din serveradministratör begränsat de filer som PHP kan arbeta med till en speciell mapp. Om han/hon inte skapar eller anger en temporär mapp inom open_basedir begränsningar, kommer PHP att försöka använda operativsystemets temporära mapp, och den kommer att få bakläxa av begränsningarna i open_basedir.
+      </li>
+    </ol>
+    <a name="upload_trouble_methods"></a><h3>Uppladdningsmekanismer/metoder<a href="#upload_trouble_methods" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p><strong>En del noteringar om olika typer av uppladdningsmekanismer som funnits sedan cpg1.3.x (eller senare):</strong></p>
+    <p>Multipla HTTP uppladdningar har designats för att hantera ett mindre antal filer. Därför är de inte väl lämpade att ladda upp många filer om du inte kör din egen webbserver och har kontroll över php.ini konfigurationen.</p>
+    <p>Om du tänker ladda upp mer än 15 eller 20 filer åt gången, bör du överväga processen <a href="uploading_batch-add.htm#batch_add_pics">batchuppladdning</a> eller <a href="uploading_xp-publisher.htm#xp_publish_upload">XP Publisher</a> verktyget. Båda har sina egna för- och nackdelar.</p>
+    <p>Batchuppladdninsprocessen är snabb, men kräver sin tribut av servern och den kan därför få timeout som orsakar att dina uppladdningar avslutas i förtid. XP Publisher, å andra sidan är avsevärd långsammare men belastar inte servern lika mycket. Det kringgår också många av de fallgropar som orsakas av begränsningar i php.ini konfigurationen genom att ladda upp varje fil som ingår i batchen som en separat fil.</p>
+    <p>Andra alternativ till uppladdningar (som klientbaserade agenter som JUpload eller liknande) kan tillhandahållas av tredje-part - du uppmuntras att se på dessa också, men kom ihåg att Coppermines utvecklare bara kan ge begränsad support för tredje-parts bidrag.</p>
+    <p>Kom ihåg dock att före du försöker några av de alternativa uppladdningsmetoderna så måste du försäkra dig om att den initiala uppladdningsmetoden &quot;http uppladdning&quot; fungerar - om det inte gör det måste du rätta det först; det är inte vettigt att försök en alternativ uppladdningsmetod om själva kärnuppladdningsmekanismen inte fungerar.</p>
+    <a name="upload_trouble_memory_usage"></a><h3>Minnesanvändning under skalning<a href="#upload_trouble_memory_usage" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>Det finns (åtminstone i teorin) ingen begränsning i Coppermine vad gäller filstorlek eller dimensioner som scriptet kan hantera. Det finns emellertid åtminstone en begränsning på webbservern: omskalning av bilder (för att skapa medelstora bilder och/eller miniatyrbilder) förbrukar minne och bränner CPU cykler.</p>
+    <p>Om omskalningsprocessen förbrukar upp för mycket minne, får du vanligtvis felmeddelandet <a href="upload_troubleshooting.htm#ErrorAllowedMemorySize"><tt class="code">Fatal error: Allowed memory size of XXXXXXX bytes exhausted at (null):0 (tried to allocate XXXX bytes) in /var/www/html/include/picmgmt.inc.php</tt></a> eller liknande.</p>
+    <p>För att förhindra att servern kraschar, har serveradministratören begränsat mängden av minne som PHP scriptet kan använda. Detta görs genom att använda parametern <a href="#upload_trouble_server-sided_restrictions_check_memory_limit">memory_limit</a>.</p>
+    <p>Du kan frestat att tro att minnesanvändningen motsvarar den filstorlek en bild använder på filsystemsnivå, men så är det inte: det vanliga filformatet JPEG är komprimerat, så om servern laddar en JPEG fil i minnet, använder den mycket mer RAM än vad som används på filsystemsnivå.</p>
+    <p class="cpg_message_success">För att beräkna mängden minne en bild använder, multiplicerar du pixlarnas bredd och höjd, och sedan multiplicerar du resultatet med antalet basfärger(RGB - 3, CMYK - 4). Till slut dividerar du med 1,048,576 (<span title="because one megabyte is not exactly one million bytes due to the wonderfull nature of binary arithmetics" class="explain">2<sup>20</sup></span>) för att få minnesanvändning i MB.</p>
+    <p>Här är en del vanliga bildupplösningar och deras minnesanvändning i GD (med RGB):</p>
+    <table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra">
+        <tr>
+            <th>Skärmresolution namn</th>
+			<th>Bredd</th>
+            <th></th>
+            <th>Höjd</th>
+            <th>Minnesanvändning</th>
+			<th>Bildförhållande</th>
+        </tr>
+        <tr>
+            <td style="text-align:left"><abbr title="Quarter Video Graphics Array">QVGA</abbr></td>
+			<td style="text-align:right">320</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">240</td>
+            <td style="text-align:right">0.2 MB</td>
+			<td style="text-align:center">4 : 3</td>
+        </tr>
+		<tr>
+            <td style="text-align:left"><abbr title="Video Graphics Array">VGA</abbr></td>
+			<td style="text-align:right">640</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">480</td>
+            <td style="text-align:right">0.9 MB</td>
+			<td style="text-align:center">4 : 3</td>
+        </tr>
+		<tr>
+            <td style="text-align:left"><abbr title="Super Video Graphics Array">SVGA</abbr></td>
+			<td style="text-align:right">800</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">600</td>
+            <td style="text-align:right">1.4 MB</td>
+			<td style="text-align:center">4 : 3</td>
+        </tr>
+        <tr>
+            <td style="text-align:left"><abbr title="Extended Graphics Array">XGA</abbr></td>
+			<td style="text-align:right">1024</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">768</td>
+            <td style="text-align:right">2.3 MB</td>
+			<td style="text-align:center">4 : 3</td>
+        </tr>
+        <tr>
+            <td style="text-align:left"><abbr title="Wide Extended Graphics Array">WXGA</abbr></td>
+			<td style="text-align:right">1280</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">800</td>
+            <td style="text-align:right">2.9 MB</td>
+			<td style="text-align:center">16 : 10</td>
+        </tr>
+        <tr>
+            <td style="text-align:left"><abbr title="Super Extended Graphics Array">SXGA</abbr></td>
+			<td style="text-align:right">1280</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">1024</td>
+            <td style="text-align:right">3.8 MB</td>
+			<td style="text-align:center">4 : 3</td>
+        </tr>
+        <tr>
+            <td style="text-align:left"><abbr title="Super Extended Graphics Array Plus">SXGA+</abbr></td>
+			<td style="text-align:right">1400</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">1050</td>
+            <td style="text-align:right">4.2 MB</td>
+			<td style="text-align:center">4 : 3</td>
+        </tr>
+        <tr>
+            <td style="text-align:left"><abbr title="Ultra Extended Graphics Array">UXGA</abbr></td>
+			<td style="text-align:right">1600</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">1200</td>
+            <td style="text-align:right">5.5 MB</td>
+			<td style="text-align:center">4 : 3</td>
+        </tr>
+        <tr>
+            <td style="text-align:left"><abbr title="Wide Ultra Extended Graphics Array">WUXGA</abbr></td>
+			<td style="text-align:right">1920</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">1200</td>
+            <td style="text-align:right">6.5 MB</td>
+			<td style="text-align:center">16 : 10</td>
+        </tr>
+        <tr>
+            <td style="text-align:left"><abbr title="Quad Extended Graphics Array">QXGA</abbr></td>
+			<td style="text-align:right">2048</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">1536</td>
+            <td style="text-align:right">9.0 MB</td>
+			<td style="text-align:center">4 : 3</td>
+        </tr>
+        <tr>
+            <td style="text-align:left"><abbr title="Wide Quad Extended Graphics Array">WQXGA</abbr></td>
+			<td style="text-align:right">2560</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">1600</td>
+            <td style="text-align:right">11.7 MB</td>
+			<td style="text-align:center">16 : 10</td>
+        </tr>
+        <tr>
+            <td style="text-align:left"><abbr title="Quad Ultra Extended Graphics Array">QUXGA</abbr></td>
+			<td style="text-align:right">3200</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">2400</td>
+            <td style="text-align:right">22.0 MB</td>
+			<td style="text-align:center">4 : 3</td>
+        </tr>
+        <tr>
+            <td style="text-align:left"><abbr title="Quad Extended Graphics Array">QXGA</abbr></td>
+			<td style="text-align:right">4096</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">3072</td>
+            <td style="text-align:right">36.0 MB</td>
+			<td style="text-align:center">4 : 3</td>
+        </tr>
+        <tr>
+            <td style="text-align:left"><abbr title="Hexadecatuple Ultra Extended Graphics Array">HUXGA</abbr></td>
+			<td style="text-align:right">6400</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">4800</td>
+            <td style="text-align:right">87.9 MB</td>
+			<td style="text-align:center">4 : 3</td>
+        </tr>
+		<tr>
+            <td style="text-align:left"><abbr title="Ultra High Definition Television">UHDTV</abbr></td>
+			<td style="text-align:right">7680</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">4320</td>
+            <td style="text-align:right">94.9 MB</td>
+			<td style="text-align:center">16 : 9</td>
+        </tr>
+		<tr>
+            <td style="text-align:left"><abbr title="Wide Hexadecatuple Ultra Extended Graphics Array">WHUXGA</abbr></td>
+			<td style="text-align:right">7680</td>
+            <td style="text-align:center">x</td>
+            <td style="text-align:right">4800</td>
+            <td style="text-align:right">105.5 MB</td>
+			<td style="text-align:center">16 : 10</td>
+        </tr>
+    </table>
+    <p>Kom ihåg när du använder ovanstående siffror, att du måste ta hänsyn till mängden minne som används av resten av Coppermine också.</p>
+    <p>som du ser, kan minnesanvändningen för bilder producerade av moderna digitalkameror lätt vara mer än vad webbservern kan hantera, även vid användning av <a href="uploading_http.htm#upload_http_interface_html">enkel filuppladdning</a> (för att inte tala om konsumtionen när man processar flera bilder genom att använda <a href="uploading_batch-add.htm#batch_add_pics">batch-uppladdning</a>), så det rekommenderas att bilderna skalas om på den lokala datorn innan uppladdning sker: om servern helt enkelt inte kan processa de uppladdade bilderna, är det liten mening med att skylla på scriptet (Coppermine) eller be om hjälp på supportforumet: Coppermines utvecklingsteam kan inte hitta någon bot för den teknologi som används av webbservrar. Använd webbservern för det den har designats för; utför resursintensiva beräkningar (som omskalning av högupplösta bilder) på din klient.</p>
+    <p>För att utöka gränsen för minnesallokering i php.ini, måste du vara serverns administrator. Dessutom, .htaccess filer kan inte ändra denna konfigurationsinställning och den kan inte ändras med hjälp av ini_set(). De flera Coppermineanvändare som har webbhotell kan inte ändra på denna inställning. Om du är serverns administratör, så här gör du för att utöka minnesgränsen:<br />
+    Först letar du reda på följande block i php.ini (om du faktiskt är serverns administratör):<br />
+    <pre>;;;;;;;;;;;;;;;;;;;
+; Resursgränser ;
+;;;;;;;;;;;;;;;;;;;
+
+max_execution_time = 30     ; Maximal processtid för varje script, i sekunder
+max_input_time = 60        ; Maximal mängd tid som varje script har att analysera begärt data
+memory_limit = 8M      ; Maximalt mängd minna varje script kan förbruka (8MB)</pre>
+    
+    <p>Nu utökar du minnesgränsen för att passa dina behov. 9 till 16 MB bör klara de flesta krav.</p>
+    <p></p>Om du inte kan ändra php.ini inställningarna själv, kan du alltid be din serveradministratör att ändra dem åt dig. De flesta administratörer (särskilt på delade webbhotell) kommer inte att vilja göra detta eftersom inställningen påverkar alla på servern. En högre minnesgräns kräver ett lägre antal användare som hostas på samma server för att bibehålla serverns stabilitet. Detta begränsar vinst, osv.</p>
+    
+    <div class="cpg_message_error">Ställ <strong>inte</strong> några frågor på Coppermines supportforum om hur du kan konfigurera din webbserver; Coppermines support omfattar inte detta. Vanligtvis (om du har webbhotell, vilket majoriteten av Coppermines användare har), så kan du inte ändra webbserverns inställningar i alla fall. Det kan bara den person som faktiskt administreras servern göra (d.v.s. webbhotellets administratör).<br />
+    Därför så får du be <strong>ditt webbhotell</strong> om support om du har problem med resursbegränsningar eller andra frågor som har med webbserverns inställningar att göra. Om du har din egen webbserver (vilket Coppermines utvecklingsteam inte rekommenderar), bör du läsa på om dina problem i dokumentationen som kom tillsammans med webbservern.</div>
+</div>
+<a name="upload_trouble_end"></a>
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate$</span>
+		<span id="doc_revision">$Revision$</span>
+	</div>
+</div>
+</body>
+</html>

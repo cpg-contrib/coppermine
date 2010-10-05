@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <title>Nyckelord - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
@@ -12,10 +12,10 @@
 <!--
   SVN version info:
 
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/keywords.htm $
   $Revision: 7805 $
-
+
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -30,37 +30,28 @@
 <div id="toc">
 <a href="toc.htm">Innehållsförteckning</a>
 </div>
-
 <a name="keywords"></a><h1>Nyckelord<a href="#keywords" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>Coppermine använder &quot;nyckelord&quot; för galleriobjekt som tillåter både galleriets administratör såväl som slutanvändarna att sätta ett eller flera nyckelord till varje fil i galleriet. Detta är användbart för att märka filer så att de kan sökas på och bläddras bland lättare.</p>
-
 <a name="keywords_assign"></a><h2>Sätta nyckelord<a href="#keywords_assign" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Nyckelord kan sättas på filen både när den laddas upp och senare i galleriet självt. Nyckelord kan väljas från en lista med nyckelord, eller genom att registrera in dem.</p>
-
 <a name="keywords_assign_separator"></a><h3>Nyckelordsseparatorer eller nyckelordsavgränsare<a href="#keywords_assign_separator" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Olika nyckelord avgränsas genom en avdelare som bestäms av vad som är satt i galleriets konfigurationspanel. Att kunna välja avgränsare är en ny funktion i Coppermine 1.5; förut kunde nyckelord bara avgränsas med blanktecken. Som nyckelordsavgränsare kan du välja ett semikolon, ett komma eller ett blanktecken. Semikolon är standard för nya installationer av Coppermine 1.5; blanktecken behålls för uppgraderingar från Coppermine 1.4 och tidigare. För uppgraderingar så kan du byta ut blanktecken mot semikolon eller komma genom att gå till <a href="admin-tools.htm#admin_tools_options_keyword_convert">Administratörsverktyg</a> page.</p>
-
 <a name="keywords_assign_edit"></a><h3>Redigera/lägga till nyckelord<a href="#keywords_assign_edit" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>Klicka på &quot;redigera filer&quot; bredvid den miniatyrbild som motsvarar albumet. Du kan också redigera filinformationen för en enstaka fil genom att klicka på knappen under den medelstora bilden. Redigera nyckelorden genom att ange dom i motsvarande fält.</p>
-
 <a name="keywords_manager"></a><h3>Hantera nyckelord<a href="#keywords_manager" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p><img src="images/keywordmgr.jpg" width="459" height="226" border="0" alt="" title="Keyword manager" align="right" />Allt eftersom ditt galleri växer, kommer det att bli allt fler filer i det och därmed också många nyckelord att hantera. För att hjälpa dig att hantera dessa finns det en nyckelordshanterare tillgänglig - klicka bara på motsvarande länk i <a href="admin_menu.htm">administratörsmenyn</a>.</p>
 <p>Notera att detta alternativ bara syns om du har aktiverat &quot;<a href="configuration.htm#admin_general_keywords_start">Aktivera klickbara nyckelord vid sökning</a>&quot; i Coppermines konfiguration. Om du har inaktiverat den funktionen i konfigurationen, så kan du fortfarande komma åt hanteraren genom att använda länken på konfigurationspanelen eller genom att skriva in <tt class="code">keywordmgr.php</tt> på den webbläsares adressrad (t.ex. genom att gå till <tt class="code">http://din_sida.tld/din_coppermine_mapp/keywordmgr.php</tt>).</p>
 <p>Objekten på panelen för att hantera nyckelord borde vara självförklarande: genom att använda den vänstra kolumnen benämnd &quot;redigera&quot; med redigera-ikonen bredvid ett nycklord gör att du kan redigera ett nyckelord som kan sättas på flera filer. Klicka på  knappen i den kolumnen, och ändra sedan nyckelordet i inmatningsfältet nederst på sidan. Efter redigering, skicka ändringarna genom att klicka på knappen &quot;ändra nyckelord&quot;. Detta kommer att ändra nyckelordet i alla filer.</p>
 <p>Den här funktionen är särskilt användbar om du har nyckelord i dina filer som bara skiljer sig åt lite grann: det kan till exempel finnas både nyckelordet &quot;apelsin&quot; och &quot;apelsiner&quot; i ditt galleri, de är inte helt lika och det kan skapa problem. Använde den nämnda metoden för att ändra nyckelordet överallt i hela galleriet genom att antingen ändra alla förekomster av &quot;apelsiner&quot; till &quot;apelsin&quot; eller vice versa.</p>
 <p>Funktionen &quot;radera nyckelord&quot; fungerar på liknande sätt - en klickning på &quot;radera nyckelord XYZ&quot;-länken kommer att radera nyckelordet i alla filer (det kommer <strong>inte</strong> att radera själva filen, bara nyckelordet).</p>
-<p>För att hitta i vilka filer ett visst nyckelord används, klicka på &quot;sök på "XYZ" i nytt fönster&quot;.<br />
+<p>För att hitta i vilka filer ett visst nyckelord används, klicka på &quot;sök på &quot;XYZ&quot; i nytt fönster&quot;.<br />
 Om <a href="configuration.htm#admin_general_keywords_start">Aktivera klickbara nyckelord vid sökning</a> är aktiverat kommer listan att visas nederst på panelen för att hantera nyckelord och även på sökpanelen.</p>
-
-
 <a name="keywords_album"></a><h2>Album nyckelord<a href="#keywords_album" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Coppermine kommer med en kraftfull funktion som tillåter dig att ha filer som bara behöver laddas upp en gång men synas i ett (eller flera) album som länkade filer. Detta åstadkoms genom att använda funktionen med albumnyckelord.</p>
 <p>Så här gör du: gå till det album som innehåller de bilder som ska dyka upp i ett annat album, klicka på &quot;redigera filer&quot; bredvid miniatyrbilder som representerar albumet. På panelen <a href="files.htm#edit_pics">redigera filer</a> tänk ut ett unikt nyckelord som alla filer har gemensamt och som ingen använder som ett enkelt nyckelord. Tänk på vilken nyckelordsavgränsare som ditt galleri har (anges på konfigurationspanelen). Ett bra nyckelord kan vara &quot;<tt class="code">Semester i Transylvanien 2007 med Kalle och Anna</tt>&quot; till exempel. (Om ditt galleri har ett blanktecken som nyckelordsavgränsare och du inte vill byta ut det mot ett bättre som ett semikolon - använd då &quot;<tt class="code">SemesterTransylvanien2007MedKalleOchAnna</tt>&quot;.)  Genom att använda ett långt och specifikt nyckelord kan du försäkra dig om att bara de filer som du sätter detta nyckelord på kommer att visas i albumet. Du kan använda ett enklare nyckelord om du vill använda fler variationer på de albumnyckelord du använder. Tilldela detta nyckelord (utan citattecken) till alla filer som ska visas i ett annat album. Skicka sedan ändringarna. Sista steg: gå till det album som ska innehålla kopiorna (länkade filerna). Navigera till <a href="albums.htm#album_prop">bilden för egenskaper</a> för detta album (använd knappen &quot;egenskaper&quot; bredvid miniatyrbilden som representerar albumet) och skriv in det nyckelord du valde (&quot;<tt class="code">Semester i Transylvanien 2007 med Kalle och Anna</tt>&quot; som i ovan exempel eller utan mellanslag om nödvändigt) i fältet &quot;Album Nyckelord&quot; (igen utan citattecken) på sidan för egenskaper, och skicka sedan formuläret. Kontrollera resultatet - ganska läckert, eller? En nackdel dock: ett album som <em>bara</em> innehåller filer som länkas till andra album och som inte har någon &quot;olänkad&quot; fil kan inte visas med någon miniatyrbild. Därför rekommenderar vi att du laddar upp minst en &quot;riktig&quot; bild till albumet och att du använder den bilden som miniatyrbild för albumet.</p>
 <p>Om du använder blanktecken som nyckelordsavgränsare, kom ihåg att mellanslag mellan ord kommer att dela upp dessa till separata nyckelord. Om du måste använda fraser som nyckelord, förbind dem med ett understrykningstecken eller genom att använda ascii platshållare ctrl+Alt+0160 (NOTERA: det senare fungerar bara med latinbaserade teckensnitt.)</p>
-<p>Ett bättre alternativ är att använda semikolon som avgränsare (anges på konfigurationspanelen). På så sätt kan du använda blanktecken eller komma i dina nyckelord.  För ett fotografi av t.ex. Mount Rushmore skulle ett nyckelord kunna vara "Washington, George;berg;South Dakota" och du skulle då ha tre nyckelord: (1) "Washington, George", (2) "berg", (3) "South Dakota".</p>
+<p>Ett bättre alternativ är att använda semikolon som avgränsare (anges på konfigurationspanelen). På så sätt kan du använda blanktecken eller komma i dina nyckelord.  För ett fotografi av t.ex. Mount Rushmore skulle ett nyckelord kunna vara &quot;Washington, George;berg;South Dakota&quot; och du skulle då ha tre nyckelord: (1) &quot;Washington, George&quot;, (2) &quot;berg&quot;, (3) &quot;South Dakota&quot;.</p>
 <p>Varje album kan bara ha <strong>ETT</strong> (1) nyckelord eller nyckelordsfras. Alla bilder som finns i andra album men som du vill ska visas i detta album måste ha samma nyckelord eller nyckelordsfras i sina respektive nyckelordsfält. Bilder, till skillnad från album, kan ha många nyckelord eller -fraser separerade med en nyckelordsavgränsare. Detta gör det möjligt för dig att visa samma bilder i flera olika album. För besökarna till dessa album kommer det att se ut som om filerna/bilderna laddats upp till varje album.</p>
-
-
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
 		<span id="doc_last_changed">$LastChangedDate: 2010-08-06 11:59:36 +0200 (Fr, 06 Aug 2010) $</span>

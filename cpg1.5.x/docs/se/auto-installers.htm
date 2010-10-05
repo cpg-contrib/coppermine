@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <title>Auto-Installerare - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
@@ -12,7 +12,7 @@
 <!--
   SVN version info:
 
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/auto-installers.htm $
   $Revision: 7805 $
 -->
@@ -29,14 +29,11 @@
 <div id="toc">
 <a href="toc.htm">Innehållsförteckning</a>
 </div>
-
 <a name="auto-installers"></a><h1>Auto-Installerare<a href="#auto-installers" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <a name="definition"></a><h2>Vad är auto-installerare?<a href="#definition" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Det finns många webbhotell som erbjuder färdiga script som Coppermine som ska installeras med ett enkelt klick i webbhotellets kontrollpanel (vanligtvis cPanel). Vi kan förstå att det här är en enkel och bekväm installeringsmetod för nybörjare som inte har någon erfarenhet av att köra och underhålla en webbsida. I en idealvärld skulle detta vara den bästa metoden - slutanvändaren behövde inte bekymra sig om databasfrågor, FTP applikationer etc.</p>
-
 <a name="sad_story"></a><h2>Den tråkiga historien<a href="#sad_story" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Coppermines utvecklingsteam har haft erfarenheter av auto-installerare förr. Skaparen av auto-installeraren måste ändra i originalpaketet för att få dessa att fungera ihop med deras installerare. Förut gjorde skaparna av <a href="http://netenberg.com/fantastico.php" rel="external" class="external">Fantastico</a> det också, men de introducerade programfel i sin variant av Coppermine, vilket resulterade i ett konstigt beteende. Tyvärr vände sig inte slutanvändaren till supporten för Fantastico för hjälp med dessa fel, utan istället till supporten för Coppermine. Utvecklarna av auto-installerare är bara människor som kan göra misstag, så det är inget fel i programfelet som sådant. Följaktligen gjorde utvecklarna av Coppermine personal hos Fantastico medvetna om de programfel som <strong>de</strong> hade introducerat från början, och bad dem fixa dessa så snart som möjligt. De struntade emellertid i det i över 18 månader, och under den tiden spreds programfelet över internet och skapade ännu mer frustrerade användare som vände sig till Coppermines support för hjälp om problem som Coppermines utvecklare inte var ansvariga för och som dessa inte själva kunde rätta till.</p>
-
 <a name="why_not"></a><h2>Varför du inte ska använda auto-installerare<a href="#why_not" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Det finns förstås fördelar med att använda auto-installerare. Men det finns allvarliga nackdelar också:</p>
 <div class="indent">
@@ -47,15 +44,11 @@
   <h3>Slutanvändaren läser inte dokumentationen</h3>
   Det är förståeligt att du inte läser hela dokumentationen för en applikation som du installerar med en enda knapptryckning. Det är OK - alla gillar &quot;enkelhet&quot;. Men om du inte tvingas läsa dokumentationen kommer du att missa viktig information.
 </div>
-
 <a name="no_support"></a><h2>Ingen support<a href="#no_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Som ett resultat av den <a href="#sad_story">tråkiga historien med Fantastico</a> och med hänsyn taget till <a href="#why_not">nackdelarna med auto-installerare</a>, har Coppermines utvecklingsteam beslutat att inte ha någon support för frågor som härleds till att användaren använt auto-installerare som Fantastico.</p>
 <p class="cpg_message_warning">Detta betyder att <strong>den enda installeringsmetod som stöds</strong> är den som <strong>vi</strong> beskriver i den här dokumentationen.</p>
 <p>Men oroa dig inte: vi lämnar dig inte i sticket. Vanligtvis behöver du inte avinstallera din auto-installerade version av Coppermine och ominstallera vår version; gör bara en uppgradera som beskrivs i <a href="upgrading.htm">avsnittet uppgradering</a> i dokumentationen (även om ditt auto-installerade galleri förefaller ha samma version som det senaste &quot;original&quot; Coppermine paketet) så bör du klara dig.</p>
-<p>Det betyder att du lätt kan "byta" ditt auto-installerade galleri mot ett "äkta" Coppermine-galleri bara genom att göra en <a href="upgrading.htm#upgrade">uppdatering/uppgradering</a> enligt vad som beskrivs i dokumentationen. Vi kommer till och med att hjälpa dig med detta om du får problem. Vi hjälper dig däremot inte om du kör ett auto-installerat galleri. Om du inte är nöjd med denna vår policy, vänlig sök hjälp från supporten för ditt webbhotell eller vem som nu tillhandahåller den auto-installerare som du använt.</p>
-
-
-
+<p>Det betyder att du lätt kan &quot;byta&quot; ditt auto-installerade galleri mot ett &quot;äkta&quot; Coppermine-galleri bara genom att göra en <a href="upgrading.htm#upgrade">uppdatering/uppgradering</a> enligt vad som beskrivs i dokumentationen. Vi kommer till och med att hjälpa dig med detta om du får problem. Vi hjälper dig däremot inte om du kör ett auto-installerat galleri. Om du inte är nöjd med denna vår policy, vänlig sök hjälp från supporten för ditt webbhotell eller vem som nu tillhandahåller den auto-installerare som du använt.</p>
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
 		<span id="doc_last_changed">$LastChangedDate: 2010-08-06 11:59:36 +0200 (Fr, 06 Aug 2010) $</span>

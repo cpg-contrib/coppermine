@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Uppdatering - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="This part of the documentation is not meant for end users of Coppermine, but only for developers. There is no support for this section, it comes as-is." />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+  Coppermine version: 1.5.9
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/dev_update.htm $
+  $Revision: 7805 $
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Dokumentation och Manual</h1>
+<div id="toc">
+<a href="toc.htm">Innehållsförteckning</a>
+</div>
+<a name="dev_update"></a><h1>Uppdatering<a href="#dev_update" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<a name="dev_update_target_audience"></a><h2>Målgrupp<a href="#dev_update_target_audience" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Det här avsnittet av dokumentationen är inte avsedd för slutanvändaren av Coppermine, utan endast för utvecklare. Det finns ingen support för det här avsnittet, utan det kommer som det är.</p>
+<a name="dev_update_hidden_feature"></a><h2>Dolda funktioner<a href="#dev_update_hidden_feature" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Uppdateraren (update.php) innehåller en dold funktion för utvecklingsändamål: om man lägger till parametern <em>debug</em> till URL i adressfältet, kommer utdata att innehålla ytterligare information - mest utdata genererad av mySQL.</p>
+<p>Om du inte vet vad du ska göra med den informationen, använd inte det här alternativet. Det utdata som genereras (och i synnerhet felmeddelanden) betyder inte att det faktiskt är något fel med galleriet. Istället är utdatat avsett för utvecklingsändamål. Personer som inte är utvecklare bör inte använda den dolda funktionen om inte supporten uttryckligen ber dom att göra det och ber om utdata i form av en skärmdump.</p>
+<p>Användningsexempel: istället för att gå till <tt class="code">http://example.com/your_coppermine_folder/update.php</tt>, gå till <tt class="code">http://example.com/your_coppermine_folder/update.php?debug</tt> för att aktivera debug utdata på uppdateringsskärmbilden.</p>
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate: 2010-08-06 11:59:36 +0200 (Fr, 06 Aug 2010) $</span>
+		<span id="doc_revision">$Revision: 7805 $</span>
+	</div>
+</div>
+</body>
+</html>

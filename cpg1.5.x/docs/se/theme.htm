@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Tema - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Coppermine har en kraftfull motor som gör det möjligt för dig att skapa ditt eget tema och ge ditt galleri ett unikt utseende som matchar resten av din hemsida." />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.9
+  $HeadURL$
+  $Revision$
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Dokumentation och Manual</h1>
+<div id="toc">
+<a href="toc.htm">Innehållsförteckning</a>
+</div>
+<a name="theme"></a><h1>Tema<a href="#theme" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Coppermine har en kraftfull motor som gör det möjligt för dig att <a href="theme_create.htm#theme_create">skapa ditt eget tema</a> och ge ditt galleri ett unikt utseende som matchar resten av din hemsida. Andra applikationer kallar dem för &quot;skins&quot; eller &quot;mallar&quot;, vi kallar dem för &quot;tema&quot;.</p>
+<p>Det finns ett ständigt växande antal <a href="theme_user-contributions.htm#theme_user-contributions">användarbidragna tema</a> som kan förhandsvisas och laddas ner från Coppermines webbsida.</p>
+<div class="indent">
+    <a name="theme_builtin"></a><h2>Tema som kommer med Coppermine<a href="#theme_builtin" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    Coppermine paketet kommer med några färdiga tema:
+    <div class="indent">
+          <a name="theme_builtin_curve"></a><h3>Curve<a href="#theme_builtin_curve" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+          <img src="../images/themes/thumb_curve.png" width="100" height="75" border="0" alt="" title="Curve" align="left" style="margin-right:5px" />
+          Ett tema med en ljus bakgrund och en horisontell kaskadmeny som utökas med hjälp av bara CSS. Det nya standardtemat för cpg1.5.x som har inspirerats av det nya temat för <a href="http://www.simplemachines.org/" rel="external" class="external">SMF 2.0</a>. Navigationsmenyn är inte beroende av JavaScript, utan är enbart CSS-baserat. Temat curve är det "yngsta" temat i Coppermines kärnkod och därför också det mest moderna. Det är renat, med ett antal rundade hör och borde fungera de flesta existerande webbsidor som har ljus bakgrunder. De rundade hörnen fungerar inte i alla webbläsare.<br clear="all" />
+          <div class="cpg_message_info">
+          Temat curve använder för närvarande workarounds för att fungera korrekt i Internet Explorer 6 and 7. Om det stör dig, d.v.s. om du inte gillar att använda "browser hacks" och tror på att ha giltig och ren kod så kan du ta bort dessa "browser hacks".<br />
+          <h4>IE6</h4>
+          För att ta bort stöd för IE6,
+          <ul>
+              <li>radera <tt class="code">&lt;!-- Begin IE6 support --&gt; ... &lt;!-- End IE6 support --&gt;</tt> från <tt class="code">themes/curve/template.html</tt></li>
+              <li>radera filen <tt class="code">csshover3.htc</tt> från mappen theme (<tt class="code">themes/curve/</tt>).</li>
+          </ul>
+          <h4>IE7</h4>
+          För att ta bort stöd för IE7,
+          <ul>
+              <li>radera <tt class="code">&lt;!-- Begin IE7 support --&gt; ... &lt;!-- End IE7 support --&gt;</tt> från <tt class="code">themes/curve/template.html</tt></li>
+              <li>radera alla rader med <tt class="code">/* IE7 */</tt> från <tt class="code">themes/curve/style.css</tt>,</li>
+              <li>ta bort kommentarmarkeringen på raden <tt class="code">/* min-height: 95px; */</tt> i <tt class="code">themes/curve/style.css</tt> genom att ersätta den med <tt class="code">min-height: 95px;</tt>.</li>
+          </ul>
+            </div>
+          <a name="theme_builtin_eyeball"></a><h3>Eyeball<a href="#theme_builtin_eyeball" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+          <img src="../images/themes/thumb_eyeball.png" width="100" height="75" border="0" alt="" title="Eyeball" align="left" style="margin-right:5px" />
+          Ett tema med en mörk bakgrund och en horisontell meny som utökas med användarfunktioner
+          <br clear="all" />
+          <a name="theme_builtin_hardwired"></a><h3>Hardwired<a href="#theme_builtin_hardwired" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+          <img src="../images/themes/thumb_hardwired.png" width="100" height="75" border="0" alt="" title="Hardwired" align="left" style="margin-right:5px" />
+          Ett tema med mörk bakgrund och ett mindre teckensnitt som fungerar bra på trängre utrymmen och lägre upplösning. Har två horisontella menyer
+          <br clear="all" />
+          <a name="theme_builtin_rainy_day"></a><h3>Rainy Day<a href="#theme_builtin_rainy_day" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+          <img src="../images/themes/thumb_rainy_day.png" width="100" height="75" border="0" alt="" title="Rainy Day" align="left" style="margin-right:5px" />
+          Ett tema med mörk bakgrund och rundade hörn
+          <br clear="all" />
+          <a name="theme_builtin_sample"></a><h3>Sample<a href="#theme_builtin_sample" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+          Temat sample ser likadant ut som temat water_drop. Det visas inte under tema-väljaren - utan är tänkt som <a href="theme_theme_php.htm#theme_sample">en mall att kopiera ifrån</a> när du skapar eller ändrar ditt eget tema.
+          <br clear="all" />
+          <a name="theme_builtin_waterdrop"></a><h3>Waterdrop<a href="#theme_builtin_waterdrop" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+          <img src="../images/themes/thumb_water_drop.png" width="100" height="75" border="0" alt="" title="Waterdrop" align="left" style="margin-right:5px" />
+          Ett tema med ljus bakgrund och en &quot;konventionell&quot; horisontell meny
+          <br clear="all" />
+    </div>
+    <p class="cpg_message_info">Teman "Classic", "Fruity", "Igames", "Mac OX X" och "Project VII" som fanns i cpg1.4.x har tagits bort från cpg1.5.x paketet. De finns tillgängliga som separata nedladdningar istället - se avsnittet <a href="theme_user-contributions.htm#theme_user-contributions">användarbidragna teman</a> för mer detaljer.</p>
+    <a name="theme_upgrading"></a><h2>Uppgradera ditt anpassade tema<a href="#theme_upgrading" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>För att uppgradera ett befintligt anpassat tema från cpg1.4.x till version 1.5.x, läs <a href="theme_upgrade_14x-15x.htm">dokumentation om uppgradering av tema</a>.</p>
+    <p>Om du uppgraderar från cpg1.3.x till cpg1.5.x, måste du uppgradera ditt tema i två steg: först måste du uppgradera ditt anpassade tema från cpg1.3.x till cpg1.4.x och sedan <a href="theme_upgrade_14x-15x.htm">från cpg1.4.x till cpg1.5.x</a></p>
+    <p>Du behöver bara uppgradera ditt anpassade tema när du uppgraderar mellan större versioner (t.ex. från cpg1.3.x till cpg1.4.x eller från cpg1.4.x till cpg1.5.x), eftersom tema-motorn förändras mellan större uppgraderingar. När du bara uppgraderar från mindre versioner till nästa mindre (t.ex. från cpg1.5.x till cpg1.5.y), så behöver du inte uppdatera ditt anpassade tema.</p>
+    <p>Kärn-teman som kommer med i Coppermine paket behöver inte uppdateras, eftersom de ersätts under uppgraderingen därför redan innehåller alla nödvändiga förändringar. Om du har baserat ditt anpassade tema på något kärn-tema (t.ex. teamt classic), var uppmärksam på eventuella förändringar. Det rekommenderas att du döper om ditt anpassade tema till något annat så att det inte av misstag skrivs över vid en uppgradering.</p>
+    <a name="theme_upgrading_end"></a>
+    <a name="theme_files"></a><h2>Ett temas innehåll<a href="#theme_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>Coppermine tema lagras i mappen &quot;<strong>themes</strong>&quot; och innehåller 3 primära filer: </p>
+    <ul>
+      <li>&quot;<strong><a href="theme_template.htm">template.html</a></strong>&quot; huvudmallen i HTML.</li>
+      <li>&quot;<strong><a href="theme_style_css.htm">style.css</a></strong>&quot; stiltyperna associerade med mallen</li>
+      <li>&quot;<strong><a href="theme_theme_php.htm">theme.php</a></strong>&quot; PHP tema fil</li>
+    </ul>
+    <p>Dessutom finns det vanligtvis en mapp med namn &quot;images&quot; som också finns i mappen theme (themes/theme_name/images/) och som innehåller bilder som används av temat (logotyper, knappar, bakgrunder och andra grafiska bilder som behövs).</p>
+    <a name="theme_files_end"></a>
+    <a name="theme_engine"></a><h2>Hur tema-motorn fungerar<a href="#theme_engine" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>När en Coppermine sida analyseras, kommer kärnkoden att anropa temats funktioner. Om dessa funktioner finns i ditt anpassade tema, kommer dessa att tas hänsyn till. Om en viss funktion <strong>inte</strong> finn si ditt anpassade tema, kommer kärnfunktionen att användas. Kärnfunktionerna (standardtemats uppförande om man så vill) finns i <tt class="filename">includes/themes.inc.php</tt>.</p>
+    <p class="cpg_message_error">Därför bör du <strong>inte</strong> redigera <tt class="filename">includes/themes.inc.php</tt>, under några som helst förhållanden, eftersom alla dina förändringar kommer att gå förlorade när du uppgraderar någon gång i framtiden. Allt du kan åstadkomma med att redigera <tt class="filename">include/themes.inc.php</tt> kan du också åstadkomma genom att redigera <tt class="filename">themes/ditt_tema/<a href="theme_theme_php.htm">theme.php</a></tt> - saker i ditt anpassade tema kommer att gälla före kärnfunktionerna.</p>
+    <a name="theme_engine_end"></a>
+    <a name="theme_whats_next"></a><h2>Vad är nästa steg?<a href="#theme_whats_next" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>Det finns steg-för-steg anvisningar i avsnittet &quot;<a href="theme_create.htm">Skapa ditt anpassade tema</a>&quot; som du kan läsa för mer information. Om du letar efter exempel på hur du kan ändra ditt anpassade tema, så kan du läsa sidan &quot;<a href="theme_examples.htm">Tema exempel</a>&quot; noggrant, eftersom det innehåller lösningar som du kan kopiera och klista in och som kan förändra ditt tema dramatiskt särskilt vad gäller <a href="theme_examples.htm#theme_examples_content">mer innehåll</a>. Se också avsnittet som hanterar &quot;<a href="theme_copyright.htm">copyright-disclaimer i sidfoten</a>&quot; och avsnittet &quot;<a href="php-content.htm">Dynamic (PHP-baserade) innehåll</a>&quot;.</p>
+</div>
+<a name="theme_end"></a>
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate$</span>
+		<span id="doc_revision">$Revision$</span>
+	</div>
+</div>
+</body>
+</html>

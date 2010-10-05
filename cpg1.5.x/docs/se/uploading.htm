@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Uppladdning - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Det finns flera metoder för att ladda upp filer inom Coppermine. Du (som galleriet administratör) bör använda FTP-uppladdning plus batch-uppladdning (det kan bara administratören göra). Vanliga användare antas använda den vanliga http uppladdningen eller (om de har Windows XP) XP Publisher/>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.9
+  $HeadURL$
+  $Revision$
+
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Dokumentation och Manual</h1>
+<div id="toc">
+<a href="toc.htm">Innehållsförteckning</a>
+</div>
+<a name="uploading"></a><h1>Ladda upp bilder/filer<a href="#uploading" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Coppermine är ett webbgalleri så dess kärnfunktion är möjligheten för administratören (eller användaren om administratören tillåter det) att ladda upp bilder (eller snarare filer) till galleriet - utan uppladdade filer är det knappast någon ide med ett galleri. Det som faktiskt händer under en uppladdning är att en bild som laddas upp skalas om och en miniatyrbild skapas. Förutom att filen lagras på webbplatsen skapas en databaspost för varje fil som laddas upp. Allt detta händer &quot;bakom kulisserna&quot; - Coppermine tar hand om allt detta så du behöver inte veta exakt vad som händer. Förmågan att ladda upp begränsas emellertid av en hel del faktorer som Coppermine inte kan påverka. Det är vad den här delen av dokumentationen handlar om: om saker går fel eller inte fungerar som förväntat, så bör du läsa på i den här dokumentationen för att kunna åtgärda felen. Så snälla läs vidare - åtminstone om du har problem med uppladdningar.</p>
+<p>Det finns flera metoder för att ladda upp filer inom Coppermine. Du (som galleriet administratör) bör använda <a href="uploading_batch-add.htm#batch_add_pics">FTP-uppladdning plus batch-uppladdning</a> (det kan bara administratören göra). Vanliga användare antas använda den &quot;vanliga&quot; <a href="uploading_http.htm#upload_http">http uppladdningen</a> eller (om de har Windows XP) <a href="uploading_xp-publisher.htm#xp">XP Publisher</a>.</p>
+<p>En uppladdningsklient för Linux som använder KDE desktop finns också: Coppermine-utvecklaren Aditya Mooley har skapat &quot;<a href="http://koppermine.sourceforge.net/" rel="external" class="external">Koppermine</a>&quot; som rekommenderas för alla som använder Linux.</p>
+<p class="cpg_message_error">Om du har problem med uppladdning, läs avsnittet <a href="upload_troubleshooting.htm">felsökning vid uppladdning</a> särskilt noggrant.</p>
+<a name="uploading_end"></a>
+<a name="uploading_structure"></a><h2>Underavdelningar i uppladdningsdokumentationen<a href="#uploading_structure" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Det finns flera underavdelningar som detaljerat förklarar uppladdning:</p>
+<ul>
+	<li><a href="uploading_batch-add.htm#batch_add_pics">Ladda upp filer med FTP / Batch-uppladda filer</a></li>
+	<li><a href="uploading_http.htm#upload_http">Uppladdning med HTTP</a></li>
+	<li><a href="uploading_xp-publisher.htm#xp">Windows XP Web Publishing Wizard</a></li>
+	<li><a href="upload_troubleshooting.htm">Felsökning vid uppladdning</a></li>
+</ul>
+<a name="uploading_structure"></a><h2>Hur Coppermine lagrar filer<a href="#uploading_structure" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Det finns som sagt flera sätt att ladda upp filer till Coppermine: filer lagras på olika sätt beroende på vilken metod du valt. För den vanliga besökaren i ditt galleri är det här inte viktigt alls eftersom Coppermine (eller snarare den databas som Coppermine använder) håller koll på var dina filer faktiskt lagras - det behöver ingen människa göra. Som sagt, om du inte bryr dig om mapp- eller filstrukturen på din webbserver kan du hoppa över läsningen av det här avsnittet av dokumentationen.</p>
+<a name="uploading_structure_albums"></a><h3>Mappen &quot;albums&quot;<a href="#uploading_structure_albums" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Coppermine lagrar alla filer som laddas upp i en mapp som heter <tt class="code">&quot;albums&quot;</tt> som finns i Coppermines rot-mapp. Namnet på mappen är lite missvisande och finns kvar av historiska orsaker (för bakåtkompatibilitet med äldre versioner av Coppermine). Det är viktigt att komma ihåg att mappens namn inte får blandas ihop med den logiska album-strukturen; uppladdade filer <em>kan</em> kan sättas upp så att det låter dig att efterlikna den logiska kategori- och albumstrukturen på din sida, men det måste inte vara så. Du <em>kan</em> ändra namn och plats på den mapp dit alla dina uppladdningar går från <tt class="code">&quot;albums&quot;</tt> till något annan med hjälp av konfigurationsalternativet &quot;<a href="configuration.htm#admin_picture_thumb_advanced_albums_dir">Album mappen</a>&quot;, men om du inte är helt hemmastadd i systemet är det bäst att du låter allt vara som det är och behåller standardinställningen. Var uppmärksam på de varningar som gäller för att ändra i konfigurationsalternativen.</p>
+<a name="uploading_structure_userpics"></a><h3>HTTP-uppladdningar hamnar i mappen &quot;userpics&quot;<a href="#uploading_structure_userpics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>När man använder <a href="uploading_http.htm#upload_http">http uppladdningar</a> (den &quot;vanliga&quot; uppladdnignsmetoden som används om du använder &quot;uppladdnings&quot;-länken från Coppermine's meny), så kommer alla uppladdade filer att fysiskt befinna sig i en undermapp i mappen <tt class="code">&quot;userpics&quot;</tt>. Mappen <tt class="code">&quot;userpics&quot;</tt> i sig självt är en undermapp till mappen <tt class="code">&quot;albums&quot;</tt>. <br /> Namnet på mappen &quot;userpics&quot; kan ändras också (se konfigurationsalternativet &quot;<a href="configuration.htm#admin_picture_thumb_advanced_userpics_dir">Mappen för användarfiler</a>&quot;), men igen: var uppmärksam på varningarna som gäller om för konfigurationsalternativen! Namnet på den mapp dit filerna faktiskt går består av användarID på den användare som laddade upp filerna (10,000 plus användarID). Detta resulterar i en struktur som: <tt class="code">http://exempel.com/din_coppermine_mapp/albums/userpics/10001/some_file.jpg</tt>, där undermappen 10001 relaterar till mappen för användaren med ID &quot;1&quot;. Om du får mer än 10,000 användare, fortsätter numreringen (eftersom mappnamnet är användarID plus 10,000), så får användaren med ID 10000 motsvarande undermapp 20000 i mappen &quot;userpics&quot;.</p>
+<p>Det enda undantaget mot regeln är vid användning av safe_mode: om din webbserver körs i safe_mode och du har satt på <a href="configuration.htm#admin_picture_thumb_advanced_silly_safe_mode_start">silly safe_mode</a> i konfigurationen, så kan PHP scriptet vanligtvis inte skapa undermappar. Det är därför alla uppladdningar som alla användare gör hamnar i mappen &quot;userpics&quot; utan att en undermapp skapas för varje användare.</p>
+<a name="uploading_structure_edit"></a><h3>Den temporära mappen &quot;edit&quot;<a href="#uploading_structure_edit" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>I mappen &quot;albums&quot;, så hittar du en undermapp som heter &quot;edit&quot; - det är den enda temporära mapp som Coppermine använder. Den används för interna ändamål endast: om du använder http uppladdningar och användaren redan har laddat upp åtskilliga bilder, så hamnar de i denna mapp först. Användaren måste därefter tilldela filer till ett album och det är då som de uppladdade filerna flyttas från den temporära mappen till undermappen i mappen &quot;userpics&quot;. Om inget album tilldelas filerna (eller om något går på tok), stannar de temporära filerna kvar i mappen &quot;edit&quot;, där skräpsamlaren tar hand om dem av och till och raderar dem. Denna mekanism är nödvändig eftersom http uppladdningar kan vara knepiga att hantera från en programmerares synvinkel: alla möjliga saker kan hända (filerna kan vara för stora, det kan vara slut på webbutrymme, mål-mappen kan sakna rätt behörigheter för scriptet osv.). Att använda en temporär mapp för http-uppladdningar göra bara Coppermines http-uppladdningsmekanism mer pålitligt, vilket är anledningen till att det gjorts på detta sätt. Rör inte mappen <tt class="code">edit</tt> alls manuellt: döp inte om den, radera den inte, ladda inte upp filer hit - låt den bara vara och låt Coppermine använda den för sina egna syften.</p>
+<a name="uploading_structure_ftp"></a><h3>FTP-uppladdningar<a href="#uploading_structure_ftp" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3> 
+<p>FTP uppladdningar är en helt annorlunda sak: eftersom den ursprungliga FTP uppladdningen inte utförs av Coppermine, utan av administratöranvändaren själv (med hans/hennes FTP klient), så är det <em>hans/hennes</em> uppgift att ta reda på att de fileran han/hon försökt ladda upp verkligen är där som det förväntas att de ska vara. Vad batch-uppladdningsprocessen gör är att lägga till filer som redan fysiskt befinner sig där du vill till databasen. För att försäkra oss om att du förstår konceptet: databasen i sig självt innehåller inga filer - tänk på den som en logisk struktur bara, som håller koll på filernas fysiska plats och några andra parametrar (som dimensioner, vilket album filerna är tilldelade till etc.). Tänkt på databasen som en telefonbok som inte håller personer, kablar eller telefoner: allt en telefonbok innehåller är poster som pekar på något i verkliga livet (en persons namn &amp; adress &amp; telefonnummer).</p>
+<p>Din FTP.uppladdning bör gå till en mappstruktur inom mappen &quot;albums&quot;. De får inte gå till en mapp i mappen &quot;userpics&quot;, utan i en egen mappstruktur. De mappar du skapar med din FTP applikation är inte temporära mappar, utan permanenta: Coppermine flyttar inte runt dessa filer, utan lämnar kvar dem dit du först laddade upp dem.</p>
+<a name="uploading_structure_xppublish"></a><h3>XP Publisher uppladdningar<a href="#uploading_structure_xppublish" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>När du använder <a href="uploading_xp-publisher.htm">XP Publisher</a> för att ladda upp, så är det ett annat lagringsmönster som tillämpas: filerna går till en undermapp i mappen &quot;albums&quot; som heter wpw-yyyymmdd, där &quot;wpw&quot; står för &quot;Windows Publishing Wizard&quot; och yyyy för år, mm för månad och dd för dag för uppladdningen. Coppermine flyttar inte runt dessa filer - de stannar kvar där de är.</p> 
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate$</span>
+		<span id="doc_revision">$Revision$</span>
+	</div>
+</div>
+</body>
+</html>

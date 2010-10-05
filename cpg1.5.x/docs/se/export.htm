@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Backup &amp; Flytta - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+
+  Coppermine version: 1.5.9
+  $HeadURL$
+  $Revision$
+
+-->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Dokumentation och Manual</h1>
+<div id="toc">
+<a href="toc.htm">Innehållsförteckning</a>
+</div>
+<a name="backup_move"></a><h1>Säkerhetskopiera &amp; Flytta<a href="#backup_move" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Från början var det här avsnittet av dokumentationen tänkt för något annat (en export funktion som senare togs bort från Coppermine-paketet, eftersom det inte fungerade och skapade mer problem än det löste). Därför har detta avsnitt fortfarande ett missvisande namn.</p>
+<p>Denna sida handlar om det relaterade ämnet om hur man kan <a href="#backup">säkerhetskopiera (ta backup på)</a> Coppermine och hur man <a href="#moving">flyttar</a> det.</p>
+<div class="indent">
+    <a name="backup"></a><a name="backup_export"></a><h2>Säkerhetskopiera (ta backup på) ditt galleri<a href="#backup" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>Här förklaras hur du tar backup på ditt Copperminebaserade galleri.</p>
+    <p>Backuper kan användas för att återskapa ditt galleri någon annanstans om något skulle bli fel (t.ex. om din server får en hårddisk-krasch, hackas, du gör egna misstag) eller om du vill <a href="#moving">flytta</a> (flytta server, flytta till ett annat webbhotell, använda en annan applikation).</p>
+    <p>Coppermine lagrar innehåll både på filsystemsnivå (på ditt webbutrymme - alltså hårddisken på din webbserver) och på databasnivå. Tänk på databasen som en jättestor tabellsamling där alla tabeller länkas till varandra. Även om databasen (tekniskt) lagras i filer också, så kan du inte enbart ta backup på filen som representerar databasen. Detta på grund av hur databasen fungerar. Dessutom har du vanligtvis inte tillgång till filen som representerar databasen (men börja inte med att försöka hitta den - du kommer ändå inte att kunna använda den). Därför måste backup-processen vara tvåfaldig: du måste säkerhetskopiera dina filer och du måste säkerhetskopiera din databas. Att säkerhetskopiera den ena men inte den andra kommer att resultera i en ofullständig backup som inte går att använda.</p>
+    <div class="indent">
+        <a name="backup_file"></a><h3>Filbackup<a href="#backup_file" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>Säkerhetskopiering på filsystemsnivå är ganska rättfram och du bör redan vara införstådd med teknologin, under förutsättning att du installerat Coppermine på det sätt som utvecklingsteamet rekommenderat: med hjälp av din <a href="dev_tools.htm#dev_tools_ftp_client">FTP applikation</a>. Lita inte på verktyg inbyggda i <abbr title="What You See Is What You Get">WYSIWYG</abbr> editorer. Lite inte på wannabe &quot;web-FTP&quot; klienter: du behöver en riktig och äkta FTP klient. Om du inte redan har en, skaffa en innan du fortsätter.</p>
+        <a name="backup_file_complete"></a><h4>Fullständig filbackup<a href="#backup_file_complete" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+        <p>Termen &quot;fullständig filbackup&quot; betyder i det här fallet &quot;en filbackup av hela Coppermine galleriet&quot;. Det rekommenderas att det här görs åtminstone en gång så att du har en hel backup som katastrofåtgärd.</p>
+        <p>För att faktiskt göra en sådan backup, skapa en mapp på din lokala hårddisk först. Du måste förstås först ha tillräckligt med utrymme kvar på den lagringsenhet du använder (din interna eller externa hårddisk i de flesta fall) för att kunna lagra hela backupen när den väl är utförd. Om du har lite utrymme kvar på din klient, skulle du kunna bränna ner backupen till en CD eller DVD när den är färdig och sedan radera den från hårddisken.</p>
+        <a name="backup_file_partial"></a><h4>Partiell Filbackup<a href="#backup_file_partial" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+        <p>Om du gör frekventa backuper behöver du inte göra en fullständig varje gång, eftersom Coppermines källkod kommer att inte kommer att förändras från den ena backupen till den andra. Därför kan du sedan göra en partiell backup, bara säkerhetskopiera innehållet i mappen &quot;albums&quot; som motsvaras av sökvägen <tt class="code">http://exempel.com/din_coppermine_mapp/albums/</tt>. Om du behöver göra en återställning senare, kommer du att behöva återställa den fullständiga backupen först för att därefter återställa den partiella backupen som skapades senare och därför innehåller nyare data.</p>
+        <a name="backup_file_incremental"></a><h4>Inkrementell filbackup<a href="#backup_file_incremental" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+        <p>Det finns fiffiga verktyg från tredje-part som kan utföra inkrementella backuper via FTP, d.v.s. de tar bara backup på de filer som är nya eller som har förändrats från den senaste backupen gjordes. Detta kommer att reducera den tid som går åt för att ta backup dramatiskt, men å andra sidan kommer det att ta mer tid och göra det svårare att återställa backupen - du bör bara använda det alternativet om du vet vad du gör.</p> 
+        <a name="backup_database"></a><h3>Databasbackup<a href="#backup_database" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>Coppermine skapar under installationen åtskilliga databastabeller som används för att lagra innehållet:</p>
+        <ul>
+        	<li>Bildtabellen lagrar sökvägen på filsystemsnivån till innehållet i ditt galleri (d.v.s. bilderna)</li>
+        	<li>Konfigurationstabellen lagrar konfigurationen</li>
+        	<li>Användartabellen lagrar data om registrerade användare (inklusive administratörskontot)</li>
+        	<li>...</li>
+        </ul>
+        <p>Det finns många fler tabeller som lagrar olika aspekter av innehållet på ditt galleri - för en komplett lista av alla tabeller och strukturen inom dem, se <a href="dev_database.htm#db_intro">databas schemat</a>. Alla relevanta tabeller har samma prefix - den du använde under installationen. För att utföra en databasbackup, säkerställ att du tar backup på <strong>alla</strong> copperminetabeller, d.v.s. alla som har det prefix som du valde vid installationen. Om du inte är säker på vilket prefix det är, ladda ner filen include/config.inc.php med din FTP applikation till din dator och titta sedan i den med hjälp av en ren-text editor (notepad.exe duger fint): prefixet borde stå där. Som standrard är prefixet <tt class="code">cpg15x_</tt>.</p>
+        <a name="backup_database_what"></a><h4>Databasbackup: vad behöver man ta backup på?<a href="#backup_database_what" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+        <p>Ordalydelsen kan variera beroende på det verktyg och dess version som du använder, och du bör veta exakt vad du ska ta backup på.</p>
+        <p>En fullständig databasbackup innehåller både databasens <em> struktur</em> på tabelldefinitioner (de &quot;instruktioner&quot; som behövs för att skapa tomma tabeller om de har gått förlorade och behöver skapas på en annan server) så väl som data (faktiskt tabellinnehåll).</p>
+        <p>De tabeller som Coppermine består av är lika viktiga:</p>
+        <ul>
+            <li>Tabellen <a href="dev_database.htm#db_hit_stats">cpg15x_hit_stats</a> kan bli ganska stor om du aktiverat funktionen &quot;<a href="configuration.htm#admin_logging_hitdetails">Behåll detaljerad träffstatistik</a>&quot;. Följaktligen kan backuperna bli ganska stora om innehållet i den här tabellen ingår i frekventa backuper. Särskilt om man flyttar en Coppermineinstallation från en server till en annan kan det vara en god ide att hoppa över detaljerad träff-statistik och därför inte ta backup på just den här tabellen.</li>
+            <li>Tabellen <a href="dev_database.htm#db_sessions">cpg15x_sessions</a> håller koll på sessioner för inloggade och anonyma användare. Den fylls på automatiskt om den är tom, så det är inte tvunget att ta backup på den.</li>
+            <li>Tabellen <a href="dev_database.htm#db_temp_messages">cpg15x_temp_messages</a> lagrar meddelande från en sida till en annan - innehållet är mycket kortlivat och nollställs ofta så tabellen behöver inte tas med vid frekventa backuper.</li>
+        </ul>
+        <p>Tänk på att Coppermine kommer att klaga (det kommer att bli ett felmeddelande) om en tabell <strong>saknas</strong>, så du måste skapa ovanstående tabeller om du uteslutit dem, men de får vara tomma.</p>
+        <a name="backup_database_tools"></a><h4>Databasbackup Verktyg<a href="#backup_database_tools" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+        <p>Coppermine kommer <strong>inte</strong> med något verktyg för databasbackuper - du måste själv hitta en och använda den. Det finns en lista på verktyg som utvecklingsteamet rekommenderar:</p>
+        <ul>
+        	<li>
+        	    <a name="backup_database_tools_phpmyadmin"></a><h5>phpMyAdmin<a href="#backup_database_tools_phpmyadmin" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+        	    <div class="cpg_message_info">Open-source webbapplication för databashantering som kan laddas ner (gratis) och installeras på din webbserver (lätt installation). Den har flerspråksstöd. Ditt webbhotell kan redan tillhanda detta verktyg.<br />
+        	    [<a href="dev_tools.htm#dev_tools_phpmyadmin">mer</a>]
+        	    </div>
+        	    <p>Coppermines utvecklingsteam erbjuder ingen support för användning av phpMyAdmin - här är bara en <em>kort sammanfattning</em> som <strong>inte</strong> ersätter dokumentationen för phpMyAdmin:</p>
+        	    <ul>
+        	        <li>Peka in din webbläsare till den sökväg (URL) där din kopia av phpMyAdmin finns (det antas att du lyckats installera phpMyAdmin på din webbserver eller att ditt webbhotell tillhandahåller phpMyAdmin åt dig)</li>
+        	        <li>Om tillämpligt (d.v.s. om säkerhetsinställningarna i phpMyAdmin är konfigurerade motsvarande), ange dina phpMyAdmin login data om du uppmanas att göra det</li>
+        	        <li>Om tillämpligt (d.v.s. om du har tillgång till <em>flera</em> databaser), välj den databas där som Coppermines tabeller finns i (den du valde när du installerade Coppermine) från den översta vänstra rutan i phpMyAdmin gränssnit</li>
+        	        <li>På den översta högra rutan i phpMyAdmin, välj &quot;Export&quot; från navigationen</li>
+        	        <li>På skärmen &quot;View dump (schema) of database&quot;, välj de tabeller som du vill ta backup på (som standard väljs alla tabeller som finns i databasen) från rutan benämnd &quot;Export&quot;. Om du inte är säker, ta backup på alla Coppermine tabeller, d.v.s. alla som har samma prefix som det du angav när du först installerade Coppermine</li>
+        	        <li>I rutan &quot;Export&quot;, lämna radio-knappen &quot;SQL&quot; markerad som redan är vald som standard</li>
+        	        <li>Kontrollera att kryssrutan &quot;Structure&quot; är förbockad</li>
+        	        <li>Bocka <strong>inte</strong> i kryssrutan &quot;Drop table&quot; - &quot;dropping&quot; betyder &quot;<em>radera efter att backupen är färdig</em>&quot;, vilket är något du nästan säker inte vill ska hända, eftersom Coppermine då kommer att sluta fungera omedelbart och du måste göra en återläsning från en backup för att få igång den igen.</li>
+        	        <li>Kontrollera att kryssrutan &quot;Data&quot; är förbockad</li>
+        	        <li>Det är tillrådigt (men inte obligatoriskt) att bocka för kryssrutan &quot;Complete inserts&quot;</li>
+        	        <li>Det är tillrådigt (men inte obligatoriskt) att bocka för kryssrutan &quot;Extended inserts&quot;</li>
+        	        <li>Det är tillrådigt att bocka för kryssrutan &quot;Save as file&quot; som kommer att ge dig en fil att ladda ner istället för att bara ge dig en dump som syns på skärm som du sedan måste kopiera &amp; klistra in i en textfil.</li>
+        	        <li>Om du får time-outs under tiden du skapar en databas-dump, prova att aktivera komprimering av filen (du kan förstås bara använda ett komprimeringsformat som finns på din webbserver)</li>
+        	    </ul>
+        	    <p class="cpg_message_warning">Om du inte är säker, läs den dokumentation som kom med phpMyAdmin eller googla på backup-kurser på nätet; Coppermines supportforum är <strong>inte</strong> rätt plats att be om hjälp med användning av phpMyAdmin.</p>
+        	</li>
+        	<li>
+        	    <a name="backup_database_tools_mysqldumper"></a><h5>mySqlDumper<a href="#backup_database_tools_mysqldumper" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+        	    <div class="cpg_message_info">MySqlDumper är en webbapplikation som kan ladda ner och installera på din webbserver. Det är tänkt att användas för att ta backup på din mysql databs (och senare återställa dessa backuper). Särskilt användbart om du inte har &quot;shell access&quot; till din webbserver och vanliga mySQL backuper misslyckas på grund av time-outs.<br />
+        	    [<a href="dev_tools.htm#dev_tools_mysqldumper">more</a>]
+        	    </div>
+        	</li>
+        	<li>
+        	    <a name="backup_database_tools_shell_mysqldump"></a><h5>mysqldump<a href="#backup_database_tools_shell_mysqldump" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+        	    Verktyget mysqdump får inte blandas ihop med mySqlDumper eller vice versa: mysqldump är ett script som tillhör själva mysql och som bara är tillämplig (d.v.s. som du kan använda) om du har &quot;shell access&quot; (vilket dom allra flesta användare med webbhotell inte har).
+        	    [<a href="http://dev.mysql.com/doc/refman/5.0/en/mysqldump.html" rel="external" class="external">more</a>]
+        	</li>
+        	<li>
+        	    <a name="backup_database_tools_shell_mysqlhotcopy"></a><h5>mysqlhotcopy<a href="#backup_database_tools_shell_mysqlhotcopy" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
+        	    Perl scriptet mysqlhotcopy tillhör mysql. Det är det snabbaste sättet att ta backup på databasen eller på enskilda tabeller, men det kan bara köras på samma maskin som databas-katalogen finns på. mysqlhotcopy fungerar bara för att ta backup på MyISAM och ARCHIVE tabellerna. Det kan köras på Unix och NetWare.
+        	    [<a href="http://dev.mysql.com/doc/refman/5.0/en/mysqlhotcopy.html" rel="external" class="external">more</a>]
+        	</li>
+        </ul>
+        <a name="backup_database_after"></a><h4>Efter databasbackupen<a href="#backup_database_after" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
+        <p>Efter det att den manuella databasbackupen är klar är det viktigt att den databasdump du just skapade också fungerar. Därför bör du öppna den för att se att den inte är skadad. Helst bör du göra en återställning på en testinstallation för att säkerställa att allt fungerar som det ska.</p>
+        <p>Det är många användare redan som har litat på sina backuper utan att ens ha testat det så mycket som en enda gång: om du aldrig testar din backup-strategi kommer du aldrig att veta om det är möjligt att göra en återställning om katastrofen är framme. Eftersom så mycket kan gå fel, rekommenderas du verkligen att testa din backup.</p>
+    </div>
+     <a name="moving"></a><h2>Flytta ditt galleri<a href="#moving" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <p>Ditt galleri kan flyttas runt på din webbserver såväl som från ett webbutrymme till ett annat. Så här åstadkommer du det:</p>
+     <div class="indent">
+         <a name="moving_folder"></a><h3>Flytta på din webbserver<a href="#moving_folder" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        Att flytta ditt galleri på din webbserver (från en viss mapp på webbroten till en annan eller vice versa) är jämförelsevis enkelt. Coppermine består av två komponenter:
+        <ul>
+            <li>Filer</li>
+            <li>Databasposter</li>
+        </ul>
+        En bra sak med att flytta runt file/mappar är det faktum att Coppermine inte lagrar den absoluta sökvägen till en fil i databasen, utan bara en relativ: den relativa sökvägen inom mappen &quot;albums&quot;). Därför kan du flytta runt den mapp som ditt galleri finns i utan att du behöver ändra något i databasen för det.<br />
+        <p class="cpg_message_warning">Tänk bara på att du måste flytta hela Coppermine-mappen, d.v.s. du måste flytta <strong>alla</strong> filer och mappar och inte bara några av dem. Den mapp- och filstruktur som finns i din Coppermine-mapp måste bevaras intakt när du flyttar den.</p>
+        Det finns i huvudsak två alternativ för detta:
+        <ul>
+        	<li>
+        		<h4>Du döper om den mapp som ditt galleri finns i</h4>
+        		Detta är det allra enklaste sättet. Om ditt galleri finns i <tt class="code">http://exempel.com/din_coppermine_mapp/</tt> och du tycker den sökvägen är svår att komma ihåg för dina besökare, så kan du bara döpa om mappen <tt class="code">din_coppermine_mapp</tt> till någonting annat som är lättare att komma ihåg, t.ex. <tt class="code">galleri</tt> eller <tt class="code">bilder</tt>. För att åstadkomma det använder du bara din </a href="dev_tools.htm#dev_tools_ftp_client"><abbr title="File Transfer Protocol">FTP</abbr> applikation</a> och döper om den mapp som motsvarar <tt class="code">http://exempel.com/din_coppermine_mapp/</tt>. Allt som återstår att göra finns beskrivet i avsnittet <a href="#moving_config_url">Ändra Coppermines sökväg (URL) i konfigurationen</a>.
+        	</li>
+        	<li>
+        		<h4>Du flyttar runt innehållet i Coppermines mapp</h4>
+        		Om du inte har &quot;shell access&quot; till din webbserver, så är det här en tre-stegsraket: först kopierar du hela innehållet i din Coppermine mapp till en temporär mapp med hjälp av din FTP applikation. Sedan återställer du innehållet i den mappen till målmappen på din server. Slutligen behöver du <a href="install_permissions.htm#permissions_folders">sätta behörigheter</a> för den nya mappstrukturen.
+        		<div class="cpg_example">
+        			Låt oss anta att din webbsida finns på <tt class="code">http://exempel.com/</tt> och att ditt Coppermine galleri finns på <tt class="code">http://exempel.com/coppermine/</tt>. Låt oss anta att webbroten <tt class="code">http://exempel.com/</tt> motsvarar den absoluta sökvägen <tt class="code">/home/htdocs/</tt> på servern och följaktligen motsvarar galleriet serversökvägen <tt class="code">/home/htdocs/coppermine/</tt>. Låt oss anta att du vill flytta en mapp som heter &quot;<tt class="code">bilder</tt>&quot; som finns i mappen som heter &quot;<tt class="code">multimedia</tt>&quot;. För målmappen blir den absoluta sökvägen <tt class="code">/home/htdocs/multimedia/bilder/</tt> och målsökvägen (URL) blir <tt class="code">http://exempel.com/multimedia/bilder/</tt>.
+        			<table border="0" cellspacing="0" cellpadding="0" class="maintable">
+        				<tr>
+        					<th class="tableh1">
+        						Steg
+        					</th>
+        					<th class="tableh1">
+        						Webbserver
+        					</th>
+        					<th class="tableh1">
+        						Riktning
+        					</th>
+        					<th class="tableh1">
+        						Klient
+        					</th>
+        					<th class="tableh1">
+        						Förklaring
+        					</th>
+        				</tr>
+        				<tr>
+        					<td class="tableb">
+        						1
+        					</td>
+        					<td class="tableb">
+        						URL:<br /><tt class="code smallcode">http://example.com/coppermine/</tt><hr />
+        						Absolut sökväg:<br /><tt class="code smallcode">/home/htdocs/coppermine/</tt>
+        					</td>
+        					<td class="tableb" align="center">
+        						<span style="font-size:xx-large">&rarr;</span>
+        					</td>
+        					<td class="tableb">
+        						<tt class="code smallcode">c:\temp\coppermine\</tt>
+        					</td>
+        					<td class="tableb">
+        						Använd din FTP applikation för att kopiera galleriets mapp och allting i den till en temporär mapp på din lokala hårddisk.
+        					</td>
+        				</tr>
+        				<tr>
+        					<td class="tableb tableb_alternate">
+        						2
+        					</td>
+        					<td class="tableb tableb_alternate">
+        						URL:<br /><tt class="code smallcode">http://example.com/multimedia/photos/</tt><hr />
+        						Absolut sökväg:<br /><tt class="code smallcode">/home/htdocs/multimedia/photos/</tt>
+        					</td>
+        					<td class="tableb tableb_alternate" align="center">
+        						<span style="font-size:xx-large">&larr;</span>
+        					</td>
+        					<td class="tableb tableb_alternate">
+        						<tt class="code smallcode">c:\temp\coppermine\</tt>
+        					</td>
+        					<td class="tableb tableb_alternate">
+        						Använd din FTP applikation för att kopiera allt innehåll i din lokala temporära mapp till den nya målmappen på servern.
+        					</td>
+        				</tr>
+        				<tr>
+        					<td class="tableb">
+        						3
+        					</td>
+        					<td class="tableb">
+        						URL:<br /><tt class="code smallcode">http://example.com/multimedia/photos/albums/</tt><hr />
+        						Absolut sökväg:<br /><tt class="code smallcode">/home/htdocs/multimedia/photos/albums/</tt>
+        					</td>
+        					<td class="tableb" align="center">
+        						<abbr title="not applicable">n/a</abbr>
+        					</td>
+        					<td class="tableb">
+        						-
+        					</td>
+        					<td class="tableb">
+        						Sätt behörigheter (använd din FTP applikation) på mappen &quot;albums&quot; som behöver vara skrivbar.
+        					</td>
+        				</tr>
+        			</table>
+        			Slutligen kan du radera din lokala temporära mapp dom du lagrade dina Coppermine-filer i, men det kan vara bra att spara den istället som en backup.
+        		</div>
+        		Vilken mapp som är källmapp och vilken som är målmapp spelar ingen roll alls, inte heller spelar det någon roll hur djupt ner Coppermine mappen är i mappstrukturen på din server. De steg som behövs för att flytta galleriet från en mapp webbroten eller vice versa skiljer sig inte åt: webbroten är bara en mapp på webbserverns filsystemsnivå, och du flyttar runt innehållet i en mapp.
+        	</li>
+        </ul>
+        <a name="moving_server"></a><h3>Flytta från en webbserver till en annan<a href="#moving_server" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <p>Detta scenario gäller vanligtvis när man byter från ett webbhotell till ett annat. Du skapar faktiskt en kopia av dina filer (en <a href="export.htm#backup_file_complete">fullständig filbackup</a>) och en kopia av din databas (fullständig <a href="export.htm#backup_database">databas dump</a>) på den gamla servern och återställer de kopiorna på den nya.</p>
+        <p>Du uppmuntras att skapa och underhålla backuper ofta så du bör ha en backup redan. Om du inte har en, bör du skapa en <strong>nu</strong>. Du behöver tänka på att din sida kan ligga nere under tiden du flyttar från ett webbhotell till ett annat. Förhoppningsvis är den tid sidan ligger nere försumbar men du kan vanligtvis inte komma åt ditt galleri på den gamla servern och på den nya med samma URL samtidigt. Därför bör du ta backup på den gamla servern medan du fortfarande kan, alltså före kontraktet med ditt webbhotell går ut och du inte längre kan komma åt din gamla server för att ta backup. Om du inte har en backup och du inte längre kommer åt din webbserver så är det kört: ingen kommer att kunna hjälpa dig att återskapa ditt galleri - det är absolut obligatoriskt att ha en fungerande backup på både dina filer och dina databaser.</p>
+        <p>Läs motsvarande avsnitt på denna sida för att i detalj ta reda på hur du gör en backup.</p>
+        Nedan är ett sammandrag på steg nödvändiga att utföra, och en del noteringar om det som är besvärligt:
+        <ul>
+        	<li>
+        		<h4>Underhållsläge</h4>
+        		Berätta för dina användare att det kommer att utföras underhållsarbete på din sida och att den stundtals kan ligga nere. Om du tillåter dina besökare att ladda upp filer eller skriva inlägg och kommentarer, bör du försätta ditt galleri i <a href="configuration.htm#admin_general_offline">nedstängt läge</a> eller på annat sätt säkerställa att innehållet i din databas inte förändras efter det att du skapade dumpen.
+        	</li>
+        	<li>
+        		<h4>Säkerhetskopiera dina filer</h4>
+        		Ladda ner hela din Coppermine-mapp med FTP (inklusive alla mappar och filer i den) från den gamla servern till din lokala hårddisk, och bevara strukturen på undermapparna.
+        	</li>
+        	<li>
+        		<h4>Skapa en dump av din databas</h4>
+        		Använd ett verktyg som phpMyAdmin eller liknande för att <a href="#backup_database">backup på din databas</a>, d.v.s. för att få en dump (backup) av dina mySQL databasuppdateringar. Säkerställ att du inte bara tar en backup på din tabellstruktur - du måste ta backup på det faktiska innehållet (de individuella databasposterna) också.
+        	</li>
+        	<li>
+        		<h4>Verifiera att din backup fungerar</h4>
+        		Kontrollera om mySQL-dumpen innehåller alla data (öppna den komprimerade dumpfilen och använd en texteditor för att läsa i den). Helst bör du återställa hela galleriet till en testmiljö eller till din nya webbserver om du har tillgång till den och där kan se att din backup fungerar och är giltig.
+        	</li>
+        	<li>
+        		<h4>Ladda upp Coppermine-mappen till din nya server med FTP</h4>
+        		Återställ filerna på den nya servern om du kan, och bevara exakt den mappstruktur som fanns på din backup.
+        	</li>
+        	<li>
+        		<h4>Sätt behörigheter</h4>
+        		Coppermine behöver skriv-rättigheter på en del mappar, så du måste <a href="install_permissions.htm#permissions_folders">sätta behörigheter</a> på den nya servern på samma sätt som du gjorde när du först installerade Coppermine på den gamla servern. Glöm inte detta steg, det är viktigt!
+        	</li>
+        	<li>
+        		<h4>Läs tillbaka databasen</h4>
+        		Återställ mySQL tabellen genom att köra frågorna på den dumpfil du skapade på den gamla servern. För att åstadkomma det behöver du samma verktyg på den nya servern (målservern) som du använde när du skapade backupen på den gamla; om du använde phpMyAdmin på den gamla ska du också använda phpMyAdmin på den nya när du återläser backupen.
+        	</li>
+        	<li>
+        		<h4>Redigera databasinställningar</h4>
+        		Ditt nya webbhotell måste ha gett dig tillgång till mySQL data (du har redan behövt använda det för att kunna återställa dumpen på den nya servern). Dessa mySQL data skiljer sig vanligtvis från de som du hade på den gamla webbservern, så du måste redigera filen som innehåller dessa data. Använd en ren text-editor (notepad.exe duger bra) och redigera <tt class="code">include/config.inc.php</tt>: i den filen hittar du de gamla mySQL uppgifterna som du behöver skriva över med de mySQL data som gäller för den nya servern.
+        	</li>
+        	<li>
+        		<h4>Inaktivera underhållsläge</h4>
+        		Om du från början försatte ditt galleri i avstängt läge på den gamla servern måste du komma ihåg att öppna den igen på den nya. Gå till Coppermines konfiguration och redigera motsvarande inställning.
+        	</li>
+        	<li>
+        		<h4>Testa allt noggrant</h4>
+        		Testa varje aspekt av ditt galleri: försök att logga in som en vanlig användare utan administratörsrättigheter, försök använda <a href="uploading_http.htm#upload_http">http uppladdningar</a>, skriv en kommentar etc.
+        	</li>
+        </ul>
+         <a name="moving_disadvantages"></a><h3>Nackdelar med att döpa om<a href="#moving_disadvantages" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <div class="cpg_message_warning">
+        	Ditt finns flera nackdelar med att ändra adress (URL) till ditt galleri:
+        	<ul>
+        		<li>Bokmärken/favoriter som dina besökare sparat till din sida gäller inte längre</li>
+        		<li>Sökmotorernas index kommer att peka mot den gamla adressen. Följaktligen kommer du att få sämre ranking för dessa sökindex</li>
+        	</ul>
+        </div>
+        Tim Berners-Lee (&quot;uppfinnaren&quot; av <abbr title="world wide web">www</abbr>) myntade mottot &quot;<a href="http://www.w3.org/Provider/Style/URI" rel="external" class="external">Cool URI ändras inte</a>&quot; och det gäller fortfarande, så du bör tänka dig för två gånger innan du döper om din Coppermine-mapp efter det att den har etablerats. Det är mycket bättre att välja ett smart mappnamn från början (när du installerar Coppermine för första gången). Om du <em>måste</em> ändra URI till ditt galleri (eller någon URL överhuvud taget), så bör du åtminstone lägga in en omdirigering som tar hand om förändringen: på Apache-baserade servrar (och under förutsättning att ditt webbhotell tillhandahåller stöd för den funktionen), så kan du omdirigera med hjälp av <tt class="code">.htaccess file</tt> med <a href="http://httpd.apache.org/docs/1.3/mod/mod_alias.html#redirect" rel="external" class="external">redirect directive</a>.
+        <a name="moving_config_url"></a><h3>Ändra Coppermines URL i konfigurationen<a href="#moving_config_url" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+        <div class="cpg_message_validation">
+        	När en URL till ditt galleri ändras (efter att du flyttat runt ditt galleri på servern eller efter du döpt om mappen det befinner sig i), så måste du återspegla förändringarna av adressen i Coppermines konfiguration:
+        </div>
+        	<ul>
+        		<li>Gå till din nya adress (URL) via din webbläsare adressfält</li>
+        		<li>Logga in som administratör om du inte redan är det</li>
+        		<li>Gå till Coppermines <a href="configuration.htm">konfigurationspanel</a></li>
+        		<li>Utöka &quot;<a href="configuration.htm#admin_general">Generella inställningar</a>&quot;</li>
+        		<li>Ange den nya adressen i fältet &quot;<a href="configuration.htm#admin_general_coppermine-url">URL till din Coppermine gallerimapp</a>&quot;</li>
+        		<li>Bläddra till slutet av konfigurationspanelen</li>
+        		<li>Spara dina ändringar genom att skicka formuläret med motsvarande knapp i slutet av sidan</li>
+        		<li>Spara dina ändringar genom att skicka formuläret med motsvarande knapp i slutet av sidan</li>
+        	</ul>
+    </div>
+</div>
+<a name="export_end"></a><a name="backup_end"></a>
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate$</span>
+		<span id="doc_revision">$Revision$</span>
+	</div>
+</div>
+</body>
+</html>

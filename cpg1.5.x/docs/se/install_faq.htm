@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<title>Installation: Ofta ställda frågor (FAQ) - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<meta name="copyright" content="Coppermine dev team" />
+<meta name="description" content="Installation - Ofta ställda frågor (FAQ)" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta http-equiv="imagetoolbar" content="no" />
+<!--
+  SVN version info:
+  Coppermine version: 1.5.9
+  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/install_faq.htm $
+  $Revision: 7805 $
+ -->
+<link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../style/print.css" media="print" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/jquery.treeview.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Dokumentation och Manual</h1>
+<div id="toc">
+<a href="toc.htm">Innehållsförteckning</a>
+</div>
+<a name="faq"></a><h1>Installation - Ofta ställda frågor (FAQ)<a href="#faq" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<p>Att läsa FAQ är en bra idé när du försöker felsöka, men det gör inte resten av dokumentationen överflödig - om du inte hittar svaret här se till att du läser <strong>hela</strong> dokumentationen. Sök i hela supportforumet innan du ställer ett nytt inlägg på forumet.</p>
+<a name="faq_toc"></a><h2>FAQ översikt:<a href="#faq_toc" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2><ul class="nomargin">
+    <li><a class="content" href="#MinimumRequirements">Vilka är <strong>minimikraven</strong> för installationen och för användningen av Coppermine 1.5.x ?</a></li>
+    <li><a class="content" href="#whatIsImageMagick">Vad är <strong>ImageMagick</strong> och hur får jag tag i det?</a></li>
+    <li><a class="content" href="#WhatIsGD">Vad är <strong>GD</strong> och hur får jag tag i det?</a></li>
+    <li><a class="content" href="#VersionGD">Hur kan jag få reda på <strong>vilken version av GD</strong> som jag har?</a></li>
+    <li><a class="content" href="#GD1vsGD2">Vad är skillnaden mellan <strong>GD1 och GD2</strong>?</a></li>
+    <li><a class="content" href="#enableGD">Hur kan jag <strong>aktivera GD</strong> på min Windows server?</a></li>
+    <li><a class="content" href="#enableIMonWindows">Hur kan jag <strong>aktivera ImageMagick</strong> på min Windows server?</a></li>
+    <li><a class="content" href="#installIMwhenHosted">Hur kan jag <strong>installera ImageMagick eller GD</strong>?</a></li>
+    <li><a class="content" href="#VersionPHP">Hur kan jag får reda på <strong>vilken version av PHP</strong> som jag har?</a></li>
+    <li><a class="content" href="#InstallSteps">Vilka är de olika <strong>stegen</strong> för att få igång Coppermine?</a></li>
+    <li><a class="content" href="#installFTP_mode">Vilket <strong>FTP mode</strong> ska jag använda?</a></li>
+</ul>
+<a name="MinimumRequirements"></a>
+<h2>Vad är det för <strong>minimikrav</strong> för att använda Coppermine 1.5.x ?<a href="#MinimumRequirements" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+    <ul>
+        <li>vilken som helst webbserver, Apache rekommenderad (Coppermine fungerar med <a href="http://httpd.apache.org/" class="external">Apache</a>, <a href="http://www.microsoft.com/iis/" class="external">Microsoft Internet Information Server</a> (IIS), <a href="http://www.roxen.com/products/webserver/" class="external">Roxen WebServer</a>, <a href="http://www.aprelium.com/" class="external">Abyss</a>, <a href="http://www.janaserver.de/" class="external">JanaServer</a>)</li>
+        <li>PHP 4.3.0 eller bättre, PHP 5 stöds</li>
+        <li><a href="#WhatIsGD">GD lib</a> eller Image Magick</li>
+        <li>mySQL 3.23.23 eller bättre (4.1 rekommenderas). Blanda inte ihop klient api versionen (som visas i phpinfo) med mySQL versionen!</li>
+    </ul>
+    <hr />
+<a name="image_libraries"></a>
+<h2>Bildbibliotek<a href="#image_libraries" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<div class="indent">
+    <a name="WhatIsGD"></a>
+    <h3>Vad är <strong>GD</strong> och hur får jag tag i det?<a href="#WhatIsGD" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p><img src="../images/gd.png" border="0" alt="" width="148" height="93" title="GD" align="right" style="padding-left:20px" />GD är ett grafiskt bibliotek som gör det möjligt för PHP att manipulera bilder. Biblioteket utvecklades från början av <a href="http://www.boutell.com/" rel="external" class="external">Thomas Boutell</a> och underhålls nu av <a href="http://blog.thepimp.net/" rel="external" class="external">Pierre-A. Joye</a> under <a href="http://www.php.net/" rel="external" class="phpnet">PHP.net</a>. Om du kör din egen webbserver kan du ladda ned det på <a href="http://libgd.org/" class="external">libgd.org</a>. Du måste omkompliera PHP på (L)Unix system, beroende på din setup av Apache också. De senaste versionerna av PHP har GD - hämta ett paket. På de flesta windows system kan du bara aktivera det i filen php.ini. Om du har ett webbhotell: ta reda på av ditt webbhotell om GD/GD2 stöds på din webbsida. Om inte, be dom tillhandahålla det till dig eller hitta ett annat webbhotell.  
+GD/GD2 är en standardfunktion hos de allra flesta webbhotell.<br /></p><hr />
+    <a name="whatIsImageMagick"></a>
+    <h3>Vad är ImageMagick och hur kan jag få tag i det?<a href="#whatIsImageMagick" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p><img src="../images/imagemagick.png" border="0" alt="" width="130" height="54" title="ImageMagick" align="right" style="padding-left:20px" />ImageMagick är ett annat grafiskt bibliotek lika som GD/GD2 för bildmanipulering. Om du har din egen webbserver, så kan du ladda ner det på <a href="http://www.imagemagick.org" class="external">imagemagick.org</a>. Det finns källkoder tillgängliga för Unix, Linux, Mac och Windows program, och även binära paket för olika operativsystem på servrar. Du kan inte installera ImageMagick om du har ett webbhotell.    </p>
+    <a name="VersionGD"></a>
+    <h3>Hur får jag reda på <strong>vilken version av GD</strong> jag har?<a href="#VersionGD" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>Om du inte har installerat Coppermine ännu, skapa en tom fil med namn &quot;info.php&quot;, och lägg den här koden i filen: <tt class="code">&lt;?php phpinfo(); ?&gt;</tt>. Spara filen och ladda upp den till din webbserver och kör den senare i din webbläsare (t.ex. http://www.din_hemsida.se/info.php). Se på en tabell som ser ut så här:</p><br />
+    <div align="center" style="font-family: arial, helvetica, sans-serif; font-size: 14pt; font-weight: bold;">gd</div>
+    <table border="0" cellpadding="3" cellspacing="1" width="600" bgcolor="#000000" align="center">
+    <tr valign="baseline" bgcolor="#cccccc"><td bgcolor="#ccccff" ><strong>GD Support</strong></td><td align="left">enabled</td></tr>
+    <tr valign="baseline" bgcolor="#cccccc"><td bgcolor="#ccccff" ><strong>GD Version</strong></td><td align="left">1.6.2 or higher</td></tr>
+    <tr valign="baseline" bgcolor="#cccccc"><td bgcolor="#ccccff" ><strong>FreeType Support</strong></td><td align="left">enabled</td></tr>
+    <tr valign="baseline" bgcolor="#cccccc"><td bgcolor="#ccccff" ><strong>FreeType Linkage</strong></td><td align="left">with TTF library</td></tr>
+    <tr valign="baseline" bgcolor="#cccccc"><td bgcolor="#ccccff" ><strong>JPG Support</strong></td><td align="left">enabled</td></tr>
+    <tr valign="baseline" bgcolor="#cccccc"><td bgcolor="#ccccff" ><strong>PNG Support</strong></td><td align="left">enabled</td></tr>
+    <tr valign="baseline" bgcolor="#cccccc"><td bgcolor="#ccccff" ><strong>WBMP Support</strong></td><td align="left">enabled</td></tr>
+    </table>
+    <br /><br />Notera: att lämna kvar filen info.php på din server kan vara en säkerhetsrisk; antingen bör du radera den efter att du använt den eller så flyttar du den till ett lösenordsskyddat bibliotek.<br />&nbsp;<br />Om du redan har installerat Coppermine, kan du hitta filen phpinfo.php i din Coppermine mapp. Logga in i din installation av Coppermine som administratör genom att peka din webbläsare till http://din_hemsida.se/din_coppermine_mapp/phpinfo.php. Bläddra sedan ner till avsnittet om GD på skärmen.</p>
+    <hr />
+    <a name="GD1 jmf GD2"></a>
+    <h3>Vad är det för skillnad mellan <strong>GD1 och GD2</strong>?<a href="#GD1vsGD2" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>GD2 är en uppdaterad version av GD1 och som sådant kommer det att skapa bilder med bättre kvalitet (medelstora bilder och miniatyrbilder). </p>
+<table border="0" class="frame2"><tr><td colspan="2"><span class="winzig">Här är några exempel som tagits från <a href="http://www.vddh.com/wnailer/index.php?pag=res&pic=1#comp" class="external">w-nailer: om skalning</a><br />(Originalets bildstorlek: 1024 x 768 pixlar):</span></td></tr><tr><td align="center"><img src="../images/128x96gd1.jpg" width="128" height="96" border="0" alt="" title="GD1"/></td><td align="center"><img src="../images/128x96gd2.jpg" width="128" height="96" border="0" alt="" title="GD2"/></td></tr><tr><td align="center"><span class="winzig">GD 1.8.4:<br />ImageCreate<br />ImageCopyResized<br />128 x 96 pixlar</span></td><td align="center"><span class="winzig">GD 2.0.1:<br />ImageCreateTrueColor<br />ImageCopyResampled<br />128 x 96 pixels</span></td>
+</tr></table>Uppgradering av GD biblioteket efter det att Coppermine installerats kommer inte att påverka bilder som redan skapats. Det kommer bara att påverka bilder som skapats efter uppgraderingen. <strong>Om du inte kör din egen webbserver, så kan du inte uppgradera eller installera GD biblioteket - det kan bara ditt webbhotell göra!</strong></p>
+    <p>Den största skillnaden mellan GD 1 och GD 2 ligger i färgdjupet: GD1 stödjer bara ett begränsat färgdjup om 256 färger per bild. Det innebär väldigt dålig kvalitet.</p>
+    <p class="cpg_message_info">Numera är GD1 biblioteket helt föråldrat och borde bara finnas på väldigt gammal hårdvara. Om du inte har webbhotell, så borde du ha GD2. Om ditt webbhotell fortfarande bara erbjuder GD1, så är det nog dags att leta efter ett annat och bättre webbhotell.</p>
+    <hr /><a name="enableGD"></a>
+    <h3>Hur kan jag <strong>aktivera GD</strong> på min Windows server?<a href="#enableGD" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>GD 1.x 2.x är normalt en del av alla standarddistribueringar av PHP för Windows<br />
+    För att kontrollera om du har det, gå till kataloger där du installerade PHP, gå till &quot;extensions&quot; subdir och se om du har en fil som heter &quot;php_gd2.dll&quot;.<br />
+    Ibland kan du också behöva redigera din php.ini fil (som normalt finns i mappen windows) och radera &quot;;&quot; som finns i början på raden:<br />
+    <tt class="code">extension=php_gd2.dll</tt> (i slutet av filen). Detta kommer att göra att PHP laddar GD2 tillägget.<br />
+    Närhelst du gör ändringar i filen php.ini, kom ihåg att du måste starta om din webbserver innan ändringarna får effekt.<br />
+    ImageMagick är ganska komplicerat att använda i Windows<br />
+    Greg<br /></p>
+    <p>Notera: Coppermine utvecklingsteam rekommenderar inte <a href="requirements.htm#what_minimum_self-hosting">self-hosting</a>. Vi försöker inte att uppmuntra dig att köra en egen webbserver om du inte vet hur. Vi lämnade kvar den här paragrafen i FAQ avsnittet bara som referens. Förstå att vi inte kan ge råd om frågor angående setup och inställning av webbservrar.</p><hr />
+    <a name="enableIMonWindows"></a>
+    <h3>Hur kan jag <strong>aktivera ImageMagick</strong> på min Windows server?<a href="#enableIMonWindows" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>ImageMagick är ganska komplicerat att använda i Windows. Det är många saker man måste ta hänsyn till. Coppermine supporten är <strong>inte</strong> rätt ställe för att be om hjälp med installationen av det, eftersom den hanterar frågor som har att göra med Coppermine, inte &quot;Hur sätter jag upp en server&quot; (de flesta personer i Coppermines styrelser kör inte sin egen webbserver, utan de har en webbsida som tillhandahålls av webbhotell). Försök istället att få hjälp på någon av de andra supportställen som finns runt om på internet, och som är inriktade på denna specifika fråga.</p>
+    <p>Sökvägen till ImageMagick får inte innehålla blanktecken eller specialtecken. Du måste försäkra dig om att den användaren som webbsidan körs med har de nödvändiga behörigheter som behövs för att köra programmet ImageMagick.</p>
+    <hr />
+    <a name="installIMwhenHosted"></a>
+    <h3>Hur kan jag <strong>installera ImageMagick eller GD</strong>?<a href="#installIMwhenHosted" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+    <p>du kan bara <a href="#enableIMonWindows">installera ImageMagic eller GD om du kör din egen webbserver</a> eller om du åtminstone har shell behörighet till din webbserver. Om din sida finns på ett webbhotell kan du bara kontakta dem och be dem installera det till dig. Om de vägrar, byt webbhotell eller använd GD istället.<br /></p>
+    <hr />
+</div>
+<div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+<a name="VersionPHP"></a>
+<h2>Hur kan jag få reda på <strong>vilken version av PHP</strong> jag har?<a href="#VersionPHP" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>Om du inte har installerat Coppermine ännu, skapa en tom fil med namn &quot;info.php&quot;. Lägg till följande kod i den: <tt class="code">&lt;?php phpinfo(); ?&gt;</tt>. Spara filen och ladda upp den till din webbserver och kör den sedan i din webbläsare (t.ex. http://www.din_hemsida.se/info.php). Den allra första raden bör se ut så här &quot;PHP Version X.Y.Z&quot;<br />Obs: att lämna kvar på servern innebär en säkerhetsrisk; antingen raderar du den efter det att du använt den eller så flyttar du den till en lösenordsskyddad mapp!<br />&nbsp;<br />Om du redan har installerat Coppermine, finns det en phpinfo fil (phpinfo.php) inom Coppermine-mappen. Logga in som administratör på din installation av Coppermine genom att peka på sökvägen (skriv in URL) i din webbläsare till http://din_hemsida.se/din_coppermine_mapp/phpinfo.php eller klicka på länken phpinfo i Coppermines <a href="admin_menu.htm">admininstratörsmeny</a>.</p><hr />
+<a name="InstallSteps"></a>
+<h2>Vilka är de olika <strong>stegen</strong> för att få igång Coppermine?<a href="#InstallSteps" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
+<p>som redan sagts i avsnittet </p><a href="install.htm#how">installation</a>:
+<ol>
+<li>Ladda ner Coppermine</li>
+<li>Packa upp (unzip) den till din hårddisk</li>
+<li>Ladda upp innehållet i Copperminemappen till din server (du kan installera det på roten eller i en egen mapp, allt efter eget önskemål).</li>
+<li>Bevilja behörigheter (CHMOD) till dina nyss uppladdade Coppermine-mappar &quot;include&quot; och &quot;albums&quot; och dess undermappar för att ge läs/skrivrättigheter. Om ditt webbhotell inte tillhandahåller verktyg för filunderhåll så att du kan göra detta, så måste du kanske söka på internet, ladda ner och installera ett FTP program för att åstadkomma detta.<br />
+För mer detaljer, läs <a href="install_permissions.htm#permissions">avsnittet behörigheter</a>.</li>
+<li> Skapa en databas med din webbsidas underhållsverktyg om du inte redan har en. Du behöver inte lägga till några tabeller i din nyss skapade databas. Coppermine kommer att skapa dem åt dig. Om du redan har en databas på din sida, kan Coppermine använda den också. </li>
+<li>Om du installerar på en Yahoo Webbserver, <a href="http://coppermine-gallery.net/forum/index.php?topic=18943.0">läs den här tråden först</a>.</li>
+<li>Peka din webbläsare till http://www.din_sida.se/coppermine/install.php och följ instruktionerna från installationsfilen (mySQL-tabeller kommer att skapas där och konfigurationstabellen kommer att fyllas med standardvärden)</li>
+<li>Efter lyckad installation kan du radera filen install.php från din webbsida, men du måste inte göra det eftersom Coppermine kommer att se till att installationsprogrammet inte kan köras en andra gång.</li>
+<li>Peka din webbläsare till http://www.din_sida.se/coppermine/ , och logga in som administratör med hjälp avd det användarID och lösenord som du angav under installationen. Med administratörskontrollerna aktiverade, klicka på KONFIGURATIONS menynknappen och börja anpassa ditt galleri som föreslagits i avsnittet &quot;<a href="start.htm">komma igång</a>&quot; i dokumentationen.</li>
+<li>Experimentera med din nya installation, skapa några få <a href="categories.htm">kategorier</a>, under-kategorier, och <a href="albums.htm">album</a>. Ladda upp ett fåtal bilder (inte för många, inte ännu), testa att allt fungerar som det ska. </li>
+<li>Peka din webbläsare till http://www.din_sida.se/coppermine/docs/ och LÄS dokumentationen. Dokumenten som ingår med CPG1.5.x har uppdaterats från tidigare versioner för att hjälpa till att besvara dina frågor och lösa dina problem så att du kan få din sida som du vill ha den redan från början. Att läsa dokumentationen tar inte många minuter. Att däremot lösa problem när de redan inträffat kan ta dagar och till och med veckor.</li>
+<li>Om din nya Coppermine installation finns i en undermapp på din sida, publicera den genom att länka den till din hemsida.</li>
+</ol><br /></p>
+<hr />
+<a name="installFTP_mode"></a>
+<h2>Vilket <strong>FTP mode</strong> ska jag använda?</h2>
+<p>File Transfer Protocol (FTP) används för utbyte av och manipulering av filer över ett datanätverk. En FTP klient kan ansluta till en FTP server för att manipulera filer på den servern.</p>
+<p>Det finns två olika överföringslägen i <abbr title="File Transfer Protocol">FTP</abbr>.</p>
+<p>Alla bilder (.jpg, .gif, .png etc) bör laddas upp som binära, alla filer som innehåller text (php, htm, css, js etc.) i ASCII mode. De flesta FTP klienter har ett &quot;auto&quot; läge som kommer att använda rätt läge för varje enskild fil; om din FTP klient har &quot;Auto&quot;, använd det. Detta läge är särskilt användbart vid installation av Coppermine eftersom paketet innehåller en blandning av filtyper. Om din klient inte har ett &quot;Auto&quot; läge så växla till &quot;Binärt (Binary)&quot;. För mer information, se manualen för din <a href="dev_tools.htm#dev_tools_ftp_client">FTP klient</a> eller läs <a href="http://en.wikipedia.org/wiki/File_Transfer_Protocol" rel="external" class="external"> Wikipedia artikeln om FTP</a>.</p>
+<div id="doc_footer">
+	<div class="doc_info_wrapper">
+		<span id="doc_last_changed">$LastChangedDate: 2010-08-06 11:59:36 +0200 (Fr, 06 Aug 2010) $</span>
+		<span id="doc_revision">$Revision: 7805 $</span>
+	</div>
+</div>
+</body>
+</html>

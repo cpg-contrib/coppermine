@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <title>Uppladdning via batch - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
@@ -11,11 +11,9 @@
 <meta http-equiv="imagetoolbar" content="no" />
 <!--
   SVN version info:
-
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/uploading_batch-add.htm $
   $Revision: 7805 $
-
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -30,19 +28,14 @@
 <div id="toc">
 <a href="toc.htm">Innehållsförteckning</a>
 </div>
-
-
 <a name="batch_add_pics"></a><h1>Ladda upp filer med FTP / Batch-uppladda filer<a href="#batch_add_pics" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 <p>FTP-uppladdningar och batch-uppladdningar är en för administratören av galleriet rekommenderad metod för att ladda upp filer. Av säkerhetsskäl kan bara administratören göra detta; icke-administratör kan inte använda den här funktionen och behöver använda en av de andra metoderna för att ladda upp filer.</p>
-
 <a name="batch_add_pics_what"></a><h2>Vad batch-uppladdning gör<a href="#batch_add_pics_what" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Coppermine är en databasdriven applikation. Det betyder att filer som blir uppladdade fysiskt befinner sig någonstans i webbutrymmet. Det kan vara var som helst - mapp och filnamn för filerna som laddas upp behöver inte nödvändigtvis vara sorterade på något särskilt sätt. Sorteringen och grupperingen är logisk dock: Coppermine använder kategorier, underkategorier och album för att organisera visningen av filerna som laddades upp. För att kunna göra det lagrar Coppermine filernas fysiska plats (den sökväg som leder till filerna) i databasen och även en del annan logisk information (till exempel i vilket album filen finns).</p>
-<p>När en fil blir uppladdad med hjälp av en FTP applikation "vet" inte Coppermine var den är, så du måste tala om platsen för scriptet så att det kan minnas den genom att lagra den i databasen. Det är batch-uppladdningsprocessen kommer in. Vad batch-uppladdningen faktiskt är: skapar skalade (storleksförändrade) kopior (miniatyr- och medelstora bilder) av originalfilerna du laddade upp och skriver sedan poster i databasen (en post för varje fil du laddar upp) för att kunna spåra var på serverns hårddisk filen faktiskt finns. Med det sagt borde det vara ganska självklart: <strong>Coppermine flyttar inte runt filer - de stannar på den plats dit du laddade upp dem</strong>.</p>
-<p>Därför bör du i förväg bestämma den struktur för mappar och filer som du tänker använda för uppladdning av filer. Dom behöver hamna i mappen "albums", och det är tillrådigt att skapa en smart struktur av mappar och undermappar där.</p>
-
+<p>När en fil blir uppladdad med hjälp av en FTP applikation &quot;vet&quot; inte Coppermine var den är, så du måste tala om platsen för scriptet så att det kan minnas den genom att lagra den i databasen. Det är batch-uppladdningsprocessen kommer in. Vad batch-uppladdningen faktiskt är: skapar skalade (storleksförändrade) kopior (miniatyr- och medelstora bilder) av originalfilerna du laddade upp och skriver sedan poster i databasen (en post för varje fil du laddar upp) för att kunna spåra var på serverns hårddisk filen faktiskt finns. Med det sagt borde det vara ganska självklart: <strong>Coppermine flyttar inte runt filer - de stannar på den plats dit du laddade upp dem</strong>.</p>
+<p>Därför bör du i förväg bestämma den struktur för mappar och filer som du tänker använda för uppladdning av filer. Dom behöver hamna i mappen &quot;albums&quot;, och det är tillrådigt att skapa en smart struktur av mappar och undermappar där.</p>
 <p>Det rekommenderas att administratören använder FTP för att ladda upp flera bilder/filer åt gången. Använd din FTP programvara för att ska undermappar inom mappen <em>your_coppermine_directory/albums/</em>, dit dina FTP-uppladdningar kan sparas. Även om det inte är obligatoriskt, så är det en bra idé att ha en mappstruktur inom mappen <em>albums</em> som efterliknar eller speglar de album och kategorier du har i Coppermine.</p>
 <p class="cpg_message_error">Viktigt: skapa inte mappar i eller ftp-uppladdningar till mapparna <em>userpics</em>- eller <em>edit</em> via ftp: dessa mappar används internt av Coppermine och får inte användas för några andra ändamål! <strong>Mappnamn får inte innehålla punkter</strong>. Vi rekommenderar också bestämd att du avhåller dig ifrån att använda några andra specialtecken - använd bara a-z, siffror och <tt class="code">-</tt> (streck) eller <tt class="code">_</tt> (understrykningstecken) för att fylla ut blanka utrymmen. Kontrollera att du laddar upp i binary eller auto-mode.</p>
-
 <a name="batch_add_pics_how"></a><h2>Hur batch-uppladdning fungerar<a href="#batch_add_pics_how" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Efter det att du laddat upp dina filer med FTP, klick på &quot;Batch-uppladda filer &quot; knappen. Batchuppladdningen sker i tre steg:</p>
 <ul>
@@ -67,7 +60,6 @@
 </ul>
 <p class="cpg_message_info">Att ge FTP-behörighet till andra användare kan bli ett allvarligt hot mot säkerheten, det är därför som batch-uppladdning bara finns tillgängligt för galleriets administratör.</p>
 <p>Efter det att filer har lagts till i Coppermine's databas, säkerställ att du <strong>aldrig</strong> ska döpa om eller radera dem via FTP - använd istället alternativen i Coppermine's administrationsmeny för att radera eller döpa om filer. Bara på så sätt blir filerna raderade både från filsystemet <strong>och</strong> från databasen.</p>
-
 <a name="batch_add_common_mistakes"></a><h2>Vanliga misstag<a href="#batch_add_common_mistakes" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Det finns en del som kan bli fel med batch-uppladdning, så här är en lista på vad du bör kontrollera först:</p>
 <ul>
@@ -100,7 +92,7 @@
 			</li>
 			<li>
 			    <a name="batch_add_common_mistakes_doesnt_work_reserved_names"></a><h4>Reserverade namn<a href="#batch_add_common_mistakes_doesnt_work_reserved_names" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-			    Använd inte reserverade filnamn: det finns ett antal prefix som coppermine använder internt, så du bör försäkra dig om att du inte använder dessa reserverade filnamn eller prefix. Använd inte "thumb_", "normal_", "original_" i filnamn, eftersom dessa är standard filprefix
+			    Använd inte reserverade filnamn: det finns ett antal prefix som coppermine använder internt, så du bör försäkra dig om att du inte använder dessa reserverade filnamn eller prefix. Använd inte &quot;thumb_&quot;, &quot;normal_&quot;, &quot;original_&quot; i filnamn, eftersom dessa är standard filprefix
 			</li>
 			<li>
 			    <a name="batch_add_common_mistakes_doesnt_work_dots"></a><h4>Punkter<a href="#batch_add_common_mistakes_doesnt_work_dots" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
@@ -127,7 +119,6 @@
 	    En del användare trodde av misstag att de kunde rader filer så snart batch-uppladdningen var klar: så är <strong>inte</strong> fallet - allt som batch-uppladdningen gör är att skapa skalade bilder (medelstora/miniatyrer/vattenstämplade) och addera poster till databasen som motsvarar filerna. Du kan <strong>inte</strong> radera filen efteråt för att spara diskutrymme. Om du raderar filen får du en bruten post, vilket är mycket illa.
 	</li>
 </ul>
-
 <a name="batch_add_sort"></a><h2>Sortera<a href="#batch_add_sort" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Inställningen <a href="configuration.htm#admin_thumbnail_default_sortorder">Standardsorteringsordning för filer</a> kan ställas in i Coppermines konfiguration. Som standard är det inställt på &quot;Namn stigande&quot;, vilket helt enkelt är det bästa alternativet för de flesta och det bör därför få vara kvar. Följaktligen, alla filer som du laddar upp med hjälp av Coppermine's inbyggda batch-uppladdningsfunktion kommer att sorteras i det album dom hamnar i ordning efter filens namn. Det rekommenderas att du tänker ut en plan för hur filerna ska namnges (som du ger filerna <strong>innan</strong> du laddar upp dem från din dator till servern) som tar hänsyn till hur filerna kommer att sorteras på servern.</p>
 Tänk på att:
@@ -195,12 +186,7 @@ Tänk på att:
         </div>
     </li>
 </ul>
-
-
-
 <a name="batch_add_pics_end"></a>
-
-
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
 		<span id="doc_last_changed">$LastChangedDate: 2010-08-06 11:59:36 +0200 (Fr, 06 Aug 2010) $</span>
