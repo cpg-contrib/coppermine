@@ -23,6 +23,8 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-10-05 [D] Added partial Swedish documentation {GauGau}
+2010-10-05 [O] Updated Swedish language file (previous version was mainly a Danish language file) {GauGau}
 2010-10-03 [B] Fixed template placeholder bug that caused cut off tags {Nibbler}
 2010-10-01 [B] Fixed use of mysql_insert_id (thread ID 67402) {Nibbler}
 2010-10-01 [B] Fixed critical error on memberlist when bridged (thread ID 64678) {eenemeenemuu}
