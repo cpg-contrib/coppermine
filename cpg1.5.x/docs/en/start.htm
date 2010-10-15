@@ -342,9 +342,42 @@ If you are going to be the only uploader and want little or no user interaction 
 	<li>The admin of course needs to set <a href="#getting_upload_permissions">permissions for uploads</a> for the registered users as well</li>
 </ul>
 
-<a name="getting_typical_multiple_uploader_open"></a><h3>Multiple uploaders with new registrations<a href="#getting_typical_multiple_uploader_open" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<a name="getting_typical_multiple_uploader_open"></a><h3>Multiple uploaders <em>with</em> new registrations<a href="#getting_typical_multiple_uploader_open" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <p>In this setup we will go through a setup that may sound a bit confusing in the first place, but is something that a lot of gallery admins will want to accomplish: a gallery where everyone can register and where users can upload as well.</p>
-<p>To build a commmunity around your website you will have to give your visitors an additional benefit for registering: registrations means putting an additional effort into the visit on your site, so there must be an additional
+<p>To build a commmunity around your website you will have to give your visitors an additional benefit for registering: registrations means putting an additional effort into the visit on your site, so there must be an additional thing that the visitor gets in return for his "work".</p>
+<p>Here's a list of features that you might to consider to give to your registered users &quot;as a reward&quot; for registration (of course you need to disallow those features for non-registered guests to make this actually work):</p>
+<ul>
+	<li>
+		<h4>Exclusive content for registered users</h4>
+		The best method to promote registration is real, exclusive content for registered users only. To accomplish this, set the access permission for one or several albums from "Everybody (public album)" to "Members of the 'Registered' group" using the option "<a href="albums.htm#album_prop_controls_album_can_be_viewed_by">Album can be viewed by</a>" on the <a href="albums.htm#album_prop">album properties</a> screen.
+	</li>
+	<li>
+		<h4>Access level</h4>
+		Allow your registered users to see all image resolutions including the full-size image and restrict your guests to thumbnail and intermediate images only. Alternatively, allow your guests even less: only let them access thumbnails - for enything else, they will need to register (this is only an option if you have <em>very</em> good content).<br />
+		Set the access level on the <a href="groups.htm#group_cp">groups control panel</a>.
+	</li>
+	<li>
+		<h4>Participation by uploading</h4>
+		Allow your registered users to participate in your community by allowing them to upload as well, while disallowing uploads for guests. Permissions to upload into punlic albums and / or to have a personal gallery is set on group membership level as well, that's why you assign those permissions in the <a href="groups.htm#group_cp">groups control panel</a> as well.
+	</li>
+	<li>
+		<h4>Ask your users for their opinion</h4>
+		On the <a href="groups.htm#group_cp">groups control panel</a> you can determine if a member of a particular group can rate the files in your gallery and if they can add <a href="comments.htm">comments</a> to them. It's advisable to consider this carefully, as commenting often is subject to <a href="comments.htm#comments_options_spam">spam</a> activities, which will in turn result in extra moderation effort for you as gallery admin.
+	</li>
+	<li>
+		<h4>Ecards</h4>
+		You might want to allow your users to promote your gallery by recommending it to their friends using the ecard feature. Again, this is being controlled on the <a href="groups.htm#group_cp">groups control panel</a>. However, the ecard feature in itself is a bit dated, as most visitors are aware how to send emails to their friends without using your services.
+	</li>
+	<li>
+		<h4>Contacting you</h4>
+		You can determine if a <a href="configuration.htm#admin_contact_start">contact form</a> should be available and wether guests are allowed to access it as well (or only registered users).
+	</li>
+	<li>
+		<h4>Alternative browsing</h4>
+		The <a href="configuration.htm#admin_sidebar">sidebar</a> can be an alternative way for your visitors to browse your gallery's content; you might want to offer that as a form of "reward" as well for registered users only.
+	</li>
+</ul>
+<p class="cpg_message_success">If you should decide for one (or more) of the methods mentioned above, don't forget to tell your site visitors about those benefits - it doesn't help to grant your registered users additional privileges to promote registration if you fail to tell unregistered guests about those privileges in advance. To accomplish this, you can use the <a href="php-content.htm#php-content_anycontent">anycontent</a> file with the example given there.
 
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
