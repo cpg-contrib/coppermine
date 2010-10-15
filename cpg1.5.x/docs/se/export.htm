@@ -55,7 +55,7 @@
         	<li>Användartabellen lagrar data om registrerade användare (inklusive administratörskontot)</li>
         	<li>...</li>
         </ul>
-        <p>Det finns många fler tabeller som lagrar olika aspekter av innehållet på ditt galleri - för en komplett lista av alla tabeller och strukturen inom dem, se <a href="dev_database.htm#db_intro">databas schemat</a>. Alla relevanta tabeller har samma prefix - den du använde under installationen. För att utföra en databasbackup, säkerställ att du tar backup på <strong>alla</strong> copperminetabeller, d.v.s. alla som har det prefix som du valde vid installationen. Om du inte är säker på vilket prefix det är, ladda ner filen include/config.inc.php med din FTP applikation till din dator och titta sedan i den med hjälp av en ren-text editor (notepad.exe duger fint): prefixet borde stå där. Som standrard är prefixet <tt class="code">cpg15x_</tt>.</p>
+        <p>Det finns många fler tabeller som lagrar olika aspekter av innehållet på ditt galleri - för en komplett lista av alla tabeller och strukturen inom dem, se <a href="dev_database.htm#db_intro">databas schemat</a>. Alla relevanta tabeller har samma prefix - den du använde under installationen. För att utföra en databasbackup, säkerställ att du tar backup på <strong>alla</strong> copperminetabeller, d.v.s. alla som har det prefix som du valde vid installationen. Om du inte är säker på vilket prefix det är, ladda ner filen include/config.inc.php med din FTP applikation till din dator och titta sedan i den med hjälp av en ren-text editor (notepad.exe duger fint): prefixet borde stå där. Som standard är prefixet <tt class="code">cpg15x_</tt>.</p>
         <a name="backup_database_what"></a><h4>Databasbackup: vad behöver man ta backup på?<a href="#backup_database_what" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
         <p>Ordalydelsen kan variera beroende på det verktyg och dess version som du använder, och du bör veta exakt vad du ska ta backup på.</p>
         <p>En fullständig databasbackup innehåller både databasens <em> struktur</em> på tabelldefinitioner (de &quot;instruktioner&quot; som behövs för att skapa tomma tabeller om de har gått förlorade och behöver skapas på en annan server) så väl som data (faktiskt tabellinnehåll).</p>
@@ -78,7 +78,7 @@
         	    <ul>
         	        <li>Peka in din webbläsare till den sökväg (URL) där din kopia av phpMyAdmin finns (det antas att du lyckats installera phpMyAdmin på din webbserver eller att ditt webbhotell tillhandahåller phpMyAdmin åt dig)</li>
         	        <li>Om tillämpligt (d.v.s. om säkerhetsinställningarna i phpMyAdmin är konfigurerade motsvarande), ange dina phpMyAdmin login data om du uppmanas att göra det</li>
-        	        <li>Om tillämpligt (d.v.s. om du har tillgång till <em>flera</em> databaser), välj den databas där som Coppermines tabeller finns i (den du valde när du installerade Coppermine) från den översta vänstra rutan i phpMyAdmin gränssnit</li>
+        	        <li>Om tillämpligt (d.v.s. om du har tillgång till <em>flera</em> databaser), välj den databas där som Coppermines tabeller finns i (den du valde när du installerade Coppermine) från den översta vänstra rutan i phpMyAdmin gränssnitt</li>
         	        <li>På den översta högra rutan i phpMyAdmin, välj &quot;Export&quot; från navigationen</li>
         	        <li>På skärmen &quot;View dump (schema) of database&quot;, välj de tabeller som du vill ta backup på (som standard väljs alla tabeller som finns i databasen) från rutan benämnd &quot;Export&quot;. Om du inte är säker, ta backup på alla Coppermine tabeller, d.v.s. alla som har samma prefix som det du angav när du först installerade Coppermine</li>
         	        <li>I rutan &quot;Export&quot;, lämna radio-knappen &quot;SQL&quot; markerad som redan är vald som standard</li>
@@ -100,7 +100,7 @@
         	</li>
         	<li>
         	    <a name="backup_database_tools_shell_mysqldump"></a><h5>mysqldump<a href="#backup_database_tools_shell_mysqldump" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h5>
-        	    Verktyget mysqdump får inte blandas ihop med mySqlDumper eller vice versa: mysqldump är ett script som tillhör själva mysql och som bara är tillämplig (d.v.s. som du kan använda) om du har &quot;shell access&quot; (vilket dom allra flesta användare med webbhotell inte har).
+        	    Verktyget mysqdump får inte blandas ihop med mySqlDumper eller vice versa: mysqldump är ett script som tillhör själva mysql och som bara är tillämplig (d.v.s. som du kan använda) om du har &quot;shell access&quot; (vilket de allra flesta användare med webbhotell inte har).
         	    [<a href="http://dev.mysql.com/doc/refman/5.0/en/mysqldump.html" rel="external" class="external">more</a>]
         	</li>
         	<li>
@@ -208,7 +208,7 @@
         					</td>
         				</tr>
         			</table>
-        			Slutligen kan du radera din lokala temporära mapp dom du lagrade dina Coppermine-filer i, men det kan vara bra att spara den istället som en backup.
+        			Slutligen kan du radera din lokala temporära mapp som du lagrade dina Coppermine-filer i, men det kan vara bra att spara den istället som en backup.
         		</div>
         		Vilken mapp som är källmapp och vilken som är målmapp spelar ingen roll alls, inte heller spelar det någon roll hur djupt ner Coppermine mappen är i mappstrukturen på din server. De steg som behövs för att flytta galleriet från en mapp webbroten eller vice versa skiljer sig inte åt: webbroten är bara en mapp på webbserverns filsystemsnivå, och du flyttar runt innehållet i en mapp.
         	</li>

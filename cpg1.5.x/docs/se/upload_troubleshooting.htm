@@ -37,7 +37,7 @@
 <p class="cpg_message_error">För de utav er som brukar skumma över det som står skrivet med röda bokstäver, så upprepar vi oss för att få din uppmärksamhet:<br />
 <span class="important"><strong>Ja, vi skriver om något som mycket väl kan angå just dig</strong></span>
 </p>
-<p>Vi repeterar - kontrollera/sätt dina behörigheter på mapparna <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, och <tt class="code">/albums/edit</tt>. Alla ska vanligtvis vara 777 eller 755 (beroende av hur din webbserver är uppsatt) eller det som nu behövs sätta supp på din webbserver för att tillått att Coppermine scriptet får behörighet.</p>
+<p>Vi repeterar - kontrollera/sätt dina behörigheter på mapparna <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, och <tt class="code">/albums/edit</tt>. Alla ska vanligtvis vara 777 eller 755 (beroende av hur din webbserver är uppsatt) eller det som nu behövs sättas upp på din webbserver för att tillått att Coppermine scriptet får behörighet.</p>
 <p class="cpg_message_info">Ja, vi vill att du <strong>sätter</strong> behörigheterna på varje mapp även om du tror att du redan har denna har det. Jas, vi <strong>menar</strong> det. Nej, att bara <em>kontrollera</em> behörigheterna (slå upp vad din FTP-klient rapporterar att behörigheterna är) är <strong>inte</strong> tillräckligt. Som sagt: sätt behörigheterna, titta inte bara på dem.</p>
 <a name="upload_trouble_enable_settings"></a><h2>Aktivera inställningar för felsökning<a href="#upload_trouble_enable_settings" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Om du får problem under Coppermines uppladdningsprocess, ändra tillfälligt dina inställningar som vi föreslår nedan för att få en mer detaljerade <a href="#upload_error_messages">felmeddelanden</a>. Detta gäller för <strong>alla</strong> uppladdningsmetoder, inte bara <a href="uploading_http.htm#upload_http">HTTP uppladdningar</a>.</p>
@@ -65,7 +65,7 @@
 		</div>
 	</li>
 	<li>
-		<strong class="detail_head_collapsed">Akitvera &quot;debug läge&quot;</strong>
+		<strong class="detail_head_collapsed">Aktivera &quot;debug läge&quot;</strong>
 		<div class="detail_body">
 			<ul>
 				<li>Gå till <a href="configuration.htm#admin">konfigurationspanelen</a></li>
@@ -106,8 +106,8 @@
 <p>Om du inte får något felmeddelande alls har du antagligen överbelastad servern med tidigare försök - läs om <a href="upload_troubleshooting.htm#upload_trouble_server-sided_restrictions">begränsningar på server-sidan</a> som kanske gäller dig.
 <a name="upload_support"></a><h2>Be om support för uppladdningsproblem<a href="#upload_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p class="cpg_message_error">När du ber om support från Coppermines supportforum, ange en länk till din sida och ett <a href="users.htm#user_cp_new">test användarkonto</a> (testanvändaren får inte tillhöra administratörsgruppen!) som har uppladdningsrättigheter, med ovan nämnda inställningar på plats - på så sätt kan supportern också se felmeddelandena. Skicka <strong>inte</strong> med någon debug_output i inlägget om du inte blir ombedd att göra det. Om du vill ha resultat snabbt, bör du inaktivera administratörsgodkännande för den grupp som testanvändaren tillhör, så att supportern omedelbart kan tala om vad det är för fel utan att behöva dubbelkolla.</p>
-<div class="cpg_message_warning">När folk har problem med uppladdning och bestämmer sig för att fråga via ett inlägg på Coppermines supportforum, får de ofta veta att de ska läsa avsnittet om felsökning för uppladdning. Många gör inte det ordentligt, och det orsakar irritation både för användaren och supporten.<br />
-För att göra det absolut klart: ovanstående steg är absolut <strong>obligatoriska</strong>, oavsett vilka färdigheter du har och oavsett vilken uppladdningsmetod du har problem med. Att underlåta att göra <strong>exakt</strong> det som supporten föreslår innebär att din begöran om hjälp ignoreras. Ja, det gäller dig. Ja, vi menar det!</div>
+<div class="cpg_message_warning">När folk har problem med uppladdning och bestämmer sig för att fråga via ett inlägg på Coppermines supportforum, får de ofta veta att de ska läsa avsnittet om felsökning för uppladdning. Många gör inte det ordentligt, och det orsakar irritation både för användaren och för supporten.<br />
+För att göra det absolut klart: ovanstående steg är absolut <strong>obligatoriska</strong>, oavsett vilka färdigheter du har och oavsett vilken uppladdningsmetod du har problem med. Att underlåta att göra <strong>exakt</strong> det som supporten föreslår innebär att din begäran om hjälp ignoreras. Ja, det gäller dig. Ja, vi menar det!</div>
 <p>Inte säker på vad du ska göra nu? Läs vidare:</p>
 <div class="indent">
     <a name="upload_support_step-by-step"></a><h3>Steg-för-steg guide när du ber om support<a href="?expand_all=1#upload_support_step-by-step" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -215,7 +215,7 @@ För att göra det absolut klart: ovanstående steg är absolut <strong>obligato
     		<div class="detail_body">
     			Du kan frestas att gå vidare genom att be om support redan nu, men vänta ett ögonblick: du har inte provat själv ännu att allt fungerar som förväntat. Du vill inte påbörja en supportförfrågan för att bara bli tillsagd att &quot;gör din hemläxa först&quot; (för det är vad som kommer att hända om du inte har gjort som vi föreslår här). Så här gör du:
     			<ul>
-    				<li>Logga ut från Coppermine (eller använd en annan webbläsare paralellt) om du är inloggad som administratör</li>
+    				<li>Logga ut från Coppermine (eller använd en annan webbläsare parallellt) om du är inloggad som administratör</li>
     				<li>Logga in genom att använda det testanvändarkonto som du skapade tidigare. Om det misslyckas kontrollera uppgifterna för testanvändarkontot när du är inloggad som administratör.</li>
     				<li><img src="images/simple_file_upload.png" width="400" height="178" border="0" alt="" title="Simple file uploads interface" align="right" style="padding-left:5px;" />Klicka på &quot;Ladda upp fil&quot;. Om du inte har någon uppladdningslänk så har du inte satt behörigheterna rätt - gå igenom ovanstående steg noggrant.</li>
     				<li>På bilden för filuppladdning, välj testalbumet från listrutan &quot;Album&quot;. Om du inte kan välja testalbumet, så har du gjort ett misstag när du satte upp uppladdningsbehörigheterna</li>
@@ -230,9 +230,9 @@ För att göra det absolut klart: ovanstående steg är absolut <strong>obligato
     		<div class="detail_body">
     			<ul>
     				<li>Gå till <a href="http://forum.coppermine-gallery.net/" rel="external" class="external">Coppermines supportforum</a></li>
-    				<li>Registrera ett nytt konto om du inte redan har ett och logga med med det kontot på Coppermines supportforum.</li>
+    				<li>Registrera ett nytt konto om du inte redan har ett och logga med det kontot på Coppermines supportforum.</li>
     				<li>Säkerställ att du läst forumets regler innan du gör ett inlägg (en länk till reglerna finns i forumets navigation)</li>
-    				<li>Starta en ny tråd på det supportforum som hör ihop med din version av Coppermine. Eftersom du läser dokumentationen för cpg1.5.x, använder du troligtvis den versionen så du bör skapa din tråd på underavdelningen som hanterar den versionen. Att göra ett inlägg på en annan version än den man använder duger inte och skapar irritation både för dig och supporten. Eftersom du har problem med uppladdning så bör du göra ditt inlägg i det forum som hanterar uppladdningsfrågor.</li>
+    				<li>Starta en ny tråd på det supportforum som hör ihop med din version av Coppermine. Eftersom du läser dokumentationen för cpg1.5.x, använder du troligtvis den versionen så du bör skapa din tråd på underavdelningen som hanterar den versionen. Att göra ett inlägg på en annan version än den man använder duger inte och skapar irritation både för dig och för supporten. Eftersom du har problem med uppladdning så bör du göra ditt inlägg i det forum som hanterar uppladdningsfrågor.</li>
     				<li>Kom ihåg att bifoga en länk till ditt galleri i ditt inlägg. Om ditt galleri har innehåll för vuxna (lite naket går under den kategorin också), lägg med en varning till din länk</li>
     				<li>Ange det detaljer om ditt testanvändarkonto (användarnamn och lösenord) som du satte innan</li>
     				<li>Det är en bra ide att visa supporten att du hör försökt först själv innan du bad om hjälp - förklara vad som faktiskt blev fel, hur långt du kom, vilket felmeddelande du fick osv.</li>
@@ -372,7 +372,7 @@ Warning: move_uploaded_file(/tmp/<span style="color:blue;">phpezCYKr</span>)
 <a name="upload_error_messages_no_gd_support"></a><a name="no_gd_support"></a><h3>Felmeddelande: <em>PHP running on your server does not support the GD image library</em><a href="#upload_error_messages_no_gd_support" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
 <div class="indent">
     <a name="upload_error_messages_no_gd_support_detail"></a><h4>Detaljerat felmeddelande<a href="#upload_error_messages_no_gd_support_detail" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-    <pre class="code">PHP som körs på din server stöder inte GD bildbibliotek, kontrollera med ditt webbhotell om ImageMagick är isntallerat.</pre>
+    <pre class="code">PHP som körs på din server stöder inte GD bildbibliotek, kontrollera med ditt webbhotell om ImageMagick är installerat.</pre>
     <a name="upload_error_messages_no_gd_support_cause"></a><h4>Trolig anledning<a href="#upload_error_messages_no_gd_support_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     Din webbserver har inte stöd för GD bildbibliotek.
     <a name="upload_error_messages_no_gd_support_fix"></a><h4>Föreslagen lösning<a href="#upload_error_messages_no_gd_support_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
@@ -391,9 +391,9 @@ Warning: move_uploaded_file(/tmp/<span style="color:blue;">phpezCYKr</span>)
         <li>test file &quot;<strong>too large</strong>&quot;<br />
         Om du får det här felmeddelandet, kontrollera att den fil du testar uppladdning med inte är för stor vad gäller filstorlek eller dimensioner. Testa med en liten fil du vet fungerar först. Du kan ladda ner en från Coppermines demo galleri och använda den för teständamål.</li>
         <li>&quot;<strong>file_uploads</strong>&quot; enabled<br />
-        Gå till din phpinfo sida (finns på <a href="admin_menu.htm#phpinfo">administratörsmenyn</a>), sök i den efter <tt class="code">file_uploads</tt> och säkerställ att den är satt till &quot;on&quot;. Om du är på en delat webbhotell så kan bara de aktivera det här åt dig.</li>
+        Gå till din phpinfo sida (finns på <a href="admin_menu.htm#phpinfo">administratörsmenyn</a>), sök i den efter <tt class="code">file_uploads</tt> och säkerställ att den är satt till &quot;on&quot;. Om du är på ett delat webbhotell så kan bara de aktivera det här åt dig.</li>
         <li>&quot;<strong>upload_tmp_dir</strong>&quot; needs to be set<br />
-        På phpinfo sidan, säkerställ att <tt class="code">upload_tmp_dir</tt> är rätt inställd. Om du är på en delat webbhotell så kan bara de aktivera det här åt dig. Scriptet (eller användaren som webbservern körs med) måste vara behörig att skriv till den filen.</li>
+        På phpinfo sidan, säkerställ att <tt class="code">upload_tmp_dir</tt> är rätt inställd. Om du är på ett delat webbhotell så kan bara de aktivera det här åt dig. Scriptet (eller användaren som webbservern körs med) måste vara behörig att skriv till den filen.</li>
     </ul>
 </div>
 <a name="upload_error_messages_destination_not_writable"></a><a name="destination_not_writable"></a><h3>Felmeddelande: <em>Destination directory <em>X</em> is not writable by the script</em><a href="#upload_error_messages_destination_not_writable" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
@@ -413,7 +413,7 @@ Warning: move_uploaded_file(/tmp/<span style="color:blue;">phpezCYKr</span>)
 <div class="indent">
     <a name="upload_trouble_server-sided_restrictions_php_ini"></a><h3>PHP konfigurationsfilen php.ini<a href="#upload_trouble_server-sided_restrictions_php_ini" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
     <div class="cpg_message_info">
-    Inställningarna i php.ini kan bara ändras av dig om servern är din att administrera (d.v.s. om du har en egen webbserver). Om du har ett webbhotell, måste du fråga supporten för webbhotellet om de kan göra förändringarna åt dig vilket vanligtvis innebär att du tillåts använda mer resurser på servern. Vanligtvis kommer ditt webbhotell <strong>inte</strong> att acceptera detta av rent ekonomiska orsaker: att tillåta dig att använda mer resurser innebär färre resurser för dom att tilldela andra.</div>
+    Inställningarna i php.ini kan bara ändras av dig om servern är din att administrera (d.v.s. om du har en egen webbserver). Om du har ett webbhotell, måste du fråga supporten för webbhotellet om de kan göra förändringarna åt dig vilket vanligtvis innebär att du tillåts använda mer resurser på servern. Vanligtvis kommer ditt webbhotell <strong>inte</strong> att acceptera detta av rent ekonomiska orsaker: att tillåta dig att använda mer resurser innebär färre resurser för dem att tilldela andra.</div>
     <div class="cpg_message_error">Ställ inga frågor på supportforumet om vad dessa inställningar ska vara eller hur du kan förändra dem - som redan sagts kan du vanligtvis inte ändra dem alls om du har ett webbhotell.<br />Om du har din <a href="requirements.htm#what_minimum_self-hosting">egen webbserver</a> (vilket vi inte alls kan rekommendera eftersom köra och underhålla en webbserver kräver konstant monitorering och underhåll och dessutom ett stort mått av kunskaper och erfarenheter), bry dig inte om att ställa triviala frågor som &quot;Var kan jag hitta min php.ini fil&quot; - om du inte vet svaret på den frågan så tillhör du kategorin &quot;egen webbserver rekommenderas inte på grund av brist på erfarenhet&quot; och du kommer inte att få svar från Coppermines supportforum.</div>
     <a name="upload_trouble_server-sided_restrictions_check"></a><h3>Saker att kontrollera<a href="#upload_trouble_server-sided_restrictions_check" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
     <p>Om du har ett webbhotell, så måste du konsultera supporten för webbhotellet angående följande inställningar. Du kan granska (men inte ändra) dessa inställningar på din <a href="admin_menu.htm#phpinfo">phpinfo sida</a>.</p>
@@ -432,7 +432,7 @@ Warning: move_uploaded_file(/tmp/<span style="color:blue;">phpezCYKr</span>)
       </li>
       <li>
           <a name="upload_trouble_server-sided_restrictions_check_memory_limit"></a><h4>memory_limit<a href="#upload_trouble_server-sided_restrictions_check_memory_limit" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-          8MB är standardstorlek för minne. Läs på om <a href="#upload_trouble_memory_usage">Minnesanvänding under skalning</a> för instruktioner om hur du ändrar denna inställning och kringgår felmeddelanden relaterade till att minnesgränsen nåtts.
+          8MB är standardstorlek för minne. Läs på om <a href="#upload_trouble_memory_usage">Minnesanvändning under skalning</a> för instruktioner om hur du ändrar denna inställning och kringgår felmeddelanden relaterade till att minnesgränsen nåtts.
       </li>
       <li>
           <a name="upload_trouble_server-sided_restrictions_check_limitlequestlody"></a><h4>LimitRequestBody<a href="#upload_trouble_server-sided_restrictions_check_limitlequestlody" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
