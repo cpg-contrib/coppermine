@@ -627,17 +627,12 @@ function process_login()
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_login_success, $template_login_failure,$template_login;
     global $lang_login_php, $cpg_udb;
-  $superCage = Inspekt::makeSuperCage();
+    
+    $superCage = Inspekt::makeSuperCage();
 
     $tt = 'worked';
 
-  //sanitizing the login/pass
-  $username = $superCage->post->getMatched('username', '/^[0-9A-Za-z\/_]+$/');
-  $username = $username[1];
-  $password = $superCage->post->getMatched('password', '/^[0-9A-Za-z\/_]+$/');
-  $password = $password[1];
-//  if ( $USER_DATA = $cpg_udb->login(addslashes($_POST['username']), addslashes($_POST['password'])) ) {
-    if ( $USER_DATA = $cpg_udb->login(addslashes($username), addslashes($password)) ) {
+    if ($USER_DATA = $cpg_udb->login($superCage->post->getEscaped('username'), $superCage->post->getEscaped('password'))) {
 
         $USER['am'] = 1;
         user_save_profile();
