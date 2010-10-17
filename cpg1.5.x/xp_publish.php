@@ -479,7 +479,7 @@ EOT;
 function output_footer()
 {
     global $WIZARD_BUTTONS, $ONBACK_SCRIPT, $ONNEXT_SCRIPT;
-    global $CONFIG, $CPG_PHP_SELF,
+    global $CONFIG, $CPG_PHP_SELF;
     
     $site_url = trim($CONFIG['site_url'], '/') . '/';
     $gallery_name_javascript = javascript_string($CONFIG['gallery_name']);
