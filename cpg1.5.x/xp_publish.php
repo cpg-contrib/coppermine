@@ -230,9 +230,8 @@ function html_cat_list()
 // Display information on how to use/install the wizard client
 function display_instructions()
 {
-    //global $PHP_SELF;
     global $lang_xp_publish_required, $lang_xp_publish_client, $lang_xp_publish_select, $lang_xp_publish_testing, $lang_xp_publish_notes, $lang_xp_publish_flood, $lang_xp_publish_php, $icon_array;
-    global $CONFIG, $lang_charset, $lang_common, $lang_errors;
+    global $CONFIG, $lang_charset, $lang_common, $lang_errors, $CPG_PHP_SELF;
 
     $publish_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp&amp;ae=xp_end', '600', '600');
     //$requirements_help = '&nbsp;'.cpg_display_help('f=uploading_xp-publisher.htm&amp;as=xp&amp;ae=xp_end', '600', '600');
@@ -480,7 +479,8 @@ EOT;
 function output_footer()
 {
     global $WIZARD_BUTTONS, $ONBACK_SCRIPT, $ONNEXT_SCRIPT;
-    global $CONFIG; //$PHP_SELF,
+    global $CONFIG, $CPG_PHP_SELF,
+    
     $site_url = trim($CONFIG['site_url'], '/') . '/';
     $gallery_name_javascript = javascript_string($CONFIG['gallery_name']);
     $gallery_description_javascript = javascript_string($CONFIG['gallery_description']);
@@ -623,7 +623,7 @@ function form_login()
 // Process login information
 function process_login()
 {
-    global $CONFIG, $USER, $CPG_PHP_SELF; //$PHP_SELF,
+    global $CONFIG, $USER, $CPG_PHP_SELF;
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_login_success, $template_login_failure,$template_login;
     global $lang_login_php, $cpg_udb;
@@ -659,7 +659,7 @@ function process_login()
 // Display the form that allows to choose/create the destination album
 function form_publish()
 {
-    global $CONFIG, $CAT_LIST; //, $PHP_SELF;
+    global $CONFIG, $CAT_LIST, $CPG_PHP_SELF;
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_select_album;
     global $lang_xp_publish_php, $lang_common;
