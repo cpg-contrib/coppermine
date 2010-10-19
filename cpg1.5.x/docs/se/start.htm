@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <title>Komma igång - Coppermine Photo Gallery - Dokumentation &amp; Manual</title>
@@ -254,7 +254,7 @@ Exempel på inställning:
 <p>Innan du släpper ditt galleri till allmänheten bör du kontrollera att uppladdningar fungerar som förväntat eftersom det är det vanligaste problem som användarna stöter på och som orsakas av en stor mängd faktorer som man behöver ta hänsyn till. Granska avsnittet <a href="upload_troubleshooting.htm">felsökning vid uppladdning</a> om du har problem. Ta inte för givet att uppladdning kommer att fungera - testa grundligt, särskilt om du tänker tillåta att användare laddar upp.</p>
 <a name="getting_consider_bridging"></a><h2>Överväg länkning<a href="#getting_consider_bridging" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h2>
 <p>Coppermine gjordes ursprungligen för att vara en fristående applikation. Det var emellertid många som ville integrera det med andra <abbr title="application">applikationer</abbr>, så med början från cpg1.1.x kom Coppermine med en mekanism som tillåter användare att länka Coppermine med en annan applikation vad gäller hanteringen av användare. Den största fördelen är att  användarna på din sida bara behöver logga in en gång på hela din webbsida (t.ex. både i ditt galleri och ditt forum på samma gång), så de behöver inte logga in två gånger och memorera två lösenord.</p>
-<p class="cpg_message_success">Länkning integrerar <strong>inte</strong> Coppermine visuellt med resten av din hemsida (du måste <a href="theme.htm#creating">skapa ett anpassat tema</a> för att åstadkomma det). Allt som länkning gör är att logisk integrera Coppermine och den länkade applikationen vad gäller användarehanteringen och inloggningsprocessen.</p>
+<p class="cpg_message_success">Länkning integrerar <strong>inte</strong> Coppermine visuellt med resten av din hemsida (du måste <a href="theme.htm#creating">skapa ett anpassat tema</a> för att åstadkomma det). Allt som länkning gör är att logiskt integrera Coppermine med den länkade applikationen vad gäller användarehanteringen och inloggningsprocessen.</p>
 <p>Du kan aktivera (eller inaktivera) länkning när som helst, men du bör bestämma dig angående länkning när du först installerar Coppermine, eftersom det är en del saker du behöver ta hänsyn till: om du redan har användare i din databas när du aktiverar länkning, har du ingen samstämmighet mellan dessa användare och de &quot;nya&quot; användarna i den applikation som du länkar till. Som en konsekvens av det är det ingen samstämmighet mellan de saker dina &quot;gamla&quot; användare gjorde (laddat upp bilder, skrivit kommentarer etc.) och det de &quot;nya&quot; användarna gjorde.</p>
 <p>För att kringgå dessa framtida problem, bör du bestämma dig redan när Coppermine installeras: vill du att användarna ska vara med och delta? Tänker du erbjuda en anslagstavla senare (eller någon annan applikation som håller redan på användare)? Om ditt svar är &quot;ja&quot;, eller &quot;kanske&quot;, så bör du aktivera länkning före du publicerar ditt galleri och tillåter användare att komma in.</p>
 <p>Läs mer i avsnittet <a href="bridging.htm#integrating">länkning</a> i dokumentationen.</p>
@@ -313,9 +313,42 @@ Om du tänker vara den enda som ska kunna ladda upp och du vill ha lite eller in
 	<li><span class="navlocator" style="text-align:right;color:#0E72A4;">Konfiguration &rarr; Registrering &rarr; Tillåt registrering av nya användare = nej</span> det kommer att göra att inga nya användare kan registrera sig. Det är upp till administratören att skapa nödvändiga användarkonton.</li>
 	<li>Administratören behöver förstås sätta <a href="#getting_upload_permissions">behörigheter för uppladdning</a> för registrerade användare också</li>
 </ul>
-<a name="getting_typical_multiple_uploader_open"></a><h3>Flera uppladda med nya registreringar<a href="#getting_typical_multiple_uploader_open" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Med den här inställningen går vi igenom en uppsättning som kan verka lite förvirrande till en början, men som är något som många galleriadministratörer vill åstadkomma ett galleri där alla kan registrera sig och där användare också kan ladda upp filer.</p>
-<p>The text in the English version is incomplete, and therefore not translated...
+<a name="getting_typical_multiple_uploader_open"></a><h3>Flera uppladdare <em>med</em> nya registreringar<a href="#getting_typical_multiple_uploader_open" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Här kommer vi att beskriva en inställning som först kan verka lite förvirrande, men det är något som många galleriadministratörer vill uppnå: ett galleri där alla kan registrera sig och också ladda upp filer. </p>
+<p>För att bygga en community runt din webbsida måste du ge dina besökare någon fördel av att de registrerar sig: att registrera sig innebär att de  måste anstränga sig lite mer när de besöker din sida, så det måste finnas något som ger dem lön för mödan. </p>
+<p>Här är en lista på funktioner som du kan överväga att ge dina registrerade användare &quot;som en belöning&quot; för att de registrerar sig. (För att det ska fungera, måste du naturligtvis inaktivera dessa funktioner för besökare som inte registrerar sig.):</p>
+<ul>
+	<li>
+		<h4>Exklusivt innehåll för registrerade användare</h4>
+		Den bäste metoden för att uppmuntra registrering är ha exklusivt innehåll reserverat för enbart registrerade användare. För att uppnå det, sätt åtkomstbehörigheten för ett eller flera album, från "Alla (publika album)" till "Medlemmar i gruppen "Registrerade avnändare" med hjälp av alternativet "<a href="albums.htm#album_prop_controls_album_can_be_viewed_by">Album kan ses av</a>" på <a href="albums.htm#album_prop">album egenskaper</a> screen.
+	</li>
+	<li>
+		<h4>Access nivå</h4>
+		Tillåt dina registrerade användare att se alla bildresolutioner inklusive bilder i fullstorlek och begränsa dina oregistrerade besökare till att bara kunna se miniatyrbilder och medelstora bilder. Alternativt, tillåt ännu mindre för dina oregistrerade gäser: låt dem bara se miniatyrbilder - för att kunna se mer måste de registrera sig (det här är bara möjligt om du har <em>väldigt</em> bra innehåll).<br />
+		Sätt behörighetsnivån på <a href="groups.htm#group_cp">kontrollpanelen för grupper</a>.
+	</li>
+	<li>
+		<h4>Delaktighet genom uppladdning</h4>
+		Låt dina registrerade användare delta i din community genom att tillåta dem att ladda upp också, medan du inte tillåter det för oregistrerade gäster. Behörigheter att kunna ladda upp i publika album och/eller att ha personliga gallerier bestäms på gruppnivå också, därför sätter du dessa behörigheter i <a href="groups.htm#group_cp">kontrollpanelen för grupper</a>.
+	</li>
+	<li>
+		<h4>Be om dina användares åsikt</h4>
+		På <a href="groups.htm#group_cp">kontrollpanelen för grupper</a> kan du bestämmer om en medlem av en viss grupp ska kunna betygsätta filer i ditt galleri och om de ska kunna skriva <a href="comments.htm">kommentarerer</a> till dem. Det är tillrådigt att du överväger det här noggrant, eftersom kommentarer ofta är utsatta för <a href="comments.htm#comments_options_spam">spam</a> aktiviteter, vilket i sin tur betyder extra arbete för dig som galleriets administratör.
+	</li>
+	<li>
+		<h4>E-kort</h4>
+		Du kan vilja tillåta dina användare att göra reklam för ditt galleri genom att rekommendera det till sina vänner med hjälp av e-kortsfunktionen. Detta bestäms också av inställningen i <a href="groups.htm#group_cp">kontrollpanelen för grupper</a>. Själva e-kortsfunktionen är emellertid lite onödig eftersom de flesta användare vet hur man skickar e-mail till sina vänner utan att använda den här funktionen.
+	</li>
+	<li>
+		<h4>Kontakta dig</h4>
+		Du kan bestämma om ett <a href="configuration.htm#admin_contact_start">kontaktformulär</a> ska finnas tillgängligt och om gäster tillåts att komma åt den (eller om det bara gäller för registrerade användare).
+	</li>
+	<li>
+		<h4>Alternativ bläddring</h4>
+		<a href="configuration.htm#admin_sidebar">Sidopanelen</a> kan vara ett alternativt sätt för dina besökare att bläddra i innehållet i ditt galleri; du kan vilja erbjuda det också som en form av "belöning" för registrering. 
+	</li>
+</ul>
+<p class="cpg_message_success">Om du skulle bestämma dig för en (eller flera) av de metoder som nämns ovan, glöm inte att berätta om dessa förmåner för besökare på din webbsida - det hjälper föga att bevilja dina registrerade användare extra fördelar för att de registrerar sig om du glömmer att i förväg tala om för dina oregistrerade besökare att dessa förmåner finns. För att åstadkomma detta kan du använda filen <a href="php-content.htm#php-content_anycontent">anycontent</a> med det exempel som finns där.
 <div id="doc_footer">
 	<div class="doc_info_wrapper">
 		<span id="doc_last_changed">$LastChangedDate$</span>
