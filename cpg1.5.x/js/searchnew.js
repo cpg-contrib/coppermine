@@ -14,6 +14,9 @@
   $Revision$
 **********************************************/
 
+var error_occured = false;
+var already_submitted = false;
+
 // Queue manager object - manages the queue
 var qm = {
 
@@ -67,7 +70,12 @@ var qm = {
     },
     
     queuedone: function () {
-        redirect('editpics.php?album=' + this.aid);
+        if (error_occured) {
+            $('#submit_button').html('<img src="images/message/error.png" border="0" alt="" width="16" height="16" class="icon" />');
+            $('#submit_button_bottom').html('<img src="images/icons/ok.png" border="0" alt="" width="16" height="16" class="icon" />' + js_vars.lang_continue).removeAttr('disabled').click(function(){redirect('editpics.php?album=' + qm.aid);});
+        } else {
+            redirect('editpics.php?album=' + this.aid);
+        }
     }
 };
 
@@ -100,24 +108,38 @@ function job_start() {
 function job_done(response) {
 
     var src;
-    
-    switch (response) {
-    
-    case 'OK':
-        src = 'images/batch/ok.png';
-        break;
+    var title = '';
 
-    case 'DUPE':
-        src = 'images/batch/duplicate.png';
-        break;
-    
-    case 'PB':
-        src = 'images/batch/folder_locked.png';
-        break;      
+    if (response.match(/(Fatal error).*(Allowed memory size of)/)) {
+        src = 'images/message/stop.png';
+        title = strip_tags(response);
+        error_occured = true;
+    } else {
+        switch (response) {
+
+        case 'OK':
+            src = 'images/batch/ok.png';
+            break;
+
+        case 'DUPE':
+            src = 'images/batch/duplicate.png';
+            break;
+
+        case 'PB':
+            src = 'images/batch/folder_locked.png';
+            break;      
+
+        default:
+            src = 'images/batch/unknown.png';
+            title = strip_tags(response);
+            error_occured = true;
+            break;
+        }
     }
 
     var img = document.createElement('img');
     img.setAttribute('src', src);
+    img.setAttribute('title', title);
     
     this.obj.appendChild(img);
     
@@ -179,6 +201,12 @@ function process() {
     
     // Start the queue manager
     qm.step();
+    
+    // Disable buttons and show loader image
+    if (!already_submitted) {
+        $('#submit_button, #submit_button_bottom').html('<img src="images/loader.gif" border="0" alt="" width="16" height="16" class="icon" />').attr('disabled', 'disabled');
+    }
+    already_submitted = true;
     
     return false;
 }

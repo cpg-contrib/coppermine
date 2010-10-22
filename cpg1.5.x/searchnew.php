@@ -25,6 +25,7 @@ if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }
 
+set_js_var('lang_continue', $lang_common['continue']);
 js_include('js/searchnew.js');
 
 $rowCounter = 0;
@@ -395,7 +396,7 @@ function CPGscandir($dir, &$expic_array)
                     <input type="checkbox" name="checkAll2" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
                 </td>
                 <td colspan="3" align="right" class="tablef">
-						<button type="submit" class="button" name="insert" id="submit_button" value="{$lang_search_new_php['insert_selected']}">{$icon_array['ok']}{$lang_search_new_php['insert_selected']}</button>
+                        <button type="submit" class="button" name="insert" id="submit_button" value="{$lang_search_new_php['insert_selected']}">{$icon_array['ok']}{$lang_search_new_php['insert_selected']}</button>
                 </td>
         </tr>
 EOT;
@@ -566,7 +567,7 @@ EOT;
                     <input type="checkbox" name="checkAll" onclick="selectAll('cpgform');" class="checkbox" title="{$lang_common['check_uncheck_all']}" />
                 </td>
                 <td colspan="3" align="right" class="tablef">
-						<button type="submit" class="button" name="insert" id="submit_button_bottom" value="{$lang_search_new_php['insert_selected']}">{$icon_array['ok']}{$lang_search_new_php['insert_selected']}</button>
+                        <button type="submit" class="button" name="insert" id="submit_button_bottom" value="{$lang_search_new_php['insert_selected']}">{$icon_array['ok']}{$lang_search_new_php['insert_selected']}</button>
                 </td>
         </tr>
 
