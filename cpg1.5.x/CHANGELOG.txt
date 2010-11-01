@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-11-01 [B] Skip unknown file types during batch-add process (thread ID 67815) {eenemeenemuu}
 2010-10-28 [B] Fixed issue with 'User Gallery Alphabetic Tabbing' plugin when bridged (thread ID 66905) {eenemeenemuu}
 2010-10-22 [B] Fixed default selection of check boxes for batch-add (thread ID 67107) {eenemeenemuu}
 2010-10-22 [B] If error occurs during batch-add, show error message and don't redirect automatically (thread ID 67392) {eenemeenemuu}
