@@ -347,7 +347,7 @@ Warning: move_uploaded_file(/tmp/<span style="color:blue;">phpezCYKr</span>)
     <a name="upload_error_messages_exec_disabled_cause"></a><h4>Trolig anledning<a href="#upload_error_messages_exec_disabled_cause" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
     php.ini tillåter serveradministratören att inaktivera vissa funktioner. Så är vanligtvis fallet om din server körs i safe_mode. Detta är inte ett <a href="errors.htm#errors_soft">mjukt fel</a> som härrör från Coppermine, utan ett <a href="errors.htm#errors_hard">hårt fel</a> från PHP som återspeglas i Coppermine.
     <a name="upload_error_messages_exec_disabled_fix"></a><h4>Föreslagen lösning<a href="#upload_error_messages_exec_disabled_fix" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h4>
-    Om serveradministratören har inaktiverat exec() kommer du inte att kunna använda Image Magick.<br />
+    Om serveradministratören har inaktiverat exec() kommer du inte att kunna använda ImageMagick.<br />
     Du kan försöka att ersätta exec() med passthru() i hela Coppermines källkod (rekommenderas inte) om inte detta också har inaktiverats. Annars kan du inte använda ImageMagick utan måste använda GD. Ändra <a href="configuration.htm#admin_picture_thumb_advanced_resize_method">Metod för att skala om bilder</a> i konfigurationen i enlighet därmed.
 </div>
 <a name="upload_error_messages_not_gd_extension"></a><a name="ErrorNotAGdExtension"></a><h3>Felmeddelande: <em>Not a GD extension</em><a href="#upload_error_messages_not_gd_extension" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
