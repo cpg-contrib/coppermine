@@ -284,7 +284,7 @@ This could be an example for a database table creation query inside your plugin'
 	CREATE TABLE IF NOT EXISTS `{$CONFIG['TABLE_PREFIX']}plugin_coffee_maker` (
 	  `cid` mediumint(10) NOT NULL default '0',
 	  `some_field` smallint(6) NOT NULL default '0'
-	) TYPE=MyISAM COMMENT='Your clever description of the table here';
+	) COMMENT='Your clever description of the table here';
 EOT;
 $result = cpg_db_query($query);	</pre>
 

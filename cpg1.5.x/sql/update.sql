@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `CPG_categorymap` (
   cid int(11) NOT NULL,
   group_id int(11) NOT NULL,
   PRIMARY KEY  (cid,group_id)
-) ENGINE=MyISAM COMMENT='Holds the categories where groups can create albums';
+) COMMENT='Holds the categories where groups can create albums';
 
 # Create temporary table to store messages carried over from one page to the other
 CREATE TABLE CPG_temp_messages (
@@ -32,7 +32,7 @@ CREATE TABLE CPG_temp_messages (
   time int(11) default NULL,
   message text NOT NULL,
   PRIMARY KEY (message_id)
-) TYPE=MyISAM COMMENT='Used to store messages from one page to the other';
+) COMMENT='Used to store messages from one page to the other';
 # --------------------------------------------------------
 
 ALTER TABLE CPG_filetypes DROP INDEX `EXTENSION`, ADD PRIMARY KEY ( `extension` );
@@ -317,7 +317,7 @@ CREATE TABLE IF NOT EXISTS CPG_languages (
   enabled enum('YES','NO') NOT NULL default 'NO',
   complete enum('YES','NO') NOT NULL default 'NO',
   PRIMARY KEY (lang_id)
-) TYPE=MyISAM COMMENT='Contains the language file definitions';
+) COMMENT='Contains the language file definitions';
 
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('albanian', 'Albanian','Albanian','al', 'al', 'NO', 'NO');
 INSERT INTO CPG_languages (lang_id, english_name, native_name, flag, abbr, available, complete) VALUES ('arabic', 'Arabic','&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;','sa','ar', 'YES', 'NO');
