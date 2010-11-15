@@ -525,3 +525,5 @@ INSERT INTO CPG_config VALUES ('allow_guests_enter_file_details', '0');
 UPDATE CPG_albums SET moderator_group = 0;
 
 ALTER TABLE CPG_users ADD user_email_valid enum('YES','') NOT NULL default '';
+
+INSERT INTO CPG_usergroups VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 3);
