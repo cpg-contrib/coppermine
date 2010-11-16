@@ -743,7 +743,7 @@ function create_album()
 
     $user_id = USER_ID;
 
-    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description) VALUES ('$category', '" . $superCage->post->getEscaped('new_alb_name') . "', 'NO',  '0', '', $user_id)";
+    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description, owner) VALUES ('$category', '" . $superCage->post->getEscaped('new_alb_name') . "', 'NO',  '0', '', $user_id)";
     cpg_db_query($query);
 
     $new_alb_name = $superCage->post->getMatched('new_alb_name', '/^[0-9A-Za-z\/_]+$/');
