@@ -728,28 +728,32 @@ function create_album()
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_create_album;
     global $lang_errors, $lang_xp_publish_php;
+    
     $superCage = Inspekt::makeSuperCage();
 
-    if (!(USER_CAN_CREATE_ALBUMS || USER_IS_ADMIN)) simple_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
-
+    if (!(USER_CAN_CREATE_ALBUMS || USER_IS_ADMIN)) {
+        simple_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+    }
+    
     if (USER_IS_ADMIN) {
-  //  $category = (int)$_POST['cat'];
         $category = $superCage->post->getInt('cat');
     } else {
         $category = FIRST_USER_CAT + USER_ID;
     }
 
-//  $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . addslashes($_POST['new_alb_name']) . "', 'NO',  '0')";
-    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description) VALUES ('$category', '" . $superCage->post->getEscaped('new_alb_name') . "', 'NO',  '0', '')";
+    $user_id = USER_ID;
+
+    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos, description) VALUES ('$category', '" . $superCage->post->getEscaped('new_alb_name') . "', 'NO',  '0', '', $user_id)";
     cpg_db_query($query);
 
-  $new_alb_name = $superCage->post->getMatched('new_alb_name', '/^[0-9A-Za-z\/_]+$/');
-  $new_alb_name = $new_alb_name[1];
-//  $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $_POST['new_alb_name']),
-    $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $new_alb_name),
+    $new_alb_name = $superCage->post->getMatched('new_alb_name', '/^[0-9A-Za-z\/_]+$/');
+    $new_alb_name = $new_alb_name[1];
+
+    $params = array(
+        '{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $new_alb_name),
         '{CONTINUE}' => $lang_xp_publish_php['continue'],
         '{ALBUM_ID}' => mysql_insert_id($CONFIG['LINK_ID']),
-        );
+    );
 
     echo template_eval($template_create_album, $params);
 
