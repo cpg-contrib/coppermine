@@ -54,7 +54,7 @@
         </li>
         <li>
             <a name="packaging_steps_loop_through_files"></a><h3>Replace version number in all files<a href="#packaging_steps_loop_through_files" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-            You need to loop through all text files (file extensions <tt class="code">.php</tt>, <tt class="code">.css</tt>, <tt class="code">.js</tt>, <tt class="code">.txt</tt>, <tt class="code">.sql</tt>, <tt class="code">.htm</tt>) and replace the version number in the header with the version number of the new release.<br />
+            You need to loop through all text files (file extensions <tt class="code">.php</tt>, <tt class="code">.css</tt>, <tt class="code">.js</tt>, <tt class="code">.txt</tt>, <tt class="code">.sql</tt>, <tt class="code">.htm</tt>) and replace the version number in the header with the version number of the new release. Prior, you have to replace the version number of the next release with that version number plus 1 in <tt class="code">dev_package.htm</tt>, to keep <a href="#packaging_steps_loop_through_files_linux">that example</a> intact.<br />
             <div class="cpg_example">You will have to find <input type="text" readonly="readonly" value="Coppermine version: 1.5.X" size="25" maxlength="25" class="code smaller" /> and replace with <input type="text" readonly="readonly" value="Coppermine version: 1.5.Y" size="25" maxlength="25" class="code smaller" /></div>
             To accomplish this, you will need a tool that can batch-replace in files:
             <ul>
