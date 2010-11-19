@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-11-19 [O] Consistent use of plugin hook types 'action' and 'filter' (thread ID 67630) {eenemeenemuu}
 2010-11-16 [B] Fixed ownership of albums created with xp publisher {Nibbler}
 2010-11-15 [B] Add anonymous group if it doesn't exist (thread ID 67137) {eenemeenemuu}
 2010-11-14 [B] Fixed comment approval when editing comments (thread ID 68066) {Nibbler}

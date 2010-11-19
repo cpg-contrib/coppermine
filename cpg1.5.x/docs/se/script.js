@@ -10,8 +10,8 @@
   
   ********************************************
   Coppermine version: 1.5.9
-  $HeadURL: https://coppermine.svn.sourceforge.net/svnroot/coppermine/trunk/cpg1.5.x/docs/en/script.js $
-  $Revision: 7805 $
+  $HeadURL$
+  $Revision$
 **********************************************/
 
 var linebreak = '\n';
