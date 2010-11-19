@@ -125,10 +125,6 @@ function job_done(response) {
             src = 'images/batch/duplicate.png';
             break;
 
-        case 'PB':
-            src = 'images/batch/folder_locked.png';
-            break;      
-
         default:
             src = 'images/batch/unknown.png';
             title = strip_tags(response);
