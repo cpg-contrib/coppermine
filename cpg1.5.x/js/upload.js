@@ -9,19 +9,19 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.9
+  Coppermine version: 1.5.8
   $HeadURL$
   $Revision$
 **********************************************/
 
-$(document).ready(function() {
+jQuery(document).ready(function() {
     button_enabled_style = '.browse { font-family: Arial,Helvetica,sans-serif;}';
     button_disabled_style = '.browse { font-family: Arial,Helvetica,sans-serif; color: #D0CFD0;}';
 
-    $('#uploadMethod').change(function() {
-        var param = 'method=' + $(this).val();
-        if ($("select[name='album']").val()) {
-            param += '&album=' + $("select[name='album']").val();
+    jQuery('#uploadMethod').change(function() {
+        var param = 'method=' + jQuery(this).val();
+        if (jQuery("select[name='album']").val()) {
+            param += '&album=' + jQuery("select[name='album']").val();
         }
         window.location.href = 'upload.php?' + param;
     });

@@ -9,11 +9,11 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.9
+  Coppermine version: 1.5.8
   $HeadURL$
   $Revision$
 **********************************************/
-$(document).ready(function() {
+jQuery(document).ready(function() {
     addSortOptions();
 });
 
@@ -73,5 +73,5 @@ function addSortOptions(){
     sortable += '<a href="thumbnails.php?album=' + js_vars.sort_vars.aid + '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=pd" title="' + js_vars.sort_vars.sort_pd + '"><img src="images/descending.png" width="9" height="9" border="0" alt="-" /></a>';
     sortable += '</span>';
     
-    $('#sortorder_cell').append(sortable); 
+    jQuery('#sortorder_cell').append(sortable); 
 }
