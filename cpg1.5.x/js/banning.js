@@ -9,54 +9,54 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
 **********************************************/
 
 Date.format = 'yyyy-mm-dd';
-$(function()
+jQuery(function()
 {
-    $('.date-pick').datePicker()
-    $('.date-pick').dpSetPosition($.dpConst.POS_TOP, $.dpConst.POS_RIGHT);
+    jQuery('.date-pick').datePicker()
+    jQuery('.date-pick').dpSetPosition(jQuery.dpConst.POS_TOP, jQuery.dpConst.POS_RIGHT);
 
 });
 
-$(document).ready(function() {
-    $('#submit_lookup').hide();
-    $('.formFieldWarning').hide();
+jQuery(document).ready(function() {
+    jQuery('#submit_lookup').hide();
+    jQuery('.formFieldWarning').hide();
 })
 
 function checkBanFormSubmit() {
-    $('.formFieldWarning').hide();
+    jQuery('.formFieldWarning').hide();
     var errors = 0;
     // Loop through the email fields and check for validity --- start
-    $.each($('.email_field'), function(i,v) {
-        if($(v).val() != '' && $(v).val().search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) == -1) {
-            $('#'+ v.id +'_warning').show();
+    jQuery.each(jQuery('.email_field'), function(i,v) {
+        if(jQuery(v).val() != '' && jQuery(v).val().search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) == -1) {
+            jQuery('#'+ v.id +'_warning').show();
             errors++;
         }
     });
     // Loop through the email fields and check for validity --- end
     // Loop through the ip address fields and check for validity --- start
-    $.each($('.ip_field'), function(i,v) {
-        if($(v).val() != '' && $(v).val().search(/^([1-9][0-9]{0,2})+\.([1-9][0-9]{0,2})+\.([1-9][0-9]{0,2})+\.([1-9][0-9]{0,2})+$/) == -1) {
-            $('#'+ v.id +'_warning').show();
+    jQuery.each(jQuery('.ip_field'), function(i,v) {
+        if(jQuery(v).val() != '' && jQuery(v).val().search(/^([1-9][0-9]{0,2})+\.([1-9][0-9]{0,2})+\.([1-9][0-9]{0,2})+\.([1-9][0-9]{0,2})+$/) == -1) {
+            jQuery('#'+ v.id +'_warning').show();
             errors++;
         }
     });
     // Loop through the ip address fields and check for validity --- end
     // Loop through the date fields and check for validity --- start
-    $.each($('.date-pick'), function(i,v) {
-        if($(v).val() != '' && $(v).val().search(/^\d{4}\-\d{2}\-\d{2}$/) == -1) {
-            $('#'+ v.id +'_warning').show();
+    jQuery.each(jQuery('.date-pick'), function(i,v) {
+        if(jQuery(v).val() != '' && jQuery(v).val().search(/^\d{4}\-\d{2}\-\d{2}$/) == -1) {
+            jQuery('#'+ v.id +'_warning').show();
             errors++;
         }
     });
     // Loop through the date fields and check for validity --- end
     if (errors != 0) {
-        $('#form_not_submit_top').show();
-        $('#form_not_submit_bottom').show();
+        jQuery('#form_not_submit_top').show();
+        jQuery('#form_not_submit_bottom').show();
         return false;
     } else {
         return true;

@@ -9,7 +9,7 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
 **********************************************/
@@ -23,8 +23,8 @@ function textCounter(field, maxlimit) {
 
 
 function checkPermissions(album, html) {
-    var is_public  = ($('#public_albums').val().split(',').indexOf(album) != -1);
-    var is_private = ($('#private_albums').val().split(',').indexOf(album) != -1);
+    var is_public  = (jQuery('#public_albums').val().split(',').indexOf(album) != -1);
+    var is_private = (jQuery('#private_albums').val().split(',').indexOf(album) != -1);
     var public_need_approval   = (js_vars.public_need_approval == 1);
     var private_need_approval  = (js_vars.private_need_approval == 1);
     var users_cannot_edit_pics = (js_vars.public_can_edit_pics == 0);
@@ -45,20 +45,20 @@ function checkPermissions(album, html) {
 }
 
 
-$(document).ready(function() {
-    $('.elastic').elastic();
-	$('#album').change(function() {
-        var sel_album = $(this).val();
+jQuery(document).ready(function() {
+    jQuery('.elastic').elastic();
+	jQuery('#album').change(function() {
+        var sel_album = jQuery(this).val();
         var note = checkPermissions(sel_album, true);
-        $('#note_permissions').html(note)
+        jQuery('#note_permissions').html(note)
         if (note) {
-            $('#wrapper_permissions').fadeIn('slow');
+            jQuery('#wrapper_permissions').fadeIn('slow');
         } else {
-            $('#wrapper_permissions').hide();            
+            jQuery('#wrapper_permissions').hide();            
         }
     });
-    $('#cpgform_editonepic').submit(function() {
-        var sel_album = $('#album').val();
+    jQuery('#cpgform_editonepic').submit(function() {
+        var sel_album = jQuery('#album').val();
         var note = checkPermissions(sel_album, false);
         if (note) {
             return confirm(note + "\n\n" + js_vars.confirm_move);

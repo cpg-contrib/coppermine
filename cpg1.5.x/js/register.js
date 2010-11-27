@@ -9,55 +9,55 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
 **********************************************/
 
-$(document).ready(function() {
-    $('.formFieldWarning').hide();})
+jQuery(document).ready(function() {
+    jQuery('.formFieldWarning').hide();})
 
 function checkRegisterFormSubmit() {
-    $('.formFieldWarning').hide();
+    jQuery('.formFieldWarning').hide();
     var errors = 0;
     // Check the user name
-    if($('#username').val() == '') {
-        $('#username_warning1').show();
+    if(jQuery('#username').val() == '') {
+        jQuery('#username_warning1').show();
         errors++;
     } else {
-        if ($('#username').val().length < 2 ) {
-            $('#username_warning2').show();
+        if (jQuery('#username').val().length < 2 ) {
+            jQuery('#username_warning2').show();
             errors++;
         }
     }
     // Check the password
-    if ($('#password').val().length < 2 ) {
-        $('#password_warning1').show();
+    if (jQuery('#password').val().length < 2 ) {
+        jQuery('#password_warning1').show();
         errors++;
     } else {
-        if ($('#password').val() == $('#username').val() ) {
-            $('#password_warning2').show();
+        if (jQuery('#password').val() == jQuery('#username').val() ) {
+            jQuery('#password_warning2').show();
             errors++;
         }
     }
     // Check the password_verification
-    if ($('#password_verification').val() != $('#password').val() ) {
-        $('#password_verification_warning1').show();
+    if (jQuery('#password_verification').val() != jQuery('#password').val() ) {
+        jQuery('#password_verification_warning1').show();
         errors++;
     }
     // Check the email address
-    if($('#email').val() == '') {
-        $('#email_warning1').show();
+    if(jQuery('#email').val() == '') {
+        jQuery('#email_warning1').show();
         errors++;
     } else {
-        if ($('#email').val().search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) == -1) {
-            $('#email_warning2').show();
+        if (jQuery('#email').val().search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) == -1) {
+            jQuery('#email_warning2').show();
             errors++;
         }
     }
     if (errors != 0) {
-        $('#form_not_submit_top').show();
-        $('#form_not_submit_bottom').show();
+        jQuery('#form_not_submit_top').show();
+        jQuery('#form_not_submit_bottom').show();
         return false;
     } else {
         return true;

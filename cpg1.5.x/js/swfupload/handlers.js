@@ -9,7 +9,7 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
 **********************************************/
@@ -129,7 +129,7 @@ function uploadSuccess(file, serverData) {
             progress.setStatus(js_vars.lang_upload_swf_php.status_complete);
             // Add
             jQuery('#upload_count').text(1 * jQuery('#upload_count').text() + 1);
-            addImage(js_vars.site_url + '/' + serverData.substring(8));
+            addImage(js_vars.site_url + '/' + serverData.substring(9));
         } else {
             progress.setError();
             progress.setStatus(js_vars.lang_upload_swf_php.status_failed);
@@ -148,9 +148,13 @@ function uploadSuccess(file, serverData) {
             }
         }
         progress.toggleCancel(false);
-        // If we have more than one uploads then enable to continue button and disable the selection of another album
+        // If we have more than one uploads then enable to continue button, show the admin approval message and disable the selection of another album
         if (1 * jQuery('#upload_count').text() > 0) {
             jQuery('#button_continue').show();
+
+            if (serverData.substring(7, 8) == '1') {
+                jQuery('#admin_approval').slideDown();
+            }
 
             var listbox_selected_value = jQuery("select[name='album']").val();
             var listbox_selected_text = jQuery("select[name='album'] :selected").text();

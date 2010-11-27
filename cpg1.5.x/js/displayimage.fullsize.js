@@ -9,7 +9,7 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
 **********************************************/
@@ -17,10 +17,10 @@
 function adjust_popup()
 {
     // Let's build a list of variables that we need to take into account
-    var windowWidth = $(window).width();
-    var windowHeight = $(window).height();
-    var imageWidth = $("#fullsize_image").width();
-    var imageHeight = $("#fullsize_image").height();
+    var windowWidth = jQuery(window).width();
+    var windowHeight = jQuery(window).height();
+    var imageWidth = jQuery("#fullsize_image").width();
+    var imageHeight = jQuery("#fullsize_image").height();
     var widthMargin = 16;
     var heightMargin = 30;
     var imageRatio = imageWidth/imageHeight;
@@ -37,10 +37,10 @@ function adjust_popup()
         }
         imageWidth = parseInt(imageWidth);
         imageHeight = parseInt(imageHeight);
-        $("#fullsize_image").width(imageWidth);
-        $("#fullsize_image").height(imageHeight);
-        $("#content").width(imageWidth);
-        $("#content").height(imageHeight);
+        jQuery("#fullsize_image").width(imageWidth);
+        jQuery("#fullsize_image").height(imageHeight);
+        jQuery("#content").width(imageWidth);
+        jQuery("#content").height(imageHeight);
         window.resizeTo(imageWidth + widthMargin, imageHeight + heightMargin);
     } else {
         var w, h, fixedW, fixedH, diffW, diffH;
@@ -81,6 +81,6 @@ function adjust_popup()
     }
 }
 
-$(document).ready(function() {
+jQuery(document).ready(function() {
     adjust_popup();
 })

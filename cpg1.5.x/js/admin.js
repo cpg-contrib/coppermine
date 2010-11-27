@@ -9,22 +9,22 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
 **********************************************/
 
 function resetToDefault(theFieldId, fieldType, numberOfItems) 
 {
-    var user_input = $('#' + theFieldId);
-    var default_input = $('#reset_default_' + theFieldId);
+    var user_input = jQuery('#' + theFieldId);
+    var default_input = jQuery('#reset_default_' + theFieldId);
 
     if(fieldType == 'textfield' || fieldType == 'password') {
         user_input.attr('value', default_input.attr('value'));
     }else if(fieldType == 'checkbox') {
         user_input.attr('checked', (default_input.attr('value') == 1) ? true : false);
     }else if(fieldType == 'radio') {
-        $('#' + theFieldId + default_input.attr('value')).attr('checked', true);
+        jQuery('#' + theFieldId + default_input.attr('value')).attr('checked', true);
     }else if(fieldType == 'select') {
         user_input.attr('value', default_input.attr('value'));
     }
@@ -41,8 +41,8 @@ function checkDefaultBox(theFieldId, fieldType, numberOfItems, warning)
     if(warning != '') {
         alert(warning + ' ' + js_vars.lang_warning_dont_submit);
     }
-    var user_input = $('#' + theFieldId);
-    var default_input = $('#reset_default_' + theFieldId);
+    var user_input = jQuery('#' + theFieldId);
+    var default_input = jQuery('#reset_default_' + theFieldId);
     var show = false;
     
     if((fieldType == 'textfield' || fieldType == 'password' || fieldType == 'select') && (user_input.attr('value') != default_input.attr('value'))) {
@@ -51,7 +51,7 @@ function checkDefaultBox(theFieldId, fieldType, numberOfItems, warning)
         show = true;
     }else if(fieldType == 'radio') {
         //for radio buttons we have to create a new default as it is a special one
-        default_input = $('#reset_default_' + theFieldId.substring(0, (theFieldId.length - 1)));
+        default_input = jQuery('#reset_default_' + theFieldId.substring(0, (theFieldId.length - 1)));
         if (user_input.attr('value') != default_input.attr('value')) {
             show = true;
         }
@@ -68,30 +68,30 @@ function checkDefaultBox(theFieldId, fieldType, numberOfItems, warning)
 
 function deleteUnneededFields() 
 {
-    $('.deleteOnSubmit').remove();
+    jQuery('.deleteOnSubmit').remove();
     return true;
 }
 
 function toggleExpandCollapseButtons(action) 
 {
-    jQuery.each($("img[id^='expand']"), function(){
-        $(this).css('display', (action == 'collapse') ? 'block' : 'none');
+    jQuery.each(jQuery("img[id^='expand']"), function(){
+        jQuery(this).css('display', (action == 'collapse') ? 'block' : 'none');
     });
-    jQuery.each($("img[id^='collapse']"), function(){
-        $(this).css('display', (action == 'collapse') ? 'none' : 'block');
+    jQuery.each(jQuery("img[id^='collapse']"), function(){
+        jQuery(this).css('display', (action == 'collapse') ? 'none' : 'block');
     });
 }
 
 function adminPageLoaded(){
     
-    $('a.direct_config_link').click(function(){
+    jQuery('a.direct_config_link').click(function(){
         
-        var aname = $(this).attr('hash').replace('#', '');
-        var container = $('div.detail_body:has(a[name="' + aname + '"])');
+        var aname = jQuery(this).attr('hash').replace('#', '');
+        var container = jQuery('div.detail_body:has(a[name="' + aname + '"])');
         show_section(container.attr('id'));
     });
     
-    $('span[id^=expand_all]').click(function(){
+    jQuery('span[id^=expand_all]').click(function(){
             expand();
             show_section('expand_all_top');
             show_section('collapse_all_top');
@@ -100,7 +100,7 @@ function adminPageLoaded(){
             toggleExpandCollapseButtons('expand');
         });
     
-    $('span[id^=collapse_all]').click(function(){
+    jQuery('span[id^=collapse_all]').click(function(){
             hideall();
             show_section('expand_all_top');
             show_section('collapse_all_top');
@@ -115,41 +115,41 @@ function adminPageLoaded(){
     
     // Add the checkDefaultBox events only if the settings is enabled
     if (js_vars.display_reset_boxes == '1') {
-        $.each(js_vars.default_values_check.textfield, function(){
+        jQuery.each(js_vars.default_values_check.textfield, function(){
             var key = this.key;
             var warning = this.warning;
-            $('#' + this.key).change(function(){
+            jQuery('#' + this.key).change(function(){
                 checkDefaultBox(key, 'textfield', '', warning);
             });
         });
-        $.each(js_vars.default_values_check.checkbox, function(){
+        jQuery.each(js_vars.default_values_check.checkbox, function(){
             var key = this.key;
             var warning = this.warning;
-            $('#' + this.key).click(function(){
+            jQuery('#' + this.key).click(function(){
                 checkDefaultBox(key, 'checkbox', '', warning);
             });
         });
-        $.each(js_vars.default_values_check.radio, function(){
+        jQuery.each(js_vars.default_values_check.radio, function(){
             var key = this.key;
             var warning = this.warning;
-            if ($.support.cssFloat) {
+            if (jQuery.support.cssFloat) {
                 //non IE browsers
-                $('#' + this.key).change(function(){
+                jQuery('#' + this.key).change(function(){
                     checkDefaultBox(key, 'radio', '', warning);
                 });
             }
             else {
-                $('#' + this.key).focus(function(){
+                jQuery('#' + this.key).focus(function(){
                     checkDefaultBox(key, 'radio', '', warning);
                 });
                 
             }
         });
-        $.each(js_vars.default_values_check.select, function(){
+        jQuery.each(js_vars.default_values_check.select, function(){
             var key = this.key;
             var warning = this.warning;
             var count = this.count;
-            $('#' + this.key).change(function(){
+            jQuery('#' + this.key).change(function(){
                 checkDefaultBox(key, 'select', '', warning, count);
             });
         });

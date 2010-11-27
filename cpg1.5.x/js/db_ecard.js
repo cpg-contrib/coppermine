@@ -9,23 +9,23 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
 **********************************************/
 
 function check(state){
-    jQuery.each($("input[name='eid[]']"), function(){
-        $(this).attr('checked', state);
+    jQuery.each(jQuery("input[name='eid[]']"), function(){
+        jQuery(this).attr('checked', state);
     });
 }
 
 function agreesubmit(){
-    $("input[type='submit'][name='delete']").attr('disabled', ($('#agreecheck').attr('checked')) ? false : true);
+    jQuery("input[type='submit'][name='delete']").attr('disabled', (jQuery('#agreecheck').attr('checked')) ? false : true);
 }
 
 function defaultagree(){
-    if ($('#agreecheck').attr('checked'))
+    if (jQuery('#agreecheck').attr('checked'))
         return true;
     else{
         alert(js_vars.ecards_delete_confirm);

@@ -9,7 +9,7 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
 **********************************************/
@@ -61,7 +61,7 @@ jQuery(document).ready(function() {
 
     //variables to handle the next - prev button
     var picQueue        = (maxItems+1)/2;
-    var $go_next        = parseInt(maxItems/2);
+    var jQuerygo_next        = parseInt(maxItems/2);
     //cache the images RULs
     //create a objects to keep an array
     var url_cache       = new Array(NumberOfPics);
@@ -417,7 +417,7 @@ function buildRating() {
 }
 
 function isNumber(val) {
-    return /^-?((\d+\.?\d?)|(\.\d+))jQuery/.test(val);
+    return /^-?((\d+\.?\d?)|(\.\d+))$/.test(val);
 }
 
 function printSlideshowButton() {

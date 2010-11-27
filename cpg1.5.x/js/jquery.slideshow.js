@@ -9,7 +9,7 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
 **********************************************/
@@ -19,7 +19,7 @@
  */
 
 
-jQuery(document).ready(function(){
+$(document).ready(function(){
 
         /** set variable from php  */
         var Time    =   js_vars.Time;
@@ -36,7 +36,7 @@ jQuery(document).ready(function(){
      
         /** implement ajax call to get pic url and title */
         function loadImage (j){
-        jQuery.getJSON("displayimage.php?ajax_show=1&pos="+j+"&album="+album, function(data){
+        $.getJSON("displayimage.php?ajax_show=1&pos="+j+"&album="+album, function(data){
                 i.src   = data['url'];
                 Title   = data['title'];
                 Pid     = data['pid'];
@@ -72,14 +72,14 @@ jQuery(document).ready(function(){
             i.onload = function() {
                 
                 //if(i.complete){
-                jQuery("#showImage").attr({
+                $("#showImage").attr({
                     src: i.src,
                     title: Title,
                     alt: "jQuery Logo",
                     style: "display: none;"
                 }).fadeIn();
                 
-                jQuery("#title").html(Title);
+                $("#title").html(Title);
                 /** set Pid to temp */
                 PidTemp = Pid; 
 
@@ -92,7 +92,7 @@ jQuery(document).ready(function(){
 
     
     /** close the slide show and will load the current show imags details*/
-    jQuery("#back-to").click(function () { 
+    $("#back-to").click(function () { 
         if (album != 'lastcom')
         {
             self.document.location = 'displayimage.php?album='+album+'&pid='+PidTemp+'#top_display_media' ;

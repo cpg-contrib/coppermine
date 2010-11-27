@@ -9,7 +9,7 @@
     as published by the Free Software Foundation.
 
     ********************************************
-    Coppermine version: 1.5.8
+    Coppermine version: 1.5.9
     $HeadURL$
     $Revision$
 **********************************************/
@@ -56,7 +56,7 @@ function readCookie(cookieName) {
 }
 
 function blocking(nr, cookie, vis_state) {
-    display = ($("#" + nr).css('display') == 'none') ? vis_state : 'none';
+    display = (jQuery("#" + nr).css('display') == 'none') ? vis_state : 'none';
     if (cookie != ''){
         writeCookie(nr, display);
     }
@@ -68,17 +68,17 @@ function show_section(e) {
 }
 
 function expand() {
-    $("table[id^='section']").show();
+    jQuery("table[id^='section']").show();
 }
 
 function hideall() {
-    $("table[id^='section']").hide();
+    jQuery("table[id^='section']").hide();
 }
 
 function selectAll(form_name) {
-    jQuery('#' + form_name).data('boxes_checked', $('#' + form_name).data('boxes_checked') ? false : true);
+    jQuery('#' + form_name).data('boxes_checked', jQuery('#' + form_name).data('boxes_checked') ? false : true);
     jQuery('#' + form_name + ' input:checkbox').each(function(){
-        this.checked = $('#' + form_name).data('boxes_checked');
+        this.checked = jQuery('#' + form_name).data('boxes_checked');
     });
 }
 
@@ -354,11 +354,11 @@ jQuery(document).ready(function() {
     //hide all elements with class detail_body
     jQuery(".detail_body").hide();
     //toggle the component with class detail_body
-   jQuery(".detail_head_collapsed").click(function()
+    jQuery(".detail_head_collapsed").click(function()
     {
         jQuery(this).toggleClass("detail_head_expanded").next(".detail_body").slideToggle(600);
     });
-  jQuery(".detail_expand_all").click(function()
+    jQuery(".detail_expand_all").click(function()
     {
         jQuery(".detail_body").slideDown(1200);
         jQuery(".detail_head_collapsed").addClass("detail_head_expanded");
@@ -382,12 +382,12 @@ jQuery(document).ready(function() {
     
     // Greybox plugin initialization for the help system
     jQuery("a.greybox").click(function(){
-      var t = this.title || $(this).text() || this.href;
+      var t = this.title || jQuery(this).text() || this.href;
       GB_show(t,this.href,470,600);
       return false;
     });
     jQuery("a.greyboxfull").click(function(){
-      var t = this.title || $(this).text() || this.href;
+      var t = this.title || jQuery(this).text() || this.href;
       GB_show(t,this.href,700,800);
       return false;
     });

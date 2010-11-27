@@ -9,19 +9,19 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
 **********************************************/
 
-$(document).ready(function() {
+jQuery(document).ready(function() {
     //convert external links to open in new window (in comments);
-    jQuery.each($("a[rel*='external']"), function(){
-        $(this).click(function(){
+    jQuery.each(jQuery("a[rel*='external']"), function(){
+        jQuery(this).click(function(){
             window.open(this.href);
             return false;
         });
-        $(this).keypress(function(){
+        jQuery(this).keypress(function(){
             window.open(this.href);
             return false;
         });

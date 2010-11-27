@@ -9,7 +9,7 @@
   as published by the Free Software Foundation.
 
   ********************************************
-  Coppermine version: 1.5.8
+  Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
 **********************************************/
@@ -39,14 +39,14 @@ var Sort = {
         var form_token      = js_vars.form_token;
         var timestamp       = js_vars.timestamp;
         // get the name of the edited album value
-        var editedName = $.trim($("#edit-name").val());
+        var editedName = jQuery.trim(jQuery("#edit-name").val());
         // check whether null and event to edit the album
         if(editedName.length > 0){
-            $("input#edit-name").hide();
-            $("button#updateEvent").hide();
-            $("button#updateCancel").hide();
+            jQuery("input#edit-name").hide();
+            jQuery("button#updateEvent").hide();
+            jQuery("button#updateCancel").hide();
             // loading image
-            $("#loading").show();
+            jQuery("#loading").show();
 
         var params = {
             what: 'albmgr',
@@ -58,52 +58,52 @@ var Sort = {
         };
             
         // make ajax call to update the table
-        $.getJSON("delete.php", params, function(data){
+        jQuery.getJSON("delete.php", params, function(data){
             if(data['message'] == 'true') {
                 // get the DOM of change album name
-                editedObject = $('#'+albumSelectedTr).find('span.albumName');
+                editedObject = jQuery('#'+albumSelectedTr).find('span.albumName');
                 // change the text which having album name.
-                $(editedObject).empty().text(editedName);
+                jQuery(editedObject).empty().text(editedName);
                 // show user the changes
-                $('#'+albumSelectedTr).css({'background-color': '#FFFFDD'});
-                $("#loading").hide();
+                jQuery('#'+albumSelectedTr).css({'background-color': '#FFFFDD'});
+                jQuery("#loading").hide();
             } else {
                 var error_msg = '<div class="cpg_message_validation"><h2>' + data['title'] + '</h2>' + data['description'] + '</div>';
-                $('#cpg_form_album').before(error_msg);
+                jQuery('#cpg_form_album').before(error_msg);
                 // empty the value
-                $("#edit-name").val("");
-                $("#loading").hide();
+                jQuery("#edit-name").val("");
+                jQuery("#loading").hide();
             }
         });
 
         } else {
-            $("#edit-name").val("").focus();
+            jQuery("#edit-name").val("").focus();
         }
 
         return false;
 
     },
     addAlbum: function(cat){
-        var addedName = $.trim($("#add-name").val());
+        var addedName = jQuery.trim(jQuery("#add-name").val());
         var form_token = js_vars.form_token;
         var timestamp = js_vars.timestamp;
 
-        $('.cpg_message_validation').hide();
+        jQuery('.cpg_message_validation').hide();
 
         // add new album check whether null and event
         if(addedName.length > 0){
-            $("input#add-name").hide();
-            $("button#addEvent").hide();
-            $("button#cancelEvent").hide();
+            jQuery("input#add-name").hide();
+            jQuery("button#addEvent").hide();
+            jQuery("button#cancelEvent").hide();
 
             // get the position of the album
-            if($("#album_sort tr").length>0){
-                var albumCount = 100 + $("#album_sort tr").length ;
+            if(jQuery("#album_sort tr").length>0){
+                var albumCount = 100 + jQuery("#album_sort tr").length ;
             }else{
                 var albumCount = 100 ;  
             }
             // loading image
-            $("#loading").show();
+            jQuery("#loading").show();
 
             var params = {
                 what: 'albmgr',
@@ -116,35 +116,35 @@ var Sort = {
             };
                 
             // make ajax call to add the table
-            $.getJSON("delete.php", params, function(data){
+            jQuery.getJSON("delete.php", params, function(data){
 
                 if(data['message'] == 'true'){
                     //check if we have a table already
-                    if($.trim($('div#sort').html()) == ''){
+                    if(jQuery.trim(jQuery('div#sort').html()) == ''){
                         //create the table
-                        $('div#sort').html('<table id="album_sort" cellspacing="0" cellpadding="0" border="0"></table>');
+                        jQuery('div#sort').html('<table id="album_sort" cellspacing="0" cellpadding="0" border="0"></table>');
                     }
 
                     var album_tr = '<tr id="sort-'+data['newAid']+'" ><td class="dragHandle"></td><td class="album_text" width="96%"><span class="albumName">'+addedName+'</span><span class="editAlbum">'+js_vars.lang_edit+'</span></td></tr>';
-                    $("#album_sort").append(album_tr);
+                    jQuery("#album_sort").append(album_tr);
                     // call the function to add the new TR on more action
                     jQuery.tableDnD.currentTable = document.getElementById("album_sort");
                     jQuery.tableDnD.makeDraggable(jQuery.tableDnD.currentTable);
                     // to empty the box value
                     Sort.addRowColors();
                     // empty the value
-                    $("#add-name").val("");
-                    $("#loading").hide();
+                    jQuery("#add-name").val("");
+                    jQuery("#loading").hide();
                 }else{
                     var error_msg = '<div class="cpg_message_validation"><h2>' + data['title'] + '</h2>' + data['description'] + '</div>';
-                    $('#cpg_form_album').before(error_msg);
+                    jQuery('#cpg_form_album').before(error_msg);
                     // empty the value
-                    $("#add-name").val("");
-                    $("#loading").hide();
+                    jQuery("#add-name").val("");
+                    jQuery("#loading").hide();
                 }
             });
         }else{
-            $("#add-name").val('').focus();
+            jQuery("#add-name").val('').focus();
         }
 
         return false;
@@ -159,8 +159,8 @@ var Sort = {
 
     // show the message
     showMessage: function(){
-        $('#submit_reminder').fadeIn('slow');
-        $('#apply').show();
+        jQuery('#submit_reminder').fadeIn('slow');
+        jQuery('#apply').show();
     },
 
     // Disable Form Submit on Enter Key Press
@@ -195,54 +195,54 @@ jQuery(document).ready(function(){
     }
     addRowColorsPhoto();
     // add query to input hidden when drop the pic item
-    $('#pic_sort').tableDnD({
+    jQuery('#pic_sort').tableDnD({
         onDrop: function(table, row) {
             // call the getSerializePic() function to get query
-            $("#picture_order").val(getSerializePic());
+            jQuery("#picture_order").val(getSerializePic());
             // set to category changes don't select if you have changed
             albumSelectOption = false;  
         }
     });
 
     //highlight the album onclick event
-    $("#pic_sort tr").livequery('mousedown click', function() {
+    jQuery("#pic_sort tr").livequery('mousedown click', function() {
         // assign the last color to TR object and remove the selected class having selected last object
-        $(photoSelectedObject).css("background-color", photoselectedColor);
-        $(photoSelectedObject).removeClass("selected");
+        jQuery(photoSelectedObject).css("background-color", photoselectedColor);
+        jQuery(photoSelectedObject).removeClass("selected");
         // add the selected class to currently-selected object
-        $(this).addClass("selected");
+        jQuery(this).addClass("selected");
         // add the selected color to variable selectedColor
-        photoselectedColor = $(this).css("background-color");
-        $(this).css("background-color", "#E0ECFF");
-        $('button#pic_up, button#pic_down, button#pic_upup, button#pic_downdown').removeAttr("disabled");
+        photoselectedColor = jQuery(this).css("background-color");
+        jQuery(this).css("background-color", "#E0ECFF");
+        jQuery('button#pic_up, button#pic_down, button#pic_upup, button#pic_downdown').removeAttr("disabled");
         // set current selected item in the album
         photoSelectedObject = this;
     });
 
     // sort items using up and down arrows
-    $("#pic_up, #pic_down, #pic_upup, #pic_downdown").click(function() {
+    jQuery("#pic_up, #pic_down, #pic_upup, #pic_downdown").click(function() {
         if (photoSelectedObject) {
-            var id = $(this).attr('id');
+            var id = jQuery(this).attr('id');
             var moveCount = (id == 'pic_up' || id == 'pic_upup' ? -1 : 1);
             var moveToExtreme = (id == 'pic_upup' || id == 'pic_downdown');
             jQuery.tableDnD.sortManually(moveCount,moveToExtreme,photoSelectedObject,'pic_sort');
-            $("#picture_order").val(getSerializePic());  // reflect new sort order in hidden form field
+            jQuery("#picture_order").val(getSerializePic());  // reflect new sort order in hidden form field
             albumSelectOption = false;                   // require confirmation to change album without saving changes
             Sort.showMessage();                          // show "Apply Changes" button and warning message
         }
     });
 
-    $(".thumbnail_view").click(function() {
-        $(".pic_thumbnail").toggle();
+    jQuery(".thumbnail_view").click(function() {
+        jQuery(".pic_thumbnail").toggle();
         // scroll down if user clicked the bottom thumbnail_view button
-        if ($(this).attr("id") == 'thumbnail_view2') { 
-            $('html, body').animate({ scrollTop: $("#pic_sort").attr("scrollHeight") }, 600);
+        if (jQuery(this).attr("id") == 'thumbnail_view2') { 
+            jQuery('html, body').animate({ scrollTop: jQuery("#pic_sort").attr("scrollHeight") }, 600);
         }
     });
 
     // when user changes the album name if user has done some changes to the current album name then let's use known
-    $("select[name='aid']").change(function(){
-        var getSelectedOption = $(this).val();
+    jQuery("select[name='aid']").change(function(){
+        var getSelectedOption = jQuery(this).val();
         if(!albumSelectOption){
             if(confirm(change_album)){
                 window.location.href = ("picmgr.php?aid="+getSelectedOption);
@@ -258,10 +258,10 @@ jQuery(document).ready(function(){
     }); 
 
     // load the form when click the submit button
-    $("#cpgformPic").submit(function () { 
+    jQuery("#cpgformPic").submit(function () { 
 
-        $("#picture_order").val(getSerializePic());
-        var a = $("input[name='picture_order']").attr("value");
+        jQuery("#picture_order").val(getSerializePic());
+        var a = jQuery("input[name='picture_order']").attr("value");
 
         if(a.length > 0){
             if(confirm(confirm_modifs)) {
@@ -300,79 +300,79 @@ jQuery(document).ready(function() {
     Sort.addRowColors();
 
     // If new TR object is added then input text field will ready to type album names
-    $("#add_new_album").click(function(){
+    jQuery("#add_new_album").click(function(){
         // when edit box is visible then just hide to show add box
-        $("input#edit-name").hide();
-        $("button#updateEvent").hide();
-        $("button#updateCancel").hide();
-        $("input#add-name").show();
-        $("button#addEvent").show();
-        $("button#cancelEvent").show();
-        $("#add-name").focus().val();
+        jQuery("input#edit-name").hide();
+        jQuery("button#updateEvent").hide();
+        jQuery("button#updateCancel").hide();
+        jQuery("input#add-name").show();
+        jQuery("button#addEvent").show();
+        jQuery("button#cancelEvent").show();
+        jQuery("#add-name").focus().val();
         event = 'addAlbumButton';
     });
 
     // Cancel when user doesn't want to add the album to the list
-    $(".album_cancel").click(function(){
-        $("input#edit-name").hide();
-        $("button#updateEvent").hide();
-        $("button#updateCancel").hide();
+    jQuery(".album_cancel").click(function(){
+        jQuery("input#edit-name").hide();
+        jQuery("button#updateEvent").hide();
+        jQuery("button#updateCancel").hide();
     });
     
     // Cancel when user doesn't want to add the album to the list
-    $(".add_cancel").click(function(){
-        $("input#add-name").hide();
-        $("button#addEvent").hide();
-        $("button#cancelEvent").hide();
+    jQuery(".add_cancel").click(function(){
+        jQuery("input#add-name").hide();
+        jQuery("button#addEvent").hide();
+        jQuery("button#cancelEvent").hide();
     });        
 
     // make visible the edit link when user edits the album name
-    $("#album_sort tr").livequery('mouseover', function () {
-        $(this).find("span:last").show();   
+    jQuery("#album_sort tr").livequery('mouseover', function () {
+        jQuery(this).find("span:last").show();   
     }).livequery('mouseout', function(){
-        $(this).find("span:last").hide();
+        jQuery(this).find("span:last").hide();
     }).livequery('mousedown click', function() {
         // addRowColors();
         // assign the last color to TR object and remove the selected class having the selected last object
-        $(albumObjectSelectedTr).css("background-color", selectedColor);
-        $(albumObjectSelectedTr).removeClass("selected");
+        jQuery(albumObjectSelectedTr).css("background-color", selectedColor);
+        jQuery(albumObjectSelectedTr).removeClass("selected");
         // add the slected class to the currently-selected object
-        $(this).addClass("selected");
+        jQuery(this).addClass("selected");
         // add the selected color to variable selectedColor
-        selectedColor = $(this).css("background-color");
+        selectedColor = jQuery(this).css("background-color");
         //alert(this);
-        $(this).css("background-color", "#E0ECFF");
-        $('button#upup_click, button#up_click, button#down_click, button#downdown_click, button#delete_album, button#modify_album, button#editfiles_album, button#thumbnail_album').removeAttr("disabled");
+        jQuery(this).css("background-color", "#E0ECFF");
+        jQuery('button#upup_click, button#up_click, button#down_click, button#downdown_click, button#delete_album, button#modify_album, button#editfiles_album, button#thumbnail_album').removeAttr("disabled");
         // set current selected item in the album
         albumObjectSelectedTr = this;
     });
 
 
     // now user can edit the album name contain list
-    $(".editAlbum").livequery("click", function(){
+    jQuery(".editAlbum").livequery("click", function(){
         // selected item's text put into the input field
-        object_edit     = $(this).prev().text();
-        albumSelectedTr = $(this).parents("tr").attr("id");
+        object_edit     = jQuery(this).prev().text();
+        albumSelectedTr = jQuery(this).parents("tr").attr("id");
         // first hide the add box
-        $("input#add-name").hide();
-        $("button#addEvent").hide();
-        $("button#cancelEvent").hide();
-        $("input#edit-name").show();
-        $("button#updateEvent").show();
-        $("button#updateCancel").show();
-        $("#edit-name").val(object_edit).focus();
+        jQuery("input#add-name").hide();
+        jQuery("button#addEvent").hide();
+        jQuery("button#cancelEvent").hide();
+        jQuery("input#edit-name").show();
+        jQuery("button#updateEvent").show();
+        jQuery("button#updateCancel").show();
+        jQuery("#edit-name").val(object_edit).focus();
 
     });
 
     // Now update the album name
-    $("#updateEvent").click(function(){
+    jQuery("#updateEvent").click(function(){
         // call to updateAlbum function
         Sort.updateAlbum(albumSelectedTr);
         return false;
     });
 
     // Bind the keypress event to album title edit box
-    $("#edit-name").keyup(function(e) {
+    jQuery("#edit-name").keyup(function(e) {
         // If the pressed key is ENTER then call saveEvent function and return false so that form is not submitted
         if (e.which == 13 || e.keyCode == 13) {
             Sort.updateAlbum(albumSelectedTr);
@@ -381,7 +381,7 @@ jQuery(document).ready(function() {
     });
 
     // Now add a album to the list
-    $("#addEvent").livequery('click', function(){
+    jQuery("#addEvent").livequery('click', function(){
         if(!isNaN(category)){
             Sort.addAlbum(category);
         }
@@ -389,10 +389,10 @@ jQuery(document).ready(function() {
     });
 
     // Bind the keypress event to album title edit box
-    $("#add-name").keyup(function(e) {
+    jQuery("#add-name").keyup(function(e) {
         // If the pressed key is ENTER then call saveEvent function and return false so that form is not submitted
         if (e.which == 13 || e.keyCode == 13) {
-            $("cpg_form_album").submit(function(){
+            jQuery("cpg_form_album").submit(function(){
                 return false;
             });
             if(!isNaN(category)){
@@ -404,14 +404,14 @@ jQuery(document).ready(function() {
     });
 
     // delete the selected TR object item
-    $("button#delete_album").livequery('click', function(){
+    jQuery("button#delete_album").livequery('click', function(){
         // if there isn't a TR object selected, then can't delete
         if(!albumObjectSelectedTr){
             alert(dontDelete);
             return false;
         }
         // get aid from albumSelectedTr
-        var albumTrId       = $(albumObjectSelectedTr).attr("id");
+        var albumTrId       = jQuery(albumObjectSelectedTr).attr("id");
         var serializeRegexp = /[^\-]*$/;
         var aid             = albumTrId.match(serializeRegexp)[0];
         var form_token      = js_vars.form_token;
@@ -427,22 +427,22 @@ jQuery(document).ready(function() {
     });
 
     // album links: album properties, edit files, thumbnail view
-    $('button#modify_album, button#editfiles_album, button#thumbnail_album').livequery('click', function(){
+    jQuery('button#modify_album, button#editfiles_album, button#thumbnail_album').livequery('click', function(){
         // if there isn't a TR object selected, then nothing to do
         if(!albumObjectSelectedTr){
             return false;
         }
         // get aid from albumSelectedTr
-        var albumTrId       = $(albumObjectSelectedTr).attr("id");
+        var albumTrId       = jQuery(albumObjectSelectedTr).attr("id");
         var serializeRegexp = /[^\-]*$/;
         var aid             = albumTrId.match(serializeRegexp)[0];
         var album_link      = '';
 
-        if ($(this).attr("id") == 'modify_album') {
+        if (jQuery(this).attr("id") == 'modify_album') {
             album_link = "modifyalb.php?album="+aid;
-        } else if ($(this).attr("id") == 'editfiles_album') {
+        } else if (jQuery(this).attr("id") == 'editfiles_album') {
             album_link = "editpics.php?album="+aid;
-        } else if ($(this).attr("id") == 'thumbnail_album') {
+        } else if (jQuery(this).attr("id") == 'thumbnail_album') {
             album_link = "thumbnails.php?album="+aid;
         } else {
             return false;
@@ -461,29 +461,29 @@ jQuery(document).ready(function() {
     });
 
     // after drag and drop, assign changes to the TR title
-    $('#album_sort').tableDnD({
+    jQuery('#album_sort').tableDnD({
         onDrop: function(table, row) {
-            $("#album_order").val(getSerialize());
+            jQuery("#album_order").val(getSerialize());
             categorySelectOption = false;
         }
     });
 
     // sort items using up, down, upup, downdown buttons
-    $("#up_click, #down_click, #upup_click, #downdown_click").click(function(){
+    jQuery("#up_click, #down_click, #upup_click, #downdown_click").click(function(){
         if (albumObjectSelectedTr) {
-            var id = $(this).attr('id');
+            var id = jQuery(this).attr('id');
             var moveCount = (id == 'up_click' || id == 'upup_click' ? -1 : 1);
             var moveToExtreme = (id == 'upup_click' || id == 'downdown_click');
             jQuery.tableDnD.sortManually(moveCount,moveToExtreme,albumObjectSelectedTr,'album_sort');
-            $("#album_order").val(getSerialize());  // reflect new sort order in hidden form field
+            jQuery("#album_order").val(getSerialize());  // reflect new sort order in hidden form field
             categorySelectOption = false;           // require confirmation to change category without saving changes
             Sort.showMessage();                     // show "Apply Changes" button and warning message
         }
     });
 
     // load the form when click the submit button
-    $("#cpg_form_album").submit( "click", function () {          
-        var a = $("input[name='album_order']").attr("value");
+    jQuery("#cpg_form_album").submit( "click", function () {          
+        var a = jQuery("input[name='album_order']").attr("value");
         if(a.length > 0){
             if(confirm(confirm_modifs)) {
                 return true;
@@ -493,8 +493,8 @@ jQuery(document).ready(function() {
     }); // so it won't submit
 
     // when user changes the category, alert user if there are unsaved changes
-    $("select[name='cat']").change(function(){
-        var getSelectedOption = $(this).val();
+    jQuery("select[name='cat']").change(function(){
+        var getSelectedOption = jQuery(this).val();
         if(!categorySelectOption){
             if(confirm(category_change)){
                 window.location.href = ("albmgr.php?cat="+getSelectedOption);
