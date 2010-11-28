@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-<title>Variables &amp; Constants - Coppermine Photo Gallery - Documentation &amp; Manual</title>
+<title>Variables &amp; Constantes - Coppermine Photo Gallery - Documentation &amp; manuel</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="language" content="en" />
+<meta name="language" content="fr" />
 <meta name="copyright" content="Coppermine dev team" />
-<meta name="description" content="tutorial for the Coppermine plugin API" />
+<meta name="description" content="Tutoriel pour les API des plugins concernant Coppermine" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -15,7 +15,6 @@
   Coppermine version: 1.5.9
   $HeadURL$
   $Revision$
-  $Date$
 -->
 <link rel="stylesheet" type="text/css" href="../style/style.css" media="all" />
 <link rel="stylesheet" type="text/css" href="../style/screen.css" media="screen" />
@@ -26,25 +25,23 @@
 <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation and Manual</h1>
+<h1 id="docheader">Coppermine Photo Gallery v1.5.x: Documentation et manuel</h1>
 <div id="toc">
-<a href="toc.htm">Table of Contents</a>
+<a href="toc.htm">Table des matières</a>
 </div>
 
-<div id="doc_en_only">No translation available</div>
-
-<a name="vars_constants"></a><h1>Variables &amp; Constants<a href="#vars_constants" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
+<a name="vars_constants"></a><h1>Variables &amp; constantes<a href="#vars_constants" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h1>
 
 <a name="vars_constants_system"></a>
-<h3>System Global Variables<a href="#vars_constants_system" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Global Variables are being populated once, but can be change during runtime. You can use the global variables from within your plugins, but don't forget to make them global when using from within functions or classes.</p>
+<h3>Système des variables globales<a href="#vars_constants_system" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p>Les <a href="http://www.php.net/manual/fr/language.variables.php" rel="external" class="phpnet">variables</a> globales sont remplies une fois, mais peuvent être changées en cours d'exécution. Vous pouvez utiliser des variables globales à partir de votre plugins, mais n'oubliez pas de le <a href="http://www.php.net/manual/fr/language.variables.scope.php" rel="external" class="phpnet">faire globalement</a> lors de l'utilisation à l'intérieur des fonctions ou des classes.</p>
 <table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra" width="100%">
 	<tr>
 		<th class="tableh1" align="left">
-			Variable name
+			Nom de la variable
 		</th>
 		<th class="tableh1" align="left">
-			Defined in
+			Défini dans
 		</th>
 		<th class="tableh1" align="left">
 		    Type
@@ -63,7 +60,7 @@
 		<td>
 		</td>
 		<td>
-			Construct used to contain the server vars <a href="dev_superglobals.htm">sanitized by Inspekt</a>
+			Construction utilisée pour contenir les variables de serveur  (<a href="http://www.php.net/manual/fr/reserved.variables.php" rel="external" class="phpnet">variables prédéfinies</a>) <a href="dev_superglobals.htm">sécurisées avec Inspekt</a>
 		</td>
 	</tr>
 	<tr>
@@ -74,9 +71,10 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
+		    <a href="http://www.php.net/manual/fr/language.types.array.php" rel="external" class="phpnet">tableau (array)</a> associatif
 		</td>
 		<td>
-			All values of the coppermine <a href="configuration.htm">configuration</a>.
+			Toutes les valeurs de la <a href="configuration.htm">configuration</a> de Coppermine.
 		</td>
 	</tr>
 	<tr>
@@ -87,9 +85,10 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
+		    <a href="http://www.php.net/manual/fr/language.types.string.php" rel="external" class="phpnet">Chaine (String)</a>
 		</td>
 		<td>
-			Replacement for the potentially less secure superglobal $_SERVER['PHP_SELF'], $PHP_SELF and similar that may or may not exist on particular servers that get's removed in Coppermine using <a href="dev_superglobals.htm">Inspekt</a>.
+			Remplacement de des super-globales peu sécurisées $_SERVER['PHP_SELF'], $PHP_SELF et similaires qui peuvent exister ou pas sur certains serveurs et qui sont effacés dans Coppermine en utilisant <a href="dev_superglobals.htm">Inspekt</a>.
 		</td>
 	</tr>
 	<tr>
@@ -100,9 +99,10 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
+		    <a href="http://www.php.net/manual/fr/language.types.string.php" rel="external" class="phpnet">Chaine (String)</a>
 		</td>
 		<td>
-			Slightly sanitized improvement to the super global query string.
+			Petite amélioration de la sécurité des chaines de super-globales.
 		</td>
 	</tr>
 	<tr>
@@ -113,9 +113,10 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
+		    <a href="http://www.php.net/manual/fr/language.types.string.php" rel="external" class="phpnet">Chaine (String)</a>
 		</td>
 		<td>
-			String containing a line break that will work both is *nix as well as Windows.
+			Chaines contenant un saut de ligne qui focntionne aussi bien sous *nix que sous Windows.
 		</td>
 	</tr>
 	<tr>
@@ -123,12 +124,13 @@
 			<tt class="code">$BRIDGE</tt>
 		</td>
 		<td>
-			<tt class="code">include/init.inc.php</tt> / bridge file
+			<tt class="code">include/init.inc.php</tt> / fichier bridge
 		</td>
 		<td>
+		    <a href="http://www.php.net/manual/fr/language.types.array.php" rel="external" class="phpnet">tableau (array)</a> associatif
 		</td>
 		<td>
-			Bridging variable - contains all bridge settings.
+			Variable d’intégration - contient tous les paramètres de la passerelle.
 		</td>
 	</tr>
 	<tr>
@@ -139,6 +141,7 @@
 			<tt class="code"></tt>
 		</td>
 		<td>
+		    <a href="http://www.php.net/manual/fr/language.types.array.php" rel="external" class="phpnet">tableau (array)</a> associatif
 		</td>
 		<td>
 			
@@ -152,6 +155,7 @@
 			<tt class="code"></tt>
 		</td>
 		<td>
+		    <a href="http://www.php.net/manual/fr/language.types.array.php" rel="external" class="phpnet">tableau (array)</a> associatif
 		</td>
 		<td>
 			
@@ -165,9 +169,10 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
+		    <a href="http://www.php.net/manual/fr/language.types.string.php" rel="external" class="phpnet">Chaine (String)</a>
 		</td>
 		<td>
-			The folder name of the theme set in config.
+			Le nom du dossier du thème dans la configuration.
 		</td>
 	</tr>
 	<tr>
@@ -178,9 +183,10 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
+		    <a href="http://www.php.net/manual/fr/language.types.string.php" rel="external" class="phpnet">Chaine (String)</a>
 		</td>
 		<td>
-			The directory where the iconset resides at: if the theme comes with icons, the variable will point to the icons subfolder of the theme. Otherwise, the default icon folder will be used.
+			L’adresse du répertoire où sont placées les icônes: si le thème est livré avec des icônes, la variable pointe vers le sous-dossier des icônes du thème. Sinon, le dossier d’icône par défaut sera utilisé.
 		</td>
 	</tr>
 	<tr>
@@ -191,9 +197,10 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
+		    <a href="http://www.php.net/manual/fr/language.types.array.php" rel="external" class="phpnet">Tableau (array)<\a> indexé
 		</td>
 		<td>
-			The favorites of the current visitor.
+			Les favoris des visiteurs actuels.
 		</td>
 	</tr>
 	<tr>
@@ -217,9 +224,10 @@
 			<tt class="code">include/functions.inc.php</tt>
 		</td>
 		<td>
+		    Indexed <a href="http://www.php.net/manual/fr/language.types.array.php" rel="external" class="phpnet">Tableau (array) <\a>indexé
 		</td>
 		<td>
-			
+			Liste des albums dont le visiteur actuel n'est <strong>pas</strong> autorisé à accéder.
 		</td>
 	</tr>
 	<tr>
@@ -282,9 +290,11 @@
 			<tt class="code"></tt>
 		</td>
 		<td>
+		    <a href="http://www.php.net/manual/fr/language.types.array.php" rel="external" class="phpnet">Tableau (array)<\a> Multi-dimensionnel 
 		</td>
 		<td>
-			
+            Premier niveau contient un tableau indexé, où chaque indice correspond à l'ID unique d'un plugin installé à l'intérieur du tableau de plugins.<br />
+            Le deuxième niveau contient un tableau associatif qui contient toutes les actions des plugins des filtres ainsi que leurs noms, chemin d'accès et de priorité.
 		</td>
 	</tr>
 	<tr>
@@ -295,26 +305,31 @@
 			<tt class="code"></tt>
 		</td>
 		<td>
+		    <a href="http://www.php.net/manual/fr/language.types.array.php" rel="external" class="phpnet">tableau (array)</a> associatif
 		</td>
 		<td>
-			
+		    Tableau multi-dimensionnel incluant
+		    <ul>
+		        <li>Un tableau des variables relatives aux fichiers JavaScript externes, ex. chaines de traduction. Certaines variables sont complètées, comme, site_url, icon_dir, la traduction pour le mot "close" (lang_close) et l'icone correspondante (icon_close_path)</li>
+		        <li>Un tableau indexé des includes (fichiers inclus): dans cette liste, tous les fichiers JavaScript inclus sont présents. Généralement, cette liste contient au moins <tt class="code">js/jquery-1.3.2.js</tt>, <tt class="code">js/scripts.js</tt>, <tt class="code">js/jquery.greybox.js</tt> (si la fonction d'aide est activée dans la configuration) et <tt class="code">js/jquery.elastic.js</tt>. Les éléments y sint ajoutés dans l'ordre ou ils sont indexés, sauf pour le fichier jquery lui même - il est toujours inclu en premier pour être sur que tous les appels fonctionnent comme prévu.</li>
+		    </ul>
 		</td>
 	</tr>
 </table>
 
-<abbr title="to be continued">tbc</abbr> (list is incomplete). All devs please contribute and populate the list.
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<abbr title="Â suivre">Â suivre</abbr> (La liste est incomplète). A tous les développeurs, merci de contribuer à remplir la liste.
+<p><a class="back" href="#top">Haut de page</a></p><hr />
 
 <a name="vars_constants_constants"></a>
-<h3>Coppermine Constants<a href="#vars_constants_constants" title="Link to this section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
-<p>Constants are being populated once. They can not be changed during runtime. You can use the coppermine constants from within your plugins.</p>
+<h3>Constantes de Coppermine<a href="#vars_constants_constants" title="Lien vers cette section"><img src="images/anchor.gif" width="15" height="9" border="0" alt="" /></a></h3>
+<p><a href="http://www.php.net/manual/fr/language.constants.php" rel="external" class="phpnet">Les constantes</a> sont remplies une seul fois. Elles ne peuvent pas être modifiées durant l'exécution. Vous pouvez utiliser les constantes de Coppermine à partir de vos plugins.</p>
 <table border="0" cellspacing="0" cellpadding="0" class="cpg_zebra" width="100%">
 	<tr>
 		<th class="tableh1" align="left">
-			Constant name
+			Nom de constant
 		</th>
 		<th class="tableh1" align="left">
-			Defined in
+			Défini dans
 		</th>
 		<th class="tableh1" align="left">
 			Description
@@ -328,7 +343,7 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
-			The version of coppermine
+			La version de Coppermine
 		</td>
 	</tr>
 	<tr>
@@ -339,7 +354,7 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
-			The status of your coppermine version (alpha, beta or stable)
+			Le statut de votre version de Coppermine (alpha, beta ou stable)
 		</td>
 	</tr>
 	<tr>
@@ -347,10 +362,10 @@
 			<tt class="code">IN_COPPERMINE</tt>
 		</td>
 		<td>
-			<tt class="code">Coppermine core files that are meant to be run directly in the browser</tt>
+			<tt class="code">les fichiers du noyau Coppermine qui sont destinés à être exécutés directement dans le navigateur</tt>
 		</td>
 		<td>
-			The constant makes sure that include files are not being run directly: the files that are meant to be run contain the constant definition and after that the include command. The include files don't contain the constant definition, but a conditional die. To make sure that your plugin files aren't being run directly, add the following line at the top:
+			LA constante vérifie que les fichiers inclus ne sont pas lancés directement: les fichiers qui sont cencés être lancés contiennent la définition de constante puis, ensuite, la commande include. Le fichier inclu ne contient pas la définition de constante, mais une matrice conditionnelle. Pour être sur que vos fichiers de plugins ne sont pas lancés directement, ajoutés ce qui suit au début des fichiers:
 			<pre>if (!defined('IN_COPPERMINE')) {
     die('Not in Coppermine...');
 }</pre>
@@ -364,7 +379,7 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
-			Default language (set up by the admin) in config (may differ from <tt class="code">$CONFIG['lang']</tt> during runtime, as that may have been overridden.
+			Langue par défaut (défini par l'administrateur) dans la configuration (peut être différent de <tt class="code">$CONFIG['lang']</tt>) pendant le focntionnement, puisqu'elle peut être remplacée par cette dernière.
 		</td>
 	</tr>
 	<tr>
@@ -375,7 +390,7 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
-			Name of the bridge file.
+			Nom du fichier bridge.
 		</td>
 	</tr>
 	<tr>
@@ -386,7 +401,7 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
-			If populated, the user is an admin and <a href="admin_menu.htm#admin_user_mode">admin-menu</a> hasn't been turned off. It's recommended to use this constant to check if the admin is logged in. Use code like this:
+			Si complété, l'utilisateur est un administrateur et <a href="admin_menu.htm#admin_user_mode">le menu administrateur</a> n'est pas caché. Il est recommandé d'utiliser cette constante pour véridier si l'administrateur est identifié. Utilisez un code comme celui-ci:
 			<pre>if (!GALLERY_ADMIN_MODE) {
     cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 }</pre>
@@ -397,10 +412,10 @@
 			<tt class="code">USER_IS_ADMIN</tt>
 		</td>
 		<td>
-			<tt class="code">bridge/your_bridge_file.inc.php</tt> (by default: <tt class="code">bridge/udb_base.inc.php</tt>)
+			<tt class="code">bridge/votre_fichier_bridge.inc.php</tt> (par défaut: <tt class="code">bridge/udb_base.inc.php</tt>)
 		</td>
 		<td>
-			If populated, the user is an admin.
+			Si défini, l'utilisateur est un administrateur.
 		</td>
 	</tr>
 	<tr>
@@ -411,9 +426,9 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
-			The &quot;user admin mode&quot; hardly is used any longer - it's a relict from cpg1.3.x and might be dropped in future versions. The definition is
+			Le &quot;mode admin&quot; n'est plus beaucoup utilisé - c'est un reste de cpg1.3.x et devrait être enlevé des futures versions. La définition est
 			<pre>define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !GALLERY_ADMIN_MODE);</pre>
-			so it get's populated if a user is logged in and has permission to have personal albums. The constant does not get populated if an admin is logged in.
+			elle est donc complétée si un utilisateur est identifié et a les droits d'avoir un album personnel. La constante ne doit pas être complétée si un administrateur est identifié.
 		</td>
 	</tr>
 	<tr>
@@ -421,10 +436,10 @@
 			<tt class="code">USER_ID</tt>
 		</td>
 		<td>
-			<tt class="code">bridge/your_bridge_file.inc.php</tt> (by default: <tt class="code">bridge/udb_base.inc.php</tt>)
+			<tt class="code">bridge/votre_fichier_bridge.inc.php</tt> (Par défaut: <tt class="code">bridge/udb_base.inc.php</tt>)
 		</td>
 		<td>
-			The user ID of the logged in user - helpfull to send the user to his profile.
+			L'ID de l'utilisateur identifié - utile pour envoyer l'utilisteur vers son profil.
 		</td>
 	</tr>
 	<tr>
@@ -432,10 +447,10 @@
 			<tt class="code">USER_CAN_CREATE_ALBUMS</tt>
 		</td>
 		<td>
-			<tt class="code">bridge/your_bridge_file.inc.php</tt> (by default: <tt class="code">bridge/udb_base.inc.php</tt>)
+			<tt class="code">bridge/votre_fichier_bridge.inc.php</tt> (par défaut: <tt class="code">bridge/udb_base.inc.php</tt>)
 		</td>
 		<td>
-			The name of this constant may be a bit misleading: actually, it doesn't show if the user has got permission to create albums in public categories. Instead, it just shows if the user is allowed to have personal galleries.
+			Le nom de cette constante peut induite en erreur: actuellement, elle n'indique pas si l'utilistauer a la persission de créer des albums dans les catégories publiques. En fait elle indique seulement si l'utilisateur à les droits nécéssaires pour avoir une galerie personnelle.
 		</td>
 	</tr>
 	<tr>
@@ -443,10 +458,10 @@
 			<tt class="code">USER_GROUP_SET</tt>
 		</td>
 		<td>
-			<tt class="code">bridge/your_bridge_file.inc.php</tt> (by default: <tt class="code">bridge/udb_base.inc.php</tt>)
+			<tt class="code">bridge/votre_fichier_bridge.inc.php</tt> (par défaut: <tt class="code">bridge/udb_base.inc.php</tt>)
 		</td>
 		<td>
-			Contains the groups the user is a member of (as a coma-separated list).
+			Contient les groupes dont est membre l'utilisateur (sous forme de liste séparée par une virgule).
 		</td>
 	</tr>
 	<tr>
@@ -454,9 +469,10 @@
 			<tt class="code">THEME_HAS_MENU_ICONS</tt>
 		</td>
 		<td>
-			<tt class="code">themes/yourtheme/theme.php</tt>
+			<tt class="code">themes/votretheme/theme.php</tt>
 		</td>
 		<td>
+		    Pour plus de détails, reportez-vous à <a href="theme.htm">Themes</a> &rarr; <a href="theme_theme_php.htm">Modifier theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_php_list">liste des éléments dans theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_create_theme_menu_icon">THEME_HAS_MENU_ICONS</a>
 		</td>
 	</tr>
 	<tr>
@@ -464,9 +480,10 @@
 			<tt class="code">THEME_HAS_RATING_GRAPHICS</tt>
 		</td>
 		<td>
-			<tt class="code">themes/yourtheme/theme.php</tt>
+			<tt class="code">themes/votretheme/theme.php</tt>
 		</td>
 		<td>
+		    Pour plus de détails, reportez-vous à <a href="theme.htm">Themes</a> &rarr; <a href="theme_theme_php.htm">Modifier theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_php_list">liste des éléments dans theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_create_theme_rating_graphic">THEME_HAS_RATING_GRAPHICS</a>
 		</td>
 	</tr>
 	<tr>
@@ -474,9 +491,10 @@
 			<tt class="code">THEME_HAS_NAVBAR_GRAPHICS</tt>
 		</td>
 		<td>
-			<tt class="code">themes/yourtheme/theme.php</tt>
+			<tt class="code">themes/votretheme/theme.php</tt>
 		</td>
 		<td>
+		    Pour plus de détails, reportez-vous à <a href="theme.htm">Themes</a> &rarr; <a href="theme_theme_php.htm">Modifier theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_php_list">liste des éléments dans theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_create_theme_navbar_graphic">THEME_HAS_NAVBAR_GRAPHICS</a>
 		</td>
 	</tr>
 	<tr>
@@ -484,9 +502,23 @@
 			<tt class="code">THEME_HAS_FILM_STRIP_GRAPHIC</tt>
 		</td>
 		<td>
-			<tt class="code">themes/yourtheme/theme.php</tt>
+			<tt class="code">themes/votretheme/theme.php</tt>
 		</td>
 		<td>
+		    Si défini, la dalle supérieure et inférieure pour le thème graphique utilisera le fichier themes/votretheme/images/tile.gif<br />
+		    Pour plus de détails, reportez-vous à <a href="theme.htm">Themes</a> &rarr; <a href="theme_theme_php.htm">Modifier theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_php_list">liste des éléments dans theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_create_theme_filmstrip_graphic">THEME_HAS_FILM_STRIP_GRAPHIC</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">THEME_HAS_FILM_STRIP_GRAPHICS</tt>
+		</td>
+		<td>
+			<tt class="code">themes/votretheme/theme.php</tt>
+		</td>
+		<td>
+		    Si défini, la partie supérieure  pour le négatif de film utilisera le fichier themes/votretheme/images/tile1.gif et la partie inférieure utilisera le fichier themes/votretheme/images/tile2.gif
+		    <br />pour plus de détails, reportez-vous à <a href="theme.htm">Themes</a> &rarr; <a href="theme_theme_php.htm">Modifier theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_php_list">Liste des éléments dans theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_create_theme_filmstrip_graphics">THEME_HAS_FILM_STRIP_GRAPHICS</a>
 		</td>
 	</tr>
 	<tr>
@@ -494,9 +526,10 @@
 			<tt class="code">THEME_HAS_NO_SYS_MENU_BUTTONS</tt>
 		</td>
 		<td>
-			<tt class="code">themes/yourtheme/theme.php</tt>
+			<tt class="code">themes/votretheme/theme.php</tt>
 		</td>
 		<td>
+		    Pour plus de détails, reportez-vous à <a href="theme.htm">Themes</a> &rarr; <a href="theme_theme_php.htm">Modifier theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_php_list">Liste des éléments dans theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_create_theme_no_sysmenu">THEME_HAS_NO_SYS_MENU_BUTTONS</a>
 		</td>
 	</tr>
 	<tr>
@@ -504,9 +537,21 @@
 			<tt class="code">THEME_HAS_NO_SUB_MENU_BUTTONS</tt>
 		</td>
 		<td>
-			<tt class="code">themes/yourtheme/theme.php</tt>
+			<tt class="code">themes/votretheme/theme.php</tt>
 		</td>
 		<td>
+		    Pour plus de détails, reportez-vous à <a href="theme.htm">Themes</a> &rarr; <a href="theme_theme_php.htm">Modifier theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_php_list">Liste des éléments dans theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_create_theme_no_submenu">THEME_HAS_NO_SUB_MENU_BUTTONS</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<tt class="code">THEME_HAS_PROGRESS_GRAPHICS</tt>
+		</td>
+		<td>
+			<tt class="code">themes/votretheme/theme.php</tt>
+		</td>
+		<td>
+		    Pour plus de détails, reportez-vous à <a href="theme.htm">Themes</a> &rarr; <a href="theme_theme_php.htm">Modifier theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_php_list">Liste des éléments dans theme.php</a> &rarr; <a href="theme_theme_php.htm#theme_create_theme_progress">THEME_HAS_PROGRESS_GRAPHICS</a>
 		</td>
 	</tr>
 	<tr>
@@ -516,7 +561,7 @@
 		<td>
 			<tt class="code">include/init.inc.php</tt>
 		</td>
-			Category ID that contains the user galleries. Always is set to 1.
+			ID de la catégorie qui contient les galeries des utilisateurs. Est toujours est mis à 1.
 		<td>
 		</td>
 	</tr>
@@ -528,7 +573,7 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
-			Value for the first ID of the user gallery category - this is where the numbering scheme starts. By default is set to 10000, which should give all admins plenty of room for admin-defined categories (possible IDs 2 to 9999).
+			Valeur pour l'ID de la première catégorie de galerie utilisateur - c'est l'endroit ou la numérotation commence. Par défaut défini à 10000, ce qui donne à l'administrateur la possibilité de crée un grand nombre de catégories publiques (ID possible de 2 à 9999).
 		</td>
 	</tr>
 	<tr>
@@ -539,7 +584,7 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
-			Default is <tt class="code">template.html</tt>. Don't change unless you really know what you're doing.
+			Est par défault <tt class="code">template.html</tt>. Ne pas changer, sauf si vous savez vraiment ce que vous faites.
 		</td>
 	</tr>
 	<tr>
@@ -550,7 +595,7 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
-			Constant used by the cpg_die function to hard-code the caption of a die message
+			Constante utilisée par la fonction cpg_die pour coder en dur la légende du message d'echec
 		</td>
 	</tr>
 	<tr>
@@ -561,7 +606,7 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
-			Constant used by the cpg_die function to hard-code the caption of a die message
+			Constante utilisée par la fonction cpg_die pour coder en dur la légende du message d'echec
 		</td>
 	</tr>
 	<tr>
@@ -572,12 +617,12 @@
 			<tt class="code">include/init.inc.php</tt>
 		</td>
 		<td>
-			Constant used by the cpg_die function to hard-code the caption of a die message
+			Constante utilisée par la fonction cpg_die pour coder en dur la légende du message d'echec
 		</td>
 	</tr>
 </table>
-<abbr title="to be continued">tbc</abbr> (list is incomplete). All devs please contribute and populate the list.
-<p><a class="back" href="#top">Back to top</a></p><hr />
+<abbr title="Â suivre">Â suivre</abbr> (La liste est incomplète). A tous les développeurs merci de contribuer à remplir la liste.
+<p><a class="back" href="#top">Haut de page</a></p><hr />
 
 
 <div id="doc_footer">
