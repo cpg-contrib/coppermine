@@ -71,8 +71,8 @@ var qm = {
     
     queuedone: function () {
         if (error_occured) {
-            jQuery('#submit_button').html('<img src="images/message/error.png" border="0" alt="" width="16" height="16" class="icon" />');
-            jQuery('#submit_button_bottom').html('<img src="images/icons/ok.png" border="0" alt="" width="16" height="16" class="icon" />' + js_vars.lang_continue).removeAttr('disabled').click(function(){redirect('editpics.php?album=' + qm.aid);});
+            $('#submit_button').html('<img src="images/message/error.png" border="0" alt="" width="16" height="16" class="icon" />');
+            $('#submit_button_bottom').html('<img src="images/icons/ok.png" border="0" alt="" width="16" height="16" class="icon" />' + js_vars.lang_continue).removeAttr('disabled').click(function(){redirect('editpics.php?album=' + qm.aid);});
         } else {
             redirect('editpics.php?album=' + this.aid);
         }
@@ -151,7 +151,7 @@ function job_failed() {
 // Sends the http request
 function request(url, job) {
 
-    jQuery.ajax({
+    $.ajax({
         url: url,
         cache: false,
         success: function (data) {
@@ -200,7 +200,7 @@ function process() {
     
     // Disable buttons and show loader image
     if (!already_submitted) {
-        jQuery('#submit_button, #submit_button_bottom').html('<img src="images/loader.gif" border="0" alt="" width="16" height="16" class="icon" />').attr('disabled', 'disabled');
+        $('#submit_button, #submit_button_bottom').html('<img src="images/loader.gif" border="0" alt="" width="16" height="16" class="icon" />').attr('disabled', 'disabled');
     }
     already_submitted = true;
     
@@ -208,7 +208,7 @@ function process() {
 }
 
 function searchnewPageLoaded() {
-    jQuery('#submit_button, #submit_button_bottom').click(process);
+    $('#submit_button, #submit_button_bottom').click(process);
 }
 
 addonload('searchnewPageLoaded()');

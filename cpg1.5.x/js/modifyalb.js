@@ -53,22 +53,22 @@ function defaultagree(el){
 }
 
 // When the document is ready i.e. on page load
-jQuery(document).ready(function() {
+$(document).ready(function() {
     // See if password_protect checkbox is checked
-    if (jQuery('#password_protect:checked').val() != null) {
+    if ($('#password_protect:checked').val() != null) {
         // If password protect checkbox is checked then show the password related fields
-        jQuery('#password_protect').parent().parent().next().show();
-        jQuery('#password_protect').parent().parent().next().next().show();
+        $('#password_protect').parent().parent().next().show();
+        $('#password_protect').parent().parent().next().next().show();
     } else {
         // Else hide the password related fields
-        jQuery('#password_protect').parent().parent().next().hide();
-        jQuery('#password_protect').parent().parent().next().next().hide();
+        $('#password_protect').parent().parent().next().hide();
+        $('#password_protect').parent().parent().next().next().hide();
     }
     
     // Bind the onclick event to password protect checkbox
-    jQuery('#password_protect').click(function() {
+    $('#password_protect').click(function() {
        // Toggle the display of password fields
-        jQuery('#password_protect').parent().parent().next().toggle();
-        jQuery('#password_protect').parent().parent().next().next().toggle();
+        $('#password_protect').parent().parent().next().toggle();
+        $('#password_protect').parent().parent().next().next().toggle();
     });
 });

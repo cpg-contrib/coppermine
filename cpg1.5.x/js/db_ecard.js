@@ -15,17 +15,17 @@
 **********************************************/
 
 function check(state){
-    jQuery.each(jQuery("input[name='eid[]']"), function(){
-        jQuery(this).attr('checked', state);
+    jQuery.each($("input[name='eid[]']"), function(){
+        $(this).attr('checked', state);
     });
 }
 
 function agreesubmit(){
-    jQuery("input[type='submit'][name='delete']").attr('disabled', (jQuery('#agreecheck').attr('checked')) ? false : true);
+    $("input[type='submit'][name='delete']").attr('disabled', ($('#agreecheck').attr('checked')) ? false : true);
 }
 
 function defaultagree(){
-    if (jQuery('#agreecheck').attr('checked'))
+    if ($('#agreecheck').attr('checked'))
         return true;
     else{
         alert(js_vars.ecards_delete_confirm);

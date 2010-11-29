@@ -23,8 +23,8 @@ function textCounter(field, maxlimit) {
 
 
 function checkPermissions(album, html) {
-    var is_public  = (jQuery('#public_albums').val().split(',').indexOf(album) != -1);
-    var is_private = (jQuery('#private_albums').val().split(',').indexOf(album) != -1);
+    var is_public  = ($('#public_albums').val().split(',').indexOf(album) != -1);
+    var is_private = ($('#private_albums').val().split(',').indexOf(album) != -1);
     var public_need_approval   = (js_vars.public_need_approval == 1);
     var private_need_approval  = (js_vars.private_need_approval == 1);
     var users_cannot_edit_pics = (js_vars.public_can_edit_pics == 0);
@@ -45,20 +45,20 @@ function checkPermissions(album, html) {
 }
 
 
-jQuery(document).ready(function() {
-    jQuery('.elastic').elastic();
-	jQuery('#album').change(function() {
-        var sel_album = jQuery(this).val();
+$(document).ready(function() {
+    $('.elastic').elastic();
+	$('#album').change(function() {
+        var sel_album = $(this).val();
         var note = checkPermissions(sel_album, true);
-        jQuery('#note_permissions').html(note)
+        $('#note_permissions').html(note)
         if (note) {
-            jQuery('#wrapper_permissions').fadeIn('slow');
+            $('#wrapper_permissions').fadeIn('slow');
         } else {
-            jQuery('#wrapper_permissions').hide();            
+            $('#wrapper_permissions').hide();            
         }
     });
-    jQuery('#cpgform_editonepic').submit(function() {
-        var sel_album = jQuery('#album').val();
+    $('#cpgform_editonepic').submit(function() {
+        var sel_album = $('#album').val();
         var note = checkPermissions(sel_album, false);
         if (note) {
             return confirm(note + "\n\n" + js_vars.confirm_move);

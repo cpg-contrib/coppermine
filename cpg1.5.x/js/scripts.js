@@ -21,11 +21,10 @@ var KEY_CODES = {
 };
 
 var GB_ANIMATION = true;
-$.noConflict();
 
-jQuery(function() {
-    jQuery(".cpg_zebra tr:even").addClass("tableb");
-    jQuery(".cpg_zebra tr:odd").addClass("tableb tableb_alternate");
+$(function() {
+    $(".cpg_zebra tr:even").addClass("tableb");
+    $(".cpg_zebra tr:odd").addClass("tableb tableb_alternate");
 });
 
 function MM_openBrWindow(theURL,winName,features) { //v2.0
@@ -56,29 +55,29 @@ function readCookie(cookieName) {
 }
 
 function blocking(nr, cookie, vis_state) {
-    display = (jQuery("#" + nr).css('display') == 'none') ? vis_state : 'none';
+    display = ($("#" + nr).css('display') == 'none') ? vis_state : 'none';
     if (cookie != ''){
         writeCookie(nr, display);
     }
-    jQuery('#' + nr).css('display', display);
+    $('#' + nr).css('display', display);
 }
 
 function show_section(e) {
-    jQuery('#' + e).toggle();
+    $('#' + e).toggle();
 }
 
 function expand() {
-    jQuery("table[id^='section']").show();
+    $("table[id^='section']").show();
 }
 
 function hideall() {
-    jQuery("table[id^='section']").hide();
+    $("table[id^='section']").hide();
 }
 
 function selectAll(form_name) {
-    jQuery('#' + form_name).data('boxes_checked', jQuery('#' + form_name).data('boxes_checked') ? false : true);
-    jQuery('#' + form_name + ' input:checkbox').each(function(){
-        this.checked = jQuery('#' + form_name).data('boxes_checked');
+    $('#' + form_name).data('boxes_checked', $('#' + form_name).data('boxes_checked') ? false : true);
+    $('#' + form_name + ' input:checkbox').each(function(){
+        this.checked = $('#' + form_name).data('boxes_checked');
     });
 }
 
@@ -346,53 +345,53 @@ if (!Array.prototype.indexOf)
 }
 // end function prototype array.indexOf
 
-jQuery(document).ready(function() {
+$(document).ready(function() {
     for (func in onloads) {
         eval(onloads[func]);
     }
 
     //hide all elements with class detail_body
-    jQuery(".detail_body").hide();
+    $(".detail_body").hide();
     //toggle the component with class detail_body
-    jQuery(".detail_head_collapsed").click(function()
+    $(".detail_head_collapsed").click(function()
     {
-        jQuery(this).toggleClass("detail_head_expanded").next(".detail_body").slideToggle(600);
+        $(this).toggleClass("detail_head_expanded").next(".detail_body").slideToggle(600);
     });
-    jQuery(".detail_expand_all").click(function()
+    $(".detail_expand_all").click(function()
     {
-        jQuery(".detail_body").slideDown(1200);
-        jQuery(".detail_head_collapsed").addClass("detail_head_expanded");
-        jQuery(".detail_expand_all").hide();
-        jQuery(".detail_collapse_all").show();
+        $(".detail_body").slideDown(1200);
+        $(".detail_head_collapsed").addClass("detail_head_expanded");
+        $(".detail_expand_all").hide();
+        $(".detail_collapse_all").show();
 
     });
-    jQuery(".detail_collapse_all").click(function()
+    $(".detail_collapse_all").click(function()
     {
-        jQuery(".detail_body").slideUp(1200);
-        jQuery(".detail_head_collapsed").removeClass("detail_head_expanded");
-        jQuery(".detail_expand_all").show();
-        jQuery(".detail_collapse_all").hide();
+        $(".detail_body").slideUp(1200);
+        $(".detail_head_collapsed").removeClass("detail_head_expanded");
+        $(".detail_expand_all").show();
+        $(".detail_collapse_all").hide();
 
     });
-    jQuery(".detail_toggle_all").click(function()
+    $(".detail_toggle_all").click(function()
     {
-        jQuery(".detail_body").slideToggle(600);
-        jQuery(".detail_head_collapsed").toggleClass("detail_head_expanded");
+        $(".detail_body").slideToggle(600);
+        $(".detail_head_collapsed").toggleClass("detail_head_expanded");
     });
     
     // Greybox plugin initialization for the help system
-    jQuery("a.greybox").click(function(){
-      var t = this.title || jQuery(this).text() || this.href;
+    $("a.greybox").click(function(){
+      var t = this.title || $(this).text() || this.href;
       GB_show(t,this.href,470,600);
       return false;
     });
-    jQuery("a.greyboxfull").click(function(){
-      var t = this.title || jQuery(this).text() || this.href;
+    $("a.greyboxfull").click(function(){
+      var t = this.title || $(this).text() || this.href;
       GB_show(t,this.href,700,800);
       return false;
     });
-    jQuery('.elastic').elastic();
+    $('.elastic').elastic();
 
     //hide all elements with class noscript
-    jQuery(".noscript").hide();
+    $(".noscript").hide();
 });

@@ -14,14 +14,14 @@
   $Revision$
 **********************************************/
 
-jQuery(document).ready(function() {
+$(document).ready(function() {
     //convert external links to open in new window (in comments);
-    jQuery.each(jQuery("a[rel*='external']"), function(){
-        jQuery(this).click(function(){
+    jQuery.each($("a[rel*='external']"), function(){
+        $(this).click(function(){
             window.open(this.href);
             return false;
         });
-        jQuery(this).keypress(function(){
+        $(this).keypress(function(){
             window.open(this.href);
             return false;
         });

@@ -66,9 +66,9 @@ SWFUpload.onload = function () {
     swfu = new SWFUpload(settings);
 
     // Bind a change event on album drop down
-    jQuery("select[name='album']").change(function() {
+    $("select[name='album']").change(function() {
         // Enable the browse button only if some album is selected
-       if (jQuery(this).val()) {
+       if ($(this).val()) {
            swfu.setButtonDisabled(false);
            // Set the button style to enabled
            swfu.setButtonTextStyle(button_enabled_style);
@@ -83,9 +83,9 @@ SWFUpload.onload = function () {
 
 function continue_upload() {
     if (js_vars.user_id > 0 || js_vars.allow_guests_enter_file_details == 1) {
-        window.location = js_vars.site_url + '/editpics.php?album=' + jQuery("select[name='album']").val();
+        window.location = js_vars.site_url + '/editpics.php?album=' + $("select[name='album']").val();
     } else {
-        window.location = js_vars.site_url + '/thumbnails.php?album=' + jQuery("select[name='album']").val();
+        window.location = js_vars.site_url + '/thumbnails.php?album=' + $("select[name='album']").val();
     }
     return false;
 }

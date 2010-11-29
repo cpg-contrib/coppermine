@@ -14,14 +14,14 @@
   $Revision$
 **********************************************/
 
-jQuery(document).ready(function() {
+$(document).ready(function() {
     button_enabled_style = '.browse { font-family: Arial,Helvetica,sans-serif;}';
     button_disabled_style = '.browse { font-family: Arial,Helvetica,sans-serif; color: #D0CFD0;}';
 
-    jQuery('#uploadMethod').change(function() {
-        var param = 'method=' + jQuery(this).val();
-        if (jQuery("select[name='album']").val()) {
-            param += '&album=' + jQuery("select[name='album']").val();
+    $('#uploadMethod').change(function() {
+        var param = 'method=' + $(this).val();
+        if ($("select[name='album']").val()) {
+            param += '&album=' + $("select[name='album']").val();
         }
         window.location.href = 'upload.php?' + param;
     });

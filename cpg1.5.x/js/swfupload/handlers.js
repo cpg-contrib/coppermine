@@ -29,7 +29,7 @@ The FileProgress class is not part of SWFUpload.
 function fileQueued(file) {
     try {
         // We will put the album id in post params of swfu object
-        swfu.addPostParam('album', jQuery("select[name='album']").val());
+        swfu.addPostParam('album', $("select[name='album']").val());
         var progress = new FileProgress(file, this.customSettings.progressTarget);
         progress.setStatus(js_vars.lang_upload_swf_php.status_pending);
         progress.toggleCancel(true, this);
@@ -128,7 +128,7 @@ function uploadSuccess(file, serverData) {
             progress.setComplete();
             progress.setStatus(js_vars.lang_upload_swf_php.status_complete);
             // Add
-            jQuery('#upload_count').text(1 * jQuery('#upload_count').text() + 1);
+            $('#upload_count').text(1 * $('#upload_count').text() + 1);
             addImage(js_vars.site_url + '/' + serverData.substring(9));
         } else {
             progress.setError();
@@ -149,16 +149,16 @@ function uploadSuccess(file, serverData) {
         }
         progress.toggleCancel(false);
         // If we have more than one uploads then enable to continue button, show the admin approval message and disable the selection of another album
-        if (1 * jQuery('#upload_count').text() > 0) {
-            jQuery('#button_continue').show();
+        if (1 * $('#upload_count').text() > 0) {
+            $('#button_continue').show();
 
             if (serverData.substring(7, 8) == '1') {
-                jQuery('#admin_approval').slideDown();
+                $('#admin_approval').slideDown();
             }
 
-            var listbox_selected_value = jQuery("select[name='album']").val();
-            var listbox_selected_text = jQuery("select[name='album'] :selected").text();
-            jQuery("select[name='album']").children().remove().end().append('<option value="' + listbox_selected_value + '" selected="selected">' + listbox_selected_text + '</option>');
+            var listbox_selected_value = $("select[name='album']").val();
+            var listbox_selected_text = $("select[name='album'] :selected").text();
+            $("select[name='album']").children().remove().end().append('<option value="' + listbox_selected_value + '" selected="selected">' + listbox_selected_text + '</option>');
         }
     } catch (ex) {
         this.debug(ex);
@@ -223,8 +223,8 @@ function uploadComplete(file) {
         
         // Send notification request only if atleast one successful upload is there
         if (notify_upload) {
-            jQuery.post('notifyupload.php', {
-                album: jQuery("select[name='album']").val()
+            $.post('notifyupload.php', {
+                album: $("select[name='album']").val()
             });
             
             // Rest the variable as users can again try to upload without reloading page
@@ -242,11 +242,11 @@ function addImage(src) {
     var newImg = document.createElement("img");
     newImg.style.margin = "5px";
 
-    jQuery('#uploadedThumbnails').append(newImg);
-    jQuery(newImg).fadeTo(1, 0);
+    $('#uploadedThumbnails').append(newImg);
+    $(newImg).fadeTo(1, 0);
 
     newImg.onload = function () {
-        jQuery(newImg).fadeTo(10000, 100);
+        $(newImg).fadeTo(10000, 100);
     };
     newImg.src = src;
 }
@@ -254,11 +254,11 @@ function addImage(src) {
 function swfUploadPreLoad() {
     var self = this;
     var loading = function () {
-        jQuery("#divLoadingContent").show();
+        $("#divLoadingContent").show();
 
         var longLoad = function () {
-            jQuery("#divLoadingContent").hide();
-            jQuery("#divLongLoading").show();
+            $("#divLoadingContent").hide();
+            $("#divLongLoading").show();
         };
         this.customSettings.loadingTimeout = setTimeout(function () {
                 longLoad.call(self)
@@ -276,14 +276,14 @@ function swfUploadPreLoad() {
 function swfUploadLoaded() {
     var self = this;
     clearTimeout(this.customSettings.loadingTimeout);
-    jQuery("#divLoadingContent").hide();
-    jQuery("#divLongLoading").hide();
-    jQuery("#divAlternateContent").hide();
+    $("#divLoadingContent").hide();
+    $("#divLongLoading").hide();
+    $("#divAlternateContent").hide();
     
-    jQuery("#button_cancel").click(function () { self.cancelQueue(); });
+    $("#button_cancel").click(function () { self.cancelQueue(); });
     
     // If some album is preselected then set browse button enabled
-    if (jQuery("select[name='album']").val()) {
+    if ($("select[name='album']").val()) {
         this.setButtonDisabled(false);
         // Set the button style to enabled
         this.setButtonTextStyle(button_enabled_style);
@@ -293,9 +293,9 @@ function swfUploadLoaded() {
    
 function swfUploadLoadFailed() {
     clearTimeout(this.customSettings.loadingTimeout);
-    jQuery("#divLoadingContent").hide();
-    jQuery("#divLongLoading").hide();
-    jQuery("#divAlternateContent").show();
+    $("#divLoadingContent").hide();
+    $("#divLongLoading").hide();
+    $("#divAlternateContent").show();
 }
 
 function swfDebugHandler(message) {
@@ -322,7 +322,7 @@ function swfDebugHandler(message) {
 function swfWriteDebug(message) {
     var console;
     try {
-        console = jQuery('textarea[name=debugtext]');
+        console = $('textarea[name=debugtext]');
         console.append(message + "\n");
         console.scrollTop(console.attr('scrollHeight') - console.attr('clientHeight'));
     } catch (ex) {

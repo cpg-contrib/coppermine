@@ -13,7 +13,7 @@
   $HeadURL$
   $Revision$
 **********************************************/
-jQuery(document).ready(function() {
+$(document).ready(function() {
     addSortOptions();
 });
 
@@ -73,5 +73,5 @@ function addSortOptions(){
     sortable += '<a href="thumbnails.php?album=' + js_vars.sort_vars.aid + '&amp;page=' + js_vars.sort_vars.page + '&amp;sort=pd" title="' + js_vars.sort_vars.sort_pd + '"><img src="images/descending.png" width="9" height="9" border="0" alt="-" /></a>';
     sortable += '</span>';
     
-    jQuery('#sortorder_cell').append(sortable); 
+    $('#sortorder_cell').append(sortable); 
 }

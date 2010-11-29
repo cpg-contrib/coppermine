@@ -15,13 +15,13 @@
 **********************************************/
 
 function init_utils(){
-    jQuery.each(jQuery("div[id$='_wrapper']"), function(){
-        jQuery(this).css('display', 'none');                   
+    jQuery.each($("div[id$='_wrapper']"), function(){
+        $(this).css('display', 'none');                   
     });
-    jQuery.each(jQuery("input[type='radio'][name='action']"), function(){
-        jQuery(this).change(function(){
-            jQuery.each(jQuery("input[type='radio'][name='action']"), function(){
-                jQuery('#' + jQuery(this).attr('id') + '_wrapper').css('display', (jQuery(this).attr('checked')) ? 'block' : 'none');                    
+    jQuery.each($("input[type='radio'][name='action']"), function(){
+        $(this).change(function(){
+            jQuery.each($("input[type='radio'][name='action']"), function(){
+                $('#' + $(this).attr('id') + '_wrapper').css('display', ($(this).attr('checked')) ? 'block' : 'none');                    
             });
         });               
     });

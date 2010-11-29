@@ -17,11 +17,11 @@
 function validateContactFormFields() {
     if (js_vars.contact.check.one) {
         if(document.contactForm.sender_name.value == '') {
-            jQuery('#name_remark').css('display', 'block');
+            $('#name_remark').css('display', 'block');
             document.contactForm.sender_name.focus();
             return false;
         }else{
-            jQuery('#name_remark').css('display', 'none');
+            $('#name_remark').css('display', 'none');
         }
     }
     
@@ -29,49 +29,49 @@ function validateContactFormFields() {
         if(document.contactForm.sender_name.value == js_vars.contact.your_name) {
              alert(js_vars.contact.name_field_invalid);
              document.contactForm.sender_name.value = '';
-             jQuery('#name_remark').css('display', 'block');
+             $('#name_remark').css('display', 'block');
              document.contactForm.sender_name.focus();
              return false;
         }else{
-            jQuery('#name_remark').css('display', 'none');
+            $('#name_remark').css('display', 'none');
         }
     }
     
     if (js_vars.contact.check.three) {
         if(document.contactForm.sender_email.value == '') {
-            jQuery('#email_remark').css('display', 'block');
+            $('#email_remark').css('display', 'block');
             document.contactForm.sender_email.focus();
             return false;
         }else{
-            jQuery('#email_remark').css('display', 'none');
+            $('#email_remark').css('display', 'none');
         }
 
         string=document.contactForm.sender_email.value;
         if (string.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) == -1) {
-            jQuery('#email_remark').css('display', 'block');
+            $('#email_remark').css('display', 'block');
             alert(js_vars.contact.email_field_invalid);
             document.contactForm.sender_email.focus();
             return false;
         }else{
-            jQuery('#email_remark').css('display', 'none');
+            $('#email_remark').css('display', 'none');
         }
     }
     
     if (js_vars.contact.check.four) {
         if(document.contactForm.subject.value == '') {
-             jQuery('#subject_remark').css('display', 'block');
+             $('#subject_remark').css('display', 'block');
              document.contactForm.subject.focus();
              return false;
         }else{
-            jQuery('#subject_remark').css('display', 'none');
+            $('#subject_remark').css('display', 'none');
         }
     }
     
     if(document.contactForm.message.value == '') {
-         jQuery('#message_remark').css('display', 'block');
+         $('#message_remark').css('display', 'block');
          document.contactForm.message.focus();
          return false;
     }else{
-        jQuery('#message_remark').css('display', 'none');
+        $('#message_remark').css('display', 'none');
     }
 }
