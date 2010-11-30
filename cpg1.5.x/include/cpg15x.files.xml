@@ -83,10 +83,10 @@
   <element>
     <fullpath>CHANGELOG.txt</fullpath>
     <version>1.5.10</version>
-    <revision>8107</revision>
+    <revision>8110</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>0171b92f1461f8ecc6d0d8ebc87c7de6</hash>
+    <hash>04c3e69f5c8d8d51f7ea8118003fd772</hash>
   </element>
   <element>
     <fullpath>config.php</fullpath>
@@ -287,10 +287,10 @@
   <element>
     <fullpath>langmgr.php</fullpath>
     <version>1.5.10</version>
-    <revision>8107</revision>
+    <revision>8110</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>76cae2f3474fe59af8c6d73fa148d67e</hash>
+    <hash>a2d0b9dec200b8a8a2353e66882e304b</hash>
   </element>
   <element>
     <fullpath>login.php</fullpath>
@@ -1384,10 +1384,10 @@
   <element>
     <fullpath>docs/de/upgrading.htm</fullpath>
     <version>1.5.10</version>
-    <revision>8107</revision>
+    <revision>8110</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>af3e150183ce1f1ff78857e1fd616c5d</hash>
+    <hash>4f8ccbc05c36b120ed780ce0bd4aa459</hash>
   </element>
   <element>
     <fullpath>docs/de/upload_troubleshooting.htm</fullpath>
@@ -2210,10 +2210,10 @@
   <element>
     <fullpath>docs/en/upgrading.htm</fullpath>
     <version>1.5.10</version>
-    <revision>8107</revision>
+    <revision>8110</revision>
     <status>mandatory</status>
     <permission>read</permission>
-    <hash>9fb7336830a89621c16e06baa681b9c1</hash>
+    <hash>7b6c981542ef2ceeeca38f2be8b3fe6c</hash>
   </element>
   <element>
     <fullpath>docs/en/uploading.htm</fullpath>
@@ -3148,10 +3148,10 @@
   <element>
     <fullpath>docs/es/upgrading.htm</fullpath>
     <version>1.5.10</version>
-    <revision>8107</revision>
+    <revision>8110</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>79a83cc8c85fb7b90dc24e3801577bea</hash>
+    <hash>ab518abb2e81857476954b09b7fc571d</hash>
   </element>
   <element>
     <fullpath>docs/es/uploading.htm</fullpath>
@@ -4010,10 +4010,10 @@
   <element>
     <fullpath>docs/fr/upgrading.htm</fullpath>
     <version>1.5.10</version>
-    <revision>8107</revision>
+    <revision>8110</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>03d00709d89bd24ba9ee518a1c45800f</hash>
+    <hash>6361c416248caeb87bfffe8947ae38b6</hash>
   </element>
   <element>
     <fullpath>docs/fr/upload_troubleshooting.htm</fullpath>
@@ -5027,10 +5027,10 @@
   <element>
     <fullpath>docs/nl/upgrading.htm</fullpath>
     <version>1.5.10</version>
-    <revision>8107</revision>
+    <revision>8110</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>2313d99427e2fbafa4b2efde736b2ae6</hash>
+    <hash>fc4d120d445d8a58bda22290487af2b6</hash>
   </element>
   <element>
     <fullpath>docs/nl/uploading.htm</fullpath>
@@ -6031,10 +6031,10 @@
   <element>
     <fullpath>docs/se/upgrading.htm</fullpath>
     <version>1.5.10</version>
-    <revision>8107</revision>
+    <revision>8110</revision>
     <status>optional</status>
     <permission>read</permission>
-    <hash>affe7adb723d59258484187c0b623ea6</hash>
+    <hash>0895461c76916c4853c0f1b8c3c1bd9a</hash>
   </element>
   <element>
     <fullpath>docs/se/uploading.htm</fullpath>
