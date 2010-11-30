@@ -8,7 +8,7 @@ This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 3
 as published by the Free Software Foundation.
 ********************************************
-Coppermine version: 1.5.10
+Coppermine version: 1.5.11
 $HeadURL$
 $Revision$
 *********************************************
@@ -23,6 +23,7 @@ Changelog
 [S] = Security fix (issues that are related to security)
 *********************************************
 
+2010-11-30 [M] Counted version count up in SVN repository from cpg1.5.10 to cpg1.5.11 {eenemeenemuu}
 2010-11-30 [M] Release of cpg1.5.10 {eenemeenemuu}
 2010-11-30 [B] Fixed issue with language manager (thread ID 68309) {eenemeenemuu}
 2010-11-27 [S] Fixed potential security issue during installation (thread ID 68285) {eenemeenemuu}
